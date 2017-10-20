@@ -30,9 +30,9 @@ class TestDownloadButtons(TestCase):
         keys = [
             'firefox-%s' % self.latest_version(),
             'firefox-stub',
-            'firefox-latest',
+            'firefox-latest-ssl',
             'firefox-beta-stub',
-            'firefox-beta-latest',
+            'firefox-beta-latest-ssl',
         ]
 
         for link in links:
@@ -173,12 +173,11 @@ class TestDownloadButtons(TestCase):
                         {'request': get_request}))
 
         list = doc('.download-list li')
-        eq_(list.length, 5)
-        eq_(pq(list[0]).attr('class'), 'os_winsha1')
-        eq_(pq(list[1]).attr('class'), 'os_win')
-        eq_(pq(list[2]).attr('class'), 'os_osx')
-        eq_(pq(list[3]).attr('class'), 'os_linux64')
-        eq_(pq(list[4]).attr('class'), 'os_linux')
+        eq_(list.length, 4)
+        eq_(pq(list[0]).attr('class'), 'os_win')
+        eq_(pq(list[1]).attr('class'), 'os_osx')
+        eq_(pq(list[2]).attr('class'), 'os_linux64')
+        eq_(pq(list[3]).attr('class'), 'os_linux')
         # stub disabled for now for non-en-US locales
         # bug 1339870
         # ok_('stub' in pq(pq(list[1]).find('a')[0]).attr('href'))
@@ -192,13 +191,12 @@ class TestDownloadButtons(TestCase):
                         {'request': get_request}))
 
         list = doc('.download-list li')
-        eq_(list.length, 6)
-        eq_(pq(list[0]).attr('class'), 'os_winsha1')
-        eq_(pq(list[1]).attr('class'), 'os_win64')
-        eq_(pq(list[2]).attr('class'), 'os_win')
-        eq_(pq(list[3]).attr('class'), 'os_osx')
-        eq_(pq(list[4]).attr('class'), 'os_linux64')
-        eq_(pq(list[5]).attr('class'), 'os_linux')
+        eq_(list.length, 5)
+        eq_(pq(list[0]).attr('class'), 'os_win64')
+        eq_(pq(list[1]).attr('class'), 'os_win')
+        eq_(pq(list[2]).attr('class'), 'os_osx')
+        eq_(pq(list[3]).attr('class'), 'os_linux64')
+        eq_(pq(list[4]).attr('class'), 'os_linux')
 
     def test_beta_desktop(self):
         """The Beta channel should not have Windows 64 build yet"""
@@ -209,13 +207,12 @@ class TestDownloadButtons(TestCase):
                         {'request': get_request}))
 
         list = doc('.download-list li')
-        eq_(list.length, 6)
-        eq_(pq(list[0]).attr('class'), 'os_winsha1')
-        eq_(pq(list[1]).attr('class'), 'os_win64')
-        eq_(pq(list[2]).attr('class'), 'os_win')
-        eq_(pq(list[3]).attr('class'), 'os_osx')
-        eq_(pq(list[4]).attr('class'), 'os_linux64')
-        eq_(pq(list[5]).attr('class'), 'os_linux')
+        eq_(list.length, 5)
+        eq_(pq(list[0]).attr('class'), 'os_win64')
+        eq_(pq(list[1]).attr('class'), 'os_win')
+        eq_(pq(list[2]).attr('class'), 'os_osx')
+        eq_(pq(list[3]).attr('class'), 'os_linux64')
+        eq_(pq(list[4]).attr('class'), 'os_linux')
 
     def test_firefox_desktop(self):
         """The Release channel should not have Windows 64 build yet"""
@@ -310,9 +307,9 @@ class TestDownloadList(TestCase):
         keys = [
             'firefox-%s' % self.latest_version(),
             'firefox-stub',
-            'firefox-latest',
+            'firefox-latest-ssl',
             'firefox-beta-stub',
-            'firefox-beta-latest',
+            'firefox-beta-latest-ssl',
         ]
 
         for link in links:
@@ -371,24 +368,16 @@ class TestDownloadList(TestCase):
 
         # Check that links classes are ordered as expected.
         list = doc('.download-platform-list li')
-        eq_(list.length, 6)
-        eq_(pq(list[0]).attr('class'), 'os_winsha1')
-        eq_(pq(list[1]).attr('class'), 'os_win64')
-        eq_(pq(list[2]).attr('class'), 'os_win')
-        eq_(pq(list[3]).attr('class'), 'os_osx')
-        eq_(pq(list[4]).attr('class'), 'os_linux64')
-        eq_(pq(list[5]).attr('class'), 'os_linux')
+        eq_(list.length, 5)
+        eq_(pq(list[0]).attr('class'), 'os_win64')
+        eq_(pq(list[1]).attr('class'), 'os_win')
+        eq_(pq(list[2]).attr('class'), 'os_osx')
+        eq_(pq(list[3]).attr('class'), 'os_linux64')
+        eq_(pq(list[4]).attr('class'), 'os_linux')
 
         links = doc('.download-platform-list a')
 
-        # The first link should be sha-1 bouncer.
-        first_link = pq(links[0])
-        first_href = first_link.attr('href')
-        ok_(first_href.startswith('https://download-sha1.allizom.org'))
-        self.assertListEqual(parse_qs(urlparse(first_href).query)['lang'], ['en-US'])
-
-        # All other links should be to regular bouncer.
-        for link in links[1:5]:
+        for link in links:
             link = pq(link)
             href = link.attr('href')
             ok_(href.startswith('https://download.mozilla.org'))
@@ -407,23 +396,15 @@ class TestDownloadList(TestCase):
 
         # Check that links classes are ordered as expected.
         list = doc('.download-platform-list li')
-        eq_(list.length, 5)
-        eq_(pq(list[0]).attr('class'), 'os_winsha1')
-        eq_(pq(list[1]).attr('class'), 'os_win')
-        eq_(pq(list[2]).attr('class'), 'os_osx')
-        eq_(pq(list[3]).attr('class'), 'os_linux64')
-        eq_(pq(list[4]).attr('class'), 'os_linux')
+        eq_(list.length, 4)
+        eq_(pq(list[0]).attr('class'), 'os_win')
+        eq_(pq(list[1]).attr('class'), 'os_osx')
+        eq_(pq(list[2]).attr('class'), 'os_linux64')
+        eq_(pq(list[3]).attr('class'), 'os_linux')
 
         links = doc('.download-platform-list a')
 
-        # The first link should be sha-1 bouncer.
-        first_link = pq(links[0])
-        first_href = first_link.attr('href')
-        ok_(first_href.startswith('https://download-sha1.allizom.org'))
-        self.assertListEqual(parse_qs(urlparse(first_href).query)['lang'], ['en-US'])
-
-        # All other links should be to regular bouncer.
-        for link in links[1:5]:
+        for link in links:
             link = pq(link)
             href = link.attr('href')
             ok_(href.startswith('https://download.mozilla.org'))

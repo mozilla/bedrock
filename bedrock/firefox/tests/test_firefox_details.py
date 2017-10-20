@@ -5,9 +5,7 @@
 import os
 from urlparse import parse_qsl, urlparse
 
-from django.conf import settings
 from django.core.cache import caches
-from django.test.utils import override_settings
 
 from mock import patch, Mock
 from nose.tools import eq_, ok_
@@ -116,7 +114,7 @@ class TestFirefoxDesktop(TestCase):
     def test_get_download_url(self):
         url = firefox_desktop.get_download_url('release', '17.0.1', 'osx', 'pt-BR', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-17.0.1-SSL'),
+                             [('product', 'firefox-latest-ssl'),
                               ('os', 'osx'),
                               ('lang', 'pt-BR')])
         # Windows 64-bit
@@ -128,8 +126,76 @@ class TestFirefoxDesktop(TestCase):
         # Linux 64-bit
         url = firefox_desktop.get_download_url('release', '17.0.1', 'linux64', 'en-US', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-17.0.1-SSL'),
+                             [('product', 'firefox-latest-ssl'),
                               ('os', 'linux64'),
+                              ('lang', 'en-US')])
+
+    def test_get_download_url_esr(self):
+        """
+        The ESR version should give us a bouncer url. There is no stub for ESR.
+        """
+        url = firefox_desktop.get_download_url('esr', '28.0a2', 'win', 'en-US', True)
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'firefox-esr-latest-ssl'),
+                              ('os', 'win'),
+                              ('lang', 'en-US')])
+        url = firefox_desktop.get_download_url('esr', '28.0a2', 'win64', 'en-US', True)
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'firefox-esr-latest-ssl'),
+                              ('os', 'win64'),
+                              ('lang', 'en-US')])
+        url = firefox_desktop.get_download_url('esr', '28.0a2', 'osx', 'en-US', True)
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'firefox-esr-latest-ssl'),
+                              ('os', 'osx'),
+                              ('lang', 'en-US')])
+        url = firefox_desktop.get_download_url('esr', '28.0a2', 'linux', 'en-US', True)
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'firefox-esr-latest-ssl'),
+                              ('os', 'linux'),
+                              ('lang', 'en-US')])
+        url = firefox_desktop.get_download_url('esr', '28.0a2', 'linux64', 'en-US', True)
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'firefox-esr-latest-ssl'),
+                              ('os', 'linux64'),
+                              ('lang', 'en-US')])
+
+    def test_get_download_url_esr_next(self):
+        """
+        The ESR_NEXT version should give us a bouncer url with a full version. There is no stub for ESR.
+        """
+        url = firefox_desktop.get_download_url('esr_next', '52.4.1esr', 'win', 'en-US', True)
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'firefox-52.4.1esr-SSL'),
+                              ('os', 'win'),
+                              ('lang', 'en-US')])
+        url = firefox_desktop.get_download_url('esr_next', '52.4.1esr', 'win64', 'en-US', True)
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'firefox-52.4.1esr-SSL'),
+                              ('os', 'win64'),
+                              ('lang', 'en-US')])
+        url = firefox_desktop.get_download_url('esr_next', '52.4.1esr', 'osx', 'en-US', True)
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'firefox-52.4.1esr-SSL'),
+                              ('os', 'osx'),
+                              ('lang', 'en-US')])
+        url = firefox_desktop.get_download_url('esr_next', '52.4.1esr', 'linux', 'en-US', True)
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'firefox-52.4.1esr-SSL'),
+                              ('os', 'linux'),
+                              ('lang', 'en-US')])
+        url = firefox_desktop.get_download_url('esr_next', '52.4.1esr', 'linux64', 'en-US', True)
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'firefox-52.4.1esr-SSL'),
+                              ('os', 'linux64'),
+                              ('lang', 'en-US')])
+
+    def test_get_download_url_winsha1(self):
+        # sha1 should get the normal stub installer, bouncer handles the rest
+        url = firefox_desktop.get_download_url('release', '56.0', 'winsha1', 'en-US', True)
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'firefox-stub'),
+                              ('os', 'win'),
                               ('lang', 'en-US')])
 
     def test_get_download_url_devedition(self):
@@ -259,7 +325,7 @@ class TestFirefoxDesktop(TestCase):
 
     def test_get_download_url_nightly_full(self):
         """
-        The Aurora version should give us a bouncer url. For Windows, a full url
+        The Nightly version should give us a bouncer url. For Windows, a full url
         should be returned.
         """
         url = firefox_desktop.get_download_url('nightly', '50.0a1', 'win', 'en-US', True, True)
@@ -338,31 +404,29 @@ class TestFirefoxDesktop(TestCase):
                                                funnelcake_id='64')
         self.assertEqual(url, '/fr' + scene2 + '&f=64')
 
-    @override_settings(STUB_INSTALLER_LOCALES={'release': {'win': settings.STUB_INSTALLER_ALL}})
     def get_download_url_ssl(self):
         """
         SSL-enabled links should always be used except Windows stub installers.
         """
-
         # SSL-enabled links won't be used for Windows builds (but SSL download
         # is enabled by default for stub installers)
         url = firefox_desktop.get_download_url('release', '27.0', 'win', 'pt-BR', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-27.0'),
+                             [('product', 'firefox-stub'),
                               ('os', 'win'),
                               ('lang', 'pt-BR')])
 
         # SSL-enabled links will be used for OS X builds
         url = firefox_desktop.get_download_url('release', '27.0', 'osx', 'pt-BR', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-27.0-SSL'),
+                             [('product', 'firefox-latest-ssl'),
                               ('os', 'osx'),
                               ('lang', 'pt-BR')])
 
         # SSL-enabled links will be used for Linux builds
         url = firefox_desktop.get_download_url('release', '27.0', 'linux', 'pt-BR', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-27.0-SSL'),
+                             [('product', 'firefox-latest-ssl'),
                               ('os', 'linux'),
                               ('lang', 'pt-BR')])
 
@@ -460,49 +524,14 @@ class TestFirefoxDesktop(TestCase):
         url = firefox_desktop.get_download_url('release', '45.0', 'win', 'en-US', force_direct=True, funnelcake_id='64')
         ok_('product=firefox-stub-f64' in url)
 
-        url = firefox_desktop.get_download_url('release', '45.0', 'win', 'en-US', force_direct=True, force_full_installer=True, funnelcake_id='64')
-        ok_('product=firefox-45.0-f64' in url)
-
-        url = firefox_desktop.get_download_url('release', '45.0', 'win', 'en-US', force_direct=True, force_funnelcake=True, funnelcake_id='64')
-        ok_('product=firefox-latest-f64' in url)
-
-        url = firefox_desktop.get_download_url('release', '45.0', 'win', 'de', force_direct=True, funnelcake_id='64')
-        ok_('product=firefox-45.0-f64' not in url)
-
-        url = firefox_desktop.get_download_url('release', '45.0', 'osx', 'en-US', force_direct=True, funnelcake_id='64')
-        ok_('product=firefox-45.0-f64' not in url)
-
-    @patch.dict(os.environ, FUNNELCAKE_64_LOCALES='en-US,de', FUNNELCAKE_64_PLATFORMS='linux,osx')
-    def test_funnelcake_direct_links_locales_linux_osx_(self):
-        """
-        Ensure funnelcake params are included for Linux and OSX en-US builds only.
-        """
-        url = firefox_desktop.get_download_url('release', '45.0', 'win', 'en-US', force_direct=True, funnelcake_id='64')
+        url = firefox_desktop.get_download_url('release', '45.0', 'win64', 'en-US', force_direct=True, funnelcake_id='64')
         ok_('product=firefox-stub-f64' not in url)
 
-        url = firefox_desktop.get_download_url('release', '45.0', 'win', 'en-US', force_direct=True, force_full_installer=True, funnelcake_id='64')
-        ok_('product=firefox-45.0-f64' not in url)
-
-        url = firefox_desktop.get_download_url('release', '45.0', 'win', 'en-US', force_direct=True, force_funnelcake=True, funnelcake_id='64')
-        ok_('product=firefox-latest-f64' not in url)
-
-        url = firefox_desktop.get_download_url('release', '45.0', 'osx', 'de', force_direct=True, funnelcake_id='64')
-        ok_('product=firefox-45.0-f64' in url)
+        url = firefox_desktop.get_download_url('release', '45.0', 'win', 'de', force_direct=True, funnelcake_id='64')
+        ok_('product=firefox-stub-f64' not in url)
 
         url = firefox_desktop.get_download_url('release', '45.0', 'osx', 'en-US', force_direct=True, funnelcake_id='64')
-        ok_('product=firefox-45.0-f64' in url)
-
-        url = firefox_desktop.get_download_url('release', '45.0', 'osx', 'fr', force_direct=True, funnelcake_id='64')
-        ok_('product=firefox-45.0-f64' not in url)
-
-        url = firefox_desktop.get_download_url('release', '45.0', 'linux', 'de', force_direct=True, funnelcake_id='64')
-        ok_('product=firefox-45.0-f64' in url)
-
-        url = firefox_desktop.get_download_url('release', '45.0', 'linux', 'en-US', force_direct=True, funnelcake_id='64')
-        ok_('product=firefox-45.0-f64' in url)
-
-        url = firefox_desktop.get_download_url('release', '45.0', 'linux', 'fr', force_direct=True, funnelcake_id='64')
-        ok_('product=firefox-45.0-f64' not in url)
+        ok_('product=firefox-stub-f64' not in url)
 
     def test_no_funnelcake_direct_links_if_not_configured(self):
         """
@@ -535,34 +564,7 @@ class TestFirefoxDesktop(TestCase):
         url = firefox_desktop.get_download_url('release', '45.0', 'linux', 'fr', force_direct=True, funnelcake_id='64')
         ok_('-f64' not in url)
 
-    @override_settings(STUB_INSTALLER_LOCALES={'release': {'win': ['en-us']}, 'beta': {'win': ['en-us']}})
-    def test_force_funnelcake_en_us_win_only(self):
-        """
-        Ensure that force_funnelcake doesn't affect non configured locale urls
-        """
-        url = firefox_desktop.get_download_url('release', '19.0', 'osx', 'en-US',
-                                               force_funnelcake=True)
-        ok_('product=firefox-latest&' not in url)
-
-        url = firefox_desktop.get_download_url('beta', '20.0b4', 'win', 'fr',
-                                               force_funnelcake=True)
-        ok_('product=firefox-beta-latest&' not in url)
-
-    @override_settings(STUB_INSTALLER_LOCALES={'release': {'win': ['en-us']}, 'beta': {'win': ['en-us']}})
-    def test_force_full_installer_en_us_win_only(self):
-        """
-        Ensure that force_full_installer doesn't affect non configured locales
-        """
-        url = firefox_desktop.get_download_url('release', '19.0', 'osx', 'en-US',
-                                               force_full_installer=True)
-        ok_('product=firefox-latest&' not in url)
-
-        url = firefox_desktop.get_download_url('beta', '20.0b4', 'win', 'fr',
-                                               force_full_installer=True)
-        ok_('product=firefox-beta-latest&' not in url)
-
-    @override_settings(STUB_INSTALLER_LOCALES={'release': {'win': ['en-us']}, 'beta': {'win': ['en-us']}})
-    def test_stub_installer_en_us_win_only(self):
+    def test_stub_installer_win_only(self):
         """
         Ensure that builds not in the setting don't get stub.
         """
@@ -570,6 +572,12 @@ class TestFirefoxDesktop(TestCase):
         ok_('product=firefox-stub&' not in url)
 
         url = firefox_desktop.get_download_url('beta', '20.0b4', 'win', 'fr')
+        ok_('product=firefox-beta-stub&' in url)
+
+        url = firefox_desktop.get_download_url('beta', '20.0b4', 'win64', 'fr')
+        ok_('product=firefox-beta-stub&' in url)
+
+        url = firefox_desktop.get_download_url('beta', '20.0b4', 'linux', 'fr')
         ok_('product=firefox-beta-stub&' not in url)
 
 

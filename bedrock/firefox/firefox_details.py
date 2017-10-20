@@ -1,3 +1,5 @@
+# coding=utf-8
+
 import re
 from collections import OrderedDict
 from operator import itemgetter
@@ -209,6 +211,7 @@ class FirefoxDesktop(_ProductDetails):
         :param platform: OS. one of self.platform_labels.keys().
         :param locale: e.g. pt-BR. one exception is ja-JP-mac.
         :param force_direct: Force the download URL to be direct.
+                always True for non-release URLs.
         :param force_full_installer: Force the installer download to not be
                 the stub installer (for aurora).
         :param force_funnelcake: Force the download version for en-US Windows to be
@@ -220,6 +223,10 @@ class FirefoxDesktop(_ProductDetails):
         _version = version
         _locale = 'ja-JP-mac' if platform == 'osx' and locale == 'ja' else locale
         _platform = 'win' if platform == 'winsha1' else platform
+        channel = 'devedition' if channel == 'alpha' else channel
+        force_direct = True if channel != 'release' else force_direct
+        stub_platforms = ['win', 'win64']
+        esr_channels = ['esr', 'esr_next']
         include_funnelcake_param = False
 
         # Bug 1345467 - Only allow specifically configured funnelcake builds
@@ -228,61 +235,9 @@ class FirefoxDesktop(_ProductDetails):
             fc_locales = config('FUNNELCAKE_%s_LOCALES' % funnelcake_id, default='', cast=Csv())
             include_funnelcake_param = _platform in fc_platforms and _locale in fc_locales
 
-        stub_langs = settings.STUB_INSTALLER_LOCALES.get(channel, {}).get(_platform, [])
-        # Nightly and Developer Edition have a special download link format
-        # see bug 1324001, 1357379
-        if channel in ['alpha', 'nightly']:
-            prod_name = 'firefox-nightly' if channel == 'nightly' else 'firefox-devedition'
-            # Use the stub installer for approved platforms
-            if (stub_langs and (stub_langs == settings.STUB_INSTALLER_ALL or _locale.lower() in stub_langs) and
-                    not force_full_installer):
-                # Download links are different for localized versions
-                suffix = 'stub'
-            elif channel == 'nightly' and locale != 'en-US':
-                # Nightly uses a different product name for localized builds
-                suffix = 'latest-l10n-ssl'
-            else:
-                suffix = 'latest-ssl'
-
-            product = '%s-%s' % (prod_name, suffix)
-
-            return '?'.join([self.get_bouncer_url(platform),
-                             urlencode([
-                                 ('product', product),
-                                 ('os', _platform),
-                                 # Order matters, lang must be last for bouncer.
-                                 ('lang', _locale),
-                             ])])
-
-        # stub installer exceptions
-        if (stub_langs and (stub_langs == settings.STUB_INSTALLER_ALL or _locale.lower() in stub_langs) and
-                not force_full_installer):
-            suffix = 'stub'
-            if force_funnelcake:
-                suffix = 'latest'
-
-            _version = ('beta-' if channel == 'beta' else '') + suffix
-        elif not include_funnelcake_param:
-            # Force download via SSL. Stub installers are always downloaded via SSL.
-            # Funnelcakes may not be ready for SSL download
-            _version += '-SSL'
-
-        # append funnelcake id to version if we have one
-        if include_funnelcake_param:
-            _version = '{vers}-f{fc}'.format(vers=_version, fc=funnelcake_id)
-
         # Check if direct download link has been requested
-        # (bypassing the transition page)
-        if force_direct:
-            # build a direct download link
-            return '?'.join([self.get_bouncer_url(platform),
-                             urlencode([
-                                 ('product', 'firefox-%s' % _version),
-                                 ('os', _platform),
-                                 # Order matters, lang must be last for bouncer.
-                                 ('lang', _locale),
-                             ])])
-        else:
+        # if not just use transition URL
+        if not force_direct:
             # build a link to the transition page
             transition_url = self.download_base_url_transition
             if funnelcake_id:
@@ -293,6 +248,39 @@ class FirefoxDesktop(_ProductDetails):
                 transition_url = '/%s%s' % (locale, transition_url)
 
             return transition_url
+
+        # otherwise build a full download URL
+        prod_name = 'firefox' if channel == 'release' else 'firefox-%s' % channel
+        suffix = 'latest-ssl'
+        if channel in esr_channels:
+            # nothing special about ESR other than there is no stub.
+            # included in this contitional to avoid the following elif.
+            if channel == 'esr_next':
+                # no firefox-esr-next-latest-ssl alias just yet
+                # could come in future in bug 1408868
+                prod_name = 'firefox'
+                suffix = '%s-SSL' % _version
+        elif _platform in stub_platforms and not force_full_installer:
+            # Use the stub installer for approved platforms
+            # append funnelcake id to version if we have one
+            if include_funnelcake_param:
+                suffix = 'stub-f%s' % funnelcake_id
+            else:
+                suffix = 'stub'
+        elif channel == 'nightly' and locale != 'en-US':
+            # Nightly uses a different product name for localized builds,
+            # and is the only one ಠ_ಠ
+            suffix = 'latest-l10n-ssl'
+
+        product = '%s-%s' % (prod_name, suffix)
+
+        return '?'.join([self.get_bouncer_url(platform),
+                        urlencode([
+                            ('product', product),
+                            ('os', _platform),
+                            # Order matters, lang must be last for bouncer.
+                            ('lang', _locale),
+                        ])])
 
 
 class FirefoxAndroid(_ProductDetails):

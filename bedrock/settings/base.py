@@ -660,30 +660,6 @@ EMAIL_SUBJECT_PREFIX = config('EMAIL_SUBJECT_PREFIX', default='[bedrock] ')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 
-# special value that means all locales are enabled.
-STUB_INSTALLER_ALL = '__ALL__'
-# values should be a list of lower case locales per platform for which a
-# stub installer is available. Hopefully this can all be moved to bouncer.
-# for release and beta
-STUB_INSTALLER_LOCALES = {
-    'release': {
-        'win': STUB_INSTALLER_ALL,
-        'win64': STUB_INSTALLER_ALL,
-    },
-    'beta': {
-        'win': STUB_INSTALLER_ALL,
-        'win64': STUB_INSTALLER_ALL,
-    },
-    'alpha': {
-        'win': STUB_INSTALLER_ALL,
-        'win64': STUB_INSTALLER_ALL,
-    },
-    'nightly': {
-        'win': STUB_INSTALLER_ALL,
-        'win64': STUB_INSTALLER_ALL,
-    },
-}
-
 # Google Analytics
 GA_ACCOUNT_CODE = ''
 
