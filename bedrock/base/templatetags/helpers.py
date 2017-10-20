@@ -15,8 +15,12 @@ from bedrock.utils import expand_locale_groups
 
 
 @library.global_function
-def send_to_device_countries():
-    return '|%s|' % '|'.join(cc.lower() for cc in settings.SEND_TO_DEVICE_COUNTRIES)
+def send_to_device_sms_countries(message_set):
+    try:
+        countries = settings.SEND_TO_DEVICE_MESSAGE_SETS[message_set]['sms_countries']
+    except KeyError:
+        countries = ['US']
+    return '|%s|' % '|'.join(cc.lower() for cc in countries)
 
 
 @library.global_function
