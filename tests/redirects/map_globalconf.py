@@ -972,7 +972,6 @@ URLS = flatten((
     url_test('/en-US/firefox/', '/en-US/firefox/', follow_redirects=True),
     url_test('/fr/firefox/', '/firefox/new/', follow_redirects=True),
     url_test('/firefox/new/', '/en-US/firefox/new/'),
-    url_test('/firefox/mobile/', '/firefox/android/'),
     url_test('/mobile/37.0{,beta,a2}/releasenotes', '/firefox/android/37.0{,beta,a2}/releasenotes/'),
     url_test('/projects/firefox/3.6.13/whatsnew/', '/firefox/3.6.13/whatsnew/'),
     url_test('/apps/', 'https://marketplace.firefox.com/'),

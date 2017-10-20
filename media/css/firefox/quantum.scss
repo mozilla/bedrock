@@ -256,7 +256,7 @@ html[dir="rtl"] .main-header {
 
                 h2:before {
                     left: 50%;
-                    margin-left: -65px;
+                    margin-left: -1.2em;
                 }
             }
 
@@ -589,10 +589,10 @@ html[dir="rtl"] .sticky-footer {
             content: '';
             height: 5px;
             left: 50%;
-            margin-left: -65px;
+            margin-left: -1.2em;
             position: absolute;
             top: 0;
-            width: 130px;
+            width: 2.4em;
         }
     }
 
