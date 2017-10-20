@@ -11,7 +11,7 @@ from time import time
 from urlparse import urlparse
 
 from django.conf import settings
-from django.http import (Http404, HttpResponsePermanentRedirect)
+from django.http import (Http404, HttpResponseRedirect, HttpResponsePermanentRedirect)
 from django.utils.cache import patch_response_headers
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_GET
@@ -811,5 +811,14 @@ def sync_page(request):
         template = 'firefox/features/quantum/sync.html'
     else:
         template = 'firefox/features/sync.html'
+
+    return l10n_utils.render(request, template)
+
+
+def mobile(request):
+    if not switch('firefox-57-release'):
+        return HttpResponseRedirect(reverse('firefox.android.index'))
+    else:
+        template = 'firefox/mobile.html'
 
     return l10n_utils.render(request, template)

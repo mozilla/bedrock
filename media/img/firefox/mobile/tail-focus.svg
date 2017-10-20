@@ -1,0 +1,37 @@
+<svg width="1599" height="1179" viewBox="0 0 1599 1179" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient x1="29.747%" y1="-47.896%" x2="30.791%" y2="151.63%" id="a">
+      <stop stop-color="#FF272D" offset="0%"/>
+      <stop stop-color="#C42482" offset="33.53%"/>
+      <stop stop-color="#4A1475" offset="100%"/>
+    </linearGradient>
+    <linearGradient x1="9.373%" y1="-31.649%" x2="122.288%" y2="68.364%" id="b">
+      <stop stop-color="#FF272D" offset="0%"/>
+      <stop stop-color="#C42482" offset="33.53%"/>
+      <stop stop-color="#4A1475" offset="100%"/>
+    </linearGradient>
+    <linearGradient x1="-67.178%" y1="37.9%" x2="86.182%" y2="32.069%" id="c">
+      <stop stop-color="#FF272D" offset="0%"/>
+      <stop stop-color="#C42482" offset="33.53%"/>
+      <stop stop-color="#4A1475" offset="100%"/>
+    </linearGradient>
+    <linearGradient x1="29.747%" y1="-47.896%" x2="85.316%" y2="104.248%" id="d">
+      <stop stop-color="#FF272D" offset="0%"/>
+      <stop stop-color="#C42482" offset="33.53%"/>
+      <stop stop-color="#4A1475" offset="100%"/>
+    </linearGradient>
+    <linearGradient x1="66.144%" y1="-71.362%" x2="29.747%" y2="111.892%" id="e">
+      <stop stop-color="#FF272D" offset="0%"/>
+      <stop stop-color="#C42482" offset="33.53%"/>
+      <stop stop-color="#4A1475" offset="100%"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(98 1)" fill="none" fill-rule="evenodd">
+    <ellipse fill="url(#a)" opacity=".582" cx="170.527" cy="1023.5" rx="56.545" ry="56.5"/>
+    <path d="M537.616 2.147c20.33 21.62 23.837 28.235 30.492 38.555 59.776 60.395 148.778 207.803 84.784 392.736C532.435 781.543 50.605 617.62.09 571.576 29.233 858.9 740.32 932.572 800.746 438.628c35.224-287.95-285.83-458.4-263.13-436.48" transform="rotate(90 423.492 424.1)" fill="url(#b)" opacity=".509"/>
+    <path d="M396.86 1203.538c33.458-34.92 63.502-74.863 86.26-120.153 58.574-116.568 149.12-310.387 77.802-512.812-56.37-159.992-133.757-247.482-232.018-332.935C169.324 98.858 124.754 36.905 124.754.06c0 0-184.256 194.44-104.347 397.233 79.91 202.794 243.574 195.363 351.848 406.99 127.41 249.03-103.087 520.786-293.7 596.85 11.67-2.455 423.73-90.727 445.386-313.847-.49 4.106-9.77 65.816-127.08 116.252" fill="url(#c)" opacity=".3" transform="rotate(90 515.976 887.478)"/>
+    <path d="M379.656 1224.366c165.327-153.66 248.963-340.443 213.61-549.94 0 0 14.133 107.433-39.44 217.3 25.734-107.268 28.725-240.57-39.638-378.61C422.935 328.86 272.858 231.91 215.564 191.46 128.752 130.178 92.764 67.778 92.117 54.896c-25.935 50.3-104.384 222.67-8.43 371.115 89.9 139.08 228.17 182.75 330.655 307.935 209.415 255.793-34.686 490.423-34.686 490.423" fill="url(#d)" opacity=".4" transform="rotate(90 515.976 887.478)"/>
+    <ellipse fill="url(#a)" opacity=".729" cx="284.618" cy="567.5" rx="43.535" ry="43.5"/>
+    <ellipse fill="url(#e)" opacity=".702" cx="1379.497" cy="834.5" rx="49.54" ry="49.5"/>
+  </g>
+</svg>

@@ -1,0 +1,1057 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+@import '../pebbles/components/newsletter';
+@import '../pebbles/components/modal';
+@import '../hubs/masthead';
+@import '../hubs/sections';
+@import '../hubs/sub-nav';
+@import '../quantum/lib';
+@import '../quantum/common';
+@import '../quantum/buttons';
+@import '../quantum/features-scroller';
+
+
+$color-focus-purple: #c40771;
+
+@mixin rooftop-heading() {
+    @include font-size-level3;
+    color: #000;
+    font-weight: normal;
+    margin-bottom: 1.5em;
+    padding-top: 1em;
+    position: relative;
+
+    &:before {
+        background-color: #000;
+        border-radius: 5px;
+        content: '';
+        height: 5px;
+        left: 50%;
+        margin-left: -1.2em;
+        position: absolute;
+        top: 0;
+        width: 2.4em;
+    }
+
+    @media #{$mq-desktop} {
+        &:before {
+            left: 0;
+            margin-left: 0;
+        }
+    }
+
+    html[dir="rtl"] & {
+        &:before {
+            left: 0;
+            right: 50%;
+            margin-right: -1.2em;
+        }
+
+        @media #{$mq-desktop} {
+            &:before {
+                right: 0;
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+@mixin icon-sprite() {
+    background: url('/media/img/firefox/mobile/icon-sprite.svg') left top no-repeat;
+}
+
+/* -------------------------------------------------------------------------- */
+// Button tweaks specific to this page ¯\_(ツ)_/¯
+
+.button.quantum {
+    font-weight: bold;
+}
+
+.button.quantum.button-focus,
+a.button.quantum.button-focus {
+    background-color: #fff;
+    border-color: #fff;
+    color: $color-focus-purple;
+    transition: border-color 0.15s ease-in-out;
+
+    &:focus,
+    &:hover {
+        background-color: #fff;
+        border-color: lighten($color-focus-purple, 20%);
+    }
+}
+
+.main-header {
+    background: #0060df;
+    background: url('/media/img/firefox/quantum/fox-tail-header.png') bottom center no-repeat,
+                linear-gradient(to bottom, #0060df 7%, #0095ff 100%);
+    color: #fff;
+    padding: 30px 0 0;
+    position: relative;
+    text-align: center;
+    z-index: 1;
+
+    h1 {
+        @include font-size-level2;
+        font-weight: bold;
+        margin-bottom: 0.75em;
+    }
+
+    h3,
+    p {
+        @include font-size-level4;
+        margin-bottom: 0.75em;
+    }
+
+    @media #{$mq-desktop} {
+        padding-bottom: 70px;
+        text-align: left;
+    }
+}
+
+html[dir="rtl"] .main-header {
+    @media #{$mq-desktop} {
+        text-align: right;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Firefox/Focus products shown in blue header
+
+#header-product-content {
+    @media #{$mq-desktop} {
+        @include clearfix;
+
+        @supports (display: flex) {
+            display: flex;
+            justify-content: space-between;
+
+            // remove pseudo element so it doesn't get flexboxed
+            &:after {
+                content: none;
+            }
+        }
+    }
+}
+
+.header-product {
+    background: rgba(255, 255, 255, 0.2);
+    margin-bottom: 40px;
+    padding: 20px;
+
+    .header-product-ctas .button {
+        display: inline-block;
+        margin: 0 auto 0.5em;
+    }
+
+    h2 {
+        @include font-size-level4;
+        font-weight: bold;
+        margin-bottom: 0.75em;
+        min-height: 110px;
+        text-align: center;
+
+        &:before {
+            content: '';
+            display: block;
+            height: 110px;
+            margin: 0 auto;
+            width: 110px;
+        }
+    }
+
+    // image should not show on mobile
+    .header-product-image {
+        display: none;
+    }
+
+    @media #{$mq-tablet} {
+        @include clearfix;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 600px;
+        padding: 40px;
+
+        h2 {
+            text-align: left;
+
+            &:before {
+                display: inline-block;
+                margin: 0 6px -45px -10px;
+            }
+        }
+
+        .header-product-copy {
+            float: left;
+            text-align: left;
+            width: 65%;
+        }
+
+        .header-product-ctas {
+            display: inline-block;
+            text-align: center;
+
+            .button {
+                margin-left: 0;
+            }
+        }
+
+        .header-product-image {
+            display: block;
+            float: right;
+            width: 30%;
+
+            img {
+                float: right;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        float: right;
+        margin-left: 10px;
+        margin-right: 0;
+        padding: 20px;
+        width: calc(50% - 60px);
+
+        &:first-child {
+            float: left;
+            margin-left: 0;
+            margin-right: 10px;
+        }
+
+        h2:before {
+            display: block;
+            margin: 0 0 0 -10px;
+        }
+
+        // makes the semi-opaque product boxes the same height
+        @supports (display: flex) {
+            display: flex;
+            flex: 0 0 auto;
+            float: none;
+            justify-content: space-between;
+
+            // remove pseudo element so it doesn't get flexboxed
+            &:after {
+                content: none;
+            }
+
+            // vertically align CTAs
+            .header-product-copy {
+                display: flex;
+                flex-wrap: wrap;
+                float: none;
+
+                .header-product-ctas {
+                    align-self: flex-end;
+                }
+            }
+
+            .header-product-image {
+                float: none;
+                align-self: center;
+            }
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        padding: 25px;
+        width: calc(50% - 70px);
+
+        h2:before {
+            display: inline-block;
+            margin: 0 6px -45px -10px;
+        }
+    }
+}
+
+html[dir="rtl"] .header-product {
+    @media #{$mq-tablet} {
+        h2 {
+            text-align: right;
+
+            &:before {
+                margin-left: 6px;
+                margin-right: 0;
+            }
+        }
+
+        .header-product-copy {
+            float: right;
+            text-align: right;
+            width: 65%;
+        }
+
+        .header-product-image {
+            display: block;
+            float: left;
+            width: 30%;
+
+            img {
+                float: left;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        float: right;
+        margin-right: 10px;
+        padding: 20px;
+        width: calc(50% - 50px);
+
+        &:first-child {
+            margin-left: 10px;
+            margin-right: 0;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// 'See more' link inside each .header-product
+
+a.see-more {
+    @include font-size-level6;
+    color: #fff;
+    text-decoration: none;
+
+    &:active,
+    &:focus,
+    &:hover {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    &:after {
+        @include icon-sprite;
+        content: '';
+        display: inline-block;
+        height: 10px;
+        margin-left: 14px;
+        width: 16px;
+    }
+
+    html[dir="rtl"] &:after {
+        margin-left: 0;
+        margin-right: 14px;
+    }
+}
+
+#header-firefox h2:before {
+    @include at2x('/media/img/logos/firefox/logo-quantum-small.png', 108px, 107px);
+}
+
+#header-focus h2:before {
+    @include at2x('/media/img/logos/firefox/logo-focus-small.png', 109px, 110px);
+}
+
+/* -------------------------------------------------------------------------- */
+// "Intro" panel for each product section (Firefox/Focus)
+
+.page-article-heading {
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    border-bottom: 1px solid #d7d7db;
+    padding-bottom: 273px;
+    text-align: center;
+
+    h2 {
+        @include rooftop-heading;
+    }
+
+    p {
+        @include font-size-level4;
+    }
+
+    @media #{$mq-phone-wide} {
+        padding-bottom: 338px;
+    }
+
+    @media #{$mq-tablet} {
+        p {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 30em;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        background-position: bottom right 40px;
+        margin-bottom: 120px;
+        min-height: 318px;
+        padding-bottom: 0;
+        padding-right: 50%;
+        text-align: left;
+
+        p {
+            margin-bottom: 0;
+            max-width: none;
+        }
+
+        @supports (display: flex) {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        background-position: bottom right 100px;
+        padding-right: 60%;
+    }
+}
+
+html[dir="rtl"] {
+    .page-article-heading {
+        @media #{$mq-desktop} {
+            background-position: bottom left 40px;
+            padding-left: 50%;
+            padding-right: 0;
+            text-align: right;
+        }
+
+        @media #{$mq-desktop-wide} {
+            background-position: bottom left 100px;
+        }
+    }
+}
+
+.page-article {
+    margin-top: 40px;
+
+    &> .content {
+        padding-bottom: 0;
+    }
+
+    @media #{$mq-tablet} {
+        margin-top: 80px;
+    }
+
+    @media #{$mq-desktop} {
+        margin-top: 120px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Overrides for features scrollers
+
+.features-scroller-section.page-section {
+    .feature-content {
+        padding: 40px 1em 20px;
+        text-align: center;
+
+        em {
+            @include font-size-level4;
+            display: block;
+            font-style: normal;
+            margin-bottom: 1em;
+        }
+
+        h3 {
+            @include rooftop-heading;
+            margin-bottom: 0.5em;
+        }
+
+        img {
+            margin-top: 3em;
+        }
+
+        p {
+            @include font-size-level4;
+            padding-top: 20px;
+        }
+
+        &:last-child {
+            padding-bottom: 20px;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        &:before {
+            bottom: 0;
+            content: '';
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 50%;
+        }
+
+        .feature-content {
+            padding-left: 40px;
+            padding-top: 100px;
+            text-align: left;
+
+            p {
+                max-width: 80%;
+            }
+
+            // special casing for last feature, which has a phone image that needs to be bottom aligned
+            &:last-child {
+                padding-bottom: 0;
+
+                img {
+                    max-width: 328px;
+                }
+            }
+        }
+    }
+}
+
+html[dir="rtl"] {
+    .features-scroller-section.page-section .feature-content {
+        padding-bottom: 20px;
+        padding-top: 40px;
+
+        &:last-child {
+            padding-bottom: 20px;
+        }
+
+        @media #{$mq-desktop} {
+            text-align: right;
+
+            &:last-child {
+                padding-bottom: 0;
+            }
+        }
+    }
+}
+
+.features-scroller-section.page-section .features-scroller-header {
+    display: none;
+
+    h2 {
+        @include font-size-level3;
+        @include rooftop-heading;
+        color: #fff;
+        margin-bottom: 1em;
+    }
+
+    ul li a {
+        &:link,
+        &:visited {
+            color: #fff;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        display: block;
+
+        .features-scroller-header-container a.button {
+            margin: 20px 0;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Feature scroller customizations per product
+
+#firefox {
+    .page-article-heading {
+        @include at2x('/media/img/firefox/mobile/intro-firefox.png', 280px, 253px);
+    }
+
+    .features-scroller-section.page-section .features-scroller-header ul:before {
+        background: lighten(#0080FF, 10%);
+    }
+
+    @media #{$mq-phone-wide} {
+        .page-article-heading {
+            @include at2x('/media/img/firefox/mobile/intro-firefox.png', 352px, 318px);
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .features-scroller-section.page-section:before {
+            background-color: #003eaa;
+            background-image: linear-gradient(to bottom, #003EAA 0%, #004EC2 50%, #0080FF 100%);
+        }
+    }
+}
+
+#focus {
+    .page-article-heading {
+        @include at2x('/media/img/firefox/mobile/intro-focus.png', 280px, 253px);
+    }
+
+    .features-scroller-section.page-section .features-scroller-header ul:before {
+        background: #550459;
+    }
+
+    @media #{$mq-phone-wide} {
+        .page-article-heading {
+            @include at2x('/media/img/firefox/mobile/intro-focus.png', 352px, 318px);
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .features-scroller-section.page-section:before {
+            background-color: #C42482;
+            background-image: linear-gradient(148deg, #C42482 0%, #961E7D 20%, #8D1D7C 30%, #721979 60%);
+        }
+    }
+}
+
+.page-nav {
+    color: #fff;
+    display: none;
+
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Features scroller nav customizations
+
+@media #{$mq-desktop-wide} {
+    .features-scroller-section.page-section .features-scroller-header ul:before {
+        height: 33.33%;
+    }
+
+    #firefox .features-scroller-section.page-section .features-scroller-header .features-scroller-nav {
+        &[data-current="firefox-sync"] ul:before {
+            @include transform(translateY(0));
+        }
+
+        &[data-current="firefox-privacy"] ul:before {
+            @include transform(translateY(100%));
+        }
+
+        &[data-current="firefox-extensions"] ul:before {
+            @include transform(translateY(200%));
+        }
+    }
+
+    #focus .features-scroller-section.page-section .features-scroller-header .features-scroller-nav {
+        &[data-current="focus-privacy"] ul:before {
+            @include transform(translateY(0));
+        }
+
+        &[data-current="focus-speed"] ul:before {
+            @include transform(translateY(100%));
+        }
+
+        &[data-current="focus-lightweight"] ul:before {
+            @include transform(translateY(200%));
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Icon'ed features for each panel in each product
+
+.features {
+    margin: 1.5em 1em;
+
+    li {
+        padding: 20px 0;
+
+        &:before {
+            @include icon-sprite;
+            content: '';
+            display: block;
+            height: 40px;
+            margin: 0 auto 1em;
+            width: 40px;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        &.feature-sync:before {
+            background-position: left top -335px;
+        }
+
+        &.feature-send-tabs:before {
+            background-position: left top -215px;
+        }
+
+        &.feature-stop:before {
+            background-position: left top -295px;
+        }
+
+        &.feature-clear-cookies:before {
+            background-position: left top -45px;
+        }
+
+        &.feature-extensions:before {
+            background-position: left top -136px;
+        }
+
+        &.feature-themes:before {
+            background-position: left top -376px;
+        }
+
+        &.feature-block:before {
+            background-position: left top -4px;
+        }
+
+        &.feature-erase:before {
+            background-position: left top -88px;
+        }
+
+        &.feature-speed:before {
+            background-position: left top -257px;
+        }
+
+        &.feature-lightweight:before {
+            background-position: left top -178px;
+        }
+    }
+
+    strong {
+        display: block;
+    }
+
+    @media #{$mq-tablet} {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 30em;
+
+        li {
+            border-bottom: 1px solid #b1b1b3;
+            padding-left: 60px;
+            position: relative;
+            text-align: left;
+
+            &:before {
+                background-position: center left;
+                left: 0;
+                margin-top: -20px;
+                padding-right: 10px;
+                position: absolute;
+                top: 50%;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        margin-bottom: 0;
+        max-width: none;
+
+        li {
+            padding-right: 20px;
+        }
+    }
+}
+
+.features-image-wrapper {
+    @media #{$mq-desktop-wide} {
+        @include clearfix;
+        margin-top: 40px;
+
+        img {
+            display: block;
+            float: left;
+            margin-right: 40px;
+            width: calc(60% - 40px);
+        }
+
+        .features {
+            float: left;
+            width: 40%;
+
+            li:before {
+                margin-top: 20px;
+                top: 0;
+            }
+        }
+
+        @supports (display: flex) {
+            display: flex;
+
+            &:after {
+                display: none;
+            }
+
+            img,
+            .features {
+                float: none;
+            }
+
+            img {
+                align-self: flex-start;
+            }
+
+            .features {
+                align-self: center;
+            }
+        }
+    }
+}
+
+html[dir="rtl"] {
+    .features-image-wrapper {
+        @media #{$mq-desktop-wide} {
+            img {
+                margin-left: 40px;
+                margin-right: 0;
+            }
+        }
+    }
+
+    .features li {
+        &.feature-sync:before {
+            background-position: right top -335px;
+        }
+
+        &.feature-send-tabs:before {
+            background-position: right top -215px;
+        }
+
+        &.feature-stop:before {
+            background-position: right top -295px;
+        }
+
+        &.feature-clear-cookies:before {
+            background-position: right top -45px;
+        }
+
+        &.feature-extensions:before {
+            background-position: right top -136px;
+        }
+
+        &.feature-themes:before {
+            background-position: right top -376px;
+        }
+
+        &.feature-block:before {
+            background-position: right top -4px;
+        }
+
+        &.feature-erase:before {
+            background-position: right top -88px;
+        }
+
+        &.feature-speed:before {
+            background-position: right top -257px;
+        }
+
+        &.feature-lightweight:before {
+            background-position: right top -178px;
+        }
+
+        @media #{$mq-tablet} {
+            padding-left: 0;
+            padding-right: 60px;
+            text-align: right;
+
+            &:before {
+                left: auto;
+                padding-left: 10px;
+                padding-right: 0;
+                right: 0;
+            }
+        }
+    }
+}
+
+// very basic styling for no-JS visitors
+#mobile-download-buttons-wrapper {
+    background: #111;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.mobile-download-buttons {
+    margin: 1em 0;
+
+    @media #{$mq-phone-wide} {
+        @supports (display: flex) {
+            display: flex;
+            justify-content: space-between;
+            margin: 1em auto;
+            width: 340px;
+
+            &.hidden {
+                display: none;
+            }
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Modal
+
+#modal-outer-wrapper {
+    display: none;
+}
+
+#modal-wrapper {
+    h3 {
+        @include rooftop-heading;
+        color: #fff;
+        margin-bottom: 1em;
+
+        &:before {
+            background-color: #fff;
+            left: 50%;
+            margin-left: -1.2em;
+        }
+    }
+
+    html[dir="rtl"] & h3:before {
+        left: 50%;
+        margin-left: -1.2em;
+        right: auto;
+    }
+}
+
+#modal .window .inner {
+    color: #fff;
+    max-width: 1000px;
+    padding-bottom: 80px;
+    text-align: center;
+
+    .overlay-contents {
+        padding-top: 40px;
+    }
+
+    #modal-close {
+        right: 20px;
+        top: 20px;
+
+        .button {
+            @include icon-sprite;
+            background-position: left 8px top -412px;
+            border-width: 3px;
+        }
+    }
+}
+
+.qr-code-wrapper {
+    margin: 0 auto;
+    width: 200px;
+}
+
+body[data-modal-product='firefox'] #modal .window .inner {
+    background: #003eaa;
+    background: url('/media/img/firefox/mobile/tail-firefox.svg') center center no-repeat,
+    linear-gradient(to bottom, #003eaa 30%, #0080ff 85%, #00c7ff 100%);
+}
+
+body[data-modal-product='focus'] #modal .window .inner {
+    background: #ce2473;
+    background: url('/media/img/firefox/mobile/tail-focus.svg') center center no-repeat,
+    linear-gradient(to bottom, #ce2473 10%, #701979 100%);
+}
+
+#send-to-device {
+    background: transparent;
+    color: #fff;
+
+    a {
+        color: #fff;
+        font-weight: bold;
+        text-decoration: none;
+
+        &:after {
+            content: ' >>';
+        }
+
+        &:active,
+        &:focus,
+        &:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+    }
+
+    h2 {
+        @include font-size-level3;
+        color: #fff;
+    }
+
+    .error-list li {
+        background: rgba(0, 0, 0, 0.6);
+        text-align: center;
+    }
+
+    .form-container {
+        padding-top: 40px;
+        width: 100%;
+    }
+
+    .input {
+        button[type="submit"] {
+            background-color: transparent;
+            display: block;
+            width: 100%;
+
+            &:focus,
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        label {
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        #id-input {
+            border-radius: 100px;
+            height: auto;
+            padding: 0.75em 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .inline-field {
+            .form-input,
+            .form-submit {
+                float: none;
+                margin: 1em auto 0;
+                max-width: 400px;
+                width: 100%;
+            }
+        }
+    }
+
+    .thank-you p {
+        @include font-size-level4;
+    }
+
+    // never show app store links bundled in widget
+    footer {
+        display: none;
+    }
+}
+
+// hide app store badges in modal by default
+#modal-mobile-download-buttons-wrapper {
+    display: none;
+    margin-top: 60px;
+
+    @media #{$mq-desktop} {
+        margin-top: 100px;
+    }
+}
+
+// for android/iOS, hide widget/QR code in favor of app store badges
+.android,
+.ios {
+    #modal-mobile-download-buttons-wrapper {
+        display: block;
+    }
+
+    .qr-code-wrapper,
+    #modal-wrapper .desktop-download,
+    #send-to-device {
+        display: none;
+    }
+}
+
+// hide page-level app store badge wrapper if JS is available
+// (badges get moved into modal)
+.js {
+    #mobile-download-buttons-wrapper {
+        display: none;
+    }
+}

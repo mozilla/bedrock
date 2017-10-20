@@ -1,0 +1,57 @@
+<svg width="1599" height="1179" viewBox="0 0 1599 1179" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient x1="49.95%" y1="50%" x2="204.389%" y2="-29.704%" id="a">
+      <stop stop-color="#003EAA" offset="0%"/>
+      <stop stop-color="#004EC2" offset="8.08%"/>
+      <stop stop-color="#0060DF" offset="17.361%"/>
+      <stop stop-color="#0080FF" offset="25.094%"/>
+      <stop stop-color="#00C7FF" offset="33.711%"/>
+      <stop stop-color="#00E0FF" offset="39.166%"/>
+      <stop stop-color="#00FEFF" offset="51.521%"/>
+      <stop stop-color="#03FEEE" offset="59.714%"/>
+      <stop stop-color="#06FDE1" offset="66.278%"/>
+      <stop stop-color="#20FA67" offset="85.819%"/>
+      <stop stop-color="#20FA67" offset="85.819%"/>
+      <stop stop-color="#20FA67" offset="85.819%"/>
+      <stop stop-color="#33F70C" offset="100%"/>
+    </linearGradient>
+    <linearGradient x1="100%" y1="14.799%" x2="48.82%" y2="93.626%" id="b">
+      <stop stop-color="#0024CF" offset="0%"/>
+      <stop stop-color="#FFF" stop-opacity=".4" offset="100%"/>
+    </linearGradient>
+    <linearGradient x1="114.052%" y1="2.061%" x2="72.221%" y2="84.674%" id="c">
+      <stop stop-color="#002CFF" offset="0%"/>
+      <stop stop-color="#0335ED" stop-opacity=".987" offset="16.416%"/>
+      <stop stop-color="#00FFFD" offset="100%"/>
+    </linearGradient>
+    <linearGradient x1="89.367%" y1="72.115%" x2="50%" y2="116.035%" id="d">
+      <stop stop-color="#0024CF" offset="0%"/>
+      <stop stop-color="#FFF" stop-opacity=".4" offset="100%"/>
+    </linearGradient>
+    <radialGradient cx="100%" cy="32.178%" fx="100%" fy="32.178%" r="326.338%" gradientTransform="matrix(.84812 -.5287 .52828 .8488 -.018 .577)" id="e">
+      <stop stop-color="#003EAA" offset="0%"/>
+      <stop stop-color="#004EC2" offset="8.08%"/>
+      <stop stop-color="#0060DF" offset="17.361%"/>
+      <stop stop-color="#0080FF" offset="25.094%"/>
+      <stop stop-color="#00C7FF" offset="33.711%"/>
+      <stop stop-color="#00E0FF" offset="39.166%"/>
+      <stop stop-color="#00FEFF" offset="51.521%"/>
+      <stop stop-color="#03FEEE" offset="59.714%"/>
+      <stop stop-color="#06FDE1" offset="66.278%"/>
+      <stop stop-color="#20FA67" offset="85.819%"/>
+      <stop stop-color="#20FA67" offset="85.819%"/>
+      <stop stop-color="#20FA67" offset="85.819%"/>
+      <stop stop-color="#33F70C" offset="100%"/>
+    </radialGradient>
+  </defs>
+  <g transform="translate(98 -1)" fill="none" fill-rule="evenodd">
+    <ellipse fill="url(#a)" opacity=".582" cx="170.527" cy="1023.5" rx="56.545" ry="56.5"/>
+    <path d="M537.616 2.147c20.33 21.62 23.837 28.235 30.492 38.555 59.776 60.395 148.778 207.803 84.784 392.736C532.435 781.543 50.605 617.62.09 571.576 29.233 858.9 740.32 932.572 800.746 438.628c35.224-287.95-285.83-458.4-263.13-436.48" transform="rotate(90 423.492 424.1)" fill-opacity=".3" fill="url(#b)"/>
+    <g fill-opacity=".2">
+      <path d="M396.86 1203.538c33.458-34.92 63.502-74.863 86.26-120.153 58.574-116.568 149.12-310.387 77.802-512.812-56.37-159.992-133.757-247.482-232.018-332.935C169.324 98.858 124.754 36.905 124.754.06c0 0-184.256 194.44-104.347 397.233 79.91 202.794 243.574 195.363 351.848 406.99 127.41 249.03-103.087 520.786-293.7 596.85 11.67-2.455 423.73-90.727 445.386-313.847-.49 4.106-9.77 65.816-127.08 116.252" fill="url(#c)" transform="rotate(90 515.976 887.478)"/>
+      <path d="M379.656 1224.366c165.327-153.66 248.963-340.443 213.61-549.94 0 0 14.133 107.433-39.44 217.3 25.734-107.268 28.725-240.57-39.638-378.61C422.935 328.86 272.858 231.91 215.564 191.46 128.752 130.178 92.764 67.778 92.117 54.896c-25.935 50.3-104.384 222.67-8.43 371.115 89.9 139.08 228.17 182.75 330.655 307.935 209.415 255.793-34.686 490.423-34.686 490.423" fill="url(#d)" transform="rotate(90 515.976 887.478)"/>
+    </g>
+    <ellipse fill="url(#a)" opacity=".453" cx="284.618" cy="567.5" rx="43.535" ry="43.5"/>
+    <ellipse fill="url(#e)" opacity=".702" cx="1379.497" cy="834.5" rx="49.54" ry="49.5"/>
+  </g>
+</svg>

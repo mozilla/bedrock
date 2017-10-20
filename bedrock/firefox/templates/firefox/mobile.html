@@ -1,0 +1,373 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button, send_to_device with context %}
+
+{% add_lang_files "firefox/sendto" %}
+
+{% extends "firefox/base-pebbles.html" %}
+
+{% block page_css %}
+  {% stylesheet 'firefox-mobile' %}
+{% endblock %}
+
+{% block page_title %}{{ _('Mobile browsers for iOS and Android') }} | {{ _('Firefox') }}{% endblock %}
+{% block page_desc %}{{ _('Download Firefox and Firefox Focus for mobile and tablet.') }}{% endblock %}
+
+{% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
+
+{% block content %}
+  {% include 'firefox/includes/hub/sub-nav.html' %}
+
+  <main role="main">
+    <header class="main-header">
+      <div class="content">
+        <div class="header-content">
+          <h1>{{ _('Firefox for mobile') }}</h1>
+          <h3>{{ _('The speed you need with the privacy you want on all your devices.') }}</h3>
+          <p>{{ _('Choose one or download them all for iOS and Android.') }}</p>
+        </div>
+      </div>
+
+      <div class="content">
+        <div id="header-product-content">
+          <section class="header-product" id="header-firefox">
+            <div class="header-product-copy">
+              <h2>{{ _('Firefox') }}</h2>
+
+              <p>
+                {{ _('Full-featured. Customizable. Lightning fast. Browse without compromise.') }}
+              </p>
+
+              <div class="header-product-ctas">
+                <a href="#mobile-download-buttons-firefox" class="button quantum get-firefox" data-product="firefox" data-button-name="Send to SMS Modal - Firefox Mobile">{{ _('Get Firefox') }}</a>
+                <br>
+                <a href="#firefox" class="see-more">{{ _('See more') }}</a>
+              </div>
+            </div>
+
+            <div class="header-product-image">
+              {{ high_res_img('firefox/mobile/phone-firefox.png', {'alt': _('Firefox'), 'width': '154', 'height': '309'}) }}
+            </div>
+          </section>{#--/#header-firefox--#}
+
+          <section class="header-product" id="header-focus">
+            <div class="header-product-copy">
+              {# L10n: For German, all instances of the string 'Firefox Focus' must be 'Firefox Klar' (as done on https://www.mozilla.org/de/firefox/focus/) #}
+              <h2>{{ _('Firefox Focus') }}</h2>
+
+              <p>
+                {{ _('Automatic ad blocking and tracking protection on an easy-to-use private browser.') }}
+              </p>
+
+              <div class="header-product-ctas">
+                <a href="#mobile-download-buttons-focus" class="button quantum button-focus get-focus" data-product="focus" data-button-name="Send to SMS Modal - Firefox Focus">{{ _('Get Firefox Focus') }}</a>
+                <br>
+                <a href="#focus" class="see-more">{{ _('See more') }}</a>
+              </div>
+            </div>
+
+            <div class="header-product-image">
+              {{ high_res_img('firefox/mobile/phone-focus.png', {'alt': _('Firefox Focus'), 'width': '161', 'height': '324'}) }}
+            </div>
+          </section>
+        </div>{#--/#header-product-content--#}
+      </div>{#--/.content--#}
+    </header>
+
+    <article class="page-article" id="firefox">
+      <div class="content">
+        <div class="page-article-heading">
+          <div class="page-article-heading-content">
+            <h2>{{ _('Firefox') }}</h2>
+
+            <p>
+              {{ _('The full-featured version of Firefox with robust customization and privacy options ready to go for mobile and tablet.') }}
+            </p>
+          </div>{#--/.page-article-heading-content--#}
+        </div>{#--/.page-article-heading--#}
+      </div>{#--/.content--#}
+
+      <div class="features-scroller-section page-section" id="firefox-features">
+        <div class="content">
+          <div class="features-scroller-container">
+
+            <header class="features-scroller-header">
+              <div class="features-scroller-header-container">
+                <h2 class="section-title">{{ _('Firefox mobile') }}</h2>
+
+                <a href="#mobile-download-buttons-firefox" class="button quantum get-firefox" data-product="firefox" data-button-name="Send to SMS Modal - Firefox Mobile">{{ _('Download now') }}</a>
+
+                <nav class="features-scroller-nav" data-section="firefox">
+                  <ul>
+                    <li><a class="current" href="#firefox-sync">{{ _('Sync') }}</a></li>
+                    <li><a href="#firefox-privacy">{{ _('Privacy') }}</a></li>
+                    <li><a href="#firefox-extensions">{{ _('Extensions') }}</a></li>
+                  </ul>
+
+                  <button class="previous" type="button" data-section="firefox">{{ _('Previous') }}</button>
+                  <button class="next" type="button" data-section="firefox">{{ _('Next') }}</button>
+                </nav>
+              </div>
+            </header>{#--/.features-scroller-header--#}
+
+            <div class="features-scroller-content">
+              <section class="page-article-section feature-content" id="firefox-sync" data-section="firefox" data-ga-label="firefox mobile - Sync">
+                <h3>{{ _('Sync') }}</h3>
+
+                <em>{{ _('iOS and Android') }}</em>
+
+                <p>
+                  {{ _('Add Firefox to all your devices for seamless browsing.') }}
+                </p>
+
+                <div class="features-image-wrapper">
+                  {{ high_res_img('firefox/mobile/firefox-sync.png', {'alt': _('Sync'), 'width': '435', 'height': '364'}) }}
+
+                  <ol class="features">
+                    <li class="feature-sync">
+                      {{ _('Easy access to your favorite bookmarks, saved passwords, browsing history and more.') }}
+                    </li>
+                    <li class="feature-send-tabs">
+                      {{ _('Send Tabs easily lets you share open tabs between mobile and desktop.') }}
+                    </li>
+                  </ol>
+                </div>{#--/.features-image-wrapper--#}
+              </section>
+
+              <section class="page-article-section feature-content" id="firefox-privacy" data-section="firefox" data-ga-label="firefox mobile - privacy">
+                <h3>{{ _('Privacy') }}</h3>
+
+                <em>{{ _('iOS and Android') }}</em>
+
+                <p>
+                  {{ _('Control what you share online with the most powerful Private Browsing mode with added Tracking Protection.') }}
+                </p>
+
+                <div class="features-image-wrapper">
+                  {{ high_res_img('firefox/mobile/firefox-privacy.png', {'alt': _('Privacy'), 'width': '464', 'height': '481'}) }}
+
+                  <ol class="features">
+                    <li class="feature-stop">
+                      {{ _('Stops ads that track and follow you around the Internet.') }}
+                    </li>
+                    <li class="feature-clear-cookies">
+                      {{ _('Won’t remember your browsing history or save cookies after you’re done.') }}
+                    </li>
+                  </ol>
+                </div>{#--/.features-image-wrapper--#}
+              </section>
+
+              <section class="page-article-section feature-content" id="firefox-extensions" data-section="firefox" data-ga-label="firefox mobile - extensions">
+                <h3>{{ _('Extensions & Customization') }}</h3>
+
+                <em>{{ _('Android only') }}</em>
+
+                <p>
+                  {{ _('Break out of the browser box. From emojis to productivity tools, personalize Firefox to suit your style.') }}
+                </p>
+
+                <div class="features-image-wrapper">
+                  {{ high_res_img('firefox/mobile/firefox-extensions.png', {'alt': _('Extensions & Customization'), 'width': '328', 'height': '527'}) }}
+
+                  <ol class="features">
+                    <li class="feature-extensions">
+                      <strong>{{ _('Extensions') }}</strong>
+                      {{ _('Choose from thousands of tools like ad blockers, video downloaders and password managers.') }}
+                    </li>
+                    <li class="feature-themes">
+                      <strong>{{ _('Themes') }}</strong>
+                      {{ _('Match Firefox to your mood. Get a new look from our theme categories or create your own.') }}
+                    </li>
+                  </ol>
+                </div>{#--/.features-image-wrapper--#}
+              </section>
+            </div>{#--/.features-scroller-content--#}
+          </div>{#--/.features-scroller-container--#}
+        </div>{#--/.content--#}
+      </div>{#--/#firefox-features--#}
+    </article>
+
+    <article class="page-article" id="focus">
+      <div class="content">
+        <div class="page-article-heading">
+          <div class="page-article-heading-content">
+            <h2>{{ _('Firefox Focus') }}</h2>
+
+            <p>
+              {{ _('Blocks ads with trackers. Automatically. Plus, it can even speed up page loading. Get the private browser that has your back.') }}
+            </p>
+          </div>{#--/.page-article-heading-content--#}
+        </div>{#--/.page-article-heading--#}
+      </div>{#--/.content --#}
+
+      <div class="features-scroller-section page-section" id="focus-features">
+        <div class="content">
+          <div class="features-scroller-container">
+
+            <header class="features-scroller-header">
+              <div class="features-scroller-header-container">
+                <h2 class="section-title">{{ _('Firefox Focus') }}</h2>
+
+                <a href="#mobile-download-buttons-focus" class="button quantum button-focus get-focus" data-product="focus" data-button-name="Send to SMS Modal - Firefox Focus">{{ _('Download now') }}</a>
+
+                <nav class="features-scroller-nav" data-section="focus">
+                  <ul>
+                    <li><a class="current" href="#focus-privacy">{{ _('Automatic Privacy') }}</a></li>
+                    <li><a href="#focus-speed">{{ _('Speed') }}</a></li>
+                    <li><a href="#focus-lightweight">{{ _('Lightweight') }}</a></li>
+                  </ul>
+
+                  <button class="previous" type="button" data-section="focus">{{ _('Previous') }}</button>
+                  <button class="next" type="button" data-section="focus">{{ _('Next') }}</button>
+                </nav>
+              </div>
+            </header>{#--/.features-scroller-header--#}
+
+            <div class="features-scroller-content">
+              <section class="page-article-section feature-content" id="focus-privacy" data-section="focus" data-ga-label="firefox focus - automatic privacy">
+                <h3>{{ _('Automatic Privacy') }}</h3>
+
+                <em>{{ _('iOS and Android') }}</em>
+
+                <p>
+                  {{ _('Browse stress free. Powerful privacy features are always on and your browsing history is wiped after every session.') }}
+                </p>
+
+                <div class="features-image-wrapper">
+                  {{ high_res_img('firefox/mobile/focus-privacy.png', {'alt': _('Sync'), 'width': '452', 'height': '469', 'l10n': True}) }}
+
+                  <ol class="features">
+                    <li class="feature-block">
+                      {{ _('Automatically blocks ads that have sneaky hidden trackers that collect data.') }}
+                    </li>
+                    <li class="feature-erase">
+                      {{ _('One tap erases your cookies and browsing history.') }}
+                    </li>
+                  </ol>
+                </div>{#--/.features-image-wrapper--#}
+              </section>
+
+              <section class="page-article-section feature-content" id="focus-speed" data-section="focus" data-ga-label="firefox focus - speed">
+                <h3>{{ _('Speed') }}</h3>
+
+                <em>{{ _('iOS and Android') }}</em>
+
+                <p>
+                  {{ _('Get more done. By blocking some ads and scripts, Tracking Protection can speed up your browsing.') }}
+                </p>
+
+                <div class="features-image-wrapper">
+                  {{ high_res_img('firefox/mobile/focus-speed.png', {'alt': _('Speed'), 'width': '408', 'height': '500'}) }}
+
+                  <ol class="features">
+                    <li class="feature-speed">
+                      {# L10n: The sentence below will likely change soon to include a percentage, e.g. '...can mean 44% faster loading pages'. #}
+                      {{ _('Fewer elements can mean faster loading pages.') }}
+                    </li>
+                  </ol>
+                </div>{#--/.features-image-wrapper--#}
+              </section>
+
+              <section class="page-article-section feature-content" id="focus-lightweight" data-section="focus" data-ga-label="firefox focus lightweight">
+                <h3>{{ _('Lightweight') }}</h3>
+
+                <em>{{ _('iOS and Android') }}</em>
+
+                <p>
+                  {{ _('Save your mobile memory for the memories. Firefox Focus takes up less selfie space on your phone.') }}
+                </p>
+
+                <div class="features-image-wrapper">
+                  {{ high_res_img('firefox/mobile/focus-lightweight.png', {'alt': _('Lightweight'), 'width': '298', 'height': '519'}) }}
+
+                  <ol class="features">
+                    <li class="feature-lightweight">
+                      {{ _('Small, yet powerful at less than 5MB.') }}
+                    </li>
+                  </ol>
+                </div>{#--/.features-image-wrapper--#}
+              </section>
+            </div>{#--/.features-scroller-content--#}
+          </div>{#--/.features-scroller-container--#}
+        </div>{#--/.content--#}
+      </div>{#--/#focus-features--#}
+    </article>
+
+    <aside id="mobile-download-buttons-wrapper">
+      <strong>{{ _('Firefox') }}</strong>
+      <ul class="mobile-download-buttons firefox" id="mobile-download-buttons-firefox">
+        <li class="android">
+          {{ google_play_button(alt_href='https://app.adjust.com/2uo1qc?campaign=desktop_xp&amp;adgroup=Google_Play_Store&amp;creative=badge_en', anchor_attributes={'data-link-type': 'download', 'data-download-os': 'Android', 'id': 'playStoreLink'}) }}
+        </li>
+        <li class="ios">
+          <a id="appStoreLink" href="https://app.adjust.com/2uo1qc?campaign=desktop_xp&amp;adgroup=iOS_App_Store&amp;creative=badge_en&amp;fallback=https%3A%2F%2Fitunes.apple.com%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8" data-link-type="download" data-download-os="iOS">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+          </a>
+        </li>
+      </ul>
+
+      <strong>{{ _('Firefox Focus') }}</strong>
+      <ul class="mobile-download-buttons focus" id="mobile-download-buttons-focus">
+        <li class="android">
+          {{ google_play_button(alt_href=settings.GOOGLE_PLAY_FIREFOX_FOCUS_LINK, anchor_attributes={'data-link-type': 'download', 'data-download-os': 'Android', 'id': 'playStoreLink'}) }}
+        </li>
+        <li class="ios">
+          <a id="appStoreLink" href="{{ settings.APPLE_APPSTORE_FIREFOX_FOCUS_LINK }}" data-link-type="download" data-download-os="iOS">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    {#
+      L10n: The content below is intended to be shown in a modal window when clicking any of the
+      'Download' buttons above. Depending on the button clicked, the content below will either
+      target/display copy for Firefox or Firefox Focus.
+
+      For supported locales, the Send to Device widget will be shown. If the user's locale
+      does not suppor the widget, a QR code will be shown.
+
+      For mobile devices, only the App/Play Store badges will be shown.
+    #}
+    <div id="modal-outer-wrapper">
+      <div id="modal-wrapper">
+        <h3>
+          <span class="firefox">{{ _('Get Firefox') }}</span>
+          <span class="focus">{{ _('Get Firefox Focus') }}</span>
+        </h3>
+
+        <div class="desktop-download firefox">
+        {% if show_send_to_device %}
+          <p>
+            {{ _('Send Firefox to your phone and unleash your internet.') }}
+          </p>
+
+          {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop') }}
+        {% else %}
+          <p>{{ _('Scan the QR code to get started.') }}</p>
+
+          <div class="qr-code-wrapper">
+            <img src="{{ static('img/firefox/mobile/qr-firefox.png') }}" alt="">
+          </div>
+        {% endif %}
+        </div>
+
+        <div class="desktop-download focus">
+          <p>{{ _('Scan the QR code to get started.') }}</p>
+
+          <div class="qr-code-wrapper">
+            <img src="{{ static('img/firefox/mobile/qr-focus.svg') }}" alt="">
+          </div>
+        </div>
+
+        <div id="modal-mobile-download-buttons-wrapper"></div>
+      </div>{#--/#modal-wrapper--#}
+    </div>{#--/#modal-outer-wrapper--#}
+  </main>
+{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox-mobile' %}
+{% endblock %}
