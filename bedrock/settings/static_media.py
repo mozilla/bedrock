@@ -1063,7 +1063,14 @@ PIPELINE_CSS = {
             'css/etc/firefox/retention/thank-you-b.scss',
         ),
         'output_filename': 'css/etc-firefox-retention-thank-you-b-bundle.css',
-    }
+    },
+    'etc-firefox-retention-thank-you-referral': {
+        'source_filenames': (
+            'css/etc/firefox/retention/thank-you.scss',
+            'css/etc/firefox/retention/thank-you-referral.scss',
+        ),
+        'output_filename': 'css/etc-firefox-retention-thank-you-referral-bundle.css',
+    },
 }
 
 PIPELINE_JS = {
