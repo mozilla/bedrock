@@ -620,12 +620,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_tour_none-bundle.css',
     },
-    'firefox-update-notification-modal': {
+    'firefox-update-notification-firstrun-whatsnew': {
         'source_filenames': (
             'css/base/mozilla-modal.less',
             'css/base/notification-modal.less',
         ),
-        'output_filename': 'css/firefox-update-notification-modal-bundle.css',
+        'output_filename': 'css/firefox-update-notification-firstrun-whatsnew-bundle.css',
     },
     'firefox_whatsnew_42': {
         'source_filenames': (
@@ -1487,13 +1487,13 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox-update-notification-bundle.js',
     },
-    'firefox-update-notification-modal': {
+    'firefox-update-notification-firstrun-whatsnew': {
         'source_filenames': (
             'js/base/mozilla-modal.js',
             'js/base/mozilla-notification-banner.js',
-            'js/base/mozilla-notification-banner-modal-init.js',
+            'js/base/mozilla-notification-banner-firstrun-whatsnew-init.js',
         ),
-        'output_filename': 'js/firefox-update-notification-modal-bundle.js',
+        'output_filename': 'js/firefox-update-notification-firstrun-whatsnew-bundle.js',
     },
     'geolocation': {
         'source_filenames': (

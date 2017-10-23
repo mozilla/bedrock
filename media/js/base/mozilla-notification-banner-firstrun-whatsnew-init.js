@@ -50,12 +50,16 @@ $(function() {
     // Notification should only be shown to Firefox desktop users more than 2 major versions out of date.
     if (client.isFirefoxDesktop) {
         client.getFirefoxDetails(function(details) {
-            // Don't rely on UA strings as they can be altered by extensions, so use UITour instead (Bug 1406299).
-            // User must be at least 2 major versions out of date and on release channel.
-            if (client.isFirefoxOutOfDate(details.version, 2) && details.channel === 'release') {
-                // Check that cookies are enabled.
-                if (typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled()) {
-                    Mozilla.NotificationBanner.init(config);
+            // Only run the query if the /whatsnew or /firstrun page being viewed is
+            // at least 2 major versions out of date. (Bug 1406299).
+            if (client.isFirefoxURLOutOfDate(2)) {
+                // Don't rely on UA strings as they can be altered by extensions, so use UITour instead.
+                // User must be at least 2 major versions out of date and on release channel.
+                if (client.isFirefoxOutOfDate(details.version, 2) && details.channel === 'release') {
+                    // Check that cookies are enabled.
+                    if (typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled()) {
+                        Mozilla.NotificationBanner.init(config);
+                    }
                 }
             }
         });

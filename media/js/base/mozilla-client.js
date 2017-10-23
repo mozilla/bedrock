@@ -231,6 +231,27 @@ if (typeof Mozilla === 'undefined') {
     };
 
     /**
+     * Determine if a /whatsnew or /firstrun page is at least a specific number of major releases old.
+     * @param {Number} majorVer - Number of major versions old a client considered 'out of date' should be.
+     * @param {String} pathName - Version number URL pathname e.g. '/firefox/56.0.1/'.
+     * @param {String} latestVer - Current latest release version number.
+     * @return {Boolean}
+     */
+    Client.isFirefoxURLOutOfDate = function(majorVer, pathName, latestVer) {
+        var path = typeof pathName === 'undefined' ? window.location.pathname : pathName;
+        var urlVersion =  /firefox\/(\d+(?:\.\d+)?\.\da?\d?)/.exec(path);
+        var version = urlVersion ? parseInt(urlVersion[1], 10) : null;
+        var latestVersion = typeof latestVer === 'undefined' ? parseInt($('html').attr('data-latest-firefox'), 10) : parseInt(latestVer, 10);
+        var majorVersions = Math.max(parseInt(majorVer, 10), 1); // majorVersions must be at least 1.
+
+        if (version && latestVersion && (version <= latestVersion - majorVersions)) {
+            return true;
+        }
+
+        return false;
+    };
+
+    /**
      * Use the async mozUITour API of Firefox to retrieve the user's browser info, including the update channel and
      * accurate, patch-level version number. This API is available on Firefox 35 and later. See
      * http://bedrock.readthedocs.org/en/latest/uitour.html for details.

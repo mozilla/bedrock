@@ -547,4 +547,50 @@ describe('mozilla-client.js', function() {
 
     });
 
+    describe('isFirefoxURLOutOfDate', function () {
+
+        it('should return true if URL version is equal to or less than the major version considered out of date', function () {
+            var result = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/54.0/', '56.0');
+            expect(result).toBeTruthy();
+
+            var result2 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/54.0a1/', '56.0');
+            expect(result2).toBeTruthy();
+
+            var result3 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/54.0a2/', '56.0');
+            expect(result3).toBeTruthy();
+
+            var result4 = Mozilla.Client.isFirefoxURLOutOfDate(1, '/firefox/55.0.1/', '56.0');
+            expect(result4).toBeTruthy();
+
+            var result5 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/53.0/', '56.0');
+            expect(result5).toBeTruthy();
+        });
+
+        it('should return false if URL version is greater than the major version considered out of date', function () {
+            var result = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/55.0/', '56.0');
+            expect(result).toBeFalsy();
+
+            var result2 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/55.0a1/', '56.0');
+            expect(result2).toBeFalsy();
+
+            var result3 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/55.0a2/', '56.0');
+            expect(result3).toBeFalsy();
+
+            var result4 = Mozilla.Client.isFirefoxURLOutOfDate(1, '/firefox/56.0/', '56.0.1');
+            expect(result4).toBeFalsy();
+
+            var result5 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/58.0/', '56.0');
+            expect(result5).toBeFalsy();
+        });
+
+        it('should return false if the URL version is invalid', function() {
+            var result = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/foo/', '56.0');
+            expect(result).toBeFalsy();
+
+            var result2 = Mozilla.Client.isFirefoxURLOutOfDate(2, '/firefox/10/', '56.0');
+            expect(result2).toBeFalsy();
+        });
+
+    });
+
 });
