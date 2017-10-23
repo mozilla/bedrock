@@ -1,0 +1,200 @@
+@import '../../../pebbles/includes/lib';
+
+main {
+    background: #45a5b3;
+    color: #fff;
+    padding: 0 10px;
+    position: relative;
+    overflow: visible;
+
+    #confetti-canvas {
+        bottom: 0;
+        height: 100%;
+        left: 0;
+        margin: 0 auto;
+        max-width: 2200px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+    }
+
+    section,
+    header {
+        margin: 0 auto;
+
+        h1 {
+            @include font-size(72px);
+
+            line-height: 1;
+
+            @media #{$mq-tablet} {
+                @include font-size(100px);
+            }
+        }
+
+        p {
+            max-width: 684px;
+        }
+    }
+
+    header {
+        padding: 70px 9px 0;
+        width: 100%;
+        max-width: 1038px;
+    }
+
+    section {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 1038px;
+        padding-bottom: 70px;
+        position: relative;
+
+        article {
+            @include open-sans;
+            background: #fff;
+            color: #4d4d4d;
+            margin: 9px;
+            padding: 24px 24px 0;
+            width: 100%;
+
+            h2 {
+                @include font-size(36px);
+                font-family: Antonio, sans-serif;
+                line-height: 1.2;
+                text-transform: uppercase;
+                margin-bottom: 1.5em;
+            }
+
+            a {
+                margin: 0;
+            }
+        }
+    }
+}
+
+.share-options {
+    @include clearfix;
+    position: relative;
+    z-index: 90;
+
+    li {
+        margin: 0 0 1em;
+    }
+
+    a:after {
+        background: url('/media/img/etc/firefox/retention/icons-sprite.svg') center top no-repeat;
+        background-size: 25px 150px;
+        height: 22px;
+        margin-bottom: -5px;
+        width: 22px;
+    }
+
+    .share-opt-twitter a:after {
+        background-position: center top;
+    }
+
+    .share-opt-facebook a:after {
+        background-position: center -25px;
+    }
+
+    .share-opt-email span {
+        @include font-size(20.25px);
+        color: $color-link;
+        font-weight: bold;
+
+        &:hover {
+            color: darken($color-link, 10%);
+            text-decoration: underline;
+        }
+
+        &:after {
+            background: url('/media/img/etc/firefox/retention/icons-sprite.svg') center -50px no-repeat;
+            background-size: 25px 150px;
+            content: '';
+            display: inline-block;
+            height: 22px;
+            margin-bottom: -5px;
+            margin-left: 8px;
+            width: 22px;
+        }
+    }
+}
+
+.email-links {
+    margin: 1em 20px;
+
+    a {
+        @include font-size(16px);
+    }
+
+    li {
+        float: none;
+        margin: 0 0 .5em;
+    }
+
+    a:after {
+        display: none;
+    }
+
+    a:before {
+        background: url('/media/img/etc/firefox/retention/icons-sprite.svg') center top no-repeat;
+        background-size: 25px 150px;
+        content: '';
+        display: inline-block;
+        height: 22px;
+        margin-bottom: -5px;
+        margin-right: 8px;
+        width: 22px;
+    }
+
+    .mail-gmail:before {
+        background-position: center -75px;
+    }
+
+    .mail-yahoo:before {
+        background-position: center -100px;
+    }
+
+    .mail-outlook:before {
+        background-position: center -125px;
+    }
+
+    .mail-other:before {
+        background-position: center -50px;
+    }
+}
+
+
+
+@media #{$mq-tablet} {
+    .share-options {
+        li {
+            float: left;
+            margin: 0 40px 1em 0;
+        }
+
+        .share-opt-email {
+            position: relative;
+
+            &:hover .email-links {
+                left: auto;
+                opacity: 1;
+            }
+        }
+    }
+
+    .email-links {
+        @include transition(opacity 150ms ease);
+        background: #fff;
+        box-shadow: 3px 6px 0 rgba(0, 0, 0, .05);
+        left: -99em;
+        margin: 0;
+        opacity: 0;
+        padding: 10px 20px;
+        position: absolute;
+        width: 220px;
+        z-index: 99;
+    }
+}

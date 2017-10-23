@@ -1,0 +1,80 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-pebbles.html" %}
+
+{% add_lang_files "firefox/retention/thank-you" %}
+
+{% block page_title %}
+  {{ _('Thank You') }}
+{% endblock %}
+
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}
+  {{ _('Thank you page.') }}
+{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'etc-firefox-retention-thank-you-referral' %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main>
+  <canvas id="confetti-canvas"></canvas>
+  <header>
+    <h1>
+    {% if LANG.startswith('en') %}
+      <span class="white">It’s all</span><br/>
+      thanks to you
+    {% else %}
+      {{ _('It’s all thanks to you') }}
+    {% endif %}
+    </h1>
+    <p>
+      {{ _('Choosing Firefox helps Mozilla make the Internet a better place. Here’s what you can do next:') }}
+    </p>
+  </header>
+
+  <section>
+    <article>
+      <h2>{{ _('Help recruit others to try the new fast Firefox') }}</h2>
+
+      <ul class="share-options">
+        <li class="share-opt-email">
+          <span>{{ _('Send an email') }}</span>
+          {% set email_subject = 'New%20faster%20browser%20from%20Firefox' %}
+          {% set email_body = 'Hey%2C%0D%0DFirefox%27s%20new%20browser%20is%20really%20fast.%20I%20like%20it%20a%20lot%2C%20and%20you%20should%20try%20it.%0D%0DCheck%20it%20out%20and%20let%20me%20know%20what%20you%20think%3A%0D%0D' %}
+          {% set link_gmail = 'http://mzl.la/firefox-refer-1' %}
+          {% set link_yahoo = 'http://mzl.la/firefox-refer-2' %}
+          {% set link_outlook = 'http://mzl.la/firefox-refer-3' %}
+          {% set link_other = 'http://mzl.la/firefox-refer-4' %}
+          <ul class="email-links">
+            <li><a class="mail-gmail" data-link-type="link" data-link-name="Send an email - Gmail" href="{{ 'https://mail.google.com/mail/?view=cm&fs=1&to=someone@example.com&cc=someone.else@example.com&su=%s&body=%s%s'|format(email_subject, email_body, link_gmail|urlencode)|e }}">{{ _('Gmail') }}</a></li>
+            <li><a class="mail-yahoo" data-link-type="link" data-link-name="Send an email - Yahoo" href="{{ 'https://compose.mail.yahoo.com/?to=someone@example.com&subject=%s&body=%s%s'|format(email_subject, email_body, link_yahoo|urlencode)|e }}">{{ _('Yahoo Mail') }}</a></li>
+            <li><a class="mail-outlook" data-link-type="link" data-link-name="Send an email - Outlook" href="{{ 'https://mail.live.com/mail/EditMessageLight.aspx?n=&to=someone@example.com&cc=someone.else@example.com&subject=%s&body=%s%s'|format(email_subject, email_body, link_outlook)|e }}">{{ _('Outlook.com') }}</a></li>
+            <li><a class="mail-other" data-link-type="link" data-link-name="Send an email - Other" href="{{ 'mailto:someone@example.com?cc=someone.else@example.com&subject=%s&body=%s%s'|format(email_subject, email_body, link_other|urlencode)|e }}">{{ _('Other') }}</a></li>
+          </ul>
+        </li>
+
+        <li class="share-opt-facebook">
+          <a data-link-type="link" data-link-name="Share on Facebook" href="https://www.facebook.com/sharer/sharer.php?s=100&p[url]=http%3A%2F%2Fmzl.la%2Ffirefox-refer-5&utm_source=facebook&utm_medium=social&utm_campaign=desktop-referral-loop-v1">{{ _('Share on Facebook') }}</a>
+        </li>
+
+        <li class="share-opt-twitter">
+          <a data-link-type="link" data-link-name="Send a tweet" href="https://www.twitter.com/intent/tweet?url=http%3A%2F%2Fmzl.la%2Ffirefox-refer-6&text=%F0%9F%94%A5%20Firefox%27s%20new%20browser%20is%20really%20fast.%20You%20should%20try%20it!">{{ _('Send a tweet') }}</a>
+        </li>
+      </ul>
+    </article>
+  </section>
+</main>
+{% endblock %}
+
+{% block js %}
+  {% javascript 'etc-firefox-retention-thank-you' %}
+{% endblock %}
+
+{% block body_id %}thank-you{% endblock %}
