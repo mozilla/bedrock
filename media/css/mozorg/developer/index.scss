@@ -298,8 +298,7 @@ main .content {
 
 .developer-tools {
     .card-content-wrapper {
-        @include background-size(100%, auto);
-        background-image: url('/media/img/mozorg/developer/hub/developer-tools-hero.png');
+        @include at2x('/media/img/mozorg/developer/hub/developer-tools-hero.png', 1250px, 365px);
     }
 }
 

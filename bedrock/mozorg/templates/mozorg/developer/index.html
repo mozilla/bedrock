@@ -52,18 +52,18 @@
       <div class="developer-tools card card-image-large">
         <div class="card-content-wrapper">
           <div class="card-content">
-            <a href="{{ url('firefox.developer') }}" data-link-name="Firefox DevTools" data-link-type="link" data-link-position="Firefox DevTools">
-              <h3 class="card-title">{{ _('Firefox DevTools') }}</h3>
+            <a href="{{ url('firefox.developer') }}" data-link-name="Firefox Quantum: Developer Edition" data-link-type="link" data-link-position="Main Hero">
+              <h3 class="card-title">{{ _('Firefox Quantum: Developer Edition') }}</h3>
             </a>
 
             <p>
             {% trans %}
-              Modern tools for Web development.
+              Get the latest features, fast performance, and the development tools you need to build for the open web.
             {% endtrans %}
             </p>
 
-            <a href="{{ url('firefox.developer') }}" class="cta-link" data-link-name="Explore DevTools" data-link-type="link" data-link-position="Firefox DevTools">
-              {{ _('Explore DevTools') }}
+            <a href="{{ url('firefox.developer') }}" class="cta-link" data-link-name="Download Developer Edition" data-link-type="link" data-link-position="Main Hero">
+              {{ _('Download Developer Edition') }}
             </a>
           </div>
         </div> {#--/.card-content-wrapper--#}
@@ -94,7 +94,7 @@
         </div>
 
         <div class="card">
-          <a class="card-image" href="{{ url('firefox.developer') }}" data-link-type="link" data-link-position="Developer resources" data-link-name="Firefox DevTools">
+          <a class="card-image" href="https://developer.mozilla.org/docs/Tools" data-link-type="link" data-link-position="Developer resources" data-link-name="Firefox DevTools">
             {{ lazy_image('img/mozorg/developer/hub/resource-devtools.jpg', lazy_image_placeholder) }}
             <h3 class="card-title">{{ _('Firefox DevTools') }}</h3>
           </a>
@@ -104,7 +104,7 @@
           </div>
 
           <p class="card-cta">
-            <a href="{{ url('firefox.developer') }}" class="cta-link" data-link-type="link" data-link-position="Developer resources" data-link-name="Learn more">{{ _('Learn more') }}</a>
+            <a href="https://developer.mozilla.org/docs/Tools" class="cta-link" data-link-type="link" data-link-position="Developer resources" data-link-name="Explore DevTools">{{ _('Explore DevTools') }}</a>
           </p>
         </div>
 
@@ -150,7 +150,7 @@
       <ul class="news-feed">
         <li>
           <article class="entry">
-            <a class="entry-block" rel="bookmark" href="https://hacks.mozilla.org/2017/02/devroadshow/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=developer-hub" data-link-name="Developer Roadshow" data-link-type="link" data-link-position="Events">
+            <a class="entry-block" rel="bookmark" href="https://github.com/mozilla/devroadshow2017" data-link-name="Developer Roadshow" data-link-type="link" data-link-position="Events">
               <img src="{{ static('img/mozorg/developer/hub/event-roadshow.jpg') }}" alt="">
               <h3 class="entry-title">{{ _('Developer Roadshow') }}</h3>
             </a>
@@ -158,7 +158,7 @@
               <p>{{ _('Mozilla-focused events for people who build the Web.') }}</p>
             </div>
             <p class="entry-cta">
-              <a href="https://hacks.mozilla.org/2017/02/devroadshow/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=developer-hub" class="cta-link" data-link-name="See dates" data-link-type="link" data-link-position="Events">{{ _('See dates') }}</a>
+              <a href="https://github.com/mozilla/devroadshow2017" class="cta-link" data-link-name="See dates" data-link-type="link" data-link-position="Events">{{ _('See dates') }}</a>
             </p>
           </article>
         </li>
