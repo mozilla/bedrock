@@ -727,6 +727,18 @@ def FirefoxProductDeveloperView(request):
     return l10n_utils.render(request, template)
 
 
+def feauture_send_tabs(request):
+    locale = l10n_utils.get_locale(request)
+    exp = request.GET.get('v')
+
+    if locale.startswith('en') and exp in ['a', 'b']:
+        template = 'firefox/features/send-tabs-{0}.html'.format(exp)
+    else:
+        template = 'firefox/features/send-tabs.html'
+
+    return l10n_utils.render(request, template)
+
+
 def sync_page(request):
     locale = l10n_utils.get_locale(request)
 

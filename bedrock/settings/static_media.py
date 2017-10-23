@@ -307,6 +307,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-features-sync-bundle.css',
     },
+    'experiment-send-tabs': {
+        'source_filenames': (
+            'css/firefox/features/experiment-send-tabs.scss',
+        ),
+        'output_filename': 'css/experiment_send_tabs-bundle.css',
+    },
     'firefox-interest-dashboard': {
         'source_filenames': (
             'css/firefox/family-nav.less',
@@ -1238,6 +1244,13 @@ PIPELINE_JS = {
             'js/firefox/features/sync-init.js',
         ),
         'output_filename': 'js/firefox-features-sync-bundle.js',
+    },
+    'experiment-send-tabs': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/firefox/features/experiment-send-tabs.js',
+        ),
+        'output_filename': 'js/experiment_send_tabs-bundle.js',
     },
     'firefox_fx38_0_5_firstrun': {
         'source_filenames': (
