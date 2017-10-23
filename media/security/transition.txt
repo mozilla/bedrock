@@ -1,51 +1,46 @@
 -----BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+Hash: SHA512
 
-The Mozilla security team is transitioning to a new GPG key. The old one
-will continue to be valid for a short time but we prefer all new
-correspondance to be encrypted in the new key, and we will be making
-all signatures going forward with the new key.
-
-This transition document is signed with both keys to validate the
-transition.
+The Mozilla security team is transitioning to a new GPG key. This transition
+document is signed with both keys to validate the transition.
 
 The old key, which we are transitioning away from, is:
-
-  pub   4096R/961A92C8 2014-07-17
-      Key fingerprint = 48A1 1F68 9FC5 D2EE C4F9  5323 3259 4375 961A 92C8
-
-The new key, to which we are transitioning, is:
 
   pub   4096R/06C16402 2014-10-22
       Key fingerprint = 2D65 5550 2EE8 931C 344B  D122 2A61 C714 06C1 6402
 
+The new key, to which we are transitioning, is:
+
+  pub   4096R/2A9C15C9 2017-03-12
+      Key fingerprint = AF1E AF69 3CCC 47EB A617  3B97 5035 B468 2A9C 15C9
+
 Please contact us via e-mail at <security@mozilla.org> if you have any
 questions about this document or this transition.
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.20 (MingW32)
+Comment: GPGTools - https://gpgtools.org
 
-iQIcBAEBAgAGBQJUR0ssAAoJEDJZQ3WWGpLII5kP/jf2EHsvwbC/VimSCnVoKt8e
-FWtfAfVgWXGihzeAomNerlaBP7YgU9YGVsBO1I5u8MJWNHrqWZ4g/dhwvSgKoHH1
-3F16zKTnWeDgOmD4uu9FSpDSWcWdzyG/pmveuneQNq4enhkD3gEemANoU03Imjf8
-0yQ5p8BOJBTt9e4R2X8b1aRnbSXRxnQDSsFzhg0DkyKzkrzj9hvUcQwHQqb1CiYA
-5vwBUSpjhb/N86+YqzUcp0CSegnBuexzZn81DgyBDnEGhoUDe6a9xVcuvvr9OPrv
-BqOsOwlu/pyjBCmtxnMM4Qzq3WEGCs8YXOUTZxBI85SZKZ54IQfj2KxVwb4+N35b
-iEHofdk3xvDQp8u22H09Kx1HwTfFDCv4LcoGSmut+3vk9fi4zJyxtTp2mwkSvoKt
-TBwCwt51GJijyotpi80TGcXYSfFUGL0YjVMpQRHA8VKcXjy5S3DKgYNFI+a4Us2/
-UXXx7Qrr50ZVGe7yzP1ynw7LdMPGq1FYAErZ8zI9dn2P6UXBzuU/owpFQfm6RPmH
-dL801HJJQ0Y/BuztWgK8EGaD/NtEGlYB7RP5SLd8MhNERHBYDJMs/DrWTzdB68iJ
-ZWmipwBiKjGW35/ASPYKHY3/PZmaDdM8bn1LWS7hAO+1QS3uLw63TpvqUTZwSaum
-Q21rvgMGo6Nx4ykEDGaYiQIcBAEBAgAGBQJUR0ssAAoJECphxxQGwWQCI5kQAIvY
-DBDUvaBvgd/WeZqGQdSNvBRGLDha21wpf4VcawLjggxf5HswdSrVrg6xmBRHLh7L
-9MRNbbRyyYc7QyEL9B68XcHjUhhmZbI2PYlI5hPM2y5TKtYuv4ykayoe+KTqpOlp
-920NZOOMCirn1Uk3ytW46UrJAIiu+Dmt5MYPpV7EdaXSNSSCsOZru7MEf75/0gzw
-gf30vVJ6Glznj8Qlbfzol2QTNwmlQ8wIdlVV48A8TPInR2U5mEzdTXXYvsFvYf2u
-GPpllWzHL5Re8TaHqe+emKwUZB5dIIFEeiZYNPhR/pF8iApkncoTNs2mxH73cBpo
-W0Jg+1ytimCTLXNs4kVfgk1kwOs9jAc0Ed/hcMO0uVQ4hAFoXtOr5ddrBVZCsV0P
-0G6F7sq1ug/H5fmBb8u7Kw4n/3qJp9gSpQMdMUqIhAQgjD8RGMaKBKFK4MbKH0Lv
-l1Hb7Qy+2dluHWZTEoCDGyDAoxE0y5H4to7U60J2q0OgnuDXLLDZsP/Uo4Ck5Lc2
-3oZ9NjdMofsWNUbYw62Y8635aDeTUR+mqUjk9HJfc+COi5RUZhQNeBO7D4VkENwJ
-LlEiYas+VUBjwMLYFlViU3JvjYeNef/ym+SxuGMdFKncABk7eudpwuBWGBNV7yrk
-hP98aEy30w2cpRtJ+szrmDciw4yUcvzObtJcnp4L
-=QGhv
+iQIcBAEBCgAGBQJZ4/ZZAAoJECphxxQGwWQCw94P/AyLOXmeJ7DzJGXYrTY8POwR
+Su+B8oXb83oy8aAuumgcEhxUIryJpQ3dXYOkHmXH0fTWy3SMUTkIPXmkW3TnUVw3
+Ar0e6wxMphgDIL3IX8N9sxwNQmNLJz6/nbZu79aqwilLsR+B+7d03YK8PbjVjgUu
+s1lWpx3GekpRfFhXpOk7saVWB0Q4XpbGqBzFAmakdDk6FtQnp3KPxjwYYnS3bLKp
+u/++5boxYUramByDreQR8x9d8Va7jA9+J1tBw9zWtFcGiuVTpKU1Zs6Vmt+aydk/
+6EP5d2D5aAvJjpYBX451kIKBPb73BajwFCvcinLawr1Y213hT4k/N3nB06qcApQH
+ni10sTprog82N1/xui/OjX2OWXajfely/2sh0tuaQ0wDy3EPmRJmZQ3qsQR/slDT
+TrEvFILwEiETG3TNNPajezEfgCykGqQVY/DDYOisVEQOJjVHUkYIY4dmgNFifM2K
+kf4fDAV50I9kgm5Dn9il7EhVeVLaJ++hv+FI09dsyU7aibkmrscqIGWx3EUprKo7
+/nThemSR77Ml24b7RFEk/CfCE9RQ6NYQVg8hMRe17tlDjbjxLaB9W1U3w6KzyaI/
+DDl92//nK8l/srYJap2PT271n4aX2/Cl38VbVlaw3RqsTD/cXkJA/EflVQY+WT1w
+pQOhaMoOyGFE+6NcVBBIiQIcBAEBCgAGBQJZ4/ZZAAoJEFA1tGgqnBXJw94P/R1N
+1+QrnKiLWKeuxrFXoTLCLr7AT2TDOqYyr2STfFV9XptBp3uewWum67avrscJ+q3T
+8NNXpraMCsxx5BWhTNe5sWvCbohpGwhMtrLy79kY7axO1vn/69El55FUBibfiSE8
+316tyMqXSB00XFJfo5nkSHVnT9ZncOIsSbDZcfbxoomrCKY0DBBZzadArPNnLM7p
+hK1+l1bhY4KZnPvRXbtUrhrTmboNi0BqhcD0ywv0TzhCRd0ryg0I+Wg8xL202iyd
+4RFjONBCbCbXBx3vtoWlfH+s0YYNC/jCOyOZZrwKJuVT09e57t8MOsgcX7CezoPU
+7iJtIug/cpIUKaDmKxMa257GsQ+eksSYPTRyVUaZZD+QEB6cBO+xNFeVnHr1qvIB
+vatbxy00GcgUIVVpWfVs834cQI2Q0Ccv3KmciuG9Z1hVBh4FmmM2bBnTjq0SiaXZ
+m7xfUp8ZL6Zvpz6e/1akFOlYzPz4rtlYxfPQJZLoynZBBQpzGdiRbSlRzWDgC3R2
+SLkfIWft869s8ZfY+/7emxzxenSy+iJEvlc2LVlawctaSA84ovbbRUwCt+RtQZwG
+w/tYBaKVLXuguWJQPYENV18G+kFc7edYzvw/Ip2qySaEBUETZNLjy3b7235fWU8G
+RuSgMGKgdkgnhyATLC8skRhZAJ0WsyovaSnuxOOS
+=jIDr
 -----END PGP SIGNATURE-----
