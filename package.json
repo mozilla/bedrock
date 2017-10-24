@@ -29,6 +29,7 @@
     "karma-coverage": "^0.5.5",
     "karma-firefox-launcher": "^0.1.7",
     "karma-jasmine": "^0.3.8",
-    "sinon": "^1.17.3"
+    "sinon": "^1.17.3",
+    "toctoc": "^0.2.3"
   }
 }
