@@ -19,7 +19,7 @@
 
 {% block extrahead %}
   {% if switch('firefox-update-notification-modal', ['en-US']) %}
-    {% stylesheet 'firefox-update-notification-modal' %}
+    {% stylesheet 'firefox-update-notification-firstrun-whatsnew' %}
   {% endif %}
 {% endblock %}
 
@@ -27,6 +27,6 @@
 {% block update_notification %}
   {% if switch('firefox-update-notification-modal', ['en-US']) %}
     {% include 'includes/firefox-update-instructions.html' %}
-    {% javascript 'firefox-update-notification-modal' %}
+    {% javascript 'firefox-update-notification-firstrun-whatsnew' %}
   {% endif %}
 {% endblock %}
