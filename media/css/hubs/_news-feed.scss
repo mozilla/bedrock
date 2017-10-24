@@ -9,6 +9,11 @@
 
 $color-link-blue-dark: #175a77;
 
+// hide full-width title by default (shown for fx pages, but not IH pages)
+.news .section-title-full-width {
+    display: none;
+}
+
 .news-feed {
     margin: 0;
 

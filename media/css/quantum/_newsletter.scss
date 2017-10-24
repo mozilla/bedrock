@@ -2,14 +2,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../../pebbles/includes/animations';
-@import '../../../pebbles/includes/lib';
+@import '../pebbles/includes/animations';
+@import '../pebbles/includes/lib';
 
 #newsletter-subscribe {
     background: #fff;
     border-top: 1px solid #d7d7db;
     color: #000;
-    display: none;
     padding: 40px 0;
 
     .newsletter-title {
@@ -108,13 +107,9 @@
     }
 
     // wrapper for thank you elements
-    .thank {
-        padding-top: 20px;
-
-        p {
-            @include animation(pebbles-fade-in 0.5s ease-in 0.8s 1 normal both);
-            margin-top: 20px;
-        }
+    .thank p {
+        @include animation(pebbles-fade-in 0.5s ease-in 0.8s 1 normal both);
+        margin-top: 20px;
     }
 
     .errorlist {
@@ -126,19 +121,22 @@
     }
 
     @media #{$mq-tablet} {
-        grid-template-columns: 2fr 300px;
-        grid-gap: 40px;
+        @include clearfix;
         padding: 40px;
 
         .newsletter-form-content {
+            float: right;
             width: 300px;
         }
 
         .newsletter-title {
             @include background-size(201px 138px);
             background-position: left top;
+            float: left;
             padding-top: 160px;
             text-align: left;
+            // width of .newsletter-form-content + 20px padding
+            width: calc(100% - 320px);
         }
 
         h3 {
@@ -153,6 +151,8 @@
             @include background-size(201px 138px);
             min-height: 140px;
             padding: 0 0 0 240px;
+            // width of .newsletter-form-content, 20px padding, + 240px padding-left
+            width: calc(100% - 560px);
         }
     }
 
@@ -161,6 +161,7 @@
 
         .newsletter-title {
             padding-left: 260px;
+            width: calc(100% - 580px);
         }
     }
 }
@@ -193,8 +194,13 @@
 
 html[dir="rtl"] #newsletter-subscribe {
     @media #{$mq-tablet} {
+        .newsletter-form-content {
+            float: left;
+        }
+
         .newsletter-title {
             background-position: right top;
+            float: right;
             text-align: right;
         }
 
@@ -217,19 +223,33 @@ html[dir="rtl"] #newsletter-subscribe {
     }
 }
 
-/* -------------------------------------------------------------------------- */
-// Newsletter section shown for up-to-date and pre-release Firefox users
-
-html.firefox-latest,
-html.firefox-pre-release {
-
+@supports (display: grid) {
     #newsletter-subscribe {
-        display: block;
-
         @media #{$mq-tablet} {
             display: grid;
+            grid-template-columns: 2fr 300px;
+            grid-gap: 40px;
+
+            .newsletter-form-content {
+                float: none;
+            }
+
+            .newsletter-title {
+                float: none;
+                width: auto;
+            }
+        }
+
+        @media #{$mq-desktop} {
+            .newsletter-title {
+                width: auto;
+            }
+        }
+
+        @media #{$mq-desktop-wide} {
+            .newsletter-title {
+                width: auto;
+            }
         }
     }
 }
-
-

@@ -2,10 +2,35 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../../pebbles/includes/lib';
+@import '../pebbles/includes/lib';
+@import 'lib';
 
-$color-quantum-bright-green: #4ee331;
-$color-quantum-blue: #0a84ff;
+
+// update style of nav/sub nav download buttons
+#nav-download-firefox,
+#global-nav-download-firefox,
+#sub-nav-download-firefox {
+    .download-link.button.button-green {
+        @include font-size-small;
+        @include transition(background-color .1s ease-in-out);
+        background-color: #fff;
+        border: 2px solid $color-quantum-bright-green;
+        border-radius: 100px;
+        color: $color-quantum-bright-green;
+        font-weight: bold;
+        padding: .5em 20px;
+
+        &:hover,
+        &:focus {
+            background-color: $color-quantum-bright-green;
+            color: #fff;
+        }
+
+        .download-title:before {
+            display: none;
+        }
+    }
+}
 
 .button,
 button.button,
@@ -13,25 +38,25 @@ button.form-button,
 a.button:link,
 a.button:visited {
     &.quantum {
-        @include font-size-small;
+        @include font-size-level6;
         @include transition(background-color .1s ease-in-out);
         background-color: $color-quantum-bright-green;
         border: 2px solid $color-quantum-bright-green;
         padding: .9em 40px;
 
         .download-title {
-            color: #0040ab;
+            color: #fff;
             font-weight: bold;
         }
 
         &:hover,
         &:focus {
-            background-color: lighten($color: $color-quantum-bright-green, $amount: 6%);
+            background-color: darken($color: $color-quantum-bright-green, $amount: 2%);
         }
     }
 
     &.quantum-hollow {
-        @include font-size-small;
+        @include font-size-level6;
         @include transition(background-color .1s ease-in-out);
         background-color: transparent;
         border: 2px solid #fff;
@@ -46,7 +71,7 @@ a.button:visited {
     }
 
     &.quantum-hollow-light {
-        @include font-size-small;
+        @include font-size-level6;
         @include transition(background-color .1s ease-in-out);
         background-color: transparent;
         border: 2px solid #0a84ff;

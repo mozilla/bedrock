@@ -1,0 +1,71 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/shared" "firefox/features/memory" %}
+
+{% extends "firefox/features/quantum/base.html" %}
+
+{% block page_title %}{{ _('Firefox Browser: Use less memory, get more speed') }}{% endblock %}
+{% block page_desc %}{{ _('Is your computer slow? Your browser might be using too much memory. Switch to Firefox today for more speed.') }}{% endblock %}
+
+{% block page_css %}
+  {{ super() }}
+  {% stylesheet 'firefox-features-hub-detail-quantum' %}
+{% endblock %}
+
+{% block body_id %}firefox-features-memory{% endblock %}
+
+{% block features_header_content %}
+  <h1><span>{{ _('Less memory usage than Chrome') }}</span></h1>
+  <p class="tagline">{{ _('If your web browser uses too much memory, switch to Firefox.') }}</p>
+{% endblock %}
+
+{% block features_list %}
+<section class="key-features-section main">
+  <div class="content">
+    <section class="key-feature memory-feature-1">
+      <div class="key-feature-content">
+        <h2>{{ _('Speed up your computer') }}</h2>
+        <p>
+        {% trans %}
+          Every computer program you run takes up some memory. When too much is used,
+          your system can slooooowww down. Firefox aims for a balance — using enough
+          memory to let you browse smoothly and leaving plenty of memory to keep your
+          computer responsive.
+        {% endtrans %}
+        </p>
+      </div>
+    </section>
+
+    <section class="key-feature memory-feature-2">
+      <div class="key-feature-content">
+        <h2>{{ _('Stop running out of memory') }}</h2>
+        <p>
+        {% trans url='https://blog.mozilla.org/firefox/fx54memorytest/' %}
+          <a href="{{ url }}">Chrome uses up to 1.77x more memory than Firefox</a>.
+          If your computer is already low on memory, this can cause a significant slowdown.
+          Using Firefox’s latest version with multi-process can result in more available
+          memory to run your favorite programs.
+        {% endtrans %}
+        </p>
+      </div>
+    </section>
+
+    <section class="key-feature memory-feature-3">
+      <div class="key-feature-content">
+        <h2>{{ _('Browse faster, privately') }}</h2>
+        <p>
+        {% trans url=url('firefox.features.private-browsing') %}
+          Explore the web faster with <a href="{{ url }}">Firefox Private Browsing</a>.
+          Only Firefox’s private mode includes tracking protection which blocks ads with
+          trackers from loading on pages. Decluttering sites means web pages can load
+          faster.
+        {% endtrans %}
+        </p>
+      </div>
+    </section>
+
+  </div> {#--/.content--#}
+</section>
+{% endblock %}

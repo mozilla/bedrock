@@ -808,18 +808,138 @@ class TestFeedbackView(TestCase):
         self.assertFalse('donate_stars_url' in ctx)
 
 
-@override_settings(DEV=False)
 @patch('bedrock.firefox.views.l10n_utils.render')
-class TestSyncPage(TestCase):
+class TestFeaturesPages(TestCase):
+    @patch('bedrock.firefox.views.switch', Mock(return_value=False))
+    def test_bookmarks_pre_57(self, render_mock):
+        view = views.FeaturesBookmarksView.as_view()
+        req = RequestFactory().get('/en-US/firefox/features/bookmarks/')
+        view(req)
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/features/bookmarks.html'])
+
+    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
+    def test_bookmarks_post_57(self, render_mock):
+        view = views.FeaturesBookmarksView.as_view()
+        req = RequestFactory().get('/en-US/firefox/features/bookmarks/')
+        view(req)
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/features/quantum/bookmarks.html'])
+
+    @patch('bedrock.firefox.views.switch', Mock(return_value=False))
+    def test_fast_pre_57(self, render_mock):
+        view = views.FeaturesFastView.as_view()
+        req = RequestFactory().get('/en-US/firefox/features/fast/')
+        view(req)
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/features/fast.html'])
+
+    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
+    def test_fast_post_57(self, render_mock):
+        view = views.FeaturesFastView.as_view()
+        req = RequestFactory().get('/en-US/firefox/features/fast/')
+        view(req)
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/features/quantum/fast.html'])
+
+    @patch('bedrock.firefox.views.switch', Mock(return_value=False))
+    def test_independent_pre_57(self, render_mock):
+        view = views.FeaturesIndependentView.as_view()
+        req = RequestFactory().get('/en-US/firefox/features/independent/')
+        view(req)
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/features/independent.html'])
+
+    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
+    def test_independent_post_57(self, render_mock):
+        view = views.FeaturesIndependentView.as_view()
+        req = RequestFactory().get('/en-US/firefox/features/independent/')
+        view(req)
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/features/quantum/independent.html'])
+
+    @patch('bedrock.firefox.views.switch', Mock(return_value=False))
+    def test_index_pre_57(self, render_mock):
+        req = RequestFactory().get('/firefox/features/')
+        views.features(req)
+        render_mock.assert_called_once_with(req, 'firefox/features/index.html')
+
+    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
+    def test_index_post_57(self, render_mock):
+        req = RequestFactory().get('/firefox/features/')
+        views.features(req)
+        render_mock.assert_called_once_with(req, 'firefox/features/quantum/index.html')
+
+    @patch('bedrock.firefox.views.switch', Mock(return_value=False))
+    def test_memory_pre_57(self, render_mock):
+        view = views.FeaturesMemoryView.as_view()
+        req = RequestFactory().get('/en-US/firefox/features/memory/')
+        view(req)
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/features/memory.html'])
+
+    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
+    def test_memory_post_57(self, render_mock):
+        view = views.FeaturesMemoryView.as_view()
+        req = RequestFactory().get('/en-US/firefox/features/memory/')
+        view(req)
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/features/quantum/memory.html'])
+
+    @patch('bedrock.firefox.views.switch', Mock(return_value=False))
+    def test_password_manager_pre_57(self, render_mock):
+        view = views.FeaturesPasswordManagerView.as_view()
+        req = RequestFactory().get('/en-US/firefox/features/password-manager/')
+        view(req)
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/features/password-manager.html'])
+
+    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
+    def test_password_manager_post_57(self, render_mock):
+        view = views.FeaturesPasswordManagerView.as_view()
+        req = RequestFactory().get('/en-US/firefox/features/password-manager/')
+        view(req)
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/features/quantum/password-manager.html'])
+
+    @patch('bedrock.firefox.views.switch', Mock(return_value=False))
+    def test_private_browsing_pre_57(self, render_mock):
+        view = views.FeaturesPrivateBrowsingView.as_view()
+        req = RequestFactory().get('/en-US/firefox/features/private-browsing/')
+        view(req)
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/features/private-browsing.html'])
+
+    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
+    def test_private_browsing_post_57(self, render_mock):
+        view = views.FeaturesPrivateBrowsingView.as_view()
+        req = RequestFactory().get('/en-US/firefox/features/private-browsing/')
+        view(req)
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/features/quantum/private-browsing.html'])
+
+    @patch('bedrock.firefox.views.switch', Mock(return_value=False))
+    def test_send_tabs_pre_57(self, render_mock):
+        req = RequestFactory().get('/firefox/features/send-tabs/')
+        views.send_tabs(req)
+        render_mock.assert_called_once_with(req, 'firefox/features/send-tabs.html')
+
+    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
+    def test_send_tabs_post_57(self, render_mock):
+        req = RequestFactory().get('/firefox/features/send-tabs/')
+        views.send_tabs(req)
+        render_mock.assert_called_once_with(req, 'firefox/features/quantum/send-tabs.html')
+
+    @patch('bedrock.firefox.views.switch', Mock(return_value=False))
     def test_sync_page_template(self, render_mock):
         req = RequestFactory().get('/firefox/features/sync/')
         req.locale = 'en-US'
         views.sync_page(req)
         render_mock.assert_called_once_with(req, 'firefox/features/sync.html')
 
-    @patch.object(views, 'lang_file_is_active', lambda *x: False)
-    def test_old_sync_page_template(self, render_mock):
+    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
+    def test_sync_page_57_template(self, render_mock):
         req = RequestFactory().get('/firefox/features/sync/')
-        req.locale = 'de'
+        req.locale = 'en-US'
         views.sync_page(req)
-        render_mock.assert_called_once_with(req, 'firefox/features/sync-old.html')
+        render_mock.assert_called_once_with(req, 'firefox/features/quantum/sync.html')

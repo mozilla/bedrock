@@ -1,0 +1,70 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/shared" "firefox/features/bookmarks" %}
+
+{% extends "firefox/features/quantum/base.html" %}
+
+{% block page_title %}{{ _('Firefox Browser: Better bookmarks everywhere you go') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+{% block page_desc %}{{ _('Easily organize your bookmarks into folder and access them across all your devices, from desktop to mobile.') }}{% endblock %}
+
+{% block page_css %}
+  {{ super() }}
+  {% stylesheet 'firefox-features-hub-detail-quantum' %}
+{% endblock %}
+
+{% block body_id %}firefox-features-bookmarks{% endblock %}
+
+{% block features_header_content %}
+  <h1><span>{{ _('Better bookmarks') }}</span></h1>
+  <p class="tagline">{{ _('Don’t agonize, lovers of bookmarking. Organize with Firefox.') }}</p>
+{% endblock %}
+
+{% block features_list %}
+<section class="key-features-section main">
+  <div class="content">
+    <section class="key-feature bookmarks-feature-1">
+      <div class="key-feature-content">
+        <h2>{{ _('File that bookmark') }}</h2>
+        <p>
+        {% trans %}
+          Get your faves all sorted with the bookmark star icon, which lets you add custom names
+          and folders quickly. Then dial in your bookmarks toolbar to make sure you never lose
+          sight of the links you love.
+        {% endtrans %}
+        </p>
+      </div>
+    </section>
+
+    <section class="key-feature bookmarks-feature-2">
+      <div class="key-feature-content">
+        {# L10n Note: “Fly” is being used here as an expression for taking bookmarks with you on mobile. Should this not translate easily an alternate string could be “Sync that bookmark” #}
+        <h2>{{ _('Fly with that bookmark') }}</h2>
+        <p>
+        {% trans url='https://getpocket.com/firefox/' %}
+          Take your favorites on the fly. Use Firefox Sync to access your bookmarks across all
+          your devices, from desktop to mobile. Or try <a href="{{ url }}">Pocket</a> to save
+          any online article, or page and come back to later – even without internet.
+        {% endtrans %}
+        </p>
+      </div>
+    </section>
+
+    <section class="key-feature bookmarks-feature-3">
+      <div class="key-feature-content">
+        {# L10n Note: “Futz” is an American slang word meaning “Fool around” or “Mess with”. Should this not translate easily an alternate string could be “Organize that bookmark” #}
+        <h2>{{ _('Futz with that bookmark') }}</h2>
+        <p>
+        {% trans url='https://addons.mozilla.org/firefox/collections/mozilla/bookmark-managers/' %}
+          Practice your exactitude with every bookmark manager <a href="{{ url }}">add-on</a> you can think of, from
+          full page snapshots to quick-switch sidebars to locked-down-tight private bookmarks.
+        {% endtrans %}
+        </p>
+      </div>
+    </section>
+
+  </div> {#--/.content--#}
+</section>
+{% endblock %}

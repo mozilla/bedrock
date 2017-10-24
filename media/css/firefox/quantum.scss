@@ -6,22 +6,16 @@
 @import '../pebbles/components/newsletter';
 @import '../pebbles/components/modal';
 @import '../hubs/sections';
+@import '../quantum/lib';
+@import '../quantum/common';
+@import '../quantum/key-features';
 
-$color-quantum-blue: #0a84ff;
 
 /* -------------------------------------------------------------------------- */
 // Common elements
 
-body {
-    @include open-sans;
-}
-
 #outer-wrapper {
     overflow-x: hidden;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-weight: normal;
 }
 
 .button.photon,
@@ -228,51 +222,7 @@ html[dir="rtl"] .main-header {
 // Key features sections
 
 .key-features-section {
-    background: #fff;
-
-    h2 {
-        @include font-size-level3;
-        color: $color-quantum-blue;
-        margin-bottom: 20px;
-        padding-top: 40px;
-        position: relative;
-
-        &:before {
-            background: $color-quantum-blue;
-            border-radius: 5px;
-            content: '';
-            height: 5px;
-            left: 0;
-            position: absolute;
-            top: 0;
-            width: 130px;
-        }
-    }
-
     .key-feature {
-        background-position: top center;
-        background-repeat: no-repeat;
-        margin-top: 40px;
-        text-align: center;
-
-        h2:before {
-            left: 50%;
-            margin-left: -65px;
-        }
-
-        a:link,
-        a:visited {
-            color: $color-quantum-blue;
-            text-decoration: none;
-        }
-
-        a:hover,
-        a:active,
-        a:focus {
-            color: $color-quantum-blue;
-            text-decoration: underline;
-        }
-
         &.fast {
             @include at2x('/media/img/firefox/quantum/faster.png', 130px, 141px);
             padding-top: 160px;
@@ -296,34 +246,17 @@ html[dir="rtl"] .main-header {
 
     @media #{$mq-tablet} {
         .key-feature {
-            @include clearfix;
-            background-position: top right;
-            margin: 40px 0 120px;
-            text-align: left;
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-
-            &.fast,
-            &.performance,
-            &.privacy,
-            &.mozilla {
-                h2:before {
-                    left: 0;
-                    margin-left: 0;
-                }
+            h2:before {
+                left: 0;
+                margin-left: 0;
             }
 
             &.design {
                 text-align: center;
-            }
 
-            .key-feature-content {
-                width: 45%;
-
-                p {
-                    max-width: 24em;
+                h2:before {
+                    left: 50%;
+                    margin-left: -65px;
                 }
             }
 
@@ -350,24 +283,6 @@ html[dir="rtl"] .main-header {
                 min-height: 320px;
                 padding-top: 0;
             }
-
-            &:nth-child(even) {
-                background-position: top left;
-
-                .key-feature-content {
-                    float: right;
-                    text-align: right;
-
-                    h2:before {
-                        left: auto;
-                        right: 0;
-                    }
-
-                    p {
-                        float: right;
-                    }
-                }
-            }
         }
     }
 
@@ -375,7 +290,6 @@ html[dir="rtl"] .main-header {
         padding: 60px 0 0;
 
         .key-feature {
-
             &.fast {
                 @include background-size(260px 282px);
                 min-height: 300px;
@@ -400,12 +314,6 @@ html[dir="rtl"] .main-header {
 
     @media #{$mq-desktop-wide} {
         .key-feature {
-            background-position: top right 160px;
-
-            &:nth-child(even) {
-                background-position: top left 160px;
-            }
-
             &.privacy {
                 @include background-size(585px 471px);
                 background-position: top right 60px;
@@ -423,15 +331,7 @@ html[dir="rtl"] .main-header {
 
 html[dir="rtl"] .key-features-section .key-feature {
 
-    h2:before {
-        left: 50%;
-        margin-left: -65px;
-    }
-
     @media #{$mq-tablet} {
-        background-position: top left;
-        text-align: right;
-
         &.fast,
         &.performance,
         &.privacy,
@@ -446,33 +346,9 @@ html[dir="rtl"] .key-features-section .key-feature {
         &.design {
             text-align: center;
         }
-
-        &:nth-child(even) {
-            background-position: top right;
-
-            .key-feature-content {
-                float: left;
-                text-align: left;
-
-                h2:before {
-                    left: 0;
-                    right: auto;
-                }
-
-                p {
-                    float: left;
-                }
-            }
-        }
     }
 
     @media #{$mq-desktop-wide} {
-        background-position: top left 160px;
-
-        &:nth-child(even) {
-            background-position: top right 160px;
-        }
-
         &.privacy {
             background-position: top left 60px;
         }

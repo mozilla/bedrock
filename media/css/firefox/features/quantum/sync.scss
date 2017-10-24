@@ -1,0 +1,56 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+/*
+Dearest future developer - This file currently serves both /features/sync and
+/features/send-tabs because they are practically identical. If/when divergence
+occurs, send-tabs should get its own .scss file.
+
+Thank you for your hard work.
+*/
+
+@import '../../../pebbles/includes/lib';
+
+.primary-buttons {
+    margin-bottom: 0.5em;
+
+    @media #{$mq-tablet} {
+        display: flex;
+
+        li {
+            margin: 0 10px;
+        }
+    }
+}
+
+.warning span {
+    background: #fb8e92;
+}
+
+#sync-intro-instructions ol {
+    list-style-type: numeric;
+    margin: 20px 0 20px 20px;
+}
+
+// Hide elements marked for specific variations by default
+.show-fx-31-signed-in,
+.show-fx-31-signed-out,
+.show-fx-30-older,
+.show-fx-android,
+.show-fx-ios,
+.show-not-fx,
+.show-default {
+    display: none;
+}
+
+// Show elements for current variation
+.state-fx-31-signed-in  .show-fx-31-signed-in,
+.state-fx-31-signed-out .show-fx-31-signed-out,
+.state-fx-30-older      .show-fx-30-older,
+.state-fx-android       .show-fx-android,
+.state-fx-ios           .show-fx-ios,
+.state-not-fx           .show-not-fx,
+.state-default          .show-default {
+    display: block;
+}
