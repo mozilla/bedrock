@@ -66,15 +66,26 @@
         <h2 class="section-title"><span>{{ _('New Tools') }}</span></h2>
 
         <div class="section-body">
-          <h3 id="devtools" class="body-title">{{ _('Firefox DevTools') }}</h3>
+          <a href="http://firefox-dev.tools/" rel="external">
+            <h3 id="devtools" class="body-title">{{ _('Firefox DevTools') }}</h3>
 
-          <img class="hero-image" src="{{ static('img/firefox/products/developer/quantum/hero-debugger-ani.gif') }}" alt="">
+            <img class="hero-image" src="{{ static('img/firefox/products/developer/quantum/hero-debugger-ani.gif') }}" alt="{% if l10n_has_tag('quantum-firstrun-whatsnew') %}{{ _('Learn more about Firefox developer tools') }}{% endif %}">
+          </a>
           <p>
-          {% trans %}
-            The new Firefox DevTools are powerful, flexible, and best of all,
-            hackable. This includes a best-in-class JavaScript debugger, which
-            can target multiple browsers and is built in React and Ember.
-          {% endtrans %}
+          {% if l10n_has_tag('ember_reference_fix') %}
+            {% trans %}
+              The new Firefox DevTools are powerful, flexible, and best of all,
+              hackable. This includes a best-in-class JavaScript debugger, which
+              can target multiple browsers and is built in React and Redux.
+            {% endtrans %}
+          {% else %}
+            {% trans %}
+              The new Firefox DevTools are powerful, flexible, and best of all,
+              hackable. This includes a best-in-class JavaScript debugger, which
+              can target multiple browsers and is built in React and Ember.
+            {% endtrans %}
+          {% endif %}
+          </p>
         </div>
       </div>
 
@@ -82,9 +93,11 @@
         <h2 class="section-title"><span>{{ _('Innovative Features') }}</span></h2>
 
         <div class="section-body">
-          <h3 id="cssgrid" class="body-title">{{ _('Master CSS Grid') }}</h3>
+          <a href="https://mozilladevelopers.github.io/playground/" rel="external">
+            <h3 id="cssgrid" class="body-title">{{ _('Master CSS Grid') }}</h3>
 
-          <img class="hero-image" src="{{ static('img/firefox/products/developer/quantum/hero-cssgrid-ani.gif') }}" alt="">
+            <img class="hero-image" src="{{ static('img/firefox/products/developer/quantum/hero-cssgrid-ani.gif') }}" alt="{% if l10n_has_tag('quantum-firstrun-whatsnew') %}{{ _('Learn more about CSS Grid') }}{% endif %}">
+          </a>
           <p>
           {% trans %}
             Firefox is the only browser with tools built specifically for
@@ -126,73 +139,133 @@
           <li class="gallery-item feature">
             <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-inspector.svg') }}" alt="">
             <h3 class="name">{{ _('Inspector') }}</h3>
-            <p class="desc">{{ _('Inspect and refine code to build pixel-perfect layouts.') }}</p>
+            <p class="desc">
+              {{ _('Inspect and refine code to build pixel-perfect layouts.') }}
+              {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+                <a href="https://developer.mozilla.org/docs/Tools/Page_Inspector" class="features-learn-more" rel="external">{{ _('Learn more about Page Inspector') }}</a>
+              {% endif %}
+            </p>
           </li>
 
           <li class="gallery-item feature">
             <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-console.svg') }}" alt="">
             <h3 class="name">{{ _('Console') }}</h3>
-            <p class="desc">{{ _('Track CSS, JavaScript, security and network issues.') }}</p>
+            <p class="desc">
+              {{ _('Track CSS, JavaScript, security and network issues.') }}
+              {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+                <a href="https://developer.mozilla.org/docs/Tools/Web_Console" class="features-learn-more" rel="external">{{ _('Learn more about Web Console') }}</a>
+              {% endif %}
+            </p>
           </li>
 
           <li class="gallery-item feature">
             <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-debugger.svg') }}" alt="">
             <h3 class="name">{{ _('Debugger') }}</h3>
-            <p class="desc">{{ _('Powerful JavaScript debugger with support for your framework.') }}</p>
+            <p class="desc">
+              {{ _('Powerful JavaScript debugger with support for your framework.') }}
+              {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+                <a href="https://developer.mozilla.org/docs/Tools/Debugger" class="features-learn-more" rel="external">{{ _('Learn more about JavaScript Debugger') }}</a>
+              {% endif %}
+            </p>
           </li>
 
           <li class="gallery-item feature">
             <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-network.svg') }}" alt="">
             <h3 class="name">{{ _('Network') }}</h3>
-            <p class="desc">{{ _('Monitor network requests that can slow or block your site.') }}</p>
+            <p class="desc">
+              {{ _('Monitor network requests that can slow or block your site.') }}
+              {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+                <a href="https://developer.mozilla.org/docs/Tools/Network_Monitor" class="features-learn-more" rel="external">{{ _('Learn more about Network Monitor') }}</a>
+              {% endif %}
+            </p>
           </li>
 
           <li class="gallery-item feature">
             <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-storage.svg') }}" alt="">
             <h3 class="name">{{ _('Storage panel') }}</h3>
-            <p class="desc">{{ _('Add, modify and remove cache, cookies, databases and session data.') }}</p>
+            <p class="desc">
+              {{ _('Add, modify and remove cache, cookies, databases and session data.') }}
+              {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+                <a href="https://developer.mozilla.org/docs/Tools/Storage_Inspector" class="features-learn-more" rel="external">{{ _('Learn more about Storage Panel') }}</a>
+              {% endif %}
+            </p>
           </li>
 
           <li class="gallery-item feature">
             <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-responsive-mode.svg') }}" alt="">
             <h3 class="name">{{ _('Responsive Design Mode') }}</h3>
-            <p class="desc">{{ _('Test sites on emulated devices in your browser.') }}</p>
+            <p class="desc">
+              {{ _('Test sites on emulated devices in your browser.') }}
+              {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+                <a href="https://developer.mozilla.org/docs/Tools/Responsive_Design_View" class="features-learn-more" rel="external">{{ _('Learn more about Responsive Design View') }}</a>
+              {% endif %}
+            </p>
           </li>
 
           <li class="gallery-item feature">
             <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-visual-editing.svg') }}" alt="">
             <h3 class="name">{{ _('Visual Editing') }}</h3>
-            <p class="desc">{{ _('Fine-tune animations, alignment and padding.') }}</p>
+            <p class="desc">
+              {{ _('Fine-tune animations, alignment and padding.') }}
+              {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+                <a href="https://hacks.mozilla.org/2015/11/developer-edition-44-creative-tools-and-more" class="features-learn-more" rel="external">{{ _('Learn more about Visual Editing') }}</a>
+              {% endif %}
+            </p>
           </li>
 
           <li class="gallery-item feature">
             <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-performance.svg') }}" alt="">
             <h3 class="name">{{ _('Performance') }}</h3>
-            <p class="desc">{{ _('Unblock bottlenecks, streamline processes, optimize assets.') }}</p>
+            <p class="desc">
+              {{ _('Unblock bottlenecks, streamline processes, optimize assets.') }}
+              {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+                <a href="https://developer.mozilla.org/docs/Tools/Performance" class="features-learn-more" rel="external">{{ _('Learn more about Performance Tools') }}</a>
+              {% endif %}
+            </p>
           </li>
 
           <li class="gallery-item feature">
             <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-memory.svg') }}" alt="">
             <h3 class="name">{{ _('Memory') }}</h3>
-            <p class="desc">{{ _('Find memory leaks and make your application zippy.') }}</p>
+            <p class="desc">
+              {{ _('Find memory leaks and make your application zippy.') }}
+              {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+                <a href="https://developer.mozilla.org/docs/Tools/Memory" class="features-learn-more" rel="external">{{ _('Learn more about Memory Tools') }}</a>
+              {% endif %}
+            </p>
           </li>
 
           <li class="gallery-item feature">
             <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-web-audio.svg') }}" alt="">
             <h3 class="name">{{ _('Web Audio') }}</h3>
-            <p class="desc">{{ _('The only developer tool for inspecting the Web Audio API.') }}</p>
+            <p class="desc">
+              {{ _('The only developer tool for inspecting the Web Audio API.') }}
+              {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+                <a href="https://developer.mozilla.org/docs/Tools/Web_Audio_Editor" class="features-learn-more" rel="external">{{ _('Learn more about Web Audio Editor') }}</a>
+              {% endif %}
+            </p>
           </li>
 
           <li class="gallery-item feature">
             <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-scratchpad.svg') }}" alt="">
             <h3 class="name">{{ _('Scratchpad') }}</h3>
-            <p class="desc">{{ _('Edit, write, run and execute JavaScript in real time.') }}</p>
+            <p class="desc">
+              {{ _('Edit, write, run and execute JavaScript in real time.') }}
+              {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+                <a href="https://developer.mozilla.org/docs/Tools/Scratchpad" class="features-learn-more" rel="external">{{ _('Learn more about Scratchpad') }}</a>
+              {% endif %}
+            </p>
           </li>
 
           <li class="gallery-item feature">
             <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-style-editor.svg') }}" alt="">
             <h3 class="name">{{ _('Style Editor') }}</h3>
-            <p class="desc">{{ _('Edit and manage all your CSS stylesheets in your browser.') }}</p>
+            <p class="desc">
+              {{ _('Edit and manage all your CSS stylesheets in your browser.') }}
+              {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+                <a href="https://developer.mozilla.org/docs/Tools/Style_Editor" class="features-learn-more" rel="external">{{ _('Learn more about Style Editor') }}</a>
+              {% endif %}
+            </p>
           </li>
         </ul>
       </div>
