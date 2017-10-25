@@ -3,18 +3,31 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import re
-from os.path import splitext
+from os.path import relpath, splitext
 
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.shortcuts import render as django_render
-from django.template import TemplateDoesNotExist
+from django.template import TemplateDoesNotExist, loader
 from django.utils.translation.trans_real import parse_accept_lang_header
 
 from bedrock.base.urlresolvers import split_path
 
 from .dotlang import get_lang_path
 from .gettext import template_is_active, translations_for_template
+
+
+def template_source_url(template):
+    if template in settings.EXCLUDE_EDIT_TEMPLATES:
+        return None
+
+    try:
+        absolute_path = loader.get_template(template).template.filename
+    except TemplateDoesNotExist:
+        return None
+
+    relative_path = relpath(absolute_path, settings.ROOT)
+    return '%s/tree/master/%s' % (settings.GITHUB_REPO, relative_path)
 
 
 def render(request, template, context=None, **kwargs):
@@ -40,6 +53,7 @@ def render(request, template, context=None, **kwargs):
     # and pass it in the context
     context['template'] = template
     context['langfile'] = get_lang_path(template)
+    context['template_source_url'] = template_source_url(template)
 
     # Get the available translation list of the current page
     context.setdefault('translations', {})

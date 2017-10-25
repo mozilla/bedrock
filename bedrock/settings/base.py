@@ -146,6 +146,28 @@ LOCALES_PATH = ROOT_PATH / 'locale'
 default_locales_repo = 'www.mozilla.org' if DEV else 'bedrock-l10n'
 default_locales_repo = 'https://github.com/mozilla-l10n/{}'.format(default_locales_repo)
 LOCALES_REPO = config('LOCALES_REPO', default=default_locales_repo)
+GITHUB_REPO = 'https://github.com/mozilla/bedrock'
+
+# templates to exclude from having an "edit this page" link in the footer
+# these are typically ones for which most of the content is in the DB
+EXCLUDE_EDIT_TEMPLATES = [
+    'firefox/releases/nightly-notes.html',
+    'firefox/releases/dev-browser-notes.html',
+    'firefox/releases/esr-notes.html',
+    'firefox/releases/beta-notes.html',
+    'firefox/releases/aurora-notes.html',
+    'firefox/releases/release-notes.html',
+    'firefox/releases/system_requirements.html',
+    'mozorg/credits.html',
+    'mozorg/about/forums.html',
+    'security/advisory.html',
+    'security/advisories.html',
+    'security/product-advisories.html',
+    'security/known-vulnerabilities.html',
+    'thunderbird/releases/beta-notes.html',
+    'thunderbird/releases/release-notes.html',
+    'thunderbird/releases/system_requirements.html',
+]
 
 
 def get_dev_languages():
