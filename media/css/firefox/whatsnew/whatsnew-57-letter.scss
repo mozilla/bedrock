@@ -1,0 +1,65 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+
+//* -------------------------------------------------------------------------- */
+// Common elements
+
+body {
+    @include open-sans;
+}
+
+
+//* -------------------------------------------------------------------------- */
+// CEO letter
+.page-head {
+    background: #c7216a;
+    background: url('/media/img/firefox/whatsnew_57/mozillians.jpg') center bottom no-repeat,
+                linear-gradient(148deg, #c7216a 7%, #fda41e 100%);
+    @include background-size(cover, cover);
+    min-height: 20vh;
+
+    .firefox-logo {
+        margin: 20px 0;
+    }
+
+    @media (min-height: 800px) {
+        min-height: 40vh;
+        max-height: 50vh;
+
+        .firefox-logo {
+            margin-top: 10vh;
+        }
+    }
+
+    @media #{$mq-high-res} {
+        background: url('/media/img/firefox/whatsnew_57/mozillians-high-res.jpg') center bottom no-repeat,
+                    linear-gradient(148deg, #c7216a 7%, #fda41e 100%);
+    }
+}
+
+.page-body {
+    .content {
+        max-width: $width-desktop;
+        padding-bottom: 60px;
+    }
+
+    h1 {
+        @include font-size-level3;
+        margin: 1.5em 0 1em;
+    }
+
+    p {
+        @include font-size-level6;
+        margin: 0 0 2em;
+    }
+}
+
+.signoff img {
+    display: block;
+    margin: 0 0 10px;
+}
+

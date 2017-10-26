@@ -1,0 +1,41 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/whatsnew_57" %}
+
+{% extends "firefox/whatsnew/base-pebbles.html" %}
+
+{% block page_title %}{{ _('Firefox is up to date') }}{% endblock %}
+{% block page_desc %}{{ _('The new Firefox. Fast for good.') }}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox-whatsnew-57' %}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main class="intro">
+  <div class="content">
+    <div class="intro-content">
+      <h1>{{ _('<strong>Firefox</strong> Quantum') }}</h1>
+      <h2>{{ _('The new Firefox') }}<br>{{ _('Fast for good') }}</h2>
+      <p class="tagline">
+      {% if LANG.startswith('en-') %}
+        This is what you’ve been waiting for — <br>the fastest Firefox ever.
+      {% else %}
+        {# L10n: Line break for formatting. #}
+        {% trans %}
+          This is what you’ve been waiting for<br> — the fastest Firefox ever.
+        {% endtrans %}
+      {% endif %}
+      </p>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block email_form %}{% endblock%}
+
+{% block js %}{% endblock %}

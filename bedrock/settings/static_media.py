@@ -669,6 +669,18 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-whatsnew-56-bundle.css',
     },
+    'firefox-whatsnew-57': {
+        'source_filenames': (
+            'css/firefox/whatsnew/whatsnew-57.scss',
+        ),
+        'output_filename': 'css/firefox-whatsnew-57-bundle.css',
+    },
+    'firefox-whatsnew-57-letter': {
+        'source_filenames': (
+            'css/firefox/whatsnew/whatsnew-57-letter.scss',
+        ),
+        'output_filename': 'css/firefox-whatsnew-57-letter-bundle.css',
+    },
     'firefox_releasenotes_firefox': {
         'source_filenames': (
             'css/firefox/releasenotes-firefox.less',

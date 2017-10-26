@@ -1,0 +1,44 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew/fx57/base-whatsnew-57-letter.html" %}
+
+{% block page_title %}{{ _('El nuevo Firefox. Rápido para siempre.') }}{% endblock %}
+
+{% block letter_content %}
+  <p>
+  {% trans %}
+    Estamos entusiasmados con la presentación de nuestro nuevo navegador, Firefox Quantum.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    Notarás de inmediato que el nuevo Firefox es increíblemente rápido. De hecho, es dos veces más rápido que hace un año. Este nuevo navegador también es más potente. Hemos reconstruido Firefox desde sus cimientos para enfocarnos en cómo utilizas la web para ver, escuchar, crear y jugar sin límites. Nos complace ofrecerte un navegador que se ve y se siente totalmente diferente: más moderno, más rápido y más eficiente. Creemos que vas a estar de acuerdo: es un salto cuántico en cómo experimentamos Internet.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    Cuando utilizas Firefox, también contribuyes a un movimiento que asegura que Internet se mantenga como un recurso público global, siempre abierto y accesible a todos.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    Como organización independiente sin fines de lucro, desde 2003 estamos comprometidos con crear productos que te permitan asumir el control de tu vida online, desarrollar tecnologías abiertas y políticas públicas para que Internet sea más saludable. Te ponemos en el centro de todo lo que hacemos.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans firefox=url('firefox') %}
+    En nombre de la comunidad global de Mozilla, nos enorgullece presentar <a href="{{ firefox }}">el nuevo Firefox</a>. Rápido para siempre.
+  {% endtrans %}
+  </p>
+
+  <p class="signoff">
+    <img src="{{ static('img/firefox/whatsnew_57/cbeard-signature.png') }}" alt="" width="120" height="60">
+    Chris Beard <br>CEO de Mozilla
+  </p>
+{% endblock %}

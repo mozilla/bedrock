@@ -303,6 +303,28 @@ class TestWhatsNew(TestCase):
 
     # end 56.0 whatsnew tests
 
+    # begin 57.0 whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_57_0_EN(self, render_mock):
+        """Should use English CEO letter template for 57.0 in English"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='57.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/fx57/whatsnew-57.en-US.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_57_0_locale(self, render_mock):
+        """Should use regular template for 57.0 in locales without the letter"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'nl'
+        self.view(req, version='57.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/fx57/whatsnew-57.html'])
+
+    # end 57.0 whatsnew tests
+
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestFirstRun(TestCase):

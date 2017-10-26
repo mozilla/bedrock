@@ -1,0 +1,38 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew/fx57/base-whatsnew-57-letter.html" %}
+
+{% block page_title %}{{ _('體驗嶄新 Firefox：快，只為更好。') }}{% endblock %}
+
+{% block letter_content %}
+  <p>
+  {% trans %}
+    我們今天很高興能向你介紹全新的瀏覽器 - Firefox Quantum。
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    你首先就會注意到的是風馳電掣的全新 Firefox。事實上，它的速度比去年更快上一倍，功能也更為強大。我們專注於了解你如何使用網路無拘無束地看影片、聽音樂、創作與玩樂，進而重新打造 Firefox。很高興能給你一套提供時髦、極速和高效率體驗的全新瀏覽器，也相信你一定深有同感：這將是你上網體驗的一大躍進。
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    當你使用 Firefox 時，同時也為確保網際網路作為開放、人人可用的全球公共資源盡了一份心力。我們作為一個獨立的非營利組織，自 2003 年以來便一直致力於創造能由你自行掌控線上生活的產品，並且持續推動能夠促進網路健全的開放技術與公共政策發展。我們自始至終，都以你為本。
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans firefox=url('firefox') %}
+    今天，我謹代表 Mozilla 全球社群，非常自豪地向你介紹<a href="{{ firefox }}">嶄新的 Firefox</a>。快，只為更好。
+  {% endtrans %}
+  </p>
+
+  <p class="signoff">
+    <img src="{{ static('img/firefox/whatsnew_57/cbeard-signature.png') }}" alt="" width="120" height="60">
+    Chris Beard <br>Mozilla 執行長
+  </p>
+{% endblock %}

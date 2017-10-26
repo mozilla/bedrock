@@ -1,0 +1,38 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew/fx57/base-whatsnew-57-letter.html" %}
+
+{% block page_title %}{{ _('The new Firefox. Fast for good.') }}{% endblock %}
+
+{% block letter_content %}
+  <p>
+  {% trans %}
+    Today we’re thrilled to introduce you to our brand new browser — Firefox Quantum.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    What you’ll notice first is that the new Firefox is blazing fast. In fact, you’ll enjoy speeds up to twice as fast as a year ago. It’s also more powerful. We’ve rebuilt Firefox from the ground up to focus on how you use the Web today to watch, listen, create and play without limits. We’re excited to deliver a browser that feels completely different — modern, quick and efficient. We think you’ll agree: It’s a quantum leap forward in how you’ll experience the Internet.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    When you use Firefox, you’re also contributing to a movement to ensure the Internet remains a global public resource, open and accessible to all. As an independent, not-for-profit organisation, we’ve been committed since 2003 to building products that put you in control of your online life and advancing open technology and public policy that promote a healthier Internet. We put you at the center of everything we do.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans firefox=url('firefox') %}
+    On behalf of Mozilla’s global community, we’re proud to introduce you to <a href="{{ firefox }}">the new Firefox</a>. Fast for good.
+  {% endtrans %}
+  </p>
+
+  <p class="signoff">
+    <img src="{{ static('img/firefox/whatsnew_57/cbeard-signature.png') }}" alt="" width="120" height="60">
+    Chris Beard <br>CEO, Mozilla
+  </p>
+{% endblock %}
