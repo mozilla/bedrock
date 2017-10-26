@@ -1,0 +1,38 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew/fx57/base-whatsnew-57-letter.html" %}
+
+{% block page_title %}{{ _('Le nouveau Firefox. Toujours plus rapide.') }}{% endblock %}
+
+{% block letter_content %}
+  <p>
+  {% trans %}
+    Nous sommes ravis de vous présenter aujourd’hui notre tout nouveau navigateur&nbsp;: Firefox Quantum.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    Ce qui vous sautera aux yeux en premier, c’est l’extrême rapidité du nouveau Firefox. Vous apprécierez le fait que le navigateur est deux fois plus rapide qu’il y a un an. Il est aussi plus puissant que jamais. Nous avons complètement reconstruit Firefox pour concentrer nos efforts sur la façon dont vous utilisez le Web aujourd’hui pour regarder, écouter, créer des contenus et jouer sans limites. Nous sommes très heureux de proposer un navigateur complètement différent&nbsp;: moderne, rapide et efficace. Nous pensons que vous serez d’accord avec nous&nbsp;: c’est un saut quantique dans votre expérience sur le Web.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    En utilisant Firefox, vous contribuez également à un mouvement visant à s’assurer qu’Internet reste une ressource publique mondiale, ouverte et accessible à tous. En tant qu’organisme indépendant à but non lucratif, nous nous sommes engagés depuis 2003 à concevoir des produits permettant à chacun de contrôler sa vie privée en ligne et de faire progresser la technologie ouverte ainsi que les réglementations qui promeuvent un Internet plus sain. Vous, les internautes, êtes au cœur de chacune de nos initiatives.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans firefox=url('firefox') %}
+    Au nom de notre communauté mondiale, à Mozilla, nous sommes fiers de vous présenter <a href="{{ firefox }}">le nouveau Firefox</a>, toujours plus rapide.
+  {% endtrans %}
+  </p>
+
+  <p class="signoff">
+    <img src="{{ static('img/firefox/whatsnew_57/cbeard-signature.png') }}" alt="" width="120" height="60">
+    Chris Beard <br>PDG de Mozilla
+  </p>
+{% endblock %}

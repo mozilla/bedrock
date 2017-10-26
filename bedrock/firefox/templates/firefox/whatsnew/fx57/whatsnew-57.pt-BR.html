@@ -1,0 +1,38 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew/fx57/base-whatsnew-57-letter.html" %}
+
+{% block page_title %}{{ _('O novo Firefox. Rápido de verdade.') }}{% endblock %}
+
+{% block letter_content %}
+  <p>
+  {% trans %}
+    Hoje estamos muito felizes em apresentá-lo ao nosso novo navegador — o Firefox Quantum.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    O que você notará primeiro é que o novo Firefox está incrivelmente mais rápido. Na verdade, você desfrutará de velocidades até duas vezes mais rápidas do que há um ano. Também é mais poderoso. Nós reconstruímos o Firefox para melhorar a sua experiência, com base em como você usa a web hoje, ao assistir, ouvir, criar e jogar sem limites. Estamos animados em oferecer um navegador que está completamente diferente — moderno, rápido e eficiente. Temos certeza que você concordará: é um salto quântico em como você experimentará a Internet.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    Ao usar o Firefox, você também está contribuindo para um movimento que pretende garantir que a Internet permaneça um recurso público global, aberto e acessível a todos. Como uma organização sem fins lucrativos independente, estamos empenhados desde 2003 em criar produtos que colocam você no controle de sua vida on-line e promover tecnologias abertas e políticas públicas que possibilitam uma Internet mais saudável. Nós lhe colocamos no centro de tudo o que fazemos.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans firefox=url('firefox') %}
+    Em nome da comunidade global da Mozilla, estamos orgulhosos de apresentá-lo <a href="{{ firefox }}">ao novo Firefox</a>. Rápido de verdade.
+  {% endtrans %}
+  </p>
+
+  <p class="signoff">
+    <img src="{{ static('img/firefox/whatsnew_57/cbeard-signature.png') }}" alt="" width="120" height="60">
+    Chris Beard <br>CEO, Mozilla
+  </p>
+{% endblock %}

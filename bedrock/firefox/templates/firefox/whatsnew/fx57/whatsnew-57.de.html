@@ -1,0 +1,38 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew/fx57/base-whatsnew-57-letter.html" %}
+
+{% block page_title %}{{ _('Der neue Firefox: Schnell. Und richtig gut.') }}{% endblock %}
+
+{% block letter_content %}
+  <p>
+  {% trans %}
+    Wir freuen uns, Ihnen heute unseren brandneuen Browser vorstellen zu dürfen – Firefox Quantum.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    Zuallererst werden Sie feststellen, dass der neue Firefox blitzschnell ist. Tatsächlich können Sie sich über eine doppelt so schnelle Geschwindigkeit wie vor einem Jahr freuen. Unser neuer Browser ist außerdem noch leistungsstärker. Wir haben Firefox von Grund auf neu erfunden und uns hierbei darauf konzentriert, wie Sie das Web heute nutzen, um Inhalte anzuschauen, anzuhören, zu kreieren und online zu spielen – ohne irgendwelche Grenzen. Wir freuen uns, einen Browser zur Verfügung stellen zu können, der sich völlig anders anfühlt – modern, schnell und effizient. Wir sind sicher, dass Sie uns in diesem Punkt zustimmen werden: Der neue Firefox ist ein Quantensprung für Ihre Web-Erfahrung.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    Wenn Sie Firefox nutzen, unterstützen Sie auch eine Bewegung, die sich dafür einsetzt, dass das Web weiterhin eine globale, öffentliche Ressource bleibt – offen und für alle zugänglich. Als unabhängige, gemeinnützige Organisation kreieren wir seit 2003 Produkte, mit deren Hilfe Sie Kontrolle über Ihr Online-Leben erlangen, und treiben die Entwicklung offener Technologien sowie Policy-Initiativen zur Förderung eines gesünderen Internets voran. Dabei stellen wir Sie in den Mittelpunkt all unserer Aktivitäten.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans firefox=url('firefox') %}
+    Im Namen der weltweiten Mozilla Community und mit einer gehörigen Portion Stolz stellen wir Ihnen heute den <a href="{{ firefox }}">neuen Firefox</a> vor: Schnell. Und richtig gut.
+  {% endtrans %}
+  </p>
+
+  <p class="signoff">
+    <img src="{{ static('img/firefox/whatsnew_57/cbeard-signature.png') }}" alt="" width="120" height="60">
+    Chris Beard <br>CEO, Mozilla
+  </p>
+{% endblock %}

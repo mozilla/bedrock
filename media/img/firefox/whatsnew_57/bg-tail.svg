@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1102.9 549.3" width="1103" height="549">
+  <g transform="translate(-1 -39)">
+    <g transform="rotate(90 392.383 392.883)">
+      <linearGradient id="a" gradientUnits="userSpaceOnUse" x1="7.833" y1="123.701" x2="7.722" y2="124.94" gradientTransform="matrix(704.8754 0 0 738.5736 -5184.013 -90999.367)">
+        <stop offset="0" stop-color="#C40771"/>
+        <stop offset=".51" stop-color="#FF8E00"/>
+        <stop offset="1" stop-color="#FFEF4C"/>
+      </linearGradient>
+      <path fill="url(#a)" fill-opacity=".3" d="M328.7 2.1c17.8 20 20.9 26.1 26.8 35.7C407.9 93.6 486 230 429.9 401.1 324.2 723.2-98.6 571.5-142.9 528.9c25.6 265.8 649.5 334 702.5-123C590.5 139.5 308.8-18.2 328.7 2.1"/>
+    </g>
+    <g transform="rotate(90 486 812.5)">
+      <linearGradient id="b" gradientUnits="userSpaceOnUse" x1="-832.086" y1="963.001" x2="-831.401" y2="961.9" gradientTransform="matrix(515.6622 0 0 1297.348 428928.344 -1248376.625)">
+        <stop offset="0" stop-color="#C40771"/>
+        <stop offset=".733" stop-color="#FF8E00"/>
+        <stop offset="1" stop-color="#FFEF4C"/>
+      </linearGradient>
+      <path fill="url(#b)" fill-opacity=".2" d="M205.7 1114.5c29.4-32.3 55.8-69.3 75.8-111.3 51.5-107.9 131-287.4 68.4-474.8C300.4 380.3 232.4 299.3 146 220.1 5.8 91.6-33.4 34.3-33.4.2c0 0-161.9 180-91.7 367.8S89 548.9 184.1 744.8C296.1 975.4 93.5 1227-74 1297.5c10.3-2.3 372.4-84 391.4-290.6-.4 3.8-8.6 60.9-111.7 107.6"/>
+      <linearGradient id="c" gradientUnits="userSpaceOnUse" x1="-831.665" y1="962.809" x2="-831.566" y2="963.82" gradientTransform="matrix(495.6065 0 0 1082.8928 412272.53 -1042019.938)">
+        <stop offset="0" stop-color="#C40771"/>
+        <stop offset=".092" stop-color="#C70E6B"/>
+        <stop offset=".502" stop-color="#FD8A03"/>
+        <stop offset=".51" stop-color="#FF8E00"/>
+        <stop offset="1" stop-color="#FFEF4C"/>
+      </linearGradient>
+      <path fill="url(#c)" fill-opacity=".2" d="M190.6 1133.8c145.3-142.3 218.8-315.2 187.7-509.2 0 0 12.4 99.5-34.7 201.2 22.6-99.3 25.2-222.8-34.8-350.6-80.1-170.6-212-260.4-262.4-297.8C-29.9 120.6-61.5 62.9-62.1 50.9c-22.8 46.6-91.7 206.2-7.4 343.6C9.5 523.3 131 563.8 221.1 679.7c184 236.9-30.5 454.1-30.5 454.1"/>
+    </g>
+    <linearGradient id="d" gradientUnits="userSpaceOnUse" x1="325.182" y1="105.21" x2="326.163" y2="104.148" gradientTransform="matrix(70 0 0 70 -22731.438 -6891)">
+      <stop offset="0" stop-color="#C40771"/>
+      <stop offset=".51" stop-color="#FF8E00"/>
+      <stop offset="1" stop-color="#FFEF4C"/>
+    </linearGradient>
+    <circle opacity=".384" fill="url(#d)" cx="68.9" cy="433" r="35"/>
+  </g>
+</svg>

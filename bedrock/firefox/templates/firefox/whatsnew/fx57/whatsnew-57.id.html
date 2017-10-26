@@ -1,0 +1,38 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew/fx57/base-whatsnew-57-letter.html" %}
+
+{% block page_title %}{{ _('Firefox baru. Cepat demi kebaikan.') }}{% endblock %}
+
+{% block letter_content %}
+  <p>
+  {% trans %}
+    Hari ini kami sangat senang memperkenalkan Anda kepada peramban baru kami — Firefox Quantum.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    Hal pertama yang akan Anda rasakan adalah Firefox baru sangatlah cepat. Sesungguhnya, Anda akan menikmati kecepatan hingga dua kali lipat lebih cepat dari setahun yang lalu. Firefox juga semakin bertenaga. Kami telah membangun ulang Firefox dari dasar untuk fokus terhadap bagaimana Anda menggunakan Web hari ini: untuk menonton, mendengar, membuat, dan bermain tanpa batas. Kami sangat senang untuk menghadirkan peramban yang terasa benar-benar berbeda — modern, cepat, dan efisien. Kami pikir Anda akan setuju: Ini adalah sebuah lompatan jauh ke depan dalam hal bagaimana Anda akan menikmati Internet.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    Ketika Anda menggunakan Firefox, Anda juga berkontribusi terhadap gerakan yang memastikan Internet tetap menjadi sumber daya publik global, terbuka, dan dapat diakses bagi semua. Sebagai sebuah organisasi independen dan nirlaba, kami telah berkomitmen sejak tahun 2003 untuk membangun produk yang menempatkan Anda dalam kendali kehidupan daring Anda dan memajukan teknologi terbuka serta kebijakan publik yang mempromosikan Internet yang lebih sehat. Kami mengutamakan Anda dalam semua kegiatan yang kami lakukan.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans firefox=url('firefox') %}
+    Atas nama komunitas global Mozilla, kami dengan bangga memperkenalkan Anda kepada <a href="{{ firefox }}">Firefox baru</a>. Cepat demi kebaikan.
+  {% endtrans %}
+  </p>
+
+  <p class="signoff">
+    <img src="{{ static('img/firefox/whatsnew_57/cbeard-signature.png') }}" alt="" width="120" height="60">
+    Chris Beard <br>CEO, Mozilla
+  </p>
+{% endblock %}

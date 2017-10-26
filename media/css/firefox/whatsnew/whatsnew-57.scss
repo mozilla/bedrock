@@ -1,0 +1,178 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+
+//* -------------------------------------------------------------------------- */
+// Common elements
+
+body {
+    @include open-sans;
+    overflow-x: hidden;
+}
+
+#outer-wrapper {
+    overflow-x: hidden;
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Standard page
+
+.intro {
+    background: #c7216a;
+    background: url('/media/img/firefox/whatsnew_57/bg-tail.svg') right top no-repeat,
+                linear-gradient(148deg, #c7216a 7%, #fda41e 100%);
+    background-size: cover;
+    color: #fff;
+    padding: 40px 0 140px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+
+    &:after {
+        @include at2x('/media/img/firefox/whatsnew_57/new-tab.jpg', 280px, 202px);
+        background-position: top right;
+        background-repeat: no-repeat;
+        bottom: -40px;
+        content: '';
+        height: 202px;
+        margin-right: -140px;
+        position: absolute;
+        right: 50%;
+        width: 280px;
+    }
+}
+
+
+.intro-content {
+    text-align: center;
+
+    h1 {
+        @include at2x('/media/img/firefox/whatsnew_57/logo-wordmark.png', 220px, 46px);
+        @include image-replaced;
+        height: 46px;
+        margin: 0 auto 20px;
+        width: 220px;
+    }
+
+    h2 {
+        @include font-size-level3;
+    }
+
+    .tagline {
+        margin: 20px 0 40px;
+    }
+}
+
+@media #{$mq-phone-wide} {
+    .intro {
+        padding-bottom: 200px;
+
+        &:after {
+            @include background-size(400px 273px);
+            height: 273px;
+            margin-right: -200px;
+            width: 400px;
+            bottom: -60px;
+        }
+    }
+}
+
+@media #{$mq-tablet} {
+    .intro {
+        padding: 100px 0 60px;
+        min-height: 300px;
+
+        &:after {
+            @include background-size(600px 432px);
+            bottom: auto;
+            height: 432px;
+            margin-right: -660px;
+            top: 100px;
+            width: 600px;
+        }
+    }
+
+    .intro-content {
+        text-align: left;
+        width: 50%;
+
+        h1 {
+            @include background-size(330px 69px);
+            height: 69px;
+            margin: 0 0 40px -5px;
+            width: 330px;
+        }
+    }
+}
+
+@media #{$mq-desktop} {
+    .intro {
+        padding: 120px 0 60px;
+        min-height: 450px;
+
+        &:after {
+            @include background-size(937px 640px);
+            height: 640px;
+            margin-right: -990px;
+            width: 937px;
+        }
+    }
+
+    .intro-content {
+        width: 40%;
+        padding-left: 8%;
+    }
+}
+
+@media #{$mq-desktop-wide} {
+    .intro-content h1 {
+        @include background-size(440px 92px);
+        width: 440px;
+        height: 92px;
+    }
+}
+
+
+[dir="rtl"] {
+    .intro:after {
+        left: 50%;
+        margin-left: -140px;
+        margin-right: 0;
+        right: auto;
+    }
+
+    @media #{$mq-phone-wide} {
+        .intro:after {
+            margin-left: -200px;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        .intro:after {
+            margin-left: -660px;
+        }
+
+        .intro-content {
+            text-align: right;
+
+            h1 {
+                margin: 0 -5px 40px 0;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .intro:after {
+            margin-left: -990px;
+        }
+
+        .intro-content {
+            padding-left: 0;
+            padding-right: 8%;
+        }
+    }
+}

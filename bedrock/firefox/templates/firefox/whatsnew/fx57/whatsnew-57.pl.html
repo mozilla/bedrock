@@ -1,0 +1,38 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/whatsnew/fx57/base-whatsnew-57-letter.html" %}
+
+{% block page_title %}{{ _('Nowy Firefox. Szybki, już na dobre.') }}{% endblock %}
+
+{% block letter_content %}
+  <p>
+  {% trans %}
+    Dziś mamy przyjemność zaprezentować Wam naszą nową przeglądarkę – Firefox Quantum.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    Pierwsza rzecz, którą od razu zauważycie to to, jak szybko działa nowy Firefox. Będziecie cieszyć się dwa razy szybszą przeglądarką niż rok temu. Jest także mocniejsza w działaniu. Przebudowaliśmy Firefoksa od podstaw, skupiając się na tym, jak nasi użytkownicy używają sieci do oglądania, słuchania, tworzenia i grania bez limitów. Dostarczamy Wam przeglądarkę, która jest nowoczesna, szybka i efektywna. Mamy nadzieję, że się zgodzicie: to milowy krok, jeśli chodzi o korzystanie z Internetu.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    Korzystając z Firefoksa przyczyniasz się również do tego, aby Internet pozostawał globalnym zasobem publicznym, otwartym i dostępnym dla wszystkich. Jako niezależna organizacja non-profit od 2003 roku jesteśmy zaangażowani w tworzenie produktów, które pomagają Ci kontrolować Twoją obecność online, a także w rozwijanie otwartej technologii oraz zasad i praw, które promują otwarty Internet. To użytkownik jest w centrum wszystkich naszych działań.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans firefox=url('firefox') %}
+    W imieniu globalnej społeczności Mozilli mamy zaszczyt zaprezentować Wam <a href="{{ firefox }}">nowego Firefoksa</a>. Szybkiego, już na dobre.
+  {% endtrans %}
+  </p>
+
+  <p class="signoff">
+    <img src="{{ static('img/firefox/whatsnew_57/cbeard-signature.png') }}" alt="" width="120" height="60">
+    Chris Beard <br>CEO, Mozilla
+  </p>
+{% endblock %}
