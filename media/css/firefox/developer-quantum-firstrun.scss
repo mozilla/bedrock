@@ -105,6 +105,22 @@ body {
     }
 }
 
+.section-highlights {
+    a:link,
+    a:visited {
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+.section-features {
+    .features-learn-more {
+        display: block;
+        margin-top: 10px;
+        @include font-size-small;
+    }
+}
+
 @supports (display: grid) {
     @media #{$mq-phone-wide} {
         .gallery-list {
