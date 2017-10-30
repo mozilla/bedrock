@@ -32,23 +32,9 @@ PROD = config('PROD', cast=bool, default=False)
 
 DEBUG = config('DEBUG', cast=bool, default=False)
 
-# Production uses PostgreSQL, but Sqlite should be sufficient for local development.
-db_url = config('DATABASE_URL', default='sqlite:///bedrock.db')
 DATABASES = {
-    # leave 'default' empty so that Django will start even
-    # if it can't connect to the DB at boot time
-    'default': {},
-    'bedrock': dj_database_url.parse(db_url)
+    'default': dj_database_url.parse('sqlite:///bedrock.db')
 }
-if db_url.startswith('sqlite'):
-    # no server, can use 'default'
-    DATABASES['default'] = DATABASES['bedrock']
-    # leave the config in 'bedrock' as well so scripts
-    # hardcoded for 'bedrock' will continue to work
-else:
-    # settings specific to db server environments
-    DATABASES['bedrock']['CONN_MAX_AGE'] = None
-    DATABASE_ROUTERS = ['bedrock.base.database.BedrockRouter']
 
 CACHES = config(
     'CACHES',
@@ -270,6 +256,7 @@ SUPPORTED_NONLOCALES = [
     'webmaker',
     'contributor-data',
     'healthz',
+    'healthz-cron',
     '2004',
     '2005',
     '2006',
@@ -301,7 +288,7 @@ NOINDEX_URLS = [
     r'^tabzilla/',
     r'/system-requirements/$',
     r'.*/(firstrun|thanks)/$',
-    r'^healthz/$',
+    r'^healthz(-cron)?/$',
     r'^country-code\.json$',
     # exclude redirects
     r'^foundation/annualreport/$'
@@ -684,6 +671,9 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 
 # Google Analytics
 GA_ACCOUNT_CODE = ''
+
+# file to check for last data update
+HEALTH_FILE = '/tmp/last-cron-update'
 
 # Files from The Web[tm]
 EXTERNAL_FILES = {

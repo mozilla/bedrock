@@ -1,8 +1,10 @@
+import os.path
 import json
 import logging
+from time import time
 
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseServerError
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_safe
@@ -58,6 +60,20 @@ def geolocate(request):
 
 def health_check(request):
     return HttpResponse('OK')
+
+
+def cron_health_check(request):
+    try:
+        last_check = os.path.getmtime(settings.HEALTH_FILE)
+    except OSError:
+        return HttpResponseServerError('health file missing')
+
+    time_since = int(time() - last_check)
+    message = 'last data update %ss ago' % time_since
+    if time_since > 600:  # 10 min
+        return HttpResponseServerError(message)
+
+    return HttpResponse(message)
 
 
 def server_error_view(request, template_name='500.html'):

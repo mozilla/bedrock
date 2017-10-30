@@ -8,10 +8,6 @@ source $BIN_DIR/set_git_env_vars.sh
 BUILD_IMAGE_TAG="mozorg/bedrock_build:${GIT_COMMIT}"
 CODE_IMAGE_TAG="mozorg/bedrock_code:${GIT_COMMIT}"
 DOCKER_REBUILD=false
-# demo mode will build the demo image containing a db file full of data
-DEMO_MODE=false
-# prod mode will build the l10n image containing the locale dir
-PROD_MODE=false
 # test mode will build the unit testing image containing the testing requirements
 TEST_MODE=false
 
@@ -21,12 +17,6 @@ while [[ $# -gt 0 ]]; do
     case $key in
         -r|--rebuild)
             DOCKER_REBUILD=true
-            ;;
-        -d|--demo)
-            DEMO_MODE=true
-            ;;
-        -p|--prod)
-            PROD_MODE=true
             ;;
         -t|--test)
             TEST_MODE=true
@@ -40,7 +30,7 @@ function imageExists() {
         return 1
     fi
     if [[ "$1" == "l10n" ]]; then
-        DOCKER_TAG="${BRANCH_NAME}-${GIT_COMMIT}"
+        DOCKER_TAG="${BRANCH_NAME/\//-}-${GIT_COMMIT}"
     else
         DOCKER_TAG="${GIT_COMMIT}"
     fi
@@ -77,17 +67,12 @@ if $TEST_MODE && ! imageExists "test"; then
 fi
 
 # include the data that the deployments need
-if $DEMO_MODE && ! imageExists "demo"; then
-    dockerRun demo code bin/sync-all.sh
-    docker/bin/docker_build.sh "demo"
-fi
-if $PROD_MODE && ! imageExists "l10n"; then
+if ! imageExists "l10n"; then
     if [[ "$BRANCH_NAME" == "prod" ]]; then
         ENVFILE="prod";
     else
         ENVFILE="master";
     fi
-    dockerRun $ENVFILE code "python manage.py l10n_update"
-    dockerRun $ENVFILE code "python manage.py update_sitemaps"
+    dockerRun "$ENVFILE" code bin/sync-all.sh
     docker/bin/docker_build.sh "l10n"
 fi
