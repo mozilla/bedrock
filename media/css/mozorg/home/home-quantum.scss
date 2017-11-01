@@ -1,0 +1,742 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+@import '../../hubs/buttons';
+@import '../../hubs/masthead';
+@import '../../quantum/buttons';
+
+// offset of nav logo at 1000px+ viewports
+$nav-margin: 84px;
+
+body {
+    border-top: 0;
+}
+
+// hide download button in the nav
+#global-nav-download-firefox {
+    display: none;
+}
+
+// adjust nav spacing to use space freed up by hiding the dl button
+.moz-global-nav .nav-primary-links {
+    @media #{$mq-tablet} {
+        width: calc(100% - 110px);
+    }
+
+    @media #{$mq-desktop} {
+        width: calc(100% - 220px);
+    }
+}
+
+main {
+    overflow: hidden;
+}
+
+.intro-section {
+    text-align: center;
+}
+
+#quantum {
+    @include open-sans;
+    background: #0060df;
+    background: url('/media/img/firefox/quantum/fox-tail-header.png') center center no-repeat,
+                linear-gradient(to bottom, #0060df 7%, #0095ff 100%);
+    color: #fff;
+    padding: 40px 0;
+
+    h2 {
+        @include font-size-level2;
+        margin-bottom: 1em;
+    }
+
+    p {
+        @include font-size-level5;
+        font-weight: normal;
+        line-height: 1.5;
+        margin: 0 auto 1em;
+        max-width: 26em;
+    }
+
+    .content-wrapper {
+        margin: 0 auto;
+        max-width: 1420px;
+        padding: 0 20px;
+    }
+
+    .intro-image {
+        display: none;
+    }
+
+    @media #{$mq-tablet} {
+        .intro-image {
+            display: block;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        text-align: left;
+
+        h3 {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .content-wrapper {
+            @include clearfix;
+            padding: 0;
+        }
+
+        .intro-content {
+            float: left;
+            margin-right: 40px;
+            padding-left: $nav-margin;
+            width: calc(56% - (40px + #{$nav-margin}));
+        }
+
+        .intro-image {
+            display: block;
+            float: right;
+            width: 44%;
+        }
+
+        @supports (display: flex) {
+            .content-wrapper {
+                align-items: center;
+                display: flex;
+
+                // no flex!
+                &:after {
+                    display: none;
+                }
+            }
+
+            .intro-content,
+            .intro-image {
+                float: none;
+            }
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        .intro-content {
+            width: calc(40% - (40px + #{$nav-margin}));
+        }
+
+        .intro-image {
+            width: 60%;
+
+            img {
+                padding-top: 0;
+            }
+        }
+    }
+}
+
+#fx-logo {
+    @include font-size-level3;
+    display: block;
+    margin-bottom: 1em;
+
+    &:before {
+        @include at2x('/media/img/logos/firefox/logo-quantum.png', 100px, 100px);
+        background-repeat: no-repeat;
+        content: '';
+        display: block;
+        height: 100px;
+        padding-bottom: 10px;
+        margin: 0 auto;
+        width: 100px;
+    }
+
+    @media #{$mq-desktop} {
+        &:before {
+            background-size: 66px;
+            display: inline-block;
+            height: 66px;
+            padding-bottom: 0;
+            margin: 0 10px -19px 0;
+            width: 66px;
+        }
+    }
+
+    html[lang^="en"] & {
+        font-weight: normal;
+
+        span {
+            font-weight: bold;
+        }
+    }
+}
+
+#mozilla {
+    background-color: #D7D9F2;
+    background-image: url('/media/img/home/quantum/colon-slash-slash.svg');
+    background-position: center top 20px;
+    background-repeat: no-repeat;
+    background-size: 300px;
+    border-bottom: 1px solid #ccc;
+    padding: 40px 0;
+
+    h2 {
+        @include font-size-level3;
+        line-height: 1.5;
+        margin-bottom: 1.6rem;
+    }
+
+    p {
+        @include font-size-level4;
+        font-weight: bold;
+        line-height: 1.5;
+    }
+
+    .intro-image {
+        margin-bottom: 50px;
+        padding: 20px;
+
+        img {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        background-position: left 20px top;
+        background-size: auto 100%;
+        text-align: left;
+
+        .content {
+            @include clearfix;
+        }
+
+        .intro-content {
+            float: right;
+            padding-left: 40px;
+            width: calc(60% - 40px);
+        }
+
+        .intro-image {
+            float: left;
+            margin-bottom: 0;
+            padding: 0;
+            width: 40%;
+
+            img {
+                margin: 0;
+                max-width: 100%;
+            }
+        }
+
+        @supports (display: flex) {
+            .content {
+                display: flex;
+
+                // do not flex me
+                &:after {
+                    display: none;
+                }
+            }
+
+            .intro-content,
+            .intro-image {
+                float: none;
+            }
+
+            .intro-image {
+                align-items: center;
+                display: flex;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        background-position: center left 20px;
+        background-size: auto;
+        padding: 60px 0;
+
+        .intro-content {
+            width: calc(50% - 40px);
+        }
+
+        .intro-image {
+            padding-right: 40px;
+            width: calc(50% - 40px);
+
+            img {
+                margin: 0 auto;
+            }
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        padding: 80px 0;
+    }
+}
+
+html[dir="rtl"] {
+    #mozilla {
+        background-position: right 20px top;
+
+        .intro-image {
+            transform: scaleX(-1);
+        }
+
+        @media #{$mq-tablet} {
+            .intro-content {
+                padding-left: 0;
+                padding-right: 40px;
+            }
+        }
+    }
+
+    #quantum {
+        @media #{$mq-desktop} {
+            text-align: right;
+
+            #fx-logo:before {
+                margin-left: 10px;
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+#mozilla {
+    @media #{$mq-tablet} {
+        .content {
+            @include clearfix;
+        }
+
+        .intro-content {
+            float: right;
+        }
+    }
+}
+
+// *** IMPACT/INNOVATE *** //
+.section-content {
+    @include border-box;
+    min-width: $width-phone;
+    padding: 10px 20px 20px;
+
+    .section-headline {
+        @include font-size-level3;
+        margin-bottom: 20px;
+    }
+
+    p {
+        padding-bottom: 20px;
+    }
+
+    a {
+        @include open-sans();
+    }
+
+    @media #{$mq-tablet} {
+        padding: 10px 40px 20px;
+    }
+
+    @media #{$mq-desktop} {
+        // line up with left edge of mozilla logo in nav
+        &:first-child {
+            padding-left: $nav-margin;
+        }
+
+        // equal padding on right side
+        &:last-child {
+            padding-right: $nav-margin;
+        }
+    }
+}
+
+#impact-innovate-wrapper {
+    margin: 0 auto;
+    padding: 40px 0 20px;
+
+    @media #{$mq-tablet} {
+        padding: 80px 0;
+    }
+
+    @media #{$mq-desktop-wide} {
+        max-width: $width-max-content;
+    }
+}
+
+// two column faux table layout for wider viewports
+@media #{$mq-tablet} {
+    #impact-innovate-wrapper {
+        @include clearfix;
+        padding-bottom: 80px;
+    }
+
+    #impact,
+    #innovate {
+        float: left;
+        width: 50%;
+    }
+
+    #impact {
+        border-right: 1px solid rgba(0, 0, 0, 0.2);
+        width: calc(50% - 1px);
+    }
+
+    @supports (display: flex) {
+        // don't flex the :after
+        #impact-innovate-wrapper {
+            display: flex;
+
+            &:after {
+                display: none;
+            }
+        }
+    }
+}
+
+// icon links
+.icon-links {
+    margin: 20px 0;
+    width: 100%;
+
+    li {
+        margin-bottom: 20px;
+    }
+
+    a {
+        @include trailing-arrow;
+        color: #000;
+        display: inline-block;
+        font-weight: bold;
+        padding-right: 10%;
+        position: relative;
+        text-decoration: none;
+
+        &:focus,
+        &:hover {
+            color: #000;
+            text-decoration: underline;
+        }
+
+        &:after {
+            @include transition(right 150ms cubic-bezier(.3, -0.5, .6, 1.5));
+            background: url('/media/img/hubs/cta-arrow-black.svg') 0 0 no-repeat;
+            @include background-size(14px);
+            bottom: calc(50% - 6px);
+            content: '';
+            display: inline-block;
+            height: 14px;
+            margin-left: 20px;
+            position: absolute;
+            right: 0;
+            width: 14px;
+        }
+
+        &:hover:after,
+        &:focus:after {
+            right: -4px;
+        }
+    }
+
+    .icon {
+        display: none;
+    }
+
+    @media #{$mq-tablet} {
+        width: 80%;
+
+        li {
+            margin: 30px 0 20px;
+            min-height: 40px;
+            position: relative;
+        }
+
+        a {
+            display: block;
+            padding-left: 60px;
+            padding-right: 30px;
+
+            &:after {
+                bottom: 50%;
+                display: block;
+                margin-left: 0;
+                position: absolute;
+                right: 0;
+            }
+
+            &:hover:before,
+            &:focus:before {
+                @include transform(scale(1.15));
+                @include transform-origin(50% 50%);
+            }
+        }
+
+        .icon {
+            display: inline-block;
+            height: 45px;
+            left: 0;
+            padding: 5px 5px 0 0;
+            position: absolute;
+            top: -12px;
+            width: 45px;
+
+            svg path,
+            svg rect {
+                fill: inherit;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        width: 80%;
+    }
+
+    @media #{$mq-desktop-wide} {
+        width: 65%;
+    }
+}
+
+#icon-sprite {
+    display: none;
+}
+
+// Externals (Add-ons, careers, support)
+.section-externals {
+    .content {
+        border-top: 1px solid rgba(0, 0, 0, 0.2);
+        margin: 0 20px;
+        min-width: 280px;
+    }
+
+    ul {
+        @include clearfix;
+        padding: 40px 0;
+        position: relative;
+
+        li {
+            margin: 0 auto 30px;
+        }
+    }
+
+    h3 {
+        @include font-size-level4;
+        font-weight: 100;
+        margin-bottom: 0.8rem;
+        padding-top: 120px;
+        position: relative;
+
+        &:before {
+            @include at2x('/media/img/home/2016/b/externals-sprite.png', 100px, 300px);
+            background-repeat: no-repeat;
+            content: '';
+            height: 100px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100px;
+        }
+    }
+
+    a {
+        color: #000;
+        display: block;
+        text-decoration: none;
+
+        &.add-ons h3:before {
+            background-position: left top;
+        }
+        &.careers h3:before {
+            background-position: left -100px;
+        }
+        &.help h3:before {
+            background-position: left -200px;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            text-decoration: none;
+
+            h3 {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    @media #{$mq-tablet} {
+        .content {
+            width: auto;
+        }
+
+        ul {
+            padding-top: 60px;
+
+            li {
+                @include border-box;
+                float: left;
+                padding: 0 20px;
+                width: 33.3%;
+                margin: 0;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .content {
+            margin: 0;
+            // line up with navigation
+            padding-left: $nav-margin;
+            padding-right: $nav-margin;
+        }
+
+        ul li {
+            &:first-child {
+                padding-left: 0;
+            }
+
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        .content {
+            margin: 0 auto;
+            max-width: $width-max-content;
+        }
+    }
+}
+
+html[dir="rtl"] {
+    .section-externals h3:before {
+        left: auto;
+        right: 0;
+    }
+}
+
+// Newsletter
+#newsletter-subscribe.section-newsletter {
+    background-color: #D3C3DC; // IE 9 fallback
+    @include gradient-horizontal($start-color: #D3C3DC, $end-color: #ECC5D7);
+    color: #000;
+    margin: 0;
+
+    .newsletter-form,
+    .form-title,
+    .form-contents {
+        @include clearfix;
+        float: none;
+        margin: 0 auto;
+    }
+
+    .newsletter-form .form-submit {
+        margin: 0;
+    }
+
+    .form-title {
+        @include background-size(100px, 100px);
+        background-position: left top;
+        margin-top: 0;
+        padding-left: 0;
+        padding-top: 120px;
+
+        h3 {
+            @include font-size-level3;
+            color: #000;
+        }
+
+        h4 {
+            @include font-size-level5;
+            color: #000;
+            font-weight: normal;
+            line-height: 1.5;
+            text-align: left;
+        }
+    }
+
+    .form-contents {
+        .field {
+            margin: 0 0 1em;
+        }
+
+        .field-format label,
+        .field-privacy label {
+            @include open-sans;
+        }
+    }
+
+    select {
+        width: 100%;
+    }
+
+    a {
+        color: #000;
+    }
+
+    .errorlist {
+        padding: 10px;
+    }
+
+    #newsletter-form-thankyou {
+        color: #000;
+        padding: 0;
+
+        h3 {
+            color: #000;
+        }
+    }
+
+    button.form-button.button-light {
+        color: #000;
+        border-color: #000;
+    }
+}
+
+#home #newsletter-subscribe h3 {
+    text-align: left;
+}
+
+.js #form-details {
+    @include hidden;
+}
+
+@media #{$mq-tablet} {
+    #newsletter-subscribe.section-newsletter .newsletter-form {
+        padding-left: 380px;
+        width: 310px;
+
+        .form-title {
+            @include background-size(120px 120px);
+            @include border-box;
+            background-position: left top;
+            float: left;
+            margin-left: -380px;
+            padding: 10px 0 0 140px;
+            width: 350px;
+
+            h3,
+            h4 {
+                text-align: left;
+            }
+        }
+
+        .form-contents,
+        .form-submit {
+            @include border-box;
+            float: left;
+            margin: 0;
+            width: 100%;
+        }
+    }
+}
+
+@media #{$mq-desktop} {
+    #newsletter-subscribe.section-newsletter .newsletter-form {
+        padding-left: 540px;
+
+        .form-title {
+            margin-left: -540px;
+            width: 510px;
+        }
+    }
+}

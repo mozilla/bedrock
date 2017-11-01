@@ -718,6 +718,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/home_new-bundle.css',
     },
+    'home-quantum': {
+        'source_filenames': (
+            'css/newsletter/moznewsletter-subscribe.less',
+            'css/mozorg/home/home-quantum.scss',
+        ),
+        'output_filename': 'css/home_quantum-bundle.css',
+    },
     'legal': {
         'source_filenames': (
             'css/legal/legal.less',
