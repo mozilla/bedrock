@@ -24,7 +24,7 @@ You need to create a virtual environment for Python libraries. Skip the first in
 
     $ pip install virtualenv                       # installs virtualenv, skip if already have it
     $ virtualenv -p python2.7 venv                 # create a virtual env in the folder `venv`
-    $ source venv/bin/activate                     # activate the virtual env
+    $ source venv/bin/activate                     # activate the virtual env. On Windows, run: venv\Scripts\activate.bat
     $ pip install -U pip                           # securely upgrade pip
     $ pip install -r requirements/test.txt         # installs dependencies
 
