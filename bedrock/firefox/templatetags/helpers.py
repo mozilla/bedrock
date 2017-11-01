@@ -28,6 +28,10 @@ def desktop_builds(channel, builds=None, locale=None, force_direct=False,
         version, platforms = firefox_desktop.latest_builds('en-US', channel)
 
     for plat_os, plat_os_pretty in firefox_desktop.platform_labels.iteritems():
+        # only include sha1 builds for release channel
+        if plat_os == 'winsha1' and channel != 'release':
+            continue
+
         os_pretty = plat_os_pretty
 
         # Firefox Nightly: The Windows stub installer is now universal,

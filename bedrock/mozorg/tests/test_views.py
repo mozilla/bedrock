@@ -6,12 +6,10 @@ import os
 from datetime import date
 import json
 
-from django.conf import settings
 from django.core.cache import cache
 from django.db.utils import DatabaseError
 from django.http.response import Http404
 from django.test.client import RequestFactory
-from django.test.utils import override_settings
 
 from bedrock.base.urlresolvers import reverse
 from mock import ANY, patch
@@ -22,19 +20,14 @@ from bedrock.mozorg import views
 from scripts import update_tableau_data
 
 
-_ALL = settings.STUB_INSTALLER_ALL
-
-
 class TestViews(TestCase):
     @patch.dict(os.environ, FUNNELCAKE_5_LOCALES='en-US', FUNNELCAKE_5_PLATFORMS='win')
-    @override_settings(STUB_INSTALLER_LOCALES={'release': {'win': _ALL}})
     def test_download_button_funnelcake(self):
         """The download button should have the funnelcake ID."""
         with self.activate('en-US'):
             resp = self.client.get(reverse('mozorg.home'), {'f': '5'})
             ok_('product=firefox-stub-f5&' in resp.content)
 
-    @override_settings(STUB_INSTALLER_LOCALES={'release': {'win': _ALL}})
     def test_download_button_bad_funnelcake(self):
         """The download button should not have a bad funnelcake ID."""
         with self.activate('en-US'):
