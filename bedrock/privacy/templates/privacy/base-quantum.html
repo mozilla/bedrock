@@ -1,0 +1,73 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-pebbles.html" %}
+
+{% block page_title %}
+  {{ doc.body.section.h2.get_text() }}
+{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_privacy' %}
+{% endblock %}
+
+{% block body_id %}firefox-notice{% endblock %}
+
+{% block string_data %}
+  data-tabpanel-open-text="{{ _('Show All') }}"
+  data-tabpanel-close-text="{{ _('Hide All') }}"
+  data-choices-copy="{{ _('Choose how you want to share this data in Firefox.') }}"
+  data-choices-button="{{ _('Choose…') }}"
+{% endblock %}
+
+{% block tabzilla_tab %}{% endblock %}
+
+{% set header = doc.body.section.extract() %}
+{% set lead_in = doc.body.section.extract() %}
+{% set footnote = doc.body.select('#footnote') %}
+{% if footnote %}
+  {% set footnote = footnote[0].extract() %}
+{% endif %}
+
+{% block content %}
+<article class="section-content" itemtype="http://schema.org/Article">
+
+<header class="privacy-head">
+  <div class="privacy-head-wrapper">
+    <h1 itemprop="name">{{ header.h2|join|safe }}</h1>
+
+    <time datetime="{{ header.select('[datetime]')[0]['datetime'] }}" itemprop="dateModified">{{ header.select('[datetime]')[0].string }}</time>
+  </div>
+</header>
+
+<section class="privacy-lead-in">
+  <div class="content-girdle">
+    {{ lead_in.select('header')|join|safe }}
+    <div class="optional-lead-in">
+      {{ lead_in.select('div p:nth-of-type(1)')|join|safe }}
+    </div>
+    {{ lead_in.select('div p:nth-of-type(2)')|join|safe }}
+  </div>
+</section>
+
+<main itemprop="articleBody">
+  {% set sections = doc.body.find_all('section', recursive=False) %}
+  {% for section in sections %}
+    {{ section|safe }}
+  {% endfor %}
+</main>
+
+{% if footnote %}
+<section class="privacy-footnote">
+  <div class="content-girdle">
+    {{ footnote.div|join|safe }}
+  </div>
+</section>
+{% endif %}
+</article>
+{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_privacy' %}
+{% endblock %}
