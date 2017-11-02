@@ -23,17 +23,13 @@ GIT = getattr(settings, 'GIT_BIN', 'git')
 
 
 class GitRepo(object):
-    def __init__(self, path, remote_url=None, remote_name=None, branch_name='master'):
+    def __init__(self, path, remote_url=None, branch_name='master'):
         self.path = Path(path)
         self.path_str = str(self.path)
         self.remote_url = remote_url
         self.branch_name = branch_name
-        if not remote_name:
-            remote_name = 'bedrock-dev' if settings.DEV else 'bedrock-prod'
-
-        self.remote_name = remote_name
-        db_latest_key = '%s:%s:%s:%s' % (self.path_str, remote_url or '',
-                                              remote_name, branch_name)
+        db_latest_key = '%s:%s:%s' % (self.path_str, remote_url or '',
+                                         branch_name)
         self.db_latest_key = sha256(db_latest_key).hexdigest()
 
     def git(self, *args):
@@ -48,36 +44,12 @@ class GitRepo(object):
         return output.strip()
 
     @property
-    def full_branch_name(self):
-        """Full branch name with remote (e.g. origin/master)"""
-        return '{}/{}'.format(self.remote_name, self.branch_name)
-
-    @property
     def current_hash(self):
         """The git revision ID (hash) of the current HEAD or None if no repo"""
         try:
             return self.git('rev-parse', 'HEAD')
         except OSError:
             return None
-
-    @property
-    def remote_names(self):
-        """Return a list of the remote names in the repo or None if no repo"""
-        try:
-            return self.git('remote').split()
-        except OSError:
-            return None
-
-    def has_remote(self):
-        """Return True if the repo has a remote by the correct name"""
-        return self.remote_name in self.remote_names
-
-    def add_remote(self):
-        """Add the remote to the git repo from the init args"""
-        if not self.remote_url:
-            raise RuntimeError('remote_url required to add a remote')
-
-        self.git('remote', 'add', self.remote_name, self.remote_url)
 
     def diff(self, start_hash, end_hash):
         """Return a 2 tuple: (modified files, deleted files)"""
@@ -107,19 +79,16 @@ class GitRepo(object):
             raise RuntimeError('remote_url required to clone')
 
         self.path.mkdir(parents=True, exist_ok=True)
-        self.git('clone', '--origin', self.remote_name, '--depth', '1',
-                 '--branch', self.branch_name, self.remote_url, '.')
+        self.git('clone', '--depth', '1', '--branch',
+                 self.branch_name, self.remote_url, '.')
 
     def pull(self):
         """Update the repo to the latest of the remote and branch
 
         Return the previous hash and the new hash."""
-        if not self.has_remote():
-            self.add_remote()
-
         old_hash = self.current_hash
-        self.git('fetch', self.remote_name)
-        self.git('checkout', '-f', self.full_branch_name)
+        self.git('fetch', '-f', self.remote_url, self.branch_name)
+        self.git('checkout', '-f', 'FETCH_HEAD')
         return old_hash, self.current_hash
 
     def update(self):
