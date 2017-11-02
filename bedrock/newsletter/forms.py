@@ -246,7 +246,7 @@ class NewsletterFooterForm(forms.Form):
                             choices=FORMATS,
                             initial='H')
     privacy = forms.BooleanField(widget=PrivacyWidget)
-    source_url = forms.URLField(required=False)
+    source_url = forms.CharField(required=False)
     newsletters = forms.CharField(widget=forms.HiddenInput,
                                   required=True,
                                   max_length=100)
@@ -300,6 +300,14 @@ class NewsletterFooterForm(forms.Form):
 
     def clean_newsletters(self):
         return validate_newsletters(self.cleaned_data['newsletters'])
+
+    def clean_source_url(self):
+        su = self.cleaned_data['source_url'].strip()
+        if su:
+            # limit to 255 characters by truncation
+            return su[:255]
+
+        return su
 
 
 class EmailForm(forms.Form):
