@@ -6,3 +6,8 @@
 
 {# Don't display notification for test variation #}
 {% block update_notification %}{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {% javascript 'experiment-send-tabs-video' %}
+{% endblock %}

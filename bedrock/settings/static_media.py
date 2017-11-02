@@ -1288,6 +1288,12 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/experiment_send_tabs-bundle.js',
     },
+    'experiment-send-tabs-video': {
+        'source_filenames': (
+            'js/firefox/features/experiment-send-tabs-video.js',
+        ),
+        'output_filename': 'js/experiment_send_tabs_video-bundle.js',
+    },
     'firefox_fx38_0_5_firstrun': {
         'source_filenames': (
             'js/base/uitour-lib.js',

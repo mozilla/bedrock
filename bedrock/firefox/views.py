@@ -731,7 +731,13 @@ def send_tabs(request):
     if switch('firefox-57-release'):
         template = 'firefox/features/quantum/send-tabs.html'
     else:
-        template = 'firefox/features/send-tabs.html'
+        locale = l10n_utils.get_locale(request)
+        exp = request.GET.get('v')
+
+        if locale.startswith('en') and exp in ['a', 'b']:
+            template = 'firefox/features/send-tabs-{0}.html'.format(exp)
+        else:
+            template = 'firefox/features/send-tabs.html'
 
     return l10n_utils.render(request, template)
 
@@ -783,18 +789,6 @@ def FirefoxProductDeveloperView(request):
         template = 'firefox/products/developer-quantum.html'
     else:
         template = 'firefox/products/developer.html'
-
-    return l10n_utils.render(request, template)
-
-
-def feauture_send_tabs(request):
-    locale = l10n_utils.get_locale(request)
-    exp = request.GET.get('v')
-
-    if locale.startswith('en') and exp in ['a', 'b']:
-        template = 'firefox/features/send-tabs-{0}.html'.format(exp)
-    else:
-        template = 'firefox/features/send-tabs.html'
 
     return l10n_utils.render(request, template)
 

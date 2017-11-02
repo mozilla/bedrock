@@ -4,10 +4,26 @@
 
 @import '../../pebbles/includes/lib';
 
-.video.send-tabs {
+.send-tabs-video {
     margin: 60px auto 0;
-    width: 700px;
-    height: 390px;
+    max-width: 700px;
+
+    #video-wrap {
+        display: block;
+        height: 0;
+        margin: 0 auto;
+        padding-bottom: 56.25%;
+        position: relative;
+    }
+
+    .video {
+        height: 100%;
+        left: 0;
+        max-width: 100%;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
 
     figcaption {
         @include visually-hidden();

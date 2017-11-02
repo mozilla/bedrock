@@ -10,11 +10,9 @@
 {% endblock %}
 
 {% block features_header_image %}
- <figure class="video send-tabs">
-  <div class="video-wrap">
-    <iframe width="700" height="390" src="https://www.youtube.com/embed/CM40b14i41M?rel=0" frameborder="0" allowfullscreen>
-    <p><a href="https://www.youtube.com/watch?v=CM40b14i41M">{{ _('Watch this video') }}</a></p>
-     </iframe>
+<figure class="send-tabs-video">
+  <div id="video-wrap">
+    <div class="video"></div>
   </div>
   <figcaption>
     <p>{{ _('Stop emailing links to yourself! Sierra walks us through the Firefox feature Send Tabs.') }}</p>
@@ -24,3 +22,8 @@
 
 {# Don't display notification for test variation #}
 {% block update_notification %}{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {% javascript 'experiment-send-tabs-video' %}
+{% endblock %}

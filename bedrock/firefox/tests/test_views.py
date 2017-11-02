@@ -951,7 +951,7 @@ class TestFeatureSendTabs(TestCase):
     def test_send_tabs_experiment_a(self, render_mock):
         """Should use send-tabs-a template for control experiment"""
         req = RequestFactory().get('/firefox/features/send-tabs/?v=a')
-        views.feauture_send_tabs(req)
+        views.send_tabs(req)
         render_mock.assert_called_once_with(
             req,
             'firefox/features/send-tabs-a.html'
@@ -960,7 +960,7 @@ class TestFeatureSendTabs(TestCase):
     def test_send_tabs_experiment_b(self, render_mock):
         """Should use send-tabs-b template for video experiment"""
         req = RequestFactory().get('/firefox/features/send-tabs/?v=b')
-        views.feauture_send_tabs(req)
+        views.send_tabs(req)
         render_mock.assert_called_once_with(
             req,
             'firefox/features/send-tabs-b.html'
@@ -970,7 +970,7 @@ class TestFeatureSendTabs(TestCase):
         """Should use send-tabs template for non en locales"""
         req = RequestFactory().get('/firefox/features/send-tabs/?v=b')
         req.locale = 'de'
-        views.feauture_send_tabs(req)
+        views.send_tabs(req)
         render_mock.assert_called_once_with(
             req,
             'firefox/features/send-tabs.html'

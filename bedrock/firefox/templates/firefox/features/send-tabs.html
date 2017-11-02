@@ -23,7 +23,9 @@
 {% endblock %}
 
 {% block experiments %}
-  {% javascript 'experiment-send-tabs' %}
+  {% if switch('firefox-features-send-tabs-video-experiment', ['en-US']) %}
+    {% javascript 'experiment-send-tabs' %}
+  {% endif %}
 {% endblock %}
 
 {% block body_id %}firefox-features-send-tabs{% endblock %}
