@@ -5,6 +5,12 @@
   <meta charset="utf-8">
   <title>Time Since Last Cron Task Runs</title>
   <style>
+    h2.success {
+      color: green;
+    }
+    h2.fail {
+      color: #c00;
+    }
     th, td {
       padding: 3px 5px;
       margin: 5px;
@@ -13,7 +19,7 @@
       background-color: #eee;
     }
     .error > td {
-      color: red;
+      color: #c00;
       font-weight: bold;
     }
     .num {
@@ -24,17 +30,22 @@
 
 <body>
   <h1>Time Since Last Cron Task Runs</h1>
+  {% if success %}
+    <h2 class="success">PASS</h2>
+  {% else %}
+    <h2 class="fail">FAIL</h2>
+  {% endif %}
   <table>
     <thead>
       <tr>
         <th>Task Name</th>
-        <th>Max Time (seconds)</th>
-        <th>Actual Time (seconds)</th>
+        <th>Max Seconds</th>
+        <th>Seconds Since</th>
       </tr>
     </thead>
     <tbody>
-      {% for name, maxt, realt, success in results %}
-      <tr{% if not success %} class="error"{% endif %}>
+      {% for name, maxt, realt, pass in results %}
+      <tr{% if not pass %} class="error"{% endif %}>
         <td>{{ name }}</td>
         <td class="num">{{ maxt }}</td>
         <td class="num">{{ realt }}</td>

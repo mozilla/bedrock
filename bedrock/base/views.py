@@ -4,7 +4,7 @@ import logging
 from time import time
 
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseServerError
 from django.shortcuts import render
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
@@ -66,43 +66,58 @@ def health_check(request):
 
 
 # file names and max seconds since last run
-HEALTH_FILES = (
-    ('ical_feeds', 65 * 60),
-    ('update_blog_feeds', 65 * 60),
-    ('update_externalfiles', 35 * 60),
-    ('update_locales', 15 * 60),
-    ('update_product_details', 20 * 60),
-    ('update_release_notes', 15 * 60),
-    ('update_security_advisories', 35 * 60),
-    ('update_tweets', 7 * 60 * 60),
-)
+CRON_TASKS = []
+CRON_TASKS_CONFIG_FILE = '/tmp/cron-tasks'
+
+
+def load_cron_tasks():
+    with open(CRON_TASKS_CONFIG_FILE) as cf:
+        for line in cf:
+            line = line.strip()
+            if line:
+                name, sched = line.split(',')
+                # add 5 minute buffer
+                CRON_TASKS.append((name, int(sched) + 300))
+
+
+def get_cron_tasks_config():
+    if not CRON_TASKS:
+        try:
+            load_cron_tasks()
+        except IOError:
+            pass
+
+    return CRON_TASKS
 
 
 @require_safe
 @never_cache
 def cron_health_check(request):
     results = []
-    check_fail = False
-    for fname, max_time in HEALTH_FILES:
+    check_pass = True
+    tasks_config = get_cron_tasks_config()
+    if not tasks_config:
+        return HttpResponseServerError('failed to load tasks config')
+
+    for fname, max_time in tasks_config:
+        task_pass = True
         fpath = '/tmp/last-run-%s' % fname
         try:
             last_check = os.path.getmtime(fpath)
         except OSError:
-            check_fail = True
+            check_pass = False
             results.append((fname, max_time, 'None', False))
             continue
 
         time_since = int(time() - last_check)
         if time_since > max_time:
             task_pass = False
-            check_fail = True
-        else:
-            task_pass = True
+            check_pass = False
 
         results.append((fname, max_time, time_since, task_pass))
 
-    return render(request, 'cron-health-check.html', {'results': results},
-                  status=500 if check_fail else 200)
+    return render(request, 'cron-health-check.html', {'results': results, 'success': check_pass},
+                  status=200 if check_pass else 500)
 
 
 def server_error_view(request, template_name='500.html'):

@@ -10,7 +10,7 @@ from bedrock.base import views
 from bedrock.base.views import geolocate, cron_health_check
 
 
-HEALTH_FILES = (
+CRON_TASKS = (
     ('go_bowling', 10 * 60),
     ('abide', 60 * 60),
 )
@@ -21,11 +21,11 @@ HEALTH_FILES = (
 @patch('bedrock.base.views.time')
 class CronHealthCheckTests(TestCase):
     def setUp(self):
-        self.old_health = views.HEALTH_FILES
-        views.HEALTH_FILES = HEALTH_FILES
+        self.old_cron = views.CRON_TASKS
+        views.CRON_TASKS = CRON_TASKS
 
     def tearDown(self):
-        views.HEALTH_FILES = self.old_health
+        views.CRON_TASKS = self.old_cron
 
     def request(self):
         return RequestFactory().get('/')
