@@ -672,9 +672,6 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 # Google Analytics
 GA_ACCOUNT_CODE = ''
 
-# file to check for last data update
-HEALTH_FILE = '/tmp/last-cron-update'
-
 # Files from The Web[tm]
 EXTERNAL_FILES = {
     'credits': {

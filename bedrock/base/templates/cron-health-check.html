@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Time Since Last Cron Task Runs</title>
+  <style>
+    th, td {
+      padding: 3px 5px;
+      margin: 5px;
+    }
+    tr:nth-child(even) > td, th {
+      background-color: #eee;
+    }
+    .error > td {
+      color: red;
+      font-weight: bold;
+    }
+    .num {
+      text-align: right;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Time Since Last Cron Task Runs</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Task Name</th>
+        <th>Max Time (seconds)</th>
+        <th>Actual Time (seconds)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for name, maxt, realt, success in results %}
+      <tr{% if not success %} class="error"{% endif %}>
+        <td>{{ name }}</td>
+        <td class="num">{{ maxt }}</td>
+        <td class="num">{{ realt }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

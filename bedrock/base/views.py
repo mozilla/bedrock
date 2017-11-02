@@ -4,7 +4,8 @@ import logging
 from time import time
 
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseServerError
+from django.http import HttpResponse, HttpResponseBadRequest
+from django.shortcuts import render
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_safe
@@ -58,22 +59,50 @@ def geolocate(request):
     })
 
 
+@require_safe
+@never_cache
 def health_check(request):
     return HttpResponse('OK')
 
 
+# file names and max seconds since last run
+HEALTH_FILES = (
+    ('ical_feeds', 65 * 60),
+    ('update_blog_feeds', 65 * 60),
+    ('update_externalfiles', 35 * 60),
+    ('update_locales', 15 * 60),
+    ('update_product_details', 20 * 60),
+    ('update_release_notes', 15 * 60),
+    ('update_security_advisories', 35 * 60),
+    ('update_tweets', 7 * 60 * 60),
+)
+
+
+@require_safe
+@never_cache
 def cron_health_check(request):
-    try:
-        last_check = os.path.getmtime(settings.HEALTH_FILE)
-    except OSError:
-        return HttpResponseServerError('health file missing')
+    results = []
+    check_fail = False
+    for fname, max_time in HEALTH_FILES:
+        fpath = '/tmp/last-run-%s' % fname
+        try:
+            last_check = os.path.getmtime(fpath)
+        except OSError:
+            check_fail = True
+            results.append((fname, max_time, 'None', False))
+            continue
 
-    time_since = int(time() - last_check)
-    message = 'last data update %ss ago' % time_since
-    if time_since > 600:  # 10 min
-        return HttpResponseServerError(message)
+        time_since = int(time() - last_check)
+        if time_since > max_time:
+            task_pass = False
+            check_fail = True
+        else:
+            task_pass = True
 
-    return HttpResponse(message)
+        results.append((fname, max_time, time_since, task_pass))
+
+    return render(request, 'cron-health-check.html', {'results': results},
+                  status=500 if check_fail else 200)
 
 
 def server_error_view(request, template_name='500.html'):
