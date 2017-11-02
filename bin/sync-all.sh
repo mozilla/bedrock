@@ -6,13 +6,5 @@ if [ ! -e ./manage.py ]; then
     cd $script_parent_dir
 fi
 ./manage.py migrate --noinput
-./manage.py cron update_ical_feeds
-./manage.py update_product_details_files
-./manage.py update_wordpress
-./manage.py update_externalfiles
-./manage.py update_security_advisories
-./manage.py l10n_update
-./manage.py update_release_notes
 ./manage.py update_sitemaps
-#requires twitter api credentials not distributed publicly
-./manage.py cron update_tweets
+./bin/cron.py --run-once

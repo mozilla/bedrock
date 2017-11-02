@@ -32,46 +32,13 @@ def test_git_current_hash():
 
 @pytest.mark.django_db
 def test_git_db_latest():
-    g = git.GitRepo('.', 'https://example.com/repo.git', 'testing', 'master')
-    assert g.db_latest_key == '39329169f489eca9254339aec5826b86fc49437c6a2ca85328798ead5a906cc0'
+    g = git.GitRepo('.', 'https://example.com/repo.git', 'master')
+    assert g.db_latest_key == '33ff0192f06306345030004c92533017b466e16489d4c762eab69ad8142ddae4'
     assert g.get_db_latest() is None
     g.set_db_latest('deadbeef')
     assert g.get_db_latest() == 'deadbeef'
     g.set_db_latest('deadbeef1234')
     assert g.get_db_latest() == 'deadbeef1234'
-
-
-def test_git_full_branch_name():
-    g = git.GitRepo('.', branch_name='dude', remote_name='the')
-    assert g.full_branch_name == 'the/dude'
-
-
-def test_git_remote_names():
-    g = git.GitRepo('.')
-    with patch.object(g, 'git') as git_mock:
-        git_mock.return_value = 'dude\nwalter'
-        assert g.remote_names == ['dude', 'walter']
-
-
-def test_git_has_remote():
-    g = git.GitRepo('.', 'https://example.com', remote_name='walter')
-    with patch.object(g, 'git') as git_mock:
-        git_mock.return_value = 'dude\nwalter'
-        assert g.has_remote()
-        g.remote_name = 'donnie'
-        assert not g.has_remote()
-
-
-def test_git_add_remote():
-    g = git.GitRepo('.')
-    with pytest.raises(RuntimeError):
-        g.add_remote()
-
-    g = git.GitRepo('.', 'https://example.com', remote_name='dude')
-    with patch.object(g, 'git') as git_mock:
-        g.add_remote()
-
-    git_mock.assert_called_with('remote', 'add', 'dude', 'https://example.com')
 
 
 @override_settings(DEV=True)
@@ -85,7 +52,7 @@ def test_git_clone():
         g.clone()
 
     git_mock['path'].mkdir.assert_called_with(parents=True, exist_ok=True)
-    git_mock['git'].assert_called_with('clone', '--origin', 'bedrock-dev', '--depth', '1',
+    git_mock['git'].assert_called_with('clone', '--depth', '1',
                                        '--branch', 'master', 'https://example.com', '.')
 
 

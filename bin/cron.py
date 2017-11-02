@@ -19,11 +19,11 @@ REL_NOTES_UPDATE_MINUTES = config('REL_NOTES_UPDATE_MINUTES', default='5', cast=
 ROOT_PATH = Path(__file__).resolve().parents[1]
 ROOT = str(ROOT_PATH)
 MANAGE = str(ROOT_PATH / 'manage.py')
-HEALTH_FILE = '/tmp/last-run'
+HEALTH_FILE_BASE = '/tmp/last-run'
 
 
 def set_updated_time(name):
-    check_call('touch {}-{}'.format(HEALTH_FILE, name), shell=True)
+    check_call('touch {}-{}'.format(HEALTH_FILE_BASE, name), shell=True)
 
 
 def call_command(command):
@@ -42,7 +42,7 @@ class scheduled_job(object):
         self.callback = fn
         schedule.add_job(self.run, id=self.name, *self.args, **self.kwargs)
         set_updated_time(self.name)
-        self.log('Registered')
+        self.log('registered')
         return self.run
 
     def run(self):
@@ -57,7 +57,7 @@ class scheduled_job(object):
             self.log('finished successfully')
 
     def log(self, message):
-        msg = '[{}] Clock job {}@{}: {}'.format(
+        msg = '[{}] cron_job {}@{}: {}'.format(
             datetime.datetime.utcnow(), self.name,
             os.getenv('DEIS_APP', 'default_app'), message)
         print(msg, file=sys.stderr)
@@ -75,7 +75,7 @@ def update_externalfiles():
 
 @scheduled_job('interval', minutes=30)
 def update_security_advisories():
-    call_command('update_security_advisories')
+    call_command('update_security_advisories --quiet')
 
 
 @scheduled_job('interval', hours=6)
@@ -104,8 +104,19 @@ def update_locales():
     call_command('l10n_update')
 
 
-if __name__ == '__main__':
+def main(args):
+    # run them all at startup
+    for job in schedule.get_jobs():
+        job.func()
+
+    if '--run-once' in args:
+        return
+
     try:
         schedule.start()
     except (KeyboardInterrupt, SystemExit):
         pass
+
+
+if __name__ == '__main__':
+    main(sys.argv)
