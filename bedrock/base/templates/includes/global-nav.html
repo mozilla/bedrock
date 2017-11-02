@@ -68,6 +68,33 @@
                 {{ _('Get the only browser built for people, not profit.') }}
               </p>
               <ul class="nav-menu-secondary-links">
+              {% if switch('firefox-57-release') %}
+                <li>
+                  <a href="{{ url('firefox') }}" data-link-type="nav" data-link-name="Desktop" data-link-group="Firefox">
+                    {{ _('Desktop') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ url('firefox.mobile') }}" data-link-type="nav" data-link-name="Mobile" data-link-group="Firefox">
+                    {{ _('Mobile') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="https://addons.mozilla.org/firefox/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=extensions" data-link-type="nav" data-link-name="Extensions" data-link-group="Firefox">
+                    {{ _('Extensions') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="https://support.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=support" data-link-type="nav" data-link-name="Support" data-link-group="Firefox">
+                    {{ _('Support') }}
+                  </a>
+                </li>
+                <li>
+                  <a href="https://blog.mozilla.org/firefox/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=blog" data-link-type="nav" data-link-name="Blog" data-link-group="Firefox">
+                    {{ _('Blog') }}
+                  </a>
+                </li>
+              {% else %}
                 <li>
                 {% if LANG == 'en-US' %}
                   {% set desktop_text = 'Desktop' %}
@@ -119,6 +146,7 @@
                     {{ _('Support') }}
                   </a>
                 </li>
+              {% endif %}
               </ul>
 
               {% if LANG != 'en-US' %}
