@@ -179,6 +179,7 @@ class TestNewsletterFooterForm(TestCase):
             'last_name': 'Sobchak',
             'privacy': True,
             'fmt': 'H',
+            'source_url': 'https://accounts.firefox.com',
             'newsletters': self.newsletter_name,
         }
         form = NewsletterFooterForm(self.newsletter_name, locale='en-US', data=data.copy())
@@ -186,6 +187,41 @@ class TestNewsletterFooterForm(TestCase):
         cleaned_data = form.cleaned_data
         self.assertEqual(data['fmt'], cleaned_data['fmt'])
         self.assertEqual(data['lang'], cleaned_data['lang'])
+        self.assertEqual(data['source_url'], cleaned_data['source_url'])
+
+    def test_source_url_non_url(self):
+        """Form works normally"""
+        data = {
+            'email': 'foo@example.com',
+            'lang': 'fr',
+            'first_name': 'Walter',
+            'last_name': 'Sobchak',
+            'privacy': True,
+            'fmt': 'H',
+            'source_url': 'about:devtools?dude=abiding',
+            'newsletters': self.newsletter_name,
+        }
+        form = NewsletterFooterForm(self.newsletter_name, locale='en-US', data=data.copy())
+        self.assertTrue(form.is_valid(), form.errors)
+        cleaned_data = form.cleaned_data
+        self.assertEqual(data['source_url'], cleaned_data['source_url'])
+
+    def test_source_url_too_long(self):
+        """Form works normally"""
+        data = {
+            'email': 'foo@example.com',
+            'lang': 'fr',
+            'first_name': 'Walter',
+            'last_name': 'Sobchak',
+            'privacy': True,
+            'fmt': 'H',
+            'source_url': 'about:devtools' * 20,
+            'newsletters': self.newsletter_name,
+        }
+        form = NewsletterFooterForm(self.newsletter_name, locale='en-US', data=data.copy())
+        self.assertTrue(form.is_valid(), form.errors)
+        cleaned_data = form.cleaned_data
+        self.assertEqual(data['source_url'][:255], cleaned_data['source_url'])
 
     def test_country_default(self):
         """country defaults based on the locale.
