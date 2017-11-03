@@ -396,13 +396,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_firstrun-bundle.css',
     },
-    'firefox_firstrun_membership': {
-        'source_filenames': (
-            'css/firefox/firstrun/membership.less',
-            'css/base/mozilla-fxa-iframe.less',
-        ),
-        'output_filename': 'css/firefox_firstrun_membership-bundle.css',
-    },
     'firefox_firstrun_cliqz_funnelcake': {
         'source_filenames': (
             'css/firefox/firstrun/firstrun-cliqz-funnelcake.less',
@@ -1307,21 +1300,6 @@ PIPELINE_JS = {
             'js/firefox/firstrun/firstrun.js',
         ),
         'output_filename': 'js/firefox_firstrun-bundle.js',
-    },
-    'experiment-firstrun-membership': {
-        'source_filenames': (
-            'js/base/mozilla-traffic-cop.js',
-            'js/firefox/firstrun/experiment-firstrun-membership.js',
-        ),
-        'output_filename': 'js/experiment-firstrun-copy.js',
-    },
-    'firefox_firstrun_membership': {
-        'source_filenames': (
-            'js/libs/jquery.cycle2.min.js',
-            'js/base/mozilla-fxa-iframe.js',
-            'js/firefox/firstrun/membership.js',
-        ),
-        'output_filename': 'js/firefox_firstrun_membership-bundle.js',
     },
     'firefox_firstrun_cliqz_funnelcake': {
         'source_filenames': (
