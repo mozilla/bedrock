@@ -22,6 +22,12 @@
   {% stylesheet 'firefox-features-sync' %}
 {% endblock %}
 
+{% block experiments %}
+  {% if switch('firefox-features-send-tabs-video-experiment', ['en-US']) %}
+    {% javascript 'experiment-send-tabs' %}
+  {% endif %}
+{% endblock %}
+
 {% block body_id %}firefox-features-send-tabs{% endblock %}
 
 {% block body_class %}

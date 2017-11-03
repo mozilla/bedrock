@@ -943,3 +943,35 @@ class TestFeaturesPages(TestCase):
         req.locale = 'en-US'
         views.sync_page(req)
         render_mock.assert_called_once_with(req, 'firefox/features/quantum/sync.html')
+
+
+@override_settings(DEV=False)
+@patch('bedrock.firefox.views.l10n_utils.render')
+class TestFeatureSendTabs(TestCase):
+    def test_send_tabs_experiment_a(self, render_mock):
+        """Should use send-tabs-a template for control experiment"""
+        req = RequestFactory().get('/firefox/features/send-tabs/?v=a')
+        views.send_tabs(req)
+        render_mock.assert_called_once_with(
+            req,
+            'firefox/features/send-tabs-a.html'
+        )
+
+    def test_send_tabs_experiment_b(self, render_mock):
+        """Should use send-tabs-b template for video experiment"""
+        req = RequestFactory().get('/firefox/features/send-tabs/?v=b')
+        views.send_tabs(req)
+        render_mock.assert_called_once_with(
+            req,
+            'firefox/features/send-tabs-b.html'
+        )
+
+    def test_send_tabs_experiment_other_locales(self, render_mock):
+        """Should use send-tabs template for non en locales"""
+        req = RequestFactory().get('/firefox/features/send-tabs/?v=b')
+        req.locale = 'de'
+        views.send_tabs(req)
+        render_mock.assert_called_once_with(
+            req,
+            'firefox/features/send-tabs.html'
+        )
