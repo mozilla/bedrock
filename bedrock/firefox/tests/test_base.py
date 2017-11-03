@@ -366,35 +366,6 @@ class TestFirstRun(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/developer-quantum-firstrun.html'])
 
-    # start membership experiment tests (bug 1392860)
-
-    @override_settings(DEV=True)
-    def test_fx_membership_a_56_0(self, render_mock):
-        """Should use membership-a template as control"""
-        req = self.rf.get('/en-US/firefox/firstrun/?v=a')
-        self.view(req, version='56.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/membership-a.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_membership_b_56_0(self, render_mock):
-        """Should use membership-b template for experiment"""
-        req = self.rf.get('/en-US/firefox/firstrun/?v=b')
-        self.view(req, version='56.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/membership-b.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_membership_locales_56_0(self, render_mock):
-        """Should use regular firstrun template for other locales"""
-        req = self.rf.get('/firefox/firstrun/?v=b')
-        req.locale = 'de'
-        self.view(req, version='56.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/index.html'])
-
-    # end membership experiment tests (bug 1392860)
-
     # start cliqz funnelcake tests (bug 1392855)
 
     @override_settings(DEV=True)
