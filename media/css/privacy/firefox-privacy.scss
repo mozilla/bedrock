@@ -99,6 +99,21 @@ $light-gray-background: #f2f2f2;
     }
 }
 
+.firefox-rocket .privacy-head h1:before {
+    @include at2x('/media/img/logos/firefox/logo-rocket.png', 30px, 30px);
+    height: 30px;
+
+    @media #{$mq-tablet} {
+        @include background-size(40px 40px);
+        height: 40px;
+    }
+
+    @media #{$mq-desktop} {
+        @include background-size(50px 50px);
+        height: 50px;
+    }
+}
+
 /* POLICY LEAD-IN */
 .privacy-lead-in {
     h2 {
