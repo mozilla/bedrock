@@ -205,7 +205,7 @@ def set_country(request, token):
     form = CountrySelectForm('en-US', data=request.POST or None, initial=initial)
     if form.is_valid():
         try:
-            basket.update_user(token, **form.cleaned_data)
+            basket.request('post', 'user-meta', data=form.cleaned_data, token=token)
         except basket.BasketException:
             log.exception("Error updating user's country in basket")
             messages.add_message(
