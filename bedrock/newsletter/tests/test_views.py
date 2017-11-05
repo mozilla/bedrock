@@ -495,22 +495,22 @@ class TestSetCountryView(TestCase):
 
     def test_normal_submit(self):
         """Confirm works with a valid token"""
-        with patch('basket.update_user') as uu_mock:
-            uu_mock.return_value = {'status': 'ok'}
+        with patch('basket.request') as basket_mock:
+            basket_mock.return_value = {'status': 'ok'}
             rsp = self.client.post(self.url, {'country': 'gb'})
 
         self.assertEqual(302, rsp.status_code)
-        uu_mock.assert_called_with(self.token, country='gb')
+        basket_mock.assert_called_with('post', 'user-meta', data={'country': 'gb'}, token=self.token)
         assert_redirect(rsp, reverse('newsletter.country_success'))
 
-    @patch('basket.update_user')
+    @patch('basket.request')
     @patch('bedrock.newsletter.views.messages')
-    def test_basket_down(self, messages_mock, uu_mock):
+    def test_basket_down(self, messages_mock, basket_mock):
         """If basket is down, we report the appropriate error"""
-        uu_mock.side_effect = basket.BasketException()
+        basket_mock.side_effect = basket.BasketException()
         rsp = self.client.post(self.url, {'country': 'gb'})
         self.assertEqual(200, rsp.status_code)
-        uu_mock.assert_called_with(self.token, country='gb')
+        basket_mock.assert_called_with('post', 'user-meta', data={'country': 'gb'}, token=self.token)
         messages_mock.add_message.assert_called_with(ANY, messages_mock.ERROR, ANY)
 
 
