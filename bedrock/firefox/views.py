@@ -547,11 +547,13 @@ def new(request):
     locale = l10n_utils.get_locale(request)
 
     if scene == '2':
-        # `batmprivate` and `fast` variations are currently localized for both en-US and de locales.
+        # `batmprivate`, `fast` `wait-face` variations are currently localized for both en-US and de locales.
         if lang_file_is_active('firefox/new/batm', locale) and experience == 'batmprivate':
             template = 'firefox/new/batm/scene2.html'
         elif lang_file_is_active('firefox/new/sem', locale) and experience == 'fast':
             template = 'firefox/new/sem/fast/scene2.html'
+        elif lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':
+            template = 'firefox/new/wait-face/scene2.html'
         elif locale == 'en-US':
             if experience == 'breakfree':
                 template = 'firefox/new/break-free/scene2.html'
@@ -598,6 +600,8 @@ def new(request):
                 template = 'firefox/new/batm/private.html'
         elif lang_file_is_active('firefox/new/sem', locale) and experience == 'fast':
             template = 'firefox/new/sem/fast/scene1.html'
+        elif lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':
+            template = 'firefox/new/wait-face/scene1.html'
         elif locale == 'en-US':
             if experience == 'breakfree':
                 template = 'firefox/new/break-free/scene1.html'

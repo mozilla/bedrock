@@ -747,6 +747,20 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/batm/scene2.html')
 
+    # wait face campaign bug 1380044
+
+    def test_wait_face_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=waitface')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene1.html')
+
+    def test_wait_face_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=waitface')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene2.html')
+
 
 class TestFirefoxNewNoIndex(TestCase):
     def test_scene_1_noindex(self):

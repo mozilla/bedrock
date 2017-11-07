@@ -601,6 +601,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_new_batm-bundle.css',
     },
+    'firefox_new_wait_face': {
+        'source_filenames': (
+            'css/firefox/new/wait-face.scss',
+        ),
+        'output_filename': 'css/firefox_new_wait_face-bundle.css',
+    },
     'firefox_new_batm_machine': {
         'source_filenames': (
             'css/firefox/new/batm-machine.scss',
@@ -1424,6 +1430,12 @@ PIPELINE_JS = {
             'js/firefox/new/scene1-batm.js',
         ),
         'output_filename': 'js/firefox_new_scene1_batm-bundle.js',
+    },
+    'firefox_new_scene1_wait_face': {
+        'source_filenames': (
+            'js/firefox/new/wait-face-scene1.js',
+        ),
+        'output_filename': 'js/firefox_new_scene1_wait_face-bundle.js',
     },
     'experiment_firefox_new_batm_anim': {
         'source_filenames': (
