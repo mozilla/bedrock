@@ -10,17 +10,37 @@ jobs:
           command: |
             git submodule sync
             git submodule update --init --recursive
+            echo "$CIRCLE_SHA1" > .current-git-hash
+      - restore_cache:
+          keys:
+            - v1-docker-layers-{{ checksum ".current-git-hash" }}
+            - v1-docker-layers-
       - run:
           name: Python Tests
           command: |
+            if [[ -e docker-cache/images.tar ]]; then docker load --input docker-cache/images.tar; fi
             docker/bin/build_images.sh --test
             docker/bin/run_tests.sh
+            mkdir -p docker-cache
+            docker save -o docker-cache/images.tar \
+                "mozorg/bedrock_base:${CIRCLE_SHA1}" \
+                "mozorg/bedrock_build:${CIRCLE_SHA1}" \
+                "mozorg/bedrock_code:${CIRCLE_SHA1}" \
+                "mozorg/bedrock_test:${CIRCLE_SHA1}"
+      - save_cache:
+          key: v1-docker-layers-{{ checksum ".current-git-hash" }}
+          paths:
+            - docker-cache
 
   test_js:
     docker:
       - image: circleci/node:6.11.4-browsers
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-node-{{ checksum "yarn.lock" }}
+            - v1-node-
       - run:
           name: JS Tests
           command: |
@@ -29,6 +49,10 @@ jobs:
             node_modules/.bin/gulp css:lint
             node_modules/.bin/gulp js:lint
             node_modules/.bin/gulp js:test
+      - save_cache:
+          key: v1-node-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
 
 workflows:
   version: 2
