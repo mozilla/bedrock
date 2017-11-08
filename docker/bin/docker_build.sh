@@ -40,7 +40,7 @@ DOCKER_IMAGE_TAG="${DOCKER_REPO}/bedrock_${DOCKERFILE}:${DOCKER_TAG}"
 
 # generate the dockerfile
 rm -f "$FINAL_DOCKERFILE"
-cat "docker/dockerfiles/bedrock_$DOCKERFILE" | envsubst '$GIT_COMMIT' > "$FINAL_DOCKERFILE"
+sed -e "s/\${GIT_COMMIT}/${GIT_COMMIT}/g" "docker/dockerfiles/bedrock_$DOCKERFILE" > "$FINAL_DOCKERFILE"
 
 # build the docker image
 docker build -t "$DOCKER_IMAGE_TAG" --pull="$DOCKER_PULL" --no-cache="$DOCKER_NO_CACHE" -f "$FINAL_DOCKERFILE" "$DOCKER_CTX"

@@ -1,0 +1,38 @@
+version: 2
+jobs:
+  test_py:
+    machine:
+      image: circleci/classic:201710-01
+    steps:
+      - checkout
+      - run:
+          name: Git Submodule
+          command: |
+            git submodule sync
+            git submodule update --init --recursive
+      - run:
+          name: Python Tests
+          command: |
+            docker/bin/build_images.sh --test
+            docker/bin/run_tests.sh
+
+  test_js:
+    docker:
+      - image: circleci/node:6.11.4-browsers
+    steps:
+      - checkout
+      - run:
+          name: JS Tests
+          command: |
+            yarn install --pure-lockfile
+            npm install gulp-cli
+            node_modules/.bin/gulp css:lint
+            node_modules/.bin/gulp js:lint
+            node_modules/.bin/gulp js:test
+
+workflows:
+  version: 2
+  run_tests:
+    jobs:
+      - test_py
+      - test_js
