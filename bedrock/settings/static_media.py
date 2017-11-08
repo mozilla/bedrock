@@ -852,11 +852,11 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/press-bundle.css',
     },
-    'firefox_privacy': {
+    'privacy_quantum': {
         'source_filenames': (
-            'css/privacy/firefox-privacy.scss',
+            'css/privacy/privacy-quantum.scss',
         ),
-        'output_filename': 'css/firefox-privacy-bundle.css',
+        'output_filename': 'css/privacy-quantum-bundle.css',
     },
     'privacy': {
         'source_filenames': (
@@ -1695,12 +1695,19 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/press_speaker_request-bundle.js',
     },
-    'firefox_privacy': {
+    'privacy_quantum': {
+        'source_filenames': (
+            'js/privacy/privacy-quantum.js',
+        ),
+        'output_filename': 'js/privacy-quantum-bundle.js',
+    },
+    'privacy_quantum_firefox': {
         'source_filenames': (
             'js/base/uitour-lib.js',
-            'js/privacy/firefox-privacy.js',
+            'js/privacy/privacy-quantum.js',
+            'js/privacy/privacy-quantum-firefox.js',
         ),
-        'output_filename': 'js/firefox-privacy-bundle.js',
+        'output_filename': 'js/privacy-quantum-firefox-bundle.js',
     },
     'privacy': {
         'source_filenames': (
