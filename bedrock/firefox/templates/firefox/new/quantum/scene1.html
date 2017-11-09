@@ -27,8 +27,13 @@
 
 {% block main_content %}
 <header>
+{% if l10n_has_tag('firefox_quantum_new_headline') %}
+  <h1>{{ _('The new <strong>Firefox</strong>') }}</h1>
+  <h2>{{ _('Fast for good.') }}</h2>
+{% else %}
   <h1>{{_('Meet Firefox Quantum') }}</h1>
   <h2>{{_('New. Fast. For good.') }}</h2>
+{% endif %}
 </header>
 
 <div class="main-download">
