@@ -847,6 +847,12 @@ def mobile(request):
     if not switch('firefox-57-release'):
         return HttpResponseRedirect(reverse('firefox.android.index'))
     else:
-        template = 'firefox/mobile.html'
+        return l10n_utils.render(request, 'firefox/mobile.html')
 
-    return l10n_utils.render(request, template)
+
+def quantum(request):
+    # bug 1415599
+    if switch('firefox-57-release'):
+        return HttpResponsePermanentRedirect(reverse('firefox'))
+    else:
+        return l10n_utils.render(request, 'firefox/quantum.html')
