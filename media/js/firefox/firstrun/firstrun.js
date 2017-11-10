@@ -6,6 +6,9 @@
     'use strict';
 
     var animateSunrise = function () {
+        // Bug 1381051 sign in should redirect to about:home instead of about:newtab.
+        var redirectDest = 'about:home';
+
         var scene = document.getElementById('scene');
         var skipbutton = document.getElementById('skip-button');
 
@@ -32,8 +35,7 @@
             document.getElementById('sunrise').addEventListener('transitionend', function(event) {
                 if (event.propertyName === 'transform') {
                     window.setTimeout(function () {
-                        // Bug 1381051 sign in should redirect to about:home instead of about:newtab.
-                        window.location.href = 'about:home';
+                        window.location.href = redirectDest;
                     }, 200);
                 }
             }, false);
@@ -50,6 +52,10 @@
                 onFormEnabled: disableSkipButton,
                 onNavigated:  hideOrShowSkipButton
             });
+
+            if (data.distribution && data.distribution.toLowerCase() === 'mozillaonline') {
+                redirectDest = 'https://start.firefoxchina.cn/';
+            }
         });
 
         scene.dataset.sunrise = 'true';
