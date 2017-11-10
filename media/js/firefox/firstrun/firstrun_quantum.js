@@ -8,7 +8,7 @@
     var beginAnimation = function (syncConfig) {
         var scene = document.getElementById('scene');
         var skipbutton = document.getElementById('skip-button');
-        scene.dataset.animate = 'true'; 
+        scene.dataset.animate = 'true';
         var hideOrShowSkipButton = function (data) {
             switch(data.data.url) {
             case 'signin':
@@ -29,7 +29,7 @@
 
         var onVerificationComplete = function () {
             scene.dataset.signIn = 'true';
-            document.getElementById('svg1').addEventListener('animationend', function(event) {
+            document.getElementById('wave1').addEventListener('animationend', function(event) {
                 if (event.animationName === 'Expand1') {
                     window.location.href = 'about:home';
                 }
@@ -37,7 +37,7 @@
         };
 
         skipbutton.onclick = onVerificationComplete;
-        
+
         if (syncConfig) {
             window.setTimeout(function() {
                 onVerificationComplete();

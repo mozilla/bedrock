@@ -381,12 +381,20 @@ class TestFirstRun(TestCase):
         eq_(template, ['firefox/dev-firstrun.html'])
 
     @override_settings(DEV=True)
-    def test_fx_firstrun_57_0(self, render_mock):
+    def test_fxdev_firstrun_57_0(self, render_mock):
         """Should use 57 quantum dev edition firstrun template"""
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='57.0a2')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/developer-quantum-firstrun.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_firstrun_57_0(self, render_mock):
+        """Should use 57 quantum firstrun template"""
+        req = self.rf.get('/en-US/firefox/firstrun/')
+        self.view(req, version='57.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/firstrun/firstrun_quantum.html'])
 
     # start cliqz funnelcake tests (bug 1392855)
 
