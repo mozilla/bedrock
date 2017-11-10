@@ -68,6 +68,9 @@ if (typeof Mozilla === 'undefined') {
         $('a[data-' + distribution + '-link]').each(function() {
             $(this).attr('href', $(this).data(distribution + 'Link'));
         });
+        $('img[data-' + distribution + '-link]').each(function() {
+            $(this).attr('src', $(this).data(distribution + 'Link'));
+        });
     };
 
     // language switcher
