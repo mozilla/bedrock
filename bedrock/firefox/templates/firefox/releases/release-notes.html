@@ -32,14 +32,19 @@
 {% block site_header %}
 <header id="masthead" class="relasenotes-header">
   <div class="container">
-    <div id="tabzilla">
-      <a href="{{ url('mozorg.home') }}">{{ _('Mozilla') }}</a>
-    </div>
     {% block site_header_nav %}
       {% include 'firefox/includes/release-menu.html' %}
     {% endblock %}
     {% block site_header_logo %}
-      <h2><a href="{{ url('firefox') }}">{{ high_res_img('firefox/template/header-logo.png', {'alt': 'Mozilla Firefox', 'width': '185', 'height': '70'}) }}</a></h2>
+      <h2>
+        <a href="{{ url('firefox') }}">
+          {% if release.major_version >= '57' %}
+            {{ high_res_img('logos/firefox/logo-quantum-wordmark-large.png', {'alt': 'Firefox', 'width': '185', 'height': '69'}) }}
+          {% else %}
+            {{ high_res_img('firefox/template/header-logo.png', {'alt': 'Mozilla Firefox', 'width': '185', 'height': '70'}) }}
+          {% endif %}
+        </a>
+      </h2>
     {% endblock %}
   </div>
 </header>
