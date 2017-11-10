@@ -17,15 +17,13 @@
 }
 
 :root {
-  --animation-curve: linear;
-  // --animation-curve: cubic-bezier(.73,.08,.94,.33);
-  // --backwards: cubic-bezier(.49,-0.41,.96,.67);
+    --animation-curve: linear;
 }
 
 body {
     margin: 0;
     overflow: hidden;
-    font-family: 'Fira Sans Light', Sans-Serif;
+    font-family: 'Fira Sans Light', sans-serif;
 }
 
 #scene {
@@ -50,20 +48,20 @@ body {
     will-change: opacity;
 }
 
-.st1 {
+.wave1 {
     fill: url('#light-gradient');
     height: 100vh;
     width: 100vw;
 }
 
-.st2 {
+.wave2 {
     fill: url('#dark-gradient');
     height: 70vh;
     width: 85vw;
     bottom: 0;
 }
 
-.st3 {
+.wave3 {
     opacity: 0.5;
     fill: url('#dark-gradient');
     height: 48vh;
@@ -71,7 +69,7 @@ body {
     bottom: 0;
 }
 
-.st4 {
+.wave4 {
     opacity: 0.6;
     fill: #005FE7;
     height: 26vh;
@@ -79,21 +77,21 @@ body {
     bottom: 0;
 }
 
-.st5 {
+.wave5 {
     opacity: 0.6;
     fill: #002079;
     height: 51vh;
     width: 100vw;
 }
 
-.st6 {
+.wave6 {
     opacity: 0.8;
     fill: url('#light-gradient');
     height: 73vh;
     width: 100vw;
 }
 
-.st7 {
+.wave7 {
     opacity: 0.3;
     fill: url('#light-gradient');
     margin: 0;
@@ -101,33 +99,30 @@ body {
     width: 60vw;
 }
 
-.st8 {
+.wave8 {
     opacity: 0.6;
     fill: #002079;
     height: 51vh;
     width: 100vw;
 }
 
-.cls-2 {
+.color-overlay {
     height: 100vh;
     width: 100vw;
     position: absolute;
-    fill:url('#orange-gradient');
+    fill: url('#orange-gradient');
     mix-blend-mode:color;
     opacity: 0;
     will-change: opacity;
 }
 
 #firefox-logo {
-    background: url('/media/img/firefox/firstrun-quantum/quantum-logo.svg');
-    width: 90px;
-    height: 90px;
-    background-size: 100%;
+    .at2x('/media/img/logos/firefox/logo-quantum.png', 90px, 90px);
     background-repeat: no-repeat;
+    background-size: 90px 90px;
+    height: 90px;
     opacity: 0;
-    position: relative;
-    float: left;
-    clear: both;
+    width: 90px;
 }
 
 #fxa {
@@ -163,8 +158,6 @@ body {
     float: left;
     clear: both;
     width: 483px;
-    margin-top: 80px;
-    margin-top: 50px;
 
     #title,
     .content,
@@ -174,37 +167,38 @@ body {
     }
 
     .content {
-        font-size: 19px;
-        line-height: 150%;
-        max-width: 352px;
+        .font-size(19px);
+        line-height: 1.5;
         margin-bottom: 60px;
+        max-width: 352px;
     }
 
     a {
+        .font-size(19px);
         color: #fff;
         display: block;
-        font-size: 19px;
         font-weight: 400;
     }
 
     #title {
-        font-size: 42px;
-        margin: 0 0 10px;
+        .font-size(42px);
+        font-weight: normal;
+        margin: 50px 0 10px;
     }
 }
 
 #skip-button {
     -moz-appearance: none;
+    .font-size(.9rem);
     background-color: #0996f8;
     border-radius: 3px;
     border: 1px solid #0670cc;
     color: #fff;
     cursor: pointer;
     display: block;
-    min-height: 24px;
     margin: 0 auto;
+    min-height: 24px;
     padding: 5px 10px;
-    font-size: 0.9em;
 
     &:not([disabled]):hover {
         background-color: #0670cc;
@@ -224,6 +218,10 @@ body {
     display: none;
 }
 
+[dir="rtl"] .wave7 {
+    width: 100vw;
+}
+
 @media (max-width: 1200px) {
   .fxaccounts-container {
       width: 837px;
@@ -233,7 +231,8 @@ body {
     width: 410px;
 
     #title {
-      font-size: 38px;
+        clear: both;
+        .font-size(38px);
     }
   }
 
@@ -253,10 +252,6 @@ body {
 
   #left-divider {
     width: 324px;
-
-    #title {
-      font-size: 38px;
-    }
   }
 
   #fxa {
@@ -271,35 +266,35 @@ body {
 }
 
 #scene[data-animate=true] {
-    .st1 {
+    .wave1 {
         animation: Wave1 17.26s infinite forwards;
     }
 
-    .st2 {
+    .wave2 {
         animation: Wave2 11.08s infinite forwards;
     }
 
-    .st3 {
+    .wave3 {
         animation: Wave3 7.51s infinite forwards;
     }
 
-    .st4 {
+    .wave4 {
         animation: Wave4 15.14s infinite forwards;
     }
 
-    .st5 {
+    .wave5 {
         animation: Wave5 13.46s infinite forwards;
     }
 
-    .st6 {
+    .wave6 {
         animation: Wave6 20.55s infinite forwards;
     }
 
-    .st7 {
+    .wave7 {
         animation: Wave7 26.55s infinite forwards;
     }
 
-    .st8 {
+    .wave8 {
         animation: Wave8 27.43s infinite forwards;
     }
 }
@@ -347,7 +342,7 @@ body {
         animation: HideVisibility 0s .5s 1 forwards;
     }
 
-    .cls-2 {
+    .color-overlay {
         transition: opacity 1s .8s;
         opacity: 1;
     }
@@ -357,35 +352,35 @@ body {
         opacity: 1;
     }
 
-    .st1 {
+    .wave1 {
         animation: Wave1 17.26s 1 forwards, Expand1 1.5s var(--animation-curve) .2s forwards;
     }
 
-    .st2 {
+    .wave2 {
         animation: Wave2 11.08s 1 forwards, Expand2 1.5s var(--animation-curve) .2s 1 forwards;
     }
 
-    .st3 {
+    .wave3 {
         animation: Wave3 7.51s 1 forwards, Expand3 1.5s var(--animation-curve) .2s 1 forwards;
     }
 
-    .st4 {
+    .wave4 {
         animation: Wave4 15.14s 1 forwards, Expand4 1.5s var(--animation-curve) .2s 1 forwards;
     }
 
-    .st5 {
+    .wave5 {
         animation: Wave5 13.46s 1 forwards, Expand5 1.5s var(--animation-curve) .2s 1 forwards;
     }
 
-    .st6 {
+    .wave6 {
         animation: Wave6 20.55s 1 forwards, Expand6 1.5s var(--animation-curve) .2s 1 forwards;
     }
 
-    .st7 {
+    .wave7 {
         animation: Wave7 26.55s 1 forwards, Expand7 1.5s var(--animation-curve) .2s 1 forwards;
     }
 
-    .st8 {
+    .wave8 {
         animation: Wave8 27.43s 1 forwards, Expand8 1.5s var(--animation-curve) .2s 1 forwards;
     }
 }
@@ -424,8 +419,12 @@ body {
         transform: scale(1.9, 1.8) translate(20px, 0) skew(16deg);
         transform-origin: center;
     }
+    50% {
+        transform: scale(1.9, 1.8) translate(100px, 100px) skew(16deg);
+        transform-origin: center;
+    }
     100% {
-        transform: scale(1.9) translate(0, 360px) skew(16deg);
+        transform: scale(1.9) translate(200px, 360px) skew(16deg);
         transform-origin: center;
     }
 }
