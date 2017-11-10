@@ -6,6 +6,8 @@
     'use strict';
 
     var beginAnimation = function (syncConfig) {
+        var redirectDest = 'about:home';
+
         var scene = document.getElementById('scene');
         var skipbutton = document.getElementById('skip-button');
         scene.dataset.animate = 'true';
@@ -31,7 +33,7 @@
             scene.dataset.signIn = 'true';
             document.getElementById('wave1').addEventListener('animationend', function(event) {
                 if (event.animationName === 'Expand1') {
-                    window.location.href = 'about:home';
+                    window.location.href = redirectDest;
                 }
             }, false);
         };
@@ -55,6 +57,10 @@
                 onFormEngaged: disableSkipButton,
                 onNavigated: hideOrShowSkipButton
             });
+
+            if (data.distribution && data.distribution.toLowerCase() === 'mozillaonline') {
+                redirectDest = 'https://start.firefoxchina.cn/';
+            }
         });
     };
 
