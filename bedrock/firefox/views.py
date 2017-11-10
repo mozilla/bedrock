@@ -375,6 +375,15 @@ def show_57_dev_whatsnew(version):
     return version >= Version('57.0')
 
 
+def show_57_firstrun(version):
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    return version >= Version('57.0')
+
+
 def show_40_firstrun(version):
     try:
         version = Version(version)
@@ -425,6 +434,8 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
                 template = 'firefox/dev-firstrun.html'
         elif show_56_cliqz_firstrun(locale, version, f):
             template = 'firefox/firstrun/cliqz-funnelcake-119-122.html'
+        elif show_57_firstrun(version):
+            template = 'firefox/firstrun/firstrun_quantum.html'
         elif show_40_firstrun(version):
             template = 'firefox/firstrun/index.html'
         elif show_38_0_5_firstrun(version):
