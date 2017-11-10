@@ -26,4 +26,16 @@ redirectpatterns = (
              'https://designlanguage.mozilla.org/'),
     redirect(r'^styleguide/identity/mozilla/color/?$',
              'https://designlanguage.mozilla.org/'),
+
+    # Bug 1404926
+    redirect(r'^styleguide/identity/firefox-family(/.*)?$',
+            'http://design.firefox.com/photon/visuals/product-identity-assets.html'),
+    redirect(r'^styleguide/identity/firefox/branding/?$',
+            'http://design.firefox.com/photon/visuals/product-identity-assets.html'),
+    redirect(r'^styleguide/identity/firefox/channels/?$',
+            'http://design.firefox.com/photon/visuals/product-identity-assets.html#channel-variations'),
+    redirect(r'^styleguide/identity/firefox/wordmarks/?$',
+            'http://design.firefox.com/photon/visuals/product-identity-assets.html#using-icons-with-firefox-wordmarks-or-logos'),
+    redirect(r'^styleguide/identity/firefox/color/?$',
+            'http://design.firefox.com/photon/visuals/color.html'),
 )

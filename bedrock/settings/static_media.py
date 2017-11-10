@@ -894,8 +894,6 @@ PIPELINE_CSS = {
             'css/sandstone/fonts.less',
             'css/styleguide/styleguide.less',
             'css/styleguide/websites-sandstone.less',
-            'css/styleguide/identity-firefox.less',
-            'css/styleguide/identity-firefox-family.less',
             'css/styleguide/identity-marketplace.less',
             'css/styleguide/identity-thunderbird.less',
             'css/styleguide/identity-webmaker.less',

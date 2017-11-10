@@ -14,10 +14,6 @@ all_children = [
             PageNode('Branding', path='branding', template='styleguide/identity/mozilla-branding.html'),
             PageNode('Color', path='color', template='styleguide/identity/mozilla-color.html'),
         )),
-        PageNode('Firefox Family', path='firefox-family', children=(
-            PageNode('Overview', path='overview', template='styleguide/identity/firefox-family-overview.html'),
-            PageNode('Platform', path='platform', template='styleguide/identity/firefox-family-platform.html'),
-        )),
         PageNode('Firefox Browser', path='firefox', children=(
             PageNode('Branding', path='branding', template='styleguide/identity/firefox-branding.html'),
             PageNode('Channels', path='channels', template='styleguide/identity/firefox-channels.html'),
