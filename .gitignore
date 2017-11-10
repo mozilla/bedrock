@@ -48,3 +48,4 @@ root_files/sitemap.xml
 root_files/default-urls.json
 node_modules
 package-lock.json
+.vscode/

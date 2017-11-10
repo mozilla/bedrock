@@ -358,12 +358,21 @@
         <div class="browse-for-good-section-content">
           <h2 class="section-title">{{ _('Browse for good') }}</h2>
           <p>
-          {% trans %}
-            More than meets the eye. Did you know Firefox is backed by the not-for-profit
-            Mozilla? The organization keeps the Internet healthier through programs that
-            support tech education for girls, create trust around factual news, bring
-            civility to the comments section and more.
-          {% endtrans %}
+          {% if l10n_has_tag('firefox-home-copy-update-20171110') %}
+            {% trans %}
+              More than meets the eye. Did you know Firefox is backed by the not-for-profit
+              Mozilla? The organization keeps the Internet healthier through programs that
+              support tech education for women, create trust around factual news, bring
+              civility to the comments section and more.
+            {% endtrans %}
+          {% else %}
+            {%trans %}
+              More than meets the eye. Did you know Firefox is backed by the not-for-profit
+              Mozilla? The organization keeps the Internet healthier through programs that
+              support tech education for girls, create trust around factual news, bring
+              civility to the comments section and more.
+            {% endtrans %}
+          {% endif %}
           </p>
         </div>
       </div>
