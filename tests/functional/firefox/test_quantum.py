@@ -7,6 +7,7 @@ import pytest
 from pages.firefox.quantum import FirefoxQuantumPage
 
 
+@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1415599')
 @pytest.mark.nondestructive
 def test_modal_successful_sign_up(base_url, selenium):
     page = FirefoxQuantumPage(selenium, base_url).open()
@@ -22,6 +23,7 @@ def test_modal_successful_sign_up(base_url, selenium):
     modal.close()
 
 
+@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1415599')
 @pytest.mark.nondestructive
 def test_video_carousel(base_url, selenium):
     page = FirefoxQuantumPage(selenium, base_url).open()
