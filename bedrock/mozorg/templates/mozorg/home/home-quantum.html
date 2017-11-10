@@ -1,0 +1,200 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-pebbles.html" %}
+
+{% add_lang_files "mozorg/home/index-quantum" %}
+
+{% block gtm_page_id %}data-gtm-page-id="Homepage"{% endblock %}
+
+{% block page_title %}
+  {{ _('Internet for people, not profit') }}
+{% endblock %}
+
+{% block page_desc %}
+  {{ _('Did you know? Mozilla — the maker of Firefox — fights to keep the Internet a global public resource, open and accessible to all.') }}
+{% endblock %}
+
+{% block body_id %}home{% endblock %}
+{% block body_class %}lang-{{ LANG }}{% endblock %}
+
+{% block extra_meta %}
+<!-- validates bing webmaster tools -->
+<meta name="msvalidate.01" content="B7B177115A634927D608514DA17B2574">
+<!-- YouTube Verification -->
+<meta name="google-site-verification" content="U9a6gH32vLIykvntaDToj-ytYhlZ1AfAgVEKstixQIE">
+{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'home-quantum' %}
+{% endblock %}
+
+{% block site_header %}
+{% include 'mozorg/home/includes/home-icons-sprite.svg' %}
+  {% if LANG.startswith('en-') %}
+    {% include 'includes/global-nav.html' %}
+  {% else %}
+    {% with is_home = True %}
+      {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
+      {% include 'mozorg/home/includes/nav.html' %}
+    {% endwith %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<main role="main" class="main wrapper">
+  <section class="intro-section" id="quantum">
+    <div class="content-wrapper">
+      <div class="intro-content">
+        <strong id="fx-logo">
+        {% if LANG.startswith('en') %}
+          The new <span>Firefox</span>
+        {% else %}
+          {{ _('Firefox') }}
+        {% endif %}
+        </strong>
+
+        <h2>
+        {% if LANG.startswith('en-') %}
+          Browse Faster.<br>For good.
+        {% else %}
+          {{ _('Browse faster. For good.') }}
+        {% endif %}
+        </h2>
+
+        <p>{{ _('With 2x the speed, built-in privacy protection and Mozilla behind it, the new Firefox is fast for good.') }}</p>
+
+        {{ download_firefox(dom_id='download-intro', button_color='button quantum', download_location='primary cta') }}
+      </div>{#--/.intro-content--#}
+      <div class="intro-image">
+        {{ high_res_img('home/quantum/laptop.png', {'alt': '', 'width': '854', 'height': '536'}) }}
+      </div>
+    </div>{#--/.content--#}
+  </section>{#--/#quantum--#}
+
+  <section class="intro-section" id="mozilla">
+    <div class="content">
+      <div class="intro-image">
+        <img src="{{ static('img/home/quantum/dino.png') }}" alt="" />
+      </div>
+      <div class="intro-content">
+        <h2>
+          <span>{{ _('We make the internet safer, healthier and faster for good.') }}</span>
+        </h2>
+        <p>
+        {% trans %}
+          Mozilla is the not-for-profit behind Firefox, the original alternative
+          browser. We create products and policy to keep the internet in service
+          of people, not profits.
+        {% endtrans %}
+        </p>
+      </div>
+    </div>{#--/.content--#}
+  </section>
+
+  <section class="section" id="impact-innovate-wrapper">
+    <section class="section-wrapper" id="impact">
+      <div class="section-content">
+        <h2 class="section-headline">{{ _('Our impact') }}</h2>
+        <p>
+        {% if l10n_has_tag('mozorg-home-impact-health') %}
+          {% trans %}
+            Working to keep the Internet healthy, open and accessible to all, we
+            teach web literacy, provide tools and advocate on behalf of every
+            individual who values the Internet as a global public resource.
+          {% endtrans %}
+        {% else %}
+          {% trans %}
+            Working at the grassroots and policy levels, we teach web literacy,
+            provide tools and advocate on behalf of every individual who values
+            an internet built on fairness, inclusion and respect.
+          {% endtrans %}
+        {% endif %}
+        </p>
+
+        <ul id="icon-links-who" class="icon-links">
+          <li id="encryption">
+            <a rel="external" href="https://advocacy.mozilla.org/encrypt/"><svg class="icon"><use xlink:href="#icon-encryption"></use></svg>{{ _('Stand Up For Encryption') }}</a>
+          </li>
+          <li id="teachtheweb">
+            <a rel="external" href="https://learning.mozilla.org/"><svg class="icon"><use xlink:href="#icon-teachtheweb"></use></svg>{{ _('Teach The Web') }}</a>
+          </li>
+          <li id="leandata">
+            <a href="{{ url('mozorg.about.policy.lean-data') }}"><svg class="icon"><use xlink:href="#icon-leandata"></use></svg>{{ _('Try the Lean Data Toolkit') }}</a>
+          </li>
+        {% if l10n_has_tag('mozorg-home-health-report') %}
+          <li id="nethealth">
+            <a rel="external" href="https://internethealthreport.org"><svg class="icon"><use xlink:href="#icon-nethealth"></use></svg>{{ _('Read our Internet Health Report') }}</a>
+          </li>
+        {% endif %}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section-wrapper" id="innovate">
+      <div class="section-content">
+        <h2 class="section-headline">{{ _('Our innovations') }}</h2>
+        <p>
+        {% trans %}
+          Using the web as the platform, we build open, innovative
+          technologies that allow developers to work free of closed, corporate
+          ecosystems and create faster, safer web experiences for us all.
+        {% endtrans %}
+        </p>
+
+        <ul id="icon-links-innovate" class="icon-links">
+          <li id="gaming">
+            <a rel="external" href="https://games.mozilla.org/"><svg class="icon"><use xlink:href="#icon-gaming"></use></svg>{{ _('Gaming on the Web') }}</a>
+          </li>
+          <li id="vr">
+            <a rel="external" href="https://vr.mozilla.org/"><svg class="icon"><use xlink:href="#icon-vr"></use></svg>{{ _('Virtual Reality Platform') }}</a>
+          </li>
+          <li id="servo">
+            <a rel="external" href="https://research.mozilla.org/servo-engines/"><svg class="icon"><use xlink:href="#icon-servo"></use></svg>{{ _('Servo') }}</a>
+          </li>
+          <li id="rust">
+            <a rel="external" href="https://research.mozilla.org/rust/"><svg class="icon"><use xlink:href="#icon-rust"></use></svg>{{ _('Rust') }}</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </section>{#-- /#who-innovate-wrapper --#}
+
+  <section class="section section-externals" id="externals">
+    <ul class="content">
+      <li>
+        <a class="add-ons" rel="external" href="https://addons.mozilla.org/">
+          <h3>{{ _('Extensions') }}</h3>
+          <p>{{ _('Personalize Firefox with your favorite extras like password managers, ad blockers and more.') }}</p>
+        </a>
+      </li>
+      <li>
+        <a class="careers" rel="external" href="https://careers.mozilla.org/">
+          <h3>{{ _('Careers') }}</h3>
+          <p>{{ _('Learn about the benefits of working at Mozilla and view open positions around the world.') }}</p>
+        </a>
+      </li>
+      <li>
+        <a class="help" rel="external" href="https://support.mozilla.org/">
+          <h3>{{ _('Need help?') }}</h3>
+          <p>{{ _('Get answers to your questions about Firefox and all Mozilla products from our support team.') }}</p>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <aside class="section section-newsletter" id="newsletter-subscribe">
+    <div class="content">
+    {% if LANG.startswith('en-') %}
+      {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Love the Web?'), subtitle=_('Get the Mozilla newsletter and help us keep it open and free.'), button_class='button-hollow button-light', spinner_color='#fff') }}
+    {% else %}
+      {{ email_newsletter_form(button_class='button-hollow button-light', spinner_color='#fff') }}
+    {% endif %}
+    </div>
+  </aside>
+
+</main>
+{% endblock %}
+
+{% block js %}{% endblock %}
