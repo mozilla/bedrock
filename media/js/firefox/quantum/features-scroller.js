@@ -58,25 +58,6 @@
         }
     }
 
-    function playVideo(el) {
-        var video = el.querySelector('video');
-
-        // Only try and auto play video on desktop.
-        if (!client.isDesktop) {
-            return;
-        }
-
-        try {
-            if (video && video.readyState && video.readyState > 0 && video.paused) {
-                // Set each video to the start before auto-playing.
-                video.currentTime = 0.1;
-                video.play();
-            }
-        } catch(e) {
-            // Fail silently.
-        }
-    }
-
     function pauseVideo(el) {
         var video = el.querySelector('video');
 
@@ -155,7 +136,6 @@
                 handler: function(direction) {
                     if (direction === 'down') {
                         setActiveFeature(this.element.id);
-                        playVideo(this.element);
                         trackGAScroll(this.element);
                     } else {
                         pauseVideo(this.element);
@@ -169,7 +149,6 @@
                 handler: function(direction) {
                     if (direction === 'up') {
                         setActiveFeature(this.element.id);
-                        playVideo(this.element);
                     } else {
                         pauseVideo(this.element);
                     }
