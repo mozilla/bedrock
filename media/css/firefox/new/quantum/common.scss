@@ -186,7 +186,7 @@ html[dir="rtl"] .main-content {
 /* -------------------------------------------------------------------------- */
 // Conditional small links shown for desktop / android / ios
 
-.small-links {
+.header-content .small-links {
     @include font-size-small;
     margin-top: 60px;
 
@@ -213,7 +213,7 @@ html[dir="rtl"] .main-content {
     }
 }
 
-html.android {
+html.android .header-content {
     .small-links.desktop,
     .small-links.ios {
         display: none;
@@ -224,7 +224,7 @@ html.android {
     }
 }
 
-html.ios {
+html.ios .header-content {
     .small-links.android,
     .small-links.desktop {
         display: none;
