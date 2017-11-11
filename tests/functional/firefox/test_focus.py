@@ -7,6 +7,7 @@ import pytest
 from pages.firefox.focus import FirefoxFocusPage
 
 
+@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1416496')
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_app_store_button_is_displayed(base_url, selenium):
