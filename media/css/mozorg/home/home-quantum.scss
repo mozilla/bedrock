@@ -83,6 +83,10 @@ main {
             margin-right: 0;
         }
 
+        p {
+            margin: 0 0 1em;
+        }
+
         .content-wrapper {
             @include clearfix;
             padding: 0;
