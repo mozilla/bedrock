@@ -7,7 +7,6 @@ import pytest
 from pages.home import HomePage
 
 
-@pytest.mark.skip_if_firefox(reason='Home page download button is hidden from Firefox users')
 @pytest.mark.nondestructive
 def test_download_button_is_displayed(base_url, selenium):
     page = HomePage(selenium, base_url).open()
