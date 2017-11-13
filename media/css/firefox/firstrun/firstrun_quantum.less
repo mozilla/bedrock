@@ -23,7 +23,10 @@
 body {
     margin: 0;
     overflow: hidden;
-    font-family: 'Fira Sans Light', sans-serif;
+}
+
+* {
+  font-family: 'Fira Sans Light', sans-serif;
 }
 
 #scene {
@@ -39,11 +42,15 @@ body {
     margin: auto;
 }
 
-.white-overlay {
+.white-overlay,
+.white-background {
     fill: #FFFFFF;
     height: 100vh;
     width: 100vw;
     position: absolute;
+}
+
+.white-overlay {
     opacity: 0;
     will-change: opacity;
 }
@@ -94,7 +101,7 @@ body {
 .wave7 {
     opacity: 0.3;
     fill: url('#light-gradient');
-    margin: 0;
+    margin-left: 0;
     height: 59vh;
     width: 60vw;
 }
@@ -128,28 +135,28 @@ body {
 #fxa {
     border: none;
     position: relative;
-    width: 420px;
+    width: 318px;
 }
 
 #fxa-iframe-config {
     background: #fff;
     display: inline-block;
-    margin-left: 77px;
+    margin-left: 20px;
     transform: scale(.8);
     opacity: 0;
-    padding-bottom: 20px;
+    padding: 30px 20px;
 }
 
 .fxaccounts-container {
     bottom: 0;
     color: #fff;
-    height: 489px;
+    height: 424px;
     left: 0;
     margin: auto;
     position: absolute;
     right: 0;
     top: 0;
-    width: 980px;
+    width: 819px;
     z-index: 10;
 }
 
@@ -157,7 +164,7 @@ body {
     position: relative;
     float: left;
     clear: both;
-    width: 483px;
+    width: 441px;
 
     #title,
     .content,
@@ -169,7 +176,7 @@ body {
     .content {
         .font-size(19px);
         line-height: 1.5;
-        margin-bottom: 60px;
+        margin-bottom: 48px;
         max-width: 352px;
     }
 
@@ -181,9 +188,9 @@ body {
     }
 
     #title {
-        .font-size(42px);
+        .font-size(38px);
         font-weight: normal;
-        margin: 50px 0 10px;
+        margin: 40px 0 10px;
     }
 }
 
@@ -196,7 +203,7 @@ body {
     color: #fff;
     cursor: pointer;
     display: block;
-    margin: 0 auto;
+    margin: 10px auto 0 auto;
     min-height: 24px;
     padding: 5px 10px;
 
@@ -214,48 +221,17 @@ body {
     opacity: .5;
 }
 
-.skipbutton-hidden {
+#skip-button.skipbutton-hidden {
     display: none;
-}
-
-[dir="rtl"] .wave7 {
-    width: 100vw;
-}
-
-@media (max-width: 1200px) {
-  .fxaccounts-container {
-      width: 837px;
-  }
-
-  #left-divider {
-    width: 410px;
-
-    #title {
-        clear: both;
-        .font-size(38px);
-    }
-  }
-
-  #fxa-iframe-config {
-    margin-left: 23px;
-  }
-
-  #fxa {
-    width: 404px;
-  }
 }
 
 @media (max-width: 855px) {
   .fxaccounts-container {
-      width: 710px;
+      width: 749px;
   }
 
   #left-divider {
-    width: 324px;
-  }
-
-  #fxa {
-    width: 363px;
+      max-width: 371px;
   }
 }
 
@@ -307,7 +283,7 @@ body {
 
     #fxa-iframe-config {
         transition: opacity 1s 2s, transform 1s 2s;
-        opacity: .9;
+        opacity: .85;
         transform: scale(1);
     }
 

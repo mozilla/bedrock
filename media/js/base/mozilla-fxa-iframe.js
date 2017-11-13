@@ -129,9 +129,9 @@ Mozilla.FxaIframe = (function() {
         case 'resize':
             _onResize(data);
             break;
-        // user has entered email address and password
-        case 'form_enabled':
-            _onFormEnabled(data);
+        // user has entered email address or password
+        case 'form_engaged':
+            _onFormEngaged(data);
             break;
         // user has deleted email address or password
         case 'form_disabled':
@@ -170,8 +170,8 @@ Mozilla.FxaIframe = (function() {
         _userCallback('onResize', data);
     };
 
-    var _onFormEnabled = function(data) {
-        _userCallback('onFormEnabled', data);
+    var _onFormEngaged = function(data) {
+        _userCallback('onFormEngaged', data);
     };
 
     var _onFormDisabled = function(data) {
@@ -232,7 +232,7 @@ Mozilla.FxaIframe = (function() {
         //         page - defaults to 'fxa')
         //     onLoaded: function called after iframe 'loaded' postMessage
         //     onResize: function called after iframe 'resize' postMessage
-        //     onFormEnabled: function called after user has entered information in the form
+        //     onFormEngaged: function called after user has entered information in the form
         //     onFormDisabled: function called after user has removed information from the form
         //     onNavigated: function called after user has submitted a form
         //     onSignupMustVerify: function called after iframe

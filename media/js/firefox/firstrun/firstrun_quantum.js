@@ -52,7 +52,7 @@
                 gaEventName: 'firstrun-fxa',
                 onVerificationComplete: onVerificationComplete,
                 onLogin: onVerificationComplete,
-                onFormEnabled: disableSkipButton,
+                onFormEngaged: disableSkipButton,
                 onNavigated: hideOrShowSkipButton
             });
         });
