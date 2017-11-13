@@ -15,6 +15,7 @@ from pathlib2 import Path
 
 schedule = BlockingScheduler()
 DEAD_MANS_SNITCH_URL = config('DEAD_MANS_SNITCH_URL', default='')
+REL_NOTES_UPDATE_MINUTES = config('REL_NOTES_UPDATE_MINUTES', default='5', cast=int)
 
 # ROOT path of the project. A pathlib.Path object.
 ROOT_PATH = Path(__file__).resolve().parents[1]
@@ -98,7 +99,7 @@ def schedule_database_jobs():
     def update_blog_feeds():
         call_command('update_wordpress --database bedrock')
 
-    @scheduled_job('interval', minutes=5)
+    @scheduled_job('interval', minutes=REL_NOTES_UPDATE_MINUTES)
     def update_release_notes():
         call_command('update_release_notes --quiet')
 
