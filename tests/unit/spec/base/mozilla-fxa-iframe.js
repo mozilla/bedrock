@@ -146,21 +146,21 @@ describe('mozilla-fxa-iframe.js', function() {
             window.postMessage(JSON.stringify(messageData), '*');
         });
 
-        it('should execute callback for form_enabled postMessage', function(done) {
+        it('should execute callback for form_engaged postMessage', function(done) {
             var messageData = {
-                command: 'form_enabled'
+                command: 'form_engaged'
             };
 
             config = {
-                onFormEnabled: function(data) {
+                onFormEngaged: function(data) {
                     var command = data.command;
-                    expect(config.onFormEnabled).toHaveBeenCalled();
-                    expect(command).toEqual('form_enabled');
+                    expect(config.onFormEngaged).toHaveBeenCalled();
+                    expect(command).toEqual('form_engaged');
                     done();
                 }
             };
 
-            spyOn(config, 'onFormEnabled').and.callThrough();
+            spyOn(config, 'onFormEngaged').and.callThrough();
 
             Mozilla.FxaIframe.init(config);
 
