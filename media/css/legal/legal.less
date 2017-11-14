@@ -187,43 +187,41 @@
             position: relative;
             width: 100%;
             height: 60px;
+            padding: 5px 0;
             border-top: 1px dotted #ccc;
             border-bottom: 1px dotted #ccc;
             background: #fff;
+
             span {
                 display: table-cell;
                 vertical-align: middle;
-                padding-left: 50px;
+                padding-left: 65px;
             }
         }
 
         a:before {
-            content: " ";
-            display: block;
-            position: absolute;
-            background-image: url('/media/img/legal/icons.png');
+            background-image: url('/media/img/privacy/logo-sprite.png');
             background-repeat: no-repeat;
-            height: 40px;
-            width: 40px;
-            top: 50%;
+            background-size: 50px 400px;
+            content: '';
+            display: block;
+            height: 50px;
             left: 0;
-            margin-top: -20px;
+            margin-top: -25px;
+            position: absolute;
+            top: 50%;
+            width: 50px;
 
         }
 
         &.terms-firefox a:before,
-        &.terms-firefox-os a:before,
         &.terms-firefox-cloud a:before {
-            background-position: left -40px;
+            background-position: center -50px;
         }
 
-        &.terms-marketplace a:before { background-position: left -80px; }
-        &.terms-persona     a:before { background-position: left -120px; }
-        &.terms-affiliates  a:before { background-position: left -160px; }
-        &.terms-openbadges  a:before { background-position: left -200px; }
-        &.terms-webmaker    a:before { background-position: left -240px; }
-        &.terms-thunderbird a:before { background-position: left -280px; }
-        &.terms-firefox-hello a:before { background-position: left -320px; }
+        &.terms-marketplace a:before { background-position: center -200px; }
+        &.terms-webmaker    a:before { background-position: center -300px; }
+        &.terms-thunderbird a:before { background-position: center -250px; }
     }
 
 }

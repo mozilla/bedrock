@@ -79,14 +79,6 @@ body {
 }
 
 .product-firefox .policy-title {
-    background-image: url('/media/img/logos/firefox/logo-small.png');
-
-    @media #{$mq-high-res} {
-        background-image: url('/media/img/logos/firefox/logo-small-high-res.png');
-    }
-}
-
-.product-firefox.has-quantum .policy-title {
     background-image: url('/media/img/logos/firefox/logo-quantum.png');
 
     @media #{$mq-high-res} {

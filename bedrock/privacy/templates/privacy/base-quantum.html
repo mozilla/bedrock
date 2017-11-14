@@ -12,7 +12,7 @@
   {% stylesheet 'privacy_quantum' %}
 {% endblock %}
 
-{% block body_class %}privacy-policy {% if switch('firefox-57-release') %}has-quantum{% endif %}{% endblock %}
+{% block body_class %}privacy-policy{% endblock %}
 
 {% block string_data %}
   data-tabpanel-open-text="{{ _('Show All') }}"
