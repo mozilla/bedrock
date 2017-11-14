@@ -172,20 +172,21 @@
     a {
       display: table-cell;
       position: relative;
-      padding: 0 0 0 48px;
+      padding: 0 0 0 50px;
       line-height: 1.2;
       vertical-align: middle;
 
       &:before {
+        background-image: url('/media/img/privacy/logo-sprite.png');
+        background-repeat: no-repeat;
+        background-size: 40px 320px;
+        content: '';
         display: block;
+        height: 40px;
+        left: 0;
         position: absolute;
         top: 0;
-        left: 0;
         width: 40px;
-        height: 40px;
-        background-image: url("/media/img/legal/icons.png");
-        background-repeat: no-repeat;
-        content: '';
       }
     }
 
@@ -193,31 +194,23 @@
     &.policy-firefox-os a:before,
     &.policy-firefox-cliqz a:before,
     &.policy-firefox-cloud a:before {
-      background-position: left -40px;
-    }
-
-    &.policy-marketplace a:before {
-      background-position: left -80px;
-    }
-
-    &.policy-persona a:before {
-      background-position: left -120px;
-    }
-
-    &.policy-firefox-hello a:before {
-      background-position: left -320px;
-    }
-
-    &.policy-firefox-focus a:before {
-      background-position: left -360px;
-    }
-
-    &.policy-thunderbird a:before {
-      background-position: left -280px;
+      background-position: center -40px;
     }
 
     &.policy-firefox-rocket a:before {
-      background-position: left -400px;
+      background-position: center -80px;
+    }
+
+    &.policy-firefox-focus a:before {
+      background-position: center -120px;
+    }
+
+    &.policy-marketplace a:before {
+      background-position: center -160px;
+    }
+
+    &.policy-thunderbird a:before {
+      background-position: center -200px;
     }
   }
 }
