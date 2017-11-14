@@ -619,12 +619,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_organizations-bundle.css',
     },
-    'firefox-quantum': {
-        'source_filenames': (
-            'css/firefox/quantum.scss',
-        ),
-        'output_filename': 'css/firefox-quantum-bundle.css',
-    },
     'firefox_releases_index': {
         'source_filenames': (
             'css/base/menu-resp.less',
@@ -1463,16 +1457,6 @@ PIPELINE_JS = {
             'js/base/mozilla-pixel-init.js',
         ),
         'output_filename': 'js/firefox_new_pixel-bundle.js',
-    },
-    'firefox-quantum': {
-        'source_filenames': (
-            'js/libs/jquery.cycle2.min.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/base/mozilla-modal.js',
-            'js/firefox/quantum.js',
-        ),
-        'output_filename': 'js/firefox-quantum-bundle.js',
     },
     'firefox_interest_dashboard': {
         'source_filenames': (

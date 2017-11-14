@@ -561,4 +561,7 @@ redirectpatterns = (
     redirect(r'^firefox/android/?$', 'firefox.mobile'),
     redirect(r'^firefox/focus/?$', 'firefox.mobile'),
     redirect(r'^firefox/ios/?$', 'firefox.mobile'),
+
+    # bug 1416708
+    redirect(r'^firefox/quantum/?', 'firefox'),
 )

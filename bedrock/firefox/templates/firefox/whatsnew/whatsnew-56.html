@@ -77,7 +77,7 @@
 
     {# Bug 1401308: Only link to /firefox/quantum/ for locales that have the page translated. #}
     {% if LANG.startswith('en') or LANG == 'de' %}
-    <a class="button photon-flat" href="{{ url('firefox.quantum') }}">{{ _('Learn more') }}</a>
+    <a class="button photon-flat" href="{{ url('firefox') }}">{{ _('Learn more') }}</a>
     {% endif %}
   </div>
 </section>

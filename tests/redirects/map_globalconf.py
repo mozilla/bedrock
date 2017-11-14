@@ -1184,7 +1184,7 @@ URLS = flatten((
     url_test('/firefox/android/45.0', '/firefox/android/45.0/releasenotes/'),
     url_test('/firefox/stats/', '/firefox/'),
 
-    #bug 1404926
+    # bug 1404926
     url_test('/styleguide/identity/firefox-family/{,overview/}', 'http://design.firefox.com/photon/visuals/product-identity-assets.html'),
     url_test('/styleguide/identity/firefox/branding/', 'http://design.firefox.com/photon/visuals/product-identity-assets.html'),
     url_test('/styleguide/identity/firefox/channels/', 'http://design.firefox.com/photon/visuals/product-identity-assets.html#channel-variations'),
@@ -1192,4 +1192,7 @@ URLS = flatten((
 
     # bug 1416706
     url_test('/firefox/desktop/', '/firefox/'),
+
+    # bug 1416708
+    url_test('/firefox/quantum/', '/firefox/'),
 ))

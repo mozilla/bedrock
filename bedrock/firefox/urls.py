@@ -122,5 +122,4 @@ urlpatterns = (
 
     url('^firefox/stub_attribution_code/$', views.stub_attribution_code,
         name='firefox.stub_attribution_code'),
-    url(r'^firefox/quantum/$', views.quantum, name='firefox.quantum'),
 )
