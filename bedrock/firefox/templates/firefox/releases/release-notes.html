@@ -92,6 +92,11 @@
           {% else %}
             <li><a href="{{ url('firefox.notes', platform='android') }}">{{ _('Android') }}</a></li>
           {% endif %}
+          {% if release.product == 'Firefox for iOS' and release.channel == 'Release' %}
+            <li class="current">{{ _('iOS') }}</li>
+          {% else %}
+            <li><a href="{{ url('firefox.notes', platform='ios') }}">{{ _('iOS') }}</a></li>
+          {% endif %}
             <li class="{% if release.channel != 'Release' %}current {% endif %}submenu-title">
               <a href="#" role="button" aria-controls="nav-submenu" aria-expanded="false">{{ _('Other Releases') }}</a>
               <ul class="submenu" id="nav-submenu">
