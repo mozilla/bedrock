@@ -38,7 +38,9 @@
     {% block site_header_logo %}
       <h2>
         <a href="{{ url('firefox') }}">
-          {% if release.major_version >= '57' %}
+          {% if release.major_version_int >= 57 %}
+            {{ high_res_img('logos/firefox/logo-quantum-wordmark-large.png', {'alt': 'Firefox', 'width': '185', 'height': '69'}) }}
+          {% elif release.product == 'Firefox for iOS' and release.major_version_int >= 10 %}
             {{ high_res_img('logos/firefox/logo-quantum-wordmark-large.png', {'alt': 'Firefox', 'width': '185', 'height': '69'}) }}
           {% else %}
             {{ high_res_img('firefox/template/header-logo.png', {'alt': 'Mozilla Firefox', 'width': '185', 'height': '70'}) }}
