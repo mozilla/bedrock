@@ -12,6 +12,7 @@ $color-quantum-blue: #0a84ff;
 
 body {
     @include open-sans;
+    background: #000;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -240,6 +241,7 @@ html.ios .header-content {
 
 .features {
     text-align: center;
+    background: #fff;
 
     h3 {
         @include font-size-level4;
