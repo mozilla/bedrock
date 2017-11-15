@@ -290,6 +290,7 @@ html[dir="rtl"] {
             .intro-content {
                 padding-left: 0;
                 padding-right: 40px;
+                text-align: right;
             }
         }
     }
@@ -499,6 +500,42 @@ html[dir="rtl"] {
     }
 }
 
+html[dir="rtl"] {
+    .icon-links {
+        a {
+            padding-right: 0;
+            padding-left: 10%;
+
+            &:after {
+                @include flip-horizontally;
+                @include transition(left 150ms cubic-bezier(.3, -0.5, .6, 1.5));
+                left: 0;
+                margin-left: 0;
+                margin-right: 20px;
+                right: auto;
+            }
+
+            &:hover:after,
+            &:focus:after {
+                left: -4px;
+            }
+
+        }
+
+        @media #{$mq-tablet} {
+            a {
+                padding-right: 60px;
+                padding-left: 30px;
+            }
+
+            .icon {
+                left: auto;
+                right: 0;
+            }
+        }
+    }
+}
+
 #icon-sprite {
     display: none;
 }
@@ -529,7 +566,7 @@ html[dir="rtl"] {
         position: relative;
 
         &:before {
-            @include at2x('/media/img/home/2016/b/externals-sprite.png', 100px, 300px);
+            @include at2x('/media/img/home/quantum/externals-sprite.png', 100px, 300px);
             background-repeat: no-repeat;
             content: '';
             height: 100px;

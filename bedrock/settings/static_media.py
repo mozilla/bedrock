@@ -739,17 +739,8 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/newsletter/moznewsletter-subscribe.less',
             'css/mozorg/home/home.scss',
-            'css/mozorg/home/fx-quantum-promo.scss',
         ),
         'output_filename': 'css/home-bundle.css',
-    },
-    'home_new': {
-        'source_filenames': (
-            'css/newsletter/moznewsletter-subscribe.less',
-            'css/mozorg/home/home-new.scss',
-            'css/mozorg/home/fx-quantum-promo.scss',
-        ),
-        'output_filename': 'css/home_new-bundle.css',
     },
     'home-quantum': {
         'source_filenames': (
@@ -1607,14 +1598,6 @@ PIPELINE_JS = {
             'js/mozorg/home/home.js',
         ),
         'output_filename': 'js/home-bundle.js',
-    },
-    'home_new': {
-        'source_filenames': (
-            'js/base/uitour-lib.js',
-            'js/mozorg/home/home-new.js',
-            'js/mozorg/home/home-new-init.js',
-        ),
-        'output_filename': 'js/home_new-bundle.js',
     },
     'history-slides': {
         'source_filenames': (

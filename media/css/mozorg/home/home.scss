@@ -480,6 +480,42 @@ main {
     }
 }
 
+html[dir="rtl"] {
+    .icon-links {
+        text-align: right;
+
+        li {
+            padding-left: 0;
+            padding-right: 54px;
+        }
+
+        a:before {
+            left: auto;
+            right: -25px;
+        }
+
+        a:after {
+            @include flip-horizontally;
+            @include transition(left 150ms cubic-bezier(.3, -0.5, .6, 1.5));
+            display: inline-block;
+            left: -6px;
+            right: auto;
+        }
+
+        a:hover:after,
+        a:focus:after {
+            left: -10px;
+        }
+
+        @media #{$mq-tablet} {
+            .icon {
+                left: auto;
+                right: -25px;
+            }
+        }
+    }
+}
+
 #icon-sprite {
     display: none;
 }
