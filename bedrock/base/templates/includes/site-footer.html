@@ -35,19 +35,11 @@
           <a href="{{ url('firefox') }}" data-link-type="footer" data-link-name="Firefox">{{ _('Firefox') }}</a>
         </h5>
         <ul class="firefox-links">
-        {% if LANG.startswith('en') %}
           <li><a href="{{ url('firefox.new') }}" data-link-type="footer" data-link-name="Download Firefox">{{ _('Download Firefox') }}</a></li>
-          <li><a href="{{ url('firefox.android.index') }}" data-link-type="footer" data-link-name="Android Browser">{{ _('Android Browser') }}</a></li>
-          <li><a href="{{ url('firefox.ios') }}" data-link-type="footer" data-link-name="iOS Browser">{{ _('iOS Browser') }}</a></li>
-          <li><a href="{{ url('firefox.focus') }}" data-link-type="footer" data-link-name="Focus Browser">{{ _('Focus Browser') }}</a></li>
-          <li><a href="{{ url('firefox.desktop.index') }}" data-link-type="footer" data-link-name="Desktop Browser">{{ _('Desktop Browser') }}</a></li>
+          <li><a href="{{ url('firefox') }}" data-link-type="footer" data-link-name="Desktop">{{ _('Desktop') }}</a></li>
+          <li><a href="{{ url('firefox.mobile') }}" data-link-type="footer" data-link-name="Mobile">{{ _('Mobile') }}</a></li>
+          <li><a href="{{ url('firefox.features.index') }}" data-link-type="footer" data-link-name="Features">{{ _('Features') }}</a></li>
           <li><a href="{{ url('firefox.channel.desktop') }}" data-link-type="footer" data-link-name="Beta, Nightly, Developer Edition">{{ _('Beta, Nightly, Developer Edition') }}</a></li>
-        {% else %}
-          <li><a href="{{ url('firefox.new') }}" data-link-type="footer" data-link-name="Download Firefox now">{{ _('Download Firefox Web Browser') }}</a></li>
-          <li><a href="{{ url('firefox.desktop.index') }}" data-link-type="footer" data-link-name="Desktop Browser for Mac, Windows, Linux">{{ _('Desktop Browser for Mac, Windows, Linux') }}</a></li>
-          <li><a href="{{ url('firefox.android.index') }}" data-link-type="footer" data-link-name="Mobile Browser for Android">{{ _('Mobile Browser for Android') }}</a></li>
-          <li><a href="{{ url('firefox.ios') }}" data-link-type="footer" data-link-name="Mobile Browser for iOS">{{ _('Mobile Browser for iOS') }}</a></li>
-        {% endif %}
           <li>
             <ul class="social-links">
               <li><a class="twitter" href="{{ firefox_twitter_url() }}" data-link-type="footer" data-link-name="Twitter (@firefox)">{{ _('Twitter') }}<span> (@firefox)</span></a></li>
