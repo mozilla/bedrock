@@ -78,7 +78,7 @@ def schedule_database_jobs():
     @scheduled_job('interval', minutes=15)
     @ping_dms
     def update_product_details():
-        call_command('update_product_details_files --database bedrock')
+        call_command('update_product_details_files')
 
     @scheduled_job('interval', minutes=30)
     def update_externalfiles():
@@ -99,7 +99,7 @@ def schedule_database_jobs():
 
     @scheduled_job('interval', hours=1)
     def update_blog_feeds():
-        call_command('update_wordpress --database bedrock')
+        call_command('update_wordpress')
 
     @scheduled_job('interval', minutes=REL_NOTES_UPDATE_MINUTES)
     def update_release_notes():
@@ -112,18 +112,29 @@ def schedule_file_jobs():
         call_command('l10n_update')
 
 
-if __name__ == '__main__':
-    args = sys.argv[1:]
+def main(args):
     has_jobs = False
     if 'db' in args:
         schedule_database_jobs()
         has_jobs = True
+
     if 'file' in args:
         schedule_file_jobs()
         has_jobs = True
+
+    # run them all at startup
+    for job in schedule.get_jobs():
+        job.func()
+
+    if '--run-once' in args:
+        return
 
     if has_jobs:
         try:
             schedule.start()
         except (KeyboardInterrupt, SystemExit):
             pass
+
+
+if __name__ == '__main__':
+    main(sys.argv[1:])

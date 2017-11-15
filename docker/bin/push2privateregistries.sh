@@ -8,7 +8,7 @@
 set -ex
 
 
-FROM_DOCKER_REPOSITORY='mozorg/bedrock_l10n'
+FROM_DOCKER_REPOSITORY='mozorg/bedrock'
 DOCKER_TAG="${BRANCH_NAME/\//-}-${GIT_COMMIT}"
 
 # Push to private registry

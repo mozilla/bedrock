@@ -1,4 +1,39 @@
-FROM mozorg/bedrock_base:${GIT_COMMIT}
+FROM python:2.7-slim as base
+
+ARG BRANCH_NAME=master
+ENV BRANCH_NAME=$BRANCH_NAME
+ARG GIT_SHA=testing
+ENV GIT_SHA=$GIT_SHA
+
+# from https://github.com/mozmeao/docker-pythode/blob/master/Dockerfile.footer
+
+# Extra python env
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# add non-priviledged user
+RUN adduser --uid 1000 --disabled-password --gecos '' --no-create-home webdev
+
+# Add apt script
+COPY docker/bin/apt-install /usr/local/bin/
+
+# end from Dockerfile.footer
+
+WORKDIR /app
+EXPOSE 8000
+CMD ["./bin/run.sh"]
+
+RUN apt-install gettext build-essential libxml2-dev libxslt1.1 libxslt1-dev git libpq-dev
+
+COPY ./requirements ./requirements
+
+# Install Python deps
+RUN pip install --no-cache-dir -r requirements/prod.txt
+RUN pip install --no-cache-dir -r requirements/docker.txt
+
+
+FROM base as builder
 
 ### from the official nodejs dockerfile ###
 # https://github.com/nodejs/docker-node/blob/master/6.11/slim/Dockerfile
@@ -75,3 +110,32 @@ ENV NODE_ENV=production
 
 COPY package.json yarn.lock /tmp/
 RUN cd /tmp && yarn install --pure-lockfile && rm -rf /usr/local/share/.cache/yarn
+
+COPY . ./
+RUN docker/bin/build_staticfiles.sh
+RUN echo "${GIT_SHA}" > static/revision.txt
+
+# load the code
+FROM base
+
+# changes infrequently
+COPY ./bin ./bin
+COPY ./etc ./etc
+COPY ./lib ./lib
+COPY ./root_files ./root_files
+COPY ./scripts ./scripts
+COPY ./wsgi ./wsgi
+COPY manage.py LICENSE newrelic.ini contribute.json ./
+
+# changes more frequently
+COPY ./docker ./docker
+COPY ./vendor-local ./vendor-local
+COPY ./bedrock ./bedrock
+COPY ./media ./media
+COPY --from=builder /app/static ./static
+
+RUN bin/sync-all.sh
+
+# Change User
+RUN chown webdev.webdev -R .
+USER webdev

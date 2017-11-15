@@ -49,15 +49,9 @@ if ( config.push_public_registry != false ) {
     milestone()
     stage ('Push Public Images') {
         try {
-            if (config.demo) {
-                utils.pushDockerhub('mozorg/bedrock_l10n', 'mozorg/bedrock')
-            }
-            else {
-                utils.pushDockerhub('mozorg/bedrock_base')
-                utils.pushDockerhub('mozorg/bedrock_build')
+            utils.pushDockerhub('mozorg/bedrock')
+            if ( ! config.demo ) {
                 utils.pushDockerhub('mozorg/bedrock_test')
-                utils.pushDockerhub('mozorg/bedrock_code')
-                utils.pushDockerhub('mozorg/bedrock_l10n', 'mozorg/bedrock')
             }
         } catch(err) {
             utils.ircNotification([stage: 'Dockerhub Push Failed', status: 'warning'])

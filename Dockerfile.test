@@ -1,4 +1,5 @@
-FROM mozorg/bedrock_code:${GIT_COMMIT}
+ARG FROM_TAG
+FROM ${FROM_TAG}
 
 CMD ["./bin/run-tests.sh"]
 USER root

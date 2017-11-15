@@ -5,8 +5,8 @@ set -exo pipefail
 BIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $BIN_DIR/set_git_env_vars.sh
 
-BUILD_IMAGE_TAG="mozorg/bedrock_build:${GIT_COMMIT}"
-CODE_IMAGE_TAG="mozorg/bedrock_code:${GIT_COMMIT}"
+DOCKER_IMAGE_TAG="mozorg/bedrock:${BRANCH_NAME/\//-}-${GIT_COMMIT}"
+TEST_IMAGE_TAG="mozorg/bedrock_test:${GIT_COMMIT}"
 DOCKER_REBUILD=false
 # test mode will build the unit testing image containing the testing requirements
 TEST_MODE=false
@@ -29,50 +29,24 @@ function imageExists() {
     if $DOCKER_REBUILD; then
         return 1
     fi
-    if [[ "$1" == "l10n" ]]; then
-        DOCKER_TAG="${BRANCH_NAME/\//-}-${GIT_COMMIT}"
+    if [[ "$1" == "main" ]]; then
+        DOCKER_TAG="${DOCKER_IMAGE_TAG}"
     else
-        DOCKER_TAG="${GIT_COMMIT}"
+        DOCKER_TAG="${TEST_IMAGE_TAG}"
     fi
-    docker history -q "mozorg/bedrock_${1}:${DOCKER_TAG}" > /dev/null 2>&1
+    docker history -q "${DOCKER_TAG}" > /dev/null 2>&1
     return $?
 }
 
-function dockerRun() {
-    env_file="$1"
-    image_tag="mozorg/bedrock_${2}:${GIT_COMMIT}"
-    cmd="$3"
-    docker run --rm --user $(id -u) -v "$PWD:/app" --env-file "docker/envfiles/${env_file}.env" "$image_tag" bash -c "$cmd"
-}
-
-if ! imageExists "base"; then
-    docker/bin/docker_build.sh --pull "base"
-fi
-
-# build the static files using the builder image
-# and include those and the app in a code image
-if ! imageExists "code"; then
-    # build a staticfiles builder image
-    if ! imageExists "build"; then
-        docker/bin/docker_build.sh "build"
-    fi
-    dockerRun prod build docker/bin/build_staticfiles.sh
-    echo "${GIT_COMMIT}" > static/revision.txt
-    docker/bin/docker_build.sh "code"
+if ! imageExists "main"; then
+    docker build -t "${DOCKER_IMAGE_TAG}" --pull \
+           --build-arg "GIT_SHA=${GIT_COMMIT}" \
+           --build-arg "BRANCH_NAME=${BRANCH_NAME}" .
 fi
 
 # build a tester image for non-demo deploys
 if $TEST_MODE && ! imageExists "test"; then
-    docker/bin/docker_build.sh "test"
-fi
-
-# include the data that the deployments need
-if ! imageExists "l10n"; then
-    if [[ "$BRANCH_NAME" == "prod" ]]; then
-        ENVFILE="prod";
-    else
-        ENVFILE="master";
-    fi
-    dockerRun "$ENVFILE" code bin/sync-all.sh
-    docker/bin/docker_build.sh "l10n"
+    docker build -t "${TEST_IMAGE_TAG}" \
+           --build-arg "FROM_TAG=${DOCKER_IMAGE_TAG}" \
+           -f Dockerfile.test .
 fi
