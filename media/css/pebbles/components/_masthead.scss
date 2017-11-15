@@ -178,7 +178,7 @@
     }
 }
 
-html[dir="rtl"] .masthead-nav-main {
+[dir="rtl"] .masthead-nav-main {
     left: auto;
     right: 0;
 
@@ -188,6 +188,29 @@ html[dir="rtl"] .masthead-nav-main {
         a:hover {
             border-right: none;
             border-left: 6px solid $color-mozred;
+
+            @media #{$mq-tablet} {
+                border: 0;
+            }
+        }
+    }
+
+    #nav-main-menu li {
+        border-right: 0;
+        border-left: 1px solid #000;
+
+        &:last-child {
+            border-left: 0;
+            padding-left: 0;
+            padding-right: 5px;
+
+            @media #{$mq-tablet} {
+                padding-right: 10px;
+            }
+
+            @media #{$mq-desktop-wide} {
+                padding-right: 20px;
+            }
         }
     }
 }

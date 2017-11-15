@@ -350,14 +350,15 @@ class TestTechnology(TestCase):
 
 @patch('bedrock.mozorg.views.l10n_utils.render')
 class TestHome(TestCase):
-    def test_home_enUS(self, render_mock):
+    def test_home_quantum_template(self, render_mock):
         request = RequestFactory().get('/')
         request.locale = 'en-US'
         views.home(request)
-        render_mock.assert_called_once_with(request, 'mozorg/home/home-new.html')
+        render_mock.assert_called_once_with(request, 'mozorg/home/home-quantum.html')
 
-    def test_home_non_enUS(self, render_mock):
+    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    def test_home_2016_template(self, render_mock):
         request = RequestFactory().get('/')
-        request.locale = 'fr'
+        request.locale = 'de'
         views.home(request)
         render_mock.assert_called_once_with(request, 'mozorg/home/home.html')

@@ -32,11 +32,6 @@
         text-transform: none;
 
         .nav-main-menu {
-
-            li {
-                padding: 0 20px 0 0;
-            }
-
             a:hover {
                 border-color: #000;
                 color: #000;
@@ -167,7 +162,7 @@ html[dir="rtl"] {
             margin: 0 20px 0 0;
 
             .nav-main-menu li {
-                padding: 0 0 0 20px;
+                border: 0;
             }
         }
 
