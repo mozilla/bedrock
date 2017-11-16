@@ -583,6 +583,8 @@ def new(request):
                 template = 'firefox/new/sem/unsupported-browser/scene2.html'
             elif experience in ['batmfree', 'batmnimble', 'batmresist']:
                 template = 'firefox/new/batm/scene2.html'
+            elif experience == 'reggiewatts':
+                template = 'firefox/new/reggie-watts/scene2.html'
             elif switch('firefox-57-release'):
                 template = 'firefox/new/quantum/scene2.html'
             else:
@@ -635,6 +637,8 @@ def new(request):
                 template = 'firefox/new/batm/nimble.html'
             elif experience == 'batmresist':
                 template = 'firefox/new/batm/resist.html'
+            elif experience == 'reggiewatts':
+                template = 'firefox/new/reggie-watts/scene1.html'
             elif switch('firefox-57-release'):
                 template = 'firefox/new/quantum/scene1.html'
             else:

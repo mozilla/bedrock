@@ -607,6 +607,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_new_wait_face-bundle.css',
     },
+    'firefox_new_reggie_watts': {
+        'source_filenames': (
+            'css/firefox/new/reggie-watts.scss',
+        ),
+        'output_filename': 'css/firefox_new_reggie_watts-bundle.css',
+    },
     'firefox_new_batm_machine': {
         'source_filenames': (
             'css/firefox/new/batm-machine.scss',
@@ -1427,6 +1433,12 @@ PIPELINE_JS = {
             'js/firefox/new/wait-face-scene1.js',
         ),
         'output_filename': 'js/firefox_new_scene1_wait_face-bundle.js',
+    },
+    'firefox_new_scene1_reggie_watts': {
+        'source_filenames': (
+            'js/firefox/new/reggie-watts-scene1.js',
+        ),
+        'output_filename': 'js/firefox_new_scene1_reggie_watts-bundle.js',
     },
     'experiment_firefox_new_batm_anim': {
         'source_filenames': (
