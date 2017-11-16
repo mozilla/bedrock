@@ -56,8 +56,8 @@
         </strong>
 
         <h2>
-        {% if LANG.startswith('en-') %}
-          Browse Faster.<br>For good.
+        {% if LANG.startswith('en') %}
+          {{ _('Fast for good.') }}
         {% else %}
           {{ _('Browse faster. For good.') }}
         {% endif %}
