@@ -705,6 +705,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/newsletter/moznewsletter-subscribe.less',
             'css/mozorg/home/home-quantum.scss',
+            'css/mozorg/home/fundraiser2017.scss',
         ),
         'output_filename': 'css/home_quantum-bundle.css',
     },
@@ -1525,6 +1526,12 @@ PIPELINE_JS = {
             'js/mozorg/home/home.js',
         ),
         'output_filename': 'js/home-bundle.js',
+    },
+    'home-fundraiser-eoy2017': {
+        'source_filenames': (
+            'js/mozorg/home/fundraiser-eoy2017.js',
+        ),
+        'output_filename': 'js/home-fundraiser-eoy2017-bundle.js',
     },
     'history-slides': {
         'source_filenames': (

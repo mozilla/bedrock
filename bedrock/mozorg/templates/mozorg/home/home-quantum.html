@@ -31,7 +31,12 @@
 {% endblock %}
 
 {% block site_header %}
-{% include 'mozorg/home/includes/home-icons-sprite.svg' %}
+  {% include 'mozorg/home/includes/home-icons-sprite.svg' %}
+
+  {% if switch('home-fundraiser-EOY2017') and l10n_has_tag('home-fundraiser-EOY2017') %}
+    {% include 'mozorg/home/includes/fundraiser-eoy2017.html' %}
+  {% endif %}
+
   {% if LANG.startswith('en-') %}
     {% include 'includes/global-nav.html' %}
   {% else %}
@@ -48,22 +53,29 @@
     <div class="content-wrapper">
       <div class="intro-content">
         <strong id="fx-logo">
-        {% if LANG.startswith('en') %}
-          The new <span>Firefox</span>
+        {% if l10n_has_tag('home-update-20171116') %}
+          {# L10n: the <span> below is for visual formatting only - bolding the word 'Firefox' #}
+          {{ _('The new <span>Firefox</span>') }}
         {% else %}
           {{ _('Firefox') }}
         {% endif %}
         </strong>
 
         <h2>
-        {% if LANG.startswith('en') %}
+        {% if l10n_has_tag('home-update-20171116') %}
           {{ _('Fast for good.') }}
         {% else %}
           {{ _('Browse faster. For good.') }}
         {% endif %}
         </h2>
 
-        <p>{{ _('With 2x the speed, built-in privacy protection and Mozilla behind it, the new Firefox is fast for good.') }}</p>
+        <p>
+        {% if l10n_has_tag('home-update-20171116') %}
+          {{ _('With 2x the speed, built-in privacy protection and Mozilla behind it, the new Firefox is the better way to browse.') }}
+        {% else %}
+          {{ _('With 2x the speed, built-in privacy protection and Mozilla behind it, the new Firefox is fast for good.') }}
+        {% endif %}
+        </p>
 
         {{ download_firefox(dom_id='download-intro', button_color='button quantum', download_location='primary cta') }}
       </div>{#--/.intro-content--#}
@@ -83,11 +95,19 @@
           <span>{{ _('We make the internet safer, healthier and faster for good.') }}</span>
         </h2>
         <p>
-        {% trans %}
-          Mozilla is the not-for-profit behind Firefox, the original alternative
-          browser. We create products and policy to keep the internet in service
-          of people, not profits.
-        {% endtrans %}
+        {% if l10n_has_tag('home-update-20171116') %}
+          {% trans %}
+            Mozilla is the not-for-profit behind Firefox, the original alternative
+            browser. We create products and policy to keep the internet in service
+            of people, not profit.
+          {% endtrans %}
+        {% else %}
+          {% trans %}
+            Mozilla is the not-for-profit behind Firefox, the original alternative
+            browser. We create products and policy to keep the internet in service
+            of people, not profits.
+          {% endtrans %}
+        {% endif %}
         </p>
       </div>
     </div>{#--/.content--#}
@@ -98,7 +118,13 @@
       <div class="section-content">
         <h2 class="section-headline">{{ _('Our impact') }}</h2>
         <p>
-        {% if l10n_has_tag('mozorg-home-impact-health') %}
+        {% if l10n_has_tag('home-update-20171116') %}
+          {% trans %}
+            When you use Firefox, you help Mozilla fight misinformation online,
+            teach digital skills and make the comments section more human.
+            Check out what helps create a healthier internet.
+          {% endtrans %}
+        {% elif l10n_has_tag('mozorg-home-impact-health') %}
           {% trans %}
             Working to keep the Internet healthy, open and accessible to all, we
             teach web literacy, provide tools and advocate on behalf of every
@@ -114,6 +140,26 @@
         </p>
 
         <ul id="icon-links-who" class="icon-links">
+        {% if l10n_has_tag('home-update-20171116') %}
+          <li id="information-trust">
+            <a rel="external" href="https://blog.mozilla.org/blog/2017/08/08/mozilla-information-trust-initiative-building-movement-fight-misinformation-online/"><svg class="icon"><use xlink:href="#icon-information-trust"></use></svg>
+              {{ _('Mozilla Information Trust Initiative') }}
+            </a>
+          </li>
+          <li id="empowering-women">
+            <a rel="external" href="https://learning.mozilla.org/blog/new-partnership-with-un-women-to-teach-key-digital-skills-to-women"><svg class="icon"><use xlink:href="#icon-empowering-women"></use></svg>
+              {{ _('Empowering Women Online') }}
+            </a>
+          </li>
+          <li id="coral-project">
+            <a rel="external" href="https://blog.mozilla.org/blog/2017/09/06/mozilla-washington-post-reinventing-online-comments/"><svg class="icon"><use xlink:href="#icon-coral-project"></use></svg>
+              {{ _('The Coral Project') }}
+            </a>
+          </li>
+          <li id="nethealth">
+            <a rel="external" href="https://internethealthreport.org"><svg class="icon"><use xlink:href="#icon-nethealth"></use></svg>{{ _('Internet Health Report') }}</a>
+          </li>
+        {% else %}
           <li id="encryption">
             <a rel="external" href="https://advocacy.mozilla.org/encrypt/"><svg class="icon"><use xlink:href="#icon-encryption"></use></svg>{{ _('Stand Up For Encryption') }}</a>
           </li>
@@ -123,10 +169,11 @@
           <li id="leandata">
             <a href="{{ url('mozorg.about.policy.lean-data') }}"><svg class="icon"><use xlink:href="#icon-leandata"></use></svg>{{ _('Try the Lean Data Toolkit') }}</a>
           </li>
-        {% if l10n_has_tag('mozorg-home-health-report') %}
-          <li id="nethealth">
-            <a rel="external" href="https://internethealthreport.org"><svg class="icon"><use xlink:href="#icon-nethealth"></use></svg>{{ _('Read our Internet Health Report') }}</a>
-          </li>
+          {% if l10n_has_tag('mozorg-home-health-report') %}
+            <li id="nethealth">
+              <a rel="external" href="https://internethealthreport.org"><svg class="icon"><use xlink:href="#icon-nethealth"></use></svg>{{ _('Read our Internet Health Report') }}</a>
+            </li>
+          {% endif %}
         {% endif %}
         </ul>
       </div>
@@ -144,9 +191,15 @@
         </p>
 
         <ul id="icon-links-innovate" class="icon-links">
+        {% if l10n_has_tag('home-update-20171116') %}
+          <li id="common-voice">
+            <a rel="external" href="https://voice.mozilla.org/"><svg class="icon"><use xlink:href="#icon-common-voice"></use></svg>{{ _('Common Voice') }}</a>
+          </li>
+        {% else %}
           <li id="gaming">
             <a rel="external" href="https://games.mozilla.org/"><svg class="icon"><use xlink:href="#icon-gaming"></use></svg>{{ _('Gaming on the Web') }}</a>
           </li>
+        {% endif %}
           <li id="vr">
             <a rel="external" href="https://vr.mozilla.org/"><svg class="icon"><use xlink:href="#icon-vr"></use></svg>{{ _('Virtual Reality Platform') }}</a>
           </li>
@@ -197,4 +250,15 @@
 </main>
 {% endblock %}
 
-{% block js %}{% endblock %}
+{% block js %}
+  {% if switch('home-fundraiser-EOY2017') and l10n_has_tag('home-fundraiser-EOY2017') %}
+    {% javascript 'home-fundraiser-eoy2017' %}
+  {% endif %}
+{% endblock %}
+
+{% block update_notification %}
+  {# do not show the update banner if the fundraiser banner is active #}
+  {% if not switch('home-fundraiser-EOY2017') %}
+    {{ super() }}
+  {% endif %}
+{% endblock %}
