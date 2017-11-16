@@ -5,6 +5,7 @@
 import json
 from cgi import escape
 
+from django.conf import settings
 from django.contrib.staticfiles.finders import find as find_static
 from django.core.context_processors import csrf
 from django.core.mail import EmailMessage
@@ -200,12 +201,21 @@ class Robots(TemplateView):
 def home(request):
     locale = l10n_utils.get_locale(request)
 
+    donate_params = settings.DONATE_PARAMS.get(
+        locale, settings.DONATE_PARAMS['en-US'])
+
+    # presets are stored as a string but, for the home banner
+    # we need it as a list.
+    donate_params['preset_list'] = donate_params['presets'].split(',')
+
     if lang_file_is_active('mozorg/home/index-quantum', locale):
         template = 'mozorg/home/home-quantum.html'
     else:
         template = 'mozorg/home/home.html'
 
-    return l10n_utils.render(request, template)
+    return l10n_utils.render(request, template, {
+        'donate_params': donate_params
+    })
 
 
 NAMESPACES = {
