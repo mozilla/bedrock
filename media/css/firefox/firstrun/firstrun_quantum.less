@@ -128,7 +128,6 @@ body {
     background-repeat: no-repeat;
     background-size: 90px 90px;
     height: 90px;
-    opacity: 0;
     width: 90px;
 }
 
@@ -142,8 +141,6 @@ body {
     background: #fff;
     display: inline-block;
     margin-left: 20px;
-    transform: scale(.8);
-    opacity: 0;
     padding: 30px 20px;
 }
 
@@ -165,13 +162,6 @@ body {
     float: left;
     clear: both;
     width: 441px;
-
-    #title,
-    .content,
-    a {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
 
     .content {
         .font-size(19px);
@@ -241,123 +231,155 @@ body {
     }
 }
 
-#scene[data-animate=true] {
-    .wave1 {
-        animation: Wave1 17.26s infinite forwards;
-    }
-
-    .wave2 {
-        animation: Wave2 11.08s infinite forwards;
-    }
-
-    .wave3 {
-        animation: Wave3 7.51s infinite forwards;
-    }
-
-    .wave4 {
-        animation: Wave4 15.14s infinite forwards;
-    }
-
-    .wave5 {
-        animation: Wave5 13.46s infinite forwards;
-    }
-
-    .wave6 {
-        animation: Wave6 20.55s infinite forwards;
-    }
-
-    .wave7 {
-        animation: Wave7 26.55s infinite forwards;
-    }
-
-    .wave8 {
-        animation: Wave8 27.43s infinite forwards;
-    }
-}
-
-#scene[data-content=true] {
-    #firefox-logo {
-        transition: opacity 1s 1.8s;
-        opacity: 1;
-    }
-
-    #fxa-iframe-config {
-        transition: opacity 1s 2s, transform 1s 2s;
-        opacity: .85;
-        transform: scale(1);
-    }
-
-    #left-divider {
-
-        #title,
-        .content,
-        a {
-            transition: transform .5s, opacity .8s;
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        #title {
-            transition-delay: 1.8s;
-        }
-
-        .content {
-            transition-delay: 2s;
-        }
-
-        a {
-            transition-delay: 2.2s;
-        }
-    }
-}
-
+// Simplified interactions for some platforms
 #scene[data-sign-in=true] {
     .fxaccounts-container {
         transition: opacity .5s;
         opacity: 0;
-        animation: HideVisibility 0s .5s 1 forwards;
+        animation: HideVisibility 0s .1s 1 forwards;
     }
 
     .color-overlay {
-        transition: opacity 1s .8s;
+        transition: opacity 1s .5s;
         opacity: 1;
     }
 
     .white-overlay {
-        transition: opacity .6s 1.1s;
+        transition: opacity .6s .8s;
         opacity: 1;
     }
+}
 
-    .wave1 {
-        animation: Wave1 17.26s 1 forwards, Expand1 1.5s var(--animation-curve) .2s forwards;
+// More complex interactions for other platforms
+html.osx,
+html.win8up {
+    #firefox-logo {
+        opacity: 0;
     }
 
-    .wave2 {
-        animation: Wave2 11.08s 1 forwards, Expand2 1.5s var(--animation-curve) .2s 1 forwards;
+    #left-divider #title,
+    #left-divider .content,
+    #left-divider a {
+        opacity: 0;
+        transform: translateY(-5px);
     }
 
-    .wave3 {
-        animation: Wave3 7.51s 1 forwards, Expand3 1.5s var(--animation-curve) .2s 1 forwards;
+    #fxa-iframe-config {
+        opacity: 0;
+        transform: scale(.8);
     }
 
-    .wave4 {
-        animation: Wave4 15.14s 1 forwards, Expand4 1.5s var(--animation-curve) .2s 1 forwards;
+    #scene[data-animate=true] {
+        .wave1 {
+            animation: Wave1 17.26s infinite forwards;
+        }
+
+        .wave2 {
+            animation: Wave2 11.08s infinite forwards;
+        }
+
+        .wave3 {
+            animation: Wave3 7.51s infinite forwards;
+        }
+
+        .wave4 {
+            animation: Wave4 15.14s infinite forwards;
+        }
+
+        .wave5 {
+            animation: Wave5 13.46s infinite forwards;
+        }
+
+        .wave6 {
+            animation: Wave6 20.55s infinite forwards;
+        }
+
+        .wave7 {
+            animation: Wave7 26.55s infinite forwards;
+        }
+
+        .wave8 {
+            animation: Wave8 27.43s infinite forwards;
+        }
     }
 
-    .wave5 {
-        animation: Wave5 13.46s 1 forwards, Expand5 1.5s var(--animation-curve) .2s 1 forwards;
+    #scene[data-content=true] {
+        #firefox-logo {
+            transition: opacity 1s 1.8s;
+            opacity: 1;
+        }
+
+        #fxa-iframe-config {
+            transition: opacity 1s 2s, transform 1s 2s;
+            opacity: .85;
+            transform: scale(1);
+        }
+
+        #left-divider {
+            #title,
+            .content,
+            a {
+                transition: transform .5s, opacity .8s;
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            #title {
+                transition-delay: 1.8s;
+            }
+
+            .content {
+                transition-delay: 2s;
+            }
+
+            a {
+                transition-delay: 2.2s;
+            }
+        }
     }
 
-    .wave6 {
-        animation: Wave6 20.55s 1 forwards, Expand6 1.5s var(--animation-curve) .2s 1 forwards;
-    }
+    #scene[data-sign-in=true] {
+        .color-overlay {
+            transition: opacity 1s .8s;
+            opacity: 1;
+        }
 
-    .wave7 {
-        animation: Wave7 26.55s 1 forwards, Expand7 1.5s var(--animation-curve) .2s 1 forwards;
-    }
+        .white-overlay {
+            transition: opacity .6s 1.1s;
+            opacity: 1;
+        }
 
-    .wave8 {
-        animation: Wave8 27.43s 1 forwards, Expand8 1.5s var(--animation-curve) .2s 1 forwards;
+        .wave1 {
+            animation: Wave1 17.26s 1 forwards, Expand1 1.5s var(--animation-curve) .2s forwards;
+        }
+
+        .wave2 {
+            animation: Wave2 11.08s 1 forwards, Expand2 1.5s var(--animation-curve) .2s 1 forwards;
+        }
+
+        .wave3 {
+            animation: Wave3 7.51s 1 forwards, Expand3 1.5s var(--animation-curve) .2s 1 forwards;
+        }
+
+        .wave4 {
+            animation: Wave4 15.14s 1 forwards, Expand4 1.5s var(--animation-curve) .2s 1 forwards;
+        }
+
+        .wave5 {
+            animation: Wave5 13.46s 1 forwards, Expand5 1.5s var(--animation-curve) .2s 1 forwards;
+        }
+
+        .wave6 {
+            animation: Wave6 20.55s 1 forwards, Expand6 1.5s var(--animation-curve) .2s 1 forwards;
+        }
+
+        .wave7 {
+            animation: Wave7 26.55s 1 forwards, Expand7 1.5s var(--animation-curve) .2s 1 forwards;
+        }
+
+        .wave8 {
+            animation: Wave8 27.43s 1 forwards, Expand8 1.5s var(--animation-curve) .2s 1 forwards;
+        }
     }
 }
 

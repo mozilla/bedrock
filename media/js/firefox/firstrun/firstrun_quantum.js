@@ -5,6 +5,11 @@
 (function (Mozilla) {
     'use strict';
 
+    // Add class to indicate Windows 8 and later
+    if (window.site.platform === 'windows' && window.site.platformVersion >= 6.2) {
+        document.documentElement.classList.add('win8up');
+    }
+
     var beginAnimation = function (syncConfig) {
         var redirectDest = 'about:home';
 
@@ -31,10 +36,8 @@
 
         var onVerificationComplete = function () {
             scene.dataset.signIn = 'true';
-            document.getElementById('wave1').addEventListener('animationend', function(event) {
-                if (event.animationName === 'Expand1') {
-                    window.location.href = redirectDest;
-                }
+            document.getElementById('white-overlay').addEventListener('transitionend', function() {
+                window.location.href = redirectDest;
             }, false);
         };
 
