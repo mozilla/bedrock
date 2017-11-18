@@ -7,7 +7,7 @@ def firefox_mobile_faq(request, *args, **kwargs):
     if 'os=firefox-os' in qs:
         return 'https://support.mozilla.org/products/firefox-os'
 
-    return 'firefox.android.faq'
+    return 'https://support.mozilla.org/products/mobile'
 
 
 def firefox_channel(*args, **kwargs):
@@ -111,7 +111,7 @@ redirectpatterns = (
     }),
 
     # Bug 868182, 986174
-    redirect(r'^(m|(firefox/)?mobile)/features/?$', 'firefox.android.index'),
+    redirect(r'^(m|(firefox/)?mobile)/features/?$', 'firefox.mobile'),
     redirect(r'^(m|(firefox/)?mobile)/faq/?$', firefox_mobile_faq, query=False),
 
     # bug 884933
@@ -229,7 +229,7 @@ redirectpatterns = (
     redirect(r'^(mobile|fennec)/?$', 'firefox'),
 
     # bug 876668
-    redirect(r'^mobile/customize(?:/.*)?$', '/firefox/android/'),
+    redirect(r'^mobile/customize(?:/.*)?$', '/firefox/mobile/'),
 
     # bug 1211907
     redirect(r'^firefox/independent/?$', 'firefox.new'),
@@ -302,7 +302,7 @@ redirectpatterns = (
     # Bug 424204
     redirect(r'^firefox/help/?$', 'https://support.mozilla.org/'),
 
-    redirect(r'^fxandroid/?$', 'firefox.android.index'),
+    redirect(r'^fxandroid/?$', 'firefox.mobile'),
 
     # Bug 1255882
     redirect(r'^firefox/personal', 'firefox.new'),
@@ -556,4 +556,9 @@ redirectpatterns = (
 
     # bug 1416706
     redirect(r'^firefox/desktop/?', 'firefox'),
+
+    # bug 1418500
+    redirect(r'^firefox/android/?$', 'firefox.mobile'),
+    redirect(r'^firefox/focus/?$', 'firefox.mobile'),
+    redirect(r'^firefox/ios/?$', 'firefox.mobile'),
 )

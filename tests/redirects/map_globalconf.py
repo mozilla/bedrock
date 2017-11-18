@@ -231,8 +231,8 @@ URLS = flatten((
              'https://support.mozilla.org/products/firefox-os'),
 
     # Bug 986174
-    url_test('/{m,{firefox/,}mobile}/features/', '/firefox/android/'),
-    url_test('/{m,{firefox/,}mobile}/faq/', '/firefox/android/faq/'),
+    url_test('/{m,{firefox/,}mobile}/features/', '/firefox/mobile/'),
+    url_test('/{m,{firefox/,}mobile}/faq/', 'https://support.mozilla.org/products/mobile'),
 
     # bug 885799, 952429
     url_test('/projects/calendar/holidays.html', '/projects/calendar/holidays/'),
@@ -607,7 +607,7 @@ URLS = flatten((
     url_test('/newsletter/new/', '/newsletter/'),
 
     # bug 1238458
-    url_test('/newsletter/ios/', '/firefox/ios/'),
+    url_test('/newsletter/ios/', '/firefox/mobile/'),
 
     # bug 818323
     url_test('/projects/security/known-vulnerabilities.html', '/security/known-vulnerabilities/'),
@@ -738,7 +738,7 @@ URLS = flatten((
     url_test('/{mobile,fennec}/', '/firefox/'),
 
     # bug 876668
-    url_test('/mobile/customize/', '/firefox/android/'),
+    url_test('/mobile/customize/', '/firefox/mobile/'),
 
     # bug 736934, 860865, 1101220, 1153351
     url_test('/mobile/{{beta,aurora}/,}notes/', '/firefox/android/{{beta,aurora}/,}notes/'),

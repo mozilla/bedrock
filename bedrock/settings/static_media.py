@@ -355,12 +355,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-interest-dashboard-bundle.css',
     },
-    'firefox_focus': {
-        'source_filenames': (
-            'css/firefox/focus.scss',
-        ),
-        'output_filename': 'css/firefox_focus-bundle.css',
-    },
     'firefox_fx38_0_5_firstrun': {
         'source_filenames': (
             'css/firefox/australis/fx38_0_5/firstrun.less',
@@ -624,12 +618,6 @@ PIPELINE_CSS = {
             'css/firefox/organizations.less',
         ),
         'output_filename': 'css/firefox_organizations-bundle.css',
-    },
-    'firefox-product-page': {
-        'source_filenames': (
-            'css/firefox/product-page.scss',
-        ),
-        'output_filename': 'css/firefox-product-page-bundle.css',
     },
     'firefox-quantum': {
         'source_filenames': (
@@ -1475,14 +1463,6 @@ PIPELINE_JS = {
             'js/base/mozilla-pixel-init.js',
         ),
         'output_filename': 'js/firefox_new_pixel-bundle.js',
-    },
-    'firefox-product-page': {
-        'source_filenames': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/hubs/sub-nav.js',
-        ),
-        'output_filename': 'js/firefox-product-page-bundle.js',
     },
     'firefox-quantum': {
         'source_filenames': (
