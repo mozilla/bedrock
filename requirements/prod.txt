@@ -1,5 +1,5 @@
 -r base.txt
 -r compiled.txt
 
-newrelic==2.50.0.39 \
-    --hash=sha256:fddd47a8d048e0c5f42eee511a8aaf35891c996d6c959553c7bec8b3ac74b3cb
+newrelic==2.96.0.80 \
+    --hash=sha256:fc7125f3caed2b678c884468c1416ab87e7150ede0d46c738fca08d88c8bd008
