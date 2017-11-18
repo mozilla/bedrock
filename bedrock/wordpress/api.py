@@ -46,25 +46,34 @@ def get_wp_data(feed_id, data_type, data_id=None, limit=None):
 
 def get_posts_data(feed_id, num_posts=None):
     posts = get_wp_data(feed_id, 'posts', limit=num_posts)
-    tags = get_wp_data(feed_id, 'tags')
-    if not (posts and tags):
+    if not posts:
         return None
 
-    tags = {t['id']: t['slug'] for t in tags}
-    for post in posts:
+    return posts
+
+
+def complete_posts_data(blog_slug, posts):
+    # posts will be a list of tuples (db obj or None, post data dict)
+    tags = get_feed_tags(blog_slug)
+    for _, post in posts:
         post['tags'] = [tags[t] for t in post['tags']]
-        # some blogs set featured_media to 0 when none is set
-        if 'featured_media' in post:
-            if post['featured_media']:
-                media = get_wp_data(feed_id, 'media', post['featured_media'])
-                if media:
-                    post['featured_media'] = media
-                    continue
+        update_post_media(blog_slug, post)
 
-            # blank featured_media value if anything went wrong
-            post['featured_media'] = {}
 
-    return {
-        'posts': posts,
-        'wp_blog_slug': feed_id,
-    }
+def get_feed_tags(feed_id):
+    tags = get_wp_data(feed_id, 'tags')
+    return {t['id']: t['slug'] for t in tags}
+
+
+def update_post_media(feed_id, post):
+    """Fill out posts with featured media info"""
+    # some blogs set featured_media to 0 when none is set
+    if 'featured_media' in post:
+        if post['featured_media']:
+            media = get_wp_data(feed_id, 'media', post['featured_media'])
+            if media:
+                post['featured_media'] = media
+                return
+
+        # blank featured_media value if anything went wrong
+        post['featured_media'] = {}

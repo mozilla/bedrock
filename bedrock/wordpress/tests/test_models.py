@@ -42,12 +42,15 @@ def setup_responses(blog='firefox'):
 @override_settings(WP_BLOGS=TEST_WP_BLOGS)
 def test_get_posts_data():
     setup_responses()
-    data = api.get_posts_data('firefox')
-    assert data['wp_blog_slug'] == 'firefox'
-    assert data['posts'][0]['tags'] == ['browser', 'fastest']
-    assert data['posts'][0]['featured_media'] == {}
-    assert data['posts'][1]['featured_media'] == {}
-    assert data['posts'][2]['featured_media']['id'] == 75
+    posts = api.get_posts_data('firefox')
+    tags = api.get_feed_tags('firefox')
+    for post in posts:
+        post['tags'] = [tags[t] for t in post['tags']]
+        api.update_post_media('firefox', post)
+    assert posts[0]['tags'] == ['browser', 'fastest']
+    assert posts[0]['featured_media'] == {}
+    assert posts[1]['featured_media'] == {}
+    assert posts[2]['featured_media']['id'] == 75
     assert len(responses.calls) == 4
 
 
