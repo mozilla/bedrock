@@ -993,17 +993,7 @@ class TestFeatureSendTabs(TestCase):
 
 @patch('bedrock.firefox.views.l10n_utils.render')
 class TestFirefoxHubPage(TestCase):
-    @patch('bedrock.firefox.views.switch', Mock(return_value=False))
-    def test_hub_pre_57(self, render_mock):
-        view = views.FirefoxHubView.as_view()
-        req = RequestFactory().get('/firefox/')
-        req.locale = 'en-US'
-        view(req)
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/hub/home.html'])
-
-    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
-    def test_hub_post_57(self, render_mock):
+    def test_hub(self, render_mock):
         view = views.FirefoxHubView.as_view()
         req = RequestFactory().get('/firefox/')
         req.locale = 'en-US'
@@ -1011,7 +1001,6 @@ class TestFirefoxHubPage(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/hub/home-quantum.html'])
 
-    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
     @patch.object(views, 'lang_file_is_active', lambda *x: False)
     def test_hub_not_translated(self, render_mock):
         view = views.FirefoxHubView.as_view()
@@ -1020,23 +1009,6 @@ class TestFirefoxHubPage(TestCase):
         view(req)
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/hub/home.html'])
-
-
-class TestFirefoxDesktopPageRedirect(TestCase):
-    @patch('bedrock.firefox.views.switch', Mock(return_value=False))
-    def test_desktop_pre_57(self):
-        view = views.FirefoxProductDesktopView.as_view()
-        req = RequestFactory().get('/en-US/firefox/desktop/')
-        resp = view(req)
-        eq_(resp.status_code, 200)
-
-    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
-    def test_desktop_post_57(self):
-        view = views.FirefoxProductDesktopView.as_view()
-        req = RequestFactory().get('/en-US/firefox/desktop/')
-        resp = view(req)
-        eq_(resp.status_code, 301)
-        ok_(resp.url.endswith('/en-US/firefox/'))
 
 
 class TestFirefoxQuantumPageRedirect(TestCase):

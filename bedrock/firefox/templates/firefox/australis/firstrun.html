@@ -54,12 +54,12 @@
 {% block site_footer %}
   <footer role="contentinfo">
     <ul>
-      <li><a href="{{ url('firefox.desktop.index') }}" class="more" data-link-type="footer" data-link-name="Firefox Features">{{ _('Firefox Features') }}</a></li>
+      <li><a href="{{ url('firefox.features.index') }}" class="more" data-link-type="footer" data-link-name="Firefox Features">{{ _('Firefox Features') }}</a></li>
       <li><a href="https://support.mozilla.org/products/firefox" class="more" data-link-type="footer" data-link-name="Firefox Help">{{ _('Firefox Help') }}</a></li>
     </ul>
     <ul>
       <li><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal">{{ _('Legal') }}</a></li>
-      {% if LANG.startswith('en-') %} 
+      {% if LANG.startswith('en-') %}
         {% set privacy_text = _('Website Privacy Notice') %}
       {% else %}
         {% set privacy_text = _('Privacy') %}

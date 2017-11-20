@@ -123,7 +123,7 @@
       {{ fxfamilynav('android') }}
     {% endblock %}
 
-    If you need the dark text version (like for /firefox/desktop), pass
+    If you need the dark text version, pass
     in the 'dark' argument:
 
     {% block site_header_unwrapped %}
@@ -197,7 +197,7 @@
           <a data-id="firefox" href="{{ url('firefox') }}" class="primary-link" data-link-type="nav" data-link-name="Firefox"><div>{{ _('Firefox') }}</div></a>
         </li>
         <li{% if activenav == 'desktop' %} class="active"{% endif %}>
-          <a data-id="desktop" href="{{ url('firefox.desktop.index') }}" class="primary-link" data-link-type="nav" data-link-name="for Desktop"><div>{{ _('Desktop') }}</div></a>
+          <a data-id="desktop" href="{{ url('firefox') }}" class="primary-link" data-link-type="nav" data-link-name="for Desktop"><div>{{ _('Desktop') }}</div></a>
         </li>
         <li{% if activenav == 'android' %} class="active"{% endif %}>
           <a data-id="android" href="{{ url('firefox.android.index') }}" class="primary-link" data-link-type="nav" data-link-name="for Android"><div>{{ _('Android') }}</div></a>

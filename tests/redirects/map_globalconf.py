@@ -1189,4 +1189,7 @@ URLS = flatten((
     url_test('/styleguide/identity/firefox/branding/', 'http://design.firefox.com/photon/visuals/product-identity-assets.html'),
     url_test('/styleguide/identity/firefox/channels/', 'http://design.firefox.com/photon/visuals/product-identity-assets.html#channel-variations'),
     url_test('/styleguide/identity/firefox/color/', 'http://design.firefox.com/photon/visuals/color.html'),
+
+    # bug 1416706
+    url_test('/firefox/desktop/', '/firefox/'),
 ))

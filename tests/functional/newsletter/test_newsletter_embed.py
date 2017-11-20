@@ -16,7 +16,6 @@ from pages.contribute.task.dev_tools_challenger import DevToolsChallengerTaskPag
 from pages.contribute.task.stumbler import StumblerTaskPage
 from pages.mission import MissionPage
 from pages.firefox.all import FirefoxAllPage
-from pages.firefox.desktop.desktop import FirefoxDesktopPage
 from pages.firefox.features.feature import FeaturePage
 from pages.plugincheck import PluginCheckPage
 from pages.smarton.landing import SmartOnLandingPage
@@ -36,8 +35,6 @@ from pages.smarton.base import SmartOnBasePage
     (StumblerTaskPage, None),
     (MissionPage, None),
     (FirefoxAllPage, None),
-    pytest.mark.skipif((FirefoxDesktopPage, None),
-        reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1397519'),
     (FeaturePage, {'slug': 'sync'}),
     (PluginCheckPage, None),
     (SmartOnLandingPage, None),
