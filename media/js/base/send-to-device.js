@@ -144,7 +144,6 @@ if (typeof Mozilla === 'undefined') {
      */
     SendToDevice.prototype.bindEvents = function() {
         this.$form.on('submit', $.proxy(this.onFormSubmit, this));
-        this.$footerLinks.on('click', 'a', this.trackFooterLinks);
         this.$sendAnotherLink.on('click', $.proxy(this.sendAnother, this));
     };
 

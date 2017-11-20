@@ -5,22 +5,46 @@
 /**
  * General DOM ready handler applied to all pages in base template.
  */
-$(document).ready(function() {
+(function($) {
+    // page must be loaded and ready before onWindowLoad fires
+    var loaded = false;
+    var ready = false;
 
-    var client = Mozilla.Client;
-    var utils = Mozilla.Utils;
-
-    utils.initDownloadLinks();
-    utils.initMobileDownloadLinks();
-    utils.initLangSwitcher();
-
-    /* Bug 1264843: In partner distribution of desktop Firefox, switch the
-       downloads to corresponding partner build of Firefox for Android. */
-    if (client.isFirefoxDesktop) {
-        client.getFirefoxDetails(utils.maybeSwitchToDistDownloadLinks);
+    function onWindowLoad() {
+        $('html').addClass('loaded');
     }
 
-    $(window).on('load', function () {
-        $('html').addClass('loaded');
+    $(document).ready(function() {
+
+        var client = Mozilla.Client;
+        var utils = Mozilla.Utils;
+
+        utils.initMobileDownloadLinks();
+        utils.initLangSwitcher();
+
+        /* Bug 1264843: In partner distribution of desktop Firefox, switch the
+        downloads to corresponding partner build of Firefox for Android. */
+        if (client.isFirefoxDesktop) {
+            client.getFirefoxDetails(utils.maybeSwitchToDistDownloadLinks);
+        }
+
+        // if window.load happened already, fire onWindowLoad
+        if (loaded) {
+            onWindowLoad();
+        }
+
+        // note that document.ready happened to inform window.load
+        ready = true;
     });
-});
+
+    $(window).on('load', function () {
+        // if document.ready happened already, fire onWindowLoad
+        if (ready) {
+            onWindowLoad();
+        }
+
+        // note that window.load happened in case document.ready hasn't
+        // finished yet
+        loaded = true;
+    });
+})(window.jQuery);

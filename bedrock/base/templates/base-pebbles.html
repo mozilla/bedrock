@@ -8,7 +8,10 @@
     <meta charset="utf-8">{# Note: Must be within first 512 bytes of page #}
 
     {% javascript 'site' %}
+
+    <!--[if !lte IE 8]><!-->
     {% block experiments %}{% endblock %}
+    <!--<![endif]-->
 
 <!--
 {% include "includes/careers-teaser.html" %}
@@ -154,7 +157,13 @@
   <![endif]-->
 
     {% block site_js %}
-      {% javascript 'common' %}
+      <!--[if !lte IE 8]><!-->
+        {% javascript 'common' %}
+      <!--<![endif]-->
+
+      <!--[if lte IE 8]>
+        {% javascript 'common-ie8' %}
+      <![endif]-->
     {% endblock %}
 
     {# Bug 1279291 #}
@@ -164,6 +173,7 @@
       {% endif %}
     {% endblock %}
 
+    <!--[if !lte IE 8]><!-->
     {% block js %}{% endblock %}
 
     {# Bug 1381776 #}
@@ -174,9 +184,8 @@
     {% endblock %}
 
     {% if settings.DEV %}
-      <!--[if !lte IE 8]><!-->
-        <script src="https://pontoon.mozilla.org/pontoon.js"></script>
-      <!--<![endif]-->
+      <script src="https://pontoon.mozilla.org/pontoon.js"></script>
     {% endif %}
+    <!--<![endif]-->
   </body>
 </html>

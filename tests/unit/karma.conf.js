@@ -9,7 +9,7 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'media/js/libs/jquery-1.11.3.min.js',
+            'media/js/libs/jquery-3.2.1.min.js',
             'media/js/base/site.js',
             'media/js/base/mozilla-utils.js',
             'media/js/base/dnt-helper.js',
@@ -40,6 +40,7 @@ module.exports = function(config) {
             'media/js/firefox/features/sync.js',
             'media/js/firefox/new-ios-redirect-helper.js',
             'media/js/firefox/tracking-protection-tour.js',
+            'media/js/ie8/mozilla-utils-ie8.js',
             'media/js/base/send-to-device.js',
             'media/js/base/core-datalayer.js',
             'tests/unit/spec/base/site.js',
@@ -63,6 +64,7 @@ module.exports = function(config) {
             'tests/unit/spec/firefox/features/sync.js',
             'tests/unit/spec/firefox/new-ios-redirect-helper.js',
             'tests/unit/spec/firefox/tracking-protection-tour.js',
+            'tests/unit/spec/ie8/mozilla-utils-ie8.js',
             'tests/unit/spec/base/send-to-device.js',
             'tests/unit/spec/base/core-datalayer.js',
             'tests/unit/spec/base/stub-attribution.js',
