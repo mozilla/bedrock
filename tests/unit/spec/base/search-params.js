@@ -59,6 +59,15 @@ describe('search-params.js', function() {
             expect(utms.utm_content).toEqual('/firefox/sync/');
         });
 
+        it('should return an object of string utm_ values for FxA', function () {
+            var sp = new _SearchParams('utm_dude=lebowski&utm_strikes=10&source=getfirefox');
+            var utms = sp.utmParamsFxA('/es-ES/firefox/sync/');
+            expect(utms.utm_dude).toEqual('lebowski');
+            expect(utms.utm_strikes).not.toEqual(10);
+            expect(utms.utm_strikes).toEqual('10');
+            expect(utms.utm_content).toEqual('/firefox/sync/');
+        });
+
         it('should not override utm_campaign when set in URL', function () {
             var sp = new _SearchParams('utm_dude=lebowski&utm_campaign=bowling&source=getfirefox');
             var utms = sp.utmParamsFxA();

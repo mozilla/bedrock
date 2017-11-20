@@ -81,5 +81,11 @@ _SearchParams.prototype.utmParamsFxA = function(pathname) {
 
     /* eslint-enable camelcase */
 
+    // ensure all values are strings, as no numeric values are allowed
+    // into UITour.showFirefoxAccounts
+    Object.keys(utms).forEach(function(key) {
+        utms[key] = utms[key].toString();
+    });
+
     return utms;
 };
