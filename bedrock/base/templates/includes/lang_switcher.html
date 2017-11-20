@@ -12,8 +12,6 @@
       <option lang="{{ code }}" value="{{ code }}"{{ code|ifeq(LANG, " selected") }}>{{ label|safe|replace('English (US)', 'English') }}</option>
     {% endfor %}
   </select>
-  <noscript>
-    <button type="submit">{{ _('Go') }}</button>
-  </noscript>
+  <button type="submit">{{ _('Go') }}</button>
 </form>
 {% endif %}

@@ -149,6 +149,10 @@
             border: none;
             background: #ededed;
         }
+
+        .js & button {
+            display: none;
+        }
     }
 
     @media #{$mq-tablet} {
