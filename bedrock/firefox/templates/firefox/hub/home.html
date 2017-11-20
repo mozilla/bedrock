@@ -115,83 +115,9 @@
       </div> {#--/.content--#}
     </section> {#--/#features.page-section--#}
 
-    {% if LANG.startswith('en-') %}
-    <section class="section">
-      <div class="content">
-
-        <h2 class="section-title"><span>Buzz about Firefox</span></h2>
-
-        <div class="card quote-card quote-primary">
-          <div class="card-content">
-            <p class="quote-intro">
-              Vogue Culture News says:
-            </p>
-
-            <blockquote class="quote">
-              <strong>Break up with Google.</strong>
-              <br />
-              Use a web browser you have more control over, and which has more
-              plug-ins that you can use for privacy, such as <em>Firefox.</em>
-            </blockquote>
-          </div> {#--/.card-content--#}
-        </div> {#--/.card--#}
-      </div> {#--/.section--#}
-    </section>
-    {% endif %}
-
     {% with campaign='fx-content-hub' %}
       {% include 'includes/news-feed.html' %}
     {% endwith %}
-
-    {% if LANG.startswith('en-') %}
-    <section id="feeds" class="section">
-      <div class="content">
-
-        <section id="third-party-feed">
-          <div class="card card-stacked">
-            <div class="card-content">
-              <a rel="external" href="https://www.cnet.com/special-reports/mozilla-firefox-fights-back-against-google-chrome/" data-link-name="Firefox Fights Back" data-link-type="link" data-link-position="1">
-                <blockquote class="quote">
-                  Firefox Fights Back
-                </blockquote>
-              </a>
-
-              <a rel="external" href="https://www.cnet.com/special-reports/mozilla-firefox-fights-back-against-google-chrome/" class="cta-link" data-link-name="Firefox Fights Back" data-link-type="link" data-link-position="1">
-                CNET
-              </a>
-            </div>
-          </div>
-          <div class="card card-stacked">
-            <div class="card-content">
-              <a rel="external" href="http://www.makeuseof.com/tag/switch-chrome-firefox/" data-link-name="Bye Bye Chrome! Why We Switched to Firefox" data-link-type="link" data-link-position="2">
-                <blockquote class="quote">
-                  Bye Bye Chrome! Why We Switched to Firefox
-                </blockquote>
-              </a>
-
-              <a rel="external" href="http://www.makeuseof.com/tag/switch-chrome-firefox/" class="cta-link" data-link-name="Bye Bye Chrome! Why We Switched to Firefox" data-link-type="link" data-link-position="2">
-                MakeUseOf
-              </a>
-            </div>
-          </div>
-          <div class="card card-stacked">
-            <div class="card-content">
-              <a rel="external" href="https://www.vogue.com/article/internet-privacy-fcc-laws-eliminated-protect-yourself" data-link-name="Your Internet Search History Will Soon Be Up for Sale &mdash; Here’s How You Can Protect Yourself" data-link-type="link" data-link-position="3">
-                <blockquote class="quote">
-                  Your Internet Search History Will Soon Be Up for Sale &mdash; Here’s How You Can Protect Yourself
-                </blockquote>
-              </a>
-
-              <a rel="external" href="https://www.vogue.com/article/internet-privacy-fcc-laws-eliminated-protect-yourself" class="cta-link" data-link-name="Your Internet Search History Will Soon Be Up for Sale &mdash; Here’s How You Can Protect Yourself" data-link-type="link" data-link-position="3">
-                Vogue
-              </a>
-            </div>
-          </div>
-        </section> {#--/#third-party-feed.content--#}
-
-      </div> {#--/.content--#}
-    </section>
-    {% endif %}
 
     <section id="sync" class="section">
       <div class="content">

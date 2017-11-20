@@ -68,7 +68,6 @@
                 {{ _('Get the only browser built for people, not profit.') }}
               </p>
               <ul class="nav-menu-secondary-links">
-              {% if switch('firefox-57-release') %}
                 <li>
                   <a href="{{ url('firefox') }}" data-link-type="nav" data-link-name="Desktop" data-link-group="Firefox">
                     {{ _('Desktop') }}
@@ -94,59 +93,6 @@
                     {{ _('Blog') }}
                   </a>
                 </li>
-              {% else %}
-                <li>
-                {% if LANG == 'en-US' %}
-                  {% set desktop_text = 'Desktop' %}
-                  {% set android_text = 'Android' %}
-                  {% set ios_text = 'iOS' %}
-                  {% set focus_text = 'Focus' %}
-                {% else %}
-                  {% set desktop_text = _('Desktop Browser') %}
-                  {% set android_text = _('Android Browser') %}
-                  {% set ios_text = _('iOS Browser') %}
-                  {% set focus_text = _('Focus Browser') %}
-                {% endif %}
-                  <a href="{{ url('firefox') }}" data-link-type="nav" data-link-name="About Firefox" data-link-group="Firefox">
-                    {{ _('About Firefox') }}
-                  </a>
-                </li>
-                <li>
-                  <a href="{{ url('firefox.desktop.index')}}" data-link-type="nav" data-link-name="Desktop Browser" data-link-group="Firefox">
-                    {{ desktop_text }}
-                  </a>
-                </li>
-                <li>
-                  <a href="{{ url('firefox.ios')}}" data-link-type="nav" data-link-name="iOS Browser" data-link-group="Firefox">
-                    {{ ios_text }}
-                  </a>
-                </li>
-                <li>
-                  <a href="{{ url('firefox.android.index')}}" data-link-type="nav" data-link-name="Android Browser" data-link-group="Firefox">
-                    {{ android_text }}
-                  </a>
-                </li>
-                <li>
-                  <a href="{{ url('firefox.focus')}}" data-link-type="nav" data-link-name="Focus Browser" data-link-group="Firefox">
-                    {{ focus_text }}
-                  </a>
-                </li>
-                <li>
-                  <a href="{{ url('firefox.developer') }}" data-link-type="nav" data-link-name="Developer Edition" data-link-group="Firefox">
-                    {{ _('Developer Edition') }}
-                  </a>
-                </li>
-                <li>
-                  <a href="{{ url('firefox.features.index')}}" data-link-type="nav" data-link-name="Features" data-link-group="Firefox">
-                    {{ _('Features') }}
-                  </a>
-                </li>
-                <li>
-                  <a href="https://support.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=global-nav&amp;utm_content=support" data-link-type="nav" data-link-name="Support" data-link-group="Firefox">
-                    {{ _('Support') }}
-                  </a>
-                </li>
-              {% endif %}
               </ul>
 
               {% if LANG != 'en-US' %}

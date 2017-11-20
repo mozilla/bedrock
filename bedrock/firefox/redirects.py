@@ -474,7 +474,7 @@ redirectpatterns = (
     redirect('^products/firefox/support/$', 'https://support.mozilla.org/'),
     redirect('^products/firefox/switch', 'firefox.new'),
     redirect('^products/firefox/system-requirements', '/firefox/system-requirements/'),
-    redirect('^products/firefox/tabbed-browsing', 'firefox.desktop.index'),
+    redirect('^products/firefox/tabbed-browsing', 'firefox'),
     redirect('^products/firefox/text-zoom\.html$',
              'https://support.mozilla.org/kb/font-size-and-zoom-increase-size-of-web-pages'),
     redirect('^products/firefox/themes$', 'https://addons.mozilla.org/themes/'),
@@ -482,7 +482,7 @@ redirectpatterns = (
     redirect('^products/firefox/ui-customize\.html$',
              'https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars'),
     redirect('^products/firefox/upgrade', 'firefox.new'),
-    redirect('^products/firefox/why/$', 'firefox.desktop.index'),
+    redirect('^products/firefox/why/$', 'firefox'),
 
     # bug 857246 redirect /products/firefox/start/  to start.mozilla.org
     redirect(r'^products/firefox/start/?$', 'http://start.mozilla.org'),
@@ -553,4 +553,7 @@ redirectpatterns = (
     redirect(r'^firefox/default\.htm', '/firefox/'),
     redirect(r'^firefox/android/(?P<version>\d+\.\d+(?:\.\d+)?)$', '/firefox/android/{version}/releasenotes/'),
     redirect(r'^firefox/stats/', '/firefox/'),
+
+    # bug 1416706
+    redirect(r'^firefox/desktop/?', 'firefox'),
 )
