@@ -75,7 +75,7 @@ urlpatterns = (
         views.FirefoxProductIOSView.as_view(),
         name='firefox.ios'),
     url(r'^firefox/ios/testflight', views.ios_testflight, name='firefox.ios.testflight'),
-    url(r'^firefox/mobile/$', views.mobile, name='firefox.mobile'),
+    page('firefox/mobile', 'firefox/mobile.html'),
     page('firefox/mobile-download', 'firefox/mobile-download.html'),
     page('firefox/mobile-download/desktop', 'firefox/mobile-download-desktop.html'),
     url('^firefox/send-to-device-post/$', views.send_to_device_ajax,

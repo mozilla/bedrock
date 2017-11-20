@@ -1039,21 +1039,6 @@ class TestFirefoxDesktopPageRedirect(TestCase):
         ok_(resp.url.endswith('/en-US/firefox/'))
 
 
-class TestFirefoxMobilePageRedirect(TestCase):
-    @patch('bedrock.firefox.views.switch', Mock(return_value=False))
-    def test_mobile_page_pre_57(self):
-        req = RequestFactory().get('/en-US/firefox/mobile/')
-        resp = views.mobile(req)
-        eq_(resp.status_code, 302)
-        ok_(resp.url.endswith('/en-US/firefox/android/'))
-
-    @patch('bedrock.firefox.views.switch', Mock(return_value=True))
-    def test_mobile_page_post_57(self):
-        req = RequestFactory().get('/en-US/firefox/mobile/')
-        resp = views.mobile(req)
-        eq_(resp.status_code, 200)
-
-
 class TestFirefoxQuantumPageRedirect(TestCase):
     @patch('bedrock.firefox.views.switch', Mock(return_value=False))
     def test_quantum_pre_57(self):
