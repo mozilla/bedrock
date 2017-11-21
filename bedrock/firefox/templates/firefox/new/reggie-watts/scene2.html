@@ -23,7 +23,7 @@
 {% block primary_download_button %}
   {# Download button on scene2 is hidden visually. Both ID and CSS classes are needed to trigger auto-download #}
   <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
-    {{ download_firefox(alt_copy=_('Download Now'), force_direct=true, button_color='button quantum', dom_id='primary-download-button') }}
+    {{ download_firefox(alt_copy=_('Download Now'), force_direct=true, dom_id='primary-download-button') }}
   </div>
 {% endblock %}
 

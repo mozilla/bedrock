@@ -7,18 +7,19 @@
 
 // privacy policy link that accompany most download buttons
 .fx-privacy-link {
-    @include font-size(16px);
+    @include font-size-extra-small;
     @include open-sans;
     display: block;
     text-align: center;
-    text-shadow: none;
 
     a:link,
     a:visited {
         color: #fff;
+        text-decoration: none;
     }
 
     a:hover,
+    a:active,
     a:focus {
         text-decoration: underline;
     }
@@ -46,7 +47,7 @@ ul.download-list {
     }
 
     strong {
-        font-weight: normal;
+        font-weight: bold;
     }
 }
 
@@ -69,7 +70,7 @@ ul.download-list {
             .button {
                 @include font-size(14px);
                 margin-left: 3px;
-                padding: 6px;
+                padding: 6px 10px;
             }
         }
     }
@@ -208,10 +209,3 @@ ul.download-list {
 }
 
 /* stylelint-enable */
-
-// l10n download button tweaks
-html[lang="ml"] {
-    .button {
-        padding: 10px 16px;
-    }
-}

@@ -136,13 +136,14 @@ a.button:visited {
     }
 
     &.button-green {
-        background-color: @mozGreen;
+        background-color: @buttonGreen;
         color: @light;
-        border: 2px solid @mozGreenBorder;
+        border: 2px solid @buttonGreen;
 
         &:hover,
         &:focus {
-            background-color: @mozGreenHover;
+            background-color: saturate(darken(@buttonGreen, 5%), 10%);
+            border-color: saturate(darken(@buttonGreen, 5%), 10%);
         }
     }
 
@@ -183,13 +184,14 @@ a.button:visited {
 // privacy policy link that accompany most download buttons
 .fx-privacy-link {
     display: block;
-    .font-size(@largeFontSize);
+    .font-size(12px);
     text-align: center;
     text-shadow: none;
 
     a:link,
     a:visited {
         color: @light;
+        text-decoration: none;
     }
 
     a:hover,
@@ -245,8 +247,13 @@ ul.download-list {
         margin-left: 0;
     }
 
+    .download-link {
+        .font-size(16px);
+        padding: .9em 40px;
+    }
+
     strong {
-        font-weight: normal;
+        font-weight: bold;
     }
 }
 
@@ -267,7 +274,7 @@ ul.download-list {
             margin: @baseLine 0 0;
 
             .button {
-                padding: 6px;
+                padding: 6px 10px;
                 margin-left: 3px;
                 .font-size(14px);
             }

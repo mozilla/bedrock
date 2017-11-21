@@ -6,24 +6,21 @@
 
 // The basis for all buttons on mozilla.org
 %base-button {
+    @include font-size-level6;
     @include open-sans;
-    @include font-size(18px);
-    @include transition(background-color 100ms ease-in-out);
     background: none;
     border-radius: 100px;
     border-style: solid;
     border-width: 2px;
     cursor: pointer;
     display: inline-block;
-    padding: .5em 36px;
+    font-weight: bold;
+    padding: .9em 40px;
     position: relative;
     text-align: center;
-    text-shadow: none;
     text-decoration: none;
-
-    @media #{$mq-tablet} {
-        @include font-size(20px);
-    }
+    text-shadow: none;
+    transition: background-color .1s ease-in-out, border-color .1s ease-in-out;
 
     &:active {
         position: relative;
@@ -42,44 +39,48 @@ button.button,
 a.button:link,
 a.button:visited {
     @extend %base-button;
-    background-color: $color-mozblue;
-    border-color: darken($color-mozblue, 3%);
+    background-color: $color-button-blue;
+    border-color: $color-button-blue;
     color: $color-button-light;
 
     &:hover,
     &:focus {
-        background-color: saturate(lighten($color-mozblue, 5%), 10%);
+        background-color: saturate(lighten($color-button-blue, 5%), 10%);
+        border-color: saturate(lighten($color-button-blue, 5%), 10%);
     }
 
     &.button-dark {
         background-color: $color-button-dark;
-        border-color: darken($color-button-dark, 3%);
+        border-color: $color-button-dark;
         color: $color-button-light;
 
         &:hover,
         &:focus {
             background-color: saturate(lighten($color-button-dark, 5%), 10%);
+            border-color: saturate(lighten($color-button-dark, 5%), 10%);
         }
     }
 
     &.button-green {
         background-color: $color-button-green;
-        border-color: darken($color-button-green, 3%);
+        border-color: $color-button-green;
         color: $color-button-light;
 
         &:hover,
         &:focus {
-            background-color: saturate(lighten($color-button-green, 5%), 10%);
+            background-color: saturate(darken($color-button-green, 5%), 10%);
+            border-color: saturate(darken($color-button-green, 5%), 10%);
         }
     }
 
     &.button-red {
         background-color: $color-mozred;
-        border-color: darken($color-mozred, 3%);
+        border-color: $color-mozred;
         color: $color-button-light;
 
         &:hover {
             background-color: saturate(lighten($color-mozred, 5%), 10%);
+            border-color: saturate(lighten($color-mozred, 5%), 10%);
         }
     }
 
@@ -91,6 +92,7 @@ a.button:visited {
         &:hover,
         &:focus {
             background-color: saturate(lighten($color-button-orange, 5%), 10%);
+            border-color: saturate(lighten($color-button-orange, 5%), 10%);
         }
     }
 }
@@ -105,14 +107,14 @@ input[type="submit"].form-button,
 input[type='button'].form-button {
     @extend %base-button;
     background-color: transparent;
-    border-color: $color-mozblue;
-    color: $color-mozblue;
+    border-color: $color-button-blue;
+    color: $color-button-blue;
 
     &:hover,
     &:focus {
-        background-color: transparentize($color-mozblue, .95);
-        border-color: saturate(lighten($color-mozblue, 5%), 10%);
-        color: saturate(lighten($color-mozblue, 5%), 10%);
+        background-color: transparentize($color-button-blue, .95);
+        border-color: saturate(lighten($color-button-blue, 5%), 10%);
+        color: saturate(lighten($color-button-blue, 5%), 10%);
     }
 
     &.button-light {

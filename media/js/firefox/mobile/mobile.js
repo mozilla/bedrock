@@ -33,7 +33,7 @@
     $('.get-firefox, .get-focus').attr('role', 'button').on('click', openModal);
 
     // add class to widget button here to avoid messing with macro markup
-    $('#send-to-device button[type="submit"]').addClass('quantum-hollow');
+    $('#send-to-device button[type="submit"]').addClass('button-hollow button-light');
 
     // anchor 'See more' links should smooth scroll
     $('.see-more').on('click', function(e) {
