@@ -2,8 +2,13 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from bedrock.base.waffle import switch
 from bedrock.mozorg.util import page
 from bedrock.redirects.util import redirect
+
+SOM_2016_ENABLED = switch('som-2016')
+SOM_REDIRECT = ('foundation.annualreport.2016.index' if SOM_2016_ENABLED else
+                'foundation.annualreport.2015.index')
 
 
 urlpatterns = (
@@ -13,8 +18,8 @@ urlpatterns = (
     page('advocacy', 'foundation/advocacy.html'),
     page('leadership-network', 'foundation/leadership-network.html'),
 
-    # Bug 1317727  /foundation/annualreport/2015/
-    redirect(r'^annualreport/$', 'foundation.annualreport.2015.index',
+    # Bug 1419120  /foundation/annualreport/2016/
+    redirect(r'^annualreport/$', SOM_REDIRECT,
              name='foundation.annualreport', locale_prefix=False),
 
     # Older annual report financial faqs - these are linked from blog posts
@@ -91,3 +96,8 @@ urlpatterns = (
     # documents
     page('documents', 'foundation/documents/index.html'),
 )
+
+if SOM_2016_ENABLED:
+    urlpatterns += (
+        page('annualreport/2016', 'foundation/annualreport/2016/index.html'),
+    )
