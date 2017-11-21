@@ -660,28 +660,12 @@ def ios_testflight(request):
                              {'newsletter_form': newsletter_form})
 
 
-def features(request):
-    if switch('firefox-57-release'):
-        template = 'firefox/features/quantum/index.html'
-    else:
-        template = 'firefox/features/index.html'
-
-    return l10n_utils.render(request, template)
-
-
-class FeaturesPrivateBrowsingView(BlogPostsView):
+class FeaturesBookmarksView(BlogPostsView):
     blog_posts_limit = 3
     blog_posts_template_variable = 'articles'
     blog_slugs = 'firefox'
-    blog_tags = ['privacy', 'security', 'featured']
-
-    def get_template_names(self):
-        if switch('firefox-57-release'):
-            template = 'firefox/features/quantum/private-browsing.html'
-        else:
-            template = 'firefox/features/private-browsing.html'
-
-        return [template]
+    blog_tags = ['modern', 'privacy', 'featured']
+    template_name = 'firefox/features/bookmarks.html'
 
 
 class FeaturesFastView(BlogPostsView):
@@ -689,14 +673,7 @@ class FeaturesFastView(BlogPostsView):
     blog_posts_template_variable = 'articles'
     blog_slugs = 'firefox'
     blog_tags = ['fastest', 'featured']
-
-    def get_template_names(self):
-        if switch('firefox-57-release'):
-            template = 'firefox/features/quantum/fast.html'
-        else:
-            template = 'firefox/features/fast.html'
-
-        return [template]
+    template_name = 'firefox/features/fast.html'
 
 
 class FeaturesIndependentView(BlogPostsView):
@@ -704,14 +681,7 @@ class FeaturesIndependentView(BlogPostsView):
     blog_posts_template_variable = 'articles'
     blog_slugs = 'firefox'
     blog_tags = ['browser', 'featured']
-
-    def get_template_names(self):
-        if switch('firefox-57-release'):
-            template = 'firefox/features/quantum/independent.html'
-        else:
-            template = 'firefox/features/independent.html'
-
-        return [template]
+    template_name = 'firefox/features/independent.html'
 
 
 class FeaturesMemoryView(BlogPostsView):
@@ -719,29 +689,7 @@ class FeaturesMemoryView(BlogPostsView):
     blog_posts_template_variable = 'articles'
     blog_slugs = 'firefox'
     blog_tags = ['memory', 'featured']
-
-    def get_template_names(self):
-        if switch('firefox-57-release'):
-            template = 'firefox/features/quantum/memory.html'
-        else:
-            template = 'firefox/features/memory.html'
-
-        return [template]
-
-
-class FeaturesBookmarksView(BlogPostsView):
-    blog_posts_limit = 3
-    blog_posts_template_variable = 'articles'
-    blog_slugs = 'firefox'
-    blog_tags = ['modern', 'privacy', 'featured']
-
-    def get_template_names(self):
-        if switch('firefox-57-release'):
-            template = 'firefox/features/quantum/bookmarks.html'
-        else:
-            template = 'firefox/features/bookmarks.html'
-
-        return [template]
+    template_name = 'firefox/features/memory.html'
 
 
 class FeaturesPasswordManagerView(BlogPostsView):
@@ -749,29 +697,15 @@ class FeaturesPasswordManagerView(BlogPostsView):
     blog_posts_template_variable = 'articles'
     blog_slugs = 'firefox'
     blog_tags = ['modern', 'privacy', 'featured']
-
-    def get_template_names(self):
-        if switch('firefox-57-release'):
-            template = 'firefox/features/quantum/password-manager.html'
-        else:
-            template = 'firefox/features/password-manager.html'
-
-        return [template]
+    template_name = 'firefox/features/password-manager.html'
 
 
-def send_tabs(request):
-    if switch('firefox-57-release'):
-        template = 'firefox/features/quantum/send-tabs.html'
-    else:
-        locale = l10n_utils.get_locale(request)
-        exp = request.GET.get('v')
-
-        if locale.startswith('en') and exp in ['a', 'b']:
-            template = 'firefox/features/send-tabs-{0}.html'.format(exp)
-        else:
-            template = 'firefox/features/send-tabs.html'
-
-    return l10n_utils.render(request, template)
+class FeaturesPrivateBrowsingView(BlogPostsView):
+    blog_posts_limit = 3
+    blog_posts_template_variable = 'articles'
+    blog_slugs = 'firefox'
+    blog_tags = ['privacy', 'security', 'featured']
+    template_name = 'firefox/features/private-browsing.html'
 
 
 class FirefoxHubView(BlogPostsView):
@@ -797,14 +731,5 @@ def FirefoxProductDeveloperView(request):
         template = 'firefox/products/developer-quantum.html'
     else:
         template = 'firefox/products/developer.html'
-
-    return l10n_utils.render(request, template)
-
-
-def sync_page(request):
-    if switch('firefox-57-release'):
-        template = 'firefox/features/quantum/sync.html'
-    else:
-        template = 'firefox/features/sync.html'
 
     return l10n_utils.render(request, template)

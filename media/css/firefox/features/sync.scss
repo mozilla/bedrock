@@ -12,66 +12,20 @@ Thank you for your hard work.
 
 @import '../../pebbles/includes/lib';
 
-
-.header-intro .header-download {
-    @media #{$mq-tablet} {
-        padding-top: 20px;
-    }
-}
-
 .primary-buttons {
     margin-bottom: 0.5em;
+
+    @media #{$mq-tablet} {
+        display: flex;
+
+        li {
+            margin: 0 10px;
+        }
+    }
 }
 
 .warning span {
     background: #fb8e92;
-}
-
-@media #{$mq-tablet} {
-    #sync-intro-copy-cta-wrapper {
-        @include clearfix();
-    }
-
-    #sync-intro-copy {
-        @include span(6);
-        padding-left: 0;
-    }
-
-    #sync-intro-cta {
-        @include span(6);
-        text-align: center;
-    }
-}
-
-@media #{$mq-desktop} {
-    #sync-intro-copy {
-        @include span(8);
-        padding-left: 0;
-    }
-
-    #sync-intro-cta {
-        @include span(4);
-    }
-}
-
-@media #{$mq-desktop-wide} {
-    #sync-intro-copy {
-        @include span(9);
-        padding-left: 0;
-    }
-
-    #sync-intro-cta {
-        @include span(3);
-    }
-}
-
-// no CTA for android or iOS
-.state-fx-android,
-.state-fx-ios {
-    #sync-intro-copy,
-    #sync-intro-cta {
-        @include span-all();
-    }
 }
 
 #sync-intro-instructions ol {
@@ -99,15 +53,4 @@ Thank you for your hard work.
 .state-not-fx           .show-not-fx,
 .state-default          .show-default {
     display: block;
-}
-
-// Heading variations need to be inline level elements
-.state-fx-31-signed-in  h1 > span.show-fx-31-signed-in,
-.state-fx-31-signed-out h1 > span.show-fx-31-signed-out,
-.state-fx-30-older      h1 > span.show-fx-30-older,
-.state-fx-android       h1 > span.show-fx-android,
-.state-fx-ios           h1 > span.show-fx-ios,
-.state-not-fx           h1 > span.show-not-fx,
-.state-default          h1 > span.show-default {
-    display: inline;
 }
