@@ -23,14 +23,11 @@
 {% endblock %}
 
 {% block features_list %}
-<section class="features-list-section">
+<section class="key-features-section main">
   <div class="content">
-    <h2 class="section-title"><span>{{ _('Features') }}</span></h2>
-
-    <ul class="features-list">
-      <li class="features-list-item">
-        <img src="{{ static('img/firefox/features/thumbnails/bookmarks.png') }}" alt="">
-        <h3>{{ _('File that bookmark') }}</h3>
+    <section class="key-feature bookmarks-feature-1">
+      <div class="key-feature-content">
+        <h2>{{ _('File that bookmark') }}</h2>
         <p>
         {% trans %}
           Get your faves all sorted with the bookmark star icon, which lets you add custom names
@@ -38,11 +35,13 @@
           sight of the links you love.
         {% endtrans %}
         </p>
-      </li>
-      <li class="features-list-item">
-        <img src="{{ static('img/firefox/features/thumbnails/bookmarks/bookmarks-sync.png') }}" alt="">
+      </div>
+    </section>
+
+    <section class="key-feature bookmarks-feature-2">
+      <div class="key-feature-content">
         {# L10n Note: “Fly” is being used here as an expression for taking bookmarks with you on mobile. Should this not translate easily an alternate string could be “Sync that bookmark” #}
-        <h3>{{ _('Fly with that bookmark') }}</h3>
+        <h2>{{ _('Fly with that bookmark') }}</h2>
         <p>
         {% trans url='https://getpocket.com/firefox/' %}
           Take your favorites on the fly. Use Firefox Sync to access your bookmarks across all
@@ -50,74 +49,22 @@
           any online article, or page and come back to later – even without internet.
         {% endtrans %}
         </p>
-      </li>
-      <li class="features-list-item">
-        <img src="{{ static('img/firefox/features/thumbnails/bookmarks/bookmarks-addons.png') }}" alt="">
+      </div>
+    </section>
+
+    <section class="key-feature bookmarks-feature-3">
+      <div class="key-feature-content">
         {# L10n Note: “Futz” is an American slang word meaning “Fool around” or “Mess with”. Should this not translate easily an alternate string could be “Organize that bookmark” #}
-        <h3>{{ _('Futz with that bookmark') }}</h3>
+        <h2>{{ _('Futz with that bookmark') }}</h2>
         <p>
         {% trans url='https://addons.mozilla.org/firefox/collections/mozilla/bookmark-managers/' %}
           Practice your exactitude with every bookmark manager <a href="{{ url }}">add-on</a> you can think of, from
           full page snapshots to quick-switch sidebars to locked-down-tight private bookmarks.
         {% endtrans %}
         </p>
-      </li>
-    </ul>
+      </div>
+    </section>
 
   </div> {#--/.content--#}
 </section>
-{% endblock %}
-
-{% block values %}
-<section class="values">
-  <div class="content">
-    <div class="cards-container">
-      <section id="card-modern" class="card image-card card-private">
-        <a href="{{ url('firefox.features.private-browsing') }}" class="card-image" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
-          <img src="{{ static('img/firefox/hub/value-private.jpg') }}" alt="">
-        </a>
-        <div class="card-content">
-          <a href="{{ url('firefox.features.private-browsing') }}" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
-            <h2 class="card-title">{{ _('More privacy') }}</h2>
-          </a>
-          <p>
-          {% trans %}
-            Firefox doesn’t sell access to your personal information like
-            other companies. From privacy tools to tracking protection,
-            you’re in charge of who sees what.
-          {% endtrans %}
-          </p>
-          <p class="card-cta">
-            <a href="{{ url('firefox.features.private-browsing') }}" class="cta-link" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
-              {{ _('Here’s how Firefox protects your privacy') }}
-            </a>
-          </p>
-        </div>
-      </section>
-
-      <section id="card-independent" class="card image-card card-independent">
-        <a href="{{ url('firefox.features.independent') }}" class="card-image" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
-        <img src="{{ static('img/firefox/hub/value-indie.jpg') }}" alt="">
-        </a>
-        <div class="card-content">
-          <a href="{{ url('firefox.features.independent') }}" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
-            <h2 class="card-title">{{ _('More freedom') }}</h2>
-          </a>
-          <p>
-          {% trans %}
-            Following the pack isn’t our style. As part of the non-profit Mozilla,
-            Firefox leads the fight to protect your online rights and champion an
-            Internet that benefits everyone — not just a few.
-          {% endtrans %}
-          </p>
-          <p class="card-cta">
-            <a href="{{ url('firefox.features.independent') }}" class="cta-link" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
-              {{ _('Browse independently with Firefox') }}
-            </a>
-          </p>
-        </div>
-      </section>
-    </div> {#--/.cards-container--#}
-  </div> {#--/.content--#}
-</section> {#--/.values--#}
 {% endblock %}

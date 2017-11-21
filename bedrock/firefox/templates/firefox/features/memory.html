@@ -22,14 +22,11 @@
 {% endblock %}
 
 {% block features_list %}
-<section class="features-list-section">
+<section class="key-features-section main">
   <div class="content">
-    <h2 class="section-title"><span>{{ _('Features') }}</span></h2>
-
-    <ul class="features-list">
-      <li class="features-list-item">
-        <img src="{{ static('img/firefox/features/thumbnails/memory/fast.png') }}" alt="">
-        <h3>{{ _('Speed up your computer') }}</h3>
+    <section class="key-feature memory-feature-1">
+      <div class="key-feature-content">
+        <h2>{{ _('Speed up your computer') }}</h2>
         <p>
         {% trans %}
           Every computer program you run takes up some memory. When too much is used,
@@ -38,10 +35,12 @@
           computer responsive.
         {% endtrans %}
         </p>
-      </li>
-      <li class="features-list-item">
-        <img src="{{ static('img/firefox/features/thumbnails/memory.png') }}" alt="">
-        <h3>{{ _('Stop running out of memory') }}</h3>
+      </div>
+    </section>
+
+    <section class="key-feature memory-feature-2">
+      <div class="key-feature-content">
+        <h2>{{ _('Stop running out of memory') }}</h2>
         <p>
         {% trans url='https://blog.mozilla.org/firefox/fx54memorytest/' %}
           <a href="{{ url }}">Chrome uses up to 1.77x more memory than Firefox</a>.
@@ -50,10 +49,12 @@
           memory to run your favorite programs.
         {% endtrans %}
         </p>
-      </li>
-      <li class="features-list-item">
-        <img src="{{ static('img/firefox/features/thumbnails/private-browsing.jpg') }}" alt="">
-        <h3>{{ _('Browse faster, privately') }}</h3>
+      </div>
+    </section>
+
+    <section class="key-feature memory-feature-3">
+      <div class="key-feature-content">
+        <h2>{{ _('Browse faster, privately') }}</h2>
         <p>
         {% trans url=url('firefox.features.private-browsing') %}
           Explore the web faster with <a href="{{ url }}">Firefox Private Browsing</a>.
@@ -62,63 +63,9 @@
           faster.
         {% endtrans %}
         </p>
-      </li>
-    </ul>
+      </div>
+    </section>
 
   </div> {#--/.content--#}
 </section>
-{% endblock %}
-
-{% block values %}
-<section class="values">
-  <div class="content">
-    <div class="cards-container">
-      <section id="card-modern" class="card image-card card-private">
-        <a href="{{ url('firefox.features.private-browsing') }}" class="card-image" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
-          <img src="{{ static('img/firefox/hub/value-private.jpg') }}" alt="">
-        </a>
-        <div class="card-content">
-          <a href="{{ url('firefox.features.private-browsing') }}" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
-            <h2 class="card-title">{{ _('More privacy') }}</h2>
-          </a>
-          <p>
-          {% trans %}
-            Firefox doesn’t sell access to your personal information like
-            other companies. From privacy tools to tracking protection,
-            you’re in charge of who sees what.
-          {% endtrans %}
-          </p>
-          <p class="card-cta">
-            <a href="{{ url('firefox.features.private-browsing') }}" class="cta-link" data-link-type="link" data-link-position="Value - Private" data-link-name="More Privacy">
-              {{ _('Here’s how Firefox protects your privacy') }}
-            </a>
-          </p>
-        </div>
-      </section>
-
-      <section id="card-independent" class="card image-card card-independent">
-        <a href="{{ url('firefox.features.independent') }}" class="card-image" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
-        <img src="{{ static('img/firefox/hub/value-indie.jpg') }}" alt="">
-        </a>
-        <div class="card-content">
-          <a href="{{ url('firefox.features.independent') }}" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
-            <h2 class="card-title">{{ _('More freedom') }}</h2>
-          </a>
-          <p>
-          {% trans %}
-            Following the pack isn’t our style. As part of the non-profit Mozilla,
-            Firefox leads the fight to protect your online rights and champion an
-            Internet that benefits everyone — not just a few.
-          {% endtrans %}
-          </p>
-          <p class="card-cta">
-            <a href="{{ url('firefox.features.independent') }}" class="cta-link" data-link-type="link" data-link-position="Value - Independent" data-link-name="More Freedom">
-              {{ _('Browse independently with Firefox') }}
-            </a>
-          </p>
-        </div>
-      </section>
-    </div> {#--/.cards-container--#}
-  </div> {#--/.content--#}
-</section> {#--/.values--#}
 {% endblock %}
