@@ -1,0 +1,186 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+@import '../hubs/sections';
+@import '../quantum/buttons';
+
+/* -------------------------------------------------------------------------- */
+// Hero image & banner heading
+
+.banner {
+    color: #fff;
+
+    .banner-content {
+        @include at2x('/media/img/foundation/annualreport/2016/som-2016-mobile.jpg', 760px, 330px);
+        background-position: top center;
+        min-height: 290px;
+        padding: 20px;
+        position: relative;
+    }
+
+    h1 {
+        @include font-size-huge;
+        color: #fff;
+        line-height: 1.3;
+        max-width: 9em;
+
+        span {
+            @include box-decoration-break(clone);
+            background-color: #000;
+        }
+    }
+
+    @media #{$mq-phone-wide} {
+        .banner-content {
+            min-height: 250px;
+            padding: 40px;
+        }
+    }
+
+    @media #{$mq-tablet} {
+
+        .header-container {
+            width: 70%;
+            margin: 0 auto;
+        }
+
+        .banner-content {
+            @include at2x('/media/img/foundation/annualreport/2016/som-2016-desktop.jpg', 1250px, 562px);
+            padding: 80px 0;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .banner-content {
+            min-height: 402px;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Content sections
+
+.content-section {
+    padding: 60px 0 20px;
+
+    .copy-wrapper {
+        h2 {
+            @include font-size-level3;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .copy {
+            color: #000;
+        }
+    }
+
+    &:nth-child(even) {
+        background: #eaeff2;
+        padding: 60px 20px 20px;
+    }
+
+    @media #{$mq-tablet} {
+
+        .copy-wrapper {
+            @include clearfix;
+            margin: 0 auto;
+            width: 70%;
+
+            header {
+                float: left;
+                width: 30%;
+            }
+
+            .copy {
+                float: right;
+                width: 60%;
+            }
+        }
+
+        &:nth-child(even) {
+            padding: 60px 0 20px;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .copy-wrapper .copy {
+            width: 65%;
+        }
+    }
+}
+
+html[dir="rtl"] {
+    .content-section header {
+        float: right;
+    }
+
+    .copy-wrapper .copy {
+        float: left;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Page footer
+
+.site-footer {
+
+    ul {
+        margin: 0 auto 40px;
+    }
+
+    li {
+        display: block;
+        margin: 20px auto;
+
+        a {
+            background: #68c1a5;
+            box-shadow: inset 0 -5px 0 0 #5dad94, 0 5px 0 0 #eaeff2;
+            color: #fff;
+            display: block;
+            font-weight: bold;
+            height: 100%;
+            line-height: 1.5;
+            min-height: 100px;
+            padding: 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+
+            small {
+                display: block;
+                font-weight: 100;
+                text-transform: none;
+            }
+
+            &:hover,
+            &:active,
+            &:focus {
+                background: darken(#68c1a5, 15%);
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+    }
+
+    @media #{$mq-tablet} {
+
+        ul {
+            width: 70%;
+        }
+
+        li {
+            float: left;
+            width: 50%;
+
+            &:first-child a {
+                margin-right: 10px;
+            }
+
+            &:last-child a {
+                margin-left: 10px;
+            }
+        }
+    }
+}
