@@ -585,11 +585,9 @@ def new(request):
                 template = 'firefox/new/batm/scene2.html'
             elif experience == 'reggiewatts':
                 template = 'firefox/new/reggie-watts/scene2.html'
-            elif switch('firefox-57-release'):
-                template = 'firefox/new/quantum/scene2.html'
             else:
-                template = 'firefox/new/scene2.html'
-        elif lang_file_is_active('firefox/new/quantum', locale) and switch('firefox-57-release'):
+                template = 'firefox/new/quantum/scene2.html'
+        elif lang_file_is_active('firefox/new/quantum', locale):
             template = 'firefox/new/quantum/scene2.html'
         else:
             template = 'firefox/new/scene2.html'
@@ -639,11 +637,9 @@ def new(request):
                 template = 'firefox/new/batm/resist.html'
             elif experience == 'reggiewatts':
                 template = 'firefox/new/reggie-watts/scene1.html'
-            elif switch('firefox-57-release'):
-                template = 'firefox/new/quantum/scene1.html'
             else:
-                template = 'firefox/new/scene1.html'
-        elif lang_file_is_active('firefox/new/quantum', locale) and switch('firefox-57-release'):
+                template = 'firefox/new/quantum/scene1.html'
+        elif lang_file_is_active('firefox/new/quantum', locale):
             template = 'firefox/new/quantum/scene1.html'
         else:
             template = 'firefox/new/scene1.html'
