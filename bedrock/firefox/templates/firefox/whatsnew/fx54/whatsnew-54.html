@@ -47,8 +47,10 @@
           {# If user is in a locale with translated basket messages... #}
           {% if show_send_to_device %}
             {% if l10n_has_tag('fx53_whatsnew') %}
-              <h4 class="up-to-date"><span>{{ _('Your Firefox is up to date.') }}</span></h4>
-              <h2>{{ _('Now get on the go.') }}</h2>
+              <div class="up-to-date-messaging hidden">
+                <h4 class="up-to-date"><span>{{ _('Your Firefox is up to date.') }}</span></h4>
+                <h2>{{ _('Now get on the go.') }}</h2>
+              </div>
 
               {# L10n: Line break below for visual formatting only #}
               <h1>{{ _('Send Firefox to your phone<br> and unleash your Internet.') }}</h1>
@@ -61,8 +63,10 @@
           {# For users not in a locale with translated basket messages... #}
           {% else %}
             {% if l10n_has_tag('fx53_whatsnew') %}
-              <h4 class="up-to-date"><span>{{ _('Your Firefox is up to date.') }}</span></h4>
-              <h2>{{ _('Now get on the go.') }}</h2>
+              <div class="up-to-date-messaging hidden"></div>
+                <h4 class="up-to-date"><span>{{ _('Your Firefox is up to date.') }}</span></h4>
+                <h2>{{ _('Now get on the go.') }}</h2>
+              </div>
 
               <h1>{{ _('Download Firefox for your smartphone and tablet.') }}</h1>
             {% else %}
