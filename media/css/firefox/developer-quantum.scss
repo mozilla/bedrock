@@ -269,8 +269,18 @@ $color-dev-mediumblue: #306efe;
         margin-bottom: 40px;
     }
 
+    .more {
+        @include trailing-arrow;
+
+        &:hover,
+        &:active,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+
     @media #{$mq-tablet} {
-        padding-bottom: 100px;
+        padding-bottom: 140px;
 
         &:before {
             @include background-size(3000px 140px);
