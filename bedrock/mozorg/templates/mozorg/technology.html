@@ -69,6 +69,24 @@
       </footer>
     </section>
 
+    {% if l10n_has_tag('technology_quantum_section') %}
+    <section id="quantum" class="even">
+      <div class="content">
+        <div class="inner-container">
+          <h2>{{ _('Firefox Quantum for Developers is here (and it’s fast!)') }}</h2>
+          <p>{{ _('The new Firefox Developer Edition has a new, blazingly fast CSS engine built in Rust. Get it with innovative features like CSS Grid Layout panel and framework debugging.') }}</p>
+          <a href="{{ url('firefox.developer') }}" class="button">{{ _('Download now') }}</a>
+        </div>
+      </div>
+      <footer>
+        <ul>
+          <li><a rel="external" href="https://hacks.mozilla.org/2017/08/inside-a-super-fast-css-engine-quantum-css-aka-stylo/">{{ _('Learn about Quantum CSS') }}</a></li>
+          <li><a rel="external" href="https://research.mozilla.org/servo-engines/">{{ _('Check out Servo') }}</a></li>
+        </ul>
+      </footer>
+    </section>
+    {% endif %}
+
     <section id="gaming" class="even">
       <div class="content">
         <div class="inner-container">

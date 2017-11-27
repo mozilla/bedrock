@@ -500,6 +500,46 @@ html[dir="rtl"] #technologies > section {
     }
 }
 
+#quantum {
+    .content {
+        @include background-size(220px 156px);
+        background-image: url('/media/img/mozorg/technology/quantum.svg');
+        background-position: center top 40px;
+        background-repeat: no-repeat;
+        padding-top: 200px;
+    }
+
+    .inner-container {
+        padding-top: 40px;
+    }
+
+    footer {
+        background: #306ffd;
+        border-bottom: 2px solid darken(#306ffd, 5%);
+    }
+
+    @media #{$mq-phone-wide} {
+        .content {
+            @include background-size(260px 184px);
+            padding-top: 256px;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        .content {
+            @include background-size(360px 254px);
+            background-position: right top 40px;
+            padding-top: 0;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .content {
+            @include background-size(425px 300px);
+        }
+    }
+}
+
 #gaming {
     background-color: #d6f1f5;
     padding-top: 236px;
