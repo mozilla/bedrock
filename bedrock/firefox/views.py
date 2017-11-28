@@ -398,7 +398,11 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
         elif show_56_cliqz_firstrun(locale, version, f):
             template = 'firefox/firstrun/cliqz-funnelcake-119-122.html'
         elif show_57_firstrun(version):
-            template = 'firefox/firstrun/firstrun_quantum.html'
+            variant = self.request.GET.get('v', None)
+            if locale == 'en-US' and variant in ['a', 'b']:
+                template = 'firefox/firstrun/email-first-experiment/index-{0}.html'.format(variant)
+            else:
+                template = 'firefox/firstrun/firstrun_quantum.html'
         elif show_40_firstrun(version):
             template = 'firefox/firstrun/index.html'
         elif show_38_0_5_firstrun(version):
