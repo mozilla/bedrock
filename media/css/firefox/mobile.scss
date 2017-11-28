@@ -464,6 +464,23 @@ html[dir="rtl"] {
             padding-top: 20px;
         }
 
+        .disclaimer {
+            @include font-size-small;
+
+            a:link,
+            a:visited {
+                color: $color-quantum-blue;
+                text-decoration: none;
+            }
+
+            a:hover,
+            a:active,
+            a:focus {
+                text-decoration: underline;
+            }
+
+        }
+
         &:last-child {
             padding-bottom: 20px;
         }
