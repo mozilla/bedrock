@@ -329,6 +329,22 @@ class TestFirstRun(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/firstrun/firstrun_quantum.html'])
 
+    @override_settings(DEV=True)
+    def test_fx_firstrun_57_0_email_first_control(self, render_mock):
+        """Should use 57 quantum firstrun email-first control group template"""
+        req = self.rf.get('/en-US/firefox/firstrun/?v=a')
+        self.view(req, version='57.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/firstrun/email-first-experiment/index-a.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_firstrun_57_0_email_first_treatment(self, render_mock):
+        """Should use 57 quantum firstrun email-first treatment group template"""
+        req = self.rf.get('/en-US/firefox/firstrun/?v=b')
+        self.view(req, version='57.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/firstrun/email-first-experiment/index-b.html'])
+
     # start cliqz funnelcake tests (bug 1392855)
 
     @override_settings(DEV=True)

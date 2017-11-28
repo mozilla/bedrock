@@ -18,6 +18,7 @@
         scene.dataset.animate = 'true';
         var hideOrShowSkipButton = function (data) {
             switch(data.data.url) {
+            case '':
             case 'signin':
             case 'signup':
             case 'reset_password':
