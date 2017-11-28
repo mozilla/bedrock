@@ -157,6 +157,14 @@
                     </li>
                   </ol>
                 </div>{#--/.features-image-wrapper--#}
+
+                {% if l10n_has_tag('disconnect_link') %}
+                  <p class="disclaimer">
+                  {% trans url='https://disconnect.me/' %}
+                    Built-in tracking protection and block lists provided by <a href="{{ url }}">Disconnect</a>.
+                  {% endtrans %}
+                  </p>
+                {% endif %}
               </section>
 
               <section class="page-article-section feature-content" id="firefox-extensions" data-section="firefox" data-ga-label="firefox mobile - extensions">
@@ -247,6 +255,14 @@
                     </li>
                   </ol>
                 </div>{#--/.features-image-wrapper--#}
+
+                {% if l10n_has_tag('disconnect_link') %}
+                  <p class="disclaimer">
+                  {% trans url='https://disconnect.me/' %}
+                    Built-in tracking protection and block lists provided by <a href="{{ url }}">Disconnect</a>.
+                  {% endtrans %}
+                  </p>
+                {% endif %}
               </section>
 
               <section class="page-article-section feature-content" id="focus-speed" data-section="focus" data-ga-label="firefox focus - speed">
