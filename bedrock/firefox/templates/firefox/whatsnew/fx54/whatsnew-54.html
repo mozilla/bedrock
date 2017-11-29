@@ -63,7 +63,7 @@
           {# For users not in a locale with translated basket messages... #}
           {% else %}
             {% if l10n_has_tag('fx53_whatsnew') %}
-              <div class="up-to-date-messaging hidden"></div>
+              <div class="up-to-date-messaging hidden">
                 <h4 class="up-to-date"><span>{{ _('Your Firefox is up to date.') }}</span></h4>
                 <h2>{{ _('Now get on the go.') }}</h2>
               </div>
@@ -103,7 +103,5 @@
 {% block email_form %}{% endblock %}
 
 {% block js %}
-  {% if show_send_to_device %}
-    {% javascript 'firefox_whatsnew_54' %}
-  {% endif %}
+  {% javascript 'firefox_whatsnew_54' %}
 {% endblock %}
