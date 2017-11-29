@@ -612,36 +612,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-update-notification-firstrun-whatsnew-bundle.css',
     },
-    'firefox_whatsnew_42': {
-        'source_filenames': (
-            'css/firefox/tracking-protection-animation.less',
-            'css/firefox/whatsnew/whatsnew-42.less',
-        ),
-        'output_filename': 'css/firefox_whatsnew_42-bundle.css',
-    },
-    'firefox_whatsnew_zh_tw_49': {
-        'source_filenames': (
-            'css/firefox/tracking-protection-animation.less',
-            'css/firefox/whatsnew/whatsnew-42.less',
-            'css/firefox/whatsnew/whatsnew-zh-tw-49.less',
-        ),
-        'output_filename': 'css/firefox_whatsnew_zh_tw_49-bundle.css',
-    },
-    'firefox_whatsnew_50': {
+    'firefox_whatsnew': {
         'source_filenames': (
             'css/base/send-to-device.less',
             'css/firefox/horizon/background.less',
-            'css/firefox/whatsnew/whatsnew-50.less',
+            'css/firefox/whatsnew/whatsnew.less',
         ),
-        'output_filename': 'css/firefox_whatsnew_50-bundle.css',
-    },
-    'firefox_whatsnew_54': {
-        'source_filenames': (
-            'css/base/send-to-device.less',
-            'css/firefox/horizon/background.less',
-            'css/firefox/whatsnew/whatsnew-54.less',
-        ),
-        'output_filename': 'css/firefox_whatsnew_54-bundle.css',
+        'output_filename': 'css/firefox_whatsnew-bundle.css',
     },
     'firefox-whatsnew-56': {
         'source_filenames': (
@@ -1461,36 +1438,12 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_tour_none-bundle.js',
     },
-    'firefox_whatsnew_42': {
-        'source_filenames': (
-            'js/base/uitour-lib.js',
-            'js/base/mozilla-highlight-target.js',
-            'js/firefox/whatsnew/whatsnew-42.js',
-        ),
-        'output_filename': 'js/firefox_whatsnew_42-bundle.js',
-    },
-    'firefox_whatsnew_zh_tw_49': {
-        'source_filenames': (
-            'js/base/uitour-lib.js',
-            'js/base/mozilla-highlight-target.js',
-            'js/firefox/whatsnew/whatsnew-zh-tw-49.js',
-            'js/firefox/whatsnew/whatsnew-zh-tw-49-init.js',
-        ),
-        'output_filename': 'js/firefox_whatsnew_zh_tw_49-bundle.js',
-    },
-    'firefox_whatsnew_50': {
+    'firefox_whatsnew': {
         'source_filenames': (
             'js/base/send-to-device.js',
-            'js/firefox/whatsnew/whatsnew-50.js',
+            'js/firefox/whatsnew/whatsnew.js',
         ),
-        'output_filename': 'js/firefox_whatsnew_50-bundle.js',
-    },
-    'firefox_whatsnew_54': {
-        'source_filenames': (
-            'js/base/send-to-device.js',
-            'js/firefox/whatsnew/whatsnew-54.js',
-        ),
-        'output_filename': 'js/firefox_whatsnew_54-bundle.js',
+        'output_filename': 'js/firefox_whatsnew-bundle.js',
     },
     'firefox-update-notification': {
         'source_filenames': (

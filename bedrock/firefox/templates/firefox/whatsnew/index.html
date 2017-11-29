@@ -4,7 +4,7 @@
 
 {% from "macros.html" import google_play_button, send_to_device with context %}
 
-{% add_lang_files "firefox/whatsnew_50" "firefox/sendto" %}
+{% add_lang_files "firefox/whatsnew" "firefox/sendto" %}
 
 {% extends "firefox/whatsnew/base.html" %}
 
@@ -21,15 +21,12 @@
 {% block site_header %}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox_whatsnew_54' %}
+  {% stylesheet 'firefox_whatsnew' %}
 {% endblock %}
 
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
 
 {% set send_to_device_message_set = 'fx-50-whatsnew' %}
-
-{% set app_store_url = 'https://app.adjust.com/2uo1qc?campaign=whats_new&adgroup=iOS_App_Store&creative=badge_en&fallback=https%3A%2F%2Fitunes.apple.com%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8' %}
-{% set play_store_url = 'https://app.adjust.com/2uo1qc?campaign=whats_new&adgroup=Google_Play_Store&creative=badge_en' %}
 
 {% block content %}
 <main role="main">
@@ -83,7 +80,7 @@
               </div>
             {% else %}
               <div id="qr-wrapper" class="primary-cta">
-                <img src="{{ static('img/firefox/whatsnew_54/qrcode.png') }}" width="250" height="250" alt="" />
+                <img src="{{ static('img/firefox/whatsnew/qrcode.png') }}" width="250" height="250" alt="" />
               </div>
             {% endif %}
             </div>{# --/.content --#}
@@ -103,5 +100,5 @@
 {% block email_form %}{% endblock %}
 
 {% block js %}
-  {% javascript 'firefox_whatsnew_54' %}
+  {% javascript 'firefox_whatsnew' %}
 {% endblock %}
