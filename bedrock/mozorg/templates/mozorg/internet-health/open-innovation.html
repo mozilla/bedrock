@@ -126,10 +126,15 @@
             <li>
               <h4>{{ _('Contribute to a project') }}</h4>
               <p>
-              {% trans contribute=url('mozorg.contribute.index'),
-              %}
-                Contribute to an existing open source project. Become a <a href="{{ contribute }}">Mozillian!</a>
-              {% endtrans %}
+              {% if l10n_has_tag('open-innovation-update-20171130') %}
+                  {% trans contribute=url('mozorg.contribute.index') %}
+                     Contribute to an existing open source project. Become a <a href="{{ contribute }}">Mozillian!</a>
+                  {% endtrans %}
+              {% else %}
+                  {% trans contribute=url('mozorg.contribute.index'),
+                           open_hatch='https://openhatch.org/' %}
+                     Contribute to an existing open source project. Become a <a href="{{ contribute }}">Mozillian!</a> Or use <a href="{{ open_hatch }}">OpenHatch</a> to match your skillset to a project.
+              {% endif %}
               </p>
             </li>
             <li>
