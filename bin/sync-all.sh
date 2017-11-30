@@ -8,7 +8,7 @@ fi
 ./manage.py migrate --noinput --database bedrock
 ./manage.py cron update_ical_feeds
 ./manage.py update_product_details_files --database bedrock
-./manage.py update_wordpress --database bedrock
+./manage.py update_wordpress
 ./manage.py update_externalfiles
 ./manage.py update_security_advisories
 ./manage.py l10n_update
