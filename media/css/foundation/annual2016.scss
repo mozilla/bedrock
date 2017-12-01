@@ -13,9 +13,10 @@
     color: #fff;
 
     .banner-content {
-        @include at2x('/media/img/foundation/annualreport/2016/som-2016-mobile.jpg', 760px, 330px);
+        @include at2x('/media/img/foundation/annualreport/2016/som-2016-mobile.jpg', 760px, 394px);
         background-position: top center;
-        min-height: 290px;
+        background-repeat: no-repeat;
+        min-height: 250px;
         padding: 20px;
         position: relative;
     }
@@ -34,7 +35,6 @@
 
     @media #{$mq-phone-wide} {
         .banner-content {
-            min-height: 250px;
             padding: 40px;
         }
     }
@@ -47,14 +47,14 @@
         }
 
         .banner-content {
-            @include at2x('/media/img/foundation/annualreport/2016/som-2016-desktop.jpg', 1250px, 562px);
-            padding: 80px 0;
+            @include at2x('/media/img/foundation/annualreport/2016/som-2016-desktop.jpg', 1250px, 394px);
+            padding: 40px 0;
         }
     }
 
     @media #{$mq-desktop} {
         .banner-content {
-            min-height: 402px;
+            min-height: 274px;
         }
     }
 }
@@ -62,6 +62,14 @@
 /* -------------------------------------------------------------------------- */
 // Content sections
 
+.intro-section {
+    p {
+        @include font-size-level4;
+        margin-bottom: 0;
+    }
+}
+
+.intro-section,
 .content-section {
     padding: 60px 0 20px;
 
@@ -75,11 +83,10 @@
         .copy {
             color: #000;
         }
-    }
 
-    &:nth-child(even) {
-        background: #eaeff2;
-        padding: 60px 20px 20px;
+        img {
+            margin: 40px auto;
+        }
     }
 
     @media #{$mq-tablet} {
@@ -110,6 +117,11 @@
             width: 65%;
         }
     }
+}
+
+.content-section:nth-child(odd) {
+    background: #eaeff2;
+    padding: 60px 20px 20px;
 }
 
 html[dir="rtl"] {
