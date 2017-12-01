@@ -1,2 +1,2 @@
 web: ./bin/run.sh
-clock: ./bin/run-clock.sh
+clock: ./bin/run-db-clock.sh

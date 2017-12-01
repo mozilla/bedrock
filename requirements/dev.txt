@@ -6,8 +6,6 @@ Sphinx==1.0.7 \
 Pygments==2.0.2 \
     --hash=sha256:0a3a2265e1efb0defa722d1f429730dc9df975adc3c60ac7d2b432bdf03c041d \
     --hash=sha256:7320919084e6dac8f4540638a46447a3bd730fca172afc17d2c03eed22cf4f51
-docutils==0.12 \
-    --hash=sha256:c7db717810ab6965f66c8cf0398a98c9d8df982da39b4cd7f162911eb89596fa
 flake8==2.0 \
     --hash=sha256:8dce4f7e64cc202cc6da93eab84b2ce660110ff684b6738bba64a0a431b3bc69
 mccabe==0.3 \

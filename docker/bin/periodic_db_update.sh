@@ -9,7 +9,7 @@
 deis login $DEIS_CONTROLLER --username=$DEIS_USERNAME --password=$DEIS_PASSWORD
 deis run -a $DEIS_APPLICATION -- '\
 ./manage.py cron update_ical_feeds; \
-./manage.py update_product_details_files --database bedrock; \
+./manage.py update_product_details_files; \
 ./manage.py update_externalfiles; \
 ./manage.py update_security_advisories; \
 ./manage.py cron update_tweets'

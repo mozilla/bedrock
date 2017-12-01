@@ -8,13 +8,8 @@
 set -ex
 
 
-if [[ "$DEMO_MODE" == "true" ]]; then
-    FROM_DOCKER_REPOSITORY='mozorg/bedrock_demo'
-    DOCKER_TAG="${GIT_COMMIT}"
-else
-    FROM_DOCKER_REPOSITORY='mozorg/bedrock_l10n'
-    DOCKER_TAG="${BRANCH_NAME}-${GIT_COMMIT}"
-fi
+FROM_DOCKER_REPOSITORY='mozorg/bedrock_l10n'
+DOCKER_TAG="${BRANCH_NAME/\//-}-${GIT_COMMIT}"
 
 # Push to private registry
 for PRIVATE_REGISTRY in ${PRIVATE_REGISTRIES//,/ };

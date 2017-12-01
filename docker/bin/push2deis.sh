@@ -14,11 +14,7 @@ source $BIN_DIR/set_git_env_vars.sh
 DEIS_BIN="${DEIS_BIN:-deis}"
 
 if [[ "$DEIS_BIN" == "deis2" ]]; then
-    if [[ "$DEMO_MODE" == "true" ]]; then
-        DOCKER_REPO="mozorg/bedrock_demo:${GIT_COMMIT}"
-    else
-        DOCKER_REPO="mozorg/bedrock:${BRANCH_NAME}-${GIT_COMMIT}"
-    fi
+    DOCKER_REPO="mozorg/bedrock:${BRANCH_NAME/\//-}-${GIT_COMMIT}"
 else
     DOCKER_REPO="$DOCKER_PRIVATE_REPO:${GIT_COMMIT}"
 fi

@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-RUN_SUPERVISOR=$(echo "$RUN_SUPERVISOR" | tr '[:upper:]' '[:lower:]')
+RUN_SUPERVISOR=$(echo "${RUN_SUPERVISOR:-true}" | tr '[:upper:]' '[:lower:]')
 
 if [[ "$RUN_SUPERVISOR" == "true" ]]; then
   exec bin/run-supervisor.sh
