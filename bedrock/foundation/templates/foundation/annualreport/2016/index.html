@@ -26,12 +26,8 @@
     </header>
 
     <div class="content">
-      <section class="content-section">
+      <div class="intro-section">
         <div class="copy-wrapper">
-          <header>
-            <h2>{{ _('Harnessing the Power of the Internet for Public Good') }}</h2>
-          </header>
-          <div class="copy">
             <p><em>
             {% trans %}
               The State of Mozilla 2016 is our annual report. This report highlights
@@ -40,7 +36,15 @@
               calendar year.
             {% endtrans %}
             </em></p>
+        </div>{#--/.copy-wrapper--#}
+      </div>{#--/.content-section--#}
 
+      <section class="content-section">
+        <div class="copy-wrapper">
+          <header>
+            <h2>{{ _('Harnessing the Power of the Internet for Public Good') }}</h2>
+          </header>
+          <div class="copy">
             <p>
             {% trans %}
               Billions of people depend on an open and accessible internet for knowledge,
@@ -314,6 +318,8 @@
             {% endtrans %}
             </p>
 
+            {{ high_res_img('foundation/annualreport/2016/2016-report.png', {'alt': _('Consolidating Statement of Activities and Change in Net Assets'), 'width': '570', 'height': '389'}) }}
+
             <p>
             {% trans cliqz='https://blog.mozilla.org/press-uk/2016/08/23/mozilla-makes-strategic-investment-in-cliqz-to-enable-privacy-focused-search-innovation/',
                      foot_note='#foot-note'
@@ -340,17 +346,6 @@
             {% endtrans %}
             </p>
 
-            <p>
-            {% trans download=url('firefox.new'), volunteer=url('mozorg.contribute.index'), mozorg=url('mozorg.home') %}
-              Our mission is to ensure the internet is a global public resource, open and accessible to all.
-              This mission is as important now as it has ever been. We urge everyone who is interested to
-              find a way to contribute to protecting the internet. We invite you to
-              <a href="{{ download }}">download Firefox</a>  or <a href="{{ volunteer }}">volunteer</a>
-              to be part of Mozilla or donate to support the work of internet health leaders around the world.
-              Learn more at <a href="{{ mozorg }}">mozilla.org</a>.
-            {% endtrans %}
-            </p>
-
             <p id="foot-note"><small>
             {% trans announced='https://blog.mozilla.org/blog/2017/11/14/firefox-features-google-as-default-search-provider-in-the-u-s-canada-hong-kong-and-taiwan/',
                      decision='https://blog.mozilla.org/blog/2017/11/14/firefox-features-google-as-default-search-provider-in-the-u-s-canada-hong-kong-and-taiwan/',
@@ -362,6 +357,27 @@
               experience in each region as opposed to having a single global default.
             {% endtrans %}
             </small></p>
+
+          </div>{#--/.copy--#}
+        </div>{#--/.copy-wrapper--#}
+      </section>{#--/.content-section--#}
+
+      <section class="content-section">
+        <div class="copy-wrapper">
+          <header>
+            <h2>{{ _('Join Mozilla') }}</h2>
+          </header>
+          <div class="copy">
+            <p>
+            {% trans download=url('firefox.new'), volunteer=url('mozorg.contribute.index'), mozorg=url('mozorg.home') %}
+              Our mission is to ensure the internet is a global public resource, open and accessible to all.
+              This mission is as important now as it has ever been. We urge everyone who is interested to
+              find a way to contribute to protecting the internet. We invite you to
+              <a href="{{ download }}">download Firefox</a>  or <a href="{{ volunteer }}">volunteer</a>
+              to be part of Mozilla or donate to support the work of internet health leaders around the world.
+              Learn more at <a href="{{ mozorg }}">mozilla.org</a>.
+            {% endtrans %}
+            </p>
 
           </div>{#--/.copy--#}
         </div>{#--/.copy-wrapper--#}
