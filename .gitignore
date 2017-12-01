@@ -28,6 +28,8 @@ Desktop.ini
 venv
 *.db
 *.mmdb
+bedrock_db_info.json
+!root_files/bedrock_db_info.json
 james.ini
 test-results.xml
 tests/unit/coverage

@@ -1,4 +1,4 @@
-FROM python:2.7-slim
+FROM python:2-stretch
 
 # from https://github.com/mozmeao/docker-pythode/blob/master/Dockerfile.footer
 
@@ -19,7 +19,7 @@ WORKDIR /app
 EXPOSE 8000
 CMD ["./bin/run.sh"]
 
-RUN apt-install gettext build-essential libxml2-dev libxslt1.1 libxslt1-dev git libpq-dev
+RUN apt-install gettext build-essential libxml2-dev libxslt1-dev libxslt1.1 git
 
 COPY ./requirements /app/requirements
 

@@ -34,7 +34,6 @@ def loadBranch(String branch) {
 
     // load the global config
     global_config = readYaml file: 'jenkins/global.yml'
-    env.DEMO_MODE = config.demo ? 'true' : 'false'
     // defined in the Library loaded above
     setGitEnvironmentVariables()
     setConfigEnvironmentVariables(global_config)

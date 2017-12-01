@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Time Since Last Cron Task Runs</title>
+  <style>
+    h2.success {
+      color: green;
+    }
+    h2.fail {
+      color: #c00;
+    }
+    th, td {
+      padding: 3px 5px;
+      margin: 5px;
+    }
+    tr:nth-child(even) > td, th {
+      background-color: #eee;
+    }
+    #other-data tr > td:first-child {
+      font-weight: bold;
+    }
+    .error > td {
+      color: #c00;
+      font-weight: bold;
+    }
+    .num {
+      text-align: right;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Time Since Last Cron Task Runs</h1>
+  {% if success %}
+    <h2 class="success">PASS</h2>
+  {% else %}
+    <h2 class="fail">FAIL</h2>
+  {% endif %}
+  <table>
+    <thead>
+      <tr>
+        <th>Task Name</th>
+        <th>Max Seconds</th>
+        <th>Seconds Since Last Run</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for name, maxt, realt, task_pass in results %}
+      <tr{% if not task_pass %} class="error"{% endif %}>
+        <td>{{ name }}</td>
+        <td class="num">{{ maxt }}</td>
+        <td class="num">{{ realt }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h1>Other Site Data</h1>
+  <table id="other-data">
+    <tbody>
+      <tr>
+        <td>Hostname</td>
+        <td>{{ server_info.name }}</td>
+      </tr>
+      {% if server_info.git_sha %}
+      <tr>
+        <td>Bedrock Git SHA</td>
+        <td><a href="https://github.com/mozilla/bedrock/commit/{{ server_info.git_sha }}">{{ server_info.git_sha[:10] }}</a></td>
+      </tr>
+      {% endif %}
+      {% if server_info.db_git_sha %}
+      <tr>
+        <td>DB Git SHA</td>
+        <td><a href="https://github.com/mozilla/bedrock/commit/{{ server_info.db_git_sha }}">{{ server_info.db_git_sha[:10] }}</a></td>
+      </tr>
+      {% endif %}
+      {% if server_info.db_checksum %}
+      <tr>
+        <td>DB File Checksum</td>
+        <td>{{ server_info.db_checksum }}</td>
+      </tr>
+      {% endif %}
+      {% if server_info.db_last_update %}
+      <tr>
+        <td>DB Last Updated</td>
+        <td>{{ server_info.db_last_update }} min ago</td>
+      </tr>
+      {% endif %}
+      {% if server_info.db_file_name %}
+      <tr>
+        <td>DB File</td>
+        <td><a href="{{ server_info.db_file_url }}">{{ server_info.db_file_name }}</a></td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</body>
+</html>
