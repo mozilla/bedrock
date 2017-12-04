@@ -178,7 +178,6 @@
         <li><a href="https://static.mozilla.com/moco/en-US/pdf/2015_Mozilla_Audited_Financial_Statement.pdf">{{ _('2015 Audited financial statements') }}</a></li>
       </ul>
     </li>
-    {% if switch('som-2016') %}
     <li>{{ _('2016 filings and related documents') }}
       <ul>
         <li>{{ _('2016 annual report:') }} <q><a href="{{ url('foundation.annualreport.2016.index') }}">{{ _('State of Mozilla 2016') }}</a></q></li>
@@ -186,7 +185,6 @@
         <li><a href="https://assets.mozilla.net/annualreport/2016/2016_Mozilla_Audited_Financial_Statement.pdf">{{ _('2016 Audited financial statements') }}</a></li>
       </ul>
     </li>
-    {% endif %}
   </ul>
 
 {% endblock %}

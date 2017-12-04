@@ -28,14 +28,14 @@
     <div class="content">
       <div class="intro-section">
         <div class="copy-wrapper">
-            <p><em>
+            <p>
             {% trans %}
               The State of Mozilla 2016 is our annual report. This report highlights
               activities for 2016 and is accompanied by detailed financials. This report
               is released when we submit the Mozilla non-profit tax filing for the previous
               calendar year.
             {% endtrans %}
-            </em></p>
+            </p>
         </div>{#--/.copy-wrapper--#}
       </div>{#--/.content-section--#}
 
@@ -317,8 +317,99 @@
               health leaders from around the world.
             {% endtrans %}
             </p>
+          </div>{#--/.copy--#}
 
-            {{ high_res_img('foundation/annualreport/2016/2016-report.png', {'alt': _('Consolidating Statement of Activities and Change in Net Assets'), 'width': '570', 'height': '389'}) }}
+          <div class="financial-table">
+            <table>
+              <caption>
+                <h3>{{ _('Mozilla Foundation and Subsidiary') }}</h3>
+                <p>{{ _('Consolidating Statement of Activities and Change in Net Assets, <br>Year ended December 31, 2016.') }}</p>
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col"><strong>{{ _('Unrestricted Net Assets') }}</strong></th>
+                  <th scope="col">{{ _('Mozilla Foundation') }}</th>
+                  <th scope="col">{{ _('Mozilla Corporation') }}</th>
+                  <th scope="col">{{ _('Eliminations') }}</th>
+                  <th scope="col">{{ _('Consolidated') }}</th>
+                </tr>
+              </thead>
+              <tbody class="revenue">
+                <tr>
+                  <th scope="col">{{ _('Revenue and other support:') }}</th>
+                </tr>
+                <tr>
+                  <th scope="row">{{ _('Royalties') }}</th>
+                  <td>$8,349</td>
+                  <td>$504,145</td>
+                  <td>($8,817)</td>
+                  <td>$503,677</td>
+                </tr>
+                <tr>
+                  <th scope="row">{{ _('Interest and dividend income') }}</th>
+                  <td>$353</td>
+                  <td>$2,665</td>
+                  <td></td>
+                  <td>$3,018</td>
+                </tr>
+                <tr>
+                  <th scope="row">{{ _('Net realized and unrelealized gain from investments') }}</th>
+                  <td>$778</td>
+                  <td>$72</td>
+                  <td>$226</td>
+                  <td>$1,076</td>
+                </tr>
+                <tr>
+                  <th scope="row">{{ _('Contributions') }}</th>
+                  <td>$5,440</td>
+                  <td></td>
+                  <td></td>
+                  <td>$5,440</td>
+                </tr>
+                <tr>
+                  <th scope="row">{{ _('Other') }}</th>
+                  <td>$191</td>
+                  <td></td>
+                  <td></td>
+                  <td>$191</td>
+                </tr>
+                <tr>
+                  <th scope="row">{{ _('Foreign currency exchange gain (loss)') }}</th>
+                  <td>$48</td>
+                  <td>($488)</td>
+                  <td>($801)</td>
+                  <td>($1,241)</td>
+                </tr>
+                <tr>
+                  <th scope="row">{{ _('Loss of sale assets') }}</th>
+                  <td></td>
+                  <td>($124)</td>
+                  <td></td>
+                  <td>($124)</td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <th scope="row">{{ _('Net assets released from restrictions') }}</th>
+                  <td>$8,336</td>
+                  <td></td>
+                  <td></td>
+                  <td>$8,336</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th scope="row"><strong>{{ _('Total unrestricted revenue and support') }}</strong></th>
+                  <td>$23,495</td>
+                  <td>$506,270</td>
+                  <td>($9,392)</td>
+                  <td>$520,373</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <div class="copy">
 
             <p>
             {% trans cliqz='https://blog.mozilla.org/press-uk/2016/08/23/mozilla-makes-strategic-investment-in-cliqz-to-enable-privacy-focused-search-innovation/',
@@ -327,7 +418,7 @@
               The majority of Mozilla Corporation’s revenue is from royalties earned through Firefox
               web browser search partnerships and distribution deals around the world. Mozilla
               Corporation’s revenue and income support for CY 2016 was $506M, as compared to $414M in
-              CY 2015. Over the past several years, Mozilla has shifted from one having global search
+              CY 2015. Over the past several years, Mozilla has shifted from having one global search
               default in Firefox to a more local and flexible approach by country to offer users more
               choice and to enable innovation and competition in search. In 2015 and 2016, we expanded
               this new global search strategy and secured new partnerships with DuckDuckGo, Google and
@@ -369,13 +460,17 @@
           </header>
           <div class="copy">
             <p>
-            {% trans download=url('firefox.new'), volunteer=url('mozorg.contribute.index'), mozorg=url('mozorg.home') %}
+            {% trans download=url('firefox.new'),
+                     volunteer=url('mozorg.contribute.index'),
+                     mozorg=url('mozorg.home'),
+                     donate='https://donate.mozilla.org/?utm_source=website&utm_medium=referral&utm_campaign=stateofmoz&utm_content=footer'
+            %}
               Our mission is to ensure the internet is a global public resource, open and accessible to all.
               This mission is as important now as it has ever been. We urge everyone who is interested to
               find a way to contribute to protecting the internet. We invite you to
               <a href="{{ download }}">download Firefox</a>  or <a href="{{ volunteer }}">volunteer</a>
-              to be part of Mozilla or donate to support the work of internet health leaders around the world.
-              Learn more at <a href="{{ mozorg }}">mozilla.org</a>.
+              to be part of Mozilla or <a href="{{ donate }}">donate</a> to support the work of internet
+              health leaders around the world. Learn more at <a href="{{ mozorg }}">mozilla.org</a>.
             {% endtrans %}
             </p>
 
