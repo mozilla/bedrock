@@ -31,7 +31,7 @@ done
 
 DOCKERFILE="$1"
 if [[ "$DOCKERFILE" == "l10n" ]]; then
-    DOCKER_TAG="${BRANCH_NAME}-${GIT_COMMIT}"
+    DOCKER_TAG="${BRANCH_NAME/\//-}-${GIT_COMMIT}"
 else
     DOCKER_TAG="${GIT_COMMIT}"
 fi

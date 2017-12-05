@@ -28,14 +28,12 @@ def ircNotification(Map args) {
     sh command
 }
 
-def pushDockerhub(from_repo, to_repo='') {
-    to_repo = to_repo ?: from_repo
+def pushDockerhub(docker_repo) {
     withCredentials([[$class: 'StringBinding',
                       credentialsId: 'DOCKER_PASSWORD',
                       variable: 'DOCKER_PASSWORD']]) {
         withEnv(['DOCKER_USERNAME=mozjenkins',
-                 "FROM_DOCKER_REPOSITORY=${from_repo}",
-                 "DOCKER_REPOSITORY=${to_repo}"]) {
+                 "DOCKER_REPOSITORY=${docker_repo}"]) {
             retry(2) {
                 sh 'docker/bin/push2dockerhub.sh'
             }

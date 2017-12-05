@@ -6,6 +6,7 @@ import datetime
 import os
 import sys
 from subprocess import check_call
+from time import time
 
 import requests
 from apscheduler.schedulers.blocking import BlockingScheduler
@@ -15,7 +16,10 @@ from pathlib2 import Path
 
 schedule = BlockingScheduler()
 DEAD_MANS_SNITCH_URL = config('DEAD_MANS_SNITCH_URL', default='')
-REL_NOTES_UPDATE_MINUTES = config('REL_NOTES_UPDATE_MINUTES', default='5', cast=int)
+DB_UPDATE_MINUTES = config('DB_UPDATE_MINUTES', default='5', cast=int)
+LOCAL_DB_UPDATE = config('LOCAL_DB_UPDATE', default=False, cast=bool)
+DB_DOWNLOAD_IGNORE_GIT = config('DB_DOWNLOAD_IGNORE_GIT', default=False, cast=bool)
+RUN_TIMES = {}
 
 # ROOT path of the project. A pathlib.Path object.
 ROOT_PATH = Path(__file__).resolve().parents[1]
@@ -61,63 +65,75 @@ class scheduled_job(object):
 def ping_dms(function):
     """Pings Dead Man's Snitch after job completion if URL is set."""
 
-    def _ping():
-        function()
+    def _ping(*args):
+        function(*args)
         if DEAD_MANS_SNITCH_URL:
             utcnow = datetime.datetime.utcnow()
-            payload = {'m': 'Run {} on {}'.format(function.__name__, utcnow.isoformat())}
+            payload = {'m': 'Run {} on {}'.format(
+                function.__name__, utcnow.isoformat())}
             requests.get(DEAD_MANS_SNITCH_URL, params=payload)
 
     _ping.__name__ = function.__name__
     return _ping
 
 
+def set_last_run(name):
+    RUN_TIMES[name] = time()
+
+
+def get_time_since(name):
+    last_run = RUN_TIMES.get(name)
+    if last_run:
+        return time() - last_run
+
+    # initialize if not set
+    set_last_run(name)
+    return 0
+
+
 def schedule_database_jobs():
-    @scheduled_job('interval', minutes=15)
+    @scheduled_job('interval', minutes=DB_UPDATE_MINUTES)
     @ping_dms
-    def update_product_details():
-        call_command('update_product_details_files --database bedrock')
+    def update_upload_database():
+        fn_name = 'update_upload_database'
+        command = 'bin/run-db-update.sh'
+        time_since = get_time_since(fn_name)
+        if time_since > 21600:  # 6 hours
+            command += ' --all'
 
-    @scheduled_job('interval', minutes=30)
-    def update_externalfiles():
-        call_command('update_externalfiles')
+        check_call(command, shell=True)
+        if not LOCAL_DB_UPDATE:
+            check_call('python bin/run-db-upload.py', shell=True)
 
-    @scheduled_job('interval', minutes=30)
-    def update_security_advisories():
-        call_command('update_security_advisories')
-
-    @scheduled_job('interval', hours=6)
-    def update_tweets():
-        call_command('cron update_tweets')
-
-    @scheduled_job('interval', hours=1)
-    def ical_feeds():
-        call_command('cron update_ical_feeds')
-        call_command('cron cleanup_ical_events')
-
-    @scheduled_job('interval', hours=1)
-    def update_blog_feeds():
-        call_command('update_wordpress')
-
-    @scheduled_job('interval', minutes=REL_NOTES_UPDATE_MINUTES)
-    def update_release_notes():
-        call_command('update_release_notes --quiet')
+        if command.endswith('--all'):
+            # must set this after command run so that it won't update
+            # if an update errors
+            set_last_run(fn_name)
 
 
-def schedul_l10n_jobs():
+def schedule_file_jobs():
     @scheduled_job('interval', minutes=10)
     def update_locales():
         call_command('l10n_update')
 
+    if not LOCAL_DB_UPDATE:
+        @scheduled_job('interval', minutes=DB_UPDATE_MINUTES)
+        def download_database():
+            command = 'python bin/run-db-download.py'
+            if DB_DOWNLOAD_IGNORE_GIT:
+                command += ' --ignore-git'
 
-if __name__ == '__main__':
-    args = sys.argv[1:]
+            check_call(command, shell=True)
+
+
+def main(args):
     has_jobs = False
     if 'db' in args:
         schedule_database_jobs()
         has_jobs = True
-    if 'l10n' in args:
-        schedul_l10n_jobs()
+
+    if 'file' in args:
+        schedule_file_jobs()
         has_jobs = True
 
     if has_jobs:
@@ -125,3 +141,7 @@ if __name__ == '__main__':
             schedule.start()
         except (KeyboardInterrupt, SystemExit):
             pass
+
+
+if __name__ == '__main__':
+    main(sys.argv[1:])

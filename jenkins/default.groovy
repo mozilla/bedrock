@@ -11,8 +11,7 @@ stage ('Build Images') {
     }
     utils.ircNotification([stage: 'Test & Deploy', status: 'starting'])
     lock ("bedrock-docker-${env.GIT_COMMIT}") {
-        image_mode = config.demo ? 'demo' : 'prod'
-        command = "docker/bin/build_images.sh --${image_mode}"
+        command = "docker/bin/build_images.sh"
         if (config.smoke_tests || config.integration_tests) {
             command += ' --test'
         }
@@ -50,15 +49,9 @@ if ( config.push_public_registry != false ) {
     milestone()
     stage ('Push Public Images') {
         try {
-            if (config.demo) {
-                utils.pushDockerhub('mozorg/bedrock_demo')
-            }
-            else {
-                utils.pushDockerhub('mozorg/bedrock_base')
-                utils.pushDockerhub('mozorg/bedrock_build')
+            utils.pushDockerhub('mozorg/bedrock')
+            if ( ! config.demo ) {
                 utils.pushDockerhub('mozorg/bedrock_test')
-                utils.pushDockerhub('mozorg/bedrock_code')
-                utils.pushDockerhub('mozorg/bedrock_l10n', 'mozorg/bedrock')
             }
         } catch(err) {
             utils.ircNotification([stage: 'Dockerhub Push Failed', status: 'warning'])
