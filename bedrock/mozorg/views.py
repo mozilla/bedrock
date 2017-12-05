@@ -305,14 +305,3 @@ class DeveloperView(BlogPostsView):
     blog_slugs = 'hacks'
     blog_posts_limit = 3
     blog_posts_template_variable = 'articles'
-
-
-def plugincheck(request):
-    locale = l10n_utils.get_locale(request)
-
-    if lang_file_is_active('mozorg/plugincheck-update', locale):
-        template = 'mozorg/plugincheck-update.html'
-    else:
-        template = 'mozorg/plugincheck.html'
-
-    return l10n_utils.render(request, template)

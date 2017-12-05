@@ -2,18 +2,19 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "mozorg/base-resp.html" %}
+{% extends "base-pebbles.html" %}
 
-{% add_lang_files "mozorg/plugincheck-redesign" %}
+{% add_lang_files "mozorg/plugincheck-update" %}
 
 {% block page_image %}{{ static('img/plugincheck/page-image.png') }}{% endblock %}
 
 {% block page_title %}
-  {{_('Keep your Firefox healthy with a quick checkup')}}
+  {{ _('More browser features, fewer plugin updates | Firefox') }}
 {% endblock %}
+{% block page_title_suffix %}{% endblock %}
 
 {% block page_desc %}
-  {{_('Use Flash? QuickTime? Java? If you use these to make your Firefox experience more awesome, check your plugins! They may need to be updated.')}}
+  {{ _('Browse with fewer interruptions. Features from NPAPI plugins are now automatically supported in Firefox. Download the latest Firefox now!') }}
 {% endblock %}
 
 {% block body_class %}{% endblock %}
@@ -23,201 +24,89 @@
   {% stylesheet 'plugincheck' %}
 {% endblock %}
 
-{% block string_data %}
-  {# L10n: This is a button telling the user to update their plugin #}
-  data-button-update-now="{{ _('Update Now') }}"
-
-  {# L10n: This is a button informing the user of an unknown plugin and provides a URL to research the status of the plugin #}
-  data-button-learn-more="{{ _('Learn more') }}"
-
-  {# L10n: This is alt text used on plugin icon images #}
-  data-icon-alt-txt="{{ _('Plugin icon') }}"
-
-  {# L10n: This is the string used to indicate that the plugin is up to date #}
-  data-up-to-date="{{ _('up to date') }}"
-
-  {# L10n: This is the string used to indicate that the plugin is unknown #}
-  data-unknown="{{ _('unknown') }}"
-
-  {# L10n: This is the string used to indicate that the plugin is outdated #}
-  data-outdated="{{ _('outdated') }}"
-
-  {# L10n: This is the string used to indicate that the plugin is vulnerable #}
-  data-vulnerable="{{ _('vulnerable') }}"
-
-  data-media-url="{{ static('') }}"
-{% endblock %}
 
 {% block site_header_logo %}{% endblock %}
 
 {% block content %}
 <main role="main">
-  <header class="container">
-    <h1 class="large">{{_('Check Your Plugins')}}</h1>
-    <p class="tagline">{{_('Plugins power the videos, animations and games in your Firefox. Keep an eye on their status and keep them up to date.')}}</p>
-    <p>{{_('Be sure to restart your Firefox after making all recommended updates.')}}</p>
-  </header>
+  <section class="section">
+    <div class="content">
 
-  <section id="out-of-date-container" class="message-box container hidden">
-    <h2>{{_('You are using an older version of Firefox.')}}</h2>
-    <p>{{_('Update now to keep your plugins running smoothly and securely.')}}</p>
-    {{ download_firefox(dom_id="out-of-date-download-button") }}
-  </section>
+      <div class="message message-firefox-current">
+        {# L10n: <br> for visual formatting #}
+        <h1>{{ _('Good news - you’re using<br> the latest version of Firefox!') }}</h1>
+        <p class="tagline">
+        {% trans npapi='https://blog.mozilla.org/futurereleases/2015/10/08/npapi-plugins-in-firefox/' %}
+          Even better news - Firefox now <a href="{{ npapi }}">supports features</a>
+          that used to require additional plugins.
+        {% endtrans %}
+        </p>
 
-  <section id="not-supported-container" class="message-box container hidden">
-    <h2>{{_('Currently the plugin check service is only available to Firefox users on desktop and Android.')}}</h2>
-    {{ download_firefox(dom_id="not-supported-download-button") }}
-  </section>
-
-  <noscript>
-    <section id="enable-js-container" class="message-box container">
-      <h2>{{_('Please turn on JavaScript to display this page correctly.')}}</h2>
-    </section>
-  </noscript>
-
-  <section id="plugin-status-container">
-    <div class="plugincheck-loader hidden"></div>
-
-    <section id="no-plugins-container" class="plugins-error hidden">
-      <h2>{% trans bugzilla_url='https://bugzilla.mozilla.org/enter_bug.cgi?product=Plugin%20Check&component=UI' %}
-        No plugins were found. If you believe this is an error, <a href="{{ bugzilla_url }}">please file a bug</a> and let us know.
-      {% endtrans %}</h2>
-    </section>
-
-    <div id="plugins-container" class="hidden container">
-      <section id="sec-plugin-featured">
-        <h2>{{_('Common plugins you should check often.')}}</h2>
-        <ul id="plugin-featured"></ul>
-      </section>
-
-      <div class="accordion accordion-auto-init">
-        <section>
-          <h2 id="all-plugins-heading" data-accordion-role="tab">
-            {{_('All plugins')}}
-            <span id="vulnerable-warning" class="hidden">
-              <span class="count">(0)</span> {{ _('vulnerable') }}
-            </span>
-          </h2>
-
-          <div data-accordion-role="tabpanel">
-            <div id="sec-plugin-outdated">
-              <table class="table status">
-                <caption>{{_('These plugins are out of date. Please update.')}}</caption>
-                <thead>
-                  <tr>
-                    <th class="plugin-status-detail" scope="col">{{_('Plugin')}}</th>
-                    <th class="plugin-status-status" scope="col">{{_('Status')}}</th>
-                    <th class="plugin-status-action action" scope="col">{{_('Action')}}</th>
-                  </tr>
-                </thead>
-                <tbody id="plugin-outdated"></tbody>
-              </table>
-            </div>
-
-            <div id="sec-plugin-uptodate">
-              <table class="table status status-up-to-date">
-                <caption>{{_('These plugins are up to date. No action required.')}}</caption>
-                <thead>
-                  <tr>
-                    <th class="plugin-status-detail" scope="col">{{_('Plugin')}}</th>
-                    <th class="plugin-status-status" scope="col">{{_('Status')}}</th>
-                  </tr>
-                </thead>
-                <tbody id="plugin-uptodate"></tbody>
-              </table>
-            </div>
-
-            <div id="sec-plugin-unknown">
-              <table class="table status status-unknown">
-                <caption>{{_('These plugins have an unknown status. Follow the links to learn more.')}}</caption>
-                <thead>
-                  <tr>
-                    <th class="plugin-status-detail" scope="col">{{_('Plugin')}}</th>
-                    <th class="plugin-status-action action" scope="col">{{_('Action')}}</th>
-                  </tr>
-                </thead>
-                <tbody id="plugin-unknown"></tbody>
-              </table>
-            </div>
-          </div>
-        </section>
+        <p class="support">
+          <a href="https://support.mozilla.org" data-link-type="support" data-link-position="current" data-link-name="Mozilla Support">
+            {{ _('Need help? Visit Mozilla Support') }}
+          </a>
+        </p>
       </div>
+
+      <div class="message message-firefox-old">
+        {# L10n: <br> for visual formatting #}
+        <h1>{{ _('Better features,<br> fewer plugin updates') }}</h1>
+        <p class="tagline">
+        {% trans npapi='https://blog.mozilla.org/futurereleases/2015/10/08/npapi-plugins-in-firefox/',
+                 blocklist='https://support.mozilla.org/kb/add-ons-cause-issues-are-on-blocklist' %}
+          Firefox has been <a href="{{ npapi }}">expanding to support features</a>
+          that used to require extra plugins. Now, they’re kept up-to-date automatically
+          and managed through <a href="{{ blocklist }}">blocklisting</a> for added security.
+          So you can stay current with just one Firefox update.
+        {% endtrans %}
+        </p>
+
+        <div class="cta">
+          <p>{{ _('Download the latest version:') }}</p>
+          {{ download_firefox(dom_id='oldfx-download', button_color='button-arrow', download_location='outdated, primary cta', alt_copy=_('Update Firefox')) }}
+        </div>
+
+        <p class="support">
+          <a href="https://support.mozilla.org" data-link-type="support" data-link-position="outdated" data-link-name="Mozilla Support">
+            {{ _('Need help? Visit Mozilla Support') }}
+          </a>
+        </p>
+      </div>
+
+      <div id="not-supported-container" class="message message-not-firefox">
+        {# L10n: <br> for visual formatting #}
+        <h1>{{ _('Tired of updating plugins?<br> Firefox has you covered.') }}</h1>
+        <p class="tagline">
+        {% trans npapi='https://blog.mozilla.org/futurereleases/2015/10/08/npapi-plugins-in-firefox/',
+                 blocklist='https://support.mozilla.org/kb/add-ons-cause-issues-are-on-blocklist' %}
+          As the web moves forward, so do we. Firefox now <a href="{{ npapi }}">supports more features</a>
+          that used to require plugins, so you can browse with fewer crashes and interruptions.
+          Plus, our <a href="{{ blocklist }}">blocklist system</a> protects you between updates.
+        {% endtrans %}
+        </p>
+
+        <div class="cta">
+          {{ download_firefox(dom_id='notfx-download', button_color='button-arrow', download_location='Not Firefox, primary cta') }}
+        </div>
+      </div>
+
     </div>
   </section>
-
-  <section class="newsletter-container">
-    <aside id="newsletter-subscribe">
-      <div class="content container">
-        {{ email_newsletter_form(title=_('<span>Firefox</span> + You'), subtitle=_('Get Firefox tips, tricks, news and more'), button_class='button-light') }}
-      </div>
-    </aside>
-  </section>
-
-  <section class="plugin-faq-container container accordion accordion-auto-init">
-      <header>
-        <h2>{{_('Common Plugin Questions')}}</h2>
-        <a class="support-link" rel="external" href="https://support.mozilla.org/products/firefox/manage-preferences-and-add-ons-firefox/install-and-manage-add-ons">
-          {{ _('Need help? Visit Mozilla Support.')}}
-        </a>
-      </header>
-      <section>
-        <h3 data-accordion-role="tab">{{_('What is a plugin?')}}</h3>
-        <div data-accordion-role="tabpanel">
-          <ul>
-            <li>{{_('Plugins are bits of software that power videos, animation and games in your browser.')}}</li>
-            <li>{{_('They’re built outside of Firefox by companies like Adobe Systems and Apple.')}}</li>
-          </ul>
-        </div>
-      </section>
-
-      <section>
-        <h3 data-accordion-role="tab">{{_('Why should I update my plugins?')}}</h3>
-        <div data-accordion-role="tabpanel">
-          <ul>
-            <li>{{_('Out of date plugins can increase your risk for attack by malware, viruses and other security threats.')}} {{_('They can also cause interruptions that negatively affect your browsing experience.')}}</li>
-            <li>{{_('Updated plugins keep your browser working smoothly and safely.')}}</li>
-            <li>{{_('Plugins don’t always update automatically so it’s up to you from time to time.')}}</li>
-          </ul>
-        </div>
-      </section>
-
-      <section>
-        <h3 data-accordion-role="tab">{{_('How can Firefox help me?')}}</h3>
-        <div data-accordion-role="tabpanel">
-          <p>{{_('In the future, Firefox will update plugins for you. Until then, you should regularly check this page and update your plugins to keep your Firefox safe.')}}</p>
-        </div>
-      </section>
-
-      <section>
-        <h3 data-accordion-role="tab">{{_('How can I see which plugins I have installed in my Firefox?')}}</h3>
-        <div data-accordion-role="tabpanel">
-          <p>{{_('We automatically detected your plugins above. To view all the plugins you have installed in Firefox, follow these steps in your desktop browser:')}}</p>
-          <ol>
-            <li>{{_('Open the <span class="menu">menu</span>.')}}</li>
-            <li>{{_('Choose Add-ons.')}}</li>
-            <li>{{_('Click the plugins tab.')}}</li>
-          </ol>
-        </div>
-      </section>
-
-      <section>
-        <h3 data-accordion-role="tab">{{_('How do I disable a plugin?')}}</h3>
-        <div data-accordion-role="tabpanel">
-          <p>{{_('In Firefox for desktop:')}}</p>
-          <ol>
-            <li>{{_('Open the <span class="menu">menu</span>.')}}</li>
-            <li>{{_('Choose Add-ons.')}}</li>
-            <li>{{_('Click the plugins tab.')}}</li>
-            <li>{{_('Click on the drop down next to the plugin you wish to disable.')}}</li>
-            <li>{{_('Select "Never Activate" from the available choices.')}}</li>
-          </ol>
-          <p>{{ _('Caution: Disabling a plugin means that you will no longer be able to do certain things. For example, if you disable Flash, you will not be able to watch videos on some streaming video websites.') }}</p>
-        </div>
-      </section>
-  </section>
-
-  <p class="container"><a href="#top">{{_('Back to Top')}}</a></p>
 </main>
+
+<aside class="outro ga-section" data-ga-label="Hungry for more?">
+  <div class="content">
+    <section class="outro-item outro-item-newsletter">
+      <div class="outro-item-detail">
+        <h2>{{ _('Hungry for more?') }}</h2>
+        <p class="tagline">{{ _('Get the latest &amp; greatest from Firefox delivered straight to your inbox.') }}</p>
+        {{ email_newsletter_form(include_title=False, spinner_color='#000', button_class='button-hollow button-light') }}
+      </div>
+    </section>
+  </div> {#--/.content--#}
+</aside> {#--/.outro--#}
+
 {% endblock %}
 
 {% block email_form %}{% endblock %}
