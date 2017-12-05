@@ -1,0 +1,148 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+#promo-close {
+    background: transparent url('/media/img/notification/close.svg') center center no-repeat;
+    background-size: 18px 18px;
+    border: none;
+    border-radius: 50%;
+    display: none;
+    height: 30px;
+    padding: 6px;
+    position: absolute;
+    right: 0;
+    top: -20px;
+    transition: background-color 0.2s ease;
+    width: 30px;
+
+    &:focus,
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    // hide the 'Close' text
+    span {
+        @include visually-hidden;
+    }
+
+    // only display when JS is available
+    .js & {
+        display: block;
+    }
+}
+
+#promo-net-neutrality {
+    background: #000;
+    color: #fff;
+    padding: 40px 20px;
+
+    // hide by default if JS is available to avoid flicker
+    // (if visitor previously dismissed)
+    .js & {
+        display: none;
+    }
+
+    h1 {
+        @include font-size-level2;
+        margin-bottom: 1em;
+    }
+
+    .button {
+        @include font-size-level5;
+        font-weight: bold;
+        background: $color-brand-neonblue;
+        border: 0;
+        color: #000;
+        transition: background-color 0.2s ease;
+
+        &:hover,
+        &:focus {
+            background-color: #fff;
+        }
+    }
+
+    .content-wrapper {
+        margin: 0 auto;
+        max-width: 1420px;
+        padding-top: 10px;
+        position: relative;
+    }
+
+
+    @media #{$mq-desktop} {
+        @include clearfix;
+        text-align: left;
+
+        h1 {
+            margin-bottom: 0;
+        }
+
+        .content-wrapper {
+            @include clearfix;
+        }
+    }
+}
+
+
+@media #{$mq-desktop} {
+    #promo-headline {
+        float: left;
+        width: 50%;
+
+        h1 {
+            padding-left: 1em;
+            width: calc(75% - 1em);
+        }
+    }
+
+    #promo-content {
+        float: left;
+        padding-top: 4px;
+        width: 50%;
+
+        p {
+            margin-bottom: 2em;
+        }
+    }
+}
+
+
+// Slenderized banner on slashnew.
+#promo-net-neutrality.is-slim {
+    @include font-size-small;
+    padding: 0 40px 0 0;
+
+    p {
+        margin: 0 0 1em;
+    }
+
+    .button {
+        @include font-size-small;
+        font-weight: bold;
+        background: $color-brand-neonblue;
+        border: 0;
+        color: #000;
+        transition: background-color 0.2s ease;
+        margin: 10px 0;
+
+        &:hover,
+        &:focus {
+            background-color: #fff;
+        }
+    }
+
+    #promo-close {
+        top: 5px;
+        right: 5px;
+    }
+
+    @media #{$mq-tablet} {
+        p {
+            margin: 0 20px 0 0;
+            display: inline-block;
+        }
+    }
+}

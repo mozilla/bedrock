@@ -57,7 +57,6 @@ $submit-button-color: #fef45f;
 
     h1 {
         @include font-size-level2;
-        font-weight: normal;
         margin-bottom: 1.6em;
     }
 
@@ -130,6 +129,7 @@ $submit-button-color: #fef45f;
         }
     }
 }
+
 
 #fundraiser-recurring label:first-child {
     margin-right: 20px;

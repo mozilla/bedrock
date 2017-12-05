@@ -126,5 +126,8 @@
 {% endblock %}
 
 {% block js %}
+  {% if switch('netneutrality-12-2017', ['en-US']) %}
+    {% javascript 'netneutrality-12-2017' %}
+  {% endif %}
   {% javascript 'firefox_new_scene1' %}
 {% endblock %}
