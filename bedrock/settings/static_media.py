@@ -454,45 +454,21 @@ PIPELINE_CSS = {
         'output_filename': 'css/firefox_mobile_download_desktop_bundle.css',
     },
     # favor cache for scene 2 speed over 1 less HTTP request for scene 1
-    'firefox_new_quantum_common': {
-        'source_filenames': (
-            'css/firefox/new/quantum/common.scss',
-        ),
-        'output_filename': 'css/firefox_new_quantum_common-bundle.css',
-    },
-    'firefox_new_quantum_scene1': {
-        'source_filenames': (
-            'css/firefox/new/quantum/scene1.scss',
-        ),
-        'output_filename': 'css/firefox_new_quantum_scene1-bundle.css',
-    },
-    'firefox_new_quantum_scene2': {
-        'source_filenames': (
-            'css/firefox/new/quantum/scene2.scss',
-        ),
-        'output_filename': 'css/firefox_new_quantum_scene2-bundle.css',
-    },
     'firefox_new_common': {
         'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/tabzilla/tabzilla-static.less',
-            'css/base/platform-footer-links.less',
-            'css/firefox/new/common.less',
+            'css/firefox/new/common.scss',
         ),
         'output_filename': 'css/firefox_new_common-bundle.css',
     },
     'firefox_new_scene1': {
         'source_filenames': (
-            'css/base/mozilla-modal.less',
-            'css/firefox/new/other-platforms.less',
-            'css/newsletter/fxnewsletter-subscribe.less',
-            'css/firefox/new/scene1.less',
+            'css/firefox/new/scene1.scss',
         ),
         'output_filename': 'css/firefox_new_scene1-bundle.css',
     },
     'firefox_new_scene2': {
         'source_filenames': (
-            'css/firefox/new/scene2.less',
+            'css/firefox/new/scene2.scss',
         ),
         'output_filename': 'css/firefox_new_scene2-bundle.css',
     },

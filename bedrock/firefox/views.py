@@ -543,9 +543,7 @@ def new(request):
             elif experience == 'reggiewatts':
                 template = 'firefox/new/reggie-watts/scene2.html'
             else:
-                template = 'firefox/new/quantum/scene2.html'
-        elif lang_file_is_active('firefox/new/quantum', locale):
-            template = 'firefox/new/quantum/scene2.html'
+                template = 'firefox/new/scene2.html'
         else:
             template = 'firefox/new/scene2.html'
     # if no/incorrect scene specified, show scene 1
@@ -595,9 +593,7 @@ def new(request):
             elif experience == 'reggiewatts':
                 template = 'firefox/new/reggie-watts/scene1.html'
             else:
-                template = 'firefox/new/quantum/scene1.html'
-        elif lang_file_is_active('firefox/new/quantum', locale):
-            template = 'firefox/new/quantum/scene1.html'
+                template = 'firefox/new/scene1.html'
         else:
             template = 'firefox/new/scene1.html'
 

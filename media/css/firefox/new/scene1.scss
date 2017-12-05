@@ -2,11 +2,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../../pebbles/includes/lib';
-@import '../../../pebbles/components/modal';
-@import '../../../hubs/sections';
-@import '../../../quantum/buttons';
-@import '../../../quantum/newsletter';
+@import '../../pebbles/includes/lib';
+@import '../../pebbles/components/modal';
+@import '../../hubs/sections';
+@import '../../quantum/buttons';
+@import '../../quantum/newsletter';
 @import 'other-platforms';
 
 $color-quantum-blue: #0a84ff;
@@ -45,7 +45,7 @@ $color-quantum-blue: #0a84ff;
         display: none;
 
         &:before {
-            background: url('/media/img/firefox/new/quantum/icon-check.svg') center center no-repeat;
+            background: url('/media/img/firefox/new/icon-check.svg') center center no-repeat;
             content: '';
             display: inline-block;
             height: 22px;
@@ -79,7 +79,7 @@ html.firefox-pre-release {
         display: inline-block;
 
         &:before {
-            background-image: url('/media/img/firefox/new/quantum/icon-info.svg');
+            background-image: url('/media/img/firefox/new/icon-info.svg');
         }
     }
 }
@@ -93,7 +93,7 @@ html.firefox-old {
         display: inline-block;
 
         &:before {
-            background-image: url('/media/img/firefox/new/quantum/icon-alert.svg');
+            background-image: url('/media/img/firefox/new/icon-alert.svg');
         }
     }
 }
@@ -107,7 +107,7 @@ html.android.firefox-old {
         display: inline-block;
 
         &:before {
-            background-image: url('/media/img/firefox/new/quantum/icon-alert.svg');
+            background-image: url('/media/img/firefox/new/icon-alert.svg');
         }
     }
 }
