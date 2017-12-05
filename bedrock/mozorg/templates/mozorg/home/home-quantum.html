@@ -33,7 +33,9 @@
 {% block site_header %}
   {% include 'mozorg/home/includes/home-icons-sprite.svg' %}
 
-  {% if switch('home-fundraiser-EOY2017') and l10n_has_tag('home-fundraiser-EOY2017') %}
+  {% if switch('netneutrality-12-2017', ['en-US']) %}
+    {% include 'mozorg/home/includes/netneutrality-12-2017.html' %}
+  {% elif switch('home-fundraiser-EOY2017') and l10n_has_tag('home-fundraiser-EOY2017') %}
     {% include 'mozorg/home/includes/fundraiser-eoy2017.html' %}
   {% endif %}
 
@@ -251,14 +253,16 @@
 {% endblock %}
 
 {% block js %}
-  {% if switch('home-fundraiser-EOY2017') and l10n_has_tag('home-fundraiser-EOY2017') %}
+  {% if switch('netneutrality-12-2017', ['en-US']) %}
+    {% javascript 'netneutrality-12-2017' %}
+  {% elif switch('home-fundraiser-EOY2017') and l10n_has_tag('home-fundraiser-EOY2017') %}
     {% javascript 'home-fundraiser-eoy2017' %}
   {% endif %}
 {% endblock %}
 
 {% block update_notification %}
-  {# do not show the update banner if the fundraiser banner is active #}
-  {% if not switch('home-fundraiser-EOY2017') %}
+  {# do not show the update banner if the fundraiser banner (or net neutrality banner) is active #}
+  {% if not switch('home-fundraiser-EOY2017') and not switch('netneutrality-12-2017') %}
     {{ super() }}
   {% endif %}
 {% endblock %}
