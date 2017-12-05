@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../../pebbles/includes/lib';
+@import '../../pebbles/includes/lib';
 
 $color-quantum-blue: #0a84ff;
 
@@ -81,7 +81,7 @@ html[dir="rtl"] #other-platforms-modal-link {
         a:link,
         a:visited {
             @include font-size-small;
-            background: url('/media/img/firefox/new/quantum/down-arrow-blue.svg') left center no-repeat;
+            background: url('/media/img/firefox/new/down-arrow-blue.svg') left center no-repeat;
             @include background-size(20px 16px);
             color: $color-quantum-blue;
             display: inline-block;

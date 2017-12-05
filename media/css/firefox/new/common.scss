@@ -2,8 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../../pebbles/includes/lib';
-@import '../../../hubs/sections';
+@import '../../pebbles/includes/lib';
+@import '../../hubs/sections';
 
 /* -------------------------------------------------------------------------- */
 // Common elements & variables
@@ -64,7 +64,7 @@ body {
     }
 
     &:after {
-        background: transparent url('/media/img/firefox/new/quantum/wave.svg') top center no-repeat;
+        background: transparent url('/media/img/firefox/new/wave.svg') top center no-repeat;
         @include background-size(5223px 186px);
         bottom: 0;
         content: '';
@@ -233,15 +233,15 @@ html.ios .header-content {
             padding-top: 85px;
 
             &.faster {
-                background-image: url('/media/img/firefox/new/quantum/icon-faster.svg');
+                background-image: url('/media/img/firefox/new/icon-faster.svg');
             }
 
             &.lighter {
-                background-image: url('/media/img/firefox/new/quantum/icon-lighter.svg');
+                background-image: url('/media/img/firefox/new/icon-lighter.svg');
             }
 
             &.private {
-                background-image: url('/media/img/firefox/new/quantum/icon-private.svg');
+                background-image: url('/media/img/firefox/new/icon-private.svg');
             }
 
             &:last-child p {
