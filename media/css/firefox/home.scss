@@ -2,14 +2,14 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../pebbles/includes/lib';
-@import '../../pebbles/components/video-poster';
-@import '../../hubs/sections';
-@import '../../hubs/masthead';
-@import '../../hubs/sub-nav';
-@import '../../quantum/common';
-@import '../../quantum/buttons';
-@import '../../quantum/features-scroller';
+@import '../pebbles/includes/lib';
+@import '../pebbles/components/video-poster';
+@import '../hubs/sections';
+@import '../hubs/masthead';
+@import '../hubs/sub-nav';
+@import '../quantum/common';
+@import '../quantum/buttons';
+@import '../quantum/features-scroller';
 
 /* -------------------------------------------------------------------------- */
 // Common elements & variables
@@ -202,7 +202,7 @@ html[dir="rtl"] .main-header-section {
     }
 
     @media #{$mq-tablet} {
-        background: url('/media/img/firefox/hub/quantum/whats-new-tail.png') top -300px center no-repeat,
+        background: url('/media/img/firefox/home/whats-new-tail.png') top -300px center no-repeat,
                     linear-gradient(to right, #ff1ad9 0%, #ff9400 100%);
     }
 
@@ -321,7 +321,7 @@ html[dir="rtl"] .whats-new-section {
     .key-feature-media {
 
         &.video {
-            background: #000 url('/media/img/firefox/hub/quantum/quantum-vs-chrome-poster.png') top left no-repeat;
+            background: #000 url('/media/img/firefox/home/quantum-vs-chrome-poster.png') top left no-repeat;
             @include background-size(cover);
             box-shadow: 2px 3px 8px 0 rgba(0, 0, 0, .2);
             margin: 0 auto;
@@ -344,7 +344,7 @@ html[dir="rtl"] .whats-new-section {
             }
 
             .moz-video-button {
-                background-image: url('/media/img/firefox/hub/quantum/quantum-vs-chrome-poster.png');
+                background-image: url('/media/img/firefox/home/quantum-vs-chrome-poster.png');
             }
         }
 
@@ -535,8 +535,8 @@ html[dir="rtl"] .key-features-section {
             z-index: 1;
 
             &:before {
-                background: #0080ff url('/media/img/firefox/hub/quantum/icon-sprite.svg') center 0 no-repeat;
-                background: url('/media/img/firefox/hub/quantum/icon-sprite.svg') center 0 no-repeat,
+                background: #0080ff url('/media/img/firefox/home/icon-sprite.svg') center 0 no-repeat;
+                background: url('/media/img/firefox/home/icon-sprite.svg') center 0 no-repeat,
                             linear-gradient(to bottom, #0080ff 0%, #00feff 100%) top left;
                 border-radius: 100%;
                 content: '';
@@ -672,7 +672,7 @@ html[dir="rtl"] .data-import-section {
                 }
 
                 &:after {
-                    background: url('/media/img/firefox/hub/quantum/data-truck.svg') center right no-repeat;
+                    background: url('/media/img/firefox/home/data-truck.svg') center right no-repeat;
                     content: '';
                     height: 107px;
                     position: absolute;
@@ -690,7 +690,7 @@ html[dir="rtl"] .data-import-section {
         @media #{$mq-desktop-wide} {
 
             ul:after {
-                background-image: url('/media/img/firefox/hub/quantum/data-truck-rtl.svg');
+                background-image: url('/media/img/firefox/home/data-truck-rtl.svg');
             }
         }
     }
@@ -733,7 +733,7 @@ html[dir="rtl"] .data-import-section {
         padding: 0 0 20px;
 
         h3 {
-            background: url('/media/img/firefox/hub/quantum/icon-sprite.svg') no-repeat;
+            background: url('/media/img/firefox/home/icon-sprite.svg') no-repeat;
         }
 
         &.private-browsing h3 {
@@ -947,8 +947,8 @@ html[dir="rtl"] .privacy-section {
         position: relative;
 
         &:before {
-            background: #ffe900 url('/media/img/firefox/hub/quantum/icon-sprite.svg') center 0 no-repeat;
-            background: url('/media/img/firefox/hub/quantum/icon-sprite.svg') center 0 no-repeat,
+            background: #ffe900 url('/media/img/firefox/home/icon-sprite.svg') center 0 no-repeat;
+            background: url('/media/img/firefox/home/icon-sprite.svg') center 0 no-repeat,
                         linear-gradient(to bottom, #ffe900 0%, #ff9400 100%) top left;
             border-radius: 100%;
             content: '';
@@ -1086,7 +1086,7 @@ html[dir="rtl"] .sync-section {
     padding-bottom: 130px;
 
     .browse-for-good-section-container {
-        @include at2x('/media/img/firefox/hub/quantum/mozilla.png', 300px, 261px);
+        @include at2x('/media/img/firefox/home/mozilla.png', 300px, 261px);
         background-position: top center;
         background-repeat: no-repeat;
         padding-top: 280px;
@@ -1158,7 +1158,7 @@ html[dir="rtl"] .sync-section {
     position: relative;
 
     &:before {
-        background: transparent url('/media/img/firefox/hub/quantum/wave.svg') top center no-repeat;
+        background: transparent url('/media/img/firefox/home/wave.svg') top center no-repeat;
         @include background-size(3000px 151px);
         content: '';
         display: block;

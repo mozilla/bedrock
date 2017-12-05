@@ -313,11 +313,11 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-features-sync-bundle.css',
     },
-    'firefox-hub-quantum': {
+    'firefox-home': {
         'source_filenames': (
-            'css/firefox/hub/home-quantum.scss',
+            'css/firefox/home.scss',
         ),
-        'output_filename': 'css/firefox-hub-quantum-bundle.css',
+        'output_filename': 'css/firefox-home-bundle.css',
     },
     'firefox-interest-dashboard': {
         'source_filenames': (
@@ -397,12 +397,6 @@ PIPELINE_CSS = {
             'css/firefox/geolocation.less'
         ),
         'output_filename': 'css/firefox_geolocation-bundle.css',
-    },
-    'firefox-hub-home': {
-        'source_filenames': (
-            'css/firefox/hub/home.scss',
-        ),
-        'output_filename': 'css/firefox-hub-home-bundle.css',
     },
     'firefox_developer_2017': {
         'source_filenames': (
@@ -1263,17 +1257,17 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_developer_whatsnew-bundle.js',
     },
-    'firefox-hub-quantum': {
+    'firefox-home': {
         'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.waypoints-sticky.min.js',
             'js/hubs/sub-nav.js',
             'js/base/mozilla-smoothscroll.js',
             'js/base/mozilla-video-poster.js',
-            'js/firefox/quantum/features-scroller.js',
-            'js/firefox/home.js',
+            'js/firefox/home/features-scroller.js',
+            'js/firefox/home/main.js',
         ),
-        'output_filename': 'js/firefox-hub-quantum-bundle.js',
+        'output_filename': 'js/firefox-home-bundle.js',
     },
     'firefox_new_scene1': {
         'source_filenames': (
@@ -1442,14 +1436,6 @@ PIPELINE_JS = {
             'js/base/mozilla-modal.js',
         ),
         'output_filename': 'js/geolocation-bundle.js',
-    },
-    'firefox-hub-home': {
-        'source_filenames': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/hubs/sub-nav.js',
-        ),
-        'output_filename': 'js/firefox-hub-home-bundle.js',
     },
     'home': {
         'source_filenames': (

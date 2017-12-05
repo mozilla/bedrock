@@ -662,15 +662,7 @@ class FirefoxHubView(BlogPostsView):
     blog_posts_template_variable = 'articles'
     blog_slugs = 'firefox'
     blog_tags = ['home']
-
-    def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
-
-        if lang_file_is_active('firefox/hub/home-quantum', locale):
-            template_name = 'firefox/hub/home-quantum.html'
-        else:
-            template_name = 'firefox/hub/home.html'
-        return [template_name]
+    template_name = 'firefox/home.html'
 
 
 def FirefoxProductDeveloperView(request):

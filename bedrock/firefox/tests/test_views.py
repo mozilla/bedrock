@@ -796,23 +796,3 @@ class TestFeedbackView(TestCase):
 
         ctx = view.get_context_data()
         self.assertFalse('donate_stars_url' in ctx)
-
-
-@patch('bedrock.firefox.views.l10n_utils.render')
-class TestFirefoxHubPage(TestCase):
-    def test_hub(self, render_mock):
-        view = views.FirefoxHubView.as_view()
-        req = RequestFactory().get('/firefox/')
-        req.locale = 'en-US'
-        view(req)
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/hub/home-quantum.html'])
-
-    @patch.object(views, 'lang_file_is_active', lambda *x: False)
-    def test_hub_not_translated(self, render_mock):
-        view = views.FirefoxHubView.as_view()
-        req = RequestFactory().get('/firefox/')
-        req.locale = 'de'
-        view(req)
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/hub/home.html'])

@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% add_lang_files "firefox/shared" %}
+{% add_lang_files "firefox/hub/home-quantum" "firefox/shared" %}
 
 {% extends "firefox/base-pebbles.html" %}
 
@@ -10,7 +10,7 @@
 {% block page_desc %}{{ _('Responsive engine, less memory usage and packed with features. Download for desktop now.') }}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox-hub-quantum' %}
+  {% stylesheet 'firefox-home' %}
 {% endblock %}
 
 {% block body_id %}firefox-home{% endblock %}
@@ -38,7 +38,7 @@
         {{ download_firefox(dom_id='download-intro', alt_copy=_('Download now'), button_color='quantum', locale_in_transition=True, download_location='primary cta') }}
       </div>
       <div class="header-image">
-        {{ high_res_img('firefox/hub/quantum/hero-laptop.png', {'alt': '', 'width': '903', 'height': '509'}) }}
+        {{ high_res_img('firefox/home/hero-laptop.png', {'alt': '', 'width': '903', 'height': '509'}) }}
       </div>
     </div>
   </header>
@@ -60,7 +60,7 @@
           </p>
       </div>
       <div class="whats-new-image">
-        {{ high_res_img('firefox/hub/quantum/new-tab.png', {'alt': _('Screenshot of the redesigned Firefox new-tab page.'), 'width': '849', 'height': '540'}) }}
+        {{ high_res_img('firefox/home/new-tab.png', {'alt': _('Screenshot of the redesigned Firefox new-tab page.'), 'width': '849', 'height': '540'}) }}
       </div>
     </div>
   </section>
@@ -92,12 +92,12 @@
             <div class="moz-video-container">
               <button class="moz-video-button" type="button" aria-controls="faster-video">{{ _('Watch the video') }}</button>
               <div class="video-container">
-                <video id="faster-video" preload="metadata" controls poster="{{ static('img/firefox/hub/quantum/quantum-vs-chrome-poster.png') }}" data-ga-label="Quantum vs Chrome Video">
+                <video id="faster-video" preload="metadata" controls poster="{{ static('img/firefox/home/quantum-vs-chrome-poster.png') }}" data-ga-label="Quantum vs Chrome Video">
                   <source src="https://assets.mozilla.net/video/firefox-home/quantum-vs-chrome.webm" type="video/webm">
                   <source src="https://assets.mozilla.net/video/firefox-home/quantum-vs-chrome.ogv" type="video/ogg; codecs='theora, vorbis'">
                   <source src="https://assets.mozilla.net/video/firefox-home/quantum-vs-chrome.mp4" type="video/mp4">
                   <a href="https://www.youtube.com/watch?v=YIywpvHewc0">
-                    <img src="{{ static('img/firefox/hub/quantum/quantum-vs-chrome-poster.png') }}" alt="">
+                    <img src="{{ static('img/firefox/home/quantum-vs-chrome-poster.png') }}" alt="">
                   </a>
                 </video>
               </div>{#-- /.video-container --#}
@@ -120,7 +120,7 @@
             </p>
           </div>
           <div class="key-feature-media image">
-            {{ high_res_img('firefox/hub/quantum/less-memory.png', {'alt': '', 'width': '645', 'height': '400'}) }}
+            {{ high_res_img('firefox/home/less-memory.png', {'alt': '', 'width': '645', 'height': '400'}) }}
           </div>
         </div>
       </div>
@@ -139,7 +139,7 @@
             </p>
           </div>
           <div class="key-feature-media image">
-            {{ high_res_img('firefox/hub/quantum/smooth-browsing.png', {'alt': _('Firefox screenshot showing many open tabs and browser windows running simultaneously.'), 'width': '645', 'height': '400'}) }}
+            {{ high_res_img('firefox/home/smooth-browsing.png', {'alt': _('Firefox screenshot showing many open tabs and browser windows running simultaneously.'), 'width': '645', 'height': '400'}) }}
           </div>
         </div>
       </div>
@@ -202,8 +202,8 @@
       </ul>
 
       <div class="privacy-section-media">
-        {{ high_res_img('firefox/hub/quantum/private-browsing.png', {'alt': '', 'width': '502', 'height': '325'}) }}
-        {{ high_res_img('firefox/hub/quantum/tracking-protection.png', {'alt': '', 'width': '503', 'height': '305'}) }}
+        {{ high_res_img('firefox/home/private-browsing.png', {'alt': '', 'width': '502', 'height': '325'}) }}
+        {{ high_res_img('firefox/home/tracking-protection.png', {'alt': '', 'width': '503', 'height': '305'}) }}
       </div>
     </div>
   </section>
@@ -230,11 +230,11 @@
         <div class="features-scroller-content">
           <div id="video-screenshots" class="feature-content screenshots" data-ga-label="Features: Screenshots">
             <figure>
-              <video preload="none" muted controls playsinline poster="{{ static('img/firefox/hub/quantum/video-screenshots-poster.png') }}" data-ga-label="Features: Screenshots">
+              <video preload="none" muted controls playsinline poster="{{ static('img/firefox/home/video-screenshots-poster.png') }}" data-ga-label="Features: Screenshots">
                 <source src="https://assets.mozilla.net/video/firefox-home/screenshots.webm" type="video/webm">
                 <source src="https://assets.mozilla.net/video/firefox-home/screenshots.ogv" type="video/ogg; codecs='theora, vorbis'">
                 <source src="https://assets.mozilla.net/video/firefox-home/screenshots.mp4" type="video/mp4">
-                <img src="{{ static('img/firefox/hub/quantum/video-screenshots-poster.png') }}" alt="">
+                <img src="{{ static('img/firefox/home/video-screenshots-poster.png') }}" alt="">
               </video>
             </figure>
             <figcaption>
@@ -250,11 +250,11 @@
 
           <div id="video-pocket" class="feature-content pocket" data-ga-label="Features: Pocket">
             <figure>
-              <video preload="none" muted controls playsinline poster="{{ static('img/firefox/hub/quantum/video-pocket-poster.png') }}" data-ga-label="Features: Pocket">
+              <video preload="none" muted controls playsinline poster="{{ static('img/firefox/home/video-pocket-poster.png') }}" data-ga-label="Features: Pocket">
                 <source src="https://assets.mozilla.net/video/firefox-home/pocket.webm" type="video/webm">
                 <source src="https://assets.mozilla.net/video/firefox-home/pocket.ogv" type="video/ogg; codecs='theora, vorbis'">
                 <source src="https://assets.mozilla.net/video/firefox-home/pocket.mp4" type="video/mp4">
-                <img src="{{ static('img/firefox/hub/quantum/video-pocket-poster.png') }}" alt="">
+                <img src="{{ static('img/firefox/home/video-pocket-poster.png') }}" alt="">
               </video>
             </figure>
             <figcaption>
@@ -270,11 +270,11 @@
 
           <div id="video-gaming" class="feature-content gaming-vr" data-ga-label="Features: Gaming & VR">
             <figure>
-              <video preload="none" muted controls playsinline poster="{{ static('img/firefox/hub/quantum/video-gaming-poster.png') }}" data-ga-label="Features: Gaming & VR">
+              <video preload="none" muted controls playsinline poster="{{ static('img/firefox/home/video-gaming-poster.png') }}" data-ga-label="Features: Gaming & VR">
                 <source src="https://assets.mozilla.net/video/firefox-home/gaming.webm" type="video/webm">
                 <source src="https://assets.mozilla.net/video/firefox-home/gaming.ogv" type="video/ogg; codecs='theora, vorbis'">
                 <source src="https://assets.mozilla.net/video/firefox-home/gaming.mp4" type="video/mp4">
-                <img src="{{ static('img/firefox/hub/quantum/video-gaming-poster.png') }}" alt="">
+                <img src="{{ static('img/firefox/home/video-gaming-poster.png') }}" alt="">
               </video>
             </figure>
             <figcaption>
@@ -291,11 +291,11 @@
 
           <div id="video-library" class="feature-content library" data-ga-label="Features: Library">
             <figure>
-              <video preload="none" muted controls playsinline poster="{{ static('img/firefox/hub/quantum/video-bookmarking-poster.png') }}" data-ga-label="Features: Library">
+              <video preload="none" muted controls playsinline poster="{{ static('img/firefox/home/video-bookmarking-poster.png') }}" data-ga-label="Features: Library">
                 <source src="https://assets.mozilla.net/video/firefox-home/bookmarking.webm" type="video/webm">
                 <source src="https://assets.mozilla.net/video/firefox-home/bookmarking.ogv" type="video/ogg; codecs='theora, vorbis'">
                 <source src="https://assets.mozilla.net/video/firefox-home/bookmarking.mp4" type="video/mp4">
-                <img src="{{ static('img/firefox/hub/quantum/video-bookmarking-poster.png') }}" alt="">
+                <img src="{{ static('img/firefox/home/video-bookmarking-poster.png') }}" alt="">
               </video>
             </figure>
             <figcaption>
@@ -363,7 +363,7 @@
       </div>
 
       <div class="sync-section-image">
-        {{ high_res_img('firefox/hub/quantum/sync.png', {'alt': _('Image of Gif shared from desktop to mobile using the Send Tab feature.'), 'width': '788', 'height': '571'}) }}
+        {{ high_res_img('firefox/home/sync.png', {'alt': _('Image of Gif shared from desktop to mobile using the Send Tab feature.'), 'width': '788', 'height': '571'}) }}
       </div>
     </div>
   </section>
@@ -374,21 +374,12 @@
         <div class="browse-for-good-section-content">
           <h2 class="section-title">{{ _('Browse for good') }}</h2>
           <p>
-          {% if l10n_has_tag('firefox-home-copy-update-20171114') %}
-            {% trans %}
-              Firefox is made by Mozilla, the non-profit champions of a healthy internet.
-              Mozilla also tackles issues like privacy, misinformation and trolling by
-              investing in fellowships, campaigns and new technologies designed to make
-              the internet healthier.
-            {% endtrans %}
-          {% else %}
-            {%trans %}
-              More than meets the eye. Did you know Firefox is backed by the not-for-profit
-              Mozilla? The organization keeps the Internet healthier through programs that
-              support tech education for girls, create trust around factual news, bring
-              civility to the comments section and more.
-            {% endtrans %}
-          {% endif %}
+          {% trans %}
+            Firefox is made by Mozilla, the non-profit champions of a healthy internet.
+            Mozilla also tackles issues like privacy, misinformation and trolling by
+            investing in fellowships, campaigns and new technologies designed to make
+            the internet healthier.
+          {% endtrans %}
           </p>
         </div>
       </div>
@@ -411,5 +402,5 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'firefox-hub-quantum' %}
+  {% javascript 'firefox-home' %}
 {% endblock %}
