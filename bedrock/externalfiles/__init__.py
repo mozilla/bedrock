@@ -2,8 +2,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import codecs
 import logging
-from os.path import basename
+import os.path
 from time import mktime
 try:
     from cStringIO import StringIO
@@ -13,8 +14,6 @@ except ImportError:
 from django.conf import settings
 from django.core.cache import caches
 from django.utils.http import http_date
-
-import requests
 
 from bedrock.externalfiles.models import ExternalFile as EFModel
 
@@ -31,9 +30,9 @@ class ExternalFile(object):
 
         self._cache = caches['externalfiles']
         self.file_id = file_id
-        self.url = fileinfo['url']
-        self.name = fileinfo.get('name', basename(self.url))
+        self.name = fileinfo['name']
         self.cache_key = 'externalfile:{}'.format(self.file_id)
+        self.file_path = os.path.join(settings.EXTERNAL_FILES_PATH, self.name)
 
     @property
     def file_object(self):
@@ -73,33 +72,19 @@ class ExternalFile(object):
         """
         return self.last_modified
 
-    def validate_resp(self, resp):
+    def validate_file(self):
         """
-        Validate the response from the server, returning the content.
-        :param resp: requests.Response
+        Validate the file content, and return it.
         :return: str or None
         :raises: ValueError
         """
-        if resp.status_code == 304:
-            log.info('{0} already up-to-date.'.format(self.name))
-            return None
+        with codecs.open(self.file_path, encoding='utf-8') as fp:
+            content = fp.read()
 
-        if resp.status_code == 200:
-            content = resp.text
-            if not content:
-                raise ValueError('No content returned')
+        if not content:
+            raise ValueError('%s is empty' % self.name)
 
-            if hasattr(self, 'validate_content'):
-                return self.validate_content(content)
-
-            return content
-
-        if resp.status_code == 404:
-            raise ValueError('File not found (404): ' + self.name)
-
-        raise ValueError('Unknown error occurred updating {0} ({1}): {2}'.format(self.name,
-                                                                                 resp.status_code,
-                                                                                 resp.text))
+        return self.validate_content(content)
 
     def read(self):
         return self.file_object.content.encode('utf-8')
@@ -107,20 +92,9 @@ class ExternalFile(object):
     def readlines(self):
         return StringIO(self.read()).readlines()
 
-    def update(self, force=False):
+    def update(self):
         log.info('Updating {0}.'.format(self.name))
-        headers = {}
-        if not force:
-            if self.last_modified:
-                headers['if-modified-since'] = self.last_modified_http
-
-        resp = requests.get(self.url, headers=headers, verify=True)
-        content = self.validate_resp(resp)
-
-        if content is None:
-            # up-to-date
-            return None
-
+        content = self.validate_file()
         fo = self.file_object
         if fo:
             fo.content = content

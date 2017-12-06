@@ -685,17 +685,17 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 # Google Analytics
 GA_ACCOUNT_CODE = ''
 
-# Files from The Web[tm]
+EXTERNAL_FILES_PATH = config('EXTERNAL_FILES_PATH', default=path('community_data'))
+EXTERNAL_FILES_BRANCH = config('EXTERNAL_FILES_BRANCH', default='master')
+EXTERNAL_FILES_REPO = config('EXTERNAL_FILES_REPO', default='https://github.com/mozilla/community-data.git')
 EXTERNAL_FILES = {
     'credits': {
-        'url': 'https://raw.githubusercontent.com/mozilla/community-data/master/credits/names.csv',
         'type': 'bedrock.mozorg.credits.CreditsFile',
-        'name': 'credits.csv',
+        'name': 'credits/names.csv',
     },
     'forums': {
-        'url': 'https://raw.githubusercontent.com/mozilla/community-data/master/forums/raw-ng-list.txt',
         'type': 'bedrock.mozorg.forums.ForumsFile',
-        'name': 'forums.txt',
+        'name': 'forums/raw-ng-list.txt',
     },
 }
 
