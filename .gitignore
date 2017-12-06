@@ -35,6 +35,7 @@ bedrock/externalfiles/files_cache
 mofo_security_advisories
 release_notes
 product_details_json
+community_data
 supervisord.log
 .idea
 .env
