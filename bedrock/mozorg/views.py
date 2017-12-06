@@ -28,7 +28,6 @@ from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.wordpress.views import BlogPostsView
 from lib import l10n_utils
-from lib.l10n_utils.dotlang import lang_file_is_active
 
 credits_file = CreditsFile('credits')
 forums_file = ForumsFile('forums')
@@ -198,14 +197,7 @@ class Robots(TemplateView):
 
 
 def home(request):
-    locale = l10n_utils.get_locale(request)
-
-    if lang_file_is_active('mozorg/home/index-quantum', locale):
-        template = 'mozorg/home/home-quantum.html'
-    else:
-        template = 'mozorg/home/home.html'
-
-    return l10n_utils.render(request, template)
+    return l10n_utils.render(request, 'mozorg/home/home.html')
 
 
 NAMESPACES = {

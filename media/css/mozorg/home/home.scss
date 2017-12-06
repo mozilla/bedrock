@@ -3,126 +3,30 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import '../../pebbles/includes/lib';
+@import '../../hubs/buttons';
+@import '../../hubs/masthead';
+@import '../../quantum/buttons';
 
-
-$color-text-header: #2762A9;
-$color-text-dark: #56565A;
-
-// download page and firstrun colors
-$horizonColorForeground: #2d253a;
-$horizonColorBackground: #092d6c;
-
-// static horizon background gradient
-@mixin horizon-gradient() {
-    background-color: $horizonColorBackground;
-    background-image: linear-gradient(-180deg, #092d6c 0%, #10659c 40%, #7babbf 68%, #e9c39f 85%, #ff9a4a 100%);
-    background-repeat: no-repeat;
-}
+// offset of nav logo at 1000px+ viewports
+$nav-margin: 84px;
 
 body {
     border-top: 0;
 }
 
-// Header
-#masthead {
-    background: #ff8c8e;
-    color: #000;
-
-    .content {
-        padding: 51px 20px 0;
-    }
-
-    .masthead-logo {
-        background: #ff8c8e;
-    }
-}
-
-.masthead-nav-main .toggle {
-    background-color: #ff8c8e;
-}
-
-#nav-download-firefox {
+// hide download button in the nav
+#global-nav-download-firefox {
     display: none;
 }
 
-@media #{$mq-tablet} {
-    #masthead {
-        background: #ff8c8e;
-        padding: 0;
-
-        .content {
-            padding-top: 0;
-        }
-    }
-
-    #nav-main-menu,
-    .js #nav-main-menu {
-        padding: 15px 0;
-
-        li {
-            border-right: 1px solid #000;
-
-            &:last-child {
-                border-right: 0;
-                padding-right: 0;
-            }
-        }
-
-        a,
-        a:hover,
-        a:focus {
-            color: #000;
-        }
-    }
-}
-
-@media #{$mq-desktop} {
-    #nav-main-menu,
-    .js #nav-main-menu {
-        li {
-            padding: 0 10px;
-        }
-    }
-
-    #nav-download-firefox {
-        display: inline-block;
-        float: right;
-
-        ul.download-list {
-            margin-bottom: 0;
-        }
-
-        .button {
-            @include font-size(14px);
-            border-radius: 0;
-            padding: 13px 20px;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .fx-privacy-link {
-            display: none;
-        }
-    }
-}
-
-@media #{$mq-desktop-wide} {
-    #nav-main-menu,
-    .js #nav-main-menu {
-        li {
-            padding: 0 20px;
-        }
-    }
-}
-
-// flexbox layout for savvy browsers to push nav items to the right
-@supports (display: flex) {
+// adjust nav spacing to use space freed up by hiding the dl button
+.moz-global-nav .nav-primary-links {
     @media #{$mq-tablet} {
-        #nav-main-menu,
-        .js #nav-main-menu {
-            @include flexbox;
-            @include justify-content(flex-end);
-        }
+        width: calc(100% - 110px);
+    }
+
+    @media #{$mq-desktop} {
+        width: calc(100% - 220px);
     }
 }
 
@@ -130,159 +34,287 @@ main {
     overflow: hidden;
 }
 
+.intro-section {
+    text-align: center;
+}
 
-// *** INTRO *** //
-#intro {
-    background: #00a7de;
+#quantum {
+    @include open-sans;
+    background: #0060df;
+    background: url('/media/img/firefox/quantum/fox-tail-header.png') center center no-repeat,
+                linear-gradient(to bottom, #0060df 7%, #0095ff 100%);
     color: #fff;
-    position: relative;
-
-    h2,
-    h3 {
-        @include border-box;
-        color: #fff;
-        margin: 0 auto;
-        text-align: center;
-        text-shadow: 0 0 10px rgba(0, 0, 0, .01),
-                     0 0 5px rgba(0, 0, 0, .025),
-                     0 1px 1px rgba(0, 0, 0, .5);
-    }
-
-    .content {
-        background: rgba(0, 20, 40, .5);
-        display: block;
-        height: 100%;
-        padding: 20px;
-        position: relative;
-        width: 100%;
-        z-index: 2;
-    }
+    padding: 40px 0;
 
     h2 {
-        @include font-size(32px);
-        font-style: italic;
-        line-height: 1.3;
-        padding: 70px 40px;
-        max-width: $width-desktop;
-
-        @media #{$mq-tablet} {
-            @include font-size(48px);
-        }
-
-        @media #{$mq-tablet} and #{$mq-tall} {
-            padding: 110px 40px;
-        }
-
-        @media #{$mq-desktop} and #{$mq-tall} {
-            padding: 130px 40px;
-        }
-
-        @media #{$mq-desktop-wide} {
-            @include font-size(56px);
-        }
-
-        @media #{$mq-desktop-wide} and #{$mq-tall} {
-            padding: 150px 40px;
-        }
+        @include font-size-level2;
+        margin-bottom: 1em;
     }
 
-    h3 {
-        @include font-size(20px);
-        line-height: 1.3;
-        padding: 0 40px 10px;
-        max-width: $width-tablet;
-
-        @media #{$mq-tablet} {
-            @include font-size(22px);
-        }
-
-        @media #{$mq-desktop} {
-            @include font-size(26px);
-        }
-
-        @media #{$mq-desktop-wide} {
-            @include font-size(28px);
-            padding-bottom: 20px;
-        }
+    p {
+        @include font-size-level5;
+        font-weight: normal;
+        line-height: 1.5;
+        margin: 0 auto 1em;
+        max-width: 26em;
     }
 
-    #home-slideshow {
-        height: 100%;
-        left: 0;
-        overflow: hidden;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 1;
+    .content-wrapper {
+        margin: 0 auto;
+        max-width: 1420px;
+        padding: 0 20px;
     }
 
-    .slide {
-        @include background-size(cover);
-        background-position: center center;
-        background-repeat: no-repeat;
+    .intro-image {
         display: none;
-        height: 100%;
-        width: 100%;
-    }
-
-    #slide-two {
-        display: block;
-        background-image: url('/media/img/home/2016/intro/intro-learning-600.jpg');
     }
 
     @media #{$mq-tablet} {
-        .slide {
+        .intro-image {
             display: block;
         }
+    }
 
-        #slide-one {
-            background-image: url('/media/img/home/2016/intro/intro-mitchell-1000.jpg');
+    @media #{$mq-desktop} {
+        text-align: left;
+
+        h3 {
+            margin-left: 0;
+            margin-right: 0;
         }
 
-        #slide-two {
-            background-image: url('/media/img/home/2016/intro/intro-learning-1000.jpg');
+        p {
+            margin: 0 0 1em;
         }
 
-        #slide-three {
-            background-image: url('/media/img/home/2016/intro/intro-advocacy-1000.jpg');
+        .content-wrapper {
+            @include clearfix;
+            padding: 0;
         }
 
-        #slide-four {
-            background-image: url('/media/img/home/2016/intro/intro-vr-1000.jpg');
+        .intro-content {
+            float: left;
+            margin-right: 40px;
+            padding-left: $nav-margin;
+            width: calc(56% - (40px + #{$nav-margin}));
+        }
+
+        .intro-image {
+            display: block;
+            float: right;
+            width: 44%;
+        }
+
+        @supports (display: flex) {
+            .content-wrapper {
+                align-items: center;
+                display: flex;
+
+                // no flex!
+                &:after {
+                    display: none;
+                }
+            }
+
+            .intro-content,
+            .intro-image {
+                float: none;
+            }
         }
     }
 
     @media #{$mq-desktop-wide} {
-        #slide-one {
-            background-image: url('/media/img/home/2016/intro/intro-mitchell-2000.jpg');
+        .intro-content {
+            width: calc(40% - (40px + #{$nav-margin}));
         }
 
-        #slide-two {
-            background-image: url('/media/img/home/2016/intro/intro-learning-2000.jpg');
-        }
+        .intro-image {
+            width: 60%;
 
-        #slide-three {
-            background-image: url('/media/img/home/2016/intro/intro-advocacy-2000.jpg');
-        }
-
-        #slide-four {
-            background-image: url('/media/img/home/2016/intro/intro-vr-2000.jpg');
+            img {
+                padding-top: 0;
+            }
         }
     }
 }
 
-@media #{$mq-desktop} {
-    [lang^='en'] {
-        #intro h2 {
-            @include font-size(56px);
+#fx-logo {
+    @include font-size-level3;
+    display: block;
+    margin-bottom: 1em;
+
+    &:before {
+        @include at2x('/media/img/logos/firefox/logo-quantum.png', 100px, 100px);
+        background-repeat: no-repeat;
+        content: '';
+        display: block;
+        height: 100px;
+        padding-bottom: 10px;
+        margin: 0 auto;
+        width: 100px;
+    }
+
+    @media #{$mq-desktop} {
+        &:before {
+            background-size: 66px;
+            display: inline-block;
+            height: 66px;
+            padding-bottom: 0;
+            margin: 0 10px -19px 0;
+            width: 66px;
+        }
+    }
+
+    html[lang^="en"] & {
+        font-weight: normal;
+
+        span {
+            font-weight: bold;
         }
     }
 }
 
-@media #{$mq-desktop-wide} {
-    [lang^='en'] {
-        #intro h2 {
-            @include font-size(64px);
+#mozilla {
+    background-color: #D7D9F2;
+    background-image: url('/media/img/home/colon-slash-slash.svg');
+    background-position: center top 20px;
+    background-repeat: no-repeat;
+    background-size: 300px;
+    border-bottom: 1px solid #ccc;
+    padding: 40px 0;
+
+    h2 {
+        @include font-size-level3;
+        line-height: 1.5;
+        margin-bottom: 1.6rem;
+    }
+
+    p {
+        @include font-size-level4;
+        font-weight: bold;
+        line-height: 1.5;
+    }
+
+    .intro-image {
+        margin-bottom: 50px;
+        padding: 20px;
+
+        img {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        background-position: left 20px top;
+        background-size: auto 100%;
+        text-align: left;
+
+        .content {
+            @include clearfix;
+        }
+
+        .intro-content {
+            float: right;
+            padding-left: 40px;
+            width: calc(60% - 40px);
+        }
+
+        .intro-image {
+            float: left;
+            margin-bottom: 0;
+            padding: 0;
+            width: 40%;
+
+            img {
+                margin: 0;
+                max-width: 100%;
+            }
+        }
+
+        @supports (display: flex) {
+            .content {
+                display: flex;
+
+                // do not flex me
+                &:after {
+                    display: none;
+                }
+            }
+
+            .intro-content,
+            .intro-image {
+                float: none;
+            }
+
+            .intro-image {
+                align-items: center;
+                display: flex;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        background-position: center left 20px;
+        background-size: auto;
+        padding: 60px 0;
+
+        .intro-content {
+            width: calc(50% - 40px);
+        }
+
+        .intro-image {
+            padding-right: 40px;
+            width: calc(50% - 40px);
+
+            img {
+                margin: 0 auto;
+            }
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        padding: 80px 0;
+    }
+}
+
+html[dir="rtl"] {
+    #mozilla {
+        background-position: right 20px top;
+
+        .intro-image {
+            transform: scaleX(-1);
+        }
+
+        @media #{$mq-tablet} {
+            .intro-content {
+                padding-left: 0;
+                padding-right: 40px;
+                text-align: right;
+            }
+        }
+    }
+
+    #quantum {
+        @media #{$mq-desktop} {
+            text-align: right;
+
+            #fx-logo:before {
+                margin-left: 10px;
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+#mozilla {
+    @media #{$mq-tablet} {
+        .content {
+            @include clearfix;
+        }
+
+        .intro-content {
+            float: right;
         }
     }
 }
@@ -292,18 +324,9 @@ main {
     @include border-box;
     min-width: $width-phone;
     padding: 10px 20px 20px;
-    text-align: center;
-
-    &:before {
-        content: '';
-        display: block;
-        height: 250px;
-        margin-bottom: 20px;
-        background-repeat: no-repeat;
-    }
 
     .section-headline {
-        @include font-size(32px);
+        @include font-size-level3;
         margin-bottom: 20px;
     }
 
@@ -311,104 +334,106 @@ main {
         padding-bottom: 20px;
     }
 
+    a {
+        @include open-sans();
+    }
+
     @media #{$mq-tablet} {
         padding: 10px 40px 20px;
-
-        p {
-            @include font-size(18px);
-        }
     }
 
     @media #{$mq-desktop} {
-        p {
-            @include font-size(20px);
+        // line up with left edge of mozilla logo in nav
+        &:first-child {
+            padding-left: $nav-margin;
+        }
+
+        // equal padding on right side
+        &:last-child {
+            padding-right: $nav-margin;
         }
     }
 }
 
-#impact {
-    background: #fff;
-    color: $color-text-dark;
+#impact-innovate-wrapper {
+    margin: 0 auto;
+    padding: 40px 0 20px;
 
-    .section-headline {
-        color: $color-mozred-bright;
+    @media #{$mq-tablet} {
+        padding: 80px 0;
     }
 
-    .section-content:before {
-        @include at2x('/media/img/home/2016/speaker.png', 200px, 200px);
-        background-position: center;
-    }
-
-    .icon-links {
-        a {
-            color: $color-mozred-bright;
-
-            &:before {
-                background-color: $color-mozred-bright;
-            }
-        }
-
-        .icon use {
-            fill: #fff;
-        }
-    }
-}
-
-#innovate {
-    background: $color-mozred-bright;
-    color: #fff;
-
-    .section-content:before {
-        @include at2x('/media/img/home/2016/vr.png', 200px, 200px);
-        background-position: center;
-    }
-
-    .icon-links {
-        a {
-            color: #fff;
-
-            &:before {
-                background-color: #fff;
-            }
-        }
-
-        .icon use {
-            fill: $color-mozred-bright;
-        }
+    @media #{$mq-desktop-wide} {
+        max-width: $width-max-content;
     }
 }
 
 // two column faux table layout for wider viewports
 @media #{$mq-tablet} {
     #impact-innovate-wrapper {
-        display: table;
+        @include clearfix;
+        padding-bottom: 80px;
     }
 
     #impact,
     #innovate {
-        display: table-cell;
+        float: left;
         width: 50%;
+    }
+
+    #impact {
+        border-right: 1px solid rgba(0, 0, 0, 0.2);
+        width: calc(50% - 1px);
+    }
+
+    @supports (display: flex) {
+        // don't flex the :after
+        #impact-innovate-wrapper {
+            display: flex;
+
+            &:after {
+                display: none;
+            }
+        }
     }
 }
 
 // icon links
 .icon-links {
     margin: 20px 0;
+    width: 100%;
 
     li {
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
 
     a {
-        @include open-sans;
         @include trailing-arrow;
+        color: #000;
+        display: inline-block;
         font-weight: bold;
+        padding-right: 10%;
+        position: relative;
         text-decoration: none;
+
+        &:focus,
+        &:hover {
+            color: #000;
+            text-decoration: underline;
+        }
 
         &:after {
             @include transition(right 150ms cubic-bezier(.3, -0.5, .6, 1.5));
-            position: relative;
+            background: url('/media/img/hubs/cta-arrow-black.svg') 0 0 no-repeat;
+            @include background-size(14px);
+            bottom: calc(50% - 6px);
+            content: '';
+            display: inline-block;
+            height: 14px;
+            margin-left: 20px;
+            position: absolute;
             right: 0;
+            width: 14px;
         }
 
         &:hover:after,
@@ -422,31 +447,25 @@ main {
     }
 
     @media #{$mq-tablet} {
-        margin-left: auto;
-        margin-right: auto;
-        text-align: left;
-        width: 60%;
+        width: 80%;
 
         li {
             margin: 30px 0 20px;
-            position: relative;
             min-height: 40px;
-            padding: 0 0 0 54px;
+            position: relative;
         }
 
         a {
-            @include font-size(18px);
+            display: block;
+            padding-left: 60px;
+            padding-right: 30px;
 
-            &:before {
-                @include transition(transform 150ms cubic-bezier(.3, -0.5, .6, 1.5));
-                border-radius: 50%;
-                content: '';
+            &:after {
+                bottom: 50%;
                 display: block;
-                height: 55px;
-                left: -25px;
+                margin-left: 0;
                 position: absolute;
-                top: -12px;
-                width: 55px;
+                right: 0;
             }
 
             &:hover:before,
@@ -457,11 +476,10 @@ main {
         }
 
         .icon {
-            border-radius: 50%;
             display: inline-block;
             height: 45px;
-            left: -25px;
-            padding: 5px;
+            left: 0;
+            padding: 5px 5px 0 0;
             position: absolute;
             top: -12px;
             width: 45px;
@@ -474,43 +492,45 @@ main {
     }
 
     @media #{$mq-desktop} {
-        a {
-            @include font-size(20px);
-        }
+        width: 80%;
+    }
+
+    @media #{$mq-desktop-wide} {
+        width: 65%;
     }
 }
 
 html[dir="rtl"] {
     .icon-links {
-        text-align: right;
+        a {
+            padding-right: 0;
+            padding-left: 10%;
 
-        li {
-            padding-left: 0;
-            padding-right: 54px;
-        }
+            &:after {
+                @include flip-horizontally;
+                @include transition(left 150ms cubic-bezier(.3, -0.5, .6, 1.5));
+                left: 0;
+                margin-left: 0;
+                margin-right: 20px;
+                right: auto;
+            }
 
-        a:before {
-            left: auto;
-            right: -25px;
-        }
+            &:hover:after,
+            &:focus:after {
+                left: -4px;
+            }
 
-        a:after {
-            @include flip-horizontally;
-            @include transition(left 150ms cubic-bezier(.3, -0.5, .6, 1.5));
-            display: inline-block;
-            left: -6px;
-            right: auto;
-        }
-
-        a:hover:after,
-        a:focus:after {
-            left: -10px;
         }
 
         @media #{$mq-tablet} {
+            a {
+                padding-right: 60px;
+                padding-left: 30px;
+            }
+
             .icon {
                 left: auto;
-                right: -25px;
+                right: 0;
             }
         }
     }
@@ -520,229 +540,56 @@ html[dir="rtl"] {
     display: none;
 }
 
-
-// ** FIREFOX ** //
-#firefox {
-    background: #2d253a;
-    color: #fff;
-    text-align: center;
-
-    h2 {
-        @include font-size(24px);
-        padding-top: 40px;
-
-        &:before {
-            @include at2x('/media/img/firefox/template/logo-large.png');
-            @include background-size(100%);
-            background-repeat: no-repeat;
-            content: '';
-            display: block;
-            height: 84px;
-            margin: 0 auto 10px;
-            width: 80px;
-        }
-
-        @media #{$mq-phone-wide} {
-            @include font-size(36px);
-
-            &:before {
-                height: 142px;
-                width: 136px;
-            }
-        }
-
-        @media #{$mq-high-res} {
-            &:before {
-                @include background-size(100%);
-            }
-        }
-    }
-
-    .horizon {
-        @include horizon-gradient;
-
-        .content {
-            padding-bottom: 270px;
-        }
-    }
-
-    .stars {
-        background: url('/media/img/firefox/horizon/stars.svg') center 60px no-repeat;
-    }
-
-    .content {
-        p {
-            margin-bottom: 40px;
-        }
-
-        a,
-        a:hover {
-            @include open-sans;
-            color: #fff;
-        }
-
-        @media #{$mq-tablet} {
-            @include font-size(24px);
-        }
-
-        @media #{$mq-desktop} {
-            p {
-                max-width: 780px; // keep text from going behind the trees
-                margin: 0 auto 40px;
-            }
-        }
-    }
-
-    .forest-container {
-        height: 416px;
-        margin-top: -254px;
-        position: relative;
-    }
-
-    .mountains-container {
-        height: 483px;
-        left: 50%;
-        // offset assets to get the fox in the viewport
-        margin-left: -1046px;
-        position: absolute;
-        top: 0;
-        width: 1770px;
-
-        .layer {
-            left: 0;
-            position: absolute;
-            width: 1770px;
-        }
-
-        @media #{$mq-tablet} {
-            // re-center assets
-            margin-left: -885px;
-        }
-    }
-
-    .sun {
-        height: 318px;
-        left: 50%;
-        margin-left: -161px;
-        position: absolute;
-        top: 30px;
-        width: 322px;
-    }
-
-    .mountains {
-        height: 482px;
-        top: 0;
-    }
-
-    .foreground-shape {
-        @include at2x('/media/img/firefox/horizon/foreground.png', 1770px, 254px);
-        background-position: top left;
-        background-repeat: no-repeat;
-        bottom: 0;
-        height: 254px;
-    }
-
-    .trees-left {
-        bottom: 70px;
-        height: 602px;
-        left: -375px;
-        position: absolute;
-        width: 909px;
-    }
-
-    .trees-right {
-        bottom: 120px;
-        height: 550px;
-        position: absolute;
-        right: -420px;
-        width: 922px;
-    }
-
-    .fox {
-        bottom: 39px;
-        height: 254px;
-        position: absolute;
-        right: 140px;
-        width: 522px;
-    }
-
-    #fxmobile-download-buttons {
-        // hide by default - show with JS based on platform
-        display: none;
-
-        li {
-            margin-bottom: 12px;
-        }
-
-        &.visible {
-            display: block;
-        }
-
-        .android-systems-link {
-            @include font-size(16px);
-        }
-    }
-}
-
 // Externals (Add-ons, careers, support)
 .section-externals {
-    background: #f5f5f5;
-    text-align: center;
+    .content {
+        border-top: 1px solid rgba(0, 0, 0, 0.2);
+        margin: 0 20px;
+        min-width: 280px;
+    }
 
     ul {
-        position: relative;
-        padding: 60px 0 40px;
         @include clearfix;
+        padding: 40px 0;
+        position: relative;
 
         li {
-            max-width: $width-phone-wide;
             margin: 0 auto 30px;
-
-            @media #{$mq-tablet} {
-                float: left;
-                width: 33.3%;
-                margin: 0;
-            }
         }
     }
 
     h3 {
-        @include font-size(18px);
-        color: $color-text-secondary;
-        padding-top: 100px;
+        @include font-size-level4;
+        font-weight: 100;
+        margin-bottom: 0.8rem;
+        padding-top: 120px;
         position: relative;
 
         &:before {
-            @include background-size(fill);
-            background-position: center center;
+            @include at2x('/media/img/home/externals-sprite.png', 100px, 300px);
             background-repeat: no-repeat;
             content: '';
-            height: 84px;
+            height: 100px;
             left: 0;
             position: absolute;
             top: 0;
-            width: 100%;
-        }
-
-        @media #{$mq-tablet} {
-            @include font-size(20px);
+            width: 100px;
         }
     }
 
     a {
+        color: #000;
         display: block;
-        padding: 0 20px;
-        text-align: center;
         text-decoration: none;
 
         &.add-ons h3:before {
-            background-image: url('/media/img/home/2016/icon-addons.svg');
+            background-position: left top;
         }
         &.careers h3:before {
-            background-image: url('/media/img/home/2016/icon-careers.svg');
+            background-position: left -100px;
         }
         &.help h3:before {
-            background-image: url('/media/img/home/2016/icon-help.svg');
+            background-position: left -200px;
         }
 
         &:hover,
@@ -756,17 +603,64 @@ html[dir="rtl"] {
         }
     }
 
-    p {
-        @include font-size(16px);
-        color: $color-text-secondary;
+    @media #{$mq-tablet} {
+        .content {
+            width: auto;
+        }
+
+        ul {
+            padding-top: 60px;
+
+            li {
+                @include border-box;
+                float: left;
+                padding: 0 20px;
+                width: 33.3%;
+                margin: 0;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .content {
+            margin: 0;
+            // line up with navigation
+            padding-left: $nav-margin;
+            padding-right: $nav-margin;
+        }
+
+        ul li {
+            &:first-child {
+                padding-left: 0;
+            }
+
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        .content {
+            margin: 0 auto;
+            max-width: $width-max-content;
+        }
     }
 }
 
+html[dir="rtl"] {
+    .section-externals h3:before {
+        left: auto;
+        right: 0;
+    }
+}
 
 // Newsletter
 #newsletter-subscribe.section-newsletter {
+    background-color: #D3C3DC; // IE 9 fallback
+    @include gradient-horizontal($start-color: #D3C3DC, $end-color: #ECC5D7);
+    color: #000;
     margin: 0;
-    background: $color-mozred-bright;
 
     .newsletter-form,
     .form-title,
@@ -776,31 +670,28 @@ html[dir="rtl"] {
         margin: 0 auto;
     }
 
-    input,
-    select,
-    textarea,
-    .form-details small {
-        @include open-sans;
+    .newsletter-form .form-submit {
+        margin: 0;
     }
 
     .form-title {
         @include background-size(100px, 100px);
-        background-position: center top;
+        background-position: left top;
         margin-top: 0;
         padding-left: 0;
         padding-top: 120px;
-        text-align: center;
 
         h3 {
-            @include font-size(32px);
-            font-style: italic;
-            text-align: center;
+            @include font-size-level3;
+            color: #000;
         }
 
         h4 {
-            @include font-size(18px);
+            @include font-size-level5;
+            color: #000;
             font-weight: normal;
             line-height: 1.5;
+            text-align: left;
         }
     }
 
@@ -815,13 +706,35 @@ html[dir="rtl"] {
         }
     }
 
+    select {
+        width: 100%;
+    }
+
+    a {
+        color: #000;
+    }
+
     .errorlist {
         padding: 10px;
     }
 
     #newsletter-form-thankyou {
+        color: #000;
         padding: 0;
+
+        h3 {
+            color: #000;
+        }
     }
+
+    button.form-button.button-light {
+        color: #000;
+        border-color: #000;
+    }
+}
+
+#home #newsletter-subscribe h3 {
+    text-align: left;
 }
 
 .js #form-details {
@@ -829,33 +742,42 @@ html[dir="rtl"] {
 }
 
 @media #{$mq-tablet} {
-    #newsletter-subscribe.section-newsletter {
-        .newsletter-form {
-            padding-left: 380px;
-            width: 310px;
+    #newsletter-subscribe.section-newsletter .newsletter-form {
+        padding-left: 380px;
+        width: 310px;
 
-            .form-title {
-                @include background-size(120px 120px);
-                @include border-box;
-                background-position: left top;
-                float: left;
-                margin-left: -380px;
-                padding: 10px 0 0 140px;
-                width: 350px;
+        .form-title {
+            @include background-size(120px 120px);
+            @include border-box;
+            background-position: left top;
+            float: left;
+            margin-left: -380px;
+            padding: 10px 0 0 140px;
+            width: 350px;
 
-                h3,
-                h4 {
-                    text-align: left;
-                }
+            h3,
+            h4 {
+                text-align: left;
             }
+        }
 
-            .form-contents,
-            .form-submit {
-                @include border-box;
-                float: left;
-                margin: 0;
-                width: 100%;
-            }
+        .form-contents,
+        .form-submit {
+            @include border-box;
+            float: left;
+            margin: 0;
+            width: 100%;
+        }
+    }
+}
+
+@media #{$mq-desktop} {
+    #newsletter-subscribe.section-newsletter .newsletter-form {
+        padding-left: 540px;
+
+        .form-title {
+            margin-left: -540px;
+            width: 510px;
         }
     }
 }
