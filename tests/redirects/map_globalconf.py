@@ -1195,4 +1195,7 @@ URLS = flatten((
 
     # bug 1416708
     url_test('/firefox/quantum/', '/firefox/'),
+
+    # bug 1421584
+    url_test('/firefox/organizations/faq/', '/firefox/organizations/'),
 ))

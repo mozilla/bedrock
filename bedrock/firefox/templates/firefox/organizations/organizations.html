@@ -5,8 +5,8 @@
 {% extends "/firefox/base-resp.html" %}
 
 {% block page_title_prefix %}{% endblock %}
-{% block page_title %}{{ _('Firefox Extended Support Release for Your Organization, Business, Enterprise - Overview') }}{% endblock %}
-{% block page_desc %}{{ _('Firefox ESR is intended for groups who deploy and maintain the desktop environment in large organizations such as schools, governments and businesses.') }}{% endblock %}
+{% block page_title %}{{ _('Firefox Extended Support Release for Your Organization, Business, Enterprise') }}{% endblock %}
+{% block page_desc %}{{ _('Firefox ESR is intended for system administrators who deploy and maintain the desktop environment in organizations such as schools, governments and businesses.') }}{% endblock %}
 {% block body_id %}organizations{% endblock %}
 
 {% block page_css %}
@@ -20,6 +20,9 @@
 <h2><a href="{{ url('firefox.organizations.organizations') }}">{{ high_res_img('firefox/organizations/title.png', {'alt': _('Firefox ESR'), 'width': '253', 'height': '70'}) }}</a></h2>
 {% endblock %}
 
+{% set list_en = 'https://mail.mozilla.org/listinfo/enterprise' %}
+{% set list_fr = 'https://mail.mozilla.org/listinfo/enterprise-fr' %}
+{% set list_de = 'https://mail.mozilla.org/listinfo/enterprise-de' %}
 
 {% block content %}
 
@@ -30,62 +33,253 @@
 </hgroup>
 {% endblock %}
 
-<div id="main-content">
-<div class="row">
+<div class="container">
   <div class="main-column">
-  {% block main_column %}
-
-    <h4>{{ _('Who is it for?') }}</h4>
-    <p>{{ _('Firefox ESR is intended for groups who deploy and maintain the desktop environment in large organizations such as universities and other schools, county or city governments and businesses.') }}</p>
-
-    <h4>{{ _('Who is it not for?') }}</h4>
-    <p>{{ _('Individual users who always want the latest features, performance enhancements and technologies in their browser without waiting for them to become available in ESR several development cycles later.') }}</p>
-
-    <div id="steps">
-      <h4>{{ _('Step 1.') }}</h4>
-      <p>
-      {% trans url='https://mail.mozilla.org/listinfo/enterprise' %}
-        Before proceeding, we strongly encourage Firefox ESR users to sign up
-        for the <a href="{{ url }}">Enterprise Working Group (EWG) mailing
-        list</a>. The EWG list is a great place to discuss deploying Firefox
-        with other community members and will be the only way to receive
-        regular communications regarding product updates and support.
-      {% endtrans %}
-      </p>
-      <h4>{{ _('Step 2.') }}</h4>
-      <p>{{ _('<a href="%s">Review our handy FAQ</a> for your organization and download Firefox ESR.')|format(url('firefox.organizations.faq')) }}</p>
-    </div>
-
-  {% endblock %}
+    <p>
+    {%- trans -%}
+      Firefox Extended Support Release (ESR) is intended for system administrators who deploy and maintain the desktop
+      environment in organizations such as universities and other schools, county or city governments and businesses.
+    {%- endtrans -%}
+    </p>
+    <p>
+    {%- trans -%}
+      We encourage those who are deploying Firefox ESR to sign up for the Mozilla Enterprise mailing list available in
+      <a href="{{ list_en }}">English</a>, <a href="{{ list_fr }}">French</a> and <a href="{{ list_de }}">German</a>.
+      This list is a great place to discuss deploying Firefox with other community members. Regular communications
+      regarding product updates and support are also sent on the list by various Mozilla teams.
+    {%- endtrans -%}
+    </p>
   </div>
-
   <aside id="sidebar" class="sidebar">
-
     <div id="download">
-      <p><a class="button" href="{{ firefox_url('desktop', 'all', 'esr') }}">{{ _('Download Mozilla Firefox ESR') }}</a></p>
+      <p><a class="button" href="{{ firefox_url('desktop', 'all', 'esr') }}">{{ _('Download Firefox ESR') }}</a></p>
     </div>
-
     <div id="alternate-download">
-      <h4>{{ _('Not from an organization?') }}</h4>
-      <p>{{ _('If you’re looking for Firefox for personal use, please visit our <a href="%s">Firefox</a> page.')|format(url('firefox')) }}</p>
+      <h4>{{ _('Not an administrator?') }}</h4>
+      <p>
+      {%- trans url=url('firefox') -%}
+        ESR is intended for system administrators in organizations. If you’re looking for Firefox for personal use
+        either at home or work, please visit our <a href="{{ url }}">Firefox product page</a> to download the latest
+        version.
+      {%- endtrans -%}
+      </p>
     </div>
-
-    <form method="post" action="https://mail.mozilla.org/subscribe/enterprise" id="esr-form">
-      <h4>{{ _('Subscribe to the Enterprise Working Group (EWG) mailing list') }}</h4>
-      <div class="field">
-        <input type="email" name="email" id="email" size="30" value="" placeholder="{{ _('Email') }}" required />
-      </div>
-      <div class="field">
-        <input type="text" name="fullname" size="30" value="" placeholder="{{ _('Full Name') }}" />
-      </div>
-      <div class="field">
-        <input type="submit" name="email-button" value="{{ _('Subscribe') }}" class="form-button" />
-      </div>
-    </form>
-
   </aside>
-
 </div>
+
+<div class="container">
+  <section id="faq">
+    <h2>{{ _('ESR FAQ') }}</h2>
+    <div class="row">
+      <div class="col">
+        <section>
+          <h4>{{ _('What is Mozilla?') }}</h4>
+          <p>
+          {%- trans firefox=url('firefox'), about=url('mozorg.about') -%}
+            Mozilla is a global, non-profit organization dedicated to making the Web better. We emphasize principle over
+            profit, and believe that the Web is a shared public resource to be cared for, not a commodity to be sold. We
+            work with a worldwide community to create open source products like <a href="{{ firefox }}">Mozilla
+            Firefox</a>, and to innovate for the benefit of the individual and the betterment of the Web. The result is
+            great products built by passionate people and better Web choices for everyone. For more information, visit
+            <a href="{{ about }}">mozilla.org/about</a>.
+          {%- endtrans -%}
+          </p>
+        </section>
+        <section>
+          <h4>{{ _('What is Mozilla Firefox ESR?') }}</h4>
+          <p>
+          {%- trans -%}
+            Mozilla will offer an Extended Support Release (ESR) based on a regular release of Firefox for desktop for
+            use by organizations including schools, universities, businesses and others who need extended support for
+            mass deployments.
+          {%- endtrans -%}
+          </p>
+        </section>
+        <section>
+          <h4>{{ _('Where can I download Mozilla Firefox ESR?') }}</h4>
+          <p>
+          {%- trans download=firefox_url('desktop', 'all', 'esr') -%}
+            You can <a href="{{ download }}">download Mozilla Firefox ESR here</a>.
+          {%- endtrans -%}
+          </p>
+        </section>
+      </div>
+      <div class="col">
+        <section>
+          <h4>{{ _('What does the Mozilla Firefox ESR life cycle look like?') }}</h4>
+          <p>
+          {%- trans -%}
+            Releases will be maintained for more than a year, with point releases containing security updates coinciding
+            with regular Firefox releases. The ESR will also have a two cycles (12 week) overlap between the time of a
+            new release and the end-of-life of the previous release to permit testing and certification prior to
+            deploying a new version.
+          {%- endtrans -%}
+          </p>
+          <p>
+          {%- trans bugzilla='https://bugzilla.mozilla.org/enter_bug.cgi?product=Firefox' -%}
+            Mozilla relies on Firefox ESR users to provide feedback for the new ESR releases. During the first two
+            cycles, please <a href="{{ bugzilla }}">report any bugs</a> about web compatibility regressions, stability
+            issues, and so on.
+          {%- endtrans -%}
+          </p>
+          <p>
+          {%- trans -%}
+            Maintenance of each ESR, through point releases, is limited to high-risk/high-impact security
+            vulnerabilities and in rare cases may also include off-schedule releases that address live security
+            vulnerabilities. Backports of any functional enhancements and/or stability fixes are not in scope.
+          {%- endtrans -%}
+          </p>
+          <p>{{ _('At the end of the support period for an ESR version:') }}</p>
+          <ul>
+            <li>{{ _('the release will reach its end-of-life') }}</li>
+            <li>{{ _('no further updates will be offered for that version') }}</li>
+            <li>{{ _('an update to the next version will be offered through the application update service') }}</li>
+          </ul>
+          <p>
+          {%- trans wiki='https://wiki.mozilla.org/Enterprise/Firefox/ExtendedSupport:Proposal' -%}
+            You can <a href="{{ wiki }}">read more about the plan here</a>.
+          {%- endtrans -%}
+          </p>
+        </section>
+      </div>
+    </div>
+    <figure>
+      <a href="{{ static('img/firefox/organizations/release-overview-high-res.png') }}">
+        {{ high_res_img('firefox/organizations/release-overview.png', {'alt': _(''), 'width': '672', 'height': '336'}) }}
+      </a>
+      <figcaption>{{ _('Firefox ESR Release Overview') }}</figcaption>
+    </figure>
+    <div class="row">
+      <div class="col">
+        <section>
+          <h4>{{ _('Who should use Mozilla Firefox ESR?') }}</h4>
+          <p>
+          {%- trans firefox=url('firefox') -%}
+            Mozilla Firefox ESR is meant for organizations that manage their client desktops, including schools,
+            businesses and other institutions that want to offer Firefox. Users who want to get the latest features,
+            performance enhancements and technologies in their browsing experience should download Firefox for
+            <a href="{{ firefox }}">personal use</a>, as these improvements will only be available to ESR users several
+            development cycles after being made available in Firefox for desktop. If you’re using Firefox for personal
+            use, you can download Firefox from <a href="{{ firefox }}">mozilla.org/firefox</a>.
+          {%- endtrans -%}
+          </p>
+          <p>
+          {%- trans -%}
+            In some cases, ESR is proposed to regular users for unsupported architectures transition. For example, when
+            Windows XP support ended for the release, Firefox ESR has been recommended for these users.
+          {%- endtrans -%}
+          </p>
+        </section>
+        <section>
+          <h4>{{ _('What does my organization need to do to use Mozilla Firefox ESR?') }}</h4>
+          <p>
+          {%- trans bugzilla='https://bugzilla.mozilla.org/enter_bug.cgi?product=Firefox',
+              wiki='https://wiki.mozilla.org/Enterprise:Bugs' -%}
+            System administrators who deploy Firefox ESR are encouraged to sign up for the Enterprise mailing list and
+            test Beta versions of Firefox and ESR Release Candidates. You can also file bugs for issues you may
+            encounter <a href="{{ bugzilla }}">here</a> or follow known bugs <a href="{{ wiki }}">here</a>.
+          {%- endtrans -%}
+          </p>
+        </section>
+        <section>
+          <h4>{{ _('How can I learn about the latest Mozilla Firefox ESR news?') }}</h4>
+          <p>
+          {%- trans -%}
+            To learn about the latest Mozilla Firefox ESR news, administrators are encouraged to subscribe to the
+            Mozilla Enterprise mailing list available in <a href="{{ list_en }}">English</a>,
+            <a href="{{ list_fr }}">French</a> and <a href="{{ list_de }}">German</a>. This is where Mozilla
+            communicates the latest information about Firefox ESR and other product updates.
+          {%- endtrans -%}
+          </p>
+        </section>
+        <section>
+          <h4>{{ _('What is the Enterprise mailing list?') }}</h4>
+          <p>
+          {%- trans wiki='https://wiki.mozilla.org/Enterprise' -%}
+            The Mozilla Enterprise mailing list run by the Mozilla Enterprise User Working Group (EWG) is where
+            enterprise developers, IT staff, Firefox developers discuss best practices for deploying Firefox and
+            Thunderbird in the enterprise. You can <a href="{{ wiki }}">learn more about the EWG here</a>.
+          {%- endtrans -%}
+          </p>
+        </section>
+        <section>
+          <h4>{{ _('Where can I get technical support for Mozilla Firefox ESR?') }}</h4>
+          <p>
+          {%- trans support='https://support.mozilla.org/' -%}
+            Mozilla Firefox ESR support can be found through the mailing list. As Firefox ESR is (almost) functionally
+            identical to Firefox for desktop, users will be able to <a href="{{ support }}">find relevant support
+            articles here</a>.
+          {%- endtrans -%}
+          </p>
+        </section>
+        <section>
+          <h4>{{ _('Is there any difference between Firefox and Firefox ESR?') }}</h4>
+          <p>
+          {%- trans -%}
+            Firefox and Firefox ESR are extremely similar. Rarely, some features are disabled in ESR for different
+            reasons like stability issues, potential changes in the specifications, etc. Any differences between the
+            regular release and ESR are documented in the release notes of the first ESR release of the cycle.
+          {%- endtrans -%}
+          </p>
+        </section>
+      </div>
+      <div class="col">
+        <section>
+          <h4>{{ _('How do I customize Firefox to meet my organization’s IT policy/requirements?') }}</h4>
+          <p>
+          {%- trans wiki='https://wiki.mozilla.org/Enterprise', cck='https://mike.kaply.com/cck2/' -%}
+            There are several methods that can be used to customize Firefox and the best place to start is the
+            Enterprise list or the <a href="{{ wiki }}">Enterprise Wiki page</a>. There are <a href="{{ cck }}">add-ons
+            available</a>, as well as third-party organizations who provide customization services, and the Enterprise
+            list is a good place to discuss requirements if you’re just getting started.
+          {%- endtrans -%}
+          </p>
+        </section>
+        <section>
+          <h4>{{ _('Does Mozilla provide an upgrade path between two ESR versions?') }}</h4>
+          <p>
+          {%- trans -%}
+            Yes, an ESR will be automatically upgraded to the subsequent ESR. System administrators can disable
+            automatic updates by managing ESR through their deployment system. From a major version to the other
+            (example: the 45 to 52 migration), the updates will be proposed only after the X.2.0 version is released.
+            For example, users of 45 have been updated only when 52.2.0 has been published.
+          {%- endtrans -%}
+          </p>
+        </section>
+        <section>
+          <h4>{{ _('Is Mozilla Firefox ESR available in my language?') }}</h4>
+          <p>
+          {%- trans contact='mailto:sledru@mozilla.com' -%}
+            Firefox ESR is available in every locale currently available for Firefox. Because of the precise needs of
+            ESR, it’s encouraged for system administrators deploying the build to register and participate in an mailing
+            list. This is only available in <a href="{{ list_en }}">English</a>, <a href="{{ list_fr }}">French</a> and
+            <a href="{{ list_de }}">German</a>, but if you would like to volunteer to lead an Enterprise mailing list in
+            your language, please <a href="{{ contact }}">get in touch</a>.
+          {%- endtrans -%}
+          </p>
+        </section>
+        <section>
+          <h4>{{ _('How can I unsubscribe from the mailing list?') }}</h4>
+          <p>
+          {%- trans -%}
+            Visit your language’s mailing list linked above and fill the unsubscription form at the bottom of the page,
+            or send an email to the list moderator as instructed at the bottom of each post.
+          {%- endtrans -%}
+          </p>
+        </section>
+        <section>
+          <h4>{{ _('Is Mozilla Firefox ESR available for Android and iOS?') }}</h4>
+          <p>
+          {%- trans -%}
+            No. Firefox ESR will only be offered for Windows, macOS and Linux for desktop computers.
+          {%- endtrans -%}
+          </p>
+        </section>
+      </div>
+    </div>
+  </section>
 </div>
 
 {% endblock %}
+
+{% block email_form %}{% endblock %}
