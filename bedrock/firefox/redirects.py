@@ -564,4 +564,7 @@ redirectpatterns = (
 
     # bug 1416708
     redirect(r'^firefox/quantum/?', 'firefox'),
+
+    # bug 1421584
+    redirect(r'^firefox/organizations/faq/?$', 'firefox.organizations.organizations'),
 )
