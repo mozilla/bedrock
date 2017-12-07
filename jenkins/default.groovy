@@ -137,7 +137,11 @@ if ( config.apps ) {
                         try {
                             // wait for server to be ready
                             sleep(time: 10, unit: 'SECONDS')
-                            parallel allTests
+                            if ( allTests.size() == 1 ) {
+                                allTests[regionTests[0]]()
+                            } else {
+                                parallel allTests
+                            }
                         } catch(err) {
                             utils.ircNotification([stage: "Integration Tests ${appname}-${region.name}", status: 'failure'])
                             throw err
