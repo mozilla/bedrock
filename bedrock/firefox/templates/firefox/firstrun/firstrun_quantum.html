@@ -21,7 +21,7 @@
 {% endblock %}
 
 {% block experiments %}
-  {% if switch('experiment_firstrun_email_first', ['en-US']) %}
+  {% if switch('experiment-firstrun-email-first', ['en-US']) %}
     {% javascript 'experiment_firstrun_email_first' %}
   {% endif %}
 {% endblock %}
