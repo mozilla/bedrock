@@ -65,6 +65,7 @@
 .intro-section {
     p {
         @include font-size-level4;
+        font-style: italic;
         margin-bottom: 0;
     }
 }
@@ -74,12 +75,19 @@
     padding: 60px 0 20px;
 
     .copy-wrapper {
-        h2 {
-            @include font-size-level3;
+        h2,
+        h3 {
             color: #000;
             margin-bottom: 20px;
         }
 
+        h2 {
+            @include font-size-level3;
+        }
+
+        h3 {
+            @include font-size-level4;
+        }
         .copy {
             color: #000;
         }
@@ -94,7 +102,7 @@
         .copy-wrapper {
             @include clearfix;
             margin: 0 auto;
-            width: 70%;
+            width: 90%;
 
             header {
                 float: left;
@@ -103,7 +111,7 @@
 
             .copy {
                 float: right;
-                width: 60%;
+                width: 65%;
             }
         }
 
@@ -112,9 +120,9 @@
         }
     }
 
-    @media #{$mq-desktop} {
-        .copy-wrapper .copy {
-            width: 65%;
+    @media #{$mq-desktop-wide} {
+        .copy-wrapper {
+            width: 70%;
         }
     }
 }
@@ -131,6 +139,95 @@ html[dir="rtl"] {
 
     .copy-wrapper .copy {
         float: left;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Financial table
+
+.financial-table {
+    max-width: 100%;
+    overflow: scroll;
+    margin: 40px auto;
+
+    @media #{$mq-tablet} {
+        float: right;
+    }
+
+    @media #{$mq-desktop} {
+        width: 65%;
+    }
+}
+
+table {
+    @include open-sans;
+    @include font-size-small;
+    text-align: left;
+
+    caption {
+        padding-bottom: 20px;
+        p {
+            @include font-size-small;
+        }
+    }
+
+    thead {
+        border-bottom: 2px solid #000;
+
+        th {
+            text-align: center;
+        }
+    }
+
+    th,
+    td {
+        padding: 5px 10px 5px 0;
+    }
+
+    th {
+        font-weight: normal;
+    }
+
+    tbody.revenue {
+        th[scope="row"] {
+            padding-left: 10px;
+        }
+    }
+
+    td {
+        text-align: right;
+    }
+
+    tfoot {
+        border-top: 2px solid #000;
+    }
+}
+
+html[dir="rtl"] {
+    .financial-table {
+        @media #{$mq-tablet} {
+            float: left;
+        }
+    }
+
+    table {
+        text-align: right;
+
+        th,
+        td {
+            padding: 5px 0 5px 10px;
+        }
+
+        tbody.revenue {
+            th[scope="row"] {
+                padding-left: 0;
+                padding-right: 10px;
+            }
+        }
+
+        td {
+            text-align: left;
+        }
     }
 }
 
