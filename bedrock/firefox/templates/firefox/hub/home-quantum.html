@@ -70,6 +70,15 @@
       <div class="content">
         <div class="key-feature-container">
           <div class="key-feature-content">
+          {% if l10n_has_tag('update_faster_copy') %}
+            <h2 class="section-title">{{ _('Now 2x faster') }}</h2>
+            <p>
+            {% trans url='https://blog.mozilla.org/firefox-de/firefox-quantum-superschnell-und-schont-den-speicher/' if LANG == 'de' else 'https://blog.mozilla.org/firefox/quantum-performance-test/' %}
+              Crazy <a href="{{ url }}">powerful browser engine</a>? Check. Less time waiting around for pages to load?
+              Also, check. Firefox Quantum is twice as fast as Firefox was before.
+            {% endtrans %}
+            </p>
+          {% else %}
             <h2 class="section-title">{{ _('2x Faster') }}</h2>
             <p>
             {% trans url='https://blog.mozilla.org/firefox-de/firefox-quantum-superschnell-und-schont-den-speicher/' if LANG == 'de' else 'https://blog.mozilla.org/firefox/quantum-performance-test/' %}
@@ -77,6 +86,7 @@
               Also, check. Get the best Firefox yet.
             {% endtrans %}
             </p>
+          {% endif %}
           </div>
           <div class="key-feature-media video">
             <div class="moz-video-container">
