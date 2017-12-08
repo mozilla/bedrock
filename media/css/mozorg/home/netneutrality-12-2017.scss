@@ -5,22 +5,22 @@
 @import '../../pebbles/includes/lib';
 
 #promo-close {
-    background: transparent url('/media/img/notification/close.svg') center center no-repeat;
-    background-size: 18px 18px;
+    background: rgba(255, 255, 255, .2) url('/media/img/notification/close.svg') center center no-repeat;
+    background-size: 20px 20px;
     border: none;
     border-radius: 50%;
     display: none;
-    height: 30px;
+    height: 35px;
     padding: 6px;
     position: absolute;
-    right: 0;
-    top: -20px;
+    right: 15px;
+    top: 15px;
     transition: background-color 0.2s ease;
-    width: 30px;
+    width: 35px;
 
     &:focus,
     &:hover {
-        background-color: rgba(255, 255, 255, 0.3);
+        background-color: rgba(255, 255, 255, .3);
     }
 
     // hide the 'Close' text
@@ -38,6 +38,7 @@
     background: #000;
     color: #fff;
     padding: 40px 20px;
+    min-height: 100vh;
 
     // hide by default if JS is available to avoid flicker
     // (if visitor previously dismissed)
@@ -46,7 +47,7 @@
     }
 
     h1 {
-        @include font-size-level2;
+        @include font-size-level1;
         margin-bottom: 1em;
     }
 
@@ -64,59 +65,43 @@
         }
     }
 
+    &:before {
+        background: url('/media/img/pebbles/moz-wordmark-light-reverse.svg') no-repeat;
+        @include background-size(100px, 32px);
+        content: '';
+        display: inline-block;
+        height: 32px;
+        width: 100px;
+        position: absolute;
+        left: 20px;
+        top: 20px;
+    }
+
     .content-wrapper {
         margin: 0 auto;
-        max-width: 1420px;
+        max-width: 500px;
         padding-top: 10px;
-        position: relative;
+        margin-top: 10vh;
     }
 
-
-    @media #{$mq-desktop} {
-        @include clearfix;
-        text-align: left;
-
-        h1 {
-            margin-bottom: 0;
-        }
-
+    @media (min-height: 800px) {
         .content-wrapper {
-            @include clearfix;
+            margin-top: 15vh;
         }
     }
 }
 
-
-@media #{$mq-desktop} {
-    #promo-headline {
-        float: left;
-        width: 50%;
-
-        h1 {
-            padding-left: 1em;
-            width: calc(75% - 1em);
-        }
-    }
-
-    #promo-content {
-        float: left;
-        padding-top: 4px;
-        width: 50%;
-
-        p {
-            margin-bottom: 2em;
-        }
-    }
-}
 
 
 // Slenderized banner on slashnew.
 #promo-net-neutrality.is-slim {
     @include font-size-small;
-    padding: 0 40px 0 0;
+    padding: 0 50px 0 0;
+    min-height: 0;
+    max-height: none;
 
     p {
-        margin: 0 0 1em;
+        margin: 0 40px 1em 0;
     }
 
     .button {
@@ -135,13 +120,17 @@
     }
 
     #promo-close {
-        top: 5px;
-        right: 5px;
+        top: 10px;
+        right: 10px;
+    }
+
+    &:before {
+        display: none;
     }
 
     @media #{$mq-tablet} {
         p {
-            margin: 0 20px 0 0;
+            margin-bottom: 0;
             display: inline-block;
         }
     }
