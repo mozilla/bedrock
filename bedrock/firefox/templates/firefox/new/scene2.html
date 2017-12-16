@@ -38,9 +38,6 @@
             <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
           </div>
           <h2><a href="{{ url('firefox') }}">{{ high_res_img('firefox/template/header-logo-inverse.png', {'alt': 'Firefox', 'width': '185', 'height': '70'}) }}</a></h2>
-          {% if switch('firefox-new-survey', ['en-US']) %}
-            {% include 'firefox/new/survey.html' %}
-          {% endif %}
         </header>
         <div class="main-content">
           <h1>{{ _('Behold! The open web awaits.') }}</h1>
