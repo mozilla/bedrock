@@ -15,34 +15,6 @@ body {
     background: #000;
 }
 
-
-/* -------------------------------------------------------------------------- */
-// Bug 1387573 survey link shown for en-US only.
-
-#firefox-new-survey-link {
-    @include font-size-small;
-    color: #ffbb38;
-    display: none;
-    margin-bottom: 20px;
-    text-decoration: none;
-
-    &:hover,
-    &:active,
-    &:focus {
-        text-decoration: underline;
-    }
-}
-
-@media #{$mq-tablet} {
-    .survey-link-container {
-        text-align: left;
-    }
-
-    #firefox-new-survey-link {
-        margin-bottom: 0;
-    }
-}
-
 /* -------------------------------------------------------------------------- */
 // Main page header
 

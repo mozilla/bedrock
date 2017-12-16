@@ -52,11 +52,6 @@
         <h2><a class="firefox" href="{{ url('firefox') }}">{{ high_res_img('logos/firefox/logo-quantum-wordmark-white.png', {'alt': 'Firefox', 'width': '133', 'height': '50'}) }}</a></h2>
         <h2><a class="mozilla" href="{{ url('mozorg.home') }}"><img src="{{ static('img/logos/mozilla/wordmark-dark.svg')}}" alt="Mozilla" width="101" height="34"></a></h2>
       </div>
-      {% if switch('firefox-new-survey', ['en-US']) %}
-        <div class="survey-link-container">
-          {% include 'firefox/new/survey.html' %}
-        </div>
-      {% endif %}
       <div class="header-container">
         <div class="header-content">
           {% block main_content %}{% endblock %}
