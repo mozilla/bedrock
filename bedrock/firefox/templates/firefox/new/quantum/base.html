@@ -40,10 +40,6 @@
 {% block site_header %}{% endblock %}
 
 {% block content %}
-{% if switch('netneutrality-12-2017', ['en-US']) %}
-  {% include 'firefox/new/includes/netneutrality-12-2017.html' %}
-{% endif %}
-
 <main role="main">
   <div class="main-content">
     {% block messages %}{% endblock %}
