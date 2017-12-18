@@ -5,12 +5,15 @@
 {% set donate_params = get_donate_params() %}
 
 <aside class="promo" id="fundraiser">
+  <button type="button" id="fundraiser-close"><span>{{ _('Close') }}</span></button>
   <div class="content-wrapper">
-    <button type="button" id="fundraiser-close"><span>{{ _('Close') }}</span></button>
-
     <div id="fundraiser-headline">
       <h1>
+      {% if LANG.startswith('en-') %}
+        {{ _('The internet needs you, now more than ever. Donate today.') }}
+      {% else %}
         {{ _('We all love the web. Join Mozilla in defending it.') }}
+      {% endif %}
       </h1>
     </div>
 

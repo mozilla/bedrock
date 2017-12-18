@@ -12,6 +12,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/base/mozilla-video-poster.less',
             'css/newsletter/moznewsletter-subscribe.less',
+            'css/mozorg/home/fundraiser2017.scss',
             'css/mozorg/about.less',
         ),
         'output_filename': 'css/about-bundle.css',
@@ -125,12 +126,14 @@ PIPELINE_CSS = {
     'internet-health-hub': {
         'source_filenames': (
             'css/mozorg/internet-health/index.scss',
+            'css/mozorg/home/fundraiser2017.scss',
         ),
         'output_filename': 'css/mozorg/internet-health-hub-bundle.css',
     },
     'health-subpage': {
         'source_filenames': (
             'css/mozorg/internet-health/health-subpage.scss',
+            'css/mozorg/home/fundraiser2017.scss',
         ),
         'output_filename': 'css/mozorg/health-subpage-bundle.css',
     },
@@ -866,6 +869,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/base/mozilla-modal.less',
             'css/mozorg/contribute/contribute-base.less',
+            'css/mozorg/home/fundraiser2017.scss',
         ),
         'output_filename': 'css/contribute-base-bundle.css',
     },
