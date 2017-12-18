@@ -17,4 +17,7 @@ redirectpatterns = (
 
     # bug 1394042 - Firefox Cloud Services redirect to Fx
     redirect(r'^privacy/firefox-cloud/?$', 'privacy.notices.firefox'),
+
+    # bug 1425865 - Firefox for Amazon Fire TV uses Firefox Focus
+    redirect(r'^privacy/firefox-fire-tv/?$', 'privacy.notices.firefox-focus'),
 )
