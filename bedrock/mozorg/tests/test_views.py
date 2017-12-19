@@ -354,11 +354,11 @@ class TestHome(TestCase):
         request = RequestFactory().get('/')
         request.locale = 'en-US'
         views.home(request)
-        render_mock.assert_called_once_with(request, 'mozorg/home/home-quantum.html', ANY)
+        render_mock.assert_called_once_with(request, 'mozorg/home/home-quantum.html')
 
     @patch.object(views, 'lang_file_is_active', lambda *x: False)
     def test_home_2016_template(self, render_mock):
         request = RequestFactory().get('/')
         request.locale = 'de'
         views.home(request)
-        render_mock.assert_called_once_with(request, 'mozorg/home/home.html', ANY)
+        render_mock.assert_called_once_with(request, 'mozorg/home/home.html')
