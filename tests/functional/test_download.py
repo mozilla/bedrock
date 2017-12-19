@@ -8,7 +8,7 @@ import requests
 
 
 def pytest_generate_tests(metafunc):
-    if 'not headless' in metafunc.config.option.markexpr:
+    if 'not download' in metafunc.config.option.markexpr:
         return  # test deslected by mark expression
     base_url = metafunc.config.option.base_url
     if not base_url:
@@ -35,7 +35,7 @@ def pytest_generate_tests(metafunc):
     metafunc.parametrize('url', argvalues)
 
 
-@pytest.mark.headless
+@pytest.mark.download
 @pytest.mark.nondestructive
 def test_download_links(url):
     r = requests.head(url, allow_redirects=True)

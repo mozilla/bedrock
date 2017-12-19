@@ -13,6 +13,7 @@ apps:
 integration_tests:
   usw:
     - headless
+    - download
     - firefox
     - chrome
     - ie
