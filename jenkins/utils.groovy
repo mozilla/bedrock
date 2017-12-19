@@ -63,7 +63,7 @@ def integrationTestJob(propFileName, appURL='') {
                               usernameVariable: 'SAUCELABS_USERNAME',
                               passwordVariable: 'SAUCELABS_API_KEY']]) {
                 withEnv(["BASE_URL=${appURL}"]) {
-                    retry(3) {
+                    retry(2) {
                         try {
                             sh testScript
                         }

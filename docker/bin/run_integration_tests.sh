@@ -25,6 +25,10 @@ case $1 in
     PLATFORM="Windows 7"
     MARK_EXPRESSION="sanity and not headless"
     ;;
+  download)
+    DRIVER=
+    MARK_EXPRESSION=download
+    ;;
   headless)
     DRIVER=
     MARK_EXPRESSION=headless

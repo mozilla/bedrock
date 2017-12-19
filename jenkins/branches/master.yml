@@ -12,6 +12,7 @@ integration_tests:
   usw:
     - firefox
     - headless
+    - download
   tokyo:
     - headless
   frankfurt:
