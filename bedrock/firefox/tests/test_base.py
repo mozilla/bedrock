@@ -256,6 +256,15 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/whatsnew/fx57/whatsnew-57.html'])
 
+    @override_settings(DEV=True)
+    def test_fx_dev_57_0(self, render_mock):
+        """Should use developer whatsnew page for 57.0 dev edition"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='57.0a2')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/developer/whatsnew.html'])
+
     # end 57.0 whatsnew tests
 
 
@@ -319,7 +328,7 @@ class TestFirstRun(TestCase):
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='57.0a2')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/developer-quantum-firstrun.html'])
+        eq_(template, ['firefox/developer/firstrun.html'])
 
     @override_settings(DEV=True)
     def test_fx_firstrun_57_0(self, render_mock):

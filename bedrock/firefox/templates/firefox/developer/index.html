@@ -2,19 +2,19 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% add_lang_files "firefox/shared" %}
+{% add_lang_files "firefox/products/developer-quantum" "firefox/shared" %}
 
 {% extends "firefox/base-pebbles.html" %}
 
 {% block page_title %}{{_('Firefox Developer Edition')}}{% endblock %}
 {% block page_desc %}{{ _('Firefox Developer Edition is the blazing fast browser that offers cutting edge developer tools and latest features like CSS Grid support and framework debugging') }}{% endblock %}
-{% block page_image %}{{ static('img/firefox/products/developer/quantum/page-image.png') }}{% endblock %}
-{% block page_favicon %}{{ static('img/firefox/products/developer/quantum/favicon.png') }}{% endblock %}
-{% block page_favicon_large %}{{ static('img/firefox/products/developer/quantum/favicon-196.png') }}{% endblock %}
+{% block page_image %}{{ static('img/firefox/developer/page-image.png') }}{% endblock %}
+{% block page_favicon %}{{ static('img/firefox/developer/favicon.png') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/firefox/developer/favicon-196.png') }}{% endblock %}
 
 
 {% block page_css %}
-  {% stylesheet 'firefox_developer_quantum' %}
+  {% stylesheet 'firefox_developer' %}
 {% endblock %}
 
 {% block body_id %}firefox-developer{% endblock %}
@@ -39,7 +39,7 @@
         </p>
       </div>
 
-      {{ high_res_img('firefox/products/developer/quantum/hero-screenshot.png', {'class': 'hero-image', 'alt': '', 'width': '1200', 'height': '400'}) }}
+      {{ high_res_img('firefox/developer/hero-screenshot.png', {'class': 'hero-image', 'alt': '', 'width': '1200', 'height': '400'}) }}
 
     </div>
   </section>
@@ -50,7 +50,7 @@
 
       <div class="section-body">
         <h3 class="body-title">{{ _('A Next-Generation CSS Engine') }}</h3>
-        <img class="hero-image" src="{{ static('img/firefox/products/developer/quantum/stylo-engine.svg') }}" alt="">
+        <img class="hero-image" src="{{ static('img/firefox/developer/stylo-engine.svg') }}" alt="">
         <p>
         {% trans %}
           Firefox has been rebuilt from the ground up to be faster and more
@@ -72,7 +72,7 @@
         <div class="section-body">
           <h3 class="body-title">{{ _('Firefox DevTools') }}</h3>
 
-          <img class="hero-image" src="{{ static('img/firefox/products/developer/quantum/hero-debugger-ani.gif') }}" alt="">
+          <img class="hero-image" src="{{ static('img/firefox/developer/hero-debugger-ani.gif') }}" alt="">
           <p>
           {% if l10n_has_tag('ember_reference_fix') %}
             {% trans %}
@@ -94,7 +94,7 @@
         <div class="section-body">
           <h3 class="body-title">{{ _('Master CSS Grid') }}</h3>
 
-          <img class="hero-image" src="{{ static('img/firefox/products/developer/quantum/hero-cssgrid-ani.gif') }}" alt="">
+          <img class="hero-image" src="{{ static('img/firefox/developer/hero-cssgrid-ani.gif') }}" alt="">
           <p>
           {% trans %}
             Firefox is the only browser with tools built specifically for
@@ -117,73 +117,73 @@
 
         <ul class="features-list gallery-list has-three-cols">
           <li class="gallery-item feature">
-            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-inspector.svg') }}" alt="">
+            <img class="icon" src="{{ static('img/firefox/developer/feature-inspector.svg') }}" alt="">
             <h3 class="name">{{ _('Inspector') }}</h3>
             <p class="desc">{{ _('Inspect and refine code to build pixel-perfect layouts.') }}</p>
           </li>
 
           <li class="gallery-item feature">
-            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-console.svg') }}" alt="">
+            <img class="icon" src="{{ static('img/firefox/developer/feature-console.svg') }}" alt="">
             <h3 class="name">{{ _('Console') }}</h3>
             <p class="desc">{{ _('Track CSS, JavaScript, security and network issues.') }}</p>
           </li>
 
           <li class="gallery-item feature">
-            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-debugger.svg') }}" alt="">
+            <img class="icon" src="{{ static('img/firefox/developer/feature-debugger.svg') }}" alt="">
             <h3 class="name">{{ _('Debugger') }}</h3>
             <p class="desc">{{ _('Powerful JavaScript debugger with support for your framework.') }}</p>
           </li>
 
           <li class="gallery-item feature">
-            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-network.svg') }}" alt="">
+            <img class="icon" src="{{ static('img/firefox/developer/feature-network.svg') }}" alt="">
             <h3 class="name">{{ _('Network') }}</h3>
             <p class="desc">{{ _('Monitor network requests that can slow or block your site.') }}</p>
           </li>
 
           <li class="gallery-item feature">
-            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-storage.svg') }}" alt="">
+            <img class="icon" src="{{ static('img/firefox/developer/feature-storage.svg') }}" alt="">
             <h3 class="name">{{ _('Storage panel') }}</h3>
             <p class="desc">{{ _('Add, modify and remove cache, cookies, databases and session data.') }}</p>
           </li>
 
           <li class="gallery-item feature">
-            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-responsive-mode.svg') }}" alt="">
+            <img class="icon" src="{{ static('img/firefox/developer/feature-responsive-mode.svg') }}" alt="">
             <h3 class="name">{{ _('Responsive Design Mode') }}</h3>
             <p class="desc">{{ _('Test sites on emulated devices in your browser.') }}</p>
           </li>
 
           <li class="gallery-item feature">
-            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-visual-editing.svg') }}" alt="">
+            <img class="icon" src="{{ static('img/firefox/developer/feature-visual-editing.svg') }}" alt="">
             <h3 class="name">{{ _('Visual Editing') }}</h3>
             <p class="desc">{{ _('Fine-tune animations, alignment and padding.') }}</p>
           </li>
 
           <li class="gallery-item feature">
-            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-performance.svg') }}" alt="">
+            <img class="icon" src="{{ static('img/firefox/developer/feature-performance.svg') }}" alt="">
             <h3 class="name">{{ _('Performance') }}</h3>
             <p class="desc">{{ _('Unblock bottlenecks, streamline processes, optimize assets.') }}</p>
           </li>
 
           <li class="gallery-item feature">
-            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-memory.svg') }}" alt="">
+            <img class="icon" src="{{ static('img/firefox/developer/feature-memory.svg') }}" alt="">
             <h3 class="name">{{ _('Memory') }}</h3>
             <p class="desc">{{ _('Find memory leaks and make your application zippy.') }}</p>
           </li>
 
           <li class="gallery-item feature">
-            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-web-audio.svg') }}" alt="">
+            <img class="icon" src="{{ static('img/firefox/developer/feature-web-audio.svg') }}" alt="">
             <h3 class="name">{{ _('Web Audio') }}</h3>
             <p class="desc">{{ _('The only developer tool for inspecting the Web Audio API.') }}</p>
           </li>
 
           <li class="gallery-item feature">
-            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-scratchpad.svg') }}" alt="">
+            <img class="icon" src="{{ static('img/firefox/developer/feature-scratchpad.svg') }}" alt="">
             <h3 class="name">{{ _('Scratchpad') }}</h3>
             <p class="desc">{{ _('Edit, write, run and execute JavaScript in real time.') }}</p>
           </li>
 
           <li class="gallery-item feature">
-            <img class="icon" src="{{ static('img/firefox/products/developer/quantum/feature-style-editor.svg') }}" alt="">
+            <img class="icon" src="{{ static('img/firefox/developer/feature-style-editor.svg') }}" alt="">
             <h3 class="name">{{ _('Style Editor') }}</h3>
             <p class="desc">{{ _('Edit and manage all your CSS stylesheets in your browser.') }}</p>
           </li>
@@ -238,5 +238,5 @@
 {% block update_notification %}{% endblock %}
 
 {% block js %}
-  {% javascript 'firefox-product-page' %}
+  {% javascript 'firefox_developer' %}
 {% endblock %}
