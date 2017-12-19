@@ -10,6 +10,12 @@
   <meta name="robots" content="noindex,follow">
 {% endblock %}
 
+{% block optimizely %}
+{% if switch('firefox-new-scene2-optimizely', ['en-US']) %}
+  {% include 'includes/optimizely.html' %}
+{% endif %}
+{% endblock %}
+
 {# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
 {% block extrahead %}
   {{ super() }}
