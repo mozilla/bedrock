@@ -45,6 +45,36 @@
     </div>
   </header>
 
+{% if l10n_has_tag('health_hub_data_detox_kit') %}
+  <section class="data-detox-kit">
+    <div class="content">
+      <div class="card-image-large">
+        <h2 class="section-title"><span>{{ _('Data Detox Kit') }}</span></h2>
+
+        <div class="card-content-wrapper">
+          <div class="card-content">
+            <a href="https://blog.mozilla.org/internetcitizen/2017/11/08/data-detox/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=ih-content-hub" data-link-name="Get your digital cleanse" data-link-type="link" data-link-position="data-detox-kit">
+              {# L10n: if the term "Get your digital cleanse" does not translate easily, an alternative line of copy could be "Refresh your digital life". #}
+              <h3 class="card-heading">{{ _('Get your digital cleanse') }}</h3>
+            </a>
+
+            <p>
+            {% trans %}
+              Fight toxic data buildup and eliminate anxiety over shared online info.
+              In a few easy steps, you’ll be on your way to a healthier and more in-control digital self.
+            {% endtrans %}
+            </p>
+
+            <a href="https://blog.mozilla.org/internetcitizen/2017/11/08/data-detox/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=ih-content-hub" class="cta-link" data-link-name="Get your digital cleanse" data-link-type="link" data-link-position="data-detox-kit">
+              {{ _('Get started') }}
+            </a>
+          </div>
+        </div> {#--/.card-content-wrapper--#}
+      </div>
+    </div> {#--/.content--#}
+  </section> {#--/.data-detok-kit--#}
+{% endif %}
+
 {% if l10n_has_tag('health_hub_common_voice') %}
   <section class="common-voice">
     <div class="content">
@@ -72,7 +102,6 @@
       </div>
     </div> {#--/.content--#}
   </section> {#--/.common-voice--#}
-
 {% else %}
 
   <section class="net-neutrality">

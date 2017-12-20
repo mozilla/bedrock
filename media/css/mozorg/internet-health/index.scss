@@ -28,6 +28,34 @@ main .content {
 /* -------------------------------------------------------------------------- */
 // Large image cards
 
+.data-detox-kit {
+    .card-content-wrapper {
+        background-color: #d7d9f2;
+        background-image: url('/media/img/mozorg/internet-health/hub/data-detox-kit.png');
+        background-position: top -30px center;
+        @include background-size(100%, auto);
+    }
+
+    @media #{$mq-phone-wide} {
+        .card-content-wrapper {
+            background-position: top -100px center;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        .card-content-wrapper {
+            @include at2x('/media/img/mozorg/internet-health/hub/data-detox-kit.png', 673px, 456px);
+            background-position: top right -150px;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        .card-content-wrapper {
+            background-position: top right;
+        }
+    }
+}
+
 .net-neutrality {
     .card-content-wrapper {
         background-image: url('/media/img/mozorg/internet-health/hub/net-neutrality-large.png');
