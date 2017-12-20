@@ -737,6 +737,48 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene2.html')
 
+    # reggie watts campaign bug 1413995
+
+    def test_reggie_watts_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=reggiewatts')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/reggie-watts/scene1.html')
+
+    def test_reggie_watts_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=reggiewatts')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/reggie-watts/scene2.html')
+
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
+    def test_reggie_watts_translated_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=reggiewatts')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/reggie-watts/scene1.html')
+
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
+    def test_reggie_watts_translated_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=reggiewatts')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/reggie-watts/scene2.html')
+
+    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    def test_reggie_watts_untranslated_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=reggiewatts')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+
+    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    def test_reggie_watts_untranslated_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=reggiewatts')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+
 
 class TestFirefoxNewNoIndex(TestCase):
     def test_scene_1_noindex(self):
