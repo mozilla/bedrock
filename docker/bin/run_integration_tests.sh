@@ -23,7 +23,7 @@ case $1 in
     BROWSER_NAME="internet explorer"
     BROWSER_VERSION="8.0"
     PLATFORM="Windows 7"
-    MARK_EXPRESSION="sanity and not headless"
+    MARK_EXPRESSION=sanity
     ;;
   download)
     DRIVER=

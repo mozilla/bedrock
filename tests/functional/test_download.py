@@ -8,7 +8,8 @@ import requests
 
 
 def pytest_generate_tests(metafunc):
-    if 'not download' in metafunc.config.option.markexpr:
+    markexpr = metafunc.config.option.markexpr
+    if markexpr and markexpr != 'download':
         return  # test deslected by mark expression
     base_url = metafunc.config.option.base_url
     if not base_url:
