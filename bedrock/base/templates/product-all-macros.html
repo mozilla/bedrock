@@ -10,6 +10,7 @@
              name="q"
              id="language-search-q"
              list="languages"
+             autocomplete="off"
              {% if query %}value="{{ query }}"{% endif %}>
       <datalist id="languages">
         {% for build in full_builds -%}
