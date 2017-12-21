@@ -7,40 +7,32 @@ import pytest
 import requests
 
 
-def pytest_generate_tests(metafunc):
-    markexpr = metafunc.config.option.markexpr
-    if markexpr and markexpr != 'download':
-        metafunc.parametrize('url', [])
-        return  # test deslected by mark expression
-
-    base_url = metafunc.config.option.base_url
-    if not base_url:
-        pytest.skip(
-            'This test requires a base URL to be specified on the command '
-            'line or in a configuration file.')
-    paths = (
-        '/firefox/new/?scene=2',
-        '/thunderbird/')
-    argvalues = []
-    for path in paths:
-        try:
-            r = requests.get(base_url + path)
-        except requests.RequestException:
-            r = requests.get(base_url + path)
-        soup = BeautifulSoup(r.content, 'html.parser')
-        urls = [a['href'] for a in soup.find('ul', class_='download-list').find_all('a')]
-        # Bug 1266682 remove links to Play Store to avoid rate limiting in automation.
-        for url in urls:
-            if 'play.google.com' in url:
-                urls.remove(url)
-        assert len(urls) > 0
-        argvalues.extend(urls)
-
-    metafunc.parametrize('url', argvalues)
+PAGE_PATHS = (
+    '/firefox/new/?scene=2',
+    '/thunderbird/',
+)
 
 
 @pytest.mark.download
 @pytest.mark.nondestructive
-def test_download_links(url):
-    r = requests.head(url, allow_redirects=True)
-    assert requests.codes.ok == r.status_code
+@pytest.mark.parametrize('path', PAGE_PATHS)
+def test_download_links(path, base_url):
+    if not base_url:
+        pytest.skip(
+            'This test requires a base URL to be specified on the command '
+            'line or in a configuration file.')
+
+    full_url = base_url + '/en-US' + path
+    try:
+        r = requests.get(full_url)
+    except requests.RequestException:
+        # retry
+        r = requests.get(full_url)
+    soup = BeautifulSoup(r.content, 'html.parser')
+    urls = [a['href'] for a in soup.find('ul', class_='download-list').find_all('a')]
+    # Bug 1266682 remove links to Play Store to avoid rate limiting in automation.
+    urls = [url for url in urls if 'play.google.com' not in url]
+    assert urls
+    for url in urls:
+        r = requests.head(url, allow_redirects=True)
+        assert requests.codes.ok == r.status_code

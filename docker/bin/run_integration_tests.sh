@@ -3,7 +3,7 @@
 # $1 should be the properties name for this run
 # defaults
 DRIVER=SauceLabs
-MARK_EXPRESSION="not headless"
+MARK_EXPRESSION="not headless and not download"
 
 case $1 in
   chrome)
