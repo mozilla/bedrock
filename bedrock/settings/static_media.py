@@ -645,16 +645,9 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/newsletter/moznewsletter-subscribe.less',
             'css/mozorg/home/home.scss',
-        ),
-        'output_filename': 'css/home-bundle.css',
-    },
-    'home-quantum': {
-        'source_filenames': (
-            'css/newsletter/moznewsletter-subscribe.less',
-            'css/mozorg/home/home-quantum.scss',
             'css/mozorg/home/fundraiser2017.scss',
         ),
-        'output_filename': 'css/home_quantum-bundle.css',
+        'output_filename': 'css/home-bundle.css',
     },
     'legal': {
         'source_filenames': (

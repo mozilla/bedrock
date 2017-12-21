@@ -2,10 +2,9 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import google_play_button with context %}
 {% extends "base-pebbles.html" %}
 
-{% add_lang_files "mozorg/home/index-2016" %}
+{% add_lang_files "mozorg/home/index-quantum" %}
 
 {% block gtm_page_id %}data-gtm-page-id="Homepage"{% endblock %}
 
@@ -32,7 +31,12 @@
 {% endblock %}
 
 {% block site_header %}
-{% include 'mozorg/home/includes/home-icons-sprite.svg' %}
+  {% include 'mozorg/home/includes/home-icons-sprite.svg' %}
+
+  {% if switch('home-fundraiser-EOY2017') and l10n_has_tag('home-fundraiser-EOY2017') %}
+    {% include 'mozorg/home/includes/fundraiser-eoy2017.html' %}
+  {% endif %}
+
   {% if LANG.startswith('en-') %}
     {% include 'includes/global-nav.html' %}
   {% else %}
@@ -45,27 +49,68 @@
 
 {% block content %}
 <main role="main" class="main wrapper">
-  <section class="section section-intro" id="intro">
-  {% block intro %}
-    <div id="home-slideshow">
-      <div class="slide" id="slide-one"></div>
-      <div class="slide" id="slide-two"></div>
-      <div class="slide" id="slide-three"></div>
-      <div class="slide" id="slide-four"></div>
-    </div>
+  <section class="intro-section" id="quantum">
+    <div class="content-wrapper">
+      <div class="intro-content">
+        <strong id="fx-logo">
+        {% if l10n_has_tag('home-update-20171116') %}
+          {# L10n: the <span> below is for visual formatting only - bolding the word 'Firefox' #}
+          {{ _('The new <span>Firefox</span>') }}
+        {% else %}
+          {{ _('Firefox') }}
+        {% endif %}
+        </strong>
+
+        <h2>
+        {% if l10n_has_tag('home-update-20171116') %}
+          {{ _('Fast for good.') }}
+        {% else %}
+          {{ _('Browse faster. For good.') }}
+        {% endif %}
+        </h2>
+
+        <p>
+        {% if l10n_has_tag('home-update-20171116') %}
+          {{ _('With 2x the speed, built-in privacy protection and Mozilla behind it, the new Firefox is the better way to browse.') }}
+        {% else %}
+          {{ _('With 2x the speed, built-in privacy protection and Mozilla behind it, the new Firefox is fast for good.') }}
+        {% endif %}
+        </p>
+
+        {{ download_firefox(dom_id='download-intro', button_color='button quantum', download_location='primary cta') }}
+      </div>{#--/.intro-content--#}
+      <div class="intro-image">
+        {{ high_res_img('home/laptop.png', {'alt': '', 'width': '854', 'height': '536'}) }}
+      </div>
+    </div>{#--/.content--#}
+  </section>{#--/#quantum--#}
+
+  <section class="intro-section" id="mozilla">
     <div class="content">
-      <h2>
-        {# L10n: line break below for visual formatting only #}
-        {{ _('Internet for people, <br>not profit.') }}
-      </h2>
-      <h3>
-      {% trans %}
-        Hi. We’re Mozilla, the proudly non-profit champions of the Internet,
-        helping to keep it healthy, open and accessible to all.
-      {% endtrans %}
-      </h3>
-    </div>
-  {% endblock %}
+      <div class="intro-image">
+        <img src="{{ static('img/home/dino.svg') }}" width="364" height="268" alt="" />
+      </div>
+      <div class="intro-content">
+        <h2>
+          <span>{{ _('We make the internet safer, healthier and faster for good.') }}</span>
+        </h2>
+        <p>
+        {% if l10n_has_tag('home-update-20171116') %}
+          {% trans %}
+            Mozilla is the not-for-profit behind Firefox, the original alternative
+            browser. We create products and policy to keep the internet in service
+            of people, not profit.
+          {% endtrans %}
+        {% else %}
+          {% trans %}
+            Mozilla is the not-for-profit behind Firefox, the original alternative
+            browser. We create products and policy to keep the internet in service
+            of people, not profits.
+          {% endtrans %}
+        {% endif %}
+        </p>
+      </div>
+    </div>{#--/.content--#}
   </section>
 
   <section class="section" id="impact-innovate-wrapper">
@@ -73,7 +118,13 @@
       <div class="section-content">
         <h2 class="section-headline">{{ _('Our impact') }}</h2>
         <p>
-        {% if l10n_has_tag('mozorg-home-impact-health') %}
+        {% if l10n_has_tag('home-update-20171116') %}
+          {% trans %}
+            When you use Firefox, you help Mozilla fight misinformation online,
+            teach digital skills and make the comments section more human.
+            Check out what helps create a healthier internet.
+          {% endtrans %}
+        {% elif l10n_has_tag('mozorg-home-impact-health') %}
           {% trans %}
             Working to keep the Internet healthy, open and accessible to all, we
             teach web literacy, provide tools and advocate on behalf of every
@@ -89,6 +140,26 @@
         </p>
 
         <ul id="icon-links-who" class="icon-links">
+        {% if l10n_has_tag('home-update-20171116') %}
+          <li id="information-trust">
+            <a rel="external" href="https://blog.mozilla.org/blog/2017/08/08/mozilla-information-trust-initiative-building-movement-fight-misinformation-online/"><svg class="icon"><use xlink:href="#icon-information-trust"></use></svg>
+              {{ _('Mozilla Information Trust Initiative') }}
+            </a>
+          </li>
+          <li id="empowering-women">
+            <a rel="external" href="https://learning.mozilla.org/blog/new-partnership-with-un-women-to-teach-key-digital-skills-to-women"><svg class="icon"><use xlink:href="#icon-empowering-women"></use></svg>
+              {{ _('Empowering Women Online') }}
+            </a>
+          </li>
+          <li id="coral-project">
+            <a rel="external" href="https://blog.mozilla.org/blog/2017/09/06/mozilla-washington-post-reinventing-online-comments/"><svg class="icon"><use xlink:href="#icon-coral-project"></use></svg>
+              {{ _('The Coral Project') }}
+            </a>
+          </li>
+          <li id="nethealth">
+            <a rel="external" href="https://internethealthreport.org"><svg class="icon"><use xlink:href="#icon-nethealth"></use></svg>{{ _('Internet Health Report') }}</a>
+          </li>
+        {% else %}
           <li id="encryption">
             <a rel="external" href="https://advocacy.mozilla.org/encrypt/"><svg class="icon"><use xlink:href="#icon-encryption"></use></svg>{{ _('Stand Up For Encryption') }}</a>
           </li>
@@ -98,10 +169,11 @@
           <li id="leandata">
             <a href="{{ url('mozorg.about.policy.lean-data') }}"><svg class="icon"><use xlink:href="#icon-leandata"></use></svg>{{ _('Try the Lean Data Toolkit') }}</a>
           </li>
-        {% if l10n_has_tag('mozorg-home-health-report') %}
-          <li id="nethealth">
-            <a rel="external" href="https://internethealthreport.org"><svg class="icon"><use xlink:href="#icon-nethealth"></use></svg>{{ _('Read our Internet Health Report') }}</a>
-          </li>
+          {% if l10n_has_tag('mozorg-home-health-report') %}
+            <li id="nethealth">
+              <a rel="external" href="https://internethealthreport.org"><svg class="icon"><use xlink:href="#icon-nethealth"></use></svg>{{ _('Read our Internet Health Report') }}</a>
+            </li>
+          {% endif %}
         {% endif %}
         </ul>
       </div>
@@ -119,9 +191,15 @@
         </p>
 
         <ul id="icon-links-innovate" class="icon-links">
+        {% if l10n_has_tag('home-update-20171116') %}
+          <li id="common-voice">
+            <a rel="external" href="https://voice.mozilla.org/"><svg class="icon"><use xlink:href="#icon-common-voice"></use></svg>{{ _('Common Voice') }}</a>
+          </li>
+        {% else %}
           <li id="gaming">
             <a rel="external" href="https://games.mozilla.org/"><svg class="icon"><use xlink:href="#icon-gaming"></use></svg>{{ _('Gaming on the Web') }}</a>
           </li>
+        {% endif %}
           <li id="vr">
             <a rel="external" href="https://vr.mozilla.org/"><svg class="icon"><use xlink:href="#icon-vr"></use></svg>{{ _('Virtual Reality Platform') }}</a>
           </li>
@@ -136,51 +214,12 @@
     </section>
   </section>{#-- /#who-innovate-wrapper --#}
 
-  {% block section_firefox %}
-  <section class="section" id="firefox">
-    <div class="horizon">
-      <div class="stars">
-        <div class="content">
-
-        {% if l10n_has_tag('mozorg-home-fxcopy-unleash') %}
-          <h2>{{ _('Unleash your Internet') }}</h2>
-          <p>{{ _('Set the Web free and your mind will follow.') }}</p>
-        {% else %}
-          <h2>{{ _('Browse freely.') }}</h2>
-          <p>{{ _('Discover unlimited potential, endless possibility and a wide open Web.') }}</p>
-        {% endif %}
-
-          <a id="fx-download-link" href="{{ url('firefox.new') }}">{{ _('Get Firefox today') }}</a>
-
-          <div id="fxmobile-download-buttons">
-            <ul>
-              <li class="android">
-                {{ google_play_button() }}
-              </li>
-              <li class="ios">
-                <a href="{{ firefox_ios_url('mozorg-homepage_prototype_b-button') }}" data-link-type="download" data-download-os="iOS">
-                  <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
-                </a>
-              </li>
-            </ul>
-            <p><a class="android-systems-link hidden" href="{{ firefox_url('android', 'all', 'release') }}">{{_('Systems &amp; Languages')}}</a></p>
-          </div> {# --/#fxmobile-download-buttons --#}
-        </div> {# --/.content --#}
-      </div> {# --/.stars --#}
-    </div> {# --/.horizon --#}
-
-    <div class="foreground">
-      {% include 'firefox/includes/horizon.html' %}
-    </div> {# --/.foreground --#}
-  </section>
-  {% endblock %}
-
   <section class="section section-externals" id="externals">
     <ul class="content">
       <li>
         <a class="add-ons" rel="external" href="https://addons.mozilla.org/">
-          <h3>{{ _('Add-ons') }}</h3>
-          <p>{{ _('Compare prices, check the weather, listen to music, send a tweet and more right from Firefox.') }}</p>
+          <h3>{{ _('Extensions') }}</h3>
+          <p>{{ _('Personalize Firefox with your favorite extras like password managers, ad blockers and more.') }}</p>
         </a>
       </li>
       <li>
@@ -212,5 +251,14 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'home' %}
+  {% if switch('home-fundraiser-EOY2017') and l10n_has_tag('home-fundraiser-EOY2017') %}
+    {% javascript 'home-fundraiser-eoy2017' %}
+  {% endif %}
+{% endblock %}
+
+{% block update_notification %}
+  {# do not show the update banner if the fundraiser banner is active #}
+  {% if not switch('home-fundraiser-EOY2017') %}
+    {{ super() }}
+  {% endif %}
 {% endblock %}
