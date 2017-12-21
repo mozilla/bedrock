@@ -10,7 +10,9 @@ import requests
 def pytest_generate_tests(metafunc):
     markexpr = metafunc.config.option.markexpr
     if markexpr and markexpr != 'download':
+        metafunc.parametrize('url', [])
         return  # only run when specifically selected
+
     base_url = metafunc.config.option.base_url
     if not base_url:
         pytest.skip(
@@ -39,6 +41,7 @@ def pytest_generate_tests(metafunc):
         urls = [url for url in urls if 'product=fennec-latest&os=android&lang=be' not in url]
         assert len(urls) > 0
         argvalues.extend(urls)
+
     metafunc.parametrize('url', argvalues)
 
 

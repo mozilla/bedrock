@@ -10,7 +10,9 @@ import requests
 def pytest_generate_tests(metafunc):
     markexpr = metafunc.config.option.markexpr
     if markexpr and markexpr != 'download':
+        metafunc.parametrize('url', [])
         return  # test deslected by mark expression
+
     base_url = metafunc.config.option.base_url
     if not base_url:
         pytest.skip(
@@ -33,6 +35,7 @@ def pytest_generate_tests(metafunc):
                 urls.remove(url)
         assert len(urls) > 0
         argvalues.extend(urls)
+
     metafunc.parametrize('url', argvalues)
 
 
