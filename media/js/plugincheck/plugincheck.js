@@ -10,9 +10,11 @@
 
     if (client.isFirefoxDesktop) {
         client.getFirefoxDetails(function(details) {
-            if (details.isUpToDate && details.channel === 'release') {
+            // set `strict` to `false`, so we only test against the major version number.
+            var isUpToDate = client._isFirefoxUpToDate(false, details.isESR, details.version);
+            if (isUpToDate) {
                 body.addClass('firefox-current');
-            } else if (!details.isUpToDate && details.channel === 'release') {
+            } else {
                 body.addClass('firefox-old');
             }
         });
