@@ -7,46 +7,39 @@ import pytest
 import requests
 
 
-def pytest_generate_tests(metafunc):
-    markexpr = metafunc.config.option.markexpr
-    if markexpr and markexpr != 'download':
-        metafunc.parametrize('url', [])
-        return  # only run when specifically selected
-
-    base_url = metafunc.config.option.base_url
-    if not base_url:
-        pytest.skip(
-            'This test requires a base URL to be specified on the command '
-            'line or in a configuration file.')
-    paths = (
-        '/firefox/all/',
-        '/firefox/beta/all/',
-        '/firefox/developer/all/',
-        '/firefox/nightly/all/',
-        '/firefox/organizations/all/',
-        '/firefox/android/all/',
-        '/firefox/android/beta/all/',
-        '/firefox/android/nightly/all/',
-    )
-    argvalues = []
-    for path in paths:
-        try:
-            r = requests.get(base_url + path)
-        except requests.RequestException:
-            r = requests.get(base_url + path)
-        soup = BeautifulSoup(r.content, 'html.parser')
-        table = soup.find('table', class_='build-table')
-        urls = [a['href'] for a in table.find_all('a')]
-        # Bug 1321262 skip broken feccec link for 'be' until bug is resolved
-        urls = [url for url in urls if 'product=fennec-latest&os=android&lang=be' not in url]
-        assert len(urls) > 0
-        argvalues.extend(urls)
-
-    metafunc.parametrize('url', argvalues)
+PAGE_PATHS = (
+    '/firefox/all/',
+    '/firefox/beta/all/',
+    '/firefox/developer/all/',
+    '/firefox/nightly/all/',
+    '/firefox/organizations/all/',
+    '/firefox/android/all/',
+    '/firefox/android/beta/all/',
+    '/firefox/android/nightly/all/',
+)
 
 
 @pytest.mark.download
 @pytest.mark.nondestructive
-def test_localized_download_links(url):
-    r = requests.head(url, allow_redirects=True)
-    assert requests.codes.ok == r.status_code
+@pytest.mark.parametrize('path', PAGE_PATHS)
+def test_localized_download_links(path, base_url):
+    if not base_url:
+        pytest.skip(
+            'This test requires a base URL to be specified on the command '
+            'line or in a configuration file.')
+
+    full_url = base_url + '/en-US' + path
+    try:
+        r = requests.get(full_url)
+    except requests.RequestException:
+        # retry
+        r = requests.get(full_url)
+    soup = BeautifulSoup(r.content, 'html.parser')
+    table = soup.find('table', class_='build-table')
+    urls = [a['href'] for a in table.find_all('a')]
+    # Bug 1321262 skip broken feccec link for 'be' until bug is resolved
+    urls = [url for url in urls if 'product=fennec-latest&os=android&lang=be' not in url]
+    assert urls
+    for url in urls:
+        r = requests.head(url, allow_redirects=True)
+        assert requests.codes.ok == r.status_code
