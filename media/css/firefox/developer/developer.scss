@@ -2,10 +2,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import
-    '../pebbles/includes/lib',
-    '../pebbles/components/newsletter',
-    '../hubs/sub-nav';
+@import '../../pebbles/includes/lib';
+@import '../../pebbles/components/newsletter';
+@import '../../hubs/sub-nav';
 
 $color-dev-lightblue: #30cde2;
 $color-dev-mediumblue: #306efe;
@@ -173,7 +172,7 @@ $color-dev-mediumblue: #306efe;
 
     @media #{$mq-tablet} {
         @include background-size(1700px 450px);
-        background-image: url('/media/img/firefox/products/developer/quantum/hero-background.png');
+        background-image: url('/media/img/firefox/developer/hero-background.png');
         padding-top: 40px;
 
         .hero-image {
@@ -183,7 +182,7 @@ $color-dev-mediumblue: #306efe;
     }
 
     @media #{$mq-desktop} {
-        @include at2x('/media/img/firefox/products/developer/quantum/hero-background.png', 3400px, 900px);
+        @include at2x('/media/img/firefox/developer/hero-background.png', 3400px, 900px);
 
         .hero-image {
             margin-top: 60px;
@@ -246,7 +245,7 @@ $color-dev-mediumblue: #306efe;
         &:before {
             @include background-size(3000px 172px);
             @include section-curve;
-            background-image: url('/media/img/firefox/products/developer/quantum/curve-performance-top.svg');
+            background-image: url('/media/img/firefox/developer/curve-performance-top.svg');
             height: 172px;
             top: -171px;
         }
@@ -285,7 +284,7 @@ $color-dev-mediumblue: #306efe;
         &:before {
             @include background-size(3000px 140px);
             @include section-curve;
-            background-image: url('/media/img/firefox/products/developer/quantum/curve-highlights-top.svg');
+            background-image: url('/media/img/firefox/developer/curve-highlights-top.svg');
             height: 140px;
             top: -139px;
         }
@@ -317,7 +316,7 @@ $color-dev-mediumblue: #306efe;
         &:before {
             @include background-size(3000px 108px);
             @include section-curve;
-            background-image: url('/media/img/firefox/products/developer/quantum/curve-features-top.svg');
+            background-image: url('/media/img/firefox/developer/curve-features-top.svg');
             height: 108px;
             top: -108px;
         }
@@ -325,7 +324,7 @@ $color-dev-mediumblue: #306efe;
         &:after {
             @include background-size(3000px 182px);
             @include section-curve;
-            background-image: url('/media/img/firefox/products/developer/quantum/curve-features-bottom.svg');
+            background-image: url('/media/img/firefox/developer/curve-features-bottom.svg');
             bottom: -181px;
             height: 182px;
         }
@@ -511,7 +510,7 @@ $color-dev-mediumblue: #306efe;
         &:after {
             @include background-size(3000px 62px);
             @include section-curve;
-            background-image: url('/media/img/firefox/products/developer/quantum/curve-download-bottom.svg');
+            background-image: url('/media/img/firefox/developer/curve-download-bottom.svg');
             bottom: -61px;
             height: 62px;
         }
@@ -542,7 +541,7 @@ $color-dev-mediumblue: #306efe;
 //*------------------------------------------------------------------*/
 // Newsletter
 .section-newsletter {
-    background: #2b2c32 url('/media/img/firefox/products/developer/quantum/newsletter-background.svg') center bottom no-repeat;
+    background: #2b2c32 url('/media/img/firefox/developer/newsletter-background.svg') center bottom no-repeat;
     @include background-size(3000px 348px);
     color: #fff;
     min-height: 150px;

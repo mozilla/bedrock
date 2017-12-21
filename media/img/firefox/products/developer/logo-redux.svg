@@ -1,7 +1,0 @@
-<svg id="logo-redux" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80px" height="80px">
-  <path fill="#ffffff" class="st0" d="M50.8 40.3c0 6-4.8 10.8-10.8 10.8s-10.8-4.8-10.8-10.8S34 29.5 40 29.5s10.8 4.8 10.8 10.8"/>
-  <path fill="none" stroke="#ffffff" stroke-width="2" class="st1" d="M63.6 40.3c0 13-10.5 23.6-23.5 23.6S16.6 53.3 16.6 40.3s10.5-23.6 23.5-23.6 23.5 10.6 23.5 23.6z"/>
-  <path fill="none" stroke="#ffffff" stroke-width="2" class="st1" d="M78.6 40.3C78.6 61.7 61.4 79 40.1 79S1.6 61.7 1.6 40.3 18.8 1.6 40.1 1.6s38.5 17.3 38.5 38.7z"/>
-  <path fill="#ffffff" class="st0" d="M62.6 25.2c0 3.1-2.5 5.6-5.6 5.6s-5.6-2.5-5.6-5.6 2.5-5.6 5.6-5.6 5.6 2.5 5.6 5.6"/>
-  <path fill="#ffffff" class="st0" d="M26.2 6.9c0 3.1-2.5 5.6-5.6 5.6S15 10.1 15 6.9s2.5-5.6 5.6-5.6 5.6 2.5 5.6 5.6"/>
-</svg>

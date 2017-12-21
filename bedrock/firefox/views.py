@@ -390,9 +390,8 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
         f = self.request.GET.get('f', None)
 
         if detect_channel(version) == 'alpha':
-            if show_57_dev_firstrun(version) and lang_file_is_active(
-                    'firefox/products/developer-quantum', locale):
-                    template = 'firefox/developer-quantum-firstrun.html'
+            if show_57_dev_firstrun(version):
+                    template = 'firefox/developer/firstrun.html'
             else:
                 template = 'firefox/dev-firstrun.html'
         elif show_56_cliqz_firstrun(locale, version, f):
@@ -437,9 +436,8 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
 
         channel = detect_channel(version)
         if channel == 'alpha':
-            if show_57_dev_whatsnew(version) and lang_file_is_active(
-                    'firefox/products/developer-quantum', locale):
-                    template = 'firefox/developer-quantum-whatsnew.html'
+            if show_57_dev_whatsnew(version):
+                    template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/dev-whatsnew.html'
         elif channel == 'nightly':
@@ -663,14 +661,3 @@ class FirefoxHubView(BlogPostsView):
     blog_slugs = 'firefox'
     blog_tags = ['home']
     template_name = 'firefox/home.html'
-
-
-def FirefoxProductDeveloperView(request):
-    locale = l10n_utils.get_locale(request)
-
-    if lang_file_is_active('firefox/products/developer-quantum', locale):
-        template = 'firefox/products/developer-quantum.html'
-    else:
-        template = 'firefox/products/developer.html'
-
-    return l10n_utils.render(request, template)

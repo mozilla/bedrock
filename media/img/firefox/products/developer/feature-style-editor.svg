@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="222" height="122" viewBox="0 0 222 122">
-  <path fill="none" stroke="#FFF" stroke-width="3" stroke-linecap="round" d="M128.1 78.9h-24.5c-1.9 0-3.5-1.6-3.5-3.6V51.6c0-2 1.6-3.6 3.5-3.6h24.5c1.9 0 3.5 1.6 3.5 3.6v23.8c0 1.9-1.6 3.5-3.5 3.5z"/>
-  <path fill="none" stroke="#0E59E1" stroke-width="5" stroke-linecap="round" d="M142.1 97.3H88.7c-4.2 0-7.7-3.5-7.7-7.8V37.7c0-4.3 3.5-7.8 7.7-7.8h53.4c4.2 0 7.7 3.5 7.7 7.8v51.9c0 4.2-3.4 7.7-7.7 7.7z"/>
-  <path fill="#1C2142" d="M152.6 41.3l-22.5 22.4-10.9 1.9c-2.5.7-4.8-1.6-4-4.1l2.3-10.5 22.7-22.6"/>
-  <path fill="none" stroke="#00C7D8" stroke-width="5" d="M152.6 41.3l-22.5 22.4-10.9 1.9c-2.5.7-4.8-1.6-4-4.1l2.3-10.5 22.7-22.6"/>
-  <path fill="none" stroke="#00C7D8" stroke-width="5" stroke-linecap="round" d="M134.6 22.9L157 45.3"/>
-  <path fill="#00C7D8" d="M150.1 38.1l9.9-10.5c1.6-1.6 1.6-4.3 0-5.9l-.6-.6c-1.6-1.6-4.3-1.6-5.9 0l-9.6 9.6"/>
-  <path fill="none" stroke="#00C7D8" stroke-width="5" stroke-linecap="round" d="M150.1 38.1l9.4-9.9c1.6-1.6 1.6-4.3 0-5.9l-.6-.6c-1.6-1.6-4.3-1.6-5.9 0l-9 8.9"/>
-</svg>

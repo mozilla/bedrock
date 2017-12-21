@@ -7,7 +7,6 @@ import pytest
 from pages.firefox.developer import DeveloperPage
 
 
-@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1396029')  # Quantum page behind switch, unskip when the switch is removed
 @pytest.mark.sanity
 @pytest.mark.smoke
 @pytest.mark.nondestructive

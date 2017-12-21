@@ -332,20 +332,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_fx38_0_5_firstrun-bundle.css',
     },
-    'firefox_developer_firstrun': {
-        'source_filenames': (
-            'css/base/mozilla-modal.less',
-            'css/firefox/dev-firstrun.less',
-        ),
-        'output_filename': 'css/firefox_developer_firstrun-bundle.css',
-    },
-    'firefox_developer_quantum_firstrun': {
-        'source_filenames': (
-            'css/firefox/developer-quantum.scss',
-            'css/firefox/developer-quantum-firstrun.scss',
-        ),
-        'output_filename': 'css/firefox_developer_quantum_firstrun-bundle.css',
-    },
     'nightly_firstrun': {
         'source_filenames': (
             'css/firefox/nightly_firstrun.less',
@@ -398,24 +384,32 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_geolocation-bundle.css',
     },
-    'firefox_developer_2017': {
+    'firefox_developer': {
         'source_filenames': (
-            'css/firefox/developer-2017.scss',
+            'css/firefox/developer/developer.scss',
         ),
-        'output_filename': 'css/firefox_developer_2017-bundle.css',
-    },
-    'firefox_developer_quantum': {
-        'source_filenames': (
-            'css/firefox/developer-quantum.scss',
-        ),
-        'output_filename': 'css/firefox_developer_quantum-bundle.css',
+        'output_filename': 'css/firefox_developer-bundle.css',
     },
     'firefox_developer_quantum_whatsnew': {
         'source_filenames': (
-            'css/firefox/developer-quantum.scss',
-            'css/firefox/developer-quantum-whatsnew.scss',
+            'css/firefox/developer/developer.scss',
+            'css/firefox/developer/whatsnew.scss',
         ),
         'output_filename': 'css/firefox_developer_quantum_whatsnew-bundle.css',
+    },
+    'firefox_developer_firstrun': {
+        'source_filenames': (
+            'css/base/mozilla-modal.less',
+            'css/firefox/dev-firstrun.less',
+        ),
+        'output_filename': 'css/firefox_developer_firstrun-bundle.css',
+    },
+    'firefox_developer_quantum_firstrun': {
+        'source_filenames': (
+            'css/firefox/developer/developer.scss',
+            'css/firefox/developer/firstrun.scss',
+        ),
+        'output_filename': 'css/firefox_developer_quantum_firstrun-bundle.css',
     },
     'firefox_ios_testflight': {
         'source_filenames': (
@@ -1235,9 +1229,16 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_firstrun_cliqz_funnelcake-bundle.js',
     },
+    'firefox_developer': {
+        'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/hubs/sub-nav.js',
+        ),
+        'output_filename': 'js/firefox_developer-bundle.js',
+    },
     'firefox_developer_firstrun': {
         'source_filenames': (
-            'js/base/uitour-lib.js',
             'js/base/mozilla-modal.js',
             'js/firefox/dev-firstrun.js',
         ),
