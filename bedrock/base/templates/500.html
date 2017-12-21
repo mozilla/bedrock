@@ -2,17 +2,37 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "base-resp.html" %}
+{% set_lang_files "mozorg/500" %}
+
+{% extends "base-pebbles.html" %}
+
+{% block gtm_page_id %}data-gtm-page-id="500"{% endblock %}
+
+{% block page_title %}{{ _('500: Internal Server Error') }}{% endblock %}
 
 {% block page_css %}
   {% stylesheet 'page_not_found' %}
 {% endblock %}
 
-{% block content %}
-<div id="main-content" class="error500">
-  <h1>Oh Noes!</h1>
-  <p>An error occurred. Try back later!</p>
-</div>
-{% endblock %}
+{% block tabzilla_tab %}{% endblock %}
 
-{% block email_form %}{% endblock %}
+{% block content %}
+<main>
+  <div class="content">
+    <header>
+      <h1><span>{{ _('Oh Noes!') }}</span></h1>
+      <h2>{{ _('An error occurred.') }}</h2>
+    </header>
+    <div class="error-content">
+      <p>
+      {% trans bugzilla='https://bugzilla.mozilla.org/enter_bug.cgi?product=www.mozilla.org' %}
+        If you’ve found an issue with one of our websites, we’d appreciate it if you could report the problem in Bugzilla, our <a href="{{ bugzilla }}">bug tracker</a>. One of our developers will take a look at it as soon as possible.
+      {% endtrans %}
+      </p>
+    </div>
+    <aside class="download-firefox">
+      {{ download_firefox() }}
+    </aside>
+  </div>
+</main>
+{% endblock %}
