@@ -900,7 +900,7 @@ PIPELINE_CSS = {
     },
     'page_not_found': {
         'source_filenames': (
-            'css/base/page-not-found.less',
+            'css/base/page-not-found.scss',
         ),
         'output_filename': 'css/page_not_found-bundle.css',
     },
