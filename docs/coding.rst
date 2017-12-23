@@ -156,7 +156,7 @@ If you'd rather have a fully separate template for your test, you can use the
     ]
 
 This will not provide any extra template context variables, but will instead look for
-alternate template names. If the URL is `testing/?v=1`, it will use a tempalte named
+alternate template names. If the URL is `testing/?v=1`, it will use a template named
 `testing-1.html`, if `v=2` it will use `testing-2.html`, and for everything else it will
 use the default. It simply puts a dash and the variation value between the template
 file name and file extension.
