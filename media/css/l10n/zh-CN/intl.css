@@ -3,6 +3,7 @@
 @font-face {
     font-family: X-LocaleSpecific;
     font-weight: normal;
+    font-display: swap;
     src: /* OS X */
        local(FZLTXHK--GBK1-0), /* = Lantinghei SC Extralight */
        local(HiraginoSansGB-W3),
@@ -15,6 +16,7 @@
 @font-face {
     font-family: X-LocaleSpecific;
     font-weight: bold;
+    font-display: swap;
     src: /* OS X */
        local(FZLTZHK--GBK1-0), /* = Lantinghei SC Demibold */
        local(HiraginoSansGB-W6),
@@ -27,6 +29,7 @@
 @font-face {
     font-family: X-LocaleSpecific-Extrabold;
     font-weight: 800;
+    font-display: swap;
     src: /* OS X */
        local(FZLTTHK--GBK1-0), /* = Lantinghei SC Heavy */
        local(HiraginoSansGB-W6),
