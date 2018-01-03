@@ -58,7 +58,13 @@
 </aside>
 
 <ul class="small-links">
-  <li><a href="{{ url('firefox.all') }}">{{_('Download in another language') }}</a></li>
+  <li><a href="{{ url('firefox.all') }}">
+    {% if l10n_has_tag('firefox_new_platform_link_text') %}
+      {{_('Download for other platforms & languages') }}
+    {% else %}
+      {{_('Download in another language') }}
+    {% endif %}
+  </a></li>
 </ul>
 {% endblock %}
 
