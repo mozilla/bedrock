@@ -572,9 +572,7 @@ PIPELINE_CSS = {
     },
     'firefox_whatsnew': {
         'source_filenames': (
-            'css/base/send-to-device.less',
-            'css/firefox/horizon/background.less',
-            'css/firefox/whatsnew/whatsnew.less',
+            'css/firefox/whatsnew/whatsnew.scss',
         ),
         'output_filename': 'css/firefox_whatsnew-bundle.css',
     },

@@ -1,0 +1,220 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+@import '../../hubs/sections';
+@import 'send-to-device';
+
+
+//* -------------------------------------------------------------------------- */
+// Common elements
+
+body {
+    @include open-sans;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+//* -------------------------------------------------------------------------- */
+// Up-to-date header
+
+.main-header {
+    text-align: center;
+
+    .inner-container {
+        position: relative;
+    }
+
+    h1 {
+        @include font-size-level5;
+        display: none;
+        margin: 7px 0;
+        width: calc(100% - 45px);
+
+        &:before {
+            background: url('/media/img/firefox/whatsnew/icon-green-check.svg') center left no-repeat;
+            background-size: 25px 25px;
+            content: '';
+            display: inline-block;
+            height: 25px;
+            margin: 0 10px 0 0;
+            vertical-align: middle;
+            width: 25px;
+        }
+    }
+
+    .mozilla-logo {
+        @include font-size(15px);
+        float: left;
+        height: 25px;
+        margin: 0;
+
+        a {
+            @include image-replaced;
+            background: url('/media/img/favicon/favicon-196x196.png') top left no-repeat;
+            background-size: 25px 25px;
+            display: block;
+            height: 25px;
+            width: 25px;
+        }
+    }
+
+    &.show-up-to-date-message {
+        h1 {
+            display: inline-block;
+        }
+
+        .mozilla-logo a {
+            margin: 7px 0;
+        }
+    }
+
+    @media #{$mq-desktop} {
+
+        h1 {
+            margin: 0;
+            width: auto;
+
+            &:before {
+                background-size: 40px 40px;
+                height: 40px;
+                margin: 0 20px 0 0;
+                width: 40px;
+            }
+        }
+
+        .mozilla-logo a {
+            background-image: url('/media/img/pebbles/moz-wordmark-dark-reverse.svg');
+            background-size: auto auto;
+            float: none;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 78px;
+        }
+    }
+}
+
+html[dir="rtl"] .main-header {
+
+    h1:before {
+        background-position: center right;
+        margin: 0 0 0 10px;
+    }
+
+    .mozilla-logo {
+        float: right;
+    }
+
+    @media #{$mq-desktop} {
+
+        h1:before {
+                margin: 0 0 0 20px;
+        }
+
+        .mozilla-logo a {
+            left: auto;
+            right: 0;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Main content section
+
+.main-content {
+    background: #003eaa;
+    background: url('/media/img/firefox/whatsnew/fox-tail-small.png') top right -420px no-repeat,
+                linear-gradient(87deg, #6A11CB 0%, #2575FC 100%);
+    color: #fff;
+    text-align: center;
+
+    h2,
+    h3 {
+        color: #fff;
+    }
+
+    h2 {
+        @include font-size-level4;
+        margin-bottom: 20px;
+    }
+
+    h3 {
+        @include font-size-level2;
+        font-weight: bold;
+        margin: 0 auto 40px;
+        max-width: 14em;
+
+
+        br {
+            display: none;
+        }
+    }
+
+    header {
+        @include at2x('/media/img/logos/firefox/logo-quantum.png', 100px, 100px);
+        background-position: top center;
+        background-repeat: no-repeat;
+        padding-top: 120px;
+    }
+
+    &.show-send-to-device {
+        text-align: left;
+
+        h3 {
+            margin: 0 0 20px;
+            max-width: none;
+        }
+
+        header {
+            background-position: top left;
+        }
+    }
+
+    @media #{$mq-phone-wide} {
+        h3 br {
+            display: inline;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        background: url('/media/img/firefox/whatsnew/fox-tail.png') top center no-repeat,
+                    linear-gradient(87deg, #6A11CB 0%, #2575FC 100%);
+        padding: 10vh 0;
+
+        .inner-container {
+            padding: 0 10%;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .inner-container {
+            padding: 0 15%;
+        }
+
+        header {
+            background-size: 140px 140px;
+            padding-top: 170px;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        .inner-container {
+            padding: 0 22%;
+        }
+    }
+}
+
+html[dir="rtl"] .main-content {
+
+    &.show-send-to-device {
+        text-align: right;
+
+        header {
+            background-position: top right;
+        }
+    }
+}

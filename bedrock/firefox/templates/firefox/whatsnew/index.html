@@ -2,11 +2,11 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import google_play_button, send_to_device with context %}
+{% from "macros.html" import send_to_device with context %}
 
 {% add_lang_files "firefox/whatsnew" "firefox/sendto" %}
 
-{% extends "firefox/whatsnew/base.html" %}
+{% extends "firefox/whatsnew/base-pebbles.html" %}
 
 {% block page_title %}{{_('Download Firefox for Android and iOS')}}{% endblock %}
 
@@ -15,7 +15,7 @@
   {{_('Firefox is non-profit, non-corporate, non-compromised. Choosing Firefox isn’t just choosing a browser. It’s a vote for personal freedom.')}}
 {% endblock %}
 
-{% block body_id %}firefox-mobile-download{% endblock %}
+{% block body_id %}firefox-whatsnew{% endblock %}
 {% block body_class %}{% endblock %}
 
 {% block site_header %}{% endblock %}
@@ -30,75 +30,52 @@
 
 {% block content %}
 <main role="main">
-  <div class="main-container">
-    <div class="horizon">
-      <div class="stars">
+    <header class="main-header">
+      <div class="content">
         <div class="inner-container">
-          <header id="masthead">
-            <div id="mozilla-logo">
-              <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
-            </div>
-            <h2>{{ high_res_img('firefox/template/logo-large.png', {'alt': 'Firefox', 'width': '136', 'height': '142'}) }}</h2>
-          </header>
-          <div class="main-content">
-          {# If user is in a locale with translated basket messages... #}
-          {% if show_send_to_device %}
-            {% if l10n_has_tag('fx53_whatsnew') %}
-              <div class="up-to-date-messaging hidden">
-                <h4 class="up-to-date"><span>{{ _('Your Firefox is up to date.') }}</span></h4>
-                <h2>{{ _('Now get on the go.') }}</h2>
-              </div>
+          <div class="mozilla-logo">
+            <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="Mozilla">Mozilla</a>
+          </div>
+          <h1 class="up-to-date-messaging hidden">{{ _('Your Firefox is up to date.') }}</h1>
+        </div>
+      </div>
+    </header>
 
-              {# L10n: Line break below for visual formatting only #}
-              <h1>{{ _('Send Firefox to your phone<br> and unleash your Internet.') }}</h1>
-            {% else %}
-              {# Pre-localized headline taken from unsupported-systems.html #}
-              <h2>{{ _('Thanks for choosing Firefox!') }}</h2>
-              {# Pre-localized headline taken from send to device widget #}
-              <h1>{{ _('Send Firefox to your smartphone or tablet') }}</h1>
+    <section class="main-content{% if show_send_to_device %} show-send-to-device{% endif %}">
+      <div class="content">
+        <div class="inner-container">
+          <header>
+            {% if l10n_has_tag('whatsnew_rebranding') %}
+              {# L10n: <strong> element below is for visual formatting only #}
+              <h2>{{ _('The new <strong>Firefox</strong>') }}</h2>
             {% endif %}
-          {# For users not in a locale with translated basket messages... #}
-          {% else %}
-            {% if l10n_has_tag('fx53_whatsnew') %}
-              <div class="up-to-date-messaging hidden">
-                <h4 class="up-to-date"><span>{{ _('Your Firefox is up to date.') }}</span></h4>
-                <h2>{{ _('Now get on the go.') }}</h2>
-              </div>
-
-              <h1>{{ _('Download Firefox for your smartphone and tablet.') }}</h1>
-            {% else %}
-              {# Generic, pre-localized headline #}
-              <h1>{{ _('Download Firefox') }}</h1>
-            {% endif %}
-          {% endif %}
-
-            <div class="content">
-            {# Hide the widget if user is not in a supported basket locale #}
+            {# If user is in a locale with translated basket messages... #}
             {% if show_send_to_device %}
-              <div id="send-to-device-wrapper" class="primary-cta">
-                {{ send_to_device(include_title=False, message_set=send_to_device_message_set) }}
-              </div>
+              {# L10n: Line break below is for visual formatting only #}
+              <h3>{{ _('Send Firefox to your phone<br> and unleash your Internet.') }}</h3>
+            {# For users not in a locale with translated basket messages... #}
             {% else %}
-              <div id="qr-wrapper" class="primary-cta">
-                <img src="{{ static('img/firefox/whatsnew/qrcode.png') }}"
-                     data-mozillaonline-link="{{ static('img/firefox/whatsnew/qrcode-mozillaonline.png') }}" width="250" height="250" alt="" />
-              </div>
+              <h3>{{ _('Download Firefox for your smartphone and tablet.') }}</h3>
             {% endif %}
-            </div>{# --/.content --#}
+          </header>
 
-          </div>{#-- /.main-content --#}
-        </div>{#-- /.inner-container --#}
-      </div>{#-- /.stars --#}
-    </div>{#-- /.horizon --#}
-  </div>{#-- /.main-container --#}
+          {# Only certain locales get send_to_device, else they see a QRCode. #}
+          {% if show_send_to_device %}
+            <div id="send-to-device-wrapper" class="primary-cta">
+              {{ send_to_device(include_title=False, message_set=send_to_device_message_set, spinner_color='#fff;') }}
+            </div>
+          {% else %}
+            <div id="qr-wrapper" class="primary-cta">
+              <img src="{{ static('img/firefox/whatsnew/qrcode.png') }}"
+                   data-mozillaonline-link="{{ static('img/firefox/whatsnew/qrcode-mozillaonline.png') }}" width="250" height="250" alt="" />
+            </div>
+          {% endif %}
+        </div>
+    </div>
+  </section>{#-- /.main-content --#}
 
-  <div class="foreground">
-    {% include 'firefox/includes/horizon.html' %}
-  </div>{#-- /.foreground --#}
 </main>
 {% endblock %}
-
-{% block email_form %}{% endblock %}
 
 {% block js %}
   {% javascript 'firefox_whatsnew' %}
