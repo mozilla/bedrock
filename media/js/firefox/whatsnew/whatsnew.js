@@ -23,7 +23,7 @@ if (typeof window.Mozilla === 'undefined') {
     if (client.isFirefoxDesktop) {
         client.getFirefoxDetails(function(data) {
             if (data.isUpToDate) {
-                document.querySelector('.up-to-date-messaging').classList.remove('hidden');
+                document.querySelector('.main-header').classList.add('show-up-to-date-message');
             }
         });
     }

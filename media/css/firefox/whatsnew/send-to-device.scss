@@ -1,0 +1,173 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+@font-face {
+    font-family: 'Open Sans Light';
+    font-weight: normal;
+    font-style: normal;
+    src: url('/media/fonts/opensans-light.woff2') format('woff2'),
+         url('/media/fonts/opensans-light.woff') format('woff');
+}
+
+$font-open-sans-light: 'Open Sans Light', X-LocaleSpecific, sans-serif;
+
+//* -------------------------------------------------------------------------- */
+// Minimal Send to Device widget styles for /whatsnew
+
+#send-to-device {
+    a {
+        color: #fff;
+        font-weight: bold;
+        text-decoration: none;
+
+        &:after {
+            content: ' >>';
+        }
+
+        &:active,
+        &:focus,
+        &:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+    }
+
+    .form-container > .thank-you {
+        @include font-size-level6;
+        margin-top: 40px;
+    }
+
+    footer {
+        display: none;
+    }
+}
+
+#send-to-device-form {
+    @include font-size-level6;
+
+    .inline-field {
+        margin: 40px 0;
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+    }
+
+    .form-input {
+        input[type="text"] {
+            border-radius: 100px;
+            margin-bottom: 20px;
+            padding: .9em 40px;
+            width: 100%;
+
+            /*
+             * Override CSS input invalid default styling, since the form can be re-submitted
+             * after the browser performs input validation on first submission.
+             */
+
+             &:-moz-ui-invalid:not(output),
+             &:-moz-ui-invalid:not(output):focus {
+                border-color: #D1D2D3;
+                box-shadow: none;
+            }
+        }
+    }
+
+    .form-submit button {
+        width: 100%;
+        background-color: transparent;
+        color: $color-button-light;
+        border-color: $color-button-light;
+
+        &:hover,
+        &:focus {
+            background-color: transparentize($color-button-light, .95);
+            border-color: darken($color-button-light, 5%);
+            color: darken($color-button-light, 5%);
+        }
+    }
+
+    .legal {
+        font-family: $font-open-sans-light;
+    }
+
+    .email {
+        display: block;
+    }
+
+    .sms {
+        display: none;
+    }
+
+    &.sms-country {
+        .email {
+            display: none;
+        }
+
+        .sms {
+            display: block;
+        }
+    }
+
+    .loading-spinner {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    &.loading {
+        transition: opacity .2s ease-in-out;
+        opacity: 0.2;
+    }
+
+    .error-list {
+        color: $color-mozred-bright;
+
+        li {
+            background: #fff;
+            border-radius: 100px;
+            margin: 10px 0;
+            padding: .9em 40px;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .inline-field {
+            @include clearfix;
+        }
+
+        .form-input {
+            float: left;
+            width: 70%;
+
+            input[type="text"] {
+                margin-bottom: 0;
+            }
+        }
+
+        .form-submit {
+            float: right;
+            width: 25%;
+        }
+    }
+}
+
+html[dir="rtl"] #send-to-device-form {
+
+    @media #{$mq-desktop} {
+        .form-input {
+            float: right;
+        }
+
+        .form-submit {
+            float: left;
+        }
+    }
+}
