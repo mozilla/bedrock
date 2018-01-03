@@ -4,6 +4,7 @@
     font-family: X-LocaleSpecific-Light;
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
     src: url('/media/fonts/l10n/ff/mplus-2c-light-ff-sub.woff2') format('woff2'),
          url('/media/fonts/l10n/ff/mplus-2c-light-ff-sub.woff') format('woff');
 }
@@ -12,6 +13,7 @@
     font-family: X-LocaleSpecific-Light;
     font-weight: bold;
     font-style: normal;
+    font-display: swap;
     src: url('/media/fonts/l10n/ff/mplus-2c-medium-ff-sub.woff2') format('woff2'),
          url('/media/fonts/l10n/ff/mplus-2c-medium-ff-sub.woff') format('woff');
 }
@@ -20,6 +22,7 @@
     font-family: X-LocaleSpecific;
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
     src: url('/media/fonts/l10n/ff/mplus-2c-regular-ff-sub.woff2') format('woff2'),
          url('/media/fonts/l10n/ff/mplus-2c-regular-ff-sub.woff') format('woff');
 }
@@ -28,6 +31,7 @@
     font-family: X-LocaleSpecific;
     font-weight: normal;
     font-style: italic;
+    font-display: swap;
     src: url('/media/fonts/l10n/ff/notosans-italic-ff-sub.woff2') format('woff2'),
          url('/media/fonts/l10n/ff/notosans-italic-ff-sub.woff') format('woff');
 }
@@ -36,6 +40,7 @@
     font-family: X-LocaleSpecific;
     font-weight: bold;
     font-style: normal;
+    font-display: swap;
     src: url('/media/fonts/l10n/ff/notosans-bold-ff-sub.woff2') format('woff2'),
          url('/media/fonts/l10n/ff/notosans-bold-ff-sub.woff') format('woff');
 }
@@ -44,6 +49,7 @@
     font-family: X-LocaleSpecific;
     font-weight: bold;
     font-style: italic;
+    font-display: swap;
     src: url('/media/fonts/l10n/ff/notosans-bolditalic-ff-sub.woff2') format('woff2'),
          url('/media/fonts/l10n/ff/notosans-bolditalic-ff-sub.woff') format('woff');
 }

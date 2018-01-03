@@ -4,6 +4,7 @@
     font-family: X-LocaleSpecific-Light;
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
     src: url('/media/fonts/l10n/ro/opensans-light-ro-subset.woff2') format('woff2'),
          url('/media/fonts/l10n/ro/opensans-light-ro-subset.woff') format('woff');
 }
@@ -12,6 +13,7 @@
     font-family: X-LocaleSpecific-Light;
     font-weight: bold;
     font-style: normal;
+    font-display: swap;
     src: url('/media/fonts/l10n/ro/opensans-semibold-ro-subset.woff2') format('woff2'),
          url('/media/fonts/l10n/ro/opensans-semibold-ro-subset.woff') format('woff');
 }
@@ -20,6 +22,7 @@
     font-family: X-LocaleSpecific-Light;
     font-weight: normal;
     font-style: italic;
+    font-display: swap;
     src: url('/media/fonts/l10n/ro/opensans-lightitalic-ro-subset.woff2') format('woff2'),
          url('/media/fonts/l10n/ro/opensans-lightitalic-ro-subset.woff') format('woff');
 }
@@ -28,6 +31,7 @@
     font-family: X-LocaleSpecific;
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
     src: url('/media/fonts/l10n/ro/opensans-regular-ro-subset.woff2') format('woff2'),
          url('/media/fonts/l10n/ro/opensans-regular-ro-subset.woff') format('woff');
 }
@@ -36,6 +40,7 @@
     font-family: X-LocaleSpecific;
     font-weight: bold;
     font-style: normal;
+    font-display: swap;
     src: url('/media/fonts/l10n/ro/opensans-bold-ro-subset.woff2') format('woff2'),
          url('/media/fonts/l10n/ro/opensans-bold-ro-subset.woff') format('woff');
 }
@@ -44,6 +49,7 @@
     font-family: X-LocaleSpecific;
     font-weight: normal;
     font-style: italic;
+    font-display: swap;
     src: url('/media/fonts/l10n/ro/opensans-italic-ro-subset.woff2') format('woff2'),
          url('/media/fonts/l10n/ro/opensans-italic-ro-subset.woff') format('woff');
 }
@@ -52,6 +58,7 @@
     font-family: X-LocaleSpecific;
     font-weight: bold;
     font-style: italic;
+    font-display: swap;
     src: url('/media/fonts/l10n/ro/opensans-bolditalic-ro-subset.woff2') format('woff2'),
          url('/media/fonts/l10n/ro/opensans-bolditalic-ro-subset.woff') format('woff');
 }
@@ -60,6 +67,7 @@
     font-family: X-LocaleSpecific-Extrabold;
     font-weight: 800;
     font-style: normal;
+    font-display: swap;
     src: url('/media/fonts/l10n/ro/opensans-extrabold-ro-subset.woff2') format('woff2'),
          url('/media/fonts/l10n/ro/opensans-extrabold-ro-subset.woff') format('woff');
 }
@@ -68,6 +76,7 @@
     font-family: X-LocaleSpecific-Extrabold;
     font-weight: 800;
     font-style: italic;
+    font-display: swap;
     src: url('/media/fonts/l10n/ro/opensans-extrabolditalic-ro-subset.woff2') format('woff2'),
          url('/media/fonts/l10n/ro/opensans-extrabolditalic-ro-subset.woff') format('woff');
 }

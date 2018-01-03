@@ -14,6 +14,7 @@ $color-light-green: lighten(desaturate($color-green, 25%), 30%);
     font-family: 'Theano Didot';
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
     src: url('/media/fonts/TheanoDidot-regular.woff2') format('woff2'),
          url('/media/fonts/TheanoDidot-regular.woff') format('woff');
 }

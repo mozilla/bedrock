@@ -3,6 +3,7 @@
 @font-face {
     font-family: X-LocaleSpecific-Light;
     font-weight: normal;
+    font-display: swap;
     src: /* OS X */
        local(AppleSDGothicNeo-UltraLight),
        /* Windows */
@@ -12,6 +13,7 @@
 @font-face {
     font-family: X-LocaleSpecific-Light;
     font-weight: bold;
+    font-display: swap;
     src: /* OS X */
        local(AppleSDGothicNeo-SemiBold),
        /* Windows */
@@ -21,6 +23,7 @@
 @font-face {
     font-family: X-LocaleSpecific;
     font-weight: normal;
+    font-display: swap;
     src: /* OS X */
        local(AppleSDGothicNeo-Regular),
        /* Windows */
@@ -30,6 +33,7 @@
 @font-face {
     font-family: X-LocaleSpecific;
     font-weight: bold;
+    font-display: swap;
     src: /* OS X */
        local(AppleSDGothicNeo-Bold),
        /* Windows */
@@ -39,6 +43,7 @@
 @font-face {
     font-family: X-LocaleSpecific-Extrabold;
     font-weight: 800;
+    font-display: swap;
     src: /* OS X */
        local(AppleSDGothicNeo-Heavy),
        /* Windows */

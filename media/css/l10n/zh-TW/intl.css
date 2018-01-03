@@ -3,6 +3,7 @@
 @font-face {
     font-family: X-LocaleSpecific;
     font-weight: normal;
+    font-display: swap;
     src: /* OS X */
        local(FZLTXHB--B51-0), /* = Lantinghei TC Extralight */
        /* Windows */
@@ -14,6 +15,7 @@
 @font-face {
     font-family: X-LocaleSpecific;
     font-weight: bold;
+    font-display: swap;
     src: /* OS X */
        local(FZLTZHB--B51-0), /* = Lantinghei TC Demibold */
        /* Windows */
@@ -25,6 +27,7 @@
 @font-face {
     font-family: X-LocaleSpecific-Extrabold;
     font-weight: 800;
+    font-display: swap;
     src: /* OS X */
        local(FZLTTHB--B51-0), /* = Lantinghei TC Heavy */
        /* Windows */

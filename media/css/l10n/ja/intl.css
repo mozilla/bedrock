@@ -3,6 +3,7 @@
 @font-face {
     font-family: X-LocaleSpecific-Light;
     font-weight: normal;
+    font-display: swap;
     src: /* All */
        local(mplus-2p-light),
        local(KozGoPro-Light),
@@ -21,6 +22,7 @@
 @font-face {
     font-family: X-LocaleSpecific-Light;
     font-weight: bold;
+    font-display: swap;
     src: /* All */
        local(mplus-2p-medium),
        local(KozGoPro-Medium),
@@ -39,6 +41,7 @@
 @font-face {
     font-family: X-LocaleSpecific;
     font-weight: normal;
+    font-display: swap;
     src: /* All */
        local(mplus-2p-regular),
        local(KozGoPro-Regular),
@@ -57,6 +60,7 @@
 @font-face {
     font-family: X-LocaleSpecific;
     font-weight: bold;
+    font-display: swap;
     src: /* All */
        local(mplus-2p-bold),
        local(KozGoPro-Bold),
@@ -75,6 +79,7 @@
 @font-face {
     font-family: X-LocaleSpecific-Extrabold;
     font-weight: 800;
+    font-display: swap;
     src: /* All */
        local(mplus-2p-black),
        local(KozGoPro-Heavy),

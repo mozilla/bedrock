@@ -350,30 +350,35 @@ Here's an example of ``intl.css``:
     @font-face {
       font-family: X-LocaleSpecific-Light;
       font-weight: normal;
+      font-display: swap;
       src: local(mplus-2p-light), local(Meiryo);
     }
 
     @font-face {
       font-family: X-LocaleSpecific-Light;
       font-weight: bold;
+      font-display: swap;
       src: local(mplus-2p-medium), local(Meiryo-Bold);
     }
 
     @font-face {
       font-family: X-LocaleSpecific;
       font-weight: normal;
+      font-display: swap;
       src: local(mplus-2p-regular), local(Meiryo);
     }
 
     @font-face {
       font-family: X-LocaleSpecific;
       font-weight: bold;
+      font-display: swap;
       src: local(mplus-2p-bold), local(Meiryo-Bold);
     }
 
     @font-face {
       font-family: X-LocaleSpecific-Extrabold;
       font-weight: 800;
+      font-display: swap;
       src: local(mplus-2p-black), local(Meiryo-Bold);
     }
 

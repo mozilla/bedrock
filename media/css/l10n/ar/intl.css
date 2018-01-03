@@ -3,12 +3,14 @@
 @font-face {
   font-family: X-LocaleSpecific;
   font-weight: normal;
+  font-display: swap;
   src: url('/media/fonts/l10n/DroidNaskh-Regular.woff') format('woff');
 }
 
 @font-face {
   font-family: X-LocaleSpecific;
   font-weight: bold;
+  font-display: swap;
   src: url('/media/fonts/l10n/DroidNaskh-Bold.woff') format('woff');
 }
 
