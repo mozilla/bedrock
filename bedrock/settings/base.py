@@ -294,11 +294,9 @@ NOINDEX_URLS = [
     r'^firefox/feedback',
     r'^firefox/stub_attribution_code/',
     r'^.+/(firstrun|whatsnew)/$',
-    r'^infobar/',
     r'^l10n_example/',
     r'^m/',
     r'^newsletter/(confirm|existing|hacks\.mozilla\.org|recovery|updated)/',
-    r'^tabzilla/',
     r'/system-requirements/$',
     r'.*/(firstrun|thanks)/$',
     r'^healthz/$',
@@ -431,7 +429,7 @@ MIDDLEWARE_CLASSES = [
     'bedrock.base.middleware.BasicAuthMiddleware',
     # must come before LocaleURLMiddleware
     'bedrock.redirects.middleware.RedirectsMiddleware',
-    'bedrock.tabzilla.middleware.TabzillaLocaleURLMiddleware',
+    'bedrock.base.middleware.LocaleURLMiddleware',
     'commonware.middleware.RobotsTagHeader',
     'bedrock.mozorg.middleware.ClacksOverheadMiddleware',
     'bedrock.mozorg.middleware.HostnameMiddleware',
@@ -474,14 +472,12 @@ INSTALLED_APPS = (
     'bedrock.firefox',
     'bedrock.foundation',
     'bedrock.grants',
-    'bedrock.infobar',
     'bedrock.legal',
     'bedrock.mozorg',
     'bedrock.newsletter',
     'bedrock.press',
     'bedrock.privacy',
     'bedrock.styleguide',
-    'bedrock.tabzilla',
     'bedrock.teach',
     'bedrock.externalfiles',
     'bedrock.security',
@@ -1192,9 +1188,6 @@ FIREFOX_TWITTER_ACCOUNTS = {
     'fr': 'https://twitter.com/firefox_FR',
     'pt-BR': 'https://twitter.com/firefoxbrasil',
 }
-
-# Tabzilla Information Bar default options
-TABZILLA_INFOBAR_OPTIONS = 'update translation'
 
 # Optimize.ly project code
 OPTIMIZELY_PROJECT_ID = config('OPTIMIZELY_PROJECT_ID', default='')

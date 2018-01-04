@@ -1,4 +1,4 @@
-from bedrock.redirects.util import redirect, ua_redirector
+from bedrock.redirects.util import gone, redirect, ua_redirector
 
 
 def to_uppercase(url):
@@ -663,4 +663,12 @@ redirectpatterns = (
     # Bug 1438464
     redirect(r'^collusion/?$', 'https://addons.mozilla.org/firefox/addon/lightbeam/'),
     redirect(r'^lightbeam(/.*)?', 'https://addons.mozilla.org/firefox/addon/lightbeam/'),
+
+    # Bug 1428150
+    gone(r'^tabzilla/transbar\.jsonp$'),
+    gone(r'^tabzilla/tabzilla\.js$'),
+    gone(r'^tabzilla/media/js/tabzilla\.js$'),
+    redirect(r'tabzilla/media/css/tabzilla\.css$',
+             'https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css',
+             locale_prefix=False),
 )

@@ -36,4 +36,8 @@ URLS_410 = [
     '/projects/user-docs/served/whatsnew/newtoc.html',
     '/projects/user-docs/served/whatsnew/newtop.html',
     '/xpfe/xptoolkit/xbl.html',
+    # Bug 1428150
+    '/tabzilla/transbar.jsonp',
+    '/tabzilla/tabzilla.js',
+    '/tabzilla/media/js/tabzilla.js',
 ]

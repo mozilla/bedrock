@@ -1212,4 +1212,7 @@ URLS = flatten((
     # Bug 1438464
     url_test('/collusion/', 'https://addons.mozilla.org/firefox/addon/lightbeam/'),
     url_test('/lightbeam/{,about/}?', 'https://addons.mozilla.org/firefox/addon/lightbeam/'),
+
+    # Bug 1428150
+    url_test('/tabzilla/media/css/tabzilla.css', 'https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css'),
 ))
