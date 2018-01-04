@@ -195,38 +195,27 @@
 
     .download-link:link,
     .download-link:visited {
-        @include font-size(14px);
-        background: #11bb69;
-        border-radius: 0;
-        border: none;
-        color: #fff;
+        @include font-size-small;
+        background-color: #fff;
+        border-radius: 100px;
+        border: 2px solid $color-button-green;
+        color: $color-button-green;
         display: inline-block;
-        padding: 8px 10px;
+        font-weight: bold;
+        padding: .5em 20px;
         text-decoration: none;
-        transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+        transition: color .1s ease-in-out, background-color .1s ease-in-out;
 
         .download-title {
             font-weight: bold;
-
-            &:before {
-                @include background-size(12px 28px);
-                background-image: url('/media/img/hubs/down-arrow-light-sprite.png');
-                background-position: left top;
-                content: '';
-                display: block;
-                float: left;
-                height: 14px;
-                margin: 4px 10px 0 0;
-                width: 12px;
-            }
         }
 
         &:hover,
         &:focus,
         &:active {
-            background-color: #039c6d;
+            background-color: $color-button-green;
             color: #fff;
-            transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+            transition: color .1s ease-in-out, background-color .1s ease-in-out;
         }
     }
 

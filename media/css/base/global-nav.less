@@ -535,37 +535,26 @@ html.moz-nav-open .moz-global-nav-page-mask {
     .download-link:link,
     .download-link:visited {
         .font-size(14px);
-        background: #11bb69;
-        border-radius: 0;
-        border: none;
-        color: #fff;
+        background-color: #fff;
+        border-radius: 100px;
+        border: 2px solid @buttonGreen;
+        color: @buttonGreen;
         display: inline-block;
-        padding: 8px 10px;
+        font-weight: bold;
+        padding: .5em 20px;
         text-decoration: none;
-        transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+        transition: color .1s ease-in-out, background-color .1s ease-in-out;
 
         .download-title {
             font-weight: bold;
-
-            &:before {
-                .background-size(12px 28px);
-                background-image: url('/media/img/hubs/down-arrow-light-sprite.png');
-                background-position: left top;
-                content: '';
-                display: block;
-                float: left;
-                height: 14px;
-                margin: 4px 10px 0 0;
-                width: 12px;
-            }
         }
 
         &:hover,
         &:focus,
         &:active {
-            background-color: #039c6d;
+            background-color: @buttonGreen;
             color: #fff;
-            transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+            transition: color .1s ease-in-out, background-color .1s ease-in-out;
         }
     }
 

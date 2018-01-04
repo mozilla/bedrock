@@ -49,12 +49,12 @@
 
         Bug 1290962
       #}
-      {{ download_firefox(alt_copy=_('Download Now'), locale_in_transition=True, button_color='quantum', download_location='primary cta') }}
+      {{ download_firefox(alt_copy=_('Download Now'), locale_in_transition=True, download_location='primary cta') }}
     </div>
 
     <div id="refresh-firefox-wrapper">
       <div class="refresh-inner-wrapper">
-        <button class="button quantum-hollow" type="button" id="refresh-firefox" data-interaction="Refresh Firefox" data-element-action="Firefox Desktop" data-button-name="Refresh Firefox" data-cta-position="Primary">{{ _('Refresh Firefox') }}</button>
+        <button class="button button-hollow button-light" type="button" id="refresh-firefox" data-interaction="Refresh Firefox" data-element-action="Firefox Desktop" data-button-name="Refresh Firefox" data-cta-position="Primary">{{ _('Refresh Firefox') }}</button>
         <small><a rel="external" href="https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=learn-more-link">{{ _('Learn more') }}</a></small>
       </div>
     </div>
@@ -89,7 +89,7 @@
           <h3>{{ _('Keep up with<br> all things Firefox.') }}</h3>
       </div>
       <div class="newsletter-form-content">
-        {{ email_newsletter_form(include_title=False, button_class='quantum-hollow-light', spinner_color='#fff') }}
+        {{ email_newsletter_form(include_title=False, button_class='button button-hollow', spinner_color='#fff') }}
       </div>
     </div>
   </div>

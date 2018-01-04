@@ -8,9 +8,7 @@
 @import '../hubs/masthead';
 @import '../hubs/sections';
 @import '../hubs/sub-nav';
-@import '../quantum/lib';
 @import '../quantum/common';
-@import '../quantum/buttons';
 @import '../quantum/features-scroller';
 
 
@@ -66,12 +64,8 @@ $color-focus-purple: #c40771;
 /* -------------------------------------------------------------------------- */
 // Button tweaks specific to this page ¯\_(ツ)_/¯
 
-.button.quantum {
-    font-weight: bold;
-}
-
-.button.quantum.button-focus,
-a.button.quantum.button-focus {
+.button.button-focus,
+a.button.button-focus {
     background-color: #fff;
     border-color: #fff;
     color: $color-focus-purple;

@@ -41,10 +41,10 @@
 
 {% block features_header_download %}
   <div class="show-not-fx show-default">
-    {{ download_firefox(dom_id='features-header-download', button_color='button quantum', download_location='primary cta') }}
+    {{ download_firefox(dom_id='features-header-download', download_location='primary cta') }}
   </div>
   <div class="show-fx-31-signed-out">
-    <button class="button quantum-hollow" data-button-name="Create Account" data-cta-position="Primary" id="cta-sync">
+    <button class="button button-hollow button-light" data-button-name="Create Account" data-cta-position="Primary" id="cta-sync">
       {{ _('Create account') }}
     </button>
   </div>
@@ -62,15 +62,15 @@
     </ul>
   </div>
   <div class="show-fx-30-older">
-    <a href="https://support.mozilla.org/kb/update-firefox-latest-version/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-sync-page" class="button quantum-hollow" data-link-type="link" data-link-name="Update your Firefox" id="cta-update">
+    <a href="https://support.mozilla.org/kb/update-firefox-latest-version/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-sync-page" class="button button-hollow button-light" data-link-type="link" data-link-name="Update your Firefox" id="cta-update">
       {{ _('Update your Firefox') }}
     </a>
   </div>
   <div class="show-fx-android">
-    <a href="https://support.mozilla.org/kb/sync-bookmarks-tabs-history-and-passwords-android/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-sync-page" class="button quantum-hollow" data-link-type="link" data-link-name="Learn more">{{ _('Learn more') }}</a>
+    <a href="https://support.mozilla.org/kb/sync-bookmarks-tabs-history-and-passwords-android/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-sync-page" class="button button-hollow button-light" data-link-type="link" data-link-name="Learn more">{{ _('Learn more') }}</a>
   </div>
   <div class="show-fx-ios">
-      <a href="https://support.mozilla.org/kb/sync-firefox-bookmarks-and-browsing-history-iOS/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-sync-page" class="button quantum-hollow" data-link-type="link" data-link-name="Learn more">{{ _('Learn more') }}</a>
+      <a href="https://support.mozilla.org/kb/sync-firefox-bookmarks-and-browsing-history-iOS/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-sync-page" class="button button-hollow button-light" data-link-type="link" data-link-name="Learn more">{{ _('Learn more') }}</a>
   </div>
 {% endblock %}
 

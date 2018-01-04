@@ -46,10 +46,10 @@
 {% block features_header_download %}
 {% if l10n_has_tag('send-tabs-update-08-2017') %}
   <div class="show-not-fx show-default">
-    {{ download_firefox(dom_id='features-header-download', button_color='button quantum', download_location='primary cta') }}
+    {{ download_firefox(dom_id='features-header-download', download_location='primary cta') }}
   </div>
   <div class="show-fx-31-signed-out">
-    <button class="button quantum-hollow" data-button-name="Create account" data-cta-position="Primary" id="cta-sync">
+    <button class="button button-hollow button-light" data-button-name="Create account" data-cta-position="Primary" id="cta-sync">
       {{ _('Create account') }}
     </button>
   </div>
@@ -67,7 +67,7 @@
     </ul>
   </div>
   <div class="show-fx-30-older">
-    <a href="https://support.mozilla.org/kb/update-firefox-latest-version/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-send-tabs-page" class="button quantum-hollow" data-link-type="link" data-link-name="Update your Firefox" id="cta-update">
+    <a href="https://support.mozilla.org/kb/update-firefox-latest-version/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-send-tabs-page" class="button button-hollow button-light" data-link-type="link" data-link-name="Update your Firefox" id="cta-update">
       {{ _('Update your Firefox') }}
     </a>
   </div>
@@ -92,26 +92,26 @@
   </div>
 
   <div class="show-fx-31-signed-out">
-    <button class="button quantum-hollow" data-button-name="Get started with Sync" data-cta-position="Primary" id="cta-sync">
+    <button class="button button-hollow button-light" data-button-name="Get started with Sync" data-cta-position="Primary" id="cta-sync">
       {{ _('Get started with Sync') }}
     </button>
   </div>
 
   <div class="show-fx-30-older">
-    <a href="https://support.mozilla.org/kb/update-firefox-latest-version" class="button quantum-hollow" data-interaction="button click" data-element-action="Sync CTA" id="cta-update">
+    <a href="https://support.mozilla.org/kb/update-firefox-latest-version" class="button button-hollow button-light" data-interaction="button click" data-element-action="Sync CTA" id="cta-update">
       {{ _('Update your Firefox') }}
     </a>
   </div>
 
   <div class="show-not-fx">
-    {{ download_firefox(button_color='quantum', download_location='other') }}
+    {{ download_firefox(download_location='other') }}
   </div>
 {% endif %}
   <div class="show-fx-android">
-    <a href="https://support.mozilla.org/kb/sync-bookmarks-tabs-history-and-passwords-android/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-send-tabs-page" class="button quantum-hollow" data-link-type="link" data-link-name="Learn more">{{ _('Learn more') }}</a>
+    <a href="https://support.mozilla.org/kb/sync-bookmarks-tabs-history-and-passwords-android/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-send-tabs-page" class="button button-hollow button-light" data-link-type="link" data-link-name="Learn more">{{ _('Learn more') }}</a>
   </div>
   <div class="show-fx-ios">
-      <a href="https://support.mozilla.org/kb/sync-firefox-bookmarks-and-browsing-history-iOS/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-send-tabs-page" class="button quantum-hollow" data-link-type="link" data-link-name="Learn more">{{ _('Learn more') }}</a>
+      <a href="https://support.mozilla.org/kb/sync-firefox-bookmarks-and-browsing-history-iOS/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-send-tabs-page" class="button button-hollow button-light" data-link-type="link" data-link-name="Learn more">{{ _('Learn more') }}</a>
   </div>
 {% endblock %}
 
