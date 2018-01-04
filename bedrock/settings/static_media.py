@@ -720,13 +720,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/styleguide-docs-send-to-device-bundle.css',
     },
-    # no longer used on bedrock. possibly referenced on external sites? should investigate.
-    'tabzilla': {
-        'source_filenames': (
-            'css/tabzilla/tabzilla.less',
-        ),
-        'output_filename': 'css/tabzilla-min.css',
-    },
     'technology': {
         'source_filenames': (
             'css/base/mozilla-modal.less',
