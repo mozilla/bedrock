@@ -32,11 +32,6 @@
 
 {% block site_header %}
   {% include 'mozorg/home/includes/home-icons-sprite.svg' %}
-
-  {% if switch('home-fundraiser-EOY2017') and l10n_has_tag('home-fundraiser-EOY2017') %}
-    {% include 'mozorg/home/includes/fundraiser-eoy2017.html' %}
-  {% endif %}
-
   {% if LANG.startswith('en-') %}
     {% include 'includes/global-nav.html' %}
   {% else %}
@@ -248,17 +243,4 @@
   </aside>
 
 </main>
-{% endblock %}
-
-{% block js %}
-  {% if switch('home-fundraiser-EOY2017') and l10n_has_tag('home-fundraiser-EOY2017') %}
-    {% javascript 'home-fundraiser-eoy2017' %}
-  {% endif %}
-{% endblock %}
-
-{% block update_notification %}
-  {# do not show the update banner if the fundraiser banner is active #}
-  {% if not switch('home-fundraiser-EOY2017') %}
-    {{ super() }}
-  {% endif %}
 {% endblock %}
