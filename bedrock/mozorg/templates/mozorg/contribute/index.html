@@ -10,13 +10,6 @@
 
 {% block body_id %}landing{% endblock %}
 
-{% if switch('home-fundraiser-EOY2017', ['en-US']) %}
-  {% block global_nav %}
-    {% include 'mozorg/home/includes/fundraiser-eoy2017.html' %}
-    {{ super() }}
-  {% endblock %}
-{% endif %}
-
 {% block contrib_nav_cta %}{% endblock %}
 
 {% block contrib_page_title %}{{ _('Volunteer with Mozilla!') }}{% endblock %}
@@ -158,9 +151,6 @@
 {% endblock contrib_content %}
 
 {% block js %}
-  {% if switch('home-fundraiser-EOY2017', ['en-US']) %}
-    {% javascript 'home-fundraiser-eoy2017' %}
-  {% endif %}
   {% javascript 'contribute-base' %}
   {% javascript 'contribute-landing' %}
 {% endblock %}

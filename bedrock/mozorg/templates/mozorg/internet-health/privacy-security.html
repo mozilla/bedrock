@@ -24,10 +24,6 @@
 {% endblock %}
 
 {% block site_header %}
-  {% if switch('home-fundraiser-EOY2017', ['en-US']) %}
-    {% include 'mozorg/home/includes/fundraiser-eoy2017.html' %}
-  {% endif %}
-
   {% if LANG.startswith('en-') %}
     {% include 'includes/global-nav.html' %}
   {% else %}
@@ -503,10 +499,6 @@
 {% block email_form %}{% endblock %}
 
 {% block js %}
-  {% if switch('home-fundraiser-EOY2017', ['en-US']) %}
-    {% javascript 'home-fundraiser-eoy2017' %}
-  {% endif %}
-
   {% javascript 'internet-health-subpage' %}
   {% if switch('data-privacy-day-2017') %}
     {% javascript 'privacy-day-egg' %}
