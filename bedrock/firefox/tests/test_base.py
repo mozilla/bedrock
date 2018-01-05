@@ -354,46 +354,6 @@ class TestFirstRun(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/firstrun/email-first-experiment/index-b.html'])
 
-    # start cliqz funnelcake tests (bug 1392855)
-
-    @override_settings(DEV=True)
-    def test_fx_cliqz_funnelcake_119(self, render_mock):
-        """Should use standard firstrun template as control"""
-        req = self.rf.get('/firefox/firstrun/?f=119')
-        req.locale = 'de'
-        self.view(req, version='56.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/index.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_cliqz_funnelcake_120(self, render_mock):
-        """Should use standard firstrun template as control"""
-        req = self.rf.get('/firefox/firstrun/?f=120')
-        req.locale = 'de'
-        self.view(req, version='56.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/cliqz-funnelcake-119-122.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_cliqz_funnelcake_121(self, render_mock):
-        """Should use standard firstrun template as control"""
-        req = self.rf.get('/firefox/firstrun/?f=121')
-        req.locale = 'de'
-        self.view(req, version='56.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/cliqz-funnelcake-119-122.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_cliqz_funnelcake_122(self, render_mock):
-        """Should use standard firstrun template as control"""
-        req = self.rf.get('/firefox/firstrun/?f=122')
-        req.locale = 'de'
-        self.view(req, version='56.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/cliqz-funnelcake-119-122.html'])
-
-    # end cliqz funnelcake tests (bug 1392855)
-
 
 @patch.object(fx_views, 'firefox_desktop', firefox_desktop)
 class FxVersionRedirectsMixin(object):
