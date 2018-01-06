@@ -249,6 +249,22 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/developer/whatsnew.html'])
 
+    @override_settings(DEV=True)
+    def test_fx_57_0_old_version(self, render_mock):
+        """Should use Quantum template when updating from older major version"""
+        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=56.0')
+        self.view(req, version='57.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/fx57/whatsnew-57.en-US.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_57_0_old_minor_version(self, render_mock):
+        """Should use mobile promo template when updating from older minor version"""
+        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=57.0.1')
+        self.view(req, version='57.0.2')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/index.html'])
+
     # end 57.0 whatsnew tests
 
 

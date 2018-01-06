@@ -600,6 +600,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-whatsnew-57-letter-bundle.css',
     },
+    'firefox-whatsnew-rocket': {
+        'source_filenames': (
+            'css/firefox/whatsnew/whatsnew-rocket.scss',
+        ),
+        'output_filename': 'css/firefox-whatsnew-rocket-bundle.css',
+    },
     'firefox_releasenotes_firefox': {
         'source_filenames': (
             'css/firefox/releasenotes-firefox.less',
