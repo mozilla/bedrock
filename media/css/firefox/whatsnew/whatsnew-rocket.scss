@@ -1,0 +1,84 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+@import '../../hubs/sections';
+
+
+body {
+    @include open-sans;
+    background: url('/media/img/firefox/whatsnew/rocket/bg-lines.svg') center top,
+                radial-gradient(ellipse at center top, #44b9e6 0%, transparent 75%) center top no-repeat,
+                #662d91 linear-gradient(to bottom, #44b9e6 0, #662d91 1000px) center top;
+    color: #fff;
+    background-size: 1024px 1024px, auto, auto;
+}
+
+@media #{$mq-desktop} {
+    main {
+        background: url('/media/img/firefox/whatsnew/rocket/bg-rocket-left.png') left -60px bottom no-repeat,
+                    url('/media/img/firefox/whatsnew/rocket/bg-rocket-right.png') right bottom no-repeat;
+        background-size: 880px 540px, 210px 315px;
+    }
+}
+
+@media #{$mq-desktop-wide} {
+    main {
+        background-position: left -30px bottom, right bottom;
+    }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5) and (min-width: 1000px),
+       only screen and (min-resolution: 1.5dppx) and (min-width: 1000px),
+       only screen and (min-resolution: 144dpi) and (min-width: 1000px) {
+    main {
+        background-image: url('/media/img/firefox/whatsnew/rocket/bg-rocket-left-high-res.png'),
+                          url('/media/img/firefox/whatsnew/rocket/bg-rocket-right-high-res.png');
+    }
+}
+
+.rocket-content {
+    margin: 0 auto;
+    max-width: $width-tablet;
+    padding: 60px 20px;
+    text-align: center;
+
+    @media #{$mq-tall} {
+        padding-top: 120px;
+    }
+}
+
+.moz-logo {
+    position: absolute;
+    right: 20px;
+    top: 0;
+}
+
+.content-intro {
+    @include font-size-level4;
+
+    h1 {
+        @include font-size-level3;
+        font-weight: normal;
+    }
+}
+
+.qr-code {
+    margin: 40px auto;
+
+    img {
+        width: 280px;
+        height: auto;
+
+        @media #{$mq-phone-wide} {
+            width: 350px;
+        }
+    }
+
+    figcaption {
+        @include font-size-level4;
+        margin: 1em auto;
+        max-width: 350px;
+    }
+}
