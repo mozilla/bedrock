@@ -576,6 +576,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_whatsnew-bundle.css',
     },
+    'firefox_whatsnew_zh_tw': {
+        'source_filenames': (
+            'css/firefox/whatsnew/whatsnew-zh-tw.scss',
+        ),
+        'output_filename': 'css/firefox_whatsnew_zh_tw-bundle.css',
+    },
     'firefox-whatsnew-56': {
         'source_filenames': (
             'css/firefox/whatsnew/whatsnew-56.scss',

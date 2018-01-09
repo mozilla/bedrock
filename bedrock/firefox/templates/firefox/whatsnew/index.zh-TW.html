@@ -1,0 +1,58 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button, send_to_device with context %}
+
+{% add_lang_files "firefox/whatsnew" %}
+
+{% extends "firefox/whatsnew/base-pebbles.html" %}
+
+{% block page_title %}下載 Firefox for Android 或 iOS{% endblock %}
+
+{#- This will appear as <meta property="og:title"> which can be used for social share -#}
+{% block page_og_title %}{{ self.page_title() }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}Firefox 非營利、非商業、永不妥協。選擇 Firefox 不只是選擇一套瀏覽器，而是對個人自由投下贊成票。{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_whatsnew_zh_tw' %}
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="content">
+    <header class="logo-masthead">
+      <h3><a class="firefox" href="{{ url('firefox') }}">{{ high_res_img('logos/firefox/logo-quantum.png', {'alt': 'Firefox', 'width': '110', 'height': '110'}) }}</a></h3>
+      <h3><a class="mozilla" href="{{ url('mozorg.home') }}"><img src="{{ static('img/logos/mozilla/wordmark-dark.svg')}}" alt="Mozilla" width="150" height="43"></a></h3>
+    </header>
+    <section class="main-content">
+      {# Rough translation: "Your Firefox is the latest version" #}
+      <h1>您的<span>Firefox</span>已是最新版本</h1>
+      <figure>
+        <img class="qrcode" src="{{ static('img/firefox/whatsnew/zh-tw/qrcode.png') }}"
+        data-mozillaonline-link="{{ static('img/firefox/whatsnew/qrcode-mozillaonline.png') }}" width="359" height="358" alt="" />
+        <figcaption class="section-content">
+          {# Rough translation: "# When only the free fox" #}
+          <h2>#當隻自由的狐狸</h2>
+          <ul>
+            <li>下載手機版，享受跨裝置瀏覽自由</li> {# Rough translation: "Download mobile version, enjoy cross-device browsing freedom" #}
+            <li>同步書籤、分頁、瀏覽紀錄</li> {# Rough translation: "Sync bookmarks, paging, browsing history" #}
+            <li>掃描<span>QR Code</span>立即體驗</li> {# Rough translation: "Scan QR Code to experience it now" #}
+          </ul>
+        </figcaption>
+      </figure>
+    </section>
+
+  </div>
+</main>
+{% endblock %}
+
+{% block js %}{% endblock %}
+
