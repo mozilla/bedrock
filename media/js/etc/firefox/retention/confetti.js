@@ -45,6 +45,7 @@
             defaultOpacity = 1;
         } else {
             window.addEventListener('resize', resizeWindow, false);
+            window.addEventListener('focus', resizeWindow, false);
         }
 
         var confettiSize = 6;
