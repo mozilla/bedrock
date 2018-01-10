@@ -24,9 +24,16 @@
     <header class="main-header">
       <div class="content">
         <div class="header-content">
-          <h1>{{ _('Firefox for mobile') }}</h1>
-          <h3>{{ _('The speed you need with the privacy you want on all your devices.') }}</h3>
-          <p>{{ _('Choose one or download them all for iOS and Android.') }}</p>
+          {% if l10n_has_tag('update_mobile_headline') %}
+            <h1>{{ _('Firefox mobile apps') }}</h1>
+            <h2>{{ _('Fast for good.') }}</h2>
+            <p>{{ _('The speed you need with the privacy you want on all your devices.') }}</p>
+            <p>{{ _('Download for iOS and Android.') }}</p>
+          {% else %}
+            <h1>{{ _('Firefox for mobile') }}</h1>
+            <p>{{ _('The speed you need with the privacy you want on all your devices.') }}</p>
+            <p>{{ _('Choose one or download them all for iOS and Android.') }}</p>
+          {% endif %}
         </div>
       </div>
 
