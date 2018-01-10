@@ -15,23 +15,11 @@
 </a>
 {% endblock %}
 
-{% if LANG == 'en-US' %}
-  {% set desktop_text = 'Desktop' %}
-  {% set android_text = 'Android' %}
-  {% set ios_text = 'iOS' %}
-  {% set focus_text = 'Focus' %}
-{% else %}
-  {% set desktop_text = _('Desktop Browser') %}
-  {% set android_text = _('Android Browser') %}
-  {% set ios_text = _('iOS Browser') %}
-  {% set focus_text = _('Focus Browser') %}
-{% endif %}
-
 {% block sub_nav_primary_links %}
-  {% set extensions_text = _('Add-ons') if not LANG.startswith('en') else _('Extensions') %}
+  {% set blog_url = 'https://blog.mozilla.org/firefox-de/' if LANG == 'de' else 'https://blog.mozilla.org/firefox/' %}
   <li><a href="{{ url('firefox') }}" data-link-name="Desktop" data-link-type="nav" data-link-position="subnav">{{ _('Desktop') }}</a></li>
   <li><a href="{{ url('firefox.mobile') }}" data-link-name="Mobile" data-link-type="nav" data-link-position="subnav">{{ _('Mobile') }}</a></li>
-  <li><a href="https://addons.mozilla.org/firefox/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-sub-nav" data-link-name="Extensions" data-link-type="nav" data-link-position="subnav">{{ extensions_text }}</a></li>
+  <li><a href="https://addons.mozilla.org/firefox/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-sub-nav" data-link-name="Extensions" data-link-type="nav" data-link-position="subnav">{{ _('Extensions') }}</a></li>
   <li><a href="https://support.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-sub-nav" data-link-name="Support" data-link-type="nav" data-link-position="subnav">{{ _('Support') }}</a></li>
-  <li><a href="https://blog.mozilla.org/firefox/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-sub-nav" data-link-name="Blog" data-link-type="nav" data-link-position="subnav">{{ _('Blog') }}</a></li>
+  <li><a href="{{ blog_url }}?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-sub-nav" data-link-name="Blog" data-link-type="nav" data-link-position="subnav">{{ _('Blog') }}</a></li>
 {% endblock %}
