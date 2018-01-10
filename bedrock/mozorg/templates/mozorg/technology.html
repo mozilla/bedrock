@@ -47,37 +47,25 @@
     <section id="vr" class="odd">
       <div class="content">
         <div class="inner-container">
-        {% if l10n_has_tag('mozorg_tech_webvr') %}
           <h2>{{ _('Bringing Virtual Reality to the web platform') }}</h2>
           <p>{{ _('Using WebVR, developers, designers and artists can share VR experiences on the web.') }}</p>
           <a rel="external" href="https://vr.mozilla.org/" class="button">{{ _('Learn more') }}</a>
-        {% else %}
-          <h2>{{ _('Making Virtual Reality a reality for all') }}</h2>
-          <p>{{ _('Using A-Frame, developers, designers and artists are able to easily create accessible VR experiences.') }}</p>
-          <a rel="external" href="https://aframe.io/" class="button">{{ _('Explore A-Frame') }}</a>
-        {% endif %}
         </div>
       </div>
       <footer>
         <ul>
-        {% if l10n_has_tag('emerging_tech_links') %}
           <li><a rel="external" href="https://research.mozilla.org/mixed-reality/">{{ _('Learn about WebVR') }}</a></li>
           <li><a rel="external" href="https://aframe.io/">{{ _('Explore A-Frame') }}</a></li>
-        {% else %}
-          <li><a rel="external" href="https://research.mozilla.org/mixed-reality/">{{ _('Learn more') }}</a></li>
-          <li><a rel="external" href="https://aframe.io/blog/">{{ _('Visit the blog') }}</a></li>
-        {% endif %}
         </ul>
       </footer>
     </section>
 
-    {% if l10n_has_tag('technology_quantum_section') %}
     <section id="quantum" class="even">
       <div class="content">
         <div class="inner-container">
           <h2>{{ _('Firefox Quantum for Developers is here (and it’s fast!)') }}</h2>
           <p>{{ _('The new Firefox Developer Edition has a new, blazingly fast CSS engine built in Rust. Get it with innovative features like CSS Grid Layout panel and framework debugging.') }}</p>
-          <a href="{{ url('firefox.developer.index') }}" class="button">{{ _('Download now') }}</a>
+          <a href="{{ url('firefox.developer.index') }}" class="button">{{ _('Learn more') }}</a>
         </div>
       </div>
       <footer>
@@ -87,27 +75,18 @@
         </ul>
       </footer>
     </section>
-    {% endif %}
 
     <section id="gaming" class="even">
       <div class="content">
         <div class="inner-container">
           <h2>{{ _('Using the Web to change the game') }}</h2>
           <p>{{ _('With powerful Web technologies, pioneered by Mozilla, developers are pushing games to a new level.') }}</p>
-          {% if l10n_has_tag('emerging_tech_links') %}
             <a rel="external" href="https://games.mozilla.org/" class="button">{{ _('See what’s new') }}</a>
-          {% else %}
-            <a rel="external" href="https://www.openwebgames.com/#/demos.html" class="button">{{ _('Play some demos') }}</a>
-          {% endif %}
         </div>
       </div>
       <footer>
         <ul>
-        {% if l10n_has_tag('emerging_tech_links') %}
           <li><a rel="external" href="https://research.mozilla.org/webassembly/">{{ _('Meet WebAssembly') }}</a></li>
-        {% else %}
-          <li><a rel="external" href="https://games.mozilla.org/">{{ _('Learn more') }}</a></li>
-        {% endif %}
           <li><a rel="external" href="https://developer.mozilla.org/docs/Games">{{ _('Start building') }}</a></li>
         </ul>
       </footer>
@@ -116,26 +95,15 @@
     <section id="iot" class="odd">
       <div class="content">
         <div class="inner-container">
-          {% if l10n_has_tag('iot_links') %}
           <h2>{{ _('Building the Web of Things') }}</h2>
           <p>{{ _('We’re working to create an open, Web of Things framework of software and services that can bridge the communication gap between connected devices.') }}</p>
           <a rel="external" href="https://hacks.mozilla.org/2017/06/building-the-web-of-things/" class="button">{{ _('Learn more') }}</a>
-          {% else %}
-          <h2>{{ _('Adding trust to the Internet of Things') }}</h2>
-          <p>{{ _('Through open innovation, we’re bringing trust and transparency to networks of smart devices.') }}</p>
-          <a rel="external" href="https://connected.mozilla.org/2016/08/26/the-project-sensorweb-poster-experiment/" class="button">{{ _('Learn more') }}</a>
-          {% endif %}
         </div>
       </div>
       <footer>
         <ul>
-          {% if l10n_has_tag('iot_links') %}
           <li><a rel="external" href="http://iot.mozilla.org/">{{ _('Visit Mozilla IoT') }}</a></li>
           <li><a rel="external" href="https://github.com/mozilla-iot">{{ _('Start contributing') }}</a></li>
-          {% else %}
-          <li><a rel="external" href="https://wiki.mozilla.org/Connected_Devices">{{ _('Visit the wiki') }}</a></li>
-          <li><a rel="external" href="https://wiki.mozilla.org/Connected_Devices/Participation">{{ _('Start contributing') }}</a></li>
-          {% endif %}
         </ul>
       </footer>
     </section>
@@ -160,13 +128,8 @@
       <div class="content">
         <div class="inner-container">
           <h2>{{ _('Inventing a safer programming language') }}</h2>
-          {% if l10n_has_tag('emerging_tech_links') %}
             <p>{{ _('Sponsored by Mozilla, Rust allows browsers, systems and more to run much faster and more safely.') }}</p>
             <a rel="external" href="https://research.mozilla.org/rust/" class="button">{{ _('Learn about Rust') }}</a>
-          {% else %}
-            <p>{{ _('Supported by Mozilla, Rust allows browsers, systems and more to run much faster and more safely.') }}</p>
-            <a rel="external" href="https://research.mozilla.org/rust/" class="button">{{ _('Learn more') }}</a>
-          {% endif %}
         </div>
       </div>
       <footer>
