@@ -14,6 +14,6 @@ integration_tests:
     - headless
     - download
   tokyo:
-    - headless
+    - firefox
   frankfurt:
-    - headless
+    - firefox

@@ -9,4 +9,4 @@ apps:
   - bedrock-prod
 integration_tests:
   frankfurt:
-    - headless
+    - firefox

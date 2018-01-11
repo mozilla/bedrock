@@ -19,6 +19,6 @@ integration_tests:
     - ie
     - ie8
   tokyo:
-    - headless
+    - firefox
   frankfurt:
-    - headless
+    - firefox
