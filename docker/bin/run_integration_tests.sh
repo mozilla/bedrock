@@ -52,7 +52,7 @@ source $BIN_DIR/set_git_env_vars.sh
 if [ -z "${BASE_URL}" ]; then
   # start bedrock
   docker run -d --rm \
-    --name bedrock-code-${GIT_COMMIT_SHORT} \
+    --name bedrock-code-${BRANCH_NAME_SAFE}-${GIT_COMMIT_SHORT} \
     -e ALLOWED_HOSTS="*" \
     -e SECRET_KEY=foo \
     -e DEBUG=False \
@@ -76,7 +76,7 @@ if [ "${DRIVER}" = "Remote" ]; then
 
   # start selenium grid hub
   docker run -d --rm \
-    --name bedrock-selenium-hub-${GIT_COMMIT_SHORT} \
+    --name bedrock-selenium-hub-${BRANCH_NAME_SAFE}-${GIT_COMMIT_SHORT} \
     selenium/hub:${SELENIUM_VERSION}
   DOCKER_LINKS=(${DOCKER_LINKS[@]} --link bedrock-selenium-hub-${GIT_COMMIT_SHORT}:hub)
   SELENIUM_HOST="hub"
@@ -84,7 +84,7 @@ if [ "${DRIVER}" = "Remote" ]; then
   # start selenium grid nodes
   for NODE_NUMBER in `seq ${NUMBER_OF_NODES:-5}`; do
     docker run -d --rm \
-      --name bedrock-selenium-node-${NODE_NUMBER}-${GIT_COMMIT_SHORT} \
+      --name bedrock-selenium-node-${NODE_NUMBER}-${BRANCH_NAME_SAFE}-${GIT_COMMIT_SHORT} \
       ${DOCKER_LINKS[@]} \
       selenium/node-firefox:${SELENIUM_VERSION}
     while ! ${SELENIUM_READY}; do
