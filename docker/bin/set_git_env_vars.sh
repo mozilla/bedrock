@@ -11,7 +11,7 @@ fi
 if [[ "$GIT_TAG" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}(\.[0-9])?$ ]]; then
     export GIT_TAG_DATE_BASED=true
 fi
-export GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-export BRANCH_NAME="$GIT_BRANCH"
-# BRANCH_NAME with "/" replaced with "-"
-export BRANCH_NAME_SAFE="${BRANCH_NAME/\//-}"
+if [[ -z "$GIT_BRANCH" ]]; then
+    export GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+    export BRANCH_NAME="$GIT_BRANCH"
+fi
