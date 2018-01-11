@@ -14,6 +14,4 @@ fi
 if [[ -z "$GIT_BRANCH" ]]; then
     export GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
     export BRANCH_NAME="$GIT_BRANCH"
-    # BRANCH_NAME with "/" replaced with "-"
-    export BRANCH_NAME_SAFE="${BRANCH_NAME/\//-}"
 fi
