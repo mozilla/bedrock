@@ -60,7 +60,7 @@ if [ -z "${BASE_URL}" ]; then
     -e GUNICORN_WORKER_CLASS=sync \
     mozorg/bedrock_code:${GIT_COMMIT} bin/run-for-integration-tests.sh
 
-  DOCKER_LINKS=(--link bedrock-code-${GIT_COMMIT_SHORT}:bedrock)
+  DOCKER_LINKS=(--link bedrock-code-${BRANCH_NAME_SAFE}-${GIT_COMMIT_SHORT}:bedrock)
   BASE_URL="http://bedrock:8000"
 fi
 
@@ -78,7 +78,7 @@ if [ "${DRIVER}" = "Remote" ]; then
   docker run -d --rm \
     --name bedrock-selenium-hub-${BRANCH_NAME_SAFE}-${GIT_COMMIT_SHORT} \
     selenium/hub:${SELENIUM_VERSION}
-  DOCKER_LINKS=(${DOCKER_LINKS[@]} --link bedrock-selenium-hub-${GIT_COMMIT_SHORT}:hub)
+  DOCKER_LINKS=(${DOCKER_LINKS[@]} --link bedrock-selenium-hub-${BRANCH_NAME_SAFE}-${GIT_COMMIT_SHORT}:hub)
   SELENIUM_HOST="hub"
 
   # start selenium grid nodes
@@ -88,8 +88,8 @@ if [ "${DRIVER}" = "Remote" ]; then
       ${DOCKER_LINKS[@]} \
       selenium/node-firefox:${SELENIUM_VERSION}
     while ! ${SELENIUM_READY}; do
-      IP=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' bedrock-selenium-node-${NODE_NUMBER}-${GIT_COMMIT_SHORT}`
-      CMD="docker run --rm --link bedrock-selenium-hub-${GIT_COMMIT_SHORT}:hub tutum/curl curl http://hub:4444/grid/api/proxy/?id=http://${IP}:5555 | grep 'proxy found'"
+      IP=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' bedrock-selenium-node-${NODE_NUMBER}-${BRANCH_NAME_SAFE}-${GIT_COMMIT_SHORT}`
+      CMD="docker run --rm --link bedrock-selenium-hub-${BRANCH_NAME_SAFE}-${GIT_COMMIT_SHORT}:hub tutum/curl curl http://hub:4444/grid/api/proxy/?id=http://${IP}:5555 | grep 'proxy found'"
       if eval ${CMD}; then SELENIUM_READY=true; fi
     done
   done
