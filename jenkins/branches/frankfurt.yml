@@ -8,4 +8,4 @@ apps:
   - bedrock-dev
 integration_tests:
   frankfurt:
-    - headless
+    - firefox
