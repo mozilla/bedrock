@@ -97,12 +97,18 @@
         <div class="inner-container">
           <h2>{{ _('Building the Web of Things') }}</h2>
           <p>{{ _('We’re working to create an open, Web of Things framework of software and services that can bridge the communication gap between connected devices.') }}</p>
-          <a rel="external" href="https://hacks.mozilla.org/2017/06/building-the-web-of-things/" class="button">{{ _('Learn more') }}</a>
+          <a rel="external" href="https://iot.mozilla.org/" class="button">
+            {% if l10n_has_tag('1429633_iot_update') %}
+              {{ _('Get started') }}
+            {% else %}
+              {{ _('Learn more') }}
+            {% endif %}
+          </a>
         </div>
       </div>
       <footer>
         <ul>
-          <li><a rel="external" href="http://iot.mozilla.org/">{{ _('Visit Mozilla IoT') }}</a></li>
+          <li><a rel="external" href="https://hacks.mozilla.org/2017/06/building-the-web-of-things/">{{ _('Learn more') }}</a></li>
           <li><a rel="external" href="https://github.com/mozilla-iot">{{ _('Start contributing') }}</a></li>
         </ul>
       </footer>
