@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 
 import codecs
 from os import path
-from StringIO import StringIO
+from io import StringIO
 from textwrap import dedent
 
 from django.conf import settings

@@ -8,9 +8,9 @@ from hashlib import sha256
 from shutil import rmtree
 from subprocess import check_output, STDOUT
 try:
-    from cStringIO import StringIO
-except ImportError:
     from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 
 from django.conf import settings
 

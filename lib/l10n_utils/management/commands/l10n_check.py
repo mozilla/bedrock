@@ -10,7 +10,7 @@ import os
 from os import path
 import codecs
 from contextlib import closing
-from StringIO import StringIO
+from io import StringIO
 
 from django.core.management.base import BaseCommand
 from django.conf import settings

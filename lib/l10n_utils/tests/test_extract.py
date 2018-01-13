@@ -1,6 +1,6 @@
 # taken and modified from tower tests
 
-from cStringIO import StringIO
+from io import StringIO
 
 from babel.messages.catalog import Catalog
 from babel.messages.extract import extract
