@@ -46,7 +46,7 @@ def update_templates(langs):
 
     for tmpl in list_templates():
         template = L10nTemplate(tmpl)
-        print "%s..." % template.rel_path
+        print("%s..." % template.rel_path)
         template.process(langs)
 
 
@@ -151,7 +151,7 @@ class L10nTemplate(object):
             for block in blocks:
                 write_block(block, dest)
 
-        print '%s: %s' % (lang, self.rel_path)
+        print('%s: %s' % (lang, self.rel_path))
 
     def _get_ref_block(self, name, blocks=None):
         """Return the reference block"""
@@ -225,7 +225,7 @@ class L10nTemplate(object):
             with codecs.open(dest_tmpl, 'w', 'utf-8') as dest:
                 dest.write(buffer.getvalue())
 
-        print '%s: %s' % (lang, self.rel_path)
+        print('%s: %s' % (lang, self.rel_path))
 
 
 class L10nParser():
