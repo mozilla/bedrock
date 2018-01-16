@@ -1408,22 +1408,17 @@ if CSP_EXTRA_FRAME_SRC:
 # support older browsers (mainly Safari)
 CSP_FRAME_SRC = CSP_CHILD_SRC
 
-# Bug 1331069, 1343033 - Double Click & Yahoo tracking pixels for download page.
+# Bug 1331069 - Double Click tracking pixel for download page.
 AVAILABLE_TRACKING_PIXELS = {
     'doubleclick': ('https://ad.doubleclick.net/ddm/activity/src=6417015;type=deskt0;cat=mozil0;dc_lat=;dc_rdid=;'
                     'tag_for_child_directed_treatment=;ord=1;num=1?&_dc_ck=try'),
-    'yahoo_purple': 'https://sp.analytics.yahoo.com/spp.pl?a=10000&.yp=10022313',
-    'yahoo_green': 'https://sp.analytics.yahoo.com/spp.pl?a=10000&.yp=10022314',
 }
-ENABLED_PIXELS = config('ENABLED_PIXELS', default='doubleclick,yahoo_purple,yahoo_green', cast=Csv())
+ENABLED_PIXELS = config('ENABLED_PIXELS', default='doubleclick', cast=Csv())
 TRACKING_PIXELS = [AVAILABLE_TRACKING_PIXELS[x] for x in ENABLED_PIXELS if x in AVAILABLE_TRACKING_PIXELS]
 
 if config('SWITCH_TRACKING_PIXEL', default=DEV, cast=bool):
     if 'doubleclick' in ENABLED_PIXELS:
         CSP_IMG_SRC += ('ad.doubleclick.net',)
-
-    if any([x.startswith('yahoo') for x in ENABLED_PIXELS]):
-        CSP_IMG_SRC += ('sp.analytics.yahoo.com',)
 
 # Bug 1345467: Funnelcakes are now explicitly configured in the environment.
 # Set experiment specific variables like the following:
