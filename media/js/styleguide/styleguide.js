@@ -7,13 +7,13 @@ $(function () {
 
     var $sidebar = $('#sidebar');
 
-    $sidebar.focusin(function() {
+    $sidebar.on('focusin', function() {
         $sidebar.toggleClass('child-focus');
-    }).focusout(function() {
+    }).on('focusout', function() {
         $sidebar.toggleClass('child-focus');
     });
 
-    $('#sidebar nav ul li.has-children > a').click(function(e) {
+    $('#sidebar nav ul li.has-children > a').on('click', function(e) {
         e.preventDefault();
 
         var $li = $(this).parent('li');

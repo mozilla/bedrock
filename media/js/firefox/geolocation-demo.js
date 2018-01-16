@@ -67,12 +67,12 @@ $(document).ready(function() {
 
     $('#try-geolocation').show();
 
-    $('#try-geolocation').click(function (e) {
+    $('#try-geolocation').on('click', function (e) {
         e.preventDefault();
         Mozilla.Modal.createModal(this, $('#geo-demo'), { onCreate: geodemo.initialize });
     });
 
-    $('#locateButton').click(function() {
+    $('#locateButton').on('click', function() {
         geodemo.locateMeOnMap();
     });
 });

@@ -63,7 +63,7 @@
 
         if (scrollIntoView) {
             $thankYou[0].scrollIntoView();
-            $thankYou.focus();
+            $thankYou.trigger('focus');
         }
     }
 

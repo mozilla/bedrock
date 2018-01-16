@@ -69,7 +69,7 @@
     });
 
     // Reveal overlays when buttons are activated (for keyboard, touch, and screen readers)
-    $('.overlay-wrap .read').bind('click', function() {
+    $('.overlay-wrap .read').on('click', function() {
 
         if (wideMode) {
             // First hide any visible overlays
@@ -111,7 +111,7 @@
     var fixed = false;
     var didScroll = false;
 
-    $window.scroll(function() {
+    $window.on('scroll', function() {
         didScroll = true;
     });
 
@@ -151,12 +151,12 @@
 
     // Show/hide the navigation in small viewports
     if (!wideMode) {
-        $nav.click(function() {
+        $nav.on('click', function() {
             $(this).animate({ 'top': '0' }, 'fast'); // Slide down
-            $(this).mouseleave(function() {
+            $(this).on('mouseleave', function() {
                 $(this).removeAttr('style');
             });
-            $('body').bind('click', function() {
+            $('body').on('click', function() {
                 $nav.removeAttr('style');
             });
         });
@@ -198,7 +198,7 @@
         $('html, body').animate({
             scrollTop: $(elem).offset().top - 35
         }, 1000, function() {
-            $(elem).attr('tabindex','100').focus().removeAttr('tabindex');
+            $(elem).attr('tabindex','100').trigger('focus').removeAttr('tabindex');
             if (!wideMode) {
                 $nav.removeAttr('style');
             }
@@ -206,13 +206,13 @@
     });
 
     // Load links in new tab/window
-    $('a[rel="external"]').click(function(e) {
+    $('a[rel="external"]').on('click', function(e) {
         e.preventDefault();
         window.open(this.href);
     });
 
     // Load videos in a full-page modal
-    $('a.video-play').click(function(e) {
+    $('a.video-play').on('click', function(e) {
         e.preventDefault();
         var $origin = $(this);
         var video = $origin.data('videoSource');
@@ -225,7 +225,7 @@
     });
 
     // Load the YouTube video in a full-page modal
-    $('a.vid-youtube').click(function(e) {
+    $('a.vid-youtube').on('click', function(e) {
         e.preventDefault();
         var $origin = $(this);
         var content = '<iframe width="640" height="360" src="//www.youtube-nocookie.com/embed/f_f5wNw-2c0?rel=0" frameborder="0" allowfullscreen></iframe>';
@@ -274,7 +274,7 @@
             $('span.btn-play').remove();
         }
 
-        $('<span class="btn-play"></span>').appendTo('#video-stage .player').click(function() {
+        $('<span class="btn-play"></span>').appendTo('#video-stage .player').on('click', function() {
             $('#story-vid').attr('controls','controls')[0].play();
             $(this).fadeOut('fast', function() {
                 $(this).remove();
@@ -318,7 +318,7 @@
 
     // Contributor story thumbnails play the corresponding video
     function setupThumbnails() {
-        $('a.contributor').click(function(e) {
+        $('a.contributor').on('click', function(e) {
             e.preventDefault();
             var video = $(this).attr('href');
             var poster = $(this).attr('data-poster');
@@ -340,7 +340,7 @@
                 $('html, body').animate({
                     scrollTop: $('#video-stage').offset().top - 80
                 }, 200, function() {
-                    $('#story-vid').focus();
+                    $('#story-vid').trigger('focus');
                 });
             } else {
                 var $origin = $(this);
@@ -361,12 +361,12 @@
         $('#inner').append(content);
 
         if ($('#inner #video').length > 0) {
-            $('#video').focus()[0].play();
+            $('#video').trigger('focus')[0].play();
         }
 
         // Add the close button
         $('#done').clone().appendTo('#inner');
-        $('#fill #done').bind('click', function() {
+        $('#fill #done').on('click', function() {
             if ($('#inner #video').length > 0) {
                 $('#video')[0].pause();
             }
@@ -375,14 +375,14 @@
         });
 
         // Close on escape
-        $('#fill').bind('keyup', function(e) {
+        $('#fill').on('keyup', function(e) {
             if (e.keyCode === 27) { // esc
                 if ($('#inner #video').length > 0) {
                     $('#video')[0].pause();
                 }
                 $('#fill').remove();
                 $('body').removeClass('noscroll');
-                origin.focus();
+                origin.trigger('focus');
             }
         });
     }

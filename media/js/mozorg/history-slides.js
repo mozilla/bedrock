@@ -34,6 +34,7 @@
 
     // set up the slideshow
     // @requires: sequencejs
+    // NOTE: this version of sequence relies on deprecated jQuery methods
     var slideshow = $slideshow.sequence(options).data('sequence');
 
 

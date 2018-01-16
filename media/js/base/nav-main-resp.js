@@ -86,22 +86,22 @@
         NavMain.mainMenuLinks = $('#nav-main ul > li > [tabindex="0"]');
 
         NavMain.mainMenuItems
-            .bind('mouseover focusin', NavMain.handleFocusIn)
-            .bind('mouseout focusout', NavMain.handleFocusOut)
+            .on('mouseover focusin', NavMain.handleFocusIn)
+            .on('mouseout focusout', NavMain.handleFocusOut)
             .each(NavMain.initSubmenu);
 
         if (!NavMain.isMSIEpre9) {
-            $(window).resize(NavMain.handleResize);
+            $(window).on('resize', NavMain.handleResize);
             NavMain.handleResize();
         }
 
         // set up small-mode menu toggle button
         $('#masthead .toggle')
-            .click(function(e) {
+            .on('click', function(e) {
                 e.preventDefault();
                 NavMain.toggleSmallMenu();
             })
-            .keydown(function(e) {
+            .on('keydown', function(e) {
                 if (e.keyCode === 13 || e.keyCode === 32) {
                     e.preventDefault();
                     NavMain.toggleSmallMenu();
@@ -114,9 +114,9 @@
         // the item. This prevents flashing menus on iOS and prevents clicking on
         // a top-level item causing navigation on Android.
         if ('ontouchstart' in window) {
-            NavMain.mainMenuLinks.click(function(e) {
+            NavMain.mainMenuLinks.on('click', function(e) {
                 e.preventDefault();
-                this.focus();
+                this.trigger('focus');
             });
         }
 
@@ -169,12 +169,12 @@
     NavMain.initSubmenu = function(menuIdx) {
         var menuItems = $(this).find('a');
 
-        menuItems.mouseover(function() {
-            this.focus(); // Sometimes $(this).focus() doesn't work
-        }).focus(function() {
+        menuItems.on('mouseover', function() {
+            this.focus(); // Sometimes $(this).trigger('focus') doesn't work
+        }).on('focus', function() {
             NavMain.currentSubmenuItem = $(this);
         }).each(function(itemIdx) {
-            $(this).keydown(function(e) {
+            $(this).on('keydown', function(e) {
                 var target;
                 switch (e.keyCode) {
                 case 27: // Esc
@@ -210,7 +210,7 @@
                     break;
                 }
                 if (target) {
-                    target.get(0).focus(); // Sometimes target.focus() doesn't work
+                    target.get(0).focus(); // Sometimes target.trigger('focus') doesn't work
                     return false;
                 }
                 return true;
@@ -243,7 +243,7 @@
         // remove submenu click handler and CSS class
         NavMain.mainMenuLinks
             .addClass('submenu-item')
-            .unbind('click', NavMain.handleSubmenuClick);
+            .off('click', NavMain.handleSubmenuClick);
 
         // add click handler to menu links to hide menu
         NavMain.linkMenuHideOnClick();
@@ -363,7 +363,7 @@
         if (e.keyCode === 27 && NavMain.smallMenuOpen) {
             NavMain.closeSmallMenu();
             // Set focus back to the menu button
-            NavMain.toggleButton.focus();
+            NavMain.toggleButton.trigger('focus');
         }
     };
 

@@ -134,7 +134,7 @@
     }
 
     // Count right clicks
-    $(document).click(function(e) {
+    $(document).on('click', function(e) {
         if (e.button === 2) {
             window.dataLayer.push({
                 'eAction': 'click',

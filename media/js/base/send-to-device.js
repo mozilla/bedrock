@@ -166,7 +166,7 @@ if (typeof Mozilla === 'undefined') {
         this.$thankyou.addClass('hidden');
         this.$formHeading.removeClass('hidden');
         this.$formFields.removeClass('hidden');
-        this.$input.focus();
+        this.$input.trigger('focus');
     };
 
     /**
