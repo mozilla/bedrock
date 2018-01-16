@@ -3,6 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import csv
+import unicodedata
 from collections import OrderedDict
 from operator import itemgetter
 
@@ -56,6 +57,7 @@ class CreditsFile(ExternalFile):
             else:
                 continue
 
+            sortkey = unicodedata.normalize('NFKD', sortkey.decode('utf8')).encode('ascii', 'ignore')
             names.append([name.decode('utf8'), sortkey.upper()])
 
         return sorted(names, key=itemgetter(1))
