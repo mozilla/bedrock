@@ -1631,7 +1631,7 @@ PIPELINE_JS = {
     },
     'annual_2011': {
         'source_filenames': (
-            'js/libs/jquery.hoverIntent.minified.js',
+            'js/libs/jquery.hoverIntent.min.js',
             'js/libs/jquery.waypoints.min.js',
             'js/libs/jquery.jcarousel.min.js',
             'js/foundation/annual2011.js',

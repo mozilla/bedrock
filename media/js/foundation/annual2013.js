@@ -5,7 +5,7 @@
 (function($) {
     'use strict';
 
-    $('a.video-play').attr('role', 'button').click(function(e) {
+    $('a.video-play').attr('role', 'button').on('click', function(e) {
         e.preventDefault();
 
         var $this = $(this);

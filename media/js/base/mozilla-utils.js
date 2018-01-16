@@ -49,7 +49,7 @@ if (typeof Mozilla === 'undefined') {
     Utils.initLangSwitcher = function() {
         var $language = $('#page-language-select');
         var previousLanguage = $language.val();
-        $language.change(function() {
+        $language.on('change', function() {
             window.dataLayer.push({
                 'event': 'change-language',
                 'languageSelected': $language.val(),

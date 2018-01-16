@@ -68,16 +68,16 @@ Mozilla.Modal = (function(w, $) {
         $content.addClass('overlay-contents');
 
         // close modal on clicking close button or background.
-        $('#modal-close').click(_closeModal).attr('title', closeText);
+        $('#modal-close').on('click', _closeModal).attr('title', closeText);
 
         // close modal on clicking the background (but not bubbled event).
-        $('#modal .window').click(function (e) {
+        $('#modal .window').on('click', function (e) {
             if (e.target === this) {
                 _closeModal();
             }
         });
 
-        $modal.focus();
+        $modal.trigger('focus');
 
         // close with escape key
         $d.on('keyup.' + evtNamespace, function(e) {
@@ -91,7 +91,7 @@ Mozilla.Modal = (function(w, $) {
             // .contains must be called on the underlying HTML element, not the jQuery object
             if (open && !$modal[0].contains(e.target)) {
                 e.stopPropagation();
-                $modal.focus();
+                $modal.trigger('focus');
             }
         });
 
@@ -118,7 +118,7 @@ Mozilla.Modal = (function(w, $) {
         $html.removeClass('noscroll');
 
         // restore focus to element that opened the modal
-        $('.modal-origin').focus().removeClass('modal-origin');
+        $('.modal-origin').trigger('focus').removeClass('modal-origin');
 
         open = false;
 

@@ -23,7 +23,7 @@
             personId = $origin.attr('id');
         }
 
-        $('#modal').attr('aria-labelledby', personId).focus();
+        $('#modal').attr('aria-labelledby', personId).trigger('focus');
         $('#modal .overlay-contents').replaceWith($origin.clone().attr('tabindex', '0').addClass('overlay-contents'));
         $('#modal header h1').text($origin.find('.fn').text());
 

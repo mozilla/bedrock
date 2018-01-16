@@ -189,7 +189,7 @@ Mozilla.Accordion = function Accordion($accordion, options) {
 
             if (next) {
                 // Manage focus
-                next.$header.focus();
+                next.$header.trigger('focus');
                 event.preventDefault();
             }
         });
@@ -507,11 +507,11 @@ $(function() {
 
     // Add easing functions
     $.extend($.easing, {
-        'accordionExpand': function (x, t, b, c, d) {
-            return c * (t /= d) * t + b;
+        'accordionExpand': function (x) {
+            return 1 * Math.pow(x, 2);
         },
-        'accordionCollapse': function (x, t, b, c, d) {
-            return -c * (t /= d) * (t - 2) + b;
+        'accordionCollapse': function (x) {
+            return -1 * x * (x - 2);
         }
     });
 

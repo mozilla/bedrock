@@ -24,14 +24,14 @@
     });
 
     function endEgg() {
-        $document.bind('keyup click', function(e) {
+        $document.on('keyup click', function(e) {
             if (!$(e.target).is('#kzkid')) {
                 $kzp.removeClass('visible');
 
                 setTimeout(function() {
                     $kzp.addClass('gone');
                     $body.removeClass('easter');
-                    $document.unbind('keyup click');
+                    $document.off('keyup click');
                 }, 150);
             }
         });
