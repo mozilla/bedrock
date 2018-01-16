@@ -2,7 +2,10 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+from __future__ import unicode_literals
+
 from collections import OrderedDict
+from textwrap import dedent
 
 from mock import Mock
 
@@ -16,12 +19,14 @@ class TestCredits(TestCase):
         self.credits_file.clear_cache()
 
     def test_credits_list(self):
-        self.credits_file.readlines = Mock(return_value=[
-            'The Dude,Dude',
-            'Walter Sobchak,Sobchak',
-            'Theodore Donald Kerabatsos,Kerabatsos',
-        ])
+        self.credits_file.read = Mock(return_value=dedent("""\
+            The Dude,Dude
+            Walter Sobchak,Sobchak
+            Theodore Donald Kerabatsos,Kerabatsos
+            Tantek Çelik,Çelik
+        """.encode('utf8')))
         self.assertListEqual(self.credits_file.rows, [
+            ['Tantek Çelik', 'CELIK'],
             ['The Dude', 'DUDE'],
             ['Theodore Donald Kerabatsos', 'KERABATSOS'],
             ['Walter Sobchak', 'SOBCHAK'],
@@ -49,16 +54,18 @@ class TestCredits(TestCase):
 
     def test_credits_ordered(self):
         """Should give an ordered dict or ordered lists keyed on first letter of sortkey."""
-        self.credits_file.readlines = Mock(return_value=[
-            'Bunny Lebowski,Lebowski Bunny',
-            'Maude Lebowski,Lebowski Maude',
-            'Jeffrey Lebowski,Lebowski Jeffrey',
-            'Uli Kunkel,Kunkel',
-            'The Dude,Dude',
-            'Walter Sobchak,Sobchak',
-            'Theodore Donald Kerabatsos,Kerabatsos',
-        ])
+        self.credits_file.read = Mock(return_value=dedent("""\
+            Bunny Lebowski,Lebowski Bunny
+            Maude Lebowski,Lebowski Maude
+            Jeffrey Lebowski,Lebowski Jeffrey
+            Uli Kunkel,Kunkel
+            The Dude,Dude
+            Walter Sobchak,Sobchak
+            Theodore Donald Kerabatsos,Kerabatsos
+            Tantek Çelik,Çelik
+        """.encode('utf8')))
         good_names = OrderedDict()
+        good_names['C'] = ['Tantek Çelik']
         good_names['D'] = ['The Dude']
         good_names['K'] = ['Theodore Donald Kerabatsos', 'Uli Kunkel']
         good_names['L'] = ['Bunny Lebowski', 'Jeffrey Lebowski', 'Maude Lebowski']
