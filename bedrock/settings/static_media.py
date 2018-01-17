@@ -278,14 +278,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_channel-bundle.css',
     },
-    'firefox-dashboard': {
-        'source_filenames': (
-            'css/base/mozilla-accordion.less',
-            'css/base/menu-resp.less',
-            'css/firefox/dashboard.less',
-        ),
-        'output_filename': 'css/firefox-dashboard-bundle.css',
-    },
     'firefox-features-hub-common': {
         'source_filenames': (
             'css/firefox/features/common.scss',
@@ -318,13 +310,6 @@ PIPELINE_CSS = {
             'css/firefox/home.scss',
         ),
         'output_filename': 'css/firefox-home-bundle.css',
-    },
-    'firefox-interest-dashboard': {
-        'source_filenames': (
-            'css/firefox/family-nav.less',
-            'css/firefox/interest-dashboard.less',
-        ),
-        'output_filename': 'css/firefox-interest-dashboard-bundle.css',
     },
     'firefox_fx38_0_5_firstrun': {
         'source_filenames': (
@@ -1349,16 +1334,6 @@ PIPELINE_JS = {
             'js/base/mozilla-pixel-init.js',
         ),
         'output_filename': 'js/firefox_new_pixel-bundle.js',
-    },
-    'firefox_interest_dashboard': {
-        'source_filenames': (
-            'js/base/mozilla-accordion.js',
-            'js/base/mozilla-accordion-gatrack.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/family-nav.js',
-        ),
-        'output_filename': 'js/firefox_interest_dashboard-bundle.js',
     },
     'firefox_feedback': {
         'source_filenames': (

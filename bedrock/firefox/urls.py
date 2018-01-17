@@ -56,7 +56,6 @@ urlpatterns = (
     page('firefox/features/send-tabs', 'firefox/features/send-tabs.html'),
     page('firefox/features/sync', 'firefox/features/sync.html'),
     page('firefox/geolocation', 'firefox/geolocation.html'),
-    page('firefox/interest-dashboard', 'firefox/interest-dashboard.html'),
     url(r'^firefox/ios/testflight', views.ios_testflight, name='firefox.ios.testflight'),
     page('firefox/mobile', 'firefox/mobile.html'),
     page('firefox/mobile-download', 'firefox/mobile-download.html'),
