@@ -29,11 +29,11 @@ $color-photon-blue: #0099db;
 // Top hero section
 
 .intro {
-    background: #73320c url('/media/img/firefox/new/reggie-watts/orange-wave.png') bottom left no-repeat;
+    background: #f18f06 url('/media/img/firefox/new/reggie-watts/orange-wave.png') bottom left no-repeat;
     background: url('/media/img/firefox/new/reggie-watts/orange-wave.png') bottom left no-repeat,
                 url('/media/img/firefox/new/reggie-watts/oval.png') top -40px left 40% no-repeat,
-                linear-gradient(to right, #73320c 0%,#e98103 80%,#ec8306 100%),
-                #73320c;
+                linear-gradient(to bottom, #f18f06 0%, #fd9910 70%, #fd9910 72%, #f18f06 100%),
+                #f18f06;
 
     h1,
     h2 {
@@ -94,12 +94,12 @@ $color-photon-blue: #0099db;
     }
 
     @media #{$mq-tablet} {
-        background: #73320c url('/media/img/firefox/new/reggie-watts/reggie-watts.jpg') top right 60% no-repeat;
+        background: #f18f06 url('/media/img/firefox/new/reggie-watts/reggie-watts.jpg') top left no-repeat;
         background: url('/media/img/firefox/new/reggie-watts/orange-wave.png') bottom left no-repeat,
                     url('/media/img/firefox/new/reggie-watts/oval.png') top -40px left 40% no-repeat,
-                    url('/media/img/firefox/new/reggie-watts/reggie-watts.jpg') top right 60% no-repeat,
-                    linear-gradient(to right, #73320c 0%,#e98103 80%,#ec8306 100%),
-                    #73320c;
+                    url('/media/img/firefox/new/reggie-watts/reggie-watts.jpg') top left -440px no-repeat,
+                    linear-gradient(to bottom, #f18f06 0%, #fd9910 50%, #fd9910 72%, #f18f06 100%),
+                    #f18f06;
 
         h1 {
             margin: 80px 0 120px -10px;
@@ -129,6 +129,10 @@ $color-photon-blue: #0099db;
             }
         }
 
+    }
+
+    @media #{$mq-desktop} {
+        background-position: bottom left, top -40px left 40%, top right 60%;
     }
 }
 
