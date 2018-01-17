@@ -1202,4 +1202,7 @@ URLS = flatten((
     # bug 1425865
     url_test('/privacy/firefox-fire-tv/', '/privacy/firefox-focus/'),
     url_test('/firefox/fire-tv/', 'https://support.mozilla.org/products/firefox-fire-tv/', status_code=302),
+
+    # bug 1421584
+    url_test('/firefox/interest-dashboard/', 'https://support.mozilla.org/kb/firefox-add-technology-modernizing'),
 ))

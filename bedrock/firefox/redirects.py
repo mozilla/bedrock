@@ -572,4 +572,7 @@ redirectpatterns = (
     redirect(r'^firefox/fire-tv/?$',
         'https://support.mozilla.org/products/firefox-fire-tv/',
         permanent=False),
+
+    # bug 1430894
+    redirect(r'^firefox/interest-dashboard/?', 'https://support.mozilla.org/kb/firefox-add-technology-modernizing'),
 )
