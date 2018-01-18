@@ -42,6 +42,14 @@ class HelpersTests(TestCase):
         context = {'key': u'\xe4'}
         eq_(render(template, context), '<a href="?var=%C3%A4">')
 
+    def test_mailtoencode_with_unicode(self):
+        template = '<a href="?var={{ key|mailtoencode }}">'
+        context = {'key': '?& /()'}
+        eq_(render(template, context), '<a href="?var=%3F%26%20/%28%29">')
+        # non-ascii
+        context = {'key': u'\xe4'}
+        eq_(render(template, context), '<a href="?var=%C3%A4">')
+
 
 @override_settings(SEND_TO_DEVICE_MESSAGE_SETS=SEND_TO_DEVICE_MESSAGE_SETS)
 def test_send_to_device_sms_countries():

@@ -93,8 +93,16 @@ def _urlencode(items):
 
 
 @library.filter
+def mailtoencode(txt):
+    """Url encode a string using %20 for spaces."""
+    if isinstance(txt, unicode):
+        txt = txt.encode('utf-8')
+    return urllib.quote(txt)
+
+
+@library.filter
 def urlencode(txt):
-    """Url encode a path."""
+    """Url encode a string using + for spaces."""
     if isinstance(txt, unicode):
         txt = txt.encode('utf-8')
     return urllib.quote_plus(txt)
