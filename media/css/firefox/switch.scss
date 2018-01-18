@@ -1,0 +1,269 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+@import '../hubs/sections';
+@import '../hubs/masthead';
+@import '../hubs/sub-nav';
+@import '../quantum/common';
+
+/* -------------------------------------------------------------------------- */
+// Common elements & variables
+
+main {
+    background: #000;
+    background: url('/media/img/firefox/switch/oval.png') top left 38% no-repeat,
+                url('/media/img/firefox/switch/wave.png') bottom left no-repeat,
+                linear-gradient(-53deg, #07090B 45%, #0042A9 63%, #01C2FA 100%) top left no-repeat,
+                #000;
+    color: #fff;
+    overflow: hidden;
+    padding-top: 20px;
+    position: relative;
+
+    a:link,
+    a:visited {
+        color: #48c7ff;
+        text-decoration: none;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: #48c7ff;
+            text-decoration: underline;
+        }
+    }
+
+    h1 {
+        @include font-size-level2;
+        color: #fff;
+        margin-bottom: 40px;
+    }
+
+    .tagline {
+        @include font-size-level4;
+        margin-bottom: 20px;
+    }
+
+    .outer-container {
+        z-index: 0;
+    }
+
+    .inner-container {
+        z-index: 1;
+    }
+
+    header {
+        border-bottom: 1px solid #fff;
+        padding-bottom: 20px;
+    }
+
+    ol {
+        @include font-size-level4;
+        list-style: decimal;
+        margin: 40px 0 40px 30px;
+
+        li {
+            margin-bottom: 20px;
+            position: relative;
+        }
+    }
+
+    footer {
+        @include font-size-small;
+        margin-top: 40px;
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        ul {
+            margin-bottom: 10px;
+
+            li {
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    .share-options li a {
+        display: inline-block;
+        padding-left: 25px;
+        position: relative;
+
+        &:before {
+            content: '';
+            height: 20px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 20px;
+        }
+
+        &.facebook:before {
+            background: url('/media/img/firefox/switch/icon-fb.svg') center left no-repeat;
+        }
+
+        &.twitter:before {
+            background: url('/media/img/firefox/switch/icon-t.svg') center left no-repeat;
+        }
+
+        &.email:before {
+            background: url('/media/img/firefox/switch/icon-e.svg') center left no-repeat;
+        }
+    }
+
+    @media #{$mq-tablet} {
+
+        @supports (display: grid) {
+
+            ol {
+                display: grid;
+                grid-gap: 20px;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: auto;
+                list-style-type: none;
+                margin: 40px 0 20px 0;
+
+                li {
+                    counter-increment: switch-steps;
+                    padding-top: 2em;
+
+                    &:before {
+                        content: counter(switch-steps);
+                        height: 1em;
+                        left: 0;
+                        position: absolute;
+                        top: 0;
+                        width: 1em;
+                    }
+                }
+            }
+
+            .share-options {
+                display: grid;
+                grid-gap: 20px;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: auto;
+            }
+        }
+
+        .outer-container {
+            position: relative;
+
+            &:before {
+                background: url('/media/img/firefox/switch/wave.png') top left no-repeat;
+                bottom: 0;
+                content: '';
+                height: 546px;
+                left: 0;
+                position: absolute;
+                width: 1428px;
+                z-index: -1;
+            }
+
+            &:after {
+                background: url('/media/img/firefox/switch/face.png') top left no-repeat;
+                content: '';
+                height: 1145px;
+                position: absolute;
+                right: -740px;
+                top: -120px;
+                width: 1138px;
+                z-index: -2;
+            }
+        }
+
+        .inner-container {
+            width: 60%;
+        }
+    }
+
+    @media #{$mq-desktop} {
+
+        .outer-container:after {
+            right: -650px;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        background: url('/media/img/firefox/switch/oval.png') top left 38% no-repeat,
+                    linear-gradient(-53deg, #07090B 40%, #0042A9 63%, #01C2FA 100%) top left no-repeat,
+                    #000;
+        padding-top: 80px;
+
+        header {
+            padding-bottom: 40px;
+        }
+
+        ol {
+            margin-top: 60px;
+        }
+
+        footer {
+            margin-top: 80px;
+        }
+
+        .outer-container {
+            margin: 0 auto;
+            max-width: 1650px;
+
+            &:after {
+                right: -450px;
+                top: -180px;
+            }
+        }
+    }
+
+    @media screen and (min-width: 1650px) {
+        background: url('/media/img/firefox/switch/oval.png') top left 38% no-repeat,
+                    url('/media/img/firefox/switch/wave.png') bottom left no-repeat,
+                    linear-gradient(-53deg, #07090B 40%, #0042A9 63%, #01C2FA 100%) top left no-repeat,
+                    #000;
+
+        .outer-container:before {
+            content: none;
+        }
+    }
+}
+
+html[dir="rtl"] main {
+
+    ol {
+        margin: 40px 30px 40px 0;
+    }
+
+    .share-options li a {
+        padding-left: 0;
+        padding-right: 25px;
+
+        &:before {
+            left: auto;
+            right: 0;
+        }
+
+        &.facebook:before,
+        &.twitter:before,
+        &.email:before {
+            background-position: center right;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        .inner-container {
+            float: left;
+        }
+
+        @supports (display: grid) {
+            ol {
+                margin: 40px 0 20px 0;
+
+                li:before {
+                    left: auto;
+                    right: 0;
+                }
+            }
+        }
+    }
+}

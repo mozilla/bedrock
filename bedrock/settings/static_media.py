@@ -540,6 +540,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_releases_index-bundle.css',
     },
+    'firefox-switch': {
+        'source_filenames': (
+            'css/firefox/switch.scss',
+        ),
+        'output_filename': 'css/firefox-switch-bundle.css',
+    },
     'firefox_tour_none': {
         'source_filenames': (
             'css/firefox/australis/australis-page-common.less',
@@ -1360,6 +1366,14 @@ PIPELINE_JS = {
             'js/firefox/mobile-download-desktop.js',
         ),
         'output_filename': 'js/firefox_mobile_download_desktop-bundle.js',
+    },
+    'firefox-switch': {
+        'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/hubs/sub-nav.js',
+        ),
+        'output_filename': 'js/firefox-switch-bundle.js',
     },
     'firefox_tour_none': {
         'source_filenames': (
