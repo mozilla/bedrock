@@ -1,37 +1,17 @@
 -r base.txt
 -r compiled.txt
 
-Sphinx==1.0.7 \
-    --hash=sha256:80d62f3f7913c3322bf279ec26bfb12c1ce70404b00f4c87dc3ac190d150b0ab
-Pygments==2.0.2 \
-    --hash=sha256:0a3a2265e1efb0defa722d1f429730dc9df975adc3c60ac7d2b432bdf03c041d \
-    --hash=sha256:7320919084e6dac8f4540638a46447a3bd730fca172afc17d2c03eed22cf4f51
-docutils==0.12 \
-    --hash=sha256:c7db717810ab6965f66c8cf0398a98c9d8df982da39b4cd7f162911eb89596fa
-flake8==2.0 \
-    --hash=sha256:8dce4f7e64cc202cc6da93eab84b2ce660110ff684b6738bba64a0a431b3bc69
-mccabe==0.3 \
-    --hash=sha256:89cf6bf4ff644ff8b912e2fa7e2abb68d57a8e7e918e393c72840d30d2ebcf0b \
-    --hash=sha256:3d8ca9bf65c5014f469180544d1dd5bb5b9df709aad6304f9c2e4370ae0a7b7c
-pep8==1.6.2 \
-    --hash=sha256:4aa129df8d9007b192bf82013f415533994652d7caa930d002687eb42a6c2a41 \
-    --hash=sha256:b8b7e35630b5539e26a197dfc6005be9e1e9a135496b377723a8ebc01b9bcbff
-pyflakes==0.8.1 \
-    --hash=sha256:ac4571695c10ce1536bcdba1a294b9f2d3e6cc9d0ea171b67d50a0864ce3e042 \
-    --hash=sha256:3fa80a10b36d51686bf7744f5dc99622cd5c98ce8ed64022e629868aafc17769
-pyquery==1.0 \
-    --hash=sha256:fb2345065647211507d23355b1026d995ded40e088d86fcae262562921d80408
-factory-boy==2.2.1 \
-    --hash=sha256:d94c63814195cae8ffad89046d425cdab414aecf2c0f2cb17c88cbe49bbb554c
-coverage==3.6 \
-    --hash=sha256:df3bf169d4727f3fad146ca715a49a1f72a8258689651ef9de908022e739700d
-chkcrontab==1.6 \
-    --hash=sha256:10fd86e7e3d3d0339e0e93e0876a8702eac82649ec3b4abe4d350dc08c389a0e
-translate-toolkit==1.8.0 \
-    --hash=sha256:b146d8cdc287db07f6ef4491766d841a931b1b267040fef81eb559a475fe3db9
-responses==0.5.1 \
-    --hash=sha256:3a907f7aae2fd2286d06cfdf238957786c38bbcadc451adceecc769a4ef882b7 \
-    --hash=sha256:8cad64c45959a651ceaf0023484bd26180c927fea64a81e63d334ddf6377ecea
-cookies==2.2.1 \
-    --hash=sha256:15bee753002dff684987b8df8c235288eb8d45f8191ae056254812dfd42c81d3 \
-    --hash=sha256:d6b698788cae4cfa4e62ef8643a9ca332b79bd96cb314294b864ae8d7eb3ee8e
+Sphinx==1.6.6
+Pygments==2.2.0
+docutils==0.14
+flake8==3.5.0
+mccabe==0.6.1
+pep8==1.7.1
+pyflakes==1.6.0
+pyquery==1.4.0
+factory-boy==2.9.2
+coverage==4.4.2
+chkcrontab==1.7
+translate-toolkit==2.2.5
+responses==0.8.1
+cookies==2.2.1

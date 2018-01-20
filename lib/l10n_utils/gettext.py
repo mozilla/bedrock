@@ -336,7 +336,7 @@ def find_lang_files(lang):
 
 def merge_lang_files(langs):
     for lang in langs:
-        print 'Merging into %s...' % lang
+        print('Merging into %s...' % lang)
 
         for f in find_lang_files('templates'):
             # Make sure the directory exists (might be a subdirectory)

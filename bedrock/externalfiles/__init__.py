@@ -7,9 +7,9 @@ import logging
 import os.path
 from time import mktime
 try:
-    from cStringIO import StringIO
-except ImportError:
     from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 
 from django.conf import settings
 from django.core.cache import caches

@@ -27,20 +27,20 @@ class Command(NoArgsCommand):
 
     def handle_noargs(self, **options):
         if options['do_it']:
-            print 'Deleting tables:'
+            print('Deleting tables:')
             cursor = connection.cursor()
             cursor.execute('show tables')
             tables = [row[0] for row in cursor.fetchall()]
             if tables:
                 cursor.execute('SET FOREIGN_KEY_CHECKS = 0;')
                 for table in tables:
-                    print ' - ' + table
+                    print(' - ' + table)
                     cursor.execute('DROP TABLE %s;' % table)
                 cursor.execute('SET FOREIGN_KEY_CHECKS = 1;')
                 transaction.commit_unless_managed()
             else:
-                print ' - No tables found. Odd.'
-            print 'Done.'
+                print(' - No tables found. Odd.')
+            print('Done.')
         else:
-            print "This deletes ALL THE THINGS! If you're sure you " \
-                  "want to do this, pass the --yes-i-am-sure flag."
+            print("This deletes ALL THE THINGS! If you're sure you " \
+                  "want to do this, pass the --yes-i-am-sure flag.")

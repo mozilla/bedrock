@@ -3,7 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from os import path, listdir
-import StringIO
+import io
 
 from django.conf import settings
 from django.http import Http404
@@ -33,7 +33,7 @@ def load_legal_doc(doc_name, locale):
     """
     source_dir = path.join(LEGAL_DOCS_PATH, doc_name)
     source_file = path.join(source_dir, locale + '.md')
-    output = StringIO.StringIO()
+    output = io.StringIO()
     locales = [f.replace('.md', '') for f in listdir(source_dir) if f.endswith('.md')]
     localized = locale != settings.LANGUAGE_CODE
     translations = {}

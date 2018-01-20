@@ -35,7 +35,7 @@ def run(*args):
             check_if_correct_parse(f)
         except ValueError as ve:
             check_failed = True
-            print format_str.format(f, ve.message)
+            print(format_str.format(f, ve.message))
 
     if check_failed:
         sys.exit(1)

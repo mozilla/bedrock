@@ -76,9 +76,9 @@ def format_tweet_timestamp(tweet):
         if diff.seconds < 60:
             label = _('%ds') % diff.seconds
         elif diff.seconds < 60 * 60:
-            label = _('%dm') % round(diff.seconds / 60)
+            label = _('%dm') % round(diff.seconds // 60)
         else:
-            label = _('%dh') % round(diff.seconds / 60 / 60)
+            label = _('%dh') % round(diff.seconds // 60 // 60)
     else:
         label = created.strftime("%-d %b")
 

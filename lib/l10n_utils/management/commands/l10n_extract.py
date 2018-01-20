@@ -29,7 +29,7 @@ def gettext_extract():
 
 def extract_callback(filename, method, options):
     if method != 'ignore':
-        print "  %s" % filename
+        print("  %s" % filename)
 
 
 def extract_from_files(filenames,
@@ -116,7 +116,7 @@ def extract_from_files(filenames,
                 matched = True
                 filepath = os.path.join(settings.ROOT, filename)
                 if not os.path.exists(filepath):
-                    print '! %s does not exist!' % filename
+                    print('! %s does not exist!' % filename)
                     break
                 options = {}
                 for opattern, odict in options_map.items():
@@ -133,7 +133,7 @@ def extract_from_files(filenames,
                     yield filename, lineno, message, comments, context
                 break
         if not matched:
-            print '! %s does not match any domain methods!' % filename
+            print('! %s does not match any domain methods!' % filename)
 
 
 class Command(BaseCommand):
