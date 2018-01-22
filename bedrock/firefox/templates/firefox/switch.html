@@ -44,14 +44,14 @@
             {% set share_url = settings.CANONICAL_URL + canonical_path %}
             <ul class="share-options">
               <li>
-                <a class="facebook" data-link-type="link" data-link-name="Share to Facebook" href="https://www.facebook.com/sharer/sharer.php?s=100&p[url]={{ share_url|urlencode }}">
+                <a class="facebook" data-link-type="social share" data-link-name="Facebook" href="https://www.facebook.com/sharer/sharer.php?s=100&p[url]={{ share_url|urlencode }}">
                   {{ _('Share to Facebook') }}
                 </a>
               </li>
               <li>
                 {# L10n: the string below is for a referral Twitter message. #}
                 {% set tweet_text = _('🔥 Firefox makes switching from Chrome really fast. Try it out!') %}
-                <a class="twitter" data-link-type="link" data-link-name="Send a tweet" href="https://www.twitter.com/intent/tweet?url={{ share_url|urlencode }}&text={{ tweet_text|urlencode }}">
+                <a class="twitter" data-link-type="social share" data-link-name="Twitter" href="https://www.twitter.com/intent/tweet?url={{ share_url|urlencode }}&text={{ tweet_text|urlencode }}">
                   {{ _('Send a tweet') }}
                 </a>
               </li>
@@ -66,7 +66,7 @@
                 {% set email_end = _('Check it out and let me know what you think:')|mailtoencode %}
 
                 {% set email_body = email_intro + '%0D%0A%0D%0A' + email_start + '%0D%0A%0D%0A' + email_end + '%20' + share_url|urlencode %}
-                <a class="email" data-link-type="link" data-link-name="Send an email" href="{{ 'mailto:?subject=%s&body=%s'|format(email_subject, email_body)|e }}">
+                <a class="email" data-link-type="social share" data-link-name="Email" href="{{ 'mailto:?subject=%s&body=%s'|format(email_subject, email_body)|e }}">
                   {{ _('Send an email') }}
                 </a>
               </li>
