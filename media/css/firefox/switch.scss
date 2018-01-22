@@ -55,14 +55,13 @@ main {
     }
 
     header {
-        border-bottom: 1px solid #fff;
-        padding-bottom: 20px;
+        padding: 20px 0;
     }
 
     ol {
-        @include font-size-level4;
+        @include font-size-level5;
         list-style: decimal;
-        margin: 40px 0 40px 30px;
+        margin: 0 0 40px 30px;
 
         li {
             margin-bottom: 20px;
@@ -124,18 +123,20 @@ main {
                 grid-template-columns: repeat(3, 1fr);
                 grid-template-rows: auto;
                 list-style-type: none;
-                margin: 40px 0 20px 0;
+                margin: 0 0 30px;
 
                 li {
                     counter-increment: switch-steps;
                     padding-top: 2em;
 
                     &:before {
+                        @include font-size-level4;
                         content: counter(switch-steps);
+                        font-weight: bold;
                         height: 1em;
                         left: 0;
                         position: absolute;
-                        top: 0;
+                        top: -.25em;
                         width: 1em;
                     }
                 }
@@ -181,6 +182,21 @@ main {
     }
 
     @media #{$mq-desktop} {
+        @supports (display: grid) {
+
+            ol li {
+                padding-top: 0;
+                padding-left: 40px;
+
+                &:before {
+                    @include font-size(30px);
+                    float: left;
+                    margin-left: -30px;
+                    margin-top: -.15em;
+                    position: static;
+                }
+            }
+        }
 
         .outer-container:after {
             right: -650px;
@@ -191,19 +207,6 @@ main {
         background: url('/media/img/firefox/switch/oval.png') top left 38% no-repeat,
                     linear-gradient(-53deg, #07090B 40%, #0042A9 63%, #01C2FA 100%) top left no-repeat,
                     #000;
-        padding-top: 80px;
-
-        header {
-            padding-bottom: 40px;
-        }
-
-        ol {
-            margin-top: 60px;
-        }
-
-        footer {
-            margin-top: 80px;
-        }
 
         .outer-container {
             margin: 0 auto;
@@ -231,7 +234,7 @@ main {
 html[dir="rtl"] main {
 
     ol {
-        margin: 40px 30px 40px 0;
+        margin: 0 30px 40px 0;
     }
 
     .share-options li a {
