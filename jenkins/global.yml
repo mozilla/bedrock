@@ -16,3 +16,7 @@ regions:
     deis_profile: frankfurt
     name: frankfurt
     deis_bin: deis2
+  oregon-b:
+    deis_profile: oregon-b
+    name: oregon-b
+    deis_bin: deis2
