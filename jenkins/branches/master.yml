@@ -6,6 +6,7 @@ regions:
   - usw
   - tokyo
   - frankfurt
+  - oregon-b
 apps:
   - bedrock-dev
 integration_tests:
@@ -16,4 +17,6 @@ integration_tests:
   tokyo:
     - firefox
   frankfurt:
+    - firefox
+  oregon-b:
     - firefox
