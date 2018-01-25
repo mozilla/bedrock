@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -139,6 +140,20 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
                          '6b3dbb178e9abc22db66530df426b17db8590e8251fc153ba443e81ca60e355e')
+
+    def test_handles_referrer_utf8(self):
+        """Should ignore non-ascii domain names.
+
+        We were getting exceptions when the view was trying to base64 encode
+        non-ascii domain names in the referrer. The whitelist for bouncer doesn't
+        include any such domains anyway, so we should just ignore them.
+        """
+        params = {'referrer': 'http://youtubê.com/sorry/'}
+        req = self._get_request(params)
+        resp = views.stub_attribution_code(req)
+        self.assertEqual(resp.status_code, 400)
+        data = json.loads(resp.content)
+        self.assertDictEqual(data, {'error': 'no params'})
 
     @override_settings(STUB_ATTRIBUTION_RATE=0.2)
     def test_rate_limit(self):

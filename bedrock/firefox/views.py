@@ -49,7 +49,7 @@ STUB_VALUE_NAMES = [
     ('utm_campaign', '(not set)'),
     ('utm_content', '(not set)'),
 ]
-STUB_VALUE_RE = re.compile(r'^[a-z0-9-.%()_]+$', flags=re.IGNORECASE)
+STUB_VALUE_RE = re.compile(r'^[a-z0-9-.%():_]+$', flags=re.IGNORECASE)
 
 
 def installer_help(request):
@@ -103,9 +103,11 @@ def stub_attribution_code(request):
 
     if codes['source'] == '(not set)' and 'referrer' in data:
         try:
-            codes['source'] = urlparse(data['referrer']).netloc
-            codes['medium'] = 'referral'
-            has_value = True
+            domain = urlparse(data['referrer']).netloc
+            if domain and STUB_VALUE_RE.match(domain):
+                codes['source'] = domain
+                codes['medium'] = 'referral'
+                has_value = True
         except Exception:
             # any problems and we should just ignore it
             pass
