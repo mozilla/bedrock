@@ -1341,6 +1341,7 @@ DEAD_MANS_SNITCH_URL = config('DEAD_MANS_SNITCH_URL', default=None)
 
 RAVEN_CONFIG = {
     'dsn': config('SENTRY_DSN', None),
+    'site': '.'.join(x for x in [DEIS_APP, DEIS_DOMAIN] if x),
     'release': config('GIT_SHA', None),
 }
 
