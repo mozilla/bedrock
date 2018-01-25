@@ -33,7 +33,9 @@
 {% endblock %}
 
 {% block content %}
-{% include 'mozorg/internet-health/includes/sub-nav.html' %}
+{% with current='privacy' %}
+  {% include 'mozorg/internet-health/includes/sub-nav.html' %}
+{% endwith %}
 
 <main role="main">
   <header class="section main-header">
