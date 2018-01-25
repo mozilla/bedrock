@@ -468,9 +468,13 @@
       <h2>{{ _('Hungry for more?') }}</h2>
       <p class="report-cta">
         <span>
-        {% trans healthreport='https://internethealthreport.org' %}
-          Read on about Decentralization in our <a href="{{ healthreport }}">Internet Health Report</a>.
-        {% endtrans %}
+        {% if LANG.startswith('en-') %}
+          Keep reading in our <a href="https://internethealthreport.org">Internet Health Report</a> or <a href="https://assets.mozilla.net/pdf/IHPbriefs_Decentralization_March_2017.pdf" data-link-type="document-download" data-link-name="IH Brief:decentralization">Decentralization brief (PDF)</a>.
+        {% else %}
+          {% trans healthreport='https://internethealthreport.org' %}
+            Read on about Decentralization in our <a href="{{ healthreport }}">Internet Health Report</a>.
+          {% endtrans %}
+        {% endif %}
         </span>
       </p>
     </div>
