@@ -7,10 +7,10 @@
 {% block sub_nav_class %}internet-health{% endblock %}
 
 {% block sub_nav_primary_links %}
-<li><a href="{{ url('mozorg.internet-health') }}" data-link-name="About" data-link-type="nav" data-link-position="subnav">{{ _('About') }}</a></li>
-<li><a href="{{ url('mozorg.internet-health.privacy-security') }}" data-link-name="Privacy & Security" data-link-type="nav" data-link-position="subnav">{{ _('Privacy &amp; Security') }}</a></li>
-<li><a href="{{ url('mozorg.internet-health.open-innovation') }}" data-link-name="Openness" data-link-type="nav" data-link-position="subnav">{{ _('Openness') }}</a></li>
-<li><a href="{{ url('mozorg.internet-health.decentralization') }}" data-link-name="Decentralization" data-link-type="nav" data-link-position="subnav">{{ _('Decentralization') }}</a></li>
-<li><a href="{{ url('mozorg.internet-health.digital-inclusion') }}" data-link-name="Digital Inclusion" data-link-type="nav" data-link-position="subnav">{{ _('Digital Inclusion') }}</a></li>
-<li><a href="{{ url('mozorg.internet-health.web-literacy') }}" data-link-name="Web Literacy" data-link-type="nav" data-link-position="subnav">{{ _('Web Literacy') }}</a></li>
+<li><a {% if current == 'about' %}class="current"{% endif %} href="{{ url('mozorg.internet-health') }}" data-link-name="About" data-link-type="nav" data-link-position="subnav">{{ _('About') }}</a></li>
+<li><a {% if current == 'privacy' %}class="current"{% endif %} href="{{ url('mozorg.internet-health.privacy-security') }}" data-link-name="Privacy & Security" data-link-type="nav" data-link-position="subnav">{{ _('Privacy &amp; Security') }}</a></li>
+<li><a {% if current == 'openness' %}class="current"{% endif %} href="{{ url('mozorg.internet-health.open-innovation') }}" data-link-name="Openness" data-link-type="nav" data-link-position="subnav">{{ _('Openness') }}</a></li>
+<li><a {% if current == 'decentralization' %}class="current"{% endif %} href="{{ url('mozorg.internet-health.decentralization') }}" data-link-name="Decentralization" data-link-type="nav" data-link-position="subnav">{{ _('Decentralization') }}</a></li>
+<li><a {% if current == 'inclusion' %}class="current"{% endif %} href="{{ url('mozorg.internet-health.digital-inclusion') }}" data-link-name="Digital Inclusion" data-link-type="nav" data-link-position="subnav">{{ _('Digital Inclusion') }}</a></li>
+<li><a {% if current == 'literacy' %}class="current"{% endif %} href="{{ url('mozorg.internet-health.web-literacy') }}" data-link-name="Web Literacy" data-link-type="nav" data-link-position="subnav">{{ _('Web Literacy') }}</a></li>
 {% endblock %}

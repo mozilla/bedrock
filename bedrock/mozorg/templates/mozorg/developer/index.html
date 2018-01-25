@@ -31,7 +31,9 @@
 {% endblock %}
 
 {% block content %}
-{% include 'mozorg/developer/includes/sub-nav.html' %}
+{% with current='developer' %}
+  {% include 'mozorg/developer/includes/sub-nav.html' %}
+{% endwith %}
 {% include 'mozorg/developer/includes/icon-sprite.svg' %}
 
 {% set lazy_image_placeholder = 'img/mozorg/developer/hub/placeholder.png' %}

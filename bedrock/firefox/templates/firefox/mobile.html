@@ -18,7 +18,9 @@
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
 
 {% block content %}
-  {% include 'firefox/includes/hub/sub-nav.html' %}
+  {% with current='mobile' %}
+    {% include 'firefox/includes/hub/sub-nav.html' %}
+  {% endwith %}
 
   <main role="main">
     <header class="main-header">

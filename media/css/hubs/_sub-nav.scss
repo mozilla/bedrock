@@ -156,6 +156,14 @@
             a:focus {
                 color: $theme-color;
             }
+
+            a.current {
+                color: $theme-color;
+
+                &:hover {
+                    cursor: default;
+                }
+            }
         }
 
         .sub-nav-logo-link {
