@@ -55,7 +55,7 @@ class TestReleaseViews(TestCase):
     def test_get_release_or_404(self, get_release):
         eq_(views.get_release_or_404('version', 'product'),
             get_release.return_value)
-        get_release.assert_called_with('product', 'version')
+        get_release.assert_called_with('product', 'version', None, False)
         get_release.return_value = None
         with self.assertRaises(Http404):
             views.get_release_or_404('version', 'product')
@@ -86,7 +86,7 @@ class TestReleaseViews(TestCase):
         mock_release.notes.return_value = []
 
         views.release_notes(self.request, '27.0')
-        get_release_or_404.assert_called_with('27.0', 'Firefox')
+        get_release_or_404.assert_called_with('27.0', 'Firefox', True)
         eq_(self.last_ctx['version'], '27.0')
         eq_(self.last_ctx['release'], mock_release)
         eq_(self.mock_render.call_args[0][1],
@@ -106,7 +106,7 @@ class TestReleaseViews(TestCase):
         response = views.release_notes(self.request, '27.0')
         eq_(response.status_code, 302)
         eq_(response['location'], '/firefox/27.0beta/releasenotes/')
-        get_release_or_404.assert_called_with('27.0beta', 'Firefox')
+        get_release_or_404.assert_called_with('27.0beta', 'Firefox', True)
 
     @patch('bedrock.releasenotes.views.get_release_or_404')
     def test_release_notes_thunderbird_beta_redirect(self, get_release_or_404):
@@ -119,7 +119,7 @@ class TestReleaseViews(TestCase):
         response = views.release_notes(self.request, '51.0', 'Thunderbird')
         eq_(response.status_code, 302)
         eq_(response['location'], '/thunderbird/51.0beta/releasenotes/')
-        get_release_or_404.assert_called_with('51.0beta', 'Thunderbird')
+        get_release_or_404.assert_called_with('51.0beta', 'Thunderbird', False)
 
     @patch('bedrock.releasenotes.views.get_release_or_404')
     def test_system_requirements(self, get_release_or_404):
@@ -162,14 +162,14 @@ class TestReleaseViews(TestCase):
             'firefox/releases/release-notes.html')
 
     @override_settings(DEV=False)
-    @patch('bedrock.releasenotes.models.get_release')
-    def test_non_public_release(self, get_release):
+    def test_non_public_release(self):
         """
-        Should raise 404 if release is not public and not settings.DEV
+        Should raise 404 if release is not public and not settings.DEV, unless
+        the include_drafts option is enabled
         """
-        get_release.return_value = None
         with self.assertRaises(Http404):
-            views.get_release_or_404('42', 'Firefox')
+            views.get_release_or_404('58.0a1', 'Firefox')
+        eq_(views.get_release_or_404('58.0a1', 'Firefox', True).is_public, False)
 
     def test_no_equivalent_release_url(self):
         """
