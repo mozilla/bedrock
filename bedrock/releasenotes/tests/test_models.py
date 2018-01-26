@@ -121,19 +121,20 @@ class TestGetRelease(TestCase):
     def test_get_release(self, manager_mock):
         manager_mock.product().get.return_value = 'dude is released'
         assert models.get_release('Firefox', '57.0') == 'dude is released'
-        manager_mock.product.assert_called_with('Firefox', models.ProductRelease.CHANNELS[0], '57.0')
+        manager_mock.product.assert_called_with('Firefox', models.ProductRelease.CHANNELS[0], '57.0', False)
 
     def test_get_release_esr(self, manager_mock):
         manager_mock.product().get.return_value = 'dude is released'
         assert models.get_release('Firefox Extended Support Release', '51.0') == 'dude is released'
-        manager_mock.product.assert_called_with('Firefox Extended Support Release', 'esr', '51.0')
+        manager_mock.product.assert_called_with('Firefox Extended Support Release', 'esr', '51.0', False)
 
     def test_get_release_none_match(self, manager_mock):
         """Make sure the proper exception is raised if no file matches the query"""
         manager_mock.product().get.side_effect = models.ProductRelease.DoesNotExist
         assert models.get_release('Firefox', '57.0') is None
 
-        expected_calls = chain.from_iterable((call('Firefox', ch, '57.0'), call().get()) for ch in models.ProductRelease.CHANNELS)
+        expected_calls = chain.from_iterable(
+            (call('Firefox', ch, '57.0', False), call().get()) for ch in models.ProductRelease.CHANNELS)
         manager_mock.product.assert_has_calls(expected_calls)
 
 

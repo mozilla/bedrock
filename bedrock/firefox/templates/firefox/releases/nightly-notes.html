@@ -5,10 +5,12 @@
 {% extends "firefox/releases/release-notes.html" %}
 
 {% set channel_name = 'Nightly' %}
+{% set notes_feed = url('firefox.nightly.notes.feed') %}
+{% set blog_feed = 'https://blog.nightly.mozilla.org/feed/' %}
 
 {% block extrahead %}
-<link rel="alternate" type="application/atom+xml" title="{{ _('Firefox Nightly Notes Feed') }}" href="{{ url('firefox.nightly.notes.feed') }}">
-<link rel="alternate" type="application/atom+xml" title="{{ _('Firefox Nightly News Feed') }}" href="https://blog.nightly.mozilla.org/feed/">
+<link rel="alternate" type="application/atom+xml" title="{{ _('Firefox Nightly Notes Feed') }}" href="{{ notes_feed }}">
+<link rel="alternate" type="application/atom+xml" title="{{ _('Firefox Nightly News Feed') }}" href="{{ blog_feed }}">
 {% endblock %}
 
 {% block page_favicon %}{{ static('img/firefox/nightly/favicon.png') }}{% endblock %}
@@ -27,4 +29,14 @@
 
 {% block extra_resources %}
   <a rel="external" href="https://blog.nightly.mozilla.org/">{{ _('Firefox Nightly News') }}</a>
+{% endblock %}
+
+{% block extra_draft_description %}
+  <p>
+    {%- trans twitter='https://twitter.com/FirefoxNightly' -%}
+      ProTip: Be the first to know the latest changes by subscribing to the Nightly <a href="{{ notes_feed }}">Notes
+      Feed</a> and <a href="{{ blog_feed }}">News Feed</a>. Also, don’t forget to follow us on
+      <a href="{{ twitter }}">Twitter</a>!
+    {%- endtrans -%}
+  </p>
 {% endblock %}

@@ -110,15 +110,15 @@ class ProductReleaseQuerySet(models.QuerySet):
 
 
 class ProductReleaseManager(models.Manager):
-    def get_queryset(self):
+    def get_queryset(self, include_drafts=False):
         qs = ProductReleaseQuerySet(self.model, using=self._db)
-        if settings.DEV:
+        if settings.DEV or include_drafts:
             return qs
 
         return qs.filter(is_public=True)
 
-    def product(self, product_name, channel_name=None, version=None):
-        return self.get_queryset().product(product_name, channel_name, version)
+    def product(self, product_name, channel_name=None, version=None, include_drafts=False):
+        return self.get_queryset(include_drafts).product(product_name, channel_name, version)
 
     def refresh(self):
         release_objs = []
@@ -135,6 +135,9 @@ class ProductReleaseManager(models.Manager):
                     if data['product'] == 'Firefox Extended Support Release':
                         data['product'] = 'Firefox'
                         data['channel'] = 'ESR'
+                    # make all releases public on non-production environments
+                    if settings.DEV:
+                        data['is_public'] = True
                     release_objs.append(ProductRelease(**data))
 
             self.bulk_create(release_objs)
@@ -253,21 +256,21 @@ class ProductRelease(models.Model):
 
 
 @memoize(LONG_RN_CACHE_TIMEOUT)
-def get_release(product, version, channel=None):
+def get_release(product, version, channel=None, include_drafts=False):
     channels = [channel] if channel else ProductRelease.CHANNELS
     if product.lower() == 'firefox extended support release':
         channels = ['esr']
     for channel in channels:
         try:
-            return ProductRelease.objects.product(product, channel, version).get()
+            return ProductRelease.objects.product(product, channel, version, include_drafts).get()
         except ProductRelease.DoesNotExist:
             continue
 
     return None
 
 
-def get_release_or_404(version, product):
-    release = get_release(product, version)
+def get_release_or_404(version, product, include_drafts=False):
+    release = get_release(product, version, None, include_drafts)
     if release is None:
         raise Http404
 

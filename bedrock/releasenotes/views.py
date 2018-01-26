@@ -88,10 +88,13 @@ def release_notes(request, version, product='Firefox'):
     if not version:
         raise Http404
 
+    # Show a "coming soon" page for any unpublished Firefox releases
+    include_drafts = product == 'Firefox'
+
     try:
-        release = get_release_or_404(version, product)
+        release = get_release_or_404(version, product, include_drafts)
     except Http404:
-        release = get_release_or_404(version + 'beta', product)
+        release = get_release_or_404(version + 'beta', product, include_drafts)
         return HttpResponseRedirect(release.get_absolute_url())
 
     return l10n_utils.render(

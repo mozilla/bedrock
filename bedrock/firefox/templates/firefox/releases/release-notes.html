@@ -129,11 +129,18 @@
           <div class="version">
             <h2>{{ _('{version}')|f(version=release.version) }}</h2>
             <h3>{{ release.product }} {{ release.channel }}</h3>
-            <p>{{ _('{date}')|f(date=release.release_date|l10n_format_date) }}</p>
+            {% if release.is_public %}
+              <p>{{ _('{date}')|f(date=release.release_date|l10n_format_date) }}</p>
+            {% endif %}
           </div>
           <div class="description">
+            {% if release.is_public %}
               <h2>{{ _('Version {version}, first offered to {channel} channel users on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date, version=release.version) }}</h2>
               <p>{{ release.text|safe }}</p>
+            {% else %}
+              <h2>{{ _('The notes for this release are not yet publicly available, but are coming soon! Please check this page again later.') }}</h2>
+              {% block extra_draft_description %}{% endblock %}
+            {% endif %}
           </div>
           {% endblock %}
         </div>
@@ -145,7 +152,7 @@
     <section class="notes-section">
       <div class="features" id="new-features">
         <div class="container">
-        {% if release.notes %}
+        {% if release.is_public and release.notes %}
           {% for note in release.notes if note.tag == "New" %}
             {% if loop.first %}
             <div class="section-wrapper" id="{{ note.tag|lower() }}">
