@@ -124,7 +124,7 @@ class ProductReleaseManager(models.Manager):
         release_objs = []
         rn_path = os.path.join(settings.RELEASE_NOTES_PATH, 'releases')
         with transaction.atomic(using=self.db):
-            self.all().delete()
+            self.get_queryset(include_drafts=True).delete()
             releases = glob(os.path.join(rn_path, '*.json'))
             for release_file in releases:
                 with codecs.open(release_file, 'r', encoding='utf-8') as rel_fh:
