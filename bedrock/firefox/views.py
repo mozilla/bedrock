@@ -520,6 +520,8 @@ def new(request):
                 template = 'firefox/new/sem/unsupported-browser/scene2.html'
             elif experience in ['batmfree', 'batmnimble', 'batmresist']:
                 template = 'firefox/new/batm/scene2.html'
+            elif experience == '2xfaster':
+                template = 'firefox/new/wait-face/scene2.html'
             else:
                 template = 'firefox/new/scene2.html'
         else:
@@ -570,6 +572,8 @@ def new(request):
                 template = 'firefox/new/batm/nimble.html'
             elif experience == 'batmresist':
                 template = 'firefox/new/batm/resist.html'
+            elif experience == '2xfaster':
+                template = 'firefox/new/wait-face/scene1-video.html'
             else:
                 template = 'firefox/new/scene1.html'
         else:

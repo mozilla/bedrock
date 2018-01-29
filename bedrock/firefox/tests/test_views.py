@@ -737,6 +737,20 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene2.html')
 
+    # wait face video experiment bug 1431795
+
+    def test_wait_face_video_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=2xfaster')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene1-video.html')
+
+    def test_wait_face_video_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=2xfaster')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene2.html')
+
     # reggie watts campaign bug 1413995
 
     def test_reggie_watts_scene_1(self, render_mock):

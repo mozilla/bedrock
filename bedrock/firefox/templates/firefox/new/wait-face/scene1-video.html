@@ -1,0 +1,48 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/new/wait-face" %}
+
+{% extends "firefox/new/wait-face/base.html" %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_new_wait_face_video' %}
+{% endblock %}
+
+{% block head_content %}
+  <header>
+    <h1 id="main-heading" data-experience="2xfaster">
+      {{ _('The new <strong>Firefox</strong>') }}
+    </h1>
+    <h2>{{ _('2x faster') }}</h2>
+  </header>
+{% endblock %}
+
+{% block optional_cta %}
+<div class="optional-cta">
+  <aside class="faster-video">
+    <div class="moz-video-container">
+      <button class="moz-video-button" type="button" aria-controls="faster-video">{{ _('Watch the video') }}</button>
+      <div class="video-container">
+        <video id="faster-video" preload="metadata" controls poster="{{ static('img/firefox/home/quantum-vs-chrome-poster.png') }}" data-ga-label="Quantum vs Chrome Video">
+          <source src="https://assets.mozilla.net/video/firefox-home/quantum-vs-chrome.webm" type="video/webm">
+          <source src="https://assets.mozilla.net/video/firefox-home/quantum-vs-chrome.ogv" type="video/ogg; codecs='theora, vorbis'">
+          <source src="https://assets.mozilla.net/video/firefox-home/quantum-vs-chrome.mp4" type="video/mp4">
+          <a href="https://www.youtube.com/watch?v=YIywpvHewc0">
+            <img src="{{ static('img/firefox/home/quantum-vs-chrome-poster.png') }}" alt="">
+          </a>
+        </video>
+      </div>{#-- /.video-container --#}
+    </div>{#-- /.moz-video-container --#}
+  </aside>{#-- /.faster-video --#}
+</div>{#-- /.optional-cta --#}
+{% endblock %}
+
+{% block primary_download_button %}
+  {{ download_firefox(alt_copy=_('Download Now'), locale_in_transition=true, dom_id="download-firefox", download_location='primary cta') }}
+{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_new_scene1_wait_face_video' %}
+{% endblock %}
