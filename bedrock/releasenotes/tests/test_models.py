@@ -147,3 +147,11 @@ class TestGetLatestRelease(TestCase):
     def test_latest_release(self):
         correct_release = models.get_release('firefox for android', '56.0.2')
         assert models.get_latest_release('firefox for android', 'release') == correct_release
+
+    def test_non_public_release_not_duped(self):
+        # refresh again
+        models.ProductRelease.objects.refresh()
+        release_cache.clear()
+        # non public release
+        # should NOT raise multiple objects error
+        assert models.get_release('firefox for android', '56.0.3', include_drafts=True)
