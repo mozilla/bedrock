@@ -875,6 +875,7 @@ html[dir="rtl"] {
 
     @media #{$mq-phone-wide} {
         @supports (display: flex) {
+            align-items: center;
             display: flex;
             justify-content: space-between;
             margin: 1em auto;
@@ -883,7 +884,17 @@ html[dir="rtl"] {
             &.hidden {
                 display: none;
             }
+
+            li {
+                margin: 0 auto; // so that a single item is centred
+            }
         }
+    }
+
+    .android-apk a {
+        display: inline-block;
+        margin: 10px 0;
+        @include font-size-level5;
     }
 }
 
@@ -951,6 +962,17 @@ body[data-modal-product='focus'] #modal .window .inner {
     background: #ce2473;
     background: url('/media/img/firefox/mobile/tail-focus.svg') center center no-repeat,
     linear-gradient(to bottom, #ce2473 10%, #701979 100%);
+
+    a {
+        color: #ffffff;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: #ffffff;
+        text-decoration: none;
+    }
 }
 
 #send-to-device {
@@ -1057,6 +1079,16 @@ body[data-modal-product='focus'] #modal .window .inner {
     #send-to-device {
         display: none;
     }
+}
+
+// hide download links for one platform from the other
+.android .mobile-download-buttons .ios {
+    display: none;
+}
+
+.ios .mobile-download-buttons .android,
+.ios .mobile-download-buttons .android-apk {
+    display: none;
 }
 
 // hide page-level app store badge wrapper if JS is available
