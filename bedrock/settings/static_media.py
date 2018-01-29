@@ -515,6 +515,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_new_wait_face-bundle.css',
     },
+    'firefox_new_wait_face_video': {
+        'source_filenames': (
+            'css/firefox/new/wait-face.scss',
+            'css/firefox/new/wait-face-video.scss',
+        ),
+        'output_filename': 'css/firefox_new_wait_face_video-bundle.css',
+    },
     'firefox_new_reggie_watts': {
         'source_filenames': (
             'css/firefox/new/reggie-watts.scss',
@@ -1312,6 +1319,14 @@ PIPELINE_JS = {
             'js/firefox/new/wait-face-scene1.js',
         ),
         'output_filename': 'js/firefox_new_scene1_wait_face-bundle.js',
+    },
+    'firefox_new_scene1_wait_face_video': {
+        'source_filenames': (
+            'js/base/mozilla-video-poster.js',
+            'js/firefox/new/wait-face-scene1.js',
+            'js/firefox/new/wait-face-scene1-video.js',
+        ),
+        'output_filename': 'js/firefox_new_scene1_wait_face_video-bundle.js',
     },
     'firefox_new_scene1_reggie_watts': {
         'source_filenames': (

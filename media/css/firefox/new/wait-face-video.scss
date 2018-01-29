@@ -1,0 +1,75 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+@import '../../pebbles/components/video-poster';
+
+/* -------------------------------------------------------------------------- */
+// Top hero section
+
+.intro {
+
+    @media #{$mq-phone-wide} {
+        background: #0a0d0f url('/media/img/firefox/new/wait-face/purple-wave.png') bottom left no-repeat;
+        background: url('/media/img/firefox/new/wait-face/purple-wave.png') bottom left no-repeat,
+                    url('/media/img/firefox/new/wait-face/oval.png') top -40px left 40% no-repeat,
+                    url('/media/img/firefox/new/wait-face/arrow.png') top 60px right 10px no-repeat,
+                    #0a0d0f;
+    }
+
+    @media #{$mq-desktop} {
+        background: #0a0d0f url('/media/img/firefox/new/wait-face/purple-wave.png') bottom left no-repeat;
+        background: url('/media/img/firefox/new/wait-face/purple-wave.png') bottom left no-repeat,
+                    url('/media/img/firefox/new/wait-face/oval.png') top -40px left 40% no-repeat,
+                    url('/media/img/firefox/new/wait-face/arrow.png') top 60px right 10px no-repeat,
+                    #0a0d0f;
+
+        .copy {
+            width: 40%;
+        }
+    }
+}
+
+.optional-cta {
+    margin-top: 40px;
+
+    @media #{$mq-desktop} {
+        margin-top: 150px;
+        float: right;
+        width: calc(60% - 60px);
+
+        @supports (display: flex) {
+            align-items: center;
+            display: flex;
+            margin-top: 0;
+            min-height: 700px;
+        }
+    }
+}
+
+.faster-video {
+    margin: 0 auto;
+    max-width: 645px;
+
+    .video-container {
+        height: 0;
+        overflow: hidden;
+        padding-bottom: 56.25%;
+        position: relative;
+        width: 100%;
+    }
+
+    iframe {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top:0;
+        width: 100%;
+    }
+
+    .moz-video-button {
+        background: url('/media/img/firefox/new/wait-face/video-poster.png') center left no-repeat;
+        @include background-size(cover);
+    }
+}
