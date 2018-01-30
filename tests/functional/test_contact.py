@@ -9,77 +9,79 @@ from pages.contact import ContactPage, SpacesPage, CommunitiesPage
 
 @pytest.mark.nondestructive
 def test_tab_navigation(base_url, selenium):
-    page = ContactPage(selenium, base_url).open()
-    assert page.contact_tab.is_selected
-    assert not page.spaces_tab.is_selected
-    assert not page.communities_tab.is_selected
+    contact_page = ContactPage(selenium, base_url).open()
+    assert contact_page.contact_tab.is_selected
+    assert not contact_page.spaces_tab.is_selected
+    assert not contact_page.communities_tab.is_selected
 
-    spaces_page = page.click_spaces_tab()
+    spaces_page = SpacesPage(selenium, base_url, slug='').open()
     assert not spaces_page.contact_tab.is_selected
     assert spaces_page.spaces_tab.is_selected
     assert not spaces_page.communities_tab.is_selected
     assert spaces_page.seed_url in selenium.current_url
 
-    communities_page = spaces_page.click_communities_tab()
+    communities_page = CommunitiesPage(selenium, base_url, slug='').open()
     assert not communities_page.contact_tab.is_selected
     assert not communities_page.spaces_tab.is_selected
     assert communities_page.communities_tab.is_selected
     assert communities_page.seed_url in selenium.current_url
 
-    contact_page = communities_page.click_contact_tab()
-    assert contact_page.contact_tab.is_selected
-    assert not contact_page.spaces_tab.is_selected
-    assert not contact_page.communities_tab.is_selected
-    assert contact_page.seed_url in selenium.current_url
+
+@pytest.mark.nondestructive
+@pytest.mark.parametrize('slug', [
+    ('mountain-view'),
+    ('beijing'),
+    ('berlin'),
+    ('london'),
+    ('paris'),
+    ('portland'),
+    ('san-francisco'),
+    ('taipei'),
+    ('toronto'),
+    ('vancouver')])
+def test_spaces_menus(slug, base_url, selenium):
+    page = SpacesPage(selenium, base_url, slug=slug).open()
+    assert not page.is_mobile_nav_displayed
+    space_menu = [s for s in page.spaces if s.id == slug]
+    assert len(space_menu) == 1
+    assert space_menu[0].is_selected
 
 
 @pytest.mark.nondestructive
-def test_spaces_list(base_url, selenium):
-    page = SpacesPage(selenium, base_url).open()
-    assert page.displayed_map_pins == len(page.spaces)
-    for space in page.spaces:
-        space.click()
-        assert space.is_selected
-        assert space.is_displayed
-        assert 1 == page.displayed_map_pins
+@pytest.mark.parametrize('slug', [
+    ('north-america'),
+    ('latin-america'),
+    ('europe'),
+    ('asia-south-pacific'),
+    ('africa-middle-east')])
+def test_communities_region_menus(slug, base_url, selenium):
+    page = CommunitiesPage(selenium, base_url, slug=slug).open()
+    assert not page.is_mobile_nav_displayed
+    region_menu = [s for s in page.regions if s.id == slug]
+    assert len(region_menu) == 1
+    assert region_menu[0].is_selected
+    assert region_menu[0].is_open
+    for community in region_menu[0].communities:
+        assert community.is_displayed
 
 
 @pytest.mark.nondestructive
-def test_communities_region_list(base_url, selenium):
-    page = CommunitiesPage(selenium, base_url).open()
-    for region in page.regions:
-        region.click()
-        assert region.is_selected
-        assert region.is_displayed
-        key = next(k for k in page.keys if k.id == region.id)
-        assert key.is_selected
+@pytest.mark.viewport('mobile')
+def test_spaces_mobile_navigation(base_url, selenium):
+    page = SpacesPage(selenium, base_url, slug='').open()
+    assert not page.is_desktop_nav_displayed
+    assert page.is_mobile_nav_displayed
+    expected_url = '/contact/spaces/mountain-view/'
+    page.select_mobile_nav_item('Mountain View', expected_url)
+    assert expected_url in selenium.current_url, 'Page did not navigate to expected URL'
 
 
 @pytest.mark.nondestructive
-def test_communities_region_legend(base_url, selenium):
-    page = CommunitiesPage(selenium, base_url).open()
-    for key in page.keys:
-        key.click()
-        assert key.is_selected
-        region = next(r for r in page.regions if r.id == key.id)
-        assert region.is_selected
-        assert region.is_displayed
-
-
-@pytest.mark.nondestructive
-def test_communities_region_menus(base_url, selenium):
-    page = CommunitiesPage(selenium, base_url).open()
-    north_america = page.regions[0]
-    assert not north_america.is_menu_open
-    north_america.click()
-    assert north_america.is_menu_open
-    canada = north_america.communities[0]
-    assert not canada.is_selected
-    assert not canada.is_displayed
-    canada.click()
-    assert canada.is_selected
-    assert canada.is_displayed
-    page.regions[1].click()
-    assert not north_america.is_menu_open
-    assert not canada.is_selected
-    assert not canada.is_displayed
+@pytest.mark.viewport('mobile')
+def test_communities_mobile_navigation(base_url, selenium):
+    page = CommunitiesPage(selenium, base_url, slug='').open()
+    assert not page.is_desktop_nav_displayed
+    assert page.is_mobile_nav_displayed
+    expected_url = '/contact/communities/north-america/'
+    page.select_mobile_nav_item('North America', expected_url)
+    assert expected_url in selenium.current_url, 'Page did not navigate to expected URL'

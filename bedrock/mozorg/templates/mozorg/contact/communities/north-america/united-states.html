@@ -1,0 +1,32 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/communities/north-america/landing.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('United States') }}{% endblock %}
+
+{% block contact_nav %}
+  {% with current='united-states', region='north-america' %}
+    {% include 'mozorg/contact/communities/includes/nav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-community" id="united-states" data-tab="communities">
+      <div class="card">
+        <h2>{{ _('United States') }}</h2>
+
+        <ul class="extra">
+          <li><a href="http://mozillausa.org/" class="website">mozillausa.org</a></li>
+          <li><a class="email" href="https://lists.mozilla.org/listinfo/community-usa">{{ _('Mailing list') }}</a>
+        </ul>
+
+        <figure class="feature-img">
+          {{ high_res_img('contact/osm/communities/united-states-small.png', {'alt': '', 'width': '380', 'height': '250'}) }}
+        </figure>
+      </div>
+    </section>
+  </div>
+{% endblock %}

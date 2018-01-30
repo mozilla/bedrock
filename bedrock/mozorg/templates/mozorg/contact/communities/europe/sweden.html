@@ -1,0 +1,47 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/communities/europe/landing.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Sweden') }}{% endblock %}
+
+{% block contact_nav %}
+  {% with current='sweden', region='europe' %}
+    {% include 'mozorg/contact/communities/includes/nav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-community" id="sweden" data-tab="communities">
+      <div class="card">
+        <h2>{{ _('Sweden') }}</h2>
+
+        <ul class="extra">
+          <li><a href="https://lists.mozilla.org/listinfo/community-sweden" class="email">{{ _('Mailing list') }}</a></li>
+          <li><a href="https://twitter.com/MozillaSweden" class="twitter">@MozillaSweden</a></li>
+          <li><a href="irc://irc.mozilla.org/mozilla.se" class="irc">IRC: #mozilla.se</a></li>
+        </ul>
+
+        <figure class="feature-img">
+          {{ high_res_img('contact/osm/communities/sweden-small.png', {'alt': '', 'width': '380', 'height': '250'}) }}
+        </figure>
+      </div>
+
+      <section class="gallery">
+        <h3>{{ _('Photo gallery') }}</h3>
+        <ul class="gallery-list">
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/sweden-01.jpg') }}"><img src="{{ static('img/contact/pictures/sweden-01-th.jpg') }}" alt="1"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/sweden-02.jpg') }}"><img src="{{ static('img/contact/pictures/sweden-02-th.jpg') }}" alt="2"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/sweden-03.jpg') }}"><img src="{{ static('img/contact/pictures/sweden-03-th.jpg') }}" alt="3"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/sweden-04.jpg') }}"><img src="{{ static('img/contact/pictures/sweden-04-th.jpg') }}" alt="4"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/sweden-05.jpg') }}"><img src="{{ static('img/contact/pictures/sweden-05-th.jpg') }}" alt="5"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/sweden-06.jpg') }}"><img src="{{ static('img/contact/pictures/sweden-06-th.jpg') }}" alt="6"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/sweden-07.jpg') }}"><img src="{{ static('img/contact/pictures/sweden-07-th.jpg') }}" alt="7"></a></li>
+        </ul>
+      </section>
+
+    </section>
+  </div>
+{% endblock %}

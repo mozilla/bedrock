@@ -6,14 +6,24 @@
 
 {% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Contact us') }}{% endblock %}
 
+{% block body_class %}contact-us{% endblock %}
+
+{% block tab_navigation %}
+  {% with current = 'contact' %}
+    {% include 'mozorg/contact/includes/tab-nav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block map %}{{ high_res_img('contact/osm/spaces/all-large.jpg', {'alt': '', 'width': '1250', 'height': '380'}) }}{% endblock %}
+
 {% block contact_entry %}
   <div id="entry-container">
-    <section class="entry contact-us" id="contact" data-tab="contact">
+    <section class="entry" id="contact" data-tab="contact">
       <header>
         <h2>{{ _('Contacting Mozilla')}}</h2>
       </header>
 
-      <ul>
+      <ul class="prose">
         <li><a href="https://support.mozilla.org/">{{ _('I’m having problems with using Firefox') }}</a></li>
         <li><a href="{{ donate_url('contact_us_page') }}">{{ _('I want to donate to Mozilla') }}</a></li>
         <li><a href="{{ url('foundation.trademarks.policy') }}">{{ _('I have questions about using Mozilla’s trademarks') }}</a></li>
@@ -28,40 +38,43 @@
       <p>
       {% trans link_sumo='https://support.mozilla.org' %}
         To reach Mozilla anywhere in the world, check out the locations above. For help
-        with any of our products, including Firefox (for desktop, Android and iOS), Firefox OS
-        and Thunderbird, please <a href="{{ link_sumo }}">visit our support site</a>.
+        with any of our products, including Firefox (for desktop, Android and iOS) and
+        Thunderbird, please <a href="{{ link_sumo }}">visit our support site</a>.
       {% endtrans %}
       </p>
 
-      <div class="contact-online">
-        <h4>{{ _('Find us online') }}</h4>
-        <ul>
-          <li><a href="https://facebook.com/mozilla" hreflang="en-US" rel="external">{{ _('Facebook') }}</a></li>
-          <li><a href="https://twitter.com/mozilla" hreflang="en-US" rel="external">{{ _('Twitter') }}</a></li>
-          <li><a href="{{ url('mozorg.about.forums.forums') }}">{{ _('Forums &amp; e-mail lists') }}</a></li>
-          <li><a href="https://wiki.mozilla.org/IRC">{{ _('IRC channels') }}</a></li>
-        </ul>
+      <div class="contact-sections">
+        <div class="contact-section">
+          <h4>{{ _('Find us online') }}</h4>
+          <ul class="prose">
+            <li><a href="https://facebook.com/mozilla" hreflang="en-US" rel="external">{{ _('Facebook') }}</a></li>
+            <li><a href="https://twitter.com/mozilla" hreflang="en-US" rel="external">{{ _('Twitter') }}</a></li>
+            <li><a href="{{ url('mozorg.about.forums.forums') }}">{{ _('Forums &amp; e-mail lists') }}</a></li>
+            <li><a href="https://wiki.mozilla.org/IRC">{{ _('IRC channels') }}</a></li>
+          </ul>
+        </div>
+
+        <div class="contact-section">
+          <h4>{{ _('Join us') }}</h4>
+          <ul class="prose">
+            <li><a href="{{ url('mozorg.contribute.index') }}">{{ _('Get involved') }}</a></li>
+            <li><a href="https://careers.mozilla.org">{{ _('Career opportunities') }}</a></li>
+            <li><a href="https://mozillians.org">{{ _('Mozillians') }}</a></li>
+          </ul>
+        </div>
+
+        <div class="contact-section">
+          <h4>{{ _('Questions &amp; feedback') }}</h4>
+          <ul class="prose">
+            <li><a href="https://support.mozilla.org/">{{ _('Get support') }}</a></li>
+            <li><a href="{{ url('foundation.licensing') }}">{{ _('Browser distribution &amp; licensing') }}</a></li>
+            <li><a href="https://input.mozilla.org/feedback">{{ _('Firefox feedback') }}</a></li>
+            <li><a href="https://support.mozilla.org/kb/websites-look-wrong-or-appear-differently">{{ _('Report a broken site') }}</a></li>
+            <li><a href="https://developer.mozilla.org/docs/Mozilla/QA/Bug_writing_guidelines">{{ _('How to report software issues') }}</a></li>
+          </ul>
+        </div>
       </div>
 
-      <div class="contact-join">
-        <h4>{{ _('Join us') }}</h4>
-        <ul>
-          <li><a href="{{ url('mozorg.contribute.index') }}">{{ _('Get involved') }}</a></li>
-          <li><a href="https://careers.mozilla.org">{{ _('Career opportunities') }}</a></li>
-          <li><a href="https://mozillians.org">{{ _('Mozillians') }}</a></li>
-        </ul>
-      </div>
-
-      <div class="contact-help">
-        <h4>{{ _('Questions &amp; feedback') }}</h4>
-        <ul>
-          <li><a href="https://support.mozilla.org/">{{ _('Get support') }}</a></li>
-          <li><a href="{{ url('foundation.licensing') }}">{{ _('Browser distribution &amp; licensing') }}</a></li>
-          <li><a href="https://input.mozilla.org/feedback">{{ _('Firefox feedback') }}</a></li>
-          <li><a href="https://support.mozilla.org/kb/websites-look-wrong-or-appear-differently">{{ _('Report a broken site') }}</a></li>
-          <li><a href="https://developer.mozilla.org/docs/Mozilla/QA/Bug_writing_guidelines">{{ _('How to report software issues') }}</a></li>
-        </ul>
-      </div>
     </section>
   </div>
 {% endblock %}

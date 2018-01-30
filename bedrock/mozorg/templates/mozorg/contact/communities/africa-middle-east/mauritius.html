@@ -1,0 +1,35 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/communities/africa-middle-east/landing.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Mauritius') }}{% endblock %}
+
+{% block contact_nav %}
+  {% with current='mauritius', region='africa' %}
+    {% include 'mozorg/contact/communities/includes/nav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-community" id="mauritius" data-tab="communities">
+      <div class="card">
+        <h2>{{ _('Mauritius') }}</h2>
+
+        <ul class="extra">
+          <li><a href="http://mozmoris.wordpress.com/" class="website">mozmoris.wordpress.com</a></li>
+          <li><a href="mailto:community-india@lists.mozilla.org" class="email">{{ _('Mailing list') }}</a></li>
+          <li><a href="irc://irc.mozilla.org/ganesh" class="irc">IRC: #ganesh</a></li>
+          <li><a href="https://twitter.com/onlygan" class="twitter">@onlygan</a></li>
+          <li><a href="https://www.facebook.com/MozillaMauritius" class="facebook">Facebook</a></li>
+        </ul>
+
+        <figure class="feature-img">
+          {{ high_res_img('contact/osm/communities/mauritius-small.png', {'alt': '', 'width': '380', 'height': '250'}) }}
+        </figure>
+      </div>
+    </section>
+  </div>
+{% endblock %}

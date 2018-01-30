@@ -207,18 +207,10 @@ PIPELINE_CSS = {
     },
     'contact-spaces': {
         'source_filenames': (
-            'css/libs/mapbox-2.3.0.css',
             'css/libs/magnific-popup.css',
-            'css/base/mozilla-video-poster.less',
-            'css/mozorg/contact-spaces.less',
+            'css/mozorg/contact-spaces.scss',
         ),
         'output_filename': 'css/contact-spaces-bundle.css',
-    },
-    'contact-spaces-oldie': {
-        'source_filenames': (
-            'css/mozorg/contact-spaces-oldie.less',
-        ),
-        'output_filename': 'css/contact-spaces-oldie-bundle.css',
     },
     'developer-hub': {
         'source_filenames': (
@@ -358,7 +350,6 @@ PIPELINE_CSS = {
             'css/base/menu-resp.less',
             'css/base/mozilla-accordion.less',
             'css/base/mozilla-modal.less',
-            'css/libs/mapbox-2.3.0.css',
             'css/firefox/geolocation.less'
         ),
         'output_filename': 'css/firefox_geolocation-bundle.css',
@@ -1053,20 +1044,10 @@ PIPELINE_JS = {
     },
     'contact-spaces': {
         'source_filenames': (
-            'js/libs/mapbox-2.3.0.js',
-            'js/libs/jquery.history.js',
-            'js/mozorg/contact-data.js',
             'js/libs/jquery.magnific-popup.min.js',
-            'js/base/mozilla-video-poster.js',
             'js/mozorg/contact-spaces.js',
         ),
         'output_filename': 'js/contact-spaces-bundle.js',
-    },
-    'contact-spaces-oldie': {
-        'source_filenames': (
-            'js/mozorg/contact-spaces-oldie.js',
-        ),
-        'output_filename': 'js/contact-spaces-oldie-bundle.js',
     },
     'contribute-base': {
         'source_filenames': (
@@ -1423,10 +1404,8 @@ PIPELINE_JS = {
     },
     'geolocation': {
         'source_filenames': (
-            'js/libs/mapbox-2.3.0.js',
             'js/base/mozilla-accordion.js',
             'js/base/mozilla-accordion-gatrack.js',
-            'js/firefox/geolocation-demo.js',
             'js/base/mozilla-modal.js',
         ),
         'output_filename': 'js/geolocation-bundle.js',

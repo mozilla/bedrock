@@ -1,0 +1,41 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/communities/europe/landing.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Estonia') }}{% endblock %}
+
+{% block contact_nav %}
+  {% with current='estonia', region='europe' %}
+    {% include 'mozorg/contact/communities/includes/nav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-community" id="estonia" data-tab="communities">
+      <div class="card">
+        <h2>{{ _('Estonia') }}</h2>
+
+        <ul class="extra">
+          <li><a href="http://mozilla.ee/" class="website">mozilla.ee</a></li>
+          <li><a href="http://mozilla.pingviin.org/" class="email">{{ _('Forum') }}</a></li>
+          <li><a href="https://www.facebook.com/mozillaestonia" class="facebook">Facebook</a></li>
+          <li><a href="https://twitter.com/mozillaestonia" class="twitter">@mozillaestonia</a></li>
+        </ul>
+
+        <figure class="feature-img">
+          {{ high_res_img('contact/osm/communities/estonia-small.png', {'alt': '', 'width': '380', 'height': '250'}) }}
+        </figure>
+      </div>
+
+      <section class="gallery">
+        <h3>{{ _('Photo gallery') }}</h3>
+        <ul class="gallery-list">
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/estonia-01.jpg') }}"><img src="{{ static('img/contact/pictures/estonia-01-th.jpg') }}" alt="1"></a></li>
+        </ul>
+      </section>
+    </section>
+  </div>
+{% endblock %}

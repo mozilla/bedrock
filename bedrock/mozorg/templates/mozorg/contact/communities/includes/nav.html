@@ -1,0 +1,312 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+<nav id="nav-communities" class="nav-category accordion" role="navigation">
+  <ul>
+    <li data-id="north-america" class="hasmenu region {% if region == 'north-america' %}open{% endif %} {% if current == 'north-america' %}current{% endif %}">
+      <a href="{{ url('mozorg.contact.communities.north-america.landing') }}">{{ _('North America') }}</a>
+      <ul class="submenu">
+        <li {% if current == 'canada' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.north-america.canada') }}">{{ _('Canada') }}</a>
+        </li>
+        <li {% if current == 'united-states' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.north-america.united-states') }}">{{ _('United States') }}</a>
+        </li>
+      </ul>
+    </li>
+    <li data-id="latin-america" class="hasmenu region {% if region == 'latin-america' %}open{% endif %} {% if current == 'latin-america' %}current{% endif %}">
+      <a href="{{ url('mozorg.contact.communities.latin-america.landing') }}">{{ _('Latin America') }}</a>
+      <ul class="submenu">
+        <li {% if current == 'argentina' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.latin-america.argentina') }}">{{ _('Argentina') }}</a>
+        </li>
+        <li {% if current == 'bolivia' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.latin-america.bolivia') }}">{{ _('Bolivia') }}</a>
+        </li>
+        <li {% if current == 'brazil' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.latin-america.brazil') }}">{{ _('Brazil') }}</a>
+        </li>
+        <li {% if current == 'chile' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.latin-america.chile') }}">{{ _('Chile') }}</a>
+        </li>
+        <li {% if current == 'colombia' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.latin-america.colombia') }}">{{ _('Colombia') }}</a>
+        </li>
+        <li {% if current == 'costa-rica' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.latin-america.costa-rica') }}">{{ _('Costa Rica') }}</a>
+        </li>
+        <li {% if current == 'cuba' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.latin-america.cuba') }}">{{ _('Cuba') }}</a>
+        </li>
+        <li {% if current == 'ecuador' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.latin-america.ecuador') }}">{{ _('Ecuador') }}</a>
+        </li>
+        <li {% if current == 'mexico' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.latin-america.mexico') }}">{{ _('Mexico') }}</a>
+        </li>
+        <li {% if current == 'nicaragua' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.latin-america.nicaragua') }}">{{ _('Nicaragua') }}</a>
+        </li>
+        <li {% if current == 'paraguay' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.latin-america.paraguay') }}">{{ _('Paraguay') }}</a>
+        </li>
+        <li {% if current == 'peru' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.latin-america.peru') }}">{{ _('Peru') }}</a>
+        </li>
+        <li {% if current == 'uruguay' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.latin-america.uruguay') }}">{{ _('Uruguay') }}</a>
+        </li>
+        <li {% if current == 'venezuela' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.latin-america.venezuela') }}">{{ _('Venezuela') }}</a>
+        </li>
+      </ul>
+    </li>
+    <li data-id="europe" class="hasmenu region {% if region == 'europe' %}open{% endif %} {% if current == 'europe' %}current{% endif %}">
+      <a href="{{ url('mozorg.contact.communities.europe.landing') }}">{{ _('Europe') }}</a>
+      <ul class="submenu">
+        <li {% if current == 'albania' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.albania') }}">{{ _('Albania') }}</a>
+        </li>
+        <li {% if current == 'armenia' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.armenia') }}">{{ _('Armenia') }}</a>
+        </li>
+        <li {% if current == 'austria' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.austria') }}">{{ _('Austria') }}</a>
+        </li>
+        <li {% if current == 'basque' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.basque') }}">{{ _('Basque') }}</a>
+        </li>
+        <li {% if current == 'belgium' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.belgium') }}">{{ _('Belgium') }}</a>
+        </li>
+        <li {% if current == 'bosnia-and-herzegovina' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.bosnia-and-herzegovina') }}">{{ _('Bosnia and Herzegovina') }}</a>
+        </li>
+        <li {% if current == 'bulgaria' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.bulgaria') }}">{{ _('Bulgaria') }}</a>
+        </li>
+        <li {% if current == 'catalan' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.catalan') }}">{{ _('Catalan') }}</a>
+        </li>
+        <li {% if current == 'croatia' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.croatia') }}">{{ _('Croatia') }}</a>
+        </li>
+        <li {% if current == 'czech-republic' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.czech-republic') }}">{{ _('Czech Republic') }}</a>
+        </li>
+        <li {% if current == 'denmark' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.denmark') }}">{{ _('Denmark') }}</a>
+        </li>
+        <li {% if current == 'estonia' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.estonia') }}">{{ _('Estonia') }}</a>
+        </li>
+        <li {% if current == 'finland' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.finland') }}">{{ _('Finland') }}</a>
+        </li>
+        <li {% if current == 'france' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.france') }}">{{ _('France') }}</a>
+        </li>
+        <li {% if current == 'germany' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.germany') }}">{{ _('Germany') }}</a>
+        </li>
+        <li {% if current == 'greece' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.greece') }}">{{ _('Greece') }}</a>
+        </li>
+        <li {% if current == 'hungary' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.hungary') }}">{{ _('Hungary') }}</a>
+        </li>
+        <li {% if current == 'ireland' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.ireland') }}">{{ _('Ireland') }}</a>
+        </li>
+        <li {% if current == 'italy' %}class="current"{% endif %} >
+          <a href="{{ url('mozorg.contact.communities.europe.italy') }}">{{ _('Italy') }}</a>
+        </li>
+        <li {% if current == 'kosovo' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.kosovo') }}">{{ _('Kosovo') }}</a>
+        </li>
+        <li {% if current == 'lithuania' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.lithuania') }}">{{ _('Lithuania') }}</a>
+        </li>
+        <li {% if current == 'macedonia' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.macedonia') }}">{{ _('Macedonia') }}</a>
+        </li>
+        <li {% if current == 'montenegro' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.montenegro') }}">{{ _('Montenegro') }}</a>
+        </li>
+        <li {% if current == 'the-netherlands' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.the-netherlands') }}">{{ _('The Netherlands') }}</a>
+        </li>
+        <li {% if current == 'norway' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.norway') }}">{{ _('Norway') }}</a>
+        </li>
+        <li {% if current == 'poland' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.poland') }}">{{ _('Poland') }}</a>
+        </li>
+        <li {% if current == 'portugal' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.portugal') }}">{{ _('Portugal') }}</a>
+        </li>
+        <li {% if current == 'romania' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.romania') }}">{{ _('Romania') }}</a>
+        </li>
+        <li {% if current == 'russia' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.russia') }}">{{ _('Russia') }}</a>
+        </li>
+        <li {% if current == 'serbia' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.serbia') }}">{{ _('Serbia') }}</a>
+        </li>
+        <li {% if current == 'slovakia' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.slovakia') }}">{{ _('Slovakia') }}</a>
+        </li>
+        <li {% if current == 'slovenia' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.slovenia') }}">{{ _('Slovenia') }}</a>
+        </li>
+        <li {% if current == 'spain' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.spain') }}">{{ _('Spain') }}</a>
+        </li>
+        <li {% if current == 'sweden' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.sweden') }}">{{ _('Sweden') }}</a>
+        </li>
+        <li {% if current == 'switzerland' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.switzerland') }}">{{ _('Switzerland') }}</a>
+        </li>
+        <li {% if current == 'turkey' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.turkey') }}">{{ _('Turkey') }}</a>
+        </li>
+        <li {% if current == 'ukraine' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.ukraine') }}">{{ _('Ukraine') }}</a>
+        </li>
+        <li {% if current == 'united-kingdom' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.europe.united-kingdom') }}">{{ _('United Kingdom') }}</a>
+        </li>
+      </ul>
+    </li>
+    <li data-id="asia-south-pacific" class="hasmenu region {% if region == 'asia' %}open{% endif %} {% if current == 'asia' %}current{% endif %}">
+      <a href="{{ url('mozorg.contact.communities.asia-south-pacific.landing') }}">{{ _('Asia &amp; South Pacific') }}</a>
+      <ul class="submenu">
+        <li {% if current == 'australia' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.asia-south-pacific.australia') }}">{{ _('Australia') }}</a>
+        </li>
+        <li {% if current == 'bangladesh' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.asia-south-pacific.bangladesh') }}">{{ _('Bangladesh') }}</a>
+        </li>
+        <li {% if current == 'cambodia' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.asia-south-pacific.cambodia') }}">{{ _('Cambodia') }}</a>
+        </li>
+        <li {% if current == 'china' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.asia-south-pacific.china') }}">{{ _('China') }}</a>
+        </li>
+        <li {% if current == 'hong-kong' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.asia-south-pacific.hong-kong') }}">{{ _('Hong Kong') }}</a>
+        </li>
+        <li {% if current == 'india' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.asia-south-pacific.india') }}">{{ _('India') }}</a>
+        </li>
+        <li {% if current == 'indonesia' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.asia-south-pacific.indonesia') }}">{{ _('Indonesia') }}</a>
+        </li>
+        <li {% if current == 'japan' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.asia-south-pacific.japan') }}">{{ _('Japan') }}</a>
+        </li>
+        <li {% if current == 'kerala' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.asia-south-pacific.kerala') }}">{{ _('Kerala') }}</a>
+        </li>
+        <li {% if current == 'malaysia' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.asia-south-pacific.malaysia') }}">{{ _('Malaysia') }}</a>
+        </li>
+        <li {% if current == 'myanmar' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.asia-south-pacific.myanmar') }}">{{ _('Myanmar') }}</a>
+        </li>
+        <li {% if current == 'nepal' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.asia-south-pacific.nepal') }}">{{ _('Nepal') }}</a>
+        </li>
+        <li {% if current == 'pakistan' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.asia-south-pacific.pakistan') }}">{{ _('Pakistan') }}</a>
+        </li>
+        <li {% if current == 'philippines' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.asia-south-pacific.philippines') }}">{{ _('Philippines') }}</a>
+        </li>
+        <li {% if current == 'singapore' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.asia-south-pacific.singapore') }}">{{ _('Singapore') }}</a>
+        </li>
+        <li {% if current == 'south-korea' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.asia-south-pacific.south-korea') }}">{{ _('South Korea') }}</a>
+        </li>
+        <li {% if current == 'sri-lanka' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.asia-south-pacific.sri-lanka') }}">{{ _('Sri Lanka') }}</a>
+        </li>
+        <li {% if current == 'taiwan' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.asia-south-pacific.taiwan') }}">{{ _('Taiwan') }}</a>
+        </li>
+        <li {% if current == 'thailand' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.asia-south-pacific.thailand') }}">{{ _('Thailand') }}</a>
+        </li>
+        <li {% if current == 'vietnam' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.asia-south-pacific.vietnam') }}">{{ _('Vietnam') }}</a>
+        </li>
+      </ul>
+    </li>
+    <li data-id="antarctica" class="region {% if current == 'antarctica' %}current{% endif %}">
+      <a href="{{ url('mozorg.contact.communities.other.antarctica') }}">{{ _('Antarctica') }}</a>
+    </li>
+    <li data-id="africa-middle-east" class="hasmenu region {% if region == 'africa' %}open{% endif %} {% if current == 'africa' %}current{% endif %}">
+      <a href="{{ url('mozorg.contact.communities.africa-middle-east.landing') }}">{{ _('Africa &amp; Middle East') }}</a>
+      <ul class="submenu">
+        <li {% if current == 'algeria' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.africa-middle-east.algeria') }}">{{ _('Algeria') }}</a>
+        </li>
+        <li {% if current == 'cameroon' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.africa-middle-east.cameroon') }}">{{ _('Cameroon') }}</a>
+        </li>
+        <li {% if current == 'egypt' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.africa-middle-east.egypt') }}">{{ _('Egypt') }}</a>
+        </li>
+        <li {% if current == 'ghana' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.africa-middle-east.ghana') }}">{{ _('Ghana') }}</a>
+        </li>
+        <li {% if current == 'israel' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.africa-middle-east.israel') }}">{{ _('Israel') }}</a>
+        </li>
+        <li {% if current == 'ivory-coast' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.africa-middle-east.ivory-coast') }}">{{ _('Ivory Coast') }}</a>
+        </li>
+        <li {% if current == 'jordan' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.africa-middle-east.jordan') }}">{{ _('Jordan') }}</a>
+        </li>
+        <li {% if current == 'kenya' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.africa-middle-east.kenya') }}">{{ _('Kenya') }}</a>
+        </li>
+        <li {% if current == 'mauritius' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.africa-middle-east.mauritius') }}">{{ _('Mauritius') }}</a>
+        </li>
+        <li {% if current == 'palestine' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.africa-middle-east.palestine') }}">{{ _('Palestine') }}</a>
+        </li>
+        <li {% if current == 'senegal' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.africa-middle-east.senegal') }}">{{ _('Senegal') }}</a>
+        </li>
+        <li {% if current == 'tunisia' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.africa-middle-east.tunisia') }}">{{ _('Tunisia') }}</a>
+        </li>
+        <li {% if current == 'uganda' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.africa-middle-east.uganda') }}">{{ _('Uganda') }}</a>
+        </li>
+        <li {% if current == 'zimbabwe' %}class="current"{% endif %}>
+          <a href="{{ url('mozorg.contact.communities.africa-middle-east.zimbabwe') }}">{{ _('Zimbabwe') }}</a>
+        </li>
+      </ul>
+    </li>
+    <li data-id="arabic" class="region pseudo {% if current == 'arabic' %}current{% endif %}">
+      <a href="{{ url('mozorg.contact.communities.other.arabic') }}">{{ _('Arabic') }}</a>
+    </li>
+    <li data-id="balkans" class="region pseudo {% if current == 'balkans' %}current{% endif %}">
+      <a href="{{ url('mozorg.contact.communities.other.balkans') }}">{{ _('Balkans') }}</a>
+    </li>
+    <li data-id="francophone" class="region pseudo {% if current == 'francophone' %}current{% endif %}">
+      <a href="{{ url('mozorg.contact.communities.other.francophone') }}">{{ _('Francophone') }}</a>
+    </li>
+    <li data-id="hispano" class="region pseudo {% if current == 'hispano' %}current{% endif %}">
+      <a href="{{ url('mozorg.contact.communities.other.hispano') }}">{{ _('Hispano') }}</a>
+    </li>
+  </ul>
+</nav>
