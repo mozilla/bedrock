@@ -11,7 +11,7 @@
     }
 
     var beginAnimation = function (syncConfig) {
-        var redirectDest = 'about:home';
+        var redirectDest = 'about:newtab';
 
         var scene = document.getElementById('scene');
         var skipbutton = document.getElementById('skip-button');
@@ -38,7 +38,12 @@
         var onVerificationComplete = function () {
             scene.dataset.signIn = 'true';
             document.getElementById('white-overlay').addEventListener('transitionend', function() {
-                window.location.href = redirectDest;
+                // Specially navigate to about:newtab and focus address bar
+                if (redirectDest === 'about:newtab') {
+                    Mozilla.UITour.showNewTab();
+                } else {
+                    window.location.href = redirectDest;
+                }
             }, false);
         };
 
