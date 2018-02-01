@@ -14,6 +14,11 @@
 
 $color-focus-purple: #c40771;
 
+$header-product-logo-width: 100px;
+$header-product-overflow: $header-product-logo-width / 2;
+$header-product-mobile-padding: 20px;
+$header-product-tablet-padding: 50px;
+
 @mixin rooftop-heading() {
     @include font-size-level3;
     color: #000;
@@ -79,38 +84,50 @@ a.button.button-focus {
 }
 
 .main-header {
-    background: #0060df;
+    background: #003eaa;
     background: url('/media/img/firefox/quantum/fox-tail-header.png') bottom center no-repeat,
-                linear-gradient(to bottom, #0060df 7%, #0095ff 100%);
+                linear-gradient(170deg, #003eaa 7%, #0095ff 100%);
     color: #fff;
     padding: 30px 0 0;
     position: relative;
     text-align: center;
     z-index: 1;
 
-    h1 {
+    h1,
+    .header-tagline {
         @include font-size-level2;
         font-weight: bold;
+        display: inline-block;
+    }
+
+    h1:after {
+        content: '\00A0'; // space between h1 and header-tagling
+    }
+
+    .header-tagline {
+        margin-bottom: .25em;
+    }
+
+    h3 {
+        @include font-size-level5;
         margin-bottom: 0.75em;
     }
 
-    h3,
     p {
-        @include font-size-level4;
-        margin-bottom: 0.75em;
+        @include font-size-level5;
+        margin-bottom: 1em;
     }
 
     @media #{$mq-desktop} {
         padding-bottom: 70px;
         text-align: left;
+
+        html[dir="rtl"] & {
+            text-align: right;
+        }
     }
 }
 
-html[dir="rtl"] .main-header {
-    @media #{$mq-desktop} {
-        text-align: right;
-    }
-}
 
 /* -------------------------------------------------------------------------- */
 // Firefox/Focus products shown in blue header
@@ -132,9 +149,16 @@ html[dir="rtl"] .main-header {
 }
 
 .header-product {
-    background: rgba(255, 255, 255, 0.2);
+    background: #ffffff;
+    border-radius: 24px;
+    color: #222222;
     margin-bottom: 40px;
+    margin-top: $header-product-overflow + $header-product-mobile-padding;
     padding: 20px;
+
+    &:first-child {
+        margin-top: 20px;
+    }
 
     .header-product-ctas .button {
         display: inline-block;
@@ -145,15 +169,25 @@ html[dir="rtl"] .main-header {
         @include font-size-level4;
         font-weight: bold;
         margin-bottom: 0.75em;
-        min-height: 110px;
+        margin-top: (($header-product-overflow + $header-product-mobile-padding) * -1);
+        min-height: $header-product-logo-width;
         text-align: center;
 
         &:before {
+            background-repeat: no-repeat;
             content: '';
             display: block;
-            height: 110px;
-            margin: 0 auto;
-            width: 110px;
+            height: $header-product-logo-width;
+            margin: 0 auto 0.5em;
+            width: $header-product-logo-width;
+
+            @at-root #header-firefox#{&} { // we can update this syntax when we update to Sass 3.3.0
+                @include at2x('/media/img/logos/firefox/logo-quantum.png', $header-product-logo-width, $header-product-logo-width);
+            }
+
+            @at-root #header-focus#{&} {
+                @include at2x('/media/img/logos/firefox/logo-focus.png', $header-product-logo-width, $header-product-logo-width);
+            }
         }
     }
 
@@ -166,15 +200,16 @@ html[dir="rtl"] .main-header {
         @include clearfix;
         margin-left: auto;
         margin-right: auto;
+        margin-top: $header-product-overflow + $header-product-tablet-padding;
         max-width: 600px;
-        padding: 40px;
+        padding: $header-product-tablet-padding;
 
         h2 {
             text-align: left;
+            margin-top: (($header-product-overflow + $header-product-tablet-padding) * -1);
 
             &:before {
-                display: inline-block;
-                margin: 0 6px -45px -10px;
+                margin: 0 0 1em -4px;
             }
         }
 
@@ -196,6 +231,7 @@ html[dir="rtl"] .main-header {
         .header-product-image {
             display: block;
             float: right;
+            margin-top: (($header-product-overflow + $header-product-tablet-padding) * -1);
             width: 30%;
 
             img {
@@ -205,21 +241,22 @@ html[dir="rtl"] .main-header {
     }
 
     @media #{$mq-desktop} {
+        box-sizing: border-box;
         float: right;
-        margin-left: 10px;
-        margin-right: 0;
-        padding: 20px;
-        width: calc(50% - 60px);
+        margin: 40px 0;
+        width: calc(50% - #{$header-product-tablet-padding / 2});
 
         &:first-child {
             float: left;
-            margin-left: 0;
-            margin-right: 10px;
+            margin-top: 40px;
         }
 
         h2:before {
             display: block;
-            margin: 0 0 0 -10px;
+        }
+
+        .header-product-image {
+            margin-top: 0;
         }
 
         // makes the semi-opaque product boxes the same height
@@ -247,18 +284,13 @@ html[dir="rtl"] .main-header {
 
             .header-product-image {
                 float: none;
-                align-self: center;
             }
         }
     }
 
     @media #{$mq-desktop-wide} {
-        padding: 25px;
-        width: calc(50% - 70px);
-
-        h2:before {
-            display: inline-block;
-            margin: 0 6px -45px -10px;
+        .header-product-image {
+            margin-top: (($header-product-overflow + $header-product-tablet-padding) * -1);
         }
     }
 }
@@ -269,8 +301,7 @@ html[dir="rtl"] .header-product {
             text-align: right;
 
             &:before {
-                margin-left: 6px;
-                margin-right: 0;
+                margin: 0 -4px 1em 0;
             }
         }
 
@@ -293,14 +324,6 @@ html[dir="rtl"] .header-product {
 
     @media #{$mq-desktop} {
         float: right;
-        margin-right: 10px;
-        padding: 20px;
-        width: calc(50% - 50px);
-
-        &:first-child {
-            margin-left: 10px;
-            margin-right: 0;
-        }
     }
 }
 
@@ -309,19 +332,20 @@ html[dir="rtl"] .header-product {
 
 a.see-more {
     @include font-size-level6;
-    color: #fff;
+    display: inline-block;
+    margin-top: 0.75em;
     text-decoration: none;
 
     &:active,
     &:focus,
     &:hover {
-        color: #fff;
         text-decoration: underline;
     }
 
     &:after {
         @include icon-sprite;
         content: '';
+        color: inherit;
         display: inline-block;
         height: 10px;
         margin-left: 14px;
@@ -332,14 +356,6 @@ a.see-more {
         margin-left: 0;
         margin-right: 14px;
     }
-}
-
-#header-firefox h2:before {
-    @include at2x('/media/img/logos/firefox/logo-quantum-small.png', 108px, 107px);
-}
-
-#header-focus h2:before {
-    @include at2x('/media/img/logos/firefox/logo-focus-small.png', 109px, 110px);
 }
 
 /* -------------------------------------------------------------------------- */

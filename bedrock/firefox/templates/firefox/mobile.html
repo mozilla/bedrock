@@ -26,9 +26,22 @@
     <header class="main-header">
       <div class="content">
         <div class="header-content">
-          <h1>{{ _('Firefox for mobile') }}</h1>
-          <h3>{{ _('The speed you need with the privacy you want on all your devices.') }}</h3>
-          <p>{{ _('Choose one or download them all for iOS and Android.') }}</p>
+          <div class="header-title">
+            {% if l10n_has_tag('headline_update_012018') %}
+              <h1>{{ _('Firefox for mobile.') }}</h1>
+              <p class="header-tagline">{{ _('Fast for good.') }}</p>
+            {% else %}
+              <h1>{{ _('Firefox for mobile') }}</h1>
+            {% endif %}
+          </div>
+          <div class="header-info">
+            <h3>{{ _('The speed you need with the privacy you want on all your devices.') }}</h3>
+            {% if l10n_has_tag('headline_update_012018') %}
+              <p>{{ _('Available on iOS & Android.') }}</p>
+            {% else %}
+              <p>{{ _('Choose one or download them all for iOS and Android.') }}</p>
+            {% endif %}
+          </div>
         </div>
       </div>
 
@@ -64,7 +77,7 @@
               </p>
 
               <div class="header-product-ctas">
-                <a href="#mobile-download-buttons-focus" class="button button-focus get-focus" data-product="focus" data-button-name="Send to SMS Modal - Firefox Focus">{{ _('Get Firefox Focus') }}</a>
+                <a href="#mobile-download-buttons-focus" class="button button-green get-focus" data-product="focus" data-button-name="Send to SMS Modal - Firefox Focus">{{ _('Get Firefox Focus') }}</a>
                 <br>
                 <a href="#focus" class="see-more">{{ _('See more') }}</a>
               </div>
