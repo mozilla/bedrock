@@ -20,8 +20,8 @@ integration_tests:
     - ie
     - ie8
   tokyo:
-    - firefox
+    - headless
   frankfurt:
-    - firefox
+    - headless
   oregon-b:
-    - firefox
+    - headless
