@@ -223,6 +223,8 @@ def windows_billboards(req):
 
 
 def dnt(request):
+    dnt = request.META.get('HTTP_DNT')
+    request.DNT = dnt == '1'
     response = l10n_utils.render(request, 'firefox/dnt.html')
     response['Vary'] = 'DNT'
     return response
