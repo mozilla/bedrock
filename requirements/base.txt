@@ -66,8 +66,6 @@ https://github.com/jsocol/bleach/archive/f9fc1c5e70463d5ca91efaa6f19f82d56ff346d
     --hash=sha256:f0eef193d7937cc993f8a04a1df39fac71d0bbaff613be67bcba57bf35b88936
 https://github.com/aleray/mdx_outline/archive/41e22622a17a0d8e410bd921698ec767213a6305.tar.gz#egg=mdx_outline \
     --hash=sha256:07fea056c4f85d4093856d8fdf08ace9fcc46e183a047b9f4758e9d7ef64fa0f
-https://github.com/mozilla/django-dnt/archive/269289b1ccd5e31b313ba669f59d4cab3bf466ce.tar.gz#egg=django-dnt \
-    --hash=sha256:27f6d6ebafc106446b885fb79da65eac66bc739c2ef7b5ff0b97234ea7030e33
 https://github.com/timmyomahony/django-pagedown/archive/78556863faa5654f749c5562b390317c6cad10b3.tar.gz#egg=django-pagedown \
     --hash=sha256:3e7bfaf54a560889838104c100d8b37930306243d8913942c4675cfcc54bccc7
 https://github.com/jezdez/django-appconf/archive/d7ff3bb0c35a0c2ec83afdb31f7bb79e0f1b222c.tar.gz#egg=django-appconf \

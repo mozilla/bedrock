@@ -438,7 +438,6 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'bedrock.mozorg.middleware.CacheMiddleware',
-    'dnt.middleware.DoNotTrackMiddleware',
 ]
 
 ENABLE_CSP_MIDDLEWARE = config('ENABLE_CSP_MIDDLEWARE', default=True, cast=bool)
