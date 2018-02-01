@@ -1,0 +1,11 @@
+# see the following for documentation of these options
+# http://bedrock.readthedocs.io/en/latest/pipeline.html#configuration
+regions:
+  - frankfurt
+apps:
+  - bedrock-stage
+integration_tests:
+  frankfurt:
+    - firefox
+pipeline:
+  script: test-only
