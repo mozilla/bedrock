@@ -205,13 +205,13 @@ def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=
 
         if query:
             if merge_query:
-                req_query = parse_qs(request.META.get('QUERY_STRING'))
+                req_query = parse_qs(request.META.get('QUERY_STRING', ''))
                 req_query.update(query)
                 querystring = urlencode(req_query, doseq=True)
             else:
                 querystring = urlencode(query, doseq=True)
         elif query is None:
-            querystring = request.META.get('QUERY_STRING')
+            querystring = request.META.get('QUERY_STRING', '')
         else:
             querystring = ''
 

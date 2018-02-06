@@ -181,6 +181,20 @@ class TestRedirectUrlPattern(TestCase):
         self.assertTrue(url.path, 'abides')
         self.assertEqual(query_dict, {'aggression': ['not_stand'], 'hates': ['the-eagles']})
 
+    def test_merge_query_no_url_query(self):
+        """
+        Should merge query params if requested and no params in URL
+        """
+        pattern = redirect(r'^the/dude$', 'abides',
+                           query={'aggression': 'not_stand'}, merge_query=True)
+        request = self.rf.get('the/dude')
+        response = pattern.callback(request)
+        eq_(response.status_code, 301)
+        url = urlparse(response['location'])
+        query_dict = parse_qs(url.query)
+        self.assertTrue(url.path, 'abides')
+        self.assertEqual(query_dict, {'aggression': ['not_stand']})
+
     def test_empty_query(self):
         """
         Should strip query params if called with empty query
