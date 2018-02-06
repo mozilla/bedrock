@@ -194,7 +194,7 @@
         </figure>
 
         <div class="person-info">
-          <p class="title" itemprop="jobTitle">{{ _('Chief Innovation Officer') }}</p>
+          <p class="title" itemprop="jobTitle">{{ _('Chief Open Innovation Officer') }}</p>
           <p class="note">{{ _('Steering Committee') }}</p>
           <p class="since">{{ _('With Mozilla since:') }} 2014</p>
 
@@ -212,7 +212,7 @@
         <div class="person-bio">
           <p>
           {% trans %}
-            As Mozilla’s Chief Innovation Officer, Katharina serves as the senior executive broadly responsible for fostering and enriching our culture of open innovation, internally and externally.
+            As Mozilla’s Chief Open Innovation Officer, Katharina serves as the senior executive broadly responsible for open innovation, in terms of our community management, participation systems, and non-commercial partnerships with organizations to advance product, technology and policy work.
           {% endtrans %}
           </p>
 
@@ -617,6 +617,58 @@
         </div>
       </article>
 
+      <article id="dave-camp" data-id="dave-camp" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+        <figure class="headshot">
+          {{ high_res_img('mozorg/about/leadership/dave-camp.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+          <figcaption><h4 class="fn" itemprop="name">Dave Camp</h4></figcaption>
+        </figure>
+
+        <div class="person-info">
+          <p class="title" itemprop="jobTitle">{{ _('Firefox VP of Engineering') }}</p>
+          <p class="since">{{ _('With Mozilla since:') }} 2006</p>
+
+          <ul class="elsewhere">
+            <li><a class="url book" itemprop="url" rel="external" href="https://mozillians.org/u/dcamp/">{{ _('Mozillians profile') }}</a></li>
+          </ul>
+
+          <ul class="utility">
+            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#dave-camp">{{ _('Link to this bio') }}</a></li>
+          </ul>
+        </div>
+
+        <div class="person-bio">
+          <p>
+          {% trans %}
+            As Firefox VP of Engineering Dave Camp leads the global team of engineers that build, test, and ship the Firefox family of products and services. He’s responsible for making sure everything is on time and high quality.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Dave joined Mozilla in 2006 to work on Gecko, building networking and security features and was a contributor to the release of Firefox 3. After a short stint at a small startup he came back to join the Firefox Developer Tools team. He led the Developer Tools team through its first major release and the introduction of its mobile inspection tools, including remote debugging and responsive design visualization tools.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Dave became Director of Engineering, Firefox with the task of developing engineers and managers’ capabilities, improving core product quality, and cementing the team’s reputation as a world-class product engineering organization. The team launched Firefox Quantum, incorporating major improvements in speed, stability, security, multitasking and customizability in 2017.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Prior to joining Mozilla Dave worked at Ximian and maintained Nautilus, the central file manager for GNOME, the most popular desktop environment for Linux. He also served on the GNOME Foundation’s board of directors.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            In his spare time Dave plays thrash metal guitar for his children at their home in the Pacific Northwest.
+          {% endtrans %}
+          </p>
+        </div>
+      </article>
+
       <article id="susan-chen" data-id="susan-chen" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/susan-chen.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
@@ -780,7 +832,7 @@
         </figure>
 
         <div class="person-info">
-          <p class="title" itemprop="jobTitle">{{ _('Fellow') }}</p>
+          <p class="title" itemprop="jobTitle">{{ _('CTO, Firefox') }}</p>
           <p class="since">{{ _('With Mozilla since:') }} 2001</p>
 
           <ul class="elsewhere">
@@ -796,7 +848,7 @@
         <div class="person-bio">
           <p>
           {% trans %}
-            Eric is a Fellow working on Firefox, focused on developing the next generation of internet technologies for networking, security and real-time media.
+            Eric is CTO of the Firefox team at Mozilla. In this role he leads the long-term technical strategy for Firefox, He also partners with the Engineering and Product organizations to set the short-term technical direction.
           {% endtrans %}
           </p>
 
@@ -808,7 +860,13 @@
 
           <p>
           {% trans %}
-            Eric’s background is in communications security, especially Transport Layer Security (TLS), the foundational security protocol for the Web. He is the former chair of the IETF TLS Working group as well as the editor of the TLS and HTTPS specification. Eric co-designed DTLS, and is the author of one of the standard books on TLS. Eric was on the Internet Architecture board from 2002 to 2008 and in 2007 served on California Secretary of State Debra Bowen’s Top-to-Bottom Review of the voting systems certified for use in California.
+            Eric’s background is in communications security, especially Transport Layer Security (TLS), the foundational security protocol for the Web. He is the former chair of the Internet Engineering Task Force TLS Working group as well as the editor of the TLS and HTTPS specification. Eric co-designed Datagram Transport Layer Security, and is the author of one of the standard books on TLS.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Eric was on the Internet Architecture board from 2002 to 2008 and in 2007 served on California Secretary of State Debra Bowen’s Top-to-Bottom Review of the voting systems certified for use in California.
           {% endtrans %}
           </p>
 
