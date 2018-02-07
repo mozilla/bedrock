@@ -25,25 +25,22 @@
 
 {% block content %}
 <main role="main" class="section">
-  <div class="content">
-    <a class="moz-logo" href="{{ url('mozorg.home') }}"><img src="{{ static('img/logos/mozilla/wordmark-dark.svg')}}" alt="Mozilla" width="101" height="34"></a>
+  {% include 'firefox/whatsnew/includes/header.html' %}
 
+  <div class="content rocket-body">
     <div class="rocket-content">
       <div class="content-intro">
-        {# Rough translation: "You have the latest version of Firefox" #}
-        <h1>Firefox kamu sudah versi terbaru.</h1>
+        {{ high_res_img('logos/firefox/logo-rocket-wordmark.png', {'alt': 'Firefox Rocket', 'width': '470', 'height': '112', 'class': 'rocket-logo'}) }}
 
         {# Rough translation: "Want to try the latest Android browser that is data-efficient, lightweight, lightning fast, and tailor-made for Indonesia?" #}
-        <p>Mau coba Android browser terbaru yang hemat data, ringan, secepat kilat, dan dibuat khusus untuk Indonesia?</p>
-
-        {{ high_res_img('logos/firefox/logo-rocket-wordmark.png', {'alt': 'Firefox Rocket', 'width': '470', 'height': '112', 'class': 'rocket-logo'}) }}
+        <p class="shadowy">Mau coba Android browser terbaru yang hemat data, ringan, secepat kilat, dan dibuat khusus untuk Indonesia?</p>
       </div>
 
       <figure class="qr-code" id="qr-wrapper">
         <img src="{{ static('img/firefox/whatsnew/rocket/qrcode-rocket.png') }}" alt="">
 
         {# Rough translation: "Scan the QR code and download the new Firefox Rocket app now!" #}
-        <figcaption>Scan kode QR dan download aplikasi baru Firefox Rocket sekarang!</figcaption>
+        <figcaption class="shadowy">Scan kode QR dan download aplikasi baru Firefox Rocket sekarang!</figcaption>
       </figure>
     </div>
   </div>
@@ -51,3 +48,7 @@
 {% endblock %}
 
 {% block email_form %}{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_whatsnew' %}
+{% endblock %}
