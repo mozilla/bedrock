@@ -1,0 +1,110 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+//* -------------------------------------------------------------------------- */
+// Up-to-date header
+
+.main-header {
+    text-align: center;
+
+    .inner-container {
+        position: relative;
+    }
+
+    h1 {
+        @include font-size-level5;
+        display: none;
+        font-weight: normal;
+        margin: 7px 0;
+        width: calc(100% - 45px);
+
+        &:before {
+            background: url('/media/img/firefox/whatsnew/icon-green-check.svg') center left no-repeat;
+            background-size: 25px 25px;
+            content: '';
+            display: inline-block;
+            height: 25px;
+            margin: 0 10px 0 0;
+            vertical-align: middle;
+            width: 25px;
+        }
+    }
+
+    .mozilla-logo {
+        @include font-size(15px);
+        float: left;
+        height: 25px;
+        margin: 0;
+
+        a {
+            @include image-replaced;
+            background: url('/media/img/favicon/favicon-196x196.png') top left no-repeat;
+            background-size: 25px 25px;
+            display: block;
+            height: 25px;
+            width: 25px;
+        }
+    }
+
+    &.show-up-to-date-message {
+        h1 {
+            display: inline-block;
+        }
+
+        .mozilla-logo a {
+            margin: 7px 0;
+        }
+    }
+
+    @media #{$mq-desktop} {
+
+        h1 {
+            margin: 0;
+            width: auto;
+
+            &:before {
+                background-size: 40px 40px;
+                height: 40px;
+                margin: 0 20px 0 0;
+                width: 40px;
+            }
+        }
+
+        .mozilla-logo a {
+            background-image: url('/media/img/pebbles/moz-wordmark-dark-reverse.svg');
+            background-size: auto auto;
+            float: none;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 78px;
+        }
+    }
+}
+
+html[dir="rtl"] .main-header {
+
+    h1:before {
+        background-position: center right;
+        margin: 0 0 0 10px;
+    }
+
+    .mozilla-logo {
+        float: right;
+    }
+
+    @media #{$mq-desktop} {
+
+        h1:before {
+                margin: 0 0 0 20px;
+        }
+
+        .mozilla-logo a {
+            left: auto;
+            right: 0;
+        }
+    }
+}
