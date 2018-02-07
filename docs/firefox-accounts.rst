@@ -15,70 +15,16 @@ Certain bedrock pages such as ``/firefox/accounts`` and ``/firefox/firstrun`` fe
 Firefox Accounts signup form using an embedded ``iframe``. To test the signup flow on
 a non-production environment requires some additional Firefox profile configuration.
 
-Local Development
------------------
-
-#. Add the following config settings to your ``.env`` file:
-
-    ``FXA_IFRAME_SRC=https://stomlinson.dev.lcip.org/``
-    ``CSP_EXTRA_FRAME_SRC=https://stomlinson.dev.lcip.org/``
-
-#. Set your local development server to run on ``127.0.0.1:8111``, e.g. ``./manage.py runserver 8111``.
-#. Quit Firefox.
-#. Create a new profile for testing called ``FxA Test Local`` by following the
-   `instructions here`_.
-#. In the new profile folder, create a file called ``user.js`` and paste in the
-   following content:
-
-    .. code-block:: javascript
-
-        user_pref("services.sync.log.appender.file.logOnSuccess", true);
-        user_pref("identity.fxaccounts.auth.uri", "https://stomlinson.dev.lcip.org/auth/v1");
-        user_pref("identity.fxaccounts.remote.force_auth.uri", "https://stomlinson.dev.lcip.org/force_auth?service=sync&context=fx_desktop_v1");
-        user_pref("identity.fxaccounts.remote.signin.uri", "https://stomlinson.dev.lcip.org/signin?service=sync&context=fx_desktop_v1");
-        user_pref("identity.fxaccounts.remote.signup.uri", "https://stomlinson.dev.lcip.org/signup?service=sync&context=fx_desktop_v1");
-        user_pref("identity.fxaccounts.settings.uri", "https://stomlinson.dev.lcip.org/settings");
-        user_pref("identity.fxaccounts.remote.webchannel.uri", "https://stomlinson.dev.lcip.org/");
-        user_pref("services.sync.tokenServerURI", "https://stomlinson.dev.lcip.org/syncserver/token/1.0/sync/1.5");
-        user_pref("webchannel.allowObject.urlWhitelist", "https://accounts.firefox.com https://accounts.stage.mozaws.net https://content.cdn.mozilla.net https://input.mozilla.org https://support.mozilla.org https://install.mozilla.org https://stomlinson.dev.lcip.org/");
-
-        user_pref("general.warnOnAboutConfig", false);
-        user_pref("devtools.chrome.enabled", true);
-        user_pref("devtools.debugger.remote-enabled", true);
-
-#. Start Firefox using the new profile created in step 3.
-#. Verify the FxA settings look correct by opening ``about:config`` and searching for
-   ``identity.fxaccounts``.
-#. Navigate to the web page containing the form and test signing up.
-
 Demo Server Testing
 -------------------
 
-#. Quit Firefox.
-#. Create a new profile for testing called ``FxA Test Demo`` by following the
-   `instructions here`_.
-#. In the new profile folder, create a file called ``user.js`` and paste in the
-   following content:
-
-    .. code-block:: javascript
-
-        user_pref("services.sync.log.appender.file.logOnSuccess", true);
-        user_pref("identity.fxaccounts.auth.uri", "https://api-accounts.stage.mozaws.net/v1");
-        user_pref("identity.fxaccounts.remote.force_auth.uri", "https://accounts.stage.mozaws.net/force_auth?service=sync&context=fx_desktop_v1");
-        user_pref("identity.fxaccounts.remote.signin.uri", "https://accounts.stage.mozaws.net/signin?service=sync&context=fx_desktop_v1");
-        user_pref("identity.fxaccounts.remote.signup.uri", "https://accounts.stage.mozaws.net/signup?service=sync&context=fx_desktop_v1");
-        user_pref("identity.fxaccounts.settings.uri", "https://accounts.stage.mozaws.net/settings");
-        user_pref("identity.fxaccounts.remote.webchannel.uri", "https://accounts.stage.mozaws.net/");
-        user_pref("services.sync.tokenServerURI", "https://token.stage.mozaws.net/1.0/sync/1.5");
-        user_pref("webchannel.allowObject.urlWhitelist", "https://accounts.firefox.com https://accounts.stage.mozaws.net https://content.cdn.mozilla.net https://input.mozilla.org https://support.mozilla.org https://install.mozilla.org https://stomlinson.dev.lcip.org/");
-
-        user_pref("general.warnOnAboutConfig", false);
-        user_pref("devtools.chrome.enabled", true);
-        user_pref("devtools.debugger.remote-enabled", true);
-
-#. Start Firefox using the new profile you created in step 2.
-#. Verify the FxA settings look correct by opening ``about:config`` and searching for
-   ``identity.fxaccounts``.
+#. Open ``about:profiles``.
+#. Click the ``Create a New Profile`` button and enter the profile name ``FxA Test Demo``.
+#. Find ``FxA Test Demo`` in the profile list and click ``Launch profile in new browser``.
+#. Open ``about:config`` and add a new preference called ``identity.fxaccounts.autoconfig.uri`` with the value ``https://accounts.stage.mozaws.net``.
+#. Open ``about:preferences#sync`` and click ``Sign in``.
+#. Verify that the sign in page loads from ``https://accounts.stage.mozaws.net/`` (but don't actually sign in).
+#. Restart the browser.
 #. Navigate to the web page containing the form and test signing up.
 
 Clearing the iframe cache
