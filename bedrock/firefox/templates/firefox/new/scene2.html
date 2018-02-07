@@ -38,9 +38,17 @@
 <p class="help">
   {# fallback_url is replaced by the platform download link via JS, but if
       something fails the user should still get a link to a working download path. #}
-  {% trans id='direct-download-link', fallback_url=url('firefox.all') %}
-    Your download should begin automatically. If it doesn’t, <a id="{{ id }}" href="{{ fallback_url }}">click here</a>.
-  {% endtrans %}
+
+  {% set id, fallback_url = 'direct-download-link', url('firefox.all') %}
+  {% if l10n_has_tag('firefox_new_try_again_link_020818') %}
+    {% trans %}
+      Your download should begin automatically. Didn’t work? <a id="{{ id }}" href="{{ fallback_url }}">Try downloading again</a>.
+    {% endtrans %}
+  {% else %}
+    {% trans %}
+      Your download should begin automatically. If it doesn’t, <a id="{{ id }}" href="{{ fallback_url }}">click here</a>.
+    {% endtrans %}
+  {% endif %}
 </p>
 
 <aside class="mobile-download">
