@@ -138,7 +138,7 @@
               <h2>{{ _('Version {version}, first offered to {channel} channel users on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date, version=release.version) }}</h2>
               <p>{{ release.text|safe }}</p>
             {% else %}
-              <h2>{{ _('The notes for this release are not yet publicly available, but are coming soon! Please check this page again later.') }}</h2>
+              <h2>{{ _('We’re still preparing the notes for this release, and will post them here when they are ready. Please check back later.') }}</h2>
               {% block extra_draft_description %}{% endblock %}
             {% endif %}
           </div>
