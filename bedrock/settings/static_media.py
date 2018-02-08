@@ -1327,6 +1327,13 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_new_scene1_reggie_watts-bundle.js',
     },
+    'experiment_firefox_new_waitface': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/firefox/new/experiment-firefox-new-waitface.js',
+        ),
+        'output_filename': 'js/experiment_firefox_new_waitface-bundle.js',
+    },
     'experiment_firefox_new_batm_anim': {
         'source_filenames': (
             'js/base/mozilla-traffic-cop.js',
