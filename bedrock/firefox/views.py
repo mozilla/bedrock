@@ -519,8 +519,6 @@ def new(request):
                 template = 'firefox/new/sem/unsupported-browser/scene2.html'
             elif experience in ['batmfree', 'batmnimble', 'batmresist']:
                 template = 'firefox/new/batm/scene2.html'
-            elif experience == '2xfaster':
-                template = 'firefox/new/wait-face/scene2.html'
             else:
                 template = 'firefox/new/scene2.html'
         else:
@@ -535,7 +533,10 @@ def new(request):
         elif lang_file_is_active('firefox/new/sem', locale) and experience == 'fast':
             template = 'firefox/new/sem/fast/scene1.html'
         elif lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':
-            template = 'firefox/new/wait-face/scene1.html'
+            if variant == 'b':
+                template = 'firefox/new/wait-face/scene1-video.html'
+            else:
+                template = 'firefox/new/wait-face/scene1.html'
         elif lang_file_is_active('firefox/new/reggiewatts', locale) and experience == 'reggiewatts':
             template = 'firefox/new/reggie-watts/scene1.html'
         elif locale == 'en-US':
@@ -571,8 +572,6 @@ def new(request):
                 template = 'firefox/new/batm/nimble.html'
             elif experience == 'batmresist':
                 template = 'firefox/new/batm/resist.html'
-            elif experience == '2xfaster':
-                template = 'firefox/new/wait-face/scene1-video.html'
             else:
                 template = 'firefox/new/scene1.html'
         else:

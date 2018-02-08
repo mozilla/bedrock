@@ -5,13 +5,11 @@
 (function($) {
     'use strict';
 
-    var exp;
-    var $title = $('#main-heading');
+    var extraParams = location.search.replace(/^\?/, '&');
 
     $('.download-link').each(function(i, link) {
         if (link.href.indexOf('scene=2') > -1) {
-            exp = $title.attr('data-experience');
-            link.href = link.href.replace('scene=2', 'scene=2&xv=' + exp);
+            link.href = link.href.replace('scene=2', 'scene=2' + extraParams);
         }
     });
 })(window.jQuery);

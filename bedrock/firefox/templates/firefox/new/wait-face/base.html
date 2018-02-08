@@ -12,6 +12,12 @@
   {% endif %}
 {% endblock %}
 
+{% block experiments %}
+  {% if switch('experiment-firefox-new-waitface', ['en-US']) %}
+    {% javascript 'experiment_firefox_new_waitface' %}
+  {% endif %}
+{% endblock %}
+
 {% block extra_meta %}
   <meta name="robots" content="noindex,follow">
 {% endblock %}

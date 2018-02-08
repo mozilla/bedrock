@@ -754,14 +754,26 @@ class TestFirefoxNew(TestCase):
 
     # wait face video experiment bug 1431795
 
-    def test_wait_face_video_scene_1(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=2xfaster')
+    def test_wait_face_video_var_a_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=waitface&v=a')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene1.html')
+
+    def test_wait_face_video_var_a_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=waitface&v=a')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene2.html')
+
+    def test_wait_face_video_var_b_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=waitface&v=b')
         req.locale = 'en-US'
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene1-video.html')
 
-    def test_wait_face_video_scene_2(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?scene=2&xv=2xfaster')
+    def test_wait_face_video_var_b_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=waitface&v=b')
         req.locale = 'en-US'
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene2.html')
