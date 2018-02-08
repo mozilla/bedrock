@@ -6,7 +6,9 @@
 
 {% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Communities') }}{% endblock %}
 
-{% block map %}{{ high_res_img('contact/osm/communities/all-large.jpg', {'alt': '', 'width': '1250', 'height': '380'}) }}{% endblock %}
+{% block map %}
+  {{ map_image('img/contact/osm/communities/all-large.jpg', 'img/contact/osm/communities/all-large-high-res.jpg') }}
+{% endblock %}
 
 {% block string_data %}
   {# L10n: Used as a labels for a form dropdown to navigate to other pages. #}

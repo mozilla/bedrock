@@ -1406,7 +1406,6 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/base/mozilla-accordion.js',
             'js/base/mozilla-accordion-gatrack.js',
-            'js/base/mozilla-modal.js',
         ),
         'output_filename': 'js/geolocation-bundle.js',
     },

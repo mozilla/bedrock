@@ -14,7 +14,9 @@
   {% endwith %}
 {% endblock %}
 
-{% block map %}{{ high_res_img('contact/osm/spaces/all-large.jpg', {'alt': '', 'width': '1250', 'height': '380'}) }}{% endblock %}
+{% block map %}
+  {{ map_image('img/contact/osm/spaces/all-large.jpg', 'img/contact/osm/spaces/all-large-high-res.jpg') }}
+{% endblock %}
 
 {% block contact_entry %}
   <div id="entry-container">

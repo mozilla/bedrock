@@ -6,7 +6,10 @@
 
 {% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Toronto') }}{% endblock %}
 
-{% block map %}{{ high_res_img('contact/osm/spaces/toronto-large.jpg', {'alt': '', 'width': '1250', 'height': '380'}) }}{% endblock %}
+{% block map %}
+  {{ map_image('img/contact/osm/spaces/toronto-large.jpg', 'img/contact/osm/spaces/toronto-large-high-res.jpg') }}
+{% endblock %}
+
 
 {% block contact_nav %}
   {% with current = 'toronto' %}

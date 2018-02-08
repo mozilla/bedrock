@@ -6,7 +6,9 @@
 
 {% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Berlin') }}{% endblock %}
 
-{% block map %}{{ high_res_img('contact/osm/spaces/berlin-large.jpg', {'alt': '', 'width': '1250', 'height': '380'}) }}{% endblock %}
+{% block map %}
+  {{ map_image('img/contact/osm/spaces/berlin-large.jpg', 'img/contact/osm/spaces/berlin-large-high-res.jpg') }}
+{% endblock %}
 
 {% block contact_nav %}
   {% with current = 'berlin' %}

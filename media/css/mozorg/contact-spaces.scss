@@ -101,7 +101,7 @@ html[dir="rtl"] {
     position: relative;
 
     img {
-        display: block;
+        display: none;
     }
 
     small {
@@ -115,6 +115,10 @@ html[dir="rtl"] {
 
     @media #{$mq-tablet} {
         display: block;
+
+        img {
+            display: block;
+        }
     }
 
     @media screen and (min-width: $width-max-content) {
@@ -150,6 +154,10 @@ html[dir="rtl"] {
             background-position: 100% -60px;
             color: $color-text-secondary;
             cursor: default;
+        }
+
+        &:last-child {
+            margin: 0;
         }
 
         a {
@@ -208,6 +216,10 @@ html[dir="rtl"] {
 
         li {
             margin: 0 0 0 5px;
+
+            &:last-child {
+                margin: 0;
+            }
         }
 
         @media #{$mq-tablet} {
@@ -408,7 +420,7 @@ html[dir="rtl"] {
         .logo {
             display: block;
             margin-bottom: 20px;
-            max-height: 80px;
+            max-width: 150px;
         }
 
         h2 span {
@@ -459,10 +471,6 @@ html[dir="rtl"] {
 
     @media #{$mq-tablet} {
         padding: 40px 0 40px 40px;
-
-        .card .logo {
-            float: right;
-        }
     }
 }
 
@@ -485,6 +493,16 @@ html[dir="rtl"] {
 
     @media #{$mq-desktop-wide} {
         padding-left: 400px;
+
+        h2 {
+            max-width: 70%;
+        }
+
+        .logo {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
 
         .feature-img {
             height: 250px;
@@ -537,10 +555,6 @@ html[dir="rtl"] {
 
         @media #{$mq-tablet} {
             padding: 40px 40px 40px 0;
-
-            .card .logo {
-                float: left;
-            }
         }
     }
 
@@ -566,6 +580,11 @@ html[dir="rtl"] {
             .feature-img {
                 left: auto;
                 right: 0;
+            }
+
+            .logo {
+                left: 0;
+                right: auto;
             }
         }
     }
