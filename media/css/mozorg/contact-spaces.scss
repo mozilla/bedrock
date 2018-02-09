@@ -491,6 +491,17 @@ html[dir="rtl"] {
 
 .entry-community .card {
 
+    @media #{$mq-desktop} {
+        padding-left: 320px;
+
+        .feature-img {
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 300px;
+        }
+    }
+
     @media #{$mq-desktop-wide} {
         padding-left: 400px;
 
@@ -505,10 +516,6 @@ html[dir="rtl"] {
         }
 
         .feature-img {
-            height: 250px;
-            left: 0;
-            position: absolute;
-            top: 0;
             width: 380px;
         }
     }
@@ -573,14 +580,19 @@ html[dir="rtl"] {
 
     .entry-community .card {
 
-        @media #{$mq-desktop-wide} {
+        @media #{$mq-desktop} {
             padding-left: 0;
-            padding-right: 400px;
+            padding-right: 320px;
 
             .feature-img {
                 left: auto;
                 right: 0;
             }
+        }
+
+        @media #{$mq-desktop-wide} {
+            padding-left: 0;
+            padding-right: 400px;
 
             .logo {
                 left: 0;
