@@ -26,15 +26,15 @@
 {% endblock %}
 
 {% block content %}
+{% include 'firefox/whatsnew/includes/header.html' %}
+
 <main>
   <div class="content">
     <header class="logo-masthead">
-      <h3><a class="firefox" href="{{ url('firefox') }}">{{ high_res_img('logos/firefox/logo-quantum.png', {'alt': 'Firefox', 'width': '110', 'height': '110'}) }}</a></h3>
-      <h3><a class="mozilla" href="{{ url('mozorg.home') }}"><img src="{{ static('img/logos/mozilla/wordmark-dark.svg')}}" alt="Mozilla" width="150" height="43"></a></h3>
+      <h3><a class="firefox" href="{{ url('firefox') }}">{{ high_res_img('logos/firefox/logo-quantum.png', {'alt': 'Firefox', 'width': '90', 'height': '90'}) }}</a></h3>
     </header>
+
     <section class="main-content">
-      {# Rough translation: "Your Firefox is the latest version" #}
-      <h1>您的<span>Firefox</span>已是最新版本</h1>
       <figure>
         <img class="qrcode" src="{{ static('img/firefox/whatsnew/zh-tw/qrcode.png') }}"
         data-mozillaonline-link="{{ static('img/firefox/whatsnew/qrcode-mozillaonline.png') }}" width="359" height="358" alt="" />
@@ -42,17 +42,16 @@
           {# Rough translation: "# When only the free fox" #}
           <h2>#當隻自由的狐狸</h2>
           <ul>
-            <li>下載手機版，享受跨裝置瀏覽自由</li> {# Rough translation: "Download mobile version, enjoy cross-device browsing freedom" #}
-            <li>同步書籤、分頁、瀏覽紀錄</li> {# Rough translation: "Sync bookmarks, paging, browsing history" #}
-            <li>掃描<span>QR Code</span>立即體驗</li> {# Rough translation: "Scan QR Code to experience it now" #}
+            <li>使用手機掃描 <span>QR code，</span></li> {# Rough translation: "Scan QR code with your mobile phone" #}
+            <li>立即下載行動版 <span>Firefox！</span></li> {# Rough translation: "Download mobile for Firefox now!" #}
           </ul>
         </figcaption>
       </figure>
     </section>
-
   </div>
 </main>
 {% endblock %}
 
-{% block js %}{% endblock %}
-
+{% block js %}
+  {% javascript 'firefox_whatsnew' %}
+{% endblock %}
