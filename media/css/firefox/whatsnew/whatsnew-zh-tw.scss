@@ -4,12 +4,13 @@
 
 @import '../../pebbles/includes/lib';
 @import '../../hubs/sections';
+@import 'header';
 
 //* -------------------------------------------------------------------------- */
 // Common elements
 
 body {
-    background: #000;
+    background: #fff;
 }
 
 main {
@@ -40,30 +41,8 @@ main {
 // Masthead
 
 .logo-masthead {
-    margin-bottom: 20px;
+    margin: 20px 0;
     text-align: center;
-
-    .mozilla {
-        display: none;
-    }
-
-    @media #{$mq-tablet} {
-        @include clearfix;
-        margin-top: 40px;
-
-        .firefox {
-            float: left;
-        }
-
-        .mozilla {
-            display: block;
-            float: right;
-        }
-    }
-
-    @media #{$mq-tablet} and #{$mq-tall} {
-        margin-bottom: 40px;
-    }
 }
 
 //* -------------------------------------------------------------------------- */
