@@ -148,20 +148,22 @@
     </div>
   </section>
 
-  <section class="page-section data-import-section" data-scroll-tracking="Moving browsers? We got you.">
+  <section class="page-section switch-section" data-scroll-tracking="Switch from Chrome to Firefox in just a few minutes">
     <div class="content">
-      <header>
+      <div class="section-content">
+      {% if l10n_has_tag('switch_cta_021218') %}
+        <h2 class="section-title">{{ _('Switch from Chrome to Firefox in just a few minutes') }}</h2>
+        <p>{{ _('Switching to Firefox is fast, easy and risk-free. Firefox imports your bookmarks, autofills, passwords and preferences from Chrome.') }}</p>
+      {% else %}
         <h2 class="section-title">{{ _('Moving browsers? We got you.') }}</h2>
         <p>{{ _('Instantly import your online info and favorites from any other browser.') }}</p>
-      </header>
-
-      <div class="data-import-features">
-        <ul>
-          <li class="bookmarks">{{ _('Bookmarks') }}</li>
-          <li class="auto-fill">{{ _('Auto Fill') }}</li>
-          <li class="passwords">{{ _('Passwords') }}</li>
-          <li class="history">{{ _('History') }}</li>
-        </ul>
+      {% endif %}
+        <a href="{{ url('firefox.switch') }}">{{ _('Learn more') }}</a>
+      </div>
+      <div class="section-media">
+        <a href="{{ url('firefox.switch') }}">
+          {{ high_res_img('firefox/home/switch-to-firefox.png', {'alt': '', 'width': '643', 'height': '377'}) }}
+        </a>
       </div>
     </div>
   </section>

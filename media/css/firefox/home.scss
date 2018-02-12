@@ -508,189 +508,90 @@ html[dir="rtl"] .key-features-section {
 }
 
 /* -------------------------------------------------------------------------- */
-// Data import section
+// Switch from Chrome to Firefox section
 
-.data-import-section {
+.switch-section {
+    margin-top: -40px;
 
     h2 {
         margin-bottom: 20px;
     }
 
     p {
-        @include font-size-level4;
-        max-width: 24em;
-        margin: 0 auto 1.25em;
+        margin: 0 auto 40px;
+        max-width: 30em;
     }
 
-    ul {
-        margin-bottom: 0;
-
-        li {
-            @include font-size-level4;
-            font-weight: bold;
-            margin: 40px 0;
-            padding-top: 120px;
-            position: relative;
-            z-index: 1;
-
-            &:before {
-                background: #0080ff url('/media/img/firefox/home/icon-sprite.svg') center 0 no-repeat;
-                background: url('/media/img/firefox/home/icon-sprite.svg') center 0 no-repeat,
-                            linear-gradient(to bottom, #0080ff 0%, #00feff 100%) top left;
-                border-radius: 100%;
-                content: '';
-                height: 100px;
-                left: 50%;
-                margin-left: -50px;
-                position: absolute;
-                top: 0;
-                width: 100px;
-                z-index: 1;
-            }
-
-            &.bookmarks:before {
-                background-position: center top -137px;
-                background-position: center top -137px, top left;
-            }
-
-            &.auto-fill:before {
-                background-position: center top 20px;
-                background-position: center top 20px, top left;
-            }
-
-            &.passwords:before {
-                background-position: center top -580px;
-                background-position: center top -580px, top left;
-            }
-
-            &.history:before {
-                background-position: center top -431px;
-                background-position: center top -431px, top left;
-            }
-        }
+    a:link,
+    a:visited {
+        color: #000;
+        display: block;
+        font-weight: bold;
+        margin: 20px 0;
+        text-decoration: underline;
     }
 
-    @media #{$mq-tablet} {
-        ul {
-            display: flex;
-            flex-wrap: wrap;
+    a:hover,
+    a:active,
+    a:focus {
+        text-decoration: none;
+    }
 
-            li {
-                margin: 40px auto;
-                width: 25%;
-            }
-        }
+    .section-content {
+        margin-bottom: 40px;
+    }
+
+    .section-media a {
+        display: block;
+        margin: 0 auto;
+        max-width: 500px;
     }
 
     @media #{$mq-desktop} {
-        ul {
-            li {
-                padding-top: 145px;
+        margin-top: 0;
+        text-align: left;
 
-                &:before {
-                    height: 125px;
-                    margin-left: -62.5px;
-                    width: 125px;
-                }
+        h2.section-title:before {
+            left: 0;
+            margin-left: 0;
+        }
 
-                &.bookmarks:before {
-                    background-position: center top -125px;
-                    background-position: center top -125px, top left;
-                }
+        p {
+            margin-bottom: 0;
+        }
 
-                &.auto-fill:before {
-                    background-position: center top 32px;
-                    background-position: center top 32px, top left;
-                }
+        .section-content {
+            float: right;
+            width: 38%;
+        }
 
-                &.passwords:before {
-                    background-position: center top -568px;
-                    background-position: center top -568px, top left;
-                }
+        .section-media {
+            float: left;
+            width: 55%;
 
-                &.history:before {
-                    background-position: center top -419px;
-                    background-position: center top -419px, top left;
-                }
+            a {
+                margin: 0;
+                max-width: none;
             }
         }
     }
 }
 
-html[dir="rtl"] .data-import-section {
+html[dir="rtl"] .switch-section {
+    @media #{$mq-desktop} {
+        text-align: right;
 
-    @media #{$mq-desktop-wide} {
-
-        ul {
-
-            li:after {
-                left: auto;
-                right: 50%;
-            }
-
-            &:after {
-                left: 25px;
-                right: auto;
-            }
-        }
-    }
-}
-
-@supports (display: grid) {
-
-    .data-import-section {
-
-        @media #{$mq-desktop} {
-            ul {
-                display: grid;
-                grid-gap: 20px;
-                grid-template-columns: repeat(4, 1fr);
-
-                li {
-                    margin: 40px 0;
-                    width: auto;
-                }
-            }
+        h2.section-title:before {
+            left: auto;
+            right: 0;
         }
 
-        @media #{$mq-desktop-wide} {
-
-            ul {
-                grid-template-columns: repeat(5, 1fr);
-                position: relative;
-
-                li:after {
-                    background: linear-gradient(to bottom, #00bdff 0%, #00bdff 100%);
-                    content: '';
-                    height: 6px;
-                    left: 50%;
-                    position: absolute;
-                    top: 60px;
-                    width: 100%;
-                    z-index: 0;
-                }
-
-                &:after {
-                    background: url('/media/img/firefox/home/data-truck.svg') center right no-repeat;
-                    content: '';
-                    height: 107px;
-                    position: absolute;
-                    right: 25px;
-                    top: 55px;
-                    width: 180px;
-                    z-index: 1;
-                }
-            }
+        .section-content {
+            float: left;
         }
-    }
 
-    html[dir="rtl"] .data-import-section {
-
-        @media #{$mq-desktop-wide} {
-
-            ul:after {
-                background-image: url('/media/img/firefox/home/data-truck-rtl.svg');
-            }
+        .section-media {
+            float: right;
         }
     }
 }
