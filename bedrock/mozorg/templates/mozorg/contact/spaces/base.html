@@ -1,0 +1,40 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/contact-base.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Spaces') }}{% endblock %}
+
+{% block string_data %}
+  {# L10n: Used as a labels for a form dropdown to navigate to other pages. #}
+  data-nav-label='{{_('Select a space:')}}'
+{% endblock %}
+
+{% block tab_navigation %}
+  {% with current = 'spaces' %}
+    {% include 'mozorg/contact/includes/tab-nav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block contact_nav %}
+  {% include 'mozorg/contact/spaces/includes/nav.html' %}
+{% endblock %}
+
+{% block meta_category %}
+<aside id="meta-spaces" class="meta-category">
+  <ul class="meta-help">
+    <li><a href="https://wiki.mozilla.org/People:MozSpaces_Guidelines">{{ _('MozSpace Guidelines') }}</a></li>
+    <li>
+    {% trans link_question='mailto:mozspaces@mozilla.com' %}
+      Have a question about MozSpaces? <a href="{{ link_question }}" class="go">Ask us here</a>
+    {% endtrans %}
+    </li>
+  </ul>
+
+  <ul class="meta-contact">
+    <li>IRC: <a href="irc://irc.mozilla.org/MozillaSpaces">#MozillaSpaces</a></li>
+    <li><a href="https://twitter.com/MozillaSpaces">@MozillaSpaces</a></li>
+  </ul>
+</aside>
+{% endblock %}

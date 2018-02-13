@@ -1,0 +1,32 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/communities/base.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Latin America') }}{% endblock %}
+
+{% block map %}
+  {{ map_image('img/contact/osm/communities/latin-america-large.jpg', 'img/contact/osm/communities/latin-america-large-high-res.jpg') }}
+{% endblock %}
+
+{% block contact_nav %}
+  {% with current='latin-america', region='latin-america' %}
+    {% include 'mozorg/contact/communities/includes/nav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry" id="latin-america" data-tab="communities">
+      <h2>{{ _('Latin America') }}</h2>
+      <p>
+      {% trans %}
+        See what's going on with Mozilla near you. Find a site in your language
+        (or start your own), see upcoming events and learn about other contribution
+        opportunities.
+      {% endtrans %}
+      </p>
+    </section>
+  </div>
+{% endblock %}

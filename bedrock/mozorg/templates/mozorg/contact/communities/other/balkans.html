@@ -1,0 +1,46 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/communities/base.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Balkans') }}{% endblock %}
+
+{% block map %}
+  {{ map_image('img/contact/osm/communities/balklans-large.jpg', 'img/contact/osm/communities/balklans-large-high-res.jpg') }}
+{% endblock %}
+
+{% block contact_nav %}
+  {% with current='balkans' %}
+    {% include 'mozorg/contact/communities/includes/nav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-community" id="balkans" data-tab="communities">
+      <div class="card">
+        <h2>{{ _('Balkans') }}</h2>
+        <ul class="extra">
+          <li><a class="email" href="irc://irc.mozilla.org/balkans">IRC: balkans</a></li>
+          <li><a class="irc" href="https://lists.mozilla.org/listinfo/community-balkans">{{ _('Mailing list') }}</a></li>
+          <li><a class="flickr" href="https://www.flickr.com/search/?q=mozbalkans10">Flickr sets</a> </li>
+        </ul>
+
+        <figure class="feature-img">
+          {{ high_res_img('contact/osm/communities/balklans-small.png', {'alt': '', 'width': '380', 'height': '250'}) }}
+        </figure>
+      </div>
+
+      <section class="gallery">
+        <h3>{{ _('Photo gallery') }}</h3>
+        <ul class="gallery-list">
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/balkans-01.jpg') }}"><img src="{{ static('img/contact/pictures/balkans-01-th.jpg') }}" alt="1"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/balkans-02.jpg') }}"><img src="{{ static('img/contact/pictures/balkans-02-th.jpg') }}" alt="2"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/balkans-03.jpg') }}"><img src="{{ static('img/contact/pictures/balkans-03-th.jpg') }}" alt="3"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/balkans-04.jpg') }}"><img src="{{ static('img/contact/pictures/balkans-04-th.jpg') }}" alt="4"></a></li>
+        </ul>
+      </section>
+    </section>
+  </div>
+{% endblock %}

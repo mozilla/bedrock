@@ -1,0 +1,38 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+<nav id="nav-spaces" class="nav-category" role="navigation">
+  <ul>
+    <li {% if current == 'mountain-view' %}class="current"{% endif %} data-id="mountain-view">
+      <a href="{{ url('mozorg.contact.spaces.mountain-view') }}">{{ _('Mountain View') }}</a>
+    </li>
+    <li {% if current == 'beijing' %}class="current"{% endif %} data-id="beijing">
+      <a href="{{ url('mozorg.contact.spaces.beijing') }}">{{ _('Beijing') }}</a>
+    </li>
+    <li {% if current == 'berlin' %}class="current"{% endif %} data-id="berlin">
+      <a href="{{ url('mozorg.contact.spaces.berlin') }}">{{ _('Berlin') }}</a>
+    </li>
+    <li {% if current == 'london' %}class="current"{% endif %} data-id="london">
+      <a href="{{ url('mozorg.contact.spaces.london') }}">{{ _('London') }}</a>
+    </li>
+    <li {% if current == 'paris' %}class="current"{% endif %} data-id="paris">
+      <a href="{{ url('mozorg.contact.spaces.paris') }}">{{ _('Paris') }}</a>
+    </li>
+    <li {% if current == 'portland' %}class="current"{% endif %} data-id="portland">
+      <a href="{{ url('mozorg.contact.spaces.portland') }}">{{ _('Portland') }}</a>
+    </li>
+    <li {% if current == 'san-francisco' %}class="current"{% endif %} data-id="san-francisco">
+      <a href="{{ url('mozorg.contact.spaces.san-francisco') }}">{{ _('San Francisco') }}</a>
+    </li>
+    <li {% if current == 'taipei' %}class="current"{% endif %} data-id="taipei">
+      <a href="{{ url('mozorg.contact.spaces.taipei') }}">{{ _('Taipei') }}</a>
+    </li>
+    <li {% if current == 'toronto' %}class="current"{% endif %} data-id="toronto">
+      <a href="{{ url('mozorg.contact.spaces.toronto') }}">{{ _('Toronto') }}</a>
+    </li>
+    <li {% if current == 'vancouver' %}class="current"{% endif %} data-id="vancouver">
+      <a href="{{ url('mozorg.contact.spaces.vancouver') }}">{{ _('Vancouver') }}</a>
+    </li>
+  </ul>
+</nav>

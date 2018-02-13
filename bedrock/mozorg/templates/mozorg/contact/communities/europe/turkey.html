@@ -1,0 +1,36 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/communities/europe/landing.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Turkey') }}{% endblock %}
+
+{% block contact_nav %}
+  {% with current='turkey', region='europe' %}
+    {% include 'mozorg/contact/communities/includes/nav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-community" id="turkey" data-tab="communities">
+      <div class="card">
+        <h2>{{ _('Turkey') }}</h2>
+
+        <img class="logo" src="{{ static('img/contact/logo-turkey.png') }}" alt="">
+
+        <ul class="extra">
+          <li><a href="http://www.mozilla.org.tr/" class="website">www.mozilla.org.tr</a></li>
+          <li><a href="https://lists.mozilla.org/listinfo/community-turkey" class="email">{{ _('Mailing list') }}</a></li>
+          <li><a href="https://twitter.com/FirefoxTurkiye" class="twitter">@FirefoxTurkiye</a></li>
+          <li><a href="https://www.facebook.com/FirefoxTurkiye" class="facebook">Facebook</a></li>
+        </ul>
+
+        <figure class="feature-img">
+          {{ high_res_img('contact/osm/communities/turkey-small.png', {'alt': '', 'width': '380', 'height': '250'}) }}
+        </figure>
+      </div>
+    </section>
+  </div>
+{% endblock %}

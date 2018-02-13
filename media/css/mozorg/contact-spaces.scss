@@ -1,0 +1,827 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+@import '../hubs/sections';
+@import '../hubs/masthead';
+
+/* -------------------------------------------------------------------------- */
+// Common elements and variables
+
+@font-face {
+    font-family: FA-Icons-Contact;
+    font-style: normal;
+    font-weight: normal;
+    src: url('/media/fonts/icons-contact.woff2') format('woff2'),
+         url('/media/fonts/icons-contact.woff') format('woff');
+}
+
+$lightGray: lighten(#e7e5e2, 6%);
+
+a:link,
+a:visited {
+    color: $color-link;
+}
+
+a:hover,
+a:active,
+a:focus {
+    color: darken($color-link, 10%);
+}
+
+// Add a double-arrow after 'go' links
+.go {
+   @include trailing-arrow;
+}
+
+/* -------------------------------------------------------------------------- */
+// Main page header
+
+.page-head {
+    .page-title {
+        @include font-size-huge;
+        color: #fff;
+        display: inline-block;
+        line-height: 1.3;
+
+        span {
+            @include box-decoration-break(clone);
+            background-color: #000;
+        }
+    }
+
+    .help a {
+        display: block;
+    }
+
+    @media #{$mq-desktop} {
+        @include clearfix;
+        padding: 60px 0 20px;
+
+        .page-title {
+            float: left;
+        }
+
+        .help {
+            float: right;
+            text-align: right;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        .help a {
+            display: inline;
+        }
+    }
+}
+
+html[dir="rtl"] {
+    .page-head {
+        @media #{$mq-desktop} {
+
+            .page-title {
+                float: right;
+            }
+
+            .help {
+                float: left;
+                text-align: left;
+            }
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Large map
+
+.map {
+    background: rgba(149, 211, 241, .5);
+    display: none;
+    position: relative;
+
+    img {
+        display: none;
+    }
+
+    small {
+        @include font-size-extra-small;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.7);
+        padding: 0 2px;
+    }
+
+    @media #{$mq-tablet} {
+        display: block;
+
+        img {
+            display: block;
+        }
+    }
+
+    @media screen and (min-width: $width-max-content) {
+        height: 380px;
+    }
+}
+
+html[dir="rtl"] {
+    .map small {
+        right: auto;
+        left: 0;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Tab navigation
+
+.page-content {
+    position: relative;
+}
+
+.category-tabs {
+    @include font-size(14px);
+    @include open-sans;
+    text-align: left;
+
+    li {
+        display: inline-block;
+        margin: 0 5px 0 0;
+        position: relative;
+
+        &.current a {
+            background-position: 100% -60px;
+            color: $color-text-secondary;
+            cursor: default;
+        }
+
+        &:last-child {
+            margin: 0;
+        }
+
+        a {
+            background-color: $lightGray;
+            display: block;
+            height: 40px;
+            line-height: 40px;
+            position: relative;
+            text-decoration: none;
+            z-index: 10;
+            padding: 0 10px;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        left: 0;
+        position: absolute;
+        text-align: center;
+        top: -40px;
+
+        li {
+            width: 144px;
+            margin: 0;
+
+            a {
+                background: url('/media/img/firefox/pager-tabs.png') 0 -60px no-repeat;
+                padding: 0;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        @include font-size(16px);
+
+        li {
+            width: 218px;
+
+            a {
+                background-position: 0 0;
+            }
+
+            &.current a {
+                background-position: 100% 0;
+            }
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        left: 20px;
+    }
+}
+
+html[dir="rtl"] {
+    .category-tabs {
+        text-align: right;
+
+        li {
+            margin: 0 0 0 5px;
+
+            &:last-child {
+                margin: 0;
+            }
+        }
+
+        @media #{$mq-tablet} {
+            left: auto;
+            right: 0;
+            text-align: center;
+        }
+
+        @media #{$mq-desktop-wide} {
+            left: auto;
+            right: 20px;
+        }
+    }
+
+}
+
+/* -------------------------------------------------------------------------- */
+// Side navigation
+
+.nav-category {
+    @include font-size-level6;
+    @include open-sans;
+    padding-top: 40px;
+    width: 220px;
+
+    ul {
+        margin: 0 0 30px;
+    }
+
+    li {
+        border-bottom: 1px solid #d7d7db;
+        line-height: 1;
+        list-style: none;
+        margin: 0;
+        text-transform: uppercase;
+
+        &:last-child {
+            border: 0;
+        }
+    }
+
+    a {
+        display: block;
+        padding: 1em 20px;
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: $lightGray;
+            color: #000;
+        }
+    }
+
+    .current > a {
+        background-color: $lightGray;
+        color: $color-text-primary;
+        font-weight: bold;
+
+        &:hover {
+            cursor: default;
+        }
+    }
+
+    .submenu {
+        display: none;
+        margin: 0;
+
+        li {
+            border-bottom: 0;
+            text-transform: none;
+
+            a {
+                @include font-size-small;
+                padding-left: 30px;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    background-color: $lightGray;
+                    color: #000;
+                }
+            }
+        }
+    }
+
+    .region.open .submenu {
+        display: block;
+    }
+
+    .current > a {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAVCAMAAACnruT/AAAADFBMVEX///////8AAAD///8FAGTCAAAAA3RSTlP2MwC/VK6MAAAAOUlEQVR42mXOsQ0AMAgDQRL23znf5F2Y6owQMNc6WE64E2KJJZZYYonht0y/5w3Z33cN/af/G7DhAe6MAeVz0UYBAAAAAElFTkSuQmCC');
+        background-position: right 50%;
+        background-repeat: no-repeat;
+    }
+
+    // down arrow
+    .hasmenu > a {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFBAMAAABlfdtYAAAAHlBMVEXj2dnj2dnj2dnj2dnj2dnj2dnj2dnj2dkAAADj2dkWOMusAAAACXRSTlO9FY0G16cPxQCXNA3IAAAAJUlEQVQIHWPQnDlzpgJD68yZUxsYmitnFjcwdKRMyQCSjYwdDQC1DQvjVlZh+AAAAABJRU5ErkJggg==');
+        background-position: 96% 50%;
+        background-repeat: no-repeat;
+    }
+
+    // up arrow
+    .hasmenu.open > a {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFBAMAAABlfdtYAAAAHlBMVEXj2dnj2dnj2dnj2dnj2dnj2dnj2dnj2dkAAADj2dkWOMusAAAACXRSTlO9FY0G16cPxQCXNA3IAAAAJklEQVQIHWPqaGTsaGBieDz5AQPTb1FWbgYmJgUGJQamJQwMLAsAgvQHHy1uf2MAAAAASUVORK5CYII=');
+    }
+
+    .hasmenu.current > a {
+        background-color: $lightGray;
+    }
+}
+
+.js .nav-category {
+    display: none;
+
+    @media #{$mq-tablet} {
+        display: block;
+    }
+}
+
+html[dir="rtl"] {
+    .nav-category .submenu li a {
+        padding-left: 0;
+        padding-right: 30px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Mobile <select> navigation
+
+label[for="nav-category-select"] {
+    @include font-size(14px);
+    @include open-sans;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.nav-category-select {
+    @include font-size(14px);
+    @include open-sans;
+    display: block;
+    height: auto;
+    margin-bottom: 20px;
+    max-width: 380px;
+    width: 100%;
+}
+
+@media #{$mq-tablet} {
+    label[for="nav-category-select"],
+    .nav-category-select {
+        display: none;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Contact entry main page content (either a space or a community)
+
+#entry-container {
+    position: relative;
+
+    @media #{$mq-tablet} {
+        float: right;
+        width: calc(100% - 220px);
+    }
+}
+
+// contact-us landing page has no side navigation.
+.contact-us #entry-container {
+    @media #{$mq-tablet} {
+        float: none;
+        width: 100%;
+    }
+}
+
+html[dir="rtl"] {
+    #entry-container {
+        @media #{$mq-tablet} {
+            float: left;
+        }
+    }
+
+    .contact-us #entry-container {
+        @media #{$mq-tablet} {
+            float: none;
+        }
+    }
+}
+
+.entry {
+    margin-bottom: 30px;
+
+    .card {
+        margin: 0 0 20px;
+        min-height: 250px;
+        position: relative;
+
+        .logo {
+            display: block;
+            margin-bottom: 20px;
+            max-width: 150px;
+        }
+
+        h2 span {
+            @include visually-hidden;
+        }
+
+        .adr {
+            margin: 0 0 .5em;
+            padding-left: 30px;
+            position: relative;
+
+            &:before {
+                color: #b50f10;
+                content: '\e800';
+                font: 105% FA-Icons-Contact;
+                left: 0;
+                position: absolute;
+                top: .125em;
+            }
+        }
+
+        .extra {
+
+            li {
+                list-style: none;
+                margin: .25em 0 0;
+            }
+
+            a {
+                padding-left: 30px;
+                position: relative;
+
+                &:before {
+                    color: #b50f10;
+                    font: 105% FA-Icons-Contact;
+                    left: 0;
+                    position: absolute;
+                    top: .125em;
+                }
+            }
+        }
+
+        // A feature image for each entry; either a mini-map or logo.
+        .feature-img img {
+            display: block;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        padding: 40px 0 40px 40px;
+    }
+}
+
+.entry-space .card {
+
+    @media #{$mq-desktop-wide} {
+        padding-left: 480px;
+
+        .feature-img {
+            height: 250px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 460px;
+        }
+    }
+}
+
+.entry-community .card {
+
+    @media #{$mq-desktop} {
+        padding-left: 320px;
+
+        .feature-img {
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 300px;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        padding-left: 400px;
+
+        h2 {
+            max-width: 70%;
+        }
+
+        .logo {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .feature-img {
+            width: 380px;
+        }
+    }
+}
+
+// Icons
+.card .extra a.website:before { content: '\e803'; }
+.card .extra a.email:before { content: '\e806'; }
+.card .extra a.doc:before { content: '\e810'; }
+.card .extra a.book:before { content: '\e80e'; }
+.card .extra a.irc:before { content: '\e811'; }
+.card .extra a.twitter:before { content: '\e809'; }
+.card .extra a.facebook:before { content: '\e802'; }
+.card .extra a.gplus:before { content: '\f0d5'; }
+.card .extra a.instagram:before { content: '\e80a'; }
+.card .extra a.youtube:before { content: '\e80c'; }
+.card .extra a.flickr:before { content: '\e807'; }
+
+html[dir="rtl"] {
+    .entry {
+        .card {
+            .adr {
+                padding-left: 0;
+                padding-right: 30px;
+
+                &:before {
+                    left: auto;
+                    right: 0;
+                }
+            }
+
+            .extra {
+                a {
+                    padding-left: 0;
+                    padding-right: 30px;
+
+                    &:before {
+                        left: auto;
+                        right: 0;
+                    }
+                }
+            }
+        }
+
+        @media #{$mq-tablet} {
+            padding: 40px 40px 40px 0;
+        }
+    }
+
+    .entry-space .card {
+
+        @media #{$mq-desktop-wide} {
+            padding-left: 0;
+            padding-right: 480px;
+
+            .feature-img {
+                left: auto;
+                right: 0;
+            }
+        }
+    }
+
+    .entry-community .card {
+
+        @media #{$mq-desktop} {
+            padding-left: 0;
+            padding-right: 320px;
+
+            .feature-img {
+                left: auto;
+                right: 0;
+            }
+        }
+
+        @media #{$mq-desktop-wide} {
+            padding-left: 0;
+            padding-right: 400px;
+
+            .logo {
+                left: 0;
+                right: auto;
+            }
+        }
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+// Image & Video media
+
+// .Gallery - for a gallery of thumbnail images
+// .Media - for large, single images or videos (not a thumbnail gallery)
+.gallery,
+.media {
+    @include clearfix;
+    margin: 0 0 20px;
+    padding: 20px 0 0;
+}
+
+.media {
+    max-width: 460px;
+}
+
+.gallery-list {
+    margin: 20px 0;
+    position: relative;
+
+    li {
+        float: left;
+        margin: 0 20px 20px 0;
+        max-height: 110px;
+        width: calc(50% - 20px);
+
+        a,
+        img {
+            display: block;
+        }
+    }
+
+    a:hover img,
+    a:focus img {
+        border-color: $color-link-blue;
+    }
+
+    @media #{$mq-desktop} {
+        li {
+            width: calc(25% - 20px);
+        }
+    }
+}
+
+html[dir="rtl"] {
+    .gallery-list {
+        li {
+            float: right;
+            margin: 0 0 20px 20px;
+        }
+    }
+}
+
+@supports (display: grid) {
+    .gallery-list {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(2, 1fr);
+
+        li {
+            margin: 0;
+            width: 100%;
+        }
+
+        @media #{$mq-phone-wide} {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media #{$mq-desktop} {
+            grid-template-columns: repeat(4, 1fr);
+
+            li {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.media img,
+.media video,
+.media iframe {
+    height: auto;
+    margin: 0 auto 1.5em;
+    max-width: 100%;
+}
+
+/* -------------------------------------------------------------------------- */
+// Footers for the tab content, one for spaces and one for community.
+
+.meta-category {
+    @include font-size-level6;
+    border-top: 1px solid #d7d7db;
+    clear: both;
+    padding: 20px 0 0;
+
+    ul {
+        list-style: none;
+    }
+
+    li {
+        display: block;
+    }
+
+    @media #{$mq-desktop} {
+        @include clearfix;
+
+        ul {
+            float: left;
+        }
+
+        li {
+            display: inline;
+            margin-right: 10px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        .meta-contact {
+            float: right;
+        }
+    }
+}
+
+.attribution {
+    @include font-size-small;
+    margin: 40px 0;
+
+    @media #{$mq-desktop} {
+        text-align: right;
+    }
+}
+
+html[dir="rtl"] {
+    .meta-category {
+        @media #{$mq-desktop} {
+
+            ul {
+                float: right;
+            }
+
+            li {
+                margin-left: 10px;
+                margin-right: 0;
+
+                &:last-child {
+                    margin-left: 0;
+                }
+            }
+
+            .meta-contact {
+                float: left;
+            }
+        }
+    }
+
+    .attribution {
+        @media #{$mq-desktop} {
+            text-align: left;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Contact links
+
+#contact {
+
+    p {
+        max-width: 35em;
+
+    }
+
+    .contact-sections {
+        margin: 40px 0;
+    }
+
+    @media #{$mq-desktop} {
+        .contact-sections {
+            @include clearfix;
+            position: relative;
+        }
+
+        .contact-section {
+            float: left;
+            width: calc(33% - 20px);
+            margin-right: 20px;
+        }
+
+        @supports (display: grid) {
+            .contact-sections {
+                display: grid;
+                grid-gap: 20px;
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .contact-section {
+                width: auto;
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+html[dir="rtl"] {
+    #contact {
+        @media #{$mq-desktop} {
+            .contact-section {
+                float: right;
+                margin-right: 0;
+                margin-left: 20px;
+            }
+
+            @supports (display: grid) {
+                .contact-section {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}

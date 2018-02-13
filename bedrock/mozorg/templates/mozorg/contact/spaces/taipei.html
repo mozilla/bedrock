@@ -2,9 +2,19 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "mozorg/contact/contact-base.html" %}
+{% extends "mozorg/contact/spaces/base.html" %}
 
 {% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Taipei') }}{% endblock %}
+
+{% block map %}
+  {{ map_image('img/contact/osm/spaces/taipei-large.jpg', 'img/contact/osm/spaces/taipei-large-high-res.jpg') }}
+{% endblock %}
+
+{% block contact_nav %}
+  {% with current = 'taipei' %}
+    {% include 'mozorg/contact/spaces/includes/nav.html' %}
+  {% endwith %}
+{% endblock %}
 
 {% block contact_entry %}
   <div id="entry-container">
@@ -26,8 +36,7 @@
         </ul>
 
         <figure class="feature-img">
-          {% set pin = static('img/contact/moz-map-pin.png')|absolute_url %}
-          <img src="https://api.tiles.mapbox.com/v4/{{ settings.MAPBOX_TOKEN }}/url-{{ pin|urlencode }}(121.56705,25.03265)/121.56705,25.03265,16/460x250.png?access_token={{ settings.MAPBOX_ACCESS_TOKEN }}" alt="">
+          {{ high_res_img('contact/osm/spaces/taipei-small.png', {'alt': '', 'width': '460', 'height': '250'}) }}
         </figure>
       </div>
 

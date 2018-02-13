@@ -1,0 +1,34 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/communities/latin-america/landing.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Argentina') }}{% endblock %}
+
+{% block contact_nav %}
+  {% with current='argentina', region='latin-america' %}
+    {% include 'mozorg/contact/communities/includes/nav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-community" id="argentina" data-tab="communities">
+      <div class="card">
+        <h2>{{ _('Argentina') }}</h2>
+
+        <ul class="extra">
+          <li><a href="http://www.mozilla-hispano.org/ar/" class="website">mozilla-hispano.org/ar/</a></li>
+          <li><a href="https://www.facebook.com/mozilla.ar" class="facebook">Facebook</a></li>
+          <li><a href="https://twitter.com/mozargentina" class="twitter">@mozargentina</a></li>
+          <li><a href="https://listas.usla.org.ar/cgi-bin/mailman/listinfo/mozilla-general" class="email">{{ _('Mailing list') }}</a>
+        </ul>
+
+        <figure class="feature-img">
+          {{ high_res_img('contact/osm/communities/argentina-small.png', {'alt': '', 'width': '380', 'height': '250'}) }}
+        </figure>
+      </div>
+    </section>
+  </div>
+{% endblock %}

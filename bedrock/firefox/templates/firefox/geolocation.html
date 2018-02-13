@@ -30,7 +30,7 @@
   </p>
 </div>
 
-<div id="main-content" data-mapbox="{{ settings.MAPBOX_TOKEN }}" data-token="{{ settings.MAPBOX_ACCESS_TOKEN }}">
+<div id="main-content">
 
 <div class="main-column">
 
@@ -217,14 +217,6 @@
 
 </section><!-- end #faq -->
 
-<div class="hidden">
-  <div id="geo-demo">
-    <div id="map_canvas"></div>
-    <button id="locateButton" type="button">{{ _('Where am I?') }}</button>
-    <img id="geo-busy" src="{{ static('img/ajax_loading.gif') }}" alt="busy"/>
-    <p id="geodemo-error">{{ _('Oops! An error occurred while trying to determine your position.') }}</p>
-  </div>
-</div>
 </div>
 
 </div> <!-- end #main -->

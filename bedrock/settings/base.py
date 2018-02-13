@@ -1195,12 +1195,6 @@ FIREFOX_TWITTER_ACCOUNTS = {
     'pt-BR': 'https://twitter.com/firefoxbrasil',
 }
 
-# Mapbox token for spaces and communities pages
-MAPBOX_TOKEN = config('MAPBOX_TOKEN', default='mozilla-webprod.ijaeac5j')
-MAPBOX_ACCESS_TOKEN = config(
-    'MAPBOX_ACCESS_TOKEN',
-    default='pk.eyJ1IjoibW96aWxsYS13ZWJwcm9kIiwiYSI6Ii0xYVEtTW8ifQ.3ikA2IgKATeXStfC5wKDaQ')
-
 # Tabzilla Information Bar default options
 TABZILLA_INFOBAR_OPTIONS = 'update translation'
 
@@ -1356,8 +1350,6 @@ CSP_IMG_SRC = CSP_DEFAULT_SRC + (
     '*.optimizely.com',
     'www.googletagmanager.com',
     'www.google-analytics.com',
-    '*.tiles.mapbox.com',
-    'api.mapbox.com',
     'creativecommons.org',
 )
 CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + (
@@ -1393,8 +1385,6 @@ CSP_CONNECT_SRC = CSP_DEFAULT_SRC + (
     '*.optimizely.com',
     'www.googletagmanager.com',
     'www.google-analytics.com',
-    '*.tiles.mapbox.com',
-    'api.mapbox.com',
 )
 CSP_REPORT_ONLY = config('CSP_REPORT_ONLY', default=False, cast=bool)
 CSP_REPORT_ENABLE = config('CSP_REPORT_ENABLE', default=False, cast=bool)

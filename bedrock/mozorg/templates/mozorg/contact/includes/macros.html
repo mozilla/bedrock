@@ -1,0 +1,13 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{# Picture element hack to make sure the map image only gets downloaded when visible on large viewports. Smaller viewports get a 1px spacer gif. #}
+
+{% macro map_image(low_res_url, high_res_url) -%}
+<picture>
+  <source srcset="{{ static(low_res_url) }} 1250w, {{ static(high_res_url) }} 2500w" media="(min-width: 760px)">
+  <source srcset="{{ static('img/contact/osm/spacer.gif') }}" media="(max-width: 759px)">
+  <img src="{{ static(low_res_url) }}" alt="" width="1250" height="380">
+</picture>
+{%- endmacro %}

@@ -1,0 +1,46 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/communities/latin-america/landing.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Nicaragua') }}{% endblock %}
+
+{% block contact_nav %}
+  {% with current='nicaragua', region='latin-america' %}
+    {% include 'mozorg/contact/communities/includes/nav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-community" id="nicaragua" data-tab="communities">
+      <div class="card">
+        <img src="{{ static('img/contact/logo-nicaragua.png') }}" class="logo" alt="">
+        <h2>{{ _('Nicaragua') }}</h2>
+
+        <ul class="extra">
+          <li><a href="http://mozillanicaragua.wordpress.com" class="website">mozillanicaragua.wordpress.com</a></li>
+          <li><a href="mailto:mozillanicaragua@gmail.com" class="email">mozillanicaragua@gmail.com</a></li>
+          <li><a href="https://twitter.com/Mozilla_Nic" class="twitter">@Mozilla_Nic</a></li>
+          <li><a href="https://www.facebook.com/mozillanicaragua" class="facebook">Facebook</a></li>
+        </ul>
+
+        <figure class="feature-img">
+          {{ high_res_img('contact/osm/communities/nicaragua-small.png', {'alt': '', 'width': '380', 'height': '250'}) }}
+        </figure>
+      </div>
+
+      <section class="gallery">
+        <h3>{{ _('Photo gallery') }}</h3>
+        <ul class="gallery-list">
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/nicaragua-01.jpg') }}"><img src="{{ static('img/contact/pictures/nicaragua-01-th.jpg') }}" alt="1"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/nicaragua-02.jpg') }}"><img src="{{ static('img/contact/pictures/nicaragua-02-th.jpg') }}" alt="2"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/nicaragua-03.jpg') }}"><img src="{{ static('img/contact/pictures/nicaragua-03-th.jpg') }}" alt="3"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/nicaragua-04.jpg') }}"><img src="{{ static('img/contact/pictures/nicaragua-04-th.jpg') }}" alt="4"></a></li>
+        </ul>
+      </section>
+
+    </section>
+  </div>
+{% endblock %}

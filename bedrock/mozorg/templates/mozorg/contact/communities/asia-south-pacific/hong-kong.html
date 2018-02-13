@@ -1,0 +1,36 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/communities/asia-south-pacific/landing.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Hong Kong') }}{% endblock %}
+
+{% block contact_nav %}
+  {% with current='hong-kong', region='asia' %}
+    {% include 'mozorg/contact/communities/includes/nav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-community" id="hong-kong" data-tab="communities">
+      <div class="card">
+        <h2>{{ _('Hong Kong') }}</h2>
+
+        <img class="logo" src="{{ static('img/contact/logo-hong-kong.png') }}" alt="">
+
+        <ul class="extra">
+          <li><a href="http://blog.mozillahk.org/" class="website">blog.mozillahk.org</a></li>
+          <li><a href="https://groups.google.com/d/forum/mozillahk" class="email">{{ _('Mailing list') }}</a></li>
+          <li><a href="https://twitter.com/mozillahk" class="twitter">@mozillahk</a></li>
+          <li><a href="https://www.facebook.com/mozillahk" class="facebook">Facebook</a></li>
+        </ul>
+
+        <figure class="feature-img">
+          {{ high_res_img('contact/osm/communities/hong-kong-small.png', {'alt': '', 'width': '380', 'height': '250'}) }}
+        </figure>
+      </div>
+    </section>
+  </div>
+{% endblock %}

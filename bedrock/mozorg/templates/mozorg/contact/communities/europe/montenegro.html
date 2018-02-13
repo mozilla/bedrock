@@ -1,0 +1,46 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/communities/europe/landing.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Montenegro') }}{% endblock %}
+
+{% block contact_nav %}
+  {% with current='montenegro', region='europe' %}
+    {% include 'mozorg/contact/communities/includes/nav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-community" id="montenegro" data-tab="communities">
+      <div class="card">
+        <h2>{{ _('Montenegro') }}</h2>
+
+        <img class="logo" src="{{ static('img/contact/logo-montenegro.png') }}" alt="">
+
+        <ul class="extra">
+          <li><a href="http://mozilla.me/" class="website">mozilla.me</a></li>
+          <li><a href="mailto:MozillaCrnaGora@gmail.com" class="email">{{ _('Mailing list') }}</a></li>
+          <li><a href="https://www.facebook.com/mozilla.me" class="facebook">Facebook</a></li>
+        </ul>
+
+        <figure class="feature-img">
+          {{ high_res_img('contact/osm/communities/montenegro-small.png', {'alt': '', 'width': '380', 'height': '250'}) }}
+        </figure>
+      </div>
+
+      <section class="gallery">
+        <h3>{{ _('Photo gallery') }}</h3>
+        <ul class="gallery-list">
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/montenegro-01.jpg') }}"><img src="{{ static('img/contact/pictures/montenegro-01-th.jpg') }}" alt="1"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/montenegro-02.jpg') }}"><img src="{{ static('img/contact/pictures/montenegro-02-th.jpg') }}" alt="2"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/montenegro-03.jpg') }}"><img src="{{ static('img/contact/pictures/montenegro-03-th.jpg') }}" alt="3"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/montenegro-04.jpg') }}"><img src="{{ static('img/contact/pictures/montenegro-04-th.jpg') }}" alt="4"></a></li>
+        </ul>
+      </section>
+
+    </section>
+  </div>
+{% endblock %}

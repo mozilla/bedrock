@@ -1,0 +1,44 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/communities/africa-middle-east/landing.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Algeria') }}{% endblock %}
+
+{% block contact_nav %}
+  {% with current='algeria', region='africa' %}
+    {% include 'mozorg/contact/communities/includes/nav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-community" id="algeria" data-tab="communities">
+      <div class="card">
+        <h2>{{ _('Algeria') }}</h2>
+
+        <ul class="extra">
+          <li><a href="http://mozilla-algeria.org/" class="website">mozilla-algeria.org</a></li>
+          <li><a href="https://lists.mozilla.org/listinfo/community-algeria" class="email">{{ _('Mailing list') }}</a></li>
+          <li><a href="https://twitter.com/MozillaAlgeria" class="twitter">@MozillaAlgeria</a></li>
+          <li><a href="https://facebook.com/MozillaAlgeria" class="facebook">Facebook</a></li>
+          <li><a href="irc://irc.mozilla.org/mozilla-algeria" class="irc">IRC: #mozilla-algeria</a></li>
+        </ul>
+
+        <figure class="feature-img">
+          {{ high_res_img('contact/osm/communities/algeria-small.png', {'alt': '', 'width': '380', 'height': '250'}) }}
+        </figure>
+      </div>
+
+      <section class="gallery">
+        <h3>{{ _('Photo gallery') }}</h3>
+        <ul class="gallery-list">
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/algeria-01.jpg') }}"><img src="{{ static('img/contact/pictures/algeria-01-th.jpg') }}" alt="1"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/algeria-02.jpg') }}"><img src="{{ static('img/contact/pictures/algeria-02-th.jpg') }}" alt="2"></a></li>
+        </ul>
+      </section>
+
+    </section>
+  </div>
+{% endblock %}

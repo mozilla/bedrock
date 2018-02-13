@@ -1,0 +1,46 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/communities/asia-south-pacific/landing.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('China') }}{% endblock %}
+
+{% block contact_nav %}
+  {% with current='china', region='asia' %}
+    {% include 'mozorg/contact/communities/includes/nav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-community" id="china" data-tab="communities">
+      <div class="card">
+        <h2>{{ _('China') }}</h2>
+
+        <ul class="extra">
+          <li><a href="http://mozilla.com.cn" class="website">mozilla.com.cn</a></li>
+          <li><a href="https://mail.mozilla.org/listinfo/contributor-zh-cn" class="email">{{ _('Mailing list') }}</a></li>
+          <li><a href="http://www.flickr.com/photos/mozillachina" class="flickr">Flickr</a></li>
+        </ul>
+
+        <figure class="feature-img">
+          {{ high_res_img('contact/osm/communities/china-small.png', {'alt': '', 'width': '380', 'height': '250'}) }}
+        </figure>
+      </div>
+
+      <section class="gallery">
+        <h3>{{ _('Photo gallery') }}</h3>
+        <ul class="gallery-list">
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/china-01.jpg') }}"><img src="{{ static('img/contact/pictures/china-01-th.jpg') }}" alt="1"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/china-02.jpg') }}"><img src="{{ static('img/contact/pictures/china-02-th.jpg') }}" alt="2"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/china-03.jpg') }}"><img src="{{ static('img/contact/pictures/china-03-th.jpg') }}" alt="3"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/china-04.jpg') }}"><img src="{{ static('img/contact/pictures/china-04-th.jpg') }}" alt="4"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/china-05.jpg') }}"><img src="{{ static('img/contact/pictures/china-05-th.jpg') }}" alt="5"></a></li>
+          <li class="gallery-image"><a href="{{ static('img/contact/pictures/china-06.jpg') }}"><img src="{{ static('img/contact/pictures/china-06-th.jpg') }}" alt="6"></a></li>
+        </ul>
+      </section>
+
+    </section>
+  </div>
+{% endblock %}

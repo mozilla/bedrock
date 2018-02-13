@@ -1,0 +1,36 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/communities/europe/landing.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('The Netherlands') }}{% endblock %}
+
+{% block contact_nav %}
+  {% with current='the-netherlands', region='europe' %}
+    {% include 'mozorg/contact/communities/includes/nav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-community" id="the-netherlands" data-tab="communities">
+      <div class="card">
+        <h2>{{ _('The Netherlands') }}</h2>
+
+        <img class="logo" src="{{ static('img/contact/logo-the-netherlands.png') }}" alt="">
+
+        <ul class="extra">
+          <li><a href="https://www.mozilla-nl.org/" class="website">www.mozilla-nl.org</a></li>
+          <li><a href="https://twitter.com/mozilla_nl" class="twitter">@mozilla_nl</a></li>
+          <li><a href="https://www.facebook.com/MozillaNederland/" class="facebook">Facebook</a></li>
+          <li><a href="irc://irc.mozilla.org/mozilla.nl" class="irc">IRC: #mozilla.nl</a></li>
+        </ul>
+
+        <figure class="feature-img">
+          {{ high_res_img('contact/osm/communities/the-netherlands-small.png', {'alt': '', 'width': '380', 'height': '250'}) }}
+        </figure>
+      </div>
+    </section>
+  </div>
+{% endblock %}

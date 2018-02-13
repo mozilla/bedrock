@@ -2,9 +2,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "mozorg/contact/contact-base.html" %}
+{% extends "mozorg/contact/spaces/base.html" %}
 
-{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Spaces') }}{% endblock %}
+{% block map %}
+  {{ map_image('img/contact/osm/spaces/all-large.jpg', 'img/contact/osm/spaces/all-large-high-res.jpg') }}
+{% endblock %}
 
 {% block contact_entry %}
   <div id="entry-container">

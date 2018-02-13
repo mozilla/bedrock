@@ -2,9 +2,19 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "mozorg/contact/contact-base.html" %}
+{% extends "mozorg/contact/spaces/base.html" %}
 
 {% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Mountain View') }}{% endblock %}
+
+{% block map %}
+  {{ map_image('img/contact/osm/spaces/mountain-view-large.jpg', 'img/contact/osm/spaces/mountain-view-large-high-res.jpg') }}
+{% endblock %}
+
+{% block contact_nav %}
+  {% with current = 'mountain-view' %}
+    {% include 'mozorg/contact/spaces/includes/nav.html' %}
+  {% endwith %}
+{% endblock %}
 
 {% block contact_entry %}
   <div id="entry-container">
@@ -27,8 +37,7 @@
         </ul>
 
         <figure class="feature-img">
-          {% set pin = static('img/contact/moz-map-pin.png')|absolute_url %}
-          <img src="https://api.tiles.mapbox.com/v4/{{ settings.MAPBOX_TOKEN }}/url-{{ pin|urlencode }}(-122.060197,37.387447)/-122.060197,37.387447,16/460x250.png?access_token={{ settings.MAPBOX_ACCESS_TOKEN }}" alt="">
+          {{ high_res_img('contact/osm/spaces/mountain-view-small.png', {'alt': '', 'width': '460', 'height': '250'}) }}
         </figure>
       </div>
 
@@ -43,22 +52,19 @@
         <h3>{{ _('Creating in the Open') }}</h3>
         <p>{{ _('What do you do when you have a giant sphere in the middle of the office? Watch artist Andrew Shoultz paint it and talk about his process and inspiration.') }}</p>
 
-        <div class="moz-video-container">
-          <button class="moz-video-button" type="button" aria-controls="spaces-video">{{ _('Play video') }}</button>
-          <video id="spaces-video" poster="{{ static('img/contact/poster-sphere.jpg') }}" controls preload="metadata">
-            <source src="//videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.webm" type="video/webm">
-            <source src="//videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.mp4" type="video/mp4">
-            <figure>
-              <img src="{{ static('img/contact/poster-sphere.jpg') }}" alt="">
-              <figcaption>
-            {% trans link_webm='//videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.webm',
-                     link_mp4='//videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.mp4' %}
-              Download this video in <a href="{{ link_webm }}">WebM</a> or <a href="{{ link_mp4 }}">MP4</a>.
-            {% endtrans %}
-              </figcaption>
-            </figure>
-          </video>
-        </div>
+        <video id="spaces-video" poster="{{ static('img/contact/poster-sphere.jpg') }}" controls preload="none" poster="{{ static('img/contact/poster-sphere.jpg') }}">
+          <source src="https://videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.webm" type="video/webm">
+          <source src="https://videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.mp4" type="video/mp4">
+          <figure>
+            <img src="{{ static('img/contact/poster-sphere.jpg') }}" alt="">
+            <figcaption>
+          {% trans link_webm='https://videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.webm',
+                    link_mp4='https://videos.cdn.mozilla.net/uploads/drafts/Creating_in_the%20Open.mp4' %}
+            Download this video in <a href="{{ link_webm }}">WebM</a> or <a href="{{ link_mp4 }}">MP4</a>.
+          {% endtrans %}
+            </figcaption>
+          </figure>
+        </video>
       </section>
 
     </section>

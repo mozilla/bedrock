@@ -1,467 +1,72 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "mozorg/base-resp.html" %}
+{% from "mozorg/contact/includes/macros.html" import map_image with context %}
+
+{% extends "base-pebbles.html" %}
 
 {% block page_title %}{{ _('Contacts, Spaces and Communities') }}{% endblock %}
 {% block body_id %}contact-spaces{% endblock %}
-{% block body_class %}sand{% endblock %}
 {% block body_attrs %}{{ super() }} data-global-nav-current-link="about-us"{% endblock %}
 
 {% block extrahead %}
   {% stylesheet 'contact-spaces' %}
-  <!--[if lte IE 8]>
-    {% stylesheet 'contact-spaces-oldie' %}
-  <![endif]-->
 {% endblock %}
 
-{% block js %}
-  <!--[if gte IE 9]><!-->
-    {% javascript 'contact-spaces' %}
-  <!--<![endif]-->
-  <!--[if lte IE 8]>
-    {% javascript 'contact-spaces-oldie' %}
-  <![endif]-->
+{% block site_header %}
+  {% if LANG.startswith('en-') %}
+    {% include 'includes/global-nav.html' %}
+  {% else %}
+    {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
+    {% include 'mozorg/home/includes/nav.html' %}
+  {% endif %}
 {% endblock %}
-
-{% block string_data %}
-  {# L10n: Used as a labels for a form dropdown to navigate to other pages. #}
-  data-nav-spaces='{{_('Select spaces')}}'
-  data-nav-communities='{{_('Select communities')}}'
-{% endblock %}
-
-{% block site_header_logo %}{% endblock %}
 
 {% block content %}
 
-<main id="main-content" role="main" data-mapbox="{{ settings.MAPBOX_TOKEN }}" data-token="{{ settings.MAPBOX_ACCESS_TOKEN }}">
-  <header class="page-head container">
-    <h1 class="page-title title-shadow-box">{{ _('Where is Mozilla?') }}</h1>
-    <p class="help">
-    {% trans link_sumo='https://support.mozilla.org/' %}
-      Need help with Firefox? <a href="{{ link_sumo }}" class="go">Get it on our support site</a>
+<main id="main-content">
+  <div class="content">
+    <header class="page-head">
+      <h1 class="page-title"><span>{{ _('Where is Mozilla?') }}</span></h1>
+      <p class="help">
+      {% trans link_sumo='https://support.mozilla.org/' %}
+        Need help with Firefox? <a href="{{ link_sumo }}" class="go">Get it on our support site</a>
+      {% endtrans %}
+      </p>
+    </header>
+
+    <div class="map">
+      {% block map %}{% endblock %}
+      <small>© <a href="{{ link_openstreetmap }}">OpenStreetMap</a> contributors.</small>
+    </div>
+
+    <div class="page-content">
+      {% block tab_navigation %}
+        {% include 'mozorg/contact/includes/tab-nav.html' %}
+      {% endblock %}
+
+      {% block contact_entry %}{% endblock %}
+
+      {% block contact_nav %}{% endblock %}
+
+      {% block meta_category %}{% endblock %}
+
+    </div>{# end page-content #}
+
+    <p class="attribution">
+    {% trans link_openstreetmap='http://openstreetmap.org/copyright' %}
+      Maps © <a href="{{ link_openstreetmap }}">OpenStreetMap</a> contributors.
+    {% endtrans %}
+    {% trans %}
+      Community photos courtesy of Mozilla contributors, used with permission.
     {% endtrans %}
     </p>
-  </header>
-
-  <div id="map">
-    <ul class="legend" role="navigation" aria-controls="map entry-container" data-tab="communities">
-        <li data-id="north-america">
-          <a href="{{ url('mozorg.contact.communities.north-america') }}">{{ _('North America') }}</a>
-        </li>
-        <li data-id="latin-america">
-          <a href="{{ url('mozorg.contact.communities.latin-america') }}">{{ _('Latin America') }}</a>
-        </li>
-        <li data-id="europe">
-          <a href="{{ url('mozorg.contact.communities.europe') }}">{{ _('Europe') }}</a>
-        </li>
-        <li data-id="asia">
-          <a href="{{ url('mozorg.contact.communities.asia-south-pacific') }}">{{ _('Asia &amp; South Pacific') }}</a>
-        </li>
-        <li data-id="antarctica">
-          <a href="{{ url('mozorg.contact.communities.antarctica') }}">{{ _('Antarctica') }}</a>
-        </li>
-        <li data-id="africa">
-          <a href="{{ url('mozorg.contact.communities.africa-middle-east') }}">{{ _('Africa &amp; Middle East') }}</a>
-        </li>
-        <li data-id="arabic">
-          <a href="{{ url('mozorg.contact.communities.arabic') }}">{{ _('Arabic') }}</a>
-        </li>
-        <li data-id="francophone">
-          <a href="{{ url('mozorg.contact.communities.francophone') }}">{{ _('Francophone') }}</a>
-        </li>
-        <li data-id="balkans">
-          <a href="{{ url('mozorg.contact.communities.balkans') }}">{{ _('Balkans') }}</a>
-        </li>
-        <li data-id="hispano">
-          <a href="{{ url('mozorg.contact.communities.hispano') }}">{{ _('Hispano') }}</a>
-        </li>
-    </ul>
   </div>
-
-  <div id="page-content" class="container">
-    <ul class="category-tabs" role="navigation" aria-controls="map entry-container">
-      <li data-id="contact"><a href="{{ url('mozorg.contact.contact-landing') }}">{{ _('Contact us') }}</a></li>
-      <li data-id="spaces"><a href="{{ url('mozorg.contact.spaces.spaces-landing') }}">{{ _('Spaces') }}</a></li>
-      <li data-id="communities"><a href="{{ url('mozorg.contact.communities.communities-landing') }}">{{ _('Communities') }}</a></li>
-    </ul>
-
-    {% block contact_entry %}{% endblock %}
-
-    <nav id="nav-spaces" class="nav-category" role="navigation" aria-controls="map entry-container">
-      <ul data-tab="spaces">
-        <li data-id="mountain-view">
-          <a href="{{ url('mozorg.contact.spaces.mountain-view') }}">{{ _('Mountain View') }}</a>
-        </li>
-        <li data-id="beijing">
-          <a href="{{ url('mozorg.contact.spaces.beijing') }}">{{ _('Beijing') }}</a>
-        </li>
-        <li data-id="berlin">
-          <a href="{{ url('mozorg.contact.spaces.berlin') }}">{{ _('Berlin') }}</a>
-        </li>
-        <li data-id="london">
-          <a href="{{ url('mozorg.contact.spaces.london') }}">{{ _('London') }}</a>
-        </li>
-        <li data-id="paris">
-          <a href="{{ url('mozorg.contact.spaces.paris') }}">{{ _('Paris') }}</a>
-        </li>
-        <li data-id="portland">
-          <a href="{{ url('mozorg.contact.spaces.portland') }}">{{ _('Portland') }}</a>
-        </li>
-        <li data-id="san-francisco">
-          <a href="{{ url('mozorg.contact.spaces.san-francisco') }}">{{ _('San Francisco') }}</a>
-        </li>
-        <li data-id="taipei">
-          <a href="{{ url('mozorg.contact.spaces.taipei') }}">{{ _('Taipei') }}</a>
-        </li>
-        <li data-id="toronto">
-          <a href="{{ url('mozorg.contact.spaces.toronto') }}">{{ _('Toronto') }}</a>
-        </li>
-        <li data-id="vancouver">
-          <a href="{{ url('mozorg.contact.spaces.vancouver') }}">{{ _('Vancouver') }}</a>
-        </li>
-      </ul>
-    </nav>
-
-    <nav id="nav-communities" class="nav-category accordion" role="navigation" aria-controls="map entry-container">
-      <ul data-tab="communities">
-        <li data-id="north-america" class="hasmenu region">
-          <a href="{{ url('mozorg.contact.communities.north-america') }}">{{ _('North America') }}</a>
-          <ul class="submenu" data-tab="communities">
-            <li data-id="canada"><a href="{{ url('mozorg.contact.communities.canada') }}">{{ _('Canada') }}</a></li>
-            <li data-id="united-states"><a href="{{ url('mozorg.contact.communities.united-states') }}">{{ _('United States') }}</a></li>
-          </ul>
-        </li>
-        <li data-id="latin-america" class="hasmenu region">
-          <a href="{{ url('mozorg.contact.communities.latin-america') }}">{{ _('Latin America') }}</a>
-          <ul class="submenu" data-tab="communities">
-            <li data-id="argentina">
-              <a href="{{ url('mozorg.contact.communities.argentina') }}">{{ _('Argentina') }}</a>
-            </li>
-            <li data-id="bolivia">
-              <a href="{{ url('mozorg.contact.communities.bolivia') }}">{{ _('Bolivia') }}</a>
-            </li>
-            <li data-id="brazil">
-              <a href="{{ url('mozorg.contact.communities.brazil') }}">{{ _('Brazil') }}</a>
-            </li>
-            <li data-id="chile">
-              <a href="{{ url('mozorg.contact.communities.chile') }}">{{ _('Chile') }}</a>
-            </li>
-            <li data-id="colombia">
-              <a href="{{ url('mozorg.contact.communities.colombia') }}">{{ _('Colombia') }}</a>
-            </li>
-            <li data-id="costa-rica">
-              <a href="{{ url('mozorg.contact.communities.costa-rica') }}">{{ _('Costa Rica') }}</a>
-            </li>
-            <li data-id="cuba">
-              <a href="{{ url('mozorg.contact.communities.cuba') }}">{{ _('Cuba') }}</a>
-            </li>
-            <li data-id="ecuador">
-              <a href="{{ url('mozorg.contact.communities.ecuador') }}">{{ _('Ecuador') }}</a>
-            </li>
-            <li data-id="mexico">
-              <a href="{{ url('mozorg.contact.communities.mexico') }}">{{ _('Mexico') }}</a>
-            </li>
-            <li data-id="nicaragua">
-              <a href="{{ url('mozorg.contact.communities.nicaragua') }}">{{ _('Nicaragua') }}</a>
-            </li>
-            <li data-id="paraguay">
-              <a href="{{ url('mozorg.contact.communities.paraguay') }}">{{ _('Paraguay') }}</a>
-            </li>
-            <li data-id="peru">
-              <a href="{{ url('mozorg.contact.communities.peru') }}">{{ _('Peru') }}</a>
-            </li>
-            <li data-id="uruguay">
-              <a href="{{ url('mozorg.contact.communities.uruguay') }}">{{ _('Uruguay') }}</a>
-            </li>
-            <li data-id="venezuela">
-              <a href="{{ url('mozorg.contact.communities.venezuela') }}">{{ _('Venezuela') }}</a>
-            </li>
-          </ul>
-        </li>
-        <li data-id="europe" class="hasmenu region">
-          <a href="{{ url('mozorg.contact.communities.europe') }}">{{ _('Europe') }}</a>
-          <ul class="submenu" data-tab="communities">
-            <li data-id="albania">
-              <a href="{{ url('mozorg.contact.communities.albania') }}">{{ _('Albania') }}</a>
-            </li>
-            <li data-id="armenia">
-              <a href="{{ url('mozorg.contact.communities.armenia') }}">{{ _('Armenia') }}</a>
-            </li>
-            <li data-id="austria">
-              <a href="{{ url('mozorg.contact.communities.austria') }}">{{ _('Austria') }}</a>
-            </li>
-            <li data-id="basque">
-              <a href="{{ url('mozorg.contact.communities.basque') }}">{{ _('Basque') }}</a>
-            </li>
-            <li data-id="belgium">
-              <a href="{{ url('mozorg.contact.communities.belgium') }}">{{ _('Belgium') }}</a>
-            </li>
-            <li data-id="bosnia-and-herzegovina">
-              <a href="{{ url('mozorg.contact.communities.bosnia-and-herzegovina') }}">{{ _('Bosnia and Herzegovina') }}</a>
-            </li>
-            <li data-id="bulgaria">
-              <a href="{{ url('mozorg.contact.communities.bulgaria') }}">{{ _('Bulgaria') }}</a>
-            </li>
-            <li data-id="catalan">
-              <a href="{{ url('mozorg.contact.communities.catalan') }}">{{ _('Catalan') }}</a>
-            </li>
-            <li data-id="croatia">
-              <a href="{{ url('mozorg.contact.communities.croatia') }}">{{ _('Croatia') }}</a>
-            </li>
-            <li data-id="czech-republic">
-              <a href="{{ url('mozorg.contact.communities.czech-republic') }}">{{ _('Czech Republic') }}</a>
-            </li>
-            <li data-id="denmark">
-              <a href="{{ url('mozorg.contact.communities.denmark') }}">{{ _('Denmark') }}</a>
-            </li>
-            <li data-id="estonia">
-              <a href="{{ url('mozorg.contact.communities.estonia') }}">{{ _('Estonia') }}</a>
-            </li>
-            <li data-id="finland">
-              <a href="{{ url('mozorg.contact.communities.finland') }}">{{ _('Finland') }}</a>
-            </li>
-            <li data-id="france">
-              <a href="{{ url('mozorg.contact.communities.france') }}">{{ _('France') }}</a>
-            </li>
-            <li data-id="germany">
-              <a href="{{ url('mozorg.contact.communities.germany') }}">{{ _('Germany') }}</a>
-            </li>
-            <li data-id="greece">
-              <a href="{{ url('mozorg.contact.communities.greece') }}">{{ _('Greece') }}</a>
-            </li>
-            <li data-id="hungary">
-              <a href="{{ url('mozorg.contact.communities.hungary') }}">{{ _('Hungary') }}</a>
-            </li>
-            <li data-id="ireland">
-              <a href="{{ url('mozorg.contact.communities.ireland') }}">{{ _('Ireland') }}</a>
-            </li>
-            <li data-id="italy">
-              <a href="{{ url('mozorg.contact.communities.italy') }}">{{ _('Italy') }}</a>
-            </li>
-            <li data-id="kosovo">
-              <a href="{{ url('mozorg.contact.communities.kosovo') }}">{{ _('Kosovo') }}</a>
-            </li>
-            <li data-id="lithuania">
-              <a href="{{ url('mozorg.contact.communities.lithuania') }}">{{ _('Lithuania') }}</a>
-            </li>
-            <li data-id="macedonia">
-              <a href="{{ url('mozorg.contact.communities.macedonia') }}">{{ _('Macedonia') }}</a>
-            </li>
-            <li data-id="montenegro">
-              <a href="{{ url('mozorg.contact.communities.montenegro') }}">{{ _('Montenegro') }}</a>
-            </li>
-            <li data-id="the-netherlands">
-              <a href="{{ url('mozorg.contact.communities.the-netherlands') }}">{{ _('The Netherlands') }}</a>
-            </li>
-            <li data-id="norway">
-              <a href="{{ url('mozorg.contact.communities.norway') }}">{{ _('Norway') }}</a>
-            </li>
-            <li data-id="poland">
-              <a href="{{ url('mozorg.contact.communities.poland') }}">{{ _('Poland') }}</a>
-            </li>
-            <li data-id="portugal">
-              <a href="{{ url('mozorg.contact.communities.portugal') }}">{{ _('Portugal') }}</a>
-            </li>
-            <li data-id="romania">
-              <a href="{{ url('mozorg.contact.communities.romania') }}">{{ _('Romania') }}</a>
-            </li>
-            <li data-id="russia">
-              <a href="{{ url('mozorg.contact.communities.russia') }}">{{ _('Russia') }}</a>
-            </li>
-            <li data-id="serbia">
-              <a href="{{ url('mozorg.contact.communities.serbia') }}">{{ _('Serbia') }}</a>
-            </li>
-            <li data-id="slovakia">
-              <a href="{{ url('mozorg.contact.communities.slovakia') }}">{{ _('Slovakia') }}</a>
-            </li>
-            <li data-id="slovenia">
-              <a href="{{ url('mozorg.contact.communities.slovenia') }}">{{ _('Slovenia') }}</a>
-            </li>
-            <li data-id="spain">
-              <a href="{{ url('mozorg.contact.communities.spain') }}">{{ _('Spain') }}</a>
-            </li>
-            <li data-id="sweden">
-              <a href="{{ url('mozorg.contact.communities.sweden') }}">{{ _('Sweden') }}</a>
-            </li>
-            <li data-id="switzerland">
-              <a href="{{ url('mozorg.contact.communities.switzerland') }}">{{ _('Switzerland') }}</a>
-            </li>
-            <li data-id="turkey">
-              <a href="{{ url('mozorg.contact.communities.turkey') }}">{{ _('Turkey') }}</a>
-            </li>
-            <li data-id="ukraine">
-              <a href="{{ url('mozorg.contact.communities.ukraine') }}">{{ _('Ukraine') }}</a>
-            </li>
-            <li data-id="united-kingdom">
-              <a href="{{ url('mozorg.contact.communities.united-kingdom') }}">{{ _('United Kingdom') }}</a>
-            </li>
-          </ul>
-        </li>
-        <li data-id="asia" class="hasmenu region">
-          <a href="{{ url('mozorg.contact.communities.asia-south-pacific') }}">{{ _('Asia &amp; South Pacific') }}</a>
-          <ul class="submenu" data-tab="communities">
-            <li data-id="australia">
-              <a href="{{ url('mozorg.contact.communities.australia') }}">{{ _('Australia') }}</a>
-            </li>
-            <li data-id="bangladesh">
-              <a href="{{ url('mozorg.contact.communities.bangladesh') }}">{{ _('Bangladesh') }}</a>
-            </li>
-            <li data-id="cambodia">
-              <a href="{{ url('mozorg.contact.communities.cambodia') }}">{{ _('Cambodia') }}</a>
-            </li>
-            <li data-id="china">
-              <a href="{{ url('mozorg.contact.communities.china') }}">{{ _('China') }}</a>
-            </li>
-            <li data-id="hong-kong">
-              <a href="{{ url('mozorg.contact.communities.hong-kong') }}">{{ _('Hong Kong') }}</a>
-            </li>
-            <li data-id="india">
-              <a href="{{ url('mozorg.contact.communities.india') }}">{{ _('India') }}</a>
-            </li>
-            <li data-id="indonesia">
-              <a href="{{ url('mozorg.contact.communities.indonesia') }}">{{ _('Indonesia') }}</a>
-            </li>
-            <li data-id="japan">
-              <a href="{{ url('mozorg.contact.communities.japan') }}">{{ _('Japan') }}</a>
-            </li>
-            <li data-id="kerala">
-              <a href="{{ url('mozorg.contact.communities.kerala') }}">{{ _('Kerala') }}</a>
-            </li>
-            <li data-id="malaysia">
-              <a href="{{ url('mozorg.contact.communities.malaysia') }}">{{ _('Malaysia') }}</a>
-            </li>
-            <li data-id="myanmar">
-              <a href="{{ url('mozorg.contact.communities.myanmar') }}">{{ _('Myanmar') }}</a>
-            </li>
-            <li data-id="nepal">
-              <a href="{{ url('mozorg.contact.communities.nepal') }}">{{ _('Nepal') }}</a>
-            </li>
-            <li data-id="pakistan">
-              <a href="{{ url('mozorg.contact.communities.pakistan') }}">{{ _('Pakistan') }}</a>
-            </li>
-            <li data-id="philippines">
-              <a href="{{ url('mozorg.contact.communities.philippines') }}">{{ _('Philippines') }}</a>
-            </li>
-            <li data-id="singapore">
-              <a href="{{ url('mozorg.contact.communities.singapore') }}">{{ _('Singapore') }}</a>
-            </li>
-            <li data-id="south-korea">
-              <a href="{{ url('mozorg.contact.communities.south-korea') }}">{{ _('South Korea') }}</a>
-            </li>
-            <li data-id="sri-lanka">
-              <a href="{{ url('mozorg.contact.communities.sri-lanka') }}">{{ _('Sri Lanka') }}</a>
-            </li>
-            <li data-id="taiwan">
-              <a href="{{ url('mozorg.contact.communities.taiwan') }}">{{ _('Taiwan') }}</a>
-            </li>
-            <li data-id="thailand">
-              <a href="{{ url('mozorg.contact.communities.thailand') }}">{{ _('Thailand') }}</a>
-            </li>
-            <li data-id="vietnam">
-              <a href="{{ url('mozorg.contact.communities.vietnam') }}">{{ _('Vietnam') }}</a>
-            </li>
-          </ul>
-        </li>
-        <li data-id="antarctica" class="region">
-          <a href="{{ url('mozorg.contact.communities.antarctica') }}">{{ _('Antarctica') }}</a>
-        </li>
-        <li data-id="africa" class="hasmenu region">
-          <a href="{{ url('mozorg.contact.communities.africa-middle-east') }}">{{ _('Africa &amp; Middle East') }}</a>
-          <ul class="submenu" data-tab="communities">
-            <li data-id="algeria">
-              <a href="{{ url('mozorg.contact.communities.algeria') }}">{{ _('Algeria') }}</a>
-            </li>
-            <li data-id="cameroon">
-              <a href="{{ url('mozorg.contact.communities.cameroon') }}">{{ _('Cameroon') }}</a>
-            </li>
-            <li data-id="egypt">
-              <a href="{{ url('mozorg.contact.communities.egypt') }}">{{ _('Egypt') }}</a>
-            </li>
-            <li data-id="ghana">
-              <a href="{{ url('mozorg.contact.communities.ghana') }}">{{ _('Ghana') }}</a>
-            </li>
-            <li data-id="israel">
-              <a href="{{ url('mozorg.contact.communities.israel') }}">{{ _('Israel') }}</a>
-            </li>
-            <li data-id="ivory-coast">
-              <a href="{{ url('mozorg.contact.communities.ivory-coast') }}">{{ _('Ivory Coast') }}</a>
-            </li>
-            <li data-id="jordan">
-              <a href="{{ url('mozorg.contact.communities.jordan') }}">{{ _('Jordan') }}</a>
-            </li>
-            <li data-id="kenya">
-              <a href="{{ url('mozorg.contact.communities.kenya') }}">{{ _('Kenya') }}</a>
-            </li>
-            <li data-id="mauritius">
-              <a href="{{ url('mozorg.contact.communities.mauritius') }}">{{ _('Mauritius') }}</a>
-            </li>
-            <li data-id="palestine">
-              <a href="{{ url('mozorg.contact.communities.palestine') }}">{{ _('Palestine') }}</a>
-            </li>
-            <li data-id="senegal">
-              <a href="{{ url('mozorg.contact.communities.senegal') }}">{{ _('Senegal') }}</a>
-            </li>
-            <li data-id="tunisia">
-              <a href="{{ url('mozorg.contact.communities.tunisia') }}">{{ _('Tunisia') }}</a>
-            </li>
-            <li data-id="uganda">
-              <a href="{{ url('mozorg.contact.communities.uganda') }}">{{ _('Uganda') }}</a>
-            </li>
-            <li data-id="zimbabwe">
-              <a href="{{ url('mozorg.contact.communities.zimbabwe') }}">{{ _('Zimbabwe') }}</a>
-            </li>
-          </ul>
-        </li>
-        <li data-id="arabic" class="region pseudo">
-          <a href="{{ url('mozorg.contact.communities.arabic') }}">{{ _('Arabic') }}</a>
-        </li>
-        <li data-id="balkans" class="region pseudo">
-          <a href="{{ url('mozorg.contact.communities.balkans') }}">{{ _('Balkans') }}</a>
-        </li>
-        <li data-id="francophone" class="region pseudo">
-          <a href="{{ url('mozorg.contact.communities.francophone') }}">{{ _('Francophone') }}</a>
-        </li>
-        <li data-id="hispano" class="region pseudo">
-          <a href="{{ url('mozorg.contact.communities.hispano') }}">{{ _('Hispano') }}</a>
-        </li>
-      </ul>
-    </nav>
-
-    <aside id="meta-spaces" class="meta-category">
-      <ul class="meta-help">
-        <li><a href="https://wiki.mozilla.org/People:MozSpaces_Guidelines">{{ _('MozSpace Guidelines') }}</a></li>
-        <li>
-        {% trans link_question='mailto:mozspaces@mozilla.com' %}
-          Have a question about MozSpaces? <a href="{{ link_question }}" class="go">Ask us here</a>
-        {% endtrans %}
-        </li>
-      </ul>
-
-      <ul class="meta-contact">
-        <li>IRC: <a href="irc://irc.mozilla.org/MozillaSpaces">#MozillaSpaces</a></li>
-        <li><a href="https://twitter.com/MozillaSpaces">@MozillaSpaces</a></li>
-      </ul>
-    </aside>
-
-    <aside id="meta-communities" class="meta-category">
-      <ul class="meta-help">
-        <li><a href="{{ url('mozorg.contribute.index') }}" class="go">{{ _('Get involved') }}</a></li>
-        <li><a href="https://wiki.mozilla.org/MCS" class="go">{{ _('Learn more about Mozilla communities') }}</a></li>
-      </ul>
-    </aside>
-
-  </div>{# end page-content #}
-
-  <p class="attribution container">
-  {% trans link_mapbox='http://mapbox.com', link_openstreetmap='http://openstreetmap.org/copyright' %}
-    Maps © by <a href="{{ link_mapbox }}">MapBox</a> and <a href="{{ link_openstreetmap }}">OpenStreetMap</a> contributors.
-  {% endtrans %}
-  {% trans %}
-    Community photos courtesy of Mozilla contributors, used with permission.
-  {% endtrans %}
-  </p>
 </main>
 
+{% endblock %}
+
+{% block js %}
+  {% javascript 'contact-spaces' %}
 {% endblock %}

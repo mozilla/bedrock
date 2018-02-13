@@ -1,0 +1,35 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/contact-base.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Communities') }}{% endblock %}
+
+{% block map %}
+  {{ map_image('img/contact/osm/communities/all-large.jpg', 'img/contact/osm/communities/all-large-high-res.jpg') }}
+{% endblock %}
+
+{% block string_data %}
+  {# L10n: Used as a labels for a form dropdown to navigate to other pages. #}
+  data-nav-label='{{_('Select a community:')}}'
+{% endblock %}
+
+{% block tab_navigation %}
+  {% with current = 'communities' %}
+    {% include 'mozorg/contact/includes/tab-nav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block contact_nav %}
+  {% include 'mozorg/contact/communities/includes/nav.html' %}
+{% endblock %}
+
+{% block meta_category %}
+<aside id="meta-communities" class="meta-category">
+  <ul class="meta-help">
+    <li><a href="{{ url('mozorg.contribute.index') }}" class="go">{{ _('Get involved') }}</a></li>
+    <li><a href="https://wiki.mozilla.org/MCS" class="go">{{ _('Learn more about Mozilla communities') }}</a></li>
+  </ul>
+</aside>
+{% endblock %}

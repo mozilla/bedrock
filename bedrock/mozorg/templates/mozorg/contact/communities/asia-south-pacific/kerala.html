@@ -1,0 +1,38 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "mozorg/contact/communities/asia-south-pacific/landing.html" %}
+
+{% block page_title %}{{ _('Contacts, Spaces and Communities') }} — {{ _('Kerala') }}{% endblock %}
+
+{% block contact_nav %}
+  {% with current='kerala', region='asia' %}
+    {% include 'mozorg/contact/communities/includes/nav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block contact_entry %}
+  <div id="entry-container">
+    <section class="entry entry-community" id="kerala" data-tab="communities">
+      <div class="card">
+        <h2>{{ _('Kerala') }}</h2>
+
+        <ul class="extra">
+          <li><a href="http://mozillakerala.org/" class="website">mozillakerala.org</a></li>
+          <li><a href="https://lists.mozilla.org/listinfo/community-kerala" class="email">{{ _('Mailing list') }}</a></li>
+          <li><a href="https://twitter.com/mozillakerala" class="twitter">@mozillakerala</a></li>
+          <li><a href="https://www.facebook.com/MozillaKerala" class="facebook">Facebook</a></li>
+          <li><a href="irc://irc.mozilla.org/kerala" class="irc">IRC: #kerala</a></li>
+        </ul>
+
+        <figure class="feature-img">
+          {{ high_res_img('contact/osm/communities/kerala-small.png', {'alt': '', 'width': '380', 'height': '250'}) }}
+        </figure>
+      </div>
+    </section>
+  </div>
+{% endblock %}
+
+
+
