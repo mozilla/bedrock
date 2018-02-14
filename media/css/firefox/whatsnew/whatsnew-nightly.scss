@@ -1,0 +1,140 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+@import '../../hubs/sections';
+@import 'header';
+
+//* -------------------------------------------------------------------------- */
+// Common elements
+
+body {
+    @include open-sans;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+//* -------------------------------------------------------------------------- */
+// Main content section
+
+.main-content {
+    background: #003eaa;
+    background: linear-gradient(87deg, #271877 0%, #2575FC 100%);
+    color: #fff;
+    text-align: center;
+
+    a:link,
+    a:visited {
+        color: #fff;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        text-decoration: underline;
+    }
+
+    .inner-container {
+        padding: 20px 0;
+    }
+
+    header {
+        @include at2x('/media/img/firefox/firstrun/logo-nightly.png', 120px, 124px);
+        background-position: top center;
+        background-repeat: no-repeat;
+        padding-top: 160px;
+
+        h2 {
+            margin-bottom: 40px;
+            line-height: 1.2;
+        }
+
+        .tagline {
+            @include font-size(18px);
+            text-align: left;
+        }
+    }
+
+    .body {
+        margin: 20px 0;
+        text-align: left;
+
+        &> * {
+            @include multi-column-avoid-break;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        background: #003eaa;
+        background: url('/media/img/firefox/whatsnew/fox-tail.png') top -80px center no-repeat,
+                    linear-gradient(87deg, #271877 0%, #2575FC 100%);
+
+        .inner-container {
+            padding: 60px 10%;
+        }
+
+        header {
+            background-position: top left;
+            padding: 0 0 0 160px;
+            text-align: left;
+
+            h2 {
+                margin-bottom: 20px;
+            }
+
+            .tagline {
+                @include font-size(24px);
+            }
+        }
+
+        .body {
+            margin: 60px 0;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .inner-container {
+            padding: 60px 15%;
+        }
+
+        header {
+            @include background-size(140px 145px);
+            padding: 0 0 0 185px;
+            min-height: 145px;
+        }
+
+        .body {
+            @include multi-column(auto, 2, 20px);
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        header {
+            @include background-size(179px 185px);
+            padding: 0 0 0 220px;
+            min-height: 185px;
+        }
+    }
+}
+
+html[dir="rtl"] .main-content {
+
+    .body {
+        text-align: right;
+    }
+
+    header .tagline {
+        text-align: right;
+    }
+
+    @media #{$mq-tablet} {
+        header {
+            text-align: right;
+        }
+    }
+}

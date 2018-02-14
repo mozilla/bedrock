@@ -2,9 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{# Firefox Nightly What’s New page based on the Horizon theme for /firefox/new/ #}
-
-{% extends "/firefox/base-resp.html" %}
+{% extends "/firefox/base-pebbles.html" %}
 {% add_lang_files "firstrun" "mobile" %}
 
 {% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
@@ -28,77 +26,77 @@
 
 {% block content %}
 <main>
-  <div class="horizon">
-    <div class="stars">
+  {% set message = _('Your Firefox Nightly has been updated.') if l10n_has_tag('rebrand_nightly_whatsnew_021418') else self.page_title() %}
+  {% with custom_message=message %}
+    {% include 'firefox/whatsnew/includes/header.html' %}
+  {% endwith %}
+  <div class="main-content">
+    <div class="content">
       <div class="inner-container">
-        <header id="masthead">
-          <div id="tabzilla">
-            <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
-          </div>
-          <h2>{{ high_res_img('firefox/template/header-logo-nightly.png', {'alt': _('Firefox Nightly'), 'width': '305', 'height': '70'}) }}</h2>
+        <header>
+          <h2>{{ self.page_title() }}</h2>
+          <p class="tagline">
+          {% trans %}
+            Every 6 to 8 weeks, a new major version of Firefox is released and as a result, the Nightly version
+            increases as well.
+          {% endtrans %}
+          </p>
         </header>
-        <div class="main-content">
-          <h1>{{ self.page_title() }}</h1>
-          <h2>
+
+        <div class="body">
+          <p>
             {% trans %}
-              Every 6 to 8 weeks, a new major version of Firefox is released and as a result, the Nightly version
-              increases as well.
+              This is a good time to thank you for helping us make Firefox better and to give you some pointers to
+              documentation, communication channels and news sites related to Nightly that may be of interest to you.
             {% endtrans %}
-          </h2>
-          <div class="body">
-            <p>
-              {% trans %}
-                This is a good time to thank you for helping us make Firefox better and to give you some pointers to
-                documentation, communication channels and news sites related to Nightly that may be of interest to you.
-              {% endtrans %}
-            </p>
-            <p>
-              {% trans blog='https://blog.nightly.mozilla.org/', twitter='https://twitter.com/FirefoxNightly' %}
-                If you want to know what’s happening around Nightly and its community, reading our
-                <a href="%(blog)s">blog</a> and following us on <a href="%(twitter)s">Twitter</a> are good starting
-                points!
-              {% endtrans %}
-            </p>
-            <p>
-              {% trans mdn='https://developer.mozilla.org/en-US/Firefox/Experimental_features'
-                           '?utm_source=firefox&utm_medium=whatsnew&utm_campaign=nightly' %}
-                Want to know which platform features you could test on Nightly and can’t see yet on other Firefox
-                channels? Then have a look at the <a href="%(mdn)s">Experimental Features</a> page on
-                <abbr title="Mozilla Developer Network">MDN</abbr>.
-              {% endtrans %}
-            </p>
-            <p>
-              {% trans bugzilla='https://bugzilla.mozilla.org' %}
-                Do you experience crashes? Unexpected behavior? Web compatibility regressions? We’d love to get them
-                filed in <a href="%(bugzilla)s">Bugzilla</a> to make sure they don’t make it to the final release (extra
-                karma if you add the <em>nightly-community</em> keyword to your bug reports)!
-              {% endtrans %}
-            </p>
-            <p>
-              {% trans triagebot='https://triagebot.mozilla.org/' %}
-                Would you be willing to help us triage unconfirmed bugs in Bugzilla? Then maybe
-                <a href="%(triagebot)s">TriageBot</a> could be of interest to you.
-              {% endtrans %}
-            </p>
-            <p>
-              {% trans irc='ircs://irc.mozilla.org/nightly' %}
-                You can also interact with the Nightly community on IRC in the <a href="%(irc)s">#nightly</a> channel.
-                Feel free to ask questions and talk about features, regressions or crashes you may be experiencing.
-              {% endtrans %}
-            </p>
-            <p><strong>{{ _('Go community!') }}</strong></p>
-          </div>
-        </div>
+          </p>
+          <p>
+            {% trans blog='https://blog.nightly.mozilla.org/', twitter='https://twitter.com/FirefoxNightly' %}
+              If you want to know what’s happening around Nightly and its community, reading our
+              <a href="%(blog)s">blog</a> and following us on <a href="%(twitter)s">Twitter</a> are good starting
+              points!
+            {% endtrans %}
+          </p>
+          <p>
+            {% trans mdn='https://developer.mozilla.org/en-US/Firefox/Experimental_features'
+                          '?utm_source=firefox&utm_medium=whatsnew&utm_campaign=nightly' %}
+              Want to know which platform features you could test on Nightly and can’t see yet on other Firefox
+              channels? Then have a look at the <a href="%(mdn)s">Experimental Features</a> page on
+              <abbr title="Mozilla Developer Network">MDN</abbr>.
+            {% endtrans %}
+          </p>
+          <p>
+            {% trans bugzilla='https://bugzilla.mozilla.org' %}
+              Do you experience crashes? Unexpected behavior? Web compatibility regressions? We’d love to get them
+              filed in <a href="%(bugzilla)s">Bugzilla</a> to make sure they don’t make it to the final release (extra
+              karma if you add the <em>nightly-community</em> keyword to your bug reports)!
+            {% endtrans %}
+          </p>
+          <p>
+            {% trans triagebot='https://triagebot.mozilla.org/' %}
+              Would you be willing to help us triage unconfirmed bugs in Bugzilla? Then maybe
+              <a href="%(triagebot)s">TriageBot</a> could be of interest to you.
+            {% endtrans %}
+          </p>
+          <p>
+            {% trans irc='ircs://irc.mozilla.org/nightly' %}
+              You can also interact with the Nightly community on IRC in the <a href="%(irc)s">#nightly</a> channel.
+              Feel free to ask questions and talk about features, regressions or crashes you may be experiencing.
+            {% endtrans %}
+          </p>
+          <p>{{ _('Go community!') }}</p>
+        </div>{#-- /.body --#}
       </div>{#-- /.inner-container --#}
-    </div>
-  </div>
-  {% include 'firefox/includes/horizon.html' %}
+    </div>{#-- /.content --#}
+  </div>{#-- /.main-content --#}
+
+
 </main>
 {% endblock %}
 
-{% block email_form %}{% endblock %}
-
-{% block js %}{% endblock %}
+{% block js %}
+  {% javascript 'firefox_whatsnew' %}
+{% endblock %}
 
 {# Bug 1381776 #}
 {% block update_notification %}{% endblock %}

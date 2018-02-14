@@ -317,8 +317,7 @@ PIPELINE_CSS = {
     },
     'nightly_whatsnew': {
         'source_filenames': (
-            'css/firefox/horizon/background.less',
-            'css/firefox/nightly_whatsnew.less',
+            'css/firefox/whatsnew/whatsnew-nightly.scss',
         ),
         'output_filename': 'css/nightly_whatsnew-bundle.css',
     },

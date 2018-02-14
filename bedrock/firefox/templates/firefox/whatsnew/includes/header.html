@@ -4,7 +4,12 @@
       <div class="mozilla-logo">
         <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="Mozilla">Mozilla</a>
       </div>
-      <h1 class="up-to-date-messaging hidden">{{ _('Your Firefox is up to date.') }}</h1>
+      {% if custom_message %}
+        <h1>{{ custom_message }}</h1>
+      {% else %}
+        <h1 class="up-to-date-messaging hidden">{{ _('Your Firefox is up to date.') }}</h1>
+      {% endif %}
+      </h1>
     </div>
   </div>
 </header>
