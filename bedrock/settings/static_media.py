@@ -393,23 +393,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_mobile-bundle.css',
     },
-    'firefox_mobile_download': {
-        'source_filenames': (
-            'css/sandstone/sandstone-resp.less',
-            'css/base/global-nav.less',
-            'css/tabzilla/tabzilla-static.less',
-            'css/firefox/mobile-download.less',
-        ),
-        'output_filename': 'css/firefox_mobile_download-bundle.css',
-    },
-    'firefox_mobile_download_desktop': {
-        'source_filenames': (
-            'css/base/send-to-device.less',
-            'css/firefox/horizon/background.less',
-            'css/firefox/mobile-download-desktop.less',
-        ),
-        'output_filename': 'css/firefox_mobile_download_desktop_bundle.css',
-    },
     # favor cache for scene 2 speed over 1 less HTTP request for scene 1
     'firefox_new_common': {
         'source_filenames': (
@@ -1354,13 +1337,6 @@ PIPELINE_JS = {
             'js/firefox/mobile/mobile.js',
         ),
         'output_filename': 'js/firefox_mobile-bundle.js',
-    },
-    'firefox_mobile_download_desktop': {
-        'source_filenames': (
-            'js/base/send-to-device.js',
-            'js/firefox/mobile-download-desktop.js',
-        ),
-        'output_filename': 'js/firefox_mobile_download_desktop-bundle.js',
     },
     'firefox-switch': {
         'source_filenames': (
