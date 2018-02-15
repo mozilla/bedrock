@@ -496,7 +496,7 @@ redirectpatterns = (
 
     # bug 1288552 - redirect /secondrun/ traffic from funnelcake test
     redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/secondrun(?:/.*)?',
-             'firefox.mobile-download', query=False),
+             'firefox.mobile', query=False),
 
     # bug 1293539
     redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/tour/?$',
@@ -575,4 +575,7 @@ redirectpatterns = (
 
     # bug 1430894
     redirect(r'^firefox/interest-dashboard/?', 'https://support.mozilla.org/kb/firefox-add-technology-modernizing'),
+
+    # bug 1419244
+    redirect(r'^firefox/mobile-download(/.*)?', 'firefox.mobile'),
 )

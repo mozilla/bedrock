@@ -1054,7 +1054,7 @@ URLS = flatten((
     # Bug 1283397
     url_test('/firefox/pocket', 'https://getpocket.com/firefox/'),
 
-    url_test('/firefox/{,46.0/,46.0.1/,47.0/,47.0.1/}secondrun', '/firefox/mobile-download/'),
+    url_test('/firefox/{,46.0/,46.0.1/,47.0/,47.0.1/}secondrun', '/firefox/mobile/'),
 
     # bug 1288647
     url_test('/hacking', 'https://developer.mozilla.org/docs/Mozilla/Developer_guide/Introduction'),
@@ -1205,4 +1205,7 @@ URLS = flatten((
 
     # bug 1421584
     url_test('/firefox/interest-dashboard/', 'https://support.mozilla.org/kb/firefox-add-technology-modernizing'),
+
+    # bug 1419244
+    url_test('/firefox/mobile-download/{,desktop/}', '/firefox/mobile/'),
 ))
