@@ -205,24 +205,26 @@
           </p>
         </div>
 
+      {% if l10n_has_tag('iot_interoperable_quote') %}
         <aside class="topic-intro-aside">
           <div class="note">
             <p>
             {% trans %}
-              73% of Internet users have seen someone harassed online and 40% have personally experienced it.
+              Nearly half the economic potential of the Internet of Things relies on its systems being interoperable.
             {% endtrans %}
             </p>
             <p class="note-source">
               <cite>
-              {% trans pew='http://www.pewinternet.org/2014/10/22/online-harassment/' %}
-                Source: <a href="{{ pew }}">Pew Research</a>, 2014
+              {% trans mckinsey='http://www.mckinsey.com/business-functions/digital-mckinsey/our-insights/the-internet-of-things-the-value-of-digitizing-the-physical-world' %}
+                Source: <a href="{{ mckinsey }}">McKinsey</a>, 2015
               {% endtrans %}
               </cite>
             </p>
           </div>
           {# L10n: this is used as a decorative element in a callout box. #}
-          <span class="aside-accent" aria-hidden="true" role="presentation">{{ _('73%') }}</span>
+          <span class="aside-accent" aria-hidden="true" role="presentation">{{ _('50%') }}</span>
         </aside>
+      {% endif %}
       </div>
     </section>
 
