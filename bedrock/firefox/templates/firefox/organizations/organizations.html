@@ -195,10 +195,10 @@
         <section>
           <h4>{{ _('What is the Enterprise mailing list?') }}</h4>
           <p>
-          {%- trans wiki='https://wiki.mozilla.org/Enterprise' -%}
+          {%- trans -%}
             The Mozilla Enterprise mailing list run by the Mozilla Enterprise User Working Group (EWG) is where
-            enterprise developers, IT staff, Firefox developers discuss best practices for deploying Firefox and
-            Thunderbird in the enterprise. You can <a href="{{ wiki }}">learn more about the EWG here</a>.
+            enterprise developers, IT staff, and Firefox developers discuss best practices for deploying Firefox in the
+            enterprise.
           {%- endtrans -%}
           </p>
         </section>
@@ -227,11 +227,13 @@
         <section>
           <h4>{{ _('How do I customize Firefox to meet my organization’s IT policy/requirements?') }}</h4>
           <p>
-          {%- trans wiki='https://wiki.mozilla.org/Enterprise', cck='https://mike.kaply.com/cck2/' -%}
+          {%- trans mdn='https://developer.mozilla.org/Firefox/Enterprise_deployment',
+                    cck='https://mike.kaply.com/cck2/' -%}
             There are several methods that can be used to customize Firefox and the best place to start is the
-            Enterprise list or the <a href="{{ wiki }}">Enterprise Wiki page</a>. There are <a href="{{ cck }}">add-ons
-            available</a>, as well as third-party organizations who provide customization services, and the Enterprise
-            list is a good place to discuss requirements if you’re just getting started.
+            Enterprise list or the <a href="{{ mdn }}">enterprise deployment article</a> on MDN. There is also an
+            <a href="{{ cck }}">add-on for administrators</a> as well as third-party organizations who provide
+            customization services, and the Enterprise list is a good place to discuss requirements if you’re just
+            getting started.
           {%- endtrans -%}
           </p>
         </section>
