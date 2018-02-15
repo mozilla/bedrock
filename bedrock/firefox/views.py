@@ -479,99 +479,22 @@ def new(request):
     locale = l10n_utils.get_locale(request)
 
     if scene == '2':
-        # `batmprivate`, `fast`, `wait-face`, `reggiewatts` variations are currently localized for both en-US and de locales.
-        if lang_file_is_active('firefox/new/batm', locale) and experience == 'batmprivate':
-            template = 'firefox/new/batm/scene2.html'
-        elif lang_file_is_active('firefox/new/sem', locale) and experience == 'fast':
-            template = 'firefox/new/sem/fast/scene2.html'
-        elif lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':
+        # `wait-face`, `reggiewatts` variations are currently localized for both en-US and de locales.
+        if lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':
             template = 'firefox/new/wait-face/scene2.html'
         elif lang_file_is_active('firefox/new/reggiewatts', locale) and experience == 'reggiewatts':
             template = 'firefox/new/reggie-watts/scene2.html'
-        elif locale == 'en-US':
-            if experience == 'breakfree':
-                template = 'firefox/new/break-free/scene2.html'
-            elif experience == 'wayofthefox':
-                template = 'firefox/new/way-of-the-fox/scene2.html'
-            elif experience == 'privatenotoption':
-                template = 'firefox/new/fx-lifestyle/private-not-option/scene2.html'
-            elif experience == 'conformitynotdefault':
-                template = 'firefox/new/fx-lifestyle/conformity-not-default/scene2.html'
-            elif experience == 'browseuptoyou':
-                template = 'firefox/new/fx-lifestyle/browse-up-to-you/scene2.html'
-            elif experience == 'moreprotection':
-                template = 'firefox/new/fx-lifestyle/more-protection/scene2.html'
-            elif experience == 'workingout':
-                template = 'firefox/new/fx-lifestyle/working-out/scene2.html'
-            elif experience == 'youdoyou':
-                template = 'firefox/new/fx-lifestyle/you-do-you/scene2.html'
-            elif experience == 'itsyourweb':
-                template = 'firefox/new/fx-lifestyle/its-your-web/scene2.html'
-            elif experience == 'secure':
-                template = 'firefox/new/sem/secure/scene2.html'
-            elif experience == 'nonprofit':
-                template = 'firefox/new/sem/nonprofit/scene2.html'
-            elif experience == 'compatible':
-                template = 'firefox/new/sem/compatible/scene2.html'
-            elif experience == 'unsupported-browser':
-                template = 'firefox/new/sem/unsupported-browser/scene2.html'
-            elif experience in ['batmfree', 'batmnimble', 'batmresist']:
-                template = 'firefox/new/batm/scene2.html'
-            else:
-                template = 'firefox/new/scene2.html'
         else:
             template = 'firefox/new/scene2.html'
     # if no/incorrect scene specified, show scene 1
     else:
-        if lang_file_is_active('firefox/new/batm', locale) and experience == 'batmprivate':
-            if variant == 'b' and locale == 'en-US':
-                template = 'firefox/new/batm/machine.html'
-            else:
-                template = 'firefox/new/batm/private.html'
-        elif lang_file_is_active('firefox/new/sem', locale) and experience == 'fast':
-            template = 'firefox/new/sem/fast/scene1.html'
-        elif lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':
+        if lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':
             if variant == 'b':
                 template = 'firefox/new/wait-face/scene1-video.html'
             else:
                 template = 'firefox/new/wait-face/scene1.html'
         elif lang_file_is_active('firefox/new/reggiewatts', locale) and experience == 'reggiewatts':
             template = 'firefox/new/reggie-watts/scene1.html'
-        elif locale == 'en-US':
-            if experience == 'breakfree':
-                template = 'firefox/new/break-free/scene1.html'
-            elif experience == 'wayofthefox':
-                template = 'firefox/new/way-of-the-fox/scene1.html'
-            elif experience == 'privatenotoption':
-                template = 'firefox/new/fx-lifestyle/private-not-option/scene1.html'
-            elif experience == 'conformitynotdefault':
-                template = 'firefox/new/fx-lifestyle/conformity-not-default/scene1.html'
-            elif experience == 'browseuptoyou':
-                template = 'firefox/new/fx-lifestyle/browse-up-to-you/scene1.html'
-            elif experience == 'moreprotection':
-                template = 'firefox/new/fx-lifestyle/more-protection/scene1.html'
-            elif experience == 'workingout':
-                template = 'firefox/new/fx-lifestyle/working-out/scene1.html'
-            elif experience == 'youdoyou':
-                template = 'firefox/new/fx-lifestyle/you-do-you/scene1.html'
-            elif experience == 'itsyourweb':
-                template = 'firefox/new/fx-lifestyle/its-your-web/scene1.html'
-            elif experience == 'secure':
-                template = 'firefox/new/sem/secure/scene1.html'
-            elif experience == 'nonprofit':
-                template = 'firefox/new/sem/nonprofit/scene1.html'
-            elif experience == 'compatible':
-                template = 'firefox/new/sem/compatible/scene1.html'
-            elif experience == 'unsupported-browser':
-                template = 'firefox/new/sem/unsupported-browser/scene1.html'
-            elif experience == 'batmfree':
-                template = 'firefox/new/batm/free.html'
-            elif experience == 'batmnimble':
-                template = 'firefox/new/batm/nimble.html'
-            elif experience == 'batmresist':
-                template = 'firefox/new/batm/resist.html'
-            else:
-                template = 'firefox/new/scene1.html'
         else:
             template = 'firefox/new/scene1.html'
 

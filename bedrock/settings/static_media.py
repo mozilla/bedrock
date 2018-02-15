@@ -412,76 +412,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_new_scene2-bundle.css',
     },
-    'firefox_new_break_free': {
-        'source_filenames': (
-            'css/pebbles/global.scss',
-            'css/firefox/new/break-free.scss',
-        ),
-        'output_filename': 'css/firefox_new_break_free-bundle.css',
-    },
-    'firefox_new_way_of_the_fox': {
-        'source_filenames': (
-            'css/pebbles/global.scss',
-            'css/firefox/new/way-of-the-fox.scss',
-        ),
-        'output_filename': 'css/firefox_new_way_of_the_fox-bundle.css',
-    },
-    'firefox_new_private_not_option': {
-        'source_filenames': (
-            'css/firefox/new/fx-lifestyle/base.less',
-            'css/firefox/new/fx-lifestyle/private-not-option.less',
-        ),
-        'output_filename': 'css/firefox_new_private_not_option_bundle.css',
-    },
-    'firefox_new_conformity_not_default': {
-        'source_filenames': (
-            'css/firefox/new/fx-lifestyle/base.less',
-            'css/firefox/new/fx-lifestyle/conformity-not-default.less',
-        ),
-        'output_filename': 'css/firefox_new_conformity_not_default_bundle.css',
-    },
-    'firefox_new_browse_up_to_you': {
-        'source_filenames': (
-            'css/firefox/new/fx-lifestyle/base.less',
-            'css/firefox/new/fx-lifestyle/browse-up-to-you.less',
-        ),
-        'output_filename': 'css/firefox_new_browse_up_to_you_bundle.css',
-    },
-    'firefox_new_more_protection': {
-        'source_filenames': (
-            'css/firefox/new/fx-lifestyle/base.less',
-            'css/firefox/new/fx-lifestyle/conformity-not-default.less',
-            'css/firefox/new/fx-lifestyle/more-protection.less',
-        ),
-        'output_filename': 'css/firefox_new_more_protection_bundle.css',
-    },
-    'firefox_new_working_out': {
-        'source_filenames': (
-            'css/firefox/new/fx-lifestyle/base.less',
-            'css/firefox/new/fx-lifestyle/browse-up-to-you.less',
-            'css/firefox/new/fx-lifestyle/working-out.less',
-        ),
-        'output_filename': 'css/firefox_new_working_out_bundle.css',
-    },
-    'firefox_new_its_your_web': {
-        'source_filenames': (
-            'css/firefox/new/fx-lifestyle/base.less',
-            'css/firefox/new/fx-lifestyle/its-your-web.less',
-        ),
-        'output_filename': 'css/firefox_new_its_your_web_bundle.css',
-    },
-    'firefox_new_sem': {
-        'source_filenames': (
-            'css/firefox/new/sem.less',
-        ),
-        'output_filename': 'css/firefox_new_sem.css',
-    },
-    'firefox_new_batm': {
-        'source_filenames': (
-            'css/firefox/new/batm.scss',
-        ),
-        'output_filename': 'css/firefox_new_batm-bundle.css',
-    },
     'firefox_new_wait_face': {
         'source_filenames': (
             'css/firefox/new/wait-face.scss',
@@ -500,12 +430,6 @@ PIPELINE_CSS = {
             'css/firefox/new/reggie-watts.scss',
         ),
         'output_filename': 'css/firefox_new_reggie_watts-bundle.css',
-    },
-    'firefox_new_batm_machine': {
-        'source_filenames': (
-            'css/firefox/new/batm-machine.scss',
-        ),
-        'output_filename': 'css/firefox_new_batm_machine-bundle.css',
     },
     'firefox_organizations': {
         'source_filenames': (
@@ -1234,36 +1158,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_new_scene2-bundle.js',
     },
-    'firefox_new_scene1_break_free': {
-        'source_filenames': (
-            'js/firefox/new/break-free.js',
-        ),
-        'output_filename': 'js/firefox_new_scene1_break_free-bundle.js',
-    },
-    'firefox_new_scene1_way_of_the_fox': {
-        'source_filenames': (
-            'js/firefox/new/way-of-the-fox.js',
-        ),
-        'output_filename': 'js/firefox_new_scene1_way_of_the_fox-bundle.js',
-    },
-    'firefox_new_scene1_fx_lifestyle': {
-        'source_filenames': (
-            'js/firefox/new/fx-lifestyle.js',
-        ),
-        'output_filename': 'js/firefox_new_scene1_fx_lifestyle-bundle.js',
-    },
-    'firefox_new_scene1_sem': {
-        'source_filenames': (
-            'js/firefox/new/sem.js',
-        ),
-        'output_filename': 'js/firefox_new_scene1_sem-bundle.js',
-    },
-    'firefox_new_scene1_batm': {
-        'source_filenames': (
-            'js/firefox/new/scene1-batm.js',
-        ),
-        'output_filename': 'js/firefox_new_scene1_batm-bundle.js',
-    },
     'firefox_new_scene1_wait_face': {
         'source_filenames': (
             'js/firefox/new/wait-face-scene1.js',
@@ -1290,21 +1184,6 @@ PIPELINE_JS = {
             'js/firefox/new/experiment-firefox-new-waitface.js',
         ),
         'output_filename': 'js/experiment_firefox_new_waitface-bundle.js',
-    },
-    'experiment_firefox_new_batm_anim': {
-        'source_filenames': (
-            'js/base/mozilla-traffic-cop.js',
-            'js/firefox/new/experiment-firefox-new-batm-anim.js',
-        ),
-        'output_filename': 'js/experiment_firefox_new_batm_anim-bundle.js',
-    },
-    'experiment_firefox_new_unbranded_search_funnelcakes': {
-        'source_filenames': (
-            'js/base/mozilla-traffic-cop.js',
-            'js/base/mozilla-traffic-cop-funnelcake-geo.js',
-            'js/firefox/new/experiment-unbranded-search-funnelcakes.js',
-        ),
-        'output_filename': 'js/experiment_firefox_new_unbranded_search_funnelcakes-bundle.js',
     },
     'firefox_new_pixel': {
         'source_filenames': (
