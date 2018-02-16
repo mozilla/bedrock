@@ -1,0 +1,336 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+@import '../hubs/sections';
+@import '../quantum/common';
+
+/* -------------------------------------------------------------------------- */
+// Common elements
+
+main {
+    background: #003eaa;
+    background: url('/media/img/firefox/accounts/tail.png') top -350px center no-repeat,
+                linear-gradient(to bottom, #003eaa 0%, #00b0ff 100%);
+    color: #fff;
+}
+
+/* -------------------------------------------------------------------------- */
+// Top header logos
+
+.top-header {
+    text-align: center;
+
+    h1 {
+        @include font-size-level2;
+        margin: 40px 0;
+    }
+
+    .header-logos {
+        margin-bottom: 20px;
+
+        .mozilla {
+            display: none;
+        }
+    }
+
+    @media #{$mq-desktop} {
+
+        h1 {
+            margin: 40px 0 80px;
+        }
+
+        .header-logos {
+            @include clearfix;
+
+            .firefox {
+                float: left;
+            }
+
+            .mozilla {
+                display: block;
+                float: right;
+            }
+        }
+    }
+}
+
+html[dir="rtl"] .top-header {
+    @media #{$mq-desktop} {
+        .header-logos {
+
+            .firefox {
+                float: right;
+            }
+
+            .mozilla {
+                float: left;
+            }
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Main page content container
+
+.main-content {
+    @include clearfix;
+    margin-bottom: 100px;
+
+    @media #{$mq-desktop} {
+        min-height: 400px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Main page copy
+
+.main-copy {
+    @include background-size(280px, 122px);
+    background-image: url('/media/img/firefox/accounts/sync-devices.png');
+    background-position: top center;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    max-width: 400px;
+    padding-top: 140px;
+    text-align: center;
+
+    .tagline {
+        @include font-size-level4;
+    }
+
+    ol {
+        list-style: decimal;
+        list-style-position: inside;
+
+        li {
+            margin-bottom: 10px;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        @include background-size(350px, 153px);
+        background-position: top left;
+        float: left;
+        max-width: 513px;
+        padding-top: 170px;
+        text-align: left;
+        width: calc(100% - 470px);
+    }
+
+    @media #{$mq-desktop-wide} {
+        @include background-size(513px, 224px);
+        padding-top: 240px;
+        width: calc(100% - 500px);
+    }
+}
+
+html[dir="rtl"] .main-copy {
+    @media #{$mq-desktop} {
+        background-position: top right;
+        float: right;
+        text-align: right;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Firefox Accounts for container
+
+.fxa-cta {
+    background: #fff;
+    border-radius: 6px;
+    margin: 0 auto;
+    max-width: 400px;
+    padding-top: 40px;
+    text-align: center;
+
+    @media #{$mq-desktop} {
+        float: right;
+        padding-top: 0;
+        width: 400px;
+    }
+
+    @media #{$mq-desktop-wide} {
+        max-width: 470px;
+        width: 470px;
+    }
+}
+
+html[dir="rtl"] .fxa-cta {
+    @media #{$mq-desktop} {
+        float: left;
+    }
+}
+
+#fxa {
+    @include transition(height 0.25s ease);
+    border: none;
+    margin: 0 auto;
+    max-width: 400px;
+    min-height: 300px;
+    overflow: hidden;
+
+    @media #{$mq-desktop} {
+        width: 400px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Signed-in messaging.
+
+.signed-in {
+    margin-top: 20px;
+    min-height: 30px;
+
+    &:before {
+        @include at2x('/media/img/firefox/accounts/green-check.png', 30px, 30px);
+        background-position: top left;
+        background-repeat: no-repeat;
+        content: '';
+        display: inline-block;
+        height: 30px;
+        margin: 0 10px 0 0;
+        vertical-align: middle;
+        width: 30px;
+    }
+
+    @media #{$mq-desktop} {
+        margin-top: 40px;
+    }
+}
+
+html[dir="rtl"] .signed-in {
+    &:before {
+        background-position: top right;
+        margin: 0 0 0 10px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Download Firefox conditional CTA
+
+.download-firefox {
+    margin-top: 20px;
+    text-align: center;
+
+    .fx-privacy-link > a {
+        color: #fff;
+    }
+
+    @media #{$mq-desktop} {
+        margin-top: 60px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Mobile specific Firefox CTAs
+
+.mobile {
+    text-align: center;
+}
+
+/* -------------------------------------------------------------------------- */
+// A world of State :/
+
+
+// Hide the everything first!
+.fxa-cta,
+.signed-in,
+.sign-up-instructions,
+.firefox-ios,
+.firefox-android,
+.mobile,
+.download-firefox,
+.non-firefox,
+.old-firefox,
+#button-sync-ios,
+#button-sync-android {
+    display: none;
+}
+
+// Non-eligible FxA states get single column for both LTR and RTL locales.
+html[dir="ltr"],
+html[dir="rtl"] {
+    &.no-js,
+    .state-non-firefox,
+    .state-old-firefox,
+    .state-firefox-ios,
+    .state-firefox-android,
+    .state-mobile {
+        .main-copy,
+        .fxa-cta {
+            float: none;
+            margin: 0 auto 40px;
+        }
+
+        .main-copy {
+            @media #{$mq-desktop} {
+                text-align: center;
+                background-position: top center;
+            }
+        }
+    }
+}
+
+// Users with JS disabled see dumb download button.
+.no-js {
+    .download-firefox,
+    .non-firefox {
+        display: block;
+    }
+}
+
+// Firefox desktop users see the FxA iframe.
+.state-firefox-up-to-date {
+    .fxa-cta {
+        display: block;
+    }
+}
+
+// Non-Firefox users see download button.
+.state-non-firefox {
+    .download-firefox,
+    .non-firefox {
+        display: block;
+    }
+}
+
+// Old Firefox users see download button and update message.
+.state-old-firefox {
+    .download-firefox,
+    .old-firefox {
+        display: block;
+    }
+}
+
+// Firefox iOS users see SUMO link to set up Sync.
+.state-firefox-ios {
+    .mobile {
+        display: block;
+    }
+    #button-sync-ios {
+        display: inline-block;
+    }
+}
+
+// Firefox Android users see SUMO link to set up Sync.
+.state-firefox-android {
+    .mobile {
+        display: block;
+    }
+    #button-sync-android {
+        display: inline-block;
+    }
+}
+
+// Other mobile users see App Store badges.
+.state-mobile {
+    .mobile {
+        display: block;
+
+        .non-firefox {
+            display: block;
+        }
+    }
+}
