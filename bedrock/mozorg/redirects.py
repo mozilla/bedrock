@@ -659,4 +659,8 @@ redirectpatterns = (
 
     # Bug 1384370
     redirect(r'^developers/?$', 'mozorg.developer'),
+
+    # Bug 1438464
+    redirect(r'^collusion/?$', 'https://addons.mozilla.org/firefox/addon/lightbeam/'),
+    redirect(r'^lightbeam(/.*)?', 'https://addons.mozilla.org/firefox/addon/lightbeam/'),
 )

@@ -1208,4 +1208,8 @@ URLS = flatten((
 
     # bug 1419244
     url_test('/firefox/mobile-download/{,desktop/}', '/firefox/mobile/'),
+
+    # Bug 1438464
+    url_test('/collusion/', 'https://addons.mozilla.org/firefox/addon/lightbeam/'),
+    url_test('/lightbeam/{,about/}?', 'https://addons.mozilla.org/firefox/addon/lightbeam/'),
 ))

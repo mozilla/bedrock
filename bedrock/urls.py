@@ -13,7 +13,6 @@ handler500 = 'bedrock.base.views.server_error_view'
 
 urlpatterns = (
     # Main pages
-    url(r'^lightbeam/', include('bedrock.lightbeam.urls')),
     url(r'^foundation/', include('bedrock.foundation.urls')),
     url(r'^grants/', include('bedrock.grants.urls')),
     url(r'^infobar/', include('bedrock.infobar.urls')),
