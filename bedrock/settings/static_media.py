@@ -110,12 +110,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/grants-bundle.css',
     },
-    'lightbeam': {
-        'source_filenames': (
-            'css/lightbeam/lightbeam.less',
-        ),
-        'output_filename': 'css/lightbeam-bundle.css',
-    },
     'internet-health': {
         'source_filenames': (
             'css/mozorg/internet-health.scss',

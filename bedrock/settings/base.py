@@ -471,7 +471,6 @@ INSTALLED_APPS = (
 
     # Local apps
     'bedrock.base',
-    'bedrock.lightbeam',
     'bedrock.firefox',
     'bedrock.foundation',
     'bedrock.grants',
@@ -517,7 +516,6 @@ VARY_NOCACHE_EXEMPT_URL_PREFIXES = (
     '/privacy/',
     '/foundation/',
     '/teach/',
-    '/lightbeam/',
 )
 
 # Sessions
