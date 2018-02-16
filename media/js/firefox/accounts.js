@@ -5,17 +5,8 @@
 (function(Mozilla, $) {
     'use strict';
 
-    var fxaEmail;
     var client = Mozilla.Client;
     var $main = $('main');
-
-    // check for fxaEmail in sessionStorage or URL params
-    try {
-        fxaEmail = sessionStorage.getItem('fxa-email');
-        sessionStorage.removeItem('fxa-email');
-    } catch(ex) {
-        // empty
-    }
 
     function sendGAEvent(type) {
         var data = {
@@ -30,8 +21,7 @@
         client.getFirefoxDetails(function(data) {
             Mozilla.FxaIframe.init({
                 distribution: data.distribution,
-                gaEventName: 'accounts',
-                userEmail: fxaEmail
+                gaEventName: 'accounts'
             });
         });
     }
@@ -109,7 +99,5 @@
     }
 
     init();
-
-    setTimeout(Mozilla.syncAnimation, 1000);
 
 })(window.Mozilla, window.jQuery);

@@ -223,9 +223,8 @@ PIPELINE_CSS = {
     },
     'firefox_accounts': {
         'source_filenames': (
-            'css/base/mozilla-fxa-iframe.less',
-            'css/firefox/sync-animation.less',
-            'css/firefox/accounts.less',
+            'css/base/mozilla-fxa-iframe.scss',
+            'css/firefox/accounts.scss',
         ),
         'output_filename': 'css/firefox_accounts-bundle.css',
     },
@@ -1050,7 +1049,6 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/base/mozilla-fxa-iframe.js',
             'js/base/uitour-lib.js',
-            'js/firefox/sync-animation.js',
             'js/firefox/accounts.js',
         ),
         'output_filename': 'js/firefox_accounts-bundle.js',

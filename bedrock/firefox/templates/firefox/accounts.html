@@ -4,7 +4,7 @@
 
 {% from "macros.html" import google_play_button with context %}
 
-{% extends "firefox/base-resp.html" %}
+{% extends "firefox/base-pebbles.html" %}
 
 {% block page_title_prefix %}{{_('Get a Firefox Account')}}{% endblock %}
 {% block page_title %}{% endblock %}
@@ -14,48 +14,53 @@
   {% stylesheet 'firefox_accounts' %}
 {% endblock %}
 
-{% block body_class %}{% endblock %}
-{% block site_header_nav %}{% endblock %}
+{% block body_class %}firefox-accounts{% endblock %}
+{% block site_header %}{% endblock %}
 
 {% block content %}
 <main role="main">
-  <h1>{{_('Sign up, sign in, stay in sync.')}}</h1>
-  <div class="main-copy">
-    {% include 'firefox/includes/sync-animation.html' %}
-    <p class="tagline">{{_('With a Firefox Account, you can get all your bookmarks, passwords, open tabs and more — everywhere you use Firefox.')}}</p>
-    <ol class="sign-up-instructions">
-      <li>{{_('Sign up for a Firefox Account')}}</li>
-      <li>{{_('Sign in everywhere you use Firefox')}}</li>
-      <li>{{_('Sync what you want')}}</li>
-    </ol>
-    <p class="signed-in">{{_('You’re signed in and ready to start using Sync.')}}</p>
-  </div>
-  <aside id="fxa-iframe-config" data-host="{{ settings.FXA_IFRAME_SRC }}" data-mozillaonline-host="{{ settings.FXA_IFRAME_SRC_MOZILLAONLINE }}">
-    <iframe id="fxa" scrolling="no" data-src="{{ settings.FXA_IFRAME_SRC }}?utm_campaign=fxa-embedded-form&amp;utm_medium=referral&amp;utm_source=accounts-page&amp;utm_content=fx-{{ version }}&amp;entrypoint=accounts-page&amp;service=sync&amp;context=iframe&amp;style=chromeless&amp;haltAfterSignIn=true"></iframe>
-    <div class="mobile">
-      <a class="button button-dark firefox-ios more" rel="external" href="https://support.mozilla.org/kb/sync-firefox-bookmarks-and-browsing-history-iOS">{{_('Set up Sync for iOS')}}</a>
-      {# L10n: Line break below for visual formatting only. #}
-      <a class="button button-dark firefox-android more" rel="external" href="https://support.mozilla.org/kb/sync-bookmarks-tabs-history-and-passwords-android">{{_('Set up Sync on your <br>Android device')}}</a>
-      <div class="non-firefox">
-        <p>{{_('Download Firefox to start using Sync.')}}</p>
-        {{ google_play_button() }}
-        <a href="{{ firefox_ios_url('mozorg-sync_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
-          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
-        </a>
+  <div class="content">
+    <header class="top-header">
+      <div class="header-logos">
+        <h2><a class="firefox" href="{{ url('firefox') }}">{{ high_res_img('logos/firefox/logo-quantum-wordmark-white.png', {'alt': 'Firefox', 'width': '133', 'height': '50'}) }}</a></h2>
+        <h2><a class="mozilla" href="{{ url('mozorg.home') }}"><img src="{{ static('img/logos/mozilla/wordmark-dark.svg')}}" alt="Mozilla" width="101" height="34"></a></h2>
+      </div>
+      <h1>{{_('Sign up, sign in, stay in sync.')}}</h1>
+    </header>
+    <div class="main-content">
+      <div class="main-copy">
+        <p class="tagline">{{_('With a Firefox Account, you can get all your bookmarks, passwords, open tabs and more — everywhere you use Firefox.')}}</p>
+        <ol class="sign-up-instructions">
+          <li>{{_('Sign up for a Firefox Account')}}</li>
+          <li>{{_('Sign in everywhere you use Firefox')}}</li>
+          <li>{{_('Sync what you want')}}</li>
+        </ol>
+        <p class="signed-in">{{_('You’re signed in and ready to start using Sync.')}}</p>
+      </div>
+      <div class="fxa-cta" id="fxa-iframe-config" data-host="{{ settings.FXA_IFRAME_SRC }}" data-mozillaonline-host="{{ settings.FXA_IFRAME_SRC_MOZILLAONLINE }}">
+        <iframe id="fxa" scrolling="no" data-src="{{ settings.FXA_IFRAME_SRC }}?action=email&amp;utm_campaign=fxa-embedded-form&amp;utm_medium=referral&amp;utm_source=accounts-page&amp;utm_content=accounts-page&amp;entrypoint=accounts-page&amp;service=sync&amp;context=iframe&amp;style=chromeless&amp;haltAfterSignIn=true"></iframe>
+      </div>
+      <div class="mobile">
+        <a id="button-sync-ios" class="button button-hollow button-light firefox-ios" rel="external" href="https://support.mozilla.org/kb/sync-firefox-bookmarks-and-browsing-history-iOS">{{_('Set up Sync for iOS')}}</a>
+        {# L10n: Line break below for visual formatting only. #}
+        <a id="button-sync-android" class="button button-hollow button-light firefox-android" rel="external" href="https://support.mozilla.org/kb/sync-bookmarks-tabs-history-and-passwords-android">{{_('Set up Sync on your <br>Android device')}}</a>
+        <div class="non-firefox">
+          <p>{{_('Download Firefox to start using Sync.')}}</p>
+          {{ google_play_button() }}
+          <a href="{{ firefox_ios_url('mozorg-sync_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+          </a>
+        </div>
+      </div>
+      <div class="download-firefox">
+        <p class="non-firefox">{{_('Download Firefox to start using Sync.')}}</p>
+        <p class="old-firefox">{{_('Get the latest Firefox to start using Sync.')}}</p>
+        {{ download_firefox() }}
       </div>
     </div>
-    <div class="download-firefox">
-      <p class="non-firefox">{{_('Download Firefox to start using Sync.')}}</p>
-      <p class="old-firefox">{{_('Get the latest Firefox to start using Sync.')}}</p>
-      {{ download_firefox() }}
-    </div>
-  </aside>
+  </div>
 </main>
 {% endblock %}
-
-{% block email_form %}{% endblock %}
-
-{% block site_footer %}{% endblock %}
 
 {% block js %}
   {% javascript 'firefox_accounts' %}
