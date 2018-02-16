@@ -37,7 +37,7 @@
         <h2>{{ _('Meet Firefox Quantum.') }}</h2>
         <h3>{{ _('Fast for good.') }}</h3>
 
-        {{ download_firefox(dom_id='download-intro', alt_copy=_('Download now'), locale_in_transition=True, download_location='primary cta') }}
+        {{ download_firefox(dom_id='download-intro', alt_copy=_('Download now'), download_location='primary cta') }}
       </div>
       <div class="header-image">
         {{ high_res_img('firefox/home/hero-laptop.png', {'alt': '', 'width': '903', 'height': '509'}) }}
@@ -399,7 +399,7 @@
     {% endif %}
       <p>{{ _('Meet Firefox Quantum.') }}</p>
       <p>{{ _('Fast for good.') }}</p>
-      {{ download_firefox(dom_id='footer-download', alt_copy=_('Download now'), locale_in_transition=True, download_location='other') }}
+      {{ download_firefox(dom_id='footer-download', alt_copy=_('Download now'), download_location='other') }}
     </div>
   </section>
 
