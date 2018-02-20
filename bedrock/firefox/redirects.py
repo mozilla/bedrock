@@ -69,6 +69,9 @@ redirectpatterns = (
     # bug 878871
     redirect(r'^firefoxos', '/firefox/os/'),
 
+    # bug 1438302
+    no_redirect(r'^firefox/download/thanks/$'),
+
     # Bug 1006616
     redirect(r'^download/?$', 'firefox.new'),
 

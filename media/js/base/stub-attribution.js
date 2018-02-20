@@ -98,7 +98,7 @@ if (typeof Mozilla === 'undefined') {
         $('.download-list .download-link, .download-platform-list .download-link').each(function() {
             var version;
             // If this is a transitional download link do nothing.
-            if (this.href && this.href.indexOf('/firefox/new/?scene=2') === -1) {
+            if (this.href && this.href.indexOf('/firefox/download/thanks/') === -1) {
 
                 version = $(this).data('downloadVersion');
                 // Currently only Windows 32bit uses the stub installer, but this could
@@ -196,7 +196,7 @@ if (typeof Mozilla === 'undefined') {
      */
     StubAttribution.isFirefoxNewScene2 = function(location) {
         location = typeof location !== 'undefined' ? location : window.location.href;
-        return location.indexOf('/firefox/new/') > -1 && location.indexOf('scene=2') > -1;
+        return location.indexOf('/firefox/download/thanks/') > -1;
     };
 
     /**

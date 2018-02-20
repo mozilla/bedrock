@@ -30,7 +30,7 @@ class _ProductDetails(ProductDetails):
 
 
 class FirefoxDesktop(_ProductDetails):
-    download_base_url_transition = '/firefox/new/?scene=2'
+    download_base_url_transition = '/firefox/download/thanks/'
 
     # Human-readable platform names
     platform_labels = OrderedDict([

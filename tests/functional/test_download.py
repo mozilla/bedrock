@@ -8,7 +8,7 @@ import requests
 
 
 PAGE_PATHS = (
-    '/firefox/new/?scene=2',
+    '/firefox/download/thanks/',
     '/thunderbird/',
 )
 

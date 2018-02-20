@@ -13,6 +13,7 @@ from urlparse import urlparse
 from django.conf import settings
 from django.http import Http404, HttpResponsePermanentRedirect
 from django.utils.cache import patch_response_headers
+from django.utils.encoding import force_text
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_GET
 from django.views.generic.base import TemplateView
@@ -469,6 +470,21 @@ class TrackingProtectionTourView(l10n_utils.LangFilesMixin, TemplateView):
     template_name = 'firefox/tracking-protection-tour.html'
 
 
+def download_thanks(request):
+    experience = request.GET.get('xv', None)
+    locale = l10n_utils.get_locale(request)
+
+    # `wait-face`, `reggiewatts` variations are currently localized for both en-US and de locales.
+    if lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':
+        template = 'firefox/new/wait-face/scene2.html'
+    elif lang_file_is_active('firefox/new/reggiewatts', locale) and experience == 'reggiewatts':
+        template = 'firefox/new/reggie-watts/scene2.html'
+    else:
+        template = 'firefox/new/scene2.html'
+
+    return l10n_utils.render(request, template)
+
+
 def new(request):
     # Remove legacy query parameters (Bug 1236791)
     if request.GET.get('product', None) or request.GET.get('os', None):
@@ -484,13 +500,12 @@ def new(request):
         variant = None
 
     if scene == '2':
-        # `wait-face`, `reggiewatts` variations are currently localized for both en-US and de locales.
-        if lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':
-            template = 'firefox/new/wait-face/scene2.html'
-        elif lang_file_is_active('firefox/new/reggiewatts', locale) and experience == 'reggiewatts':
-            template = 'firefox/new/reggie-watts/scene2.html'
-        else:
-            template = 'firefox/new/scene2.html'
+        # send to new permanent scene2 URL (bug 1438302)
+        thanks_url = reverse('firefox.download.thanks')
+        query_string = request.META.get('QUERY_STRING', '')
+        if query_string:
+            done_url = '?'.join([thanks_url, force_text(query_string, errors='ignore')])
+        return HttpResponsePermanentRedirect(done_url)
     # if no/incorrect scene specified, show scene 1
     else:
         if lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':

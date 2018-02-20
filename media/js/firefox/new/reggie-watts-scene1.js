@@ -6,9 +6,9 @@
     'use strict';
 
     $('.download-link').each(function(i, link) {
-        if (link.href.indexOf('scene=2') > -1) {
+        if (link.href.indexOf('download/thanks/') > -1) {
             // specify template for scene 2
-            link.href = link.href.replace('scene=2', 'scene=2&xv=reggiewatts');
+            link.href = link.href + '?xv=reggiewatts';
         }
     });
 

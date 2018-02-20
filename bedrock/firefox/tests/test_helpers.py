@@ -97,7 +97,7 @@ class TestDownloadButtons(TestCase):
         for link in links[1:5]:
             link = pq(link)
             href = link.attr('href')
-            eq_(href, '/fr/firefox/new/?scene=2')
+            eq_(href, '/fr/firefox/download/thanks/')
 
         doc = pq(render("{{ download_firefox(locale_in_transition=false) }}",
                         {'request': get_request}))
@@ -107,7 +107,7 @@ class TestDownloadButtons(TestCase):
         for link in links[1:5]:
             link = pq(link)
             href = link.attr('href')
-            eq_(href, '/firefox/new/?scene=2')
+            eq_(href, '/firefox/download/thanks/')
 
     @patch('bedrock.firefox.firefox_details.switch', Mock(return_value=False))
     def test_download_location_attribute(self):

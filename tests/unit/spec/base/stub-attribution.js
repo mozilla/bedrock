@@ -136,10 +136,10 @@ describe('stub-attribution.js', function() {
     describe('isFirefoxNewScene2', function() {
 
         it('should return true if the page is scene 2 of /firefox/new/', function() {
-            var url = 'https://www.mozilla.org/en-US/firefox/new/?scene=2';
+            var url = 'https://www.mozilla.org/en-US/firefox/download/thanks/';
             expect(Mozilla.StubAttribution.isFirefoxNewScene2(url)).toBeTruthy();
 
-            var url2 = 'https://www.mozilla.org/en-US/firefox/new/?foo=bar&scene=2';
+            var url2 = 'https://www.mozilla.org/en-US/firefox/download/thanks/?foo=bar';
             expect(Mozilla.StubAttribution.isFirefoxNewScene2(url2)).toBeTruthy();
         });
     });
@@ -239,7 +239,7 @@ describe('stub-attribution.js', function() {
         var sha1Url = 'https://download-sha1.allizom.org/?product=firefox-stub&os=win&lang=en-US';
         var winUrl = 'https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US';
         var win64Url = 'https://download.mozilla.org/?product=firefox-50.0b11-SSL&os=win64&lang=en-US';
-        var transitionalUrl = '/firefox/new/?scene=2';
+        var transitionalUrl = '/firefox/download/thanks/';
 
         beforeEach(function() {
             var downloadMarkup = '<ul class="download-list">' +
