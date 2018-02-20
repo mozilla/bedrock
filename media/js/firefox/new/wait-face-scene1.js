@@ -5,11 +5,9 @@
 (function($) {
     'use strict';
 
-    var extraParams = location.search.replace(/^\?/, '&');
-
     $('.download-link').each(function(i, link) {
-        if (link.href.indexOf('scene=2') > -1) {
-            link.href = link.href.replace('scene=2', 'scene=2' + extraParams);
+        if (link.href.indexOf('download/thanks/') > -1) {
+            link.href = link.href + location.search;
         }
     });
 })(window.jQuery);

@@ -29,7 +29,7 @@ $(function() {
         'heading': headingText,
         'message': messageText,
         'confirm': confirmText,
-        'url': '/firefox/new/?scene=2',
+        'url': '/firefox/download/thanks/',
         'close': closeText,
         'gaConfirmAction': 'Update Firefox', // GA - English only
         'gaConfirmLabel': 'Firefox for Desktop', // GA - English only

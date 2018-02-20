@@ -9,7 +9,7 @@ from pages.firefox.base import FirefoxBasePage
 
 class ThankYouPage(FirefoxBasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/new/?scene=2'
+    URL_TEMPLATE = '/{locale}/firefox/download/thanks/'
 
     _direct_download_link_locator = (By.ID, 'direct-download-link')
 

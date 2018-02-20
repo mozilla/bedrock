@@ -11,7 +11,7 @@ if (typeof Mozilla === 'undefined') {
     'use strict';
 
     /**
-     * Tracking pixels for /firefox/new/?scene=2 download page.
+     * Tracking pixels for /firefox/download/thanks/ download page.
      * For more info see websites privacy notice and bugs:
      * https://www.mozilla.org/privacy/websites/
      * Yahoo: bug 1343033.

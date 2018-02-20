@@ -35,7 +35,7 @@ To configure a notification, it must be passed one or more ``config`` objects. E
         'message': 'Get the most recent version to keep browsing securely.',
         'confirm': 'Update Firefox',
         'confirmClick': _clickCallback,
-        'url': '/firefox/new/?scene=2',
+        'url': '/firefox/download/thanks/',
         'close': closeText,
         'gaConfirmAction': 'Update Firefox',
         'gaConfirmLabel': 'Firefox for Desktop',
@@ -91,7 +91,7 @@ To test multiple variations of messaging in a notification, you can also pass an
             'confirmAction': 'Update Firefox',
             'confirmLabel': 'Firefox for Desktop',
             'confirmClick': _clickCallback,
-            'url': '/firefox/new/?scene=2',
+            'url': '/firefox/download/thanks/',
             'close': 'Close',
             'closeLabel': 'Close'
         },
@@ -106,7 +106,7 @@ To test multiple variations of messaging in a notification, you can also pass an
             'confirmAction': 'Update Firefox',
             'confirmLabel': 'Firefox for Desktop',
             'confirmClick': _clickCallback,
-            'url': '/firefox/new/?scene=2',
+            'url': '/firefox/download/thanks/',
             'close': 'Close',
             'closeLabel': 'Close'
         },

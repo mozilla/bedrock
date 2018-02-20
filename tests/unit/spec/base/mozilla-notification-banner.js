@@ -30,7 +30,7 @@ describe('mozilla-notification-banner.js', function() {
             'confirm': 'Update now',
             'gaConfirmAction': 'Update Firefox',
             'gaConfirmLabel': 'Firefox for Desktop',
-            'url': '/firefox/new/?scene=2',
+            'url': '/firefox/download/thanks/',
             'close': 'Close',
             'gaCloseLabel': 'Close'
         };
@@ -96,7 +96,7 @@ describe('mozilla-notification-banner.js', function() {
                 'confirm': 'Update now',
                 'gaConfirmAction': 'Update Firefox',
                 'gaConfirmLabel': 'Firefox for Desktop',
-                'url': '/firefox/new/?scene=2',
+                'url': '/firefox/download/thanks/',
                 'close': 'Close',
                 'gaCloseLabel': 'Close'
             };
@@ -113,7 +113,7 @@ describe('mozilla-notification-banner.js', function() {
                 'confirm': 'Update now',
                 'gaConfirmAction': 'Update Firefox',
                 'gaConfirmLabel': 'Firefox for Desktop',
-                'url': '/firefox/new/?scene=2',
+                'url': '/firefox/download/thanks/',
                 'close': 'Close',
                 'gaCloseLabel': 'Close'
             };
@@ -135,7 +135,7 @@ describe('mozilla-notification-banner.js', function() {
                 'confirm': 'Update now',
                 'gaConfirmAction': 'Update Firefox',
                 'gaConfirmLabel': 'Firefox for Desktop',
-                'url': '/firefox/new/?scene=2',
+                'url': '/firefox/download/thanks/',
                 'close': 'Close',
                 'gaCloseLabel': 'Close'
             };
@@ -166,7 +166,7 @@ describe('mozilla-notification-banner.js', function() {
                 'confirm': 'Update now',
                 'gaConfirmAction': 'Update Firefox',
                 'gaConfirmLabel': 'Firefox for Desktop',
-                'url': '/firefox/new/?scene=2',
+                'url': '/firefox/download/thanks/',
                 'close': 'Close',
                 'gaCloseLabel': 'Close'
             };
@@ -191,7 +191,7 @@ describe('mozilla-notification-banner.js', function() {
                 'confirm': 'Update now',
                 'gaConfirmAction': 'Update Firefox',
                 'gaConfirmLabel': 'Firefox for Desktop',
-                'url': '/firefox/new/?scene=2',
+                'url': '/firefox/download/thanks/',
                 'close': 'Close',
                 'gaCloseLabel': 'Close'
             };
@@ -222,7 +222,7 @@ describe('mozilla-notification-banner.js', function() {
                 'confirm': 'Update now',
                 'gaConfirmAction': 'Update Firefox',
                 'gaConfirmLabel': 'Firefox for Desktop',
-                'url': '/firefox/new/?scene=2',
+                'url': '/firefox/download/thanks/',
                 'close': 'Close',
                 'gaCloseLabel': 'Close'
             };
@@ -243,7 +243,7 @@ describe('mozilla-notification-banner.js', function() {
             var event = {
                 'metaKey': false,
                 'ctrlKey': false,
-                'target': '/firefox/new/?scene=2',
+                'target': '/firefox/download/thanks/',
                 'preventDefault': function () {}
             };
 
@@ -262,7 +262,7 @@ describe('mozilla-notification-banner.js', function() {
             var event = {
                 'metaKey': false,
                 'ctrlKey': true,
-                'target': '/firefox/new/?scene=2',
+                'target': '/firefox/download/thanks/',
                 'preventDefault': function () {}
             };
 
@@ -288,7 +288,7 @@ describe('mozilla-notification-banner.js', function() {
                 'confirm': 'Update now',
                 'gaConfirmAction': 'Update Firefox',
                 'gaConfirmLabel': 'Firefox for Desktop',
-                'url': '/firefox/new/?scene=2',
+                'url': '/firefox/download/thanks/',
                 'close': 'Close',
                 'gaCloseLabel': 'Close',
                 confirmClick: function() {}
@@ -297,7 +297,7 @@ describe('mozilla-notification-banner.js', function() {
             var event = {
                 'metaKey': false,
                 'ctrlKey': false,
-                'target': '/firefox/new/?scene=2',
+                'target': '/firefox/download/thanks/',
                 'preventDefault': function () {}
             };
 
@@ -334,7 +334,7 @@ describe('mozilla-notification-banner.js', function() {
                 'confirm': 'Update now',
                 'gaConfirmAction': 'Update Firefox',
                 'gaConfirmLabel': 'Firefox for Desktop',
-                'url': '/firefox/new/?scene=2',
+                'url': '/firefox/download/thanks/',
                 'close': 'Close',
                 'gaCloseLabel': 'Close'
             };
@@ -480,7 +480,7 @@ describe('mozilla-notification-banner.js', function() {
                 'confirm': 'Update now',
                 'gaConfirmAction': 'Update Firefox',
                 'gaConfirmLabel': 'Firefox for Desktop',
-                'url': '/firefox/new/?scene=2',
+                'url': '/firefox/download/thanks/',
                 'close': 'Close',
                 'gaCloseLabel': 'Close',
             },
@@ -494,7 +494,7 @@ describe('mozilla-notification-banner.js', function() {
                 'confirm': 'Update Firefox',
                 'gaConfirmAction': 'Update Firefox',
                 'gaConfirmLabel': 'Firefox for Desktop',
-                'url': '/firefox/new/?scene=2',
+                'url': '/firefox/download/thanks/',
                 'close': 'Close',
                 'gaCloseLabel': 'Close'
             },
@@ -508,7 +508,7 @@ describe('mozilla-notification-banner.js', function() {
                 'confirm': 'Update Firefox',
                 'gaConfirmAction': 'Update Firefox',
                 'gaConfirmLabel': 'Firefox for Desktop',
-                'url': '/firefox/new/?scene=2',
+                'url': '/firefox/download/thanks/',
                 'close': 'Close',
                 'gaCloseLabel': 'Close'
             }
