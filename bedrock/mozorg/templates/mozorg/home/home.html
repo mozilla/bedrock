@@ -12,6 +12,14 @@
   {{ _('Internet for people, not profit') }}
 {% endblock %}
 
+{%- block page_title_suffix -%}
+  {% if LANG == 'en-GB' %}
+    — Mozilla (UK)
+  {% else %}
+    — Mozilla
+  {% endif %}
+{%- endblock -%}
+
 {% block page_desc %}
   {{ _('Did you know? Mozilla — the maker of Firefox — fights to keep the Internet a global public resource, open and accessible to all.') }}
 {% endblock %}
