@@ -11,7 +11,14 @@
       </button>
 
       <h2 class="nav-logo">
-        <a href="{{ url('mozorg.home') }}">{{_('Mozilla')}}</a>
+        <a href="{{ url('mozorg.home') }}">
+          {# Bug 1438302 Avoid duplicate content for en-GB pages. #}
+          {% if LANG == 'en-GB' %}
+            Mozilla (UK)
+          {% else %}
+            {{_('Mozilla')}}
+          {% endif %}
+        </a>
       </h2>
 
       <ul class="nav-primary-links">

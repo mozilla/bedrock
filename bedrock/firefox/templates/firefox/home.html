@@ -6,7 +6,9 @@
 
 {% extends "firefox/base-pebbles.html" %}
 
-{% block page_title %}{{ _('The new, fast browser for Mac, PC and Linux') }} | {{ _('Firefox') }}{% endblock %}
+{# Bug 1438302 Avoid duplicate content for en-GB pages. #}
+{% set title_suffix = 'Firefox (UK)' if LANG == 'en-GB' else _('Firefox') %}
+{% block page_title %}{{ _('The new, fast browser for Mac, PC and Linux') }} | {{ title_suffix }}{% endblock %}
 {% block page_desc %}{{ _('Responsive engine, less memory usage and packed with features. Download for desktop now.') }}{% endblock %}
 
 {% block page_css %}
