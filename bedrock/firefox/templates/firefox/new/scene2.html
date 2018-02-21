@@ -14,6 +14,12 @@
 {# see https://bugzilla.mozilla.org/show_bug.cgi?id=1438302 #}
 {% block canonical_urls %}{% endblock %}
 
+{% block experiments %}
+  {% if (switch('experiment-firefox-new-dev-edition', ['en-US'])) %}
+    {% javascript 'experiment_firefox_new_dev_edition' %}
+  {% endif %}
+{% endblock %}
+
 {% block optimizely %}
   {% if switch('firefox-new-scene2-optimizely', ['en-US']) %}
     {% include 'includes/optimizely.html' %}
@@ -78,6 +84,12 @@
     {% endif %}
   </a></li>
 </ul>
+
+{# bug 1432236 - add dev edition A/B test #}
+<div id="callout" class="hidden">
+  <p>Developers - Looking for open-source devtools?</p>
+  <a href="{{ url('firefox.developer.index') }}">Check out Firefox Developer Edition</a>
+</div>
 {% endblock %}
 
 {% block js %}

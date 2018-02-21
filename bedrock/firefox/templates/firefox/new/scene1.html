@@ -6,6 +6,12 @@
 
 {% extends "firefox/new/base.html" %}
 
+{% block experiments %}
+  {% if (switch('experiment-firefox-new-dev-edition', ['en-US'])) %}
+    {% javascript 'experiment_firefox_new_dev_edition' %}
+  {% endif %}
+{% endblock %}
+
 {% block optimizely %}
   {% if switch('firefox-new-optimizely', ['en-US']) %}
     {% include 'includes/optimizely.html' %}
@@ -78,6 +84,12 @@
   <ul class="small-links ios">
     <li><a rel="external" href="https://support.mozilla.org/products/ios/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
   </ul>
+
+  {# bug 1432236 - add dev edition A/B test #}
+  <div id="callout" class="hidden">
+    <p>Get Firefox Developer Edition to build, test and debug with the latest open-source devtools.</p>
+    <a href="{{ url('firefox.developer.index') }}">Learn more</a>
+  </div>
 </div>
 {% endblock %}
 

@@ -1,0 +1,49 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+.main-download {
+    position: relative;
+}
+
+.header-content .small-links {
+    margin-top: 40px;
+}
+
+#callout {
+    @include font-size-level6;
+    background-image: url('/media/img/logos/firefox/logo-developer-quantum.png'),
+                      linear-gradient(to right, rgb(19, 1, 113), rgb(1, 15, 60));
+    background-position: left 20px top 20px, left top;
+    background-repeat: no-repeat, repeat;
+    background-size: 50px, 100%;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 400px;
+    min-height: 50px;
+    padding: 20px 20px 20px 100px;
+    text-align: left;
+    z-index: 1;
+
+    a,
+    a:active,
+    a:focus,
+    a:hover,
+    a:link,
+    a:visited {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    @media #{$mq-tablet} {
+        margin: 0;
+        position: absolute;
+    }
+
+    @media #{$mq-desktop} {
+        margin-top: 20px;
+    }
+}
