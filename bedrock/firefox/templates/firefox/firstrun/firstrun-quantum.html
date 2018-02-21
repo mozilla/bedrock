@@ -4,7 +4,7 @@
 
 {% add_lang_files "firefox/new/quantum" %}
 
-{% extends "firefox/firstrun/base.html" %}
+{% extends "firefox/firstrun/base-pebbles.html" %}
 
 {% block body_id %}firstrun-quantum-onboarding{% endblock %}
 
@@ -14,10 +14,6 @@
 
 {% block site_css %}
   {% stylesheet 'firefox_firstrun_quantum' %}
-{% endblock %}
-
-{% block js %}
-  {% javascript 'firefox_firstrun_quantum' %}
 {% endblock %}
 
 {% block global_nav %}{% endblock %}
@@ -87,10 +83,9 @@
       <rect x="0" y="0" width="1440" height="800"/>
     </svg>
 
-    <div class="fxaccounts-container">
-      <div id="left-divider">
-        <div id="firefox-logo"></div>
-        <h1 id="title">
+    <main class="fxaccounts-container">
+      <header id="main-header">
+        <h1>
         {% if l10n_has_tag('firstrun_email_only_form') %}
           {{ _('Take Firefox with You') }}
         {% else %}
@@ -105,17 +100,24 @@
         {% endif %}
         </p>
         <a href="{{ url('firefox.features.sync') }}" target="_blank">{{_('Learn more about Firefox Accounts')}}</a>
-      </div>
+      </header>
       <div class="fxaccounts" id="fxa-iframe-config" data-host="{{ settings.FXA_IFRAME_SRC }}" data-mozillaonline-host="{{ settings.FXA_IFRAME_SRC_MOZILLAONLINE }}">
         {# Bug 1354710: firstrun pages need to pass funnelcake parameters to FxA #}
         {% set utm_source = 'firstrun' if not funnelcake_id else 'firstrun_f' + funnelcake_id %}
         <iframe id="fxa" scrolling="no" data-src="{{ settings.FXA_IFRAME_SRC }}?action=email&amp;utm_campaign=fxa-embedded-form&amp;utm_medium=referral&amp;utm_source={{ utm_source }}&amp;utm_content=fx-{{ version }}&amp;entrypoint=firstrun&amp;service=sync&amp;context=iframe&amp;style=chromeless&amp;haltAfterSignIn=true"></iframe>
         <button id="skip-button">{{_('Skip this step')}}</button>
       </div>
-    </div>
+    </main>
 
   </div>{# /#scene #}
 {% endblock %}
 
 {% block site_footer %}{% endblock %}
-{% block email_form %}{% endblock %}
+
+{# update-notification does not play well with current firstrun animated background and layout #}
+{% block extrahead %}{% endblock %}
+{% block update_notification %}{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_firstrun_quantum' %}
+{% endblock %}

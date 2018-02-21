@@ -324,7 +324,7 @@ class TestFirstRun(TestCase):
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='57.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/firstrun_quantum.html'])
+        eq_(template, ['firefox/firstrun/firstrun-quantum.html'])
 
 
 @patch.object(fx_views, 'firefox_desktop', firefox_desktop)
