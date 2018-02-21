@@ -325,9 +325,8 @@ PIPELINE_CSS = {
     },
     'firefox_firstrun_quantum': {
         'source_filenames': (
-            'css/base/notification-banner.less',
-            'css/firefox/firstrun/firstrun_quantum.less',
-            'css/base/mozilla-fxa-iframe.less',
+            'css/firefox/firstrun/firstrun-quantum.scss',
+            'css/base/mozilla-fxa-iframe.scss',
         ),
         'output_filename': 'css/firefox_firstrun_quantum-bundle.css',
     },
