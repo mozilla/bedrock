@@ -9,7 +9,6 @@ import requests
 LINK_TEMPLATE = '<link rel="canonical" hreflang="{lang}" href="{url}">'
 
 
-@pytest.mark.smoke
 @pytest.mark.headless
 @pytest.mark.nondestructive
 @pytest.mark.parametrize('url,locales', [
