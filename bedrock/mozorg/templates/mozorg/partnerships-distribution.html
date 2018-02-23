@@ -1,53 +1,59 @@
-{% extends "mozorg/base-resp.html" %}
+{% extends "base-pebbles.html" %}
+
+{% block page_css %}
+  {% stylesheet 'partnerships-distribution' %}
+{% endblock %}
 
 {% block page_title %}Mozilla Partnerships{% endblock %}
 {% block body_id %}partnerships{% endblock %}
 
-{% block breadcrumbs %}
-  <nav class="breadcrumbs">
-    <a href="{{ url('mozorg.home') }}">Home</a> >
-    <a href="{{ url('mozorg.about') }}">About</a> >
-    <a href="{{ url('mozorg.partnerships') }}">Partnerships</a> >
-    <span>Distribution</span>
-  </nav>
-{% endblock %}
+{% block tabzilla_tab %}{% endblock %}
 
 {% block content %}
+<main>
+  <div class="content">
+    <div class="inner-container">
+      <h1>Mozilla Desktop Distribution</h1>
 
-<hgroup id="main-feature">
-  <h1>Mozilla Desktop Distribution</h1>
-</hgroup>
+      <p>If you’re interested in creating and distributing customized versions of our branded products to help promote your add-on, products, or service offerings, please contact us. We’ll guide you through the customization process, and provide you with the tools and assistance you need to create a unique version of our product(s) for distribution.</p>
+      <p>Please note that any customizations to Firefox and other branded products intended for distribution require Mozilla's approval. For further information on our distribution policies, please see the <a href="#policies">Policies section</a>.</p>
+      <p>For information on incorporating Mozilla technology into your product or service offering, you should review the terms of the <a href="{{ url('mozorg.mpl.index') }}">Mozilla Public License</a> for information on our source code licensing.</p>
 
-<article id="main-content">
+      <h2 id="policies">Policies</h2>
+      <p>Distribution of unmodified copies of our product installers, disk images, and/or tarballs downloaded from mozilla.org is permitted under the terms of our distribution policy, and does not require an agreement.</p>
+      <p>The branded versions of Firefox and Thunderbird are governed by the <a href="/foundation/trademarks/policy.html">Mozilla Foundation's Trademark Policy</a>. Our code is free, but our trademark rights are strictly enforced. While there is considerable freedom to redistribute and modify our software and source code that does not incorporate our branding, there are restrictions on your ability to use Mozilla's trademarks and logos.</p>
+      <p>What this means is that distributing any modified versions of the branded software we release requires our permission and, in most cases, a distribution agreement between your organization and Mozilla. This policy applies to any component of the branded software, including - but not limited to - the installer file/disk image/tarball, the executable binaries, chrome files, preferences files, or any other file/component of a Mozilla-branded application. We do this to ensure our users have a great experience with any version of Firefox through a faster, safer and better browser.</p>
+      <p>An overview of the process behind creating a customized version of Firefox can be found in the <a href="#gettingstarted">Getting Started</a> section of this page. It covers what you need to think about, which parts of Firefox are customizable, how to create the distribution, and the approvals process behind creating a distribution agreement with you and your organization. The distribution agreement specifies the permitted customizations, the process for changing any of those customizations and the restrictions involved.</p>
+      <p>A copy of the standard Terms and Conditions for our distribution agreements can be made available for review on request. If you would like to receive a copy of this document, or if you have additional questions related to our policies, please email us.</p>
 
-<section id="distributions">
-  <p>If you’re interested in creating and distributing customized versions of our branded products to help promote your add-on, products, or service offerings, please contact us. We’ll guide you through the customization process, and provide you with the tools and assistance you need to create a unique version of our product(s) for distribution.</p>
-  <p>Please note that any customizations to Firefox and other branded products intended for distribution require Mozilla's approval. For further information on our distribution policies, please see the <a href="#policies">Policies section</a>.</p>
-  <p>For information on incorporating Mozilla technology into your product or service offering, you should review the terms of the <a href="{{ url('mozorg.mpl.index') }}">Mozilla Public License</a> for information on our source code licensing.</p>
+      <h2 id="gettingstarted">Getting Started</h2>
+      <p>Creating and distributing a release is a five-step process:</p>
+      <ol class="prose">
+        <li>Defining proposed customizations</li>
+        <li>Review and approval of proposed customizations</li>
+        <li>Creation of customized distributions</li>
+        <li>Distribution testing and review of marketing collateral (landing pages, etc.)</li>
+        <li>Finalizing distribution agreement and release</li>
+      </ol>
+      <p>To help you with outlining your proposed customizations, we provide a branding worksheet that outlines the areas of the browser we will consider for customization. We try to minimize the number of customizations in a build, and prefer to keep the user experience as similar as possible to the release versions of Firefox from mozilla.org. The template below outlines the changes we generally consider, but if you have additional customizations you’d like to incorporate, we’d be happy to discuss them with you. The worksheet is available from:</p>
+      <p><a href="https://wiki.mozilla.org/Firefox_Rebranding:Worksheet">https://wiki.mozilla.org/Firefox_Rebranding:Worksheet</a></p>
+      <p>Once you have completed the worksheet, the next step is to send a copy to the partner mailing address along with your contact information. We'll contact you shortly after receiving your request to confirm receipt and to request any additional information we may require. We’ll also review the distribution agreement process, and provide you with additional information on how the customized products are created.</p>
+      <p>Once we’ve agreed to the proposed customizations, we’ll provide you with assistance in creating and finalizing the product(s) for distribution. When the product packages are complete, we perform a technical and usability review, and provide any feedback we think will help make your offer a success. We’ll help you through the process, every step of the way.</p>
+      <p>If you have any questions about the process behind creating a custom distribution, please contact us.</p>
+    </div>
+  </div>
 
-  <h3 id="policies">Policies</h3>
-  <p>Distribution of unmodified copies of our product installers, disk images, and/or tarballs downloaded from mozilla.org is permitted under the terms of our distribution policy, and does not require an agreement.</p>
-  <p>The branded versions of Firefox and Thunderbird are governed by the <a href="/foundation/trademarks/policy.html">Mozilla Foundation's Trademark Policy</a>. Our code is free, but our trademark rights are strictly enforced. While there is considerable freedom to redistribute and modify our software and source code that does not incorporate our branding, there are restrictions on your ability to use Mozilla's trademarks and logos.</p>
-  <p>What this means is that distributing any modified versions of the branded software we release requires our permission and, in most cases, a distribution agreement between your organization and Mozilla. This policy applies to any component of the branded software, including - but not limited to - the installer file/disk image/tarball, the executable binaries, chrome files, preferences files, or any other file/component of a Mozilla-branded application. We do this to ensure our users have a great experience with any version of Firefox through a faster, safer and better browser.</p>
-  <p>An overview of the process behind creating a customized version of Firefox can be found in the <a href="#gettingstarted">Getting Started</a> section of this page. It covers what you need to think about, which parts of Firefox are customizable, how to create the distribution, and the approvals process behind creating a distribution agreement with you and your organization. The distribution agreement specifies the permitted customizations, the process for changing any of those customizations and the restrictions involved.</p>
-  <p>A copy of the standard Terms and Conditions for our distribution agreements can be made available for review on request. If you would like to receive a copy of this document, or if you have additional questions related to our policies, please email us.</p>
-
-  <h3 id="gettingstarted">Getting Started</h3>
-  <p>Creating and distributing a release is a five-step process:</p>
-  <ol>
-    <li>Defining proposed customizations</li>
-    <li>Review and approval of proposed customizations</li>
-    <li>Creation of customized distributions</li>
-    <li>Distribution testing and review of marketing collateral (landing pages, etc.)</li>
-    <li>Finalizing distribution agreement and release</li>
-  </ol>
-  <p>To help you with outlining your proposed customizations, we provide a branding worksheet that outlines the areas of the browser we will consider for customization. We try to minimize the number of customizations in a build, and prefer to keep the user experience as similar as possible to the release versions of Firefox from mozilla.org. The template below outlines the changes we generally consider, but if you have additional customizations you’d like to incorporate, we’d be happy to discuss them with you. The worksheet is available from:</p>
-  <p><a href="https://wiki.mozilla.org/Firefox_Rebranding:Worksheet">https://wiki.mozilla.org/Firefox_Rebranding:Worksheet</a></p>
-  <p>Once you have completed the worksheet, the next step is to send a copy to the partner mailing address along with your contact information. We'll contact you shortly after receiving your request to confirm receipt and to request any additional information we may require. We’ll also review the distribution agreement process, and provide you with additional information on how the customized products are created.</p>
-  <p>Once we’ve agreed to the proposed customizations, we’ll provide you with assistance in creating and finalizing the product(s) for distribution. When the product packages are complete, we perform a technical and usability review, and provide any feedback we think will help make your offer a success. We’ll help you through the process, every step of the way.</p>
-  <p>If you have any questions about the process behind creating a custom distribution, please contact us.</p>
-
-</section>
-</article>
-
+  <aside class="newsletter-container">
+    <div class="content">
+      <div id="newsletter-subscribe">
+        <div class="newsletter-title">
+          <h3>Get Mozilla updates.</h3>
+        </div>
+        <div class="newsletter-form-content">
+          {{ email_newsletter_form(include_title=False, button_class='button button-hollow', newsletters='mozilla-foundation') }}
+        </div>
+      </div>
+    </div>
+  </aside>
+</main>
 {% endblock %}

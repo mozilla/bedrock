@@ -3,25 +3,18 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import json
-from cgi import escape
 
 from django.contrib.staticfiles.finders import find as find_static
-from django.core.context_processors import csrf
-from django.core.mail import EmailMessage
-from django.http import HttpResponseRedirect, Http404
+from django.http import Http404
 from django.shortcuts import render as django_render
-from django.template.loader import render_to_string
 from django.views.decorators.cache import cache_page
-from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
 
 from commonware.decorators import xframe_allow
 
 from bedrock.base.templatetags.helpers import static
-from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg.credits import CreditsFile
-from bedrock.mozorg.forms import (WebToLeadForm)
 from bedrock.mozorg.forums import ForumsFile
 from bedrock.mozorg.models import ContributorActivity, TwitterCache
 from bedrock.mozorg.util import HttpResponseJSON
@@ -32,9 +25,6 @@ from lib import l10n_utils
 credits_file = CreditsFile('credits')
 forums_file = ForumsFile('forums')
 
-PARTNERSHIPS_EMAIL_SUBJECT = 'New Partnership Inquiry'
-PARTNERSHIPS_EMAIL_TO = ['partnerships@mozilla.com']
-PARTNERSHIPS_EMAIL_FROM = 'Mozilla.com <noreply@mozilla.com>'
 TECH_BLOG_SLUGS = ['hacks', 'cd', 'futurereleases']
 
 
@@ -69,79 +59,6 @@ def mozid_data_view(request, source_name):
 def contribute_embed(request):
     return l10n_utils.render(request,
                              'mozorg/contribute/contribute-embed.html')
-
-
-def process_partnership_form(request, template, success_url_name,
-                             template_vars=None, form_kwargs=None):
-    template_vars = template_vars or {}
-    form_kwargs = form_kwargs or {}
-
-    if request.method == 'POST':
-        form = WebToLeadForm(data=request.POST, **form_kwargs)
-
-        msg = 'Form invalid'
-        stat = 400
-        success = False
-
-        if form.is_valid():
-            data = form.cleaned_data.copy()
-
-            honeypot = data.pop('office_fax')
-
-            if honeypot:
-                msg = 'ok'
-                stat = 200
-            else:
-                # form testing address
-                if not data['email'] == 'success@example.com':
-                    data['lead_source'] = form_kwargs.get('lead_source',
-                                                          'www.mozilla.org/about/partnerships/')
-
-                    subject = PARTNERSHIPS_EMAIL_SUBJECT
-                    sender = PARTNERSHIPS_EMAIL_FROM
-                    to = PARTNERSHIPS_EMAIL_TO
-                    body = render_to_string('mozorg/emails/partnerships.txt', data,
-                                            request=request)
-
-                    email = EmailMessage(subject, body, sender, to)
-                    email.send()
-
-                msg = 'ok'
-                stat = 200
-                success = True
-
-        if request.is_ajax():
-            form_errors = {fn: [escape(msg) for msg in msgs] for fn, msgs
-                           in form.errors.iteritems()}
-
-            return HttpResponseJSON({'msg': msg, 'errors': form_errors}, status=stat)
-        # non-AJAX POST
-        else:
-            # if form is not valid, render template to retain form data/error messages
-            if not success:
-                template_vars.update(csrf(request))
-                template_vars['form'] = form
-                template_vars['form_success'] = success
-
-                return l10n_utils.render(request, template, template_vars)
-            # if form is valid, redirect to avoid refresh double post possibility
-            else:
-                return HttpResponseRedirect("%s?success" % (reverse(success_url_name)))
-    # no form POST - build form, add CSRF, & render template
-    else:
-        # without auto_id set, all id's get prefixed with 'id_'
-        form = WebToLeadForm(auto_id='%s', **form_kwargs)
-
-        template_vars.update(csrf(request))
-        template_vars['form'] = form
-        template_vars['form_success'] = True if ('success' in request.GET) else False
-
-        return l10n_utils.render(request, template, template_vars)
-
-
-@csrf_protect
-def partnerships(request):
-    return process_partnership_form(request, 'mozorg/partnerships.html', 'mozorg.partnerships')
 
 
 @xframe_allow

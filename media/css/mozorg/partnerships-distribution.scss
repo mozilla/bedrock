@@ -1,0 +1,25 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+@import '../hubs/sections';
+@import '../quantum/newsletter';
+
+h1 {
+    margin: 20px 0;
+
+    @media #{$mq-tablet} {
+        margin: 40px 0;
+    }
+}
+
+.inner-container {
+    @media #{$mq-desktop} {
+        padding: 0 10%;
+    }
+
+    @media #{$mq-desktop-wide} {
+        padding: 0 15%;
+    }
+}

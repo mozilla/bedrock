@@ -11,6 +11,10 @@
     color: #000;
     padding: 40px 0;
 
+    .newsletter-form {
+        @include open-sans;
+    }
+
     .newsletter-title {
         background: url('/media/img/firefox/new/icon-newsletter.svg') center top no-repeat;
         @include background-size(120px 82px);
