@@ -441,6 +441,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_whatsnew-bundle.css',
     },
+    'firefox_whatsnew_fxa': {
+        'source_filenames': (
+            'css/base/mozilla-fxa-iframe.scss',
+            'css/firefox/whatsnew/whatsnew-fxa.scss',
+        ),
+        'output_filename': 'css/firefox_whatsnew_fxa-bundle.css',
+    },
     'firefox_whatsnew_zh_tw': {
         'source_filenames': (
             'css/firefox/whatsnew/whatsnew-zh-tw.scss',
@@ -1193,6 +1200,14 @@ PIPELINE_JS = {
             'js/firefox/whatsnew/whatsnew.js',
         ),
         'output_filename': 'js/firefox_whatsnew-bundle.js',
+    },
+    'firefox_whatsnew_fxa': {
+        'source_filenames': (
+            'js/base/uitour-lib.js',
+            'js/base/mozilla-fxa-iframe.js',
+            'js/firefox/whatsnew/whatsnew-fxa.js',
+        ),
+        'output_filename': 'js/firefox_whatsnew_fxa-bundle.js',
     },
     'firefox-update-notification': {
         'source_filenames': (
