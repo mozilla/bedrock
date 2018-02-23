@@ -315,6 +315,23 @@ def show_57_whatsnew(version, oldversion):
         return version == v57
 
 
+def show_59_whatsnew(version, oldversion):
+    try:
+        version = Version(version)
+        if oldversion:
+            oldversion = Version(oldversion)
+    except ValueError:
+        return False
+
+    v59 = Version('59.0')
+    v60 = Version('60.0')
+
+    if oldversion:
+        return version >= v59 and version < v60 and oldversion < v59
+    else:
+        return version >= v59 and version < v60
+
+
 def show_57_firstrun(version):
     try:
         version = Version(version)
@@ -402,6 +419,8 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
                 template = 'firefox/dev-whatsnew.html'
         elif channel == 'nightly':
             template = 'firefox/nightly_whatsnew.html'
+        elif show_59_whatsnew(version, oldversion):
+            template = 'firefox/whatsnew/whatsnew-fxa.html'
         elif show_57_whatsnew(version, oldversion):
             # locale-specific templates don't seem to work for the default locale
             if locale == 'en-US':

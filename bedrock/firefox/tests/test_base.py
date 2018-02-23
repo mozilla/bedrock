@@ -255,6 +255,37 @@ class TestWhatsNew(TestCase):
 
     # end 57.0 whatsnew tests
 
+    # begin 59.0 whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_59_0(self, render_mock):
+        """Should use Firefox Accounts template for 59.0"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='59.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/whatsnew-fxa.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_59_0_old_major_version(self, render_mock):
+        """Should use Firefox Accounts template when updating from older major version"""
+        req = self.rf.get('/firefox/whatsnew/?oldversion=58.0')
+        req.locale = 'en-US'
+        self.view(req, version='59.0.1')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/whatsnew-fxa.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_59_0_old_minor_version(self, render_mock):
+        """Should use regular whatsnew template when updating from older minor version"""
+        req = self.rf.get('/firefox/whatsnew/?oldversion=59.0')
+        req.locale = 'en-US'
+        self.view(req, version='59.0.1')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/index.html'])
+
+    # end 59.0 whatsnew tests
+
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestFirstRun(TestCase):

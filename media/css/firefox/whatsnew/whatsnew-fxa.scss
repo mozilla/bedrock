@@ -1,0 +1,177 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+@import '../../hubs/sections';
+@import 'header';
+
+/* -------------------------------------------------------------------------- */
+// Common elements
+
+body {
+    @include open-sans;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+//* -------------------------------------------------------------------------- */
+// Main content section
+
+.main-content {
+    background: #003eaa;
+    background: url('/media/img/firefox/whatsnew/fox-tail-small.png') top right -420px no-repeat,
+                linear-gradient(87deg, #6A11CB 0%, #2575FC 100%);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0 40px 0;
+
+    @media #{$mq-tablet} {
+        background: url('/media/img/firefox/whatsnew/fox-tail.png') top center no-repeat,
+                    linear-gradient(87deg, #6A11CB 0%, #2575FC 100%);
+        padding: 60px 0;
+    }
+
+    @media #{$mq-tablet} and #{$mq-tall} {
+        padding: 20vh 0;
+    }
+}
+
+.content-container {
+    color: #fff;
+    display: none;
+    z-index: 10;
+
+    @media #{$mq-tablet} {
+        margin: 0 auto;
+        width: 710px;
+    }
+
+    @media #{$mq-desktop} {
+        width: 820px;
+    }
+}
+
+
+.no-js .content-container.show-mobile,
+.signed-in .content-container.show-mobile {
+    display: block;
+}
+
+.signed-out .content-container.show-fxa {
+    display: block;
+}
+
+/* -------------------------------------------------------------------------- */
+// Main page content header
+
+.content-header {
+    padding: 20px;
+    position: relative;
+    text-align: center;
+
+    h2 {
+        @include at2x('/media/img/logos/firefox/logo-quantum.png', 90px, 90px);
+        @include font-size-level3;
+        background-position: top center;
+        background-repeat: no-repeat;
+        font-weight: normal;
+        margin-bottom: 20px;
+        padding-top: 110px;
+    }
+
+    .tagline {
+        @include font-size-level5;
+        line-height: 1.5;
+        margin: 0 auto 20px;
+        max-width: 350px;
+    }
+
+    p {
+        @include font-size-level5;
+    }
+
+    a:link,
+    a:visited {
+        @include font-size-level5;
+        color: #fff;
+    }
+
+    @media #{$mq-tablet} {
+        clear: both;
+        float: left;
+        padding: 0;
+        text-align: left;
+        width: 320px;
+
+        h2 {
+            background-position: top left;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            margin: 0 0 50px;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        width: 430px;
+    }
+}
+
+html[dir="rtl"] .content-header {
+    @media #{$mq-tablet} {
+        float: right;
+        text-align: right;
+
+        h2 {
+            background-position: top right;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Firefox accounts form iframe
+
+#fxa {
+    border: none;
+    min-height: 220px;
+    position: relative;
+    width: 318px;
+}
+
+#fxa-iframe-config {
+    background: #fff;
+    display: none;
+    margin: 20px auto;
+    padding: 30px 0;
+    width: 320px;
+
+    @media #{$mq-tablet} {
+        margin-left: 20px;
+        padding: 30px 20px;
+    }
+}
+
+.signed-out #fxa-iframe-config {
+    display: block;
+
+    @media #{$mq-tablet} {
+        display: inline-block;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Firefox mobile QRCode
+
+.qr-wrapper {
+    max-width: 280px;
+    margin: 0 auto;
+
+    @media #{$mq-tablet} {
+        margin: 0;
+        max-width: none;
+    }
+}
