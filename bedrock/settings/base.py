@@ -329,6 +329,7 @@ ALT_CANONICAL_PATHS = {}
 ALLOWED_HOSTS = config(
     'ALLOWED_HOSTS', cast=Csv(),
     default='www.mozilla.org,www.ipv6.mozilla.org,www.allizom.org')
+ALLOWED_CIDR_NETS = config('ALLOWED_CIDR_NETS', default='', cast=Csv())
 
 # The canonical, production URL without a trailing slash
 CANONICAL_URL = 'https://www.mozilla.org'
@@ -423,6 +424,7 @@ ENABLE_VARY_NOCACHE_MIDDLEWARE = config('ENABLE_VARY_NOCACHE_MIDDLEWARE',
 BASIC_AUTH_CREDS = config('BASIC_AUTH_CREDS', default=None)
 
 MIDDLEWARE_CLASSES = [
+    'allow_cidr.middleware.AllowCIDRMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'bedrock.mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
