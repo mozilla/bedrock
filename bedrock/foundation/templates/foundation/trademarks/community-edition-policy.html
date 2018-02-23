@@ -42,21 +42,6 @@
           {% endtrans %}
         </li>
 
-        <li><u>{{ _('Partnership Builds') }}</u>:
-          {% trans partners=url('mozorg.partnerships'),
-            mail="mailto:partners@mozilla.com",
-            bizdev="mailto:bizdev@mozilla.com"
-          %}
-            If you’re interested in creating and
-            distributing customized versions of our branded products to help promote
-            your add-on, products, or service offerings, please visit our
-            <a href="{{ partners }}">Partners Page</a>
-            or contact us at <a href="{{ mail }}">partners@mozilla.com</a> or
-            <a href="{{ bizdev }}">bizdev@mozilla.com</a>
-            to discuss your proposed modifications.
-          {% endtrans %}
-        </li>
-
         <li><u>{{ _('Unbranded Builds') }}</u>:
           {% trans %}If you want to distribute a
             modified version of a Mozilla product, you may still do so without

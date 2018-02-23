@@ -286,7 +286,6 @@ SUPPORTED_NONLOCALES = [
 # specific URLs, add them to mozorg/templates/mozorg/robots.txt.
 NOINDEX_URLS = [
     r'^(404|500)/',
-    r'^about/partnerships/contact-bizdev/',
     r'^contribute/(embed|event)/',
     r'^csp-violation-capture',
     r'^firefox/sms/sent/',

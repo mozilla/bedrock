@@ -24,7 +24,6 @@ urlpatterns = (
     url('^credits/$', views.credits_view, name='mozorg.credits'),
     page('credits/faq', 'mozorg/credits-faq.html'),
     page('developer/browsertest', 'mozorg/browser-test.html'),
-    url('^about/partnerships/$', views.partnerships, name='mozorg.partnerships'),
     page('about/partnerships/distribution', 'mozorg/partnerships-distribution.html'),
     page('about/history', 'mozorg/about/history.html'),
     page('about/history/details', 'mozorg/about/history-details.html'),

@@ -194,9 +194,8 @@ redirectpatterns = (
     redirect(r'^legal/amendment(\.html|/)?', 'foundation.documents.articles-of-incorporation-amendment'),
     redirect(r'^legal/bylaws(\.html|/)?', 'foundation.documents.bylaws'),
 
-    # bug 960689, 1013349, 896474
+    # bug 960689, 896474
     redirect(r'^about/legal\.html', 'legal.index'),
-    redirect(r'^about/partnerships\.html', 'mozorg.partnerships'),
 
     # Bug 1073269
     redirect(r'^dnt/?$', 'https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature'),
@@ -551,9 +550,6 @@ redirectpatterns = (
     # bug 1236910
     redirect(r'^support(/.*)?$', 'https://support.mozilla.org/'),
 
-    # bug 1233015
-    redirect(r'^about/partnerships/contentservices(/.*)?$', 'mozorg.partnerships'),
-
     # Bug 1235853
     redirect(r'^facebookapps(/.*)?$', 'firefox.new'),
 
@@ -648,4 +644,9 @@ redirectpatterns = (
 
     # Bug 1430887
     redirect(r'^firefox/geolocation/?$', 'https://support.mozilla.org/kb/does-firefox-share-my-location-web-sites'),
+
+    # Bug 1422080, 1013349, 1233015
+    redirect(r'^about/partnerships/?$', 'mozorg.contact.contact-landing'),
+    redirect(r'^about/partnerships/contentservices(/.*)?$', 'mozorg.contact.contact-landing'),
+    redirect(r'^about/partnerships\.html', 'mozorg.contact.contact-landing'),
 )

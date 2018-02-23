@@ -829,9 +829,8 @@ URLS = flatten((
     url_test('/firefox/independent', '/firefox/new/'),
     url_test('/firefox/personal', '/firefox/new/'),
 
-    # bug 960689, 1013349, 896474
+    # bug 960689, 896474
     url_test('/about/legal.html', '/about/legal/'),
-    url_test('/about/partnerships.html', '/about/partnerships/'),
 
     # bug 1243240
     url_test('/about/legal/report-abuse/', '/about/legal/report-infringement/'),
@@ -944,10 +943,6 @@ URLS = flatten((
     # bug 1236791
     url_test('/en-US/firefox/new/?product=firefox-{3.6.8,13.0.1}{&os={osx〈=en-US,win},}',
              '/en-US/firefox/new/'),
-
-    # bug 1233015
-    url_test('/en-US/about/partnerships/contentservices/{,user-respect/}',
-             '/en-US/about/partnerships/'),
 
     # bug 1235853
     url_test('/facebookapps/{,downloadtab/}', '/firefox/new/'),
@@ -1229,4 +1224,8 @@ URLS = flatten((
 
     # Bug 1433749
     url_test('/styleguide/{websites/sandstone/buttons/,identity/firefox/branding/}', '/styleguide/'),
+
+    # bug 1422080, 1013349, 1233015
+    url_test('/about/partnerships.html', '/contact/'),
+    url_test('/about/partnerships/{,contentservices/}', '/contact/'),
 ))

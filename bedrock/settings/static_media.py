@@ -606,11 +606,11 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/namespaces-bundle.css',
     },
-    'partnerships': {
+    'partnerships-distribution': {
         'source_filenames': (
-            'css/mozorg/partnerships.less',
+            'css/mozorg/partnerships-distribution.scss',
         ),
-        'output_filename': 'css/partnerships-bundle.css',
+        'output_filename': 'css/partnerships-distribution-bundle.css',
     },
     'powered-by': {
         'source_filenames': (
@@ -1310,14 +1310,6 @@ PIPELINE_JS = {
             'js/newsletter/firefox.js',
         ),
         'output_filename': 'js/newsletter-firefox.js',
-    },
-    'partnerships': {
-        'source_filenames': (
-            'js/libs/jquery.validate.js',
-            'js/base/mozilla-form-helper.js',
-            'js/mozorg/partnerships.js',
-        ),
-        'output_filename': 'js/partnerships-bundle.js',
     },
     'plugincheck': {
         'source_filenames': (
