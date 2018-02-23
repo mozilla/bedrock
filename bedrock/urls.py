@@ -32,7 +32,8 @@ urlpatterns = (
     url(r'^l10n_example/',
         include('bedrock.l10n_example.urls')),
 
-    url(r'^healthz/$', 'bedrock.base.views.health_check'),
+    url(r'^healthz/$', 'bedrock.base.views.liveness'),
+    url(r'^readiness/$', 'bedrock.base.views.readiness'),
     url(r'^csp-violation-capture$', 'bedrock.base.views.csp_violation_capture',
         name='csp-violation-capture'),
     url(r'^country-code\.json$', 'bedrock.base.views.geolocate',
