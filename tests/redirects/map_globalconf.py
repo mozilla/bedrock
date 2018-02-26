@@ -1215,4 +1215,8 @@ URLS = flatten((
 
     # Bug 1428150
     url_test('/tabzilla/media/css/tabzilla.css', 'https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css'),
+
+    # bug 960651, 1436973
+    url_test('/{firefox,mobile}/{5.0,5.0.1,4.0beta,latest}/details/{,index.html,from-3.6.html}', '/firefox/unsupported-systems/'),
+    url_test('/firefox/unsupported/{,warning/,details/,EOL/,mac/,win/}', '/firefox/unsupported-systems/'),
 ))
