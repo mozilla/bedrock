@@ -578,4 +578,9 @@ redirectpatterns = (
 
     # bug 1419244
     redirect(r'^firefox/mobile-download(/.*)?', 'firefox.mobile'),
+
+    # bug 960651, 1436973
+    redirect(r'(firefox|mobile)/([^/]+)/details(/|/.+\.html)?$', 'firefox.unsupported-systems',
+             locale_prefix=False),
+    redirect(r'^firefox/unsupported/', 'firefox.unsupported-systems')
 )

@@ -243,12 +243,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_all_old_ie-bundle.css',
     },
-    'firefox_unsupported': {
-        'source_filenames': (
-            'css/firefox/unsupported.less',
-        ),
-        'output_filename': 'css/firefox_unsupported-bundle.css',
-    },
     'firefox_unsupported_systems': {
         'source_filenames': (
             'css/base/menu-resp.less',

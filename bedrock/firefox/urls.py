@@ -3,7 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 from django.conf.urls import url
 
-from bedrock.redirects.util import redirect
 from bedrock.mozorg.util import page
 
 import views
@@ -66,22 +65,9 @@ urlpatterns = (
     page('firefox/nightly/firstrun', 'firefox/nightly_firstrun.html'),
     url(r'^firefox/installer-help/$', views.installer_help,
         name='firefox.installer-help'),
-
-    page('firefox/unsupported/warning', 'firefox/unsupported/warning.html'),
-    page('firefox/unsupported/EOL', 'firefox/unsupported/EOL.html'),
-    page('firefox/unsupported/mac', 'firefox/unsupported/mac.html'),
-    page('firefox/unsupported/details', 'firefox/unsupported/details.html'),
-
-    # bug 960651
-    # here because it needs to come after the above rule
-    redirect(r'(firefox|mobile)/([^/]+)/details(/|/.+\.html)?$', 'firefox.unsupported.details',
-             locale_prefix=False),
-
-    url(r'^firefox/unsupported/win/$', views.windows_billboards),
     url('^firefox/dnt/$', views.dnt, name='firefox.dnt'),
     url(firstrun_re, views.FirstrunView.as_view(), name='firefox.firstrun'),
     url(whatsnew_re, views.WhatsnewView.as_view(), name='firefox.whatsnew'),
-
     url(tracking_protection_re, views.TrackingProtectionTourView.as_view(),
         name='firefox.tracking-protection-tour.start'),
 
