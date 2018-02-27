@@ -24,14 +24,6 @@ describe('mozilla-utils.js', function() {
             Mozilla.Utils.initMobileDownloadLinks();
             expect($link.attr('href')).toEqual('market://details?id=org.mozilla.firefox');
         });
-
-        it('should set a URL with the itms-apps scheme on iOS', function () {
-            window.site.platform = 'ios';
-            $link = $('<a class="download-link" href="https://itunes.apple.com/us/app/apple-store/id989804926?mt=8">foo</a>').appendTo('body');
-            Mozilla.Utils.initMobileDownloadLinks();
-            expect($link.attr('href')).toEqual('itms-apps://itunes.apple.com/us/app/apple-store/id989804926?mt=8');
-        });
-
     });
 
     describe('maybeSwitchToDistDownloadLinks', function() {

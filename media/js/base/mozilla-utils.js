@@ -12,20 +12,12 @@ if (typeof Mozilla === 'undefined') {
 
     var Utils = {};
 
-    // Replace Google Play and Apple App Store links on Android and iOS devices to
-    // let them open the native marketplace app
+    // Replace Google Play links on Android devices to let them open the marketplace app
     Utils.initMobileDownloadLinks = function() {
         if (site.platform === 'android') {
             $('a[href^="https://play.google.com/store/apps/"]').each(function() {
                 $(this).attr('href', $(this).attr('href')
                     .replace('https://play.google.com/store/apps/', 'market://'));
-            });
-        }
-
-        if (site.platform === 'ios') {
-            $('a[href^="https://itunes.apple.com/"]').each(function() {
-                $(this).attr('href', $(this).attr('href')
-                    .replace('https://', 'itms-apps://'));
             });
         }
     };
