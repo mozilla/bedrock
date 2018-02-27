@@ -224,8 +224,8 @@ redirectpatterns = (
     redirect(r'^about/legal\.html', 'legal.index'),
     redirect(r'^about/partnerships\.html', 'mozorg.partnerships'),
 
-    # Bug 1073269 /dnt/ -> /firefox/dnt/
-    redirect(r'^dnt/?$', 'firefox.dnt'),
+    # Bug 1073269
+    redirect(r'^dnt/?$', 'https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature'),
 
     # bug 1205632
     redirect(r'^js/language(?:/|/index.html)?$',

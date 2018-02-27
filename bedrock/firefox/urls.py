@@ -65,7 +65,6 @@ urlpatterns = (
     page('firefox/nightly/firstrun', 'firefox/nightly_firstrun.html'),
     url(r'^firefox/installer-help/$', views.installer_help,
         name='firefox.installer-help'),
-    url('^firefox/dnt/$', views.dnt, name='firefox.dnt'),
     url(firstrun_re, views.FirstrunView.as_view(), name='firefox.firstrun'),
     url(whatsnew_re, views.WhatsnewView.as_view(), name='firefox.whatsnew'),
     url(tracking_protection_re, views.TrackingProtectionTourView.as_view(),

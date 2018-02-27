@@ -212,14 +212,6 @@ def send_to_device_ajax(request):
     return HttpResponseJSON(resp_data)
 
 
-def dnt(request):
-    dnt = request.META.get('HTTP_DNT')
-    request.DNT = dnt == '1'
-    response = l10n_utils.render(request, 'firefox/dnt.html')
-    response['Vary'] = 'DNT'
-    return response
-
-
 def all_downloads(request, platform, channel):
     if platform is None:
         platform = 'desktop'
