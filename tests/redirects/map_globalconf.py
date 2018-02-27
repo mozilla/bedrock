@@ -1222,4 +1222,7 @@ URLS = flatten((
 
     # Bug 1428783
     url_test('/firefox/dnt/', 'https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature'),
+
+    # Bug 1430887
+    url_test('/firefox/geolocation/', 'https://support.mozilla.org/kb/does-firefox-share-my-location-web-sites'),
 ))

@@ -54,7 +54,6 @@ urlpatterns = (
         name='firefox.features.private-browsing'),
     page('firefox/features/send-tabs', 'firefox/features/send-tabs.html'),
     page('firefox/features/sync', 'firefox/features/sync.html'),
-    page('firefox/geolocation', 'firefox/geolocation.html'),
     url(r'^firefox/ios/testflight', views.ios_testflight, name='firefox.ios.testflight'),
     page('firefox/mobile', 'firefox/mobile.html'),
     url('^firefox/send-to-device-post/$', views.send_to_device_ajax,

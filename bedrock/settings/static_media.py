@@ -322,15 +322,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_feedback-bundle.css',
     },
-    'firefox_geolocation': {
-        'source_filenames': (
-            'css/base/menu-resp.less',
-            'css/base/mozilla-accordion.less',
-            'css/base/mozilla-modal.less',
-            'css/firefox/geolocation.less'
-        ),
-        'output_filename': 'css/firefox_geolocation-bundle.css',
-    },
     'firefox_developer': {
         'source_filenames': (
             'css/firefox/developer/developer.scss',
@@ -1217,13 +1208,6 @@ PIPELINE_JS = {
             'js/base/mozilla-notification-banner-firstrun-whatsnew-init.js',
         ),
         'output_filename': 'js/firefox-update-notification-firstrun-whatsnew-bundle.js',
-    },
-    'geolocation': {
-        'source_filenames': (
-            'js/base/mozilla-accordion.js',
-            'js/base/mozilla-accordion-gatrack.js',
-        ),
-        'output_filename': 'js/geolocation-bundle.js',
     },
     'home': {
         'source_filenames': (

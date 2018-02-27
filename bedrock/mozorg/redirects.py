@@ -671,4 +671,7 @@ redirectpatterns = (
     redirect(r'tabzilla/media/css/tabzilla\.css$',
              'https://mozorg.cdn.mozilla.net/media/css/tabzilla-min.css',
              locale_prefix=False),
+
+    # Bug 1430887
+    redirect(r'^firefox/geolocation/?$', 'https://support.mozilla.org/kb/does-firefox-share-my-location-web-sites'),
 )
