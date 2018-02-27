@@ -46,7 +46,6 @@ def test_x_robots_tag(base_url):
     '/firefox/channel/',
     '/firefox/desktop/',
     '/firefox/developer/',
-    '/firefox/geolocation/',
     '/firefox/installer-help/',
     '/firefox/interest-dashboard/',
     '/firefox/latest/releasenotes/',
