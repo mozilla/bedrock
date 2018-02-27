@@ -25,18 +25,6 @@
     }
 }
 
-
-// fxfamilynav overrides
-.fxfamilynav-cta-wrapper {
-    .button,
-    a.button:link,
-    a.button:visited {
-        @include font-size(14px);
-        padding: 10px 18px;
-    }
-}
-
-
 // download button and related containers
 ul.download-list {
     list-style-type: none;

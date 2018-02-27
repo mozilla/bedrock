@@ -975,7 +975,7 @@ URLS = flatten((
     url_test('/mobile/37.0{,beta,a2}/releasenotes', '/firefox/android/37.0{,beta,a2}/releasenotes/'),
     url_test('/projects/firefox/3.6.13/whatsnew/', '/firefox/3.6.13/whatsnew/'),
     url_test('/apps/', 'https://marketplace.firefox.com/'),
-    url_test('/dnt/', '/firefox/dnt/'),
+    url_test('/dnt/', 'https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature'),
     url_test('/metrofirefox/', '/firefox/'),
     url_test('/firefox/brand/', '/styleguide/'),
 
@@ -1219,4 +1219,7 @@ URLS = flatten((
     # bug 960651, 1436973
     url_test('/{firefox,mobile}/{5.0,5.0.1,4.0beta,latest}/details/{,index.html,from-3.6.html}', '/firefox/unsupported-systems/'),
     url_test('/firefox/unsupported/{,warning/,details/,EOL/,mac/,win/}', '/firefox/unsupported-systems/'),
+
+    # Bug 1428783
+    url_test('/firefox/dnt/', 'https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature'),
 ))

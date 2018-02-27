@@ -582,5 +582,8 @@ redirectpatterns = (
     # bug 960651, 1436973
     redirect(r'(firefox|mobile)/([^/]+)/details(/|/.+\.html)?$', 'firefox.unsupported-systems',
              locale_prefix=False),
-    redirect(r'^firefox/unsupported/', 'firefox.unsupported-systems')
+    redirect(r'^firefox/unsupported/', 'firefox.unsupported-systems'),
+
+    # bug 1428783
+    redirect(r'^firefox/dnt/?$', 'https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature'),
 )

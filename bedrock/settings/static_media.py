@@ -213,14 +213,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/mozorg/developer-hub-bundle.css',
     },
-    'dnt': {
-        'source_filenames': (
-            'css/firefox/family-nav.less',
-            'css/base/mozilla-accordion.less',
-            'css/firefox/dnt.less',
-        ),
-        'output_filename': 'css/dnt-bundle.css',
-    },
     'firefox_accounts': {
         'source_filenames': (
             'css/base/mozilla-fxa-iframe.scss',
@@ -1010,16 +1002,6 @@ PIPELINE_JS = {
             'js/mozorg/developer/developer-hub.js',
         ),
         'output_filename': 'js/developer-hub-bundle.js',
-    },
-    'dnt': {
-        'source_filenames': (
-            'js/base/mozilla-accordion.js',
-            'js/base/mozilla-accordion-gatrack.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/firefox/family-nav.js',
-        ),
-        'output_filename': 'js/firefox_dnt-bundle.js',
     },
     'gtm-snippet': {
         'source_filenames': (
