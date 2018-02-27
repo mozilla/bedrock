@@ -11,19 +11,16 @@ from bedrock.base.urlresolvers import reverse
 from mock import patch, Mock
 from nose.tools import eq_, ok_
 from pathlib2 import Path
-from pyquery import PyQuery as pq
 
 from bedrock.firefox.firefox_details import FirefoxDesktop
 from bedrock.mozorg.tests import TestCase
 from bedrock.releasenotes import views
 from bedrock.releasenotes.models import ProductRelease
-from bedrock.thunderbird.details import ThunderbirdDesktop
 
 
 TESTS_PATH = Path(__file__).parent
 DATA_PATH = str(TESTS_PATH.joinpath('data'))
 firefox_desktop = FirefoxDesktop(json_dir=DATA_PATH)
-thunderbird_desktop = ThunderbirdDesktop(json_dir=DATA_PATH)
 RELEASES_PATH = str(TESTS_PATH)
 
 
@@ -113,19 +110,6 @@ class TestReleaseViews(TestCase):
         get_release_or_404.assert_called_with('27.0beta', 'Firefox', True)
 
     @patch('bedrock.releasenotes.views.get_release_or_404')
-    def test_release_notes_thunderbird_beta_redirect(self, get_release_or_404):
-        """
-        Should redirect to url for Thunderbird Beta release
-        """
-        release = Mock()
-        release.get_absolute_url.return_value = '/thunderbird/51.0beta/releasenotes/'
-        get_release_or_404.side_effect = [Http404, release]
-        response = views.release_notes(self.request, '51.0', 'Thunderbird')
-        eq_(response.status_code, 302)
-        eq_(response['location'], '/thunderbird/51.0beta/releasenotes/')
-        get_release_or_404.assert_called_with('51.0beta', 'Thunderbird', False)
-
-    @patch('bedrock.releasenotes.views.get_release_or_404')
     def test_system_requirements(self, get_release_or_404):
         """
         Should use release returned from get_release_or_404, with a
@@ -158,10 +142,6 @@ class TestReleaseViews(TestCase):
             'firefox/releases/release-notes.html')
         eq_(views.release_notes_template('ESR', 'Firefox'),
             'firefox/releases/esr-notes.html')
-        eq_(views.release_notes_template('Release', 'Thunderbird'),
-            'thunderbird/releases/release-notes.html')
-        eq_(views.release_notes_template('Beta', 'Thunderbird'),
-            'thunderbird/releases/beta-notes.html')
         eq_(views.release_notes_template('', ''),
             'firefox/releases/release-notes.html')
 
@@ -224,18 +204,6 @@ class TestReleaseViews(TestCase):
         link = views.get_download_url(release)
         ok_(link.startswith(store_url % 'org.mozilla.fennec_aurora'))
 
-    def test_get_download_url_thunderbird(self):
-        release = Mock(product='Thunderbird')
-        with self.activate('en-US'):
-            link = views.get_download_url(release)
-        eq_(link, '/en-US/thunderbird/')
-
-    def test_get_download_url_thunderbird_beta(self):
-        release = Mock(product='Thunderbird', channel='Beta')
-        with self.activate('en-US'):
-            link = views.get_download_url(release)
-        eq_(link, '/en-US/thunderbird/channel/')
-
     def test_check_url(self):
         with self.activate('en-US'):
             eq_(views.check_url('Firefox for Android', '45.0'),
@@ -291,16 +259,6 @@ class TestReleaseNotesIndex(TestCase):
         eq_(releases[6][1]['major'], '31.0')
         eq_(releases[6][1]['minor'],
             ['31.1.0', '31.1.1', '31.2.0', '31.3.0', '31.4.0', '31.5.0'])
-
-    @patch('bedrock.releasenotes.views.thunderbird_desktop', thunderbird_desktop)
-    def test_relnotes_index_thunderbird(self):
-        with self.activate('en-US'):
-            response = self.client.get(reverse('thunderbird.releases.index'))
-        doc = pq(response.content)
-        eq_(len(doc('a[href="0.1.html"]')), 1)
-        eq_(len(doc('a[href="1.5.0.2.html"]')), 1)
-        eq_(len(doc('a[href="../2.0.0.0/releasenotes/"]')), 1)
-        eq_(len(doc('a[href="../3.0.1/releasenotes/"]')), 1)
 
 
 class TestNotesRedirects(TestCase):
@@ -361,26 +319,6 @@ class TestNotesRedirects(TestCase):
         self._test('/firefox/ios/notes/',
                    '/firefox/ios/1.4/releasenotes/')
 
-    @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=ProductRelease(product='Thunderbird', version='22.0', channel='Release')))
-    def test_thunderbird_release_version(self):
-        self._test('/thunderbird/notes/',
-                   '/thunderbird/22.0/releasenotes/')
-        self._test('/thunderbird/latest/releasenotes/',
-                   '/thunderbird/22.0/releasenotes/')
-
-    @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=ProductRelease(product='Thunderbird', version='41.0beta', channel='Beta')))
-    def test_thunderbird_beta_version(self):
-        self._test('/thunderbird/beta/notes/',
-                   '/thunderbird/41.0beta/releasenotes/')
-
-    @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=ProductRelease(product='Thunderbird', version='41.0beta', channel='Beta')))
-    def test_thunderbird_earlybird_version(self):
-        self._test('/thunderbird/earlybird/notes/',
-                   '/thunderbird/41.0beta/releasenotes/')
-
 
 class TestSysreqRedirect(TestCase):
     def _test(self, url_from, url_to):
@@ -413,17 +351,3 @@ class TestSysreqRedirect(TestCase):
     def test_desktop_esr_version(self):
         self._test('/firefox/organizations/system-requirements/',
                    '/firefox/24.2.0/system-requirements/')
-
-    @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=ProductRelease(product='Thunderbird', version='22.0', channel='Release')))
-    def test_thunderbird_release_version(self):
-        self._test('/thunderbird/system-requirements/',
-                   '/thunderbird/22.0/system-requirements/')
-        self._test('/thunderbird/latest/system-requirements/',
-                   '/thunderbird/22.0/system-requirements/')
-
-    @patch('bedrock.releasenotes.views.get_latest_release_or_404',
-           Mock(return_value=ProductRelease(product='Thunderbird', version='41.0beta', channel='Beta')))
-    def test_thunderbird_beta_version(self):
-        self._test('/thunderbird/beta/system-requirements/',
-                   '/thunderbird/41.0beta/system-requirements/')

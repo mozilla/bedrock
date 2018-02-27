@@ -68,10 +68,7 @@ def test_x_robots_tag(base_url):
     '/firefox/unsupported/EOL/',
     # Legacy URLs (Bug 1110927)
     '/firefox/start/central.html',
-    '/firefox/sync/firstrun.html',
-    # Thunberbird URLs
-    '/thunderbird/all/',
-    '/thunderbird/releases/'
+    '/firefox/sync/firstrun.html'
 ])
 def test_url(url, base_url, follow_redirects=False):
     assert_valid_url(url, base_url=base_url,

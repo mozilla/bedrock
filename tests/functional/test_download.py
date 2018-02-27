@@ -9,7 +9,6 @@ import requests
 
 PAGE_PATHS = (
     '/firefox/download/thanks/',
-    '/thunderbird/',
 )
 
 

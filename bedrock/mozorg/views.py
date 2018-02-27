@@ -2,9 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import json
 
-from django.contrib.staticfiles.finders import find as find_static
 from django.http import Http404
 from django.shortcuts import render as django_render
 from django.views.decorators.cache import cache_page
@@ -13,7 +11,6 @@ from django.views.generic import TemplateView
 
 from commonware.decorators import xframe_allow
 
-from bedrock.base.templatetags.helpers import static
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forums import ForumsFile
 from bedrock.mozorg.models import ContributorActivity, TwitterCache
@@ -67,26 +64,6 @@ def contribute_studentambassadors_landing(request):
     return l10n_utils.render(request,
                              'mozorg/contribute/studentambassadors/landing.html',
                              {'tweets': tweets})
-
-
-def holiday_calendars(request, template='mozorg/projects/holiday-calendars.html'):
-    """Generate the table of holiday calendars from JSON."""
-    calendars = []
-    json_file = find_static('caldata/calendars.json')
-    with open(json_file) as calendar_data:
-        calendars = json.load(calendar_data)
-
-    letters = set()
-    for calendar in calendars:
-        letters.add(calendar['country'][:1])
-
-    data = {
-        'calendars': sorted(calendars, key=lambda k: k['country']),
-        'letters': sorted(letters),
-        'CALDATA_URL': static('caldata/')
-    }
-
-    return l10n_utils.render(request, template, data)
 
 
 @require_safe

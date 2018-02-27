@@ -187,9 +187,6 @@ class ProductRelease(models.Model):
         return Version(self.version)
 
     def get_absolute_url(self):
-        if self.product == 'Thunderbird':
-            return reverse('thunderbird.notes', args=[self.version])
-
         if self.product == 'Firefox for Android':
             urlname = 'firefox.android.releasenotes'
         elif self.product == 'Firefox for iOS':
@@ -201,9 +198,7 @@ class ProductRelease(models.Model):
         return reverse(urlname, args=[self.version, prefix])
 
     def get_sysreq_url(self):
-        if self.product == 'Thunderbird':
-            urlname = 'thunderbird.sysreq'
-        elif self.product == 'Firefox for Android':
+        if self.product == 'Firefox for Android':
             urlname = 'firefox.android.system_requirements'
         elif self.product == 'Firefox for iOS':
             urlname = 'firefox.ios.system_requirements'
@@ -215,16 +210,6 @@ class ProductRelease(models.Model):
     def get_bug_search_url(self):
         if self.bug_search_url:
             return self.bug_search_url
-
-        if self.product == 'Thunderbird':
-            return (
-                'https://bugzilla.mozilla.org/buglist.cgi?'
-                'classification=Client%20Software&query_format=advanced&'
-                'bug_status=RESOLVED&bug_status=VERIFIED&bug_status=CLOSED&'
-                'target_milestone=Thunderbird%20{version}.0&product=Thunderbird'
-                '&resolution=FIXED'
-            ).format(version=self.major_version)
-
         return (
             'https://bugzilla.mozilla.org/buglist.cgi?'
             'j_top=OR&f1=target_milestone&o3=equals&v3=Firefox%20{version}&'

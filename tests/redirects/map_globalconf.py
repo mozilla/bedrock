@@ -235,20 +235,27 @@ URLS = flatten((
     url_test('/{m,{firefox/,}mobile}/faq/', 'https://support.mozilla.org/products/mobile'),
 
     # bug 885799, 952429
-    url_test('/projects/calendar/holidays.html', '/projects/calendar/holidays/'),
-    url_test('/en-US/projects/calendar/random/stuff/', '/projects/calendar/'),
-    # redirects don't catch real urls
-    url_test('/en-US/projects/calendar/', status_code=requests.codes.ok),
-    url_test('/en-US/projects/calendar/holidays/', status_code=requests.codes.ok),
+    url_test('/projects/calendar/holidays.html', 'https://www.thunderbird.net/calendar/holidays/'),
+    url_test('/en-US/projects/calendar/random/stuff/', 'https://www.thunderbird.net/calendar/'),
+
+    # bug 1388914
+    url_test('/thunderbird/', 'https://www.thunderbird.net/'),
+    url_test('/thunderbird/channel/', 'https://www.thunderbird.net/channel/'),
+    url_test('/thunderbird/features/', 'https://www.thunderbird.net/features/'),
+    url_test('/thunderbird/52.6.0/releasenotes/', 'https://www.thunderbird.net/thunderbird/52.6.0/releasenotes/'),
+    url_test('/thunderbird/52.6.0/system-requirements/', 'https://www.thunderbird.net/thunderbird/52.6.0/system-requirements/'),
+
+    # bug 1211007
+    url_test('/thunderbird/download', 'https://www.thunderbird.net/'),
 
     # bug 1124038
-    url_test('/thunderbird/organizations/{all-esr.html,faq/}', '/thunderbird/organizations/'),
+    url_test('/thunderbird/organizations/{all-esr.html,faq/}', 'https://www.thunderbird.net/organizations/'),
 
     # bug 1123399, 1150649
-    url_test('/thunderbird/all.htm', '/thunderbird/all/'),
-    url_test('/thunderbird/all-beta.html', '/thunderbird/beta/all/'),
-    url_test('/thunderbird/early_releases/downloads/', '/thunderbird/beta/all/'),
-    url_test('/thunderbird/early_releases/', '/thunderbird/channel/'),
+    url_test('/thunderbird/all.htm', 'https://www.thunderbird.net/thunderbird/all/'),
+    url_test('/thunderbird/all-beta.html', 'https://www.thunderbird.net/thunderbird/beta/all/'),
+    url_test('/thunderbird/early_releases/downloads/', 'https://www.thunderbird.net/thunderbird/beta/all/'),
+    url_test('/thunderbird/early_releases/', 'https://www.thunderbird.net/thunderbird/beta/all/'),
 
     # bug 1081917, 1029829, 1029838
     url_test('/thunderbird/releases/0.9.html',
@@ -260,7 +267,7 @@ URLS = flatten((
              '/en-US/thunderbird/{1,5,15,29}.0beta/{releasenotes,system-requirements}/'),
 
     # bug 1124042
-    url_test('/thunderbird/features/email_providers.html', '/thunderbird/email-providers/'),
+    url_test('/thunderbird/features/email_providers.html', 'https://www.thunderbird.net/email-providers/'),
 
     # bug 1133266
     url_test('/thunderbird/legal/privacy/', '/privacy/thunderbird/'),
@@ -276,7 +283,7 @@ URLS = flatten((
     # bug 1204579
     url_test('/thunderbird/2.0.0.0/eula/', '/about/legal/eula/thunderbird-2/'),
     url_test('/thunderbird/about/legal/', '/about/legal/terms/mozilla/'),
-    url_test('/thunderbird/download/', '/thunderbird/'),
+    url_test('/thunderbird/download/', 'https://www.thunderbird.net/'),
     url_test('/thunderbird/about/', 'https://wiki.mozilla.org/Thunderbird'),
     url_test('/thunderbird/about/mission/', 'https://wiki.mozilla.org/Thunderbird'),
     url_test('/thunderbird/about/{careers,contact,get-involved}/',
@@ -821,9 +828,6 @@ URLS = flatten((
     url_test('/legal/amendment.html',
              '/foundation/documents/articles-of-incorporation/amendment/'),
     url_test('/legal/bylaws.html', '/foundation/documents/bylaws/'),
-
-    # bug 1211007
-    url_test('/thunderbird/download', '/thunderbird/'),
 
     # bug 1211907
     url_test('/firefox/independent', '/firefox/new/'),

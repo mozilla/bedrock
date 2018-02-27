@@ -23,7 +23,6 @@ urlpatterns = (
     url(r'^security/', include('bedrock.security.urls')),
     url(r'^shapeoftheweb/', include('bedrock.shapeoftheweb.urls')),
     url(r'', include('bedrock.firefox.urls')),
-    url(r'', include('bedrock.thunderbird.urls')),
     url(r'', include('bedrock.mozorg.urls')),
     url(r'', include('bedrock.newsletter.urls')),
     url(r'', include('bedrock.teach.urls')),
