@@ -13,13 +13,11 @@ from bedrock.base.urlresolvers import reverse
 from bedrock.firefox.firefox_details import firefox_desktop
 from bedrock.firefox.templatetags.helpers import android_builds, ios_builds
 from bedrock.releasenotes.models import get_latest_release_or_404, get_release_or_404, get_releases_or_404
-from bedrock.thunderbird.details import thunderbird_desktop
 
 SUPPORT_URLS = {
     'Firefox for Android': 'https://support.mozilla.org/products/mobile',
     'Firefox for iOS': 'https://support.mozilla.org/products/ios',
     'Firefox': 'https://support.mozilla.org/products/firefox',
-    'Thunderbird': 'https://support.mozilla.org/products/thunderbird/',
 }
 
 
@@ -29,8 +27,6 @@ def release_notes_template(channel, product, version=None):
         return 'firefox/releases/dev-browser-notes.html'
 
     dir = 'firefox'
-    if product == 'Thunderbird':
-        dir = 'thunderbird'
 
     return ('{dir}/releases/{channel}-notes.html'
             .format(dir=dir, channel=channel.lower()))
@@ -44,12 +40,7 @@ def equivalent_release_url(release):
 
 
 def get_download_url(release):
-    if release.product == 'Thunderbird':
-        if release.channel == 'Beta':
-            return reverse('thunderbird.channel')
-        else:
-            return reverse('thunderbird.index')
-    elif release.product == 'Firefox for Android':
+    if release.product == 'Firefox for Android':
         return android_builds(release.channel)[0]['download_link']
     elif release.product == 'Firefox for iOS':
         return ios_builds(release.channel)[0]['download_link']
@@ -112,8 +103,6 @@ def release_notes(request, version, product='Firefox'):
 def system_requirements(request, version, product='Firefox'):
     release = get_release_or_404(version, product)
     dir = 'firefox'
-    if product == 'Thunderbird':
-        dir = 'thunderbird'
     return l10n_utils.render(
         request, '{dir}/releases/system_requirements.html'.format(dir=dir),
         {'release': release, 'version': version})
@@ -155,9 +144,6 @@ def releases_index(request, product):
     if product == 'Firefox':
         major_releases = firefox_desktop.firefox_history_major_releases
         minor_releases = firefox_desktop.firefox_history_stability_releases
-    elif product == 'Thunderbird':
-        major_releases = thunderbird_desktop.thunderbird_history_major_releases
-        minor_releases = thunderbird_desktop.thunderbird_history_stability_releases
 
     for release in major_releases:
         major_version = float(re.findall(r'^\d+\.\d+', release)[0])

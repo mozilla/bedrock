@@ -50,8 +50,6 @@ class TestReleaseModel(TestCase):
     def test_get_bug_search_url(self):
         rel = models.get_release('firefox', '57.0a1')
         assert '=Firefox%2057&' in rel.get_bug_search_url()
-        rel.product = 'Thunderbird'
-        assert '=Thunderbird%2057.0&' in rel.get_bug_search_url()
         rel.bug_search_url = 'custom url'
         assert 'custom url' == rel.get_bug_search_url()
 

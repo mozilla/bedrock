@@ -675,12 +675,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/projects_mozilla_based-bundle.css',
     },
-    'projects-calendar': {
-        'source_filenames': (
-            'css/mozorg/projects/calendar.less',
-        ),
-        'output_filename': 'css/projects-calendar-bundle.css',
-    },
     'security': {
         'source_filenames': (
             'css/security/security.scss',
@@ -811,41 +805,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/annual_2016-bundle.css',
     },
-    'thunderbird-features': {
-        'source_filenames': (
-            'css/base/menu-resp.less',
-            'css/thunderbird/features.less',
-        ),
-        'output_filename': 'css/thunderbird-features-bundle.css',
-    },
-    'thunderbird-landing': {
-        'source_filenames': (
-            'css/base/menu-resp.less',
-            'css/thunderbird/landing.less',
-        ),
-        'output_filename': 'css/thunderbird-landing-bundle.css',
-    },
-    'thunderbird-organizations': {
-        'source_filenames': (
-            'css/base/menu-resp.less',
-            'css/firefox/organizations.less',
-        ),
-        'output_filename': 'css/thunderbird-organizations-bundle.css',
-    },
-    'thunderbird-channel': {
-        'source_filenames': (
-            'css/base/menu-resp.less',
-            'css/thunderbird/channel.less',
-        ),
-        'output_filename': 'css/thunderbird-channel-bundle.css',
-    },
-    'thunderbird-start': {
-        'source_filenames': (
-            'css/sandstone/fonts.less',
-            'css/thunderbird/start.less',
-        ),
-        'output_filename': 'css/thunderbird-start-bundle.css',
-    },
     'etc-firefox-retention-thank-you-a': {
         'source_filenames': (
             'css/etc/firefox/retention/thank-you.scss',
@@ -878,12 +837,6 @@ PIPELINE_JS = {
             'js/base/core-datalayer-page-id.js',
         ),
         'output_filename': 'js/site-bundle.js',
-    },
-    'projects-calendar': {
-        'source_filenames': (
-            'js/mozorg/calendar.js',
-        ),
-        'output_filename': 'js/projects-calendar-bundle.js',
     },
     # Served to most pages.
     # nav-main-resp.js isn't used on a handful of pages, but caching a single
@@ -1434,13 +1387,6 @@ PIPELINE_JS = {
             'js/firefox/releasenotes.js',
         ),
         'output_filename': 'js/releasenotes-bundle.js',
-    },
-    'thunderbird-all': {
-        'source_filenames': (
-            'js/base/mozilla-pager.js',
-            'js/firefox/firefox-language-search.js',
-        ),
-        'output_filename': 'js/thunderbird_all-bundle.js',
     },
     'matchmedia': {
         'source_filenames': (

@@ -32,12 +32,9 @@ urlpatterns = (
     page('about/history', 'mozorg/about/history.html'),
     page('about/history/details', 'mozorg/about/history-details.html'),
     page('about/mozilla-based', 'mozorg/projects/mozilla-based.html'),
-    page('projects/calendar', 'mozorg/projects/calendar.html'),
-    url('^projects/calendar/holidays/$', views.holiday_calendars,
-        name='mozorg.projects.holiday_calendars'),
     # Bug 981063, catch all for old calendar urls.
     # must be here to avoid overriding the above
-    redirect(r'^projects/calendar/', 'mozorg.projects.calendar', locale_prefix=False),
+    redirect(r'^projects/calendar/', 'https://www.thunderbird.net/calendar/', locale_prefix=False),
     page('mission', 'mozorg/mission.html'),
     page('ITU', 'mozorg/itu.html'),
     page('about/powered-by', 'mozorg/powered-by.html'),
