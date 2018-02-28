@@ -85,10 +85,17 @@
         width: 100%;
         thead {
             th {
+                vertical-align: bottom;
                 white-space: nowrap;
+                &.cls {
+                    padding-bottom: 0;
+                    text-align: center;
+                    font-weight: bold;
+                }
             }
-            th, td {
-                padding: 10px 0;
+            tr:last-child:not(:first-child) th {
+                padding-top: 0;
+                text-align: center;
             }
         }
         tbody {
@@ -103,15 +110,21 @@
             tr:target th {
                 padding-left: 10px;
             }
-            th, td {
-                padding: 10px 10px 10px 0;
-            }
             th {
                 font-weight: normal;
                 strong, span {
                     display: block;
                 }
             }
+        }
+        th, td {
+            padding: 10px;
+        }
+        .recommended {
+            background-color: rgba(255, 255, 255, .5);
+        }
+        tr:target .recommended {
+            background-color: rgba(255, 255, 255, .1);
         }
         .unavailable {
             padding: 10px;
@@ -120,10 +133,9 @@
             text-shadow: 0 -1px #fff;
         }
         .download {
-            padding: 10px 0;
             a {
                 display: block;
-                padding: 10px 10px 10px 45px;
+                padding: 10px 0 10px 45px;
                 background: transparent url('/media/img/firefox/all/download-icons-desktop.png') left top no-repeat;
             }
 
@@ -149,7 +161,18 @@
             &.android-x86 a {
                 background-position: 0 -80px;
             }
+            &.traditional a {
+                opacity: .7;
+            }
         }
+    }
+}
+
+/* Nightly and DevEdition */
+body.blueprint,
+body.space {
+    #main-content table .recommended {
+        background-color: rgba(255, 255, 255, .1);
     }
 }
 
