@@ -253,7 +253,8 @@ def all_downloads(request, platform, channel):
 
     context = {
         'platform': platform,
-        'platforms': product.platforms(channel),
+        'platforms': product.platforms(channel, True),
+        'platform_cls': product.platform_classification,
         'full_builds_version': version.split('.', 1)[0],
         'full_builds': product.get_filtered_full_builds(channel, version, query),
         'test_builds': product.get_filtered_test_builds(channel, version, query),

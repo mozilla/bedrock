@@ -50,10 +50,19 @@
             {% endif %}
         </caption>
         <thead>
+          {% if platform_cls %}
+            <tr>
+              <th scope="col" rowspan="2" class="language">{{ _('Language') }}</th>
+              <th scope="col" colspan="{{ platform_cls.recommended|length }}" class="cls recommended">{{ _('Recommended') }}</th>
+              <th scope="col" colspan="{{ platform_cls.traditional|length }}" class="cls traditional">&nbsp;</th>
+            </tr>
+          {% endif %}
           <tr>
-            <th scope="col">{{ _('Language') }}</th>
+            {% if not platform_cls %}
+              <th scope="col" class="language">{{ _('Language') }}</th>
+            {% endif %}
             {% for p_name, p_label in platforms %}
-              <th scope="col" class="{{ p_name }}">{{ p_label|replace('\n', '<br>'|safe) }}</th>
+              <th scope="col" class="{{ p_name }}{% if platform_cls %} {{ 'recommended' if p_name in platform_cls.recommended else 'traditional' }}{% endif %}">{{ p_label|replace('\n', '<br>'|safe) }}</th>
             {% endfor %}
           </tr>
         </thead>
@@ -87,7 +96,7 @@
 #}
 {% macro build_link(build, platform, tooltip) %}
   {% if build.platforms[platform] %}
-    <td class="download {{ platform }}">
+    <td class="download {{ platform }}{% if platform_cls %} {{ 'recommended' if platform in platform_cls.recommended else 'traditional' }}{% endif %}">
         <a href="{{ build.platforms[platform].download_url }}" title="{{ tooltip }}"
            data-download-version="{{ platform }}" data-download-language="{{ build.name_en|lower}}" data-link-type="download"
            {% if platform == 'android' %} data-download-os="Android"

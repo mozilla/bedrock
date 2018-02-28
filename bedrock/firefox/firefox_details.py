@@ -42,6 +42,12 @@ class FirefoxDesktop(_ProductDetails):
         ('linux', 'Linux 32-bit'),
     ])
 
+    # Recommended/modern vs traditional/legacy platforms
+    platform_classification = OrderedDict([
+        ('recommended', ('win64', 'osx', 'linux64')),
+        ('traditional', ('win', 'winsha1', 'linux')),
+    ])
+
     # Human-readable channel names
     channel_labels = {
         'nightly': _('Firefox Nightly'),
@@ -69,8 +75,20 @@ class FirefoxDesktop(_ProductDetails):
     def get_bouncer_url(self, platform):
         return self.sha1_bouncer_url if not switch('disable-sha1-downloads') and platform == 'winsha1' else self.bouncer_url
 
-    def platforms(self, channel='release'):
-        platforms = self.platform_labels.copy()
+    def platforms(self, channel='release', classified=False):
+        """
+        Get the desktop platform dictionary containing slugs and corresponding
+        labels. If the classified option is True, it will be ordered by the
+        classification where recommended platforms go first, otherwise a simple
+        copy of platform_labels will be returned.
+        """
+        if classified:
+            platforms = OrderedDict()
+            for k, v in self.platform_classification.iteritems():
+                for platform in v:
+                    platforms[platform] = self.platform_labels[platform]
+        else:
+            platforms = self.platform_labels.copy()
 
         return platforms.items()
 
@@ -290,6 +308,10 @@ class FirefoxAndroid(_ProductDetails):
         ('x86', _('Intel devices\n(Android %s+ x86 CPU)')),
     ])
 
+    # Recommended/modern vs traditional/legacy platforms
+    # Unused but required to match FirefoxDesktop
+    platform_classification = None
+
     # Human-readable channel names
     channel_labels = {
         'nightly': _('Firefox Nightly'),
@@ -341,7 +363,12 @@ class FirefoxAndroid(_ProductDetails):
         'x86': archive_url_base + '-%s/fennec-%s.multi.android-i386.apk',
     }
 
-    def platforms(self, channel='release'):
+    def platforms(self, channel='release', classified=False):
+        """
+        Get the Android platform dictionary containing slugs and corresponding
+        labels. The classified option is unused but required to match the
+        FirefoxDesktop implementation.
+        """
         # Use an OrderedDict to always put the ARM build in front
         platforms = OrderedDict()
 
