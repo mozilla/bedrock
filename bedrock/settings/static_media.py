@@ -199,6 +199,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/newsletter-firefox-bundle.css',
     },
+    'newsletter-opt-out-confirmation': {
+        'source_filenames': (
+            'css/newsletter/newsletter-opt-out-confirmation.scss',
+        ),
+        'output_filename': 'css/newsletter-opt-out-confirmation-bundle.css',
+    },
     'contact-spaces': {
         'source_filenames': (
             'css/libs/magnific-popup.css',

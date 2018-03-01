@@ -596,12 +596,13 @@ def recovery(request):
     else:
         form = EmailForm()
 
-    return l10n_utils.render(
-        request,
-        "newsletter/recovery.html",
-        {
-            'form': form,
-        })
+    # This view is shared between two different templates. For context see bug 1442129.
+    if '/newsletter/opt-out-confirmation/' in request.get_full_path():
+        template = "newsletter/opt-out-confirmation.html"
+    else:
+        template = "newsletter/recovery.html"
+
+    return l10n_utils.render(request, template, {'form': form})
 
 
 def newsletter_subscribe(request):
