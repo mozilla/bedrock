@@ -1,0 +1,132 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+@import '../hubs/sections';
+@import '../quantum/common';
+
+/* -------------------------------------------------------------------------- */
+// Common elements
+
+
+main {
+    padding: 20px 0;
+
+    @media #{$mq-tablet} {
+        padding: 60px 0;
+    }
+}
+
+.inner-content {
+    max-width: 600px;
+}
+
+/* -------------------------------------------------------------------------- */
+// Main heading
+
+header {
+    h1 {
+        @include zilla-slab;
+        font-weight: bold;
+        margin-bottom: 40px;
+    }
+
+    .tagline {
+        @include font-size-level4;
+        font-weight: bold;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Email recovery form
+
+form {
+    margin-bottom: 60px;
+
+    .form-fields {
+        max-width: 300px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="email"] {
+        border-radius: 4px;
+        line-height: 1.1;
+        margin-bottom: 10px;
+        padding: 0.75em 20px;
+        width: 100%;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+    }
+}
+
+.errorlist li {
+    color: $color-mozred;
+}
+
+/* -------------------------------------------------------------------------- */
+// Other ways to stay in touch
+
+aside {
+    h2 {
+        @include font-size-level4;
+        font-weight: bold;
+        margin-bottom: 40px;
+    }
+
+    a:link,
+    a:visited {
+        color: #000;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: #555;
+        }
+    }
+
+    .social-links {
+        margin: 2em 0 0;
+
+        li {
+            display: inline-block;
+            margin-right: 20px;
+
+            a {
+                display: block;
+                @include image-replaced;
+                background-image: url('/media/img/logos/social/social-icon-sprite-dark.svg');
+
+                &.twitter {
+                    background-position: 0 0;
+                    width: 18px;
+                    height: 15px;
+                }
+
+                &.instagram {
+                    background-position: 0 -25px;
+                    width: 19px;
+                    height: 19px;
+                }
+
+                &.youtube {
+                    background-position: 0 -54px;
+                    width: 19px;
+                    height: 13px;
+                }
+
+                &.facebook {
+                    background-position: 0 -77px;
+                    width: 10px;
+                    height: 19px;
+                }
+            }
+        }
+    }
+}

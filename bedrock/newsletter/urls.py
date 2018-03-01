@@ -46,6 +46,11 @@ urlpatterns = (
         views.newsletter_subscribe,
         name='newsletter.subscribe'),
 
+    # Welcome program out-out confirmation page (bug 1442129)
+    url('^newsletter/opt-out-confirmation/',
+        views.recovery,
+        name='newsletter.opt-out-confirmation'),
+
     # Branded signup pages for individual newsletters
     page('newsletter/mozilla', 'newsletter/mozilla.html'),
     page('newsletter/firefox', 'newsletter/firefox.html'),
