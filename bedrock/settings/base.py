@@ -294,6 +294,7 @@ NOINDEX_URLS = [
     r'^firefox/send-to-device-post',
     r'^firefox/feedback',
     r'^firefox/stub_attribution_code/',
+    r'^.+/tracking-protection/start/$',
     r'^.+/(firstrun|whatsnew)/$',
     r'^l10n_example/',
     r'^m/',
