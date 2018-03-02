@@ -132,3 +132,92 @@ class HallOfFamer(models.Model):
     def quarter_string(self):
         year, quarter = self.year_quarter
         return '%s Quarter %s' % (self.ORDINALS[quarter], year)
+
+
+class MitreCVE(models.Model):
+    id = models.CharField(max_length=15, primary_key=True, db_index=True)
+    year = models.SmallIntegerField()
+    order = models.SmallIntegerField()
+    title = models.CharField(max_length=200, blank=True)
+    impact = models.CharField(max_length=100, blank=True)
+    reporter = models.CharField(max_length=100, blank=True)
+    description = models.TextField()
+    products = JSONField(default='[]')
+    bugs = JSONField(default='[]')
+
+    class Meta:
+        ordering = ('-year', '-order')
+
+    def product_versions(self):
+        """Return a list of version numbers per product"""
+        prod_vers = {}
+        for prod in self.products:
+            prod_name, version = prod.rsplit(None, 1)
+            if prod_name in prod_vers:
+                prod_vers[prod_name].append(version)
+            else:
+                prod_vers[prod_name] = [version]
+
+        return prod_vers
+
+    def feed_entry(self):
+        """Return a MITRE format data structure for the CVE
+
+        See https://github.com/CVEProject/automation-working-group/blob/master/cve_json_schema/DRAFT-JSON-file-format-v4.md
+        """
+        product_data = []
+        for prod_name, versions in self.product_versions().iteritems():
+            product_data.append({
+                'product_name': prod_name,
+                'version': {
+                    'version_data': [
+                        {'version_value': vers, 'version_affected': '<'}
+                        for vers in versions
+                    ],
+                }
+            })
+
+        return {
+            'data_type': 'CVE',
+            'data_format': 'MITRE',
+            'data_version': '4.0',
+            'CVE_data_meta': {
+                'ID': self.id,
+                'ASSIGNER': 'security@mozilla.org',
+            },
+            'affects': {
+                'vendor': {
+                    'vendor_data': [
+                        {
+                            'vendor_name': 'Mozilla',
+                            'product': {
+                                'product_data': product_data,
+                            }
+                        }
+                    ]
+                }
+            },
+            'problemtype': {
+                'problemtype_data': [
+                    {
+                        'description': [
+                            {
+                                'lang': 'eng',
+                                'value': self.title,
+                            }
+                        ]
+                    }
+                ]
+            },
+            'references': {
+                'reference_data': [{'url': bug['url']} for bug in self.bugs],
+            },
+            'description': {
+                'description_data': [
+                    {
+                        'lang': 'eng',
+                        'value': self.description,
+                    }
+                ]
+            }
+        }
