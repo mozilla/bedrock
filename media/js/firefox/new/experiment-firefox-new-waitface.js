@@ -18,7 +18,7 @@
     var paramsMatch = function() {
         var params = {
             'utm_medium': 'display', 
-            'utm_source': 'doubleclick'
+            'utm_source': 'facebook'
         };
 
         for (var key in params) {
