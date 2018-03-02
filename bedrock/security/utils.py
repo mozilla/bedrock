@@ -79,6 +79,14 @@ def parse_yml_file(file_name):
     return data, generate_yml_advisories_html(data)
 
 
+def update_advisory_bugs(advisory):
+    if advisory.get('bugs', None):
+        for bug in advisory['bugs']:
+            if not bug.get('desc', None):
+                bug['desc'] = 'Bug %s' % bug['url']
+            bug['url'] = parse_bug_url(bug['url'])
+
+
 def generate_yml_advisories_html(data):
     html = []
     if data.get('description', None):
@@ -87,11 +95,7 @@ def generate_yml_advisories_html(data):
     for cve, advisory in data['advisories'].items():
         advisory['id'] = cve
         advisory['impact_class'] = advisory['impact'].lower().split(None, 1)[0]
-        if advisory.get('bugs', None):
-            for bug in advisory['bugs']:
-                if not bug.get('desc', None):
-                    bug['desc'] = 'Bug %s' % bug['url']
-                bug['url'] = parse_bug_url(bug['url'])
+        update_advisory_bugs(advisory)
         html.append(render_to_string('security/partials/cve.html', advisory))
 
     return '\n\n'.join(html)

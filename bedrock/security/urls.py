@@ -6,6 +6,7 @@ from django.conf.urls import url
 
 from bedrock.mozorg.util import page
 from bedrock.security.views import (
+    mitre_cve_feed,
     AdvisoriesView,
     AdvisoryView,
     HallOfFameView,
@@ -34,6 +35,7 @@ urlpatterns = (
         AdvisoriesView.as_view(), name='security.advisories'),
     url(r'^advisories/mfsa(?P<pk>\d{4}-\d{2,3})/$',
         AdvisoryView.as_view(), name='security.advisory'),
+    url(r'^advisories/cve-feed\.json', mitre_cve_feed, name='security.advisories.cve_feed'),
 
     page('known-vulnerabilities', 'security/known-vulnerabilities.html'),
     page('known-vulnerabilities/older-vulnerabilities', 'security/older-vulnerabilities.html'),
