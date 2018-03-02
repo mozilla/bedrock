@@ -10,6 +10,9 @@
 {% block page_title_suffix %}{% endblock %}
 {% block page_desc %}{{ _('Tell your friends to try the new Firefox') }}{% endblock %}
 
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
 {% block page_css %}
   {% stylesheet 'etc-firefox-retention-thank-you-referral' %}
 {% endblock %}

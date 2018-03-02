@@ -1,7 +1,8 @@
 {% from "product-all-macros.html" import build_search_box, build_table, build_row, build_link with context %}
 {% extends "firefox/base-resp.html" %}
 
-{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
 {% block page_title %}
   {%- if platform == 'android' -%}

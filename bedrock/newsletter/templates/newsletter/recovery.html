@@ -2,7 +2,8 @@
 
 {% set_lang_files "mozorg/newsletters" %}
 
-{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
 {% block body_id %}newsletter-recovery{% endblock body_id %}
 

@@ -4,7 +4,8 @@
 
 {% extends "foundation/base-resp.html" %}
 
-{% block extra_meta %}<meta name="robots" content="noindex">{% endblock %}
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
 {% block page_title %}{{ _('Thank you') }}{% endblock %}
 
