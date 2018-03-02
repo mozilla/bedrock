@@ -12,6 +12,33 @@
         <link rel="alternate" hreflang="en" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="English">
         <link rel="alternate" hreflang="en-US" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="English (USA)">
         <link rel="alternate" hreflang="en-CA" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="English (Canada)">
+        {% elif code == 'es-ES' -%}
+        <link rel="alternate" hreflang="es" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="Español">
+        <link rel="alternate" hreflang="es-ES" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="{{ label|safe }}">
+        {% elif code == 'fy-NL' -%}
+        <link rel="alternate" hreflang="fy" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="Frysk">
+        <link rel="alternate" hreflang="fy-NL" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="{{ label|safe }}">
+        {% elif code == 'gu-IN' -%}
+        <link rel="alternate" hreflang="gu" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="ગુજરાતી">
+        <link rel="alternate" hreflang="gu-IN" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="{{ label|safe }}">
+        {% elif code == 'hi-IN' -%}
+        <link rel="alternate" hreflang="hi" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="हिन्दी">
+        <link rel="alternate" hreflang="hi-IN" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="{{ label|safe }}">
+        {% elif code == 'hy-AM' -%}
+        <link rel="alternate" hreflang="hy" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="Հայերեն">
+        <link rel="alternate" hreflang="hy-AM" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="{{ label|safe }}">
+        {% elif code == 'pa-IN' -%}
+        <link rel="alternate" hreflang="pa" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="ਪੰਜਾਬੀ">
+        <link rel="alternate" hreflang="pa-IN" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="{{ label|safe }}">
+        {% elif code == 'pt-PT' -%}
+        <link rel="alternate" hreflang="pt" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="Português">
+        <link rel="alternate" hreflang="pt-PT" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="{{ label|safe }}">
+        {% elif code == 'sv-SE' -%}
+        <link rel="alternate" hreflang="sv" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="Svenska">
+        <link rel="alternate" hreflang="sv-SE" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="{{ label|safe }}">
+        {% elif code == 'zh-CN' -%}
+        <link rel="alternate" hreflang="zh" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="中文">
+        <link rel="alternate" hreflang="zh-CN" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="{{ label|safe }}">
         {% elif code|length != 3 -%}{#- Bug 1364470: Drop ISO 639-2 and -3 locales not supported by Google -#}
         <link rel="alternate" hreflang="{{ code }}" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="{{ label|safe }}">
         {% endif -%}
