@@ -57,14 +57,14 @@
 
       <ul>
         <li>
-          {% trans guidelines=url('styleguide.home')|absolute_url %}
+          {% trans guidelines=url('styleguide.index')|absolute_url %}
             Visual Guidelines: <a href="{{ guidelines }}">{{ guidelines }}</a>.
           {% endtrans %}
           <ul>
-            <li>{% trans logo=url('styleguide.identity.firefox-branding')|absolute_url %}
+            <li>{% trans logo=url('styleguide.index')|absolute_url %}
                 Firefox Logos: <a href="{{ logo }}">{{ logo }}</a> or{% endtrans %}</li>
 
-            <li>{% trans logo=url('styleguide.identity.mozilla-branding')|absolute_url %}
+            <li>{% trans logo=url('styleguide.index')|absolute_url %}
                 Mozilla Logos: <a href="{{ logo }}">{{ logo }}</a>{% endtrans %}</li>
           </ul>
         </li>

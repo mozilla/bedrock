@@ -81,11 +81,6 @@ The callback function will be passed a single argument - the country code return
 
 If the geolocation lookup fails, the country code passed to the callback function will be an empty string.
 
-Example
--------
-
-You can view a simple example by navigating to ``/styleguide/docs/send-to-device/`` in your local development environment (not available in production).
-
 Micro embedded form
 -------------------
 

@@ -194,8 +194,3 @@ Styling
 Include ``mozilla-accordion.less`` for default styling, complete with open/closed icons.
 
 Add the ``zebra`` class to your ``accordion`` container element for striped sections.
-
-Examples
---------
-
-You can view simple examples by navigating to ``/styleguide/docs/mozilla-accordion/`` in your local development environment (not available in production).

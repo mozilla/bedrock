@@ -1,0 +1,81 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+@import '../hubs/sections';
+
+
+main {
+    h1 {
+        @include font-size-huge;
+        color: #fff;
+        display: inline-block;
+        margin: 40px 0;
+
+        span {
+            @include box-decoration-break(clone);
+            background-color: #000;
+        }
+    }
+
+    a:link,
+    a:visited {
+        color: $color-link;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        color: darken($color-link, 10%);
+    }
+
+    header {
+        max-width: 700px;
+    }
+
+    .guide-links {
+        margin: 40px 0;
+
+        li {
+            display: inline-block;
+            margin-bottom: 40px;
+            width: 300px;
+        }
+
+        a {
+            @include background-size(185px auto);
+            background-position: top left;
+            background-repeat: no-repeat;
+            display: block;
+            padding-top: 100px;
+
+            &.mozilla {
+                background-image: url('/media/img/logos/mozilla/wordmark-dark.svg');
+            }
+
+            &.firefox {
+                background-image: url('/media/img/logos/firefox/logo-quantum-wordmark-large.png');
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        h1 {
+            margin: 60px 0;
+        }
+        .guide-links {
+            margin: 60px 0;
+
+            li {
+                width: 400px;
+            }
+        }
+    }
+}
+
+html[dir="rtl"] {
+    main .guide-links a {
+        background-position: top right;
+    }
+}

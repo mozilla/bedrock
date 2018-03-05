@@ -682,33 +682,9 @@ PIPELINE_CSS = {
     },
     'styleguide': {
         'source_filenames': (
-            'css/sandstone/fonts.less',
-            'css/styleguide/styleguide.less',
-            'css/styleguide/websites-sandstone.less',
-            'css/styleguide/identity-marketplace.less',
-            'css/styleguide/identity-thunderbird.less',
-            'css/styleguide/identity-webmaker.less',
-            'css/styleguide/communications.less',
+            'css/styleguide/styleguide.scss',
         ),
         'output_filename': 'css/styleguide-bundle.css',
-    },
-    'styleguide-docs-mozilla-accordion': {
-        'source_filenames': (
-            'css/base/mozilla-accordion.less',
-        ),
-        'output_filename': 'css/styleguide-docs-mozilla-accordion-bundle.css',
-    },
-    'styleguide-docs-mozilla-pager': {
-        'source_filenames': (
-            'css/styleguide/docs/mozilla-pager.less',
-        ),
-        'output_filename': 'css/styleguide-docs-mozilla-pager-bundle.css',
-    },
-    'styleguide-docs-send-to-device': {
-        'source_filenames': (
-            'css/base/send-to-device.less',
-        ),
-        'output_filename': 'css/styleguide-docs-send-to-device-bundle.css',
     },
     'technology': {
         'source_filenames': (
@@ -1383,33 +1359,6 @@ PIPELINE_JS = {
             'js/base/stub-attribution-init.js',
         ),
         'output_filename': 'js/stub-attribution-bundle.js',
-    },
-    'styleguide': {
-        'source_filenames': (
-            'js/styleguide/styleguide.js',
-        ),
-        'output_filename': 'js/styleguide-bundle.js',
-    },
-    'styleguide-docs-mozilla-accordion': {
-        'source_filenames': (
-            'js/base/mozilla-accordion.js',
-            'js/styleguide/docs/mozilla-accordion.js',
-        ),
-        'output_filename': 'js/styleguide-docs-mozilla-accordion-bundle.js',
-    },
-    'styleguide-docs-mozilla-pager': {
-        'source_filenames': (
-            'js/base/mozilla-pager.js',
-            'js/styleguide/docs/mozilla-pager.js',
-        ),
-        'output_filename': 'js/styleguide-docs-mozilla-pager-bundle.js',
-    },
-    'styleguide-docs-send-to-device': {
-        'source_filenames': (
-            'js/base/send-to-device.js',
-            'js/styleguide/docs/send-to-device.js',
-        ),
-        'output_filename': 'js/styleguide-docs-send-to-device-bundle.js',
     },
     'technology': {
         'source_filenames': (

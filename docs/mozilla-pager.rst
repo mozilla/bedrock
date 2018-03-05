@@ -260,8 +260,3 @@ You can configure some appearance and behavior of the library by supplying custo
 
 ``Mozilla.Pager.HIDDEN_CLASS``
     Sets the CSS class used to hide pages. If overridden, should set ``display: none;`` for ARIA purposes. Defaults to ``hidden``.
-
-Examples
---------
-
-You can view some common pager examples by navigating to ``/styleguide/docs/mozilla-pager/`` in your local development environment (not available in production).

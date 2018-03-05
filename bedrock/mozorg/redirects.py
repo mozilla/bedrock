@@ -118,36 +118,10 @@ redirectpatterns = (
     redirect(r'^projects/?$', 'firefox'),
 
     # Bug 792185 Brand Toolkit -> Style Guide
-    redirect(r'^firefox/brand/?$', 'styleguide.home'),
-    redirect(r'^firefox/brand/platform/?$',
-             'styleguide.identity.firefox-family-platform'),
-    redirect(r'^firefox/brand/identity/?$',
-             'styleguide.identity.firefox-branding'),
-    redirect(r'^firefox/brand/identity/channel-logos/?$',
-             'styleguide.identity.firefox-channels'),
-    redirect(r'^firefox/brand/identity/wordmarks/?$',
-             'styleguide.identity.firefox-wordmarks'),
-    redirect(r'^firefox/brand/identity/typefaces/?$',
-             'styleguide.communications.typefaces'),
-    redirect(r'^firefox/brand/artwork/?$', 'styleguide.home'),
-    redirect(r'^firefox/brand/artwork/gear/?$', 'styleguide.home'),
-    redirect(r'^firefox/brand/website/?$',
-             'styleguide.websites.sandstone-intro'),
-    redirect(r'^firefox/brand/website/domain-strategy/?$',
-             'styleguide.websites.domains-overview'),
-    redirect(r'^firefox/brand/copy/?$', 'styleguide.communications.copy-tone'),
-    redirect(r'^firefox/brand/copy/l10n/?$',
-             'styleguide.communications.translation'),
-    redirect(r'^firefox/brand/copy/rules/?$',
-             'styleguide.communications.copy-rules'),
-    redirect(r'^firefox/brand/downloads/?$', 'styleguide.home'),
+    redirect(r'^firefox/brand(/.*)?', 'styleguide.index'),
 
     # Bug 804810 Identity Guidelines -> Style Guide
-    redirect(r'^foundation/identity-guidelines/index.html', 'styleguide.home'),
-    redirect(r'^foundation/identity-guidelines/mozilla-foundation.html',
-             'styleguide.identity.mozilla-branding'),
-    redirect(r'^foundation/identity-guidelines/thunderbird.html',
-             'styleguide.identity.thunderbird-logo'),
+    redirect(r'^foundation/identity-guidelines(/.*)?', 'styleguide.index'),
 
     # Bug 945474 - delete Marketplace marketing product page
     # and redirect
