@@ -13,7 +13,7 @@
 {% block article %}
   <dl class="faq">
     <dt>{% trans %}What's the purpose of this document?{% endtrans %}</dt>
-    <dd>{% trans policy=url('foundation.trademarks.policy'), styleurl=url('styleguide.home') %}
+    <dd>{% trans policy=url('foundation.trademarks.policy'), styleurl=url('styleguide.index') %}
       This document sets out to answer, beyond what's in the
       <a href="{{ policy }}">trademark policy</a>, common questions which
       arise about the use of the Mozilla Trademarks and Logos. Our code
@@ -82,20 +82,14 @@
       {% endtrans %}</dd>
 
     <dt>{% trans %}Can I put Firefox banners on my website? Can I link to you?{% endtrans %}</dt>
-    <dd>{% trans styleguide=url('styleguide.home') %}
+    <dd>{% trans styleguide=url('styleguide.index') %}
     Thanks for your support :-) Of course you may. Our <a href="{{ styleguide }}">style guide</a> has additional assets you may need: {% endtrans %}<br />
       <ul>
         <li>
-          <a href="{{ url('styleguide.identity.firefox-branding') }}">{{ _('Firefox logo') }}</a>
+          <a href="{{ url('styleguide.index') }}">{{ _('Firefox logo') }}</a>
         </li>
         <li>
-          <a href="{{ url('styleguide.identity.firefox-wordmarks') }}">{{ _('Firefox wordmarks') }}</a>
-        </li>
-        <li>
-          <a href="{{ url('styleguide.identity.thunderbird-logo') }}">{{ _('Thunderbird logo') }}</a>
-        </li>
-        <li>
-          <a href="{{ url('styleguide.identity.thunderbird-wordmarks') }}">{{ _('Thunderbird wordmarks') }}</a>
+          <a href="{{ url('styleguide.index') }}">{{ _('Firefox wordmarks') }}</a>
         </li>
       </ul>
     </dd>
@@ -135,7 +129,7 @@
 
   </dl>
 
-  <p>{% trans trademarks=url('foundation.trademarks.index'), styleguide=url('styleguide.home') %}
+  <p>{% trans trademarks=url('foundation.trademarks.index'), styleguide=url('styleguide.index') %}
       If your question isn't covered here, time to move on to
       <a href="{{ trademarks }}">one of the other Trademark Policy documents</a>
       or the <a href="{{ styleguide }}">Mozilla Style Guide</a>.

@@ -1,0 +1,40 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-pebbles.html" %}
+
+{% block page_title %}{{ _('Mozilla Style Guide') }}{% endblock %}
+
+{% block page_desc %}{{ _('These guides serve as resources to bring together all our brands and to help define their visual and stylistic elements. They exist to provide you with the tools and assets you need to further our mission through communications, websites, products and more.') }}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'styleguide' %}
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="content">
+    <header>
+      <h1><span>{{ _('Style Guides') }}</span></h1>
+
+      <p>
+      {% trans %}
+        Our mission — to promote openness, innovation and opportunity on the Internet — extends through everything we do. These guides serve as resources to bring together all our brands and to help define their visual and stylistic elements. They exist to provide you with the tools and assets you need to further our mission through communications, websites, products and more.
+      {% endtrans %}
+      </p>
+
+      <p>{{ _('Use the links below to find what you’re looking for or just start exploring.') }}</p>
+    </header>
+
+    <ul class="guide-links">
+      <li>
+        <a class="mozilla" href="https://designlanguage.mozilla.org/">https://designlanguage.mozilla.org/</a>
+      </li>
+      <li>
+        <a class="firefox" href="https://design.firefox.com/">https://design.firefox.com/</a>
+      </li>
+    </ul>
+  </div>
+</main>
+{% endblock %}
