@@ -1,5 +1,5 @@
     <link rel="canonical" hreflang="{{ LANG|replace('en-US', 'en') }}" href="{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}">
-    <link rel="alternate" hreflang="x-default" href="{{ settings.CANONICAL_URL }}/{{ settings.LANGUAGE_CODE }}{{ canonical_path }}">
+    <link rel="alternate" hreflang="x-default" href="{{ settings.CANONICAL_URL }}{{ canonical_path }}">
     {% if translations -%}
       {%- for code, label in translations|dictsort -%}
         {%- set alt_url = alternate_url(canonical_path, code) -%}
