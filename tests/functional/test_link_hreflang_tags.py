@@ -6,7 +6,7 @@ import pytest
 import requests
 
 
-LINK_TEMPLATE = '<link rel="canonical" hreflang="{lang}" href="{url}">'
+LINK_TEMPLATE = '<link rel="canonical" href="{url}">'
 
 
 @pytest.mark.headless
@@ -18,8 +18,7 @@ LINK_TEMPLATE = '<link rel="canonical" hreflang="{lang}" href="{url}">'
 ])
 def test_link_hreflang_tags(url, locales, base_url):
     for locale in locales:
-        lang = locale if locale != 'en-US' else 'en'
         full_url = '{}/{}{}'.format(base_url, locale, url)
         link_url = '{}/{}{}'.format('https://www.mozilla.org', locale, url)
         resp = requests.get(full_url, timeout=5)
-        assert LINK_TEMPLATE.format(lang=lang, url=link_url) in resp.content
+        assert LINK_TEMPLATE.format(url=link_url) in resp.content
