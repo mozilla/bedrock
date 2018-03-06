@@ -1102,6 +1102,7 @@ redirectpatterns = (
     redirect('^feedback\.html$', '/contact/'),
     redirect('^firebird$', 'http://www.firefox.com'),
     redirect('^get-involved\.html$', '/contribute/'),
+    redirect('^foundation/mocosc/$', '/foundation/moco/'),
     redirect('^glimpsesearch\.html$', 'http://lxr.mozilla.org/'),
     redirect('^hacking/bonsai\.html$', 'http://developer.mozilla.org/en/Hacking_with_Bonsai'),
     redirect('^hacking/code-review-faq\.html$', 'http://developer.mozilla.org/en/Code_Review_FAQ'),
