@@ -75,7 +75,6 @@ urlpatterns = (
     page('licensing/binary-components', 'foundation/licensing/binary-components/index.html'),
     page('licensing/binary-components/rationale', 'foundation/licensing/binary-components/rationale.html'),
     page('moco', 'foundation/moco.html'),
-    page('mocosc', 'foundation/mocosc.html'),
 
     page('openwebfund/more', 'foundation/openwebfund/more.html'),
     page('openwebfund/thanks', 'foundation/openwebfund/thanks.html'),
