@@ -367,6 +367,23 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
         # add version to context for use in templates
         ctx['version'] = self.kwargs.get('version') or ''
 
+        # add variation for FxA copy experiment
+        # https://bugzilla.mozilla.org/show_bug.cgi?id=1441597
+        locale = l10n_utils.get_locale(self.request)
+
+        # experiment is en-US only
+        if locale == 'en-US':
+            variation = self.request.GET.get('v', None)
+
+            # ensure variation value is of a pre-defined set
+            if (variation not in ['a', 'b', 'c', 'd', 'e', 'f']):
+                variation = None
+        else:
+            variation = None
+
+        # send variation value (or None) to template
+        ctx['v'] = variation
+
         return ctx
 
     def get_template_names(self):

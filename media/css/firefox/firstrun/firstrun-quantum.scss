@@ -628,3 +628,7 @@ html.win8up {
     }
 }
 
+// FxA experiment: https://bugzilla.mozilla.org/show_bug.cgi?id=1441597
+ul.content {
+    padding-left: 20px;
+}
