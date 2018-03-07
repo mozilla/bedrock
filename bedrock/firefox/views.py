@@ -23,6 +23,7 @@ from product_details.version_compare import Version
 
 from lib import l10n_utils
 from lib.l10n_utils.dotlang import lang_file_is_active
+from bedrock.base.waffle import switch
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
 from bedrock.firefox.forms import SendToDeviceWidgetForm
@@ -495,6 +496,10 @@ def new(request):
     variant = request.GET.get('v', None)
     locale = l10n_utils.get_locale(request)
 
+    # ensure variant matches pre-defined value
+    if variant not in ['a', 'b', '1', '2', '3']:
+        variant = None
+
     if scene == '2':
         # `wait-face`, `reggiewatts` variations are currently localized for both en-US and de locales.
         if lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':
@@ -506,8 +511,18 @@ def new(request):
     # if no/incorrect scene specified, show scene 1
     else:
         if lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':
-            if variant == 'b':
-                template = 'firefox/new/wait-face/scene1-video.html'
+            if switch('experiment-firefox-new-waitface'):
+                if variant == 'b':
+                    template = 'firefox/new/wait-face/scene1-video.html'
+                else:
+                    template = 'firefox/new/wait-face/scene1.html'
+            elif switch('experiment-firefox-new-waitface-switch'):
+                if variant == '2':
+                    template = 'firefox/new/wait-face/scene1-newcopy.html'
+                elif variant == '3':
+                    template = 'firefox/new/wait-face/scene1-switch.html'
+                else:
+                    template = 'firefox/new/wait-face/scene1.html'
             else:
                 template = 'firefox/new/wait-face/scene1.html'
         elif lang_file_is_active('firefox/new/reggiewatts', locale) and experience == 'reggiewatts':
@@ -515,7 +530,7 @@ def new(request):
         else:
             template = 'firefox/new/scene1.html'
 
-    return l10n_utils.render(request, template)
+    return l10n_utils.render(request, template, {'v': variant})
 
 
 def ios_testflight(request):

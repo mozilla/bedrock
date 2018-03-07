@@ -4,13 +4,14 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import json
+import os
 from urlparse import parse_qs
 
 from django.test import override_settings
 from django.test.client import RequestFactory
 
 import querystringsafe_base64
-from mock import patch, Mock
+from mock import patch, Mock, ANY
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
@@ -421,13 +422,13 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
 
     def test_scene_2_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
 
     # wait face campaign bug 1380044
 
@@ -435,39 +436,69 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?xv=waitface')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene1.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene1.html', ANY)
 
     def test_wait_face_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&xv=waitface')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene2.html', ANY)
 
     # wait face video experiment bug 1431795
 
+    @patch.dict(os.environ, SWITCH_EXPERIMENT_FIREFOX_NEW_WAITFACE='True')
+    @patch.dict(os.environ, SWITCH_EXPERIMENT_FIREFOX_NEW_WAITFACE_SWITCH='False')
     def test_wait_face_video_var_a_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=waitface&v=a')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene1.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene1.html', ANY)
 
     def test_wait_face_video_var_a_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&xv=waitface&v=a')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene2.html', ANY)
 
+    @patch.dict(os.environ, SWITCH_EXPERIMENT_FIREFOX_NEW_WAITFACE='True')
+    @patch.dict(os.environ, SWITCH_EXPERIMENT_FIREFOX_NEW_WAITFACE_SWITCH='False')
     def test_wait_face_video_var_b_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=waitface&v=b')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene1-video.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene1-video.html', ANY)
 
     def test_wait_face_video_var_b_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&xv=waitface&v=b')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene2.html', ANY)
+
+    # wait face switch experiment bug 1443921
+
+    @patch.dict(os.environ, SWITCH_EXPERIMENT_FIREFOX_NEW_WAITFACE='False')
+    @patch.dict(os.environ, SWITCH_EXPERIMENT_FIREFOX_NEW_WAITFACE_SWITCH='True')
+    def test_wait_face_switch_var_1_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=waitface&v=1')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene1.html', ANY)
+
+    @patch.dict(os.environ, SWITCH_EXPERIMENT_FIREFOX_NEW_WAITFACE='False')
+    @patch.dict(os.environ, SWITCH_EXPERIMENT_FIREFOX_NEW_WAITFACE_SWITCH='True')
+    def test_wait_face_switch_var_2_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=waitface&v=2')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene1-newcopy.html', ANY)
+
+    @patch.dict(os.environ, SWITCH_EXPERIMENT_FIREFOX_NEW_WAITFACE='False')
+    @patch.dict(os.environ, SWITCH_EXPERIMENT_FIREFOX_NEW_WAITFACE_SWITCH='True')
+    def test_wait_face_switch_var_3_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=waitface&v=3')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene1-switch.html', ANY)
 
     # reggie watts campaign bug 1413995
 
@@ -475,41 +506,41 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?xv=reggiewatts')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/reggie-watts/scene1.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/reggie-watts/scene1.html', ANY)
 
     def test_reggie_watts_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&xv=reggiewatts')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/reggie-watts/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/reggie-watts/scene2.html', ANY)
 
     @patch.object(views, 'lang_file_is_active', lambda *x: True)
     def test_reggie_watts_translated_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=reggiewatts')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/reggie-watts/scene1.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/reggie-watts/scene1.html', ANY)
 
     @patch.object(views, 'lang_file_is_active', lambda *x: True)
     def test_reggie_watts_translated_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&xv=reggiewatts')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/reggie-watts/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/reggie-watts/scene2.html', ANY)
 
     @patch.object(views, 'lang_file_is_active', lambda *x: False)
     def test_reggie_watts_untranslated_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=reggiewatts')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
 
     @patch.object(views, 'lang_file_is_active', lambda *x: False)
     def test_reggie_watts_untranslated_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&xv=reggiewatts')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
 
 
 class TestFirefoxNewNoIndex(TestCase):

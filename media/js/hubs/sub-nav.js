@@ -14,18 +14,19 @@ js/libs/jquery.waypoints-sticky.min.js
 
     var mqShowNav;
     var subNavSticky;
+    var $subNavElem = $('.moz-sub-nav');
 
     function enableDesktop() {
         if (mqShowNav) {
             subNavSticky = new Waypoint.Sticky({
-                element: $('.moz-sub-nav'),
+                element: $subNavElem,
                 offset: 0
             });
         }
     }
 
     // It's your world, IE
-    if (typeof matchMedia !== 'undefined') {
+    if ($subNavElem.length && typeof matchMedia !== 'undefined') {
         mqShowNav = matchMedia('(min-width: 760px)');
 
         mqShowNav.addListener(function(mq) {
