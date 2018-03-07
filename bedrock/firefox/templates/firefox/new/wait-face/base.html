@@ -13,8 +13,14 @@
 {% endblock %}
 
 {% block experiments %}
+  {#
+    The 'experiment-firefox-new-waitface-switch' experiment is slated to go live *immediately* after
+    'experiment-firefox-new-waitface' concludes.
+  #}
   {% if switch('experiment-firefox-new-waitface', ['en-US']) %}
     {% javascript 'experiment_firefox_new_waitface' %}
+  {% elif switch('experiment-firefox-new-waitface-switch', ['en-US']) %}
+    {% javascript 'experiment_firefox_new_waitface_switch' %}
   {% endif %}
 {% endblock %}
 

@@ -2,25 +2,23 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "firefox/base-pebbles.html" %}
+{# waitface/switch experiment: https://bugzilla.mozilla.org/show_bug.cgi?id=1443921 #}
 
-{% block page_title %}{{ _('Switch from Chrome to Firefox in just a few minutes') }}{% endblock %}
-{% block page_desc %}{{ _('Switching to Firefox is fast, easy and risk-free, because Firefox imports your bookmarks, autofills, passwords and preferences from Chrome.') }}{% endblock %}
+{% extends "firefox/switch.html" %}
 
-{% block page_css %}
-  {% stylesheet 'firefox-switch' %}
+{% block extrahead %}
+  {% javascript 'firefox_new_waitface_switch_experiment_datalayer' %}
 {% endblock %}
 
-{% block body_id %}firefox-switch{% endblock %}
-
-{% block optimizely %}
-  {% if switch('firefox-switch-optimizely', ['en-US']) %}
-    {% include 'includes/optimizely.html' %}
-  {% endif %}
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}
+  <meta name="robots" content="noindex,follow">
 {% endblock %}
+
+{% block site_header %}{% endblock %}
 
 {% block content %}
-{% include 'firefox/includes/hub/sub-nav.html' %}
+{# same as parent template, but no sub nav #}
 <main>
   <div class="outer-container">
     <div class="content">
@@ -80,6 +78,4 @@
 </main>
 {% endblock %}
 
-{% block js %}
-  {% javascript 'firefox-switch' %}
-{% endblock %}
+{% block update_notification %}{% endblock %}
