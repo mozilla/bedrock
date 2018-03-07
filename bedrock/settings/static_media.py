@@ -372,7 +372,6 @@ PIPELINE_CSS = {
     'firefox_new_common': {
         'source_filenames': (
             'css/firefox/new/common.scss',
-            'css/firefox/new/experiment-dev-edition.scss',
         ),
         'output_filename': 'css/firefox_new_common-bundle.css',
     },
@@ -1156,13 +1155,6 @@ PIPELINE_JS = {
             'js/firefox/new/experiment-firefox-new-waitface.js',
         ),
         'output_filename': 'js/experiment_firefox_new_waitface-bundle.js',
-    },
-    'experiment_firefox_new_dev_edition': {
-        'source_filenames': (
-            'js/base/mozilla-traffic-cop.js',
-            'js/firefox/new/experiment-firefox-new-dev-edition.js',
-        ),
-        'output_filename': 'js/experiment_firefox_new_dev_edition-bundle.js',
     },
     'firefox_new_pixel': {
         'source_filenames': (
