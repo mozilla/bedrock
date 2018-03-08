@@ -33,8 +33,13 @@ header {
     }
 
     .tagline {
-        @include font-size-level4;
         font-weight: bold;
+    }
+
+    @media #{$mq-tablet} {
+        .tagline {
+            @include font-size(24px);
+        }
     }
 }
 
