@@ -50,9 +50,9 @@
               <div class="field-contents">
                 {{ form.email.errors }}
                 <label for="id_email">{{ _('Your email address:') }}</label>
-                {{ form.email }}
+                {{ field_with_attrs(form.email, placeholder=_('yourname@example.com'))|safe }}
               </div>
-              <button class="button button-hollow button-dark" type="submit">{{ _('Manage preferences') }}</button>
+              <button class="button button-hollow button-dark" type="submit">{{ _('Manage Preferences') }}</button>
             </div>
           </div>
 
