@@ -355,6 +355,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_developer_quantum_firstrun-bundle.css',
     },
+    'firefox_enterprise': {
+        'source_filenames': (
+            'css/firefox/enterprise.scss',
+        ),
+        'output_filename': 'css/firefox_enterprise-bundle.css',
+    },
     'firefox_ios_testflight': {
         'source_filenames': (
             'css/firefox/testflight.less',
