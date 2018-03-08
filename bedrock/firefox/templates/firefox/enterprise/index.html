@@ -1,0 +1,99 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base-pebbles.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{_('Firefox for Enterprise Web Browser | Firefox')}}{% endblock %}
+{% block page_desc %}{{_('A managed version of the super-fast new Firefox.')}}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_enterprise' %}
+{% endblock %}
+
+{% block body_id %}firefox{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+  <main role="main">
+  <section class="intro content-section">
+    <div class="content">
+      <div class="copy">
+        <img class="logo" src="{{ static('img/logos/firefox/logo-quantum.png') }}" width="100" height="100" alt="" />
+        {% block head_content %}
+          <h1>Firefox for Enterprise</h1>
+          <p>Speed up your business by deploying a managed version of the super-fast new Firefox</p>
+        {% endblock %}
+        {% block primary_download_button %}
+          <a href="https://www.surveygizmo.com/s3/4201563/Firefox-for-Enterprise-Beta" class="button button-green">Sign up for the beta</a>
+        {% endblock %}
+      </div>
+      {% block optional_cta %}{% endblock %}
+    </div>
+  </section>
+
+  {% block details %}
+  <section class="details content-section">
+    <div class="content">
+      <ul>
+        <li>
+        {% block content_1 %}
+          <h3>{{ _('Easy administration') }}</h3>
+          <p>
+          {% trans %}
+            Set up policies (e.g. proxy, restrict sites) with Group Policy on Windows and a JSON file on Mac and Linux.
+          {% endtrans %}
+          </p>
+        {% endblock %}
+        </li>
+        <li>
+        {% block content_2 %}
+          <h3>{{ _('Fast and lightweight') }}</h3>
+          <p>
+          {% trans %}
+            Powered by a cutting-edge engine, Firefox is now 2X faster than it was and uses 30% less RAM than Chrome.
+          {% endtrans %}
+          </p>
+        {% endblock %}
+        </li>
+        <li>
+        {% block content_3 %}
+          <h3>{{ _('Proven and private') }}</h3>
+          <p>
+          {% trans %}
+            Firefox is open source and is trusted by thousands of businesses to protect user and organizational privacy.
+          {% endtrans %}
+          </p>
+        {% endblock %}
+        </li>
+      </ul>
+    </div>
+  </section>
+  {% endblock %}
+
+  {% block secondary_download %}
+  <section class="secondary-download content-section">
+    <div class="content">
+      <div class="download-contain">
+        <h2>
+        {% block secondary_download_cta %}
+          {{ _('Speed up your business.') }}
+        {% endblock %}
+        </h2>
+        <div class="download-button-wrapper">
+          <a href="https://www.surveygizmo.com/s3/4201563/Firefox-for-Enterprise-Beta" class="button button-green">Sign up for the beta</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock %}
+</main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{# Bug 1381776 #}
+{% block update_notification %}{% endblock %}

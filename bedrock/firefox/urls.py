@@ -33,6 +33,7 @@ urlpatterns = (
     page('firefox/channel/android', 'firefox/channel/android.html'),
     page('firefox/channel/ios', 'firefox/channel/ios.html'),
     page('firefox/developer', 'firefox/developer/index.html'),
+    page('firefox/enterprise', 'firefox/enterprise/index.html'),
     page('firefox/features', 'firefox/features/index.html'),
     url('^firefox/features/bookmarks/$',
         views.FeaturesBookmarksView.as_view(),
