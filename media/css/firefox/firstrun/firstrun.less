@@ -117,20 +117,23 @@ img {
 
 #skip-button {
     -moz-appearance: none;
-    background-color: #0996f8;
-    border-radius: 3px;
-    border: 1px solid #0670cc;
+    .font-size(14px);
+    background-color: #fcfcfc;
+    border-radius: 2px;
+    border: 1px solid #0a84ff;
     box-shadow: 0 0 0 0 transparent;
-    color: #fff;
+    color: #0a84ff;
     cursor: pointer;
     display: block;
-    height: 24px;
+    min-height: 24px;
     margin: 10px auto;
-    padding: 3px 10px;
+    padding: 5px 10px;
+    transition: background-color 150ms, color 150ms, border-color 150ms;
 
     &:not([disabled]):hover {
-        background-color: #0670cc;
-        border-color: #005bab;
+        background-color: #0a84ff;
+        border-color: #0060df;
+        color: #fff;
     }
 }
 

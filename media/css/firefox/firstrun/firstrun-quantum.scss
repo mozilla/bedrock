@@ -191,19 +191,21 @@ body {
 #skip-button {
     -moz-appearance: none;
     @include font-size(14px);
-    background-color: #0996f8;
-    border-radius: 3px;
-    border: 1px solid #0670cc;
-    color: #fff;
+    background-color: #fcfcfc;
+    border-radius: 2px;
+    border: 1px solid #0a84ff;
+    color: #0a84ff;
     cursor: pointer;
     display: block;
     margin: 10px auto 0 auto;
     min-height: 24px;
     padding: 5px 10px;
+    transition: background-color 150ms, color 150ms, border-color 150ms;
 
     &:not([disabled]):hover {
-        background-color: #0670cc;
-        border-color: #005bab;
+        background-color: #0a84ff;
+        border-color: #0060df;
+        color: #fff;
     }
 }
 
