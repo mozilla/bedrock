@@ -5,6 +5,7 @@
 import codecs
 import re
 from collections import OrderedDict
+from datetime import date
 
 import yaml
 from django.template.loader import render_to_string
@@ -63,10 +64,13 @@ def parse_md_file(file_name):
     return data, markdown(mdtext)
 
 
-def parse_yml_file(file_name):
+def parse_yml_file_base(file_name):
     with codecs.open(file_name, encoding='utf8') as fh:
-        data = yaml_ordered_safe_load(fh)
+        return yaml_ordered_safe_load(fh)
 
+
+def parse_yml_file(file_name):
+    data = parse_yml_file_base(file_name)
     if 'mfsa_id' not in data:
         mfsa_id = mfsa_id_from_filename(file_name)
         if mfsa_id:
@@ -126,3 +130,25 @@ def yaml_ordered_safe_load(stream, object_pairs_hook=OrderedDict):
     OrderedLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG,
                                   construct_mapping)
     return yaml.load(stream, OrderedLoader)
+
+
+def check_hof_data(data):
+    """Check the HOF Data and raise ValueError if there's a problem."""
+    if not data:
+        raise ValueError('HOF Data is empty')
+
+    if 'names' not in data:
+        raise ValueError('Missing required key: names')
+
+    if len(data['names']) < 100:
+        raise ValueError('Suspiciously few names returned. File may be corrupted.')
+
+    for name in data['names']:
+        if 'name' not in name:
+            raise ValueError('Key "name" required for every entry in "names"')
+        if 'date' not in name:
+            raise ValueError('Key "date" required for every entry in "names"')
+        if not isinstance(name['date'], date):
+            raise ValueError('Key "date" should be formatted as a date (YYYY-MM-DD): %s' % name['date'])
+        if name['date'] < date(2004, 11, 9):
+            raise ValueError('A date can\'t be set before the launch date of Firefox')

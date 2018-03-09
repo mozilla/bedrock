@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import os.path
+
 from django.conf import settings
 from mock import patch
 
@@ -83,18 +85,18 @@ class TestDBActions(TestCase):
         eq_(update_security_advisories.delete_orphaned_products(), 2)
         eq_(Product.objects.get().name, 'Firefox 43.0.1')
 
-    @patch.object(update_security_advisories, 'get_all_mfsa_files')
+    @patch.object(update_security_advisories, 'get_all_file_names')
     @patch.object(update_security_advisories, 'delete_files')
     @patch.object(update_security_advisories, 'update_db_from_file')
     @patch.object(update_security_advisories, 'GitRepo')
-    def test_file_name_extension_change(self, git_mock, udbff_mock, df_mock, gamf_mock):
+    def test_file_name_extension_change(self, git_mock, udbff_mock, df_mock, gafn_mock):
         """
         An MFSA file can now be either .md or .yml. Make sure this is an update, not a delete.
         """
         make_mfsa('2016-42')
         make_mfsa('2016-43')
-        all_files = ['mfsa2016-42.yml']
-        gamf_mock.return_value = all_files
+        all_files = [os.path.join(update_security_advisories.ADVISORIES_PATH, 'mfsa2016-42.yml')]
+        gafn_mock.return_value = all_files
         git_mock().has_changes.return_value = True
         update_security_advisories.Command().handle_noargs(quiet=True, no_git=False,
                                                            clear_db=False)

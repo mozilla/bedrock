@@ -1,19 +1,65 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+from datetime import date
 from textwrap import dedent
 from cStringIO import StringIO
 
+import pytest
 from mock import patch, call
 from nose.tools import eq_
 
 from bedrock.security.utils import (
+    check_hof_data,
     generate_yml_advisories_html,
     mfsa_id_from_filename,
     parse_bug_url,
     parse_md_front_matter,
     yaml_ordered_safe_load,
 )
+
+
+def test_check_hof_data():
+    good_names = [{
+        'name': 'El Dudarino',
+        'date': date(2018, 3, 20),
+    }]
+    good_data = {'names': good_names * 200}
+    # should not raise exception
+    check_hof_data(good_data)
+
+    # empty, expect ValueError
+    with pytest.raises(ValueError):
+        check_hof_data({})
+
+    # wrong, expect ValueError
+    with pytest.raises(ValueError):
+        check_hof_data({'dude': 'abides'})
+
+    # truncated, expect ValueError
+    truncated_data = {'names': good_names * 50}
+    with pytest.raises(ValueError):
+        check_hof_data(truncated_data)
+
+    # no name, expect ValueError
+    truncated_data = {'names': [{'date': date(2018, 3, 20)}] * 200}
+    with pytest.raises(ValueError):
+        check_hof_data(truncated_data)
+
+    # no date, expect ValueError
+    truncated_data = {'names': [{'name': 'Donnie'}] * 200}
+    with pytest.raises(ValueError):
+        check_hof_data(truncated_data)
+
+    # date wrong format, expect ValueError
+    truncated_data = {'names': [{'name': 'Donnie', 'date': '2018-03-20'}] * 200}
+    with pytest.raises(ValueError):
+        check_hof_data(truncated_data)
+
+    # date too old, expect ValueError
+    truncated_data = {'names': [{'name': 'Donnie', 'date': date(1999, 12, 31)}] * 200}
+    with pytest.raises(ValueError):
+        check_hof_data(truncated_data)
 
 
 def test_parse_front_matter():
