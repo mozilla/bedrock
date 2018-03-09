@@ -98,3 +98,37 @@ class SecurityAdvisory(models.Model):
     def products(self):
         prods_set = set(v.product for v in self.fixed_in.all())
         return sorted(prods_set)
+
+
+class HallOfFamer(models.Model):
+    ORDINALS = {
+        1: '1st',
+        2: '2nd',
+        3: '3rd',
+        4: '4th',
+    }
+    PROGRAM_CHOICES = (
+        ('web', 'Web'),
+        ('client', 'Client'),
+    )
+    program = models.CharField(max_length=10, choices=PROGRAM_CHOICES)
+    name = models.CharField(max_length=200)
+    date = models.DateField()
+    url = models.CharField(max_length=200, blank=True)
+
+    class Meta:
+        ordering = ('-date', 'id')
+
+    @property
+    def year_quarter(self):
+        """Return the year and quarter based on the date field.
+
+        @return tuple: (int year, int quarter)
+        """
+        quarter = ((self.date.month - 1) // 3) + 1
+        return self.date.year, quarter
+
+    @property
+    def quarter_string(self):
+        year, quarter = self.year_quarter
+        return '%s Quarter %s' % (self.ORDINALS[quarter], year)
