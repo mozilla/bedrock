@@ -5,6 +5,7 @@
 from django.conf import settings
 from django.conf.urls import handler404, include, url
 
+from watchman import views as watchman_views
 
 # The default django 500 handler doesn't run the ContextProcessors, which breaks
 # the base template page. So we replace it with one that does!
@@ -32,8 +33,8 @@ urlpatterns = (
     url(r'^l10n_example/',
         include('bedrock.l10n_example.urls')),
 
-    url(r'^healthz/$', 'bedrock.base.views.liveness'),
-    url(r'^readiness/$', 'bedrock.base.views.readiness'),
+    url(r'^healthz/$', watchman_views.ping, name="watchman.ping"),
+    url(r'^readiness/$', watchman_views.status, name="watchman.status"),
     url(r'^csp-violation-capture$', 'bedrock.base.views.csp_violation_capture',
         name='csp-violation-capture'),
     url(r'^country-code\.json$', 'bedrock.base.views.geolocate',

@@ -471,6 +471,7 @@ INSTALLED_APPS = (
     'localflavor',
     'django_jinja',
     'raven.contrib.django.raven_compat',
+    'watchman',
 
     # Local apps
     'bedrock.base',
@@ -540,6 +541,13 @@ SECURE_REDIRECT_EXEMPT = [
 ]
 if config('USE_SECURE_PROXY_HEADER', default=SECURE_SSL_REDIRECT, cast=bool):
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# watchman
+WATCHMAN_DISABLE_APM = True
+WATCHMAN_CHECKS = (
+    'watchman.checks.caches',
+    'watchman.checks.databases',
+)
 
 LOCALE_PATHS = (
     str(LOCALES_PATH),
