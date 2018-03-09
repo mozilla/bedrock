@@ -1,0 +1,25 @@
+    <div class="accordion accordion-auto-init zebra">
+      {% for person in hofers %}
+        {% if loop.changed(person.date.year) %}
+        <section id="year-{{ person.date.year }}">
+          <h3 data-accordion-role="tab">{{ person.date.year }}</h3>
+          <div data-accordion-role="tabpanel">
+        {% endif %}
+          {% if not loop.previtem or loop.previtem.quarter_string != person.quarter_string %}
+            <h4>{{ person.quarter_string }}</h4>
+            <ul class="prose">
+          {% endif %}
+            {% if person.url -%}
+              <li><a href="{{ person.url }}" rel="nofollow">{{ person.name }}</a></li>
+            {% else -%}
+              <li>{{ person.name }}</li>
+            {% endif %}
+          {% if not loop.nextitem or loop.nextitem.quarter_string != person.quarter_string %}
+            </ul>
+          {% endif %}
+        {% if not loop.nextitem or loop.nextitem.date.year != person.date.year %}
+          </div>
+        </section>
+        {% endif %}
+      {% endfor %}
+    </div>
