@@ -283,6 +283,49 @@ html[dir="rtl"] #main-header {
     }
 }
 
+// bug 1440486 firstrun Sync devices image experiment.
+main[data-variation="h"] {
+    #main-header h1 {
+        @include at2x('/media/img/firefox/firstrun/sync/sync-devices.png', 297px, 130px);
+        padding-top: 150px;
+    }
+}
+
+main[data-variation="i"],
+main[data-variation="j"] {
+    #main-header {
+        p {
+            background: url('/media/img/firefox/firstrun/sync/sync-devices-icons.svg') bottom center no-repeat;
+            background-size: 280px auto;
+            padding-bottom: 180px;
+        }
+
+        .content {
+            margin: 0 auto 40px;
+        }
+
+        @media #{$mq-medium} {
+            p {
+                background-size: 300px auto;
+                background-position: bottom left;
+            }
+
+            .content {
+                margin: 0 0 40px;
+            }
+        }
+    }
+}
+
+main[data-variation="j"] {
+    #main-header {
+        p {
+            background: url('/media/img/firefox/firstrun/sync/sync-devices-icons-anim.svg') bottom center no-repeat;
+            padding-bottom: 210px;
+        }
+    }
+}
+
 /* -------------------------------------------------------------------------- */
 // Animations & transitions
 

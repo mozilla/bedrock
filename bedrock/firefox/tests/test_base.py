@@ -357,6 +357,47 @@ class TestFirstRun(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/firstrun/firstrun-quantum.html'])
 
+    # Bug 1441597, 1440486 copy & image experiments
+
+    @override_settings(DEV=True)
+    def test_fx_firstrun_58_0_context_none(self, render_mock):
+        """Should pass default context data to template"""
+        req = self.rf.get('/en-US/firefox/firstrun/')
+        self.view(req, version='58.0')
+        context_data = render_mock.call_args[0][2]
+        eq_(context_data['v'], None)
+        eq_(context_data['campaign'], None)
+
+    @override_settings(DEV=True)
+    def test_fx_firstrun_58_0_context_copy_exp(self, render_mock):
+        """Should pass variation and campaign for copy exp to template"""
+        req = self.rf.get('/en-US/firefox/firstrun/?v=a')
+        self.view(req, version='58.0')
+        context_data = render_mock.call_args[0][2]
+        eq_(context_data['v'], 'a')
+        eq_(context_data['campaign'], 'firstrun-copy-ex1')
+
+    @override_settings(DEV=True)
+    def test_fx_firstrun_58_0_context_image_exp(self, render_mock):
+        """Should pass variation and campaign for image exp to template"""
+        req = self.rf.get('/en-US/firefox/firstrun/?v=g')
+        self.view(req, version='58.0')
+        context_data = render_mock.call_args[0][2]
+        eq_(context_data['v'], 'g')
+        eq_(context_data['campaign'], 'firstrun-image-ex1')
+
+    @override_settings(DEV=True)
+    def test_fx_firstrun_58_0_context_non_en_US(self, render_mock):
+        """Should not pass variation and campaign values for other locales"""
+        req = self.rf.get('/firefox/firstrun/?v=g')
+        req.locale = 'de'
+        self.view(req, version='58.0')
+        context_data = render_mock.call_args[0][2]
+        eq_(context_data['v'], None)
+        eq_(context_data['campaign'], None)
+
+    # End variation experiments
+
 
 @patch.object(fx_views, 'firefox_desktop', firefox_desktop)
 class FxVersionRedirectsMixin(object):
