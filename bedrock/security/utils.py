@@ -63,10 +63,13 @@ def parse_md_file(file_name):
     return data, markdown(mdtext)
 
 
-def parse_yml_file(file_name):
+def parse_yml_file_base(file_name):
     with codecs.open(file_name, encoding='utf8') as fh:
-        data = yaml_ordered_safe_load(fh)
+        return yaml_ordered_safe_load(fh)
 
+
+def parse_yml_file(file_name):
+    data = parse_yml_file_base(file_name)
     if 'mfsa_id' not in data:
         mfsa_id = mfsa_id_from_filename(file_name)
         if mfsa_id:

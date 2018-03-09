@@ -15,13 +15,14 @@ from django.db.models import Count
 
 from dateutil.parser import parse as parsedate
 
-from bedrock.security.models import Product, SecurityAdvisory
+from bedrock.security.models import HallOfFamer, Product, SecurityAdvisory
 from bedrock.utils.git import GitRepo
 from bedrock.security.utils import (
     FILENAME_RE,
     mfsa_id_from_filename,
     parse_md_file,
     parse_yml_file,
+    parse_yml_file_base,
 )
 
 
@@ -31,6 +32,8 @@ ADVISORIES_BRANCH = settings.MOFO_SECURITY_ADVISORIES_BRANCH
 
 SM_RE = re.compile('seamonkey', flags=re.IGNORECASE)
 FNULL = open(os.devnull, 'w')
+HOF_FILES = ['client.yml', 'web.yml']
+HOF_DIRECTORY = 'bug-bounty-hof'
 
 
 def fix_product_name(name):
@@ -100,6 +103,18 @@ def add_or_update_advisory(data, html):
     return advisory
 
 
+def add_hofers(filename, data):
+    program = os.path.basename(filename)[:-4]
+    HallOfFamer.objects.filter(program=program).delete()
+    for hofer in data['names']:
+        HallOfFamer.objects.create(
+            program=program,
+            name=hofer['name'],
+            date=hofer['date'],
+            url=hofer.get('url', ''),
+        )
+
+
 def update_db_from_file(filename):
     """
     Parse file for YAML and Markdown and update database.
@@ -108,6 +123,8 @@ def update_db_from_file(filename):
     :param filename: path to markdown file.
     :return: SecurityAdvisory instance
     """
+    if HOF_DIRECTORY in filename:
+        return add_hofers(filename, parse_yml_file_base(filename))
     if filename.endswith('.md'):
         parser = parse_md_file
     elif filename.endswith('.yml'):
@@ -120,6 +137,15 @@ def update_db_from_file(filename):
 
 def get_all_mfsa_files():
     return glob.glob(os.path.join(ADVISORIES_PATH, 'announce', '*', 'mfsa*.*'))
+
+
+def get_all_hof_files():
+    return [os.path.join(ADVISORIES_PATH, HOF_DIRECTORY, fn) for fn in HOF_FILES]
+
+
+def get_all_file_names():
+    """Return every file to process"""
+    return get_all_mfsa_files() + get_all_hof_files()
 
 
 def get_ids_from_files(filenames):
@@ -208,9 +234,8 @@ class Command(NoArgsCommand):
 
         errors = []
         updates = 0
-        all_files = get_all_mfsa_files()
+        all_files = get_all_file_names()
         for mf in all_files:
-            mf = os.path.join(ADVISORIES_PATH, mf)
             try:
                 update_db_from_file(mf)
             except Exception as e:
