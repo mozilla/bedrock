@@ -18,6 +18,7 @@ PAGE_PATHS = (
     '/firefox/android/nightly/all/',
 )
 
+
 #temporarily marking as xfail due to bug 1445077
 @pytest.mark.xfail
 @pytest.mark.download
