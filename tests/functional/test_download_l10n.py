@@ -18,7 +18,8 @@ PAGE_PATHS = (
     '/firefox/android/nightly/all/',
 )
 
-
+#temporarily marking as xfail due to bug 1445077
+@pytest.mark.xfail
 @pytest.mark.download
 @pytest.mark.nondestructive
 @pytest.mark.parametrize('path', PAGE_PATHS)
