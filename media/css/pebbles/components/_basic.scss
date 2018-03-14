@@ -1,0 +1,71 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../includes/lib';
+@import '../../hubs/sections';
+@import '../../hubs/masthead';
+
+/* one large column on the left, one optional smaller column on the right */
+
+.basic-content.content {
+    @media #{$mq-tablet} {
+        padding-top: $tablet-content-padding;
+        padding-bottom: $tablet-content-padding;
+    }
+
+    @media #{$mq-desktop-wide} {
+        padding-top: $desktop-content-padding;
+        padding-bottom: $desktop-content-padding;
+    }
+}
+
+.basic-main-with-side {
+
+    @media #{$mq-tablet} {
+        @include span(8);
+        padding-left: 0;
+        padding-right: ($tablet-content-padding / 2);
+
+        html[dir="rtl"] & {
+            float: right;
+            padding-right: 0;
+            padding-left: ($tablet-content-padding / 2);
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        padding-right:($desktop-content-padding / 2);
+
+        html[dir="rtl"] & {
+            padding-left: ($desktop-content-padding / 2);
+        }
+    }
+
+}
+
+.basic-side {
+
+    @media #{$mq-tablet} {
+        @include span(4);
+        padding-left: ($tablet-content-padding / 2);
+        padding-right: 0;
+        padding-top: 74px;
+
+        html[dir="rtl"] & {
+            float: right;
+            padding-left: 0;
+            padding-right: ($tablet-content-padding / 2);
+        }
+    }
+
+    @media #{$mq-desktop} {
+        padding-top: 90px;
+        padding-left: ($desktop-content-padding / 2);
+
+        html[dir="rtl"] & {
+            padding-right: ($desktop-content-padding / 2);
+        }
+    }
+
+}

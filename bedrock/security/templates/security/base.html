@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "base-resp.html" %}
+{% extends "base-pebbles-basic.html" %}
 
 {% block page_css %}
   {% stylesheet 'security' %}
@@ -28,74 +28,8 @@
     (url('security.bug-bounty.web-hall-of-fame'), 'web-hall-of-fame', 'Hall of Fame'),
 ] %}
 
+{% block body_class %}{% endblock %}
 
-{% block body_class %}sand{% endblock %}
-
-{% block breadcrumbs %}
-  <nav class="breadcrumbs">
-    <a href="{{ url('mozorg.home') }}">{{ _('Home') }}</a> &gt;
-    <a href="{{ url('security.index') }}">{{ _('Mozilla Security') }}</a> &gt;
-  </nav>
+{% block side_nav %}
+  {{ side_nav_lists([navigation_bar_security, navigation_bar_client_bounty, navigation_bar_web_bounty], body_id) }}
 {% endblock %}
-
-{% block content %}
-  {% block main_feature %}{% endblock %}
-  {% block menu_bar %}{% endblock %}
-  <main id="main-content">
-    <div class="main-column">
-      {% block article %}{% endblock %}
-    </div>
-    {% block sidebar %}
-      <aside class="sidebar">
-        {% block side_nav %}
-          <nav>
-            <ul>
-            {% for href, id, caption in navigation_bar_security %}
-              <li>
-              {% if id == body_id %}
-                <b>{{ caption|e }}</b>
-              {% else %}
-                <a href="{{ href|e }}">{{ caption|e }}</a>
-              {% endif %}
-              </li>
-            {% endfor %}
-            </ul>
-          </nav>
-
-          <nav>
-            <ul>
-            {% for href, id, caption in navigation_bar_client_bounty %}
-              <li>
-              {% if id == body_id %}
-                <b>{{ caption|e }}</b>
-              {% else %}
-                <a href="{{ href|e }}">{{ caption|e }}</a>
-              {% endif %}
-              </li>
-            {% endfor %}
-            </ul>
-          </nav>
-
-          <nav>
-            <ul>
-            {% for href, id, caption in navigation_bar_web_bounty %}
-              <li>
-              {% if id == body_id %}
-                <b>{{ caption|e }}</b>
-              {% else %}
-                <a href="{{ href|e }}">{{ caption|e }}</a>
-              {% endif %}
-              </li>
-            {% endfor %}
-            </ul>
-          </nav>
-
-        {% endblock %}
-        {% block side_extra %}
-        {% endblock %}
-      </aside>
-    {% endblock %}
-  </main>
-{% endblock %}
-
-{% block email_form %}{% endblock %}

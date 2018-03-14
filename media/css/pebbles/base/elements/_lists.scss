@@ -46,6 +46,10 @@ ol.prose {
     }
 }
 
+.prose li {
+    margin-bottom: .25em;
+}
+
 [dir='rtl'] {
     ul.prose,
     ol.prose {
@@ -57,5 +61,15 @@ ol.prose {
             margin-left: 0;
             margin-right: 20px;
         }
+    }
+}
+
+dl.prose {
+    dt {
+        font-weight: bold;
+    }
+    dd {
+        margin-bottom: .25em;
+        padding-left: $gutter-width;
     }
 }

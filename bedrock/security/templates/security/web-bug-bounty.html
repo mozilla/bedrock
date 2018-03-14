@@ -4,9 +4,9 @@
 {% set body_id = "web-bug-bounty" %}
 
 {% block article %}
-  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+  <article itemscope itemtype="http://schema.org/Article">
     <header>
-      <h1 itemprop="name" class="title-shadow-box">Web and Services Bug Bounty Program</h1>
+      <h1 itemprop="name"><span class="highlight">Web and Services Bug Bounty Program</span></h1>
     </header>
 
     <div itemprop="articleBody">
@@ -18,7 +18,7 @@
 
       <h2 id="payouts-section">Payouts</h2>
 
-      <table id="payouts" class="table">
+      <table id="payouts" class="data-table">
         <thead>
           <tr>
             <th>Bug Classification</th>
@@ -97,7 +97,7 @@
         </tbody>
       </table>
 
-      <ol>
+      <ol class="prose">
         <li>Excludes community websites</li>
         <li>Includes IDORs that bypass authentication or authorization for significant actions</li>
         <li>Significant actions only, such as changing email/passwords, deleting accounts, etc.</li>
@@ -112,7 +112,7 @@
       <h2 id="exclusions">Exclusions</h2>
       <p>Although we still appreciate being notified about them, the following issues fall outside the scope of our bug bounty program:</p>
 
-      <ul>
+      <ul class="prose">
         <li>Self-XSS</li>
         <li>Executing scripts on sandboxed domains (such as bmoattachments or mozillademos)</li>
         <li>CSRF for non-significant actions (logout, etc.)</li>
@@ -136,7 +136,7 @@
       <p>All security bugs must follow the following general criteria
         to be eligible:</p>
 
-      <ul>
+      <ul class="prose">
         <li>Security bug must be original and previously unreported.</li>
         <li>Submitter must not be the author of the buggy code nor otherwise involved in its contribution to the Mozilla project.</li>
         <li>Employees of the Mozilla Foundation and its subsidiaries are ineligible.</li>

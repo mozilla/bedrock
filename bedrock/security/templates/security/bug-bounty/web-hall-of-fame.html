@@ -3,14 +3,6 @@
 {% block page_title %}Mozilla Security Web and Services Bug Bounty Program Hall of Fame{% endblock %}
 {% set body_id = "web-hall-of-fame" %}
 
-{% block breadcrumbs %}
-  <nav class="breadcrumbs">
-    <a href="{{ url('mozorg.home') }}">{{ _('Home') }}</a> &gt;
-    <a href="{{ url('security.index') }}">{{ _('Mozilla Security') }}</a> &gt;
-    <a href="{{ url('security.bug-bounty') }}">{{ _('Bug Bounty') }}</a> &gt;
-  </nav>
-{% endblock %}
-
 {% block page_css %}
   {{ super() }}
   {% stylesheet 'security-bug-bounty-hall-of-fame' %}
@@ -21,9 +13,9 @@
 {% endblock %}
 
 {% block article %}
-  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+  <article itemscope itemtype="http://schema.org/Article">
     <header>
-      <h1 itemprop="name" class="title-shadow-box">Web And Services Bug Bounty Hall of Fame</h1>
+      <h1 itemprop="name"><span class="highlight">Web And Services Bug Bounty Hall of Fame</span></h1>
     </header>
     <div itemprop="articleBody">
 
@@ -36,7 +28,7 @@
         <h3 data-accordion-role="tab">{{ _('2017') }}</h3>
         <div data-accordion-role="tabpanel">
           <h4>4th Quarter 2017</h4>
-          <ul>
+          <ul class="prose">
             <li><a href="https://twitter.com/JubaBaghdad">Juba Baghdad</a></li>
             <li><a href="https://twitter.com/Black2Fan">Sergey Bobrov</a></li>
             <li><a href="https://www.linkedin.com/in/cehmanish/">Manish Gupta</a></li>
@@ -46,7 +38,7 @@
             <li><a href="https://hackerone.com/kamikaze/">Takashi Suzuki</a></li>
           </ul>
           <h4>3rd Quarter 2017</h4>
-          <ul>
+          <ul class="prose">
             <li><a href="https://edoverflow.com">EdOverflow</a></li>
             <li><a href="https://twitter.com/securityshell">Avram Marius Gabriel</a></li>
             <li><a href="https://www.linkedin.com/in/tyler-hawkins-149ba2b2/">Tyler Hawkins</a></li>
@@ -56,7 +48,7 @@
             <li><a href="https://tarspace.net">Tarek Bouali Taoud</a></li>
           </ul>
           <h4>2nd Quarter 2017</h4>
-          <ul>
+          <ul class="prose">
             <li>Dodi Ara</li>
             <li><a href="https://twitter.com/Black2Fan">Sergey Bobrov</a></li>
             <li>Aam Chandra</li>
@@ -71,7 +63,7 @@
             <li><a href="https://twitter.com/SecurityYasin">Yasin Soliman</a></li>
           </ul>
           <h4>1st Quarter 2017</h4>
-          <ul>
+          <ul class="prose">
             <li><a href="https://detectify.com/">Fredrik Nordberg Almroth</a></li>
             <li>Mario Gomes</li>
             <li><a href="https://twitter.com/knowledge_2014">Akita (Lucas Moreira)</a></li>
@@ -87,7 +79,7 @@
         <h3 data-accordion-role="tab">{{ _('2016') }}</h3>
         <div data-accordion-role="tabpanel">
           <h4>4th Quarter 2016</h4>
-          <ul>
+          <ul class="prose">
             <li>Yann CAM</li>
             <li>Griffin Francis</li>
             <li>Tooru Fujisawa</li>
@@ -98,7 +90,7 @@
             <li>Arne Swinnen</li>
           </ul>
           <h4>3rd Quarter 2016</h4>
-          <ul>
+          <ul class="prose">
             <li>Fredrik Nordberg</li>
             <li>Griffin Francis</li>
             <li>Amir Saad</li>
@@ -107,7 +99,7 @@
             <li>Wladimir Palant</li>
           </ul>
           <h4>2nd Quarter 2016</h4>
-          <ul>
+          <ul class="prose">
             <li>Sergey Bobrov</li>
             <li>Griffin Francis</li>
             <li>Takashi Suzuki</li>
@@ -120,7 +112,7 @@
             <li>Jose Carlos Exposito Bueno</li>
           </ul>
           <h4>1st Quarter 2016</h4>
-          <ul>
+          <ul class="prose">
             <li>Ashar Javed</li>
             <li>Francisco A.</li>
             <li>Griffin Francis</li>
@@ -146,7 +138,7 @@
         <h3 data-accordion-role="tab">{{ _('2015') }}</h3>
         <div data-accordion-role="tabpanel">
           <h4>4th Quarter 2015</h4>
-          <ul>
+          <ul class="prose">
             <li>Daniel Tomescu</li>
             <li>Fabian Cuchietti (0xlabs.com)</li>
             <li>Griffin Francis</li>
@@ -157,7 +149,7 @@
             <li>Yassine ABOUKIR</li>
           </ul>
         <h4>3rd Quarter 2015</h4>
-          <ul>
+          <ul class="prose">
           <li>Daniel Tomescu</li>
             <li>Fernando Munoz</li>
             <li>Francis Lalnunmawi Joute</li>
@@ -167,7 +159,7 @@
             <li>Yassine ABOUKIR</li>
           </ul>
         <h4>2nd Quarter 2015</h4>
-          <ul>
+          <ul class="prose">
             <li>Fernando Munoz</li>
             <li>Harsha Boppana</li>
             <li>Mario Gomes</li>
@@ -175,7 +167,7 @@
             <li>Yassine ABOUKIR</li>
           </ul>
           <h4>1st Quarter 2015</h4>
-          <ul>
+          <ul class="prose">
             <li>gschmitz</li>
             <li>Muhammad Shahmeer</li>
             <li>Sergey</li>
@@ -189,7 +181,7 @@
         <h3 data-accordion-role="tab">{{ _('2014') }}</h3>
         <div data-accordion-role="tabpanel">
          <h4>4th Quarter 2014</h4>
-          <ul>
+          <ul class="prose">
             <li>gschmitz</li>
             <li>Hamza Bettache</li>
             <li>Ingo Pan</li>
@@ -197,7 +189,7 @@
             <li>Mohamed A. Baset</li>
           </ul>
           <h4>3rd Quarter 2014</h4>
-          <ul>
+          <ul class="prose">
             <li>Mario Gomes</li>
             <li>Narendra Bhati</li>
             <li>Netanel Rubin</li>
@@ -207,7 +199,7 @@
             <li>sysmox</li>
           </ul>
           <h4>2nd Quarter 2014</h4>
-          <ul>
+          <ul class="prose">
             <li>Andreas Wagner</li>
             <li>Antoine Delignat-Lavaud</li>
             <li>Daniel Tomescu</li>
@@ -215,7 +207,7 @@
             <li>Umer Shakil</li>
           </ul>
           <h4>1st Quarter 2014</h4>
-          <ul>
+          <ul class="prose">
             <li>Dawid Czagan</li>
             <li>Manish Goregaokar</li>
           </ul>
@@ -226,7 +218,7 @@
         <h3 data-accordion-role="tab">{{ _('2013') }}</h3>
         <div data-accordion-role="tabpanel">
           <h4>4th Quarter 2013</h4>
-          <ul>
+          <ul class="prose">
             <li>Jose Pino</li>
             <li>Jelmer de Hen</li>
             <li>Luca De Fulgentis</li>
@@ -235,7 +227,7 @@
             <li>Sergey</li>
           </ul>
           <h4>3rd Quarter 2013</h4>
-          <ul>
+          <ul class="prose">
             <li>gschmitz</li>
             <li>James Kettle</li>
             <li>Jay Turla</li>
@@ -248,7 +240,7 @@
             <li>Simon Green</li>
           </ul>
           <h4>2nd Quarter 2013</h4>
-          <ul>
+          <ul class="prose">
             <li>Siddesh Gawde</li>
             <li>Frans Rosen</li>
             <li>Gschmitz</li>
@@ -260,7 +252,7 @@
             <li>Sergey</li>
           </ul>
           <h4>1st Quarter 2013</h4>
-          <ul>
+          <ul class="prose">
             <li>Andrea Santese</li>
             <li>Fabian Cuchietti (0xlabs.com)</li>
             <li>Fredrik N. Almroth</li>
@@ -279,13 +271,13 @@
         <h3 data-accordion-role="tab">{{ _('2012') }}</h3>
         <div data-accordion-role="tabpanel">
         <h4>4th Quarter 2012</h4>
-        <ul>
+        <ul class="prose">
           <li>Ajay Singh Negi</li>
           <li>James Kettle</li>
           <li>Sergey</li>
         </ul>
         <h4>3rd Quarter 2012</h4>
-        <ul>
+        <ul class="prose">
           <li>chetan1</li>
           <li>hristian Matthies</li>
           <li>Cocking70</li>
@@ -299,7 +291,7 @@
           <li>Sony</li>
         </ul>
         <h4>2nd Quarter 2012</h4>
-        <ul>
+        <ul class="prose">
         <li>Frederic Buclin</li>
           <li>Kostya Rouderfer</li>
           <li>James Kettle</li>
@@ -313,7 +305,7 @@
           <li>Subodh Iyengar</li>
         </ul>
         <h4>1st Quarter 2012</h4>
-        <ul>
+        <ul class="prose">
           <li>Andonov</li>
           <li>Artur Czyz</li>
           <li>Jack</li>
@@ -331,20 +323,20 @@
         <h3 data-accordion-role="tab">{{ _('2011') }}</h3>
         <div data-accordion-role="tabpanel">
           <h4>4th Quarter 2011</h4>
-          <ul>
+          <ul class="prose">
             <li>Ernesto M Hermida</li>
             <li>James Kettle</li>
             <li>Mario Gomes</li>
             <li>Marius</li>
           </ul>
           <h4>3rd Quarter 2011</h4>
-          <ul>
+          <ul class="prose">
             <li>Luca De Fulgentis</li>
             <li>Mateusz Goik</li>
             <li>Mike</li>
           </ul>
           <h4>2nd Quarter 2011</h4>
-          <ul>
+          <ul class="prose">
             <li>Gianni Gnesa</li>
             <li>James Kettle</li>
             <li>Luca De Fulgentis</li>
@@ -353,7 +345,7 @@
             <li>Simranjeet Singh</li>
           </ul>
           <h4>1st Quarter 2011</h4>
-          <ul>
+          <ul class="prose">
             <li>0x5042</li>
             <li>James Kettle</li>
             <li>Luca De Fulgentis</li>
@@ -369,7 +361,7 @@
         <h3 data-accordion-role="tab">{{ _('2010') }}</h3>
         <div data-accordion-role="tabpanel">
           <h4>4th Quarter 2010</h4>
-          <ul>
+          <ul class="prose">
             <li>David</li>
             <li>Damon Haidary</li>
             <li>Ervis Tusha</li>
