@@ -4,22 +4,13 @@
 
 {% block page_title %}{{ title }}{% endblock %}
 
-{% block breadcrumbs %}
-  <nav class="breadcrumbs">
-    <a href="{{ url('mozorg.home') }}">{{ _('Home') }}</a> &gt;
-    <a href="{{ url('security.index') }}">{{ _('Mozilla Security') }}</a> &gt;
-    <a href="{{ url('security.known-vulnerabilities') }}">{{ _('Known Vulnerabilities') }}</a> &gt;
-  </nav>
-{% endblock %}
-
 {% block messages %}
 {% endblock %}
 
-
 {% block article %}
-  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+  <article itemscope itemtype="http://schema.org/Article">
     <header>
-      <h1 itemprop="name" class="title-shadow-box">{{ title }}</h1>
+      <h1 itemprop="name"><span class="highlight">{{ title }}</span></h1>
     </header>
     <div itemprop="articleBody">
       {% if is_obsolete %}

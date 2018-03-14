@@ -3,19 +3,10 @@
 {% block page_title %}Mozilla Web Application Security Bug Bounty FAQ{% endblock %}
 {% set body_id = "web-eligible-sites" %}
 
-
-{% block breadcrumbs %}
-  <nav class="breadcrumbs">
-    <a href="{{ url('mozorg.home') }}">{{ _('Home') }}</a> &gt;
-    <a href="{{ url('security.index') }}">{{ _('Mozilla Security') }}</a> &gt;
-    <a href="{{ url('security.bug-bounty') }}">{{ _(' Bug Bounty ') }}</a> &gt;
-  </nav>
-{% endblock %}
-
 {% block article %}
-  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+  <article itemscope itemtype="http://schema.org/Article">
     <header>
-      <h1 itemprop="name" class="title-shadow-box">Eligible Websites &amp; Services</h1>
+      <h1 itemprop="name"><span class="highlight">Eligible Websites &amp; Services</span></h1>
     </header>
 
     <div itemprop="articleBody">
@@ -24,12 +15,12 @@
       <p>These websites and services are considered critical to Mozilla operations and pay out at the highest bounty rate.</p>
 
       <h3>ABSearch</h3>
-      <ul>
+      <ul class="prose">
         <li>search.services.mozilla.com</li>
       </ul>
 
       <h3>Add-ons</h3>
-      <ul>
+      <ul class="prose">
         <li>addons.cdn.mozilla.net</li>
         <li>addons.mozilla.org</li>
         <li>blocklist.addons.mozilla.org</li>
@@ -43,7 +34,7 @@
       </ul>
 
       <h3>Bedrock (www)</h3>
-      <ul>
+      <ul class="prose">
         <li>www.firefox.com</li>
         <li>www.getfirefox.com</li>
         <li>www.mozilla.com</li>
@@ -51,7 +42,7 @@
       </ul>
 
       <h3>Bugzilla</h3>
-      <ul>
+      <ul class="prose">
         <li>bugzilla.mozilla.org</li>
         <li>*.bmoattachments.org (excludes XSS and open redirects)</li>
       </ul>
@@ -62,20 +53,20 @@
       </p>
 
       <h3>Crash Reports</h3>
-      <ul>
+      <ul class="prose">
         <li>crash-reports.mozilla.com</li>
         <li>crash-reports-xpsp2.mozilla.com</li>
         <li>crash-stats.mozilla.com</li>
       </ul>
 
       <h3>Downloads (Product Delivery)</h3>
-      <ul>
+      <ul class="prose">
         <li>archive.mozilla.org</li>
         <li>download.mozilla.org</li>
       </ul>
 
       <h3>Firefox Accounts</h3>
-      <ul>
+      <ul class="prose">
         <li>accounts.firefox.com</li>
         <li>api.accounts.firefox.com</li>
         <li>oauth.accounts.firefox.com</li>
@@ -84,47 +75,47 @@
       </ul>
 
       <h4>Firefox Settings (Kinto)</h4>
-      <ul>
+      <ul class="prose">
         <li>firefox.settings.services.mozilla.com</li>
         <li>webextensions.settings.services.mozilla.com</li>
       </ul>
 
       <h3>Firefox Sync</h3>
-      <ul>
+      <ul class="prose">
         <li>*.sync.services.mozilla.com</li>
         <li>token.services.mozilla.com</li>
       </ul>
 
       <h3>Firefox Updates (AUS/Balrug)</h3>
-      <ul>
+      <ul class="prose">
         <li>aus3.mozilla.org</li>
         <li>aus4.mozilla.org</li>
         <li>aus5.mozilla.org</li>
       </ul>
 
       <h3>Push</h3>
-      <ul>
+      <ul class="prose">
         <li>push.services.mozilla.com</li>
         <li>updates.push.services.mozilla.com</li>
       </ul>
 
       <h3>Shield</h3>
-      <ul>
+      <ul class="prose">
         <li>self-repair.mozilla.org</li>
       </ul>
 
       <h3>Source Control</h3>
-      <ul>
+      <ul class="prose">
         <li>hg.mozilla.org (except website, see below)</li>
       </ul>
 
       <h3>Test Pilot</h3>
-      <ul>
+      <ul class="prose">
         <li>testpilot.firefox.com</li>
       </ul>
 
       <h3>Tracking Protection</h3>
-      <ul>
+      <ul class="prose">
         <li>shavar.services.mozilla.com</li>
         <li>tracking.services.mozilla.com</li>
       </ul>
@@ -134,7 +125,7 @@
       <p>Core websites pay out bounties, but at a reduced rate.</p>
 
       <h3>Internal</h3>
-      <ul>
+      <ul class="prose">
         <li>login.mozilla.com</li>
         <li>mana.mozilla.org</li>
         <li>phonebook.mozilla.org</li>
@@ -142,24 +133,24 @@
       </ul>
 
       <h3>Observatory</h3>
-      <ul>
+      <ul class="prose">
         <li>http-observatory.security.mozilla.org</li>
         <li>observatory.mozilla.org</li>
         <li>tls-observatory.services.mozilla.com</li>
       </ul>
 
       <h3>Shield</h3>
-      <ul>
+      <ul class="prose">
         <li>qsurvey.mozilla.com</li>
       </ul>
 
       <h3>Source Control</h3>
-      <ul>
+      <ul class="prose">
         <li>hg.mozilla.org (website only)</li>
       </ul>
 
       <h3>Taskcluster</h3>
-      <ul>
+      <ul class="prose">
         <li>auth.taskcluster.net</li>
         <li>aws-provisioner.taskcluster.net</li>
         <li>cloud-mirror.taskcluster.net</li>

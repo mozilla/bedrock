@@ -2,19 +2,10 @@
 
 {% block page_title %}{{ advisory.title|striptags }}{% endblock %}
 
-{% block breadcrumbs %}
-  <nav class="breadcrumbs">
-    <a href="{{ url('mozorg.home') }}">{{ _('Home') }}</a> &gt;
-    <a href="{{ url('security.index') }}">{{ _('Mozilla Security') }}</a> &gt;
-    <a href="{{ url('security.advisories') }}">{{ _('Security Advisories') }}</a> &gt;
-  </nav>
-{% endblock %}
-
-
 {% block article %}
-  <article class="section-content advisory" itemscope itemtype="http://schema.org/Article">
+  <article class="advisory" itemscope itemtype="http://schema.org/Article">
     <header>
-      <h1 itemprop="name" class="title-shadow-box">{{ _('Mozilla Foundation Security Advisory %s')|format(advisory.id) }}</h1>
+      <h1 itemprop="name"><span class="highlight">{{ _('Mozilla Foundation Security Advisory %s')|format(advisory.id) }}</span></h1>
     </header>
     <div itemprop="articleBody">
 

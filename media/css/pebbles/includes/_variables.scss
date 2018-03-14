@@ -85,3 +85,7 @@ $mq-tall:           '(min-height: 600px)';
 // Grid columns
 $column-width:  8.333%; // 100% / 12 columns
 $gutter-width:  20px;
+
+$mobile-content-padding: $gutter-width;
+$tablet-content-padding: 60px;
+$desktop-content-padding: 85px;

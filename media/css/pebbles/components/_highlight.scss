@@ -1,0 +1,23 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../includes/lib';
+
+/*
+    Black background and white text.
+    <h1><span class="highlight">Heading</span></h1>
+    <h4><span class="highlight highlight-sub">Indented sub heading</span></h4>
+*/
+
+.highlight {
+    @include box-decoration-break(clone);
+    background-color: #000;
+    color: #fff;
+    line-height: 1.3;
+    padding: 0 5px;
+}
+
+.highlight-sub {
+    padding: 0 5px 0 40px;
+}

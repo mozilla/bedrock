@@ -4,9 +4,9 @@
 {% set body_id = "bug-bounty" %}
 
 {% block article %}
-  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+  <article itemscope itemtype="http://schema.org/Article">
     <header>
-      <h1 itemprop="name" class="title-shadow-box">Bug Bounty Program</h1>
+      <h1 itemprop="name"><span class="highlight">Bug Bounty Program</span></h1>
     </header>
     <div itemprop="articleBody">
       <h2>Introduction</h2>
@@ -23,7 +23,7 @@
 
       <p>Mozilla manages two different bug bounty programs.  One focuses on Firefox and other Mozilla applications and the other covers our websites and services.</p>
 
-      <ul>
+      <ul class="prose">
         <li><a href="{{ url('security.client-bug-bounty') }}">Client Bug Bounty Guidelines</a></li>
         <li><a href="{{ url('security.web-bug-bounty') }}">Web Bug Bounty Guidelines</a></li>
       </ul>

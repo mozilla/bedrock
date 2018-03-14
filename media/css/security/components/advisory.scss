@@ -1,0 +1,44 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+
+.advisory {
+    .summary {
+        margin-bottom: 0;
+
+        dt {
+            @include font-size(16px);
+            font-weight: bold;
+        }
+        dd {
+            margin-bottom: 10px;
+            padding-left: $gutter-width;
+        }
+
+        @media #{$mq-phone-wide} {
+            @supports (display: grid) {
+                display: grid;
+                grid-template-columns: 100px 1fr;
+                grid-row-gap: 10px;
+
+                dt {
+                    display: block;
+                }
+
+                dd {
+                    display: block;
+                    padding-left: 0;
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .cve {
+        p {
+            margin-bottom: 10px;
+        }
+    }
+}
