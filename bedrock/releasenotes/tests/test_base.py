@@ -29,6 +29,10 @@ RELEASES_PATH = str(TESTS_PATH)
 
 @override_settings(RELEASE_NOTES_PATH=RELEASES_PATH)
 class TestReleaseViews(TestCase):
+    # Set DEV=False, otherwise all the releases will be erroneously made public
+    # through the following refresh function, leading to wrong results in
+    # get_release_or_404
+    @override_settings(DEV=False)
     def setUp(self):
         ProductRelease.objects.refresh()
         caches['release-notes'].clear()
@@ -170,6 +174,9 @@ class TestReleaseViews(TestCase):
         with self.assertRaises(Http404):
             views.get_release_or_404('58.0a1', 'Firefox')
         eq_(views.get_release_or_404('58.0a1', 'Firefox', True).is_public, False)
+        with self.assertRaises(Http404):
+            views.get_release_or_404('58.0a1', 'Firefox for Android')
+        eq_(views.get_release_or_404('58.0a1', 'Firefox for Android', True).is_public, False)
 
     def test_no_equivalent_release_url(self):
         """

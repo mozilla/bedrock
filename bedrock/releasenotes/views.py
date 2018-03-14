@@ -89,7 +89,7 @@ def release_notes(request, version, product='Firefox'):
         raise Http404
 
     # Show a "coming soon" page for any unpublished Firefox releases
-    include_drafts = product == 'Firefox'
+    include_drafts = product in ['Firefox', 'Firefox for Android']
 
     try:
         release = get_release_or_404(version, product, include_drafts)
