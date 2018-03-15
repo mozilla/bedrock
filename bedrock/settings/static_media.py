@@ -1373,6 +1373,9 @@ PIPELINE_JS = {
     },
     'technology': {
         'source_filenames': (
+            'js/libs/jquery.waypoints.min.js',
+            'js/libs/jquery.waypoints-sticky.min.js',
+            'js/hubs/sub-nav.js',
             'js/base/mozilla-modal.js',
             'js/mozorg/technology.js',
         ),
