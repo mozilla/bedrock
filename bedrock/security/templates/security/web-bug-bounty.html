@@ -14,6 +14,8 @@
 
       <p>The Mozilla Bug Bounty Program is designed to encourage security research into Mozilla's websites and services and to reward those who find unique and original bugs in our web infrastructure.</p>
 
+      <p>Please submit all bug reports via our <a href="{{ url('security.bug-bounty.faq-webapp') }}#bug-reporting">secure bug reporting process</a>.</p>
+
       <h2 id="payouts-section">Payouts</h2>
 
       <table id="payouts" class="table">
@@ -129,32 +131,7 @@
         <li>Outdated TLS configurations which remain to support downloads from Windows XP systems</li>
       </ul>
 
-      <h2 id="how-to-submit-bugs">How To Submit Bugs</h2>
-
-      <p>The sooner we can reproduce and fix the bug, the sooner we can
-        fix it and send you your bounty. Please submit all bugs through
-        the <a href="https://bugzilla.mozilla.org/form.web.bounty">Bugzilla web bounty form</a>.
-        <strong>Do not send vulnerabilities via email and please avoid using video.</strong></p>
-
-      <p>There are three main things you can provide which will help us
-        to evaluate your submission quickly and pay a bounty sooner:</p>
-
-      <ol>
-        <li><a href="{{ url('security.bug-bounty.faq-webapp') }}#attack-scenario">What is the attack scenario?</a></li>
-        <li><a href="{{ url('security.bug-bounty.faq-webapp') }}#step-by-step-exploit">What is the step-by-step exploit process?</a></li>
-        <li>What is the security impact?</li>
-      </ol>
-
-      <p>Once you have <em>written</em> your step-by-step instructions,
-        repeat the attack by following them exactly. This helps prevent
-        errors and omissions in your submission.</p>
-
-      <p>We prefer to receive bug reports in English. If English is not
-        your native language and you are not fluent, please submit bugs
-        in your native language. Please note that this may delay our
-        response time.</p>
-
-      <h2>Eligibility</h2>
+      <h2 id="eligibility">Eligibility</h2>
 
       <p>All security bugs must follow the following general criteria
         to be eligible:</p>
@@ -167,6 +144,11 @@
 
       <p>If a bug is reported by a team or by multiple researchers
         simultaneously, the bounty will be split evenly amongst them.</p>
+
+      <h2 id="how-to-submit-bugs">How To Submit Bugs</h2>
+
+      <p>Please submit all bug reports via our <a href="{{ url('security.bug-bounty.faq-webapp') }}#bug-reporting">secure bug reporting process</a>.</p>
+
     </div>
   </article>
 {% endblock %}
