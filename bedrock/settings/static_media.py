@@ -550,9 +550,7 @@ PIPELINE_CSS = {
     },
     'manifesto': {
         'source_filenames': (
-            'css/base/mozilla-modal.less',
-            'css/base/mozilla-share-cta.less',
-            'css/mozorg/manifesto.less',
+            'css/mozorg/manifesto.scss',
         ),
         'output_filename': 'css/manifesto-bundle.css',
     },

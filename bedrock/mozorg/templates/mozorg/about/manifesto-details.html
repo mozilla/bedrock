@@ -3,7 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% set_lang_files "mozorg/about/manifesto" %}
-{% extends "mozorg/about-base.html" %}
+{% extends "mozorg/manifesto-base.html" %}
 
 {% block page_title %}{{ _('The Mozilla Manifesto') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
@@ -12,7 +12,7 @@
 
 {% block article %}
 
-<h1 class="title-shadow-box">{{ self.page_title() }}</h1>
+<h1><span class="highlight">{{ self.page_title() }}</span></h1>
 <section id="introduction">
   <h2>{{_('Introduction')}}</h2>
   <p>{{_('The Internet is becoming an increasingly important part of our lives.')}}</p>
@@ -20,7 +20,7 @@
   <p>{{_('The Mozilla project uses a community-based approach to create world-class open source software and to develop new types of collaborative activities. We create communities of people involved in making the Internet experience better for all of us.')}} </p>
   <p>{{_('As a result of these efforts, we have distilled a set of principles that we believe are critical for the Internet to continue to benefit the public good as well as commercial aspects of life. We set out these principles below.')}}</p>
   <p>{{_('The goals for the Manifesto are to:')}}</p>
-  <ol>
+  <ol class="prose">
     <li>{{_('articulate a vision for the Internet that Mozilla participants want the Mozilla Foundation to pursue;')}} </li>
     <li>{{_('speak to people whether or not they have a technical background;')}}</li>
     <li>{{_('make Mozilla contributors proud of what we\'re doing and motivate us to continue; and')}}</li>
@@ -30,7 +30,7 @@
 </section>
 <section id="principles">
   <h2>{{_('Principles')}}</h2>
-  <ol>
+  <ol class="prose">
     <li>{{_('The Internet is an integral part of modern life—a key component in education, communication, collaboration, business, entertainment and society as a whole.')}} </li>
     <li>{{_('The Internet is a global public resource that must remain open and accessible.')}}</li>
     <li>{{_('The Internet must enrich the lives of individual human beings.')}}</li>
@@ -49,7 +49,7 @@
   <section>
     <h3>{{_('Mozilla Foundation Pledge')}}</h3>
     <p>{{_('The Mozilla Foundation pledges to support the Mozilla Manifesto in its activities. Specifically, we will:')}}</p>
-    <ul>
+    <ul class="prose">
       <li>{{_('build and enable open-source technologies and communities that support the Manifesto’s principles;')}}</li>
       <li>{{_('build and deliver great consumer products that support the Manifesto’s principles;')}}</li>
       <li>{{_('use the Mozilla assets (intellectual property such as copyrights and trademarks, infrastructure, funds, and reputation) to keep the Internet an open platform;')}}</li>
