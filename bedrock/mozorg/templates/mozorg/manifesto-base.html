@@ -1,0 +1,40 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-pebbles-basic.html" %}
+
+{% set navigation_bar = [
+    (url('mozorg.about'), 'about', _('About Mozilla')),
+    (url('mozorg.mission'), 'mission', _('Mission')),
+    (url('mozorg.about.history'), 'history', _('History')),
+    (url('mozorg.about.leadership'), 'leadership', _('Leadership')),
+    (url('mozorg.about.governance.governance'), 'governance', _('Governance')),
+    (url('mozorg.about.forums.forums'), 'forums', _('Forums')),
+    (url('mozorg.about.policy.patents.index'), 'patents', _('Patents')),
+] -%}
+
+{% block page_css %}
+{% endblock %}
+
+{% block body_attrs %}{{ super() }} data-global-nav-current-link="about-us"{% endblock %}
+
+{% block article %}{% endblock %}
+
+{% block side_nav %}
+  {{ side_nav_lists([navigation_bar]) }}
+
+  <div class="side-reference">
+    <h4>{{ _('Our Products') }}</h4>
+    <p>{{ _('Software and other innovations designed to advance our mission.') }}</p>
+    <a class="more" href="{{ url('firefox') }}">{{ _('Learn More') }}</a>
+  </div>
+
+  <div class="side-reference">
+    <h4>{{ _('Get Involved') }}</h4>
+    <p>{{ _('Become a volunteer contributor in a number of different areas.') }}</p>
+    <a class="more" href="{{ url('mozorg.contribute.index') }}">{{ _('Learn More') }}</a>
+  </div>
+
+  {% block sidebar_extra %}{% endblock %}
+{% endblock %}

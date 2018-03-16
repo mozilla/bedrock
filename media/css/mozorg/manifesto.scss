@@ -1,0 +1,133 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+@import '../pebbles/components/highlight';
+@import '../pebbles/components/newsletter';
+@import '../hubs/sections';
+@import '../hubs/buttons';
+@import '../hubs/masthead';
+
+#main-feature {
+    @media #{$mq-tablet} {
+        padding-top: $tablet-content-padding - $gutter-width;
+    }
+
+    @media #{$mq-desktop-wide} {
+        padding-top: $desktop-content-padding - $gutter-width;
+    }
+}
+
+.principle {
+    @include border-box;
+    margin: 0 auto;
+    max-width: $width-max-content;
+    padding: $mobile-content-padding;
+}
+
+.principle-number {
+    color: #999;
+    display: block;
+    text-decoration: none;
+
+    &:visited {
+        color: #999;
+    }
+}
+
+.principle-head h3 {
+    @include font-size-level2;
+    font-weight: normal;
+}
+
+.principle-more {
+    @include open-sans;
+    @include font-size-small;
+    margin-top: $mobile-content-padding;
+}
+
+@media #{$mq-tablet} {
+    .principle {
+        padding: 0 $tablet-content-padding $tablet-content-padding $tablet-content-padding;
+    }
+}
+
+@media #{$mq-desktop} {
+    .principle {
+        padding: 0 $desktop-content-padding $desktop-content-padding $desktop-content-padding;
+    }
+}
+
+@supports (display: grid) {
+    @media #{$mq-tablet} {
+        .principle {
+            display: grid;
+            grid-column-gap: 60px;
+            grid-template:
+                "text more"
+                "link more"
+                "link more";
+            grid-template-columns: 2fr 1fr;
+        }
+
+        .principle-head {
+            grid-area: text;
+        }
+
+        .principle-more {
+            grid-area: more;
+            margin-top: 4.1em;
+        }
+
+        .principle-foot {
+            grid-area: link;
+        }
+    }
+
+    @media #{mq-desktop} {
+        .principle {
+            grid-column-gap: 85px;
+        }
+    }
+}
+
+.principle-more {
+    ul {
+        margin-bottom: 0;
+    }
+
+    li {
+        margin-bottom: 0.5em;
+    }
+
+    img {
+        display: block;
+    }
+
+    blockquote {
+        p {
+            margin-bottom: 0.25em;
+        }
+
+        &:before {
+            @include font-size-level4;
+            content: "“";
+            display: block;
+            float: left;
+            font-family: Candara, "Trebuchet MS", sans-serif;
+            font-weight: bold;
+            line-height: 1;
+            margin: 0 0 0 -0.8em;
+        }
+    }
+}
+
+.share {
+    margin-bottom: 0;
+}
+
+.manifesto-details {
+    @include font-size-level3;
+    @include trailing-double-caret;
+}
