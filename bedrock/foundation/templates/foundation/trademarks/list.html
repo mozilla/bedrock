@@ -15,7 +15,9 @@
 {% block article %}
   <table id="logos">
     <tr>
-      <td><img width="100" height="100" alt="{{ _('Firefox logo') }}®" src="{{ static('img/trademarks/firefox-logo-r.png') }}" /><span>&reg;</span></td>
+      <td>
+        {{ high_res_img('trademarks/firefox-logo-r.png', { 'alt': _('Firefox logo'), 'width': '100', 'height': '100' }) }}<span>&reg;</span>
+      </td>
       <th>{{ _('Firefox logo') }}</th>
     </tr>
     <tr>
@@ -27,8 +29,12 @@
       <th>{{ _('Thunderbird logo') }}</th>
     </tr>
     <tr>
-      <td><img width="100" height="100" alt="{{ _('Mozilla logo') }}™" src="{{ static('img/trademarks/dino-head.png') }}" /><span>&trade;</span></td>
-      <th>{{ _('Mozilla logo') }}</th>
+        <td><img width="100" height="100" alt="{{ _('Mozilla logo') }}™" src="{{ static('img/trademarks/mozilla-logo-tm.svg') }}" /><span>&trade;</span></td>
+        <th>{{ _('Mozilla logo') }}</th>
+      </tr>
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('Mozilla dino mascot') }}™" src="{{ static('img/trademarks/dino-head.png') }}" /><span>&trade;</span></td>
+      <th>{{ _('Mozilla dino mascot') }}</th>
     </tr>
     <tr>
       <td>
