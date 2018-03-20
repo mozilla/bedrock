@@ -3,48 +3,294 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import '../pebbles/includes/lib';
-@import '../pebbles/components/highlight';
 @import '../pebbles/components/newsletter';
 @import '../hubs/sections';
-@import '../hubs/buttons';
 @import '../hubs/masthead';
 
-#main-feature {
+$addendum-blue: #16AABF;
+
+/* needs to be at the top so other classes can over-ride the mixin defaults */
+.manifesto-title-addendum,
+.addendum-subtitle,
+.addendum-paragraph,
+.share-head,
+.share-paragraph {
+    padding: 0 $mobile-content-padding;
+    max-width: 700px;
+
     @media #{$mq-tablet} {
-        padding-top: $tablet-content-padding - $gutter-width;
+        padding: 0 $tablet-content-padding;
+    }
+
+    @media #{$mq-desktop} {
+        @include span(8);
+        float: none; // needs to over-ride span()
+        margin: 0 auto; // needs to over-ride span()
+        padding: 0;
     }
 
     @media #{$mq-desktop-wide} {
-        padding-top: $desktop-content-padding - $gutter-width;
+        @include span(6);
+        float: none; // needs to over-ride span()
+        margin: 0 auto; // needs to over-ride span()
     }
+}
+
+
+/*
+Manifesto
+====================================================================== */
+
+.manifesto-title {
+    @include open-sans;
+    @include font-size-level4;
+    margin-bottom: 15px;
+}
+
+.manifesto-details {
+    @include font-size-level5;
+    @include open-sans;
+    color: $color-text-primary;
+    display: inline-block;
+    font-weight: bold;
+    text-decoration: none;
+
+    &:after {
+        @include background-size(cover);
+        background-image: url('/media/img/mozorg/about/manifesto/cta-arrow.svg');
+        background-position: 0 0;
+        content: '';
+        display: inline-block;
+        height: 12px;
+        margin-left: 10px;
+        position: relative;
+        right: 0;
+        transition: right 100ms ease-in-out;
+        width: 14px;
+
+        html[dir="rtl"] & {
+            margin-left: 0;
+            margin-right: 10px;
+            transform: rotate(180deg);
+        }
+    }
+
+    &:link,
+    &:visited {
+        color: $color-text-primary;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $color-text-primary;
+            text-decoration: underline;
+
+            &:after {
+                right: -4px;
+
+                html[dir="rtl"] & {
+                    right: 4px;
+                }
+            }
+        }
+    }
+
+    @media #{$mq-tablet} {
+        margin-bottom: $tablet-content-padding;
+    }
+
+    @media #{$mq-desktop-wide} {
+        margin-bottom: $desktop-content-padding;
+    }
+}
+
+/*
+Addendum
+====================================================================== */
+
+.manifesto-title-addendum {
+    padding-top: $mobile-content-padding;
+
+    @media #{$mq-tablet} {
+        padding-top: $tablet-content-padding;
+    }
+
+    @media #{$mq-desktop-wide} {
+        padding-top: $desktop-content-padding;
+    }
+}
+
+.addendum-subtitle {
+    @include font-size-huge;
+    line-height: 1;
+    margin-bottom: 0.6em;
+}
+
+.addendum-list {
+    @include clearfix;
+    @include font-size-level3;
+    margin: 2em ($mobile-content-padding * 2) 0;
+
+    @media #{$mq-tablet} {
+        margin-bottom: 2em;
+        margin-left: ($tablet-content-padding * 2);
+        margin-right: ($tablet-content-padding * 2);
+    }
+
+    @media #{$mq-desktop-wide} {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: $width-max-content;
+    }
+
+    li {
+        padding-bottom: 60px;
+        padding-top: 40px;
+        position: relative;
+
+        @media #{$mq-desktop-wide} {
+            @include border-box;
+            float: left;
+            line-height: 1.25;
+            margin-left: $desktop-content-padding;
+            margin-right: $desktop-content-padding;
+            width: calc(50% - #{$desktop-content-padding * 1.5});
+
+            html[dir="rtl"] {
+                float: right;
+            }
+        }
+
+        &:nth-child(odd) {
+            clear: left;
+            margin-right: 0;
+        }
+
+        &:before {
+            background-color: $color-text-primary;
+            content: '';
+            display: block;
+            height: 7px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 80px;
+
+            html[dir="rtl"] & {
+                left: auto;
+                right: 0;
+            }
+        }
+    }
+}
+
+.addendum-paragraph {
+    @include font-size-level5;
+    @include open-sans;
+    margin-bottom: 1.25em;
+}
+
+
+/*
+Share section
+====================================================================== */
+
+.share-addendum {
+    @include open-sans;
+    background-color: #b9e5ec;
+    margin-bottom: $mobile-content-padding * 2;
+    padding: ($mobile-content-padding * 2) 0;
+
+    @media #{$mq-tablet} {
+        margin-bottom: 20px;
+        padding: $tablet-content-padding 0;
+    }
+
+    @media #{$mq-desktop} {
+        margin-bottom: 55px;
+        padding: $desktop-content-padding 0;
+    }
+}
+
+.share-button-outter {
+    margin: $mobile-content-padding 0 0 0;
+    text-align: center;
+
+    @media #{$mq-tablet} {
+        margin-top: 60px;
+    }
+}
+
+.share-head {
+    @include font-size-level4;
+    margin-bottom: 15px;
+}
+
+a.button.button-manifesto {
+    background-color: $addendum-blue;
+    border-color: $addendum-blue;
+    padding-left: 25px + 25px + 15px; // left padding + icon width + right padding
+    position: relative;
+
+    html[dir="rtl"] & {
+        padding-left: 40px;
+        padding-right: 25px + 25px + 15px; // left padding + icon width + right padding
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: darken(#149bae, 2%);
+        border-color: darken(#149bae, 2%);
+    }
+
+    &:before {
+        background-image: url('/media/img/logos/social/social-icon-sprite.svg');
+        background-position: 0 0;
+        background-size: cover;
+        content: '';
+        display: inline-block;
+        height: 20px;
+        left: 25px;
+        position: absolute;
+        top: 1.1em;
+        width: 25px;
+
+        html[dir="rtl"] & {
+            left: auto;
+            right: 25px;
+        }
+    }
+}
+
+
+/*
+Principles
+====================================================================== */
+
+.principles-header {
+    padding-top: $mobile-content-padding;
+
+    @media #{$mq-tablet} {
+        margin-bottom: 1.5em;
+        padding-top: $tablet-content-padding;
+    }
+
+    @media #{$mq-desktop-wide} {
+        padding-top: $desktop-content-padding;
+    }
+}
+
+.principles-foot {
+    text-align: center;
 }
 
 .principle {
     @include border-box;
+    @include clearfix;
     margin: 0 auto;
     max-width: $width-max-content;
     padding: $mobile-content-padding;
-}
-
-.principle-number {
-    color: #999;
-    display: block;
-    text-decoration: none;
-
-    &:visited {
-        color: #999;
-    }
-}
-
-.principle-head h3 {
-    @include font-size-level2;
-    font-weight: normal;
-}
-
-.principle-more {
-    @include open-sans;
-    @include font-size-small;
-    margin-top: $mobile-content-padding;
 }
 
 @media #{$mq-tablet} {
@@ -59,40 +305,63 @@
     }
 }
 
-@supports (display: grid) {
-    @media #{$mq-tablet} {
-        .principle {
-            display: grid;
-            grid-column-gap: 60px;
-            grid-template:
-                "text more"
-                "link more"
-                "link more";
-            grid-template-columns: 2fr 1fr;
-        }
+.principle-number {
+    @include font-size(20px);
+    @include open-sans;
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.8em;
+    text-decoration: none;
+}
 
-        .principle-head {
-            grid-area: text;
-        }
+.principle-header {
+    h3 {
+        @include font-size-level2;
+        font-weight: normal;
 
-        .principle-more {
-            grid-area: more;
-            margin-top: 4.1em;
-        }
-
-        .principle-foot {
-            grid-area: link;
+        @media #{$mq-desktop} {
+            @include font-size(44px);
         }
     }
 
-    @media #{mq-desktop} {
-        .principle {
-            grid-column-gap: 85px;
+    @media #{$mq-tablet} {
+        @include span(7);
+        padding: 0;
+
+        html[dir="rtl"] & {
+            float: right;
         }
     }
 }
 
 .principle-more {
+    @include open-sans;
+    @include font-size-level6;
+    margin-top: $mobile-content-padding;
+
+    @media #{$mq-tablet} {
+        @include span(5);
+        margin-top: 0;
+        padding: 0;
+        padding-left: $tablet-content-padding;
+
+        html[dir="rtl"] & {
+            float: right;
+            padding-left: 0;
+            padding-right: $tablet-content-padding;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        padding-left: $desktop-content-padding;
+    }
+
+    h4 {
+        font-size: inherit;
+        line-height: 1.6;
+        margin-bottom: 1em;
+    }
+
     ul {
         margin-bottom: 0;
     }
@@ -100,34 +369,4 @@
     li {
         margin-bottom: 0.5em;
     }
-
-    img {
-        display: block;
-    }
-
-    blockquote {
-        p {
-            margin-bottom: 0.25em;
-        }
-
-        &:before {
-            @include font-size-level4;
-            content: "“";
-            display: block;
-            float: left;
-            font-family: Candara, "Trebuchet MS", sans-serif;
-            font-weight: bold;
-            line-height: 1;
-            margin: 0 0 0 -0.8em;
-        }
-    }
-}
-
-.share {
-    margin-bottom: 0;
-}
-
-.manifesto-details {
-    @include font-size-level3;
-    @include trailing-double-caret;
 }

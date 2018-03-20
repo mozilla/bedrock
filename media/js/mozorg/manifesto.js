@@ -6,13 +6,7 @@ $(function() {
     'use strict';
 
     // Open Twitter in a sub window
-    var openTwitterSubwin = function (section, url) {
-
-        window.dataLayer.push({
-            'event': 'manifesto-quote-share',
-            'quote': $('#modal section').data('ga-quote')
-        });
-
+    var openTwitterSubwin = function (url) {
         var width = 550;
         var height = 420;
         var options = {
@@ -27,36 +21,18 @@ $(function() {
         };
 
         window.open(url, 'twitter_share', $.param(options).replace(/&/g, ',')).focus();
+
+        window.dataLayer.push({
+            'event': 'manifesto-share'
+        });
     };
 
-    // Set up link handler
-    $(document).on('click', '.principle a', function (event) {
-        var $this = $(this);
-        var section = $this.parents('.principle').attr('id').match(/\d+/)[0];
-        var href = $this.attr('href');
-        var action;
+    // Set up twitter link handler
+    $(document).on('click', '.js-manifesto-share', function (event) {
+        var href = $(this).attr('href');
 
-        if ($this.hasClass('tweet')) {
-            // Open Twitter in a sub window
-            event.preventDefault();
-            openTwitterSubwin(section, href);
-        } else if ($this.hasClass('principle-number')) {
-            // nothing
-        } else {
-            // Open the link in a new tab
-            $this.attr({
-                'target': '_blank',
-                'rel': 'noopener noreferrer'
-            });
-
-            action = href.match(/youtube/) ? 'video link click'
-                                           : 'link click';
-
-            window.dataLayer.push({
-                'event': 'manifesto-interaction',
-                'browserAction': action,
-                'section': $this.parents('.principle').data('ga-quote')
-            });
-        }
+        // Open Twitter in a sub window
+        event.preventDefault();
+        openTwitterSubwin(href);
     });
 });
