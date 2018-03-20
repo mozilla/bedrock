@@ -7,6 +7,7 @@ import pytest
 from pages.home import HomePage
 
 
+@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1443566')
 @pytest.mark.nondestructive
 def test_download_button_is_displayed(base_url, selenium):
     page = HomePage(selenium, base_url).open()

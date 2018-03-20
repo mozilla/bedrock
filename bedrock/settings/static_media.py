@@ -540,6 +540,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/home-bundle.css',
     },
+    'home-2018': {
+        'source_filenames': (
+            'css/mozorg/home/home-2018.scss',
+        ),
+        'output_filename': 'css/home-2018-bundle.css',
+    },
     'legal': {
         'source_filenames': (
             'css/legal/legal.less',
@@ -1225,10 +1231,17 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox-update-notification-firstrun-whatsnew-bundle.js',
     },
+    'experiment-home': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/mozorg/home/experiment-home.js',
+        ),
+        'output_filename': 'js/experiment-home-bundle.js',
+    },
     'home': {
         'source_filenames': (
-            'js/libs/jquery.cycle2.min.js',
-            'js/libs/jquery.waypoints.min.js',
+            'js/base/mozilla-lazy-load.js',
+            'js/base/mozilla-modal.js',
             'js/mozorg/home/home.js',
         ),
         'output_filename': 'js/home-bundle.js',

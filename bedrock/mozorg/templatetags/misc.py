@@ -228,6 +228,38 @@ def high_res_img(ctx, url, optional_attributes=None):
 
 @library.global_function
 @jinja2.contextfunction
+def lazy_img(ctx, image_url, placeholder_url, include_highres_image=False, optional_attributes=None):
+    placeholder = static(path.join('img', placeholder_url))
+    image = static(path.join('img', image_url))
+
+    if include_highres_image:
+        image_high_res = static(path.join('img', convert_to_high_res(image_url)))
+        srcset = 'data-srcset="{image_high_res} 2x"'.format(image_high_res=image_high_res)
+    else:
+        srcset = ''
+
+    if optional_attributes:
+        class_name = optional_attributes.pop('class', 'lazy-image')
+        alt_text = optional_attributes.pop('alt', '')
+        attrs = ' '.join('%s="%s"' % (attr, val)
+                         for attr, val in optional_attributes.items())
+    else:
+        class_name = 'lazy-image'
+        alt_text = ''
+        attrs = ''
+
+    markup = ('<div class="lazy-image-container">'
+              '<img class="{class_name}" src="{placeholder}" data-src="{image}" {srcset} alt="{alt_text}" {attrs}>'
+              '<noscript>'
+              '<img class="{class_name}" src="{image}" {srcset} alt="{alt_text}" {attrs}>'
+              '</noscript>'
+              '</div>').format(image=image, placeholder=placeholder, srcset=srcset, class_name=class_name, alt_text=alt_text, attrs=attrs)
+
+    return jinja2.Markup(markup)
+
+
+@library.global_function
+@jinja2.contextfunction
 def video(ctx, *args, **kwargs):
     """
     HTML5 Video tag helper.

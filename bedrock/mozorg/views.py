@@ -113,10 +113,6 @@ class Robots(TemplateView):
         return {'disallow_all': not hostname == 'www.mozilla.org'}
 
 
-def home(request):
-    return l10n_utils.render(request, 'mozorg/home/home.html')
-
-
 NAMESPACES = {
     'addons-bl': {
         'namespace': 'http://www.mozilla.org/2006/addons-blocklist',

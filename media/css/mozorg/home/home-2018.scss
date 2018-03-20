@@ -1,0 +1,326 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+@import '../../pebbles/components/card';
+@import '../../pebbles/components/modal';
+@import '../../hubs/sections';
+@import '../../hubs/masthead';
+@import 'newsletter';
+
+/* -------------------------------------------------------------------------- */
+// Common elements.
+
+body {
+    @include font-size(16px);
+    @include open-sans;
+}
+
+main {
+    h1, h2, h3, h4, h5, h6 {
+        @include zilla-slab;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Download Firefox primary CTA (sticky on large viewports).
+
+.download-firefox-primary-cta {
+    margin-bottom: 30px;
+    max-width: none;
+    text-align: center;
+
+    .primary-wrapper {
+        background: url('/media/img/home/2018/wave-primary.svg') bottom -1px center no-repeat;
+        border-radius: 8px;
+        box-shadow: 0 8px 24px 0 rgba(0, 0, 0, .1);
+        overflow: hidden;
+    }
+
+    .primary-content {
+        padding: 30px 10px 80px;
+    }
+
+    .primary-header {
+        background: #000 url('/media/img/home/2018/browser-window-controls.svg') left 12px center no-repeat;
+        height: 30px;
+        text-align: left;
+    }
+
+    .primary-header-title {
+        @include at2x('/media/img/logos/firefox/logo-quantum.png', 20px, 20px);
+        @include font-size(12px);
+        @include open-sans;
+        background-color: #f9f9fa;
+        background-position: left 5px center;
+        background-repeat: no-repeat;
+        border-top: 2px solid #0083ff;
+        display: inline-block;
+        font-weight: normal;
+        height: 30px;
+        line-height: 2.3;
+        margin: 0 0 0 90px;
+        max-width: 170px;
+        padding-left: 30px;
+        position: relative;
+        width: 40%;
+
+        &:before {
+            background-image: url('/media/img/home/2018/browser-tab-close.svg');
+            content: '';
+            height: 11px;
+            position: absolute;
+            right: 10px;
+            top: 8px;
+            width: 11px;
+        }
+
+        &:after {
+            background-image: url('/media/img/home/2018/browser-tab-new.svg');
+            content: '';
+            height: 14px;
+            position: absolute;
+            right: -24px;
+            top: 6px;
+            width: 14px;
+        }
+    }
+
+    .primary-title {
+        @include at2x('/media/img/logos/firefox/logo-quantum.png', 90px, 90px);
+        @include open-sans;
+        background-position: top center;
+        background-repeat: no-repeat;
+        padding-top: 110px;
+    }
+
+    .primary-desc {
+        margin: 0 auto 20px;
+        max-width: 30em;
+    }
+
+    .fx-privacy-link {
+
+        a:link,
+        a:visited {
+            color: inherit;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        margin-bottom: 0;
+
+        .primary-content {
+            padding: 50px 10px 80px;
+        }
+
+        .primary-desc {
+            margin: 0 0 20px;
+            max-width: none;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        .primary-header-title {
+            margin-left: 100px;
+        }
+
+        .primary-content {
+            padding: 50px 25px 100px;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Intro lockup - large video, downlod firefox sticky & 2 smaller cards.
+
+.intro {
+    position: relative;
+
+    @media #{$mq-desktop} {
+        @include clearfix;
+
+        .layout-card-hero {
+            float: left;
+            width: calc(66%);
+        }
+
+        .download-firefox-primary-cta {
+            bottom: 70px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: calc(33% - 16px);
+
+            .primary-wrapper {
+                left: 0;
+                position: -webkit-sticky;
+                position: sticky;
+                top: 30px;
+            }
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Pocket highlights section.
+
+.pocket {
+    background: #f5f5f5;
+    margin: 20px 0;
+
+    .section-heading {
+        @include font-size(18px);
+        @include open-sans;
+        margin-bottom: 10px;
+    }
+
+    .tagline {
+        color: #676767;
+
+        a:link,
+        a:visited {
+            color: inherit;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            color: #000;
+        }
+    }
+
+    .card-title {
+        @include open-sans;
+    }
+
+    @media #{$mq-tablet} {
+        margin: 20px 0 60px;
+        padding-top: 20px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Secondary Firefox CTA section.
+
+.download-firefox-secondary-cta {
+    background: url('/media/img/home/2018/wave-secondary.svg') bottom -1px left no-repeat;
+    overflow: hidden;
+
+    .secondary-content {
+        padding-bottom: 100px;
+        text-align: center;
+    }
+
+    .secondary-title {
+        @include at2x('/media/img/logos/firefox/logo-quantum.png', 90px, 90px);
+        @include font-size-level3;
+        @include open-sans;
+        background-position: top center;
+        background-repeat: no-repeat;
+        padding-top: 130px;
+    }
+
+    .fx-privacy-link {
+
+        a:link,
+        a:visited {
+            color: inherit;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        .content {
+            @include clearfix;
+            padding-bottom: 0;
+        }
+
+        .secondary-content {
+            float: left;
+            text-align: left;
+            width: 50%;
+        }
+
+        .secondary-title {
+            background-position: top left;
+        }
+
+        .secondary-image {
+            float: right;
+            height: 477px;
+            width: 48%;
+
+            .image-wrapper {
+                @include at2x('/media/img/home/2018/browser.png', 1378px, 848px);
+                height: 848px;
+                width: 1378px;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+
+        .secondary-content {
+            width: 40%;
+        }
+
+        .secondary-image {
+            width: 58%;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Custom modal styles.
+
+#modal > .window > .inner {
+    background: rgba(0, 0, 0, .9);
+    max-width: 1190px;
+    padding: 30px;
+
+    header {
+        @include font-size-level4;
+        background: rgba(0, 0, 0, .9);
+        color: #fff;
+        font-weight: bold;
+        margin: 0;
+        padding: 0 60px 0 0;
+    }
+
+    video {
+        display: block;
+        height: auto;
+        margin: 0 auto 30px;
+        max-height: 680px;
+        width: 100%;
+    }
+
+    figcaption p {
+        @include font-size(18px);
+        color: #fff;
+
+        a:link,
+        a:visited {
+            color: #fff;
+        }
+
+        a:hover,
+        a:focus,
+        a:active {
+            color: darken(#fff, 5%);
+        }
+    }
+
+    #modal-close .button {
+        border: none;
+    }
+
+    @media #{$mq-desktop} {
+        figcaption p {
+            max-width: 66%;
+        }
+    }
+}
+
+

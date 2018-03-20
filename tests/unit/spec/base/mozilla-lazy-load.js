@@ -93,7 +93,8 @@ describe('mozilla-lazy-load.js', function() {
                 target: {
                     src: '/foo/placeholder.png',
                     dataset: {
-                        src: '/foo/image1.png'
+                        src: '/foo/image1.png',
+                        srcset: '/foo/image1.png 2x'
                     },
                     onload: function() {}
                 }
@@ -103,7 +104,8 @@ describe('mozilla-lazy-load.js', function() {
                 target: {
                     src: '/foo/placeholder.png',
                     dataset: {
-                        src: '/foo/image2.png'
+                        src: '/foo/image2.png',
+                        srcset: '/foo/image2.png 2x'
                     },
                     onload: function() {}
                 }
@@ -113,7 +115,8 @@ describe('mozilla-lazy-load.js', function() {
                 target: {
                     src: '/foo/placeholder.png',
                     dataset: {
-                        src: '/foo/image3.png'
+                        src: '/foo/image3.png',
+                        srcset: '/foo/image3.png 2x'
                     },
                     onload: function() {}
                 }
@@ -126,9 +129,12 @@ describe('mozilla-lazy-load.js', function() {
             spyOn(observer, 'unobserve');
             Mozilla.LazyLoad.observerCallback(changes, observer);
             expect(changes[0].target.src).toEqual('/foo/placeholder.png');
+            expect(changes[0].target.srcset).toEqual(undefined);
             expect(changes[2].target.src).toEqual('/foo/placeholder.png');
+            expect(changes[2].target.srcset).toEqual(undefined);
 
             expect(changes[1].target.src).toEqual('/foo/image2.png');
+            expect(changes[1].target.srcset).toEqual('/foo/image2.png 2x');
             expect(changes[1].target.onload).toEqual(Mozilla.LazyLoad.onImageLoad);
             expect(observer.unobserve).toHaveBeenCalledWith(changes[1].target);
         });
@@ -139,7 +145,7 @@ describe('mozilla-lazy-load.js', function() {
         var $img;
 
         beforeEach(function () {
-            var img = '<img src="/img/placeholder.png" data-src="/img/foo.png">';
+            var img = '<img src="/img/placeholder.png" data-src="/img/foo.png" data-srcset="/img/foo.png 2x">';
             $img = $(img);
             $img.appendTo($('body'));
         });
@@ -154,6 +160,7 @@ describe('mozilla-lazy-load.js', function() {
             };
             Mozilla.LazyLoad.onImageLoad(event);
             expect($img.attr('data-src')).toBe(undefined);
+            expect($img.attr('data-src-set')).toBe(undefined);
         });
     });
 
@@ -163,8 +170,8 @@ describe('mozilla-lazy-load.js', function() {
 
         beforeEach(function () {
             var tpl = '<div class="observer-list-test">' +
-                        '<img class="image1" src="/img/placeholder.png" data-src="/img/foo.png">' +
-                        '<img class="image2" src="/img/placeholder.png" data-src="/img/foo.png">' +
+                        '<img class="image1" src="/img/placeholder.png" data-src="/img/foo.png" data-srcset="/img/foo.png 2x">' +
+                        '<img class="image2" src="/img/placeholder.png" data-src="/img/foo.png" data-srcset="/img/foo.png 2x">' +
                       '</div>';
             $target = $(tpl);
             $target.appendTo($('body'));
@@ -181,6 +188,8 @@ describe('mozilla-lazy-load.js', function() {
             Mozilla.LazyLoad.loadAllFallback('.observer-list-test img');
 
             expect(image1.getAttribute('src')).toEqual('/img/foo.png');
+            expect(image1.getAttribute('srcset')).toEqual('/img/foo.png 2x');
+            expect(image2.getAttribute('srcset')).toEqual('/img/foo.png 2x');
             expect(image2.getAttribute('src')).toEqual('/img/foo.png');
             expect(image1.onload).toEqual(Mozilla.LazyLoad.onImageLoad);
             expect(image2.onload).toEqual(Mozilla.LazyLoad.onImageLoad);

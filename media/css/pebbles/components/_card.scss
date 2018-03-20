@@ -1,0 +1,431 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../includes/lib';
+
+/* -------------------------------------------------------------------------- */
+// Base card class
+
+.card {
+    @include border-box;
+    background: #fff;
+    margin-bottom: 20px;
+
+    .card-media-wrapper {
+        background-color: #f5f5f5;
+        border-radius: 2px;
+        overflow: hidden;
+        position: relative;
+
+        // Preserve aspect ratio of images and avoid content jump when loading.
+        &.has-aspect-1-1 {
+            @include aspect-ratio(1, 1);
+        }
+
+        &.has-aspect-16-9 {
+            @include aspect-ratio(16, 9);
+        }
+
+        &.has-aspect-3-2 {
+            @include aspect-ratio(3, 2);
+        }
+    }
+
+    .card-image,
+    .card-video {
+        display: block;
+        max-width: none;
+        width: 100%;
+    }
+
+    // fade in lazy loaded images.
+    .lazy-image-container .card-image {
+        opacity: 1;
+        transition: opacity 0.3s;
+    }
+
+    .lazy-image-container .card-image[data-src] {
+        opacity: 0;
+    }
+
+    .card-content {
+        @include border-box;
+        padding: 12px 8px 8px;
+    }
+
+    .card-tag {
+        @include font-size-small;
+        @include open-sans;
+        color: #676767;
+        font-weight: normal;
+        margin-bottom: 6px;
+
+        &.card-tag-audio,
+        &.card-tag-video {
+            line-height: 1.8;
+            min-height: 25px;
+            padding-left: 30px;
+        }
+
+        &.card-tag-audio {
+            background: url('/media/img/pebbles/card/card-tag-audio.svg') center left no-repeat;
+        }
+
+        &.card-tag-video {
+            background: url('/media/img/pebbles/card/card-tag-video.svg') center left no-repeat;
+        }
+    }
+
+    .card-title {
+        @include font-size-level4;
+        margin-bottom: 4px;
+    }
+
+    .card-small-cta {
+        display: block;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
+    .card-block-link {
+        border-radius: 4px;
+        display: block;
+
+        &:link,
+        &:visited {
+            color: #000;
+            text-decoration: none;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+
+            .card-content {
+                background-color: #f5f5f5;
+            }
+
+            .card-title,
+            .card-small-cta {
+                text-decoration: underline;
+            }
+
+        }
+    }
+
+    .card-meta {
+        @include font-size-extra-small;
+        color: #676767;
+        margin-bottom: 0;
+    }
+
+    @media #{$mq-tablet} {
+        margin-bottom: 40px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Card with larger title
+
+.card.card-large {
+    .card-title {
+        @include font-size-level3;
+    }
+
+    .card-desc {
+        @include font-size(18px);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Card with a gray border and title highlight styles.
+
+.card.card-tile {
+
+    .card-title {
+        @include font-size-level3;
+
+        span {
+            @include box-decoration-break(clone);
+            background-color: #000;
+            color: #fff;
+            line-height: 1.3;
+            padding: 0 5px;
+        }
+    }
+
+    .card-block-link {
+        @include transition(box-shadow 150ms ease-in-out);
+        border-radius: 3px;
+        box-shadow: 0 0 0 2px #e7e7e7;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: #fff;
+            box-shadow: 0 0 0 4px darken(#e7e7e7, 10%);
+
+            .card-content {
+                background-color: #fff;
+            }
+
+            .card-title {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Card with a white background & border for placement on colored backgrounds.
+
+.card.card-tile-light {
+    background: transparent;
+
+    .card-content {
+        padding: 15px;
+    }
+
+    .card-tag {
+        @include font-size-extra-small;
+    }
+
+    .card-title {
+        @include font-size-level6;
+        margin-bottom: 20px;
+    }
+
+    .card-block-link {
+        @include transition(box-shadow 150ms ease-in-out);
+        background: #fff;
+        border-radius: 2px;
+        box-shadow: 0 0 0 2px #e7e7e7;
+        height: 100%;
+
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: #fff;
+            box-shadow: 0 0 0 4px darken(#e7e7e7, 10%);
+
+            .card-content {
+                background-color: #fff;
+            }
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Card grid layout classes.
+
+/**
+ * Small viewports:  Cards all stack single column with vertical image & copy.
+ * Medium viewports: Cards stack single column with horizontal image & copy.
+ * Large viewports:  Cards use CSS Grid layout for columns with vertical image & copy.
+ *                   Older browsers fallback to using floats.
+ */
+
+.layout-card-third,
+.layout-card-half {
+    @media #{$mq-phone-wide} {
+        .card-block-link {
+            @include clearfix;
+            position: relative;
+
+            &:hover,
+            &:active,
+            &:focus {
+                background-color: #f5f5f5;
+            }
+        }
+
+        .card-media-wrapper {
+            float: left;
+            width: 50%;
+
+            &.has-aspect-1-1 {
+                @include aspect-ratio(1, 1, 50%);
+            }
+
+            &.has-aspect-16-9 {
+                @include aspect-ratio(16, 9, 50%);
+            }
+
+            &.has-aspect-3-2 {
+                @include aspect-ratio(3, 2, 50%);
+            }
+        }
+
+        .card-content {
+            float: right;
+            padding: 16px;
+            width: 50%;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .card-block-link {
+            &:hover,
+            &:active,
+            &:focus {
+                background-color: #fff;
+            }
+        }
+
+        .card-media-wrapper,
+        .card-content {
+            float: none;
+            width: auto;
+        }
+
+        .card-media-wrapper {
+            &.has-aspect-1-1 {
+                @include aspect-ratio(1, 1);
+            }
+
+            &.has-aspect-16-9 {
+                @include aspect-ratio(16, 9);
+            }
+
+            &.has-aspect-3-2 {
+                @include aspect-ratio(3, 2);
+            }
+        }
+
+        .card-content {
+            padding: 12px 8px 8px;
+        }
+    }
+}
+
+@media #{$mq-desktop} {
+    .layout-card-half,
+    .layout-card-third {
+        @include clearfix;
+
+        .card {
+            float: left;
+            margin-right: 30px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    .layout-card-half .card {
+        width: calc(50% - 30px);
+
+        &:last-child {
+            width: 50%;
+        }
+    }
+
+    .layout-card-third .card {
+        width: calc(33.3% - 30px);
+
+        &:last-child {
+            width: 33.3%;
+        }
+    }
+}
+
+.layout-card-quater {
+    @media #{$mq-phone-wide} {
+        @include clearfix;
+
+        .card {
+            float: left;
+            margin-right: 30px;
+            width: calc(50% - 30px);
+
+            &:nth-child(even) {
+                margin-right: 0;
+                width: 50%;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .card {
+            width: calc(25% - 30px);
+
+            &:nth-child(even) {
+                margin-right: 30px;
+                width: calc(25% - 30px);
+            }
+
+            &:last-child {
+                margin-right: 0;
+                width: 25%;
+            }
+        }
+    }
+}
+
+@supports(display: grid) {
+    @media #{$mq-desktop} {
+        .layout-card-half,
+        .layout-card-third {
+            display: grid;
+            grid-gap: 30px;
+            grid-template-rows: auto;
+
+            .card {
+                margin-right: 0;
+                width: auto;
+
+                &:last-child {
+                    margin-right: 0;
+                    width: auto;
+                }
+            }
+        }
+
+        .layout-card-half {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .layout-card-third {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    .layout-card-quater {
+        @media #{$mq-phone-wide} {
+            display: grid;
+            grid-gap: 30px;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto;
+
+            .card {
+                margin-right: 0;
+                width: auto;
+
+                &:nth-child(even) {
+                    margin-right: 0;
+                    width: auto;
+                }
+            }
+        }
+
+        @media #{$mq-desktop} {
+            display: grid;
+            grid-gap: 30px;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto;
+
+            .card {
+                width: auto;
+
+                &:nth-child(even),
+                &:last-child {
+                    margin-right: 0;
+                    width: auto;
+                }
+            }
+        }
+    }
+}
+
