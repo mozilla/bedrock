@@ -1063,13 +1063,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_firstrun_quantum-bundle.js',
     },
-    'experiment_firefox_firstrun_fxa': {
-        'source_filenames': (
-            'js/base/mozilla-traffic-cop.js',
-            'js/firefox/firstrun/experiment-firefox-firstrun-fxa.js',
-        ),
-        'output_filename': 'js/experiment_firefox_firstrun_fxa-bundle.js',
-    },
     'firefox_developer': {
         'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
