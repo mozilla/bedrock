@@ -96,11 +96,7 @@
 }
 
 @mixin font-size-level4 {
-    @include font-size(16px);
-
-    @media #{$mq-tablet} {
-        @include font-size(18px);
-    }
+    @include font-size(18px);
 
     @media #{$mq-desktop} {
         @include font-size(24px);
@@ -108,11 +104,7 @@
 }
 
 @mixin font-size-level5 {
-    @include font-size(14px);
-
-    @media #{$mq-tablet} {
-        @include font-size(16px);
-    }
+    @include font-size(16px);
 
     @media #{$mq-desktop} {
         @include font-size(18px);
@@ -120,11 +112,7 @@
 }
 
 @mixin font-size-level6 {
-    @include font-size(14px);
-
-    @media #{$mq-tablet} {
-        @include font-size(16px);
-    }
+    @include font-size(16px);
 }
 
 @mixin font-size-small {
