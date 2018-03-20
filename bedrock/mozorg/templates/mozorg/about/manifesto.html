@@ -14,7 +14,13 @@
 
 {% block page_title %}{{ _('The Mozilla Manifesto') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
-{% block page_desc %}{{ _('These are the principles that guide our mission to promote openness, innovation & opportunity on the Web.') }}{% endblock %}
+
+{% if l10n_has_tag('addendum_032018') %}
+  {% set page_description = _('These are the principles that guide our mission to promote openness, innovation & opportunity on the web.') %}
+{% else %}
+  {% set page_description = _('These are the principles that guide our mission to promote openness, innovation & opportunity on the Web.') %}
+{% endif %}
+{% block page_desc %}{{ page_description }}{% endblock %}
 
 {% block body_id %}manifesto-landing{% endblock %}
 {% block body_attrs %}{{ super() }} data-global-nav-current-link="about-us"{% endblock %}
@@ -40,227 +46,333 @@
   {% endif %}
 {% endblock %}
 
-{% set twitter_share_shorten_url = {
-  '01': '1o4BGY1',
-  '02': '1o4Cmwi',
-  '03': '1pHvACg',
-  '04': '1olpxj7',
-  '05': 'V8O1SM',
-  '06': 'TArZa0',
-  '07': '1mRltrl',
-  '08': 'TMI1Ox',
-  '09': '1xcEisc',
-  '10': '1z5HIPk',
-  'custom': '1iRxjCi',
-} %}
-
-{% macro twitter_link(content_id, text, hashtag = '#mozmanifesto') -%}
-  {{ twitter_share_url('http://mzl.la/' + twitter_share_shorten_url[content_id], text|truncate(102, False, '…') + ' ' + hashtag) }}
+{% macro twitter_link(content_id, text) -%}
+  {{ twitter_share_url('https://mzl.la/manifesto', text|truncate(102, False, '…')) }}
 {%- endmacro %}
 
+{% if l10n_has_tag('addendum_032018') %}
+  {% set principle_text_01 = _('The internet is an integral part of modern life—a key component in education, communication, collaboration, business, entertainment and society as a whole.') %}
+  {% set principle_text_02 = _('The internet is a global public resource that must remain open and accessible.') %}
+  {% set principle_text_03 = _('The internet must enrich the lives of individual human beings.') %}
+  {% set principle_text_04 = _('Individuals’ security and privacy on the internet are fundamental and must not be treated as optional.') %}
+  {% set principle_text_05 = _('Individuals must have the ability to shape the internet and their own experiences on it.') %}
+  {% set principle_text_06 = _('The effectiveness of the internet as a public resource depends upon interoperability (protocols, data formats, content), innovation and decentralized participation worldwide.') %}
+  {% set principle_text_07 = _('Free and open source software promotes the development of the internet as a public resource.') %}
+  {% set principle_text_08 = _('Transparent community-based processes promote participation, accountability and trust.') %}
+  {% set principle_text_09 = _('Commercial involvement in the development of the internet brings many benefits; a balance between commercial profit and public benefit is critical.') %}
+  {% set principle_text_10 = _('Magnifying the public benefit aspects of the internet is an important goal, worthy of time, attention and commitment.') %}
+{% else %}
+  {% set principle_text_01 = _('The Internet is an integral part of modern life—a key component in education, communication, collaboration, business, entertainment and society as a whole.') %}
+  {% set principle_text_02 = _('The Internet is a global public resource that must remain open and accessible.') %}
+  {% set principle_text_03 = _('The Internet must enrich the lives of individual human beings.') %}
+  {% set principle_text_04 = _('Individuals’ security and privacy on the Internet are fundamental and must not be treated as optional.') %}
+  {% set principle_text_05 = _('Individuals must have the ability to shape the Internet and their own experiences on it.') %}
+  {% set principle_text_06 = _('The effectiveness of the Internet as a public resource depends upon interoperability (protocols, data formats, content), innovation and decentralized participation worldwide.') %}
+  {% set principle_text_07 = _('Free and open source software promotes the development of the Internet as a public resource.') %}
+  {% set principle_text_08 = _('Transparent community-based processes promote participation, accountability and trust.') %}
+  {% set principle_text_09 = _('Commercial involvement in the development of the Internet brings many benefits; a balance between commercial profit and public benefit is critical.') %}
+  {% set principle_text_10 = _('Magnifying the public benefit aspects of the Internet is an important goal, worthy of time, attention and commitment.') %}
+{% endif %}
+
+{% if l10n_has_tag('addendum_032018') %}
+  {% set principle_number_01 = _('Principle 1') %}
+  {% set principle_number_02 = _('Principle 2') %}
+  {% set principle_number_03 = _('Principle 3') %}
+  {% set principle_number_04 = _('Principle 4') %}
+  {% set principle_number_05 = _('Principle 5') %}
+  {% set principle_number_06 = _('Principle 6') %}
+  {% set principle_number_07 = _('Principle 7') %}
+  {% set principle_number_08 = _('Principle 8') %}
+  {% set principle_number_09 = _('Principle 9') %}
+  {% set principle_number_10 = _('Principle 10') %}
+{% else %}
+  {% set principle_number_01 = _('01') %}
+  {% set principle_number_02 = _('02') %}
+  {% set principle_number_03 = _('03') %}
+  {% set principle_number_04 = _('04') %}
+  {% set principle_number_05 = _('05') %}
+  {% set principle_number_06 = _('06') %}
+  {% set principle_number_07 = _('07') %}
+  {% set principle_number_08 = _('08') %}
+  {% set principle_number_09 = _('09') %}
+  {% set principle_number_10 = _('10') %}
+{% endif %}
+
 {% block content %}
-
-<main role="main">
-  <article role="article" itemscope itemtype="http://schema.org/Article">
-    <header id="main-feature">
-      <div class="content">
-        <h1 itemprop="name"><span class="highlight">{{ self.page_title() }}</span></h1>
-      </div>
+<main role="main" itemscope itemtype="http://schema.org/Article">
+  <article role="article" itemprop="articleBody">
+  {% if switch('manifesto-addendum') and l10n_has_tag('addendum_032018') %}
+    <header>
+      <h1 itemprop="name" class="manifesto-title manifesto-title-addendum">{{ self.page_title() }}</h1>
     </header>
-
-    <div id="main-content">
-      <div id="main-content-inner">
-        <section id="sec-principles" itemprop="articleBody">
-          <header class="content">
-            <h2>{{ _('<strong>Our 10</strong> Principles') }}</h2>
-            <p itemprop="description">{{ self.page_desc() }}</p>
-            <!--
-            <aside class="share-wrapper">
-              {% set share_urls = { 'twitter': 'http://mzl.la/1b858Kd', 'googleplus': 'http://mzl.la/1b858Kd', 'facebook': 'http://mzl.la/1b858Kd' } -%}
-              {% set share_text = _('The Mozilla Manifesto') %}
-              {{ share_cta(_('Share'), share_urls, share_text, 'share-mozilla-manifesto', 'sky mini') }}
-            </aside>
-          -->
-          </header>
-          <div id="principles">
-            <section class="principle" id="principle-01" data-ga-quote-number="1" data-ga-quote="modern life">
-              <header class="principle-head">
-                <h3><a href="#principle-01" class="principle-number">{{ _('01') }}</a> {{ _('The Internet is an integral part of modern life—a key component in education, communication, collaboration, business, entertainment and society as a whole.') }}</h3>
-              </header>
-              <section class="principle-more">
-                <h4>{{ _('Learn more') }}</h4>
-                <ul class="resources">
-                  <li><a href="http://openbadges.org/">{{ _('Use Open Badges to share your skills and interests') }}</a></li>
-                  <li><a href="http://mozillascience.org/">{{ _('Explore how the Web impacts science') }}</a></li>
-                  <li><a href="https://opennews.org/getinvolved/">{{ _('Learn about open source code in journalism') }}</a></li>
-                </ul>
-              </section>
-              <footer class="principle-foot">
-                <p class="share"><a class="tweet" href="{{ twitter_link('01', _('The Internet is an integral part of modern life—a key component in education, communication, collaboration, business, entertainment and society as a whole.')) }}">{{ _('Tweet this') }}</a></p>
-              </footer>
-            </section>
-            <section class="principle" id="principle-02" data-ga-quote-number="2" data-ga-quote="public resource">
-              <header class="principle-head">
-                <h3><a href="#principle-02" class="principle-number">{{ _('02') }}</a> {{ _('The Internet is a global public resource that must remain open and accessible.') }}</h3>
-              </header>
-              <section class="principle-more">
-                <h4>{{ _('Learn more') }}</h4>
-                <ul class="resources">
-                  <li><a href="https://blog.mozilla.org/netpolicy/">{{ _('Read about open Internet policy initiatives and developments') }}</a></li>
-                  <li><a href="https://teach.mozilla.org/web-literacy/participate/open-practice/">{{ _('Explore how to help keep the Web open') }}</a></li>
-                </ul>
-              </section>
-              <footer class="principle-foot">
-                <p class="share"><a class="tweet" href="{{ twitter_link('02', _('The Internet is a global public resource that must remain open and accessible.')) }}">{{ _('Tweet this') }}</a></p>
-              </footer>
-            </section>
-            <section class="principle" id="principle-03" data-ga-quote-number="3" data-ga-quote="enrich lives">
-              <header class="principle-head">
-                <h3><a href="#principle-03" class="principle-number">{{ _('03') }}</a> {{ _('The Internet must enrich the lives of individual human beings.') }}</h3>
-              </header>
-              <section class="principle-more">
-                <h4>{{ _('Learn more') }}</h4>
-                <ul class="resources">
-                  <li><a href="https://blog.mozilla.org/blog/2014/04/09/firefox-os-and-medic-mobile-use-the-web-to-connect-the-world-to-healthcare/">{{ _('See how the Web can connect the world to healthcare') }}</a></li>
-                  <li><a href="https://teach.mozilla.org/web-literacy/read/navigate/">{{ _('Explore how the Web works') }}</a></li>
-                </ul>
-              </section>
-              <footer class="principle-foot">
-                <p class="share"><a class="tweet" href="{{ twitter_link('03', _('The Internet must enrich the lives of individual human beings.')) }}">{{ _('Tweet this') }}</a></p>
-              </footer>
-            </section>
-            <section class="principle" id="principle-04" data-ga-quote-number="4" data-ga-quote="individual security">
-              <header class="principle-head">
-                <h3><a href="#principle-04" class="principle-number">{{ _('04') }}</a> {{ _('Individuals’ security and privacy on the Internet are fundamental and must not be treated as optional.') }}</h3>
-              </header>
-              <section class="principle-more">
-                <h4>{{ _('Learn more') }}</h4>
-                <ul class="resources">
-                  <li><a href="{{ url('teach.smarton.index') }}">{{ _('See how Mozilla works to put your privacy first') }}</a></li>
-                  <li><a href="https://blog.mozilla.org/netpolicy/">{{ _('Read about developments in privacy and data safety') }}</a></li>
-                  <li><a href="https://teach.mozilla.org/web-literacy/participate/protect/">{{ _('Learn more about how to protect yourself online') }}</a></li>
-                </ul>
-              </section>
-              <footer class="principle-foot">
-                <p class="share"><a class="tweet" href="{{ twitter_link('04', _('Individuals’ security and privacy on the Internet are fundamental and must not be treated as optional.')) }}">{{ _('Tweet this') }}</a></p>
-              </footer>
-            </section>
-            <section class="principle" id="principle-05" data-ga-quote-number="5" data-ga-quote="shape internet">
-              <header class="principle-head">
-                <h3><a href="#principle-05" class="principle-number">{{ _('05') }}</a> {{ _('Individuals must have the ability to shape the Internet and their own experiences on it.') }}</h3>
-              </header>
-              <section class="principle-more">
-                <h4>{{ _('Learn more') }}</h4>
-                <ul class="resources">
-                  <li><a href="https://teach.mozilla.org/tools/">{{ _('Use these free tools to teach the Web') }}</a></li>
-                  <li><a href="https://teach.mozilla.org/web-literacy/write/compose/">{{ _('Learn about creating and curating content for the Web') }}</a></li>
-                </ul>
-              </section>
-              <footer class="principle-foot">
-                <p class="share"><a class="tweet" href="{{ twitter_link('05', _('Individuals must have the ability to shape the Internet and their own experiences on it.')) }}">{{ _('Tweet this') }}</a></p>
-              </footer>
-            </section>
-            <section class="principle" id="principle-06" data-ga-quote-number="6" data-ga-quote="internet effectiveness">
-              <header class="principle-head">
-                <h3><a href="#principle-06" class="principle-number">{{ _('06') }}</a> {{ _('The effectiveness of the Internet as a public resource depends upon interoperability (protocols, data formats, content), innovation and decentralized participation worldwide.') }}</h3>
-              </header>
-              <section class="principle-more">
-                <h4>{{ _('Learn more') }}</h4>
-                <ul class="resources">
-                  <li><a href="http://ascendproject.org/">{{ _('Add new voices to open source technology') }}</a></li>
-                  <li><a href="https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature">{{ _('Set your Do Not Track preference') }}</a></li>
-                  <li><a href="https://teach.mozilla.org/web-literacy/read/navigate/">{{ _('Understand the Web ecosystem') }}</a></li>
-                </ul>
-              </section>
-              <footer class="principle-foot">
-                <p class="share"><a class="tweet" href="{{ twitter_link('06', _('The effectiveness of the Internet as a public resource depends upon interoperability (protocols, data formats, content), innovation and decentralized participation worldwide.')) }}">{{ _('Tweet this') }}</a></p>
-              </footer>
-            </section>
-            <section class="principle" id="principle-07" data-ga-quote-number="7" data-ga-quote="open source">
-              <header class="principle-head">
-                <h3><a href="#principle-07" class="principle-number">{{ _('07') }}</a> {{ _('Free and open source software promotes the development of the Internet as a public resource.') }}</h3>
-              </header>
-              <section class="principle-more">
-                <h4>{{ _('Learn more') }}</h4>
-                <ul class="resources">
-                  <li><a href="https://teach.mozilla.org/web-literacy/participate/open-practice/">{{ _('Explore how open practices keep the Web accessible') }}</a></li>
-                  <li><a href="https://teach.mozilla.org/web-literacy/write/remix/">{{ _('Learn how to remix content to create something new') }}</a></li>
-                  <li><a href="https://teach.mozilla.org/web-literacy/write/code/">{{ _('Learn how to maximize the interactive potential of the Web') }}</a></li>
-                </ul>
-              </section>
-              <footer class="principle-foot">
-                <p class="share"><a class="tweet" href="{{ twitter_link('07', _('Free and open source software promotes the development of the Internet as a public resource.')) }}">{{ _('Tweet this') }}</a></p>
-              </footer>
-            </section>
-            <section class="principle" id="principle-08" data-ga-quote-number="8" data-ga-quote="transparent process">
-              <header class="principle-head">
-                <h3><a href="#principle-08" class="principle-number">{{ _('08') }}</a> {{ _('Transparent community-based processes promote participation, accountability and trust.') }}</h3>
-              </header>
-              <section class="principle-more">
-                <h4>{{ _('Learn more') }}</h4>
-                <ul class="resources">
-                  <li><a href="https://groups.google.com/forum/#!forum/mozilla.governance">{{ _('Participate in our governance forum') }}</a></li>
-
-                  {% if l10n_has_tag('join-us') %}
-                    <li><a href="{{ url('mozorg.contribute.index') }}">{{ _('Join us as a volunteer') }}</a></li>
-                    <li><a href="{{ url('mozorg.contribute.studentambassadors.landing') }}">{{ _('Join us as a student ambassador') }}</a></li>
-                  {% else %}
-                    <li>{{ _('Join us as a <a href="%(volunteer)s">volunteer</a> or <a href="%(ambassador)s">student ambassador</a>')|format(volunteer=url('mozorg.contribute.index'), ambassador=url('mozorg.contribute.studentambassadors.landing')) }}</li>
-                  {% endif %}
-
-                  <li><a href="https://teach.mozilla.org/web-literacy/skills/">{{ _('Learn how to collaborate online') }}</a></li>
-                </ul>
-              </section>
-              <footer class="principle-foot">
-                <p class="share"><a class="tweet" href="{{ twitter_link('08', _('Transparent community-based processes promote participation, accountability and trust.')) }}">{{ _('Tweet this') }}</a></p>
-              </footer>
-            </section>
-            <section class="principle" id="principle-09" data-ga-quote-number="9" data-ga-quote="commercial involvement">
-              <header class="principle-head">
-                <h3><a href="#principle-09" class="principle-number">{{ _('09') }}</a> {{ _('Commercial involvement in the development of the Internet brings many benefits; a balance between commercial profit and public benefit is critical.') }}</h3>
-              </header>
-              <section class="principle-more">
-                <h4>{{ _('Learn more') }}</h4>
-                <ul class="resources">
-                  <li><a href="https://addons.mozilla.org/firefox/addon/lightbeam/">{{ _('Visualize who you interact with on the Web with Lightbeam') }}</a></li>
-                  <li><a href="https://teach.mozilla.org/web-literacy/participate/share/">{{ _('Learn about creating Web resources with others') }}</a></li>
-                </ul>
-              </section>
-              <footer class="principle-foot">
-                <p class="share"><a class="tweet" href="{{ twitter_link('09', _('Commercial involvement in the development of the Internet brings many benefits; a balance between commercial profit and public benefit is critical.')) }}">{{ _('Tweet this') }}</a></p>
-              </footer>
-            </section>
-            <section class="principle" id="principle-10" data-ga-quote-number="10" data-ga-quote="magnify benefit">
-              <header class="principle-head">
-                <h3><a href="#principle-10" class="principle-number">{{ _('10') }}</a> {{ _('Magnifying the public benefit aspects of the Internet is an important goal, worthy of time, attention and commitment.') }}</h3>
-              </header>
-              <section class="principle-more">
-                <h4>{{ _('Learn more') }}</h4>
-                <ul class="resources">
-                  <li><a href="https://teach.mozilla.org/events/">{{ _('Host or join a Maker Party') }}</a></li>
-                  <li><a href="https://teach.mozilla.org/web-literacy/skills/">{{ _('Learn how to build online collaboration skills') }}</a></li>
-                </ul>
-              </section>
-              <footer class="principle-footco">
-                <p class="share"><a class="tweet" href="{{ twitter_link('10', _('Magnifying the public benefit aspects of the Internet is an important goal, worthy of time, attention and commitment.')) }}">{{ _('Tweet this') }}</a></p>
-              </footer>
-            </section>
-          </div>
-          <footer class="content">
-            <p><a class="manifesto-details" href="{{ url('mozorg.about.manifesto-details') }}">{{ _('Read the entire manifesto') }}</a></p>
-          </footer>
-        </section>
-        <aside class="section section-newsletter" id="newsletter-subscribe">
-          <div class="content">
-            {% if LANG.startswith('en-') %}
-                {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Love the Web?'), subtitle=_('Get the Mozilla newsletter and help us keep it open and free.'), button_class='button-hollow button-light', spinner_color='#fff') }}
-              {% else %}
-                {{ email_newsletter_form(button_class='button-hollow button-light', spinner_color='#fff') }}
-              {% endif %}
-          </div>
-        </aside>
+    <section>
+      <h2 class="addendum-subtitle">{{ _('Pledge for a Healthy Internet') }}</h2>
+      <p class="addendum-paragraph">{{ _('The open, global internet is the most powerful communication and collaboration resource we have ever seen. It embodies some of our deepest hopes for human progress. It enables new opportunities for learning, building a sense of shared humanity, and solving the pressing problems facing people everywhere.') }}</p>
+      <p class="addendum-paragraph">{{ _('Over the last decade we have seen this promise fulfilled in many ways. We have also seen the power of the internet used to magnify divisiveness, incite violence, promote hatred, and intentionally manipulate fact and reality. We have learned that we should more explicitly set out our aspirations for the human experience of the internet. We do so now.') }}</p>
+      <ol class="addendum-list">
+        <li>{{ _('We are committed to an internet that includes all the peoples of the earth — where a person’s demographic characteristics do not determine their online access, opportunities, or quality of experience.') }}</li>
+        <li>{{ _('We are committed to an internet that promotes civil discourse, human dignity, and individual expression.') }}</li>
+        <li>{{ _('We are committed to an internet that elevates critical thinking, reasoned argument, shared knowledge, and verifiable facts. ') }}</li>
+        <li>{{ _('We are committed to an internet that catalyzes collaboration among diverse communities working together for the common good. ') }}</li>
+      </ol>
+      <div class="share-addendum">
+        <h2 class="share-head">{{ _('Show Your Support') }}</h2>
+        <p class="share-paragraph">{{ _('An internet with these qualities will not come to life on its own. Individuals and organizations must embed these aspirations into internet technology and into the human experience with the internet. The Mozilla Manifesto and Addendum represent Mozilla’s commitment to advancing these aspirations. We aim to work together with people and organizations everywhere who share these goals to make the internet an even better place for everyone.') }}</p>
+        <p class="share-button-outter"><a class="button button-manifesto js-manifesto-share" href="{{ twitter_link('custom', _('I support the vision of a better, healthier internet from @mozilla, will you join me?')) }}">{{  _('Share on Twitter') }}</a></p>
       </div>
-    </div>
+    </section>
+  {% endif %}
+    <section id="sec-principles">
+      <header class="content principles-header">
+        {% if not switch('manifesto-addendum') or not l10n_has_tag('addendum_032018') %}
+          <h1 itemprop="name" class="manifesto-title">{{ self.page_title() }}</h1>
+        {% endif %}
+        <h2 class="principles-head">{{ _('<strong>Our 10</strong> Principles') }}</h2>
+      </header>
+      <div id="principles">
+        <section class="principle" id="principle-01" data-ga-quote-number="1" data-ga-quote="modern life">
+          <header class="principle-header">
+            <h3><span class="principle-number">{{ principle_number_01 }}</span> {{principle_text_01 }}</h3>
+          </header>
+          <section class="principle-more">
+            <h4>{{ _('Learn more') }}</h4>
+            <ul class="resources">
+              <li><a href="http://openbadges.org/">{{ _('Use Open Badges to share your skills and interests') }}</a></li>
+              <li>
+                <a href="http://mozillascience.org/">
+                  {% if l10n_has_tag('addendum_032018') %}
+                    {{ _('Explore how the web impacts science') }}
+                  {% else %}
+                    {{ _('Explore how the Web impacts science') }}
+                  {% endif %}
+                </a>
+              </li>
+              <li><a href="https://opennews.org/getinvolved/">{{ _('Learn about open source code in journalism') }}</a></li>
+            </ul>
+          </section>
+        </section>
+        <section class="principle" id="principle-02" data-ga-quote-number="2" data-ga-quote="public resource">
+          <header class="principle-header">
+            <h3><span class="principle-number">{{ principle_number_02 }}</span> {{ principle_text_02 }}</h3>
+          </header>
+          <section class="principle-more">
+            <h4>{{ _('Learn more') }}</h4>
+            <ul class="resources">
+              <li>
+                <a href="https://blog.mozilla.org/netpolicy/">
+                  {% if l10n_has_tag('addendum_032018') %}
+                    {{ _('Read about open internet policy initiatives and developments') }}
+                  {% else %}
+                    {{ _('Read about open Internet policy initiatives and developments') }}
+                  {% endif %}
+                </a>
+              </li>
+              <li>
+                <a href="https://teach.mozilla.org/web-literacy/participate/open-practice/">
+                  {% if l10n_has_tag('addendum_032018') %}
+                    {{ _('Explore how to help keep the web open') }}
+                  {% else %}
+                    {{ _('Explore how to help keep the Web open') }}
+                  {% endif %}
+                </a>
+              </li>
+            </ul>
+          </section>
+        </section>
+        <section class="principle" id="principle-03" data-ga-quote-number="3" data-ga-quote="enrich lives">
+          <header class="principle-header">
+            <h3><span class="principle-number">{{ principle_number_03 }}</span> {{ principle_text_03 }}</h3>
+          </header>
+          <section class="principle-more">
+            <h4>{{ _('Learn more') }}</h4>
+            <ul class="resources">
+              <li>
+                <a href="https://blog.mozilla.org/blog/2014/04/09/firefox-os-and-medic-mobile-use-the-web-to-connect-the-world-to-healthcare/">
+                  {% if l10n_has_tag('addendum_032018') %}
+                    {{ _('See how the web can connect the world to healthcare') }}
+                  {% else %}
+                    {{ _('See how the Web can connect the world to healthcare') }}
+                  {% endif %}
+                </a>
+              </li>
+              <li>
+                <a href="https://teach.mozilla.org/web-literacy/read/navigate/">
+                  {% if l10n_has_tag('addendum_032018') %}
+                    {{ _('Explore how the web works') }}
+                  {% else %}
+                    {{ _('Explore how the Web works') }}
+                  {% endif %}
+                </a>
+              </li>
+            </ul>
+          </section>
+        </section>
+        <section class="principle" id="principle-04" data-ga-quote-number="4" data-ga-quote="individual security">
+          <header class="principle-header">
+            <h3><span class="principle-number">{{ principle_number_04 }}</span> {{ principle_text_04 }}</h3>
+          </header>
+          <section class="principle-more">
+            <h4>{{ _('Learn more') }}</h4>
+            <ul class="resources">
+              <li><a href="{{ url('teach.smarton.index') }}">{{ _('See how Mozilla works to put your privacy first') }}</a></li>
+              <li><a href="https://blog.mozilla.org/netpolicy/">{{ _('Read about developments in privacy and data safety') }}</a></li>
+              <li><a href="https://teach.mozilla.org/web-literacy/participate/protect/">{{ _('Learn more about how to protect yourself online') }}</a></li>
+            </ul>
+          </section>
+        </section>
+        <section class="principle" id="principle-05" data-ga-quote-number="5" data-ga-quote="shape internet">
+          <header class="principle-header">
+            <h3><span class="principle-number">{{ principle_number_05 }}</span> {{ principle_text_05 }}</h3>
+          </header>
+          <section class="principle-more">
+            <h4>{{ _('Learn more') }}</h4>
+            <ul class="resources">
+              <li>
+                <a href="https://teach.mozilla.org/tools/">
+                  {% if l10n_has_tag('addendum_032018') %}
+                    {{ _('Use these free tools to teach the web') }}
+                  {% else %}
+                    {{ _('Use these free tools to teach the Web') }}
+                  {% endif %}
+                </a>
+              </li>
+              <li>
+                <a href="https://teach.mozilla.org/web-literacy/write/compose/">
+                  {% if l10n_has_tag('addendum_032018') %}
+                    {{ _('Learn about creating and curating content for the web') }}
+                  {% else %}
+                    {{ _('Learn about creating and curating content for the Web') }}
+                  {% endif %}
+                </a>
+              </li>
+            </ul>
+          </section>
+        </section>
+        <section class="principle" id="principle-06" data-ga-quote-number="6" data-ga-quote="internet effectiveness">
+          <header class="principle-header">
+            <h3><span class="principle-number">{{ principle_number_06 }}</span> {{ principle_text_06 }}</h3>
+          </header>
+          <section class="principle-more">
+            <h4>{{ _('Learn more') }}</h4>
+            <ul class="resources">
+              <li><a href="http://ascendproject.org/">{{ _('Add new voices to open source technology') }}</a></li>
+              <li><a href="https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature">{{ _('Set your Do Not Track preference') }}</a></li>
+              <li>
+                <a href="https://teach.mozilla.org/web-literacy/read/navigate/">
+                  {% if l10n_has_tag('addendum_032018') %}
+                    {{ _('Understand the web ecosystem') }}
+                  {% else %}
+                    {{ _('Understand the Web ecosystem') }}
+                  {% endif %}
+                </a>
+              </li>
+            </ul>
+          </section>
+        </section>
+        <section class="principle" id="principle-07" data-ga-quote-number="7" data-ga-quote="open source">
+          <header class="principle-header">
+            <h3><span class="principle-number">{{ principle_number_07 }}</span> {{ principle_text_07 }}</h3>
+          </header>
+          <section class="principle-more">
+            <h4>{{ _('Learn more') }}</h4>
+            <ul class="resources">
+              <li>
+                <a href="https://teach.mozilla.org/web-literacy/participate/open-practice/">
+                  {% if l10n_has_tag('addendum_032018') %}
+                    {{ _('Explore how open practices keep the web accessible') }}
+                  {% else %}
+                    {{ _('Explore how open practices keep the Web accessible') }}
+                  {% endif %}
+                </a>
+              </li>
+              <li><a href="https://teach.mozilla.org/web-literacy/write/remix/">{{ _('Learn how to remix content to create something new') }}</a></li>
+              <li>
+                <a href="https://teach.mozilla.org/web-literacy/write/code/">
+                  {% if l10n_has_tag('addendum_032018') %}
+                    {{ _('Learn how to maximize the interactive potential of the web') }}
+                  {% else %}
+                    {{ _('Learn how to maximize the interactive potential of the Web') }}
+                  {% endif %}
+                </a>
+              </li>
+            </ul>
+          </section>
+        </section>
+        <section class="principle" id="principle-08" data-ga-quote-number="8" data-ga-quote="transparent process">
+          <header class="principle-header">
+            <h3><span class="principle-number">{{ principle_number_08 }}</span> {{ principle_text_08 }}</h3>
+          </header>
+          <section class="principle-more">
+            <h4>{{ _('Learn more') }}</h4>
+            <ul class="resources">
+              <li><a href="https://groups.google.com/forum/#!forum/mozilla.governance">{{ _('Participate in our governance forum') }}</a></li>
+              {% if l10n_has_tag('join-us') %}
+                <li><a href="{{ url('mozorg.contribute.index') }}">{{ _('Join us as a volunteer') }}</a></li>
+                <li><a href="{{ url('mozorg.contribute.studentambassadors.landing') }}">{{ _('Join us as a student ambassador') }}</a></li>
+              {% else %}
+                <li>{{ _('Join us as a <a href="%(volunteer)s">volunteer</a> or <a href="%(ambassador)s">student ambassador</a>')|format(volunteer=url('mozorg.contribute.index'), ambassador=url('mozorg.contribute.studentambassadors.landing')) }}</li>
+              {% endif %}
+              <li><a href="https://teach.mozilla.org/web-literacy/skills/">{{ _('Learn how to collaborate online') }}</a></li>
+            </ul>
+          </section>
+        </section>
+        <section class="principle" id="principle-09" data-ga-quote-number="9" data-ga-quote="commercial involvement">
+          <header class="principle-header">
+            <h3><span class="principle-number">{{ principle_number_09 }}</span> {{ principle_text_09 }}</h3>
+          </header>
+          <section class="principle-more">
+            <h4>{{ _('Learn more') }}</h4>
+            <ul class="resources">
+              <li>
+                <a href="https://addons.mozilla.org/firefox/addon/lightbeam/">
+                  {% if l10n_has_tag('addendum_032018') %}
+                    {{ _('Visualize who you interact with on the web with Lightbeam') }}
+                  {% else %}
+                    {{ _('Visualize who you interact with on the Web with Lightbeam') }}
+                  {% endif %}
+                </a>
+              </li>
+              <li>
+                <a href="https://teach.mozilla.org/web-literacy/participate/share/">
+                  {% if l10n_has_tag('addendum_032018') %}
+                    {{ _('Learn about creating web resources with others') }}
+                  {% else %}
+                    {{ _('Learn about creating Web resources with others') }}
+                  {% endif %}
+                </a>
+              </li>
+            </ul>
+          </section>
+        </section>
+        <section class="principle" id="principle-10" data-ga-quote-number="10" data-ga-quote="magnify benefit">
+          <header class="principle-header">
+            <h3><span class="principle-number">{{ principle_number_10 }}</span> {{ principle_text_10 }}</h3>
+          </header>
+          <section class="principle-more">
+            <h4>{{ _('Learn more') }}</h4>
+            <ul class="resources">
+              <li><a href="https://teach.mozilla.org/events/">{{ _('Host or join a Maker Party') }}</a></li>
+              <li><a href="https://teach.mozilla.org/web-literacy/skills/">{{ _('Learn how to build online collaboration skills') }}</a></li>
+            </ul>
+          </section>
+        </section>
+      </div>
+      <footer class="content principles-foot">
+        {% if l10n_has_tag('addendum_032018') %}
+          <p><a class="button button-manifesto js-manifesto-share" href="{{ twitter_link('custom', _('I support the vision of a better, healthier internet from @mozilla, will you join me?')) }}">{{  _('Share on Twitter') }}</a></p>
+        {% endif %}
+        <p><a class="manifesto-details" href="{{ url('mozorg.about.manifesto-details') }}">{{ _('Read the entire manifesto') }}</a></p>
+      </footer>
+    </section>
+    <aside class="section section-newsletter" id="newsletter-subscribe">
+      <div class="content">
+        {% if LANG.startswith('en-') %}
+            {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Love the web?'), subtitle=_('Get the Mozilla newsletter and help us keep it open and free.'), button_class='button-hollow button-light', spinner_color='#fff') }}
+          {% else %}
+            {{ email_newsletter_form(button_class='button-hollow button-light', spinner_color='#fff') }}
+          {% endif %}
+      </div>
+    </aside>
   </article>
 </main>
 

@@ -15,7 +15,7 @@ a {
     &:visited:hover,
     &:visited:focus,
     &:visited:active {
-        color: darken($color-link, 10%);
+        color: $color-link-hover;
         text-decoration: underline;
     }
 

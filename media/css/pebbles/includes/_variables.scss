@@ -48,6 +48,7 @@ $color-quantum-blue: #0a84ff;
 // Link colors
 $color-link-blue:       #00a7e0;
 $color-link:            $color-link-blue; // standard links (blue)
+$color-link-hover:      darken($color-link, 10%);
 $color-link-yellow:     #ffbb38;
 
 // Button colors
