@@ -24,6 +24,7 @@ def email_newsletter_form(ctx, newsletters='mozilla-and-you', title=None,
                           thankyou_content=None, footer=True,
                           process_form=True, include_title=None,
                           submit_text=None, button_class=None,
+                          email_placeholder=None, email_label=None,
                           spinner_color=None):
     request = ctx['request']
     context = ctx.get_all()
@@ -52,6 +53,8 @@ def email_newsletter_form(ctx, newsletters='mozilla-and-you', title=None,
         submit_text=submit_text,
         button_class=button_class,
         spinner_color=spinner_color,
+        email_placeholder=email_placeholder,
+        email_label=email_label,
         success=success,
     ))
 

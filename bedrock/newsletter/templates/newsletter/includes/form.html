@@ -47,7 +47,12 @@
 
     <div class="form-contents">
       <div class="field field-email {% if form.email.errors %}form-field-error{% endif %}">
-        {{ field_with_attrs(form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}
+        {% if email_placeholder and email_label %}
+          <label for="id_email">{{ email_label }}</label>
+          {{ field_with_attrs(form.email, placeholder=email_placeholder)|safe }}
+        {% else %}
+          {{ field_with_attrs(form.email, placeholder=_('YOUR EMAIL HERE'))|safe }}
+        {% endif %}
       </div>
 
       <div id="form-details">

@@ -2,88 +2,68 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function($, Waypoint) {
+(function() {
     'use strict';
 
-    var mozClient = window.Mozilla.Client;
-    var impactInnovationWaypoint;
-    var $slideshow = $('#home-slideshow');
-
-    function handleWaypoint(target, callback) {
-        return function(direction) {
-            window.dataLayer.push({
-                'event': 'scroll-section',
-                'section': target
-            });
-
-            if (typeof callback === 'function') {
-                callback(direction);
-            }
-        };
-    }
-
-    // Intro slideshow
-    function startSlideshow() {
-        if ($slideshow.length) {
-            $slideshow.cycle({
-                fx: 'fade',
-                log: false,
-                slides: '> .slide',
-                speed: 1000,
-                startingSlide: 1, // start on group photo
-                timeout: 5000
-            });
-        }
-    }
-
-    function enableWaypoints() {
-        impactInnovationWaypoint = new Waypoint({
-            element: '#impact-innovate-wrapper',
-            handler: handleWaypoint('impact-innovation'),
-            offset: '40%'
+    function trackVideoInteraction(title, state) {
+        window.dataLayer.push({
+            'event': 'video-interaction',
+            'videoTitle': title,
+            'interaction': state
         });
     }
 
-    // show mobile download buttons if on mobile platform and not fx
-    if (mozClient.isMobile && !mozClient.isFirefox) {
-        $('#fxmobile-download-buttons').addClass('visible');
-        $('#fx-download-link').addClass('hidden');
+    function initVideoEvents() {
+        var videos = document.querySelectorAll('video');
+        var videoCards = document.querySelectorAll('.card.has-video .card-block-link');
 
-        if (window.site.platform === 'android') {
-            $('.android-systems-link').removeClass('hidden');
+        // open and play videos in a modal on click.
+        for (var i = 0; i < videoCards.length; i++) {
+            videoCards[i].addEventListener('click', playVideo, false);
+        }
+
+        // track video interaction events for GA.
+        for (var j = 0; j < videos.length; j++) {
+            videos[j].addEventListener('play', function() {
+                trackVideoInteraction(this.getAttribute('data-ga-label'), 'play');
+            }, false);
+
+            videos[j].addEventListener('pause', function() {
+                var action = this.currentTime === this.duration ? 'complete' : 'pause';
+                trackVideoInteraction(this.getAttribute('data-ga-label'), action);
+            }, false);
         }
     }
 
-    $(function() {
-        var mqIsTablet;
+    function playVideo(e) {
+        var $card = $(this);
+        var $content = $card.next().find('.card-video-content');
+        var title = $card.find('.card-title').text();
 
-        // test for matchMedia
-        if ('matchMedia' in window) {
-            mqIsTablet = matchMedia('(min-width: 760px)');
-        }
+        if ($content.length) {
+            e.preventDefault();
+            var video = $content.find('video')[0];
 
-        if (mqIsTablet) {
-            if (mqIsTablet.matches) {
-                enableWaypoints();
-                startSlideshow();
-            }
-
-            mqIsTablet.addListener(function(mq) {
-                if (mq.matches) {
-                    enableWaypoints();
-                    startSlideshow();
-                } else {
-                    if ($slideshow.length) {
-                        $slideshow.cycle('destroy');
+            Mozilla.Modal.createModal(this, $content, {
+                title: title,
+                onCreate: function() {
+                    try {
+                        video.load();
+                        video.play();
+                    } catch(err) {
+                        // fail silently
                     }
-
-                    impactInnovationWaypoint.destroy();
+                },
+                onDestroy: function() {
+                    video.pause();
                 }
             });
-        // if browser doesn't support matchMedia, assume it's a wide enough
-        // screen and start slideshow
-        } else {
-            startSlideshow();
         }
-    });
-})(window.jQuery, window.Waypoint);
+    }
+
+    // Lazyload images
+    Mozilla.LazyLoad.init();
+
+    // Video card interactions.
+    initVideoEvents();
+})();

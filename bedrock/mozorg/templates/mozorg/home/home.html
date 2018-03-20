@@ -27,6 +27,12 @@
 {% block body_id %}home{% endblock %}
 {% block body_class %}lang-{{ LANG }}{% endblock %}
 
+{% block experiments %}
+  {% if switch('experiment-home-2018', ['en-US']) %}
+    {% javascript 'experiment-home' %}
+  {% endif %}
+{% endblock %}
+
 {% block extra_meta %}
 <!-- validates bing webmaster tools -->
 <meta name="msvalidate.01" content="B7B177115A634927D608514DA17B2574">
@@ -142,6 +148,7 @@
         {% endif %}
         </p>
 
+        {% block icon_links_who %}
         <ul id="icon-links-who" class="icon-links">
         {% if l10n_has_tag('home-update-20171116') %}
           <li id="information-trust">
@@ -179,6 +186,7 @@
           {% endif %}
         {% endif %}
         </ul>
+        {% endblock %}
       </div>
     </section>
 
@@ -193,6 +201,7 @@
         {% endtrans %}
         </p>
 
+        {% block icon_links_innovate %}
         <ul id="icon-links-innovate" class="icon-links">
         {% if l10n_has_tag('home-update-20171116') %}
           <li id="common-voice">
@@ -213,6 +222,7 @@
             <a rel="external" href="https://research.mozilla.org/rust/"><svg class="icon"><use xlink:href="#icon-rust"></use></svg>{{ _('Rust') }}</a>
           </li>
         </ul>
+        {% endblock %}
       </div>
     </section>
   </section>{#-- /#who-innovate-wrapper --#}

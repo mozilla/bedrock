@@ -1,0 +1,111 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+.newsletter {
+    margin-bottom: 20px;
+    padding: 20px;
+
+    .newsletter-image {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    input[type="email"] {
+        border-radius: 4px;
+        border: 1px solid #959595;
+        margin-bottom: 10px;
+        padding: .4em 10px;
+        width: 100%;
+    }
+
+    select {
+        width: 100%;
+    }
+
+    .field {
+        margin-bottom: 5px;
+    }
+
+    .field-email label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .field-privacy {
+        margin-bottom: 20px;
+    }
+
+    .errorlist {
+        color: $color-mozred;
+        font-weight: bold;
+    }
+
+    .form-title h4 {
+        @include font-size(16px);
+        @include open-sans;
+        font-weight: normal;
+        margin-bottom: 20px;
+    }
+
+    @media #{$mq-phone-wide} {
+        @include clearfix;
+
+        .newsletter-image {
+            float: left;
+            width: calc(50% - 30px);
+        }
+
+        .newsletter-content {
+            float: right;
+            width: 50%;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        padding: 40px 100px;
+    }
+
+    @media #{$mq-desktop-wide} {
+        padding: 40px 200px;
+    }
+}
+
+@supports(display: grid) {
+    .newsletter {
+        @media #{$mq-phone-wide} {
+            display: grid;
+            grid-gap: 30px;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto;
+
+            .newsletter-image {
+                width: auto;
+            }
+
+            .newsletter-content {
+                width: auto;
+            }
+        }
+    }
+}
+
+.js {
+    // hide details for JS users
+    // (displayed when email field is focused)
+    #form-details,
+    .form-details {
+        display: none;
+    }
+
+    // spinner circa the web 2 point oh
+    #newsletter-spinner {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}
