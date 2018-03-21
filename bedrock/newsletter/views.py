@@ -417,6 +417,8 @@ def existing(request, token=None):
             if not remove_all:
                 kwargs['newsletters'] = ",".join(newsletters)
             if kwargs:
+                # always send lang so basket doesn't try to guess
+                kwargs['lang'] = data['lang']
                 try:
                     basket.update_user(token, **kwargs)
                 except basket.BasketException:

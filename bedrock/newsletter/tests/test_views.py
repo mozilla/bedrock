@@ -273,7 +273,7 @@ class TestExistingNewsletterView(TestCase):
         self.assertEqual(1, basket_patches['update_user'].call_count)
         kwargs = basket_patches['update_user'].call_args[1]
         self.assertEqual(
-            {'newsletters': u'mozilla-and-you,firefox-tips'},
+            {'newsletters': u'mozilla-and-you,firefox-tips', 'lang': u'en'},
             kwargs
         )
         # Should not have called unsubscribe
@@ -302,7 +302,7 @@ class TestExistingNewsletterView(TestCase):
         self.assertEqual(1, basket_patches['update_user'].call_count)
         kwargs = basket_patches['update_user'].call_args[1]
         self.assertEqual(
-            {'newsletters': u''},
+            {'newsletters': u'', 'lang': u'pt'},
             kwargs
         )
         # Should not have called subscribe
