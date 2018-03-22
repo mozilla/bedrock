@@ -12,10 +12,9 @@
 
     var beginAnimation = function (syncConfig) {
         var redirectDest = 'about:newtab';
-
         var scene = document.getElementById('scene');
         var skipbutton = document.getElementById('skip-button');
-        scene.dataset.animate = 'true';
+
         var hideOrShowSkipButton = function (data) {
             switch(data.data.url) {
             case '':

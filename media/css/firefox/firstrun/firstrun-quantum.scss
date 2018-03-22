@@ -242,6 +242,9 @@ body {
     p {
         background: url('/media/img/firefox/firstrun/sync/sync-devices-icons-anim.svg') bottom center no-repeat;
         padding-bottom: 210px;
+        // avoids odd text rendering bugs triggered by animated SVG bg
+        // https://bugzilla.mozilla.org/show_bug.cgi?id=1447724
+        will-change: opacity, transform;
     }
 
     .content {
@@ -292,11 +295,8 @@ html[dir="rtl"] #main-header {
 
 /* -------------------------------------------------------------------------- */
 // Animations & transitions
-
-// Simplified interactions for some platforms
 #scene[data-sign-in=true] {
     .fxaccounts-container {
-        animation: HideVisibility 0s .1s 1 forwards;
         opacity: 0;
         transition: opacity .5s;
     }
@@ -312,325 +312,44 @@ html[dir="rtl"] #main-header {
     }
 }
 
-// More complex interactions for other platforms
-html.osx,
-html.win8up {
+#main-header h1,
+#main-header .content,
+#main-header a {
+    opacity: 0;
+    transform: translateY(-5px);
+}
 
-    #main-header h1,
-    #main-header .content,
-    #main-header a {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
+#fxa-iframe-config {
+    opacity: 0;
+    transform: scale(.8);
+}
 
+#scene[data-content=true] {
     #fxa-iframe-config {
-        opacity: 0;
-        transform: scale(.8);
+        opacity: .85;
+        transform: scale(1);
+        transition: opacity 1s 1s, transform 1s 1s;
     }
 
-    #scene[data-animate=true] {
-        .wave1 {
-            animation: Wave1 17.26s infinite forwards;
-        }
-
-        .wave2 {
-            animation: Wave2 11.08s infinite forwards;
-        }
-
-        .wave3 {
-            animation: Wave3 7.51s infinite forwards;
-        }
-
-        .wave4 {
-            animation: Wave4 15.14s infinite forwards;
-        }
-
-        .wave5 {
-            animation: Wave5 13.46s infinite forwards;
-        }
-
-        .wave6 {
-            animation: Wave6 20.55s infinite forwards;
-        }
-
-        .wave7 {
-            animation: Wave7 26.55s infinite forwards;
-        }
-
-        .wave8 {
-            animation: Wave8 27.43s infinite forwards;
-        }
-    }
-
-    #scene[data-content=true] {
-        #fxa-iframe-config {
-            opacity: .85;
-            transform: scale(1);
-            transition: opacity 1s 2s, transform 1s 2s;
-        }
-
-        #main-header {
-            h1,
-            .content,
-            a {
-                opacity: 1;
-                transform: translateY(0);
-                transition: transform .5s, opacity .8s;
-            }
-
-            h1 {
-                transition-delay: 1.8s;
-            }
-
-            .content {
-                transition-delay: 2s;
-            }
-
-            a {
-                transition-delay: 2.2s;
-            }
-        }
-    }
-
-    #scene[data-sign-in=true] {
-        .color-overlay {
+    #main-header {
+        h1,
+        .content,
+        a {
             opacity: 1;
-            transition: opacity 1s .8s;
+            transform: translateY(0);
+            transition: transform .5s, opacity .8s;
         }
 
-        .white-overlay {
-            opacity: 1;
-            transition: opacity .6s 1.1s;
+        h1 {
+            transition-delay: 0.5s;
         }
 
-        .wave1 {
-            animation: Wave1 17.26s 1 forwards, Expand1 1.5s var(--animation-curve) .2s forwards;
+        .content {
+            transition-delay: 0.7s;
         }
 
-        .wave2 {
-            animation: Wave2 11.08s 1 forwards, Expand2 1.5s var(--animation-curve) .2s 1 forwards;
+        a {
+            transition-delay: 1.2s;
         }
-
-        .wave3 {
-            animation: Wave3 7.51s 1 forwards, Expand3 1.5s var(--animation-curve) .2s 1 forwards;
-        }
-
-        .wave4 {
-            animation: Wave4 15.14s 1 forwards, Expand4 1.5s var(--animation-curve) .2s 1 forwards;
-        }
-
-        .wave5 {
-            animation: Wave5 13.46s 1 forwards, Expand5 1.5s var(--animation-curve) .2s 1 forwards;
-        }
-
-        .wave6 {
-            animation: Wave6 20.55s 1 forwards, Expand6 1.5s var(--animation-curve) .2s 1 forwards;
-        }
-
-        .wave7 {
-            animation: Wave7 26.55s 1 forwards, Expand7 1.5s var(--animation-curve) .2s 1 forwards;
-        }
-
-        .wave8 {
-            animation: Wave8 27.43s 1 forwards, Expand8 1.5s var(--animation-curve) .2s 1 forwards;
-        }
-    }
-}
-
-@keyframes Expand1 {
-    25% {
-        transform: scale(1.2) skew(-8deg);
-    }
-    35% {
-        transform-origin: center;
-        transform: scale(1.9) rotate(0deg) skew(-8deg);
-    }
-    100% {
-        transform-origin: center;
-        transform: scale(1.9) rotate(140deg) translate(305px, 900px) skew(-8deg);
-    }
-}
-
-@keyframes Expand2 {
-    25% {
-        transform-origin: center;
-        transform: scale(1.43) rotate(0deg) skew(16deg);
-    }
-    70% {
-        transform-origin: center;
-        transform: scale(1.8) rotate(140deg) translate(0, 200px) skew(16deg);
-    }
-    100% {
-        transform-origin: center;
-        transform: scale(1.8) rotate(179deg) translate(300px, 700px) skew(16deg);
-    }
-}
-
-@keyframes Expand3 {
-    25% {
-        transform-origin: center;
-        transform: scale(1.9, 1.8) translate(20px, 0) skew(16deg);
-    }
-    50% {
-        transform-origin: center;
-        transform: scale(1.9, 1.8) translate(100px, 100px) skew(16deg);
-    }
-    100% {
-        transform-origin: center;
-        transform: scale(1.9) translate(200px, 360px) skew(16deg);
-    }
-}
-
-@keyframes Expand4 {
-    25% {
-        transform: scale(1.6, 1.13) skew(-11.7deg);
-    }
-    100% {
-        transform: scale(1.6, 1.13) translate(0, 290px) skew(-11.7deg);
-    }
-}
-
-@keyframes Expand5 {
-    25% {
-        transform: scale(1.35) skew(10deg);
-    }
-    45% {
-        transform-origin: center;
-        transform: scale(1.9) skew(10deg);
-    }
-    100% {
-        transform-origin: center;
-        transform: scale(1.9) rotate(130deg) translate(309px, 356px) skew(10deg);
-    }
-}
-
-@keyframes Expand6 {
-    25% {
-        transform: scale(1.35) skew(13deg);
-    }
-    50% {
-        transform-origin: center;
-        transform: scale(1.8) skew(13deg);
-    }
-    100% {
-        transform-origin: center;
-        transform: scale(1.9) rotate(140deg) translate(-310px, -712px) skew(13deg);
-    }
-}
-
-@keyframes Expand7 {
-    25% {
-        transform: scale(1.35) skew(7deg);
-    }
-    50% {
-        transform-origin: center;
-        transform: scale(1.9) skew(7deg);
-    }
-    100% {
-        transform-origin: center;
-        transform: scale(1.9) rotate(130deg) translate(-700px, -916px) skew(7deg);
-    }
-}
-
-@keyframes Expand8 {
-      20% {
-          transform: scale(1.65, 1.2) skew(-11.7deg);
-      }
-      100% {
-          transform-origin: center;
-          transform: scale(1.88) translate(178px, -669px) skew(-11.7deg) rotate(30deg);
-      }
-  }
-
-@keyframes Wave1 {
-    35% {
-        transform: scale(1.37) skew(-15deg);
-    }
-    65% {
-        transform: scale(1.52, 1.55) skew(-8deg);
-    }
-    100% {
-        transform: scale(1.5) skew(0);
-    }
-}
-
-@keyframes Wave2 {
-    35% {
-        transform: scale(1.59, 1.5) skew(10deg);
-    }
-    65% {
-        transform: scale(1.6) skew(8deg);
-    }
-    100% {
-        transform: scale(1.5) skew(0);
-    }
-}
-
-@keyframes Wave3 {
-    35% {
-        transform: scale(1.59, 1.26) skew(24deg);
-    }
-    65% {
-        transform: scale(1.52, 1.58) skew(8deg);
-    }
-    100% {
-        transform: scale(1.5) skew(0);
-    }
-}
-
-@keyframes Wave4 {
-    50% {
-        transform: scale(1.85, 1.17) skew(-35deg);
-    }
-    100% {
-        transform: scale(1.5) skew(0);
-    }
-}
-
-@keyframes Wave5 {
-    50% {
-        transform: scale(1.24, 1.5) translate(0, 50px) skew(28deg);
-    }
-    100% {
-        transform: scale(1.5) skew(0);
-    }
-}
-
-@keyframes Wave6 {
-    40% {
-        transform: scale(2.3, 1.81) skew(41deg);
-    }
-    75% {
-        transform: scale(1.73, 1.58) skew(-15deg);
-    }
-    100% {
-        transform: scale(1.5) skew(0);
-    }
-}
-
-@keyframes Wave7 {
-    40% {
-        transform: scale(1.71) skew(28deg);
-    }
-    75% {
-        transform: scale(1.71, 1.36) skew(-26deg);
-    }
-    100% {
-        transform: scale(1.5) skew(0);
-    }
-}
-
-@keyframes Wave8 {
-    50% {
-        transform: scale(1.24, 1.5) skew(28deg);
-    }
-    100% {
-        transform: scale(1.5) skew(0);
-    }
-}
-
-@keyframes HideVisibility {
-    100% {
-        visibility: collapse;
     }
 }
