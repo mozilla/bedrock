@@ -2,14 +2,18 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-<ul id="{{ id }}" class="download-platform-list">
-  {% for plat in builds -%}
-    <li class="os_{{ plat.os }}{% if plat.arch %} {{ plat.arch }}{% endif %}">
-      <a href="{{ plat.download_link_direct or plat.download_link }}"
-         class="download-link"
-         data-link-type="download"
-         data-download-version="{{ plat.os }}"
-         data-download-os="Desktop">{{ plat.os_arch_pretty or plat.os_pretty }}</a>
-    </li>
+<div id="{{ id }}" class="download-platform-lists">
+  {%- for cls in ['recommended', 'traditional'] %}
+    <ul class="download-platform-list {{ cls }}">
+      {% for plat in builds[cls] -%}
+        <li class="os_{{ plat.os }}{% if plat.arch %} {{ plat.arch }}{% endif %}">
+          <a href="{{ plat.download_link_direct or plat.download_link }}"
+            class="download-link"
+            data-link-type="download"
+            data-download-version="{{ plat.os }}"
+            data-download-os="Desktop">{{ plat.os_arch_pretty or plat.os_pretty }}</a>
+        </li>
+      {%- endfor %}
+    </ul>
   {%- endfor %}
-</ul>
+</div>

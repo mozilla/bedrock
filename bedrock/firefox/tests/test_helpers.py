@@ -330,11 +330,11 @@ class TestDownloadList(TestCase):
         # Check that links classes are ordered as expected.
         list = doc('.download-platform-list li')
         eq_(list.length, 6)
-        eq_(pq(list[0]).attr('class'), 'os_winsha1')
-        eq_(pq(list[1]).attr('class'), 'os_win64')
-        eq_(pq(list[2]).attr('class'), 'os_win')
-        eq_(pq(list[3]).attr('class'), 'os_osx')
-        eq_(pq(list[4]).attr('class'), 'os_linux64')
+        eq_(pq(list[0]).attr('class'), 'os_win64')
+        eq_(pq(list[1]).attr('class'), 'os_osx')
+        eq_(pq(list[2]).attr('class'), 'os_linux64')
+        eq_(pq(list[3]).attr('class'), 'os_win')
+        eq_(pq(list[4]).attr('class'), 'os_winsha1')
         eq_(pq(list[5]).attr('class'), 'os_linux')
 
         links = doc('.download-platform-list a')
@@ -342,15 +342,17 @@ class TestDownloadList(TestCase):
         # Check desktop links have the correct version
         self.check_desktop_links(links)
 
-        # The first link should be sha-1 bouncer.
-        first_link = pq(links[0])
+        # The fifth link should be sha-1 bouncer.
+        first_link = pq(links[4])
         first_href = first_link.attr('href')
         ok_(first_href.startswith('https://download-sha1.allizom.org'))
         self.assertListEqual(parse_qs(urlparse(first_href).query)['lang'], ['en-US'])
 
         # All other links should be to regular bouncer.
-        for link in links[1:5]:
+        for link in links:
             link = pq(link)
+            if link.attr('data-download-version') == 'winsha1':
+                continue
             href = link.attr('href')
             ok_(href.startswith('https://download.mozilla.org'))
             self.assertListEqual(parse_qs(urlparse(href).query)['lang'], ['en-US'])
@@ -370,9 +372,9 @@ class TestDownloadList(TestCase):
         list = doc('.download-platform-list li')
         eq_(list.length, 5)
         eq_(pq(list[0]).attr('class'), 'os_win64')
-        eq_(pq(list[1]).attr('class'), 'os_win')
-        eq_(pq(list[2]).attr('class'), 'os_osx')
-        eq_(pq(list[3]).attr('class'), 'os_linux64')
+        eq_(pq(list[1]).attr('class'), 'os_osx')
+        eq_(pq(list[2]).attr('class'), 'os_linux64')
+        eq_(pq(list[3]).attr('class'), 'os_win')
         eq_(pq(list[4]).attr('class'), 'os_linux')
 
         links = doc('.download-platform-list a')
