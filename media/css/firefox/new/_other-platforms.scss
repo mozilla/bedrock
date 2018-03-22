@@ -65,15 +65,29 @@ html[dir="rtl"] #other-platforms-modal-link {
         }
     }
 
+    .download-platform-lists {
+        margin: 20px 40px;
+    }
+
     .download-platform-list {
         list-style: none;
         margin: 20px auto;
         text-align: center;
 
+        &.recommended li {
+            font-weight: bold;
+        }
+
+        &.traditional {
+            border-width: 1px 0;
+            border-color: #D7D7DB;
+            border-style: solid;
+        }
+
         li {
             display: block;
             line-height: 2;
-            margin: 5px 0 0 -24px;
+            margin: 5px 0 5px -24px;
         }
 
         a:link,

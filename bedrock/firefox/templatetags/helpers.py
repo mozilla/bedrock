@@ -11,7 +11,7 @@ from lib.l10n_utils import get_locale
 
 def desktop_builds(channel, builds=None, locale=None, force_direct=False,
                    force_full_installer=False, force_funnelcake=False,
-                   funnelcake_id=False, locale_in_transition=False):
+                   funnelcake_id=False, locale_in_transition=False, classified=False):
     builds = builds or []
 
     l_version = firefox_desktop.latest_builds(locale, channel)
@@ -27,7 +27,7 @@ def desktop_builds(channel, builds=None, locale=None, force_direct=False,
         locale = 'en-US'
         version, platforms = firefox_desktop.latest_builds('en-US', channel)
 
-    for plat_os, plat_os_pretty in firefox_desktop.platform_labels.iteritems():
+    for plat_os, plat_os_pretty in firefox_desktop.platforms(channel, classified):
         # only include sha1 builds for release channel
         if plat_os == 'winsha1' and channel != 'release':
             continue
@@ -39,9 +39,10 @@ def desktop_builds(channel, builds=None, locale=None, force_direct=False,
         # win64-specific entry can be skipped.
         if channel == 'nightly':
             if plat_os == 'win':
-                os_pretty = 'Windows 32/64-bit'
-            if plat_os == 'win64':
                 continue
+            if plat_os == 'win64':
+                plat_os = 'win'
+                os_pretty = 'Windows 32/64-bit'
 
         # And generate all the info
         download_link = firefox_desktop.get_download_url(
@@ -192,8 +193,11 @@ def download_firefox_desktop_list(ctx, channel='release', dom_id=None, locale=No
     locale = locale or get_locale(ctx['request'])
 
     # Make sure funnelcake_id is not passed as builds are often Windows only.
-    builds = desktop_builds(channel, None, locale, True,
-                            force_full_installer, False, False)
+    builds = desktop_builds(channel, None, locale, True, force_full_installer,
+                            False, False, False, True)
+
+    recommended_builds = []
+    traditional_builds = []
 
     for plat in builds:
         # Add 32-bit label for Windows and Linux builds.
@@ -204,9 +208,18 @@ def download_firefox_desktop_list(ctx, channel='release', dom_id=None, locale=No
         if plat['os'] == 'linux':
             plat['os_pretty'] = 'Linux 32-bit'
 
+        if (plat['os'] in firefox_desktop.platform_classification['recommended'] or
+                channel == 'nightly' and plat['os'] == 'win'):
+            recommended_builds.append(plat)
+        else:
+            traditional_builds.append(plat)
+
     data = {
         'id': dom_id,
-        'builds': builds
+        'builds': {
+            'recommended': recommended_builds,
+            'traditional': traditional_builds,
+        },
     }
 
     html = render_to_string('firefox/includes/download-list.html', data,
