@@ -6,13 +6,6 @@
 
 {% extends "firefox/new/wait-face/base.html" %}
 
-{# waitface/switch experiment: https://bugzilla.mozilla.org/show_bug.cgi?id=1443921 #}
-{% block extrahead %}
-  {% if switch('experiment-firefox-new-waitface-switch', ['en-US']) and v %}
-    {% javascript 'firefox_new_waitface_switch_experiment_datalayer' %}
-  {% endif %}
-{% endblock %}
-
 {% block head_content %}
   <h1 id="main-heading" data-experience="waitface">
     {{ _('The new <strong>Firefox</strong>') }}

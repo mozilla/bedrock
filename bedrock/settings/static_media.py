@@ -405,13 +405,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_new_wait_face-bundle.css',
     },
-    'firefox_new_wait_face_video': {
-        'source_filenames': (
-            'css/firefox/new/wait-face.scss',
-            'css/firefox/new/wait-face-video.scss',
-        ),
-        'output_filename': 'css/firefox_new_wait_face_video-bundle.css',
-    },
     'firefox_new_reggie_watts': {
         'source_filenames': (
             'css/firefox/new/reggie-watts.scss',
@@ -1120,14 +1113,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_new_scene1_wait_face-bundle.js',
     },
-    'firefox_new_scene1_wait_face_video': {
-        'source_filenames': (
-            'js/base/mozilla-video-poster.js',
-            'js/firefox/new/wait-face-scene1.js',
-            'js/firefox/new/wait-face-scene1-video.js',
-        ),
-        'output_filename': 'js/firefox_new_scene1_wait_face_video-bundle.js',
-    },
     'firefox_new_scene1_reggie_watts': {
         'source_filenames': (
             'js/firefox/new/reggie-watts-scene1.js',
@@ -1139,26 +1124,6 @@ PIPELINE_JS = {
             'js/firefox/new/portland-scene1.js',
         ),
         'output_filename': 'js/firefox_new_scene1_portland-bundle.js',
-    },
-    'experiment_firefox_new_waitface': {
-        'source_filenames': (
-            'js/base/mozilla-traffic-cop.js',
-            'js/firefox/new/experiment-firefox-new-waitface.js',
-        ),
-        'output_filename': 'js/experiment_firefox_new_waitface-bundle.js',
-    },
-    'experiment_firefox_new_waitface_switch': {
-        'source_filenames': (
-            'js/base/mozilla-traffic-cop.js',
-            'js/firefox/new/experiment-firefox-new-waitface-switch.js',
-        ),
-        'output_filename': 'js/experiment_firefox_new_waitface-switch-bundle.js',
-    },
-    'firefox_new_waitface_switch_experiment_datalayer': {
-        'source_filenames': (
-            'js/firefox/new/waitface-switch-experiment-datalayer.js',
-        ),
-        'output_filename': 'js/firefox_new_waitface_switch_experiment_datalayer-bundle.js',
     },
     'firefox_new_pixel': {
         'source_filenames': (

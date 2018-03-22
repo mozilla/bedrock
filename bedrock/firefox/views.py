@@ -24,7 +24,6 @@ from product_details.version_compare import Version
 
 from lib import l10n_utils
 from lib.l10n_utils.dotlang import lang_file_is_active
-from bedrock.base.waffle import switch
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
 from bedrock.firefox.forms import SendToDeviceWidgetForm
@@ -506,7 +505,7 @@ def new(request):
     locale = l10n_utils.get_locale(request)
 
     # ensure variant matches pre-defined value
-    if variant not in ['a', 'b', '1', '2', '3']:
+    if variant not in []:  # place expected ?v= values in this list
         variant = None
 
     if scene == '2':
@@ -519,20 +518,7 @@ def new(request):
     # if no/incorrect scene specified, show scene 1
     else:
         if lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':
-            if switch('experiment-firefox-new-waitface'):
-                if variant == 'b':
-                    template = 'firefox/new/wait-face/scene1-video.html'
-                else:
-                    template = 'firefox/new/wait-face/scene1.html'
-            elif switch('experiment-firefox-new-waitface-switch'):
-                if variant == '2':
-                    template = 'firefox/new/wait-face/scene1-newcopy.html'
-                elif variant == '3':
-                    template = 'firefox/new/wait-face/scene1-switch.html'
-                else:
-                    template = 'firefox/new/wait-face/scene1.html'
-            else:
-                template = 'firefox/new/wait-face/scene1.html'
+            template = 'firefox/new/wait-face/scene1.html'
         elif lang_file_is_active('firefox/new/reggiewatts', locale) and experience == 'reggiewatts':
             template = 'firefox/new/reggie-watts/scene1.html'
         elif locale == 'en-US':
@@ -543,6 +529,8 @@ def new(request):
         else:
             template = 'firefox/new/scene1.html'
 
+    # no harm done by passing 'v' to template, even when no experiment is running
+    # (also makes tests easier to maintain by always sending a context)
     return l10n_utils.render(request, template, {'v': variant})
 
 
