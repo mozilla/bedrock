@@ -2,6 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% add_lang_files "privacy/index" %}
 {% extends "base-pebbles.html" %}
 
 {% block page_title %}
@@ -59,13 +60,17 @@
   </div>
 </main>
 
-{% if footnote %}
 <section class="privacy-footnote">
   <div class="content-girdle">
+  {% if footnote %}
     {{ footnote.div|join|safe }}
+  {% endif %}
+
+    <p>
+      <a href="{{ url('privacy') }}">{{ _('Back to Mozilla Privacy Policy') }}</a>
+    </p>
   </div>
 </section>
-{% endif %}
 </article>
 {% endblock %}
 
