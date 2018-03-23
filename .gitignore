@@ -51,3 +51,4 @@ root_files/default-urls.json
 node_modules
 package-lock.json
 .vscode/
+_static_site

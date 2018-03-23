@@ -501,7 +501,12 @@ INSTALLED_APPS = (
     'django_extensions',
     'lib.l10n_utils',
     'captcha',
+    'django_medusa',
 )
+
+MEDUSA_RENDERER_CLASS = "django_medusa.renderers.DiskStaticSiteRenderer"
+MEDUSA_DEPLOY_DIR = path('_static_site')
+MEDUSA_MULTITHREAD = True
 
 # Must match the list at CloudFlare if the
 # VaryNoCacheMiddleware is enabled. The home
