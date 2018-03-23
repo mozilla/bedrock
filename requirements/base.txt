@@ -152,3 +152,5 @@ django-watchman==0.14.0 \
 django-jsonview==1.1.0 \
     --hash=sha256:b78cc4e3d75e119966d1ad2ae832c38f94ede967e847abee48df51059ddda040 \
     --hash=sha256:9907d4958097db243419063477fa504ff63c7483687f852175452a1ff0d5582a
+https://github.com/pmac/django-medusa/archive/v0.3.3.tar.gz#egg=django-medusa \
+    --hash=sha256:6e8c5650fb24870bc00bd80e4347cdadad7ca490998a3dd1967a9c647302d72c
