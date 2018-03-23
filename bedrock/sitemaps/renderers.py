@@ -24,11 +24,9 @@ def get_all_urls():
     client = Client()
     urls = {}
     excludes = [
-        re.compile(r) for r in settings.NOINDEX_URLS + [
+        re.compile(r) for r in settings.NO_STATIC_URLS + [
             r'.*%\(.*\).*',
             r'^media/',
-            r'^newsletter/',
-            r'^robots\.txt$',
         ]
     ]
 
@@ -81,7 +79,7 @@ class BedrockRenderer(StaticSiteRenderer):
             for locale in locales:
                 localized_urls.append('/{}{}'.format(locale, url))
 
-        return localized_urls
+        return localized_urls + settings.EXTRA_STATIC_URLS
 
 
 renderers = [BedrockRenderer]

@@ -320,6 +320,35 @@ EXTRA_INDEX_URLS = [
     '/de/about/legal/impressum/',
 ]
 
+# Pages that we don't want to be included in the static version of the site.
+# Only impacts static site generator.
+NO_STATIC_URLS = [
+    r'^(404|500)/',
+    r'^contribute/(embed|event|friends)/',
+    r'^csp-violation-capture',
+    r'^firefox/sms/sent/',
+    r'^firefox/unsupported/',
+    r'^firefox/send-to-device-post',
+    r'^firefox/feedback',
+    r'^firefox/stub_attribution_code/',
+    r'^firefox/ios/testflight',
+    r'^.+/tracking-protection/start/$',
+    r'^.+/(firstrun|whatsnew)/$',
+    r'^l10n_example/',
+    r'^m/',
+    r'^newsletter/',
+    r'^country-code\.json$',
+    # exclude redirects
+    r'^thunderbird/(release)?notes/$'
+]
+
+# Pages we do want in the static site but don't show up in automated URL discovery
+# or are only available in a non-default locale
+EXTRA_STATIC_URLS = [
+    '/de/privacy/firefox-klar/',
+    '/de/about/legal/impressum/',
+]
+
 # Pages that have different URLs for different locales, e.g.
 #   'firefox/private-browsing/': {
 #       'en-US': '/firefox/features/private-browsing/',
