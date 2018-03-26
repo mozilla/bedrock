@@ -36,14 +36,12 @@
 
         var onVerificationComplete = function () {
             scene.dataset.signIn = 'true';
-            document.getElementById('white-overlay').addEventListener('transitionend', function() {
-                // Specially navigate to about:newtab and focus address bar
-                if (redirectDest === 'about:newtab') {
-                    Mozilla.UITour.showNewTab();
-                } else {
-                    window.location.href = redirectDest;
-                }
-            }, false);
+            // Specially navigate to about:newtab and focus address bar
+            if (redirectDest === 'about:newtab') {
+                Mozilla.UITour.showNewTab();
+            } else {
+                window.location.href = redirectDest;
+            }
         };
 
         skipbutton.onclick = onVerificationComplete;
