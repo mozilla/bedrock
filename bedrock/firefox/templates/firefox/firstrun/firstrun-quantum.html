@@ -21,68 +21,6 @@
 
 {% block content %}
   <div id="scene">
-    <!-- white background for mix-blend-mode -->
-    <svg class="white-background" viewBox="0 0 1440 800" preserveAspectRatio="none">
-      <rect x="0" y="0" width="1440" height="800"/>
-    </svg>
-
-    <svg class="wave1 background" xmlns="http://www.w3.org/2000/svg" viewBox="-150 -210 1750 1300" preserveAspectRatio="none">
-      <path d="M1370.3-182.6C1266.9-68.3 1137.6 49.5 938.2 19.7 713.4-13.8 523.4-126.7 308.9-176.4 44.3-223.7-119.5-7.6-133 165.8c0 0-92.4 416.6 212.7 598.7 254 151.6 913.4 346.3 1353.8 165.9 146.8-60.1 133.2-686.2 87.5-1015.2-18.5-133.5-119.5-132.3-150.7-97.8z"/>
-    </svg>
-
-    <svg class="wave2 background" xmlns="http://www.w3.org/2000/svg" viewBox="-300 100 2000 800" preserveAspectRatio="none">
-      <path d="M-152.8 139.4C13.7 87.4 256 100.5 578 267.6c274.7 142.6 278.9 20 620.9-61.4 467.6-111.3 534 417.6 429 555.7-447 414-1490.7 140.5-1707.2 12s-318-558.1-73.5-634.5z"/>
-    </svg>
-
-    <svg class="wave3 background" xmlns="http://www.w3.org/2000/svg" viewBox="-160 265 1650 580" preserveAspectRatio="none">
-      <path d="M-132.3 346.9c84.6-94.2 379.7-122 662.4 24.7 168.4 87.4 171 12.3 380.6-37.6 286.6-68.2 657.8 200.7 544.3 333-375.6 314.4-1222.2 78.8-1354.9 0s-317.7-225.1-232.4-320.1z"/>
-    </svg>
-
-    <svg class="wave4 background" xmlns="http://www.w3.org/2000/svg" viewBox="-270 550 2100 290" preserveAspectRatio="none">
-      <path d="M1784.3 638c-234-191.8-398.9 43.1-824.9 197.8C565 979 307.4 476.2 26.2 564.6c-281.2 88.4-314.8 588 182 913.2s1345.9 140.9 1549.6-140C1915 1121 1949 773 1784.3 638z"/>
-    </svg>
-
-    <svg class="wave5 background" xmlns="http://www.w3.org/2000/svg" viewBox="-278 -170 1900 750" preserveAspectRatio="none">
-      <path d="M71.8 503.1c1315 237.8 1451-225.9 1443-438S778.8 405 415.4 282.9c-316.6-106.4-497-380-684.8-337s-973.8 319.4 341.2 557.2z"/>
-    </svg>
-
-    <svg class="wave6 background" xmlns="http://www.w3.org/2000/svg" viewBox="-300 -150 2050 900" preserveAspectRatio="none">
-      <path d="M495.3-365.1C66.6-148.4-687.9 864.2-325.8 729.7s582.1-353.8 847.5-390c453.8-61.9 814 456.7 1344.2 334.6 530.2-122-579.6-1305.2-1370.6-1039.4z"/>
-    </svg>
-
-    <svg class="wave7 background" xmlns="http://www.w3.org/2000/svg" viewBox="-230 -200 1380 790" preserveAspectRatio="none">
-      <path d="M-583.2-65.9c56.5 448.6 1076.5 1063.5 1574.5 248S470.2 26.6 3.8-335.4s-643.6-179.1-587 269.5z"/>
-    </svg>
-
-    <svg class="wave8 background" xmlns="http://www.w3.org/2000/svg" viewBox="-155 -80 2000 580" preserveAspectRatio="none">
-      <path d="M1327.5-88.5c-1315-237.8-1451 225.9-1443 438S620.5 9.7 983.9 131.8c316.6 106.4 497 380 684.8 337s973.8-319.4-341.2-557.3z"/>
-    </svg>
-
-    <!-- white overlay for fading out the waves -->
-    <svg id="white-overlay" class="white-overlay" viewBox="0 0 1440 800" preserveAspectRatio="none">
-      <rect x="0" y="0" width="1440" height="800"/>
-    </svg>
-
-    <svg class="color-overlay" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 800" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id="light-gradient" gradientUnits="userSpaceOnUse" x1="765.723" y1="594.394" x2="769.406" y2="229.758" gradientTransform="matrix(1 0 0 -1 0 800)">
-          <stop offset="0" stop-color="#002989"/>
-          <stop offset=".50" stop-color="#0042B4"/>
-          <stop offset="1" stop-color="#005FE7"/>
-        </linearGradient>
-        <linearGradient id="dark-gradient" gradientUnits="userSpaceOnUse" x1="746.076" y1="694.442" x2="665.534" y2="-609.57" gradientTransform="matrix(1 0 0 -1 0 800)">
-          <stop offset="0" stop-color="#005FE7"/>
-          <stop offset=".64" stop-color="#002079"/>
-        </linearGradient>
-        <linearGradient id="orange-gradient" x1="653.02" y1="155" x2="950.05" y2="1256.11" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stop-color="#ff272d"/>
-          <stop offset=".5" stop-color="#ff8e00"/>
-          <stop offset="1" stop-color="#ffde00"/>
-        </linearGradient>
-      </defs>
-      <rect x="0" y="0" width="1440" height="800"/>
-    </svg>
-
     <main class="fxaccounts-container">
       <header id="main-header">
         <h1>
@@ -101,11 +39,13 @@
         </p>
         <a href="{{ url('firefox.features.sync') }}" rel="noopener noreferrer" target="_blank">{{_('Learn more about Firefox Accounts')}}</a>
       </header>
-      <div class="fxaccounts" id="fxa-iframe-config" data-host="{{ settings.FXA_IFRAME_SRC }}" data-mozillaonline-host="{{ settings.FXA_IFRAME_SRC_MOZILLAONLINE }}">
-        {# Bug 1354710: firstrun pages need to pass funnelcake parameters to FxA #}
-        {% set utm_source = 'firstrun' if not funnelcake_id else 'firstrun_f' + funnelcake_id %}
-        <iframe id="fxa" scrolling="no" data-src="{{ settings.FXA_IFRAME_SRC }}?action=email&amp;utm_campaign=fxa-embedded-form&amp;utm_medium=referral&amp;utm_source={{ utm_source }}&amp;utm_content=fx-{{ version }}&amp;entrypoint=firstrun&amp;service=sync&amp;context=iframe&amp;style=chromeless&amp;haltAfterSignIn=true"></iframe>
-        <button id="skip-button">{{_('Skip this step')}}</button>
+      <div id="fxaccounts-wrapper">
+          <div class="fxaccounts" id="fxa-iframe-config" data-host="{{ settings.FXA_IFRAME_SRC }}" data-mozillaonline-host="{{ settings.FXA_IFRAME_SRC_MOZILLAONLINE }}">
+            {# Bug 1354710: firstrun pages need to pass funnelcake parameters to FxA #}
+            {% set utm_source = 'firstrun' if not funnelcake_id else 'firstrun_f' + funnelcake_id %}
+            <iframe id="fxa" scrolling="no" data-src="{{ settings.FXA_IFRAME_SRC }}?action=email&amp;utm_campaign=fxa-embedded-form&amp;utm_medium=referral&amp;utm_source={{ utm_source }}&amp;utm_content=fx-{{ version }}&amp;entrypoint=firstrun&amp;service=sync&amp;context=iframe&amp;style=chromeless&amp;haltAfterSignIn=true"></iframe>
+            <button id="skip-button">{{_('Skip this step')}}</button>
+          </div>
       </div>
     </main>
 
