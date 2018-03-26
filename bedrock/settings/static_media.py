@@ -418,6 +418,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_new_reggie_watts-bundle.css',
     },
+    'firefox_new_portland': {
+        'source_filenames': (
+            'css/firefox/new/portland.scss',
+        ),
+        'output_filename': 'css/firefox_new_portland-bundle.css',
+    },
     'firefox_organizations': {
         'source_filenames': (
             'css/firefox/organizations.less',
@@ -1127,6 +1133,19 @@ PIPELINE_JS = {
             'js/firefox/new/reggie-watts-scene1.js',
         ),
         'output_filename': 'js/firefox_new_scene1_reggie_watts-bundle.js',
+    },
+    'firefox_new_scene1_portland': {
+        'source_filenames': (
+            'js/firefox/new/portland-scene1.js',
+        ),
+        'output_filename': 'js/firefox_new_scene1_portland-bundle.js',
+    },
+    'firefox_new_portland_font': {
+        'source_filenames': (
+            'js/firefox/new/portland-font-loader.js',
+            'js/firefox/new/portland-font-tracker.js',
+        ),
+        'output_filename': 'js/firefox_new_portland_font-bundle.js',
     },
     'experiment_firefox_new_waitface': {
         'source_filenames': (

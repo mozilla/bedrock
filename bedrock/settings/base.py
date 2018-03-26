@@ -1373,6 +1373,7 @@ CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + (
 CSP_STYLE_SRC = CSP_DEFAULT_SRC + (
     # TODO fix things so that we don't need this
     "'unsafe-inline'",
+    'fast.fonts.net',  # used for /new/?xv=portland campaign page (bug 1444000)
 )
 CSP_CHILD_SRC = (
     '*.optimizely.com',

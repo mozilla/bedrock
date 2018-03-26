@@ -549,6 +549,32 @@ class TestFirefoxNew(TestCase):
         views.download_thanks(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
 
+    # portland campaign bug 1444000
+
+    def test_portland_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=portland')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene1.html', ANY)
+
+    def test_portland_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=portland')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2.html', ANY)
+
+    def test_portland_nonenus_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=portland')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_portland_nonenus_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?scene=2&xv=portland')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
 
 class TestFirefoxNewNoIndex(TestCase):
     def test_scene_1_noindex(self):

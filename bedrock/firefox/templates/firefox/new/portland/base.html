@@ -1,0 +1,80 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base-pebbles.html" %}
+
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{_('Free Web Browser for Android, iOS, Desktop | Firefox')}}{% endblock %}
+{% block page_desc %}{{_('Millions of people around the world trust Firefox Web browsers on Android, iOS and desktop computers. Fast. Private. Download now!')}}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_new_portland' %}
+{% endblock %}
+
+{% block extrahead %}
+  {% javascript 'firefox_new_portland_font' %}
+{% endblock %}
+
+{% block body_id %}firefox{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+  <main role="main">
+  <section class="intro content-section">
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="copy">
+          <img class="logo" src="{{ static('img/logos/firefox/logo-quantum.png') }}" width="132" height="132" alt="" />
+          <h1 id="main-heading" data-experience="portland">Firefox is <br>fast for good</h1>
+          {% block head_content %}{% endblock %}
+          {% block primary_download_button %}{% endblock %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% block details %}
+  <section class="details content-section">
+    <div class="content">
+      <ul>
+        <li>
+          <h3>Efficient</h3>
+          <p>
+            <strong>Firefox software runs twice as fast</strong> as before,
+            reduces the load on your computer’s memory, and lets you block
+            trackers that can slow you down.
+          </p>
+        </li>
+        <li>
+          <h3>Safe</h3>
+          <p>
+            <strong>Firefox privacy is turned on by default.</strong> That
+            means browser settings start with you in-control, and remain in
+            your control, no matter where you go.
+          </p>
+        </li>
+        <li>
+          <h3>Socially Responsible</h3>
+          <p>
+            <strong>Firefox is crafted by Mozilla</strong>, the not-for-profit
+            that's helping to make the internet a healthier place to be for
+            all. It's the right choice for people who care.
+          </p>
+        </li>
+      </ul>
+    </div>
+  </section>
+  {% endblock %}
+</main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{# Bug 1381776 #}
+{% block update_notification %}{% endblock %}
