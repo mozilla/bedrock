@@ -2,6 +2,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+// the font loads without this import, but fonts.net requires it for site verification/limits
+@import url("http://fast.fonts.net/t/1.css?apiType=css&projectid=4cf8cc7f-453b-4e9e-8a61-101fa60c96fd");
+
 @import '../../pebbles/includes/lib';
 @import '../../hubs/sections';
 
@@ -21,6 +24,8 @@ $color-photon-blue: #0099db;
 $color-gradient-light: #9229ff;
 $color-gradient-dark: #4f33d8;
 
+$mq-desktop-super-wide: 'only screen and (min-width: 1700px)';
+
 #outer-wrapper {
     @include open-sans();
     background: #fff;
@@ -37,10 +42,17 @@ $color-gradient-dark: #4f33d8;
     }
 }
 
+@media #{$mq-desktop-super-wide} {
+    .content {
+        max-width: 1700px;
+    }
+}
+
 /* -------------------------------------------------------------------------- */
 // Top hero section
 
 .intro {
+    background: $color-gradient-dark;
     @include gradient-vertical($start-color: $color-gradient-dark, $end-color: $color-gradient-light);
     padding: 20px;
 
@@ -54,7 +66,7 @@ $color-gradient-dark: #4f33d8;
 
     h1 {
         @include font-size-level1;
-        color: #9129ff;
+        color: $color-gradient-light;
 
         br {
             display: none;
@@ -80,7 +92,7 @@ $color-gradient-dark: #4f33d8;
         width: auto;
 
         .download-button {
-            margin-top: 50px;
+            margin-top: 30px;
         }
 
         .help {
@@ -135,6 +147,10 @@ $color-gradient-dark: #4f33d8;
 
         .copy {
             padding-bottom: 40px;
+
+            .download-button {
+                margin-top: 50px;
+            }
         }
     }
 
@@ -187,8 +203,8 @@ $color-gradient-dark: #4f33d8;
 
 .details ul {
     li {
-        margin-bottom: 60px;
         list-style-type: none;
+        margin-bottom: 60px;
         width: 100%;
     }
 
@@ -199,10 +215,10 @@ $color-gradient-dark: #4f33d8;
         text-transform: uppercase;
 
         &:before {
-            content: '';
-            display: inline-block;
             background: url('/media/img/firefox/new/portland/checkbox.png') left center no-repeat;
             background-size: 22px 23px;
+            content: '';
+            display: inline-block;
             height: 23px;
             margin: 0 10px -2px 0;
             width: 22px;

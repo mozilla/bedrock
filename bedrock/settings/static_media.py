@@ -1140,13 +1140,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_new_scene1_portland-bundle.js',
     },
-    'firefox_new_portland_font': {
-        'source_filenames': (
-            'js/firefox/new/portland-font-loader.js',
-            'js/firefox/new/portland-font-tracker.js',
-        ),
-        'output_filename': 'js/firefox_new_portland_font-bundle.js',
-    },
     'experiment_firefox_new_waitface': {
         'source_filenames': (
             'js/base/mozilla-traffic-cop.js',
