@@ -558,10 +558,10 @@ class TestFirefoxNew(TestCase):
         render_mock.assert_called_once_with(req, 'firefox/new/portland/scene1.html', ANY)
 
     def test_portland_scene_2(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?scene=2&xv=portland')
+        req = RequestFactory().get('/firefox/download/thanks/?xv=portland')
         req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2.html', ANY)
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2.html')
 
     def test_portland_nonenus_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=portland')
@@ -570,10 +570,10 @@ class TestFirefoxNew(TestCase):
         render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
 
     def test_portland_nonenus_scene_2(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?scene=2&xv=portland')
+        req = RequestFactory().get('/firefox/download/thanks/?xv=portland')
         req.locale = 'de'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
 
 
 class TestFirefoxNewNoIndex(TestCase):
