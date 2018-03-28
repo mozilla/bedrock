@@ -13,6 +13,8 @@
   <link rel="canonical" href="{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/">
 {% endblock %}
 
+{% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/{% endblock %}
+
 {% block optimizely %}
   {% if switch('firefox-new-scene2-optimizely', ['en-US']) %}
     {% include 'includes/optimizely.html' %}
