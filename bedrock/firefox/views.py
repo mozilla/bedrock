@@ -421,7 +421,12 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
         elif channel == 'nightly':
             template = 'firefox/nightly_whatsnew.html'
         elif show_59_whatsnew(version, oldversion):
-            template = 'firefox/whatsnew/whatsnew-fxa.html'
+            if locale == 'id':
+                template = 'firefox/whatsnew/index.id.html'
+            elif locale == 'zh-TW':
+                template = 'firefox/whatsnew/index.zh-TW.html'
+            else:
+                template = 'firefox/whatsnew/whatsnew-fxa.html'
         elif show_57_whatsnew(version, oldversion):
             # locale-specific templates don't seem to work for the default locale
             if locale == 'en-US':
