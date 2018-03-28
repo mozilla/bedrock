@@ -6,7 +6,7 @@
 {% extends "base-pebbles.html" %}
 
 {% block page_title %}
-  {{ doc.body.section.h2.get_text() }}
+  {{ header.h2|join|safe }}
 {% endblock %}
 
 {% block page_css %}
