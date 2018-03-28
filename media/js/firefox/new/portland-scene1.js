@@ -12,5 +12,5 @@
     });
 
     // use custom adjust link for Android/iOS
-    $('.os_android .download-link, .os_ios .download-link').attr('href', 'https://app.adjust.com/4mgce6?campaign=City_Strategy&adgroup=Portland&creative=website-xv-portland');
+    $('.os_android .download-link, .os_ios .download-link').attr('href', 'https://mzl.la/2GmmCEL');
 })(window.jQuery);
