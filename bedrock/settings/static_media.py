@@ -367,6 +367,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_enterprise-bundle.css',
     },
+    'firefox_facebook_container': {
+        'source_filenames': (
+            'css/firefox/facebook-container.scss',
+        ),
+        'output_filename': 'css/firefox_facebook_container-bundle.css',
+    },
     'firefox_ios_testflight': {
         'source_filenames': (
             'css/firefox/testflight.less',
@@ -1018,6 +1024,13 @@ PIPELINE_JS = {
             'js/firefox/firefox-language-search.js',
         ),
         'output_filename': 'js/firefox_all-bundle.js',
+    },
+    'firefox_facebook_container_video': {
+        'source_filenames': (
+            'js/base/mozilla-video-poster.js',
+            'js/firefox/facebook-container-video.js',
+        ),
+        'output_filename': 'js/firefox_facebook_container_video-bundle.js',
     },
     'firefox-features-hub': {
         'source_filenames': (
