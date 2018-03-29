@@ -28,11 +28,11 @@ $(function() {
     };
 
     // Set up twitter link handler
-    $(document).on('click', '.js-manifesto-share', function (event) {
+    $('.js-manifesto-share').on('click', function (event) {
         var href = $(this).attr('href');
 
         // Open Twitter in a sub window
-        event.preventDefault();
         openTwitterSubwin(href);
+        event.preventDefault();
     });
 });
