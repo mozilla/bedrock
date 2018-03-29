@@ -11,6 +11,16 @@
   {% stylesheet 'credits-faq' %}
 {% endblock %}
 
+{# Bug 1401728: /credits/ is a supported non-locale, so we need to omit the LANG from the canonical URL. #}
+{% set canonical_url = settings.CANONICAL_URL + '/credits/faq/' %}
+
+{% block canonical_urls %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  <link rel="alternate" hreflang="x-default" href="{{ canonical_url }}">
+{% endblock %}
+
+{% block page_og_url %}{{ canonical_url }}{% endblock %}
+
 {% block content %}
 
 <article class="container">
