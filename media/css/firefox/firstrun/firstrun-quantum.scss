@@ -103,10 +103,13 @@ body {
     padding: 30px 0;
     width: 320px;
 
+    @media #{$mq-medium} {
+        padding: 30px 20px;
+    }
+
     @supports (display: grid) {
         @media #{$mq-medium} {
             margin: 20px 0;
-            width: 360px;
         }
     }
 }
