@@ -85,9 +85,11 @@
 
         <div class="card-content-wrapper">
           <div class="card-content">
-            <a href="https://voice.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=ih-content-hub" data-link-name="Record in Common Voice" data-link-type="link" data-link-position="common-voice">
-              <h3 class="card-heading">{{ _('Let your voice be heard… literally') }}</h3>
-            </a>
+            {% trans url='https://voice.mozilla.cz/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=ih-content-hub' if LANG == 'cs' else 'https://voice.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=ih-content-hub' %}
+              <a href="{{ url }}" data-link-name="Record in Common Voice" data-link-type="link" data-link-position="common-voice">
+                <h3 class="card-heading">{{ _('Let your voice be heard… literally') }}</h3>
+              </a>
+            {% endtrans %}
 
             <p>
             {% trans %}
@@ -96,9 +98,11 @@
             {% endtrans %}
             </p>
 
-            <a href="https://voice.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=ih-content-hub" class="cta-link" data-link-name="Record in Common Voice" data-link-type="link" data-link-position="common-voice">
-              {{ _('Record in Common Voice') }}
-            </a>
+            {% trans url='https://voice.mozilla.cz/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=ih-content-hub' if LANG == 'cs' else 'https://voice.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=ih-content-hub' %}
+              <a href="{{ url }}" class="cta-link" data-link-name="Record in Common Voice" data-link-type="link" data-link-position="common-voice">
+                {{ _('Record in Common Voice') }}
+              </a>
+            {% endtrans %}
           </div>
         </div> {#--/.card-content-wrapper--#}
       </div>
