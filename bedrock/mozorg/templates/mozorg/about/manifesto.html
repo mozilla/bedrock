@@ -122,7 +122,7 @@
       <div class="share-addendum">
         <h2 class="share-head">{{ _('Show Your Support') }}</h2>
         <p class="share-paragraph">{{ _('An internet with these qualities will not come to life on its own. Individuals and organizations must embed these aspirations into internet technology and into the human experience with the internet. The Mozilla Manifesto and Addendum represent Mozilla’s commitment to advancing these aspirations. We aim to work together with people and organizations everywhere who share these goals to make the internet an even better place for everyone.') }}</p>
-        <p class="share-button-outter"><a class="button button-manifesto js-manifesto-share" target="_blank" rel="noopener noreferrer" href="{{ twitter_link('custom', _('I support the vision of a better, healthier internet from @mozilla, will you join me?')) }}">{{  _('Share on Twitter') }}</a></p>
+        <p class="share-button-outter"><a class="button button-manifesto js-manifesto-share" target="_blank" rel="noopener noreferrer" href="{{ twitter_link('custom', _('I support the vision of a better, healthier internet from @mozilla, will you join me?')) }}" data-link-type="social share" data-link-name="Twitter">{{  _('Share on Twitter') }}</a></p>
       </div>
     </section>
   {% endif %}
@@ -363,7 +363,7 @@
       </div>
       <footer class="content principles-foot">
         {% if l10n_has_tag('addendum_032018') %}
-          <p><a class="button button-manifesto js-manifesto-share" target="_blank" rel="noopener noreferrer" href="{{ twitter_link('custom', _('I support the vision of a better, healthier internet from @mozilla, will you join me?')) }}">{{  _('Share on Twitter') }}</a></p>
+          <p><a class="button button-manifesto js-manifesto-share" target="_blank" rel="noopener noreferrer" href="{{ twitter_link('custom', _('I support the vision of a better, healthier internet from @mozilla, will you join me?')) }}" data-link-type="social share" data-link-name="Twitter">{{  _('Share on Twitter') }}</a></p>
         {% endif %}
         <p><a class="manifesto-details" href="{{ url('mozorg.about.manifesto-details') }}">{{ _('Read the entire manifesto') }}</a></p>
       </footer>

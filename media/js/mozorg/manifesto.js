@@ -21,10 +21,6 @@ $(function() {
         };
 
         window.open(url, 'twitter_share', $.param(options).replace(/&/g, ',')).focus();
-
-        window.dataLayer.push({
-            'event': 'manifesto-share'
-        });
     };
 
     // Set up twitter link handler
