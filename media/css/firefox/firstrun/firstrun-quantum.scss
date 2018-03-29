@@ -41,13 +41,12 @@ body {
     height: 100%;
     margin: 0;
     overflow-y: auto;
-    @supports (display: grid) {
-        @media #{$mq-medium} {
-            overflow: hidden;
-            background: url("/media/img/firefox/firstrun/fox-tail-header.png") top -200px center no-repeat,
-                        linear-gradient(to bottom, #003eaa 40%, #004ec2 60%, #0060df 80%, #0080ff 90%, #00c7ff 100%) top center no-repeat,
-                        #003eaa;
-        }
+
+    @media #{$mq-medium} {
+        overflow: hidden;
+        background: url("/media/img/firefox/firstrun/fox-tail-header.png") top -200px center no-repeat,
+                    linear-gradient(to bottom, #003eaa 40%, #004ec2 60%, #0060df 80%, #0080ff 90%, #00c7ff 100%) top center no-repeat,
+                    #003eaa;
     }
 }
 
@@ -63,24 +62,23 @@ body {
     color: #fff;
     z-index: 10;
     margin: auto;
+    text-align: center;
 
-    @supports (display: grid) {
-        @media #{$mq-medium} {
-            display: grid;
-            grid-column-gap: 20px;
-            grid-template-columns: 390px 1fr;
-            margin: 0 auto;
-            max-width: (390px * 2) + 20px;
-        }
+    @media #{$mq-medium} {
+        display: grid;
+        grid-column-gap: 20px;
+        grid-template-columns: 390px 1fr;
+        margin: 0 auto;
+        max-width: (390px * 2) + 20px;
 
         // a bit more space between once the screen is wide enough
-        @media screen and (min-width: 800px) {
+        @media screen and (min-width: 900px) {
             max-width: (390px * 2) + 60px;
             grid-column-gap: 80px;
             margin-top: calc((100vh - 540px) / 2);
         }
 
-        // keep the text near-is to the top
+        // keep the text near-ish to the top
         @media screen and (min-height: 900px) {
             margin-top: 200px;
         }
@@ -104,13 +102,8 @@ body {
     width: 320px;
 
     @media #{$mq-medium} {
+        margin: 20px 0;
         padding: 30px 20px;
-    }
-
-    @supports (display: grid) {
-        @media #{$mq-medium} {
-            margin: 20px 0;
-        }
     }
 }
 
@@ -155,13 +148,11 @@ body {
     text-align: center;
     padding: 20px;
 
-    @supports (display: grid) {
-        @media #{$mq-medium} {
-            text-align: left;
+    @media #{$mq-medium} {
+        text-align: left;
 
-            html[dir="rtl"] & {
-                text-align: right;
-            }
+        html[dir="rtl"] & {
+            text-align: right;
         }
     }
 
@@ -174,13 +165,11 @@ body {
         margin-bottom: 10px;
         padding-top: 110px;
 
-        @supports (display: grid) {
-            @media #{$mq-medium} {
-                background-position: top left;
+        @media #{$mq-medium} {
+            background-position: top left;
 
-                html[dir="rtl"] & {
-                    background-position: top right;
-                }
+            html[dir="rtl"] & {
+                background-position: top right;
             }
         }
     }
