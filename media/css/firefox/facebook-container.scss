@@ -1,0 +1,325 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+@import '../hubs/sections';
+@import '../pebbles/components/video-poster';
+
+//* -------------------------------------------------------------------------- */
+// Common elements
+
+$color-photon-blue: #0099db;
+
+#outer-wrapper {
+    background: #fff;
+}
+
+.content-section {
+    color: #000;
+    padding: 40px 0;
+    text-align: center;
+
+    @media #{$mq-desktop} {
+        padding: 50px 0;
+        text-align: left;
+    }
+}
+
+.firefox-logo {
+    display: block;
+    margin: 0 auto 30px;
+
+    @media #{$mq-desktop} {
+        margin: 60px 0;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Top hero section
+
+.intro {
+    background: #3b5998;
+
+    .title {
+        @include font-size-level3;
+        @include open-sans;
+        line-height: 1.35;
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: .5em;
+    }
+
+    .tagline {
+        @include font-size-level4;
+        @include open-sans;
+        color: #fff;
+        margin-bottom: 1em;
+    }
+
+    .copy {
+        color: #fff;
+        padding: 0;
+        width: auto;
+
+        .icon {
+            margin: 20px 0;
+        }
+
+    }
+
+    .firefox-cta {
+        margin-bottom: 1.5em;
+    }
+
+    .extension-cta {
+        @include font-size-level4;
+        margin-top: 40px;
+
+        a {
+            @include open-sans;
+            color: #fff;
+            font-weight: bold;
+        }
+    }
+
+    .button-fbcontainer:link,
+    .button-fbcontainer:visited {
+        background-color: #fb5d1c;
+        border-color: darken(#fb5d1c, 3%);
+        padding: 10px 30px;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: darken(#fb5d1c, 5%);
+            border-color: darken(#fb5d1c, 7%);
+        }
+    }
+
+    @media #{$mq-desktop} {
+        &.content-section {
+            padding: 0;
+        }
+
+        .content {
+            min-height: 700px;
+        }
+
+        .copy {
+            float: left;
+            width: 40%;
+            padding: 0 30px;
+        }
+
+    }
+}
+
+// Hide extension CTA for non-Firefox
+.extension-cta {
+    display: none;
+}
+
+// Hide download CTA for Firefox
+.is-firefox {
+    .firefox-cta,
+    .secondary-download,
+    .tagline-download {
+        display: none;
+    }
+
+    // Show extension CTA
+    .extension-cta {
+        display: block;
+    }
+}
+
+
+.optional-cta {
+    margin-top: 40px;
+
+    @media #{$mq-desktop} {
+        margin-top: 140px;
+        float: right;
+        width: calc(60% - 60px);
+
+        @supports (display: flex) {
+            align-items: center;
+            display: flex;
+            margin-top: 0;
+            min-height: 700px;
+        }
+    }
+}
+
+.fbcontainer-video {
+    margin: 40px auto 0;
+    max-width: 645px;
+
+    .video-container {
+        height: 0;
+        overflow: hidden;
+        padding-bottom: 56.25%;
+        position: relative;
+        width: 100%;
+    }
+
+    iframe {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top:0;
+        width: 100%;
+    }
+
+    .moz-video-button {
+        background: url('/media/img/firefox/facebook-container/video-poster.png') center left no-repeat;
+        @include background-size(cover);
+    }
+
+    @media #{$mq-desktop} {
+        margin-top: 60px;
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+// Detail content pillars
+
+.details ul {
+    li {
+        margin-bottom: 60px;
+        list-style-type: none;
+        width: 100%;
+    }
+
+    h3 {
+        margin-bottom: 20px;
+    }
+
+    p {
+        line-height: 30px;
+    }
+
+    a:link,
+    a:visited {
+        color: $color-photon-blue;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        color: $color-photon-blue;
+        text-decoration: underline;
+    }
+
+    @media #{$mq-desktop} {
+        li {
+            float: left;
+            width: 33%;
+            margin-bottom: 0;
+        }
+
+        h3,
+        p {
+            padding-right: 40px;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        h3,
+        p {
+            padding-right: 60px;
+        }
+    }
+}
+
+@supports(display: grid) {
+    .details ul {
+        @media #{$mq-desktop} {
+            display: grid;
+            grid-gap: 60px;
+            grid-template-columns: repeat(3, 1fr);
+
+            li {
+                float: none;
+                width: auto;
+            }
+
+            h3,
+            p {
+                padding-right: 0;
+            }
+        }
+
+        @media #{$mq-desktop-wide} {
+            h3,
+            p {
+                padding-right: 0;
+            }
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Bottom download CTA.
+
+.secondary-download.content-section {
+    padding: 20px 0;
+
+    .download-contain {
+        position: relative;
+        padding: 40px 0;
+
+        &:before {
+            background-color: #65e1ff;
+            background-image: linear-gradient(to left, #65e1ff 0%, #95b5ff 78%, #a2a9ff 100%);
+            content: '';
+            height: 6px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+    }
+
+    h2 {
+        font-weight: normal;
+        margin-bottom: 40px;
+    }
+
+    @media #{$mq-desktop} {
+        .download-contain {
+            @include clearfix;
+            padding: 100px 0 60px;
+        }
+
+        h2 {
+            float: left;
+            text-align: left;
+            width: 66%;
+        }
+
+        .download-button-wrapper {
+            float: left;
+            text-align: left;
+            width: 33%;
+        }
+
+        .download-button {
+            margin-left: 40px;
+        }
+    }
+
+    .fx-privacy-link {
+        a:active,
+        a:focus,
+        a:hover,
+        a:link,
+        a:visited {
+            color: $color-photon-blue;
+        }
+    }
+}
+

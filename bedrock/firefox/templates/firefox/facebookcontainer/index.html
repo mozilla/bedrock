@@ -1,0 +1,121 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base-pebbles.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{_('Facebook Container for Firefox | Prevent Facebook from seeing what websites you visit.')}}{% endblock %}
+{% block page_desc %}{{_('Millions of people around the world trust Firefox Web browsers on Android, iOS and desktop computers. Fast. Private. Download now!')}}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_facebook_container' %}
+{% endblock %}
+
+{% block body_id %}firefox{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+  <main role="main">
+  <section class="intro content-section">
+    <div class="content">
+
+      <div class="copy">
+        <img class="firefox-logo" src="{{ static('img/logos/firefox/logo-quantum-wordmark-white.png') }}" alt="">
+        <header>
+          <h1 class="title" id="main-heading">
+            {{ _('Facebook. Well contained. Keep the rest of your life to yourself.') }}
+          </h1>
+          <p class="tagline tagline-download">{{ _('Download Firefox and get the Facebook Container Extension') }}</p>
+        </header>
+
+        <div class="main-cta">
+          <div class="firefox-cta">
+          {{ download_firefox(alt_copy=_('Download Firefox'), locale_in_transition=true, dom_id="download-firefox-cta") }}
+          </div>
+
+          <div class="extension-cta">
+            <a href="https://addons.mozilla.org/firefox/addon/facebook-container/">{{ _('Get the Facebook Container Extension') }}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="optional-cta">
+        <aside class="fbcontainer-video">
+          <div class="moz-video-container">
+            <button class="moz-video-button" type="button" aria-controls="fbcontainer-video">{{ _('Watch the video') }}</button>
+            <div class="video-container">
+              <video id="fbcontainer-video" preload="metadata" controls poster="{{ static('img/firefox/facebook-container/video-poster.png') }}" data-ga-label="Facebook Container Video">
+                <source src="https://assets.mozilla.net/video/facebook-container/facebook-container.webm" type="video/webm">
+                <source src="https://assets.mozilla.net/video/facebook-container/facebook-container.mp4" type="video/mp4">
+              </video>
+            </div>{#-- /.video-container --#}
+          </div>{#-- /.moz-video-container --#}
+        </aside>{#-- /.faster-video --#}
+      </div>{#-- /.optional-cta --#}
+
+    </div>
+  </section>
+
+  {% block details %}
+  <section class="details content-section">
+    <div class="content">
+      <ul>
+        <li>
+          <h3>{{ _('Opt out on your terms') }}</h3>
+          <p>
+          {% trans fbcontainer='https://addons.mozilla.org/firefox/addon/facebook-container/' %}
+            Facebook can track almost all your web activity and tie it to your facebook identity. If that’s too much for you, the <a href="{{ fbcontainer }}">Facebook Container extension</a> isolates your identity into a separate container tab, making it harder for Facebook to track you on the web outside of Facebook.
+          {% endtrans %}
+          </p>
+        </li>
+        <li>
+          <h3>{{ _('Install and contain') }}</h3>
+          <p>
+          {% trans fbcontainer='https://addons.mozilla.org/firefox/addon/facebook-container/' %}
+            Installing the <a href="{{ fbcontainer }}">extension</a> is easy and, once activated, will open Facebook in a blue tab each time you use it. Use and enjoy Facebook normally. Facebook will still be able to send you advertising and recommendations on their site, but it will be much harder for Facebook to use your activity collected <strong>off Facebook</strong> to send you ads and other targeted messages.
+          {% endtrans %}
+          </p>
+        </li>
+        <li>
+          <h3>{{ _('About Firefox and Mozilla') }}</h3>
+          <p>
+          {% trans mozilla=url('mozorg.home') %}
+            We’re backed by <a href="{{ mozilla }}">Mozilla</a>, the not-for-profit organization that puts people over profit to give everyone more power online. We created this extension because we believe that you should have easy-to-use tools that help you manage your privacy and security.
+          {% endtrans %}
+          </p>
+        </li>
+      </ul>
+    </div>
+  </section>
+  {% endblock %}
+
+  {% block secondary_download %}
+  <section class="secondary-download content-section">
+    <div class="content">
+      <div class="download-contain">
+        <h2>
+        {% block secondary_download_cta %}
+          {{ _('Browse freely with Firefox today.') }}
+        {% endblock %}
+        </h2>
+        <div class="download-button-wrapper">
+          {{ download_firefox(alt_copy=_('Download Now'), locale_in_transition=true, dom_id="download-firefox-today") }}
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock %}
+</main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{# Bug 1381776 #}
+{% block update_notification %}{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_facebook_container_video' %}
+{% endblock %}
