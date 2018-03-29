@@ -6,9 +6,11 @@ if [ ! -e ./manage.py ]; then
     cd $script_parent_dir
 fi
 
+if [[ "$BRANCH_NAME" == "prod" ]]; then
+    ENV_FILE=prod
+else
+    ENV_FILE=master
+fi
+
 # use honcho to inject the proper env vars
-./bin/run-db-download.py --force
-./manage.py migrate --noinput
-./manage.py l10n_update
-./manage.py update_sitemaps
-./bin/run-db-update.sh --all
+honcho run --env "docker/envfiles/${ENV_FILE}.env" ./bin/sync-all.sh

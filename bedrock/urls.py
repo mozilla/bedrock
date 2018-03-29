@@ -35,6 +35,7 @@ urlpatterns = (
 
     url(r'^healthz/$', watchman_views.ping, name="watchman.ping"),
     url(r'^readiness/$', watchman_views.status, name="watchman.status"),
+    url(r'^healthz-cron/$', 'bedrock.base.views.cron_health_check'),
     url(r'^csp-violation-capture$', 'bedrock.base.views.csp_violation_capture',
         name='csp-violation-capture'),
     url(r'^country-code\.json$', 'bedrock.base.views.geolocate',
