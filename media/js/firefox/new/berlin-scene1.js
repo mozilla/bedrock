@@ -5,9 +5,6 @@
 (function($) {
     'use strict';
 
-    $('.download-link').each(function(i, link) {
-        if (link.href.indexOf('download/thanks/') > -1) {
-            link.href = link.href + location.search;
-        }
-    });
+    // use custom adjust link for Android/iOS
+    $('.os_android .download-link, .os_ios .download-link').attr('href', 'https://mzl.la/2GEZ3uu');
 })(window.jQuery);

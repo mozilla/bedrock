@@ -429,6 +429,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_new_portland-bundle.css',
     },
+    'firefox_new_berlin': {
+        'source_filenames': (
+            'css/firefox/new/berlin.scss',
+        ),
+        'output_filename': 'css/firefox_new_berlin-bundle.css',
+    },
     'firefox_organizations': {
         'source_filenames': (
             'css/firefox/organizations.less',
@@ -1132,23 +1138,25 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_new_scene2-bundle.js',
     },
-    'firefox_new_scene1_wait_face': {
+    'firefox_new_scene1_variation': {
         'source_filenames': (
-            'js/firefox/new/wait-face-scene1.js',
+            'js/firefox/new/variation-scene1.js',
         ),
-        'output_filename': 'js/firefox_new_scene1_wait_face-bundle.js',
-    },
-    'firefox_new_scene1_reggie_watts': {
-        'source_filenames': (
-            'js/firefox/new/reggie-watts-scene1.js',
-        ),
-        'output_filename': 'js/firefox_new_scene1_reggie_watts-bundle.js',
+        'output_filename': 'js/firefox_new_scene1_variation-bundle.js',
     },
     'firefox_new_scene1_portland': {
         'source_filenames': (
+            'js/firefox/new/variation-scene1.js',
             'js/firefox/new/portland-scene1.js',
         ),
         'output_filename': 'js/firefox_new_scene1_portland-bundle.js',
+    },
+    'firefox_new_scene1_berlin': {
+        'source_filenames': (
+            'js/firefox/new/variation-scene1.js',
+            'js/firefox/new/berlin-scene1.js',
+        ),
+        'output_filename': 'js/firefox_new_scene1_berlin-bundle.js',
     },
     'firefox_new_pixel': {
         'source_filenames': (
