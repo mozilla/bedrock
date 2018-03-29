@@ -288,7 +288,6 @@ textarea:focus {
 .contribute-masthead {
     position: absolute;
     top: 0;
-    z-index: 1;
     background: @mozillaRed;
     padding: 40px 0 10px;
     width: 100%;
@@ -300,6 +299,7 @@ textarea:focus {
 
 .contribute-nav {
     .span(10);
+    z-index: 1;
 
     .toggle {
         display: none;
@@ -392,6 +392,7 @@ textarea:focus {
 .landing-intro {
     min-height: 340px;
     overflow: hidden;
+    z-index: 0;
     .section-dark;
 
     .cta {
