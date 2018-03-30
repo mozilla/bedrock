@@ -7,8 +7,8 @@ env.GIT_COMMIT = "latest"
 if ( config.apps ) {
     milestone()
     tested_apps = []
-    // default to usw only
-    def regions = config.regions ?: ['usw']
+    // default to oregon-b only
+    def regions = config.regions ?: ['oregon-b']
     for (regionId in regions) {
         def region = global_config.regions[regionId]
         for (appname in config.apps) {

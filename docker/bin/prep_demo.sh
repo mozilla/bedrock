@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-DEIS_BIN="${DEIS_BIN:-deis}"
+DEIS_BIN="${DEIS_BIN:-deis2}"
 
 echo "Creating the demo app $DEIS_APPLICATION"
 $DEIS_BIN apps:create "$DEIS_APPLICATION" --no-remote || true
