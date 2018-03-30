@@ -6,8 +6,15 @@ if [ ! -e ./manage.py ]; then
     cd $script_parent_dir
 fi
 
+# get legal-docs
+git submodule sync
+git submodule update --init --recursive
+
+# get fresh database
 ./bin/run-db-download.py --force
-./manage.py migrate --noinput
+
+# get fresh l10n files
 ./manage.py l10n_update
+
+# generate the sitemaps
 ./manage.py update_sitemaps
-./bin/run-db-update.sh --all

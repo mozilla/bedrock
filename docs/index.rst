@@ -3,14 +3,14 @@
 .. file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 =======================================
-Welcome to mozilla.org's documentation!
+Welcome to Bedrock's documentation!
 =======================================
 
-**bedrock** is the code name of the new mozilla.org. It is bound to be as
-shiny, awesome, and open sourcy as always. Perhaps even a little more.
+**bedrock** is the project behind www.mozilla.org. It is as
+shiny, awesome, and open-sourcy as always. Perhaps even a little more.
 
 bedrock is a web application based on `Django
-<http://www.djangoproject.com/>`_.
+<http://www.djangoproject.com/>`_, a `Python <https://www.python.org>`_ web application framework.
 
 Patches are welcome! Feel free to fork and contribute to this project on
 `Github <https://github.com/mozilla/bedrock>`_.

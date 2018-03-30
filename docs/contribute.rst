@@ -83,55 +83,19 @@ verify that you only have one commit now with `git log`.
 To push to GitHub again, because you "altered the history" of the repo by merging
 the two commits into one, you'll have to `git push -f` instead of just `git push`.
 
-Getting a new Bedrock page online
----------------------------------
-On our servers, Bedrock pages are accessible behind the ``/b/`` prefix. So if a
-page is accessible at this URL locally::
-
-    http://localhost:8000/foo/bar
-
-then on our servers, it will be accessible at::
-
-    http://www.mozilla.org/b/foo/bar
-
-When you're ready to make a page available to everyone, we need to remove that
-/b/ prefix. We handle that with Apache RewriteRule. Apache config files that
-are included into the server's config are in the bedrock code base in the
-``etc/httpd`` directory. In there you'll find a file for each of the environments.
-You'll almost always want to use ``global.conf`` unless you have a great reason
-for only wanting the config to stay on one of the non-production environments.
-
-In that file you'll add a RewriteRule that looks like the following:
-
-    .. code-block:: apache
-
-        # bug 123456
-        RewriteRule ^/(\w{2,3}(?:-\w{2}(?:-mac)?)?/)?foo/bar(/?)$ /b/$1foo/bar$2 [PT]
-
-This is a lot simpler than it looks. The first large capture is just what's necessary
-to catch every possible locale code. After that it's just your new path. Always capture
-the trailing slash as we want that to hit django so it will redirect.
-
-.. note::
-
-    It's best if the RewriteRule required for a new page is in the original pull request.
-    This allows it to flow through the push process with the code and for it to go live
-    as soon as it's on the production server. It's also one less review and pull-request for
-    us to manage.
 
 Server architecture
 -------------------
 **Demos**
 
 - *URLs:*
-
   - http://www-demo1.allizom.org/
   - http://www-demo2.allizom.org/
   - http://www-demo3.allizom.org/
   - http://www-demo4.allizom.org/
   - http://www-demo5.allizom.org/
-- *Bedrock locales dev repo:* master, updated via a webhook on pushes
-- *Bedrock Git branch:* any branch we want, manually updated
+- *Bedrock locales:* dev repo
+- *Bedrock Git branch:* ``demo/1``, ``demo/2``, etc.
 
 **On-demand demos**
 
@@ -140,8 +104,8 @@ Server architecture
   ``demo/``). Jenkins will then automate spinning up a demo instance based on that
   branch. For example, pushing a branch named ``demo/feature`` would create a demo
   instance with the following URL: ``https://bedrock-demo-feature.us-west.moz.works/``
-- *Bedrock locales dev repo:* master branch, updated via a webhook on pushes
-- *Bedrock Git branch:* any branch we want, manually updated
+- *Bedrock locales:* dev repo
+- *Bedrock Git branch:* any branch named starting with ``demo/``
 
 .. Note::
 
@@ -152,26 +116,22 @@ Server architecture
 **Dev**
 
 - *URL:* http://www-dev.allizom.org/
-- *Bedrock locales dev repo:* master branch, updated via a webhook on pushes
-- *Bedrock Git branch:* master, updated every 10 minutes
+- *Bedrock locales:* dev repo
+- *Bedrock Git branch:* master, deployed on git push
 
 **Stage**
 
 - *URL:* http://www.allizom.org/
-- *Bedrock locales dev repo:* master branch, updated via a webhook on pushes
-- *Bedrock Git branch:* master, updated manually
+- *Bedrock locales:* prod repo
+- *Bedrock Git branch:* prod, deployed on git push with date-tag
 
 **Production**
 
 - *URL:* http://www.mozilla.org/
-- *Bedrock locales production repo:* master branch, updated via a webhook on pushes
-- *Bedrock Git branch:* master, updated manually
+- *Bedrock locales:* prod repo
+- *Bedrock Git branch:* prod, deployed on git push with date-tag
 
-We use Chief for the manual deploys. You can check the currently deployed git
-commit by checking https://www.mozilla.org/media/revision.txt.
-
-If you want to know more and you have an LDAP account, you can check the
-`IT documentation`_.
+You can check the currently deployed git commit by checking https://www.mozilla.org/media/revision.txt.
 
 Pushing to production
 ---------------------
