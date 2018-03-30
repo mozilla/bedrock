@@ -101,9 +101,13 @@
 {% block content %}
 <main role="main" itemscope itemtype="http://schema.org/Article">
   <article role="article" itemprop="articleBody">
-  {% if switch('manifesto-addendum') and l10n_has_tag('addendum_032018') %}
+  {% if l10n_has_tag('addendum_032018') %}
     <header>
+    {% if LANG.startswith('en-') %}
+      <h1 itemprop="name" class="manifesto-title manifesto-title-addendum">{{ _('The Mozilla Manifesto Addendum') }}</h1>
+    {% else %}
       <h1 itemprop="name" class="manifesto-title manifesto-title-addendum">{{ self.page_title() }}</h1>
+    {% endif %}
     </header>
     <section>
       <h2 class="addendum-subtitle">{{ _('Pledge for a Healthy Internet') }}</h2>
@@ -124,7 +128,7 @@
   {% endif %}
     <section id="sec-principles">
       <header class="content principles-header">
-        {% if not switch('manifesto-addendum') or not l10n_has_tag('addendum_032018') %}
+        {% if not l10n_has_tag('addendum_032018') %}
           <h1 itemprop="name" class="manifesto-title">{{ self.page_title() }}</h1>
         {% endif %}
         <h2 class="principles-head">{{ _('<strong>Our 10</strong> Principles') }}</h2>
