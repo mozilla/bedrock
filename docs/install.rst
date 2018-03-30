@@ -11,14 +11,13 @@ Installing Bedrock
 Installation
 ------------
 
-These instructions assume you have `git` and `pip` installed. If you don't have `pip` installed, you can install it with `easy_install pip`.
+These instructions assume you have `git` and `pip` installed. If you don't have `pip` installed
+(you probably do) you can install it with the instructions in `the pip docs <https://pip.pypa.io/en/stable/installing/>`_.
 
 Start by getting the source::
 
-    $ git clone --recursive git://github.com/mozilla/bedrock.git
+    $ git clone git://github.com/mozilla/bedrock.git
     $ cd bedrock
-
-**(Make sure you use --recursive so that legal-docs are included)**
 
 You need to create a virtual environment for Python libraries. Skip the first instruction if you already have virtualenv installed::
 
@@ -43,9 +42,10 @@ Now configure the application to run locally by creating your local settings env
 
 You shouldn't need to customize anything in there yet.
 
-Sync the database and all of the external data locally. This gets product-details, security-advisories, credits, release notes, etc::
+Sync the database and all of the external data locally. This gets product-details, security-advisories,
+credits, release notes, localizations, legal-docs etc::
 
-    $ bin/sync-all.sh
+    $ bin/bootstrap.sh
 
 Lastly, you need to have `Node.js <https://nodejs.org/>`_ and
 `Yarn <https://yarnpkg.com/>`_ installed. The node
@@ -123,7 +123,9 @@ in your ``.env`` file or otherwise set it in your environment and it will collec
 Localization
 ------------
 
-If you want to install localizations, run the following command::
+Localization (or L10n) files were fetched by the `bootstrap.sh` command your ran earlier.
+If you need to update them or switch to a different repo or branch after changing settings
+you can run the following command::
 
     $ ./manage.py l10n_update
 
@@ -160,7 +162,8 @@ For example::
 Currently, these switches are used to enable/disable Optimizely on many pages of the site. We only add
 the Optimizely JavaScript snippet to a page when there is an active test to minimize the security risk
 of the service. We maintain a `page on the Mozilla wiki detailing our use of Optimizely
-<https://wiki.mozilla.org/Mozilla.org/Optimizely>`_ and these switches.
+<https://wiki.mozilla.org/Mozilla.org/Optimizely>`_ and these switches. You can see the current state of
+these switches and other configuration values in our `configuration repo <https://mozmeao.github.io/www-config/configs/>`_.
 
 To work with/test these Optimizely switches locally, you must add the switches to your local environment. For example::
 
@@ -193,3 +196,4 @@ Notes
 A shortcut for activating virtual envs in zsh or bash is `. venv/bin/activate`. The dot is the same as `source`.
 
 There's a project called `virtualenvwrapper <http://www.doughellmann.com/docs/virtualenvwrapper/>`_ that provides a better interface for managing/activating virtual envs, so you can use that if you want.
+Also if you need help managing various versions of Python on your system, the `pyenv <https://github.com/pyenv/pyenv>`_ project can help.
