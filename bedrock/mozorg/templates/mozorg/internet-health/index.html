@@ -98,11 +98,10 @@
             {% endtrans %}
             </p>
 
-            {% trans url='https://voice.mozilla.cz/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=ih-content-hub' if LANG == 'cs' else 'https://voice.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=ih-content-hub' %}
-              <a href="{{ url }}" class="cta-link" data-link-name="Record in Common Voice" data-link-type="link" data-link-position="common-voice">
-                {{ _('Record in Common Voice') }}
-              </a>
-            {% endtrans %}
+            {% set voice_url = 'https://voice.mozilla.cz/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=ih-content-hub' if LANG == 'cs' else 'https://voice.mozilla.org/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=ih-content-hub' %}
+            <a href="{{ url }}" class="cta-link" data-link-name="Record in Common Voice" data-link-type="link" data-link-position="common-voice">
+              {{ _('Record in Common Voice') }}
+            </a>
           </div>
         </div> {#--/.card-content-wrapper--#}
       </div>

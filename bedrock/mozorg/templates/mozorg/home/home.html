@@ -196,9 +196,8 @@
         <ul id="icon-links-innovate" class="icon-links">
         {% if l10n_has_tag('home-update-20171116') %}
           <li id="common-voice">
-            {% trans url='https://voice.mozilla.cz/' if LANG == 'cs' else 'https://voice.mozilla.org/' %}
-              <a rel="external" href="{{ url }}"><svg class="icon"><use xlink:href="#icon-common-voice"></use></svg>{{ _('Common Voice') }}</a>
-            {% endtrans %}
+            {% set voice_url = 'https://voice.mozilla.cz/' if LANG == 'cs' else 'https://voice.mozilla.org/' %}
+            <a rel="external" href="{{ voice_url }}"><svg class="icon"><use xlink:href="#icon-common-voice"></use></svg>{{ _('Common Voice') }}</a>
           </li>
         {% else %}
           <li id="gaming">
