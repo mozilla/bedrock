@@ -154,11 +154,15 @@ ul.submenu:after {
     text-align: center;
 
     .intro {
-        margin: 50px 0;
+        margin: 50px 0 30px 0;
         p {
             margin: auto;
             width: 580px;
         }
+    }
+    .top-download-buttons {
+        margin-bottom: 30px;
+        display: none;
     }
     h1 {
         .open-sans-light();
@@ -583,5 +587,11 @@ ul.section-items {
         .navigator ul.menu li.current {
             background-color: @linkBlue;
         }
+    }
+}
+
+html.non-firefox {
+    .top-download-buttons {
+        display: block;
     }
 }

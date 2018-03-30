@@ -52,6 +52,34 @@
 </header>
 {% endblock %}
 
+{% set download_button %}
+  <div class="download-buttons">
+    {% if release.product == 'Firefox for iOS' %}
+      <a rel="external" href="{{ firefox_ios_url('mozorg-releasenotes_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
+        <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}">
+      </a>
+    {% elif release.product == 'Firefox for Android' %}
+      {% if release.channel in ['Nightly', 'Aurora'] %}
+        {{ download_firefox('nightly', platform='android', alt_copy=_('Download')) }}
+      {% elif release.channel == 'Beta' %}
+        {{ download_firefox('beta', platform='android', alt_copy=_('Download')) }}
+      {% else %}
+        {{ google_play_button() }}
+      {% endif %}
+    {% elif release.product == 'Firefox' %}
+      {% if release.channel == 'Nightly' %}
+        {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Nightly')) }}
+      {% elif release.channel == 'Aurora' %}
+        {{ download_firefox('alpha', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Developer Edition')) }}
+      {% elif release.channel == 'Beta' %}
+        {{ download_firefox('beta', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Beta')) }}
+      {% else %}
+        {{ download_firefox() }}
+      {% endif %}
+    {% endif %}
+  </div>
+{% endset %}
+
 {% block content %}
 <main role="main" class="release-notes">
   <article id="main-content">
@@ -60,9 +88,9 @@
     <header class="notes-head">
       <div class="intro">
         <div class="container">
-        {% block notes_heading_primary %}
-          <h1>{{ _('See what’s new in Firefox!') }}</h1>
-        {% endblock %}
+          {% block notes_heading_primary %}
+            <h1>{{ _('See what’s new in Firefox!') }}</h1>
+          {% endblock %}
           <p>
             {% trans
             feedback='https://input.mozilla.org/feedback/android/' + release.version + '?utm_source=releasenotes'
@@ -75,6 +103,16 @@
           </p>
         </div>
       </div>
+
+    {% block top_download_buttons %}
+      <div class="top-download-buttons">
+        <div class="container">
+          <div class="header-download">
+            {{ download_button }}
+          </div>
+        </div>
+      </div>
+    {% endblock %}
 
     {% block platform_switch %}
       <nav id="nav" class="navigator">
@@ -283,31 +321,9 @@
             {% endif %}
           {% endif %}
         </div>
-        <div class="download-buttons">
-          {% if release.product == 'Firefox for iOS' %}
-            <a rel="external" href="{{ firefox_ios_url('mozorg-releasenotes_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
-              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}">
-            </a>
-          {% elif release.product == 'Firefox for Android' %}
-            {% if release.channel in ['Nightly', 'Aurora'] %}
-              {{ download_firefox('nightly', platform='android', alt_copy=_('Download')) }}
-            {% elif release.channel == 'Beta' %}
-              {{ download_firefox('beta', platform='android', alt_copy=_('Download')) }}
-            {% else %}
-              {{ google_play_button() }}
-            {% endif %}
-          {% elif release.product == 'Firefox' %}
-            {% if release.channel == 'Nightly' %}
-              {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Nightly')) }}
-            {% elif release.channel == 'Aurora' %}
-              {{ download_firefox('alpha', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Developer Edition')) }}
-            {% elif release.channel == 'Beta' %}
-              {{ download_firefox('beta', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Beta')) }}
-            {% else %}
-              {{ download_firefox() }}
-            {% endif %}
-          {% endif %}
-        </div>
+
+        {{ download_button }}
+
       </div>
     </section>
     {% endblock %}
