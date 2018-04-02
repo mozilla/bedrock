@@ -2,11 +2,11 @@
 # http://bedrock.readthedocs.io/en/latest/pipeline.html#configuration
 smoke_tests: true
 regions:
-  - usw
+  - oregon-b
 apps:
   - bedrock-integration-tests
 integration_tests:
-  usw:
+  oregon-b:
     - headless
     - download
     - firefox

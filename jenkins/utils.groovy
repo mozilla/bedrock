@@ -43,15 +43,6 @@ def pushDockerhub(from_repo, to_repo='') {
     }
 }
 
-def pushPrivateReg(port, apps) {
-    retry(3) {
-        withEnv(["PRIVATE_REGISTRIES=localhost:${port}",
-                 "DEIS_APPS=${apps.join(',')}"]) {
-            sh 'docker/bin/push2privateregistries.sh'
-        }
-    }
-}
-
 def integrationTestJob(propFileName, appURL='') {
     return {
         node {

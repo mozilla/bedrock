@@ -127,7 +127,7 @@ The available branch configuration options are as follows:
 * ``push_public_registry``: boolean. Set to ``true`` to cause the built images to be pushed to the public docker hub.
 * ``require_tag``: boolean. Set to ``true`` to require that the commit being built have a git tag in the format YYYY-MM-DD.X.
 * ``regions``: list. A list of strings indicating the deployment regions for the set of apps. The valid values are in the ``regions`` area of
-  the ``jenkins/global.yml`` file. If omitted a deployment to only ``usw`` is assumed.
+  the ``jenkins/global.yml`` file. If omitted a deployment to only ``oregon-b`` is assumed.
 * ``apps``: list. A list of strings indicating the deis app name(s) to which to deploy. If omitted no deployments will occur.
 * ``demo``: boolean. Set to ``true`` to have the deployed app in demo mode, which means it will have a pre-filled local
   database and the deis app will be created and configured for you if it doesn't already exist.

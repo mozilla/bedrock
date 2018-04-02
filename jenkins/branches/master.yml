@@ -3,20 +3,17 @@
 push_public_registry: true
 smoke_tests: true
 regions:
-  - usw
+  - oregon-b
   - tokyo
   - frankfurt
-  - oregon-b
 apps:
   - bedrock-dev
 integration_tests:
-  usw:
+  oregon-b:
     - firefox
     - headless
     - download
   tokyo:
     - headless
   frankfurt:
-    - headless
-  oregon-b:
     - headless

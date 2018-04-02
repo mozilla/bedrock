@@ -77,21 +77,10 @@ if ( config.push_public_registry != false ) {
 if ( config.apps ) {
     milestone()
     tested_apps = []
-    // default to usw only
-    def regions = config.regions ?: ['usw']
+    // default to oregon-b only
+    def regions = config.regions ?: ['oregon-b']
     for (regionId in regions) {
         def region = global_config.regions[regionId]
-        if (region.registry_port) {
-            def stageName = "Private Push: ${region.name}"
-            stage (stageName) {
-                try {
-                    utils.pushPrivateReg(region.registry_port, config.apps)
-                } catch(err) {
-                    utils.ircNotification([stage: stageName, status: 'failure'])
-                    throw err
-                }
-            }
-        }
         for (appname in config.apps) {
             if ( config.demo ) {
                 appURL = utils.demoAppURL(appname, region)
@@ -103,9 +92,8 @@ if ( config.apps ) {
             lock (stageName) {
                 milestone()
                 stage (stageName) {
-                    withEnv(["DEIS_PROFILE=${region.deis_profile}",
+                    withEnv(["DEIS_PROFILE=${region.name}",
                              "DEIS_BIN=${region.deis_bin}",
-                             "DOCKER_PRIVATE_REPO=${appname}",
                              "DEIS_APPLICATION=${appname}"]) {
                         try {
                             retry(3) {
