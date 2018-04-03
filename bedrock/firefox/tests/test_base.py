@@ -375,6 +375,25 @@ class TestFirstRun(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/firstrun/firstrun-quantum.html'])
 
+    # facebook container funnelcake - bug 1450106
+
+    @override_settings(DEV=True)
+    def test_fx_firstrun_fbcontainer(self, render_mock):
+        """Should use facebook container template"""
+        req = self.rf.get('/en-US/firefox/firstrun/?xv=facebook-container')
+        self.view(req, version='59.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/firstrun/facebook-container.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_firstrun_fbcontainer_non_enUS(self, render_mock):
+        """Should use 57 quantum firstrun template for non en-US locales"""
+        req = self.rf.get('/firefox/firstrun/?xv=facebook-container')
+        req.locale = 'fr'
+        self.view(req, version='59.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/firstrun/firstrun-quantum.html'])
+
 
 @patch.object(fx_views, 'firefox_desktop', firefox_desktop)
 class FxVersionRedirectsMixin(object):

@@ -1,0 +1,71 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/firstrun/base-pebbles.html" %}
+
+{% block body_id %}firstrun-facebook-container{% endblock %}
+
+{% block page_title %}
+  {{ _('Welcome to Firefox') }}
+{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_firstrun_facebook_container' %}
+{% endblock %}
+
+{% block global_nav %}{% endblock %}
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main class="container">
+  <header class="header">
+    <div class="content">
+      {{ high_res_img('logos/firefox/logo-quantum-wordmark-white.png', {'alt': '', 'width': '200', 'height': '75', 'class': 'firefox-logo'}) }}
+
+      <h1>{{ _('You’re almost done!') }}</h1>
+
+      <p>
+        {{ _('Let’s add the <strong>Facebook Container Extension</strong> to Firefox.') }}
+      </p>
+
+      <a href="https://addons.mozilla.org/firefox/addon/facebook-container/" class="button">{{ _('Get the Extension') }}</a>
+    </div>
+  </header>
+  <div class="content">
+    <ol class="instructions">
+      <li>
+        {{ high_res_img('firefox/firstrun/facebook-container/how-to-add-it.png', { 'alt': '', 'width': '474', 'height': '300' }) }}
+        <h2>{{ _('Step 1') }}</h2>
+
+        <p>
+        {% trans %}
+          Use the link above to visit the Facebook Container Extension page.
+          Then click “Add to Firefox” and follow the prompts.
+        {% endtrans %}
+        </p>
+      </li>
+      <li>
+        {{ high_res_img('firefox/firstrun/facebook-container/how-it-works.png', { 'alt': '', 'width': '474', 'height': '300' }) }}
+        <h2>{{ _('Step 2') }}</h2>
+
+        <p>
+        {% trans %}
+          Once installed, every time you visit Facebook, a blue line will
+          appear on the browser tab. This means it’s working and now harder for
+          Facebook to track your activities across the web.
+        {% endtrans %}
+        </p>
+      </li>
+    </ol>
+  </div>
+</main>
+{% endblock %}
+
+{% block site_footer %}{% endblock %}
+
+{# update-notification does not play well with current firstrun animated background and layout #}
+{% block extrahead %}{% endblock %}
+{% block update_notification %}{% endblock %}
+
+{% block js %}{% endblock %}

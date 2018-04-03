@@ -118,4 +118,8 @@
 
 {% block js %}
   {% javascript 'firefox_facebook_container_video' %}
+
+  {% if switch('firefox-facebook-container-funnelcake', ['en-US']) %}
+    {% javascript 'firefox_facebook_container_funnelcake' %}
+  {% endif %}
 {% endblock %}
