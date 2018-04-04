@@ -260,7 +260,7 @@ class FirefoxDesktop(_ProductDetails):
             transition_url = self.download_base_url_transition
             if funnelcake_id:
                 # include funnelcake in scene 2 URL
-                transition_url += '&f=%s' % funnelcake_id
+                transition_url += '?f=%s' % funnelcake_id
 
             if locale_in_transition:
                 transition_url = '/%s%s' % (locale, transition_url)
