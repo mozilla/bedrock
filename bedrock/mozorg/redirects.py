@@ -649,4 +649,7 @@ redirectpatterns = (
     redirect(r'^about/partnerships/?$', 'mozorg.contact.contact-landing'),
     redirect(r'^about/partnerships/contentservices(/.*)?$', 'mozorg.contact.contact-landing'),
     redirect(r'^about/partnerships\.html', 'mozorg.contact.contact-landing'),
+
+    # Vanity url for Facebook Container page, bug 1449758
+    redirect(r'^facebookcontainer/?$', 'firefox.facebookcontainer.index'),
 )
