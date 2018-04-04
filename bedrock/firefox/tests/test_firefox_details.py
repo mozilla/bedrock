@@ -391,7 +391,7 @@ class TestFirefoxDesktop(TestCase):
         url = firefox_desktop.get_download_url('release', '45.0', 'win', 'en-US')
         self.assertEqual(url, scene2)
         url = firefox_desktop.get_download_url('release', '45.0', 'win', 'en-US', funnelcake_id='64')
-        self.assertEqual(url, scene2 + '&f=64')
+        self.assertEqual(url, scene2 + '?f=64')
 
     def test_get_download_url_scene2_with_locale(self):
         scene2 = firefox_desktop.download_base_url_transition
@@ -402,7 +402,7 @@ class TestFirefoxDesktop(TestCase):
         url = firefox_desktop.get_download_url('release', '45.0', 'win', 'fr',
                                                locale_in_transition=True,
                                                funnelcake_id='64')
-        self.assertEqual(url, '/fr' + scene2 + '&f=64')
+        self.assertEqual(url, '/fr' + scene2 + '?f=64')
 
     def get_download_url_ssl(self):
         """
