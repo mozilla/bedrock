@@ -1,0 +1,221 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+#promo-statement {
+    @include border-box;
+    background: #fff;
+    color: #000;
+    padding: 150px 20px;
+    position: relative;
+
+    .content-wrapper {
+        text-align: center;
+    }
+
+    // hide by default if JS is available to avoid flicker
+    // (if visitor previously dismissed)
+    .js & {
+        display: none;
+    }
+
+    &:before {
+        @include background-size(100px, 32px);
+        background: url('/media/img/pebbles/moz-wordmark-dark-reverse.svg') no-repeat;
+        content: '';
+        display: inline-block;
+        height: 32px;
+        left: 20px;
+        position: absolute;
+        top: 20px;
+        width: 100px;
+    }
+}
+
+.type {
+    font-family: Monaco, monospace;
+    font-weight: normal;
+    line-height: 1.2;
+    margin-bottom: 1.25em;
+    position: relative;
+}
+
+
+.type-head {
+    @include font-size-level3;
+    margin: 0 auto 1.25em auto;
+    text-align: center;
+
+    span {
+        @include box-decoration-break(clone);
+        display: inline;
+        padding-left: 4px;
+    }
+}
+
+.type-p {
+    @include font-size-level5;
+    @include border-box;
+    padding: 0 20px;
+    width: 100%;
+}
+
+@supports (width: 1vh) {
+    #promo-statement {
+        min-height: 100vh;
+    }
+
+    .type-head {
+        position: absolute;
+        top: calc(50% - 2em);
+        left: 0;
+        width: 100%;
+    }
+
+    .type-p {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+    }
+}
+
+#promo-close {
+    background: rgba(0, 0, 0, .2) url('/media/img/notification/close.svg') center center no-repeat;
+    background-size: 20px 20px;
+    border-radius: 50%;
+    border: none;
+    display: none;
+    height: 35px;
+    padding: 6px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    transition: background-color 0.2s ease;
+    width: 35px;
+
+    &:focus,
+    &:hover {
+        background-color: rgba(0, 0, 0, .3);
+        cursor: pointer;
+    }
+
+    // hide the 'Close' text
+    span {
+        @include visually-hidden;
+    }
+
+    // only display when JS is available
+    .js & {
+        display: block;
+    }
+}
+
+
+/*
+Animation
+============================================================================= */
+$delay: 0.2s;
+
+@mixin type-effect($paragraph-length) {
+    /* with graditiude to http://lea.verou.me/2012/02/simpler-css-typing-animation-with-the-ch-unit/*/
+    $cursor-speed: $paragraph-length; // characters per second
+    $duration: $paragraph-length / $cursor-speed * 1s;
+    $characters: $paragraph-length;
+
+    @keyframes letters-#{$paragraph-length} {
+        // animation, go from left to right
+        from {
+            left: 0;
+        }
+        to {
+            left: $paragraph-length + ch;
+        }
+    }
+
+    @keyframes highlight-#{$paragraph-length} {
+        // animation, go from left to right
+        from {
+            width: 0;
+        }
+        to {
+            width: $paragraph-length + ch;
+        }
+    }
+
+    max-width: $paragraph-length + ch;
+
+    &:before {
+        animation: highlight-#{$paragraph-length} 0.2s linear #{$delay + $duration} 1 both;
+    }
+
+    &:after {
+        animation: letters-#{$paragraph-length} $duration steps($paragraph-length, end) $delay 1 both;
+    }
+}
+
+@media #{$mq-desktop} {
+    @supports (width: 1ch) {
+        #promo-statement {
+            overflow: hidden;
+        }
+
+        .type-head span {
+            overflow: hidden;
+            padding-left: 0;
+            position: relative;
+            text-align: left;
+            word-break: break-all;
+
+            &:before {
+                background-color: #000;
+                bottom: 0;
+                color: #fff;
+                content: attr(data-content);
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 0;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+
+            &:after {
+                background-color: #fff;
+                bottom: 0;
+                box-sizing: border-box;
+                content: '';
+                display: block;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                z-index: 1;
+            }
+
+            .lang-en-US &,
+            .lang-en-GB & {
+                @include type-effect(32);
+            }
+
+            .lang-de & {
+                @include type-effect(44);
+            }
+        }
+
+        .type-p {
+            animation: pop 0.5s ease-out #{0.5s + $delay} 1 both;
+        }
+    }
+}
+
+
+@keyframes pop {
+    from {
+        bottom: -5em;
+    }
+    to {
+        bottom: 20px;
+    }
+}

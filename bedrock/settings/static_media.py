@@ -531,6 +531,7 @@ PIPELINE_CSS = {
         'source_filenames': (
             'css/newsletter/moznewsletter-subscribe.less',
             'css/mozorg/home/home.scss',
+            'css/mozorg/home/statement.scss',
         ),
         'output_filename': 'css/home-bundle.css',
     },
@@ -1218,6 +1219,12 @@ PIPELINE_JS = {
             'js/mozorg/home/home.js',
         ),
         'output_filename': 'js/home-bundle.js',
+    },
+    'home-statement': {
+        'source_filenames': (
+            'js/mozorg/home/statement.js',
+        ),
+        'output_filename': 'js/statement-bundle.js',
     },
     'history-slides': {
         'source_filenames': (

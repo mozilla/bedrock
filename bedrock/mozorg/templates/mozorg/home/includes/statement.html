@@ -1,0 +1,22 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% if LANG == 'de' %}
+  {% set head = 'Dafür stehen wir: Für Menschen statt Profit.' %}
+  {% set cta = 'Mehr dazu hier: <a href="http://blog.mozilla.org/press-de/2018/04/09/dafuer-stehen-wir-fuer-menschen-statt-profit" rel="external">Mozilla’s Data Q&amp;A.</a>' %}
+{% elif LANG == 'fr' %}
+  {% set head = 'French TODO' %}
+  {% set cta = 'TODO' %}
+{% else %}
+  {% set head = 'We stand for people over profit.' %}
+  {% set cta = 'Find out more: <a href="https://blog.mozilla.org/blog/2018/04/11/we-stand-for-people-over-profit/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=people-over-profit-overlay" rel="external">Mozilla’s Data Q&A</a>.' %}
+{% endif %}
+
+<aside class="promo promo-statement" id="promo-statement">
+  <button type="button" id="promo-close"><span>{{ _('Close') }}</span></button>
+  <div class="content-wrapper">
+      <h1 class="type type-head"><span data-content="{{ head }}">{{ head }}</span></h1>
+      <p class="type type-p">{{ cta|safe }}</p>
+  </div>{#--/.content--#}
+</aside>
