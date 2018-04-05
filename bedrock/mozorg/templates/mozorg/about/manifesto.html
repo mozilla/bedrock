@@ -8,6 +8,18 @@
 {% else %}
   {#- Show the redesigned landing page -#}
 
+{% if l10n_has_tag('addendum_title_042018') %}
+  {% set addendum_title_translated = true %}
+{% else %}
+  {% set addendum_title_translated = false %}
+{% endif %}
+
+{% if l10n_has_tag('addendum_032018') %}
+  {% set addendum_translated = true %}
+{% else %}
+  {% set addendum_translated = false %}
+{% endif %}
+
 {% extends 'base-pebbles.html' %}
 
 {% from 'macros.html' import twitter_share_url, share_cta with context %}
@@ -15,7 +27,7 @@
 {% block page_title %}{{ _('The Mozilla Manifesto') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
-{% if l10n_has_tag('addendum_032018') %}
+{% if addendum_translated %}
   {% set page_description = _('These are the principles that guide our mission to promote openness, innovation & opportunity on the web.') %}
 {% else %}
   {% set page_description = _('These are the principles that guide our mission to promote openness, innovation & opportunity on the Web.') %}
@@ -50,7 +62,7 @@
   {{ twitter_share_url('https://mzl.la/manifesto', text|truncate(102, False, '…')) }}
 {%- endmacro %}
 
-{% if l10n_has_tag('addendum_032018') %}
+{% if addendum_translated %}
   {% set principle_text_01 = _('The internet is an integral part of modern life—a key component in education, communication, collaboration, business, entertainment and society as a whole.') %}
   {% set principle_text_02 = _('The internet is a global public resource that must remain open and accessible.') %}
   {% set principle_text_03 = _('The internet must enrich the lives of individual human beings.') %}
@@ -74,7 +86,7 @@
   {% set principle_text_10 = _('Magnifying the public benefit aspects of the Internet is an important goal, worthy of time, attention and commitment.') %}
 {% endif %}
 
-{% if l10n_has_tag('addendum_032018') %}
+{% if addendum_translated %}
   {% set principle_number_01 = _('Principle 1') %}
   {% set principle_number_02 = _('Principle 2') %}
   {% set principle_number_03 = _('Principle 3') %}
@@ -101,9 +113,9 @@
 {% block content %}
 <main role="main" itemscope itemtype="http://schema.org/Article">
   <article role="article" itemprop="articleBody">
-  {% if l10n_has_tag('addendum_032018') %}
+  {% if addendum_translated %}
     <header>
-    {% if LANG.startswith('en-') %}
+    {% if addendum_title_translated %}
       <h1 itemprop="name" class="manifesto-title manifesto-title-addendum">{{ _('The Mozilla Manifesto Addendum') }}</h1>
     {% else %}
       <h1 itemprop="name" class="manifesto-title manifesto-title-addendum">{{ self.page_title() }}</h1>
@@ -128,7 +140,11 @@
   {% endif %}
     <section id="sec-principles">
       <header class="content principles-header">
-        {% if not l10n_has_tag('addendum_032018') %}
+        {# If the addendum has not been translated, this section is first, so display the page title.
+           If the addendum is translated, a page title displays above it.
+           If the addendum's title has not been translated, the page title displays there, don't repeat it here.
+           If the addendum title is translated, we can label this section with the page title. #}
+        {% if not addendum_translated or (addendum_translated and addendum_title_translated) %}
           <h1 itemprop="name" class="manifesto-title">{{ self.page_title() }}</h1>
         {% endif %}
         <h2 class="principles-head">{{ _('<strong>Our 10</strong> Principles') }}</h2>
@@ -144,7 +160,7 @@
               <li><a href="http://openbadges.org/">{{ _('Use Open Badges to share your skills and interests') }}</a></li>
               <li>
                 <a href="http://mozillascience.org/">
-                  {% if l10n_has_tag('addendum_032018') %}
+                  {% if addendum_translated %}
                     {{ _('Explore how the web impacts science') }}
                   {% else %}
                     {{ _('Explore how the Web impacts science') }}
@@ -164,7 +180,7 @@
             <ul class="resources">
               <li>
                 <a href="https://blog.mozilla.org/netpolicy/">
-                  {% if l10n_has_tag('addendum_032018') %}
+                  {% if addendum_translated %}
                     {{ _('Read about open internet policy initiatives and developments') }}
                   {% else %}
                     {{ _('Read about open Internet policy initiatives and developments') }}
@@ -173,7 +189,7 @@
               </li>
               <li>
                 <a href="https://teach.mozilla.org/web-literacy/participate/open-practice/">
-                  {% if l10n_has_tag('addendum_032018') %}
+                  {% if addendum_translated %}
                     {{ _('Explore how to help keep the web open') }}
                   {% else %}
                     {{ _('Explore how to help keep the Web open') }}
@@ -192,7 +208,7 @@
             <ul class="resources">
               <li>
                 <a href="https://blog.mozilla.org/blog/2014/04/09/firefox-os-and-medic-mobile-use-the-web-to-connect-the-world-to-healthcare/">
-                  {% if l10n_has_tag('addendum_032018') %}
+                  {% if addendum_translated %}
                     {{ _('See how the web can connect the world to healthcare') }}
                   {% else %}
                     {{ _('See how the Web can connect the world to healthcare') }}
@@ -201,7 +217,7 @@
               </li>
               <li>
                 <a href="https://teach.mozilla.org/web-literacy/read/navigate/">
-                  {% if l10n_has_tag('addendum_032018') %}
+                  {% if addendum_translated %}
                     {{ _('Explore how the web works') }}
                   {% else %}
                     {{ _('Explore how the Web works') }}
@@ -233,7 +249,7 @@
             <ul class="resources">
               <li>
                 <a href="https://teach.mozilla.org/tools/">
-                  {% if l10n_has_tag('addendum_032018') %}
+                  {% if addendum_translated %}
                     {{ _('Use these free tools to teach the web') }}
                   {% else %}
                     {{ _('Use these free tools to teach the Web') }}
@@ -242,7 +258,7 @@
               </li>
               <li>
                 <a href="https://teach.mozilla.org/web-literacy/write/compose/">
-                  {% if l10n_has_tag('addendum_032018') %}
+                  {% if addendum_translated %}
                     {{ _('Learn about creating and curating content for the web') }}
                   {% else %}
                     {{ _('Learn about creating and curating content for the Web') }}
@@ -263,7 +279,7 @@
               <li><a href="https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature">{{ _('Set your Do Not Track preference') }}</a></li>
               <li>
                 <a href="https://teach.mozilla.org/web-literacy/read/navigate/">
-                  {% if l10n_has_tag('addendum_032018') %}
+                  {% if addendum_translated %}
                     {{ _('Understand the web ecosystem') }}
                   {% else %}
                     {{ _('Understand the Web ecosystem') }}
@@ -282,7 +298,7 @@
             <ul class="resources">
               <li>
                 <a href="https://teach.mozilla.org/web-literacy/participate/open-practice/">
-                  {% if l10n_has_tag('addendum_032018') %}
+                  {% if addendum_translated %}
                     {{ _('Explore how open practices keep the web accessible') }}
                   {% else %}
                     {{ _('Explore how open practices keep the Web accessible') }}
@@ -292,7 +308,7 @@
               <li><a href="https://teach.mozilla.org/web-literacy/write/remix/">{{ _('Learn how to remix content to create something new') }}</a></li>
               <li>
                 <a href="https://teach.mozilla.org/web-literacy/write/code/">
-                  {% if l10n_has_tag('addendum_032018') %}
+                  {% if addendum_translated %}
                     {{ _('Learn how to maximize the interactive potential of the web') }}
                   {% else %}
                     {{ _('Learn how to maximize the interactive potential of the Web') }}
@@ -329,7 +345,7 @@
             <ul class="resources">
               <li>
                 <a href="https://addons.mozilla.org/firefox/addon/lightbeam/">
-                  {% if l10n_has_tag('addendum_032018') %}
+                  {% if addendum_translated %}
                     {{ _('Visualize who you interact with on the web with Lightbeam') }}
                   {% else %}
                     {{ _('Visualize who you interact with on the Web with Lightbeam') }}
@@ -338,7 +354,7 @@
               </li>
               <li>
                 <a href="https://teach.mozilla.org/web-literacy/participate/share/">
-                  {% if l10n_has_tag('addendum_032018') %}
+                  {% if addendum_translated %}
                     {{ _('Learn about creating web resources with others') }}
                   {% else %}
                     {{ _('Learn about creating Web resources with others') }}
@@ -362,7 +378,7 @@
         </section>
       </div>
       <footer class="content principles-foot">
-        {% if l10n_has_tag('addendum_032018') %}
+        {% if addendum_translated %}
           <p><a class="button button-manifesto js-manifesto-share" target="_blank" rel="noopener noreferrer" href="{{ twitter_link('custom', _('I support the vision of a better, healthier internet from @mozilla, will you join me?')) }}" data-link-type="social share" data-link-name="Twitter">{{  _('Share on Twitter') }}</a></p>
         {% endif %}
         <p><a class="manifesto-details" href="{{ url('mozorg.about.manifesto-details') }}">{{ _('Read the entire manifesto') }}</a></p>
