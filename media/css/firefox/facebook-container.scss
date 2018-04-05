@@ -39,11 +39,11 @@ $color-photon-blue: #0099db;
 // Top hero section
 
 .intro {
+    @include open-sans;
     background: #3b5998;
 
     .title {
         @include font-size-level3;
-        @include open-sans;
         line-height: 1.35;
         font-weight: bold;
         color: #fff;
@@ -52,7 +52,6 @@ $color-photon-blue: #0099db;
 
     .tagline {
         @include font-size-level4;
-        @include open-sans;
         color: #fff;
         margin-bottom: 1em;
     }
@@ -77,7 +76,6 @@ $color-photon-blue: #0099db;
         margin-top: 40px;
 
         a {
-            @include open-sans;
             color: #fff;
             font-weight: bold;
         }
@@ -94,6 +92,19 @@ $color-photon-blue: #0099db;
         &:active {
             background-color: darken(#fb5d1c, 5%);
             border-color: darken(#fb5d1c, 7%);
+        }
+    }
+
+    .mobile-cta {
+        background: #fff;
+        border-radius: 6px;
+        border: 2px solid darken(#3b5998, 5%);
+        color: #000;
+        margin-top: 1em;
+        padding: 1em 20px;
+
+        p {
+            @include font-size-level4;
         }
     }
 
@@ -116,7 +127,9 @@ $color-photon-blue: #0099db;
 }
 
 // Hide extension CTA for non-Firefox
-.extension-cta {
+// Hide mobile CTA for non-mobile
+.extension-cta,
+.mobile-cta {
     display: none;
 }
 
@@ -134,6 +147,32 @@ $color-photon-blue: #0099db;
     }
 }
 
+.ios,
+.android {
+    .firefox-cta,
+    .extension-cta,
+    .secondary-download,
+    .tagline-download,
+    .tagline-extension {
+        display: none;
+    }
+
+    .mobile-cta {
+        display: block;
+    }
+}
+
+.mobile-download-buttons {
+    margin: 0;
+
+    .ios & .android {
+        display: none;
+    }
+
+    .android & .ios {
+        display: none;
+    }
+}
 
 .optional-cta {
     margin-top: 40px;
