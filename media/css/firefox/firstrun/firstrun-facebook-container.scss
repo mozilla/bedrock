@@ -1,0 +1,90 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+@import '../../hubs/sections';
+
+//* -------------------------------------------------------------------------- */
+// Common elements
+
+$color-primary: #e71784;
+$color-secondary: #0060df;
+
+#outer-wrapper {
+    background: #fff;
+}
+
+.container {
+    @include open-sans();
+    text-align: center;
+
+    @media #{$mq-tablet} {
+        text-align: left;
+    }
+}
+
+.header {
+    background: $color-primary;
+    color: #fff;
+    padding-bottom: 20px;
+
+    @media #{$mq-tablet} {
+        padding-bottom: 60px;
+    }
+}
+
+a.button {
+    margin-top: 10px;
+
+    &:link,
+    &:visited {
+        background: $color-secondary;
+        border: $color-secondary;
+    }
+
+    &:focus,
+    &:hover,
+    &:link:focus,
+    &:link:hover,
+    &:visited:focus,
+    &:visited:hover {
+        background: darken($color-secondary, 5%);
+        border: $color-secondary;
+    }
+}
+
+.firefox-logo {
+    display: block;
+    margin: 0 auto 30px;
+
+    @media #{$mq-tablet} {
+        margin: 30px 0;
+    }
+}
+
+.instructions {
+    margin: 20px 0;
+
+    h2 {
+        @include font-size-level4();
+        color: $color-primary;
+        font-weight: normal;
+    }
+
+    img {
+        margin-bottom: 10px;
+    }
+
+    @media #{$mq-tablet} {
+        display: grid;
+        grid-column-gap: 10%;
+        grid-template-columns: repeat(2, fit-content(474px));
+        margin: 20px auto;
+        max-width: 1000px;
+
+        h2 {
+            margin-bottom: 10px;
+        }
+    }
+}

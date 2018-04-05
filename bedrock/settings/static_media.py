@@ -327,6 +327,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_firstrun_quantum-bundle.css',
     },
+    'firefox_firstrun_facebook_container': {
+        'source_filenames': (
+            'css/firefox/firstrun/firstrun-facebook-container.scss',
+        ),
+        'output_filename': 'css/firefox_firstrun_facebook_container-bundle.css',
+    },
     'firefox_feedback': {
         'source_filenames': (
             'css/base/mozilla-share-cta.less',
@@ -1031,6 +1037,12 @@ PIPELINE_JS = {
             'js/firefox/facebook-container-video.js',
         ),
         'output_filename': 'js/firefox_facebook_container_video-bundle.js',
+    },
+    'firefox_facebook_container_funnelcake': {
+        'source_filenames': (
+            'js/firefox/facebook-container-funnelcake.js',
+        ),
+        'output_filename': 'js/firefox_facebook_container_funnelcake-bundle.js',
     },
     'firefox-features-hub': {
         'source_filenames': (
