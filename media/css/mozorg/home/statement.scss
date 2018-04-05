@@ -1,0 +1,137 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+#promo-close {
+    background: rgba(255, 255, 255, .2) url('/media/img/notification/close.svg') center center no-repeat;
+    background-size: 20px 20px;
+    border: none;
+    border-radius: 50%;
+    display: none;
+    height: 35px;
+    padding: 6px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    transition: background-color 0.2s ease;
+    width: 35px;
+
+    &:focus,
+    &:hover {
+        background-color: rgba(255, 255, 255, .3);
+    }
+
+    // hide the 'Close' text
+    span {
+        @include visually-hidden;
+    }
+
+    // only display when JS is available
+    .js & {
+        display: block;
+    }
+}
+
+#promo-statement {
+    background: #000;
+    color: #fff;
+    padding: 40px 20px;
+    min-height: 100vh;
+
+    // hide by default if JS is available to avoid flicker
+    // (if visitor previously dismissed)
+    .js & {
+        display: none;
+    }
+
+    h1 {
+        @include font-size-level1;
+        margin-bottom: 1em;
+    }
+
+    .button {
+        @include font-size-level5;
+        font-weight: bold;
+        background: $color-brand-neonblue;
+        border: 0;
+        color: #000;
+        transition: background-color 0.2s ease;
+
+        &:hover,
+        &:focus {
+            background-color: #fff;
+        }
+    }
+
+    &:before {
+        background: url('/media/img/pebbles/moz-wordmark-light-reverse.svg') no-repeat;
+        @include background-size(100px, 32px);
+        content: '';
+        display: inline-block;
+        height: 32px;
+        width: 100px;
+        position: absolute;
+        left: 20px;
+        top: 20px;
+    }
+
+    .content-wrapper {
+        margin: 0 auto;
+        max-width: 500px;
+        padding-top: 10px;
+        margin-top: 10vh;
+    }
+
+    @media (min-height: 800px) {
+        .content-wrapper {
+            margin-top: 15vh;
+        }
+    }
+}
+
+
+
+// Slenderized banner on slashnew.
+#promo-statement.is-slim {
+    @include font-size-small;
+    padding: 0 50px 0 0;
+    min-height: 0;
+    max-height: none;
+
+    p {
+        margin: 0 40px 1em 0;
+    }
+
+    .button {
+        @include font-size-small;
+        font-weight: bold;
+        background: $color-brand-neonblue;
+        border: 0;
+        color: #000;
+        transition: background-color 0.2s ease;
+        margin: 10px 0;
+
+        &:hover,
+        &:focus {
+            background-color: #fff;
+        }
+    }
+
+    #promo-close {
+        top: 10px;
+        right: 10px;
+    }
+
+    &:before {
+        display: none;
+    }
+
+    @media #{$mq-tablet} {
+        p {
+            margin-bottom: 0;
+            display: inline-block;
+        }
+    }
+}
