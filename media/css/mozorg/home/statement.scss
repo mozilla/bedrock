@@ -49,8 +49,8 @@
 
     h1,
     p {
+        @include font-size-level4;
         font-family: Monaco, monospace;
-        font-size: 1rem;
         font-weight: normal;
         margin-bottom: 1.25em;
     }
@@ -91,13 +91,13 @@ $cursor-wait-iteration: 2;
 $paragraph-lengths: (24, 23, 86, 34);
 
 @keyframes letters {
-  // animation, go from left to right
-  from {
-      left: 0;
-  }
-  to {
-      left: $width + ch;
-  }
+    // animation, go from left to right
+    from {
+        left: 0;
+    }
+    to {
+        left: $width + ch;
+    }
 }
 
 @keyframes lines {
@@ -111,32 +111,21 @@ $paragraph-lengths: (24, 23, 86, 34);
 }
 
 @keyframes cursor-type {
-  50% {
-    border-color: #000;
-  }
+    50% {
+        border-color: #000;
+    }
 }
 
 @keyframes cursor-wait {
-  0% {
-    box-shadow: inset 1px 0 0 0 rgba(0, 0, 0, 0);
-  }
-  1% {
-    box-shadow: inset 1px 0 0 0 rgba(0, 0, 0, 1);
-  }
-  40% {
-    box-shadow: inset 1px 0 0 0 rgba(0, 0, 0, 1);
-  }
-}
-
-.test {
-  display: none;
-  animation-name: cursor-wait;
-  animation-duration: $cursor-wait-duration;
-  animation-timing-function: ease;
-  animation-iteration-count: 2;
-  animation-fill-mode: backward;
-  animation-delay:0s;
-  padding-left: 10px;
+    0% {
+        box-shadow: inset 1px 0 0 0 rgba(0, 0, 0, 0);
+    }
+    1% {
+        box-shadow: inset 1px 0 0 0 rgba(0, 0, 0, 1);
+    }
+    40% {
+        box-shadow: inset 1px 0 0 0 rgba(0, 0, 0, 1);
+    }
 }
 
 .type {
@@ -185,30 +174,30 @@ $iterations: 1;
 $total-delay: 0s;
 
 @each $length in $paragraph-lengths {
-  $this-characters: $length;
-  $this-lines: ceil($this-characters / $width);
-  $this-selector: '.type';
-  $this-delay: $total-delay;
-  $this-type-delay: $this-delay + $cursor-wait-duration * $cursor-wait-iteration;
+    $this-characters: $length;
+    $this-lines: ceil($this-characters / $width);
+    $this-selector: '.type';
+    $this-delay: $total-delay;
+    $this-type-delay: $this-delay + $cursor-wait-duration * $cursor-wait-iteration;
 
-  @for $i from 1 to $iterations {
-    $this-selector: $this-selector + ' + .type';
-  }
-
-  #{$this-selector} {
-     &:before {
-       animation-duration: $duration, ($duration * $this-lines), $cursor-duration, $cursor-wait-duration;
-       animation-timing-function: steps($width, end), steps($this-lines, end), step-end, ease-out;
-       animation-iteration-count: $this-lines, 1, $this-characters, $cursor-wait-iteration;
-       animation-delay: $this-type-delay, $this-type-delay, $this-type-delay, $this-delay;
+    @for $i from 1 to $iterations {
+        $this-selector: $this-selector + ' + .type';
     }
 
-    &:after {
-      animation: lines ($duration * $this-lines) steps($this-lines, end) 1;
-      animation-fill-mode: both;
-      animation-delay: $this-type-delay;
+    #{$this-selector} {
+         &:before {
+           animation-duration: $duration, ($duration * $this-lines), $cursor-duration, $cursor-wait-duration;
+           animation-timing-function: steps($width, end), steps($this-lines, end), step-end, ease-out;
+           animation-iteration-count: $this-lines, 1, $this-characters, $cursor-wait-iteration;
+           animation-delay: $this-type-delay, $this-type-delay, $this-type-delay, $this-delay;
+        }
+
+        &:after {
+            animation: lines ($duration * $this-lines) steps($this-lines, end) 1;
+            animation-fill-mode: both;
+            animation-delay: $this-type-delay;
+        }
     }
-  }
-  $total-delay: $this-type-delay + ($this-lines * $duration);
-  $iterations: $iterations + 1;
+    $total-delay: $this-type-delay + ($this-lines * $duration);
+    $iterations: $iterations + 1;
 }
