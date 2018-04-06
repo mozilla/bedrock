@@ -49,7 +49,7 @@
         @include font-size-level4;
         margin: 0 auto;
         margin-top: 20vh;
-        max-width: 53ch;
+        max-width: 35ch;
         padding-top: 10px;
     }
 
@@ -68,7 +68,19 @@
     }
 
     a {
+        position: relative;
+        display: inline-block;
         color: #00f;
+        background-color: #fff;
+
+        .var-a & {
+            color: #000;
+            text-decoration: none;
+
+            &:hover {
+                filter: invert(100);
+            }
+        }
     }
 
     &:before {
@@ -88,8 +100,19 @@
     }
 }
 
+@keyframes underline {
+    0% {
+        color: #000;
+        text-decoration: none;
+    }
+    1% {
+        color: #00f;
+        text-decoration: underline;
+    }
+}
+
 /* with graditiude to http://lea.verou.me/2012/02/simpler-css-typing-animation-with-the-ch-unit/*/
-$width: 50;
+$width: 35;
 $text: #000;
 $bg: #fff;
 $cursor-speed: 30; // characters per second
@@ -97,7 +120,7 @@ $duration: $width / $cursor-speed * 1s;
 $cursor-duration: $duration / $width;
 $cursor-wait-duration: 1s;
 $cursor-wait-iteration: 2;
-$paragraph-lengths: (24, 34);
+$paragraph-lengths: (32, 34);
 
 @keyframes letters {
     // animation, go from left to right
@@ -209,4 +232,16 @@ $total-delay: 0s;
     }
     $total-delay: $this-type-delay + ($this-characters / $cursor-speed);
     $iterations: $iterations + 1;
+}
+
+
+#promo-statement {
+    a {
+        animation-name: underline;
+        animation-duration: 1s;
+        animation-timing-function: step-end;
+        animation-delay: $total-delay;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
 }
