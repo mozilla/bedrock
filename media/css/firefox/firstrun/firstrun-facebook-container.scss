@@ -32,6 +32,11 @@ $color-secondary: #0060df;
     @media #{$mq-tablet} {
         padding-bottom: 60px;
     }
+
+    @media #{$mq-desktop} {
+        padding-bottom: 90px;
+        padding-top: 30px;
+    }
 }
 
 a.button {
