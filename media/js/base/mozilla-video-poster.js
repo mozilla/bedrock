@@ -74,6 +74,9 @@ Mozilla.VideoPosterHelper.prototype.bindEvents = function () {
         try {
             if (videoMedia && videoMedia.readyState && videoMedia.readyState > 0) {
                 videoMedia.play();
+            } else {
+                videoMedia.load();
+                videoMedia.play();
             }
         } catch(e) {
             // fail silently.
