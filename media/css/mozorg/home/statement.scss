@@ -41,6 +41,14 @@
     padding: 40px 20px;
     min-height: 100vh;
 
+    .content-wrapper {
+        @include font-size-level4;
+        margin: 0 auto;
+        margin-top: 20vh;
+        max-width: 53ch;
+        padding-top: 10px;
+    }
+
     // hide by default if JS is available to avoid flicker
     // (if visitor previously dismissed)
     .js & {
@@ -70,20 +78,13 @@
         top: 20px;
         width: 100px;
     }
-
-    .content-wrapper {
-        margin: 0 auto;
-        margin-top: 20vh;
-        max-width: 53ch;
-        padding-top: 10px;
-    }
 }
 
 /* with graditiude to http://lea.verou.me/2012/02/simpler-css-typing-animation-with-the-ch-unit/*/
 $width: 50;
 $text: #000;
 $bg: #fff;
-$cursor-speed: 20; // characters per second
+$cursor-speed: 30; // characters per second
 $duration: $width / $cursor-speed * 1s;
 $cursor-duration: $duration / $width;
 $cursor-wait-duration: 1s;
@@ -198,6 +199,6 @@ $total-delay: 0s;
             animation-delay: $this-type-delay;
         }
     }
-    $total-delay: $this-type-delay + ($this-lines * $duration);
+    $total-delay: $this-type-delay + ($this-characters / $cursor-speed);
     $iterations: $iterations + 1;
 }
