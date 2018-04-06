@@ -24,8 +24,16 @@
   {{ _('Did you know? Mozilla — the maker of Firefox — fights to keep the Internet a global public resource, open and accessible to all.') }}
 {% endblock %}
 
+{% set cop = request.GET.get('v', None) %}
+
 {% block body_id %}home{% endblock %}
-{% block body_class %}lang-{{ LANG }}{% endblock %}
+{% block body_class %}lang-{{ LANG }} var-{{cop}}{% endblock %}
+
+{% block experiments %}
+  {% if switch('statement-04-2018') and l10n_has_tag('statement_042018')%}
+    {% javascript 'home-statement-experiment' %}
+  {% endif %}
+{% endblock %}
 
 {% block extra_meta %}
 <!-- validates bing webmaster tools -->
@@ -41,7 +49,7 @@
 {% block site_header %}
   {% include 'mozorg/home/includes/home-icons-sprite.svg' %}
 
-  {% if switch('statement-04-2018', ['en-US']) %}
+  {% if switch('statement-04-2018') and l10n_has_tag('statement_042018') %}
       {% include 'mozorg/home/includes/statement.html' %}
   {% endif %}
 
@@ -259,14 +267,14 @@
 {% endblock %}
 
 {% block js %}
-  {% if switch('statement-04-2018', ['en-US']) %}
+  {% if switch('statement-04-2018') and l10n_has_tag('statement_042018') %}
     {% javascript 'home-statement' %}
   {% endif %}
 {% endblock %}
 
 {% block update_notification %}
   {# do not show the update banner if the takeover banner is active #}
-  {% if not switch('statement-04-2018', ['en-US']) %}
+  {% if not (switch('statement-04-2018') and l10n_has_tag('statement_042018')) %}
     {{ super() }}
   {% endif %}
 {% endblock %}

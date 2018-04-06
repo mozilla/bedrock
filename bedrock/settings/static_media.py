@@ -1226,6 +1226,13 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/statement-bundle.js',
     },
+    'home-statement-experiment': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/mozorg/home/statement-experiment.js',
+        ),
+        'output_filename': 'js/statement-experiment-bundle.js',
+    },
     'history-slides': {
         'source_filenames': (
             'js/libs/jquery.sequence.js',

@@ -5,9 +5,12 @@
 <aside class="promo promo-statement" id="promo-statement">
   <button type="button" id="promo-close"><span>{{ _('Close') }}</span></button>
   <div class="content-wrapper">
-    <h1 class="type">We stand for people over profit.</h1>
-    <p class="type">Our product is Firefox.</p>
-    <p class="type">We built it to put you in control of your personal information and online experiences.</p>
-    <p class="type">Find out more: <a href="https://blog.mozilla.org/blog/2018/04/05/we-stand-for-people-over-profit/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=people-over-profit-overlay" rel="external">Mozilla’s Data Q&A.</a></p>
+    <h1 class="type">{{ _('We stand for people over profit.') }}</h1>
+    <p class="type">
+      {% set blog_url = 'https://blog.mozilla.org/blog/2018/04/05/we-stand-for-people-over-profit/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=people-over-profit-overlay' %}
+      {% trans blog=blog_url %}
+        Find out more: <a rel="external" href="{{ blog }}">Mozilla’s Data Q&A.</a>
+      {% endtrans %}
+    </p>
   </div>{#--/.content--#}
 </aside>

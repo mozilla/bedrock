@@ -33,6 +33,10 @@
     .js & {
         display: block;
     }
+
+    .var-a & {
+        display: none;
+    }
 }
 
 #promo-statement {
@@ -77,6 +81,10 @@
         position: absolute;
         top: 20px;
         width: 100px;
+
+        .var-a & {
+            display: none;
+        }
     }
 }
 
@@ -89,7 +97,7 @@ $duration: $width / $cursor-speed * 1s;
 $cursor-duration: $duration / $width;
 $cursor-wait-duration: 1s;
 $cursor-wait-iteration: 2;
-$paragraph-lengths: (24, 23, 86, 34);
+$paragraph-lengths: (24, 34);
 
 @keyframes letters {
     // animation, go from left to right
