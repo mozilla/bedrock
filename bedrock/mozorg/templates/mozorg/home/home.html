@@ -24,8 +24,16 @@
   {{ _('Did you know? Mozilla — the maker of Firefox — fights to keep the Internet a global public resource, open and accessible to all.') }}
 {% endblock %}
 
+{% set cop = request.GET.get('v', None) %}
+
 {% block body_id %}home{% endblock %}
-{% block body_class %}lang-{{ LANG }}{% endblock %}
+{% block body_class %}lang-{{ LANG }} var-{{cop}}{% endblock %}
+
+{% block experiments %}
+  {% if switch('statement-04-2018', ['en-US']) %}
+    {% javascript 'home-statement-experiment' %}
+  {% endif %}
+{% endblock %}
 
 {% block extra_meta %}
 <!-- validates bing webmaster tools -->
@@ -40,6 +48,11 @@
 
 {% block site_header %}
   {% include 'mozorg/home/includes/home-icons-sprite.svg' %}
+
+  {% if switch('statement-04-2018', ['en-US']) %}
+      {% include 'mozorg/home/includes/statement.html' %}
+  {% endif %}
+
   {% if LANG.startswith('en-') %}
     {% include 'includes/global-nav.html' %}
   {% else %}
@@ -251,4 +264,17 @@
   </aside>
 
 </main>
+{% endblock %}
+
+{% block js %}
+  {% if switch('statement-04-2018', ['en-US']) %}
+    {% javascript 'home-statement' %}
+  {% endif %}
+{% endblock %}
+
+{% block update_notification %}
+  {# do not show the update banner if the takeover banner is active #}
+  {% if not switch('statement-04-2018', ['en-US']) %}
+    {{ super() }}
+  {% endif %}
 {% endblock %}
