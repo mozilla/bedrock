@@ -137,10 +137,11 @@ redirectpatterns = (
 
     # Bug 1109318 /privacy/you -> privacy/tips/
     # Bug 1238687 /privacy/tips -> teach/smarton/
+    # Bug 1436740 /privacy/tips -> internet-health/privacy-security/
     redirect(r'^privacy/you/?$',
-             'teach.smarton.index'),
+             'mozorg.internet-health.privacy-security'),
     redirect(r'^privacy/tips/?$',
-             'teach.smarton.index'),
+             'mozorg.internet-health.privacy-security'),
 
     # Bug 821047 /about/mission.html -> /mission/
     redirect(r'^about/mission.html$', '/mission/'),
@@ -646,4 +647,9 @@ redirectpatterns = (
     redirect(r'^about/partnerships/?$', 'mozorg.contact.contact-landing'),
     redirect(r'^about/partnerships/contentservices(/.*)?$', 'mozorg.contact.contact-landing'),
     redirect(r'^about/partnerships\.html', 'mozorg.contact.contact-landing'),
+
+    # Bug 1436740
+    redirect(r'^teach/?$', 'mozorg.internet-health'),
+    redirect(r'^teach/smarton/?$', 'mozorg.internet-health'),
+    redirect(r'^teach/smarton/(?:tracking|security|surveillance)/?$', 'mozorg.internet-health.privacy-security'),
 )

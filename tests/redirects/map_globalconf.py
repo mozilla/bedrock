@@ -958,9 +958,9 @@ URLS = flatten((
     # bug 1237875
     url_test('/community/forums/', '/about/forums/'),
 
-    # bug 1238687
-    url_test('/privacy/you/', '/teach/smarton/'),
-    url_test('/privacy/tips/', '/teach/smarton/'),
+    # bug 1238687, 1436740
+    url_test('/privacy/you/', '/internet-health/privacy-security/'),
+    url_test('/privacy/tips/', '/internet-health/privacy-security/'),
 
     # bug 1239960, 1329931
     url_test('/firefox/partners/', 'https://support.mozilla.org/products/firefox-os'),
@@ -1232,4 +1232,8 @@ URLS = flatten((
     # bug 1422080, 1013349, 1233015
     url_test('/about/partnerships.html', '/contact/'),
     url_test('/about/partnerships/{,contentservices/}', '/contact/'),
+
+    # Bug 1436740
+    url_test('/teach/{,smarton/}', '/internet-health/'),
+    url_test('/teach/smarton/{tracking,security,surveillance}/', '/internet-health/privacy-security/'),
 ))

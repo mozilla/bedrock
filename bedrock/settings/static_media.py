@@ -688,19 +688,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/security-bug-bounty-hall-of-fame-bundle.css',
     },
-    'smarton': {
-        'source_filenames': (
-            'css/base/mozilla-share-cta.less',
-            'css/teach/smarton.less',
-        ),
-        'output_filename': 'css/smarton-bundle.css',
-    },
-    'smarton-ie': {
-        'source_filenames': (
-            'css/teach/smarton-ie.less',
-        ),
-        'output_filename': 'css/smarton-ie-bundle.css',
-    },
     'styleguide': {
         'source_filenames': (
             'css/styleguide/styleguide.scss',
@@ -1318,25 +1305,6 @@ PIPELINE_JS = {
             'js/privacy/privacy.js',
         ),
         'output_filename': 'js/privacy-bundle.js',
-    },
-    'smarton': {
-        'source_filenames': (
-            'js/base/mozilla-share-cta.js',
-            'js/base/mozilla-smoothscroll.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/libs/circles.min.js',
-            'js/teach/smarton.js',
-        ),
-        'output_filename': 'js/smarton-bundle.js',
-    },
-    'smarton-landing': {
-        'source_filenames': (
-            'js/base/mozilla-share-cta.js',
-            'js/libs/snap.svg.js',
-            'js/teach/smarton-landing.js',
-        ),
-        'output_filename': 'js/smarton-landing-bundle.js',
     },
     'stub-attribution': {
         'source_filenames': (

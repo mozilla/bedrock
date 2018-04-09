@@ -466,7 +466,6 @@ INSTALLED_APPS = (
     'bedrock.press',
     'bedrock.privacy',
     'bedrock.styleguide',
-    'bedrock.teach',
     'bedrock.externalfiles',
     'bedrock.security',
     'bedrock.events',
@@ -497,7 +496,6 @@ VARY_NOCACHE_EXEMPT_URL_PREFIXES = (
     '/newsletter/',
     '/privacy/',
     '/foundation/',
-    '/teach/',
 )
 
 # Sessions
