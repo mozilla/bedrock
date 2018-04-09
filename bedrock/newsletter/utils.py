@@ -1,39 +1,16 @@
-import json
-
-from django.core.cache import cache
-
 import basket
-import commonware.log
-from pathlib2 import Path
 
-log = commonware.log.getLogger('b.newsletter')
-
-NEWSLETTERS_CACHE_KEY = "newsletter-data"
-NEWSLETTERS_CACHE_TIMEOUT = 3600  # 1 hour
-NEWSLETTERS_LOCAL_DATA = None
-BASKET_DATA_PATH = Path(__file__).with_name('basket_data.json')
+from bedrock.newsletter.models import Newsletter
 
 
 def get_newsletters():
     """Return a dictionary with our information about newsletters.
     Keys are the internal keys we use to designate newsletters to basket.
     Values are dictionaries with the remaining newsletter information.
-
-    If we cannot get through to basket, return a default set of newsletters
-    from basket_data.json.
     """
-
-    # Get the newsletter data from basket - it's a dictionary of dictionaries
-    # Cache it for a little while (300 secs = 5 minutes)
-    data = cache.get(NEWSLETTERS_CACHE_KEY)
-    if data is None:
-        try:
-            data = basket.get_newsletters()
-        except basket.BasketException:
-            log.exception("Error getting newsletters from basket")
-            return get_local_basket_newsletters_data()
-        # Cache for an hour - newsletters very rarely change
-        cache.set(NEWSLETTERS_CACHE_KEY, data, NEWSLETTERS_CACHE_TIMEOUT)
+    data = {}
+    for nl in Newsletter.objects.all():
+        data[nl.slug] = nl.data
     return data
 
 
@@ -68,22 +45,3 @@ def custom_unsub_reason(token, reason):
         'reason': reason,
     }
     return basket.request('post', 'custom_unsub_reason', data=data)
-
-
-def get_local_basket_newsletters_data():
-    """
-    Load newsletter data from a file previously saved from basket
-
-    To update the data run the following:
-
-        $ curl https://basket.mozilla.org/news/newsletters/ > bedrock/newsletter/basket_data.json
-
-    :return: dict newsletter data
-    """
-    global NEWSLETTERS_LOCAL_DATA
-    if NEWSLETTERS_LOCAL_DATA is None:
-        with BASKET_DATA_PATH.open() as fd:
-            data = json.load(fd)
-            NEWSLETTERS_LOCAL_DATA = data['newsletters']
-
-    return NEWSLETTERS_LOCAL_DATA

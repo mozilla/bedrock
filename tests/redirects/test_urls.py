@@ -11,6 +11,7 @@ from .map_410 import URLS_410
 @pytest.mark.smoke
 @pytest.mark.headless
 @pytest.mark.nondestructive
+@pytest.mark.django_db
 @pytest.mark.parametrize('url', URLS_410)
 def test_410_url(url, base_url):
     assert_valid_url(url, base_url=base_url, status_code=requests.codes.gone)
@@ -19,6 +20,7 @@ def test_410_url(url, base_url):
 @pytest.mark.smoke
 @pytest.mark.headless
 @pytest.mark.nondestructive
+@pytest.mark.django_db
 def test_404_url(base_url):
     assert_valid_url(
         '/en-US/abck',
@@ -29,12 +31,14 @@ def test_404_url(base_url):
 @pytest.mark.smoke
 @pytest.mark.headless
 @pytest.mark.nondestructive
+@pytest.mark.django_db
 def test_x_robots_tag(base_url):
     assert_valid_url(base_url, resp_headers={'x-robots-tag': 'noodp'})
 
 
 @pytest.mark.headless
 @pytest.mark.nondestructive
+@pytest.mark.django_db
 @pytest.mark.parametrize('url', [
     '/firefox/',
     '/firefox/all/',

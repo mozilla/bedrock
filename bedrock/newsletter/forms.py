@@ -59,16 +59,6 @@ def get_lang_choices(newsletters=None):
     return sorted(lang_choices, key=itemgetter(1))
 
 
-def newsletter_title(newsletter):
-    """Given a newsletter's key, return its title if we can,
-    otherwise return the key
-    """
-    newsletters = utils.get_newsletters()
-    if newsletter in newsletters and 'title' in newsletters[newsletter]:
-        return newsletters[newsletter]['title']
-    return newsletter
-
-
 class UnlabeledTableCellRadios(widgets.RadioFieldRenderer):
     """Render radio buttons as table cells, without their labels"""
 
