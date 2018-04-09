@@ -42,7 +42,6 @@
     position: relative;
 }
 
-
 .type-head {
     @include font-size-level3;
     margin: 0 auto 1.25em auto;
@@ -150,7 +149,7 @@ $delay: 0.2s;
     max-width: $paragraph-length + ch;
 
     &:before {
-        animation: highlight-#{$paragraph-length} 0.2s linear #{$delay * 2 + 1s} 1 both;
+        animation: highlight-#{$paragraph-length} 0.2s linear #{$delay * 2 + 1s} 1 both; /* stylelint-disable-line no-unknown-animations */
     }
 
     &:after {
@@ -207,7 +206,7 @@ $delay: 0.2s;
         }
 
         .type-p {
-            animation: pop 0.2s ease-out #{$delay * 2 + 1s} 1 both;
+            animation: pop 0.2s ease-out #{$delay * 2 + 1s} 1 both; /* stylelint-disable-line no-unknown-animations */
         }
     }
 }
