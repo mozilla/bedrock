@@ -457,3 +457,16 @@ render it instead of the originally specified (locale-agnostic) template.
     Note that the presence of an L10n template (e.g.
     ``locale/de/templates/firefox/new.html``) will take precedence over
     a locale-specific template in bedrock.
+
+
+Development
+-----------
+
+In local development environments and on demo servers all ``l10n_has_tag`` calls
+evaluate to true. If the content has not been translated it will display
+the English strings.
+
+To test l10n locally you can set ``DEV=False`` in your ``.env`` file.
+
+If you are running your local server you will need to restart it after altering
+your ``.env`` file.
