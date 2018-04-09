@@ -24,10 +24,8 @@
   {{ _('Did you know? Mozilla — the maker of Firefox — fights to keep the Internet a global public resource, open and accessible to all.') }}
 {% endblock %}
 
-{% set cop = request.GET.get('v', None) %}
-
 {% block body_id %}home{% endblock %}
-{% block body_class %}lang-{{ LANG }} var-{{cop}}{% endblock %}
+{% block body_class %}lang-{{ LANG }}{% endblock %}
 
 {% block extra_meta %}
 <!-- validates bing webmaster tools -->
