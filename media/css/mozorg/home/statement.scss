@@ -50,6 +50,8 @@
 
     span {
         @include box-decoration-break(clone);
+        background-color: #000;
+        color: #fff;
         display: inline;
         padding-left: 4px;
     }
@@ -138,17 +140,17 @@ $delay: 0.2s;
     @keyframes highlight-#{$paragraph-length} {
         // animation, go from left to right
         from {
-            width: 0;
+            width: $paragraph-length + ch;
         }
         to {
-            width: $paragraph-length + ch;
+            width: 0;
         }
     }
 
     max-width: $paragraph-length + ch;
 
     &:before {
-        animation: highlight-#{$paragraph-length} 0.2s linear #{$delay + $duration} 1 both;
+        animation: highlight-#{$paragraph-length} 0.2s linear #{$delay * 2 + $duration} 1 both;
     }
 
     &:after {
@@ -170,9 +172,9 @@ $delay: 0.2s;
             word-break: break-all;
 
             &:before {
-                background-color: #000;
+                background-color: #fff;
                 bottom: 0;
-                color: #fff;
+                color: #000;
                 content: attr(data-content);
                 left: 0;
                 position: absolute;
