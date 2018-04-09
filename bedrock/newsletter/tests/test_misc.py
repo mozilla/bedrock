@@ -1,60 +1,45 @@
 import mock
 
-from basket import BasketException, errors
 from bedrock.mozorg.tests import TestCase
 from bedrock.newsletter import utils
+from bedrock.newsletter.models import Newsletter
 from bedrock.newsletter.tests import newsletters
 
 
-cache_mock = mock.Mock()
-cache_mock.get.return_value = None
 newsletters_mock = mock.Mock()
 newsletters_mock.return_value = newsletters
 
 
-@mock.patch('bedrock.newsletter.utils.cache', cache_mock)
 class TestGetNewsletters(TestCase):
-    def setUp(self):
-        utils.NEWSLETTERS_LOCAL_DATA = None
-
     def test_simple_get(self):
-        # get_newsletters returns whatever it gets back from basket without
-        # changing it at all.
-
-        # Create a silly data structure to pass around
-        test_val = {'foo': {'zoo': 'zebra'}, 'bar': {'baz': 27}}
-        with mock.patch('basket.get_newsletters') as basket_get:
-            basket_get.return_value = test_val
-            result = utils.get_newsletters()
-        self.assertEqual(test_val, result)
-
-    @mock.patch('bedrock.newsletter.utils.get_local_basket_newsletters_data')
-    @mock.patch('basket.get_newsletters')
-    def test_get_newsletters_fallback(self, mock_basket_get_newsletters, mock_glbnd):
-        # if get_newsletters() cannot reach basket, it returns the
-        # newsletters from cached json
-        mock_basket_get_newsletters.side_effect = BasketException(
-            'network error',
-            code=errors.BASKET_NETWORK_FAILURE,
+        # get_newsletters returns whatever is in the DB.
+        Newsletter.objects.create(
+            slug='dude',
+            data={
+                'title': 'Abide',
+                'languages': ['en']
+            },
         )
-        return_value = utils.get_newsletters()
-        self.assertEqual(mock_glbnd.return_value, return_value)
+        Newsletter.objects.create(
+            slug='donnie',
+            data={
+                'title': 'Walrus',
+                'languages': ['de']
+            },
+        )
+        result = utils.get_newsletters()
+        self.assertEqual(result, {
+            'dude': {
+                'title': 'Abide',
+                'languages': ['en']
+            },
+            'donnie': {
+                'title': 'Walrus',
+                'languages': ['de']
+            },
+        })
 
-    @mock.patch.object(utils, 'json')
-    def test_get_local_basket_newsletters_data(self, mock_json):
-        """Should only call json.loads once"""
-        utils.get_local_basket_newsletters_data()
-        utils.get_local_basket_newsletters_data()
-        mock_json.load.assert_called_once()
 
-    def test_get_local_basket_newsletters_data_works(self):
-        """Should load json without error"""
-        data = utils.get_local_basket_newsletters_data()
-        self.assertIn('mozilla-and-you', data)
-        self.assertIn('mozilla-foundation', data)
-
-
-@mock.patch('bedrock.newsletter.utils.cache', cache_mock)
 @mock.patch('bedrock.newsletter.utils.get_newsletters', newsletters_mock)
 class TestGetNewsletterLanguages(TestCase):
     def test_newsletter_langs(self):

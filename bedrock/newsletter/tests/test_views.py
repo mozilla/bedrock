@@ -9,7 +9,7 @@ from django.test.client import RequestFactory
 
 import basket
 from bedrock.base.urlresolvers import reverse
-from mock import ANY, DEFAULT, Mock, patch
+from mock import ANY, DEFAULT, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
@@ -23,10 +23,6 @@ from bedrock.newsletter.views import (
     unknown_address_text,
     updated,
 )
-
-
-cache_mock = Mock()
-cache_mock.get.return_value = None
 
 
 def assert_redirect(response, url):
@@ -44,7 +40,6 @@ def assert_redirect(response, url):
         (url, response['Location'])
 
 
-@patch('bedrock.newsletter.utils.cache', cache_mock)
 class TestViews(TestCase):
     def setUp(self):
         self.rf = RequestFactory()
@@ -72,7 +67,6 @@ class TestViews(TestCase):
 # Always mock basket.request to be sure we never actually call basket
 # during tests.
 @patch('basket.base.request')
-@patch('bedrock.newsletter.utils.cache', cache_mock)
 class TestExistingNewsletterView(TestCase):
     def setUp(self):
         self.token = unicode(uuid.uuid4())
@@ -431,7 +425,6 @@ class TestExistingNewsletterView(TestCase):
                          newsletters_in_order)
 
 
-@patch('bedrock.newsletter.utils.cache', cache_mock)
 class TestConfirmView(TestCase):
     def setUp(self):
         self.token = unicode(uuid.uuid4())
