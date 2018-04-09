@@ -7,6 +7,7 @@ regions:
   - tokyo
   - frankfurt
 apps:
+  - bedrock-stage
   - bedrock-dev
 integration_tests:
   oregon-b:
