@@ -7,8 +7,8 @@ regions:
   - tokyo
   - frankfurt
 apps:
-  - bedrock-dev
   - bedrock-stage
+  - bedrock-dev
 integration_tests:
   oregon-b:
     - firefox
