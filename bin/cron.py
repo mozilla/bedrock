@@ -114,6 +114,7 @@ def schedule_database_jobs():
 def schedule_file_jobs():
     @scheduled_job('interval', minutes=DB_UPDATE_MINUTES)
     def update_locales():
+        # still required even if l10n in DB due to templates in l10n repo
         call_command('l10n_update')
 
     if not LOCAL_DB_UPDATE:

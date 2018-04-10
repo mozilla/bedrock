@@ -10,7 +10,9 @@ Localization
 
 The site is fully localizable. Localization files are not shipped with the code
 distribution, but are available in a separate GitHub repository. The proper repo
-can be cloned and kept up-to-date using the ``l10n_update`` management command:
+can be cloned and kept up-to-date using the ``l10n_update`` management command
+(which should already have been done if you followed the install instructions
+and ran the ``bin/bootstrap.sh`` script):
 
 .. code-block:: console
 
@@ -20,6 +22,11 @@ If you don't already have a ``locale`` directory, this command will clone the
 git repo containing the translation files (either the dev or prod files
 depending on your ``DEV`` setting). If the folder is already present, it will
 update the repository to the latest version.
+
+By default Bedrock uses the l10n data from the SQLite database that was downloaded
+by the ``bin/bootstrap.sh`` script. If you are planning on changing the .lang files
+you should uncomment the ``DOTLANG_USE_DB=False`` line in your ``.env`` file (or
+add the line if you don't have it).
 
 .lang files
 -----------

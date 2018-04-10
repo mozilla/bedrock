@@ -1,6 +1,7 @@
 #!/bin/bash
 set -ex
 
+python manage.py l10n_update --refresh --quiet
 python manage.py update_product_details_files
 python manage.py update_security_advisories --quiet
 python manage.py update_wordpress --quiet

@@ -10,7 +10,6 @@ system.
 It caches them using the django caching library, but it could
 potentially just use thread-local variables. Caching seems safer at
 the expense of another caching layer."""
-import codecs
 import inspect
 import os
 import re
@@ -23,71 +22,38 @@ from jinja2 import Markup
 from product_details import product_details
 
 from lib.l10n_utils import translation
-from lib.l10n_utils.utils import ContainsEverything, strip_whitespace
+from lib.l10n_utils.models import LangFile
+from lib.l10n_utils.utils import (
+    ContainsEverything,
+    mail_error,
+    parse,
+    parse_tags,
+    strip_whitespace,
+)
 
 ALL_THE_THINGS = ContainsEverything()
 FORMAT_IDENTIFIER_RE = re.compile(r"""(%
                                       (?:\((\w+)\))? # Mapping key
                                       s)""", re.VERBOSE)
-TAG_REGEX = re.compile(r"^## ([\w-]+) ##")
 cache = caches['l10n']
 
 
-def parse(path, skip_untranslated=True, extract_comments=False):
-    """
-    Parse a dotlang file and return a dict of translations.
-    :param path: Absolute path to a lang file.
-    :param skip_untranslated: Exclude strings for which the ID and translation
-                              match.
-    :param extract_comments: Extract one line comments from template if True
-    :return: dict
-    """
-    trans = {}
-
-    if not os.path.exists(path):
-        return trans
-
-    with codecs.open(path, 'r', 'utf-8', errors='replace') as lines:
-        source = None
-        comment = None
-
-        for line in lines:
-            l10n_tag = None
-            if u'�' in line:
-                mail_error(path, line)
-
-            line = line.strip()
-            if not line:
-                continue
-
-            if line[0] == '#':
-                comment = line.lstrip('#').strip()
-                continue
-
-            if line[0] == ';':
-                source = line[1:]
-            elif source:
-                for tag in ('{ok}', '{l10n-extra}'):
-                    if line.lower().endswith(tag):
-                        l10n_tag = tag.strip('{}')
-                        line = line[:-len(tag)]
-                line = line.strip()
-                if skip_untranslated and source == line and l10n_tag != 'ok':
-                    continue
-                if extract_comments:
-                    trans[source] = [comment, line]
-                    comment = None
-                else:
-                    trans[source] = line
-
-    return trans
+def get_langfile_full_path(name, locale):
+    return str(settings.LOCALES_PATH.joinpath(locale, '%s.lang' % name))
 
 
-def mail_error(path, message):
-    """Email managers when an error is detected"""
-    from django.core import mail
-    subject = '%s is corrupted' % path
-    mail.mail_managers(subject, message)
+def get_translations(name, locale):
+    if settings.DOTLANG_USE_DB:
+        return LangFile.objects.get_translations(name, locale)
+    else:
+        return parse(get_langfile_full_path(name, locale))
+
+
+def get_tags(name, locale):
+    if settings.DOTLANG_USE_DB:
+        return LangFile.objects.get_tags(name, locale)
+    else:
+        return parse_tags(get_langfile_full_path(name, locale))
 
 
 def fix_case(locale):
@@ -111,12 +77,9 @@ def translate(text, files):
 
     for file_ in files:
         key = "dotlang-%s-%s" % (lang, file_)
-        rel_path = os.path.join('locale', lang, '%s.lang' % file_)
-
         trans = cache.get(key)
         if trans is None:
-            path = os.path.join(settings.ROOT, rel_path)
-            trans = parse(path)
+            trans = get_translations(file_, lang)
             cache.set(key, trans, settings.DOTLANG_CACHE)
 
         if tweaked_text in trans:
@@ -127,6 +90,7 @@ def translate(text, files):
                                'replaced text (aka %s)')
                 message = '%s\n\n%s\n%s' % (explanation, text,
                                             trans[tweaked_text])
+                rel_path = os.path.join('locale', lang, '%s.lang' % file_)
                 mail_error(rel_path, message)
                 return Markup(text)
             return Markup(trans[tweaked_text])
@@ -241,26 +205,10 @@ def lang_file_tag_set(path, lang=None):
         return ALL_THE_THINGS
 
     lang = lang or fix_case(translation.get_language())
-    rel_path = os.path.join('locale', lang, '%s.lang' % path)
-    cache_key = 'tag:%s' % rel_path
+    cache_key = 'tag:%s:%s' % (path, lang)
     tag_set = cache.get(cache_key)
     if tag_set is None:
-        tag_set = set()
-        fpath = os.path.join(settings.ROOT, rel_path)
-        try:
-            with codecs.open(fpath, 'r', 'utf-8', errors='replace') as lines:
-                for line in lines:
-                    # Filter out Byte order Mark
-                    line = line.replace(u'\ufeff', '')
-                    m = TAG_REGEX.match(line)
-                    if m:
-                        tag_set.add(m.group(1))
-                    else:
-                        # Stop at the first non-tag line.
-                        break
-        except IOError:
-            pass
-
+        tag_set = set(get_tags(path, lang))
         cache.set(cache_key, tag_set, settings.DOTLANG_CACHE)
 
     return tag_set
