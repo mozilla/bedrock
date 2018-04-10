@@ -108,6 +108,9 @@ If you are not inside a virtualenv, you can activate it by doing::
 
 If you get the error "NoneType is not iterable", you didn't check out the latest product-details. See the above section for that.
 
+Front-end assets
+~~~~~~~~~~~~~~~~
+
 Next, in a new terminal tab run gulp to watch for local file changes::
 
     $ gulp
@@ -120,6 +123,17 @@ If you have problems with gulp, or you for some reason don't want to use it you 
 
 in your ``.env`` file or otherwise set it in your environment and it will collect media for you as you make changes. The reason that this is not the preferred method is that it is much slower than using gulp.
 
+To make it easier to debug, the development environment does not bundle files. If you want to simulate production assets you can set DEBUG=False in your ``.env`` file and run `` ./manage.py collectstatic`` in the virtual environment.
+
+Legal Docs
+------------
+
+Legal docs (for example: the privacy policy) are generated from markdown files in the [legal-docs](https://github.com/mozilla/legal-docs) repo.
+
+To view them or update to a more recent version update the submodule:
+
+    $ git submodule update --init --recursive
+
 Localization
 ------------
 
@@ -131,7 +145,7 @@ you can run the following command::
 
 You can read more details about how to localize content :ref:`here<l10n>`.
 
-Feature Flipping
+Feature Flipping (aka Switches)
 ----------------
 
 Environment variables are used to configure behavior and/or features of select pages on bedrock
@@ -139,9 +153,7 @@ via a template helper function called ``switch()``. It will take whatever name y
 (must be only numbers, letters, and dashes), convert it to uppercase, convert dashes to underscores,
 and lookup that name in the environment. For example: ``switch('the-dude')`` would look for the
 environment variable ``SWITCH_THE_DUDE``. If the value of that variable is any of "on", "true", "1", or
-"yes", then it will be considered "on", otherwise it will be "off". If the environment variable ``DEV``
-is set to one of those "true" values, then all switches will be considered "on" unless they are
-explicitly "off" in the environment.
+"yes", then it will be considered "on", otherwise it will be "off".
 
 You can also supply a list of locale codes that will be the only ones for which the switch is active.
 If the page is viewed in any other locale the switch will always return ``False``, even in ``DEV``
@@ -158,6 +170,23 @@ For example::
     def home_view(request):
         title = 'Staging Home' if switch('staging-site') else 'Prod Home'
         ...
+
+Testing
+~~~~~~~
+
+If the environment variable ``DEV`` is set to a "true" value, then all switches will be considered "on" unless they are
+explicitly "off" in the environment. ``DEV`` defaults to "true" in local development and demo servers.
+
+To test switches locally:
+
+1. Set ``DEV=False`` in your ``.env`` file.
+1. Enable the switch in your ``.env`` file.
+1. Restart your web server.
+
+To configure switches for a demo branch. Follow the `configuration instructions here <http://bedrock.readthedocs.io/en/latest/pipeline.html#configuration>`_.
+
+Optimizely
+~~~~~~~~~~
 
 Currently, these switches are used to enable/disable Optimizely on many pages of the site. We only add
 the Optimizely JavaScript snippet to a page when there is an active test to minimize the security risk

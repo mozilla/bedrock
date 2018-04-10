@@ -110,6 +110,7 @@ folder you can copy any file there to match the name of your branch and modify i
 to set how it should be built by jenkins. Take the following example:
 
 .. code-block:: yaml
+
     # jenkins/branches/change-all-the-things.yml
     smoke_tests: true
     apps:
