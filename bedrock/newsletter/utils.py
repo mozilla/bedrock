@@ -8,10 +8,7 @@ def get_newsletters():
     Keys are the internal keys we use to designate newsletters to basket.
     Values are dictionaries with the remaining newsletter information.
     """
-    data = {}
-    for nl in Newsletter.objects.all():
-        data[nl.slug] = nl.data
-    return data
+    return Newsletter.objects.serialize()
 
 
 def get_languages_for_newsletters(newsletters=None):
