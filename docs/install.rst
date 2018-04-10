@@ -174,7 +174,7 @@ For example::
 Testing
 ~~~~~~~
 
-If the environment variable ``DEV`` is set to a "true" values, then all switches will be considered "on" unless they are
+If the environment variable ``DEV`` is set to a "true" value, then all switches will be considered "on" unless they are
 explicitly "off" in the environment. ``DEV`` defaults to "true" in local development and demo servers.
 
 To test switches locally:
