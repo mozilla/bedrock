@@ -10,9 +10,8 @@ newsletters_mock = mock.Mock()
 newsletters_mock.return_value = newsletters
 
 
-class TestGetNewsletters(TestCase):
-    def test_simple_get(self):
-        # get_newsletters returns whatever is in the DB.
+class TestNewsletterModel(TestCase):
+    def setUp(self):
         Newsletter.objects.create(
             slug='dude',
             data={
@@ -27,17 +26,33 @@ class TestGetNewsletters(TestCase):
                 'languages': ['de']
             },
         )
-        result = utils.get_newsletters()
-        self.assertEqual(result, {
+        self.data = {
             'dude': {
                 'title': 'Abide',
-                'languages': ['en']
+                'languages': ['en'],
             },
             'donnie': {
                 'title': 'Walrus',
-                'languages': ['de']
+                'languages': ['de'],
             },
-        })
+        }
+
+    def test_refresh_with_change(self):
+        self.data['donnie']['languages'].append('fr')
+        count = Newsletter.objects.refresh(self.data)
+        self.assertEqual(count, 2)
+        # run again to verify updated
+        count = Newsletter.objects.refresh(self.data)
+        self.assertIsNone(count)
+
+    def test_refresh_no_change(self):
+        count = Newsletter.objects.refresh(self.data)
+        self.assertIsNone(count)
+
+    def test_serialize(self):
+        # utils.get_newsletters returns Newsletter.objects.serialize()
+        result = Newsletter.objects.serialize()
+        self.assertEqual(result, self.data)
 
 
 @mock.patch('bedrock.newsletter.utils.get_newsletters', newsletters_mock)

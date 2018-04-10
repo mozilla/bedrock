@@ -17,14 +17,9 @@ class Command(BaseCommand):
         if not newsletters:
             raise CommandError('No data from basket')
 
-        Newsletter.objects.all().delete()
-        count = 0
-        for slug, data in newsletters.iteritems():
-            Newsletter.objects.create(
-                slug=slug,
-                data=data,
-            )
-            count += 1
-
+        count = Newsletter.objects.refresh(newsletters)
         if not options['quiet']:
-            print('Updated %d newsletters' % count)
+            if count:
+                print('Updated %d newsletters' % count)
+            else:
+                print('Nothing to update')
