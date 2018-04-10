@@ -6,7 +6,7 @@
 
 from django.conf import settings
 from django.core import mail
-from django.core.cache import cache
+from django.core.cache import caches
 from django.core.urlresolvers import clear_url_caches
 from django.http import HttpRequest
 from django.test.utils import override_settings
@@ -21,23 +21,30 @@ from pyquery import PyQuery as pq
 from bedrock.mozorg.tests import TestCase
 from lib.l10n_utils import render
 from lib.l10n_utils.dotlang import (_, _lazy, FORMAT_IDENTIFIER_RE, lang_file_has_tag,
-                                    lang_file_is_active, parse, translate)
+                                    lang_file_is_active, translate)
 from lib.l10n_utils.extract import extract_python
+from lib.l10n_utils.models import LangFile
+from lib.l10n_utils.utils import parse
 
 
 LANG_FILES = 'test_file'
 ROOT_PATH = Path(__file__).with_name('test_files')
 ROOT = str(ROOT_PATH)
 TEMPLATE_DIRS = [str(ROOT_PATH.joinpath('templates'))]
+LOCALES_PATH = ROOT_PATH.joinpath('locale')
 jinja_env = Jinja2.get_default().env
+cache = caches['l10n']
 
 
-@override_settings(DEV=False, LANGUAGE_CODE='en-US')
+@override_settings(DEV=False,
+                   LANGUAGE_CODE='en-US',
+                   DOTLANG_USE_DB=False,
+                   ROOT_URLCONF='lib.l10n_utils.tests.test_files.urls',
+                   LOCALES_PATH=LOCALES_PATH)
 @patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
-@patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
-@patch.object(settings, 'ROOT', ROOT)
 class TestLangFilesActivation(TestCase):
     def setUp(self):
+        cache.clear()
         clear_url_caches()
 
     def test_lang_file_is_active(self):
@@ -104,6 +111,91 @@ class TestLangFilesActivation(TestCase):
         eq_(doc('h1').text(), 'Die Lage von Mozilla')
 
 
+@override_settings(DEV=False,
+                   LANGUAGE_CODE='en-US',
+                   DOTLANG_USE_DB=True,
+                   ROOT_URLCONF='lib.l10n_utils.tests.test_files.urls',
+                   LOCALES_PATH=LOCALES_PATH)
+@patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
+@patch('lib.l10n_utils.dotlang.get_langfile_full_path')
+class TestLangFilesActivationDB(TestCase):
+    """Same tests as above, but with the DB as the source"""
+    def setUp(self):
+        cache.clear()
+        clear_url_caches()
+        LangFile.objects.refresh()
+
+    def test_lang_file_is_active(self, glfp_mock):
+        """
+        `lang_file_is_active` should return true if lang file has the
+        comment, and false otherwise.
+        """
+        ok_(lang_file_is_active('active_de_lang_file', 'de'))
+        ok_(lang_file_is_active('active_de_lang_file_bom', 'de'))
+        ok_(not lang_file_is_active('active_de_lang_file', 'es'))
+        ok_(not lang_file_is_active('inactive_de_lang_file', 'de'))
+        ok_(not lang_file_is_active('does_not_exist', 'de'))
+        glfp_mock.assert_not_called()
+
+    def test_lang_file_has_tag(self, glfp_mock):
+        """
+        `lang_file_has_tag` should return true if lang file has the
+        comment, and false otherwise.
+        """
+        ok_(lang_file_has_tag('active_de_lang_file', 'de', 'active'))
+        ok_(lang_file_has_tag('active_de_lang_file_bom', 'de', 'active'))
+        ok_(not lang_file_has_tag('active_de_lang_file', 'es', 'active'))
+        ok_(not lang_file_has_tag('inactive_de_lang_file', 'de', 'active'))
+        ok_(not lang_file_has_tag('file_does_not_exist', 'de', 'active'))
+        ok_(lang_file_has_tag('main', 'de', 'guten_tag'))
+        ok_(not lang_file_has_tag('main', 'de', 'tag_after_non_tag_lines'))
+        ok_(not lang_file_has_tag('main', 'de', 'no_such_tag'))
+        glfp_mock.assert_not_called()
+
+    def test_active_locale_not_redirected(self, glfp_mock):
+        """ Active lang file should render correctly.
+
+        Also the template has an inactive lang file manually set,
+        but that should not cause it to be inactive.
+        """
+        response = self.client.get('/de/active-de-lang-file/')
+        eq_(response.status_code, 200)
+        doc = pq(response.content)
+        eq_(doc('h1').text(), 'Die Lage von Mozilla')
+        glfp_mock.assert_not_called()
+
+    def test_inactive_locale_redirected(self, glfp_mock):
+        """ Inactive locale should redirect to en-US. """
+        response = self.client.get('/de/inactive-de-lang-file/')
+        eq_(response.status_code, 302)
+        eq_(response['location'],
+            'http://testserver/en-US/inactive-de-lang-file/')
+        response = self.client.get('/de/inactive-de-lang-file/', follow=True)
+        doc = pq(response.content)
+        eq_(doc('h1').text(), 'The State of Mozilla')
+        glfp_mock.assert_not_called()
+
+    @override_settings(DEV=True)
+    def test_inactive_locale_not_redirected_dev_true(self, glfp_mock):
+        """
+        Inactive lang file should not redirect in DEV mode.
+        """
+        response = self.client.get('/de/inactive-de-lang-file/')
+        eq_(response.status_code, 200)
+        doc = pq(response.content)
+        eq_(doc('h1').text(), 'Die Lage von Mozilla')
+        glfp_mock.assert_not_called()
+
+    def test_active_alternate_lang_file(self, glfp_mock):
+        """Template with active alternate lang file should activate from it."""
+        response = self.client.get('/de/state-of-mozilla/')
+        eq_(response.status_code, 200)
+        doc = pq(response.content)
+        eq_(doc('h1').text(), 'Die Lage von Mozilla')
+        glfp_mock.assert_not_called()
+
+
+@override_settings(DOTLANG_USE_DB=False)
 class TestDotlang(TestCase):
     def setUp(self):
         cache.clear()
@@ -193,7 +285,7 @@ class TestDotlang(TestCase):
         eq_(FORMAT_IDENTIFIER_RE.findall('%(foo_bar)s %s'),
             [('%(foo_bar)s', 'foo_bar'), ('%s', '')])
 
-    @override_settings(ROOT=ROOT, EMAIL_SUBJECT_PREFIX='[bedrock] ',
+    @override_settings(LOCALES_PATH=LOCALES_PATH, EMAIL_SUBJECT_PREFIX='[bedrock] ',
                        MANAGERS=('dude@example.com',))
     def test_format_identifier_mismatch(self):
         path = 'format_identifier_mismatch'
@@ -206,7 +298,7 @@ class TestDotlang(TestCase):
             '[bedrock] locale/fr/%s.lang is corrupted' % path)
         mail.outbox = []
 
-    @patch.object(settings, 'ROOT', ROOT)
+    @patch.object(settings, 'LOCALES_PATH', LOCALES_PATH)
     def test_format_identifier_order(self):
         """
         Test that the order in which the format identifier appears doesn't
@@ -221,7 +313,7 @@ class TestDotlang(TestCase):
 
     @patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
     @patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
-    @patch.object(settings, 'ROOT', ROOT)
+    @patch.object(settings, 'LOCALES_PATH', LOCALES_PATH)
     def test_lang_files_queried_in_order(self):
         """The more specific lang files should be searched first."""
         response = self.client.get('/de/trans-block-reload-test/')
@@ -229,7 +321,7 @@ class TestDotlang(TestCase):
         gettext_call = doc('h1')
         eq_(gettext_call.text(), 'Die Lage von Mozilla')
 
-    @patch.object(settings, 'ROOT', ROOT)
+    @patch.object(settings, 'LOCALES_PATH', LOCALES_PATH)
     def test_extract_message_tweaks_do_not_break(self):
         """
         Extraction and translation matching should tweak msgids the same.
@@ -404,9 +496,13 @@ class TestDotlang(TestCase):
 
 
 @patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
-@patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
-@patch.object(settings, 'ROOT', ROOT)
+@override_settings(DOTLANG_USE_DB=False,
+                   ROOT_URLCONF='lib.l10n_utils.tests.test_files.urls',
+                   LOCALES_PATH=LOCALES_PATH)
 class TestTranslationList(TestCase):
+    def setUp(self):
+        cache.clear()
+
     def _test(self, lang, view_name):
         """
         The context of each view should have the 'links' dictionary which
@@ -438,3 +534,51 @@ class TestTranslationList(TestCase):
 
     def test_unlocalized(self):
         self._test('en-US', 'inactive-de-lang-file')
+
+
+@override_settings(DOTLANG_USE_DB=True,
+                   ROOT_URLCONF='lib.l10n_utils.tests.test_files.urls',
+                   LOCALES_PATH=LOCALES_PATH)
+@patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
+@patch('lib.l10n_utils.dotlang.get_langfile_full_path')
+class TestTranslationListDB(TestCase):
+    """Same tests as above, but with the DB as the source"""
+    def setUp(self):
+        # Loads the DB from the .lang files in LOCALES_PATH dir
+        cache.clear()
+        LangFile.objects.refresh()
+
+    def _test(self, lang, view_name):
+        """
+        The context of each view should have the 'links' dictionary which
+        contains the canonical and alternate URLs of the page.
+        """
+        request = HttpRequest()
+        request.path = '/' + lang + '/' + view_name + '/'
+        request.locale = lang
+        template = view_name.replace('-', '_') + '.html'
+        with patch('lib.l10n_utils.django_render') as django_render:
+            render(request, template, {})
+        translations = django_render.call_args[0][2]['translations']
+
+        # The en-US locale is always active
+        eq_(translations['en-US'], product_details.languages['en-US']['native'])
+        # The de locale is active depending on the template
+        if view_name == 'active-de-lang-file':
+            eq_(translations['de'], product_details.languages['de']['native'])
+        else:
+            eq_('de' in translations, False)
+        # The fr locale is inactive
+        eq_('fr' in translations, False)
+
+    def test_localized_en(self, glfp_mock):
+        self._test('en-US', 'active-de-lang-file')
+        glfp_mock.assert_not_called()
+
+    def test_localized_de(self, glfp_mock):
+        self._test('de', 'active-de-lang-file')
+        glfp_mock.assert_not_called()
+
+    def test_unlocalized(self, glfp_mock):
+        self._test('en-US', 'inactive-de-lang-file')
+        glfp_mock.assert_not_called()

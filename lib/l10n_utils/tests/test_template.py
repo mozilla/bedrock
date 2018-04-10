@@ -18,7 +18,7 @@ from bedrock.mozorg.tests import TestCase
 
 
 ROOT_PATH = Path(__file__).with_name('test_files')
-ROOT = str(ROOT_PATH)
+LOCALES_PATH = ROOT_PATH.joinpath('locale')
 TEMPLATE_DIRS = [str(ROOT_PATH.joinpath('templates'))]
 jinja_env = Jinja2.get_default().env
 
@@ -38,7 +38,7 @@ class TestL10nBlocks(TestCase):
 
 
 @patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
-@override_settings(ROOT=ROOT)
+@override_settings(LOCALES_PATH=LOCALES_PATH, DOTLANG_USE_DB=False)
 class TestTransBlocks(TestCase):
     urls = 'lib.l10n_utils.tests.test_files.urls'
 
@@ -62,7 +62,7 @@ class TestTransBlocks(TestCase):
 
 
 @patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
-@override_settings(ROOT=ROOT)
+@override_settings(LOCALES_PATH=LOCALES_PATH, DOTLANG_USE_DB=False)
 class TestTemplateLangFiles(TestCase):
     urls = 'lib.l10n_utils.tests.test_files.urls'
 
