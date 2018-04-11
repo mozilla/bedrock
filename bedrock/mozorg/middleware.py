@@ -8,6 +8,7 @@ import time
 
 from django.conf import settings
 from django.core.exceptions import MiddlewareNotUsed
+from django.utils.cache import add_never_cache_headers
 
 from django_statsd.middleware import GraphiteRequestTimingMiddleware
 
@@ -75,6 +76,6 @@ class VaryNoCacheMiddleware(object):
                                        settings.VARY_NOCACHE_EXEMPT_URL_PREFIXES):
                 del response['vary']
                 del response['expires']
-                response['Cache-Control'] = 'max-age=0'
+                add_never_cache_headers(response)
 
         return response
