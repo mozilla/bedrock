@@ -97,9 +97,7 @@ class FraudReportForm(forms.Form):
             }
         )
     )
-    input_attachment = forms.FileField(
-        required=False,
-    )
+    input_attachment = forms.ImageField(required=False)
     input_attachment_desc = forms.CharField(
         max_length=254,
         required=False,
@@ -128,19 +126,17 @@ class FraudReportForm(forms.Form):
     office_fax = forms.CharField(widget=HoneyPotWidget, required=False)
 
     def clean_input_attachment(self):
-        cleaned_data = super(FraudReportForm, self).clean()
-        attachment = cleaned_data.get("input_attachment")
+        attachment = self.cleaned_data.get("input_attachment")
 
         if attachment:
-            if attachment._size > FRAUD_REPORT_FILE_SIZE_LIMIT:
+            if attachment.size > FRAUD_REPORT_FILE_SIZE_LIMIT:
                 raise forms.ValidationError(
                     _("Attachment must not exceed 5MB"))
 
         return attachment
 
     def clean_office_fax(self):
-        cleaned_data = super(FraudReportForm, self).clean()
-        honeypot = cleaned_data.pop('office_fax', None)
+        honeypot = self.cleaned_data.pop('office_fax', None)
 
         if honeypot:
             raise forms.ValidationError(
