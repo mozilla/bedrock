@@ -2,14 +2,17 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+from io import BytesIO
 
 from django.core import mail
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test.client import RequestFactory
 
-from bedrock.base.urlresolvers import reverse
 from mock import Mock, patch
 from nose.tools import eq_, ok_
+from PIL import Image
 
+from bedrock.base.urlresolvers import reverse
 from bedrock.legal import forms as legal_forms, views as legal_views
 from bedrock.legal.forms import FraudReportForm
 from bedrock.legal.views import submit_form
@@ -34,6 +37,16 @@ class TestFraudReport(TestCase):
 
     def tearDown(self):
         mail.outbox = []
+
+    def _create_image_file(self):
+        io = BytesIO()
+        image = Image.new('RGB', (200, 200), 'white')
+        image.save(io, 'PNG')
+        io.seek(0)
+        return SimpleUploadedFile('image.png', io.read(), 'image/png')
+
+    def _create_text_file(self):
+        return SimpleUploadedFile('stuff.txt', 'This is not an image', 'text/plain')
 
     def test_view_post_valid_data(self):
         """
@@ -125,26 +138,35 @@ class TestFraudReport(TestCase):
         Form should be valid when attachment under/at size limit.
         """
         # attachment within size limit
-        mock_attachment = Mock(_size=legal_forms.FRAUD_REPORT_FILE_SIZE_LIMIT)
-
+        mock_attachment = self._create_image_file()
         form = FraudReportForm(self.data, {'input_attachment': mock_attachment})
-
         # make sure form is valid
         ok_(form.is_valid())
 
-    def test_form_invalid_attachement(self):
+    def test_form_invalid_attachement_type(self):
+        """
+        Form should be invalid and contain attachment errors when attachment
+        is not an image.
+        """
+        # attachment within size limit
+        mock_attachment = self._create_text_file()
+        form = FraudReportForm(self.data, {'input_attachment': mock_attachment})
+        # make sure form is not valid
+        eq_(False, form.is_valid())
+        # make sure attachment errors are in form
+        self.assertIn('input_attachment', form.errors)
+
+    def test_form_invalid_attachement_size(self):
         """
         Form should be invalid and contain attachment errors when attachment
         over size limit.
         """
         # attachment within size limit
-        mock_attachment = Mock(
-            _size=(legal_forms.FRAUD_REPORT_FILE_SIZE_LIMIT + 1))
-
+        mock_attachment = self._create_image_file()
         form = FraudReportForm(self.data, {'input_attachment': mock_attachment})
-
-        # make sure form is not valid
-        eq_(False, form.is_valid())
+        with patch.object(legal_forms, 'FRAUD_REPORT_FILE_SIZE_LIMIT', 100):
+            # make sure form is not valid
+            eq_(False, form.is_valid())
 
         # make sure attachment errors are in form
         self.assertIn('input_attachment', form.errors)
@@ -181,29 +203,24 @@ class TestFraudReport(TestCase):
         """
         Make sure email is sent with attachment.
         """
-        mock_attachment = Mock(
-            content_type='text/plain',
-            _size=(legal_forms.FRAUD_REPORT_FILE_SIZE_LIMIT))
-
-        # make sure name attribute is treated as string
-        mock_attachment.name = 'img.jpg'
+        mock_attachment = self._create_image_file()
 
         form = FraudReportForm(self.data, {'input_attachment': mock_attachment})
 
         # submit form
         request = self.factory.get('/')
-        submit_form(request, form)
+        ret = submit_form(request, form)
+        self.assertFalse(ret['form_error'])
 
         # make sure attachment was attached
+        mock_attachment.seek(0)
         mock_email_message.return_value.attach.assert_called_once_with(
-            'img.jpg',
-            mock_attachment.read.return_value,
-            'text/plain')
-
-        mock_attachment.read.assert_called_once_with()
+            mock_attachment.name,
+            mock_attachment.read(),
+            mock_attachment.content_type)
 
         # make sure email was sent
-        mock_email_message.return_value.send.assert_called_once_with()
+        mock_email_message.return_value.send.assert_called_once()
 
         # make sure email values are correct
         mock_email_message.assert_called_once_with(
