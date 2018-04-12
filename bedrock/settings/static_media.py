@@ -16,11 +16,11 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/about-bundle.css',
     },
-    'about-base': {
+    'about-base-resp': {
         'source_filenames': (
             'css/mozorg/about-base.less',
         ),
-        'output_filename': 'css/about-base-bundle.css',
+        'output_filename': 'css/about-base-resp-bundle.css',
     },
     'about-leadership': {
         'source_filenames': (
