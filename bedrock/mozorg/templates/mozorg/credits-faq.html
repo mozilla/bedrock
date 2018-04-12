@@ -1,15 +1,10 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
-{% extends "mozorg/base-resp.html" %}
+{% extends "base-pebbles-basic.html" %}
 
 {% block page_title %}Credits FAQ{% endblock %}
-{% block body_id %}credits-faq{% endblock %}
-{% block body_class %}sand{% endblock %}
-
-{% block page_css %}
-  {% stylesheet 'credits-faq' %}
-{% endblock %}
+{% set body_id = 'credits-faq' %}
 
 {# Bug 1401728: /credits/ is a supported non-locale, so we need to omit the LANG from the canonical URL. #}
 {% set canonical_url = settings.CANONICAL_URL + '/credits/faq/' %}
@@ -21,13 +16,8 @@
 
 {% block page_og_url %}{{ canonical_url }}{% endblock %}
 
-{% block content %}
-
-<article class="container">
-
-<div class="main-column">
-
-<h1>Credits FAQ</h1>
+{% block article %}
+<h1><span class="highlight">Credits FAQ</span></h1>
 
 <p>The appropriate giving of credit can be a controversial subject in free software projects. At Mozilla, we do it with a <a href="{{ url('mozorg.credits') }}">single global credits list</a>.</p>
 
@@ -63,7 +53,6 @@
 
 <p>Additions are normally done in batches, usually a few months apart. You will receive an email when your name is added and you will also see your name and citation in <a href="https://github.com/mozilla/community-data/commits/master/credits/names.csv">the logs</a>. If your application does not meet the criteria mentioned above, your name will not be added. You are always welcome to re-apply once you have a stronger citation and further evidence.</p>
 
-</div>
-
-</article>
 {% endblock %}
+
+{% block newsletter %}{% endblock %}

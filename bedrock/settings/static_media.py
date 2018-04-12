@@ -47,12 +47,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/credits-bundle.css',
     },
-    'credits-faq': {
-        'source_filenames': (
-            'css/mozorg/credits-faq.less',
-        ),
-        'output_filename': 'css/credits-faq-bundle.css',
-    },
     'commit-access-policy': {
         'source_filenames': (
             'css/mozorg/commit-access-policy.less',
