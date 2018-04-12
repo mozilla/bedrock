@@ -24,7 +24,10 @@ $color-photon-blue: #0099db;
 $color-gradient-light: #9229ff;
 $color-gradient-dark: #4f33d8;
 
-$mq-desktop-super-wide: 'only screen and (min-width: 1700px)';
+$mq-desktop-super-wide: 'screen and (min-width: 1700px) and (min-height: 800px)';
+$mq-desktop-tallish: '#{$mq-desktop} and (min-height: 650px)';
+$mq-desktop-tall: '#{$mq-desktop} and (min-height: 750px)';
+$mq-desktop-wide-tall: '#{$mq-desktop-wide} and (min-height: 800px)';
 
 #outer-wrapper {
     @include open-sans();
@@ -133,7 +136,7 @@ $mq-desktop-super-wide: 'only screen and (min-width: 1700px)';
 
     @media #{$mq-desktop} {
         h1 {
-            @include font-size(140px);
+            @include font-size(120px);
             line-height: 0.9;
 
             br {
@@ -156,17 +159,60 @@ $mq-desktop-super-wide: 'only screen and (min-width: 1700px)';
 
     @media #{$mq-desktop-wide} {
         h1 {
-            @include font-size(170px);
+            @include font-size(140px);
         }
     }
 }
 
-@supports (background-clip: text) or (-webkit-background-clip: text) {
-    .intro h1 {
-        background: linear-gradient(90deg, $color-gradient-light 30%, $color-gradient-dark 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
+@supports (height: 100vh) {
+    .intro {
+        @media #{$mq-desktop-tallish} {
+            box-sizing: border-box;
+            height: 88vh;
+
+            h1 {
+                @include font-size(100px);
+            }
+
+            .content-wrapper {
+                height: 100%;
+            }
+
+            .content {
+                align-items: center;
+                display: flex;
+                height: 100%;
+                width: 100%;
+            }
+
+            .logo {
+                height: 110px;
+                width: 110px;
+            }
+        }
+
+        @media #{$mq-desktop-tall} {
+            h1 {
+                @include font-size(120px);
+            }
+
+            .logo {
+                height: 132px;
+                width: 132px;
+            }
+        }
+
+        @media #{$mq-desktop-wide} {
+            h1 {
+                @include font-size(100px);
+            }
+        }
+
+        @media #{$mq-desktop-wide-tall} {
+            h1 {
+                @include font-size(140px);
+            }
+        }
     }
 }
 
@@ -177,7 +223,7 @@ $mq-desktop-super-wide: 'only screen and (min-width: 1700px)';
         a.button,
         a.button:link,
         a.button:visited {
-            @include font-size(20px);
+            @include font-size(18px);
         }
     }
 
@@ -186,7 +232,7 @@ $mq-desktop-super-wide: 'only screen and (min-width: 1700px)';
         a.button,
         a.button:link,
         a.button:visited {
-            @include font-size(24px);
+            @include font-size(20px);
         }
     }
 }
