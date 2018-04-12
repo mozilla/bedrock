@@ -5,16 +5,16 @@
 {% extends "mozorg/about-base.html" %}
 
 {% block page_title %}{{ _('Super-Review Policy') }}{% endblock %}
-{% block body_id %}reviewers{% endblock %}
+{% set body_id = "reviewers" %}
 
 {% block article %}
-<h1 class="title-shadow-box">{{ self.page_title() }}</h1>
+<h1><span class="highlight">{{ self.page_title() }}</span></h1>
 <p>{{ _('The super-reviewers group is a set of senior, experienced hackers who can add value across the codebase in some specific ways separate from domain expertise.') }}</p>
 <p>{{ _('A review from a super-reviewer is required for certain types of changes for <u>all</u> code residing in <a href="%(mc)s">mozilla-central</a> and <a href="%(cc)s">comm-central</a> (and all release branches based on those repositories) unless explicitly exempted in the Exceptions section below. Super-review is required in addition to a appropriate module owner or peer review. This means that one reviewer cannot provide both review and super-review on a single patch.')|format(mc='https://developer.mozilla.org/docs/mozilla-central', cc='https://developer.mozilla.org/docs/comm-central') }}</p>
 
 <section>
   <h2>{{ _('What needs super-review?') }}</h2>
-  <dl class="simple">
+  <dl class="prose">
     <dt>{{ _('Significant architectual refactoring') }}</dt>
     <dd>{{ _('All changes that involve significant changes to how code works and interacts must be submitted for super-review. Code design is hard, and getting more input helps us in the areas of maintainability.') }}</dd>
     <dt>{{ _('Any change to any API or pseudo-API') }}</dt>
@@ -44,7 +44,7 @@
 <section id="the-super-reviewers">
   <h2>{{ _('Meet the super-reviewers') }}</h2>
   <p>{{ _('Here are the strong hackers enlisted by mozilla.org for universal code review coverage:') }}</p>
-  <ul>
+  <ul class="prose">
     <li>David Bienvenu (bienvenu@nventure.com; mailnews)</li>
     <li>Brendan Eich (brendan@mozilla.org; js, catch-all)</li>
     <li>Benjamin Smedberg (benjamin@smedbergs.us; build, docshell, embedding, ipc, toolkit, xpcom)</li>
@@ -77,11 +77,11 @@
     <li>Vladimir Vukicevic (vladimir@pobox.com; gfx, widget, toolkit, storage, canvas, browser, layers)</li>
   </ul>
   <p>{{ _('Here is the list inverted to index by area, sorting by primary or most-expert reviewer. Super-review does not require domain expertise (module owners and peers supply that, usually), so the areas below are not pigeon-holes — you can solicit a super-review from any reviewer on the list, but using area as a guide will get quicker results in the typical case.') }}</p>
-  <dl class="simple">
+  <dl class="prose">
     <dt>browser</dt>
     <dd>gavin.sharp@gmail.com, robert.bugzilla@gmail.com, dtownsend@mozilla.com, mconnor@mozilla.com, vladimir@pobox.com</dd>
     <dt>cache</dt>
-    <dd><em>vacant</em></dd> 
+    <dd><em>vacant</em></dd>
     <dt>caps</dt>
     <dd>mrbkap@gmail.com</dd>
     <dt>composer</dt>
@@ -135,7 +135,7 @@
     <dt>xpconnect</dt>
     <dd>shaver@mozilla.org, brendan@mozilla.org, mrbkap@gmail.com</dd>
     <dt>xpfe</dt>
-    <dd>neil@httl.net, jag@tty.nl</dd> 
+    <dd>neil@httl.net, jag@tty.nl</dd>
     <dt>xpinstall</dt>
     <dd>dveditz@mozilla.com</dd>
     <dt>xul, xbl</dt>

@@ -5,11 +5,11 @@
 {% extends "mozorg/about-base.html" %}
 
 {% block page_title %}{{ _('Community Participation Guidelines') }}{% endblock %}
-{% block body_id %}participation-guidelines{% endblock %}
+{% set body_id = "participation-guidelines" %}
 
 
 {% block article %}
-<h1 class="title-shadow-box">{{ _('Mozilla Community Participation Guidelines') }}</h1>
+<h1><span class="highlight">{{ _('Mozilla Community Participation Guidelines') }}</span></h1>
 <h4>{{ _('Version 2.3 – Updated May 16, 2017') }}</h4>
 
 <section id="introduction">

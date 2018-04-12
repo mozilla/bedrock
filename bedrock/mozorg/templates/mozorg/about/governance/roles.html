@@ -5,11 +5,11 @@
 {% extends "mozorg/about-base.html" %}
 
 {% block page_title %}{{ _('Roles and Leadership') }}{% endblock %}
-{% block body_id %}about-governance-roles{% endblock %}
+{% set body_id = "about-governance-roles" %}
 
 
 {% block article %}
-<h1 class="title-shadow-box">{{_('Mozilla Roles and Leadership')}}</h1>
+<h1><span class="highlight">{{_('Mozilla Roles and Leadership')}}</span></h1>
 
 <p>{{_('The Mozilla project is governed by a virtual management team made up of experts from various parts of the community. Some people with leadership roles are employed to work on Mozilla and others are not. Leadership roles are granted based on how active an individual is within the community as well as the quality and nature of his or her contributions. This meritocracy is a resilient and effective way to guide our global community. The different community leadership roles include:')}} </p>
 
