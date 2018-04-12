@@ -58,7 +58,7 @@ $mq-desktop-super-wide: 'only screen and (min-width: 1700px)';
 
     h1,
     h2 {
-        font-family: 'ITC Franklin Gothic LT', sans-serif;
+        font-family: 'ITC Franklin Gothic LT', Impact, Haettenschweiler, "Franklin Gothic Bold", "Helvetica Inserat", arial, sans-serif;
         font-weight: normal;
         margin-bottom: 0;
         text-transform: uppercase;
@@ -210,7 +210,7 @@ $mq-desktop-super-wide: 'only screen and (min-width: 1700px)';
 
     h3 {
         @include font-size-level2;
-        font-family: 'ITC Franklin Gothic LT';
+        font-family: 'ITC Franklin Gothic LT', Impact, Haettenschweiler, "Franklin Gothic Bold", "Helvetica Inserat", arial, sans-serif;
         margin-bottom: 20px;
         text-transform: uppercase;
 
