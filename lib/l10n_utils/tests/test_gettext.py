@@ -8,6 +8,7 @@ import os
 
 from django.conf import settings
 from django.core.cache import caches
+from django.test import TestCase
 from django.test.utils import override_settings
 
 from mock import ANY, MagicMock, Mock, patch
@@ -18,7 +19,6 @@ from lib.l10n_utils.gettext import (_append_to_lang_file, langfiles_for_path,
                                     po_msgs, pot_to_langfiles, template_is_active,
                                     _get_template_tag_set, template_has_tag)
 from lib.l10n_utils.tests import TempFileMixin
-from bedrock.mozorg.tests import TestCase
 
 cache = caches['l10n']
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
