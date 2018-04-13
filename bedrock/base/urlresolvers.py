@@ -98,16 +98,12 @@ class Prefixer(object):
         user's Accept-Language header to determine which is best. This
         mostly follows the RFCs but read bug 439568 for details.
         """
-        if 'lang' in self.request.GET:
-            lang = self.request.GET['lang'].lower()
-            if lang in FULL_LANGUAGE_MAP:
-                return FULL_LANGUAGE_MAP[lang]
-
-        if self.request.META.get('HTTP_ACCEPT_LANGUAGE'):
-            best = self.get_best_language(
-                self.request.META['HTTP_ACCEPT_LANGUAGE'])
+        accept_lang = self.request.META.get('HTTP_ACCEPT_LANGUAGE')
+        if accept_lang:
+            best = self.get_best_language(accept_lang)
             if best:
                 return best
+
         return settings.LANGUAGE_CODE
 
     def get_best_language(self, accept_lang):

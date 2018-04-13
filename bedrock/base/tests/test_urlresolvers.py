@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from django.conf import settings
 from django.conf.urls import patterns, url
 from django.test import TestCase
 from django.test.client import RequestFactory
@@ -7,7 +6,7 @@ from django.test.utils import override_settings
 
 from bedrock.base.urlresolvers import find_supported, reverse, split_path, Prefixer
 from mock import patch, Mock
-from nose.tools import eq_, ok_
+from nose.tools import eq_
 
 
 # split_path tests use a test generator, which cannot be used inside of a
@@ -72,30 +71,6 @@ class TestPrefixer(TestCase):
         request = self.factory.get('/')
         self.assertFalse('lang' in request.GET)
         self.assertFalse(request.META.get('HTTP_ACCEPT_LANGUAGE'))
-        prefixer = Prefixer(request)
-        eq_(prefixer.get_language(), 'en-US')
-
-    @override_settings(LANGUAGE_URL_MAP={'en-us': 'en-US', 'de': 'de'})
-    def test_get_language_valid_lang_param(self):
-        """
-        Should return lang param value if it is in settings.LANGUAGE_URL_MAP
-        """
-        request = self.factory.get('/?lang=de')
-        eq_(request.GET.get('lang'), 'de')
-        ok_('de' in settings.LANGUAGE_URL_MAP)
-        prefixer = Prefixer(request)
-        eq_(prefixer.get_language(), 'de')
-
-    @override_settings(LANGUAGE_CODE='en-US',
-                       LANGUAGE_URL_MAP={'en-us': 'en-US'})
-    def test_get_language_invalid_lang_param(self):
-        """
-        Should return default set by settings.LANGUAGE_CODE if lang
-        param value is not in settings.LANGUAGE_URL_MAP
-        """
-        request = self.factory.get('/?lang=de')
-        ok_('lang' in request.GET)
-        self.assertFalse('de' in settings.LANGUAGE_URL_MAP)
         prefixer = Prefixer(request)
         eq_(prefixer.get_language(), 'en-US')
 
