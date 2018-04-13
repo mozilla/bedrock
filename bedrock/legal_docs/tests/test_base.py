@@ -12,7 +12,7 @@ from nose.tools import eq_
 
 from bedrock.mozorg.tests import TestCase
 
-from . import views
+from bedrock.legal_docs import views
 
 
 class TestLoadLegalDoc(TestCase):
