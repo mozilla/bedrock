@@ -11,10 +11,9 @@ from warnings import warn
 from django.conf import settings
 from django.core.exceptions import MiddlewareNotUsed
 from django.http import HttpResponsePermanentRedirect, HttpResponse
-from django.utils.encoding import smart_str, force_text
+from django.utils.encoding import force_text
 
 from . import urlresolvers
-from .templatetags.helpers import urlparams
 from lib.l10n_utils import translation
 
 
@@ -31,28 +30,10 @@ class LocaleURLMiddleware(object):
                  "loaded. Consider removing bedrock.base.middleware."
                  "LocaleURLMiddleware from your MIDDLEWARE_CLASSES setting.")
 
-        self.exempt_urls = getattr(settings, 'FF_EXEMPT_LANG_PARAM_URLS', ())
-
-    def _is_lang_change(self, request):
-        """Return True if the lang param is present and URL isn't exempt."""
-        if 'lang' not in request.GET:
-            return False
-
-        return not any(request.path.endswith(url) for url in self.exempt_urls)
-
     def process_request(self, request):
         prefixer = urlresolvers.Prefixer(request)
         urlresolvers.set_url_prefix(prefixer)
         full_path = prefixer.fix(prefixer.shortened_path)
-
-        if self._is_lang_change(request):
-            # Blank out the locale so that we can set a new one. Remove lang
-            # from the query params so we don't have an infinite loop.
-            prefixer.locale = ''
-            new_path = prefixer.fix(prefixer.shortened_path)
-            query = dict((smart_str(k), request.GET[k]) for k in request.GET)
-            query.pop('lang')
-            return HttpResponsePermanentRedirect(urlparams(new_path, **query))
 
         if full_path != request.path:
             query_string = request.META.get('QUERY_STRING', '')

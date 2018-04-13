@@ -522,8 +522,8 @@ def new(request):
         thanks_url = reverse('firefox.download.thanks')
         query_string = request.META.get('QUERY_STRING', '')
         if query_string:
-            done_url = '?'.join([thanks_url, force_text(query_string, errors='ignore')])
-        return HttpResponsePermanentRedirect(done_url)
+            thanks_url = '?'.join([thanks_url, force_text(query_string, errors='ignore')])
+        return HttpResponsePermanentRedirect(thanks_url)
     # if no/incorrect scene specified, show scene 1
     else:
         if lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':

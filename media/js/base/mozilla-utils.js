@@ -37,17 +37,24 @@ if (typeof Mozilla === 'undefined') {
         });
     };
 
+    Utils.switchPathLanguage = function(location, newLang) {
+        // get path without locale
+        var urlpath = location.pathname.slice(1).split('/').slice(1).join('/');
+        return '/' + newLang + '/' + urlpath + location.search;
+    };
+
     // language switcher
     Utils.initLangSwitcher = function() {
         var $language = $('#page-language-select');
         var previousLanguage = $language.val();
         $language.on('change', function() {
+            var newLanguage = $language.val();
             window.dataLayer.push({
                 'event': 'change-language',
-                'languageSelected': $language.val(),
+                'languageSelected': newLanguage,
                 'previousLanguage': previousLanguage
             });
-            $('#lang_form').attr('action', window.location.hash || '#').submit();
+            Utils.doRedirect(Utils.switchPathLanguage(window.location, newLanguage));
         });
     };
 
