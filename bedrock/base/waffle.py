@@ -3,7 +3,7 @@ Replacement library (function really) for Waffle that uses environment variables
 """
 from django.conf import settings
 
-from decouple import config
+from bedrock.base.waffle_config import config
 
 
 def switch(name):
@@ -20,5 +20,5 @@ def switch(name):
     would check for an environment variable called `SWITCH_DUDE_AND_WALTER`. The string from the
     `switch()` call is converted to uppercase and dashes replaced with underscores.
     """
-    env_name = 'SWITCH_' + name.upper().replace('-', '_')
-    return config(env_name, default=settings.DEV, cast=bool)
+    env_name = name.upper().replace('-', '_')
+    return config(env_name, default=str(settings.DEV), parser=bool, namespace='SWITCH')
