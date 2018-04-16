@@ -7,9 +7,10 @@ from urllib import urlencode
 
 from django.conf import settings
 
-from decouple import Csv, config
+from everett.manager import ListOf
 from product_details import ProductDetails
 
+from bedrock.base.waffle import config
 from lib.l10n_utils.dotlang import _lazy as _
 
 
@@ -237,8 +238,8 @@ class FirefoxDesktop(_ProductDetails):
 
         # Bug 1345467 - Only allow specifically configured funnelcake builds
         if funnelcake_id:
-            fc_platforms = config('FUNNELCAKE_%s_PLATFORMS' % funnelcake_id, default='', cast=Csv())
-            fc_locales = config('FUNNELCAKE_%s_LOCALES' % funnelcake_id, default='', cast=Csv())
+            fc_platforms = config('FUNNELCAKE_%s_PLATFORMS' % funnelcake_id, default='', parser=ListOf(str))
+            fc_locales = config('FUNNELCAKE_%s_LOCALES' % funnelcake_id, default='', parser=ListOf(str))
             include_funnelcake_param = platform in fc_platforms and _locale in fc_locales
 
         # Check if direct download link has been requested
