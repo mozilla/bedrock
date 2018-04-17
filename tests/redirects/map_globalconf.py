@@ -239,7 +239,7 @@ URLS = flatten((
     url_test('/en-US/projects/calendar/random/stuff/', 'https://www.thunderbird.net/calendar/'),
 
     # bug 1388914
-    url_test('/thunderbird/', 'https://www.thunderbird.net/'),
+    url_test('/thunderbird{,/}', 'https://www.thunderbird.net/'),
     url_test('/thunderbird/channel/', 'https://www.thunderbird.net/channel/'),
     url_test('/thunderbird/features/', 'https://www.thunderbird.net/features/'),
     url_test('/thunderbird/52.6.0/releasenotes/', 'https://www.thunderbird.net/thunderbird/52.6.0/releasenotes/'),
