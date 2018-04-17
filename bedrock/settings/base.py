@@ -11,9 +11,10 @@ from os.path import abspath
 from django.utils.functional import lazy
 
 import dj_database_url
-from decouple import Csv, config
+from everett.manager import ListOf
 from pathlib2 import Path
 
+from bedrock.base.config_manager import config
 from .static_media import PIPELINE_CSS, PIPELINE_JS  # noqa
 
 
@@ -27,10 +28,10 @@ def path(*args):
 
 
 # Is this a dev instance?
-DEV = config('DEV', cast=bool, default=False)
-PROD = config('PROD', cast=bool, default=False)
+DEV = config('DEV', parser=bool, default='false')
+PROD = config('PROD', parser=bool, default='false')
 
-DEBUG = config('DEBUG', cast=bool, default=False)
+DEBUG = config('DEBUG', parser=bool, default='false')
 
 DATABASES = {
     'default': dj_database_url.parse('sqlite:///bedrock.db'),
@@ -38,7 +39,7 @@ DATABASES = {
 
 CACHES = config(
     'CACHES',
-    cast=json.loads,
+    parser=json.loads,
     default=json.dumps(
         {'default': {
             'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
@@ -82,7 +83,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-USE_ETAGS = config('USE_ETAGS', default=not DEBUG, cast=bool)
+USE_ETAGS = config('USE_ETAGS', default=str(not DEBUG), parser=bool)
 
 # just here so Django doesn't complain
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
@@ -310,9 +311,9 @@ EXTRA_INDEX_URLS = [
 ALT_CANONICAL_PATHS = {}
 
 ALLOWED_HOSTS = config(
-    'ALLOWED_HOSTS', cast=Csv(),
+    'ALLOWED_HOSTS', parser=ListOf(str),
     default='www.mozilla.org,www.ipv6.mozilla.org,www.allizom.org')
-ALLOWED_CIDR_NETS = config('ALLOWED_CIDR_NETS', default='', cast=Csv())
+ALLOWED_CIDR_NETS = config('ALLOWED_CIDR_NETS', default='', parser=ListOf(str))
 
 # The canonical, production URL without a trailing slash
 CANONICAL_URL = 'https://www.mozilla.org'
@@ -359,8 +360,8 @@ PIPELINE = {
     'CLEANCSS_BINARY': config('PIPELINE_CLEANCSS_BINARY',
                               default=path('node_modules', '.bin', 'cleancss')),
     'CLEANCSS_ARGUMENTS': config('PIPELINE_CLEANCSS_ARGUMENTS', default='--compatibility ie7'),
-    'PIPELINE_ENABLED': config('PIPELINE_ENABLED', not DEBUG, cast=bool),
-    'PIPELINE_COLLECTOR_ENABLED': config('PIPELINE_COLLECTOR_ENABLED', not DEBUG, cast=bool),
+    'PIPELINE_ENABLED': config('PIPELINE_ENABLED', default=str(not DEBUG), parser=bool),
+    'PIPELINE_COLLECTOR_ENABLED': config('PIPELINE_COLLECTOR_ENABLED', default=str(not DEBUG), parser=bool),
 }
 
 
@@ -396,15 +397,15 @@ PUENTE = {
 }
 
 HOSTNAME = platform.node()
-DEIS_APP = config('DEIS_APP', default=None)
-DEIS_DOMAIN = config('DEIS_DOMAIN', default=None)
+DEIS_APP = config('DEIS_APP', default='')
+DEIS_DOMAIN = config('DEIS_DOMAIN', default='')
 ENABLE_HOSTNAME_MIDDLEWARE = config('ENABLE_HOSTNAME_MIDDLEWARE',
-                                    default=bool(DEIS_APP), cast=bool)
+                                    default=str(bool(DEIS_APP)), parser=bool)
 ENABLE_VARY_NOCACHE_MIDDLEWARE = config('ENABLE_VARY_NOCACHE_MIDDLEWARE',
-                                        default=True, cast=bool)
+                                        default='true', parser=bool)
 # set this to enable basic auth for the entire site
 # e.g. BASIC_AUTH_CREDS="thedude:thewalrus"
-BASIC_AUTH_CREDS = config('BASIC_AUTH_CREDS', default=None)
+BASIC_AUTH_CREDS = config('BASIC_AUTH_CREDS', default='')
 
 MIDDLEWARE_CLASSES = [
     'allow_cidr.middleware.AllowCIDRMiddleware',
@@ -425,7 +426,7 @@ MIDDLEWARE_CLASSES = [
     'bedrock.mozorg.middleware.CacheMiddleware',
 ]
 
-ENABLE_CSP_MIDDLEWARE = config('ENABLE_CSP_MIDDLEWARE', default=True, cast=bool)
+ENABLE_CSP_MIDDLEWARE = config('ENABLE_CSP_MIDDLEWARE', default='true', parser=bool)
 if ENABLE_CSP_MIDDLEWARE:
     MIDDLEWARE_CLASSES.append('csp.middleware.CSPMiddleware')
 
@@ -508,18 +509,18 @@ SESSION_COOKIE_SECURE = not DEBUG
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
 # legacy setting. backward compat.
-DISABLE_SSL = config('DISABLE_SSL', default=True, cast=bool)
+DISABLE_SSL = config('DISABLE_SSL', default='true', parser=bool)
 # SecurityMiddleware settings
-SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', default='0', cast=int)
+SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', default='0', parser=int)
 SECURE_HSTS_INCLUDE_SUBDOMAINS = False
-SECURE_BROWSER_XSS_FILTER = config('SECURE_BROWSER_XSS_FILTER', default=True, cast=bool)
-SECURE_CONTENT_TYPE_NOSNIFF = config('SECURE_CONTENT_TYPE_NOSNIFF', default=True, cast=bool)
-SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=not DISABLE_SSL, cast=bool)
+SECURE_BROWSER_XSS_FILTER = config('SECURE_BROWSER_XSS_FILTER', default='true', parser=bool)
+SECURE_CONTENT_TYPE_NOSNIFF = config('SECURE_CONTENT_TYPE_NOSNIFF', default='true', parser=bool)
+SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=str(not DISABLE_SSL), parser=bool)
 SECURE_REDIRECT_EXEMPT = [
     r'^readiness/$',
     r'^healthz(-cron)?/$',
 ]
-if config('USE_SECURE_PROXY_HEADER', default=SECURE_SSL_REDIRECT, cast=bool):
+if config('USE_SECURE_PROXY_HEADER', default=str(SECURE_SSL_REDIRECT), parser=bool):
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # watchman
@@ -636,7 +637,7 @@ CONTRIBUTE_NUMBERS = {
 
 BASKET_URL = config('BASKET_URL', default='https://basket.mozilla.org')
 BASKET_API_KEY = config('BASKET_API_KEY', default='')
-BASKET_TIMEOUT = config('BASKET_TIMEOUT', cast=int, default=10)
+BASKET_TIMEOUT = config('BASKET_TIMEOUT', parser=int, default='10')
 
 BOUNCER_URL = config('BOUNCER_URL', default='https://download.mozilla.org/')
 
@@ -647,24 +648,20 @@ FORCE_SLASH_B = False
 # reCAPTCHA keys
 RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_PUBLIC_KEY', default='')
 RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY', default='')
-RECAPTCHA_USE_SSL = config('RECAPTCHA_USE_SSL', cast=bool, default=True)
+RECAPTCHA_USE_SSL = config('RECAPTCHA_USE_SSL', parser=bool, default='true')
 
 # Use a message storage mechanism that doesn't need a database.
 # This can be changed to use session once we do add a database.
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 
-def lazy_email_backend():
-    'Needed in case DEBUG is enabled in local.py instead of environment variable'
-    from django.conf import settings
-    return ('django.core.mail.backends.console.EmailBackend' if settings.DEBUG else
-            'django.core.mail.backends.smtp.EmailBackend')
+default_email_backend = ('django.core.mail.backends.console.EmailBackend' if DEBUG else
+                         'django.core.mail.backends.smtp.EmailBackend')
 
-
-EMAIL_BACKEND = config('EMAIL_BACKEND', default=lazy(lazy_email_backend, str)())
+EMAIL_BACKEND = config('EMAIL_BACKEND', default=default_email_backend)
 EMAIL_HOST = config('EMAIL_HOST', default='localhost')
-EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=False, cast=bool)
+EMAIL_PORT = config('EMAIL_PORT', default='25', parser=int)
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', default='false', parser=bool)
 EMAIL_SUBJECT_PREFIX = config('EMAIL_SUBJECT_PREFIX', default='[bedrock] ')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
@@ -1209,7 +1206,7 @@ SEND_TO_DEVICE_LOCALES = ['de', 'en-GB', 'en-US', 'en-ZA',
 DEV_GEO_COUNTRY_CODE = config('DEV_GEO_COUNTRY_CODE', default='US')
 SEND_TO_DEVICE_MESSAGE_SETS = {
     'default': {
-        'sms_countries': config('STD_SMS_COUNTRIES_DEFAULT', default='US', cast=Csv()),
+        'sms_countries': config('STD_SMS_COUNTRIES_DEFAULT', default='US', parser=ListOf(str)),
         'sms': {
             'ios': 'ff-ios-download',
             'android': 'SMS_Android',
@@ -1221,7 +1218,7 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
         }
     },
     'fx-android': {
-        'sms_countries': config('STD_SMS_COUNTRIES_ANDROID', default='US', cast=Csv()),
+        'sms_countries': config('STD_SMS_COUNTRIES_ANDROID', default='US', parser=ListOf(str)),
         'sms': {
             'ios': 'ff-ios-download',
             'android': 'android-download-embed',
@@ -1233,7 +1230,7 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
         }
     },
     'fx-mobile-download-desktop': {
-        'sms_countries': config('STD_SMS_COUNTRIES_DESKTOP', default='US', cast=Csv()),
+        'sms_countries': config('STD_SMS_COUNTRIES_DESKTOP', default='US', parser=ListOf(str)),
         'sms': {
             'all': 'mobile-heartbeat',
         },
@@ -1242,7 +1239,7 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
         }
     },
     'fx-50-whatsnew': {
-        'sms_countries': config('STD_SMS_COUNTRIES_WHATSNEW50', default='US', cast=Csv()),
+        'sms_countries': config('STD_SMS_COUNTRIES_WHATSNEW50', default='US', parser=ListOf(str)),
         'sms': {
             'all': 'whatsnewfifty',
         },
@@ -1255,6 +1252,10 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
 RELEASE_NOTES_PATH = config('RELEASE_NOTES_PATH', default=path('release_notes'))
 RELEASE_NOTES_REPO = config('RELEASE_NOTES_REPO', default='https://github.com/mozilla/release-notes.git')
 RELEASE_NOTES_BRANCH = config('RELEASE_NOTES_BRANCH', default='master')
+
+WWW_CONFIG_PATH = config('WWW_CONFIG_PATH', default=path('www_config'))
+WWW_CONFIG_REPO = config('WWW_CONFIG_REPO', default='https://github.com/mozmeao/www-config.git')
+WWW_CONFIG_BRANCH = config('WWW_CONFIG_BRANCH', default='master')
 
 MOFO_SECURITY_ADVISORIES_PATH = config('MOFO_SECURITY_ADVISORIES_PATH',
                                        default=path('mofo_security_advisories'))
@@ -1296,31 +1297,31 @@ LOGGING = {
 
 PASSWORD_HASHERS = ['django.contrib.auth.hashers.PBKDF2PasswordHasher']
 
-TABLEAU_DB_URL = config('TABLEAU_DB_URL', default=None)
+TABLEAU_DB_URL = config('TABLEAU_DB_URL', default='')
 
-ADMINS = MANAGERS = config('ADMINS', cast=json.loads,
+ADMINS = MANAGERS = config('ADMINS', parser=json.loads,
                            default='[]')
 
 GTM_CONTAINER_ID = config('GTM_CONTAINER_ID', default='')
 GMAP_API_KEY = config('GMAP_API_KEY', default='')
 STUB_ATTRIBUTION_HMAC_KEY = config('STUB_ATTRIBUTION_HMAC_KEY', default='')
-STUB_ATTRIBUTION_RATE = config('STUB_ATTRIBUTION_RATE', default=1 if DEV else 0, cast=float)
+STUB_ATTRIBUTION_RATE = config('STUB_ATTRIBUTION_RATE', default=str(1 if DEV else 0), parser=float)
 
 STATSD_CLIENT = config('STATSD_CLIENT', default='django_statsd.clients.normal')
 STATSD_HOST = config('STATSD_HOST', default='127.0.0.1')
-STATSD_PORT = config('STATSD_PORT', cast=int, default=8125)
+STATSD_PORT = config('STATSD_PORT', parser=int, default='8125')
 STATSD_PREFIX = config('STATSD_PREFIX', default='bedrock')
 
 FIREFOX_MOBILE_SYSREQ_URL = 'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'
 
 MOZILLA_LOCATION_SERVICES_KEY = 'a9b98c12-d9d5-4015-a2db-63536c26dc14'
 
-DEAD_MANS_SNITCH_URL = config('DEAD_MANS_SNITCH_URL', default=None)
+DEAD_MANS_SNITCH_URL = config('DEAD_MANS_SNITCH_URL', default='')
 
 RAVEN_CONFIG = {
-    'dsn': config('SENTRY_DSN', None),
+    'dsn': config('SENTRY_DSN', default=''),
     'site': '.'.join(x for x in [DEIS_APP, DEIS_DOMAIN] if x),
-    'release': config('GIT_SHA', None),
+    'release': config('GIT_SHA', default=''),
 }
 
 # Django-CSP
@@ -1372,12 +1373,12 @@ CSP_CONNECT_SRC = CSP_DEFAULT_SRC + (
     'www.googletagmanager.com',
     'www.google-analytics.com',
 )
-CSP_REPORT_ONLY = config('CSP_REPORT_ONLY', default=False, cast=bool)
-CSP_REPORT_ENABLE = config('CSP_REPORT_ENABLE', default=False, cast=bool)
+CSP_REPORT_ONLY = config('CSP_REPORT_ONLY', default='false', parser=bool)
+CSP_REPORT_ENABLE = config('CSP_REPORT_ENABLE', default='false', parser=bool)
 if CSP_REPORT_ENABLE:
     CSP_REPORT_URI = config('CSP_REPORT_URI', default='/csp-violation-capture')
 
-CSP_EXTRA_FRAME_SRC = config('CSP_EXTRA_FRAME_SRC', default='', cast=Csv())
+CSP_EXTRA_FRAME_SRC = config('CSP_EXTRA_FRAME_SRC', default='', parser=ListOf(str))
 if CSP_EXTRA_FRAME_SRC:
     CSP_CHILD_SRC += tuple(CSP_EXTRA_FRAME_SRC)
 
@@ -1389,10 +1390,10 @@ AVAILABLE_TRACKING_PIXELS = {
     'doubleclick': ('https://ad.doubleclick.net/ddm/activity/src=6417015;type=deskt0;cat=mozil0;dc_lat=;dc_rdid=;'
                     'tag_for_child_directed_treatment=;ord=1;num=1?&_dc_ck=try'),
 }
-ENABLED_PIXELS = config('ENABLED_PIXELS', default='doubleclick', cast=Csv())
+ENABLED_PIXELS = config('ENABLED_PIXELS', default='doubleclick', parser=ListOf(str))
 TRACKING_PIXELS = [AVAILABLE_TRACKING_PIXELS[x] for x in ENABLED_PIXELS if x in AVAILABLE_TRACKING_PIXELS]
 
-if config('SWITCH_TRACKING_PIXEL', default=DEV, cast=bool):
+if config('SWITCH_TRACKING_PIXEL', default=str(DEV), parser=bool):
     if 'doubleclick' in ENABLED_PIXELS:
         CSP_IMG_SRC += ('ad.doubleclick.net',)
 

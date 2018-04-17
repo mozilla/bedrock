@@ -1,7 +1,7 @@
 # flake8: noqa
 import os
 
-from decouple import config
+from bedrock.base.config_manager import config
 
 
 try:

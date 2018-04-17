@@ -7,6 +7,7 @@ python manage.py update_wordpress --quiet
 python manage.py update_release_notes --quiet
 python manage.py update_externalfiles --quiet
 python manage.py update_newsletter_data --quiet
+python manage.py update_www_config --quiet
 
 if [[ "$1" == "--all" ]]; then
     # less frequent. these will modify the DB every time.

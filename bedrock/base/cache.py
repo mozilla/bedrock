@@ -1,5 +1,6 @@
-from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.core.cache.backends.locmem import LocMemCache
+
+DEFAULT_TIMEOUT = 300
 
 
 class SimpleDictCache(LocMemCache):

@@ -38,6 +38,7 @@ mofo_security_advisories
 release_notes
 product_details_json
 community_data
+www_config
 supervisord.log
 .idea
 .env
