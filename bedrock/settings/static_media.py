@@ -1044,6 +1044,13 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_firstrun_quantum-bundle.js',
     },
+    'experiment_firstrun_copy': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/firefox/firstrun/experiment-firstrun-copy.js',
+        ),
+        'output_filename': 'js/experiment_firstrun_copy-bundle.js',
+    },
     'firefox_developer': {
         'source_filenames': (
             'js/libs/jquery.waypoints.min.js',
