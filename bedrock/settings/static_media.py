@@ -226,6 +226,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_accounts-bundle.css',
     },
+    'firefox_accounts_features': {
+        'source_filenames': (
+            'css/firefox/accounts-features.scss',
+        ),
+        'output_filename': 'css/firefox_accounts_features-bundle.css',
+    },
     'firefox_all': {
         'source_filenames': (
             'css/base/mozilla-share-cta.less',

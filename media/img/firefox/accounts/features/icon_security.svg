@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="55px" height="55px" viewBox="0 0 55 55" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_security</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M21.4192708,11.967375 L20.5625,11.967375 L20.5625,8.56770833 C20.5625,4.78225661 17.4937851,1.71354167 13.7083333,1.71354167 C9.92288161,1.71354167 6.85416667,4.78225661 6.85416667,8.56770833 L6.85416667,11.967375 L5.99739583,11.967375 C4.57785144,11.967375 3.42708333,13.1181431 3.42708333,14.5376875 L3.42708333,23.1328125 C3.42708333,24.5523569 4.57785144,25.703125 5.99739583,25.703125 L21.4192708,25.703125 C22.8388152,25.703125 23.9895833,24.5523569 23.9895833,23.1328125 L23.9895833,14.5376875 C23.9895833,13.1181431 22.8388152,11.967375 21.4192708,11.967375 Z M10.28125,8.56770833 C10.28125,6.67498247 11.8156075,5.140625 13.7083333,5.140625 C15.6010592,5.140625 17.1354167,6.67498247 17.1354167,8.56770833 L17.1354167,11.967375 L10.28125,11.967375 L10.28125,8.56770833 Z" id="path-1"></path>
+    </defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="FxA" transform="translate(-840.000000, -2551.000000)">
+            <g id="Payments" transform="translate(-37.000000, 2484.000000)">
+                <g id="copy-block" transform="translate(876.000000, 71.000000)">
+                    <g id="icon_security" transform="translate(5.000000, 0.000000)">
+                        <circle id="Oval-5-Copy-4" stroke="#3D3D3D" stroke-width="3.29999995" cx="23.5" cy="23.5" r="25.15"></circle>
+                        <g id="icon_lock" transform="translate(10.000000, 9.000000)">
+                            <rect id="bouding-box" x="0" y="0" width="27.4166667" height="27.4166667"></rect>
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <g id="Shape" fill-rule="nonzero"></g>
+                            <g id="Color-/-Photon-/-Primary---Grey-90-80%" mask="url(#mask-2)" fill="#0C0C0D" fill-opacity="0.8">
+                                <g transform="translate(-1.713542, 0.000000)" id="Rectangle">
+                                    <rect x="0" y="0" width="27.065061" height="27.065061"></rect>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
