@@ -163,6 +163,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/pebbles-basic-bundle.css',
     },
+    'protocol-core': {
+        'source_filenames': (
+            'css/protocol/protocol.scss',
+        ),
+        'output_filename': 'css/protocol-core-bundle.css',
+    },
     'oldIE': {
         'source_filenames': (
             'css/sandstone/oldIE.less',
