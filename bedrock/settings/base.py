@@ -1332,6 +1332,7 @@ CSP_DEFAULT_SRC = (
 )
 CSP_IMG_SRC = CSP_DEFAULT_SRC + (
     'data:',
+    'mozilla.org',
     '*.optimizely.com',
     'www.googletagmanager.com',
     'www.google-analytics.com',
