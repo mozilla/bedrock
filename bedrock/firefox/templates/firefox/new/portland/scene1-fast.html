@@ -4,10 +4,20 @@
 
 {% extends "firefox/new/portland/base.html" %}
 
-{% block body_class %}portland{% endblock %}
+{% block body_class %}portland-fast{% endblock %}
 
 {% block primary_download_button %}
   {{ download_firefox(alt_copy=_('Download Now'), locale_in_transition=true, dom_id="download-firefox", download_location='primary cta') }}
+{% endblock %}
+
+{% block main_heading %}
+  Browse 2x faster, ethically
+{% endblock %}
+
+{% block detail_items %}
+  {% include 'firefox/new/portland/includes/efficient.html' %}
+  {% include 'firefox/new/portland/includes/socially-responsible.html' %}
+  {% include 'firefox/new/portland/includes/safe.html' %}
 {% endblock %}
 
 {% block js %}

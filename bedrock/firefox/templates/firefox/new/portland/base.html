@@ -28,8 +28,12 @@
     <div class="content-wrapper">
       <div class="content">
         <div class="copy">
-          <img class="logo" src="{{ static('img/logos/firefox/logo-quantum.png') }}" width="132" height="132" alt="" />
-          <h1 id="main-heading" data-experience="portland">Firefox is <br>fast for good</h1>
+          <img class="logo" src="{{ static('img/logos/firefox/logo-quantum.png') }}" width="90" height="90" alt="" />
+          <h1 id="main-heading" data-experience="portland">
+          {% block main_heading %}
+            Be proud of how you get what you need online
+          {% endblock %}
+          </h1>
           {% block head_content %}{% endblock %}
           {% block primary_download_button %}{% endblock %}
         </div>
@@ -41,30 +45,11 @@
   <section class="details content-section">
     <div class="content">
       <ul>
-        <li>
-          <h3>Efficient</h3>
-          <p>
-            <strong>Firefox software runs twice as fast</strong> as before,
-            reduces the load on your computer’s memory, and lets you block
-            trackers that can slow you down.
-          </p>
-        </li>
-        <li>
-          <h3>Safe</h3>
-          <p>
-            <strong>Firefox privacy is turned on by default.</strong> That
-            means browser settings start with you in-control, and remain in
-            your control, no matter where you go.
-          </p>
-        </li>
-        <li>
-          <h3>Socially Responsible</h3>
-          <p>
-            <strong>Firefox is backed by Mozilla</strong>, the not-for-profit
-            that's helping to make the internet a healthier place to be for
-            all. It's the right choice for people who care.
-          </p>
-        </li>
+      {% block detail_items %}
+        {% include 'firefox/new/portland/includes/efficient.html' %}
+        {% include 'firefox/new/portland/includes/safe.html' %}
+        {% include 'firefox/new/portland/includes/socially-responsible.html' %}
+      {% endblock %}
       </ul>
     </div>
   </section>
