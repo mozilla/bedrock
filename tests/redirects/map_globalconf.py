@@ -37,8 +37,8 @@ URLS = flatten((
     url_test('/en-US/firefox//all/', '/en-US/firefox/all/'),
     url_test('/pt-BR/////thunderbird/', '/pt-BR/thunderbird/'),
 
-    # bug 755826, 1222348
-    url_test('/zh-CN/', 'http://www.firefox.com.cn/', query={
+    # bug 755826, 1222348, 1416798
+    url_test('/zh-CN/', 'https://www.firefox.com.cn/', query={
         'utm_medium': 'referral',
         'utm_source': 'mozilla.org'
     }),

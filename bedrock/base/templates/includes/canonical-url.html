@@ -37,7 +37,7 @@
         <link rel="alternate" hreflang="sv" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="Svenska">
         <link rel="alternate" hreflang="sv-SE" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="{{ label|safe }}">
         {% elif code == 'zh-CN' -%}
-          {#- Bug 1448875: /zh-TW/ home page redirects to http://www.firefox.com.cn/ -#}
+          {#- Bug 1448875: /zh-CN/ home page redirects to https://www.firefox.com.cn/ -#}
           {% if loop_canonical_path != '/' -%}
           <link rel="alternate" hreflang="zh" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="中文">
           <link rel="alternate" hreflang="zh-CN" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="{{ label|safe }}">
