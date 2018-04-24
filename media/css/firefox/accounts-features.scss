@@ -377,12 +377,13 @@ main {
 
 .perk-title {
     @include font-size-level4;
-    background-repeat: no-repeat;
     background-position: top center;
+    background-repeat: no-repeat;
     font-weight: bold;
     line-height: 1.4;
     margin: 0 auto 30px;
     max-width: 650px;
+    width: 100%;
 }
 
 .perk-image {
@@ -415,6 +416,7 @@ main {
     line-height: 1.5;
     margin: 0 auto 1.25em;
     max-width: 600px;
+    width: 100%;
 }
 
 @media #{$mq-tablet} {

@@ -14,6 +14,22 @@
 
 {% block body_class %}firefox-accounts-features{% endblock %}
 
+{% block experiments %}
+  {% javascript 'firefox_accounts_features_experiment' %}
+{% endblock %}
+
+{% if variation == 'a' %}
+  {% set bookmarks_title = "Bookmark a recipe at home, shop for ingredients from your phone." %}
+  {% set passwords_title = "Binge watching waits for no one. Save passwords to log in faster." %}
+  {% set payments_title = "Buy those running shoes, even when you’re on the run." %}
+  {% set send_title = "Save commute time by sending links instantly between your devices." %}
+{% else %}
+  {% set bookmarks_title = "Automatically update bookmarks with a click" %}
+  {% set passwords_title = "Save passwords safely" %}
+  {% set payments_title = "Pay securely on-the-go" %}
+  {% set send_title = "Send links instantly between devices" %}
+{% endif %}
+
 {% block content %}
 <main role="main">
     <header class="fab-head">
@@ -32,16 +48,16 @@
 
     <section class="perk perk-bookmarks">
       <div class="content">
-        <h3 class="perk-title">{{_('Bookmark a recipe at home, shop for ingredients from your phone.')}}</h3>
+        <h3 class="perk-title">{{ bookmarks_title }}</h3>
         <p class="perk-image">{{ high_res_img('firefox/accounts/features/bookmarks.png', {'alt': '', 'width': '733', 'height': '450'}) }}</p>
-        <p class="perk-text">{{_('Save a page here, and we'll instantly add it to your computer, tablet, phone or wherever else you’d like. It works for bookmark folders too, so you can find what you need faster.')}}</p>
+        <p class="perk-text">{{_('Save a page here, and we\'ll instantly add it to your computer, tablet, phone or wherever else you’d like. It works for bookmark folders too, so you can find what you need faster.')}}</p>
         <p class="perk-text">{{_('<strong>Pro-tip:</strong> You can also sync Firefox Screenshots and browsing history with peace of mind. Your online data is always protected.')}}</p>
       </div>
     </section>
 
     <section class="perk perk-passwords">
       <div class="content">
-        <h3 class="perk-title">{{_('Binge watching waits for no one. Save passwords to log in faster.')}}</h3>
+        <h3 class="perk-title">{{ passwords_title }}</h3>
         <p class="perk-image">{{ high_res_img('firefox/accounts/features/passwords.png', {'alt': '', 'width': '838', 'height': '445'}) }}</p>
         <p class="perk-text">{{_('Switch screens without a hitch. Store passwords for easy streaming, banking and more on all your devices. Plus, rest easy knowing your browsing data is protected and private.')}}</p>
       </div>
@@ -56,7 +72,7 @@
 
     <section class="perk perk-payments">
       <div class="content">
-        <h3 class="perk-title">{{_('Buy those running shoes, even when you’re on the run.')}}</h3>
+        <h3 class="perk-title">{{ payments_title }}</h3>
         <p class="perk-image">{{ high_res_img('firefox/accounts/features/payments.png', {'alt': '', 'width': '601', 'height': '450'}) }}</p>
         <p class="perk-text">{{_('Save payment details and addresses for quick, card-free checkout. Your account info is securely encrypted and easy to update at any time. Here’s to never missing a sale, because you left your wallet at home.')}}</p>
       </div>
@@ -64,7 +80,7 @@
 
     <section class="perk perk-send">
       <div class="content">
-        <h3 class="perk-title">{{_('Save commute time by sending links instantly between your devices.')}}</h3>
+        <h3 class="perk-title">{{ send_title }}</h3>
         <p class="perk-image">{{ high_res_img('firefox/accounts/features/send.png', {'alt': '', 'width': '807', 'height': '471'}) }}</p>
         <span class="perk-image-source">{{_('Map Data &copy; 2018 Google Maps')}}</span>
         <p class="perk-text">{{_('Open a link on one screen, and send it to your phone, tablet, laptop, desktop or time travel box...in a snap. It’s faster than texting or emailing yourself, and a whole lot simpler too.')}}</p>

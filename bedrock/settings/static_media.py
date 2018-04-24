@@ -988,6 +988,13 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox_accounts-bundle.js',
     },
+    'firefox_accounts_features_experiment': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/firefox/accounts-features-experiment.js',
+        ),
+        'output_filename': 'js/firefox_accounts-features-experiment-bundle.js',
+    },
     'firefox_all': {
         'source_filenames': (
             'js/base/mozilla-share-cta.js',
