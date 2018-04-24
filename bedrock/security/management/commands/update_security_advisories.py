@@ -125,6 +125,10 @@ def parse_cve_id(cve_id):
 
 def add_or_update_cve(data):
     for cve_id, advisory in data['advisories'].iteritems():
+        if not advisory.get('feed', True):
+            # skip advisories with `feed: false`
+            continue
+
         cve_year, cve_order = parse_cve_id(cve_id)
         update_advisory_bugs(advisory)
         cve_title = advisory.get('cve_problemtype', advisory.get('title')) or ''
