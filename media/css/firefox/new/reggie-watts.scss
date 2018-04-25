@@ -10,6 +10,11 @@
 
 $color-photon-blue: #0099db;
 
+// account for tracking pixel added on demos/stage/prod
+body {
+    background: #000;
+}
+
 #outer-wrapper {
     background: #fff;
 }

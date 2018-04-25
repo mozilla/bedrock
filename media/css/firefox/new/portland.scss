@@ -21,13 +21,13 @@
 // Common elements
 
 $color-photon-blue: #0099db;
-$color-gradient-light: #9229ff;
-$color-gradient-dark: #4f33d8;
+$mq-desktop-super-wide: 'screen and (min-width: 1700px)';
+$mq-desktop-wide-ish: 'screen and (min-width: 1200px)';
 
-$mq-desktop-super-wide: 'screen and (min-width: 1700px) and (min-height: 800px)';
-$mq-desktop-tallish: '#{$mq-desktop} and (min-height: 650px)';
-$mq-desktop-tall: '#{$mq-desktop} and (min-height: 750px)';
-$mq-desktop-wide-tall: '#{$mq-desktop-wide} and (min-height: 800px)';
+// account for tracking pixel added on demos/stage/prod
+body {
+    background: #000;
+}
 
 #outer-wrapper {
     @include open-sans();
@@ -52,42 +52,18 @@ $mq-desktop-wide-tall: '#{$mq-desktop-wide} and (min-height: 800px)';
 }
 
 /* -------------------------------------------------------------------------- */
-// Top hero section
+// Top hero section - common for all 3 variations: portland, portland-fast,
+// portland-safe
 
 .intro {
-    background: $color-gradient-dark;
-    @include gradient-vertical($start-color: $color-gradient-dark, $end-color: $color-gradient-light);
-    padding: 20px;
-
-    h1,
-    h2 {
-        font-family: 'ITC Franklin Gothic LT', Impact, Haettenschweiler, "Franklin Gothic Bold", "Helvetica Inserat", arial, sans-serif;
-        font-weight: normal;
-        margin-bottom: 0;
-        text-transform: uppercase;
-    }
-
     h1 {
         @include font-size-level1;
-        color: $color-gradient-light;
-
-        br {
-            display: none;
-        }
-    }
-
-    h2 {
-        @include font-size-level2;
-        margin-top: 40px;
-    }
-
-    .content-wrapper {
-        background: #fff;
-    }
-
-    .content {
-        // accommodate the gradient border
-        min-width: 280px;
+        color: #fff;
+        font-family: 'ITC Franklin Gothic LT', Impact, Haettenschweiler, "Franklin Gothic Bold", "Helvetica Inserat", arial, sans-serif;
+        font-weight: normal;
+        letter-spacing: 0.1rem;
+        margin-bottom: 0;
+        text-transform: uppercase;
     }
 
     .copy {
@@ -99,18 +75,19 @@ $mq-desktop-wide-tall: '#{$mq-desktop-wide} and (min-height: 800px)';
         }
 
         .help {
+            color: #fff;
             margin-top: 20px;
 
             a:link,
             a:visited {
-                color: $color-photon-blue;
-                text-decoration: none;
+                color: #fff;
+                text-decoration: underline;
             }
 
             a:hover,
             a:active,
             a:focus {
-                color: $color-photon-blue;
+                color: #fff;
                 text-decoration: underline;
             }
         }
@@ -121,7 +98,7 @@ $mq-desktop-wide-tall: '#{$mq-desktop-wide} and (min-height: 800px)';
             a:hover,
             a:link,
             a:visited {
-                color: $color-photon-blue;
+                color: #fff;
             }
         }
     }
@@ -130,13 +107,11 @@ $mq-desktop-wide-tall: '#{$mq-desktop-wide} and (min-height: 800px)';
         margin-bottom: 20px;
     }
 
-    @media #{$mq-phone-wide} {
-        padding: 30px;
-    }
-
     @media #{$mq-desktop} {
+        padding: 0;
+
         h1 {
-            @include font-size(120px);
+            @include font-size(70px);
             line-height: 0.9;
 
             br {
@@ -145,73 +120,130 @@ $mq-desktop-wide-tall: '#{$mq-desktop-wide} and (min-height: 800px)';
         }
 
         .logo {
-            margin: 40px 0;
+            margin: 20px 0 40px;
         }
 
         .copy {
             padding-bottom: 40px;
 
             .download-button {
-                margin-top: 50px;
+                margin-top: 40px;
             }
-        }
-    }
-
-    @media #{$mq-desktop-wide} {
-        h1 {
-            @include font-size(140px);
         }
     }
 }
 
-@supports (height: 100vh) {
-    .intro {
-        @media #{$mq-desktop-tallish} {
-            box-sizing: border-box;
-            height: 88vh;
+/* -------------------------------------------------------------------------- */
+// Top hero section customizations based on variation
 
-            h1 {
-                @include font-size(100px);
-            }
+.portland .intro {
+    background: #0060df;
+    @include gradient-directional($deg: -39deg, $start-color: #0060df, $end-color: #45a1ff);
 
-            .content-wrapper {
-                height: 100%;
-            }
+    @media #{$mq-tablet} {
+        h1 {
+            margin: 0 auto;
+            max-width: 500px;
+        }
+    }
 
-            .content {
-                align-items: center;
-                display: flex;
-                height: 100%;
-                width: 100%;
-            }
-
-            .logo {
-                height: 110px;
-                width: 110px;
-            }
+    @media #{$mq-desktop} {
+        .content-wrapper {
+            background: url('/media/img/firefox/new/portland/bg-portland-wave.svg') bottom -1px center no-repeat,
+                url('/media/img/firefox/new/portland/bg-portland.png') top right no-repeat;
+            background-size: 100vw, 600px 480px;
+            padding-bottom: 25px;
         }
 
-        @media #{$mq-desktop-tall} {
-            h1 {
-                @include font-size(120px);
-            }
-
-            .logo {
-                height: 132px;
-                width: 132px;
-            }
+        h1 {
+            @include font-size(60px);
+            margin: auto;
+            max-width: none;
         }
 
-        @media #{$mq-desktop-wide} {
-            h1 {
-                @include font-size(100px);
-            }
+        .copy {
+            max-width: 540px;
+            width: 50%;
+        }
+    }
+
+    @media #{$mq-desktop-wide-ish} {
+        h1 {
+            @include font-size(70px);
+        }
+    }
+}
+
+.portland.portland-scene2 .intro .copy {
+    @media #{$mq-desktop} {
+        width: 325px;
+    }
+}
+
+.portland-fast .intro {
+    background: #0060df;
+    @include gradient-vertical($start-color: #0060df, $end-color: #45a1ff);
+
+    @media #{$mq-desktop} {
+        .content-wrapper {
+            background: url('/media/img/firefox/new/portland/bg-portland-fast.png') bottom right no-repeat;
+            background-size: 1310px 420px;
+            min-height: 400px;
         }
 
-        @media #{$mq-desktop-wide-tall} {
-            h1 {
-                @include font-size(140px);
+        .copy {
+            padding-bottom: 0;
+            width: 288px;
+
+            .fx-privacy-link {
+                a:active,
+                a:focus,
+                a:hover,
+                a:link,
+                a:visited {
+                    color: $color-photon-blue;
+                }
             }
+        }
+    }
+
+    @media #{$mq-desktop-wide-ish} {
+        .content-wrapper {
+            background-image: url('/media/img/firefox/new/portland/bg-portland-fast.png'),
+                              url('/media/img/firefox/new/portland/bg-portland-fast-tile.png');
+            background-position: bottom right, bottom left;
+            background-repeat: no-repeat, repeat-x;
+            background-size: 1562px 500px, 42px 500px;
+            min-height: 533px;
+        }
+    }
+}
+
+.portland-fast.portland-scene2 .intro .help {
+    @media #{$mq-desktop} {
+        background: #003eaa;
+        padding: 10px;
+    }
+}
+
+.portland-safe .intro {
+    background: #6200a4;
+    @include gradient-directional($deg: -56deg, $start-color: #6200a4, $end-color: #9400ff);
+
+    @media #{$mq-desktop} {
+        .content-wrapper {
+            background: url('/media/img/firefox/new/portland/bg-portland-safe.png') bottom right no-repeat;
+            background-size: 600px 306px;
+        }
+
+        .copy {
+            width: 480px;
+        }
+    }
+
+    @media #{$mq-desktop-wide-ish} {
+        .content-wrapper {
+            background-size: 800px 408px;
         }
     }
 }
@@ -257,17 +289,19 @@ $mq-desktop-wide-tall: '#{$mq-desktop-wide} and (min-height: 800px)';
     h3 {
         @include font-size-level2;
         font-family: 'ITC Franklin Gothic LT', Impact, Haettenschweiler, "Franklin Gothic Bold", "Helvetica Inserat", arial, sans-serif;
+        letter-spacing: 0.1rem;
+        line-height: 0.9;
         margin-bottom: 20px;
         text-transform: uppercase;
 
         &:before {
             background: url('/media/img/firefox/new/portland/checkbox.png') left center no-repeat;
-            background-size: 22px 23px;
+            background-size: 18px 19px;
             content: '';
             display: inline-block;
-            height: 23px;
-            margin: 0 10px -2px 0;
-            width: 22px;
+            height: 19px;
+            margin: 0 8px -1px 0;
+            width: 18px;
         }
     }
 
@@ -289,10 +323,8 @@ $mq-desktop-wide-tall: '#{$mq-desktop-wide} and (min-height: 800px)';
     }
 
     @media #{$mq-tablet} {
-        h3:before {
-            background-size: 30px 31px;
-            height: 31px;
-            width: 30px;
+        h3 {
+            @include font-size-level3;
         }
     }
 
@@ -309,10 +341,10 @@ $mq-desktop-wide-tall: '#{$mq-desktop-wide} and (min-height: 800px)';
         }
 
         h3:before {
-            background-size: 42px 43px;
-            height: 43px;
-            margin-bottom: -4px;
-            width: 42px;
+            background-size: 26px 27px;
+            height: 27px;
+            margin-right: 10px;
+            width: 26px;
         }
     }
 

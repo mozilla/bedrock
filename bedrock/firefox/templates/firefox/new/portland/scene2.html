@@ -4,15 +4,17 @@
 
 {% extends "firefox/new/portland/base.html" %}
 
-{% block body_class %}portland-scene2{% endblock %}
+{% block body_class %}portland portland-scene2{% endblock %}
 
 {% block string_data %}
   data-pixels="{% for pixel in settings.TRACKING_PIXELS %}{{ pixel }}{% if not loop.last %}::{% endif %}{% endfor %}"
 {% endblock %}
 
-{% block head_content %}
-  <h2>{{ _('Thanks for choosing Firefox') }}</h2>
+{% block main_heading %}
+  Thanks for choosing Firefox
+{% endblock %}
 
+{% block head_content %}
   <p class="help">
   {% trans id='direct-download-link', fallback_url=url('firefox.all') %}
     Your download should begin automatically. If not, <a id="{{ id }}" href="{{ fallback_url }}">click here</a>.
