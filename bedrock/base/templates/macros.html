@@ -382,3 +382,54 @@
     <a href="https://support.mozilla.org/kb/sync-firefox-bookmarks-and-browsing-history-iOS/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign={{ campaign }}" class="button {{ button_class }}" data-link-type="link" data-link-name="Learn more" id="{{ link_id }}">{{ _('Learn more') }}</a>
   </div>
 {%- endmacro %}
+
+{#
+  entrypoint: used to tag a given "page type" and remains the same across all
+    pages of the class, e.g., no matter URL of the firstrun page, entrypoint is
+    always `firstrun`. must validate against [\w.:-]+
+    REQUIRED
+  class_name: applies a class to the form. default: 'fxa-email-form'
+  utm_params: dictionary of utm_* params to include. 'utm_' will automatically
+    be prepended to all keys. example:
+
+    {
+      'content': 'accounts-page',
+      'medium': 'referral',
+      'campaign': 'accounts-page',
+      'source': 'accounts-page',
+      'term': 'someterm',
+    }
+
+    all values must validate against /^[\w\/.%-]+/
+#}
+{% macro fxa_email_form(entrypoint, class_name='fxa-email-form', utm_params={}) -%}
+  <form action="{{ settings.FXA_ENDPOINT }}" data-mozillaonline-action="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}" id="fxa-email-form" class="{{ class_name }}">
+    <input type="hidden" name="action" value="email" />
+    <input type="hidden" name="context" value="fx_desktop_v3" />
+    <input type="hidden" name="service" value="sync" />
+    <input type="hidden" name="entrypoint" value="{{ entrypoint }}" />
+    {# flow_id and flow_begin_time will be populated via JS on page load #}
+    <input type="hidden" name="flow_id" value="" />
+    <input type="hidden" name="flow_begin_time" value="" />
+
+  {% for attr, val in utm_params.items() %}
+    <input type="hidden" name="utm_{{ attr }}" value="{{ val }}" />
+  {% endfor %}
+
+    <p>
+      {{ _('<strong>Enter your email</strong> to access Firefox Accounts.') }}
+    </p>
+
+    <label for="fxa-email-field">{{ _('Email address') }}</label>
+    <input type="email" name="email" id="fxa-email-field" class="fxa-email-field" placeholder="user@example.com" required />
+
+    <p class="disclaimer">
+    {% trans url1='https://accounts.firefox.com/legal/terms', url2='https://accounts.firefox.com/legal/privacy' %}
+      By proceeding, you agree to the <a href="{{ url1 }}">Terms of Service</a> and
+      <a href="{{ url2 }}">Privacy Notice</a>.
+    {% endtrans %}
+    </p>
+
+    <button type="submit" class="button button-blue" id="fxa-email-form-submit">{{ _('Continue') }}</button>
+  </form>
+{%- endmacro %}

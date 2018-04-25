@@ -134,6 +134,8 @@ The available branch configuration options are as follows:
   database and the deis app will be created and configured for you if it doesn't already exist.
 * ``integration_tests``: list. A list of strings indicating the types of integration tests to run. If omitted no tests will run.
 
+.. _configure-demo-servers:
+
 You can also set app configuration environment variables via deployment as well for demos. The default environment variables
 are set in `jenkins/branches/demo/default.env`. To modify your app's settings you can create an env file named after your branch
 (e.g `jenkins/branches/demo/pmac-l10n.env` for the branch `demo/pmac-l10n.env`). The combination

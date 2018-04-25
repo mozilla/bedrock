@@ -1172,6 +1172,13 @@ FXA_IFRAME_SRC = config('FXA_IFRAME_SRC',
 FXA_IFRAME_SRC_MOZILLAONLINE = config('FXA_IFRAME_SRC_MOZILLAONLINE',
                                       default='https://accounts.firefox.com.cn/')
 
+# Fx Accounts iframe-less form & JS endpoint
+FXA_ENDPOINT = config('FXA_ENDPOINT',
+                       default='https://accounts.firefox.com/')
+
+FXA_ENDPOINT_MOZILLAONLINE = config('FXA_ENDPOINT_MOZILLAONLINE',
+                                      default='https://accounts.firefox.com.cn/')
+
 # Google Play and Apple App Store settings
 from .appstores import (GOOGLE_PLAY_FIREFOX_LINK,  # noqa
                         GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE,  # noqa
@@ -1367,6 +1374,8 @@ CSP_CHILD_SRC = (
 CSP_CONNECT_SRC = CSP_DEFAULT_SRC + (
     'www.googletagmanager.com',
     'www.google-analytics.com',
+    FXA_ENDPOINT,
+    FXA_ENDPOINT_MOZILLAONLINE,
 )
 CSP_REPORT_ONLY = config('CSP_REPORT_ONLY', default='false', parser=bool)
 CSP_REPORT_ENABLE = config('CSP_REPORT_ENABLE', default='false', parser=bool)
