@@ -447,6 +447,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-update-notification-firstrun-whatsnew-bundle.css',
     },
+    'firefox_whatsnew_60': {
+        'source_filenames': (
+            'css/firefox/whatsnew/whatsnew-60.scss',
+        ),
+        'output_filename': 'css/firefox_whatsnew_60-bundle.css',
+    },
     'firefox_whatsnew': {
         'source_filenames': (
             'css/firefox/whatsnew/whatsnew.scss',
@@ -1130,6 +1136,14 @@ PIPELINE_JS = {
             'js/firefox/whatsnew/whatsnew.js',
         ),
         'output_filename': 'js/firefox_whatsnew-bundle.js',
+    },
+    'firefox_whatsnew_60': {
+        'source_filenames': (
+            'js/base/mozilla-fxa-iframe.js',
+            'js/base/send-to-device.js',
+            'js/firefox/whatsnew/whatsnew-60.js',
+        ),
+        'output_filename': 'js/firefox_whatsnew_60-bundle.js',
     },
     'firefox_whatsnew_fxa': {
         'source_filenames': (

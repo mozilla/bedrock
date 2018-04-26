@@ -47,6 +47,47 @@ if (typeof Mozilla.Analytics == 'undefined') {
         return $('html').data('latest-firefox');
     };
 
+    /** Returns an object containing GA-formatted Sync details
+    * https://bugzilla.mozilla.org/show_bug.cgi?id=1457024#c33
+    * @param {Object} syncDetails - object of Sync details returned by UITour
+    * @return {Object} Sync details formatted for GA
+    */
+    analytics.formatSyncDetails = function(syncDetails) {
+        // set up defaults
+        var formatted = {
+            FxASegment: 'Not logged in',
+            FxAMultiDesktopSync: false,
+            FxALogin: false,
+            FxAMobileSync: false
+        };
+
+        if (syncDetails.setup) {
+            formatted.FxALogin = true;
+
+            // user has at least one mobile device sync'd
+            if (syncDetails.mobileDevices >= 1) {
+                formatted.FxAMobileSync = true;
+            }
+
+            // user has more than one desktop devices sync'd
+            if (syncDetails.desktopDevices > 1) {
+                formatted.FxAMultiDesktopSync = true;
+            }
+
+            if (syncDetails.desktopDevices > 1 && syncDetails.mobileDevices > 0) {
+                formatted.FxASegment = 'Multi-Desktop and Mobile Sync';
+            } else if (syncDetails.desktopDevices === 1 && syncDetails.mobileDevices > 0) {
+                formatted.FxASegment = 'Desktop and Mobile Sync';
+            } else if (syncDetails.desktopDevices > 1) {
+                formatted.FxASegment = 'Multi-Desktop Sync';
+            } else {
+                formatted.FxASegment = 'Logged in';
+            }
+        }
+
+        return formatted;
+    };
+
     /** Monkey patch for dataLayer.push
     *   Adds href stripped of locale to link click objects when pushed to the dataLayer,
     *   also removes protocol and host if same as parent page from href.

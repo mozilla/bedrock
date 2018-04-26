@@ -334,6 +334,19 @@ def show_59_whatsnew(version, oldversion):
         return version >= v59 and version < v60
 
 
+def show_60_whatsnew(version, oldversion):
+    try:
+        version = Version(version)
+        if oldversion:
+            oldversion = Version(oldversion)
+    except ValueError:
+        return False
+
+    v60 = Version('60.0')
+
+    return version >= v60 and (oldversion < v60 if oldversion else True)
+
+
 def show_57_firstrun(version):
     try:
         version = Version(version)
@@ -434,11 +447,18 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
         channel = detect_channel(version)
         if channel == 'alpha':
             if show_57_dev_whatsnew(version):
-                    template = 'firefox/developer/whatsnew.html'
+                template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/dev-whatsnew.html'
         elif channel == 'nightly':
             template = 'firefox/nightly_whatsnew.html'
+        elif show_60_whatsnew(version, oldversion):
+            if locale == 'id':
+                template = 'firefox/whatsnew/index.id.html'
+            elif locale == 'zh-TW':
+                template = 'firefox/whatsnew/index.zh-TW.html'
+            else:
+                template = 'firefox/whatsnew/whatsnew-fx60.html'
         elif show_59_whatsnew(version, oldversion):
             if locale == 'id':
                 template = 'firefox/whatsnew/index.id.html'

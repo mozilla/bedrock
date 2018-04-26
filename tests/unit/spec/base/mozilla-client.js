@@ -515,6 +515,34 @@ describe('mozilla-client.js', function() {
 
     });
 
+    describe('getSyncDetails', function () {
+
+        beforeEach(function () {
+            jasmine.clock().install();
+        });
+
+        afterEach(function () {
+            delete window.Mozilla.Client.SyncDetails;
+            jasmine.clock().uninstall();
+        });
+
+        it('should fire the callback function with a Sync details object', function() {
+            var callback1 = jasmine.createSpy('callback1');
+            var result = {
+                'setup': false,
+                'desktopDevices': 0,
+                'mobileDevices': 0,
+                'totalDevices': 0
+            };
+
+            window.Mozilla.Client.getSyncDetails(callback1);
+            jasmine.clock().tick(500);
+            expect(callback1).toHaveBeenCalledWith(result);
+            expect(window.Mozilla.Client.SyncDetails).toEqual(result);
+        });
+
+    });
+
     describe('isFirefoxOutOfDate', function () {
 
         it('should return true if client version is equal to or less than the major version considered out of date', function () {
