@@ -143,6 +143,7 @@ class MitreCVE(models.Model):
     reporter = models.CharField(max_length=100, blank=True)
     description = models.TextField()
     products = JSONField(default='[]')
+    mfsa_ids = JSONField(default='[]')
     bugs = JSONField(default='[]')
 
     class Meta:
@@ -177,6 +178,12 @@ class MitreCVE(models.Model):
                 }
             })
 
+        reference_data = [
+            {'url': 'https://www.mozilla.org/security/advisories/mfsa{}/'.format(mfsa_id)}
+            for mfsa_id in self.mfsa_ids
+        ]
+        reference_data.extend([{'url': bug['url']} for bug in self.bugs])
+
         return {
             'data_type': 'CVE',
             'data_format': 'MITRE',
@@ -210,7 +217,7 @@ class MitreCVE(models.Model):
                 ]
             },
             'references': {
-                'reference_data': [{'url': bug['url']} for bug in self.bugs],
+                'reference_data': reference_data,
             },
             'description': {
                 'description_data': [

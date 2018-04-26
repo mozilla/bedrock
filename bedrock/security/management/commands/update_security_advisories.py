@@ -142,12 +142,14 @@ def add_or_update_cve(data):
             cve = MitreCVE.objects.get(id=cve_id)
         except MitreCVE.DoesNotExist:
             cve = MitreCVE(**cve_data)
+            cve.products = data['fixed_in']
         else:
+            cve.products = list(set(data['fixed_in']) | set(cve.products))
             for prop, value in cve_data.items():
                 if value:
                     setattr(cve, prop, value)
 
-        cve.products = list(set(data['fixed_in']) | set(cve.products))
+        cve.mfsa_ids.append(data['mfsa_id'])
         cve.save()
 
 
