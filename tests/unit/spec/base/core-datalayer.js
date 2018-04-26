@@ -84,6 +84,87 @@ describe('core-datalayer.js', function() {
         });
     });
 
+    describe('formatSyncDetails', function() {
+
+        it('will correctly format Sync data returned from UITour', function() {
+            var input1 = {
+                'setup': false,
+                'desktopDevices': 0,
+                'mobileDevices': 0,
+                'totalDevices': 0
+            };
+
+            var output1 = {
+                FxASegment: 'Not logged in',
+                FxAMultiDesktopSync: false,
+                FxALogin: false,
+                FxAMobileSync: false
+            };
+
+            var input2 = {
+                'setup': true,
+                'desktopDevices': 1,
+                'mobileDevices': 0,
+                'totalDevices': 1
+            };
+
+            var output2 = {
+                FxASegment: 'Logged in',
+                FxAMultiDesktopSync: false,
+                FxALogin: true,
+                FxAMobileSync: false
+            };
+
+            var input3 = {
+                'setup': true,
+                'desktopDevices': 2,
+                'mobileDevices': 0,
+                'totalDevices': 2
+            };
+
+            var output3 = {
+                FxASegment: 'Multi-Desktop Sync',
+                FxAMultiDesktopSync: true,
+                FxALogin: true,
+                FxAMobileSync: false
+            };
+
+            var input4 = {
+                'setup': true,
+                'desktopDevices': 1,
+                'mobileDevices': 1,
+                'totalDevices': 2
+            };
+
+            var output4 = {
+                FxASegment: 'Desktop and Mobile Sync',
+                FxAMultiDesktopSync: false,
+                FxALogin: true,
+                FxAMobileSync: true
+            };
+
+            var input5 = {
+                'setup': true,
+                'desktopDevices': 2,
+                'mobileDevices': 1,
+                'totalDevices': 3
+            };
+
+            var output5 = {
+                FxASegment: 'Multi-Desktop and Mobile Sync',
+                FxAMultiDesktopSync: true,
+                FxALogin: true,
+                FxAMobileSync: true
+            };
+
+            expect(Mozilla.Analytics.formatSyncDetails(input1)).toEqual(output1);
+            expect(Mozilla.Analytics.formatSyncDetails(input2)).toEqual(output2);
+            expect(Mozilla.Analytics.formatSyncDetails(input3)).toEqual(output3);
+            expect(Mozilla.Analytics.formatSyncDetails(input4)).toEqual(output4);
+            expect(Mozilla.Analytics.formatSyncDetails(input5)).toEqual(output5);
+        });
+    });
+
     describe('updateDataLayerPush', function() {
         var linkElement;
 
