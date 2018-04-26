@@ -15,7 +15,7 @@ body {
 
 main {
     @include open-sans;
-    background: #0061df linear-gradient(to right, #0061df 0%, #0075e3 25%, #00e8f9 100%);
+    background: #0061df linear-gradient(to bottom right, #6200a4 0%, #0a84ff 100%);
     color: #fff;
 
     h1, h2, h3, h4, h5, h6 {
@@ -24,120 +24,131 @@ main {
     }
 
     @media #{$mq-phone-wide} {
-        background: #0061df linear-gradient(to right, #0061df 0%, #0075e3 25%, #00e8f9 75%, #00fdfd 100%);
+        background: #0061df linear-gradient(to bottom right, #6200a4 0%, #0a84ff 100%);
     }
 
-    /**
-     * Only show the wave.png background when we can't see the cropped left/right edges.
-     * Ideally we would have a multi-layer background here, but this single-layer asset is all we have.
-     */
-    @media #{$mq-desktop} and (max-width: 2460px) {
-        background: url('/media/img/firefox/whatsnew/zh-tw/wave.png') bottom -60px center no-repeat,
-                    linear-gradient(to right, #0061df 0%, #0075e3 25%, #00e8f9 75%, #00fdfd 100%);
+    @media #{$mq-desktop} {
+        background: url('/media/img/firefox/whatsnew/zh-tw/wave.png') top -60px center no-repeat,
+                    linear-gradient(to bottom right, #6200a4 0%, #0a84ff 100%);
     }
 }
 
-//* -------------------------------------------------------------------------- */
-// Masthead
-
-.logo-masthead {
-    margin: 20px 0;
-    text-align: center;
-}
 
 //* -------------------------------------------------------------------------- */
 // Main CTA
 
 .main-content {
+    @include clearfix;
     text-align: center;
+}
 
-    h1 {
-        @include font-size-level2;
-        letter-spacing: .25em;
-        margin: 0 auto 40px;
-        max-width: 9em;
+.explain-content {
+    font-weight: bold;
+    letter-spacing: .1em;
+}
+
+.explain-list {
+    @include font-size-level4;
+    border-bottom: 4px solid #fff;
+    border-top: 4px solid #fff;
+    display: inline-block;
+    letter-spacing: .1em;
+    margin: 20px auto;
+    padding: .4em 0;
+
+    li {
+        line-height: 1.8;
 
         span {
             letter-spacing: normal;
-            padding-right: .25em;
+            padding-right: .2em;
         }
     }
+}
 
-    h2 {
-        background: url('/media/img/firefox/whatsnew/zh-tw/fox.png') top center no-repeat;
-        font-weight: bold;
-        letter-spacing: .1em;
-        padding-top: 120px;
+.qrcode-outer {
+    background-color: #fff;
+    border-radius: 30px;
+    border: 20px solid #fff;
+    margin: 0 auto 40px;
+    max-width: 220px;
+    position: relative;
+}
+
+@media #{$mq-phone-wide} {
+    .qrcode-outer {
+        max-width: 280px;
     }
+}
 
-    .qrcode {
-        margin-bottom: 40px;
-        max-width: 220px;
-    }
-
-    ul {
-        @include font-size-level4;
-        border-bottom: 1px solid #fff;
-        border-top: 1px solid #fff;
-        display: inline-block;
-        letter-spacing: .1em;
-        margin: 20px auto;
-        padding: .4em 0;
-
-        li {
-            line-height: 1.8;
-
-            span {
-                letter-spacing: normal;
-                padding-right: .2em;
-            }
-        }
-    }
-
-    @media #{$mq-phone-wide} {
-        .qrcode {
-            max-width: 280px;
-        }
-    }
-
-    @media #{$mq-desktop} {
+@media #{$mq-tablet} {
+    .main-content {
         @include clearfix;
-        margin: 0 auto 180px;
-        max-width: 900px;
+        margin: 10vh auto;
         position: relative;
+    }
 
-        h1 {
-            margin-bottom: 60px;
-            max-width: none;
+    .explain-figure {
+        align-items: center;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center ;
+        margin: 0 auto;
+    }
 
-            span {
-                @include font-size-level1;
-            }
-        }
+    .explain-content {
+        background: url('/media/img/firefox/whatsnew/zh-tw/phone.png') top center no-repeat;
+        min-width: 320px;
+        padding-top: 359px;
+        margin-left: 90px;
 
-        .qrcode {
-            float: left;
-            max-width: 320px;
-        }
-
-        ul {
-            letter-spacing: .3em;
-        }
-
-        .section-content {
-            float: right;
+        @media #{$mq-high-res} {
+            background-image: url('/media/img/firefox/whatsnew/zh-tw/phone-high-res.png');
+            background-size: 159px 419px;
         }
     }
 
-    @media #{$mq-desktop} and #{$mq-tall} {
-        h1 {
-            margin-bottom: 140px;
-        }
+    .explain-list {
+        letter-spacing: .3em;
     }
 
-    @media #{$mq-desktop-wide} {
-        .qrcode {
-            max-width: none;
+    .qrcode-outer {
+        align-self: flex-start;
+        margin: 0;
+    }
+}
+
+@media #{$mq-desktop} {
+    .explain-content {
+        min-width: 470px;
+    }
+
+    .explain-list {
+        @include font-size(32px);
+    }
+
+    .qrcode-outer {
+        max-width: 380px;
+        align-self: center;
+
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            top: -60px;
+            left: -60px;
+            height: 50px;
+            width: 50px;
+            background-image: url('/media/img/firefox/whatsnew/zh-tw/corner.svg');
+            display: block;
+        }
+
+        &:after {
+            top: auto;
+            left: auto;
+            bottom: -60px;
+            right: -60px;
+            transform: rotate(180deg);
         }
     }
 }
