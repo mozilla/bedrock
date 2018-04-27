@@ -114,18 +114,18 @@ def stub_attribution_code(request):
             # any problems and we should just ignore it
             pass
 
-    if has_value:
-        codes['timestamp'] = str(int(time()))
-        code = '&'.join('='.join(attr) for attr in codes.items())
-        code = querystringsafe_base64.encode(code)
-        sig = hmac.new(key, code, hashlib.sha256).hexdigest()
-        response = HttpResponseJSON({
-            'attribution_code': code,
-            'attribution_sig': sig,
-        })
-    else:
-        response = HttpResponseJSON({'error': 'no params'}, status=400)
+    if not has_value:
+        codes['source'] = 'www.mozilla.org'
+        codes['medium'] = '(none)'
 
+    codes['timestamp'] = str(int(time()))
+    code = '&'.join('='.join(attr) for attr in codes.items())
+    code = querystringsafe_base64.encode(code)
+    sig = hmac.new(key, code, hashlib.sha256).hexdigest()
+    response = HttpResponseJSON({
+        'attribution_code': code,
+        'attribution_sig': sig,
+    })
     patch_response_headers(response, 300)  # 5 min
     return response
 

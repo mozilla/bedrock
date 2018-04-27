@@ -179,11 +179,20 @@ describe('stub-attribution.js', function() {
             expect(result).toEqual(data);
         });
 
-        it('should return false if neither utm params and referrer are present', function() {
+        it('should return empty data if neither utm params and referrer are present', function() {
+            /* eslint-disable camelcase */
+            var data = {
+                utm_source: undefined,
+                utm_medium: undefined,
+                utm_campaign: undefined,
+                utm_content: undefined,
+                referrer: ''
+            };
+            /* eslint-enable camelcase */
             spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue({});
             spyOn(window.site, 'needsSha1').and.returnValue(false);
             var result = Mozilla.StubAttribution.getAttributionData('');
-            expect(result).toBeFalsy();
+            expect(result).toEqual(data);
         });
     });
 
