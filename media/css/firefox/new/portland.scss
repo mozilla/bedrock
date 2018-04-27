@@ -232,18 +232,27 @@ body {
 
     @media #{$mq-desktop} {
         .content-wrapper {
-            background: url('/media/img/firefox/new/portland/bg-portland-safe.png') bottom right no-repeat;
-            background-size: 600px 306px;
+            background: url('/media/img/firefox/new/portland/bg-portland-safe.png') bottom -1px right no-repeat;
+            background-size: 600px 326px;
         }
 
         .copy {
             width: 480px;
         }
+
+        // the bg image sits under the text slightly - this shadow is just to provide a bit of separation
+        h1 {
+            text-shadow: -1px 1px 0 rgba(0, 0, 0, 0.5);
+        }
     }
 
     @media #{$mq-desktop-wide-ish} {
         .content-wrapper {
-            background-size: 800px 408px;
+            background-size: 800px 435px;
+        }
+
+        h1 {
+            text-shadow: none;
         }
     }
 }
