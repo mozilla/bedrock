@@ -30,22 +30,18 @@
 
 <main>
   <div class="content">
-    <header class="logo-masthead">
-      <h3><a class="firefox" href="{{ url('firefox') }}">{{ high_res_img('logos/firefox/logo-quantum.png', {'alt': 'Firefox', 'width': '90', 'height': '90'}) }}</a></h3>
-    </header>
-
     <section class="main-content">
-      <figure>
-        <img class="qrcode" src="{{ static('img/firefox/whatsnew/zh-tw/qrcode.png') }}"
-        data-mozillaonline-link="{{ static('img/firefox/whatsnew/qrcode-mozillaonline.png') }}" width="359" height="358" alt="" />
-        <figcaption class="section-content">
-          {# Rough translation: "# When only the free fox" #}
-          <h2>#當隻自由的狐狸</h2>
-          <ul>
+      <figure class="explain-figure">
+        <figcaption class="explain-content">
+          <ul class="explain-list">
             <li>使用手機掃描 <span>QR code，</span></li> {# Rough translation: "Scan QR code with your mobile phone" #}
             <li>立即下載行動版 <span>Firefox！</span></li> {# Rough translation: "Download mobile for Firefox now!" #}
           </ul>
         </figcaption>
+        <div class="qrcode-outer">
+          <img class="qrcode" src="{{ static('img/firefox/whatsnew/zh-tw/qrcode.svg') }}"
+          data-mozillaonline-link="{{ static('img/firefox/whatsnew/qrcode-mozillaonline.png') }}" width="359" height="358" alt="QR code" />
+        </div>
       </figure>
     </section>
   </div>
