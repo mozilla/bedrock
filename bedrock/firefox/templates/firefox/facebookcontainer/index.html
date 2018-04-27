@@ -63,6 +63,13 @@
 
       <div class="optional-cta">
         <aside class="fbcontainer-video">
+        {% if LANG == 'de' %}
+          <div class="video-container">
+            <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/7yLoRVwuZlc?rel=0&amp;showinfo=0" frameborder="0" allow="encrypted-media" allowfullscreen>
+              <p><a href="https://www.youtube.com/watch?v=7yLoRVwuZlc">{{ _('Watch the video') }}</a></p>
+            </iframe>
+          </div>
+        {% else %}
           <div class="moz-video-container">
             <button class="moz-video-button" type="button" aria-controls="fbcontainer-video">{{ _('Watch the video') }}</button>
             <div class="video-container">
@@ -72,7 +79,8 @@
               </video>
             </div>{#-- /.video-container --#}
           </div>{#-- /.moz-video-container --#}
-        </aside>{#-- /.faster-video --#}
+        {% endif %}
+        </aside>{#-- /.fbcontainer-video --#}
       </div>{#-- /.optional-cta --#}
 
     </div>
