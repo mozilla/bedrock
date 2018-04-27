@@ -11,7 +11,7 @@
 
 {% block page_css %}
   {{ super() }}
-  {% stylesheet 'firefox-features-index' %}
+  {{ css_bundle('firefox-features-index') }}
 {% endblock %}
 
 {% block body_id %}firefox-features-landing{% endblock %}

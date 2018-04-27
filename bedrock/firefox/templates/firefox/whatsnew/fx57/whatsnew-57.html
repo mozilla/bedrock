@@ -10,7 +10,7 @@
 {% block page_desc %}{{ _('The new Firefox. Fast for good.') }}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox-whatsnew-57' %}
+  {{ css_bundle('firefox-whatsnew-57') }}
 {% endblock %}
 
 {% block site_header %}{% endblock %}

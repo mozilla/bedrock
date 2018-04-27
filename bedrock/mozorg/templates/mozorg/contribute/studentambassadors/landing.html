@@ -8,7 +8,7 @@
 {% block page_desc %}{{ _('A new program is coming to campuses this September to supercharge College and University students around the world. Let\'s Teach, Build and Protect the Open Web together! ') }}{% endblock %}
 {% block page_image %}{{ static('img/contribute/studentambassadors/hero.jpg') }}{% endblock %}
 {% block page_css %}
-  {% stylesheet 'contribute-studentambassadors-landing' %}
+  {{ css_bundle('contribute-studentambassadors-landing') }}
 {% endblock %}
 
 {% block body_id %}contribute-studentambassadors-landing{% endblock %}

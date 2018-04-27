@@ -17,7 +17,7 @@
 {% block body_attrs %}{{ super() }} data-global-nav-current-link="technology"{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'technology' %}
+  {{ css_bundle('technology') }}
 {% endblock %}
 
 {% block site_header %}
@@ -190,6 +190,6 @@
 
 {% block js %}
   {% if LANG.startswith('en-') %}
-    {% javascript 'technology' %}
+    {{ js_bundle('technology') }}
   {% endif %}
 {% endblock %}

@@ -7,7 +7,7 @@
 {% extends "firefox/base-pebbles.html" %}
 
 {% block page_css %}
-  {% stylesheet 'firefox-features-hub-common' %}
+  {{ css_bundle('firefox-features-hub-common') }}
 {% endblock %}
 
 {% block content %}
@@ -56,5 +56,5 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'firefox-features-hub' %}
+  {{ js_bundle('firefox-features-hub') }}
 {% endblock %}

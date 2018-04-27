@@ -9,7 +9,7 @@
 
 {% block page_css %}
   {{ super() }}
-  {% stylesheet 'commit-access-policy' %}
+  {{ css_bundle('commit-access-policy') }}
 {% endblock %}
 
 {% block article %}

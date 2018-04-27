@@ -4,20 +4,66 @@
 
 .. _install:
 
-==================
 Installing Bedrock
 ==================
 
-Installation
-------------
+There are two primary methods of installing bedrock: Docker and Local. Whichever you choose you'll start by getting the source::
 
-These instructions assume you have `git` and `pip` installed. If you don't have `pip` installed
-(you probably do) you can install it with the instructions in `the pip docs <https://pip.pypa.io/en/stable/installing/>`_.
-
-Start by getting the source::
-
-    $ git clone git://github.com/mozilla/bedrock.git
+    $ git clone --recursive git://github.com/mozilla/bedrock.git
     $ cd bedrock
+
+Now configure the application to run locally by creating your local settings environment file
+(You shouldn't need to customize anything in there yet)::
+
+    $ cp .env-dist .env
+
+After these basic steps you can choose your install method below. Docker is the easiest and recommended way, but local is also possible
+and may be preferred by people for various reasons.
+
+Docker Installation
+-------------------
+
+.. note::
+
+    This method assumes you have `Docker installed for your platform <https://www.docker.com/community-edition#/download>`_.
+    If not please do that now or skip to the ``Local Installation`` section.
+
+This is the simplest way to get started developing for bedrock. If you're on Linux or Mac (and possibly Windows 10 with the
+Linux subsystem) you can run a script that will pull our production docker images and use those to build developer ones::
+
+    $ make clean
+    $ make run
+
+.. note::
+
+    You can start the server any other time with::
+
+        $ make run
+
+You should see a number of things happening, but when it's done it will output something saying that the server is running
+at `localhost:3000 <http://localhost:3000/>`_. Go to that URL in a browser and you should see the mozilla.org home page.
+In this mode the site will refresh itself when you make changes to any template or media file. Simply open your editor of
+choice and modify things and you should see those changes reflected in your browser.
+
+If you don't have or want to use Make you can call the docker and compose commands directly::
+
+    $ docker-compose pull app assets
+    $ git submodule sync
+    $ git submodule update --init --recursive
+    $ docker-compose build app assets
+
+Then starting it all is simply::
+
+    $ docker-compose up app assets
+
+All of the building is handled by the ``Makefile`` script and called by Make if you follow the above directions.
+You **DO NOT** need to do both.
+
+Local Installation
+------------------
+
+These instructions assume you have Python, pip, and NodeJS installed. If you don't have `pip` installed
+(you probably do) you can install it with the instructions in `the pip docs <https://pip.pypa.io/en/stable/installing/>`_.
 
 You need to create a virtual environment for Python libraries. Skip the first instruction if you already have virtualenv installed::
 
@@ -25,35 +71,28 @@ You need to create a virtual environment for Python libraries. Skip the first in
     $ virtualenv -p python2.7 venv                 # create a virtual env in the folder `venv`
     $ source venv/bin/activate                     # activate the virtual env. On Windows, run: venv\Scripts\activate.bat
     $ pip install -U pip                           # securely upgrade pip
-    $ pip install -r requirements/test.txt         # installs dependencies
+    $ pip install -r requirements/dev.txt         # installs dependencies
 
 If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting the arch flags and try again::
 
     $ export ARCHFLAGS="-arch i386 -arch x86_64"
-    $ pip install -r requirements/test.txt
+    $ pip install -r requirements/dev.txt
 
 If you are on Linux, you will need at least the following packages or their equivalent for your distro::
 
     $ python-dev libxslt-dev
-
-Now configure the application to run locally by creating your local settings environment file::
-
-    $ cp .env-dist .env
-
-You shouldn't need to customize anything in there yet.
 
 Sync the database and all of the external data locally. This gets product-details, security-advisories,
 credits, release notes, localizations, legal-docs etc::
 
     $ bin/bootstrap.sh
 
-Lastly, you need to have `Node.js <https://nodejs.org/>`_ and
-`Yarn <https://yarnpkg.com/>`_ installed. The node
-dependencies for running the site can be installed with ``yarn``::
+Next, you need to have `Node.js <https://nodejs.org/>`_ and `Yarn <https://yarnpkg.com/>`_ installed.
+The node dependencies for running the site can be installed with ``yarn``::
 
     $ yarn
 
-You may also need to install the `Gulp <http://gulpjs.com/>`_ cli globally::
+You'll also need to install the `Gulp <http://gulpjs.com/>`_ cli globally::
 
     $ npm install -g gulp-cli
 
@@ -67,23 +106,32 @@ You may also need to install the `Gulp <http://gulpjs.com/>`_ cli globally::
 .. _run-python-tests:
 
 Run the tests
--------------
-
-.. Important::
-
-    We're working on fixing this, but for now you need the localization files for the tests to pass.
-    See the `Localization`_ section below for instructions on checking those out.
+=============
 
 Now that we have everything installed, let's make sure all of our tests pass.
 This will be important during development so that you can easily know when
-you've broken something with a change. You should still have your virtualenv
+you've broken something with a change.
+
+Docker
+------
+
+We manage our local docker environment with docker-compose and Make. All you need to do here is run::
+
+    $ make test
+
+If you don't have Make you can simply run ``docker-compose run test``.
+
+Local
+-----
+
+From the local install instructions above you should still have your virtualenv
 activated, so running the tests is as simple as::
 
     $ py.test lib bedrock
 
 To test a single app, specify the app by name in the command above. e.g.::
 
-    $ py.test lib bedrock/firefox
+    $ py.test bedrock/firefox
 
 .. note::
 
@@ -95,38 +143,41 @@ To test a single app, specify the app by name in the command above. e.g.::
     copying ``docker/envfiles/demo.env`` to ``.env``, and running tests again.
 
 Make it run
------------
+===========
 
-To make the server run, make sure you are inside a virtualenv, and then
+Docker
+------
+
+You can simply run the ``make run`` script mentioned above, or use docker-compose directly::
+
+    $ docker-compose up app assets
+
+Local
+-----
+
+To make the server run, make sure your virtualenv is activated, and then
 run the server::
 
-    $ ./manage.py runserver
+    $ npm start
 
 If you are not inside a virtualenv, you can activate it by doing::
 
     $ source venv/bin/activate
 
-If you get the error "NoneType is not iterable", you didn't check out the latest product-details. See the above section for that.
+Browsersync
+-----------
 
-Front-end assets
-~~~~~~~~~~~~~~~~
-
-Next, in a new terminal tab run gulp to watch for local file changes::
-
-    $ gulp
-
-This will automatically copy over CSS, JavaScript and image files to the /static directory as and when they change, which is needed for Django Pipeline to serve the assets as pages are requested.
-
-If you have problems with gulp, or you for some reason don't want to use it you can set::
-
-    PIPELINE_COLLECTOR_ENABLED=True
-
-in your ``.env`` file or otherwise set it in your environment and it will collect media for you as you make changes. The reason that this is not the preferred method is that it is much slower than using gulp.
-
-To make it easier to debug, the development environment does not bundle files. If you want to simulate production assets you can set DEBUG=False in your ``.env`` file and run `` ./manage.py collectstatic`` in the virtual environment.
+Both the Docker and Local methods of running the site use `Browsersync <https://www.browsersync.io/>`_ to serve
+the development static-assets (CSS, JS, etc.) as well as refresh the browser tab for you when you change files. The
+refreshing of the page works by injecting a small JS snippet into the page that listens to the browsersync service
+and will refresh the page when it receives a signal. It also injects a script that shows a small notification in the
+top-right corner of the page to inform you that a refresh is happening and when the page connects to or is disconnected
+from the browsersync service. We've not seen issues with this, but since it is modifying the page it is possible that this
+could conflict with something on the page itself. Please let us know if you suspect this is happening for you. This notification
+can be disabled in the browsersync options in the ``gulpfile.js`` by setting ``notify: false`` in the ``browser-sync`` task.
 
 Legal Docs
-------------
+==========
 
 Legal docs (for example: the privacy policy) are generated from markdown files in the [legal-docs](https://github.com/mozilla/legal-docs) repo.
 
@@ -135,18 +186,18 @@ To view them or update to a more recent version update the submodule::
     $ git submodule update --init --recursive
 
 Localization
-------------
+============
 
-Localization (or L10n) files were fetched by the `bootstrap.sh` command your ran earlier.
-If you need to update them or switch to a different repo or branch after changing settings
-you can run the following command::
+Localization (or L10n) files were fetched by the `bootstrap.sh` command your ran earlier and are
+included in the docker images. If you need to update them or switch to a different repo or branch
+after changing settings you can run the following command::
 
     $ ./manage.py l10n_update
 
 You can read more details about how to localize content :ref:`here<l10n>`.
 
 Feature Flipping (aka Switches)
-----------------
+===============================
 
 Environment variables are used to configure behavior and/or features of select pages on bedrock
 via a template helper function called ``switch()``. It will take whatever name you pass to it
@@ -188,9 +239,9 @@ To configure switches for a demo branch. Follow the `configuration instructions 
 Traffic Cop
 ~~~~~~~~~~~
 
-Currently, these switches are used to enable/disable `Traffic Cop <https://github.com/mozilla/trafficcop/>`_ experiments 
-on many pages of the site. We only add the Traffic Cop JavaScript snippet to a page when there is an active test. You 
-can see the current state of these switches and other configuration values in our `configuration 
+Currently, these switches are used to enable/disable `Traffic Cop <https://github.com/mozilla/trafficcop/>`_ experiments
+on many pages of the site. We only add the Traffic Cop JavaScript snippet to a page when there is an active test. You
+can see the current state of these switches and other configuration values in our `configuration
 repo <https://mozmeao.github.io/www-config/configs/>`_.
 
 To work with/test these experiment switches locally, you must add the switches to your local environment. For example::

@@ -6,6 +6,10 @@ if [ ! -e ./manage.py ]; then
     cd $script_parent_dir
 fi
 
+if [[ ! -f .env ]]; then
+    cp .env-dist .env
+fi
+
 # get legal-docs
 git submodule sync
 git submodule update --init --recursive

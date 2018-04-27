@@ -11,7 +11,7 @@
 {% block page_desc %}{{_('Millions of people around the world trust Firefox Web browsers on Android, iOS and desktop computers. Fast. Private. Download now!')}}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox_facebook_container' %}
+  {{ css_bundle('firefox_facebook_container') }}
 {% endblock %}
 
 {% block body_id %}firefox{% endblock %}
@@ -144,9 +144,9 @@
 {% block update_notification %}{% endblock %}
 
 {% block js %}
-  {% javascript 'firefox_facebook_container_video' %}
+  {{ js_bundle('firefox_facebook_container_video') }}
 
   {% if switch('firefox-facebook-container-funnelcake', ['en-US']) %}
-    {% javascript 'firefox_facebook_container_funnelcake' %}
+    {{ js_bundle('firefox_facebook_container_funnelcake') }}
   {% endif %}
 {% endblock %}

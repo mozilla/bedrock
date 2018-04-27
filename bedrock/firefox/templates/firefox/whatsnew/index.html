@@ -21,7 +21,7 @@
 {% block site_header %}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox_whatsnew' %}
+  {{ css_bundle('firefox_whatsnew') }}
 {% endblock %}
 
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
@@ -70,5 +70,5 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'firefox_whatsnew' %}
+  {{ js_bundle('firefox_whatsnew') }}
 {% endblock %}

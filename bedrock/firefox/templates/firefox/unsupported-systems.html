@@ -8,7 +8,7 @@
 {% block page_desc %}{{ _('We’re sorry to report this, but your computer does not meet the minimum system requirements to run this version.') }}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox_unsupported_systems' %}
+  {{ css_bundle('firefox_unsupported_systems') }}
 {% endblock %}
 
 {% block content %}

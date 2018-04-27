@@ -7,7 +7,7 @@
 {% extends "firefox/new/berlin/base.html" %}
 
 {% block page_css %}
-  {% stylesheet 'firefox_new_berlin_b' %}
+  {{ css_bundle('firefox_new_berlin_b') }}
 {% endblock %}
 
 {% block primary_download_button %}
@@ -42,5 +42,5 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'firefox_new_scene1_berlin' %}
+  {{ js_bundle('firefox_new_scene1_berlin') }}
 {% endblock %}

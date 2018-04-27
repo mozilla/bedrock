@@ -5,7 +5,7 @@
 {% block body_class %}sand{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'press' %}
+  {{ css_bundle('press') }}
 {% endblock %}
 
 {% block content %}
@@ -270,5 +270,5 @@
 {% block email_form %}{% endblock %}
 
 {% block js %}
-  {% javascript 'press_speaker_request' %}
+  {{ js_bundle('press_speaker_request') }}
 {% endblock  %}

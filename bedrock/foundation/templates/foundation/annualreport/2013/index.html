@@ -8,7 +8,7 @@
 {% block body_id %}annual-2013{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'annual_2013' %}
+  {{ css_bundle('annual_2013') }}
 {% endblock %}
 
 {% block site_header %}
@@ -153,5 +153,5 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'annual_2013' %}
+  {{ js_bundle('annual_2013') }}
 {% endblock %}

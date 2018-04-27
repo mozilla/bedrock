@@ -1,80 +1,100 @@
-BASE_IMG_NAME = bedrock_base
-DEV_IMG_NAME = bedrock_dev
-GIT_SHA = $(shell git rev-parse HEAD)
-FINAL_IMG_NAME = bedrock_dev_final:${GIT_SHA}
+DC_CI = "bin/docker-compose.sh"
+DC = $(shell which docker-compose)
 
-default:
+default: help
+	@echo ""
 	@echo "You need to specify a subcommand."
 	@exit 1
 
 help:
-	@echo "build           - build docker containers for dev"
-	@echo "run             - docker-compose up the entire system for dev"
+	@echo "build         - build docker images for dev"
+	@echo "run           - docker-compose up the entire system for dev"
 	@echo ""
-	@echo "clean           - remove all build, test, coverage and Python artifacts"
-	@echo "test            - run unit tests"
-	@echo "sync-all				 - sync external data to local database"
-	@echo "test-image      - run tests on the code built into the docker image"
-	@echo "build-final     - build final docker container for demo deployment"
-	@echo "docs            - generate Sphinx HTML documentation, including API docs"
+	@echo "pull          - pull the latest production images from Docker Hub"
+	@echo "shell         - start the Django Python shell (bpython and shell_plus)"
+	@echo "clean         - remove all build, test, coverage and Python artifacts"
+	@echo "rebuild       - force a rebuild of all of the docker images"
+	@echo "submodules    - resync and fetch the latest git submodules"
+	@echo "lint          - check style with flake8, jshint, and stylelint"
+	@echo "test          - run tests against local files"
+	@echo "test-image    - run tests against files in docker image"
+	@echo "docs          - generate Sphinx HTML documentation"
+	@echo "build-ci      - build docker images for use in our CI pipeline"
+	@echo "test-ci       - run tests against files in docker image built by CI"
+
+.env:
+	@if [ ! -f .env ]; then \
+		echo "Copying .env-dist to .env..."; \
+		cp .env-dist .env; \
+	fi
 
 .docker-build:
 	${MAKE} build
 
-.docker-build-final:
-	${MAKE} build-final
+.docker-build-pull:
+	${MAKE} pull
 
-build:
-	docker build -f docker/dockerfiles/bedrock_base -t ${BASE_IMG_NAME} --pull .
-	docker build -f docker/dockerfiles/bedrock_dev -t ${DEV_IMG_NAME} .
-	-rm -f .docker-build-final
+build: .env .docker-build-pull submodules
+	${DC} build app assets
 	touch .docker-build
 
-build-final: .docker-build
-	docker build -f docker/dockerfiles/bedrock_dev_final -t ${FINAL_IMG_NAME} .
-	touch .docker-build-final
+pull:
+	-GIT_COMMIT= ${DC} pull release app assets builder app-base
+	touch .docker-build-pull
+
+rebuild: clean build
 
 run: .docker-build
-	docker run --env-file docker/envfiles/dev.env -p 8000:8000 -v "$$PWD:/app" ${DEV_IMG_NAME}
+	${DC} up assets app
 
-django-shell: .docker-build
-	docker run --user `id -u` -it --env-file docker/envfiles/dev.env -v "$$PWD:/app" ${DEV_IMG_NAME} python manage.py shell
+submodules:
+	git submodule sync
+	git submodule update --init --recursive
 
 shell: .docker-build
-	docker run --user `id -u` -it --env-file docker/envfiles/dev.env -v "$$PWD:/app" ${DEV_IMG_NAME} bash
-
-sync-all: .docker-build
-	docker run --user `id -u` --env-file docker/envfiles/demo.env -v "$$PWD:/app" ${DEV_IMG_NAME} bin/sync-all.sh
+	${DC} run app python manage.py shell_plus
 
 clean:
-	# python related things
-	find . -name '*.egg-info' -exec rm -rf {} +
-	find . -name '*.egg' -exec rm -f {} +
+#	python related things
 	find . -name '*.pyc' -exec rm -f {} +
 	find . -name '*.pyo' -exec rm -f {} +
 	find . -name '__pycache__' -exec rm -rf {} +
-
-	# test related things
+#	test related things
 	-rm -f .coverage
-	-rm -rf results
-
-	# static files
-	git clean -fdx static
-
-	# docs files
+#	docs files
 	-rm -rf docs/_build/
+#	static files
+	-rm -rf static_build/
+#	state files
+	-rm -f .docker-build*
 
-	# state files
-	-rm -f .docker-build
-	-rm -f .docker-build-final
+lint: .docker-build
+	${DC} run test flake8 bedrock lib tests
+	${DC} run assets gulp js:lint css:lint
 
 test: .docker-build
-	docker run --user `id -u` --env-file docker/envfiles/test.env -v "$$PWD:/app" ${DEV_IMG_NAME} bin/run-tests.sh
+	${DC} run test
 
-test-image: .docker-build-final
-	docker run --env-file docker/envfiles/test.env ${FINAL_IMG_NAME} bin/run-tests.sh
+test-image: .docker-build
+	${DC} run test-image
 
-docs:
-	docker run --user `id -u` --env-file docker/envfiles/dev.env -v "$$PWD:/app" ${DEV_IMG_NAME} bash -c "make -C docs/ clean && make -C docs/ html"
+docs: .docker-build
+	${DC} run app $(MAKE) -C docs/ clean
+	${DC} run app $(MAKE) -C docs/ html
 
-.PHONY: default clean build build-final docs run test sync-all test-image shell django-shell
+###############
+# For use in CI
+###############
+.docker-build-ci:
+	${MAKE} build-ci
+
+build-ci: .env .docker-build-pull submodules
+	${DC_CI} build release
+#	tag intermediate images using cache
+	${DC_CI} build app assets builder app-base
+	touch .docker-build-ci
+
+test-ci: .docker-build-ci
+	${DC_CI} run test-image
+
+.PHONY: default clean build pull submodules docs lint run shell test test-image rebuild build-ci test-ci

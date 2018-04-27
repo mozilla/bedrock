@@ -11,7 +11,7 @@
 {% block body_attrs %}{{ super() }} data-global-nav-current-link="about-us"{% endblock %}
 
 {% block extrahead %}
-  {% stylesheet 'contact-spaces' %}
+  {{ css_bundle('contact-spaces') }}
 {% endblock %}
 
 {% block site_header %}
@@ -68,5 +68,5 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'contact-spaces' %}
+  {{ js_bundle('contact-spaces') }}
 {% endblock %}

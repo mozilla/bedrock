@@ -13,7 +13,7 @@
 {% block global_nav %}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'contribute-friends' %}
+  {{ css_bundle('contribute-friends') }}
 {% endblock %}
 
 {% block contrib_page_title %}{{ _('Join Firefox Friends today!') }}{% endblock %}
@@ -120,5 +120,5 @@
 {% block contrib_footer %}{% endblock contrib_footer %}
 
 {% block js %}
-  {% javascript 'contribute-friends' %}
+  {{ js_bundle('contribute-friends') }}
 {% endblock %}

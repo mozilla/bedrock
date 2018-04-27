@@ -11,15 +11,15 @@
 {% block body_class %}sand{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'annual_2011' %}
+  {{ css_bundle('annual_2011') }}
   <link rel="stylesheet" media="print" href="{{ static('css/foundation/annual2011print.css') }}">
 {% endblock %}
 
 {% block js %}
   <!--[if IE 9]>
-    {% javascript 'matchmedia_addlistener' %}
+    {{ js_bundle('matchmedia_addlistener') }}
   <![endif]-->
-  {% javascript 'annual_2011' %}
+  {{ js_bundle('annual_2011') }}
 {% endblock %}
 
 

@@ -14,7 +14,7 @@
 {% block site_header %}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox_whatsnew_fxa' %}
+  {{ css_bundle('firefox_whatsnew_fxa') }}
 {% endblock %}
 
 {% block content %}
@@ -50,6 +50,6 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'firefox_whatsnew' %}
-  {% javascript 'firefox_whatsnew_fxa' %}
+  {{ js_bundle('firefox_whatsnew') }}
+  {{ js_bundle('firefox_whatsnew_fxa') }}
 {% endblock %}

@@ -14,7 +14,7 @@
 {% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/?xv=portland{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox_new_portland' %}
+  {{ css_bundle('firefox_new_portland') }}
 {% endblock %}
 
 {% block body_id %}firefox{% endblock %}

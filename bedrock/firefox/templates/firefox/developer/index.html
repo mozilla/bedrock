@@ -14,7 +14,7 @@
 
 
 {% block page_css %}
-  {% stylesheet 'firefox_developer' %}
+  {{ css_bundle('firefox_developer') }}
 {% endblock %}
 
 {% block body_id %}firefox-developer{% endblock %}
@@ -238,5 +238,5 @@
 {% block update_notification %}{% endblock %}
 
 {% block js %}
-  {% javascript 'firefox_developer' %}
+  {{ js_bundle('firefox_developer') }}
 {% endblock %}

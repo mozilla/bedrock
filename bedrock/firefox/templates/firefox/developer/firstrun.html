@@ -13,7 +13,7 @@
 {% block page_favicon_large %}{{ static('img/firefox/developer/favicon-196.png') }}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox_developer_quantum_firstrun' %}
+  {{ css_bundle('firefox_developer_quantum_firstrun') }}
 {% endblock %}
 
 {% block body_id %}firefox-developer{% endblock %}

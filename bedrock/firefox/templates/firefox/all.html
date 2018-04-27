@@ -72,7 +72,7 @@
 {% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox_all' %}
+  {{ css_bundle('firefox_all') }}
 {% endblock %}
 
 {% block site_header_logo %}
@@ -179,6 +179,6 @@
 {% block js %}
   {# searching with js only makes sense if we're displaying all #}
   {% if platform == 'desktop' and not query %}
-    {% javascript 'firefox_all' %}
+    {{ js_bundle('firefox_all') }}
   {% endif %}
 {% endblock %}

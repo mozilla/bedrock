@@ -12,11 +12,11 @@
 {% block body_class %}newsletter-developer{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'newsletter-developer' %}
+  {{ css_bundle('newsletter-developer') }}
 {% endblock %}
 
 {% block js %}
-  {% javascript 'newsletter-developer' %}
+  {{ js_bundle('newsletter-developer') }}
 {% endblock %}
 
 {% block site_header %}{% endblock %}

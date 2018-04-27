@@ -18,7 +18,7 @@
 {# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
 {% block extrahead %}
   {{ super() }}
-  {% stylesheet 'firefox_new_scene2' %}
+  {{ css_bundle('firefox_new_scene2') }}
 {% endblock %}
 
 {% block body_id %}firefox-new-scene2{% endblock %}
@@ -77,7 +77,7 @@
 
 {% block js %}
   {% if switch('tracking-pixel') %}
-    {% javascript 'firefox_new_pixel' %}
+    {{ js_bundle('firefox_new_pixel') }}
   {% endif %}
-  {% javascript 'firefox_new_scene2' %}
+  {{ js_bundle('firefox_new_scene2') }}
 {% endblock %}

@@ -9,7 +9,7 @@
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
 {% block extrahead %}
-  {% stylesheet 'nightly_whatsnew' %}
+  {{ css_bundle('nightly_whatsnew') }}
 {% endblock %}
 
 {% block page_title_prefix %}{% endblock %}
@@ -96,7 +96,7 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'firefox_whatsnew' %}
+  {{ js_bundle('firefox_whatsnew') }}
 {% endblock %}
 
 {# Bug 1381776 #}

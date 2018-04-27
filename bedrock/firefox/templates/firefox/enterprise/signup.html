@@ -12,7 +12,7 @@
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox_enterprise' %}
+  {{ css_bundle('firefox_enterprise') }}
 {% endblock %}
 
 {% block body_id %}firefox{% endblock %}

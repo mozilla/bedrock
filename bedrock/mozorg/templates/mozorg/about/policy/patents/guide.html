@@ -10,11 +10,11 @@
 
 
 {% block page_css %}
-  {% stylesheet 'about-patents' %}
+  {{ css_bundle('about-patents') }}
 {% endblock %}
 
 {% block js %}
-  {% javascript 'accordion' %}
+  {{ js_bundle('accordion') }}
 {% endblock %}
 
 {% block article %}

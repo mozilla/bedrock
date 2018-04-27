@@ -74,10 +74,7 @@ logging.config.dictConfig(LOGGING)
 
 if (len(sys.argv) > 1 and sys.argv[1] == 'test') or sys.argv[0].endswith('py.test'):
     # Using the CachedStaticFilesStorage for tests breaks all the things.
-    STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
-    # Turn off less compilation in tests
-    PIPELINE['PIPELINE_ENABLED'] = True
-    PIPELINE['PIPELINE_COLLECTOR_ENABLED'] = False
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
     # TEMPLATE_DEBUG has to be True for Jinja to call the template_rendered
     # signal which Django's test client uses to save away the contexts for your
     # test to look at later.
@@ -89,4 +86,3 @@ if (len(sys.argv) > 1 and sys.argv[1] == 'test') or sys.argv[0].endswith('py.tes
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': ':memory:'
     }
-    DATABASE_ROUTERS = []

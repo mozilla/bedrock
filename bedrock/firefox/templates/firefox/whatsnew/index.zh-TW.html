@@ -22,7 +22,7 @@
 {% block site_header %}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox_whatsnew_zh_tw' %}
+  {{ css_bundle('firefox_whatsnew_zh_tw') }}
 {% endblock %}
 
 {% block content %}
@@ -53,5 +53,5 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'firefox_whatsnew' %}
+  {{ js_bundle('firefox_whatsnew') }}
 {% endblock %}

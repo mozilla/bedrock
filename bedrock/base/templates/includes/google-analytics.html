@@ -10,6 +10,6 @@ https://bugzilla.mozilla.org/show_bug.cgi?id=1122305#c8
 <!-- Site Container: NONE -->
 
 {% if settings.GTM_CONTAINER_ID %}
-  {% javascript 'gtm-snippet' %}
+  {{ js_bundle('gtm-snippet') }}
 {% endif %}
 <!-- End Google Tag Manager -->

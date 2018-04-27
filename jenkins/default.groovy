@@ -11,16 +11,14 @@ stage ('Build Images') {
     }
     utils.ircNotification([stage: 'Test & Deploy', status: 'starting'])
     lock ("bedrock-docker-${env.GIT_COMMIT}") {
-        command = "docker/bin/build_images.sh"
-        if (config.smoke_tests || config.integration_tests) {
-            command += ' --test'
-        }
         try {
-            sh command
+            sh "make clean build-ci"
         } catch(err) {
             utils.ircNotification([stage: 'Docker Build', status: 'failure'])
             throw err
         }
+        // save the files for later
+        stash 'workspace'
     }
 }
 
@@ -32,8 +30,8 @@ if ( config.smoke_tests ) {
                 smoke_tests: utils.integrationTestJob('smoke'),
                 unit_tests: {
                     node {
-                        unstash 'scripts'
-                        sh 'docker/bin/run_tests.sh'
+                        unstash 'workspace'
+                        sh 'make test-ci'
                     }
                 },
             ])
@@ -50,17 +48,18 @@ if ( config.push_public_registry != false ) {
     stage ('Push Public Images') {
         try {
             if (config.demo) {
-                utils.pushDockerhub('mozorg/bedrock_l10n', 'mozorg/bedrock')
+                utils.pushDockerhub('mozorg/bedrock')
             }
             else {
-                utils.pushDockerhub('mozorg/bedrock_base')
-                utils.pushDockerhub('mozorg/bedrock_build')
                 utils.pushDockerhub('mozorg/bedrock_test')
+                utils.pushDockerhub('mozorg/bedrock_assets')
                 utils.pushDockerhub('mozorg/bedrock_code')
-                utils.pushDockerhub('mozorg/bedrock_l10n', 'mozorg/bedrock')
+                utils.pushDockerhub('mozorg/bedrock_build')
+                utils.pushDockerhub('mozorg/bedrock')
             }
         } catch(err) {
-            utils.ircNotification([stage: 'Dockerhub Push Failed', status: 'warning'])
+            utils.ircNotification([stage: 'Dockerhub Push Failed', status: 'failure'])
+            throw err
         }
     }
 }

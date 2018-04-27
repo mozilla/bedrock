@@ -50,15 +50,13 @@ BIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $BIN_DIR/set_git_env_vars.sh
 
 if [ -z "${BASE_URL}" ]; then
-  BRANCH_NAME_SAFE="${BRANCH_NAME/\//-}"
-  DOCKER_TAG="${BRANCH_NAME_SAFE}-${GIT_COMMIT}"
   # start bedrock
   docker run -d --rm \
-    --name bedrock-code-${GIT_COMMIT_SHORT} \
+    --name bedrock-code-${BRANCH_AND_COMMIT} \
     --env-file docker/envfiles/prod.env \
-    mozorg/bedrock_l10n:${DOCKER_TAG} bin/run-prod.sh
+    mozorg/bedrock:${BRANCH_AND_COMMIT} bin/run-prod.sh
 
-  DOCKER_LINKS=(--link bedrock-code-${GIT_COMMIT_SHORT}:bedrock)
+  DOCKER_LINKS=(--link bedrock-code-${BRANCH_AND_COMMIT}:bedrock)
   BASE_URL="http://bedrock:8000"
 fi
 
@@ -74,20 +72,20 @@ if [ "${DRIVER}" = "Remote" ]; then
 
   # start selenium grid hub
   docker run -d --rm \
-    --name bedrock-selenium-hub-${GIT_COMMIT_SHORT} \
+    --name bedrock-selenium-hub-${BRANCH_AND_COMMIT} \
     selenium/hub:${SELENIUM_VERSION}
-  DOCKER_LINKS=(${DOCKER_LINKS[@]} --link bedrock-selenium-hub-${GIT_COMMIT_SHORT}:hub)
+  DOCKER_LINKS=(${DOCKER_LINKS[@]} --link bedrock-selenium-hub-${BRANCH_AND_COMMIT}:hub)
   SELENIUM_HOST="hub"
 
   # start selenium grid nodes
   for NODE_NUMBER in `seq ${NUMBER_OF_NODES:-5}`; do
     docker run -d --rm --shm-size 2g \
-      --name bedrock-selenium-node-${NODE_NUMBER}-${GIT_COMMIT_SHORT} \
+      --name bedrock-selenium-node-${NODE_NUMBER}-${BRANCH_AND_COMMIT} \
       ${DOCKER_LINKS[@]} \
       selenium/node-firefox:${SELENIUM_VERSION}
     while ! ${SELENIUM_READY}; do
-      IP=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' bedrock-selenium-node-${NODE_NUMBER}-${GIT_COMMIT_SHORT}`
-      CMD="docker run --rm --link bedrock-selenium-hub-${GIT_COMMIT_SHORT}:hub tutum/curl curl http://hub:4444/grid/api/proxy/?id=http://${IP}:5555 | grep 'proxy found'"
+      IP=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' bedrock-selenium-node-${NODE_NUMBER}-${BRANCH_AND_COMMIT}`
+      CMD="docker run --rm --link bedrock-selenium-hub-${BRANCH_AND_COMMIT}:hub tutum/curl curl http://hub:4444/grid/api/proxy/?id=http://${IP}:5555 | grep 'proxy found'"
       if eval ${CMD}; then SELENIUM_READY=true; fi
     done
   done

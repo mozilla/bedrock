@@ -7,7 +7,7 @@
 {% block page_title %}{{ doc.h1.string }}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'fb_privacy' %}
+  {{ css_bundle('fb_privacy') }}
 {% endblock %}
 
 {% block body_id %}fb-privacy{% endblock %}

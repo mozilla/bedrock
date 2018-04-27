@@ -5,7 +5,7 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import "../../../node_modules/@mozilla-protocol/core/protocol/css/protocol.scss";
+@import "../../protocol/css/protocol.scss";
 
 // TODO port these components to Protocol.
 @import "components/global-nav";

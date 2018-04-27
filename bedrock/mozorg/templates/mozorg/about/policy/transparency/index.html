@@ -8,14 +8,14 @@
 {% block body_class %}sand about-transparency{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'about-transparency' %}
+  {{ css_bundle('about-transparency') }}
 {% endblock %}
 
 {% block js %}
   <!--[if IE 9]>
-  {% javascript 'matchmedia_addlistener' %}
+  {{ js_bundle('matchmedia_addlistener') }}
   <![endif]-->
-  {% javascript 'about-transparency' %}
+  {{ js_bundle('about-transparency') }}
 {% endblock %}
 
 {% block content %}

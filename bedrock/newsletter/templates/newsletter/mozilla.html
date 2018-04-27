@@ -26,11 +26,11 @@
 {% block body_class %}newsletter-mozilla{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'newsletter-mozilla' %}
+  {{ css_bundle('newsletter-mozilla') }}
 {% endblock %}
 
 {% block js %}
-  {% javascript 'newsletter-mozilla' %}
+  {{ js_bundle('newsletter-mozilla') }}
 {% endblock %}
 
 {% block site_header %}{% endblock %}

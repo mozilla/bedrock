@@ -12,7 +12,7 @@
 {% block page_og_title %}{{ self.page_title() }}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox_channel' %}
+  {{ css_bundle('firefox_channel') }}
 {% endblock %}
 
 {% block body_class %}{% endblock %}

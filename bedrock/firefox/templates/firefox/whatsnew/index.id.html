@@ -20,7 +20,7 @@
 {% block site_header %}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox-whatsnew-rocket' %}
+  {{ css_bundle('firefox-whatsnew-rocket') }}
 {% endblock %}
 
 
@@ -52,5 +52,5 @@
 {% block email_form %}{% endblock %}
 
 {% block js %}
-  {% javascript 'firefox_whatsnew' %}
+  {{ js_bundle('firefox_whatsnew') }}
 {% endblock %}

@@ -32,7 +32,7 @@
 
 {% block experiments %}
   {% if switch('experiment-home-2018', ['en-US']) %}
-    {% javascript 'experiment-home' %}
+    {{ js_bundle('experiment-home') }}
   {% endif %}
 {% endblock %}
 
@@ -44,7 +44,7 @@
 {% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'home' %}
+  {{ css_bundle('home') }}
 {% endblock %}
 
 {% block site_header %}

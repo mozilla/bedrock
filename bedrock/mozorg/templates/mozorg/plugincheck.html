@@ -21,7 +21,7 @@
 {% block body_id %}plugincheck{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'plugincheck' %}
+  {{ css_bundle('plugincheck') }}
 {% endblock %}
 
 
@@ -112,5 +112,5 @@
 {% block email_form %}{% endblock %}
 
 {% block js %}
-  {% javascript 'plugincheck' %}
+  {{ js_bundle('plugincheck') }}
 {% endblock %}

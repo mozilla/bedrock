@@ -11,7 +11,7 @@
 {% block page_title %}{{ _('500: Internal Server Error') }}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'page_not_found' %}
+  {{ css_bundle('page_not_found') }}
 {% endblock %}
 
 {% block tabzilla_tab %}{% endblock %}
