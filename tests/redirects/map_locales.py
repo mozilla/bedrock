@@ -15,7 +15,9 @@ LOCALES = [
 # Accept-Language HTTP header and should be redirected to the respective
 # canonical locales
 LOCALE_VARIANTS = {
-    'en-US': ['en', 'en-CA'],
+    # have to make this en-XX so that it won't be a real locale we eventually
+    # support. We now have en-{US,CA,ZA,GB}. See bug 1457959.
+    'en-US': ['en', 'en-XX'],
     'es-ES': ['es', 'es-419'],
     'fr': ['fr-FR'],
     'ja': ['ja-JP-mac'],
