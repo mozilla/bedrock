@@ -10,8 +10,11 @@
 
 {% block page_title %}{{ _('Internet for people, not profit') }}{% endblock %}
 
+{# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
 {%- block page_title_suffix -%}
-  {% if LANG == 'en-GB' %}
+  {% if LANG == 'en-CA' %}
+    — Mozilla (CA)
+  {% elif LANG == 'en-GB' %}
     — Mozilla (UK)
   {% else %}
     — Mozilla

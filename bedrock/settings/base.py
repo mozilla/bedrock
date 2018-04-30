@@ -116,7 +116,7 @@ if Path(PROD_DETAILS_TEST_DIR).is_dir():
 # Accepted locales
 PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'as', 'ast', 'az', 'azz', 'be', 'bg',
                   'bn-BD', 'bn-IN', 'br', 'bs', 'ca', 'cak', 'cs',
-                  'cy', 'da', 'de', 'dsb', 'el', 'en-GB', 'en-US',
+                  'cy', 'da', 'de', 'dsb', 'el', 'en-CA', 'en-GB', 'en-US',
                   'en-ZA', 'eo', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'et',
                   'eu', 'fa', 'ff', 'fi', 'fr', 'fy-NL', 'ga-IE', 'gd',
                   'gl', 'gn', 'gu-IN', 'he', 'hi-IN', 'hr', 'hsb',
