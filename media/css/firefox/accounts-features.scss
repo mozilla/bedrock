@@ -439,11 +439,6 @@ main {
             background-image: url('/media/img/firefox/accounts/features/passwords.svg');
         }
 
-        .perk-payments & {
-            background-image: url('/media/img/firefox/accounts/features/payments.svg');
-            float: right;
-        }
-
         .perk-send & {
             background-image: url('/media/img/firefox/accounts/features/send.svg');
         }
@@ -460,17 +455,8 @@ main {
             right: calc(50% - 200px);
         }
 
-        .perk-payments & {
-            left: auto;
-            right: calc(50% - 250px);
-        }
-
         img {
             max-width: 500px;
-
-            .perk-payments & {
-                max-width: 400px;
-            }
         }
     }
 
@@ -484,8 +470,7 @@ main {
         margin: 0 0 1.6em;
         max-width: 50%;
 
-        .perk-bookmarks &,
-        .perk-payments & {
+        .perk-bookmarks & {
             clear: right;
             float: right;
         }
@@ -510,16 +495,8 @@ main {
             right: calc(50% - 150px);
         }
 
-        .perk-payments & {
-            right: calc(50% - 150px);
-        }
-
         img {
             max-width: 600px;
-
-            .perk-payments & {
-                max-width: 500px;
-            }
         }
     }
 }
@@ -542,14 +519,6 @@ main {
         min-height: 490px;
     }
 
-    .perk-payments {
-        min-height: 475px;
-
-        .content {
-            max-width: 1215px;
-        }
-    }
-
     .perk-passwords {
         margin-bottom: 140px;
     }
@@ -570,20 +539,12 @@ main {
             right: calc(50% - 590px);
         }
 
-        .perk-payments & {
-            right: calc(50% - 574px);
-        }
-
         .perk-send & {
             left: calc(50% - 439px);
         }
 
         img {
             max-width: 100%;
-
-            .perk-payments & {
-                max-width: 100%;
-            }
         }
     }
 

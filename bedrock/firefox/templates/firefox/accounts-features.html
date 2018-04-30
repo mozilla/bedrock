@@ -21,12 +21,10 @@
 {% if variation == 'a' %}
   {% set bookmarks_title = "Bookmark a recipe at home, shop for ingredients from your phone." %}
   {% set passwords_title = "Binge watching waits for no one. Save passwords to log in faster." %}
-  {% set payments_title = "Get new running shoes in seconds." %}
   {% set send_title = "Save commute time by sending links instantly between your devices." %}
 {% else %}
   {% set bookmarks_title = "Automatically update bookmarks with a click" %}
   {% set passwords_title = "Save passwords safely" %}
-  {% set payments_title = "Pay bills and shop securely" %}
   {% set send_title = "Send links instantly between devices" %}
 {% endif %}
 
@@ -66,14 +64,6 @@
       <div class="content">
         <h3 class="fab-privacy-head">{{_('Privacy')}}</h3>
         <p class="fab-privacy-text">{{_('You control what you sync and send between your devices. All of your synced data is secured with end-to-end encryption. Even we can\'t see it.')}}</p>
-      </div>
-    </section>
-
-    <section class="perk perk-payments">
-      <div class="content">
-        <h3 class="perk-title">{{ payments_title }}</h3>
-        <p class="perk-image">{{ high_res_img('firefox/accounts/features/payments.png', {'alt': '', 'width': '601', 'height': '450'}) }}</p>
-        <p class="perk-text">{{_('Save payment details and addresses for quick, card-free checkout. Your account info is encrypted and easy to update at any time.')}}</p>
       </div>
     </section>
 
