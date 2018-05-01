@@ -134,14 +134,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/itu-bundle.css',
     },
-    'common': {
-        'source_filenames': (
-            'css/sandstone/sandstone.less',
-            'css/base/notification-banner.less',
-            'css/tabzilla/tabzilla-static.less',
-        ),
-        'output_filename': 'css/common-bundle.css',
-    },
     'responsive': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
@@ -287,12 +279,6 @@ PIPELINE_CSS = {
             'css/firefox/home.scss',
         ),
         'output_filename': 'css/firefox-home-bundle.css',
-    },
-    'firefox_fx38_0_5_firstrun': {
-        'source_filenames': (
-            'css/firefox/australis/fx38_0_5/firstrun.less',
-        ),
-        'output_filename': 'css/firefox_fx38_0_5_firstrun-bundle.css',
     },
     'nightly_firstrun': {
         'source_filenames': (
@@ -448,14 +434,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-switch-bundle.css',
     },
-    'firefox_tour_none': {
-        'source_filenames': (
-            'css/firefox/australis/australis-page-common.less',
-            'css/firefox/sync-animation.less',
-            'css/firefox/australis/australis-page-stacked.less',
-        ),
-        'output_filename': 'css/firefox_tour_none-bundle.css',
-    },
     'firefox-update-notification-firstrun-whatsnew': {
         'source_filenames': (
             'css/base/mozilla-modal.less',
@@ -512,12 +490,6 @@ PIPELINE_CSS = {
             'css/firefox/releasenotes.less',
         ),
         'output_filename': 'css/firefox_releasenotes-bundle.css',
-    },
-    'firefox_sync_anim': {
-        'source_filenames': (
-            'css/firefox/sync-animation.less',
-        ),
-        'output_filename': 'css/firefox_sync_anim-bundle.css',
     },
     'installer_help': {
         'source_filenames': (
@@ -1022,13 +994,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox-features-sync-bundle.js',
     },
-    'firefox_fx38_0_5_firstrun': {
-        'source_filenames': (
-            'js/base/uitour-lib.js',
-            'js/firefox/australis/fx38_0_5/firstrun.js',
-        ),
-        'output_filename': 'js/firefox_fx38_0_5_firstrun-bundle.js',
-    },
     'firefox_firstrun': {
         'source_filenames': (
             'js/base/mozilla-fxa-iframe.js',
@@ -1151,15 +1116,6 @@ PIPELINE_JS = {
             'js/hubs/sub-nav.js',
         ),
         'output_filename': 'js/firefox-switch-bundle.js',
-    },
-    'firefox_tour_none': {
-        'source_filenames': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/base/uitour-lib.js',
-            'js/firefox/australis/common.js',
-            'js/firefox/australis/no-tour.js',
-        ),
-        'output_filename': 'js/firefox_tour_none-bundle.js',
     },
     'firefox_whatsnew': {
         'source_filenames': (

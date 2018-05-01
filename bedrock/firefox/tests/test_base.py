@@ -312,38 +312,6 @@ class TestFirstRun(TestCase):
         self.rf = RequestFactory()
 
     @override_settings(DEV=True)
-    def test_fx_australis_29(self, render_mock):
-        """Should use old firstrun template"""
-        req = self.rf.get('/en-US/firefox/firstrun/')
-        self.view(req, version='29.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/firstrun.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_dev_browser(self, render_mock):
-        """Should use dev browser firstrun template"""
-        req = self.rf.get('/en-US/firefox/firstrun/')
-        self.view(req, version='35.0a2')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/dev-firstrun.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_dev_browser_34_0_a2(self, render_mock):
-        """Should use old firstrun template for older aurora"""
-        req = self.rf.get('/en-US/firefox/firstrun/')
-        self.view(req, version='34.0a2')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/firstrun.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_firstrun_38_0_5(self, render_mock):
-        """Should use fx38.0.5 firstrun template for 38.0.5"""
-        req = self.rf.get('/en-US/firefox/firstrun/')
-        self.view(req, version='38.0.5')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/australis/fx38_0_5/firstrun.html'])
-
-    @override_settings(DEV=True)
     def test_fx_firstrun_40_0(self, render_mock):
         """Should use default firstrun template"""
         req = self.rf.get('/en-US/firefox/firstrun/')
@@ -393,6 +361,23 @@ class TestFirstRun(TestCase):
         self.view(req, version='59.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/firstrun/firstrun-quantum.html'])
+
+    # test redirect to /firefox/new/ for legacy /firstrun URLs - Bug 1343823
+
+    @override_settings(DEV=True)
+    def test_fx_firstrun_legacy_redirect(self, render_mock):
+        req = self.rf.get('/firefox/firstrun/')
+        req.locale = 'en-US'
+        resp = self.view(req, version='39.0')
+        assert resp.status_code == 301
+        assert resp['location'].endswith('/firefox/new/')
+
+    def test_fx_firstrun_dev_edition_legacy_redirect(self, render_mock):
+        req = self.rf.get('/firefox/firstrun/')
+        req.locale = 'en-US'
+        resp = self.view(req, version='39.0a2')
+        assert resp.status_code == 301
+        assert resp['location'].endswith('/firefox/new/')
 
 
 @patch.object(fx_views, 'firefox_desktop', firefox_desktop)
