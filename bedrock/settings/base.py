@@ -1183,9 +1183,6 @@ FIREFOX_TWITTER_ACCOUNTS = {
     'pt-BR': 'https://twitter.com/firefoxbrasil',
 }
 
-# Optimize.ly project code
-OPTIMIZELY_PROJECT_ID = config('OPTIMIZELY_PROJECT_ID', default='')
-
 # Fx Accounts iframe source
 FXA_IFRAME_SRC = config('FXA_IFRAME_SRC',
                         default='https://accounts.firefox.com/')
@@ -1333,7 +1330,6 @@ CSP_DEFAULT_SRC = (
 CSP_IMG_SRC = CSP_DEFAULT_SRC + (
     'data:',
     'mozilla.org',
-    '*.optimizely.com',
     'www.googletagmanager.com',
     'www.google-analytics.com',
     'creativecommons.org',
@@ -1344,8 +1340,6 @@ CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + (
     # TODO snap.svg.js passes a string to Function() which is
     # blocked without unsafe-eval. Find a way to remove that.
     "'unsafe-eval'",
-    '*.optimizely.com',
-    'optimizely.s3.amazonaws.com',
     'www.googletagmanager.com',
     'www.google-analytics.com',
     'tagmanager.google.com',
@@ -1358,7 +1352,6 @@ CSP_STYLE_SRC = CSP_DEFAULT_SRC + (
     'fast.fonts.net',  # used for /new/?xv=portland campaign page (bug 1444000)
 )
 CSP_CHILD_SRC = (
-    '*.optimizely.com',
     'www.googletagmanager.com',
     'www.google-analytics.com',
     'www.youtube-nocookie.com',
@@ -1369,7 +1362,6 @@ CSP_CHILD_SRC = (
     'www.youtube.com',
 )
 CSP_CONNECT_SRC = CSP_DEFAULT_SRC + (
-    '*.optimizely.com',
     'www.googletagmanager.com',
     'www.google-analytics.com',
 )

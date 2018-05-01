@@ -15,12 +15,6 @@
 
 {% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/{% endblock %}
 
-{% block optimizely %}
-  {% if switch('firefox-new-scene2-optimizely', ['en-US']) %}
-    {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
-
 {# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
 {% block extrahead %}
   {{ super() }}

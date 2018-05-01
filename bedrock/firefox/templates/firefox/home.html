@@ -17,12 +17,6 @@
 
 {% block body_id %}firefox-home{% endblock %}
 
-{% block optimizely %}
-  {% if switch('firefox-home-optimizely', ['en-US']) %}
-    {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block content %}
 {% with current='desktop' %}
   {% include 'firefox/includes/hub/sub-nav.html' %}

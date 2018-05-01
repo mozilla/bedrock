@@ -27,12 +27,6 @@
 
 {% block gtm_page_id %}data-gtm-page-id="/firefox/firstrun/"{% endblock %}
 
-{% block optimizely %}
-{% if switch('firefox-firstrun-optimizely') %}
-  {% include 'includes/optimizely.html' %}
-{% endif %}
-{% endblock %}
-
 {% block extrahead %}
   {% if switch('firefox-update-notification-modal', ['en-US']) %}
     {% stylesheet 'firefox-update-notification-firstrun-whatsnew' %}
