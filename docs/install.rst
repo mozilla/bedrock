@@ -130,7 +130,7 @@ Legal Docs
 
 Legal docs (for example: the privacy policy) are generated from markdown files in the [legal-docs](https://github.com/mozilla/legal-docs) repo.
 
-To view them or update to a more recent version update the submodule:
+To view them or update to a more recent version update the submodule::
 
     $ git submodule update --init --recursive
 
