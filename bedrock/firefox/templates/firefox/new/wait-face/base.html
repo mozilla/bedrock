@@ -6,12 +6,6 @@
 
 {% extends "firefox/base-pebbles.html" %}
 
-{% block optimizely %}
-  {% if switch('firefox-new-optimizely-wait-face', ['en-US']) %}
-    {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
-
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
