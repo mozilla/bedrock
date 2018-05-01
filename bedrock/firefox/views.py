@@ -343,15 +343,6 @@ def show_57_firstrun(version):
     return version >= Version('57.0')
 
 
-def show_40_firstrun(version):
-    try:
-        version = Version(version)
-    except ValueError:
-        return False
-
-    return version >= Version('40.0')
-
-
 def show_57_dev_firstrun(version):
     version = version[:-2]
     try:
@@ -362,7 +353,25 @@ def show_57_dev_firstrun(version):
     return version >= Version('57.0')
 
 
+def redirect_old_firstrun(version):
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    return version < Version('40.0')
+
+
 class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
+    def get(self, *args, **kwargs):
+        version = self.kwargs.get('version') or ''
+
+        # redirect legacy /firstrun URLs to /firefox/new/
+        if redirect_old_firstrun(version):
+            return HttpResponsePermanentRedirect(reverse('firefox.new'))
+        else:
+            return super(FirstrunView, self).get(*args, **kwargs)
+
     def get_context_data(self, **kwargs):
         ctx = super(FirstrunView, self).get_context_data(**kwargs)
 
@@ -394,12 +403,8 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
                     template = 'firefox/firstrun/firstrun-quantum-{}.html'.format(variation)
                 else:
                     template = 'firefox/firstrun/firstrun-quantum.html'
-        elif show_40_firstrun(version):
-            template = 'firefox/firstrun/index.html'
-        elif show_38_0_5_firstrun(version):
-            template = 'firefox/australis/fx38_0_5/firstrun.html'
         else:
-            template = 'firefox/australis/firstrun.html'
+            template = 'firefox/firstrun/index.html'
 
         # return a list to conform with original intention
         return [template]
