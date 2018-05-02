@@ -34,7 +34,7 @@ urlpatterns = (
         VariationTemplateView.as_view(
             template_name='firefox/accounts-features.html',
             template_context_variations=['a', 'b']),
-        name='firefox.accounts-features'),
+            name='firefox.accounts-features'),
     page('firefox/channel/desktop', 'firefox/channel/desktop.html'),
     page('firefox/channel/android', 'firefox/channel/android.html'),
     page('firefox/channel/ios', 'firefox/channel/ios.html'),

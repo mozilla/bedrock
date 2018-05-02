@@ -11,7 +11,7 @@ class AccountsFeaturesPage(FirefoxBasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/accounts/features'
 
-    _primary_cta_locator = (By.CSS_SELECTOR, '.button')
+    _primary_cta_locator = (By.CSS_SELECTOR, '.fab-head-cta .button')
 
     @property
     def primary_cta(self):
