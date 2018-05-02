@@ -431,16 +431,16 @@ main {
         padding-top: 80px;
 
         .perk-bookmarks & {
-            background-image: url('/media/img/firefox/accounts/features/bookmarks.svg');
+            background-image: url('/media/img/firefox/accounts/features/icon-bookmarks.svg');
             float: right;
         }
 
         .perk-passwords & {
-            background-image: url('/media/img/firefox/accounts/features/passwords.svg');
+            background-image: url('/media/img/firefox/accounts/features/icon-passwords.svg');
         }
 
         .perk-send & {
-            background-image: url('/media/img/firefox/accounts/features/send.svg');
+            background-image: url('/media/img/firefox/accounts/features/icon-send.svg');
         }
     }
 
