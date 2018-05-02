@@ -552,6 +552,24 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/portland/scene1-safe.html', ANY)
 
+    def test_portland_scene_1_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=forgood')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene1.html', ANY)
+
+    def test_portland_scene_1_fast_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=fast')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene1-fast.html', ANY)
+
+    def test_portland_scene_1_safe_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=safe')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene1-safe.html', ANY)
+
     def test_portland_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=portland')
         req.locale = 'en-US'
@@ -566,6 +584,24 @@ class TestFirefoxNew(TestCase):
 
     def test_portland_scene_2_safe(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=portland-safe')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2-safe.html')
+
+    def test_portland_scene_2_1(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=forgood')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2.html')
+
+    def test_portland_scene_2_fast_1(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=fast')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2-fast.html')
+
+    def test_portland_scene_2_safe_1(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=safe')
         req.locale = 'en-US'
         views.download_thanks(req)
         render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2-safe.html')
