@@ -15,7 +15,9 @@
 {% block body_class %}firefox-accounts-features{% endblock %}
 
 {% block experiments %}
-  {% javascript 'firefox_accounts_features_experiment' %}
+  {% if switch('accounts-features-copy-experiment', ['en-US']) %}
+    {% javascript 'firefox_accounts_features_experiment' %}
+  {% endif %}
 {% endblock %}
 
 {% if variation == 'a' %}
