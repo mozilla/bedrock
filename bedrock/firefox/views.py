@@ -505,11 +505,11 @@ def download_thanks(request):
     elif locale == 'de' and experience == 'berlin':
         template = 'firefox/new/berlin/scene2.html'
     elif locale == 'en-US':
-        if experience == 'portland':
+        if experience in ['portland', 'forgood']:
             template = 'firefox/new/portland/scene2.html'
-        elif experience == 'portland-fast':
+        elif experience in ['portland-fast', 'fast']:
             template = 'firefox/new/portland/scene2-fast.html'
-        elif experience == 'portland-safe':
+        elif experience in ['portland-safe', 'safe']:
             template = 'firefox/new/portland/scene2-safe.html'
         else:
             template = 'firefox/new/scene2.html'
@@ -549,11 +549,11 @@ def new(request):
         elif locale == 'de' and experience == 'berlin':
             template = 'firefox/new/berlin/scene1.html'
         elif locale == 'en-US':
-            if experience == 'portland':
+            if experience in ['portland', 'forgood']:
                 template = 'firefox/new/portland/scene1.html'
-            elif experience == 'portland-fast':
+            elif experience in ['portland-fast', 'fast']:
                 template = 'firefox/new/portland/scene1-fast.html'
-            elif experience == 'portland-safe':
+            elif experience in ['portland-safe', 'safe']:
                 template = 'firefox/new/portland/scene1-safe.html'
             else:
                 template = 'firefox/new/scene1.html'
@@ -562,7 +562,7 @@ def new(request):
 
     # no harm done by passing 'v' to template, even when no experiment is running
     # (also makes tests easier to maintain by always sending a context)
-    return l10n_utils.render(request, template, {'v': variant})
+    return l10n_utils.render(request, template, {'experience': experience})
 
 
 def ios_testflight(request):
