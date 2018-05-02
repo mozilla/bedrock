@@ -28,14 +28,15 @@
   {% set send_title = "Send links instantly between devices" %}
 {% endif %}
 
+{% set cta_url = 'https://accounts.firefox.com/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org:fxa.features&utm_campaign=may2018&utm_content=/firefox/accounts/features/' %}
 
 {% block content %}
-<main role="main">
+<main>
     <header class="fab-head">
       <div class="content">
         <h1 class="fab-head-title">{{_('Firefox Account')}}</h1>
         <p class="fab-head-subtitle">{{_('One easy login.<br> Epic perks.')}}</p>
-        <p class="fab-head-cta"><a class="button button-hollow button-light" href="https://accounts.firefox.com/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org:fxa.features&utm_campaign=may2018&utm_content=/firefox/accounts/features/">{{_('Create an account')}}</a></p>
+        <p class="fab-head-cta"><a class="button button-hollow button-light" href="{{ cta_url }}">{{_('Create an account')}}</a></p>
       </div>
     </header>
 
@@ -80,7 +81,7 @@
     <footer class="fab-foot">
       <div class="content">
         <h2 class="fab-foot-title">{{_('Make switching devices drama-free with a Firefox Account.')}}</h2>
-        <p class="fab-foot-cta"><a class="button button-hollow button-light" href="https://accounts.firefox.com/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org:fxa.features&utm_campaign=may2018&utm_content=/firefox/accounts/features/">{{_('Create an account')}}</a></p>
+        <p class="fab-foot-cta"><a class="button button-hollow button-light" href="{{ cta_url }}">{{_('Create an account')}}</a></p>
       </div>
     </footer>
 </main>
