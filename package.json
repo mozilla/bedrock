@@ -4,6 +4,7 @@
   "description": "Making mozilla.org awesome, one pebble at a time",
   "private": true,
   "dependencies": {
+    "@mozilla-protocol/core": "^0.1.2",
     "clean-css-cli": "4.0.5",
     "less": "2.7.1",
     "node-sass": "4.5.0",

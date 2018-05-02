@@ -8,6 +8,8 @@ source $BIN_DIR/set_git_env_vars.sh
 BUILD_IMAGE_TAG="mozorg/bedrock_build:${GIT_COMMIT}"
 CODE_IMAGE_TAG="mozorg/bedrock_code:${GIT_COMMIT}"
 DOCKER_REBUILD=false
+DOCKER_CP_ITERATION=1
+
 # test mode will build the unit testing image containing the testing requirements
 TEST_MODE=false
 
@@ -40,7 +42,8 @@ function imageExists() {
 
 function docker_cp() {
     image_tag="mozorg/bedrock_${1}:${GIT_COMMIT}"
-    container_name="bedrock_${1}_${GIT_COMMIT}"
+    container_name="bedrock_${1}_${GIT_COMMIT}_${DOCKER_CP_ITERATION}"
+    DOCKER_CP_ITERATION=$(( DOCKER_CP_ITERATION + 1 ))
     cp_src="$2"
     cp_dst="$3"
     docker create --name "$container_name" "$image_tag"
@@ -63,6 +66,7 @@ if ! imageExists "code"; then
         docker/bin/docker_build.sh "build"
     fi
     docker_cp build /app/static/. ./static
+    docker_cp build /app/node_modules/. ./node_modules
     echo "${GIT_COMMIT}" > ./static/revision.txt
     docker/bin/docker_build.sh "code"
 fi

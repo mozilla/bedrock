@@ -15,6 +15,7 @@ COPY ./vendor-local ./vendor-local
 COPY ./bedrock ./bedrock
 COPY ./media ./media
 COPY ./static ./static
+COPY ./node_modules ./node_modules
 
 ENV GIT_SHA ${GIT_COMMIT}
 # Change User
