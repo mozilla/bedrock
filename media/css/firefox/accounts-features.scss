@@ -5,9 +5,8 @@
 @import '../pebbles/includes/lib';
 @import '../hubs/sections';
 
-html,
-body {
-  overflow-x: hidden;
+#outer-wrapper {
+    overflow-x: hidden;
 }
 
 main {
