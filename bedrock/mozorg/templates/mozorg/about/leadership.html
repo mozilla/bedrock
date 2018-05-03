@@ -718,6 +718,37 @@
         </div>
       </article>
 
+    {% if switch('bug_1458111_leadership') %}
+      <article id="chris-lin" data-id="chris-lin" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+        <figure class="headshot">
+          {{ high_res_img('mozorg/about/leadership/chris-lin.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+          <figcaption><h4 class="fn" itemprop="name">Chris Lin</h4></figcaption>
+        </figure>
+
+        <div class="person-info">
+          <p class="title" itemprop="jobTitle">{{ _('VP, Information Technology') }}</p>
+          <p class="since">{{ _('With Mozilla since:') }} 2018</p>
+
+          <ul class="utility">
+            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#chris-lin">{{ _('Link to this bio') }}</a></li>
+          </ul>
+        </div>
+
+        <div class="person-bio">
+          <p>
+          {% trans %}
+            As Vice President of IT, Chris Lin is responsible for the strategy, execution and operations of Mozilla’s business technology, information security, data management, network and infrastructure services.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Prior to Mozilla, Chris was Director of Enterprise Platform Infrastructure at Facebook and held leadership roles at Symantec, Autodesk, VeriSign and Ellie Mae, where he was in charge of engineering, infrastructure operations and architecture services. Chris is also the founder and former President and CEO of iDini Corporation, a provider of scalable network computing for carrier-grade cloud services serving mobile devices. Chris has a Ph.D. from the University of California, Berkeley.
+          {% endtrans %}
+          </p>
+        </div>
+      </article>
+    {% else %}
       <article id="alex-fridman" data-id="alex-fridman" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/alex-fridman.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
@@ -748,6 +779,7 @@
           </p>
         </div>
       </article>
+{% endif %}
 
       <article id="mary-ellen-muckerman" data-id="mary-ellen-muckerman" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
