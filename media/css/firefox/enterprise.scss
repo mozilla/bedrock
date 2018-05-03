@@ -32,19 +32,18 @@ $color-photon-blue: #0099db;
 
 .intro {
     background: #0f257e url('/media/img/firefox/enterprise/wave.png') bottom left no-repeat;
+    color: #fff;
 
     h1,
     h2 {
         @include font-size-level1;
         @include open-sans;
         font-weight: normal;
-        color: #fff;
         margin-bottom: 0;
     }
 
     .copy {
         @include open-sans;
-        color: #fff;
         padding: 0;
         width: auto;
 
@@ -54,6 +53,20 @@ $color-photon-blue: #0099db;
 
         .button {
             margin-top: 30px;
+        }
+    }
+
+    .copy-cta {
+        display: inline-block;
+        text-align: center;
+    }
+
+    .copy-cta-2 {
+        margin-top: 20px;
+
+        a {
+            @include font-size(16px);
+            color: #fff;
         }
     }
 
@@ -77,7 +90,7 @@ $color-photon-blue: #0099db;
                         url('/media/img/firefox/enterprise/wave.png') bottom left no-repeat,
                         url('/media/img/firefox/enterprise/circle.png') top 100px left calc(50% + 100px) no-repeat,
                         linear-gradient(90deg, #003da7, #181562);
-            background-size: 788px 455px,
+            background-size: 807px 455px,
                         auto,
                         auto,
                         100%;
@@ -97,7 +110,7 @@ $color-photon-blue: #0099db;
             padding: 0 30px;
 
             .logo {
-                margin: $enterprise-grid-spacing 0 80px;
+                margin: $enterprise-grid-spacing 0 40px;
             }
         }
     }
@@ -255,4 +268,98 @@ $color-photon-blue: #0099db;
             text-align: left;
         }
     }
+}
+
+/* -------------------------------------------------------------------------- */
+// Sign up page
+
+.enterprise-head {
+    @include clearfix;
+    @include font-size-level3;
+    @include open-sans;
+    background: linear-gradient(90deg, #003da7, #181562);
+    color: #fff;
+}
+
+.enterprise-logo {
+    float: left;
+    margin-right: 10px;
+    vertical-align: text-bottom;
+
+    @media #{$mq-tablet} {
+        float: none;
+    }
+}
+
+.enterprise-form {
+    @include open-sans;
+    margin-bottom: 60px;
+
+    h1 {
+        @include font-size-level2;
+        margin-bottom: 40px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        width: 100%;
+    }
+
+    input[type=text],
+    input[type=email],
+    input[type=tel],
+    textarea,
+    select {
+        margin-bottom: 40px;
+        max-width: 100%;
+        width: 430px;
+    }
+
+    input[type=tel] {
+        width: auto;
+    }
+}
+
+.enterprise-compare {
+    > ul {
+        @include font-size-level6;
+        @include clearfix;
+        column-width: 300px;
+
+        > li {
+            padding: 0 10px;
+            display: inline-block;
+
+            li {
+                list-style-type: disc;
+                margin-left: 20px;
+                margin-bottom: 5px;
+            }
+        }
+    }
+}
+
+.enterprise-check {
+    margin-bottom: 20px;
+
+    label {
+        display: inline;
+        padding-left: 10px;
+        font-weight: normal;
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+// Thank you page_css
+
+.thanks-head {
+    @include font-size-level3;
+    margin-bottom: 60px;
+}
+
+.thanks-subhead {
+    @include font-size-level4;
 }
