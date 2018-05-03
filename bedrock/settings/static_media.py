@@ -224,6 +224,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_accounts-bundle.css',
     },
+    'firefox_accounts_features': {
+        'source_filenames': (
+            'css/firefox/accounts-features.scss',
+        ),
+        'output_filename': 'css/firefox_accounts_features-bundle.css',
+    },
     'firefox_all': {
         'source_filenames': (
             'css/base/mozilla-share-cta.less',
@@ -959,6 +965,13 @@ PIPELINE_JS = {
             'js/firefox/accounts.js',
         ),
         'output_filename': 'js/firefox_accounts-bundle.js',
+    },
+    'firefox_accounts_features_experiment': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/firefox/accounts-features-experiment.js',
+        ),
+        'output_filename': 'js/firefox_accounts-features-experiment-bundle.js',
     },
     'firefox_all': {
         'source_filenames': (

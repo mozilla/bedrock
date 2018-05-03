@@ -1,0 +1,93 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base-pebbles.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{_('Get a Firefox Account - Sync passwords, bookmarks and tabs everywhere')}}{% endblock %}
+{% block page_desc %}{{_('Share links instantly. Sync bookmarks and passwords securely.')}}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_accounts_features' %}
+{% endblock %}
+
+{% block body_class %}firefox-accounts-features{% endblock %}
+
+{% block experiments %}
+  {% if switch('accounts-features-copy-experiment', ['en-US']) %}
+    {% javascript 'firefox_accounts_features_experiment' %}
+  {% endif %}
+{% endblock %}
+
+{% if variation == 'a' %}
+  {% set bookmarks_title = "Bookmark a recipe at home, shop for ingredients from your phone." %}
+  {% set passwords_title = "Binge watching waits for no one. Save passwords to log in faster." %}
+  {% set send_title = "Save commute time by sending links instantly between your devices." %}
+{% else %}
+  {% set bookmarks_title = "Automatically update bookmarks with a click" %}
+  {% set passwords_title = "Save passwords safely" %}
+  {% set send_title = "Send links instantly between devices" %}
+{% endif %}
+
+{% set cta_url = 'https://accounts.firefox.com/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org:fxa.features&utm_campaign=may2018&utm_content=/firefox/accounts/features/' %}
+
+{% block content %}
+<main>
+    <header class="fab-head">
+      <div class="content">
+        <h1 class="fab-head-title">{{_('Firefox Account')}}</h1>
+        <p class="fab-head-subtitle">{{_('One easy login.<br> Epic perks.')}}</p>
+        <p class="fab-head-cta"><a class="button button-hollow button-light" href="{{ cta_url }}">{{_('Create an account')}}</a></p>
+      </div>
+    </header>
+
+    <h2 class="fab-intro">
+      <div class="content">
+        {{_('Simplify your online life. <br>A Firefox Account syncs your devices, so you can switch between them seamlessly.')}}
+      </div>
+    </h2>
+
+    <section class="perk perk-bookmarks">
+      <div class="content">
+        <h3 class="perk-title">{{ bookmarks_title }}</h3>
+        <p class="perk-image">{{ high_res_img('firefox/accounts/features/bookmarks.png', {'alt': '', 'width': '733', 'height': '450'}) }}</p>
+        <p class="perk-text">{{_('Save a page here, and we\'ll instantly add it to your computer, tablet, phone or wherever else you’d like. It works for bookmark folders too, so you can find what you need faster.')}}</p>
+      </div>
+    </section>
+
+    <section class="perk perk-passwords">
+      <div class="content">
+        <h3 class="perk-title">{{ passwords_title }}</h3>
+        <p class="perk-image">{{ high_res_img('firefox/accounts/features/passwords.png', {'alt': '', 'width': '838', 'height': '445'}) }}</p>
+        <p class="perk-text">{{_('Switch screens without a hitch. Store passwords for easy streaming, banking and more on all your devices. Plus, rest easy knowing your synced data is protected.')}}</p>
+      </div>
+    </section>
+
+    <section class="fab-privacy">
+      <div class="content">
+        <h3 class="fab-privacy-head">{{_('Privacy')}}</h3>
+        <p class="fab-privacy-text">{{_('You control what you sync and send between your devices. All of your synced data is secured with end-to-end encryption. Even we can\'t see it.')}}</p>
+      </div>
+    </section>
+
+    <section class="perk perk-send">
+      <div class="content">
+        <h3 class="perk-title">{{ send_title }}</h3>
+        <p class="perk-image">{{ high_res_img('firefox/accounts/features/send.png', {'alt': '', 'width': '807', 'height': '471'}) }}</p>
+        <span class="perk-image-source">{{_('Map Data &copy; 2018 Google Maps')}}</span>
+        <p class="perk-text">{{_('Open a link on one screen, and send it to your phone, tablet, laptop, desktop or time travel box… in a snap. It\'s faster than texting or emailing yourself, and a whole lot simpler too.')}}</p>
+      </div>
+    </section>
+
+    <footer class="fab-foot">
+      <div class="content">
+        <h2 class="fab-foot-title">{{_('Make switching devices drama-free with a Firefox Account.')}}</h2>
+        <p class="fab-foot-cta"><a class="button button-hollow button-light" href="{{ cta_url }}">{{_('Create an account')}}</a></p>
+      </div>
+    </footer>
+</main>
+{% endblock %}
+
+{% block js %}
+{% endblock %}
