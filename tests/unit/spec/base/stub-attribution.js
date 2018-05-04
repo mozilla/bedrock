@@ -115,11 +115,6 @@ describe('stub-attribution.js', function() {
             expect(Mozilla.StubAttribution.meetsRequirements()).toBeFalsy();
         });
 
-        it('should return false if browser requires sha-1 bouncer', function() {
-            spyOn(window.site, 'needsSha1').and.returnValue(true);
-            expect(Mozilla.StubAttribution.meetsRequirements()).toBeFalsy();
-        });
-
         it('should return false if browser has DNT enabled', function() {
             spyOn(Mozilla, 'dntEnabled').and.returnValue(true);
             expect(Mozilla.StubAttribution.meetsRequirements()).toBeFalsy();
@@ -127,7 +122,6 @@ describe('stub-attribution.js', function() {
 
         it('should return true for windows users who satisfy all other requirements', function() {
             window.site.platform = 'windows';
-            spyOn(window.site, 'needsSha1').and.returnValue(false);
             spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             expect(Mozilla.StubAttribution.meetsRequirements()).toBeTruthy();
         });
@@ -158,7 +152,6 @@ describe('stub-attribution.js', function() {
             /* eslint-enable camelcase */
 
             spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(data);
-            spyOn(window.site, 'needsSha1').and.returnValue(false);
             var result = Mozilla.StubAttribution.getAttributionData('');
             expect(result).toEqual(data);
         });
@@ -174,7 +167,6 @@ describe('stub-attribution.js', function() {
             };
             /* eslint-enable camelcase */
             spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue({});
-            spyOn(window.site, 'needsSha1').and.returnValue(false);
             var result = Mozilla.StubAttribution.getAttributionData('https://www.mozilla.org/en-US/');
             expect(result).toEqual(data);
         });
@@ -190,7 +182,6 @@ describe('stub-attribution.js', function() {
             };
             /* eslint-enable camelcase */
             spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue({});
-            spyOn(window.site, 'needsSha1').and.returnValue(false);
             var result = Mozilla.StubAttribution.getAttributionData('');
             expect(result).toEqual(data);
         });
@@ -245,7 +236,6 @@ describe('stub-attribution.js', function() {
         };
         /* eslint-enable camelcase */
 
-        var sha1Url = 'https://download-sha1.allizom.org/?product=firefox-stub&os=win&lang=en-US';
         var winUrl = 'https://download.mozilla.org/?product=firefox-stub&os=win&lang=en-US';
         var win64Url = 'https://download.mozilla.org/?product=firefox-50.0b11-SSL&os=win64&lang=en-US';
         var transitionalUrl = '/firefox/download/thanks/';
@@ -253,7 +243,6 @@ describe('stub-attribution.js', function() {
         beforeEach(function() {
             var downloadMarkup = '<ul class="download-list">' +
                                     '<li><a class="download-link" data-download-version="win" href="' + transitionalUrl +'">Download</a></li>' +
-                                    '<li><a class="download-link" data-download-version="winsha1" href="' + sha1Url +'">Download</a></li>' +
                                     '<li><a class="download-link" data-download-version="win" href="' + winUrl+ '">Download</a></li>' +
                                     '<li><a class="download-link" data-download-version="win64" href="' + win64Url + '">Download</a></li>' +
                                  '</ul>';

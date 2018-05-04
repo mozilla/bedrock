@@ -135,7 +135,7 @@ class TestFirefoxAll(TestCase):
         num_builds = len(firefox_desktop.get_filtered_full_builds('release'))
         num_builds += len(firefox_desktop.get_filtered_test_builds('release'))
         eq_(len(doc('tr[data-search]')), num_builds)
-        eq_(len(doc('tr#en-US a')), 6)
+        eq_(len(doc('tr#en-US a')), 5)
 
     def test_no_locale_details(self):
         """

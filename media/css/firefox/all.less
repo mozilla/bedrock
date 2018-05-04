@@ -142,9 +142,6 @@
             &.win64 a {
                 background-position: 0 -40px;
             }
-            &.winsha1 a {
-                background-position: 0 -80px;
-            }
             &.linux a {
                 background-position: 0 -160px;
             }
@@ -375,26 +372,5 @@ body.space {
         top: auto;
         right: auto;
         margin: 0 10px;
-    }
-}
-
-/* The sha-1 download column is hidden by default */
-.js #main-content .build-table {
-    thead tr .winsha1,
-    tbody tr .winsha1 {
-        display: none;
-    }
-}
-
-/* IE on Windows XP, Server 2003, Vista need sha-1 button */
-.windows.sha-1 #main-content .build-table {
-    thead tr .win,
-    tbody tr .win {
-        display: none;
-    }
-
-    thead tr .winsha1,
-    tbody tr .winsha1 {
-        display: block;
     }
 }

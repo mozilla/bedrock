@@ -185,21 +185,6 @@ html[dir="rtl"] #other-platforms {
     display: block;
 }
 
-// Sha-1 download link is hidden by default and then shown conditionally for (XP/Vista).
-#other-platforms .download-platform-list li.os_winsha1 {
-    display: none;
-}
-
-.windows.sha-1 #other-platforms .download-platform-list li {
-    &.os_win {
-        display: none;
-    }
-
-    &.os_winsha1 {
-        display: inline-block;
-    }
-}
-
 // Modal specific styles and overrides
 .js #other-platforms {
     display: none;
