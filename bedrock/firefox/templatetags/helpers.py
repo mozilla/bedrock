@@ -28,9 +28,6 @@ def desktop_builds(channel, builds=None, locale=None, force_direct=False,
         version, platforms = firefox_desktop.latest_builds('en-US', channel)
 
     for plat_os, plat_os_pretty in firefox_desktop.platforms(channel, classified):
-        # only include sha1 builds for release channel
-        if plat_os == 'winsha1' and channel != 'release':
-            continue
 
         os_pretty = plat_os_pretty
 
@@ -202,7 +199,7 @@ def download_firefox_desktop_list(ctx, channel='release', dom_id=None, locale=No
     for plat in builds:
         # Add 32-bit label for Windows and Linux builds.
         if channel != 'nightly':
-            if plat['os'] == 'win' or plat['os'] == 'winsha1':
+            if plat['os'] == 'win':
                 plat['os_pretty'] = 'Windows 32-bit'
 
         if plat['os'] == 'linux':

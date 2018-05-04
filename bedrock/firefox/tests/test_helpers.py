@@ -4,7 +4,6 @@ from django.conf import settings
 from django.test.client import RequestFactory
 
 from django_jinja.backend import Jinja2
-from mock import patch, Mock
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
@@ -51,7 +50,6 @@ class TestDownloadButtons(TestCase):
         eq_(pq(links[5]).attr('href'),
             settings.APPLE_APPSTORE_FIREFOX_LINK.replace('/{country}/', '/'))
 
-    @patch('bedrock.firefox.firefox_details.switch', Mock(return_value=False))
     def test_button_force_direct(self):
         """
         If the force_direct parameter is True, all download links must be
@@ -63,17 +61,10 @@ class TestDownloadButtons(TestCase):
         doc = pq(render("{{ download_firefox(force_direct=true) }}",
                         {'request': get_request}))
 
-        # Check that the first 6 links are direct.
+        # Check that the first 5 links are direct.
         links = doc('.download-list a')
 
-        # The first link should be sha-1 bouncer.
-        first_link = pq(links[0])
-        first_href = first_link.attr('href')
-        ok_(first_href.startswith('https://download-sha1.allizom.org'))
-        self.assertListEqual(parse_qs(urlparse(first_href).query)['lang'], ['fr'])
-        ok_(first_link.attr('data-direct-link') is None)
-
-        for link in links[1:5]:
+        for link in links[:5]:
             link = pq(link)
             href = link.attr('href')
             ok_(href.startswith('https://download.mozilla.org'))
@@ -81,7 +72,6 @@ class TestDownloadButtons(TestCase):
             # direct links should not have the data attr.
             ok_(link.attr('data-direct-link') is None)
 
-    @patch('bedrock.firefox.firefox_details.switch', Mock(return_value=False))
     def test_button_locale_in_transition(self):
         """
         If the locale_in_transition parameter is True, the link to scene2 should include the locale
@@ -109,7 +99,6 @@ class TestDownloadButtons(TestCase):
             href = link.attr('href')
             eq_(href, '/firefox/download/thanks/')
 
-    @patch('bedrock.firefox.firefox_details.switch', Mock(return_value=False))
     def test_download_location_attribute(self):
         """
         If the download_location parameter is set, it should be included as a data attribute.
@@ -134,7 +123,6 @@ class TestDownloadButtons(TestCase):
             link = pq(link)
             ok_(link.attr('data-download-location') is None)
 
-    @patch('bedrock.firefox.firefox_details.switch', Mock(return_value=False))
     def test_button_has_data_attr_if_not_direct(self):
         """
         If the button points to the thank you page, it should have a
@@ -146,20 +134,15 @@ class TestDownloadButtons(TestCase):
         doc = pq(render("{{ download_firefox() }}",
                         {'request': get_request}))
 
-        # The first 6 links should be for desktop.
+        # The first 5 links should be for desktop.
         links = doc('.download-list a')
 
-        # The first link should be sha-1 bouncer.
-        first_link = pq(links[0])
-        ok_(first_link.attr('data-direct-link')
-            .startswith('https://download-sha1.allizom.org'))
-
-        for link in links[1:5]:
+        for link in links[:5]:
             ok_(pq(link).attr('data-direct-link')
                 .startswith('https://download.mozilla.org'))
 
         # The seventh link is mobile and should not have the attr
-        ok_(pq(links[6]).attr('data-direct-link') is None)
+        ok_(pq(links[5]).attr('data-direct-link') is None)
 
     def test_nightly_desktop(self):
         """
@@ -223,13 +206,12 @@ class TestDownloadButtons(TestCase):
                         {'request': get_request}))
 
         list = doc('.download-list li')
-        eq_(list.length, 6)
-        eq_(pq(list[0]).attr('class'), 'os_winsha1')
-        eq_(pq(list[1]).attr('class'), 'os_win64')
-        eq_(pq(list[2]).attr('class'), 'os_win')
-        eq_(pq(list[3]).attr('class'), 'os_osx')
-        eq_(pq(list[4]).attr('class'), 'os_linux64')
-        eq_(pq(list[5]).attr('class'), 'os_linux')
+        eq_(list.length, 5)
+        eq_(pq(list[0]).attr('class'), 'os_win64')
+        eq_(pq(list[1]).attr('class'), 'os_win')
+        eq_(pq(list[2]).attr('class'), 'os_osx')
+        eq_(pq(list[3]).attr('class'), 'os_linux64')
+        eq_(pq(list[4]).attr('class'), 'os_linux')
 
     def test_latest_nightly_android(self):
         """The download button should have a Google Play link"""
@@ -316,7 +298,6 @@ class TestDownloadList(TestCase):
             url = pq(link).attr('href')
             ok_(any(key in url for key in keys))
 
-    @patch('bedrock.firefox.firefox_details.switch', Mock(return_value=False))
     def test_firefox_desktop_list_release(self):
         """
         All release download links must be directly to https://download.mozilla.org.
@@ -329,35 +310,24 @@ class TestDownloadList(TestCase):
 
         # Check that links classes are ordered as expected.
         list = doc('.download-platform-list li')
-        eq_(list.length, 6)
+        eq_(list.length, 5)
         eq_(pq(list[0]).attr('class'), 'os_win64')
         eq_(pq(list[1]).attr('class'), 'os_osx')
         eq_(pq(list[2]).attr('class'), 'os_linux64')
         eq_(pq(list[3]).attr('class'), 'os_win')
-        eq_(pq(list[4]).attr('class'), 'os_winsha1')
-        eq_(pq(list[5]).attr('class'), 'os_linux')
+        eq_(pq(list[4]).attr('class'), 'os_linux')
 
         links = doc('.download-platform-list a')
 
         # Check desktop links have the correct version
         self.check_desktop_links(links)
 
-        # The fifth link should be sha-1 bouncer.
-        first_link = pq(links[4])
-        first_href = first_link.attr('href')
-        ok_(first_href.startswith('https://download-sha1.allizom.org'))
-        self.assertListEqual(parse_qs(urlparse(first_href).query)['lang'], ['en-US'])
-
-        # All other links should be to regular bouncer.
         for link in links:
             link = pq(link)
-            if link.attr('data-download-version') == 'winsha1':
-                continue
             href = link.attr('href')
             ok_(href.startswith('https://download.mozilla.org'))
             self.assertListEqual(parse_qs(urlparse(href).query)['lang'], ['en-US'])
 
-    @patch('bedrock.firefox.firefox_details.switch', Mock(return_value=False))
     def test_firefox_desktop_list_aurora(self):
         """
         All aurora download links must be directly to https://download.mozilla.org.
@@ -385,7 +355,6 @@ class TestDownloadList(TestCase):
             ok_(href.startswith('https://download.mozilla.org'))
             self.assertListEqual(parse_qs(urlparse(href).query)['lang'], ['en-US'])
 
-    @patch('bedrock.firefox.firefox_details.switch', Mock(return_value=False))
     def test_firefox_desktop_list_nightly(self):
         """
         All nightly download links must be directly to https://download.mozilla.org.

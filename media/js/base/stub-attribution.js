@@ -206,10 +206,6 @@ if (typeof Mozilla === 'undefined') {
             return false;
         }
 
-        if (window.site.needsSha1()) {
-            return false;
-        }
-
         if (Mozilla.dntEnabled()) {
             return false;
         }

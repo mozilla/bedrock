@@ -190,14 +190,6 @@ class TestFirefoxDesktop(TestCase):
                               ('os', 'linux64'),
                               ('lang', 'en-US')])
 
-    def test_get_download_url_winsha1(self):
-        # sha1 should get the normal stub installer, bouncer handles the rest
-        url = firefox_desktop.get_download_url('release', '56.0', 'winsha1', 'en-US', True)
-        self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-stub'),
-                              ('os', 'win'),
-                              ('lang', 'en-US')])
-
     def test_get_download_url_devedition(self):
         """
         The Developer Edition version should give us a bouncer url. For Windows,
