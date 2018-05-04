@@ -712,7 +712,6 @@
         </div>
       </article>
 
-    {% if switch('bug_1458111_leadership') %}
       <article id="chris-lin" data-id="chris-lin" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/chris-lin.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
@@ -742,38 +741,6 @@
           </p>
         </div>
       </article>
-    {% else %}
-      <article id="alex-fridman" data-id="alex-fridman" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
-        <figure class="headshot">
-          {{ high_res_img('mozorg/about/leadership/alex-fridman.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
-          <figcaption><h4 class="fn" itemprop="name">Alex Fridman</h4></figcaption>
-        </figure>
-
-        <div class="person-info">
-          <p class="title" itemprop="jobTitle">{{ _('Interim VP, Head of IT') }}</p>
-          <p class="since">{{ _('With Mozilla since:') }} 2017</p>
-
-          <ul class="utility">
-            <li><a class="file" rel="external" href="https://assets.mozilla.net/leadership/mozilla_portrait_Alex-Fridman.jpg">{{ _('Download high resolution photo') }}</a></li>
-            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#alex-fridman">{{ _('Link to this bio') }}</a></li>
-          </ul>
-        </div>
-
-        <div class="person-bio">
-          <p>
-          {% trans %}
-            Alex is currently the Acting VP, Head of Enterprise Information Technology. Prior to that, Alex was the Senior Director, of IT Infrastructure, Engineering and Operations here at Mozilla. Alex is a Senior IT business executive with 20 years of broad based Infrastructure Engineering and Corporate IT experience. He has worked collaboratively with global teams across geographies and across various industries including Tech, Healthcare and Financial Services.
-          {% endtrans %}
-          </p>
-
-          <p>
-          {% trans %}
-            Prior to Mozilla, Alex was the Vice President of Global IT Operations and Strategy at Riverbed and has held other IT Leadership roles at companies including Salesforce.com, Elan Pharmaceuticals, and JPMorgan Chase.
-          {% endtrans %}
-          </p>
-        </div>
-      </article>
-{% endif %}
 
       <article id="mary-ellen-muckerman" data-id="mary-ellen-muckerman" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
