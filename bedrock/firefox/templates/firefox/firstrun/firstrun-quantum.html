@@ -45,7 +45,9 @@
         {% endif %}
         </p>
       {% endblock %}
-        <a href="{{ url('firefox.accounts-features') }}" rel="noopener noreferrer" target="_blank">{{_('Learn more about Firefox Accounts')}}</a>
+        {# firefox.accounts-features is en-US only for now, so other locales need an alternate URL #}
+        {% set learn_more_url = url('firefox.accounts-features') if LANG == 'en-US' else url('firefox.features.sync') %}
+        <a href="{{ learn_more_url }}" target="_blank" rel="noopener noreferrer">{{_('Learn more about Firefox Accounts')}}</a>
       </header>
       <div id="fxaccounts-wrapper">
         <div class="fxaccounts" id="fxa-iframe-config" data-host="{{ settings.FXA_IFRAME_SRC }}" data-mozillaonline-host="{{ settings.FXA_IFRAME_SRC_MOZILLAONLINE }}">
