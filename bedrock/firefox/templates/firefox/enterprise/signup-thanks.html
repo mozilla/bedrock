@@ -5,8 +5,8 @@
 {% extends "base-pebbles-basic.html" %}
 
 {% block page_title_prefix %}{% endblock %}
-{% block page_title %}{{_('Firefox Quantum for Enterprise Web Browser | Firefox')}}{% endblock %}
-{% block page_desc %}{{_('A managed version of the super-fast new Firefox.')}}{% endblock %}
+{% block page_title %}Thanks! | Firefox Quantum for Enterprise{% endblock %}
+{% block page_desc %}{% endblock %}
 
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
@@ -23,7 +23,7 @@
   <div class="content">
     {{ high_res_img('logos/firefox/logo-quantum.png', {'alt': 'Firefox', 'width': '50', 'height': '50', 'class': 'enterprise-logo'}) }}
     <span class="enterprise-name"><strong>Firefox Quantum</strong> for Enterprise</span>
-</div>
+  </div>
 </header>
 {% endblock %}
 
@@ -31,7 +31,7 @@
   <h1 class="thanks-head">Thank you for signing up for Firefox Quantum for Enterprise.</h1>
 
   <h2 class="thanks-subhead"><span class="highlight">Get Started</span></h2>
-  <p><a href="https://support.mozilla.org/en-US/products/firefox-enterprise" rel="external">Here is where you'll find documentation and support</a> regarding how to configure and deploy Firefox Quantum in your organization. You may choose to deploy the standard Firefox Rapid Release (RR), which receives performance and feature improvements every six weeks, or the Extended Support Release (ESR), which receives one major update per year. Both Firefox RR and ESR receive critical security fixes as soon as possible.</p>
+  <p><a href="https://support.mozilla.org/products/firefox-enterprise" rel="external">Here is where you'll find documentation and support</a> regarding how to configure and deploy Firefox Quantum in your organization. You may choose to deploy the standard Firefox Rapid Release (RR), which receives performance and feature improvements every six weeks, or the Extended Support Release (ESR), which receives one major update per year. Both Firefox RR and ESR receive critical security fixes as soon as possible.</p>
   <p>For your convenience, we’ve also sent you an email with links to this documentation.</p>
 
   <h2 class="thanks-subhead"><span class="highlight">Give us your feedback</span></h2>

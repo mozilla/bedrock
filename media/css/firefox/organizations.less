@@ -4,9 +4,6 @@
 
 @import "../sandstone/lib.less";
 
-@light: #fff;
-@lightHover: #f4f4f4;
-
 #masthead h1 {
     padding: @baseLine 0;
 }
@@ -54,13 +51,13 @@
     }
 
     a.button-light {
-        background-color: @light;
-        border-color: @light;
+        background-color: #fff;
+        border-color: #fff;
         color: @linkBlue;
 
         &:hover,
         &:focus {
-            background-color: @light;
+            background-color: #fff;
             border-color: @linkBlue;
             color: @linkBlue;
         }
@@ -156,7 +153,7 @@
     }
 
     #faq .row {
-        .flexbox();
+        display: flex;
         margin: 0 -(@gridGutterWidth / 2);
     }
 

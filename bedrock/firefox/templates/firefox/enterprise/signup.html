@@ -5,8 +5,8 @@
 {% extends "base-pebbles-basic.html" %}
 
 {% block page_title_prefix %}{% endblock %}
-{% block page_title %}{{_('Firefox Quantum for Enterprise Web Browser | Firefox')}}{% endblock %}
-{% block page_desc %}{{_('A managed version of the super-fast new Firefox.')}}{% endblock %}
+{% block page_title %}Request more information | Firefox Quantum for Enterprise{% endblock %}
+{% block page_desc %}{% endblock %}
 
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
@@ -23,7 +23,7 @@
   <div class="content">
     {{ high_res_img('logos/firefox/logo-quantum.png', {'alt': 'Firefox', 'width': '50', 'height': '50', 'class': 'enterprise-logo'}) }}
     <span class="enterprise-name"><strong>Firefox Quantum</strong> for Enterprise</span>
-</div>
+  </div>
 </header>
 {% endblock %}
 
@@ -63,7 +63,7 @@
     <input id="title" maxlength="40" name="title" size="20" type="text" required /><br>
 
     <label for="country_code">Country <em>*</em></label>
-    <select id="country_code" name="country_code">
+    <select id="country_code" name="country_code" required>
       <option value="">--None--</option>
       <option value="AF">Afghanistan</option>
       <option value="AX">Aland Islands</option>
@@ -348,15 +348,15 @@
     </select><br>
 
     <label for="00N2F0000013QKb">Do you currently prevent employees from installing unapproved software applications on their PCs? <em>*</em></label>
-    <select id="00N2F0000013QKb" name="00N2F0000013QKb" title="Employees Install Software">
+    <select id="00N2F0000013QKb" name="00N2F0000013QKb" title="Employees Install Software" required>
       <option value="">--None--</option>
       <option value="Yes (some or all)">Yes (some or all)</option>
       <option value="No">No</option>
     </select><br>
 
-    <div class="enterprise-compare">
+    <div>
       <p>Mozilla allows organizations to choose from two Firefox release channels:</p>
-      <ul>
+      <ul class="enterprise-compare-list">
         <li><strong>Rapid Release (RR)</strong>
           <ul>
             <li>Recommended for most organizations, especially those using SaaS web apps.</li>

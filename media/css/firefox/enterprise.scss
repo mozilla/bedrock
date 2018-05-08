@@ -277,7 +277,8 @@ $color-photon-blue: #0099db;
     @include clearfix;
     @include font-size-level3;
     @include open-sans;
-    background: linear-gradient(90deg, #003da7, #181562);
+    background-color: #0f257e;
+    background-image: linear-gradient(90deg, #003da7, #181562);
     color: #fff;
 }
 
@@ -297,7 +298,7 @@ $color-photon-blue: #0099db;
 
     h1 {
         @include font-size-level2;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
     }
 
     label {
@@ -322,21 +323,19 @@ $color-photon-blue: #0099db;
     }
 }
 
-.enterprise-compare {
-    > ul {
-        @include font-size-level6;
-        @include clearfix;
-        column-width: 300px;
+.enterprise-compare-list {
+    @include font-size-level6;
+    @include clearfix;
+    column-width: 300px;
 
-        > li {
-            padding: 0 10px;
-            display: inline-block;
+    > li {
+        padding: 0 10px;
+        display: inline-block;
 
-            li {
-                list-style-type: disc;
-                margin-left: 20px;
-                margin-bottom: 5px;
-            }
+        li {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 5px;
         }
     }
 }
@@ -348,6 +347,14 @@ $color-photon-blue: #0099db;
         display: inline;
         padding-left: 10px;
         font-weight: normal;
+    }
+}
+
+@media #{$mq-tablet} {
+    .enterprise-form {
+        h1 {
+            margin-bottom: 40px;
+        }
     }
 }
 

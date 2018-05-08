@@ -27,8 +27,8 @@
           {% if switch('firefox_enterprise', ['en-US']) %}
             <p>{{ _('Speed up your business by giving employees a managed version of the super-fast new Firefox. <em>Now with Windows Group Policy support.</em>') }}</p>
             <div class="copy-cta">
-              <a href="{{ url('firefox.enterprise.signup') }}" class="button button-green" rel="nofollow">{{ _('Request More Information') }}</a>
-              <div class="copy-cta-2"><a href="">{{ _('Or, read the docs.') }}</a></div>
+              <a href="{{ url('firefox.enterprise.signup') }}" class="button button-green">{{ _('Request More Information') }}</a>
+              <div class="copy-cta-2"><a href="https://support.mozilla.org/products/firefox-enterprise">{{ _('Or, read the docs.') }}</a></div>
             </div>
           {% else %}
             <p>{{ _('Speed up your business by deploying a managed version of the super-fast new Firefox') }}</p>
@@ -77,7 +77,7 @@
         </h2>
         <div class="download-button-wrapper">
           {% if switch('firefox_enterprise', ['en-US']) %}
-            <a href="{{ url('firefox.enterprise.signup') }}" class="button button-green" rel="nofollow">{{ _('Request More Information') }}</a>
+            <a href="{{ url('firefox.enterprise.signup') }}" class="button button-green">{{ _('Request More Information') }}</a>
           {% else %}
             <a href="https://www.surveygizmo.com/s3/4201563/Firefox-for-Enterprise-Beta" class="button">{{ _('Sign up for the beta') }}</a>
           {% endif %}
