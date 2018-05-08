@@ -40,6 +40,8 @@ urlpatterns = (
     page('firefox/channel/ios', 'firefox/channel/ios.html'),
     page('firefox/developer', 'firefox/developer/index.html'),
     page('firefox/enterprise', 'firefox/enterprise/index.html'),
+    page('firefox/enterprise/signup', 'firefox/enterprise/signup.html'),
+    page('firefox/enterprise/signup/thanks', 'firefox/enterprise/signup-thanks.html'),
     page('firefox/facebookcontainer', 'firefox/facebookcontainer/index.html'),
     page('firefox/features', 'firefox/features/index.html'),
     url('^firefox/features/bookmarks/$',

@@ -1,0 +1,44 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-pebbles-basic.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}Thanks! | Firefox Quantum for Enterprise{% endblock %}
+{% block page_desc %}{% endblock %}
+
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_enterprise' %}
+{% endblock %}
+
+{% block body_id %}firefox{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}
+<header class="enterprise-head">
+  <div class="content">
+    {{ high_res_img('logos/firefox/logo-quantum.png', {'alt': 'Firefox', 'width': '50', 'height': '50', 'class': 'enterprise-logo'}) }}
+    <span class="enterprise-name"><strong>Firefox Quantum</strong> for Enterprise</span>
+  </div>
+</header>
+{% endblock %}
+
+{% block article %}
+  <h1 class="thanks-head">Thank you for signing up for Firefox Quantum for Enterprise.</h1>
+
+  <h2 class="thanks-subhead"><span class="highlight">Get Started</span></h2>
+  <p><a href="https://support.mozilla.org/products/firefox-enterprise" rel="external">Here is where you'll find documentation and support</a> regarding how to configure and deploy Firefox Quantum in your organization. You may choose to deploy the standard Firefox Rapid Release (RR), which receives performance and feature improvements every six weeks, or the Extended Support Release (ESR), which receives one major update per year. Both Firefox RR and ESR receive critical security fixes as soon as possible.</p>
+  <p>For your convenience, we’ve also sent you an email with links to this documentation.</p>
+
+  <h2 class="thanks-subhead"><span class="highlight">Give us your feedback</span></h2>
+  <p>We would love to hear from you regarding any issues you might encounter in your testing, or if you have feature requests. We encourage you to <a href="https://qsurvey.mozilla.com/s3/f27e07c55ed0?source=thankyou" rel="external">complete this survey here</a>.</p>
+{% endblock %}
+
+{% block newsletter %}{% endblock %}
+
+{# Bug 1381776 #}
+{% block update_notification %}{% endblock %}
