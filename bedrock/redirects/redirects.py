@@ -1034,8 +1034,6 @@ redirectpatterns = (
     redirect('^docs/how-to-document\.html$', '/contribute/writing/how-to'),
     redirect('^docs/hybrid-cd\.html$', 'http://developer.mozilla.org/en/Creating_a_hybrid_CD'),
     redirect('^docs/jargon\.html$', 'http://developer.mozilla.org/en/Glossary'),
-    redirect('^docs/lxr-comments\.html$',
-             '/contribute/writing/lxr-comments'),
     redirect('^docs/mdp/$', '/contribute/writing/'),
     redirect('^docs/modunote\.htm$', 'http://developer.mozilla.org/en/Modularization_Techniques'),
     redirect('^docs/mozilla-faq\.html$', 'http://developer.mozilla.org/en/Mozilla_Release_FAQ'),
@@ -1103,7 +1101,7 @@ redirectpatterns = (
     redirect('^firebird$', 'http://www.firefox.com'),
     redirect('^get-involved\.html$', '/contribute/'),
     redirect('^foundation/mocosc/$', '/foundation/moco/'),
-    redirect('^glimpsesearch\.html$', 'http://lxr.mozilla.org/'),
+    redirect('^glimpsesearch\.html$', 'https://dxr.mozilla.org/'),
     redirect('^hacking/bonsai\.html$', 'http://developer.mozilla.org/en/Hacking_with_Bonsai'),
     redirect('^hacking/code-review-faq\.html$', 'http://developer.mozilla.org/en/Code_Review_FAQ'),
     redirect('^hacking/coding-introduction\.html$',
@@ -1916,13 +1914,13 @@ redirectpatterns = (
     redirect('^projects/ui/accessibility/span-checkbox\.html$',
              '/access/samples/span-checkbox.html'),
     redirect('^projects/ui/accessibility/ISimpleDOMNode\.idl$',
-             'http://lxr.mozilla.org/seamonkey/source/'
+             'https://dxr.mozilla.org/seamonkey/source/'
              'accessible/public/msaa/ISimpleDOMNode.idl?raw=1'),
     redirect('^projects/ui/accessibility/ISimpleDOMText\.idl$',
-             'http://lxr.mozilla.org/seamonkey/source/'
+             'https://dxr.mozilla.org/seamonkey/source/'
              'accessible/public/msaa/ISimpleDOMText.idl?raw=1'),
     redirect('^projects/ui/accessibility/ISimpleDOMDocument\.idl$',
-             'http://lxr.mozilla.org/seamonkey/source/'
+             'https://dxr.mozilla.org/seamonkey/source/'
              'accessible/public/msaa/ISimpleDOMDocument.idl?raw=1'),
     redirect('^projects/ui/accessibility/accesskey\.html$',
              '/access/keyboard/accesskey'),
