@@ -30,12 +30,28 @@
 {% block article %}
   <h1 class="thanks-head">Thank you for signing up for Firefox Quantum for Enterprise.</h1>
 
-  <h2 class="thanks-subhead"><span class="highlight">Get Started</span></h2>
-  <p><a href="https://support.mozilla.org/products/firefox-enterprise" rel="external">Here is where you'll find documentation and support</a> regarding how to configure and deploy Firefox Quantum in your organization. You may choose to deploy the standard Firefox Rapid Release (RR), which receives performance and feature improvements every six weeks, or the Extended Support Release (ESR), which receives one major update per year. Both Firefox RR and ESR receive critical security fixes as soon as possible.</p>
+  <h2 class="thanks-subhead"><span class="highlight">Getting Started</span></h2>
+  <p>
+    <a href="https://support.mozilla.org/products/firefox-enterprise" rel="external">Here is where you'll find
+    documentation and support</a> regarding how to configure and deploy Firefox Quantum in your organization.
+    You may choose to deploy the <a href="{{ firefox_url('desktop', 'all') }}">standard Firefox Rapid Release (RR)</a>,
+    which receives performance and feature improvements every six weeks, or the
+    <a href="{{ firefox_url('desktop', 'all', 'esr') }}">Extended Support Release (ESR)</a>, which receives one major
+    update per year. Both Firefox RR and ESR receive critical security fixes as soon as possible.
+  </p>
+
+  <p>
+    You can now <a href="https://support.mozilla.org/kb/customizing-firefox-using-group-policy" rel="external">configure Firefox via Group Policy</a>
+     — <a href="https://github.com/mozilla/policy-templates/releases" rel="external">download ADMX templates here</a>,
+    or implement using <a href="https://support.mozilla.org/kb/customizing-firefox-using-policiesjson" rel="external">a JSON flle</a>.
+  </p>
   <p>For your convenience, we’ve also sent you an email with links to this documentation.</p>
 
   <h2 class="thanks-subhead"><span class="highlight">Give us your feedback</span></h2>
-  <p>We would love to hear from you regarding any issues you might encounter in your testing, or if you have feature requests. We encourage you to <a href="https://qsurvey.mozilla.com/s3/f27e07c55ed0?source=thankyou" rel="external">complete this survey here</a>.</p>
+  <p>
+    We would love to hear from you regarding any issues you might encounter in your testing, or if you have feature requests.
+    To do so, we encourage you to <a href="https://qsurvey.mozilla.com/s3/f27e07c55ed0?source=thankyou" rel="external">complete this survey here</a>.
+  </p>
 {% endblock %}
 
 {% block newsletter %}{% endblock %}
