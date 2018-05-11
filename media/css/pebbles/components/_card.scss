@@ -322,11 +322,20 @@
         }
     }
 
-    .layout-card-third .card {
-        width: calc(33.3% - 30px);
+    .layout-card-third {
+        .card {
+            width: calc(33.3% - 30px);
 
-        &:last-child {
-            width: 33.3%;
+            &:last-child {
+                width: 33.3%;
+            }
+        }
+        .card-hero {
+            width: calc(66.6% - 30px);
+
+            &:last-child {
+                width: 66.6%;
+            }
         }
     }
 }
@@ -381,6 +390,11 @@
                     width: auto;
                 }
             }
+
+            .card-hero {
+                grid-column-start: 1;
+                grid-column-end: 3;
+            }
         }
 
         .layout-card-half {
@@ -428,4 +442,3 @@
         }
     }
 }
-

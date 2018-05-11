@@ -2,8 +2,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function() {
+(function(Waypoint) {
     'use strict';
+
+    /*
+     * Video Tracking
+     */
 
     function trackVideoInteraction(title, state) {
         window.dataLayer.push({
@@ -66,4 +70,66 @@
 
     // Video card interactions.
     initVideoEvents();
-})();
+
+    /*
+     * Sticky CTA
+     */
+
+
+    var stickyCTA = document.getElementById('download-firefox-sticky-cta');
+    $(stickyCTA).attr('aria-hidden', 'true');
+
+    // add and remove aria-hidden
+    var primaryTop = new Waypoint({
+        element: document.getElementById('download-firefox-primary-cta'),
+        handler: function(direction) {
+            if(direction === 'down') {
+                // becomes percivable as the user scrolls down
+                $(stickyCTA).removeAttr('aria-hidden');
+            } else {
+                // hidden again as they scroll up
+                $(stickyCTA).attr('aria-hidden', 'true');
+            }
+        }
+    });
+
+    // init dismiss button
+    function initDismissStickyCTA() {
+        // add button
+        var $dismissButton = $('<button>').addClass('sticky-dismiss').text('Dismiss download prompt.');
+        var $stickyWrapper = $(stickyCTA).find('.primary-wrapper');
+        $dismissButton.appendTo($stickyWrapper);
+        // listen for click
+        $dismissButton.on('click', function(){
+            // dismiss
+            dismissStickyCTA();
+        });
+    }
+
+    // handle dismiss
+    function dismissStickyCTA() {
+        // destroy waypoint
+        primaryTop.destroy();
+        // remove element
+        $(stickyCTA).remove();
+        // set cookie, if cookies are supported
+        if (typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled()) {
+            var d = new Date();
+            d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000)); // 30 days
+            Mozilla.Cookies.setItem('sticky-home-cta-dismissed', 'true', d, '/');
+        }
+    }
+
+    // check if previously dismissed
+    // Check that cookies are enabled before seeing if one already exists.
+    if (typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled()) {
+        if (Mozilla.Cookies.getItem('sticky-home-cta-dismissed')) {
+            // previously dismissed
+            dismissStickyCTA();
+        } else {
+            // init the button
+            initDismissStickyCTA();
+        }
+    }
+
+})(window.Waypoint);
