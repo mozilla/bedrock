@@ -12,6 +12,11 @@
     // Only enable the pager if we have two ESR versions.
     if ($('.esr-builds-table').length > 1) {
         buildsPager = new Mozilla.Pager($('#main-content'));
+
+        // Show the legacy builds if the URL contains `#legacy`
+        if (location.hash.replace(/^#/, '') === 'legacy') {
+            buildsPager.setStateFromPath('builds', false, false);
+        }
     }
 
     $(function (){
