@@ -6,8 +6,14 @@
 
 {% extends "firefox/base-pebbles.html" %}
 
-{# Bug 1438302 Avoid duplicate content for en-GB pages. #}
-{% set title_suffix = 'Firefox (UK)' if LANG == 'en-GB' else _('Firefox') %}
+{# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
+{% if LANG == 'en-CA' %}
+  {% set title_suffix = 'Firefox (CA)' %}
+{% elif LANG == 'en-GB' %}
+  {% set title_suffix = 'Firefox (UK)' %}
+{% else %}
+  {% set title_suffix = 'Firefox' %}
+{% endif %}
 {% block page_title %}{{ _('The new, fast browser for Mac, PC and Linux') }} | {{ title_suffix }}{% endblock %}
 {% block page_desc %}{{ _('Responsive engine, less memory usage and packed with features. Download for desktop now.') }}{% endblock %}
 
@@ -16,12 +22,6 @@
 {% endblock %}
 
 {% block body_id %}firefox-home{% endblock %}
-
-{% block optimizely %}
-  {% if switch('firefox-home-optimizely', ['en-US']) %}
-    {% include 'includes/optimizely.html' %}
-  {% endif %}
-{% endblock %}
 
 {% block content %}
 {% with current='desktop' %}

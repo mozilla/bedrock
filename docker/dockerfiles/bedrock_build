@@ -66,15 +66,15 @@ RUN set -ex \
 
 ### End official Node image ###
 
-ENV PATH=/tmp/node_modules/.bin:$PATH
+ENV PATH=/app/node_modules/.bin:$PATH
 ENV PIPELINE_LESS_BINARY=lessc
 ENV PIPELINE_SASS_BINARY=node-sass
 ENV PIPELINE_UGLIFYJS_BINARY=uglifyjs
 ENV PIPELINE_CLEANCSS_BINARY=cleancss
 ENV NODE_ENV=production
 
-COPY package.json yarn.lock /tmp/
-RUN cd /tmp && yarn install --pure-lockfile && rm -rf /usr/local/share/.cache/yarn
+COPY package.json yarn.lock ./
+RUN yarn install --pure-lockfile && rm -rf /usr/local/share/.cache/yarn
 
 COPY manage.py ./
 COPY ./lib ./lib

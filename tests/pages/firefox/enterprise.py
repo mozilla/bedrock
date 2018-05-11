@@ -11,7 +11,7 @@ class EnterprisePage(FirefoxBasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/enterprise/'
 
-    _primary_cta_locator = (By.ID, 'beta-signup')
+    _primary_cta_locator = (By.CSS_SELECTOR, '.qa-cta')
 
     @property
     def primary_cta(self):

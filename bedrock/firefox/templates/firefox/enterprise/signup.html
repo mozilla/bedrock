@@ -1,0 +1,402 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-pebbles-basic.html" %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}Request more information | Firefox Quantum for Enterprise{% endblock %}
+{% block page_desc %}{% endblock %}
+
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_enterprise' %}
+{% endblock %}
+
+{% block body_id %}firefox{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}
+<header class="enterprise-head">
+  <div class="content">
+    {{ high_res_img('logos/firefox/logo-quantum.png', {'alt': 'Firefox', 'width': '50', 'height': '50', 'class': 'enterprise-logo'}) }}
+    <span class="enterprise-name"><strong>Firefox Quantum</strong> for Enterprise</span>
+  </div>
+</header>
+{% endblock %}
+
+{% block article %}
+
+  <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST" class="enterprise-form">
+    <h1>Request more information</h1>
+    <p>Required fields are indicated with an <em>*</em>.</p>
+
+    <input type="hidden" name="oid" value="00DU0000000IrgO">
+    <input type="hidden" name="retURL" value="{{ request.build_absolute_uri('thanks') }}">
+    <input id="lead_source" name="lead_source" type="hidden" value="Firefox Enterprise">
+    <input id="recordType" name="recordType" type="hidden"  value="Firefox_Enterprise">
+    <!-- Signup Source URL -->
+    <input id="00N0B000006DrBa" maxlength="255" name="00N0B000006DrBa" size="20" type="hidden" value="{{ request.build_absolute_uri() }}" />
+
+    <!--  ----------------------------------------------------------------------  -->
+    <!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
+    <!--  these lines if you wish to test in debug mode.                          -->
+    <!-- <input type="hidden" name="debug" value=1>                               -->
+    <!-- <input type="hidden" name="debugEmail" value="example@example.com">      -->
+    <!--  ----------------------------------------------------------------------  -->
+
+    <label for="first_name">First Name <em>*</em></label>
+    <input id="first_name" maxlength="40" name="first_name" size="20" type="text" required /><br>
+
+    <label for="last_name">Last Name <em>*</em></label>
+    <input id="last_name" maxlength="80" name="last_name" size="20" type="text" required /><br>
+
+    <label for="email">Email <em>*</em></label>
+    <input id="email" maxlength="80" name="email" size="20" type="email" required /><br>
+
+    <label for="company">Company/Organization <em>*</em></label>
+    <input id="company" maxlength="40" name="company" size="20" type="text" required /><br>
+
+    <label for="title">Job Title <em>*</em></label>
+    <input id="title" maxlength="40" name="title" size="20" type="text" required /><br>
+
+    <label for="country_code">Country <em>*</em></label>
+    <select id="country_code" name="country_code" required>
+      <option value="">--None--</option>
+      <option value="AF">Afghanistan</option>
+      <option value="AX">Aland Islands</option>
+      <option value="AL">Albania</option>
+      <option value="DZ">Algeria</option>
+      <option value="AS">American Samoa</option>
+      <option value="AD">Andorra</option>
+      <option value="AO">Angola</option>
+      <option value="AI">Anguilla</option>
+      <option value="AQ">Antarctica</option>
+      <option value="AG">Antigua and Barbuda</option>
+      <option value="AR">Argentina</option>
+      <option value="AM">Armenia</option>
+      <option value="AW">Aruba</option>
+      <option value="AU">Australia</option>
+      <option value="AT">Austria</option>
+      <option value="AZ">Azerbaijan</option>
+      <option value="BS">Bahamas</option>
+      <option value="BH">Bahrain</option>
+      <option value="BD">Bangladesh</option>
+      <option value="BB">Barbados</option>
+      <option value="BY">Belarus</option>
+      <option value="BE">Belgium</option>
+      <option value="BZ">Belize</option>
+      <option value="BJ">Benin</option>
+      <option value="BM">Bermuda</option>
+      <option value="BT">Bhutan</option>
+      <option value="BO">Bolivia, Plurinational State of</option>
+      <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
+      <option value="BA">Bosnia and Herzegovina</option>
+      <option value="BW">Botswana</option>
+      <option value="BV">Bouvet Island</option>
+      <option value="BR">Brazil</option>
+      <option value="IO">British Indian Ocean Territory</option>
+      <option value="BN">Brunei Darussalam</option>
+      <option value="BG">Bulgaria</option>
+      <option value="BF">Burkina Faso</option>
+      <option value="BI">Burundi</option>
+      <option value="KH">Cambodia</option>
+      <option value="CM">Cameroon</option>
+      <option value="CA">Canada</option>
+      <option value="CV">Cape Verde</option>
+      <option value="KY">Cayman Islands</option>
+      <option value="CF">Central African Republic</option>
+      <option value="TD">Chad</option>
+      <option value="CL">Chile</option>
+      <option value="CN">China</option>
+      <option value="CX">Christmas Island</option>
+      <option value="CC">Cocos (Keeling) Islands</option>
+      <option value="CO">Colombia</option>
+      <option value="KM">Comoros</option>
+      <option value="CG">Congo</option>
+      <option value="CD">Congo, the Democratic Republic of the</option>
+      <option value="CK">Cook Islands</option>
+      <option value="CR">Costa Rica</option>
+      <option value="CI">Cote d&#39;Ivoire</option>
+      <option value="HR">Croatia</option>
+      <option value="CU">Cuba</option>
+      <option value="CW">Curaçao</option>
+      <option value="CY">Cyprus</option>
+      <option value="CZ">Czech Republic</option>
+      <option value="DK">Denmark</option>
+      <option value="DJ">Djibouti</option>
+      <option value="DM">Dominica</option>
+      <option value="DO">Dominican Republic</option>
+      <option value="EC">Ecuador</option>
+      <option value="EG">Egypt</option>
+      <option value="SV">El Salvador</option>
+      <option value="GQ">Equatorial Guinea</option>
+      <option value="ER">Eritrea</option>
+      <option value="EE">Estonia</option>
+      <option value="ET">Ethiopia</option>
+      <option value="FK">Falkland Islands (Malvinas)</option>
+      <option value="FO">Faroe Islands</option>
+      <option value="FJ">Fiji</option>
+      <option value="FI">Finland</option>
+      <option value="FR">France</option>
+      <option value="GF">French Guiana</option>
+      <option value="PF">French Polynesia</option>
+      <option value="TF">French Southern Territories</option>
+      <option value="GA">Gabon</option>
+      <option value="GM">Gambia</option>
+      <option value="GE">Georgia</option>
+      <option value="DE">Germany</option>
+      <option value="GH">Ghana</option>
+      <option value="GI">Gibraltar</option>
+      <option value="GR">Greece</option>
+      <option value="GL">Greenland</option>
+      <option value="GD">Grenada</option>
+      <option value="GP">Guadeloupe</option>
+      <option value="GU">Guam</option>
+      <option value="GT">Guatemala</option>
+      <option value="GG">Guernsey</option>
+      <option value="GN">Guinea</option>
+      <option value="GW">Guinea-Bissau</option>
+      <option value="GY">Guyana</option>
+      <option value="HT">Haiti</option>
+      <option value="HM">Heard Island and McDonald Islands</option>
+      <option value="VA">Holy See (Vatican City State)</option>
+      <option value="HN">Honduras</option>
+      <option value="HK">Hong Kong</option>
+      <option value="HU">Hungary</option>
+      <option value="IS">Iceland</option>
+      <option value="IN">India</option>
+      <option value="ID">Indonesia</option>
+      <option value="IR">Iran, Islamic Republic of</option>
+      <option value="IQ">Iraq</option>
+      <option value="IE">Ireland</option>
+      <option value="IM">Isle of Man</option>
+      <option value="IL">Israel</option>
+      <option value="IT">Italy</option>
+      <option value="JM">Jamaica</option>
+      <option value="JP">Japan</option>
+      <option value="JE">Jersey</option>
+      <option value="JO">Jordan</option>
+      <option value="KZ">Kazakhstan</option>
+      <option value="KE">Kenya</option>
+      <option value="KI">Kiribati</option>
+      <option value="KP">Korea, Democratic People&#39;s Republic of</option>
+      <option value="KR">Korea, Republic of</option>
+      <option value="KW">Kuwait</option>
+      <option value="KG">Kyrgyzstan</option>
+      <option value="LA">Lao People&#39;s Democratic Republic</option>
+      <option value="LV">Latvia</option>
+      <option value="LB">Lebanon</option>
+      <option value="LS">Lesotho</option>
+      <option value="LR">Liberia</option>
+      <option value="LY">Libya</option>
+      <option value="LI">Liechtenstein</option>
+      <option value="LT">Lithuania</option>
+      <option value="LU">Luxembourg</option>
+      <option value="MO">Macao</option>
+      <option value="MK">Macedonia, the former Yugoslav Republic of</option>
+      <option value="MG">Madagascar</option>
+      <option value="MW">Malawi</option>
+      <option value="MY">Malaysia</option>
+      <option value="MV">Maldives</option>
+      <option value="ML">Mali</option>
+      <option value="MT">Malta</option>
+      <option value="MH">Marshall Islands</option>
+      <option value="MQ">Martinique</option>
+      <option value="MR">Mauritania</option>
+      <option value="MU">Mauritius</option>
+      <option value="YT">Mayotte</option>
+      <option value="MX">Mexico</option>
+      <option value="FM">Micronesia</option>
+      <option value="MD">Moldova, Republic of</option>
+      <option value="MC">Monaco</option>
+      <option value="MN">Mongolia</option>
+      <option value="ME">Montenegro</option>
+      <option value="MS">Montserrat</option>
+      <option value="MA">Morocco</option>
+      <option value="MZ">Mozambique</option>
+      <option value="MM">Myanmar</option>
+      <option value="NA">Namibia</option>
+      <option value="NR">Nauru</option>
+      <option value="NP">Nepal</option>
+      <option value="NL">Netherlands</option>
+      <option value="AN">Netherlands Antilles</option>
+      <option value="NC">New Caledonia</option>
+      <option value="NZ">New Zealand</option>
+      <option value="NI">Nicaragua</option>
+      <option value="NE">Niger</option>
+      <option value="NG">Nigeria</option>
+      <option value="NU">Niue</option>
+      <option value="NF">Norfolk Island</option>
+      <option value="MP">Northern Mariana Islands</option>
+      <option value="NO">Norway</option>
+      <option value="OM">Oman</option>
+      <option value="PK">Pakistan</option>
+      <option value="PW">Palau</option>
+      <option value="PS">Palestine</option>
+      <option value="PA">Panama</option>
+      <option value="PG">Papua New Guinea</option>
+      <option value="PY">Paraguay</option>
+      <option value="PE">Peru</option>
+      <option value="PH">Philippines</option>
+      <option value="PN">Pitcairn</option>
+      <option value="PL">Poland</option>
+      <option value="PT">Portugal</option>
+      <option value="PR">Puerto Rico</option>
+      <option value="QA">Qatar</option>
+      <option value="RE">Reunion</option>
+      <option value="RO">Romania</option>
+      <option value="RU">Russian Federation</option>
+      <option value="RW">Rwanda</option>
+      <option value="BL">Saint Barthélemy</option>
+      <option value="SH">Saint Helena, Ascension and Tristan da Cunha</option>
+      <option value="KN">Saint Kitts and Nevis</option>
+      <option value="LC">Saint Lucia</option>
+      <option value="MF">Saint Martin (French part)</option>
+      <option value="PM">Saint Pierre and Miquelon</option>
+      <option value="VC">Saint Vincent and the Grenadines</option>
+      <option value="WS">Samoa</option>
+      <option value="SM">San Marino</option>
+      <option value="ST">Sao Tome and Principe</option>
+      <option value="SA">Saudi Arabia</option>
+      <option value="SN">Senegal</option>
+      <option value="RS">Serbia</option>
+      <option value="SC">Seychelles</option>
+      <option value="SL">Sierra Leone</option>
+      <option value="SG">Singapore</option>
+      <option value="SX">Sint Maarten (Dutch part)</option>
+      <option value="SK">Slovakia</option>
+      <option value="SI">Slovenia</option>
+      <option value="SB">Solomon Islands</option>
+      <option value="SO">Somalia</option>
+      <option value="ZA">South Africa</option>
+      <option value="GS">South Georgia and the South Sandwich Islands</option>
+      <option value="SS">South Sudan</option>
+      <option value="ES">Spain</option>
+      <option value="LK">Sri Lanka</option>
+      <option value="SD">Sudan</option>
+      <option value="SR">Suriname</option>
+      <option value="SJ">Svalbard and Jan Mayen</option>
+      <option value="SZ">Swaziland</option>
+      <option value="SE">Sweden</option>
+      <option value="CH">Switzerland</option>
+      <option value="SY">Syrian Arab Republic</option>
+      <option value="TW">Taiwan</option>
+      <option value="TJ">Tajikistan</option>
+      <option value="TZ">Tanzania, United Republic of</option>
+      <option value="TH">Thailand</option>
+      <option value="TL">Timor-Leste</option>
+      <option value="TG">Togo</option>
+      <option value="TK">Tokelau</option>
+      <option value="TO">Tonga</option>
+      <option value="TT">Trinidad and Tobago</option>
+      <option value="TN">Tunisia</option>
+      <option value="TR">Turkey</option>
+      <option value="TM">Turkmenistan</option>
+      <option value="TC">Turks and Caicos Islands</option>
+      <option value="TV">Tuvalu</option>
+      <option value="VI">U.S. Virgin Islands</option>
+      <option value="UG">Uganda</option>
+      <option value="UA">Ukraine</option>
+      <option value="AE">United Arab Emirates</option>
+      <option value="GB">United Kingdom</option>
+      <option value="US">United States</option>
+      <option value="UM">United States Minor Outlying Islands</option>
+      <option value="UY">Uruguay</option>
+      <option value="UZ">Uzbekistan</option>
+      <option value="VU">Vanuatu</option>
+      <option value="VE">Venezuela, Bolivarian Republic of</option>
+      <option value="VN">Viet Nam</option>
+      <option value="VG">Virgin Islands, British</option>
+      <option value="WF">Wallis and Futuna</option>
+      <option value="EH">Western Sahara</option>
+      <option value="YE">Yemen</option>
+      <option value="ZM">Zambia</option>
+      <option value="ZW">Zimbabwe</option>
+    </select>
+    <br>
+
+    <label for="phone">Phone</label>
+    <input id="phone" maxlength="40" name="phone" size="20" type="tel" /><br>
+
+    <label for="00N0B000006DrBZ">Have you previously deployed Firefox in your organization?</label>
+    <select id="00N0B000006DrBZ" name="00N0B000006DrBZ" title="Previous Firefox Deployment"><option value="">--None--</option><option value="No">No</option>
+      <option value="Yes, ESR">Yes, ESR</option>
+      <option value="Yes, Rapid Release">Yes, Rapid Release</option>
+    </select><br>
+
+    <label for="00N0B000006DrC5">Why are you interested in deploying Firefox Quantum? <em>*</em></label>
+    <textarea id="00N0B000006DrC5" name="00N0B000006DrC5" rows="3" type="text" wrap="soft" required></textarea><br>
+
+    <label for="00N0B000006DrBW">Approx. how many computers might you deploy Firefox Quantum on? <em>*</em></label>
+    <select id="00N0B000006DrBW" name="00N0B000006DrBW" title="Approx Num of Computers" required>
+      <option value="">--None--</option>
+      <option value="1-5">1-5</option>
+      <option value="5-9">5-9</option>
+      <option value="10-19">10-19</option>
+      <option value="20-49">20-49</option>
+      <option value="50-99">50-99</option>
+      <option value="100-249">100-249</option>
+      <option value="250-499">250-499</option>
+      <option value="500-999">500-999</option>
+      <option value="1,000-2,499">1,000-2,499</option>
+      <option value="2,500-4,999">2,500-4,999</option>
+      <option value="5,000-9,999">5,000-9,999</option>
+      <option value="10,000+">10,000+</option>
+    </select><br>
+
+    <label for="00N0B000006DrBX">Do you currently prevent employees from installing unapproved software applications on their PCs? <em>*</em></label>
+    <select id="00N0B000006DrBX" name="00N0B000006DrBX" title="Employees Install Software" required>
+      <option value="">--None--</option>
+      <option value="Yes (some or all)">Yes (some or all)</option>
+      <option value="No">No</option>
+    </select><br>
+
+    <div>
+      <p>Mozilla allows organizations to choose from two Firefox release channels:</p>
+      <ul class="enterprise-compare-list">
+        <li><strong>Rapid Release (RR)</strong>
+          <ul>
+            <li>Recommended for most organizations, especially those using SaaS web apps.</li>
+            <li>Auto-updates with performance enhancements and new developer features every six weeks.</li>
+            <li>Critical security updates ASAP.</li>
+          </ul>
+        </li>
+        <li><strong>Extended Support Release (ESR)</strong>
+          <ul>
+            <li>Recommended for organizations that extensively test each browser release against internally-developed web apps.</li>
+            <li>One big update annually, including all performance improvements and developer features from Rapid Release.</li>
+            <li>Critical security updates ASAP.</li>
+          </ul>
+        </li>
+      </ul>
+      <label for="00N0B000006DrBY">Which release channel do you prefer?</label>
+      <select id="00N0B000006DrBY" name="00N0B000006DrBY" title="FF Preferred Channel">
+        <option value="">--None--</option>
+        <option value="Rapid Release">Rapid Release</option>
+        <option value="Extended Support Release">Extended Support Release</option>
+      </select><br>
+    </div>
+
+    <label for="00N0B000006DrBc">What is your implementation timeline?</label>
+    <select id="00N0B000006DrBc" name="00N0B000006DrBc" title="Timeline">
+      <option value="">--None--</option><option value="Less than 3 months">Less than 3 months</option>
+      <option value="3 months - 1 year">3 months - 1 year</option>
+      <option value="More than 1 year">More than 1 year</option>
+    </select><br>
+
+    <!-- Firefox Enterprise -->
+    <div class="enterprise-check">
+      <input id="00N0B000006DrBb" name="00N0B000006DrBb" type="checkbox" value="1" required>
+      <label for="00N0B000006DrBb">By signing up you agree to Mozilla communicating with you about Firefox Enterprise. We’ll treat your information as described in our <a href="{{ url('privacy.notices.websites') }}">Privacy Policy</a>. <em>*</em></label>
+    </div>
+    <input type="submit" name="submit" class="button" value="Submit">
+  </form>
+{% endblock %}
+
+{% block newsletter %}{% endblock %}
+
+{# Bug 1381776 #}
+{% block update_notification %}{% endblock %}

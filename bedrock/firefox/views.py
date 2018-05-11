@@ -114,18 +114,18 @@ def stub_attribution_code(request):
             # any problems and we should just ignore it
             pass
 
-    if has_value:
-        codes['timestamp'] = str(int(time()))
-        code = '&'.join('='.join(attr) for attr in codes.items())
-        code = querystringsafe_base64.encode(code)
-        sig = hmac.new(key, code, hashlib.sha256).hexdigest()
-        response = HttpResponseJSON({
-            'attribution_code': code,
-            'attribution_sig': sig,
-        })
-    else:
-        response = HttpResponseJSON({'error': 'no params'}, status=400)
+    if not has_value:
+        codes['source'] = 'www.mozilla.org'
+        codes['medium'] = '(none)'
 
+    codes['timestamp'] = str(int(time()))
+    code = '&'.join('='.join(attr) for attr in codes.items())
+    code = querystringsafe_base64.encode(code)
+    sig = hmac.new(key, code, hashlib.sha256).hexdigest()
+    response = HttpResponseJSON({
+        'attribution_code': code,
+        'attribution_sig': sig,
+    })
     patch_response_headers(response, 300)  # 5 min
     return response
 
@@ -334,6 +334,19 @@ def show_59_whatsnew(version, oldversion):
         return version >= v59 and version < v60
 
 
+def show_60_whatsnew(version, oldversion):
+    try:
+        version = Version(version)
+        if oldversion:
+            oldversion = Version(oldversion)
+    except ValueError:
+        return False
+
+    v60 = Version('60.0')
+
+    return version >= v60 and (oldversion < v60 if oldversion else True)
+
+
 def show_57_firstrun(version):
     try:
         version = Version(version)
@@ -341,15 +354,6 @@ def show_57_firstrun(version):
         return False
 
     return version >= Version('57.0')
-
-
-def show_40_firstrun(version):
-    try:
-        version = Version(version)
-    except ValueError:
-        return False
-
-    return version >= Version('40.0')
 
 
 def show_57_dev_firstrun(version):
@@ -362,7 +366,25 @@ def show_57_dev_firstrun(version):
     return version >= Version('57.0')
 
 
+def redirect_old_firstrun(version):
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    return version < Version('40.0')
+
+
 class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
+    def get(self, *args, **kwargs):
+        version = self.kwargs.get('version') or ''
+
+        # redirect legacy /firstrun URLs to /firefox/new/
+        if redirect_old_firstrun(version):
+            return HttpResponsePermanentRedirect(reverse('firefox.new'))
+        else:
+            return super(FirstrunView, self).get(*args, **kwargs)
+
     def get_context_data(self, **kwargs):
         ctx = super(FirstrunView, self).get_context_data(**kwargs)
 
@@ -394,12 +416,8 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
                     template = 'firefox/firstrun/firstrun-quantum-{}.html'.format(variation)
                 else:
                     template = 'firefox/firstrun/firstrun-quantum.html'
-        elif show_40_firstrun(version):
-            template = 'firefox/firstrun/index.html'
-        elif show_38_0_5_firstrun(version):
-            template = 'firefox/australis/fx38_0_5/firstrun.html'
         else:
-            template = 'firefox/australis/firstrun.html'
+            template = 'firefox/firstrun/index.html'
 
         # return a list to conform with original intention
         return [template]
@@ -429,11 +447,18 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
         channel = detect_channel(version)
         if channel == 'alpha':
             if show_57_dev_whatsnew(version):
-                    template = 'firefox/developer/whatsnew.html'
+                template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/dev-whatsnew.html'
         elif channel == 'nightly':
             template = 'firefox/nightly_whatsnew.html'
+        elif show_60_whatsnew(version, oldversion):
+            if locale == 'id':
+                template = 'firefox/whatsnew/index.id.html'
+            elif locale == 'zh-TW':
+                template = 'firefox/whatsnew/index.zh-TW.html'
+            else:
+                template = 'firefox/whatsnew/whatsnew-fx60.html'
         elif show_59_whatsnew(version, oldversion):
             if locale == 'id':
                 template = 'firefox/whatsnew/index.id.html'
@@ -500,11 +525,11 @@ def download_thanks(request):
     elif locale == 'de' and experience == 'berlin':
         template = 'firefox/new/berlin/scene2.html'
     elif locale == 'en-US':
-        if experience == 'portland':
+        if experience in ['portland', 'forgood']:
             template = 'firefox/new/portland/scene2.html'
-        elif experience == 'portland-fast':
+        elif experience in ['portland-fast', 'fast']:
             template = 'firefox/new/portland/scene2-fast.html'
-        elif experience == 'portland-safe':
+        elif experience in ['portland-safe', 'safe']:
             template = 'firefox/new/portland/scene2-safe.html'
         else:
             template = 'firefox/new/scene2.html'
@@ -544,11 +569,11 @@ def new(request):
         elif locale == 'de' and experience == 'berlin':
             template = 'firefox/new/berlin/scene1.html'
         elif locale == 'en-US':
-            if experience == 'portland':
+            if experience in ['portland', 'forgood']:
                 template = 'firefox/new/portland/scene1.html'
-            elif experience == 'portland-fast':
+            elif experience in ['portland-fast', 'fast']:
                 template = 'firefox/new/portland/scene1-fast.html'
-            elif experience == 'portland-safe':
+            elif experience in ['portland-safe', 'safe']:
                 template = 'firefox/new/portland/scene1-safe.html'
             else:
                 template = 'firefox/new/scene1.html'
@@ -557,7 +582,7 @@ def new(request):
 
     # no harm done by passing 'v' to template, even when no experiment is running
     # (also makes tests easier to maintain by always sending a context)
-    return l10n_utils.render(request, template, {'v': variant})
+    return l10n_utils.render(request, template, {'experience': experience})
 
 
 def ios_testflight(request):

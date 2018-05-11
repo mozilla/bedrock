@@ -130,7 +130,7 @@ Legal Docs
 
 Legal docs (for example: the privacy policy) are generated from markdown files in the [legal-docs](https://github.com/mozilla/legal-docs) repo.
 
-To view them or update to a more recent version update the submodule:
+To view them or update to a more recent version update the submodule::
 
     $ git submodule update --init --recursive
 
@@ -185,39 +185,20 @@ To test switches locally:
 
 To configure switches for a demo branch. Follow the `configuration instructions here <http://bedrock.readthedocs.io/en/latest/pipeline.html#configuration>`_.
 
-Optimizely
-~~~~~~~~~~
+Traffic Cop
+~~~~~~~~~~~
 
-Currently, these switches are used to enable/disable Optimizely on many pages of the site. We only add
-the Optimizely JavaScript snippet to a page when there is an active test to minimize the security risk
-of the service. We maintain a `page on the Mozilla wiki detailing our use of Optimizely
-<https://wiki.mozilla.org/Mozilla.org/Optimizely>`_ and these switches. You can see the current state of
-these switches and other configuration values in our `configuration repo <https://mozmeao.github.io/www-config/configs/>`_.
+Currently, these switches are used to enable/disable `Traffic Cop <https://github.com/mozilla/trafficcop/>`_ experiments 
+on many pages of the site. We only add the Traffic Cop JavaScript snippet to a page when there is an active test. You 
+can see the current state of these switches and other configuration values in our `configuration 
+repo <https://mozmeao.github.io/www-config/configs/>`_.
 
-To work with/test these Optimizely switches locally, you must add the switches to your local environment. For example::
+To work with/test these experiment switches locally, you must add the switches to your local environment. For example::
 
-    # to switch on firefox-new-optimizely you'd add the following to your ``.env`` file
-    SWITCH_FIREFOX_NEW_OPTIMIZELY=on
+    # to switch on firstrun-copy-experiment you'd add the following to your ``.env`` file
+    SWITCH_FIRSTRUN_COPY_EXPERIMENT=on
 
-You then must set an Optimizely project code in ``.env``::
-
-    # Optimize.ly project code
-    OPTIMIZELY_PROJECT_ID=12345
-
-.. note::
-
-    You are not required to set up Optimizely as detailed above. If not configured,
-    bedrock will treat the switches as set to ``off``.
-
-To do the equivalent in one of the bedrock apps deployed with `Deis <http://deis.io/>`_, use `deis config <http://docs.deis.io/en/latest/using_deis/config-application/>`_. To continue the example above with a Deis app named ``bedrock-demo-switch``::
-
-    deis config:set SWITCH_FIREFOX_NEW_OPTIMIZELY=on -a bedrock-demo-switch
-
-.. note::
-
-    We have multiple Deis clusters with independent configurations, and recommend using the `DEIS_PROFILE <http://docs.deis.io/en/latest/using_deis/install-client/#multiple-profile-support>`_ environment variable to switch between clusters.
-
-
+To do the equivalent in one of the bedrock apps see the `www-config <https://mozmeao.github.io/www-config/>`_ documentation.
 
 Notes
 -----

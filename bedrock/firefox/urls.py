@@ -8,6 +8,7 @@ from bedrock.mozorg.util import page
 import views
 import bedrock.releasenotes.views
 from bedrock.releasenotes import version_re
+from bedrock.utils.views import VariationTemplateView
 
 
 latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
@@ -29,11 +30,18 @@ urlpatterns = (
     url(r'^firefox/(?:%s/)?(?:%s/)?all/$' % (platform_re, channel_re),
         views.all_downloads, name='firefox.all'),
     page('firefox/accounts', 'firefox/accounts.html'),
+    url('^firefox/accounts/features',
+        VariationTemplateView.as_view(
+            template_name='firefox/accounts-features.html',
+            template_context_variations=['a', 'b']),
+            name='firefox.accounts-features'),
     page('firefox/channel/desktop', 'firefox/channel/desktop.html'),
     page('firefox/channel/android', 'firefox/channel/android.html'),
     page('firefox/channel/ios', 'firefox/channel/ios.html'),
     page('firefox/developer', 'firefox/developer/index.html'),
     page('firefox/enterprise', 'firefox/enterprise/index.html'),
+    page('firefox/enterprise/signup', 'firefox/enterprise/signup.html'),
+    page('firefox/enterprise/signup/thanks', 'firefox/enterprise/signup-thanks.html'),
     page('firefox/facebookcontainer', 'firefox/facebookcontainer/index.html'),
     page('firefox/features', 'firefox/features/index.html'),
     url('^firefox/features/bookmarks/$',

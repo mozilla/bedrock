@@ -163,18 +163,6 @@ if (typeof Mozilla === 'undefined') {
     StubAttribution.getAttributionData = function(ref) {
         var params = new window._SearchParams().utmParams();
         var referrer = typeof ref !== 'undefined' ? ref : document.referrer;
-        var utmCount = 0;
-
-        for (var utm in params) {
-            if (params.hasOwnProperty(utm)) {
-                utmCount += 1;
-            }
-        }
-
-        // if there are no utm params and no referrer, do nothing.
-        if (utmCount === 0 && (typeof referrer === 'undefined' || referrer === '')) {
-            return false;
-        }
 
         /* eslint-disable camelcase */
         return {
@@ -215,10 +203,6 @@ if (typeof Mozilla === 'undefined') {
         }
 
         if (window.site.platform !== 'windows') {
-            return false;
-        }
-
-        if (window.site.needsSha1()) {
             return false;
         }
 

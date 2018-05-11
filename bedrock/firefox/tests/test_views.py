@@ -37,21 +37,47 @@ class TestStubAttributionCode(TestCase):
         self.assertEqual(data['error'], 'Resource only available via XHR')
 
     def test_no_valid_param_names(self):
+        final_params = {
+            'source': 'www.mozilla.org',
+            'medium': '(none)',
+            'campaign': '(not set)',
+            'content': '(not set)',
+            'timestamp': '12345',
+        }
         req = self._get_request({'dude': 'abides'})
         resp = views.stub_attribution_code(req)
-        self.assertEqual(resp.status_code, 400)
+        self.assertEqual(resp.status_code, 200)
         assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
-        self.assertEqual(data['error'], 'no params')
+        # will it blend?
+        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
+        # parse_qs returns a dict with lists for values
+        attrs = {k: v[0] for k, v in attrs.items()}
+        self.assertDictEqual(attrs, final_params)
+        self.assertEqual(data['attribution_sig'],
+                         '153c1e8b7d4a582fa245d57d9c28ca9d6bcb65957e41924f826f1e7a5a2f8de9')
 
     def test_no_valid_param_data(self):
         params = {'utm_source': 'br@ndt', 'utm_medium': 'ae<t>her'}
+        final_params = {
+            'source': 'www.mozilla.org',
+            'medium': '(none)',
+            'campaign': '(not set)',
+            'content': '(not set)',
+            'timestamp': '12345',
+        }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
-        self.assertEqual(resp.status_code, 400)
+        self.assertEqual(resp.status_code, 200)
         assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
-        self.assertEqual(data['error'], 'no params')
+        # will it blend?
+        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
+        # parse_qs returns a dict with lists for values
+        attrs = {k: v[0] for k, v in attrs.items()}
+        self.assertDictEqual(attrs, final_params)
+        self.assertEqual(data['attribution_sig'],
+                         '153c1e8b7d4a582fa245d57d9c28ca9d6bcb65957e41924f826f1e7a5a2f8de9')
 
     def test_some_valid_param_data(self):
         params = {'utm_source': 'brandt', 'utm_content': 'ae<t>her'}
@@ -149,11 +175,25 @@ class TestStubAttributionCode(TestCase):
         include any such domains anyway, so we should just ignore them.
         """
         params = {'referrer': 'http://youtubê.com/sorry/'}
+        final_params = {
+            'source': 'www.mozilla.org',
+            'medium': '(none)',
+            'campaign': '(not set)',
+            'content': '(not set)',
+            'timestamp': '12345',
+        }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
-        self.assertEqual(resp.status_code, 400)
+        self.assertEqual(resp.status_code, 200)
+        assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
-        self.assertDictEqual(data, {'error': 'no params'})
+        # will it blend?
+        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
+        # parse_qs returns a dict with lists for values
+        attrs = {k: v[0] for k, v in attrs.items()}
+        self.assertDictEqual(attrs, final_params)
+        self.assertEqual(data['attribution_sig'],
+                         '153c1e8b7d4a582fa245d57d9c28ca9d6bcb65957e41924f826f1e7a5a2f8de9')
 
     @override_settings(STUB_ATTRIBUTION_RATE=0.2)
     def test_rate_limit(self):
@@ -512,6 +552,24 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/portland/scene1-safe.html', ANY)
 
+    def test_portland_scene_1_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=forgood')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene1.html', ANY)
+
+    def test_portland_scene_1_fast_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=fast')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene1-fast.html', ANY)
+
+    def test_portland_scene_1_safe_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=safe')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene1-safe.html', ANY)
+
     def test_portland_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=portland')
         req.locale = 'en-US'
@@ -526,6 +584,24 @@ class TestFirefoxNew(TestCase):
 
     def test_portland_scene_2_safe(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=portland-safe')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2-safe.html')
+
+    def test_portland_scene_2_1(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=forgood')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2.html')
+
+    def test_portland_scene_2_fast_1(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=fast')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2-fast.html')
+
+    def test_portland_scene_2_safe_1(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=safe')
         req.locale = 'en-US'
         views.download_thanks(req)
         render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2-safe.html')

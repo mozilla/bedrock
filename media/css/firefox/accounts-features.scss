@@ -1,0 +1,563 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+@import '../hubs/sections';
+
+#outer-wrapper {
+    overflow-x: hidden;
+}
+
+main {
+    @include open-sans;
+}
+
+/* ====================================================================== */
+
+.fab-head {
+    background-color: #8C01F1;
+    color: #fff;
+    position: relative;
+    text-align: center;
+}
+
+.fab-head-title {
+    @include font-size-level5;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.fab-head-subtitle {
+    @include font-size-level2;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 1.5em;
+}
+
+.fab-head-cta {
+    margin-bottom: 0;
+}
+
+@media #{$mq-phone-wide} {
+    .fab-head {
+        min-height: 240px;
+        padding: 20px 100px;
+
+        &:before,
+        &:after {
+          background: url('/media/img/firefox/accounts/features/header.png') bottom left no-repeat;
+          background-size: 300px auto;
+          bottom: 20px;
+          content: '';
+          display: block;
+          height: 240px;
+          position: absolute;
+          right: calc(50% + 140px);
+          width: 159px;
+        }
+
+        &:after {
+            background-position: -195px 0;
+            left: calc(50% + 140px);
+            right: auto;
+            width: 105px;
+        }
+
+        .content {
+            max-width: 280px;
+            min-width: 280px;
+        }
+    }
+}
+
+@media #{$mq-tablet} {
+    .fab-head {
+        padding: 40px 0;
+        text-align: left;
+
+        &:before {
+            background-size: contain;
+            bottom: -20px;
+            height: auto;
+            left: 50%;
+            top: 20px;
+            width: 609px;
+            right: auto;
+
+            @media #{$mq-high-res} {
+                background-image: url('/media/img/firefox/accounts/features/header-high-res.png');
+            }
+        }
+
+        &:after {
+            display: none;
+        }
+
+        .content {
+            max-width: 100%;
+        }
+    }
+}
+
+@media #{$mq-desktop-wide} {
+    .fab-head {
+        min-height: 330px;
+        padding: 110px 0 60px 0;
+
+        &:before {
+            bottom: -25px;
+            left: calc(50% - 92px);
+        }
+
+        .content {
+          max-width: 1300px;
+        }
+    }
+
+    .fab-head-title {
+        max-width: 390px;
+    }
+
+    .fab-head-subtitle {
+        max-width: 390px;
+    }
+}
+
+/* ====================================================================== */
+
+.fab-intro {
+    @include font-size-level3;
+    @include font-size(22px); // bigger for mobile, then falls back to font-size-level3
+    font-weight: normal;
+    line-height: 1.5;
+    max-width: 660px;
+    text-align: center;
+    margin: 40px auto 20px;
+}
+
+@media #{$mq-desktop} {
+    .fab-intro {
+        line-height: 1.2;
+        margin: 95px auto 60px auto;
+        max-width: 920px;
+    }
+}
+
+/* ====================================================================== */
+
+.fab-privacy {
+    background-color: #EDEDF0;
+    margin-top: 130px;
+    margin-bottom: 40px;
+    padding-bottom: 10px;
+    padding-top: 60px;
+    position: relative;
+    text-align: center;
+
+    &:before {
+        background-image: url('/media/img/firefox/accounts/features/privacy.png');
+        background-position: bottom center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        bottom: calc(100% - 60px);
+        content: '';
+        height: 200px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+    }
+}
+
+.fab-privacy-head {
+    @include visually-hidden;
+}
+
+.fab-privacy-text {
+    @include font-size-level4;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+@media #{$mq-tablet} {
+    .fab-privacy {
+        margin-bottom: 160px;
+        padding: 0;
+
+        &:before {
+            background: #fff;
+            bottom: 0;
+            left: 0;
+            right: 90%;
+            top: 0;
+            height: auto;
+            width: auto;
+        }
+
+        .content {
+            position: static;
+        }
+    }
+
+    .fab-privacy-text {
+        margin-left: 50%;
+        max-width: 550px;
+        padding-left: 15px;
+        text-align: left;
+
+        &:before {
+            background: url('/media/img/firefox/accounts/features/privacy.png') no-repeat;
+            background-position: center left;
+            background-size: contain;
+            content: '';
+            height: 500px;
+            left: 40px;
+            margin-top: -250px;
+            max-width: 500px;
+            position: absolute;
+            top: 50%;
+            width: calc(50% - 80px);
+
+            @media #{$mq-high-res} {
+                background-image: url('/media/img/firefox/accounts/features/privacy-high-res.png');
+            }
+        }
+    }
+}
+
+@media #{$mq-desktop} {
+    .fab-privacy-text {
+        padding: 40px 0 65px 14px;
+    }
+}
+
+@media #{$mq-desktop-wide} {
+    .fab-privacy {
+        margin-bottom: 230px;
+
+        &:before {
+            right: calc(50% + 562px);
+        }
+    }
+
+    .fab-privacy-text {
+        margin-left: 50%;
+        max-width: 550px;
+        padding: 40px 0 65px 14px;
+
+        &:before {
+            height: 395px;
+            left: auto;
+            margin-top: 0;
+            max-width: 100%;
+            padding: 28px 0;
+            right: calc(50% + 63px);
+            top: -122px;
+            width: 583px;
+        }
+    }
+}
+
+/* ====================================================================== */
+
+.fab-foot {
+    background: #0A84FF url('/media/img/firefox/accounts/features/footer.png') no-repeat center 90%;
+    background-size: 90% auto;
+    color: #fff;
+    padding-bottom: 50%;
+    position: relative;
+    text-align: center;
+}
+
+.fab-foot-title {
+    @include font-size-level3;
+    font-weight: normal;
+    line-height: 1.5;
+    margin-bottom: 1.25em;
+}
+
+@media #{$mq-phone-wide} {
+    .fab-foot {
+        background-image: none;
+        padding: 20px 0 35px 0;
+
+        &:before {
+            background-image: url('/media/img/firefox/accounts/features/footer.png');
+            background-position: center right;
+            background-repeat: no-repeat;
+            background-size: contain;
+            content: '';
+            height: 100%;
+            left: auto;
+            position: absolute;
+            right: calc(50% + 50px);
+            top: -15px;
+            width: 350px;
+        }
+    }
+
+    .fab-foot-title,
+    .fab-foot-cta {
+        box-sizing: border-box;
+        clear: right;
+        float: right;
+        text-align: left;
+        width: calc(50% + 20px);
+    }
+
+    .fab-foot-title {
+        line-height: 1.2;
+        margin-bottom: 30px;
+        padding-right: 20px;
+    }
+
+    .fab-foot-cta {
+        margin-bottom: 0;
+    }
+}
+
+@media #{$mq-tablet} {
+    .fab-foot {
+        padding: 30px 0 35px 0;
+
+        &:before {
+            right: calc(50% + 20px);
+            width: 410px;
+            top: -10px;
+        }
+    }
+
+    .fab-foot-title,
+    .fab-foot-cta {
+        width: calc(50% - 20px);
+    }
+}
+
+@media #{$mq-desktop} {
+
+    .fab-foot {
+
+        &:before {
+            background-position: bottom center;
+            height: 434px;
+            left: auto;
+            right: calc(50% + 34px);
+            top: -121px;
+            width: 781px;
+
+            @media #{$mq-high-res} {
+                background-image: url('/media/img/firefox/accounts/features/footer-high-res.png');
+            }
+        }
+
+        .content {
+            max-width: 1185px;
+        }
+    }
+
+    .fab-foot-title,
+    .fab-foot-cta {
+        padding-right: 0;
+        max-width: 390px;
+        width: 100%;
+    }
+
+    .fab-foot-title {
+        margin-bottom: 40px;
+    }
+
+}
+
+/* ====================================================================== */
+
+.perk {
+    position: relative;
+}
+
+.perk-title {
+    @include font-size-level4;
+    background-position: top center;
+    background-repeat: no-repeat;
+    font-weight: bold;
+    line-height: 1.4;
+    margin: 0 auto 30px;
+    max-width: 650px;
+    width: 100%;
+}
+
+.perk-image {
+    background: radial-gradient(50% 200px ellipse at bottom center, #F0F0F0, transparent);
+    position: relative;
+    text-align: center;
+
+    img {
+        display: block;
+        margin: 0 auto;
+        max-width: 400px;
+    }
+
+    .perk-send & {
+        margin-bottom: 0;
+    }
+}
+
+.perk-image-source {
+    @include font-size(10px);
+    color: #878787;
+    display: block;
+    margin: 0 auto 2.2em;
+    max-width: 400px;
+    text-align: right;
+    width: 100%;
+}
+
+.perk-text {
+    line-height: 1.5;
+    margin: 0 auto 1.25em;
+    max-width: 600px;
+    width: 100%;
+}
+
+@media #{$mq-tablet} {
+    .perk {
+        margin-bottom: 40px;
+    }
+
+    .perk-title {
+        background-position: top left;
+        margin: 0 0 30px;
+        max-width: 50%;
+        padding-top: 80px;
+
+        .perk-bookmarks & {
+            background-image: url('/media/img/firefox/accounts/features/icon-bookmarks.svg');
+            float: right;
+        }
+
+        .perk-passwords & {
+            background-image: url('/media/img/firefox/accounts/features/icon-passwords.svg');
+        }
+
+        .perk-send & {
+            background-image: url('/media/img/firefox/accounts/features/icon-send.svg');
+        }
+    }
+
+    .perk-image {
+        bottom: 0;
+        left: calc(50% - 200px);
+        position: absolute;
+        width: 1000px;
+
+        .perk-bookmarks & {
+            left: auto;
+            right: calc(50% - 200px);
+        }
+
+        img {
+            max-width: 500px;
+        }
+    }
+
+    .perk-image-source {
+        position: absolute;
+        right: 10px;
+        top: calc(100% + 5px);
+    }
+
+    .perk-text {
+        margin: 0 0 1.6em;
+        max-width: 50%;
+
+        .perk-bookmarks & {
+            clear: right;
+            float: right;
+        }
+    }
+}
+
+@media #{$mq-desktop} {
+    .perk {
+        margin-bottom: 100px;
+        min-height: 350px;
+
+        .content {
+            max-width: 1140px;
+            position: static;
+        }
+    }
+
+    .perk-image {
+        left: calc(50% - 150px);
+
+        .perk-bookmarks & {
+            right: calc(50% - 150px);
+        }
+
+        img {
+            max-width: 600px;
+        }
+    }
+}
+
+
+@media #{$mq-desktop-wide} {
+    .perk {
+        margin-bottom: 150px;
+        min-height: 450px;
+    }
+
+    .perk-bookmarks,
+    .perk-privacy {
+        .content {
+            max-width: 1325px;
+        }
+    }
+
+    .perk-bookmarks {
+        min-height: 490px;
+    }
+
+    .perk-passwords {
+        margin-bottom: 140px;
+    }
+
+    .perk-send {
+        margin-bottom: 140px;
+    }
+
+    .perk-title {
+        max-width: 403px;
+    }
+
+    .perk-image {
+        left: calc(50% - 420px);
+        width: 1730px;
+
+        .perk-bookmarks & {
+            right: calc(50% - 590px);
+        }
+
+        .perk-send & {
+            left: calc(50% - 439px);
+        }
+
+        img {
+            max-width: 100%;
+        }
+    }
+
+    .perk-image-source {
+        left: 50%;
+        margin-left: -10px;
+        max-width: 830px;
+        right: auto;
+        width: 50%;
+    }
+
+    .perk-text {
+        margin-bottom: 1.6em;
+        max-width: 400px;
+    }
+
+}

@@ -5,11 +5,10 @@
 {% extends "mozorg/about-base.html" %}
 
 {% block page_title %}{{ _('Governance') }}{% endblock %}
-{% block body_id %}about-governance{% endblock %}
-
+{% set body_id = "about-governance" %}
 
 {% block article %}
-<h1 class="title-shadow-box">{{_('Governance')}} </h1>
+<h1><span class="highlight">{{_('Governance')}}</span></h1>
 {% trans
   open_source_url="http://opensource.org/",
   meritocracy_url="http://en.wikipedia.org/wiki/Meritocracy" %}
@@ -20,7 +19,7 @@
     policies_url=url('mozorg.about.governance.policies.policies'),
     organizations_url=url('mozorg.about.governance.organizations'),
     discussion_url='//groups.google.com/group/mozilla.governance/topics'%}
-<ol>
+<ol class="prose">
   <li><a href="{{ roles_url }}">Roles and Responsibilities</a></li>
   <li><a href="{{ policies_url }}">Policies</a></li>
   <li><a href="{{ organizations_url }}">Organizations</a></li>

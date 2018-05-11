@@ -1,0 +1,18 @@
+# see the following for documentation of these options
+# http://bedrock.readthedocs.io/en/latest/pipeline.html#configuration
+push_public_registry: true
+smoke_tests: true
+regions:
+  - oregon-b
+  - tokyo
+  - frankfurt
+apps:
+  - bedrock-dev
+integration_tests:
+  oregon-b:
+    - headless
+    - download
+  tokyo:
+    - headless
+  frankfurt:
+    - headless

@@ -10,18 +10,12 @@ from django.conf import settings
 from decouple import Csv, config
 from product_details import ProductDetails
 
-from bedrock.base.waffle import switch
 from lib.l10n_utils.dotlang import _lazy as _
 
 
 # TODO: port this to django-mozilla-product-details
 class _ProductDetails(ProductDetails):
     bouncer_url = settings.BOUNCER_URL
-
-    # Note download-sha1.allizom.org is the production endpoint for SHA-1.
-    # It uses this because that's the only SHA-1 certificate
-    # we have that's usable. (SHA-1 certs can no longer be issued).
-    sha1_bouncer_url = 'https://download-sha1.allizom.org/'
 
     def _matches_query(self, info, query):
         words = re.split(r',|,?\s+', query.strip().lower())
@@ -34,7 +28,6 @@ class FirefoxDesktop(_ProductDetails):
 
     # Human-readable platform names
     platform_labels = OrderedDict([
-        ('winsha1', 'Windows (XP/Vista)'),
         ('win64', 'Windows 64-bit'),
         ('win', 'Windows 32-bit'),
         ('osx', 'macOS'),
@@ -45,7 +38,7 @@ class FirefoxDesktop(_ProductDetails):
     # Recommended/modern vs traditional/legacy platforms
     platform_classification = OrderedDict([
         ('recommended', ('win64', 'osx', 'linux64')),
-        ('traditional', ('win', 'winsha1', 'linux')),
+        ('traditional', ('win', 'linux')),
     ])
 
     # Human-readable channel names
@@ -71,9 +64,6 @@ class FirefoxDesktop(_ProductDetails):
 
     def __init__(self, **kwargs):
         super(FirefoxDesktop, self).__init__(**kwargs)
-
-    def get_bouncer_url(self, platform):
-        return self.sha1_bouncer_url if not switch('disable-sha1-downloads') and platform == 'winsha1' else self.bouncer_url
 
     def platforms(self, channel='release', classified=False):
         """
@@ -149,10 +139,9 @@ class FirefoxDesktop(_ProductDetails):
         for builds in all_builds:
             if locale in builds and version in builds[locale]:
                 _builds = builds[locale][version]
-                # Append 64-bit builds and Sha-1
+                # Append 64-bit builds
                 if 'Windows' in _builds:
                     _builds['Windows 64-bit'] = _builds['Windows']
-                    _builds['Windows (XP/Vista)'] = _builds['Windows']
                 if 'Linux' in _builds:
                     _builds['Linux 64-bit'] = _builds['Linux']
                 return version, _builds
@@ -240,7 +229,6 @@ class FirefoxDesktop(_ProductDetails):
         """
         _version = version
         _locale = 'ja-JP-mac' if platform == 'osx' and locale == 'ja' else locale
-        _platform = 'win' if platform == 'winsha1' else platform
         channel = 'devedition' if channel == 'alpha' else channel
         force_direct = True if channel != 'release' else force_direct
         stub_platforms = ['win', 'win64']
@@ -251,7 +239,7 @@ class FirefoxDesktop(_ProductDetails):
         if funnelcake_id:
             fc_platforms = config('FUNNELCAKE_%s_PLATFORMS' % funnelcake_id, default='', cast=Csv())
             fc_locales = config('FUNNELCAKE_%s_LOCALES' % funnelcake_id, default='', cast=Csv())
-            include_funnelcake_param = _platform in fc_platforms and _locale in fc_locales
+            include_funnelcake_param = platform in fc_platforms and _locale in fc_locales
 
         # Check if direct download link has been requested
         # if not just use transition URL
@@ -278,7 +266,7 @@ class FirefoxDesktop(_ProductDetails):
                 # could come in future in bug 1408868
                 prod_name = 'firefox'
                 suffix = '%s-SSL' % _version
-        elif _platform in stub_platforms and not force_full_installer:
+        elif platform in stub_platforms and not force_full_installer:
             # Use the stub installer for approved platforms
             # append funnelcake id to version if we have one
             if include_funnelcake_param:
@@ -292,10 +280,10 @@ class FirefoxDesktop(_ProductDetails):
 
         product = '%s-%s' % (prod_name, suffix)
 
-        return '?'.join([self.get_bouncer_url(platform),
+        return '?'.join([self.bouncer_url,
                         urlencode([
                             ('product', product),
-                            ('os', _platform),
+                            ('os', platform),
                             # Order matters, lang must be last for bouncer.
                             ('lang', _locale),
                         ])])

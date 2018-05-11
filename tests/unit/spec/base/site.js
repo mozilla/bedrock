@@ -136,47 +136,4 @@ describe('site.js', function () {
             expect(window.site.getArchSize('Mozilla/5.0 (X11; Ubuntu; Linux armv7l; rv:32.0) Gecko/20100101 Firefox/32.0', 'Linux armv7l')).toBe(32);
         });
     });
-
-    describe('needsSha1', function () {
-
-        it('should return true for IE6 on Windows XP', function() {
-            expect(window.site.needsSha1('Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1)')).toBeTruthy();
-        });
-
-        it('should return true for IE7 on Windows XP, Server 2003, Vista', function () {
-            expect(window.site.needsSha1('Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)')).toBeTruthy();
-            expect(window.site.needsSha1('Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.2)')).toBeTruthy();
-            expect(window.site.needsSha1('Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)')).toBeTruthy();
-        });
-
-        it('should return true for IE8 on Windows XP, Server 2003, Vista', function () {
-            expect(window.site.needsSha1('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1)')).toBeTruthy();
-            expect(window.site.needsSha1('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.2)')).toBeTruthy();
-            expect(window.site.needsSha1('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0)')).toBeTruthy();
-        });
-
-        it('should return false for IE8 on Windows 7', function() {
-            expect(window.site.needsSha1('Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)')).toBeFalsy();
-        });
-
-        it('should return true for IE9 on Windows Vista', function() {
-            expect(window.site.needsSha1('Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.0)')).toBeTruthy();
-        });
-
-        it('should return false for IE9 on Windows 7', function() {
-            expect(window.site.needsSha1('Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1)')).toBeFalsy();
-        });
-
-        it('should return true for Chrome on Windows XP, Server 2003, Vista', function() {
-            expect(window.site.needsSha1('Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2224.3 Safari/537.36')).toBeTruthy();
-            expect(window.site.needsSha1('Mozilla/5.0 (Windows NT 5.2) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.794.0 Safari/535.1')).toBeTruthy();
-            expect(window.site.needsSha1('Mozilla/5.0 (Windows NT 6.0) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.100 Safari/534.30')).toBeTruthy();
-        });
-
-        it('should return false for Firefox on Windows XP, Server 2003, Vista', function() {
-            expect(window.site.needsSha1('Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0')).toBeFalsy();
-            expect(window.site.needsSha1('Mozilla/5.0 (Windows NT 5.2; WOW64; rv:31.0) Gecko/20100101 Firefox/31.0')).toBeFalsy();
-            expect(window.site.needsSha1('Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0')).toBeFalsy();
-        });
-    });
 });

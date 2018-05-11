@@ -4,6 +4,7 @@
 
 {% add_lang_files "firefox/whatsnew" %}
 
+{% from "macros.html" import google_play_button with context %}
 {% extends "firefox/whatsnew/base-pebbles.html" %}
 
 {% block page_title %}Firefox kamu sudah versi terbaru.{% endblock %}
@@ -27,21 +28,22 @@
 <main role="main" class="section">
   {% include 'firefox/whatsnew/includes/header.html' %}
 
-  <div class="content rocket-body">
-    <div class="rocket-content">
-      <div class="content-intro">
-        {{ high_res_img('logos/firefox/logo-rocket-wordmark.png', {'alt': 'Firefox Rocket', 'width': '470', 'height': '112', 'class': 'rocket-logo'}) }}
+  <div class="rocket-body">
+    <div class="content">
+      <div class="rocket-content">
+        <div class="rocket-intro">
+          {{ high_res_img('logos/firefox/logo-rocket-wordmark.png', {'alt': 'Firefox Rocket', 'width': '470', 'height': '112', 'class': 'rocket-logo'}) }}
 
-        {# Rough translation: "Want to try the latest Android browser that is data-efficient, lightweight, lightning fast, and tailor-made for Indonesia?" #}
-        <p class="shadowy">Mau coba Android browser terbaru yang hemat data, ringan, secepat kilat, dan dibuat khusus untuk Indonesia?</p>
+          {# Rough translation: Capture the whole page screen. Read offline. Scan the QR code and download now! #}
+          <p class="rocket-text">Tangkap layar seluruh laman. Baca kala offline. Scan kode QR dan unduh sekarang!</p>
+
+          <div class="rocket-code">{{ high_res_img('firefox/whatsnew/rocket/code.gif', {'alt': 'Kode QR', 'width': '222', 'height': '222'}) }}</div>
+          <div class="rocket-play">
+            {{ google_play_button(alt_href='https://app.adjust.com/xvzex7', anchor_attributes={
+              'target': '_blank'
+            }, class_name='download-link') }}
+          </div>
       </div>
-
-      <figure class="qr-code" id="qr-wrapper">
-        <img src="{{ static('img/firefox/whatsnew/rocket/qrcode-rocket.png') }}" alt="">
-
-        {# Rough translation: "Scan the QR code and download the new Firefox Rocket app now!" #}
-        <figcaption class="shadowy">Scan kode QR dan download aplikasi baru Firefox Rocket sekarang!</figcaption>
-      </figure>
     </div>
   </div>
 </main>

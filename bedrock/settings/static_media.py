@@ -16,11 +16,11 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/about-bundle.css',
     },
-    'about-base': {
+    'about-base-resp': {
         'source_filenames': (
             'css/mozorg/about-base.less',
         ),
-        'output_filename': 'css/about-base-bundle.css',
+        'output_filename': 'css/about-base-resp-bundle.css',
     },
     'about-leadership': {
         'source_filenames': (
@@ -134,14 +134,6 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/itu-bundle.css',
     },
-    'common': {
-        'source_filenames': (
-            'css/sandstone/sandstone.less',
-            'css/base/notification-banner.less',
-            'css/tabzilla/tabzilla-static.less',
-        ),
-        'output_filename': 'css/common-bundle.css',
-    },
     'responsive': {
         'source_filenames': (
             'css/sandstone/sandstone-resp.less',
@@ -162,6 +154,12 @@ PIPELINE_CSS = {
             'css/pebbles/basic.scss',
         ),
         'output_filename': 'css/pebbles-basic-bundle.css',
+    },
+    'protocol-core': {
+        'source_filenames': (
+            'css/protocol/protocol.scss',
+        ),
+        'output_filename': 'css/protocol-core-bundle.css',
     },
     'oldIE': {
         'source_filenames': (
@@ -226,6 +224,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_accounts-bundle.css',
     },
+    'firefox_accounts_features': {
+        'source_filenames': (
+            'css/firefox/accounts-features.scss',
+        ),
+        'output_filename': 'css/firefox_accounts_features-bundle.css',
+    },
     'firefox_all': {
         'source_filenames': (
             'css/base/mozilla-share-cta.less',
@@ -234,12 +238,6 @@ PIPELINE_CSS = {
             'css/firefox/all.less',
         ),
         'output_filename': 'css/firefox_all-bundle.css',
-    },
-    'firefox_all_old_ie': {
-        'source_filenames': (
-            'css/firefox/all-oldIE.less',
-        ),
-        'output_filename': 'css/firefox_all_old_ie-bundle.css',
     },
     'firefox_unsupported_systems': {
         'source_filenames': (
@@ -287,12 +285,6 @@ PIPELINE_CSS = {
             'css/firefox/home.scss',
         ),
         'output_filename': 'css/firefox-home-bundle.css',
-    },
-    'firefox_fx38_0_5_firstrun': {
-        'source_filenames': (
-            'css/firefox/australis/fx38_0_5/firstrun.less',
-        ),
-        'output_filename': 'css/firefox_fx38_0_5_firstrun-bundle.css',
     },
     'nightly_firstrun': {
         'source_filenames': (
@@ -448,20 +440,18 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-switch-bundle.css',
     },
-    'firefox_tour_none': {
-        'source_filenames': (
-            'css/firefox/australis/australis-page-common.less',
-            'css/firefox/sync-animation.less',
-            'css/firefox/australis/australis-page-stacked.less',
-        ),
-        'output_filename': 'css/firefox_tour_none-bundle.css',
-    },
     'firefox-update-notification-firstrun-whatsnew': {
         'source_filenames': (
             'css/base/mozilla-modal.less',
             'css/base/notification-modal.less',
         ),
         'output_filename': 'css/firefox-update-notification-firstrun-whatsnew-bundle.css',
+    },
+    'firefox_whatsnew_60': {
+        'source_filenames': (
+            'css/firefox/whatsnew/whatsnew-60.scss',
+        ),
+        'output_filename': 'css/firefox_whatsnew_60-bundle.css',
     },
     'firefox_whatsnew': {
         'source_filenames': (
@@ -512,12 +502,6 @@ PIPELINE_CSS = {
             'css/firefox/releasenotes.less',
         ),
         'output_filename': 'css/firefox_releasenotes-bundle.css',
-    },
-    'firefox_sync_anim': {
-        'source_filenames': (
-            'css/firefox/sync-animation.less',
-        ),
-        'output_filename': 'css/firefox_sync_anim-bundle.css',
     },
     'installer_help': {
         'source_filenames': (
@@ -968,12 +952,6 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/gtm-snippet-bundle.js',
     },
-    'optimizely-snippet': {
-        'source_filenames': (
-            'js/base/optimizely-snippet.js',
-        ),
-        'output_filename': 'js/optimizely-snippet-bundle.js',
-    },
     'firefox_accounts': {
         'source_filenames': (
             'js/base/mozilla-fxa-iframe.js',
@@ -981,6 +959,13 @@ PIPELINE_JS = {
             'js/firefox/accounts.js',
         ),
         'output_filename': 'js/firefox_accounts-bundle.js',
+    },
+    'firefox_accounts_features_experiment': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/firefox/accounts-features-experiment.js',
+        ),
+        'output_filename': 'js/firefox_accounts-features-experiment-bundle.js',
     },
     'firefox_all': {
         'source_filenames': (
@@ -1021,13 +1006,6 @@ PIPELINE_JS = {
             'js/firefox/features/sync-init.js',
         ),
         'output_filename': 'js/firefox-features-sync-bundle.js',
-    },
-    'firefox_fx38_0_5_firstrun': {
-        'source_filenames': (
-            'js/base/uitour-lib.js',
-            'js/firefox/australis/fx38_0_5/firstrun.js',
-        ),
-        'output_filename': 'js/firefox_fx38_0_5_firstrun-bundle.js',
     },
     'firefox_firstrun': {
         'source_filenames': (
@@ -1152,21 +1130,20 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox-switch-bundle.js',
     },
-    'firefox_tour_none': {
-        'source_filenames': (
-            'js/libs/jquery.waypoints.min.js',
-            'js/base/uitour-lib.js',
-            'js/firefox/australis/common.js',
-            'js/firefox/australis/no-tour.js',
-        ),
-        'output_filename': 'js/firefox_tour_none-bundle.js',
-    },
     'firefox_whatsnew': {
         'source_filenames': (
             'js/base/send-to-device.js',
             'js/firefox/whatsnew/whatsnew.js',
         ),
         'output_filename': 'js/firefox_whatsnew-bundle.js',
+    },
+    'firefox_whatsnew_60': {
+        'source_filenames': (
+            'js/base/mozilla-fxa-iframe.js',
+            'js/base/send-to-device.js',
+            'js/firefox/whatsnew/whatsnew-60.js',
+        ),
+        'output_filename': 'js/firefox_whatsnew_60-bundle.js',
     },
     'firefox_whatsnew_fxa': {
         'source_filenames': (

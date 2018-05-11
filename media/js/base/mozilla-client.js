@@ -320,6 +320,73 @@ if (typeof Mozilla === 'undefined') {
         }));
     };
 
+    /**
+     * Use the async mozUITour API of Firefox to retrieve the user's Sync/FxA info. This API
+     * is available on Firefox 29 and later. See
+     * http://bedrock.readthedocs.org/en/latest/uitour.html for details.
+     *
+     * @param  {Function} callback - callback function to be executed with the Sync details
+     * @return {None}
+     */
+    Client.getSyncDetails = function (callback) {
+        // Fire the callback function immediately if cache exists
+        if (Client.SyncDetails) {
+            callback(Client.SyncDetails);
+
+            return;
+        }
+
+        var callbackID = Math.random().toString(36).replace(/[^a-z]+/g, '');
+
+        var listener = function (event) {
+            if (!event.detail || !event.detail.data || event.detail.callbackID !== callbackID) {
+                return;
+            }
+
+            window.clearTimeout(timer);
+
+            // device counts are only available in Fx50+, so provide fallback values in case
+            onRetrieved(event.detail.data.setup, event.detail.data.desktopDevices || 0, event.detail.data.mobileDevices || 0, event.detail.data.totalDevices || 0);
+        };
+
+        var onRetrieved = function (setup, desktopDevices, mobileDevices, totalDevices) {
+            document.removeEventListener('mozUITourResponse', listener, false);
+
+            var details = Client.SyncDetails = {
+                'setup': setup,
+                'desktopDevices': desktopDevices,
+                'mobileDevices': mobileDevices,
+                'totalDevices': totalDevices
+            };
+
+            callback(details);
+        };
+
+        // Prepare fallback function in case the API doesn't work
+        var fallback = function () { onRetrieved(false, 0, 0, 0); };
+
+        // If Firefox is old or for Android, call the fallback function immediately because the API is not implemented
+        var userVer = Client._getFirefoxVersion();
+        if (parseFloat(userVer) < 29 || Client._isFirefoxAndroid()) {
+            fallback();
+
+            return;
+        }
+
+        // Fire the fallback function in .4 seconds
+        var timer = window.setTimeout(fallback, 400);
+
+        // Trigger the API
+        document.addEventListener('mozUITourResponse', listener, false);
+        document.dispatchEvent(new CustomEvent('mozUITour', {
+            'bubbles': true,
+            'detail': {
+                'action': 'getConfiguration',
+                'data': { 'configuration': 'sync', 'callbackID': callbackID }
+            }
+        }));
+    };
+
     // Append static properties for faster access
     Client.isFirefox = Client._isFirefox();
     Client.isFirefoxDesktop = Client._isFirefoxDesktop();

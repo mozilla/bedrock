@@ -39,16 +39,13 @@ body {
     }
 }
 
-a.button:link.button-orange,
-a.button:visited.button-orange {
-    background-color: #ff9400;
-    border-color: darken(#ff9400, 5%);
-
-    &:focus,
-    &:hover {
-        background-color: #dc46d7;
-        border-color: darken(#dc46d7, 5%);
-    }
+a.button:link.button-green:hover,
+a.button:link.button-green:focus,
+a.button:visited.button-green:hover,
+a.button:visited.button-green:focus {
+        background-color: #fff;
+        border-color: darken($color-button-green, 5%);
+        color: darken($color-button-green, 5%);
 }
 
 /* -------------------------------------------------------------------------- */

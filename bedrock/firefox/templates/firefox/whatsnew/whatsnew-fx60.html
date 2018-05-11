@@ -1,0 +1,128 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button, send_to_device with context %}
+
+{% add_lang_files "firefox/whatsnew_59" "firefox/mobile" "firefox/sendto" %}
+
+{% extends "firefox/whatsnew/base-pebbles.html" %}
+
+{% block page_title %}{{ _('See what’s new with Firefox') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block page_css %}
+  {% stylesheet 'firefox_whatsnew_60' %}
+{% endblock %}
+
+{% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
+
+{% block content %}
+<main>
+  {% with custom_message=_('Congrats! You’re using the latest version of Firefox.') %}
+    {% include 'firefox/whatsnew/includes/header.html' %}
+  {% endwith %}
+  <div class="main-content {% if show_send_to_device %}has-send-to-device{% else %}no-send-to-device{% endif %}">
+    <div class="content-container visible" id="logo-container">
+      <div class="logo-wrapper">
+        {{ high_res_img('logos/firefox/logo-quantum.png', {'alt': 'Firefox', 'width': '100', 'height': '100', 'class': 'logo-fx', 'id': 'logo-fx'}) }}
+        {{ high_res_img('logos/firefox/logo-focus.png', {'alt': ('Klar' if LANG == 'de' else 'Focus'), 'width': '100', 'height': '100', 'class': 'logo-focus', 'id': 'logo-focus'}) }}
+      </div>
+    </div>
+    {#
+      If the user is not signed in to Sync, display the FxA iframe.
+    #}
+    <div class="content-container fxa-container" id="fxa-container">
+      <header class="content-header">
+        <h2>{{ _('Take Firefox with You') }}</h2>
+        <p class="tagline">{{ _('Get your bookmarks, history, passwords and other settings on all your devices.') }}</p>
+        {# firefox.accounts-features is en-US only for now, so other locales need an alternate URL #}
+        {% set learn_more_url = url('firefox.accounts-features') if LANG == 'en-US' else url('firefox.features.sync') %}
+        <a href="{{ learn_more_url }}" target="_blank" rel="noopener noreferrer">{{_('Learn more about Firefox Accounts')}}</a>
+      </header>
+      <div class="fxaccounts" id="fxa-iframe-config" data-host="{{ settings.FXA_IFRAME_SRC }}" data-mozillaonline-host="{{ settings.FXA_IFRAME_SRC_MOZILLAONLINE }}">
+        <iframe id="fxa" scrolling="no" data-src="{{ settings.FXA_IFRAME_SRC }}?action=email&amp;utm_campaign=fxa-embedded-form&amp;utm_medium=referral&amp;utm_source=whatsnew&amp;utm_content=fx-{{ version }}&amp;entrypoint=whatsnew&amp;service=sync&amp;context=fx_firstrun_v2&amp;style=chromeless&amp;haltAfterSignIn=true"></iframe>
+      </div>
+    </div>{#-- /#fxa-container --#}
+
+    {#
+      If the user *is* logged in to Sync but does *not* have any mobile devices set up,
+      display either:
+        1) Send to Device widget (if supported by locale)
+        2) QR code for Firefox for mobile
+
+      All visitors in this state also see App & Play store badges.
+    #}
+    <div class="content-container fx-mobile-container" id="fx-mobile-container">
+      <header class="content-header">
+        <h2>{{ _('Take Firefox with You') }}</h2>
+        <p class="tagline">{{ _('Get your bookmarks, history, passwords and other settings on all your devices.') }}</p>
+
+      {% if not show_send_to_device %}
+        {# additional copy for QR code state #}
+        <p>{{ _('Scan the QR code to get started.') }}</p>
+      {% endif %}
+        <ul class="mobile-download-buttons">
+          <li class="android">
+            {{ google_play_button(alt_href='https://mzl.la/2JwvrgL', anchor_attributes={'data-link-type': 'download', 'data-download-os': 'Android', 'id': 'playStoreLink', 'data-mozillaonline-link': settings.GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE}) }}
+          </li>
+          <li class="ios">
+            <a id="appStoreLink" href="https://mzl.la/2KtrdHM" data-link-type="download" data-download-os="iOS">
+              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+            </a>
+          </li>
+        </ul>
+      </header>
+    {% if show_send_to_device %}
+      <div class="send-to-device-wrapper">
+        {{ send_to_device(include_title=False, message_set='fx-50-whatsnew') }}
+      </div>
+    {% else %}
+      <div class="qr-wrapper">
+        <img src="{{ static('img/firefox/whatsnew_60/qrcode-firefox.png') }}" data-mozillaonline-link="{{ static('img/firefox/whatsnew/qrcode-mozillaonline.png') }}" width="350" height="350" alt="" />
+      </div>
+    {% endif %}
+    </div>{#-- /#fx-mobile-container --#}
+
+    {#
+      If the user is logged in to Sync *and* has mobile devices sync'ed, display
+      QR code for Focus and App/Play store badges.
+    #}
+    <div class="content-container focus-container" id="focus-container">
+      <header class="content-header">
+        <h2>{{ _('Firefox Focus') }}</h2>
+        <p class="tagline">{{ _('Blocks ads with trackers. Automatically. Plus, it can even speed up page loading. Get the private browser that has your back.') }}</p>
+        <p>{{ _('Scan the QR code to get started.') }}</p>
+      </header>
+      <div class="qr-badges-wrapper">
+        <div class="qr-wrapper">
+          <img src="{{ static('img/firefox/whatsnew_60/qrcode-focus.png') }}" width="350" height="350" alt="" />
+        </div>
+        <div class="badges-wrapper">
+          <ul class="mobile-download-buttons">
+            <li class="android">
+              {{ google_play_button(alt_href='https://mzl.la/2HtC0UB', anchor_attributes={'data-link-type': 'download', 'data-download-os': 'Android', 'data-download-product': 'Focus', 'data-download-version': 'android', 'data-download-location': 'primary cta', 'id': 'playStoreLink'}) }}
+            </li>
+            <li class="ios">
+              {# Klar is a separate app and needs its own link #}
+              {% set app_store_link = 'https://mzl.la/2joPGS8' if LANG == 'de' else 'https://mzl.la/2FBO0Oa' %}
+              <a id="appStoreLink" href="{{ app_store_link }}" data-link-type="download" data-download-os="iOS" data-download-product="Focus" data-download-version="ios" data-download-location="primary cta">
+                <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+              </a>
+            </li>
+          </ul>
+        </div>{#-- /.badges-wrapper --#}
+      </div>{# --/.qr-badges-wrapper --#}
+    </div>{# --/#focus-container --#}
+
+  </div>{#-- /.main-content --#}
+</main>
+{% endblock %}
+
+{% block js %}
+  {% javascript 'firefox_whatsnew_60' %}
+{% endblock %}

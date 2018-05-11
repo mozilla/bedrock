@@ -12,8 +12,10 @@
 
       <h2 class="nav-logo">
         <a href="{{ url('mozorg.home') }}">
-          {# Bug 1438302 Avoid duplicate content for en-GB pages. #}
-          {% if LANG == 'en-GB' %}
+          {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
+          {% if LANG == 'en-CA' %}
+            Mozilla (CA)
+          {% elif LANG == 'en-GB' %}
             Mozilla (UK)
           {% else %}
             {{_('Mozilla')}}

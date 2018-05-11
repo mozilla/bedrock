@@ -4,7 +4,7 @@
 
 {% add_lang_files "firefox/new/quantum" %}
 
-{% extends "firefox/base.html" %}
+{% extends "firefox/base-resp.html" %}
 
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
@@ -26,12 +26,6 @@
 {% block page_og_url %}{{ url('firefox') }}{% endblock %}
 
 {% block gtm_page_id %}data-gtm-page-id="/firefox/firstrun/"{% endblock %}
-
-{% block optimizely %}
-{% if switch('firefox-firstrun-optimizely') %}
-  {% include 'includes/optimizely.html' %}
-{% endif %}
-{% endblock %}
 
 {% block extrahead %}
   {% if switch('firefox-update-notification-modal', ['en-US']) %}

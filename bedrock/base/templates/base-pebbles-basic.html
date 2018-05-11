@@ -18,6 +18,8 @@
   {% endif %}
 {% endblock %}
 
+{% block body_id %}{{ body_id }}{% endblock %}
+
 {% block content %}
   {% block main_feature %}{% endblock %}
   <main id="main-content" class="basic-content content">
@@ -33,4 +35,13 @@
       </aside>
     {% endblock %}
   </main>
+
+  {% block newsletter %}
+    <aside class="section section-newsletter" id="newsletter-subscribe">
+      <div class="content">
+        {% block email_form %}
+        {% endblock %}
+      </div>
+    </aside>
+  {% endblock %}
 {% endblock %}

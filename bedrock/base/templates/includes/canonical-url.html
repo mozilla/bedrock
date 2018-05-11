@@ -11,7 +11,6 @@
         {%- if code == 'en-US' -%}
         <link rel="alternate" hreflang="en" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="English">
         <link rel="alternate" hreflang="en-US" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="English (USA)">
-        <link rel="alternate" hreflang="en-CA" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="English (Canada)">
         {% elif code == 'es-ES' -%}
         <link rel="alternate" hreflang="es" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="Español">
         <link rel="alternate" hreflang="es-ES" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="{{ label|safe }}">

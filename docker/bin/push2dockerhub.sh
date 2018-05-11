@@ -10,7 +10,7 @@ set -ex
 BIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $BIN_DIR/set_git_env_vars.sh
 
-docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD -e $DOCKER_USERNAME@example.com
+docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
 if [[ "$FROM_DOCKER_REPOSITORY" == "mozorg/bedrock_l10n" ]]; then
     DOCKER_TAG="${BRANCH_NAME/\//-}-${GIT_COMMIT}"
