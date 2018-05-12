@@ -1,0 +1,127 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+
+.fbvideochat-banner {
+    background: #f5f5f5; // fallback for old IE
+    @include gradient-vertical($start-color: #fff, $end-color: #f5f5f5);
+    display: none;
+    text-align: center;
+
+    .fbvideochat-close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+
+        button {
+            background: transparent url('/media/img/notification/close-dark.svg') top center no-repeat;
+            border: none;
+            display: block;
+            height: 18px;
+            width: 18px;
+        }
+
+        span {
+            @include visually-hidden();
+        }
+    }
+
+    .header-content {
+        margin-bottom: 20px;
+        padding-top: 20px;
+
+        p {
+            @include font-size-level3;
+            margin: 0;
+        }
+    }
+
+    .banner-logo {
+        display: block;
+        margin: 20px auto;
+    }
+
+    .header-image-wrapper figcaption {
+        margin-top: 10px;
+    }
+
+    // ensure placeholder image doesn't display too large
+    img.delay-load {
+        height: 1px;
+        width: 1px;
+    }
+
+    .fx-privacy-link {
+        a:active,
+        a:focus,
+        a:hover,
+        a:link,
+        a:visited {
+            color: #000;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        .fbvideochat-close {
+            right: 20px;
+            top: 20px;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        text-align: left;
+
+        .content {
+            padding-bottom: 40px;
+            padding-top: 40px;
+        }
+
+        .header-content {
+            float: left;
+            width: 360px;
+        }
+
+        .banner-logo {
+            margin: 20px 0 40px;
+        }
+
+        .header-image-wrapper {
+            float: left;
+            padding-left: 40px;
+            text-align: center;
+            width: calc(100% - 400px);
+        }
+
+        .header-image img {
+            display: block;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        .header-content {
+            padding-top: 20px;
+        }
+
+        .header-image-wrapper {
+            width: 810px;
+        }
+    }
+}
+
+@supports (display: flex) {
+    .fbvideochat-banner .header-content-wrapper {
+        @media #{$mq-desktop} {
+            display: flex;
+
+            .header-image-wrapper {
+                align-self: center;
+            }
+        }
+
+        @media #{$mq-desktop-wide} {
+            display: block;
+        }
+    }
+}

@@ -84,3 +84,37 @@ For all download buttons, add these data attributes:
 |   data-download-version  |'standard', 'developer', 'beta' |
 +--------------------------+--------------------------------+
 
+For all conditional banners, add the following calls.
+
+When a banner is shown:
+
+.. code-block:: javascript
+
+    dataLayer.push({
+        'eLabel': 'Banner Impression',
+        'data-banner-name': '<banner name>', //ex. Fb-Video-Compat
+        'data-banner-impression': '1',
+        'event': 'non-interaction'
+    });
+
+When an element in the banner is clicked:
+
+.. code-block:: javascript
+
+    dataLayer.push({
+        'eLabel': 'Banner Clickthrough',
+        'data-banner-name': '<banner name>', //ex. Fb-Video-Compat
+        'data-banner-click': '1',
+        'event': 'in-page-interaction'
+    });
+
+When a banner is dismissed:
+
+.. code-block:: javascript
+
+    dataLayer.push({
+        'eLabel': 'Banner Dismissal',
+        'data-banner-name': '<banner name>', //ex. Fb-Video-Compat
+        'data-banner-dismissal': '1',
+        'event': 'in-page-interaction'
+    });
