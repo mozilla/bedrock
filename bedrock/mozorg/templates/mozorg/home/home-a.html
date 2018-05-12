@@ -53,7 +53,7 @@
 <section class="card {% if class %}{{ class }}{% endif %} {% if video_url %}has-video{% endif %}">
   <a class="card-block-link" href="{{ link_url }}" data-link-name="{{ ga_title }}" data-link-type="link">
     <div class="card-media-wrapper {% if aspect_ratio %}{{ aspect_ratio }}{% endif %}">
-      {{ lazy_img(image_url=image_url, include_highres_image=include_highres_image, placeholder_url='home/2018/placeholder.png', optional_attributes={'class': 'card-image'}) }}
+      {{ lazy_img(image_url=image_url, include_highres_image=include_highres_image, placeholder_url='placeholder.png', optional_attributes={'class': 'card-image'}) }}
     </div>
     <div class="card-content">
     {% if tag_label %}

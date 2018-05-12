@@ -286,6 +286,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-home-bundle.css',
     },
+    'firefox-home-fbvideochat-funnelcake': {
+        'source_filenames': (
+            'css/firefox/home-fbvideochat-funnelcake.scss',
+        ),
+        'output_filename': 'css/firefox-home-fbvideochat-funnelcake-bundle.css',
+    },
     'nightly_firstrun': {
         'source_filenames': (
             'css/firefox/nightly_firstrun.less',
@@ -1062,6 +1068,12 @@ PIPELINE_JS = {
             'js/firefox/home/main.js',
         ),
         'output_filename': 'js/firefox-home-bundle.js',
+    },
+    'firefox-home-fbvideochat-funnelcake': {
+        'source_filenames': (
+            'js/firefox/home/fbvideochat-funnelcake.js',
+        ),
+        'output_filename': 'js/firefox-home-fbvideochat-funnelcake-bundle.js',
     },
     'firefox_new_scene1': {
         'source_filenames': (
