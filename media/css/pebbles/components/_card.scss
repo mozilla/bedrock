@@ -118,6 +118,7 @@
         @include font-size-extra-small;
         color: #676767;
         margin-bottom: 0;
+        display: none; // temporarily hide dates for a/b test
     }
 
     @media #{$mq-tablet} {
