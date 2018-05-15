@@ -16,6 +16,10 @@ $color-photon-blue: #0099db;
     background: #fff;
 }
 
+body {
+    @include open-sans;
+}
+
 .content-section {
     color: #000;
     padding: 40px 0;
@@ -34,16 +38,13 @@ $color-photon-blue: #0099db;
     background: #0f257e url('/media/img/firefox/enterprise/wave.png') bottom left no-repeat;
     color: #fff;
 
-    h1,
-    h2 {
-        @include font-size-level1;
+    h1 {
+        @include font-size-level2;
         @include open-sans;
-        font-weight: normal;
         margin-bottom: 0;
     }
 
     .copy {
-        @include open-sans;
         padding: 0;
         width: auto;
 
@@ -220,52 +221,78 @@ $color-photon-blue: #0099db;
 }
 
 /* -------------------------------------------------------------------------- */
-// Bottom download CTA.
+// Download table
 
-.secondary-download.content-section {
-    padding: 20px 0;
+.download-table {
+    @include font-size-level6;
+    border-collapse: separate;
+    border-spacing: 0 4px;
+    margin-top: 40px;
+    width: 100%;
 
-    .download-contain {
-        position: relative;
-        padding: 40px 0;
+    caption {
+        text-align: left;
 
-        &:before {
-            background-color: #65e1ff;
-            background-image: linear-gradient(to left, #65e1ff 0%, #95b5ff 78%, #a2a9ff 100%);
-            content: '';
-            height: 6px;
-            left: 0;
-            position: absolute;
-            top: 0;
-            width: 100%;
+        h3 {
+            @include font-size-level5;
+            margin-bottom: 20px;
         }
     }
 
-    h2 {
+    tr {
+        background-color: #ededf0;
+        margin-bottom: 4px;
+    }
+
+    th {
         font-weight: normal;
-        margin-bottom: 40px;
+    }
+
+    tr,
+    th,
+    td {
+        padding: 10px;
+    }
+
+    th,
+    td {
+        display: block;
+        text-align: left;
+    }
+
+    a:link,
+    a:visited {
+        color: #0060df;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        text-decoration: underline;
     }
 
     @media #{$mq-desktop} {
-        .download-contain {
-            @include clearfix;
-            padding: 100px 0 $enterprise-grid-spacing;
+        margin-top: 60px;
+
+        th {
+            text-align: left;
         }
 
-        h2 {
-            float: left;
-            text-align: left;
-            width: 66%;
-
-            @supports(display: grid) {
-                // to left align button with the 3rd grid box above (66% is not accurate enough)
-                width: calc((100% - #{$enterprise-grid-spacing * 2}) / 3 * 2 + #{$enterprise-grid-spacing * 2});
-            }
+        td {
+            text-align: right;
         }
 
-        .download-button-wrapper {
-            float: left;
-            text-align: left;
+        tr,
+        th,
+        td {
+            padding: 20px;
+        }
+
+        th,
+        td {
+            display: table-cell;
         }
     }
 }

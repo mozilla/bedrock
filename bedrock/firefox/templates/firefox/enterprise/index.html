@@ -27,8 +27,7 @@
           {% if switch('firefox_enterprise', ['en-US']) %}
             <p>{{ _('Speed up your business by giving employees a managed version of the super-fast new Firefox. <em>Now with Windows Group Policy support.</em>') }}</p>
             <div class="copy-cta">
-              <a href="{{ url('firefox.enterprise.signup') }}" class="button button-green qa-cta">{{ _('Request More Information') }}</a>
-              <div class="copy-cta-2"><a href="https://support.mozilla.org/products/firefox-enterprise">{{ _('Or, read the docs.') }}</a></div>
+              <a href="{{ url('firefox.enterprise.signup') }}" class="button button-green qa-sign-up">{{ _('Find Out More') }}</a>
             </div>
           {% else %}
             <p>{{ _('Speed up your business by deploying a managed version of the super-fast new Firefox') }}</p>
@@ -66,23 +65,34 @@
           </p>
         </li>
       </ul>
-    </div>
-  </section>
 
-  <section class="secondary-download content-section">
-    <div class="content">
-      <div class="download-contain">
-        <h2>
-          {{ _('Speed up your business.') }}
-        </h2>
-        <div class="download-button-wrapper">
-          {% if switch('firefox_enterprise', ['en-US']) %}
-            <a href="{{ url('firefox.enterprise.signup') }}" class="button button-green">{{ _('Request More Information') }}</a>
-          {% else %}
-            <a href="https://www.surveygizmo.com/s3/4201563/Firefox-for-Enterprise-Beta" class="button">{{ _('Sign up for the beta') }}</a>
-          {% endif %}
-        </div>
-      </div>
+      <table class="download-table">
+        <caption><h3>{{ _('Firefox Enterprise Downloads') }}</h3></caption>
+        <tbody>
+          <tr>
+            <th>{{ _('Firefox Rapid Release') }}</th>
+            <td><a class="qa-download-release" href="{{ url('firefox.new') }}">{{ _('Download Firefox') }}</a></td>
+          </tr>
+          <tr>
+            <th>{{ _('Firefox Extended Support Release (ESR)') }}</th>
+            <td><a class="qa-download-esr" href="{{ url('firefox.organizations.organizations') }}">{{ _('Download ESR') }}</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="download-table">
+        <caption><h3>{{ _('Resources') }}</h3></caption>
+        <tbody>
+          <tr>
+            <th>{{ _('Support & Documentation') }}</th>
+            <td><a href="https://support.mozilla.org/products/firefox-enterprise/">{{ _('Learn More') }}</a></td>
+          </tr>
+          <tr>
+            <th>{{ _('Windows Group Policy ADMX Templates') }}</th>
+            <td><a href="https://github.com/mozilla/policy-templates/releases/">{{ _('Get Templates') }}</a></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 </main>

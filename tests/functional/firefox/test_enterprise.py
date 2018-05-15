@@ -7,9 +7,16 @@ import pytest
 from pages.firefox.enterprise import EnterprisePage
 
 
-@pytest.mark.sanity
 @pytest.mark.smoke
 @pytest.mark.nondestructive
-def test_cta_is_displayed(base_url, selenium):
+def test_signup_button_is_displayed(base_url, selenium):
     page = EnterprisePage(selenium, base_url).open()
-    assert page.primary_cta.is_displayed
+    assert page.signup_button.is_displayed
+
+
+@pytest.mark.smoke
+@pytest.mark.nondestructive
+def test_download_links_are_displayed(base_url, selenium):
+    page = EnterprisePage(selenium, base_url).open()
+    assert page.download_release_link.is_displayed
+    assert page.download_esr_link.is_displayed
