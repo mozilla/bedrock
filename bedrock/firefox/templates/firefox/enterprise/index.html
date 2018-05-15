@@ -24,15 +24,10 @@
       <div class="copy">
         {{ high_res_img('logos/firefox/logo-quantum.png', {'alt': 'Firefox', 'width': '100', 'height': '100', 'class': 'logo'}) }}
           <h1>{{ _('Firefox Quantum for Enterprise') }}</h1>
-          {% if switch('firefox_enterprise', ['en-US']) %}
-            <p>{{ _('Speed up your business by giving employees a managed version of the super-fast new Firefox. <em>Now with Windows Group Policy support.</em>') }}</p>
-            <div class="copy-cta">
-              <a href="{{ url('firefox.enterprise.signup') }}" class="button button-green qa-sign-up">{{ _('Find Out More') }}</a>
-            </div>
-          {% else %}
-            <p>{{ _('Speed up your business by deploying a managed version of the super-fast new Firefox') }}</p>
-            <a href="https://www.surveygizmo.com/s3/4201563/Firefox-for-Enterprise-Beta" class="button qa-cta" id="beta-signup">{{ _('Sign up for the beta') }}</a>
-          {% endif %}
+          <p>{{ _('Speed up your business by giving employees a managed version of the super-fast new Firefox. <em>Now with Windows Group Policy support.</em>') }}</p>
+          <div class="copy-cta">
+            <a href="{{ url('firefox.enterprise.signup') }}" class="button button-green qa-sign-up">{{ _('Find Out More') }}</a>
+          </div>
       </div>
     </div>
   </section>
