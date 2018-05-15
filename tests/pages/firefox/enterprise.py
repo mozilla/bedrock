@@ -11,8 +11,18 @@ class EnterprisePage(FirefoxBasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/enterprise/'
 
-    _primary_cta_locator = (By.CSS_SELECTOR, '.qa-cta')
+    _signup_button_locator = (By.CSS_SELECTOR, '.qa-sign-up')
+    _download_release_locator = (By.CSS_SELECTOR, '.qa-download-release')
+    _download_esr_locator = (By.CSS_SELECTOR, '.qa-download-esr')
 
     @property
-    def primary_cta(self):
-        return self.find_element(*self._primary_cta_locator)
+    def signup_button(self):
+        return self.find_element(*self._signup_button_locator)
+
+    @property
+    def download_release_link(self):
+        return self.find_element(*self._download_release_locator)
+
+    @property
+    def download_esr_link(self):
+        return self.find_element(*self._download_esr_locator)
