@@ -522,7 +522,7 @@ def download_thanks(request):
         template = 'firefox/new/wait-face/scene2.html'
     elif lang_file_is_active('firefox/new/reggiewatts', locale) and experience == 'reggiewatts':
         template = 'firefox/new/reggie-watts/scene2.html'
-    elif locale == 'de' and experience == 'berlin':
+    elif locale == 'de' and experience in ['berlin', 'herz']:
         template = 'firefox/new/berlin/scene2.html'
     elif locale == 'en-US':
         if experience in ['portland', 'forgood']:
@@ -566,7 +566,7 @@ def new(request):
             template = 'firefox/new/wait-face/scene1.html'
         elif lang_file_is_active('firefox/new/reggiewatts', locale) and experience == 'reggiewatts':
             template = 'firefox/new/reggie-watts/scene1.html'
-        elif locale == 'de' and experience == 'berlin':
+        elif locale == 'de' and experience in ['berlin', 'herz']:
             template = 'firefox/new/berlin/scene1.html'
         elif locale == 'en-US':
             if experience in ['portland', 'forgood']:
