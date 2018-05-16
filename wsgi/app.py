@@ -11,7 +11,7 @@ except ImportError:
 
 
 if newrelic:
-    newrelic_ini = config('NEWRELIC_PYTHON_INI_FILE', default='False')
+    newrelic_ini = config('NEWRELIC_PYTHON_INI_FILE', default='')
     if newrelic_ini:
         newrelic.agent.initialize(newrelic_ini)
     else:
