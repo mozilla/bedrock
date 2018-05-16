@@ -12,8 +12,16 @@ import babis
 from apscheduler.schedulers.blocking import BlockingScheduler
 from pathlib2 import Path
 
-from bedrock.base.config_manager import config
 
+# ROOT path of the project. A pathlib.Path object.
+ROOT_PATH = Path(__file__).resolve().parents[1]
+ROOT = str(ROOT_PATH)
+
+# add bedrock to path
+sys.path.append(ROOT)
+
+# must import after adding bedrock to path
+from bedrock.base.config_manager import config  # noqa
 
 # these are the defaults, but explicit is better
 JOB_DEFAULTS = {
@@ -30,9 +38,6 @@ RUN_TIMES = {}
 # Dead Man's Snitch
 DEAD_MANS_SNITCH_URL = config('DEAD_MANS_SNITCH_URL', default='')
 
-# ROOT path of the project. A pathlib.Path object.
-ROOT_PATH = Path(__file__).resolve().parents[1]
-ROOT = str(ROOT_PATH)
 MANAGE = str(ROOT_PATH / 'manage.py')
 HEALTH_FILE_BASE = '/tmp/last-run'
 
