@@ -93,101 +93,90 @@
     {# Main page h1 is hidden from view and exists mainly for SEO purposes #}
     <h1>{{ self.page_title() }}</h1>
   </header>
-  <div class="content">
-    <div class="intro">
-      <section class="download-firefox-primary-cta">
-        <div class="primary-wrapper">
-          <header class="primary-header">
-            <h2 class="primary-header-title">{{ _('Firefox') }}</h2>
-          </header>
-          <div class="primary-content">
-            <h3 class="primary-title">{{ _('Fast for good.') }}</h3>
-            <p class="primary-desc">{{ _('2x the speed. Built-in privacy protection. Powered by Mozilla. There’s a better way to browse.') }}</p>
-            {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
-          </div>
-        </div>
-      </section>
-
-      <div class="layout-card-hero">
-        {{ card_block(
-            class='card-large',
-            tag_label=_('Firefox'),
-            tag_class='card-tag-video',
-            title=_('The browser made for people, not profit'),
-            ga_title='The browser made for people, not profit',
-            desc=_('So we don’t have organic heirloom tomatoes inside our code. We *are* the only major browser backed by a not-for-profit, though, and that matters.'),
-            image_url='home/2018/value-fresh.jpg',
-            include_highres_image=True,
-            aspect_ratio='has-aspect-16-9',
-            link_url='https://medium.com/the-official-unofficial-firefox-blog/firefox-kind-of-like-if-farm-to-browser-were-a-thing-bbb38f2ea2a4',
-            video_url='https://assets.mozilla.net/video/mozilla-home/farm-to-browser'
-        )}}
-        <div class="layout-card-half">
-          {{ card_block(
-              class='card1',
-              tag_label=_('Privacy'),
-              tag_class='card-tag-audio',
-              title=_('Algorisky'),
-              ga_title='Algorisky',
-              desc=_('From Google search to Facebook news, algorithms shape our online experience. But like us, algorithms are flawed.'),
-              image_url='home/2018/algorisky.png',
-              include_highres_image=True,
-              aspect_ratio='has-aspect-1-1',
-              link_url='https://irlpodcast.org/episode12/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
-          )}}
-
-          {{ card_block(
-              class='card2',
-              tag_label=_('Privacy'),
-              title=_('Facebook Container Extension: Take control of how you’re being tracked'),
-              ga_title='Facebook Container Extension: Take control of how you’re being tracked',
-              desc=_('Our Multi-Account Containers extension has been a game changer for many users, letting them manage various parts of their online life without intermingling their accounts.'),
-              image_url='home/2018/facebook-container.png',
-              include_highres_image=True,
-              aspect_ratio='has-aspect-3-2',
-              link_url='https://blog.mozilla.org/firefox/facebook-container-extension/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
-          )}}
-        </div>
+  <section id="download-firefox-primary-cta" class="download-firefox-primary-cta">
+    <div class="content">
+      <div class="primary-wrapper">
+          <h2 class="primary-title">{{ _('The new <strong>Firefox</strong>') }}</h2>
+          <h3 class="primary-title-sub">{{ _('Fast for good.') }}</h3>
+          <p class="primary-desc">{{ _('2x the speed. Built-in privacy protection. Powered by Mozilla.') }}</p>
+          <p class="primary-desc-sub">{{ _('There’s a better way to browse.') }}</p>
+          {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
       </div>
     </div>
-
+  </section>
+  <section id="download-firefox-sticky-cta" class="download-firefox-sticky-cta">
+    <div class="content">
+      <div class="primary-wrapper">
+          <h2 class="primary-title">{{ _('The new <strong>Firefox</strong>') }}</h2>
+          <h3 class="primary-title-sub">{{ _('Fast for good.') }}</h3>
+          <p class="primary-desc-sub">{{ _('There’s a better way to browse.') }}</p>
+          {{ download_firefox(dom_id='download-sticky', download_location='sticky cta') }}
+      </div>
+    </div>
+  </section>
+  <div class="content">
     <div class="layout-card-third">
       {{ card_block(
-          class='card-tile',
-          title=_('More power to you.'),
-          ga_title='More power to you.',
-          desc=_('We’re the not-for-profit behind products, technologies and programs that make the internet healthier for everyone.'),
-          image_url='home/2018/power-to-you.png',
-          include_highres_image=True,
-          aspect_ratio='has-aspect-1-1',
-          small_cta=_('Learn more about us'),
-          link_url=url('mozorg.about')
-      )}}
-
-      {{ card_block(
-          tag_label=_('Internet Health'),
-          tag_class='card-tag-audio',
-          title=_('Social Bubble Bath'),
-          ga_title='Social Bubble Bath',
-          desc=_('We’ve long heard that the ways the web is tailored for each user—how we search, what we’re shown, who we read and follow — reinforces walls between us. Veronica Belmont investigates how social media can create, and can break, our filter bubbles.'),
-          image_url='home/2018/irl-social-bubble-bath.png',
-          include_highres_image=True,
-          aspect_ratio='has-aspect-1-1',
-          link_url='https://irlpodcast.org/episode13/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
-      )}}
-
-      {{ card_block(
+          class='card-hero card-large',
           tag_label=_('Firefox'),
-          title=_('Switch from Chrome to Firefox in just a Few Minutes'),
-          ga_title='Switch from Chrome to Firefox in just a Few Minutes',
-          desc=_('You’ve heard about how fast the new Firefox is. You’ve heard it’s made by people who want the web to be awesome for everyone.'),
-          image_url='home/2018/switch-to-firefox.png',
+          tag_class='card-tag-video',
+          title=_('The browser made for people, not profit'),
+          ga_title='The browser made for people, not profit',
+          desc=_('So we don’t have organic heirloom tomatoes inside our code. We *are* the only major browser backed by a not-for-profit, though, and that matters.'),
+          image_url='home/2018/value-fresh.jpg',
           include_highres_image=True,
-          aspect_ratio='has-aspect-3-2',
-          link_url='https://blog.mozilla.org/firefox/switch-chrome-firefox-just-minutes/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
+          aspect_ratio='has-aspect-16-9',
+          link_url='https://medium.com/the-official-unofficial-firefox-blog/firefox-kind-of-like-if-farm-to-browser-were-a-thing-bbb38f2ea2a4',
+          video_url='https://assets.mozilla.net/video/mozilla-home/farm-to-browser'
+      )}}
+      {{ card_block(
+          class='card1',
+          tag_label=_('Privacy'),
+          tag_class='card-tag-audio',
+          title=_('Algorisky'),
+          ga_title='Algorisky',
+          desc=_('From Google search to Facebook news, algorithms shape our online experience. But like us, algorithms are flawed.'),
+          image_url='home/2018/algorisky.png',
+          include_highres_image=True,
+          aspect_ratio='has-aspect-1-1',
+          link_url='https://irlpodcast.org/episode12/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
       )}}
     </div>
-
+    <div class="layout-card-third">
+        {{ card_block(
+            class='card-tile',
+            title=_('More power to you.'),
+            ga_title='More power to you.',
+            desc=_('We’re the not-for-profit behind products, technologies and programs that make the internet healthier for everyone.'),
+            image_url='home/2018/power-to-you.png',
+            include_highres_image=True,
+            aspect_ratio='has-aspect-1-1',
+            small_cta=_('Learn more about us'),
+            link_url=url('mozorg.about')
+        )}}
+        {{ card_block(
+            class='card2',
+            tag_label=_('Privacy'),
+            title=_('Facebook Container Extension: Take control of how you’re being tracked'),
+            ga_title='Facebook Container Extension: Take control of how you’re being tracked',
+            desc=_('Our Multi-Account Containers extension has been a game changer for many users, letting them manage various parts of their online life without intermingling their accounts.'),
+            image_url='home/2018/facebook-container.png',
+            include_highres_image=True,
+            aspect_ratio='has-aspect-3-2',
+            link_url='https://blog.mozilla.org/firefox/facebook-container-extension/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
+        )}}
+        {{ card_block(
+            tag_label=_('Internet Health'),
+            tag_class='card-tag-audio',
+            title=_('Social Bubble Bath'),
+            ga_title='Social Bubble Bath',
+            desc=_('We’ve long heard that the ways the web is tailored for each user—how we search, what we’re shown, who we read and follow — reinforces walls between us. Veronica Belmont investigates how social media can create, and can break, our filter bubbles.'),
+            image_url='home/2018/irl-social-bubble-bath.png',
+            include_highres_image=True,
+            aspect_ratio='has-aspect-1-1',
+            link_url='https://irlpodcast.org/episode13/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=v-a'
+        )}}
+    </div>
     <aside class="newsletter" id="newsletter-subscribe">
       <div class="newsletter-image">
         {{ high_res_img('home/2018/newsletter-graphic.png', {'alt': ''}) }}
@@ -405,9 +394,6 @@
         <h2 class="secondary-title">{{ _('Supporting a healthy internet is easy.') }}</h2>
         <p class="tagline">{{ _('Get started by browsing with Firefox powered by Mozilla.') }}</p>
         {{ download_firefox(dom_id='download-secondary', download_location='secondary cta') }}
-      </div>
-      <div class="secondary-image">
-        <div class="image-wrapper"></div>
       </div>
     </div>
   </div>

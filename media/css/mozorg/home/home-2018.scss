@@ -7,7 +7,10 @@
 @import '../../pebbles/components/modal';
 @import '../../hubs/sections';
 @import '../../hubs/masthead';
+@import '../../hubs/nav-download-button-remove';
 @import 'newsletter';
+
+$callout-blue: #0060df;
 
 /* -------------------------------------------------------------------------- */
 // Common elements.
@@ -23,142 +26,224 @@ main {
     }
 }
 
-/* -------------------------------------------------------------------------- */
-// Download Firefox primary CTA (sticky on large viewports).
+.moz-global-nav {
+    z-index: 3;
+}
 
-.download-firefox-primary-cta {
-    margin-bottom: 30px;
-    max-width: none;
+/* -------------------------------------------------------------------------- */
+// Shared primary and sticky cta styles
+
+.primary-wrapper {
+    color: #fff;
+    position: relative;
     text-align: center;
 
-    .primary-wrapper {
-        background: url('/media/img/home/2018/wave-primary.svg') bottom -1px center no-repeat;
-        border-radius: 8px;
-        box-shadow: 0 8px 24px 0 rgba(0, 0, 0, .1);
-        overflow: hidden;
-    }
-
-    .primary-content {
-        padding: 30px 10px 80px;
-    }
-
-    .primary-header {
-        background: #000 url('/media/img/home/2018/browser-window-controls.svg') left 12px center no-repeat;
-        height: 30px;
-        text-align: left;
-    }
-
-    .primary-header-title {
-        @include at2x('/media/img/logos/firefox/logo-quantum.png', 20px, 20px);
-        @include font-size(12px);
+    h2, h3 {
         @include open-sans;
-        background-color: #f9f9fa;
-        background-position: left 5px center;
-        background-repeat: no-repeat;
-        border-top: 2px solid #0083ff;
-        display: inline-block;
-        font-weight: normal;
-        height: 30px;
-        line-height: 2.3;
-        margin: 0 0 0 90px;
-        max-width: 170px;
-        padding-left: 30px;
-        position: relative;
-        width: 40%;
-
-        &:before {
-            background-image: url('/media/img/home/2018/browser-tab-close.svg');
-            content: '';
-            height: 11px;
-            position: absolute;
-            right: 10px;
-            top: 8px;
-            width: 11px;
-        }
-
-        &:after {
-            background-image: url('/media/img/home/2018/browser-tab-new.svg');
-            content: '';
-            height: 14px;
-            position: absolute;
-            right: -24px;
-            top: 6px;
-            width: 14px;
-        }
     }
 
-    .primary-title {
-        @include at2x('/media/img/logos/firefox/logo-quantum.png', 90px, 90px);
-        @include open-sans;
-        background-position: top center;
-        background-repeat: no-repeat;
-        padding-top: 110px;
+    p {
+        margin-bottom: 0;
     }
 
-    .primary-desc {
-        margin: 0 auto 20px;
-        max-width: 30em;
+    .download-link:link {
+        padding: 6px 30px;
     }
 
     .fx-privacy-link {
+        display: none;
+    }
+}
 
-        a:link,
-        a:visited {
-            color: inherit;
-        }
+.primary-title {
+    @include font-size(18px);
+    background: url('/media/img/logos/firefox/logo-quantum.png') top center no-repeat; //image is 189x189, no need for retina mq when displaying at 40px
+    background-size: 40px 40px;
+    font-weight: normal;
+    line-height: 40px;
+    margin-bottom: 8px;
+    padding-top: 40px;
+}
+
+.primary-title-sub {
+    @include font-size(24px);
+    margin-bottom: 10px;
+}
+
+@media #{$mq-tablet} {
+    .primary-wrapper {
+        padding-bottom: 40px;
     }
 
-    @media #{$mq-desktop} {
-        margin-bottom: 0;
-
-        .primary-content {
-            padding: 50px 10px 80px;
-        }
-
-        .primary-desc {
-            margin: 0 0 20px;
-            max-width: none;
-        }
+    .primary-title {
+        background-position: top left;
+        margin-bottom: 40px;
+        padding-left: 60px;
+        padding-top: 0;
+        text-align: left;
     }
 
-    @media #{$mq-desktop-wide} {
-        .primary-header-title {
-            margin-left: 100px;
-        }
+    .primary-title-sub {
+        @include font-size(36px);
+    }
+}
 
-        .primary-content {
-            padding: 50px 25px 100px;
+// Primary cta styles
+
+.download-firefox-primary-cta {
+    background-color: $callout-blue;
+    position: relative;
+    z-index: 2;
+}
+
+#download-primary {
+    margin-top: 25px;
+}
+
+@media #{$mq-tablet} {
+    #download-primary {
+        margin-top: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        .no-js & {
+            // no-js HTML is a list of 7 buttons, they need more space and can't be absolutely positioned
+            position: static;
+            margin-top: 20px;
         }
     }
 }
 
-/* -------------------------------------------------------------------------- */
-// Intro lockup - large video, downlod firefox sticky & 2 smaller cards.
 
-.intro {
-    position: relative;
+@media #{$mq-desktop} {
+    .download-firefox-primary-cta {
+        border-top: 100px solid #fff;
+        position: relative;
+        top: -100px;
+        margin-bottom: -100px;
+    }
+}
 
-    @media #{$mq-desktop} {
-        @include clearfix;
+// Sticky cta styles
 
-        .layout-card-hero {
+.download-firefox-sticky-cta {
+    background-color: $callout-blue;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+    .no-js & {
+        // no-js HTML is a list of 7 buttons, not enough space in sticky cta for that
+        display: none;
+    }
+
+    .content {
+        padding-bottom: 8px;
+        padding-top: 8px;
+    }
+
+    .primary-title {
+        height: 0;
+        left: -6px;
+        margin-bottom: 0;
+        overflow: hidden;
+        position: absolute;
+        top: -4px;
+        width: 40px;
+    }
+
+    .primary-title-sub {
+        display: none;
+    }
+
+    .primary-desc-sub {
+        display: none;
+    }
+
+    .download-link:link {
+        padding: 2px 15px;
+    }
+
+    .download-list {
+        margin-bottom: 0;
+    }
+}
+
+.sticky-dismiss {
+    background: transparent;
+    border: none;
+    bottom: 0;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 0 0 0 40px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 0;
+
+    &:after {
+        @include font-size(17px);
+        color: #fff;
+        content: '×';
+        display: block;
+        left: 0;
+        line-height: 32px;
+        position: absolute;
+        right: 0;
+        text-align: right;
+        top: 0;
+    }
+}
+
+@media #{$mq-tablet} {
+    .download-firefox-sticky-cta {
+        .primary-title {
             float: left;
-            width: calc(66%);
+            height: 40px;
+            position: static;
+            width: 0;
         }
 
-        .download-firefox-primary-cta {
-            bottom: 70px;
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: calc(33% - 16px);
+        .primary-title-sub {
+            @include font-size(18px);
+            display: block;
+            float: left;
+            line-height: 40px;
+            margin-bottom: 0;
+            padding-right: 10px;
+            text-align: left;
+        }
 
-            .primary-wrapper {
-                left: 0;
-                position: -webkit-sticky;
-                position: sticky;
-                top: 30px;
-            }
+        .download-link:link {
+            padding: 6px 30px;
+        }
+    }
+
+    #download-sticky {
+        margin-top: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .sticky-dismiss {
+        right: -60px;
+
+        &:after {
+            line-height: 40px;
+            text-align: left;
+        }
+    }
+}
+
+@media #{$mq-desktop} {
+    .download-firefox-sticky-cta {
+        .primary-desc-sub {
+            display: block;
+            float: left;
+            line-height: 40px;
         }
     }
 }
@@ -204,72 +289,85 @@ main {
 /* -------------------------------------------------------------------------- */
 // Secondary Firefox CTA section.
 
-.download-firefox-secondary-cta {
-    background: url('/media/img/home/2018/wave-secondary.svg') bottom -1px left no-repeat;
-    overflow: hidden;
 
+.download-firefox-secondary-cta {
+    background-color: $callout-blue;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    z-index: 2;
+
+    h2 {
+        @include open-sans;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.secondary-title {
+    @include font-size(24px);
+    background: url('/media/img/logos/firefox/logo-quantum.png') center 35px no-repeat; //image is 189x189, no need for retina mq when displaying at 80px
+    background-size: 80px 80px;
+    margin-bottom: 25px;
+    padding-top: 155px;
+}
+
+#download-secondary {
+    margin-bottom: 25px;
+    margin-top: 25px;
+
+        .download-link {
+            padding: 6px 30px;
+        }
+}
+
+@media #{$mq-tablet} {
     .secondary-content {
-        padding-bottom: 100px;
-        text-align: center;
+        text-align: left;
+        width: 410px;
     }
 
     .secondary-title {
-        @include at2x('/media/img/logos/firefox/logo-quantum.png', 90px, 90px);
-        @include font-size-level3;
-        @include open-sans;
-        background-position: top center;
-        background-repeat: no-repeat;
-        padding-top: 130px;
+        @include font-size(36px);
+        background-position: left 43px;
+        margin-bottom: 10px;
     }
 
-    .fx-privacy-link {
-
-        a:link,
-        a:visited {
-            color: inherit;
-        }
+    #download-secondary {
+        margin-top: 15px;
     }
 
-    @media #{$mq-tablet} {
-        .content {
-            @include clearfix;
-            padding-bottom: 0;
-        }
+    .download-firefox-secondary-cta {
+        min-height: 460px;
 
-        .secondary-content {
-            float: left;
-            text-align: left;
-            width: 50%;
-        }
+        &:before {
+            background: url('/media/img/home/2018/browser.png') top left / contain no-repeat;
+            content: '';
+            display: block;
+            height: 596px;
+            width: 970px;
+            position: absolute;
+            top: 55px;
+            left: 495px;
 
-        .secondary-title {
-            background-position: top left;
-        }
-
-        .secondary-image {
-            float: right;
-            height: 477px;
-            width: 48%;
-
-            .image-wrapper {
-                @include at2x('/media/img/home/2018/browser.png', 1378px, 848px);
-                height: 848px;
-                width: 1378px;
+            @media #{$mq-high-res} {
+                background-image: url('/media/img/home/2018/browser-high-res.png');
             }
         }
     }
+}
 
-    @media #{$mq-desktop} {
-
-        .secondary-content {
-            width: 40%;
-        }
-
-        .secondary-image {
-            width: 58%;
+@media #{$mq-desktop-wide} {
+    .download-firefox-secondary-cta {
+        &:before {
+            left: calc(50% - 208px);
         }
     }
 }
+
 
 /* -------------------------------------------------------------------------- */
 // Custom modal styles.
@@ -322,5 +420,3 @@ main {
         }
     }
 }
-
-
