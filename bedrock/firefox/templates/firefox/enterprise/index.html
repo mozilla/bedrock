@@ -66,11 +66,11 @@
         <tbody>
           <tr>
             <th>{{ _('Firefox Rapid Release') }}</th>
-            <td><a class="qa-download-release" href="{{ url('firefox.new') }}">{{ _('Download Firefox') }}</a></td>
+            <td><a class="qa-download-release" href="{{ firefox_url('desktop', 'all') }}">{{ _('Download Firefox') }}</a></td>
           </tr>
           <tr>
             <th>{{ _('Firefox Extended Support Release (ESR)') }}</th>
-            <td><a class="qa-download-esr" href="{{ url('firefox.organizations.organizations') }}">{{ _('Download ESR') }}</a></td>
+            <td><a class="qa-download-esr" href="{{ firefox_url('desktop', 'all', 'esr') }}">{{ _('Download ESR') }}</a></td>
           </tr>
         </tbody>
       </table>
