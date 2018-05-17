@@ -108,9 +108,9 @@
     }
 
     // handle dismiss
-    function dismissStickyCTA(wayPoint) {
+    function dismissStickyCTA(stickyWayPoint) {
         // destroy waypoint
-        wayPoint.destroy();
+        stickyWayPoint.destroy();
         // remove element
         $stickyCTA.remove();
         // set cookie, if cookies are supported
@@ -130,8 +130,7 @@
             $stickyCTA.remove();
         }
     } else {
-        // they can still dismiss it and get ARIA with cookies disabled
-        initStickyCTA();
+        $stickyCTA.remove();
     }
 
 })(window.Waypoint);
