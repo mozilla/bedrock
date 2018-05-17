@@ -1179,7 +1179,6 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/base/mozilla-lazy-load.js',
             'js/base/mozilla-modal.js',
-            'js/base/mozilla-modal.js',
             'js/libs/jquery.waypoints.min.js',
             'js/mozorg/home/home.js',
         ),

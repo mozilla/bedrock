@@ -76,60 +76,62 @@
      */
 
 
-    var stickyCTA = document.getElementById('download-firefox-sticky-cta');
-    $(stickyCTA).attr('aria-hidden', 'true');
-
-    // add and remove aria-hidden
-    var primaryTop = new Waypoint({
-        element: document.getElementById('download-firefox-primary-cta'),
-        handler: function(direction) {
-            if(direction === 'down') {
-                // becomes percivable as the user scrolls down
-                $(stickyCTA).removeAttr('aria-hidden');
-            } else {
-                // hidden again as they scroll up
-                $(stickyCTA).attr('aria-hidden', 'true');
-            }
-        }
-    });
+    var $stickyCTA = $(document.getElementById('download-firefox-sticky-cta'));
+    var hasCookies = typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled();
+    $stickyCTA.attr('aria-hidden', 'true');
 
     // init dismiss button
-    function initDismissStickyCTA() {
+    function initStickyCTA() {
+        // add and remove aria-hidden
+        var primaryTop = new Waypoint({
+            element: document.getElementById('download-firefox-primary-cta'),
+            handler: function(direction) {
+                if(direction === 'down') {
+                    // becomes percivable as the user scrolls down
+                    $stickyCTA.removeAttr('aria-hidden');
+                } else {
+                    // hidden again as they scroll up
+                    $stickyCTA.attr('aria-hidden', 'true');
+                }
+            }
+        });
+
         // add button
         var $dismissButton = $('<button>').addClass('sticky-dismiss').text('Dismiss download prompt.');
-        var $stickyWrapper = $(stickyCTA).find('.primary-wrapper');
+        var $stickyWrapper = $stickyCTA.find('.primary-wrapper');
         $dismissButton.appendTo($stickyWrapper);
         // listen for click
-        $dismissButton.on('click', function(){
+        $dismissButton.one('click', function(){
             // dismiss
-            dismissStickyCTA();
+            dismissStickyCTA(primaryTop);
         });
     }
 
     // handle dismiss
-    function dismissStickyCTA() {
+    function dismissStickyCTA(wayPoint) {
         // destroy waypoint
-        primaryTop.destroy();
+        wayPoint.destroy();
         // remove element
-        $(stickyCTA).remove();
+        $stickyCTA.remove();
         // set cookie, if cookies are supported
-        if (typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled()) {
+        if (hasCookies) {
             var d = new Date();
             d.setTime(d.getTime() + (30 * 24 * 60 * 60 * 1000)); // 30 days
             Mozilla.Cookies.setItem('sticky-home-cta-dismissed', 'true', d, '/');
         }
     }
 
-    // check if previously dismissed
-    // Check that cookies are enabled before seeing if one already exists.
-    if (typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled()) {
-        if (Mozilla.Cookies.getItem('sticky-home-cta-dismissed')) {
-            // previously dismissed
-            dismissStickyCTA();
-        } else {
+    // Check if previously dismissed
+    if (hasCookies) {
+        if (!Mozilla.Cookies.getItem('sticky-home-cta-dismissed')) {
             // init the button
-            initDismissStickyCTA();
+            initStickyCTA();
+        } else {
+            $stickyCTA.remove();
         }
+    } else {
+        // they can still dismiss it and get ARIA with cookies disabled
+        initStickyCTA();
     }
 
 })(window.Waypoint);
