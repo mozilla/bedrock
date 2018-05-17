@@ -39,38 +39,35 @@ body {
     }
 }
 
-a.button:link.button-green:hover,
-a.button:link.button-green:focus,
-a.button:visited.button-green:hover,
-a.button:visited.button-green:focus {
-        background-color: #fff;
-        border-color: darken($color-button-green, 5%);
-        color: darken($color-button-green, 5%);
-}
-
 /* -------------------------------------------------------------------------- */
 // Top hero section
 
 .intro {
-    background: #23033d url('/media/img/firefox/new/berlin/mit-herz-mobile.png') top -40px center no-repeat;
+    background: url('/media/img/firefox/new/berlin/hearts-left.png') bottom 20px left -40px no-repeat,
+                url('/media/img/firefox/new/berlin/hearts-right.png') top 20px right -30px no-repeat,
+                url('/media/img/firefox/new/berlin/hero-image-mobile.jpg') top center no-repeat
+                #23003d;
+    background-size: auto, auto, cover, auto;
+    padding: 0 0 20px;
 
     h1,
     h2 {
         @include font-size-level1;
+        color: #fff;
         font-family: 'Fira Sans Heavy', sans-serif;
         font-weight: normal;
-        color: #fff;
-        margin-bottom: 0;
+        margin: 240px 0 0;
         text-transform: uppercase;
     }
 
     .logo {
-        margin: 0 auto 20px;
+        display: block;
+        margin-bottom: 20px;
         width: 250px;
     }
 
     .secondary-content {
-        margin-top: 260px;
+        margin-top: 20px;
     }
 
     .copy {
@@ -100,26 +97,24 @@ a.button:visited.button-green:focus {
         }
     }
 
-    @media #{$mq-tablet} {
-        background-position: top -20px center;
-    }
-
     @media #{$mq-desktop} {
-        background: #23033d url('/media/img/firefox/new/berlin/mit-herz.jpg') top center no-repeat;
-        background: url('/media/img/firefox/new/berlin/purple-wave.png') bottom left no-repeat,
-                    url('/media/img/firefox/new/berlin/mit-herz.jpg') top center no-repeat,
-                    #23033d;
+        background: #23003d url('/media/img/firefox/new/berlin/hero-image.jpg') top center no-repeat;
 
         &.content-section {
             padding: 0;
         }
 
         .content {
-            min-height: 700px;
+            min-height: 600px;
+        }
+
+        h1,
+        h2 {
+            margin: 0;
         }
 
         .logo {
-            margin: 60px 0 80px;
+            margin: 40px 0;
             width: auto;
         }
 
@@ -129,8 +124,8 @@ a.button:visited.button-green:focus {
 
         .copy {
             float: left;
-            width: 50%;
             padding: 0 30px;
+            width: 50%;
         }
 
     }
@@ -141,6 +136,50 @@ a.button:visited.button-green:focus {
     height: 0;
     visibility: hidden;
     width: 0;
+}
+
+/* -------------------------------------------------------------------------- */
+// Video section
+
+.video.content-section {
+    padding-bottom: 0;
+}
+
+.video-container figcaption {
+    margin-top: 40px;
+}
+
+.video-placeholder {
+    @include aspect-ratio(16, 9);
+
+    iframe {
+        height: 100%;
+        width: 100%;
+    }
+
+    .video-play {
+        display: block;
+
+        &:after {
+            background: url('/media/img/icons/video-play.svg') top left no-repeat;
+            content: '';
+            height: 100px;
+            left: 50%;
+            margin: -50px 0 0 -50px;
+            opacity: 0.7;
+            position: absolute;
+            top: 50%;
+            transition: opacity .2s ease-in-out, transform .2s ease-in-out;
+            width: 100px;
+            z-index: 2;
+        }
+
+        &:hover:after,
+        &:focus:after {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+    }
 }
 
 /* -------------------------------------------------------------------------- */
