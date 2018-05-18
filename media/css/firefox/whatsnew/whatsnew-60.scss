@@ -223,7 +223,7 @@ html[dir="rtl"] .content-header {
 
  // common styles for both states
 .no-js,
-.show-fx-mobile {
+.show-fxa-mobile {
     .fx-mobile-container {
         display: block;
     }
@@ -250,7 +250,7 @@ html[dir="rtl"] .content-header {
 }
 
 .no-js .has-send-to-device,
-.has-send-to-device.show-fx-mobile {
+.has-send-to-device.show-fxa-mobile {
     @media #{$mq-tablet} {
         .content-container {
             width: 600px;
@@ -263,7 +263,7 @@ html[dir="rtl"] .content-header {
 }
 
 .no-js .no-send-to-device,
-.no-send-to-device.show-fx-mobile {
+.no-send-to-device.show-fxa-mobile {
     @media #{$mq-tablet} {
         .content-container {
             width: 680px;

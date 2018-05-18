@@ -413,9 +413,9 @@ showFirefoxAccounts(extraURLCampaignParams);
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Allows a web page to navigate directly to
-``about:accounts?action=signup&entrypoint=uitour``. In Firefox 47 and beyond,
+``https://accounts.firefox.com/signup?entrypoint=uitour``. In Firefox 47 and beyond,
 optionally accepts an object of ``utm_*`` key/values, which will be encoded and
-appended to the ``about:accounts`` querystring.
+appended to the ``https://accounts.firefox.com/signup`` querystring.
 
 .. Important::
 
@@ -425,11 +425,11 @@ appended to the ``about:accounts`` querystring.
 .. code-block:: javascript
 
     // no extra utm_ campaign params. will open
-    // about:accounts?action=signup&entrypoint=uitour
+    // https://accounts.firefox.com/signup?entrypoint=uitour
     Mozilla.UITour.showFirefoxAccounts();
 
     // with extra utm_ campaign params. will open
-    // about:accounts?action=signup&entrypoint=uitour&utm_foo=bar&utm_bar=baz
+    // https://accounts.firefox.com/signup?&entrypoint=uitour&utm_foo=bar&utm_bar=baz
     Mozilla.UITour.showFirefoxAccounts({
         'utm_foo': 'bar',
         'utm_bar': 'baz'

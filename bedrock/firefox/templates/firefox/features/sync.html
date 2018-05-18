@@ -7,6 +7,7 @@
 {% add_lang_files "firefox/shared" %}
 
 {% extends "firefox/features/base.html" %}
+{% from "macros.html" import fxa_create_account_button with context %}
 
 {% block page_title %}
   {{ _('Use Bookmarks, Tabs and Passwords Across Devices | Firefox') }}
@@ -26,52 +27,21 @@
 
 {% block body_class %}
   {{ super() }}
-  state-default
+  state-fxa-default
 {% endblock %}
 
 {% block features_header_content %}
   <h1>
-    <span class="show-not-fx show-fx-android show-fx-ios show-fx-31-signed-out show-fx-30-older show-default">{{ _('Browse uninterrupted with Firefox Sync') }}</span>
-    <span class="show-fx-31-signed-in">{{ _('Sync across devices') }}</span>
+    <span class="show-fxa-not-fx show-fxa-android show-fxa-ios show-fxa-supported-signed-out show-fxa-unsupported show-fxa-default">{{ _('Browse uninterrupted with Firefox Sync') }}</span>
+    <span class="show-fxa-supported-signed-in">{{ _('Sync across devices') }}</span>
   </h1>
-  <p class="tagline show-not-fx show-fx-31-signed-out show-fx-30-older show-default">{{ _('With Firefox on all your devices, you can access bookmarks, tabs and passwords with one easy sign-in.') }}</p>
-  <p class="tagline show-fx-31-signed-in">{{ _('Sign in to your Firefox Account on mobile or tablet to get your open tabs, bookmarks and passwords anywhere.') }}</p>
-  <p class="tagline show-fx-android show-fx-ios">{{ _('Sign in or create an account through your Firefox app for seamless browsing of passwords, bookmarks and open tabs.') }}</p>
+  <p class="tagline show-fxa-not-fx show-fxa-supported-signed-out show-fxa-unsupported show-fxa-default">{{ _('With Firefox on all your devices, you can access bookmarks, tabs and passwords with one easy sign-in.') }}</p>
+  <p class="tagline show-fxa-supported-signed-in">{{ _('Sign in to your Firefox Account on mobile or tablet to get your open tabs, bookmarks and passwords anywhere.') }}</p>
+  <p class="tagline show-fxa-android show-fxa-ios">{{ _('Sign in or create an account through your Firefox app for seamless browsing of passwords, bookmarks and open tabs.') }}</p>
 {% endblock %}
 
 {% block features_header_download %}
-  <div class="show-not-fx show-default">
-    {{ download_firefox(dom_id='features-header-download', download_location='primary cta') }}
-  </div>
-  <div class="show-fx-31-signed-out">
-    <button class="button button-hollow button-light" data-button-name="Create Account" data-cta-position="Primary" id="cta-sync">
-      {{ _('Create account') }}
-    </button>
-  </div>
-  <div class="show-fx-31-signed-in">
-    <p>{{ _('Get the app') }}</p>
-    <ul class="primary-buttons">
-      <li>
-        {{ google_play_button(id='cta-android', anchor_attributes={'data-download-location': 'primary cta'}) }}
-      </li>
-      <li>
-        <a href="{{ firefox_ios_url('mozorg-sync_page-appstore-button') }}" data-link-type="download" data-download-os="iOS" data-download-location="primary cta" id="cta-ios">
-          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div class="show-fx-30-older">
-    <a href="https://support.mozilla.org/kb/update-firefox-latest-version/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-sync-page" class="button button-hollow button-light" data-link-type="link" data-link-name="Update your Firefox" id="cta-update">
-      {{ _('Update your Firefox') }}
-    </a>
-  </div>
-  <div class="show-fx-android">
-    <a href="https://support.mozilla.org/kb/sync-bookmarks-tabs-history-and-passwords-android/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-sync-page" class="button button-hollow button-light" data-link-type="link" data-link-name="Learn more">{{ _('Learn more') }}</a>
-  </div>
-  <div class="show-fx-ios">
-      <a href="https://support.mozilla.org/kb/sync-firefox-bookmarks-and-browsing-history-iOS/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fx-sync-page" class="button button-hollow button-light" data-link-type="link" data-link-name="Learn more">{{ _('Learn more') }}</a>
-  </div>
+  {{ fxa_create_account_button('primary cta', 'features-header', 'mozorg-sync_page', 'features.sync') }}
 {% endblock %}
 
 {% block features_list %}

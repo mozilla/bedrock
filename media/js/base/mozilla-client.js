@@ -17,6 +17,7 @@ if (typeof Mozilla === 'undefined') {
      * @see {@link https://developer.mozilla.org/en-US/docs/Gecko_user_agent_string_reference}
      */
     var Client = {};
+    var FxALastSupported = 40; // the FxAccounts team provided this number in bug 1457004#c21 they don't want to support anything beneath it
 
     /**
      * Detect whether the user's browser is Firefox on any platform. This includes WebKit-based Firefox for iOS.
@@ -321,71 +322,114 @@ if (typeof Mozilla === 'undefined') {
     };
 
     /**
-     * Use the async mozUITour API of Firefox to retrieve the user's Sync/FxA info. This API
-     * is available on Firefox 29 and later. See
+     * Use the async mozUITour API of Firefox to retrieve the user's FxA info. See
      * http://bedrock.readthedocs.org/en/latest/uitour.html for details.
      *
-     * @param  {Function} callback - callback function to be executed with the Sync details
+     * FxA was previously branded as Sync.
+     *
+     * The various states here are... complicated
+     * This is the intention:
+     *     - firefox: true if Firefox
+     *     - legacy: true if older than FxALastSupported
+     *     - mobile: false | android | ios
+     *     - setup: true if Fx >= 29 and logged into FxA
+     *     - desktopDevices & mobileDevices
+     *          - if logged in and Fx >= 50: the number of linked devices
+     *          - if logged in and Fx < 50 && Fx > 29: 'unknown'
+     *          - if logged out or Fx < 29 or not Fx: false
+     * Notes:
+     * - Fx < 50 has FxA and UITour support but the API does not return device counts
+     * - Fx < FxALastSupported accounts.firefox.com does not work
+     *     - FxALastSupported is supplied by the FxA team
+     *     - these versions are still capable of logging in through the browser
+     *     - differentiated because we generally do not give these versions the FxA calls to action (eg. "Create an Account")
+     * - Fx < 29 the mozUITour API is not available, though the user may still be logged in
+     * - If you're curious, "sync" began with Fx 4.
+     *
+     * @param  {Function} callback - callback function to be executed with the FxA details
      * @return {None}
      */
-    Client.getSyncDetails = function (callback) {
-        // Fire the callback function immediately if cache exists
-        if (Client.SyncDetails) {
-            callback(Client.SyncDetails);
+    Client.getFxaDetails = function (callback) {
+        // Fire the callback function immediately if FxaDetails are already defined
+        if (Client.FxaDetails) {
+            callback(Client.FxaDetails);
 
             return;
         }
+        // set up the object with default values of false
+        var details = Client.FxaDetails = {
+            'firefox': false,
+            'legacy': false,
+            'mobile': false,
+            'setup': false,
+            'desktopDevices': false,
+            'mobileDevices': false
+        };
 
-        var callbackID = Math.random().toString(36).replace(/[^a-z]+/g, '');
+        // override object values as we get more information
+        if(Client.isFirefoxAndroid) {
+            details.firefox = true;
+            details.mobile = 'android';
+            returnFxaDetails();
+        } else if (Client.isFirefoxiOS) {
+            details.firefox = true;
+            details.mobile = 'ios';
+            returnFxaDetails();
+        } else if(Client.isFirefoxDesktop) {
+            details.firefox = true;
+            // firefox desktop
+            var userVer = Client._getFirefoxVersion();
+            if(parseFloat(userVer) < 29) {
+                // UITour not supported
+                details.legacy = true;
+            } else {
+                // UITour supported
+                // still note if it's older than accounts.firefox.com supports
+                if (parseFloat(userVer) < FxALastSupported) {
+                    details.legacy = true;
+                }
 
-        var listener = function (event) {
-            if (!event.detail || !event.detail.data || event.detail.callbackID !== callbackID) {
-                return;
+                // callbackID to make sure we're responding to our request
+                var callbackID = Math.random().toString(36).replace(/[^a-z]+/g, '');
+
+                // UITour API response event handler, checks for callbackID
+                var listener = function (event) {
+                    if (!event.detail || !event.detail.data || event.detail.callbackID !== callbackID) {
+                        return;
+                    }
+                    window.clearTimeout(timer);
+                    document.removeEventListener('mozUITourResponse', listener, false);
+
+                    // device counts
+                    // device counts are only available in Fx50+, fallback 'unknown' if not detectable
+                    details.setup = event.detail.data.hasOwnProperty('setup') ? event.detail.data.setup : 'unknown';
+                    details.desktopDevices =  event.detail.data.hasOwnProperty('desktopDevices') ? event.detail.data.desktopDevices : 'unknown';
+                    details.mobileDevices =  event.detail.data.hasOwnProperty('mobileDevices') ? event.detail.data.mobileDevices : 'unknown';
+
+                    returnFxaDetails();
+                };
+
+                // Trigger the UITour API and start listening for the reponse
+                document.addEventListener('mozUITourResponse', listener, false);
+                document.dispatchEvent(new CustomEvent('mozUITour', {
+                    'bubbles': true,
+                    'detail': {
+                        'action': 'getConfiguration',
+                        'data': { 'configuration': 'sync', 'callbackID': callbackID }
+                    }
+                }));
             }
+        }
 
+        function returnFxaDetails() {
             window.clearTimeout(timer);
-
-            // device counts are only available in Fx50+, so provide fallback values in case
-            onRetrieved(event.detail.data.setup, event.detail.data.desktopDevices || 0, event.detail.data.mobileDevices || 0, event.detail.data.totalDevices || 0);
-        };
-
-        var onRetrieved = function (setup, desktopDevices, mobileDevices, totalDevices) {
-            document.removeEventListener('mozUITourResponse', listener, false);
-
-            var details = Client.SyncDetails = {
-                'setup': setup,
-                'desktopDevices': desktopDevices,
-                'mobileDevices': mobileDevices,
-                'totalDevices': totalDevices
-            };
-
             callback(details);
-        };
-
-        // Prepare fallback function in case the API doesn't work
-        var fallback = function () { onRetrieved(false, 0, 0, 0); };
-
-        // If Firefox is old or for Android, call the fallback function immediately because the API is not implemented
-        var userVer = Client._getFirefoxVersion();
-        if (parseFloat(userVer) < 29 || Client._isFirefoxAndroid()) {
-            fallback();
-
-            return;
         }
 
         // Fire the fallback function in .4 seconds
-        var timer = window.setTimeout(fallback, 400);
-
-        // Trigger the API
-        document.addEventListener('mozUITourResponse', listener, false);
-        document.dispatchEvent(new CustomEvent('mozUITour', {
-            'bubbles': true,
-            'detail': {
-                'action': 'getConfiguration',
-                'data': { 'configuration': 'sync', 'callbackID': callbackID }
-            }
-        }));
+        var timer = window.setTimeout(returnFxaDetails, 400);
     };
+
 
     // Append static properties for faster access
     Client.isFirefox = Client._isFirefox();

@@ -3,6 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "firefox/base-pebbles.html" %}
+{% from "macros.html" import fxa_create_account_button with context %}
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{_('Get a Firefox Account - Sync passwords, bookmarks and tabs everywhere')}}{% endblock %}
@@ -12,7 +13,7 @@
   {{ css_bundle('firefox_accounts_features') }}
 {% endblock %}
 
-{% block body_class %}firefox-accounts-features{% endblock %}
+{% block body_class %}firefox-accounts-features state-fxa-default{% endblock %}
 
 {% block experiments %}
   {% if switch('accounts-features-copy-experiment', ['en-US']) %}
@@ -24,10 +25,12 @@
   {% set bookmarks_title = "Bookmark a recipe at home, shop for ingredients from your phone." %}
   {% set passwords_title = "Binge watching waits for no one. Save passwords to log in faster." %}
   {% set send_title = "Save commute time by sending links instantly between your devices." %}
+  {% set utm_content = '/firefox/accounts/features/v-a' %}
 {% else %}
   {% set bookmarks_title = "Automatically update bookmarks with a click" %}
   {% set passwords_title = "Save passwords safely" %}
   {% set send_title = "Send links instantly between devices" %}
+  {% set utm_content = '/firefox/accounts/features/v-b' %}
 {% endif %}
 
 {% set cta_url = 'https://accounts.firefox.com/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org:fxa.features&utm_campaign=may2018&utm_content=/firefox/accounts/features/' %}
@@ -38,7 +41,9 @@
       <div class="content">
         <h1 class="fab-head-title">{{_('Firefox Account')}}</h1>
         <p class="fab-head-subtitle">{{_('One easy login.<br> Epic perks.')}}</p>
-        <p class="fab-head-cta"><a class="button button-hollow button-light" href="{{ cta_url }}">{{_('Create an account')}}</a></p>
+        <p class="fab-head-cta">
+          {{ fxa_create_account_button('primary cta', 'features-header', 'may2018', 'fxa.features', utm_content, 'account-features') }}
+        </p>
       </div>
     </header>
 
@@ -83,11 +88,14 @@
     <footer class="fab-foot">
       <div class="content">
         <h2 class="fab-foot-title">{{_('Make switching devices drama-free with a Firefox Account.')}}</h2>
-        <p class="fab-foot-cta"><a class="button button-hollow button-light" href="{{ cta_url }}">{{_('Create an account')}}</a></p>
+        <div class="fab-foot-cta">
+          {{ fxa_create_account_button('secondary cta', 'features-footer', 'may2018', 'fxa.features', utm_content, 'account-features') }}
+        </div>
       </div>
     </footer>
 </main>
 {% endblock %}
 
 {% block js %}
+  {{ js_bundle('firefox_accounts_features') }}
 {% endblock %}

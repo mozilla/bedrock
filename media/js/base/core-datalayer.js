@@ -47,44 +47,91 @@ if (typeof Mozilla.Analytics == 'undefined') {
         return $('html').data('latest-firefox');
     };
 
-    /** Returns an object containing GA-formatted Sync details
-    * https://bugzilla.mozilla.org/show_bug.cgi?id=1457024#c33
-    * @param {Object} syncDetails - object of Sync details returned by UITour
-    * @return {Object} Sync details formatted for GA
+    /** Returns an object containing GA-formatted FxA details
+    * The specs for this are a combination of:
+    * - https://bugzilla.mozilla.org/show_bug.cgi?id=1457024#c33
+    * - https://bugzilla.mozilla.org/show_bug.cgi?id=1457004#c22
+    * Our implmentation it might deviate from the spec where there was conflicting info in the spec.
+    *
+    * Data arrives from Client.getFxaDetails as an object, see getFxaDetails for details.
+    *
+    * @param {Object} FxaDetails - object of FxA details returned by getFxaDetails
+    * @return {Object} FxA details formatted for GA
     */
-    analytics.formatSyncDetails = function(syncDetails) {
-        // set up defaults
-        var formatted = {
-            FxASegment: 'Not logged in',
-            FxAMultiDesktopSync: false,
-            FxALogin: false,
-            FxAMobileSync: false
-        };
+    analytics.formatFxaDetails = function(FxaDetails) {
+        // start with empty object
+        var formatted = {};
 
-        if (syncDetails.setup) {
-            formatted.FxALogin = true;
-
-            // user has at least one mobile device sync'd
-            if (syncDetails.mobileDevices >= 1) {
-                formatted.FxAMobileSync = true;
-            }
-
-            // user has more than one desktop devices sync'd
-            if (syncDetails.desktopDevices > 1) {
-                formatted.FxAMultiDesktopSync = true;
-            }
-
-            if (syncDetails.desktopDevices > 1 && syncDetails.mobileDevices > 0) {
-                formatted.FxASegment = 'Multi-Desktop and Mobile Sync';
-            } else if (syncDetails.desktopDevices === 1 && syncDetails.mobileDevices > 0) {
-                formatted.FxASegment = 'Desktop and Mobile Sync';
-            } else if (syncDetails.desktopDevices > 1) {
-                formatted.FxASegment = 'Multi-Desktop Sync';
+        if (FxaDetails.firefox === true) {
+            // only add FxA account details if this is Fx, otherwise their segment is just 'Not Firefox'
+            if(FxaDetails.mobile) {
+                // Firefox Mobile
+                formatted.FxASegment = 'Firefox Mobile';
             } else {
-                formatted.FxASegment = 'Logged in';
-            }
-        }
+                // Firefox Desktop
+                if (FxaDetails.setup) {
+                    // set FxALogin
+                    formatted.FxALogin = true;
+                    // set FxASegment with default value, to be refined
+                    formatted.FxASegment = 'Logged in';
+                    // Change FxASegment to Legacy if this is an old browser
+                    if(FxaDetails.legacy === true) {
+                        formatted.FxASegment = 'Legacy Firefox';
+                    }
 
+                    // variables to compare to determine the segments
+                    var mobileSync = false;
+                    var desktopSync = false;
+                    var desktopMultiSync = false;
+
+                    // set FxAMobileSync
+                    if (FxaDetails.mobileDevices > 0) {
+                        formatted.FxAMobileSync = true;
+                        mobileSync = true;
+                    } else if (FxaDetails.mobileDevices === 0) {
+                        formatted.FxAMobileSync = false;
+                    } else {
+                        formatted.FxAMobileSync = 'unknown';
+                    }
+
+                    // set FxAMultiDesktopSync
+                    if (FxaDetails.desktopDevices > 1) {
+                        formatted.FxAMultiDesktopSync = true;
+                        desktopMultiSync = true;
+                    } else if (FxaDetails.desktopDevices === 1) {
+                        formatted.FxAMultiDesktopSync = false;
+                        desktopSync = true;
+                    } else if (FxaDetails.desktopDevices === 0){
+                        formatted.FxAMultiDesktopSync = false;
+                    } else {
+                        formatted.FxAMultiDesktopSync = 'unknown';
+                    }
+
+                    // refine FxASegment based on device syncing
+                    if (desktopMultiSync && mobileSync) {
+                        formatted.FxASegment = 'Multi-Desktop and Mobile Sync';
+                    } else if (desktopSync && mobileSync) {
+                        formatted.FxASegment = 'Desktop and Mobile Sync';
+                    } else if (desktopMultiSync) {
+                        formatted.FxASegment = 'Multi-Desktop Sync';
+                    }
+
+                } else {
+                    // Not logged into FxA
+                    if(FxaDetails.legacy === true) {
+                        // too old to support UITour or FxA, or pre FxASegment and logged out
+                        formatted.FxASegment = 'Legacy Firefox';
+                        formatted.FxALogin = 'unknown';
+                    } else {
+                        // not too old, just logged out
+                        formatted.FxASegment = 'Not logged in';
+                        formatted.FxALogin = false;
+                    }
+                }
+            }
+        } else {
+            formatted.FxASegment = 'Not Firefox';
+        }
         return formatted;
     };
 
