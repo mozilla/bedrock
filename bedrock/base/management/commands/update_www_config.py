@@ -49,7 +49,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.quiet = options['quiet']
         repo = GitRepo(settings.WWW_CONFIG_PATH, settings.WWW_CONFIG_REPO,
-                       branch_name=settings.WWW_CONFIG_BRANCH)
+                       branch_name=settings.WWW_CONFIG_BRANCH, name='WWW Config')
         self.output('Updating git repo')
         repo.update()
         if not (options['force'] or repo.has_changes()):

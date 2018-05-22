@@ -4,9 +4,10 @@
 from __future__ import print_function, unicode_literals
 
 import os
+from datetime import datetime
 from hashlib import sha256
 from shutil import rmtree
-from subprocess import check_output, STDOUT
+from subprocess import check_output, CalledProcessError, STDOUT
 try:
     from cStringIO import StringIO
 except ImportError:
@@ -14,6 +15,7 @@ except ImportError:
 
 from django.conf import settings
 
+import timeago
 from pathlib2 import Path
 
 from bedrock.utils.models import GitRepoState
@@ -23,7 +25,7 @@ GIT = getattr(settings, 'GIT_BIN', 'git')
 
 
 class GitRepo(object):
-    def __init__(self, path, remote_url=None, branch_name='master'):
+    def __init__(self, path, remote_url=None, branch_name='master', name=None):
         self.path = Path(path)
         self.path_str = str(self.path)
         self.remote_url = remote_url
@@ -31,6 +33,7 @@ class GitRepo(object):
         db_latest_key = '%s:%s:%s' % (self.path_str, remote_url or '',
                                          branch_name)
         self.db_latest_key = sha256(db_latest_key).hexdigest()
+        self.repo_name = name or self.path.name
 
     def git(self, *args):
         """Run a git command against the current repo"""
@@ -48,8 +51,24 @@ class GitRepo(object):
         """The git revision ID (hash) of the current HEAD or None if no repo"""
         try:
             return self.git('rev-parse', 'HEAD')
-        except OSError:
+        except (OSError, CalledProcessError):
             return None
+
+    @property
+    def current_commit_timestamp(self):
+        """The UNIX timestamp of the latest commit"""
+        try:
+            return int(self.git('show', '-s', '--format=%ct', 'HEAD'))
+        except (OSError, CalledProcessError, ValueError):
+            return 0
+
+    @property
+    def last_updated(self):
+        if self.current_commit_timestamp:
+            latest_datetime = datetime.fromtimestamp(self.current_commit_timestamp)
+            return timeago.format(latest_datetime)
+
+        return 'unknown'
 
     def diff(self, start_hash, end_hash):
         """Return a 2 tuple: (modified files, deleted files)"""
@@ -119,10 +138,30 @@ class GitRepo(object):
     def has_changes(self):
         return self.current_hash != self.get_db_latest()
 
+    @property
+    def clean_remote_url(self):
+        repo_base = self.remote_url
+        if repo_base.endswith('.git'):
+            repo_base = repo_base[:-4]
+        elif repo_base.endswith('/'):
+            repo_base = repo_base[:-1]
+
+        return repo_base
+
     def set_db_latest(self, latest_ref=None):
         latest_ref = latest_ref or self.current_hash
-        rs, created = GitRepoState.objects.get_or_create(repo_id=self.db_latest_key,
-                                                         defaults={'latest_ref': latest_ref})
+        rs, created = GitRepoState.objects.get_or_create(
+            repo_id=self.db_latest_key,
+            defaults={
+                'latest_ref': latest_ref,
+                'repo_name': self.repo_name,
+                'repo_url': self.clean_remote_url,
+                'latest_ref_timestamp': self.current_commit_timestamp,
+            },
+        )
         if not created:
             rs.latest_ref = latest_ref
+            rs.repo_name = self.repo_name
+            rs.repo_url = self.clean_remote_url
+            rs.latest_ref_timestamp = self.current_commit_timestamp
             rs.save()

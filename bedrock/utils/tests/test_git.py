@@ -41,6 +41,27 @@ def test_git_db_latest():
     assert g.get_db_latest() == 'deadbeef1234'
 
 
+@pytest.mark.django_db
+def test_git_db_latest_methods():
+    g = git.GitRepo('.', 'https://example.com/repo.git', 'master', 'dude')
+    g.set_db_latest('deadbeef')
+    assert g.get_db_latest() == 'deadbeef'
+    gobj = git.GitRepoState.objects.get(repo_id=g.db_latest_key)
+    assert gobj.repo_name == 'dude'
+    assert gobj.commit_url == 'https://example.com/repo/commit/deadbeef'
+
+
+@pytest.mark.django_db
+def test_git_db_latest_auto_name():
+    # name should be the last bit of the path, and the repo URL can deal with a trailing slash
+    g = git.GitRepo('hollywood-star-lanes/the-dude', 'https://example.com/repo/', 'master')
+    g.set_db_latest('deadbeef')
+    assert g.get_db_latest() == 'deadbeef'
+    gobj = git.GitRepoState.objects.get(repo_id=g.db_latest_key)
+    assert gobj.repo_name == 'the-dude'
+    assert gobj.commit_url == 'https://example.com/repo/commit/deadbeef'
+
+
 @override_settings(DEV=True)
 def test_git_clone():
     g = git.GitRepo('.')
