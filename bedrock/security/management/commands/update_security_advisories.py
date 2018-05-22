@@ -258,7 +258,8 @@ class Command(NoArgsCommand):
         no_git = options['no_git']
         clear_db = options['clear_db']
         force = no_git or clear_db
-        repo = GitRepo(ADVISORIES_PATH, ADVISORIES_REPO, branch_name=ADVISORIES_BRANCH)
+        repo = GitRepo(ADVISORIES_PATH, ADVISORIES_REPO, branch_name=ADVISORIES_BRANCH,
+                       name='Security Advisories')
 
         def printout(msg, ending=None):
             if not quiet:

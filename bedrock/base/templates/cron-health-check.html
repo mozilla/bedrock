@@ -17,8 +17,9 @@
     tr:nth-child(even) > td, th {
       background-color: #eee;
     }
-    #other-data tr > td:first-child {
+    .data-table tr > td:first-child {
       font-weight: bold;
+      padding-right: 10px;
     }
     .error > td {
       color: #c00;
@@ -56,8 +57,8 @@
     </tbody>
   </table>
 
-  <h1>Other Site Data</h1>
-  <table id="other-data">
+  <h1 id="other-data">Other Site Data</h1>
+  <table class="data-table">
     <tbody>
       <tr>
         <td>Hostname</td>
@@ -84,7 +85,7 @@
       {% if server_info.db_last_update %}
       <tr>
         <td>DB Last Updated</td>
-        <td>{{ server_info.db_last_update }} min ago</td>
+        <td>{{ server_info.db_last_update }}</td>
       </tr>
       {% endif %}
       {% if server_info.db_file_name %}
@@ -93,6 +94,31 @@
         <td><a href="{{ server_info.db_file_url }}">{{ server_info.db_file_name }}</a></td>
       </tr>
       {% endif %}
+    </tbody>
+  </table>
+
+  <h1 id="git-repos">External Git Repos</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Repo Name</th>
+        <th>Latest Commit</th>
+        <th>Last Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="{{ l10n_repo.repo_url }}">L10n Files</a></td>
+        <td><a href="{{ l10n_repo.repo_url }}/commit/{{ l10n_repo.latest_ref }}">{{ l10n_repo.latest_ref[:10] }}</a></td>
+        <td>{{ l10n_repo.last_updated }}</td>
+      </tr>
+      {% for repo in git_repos %}
+      <tr>
+        <td><a href="{{ repo.repo_url }}">{{ repo.repo_name }}</a></td>
+        <td><a href="{{ repo.commit_url }}">{{ repo.latest_ref[:10] }}</a></td>
+        <td>{{ repo.last_updated }}</td>
+      </tr>
+      {% endfor %}
     </tbody>
   </table>
 </body>

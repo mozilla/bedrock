@@ -21,7 +21,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.quiet = options['quiet']
         repo = GitRepo(settings.EXTERNAL_FILES_PATH, settings.EXTERNAL_FILES_REPO,
-                       branch_name=settings.EXTERNAL_FILES_BRANCH)
+                       branch_name=settings.EXTERNAL_FILES_BRANCH,
+                       name='Community Data')
         self.output('Updating git repo')
         repo.update()
         if not (options['force'] or repo.has_changes()):

@@ -21,7 +21,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.quiet = options['quiet']
         repo = GitRepo(settings.RELEASE_NOTES_PATH, settings.RELEASE_NOTES_REPO,
-                       branch_name=settings.RELEASE_NOTES_BRANCH)
+                       branch_name=settings.RELEASE_NOTES_BRANCH, name='Release Notes')
         self.output('Updating git repo')
         repo.update()
         if not (options['force'] or repo.has_changes()):
