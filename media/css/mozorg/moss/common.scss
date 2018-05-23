@@ -364,6 +364,7 @@ main {
 // index page
 #moss-home #header-image {
     background: #d1d2d3;
+    display: none;
 
     @media #{$mq-desktop} {
         height: 310px;
