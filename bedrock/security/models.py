@@ -149,6 +149,9 @@ class MitreCVE(models.Model):
     class Meta:
         ordering = ('-year', '-order')
 
+    def __unicode__(self):
+        return self.id
+
     def product_versions(self):
         """Return a list of version numbers per product"""
         prod_vers = {}
@@ -161,11 +164,31 @@ class MitreCVE(models.Model):
 
         return prod_vers
 
-    def feed_entry(self):
-        """Return a MITRE format data structure for the CVE
+    def get_description(self):
+        versions = []
+        for prod_name, prod_versions in self.product_versions().iteritems():
+            versions.extend('%s < %s' % (prod_name, v) for v in prod_versions)
 
-        See https://github.com/CVEProject/automation-working-group/blob/master/cve_json_schema/DRAFT-JSON-file-format-v4.md
-        """
+        description = self.description.strip()
+        if versions:
+            if len(versions) == 1:
+                vers_str = versions[0]
+            elif len(versions) == 2:
+                vers_str = ' and '.join(versions)
+            else:
+                vers_str = ', '.join(versions[:-1]) + ', and ' + versions[-1]
+
+            if description:
+                if description.endswith('.'):
+                    description += ' '
+                else:
+                    description += '. '
+
+            description += 'This vulnerability affects %s.' % vers_str
+
+        return description
+
+    def get_product_data(self):
         product_data = []
         for prod_name, versions in self.product_versions().iteritems():
             product_data.append({
@@ -178,12 +201,21 @@ class MitreCVE(models.Model):
                 }
             })
 
+        return product_data
+
+    def get_reference_data(self):
         reference_data = [
             {'url': 'https://www.mozilla.org/security/advisories/mfsa{}/'.format(mfsa_id)}
-            for mfsa_id in self.mfsa_ids
+            for mfsa_id in set(self.mfsa_ids)
         ]
         reference_data.extend([{'url': bug['url']} for bug in self.bugs])
+        return reference_data
 
+    def feed_entry(self):
+        """Return a MITRE format data structure for the CVE
+
+        See https://github.com/CVEProject/automation-working-group/blob/master/cve_json_schema/DRAFT-JSON-file-format-v4.md
+        """
         return {
             'data_type': 'CVE',
             'data_format': 'MITRE',
@@ -198,7 +230,7 @@ class MitreCVE(models.Model):
                         {
                             'vendor_name': 'Mozilla',
                             'product': {
-                                'product_data': product_data,
+                                'product_data': self.get_product_data(),
                             }
                         }
                     ]
@@ -217,13 +249,13 @@ class MitreCVE(models.Model):
                 ]
             },
             'references': {
-                'reference_data': reference_data,
+                'reference_data': self.get_reference_data(),
             },
             'description': {
                 'description_data': [
                     {
                         'lang': 'eng',
-                        'value': self.description,
+                        'value': self.get_description(),
                     }
                 ]
             }
