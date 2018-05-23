@@ -672,13 +672,13 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?xv=herz')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene1.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene1-herz.html', ANY)
 
     def test_herz_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=herz')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2-herz.html')
 
     def test_herz_nonde_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=herz')
