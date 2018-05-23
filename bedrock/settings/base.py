@@ -330,7 +330,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
 )
 STATICFILES_DIRS = (
-    path('static_build'),
+    path('static_final'),
 )
 
 

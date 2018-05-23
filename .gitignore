@@ -54,3 +54,4 @@ node_modules
 package-lock.json
 .vscode/
 static_build
+static_final

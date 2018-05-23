@@ -118,7 +118,7 @@ RUN gulp build --production
 #
 FROM app-base AS release
 
-COPY --from=assets-release /app/static_build /app/static_build
+COPY --from=assets-release /app/static_final /app/static_final
 RUN honcho run --env docker/envfiles/prod.env docker/bin/build_staticfiles.sh
 
 # build args
