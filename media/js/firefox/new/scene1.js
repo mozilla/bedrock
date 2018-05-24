@@ -125,12 +125,10 @@
      * the App Store.
      * https://github.com/mozilla/bedrock/issues/5629
      */
-    // TODO: is this a solid enough check?
     if (window.site.platform === 'ios' && /open\-app\-store=true/.test(window.location.search)) {
-        var appStoreURL = $('.os_ios a').attr('href');
+        var appStoreURL = $('.download-button .os_ios > a.download-link').attr('href');
 
         if (appStoreURL) {
-            // TODO: do we need a dataLayer call here?
             window.location.href = appStoreURL;
         }
     }
