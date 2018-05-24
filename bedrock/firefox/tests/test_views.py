@@ -692,6 +692,32 @@ class TestFirefoxNew(TestCase):
         views.download_thanks(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
 
+    # berlin video test issue 5637
+
+    def test_berlin_video_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=berlin&v=b')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene1-b.html', ANY)
+
+    def test_berlin_video_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=berlin&v=b')
+        req.locale = 'de'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2-b.html')
+
+    def test_berlin_video_control_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=berlin&v=a')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene1.html', ANY)
+
+    def test_berlin_video_control_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=berlin&v=a')
+        req.locale = 'de'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2.html')
+
 
 class TestFirefoxNewNoIndex(TestCase):
     def test_scene_1_noindex(self):

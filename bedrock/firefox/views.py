@@ -516,6 +516,11 @@ class TrackingProtectionTourView(l10n_utils.LangFilesMixin, TemplateView):
 def download_thanks(request):
     experience = request.GET.get('xv', None)
     locale = l10n_utils.get_locale(request)
+    variant = request.GET.get('v', None)
+
+    # ensure variant matches pre-defined value
+    if variant not in ['a', 'b']:  # place expected ?v= values in this list
+        variant = None
 
     # `wait-face`, `reggiewatts` variations are currently localized for both en-US and de locales.
     if lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':
@@ -523,7 +528,10 @@ def download_thanks(request):
     elif lang_file_is_active('firefox/new/reggiewatts', locale) and experience == 'reggiewatts':
         template = 'firefox/new/reggie-watts/scene2.html'
     elif locale == 'de' and experience == 'berlin':
-        template = 'firefox/new/berlin/scene2.html'
+        if variant == 'b':
+            template = 'firefox/new/berlin/scene2-b.html'
+        else:
+            template = 'firefox/new/berlin/scene2.html'
     elif locale == 'de' and experience == 'herz':
         template = 'firefox/new/berlin/scene2-herz.html'
     elif locale == 'en-US':
@@ -552,7 +560,7 @@ def new(request):
     locale = l10n_utils.get_locale(request)
 
     # ensure variant matches pre-defined value
-    if variant not in []:  # place expected ?v= values in this list
+    if variant not in ['a', 'b']:  # place expected ?v= values in this list
         variant = None
 
     if scene == '2':
@@ -569,7 +577,10 @@ def new(request):
         elif lang_file_is_active('firefox/new/reggiewatts', locale) and experience == 'reggiewatts':
             template = 'firefox/new/reggie-watts/scene1.html'
         elif locale == 'de' and experience == 'berlin':
-            template = 'firefox/new/berlin/scene1.html'
+            if variant == 'b':
+                template = 'firefox/new/berlin/scene1-b.html'
+            else:
+                template = 'firefox/new/berlin/scene1.html'
         elif locale == 'de' and experience == 'herz':
             template = 'firefox/new/berlin/scene1-herz.html'
         elif locale == 'en-US':

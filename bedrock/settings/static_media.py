@@ -427,6 +427,13 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox_new_berlin-bundle.css',
     },
+    'firefox_new_berlin_b': {
+        'source_filenames': (
+            'css/firefox/new/berlin.scss',
+            'css/firefox/new/berlin-b.scss',
+        ),
+        'output_filename': 'css/firefox_new_berlin_b-bundle.css',
+    },
     'firefox_new_berlin_herz': {
         'source_filenames': (
             'css/firefox/new/berlin-herz.scss',
@@ -1100,6 +1107,13 @@ PIPELINE_JS = {
             'js/firefox/new/berlin-scene1.js',
         ),
         'output_filename': 'js/firefox_new_scene1_berlin-bundle.js',
+    },
+    'firefox_new_berlin_experiment': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/firefox/new/berlin-experiment.js',
+        ),
+        'output_filename': 'js/firefox_new_berlin_experiment-bundle.js',
     },
     'firefox_new_scene1_berlin_herz': {
         'source_filenames': (
