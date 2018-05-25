@@ -1002,8 +1002,6 @@ URLS = flatten((
     url_test('/docs/how-to-document.html', '/contribute/writing/how-to'),
     url_test('/docs/hybrid-cd.html', 'http://developer.mozilla.org/en/Creating_a_hybrid_CD'),
     url_test('/docs/jargon.html', 'http://developer.mozilla.org/en/Glossary'),
-    url_test('/docs/lxr-comments.html',
-             '/contribute/writing/lxr-comments'),
     url_test('/docs/mdp/', '/contribute/writing/'),
     url_test('/docs/modunote.htm', 'http://developer.mozilla.org/en/Modularization_Techniques'),
     url_test('/docs/mozilla-faq.html', 'http://developer.mozilla.org/en/Mozilla_Release_FAQ'),
