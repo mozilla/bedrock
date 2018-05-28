@@ -22,9 +22,7 @@
       <div class="step-content">
         <div class="download-button-wrapper firefox-mobile">
           {{ high_res_img('contribute/signup/firefox-mobile.png', {'width': '443', 'alt': '', 'class': 'feature-img'}) }}
-          {{ google_play_button(anchor_attributes={
-            'target': '_blank'
-          }, class_name='download-link', extra_img_attributes={
+          {{ google_play_button(class_name='download-link', target='_blank', extra_img_attributes={
             'data-action': 'install', 'data-task': 'firefox-mobile', 'data-step': 'one', 'data-complete': 'true', 'data-mobileversion': 'Android'
           }) }}
           <a class="download-link" href="{{ firefox_ios_url('mozorg-contribute_page-appstore-button') }}" target="_blank" rel="external noopener noreferrer" data-link-type="download" data-download-os="iOS">

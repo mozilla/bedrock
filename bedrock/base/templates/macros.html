@@ -130,10 +130,10 @@
 </aside>
 {%- endmacro %}
 
-{% macro google_play_button(alt_href='', anchor_attributes={}, class_name='', extra_img_attributes={}, id='') -%}
+{% macro google_play_button(class_name='', extra_data_attributes={}, extra_img_attributes={}, href=settings.GOOGLE_PLAY_FIREFOX_LINK, id='', product='Firefox', target='') -%}
 {% set optional_img_attributes = {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True} %}
 {% do optional_img_attributes.update(extra_img_attributes) %}
-<a{% if class_name %} class="{{ class_name }}"{% endif %}{% if id %} id="{{ id }}"{% endif %} rel="external noopener noreferrer" href="{{ alt_href|default(settings.GOOGLE_PLAY_FIREFOX_LINK, True) }}"{% if not alt_href %} data-link-type="download" data-download-os="Android" data-mozillaonline-link="{{ settings.GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE }}"{% endif %}{% for attr, val in anchor_attributes.items() %} {{ attr }}="{{ val }}"{% endfor %}>
+<a{% if class_name %} class="{{ class_name }}"{% endif %}{% if id %} id="{{ id }}"{% endif %}{% if target %} target="{{ target }}" rel="external noopener noreferrer"{% else %} rel="external"{% endif %} href="{{ href }}"{% if product in ['Firefox', 'Focus'] %} data-link-type="download" data-download-os="Android"{% endif %}{% if product == 'Firefox' %} data-mozillaonline-link="{{ settings.GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE }}"{% endif %}{% for attr, val in extra_data_attributes.items() %} data-{{ attr }}="{{ val }}"{% endfor %}>
   {{ high_res_img('firefox/android/btn-google-play.png', optional_img_attributes) }}
 </a>
 {%- endmacro %}
@@ -300,7 +300,7 @@
     <p>{{ _('Get the app') }}</p>
     <ul>
       <li>
-        {{ google_play_button(id=android_id, anchor_attributes={'data-download-location': button_location}) }}
+        {{ google_play_button(id=android_id, extra_data_attributes={'download-location': button_location}) }}
       </li>
       <li>
         <a href="{{ firefox_ios_url(app_store_campaign) }}" data-link-type="download" data-download-os="iOS" data-download-location="{{ button_location }}" id="{{ ios_id }}">
