@@ -50,12 +50,11 @@
   {% endtrans %}
   </p>
 
-    <p class="moss-copy">
-  {% trans %}
-    MOSS is an awards program of the Mozilla Corporation, which is ultimately responsible for selecting and
-    funding final award recipients. MOSS is administered in part by the Mozilla Foundation, the nonprofit owner of the Mozilla Corporation.
-  {% endtrans %}
+ {% if l10n_has_tag('mozilla_moss_disclosure') %}
+  <p class="moss-copy">{{ _('MOSS is an awards program of the Mozilla Corporation, which is ultimately responsible for selecting and
+    funding final award recipients. MOSS is administered in part by the Mozilla Foundation, the nonprofit owner of the Mozilla Corporation.') }}
   </p>
+  {% endif %}
 </section>
 
 <section class="moss-section">
@@ -122,7 +121,7 @@
         </p>
 
         <p>
-          <a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="button">{{ _('Nominate Now') }}</a>
+          <a href="https://docs.google.com/a/mozilla.com/forms/d/e/1FAIpQLScLwANEOvLBE6gnFVoiamqHOYzzkaChpdQJ7f0PlZGmfyy94w/viewform" rel="external" class="button">{{ _('Nominate Now') }}</a>
         </p>
       </div>
     </li>
