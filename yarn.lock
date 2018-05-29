@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@mozilla-protocol/core@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@mozilla-protocol/core/-/core-0.1.2.tgz#77f64c5d78903d3dca11ae5fbab28f223f3d4092"
+"@mozilla-protocol/core@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@mozilla-protocol/core/-/core-1.0.0.tgz#bf2db3084469364e863923f1f1cf1ea7e8d43968"
 
 JSONStream@^0.8.4:
   version "0.8.4"
