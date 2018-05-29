@@ -1,0 +1,425 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+@import '../../hubs/sections';
+@import 'header';
+@import 'send-yourself';
+
+//* -------------------------------------------------------------------------- */
+// Common elements
+
+body {
+    @include open-sans;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+//* -------------------------------------------------------------------------- */
+// Logos
+
+.logo-wrapper {
+    height: 80px;
+    margin: 20px auto 0;
+    overflow: hidden;
+    position: relative;
+    width: 80px;
+
+    img {
+        left: 0;
+        position: absolute;
+        top: 0;
+
+        &.logo-focus {
+            display: none;
+        }
+
+        &.logo-fx {
+            display: block;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        margin: 0 0 40px;
+    }
+}
+
+.show-focus .logo-wrapper img,
+.show-klar .logo-wrapper img {
+    &.logo-focus {
+        display: block;
+    }
+
+    &.logo-fx {
+        display: none;
+    }
+}
+
+.no-js .logo-wrapper img {
+    visibility: visible;
+}
+
+//* -------------------------------------------------------------------------- */
+// Main content section
+
+.main-content {
+    background: linear-gradient(87deg, #6a11cb 0%, #2575fc 100%);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0 40px 0;
+
+    @media #{$mq-tablet} {
+        min-height: 500px; // mitigate page height jump when conditional content is displayed
+        padding: 60px 0;
+        text-align: left;
+
+        html[dir="rtl"] & {
+            text-align: right;
+        }
+    }
+
+    @media #{$mq-tablet} and #{$mq-tall} {
+        padding: 15vh 0;
+    }
+}
+
+.content-container {
+    color: #fff;
+    display: none;
+    padding: 0 10px;
+    z-index: 10;
+
+    &.visible {
+        display: block;
+    }
+
+    @media #{$mq-tablet} {
+        margin: 0 auto;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Main page content header general styles
+
+.content-header {
+    padding: 20px;
+    position: relative;
+    text-align: center;
+    margin-bottom: 20px;
+
+    h2 {
+        @include font-size-level2;
+        margin-bottom: .5em;
+    }
+
+    h3 {
+        @include font-size-level6;
+        margin-top: 60px;
+        font-weight: bold;
+    }
+
+    .tagline {
+        @include font-size-level4;
+        line-height: 1.5;
+        margin: 0 auto 20px;
+
+        li {
+            margin-bottom: .5em;
+        }
+    }
+
+    p {
+        @include font-size-level6;
+    }
+
+    .more {
+        @include font-size-level5;
+
+        a:link,
+        a:visited {
+            color: #fff;
+
+            &:hover,
+            &:focus {
+                color: #ededf0;
+            }
+        }
+    }
+
+    @media #{$mq-tablet} {
+        padding: 0;
+        text-align: left;
+
+        .tagline {
+            margin: 0 0 30px;
+        }
+
+        ul.tagline {
+            list-style: disc;
+            padding-left: 1em;
+        }
+    }
+}
+
+html[dir="rtl"] .content-header {
+    @media #{$mq-tablet} {
+        text-align: right;
+    }
+}
+
+@media #{$mq-tablet} {
+    .content-container {
+        width: 680px;
+    }
+}
+
+@media #{$mq-desktop} {
+    .content-container {
+        width: 840px;
+    }
+}
+
+// QR wrapper
+.qr-wrapper {
+    max-width: 280px;
+    margin: 0 auto;
+
+    @media #{$mq-tablet} {
+        max-width: none;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Default to Firefox Mobile QR code when JS fails
+.no-js {
+    .nojs-fx-mobile-container {
+        display: block;
+
+        @media #{$mq-tablet} {
+            display: grid;
+            grid-column-gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+
+            .mobile-download-buttons {
+                grid-column: 2;
+                margin: 20px 0;
+
+                li {
+                    margin: 0;
+                }
+            }
+        }
+
+        @media #{$mq-desktop} {
+            grid-column-gap: 60px;
+            grid-template-columns: auto 350px;
+        }
+    }
+}
+
+// Hide when JS is available
+.js .nojs-fx-mobile-container {
+    display: none;
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Firefox accounts
+
+#fxa-iframe-config {
+    display: none;
+}
+
+.show-fxa {
+    .fxa-container {
+        display: block;
+    }
+
+    #fxa {
+        border: none;
+        min-height: 220px;
+        position: relative;
+        width: 300px;
+    }
+
+    #fxa-iframe-config {
+        background: #fff;
+        display: block;
+        margin: 20px auto;
+        padding: 30px 0;
+        width: 300px;
+    }
+
+    @media #{$mq-tablet} {
+        // sets width for logo and content containers
+        .content-container {
+            width: $width-tablet - 40px;
+        }
+
+        .fxa-container {
+            display: grid;
+            grid-column-gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        #fxa {
+            width: auto;
+        }
+
+        #fxa-iframe-config {
+            margin: 0;
+            padding: 30px 20px;
+            width: auto;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        .content-container {
+            width: $width-desktop - 40px;
+        }
+
+        .fxa-container {
+            grid-column-gap: 60px;
+            grid-template-columns: 1fr 350px;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Firefox mobile - 2 possible states:
+// 1. Send to Device widget
+// 2. QR code (if widget is not available)
+// Also the default state if JS isn't available.
+
+.has-send-to-device.show-fx-mobile {
+    .fx-mobile-container {
+        display: block;
+    }
+
+    @media #{$mq-tablet} {
+        .content-container {
+            width: 600px;
+        }
+    }
+}
+
+.no-send-to-device.show-fx-mobile {
+    .fx-mobile-container {
+        display: block;
+
+        @media #{$mq-tablet} {
+            display: grid;
+            grid-column-gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media #{$mq-desktop} {
+            grid-column-gap: 60px;
+            grid-template-columns: auto 350px;
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Firefox Focus - 2 possible states:
+// 1. Send to Device widget
+// 2. QR code (if widget is not available)
+
+.has-send-to-device.show-focus {
+    .focus-container {
+        display: block;
+    }
+
+    @media #{$mq-tablet} {
+        .content-container {
+            width: 600px;
+        }
+    }
+}
+
+.no-send-to-device.show-focus {
+    .focus-container {
+        display: block;
+
+        @media #{$mq-tablet} {
+            display: grid;
+            grid-column-gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media #{$mq-desktop} {
+            grid-column-gap: 60px;
+            grid-template-columns: auto 350px;
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Firefox Klar - 2 possible states:
+// 1. Send to Device widget
+// 2. QR code (if widget is not available)
+
+.has-send-to-device.show-klar {
+    .klar-container {
+        display: block;
+    }
+
+    @media #{$mq-tablet} {
+        .content-container {
+            width: 600px;
+        }
+    }
+}
+
+.no-send-to-device.show-klar {
+    .klar-container {
+        display: block;
+
+        @media #{$mq-tablet} {
+            display: grid;
+            grid-column-gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media #{$mq-desktop} {
+            grid-column-gap: 60px;
+            grid-template-columns: auto 350px;
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Store badges
+
+.mobile-download-buttons {
+    margin: 40px auto;
+    width: 200px;
+
+    @media #{$mq-phone-wide} {
+        display: flex;
+        justify-content: space-between;
+        width: 350px;
+
+        li {
+            margin: 0 10px;
+        }
+    }
+}
+
+.no-send-to-device .mobile-download-buttons {
+    @media #{$mq-tablet} {
+        grid-column: 2;
+        margin: 20px 0;
+
+        li {
+            margin: 0;
+        }
+    }
+}
