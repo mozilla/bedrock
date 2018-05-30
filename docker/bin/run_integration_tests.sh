@@ -54,7 +54,7 @@ if [ -z "${BASE_URL}" ]; then
   docker run -d --rm \
     --name bedrock-code-${BRANCH_AND_COMMIT} \
     --env-file docker/envfiles/prod.env \
-    mozorg/bedrock:${BRANCH_AND_COMMIT} bin/run-prod.sh
+    ${DEPLOYMENT_DOCKER_IMAGE} bin/run-prod.sh
 
   DOCKER_LINKS=(--link bedrock-code-${BRANCH_AND_COMMIT}:bedrock)
   BASE_URL="http://bedrock:8000"
