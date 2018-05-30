@@ -223,7 +223,7 @@
 
       <article id="kenton-chow" data-id="kenton-chow" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
-          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/kenton-chow.jpg') }}">
+          {{ high_res_img('mozorg/about/leadership/kenton-chow.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
           <figcaption><h4 class="fn" itemprop="name">Kenton Chow</h4></figcaption>
         </figure>
 
@@ -231,6 +231,7 @@
           <p class="title" itemprop="jobTitle">{{ _('Interim Chief Finance Officer') }}</p>
 
           <ul class="utility">
+            <li><a class="file" rel="external" href="https://assets.mozilla.net/leadership/mozilla_portrait_Kenton-Chow.jpg">{{ _('Download high resolution photo') }}</a></li>
             <li><a class="link" href="{{ url('mozorg.about.leadership') }}#kenton-chow">{{ _('Link to this bio') }}</a></li>
           </ul>
         </div>
@@ -257,6 +258,12 @@
           <p>
           {% trans %}
             Kenton has a B.S. in Commerce and Finance and an MBA from Santa Clara University. He is a CPA in the State of California and serves on the Board of Directors of Modcam AB, an IoT vision technology start-up, and Union + Webster, a marketing agency.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Kenton is also a partner at FLG Partners, a leading CFO services firm in Silicon Valley.
           {% endtrans %}
           </p>
         </div>
