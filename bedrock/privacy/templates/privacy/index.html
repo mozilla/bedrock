@@ -77,23 +77,30 @@
     </p>
   </section>
   <section id="side-notices">
-    <h2>{{ _('Our Privacy Notices') }}</h2>
+    {% if l10n_has_tag('updates-052018') %}
+      <h2>{{ _('Privacy Notices') }}</h2>
+    {% else %}
+      <h2>{{ _('Our Privacy Notices') }}</h2>
+    {% endif %}
     <p>
-      {%- trans -%}
-        We created short and clear Privacy Notices to describe how each of our products and services
-        receives, shares, and uses data and what your choices are. Learn more:
-      {%- endtrans -%}
+      {% if l10n_has_tag('updates-052018') %}
+        {%- trans -%}
+          Our Privacy Notices describe the data our products and services receive,
+          share, and use, as well as choices available to you.
+        {%- endtrans -%}
+      {% else %}
+        {%- trans -%}
+          We created short and clear Privacy Notices to describe how each of our products and services
+          receives, shares, and uses data and what your choices are. Learn more:
+        {%- endtrans -%}
+      {% endif %}
     </p>
     <nav>
       <ul>
         <li class="policy-websites"><a href="{{ url('privacy.notices.websites') }}">{{ _('Mozilla Websites, Communications &amp; Cookies') }}</a></li>
         <li class="policy-firefox"><a href="{{ url('privacy.notices.firefox') }}">{{ _('Firefox Browser') }}</a></li>
-        <li class="policy-firefox-os"><a href="{{ url('privacy.notices.firefox-os') }}">{{ _('Firefox OS') }}</a></li>
-        <li class="policy-firefox-cliqz"><a href="{{ url('privacy.notices.firefox-cliqz') }}">{{ _('Firefox + Cliqz') }}</a></li>
-        <li class="policy-firefox-cloud"><a href="{{ url('privacy.notices.firefox') }}">{{ _('Firefox Cloud Services') }}</a></li>
         <li class="policy-firefox-fire-tv"><a href="{{ url('privacy.notices.firefox-fire-tv') }}">{{ _('Firefox for Fire TV') }}</a></li>
-        <li class="policy-firefox-rocket"><a href="{{ url('privacy.notices.firefox-rocket') }}">{{ _('Firefox Rocket') }}</a></li>
-        <li class="policy-marketplace"><a href="https://marketplace.firefox.com/privacy-policy">{{ _('Firefox Marketplace') }}</a></li>
+        <li class="policy-firefox-os"><a href="{{ url('privacy.notices.firefox-os') }}">{{ _('Firefox OS') }}</a></li>
         <li class="policy-firefox-focus">
         {% if LANG == 'de' %}
           {# bug 1319207 - As product names are not exposed to L10n, best to specify unique name for de #}
@@ -106,20 +113,51 @@
       </ul>
     </nav>
   </section>
+  {% if l10n_has_tag('updates-052018') %}
+    <section id="side-transparency">
+      <h2>{{ _('Transparency Report') }}</h2>
+      <p>
+        {%- trans report=url('mozorg.about.policy.transparency.index') -%}
+          As an open source project, transparency and openness are an essential
+          part of Mozilla’s founding principles. Our codebases are open and
+          auditable. Our development work is open. Our bi-annual
+          <a href="{{ report }}">Transparency Report</a> also demonstrates our
+          commitment to these principles.
+        {%- endtrans -%}
+      </p>
+    </section>
+  {% endif %}
+
   <section id="side-involved">
     <h2>{{ _('Get Involved') }}</h2>
     <p>
-      {%- trans group='https://groups.google.com/forum/?fromgroups#!forum/mozilla.governance' -%}
-        To review and comment on proposed changes to our privacy policies <a href="{{ group }}">
-        subscribe to Mozilla’s Governance Group</a>.
-      {%- endtrans -%}
+      {% set group_url = 'https://groups.google.com/forum/?fromgroups#!forum/mozilla.governance' %}
+      {% if l10n_has_tag('updates-052018') %}
+        {%- trans group=group_url -%}
+          To review and comment on proposed changes to our privacy policies, <a href="{{ group }}">
+          subscribe to Mozilla’s governance group</a>.
+        {%- endtrans -%}
+      {% else %}
+        {%- trans group=group_url -%}
+          To review and comment on proposed changes to our privacy policies <a href="{{ group }}">
+          subscribe to Mozilla’s Governance Group</a>.
+        {%- endtrans -%}
+      {% endif %}
     </p>
     <p>
-      {%- trans blog='https://blog.mozilla.org/privacy/', wiki='https://wiki.mozilla.org/Privacy' -%}
-        Our ongoing work on privacy is covered by the <a href="{{ blog }}">Privacy &amp; Data Safety
-        Blog</a> and information about our ongoing work is available on <a href="{{ wiki }}">
-        Mozilla’s privacy team wiki</a>.
-      {%- endtrans -%}
+      {% set blog_url = 'https://blog.mozilla.org/privacy/' %}
+      {% if l10n_has_tag('updates-052018') %}
+        {%- trans blog=blog_url -%}
+          Read more about our ongoing privacy and security public policy work on
+          <a href="{{ blog }}">Mozilla's Open Policy and Advocacy Blog</a>.</a>
+        {%- endtrans -%}
+      {% else %}
+        {%- trans blog=blog_url, wiki='https://wiki.mozilla.org/Privacy' -%}
+          Our ongoing work on privacy is covered by the <a href="{{ blog }}">Privacy &amp; Data Safety
+          Blog</a> and information about our ongoing work is available on <a href="{{ wiki }}">
+          Mozilla’s privacy team wiki</a>.
+        {%- endtrans -%}
+      {% endif %}
     </p>
   </section>
   <section id="side-archives">
