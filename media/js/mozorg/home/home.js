@@ -5,6 +5,17 @@
 (function(Waypoint) {
     'use strict';
 
+    function getNextEl(el) {
+        el = el.nextSibling;
+        while (el) {
+            if (el.nodeType === 1) {
+                return el;
+            }
+            el = el.nextSibling;
+        }
+        return null;
+    }
+
     /*
      * Video Tracking
      */
@@ -19,7 +30,7 @@
 
     function initVideoEvents() {
         var videos = document.querySelectorAll('video');
-        var videoCards = document.querySelectorAll('.card.has-video .card-block-link');
+        var videoCards = document.querySelectorAll('.mzp-c-card.has-video-embed .mzp-c-card-block-link');
 
         // open and play videos in a modal on click.
         for (var i = 0; i < videoCards.length; i++) {
@@ -40,15 +51,16 @@
     }
 
     function playVideo(e) {
-        var $card = $(this);
-        var $content = $card.next().find('.card-video-content');
-        var title = $card.find('.card-title').text();
+        var card = e.currentTarget;
+        var title = card.querySelector('.mzp-c-card-title').innerText;
+        var sibling = getNextEl(e.currentTarget);
+        var content = sibling.querySelector('.mzp-c-card-video-content');
 
-        if ($content.length) {
+        if (content) {
             e.preventDefault();
-            var video = $content.find('video')[0];
+            var video = content.querySelector('video');
 
-            Mozilla.Modal.createModal(this, $content, {
+            Mozilla.Modal.createModal(this, content, {
                 title: title,
                 onCreate: function() {
                     try {
@@ -74,7 +86,6 @@
     /*
      * Sticky CTA
      */
-
 
     var $stickyCTA = $(document.getElementById('download-firefox-sticky-cta'));
     var hasCookies = typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled();

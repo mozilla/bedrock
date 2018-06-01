@@ -155,3 +155,21 @@ class TestTechnology(TestCase):
         view.request = RequestFactory().get('/technology/')
         view.request.locale = 'es-ES'
         eq_(view.get_template_names(), ['mozorg/technology.html'])
+
+
+@patch('bedrock.mozorg.views.l10n_utils.render')
+class TestHomePage(TestCase):
+    def setUp(self):
+        self.rf = RequestFactory()
+
+    def test_home_en_template(self, render_mock):
+        req = RequestFactory().get('/')
+        req.locale = 'en-US'
+        views.home_view(req)
+        render_mock.assert_called_once_with(req, 'mozorg/home/home-en.html')
+
+    def test_home_locale_template(self, render_mock):
+        req = RequestFactory().get('/')
+        req.locale = 'de'
+        views.home_view(req)
+        render_mock.assert_called_once_with(req, 'mozorg/home/home.html')

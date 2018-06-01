@@ -177,3 +177,14 @@ class DeveloperView(BlogPostsView):
     blog_slugs = 'hacks'
     blog_posts_limit = 3
     blog_posts_template_variable = 'articles'
+
+
+def home_view(request):
+    locale = l10n_utils.get_locale(request)
+
+    if locale.startswith('en-'):
+        template_name = 'mozorg/home/home-en.html'
+    else:
+        template_name = 'mozorg/home/home.html'
+
+    return l10n_utils.render(request, template_name)

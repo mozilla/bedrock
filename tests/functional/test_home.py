@@ -7,8 +7,16 @@ import pytest
 from pages.home import HomePage
 
 
-@pytest.mark.skipif(reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1443566')
+@pytest.mark.sanity
 @pytest.mark.nondestructive
-def test_download_button_is_displayed(base_url, selenium):
+def test_download_button_is_displayed_en(base_url, selenium):
     page = HomePage(selenium, base_url).open()
-    assert page.download_button.is_displayed
+    assert page.primary_download_button.is_displayed
+    assert page.secondary_download_button.is_displayed
+
+
+@pytest.mark.sanity
+@pytest.mark.nondestructive
+def test_download_button_is_displayed_locales(base_url, selenium):
+    page = HomePage(selenium, base_url, locale='de').open()
+    assert page.intro_download_button.is_displayed

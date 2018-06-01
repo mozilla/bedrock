@@ -921,9 +921,11 @@
     },
     {
       "files": [
+        "protocol/js/protocol-modal.js",
+        "protocol/js/protocol-newsletter.js",
         "js/base/mozilla-lazy-load.js",
-        "js/base/mozilla-modal.js",
         "js/libs/jquery.waypoints.min.js",
+        "js/newsletter/form-protocol.js",
         "js/mozorg/home/home.js"
       ],
       "name": "home"
@@ -1174,13 +1176,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/mozorg/home/experiment-home.js"
-      ],
-      "name": "experiment-home"
-    },
-    {
-      "files": [
         "js/firefox/home/fbvideochat-funnelcake.js"
       ],
       "name": "firefox-home-fbvideochat-funnelcake"
@@ -1363,6 +1358,22 @@
       ],
       "name": "common"
     },
+    {
+        "files": [
+            "js/libs/jquery-3.2.1.min.js",
+            "js/base/mozilla-utils.js",
+            "js/base/mozilla-client.js",
+            "js/base/mozilla-image-helper.js",
+            "js/base/nav-main-resp.js",
+            "js/base/class-list-polyfill.js",
+            "js/base/mozilla-global-nav.js",
+            "js/base/base-page-init.js",
+            "js/base/core-datalayer.js",
+            "js/base/core-datalayer-init.js",
+            "js/base/search-params.js"
+        ],
+        "name": "common-protocol"
+      },
     {
       "files": [
         "js/libs/matchMedia.js",

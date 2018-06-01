@@ -7,14 +7,10 @@ from django.conf.urls import url
 from .util import page
 from . import views
 from bedrock.redirects.util import redirect
-from bedrock.utils.views import VariationTemplateView
 
 
 urlpatterns = (
-    url(r'^$', VariationTemplateView.as_view(template_name='mozorg/home/home.html',
-                                             template_name_variations=['a', 'b'],
-                                             variation_locales=['en-US']),
-        name='mozorg.home'),
+    url(r'^$', views.home_view, name='mozorg.home'),
     page('about', 'mozorg/about.html'),
     page('about/manifesto', 'mozorg/about/manifesto.html'),
     page('about/manifesto/details', 'mozorg/about/manifesto-details.html'),
