@@ -120,4 +120,17 @@
         initOtherPlatformsModal();
     }
 
+    /**
+     * If user is on iOS and has followed an adjust.com link, redirect to
+     * the App Store.
+     * https://github.com/mozilla/bedrock/issues/5629
+     */
+    if (window.site.platform === 'ios' && /open\-app\-store=true/.test(window.location.search)) {
+        var appStoreURL = $('.download-button .os_ios > a.download-link').attr('href');
+
+        if (appStoreURL) {
+            window.location.href = appStoreURL;
+        }
+    }
+
 })(window.jQuery);
