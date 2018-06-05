@@ -30,7 +30,7 @@ urlpatterns = (
     url(r'^firefox/(?:%s/)?(?:%s/)?all/$' % (platform_re, channel_re),
         views.all_downloads, name='firefox.all'),
     page('firefox/accounts', 'firefox/accounts.html'),
-    url('^firefox/accounts/features',
+    url('^firefox/accounts/features/$',
         VariationTemplateView.as_view(
             template_name='firefox/accounts-features.html',
             template_context_variations=['a', 'b']),
@@ -64,7 +64,7 @@ urlpatterns = (
         name='firefox.features.private-browsing'),
     page('firefox/features/send-tabs', 'firefox/features/send-tabs.html'),
     page('firefox/features/sync', 'firefox/features/sync.html'),
-    url(r'^firefox/ios/testflight', views.ios_testflight, name='firefox.ios.testflight'),
+    url(r'^firefox/ios/testflight/$', views.ios_testflight, name='firefox.ios.testflight'),
     page('firefox/mobile', 'firefox/mobile.html'),
     url('^firefox/send-to-device-post/$', views.send_to_device_ajax,
         name='firefox.send-to-device-post'),
@@ -105,7 +105,7 @@ urlpatterns = (
         {'product': 'Firefox'}, name='firefox.releases.index'),
 
     # Bug 1108828. Different templates for different URL params.
-    url('firefox/feedback', views.FeedbackView.as_view(), name='firefox.feedback'),
+    url('firefox/feedback/$', views.FeedbackView.as_view(), name='firefox.feedback'),
 
     url('^firefox/stub_attribution_code/$', views.stub_attribution_code,
         name='firefox.stub_attribution_code'),
