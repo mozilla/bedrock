@@ -24,7 +24,7 @@
     <updated>{{ note.modified.isoformat() }}</updated>
     <content type="xhtml">
       <div xmlns="http://www.w3.org/1999/xhtml">
-        {{ note.version }} / {{ note.tag }}
+        {{ note.version }} / {{ note.tag|replace('HTML5', _('Web Platform')) }}
         {%- if note.bug %} / <a href="https://bugzilla.mozilla.org/show_bug.cgi?id={{ note.bug }}">{{ _('Bug %d')|format(note.bug) }}</a>{% endif %}
         {{ note.note|markdown|safe }}
       </div>
