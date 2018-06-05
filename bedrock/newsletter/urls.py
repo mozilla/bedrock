@@ -37,7 +37,7 @@ urlpatterns = (
         name='newsletter.country'),
 
     # Request recovery message with link to manage subscriptions
-    url('^newsletter/recovery/',
+    url('^newsletter/recovery/$',
         views.recovery,
         name='newsletter.recovery'),
 
@@ -47,7 +47,7 @@ urlpatterns = (
         name='newsletter.subscribe'),
 
     # Welcome program out-out confirmation page (bug 1442129)
-    url('^newsletter/opt-out-confirmation/',
+    url('^newsletter/opt-out-confirmation/$',
         views.recovery,
         name='newsletter.opt-out-confirmation'),
 

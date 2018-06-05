@@ -35,7 +35,7 @@ urlpatterns = (
         AdvisoriesView.as_view(), name='security.advisories'),
     url(r'^advisories/mfsa(?P<pk>\d{4}-\d{2,3})/$',
         AdvisoryView.as_view(), name='security.advisory'),
-    url(r'^advisories/cve-feed\.json', mitre_cve_feed, name='security.advisories.cve_feed'),
+    url(r'^advisories/cve-feed\.json$', mitre_cve_feed, name='security.advisories.cve_feed'),
 
     page('known-vulnerabilities', 'security/known-vulnerabilities.html'),
     page('known-vulnerabilities/older-vulnerabilities', 'security/older-vulnerabilities.html'),
