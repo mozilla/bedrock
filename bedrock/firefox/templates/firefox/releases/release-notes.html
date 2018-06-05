@@ -246,8 +246,8 @@
 
           {% for note in release.notes if note.tag == "HTML5" %}
             {% if loop.first %}
-            <div class="section-wrapper" id="{{ note.tag|lower() }}">
-              <h4>{{ note.tag }}</h4>
+            <div class="section-wrapper" id="web-platform">
+              <h4>{{ _('Web Platform') }}</h4>
               <ul class="section-items">
               {% endif %}
               {{ note_entry(note) }}
