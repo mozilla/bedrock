@@ -24,13 +24,15 @@
   {% set bookmarks_title = "Bookmark a recipe at home, shop for ingredients from your phone." %}
   {% set passwords_title = "Binge watching waits for no one. Save passwords to log in faster." %}
   {% set send_title = "Save commute time by sending links instantly between your devices." %}
+  {% set utm_content = "/firefox/accounts/features/v-a" %}
 {% else %}
   {% set bookmarks_title = "Automatically update bookmarks with a click" %}
   {% set passwords_title = "Save passwords safely" %}
   {% set send_title = "Send links instantly between devices" %}
+  {% set utm_content = "/firefox/accounts/features/v-b" %}
 {% endif %}
 
-{% set cta_url = 'https://accounts.firefox.com/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org:fxa.features&utm_campaign=may2018&utm_content=/firefox/accounts/features/' %}
+{% set cta_url = 'https://accounts.firefox.com/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org:fxa.features&utm_campaign=may2018&utm_content=' + utm_content + '&utm_source=account-features' %}
 
 {% block content %}
 <main>
@@ -38,7 +40,7 @@
       <div class="content">
         <h1 class="fab-head-title">{{_('Firefox Account')}}</h1>
         <p class="fab-head-subtitle">{{_('One easy login.<br> Epic perks.')}}</p>
-        <p class="fab-head-cta"><a class="button button-hollow button-light" href="{{ cta_url }}">{{_('Create an account')}}</a></p>
+        <p class="fab-head-cta"><a class="button button-hollow button-light" href="{{ cta_url }}" data-button-name="Create account">{{_('Create account')}}</a></p>
       </div>
     </header>
 
@@ -83,7 +85,7 @@
     <footer class="fab-foot">
       <div class="content">
         <h2 class="fab-foot-title">{{_('Make switching devices drama-free with a Firefox Account.')}}</h2>
-        <p class="fab-foot-cta"><a class="button button-hollow button-light" href="{{ cta_url }}">{{_('Create an account')}}</a></p>
+        <p class="fab-foot-cta"><a class="button button-hollow button-light" href="{{ cta_url }}" data-button-name="Create account">{{_('Create account')}}</a></p>
       </div>
     </footer>
 </main>
