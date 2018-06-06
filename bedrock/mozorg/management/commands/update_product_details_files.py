@@ -24,7 +24,8 @@ class Command(BaseCommand):
         self.file_storage = PDFileStorage(json_dir=settings.PROD_DETAILS_TEST_DIR)
         self.db_storage = PDDatabaseStorage()
         self.repo = GitRepo(settings.PROD_DETAILS_JSON_REPO_PATH,
-                            settings.PROD_DETAILS_JSON_REPO_URI)
+                            settings.PROD_DETAILS_JSON_REPO_URI,
+                            name='Product Details')
         super(Command, self).__init__(stdout, stderr, no_color)
 
     def add_arguments(self, parser):

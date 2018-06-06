@@ -1,0 +1,234 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/includes/lib";
+
+// Download button color
+$color-button-green: #16da00;
+
+// The basis for all buttons on mozilla.org
+%base-button {
+    @include text-body-md;
+    @include open-sans;
+    background: none;
+    border-radius: 100px;
+    border-style: solid;
+    border-width: 2px;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    padding: .9em 40px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: none;
+    transition: background-color .1s ease-in-out, border-color .1s ease-in-out;
+
+    &:active {
+        position: relative;
+        top: 1px;
+    }
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+}
+
+// Standard solid buttons, especially those not in a form context such as CTA and download buttons
+.button,
+button.button,
+a.button:link,
+a.button:visited {
+    @extend %base-button;
+
+    &.button-green {
+        background-color: $color-button-green;
+        border-color: $color-button-green;
+        color: #fff;
+
+        &:hover,
+        &:focus {
+            background-color: saturate(darken($color-button-green, 5%), 10%);
+            border-color: saturate(darken($color-button-green, 5%), 10%);
+        }
+    }
+}
+
+// privacy policy link that accompany most download buttons
+.fx-privacy-link {
+    @include text-body-xs;
+    @include open-sans;
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+
+    a:link,
+    a:visited {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        text-decoration: underline;
+    }
+}
+
+// download button and related containers
+ul.download-list {
+    list-style-type: none;
+    margin-bottom: 10px;
+
+    li {
+        margin-left: 0;
+    }
+
+    strong {
+        font-weight: bold;
+    }
+}
+
+.download-dumb {
+    ul {
+        list-style: none;
+
+        li {
+            display: inline-block;
+            margin: 20px 0 0;
+
+            .button {
+                @include text-body-sm;
+                margin-left: 3px;
+                padding: 6px 10px;
+            }
+        }
+    }
+}
+
+.download-button {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.download-other {
+    @include text-body-xs;
+    @include open-sans;
+    color: #666;
+
+    a:link,
+    a:visited {
+        color: #999;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: #999;
+        text-decoration: underline;
+    }
+}
+
+/* !important used for strict download link enforcement */
+/* stylelint-disable declaration-no-important  */
+
+// Product download buttons
+.download-button {
+    .ios-download,
+    .linux-arm-download,
+    .unrecognized-download,
+    .unsupported-download,
+    .unsupported-download-osx,
+    .nojs-download {
+        display: none;
+    }
+}
+
+// OS detection
+.download-button .os_win64,
+.download-button .os_linux,
+.download-button .os_linux64,
+// Uncomment this to enable the win64 download buttons:
+// .win7up.x86.x64 .download-button .os_win,
+.android .download-button-desktop,
+.windows.arm .download-button .os_win,
+.linux.arm .download-button .os_linux,
+.linux.x86.x64 .download-list .os_linux,
+.download-button .os_win,
+.download-button .os_osx,
+.download-button .os_android,
+.download-button .os_ios,
+.no-js .download-list,
+.other .download-list {
+    display: none !important;
+}
+
+// Uncomment this to enable the win64 download buttons:
+// .win7up.x86.x64 .download-button .os_win64,
+.linux .download-button .os_linux,
+.linux.x86.x64 .download-button .os_linux64,
+.windows .download-button .os_win,
+.osx .download-button .os_osx,
+.android .download-button .os_android,
+.download-button-android .os_android,
+.android .download-button-desktop .download-list,
+.android .download-button-desktop small.os_win,
+.download-button-ios .os_ios,
+.ios .download-button .os_ios,
+.ios .download-button .ios-download,
+.ios .download-button-desktop .download-list,
+.other .download-button-android .download-list,
+.other .download-button small.os_win {
+    display: block !important;
+}
+
+.windows.arm .download-button .unsupported-download,
+.linux.arm .download-button .linux-arm-download,
+.oldwin .download-button .unsupported-download,
+.oldmac .download-button .unsupported-download {
+    display: block;
+    max-width: 250px;
+}
+
+// Hide the privacy link if platform is unsupported.
+.windows.arm .download-button .fx-privacy-link,
+.linux.arm .download-button .fx-privacy-link,
+.oldwin .download-button .fx-privacy-link,
+.oldmac .download-button .fx-privacy-link {
+    display: none;
+}
+
+.android .download-button-desktop,
+.ios .download-button-desktop,
+.no-js .download-button {
+    .nojs-download {
+        display: block;
+    }
+}
+
+.other .download-button {
+    .unrecognized-download {
+        display: block;
+    }
+}
+
+// Android architecture detection
+.download-button .download-list .os_android.x86,
+.download-button .download-other.os_android .arm,
+.android.x86 .download-button .download-list .os_android.armv7up,
+.android.x86 .download-button .download-other.os_android .x86 {
+    display: none !important;
+}
+
+.android.x86 .download-button .download-list .os_android.x86 {
+    display: block !important;
+}
+
+.android.x86 .download-button .download-other.os_android .armv7up {
+    display: inline !important;
+}
+
+/* stylelint-enable */
+

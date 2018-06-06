@@ -12,8 +12,8 @@ def get_data_version():
     This will ensure that the cache is invalidated when the repo is updated.
     """
     repo = GitRepo(settings.RELEASE_NOTES_PATH,
-                    settings.RELEASE_NOTES_REPO,
-                    branch_name=settings.RELEASE_NOTES_BRANCH)
+                   settings.RELEASE_NOTES_REPO,
+                   branch_name=settings.RELEASE_NOTES_BRANCH)
     git_ref = repo.get_db_latest()
     if git_ref is None:
         git_ref = 'default'

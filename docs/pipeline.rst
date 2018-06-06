@@ -141,6 +141,17 @@ of values from `demo/default.env`, your branch specific env file, and a region s
 will be used to configure the app. So you only need to add the variables that differ from the default files to your file,
 and you can override any values from the default files as well.
 
+Instance Configuration & Switches
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Beyond setting environment variables in demo instances as described above, we have a `separate repo <https://github.com/mozmeao/www-config>`_
+for configuring our primary instances (dev, stage, and prod). The `docs for updating configurations <https://mozmeao.github.io/www-config/>`_
+in that repo are on their own page, but there is a way to tell what version of the configuration is in use on any particular instance of bedrock.
+You can go to the ``/healthz-cron/`` URL on an instance (`see prod <https://www.mozilla.org/healthz-cron/>`_ for example) to see the current
+commit of all of the external Git repos in use by the site and how long ago they were updated. The info on that page also includes the latest
+version of the database in use, the git revision of the bedrock code, and how long ago the database was updated. If you recently made
+a change to one of these repos and are curious if the changes have made it to production, this is the URL you should check.
+
 Updating Selenium
 ~~~~~~~~~~~~~~~~~
 

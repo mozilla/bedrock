@@ -10,9 +10,18 @@ from time import time
 
 import babis
 from apscheduler.schedulers.blocking import BlockingScheduler
-from decouple import config
 from pathlib2 import Path
 
+
+# ROOT path of the project. A pathlib.Path object.
+ROOT_PATH = Path(__file__).resolve().parents[1]
+ROOT = str(ROOT_PATH)
+
+# add bedrock to path
+sys.path.append(ROOT)
+
+# must import after adding bedrock to path
+from bedrock.base.config_manager import config  # noqa
 
 # these are the defaults, but explicit is better
 JOB_DEFAULTS = {
@@ -21,17 +30,14 @@ JOB_DEFAULTS = {
 }
 schedule = BlockingScheduler(job_defaults=JOB_DEFAULTS)
 
-DB_UPDATE_MINUTES = config('DB_UPDATE_MINUTES', default='5', cast=int)
-LOCAL_DB_UPDATE = config('LOCAL_DB_UPDATE', default=False, cast=bool)
-DB_DOWNLOAD_IGNORE_GIT = config('DB_DOWNLOAD_IGNORE_GIT', default=False, cast=bool)
+DB_UPDATE_MINUTES = config('DB_UPDATE_MINUTES', default='5', parser=int)
+LOCAL_DB_UPDATE = config('LOCAL_DB_UPDATE', default='False', parser=bool)
+DB_DOWNLOAD_IGNORE_GIT = config('DB_DOWNLOAD_IGNORE_GIT', default='False', parser=bool)
 RUN_TIMES = {}
 
 # Dead Man's Snitch
-DEAD_MANS_SNITCH_URL = config('DEAD_MANS_SNITCH_URL', default=None)
+DEAD_MANS_SNITCH_URL = config('DEAD_MANS_SNITCH_URL', default='')
 
-# ROOT path of the project. A pathlib.Path object.
-ROOT_PATH = Path(__file__).resolve().parents[1]
-ROOT = str(ROOT_PATH)
 MANAGE = str(ROOT_PATH / 'manage.py')
 HEALTH_FILE_BASE = '/tmp/last-run'
 

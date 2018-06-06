@@ -363,17 +363,7 @@ main {
 
 // index page
 #moss-home #header-image {
-    background: #d1d2d3;
-
-    @media #{$mq-desktop} {
-        height: 310px;
-    }
-}
-
-@media #{$mq-phone} {
-    #moss-home #header-image {
-        height: 160px;
-    }
+    display: none;
 }
 
 #header-image-wrapper {

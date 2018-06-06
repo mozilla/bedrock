@@ -10,12 +10,6 @@
   {{ _('Mozilla Open Source Support') }}
 {% endblock %}
 
-{% block header_image %}
-  <div id="header-image-wrapper">
-    <img src="{{ static('img/mozorg/moss/header-home.jpg') }}" alt="">
-  </div>
-{% endblock %}
-
 {% block page_content %}
 <section class="moss-section">
   <h2 class="moss-section-heading">{{ _('About MOSS') }}</h2>
@@ -55,6 +49,12 @@
     in India.
   {% endtrans %}
   </p>
+
+ {% if l10n_has_tag('mozilla_moss_disclosure') %}
+  <p class="moss-copy">{{ _('MOSS is an awards program of the Mozilla Corporation, which is ultimately responsible for selecting and
+    funding final award recipients. MOSS is administered in part by the Mozilla Foundation, the nonprofit owner of the Mozilla Corporation.') }}
+  </p>
+  {% endif %}
 </section>
 
 <section class="moss-section">
@@ -78,7 +78,7 @@
         </p>
 
         <p>
-          <a href="https://docs.google.com/a/mozilla.com/forms/d/e/1FAIpQLSdSSJ2jCuNCSY2SlIReOPwuF-ILnkt7IpNk4YkLKPn1spJoMA/viewform" rel="external" class="button">{{ _('Apply Now') }}</a>
+          <a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="button">{{ _('Apply Now') }}</a>
         </p>
       </div>
     </li>
@@ -100,7 +100,7 @@
         </p>
 
         <p>
-          <a href="https://docs.google.com/a/mozilla.com/forms/d/e/1FAIpQLSe9a9h4afnJnDp3rRRHB4i1Xnb3otzfaQrb9uXVeoeXlB3NSg/viewform" rel="external" class="button">{{ _('Apply Now') }}</a>
+          <a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="button">{{ _('Apply Now') }}</a>
         </p>
       </div>
     </li>
@@ -133,7 +133,7 @@
 
   <p class="moss-copy">
   {% trans %}
-    MOSS applications are considered in batches every three months.
+    MOSS applications are considered in batches every month.
   {% endtrans %}
 
   {% trans %}

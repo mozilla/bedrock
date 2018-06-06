@@ -27,68 +27,26 @@
 {% block content %}
 
 {% block main_feature %}
-  {% if switch('firefox_enterprise', ['en-US']) %}
     <div class="pick">
       <h1 class="large">{{ _('Find the right Firefox for you') }}</h1>
       <div class="row">
         <div class="col">
           <p>
-            <strong>{{ _('Firefox Quantum for Enterprise (v60)') }}</strong><br>
+            <strong>{{ _('Firefox Extended Support Release (ESR 60)') }}</strong><br>
             {{ _('The new super-fast Firefox, with features for IT professionals to configure and deploy Firefox in their organization.') }}
           </p>
-          <p><a href="{{ url('firefox.enterprise.index') }}" class="button">{{ _('Get Firefox for Enterprise') }}</a></p>
+          <p><a href="{{ firefox_url('desktop', 'all', 'esr') }}" class="button">{{ _('Get Firefox ESR 60') }}</a></p>
         </div>
         <div class="col">
           <p>
             <strong>{{ _('Firefox Extended Support Release (ESR 52)') }}</strong><br>
             {{ _('An older version of Firefox that supports legacy Add-Ons and runs on Windows XP/Vista.') }}
           </p>
-          <p><a href="{{ firefox_url('desktop', 'all', 'esr') }}" class="button button-light">{{ _('Get Firefox 52 ESR') }}</a></p>
+          <p><a href="{{ firefox_url('desktop', 'all', 'esr') }}#legacy" class="button button-light">{{ _('Get Firefox 52 ESR') }}</a></p>
         </div>
       </div>
     </div>
-  {% else %}
-    <hgroup id="main-feature" class="stacked">
-      <h1>{{ _('Mozilla Firefox <span class="%s">Extended Support Release</span>')|format('large') }}</h1>
-      <p class="large">{{ _('A community-led project that allows organizations to benefit from the speed, flexibility and security of Firefox while getting the support they need.') }}</p>
-    </hgroup>
-  {% endif %}
 {% endblock %}
-{% if not switch('firefox_enterprise', ['en-US']) %}
-  <div class="container">
-    <div class="main-column">
-      <p>
-      {%- trans -%}
-        Firefox Extended Support Release (ESR) is intended for system administrators who deploy and maintain the desktop
-        environment in organizations such as universities and other schools, county or city governments and businesses.
-      {%- endtrans -%}
-      </p>
-      <p>
-      {%- trans -%}
-        We encourage those who are deploying Firefox ESR to sign up for the Mozilla Enterprise mailing list available in
-        <a href="{{ list_en }}">English</a>, <a href="{{ list_fr }}">French</a> and <a href="{{ list_de }}">German</a>.
-        This list is a great place to discuss deploying Firefox with other community members. Regular communications
-        regarding product updates and support are also sent on the list by various Mozilla teams.
-      {%- endtrans -%}
-      </p>
-    </div>
-    <aside id="sidebar" class="sidebar">
-      <div id="download">
-        <p><a class="button" href="{{ firefox_url('desktop', 'all', 'esr') }}">{{ _('Download Firefox ESR') }}</a></p>
-      </div>
-      <div id="alternate-download">
-        <h4>{{ _('Not an administrator?') }}</h4>
-        <p>
-        {%- trans url=url('firefox') -%}
-          ESR is intended for system administrators in organizations. If you’re looking for Firefox for personal use
-          either at home or work, please visit our <a href="{{ url }}">Firefox product page</a> to download the latest
-          version.
-        {%- endtrans -%}
-        </p>
-      </div>
-    </aside>
-  </div>
-{% endif %}
 <div class="container">
   <section id="faq">
     <h2>{{ _('ESR FAQ') }}</h2>

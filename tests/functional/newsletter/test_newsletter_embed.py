@@ -18,8 +18,6 @@ from pages.mission import MissionPage
 from pages.firefox.all import FirefoxAllPage
 from pages.firefox.features.feature import FeaturePage
 from pages.plugincheck import PluginCheckPage
-from pages.smarton.landing import SmartOnLandingPage
-from pages.smarton.base import SmartOnBasePage
 
 
 @pytest.mark.nondestructive
@@ -36,14 +34,7 @@ from pages.smarton.base import SmartOnBasePage
     (MissionPage, None),
     (FirefoxAllPage, None),
     (FeaturePage, {'slug': 'sync'}),
-    (PluginCheckPage, None),
-    (SmartOnLandingPage, None),
-    pytest.mark.skip_if_not_firefox((SmartOnBasePage, {'slug': 'tracking'}),
-        reason='Newsletter is only shown to Firefox browsers.'),
-    pytest.mark.skip_if_not_firefox((SmartOnBasePage, {'slug': 'security'}),
-        reason='Newsletter is only shown to Firefox browsers.'),
-    pytest.mark.skip_if_not_firefox((SmartOnBasePage, {'slug': 'surveillance'}),
-        reason='Newsletter is only shown to Firefox browsers.')])
+    (PluginCheckPage, None)])
 def test_newsletter_default_values(page_class, url_kwargs, base_url, selenium):
     url_kwargs = url_kwargs or {}
     page = page_class(selenium, base_url, **url_kwargs).open()

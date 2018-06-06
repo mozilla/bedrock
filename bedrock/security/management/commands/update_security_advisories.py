@@ -147,13 +147,14 @@ def add_or_update_cve(data):
         except MitreCVE.DoesNotExist:
             cve = MitreCVE(**cve_data)
             cve.products = data['fixed_in']
+            cve.mfsa_ids.append(data['mfsa_id'])
         else:
-            cve.products = list(set(data['fixed_in']) | set(cve.products))
+            cve.products = list(set(cve.products).union(data['fixed_in']))
+            cve.mfsa_ids = list(set(cve.mfsa_ids).union([data['mfsa_id']]))
             for prop, value in cve_data.items():
                 if value:
                     setattr(cve, prop, value)
 
-        cve.mfsa_ids.append(data['mfsa_id'])
         cve.save()
 
 
@@ -258,7 +259,8 @@ class Command(NoArgsCommand):
         no_git = options['no_git']
         clear_db = options['clear_db']
         force = no_git or clear_db
-        repo = GitRepo(ADVISORIES_PATH, ADVISORIES_REPO, branch_name=ADVISORIES_BRANCH)
+        repo = GitRepo(ADVISORIES_PATH, ADVISORIES_REPO, branch_name=ADVISORIES_BRANCH,
+                       name='Security Advisories')
 
         def printout(msg, ending=None):
             if not quiet:

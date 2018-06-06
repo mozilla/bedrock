@@ -1,6 +1,7 @@
 import json
 import logging
 import os.path
+from datetime import datetime
 from os import getenv
 from time import time
 
@@ -11,10 +12,12 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_safe
 
-from bedrock.mozorg.util import HttpResponseJSON
-from lib import l10n_utils
-
+import timeago
 from raven.contrib.django.models import client
+
+from bedrock.mozorg.util import HttpResponseJSON
+from bedrock.utils import git
+from lib import l10n_utils
 
 
 def get_geo_from_request(request):
@@ -75,6 +78,15 @@ S3_BASE_URL = 'https://s3-{}.amazonaws.com/{}'.format(
 )
 
 
+def get_l10n_repo_info():
+    repo = git.GitRepo(settings.LOCALES_PATH, settings.LOCALES_REPO)
+    return {
+        'latest_ref': repo.current_hash,
+        'last_updated': repo.last_updated,
+        'repo_url': repo.clean_remote_url,
+    }
+
+
 def get_db_file_url(filename):
     return '/'.join([S3_BASE_URL, filename])
 
@@ -92,7 +104,7 @@ def get_extra_server_info():
     except (IOError, ValueError):
         pass
     else:
-        db_info['last_update'] = int((time() - db_info['updated']) / 60)
+        db_info['last_update'] = timeago.format(datetime.fromtimestamp(db_info['updated']))
         db_info['file_url'] = get_db_file_url(db_info['file_name'])
         for key, value in db_info.items():
             server_info['db_%s' % key] = value
@@ -123,10 +135,14 @@ def cron_health_check(request):
 
         results.append((fname, max_time, time_since, task_pass))
 
-    server_info = get_extra_server_info()
-    return render(request, 'cron-health-check.html',
-                  {'results': results, 'server_info': server_info, 'success': check_pass},
-                  status=200 if check_pass else 500)
+    git_repos = git.GitRepoState.objects.exclude(repo_name='').order_by('repo_name')
+    return render(request, 'cron-health-check.html', {
+        'results': results,
+        'server_info': get_extra_server_info(),
+        'success': check_pass,
+        'git_repos': git_repos,
+        'l10n_repo': get_l10n_repo_info(),
+    }, status=200 if check_pass else 500)
 
 
 def server_error_view(request, template_name='500.html'):

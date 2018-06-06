@@ -286,6 +286,12 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'css/firefox-home-bundle.css',
     },
+    'firefox-home-fbvideochat-funnelcake': {
+        'source_filenames': (
+            'css/firefox/home-fbvideochat-funnelcake.scss',
+        ),
+        'output_filename': 'css/firefox-home-fbvideochat-funnelcake-bundle.css',
+    },
     'nightly_firstrun': {
         'source_filenames': (
             'css/firefox/nightly_firstrun.less',
@@ -420,6 +426,19 @@ PIPELINE_CSS = {
             'css/firefox/new/berlin.scss',
         ),
         'output_filename': 'css/firefox_new_berlin-bundle.css',
+    },
+    'firefox_new_berlin_b': {
+        'source_filenames': (
+            'css/firefox/new/berlin.scss',
+            'css/firefox/new/berlin-b.scss',
+        ),
+        'output_filename': 'css/firefox_new_berlin_b-bundle.css',
+    },
+    'firefox_new_berlin_herz': {
+        'source_filenames': (
+            'css/firefox/new/berlin-herz.scss',
+        ),
+        'output_filename': 'css/firefox_new_berlin_herz-bundle.css',
     },
     'firefox_organizations': {
         'source_filenames': (
@@ -671,19 +690,6 @@ PIPELINE_CSS = {
             'css/base/mozilla-accordion.less',
         ),
         'output_filename': 'css/security-bug-bounty-hall-of-fame-bundle.css',
-    },
-    'smarton': {
-        'source_filenames': (
-            'css/base/mozilla-share-cta.less',
-            'css/teach/smarton.less',
-        ),
-        'output_filename': 'css/smarton-bundle.css',
-    },
-    'smarton-ie': {
-        'source_filenames': (
-            'css/teach/smarton-ie.less',
-        ),
-        'output_filename': 'css/smarton-ie-bundle.css',
     },
     'styleguide': {
         'source_filenames': (
@@ -1063,6 +1069,12 @@ PIPELINE_JS = {
         ),
         'output_filename': 'js/firefox-home-bundle.js',
     },
+    'firefox-home-fbvideochat-funnelcake': {
+        'source_filenames': (
+            'js/firefox/home/fbvideochat-funnelcake.js',
+        ),
+        'output_filename': 'js/firefox-home-fbvideochat-funnelcake-bundle.js',
+    },
     'firefox_new_scene1': {
         'source_filenames': (
             'js/base/mozilla-modal.js',
@@ -1095,6 +1107,20 @@ PIPELINE_JS = {
             'js/firefox/new/berlin-scene1.js',
         ),
         'output_filename': 'js/firefox_new_scene1_berlin-bundle.js',
+    },
+    'firefox_new_berlin_experiment': {
+        'source_filenames': (
+            'js/base/mozilla-traffic-cop.js',
+            'js/firefox/new/berlin-experiment.js',
+        ),
+        'output_filename': 'js/firefox_new_berlin_experiment-bundle.js',
+    },
+    'firefox_new_scene1_berlin_herz': {
+        'source_filenames': (
+            'js/firefox/new/variation-scene1.js',
+            'js/firefox/new/berlin-scene1-herz.js',
+        ),
+        'output_filename': 'js/firefox_new_scene1_berlin_herz-bundle.js',
     },
     'firefox_new_pixel': {
         'source_filenames': (
@@ -1179,6 +1205,7 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/base/mozilla-lazy-load.js',
             'js/base/mozilla-modal.js',
+            'js/libs/jquery.waypoints.min.js',
             'js/mozorg/home/home.js',
         ),
         'output_filename': 'js/home-bundle.js',
@@ -1295,25 +1322,6 @@ PIPELINE_JS = {
             'js/privacy/privacy.js',
         ),
         'output_filename': 'js/privacy-bundle.js',
-    },
-    'smarton': {
-        'source_filenames': (
-            'js/base/mozilla-share-cta.js',
-            'js/base/mozilla-smoothscroll.js',
-            'js/libs/jquery.waypoints.min.js',
-            'js/libs/jquery.waypoints-sticky.min.js',
-            'js/libs/circles.min.js',
-            'js/teach/smarton.js',
-        ),
-        'output_filename': 'js/smarton-bundle.js',
-    },
-    'smarton-landing': {
-        'source_filenames': (
-            'js/base/mozilla-share-cta.js',
-            'js/libs/snap.svg.js',
-            'js/teach/smarton-landing.js',
-        ),
-        'output_filename': 'js/smarton-landing-bundle.js',
     },
     'stub-attribution': {
         'source_filenames': (

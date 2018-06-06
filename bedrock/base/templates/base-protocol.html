@@ -1,0 +1,18 @@
+{% extends 'base-pebbles.html' %}
+
+{% block site_css %}
+  {% stylesheet 'protocol-core' %}
+{% endblock %}
+
+{% block tabzilla_tab %}{% endblock %}
+
+{% block site_header %}
+  {% if LANG.startswith('en-') %}
+    {% include 'includes/global-nav.html' %}
+  {% else %}
+    {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
+    {% include 'mozorg/home/includes/nav.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block update_notification %}{% endblock %}
