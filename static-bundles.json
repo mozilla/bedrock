@@ -1287,7 +1287,7 @@
       "files": [
         "js/base/mozilla-share-cta.js",
         "js/base/mozilla-pager.js",
-        "js/firefox/firefox-language-search.js"
+        "js/firefox/all-downloads.js"
       ],
       "name": "firefox_all"
     },
