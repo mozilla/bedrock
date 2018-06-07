@@ -41,7 +41,7 @@ Linux subsystem) you can run a script that will pull our production docker image
         $ make run
 
 You should see a number of things happening, but when it's done it will output something saying that the server is running
-at `localhost:3000 <http://localhost:3000/>`_. Go to that URL in a browser and you should see the mozilla.org home page.
+at `localhost:8000 <http://localhost:8000/>`_. Go to that URL in a browser and you should see the mozilla.org home page.
 In this mode the site will refresh itself when you make changes to any template or media file. Simply open your editor of
 choice and modify things and you should see those changes reflected in your browser.
 

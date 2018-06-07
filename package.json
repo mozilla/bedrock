@@ -47,6 +47,6 @@
     "browser-sync": "/.bin/browser-sync"
   },
   "scripts": {
-    "start": "concurrently --kill-others \"python manage.py runserver\" \"gulp\""
+    "start": "concurrently --kill-others \"python manage.py runserver 0.0.0.0:8080\" \"gulp\""
   }
 }

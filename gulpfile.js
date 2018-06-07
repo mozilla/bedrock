@@ -330,15 +330,19 @@ gulp.task('all:watch', ['js:compile', 'css:compile'], () => {
  * Start the browser-sync daemon for local development.
  */
 gulp.task('browser-sync', ['all:watch'], () => {
-    const proxyURL = process.env.BS_PROXY_URL || 'localhost:8000';
+    const proxyURL = process.env.BS_PROXY_URL || 'localhost:8080';
     const openBrowser = !(process.env.BS_OPEN_BROWSER === 'false');
     return browserSync.init({
+        port: 8000,
         proxy: proxyURL,
         open: openBrowser,
         notify: true,
         reloadDelay: 300,
         reloadDebounce: 500,
         injectChanges: false,
+        ui: {
+            port: 8001
+        },
         serveStatic: [{
             route: '/media',
             dir: finalDir
