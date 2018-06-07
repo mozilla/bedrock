@@ -2,9 +2,18 @@
  * Define utility functions.
  */
 
+def appNameFromDemoBranch(branchname){
+    return branchname[5..-1].replaceAll('_', '-')
+}
+
 def demoAppName(branchname) {
-    def appname = branchname[5..-1].replaceAll('_', '-')
-    return "bedrock-demo-${appname}".toString()
+    def appname = appNameFromDemoBranch(branchname)
+    return "bedrock-demo-${appname}"
+}
+
+def demoDeployYaml(branchname) {
+    def appname = appNameFromDemoBranch(branchname)
+    return "${appname}-deploy.yaml"
 }
 
 def demoAppURL(appname, region) {
@@ -64,6 +73,51 @@ def integrationTestJob(propFileName, appURL='') {
                     }
                 }
             }
+        }
+    }
+}
+
+def pushDeis(region, config, appname, stageName) {
+    withEnv(["DEIS_PROFILE=${region.name}",
+            "DEIS_BIN=${region.deis_bin}",
+            "DEIS_APPLICATION=${appname}"]) {
+        try {
+            retry(3) {
+                if (config.demo) {
+                    withCredentials([[$class: 'StringBinding',
+                                      credentialsId: 'SENTRY_DEMO_DSN',
+                                      variable: 'SENTRY_DEMO_DSN']]) {
+                        sh 'docker/bin/prep_demo.sh'
+                    }
+                }
+                sh 'docker/bin/push2deis.sh'
+            }
+        } catch(err) {
+            ircNotification([stage: stageName, status: 'failure'])
+            throw err
+        }
+    }
+}
+
+def deploy(region, config, appname, stageName, namespace) {
+
+    def deployYaml = ""
+    if (config.demo) {
+        deployYaml = demoDeployYaml(env.BRANCH_NAME)
+    } else {
+        deployYaml = "deploy.yaml"
+    }
+
+    withEnv(["CONFIG_REPO=${region.config_repo}",
+             "CONFIG_BRANCH=${region.config_branch}",
+             "NAMESPACE=${namespace}",
+             "DEPLOYMENT_LOG_BASE_URL=${region.deployment_log_base_url}",
+             "DEPLOYMENT_YAML=${deployYaml}"]) {
+        try {
+            sh 'bin/deploy.sh'
+        } catch(err) {
+            ircNotification([stage: stageName, status: 'failure'])
+            throw err
         }
     }
 }

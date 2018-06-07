@@ -83,32 +83,20 @@ if ( config.apps ) {
         for (appname in config.apps) {
             if ( config.demo ) {
                 appURL = utils.demoAppURL(appname, region)
+                namespace = 'bedrock-demo'
             } else {
                 appURL = "https://${appname}.${region.name}.moz.works"
+                namespace = appname
             }
             stageName = "Deploy ${appname}-${region.name}"
             // ensure no deploy/test cycle happens in parallel for an app/region
             lock (stageName) {
                 milestone()
                 stage (stageName) {
-                    withEnv(["DEIS_PROFILE=${region.name}",
-                             "DEIS_BIN=${region.deis_bin}",
-                             "DEIS_APPLICATION=${appname}"]) {
-                        try {
-                            retry(3) {
-                                if (config.demo) {
-                                    withCredentials([[$class: 'StringBinding',
-                                                      credentialsId: 'SENTRY_DEMO_DSN',
-                                                      variable: 'SENTRY_DEMO_DSN']]) {
-                                        sh 'docker/bin/prep_demo.sh'
-                                    }
-                                }
-                                sh 'docker/bin/push2deis.sh'
-                            }
-                        } catch(err) {
-                            utils.ircNotification([stage: stageName, status: 'failure'])
-                            throw err
-                        }
+                    if ( region.deis_bin ) {
+                        utils.pushDeis(region, config, appname, stageName)
+                    } else if (region.config_repo){
+                        utils.deploy(region, config, appname, stageName, namespace)
                     }
                     utils.ircNotification([message: appURL, status: 'shipped'])
                 }
