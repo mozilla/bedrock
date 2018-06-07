@@ -12,13 +12,13 @@ services:
     image: mozorg/bedrock_assets:${GIT_COMMIT:-latest}
     command: gulp watch
     ports:
-      - "3000:3000"
-      - "3001:3001"
+      - "8000:8000"
+      - "8001:8001"
     volumes:
       - ./media/:/app/media:delegated
       - ./bedrock/:/app/bedrock:delegated
     environment:
-      BS_PROXY_URL: "app:8000"
+      BS_PROXY_URL: "app:8080"
       BS_OPEN_BROWSER: "false"
 
   # the django app
@@ -27,10 +27,10 @@ services:
       context: .
       target: devapp
     image: mozorg/bedrock_test:${GIT_COMMIT:-latest}
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py runserver 0.0.0.0:8080
     env_file: .env
     ports:
-      - "8000:8000"
+      - "8080:8080"
     volumes:
       - ./bedrock/:/app/bedrock:delegated
       - ./bin/:/app/bin:delegated
