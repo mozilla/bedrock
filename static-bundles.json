@@ -842,6 +842,13 @@
     },
     {
       "files": [
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js"
+      ],
+      "name": "firefox_accounts-features"
+    },
+    {
+      "files": [
         "js/base/mozilla-traffic-cop.js",
         "js/firefox/accounts-features-experiment.js"
       ],
@@ -1199,11 +1206,17 @@
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
-        "js/firefox/features/sync.js",
-        "js/firefox/features/sync-init.js"
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js"
       ],
       "name": "firefox-features-sync"
+    },
+    {
+      "files": [
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js"
+      ],
+      "name": "firefox_accounts_features"
     },
     {
       "files": [

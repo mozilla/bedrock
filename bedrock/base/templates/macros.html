@@ -236,3 +236,88 @@
     </footer>
   </section>
 {%- endmacro %}
+
+{% macro fxa_create_account_button(button_location, id_prefix, campaign, entrypoint, content = '', source = '' ) %}
+  {# - creates the "create account" button which links to accounts.firefox.com
+       and fallback states including:
+       - already logged in, not firefox, legacy firefox, Android Firefox, iOS Firefox
+       - use with media/js/base/mozilla-fxa.js and media/css/pebbles/components/_fxa.scss
+     - button_location and id_prefix are required
+       - button_location is for `data-download-location` which is for analytics
+          - examples: 'primary cta', 'footer cta'
+       - id_prefix is combined with some sufixes to create unique IDs for all buttons and links
+         - example: 'features-header'
+     - campaign is for utm_campaign on the Fxa and fallback links
+     - entrypoint is for the fxa team, it indicates where the user came from
+       - the prefix `mozilla.org:` will be appended to it
+       - example: 'fxa.features'
+       - when in doubt ask the fxa team to recommend a value
+     - content is for utm_content param
+       - content will default to the path to the page, minus the locale
+  #}
+  {# Parameters for accounts.firefox.com link #}
+  {% set service = 'sync' %}
+  {% set context = 'fx_desktop_v3' %}
+  {% set entrypoint = 'mozilla.org:' + entrypoint %}
+  {% if content %}
+    {% set utm_content = content %}
+  {% else %}
+    {% set utm_content = request.path_info.replace('/', '%2F') %}
+  {% endif %}
+
+  {# Create accounts.firefox.com link #}
+  {% set accounts_url = ['https://accounts.firefox.com/signup?service=', service,
+                          '&context=', context,
+                          '&entrypoint=', entrypoint,
+                          '&utm_content=', utm_content,
+                          '&utm_campaign=', campaign
+                        ]|join %}
+
+  {% if source %}
+    {% set accounts_url = accounts_url + '&utm_source=' + source %}
+  {% endif %}
+
+  {# Create ids for buttons and links #}
+  {% set download_id = '{}-download'.format(id_prefix) %}
+  {% set account_id = '{}-account'.format(id_prefix) %}
+  {% set android_id = '{}-android'.format(id_prefix) %}
+  {% set ios_id = '{}-ios'.format(id_prefix) %}
+  {% set update_id = '{}-update'.format(id_prefix) %}
+  {% set link_id = '{}-link'.format(id_prefix) %}
+
+  {# campaign for iOS app store link #}
+  {% set app_store_campaign = campaign + '-appstore-button' %}
+
+  <div class="show-fxa-not-fx show-fxa-default">
+    {{ download_firefox(dom_id=download_id, download_location=button_location) }}
+  </div>
+  <div class="show-fxa-supported-signed-out">
+    <a href="{{ accounts_url }}" class="button button-hollow button-light" data-button-name="Create account" data-link-type="button" data-cta-position="{{ button_location }}" id="{{ account_id }}">
+      {{ _('Create account') }}
+    </a>
+  </div>
+  <div class="show-fxa-supported-signed-in fxa-app-buttons">
+    <p>{{ _('Get the app') }}</p>
+    <ul>
+      <li>
+        {{ google_play_button(id=android_id, anchor_attributes={'data-download-location': button_location}) }}
+      </li>
+      <li>
+        <a href="{{ firefox_ios_url(app_store_campaign) }}" data-link-type="download" data-download-os="iOS" data-download-location="{{ button_location }}" id="{{ ios_id }}">
+          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="show-fxa-unsupported">
+    <a href="https://support.mozilla.org/kb/update-firefox-latest-version/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign={{ campaign }}" class="button button-hollow button-light" data-link-type="link" data-link-name="Update your Firefox" id="{{ update_id }}">
+      {{ _('Update your Firefox') }}
+    </a>
+  </div>
+  <div class="show-fxa-android">
+    <a href="https://support.mozilla.org/kb/sync-bookmarks-tabs-history-and-passwords-android/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign={{ campaign }}" class="button button-hollow button-light" data-link-type="link" data-link-name="Learn more" id="{{ link_id }}">{{ _('Learn more') }}</a>
+  </div>
+  <div class="show-fxa-ios">
+    <a href="https://support.mozilla.org/kb/sync-firefox-bookmarks-and-browsing-history-iOS/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign={{ campaign }}" class="button button-hollow button-light" data-link-type="link" data-link-name="Learn more" id="{{ link_id }}">{{ _('Learn more') }}</a>
+  </div>
+{%- endmacro %}

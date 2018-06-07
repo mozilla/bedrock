@@ -5,10 +5,10 @@
 /*
 This iteration of /whatsnew has multiple states:
 
-1. User is not logged in to Sync (or UITour JS fails/times out):
+1. User is not logged in to FxA (or UITour JS fails/times out):
     Display the FxA iframe
 
-2. User is logged in to Sync, but does not have any mobile devices set up:
+2. User is logged in to FxA, but does not have any mobile devices set up:
     Display App/Play store badges for Firefox Mobile
 
     i. Send to Device widget is available in the user's locale:
@@ -16,7 +16,7 @@ This iteration of /whatsnew has multiple states:
     ii. Send to Device widget is *not* available in the user's locale:
         Display a QR code for Firefox Mobile
 
-3. User is logged in to Sync, and *does* have a mobile device set up:
+3. User is logged in to FxA, and *does* have a mobile device set up:
     Display a QR code for Firefox Focus
     Display App/Play store badges for Focus
 */
@@ -41,7 +41,7 @@ This iteration of /whatsnew has multiple states:
     }
 
     function showFirefoxMobile() {
-        mainContent.classList.add('show-fx-mobile');
+        mainContent.classList.add('show-fxa-mobile');
 
         // initialize Send to Device widget if present/available
         if (sendTo) {
@@ -73,14 +73,14 @@ This iteration of /whatsnew has multiple states:
         });
     }
 
-    client.getSyncDetails(function(details) {
-        // if user is not signed in to sync, show the FxA form
+    client.getFxaDetails(function(details) {
+        // if user is not signed in to FxA, show the FxA form
         if (!details.setup) {
             showFxa();
-        // if the user is signed in to Sync but doesn't have any mobile devices set up, show Fx mobile content
-        } else if (details.mobileDevices === 0) {
+        // if the user is signed in to FxA but doesn't have any mobile devices set up, show Fx mobile content
+        } else if (details.mobileDevices === 'unknown' || details.mobileDevices === 0) {
             showFirefoxMobile();
-        // if user is signed in to Sync and has mobile devices set up, show Focus content
+        // if user is signed in to FxA and has mobile devices set up, show Focus content
         } else {
             showFocus();
         }

@@ -7,8 +7,8 @@ $(function() {
     var analytics = Mozilla.Analytics;
     var client = Mozilla.Client;
     var dataLayer = window.dataLayer = window.dataLayer || [];
-    var fxDetailsComplete = false;
-    var syncDetailsComplete = false;
+    var firefoxDetailsComplete = false;
+    var fxaDetailsComplete = false;
 
     function sendCoreDataLayer() {
         var dataLayerCore = {
@@ -25,25 +25,26 @@ $(function() {
     }
 
     function checkSendCoreDataLayer() {
-        if (fxDetailsComplete && syncDetailsComplete) {
+        if (firefoxDetailsComplete && fxaDetailsComplete) {
             sendCoreDataLayer();
         }
     }
 
+    client.getFxaDetails(function(details) {
+        dataLayer.push(analytics.formatFxaDetails(details));
+        fxaDetailsComplete = true;
+        checkSendCoreDataLayer();
+    });
+
     if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
         client.getFirefoxDetails(function(details) {
             dataLayer.push(details);
-            fxDetailsComplete = true;
-            checkSendCoreDataLayer();
-        });
-
-        client.getSyncDetails(function(details) {
-            dataLayer.push(analytics.formatSyncDetails(details));
-            syncDetailsComplete = true;
+            firefoxDetailsComplete = true;
             checkSendCoreDataLayer();
         });
     } else {
-        sendCoreDataLayer();
+        firefoxDetailsComplete = true;
+        checkSendCoreDataLayer();
     }
 
     analytics.updateDataLayerPush();

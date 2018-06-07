@@ -515,30 +515,32 @@ describe('mozilla-client.js', function() {
 
     });
 
-    describe('getSyncDetails', function () {
+    describe('getFxaDetails', function () {
 
         beforeEach(function () {
             jasmine.clock().install();
         });
 
         afterEach(function () {
-            delete window.Mozilla.Client.SyncDetails;
+            delete window.Mozilla.Client.FxaDetails;
             jasmine.clock().uninstall();
         });
 
-        it('should fire the callback function with a Sync details object', function() {
+        it('should fire the callback function with a FxA details object', function() {
             var callback1 = jasmine.createSpy('callback1');
             var result = {
+                'firefox': true,
+                'legacy': false,
+                'mobile': false,
                 'setup': false,
-                'desktopDevices': 0,
-                'mobileDevices': 0,
-                'totalDevices': 0
+                'desktopDevices': false,
+                'mobileDevices': false
             };
 
-            window.Mozilla.Client.getSyncDetails(callback1);
+            window.Mozilla.Client.getFxaDetails(callback1);
             jasmine.clock().tick(500);
             expect(callback1).toHaveBeenCalledWith(result);
-            expect(window.Mozilla.Client.SyncDetails).toEqual(result);
+            expect(window.Mozilla.Client.FxaDetails).toEqual(result);
         });
 
     });
