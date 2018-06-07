@@ -1,7 +1,7 @@
 {% extends 'base-pebbles.html' %}
 
 {% block site_css %}
-  {% stylesheet 'protocol-core' %}
+  {{ css_bundle('protocol-core') }}
 {% endblock %}
 
 {% block tabzilla_tab %}{% endblock %}
