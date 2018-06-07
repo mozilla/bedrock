@@ -207,11 +207,12 @@
         <section>
           <h4>{{ _('How do I customize Firefox to meet my organization’s IT policy/requirements?') }}</h4>
           <p>
-          {%- trans mdn='https://developer.mozilla.org/Firefox/Enterprise_deployment',
+          {%- trans sumo_esr='https://support.mozilla.org/products/firefox-enterprise',
                     cck='https://mike.kaply.com/cck2/' -%}
-            There are several methods that can be used to customize Firefox and the best place to start is the
-            Enterprise list or the <a href="{{ mdn }}">enterprise deployment article</a> on MDN. There is also an
-            <a href="{{ cck }}">add-on for administrators</a> as well as third-party organizations who provide
+            On Windows, the recommended way to customize Firefox is through Group Policy. For other platforms,
+            the policy support is implemented using a JSON file called policies.json.
+            The best place to start is the <a href="{{ sumo_esr }}">documentation on support.mozilla.org</a> or Enterprise
+            list. There is also an <a href="{{ cck }}">add-on for administrators</a> as well as third-party organizations who provide
             customization services, and the Enterprise list is a good place to discuss requirements if you’re just
             getting started.
           {%- endtrans -%}
