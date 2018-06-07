@@ -37,8 +37,14 @@
     </header>
     {{ download_firefox('beta', platform='desktop', force_direct=True, alt_copy=_('Download'), dom_id="desktop-beta-download") }}
     <p class="notice">
-      {{_('Firefox Beta automatically sends feedback to Mozilla.')}}
-      <a href="{{ url('privacy.notices.firefox') + '#telemetry' }}">{{_('Learn more')}}</a>
+      {% if l10n_has_tag('privacy_201806') %}
+        {%- trans link=url('privacy.notices.firefox') + '#pre-release' -%}
+          By default, Beta sends data to Mozilla — and in some cases to our partners — to help us find and fix problems. <a href="{{ link }}">Learn more.</a>
+        {%- endtrans -%}
+      {% else %}
+        {{_('Firefox Beta automatically sends feedback to Mozilla.')}}
+        <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{_('Learn more')}}</a>
+      {% endif %}
     </p>
     <p class="notice">
       {% trans feedback='https://input.mozilla.com/feedback' %}
@@ -66,8 +72,14 @@
     </header>
     {{ download_firefox('alpha', platform='desktop', force_direct=True, alt_copy=_('Download'), dom_id="desktop-developer-download") }}
     <p class="notice">
-      {{_('Firefox Developer Edition automatically sends feedback to Mozilla.')}}
-      <a href="{{ url('privacy.notices.firefox') + '#telemetry' }}">{{_('Learn more')}}</a>
+      {% if l10n_has_tag('privacy_201806') %}
+        {%- trans link=url('privacy.notices.firefox') + '#pre-release' -%}
+          Developer Edition is an unstable testing and development platform. By default, Developer Edition sends data to Mozilla — and in some cases to our partners — to help us find and fix problems. <a href="{{ link }}">Learn more.</a>
+        {%- endtrans -%}
+      {% else %}
+        {{_('Firefox Developer Edition automatically sends feedback to Mozilla.')}}
+        <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{_('Learn more')}}</a>
+      {% endif %}
     </p>
   </div>
   <footer>
@@ -95,8 +107,14 @@
     </header>
     {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy=_('Download'), dom_id="desktop-nightly-download") }}
     <p class="notice">
-      {{_('Firefox Nightly automatically sends feedback to Mozilla.')}}
-      <a href="{{ url('privacy.notices.firefox') + '#telemetry' }}">{{_('Learn more')}}</a>
+      {% if l10n_has_tag('privacy_201806') %}
+        {%- trans link=url('privacy.notices.firefox') + '#pre-release' -%}
+          Nightly is an unstable testing and development platform. By default, Nightly sends data to Mozilla — and in some cases to our partners — to help us find and fix problems. <a href="{{ link }}">Learn more.</a>
+        {%- endtrans -%}
+      {% else %}
+        {{_('Firefox Nightly automatically sends feedback to Mozilla.')}}
+        <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{_('Learn more')}}</a>
+      {% endif %}
     </p>
   </div>
   <footer>
