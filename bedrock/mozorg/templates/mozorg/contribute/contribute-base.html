@@ -12,11 +12,11 @@
 {% block body_attrs %}{{ super() }} data-global-nav-current-link="get-involved"{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'contribute-base' %}
+  {{ css_bundle('contribute-base') }}
 {% endblock %}
 
 {% block js %}
-  {% javascript 'contribute-base' %}
+  {{ js_bundle('contribute-base') }}
 {% endblock %}
 
 {% block site_header_nav %}{% endblock %}

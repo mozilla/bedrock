@@ -16,7 +16,7 @@
 {% block body_attrs %}{{ super() }} data-global-nav-current-link="internet-health"{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'health-subpage' %}
+  {{ css_bundle('health-subpage') }}
 {% endblock %}
 
 {% block site_header %}
@@ -432,5 +432,5 @@
 {% block email_form %}{% endblock %}
 
 {% block js %}
-  {% javascript 'internet-health-subpage' %}
+  {{ js_bundle('internet-health-subpage') }}
 {% endblock %}

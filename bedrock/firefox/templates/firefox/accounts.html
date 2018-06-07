@@ -11,7 +11,7 @@
 {% block page_desc %}{{_('Get easy access to your bookmarks, passwords, tabs and more from any computer or mobile device running Firefox.')}}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox_accounts' %}
+  {{ css_bundle('firefox_accounts') }}
 {% endblock %}
 
 {% block body_class %}firefox-accounts{% endblock %}
@@ -63,5 +63,5 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'firefox_accounts' %}
+  {{ js_bundle('firefox_accounts') }}
 {% endblock %}

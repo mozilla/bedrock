@@ -4,8 +4,6 @@
 #
 set -exo pipefail
 
-BIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source $BIN_DIR/set_git_env_vars.sh
+source docker/bin/set_git_env_vars.sh
 
-TEST_IMAGE_TAG="mozorg/bedrock_test:${GIT_COMMIT}"
-docker run --rm --env-file docker/envfiles/test.env "$TEST_IMAGE_TAG"
+exec docker-compose run test-image

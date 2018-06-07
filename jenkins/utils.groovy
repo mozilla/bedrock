@@ -28,14 +28,12 @@ def ircNotification(Map args) {
     sh command
 }
 
-def pushDockerhub(from_repo, to_repo='') {
-    to_repo = to_repo ?: from_repo
+def pushDockerhub(from_repo) {
     withCredentials([[$class: 'StringBinding',
                       credentialsId: 'DOCKER_PASSWORD',
                       variable: 'DOCKER_PASSWORD']]) {
         withEnv(['DOCKER_USERNAME=mozjenkins',
-                 "FROM_DOCKER_REPOSITORY=${from_repo}",
-                 "DOCKER_REPOSITORY=${to_repo}"]) {
+                 "FROM_DOCKER_REPOSITORY=${from_repo}"]) {
             retry(2) {
                 sh 'docker/bin/push2dockerhub.sh'
             }
@@ -46,8 +44,7 @@ def pushDockerhub(from_repo, to_repo='') {
 def integrationTestJob(propFileName, appURL='') {
     return {
         node {
-            unstash 'scripts'
-            unstash 'tests'
+            unstash 'workspace'
             def testScript = "docker/bin/run_integration_tests.sh ${propFileName}".toString()
             withCredentials([[$class: 'UsernamePasswordMultiBinding',
                               credentialsId: 'SAUCELABS_CREDENTIALS',

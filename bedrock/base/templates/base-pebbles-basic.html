@@ -4,7 +4,7 @@
 
 {% block site_css %}
   {{ super() }}
-  {% stylesheet 'pebbles-basic' %}
+  {{ css_bundle('pebbles-basic') }}
 {% endblock %}
 
 {% block tabzilla_tab %}{% endblock %}

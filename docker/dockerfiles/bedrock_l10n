@@ -1,9 +1,0 @@
-FROM mozorg/bedrock_code:${GIT_COMMIT}
-
-ENV BRANCH_NAME=${BRANCH_NAME}
-RUN bin/run-sync-all.sh
-
-# Change User
-USER root
-RUN chown webdev.webdev -R .
-USER webdev

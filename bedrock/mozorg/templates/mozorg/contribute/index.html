@@ -151,6 +151,6 @@
 {% endblock contrib_content %}
 
 {% block js %}
-  {% javascript 'contribute-base' %}
-  {% javascript 'contribute-landing' %}
+  {{ js_bundle('contribute-base') }}
+  {{ js_bundle('contribute-landing') }}
 {% endblock %}

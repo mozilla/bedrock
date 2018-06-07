@@ -5,7 +5,7 @@
 {% block body_class %}sand{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'legal_fraud_report' %}
+  {{ css_bundle('legal_fraud_report') }}
 {% endblock %}
 
 {% block content %}
@@ -202,5 +202,5 @@
 {% block email_form %}{% endblock %}
 
 {% block js %}
-  {% javascript 'legal_fraud_report' %}
+  {{ js_bundle('legal_fraud_report') }}
 {% endblock  %}

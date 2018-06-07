@@ -46,7 +46,7 @@ data-panel3-button="{{ _('Got it!') }}"
 {% block stub_attribution %}{% endblock %}
 
 {% block site_css %}
-  {% stylesheet 'tracking-protection-tour' %}
+  {{ css_bundle('tracking-protection-tour') }}
 {% endblock %}
 
 {% block page_title_prefix %}{% endblock %}
@@ -121,7 +121,7 @@ data-panel3-button="{{ _('Got it!') }}"
 {% block email_form %}{% endblock %}
 
 {% block site_js %}
-  {% javascript 'tracking-protection-tour' %}
+  {{ js_bundle('tracking-protection-tour') }}
 {% endblock %}
 
 {# Bug 1381776 #}

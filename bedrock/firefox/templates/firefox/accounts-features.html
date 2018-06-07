@@ -9,14 +9,14 @@
 {% block page_desc %}{{_('Share links instantly. Sync bookmarks and passwords securely.')}}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox_accounts_features' %}
+  {{ css_bundle('firefox_accounts_features') }}
 {% endblock %}
 
 {% block body_class %}firefox-accounts-features{% endblock %}
 
 {% block experiments %}
   {% if switch('accounts-features-copy-experiment', ['en-US']) %}
-    {% javascript 'firefox_accounts_features_experiment' %}
+    {{ js_bundle('firefox_accounts_features_experiment') }}
   {% endif %}
 {% endblock %}
 

@@ -18,9 +18,9 @@
 {% block page_desc %}{{ _('Responsive engine, less memory usage and packed with features. Download for desktop now.') }}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox-home' %}
+  {{ css_bundle('firefox-home') }}
   {% if switch('firefox_home_fbvideochat_funnelcake', ['en-US']) %}
-    {% stylesheet 'firefox-home-fbvideochat-funnelcake' %}
+    {{ css_bundle('firefox-home-fbvideochat-funnelcake') }}
   {% endif %}
 {% endblock %}
 
@@ -439,8 +439,8 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'firefox-home' %}
+  {{ js_bundle('firefox-home') }}
   {% if switch('firefox_home_fbvideochat_funnelcake', ['en-US']) %}
-    {% javascript 'firefox-home-fbvideochat-funnelcake' %}
+    {{ js_bundle('firefox-home-fbvideochat-funnelcake') }}
   {% endif %}
 {% endblock %}

@@ -8,7 +8,7 @@
 
 {% block experiments %}
   {% if switch('experiment-berlin-video', ['de']) %}
-    {% javascript 'firefox_new_berlin_experiment' %}
+    {{ js_bundle('firefox_new_berlin_experiment') }}
   {% endif %}
 {% endblock %}
 
@@ -17,5 +17,5 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'firefox_new_scene1_berlin' %}
+  {{ js_bundle('firefox_new_scene1_berlin') }}
 {% endblock %}

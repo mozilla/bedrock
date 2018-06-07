@@ -7,7 +7,7 @@
   <head>
     <meta charset="utf-8">{# Note: Must be within first 512 bytes of page #}
 
-    {% javascript 'site' %}
+    {{ js_bundle('site') }}
 
     <!--[if !lte IE 8]><!-->
     {% block experiments %}{% endblock %}
@@ -55,13 +55,13 @@
       <script src="{{ static('js/libs/html5shiv.js') }}"></script>
 
       {# Basic styles, only for IE8 and lower #}
-      {% stylesheet 'oldIE' %}
+      {{ css_bundle('oldIE') }}
     <![endif]-->
 
     <!--[if !lte IE 8]><!-->
     {# Global styles, hidden from IE8 and lower #}
     {% block site_css %}
-      {% stylesheet 'responsive' %}
+      {{ css_bundle('responsive') }}
     {% endblock %}
 
     {# Page-specific styles, hidden from IE8 and lower #}
@@ -179,18 +179,18 @@
 
     {% block site_js %}
       <!--[if !lte IE 8]><!-->
-        {% javascript 'common' %}
+        {{ js_bundle('common') }}
       <!--<![endif]-->
 
       <!--[if lte IE 8]>
-        {% javascript 'common-ie8' %}
+        {{ js_bundle('common-ie8') }}
       <![endif]-->
     {% endblock %}
 
     {# Bug 1279291 #}
     {% block stub_attribution %}
       {% if settings.STUB_ATTRIBUTION_RATE %}
-        {% javascript 'stub-attribution' %}
+        {{ js_bundle('stub-attribution') }}
       {% endif %}
     {% endblock %}
 
@@ -200,7 +200,7 @@
     {# Bug 1381776 #}
     {% block update_notification %}
       {% if switch('firefox-update-notification', ['en-US']) %}
-        {% javascript 'firefox-update-notification' %}
+        {{ js_bundle('firefox-update-notification') }}
       {% endif %}
     {% endblock %}
 

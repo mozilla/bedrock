@@ -5,11 +5,11 @@
 
 {% block page_css %}
   {{ super() }}
-  {% stylesheet 'security-bug-bounty-hall-of-fame' %}
+  {{ css_bundle('security-bug-bounty-hall-of-fame') }}
 {% endblock %}
 
 {% block js %}
-  {% javascript 'accordion' %}
+  {{ js_bundle('accordion') }}
 {% endblock %}
 
 {% block article %}

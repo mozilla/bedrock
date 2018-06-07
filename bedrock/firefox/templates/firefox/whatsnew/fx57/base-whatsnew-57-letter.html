@@ -9,7 +9,7 @@
 {% block page_title %}{{ _('The new Firefox. Fast for good.') }}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox-whatsnew-57-letter' %}
+  {{ css_bundle('firefox-whatsnew-57-letter') }}
 {% endblock %}
 
 {% block body_class %}quantum-letter{% endblock %}

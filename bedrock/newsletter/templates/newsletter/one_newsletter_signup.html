@@ -21,7 +21,7 @@
 
 {% block site_css %}
   {{ super() }}
-  {% stylesheet 'newsletter' %}
+  {{ css_bundle('newsletter') }}
 {% endblock %}
 
 {% block content %}

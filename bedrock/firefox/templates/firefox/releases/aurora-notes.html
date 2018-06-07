@@ -7,7 +7,7 @@
 {% block gtm_page_id %}data-gtm-page-id="/firefox/android/auroranotes/"{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox_releasenotes_firefox' %}
+  {{ css_bundle('firefox_releasenotes_firefox') }}
 {% endblock %}
 
 {% set channel_name = 'Aurora' %}

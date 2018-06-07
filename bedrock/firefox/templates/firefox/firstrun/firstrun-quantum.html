@@ -8,7 +8,7 @@
 
 {% block experiments %}
   {% if switch('firstrun-copy-experiment', ['en-US']) %}
-    {% javascript 'experiment_firstrun_copy' %}
+    {{ js_bundle('experiment_firstrun_copy') }}
   {% endif %}
 {% endblock %}
 
@@ -19,7 +19,7 @@
 {% endblock %}
 
 {% block site_css %}
-  {% stylesheet 'firefox_firstrun_quantum' %}
+  {{ css_bundle('firefox_firstrun_quantum') }}
 {% endblock %}
 
 {% block global_nav %}{% endblock %}
@@ -71,5 +71,5 @@
 {% block update_notification %}{% endblock %}
 
 {% block js %}
-  {% javascript 'firefox_firstrun_quantum' %}
+  {{ js_bundle('firefox_firstrun_quantum') }}
 {% endblock %}

@@ -18,8 +18,8 @@
 
 {% block page_css %}
   {{ super() }}
-  {% stylesheet 'firefox-features-hub-detail' %}
-  {% stylesheet 'firefox-features-sync' %}
+  {{ css_bundle('firefox-features-hub-detail') }}
+  {{ css_bundle('firefox-features-sync') }}
 {% endblock %}
 
 {% block body_id %}firefox-features-send-tabs{% endblock %}
@@ -152,5 +152,5 @@
 
 {% block js %}
   {{ super() }}
-  {% javascript 'firefox-features-sync' %}
+  {{ js_bundle('firefox-features-sync') }}
 {% endblock %}

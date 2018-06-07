@@ -15,3 +15,8 @@ if [[ -z "$GIT_BRANCH" ]]; then
     export GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
     export BRANCH_NAME="$GIT_BRANCH"
 fi
+export BRANCH_NAME_SAFE="${BRANCH_NAME/\//-}"
+export BRANCH_AND_COMMIT="${BRANCH_NAME_SAFE}-${GIT_COMMIT}"
+# Docker Hub Stuff
+export DEPLOYMENT_DOCKER_REPO="mozorg/bedrock"
+export DEPLOYMENT_DOCKER_IMAGE="${DEPLOYMENT_DOCKER_REPO}:${BRANCH_AND_COMMIT}"

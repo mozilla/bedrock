@@ -14,7 +14,7 @@
 {% block page_desc %}{{_('Millions of people around the world trust Firefox Web browsers on Android, iOS and desktop computers. Fast. Private. Download now!')}}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox_new_wait_face' %}
+  {{ css_bundle('firefox_new_wait_face') }}
 {% endblock %}
 
 {% block body_id %}firefox{% endblock %}

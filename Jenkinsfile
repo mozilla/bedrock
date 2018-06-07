@@ -50,14 +50,6 @@ def loadBranch(String branch) {
 node {
     stage ('Prepare') {
         checkout scm
-        sh 'git submodule sync'
-        sh 'git submodule update --init --recursive'
-        // clean up
-        sh 'make clean'
-        // save the files for later
-        stash name: 'scripts', includes: 'bin/,docker/'
-        stash name: 'tests', includes: 'tests/,requirements/'
-        stash 'workspace'
     }
     loadBranch(env.BRANCH_NAME)
 }

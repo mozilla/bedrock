@@ -9,7 +9,7 @@
 {% block page_desc %}{{ _('Combining MPL-Licensed files with an &#40;L&#41;GPL-Licensed Project: Guidelines for Developers') }}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'mpl' %}
+  {{ css_bundle('mpl') }}
 {% endblock %}
 
 {% block content %}

@@ -9,7 +9,7 @@
 {% block page_desc %}{{ _('MPL 2.0 FAQ') }}{% endblock %}
 
 {% block page_css %}
-    {% stylesheet 'mpl' %}
+    {{ css_bundle('mpl') }}
 {% endblock %}
 
 {% block content %}

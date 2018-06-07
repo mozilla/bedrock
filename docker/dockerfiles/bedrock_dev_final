@@ -1,9 +1,0 @@
-FROM bedrock_dev
-
-COPY . ./
-RUN ./manage.py collectstatic -lv 0 --noinput
-RUN ./docker/bin/softlinkstatic.py
-
-# Change User
-RUN chown webdev.webdev -R .
-USER webdev

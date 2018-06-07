@@ -8,7 +8,7 @@
 {% block page_desc %}{{ _('Switching to Firefox is fast, easy and risk-free, because Firefox imports your bookmarks, autofills, passwords and preferences from Chrome.') }}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox-switch' %}
+  {{ css_bundle('firefox-switch') }}
 {% endblock %}
 
 {% block body_id %}firefox-switch{% endblock %}
@@ -75,5 +75,5 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'firefox-switch' %}
+  {{ js_bundle('firefox-switch') }}
 {% endblock %}

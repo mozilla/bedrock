@@ -20,7 +20,7 @@
 {% block body_attrs %}{{ super() }} data-global-nav-current-link="internet-health"{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'internet-health-hub' %}
+  {{ css_bundle('internet-health-hub') }}
 {% endblock %}
 
 {% block site_header %}
@@ -208,5 +208,5 @@
 {% block email_form %}{% endblock %}
 
 {% block js %}
-  {% javascript 'internet-health-hub' %}
+  {{ js_bundle('internet-health-hub') }}
 {% endblock %}

@@ -5,7 +5,7 @@
 {% extends "base-pebbles-basic.html" %}
 
 {% block page_css %}
-  {% stylesheet 'security' %}
+  {{ css_bundle('security') }}
 {% endblock %}
 
 {% set navigation_bar_security = [

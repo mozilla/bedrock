@@ -13,7 +13,7 @@
 {% block body_class %}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'css-grid-demo' %}
+  {{ css_bundle('css-grid-demo') }}
 {% endblock %}
 
 {% block site_header %}{% endblock %}
@@ -659,5 +659,5 @@
 {% block email_form %}{% endblock %}
 
 {% block js %}
-  {% javascript 'css-grid-demo' %}
+  {{ js_bundle('css-grid-demo') }}
 {% endblock %}

@@ -9,7 +9,7 @@
 {% extends "firefox/base-pebbles.html" %}
 
 {% block page_css %}
-  {% stylesheet 'firefox-mobile' %}
+  {{ css_bundle('firefox-mobile') }}
 {% endblock %}
 
 {% block page_title %}{{ _('Mobile browsers for iOS and Android') }} | {{ _('Firefox') }}{% endblock %}
@@ -406,5 +406,5 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'firefox-mobile' %}
+  {{ js_bundle('firefox-mobile') }}
 {% endblock %}

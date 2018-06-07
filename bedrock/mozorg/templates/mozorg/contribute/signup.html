@@ -10,7 +10,7 @@
 
 {% block page_css %}
   {{ super() }}
-  {% stylesheet 'contribute-signup' %}
+  {{ css_bundle('contribute-signup') }}
 {% endblock %}
 
 {% block contrib_nav_cta %}{% endblock %}
@@ -142,5 +142,5 @@
 
 {% block js %}
   {{ super() }}
-  {% javascript 'contribute-signup' %}
+  {{ js_bundle('contribute-signup') }}
 {% endblock %}

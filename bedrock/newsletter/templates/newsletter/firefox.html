@@ -12,11 +12,11 @@
 {% block body_class %}newsletter-mozilla{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'newsletter-firefox' %}
+  {{ css_bundle('newsletter-firefox') }}
 {% endblock %}
 
 {% block js %}
-  {% javascript 'newsletter-firefox' %}
+  {{ js_bundle('newsletter-firefox') }}
 {% endblock %}
 
 {% block site_header %}{% endblock %}

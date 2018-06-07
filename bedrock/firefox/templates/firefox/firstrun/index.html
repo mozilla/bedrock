@@ -13,11 +13,11 @@
 {% endblock %}
 
 {% block site_css %}
-  {% stylesheet 'firefox_firstrun' %}
+  {{ css_bundle('firefox_firstrun') }}
 {% endblock %}
 
 {% block js %}
-  {% javascript 'firefox_firstrun' %}
+  {{ js_bundle('firefox_firstrun') }}
 {% endblock %}
 
 {% block global_nav %}{% endblock %}

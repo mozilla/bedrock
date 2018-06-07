@@ -213,7 +213,7 @@ A `bug for the IRC plugin`_ has been raised.
 .. _bedrock_integration_tests_runner: https://ci.us-west.moz.works/view/Bedrock/job/bedrock_integration_tests_runner/
 .. _configured in Jenkins: https://ci.us-west.moz.works/configure
 .. _become unresponsive: https://issues.jenkins-ci.org/browse/JENKINS-28175
-.. _test dependencies: https://github.com/mozilla/bedrock/blob/master/requirements/test.txt
+.. _test dependencies: https://github.com/mozilla/bedrock/blob/master/requirements/dev.txt
 .. _Selenium Docker versions: https://hub.docker.com/r/selenium/hub/tags/
 .. _Sauce Labs platform configurator: https://wiki.saucelabs.com/display/DOCS/Platform+Configurator/
 .. _enhancement request: https://issues.jenkins-ci.org/browse/JENKINS-26210

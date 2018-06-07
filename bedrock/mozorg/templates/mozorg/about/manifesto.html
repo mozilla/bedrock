@@ -44,7 +44,7 @@
 {% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'manifesto' %}
+  {{ css_bundle('manifesto') }}
 {% endblock %}
 
 {% block site_header_logo %}{% endblock %}
@@ -399,7 +399,7 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'manifesto' %}
+  {{ js_bundle('manifesto') }}
 {% endblock %}
 
   {#- End the redesigned landing page -#}

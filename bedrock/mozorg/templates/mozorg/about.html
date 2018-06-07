@@ -10,7 +10,7 @@
 {% block body_attrs %}{{ super() }} data-global-nav-current-link="about-us"{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'about' %}
+  {{ css_bundle('about') }}
 {% endblock %}
 
 {% block content %}
@@ -121,5 +121,5 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'about_video' %}
+  {{ js_bundle('about_video') }}
 {% endblock %}

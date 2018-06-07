@@ -9,7 +9,7 @@
 {% block page_desc %}{{ _('These guides serve as resources to bring together all our brands and to help define their visual and stylistic elements. They exist to provide you with the tools and assets you need to further our mission through communications, websites, products and more.') }}{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'styleguide' %}
+  {{ css_bundle('styleguide') }}
 {% endblock %}
 
 {% block content %}

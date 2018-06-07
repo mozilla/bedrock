@@ -5,10 +5,24 @@
   "private": true,
   "dependencies": {
     "@mozilla-protocol/core": "1.0.0",
+    "ansi-colors": "^1.1.0",
     "clean-css-cli": "4.0.5",
-    "less": "2.7.1",
-    "node-sass": "4.5.0",
-    "uglify-js": "2.7.5"
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-cached": "^1.1.1",
+    "gulp-clean-css": "^3.9.3",
+    "gulp-concat": "^2.6.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-filter": "^5.1.0",
+    "gulp-if": "^2.0.2",
+    "gulp-less": "^3.5.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-stylelint": "^3.9.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-watch": "^5.0.0",
+    "merge-stream": "^1.0.1",
+    "yargs": "^11.0.0"
   },
   "repository": {
     "type": "git",
@@ -20,16 +34,19 @@
     "url": "https://bugzilla.mozilla.org/"
   },
   "devDependencies": {
-    "del": "^2.2.2",
-    "gulp": "^3.9.1",
-    "gulp-eslint": "^3.0.1",
-    "gulp-stylelint": "^3.9.0",
-    "gulp-watch": "^4.3.6",
+    "browser-sync": "^2.23.7",
+    "concurrently": "^3.5.1",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
     "karma-coverage": "^0.5.5",
     "karma-firefox-launcher": "^0.1.7",
     "karma-jasmine": "^0.3.8",
     "sinon": "^1.17.3"
+  },
+  "bin": {
+    "browser-sync": "/.bin/browser-sync"
+  },
+  "scripts": {
+    "start": "concurrently --kill-others \"python manage.py runserver\" \"gulp\""
   }
 }

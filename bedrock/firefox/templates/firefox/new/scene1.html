@@ -9,7 +9,7 @@
 {# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
 {% block extrahead %}
   {{ super() }}
-  {% stylesheet 'firefox_new_scene1' %}
+  {{ css_bundle('firefox_new_scene1') }}
 {% endblock %}
 
 {% block body_id %}firefox-new-scene1{% endblock %}
@@ -122,5 +122,5 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'firefox_new_scene1' %}
+  {{ js_bundle('firefox_new_scene1') }}
 {% endblock %}

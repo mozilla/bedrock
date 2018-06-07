@@ -9,7 +9,7 @@
 
 {% block page_css %}
   {{ super() }}
-  {% stylesheet 'commit-access-requirements' %}
+  {{ css_bundle('commit-access-requirements') }}
 {% endblock %}
 
 {% block article %}

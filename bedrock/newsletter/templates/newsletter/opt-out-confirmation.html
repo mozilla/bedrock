@@ -10,7 +10,7 @@
 {% block canonical_urls %}<meta name="robots" content="noindex">{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'newsletter-opt-out-confirmation' %}
+  {{ css_bundle('newsletter-opt-out-confirmation') }}
 {% endblock %}
 
 {% block content %}
@@ -80,5 +80,5 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'newsletter-mozilla' %}
+  {{ js_bundle('newsletter-mozilla') }}
 {% endblock %}

@@ -23,7 +23,7 @@
 {% block body_class %}fx-notes{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'firefox_releasenotes_firefox' %}
+  {{ css_bundle('firefox_releasenotes_firefox') }}
 {% endblock %}
 
 {# channel_name is for display purposes where needed.  #}
@@ -363,7 +363,7 @@
 {% block email_form %}{% endblock %}
 
 {% block js %}
-  {% javascript 'releasenotes' %}
+  {{ js_bundle('releasenotes') }}
 {% endblock %}
 
 {% macro note_entry(note) %}

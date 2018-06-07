@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'privacy_quantum' %}
+  {{ css_bundle('privacy_quantum') }}
 {% endblock %}
 
 {% block body_class %}privacy-policy{% endblock %}
@@ -75,5 +75,5 @@
 {% endblock %}
 
 {% block js %}
-  {% javascript 'privacy_quantum' %}
+  {{ js_bundle('privacy_quantum') }}
 {% endblock %}

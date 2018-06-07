@@ -37,7 +37,7 @@
 
 {% block js %}
   {% if switch('tracking-pixel') %}
-    {% javascript 'firefox_new_pixel' %}
+    {{ js_bundle('firefox_new_pixel') }}
   {% endif %}
-  {% javascript 'firefox_new_scene2' %}
+  {{ js_bundle('firefox_new_scene2') }}
 {% endblock %}

@@ -12,11 +12,11 @@
 {% block body_attrs %}{{ super() }} data-global-nav-current-link="about-us"{% endblock %}
 
 {% block page_css %}
-  {% stylesheet 'history-slides' %}
+  {{ css_bundle('history-slides') }}
 {% endblock %}
 
 {% block js %}
-  {% javascript 'history-slides' %}
+  {{ js_bundle('history-slides') }}
 {% endblock %}
 
 {% block site_header_logo %}{% endblock %}
