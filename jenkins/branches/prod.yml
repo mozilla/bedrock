@@ -13,10 +13,10 @@ apps:
   - bedrock-prod
 integration_tests:
   oregon-b:
-    - headless
+    - chrome
     - download
     - firefox
-    - chrome
+    - headless
     - ie
     - ie8
   tokyo:
@@ -24,4 +24,7 @@ integration_tests:
   frankfurt:
     - headless
   iowa-a:
+    - chrome
+    - download
+    - firefox
     - headless
