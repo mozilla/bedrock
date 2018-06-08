@@ -15,4 +15,14 @@
   {% endif %}
 {% endblock %}
 
+{% block site_js %}
+<!--[if !lte IE 8]><!-->
+  {{ js_bundle('common-protocol') }}
+<!--<![endif]-->
+
+<!--[if lte IE 8]>
+  {{ js_bundle('common-ie8') }}
+<![endif]-->
+{% endblock %}
+
 {% block update_notification %}{% endblock %}

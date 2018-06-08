@@ -2,32 +2,28 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../pebbles/includes/lib';
-@import '../../pebbles/components/card';
-@import '../../pebbles/components/modal';
-@import '../../hubs/sections';
-@import '../../hubs/masthead';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/includes/lib";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/card";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/billboard";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/button";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/newsletter-form";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/modal";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/templates/card-layout";
+
 @import '../../hubs/nav-download-button-remove';
-@import 'newsletter';
 
 $callout-blue: #0060df;
 
-/* -------------------------------------------------------------------------- */
-// Common elements.
-
-body {
-    @include font-size(16px);
-    @include open-sans;
-}
-
-main {
-    h1, h2, h3, h4, h5, h6 {
-        @include zilla-slab;
-    }
-}
-
+// Override global-nav z-index for sticky header CTA.
 .moz-global-nav {
     z-index: 3;
+}
+
+.main-page-heading {
+    @include visually-hidden;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -45,46 +41,35 @@ main {
     p {
         margin-bottom: 0;
     }
-
-    .download-link:link {
-        padding: 6px 30px;
-    }
-
-    .fx-privacy-link {
-        display: none;
-    }
 }
 
 .primary-title {
-    @include font-size(18px);
+    @include text-display-sm;
     background: url('/media/img/logos/firefox/logo-quantum.png') top center no-repeat; //image is 189x189, no need for retina mq when displaying at 40px
-    background-size: 40px 40px;
+    @include background-size(40px 40px);
     font-weight: normal;
     line-height: 40px;
-    margin-bottom: 8px;
-    padding-top: 40px;
+    margin-bottom: $margin-sm;
+    padding-top: $padding-xxl;
 }
 
 .primary-title-sub {
-    @include font-size(24px);
-    margin-bottom: 10px;
+    @include text-display-lg;
+    margin-bottom: $margin-sm;
 }
 
-@media #{$mq-tablet} {
+@media #{$media-md} {
     .primary-wrapper {
         padding-bottom: 40px;
     }
 
     .primary-title {
         background-position: top left;
-        margin-bottom: 40px;
-        padding-left: 60px;
+        margin-bottom: $margin-xxl;
+        padding-left: $padding-xxl;
         padding-top: 0;
         text-align: left;
-    }
-
-    .primary-title-sub {
-        @include font-size(36px);
+        line-height: 40px;
     }
 }
 
@@ -97,10 +82,10 @@ main {
 }
 
 #download-primary {
-    margin-top: 25px;
+    margin-top: $margin-lg;
 }
 
-@media #{$mq-tablet} {
+@media #{$media-md} {
     #download-primary {
         margin-top: 0;
         position: absolute;
@@ -110,13 +95,12 @@ main {
         .no-js & {
             // no-js HTML is a list of 7 buttons, they need more space and can't be absolutely positioned
             position: static;
-            margin-top: 20px;
         }
     }
 }
 
 
-@media #{$mq-desktop} {
+@media #{$media-lg} {
     .download-firefox-primary-cta {
         border-top: 100px solid #fff;
         position: relative;
@@ -140,8 +124,8 @@ main {
     }
 
     .content {
-        padding-bottom: 8px;
-        padding-top: 8px;
+        padding-bottom: $padding-sm;
+        padding-top: $padding-sm;
     }
 
     .primary-title {
@@ -169,6 +153,10 @@ main {
     .download-list {
         margin-bottom: 0;
     }
+
+    .fx-privacy-link {
+        display: none;
+    }
 }
 
 .sticky-dismiss {
@@ -177,16 +165,16 @@ main {
     bottom: 0;
     cursor: pointer;
     overflow: hidden;
-    padding: 0 0 0 40px;
+    padding: 0 0 0 $padding-xxl;
     position: absolute;
     right: 0;
     top: 0;
     width: 0;
 
     &:after {
-        @include font-size(17px);
+        @include text-body-lg;
         color: #fff;
-        content: '×';
+        content: '×'; // TODO we should use a Protocol design asset here.
         display: block;
         left: 0;
         line-height: 32px;
@@ -197,7 +185,7 @@ main {
     }
 }
 
-@media #{$mq-tablet} {
+@media #{$media-md} {
     .download-firefox-sticky-cta {
         .primary-title {
             float: left;
@@ -207,12 +195,12 @@ main {
         }
 
         .primary-title-sub {
-            @include font-size(18px);
+            @include text-display-xs;
             display: block;
             float: left;
             line-height: 40px;
             margin-bottom: 0;
-            padding-right: 10px;
+            padding-right: $padding-sm;
             text-align: left;
         }
 
@@ -238,13 +226,31 @@ main {
     }
 }
 
-@media #{$mq-desktop} {
+@media #{$media-lg} {
     .download-firefox-sticky-cta {
         .primary-desc-sub {
             display: block;
             float: left;
             line-height: 40px;
         }
+    }
+}
+
+.mozilla-content {
+    margin-top: $margin-lg;
+}
+
+/* -------------------------------------------------------------------------- */
+// Custom card styles for lazy-loaded images.
+
+.mzp-c-card {
+    .lazy-image-container .mzp-c-card-image {
+        opacity: 1;
+        transition: opacity 0.3s;
+    }
+
+    .lazy-image-container .mzp-c-card-image[data-src] {
+        opacity: 0;
     }
 }
 
@@ -256,9 +262,9 @@ main {
     margin: 20px 0;
 
     .section-heading {
-        @include font-size(18px);
+        @include text-display-xs;
         @include open-sans;
-        margin-bottom: 10px;
+        margin-bottom: $margin-sm;
     }
 
     .tagline {
@@ -276,13 +282,9 @@ main {
         }
     }
 
-    .card-title {
-        @include open-sans;
-    }
-
-    @media #{$mq-tablet} {
-        margin: 20px 0 60px;
-        padding-top: 20px;
+    @media #{$media-md} {
+        margin: $margin-xl 0 0;
+        padding-top: $padding-lg;
     }
 }
 
@@ -308,36 +310,31 @@ main {
 }
 
 .secondary-title {
-    @include font-size(24px);
+    @include text-display-md;
     background: url('/media/img/logos/firefox/logo-quantum.png') center 35px no-repeat; //image is 189x189, no need for retina mq when displaying at 80px
-    background-size: 80px 80px;
-    margin-bottom: 25px;
+    @include background-size(80px 80px);
+    margin-bottom: $margin-lg;
     padding-top: 155px;
 }
 
 #download-secondary {
-    margin-bottom: 25px;
-    margin-top: 25px;
-
-        .download-link {
-            padding: 6px 30px;
-        }
+    margin-bottom: $margin-lg;
+    margin-top: $margin-lg;
 }
 
-@media #{$mq-tablet} {
+@media #{$media-md} {
     .secondary-content {
         text-align: left;
         width: 410px;
     }
 
     .secondary-title {
-        @include font-size(36px);
         background-position: left 43px;
-        margin-bottom: 10px;
+        margin-bottom: $margin-sm;
     }
 
     #download-secondary {
-        margin-top: 15px;
+        margin-top: $margin-md;
     }
 
     .download-firefox-secondary-cta {
@@ -353,70 +350,17 @@ main {
             top: 55px;
             left: 495px;
 
-            @media #{$mq-high-res} {
+            @media #{$media-high-res} {
                 background-image: url('/media/img/home/2018/browser-high-res.png');
             }
         }
     }
 }
 
-@media #{$mq-desktop-wide} {
+@media #{$media-xl} {
     .download-firefox-secondary-cta {
         &:before {
             left: calc(50% - 208px);
-        }
-    }
-}
-
-
-/* -------------------------------------------------------------------------- */
-// Custom modal styles.
-
-#modal > .window > .inner {
-    background: rgba(0, 0, 0, .9);
-    max-width: 1190px;
-    padding: 30px;
-
-    header {
-        @include font-size-level4;
-        background: rgba(0, 0, 0, .9);
-        color: #fff;
-        font-weight: bold;
-        margin: 0;
-        padding: 0 60px 0 0;
-    }
-
-    video {
-        display: block;
-        height: auto;
-        margin: 0 auto 30px;
-        max-height: 680px;
-        width: 100%;
-    }
-
-    figcaption p {
-        @include font-size(18px);
-        color: #fff;
-
-        a:link,
-        a:visited {
-            color: #fff;
-        }
-
-        a:hover,
-        a:focus,
-        a:active {
-            color: darken(#fff, 5%);
-        }
-    }
-
-    #modal-close .button {
-        border: none;
-    }
-
-    @media #{$mq-desktop} {
-        figcaption p {
-            max-width: 66%;
         }
     }
 }

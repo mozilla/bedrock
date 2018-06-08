@@ -24,8 +24,7 @@ def email_newsletter_form(ctx, newsletters='mozilla-and-you', title=None,
                           thankyou_content=None, footer=True,
                           process_form=True, include_title=None,
                           submit_text=None, button_class=None,
-                          email_placeholder=None, email_label=None,
-                          spinner_color=None):
+                          spinner_color=None, protocol_component=False):
     request = ctx['request']
     context = ctx.get_all()
 
@@ -53,10 +52,10 @@ def email_newsletter_form(ctx, newsletters='mozilla-and-you', title=None,
         submit_text=submit_text,
         button_class=button_class,
         spinner_color=spinner_color,
-        email_placeholder=email_placeholder,
-        email_label=email_label,
         success=success,
     ))
 
-    html = render_to_string('newsletter/includes/form.html', context, request=request)
+    template_name = 'newsletter/includes/form-protocol.html' if protocol_component else 'newsletter/includes/form.html'
+
+    html = render_to_string(template_name, context, request=request)
     return jinja2.Markup(html)

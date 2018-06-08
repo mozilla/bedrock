@@ -30,12 +30,6 @@
 {% block body_id %}home{% endblock %}
 {% block body_class %}lang-{{ LANG }}{% endblock %}
 
-{% block experiments %}
-  {% if switch('experiment-home-2018', ['en-US']) %}
-    {{ js_bundle('experiment-home') }}
-  {% endif %}
-{% endblock %}
-
 {% block extra_meta %}
 <!-- validates bing webmaster tools -->
 <meta name="msvalidate.01" content="B7B177115A634927D608514DA17B2574">
