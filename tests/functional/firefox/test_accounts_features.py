@@ -7,9 +7,15 @@ import pytest
 from pages.firefox.accounts_features import AccountsFeaturesPage
 
 
-@pytest.mark.sanity
-@pytest.mark.smoke
+@pytest.mark.skip_if_not_firefox(reason='Create Account button is shown only to Firefox users.')
 @pytest.mark.nondestructive
-def test_cta_is_displayed(base_url, selenium):
+def test_is_create_account_button_displayed(base_url, selenium):
     page = AccountsFeaturesPage(selenium, base_url).open()
-    assert page.primary_cta.is_displayed
+    assert page.is_create_account_button_displayed
+
+
+@pytest.mark.skip_if_firefox(reason='Download button is shown only to non-Firefox users.')
+@pytest.mark.nondestructive
+def test_is_download_button_displayed(base_url, selenium):
+    page = AccountsFeaturesPage(selenium, base_url).open()
+    assert page.download_button.is_displayed
