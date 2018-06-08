@@ -17,3 +17,7 @@ integration_tests:
     - headless
   frankfurt:
     - headless
+  iowa-a:
+    - download
+    - firefox
+    - headless
