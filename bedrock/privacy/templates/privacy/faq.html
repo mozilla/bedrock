@@ -80,7 +80,7 @@
         </dt>
         <dd>
           <p>
-            {%- trans link="https://addons.mozilla.org/en-US/firefox/addon/firefox-pioneer/" -%}
+            {%- trans link="https://addons.mozilla.org/firefox/addon/firefox-pioneer/" -%}
             Mozilla doesn’t know as much as you’d expect about how people browse the web. As a browser maker, that’s actually a big challenge for us. That is why we’ve built opt-in tools, such as <a href="{{ link }}">Firefox Pioneer</a>, which allows interested users to give us insight into their web browsing.  If you sync your browsing history across Firefox installations, we don’t know what that history is - because it’s encrypted by your device.
             {%- endtrans -%}
           </p>
@@ -160,13 +160,13 @@
             {%- endtrans -%}
           </p>
           <p>
-            {%- trans link -%}
-              We may also collect additional data in pre-release for one of our studies. For example, some studies require what we call “web activity data” data, which may include URLs and other information about certain websites. This helps us answer specific questions to improve Firefox, for example, how to better integrate popular websites in specific locales.
+            {%- trans link='https://support.mozilla.org/kb/shield' -%}
+              We may also collect additional data in pre-release for one of our <a href="{{ link }}">studies</a>. For example, some studies require what we call “web activity data” data, which may include URLs and other information about certain websites. This helps us answer specific questions to improve Firefox, for example, how to better integrate popular websites in specific locales.
             {%- endtrans -%}
           </p>
           <p>
             {%- trans -%}
-              Mozilla’s pre-release versions of Firefox are development platforms, frequently updated with experimental features. We collect more data in pre-release than what we do after release in order to understand how these experimental features are working. You can turn opt out of having this data collected in preferences.
+              Mozilla’s pre-release versions of Firefox are development platforms, frequently updated with experimental features. We collect more data in pre-release than what we do after release in order to understand how these experimental features are working. You can opt out of having this data collected in preferences.
             {%- endtrans -%}
           </p>
         </dd>
@@ -189,7 +189,7 @@
         </dt>
         <dd>
           <p>
-            {%- trans settings='https://support.mozilla.org/en-US/kb/firefox-options-preferences-and-settings', data='https://support.mozilla.org/en-US/kb/share-telemetry-data-mozilla-help-improve-firefox#w_how-do-i-opt-in-or-opt-out-of-sending-performance-data' -%}
+            {%- trans settings='https://support.mozilla.org/kb/firefox-options-preferences-and-settings', data='https://support.mozilla.org/kb/share-telemetry-data-mozilla-help-improve-firefox#w_how-do-i-opt-in-or-opt-out-of-sending-performance-data' -%}
               Yes. User control is one of our data privacy principles. We put that into practice in Firefox on our <a href="{{ settings }}">privacy settings page</a>, which serves as a one-stop shop for anyone looking to take control of their privacy in Firefox. You can <a href="{{ data }}">turn off data collection</a> there.
             {%- endtrans -%}
           </p>
@@ -243,7 +243,7 @@
       </dl>
 
       <p>
-        <a href="{{ link }}">{{ _('Find out more about how Mozilla protects the internet.') }}</a>
+        <a href="https://internethealthreport.org/">{{ _('Find out more about how Mozilla protects the internet.') }}</a>
       </p>
 
     </div>
