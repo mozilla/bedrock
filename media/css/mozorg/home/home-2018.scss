@@ -22,6 +22,10 @@ $callout-blue: #0060df;
     z-index: 3;
 }
 
+.main-page-heading {
+    @include visually-hidden;
+}
+
 /* -------------------------------------------------------------------------- */
 // Shared primary and sticky cta styles
 
@@ -61,7 +65,7 @@ $callout-blue: #0060df;
 
     .primary-title {
         background-position: top left;
-        margin-bottom: $padding-xxl;
+        margin-bottom: $margin-xxl;
         padding-left: $padding-xxl;
         padding-top: 0;
         text-align: left;

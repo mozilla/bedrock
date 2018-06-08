@@ -86,7 +86,7 @@
 
 {% block content %}
 <main>
-  <header class="hidden">
+  <header class="main-page-heading">
     {# Main page h1 is hidden from view and exists mainly for SEO purposes #}
     <h1>{{ self.page_title() }}</h1>
   </header>
@@ -170,7 +170,7 @@
       </div>
 
       <div class="mzp-c-billboard mzp-l-billboard-right">
-        <a href="#" class="mzp-c-billboard-media-link">
+        <a href="{{ url('mozorg.about') }}" class="mzp-c-billboard-media-link">
           {{ high_res_img('home/2018/billboard-more-power.png', {'alt': '', 'class': 'mzp-c-billboard-image', 'width': '346', 'height': '346'}) }}
         </a>
         <div class="mzp-c-billboard-content">
@@ -264,7 +264,7 @@
 
     <div class="mzp-l-content">
       <div class="mzp-c-billboard mzp-l-billboard-left">
-        <a href="#" class="mzp-c-billboard-media-link">
+        <a href="https://foundation.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=billboard" class="mzp-c-billboard-media-link">
           {{ high_res_img('home/2018/billboard-healthy-internet.png', {'alt': '', 'class': 'mzp-c-billboard-image', 'width': '346', 'height': '346'}) }}
         </a>
         <div class="mzp-c-billboard-content">
@@ -331,7 +331,7 @@
       </div>
 
       <div class="mzp-c-billboard mzp-l-billboard-right">
-        <a href="#" class="mzp-c-billboard-media-link">
+        <a href="{{ url('mozorg.technology') }}" class="mzp-c-billboard-media-link">
           {{ high_res_img('home/2018/billboard-open-minds.png', {'alt': '', 'class': 'mzp-c-billboard-image', 'width': '346', 'height': '346'}) }}
         </a>
         <div class="mzp-c-billboard-content">
