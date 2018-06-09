@@ -6,6 +6,7 @@ regions:
   - oregon-b
   - tokyo
   - frankfurt
+  - iowa-a
 apps:
   - bedrock-dev
 integration_tests:
