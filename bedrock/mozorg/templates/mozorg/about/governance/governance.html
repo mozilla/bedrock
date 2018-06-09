@@ -9,10 +9,8 @@
 
 {% block article %}
 <h1><span class="highlight">{{_('Governance')}}</span></h1>
-{% trans
-  open_source_url="http://opensource.org/",
-  meritocracy_url="http://en.wikipedia.org/wiki/Meritocracy" %}
-<p>Mozilla is an <a href="{{ open_source_url }}">open source</a> project governed as a <a href="{{ meritocracy_url }}">meritocracy</a>. Our community is structured as a virtual organization where authority is distributed to both volunteer and employed community members as they show their abilities through contributions to the project.</p>
+{% trans open_source_url="https://opensource.org/" %}
+<p>Mozilla is an <a href="{{ open_source_url }}">open source</a> project. Our community is structured as a virtual organization. Authority is primarily distributed to both volunteer and employed community members irrespective of employment affiliation as they show their ability through contributions to the project. The project also seeks to debias this system of distributing authority through active interventions that engage and encourage participation from diverse communities.</p>
 <p>Learn more about who is involved with governance and how our global community works together on our common mission.</p>
 {% endtrans %}
 {% trans roles_url=url('mozorg.about.governance.roles'),

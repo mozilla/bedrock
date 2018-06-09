@@ -11,7 +11,7 @@
 {% block article %}
 <h1><span class="highlight">{{_('Mozilla Roles and Leadership')}}</span></h1>
 
-<p>{{_('The Mozilla project is governed by a virtual management team made up of experts from various parts of the community. Some people with leadership roles are employed to work on Mozilla and others are not. Leadership roles are granted based on how active an individual is within the community as well as the quality and nature of his or her contributions. This meritocracy is a resilient and effective way to guide our global community. The different community leadership roles include:')}} </p>
+<p>{{_('The Mozilla project is governed by a virtual management team made up of experts from various parts of the community. Some people with leadership roles are employed to work on the Mozilla project and others are not. Leadership roles are primarily granted to individuals based on how active they are in the community, as well as the quality and nature of their contribution. This is a resilient and effective way to guide our global community. The different community leadership roles include:')}} </p>
 
 <h2 id="module-owners-and-peers">{{_('Module Owners and Peers')}}</h2>
 
@@ -20,13 +20,6 @@
 	module_url="https://wiki.mozilla.org/Modules",
 	module_activities_url="https://wiki.mozilla.org/Module_Owners_Activities_Modules" %}
 <p><a href="{{ moduleowners_url }}">Module owners</a> are responsible for leading the development of a module of code or a community activity. This role requires a range of tasks, including approving patches to be checked into the module or resolving conflicts among community members. Lists of <a href="{{ module_url }}">code module owners</a> and <a href="{{ module_activities_url }}">non-code module owners are available.</a></p>
-
-{% endtrans %}
-<h2 id="super-reviewers">{{_('Super-Reviewers')}} </h2>
-{% trans
-	super_reviewers_url= url('mozorg.about.governance.roles'),
-	code_review_url ="https://developer.mozilla.org/docs/Code_Review_FAQ" %}
-<p><a href="{{ super_reviewers_url }}">Super-reviewers</a> are a designated group of strong hackers who review code for its effects on the overall state of the tree and adherence to Mozilla coding guidelines. Super-review generally follows code review by the module owner, and the approval of a super-reviewer is generally required to check in code. More information on code review can be found in the <a href="{{ code_review_url }}"> mozilla.org code review FAQ.</a></p>
 
 {% endtrans %}
 
