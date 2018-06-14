@@ -12,8 +12,7 @@ services:
     image: mozorg/bedrock_assets:${GIT_COMMIT:-latest}
     command: gulp watch
     ports:
-      - "8000:8000"
-      - "8001:8001"
+      - "8000-8010:8000-8010"
     volumes:
       - ./media/:/app/media:delegated
       - ./bedrock/:/app/bedrock:delegated

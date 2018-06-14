@@ -34,24 +34,24 @@ help:
 .docker-build-pull:
 	${MAKE} pull
 
-build: .env .docker-build-pull submodules
+build: .docker-build-pull
 	${DC} build app assets
 	touch .docker-build
 
-pull:
+pull: .env submodules
 	-GIT_COMMIT= ${DC} pull release app assets builder app-base
 	touch .docker-build-pull
 
 rebuild: clean build
 
-run: .docker-build
+run: .docker-build-pull
 	${DC} up assets app
 
 submodules:
 	git submodule sync
 	git submodule update --init --recursive
 
-shell: .docker-build
+shell: .docker-build-pull
 	${DC} run app python manage.py shell_plus
 
 clean:
@@ -68,17 +68,17 @@ clean:
 #	state files
 	-rm -f .docker-build*
 
-lint: .docker-build
+lint: .docker-build-pull
 	${DC} run test flake8 bedrock lib tests
 	${DC} run assets gulp js:lint css:lint
 
-test: .docker-build
+test: .docker-build-pull
 	${DC} run test
 
 test-image: .docker-build
 	${DC} run test-image
 
-docs: .docker-build
+docs: .docker-build-pull
 	${DC} run app $(MAKE) -C docs/ clean
 	${DC} run app $(MAKE) -C docs/ html
 

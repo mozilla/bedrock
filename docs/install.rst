@@ -12,11 +12,6 @@ There are two primary methods of installing bedrock: Docker and Local. Whichever
     $ git clone --recursive git://github.com/mozilla/bedrock.git
     $ cd bedrock
 
-Now configure the application to run locally by creating your local settings environment file
-(You shouldn't need to customize anything in there yet)::
-
-    $ cp .env-dist .env
-
 After these basic steps you can choose your install method below. Docker is the easiest and recommended way, but local is also possible
 and may be preferred by people for various reasons.
 
@@ -29,10 +24,9 @@ Docker Installation
     If not please do that now or skip to the ``Local Installation`` section.
 
 This is the simplest way to get started developing for bedrock. If you're on Linux or Mac (and possibly Windows 10 with the
-Linux subsystem) you can run a script that will pull our production docker images and use those to build developer ones::
+Linux subsystem) you can run a script that will pull our production and development docker images and start them::
 
-    $ make clean
-    $ make run
+    $ make clean run
 
 .. note::
 
@@ -45,19 +39,32 @@ at `localhost:8000 <http://localhost:8000/>`_. Go to that URL in a browser and y
 In this mode the site will refresh itself when you make changes to any template or media file. Simply open your editor of
 choice and modify things and you should see those changes reflected in your browser.
 
+.. note::
+
+    It's a good idea to run ``make pull`` from time to time. This will pull down the latest Docker images from our repository
+    ensuring that you have the latest dependencies installed among other things. If you see any strange errors after a
+    ``git pull`` then ``make pull`` is a good thing to try for a quick fix.
+
 If you don't have or want to use Make you can call the docker and compose commands directly::
 
-    $ docker-compose pull app assets
+    $ docker-compose pull
     $ git submodule sync
     $ git submodule update --init --recursive
-    $ docker-compose build app assets
+    $ [[ ! -f .env ]] && cp .env-dist .env
 
 Then starting it all is simply::
 
     $ docker-compose up app assets
 
-All of the building is handled by the ``Makefile`` script and called by Make if you follow the above directions.
+All of this is handled by the ``Makefile`` script and called by Make if you follow the above directions.
 You **DO NOT** need to do both.
+
+These directions pull and use the pre-built images that our deployment process has pushed to the
+`Docker Hub <https://hub.docker.com/u/mozorg/>`_. If you need to add or change any dependencies for Python
+or Node then you'll need to build new images for local testing. You can do this by updating the requirements
+files and/or package.json file then simply running::
+
+    $ make build
 
 Local Installation
 ------------------
@@ -120,6 +127,18 @@ We manage our local docker environment with docker-compose and Make. All you nee
     $ make test
 
 If you don't have Make you can simply run ``docker-compose run test``.
+
+If you'd like to run only a subset of the tests or only one of the test commands you can accomplish
+that with a command like the following::
+
+    $ docker-compose run test py.test bedrock/firefox
+
+This example will run only the unit tests for the ``firefox`` app in bedrock. You can substitute
+``py.test bedrock/firefox`` with most any shell command you'd like and it will run in the Docker
+container and show you the output. You can also just run ``bash`` to get an interactive shell in
+the container which you can then use to run any commands you'd like and inspect the file system::
+
+    $ docker-compose run test bash
 
 Local
 -----
