@@ -38,7 +38,11 @@
 
     <div class="map">
       {% block map %}{% endblock %}
-      <small>© <a href="{{ link_openstreetmap }}">OpenStreetMap</a> contributors.</small>
+      <small>    
+        {% trans link_openstreetmap='http://openstreetmap.org/copyright' %}
+          © <a href="{{ link_openstreetmap }}">OpenStreetMap</a> contributors.
+        {% endtrans %}
+      </small>
     </div>
 
     <div class="page-content">
