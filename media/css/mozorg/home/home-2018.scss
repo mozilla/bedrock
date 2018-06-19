@@ -85,6 +85,10 @@ $callout-blue: #0060df;
     margin-top: $margin-lg;
 }
 
+.download-button {
+    @include light-links;
+}
+
 @media #{$media-md} {
     #download-primary {
         margin-top: 0;
