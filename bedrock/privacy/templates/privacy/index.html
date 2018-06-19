@@ -61,11 +61,19 @@
   <section id="side-principles">
     <h2>{{ _('Data Privacy Principles') }}</h2>
     <p>
-      {%- trans link=url('privacy.principles') -%}
-        Mozilla is an open source project with a mission to improve your Internet
-        experience. This is a driving force behind our data privacy practices.
-        <a href="{{ link }}">Read More</a>
+      {% if l10n_has_tag('updates-052018') %}
+      {%- trans faq=url('privacy.faq') -%}
+        Mozilla's Data Privacy Principles inspire our practices that respect and
+        protect people who use the Internet. Learn how these principles shape
+        Firefox and all of our products in this <a href="{{ faq }}">FAQ</a>.
       {%- endtrans -%}
+      {% else %}
+        {%- trans link=url('privacy.principles') -%}
+          Mozilla is an open source project with a mission to improve your Internet
+          experience. This is a driving force behind our data privacy practices.
+          <a href="{{ link }}">Read More</a>
+        {%- endtrans -%}
+      {% endif %}
     </p>
   </section>
   <section id="side-notices">
