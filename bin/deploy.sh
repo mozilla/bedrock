@@ -3,15 +3,9 @@ set -ex
 # required env vars: CONFIG_BRANCH, CONFIG_REPO, NAMESPACE, DEPLOYMENT_YAML
 # DEPLOYMENT_LOG_BASE_URL, DEPLOYMENT_NAME, DEPLOYMENT_VERSION
 
-if [[ -e ${CONFIG_CHECKOUT:=${BASH_SOURCE%/*}/../config_checkout} ]]; then
-    cd ${CONFIG_CHECKOUT}
-    git fetch
-    git reset --hard origin/${CONFIG_BRANCH}
-    git clean -f
-else
-    git clone --depth=1 -b ${CONFIG_BRANCH:=master} ${CONFIG_REPO} ${CONFIG_CHECKOUT}
-    cd ${CONFIG_CHECKOUT}
-fi
+pushd $(mktemp -d)
+git clone --depth=1 -b ${CONFIG_BRANCH:=master} ${CONFIG_REPO} config_checkout
+cd config_checkout
 
 . ../docker/bin/set_git_env_vars.sh # sets DEPLOYMENT_DOCKER_IMAGE
 set -u
@@ -34,3 +28,4 @@ until curl -sf $CHECK_URL; do
     attempt_counter=$(($attempt_counter+1))
     sleep 10
 done
+popd
