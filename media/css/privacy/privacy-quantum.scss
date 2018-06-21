@@ -8,6 +8,7 @@ body {
     @include open-sans;
 }
 
+.privacy-head,
 .privacy-footnote {
     background-color: #f3f3f3;
     color: #333;
@@ -15,11 +16,6 @@ body {
 
 /* POLICY HEADER */
 .privacy-head {
-    background: #000;
-    background: url('/media/img/privacy/privacy-header.png') left top no-repeat,
-                #000 radial-gradient(farthest-corner at 150px 50px, #00458b 0%, #000 100%);
-    @include background-size(contain);
-    color: #fff;
     padding: 20px;
 
     @media #{$mq-tablet} {
@@ -28,16 +24,6 @@ body {
 
     @media #{$mq-desktop} {
         padding: 60px 20px;
-    }
-
-    a:link,
-    a:visited {
-        color: #fff;
-
-        &:hover,
-        &:focus {
-            color: lighten($color-link, 25%);
-        }
     }
 
     .policy-title {
