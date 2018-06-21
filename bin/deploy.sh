@@ -3,11 +3,11 @@ set -ex
 # required env vars: CONFIG_BRANCH, CONFIG_REPO, NAMESPACE, DEPLOYMENT_YAML
 # DEPLOYMENT_LOG_BASE_URL, DEPLOYMENT_NAME, DEPLOYMENT_VERSION
 
+. ${BASH_SOURCE%/*}/../docker/bin/set_git_env_vars.sh # sets DEPLOYMENT_DOCKER_IMAGE
 pushd $(mktemp -d)
 git clone --depth=1 -b ${CONFIG_BRANCH:=master} ${CONFIG_REPO} config_checkout
 cd config_checkout
 
-. ../docker/bin/set_git_env_vars.sh # sets DEPLOYMENT_DOCKER_IMAGE
 set -u
 sed -i -e "s|image: .*|image: ${DEPLOYMENT_DOCKER_IMAGE}|" ${NAMESPACE}/${DEPLOYMENT_YAML:=deploy.yaml}
 git add ${NAMESPACE}/${DEPLOYMENT_YAML}
