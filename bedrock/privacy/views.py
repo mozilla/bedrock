@@ -100,6 +100,10 @@ firefox_os_notices = PrivacyDocView.as_view(
 firefox_cliqz_notices = FirefoxCliqzPrivacyDocView.as_view(
     legal_doc_name='firefox-cliqz_privacy_notice')
 
+firefox_fire_tv_notices = PrivacyDocView.as_view(
+    template_name='privacy/notices/firefox-fire-tv.html',
+    legal_doc_name='Firefox_FireTV_Privacy_Notice')
+
 firefox_cloud_notices = PrivacyDocView.as_view(
     template_name='privacy/notices/firefox-cloud.html',
     legal_doc_name='firefox_cloud_services_PrivacyNotice')
