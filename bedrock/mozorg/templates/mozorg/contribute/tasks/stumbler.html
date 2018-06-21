@@ -21,9 +21,7 @@
       </header>
       <div class="step-content">
         {{ high_res_img('contribute/signup/stumbler.png', {'alt': '', 'width': '620', 'class': 'feature-img'}) }}
-        {{ google_play_button(alt_href='https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler', anchor_attributes={
-          'target': '_blank'
-        }, class_name='stumbler-button', extra_img_attributes={
+        {{ google_play_button(href='https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler', product='Stumbler', class_name='stumbler-button', target='_blank', extra_img_attributes={
           'data-action': 'install', 'data-task': 'stumbler', 'data-step': 'one', 'data-complete': 'true'
         }) }}
         <p>

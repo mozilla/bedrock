@@ -49,7 +49,7 @@
 
             <ul class="mobile-download-buttons">
               <li class="android">
-                {{ google_play_button(alt_href=settings.GOOGLE_PLAY_FIREFOX_FOCUS_LINK, anchor_attributes={'data-link-type': 'download', 'data-download-os': 'Android', 'id': 'playStoreLink'}) }}
+                {{ google_play_button(href=settings.GOOGLE_PLAY_FIREFOX_FOCUS_LINK, id='playStoreLink', product='Focus') }}
               </li>
               <li class="ios">
                 <a id="appStoreLink" href="{{ settings.APPLE_APPSTORE_FIREFOX_FOCUS_LINK }}" data-link-type="download" data-download-os="iOS">

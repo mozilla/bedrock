@@ -68,7 +68,7 @@
       {% endif %}
         <ul class="mobile-download-buttons">
           <li class="android">
-            {{ google_play_button(alt_href='https://mzl.la/2JwvrgL', anchor_attributes={'data-link-type': 'download', 'data-download-os': 'Android', 'id': 'playStoreLink', 'data-mozillaonline-link': settings.GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE}) }}
+            {{ google_play_button(href='https://mzl.la/2JwvrgL', id='playStoreLink') }}
           </li>
           <li class="ios">
             <a id="appStoreLink" href="https://mzl.la/2KtrdHM" data-link-type="download" data-download-os="iOS">
@@ -105,7 +105,7 @@
         <div class="badges-wrapper">
           <ul class="mobile-download-buttons">
             <li class="android">
-              {{ google_play_button(alt_href='https://mzl.la/2HtC0UB', anchor_attributes={'data-link-type': 'download', 'data-download-os': 'Android', 'data-download-product': 'Focus', 'data-download-version': 'android', 'data-download-location': 'primary cta', 'id': 'playStoreLink'}) }}
+              {{ google_play_button(href='https://mzl.la/2HtC0UB', id='playStoreLink', product='Focus', extra_data_attributes={'download-product': 'Focus', 'download-version': 'android', 'download-location': 'primary cta'}) }}
             </li>
             <li class="ios">
               {# Klar is a separate app and needs its own link #}
