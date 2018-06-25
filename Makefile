@@ -49,7 +49,7 @@ run: .docker-build-pull
 
 submodules:
 	git submodule sync
-	git submodule update --init --recursive
+	git submodule update -f --init --recursive
 
 shell: .docker-build-pull
 	${DC} run app python manage.py shell_plus
