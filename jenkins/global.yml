@@ -16,6 +16,7 @@ regions:
     deis_bin: deis2
   iowa-a:
     name: gcp
+    cluster_name: iowa-a
     config_repo: git@www-config:mozmeao/www-config
     config_branch: git-sync-operator
     deployment_log_base_url: https://s3-us-west-2.amazonaws.com/mozmeao-deployments/iowa-a
