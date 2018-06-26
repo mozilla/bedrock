@@ -6,6 +6,7 @@ from django.conf.urls import url
 
 from .util import page
 from . import views
+from bedrock.base.waffle import switch
 from bedrock.redirects.util import redirect
 
 
@@ -75,8 +76,6 @@ urlpatterns = (
          'mozorg/about/policy/transparency/jul-dec-2016.html'),
     page('about/policy/transparency/jan-jun-2017',
          'mozorg/about/policy/transparency/jan-jun-2017.html'),
-    page('about/policy/transparency/jul-dec-2017',
-         'mozorg/about/policy/transparency/jul-dec-2017.html'),
 
     page('contact', 'mozorg/contact/contact-landing.html'),
     page('contact/spaces', 'mozorg/contact/spaces/spaces-landing.html'),
@@ -314,3 +313,8 @@ urlpatterns = (
     url(r'^projects/xforms/2005/type$', views.namespaces, {'namespace': 'xforms-type'}),
     url(r'^xbl$', views.namespaces, {'namespace': 'xbl'}),
 )
+
+if switch('transparency-report-030618'):
+    urlpatterns += (
+        page('about/policy/transparency/jul-dec-2017', 'mozorg/about/policy/transparency/jul-dec-2017.html'),
+    )

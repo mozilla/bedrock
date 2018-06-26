@@ -4,6 +4,10 @@
           <li><a href="{{ url('mozorg.about.policy.transparency.index') + '#definitions' }}">{{ _('Definitions') }}</a></li>
           {# This link should point to the latest report. Past reports are added to 'includes/past-reports.html' #}
           {# There are also links in the faq that need to be updated to point to the latest report. #}
+          {% if switch('transparency-report-030618') %}
           <li><a href="{{ url('mozorg.about.policy.transparency.jul-dec-2017') }}">{{ _('July-December 2017 Report') }}</a></li>
+          {% else %}
+          <li><a href="{{ url('mozorg.about.policy.transparency.jan-jun-2017') }}">{{ _('January-June 2017 Report') }}</a></li>
+          {% endif %}
         </ul>
       </nav>
