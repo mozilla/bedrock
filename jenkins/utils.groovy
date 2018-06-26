@@ -108,7 +108,8 @@ def deploy(region, config, appname, stageName, namespace) {
         deployYaml = "deploy.yaml"
     }
 
-    withEnv(["CONFIG_REPO=${region.config_repo}",
+    withEnv(["CLUSTER_NAME=${region.get('cluster_name', region.name)}",
+             "CONFIG_REPO=${region.config_repo}",
              "CONFIG_BRANCH=${region.config_branch}",
              "NAMESPACE=${namespace}",
              "DEPLOYMENT_LOG_BASE_URL=${region.deployment_log_base_url}",

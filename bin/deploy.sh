@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
-# required env vars: CONFIG_BRANCH, CONFIG_REPO, NAMESPACE, DEPLOYMENT_YAML
-# DEPLOYMENT_LOG_BASE_URL, DEPLOYMENT_NAME, DEPLOYMENT_VERSION
+# required env vars: CLUSTER_NAME, CONFIG_BRANCH, CONFIG_REPO, NAMESPACE,
+# DEPLOYMENT_YAML, DEPLOYMENT_LOG_BASE_URL, DEPLOYMENT_NAME, DEPLOYMENT_VERSION
 
 . ${BASH_SOURCE%/*}/../docker/bin/set_git_env_vars.sh # sets DEPLOYMENT_DOCKER_IMAGE
 pushd $(mktemp -d)
@@ -9,9 +9,10 @@ git clone --depth=1 -b ${CONFIG_BRANCH:=master} ${CONFIG_REPO} config_checkout
 cd config_checkout
 
 set -u
-sed -i -e "s|image: .*|image: ${DEPLOYMENT_DOCKER_IMAGE}|" ${NAMESPACE}/${DEPLOYMENT_YAML:=deploy.yaml}
-git add ${NAMESPACE}/${DEPLOYMENT_YAML}
-git commit -m "set image to ${DEPLOYMENT_DOCKER_IMAGE}" || echo "nothing new to commit"
+sed -i -e "s|image: .*|image: ${DEPLOYMENT_DOCKER_IMAGE}|" all-clusters/${NAMESPACE}/${DEPLOYMENT_YAML:=deploy.yaml}
+cp {all-clusters,${CLUSTER_NAME}}/${NAMESPACE}/${DEPLOYMENT_YAML}
+git add {all-clusters,${CLUSTER_NAME}}/${NAMESPACE}/${DEPLOYMENT_YAML}
+git commit -m "set image to ${DEPLOYMENT_DOCKER_IMAGE} in ${CLUSTER_NAME}" || echo "nothing new to commit"
 git push
 DEPLOYMENT_VERSION=$(git rev-parse --short HEAD)
 
