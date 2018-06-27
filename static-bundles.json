@@ -558,6 +558,12 @@
       "name": "privacy"
     },
     {
+        "files": [
+          "css/firefox/new/better-browser.scss"
+        ],
+        "name": "firefox_new_better_browser"
+    },
+    {
       "files": [
         "css/firefox/new/wait-face.scss"
       ],
@@ -1094,6 +1100,13 @@
         "js/firefox/new/berlin-experiment.js"
       ],
       "name": "firefox_new_berlin_experiment"
+    },
+    {
+      "files": [
+        "js/base/mozilla-traffic-cop.js",
+        "js/firefox/new/better-browser-experiment.js"
+      ],
+      "name": "firefox_new_better_browser_experiment"
     },
     {
       "files": [

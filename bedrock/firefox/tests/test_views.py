@@ -718,6 +718,62 @@ class TestFirefoxNew(TestCase):
         views.download_thanks(req)
         render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2.html')
 
+    # better browser test issue 5841
+
+    def test_better_browser_scene_1_va(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=betterbrowser&v=a')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_better_browser_scene_1_vb(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=betterbrowser&v=b')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/better-browser/scene1-b.html', ANY)
+
+    def test_better_browser_scene_1_vc(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=betterbrowser&v=c')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/better-browser/scene1-c.html', ANY)
+
+    def test_better_browser_scene_1_vd(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=betterbrowser&v=d')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/better-browser/scene1-d.html', ANY)
+
+    def test_better_browser_scene_1_ve(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=betterbrowser&v=e')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/better-browser/scene1-e.html', ANY)
+
+    def test_better_browser_scene_1_vf(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=betterbrowser&v=f')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/better-browser/scene1-f.html', ANY)
+
+    def test_better_browser_scene_1_non_us(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=betterbrowser&v=c')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_better_browser_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=betterbrowser')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/better-browser/scene2.html')
+
+    def test_better_browser_scene_2_non_us(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=betterbrowser')
+        req.locale = 'fr'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+
 
 class TestFirefoxNewNoIndex(TestCase):
     def test_scene_1_noindex(self):

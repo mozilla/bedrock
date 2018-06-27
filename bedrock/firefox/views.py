@@ -561,6 +561,8 @@ def download_thanks(request):
             template = 'firefox/new/portland/scene2-fast.html'
         elif experience in ['portland-safe', 'safe']:
             template = 'firefox/new/portland/scene2-safe.html'
+        elif experience == 'betterbrowser':
+            template = 'firefox/new/better-browser/scene2.html'
         else:
             template = 'firefox/new/scene2.html'
     else:
@@ -580,7 +582,7 @@ def new(request):
     locale = l10n_utils.get_locale(request)
 
     # ensure variant matches pre-defined value
-    if variant not in ['a', 'b']:  # place expected ?v= values in this list
+    if variant not in ['a', 'b', 'c', 'd', 'e', 'f']:  # place expected ?v= values in this list
         variant = None
 
     if scene == '2':
@@ -610,6 +612,11 @@ def new(request):
                 template = 'firefox/new/portland/scene1-fast.html'
             elif experience in ['portland-safe', 'safe']:
                 template = 'firefox/new/portland/scene1-safe.html'
+            elif experience == 'betterbrowser' and variant:
+                if variant == 'a':
+                    template = 'firefox/new/scene1.html'
+                else:
+                    template = 'firefox/new/better-browser/scene1-{}.html'.format(variant)
             else:
                 template = 'firefox/new/scene1.html'
         else:
