@@ -39,7 +39,9 @@
     <p class="notice">
       {% if l10n_has_tag('privacy_201806') %}
         {%- trans link=url('privacy.notices.firefox') + '#pre-release' -%}
-          By default, Beta sends data to Mozilla — and in some cases to our partners — to help us find and fix problems. <a href="{{ link }}">Learn more.</a>
+          Beta is an unstable testing and development platform. By default, Beta sends data to Mozilla
+          — and sometimes our partners — to help us handle problems and try ideas.
+          <a href="{{ link }}">Learn what is shared</a>.
         {%- endtrans -%}
       {% else %}
         {{_('Firefox Beta automatically sends feedback to Mozilla.')}}
@@ -74,7 +76,9 @@
     <p class="notice">
       {% if l10n_has_tag('privacy_201806') %}
         {%- trans link=url('privacy.notices.firefox') + '#pre-release' -%}
-          Developer Edition is an unstable testing and development platform. By default, Developer Edition sends data to Mozilla — and in some cases to our partners — to help us find and fix problems. <a href="{{ link }}">Learn more.</a>
+        Developer Edition is an unstable testing and development platform. By default,
+        Developer Edition sends data to Mozilla  — and sometimes our partners —
+        to help us handle problems and try ideas. <a href="{{ link }}">Learn what is shared</a>.
         {%- endtrans -%}
       {% else %}
         {{_('Firefox Developer Edition automatically sends feedback to Mozilla.')}}
@@ -109,7 +113,9 @@
     <p class="notice">
       {% if l10n_has_tag('privacy_201806') %}
         {%- trans link=url('privacy.notices.firefox') + '#pre-release' -%}
-          Nightly is an unstable testing and development platform. By default, Nightly sends data to Mozilla — and in some cases to our partners — to help us find and fix problems. <a href="{{ link }}">Learn more.</a>
+          Nightly is an unstable testing and development platform. By default, Nightly sends data to Mozilla
+          — and sometimes our partners — to help us handle problems and try ideas.
+          <a href="{{ link }}">Learn what is shared</a>.
         {%- endtrans -%}
       {% else %}
         {{_('Firefox Nightly automatically sends feedback to Mozilla.')}}
