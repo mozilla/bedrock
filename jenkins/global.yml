@@ -10,7 +10,9 @@ regions:
     deployment_log_base_url: https://s3-us-west-2.amazonaws.com/mozmeao-deployments/tokyo
   frankfurt:
     name: frankfurt
-    deis_bin: deis2
+    config_repo: git@www-config:mozmeao/www-config
+    config_branch: git-sync-operator
+    deployment_log_base_url: https://s3-us-west-2.amazonaws.com/mozmeao-deployments/frankfurt
   oregon-b:
     name: oregon-b
     deis_bin: deis2
