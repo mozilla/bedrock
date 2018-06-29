@@ -48,13 +48,11 @@
   <h3>1.1 Scope</h3>
   <p>This policy applies, as appropriate, to certificates matching any of the following (and the CAs which control or issue them):</p>
   <ol class="prose">
+    <li>CA certificates included in, or under consideration for inclusion in, the Mozilla root program.</li>
     <li>
-      <p>CA certificates included in, or under consideration for inclusion in, the Mozilla root program.</p>
-    </li>
-    <li>
-      <p>Intermediate certificates which have at least one valid, unrevoked chain up to such a CA certificate and which are not
-        technically constrained to prevent issuance of working server or email certificates. Such technical constraints could
-        consist of either:</p>
+      Intermediate certificates which have at least one valid, unrevoked chain up to such a CA certificate and which are not
+      technically constrained to prevent issuance of working server or email certificates. Such technical constraints could
+      consist of either:
       <ul>
         <li>an Extended Key Usage (EKU) extension which does not contain any of these KeyPurposeIds: anyExtendedKeyUsage, id-kp-serverAuth,
           id-kp-emailProtection; or:</li>
@@ -63,8 +61,8 @@
       </ul>
     </li>
     <li>
-      <p>End-entity certificates which have at least one valid, unrevoked chain up to such a CA certificate through intermediate
-        certificates which are all in scope, such end-entity certificates having either:</p>
+      End-entity certificates which have at least one valid, unrevoked chain up to such a CA certificate through intermediate
+      certificates which are all in scope, such end-entity certificates having either:
       <ul>
         <li>an Extended Key Usage (EKU) extension which contains one or more of these KeyPurposeIds: anyExtendedKeyUsage, id-kp-serverAuth,
           id-kp-emailProtection; or:</li>
@@ -145,13 +143,13 @@
     so the item can be considered for addition or clarification.</p>
   <ul class="prose">
     <li>
-      <p>Insofar as the Baseline Requirements attempt to define their own scope, the scope of this policy (section 1.1) overrides
-        that. Mozilla thus requires CA operations relating to issuance of
-        <strong>all</strong> SSL certificates in the scope of this policy to conform to the Baseline Requirements.</p>
+      Insofar as the Baseline Requirements attempt to define their own scope, the scope of this policy (section 1.1) overrides
+      that. Mozilla thus requires CA operations relating to issuance of
+      <strong>all</strong> SSL certificates in the scope of this policy to conform to the Baseline Requirements.
     </li>
     <li>
-      <p>Mozilla reserves the right to accept audits by auditors who do not meet the qualifications given in section 8.2 of the
-        Baseline Requirements, or refuse audits from auditors who do.</p>
+      Mozilla reserves the right to accept audits by auditors who do not meet the qualifications given in section 8.2 of the
+      Baseline Requirements, or refuse audits from auditors who do.
     </li>
   </ul>
   <h2>3. Documentation</h2>
@@ -188,53 +186,39 @@
     numbers):</p>
   <ul class="prose">
     <li>
-      <p>For the SSL trust bit, a CA and all subordinate CAs technically capable of issuing server certificates must have all
-        of the following audits:</p>
+      For the SSL trust bit, a CA and all subordinate CAs technically capable of issuing server certificates must have all
+      of the following audits:
       <ul>
-        <li>
-          <a href="http://www.webtrust.org/homepage-documents/item54279.pdf">WebTrust for CAs</a>
-        </li>
-        <li>
-          <a href="http://www.webtrust.org/principles-and-criteria/docs/item83987.pdf">WebTrust for CAs - SSL Baseline with Network Security</a>
-        </li>
-        <li>
-          <a href="http://www.webtrust.org/principles-and-criteria/docs/item83989.pdf">WebTrust for CAs - EV SSL</a> (if issuing EV certificates)</li>
+        <li><a href="http://www.webtrust.org/homepage-documents/item54279.pdf">WebTrust for CAs</a></li>
+        <li><a href="http://www.webtrust.org/principles-and-criteria/docs/item83987.pdf">WebTrust for CAs - SSL Baseline with Network Security</a></li>
+        <li><a href="http://www.webtrust.org/principles-and-criteria/docs/item83989.pdf">WebTrust for CAs - EV SSL</a> (if issuing EV certificates)</li>
       </ul>
     </li>
     <li>
-      <p>For the email trust bit, a CA and all subordinate CAs technically capable of issuing email certificates must have all
-        of the following audits:</p>
+      For the email trust bit, a CA and all subordinate CAs technically capable of issuing email certificates must have all
+      of the following audits:
       <ul>
-        <li>
-          <a href="http://www.webtrust.org/homepage-documents/item54279.pdf">WebTrust for CAs</a>
-        </li>
+        <li><a href="http://www.webtrust.org/homepage-documents/item54279.pdf">WebTrust for CAs</a></li>
       </ul>
     </li>
   </ul>
   <h5>3.1.2.2 ETSI</h5>
   <p>If being audited to the ETSI criteria, the following audit requirements apply (see section 3.1.1 for version numbers):</p>
   <ul class="prose">
-    <li>
-      <p>For the SSL trust bit, a CA and all subordinate CAs technically capable of issuing server certificates must have one
+    <li>For the SSL trust bit, a CA and all subordinate CAs technically capable of issuing server certificates must have one
         of the following audits, with at least one of the noted policies or sets of policies:
-      </p>
       <ul>
-        <li>
-          <a href="http://www.etsi.org/deliver/etsi_en/319400_319499/31941101/01.01.01_60/en_31941101v010101p.pdf">ETSI EN 319 411-1</a> (LCP and (DVCP or OVCP)) and/or (NCP and EVCP)</li>
-        <li>
-          <a href="http://www.etsi.org/deliver/etsi_en/319400_319499/31941102/02.01.01_60/en_31941102v020101p.pdf">ETSI EN 319 411-2</a> (QCP-w)</li>
+        <li><a href="http://www.etsi.org/deliver/etsi_en/319400_319499/31941101/01.01.01_60/en_31941101v010101p.pdf">ETSI EN 319 411-1</a> (LCP and (DVCP or OVCP)) and/or (NCP and EVCP)</li>
+        <li><a href="http://www.etsi.org/deliver/etsi_en/319400_319499/31941102/02.01.01_60/en_31941102v020101p.pdf">ETSI EN 319 411-2</a> (QCP-w)</li>
       </ul>
-      <p>An audit showing conformance with the EVCP policy is required if issuing EV certificates.
-      </p>
+      An audit showing conformance with the EVCP policy is required if issuing EV certificates.
     </li>
     <li>
-      <p>For the email trust bit, a CA and all subordinate CAs technically capable of issuing email certificates must have one
-        of the following audits, with at least one of the noted policies:</p>
+      For the email trust bit, a CA and all subordinate CAs technically capable of issuing email certificates must have one
+      of the following audits, with at least one of the noted policies:
       <ul>
-        <li>
-          <a href="http://www.etsi.org/deliver/etsi_en/319400_319499/31941101/01.01.01_60/en_31941101v010101p.pdf">ETSI EN 319 411-1</a> (LCP, NCP, or NCP+)</li>
-        <li>
-          <a href="http://www.etsi.org/deliver/etsi_en/319400_319499/31941102/02.01.01_60/en_31941102v020101p.pdf">ETSI EN 319 411-2</a> (QCP-l, QCP-l-qscd, QCP-n, or QCP-n-qscd)
+        <li><a href="http://www.etsi.org/deliver/etsi_en/319400_319499/31941101/01.01.01_60/en_31941101v010101p.pdf">ETSI EN 319 411-1</a> (LCP, NCP, or NCP+)</li>
+        <li><a href="http://www.etsi.org/deliver/etsi_en/319400_319499/31941102/02.01.01_60/en_31941102v020101p.pdf">ETSI EN 319 411-2</a> (QCP-l, QCP-l-qscd, QCP-n, or QCP-n-qscd)
         </li>
       </ul>
     </li>
@@ -274,28 +258,19 @@
   <p>We rely on publicly disclosed documentation (e.g., in a Certificate Policy and Certification Practice Statement) to ascertain
     that our requirements are met. Therefore, the following MUST be true:</p>
   <ol class="prose">
-    <li>
-      <p>the publicly disclosed documentation provides sufficient information for Mozilla to determine whether and how the CA
-        complies with this policy, including a description of the steps taken by the CA to verify certificate requests;</p>
-    </li>
-    <li>
-      <p>the documentation is available from the CA’s official website;</p>
-    </li>
-    <li>
-      <p>CPs and CPSes are made available to Mozilla under one of the following Creative Commons licenses (or later versions):</p>
+    <li>the publicly disclosed documentation provides sufficient information for Mozilla to determine whether and how the CA
+        complies with this policy, including a description of the steps taken by the CA to verify certificate requests;</li>
+    <li>the documentation is available from the CA’s official website;</li>
+    <li>CPs and CPSes are made available to Mozilla under one of the following Creative Commons licenses (or later versions):
       <ul>
-        <li>Attribution (
-          <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY</a>) 4.0</li>
-        <li>Attribution-ShareAlike (
-          <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA</a>) 4.0</li>
-        <li>Attribution-NoDerivs (
-          <a href="https://creativecommons.org/licenses/by-nd/4.0/">CC-BY-ND</a>) 4.0</li>
-        <li>Public Domain Dedication (
-          <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC-0</a>) 1.0</li>
+        <li>Attribution (<a href="https://creativecommons.org/licenses/by/4.0/">CC-BY</a>) 4.0</li>
+        <li>Attribution-ShareAlike (<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA</a>) 4.0</li>
+        <li>Attribution-NoDerivs (<a href="https://creativecommons.org/licenses/by-nd/4.0/">CC-BY-ND</a>) 4.0</li>
+        <li>Public Domain Dedication (<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC-0</a>) 1.0</li>
       </ul>
-      <p>or a set of equally permissive licensing terms accepted by Mozilla in writing. If no such license is indicated, the fact
-        of application is considered as permission from the CA to allow Mozilla and the public to deal with these documents,
-        and any later versions for root certificates which are included in Mozilla's trust store, under CC-BY-ND 4.0.</p>
+      or a set of equally permissive licensing terms accepted by Mozilla in writing. If no such license is indicated, the fact
+      of application is considered as permission from the CA to allow Mozilla and the public to deal with these documents,
+      and any later versions for root certificates which are included in Mozilla's trust store, under CC-BY-ND 4.0.
     </li>
   </ol>
   <p>CPs and CPSes MUST be reviewed and updated as necessary at least once every year, as required by the Baseline Requirements.
@@ -337,23 +312,19 @@
   <p>CAs MAY sign SHA-1 hashes over end-entity certificates which chain up to roots in Mozilla's program only if all the following
     are true:</p>
   <ol class="prose">
-    <li>
-      <p>The end-entity certificate:</p>
+    <li>The end-entity certificate:
+      <ul>
+        <li>is not within the scope of the Baseline Requirements;</li>
+        <li>contains an EKU extension which does not contain either of the id-kp-serverAuth or anyExtendedKeyUsage key purposes;</li>
+        <li>has at least 64 bits of entropy from a CSPRNG in the serial number.</li>
+      </ul>
     </li>
-    <li>
-      <p>is not within the scope of the Baseline Requirements;</p>
+    <li>The issuing certificate:
+      <ul>
+        <li>contains an EKU extension which does not contain either of the id-kp-serverAuth or anyExtendedKeyUsage key purposes;</li>
+        <li>has a pathlen:0 constraint.</li>
+      </ul>
     </li>
-    <li>contains an EKU extension which does not contain either of the id-kp-serverAuth or anyExtendedKeyUsage key purposes;</li>
-    <li>
-      <p>has at least 64 bits of entropy from a CSPRNG in the serial number.</p>
-    </li>
-    <li>
-      <p>The issuing certificate:</p>
-    </li>
-    <li>
-      <p>contains an EKU extension which does not contain either of the id-kp-serverAuth or anyExtendedKeyUsage key purposes;</p>
-    </li>
-    <li>has a pathlen:0 constraint.</li>
   </ol>
   <p>Point 2 does not apply if the certificate is an OCSP signing certificate manually issued directly from a root.</p>
   <p>CAs MAY sign SHA-1 hashes over intermediate certificates which chain up to roots in Mozilla's program only if the certificate
@@ -398,10 +369,12 @@
     <a href="http://tools.ietf.org/html/rfc5280#section-6.1.4">X.509v3 basicConstraints extension</a>
     with the cA boolean set to true. The term "subordinate CA" in this section refers to any organization or legal entity that
     is in possession or control of a certificate that is capable of being used to issue new certificates.</p>
-  <p>Intermediate certificates created after January 1, 2019:
-    <em> MUST contain an EKU extension; and,
-    </em> MUST NOT include the anyExtendedKeyUsage KeyPurposeId; and, * MUST NOT include both the id-kp-serverAuth and id-kp-emailProtection
-    KeyPurposeIds in the same certificate.</p>
+  <p>Intermediate certificates created after January 1, 2019:</p>
+  <ul class="prose">
+    <li>MUST contain an EKU extension; and,</li>
+    <li>MUST NOT include the anyExtendedKeyUsage KeyPurposeId; and,</li>
+    <li>MUST NOT include both the id-kp-serverAuth and id-kp-emailProtection KeyPurposeIds in the same certificate.</li>
+  </ul>
   <p>These requirements include all cross-certified certificates which chain to a certificate that is included in Mozilla’s CA
     Certificate Program.</p>
   <h4>5.3.1 Technically Constrained</h4>
