@@ -58,12 +58,18 @@
             <div data-accordion-role="tabpanel">
               <p>
                 {# NOTE: Remember to update these links when publishing a new report. #}
-                {% trans
-                  link_userdata=url('mozorg.about.policy.transparency.jan-jun-2017') + '#government-user-data',
-                  link_removal=url('mozorg.about.policy.transparency.jan-jun-2017') + '#government-content-removal',
-                  link_copytrade=url('mozorg.about.policy.transparency.jan-jun-2017') + '#copyright-trademark',
-                  link_supplement=url('mozorg.about.policy.transparency.jan-jun-2017') + '#supplement'
-                %}
+                {% if switch('transparency-report-030618') %}
+                  {% set link_userdata=url('mozorg.about.policy.transparency.jul-dec-2017') + '#government-user-data' %}
+                  {% set link_removal=url('mozorg.about.policy.transparency.jul-dec-2017') + '#government-content-removal' %}
+                  {% set link_copytrade=url('mozorg.about.policy.transparency.jul-dec-2017') + '#copyright-trademark' %}
+                  {% set link_supplement=url('mozorg.about.policy.transparency.jul-dec-2017') + '#supplement' %}
+                {% else %}
+                  {% set link_userdata=url('mozorg.about.policy.transparency.jan-jun-2017') + '#government-user-data' %}
+                  {% set link_removal=url('mozorg.about.policy.transparency.jan-jun-2017') + '#government-content-removal' %}
+                  {% set link_copytrade=url('mozorg.about.policy.transparency.jan-jun-2017') + '#copyright-trademark' %}
+                  {% set link_supplement=url('mozorg.about.policy.transparency.jan-jun-2017') + '#supplement' %}
+                {% endif %}
+                {% trans %}
                   We report on <a href="{{ link_userdata }}">Government Demands for User Data</a>, <a href="{{ link_removal }}">Government Requests for Content Removal</a>, and <a href="{{ link_copytrade }}">Copyright and Trademark Requests</a>. We also include a <a href="{{ link_supplement }}">Supplement</a>, which provides additional information.
                 {% endtrans %}
                 {{ _('With each additional report that we publish, we’ll continue to re­evaluate how we can be more transparent.') }}
@@ -87,6 +93,29 @@
                 {{ _('Recipients of <a href="%s">National Security Requests</a> can only publish reporting bands instead of specific figures.')|format(url('mozorg.about.policy.transparency.index') + '#dfn-natl-security-request') }}
                 {{ _('If we receive such a request, we may challenge these reporting bands, in addition to opposing any unlawful or overbroad requests.') }}
               </p>
+            </div>
+          </section>
+
+          <section>
+            <h3 data-accordion-role="tab">{{ ('How does Mozilla handle Gag Orders?') }}</h3>
+            <div data-accordion-role="tabpanel">
+              <p>
+                {{ _('We don’t believe it is appropriate for the government to indefinitely delay a company from providing user notice.  We will take steps to enforce this belief for gag orders that meet any of the following criteria:') }}
+              </p>
+
+              <p>
+                {{ _('<strong>Unreasonable Duration</strong> - Any gag order with an unspecified duration or with a duration longer than one year.  This time period may be changed if specific facts in the case lead us to believe that a longer time period is reasonable.  We support policy proposals to codify into a federal statute shorter durations of one year or less, consistent with Section 9-13.700 of the DOJ U.S. Attorneys’ Manual.') }}
+              </p>
+              <p>
+                {{ _('<strong>Unreasonable Scope</strong> - Any gag order that would prevent us from disclosing the existence of legal process in our transparency report.') }}
+              </p>
+              <p>
+                {{ _('<strong>Unreasonable Number of Impacted Users</strong> - Any gag order that appears to affect more than 50 users, or where specific facts suggest that the order affects users we can reasonably determine are unrelated to the activity under investigation, such as users of a shared computer or IP address.') }}
+              </p>
+              <p>
+                {{ _('<strong>Unreasonable Impact on Free Expression</strong> - Specific facts of the case raise free expression issues (such as cases involving journalists or the press). ') }}
+              </p>
+
             </div>
           </section>
 
