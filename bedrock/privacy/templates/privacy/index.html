@@ -61,7 +61,14 @@
   <section id="side-principles">
     <h2>{{ _('Data Privacy Principles') }}</h2>
     <p>
-      {% if l10n_has_tag('updates-052018') %}
+      {% if l10n_has_tag('updates-072018') %}
+      {%- trans principles=url('privacy.principles'), faq=url('privacy.faq') -%}
+        Mozilla's <a href="{{ principles }}">Data Privacy Principles</a> inspire our
+        practices that respect and protect people who use the Internet. Learn how
+        these principles shape Firefox and all of our products in this
+        <a href="{{ faq }}">FAQ</a>.
+      {%- endtrans -%}
+      {% elif l10n_has_tag('updates-052018') %}
       {%- trans faq=url('privacy.faq') -%}
         Mozilla's Data Privacy Principles inspire our practices that respect and
         protect people who use the Internet. Learn how these principles shape
