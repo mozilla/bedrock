@@ -1,0 +1,274 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "privacy/archive/firefox-cliqz" %}
+
+{% extends "privacy/base-resp.html" %}
+
+{% block page_title %}Mozilla Firefox + Cliqz-Datenschutzhinweis — Archiviert am 26. Juni 2018{% endblock %}
+
+{% block body_id %}firefox-archived{% endblock %}
+
+{% block article %}
+  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+    <header>
+      <h1 itemprop="name">Firefox + Cliqz-Datenschutzhinweis</h1>
+      <time datetime="2017-09-28" itemprop="dateModified">Archiviert am 26. Juni 2018</time>
+      <div itemprop="description">
+        <p>Wir bei Mozilla glauben, dass Datenschutz für ein gesundes Internet von grundlegender Bedeutung ist.</p>
+        <p>Aus diesem Grund entwickeln wir Firefox und alle unsere Produkte so, dass Sie mehr Kontrolle über die Informationen haben, die Sie online und mit uns teilen. Unser Bestreben ist es, nur das zu erfassen, was wir benötigen, um unsere Produkte für alle zu verbessern. Wir arbeiten mit Partnern zusammen, die sich gemeinsam mit uns für den Schutz unserer Nutzer einsetzen. Einer unserer Technologiepartner ist die Cliqz GmbH, ein deutsches Unternehmen im Besitz von Hubert Burda Media und Mozilla, dem Entwickler von Firefox. Cliqz zeigt Ergebnisse und Website-Empfehlungen direkt in der Firefox-URL-Leiste an. Wenn Sie eine Version von Firefox mit Cliqz-Suchempfehlungen verwenden, empfängt Cliqz Daten, die es zum Ausführen Ihrer Suchanfrage benötigt, sowie anonymisierte Surfdaten zum Erstellen des Suchmaschinenindex. Cliqz legt mit diesen Daten keinerlei Profile für identifizierbare Einzelnutzer an. Wie Firefox ist auch Cliqz <a href="https://github.com/cliqz-oss">Open Source</a>. Das bedeutet, dass die Software von jedermann öffentlich eingesehen und überprüft werden kann. Mehr über diese Daten, u. a. Angaben zum Deaktivieren der Datenfreigabe und Suchempfehlungen, finden Sie weiter <a href="#cliqz-features">unten</a>.</p>
+        <p>In diesem Datenschutzhinweis erklären wir, welche Daten Firefox teilt und verweisen Sie auf Einstellungen, mit denen Sie noch weniger teilen. Wir halten uns auch an die in der Mozilla-<a href="{{ url('privacy') }}">Datenschutzerklärung</a> umrissenen Praktiken in Bezug auf den Empfang, den Umgang mit und das Teilen von Informationen, die wir in Firefox erfassen.</p>
+      </div>
+    </header>
+
+    <div itemprop="articleBody">
+      <section id="firefox-teilt-standardmaig-daten-zu-folgenden-zwecken">
+        <header>
+          <h2>Firefox teilt standardmäßig Daten zu folgenden Zwecken:</h2>
+        </header>
+        <section id="health-report">
+          <header>
+            <h3>Verbesserung der Leistung und Stabilität für Benutzer überall</h3>
+          </header>
+          <ul>
+            <li>
+              <p><strong>Interaktionsdaten</strong>: Firefox sendet Daten über Ihre Interaktionen mit dem Firefox-Browser (z. B. die Anzahl offener Tabs und Fenster, die Anzahl der besuchten Webseiten, Anzahl und Typ der installierten Firefox-Add-ons sowie Sitzungslänge) sowie mit Firefox-Funktionen, die von Mozilla oder unseren Partnern angeboten werden (z. B. Interaktion mit Firefox-Suchfunktionen und Suchpartnerverweisen) an uns.</p>
+            </li>
+            <li>
+              <p><strong>Technische Daten</strong>: Firefox sendet Daten über Firefox-Version und Sprache, Gerätebetriebssystem und Hardware-Konfiguration, Speicher, grundlegende Informationen über Systemabstürze und Fehler, Ergebnisse automatisierter Prozesse wie z. B. Updates, SafeBrowsing und Aktivierung an uns.  Wenn Firefox Daten an uns sendet, wird Ihre IP-Adresse kurzzeitig als Teil unserer Server-Logs erfasst.</p>
+            </li>
+          </ul>
+          <p id="telemetry">Lesen Sie die Telemetrie-Dokumentation für <a href="https://firefox-source-docs.mozilla.org/toolkit/components/telemetry/telemetry/index.html">Desktop</a>, <a href="https://firefox-source-docs.mozilla.org/mobile/android/fennec/index.html">Android</a> oder <a href="https://github.com/mozilla-mobile/firefox-ios/wiki/Telemetry">iOS</a> bzw. erfahren Sie, wie Sie diese Datenerfassung per <a href="https://support.mozilla.org/kb/send-performance-data-improve-firefox">Opt-out</a> einstellen können.</p>
+        </section>
+        <section id="defaultsearch">
+          <header>
+            <h3>Festlegen eines Standardsuchanbieters</h3>
+          </header>
+          <ul>
+            <li><strong>Standortdaten</strong>: Wenn Sie Firefox zum ersten Mal verwenden, legt das Programm anhand Ihrer IP-Adresse und Ihrem Land Ihren Standardsuchanbieter fest. <a href="https://support.mozilla.org/kb/change-your-default-search-settings-firefox">Weitere Informationen</a>.</li>
+          </ul>
+        </section>
+        <section id="vorschlag-relevanter-inhalte">
+          <header>
+            <h3>Vorschlag relevanter Inhalte</h3>
+          </header>
+          <p>Firefox zeigt Inhalte wie beispielsweise „Snippets“ (Nachrichten von Mozilla) und meistbesuchte Seiten (von Mozilla erstmaligen Firefox-Benutzern empfohlene Websites) an.</p>
+          <ul>
+            <li>
+              <p><strong>Standortdaten</strong>: Firefox verwendet Ihre IP-Adresse, um relevante Inhalte basierend auf Ihrem Land vorzuschlagen.</p>
+            </li>
+            <li>
+              <p><strong>Technische und Interaktionsdaten</strong>: Firefox sendet uns Daten wie die Position, Größe und Platzierung von den von uns vorgeschlagenen Inhalten sowie grundlegende Daten über Ihre Interaktionen mit den von Firefox vorgeschlagenen Inhalten. Dies umfasst die Angabe, wie oft empfohlene Inhalte angezeigt wurden oder darauf geklickt wurde.</p>
+            </li>
+            <li>
+              <p id="snippets"><strong>Webseitendaten für Snippets</strong>: Wenn Sie sich entscheiden, auf einen Snippet-Link zu klicken, erhalten wir evtl. Daten über den Link, dem Sie gefolgt sind. Diese Informationen werden keinen anderen Informationen zugeordnet, die wir über Sie haben könnten. <a href="https://abouthome-snippets-service.readthedocs.io/en/latest/data_collection.html">Weitere Informationen</a>.</p>
+            </li>
+          </ul>
+        </section>
+        <section id="cliqz-features">
+          <header>
+            <h3>Cliqz-Ergebnisse verwenden</h3>
+          </header>
+          <p>Firefox mit Cliqz stellt automatisch eine Verbindung mit Cliqz her, um Suchergebnisse in der URL-Leiste anzuzeigen. Die Cliqz GmbH ist ein deutsches Unternehmen, das eine Sucherfahrung bietet, bei der der Datenschutz im Vordergrund steht.  Weitere Informationen finden Sie in der <a href="https://cliqz.com/privacy-browser">Datenschutzerklärung</a> von Cliqz.  Wenn das Cliqz-Feature aktiviert ist, gilt Folgendes:</p>
+          <ul>
+            <li>
+              <p><strong>Suchanfragen und Webseitendaten an Cliqz</strong>: Die Gesamtheit der Nutzer von Firefox mit Cliqz steuert über die Human-Web-Technologie von Cliqz anonymisierte Daten bei, die Cliqz dazu verwendet, das Ranking der Empfehlungen zu verbessern. Diese Daten umfassen in die URL-Leiste eingegebenen Text, Anfragen an bestimmte Suchmaschinen und Daten über besuchte Webseiten sowie Interaktionen mit diesen Seiten, wie Mausbewegungen, Scrollvorgänge und Besuchsdauer. Zum Schutz Ihrer Privatsphäre entfernt Cliqz alle vertraulichen Informationen aus den Surfdaten, einschließlich aller Arten von Benutzerkennungen (User Identifiers, UIDs) oder potenziellen UIDs, noch bevor sie von Firefox gesendet wurden.</p>
+            </li>
+            <li>
+              <p><strong>Interaktionsdaten an Cliqz</strong>: Dies umfasst Ihre Interaktionen mit bestimmten Feldern und Schaltflächen im Cliqz-Feature. Diese Daten sind mit einer eindeutigen Kennung (sog. Unique Identifier) verknüpft, die es Cliqz ermöglicht, die Nutzung im Laufe der Zeit zu verstehen.</p>
+            </li>
+            <li>
+              <p><strong>Interaktionsdaten an Mozilla</strong>: Dies umfasst die Anzahl der Besuche auf Suchmaschinenseiten, welche Suchmaschinen Sie verwenden und Ihre Cliqz-Kennung.</p>
+            </li>
+            <li>
+              <p><strong>Standortdaten an Cliqz</strong>: Dies umfasst Ihren Standort, wenn Sie ein neues Fenster öffnen oder etwas in die URL-Leiste eingeben. Cliqz verwendet diese Daten, um kontextabhängige Suchempfehlungen zu liefern (z.B. Suche nach Geschäften in der Nähe), speichert den Standort aber nicht. Sie können die Standortfreigabe über das Cliqz-Einstellungsmenü in der URL-Leiste deaktivieren, was jedoch die Qualität Ihrer Suchempfehlungen beeinträchtigen kann. </p>
+            </li>
+          </ul>
+          <p><a href="https://cliqz.com/whycliqz/transparency">Weitere Informationen</a> über die Datenerfassung durch Cliqz. So prüfen Sie, ob das Cliqz-Feature aktiviert ist und können die Datenerfassung stoppen:</p>
+          <ul>
+            <li>Geben Sie „about:addons“ in Ihre Firefox-Adressleiste ein.</li>
+            <li>Wählen Sie in der linken Menüleiste „Erweiterungen“ aus.</li>
+            <li>Ist Cliqz installiert, wird das Feature rechts angezeigt.</li>
+            <li>Durch Auswählen von „Deaktivieren“ wird das Cliqz-Feature deaktiviert und die damit verbundene Datenerfassung eingestellt.</li>
+            <li>Durch Auswählen von „Entfernen“ wird das Cliqz-Feature aus Firefox deinstalliert.</li>
+          </ul>
+        </section>
+        <section id="security">
+          <header>
+            <h3>Verbesserte Sicherheit für Benutzer überall</h3>
+          </header>
+          <ul>
+            <li>
+              <p id="auto-updates"><strong>Technische Daten für Updates</strong>: Desktop-Versionen von Firefox prüfen in der Regel auf Browser-Updates, indem sie eine Verbindung mit Mozilla-Servern herstellen. Ihre Firefox-Version, Sprache und das Gerätebetriebssystem werden herangezogen, um die korrekten Updates anzuwenden. Mobilversionen von Firefox können eine Verbindung mit einem anderen Dienst herstellen, wenn Sie einen solchen zum Herunterladen und Installieren von Firefox verwendet haben <a href="https://support.mozilla.org/kb/how-stop-firefox-automatically-making-connections#w_auto-update-checking">Weitere Informationen</a>.</p>
+            </li>
+            <li>
+              <p><strong>Technische Daten für Add-on-Blockierliste</strong>: Firefox für Desktop und Android stellen von Zeit zu Zeit eine Verbindung mit Mozilla her, um Sie und Andere vor schädlichen Add-ons zu schützen.  Ihre Firefox-Version und Sprache, das Gerätebetriebssystem und die Liste installierter Add-ons werden benötigt, um die Add-on-Blockierliste anzuwenden und zu aktualisieren. <a href="https://support.mozilla.org/kb/how-stop-firefox-making-automatic-connections">Weitere Informationen</a>.</p>
+            </li>
+            <li>
+              <p><strong>Webseiten- und technische Daten an den SafeBrowsing-Dienst von Google</strong>: Um Sie vor Downloads schädlicher Objekte zu schützen, sendet Firefox grundlegende Informationen über nicht erkannte Downloads an den SafeBrowsing-Dienst von Google. Dies umfasst den Dateinamen und die URL, unter dem die jeweiligen Objekte heruntergeladen wurden.</p>
+              <p><a href="https://support.mozilla.org/kb/how-does-phishing-and-malware-protection-work">Weitere Informationen</a> oder lesen Sie die <a href="https://www.google.com/policies/privacy/">Datenschutzerklärung von Google</a>. Wenn Sie diese Funktion per Opt-out deaktivieren, kann Firefox Sie nicht vor potentiell illegitimen oder schädlichen Websites bzw. heruntergeladenen Dateien warnen.</p>
+            </li>
+            <li>
+              <p><strong>Webseiten- und technische Daten an Zertifizierungsstellen</strong>: Wenn Sie eine sichere Website besuchen (in der Regel durch eine URL gekennzeichnet, die mit „HTTPS“ beginnt), validiert Firefox das <a href="https://support.mozilla.org/kb/secure-website-certificate">Zertifikat</a> der Website. Dabei kann Firefox bestimmte Informationen über die Website an die durch diese Website angegebene Zertifizierungsstelle senden.</p>
+              <p>Wenn Sie diese Funktion per Opt-out deaktivieren, wird das Risiko erhöht, dass Ihre privaten Daten abgefangen werden können. <a href="https://support.mozilla.org/kb/advanced-settings-browsing-network-updates-encryption#w_certificates-tab">Weitere Informationen</a>.</p>
+            </li>
+          </ul>
+        </section>
+        <section id="crash-reporter">
+          <header>
+            <h3>Absturzberichte</h3>
+          </header>
+          <p>Standardmäßig bitten wir Sie in den Desktop-Versionen von Firefox, einen Bericht mit ausführlicheren Informationen über Abstürze an Mozilla zu senden. Sie haben aber immer die Möglichkeit, dies abzulehnen.</p>
+          <ul>
+            <li>
+              <p><strong>Sensible Daten</strong>:  Absturzberichte enthalten eine sog. Ausgabedatei mit dem Firefox-Arbeitsspeicherinhalt zum Zeitpunkt des Absturzes. Diese Datei kann Daten enthalten, mit denen Sie identifiziert werden könnten oder die auf sonstige Weise für Sie sensibel sein können</p>
+            </li>
+            <li>
+              <p><strong>Webseitendaten</strong>:  Absturzberichte enthalten die zum Zeitpunkt des Absturzes aktive URL.</p>
+            </li>
+            <li>
+              <p><strong>Technische Daten</strong>:  Absturzberichte enthalten Daten dazu, warum Firefox abgestürzt ist sowie zum Status des Gerätespeichers und der Ausführung zum Zeitpunkt des Absturzes.</p>
+            </li>
+          </ul>
+          <p><a href="https://firefox-source-docs.mozilla.org/toolkit/crashreporter/crashreporter/index.html">Hier</a> finden Sie die vollständige Dokumentation.</p>
+        </section>
+        <section id="messen-und-unterstutzen-unseres-marketings">
+          <header>
+            <h3>Messen und Unterstützen unseres Marketings</h3>
+          </header>
+          <ul>
+            <li id="referraltracking"><strong>Kampagnen- und Verweisdaten</strong>: Damit kann Mozilla die Effektivität unserer Marketingkampagnen messen.</li>
+          </ul>
+          <p><em>Desktop</em>: Firefox sendet standardmäßig HTTP-Daten an Mozilla, die im Firefox-Installationsprogramm enthalten sein können.  Dadurch können wir die Website-Domain oder Werbekampagne (ggf.) bestimmen, die Sie auf unsere Download-Seite verwiesen hat. Lesen Sie die <a href="https://firefox-source-docs.mozilla.org/toolkit/components/telemetry/telemetry/data/environment.html#attribution">Dokumentation</a> oder stellen Sie dies per <a href="https://support.mozilla.org/kb/desktop-privacy">Opt-out</a> vor der Installation ab.</p>
+          <p id="thirdparty"><em>iOS und Android</em>: Firefox sendet standardmäßig Mobilkampagnendaten an Adjust, unseren Analyseanbieter, der eine eigene <a href="https://www.adjust.com/privacy_policy/">Datenschutzerklärung</a> hat.  Mobilkampagnendaten umfassen eine Google-Werbe-ID, die IP-Adresse, einen Zeitstempel, das Land, die Sprache/das Gebietsschema, das Betriebssystem und die App-Version. Lesen Sie die <a href="https://firefox-source-docs.mozilla.org/mobile/android/fennec/adjust.html">Dokumentation</a>.</p>
+          <ul>
+            <li><strong>Technische und Interaktionsdaten</strong>:</li>
+          </ul>
+          <p><em>iOS und Android</em>: Firefox sendet standardmäßig Daten darüber, welche Funktionen Sie in Firefox verwenden, an Leanplum, unseren Mobilmarketinganbieter, der eine eigene <a href="https://www.leanplum.com/privacy/">Datenschutzerklärung</a> hat.  Mit diesen Daten können wir verschiedene Funktionen und Erfahrungen testen sowie speziell angepasste Nachrichten und Empfehlungen bereitstellen, um Ihre Firefox-Erfahrung zu verbessern.</p>
+          <p>Lesen Sie die Dokumentation für <a href="https://github.com/mozilla-mobile/firefox-ios/blob/master/MMA.md">iOS</a> oder <a href="https://firefox-source-docs.mozilla.org/mobile/android/fennec/mma.html">Android</a> bzw. erfahren Sie, wie <a href="https://support.mozilla.org/kb/send-anonymous-usage-data-firefox-mobile-devices">diese Funktion deaktiviert werden kann</a>.</p>
+        </section>
+      </section>
+
+      <section id="optional-features">
+        <header>
+          <h2>Wenn Sie diese Funktionen verwenden, teilt Firefox Daten, um Funktionaliät bereitzustellen:</h2>
+        </header>
+        <section id="suche">
+          <header>
+            <h3>Suche</h3>
+          </header>
+          <p>Sie können Suchen direkt von mehreren Stellen in Firefox aus ausführen, darunter die Adressleiste, die Suchleiste oder auf einem neuen Tab. <em>Mozilla erhält Ihre Suchanfragen nicht.</em> Die Anfragedaten werden an Ihren Suchanbieter geschickt, der eine eigene Datenschutzerklärung hat.</p>
+          <ul>
+            <li>
+              <p id="searchsuggestions"><strong>Suchempfehlungen</strong>: Firefox sendet Suchanfragen standardmäßig an Ihren Suchanbieter, damit Sie häufige Ausdrücke finden, nach denen andere Benutzer gesucht haben, um Ihre Sucherfahrung zu verbessern. Diese Daten werden nicht gesendet, wenn der von Ihnen ausgewählte Suchanbieter Suchempfehlungen nicht unterstützt.</p>
+              <p><a href="https://support.mozilla.org/kb/use-popular-search-suggestions-firefox-search-bar">Weitere Informationen</a>, darunter Angaben dazu, wie Sie diese Funktion deaktivieren können.</p>
+            </li>
+            <li>
+              <p><strong>Suchanfragen und Webseitendaten an Cliqz</strong>: Firefox mit Cliqz stellt eine Verbindung mit Cliqz her, um Empfehlungen in der URL-Leiste anzuzeigen. Ihre IP-Adresse wird von Cliqz nur verwendet, um die Antwort auf Ihre Anfrage an den richtigen Computer zurückzusenden. Danach wird die IP-Adresse umgehend gelöscht. <a href="#cliqz-features">Weitere Informationen</a></p>
+            </li>
+          </ul>
+        </section>
+        <section id="firefox-konten">
+          <header>
+            <h3>Firefox-Konten</h3>
+          </header>
+          <ul>
+            <li>
+              <p><strong>Firefox-Kontodaten</strong>: Wenn Sie ein Firefox-Konto erstellen, erhält Mozilla Ihre E-Mail-Adresse und einen Hash Ihres Passworts.  Sie können sich entscheiden, ob Sie einen Anzeigenamen oder ein Profilbild einschließen möchten.  Ihre E-Mail-Adresse wird an Ihren E-Mail-Anbieter SalesForce Marketing Cloud gesendet, der eine eigene <a href="https://www.marketingcloud.com/privacy-policy/website-privacy-statement/">Datenschutzerklärung</a> hat. Wenn Sie Ihr Firefox-Konto verwenden, um sich bei anderen Websites oder Diensten anzumelden (wie AMO oder Pocket), erhalten wir von diesen Diensten den Zeitstempel Ihrer Anmeldung.</p>
+            </li>
+            <li>
+              <p><strong>Standortdaten</strong>: Aus Sicherheitsgründen speichern wir die IP-Adresse, die Sie verwenden, um auf Ihr Firefox-Konto zuzugreifen, um Ihren Ort und Ihr Land abzuschätzen.  Anhand dieser Daten senden wir Ihnen E-Mail-Benachrichtigungen, wenn wir verdächtige Aktivitäten feststellen, wie z. B. Kontoanmeldungen von anderen Orten aus.</p>
+            </li>
+            <li>
+              <p><strong>Interaktionsdaten</strong>: Wir empfangen Daten wie Besuche und Interaktionen mit der Firefox-Konto-Website sowie Menüpräferenzen sowie Interaktionen mit Onboarding, E-Mail- und SMS-Nachrichten. <a href="{{ url('privacy.notices.websites') }}">Weitere Informationen</a> über die Datenpraktiken von Mozilla in Bezug auf Websites und E-Mail.</p>
+            </li>
+            <li>
+              <p><strong>Technische Daten</strong>: Um anzuzeigen, welche Geräte mit Ihrem Firefox-Konto synchronisiert sind, und um die Funktion zu verbessern, speichern wir das Gerätebetriebssystem, den Browser und die Version, einen Zeitstempel, das Gebietsschema und die gleichen Informationen für andere mit Ihrem Konto verbundenen Geräte.</p>
+            </li>
+          </ul>
+          <p>Lesen Sie die <a href="https://github.com/mozilla/fxa-auth-server/blob/master/docs/metrics-events.md">vollständige Dokumentation</a> oder <a href="https://support.mozilla.org/kb/access-mozilla-services-firefox-accounts">weitere Informationen</a>, darunter Angaben dazu, wie Sie <a href="https://support.mozilla.org/kb/how-do-i-delete-my-firefox-account">Ihr Konto löschen</a>.</p>
+        </section>
+        <section id="sync">
+          <header>
+            <h3>Sync</h3>
+          </header>
+          <ul>
+            <li>
+              <p><strong>Synchronisierte Daten</strong>: Wenn Sie Sync aktivieren, erhält Mozilla Informationen, die Sie über verschiedene Geräte hinweg in verschlüsselter Form synchronisieren. Dies kann Firefox-Tabs, Add-ons, Passwörter, Zahlungs-AutoFill-Informationen, Lesezeichen, Chronik und Einstellungen umfassen.  Durch Löschen Ihres Firefox-Kontos werden die damit verbundenen Firefox Sync-Inhalte gelöscht. Sie können auch die <a href="https://moz-services-docs.readthedocs.io/en/latest/sync/">Dokumentation</a> lesen.</p>
+            </li>
+            <li>
+              <p><strong>Technische und Interaktionsdaten</strong>: Wenn Sie Sync aktivieren, sendet Firefox in gewissen Abständen grundlegende Informationen über den jüngsten Versuch, Ihre Daten zu synchronisieren, mittels Telemetrie. Dies umfasst Informationen wann die Synchronisierung stattfand, ob sie erfolgreich war oder nicht und welche Art von Gerät die Synchronisierung versucht hat, vorzunehmen. Sie können auch die <a href="https://firefox-source-docs.mozilla.org/toolkit/components/telemetry/telemetry/data/sync-ping.html">Dokumentation</a> lesen.</p>
+            </li>
+          </ul>
+          <p><a href="https://support.mozilla.org/kb/how-do-i-set-sync-my-computer">Weitere Informationen</a>, darunter Angaben dazu, wie Sie Sync aktivieren oder deaktivieren.</p>
+        </section>
+        <section id="location-services">
+          <header>
+            <h3>Standort</h3>
+          </header>
+          <ul>
+            <li><strong>Standortdaten an den Standortortungsdienst von Google</strong>: Firefox fragt stets, bevor Ihr Standort bestimmt und mit einer Website geteilt wird, die diese Daten anfordert (z. B. wenn eine Karten-Website Ihren Standort benötigt, um eine Wegbeschreibung anzuzeigen).  Um den Standort zu bestimmen, kann Firefox die Standortortungsfunktionen Ihres Betriebssystems, WLAN-Netzwerke, Mobilfunktürme oder die IP-Adresse verwenden und diese Daten an den Standortortungsdienst von Google senden, der eine eigene <a href="https://www.google.com/privacy/lsf.html">Datenschutzerklärung</a> hat.</li>
+          </ul>
+          <p><a href="/firefox/geolocation/">Weitere Informationen</a>.</p>
+        </section>
+        <section id="screenshots">
+          <header>
+            <h3>Firefox Screenshots</h3>
+          </header>
+          <ul>
+            <li>
+              <p><strong>Hochladen von Bildschirmfotos</strong>: Bildschirmfotos, die Sie hochladen möchten, werden an Mozilla gesandt und die angegebene begrenzte Zeit lang gespeichert. Dieser Speicherzeitraum kann von Ihnen geändert werden.  Wir greifen evtl. auf die von Ihnen hochgeladenen Bildschirmfotos zu, wenn dies für den Betrieb des Dienstes notwendig erscheint.  Sie können die von Ihnen hochgeladenen Bildschirmfotos jederzeit löschen.</p>
+            </li>
+            <li>
+              <p><strong>Interaktionsdaten</strong>: Wir erhalten Daten wie Besuche der Firefox Screenshots-Website, wie oft durch Sie oder Andere auf die hochgeladenen Bildschirmfotos zugegriffen wurde oder diese freigegeben wurden, sowie Ihre Interaktionen mit Schaltflächen, Kacheln und Mausbewegungen in Bezug auf die Aufnahme von Screenshots.</p>
+              <p>Für Besuche der Firefox Screenshots-Website beschreibt unser <a href="{{ url('privacy.notices.websites') }}">Website-Datenschutzhinweis</a>, welche Arten von Daten wir evtl. zusätzlich erfassen.</p>
+            </li>
+            <li>
+              <p><strong>Technische Daten</strong>: Wir erhalten Daten wie die durchschnittliche Größe und Anzahl der von Ihnen hochgeladenen Screenshots, Ihre Firefox-Browser-Version, das Gerätebetriebssystem und Fehler.  Die IP-Adresse für den Zugriff auf die Firefox Screenshots-Website wird temporär als Teil des Standardserver-Logs erfasst.</p>
+            </li>
+          </ul>
+          <p>Lesen Sie die <a href="https://github.com/mozilla-services/screenshots/blob/master/docs/METRICS.md">vollständige Dokumentation</a> oder <a href="https://wiki.mozilla.org/Firefox/Screenshots/FAQs">weitere Informationen</a>.</p>
+        </section>
+        <section id="push-notifications">
+          <header>
+            <h3>Website-Benachrichtigungen</h3>
+          </header>
+          <ul>
+            <li>
+              <p><strong>Verbindungsdaten</strong>: Wenn Sie einer Website gestatten, Ihnen Benachrichtigungen zu senden, stellt Firefox eine Verbindung mit Mozilla her und verwendet Ihre IP-Adresse, um die Nachricht weiterzuleiten.  Mozilla kann nicht auf den Inhalt von Nachrichten zugreifen.</p>
+            </li>
+            <li>
+              <p><strong>Interaktionsdaten</strong>: Wir erhalten aggregierte Daten wie z. B. die Anzahl der Firefox-Abonnements und Abonnementkündigungen für Website-Benachrichtigungen, die Anzahl der gesendeten Nachrichten, Zeitstempel und Absender (die spezifische Website-Anbieter enthalten können).</p>
+            </li>
+          </ul>
+          <p>Lesen Sie die <a href="https://mozilla-push-service.readthedocs.io/en/latest/">vollständige Dokumentation</a> oder <a href="https://support.mozilla.org/kb/push-notifications-firefox">weitere Informationen</a>, darunter Angaben dazu, wie Sie Website-Benachrichtigungen abstellen.</p>
+        </section>
+        <section id="addons">
+          <header>
+            <h3>Add-ons</h3>
+          </header>
+          <p>Sie können Add-ons von addons.mozilla.org („AMO“) oder von der Firefox Add-on-Verwaltung aus installieren, die über die Firefox-Menüschaltfläche in der Symbolleiste zugänglich ist.</p>
+          <ul>
+            <li>
+              <p><strong>Suchanfragen</strong>: Suchanfragen in der Add-on-Verwaltung werden an Mozilla gesendet, um Ihnen Add-on-Vorschläge bereitzustellen.</p>
+            </li>
+            <li>
+              <p><strong>Interaktionsdaten</strong>:  Wir erhalten aggregierte Daten über Besuche der AMO-Website und der Add-on-Verwaltung in Firefox sowie zu Interaktionen mit Inhalten auf diesen Seiten. Lesen Sie mehr zu Datenpraktiken auf <a href="{{ url('privacy.notices.websites') }}">Mozilla-Websites</a>.</p>
+            </li>
+            <li>
+              <p><strong>Technische Daten für Updates</strong>: Firefox stellt in bestimmten Abständen eine Verbindung mit Mozilla her, um Updates zu Add-ons zu installieren.  Ihre installierten Add-ons, die Firefox-Version, Sprache und das Gerätebetriebssystem werden zum Anwenden der korrekten Updates herangezogen.</p>
+            </li>
+          </ul>
+        </section>
+        <section id="funote">
+          <header>
+            <h3>Fußnote</h3>
+          </header>
+          <p id="pre-release">Dieser Datenschutzhinweis gilt für die neueste allgemeine Release-Version von Firefox + Cliqz, die von Mozilla bereitgestellt wird.  Wenn Sie Firefox woanders erwerben oder eine ältere Version ausführen, kann Ihre Kopie von Firefox evtl. andere Datenschutzmerkmale aufweisen.</p>
+          <p>Die Mozilla-Pre-Release-Versionen von Firefox (die über Kanäle wie Nightly, Beta, TestFlight und BuddyBuild bereitgestellt werden) befinden sich noch in Entwicklung und können andere Datenschutzmerkmale aufweisen.</p>
+        </section>
+      </section>
+    </div>
+  </article>
+{% endblock %}

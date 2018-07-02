@@ -17,4 +17,7 @@ redirectpatterns = (
 
     # bug 1394042 - Firefox Cloud Services redirect to Fx
     redirect(r'^privacy/firefox-cloud/?$', 'privacy.notices.firefox'),
+
+    # mozilla/bedrock/#5745 - archive cliqz policy
+    redirect(r'^privacy/firefox-cliqz/?$', 'privacy.archive.firefox-cliqz-2018-06'),
 )

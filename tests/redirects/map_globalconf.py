@@ -887,6 +887,9 @@ URLS = flatten((
     url_test('/privacy/policies/{facebook,firefox-os,websites}/',
              '/privacy/{facebook,firefox-os,websites}/'),
 
+    # https://github.com/mozilla/bedrock/issues/5745
+    url_test('/privacy/firefox-cliqz', '/privacy/archive/firefox-cliqz/2018-06/'),
+
     # bug 1034859
     url_test('/en-US/about/buttons/dude.jpg', '/media/img/careers/buttons/dude.jpg'),
 
