@@ -368,3 +368,10 @@ $callout-blue: #0060df;
         }
     }
 }
+
+/* -------------------------------------------------------------------------- */
+// Custom modal styles
+
+.mzp-c-modal video {
+    width: 100%; // fixed in next Protocol release https://github.com/mozilla/protocol/pull/135
+}
