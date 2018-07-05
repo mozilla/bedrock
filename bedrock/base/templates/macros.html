@@ -311,9 +311,9 @@
   {# Parameters for accounts.firefox.com link #}
   {% set service = 'sync' %}
   {% set context = 'fx_desktop_v3' %}
-  {% set entrypoint = 'mozilla.org:' + entrypoint %}
+  {% set entrypoint = 'mozilla.org-' + entrypoint %}
   {% if content %}
-    {% set utm_content = content %}
+    {% set utm_content = content.replace('/', '%2F') %}
   {% else %}
     {% set utm_content = request.path_info.replace('/', '%2F') %}
   {% endif %}
