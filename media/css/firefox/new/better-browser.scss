@@ -89,16 +89,12 @@ a.button:visited {
         }
 
         .help {
+            a:active,
+            a:focus,
+            a:hover,
             a:link,
             a:visited {
-                color: $color-blue;
-                text-decoration: none;
-            }
-
-            a:hover,
-            a:active,
-            a:focus {
-                color: $color-blue;
+                color: #fff;
                 text-decoration: underline;
             }
         }
@@ -118,7 +114,7 @@ a.button:visited {
         background-color: #ff9600; // fallback
         background-image: url('/media/img/firefox/new/better-browser/laptop.png');
         background-image: url('/media/img/firefox/new/better-browser/laptop.png'),
-            linear-gradient(to bottom, $color-gradient-start 0%, $color-gradient-end 100%);
+                          linear-gradient(to bottom, $color-gradient-start 0%, $color-gradient-end 100%);
         background-position: top 50% right -300px;
         background-position: top 50% right -300px, top left;
         background-repeat: no-repeat;
@@ -126,7 +122,7 @@ a.button:visited {
 
         @media #{$mq-high-res} {
             background-image: url('/media/img/firefox/new/better-browser/laptop-high-res.png'),
-                linear-gradient(to bottom, $color-gradient-start 0%, $color-gradient-end 100%);
+                              linear-gradient(to bottom, $color-gradient-start 0%, $color-gradient-end 100%);
             background-size: 800px 435px, 100%;
         }
 
