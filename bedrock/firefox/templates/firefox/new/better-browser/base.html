@@ -1,0 +1,100 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base-pebbles.html" %}
+
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{_('Free Web Browser for Android, iOS, Desktop | Firefox')}}{% endblock %}
+{% block page_desc %}{{_('Millions of people around the world trust Firefox Web browsers on Android, iOS and desktop computers. Fast. Private. Download now!')}}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_new_better_browser') }}
+{% endblock %}
+
+{% block body_id %}firefox{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+  <main role="main">
+  <section class="intro content-section">
+    <div class="content">
+      <div class="copy">
+        <img class="logo" src="{{ static('img/logos/firefox/logo-quantum.png') }}" width="100" height="100" alt="" />
+        {% block head_content %}{% endblock %}
+        {% block primary_download_button %}
+          {{ download_firefox(alt_copy=_('Download Now'), locale_in_transition=true, dom_id="download-firefox", download_location='primary cta', button_color='') }}
+        {% endblock %}
+      </div>
+    </div>
+  </section>
+
+  {% block details %}
+  <section class="details content-section">
+    <div class="content">
+      <ul>
+        <li>
+          <h3>{{ _('Runs 2x faster') }}</h3>
+          <p>
+          {% trans url='https://blog.mozilla.org/firefox/quantum-performance-test/?utm_source=mozilla.org&utm_medium=referral&utm_campaign=new-2xfaster&utm_content=twice-as-fast' %}
+            The New Firefox has a new engine. <a href="{{ url }}">Twice as fast</a>? Yes. Crazy-powerful engine?
+            Yes. Less time waiting for browser pages to load? Double yes, yes. Get the best Firefox yet.
+          {% endtrans %}
+          </p>
+        </li>
+        <li>
+          <h3>{{ _('Uses 30% less memory') }}</h3>
+          <p>
+          {% trans url='https://blog.mozilla.org/firefox/quantum-performance-test/?utm_source=mozilla.org&utm_medium=referral&utm_campaign=new-2xfaster&utm_content=lighter-than-chrome' %}
+            <a href="{{ url }}">Lighter than Chrome</a> means more of your computer resources are freed up and run smoother.
+            You can thank the New Firefox multiprocess architecture for that. Your computer will thank you back.
+          {% endtrans %}
+          </p>
+        </li>
+        <li>
+          <h3>{{ _('Stands for good') }}</h3>
+          <p>
+          {% trans %}
+            Did you know Firefox works with the not-for-profit Mozilla? We keep the Internet healthier by supporting
+            programs like tech education for women, truth in online journalism, and promoting civility in comments
+            and online shared spaces.
+          {% endtrans %}
+          </p>
+        </li>
+      </ul>
+    </div>
+  </section>
+  {% endblock %}
+
+  {% block secondary_download %}
+  <section class="secondary-download content-section">
+    <div class="content">
+      <div class="download-contain">
+        <h2>
+        {% block secondary_download_cta %}
+          {{ _('Browse freely with Firefox today.') }}
+        {% endblock %}
+        </h2>
+        <div class="download-button-wrapper">
+          {{ download_firefox(alt_copy=_('Download Now'), locale_in_transition=true, dom_id='download-firefox-today', button_color='') }}
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock %}
+</main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{# Bug 1381776 #}
+{% block update_notification %}{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_new_scene1_variation') }}
+{% endblock %}

@@ -1,0 +1,318 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+@import '../../hubs/sections';
+
+/* -------------------------------------------------------------------------- */
+// Common elements
+
+$color-blue: #0066dc;
+$color-gradient-start: #ff9600;
+$color-gradient-end: #ff6600;
+
+// account for tracking pixel added on demos/stage/prod
+body {
+    background: #000;
+}
+
+#outer-wrapper {
+    background: #fff;
+}
+
+.content-section {
+    color: #000;
+    padding: 40px 0;
+    text-align: center;
+
+    @media #{$mq-desktop} {
+        padding: 50px 0;
+        text-align: left;
+    }
+}
+
+// override download button color
+a.button,
+a.button:link,
+a.button:visited {
+    background: $color-blue;
+    border: 0;
+    border-radius: 4px;
+
+    &:hover,
+    &:focus {
+        background: darken($color-blue, 5%);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Top hero section
+
+.intro {
+    background-color: #ff9600;
+    @include gradient-vertical($start-color: $color-gradient-start, $end-color: $color-gradient-end);
+
+    h1,
+    h2 {
+        @include open-sans;
+        color: #fff;
+    }
+
+    h1 {
+        @include font-size-level2;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        @include font-size-level4;
+        font-weight: normal;
+        line-height: 1.5;
+        margin-bottom: 0;
+    }
+
+    a.button,
+    a.button:link,
+    a.button:visited {
+        @include font-size-level4;
+    }
+
+    .copy {
+        color: #fff;
+        padding: 0;
+        width: auto;
+
+        .download-button,
+        .help {
+            margin-top: 40px;
+        }
+
+        .help {
+            a:active,
+            a:focus,
+            a:hover,
+            a:link,
+            a:visited {
+                color: #fff;
+                text-decoration: underline;
+            }
+        }
+
+        .fx-privacy-link {
+            a:active,
+            a:focus,
+            a:hover,
+            a:link,
+            a:visited {
+                color: #fff;
+            }
+        }
+    }
+
+    @media #{$mq-desktop} {
+        background-color: #ff9600; // fallback
+        background-image: url('/media/img/firefox/new/better-browser/laptop.png');
+        background-image: url('/media/img/firefox/new/better-browser/laptop.png'),
+                          linear-gradient(to bottom, $color-gradient-start 0%, $color-gradient-end 100%);
+        background-position: top 50% right -300px;
+        background-position: top 50% right -300px, top left;
+        background-repeat: no-repeat;
+        background-repeat: no-repeat, repeat;
+
+        @media #{$mq-high-res} {
+            background-image: url('/media/img/firefox/new/better-browser/laptop-high-res.png'),
+                              linear-gradient(to bottom, $color-gradient-start 0%, $color-gradient-end 100%);
+            background-size: 800px 435px, 100%;
+        }
+
+        &.content-section {
+            padding: 0;
+        }
+
+        .content {
+            min-height: 700px;
+        }
+
+        .copy {
+            float: left;
+            width: 50%;
+            padding: 0 30px 0 0;
+
+            .logo {
+                margin: 40px 0 20px;
+            }
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        background-image: none; // fallback for IE 9
+        background-image: linear-gradient(to bottom, $color-gradient-start 0%, $color-gradient-end 100%);
+        background-position: top left;
+        background-repeat: repeat;
+        background-size: 100%;
+
+        .content {
+            @include at2x('/media/img/firefox/new/better-browser/laptop.png', 800px, 435px);
+            background-position: top 50% right;
+            background-repeat: no-repeat;
+        }
+
+        .copy {
+            width: 40%;
+        }
+    }
+}
+
+.better-browser-scene2 .intro h2 {
+    @include font-size-level2;
+    font-weight: bold;
+    line-height: 1.1;
+}
+
+// always hide special scene 2 button (as it forces direct download)
+#download-button-wrapper-desktop {
+    height: 0;
+    visibility: hidden;
+    width: 0;
+}
+
+/* -------------------------------------------------------------------------- */
+// Detail content pillars
+
+.details ul {
+    li {
+        margin-bottom: 60px;
+        list-style-type: none;
+        width: 100%;
+    }
+
+    h3 {
+        margin-bottom: 20px;
+    }
+
+    p {
+        line-height: 30px;
+    }
+
+    a:link,
+    a:visited {
+        color: $color-blue;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        color: $color-blue;
+        text-decoration: underline;
+    }
+
+    @media #{$mq-desktop} {
+        li {
+            float: left;
+            width: 33%;
+            margin-bottom: 0;
+        }
+
+        h3,
+        p {
+            padding-right: 40px;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        h3,
+        p {
+            padding-right: 60px;
+        }
+    }
+}
+
+@supports(display: grid) {
+    .details ul {
+        @media #{$mq-desktop} {
+            display: grid;
+            grid-gap: 60px;
+            grid-template-columns: repeat(3, 1fr);
+
+            li {
+                float: none;
+                width: auto;
+            }
+
+            h3,
+            p {
+                padding-right: 0;
+            }
+        }
+
+        @media #{$mq-desktop-wide} {
+            h3,
+            p {
+                padding-right: 0;
+            }
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Bottom download CTA.
+
+.secondary-download.content-section {
+    padding: 20px 0;
+
+    .download-contain {
+        position: relative;
+        padding: 40px 0;
+
+        &:before {
+            background-color: #65e1ff;
+            background-image: linear-gradient(to left, #65e1ff 0%, #95b5ff 78%, #a2a9ff 100%);
+            content: '';
+            height: 6px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+    }
+
+    h2 {
+        font-weight: normal;
+        margin-bottom: 40px;
+    }
+
+    @media #{$mq-desktop} {
+        .download-contain {
+            @include clearfix;
+            padding: 100px 0 60px;
+        }
+
+        h2 {
+            float: left;
+            text-align: left;
+            width: 66%;
+        }
+
+        .download-button-wrapper {
+            float: left;
+            text-align: left;
+            width: 33%;
+        }
+
+        .download-button {
+            margin-left: 40px;
+        }
+    }
+
+    .fx-privacy-link {
+        a:active,
+        a:focus,
+        a:hover,
+        a:link,
+        a:visited {
+            color: $color-blue;
+        }
+    }
+}

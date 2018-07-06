@@ -1,0 +1,40 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/new/better-browser/base.html" %}
+
+{% block body_class %}better-browser-scene2{% endblock %}
+
+{% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/{% endblock %}
+
+{% block string_data %}
+  data-pixels="{% for pixel in settings.TRACKING_PIXELS %}{{ pixel }}{% if not loop.last %}::{% endif %}{% endfor %}"
+{% endblock %}
+
+{% block head_content %}
+  <h2>{{ _('Thanks for choosing Firefox') }}</h2>
+
+  <p class="help">
+  {% trans id='direct-download-link', fallback_url=url('firefox.all') %}
+    Your download should begin automatically. Didn’t work? <a id="{{ id }}" href="{{ fallback_url }}">Try downloading again</a>.
+  {% endtrans %}
+  </p>
+{% endblock %}
+
+{% block primary_download_button %}
+  {# Download button on scene2 is hidden visually. Both ID and CSS classes are needed to trigger auto-download #}
+  <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
+    {{ download_firefox(alt_copy=_('Download Now'), force_direct=true, dom_id='primary-download-button') }}
+  </div>
+{% endblock %}
+
+{% block secondary_download %}{% endblock %}
+
+{% block js %}
+  {% if switch('tracking-pixel') %}
+    {{ js_bundle('firefox_new_pixel') }}
+  {% endif %}
+
+  {{ js_bundle('firefox_new_scene2') }}
+{% endblock %}

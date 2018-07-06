@@ -55,3 +55,4 @@ package-lock.json
 .vscode/
 static_build
 static_final
+npm_debug.log
