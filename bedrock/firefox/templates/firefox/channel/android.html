@@ -39,8 +39,16 @@
     </header>
     {{ download_firefox('beta', platform='android', alt_copy=_('Download'), dom_id="android-beta-download") }}
     <p class="notice">
-      {{_('Firefox Beta automatically sends feedback to Mozilla.')}}
-      <a href="{{ url('privacy.notices.firefox') + '#telemetry' }}">{{_('Learn more')}}</a>
+      {% if l10n_has_tag('privacy_201806') %}
+        {%- trans link=url('privacy.notices.firefox') + '#pre-release' -%}
+          Beta is an unstable testing and development platform. By default, Beta sends data to Mozilla
+          — and sometimes our partners — to help us handle problems and try ideas.
+          <a href="{{ link }}">Learn what is shared</a>.
+        {%- endtrans -%}
+      {% else %}
+        {{_('Firefox Beta automatically sends feedback to Mozilla.')}}
+        <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{_('Learn more')}}</a>
+      {% endif %}
     </p>
     <p class="notice">
       {% trans feedback='https://input.mozilla.com/feedback' %}
@@ -71,8 +79,16 @@
     </header>
     {{ download_firefox('nightly', platform='android', alt_copy=_('Download'), dom_id="android-nightly-download") }}
     <p class="notice">
-      {{_('Firefox Nightly automatically sends feedback to Mozilla.')}}
-      <a href="{{ url('privacy.notices.firefox') + '#telemetry' }}">{{_('Learn more')}}</a>
+        {% if l10n_has_tag('privacy_201806') %}
+        {%- trans link=url('privacy.notices.firefox') + '#pre-release' -%}
+          Nightly is an unstable testing and development platform. By default, Nightly sends data to Mozilla
+          — and sometimes our partners — to help us handle problems and try ideas.
+          <a href="{{ link }}">Learn what is shared</a>.
+        {%- endtrans -%}
+      {% else %}
+        {{_('Firefox Nightly automatically sends feedback to Mozilla.')}}
+        <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{_('Learn more')}}</a>
+      {% endif %}
     </p>
   </div>
   <footer>
