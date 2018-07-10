@@ -290,7 +290,7 @@
   </section>
 {%- endmacro %}
 
-{% macro fxa_create_account_button(button_location, id_prefix, campaign, entrypoint, content = '', source = '' ) %}
+{% macro fxa_create_account_button(button_location, id_prefix, campaign, entrypoint, button_text = '', button_class = '', content = '', source = '') %}
   {# - creates the "create account" button which links to accounts.firefox.com
        and fallback states including:
        - already logged in, not firefox, legacy firefox, Android Firefox, iOS Firefox
@@ -300,6 +300,8 @@
           - examples: 'primary cta', 'footer cta'
        - id_prefix is combined with some sufixes to create unique IDs for all buttons and links
          - example: 'features-header'
+     - button_text is the text label that appears on the button. Defaults to "Create account" if blank.
+     - button_class is a class name(s) appended after the 'button' class, for styling or other purposes. Defaults to 'button-hollow' if blank.
      - campaign is for utm_campaign on the Fxa and fallback links
      - entrypoint is for the fxa team, it indicates where the user came from
        - the prefix `mozilla.org:` will be appended to it
@@ -312,6 +314,12 @@
   {% set service = 'sync' %}
   {% set context = 'fx_desktop_v3' %}
   {% set entrypoint = 'mozilla.org-' + entrypoint %}
+  {% if not button_text %}
+    {% set button_text = _('Create account') %}
+  {% endif %}
+  {% if not button_class %}
+    {% set button_class = 'button-hollow' %}
+  {% endif %}
   {% if content %}
     {% set utm_content = content.replace('/', '%2F') %}
   {% else %}
@@ -345,8 +353,8 @@
     {{ download_firefox(dom_id=download_id, download_location=button_location) }}
   </div>
   <div class="show-fxa-supported-signed-out">
-    <a href="{{ accounts_url }}" class="button button-hollow button-light" data-button-name="Create account" data-link-type="button" data-cta-position="{{ button_location }}" id="{{ account_id }}">
-      {{ _('Create account') }}
+    <a href="{{ accounts_url }}" class="button {{ button_class }}" data-button-name="Create account" data-link-type="button" data-cta-position="{{ button_location }}" id="{{ account_id }}">
+      {{ button_text }}
     </a>
   </div>
   <div class="show-fxa-supported-signed-in fxa-app-buttons">

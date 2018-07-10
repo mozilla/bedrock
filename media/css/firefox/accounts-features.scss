@@ -14,7 +14,8 @@ main {
     @include open-sans;
 }
 
-/* ====================================================================== */
+//* ====================================================================== */
+//  Header
 
 .fab-head {
     background-color: #8C01F1;
@@ -24,16 +25,25 @@ main {
 }
 
 .fab-head-title {
-    @include font-size-level5;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.fab-head-subtitle {
     @include font-size-level2;
     font-weight: bold;
     line-height: 1.2;
-    margin-bottom: 1.5em;
+    margin-bottom: 1em;
+    position: relative;
+    padding-top: 80px;
+
+    &:before {
+        background: transparent url('/media/img/logos/firefox/logo-quantum.png') no-repeat;
+        @include background-size(60px, 60px);
+        content: '';
+        display: block;
+        height: 60px;
+        left: 50%;
+        margin-left: -30px;
+        position: absolute;
+        top: 0;
+        width: 60px;
+    }
 }
 
 .fab-head-cta {
@@ -74,6 +84,7 @@ main {
 
 @media #{$mq-tablet} {
     .fab-head {
+        margin-bottom: 60px;
         padding: 40px 0;
         text-align: left;
 
@@ -99,10 +110,32 @@ main {
             max-width: 100%;
         }
     }
+
+    .fab-head-title {
+        padding-top: 50px;
+        max-width: 45%;
+
+        &:before {
+            left: 0;
+            margin: 0;
+            top: -40px;
+        }
+    }
+}
+
+@media #{$mq-desktop} {
+    .fab-head {
+        margin-bottom: 80px;
+
+        .content {
+          max-width: 1300px;
+        }
+    }
 }
 
 @media #{$mq-desktop-wide} {
     .fab-head {
+        margin-bottom: 130px;
         min-height: 330px;
         padding: 110px 0 60px 0;
 
@@ -110,42 +143,20 @@ main {
             bottom: -25px;
             left: calc(50% - 92px);
         }
-
-        .content {
-          max-width: 1300px;
-        }
     }
 
     .fab-head-title {
-        max-width: 390px;
-    }
+        max-width: 430px;
 
-    .fab-head-subtitle {
-        max-width: 390px;
-    }
-}
-
-/* ====================================================================== */
-
-.fab-intro {
-    @include font-size-level3;
-    @include font-size(22px); // bigger for mobile, then falls back to font-size-level3
-    font-weight: normal;
-    line-height: 1.5;
-    max-width: 660px;
-    text-align: center;
-    margin: 40px auto 20px;
-}
-
-@media #{$mq-desktop} {
-    .fab-intro {
-        line-height: 1.2;
-        margin: 95px auto 60px auto;
-        max-width: 920px;
+        &:before {
+            top: -50px;
+        }
     }
 }
 
-/* ====================================================================== */
+
+//* ====================================================================== */
+//  Privacy billboard
 
 .fab-privacy {
     background-color: #EDEDF0;
@@ -174,7 +185,7 @@ main {
     @include visually-hidden;
 }
 
-.fab-privacy-text {
+.fab-privacy-body {
     @include font-size-level4;
     margin: 0 auto;
     max-width: 600px;
@@ -200,7 +211,7 @@ main {
         }
     }
 
-    .fab-privacy-text {
+    .fab-privacy-body {
         margin-left: 50%;
         max-width: 550px;
         padding-left: 15px;
@@ -227,8 +238,8 @@ main {
 }
 
 @media #{$mq-desktop} {
-    .fab-privacy-text {
-        padding: 40px 0 65px 14px;
+    .fab-privacy-body {
+        padding: 40px 0 40px 14px;
     }
 }
 
@@ -241,25 +252,25 @@ main {
         }
     }
 
-    .fab-privacy-text {
+    .fab-privacy-body {
         margin-left: 50%;
         max-width: 550px;
-        padding: 40px 0 65px 14px;
 
         &:before {
             height: 395px;
             left: auto;
-            margin-top: 0;
+            margin-top: -190px;
             max-width: 100%;
             padding: 28px 0;
             right: calc(50% + 63px);
-            top: -122px;
+            top: 50%;
             width: 583px;
         }
     }
 }
 
-/* ====================================================================== */
+//* ====================================================================== */
+//  Footer CTA
 
 .fab-foot {
     background: #0A84FF url('/media/img/firefox/accounts/features/footer.png') no-repeat center 90%;
@@ -369,7 +380,8 @@ main {
 
 }
 
-/* ====================================================================== */
+//* ====================================================================== */
+//  Perks
 
 .perk {
     position: relative;
@@ -390,15 +402,15 @@ main {
     background: radial-gradient(50% 200px ellipse at bottom center, #F0F0F0, transparent);
     position: relative;
     text-align: center;
+    margin-bottom: 20px;
 
     img {
         display: block;
         margin: 0 auto;
-        max-width: 400px;
-    }
 
-    .perk-send & {
-        margin-bottom: 0;
+        @media #{$mq-phone-wide} {
+            max-width: 400px;
+        }
     }
 }
 
@@ -406,8 +418,7 @@ main {
     @include font-size(10px);
     color: #878787;
     display: block;
-    margin: 0 auto 2.2em;
-    max-width: 400px;
+    margin: -10px auto 2.2em;
     text-align: right;
     width: 100%;
 }
@@ -483,7 +494,7 @@ main {
         min-height: 350px;
 
         .content {
-            max-width: 1140px;
+            max-width: 1300px;
             position: static;
         }
     }
@@ -506,13 +517,6 @@ main {
     .perk {
         margin-bottom: 150px;
         min-height: 450px;
-    }
-
-    .perk-bookmarks,
-    .perk-privacy {
-        .content {
-            max-width: 1325px;
-        }
     }
 
     .perk-bookmarks {
@@ -561,4 +565,36 @@ main {
         max-width: 400px;
     }
 
+}
+
+//* ====================================================================== */
+//  Buttons
+
+.firefox-accounts-features {
+    a.button {
+        border-radius: 3px;
+        padding: .5em 16px;
+
+        &.button-light {
+            background-color: #fff;
+            border-color: #fff;
+            color: #000;
+
+            &.button-outline {
+                border-color: #000;
+            }
+        }
+
+        &:hover,
+        &:focus {
+            box-shadow: 4px 4px 0 0 #000;
+            transition: box-shadow 100ms;
+        }
+
+        &:active {
+            box-shadow: 2px 2px 0 0 black;
+            transition: box-shadow 0ms;
+        }
+
+    }
 }
