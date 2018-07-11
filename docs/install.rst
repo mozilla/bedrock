@@ -66,6 +66,16 @@ files and/or package.json file then simply running::
 
     $ make build
 
+**Asset bundles**
+
+If you make a change to ``media/static-bundles.json``, you'll need to restart Docker.
+
+.. note::
+
+    Sometimes stopping Docker doesn't actually kill the images. To be safe, after stopping docker, run
+    ``docker ps`` to ensure the containers were actually stopped. If they have not been stopped, you can force
+    them by running ``docker kill <container_name>``, e.g. ``docker kill bedrock_app_1``.
+
 Local Installation
 ------------------
 
