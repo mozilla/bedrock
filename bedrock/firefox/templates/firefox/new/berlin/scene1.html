@@ -6,12 +6,6 @@
 
 {% extends "firefox/new/berlin/base.html" %}
 
-{% block experiments %}
-  {% if switch('experiment-berlin-video', ['de']) %}
-    {{ js_bundle('firefox_new_berlin_experiment') }}
-  {% endif %}
-{% endblock %}
-
 {% block primary_download_button %}
   {{ download_firefox(alt_copy='Jetzt herunterladen', locale_in_transition=true, dom_id="download-firefox", download_location='primary cta', button_color='button-green') }}
 {% endblock %}

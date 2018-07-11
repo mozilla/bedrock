@@ -637,9 +637,9 @@
     {
       "files": [
         "css/firefox/new/berlin.scss",
-        "css/firefox/new/berlin-b.scss"
+        "css/firefox/new/berlin-aus-gruenden.scss"
       ],
-      "name": "firefox_new_berlin_b"
+      "name": "firefox_new_berlin_aus_gruenden"
     },
     {
       "files": [
@@ -1093,13 +1093,6 @@
         "js/mozorg/about-transparency.js"
       ],
       "name": "about-transparency"
-    },
-    {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/new/berlin-experiment.js"
-      ],
-      "name": "firefox_new_berlin_experiment"
     },
     {
       "files": [
