@@ -321,7 +321,7 @@ describe('core-datalayer.js', function() {
         });
 
         afterEach(function() {
-            $('body').remove('#link');
+            $('#link').remove();
             delete window.dataLayer;
         });
 

@@ -14,6 +14,10 @@ describe('mozilla-fxa.js', function() {
             $('body').attr('class', 'js state-fxa-default');
         });
 
+        afterEach(function() {
+            $('body').removeAttr('class');
+        });
+
         it('should add the supplied value to the body class list', function() {
             Mozilla.FxaState.applyStateToBody('state-fxa-android');
             expect($('body').attr('class')).toContain('state-fxa-android');
