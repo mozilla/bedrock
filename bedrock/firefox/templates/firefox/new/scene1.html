@@ -10,6 +10,9 @@
   {% if switch('firefox_new_better_browser_experiment', ['en-US']) %}
     {{ js_bundle('firefox_new_better_browser_experiment') }}
   {% endif %}
+  {% if switch('experiment-de-hearts', ['de']) %}
+    {{ js_bundle('firefox_new_de_experiment') }}
+  {% endif %}
 {% endblock %}
 
 {# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}

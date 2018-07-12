@@ -148,6 +148,12 @@
     },
     {
       "files": [
+        "css/firefox/new/de-b.scss"
+      ],
+      "name": "firefox_new_de_b"
+    },
+    {
+      "files": [
         "css/mozorg/mpl-differences.scss"
       ],
       "name": "mpl-differences"
@@ -840,6 +846,13 @@
     },
     {
       "files": [
+        "js/base/mozilla-traffic-cop.js",
+        "js/firefox/new/de-experiment.js"
+      ],
+      "name": "firefox_new_de_experiment"
+    },
+    {
+      "files": [
         "js/base/mozilla-video-poster.js",
         "js/firefox/facebook-container-video.js"
       ],
@@ -1303,6 +1316,13 @@
         "js/firefox/new/berlin-scene1.js"
       ],
       "name": "firefox_new_scene1_berlin"
+    },
+    {
+      "files": [
+        "js/firefox/new/variation-scene1.js",
+        "js/firefox/new/de-experiment.js"
+      ],
+      "name": "firefox_new_de_b"
     },
     {
       "files": [

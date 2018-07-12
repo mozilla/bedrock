@@ -554,7 +554,7 @@ def download_thanks(request):
     elif locale == 'de' and experience == 'herz':
         template = 'firefox/new/berlin/scene2-herz.html'
     elif locale == 'de' and variant == 'b':
-        template = 'firefox/new/berlin/scene2-b.html'
+        template = 'firefox/new/de/scene2-b.html'
     elif locale == 'en-US':
         if experience in ['portland', 'forgood']:
             template = 'firefox/new/portland/scene2.html'
@@ -606,7 +606,7 @@ def new(request):
         elif locale == 'de' and experience == 'herz':
             template = 'firefox/new/berlin/scene1-herz.html'
         elif locale == 'de' and variant == 'b':
-            template = 'firefox/new/berlin/scene1-b.html'
+            template = 'firefox/new/de/scene1-b.html'
         elif locale == 'en-US':
             if experience in ['portland', 'forgood']:
                 template = 'firefox/new/portland/scene1.html'
