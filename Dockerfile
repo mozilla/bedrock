@@ -14,8 +14,7 @@ RUN yarn install --pure-lockfile
 RUN yarn global add gulp-cli@2.0.1
 
 # copy supporting files and media
-COPY .eslintrc.js .stylelintrc \
-     gulpfile.js static-bundles.json ./
+COPY .eslintrc.js .stylelintrc gulpfile.js ./
 COPY ./media ./media
 
 
