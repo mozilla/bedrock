@@ -211,57 +211,27 @@
       </div>
     </div>
 
+    {% if switch('show_pocket_feed', ['en']) and pocket_articles %}
     <aside class="pocket">
       <div class="mzp-l-content">
         <h3 class="section-heading">{{ _('What we’re reading:') }}</h3>
         <p class="tagline">{{ _('Like this feed? <a href="%(url)s">Subscribe</a> via Pocket')|format(url='https://getpocket.com/@MozillaHQ') }}</p>
         <div class="mzp-l-card-quarter">
+        {% for article in pocket_articles %}
           {{ card_block(
-              class='mzp-c-card-extra-small',
-              tag_label=_('vanityfair.com'),
-              title=_('“I Was Devastated”: Tim Berners-Lee, the Man Who Created the World Wide Web, Has Some Regrets'),
-              ga_title='Pocket Link 1',
-              image_url='home/2018/cards/pocket-1.jpg',
-              aspect_ratio='mzp-has-aspect-16-9',
-              link_url='https://www.vanityfair.com/news/2018/07/the-man-who-created-the-world-wide-web-has-some-regrets',
-              meta=_('July 1, 2018')
-          )}}
-
-          {{ card_block(
-              class='mzp-c-card-extra-small',
-              tag_label=_('bbc.co.uk'),
-              title=_('Ever wondered what your data actually looks like? I downloaded all my Facebook data and it was a nightmare'),
-              ga_title='Pocket Link 2',
-              image_url='home/2018/cards/pocket-2.jpg',
-              aspect_ratio='mzp-has-aspect-16-9',
-              link_url='https://www.bbc.co.uk/bbcthree/article/93d1393a-1c12-485f-b7fe-5146cd48c12c',
-              meta=_('June 21, 2018')
-          )}}
-
-          {{ card_block(
-              class='mzp-c-card-extra-small',
-              tag_label=_('recode.net'),
-              title=_('How can we make tech more accountable?'),
-              ga_title='Pocket Link 3',
-              image_url='home/2018/cards/pocket-3.jpg',
-              aspect_ratio='mzp-has-aspect-16-9',
-              link_url='https://www.recode.net/2018/6/22/17491590/anil-dash-tech-accountability-data-myanmar-rohingya-facebook-kara-swisher-embarrassed-podcast',
-              meta=_('June 22, 2018')
-          )}}
-
-          {{ card_block(
-              class='mzp-c-card-extra-small',
-              tag_label=_('fastcompany.com'),
-              title=_('Mozilla’s Firefox aims to alert users if they’ve been hacked'),
-              ga_title='Pocket Link 4',
-              image_url='home/2018/cards/pocket-4.jpg',
-              aspect_ratio='mzp-has-aspect-16-9',
-              link_url='https://www.fastcompany.com/40589753/mozilla-firefox-aims-to-alert-users-if-theyve-been-hacked',
-              meta=_('June 26, 2018')
-          )}}
+            class='mzp-c-card-extra-small',
+            tag_label=article.domain,
+            title=article.display_title,
+            ga_title='Pocket Link {}'.format(loop.index),
+            image_url=article.image,
+            aspect_ratio='mzp-has-aspect-16-9',
+            link_url=article.url
+          ) }}
+        {% endfor %}
         </div>
       </div>
     </aside>
+    {% endif %}
 
     <div class="mzp-l-content">
       <div class="mzp-l-card-half">

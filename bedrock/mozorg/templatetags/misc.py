@@ -3,6 +3,7 @@
 from __future__ import unicode_literals, print_function
 
 import random
+import re
 from os import path
 from os.path import splitext
 try:
@@ -230,9 +231,16 @@ def high_res_img(ctx, url, optional_attributes=None):
 @jinja2.contextfunction
 def lazy_img(ctx, image_url, placeholder_url, include_highres_image=False, optional_attributes=None):
     placeholder = static(path.join('img', placeholder_url))
-    image = static(path.join('img', image_url))
 
-    if include_highres_image:
+    external_img = re.match(r'^https://', image_url, flags=re.I)
+
+    # image could be external
+    if not external_img:
+        image = static(path.join('img', image_url))
+    else:
+        image = image_url
+
+    if include_highres_image and not external_img:
         image_high_res = static(path.join('img', convert_to_high_res(image_url)))
         srcset = 'data-srcset="{image_high_res} 2x"'.format(image_high_res=image_high_res)
     else:
