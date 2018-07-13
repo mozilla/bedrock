@@ -507,6 +507,14 @@ class TestLazyImg(TestCase):
         self.assertIn(u'alt="abides"', markup)
         self.assertIn(u'width="300"', markup)
 
+    def test_lazy_img_external(self):
+        """Should allow an external image and ignore include_highres_image"""
+        markup = self._render(image_url='https://www.test.com/test.png', placeholder_url='placeholder.png',
+                              include_highres_image=True)
+        self.assertIn(u'src="/media/img/placeholder.png"', markup)
+        self.assertIn(u'data-src="https://www.test.com/test.png"', markup)
+        self.assertNotIn(u'data-srcset="', markup)
+
 
 class TestAbsoluteURLFilter(TestCase):
     rf = RequestFactory()
