@@ -48,7 +48,7 @@
         @include border-box;
         @include clearfix;
         margin: 0 auto;
-        min-width: $width-content-xs;
+        min-width: $content-xs;
     }
 
     section {
@@ -59,16 +59,16 @@
         @include border-box;
         @include clearfix;
         margin: 0 auto;
-        max-width: $width-content-max;
-        min-width: $width-content-xs;
+        max-width: $content-max;
+        min-width: $content-xs;
         padding: $layout-xs;
         position: relative;
 
-        @media #{$media-md} {
+        @media #{$mq-md} {
             padding: $layout-xs $layout-lg;
         }
 
-        @media #{$media-lg} {
+        @media #{$mq-lg} {
             padding: $layout-xs $layout-xl;
         }
     }
@@ -172,7 +172,7 @@
         }
     }
 
-    @media #{$media-md} {
+    @media #{$mq-md} {
         .primary {
             .logo,
             section {
@@ -206,7 +206,7 @@
 }
 
 [dir='rtl'] #colophon {
-    @media #{$media-md} {
+    @media #{$mq-md} {
         .logo,
         section,
         .small-links,

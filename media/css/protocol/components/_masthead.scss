@@ -18,16 +18,16 @@ $color-button-green: #16da00;
         @include border-box;
         @include clearfix;
         margin: 0 auto;
-        max-width: $width-content-max;
-        min-width: $width-content-xs;
+        max-width: $content-max;
+        min-width: $content-xs;
         padding: $layout-xs;
         position: relative;
 
-        @media #{$media-md} {
+        @media #{$mq-md} {
             padding: $layout-xs $layout-lg;
         }
 
-        @media #{$media-lg} {
+        @media #{$mq-lg} {
             padding: $layout-xs $layout-xl;
         }
     }
@@ -47,7 +47,7 @@ $color-button-green: #16da00;
             height: 30px;
         }
 
-        @media #{$media-md} {
+        @media #{$mq-md} {
             float: left;
             position: relative;
             width: 94px;
@@ -112,7 +112,7 @@ $color-button-green: #16da00;
 
         a {
             background: #fff;
-            color: $color-primary;
+            color: $color-black;
             display: block;
             padding: 10px 20px;
             text-decoration: none;
@@ -139,7 +139,7 @@ $color-button-green: #16da00;
     display: none;
 }
 
-@media #{$media-md} {
+@media #{$mq-md} {
 
     .masthead-nav-main {
         float: left;
@@ -194,7 +194,7 @@ $color-button-green: #16da00;
     }
 }
 
-@media #{$media-lg} {
+@media #{$mq-lg} {
     .masthead-nav-main {
         width: 60%;
 
@@ -204,7 +204,7 @@ $color-button-green: #16da00;
     }
 }
 
-@media #{$media-xl} {
+@media #{$mq-xl} {
     .masthead-nav-main {
         margin: 0 0 0 40px;
         width: 70%;
@@ -217,7 +217,7 @@ $color-button-green: #16da00;
 
 // flexbox layout for savvy browsers to push nav items to the right
 @supports (display: flex) {
-    @media #{$media-md} {
+    @media #{$mq-md} {
         .nav-main-menu,
         .js .nav-main-menu {
             @include flexbox;
@@ -240,7 +240,7 @@ $color-button-green: #16da00;
                 border-right: none;
                 border-left: 6px solid #000;
 
-                @media #{$media-md} {
+                @media #{$mq-md} {
                     border: 0;
                 }
             }
@@ -251,24 +251,24 @@ $color-button-green: #16da00;
             padding-left: 0;
             padding-right: 5px;
 
-            @media #{$media-md} {
+            @media #{$mq-md} {
                 padding-right: 10px;
             }
 
-            @media #{$media-xl} {
+            @media #{$mq-xl} {
                 padding-right: 20px;
             }
         }
     }
 
-    @media #{$media-md} {
+    @media #{$mq-md} {
         .masthead-logo,
         .masthead-nav-main {
             float: right;
         }
     }
 
-    @media #{$media-xl} {
+    @media #{$mq-xl} {
         .masthead-nav-main {
             margin: 0 40px 0 0;
 
@@ -321,7 +321,7 @@ $color-button-green: #16da00;
         }
     }
 
-    @media #{$media-lg} {
+    @media #{$mq-lg} {
         display: block;
         width: 200px;
 
@@ -341,7 +341,7 @@ html[dir="rtl"] {
     #nav-download-firefox {
         float: left;
 
-        @media #{$media-md} {
+        @media #{$mq-md} {
 
             .download-link {
                 float: left;

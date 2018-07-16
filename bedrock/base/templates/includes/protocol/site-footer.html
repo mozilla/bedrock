@@ -1,0 +1,75 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+<footer class="mzp-c-footer mzp-has-lang-switcher">
+  <div class="mzp-l-content">
+    <nav class="mzp-c-footer-primary">
+      <div class="mzp-c-footer-primary-logo">
+        <a href="{{ url('mozorg.home') }}" data-link-type="footer" data-link-name="Mozilla">{{ _('Mozilla') }}</a>
+      </div>
+      <section class="mzp-c-footer-section">
+        <h5>
+          <a href="{{ url('mozorg.home') }}" data-link-type="footer" data-link-name="Mozilla">{{ _('Mozilla') }}</a>
+        </h5>
+        <ul>
+          <li><a href="{{ url('mozorg.about') }}" data-link-type="footer" data-link-name="About">{{ _('About') }}</a></li>
+          <li><a href="https://blog.mozilla.org/" data-link-type="footer" data-link-name="Blog">{{ _('Blog') }}</a></li>
+          <li><a href="{{ url('mozorg.contact.contact-landing') }}" data-link-type="footer" data-link-name="Contact Us">{{ _('Contact Us') }}</a></li>
+          <li><a href="{{ donate_url('footer') }}" class="donate" data-link-type="footer" data-link-name="Donate">{{ _('Donate') }}</a></li>
+          <li><a href="https://wiki.mozilla.org/Webdev/GetInvolved/mozilla.org" data-link-type="footer" rel="nofollow" data-link-name="Contribute to this site">{{ _('Contribute to this site') }}</a></li>
+          {# TODO remove the "and" clause after tranlsation #}
+          {% if template_source_url and (LANG.startswith('en') or switch('footer-source-link')) %}
+            <li><a href="{{ template_source_url }}" data-link-type="footer" rel="nofollow" data-link-name="Source code for this page">{{ _('Source code for this page') }}</a></li>
+          {% endif %}
+          <li>
+            <ul class="mzp-c-footer-links-social">
+              <li><a class="twitter" href="https://twitter.com/mozilla" data-link-type="footer" data-link-name="Twitter (@mozilla)">{{ _('Twitter') }}<span> (@mozilla)</span></a></li>
+              <li><a class="instagram" href="https://www.instagram.com/mozilla/" data-link-type="footer" data-link-name="Instagram (@mozilla)">{{ _('Instagram') }}<span> (@mozilla)</span></a></li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+      <section class="mzp-c-footer-section">
+        <h5>
+          <a href="{{ url('firefox') }}" data-link-type="footer" data-link-name="Firefox">{{ _('Firefox') }}</a>
+        </h5>
+        <ul>
+          <li><a href="{{ url('firefox.new') }}" data-link-type="footer" data-link-name="Download Firefox">{{ _('Download Firefox') }}</a></li>
+          <li><a href="{{ url('firefox') }}" data-link-type="footer" data-link-name="Desktop">{{ _('Desktop') }}</a></li>
+          <li><a href="{{ url('firefox.mobile') }}" data-link-type="footer" data-link-name="Mobile">{{ _('Mobile') }}</a></li>
+          <li><a href="{{ url('firefox.features.index') }}" data-link-type="footer" data-link-name="Features">{{ _('Features') }}</a></li>
+          <li><a href="{{ url('firefox.channel.desktop') }}" data-link-type="footer" data-link-name="Beta, Nightly, Developer Edition">{{ _('Beta, Nightly, Developer Edition') }}</a></li>
+          <li>
+            <ul class="mzp-c-footer-links-social">
+              <li><a class="twitter" href="{{ firefox_twitter_url() }}" data-link-type="footer" data-link-name="Twitter (@firefox)">{{ _('Twitter') }}<span> (@firefox)</span></a></li>
+              <li><a class="youtube" href="https://www.youtube.com/firefoxchannel" data-link-type="footer" data-link-name="YouTube (firefoxchannel)">{{ _('YouTube') }}<span> (firefoxchannel)</span></a></li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </nav>
+
+    <nav class="mzp-c-footer-secondary">
+        <div class="mzp-c-footer-legal">
+          <ul>
+            {% if LANG.startswith('en-') %}
+              {% set privacy_text = _('Website Privacy Notice') %}
+            {% else %}
+              {% set privacy_text = _('Privacy') %}
+            {% endif %}
+            <li><a rel="nofollow" href="{{ url('privacy.notices.websites') }}" data-link-type="footer" data-link-name="Privacy">{{ privacy_text }}</a></li>
+            <li><a rel="nofollow" href="{{ url('privacy.notices.websites') }}#cookies" data-link-type="footer" data-link-name="Cookies">{{ _('Cookies') }}</a></li>
+            <li><a rel="nofollow" href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal">{{ _('Legal') }}</a></li>
+          </ul>
+          <p class="mzp-c-footer-license">
+          {%- trans url=url('foundation.licensing.website-content') -%}
+            Portions of this content are ©1998–{{ current_year }} by individual mozilla.org
+            contributors. Content available under a <a rel="license" href="{{ url }}">Creative Commons license</a>.
+          {%- endtrans -%}
+          </p>
+        </div>
+        {% include 'includes/protocol/lang-switcher.html' %}
+    </nav>
+  </div>
+</footer>

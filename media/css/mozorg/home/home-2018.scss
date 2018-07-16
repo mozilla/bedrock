@@ -6,11 +6,12 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import "../../../../node_modules/@mozilla-protocol/core/protocol/css/includes/lib";
-@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/card";
 @import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/billboard";
 @import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/button";
-@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/newsletter-form";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/card";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/footer";
 @import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/modal";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/newsletter-form";
 @import "../../../../node_modules/@mozilla-protocol/core/protocol/css/templates/card-layout";
 
 @import '../../hubs/nav-download-button-remove';
@@ -50,7 +51,7 @@ $callout-blue: #0060df;
     font-weight: normal;
     line-height: 40px;
     margin-bottom: $margin-sm;
-    padding-top: $padding-xxl;
+    padding-top: $padding-2xl;
 }
 
 .primary-title-sub {
@@ -58,15 +59,15 @@ $callout-blue: #0060df;
     margin-bottom: $margin-sm;
 }
 
-@media #{$media-md} {
+@media #{$mq-md} {
     .primary-wrapper {
         padding-bottom: 40px;
     }
 
     .primary-title {
         background-position: top left;
-        margin-bottom: $margin-xxl;
-        padding-left: $padding-xxl;
+        margin-bottom: $margin-2xl;
+        padding-left: $padding-2xl;
         padding-top: 0;
         text-align: left;
         line-height: 40px;
@@ -89,7 +90,7 @@ $callout-blue: #0060df;
     @include light-links;
 }
 
-@media #{$media-md} {
+@media #{$mq-md} {
     #download-primary {
         margin-top: 0;
         position: absolute;
@@ -103,8 +104,7 @@ $callout-blue: #0060df;
     }
 }
 
-
-@media #{$media-lg} {
+@media #{$mq-lg} {
     .download-firefox-primary-cta {
         border-top: 100px solid #fff;
         position: relative;
@@ -169,7 +169,7 @@ $callout-blue: #0060df;
     bottom: 0;
     cursor: pointer;
     overflow: hidden;
-    padding: 0 0 0 $padding-xxl;
+    padding: 0 0 0 $padding-2xl;
     position: absolute;
     right: 0;
     top: 0;
@@ -189,7 +189,7 @@ $callout-blue: #0060df;
     }
 }
 
-@media #{$media-md} {
+@media #{$mq-md} {
     .download-firefox-sticky-cta {
         .primary-title {
             float: left;
@@ -230,7 +230,7 @@ $callout-blue: #0060df;
     }
 }
 
-@media #{$media-lg} {
+@media #{$mq-lg} {
     .download-firefox-sticky-cta {
         .primary-desc-sub {
             display: block;
@@ -286,7 +286,7 @@ $callout-blue: #0060df;
         }
     }
 
-    @media #{$media-md} {
+    @media #{$mq-md} {
         margin: $margin-xl 0 0;
         padding-top: $padding-lg;
     }
@@ -294,7 +294,6 @@ $callout-blue: #0060df;
 
 /* -------------------------------------------------------------------------- */
 // Secondary Firefox CTA section.
-
 
 .download-firefox-secondary-cta {
     background-color: $callout-blue;
@@ -326,7 +325,7 @@ $callout-blue: #0060df;
     margin-top: $margin-lg;
 }
 
-@media #{$media-md} {
+@media #{$mq-md} {
     .secondary-content {
         text-align: left;
         width: 410px;
@@ -354,24 +353,17 @@ $callout-blue: #0060df;
             top: 55px;
             left: 495px;
 
-            @media #{$media-high-res} {
+            @media #{$mq-high-res} {
                 background-image: url('/media/img/home/2018/browser-high-res.png');
             }
         }
     }
 }
 
-@media #{$media-xl} {
+@media #{$mq-xl} {
     .download-firefox-secondary-cta {
         &:before {
             left: calc(50% - 208px);
         }
     }
-}
-
-/* -------------------------------------------------------------------------- */
-// Custom modal styles
-
-.mzp-c-modal video {
-    width: 100%; // fixed in next Protocol release https://github.com/mozilla/protocol/pull/135
 }

@@ -331,6 +331,12 @@
     },
     {
       "files": [
+        "css/protocol/oldIE.scss"
+      ],
+      "name": "protocol-oldIE"
+    },
+    {
+      "files": [
         "css/legal/legal.less",
         "css/newsletter/moznewsletter-subscribe.less"
       ],
@@ -1389,6 +1395,8 @@
     {
         "files": [
             "js/libs/jquery-3.2.1.min.js",
+            "protocol/js/protocol-lang-switcher.js",
+            "js/base/protocol/init-lang-switcher.js",
             "js/base/mozilla-utils.js",
             "js/base/mozilla-client.js",
             "js/base/mozilla-image-helper.js",
