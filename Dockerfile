@@ -17,6 +17,8 @@ RUN yarn global add gulp-cli@2.0.1
 COPY .eslintrc.js .stylelintrc gulpfile.js ./
 COPY ./media ./media
 
+RUN gulp build --production
+
 
 ########
 # Python dependencies builder
@@ -106,18 +108,11 @@ USER webdev
 
 
 ########
-# build production assets
-#
-FROM assets AS assets-release
-RUN gulp build --production
-
-
-########
 # final image for deployment
 #
 FROM app-base AS release
 
-COPY --from=assets-release /app/static_final /app/static_final
+COPY --from=assets /app/static_final /app/static_final
 RUN honcho run --env docker/envfiles/prod.env docker/bin/build_staticfiles.sh
 
 # build args
