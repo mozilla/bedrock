@@ -14,7 +14,7 @@
 {% block page_desc %}{{_('Besser digital leben mit Firefox: Superschnell surfen, Top-Privatsphäre-Schutz und gut für das Netz. Weil Mozilla dahinter steht. Das Non-Profit für ein freies und offenes Internet — für alle Menschen.')}}{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('firefox_new_berlin_herz') }}
+  {{ css_bundle('firefox_new_berlin_variation') }}
 {% endblock %}
 
 {% block body_id %}firefox{% endblock %}
@@ -29,7 +29,7 @@
       <div class="copy">
         <img class="logo" src="{{ static('img/firefox/new/berlin/firefox-logo-wordmark.png') }}" width="408" height="103" alt="Besser digital leben — mit Firefox" />
         {% block head_content %}
-          <h1 id="main-heading">Zeit für den Browser <br>mit Herz.</h1>
+          <h1 id="main-heading">{% block main_heading %}Zeit für den Browser <br>mit Herz.{% endblock %}</h1>
         {% endblock %}
         <div class="secondary-content">
           {% block secondary_content %}{% endblock %}
@@ -43,37 +43,11 @@
   <section class="details content-section">
     <div class="content">
       <ul>
-        <li>
-          <h3>Gut für Dich</h3>
-          <p>
-            Offline achtest Du auf Dich, Deine Ernährung, die Umwelt … Doch
-            online lassen wir uns von Werbung verfolgen, geben leichtfertig
-            <a rel="noopener" target="_blank" href="{{ url('firefox.features.private-browsing') }}">unsere Privatsphäre</a>
-            auf oder sind sogar Produkt. Passt das für Dich nicht so richtig
-            zusammen? Dann bring doch Dein Online- und Offline-Leben wieder
-            in Einklang — mit Firefox.
-          </p>
-        </li>
-        <li>
-          <h3>Gut für Deine Daten</h3>
-          <p>
-            Wir finden: Deine Daten gehören Dir. Daher ist der
-            Privatsphäre-Schutz von Firefox so viel stärker als bei anderen
-            Browsern. Surfen in Top-Geschwindigkeit natürlich inklusive. Übrigens:
-            <a rel="noopener noreferrer" target="_blank" href="https://blog.mozilla.org/firefox/de/superschnell-und-einfach-der-wechsel-von-chrome-zu-firefox/">Browser wechseln</a>
-            war noch nie so einfach.
-          </p>
-        </li>
-        <li>
-          <h3>Gut für das Internet</h3>
-          <p>
-            <a rel="noopener" target="_blank" href="{{ url('firefox.features.independent') }}">Internet für Menschen statt für Profit</a>:
-            Firefox ist unabhängig und Teil von Mozilla. Als Non-Profit kämpfen
-            wir für ein freies Netz. Von dem alle Menschen profitieren. Und
-            nicht nur ein paar Tech-Riesen. Dafür machen wir uns stark. Seit es
-            uns gibt.
-          </p>
-        </li>
+        {% block detail_items %}
+          {% include 'firefox/new/berlin/includes/dich.html' %}
+          {% include 'firefox/new/berlin/includes/daten.html' %}
+          {% include 'firefox/new/berlin/includes/internet.html' %}
+        {% endblock %}
       </ul>
     </div>
   </section>

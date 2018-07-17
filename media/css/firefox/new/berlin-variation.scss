@@ -54,6 +54,27 @@ a.button:visited.button-green:focus {
 .intro {
     background: #23033d url('/media/img/firefox/new/berlin/mit-herz-mobile.png') top -40px center no-repeat;
 
+
+    .gesch & {
+        background: #000d41 url("/media/img/firefox/new/berlin/gesch-mobile.png") top center no-repeat;
+    }
+    .privat & {
+        background: #003906 url("/media/img/firefox/new/berlin/privat-mobile.png") top -40px center no-repeat;
+    }
+    .ads & {
+        background: #59013b url("/media/img/firefox/new/berlin/ads-mobile.png") top center no-repeat;
+    }
+
+    h1 {
+        margin-left: auto;
+        margin-right: auto;
+
+        .ads & {
+            max-width: 440px;
+            min-height: 4em;
+        }
+    }
+
     h1,
     h2 {
         @include font-size-level1;
@@ -71,6 +92,14 @@ a.button:visited.button-green:focus {
 
     .secondary-content {
         margin-top: 260px;
+
+        .privat & {
+            margin-top: 290px;
+        }
+
+        .ads & {
+            margin-top: 290px;
+        }
     }
 
     .copy {
@@ -101,14 +130,38 @@ a.button:visited.button-green:focus {
     }
 
     @media #{$mq-tablet} {
+
+        h1 {
+            margin-left: auto;
+            margin-right: auto;
+
+            .ads & {
+                max-width: 600px;
+                min-height: 0;
+            }
+        }
+
         background-position: top -20px center;
     }
 
     @media #{$mq-desktop} {
-        background: #23033d url('/media/img/firefox/new/berlin/mit-herz.jpg') top center no-repeat;
+        background: #23033d url('/media/img/firefox/new/berlin/mit-herz.png') top center no-repeat;
         background: url('/media/img/firefox/new/berlin/purple-wave.png') bottom left no-repeat,
-                    url('/media/img/firefox/new/berlin/mit-herz.jpg') top center no-repeat,
+                    url('/media/img/firefox/new/berlin/mit-herz.png') top center no-repeat,
                     #23033d;
+
+        .gesch & {
+            background: #000d41 url("/media/img/firefox/new/berlin/gesch.png") center right 50% no-repeat;
+            background-size: cover;
+        }
+        .privat & {
+            background: #003906 url("/media/img/firefox/new/berlin/privat.png") center right 55%/cover no-repeat;
+            background-size: cover;
+        }
+        .ads & {
+            background: #59013b url("/media/img/firefox/new/berlin/ads.png") center right 40%/cover no-repeat;
+            background-size: cover;
+        }
 
         &.content-section {
             padding: 0;
@@ -125,6 +178,12 @@ a.button:visited.button-green:focus {
 
         .secondary-content {
             margin-top: 40px;
+
+            .gesch &,
+            .privat &,
+            .ads & {
+                margin-top: 40px;
+            }
         }
 
         .copy {
@@ -132,8 +191,20 @@ a.button:visited.button-green:focus {
             width: 50%;
             padding: 0 30px;
         }
-
     }
+
+    @media screen and (min-width: 1800px) {
+        .gesch & {
+            background-size: auto;
+        }
+        .privat & {
+            background-size: auto;
+        }
+        .ads & {
+            background-size: auto;
+        }
+    }
+
 }
 
 // always hide special scene 2 button (as it forces direct download)
@@ -233,14 +304,27 @@ a.button:visited.button-green:focus {
         padding: 40px 0;
 
         &:before {
-            background-color: #65e1ff;
-            background-image: linear-gradient(to left, #65e1ff 0%, #95b5ff 78%, #a2a9ff 100%);
+            background-color: #440070;
+            background-image: linear-gradient(to right, #440070 0%, #8000d6 100%);
             content: '';
             height: 6px;
             left: 0;
             position: absolute;
             top: 0;
             width: 100%;
+
+            .gesch & {
+                background-color: #001d78;
+                background-image: linear-gradient(to right, #001d78 0%, #005ae3 100%);
+            }
+            .privat & {
+                background-color: #056406;
+                background-image: linear-gradient(to right, #056406 0%, #0fbc02 100%);
+            }
+            .ads & {
+                background-color: #ad0095;
+                background-image: linear-gradient(to right, #ad0095 0%, #ff00db 100%);
+            }
         }
     }
 
@@ -282,4 +366,3 @@ a.button:visited.button-green:focus {
         }
     }
 }
-

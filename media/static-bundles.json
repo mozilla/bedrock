@@ -142,9 +142,9 @@
     },
     {
       "files": [
-        "css/firefox/new/berlin-herz.scss"
+        "css/firefox/new/berlin-variation.scss"
       ],
-      "name": "firefox_new_berlin_herz"
+      "name": "firefox_new_berlin_variation"
     },
     {
       "files": [
@@ -840,9 +840,9 @@
     {
       "files": [
         "js/firefox/new/variation-scene1.js",
-        "js/firefox/new/berlin-scene1-herz.js"
+        "js/firefox/new/berlin-scene1-variation.js"
       ],
-      "name": "firefox_new_scene1_berlin_herz"
+      "name": "firefox_new_scene1_berlin_variation"
     },
     {
       "files": [

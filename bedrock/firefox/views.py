@@ -547,14 +547,23 @@ def download_thanks(request):
         template = 'firefox/new/wait-face/scene2.html'
     elif lang_file_is_active('firefox/new/reggiewatts', locale) and experience == 'reggiewatts':
         template = 'firefox/new/reggie-watts/scene2.html'
-    elif locale == 'de' and experience == 'berlin':
-        template = 'firefox/new/berlin/scene2.html'
-    elif locale == 'de' and experience == 'aus-gruenden':
-        template = 'firefox/new/berlin/scene2-aus-gruenden.html'
-    elif locale == 'de' and experience == 'herz':
-        template = 'firefox/new/berlin/scene2-herz.html'
-    elif locale == 'de' and variant == 'b':
-        template = 'firefox/new/de/scene2-b.html'
+    elif locale == 'de':
+        if variant == 'b':
+            template = 'firefox/new/de/scene2-b.html'
+        elif experience == 'berlin':
+            template = 'firefox/new/berlin/scene2.html'
+        elif experience == 'aus-gruenden':
+            template = 'firefox/new/berlin/scene2-aus-gruenden.html'
+        elif experience == 'herz':
+            template = 'firefox/new/berlin/scene2-herz.html'
+        elif experience == 'geschwindigkeit':
+            template = 'firefox/new/berlin/scene2-gesch.html'
+        elif experience == 'privatsphare':
+            template = 'firefox/new/berlin/scene2-privat.html'
+        elif experience == 'auf-deiner-seite':
+            template = 'firefox/new/berlin/scene2-ads.html'
+        else:
+            template = 'firefox/new/scene2.html'
     elif locale == 'en-US':
         if experience in ['portland', 'forgood']:
             template = 'firefox/new/portland/scene2.html'
@@ -599,14 +608,23 @@ def new(request):
             template = 'firefox/new/wait-face/scene1.html'
         elif lang_file_is_active('firefox/new/reggiewatts', locale) and experience == 'reggiewatts':
             template = 'firefox/new/reggie-watts/scene1.html'
-        elif locale == 'de' and experience == 'berlin':
-            template = 'firefox/new/berlin/scene1.html'
-        elif locale == 'de' and experience == 'aus-gruenden':
-            template = 'firefox/new/berlin/scene1-aus-gruenden.html'
-        elif locale == 'de' and experience == 'herz':
-            template = 'firefox/new/berlin/scene1-herz.html'
-        elif locale == 'de' and variant == 'b':
-            template = 'firefox/new/de/scene1-b.html'
+        elif locale == 'de':
+            if variant == 'b':
+                template = 'firefox/new/de/scene1-b.html'
+            elif experience == 'berlin':
+                template = 'firefox/new/berlin/scene1.html'
+            elif experience == 'aus-gruenden':
+                template = 'firefox/new/berlin/scene1-aus-gruenden.html'
+            elif experience == 'herz':
+                template = 'firefox/new/berlin/scene1-herz.html'
+            elif experience == 'geschwindigkeit':
+                template = 'firefox/new/berlin/scene1-gesch.html'
+            elif experience == 'privatsphare':
+                template = 'firefox/new/berlin/scene1-privat.html'
+            elif experience == 'auf-deiner-seite':
+                template = 'firefox/new/berlin/scene1-auf-deiner-seite.html'
+            else:
+                template = 'firefox/new/scene1.html'
         elif locale == 'en-US':
             if experience in ['portland', 'forgood']:
                 template = 'firefox/new/portland/scene1.html'
