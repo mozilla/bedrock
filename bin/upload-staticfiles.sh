@@ -17,7 +17,6 @@ docker-compose run --name "$CONTAINER_NAME" release docker/bin/build_staticfiles
 docker cp "${CONTAINER_NAME}:/app/static" ./static
 docker rm -f "$CONTAINER_NAME"
 
-cd static
 for BUCKET in stage prod; do
     # hashed filenames
     aws s3 sync \
@@ -26,7 +25,7 @@ for BUCKET in stage prod; do
         --acl public-read \
         --cache-control "max-age=315360000, public, immutable" \
         --profile bedrock-media \
-        . "s3://bedrock-${BUCKET}-media/"
+        ./static "s3://bedrock-${BUCKET}-media/media/"
     # non-hashed filenames
     # may not need to include non-hashed files
     # TODO look into this if this is slow or makes the bucket too large
@@ -35,8 +34,7 @@ for BUCKET in stage prod; do
         --acl public-read \
         --cache-control "max-age=21600, public" \
         --profile bedrock-media \
-        . "s3://bedrock-${BUCKET}-media/"
+        ./static "s3://bedrock-${BUCKET}-media/media/"
 done
 
-cd ..
 rm -rf static
