@@ -55,4 +55,5 @@ package-lock.json
 .vscode/
 static_build
 static_final
+static
 npm_debug.log

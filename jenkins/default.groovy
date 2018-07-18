@@ -56,6 +56,9 @@ if ( config.push_public_registry != false ) {
                 utils.pushDockerhub('mozorg/bedrock_code')
                 utils.pushDockerhub('mozorg/bedrock_build')
                 utils.pushDockerhub('mozorg/bedrock')
+                // also upload static files to s3 bucket
+                // the script itself decides if this is a prod push or not
+                sh "bin/upload-staticfiles.sh"
             }
         } catch(err) {
             utils.ircNotification([stage: 'Dockerhub Push Failed', status: 'failure'])
