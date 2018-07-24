@@ -834,6 +834,12 @@
         "css/mozorg/commit-access-requirements.less"
       ],
       "name": "commit-access-requirements"
+    },
+    {
+      "files": [
+        "css/firefox/pocket.scss"
+      ],
+      "name": "product_pocket"
     }
   ],
   "js": [
@@ -1457,6 +1463,13 @@
         "js/newsletter/mozilla.js"
       ],
       "name": "newsletter-mozilla"
+    },
+    {
+      "files": [
+        "js/base/mozilla-lazy-load.js",
+        "js/firefox/pocket.js"
+      ],
+      "name": "product_pocket"
     }
   ]
 }

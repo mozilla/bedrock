@@ -111,4 +111,5 @@ urlpatterns = (
         name='firefox.stub_attribution_code'),
 
     page('firefox/switch', 'firefox/switch.html'),
+    page('firefox/pocket', 'firefox/pocket.html'),
 )
