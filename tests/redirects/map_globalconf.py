@@ -1056,9 +1056,6 @@ URLS = flatten((
     # Bug 1260423
     url_test('/firefox/choose', '/firefox/new/'),
 
-    # Bug 1283397
-    url_test('/firefox/pocket', 'https://getpocket.com/firefox/'),
-
     url_test('/firefox/{,46.0/,46.0.1/,47.0/,47.0.1/}secondrun', '/firefox/mobile/'),
 
     # bug 1288647

@@ -494,9 +494,6 @@ redirectpatterns = (
     # bug 1260423
     redirect(r'^firefox/choose/?$', 'firefox.new'),
 
-    # bug 1283397
-    redirect(r'^firefox/pocket/?$', 'https://getpocket.com/firefox/'),
-
     # bug 1288552 - redirect /secondrun/ traffic from funnelcake test
     redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/secondrun(?:/.*)?',
              'firefox.mobile', query=False),
