@@ -25,7 +25,7 @@ def loadBranch(String branch) {
         for ( app in config.apps ) {
             if ( app.length() > 63 ) {
                 err_msg = "App name exceeds 63 char limit: ${app}"
-                utils.ircNotification([message: err_msg, status: 'failure'])
+                utils.slackNotification([message: err_msg, status: 'failure'])
                 throw new Exception(err_msg)
             }
 

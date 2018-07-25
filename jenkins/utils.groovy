@@ -24,6 +24,20 @@ def demoAppURL(appname, region) {
 }
 
 /**
+ * Send a notice to #www-notify on mozilla.slack.com with the build result
+ *
+ * @param stage step of build/deploy
+ * @param result outcome of build (will be uppercased)
+*/
+def slackNotification(Map args) {
+    def command = "bin/slack-notify.sh"
+    for (arg in args) {
+        command += " --${arg.key} '${arg.value}'"
+    }
+    sh command
+}
+
+/**
  * Send a notice to #www-notify on irc.mozilla.org with the build result
  *
  * @param stage step of build/deploy
