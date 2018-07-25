@@ -113,7 +113,7 @@ $color-button-green: #16da00;
             height: 25px;
         }
 
-        @media #{$media-lg} {
+        @media #{$mq-lg} {
             margin-left: 17px;
 
             a {
@@ -132,11 +132,11 @@ $color-button-green: #16da00;
         padding: 10px 0;
         position: relative;
 
-        @media #{$media-md} {
+        @media #{$mq-md} {
             padding-top: 25px;
         }
 
-        @media #{$media-lg} {
+        @media #{$mq-lg} {
             margin-left: 28px;
         }
     }
@@ -170,18 +170,18 @@ $color-button-green: #16da00;
             }
         }
 
-        @media #{$media-md} {
+        @media #{$mq-md} {
             @include border-box;
             display: block;
             margin-left: 20px;
             width: calc(100% - 370px);
         }
 
-        @media #{$media-lg} {
+        @media #{$mq-lg} {
             width: calc(100% - 480px);
         }
 
-        @media #{$media-xl} {
+        @media #{$mq-xl} {
             margin-left: 40px;
 
             &> li {
@@ -201,8 +201,8 @@ $color-button-green: #16da00;
         }
     }
 
-    @media #{$media-lg} {
-        max-width: $width-content-max;
+    @media #{$mq-lg} {
+        max-width: $content-max;
         margin: 0 auto;
     }
 }
@@ -296,7 +296,7 @@ $color-button-green: #16da00;
             transform: translate(7px, 7px) rotate(45deg);
         }
 
-        @media #{$media-lg} {
+        @media #{$mq-lg} {
 
             .rect {
                 transition: transform .12s ease-in-out;
@@ -571,7 +571,7 @@ html.moz-nav-open .moz-global-nav-page-mask {
         }
     }
 
-    @media #{$media-md} {
+    @media #{$mq-md} {
         margin-top: 5px;
         margin-right: 64px;
         width: 200px;
@@ -581,7 +581,7 @@ html.moz-nav-open .moz-global-nav-page-mask {
         }
     }
 
-    @media #{$media-lg} {
+    @media #{$mq-lg} {
         margin-right: 95px;
     }
 
@@ -672,7 +672,7 @@ html.moz-nav-open {
         visibility: hidden;
     }
 
-    @media #{$media-lg} {
+    @media #{$mq-lg} {
         html.moz-nav-open {
             height: 100%;
 

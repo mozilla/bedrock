@@ -62,6 +62,7 @@
 
             Mozilla.Modal.createModal(this, content, {
                 title: title,
+                className: 'mzp-has-media',
                 onCreate: function() {
                     try {
                         video.load();
