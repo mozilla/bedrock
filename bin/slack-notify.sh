@@ -51,6 +51,9 @@ if [[ -n "$STATUS" ]]; then
     STATUS="${STATUS_PREFIX} *${STATUS}*: "
 fi
 
+# add project name
+STATUS="*bedrock*: ${STATUS}"
+
 if [[ -n "$STAGE" ]]; then
     MESSAGE="${STATUS}${STAGE}:"
     MESSAGE="$MESSAGE Branch *${BRANCH_NAME}* <${BLUE_BUILD_URL}|build #${BUILD_NUMBER}>"

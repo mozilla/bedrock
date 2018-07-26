@@ -37,20 +37,6 @@ def slackNotification(Map args) {
     sh command
 }
 
-/**
- * Send a notice to #www-notify on irc.mozilla.org with the build result
- *
- * @param stage step of build/deploy
- * @param result outcome of build (will be uppercased)
-*/
-def ircNotification(Map args) {
-    def command = "bin/irc-notify.sh"
-    for (arg in args) {
-        command += " --${arg.key} '${arg.value}'"
-    }
-    sh command
-}
-
 def pushDockerhub(from_repo) {
     withCredentials([[$class: 'StringBinding',
                       credentialsId: 'DOCKER_PASSWORD',
@@ -107,7 +93,7 @@ def pushDeis(region, config, appname, stageName) {
                 sh 'docker/bin/push2deis.sh'
             }
         } catch(err) {
-            ircNotification([stage: stageName, status: 'failure'])
+            slackNotification([stage: stageName, status: 'failure'])
             throw err
         }
     }
@@ -131,7 +117,7 @@ def deploy(region, config, appname, stageName, namespace) {
         try {
             sh 'bin/deploy.sh'
         } catch(err) {
-            ircNotification([stage: stageName, status: 'failure'])
+            slackNotification([stage: stageName, status: 'failure'])
             throw err
         }
     }
