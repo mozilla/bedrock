@@ -12,36 +12,18 @@
       <h2>Introduction</h2>
 
       <p>The Mozilla Client Security Bug Bounty Program is designed to encourage security research in Mozilla software and to reward those who help us create the safest Internet software in existence.</p>
-
-      <h2>General Client Bounty Guidelines</h2>
-
-      <p>Mozilla will pay a bounty for certain client security bugs,  as detailed below.  All security bugs must follow the following general criteria to be eligible:
-      </p>
-
-      <ul class="prose">
-        <li>Security bug must be original and previously unreported.</li>
-        <li>Security bug must be a remote exploit, the cause of a privilege escalation, or an information leak.</li>
-        <li>Submitter must not be the author of the buggy code nor otherwise involved
-          in its
-          contribution to the Mozilla project (such as by providing check-in
-          reviews).
-        </li>
-        <li>Employees of the Mozilla Foundation and its subsidiaries are
-          ineligible.
-        </li>
-      </ul>
-      <p>If two or more people report the bug together the
-        reward will be divided among them. </p>
+      
+      <p><strong>Guidelines:</strong> In addition to our <a href="{{ url('security.bug-bounty') }}">general eligibility requirements</a>, a security bug must be a remote exploit, the cause of a privilege escalation, or an information leak. 
 
       <h2>Reward Guidelines</h2>
 
       <p>Mozilla will pay a bounty for client and security bugs as detailed below. All security bugs must follow the following general criteria to be eligible:</p>
 
-       <p> Eligible security bugs may be present in any of the current main development or released versions of Firefox or Firefox for Android as released by Mozilla Corporation (e.g. Nightly mozilla-central or Beta test versions, as well as the final release product versions)</p>
-
-        <p>The security rating given by the Bounty Committee for a bug must be rated a "sec-critical" or a "sec-high" in order for it to be eligible for a bounty. Some "sec-moderate" bugs may be eligible for the bounty as well. (See <a href="https://wiki.mozilla.org/Security_Severity_Ratings">Security Ratings</a> for details of the rating qualifications.)</p>
-
-        <p>All bounties paid will be at the discretion of the Mozilla Bounty Committee.  The committee will evaluate the severity of reported issues with the help of engineers who work on the affected code. Security researchers are invited to participate in the assignment of ratings, but final decisions on the rating are at the discretion of the Bounty Committee.</p>
+      <ul class="prose">
+        <li>Eligible security bugs may be present in any of the current main development or released versions of Firefox or Firefox for Android as released by Mozilla Corporation (e.g. Nightly mozilla-central or Beta test versions, as well as the final release product versions).</li>
+        <li>The security rating given by the Bounty Committee for a bug must be rated a "sec-critical" or a "sec-high" in order for it to be eligible for a bounty. Some "sec-moderate" bugs may be eligible for the bounty as well. (See <a href="https://wiki.mozilla.org/Security_Severity_Ratings">Security Ratings</a> for details of the rating qualifications.)</li>
+        <li>All bounties paid will be at the discretion of the Mozilla Bounty Committee. The committee will evaluate the severity of reported issues with the help of engineers who work on the affected code. Security researchers are invited to participate in the assignment of ratings, but final decisions on the rating are at the discretion of the Bounty Committee.</li>
+      </ul>
 
       <h2>Rewards Amount</h2>
 
@@ -50,8 +32,8 @@
       <p>Here are some examples how to receive a higher reward</p>
       <ul class="prose">
         <li>The researcher can demonstrate new classes of attacks, or techniques for bypassing security features </li>
-
-        <li>  Or, if an existing vulnerability can be demonstrated to be exploitable though additional research by the reporter, additional compensation can be earned for the same bug. Research might also uncover extremely severe, complex, or interesting problem areas that were previously unreported or unknown issues. Examples of severe or complex bugs would be: Use After Free bugs that also allow for ASLR bypass; bypassing the Firefox security wrappers to allow content to manipulate browser components, or a vulnerability that allows you to break out of a sandboxed process.</li>
+        <li>Or, if an existing vulnerability can be demonstrated to be exploitable though additional research by the reporter, additional compensation can be earned for the same bug. Research might also uncover extremely severe, complex, or interesting problem areas that were previously unreported or unknown issues. Examples of severe or complex bugs would be: Use After Free bugs that also allow for ASLR bypass; bypassing the Firefox security wrappers to allow content to manipulate browser components, or a vulnerability that allows you to break out of a sandboxed process.</li>
+        <li>You are responsible for any tax implications depending on your country of residency and citizenship. There may be additional restrictions on your ability to enter depending upon your local law.</li>
       </ul>
 
       <p>We reserve the right not to pay bounties for security bugs in or caused by additional third party software (e.g. binary plugins, extensions) not bundled by Mozilla in a release.</p>
@@ -86,13 +68,13 @@
 
       <p>To claim a bounty:</p>
       <ul class="prose">
-        <li>Make sure you have a Bugzilla account</li>
-          <li>File a bug at <a href="https://bugzilla.mozilla.org">bugzilla.mozilla.org</a> describing the security issue.</li>
-          <li>When creating the bug, be sure to check the box near the bottom of the entry form that marks this bug report as confidential.</li>
-          <li>Attach a "proof of concept" testcase, or point to explicit code that identifies the vulnerability or exploit.  While not required, such a testcase will help us judge submissions more quickly and accurately.</li>
-          <li>If you have debug output or output from a tool demonstrating the issue, please include it in the bug. (If it is very long, please attach it to the bug as an attached file.)</li>
-          <li>Notify the Mozilla Security Group by email to security@mozilla.org and include the number of the bug you filed and a brief summary of the issue. <strong>Do not send the actual vulnerability via email.</strong></li>
-    </ul>
+        <li>Make sure you have a Bugzilla account.</li>
+        <li>Use the <a href="https://bugzilla.mozilla.org/form.client.bounty">bugzilla client bug bounty form</a> to file the issue and automatically mark it for bug bounty consideration.</li>
+        <li>In the "Description" field, please clearly describe the security issue.</li>
+        <li>If one is available, attach a "proof of concept" testcase with the "Attachment" option, or point to explicit code that identifies the vulnerability or exploit. While not required, such a testcase will help us judge submissions more quickly and accurately.</li>
+        <li>If you have debug output or output from a tool demonstrating the issue, please include it in the bug. If it is very long, please attach it to the bug as an attached file and do not add it to the description.</li>
+        <li>If you have filed the bug directly in Bugzilla without using the <a href="https://bugzilla.mozilla.org/form.client.bounty">Bugzilla client bug bounty form</a>, notify the Mozilla Security Group by email to <a href="security@mozilla.org">security@mozilla.org</a> and include the number of the bug you filed and a mention that you are submitting it for bounty consideration. <strong>Do not send the actual vulnerability via email.</strong></li>
+      </ul>
 
     <p>We ask that you be available to follow along and provide further information on the bug as needed, and invite you to work together with Mozilla engineers in reproducing, diagnosing, and fixing the bug. As part of this process we will provide you full access to participate in our internal discussions about the bug; for more information read our policy for handling security bugs.</p>
 
