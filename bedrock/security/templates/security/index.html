@@ -16,18 +16,12 @@
       <h1 itemprop="name"><span class="highlight">Mozilla Security</span></h1>
     </header>
     <div itemprop="articleBody">
-      <p class="intro">Whether you’re using the Web or checking your email, you care about
-        your security and privacy. In the Mozilla project
-        <a href="{{ url('security.advisories') }}">we understand the importance of security</a>.
-        Here you will find alerts and announcements on security and privacy
-        issues, general tips for surfing the Web and using email more securely,
-        more information about how we maintain and enhance the security of our
-        products, and useful links for Web developers.</p>
+      <p class="intro">Whether you’re using the Web or checking your email, you care about your security and privacy. At Mozilla we understand the importance of security. Here you will find alerts and announcements on security and privacy issues, general tips for surfing the Web and using email more securely, more information about how we maintain and enhance the security of our products, and useful links for developers.</p>
 
       <ul class="links">
         <li>
           <h4><a href="{{ url('security.advisories') }}">
-            Mozilla Foundation Security Advisories
+            Mozilla Security Advisories
           </a></h4>
           for all products
         </li>
@@ -36,6 +30,12 @@
             Known vulnerabilities
           </a></h4>
           listed by product
+        </li>
+        <li>
+          <h4><a href="{{ url('security.bug-bounty') }}">
+            Security Bug Bounty Program
+          </a></h4>
+          Mozilla's Security Bug Bounty Program for security issues
         </li>
         <li>
           <h4>
@@ -117,20 +117,15 @@
       <ul class="prose">
         <li><strong>If you believe that you've found a Mozilla-related
           security vulnerability, please report it by sending email to the
-          address security@mozilla.org.</strong> Note that your report may be
-          eligible for a reward; see below.
+          address <a href="mailto:security@mozilla.org">security@mozilla.org</a>.</strong> Note that your report may be
+          eligible for a reward in our ; see below.
         </li>
         <li>For more information on how to report security vulnerabilities
           and how the Mozilla community will respond to such reports, see our
           <a href="{{ url('mozorg.about.governance.policies.security.bugs') }}">policy
             for handling security bugs</a>.
         </li>
-        <li>We want to make Firefox, Thunderbird, the Mozilla Suite, and
-          other Mozilla products as secure as possible, and want to encourage
-          research, study, timely disclosure, and rapid fixing of any serious
-          security vulnerabilities. We've established a
-          <a href="{{ url('security.bug-bounty') }}">Security Bug
-            Bounty Program</a> to reward people who help us reach that objective.
+        <li>We want to make Mozilla products and sites as secure as possible, and wish to encourage research, study, timely disclosure, and rapid fixing of any serious security vulnerabilities. We've established a <a href="{{ url('security.bug-bounty') }}">Security Bug Bounty Program</a> to reward people who help us reach that objective.
         </li>
         <li>Mozilla-based products include a default list of CA certificates
           used when connecting to SSL-enabled servers and in other contexts. If you
@@ -138,19 +133,12 @@
           in Mozilla, please see the <a href="{{ url('mozorg.about.governance.policies.security.certs.policy') }}">
             Mozilla CA certificate policy</a>.
         </li>
-        <li>We encourage you to learn more about our
-          <a href="/projects/security/">Mozilla security
-            projects</a> and participate in the development of security features
-          and capabilities in our products.
-        </li>
       </ul>
     </section>
 
       <p>Press Contact: send mail to <em>press</em> at <em>mozilla dot com</em>.</p>
 
-      <p id="pgpkey">The PGP key for security@mozilla.org below can be used to send encrypted mail
-        or to verify responses received from that address. We transitioned keys in October 2017.
-        Please see our signed <a href="/security/transition.txt">transition statement</a> for confirmation.</p>
+      <p id="pgpkey">The PGP key for <a href="mailto:security@mozilla.org">security@mozilla.org</a> below can be used to send encrypted mail or to verify responses received from that address. We transitioned keys in October 2017. Please see our signed <a href="/security/transition.txt">transition statement</a> for confirmation.</p>
 
 <pre class="pgp-key">
 -----BEGIN PGP PUBLIC KEY BLOCK-----
