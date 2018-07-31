@@ -755,7 +755,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/download/thanks/?xv=auf-deiner-seite')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2-ads.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2-auf-deiner-seite.html')
 
     def test_variation_oys_nonde_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=auf-deiner-seite')

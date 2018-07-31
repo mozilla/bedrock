@@ -561,7 +561,7 @@ def download_thanks(request):
         elif experience == 'privatsphare':
             template = 'firefox/new/berlin/scene2-privat.html'
         elif experience == 'auf-deiner-seite':
-            template = 'firefox/new/berlin/scene2-ads.html'
+            template = 'firefox/new/berlin/scene2-auf-deiner-seite.html'
         else:
             template = 'firefox/new/scene2.html'
     elif locale == 'en-US':
