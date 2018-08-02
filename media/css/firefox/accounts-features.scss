@@ -439,7 +439,7 @@ main {
     .perk-title {
         background-position: top left;
         margin: 0 0 30px;
-        max-width: 500px;
+        max-width: 50%;
         padding-top: 80px;
 
         .perk-pocket & {
@@ -485,7 +485,7 @@ main {
 
     .perk-text {
         margin: 0 0 1.6em;
-        max-width: 500px;
+        max-width: 50%;
 
         .perk-reverse & {
             clear: right;
@@ -505,6 +505,10 @@ main {
         }
     }
 
+    .perk-title {
+        max-width: 500px;
+    }
+
     .perk-image {
         left: calc(50% - 150px);
 
@@ -515,6 +519,10 @@ main {
         img {
             max-width: 600px;
         }
+    }
+
+    .perk-text {
+        max-width: 500px;
     }
 }
 
