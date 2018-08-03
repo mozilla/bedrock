@@ -135,18 +135,18 @@ main {
 
 @media #{$mq-desktop-wide} {
     .fab-head {
-        margin-bottom: 130px;
+        margin-bottom: 280px;
         min-height: 330px;
         padding: 110px 0 60px 0;
 
         &:before {
             bottom: -25px;
-            left: calc(50% - 92px);
+            left: 50%;
         }
     }
 
     .fab-head-title {
-        max-width: 430px;
+        max-width: 474px;
 
         &:before {
             top: -50px;
@@ -245,7 +245,7 @@ main {
 
 @media #{$mq-desktop-wide} {
     .fab-privacy {
-        margin-bottom: 230px;
+        margin-bottom: 300px;
 
         &:before {
             right: calc(50% + 562px);
@@ -399,7 +399,6 @@ main {
 }
 
 .perk-image {
-    background: radial-gradient(50% 200px ellipse at bottom center, #F0F0F0, transparent);
     position: relative;
     text-align: center;
     margin-bottom: 20px;
@@ -418,7 +417,9 @@ main {
     @include font-size(10px);
     color: #878787;
     display: block;
-    margin: -10px auto 2.2em;
+    margin: -38px auto 2.2em;
+    max-width: 400px;
+    position: relative;
     text-align: right;
     width: 100%;
 }
@@ -441,6 +442,11 @@ main {
         max-width: 50%;
         padding-top: 80px;
 
+        .perk-pocket & {
+            background-image: url('/media/img/firefox/accounts/features/icon-pocket.svg');
+            float: right;
+        }
+
         .perk-bookmarks & {
             background-image: url('/media/img/firefox/accounts/features/icon-bookmarks.svg');
             float: right;
@@ -461,7 +467,7 @@ main {
         position: absolute;
         width: 1000px;
 
-        .perk-bookmarks & {
+        .perk-reverse & {
             left: auto;
             right: calc(50% - 200px);
         }
@@ -474,14 +480,14 @@ main {
     .perk-image-source {
         position: absolute;
         right: 10px;
-        top: calc(100% + 5px);
+        top: calc(100% - 13px);
     }
 
     .perk-text {
         margin: 0 0 1.6em;
         max-width: 50%;
 
-        .perk-bookmarks & {
+        .perk-reverse & {
             clear: right;
             float: right;
         }
@@ -499,10 +505,14 @@ main {
         }
     }
 
+    .perk-title {
+        max-width: 500px;
+    }
+
     .perk-image {
         left: calc(50% - 150px);
 
-        .perk-bookmarks & {
+        .perk-reverse & {
             right: calc(50% - 150px);
         }
 
@@ -510,36 +520,37 @@ main {
             max-width: 600px;
         }
     }
+
+    .perk-text {
+        max-width: 500px;
+    }
 }
 
 
 @media #{$mq-desktop-wide} {
     .perk {
-        margin-bottom: 150px;
+        margin-bottom: 200px;
         min-height: 450px;
-    }
 
-    .perk-bookmarks {
-        min-height: 490px;
-    }
-
-    .perk-passwords {
-        margin-bottom: 140px;
-    }
-
-    .perk-send {
-        margin-bottom: 140px;
+        &.perk-bookmarks {
+            margin-bottom: 300px;
+        }
     }
 
     .perk-title {
-        max-width: 403px;
+        max-width: 400px;
+
+        .perk-reverse & {
+            position: relative;
+            left: 40px;
+        }
     }
 
     .perk-image {
         left: calc(50% - 420px);
         width: 1730px;
 
-        .perk-bookmarks & {
+        .perk-reverse & {
             right: calc(50% - 590px);
         }
 
@@ -557,12 +568,18 @@ main {
         margin-left: -10px;
         max-width: 830px;
         right: auto;
+        top: calc(100% - 34px);
         width: 50%;
     }
 
     .perk-text {
         margin-bottom: 1.6em;
         max-width: 400px;
+
+        .perk-reverse & {
+            position: relative;
+            left: 40px;
+        }
     }
 
 }
