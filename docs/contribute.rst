@@ -131,7 +131,7 @@ Server architecture
 - *Bedrock locales:* prod repo
 - *Bedrock Git branch:* prod, deployed on git push with date-tag
 
-You can check the currently deployed git commit by checking https://www.mozilla.org/media/revision.txt.
+You can check the currently deployed git commit by checking https://www.mozilla.org/revision.txt.
 
 Pushing to production
 ---------------------
