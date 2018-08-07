@@ -17,7 +17,7 @@ ENV_URLS = {
     'stage': 'https://www.allizom.org',
     'prod': 'https://www.mozilla.org',
 }
-REV_PATH = '/media/revision.txt'
+REV_PATH = '/revision.txt'
 DEFAULT_REPO = 'mozilla/bedrock'
 DEFAULT_BRANCH = 'master'
 URL_TEMPLATE = 'https://github.com/{repo}/compare/{rev}...{branch}'

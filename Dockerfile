@@ -124,7 +124,7 @@ ENV BRANCH_NAME=${BRANCH_NAME}
 # rely on build args
 RUN bin/run-sync-all.sh
 
-RUN echo "${GIT_SHA}" > ./static/revision.txt
+RUN echo "${GIT_SHA}" > ./root_files/revision.txt
 
 # Change User
 RUN chown webdev.webdev -R .
