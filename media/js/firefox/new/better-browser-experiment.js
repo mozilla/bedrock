@@ -13,7 +13,7 @@
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     }
 
-    var adcontentValues = [
+    var contentValues = [
         'A144_A203_A008845',
         'A144_A203_C002355',
         'A144_A203_C003768',
@@ -30,23 +30,23 @@
         'A144_A634_C003781'
     ];
 
-    var source = getUrlParam('source');
-    var adcontent = getUrlParam('adcontent');
+    var source = getUrlParam('utm_source');
+    var content = getUrlParam('utm_content');
 
-    var mediumOk = getUrlParam('medium') === 'cpc';
+    var mediumOk = getUrlParam('utm_medium') === 'cpc';
     var sourceOk = source === 'google' || source === 'bing';
-    var adcontentOk;
+    var contentOk;
 
     // adcontent value in querystring must match a pre-defined value
-    for (var i = adcontentValues.length - 1; i > -1; i--) {
-        if (adcontentValues[i] === adcontent) {
-            adcontentOk = true;
+    for (var i = contentValues.length - 1; i > -1; i--) {
+        if (contentValues[i] === content) {
+            contentOk = true;
             break;
         }
     }
 
     // only initialize experiment if all query params are as required
-    if (mediumOk && sourceOk && adcontentOk) {
+    if (mediumOk && sourceOk && contentOk) {
         var cop = new Mozilla.TrafficCop({
             id: 'experiment_firefox_new_betterbrowser',
             variations: {
