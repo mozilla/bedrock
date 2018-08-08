@@ -368,6 +368,13 @@ PUENTE = {
 
 
 def get_app_name(hostname):
+    """
+    Get the app name from the host name.
+
+    The hostname in our deployments will be in the form `bedrock-{version}-{type}-{random-ID}`
+    where {version} is "dev", "stage", or "prod", and {type} is the process type
+    (e.g. "web" or "clock"). Everywhere else it won't be in this form and will return None.
+    """
     if hostname.startswith('bedrock-'):
         app_mode = hostname.split('-')[1]
         return 'bedrock-' + app_mode
