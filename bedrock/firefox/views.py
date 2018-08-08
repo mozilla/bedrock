@@ -573,6 +573,10 @@ def download_thanks(request):
             template = 'firefox/new/portland/scene2-safe.html'
         elif experience == 'betterbrowser':
             template = 'firefox/new/better-browser/scene2.html'
+        elif switch('firefox_download_scene2_email_experiment') and variant == 'a':
+            template = 'firefox/new/email/scene2-a.html'
+        elif switch('firefox_download_scene2_email_experiment') and variant == 'b':
+            template = 'firefox/new/email/scene2-b.html'
         else:
             template = 'firefox/new/scene2.html'
     else:

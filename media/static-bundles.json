@@ -66,6 +66,13 @@
     },
     {
       "files": [
+        "css/base/mozilla-modal.less",
+        "css/firefox/new/scene2_email.scss"
+      ],
+      "name": "firefox_new_scene2_email"
+    },
+    {
+      "files": [
         "css/sandstone/sandstone-resp.less",
         "css/base/global-nav.less",
         "css/base/notification-banner.less",
@@ -576,6 +583,12 @@
       "name": "privacy"
     },
     {
+      "files": [
+        "css/privacy/privacy-email.scss"
+      ],
+      "name": "privacy_email"
+    },
+    {
         "files": [
           "css/firefox/new/better-browser.scss"
         ],
@@ -963,6 +976,20 @@
         "js/firefox/new/scene2.js"
       ],
       "name": "firefox_new_scene2"
+    },
+    {
+      "files": [
+        "js/base/mozilla-modal.js",
+        "js/firefox/new/scene2-email.js"
+      ],
+      "name": "firefox_new_scene2_email"
+    },
+    {
+      "files": [
+        "js/base/mozilla-traffic-cop.js",
+        "js/firefox/new/experiment-download-scene2-email.js"
+      ],
+      "name": "firefox_download_scene2_email_experiment"
     },
     {
       "files": [
