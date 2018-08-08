@@ -418,6 +418,27 @@
     </div>
   </div>
 </main>
+
+{# https://github.com/mozilla/bedrock/issues/5741 #}
+<script type="application/ld+json">
+	{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "Mozilla",
+    "url": "https://www.mozilla.org",
+    "logo": "{% filter absolute_url %}{{ static('img/mozorg/mozilla-256.jpg') }}{% endfilter %}",
+		"sameAs": [
+      "https://www.wikidata.org/wiki/Q9661",
+      "https://twitter.com/mozilla",
+      "https://www.facebook.com/mozilla",
+      "https://github.com/mozilla",
+      "https://www.instagram.com/mozilla/",
+      "https://www.youtube.com/user/Mozilla";
+      "https://wikipedia.org/wiki/Mozilla",
+      "https://www.linkedin.com/company/mozilla-corporation"
+		]
+	}
+</script>
 {% endblock %}
 
 {% block js %}
