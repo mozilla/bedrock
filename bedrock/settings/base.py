@@ -366,11 +366,20 @@ PUENTE = {
     }
 }
 
+
+def get_app_name(hostname):
+    if hostname.startswith('bedrock-'):
+        app_mode = hostname.split('-')[1]
+        return 'bedrock-' + app_mode
+
+    return None
+
+
 HOSTNAME = platform.node()
-DEIS_APP = config('DEIS_APP', default='')
-DEIS_DOMAIN = config('DEIS_DOMAIN', default='')
+APP_NAME = get_app_name(HOSTNAME)
+CLUSTER_NAME = config('CLUSTER_NAME', default='')
 ENABLE_HOSTNAME_MIDDLEWARE = config('ENABLE_HOSTNAME_MIDDLEWARE',
-                                    default=str(bool(DEIS_APP)), parser=bool)
+                                    default=str(bool(APP_NAME)), parser=bool)
 ENABLE_VARY_NOCACHE_MIDDLEWARE = config('ENABLE_VARY_NOCACHE_MIDDLEWARE',
                                         default='true', parser=bool)
 # set this to enable basic auth for the entire site
@@ -1303,7 +1312,7 @@ DEAD_MANS_SNITCH_URL = config('DEAD_MANS_SNITCH_URL', default='')
 
 RAVEN_CONFIG = {
     'dsn': config('SENTRY_DSN', default=''),
-    'site': '.'.join(x for x in [DEIS_APP, DEIS_DOMAIN] if x),
+    'site': '.'.join(x for x in [APP_NAME, CLUSTER_NAME] if x),
     'release': config('GIT_SHA', default=''),
 }
 
