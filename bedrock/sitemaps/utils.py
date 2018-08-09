@@ -50,27 +50,33 @@ def get_security_urls():
         try:
             adv_url = advisory.get_absolute_url()
         except urlresolvers.NoReverseMatch:
-            pass
+            continue
 
         # strip "/en-US" off the front
-        adv_url = adv_url[6:]
+        if adv_url.startswith('/en-US'):
+            adv_url = adv_url[6:]
+
         urls[adv_url] = ['en-US']
+
     return urls
 
 
 def get_release_notes_urls():
     urls = {}
-    for release in ProductRelease.objects.all():
+    for release in ProductRelease.objects.exclude(product='Thunderbird'):
+        if release.product != 'Firefox for iOS' and release.major_version_int < 29:
+            continue
+
         try:
             rel_path = release.get_absolute_url()
         except urlresolvers.NoReverseMatch:
-            pass
+            continue
 
         # strip "/en-US" off the front
-        rel_path = rel_path[6:]
-        req_path = rel_path.replace('/releasenotes/', '/system-requirements/')
+        if rel_path.startswith('/en-US'):
+            rel_path = rel_path[6:]
+
         urls[rel_path] = ['en-US']
-        urls[req_path] = ['en-US']
 
     return urls
 
@@ -116,6 +122,23 @@ def get_static_urls():
                 continue
 
             locales = render.call_args[0][2]['translations'].keys()
+
+            # 'hi' is not a production locale code, but it does show up in
+            # lists of translations for legal-docs based pages.
+            if 'hi' in locales:
+                locales.remove('hi')
+                locales.append('hi-IN')
+
+            # zh-CN is a redirect on the homepage
+            if path == '/':
+                locales.remove('zh-CN')
+
+            # Firefox Focus has a different URL in German
+            if path == '/privacy/firefox-focus/':
+                locales.remove('de')
+
+            # just remove any locales not in our prod list
+            locales = list(set(locales).intersection(settings.PROD_LANGUAGES))
 
         if path not in urls:
             urls[path] = locales
