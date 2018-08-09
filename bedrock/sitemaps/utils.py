@@ -64,6 +64,8 @@ def get_security_urls():
 def get_release_notes_urls():
     urls = {}
     for release in ProductRelease.objects.exclude(product='Thunderbird'):
+        # we redirect all release notes for versions 28.x and below to an archive
+        # and Firefox for iOS uses a different version numbering scheme
         if release.product != 'Firefox for iOS' and release.major_version_int < 29:
             continue
 
@@ -122,12 +124,6 @@ def get_static_urls():
                 continue
 
             locales = render.call_args[0][2]['translations'].keys()
-
-            # 'hi' is not a production locale code, but it does show up in
-            # lists of translations for legal-docs based pages.
-            if 'hi' in locales:
-                locales.remove('hi')
-                locales.append('hi-IN')
 
             # zh-CN is a redirect on the homepage
             if path == '/':
