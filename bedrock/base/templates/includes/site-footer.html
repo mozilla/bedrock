@@ -16,6 +16,7 @@
           <li><a href="{{ url('mozorg.about') }}" data-link-type="footer" data-link-name="About">{{ _('About') }}</a></li>
           <li><a href="https://blog.mozilla.org/" data-link-type="footer" data-link-name="Blog">{{ _('Blog') }}</a></li>
           <li><a href="{{ url('mozorg.contact.contact-landing') }}" data-link-type="footer" data-link-name="Contact Us">{{ _('Contact Us') }}</a></li>
+          <li><a href="{{ press_blog_url() }}">{{ _('Press Center') }}</a>
           <li><a href="{{ donate_url('footer') }}" class="donate" data-link-type="footer" data-link-name="Donate">{{ _('Donate') }}</a></li>
           <li><a href="https://wiki.mozilla.org/Webdev/GetInvolved/mozilla.org" data-link-type="footer" rel="nofollow" data-link-name="Contribute to this site">{{ _('Contribute to this site') }}</a></li>
           {# TODO remove the "and" clause after tranlsation #}
@@ -53,6 +54,9 @@
     <nav class="secondary">
         <div class="small-links">
           <ul>
+            {% if LANG.startswith('en-') %}
+            <li><a rel="nofollow" href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy">{{ _('Privacy') }}</a></li>
+            {% endif %}
             {% if LANG.startswith('en-') %}
               {% set privacy_text = _('Website Privacy Notice') %}
             {% else %}
