@@ -35,4 +35,5 @@ Contents
    uitour
    send-to-device
    firefox-accounts
+   abtest
    analytics
