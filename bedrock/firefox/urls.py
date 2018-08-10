@@ -26,7 +26,15 @@ ios_sysreq_re = sysreq_re.replace('firefox', 'firefox/ios')
 
 
 urlpatterns = (
-    url(r'^firefox/$', views.FirefoxHubView.as_view(), name='firefox'),
+    # Issue 5944 pre-download newsletter test.
+    # When removing this experiment, please remember to unskip the
+    # functional test in /test/functional/firefox/test_home.py
+    url(r'^firefox/$',
+        VariationTemplateView.as_view(template_name='firefox/home.html',
+                                      template_context_variations=['a', 'b', 'c'],
+                                      template_name_variations=['a', 'b', 'c'],
+                                      variation_locales=['en-US']),
+        name='firefox'),
     url(r'^firefox/(?:%s/)?(?:%s/)?all/$' % (platform_re, channel_re),
         views.all_downloads, name='firefox.all'),
     page('firefox/accounts', 'firefox/accounts.html'),

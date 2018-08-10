@@ -47,7 +47,7 @@ Mozilla.Modal = (function(w, $) {
             '      <header>' + title + '</header>' +
             '      <div id="modal-close">' +
             '        <a href="#close-modal" class="modal-close-text"> ' + closeText + '</a>' +
-            '        <button type="button" class="button">×</button>' +
+            '        <button type="button" class="button" data-button-name="Close Modal">×</button>' +
             '      </div>' +
             '    </div>' +
             '  </div>' +
