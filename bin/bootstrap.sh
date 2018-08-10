@@ -19,6 +19,3 @@ git submodule update --init --recursive
 
 # get fresh l10n files
 ./manage.py l10n_update
-
-# generate the sitemaps
-./manage.py update_sitemaps

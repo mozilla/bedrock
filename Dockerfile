@@ -100,9 +100,6 @@ RUN ./bin/run-db-download.py --force
 # get fresh l10n files
 RUN ./manage.py l10n_update
 
-# generate the sitemaps
-RUN ./manage.py update_sitemaps
-
 RUN chown webdev.webdev -R .
 USER webdev
 

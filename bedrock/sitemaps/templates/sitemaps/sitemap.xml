@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 {%- for path in paths %}
   <url>
-    <loc>{{ canonical_url }}{{ path }}</loc>
+    <loc>{{ canonical_url }}{% if locale != 'none' %}/{{ locale }}{% endif %}{{ path }}</loc>
   </url>
 {%- endfor %}
 </urlset>

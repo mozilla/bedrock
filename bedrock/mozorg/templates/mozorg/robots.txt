@@ -10,4 +10,4 @@ disallow: /*/newsletter/existing/
 disallow: /*/whatsnew/
 disallow: /*/etc/
 {% endif -%}
-Sitemap: {{ request.scheme }}://{{ request.get_host() }}/sitemap.xml
+Sitemap: {{ request.scheme }}://{{ request.get_host() }}/sitemap_index.xml
