@@ -24,7 +24,7 @@
    #}
   <h1><span class="highlight">Mozilla Root Store Policy</span></h1>
   <p>
-    <em>Version 2.6</em>
+    <em>Version 2.6.1</em>
   </p>
   <p>
     <em>
@@ -369,14 +369,15 @@
     <a href="http://tools.ietf.org/html/rfc5280#section-6.1.4">X.509v3 basicConstraints extension</a>
     with the cA boolean set to true. The term "subordinate CA" in this section refers to any organization or legal entity that
     is in possession or control of a certificate that is capable of being used to issue new certificates.</p>
-  <p>Intermediate certificates created after January 1, 2019:</p>
+  <p>These requirements include all cross-certificates which chain to a certificate that is included in Mozilla’s CA Certificate
+  Program.</p>
+  <p>Intermediate certificates created after January 1, 2019, with the exception of cross-certificates that share a private key
+  with a corresponding root certificate:</p>
   <ul class="prose">
     <li>MUST contain an EKU extension; and,</li>
     <li>MUST NOT include the anyExtendedKeyUsage KeyPurposeId; and,</li>
     <li>MUST NOT include both the id-kp-serverAuth and id-kp-emailProtection KeyPurposeIds in the same certificate.</li>
   </ul>
-  <p>These requirements include all cross-certified certificates which chain to a certificate that is included in Mozilla’s CA
-    Certificate Program.</p>
   <h4>5.3.1 Technically Constrained</h4>
   <p>We encourage CAs to technically constrain all intermediate certificates. For a certificate to be considered technically constrained,
     the certificate MUST include an
