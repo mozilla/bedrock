@@ -7,6 +7,7 @@ import pytest
 from pages.firefox.home import FirefoxHomePage
 
 
+@pytest.mark.skipif(reason='https://github.com/mozilla/bedrock/issues/5944')
 @pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_download_buttons_displayed(base_url, selenium):

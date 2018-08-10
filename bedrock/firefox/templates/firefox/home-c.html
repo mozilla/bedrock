@@ -1,0 +1,13 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% add_lang_files "firefox/hub/home-quantum" "firefox/shared" %}
+
+{% extends "firefox/home-b.html" %}
+
+{% block experiments %}{% endblock %}
+
+{% block variant_name %}data-variant-name="v-2-headline-b"{% endblock %}>
+
+{% block newsletter_title %}{{ _('Learn how to make the most of the browser made for people, not profit.') }}{% endblock %}

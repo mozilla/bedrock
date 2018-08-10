@@ -1,0 +1,121 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+@import '../pebbles/components/modal';
+
+.pre-download-button-container {
+    display: inline-block;
+
+    button[type="button"] {
+        margin-top: 20px;
+    }
+
+    .fx-privacy-link {
+        margin-top: 10px;
+    }
+}
+
+
+.pre-download-newsletter {
+    display: none;
+}
+
+#modal .pre-download-newsletter {
+    display: block;
+}
+
+.pre-download-newsletter-content {
+    @include font-size(16px);
+    background: #fff;
+    padding: 40px 20px;
+
+    @media #{$mq-tablet} {
+        padding: 60px 40px;
+    }
+
+    h2 {
+        @include font-size(28px);
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .field-email label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .field {
+        margin-bottom: 20px;
+    }
+
+    input[type="email"] {
+        padding: 12px 8px;
+        width: 100%;
+    }
+
+    select {
+        width: 100%;
+    }
+
+    button[type="submit"] {
+        background-color: #000;
+        border-radius: 2px;
+        border: 2px solid #000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+        color: #fff;
+        transition: background-color 100ms, border-color 100ms, color 100ms;
+
+        &:hover,
+        &:focus {
+            background-color: #fff;
+            color: #000;
+        }
+    }
+
+    .form-details small {
+        @include font-size(16px);
+        display: block;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .errorlist {
+        color: $color-mozred;
+    }
+}
+
+.pre-download-continue {
+    text-align: center;
+    margin: 20px 0 0;
+}
+
+// Hide modal header visually and add top padding to compensate
+#modal > .window > .inner {
+    background: transparent;
+    max-width: 512px;
+    padding: 70px 0 0;
+
+    header {
+        @include visually-hidden;
+    }
+}
+
+.js {
+    // hide details for JS users
+    // (displayed when email field is focused)
+    #form-details,
+    .form-details {
+        display: none;
+    }
+
+    #newsletter-spinner {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}

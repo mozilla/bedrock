@@ -2,45 +2,15 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../pebbles/includes/lib';
-@import '../../hubs/sections';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
 
-.main-content {
-    a:link,
-    a:visited {
-        color: #fff;
-        text-decoration: none;
-    }
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/includes/lib";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/button";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/modal";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/newsletter-form";
 
-    a:hover,
-    a:active,
-    a:focus {
-        color: #fff;
-        text-decoration: underline;
-    }
-}
 
-.help {
-    display: none;
-}
-
-.js .help {
-    @include font-size-level5;
-    display: block;
-    margin-top: 40px;
-
-    a:link,
-    a:visited,
-    a:hover,
-    a:active,
-    a:focus {
-        color: #05d0ff;
-    }
-
-    @media #{$mq-tablet} {
-        max-width: 21em;
-    }
-}
 
 // keep the button technically visible to grab correct download link for
 // backup download link
@@ -56,32 +26,163 @@
     }
 }
 
+// Status bar
+.status {
+    @include open-sans;
+    @include text-body-md;
+    background-color: #3365bb;
+    background-color: rgba(255, 255, 255, .2);
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    color: $color-white;
+    position: relative;
+    text-align: center;
+
+    p {
+        margin: 0;
+    }
+}
+
+.main {
+    @include open-sans;
+    background: #003eaa;
+    background: url('/media/img/firefox/quantum/fox-tail-header.png') top -200px center no-repeat,
+                linear-gradient(to bottom, #003eaa 40%, #004ec2 60%, #0060df 80%, #0080ff 90%, #00c7ff 100%);
+    color: #fff;
+}
+
+.header-logos {
+    margin-bottom: 20px;
+    text-align: center;
+
+    .mozilla {
+        display: none;
+    }
+}
+
+.content-main {
+    margin: 0 auto;
+    max-width: 420px;
+    text-align: center;
+}
+
+.headline {
+    @include text-display-md;
+    font-weight: normal;
+    line-height: 1.3;
+    margin-bottom: 1em;
+}
+
+.tagline {
+    @include text-display-xs;
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
+    line-height: 1.5;
+    margin-bottom: 2em;
+    padding-bottom: 2em;
+}
+
+@media #{$mq-md} {
+    .main {
+        padding-bottom: 60px;
+    }
+
+    .header-logos {
+        @include clearfix;
+        text-align: left;
+
+        .firefox {
+            float: left;
+        }
+
+        .mozilla {
+            display: block;
+            float: right;
+        }
+    }
+
+    .content-main {
+        @include bidi(((text-align, left, right),));
+        margin: 0;
+        width: 50%;
+    }
+}
+
+@media #{$mq-lg} {
+    .main {
+        padding-bottom: 120px;
+    }
+
+    .header-logos {
+        margin-bottom: 60px;
+    }
+
+    .content-main {
+        margin: 0 10%;
+    }
+}
+
+// App store
 .mobile-download {
-    margin: 40px 0 80px;
+    ul li {
+        display: inline-block;
+    }
+}
 
-    h2 {
-        @include font-size-small;
-        margin-bottom: 40px;
+// Newsletter form
+.mzp-c-newsletter {
+    @include bidi(((text-align, left, right),));
+    display: block;
+    padding: 0;
+
+    .mzp-c-newsletter-form {
+        padding: 0;
     }
 
-    a {
-        display: block;
-        margin-bottom: 20px;
+    .mzp-c-button {
+        background: $color-black;
+        border-color: $color-black;
+        color: $color-white;
+
+        &:hover,
+        &:focus {
+            background: $color-white;
+            color: $color-black;
+
+        }
     }
 
-    @media #{$mq-tablet} {
-        ul li {
-            display: inline-block;
-            margin-right: 20px;
+    .mzp-c-newsletter-thanks {
+        padding: 0;
+
+        h3 {
+            font-weight: normal;
         }
     }
 }
 
-html[dir="rtl"] .mobile-download {
-    @media #{$mq-tablet} {
-        ul li {
-            margin-left: 20px;
-            margin-right: 0;
+.email-privacy {
+    display: none;
+
+    .mzp-c-modal-window & {
+        h3 {
+            display: none;
         }
+    }
+}
+
+.mzp-t-dark {
+    :link,
+    :visited {
+        color: $color-white;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $color-gray-20;
+        }
+    }
+
+    .mzp-c-form-errors {
+        color: $color-black;
     }
 }

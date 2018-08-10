@@ -512,17 +512,9 @@ class TestFirefoxNew(TestCase):
         assert resp.status_code == 301
         assert resp['location'].endswith('/firefox/download/thanks/?scene=2&dude=abides')
 
-    # issue 5943 - Add email subscribe to thanks page, en-US only
-
     def test_scene_2_template(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/')
         req.locale = 'en-US'
-        views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
-
-    def test_nonenglish_scene_2_template(self, render_mock):
-        req = RequestFactory().get('/firefox/download/thanks/')
-        req.locale = 'fr'
         views.download_thanks(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
 

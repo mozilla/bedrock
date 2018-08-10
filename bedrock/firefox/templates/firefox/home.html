@@ -17,6 +17,12 @@
 {% block page_title %}{{ _('The new, fast browser for Mac, PC and Linux') }} | {{ title_suffix }}{% endblock %}
 {% block page_desc %}{{ _('Responsive engine, less memory usage and packed with features. Download for desktop now.') }}{% endblock %}
 
+{% block experiments %}
+  {% if switch('experiment-firefox-home-pre-download', ['en-US']) %}
+    {{ js_bundle('experiment-firefox-home-pre-download') }}
+  {% endif %}
+{% endblock %}
+
 {% block page_css %}
   {{ css_bundle('firefox-home') }}
   {% if switch('firefox_home_fbvideochat_funnelcake', ['en-US']) %}
@@ -68,7 +74,9 @@
         <h2>{{ _('Meet Firefox Quantum.') }}</h2>
         <h3>{{ _('Fast for good.') }}</h3>
 
+      {% block button_primary %}
         {{ download_firefox(dom_id='download-intro', alt_copy=_('Download now'), download_location='primary cta') }}
+      {% endblock %}
       </div>
       <div class="header-image">
         {{ high_res_img('firefox/home/hero-laptop.png', {'alt': '', 'width': '903', 'height': '509'}) }}
@@ -433,6 +441,8 @@
       {{ download_firefox(dom_id='footer-download', alt_copy=_('Download now'), download_location='other') }}
     </div>
   </section>
+
+  {% block additional_content %}{% endblock %}
 
   {% include 'firefox/includes/schemaorg-app.html' %}
 </main>

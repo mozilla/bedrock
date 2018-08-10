@@ -593,8 +593,11 @@ def download_thanks(request):
     show_newsletter = locale in ['en-US', 'en-GB', 'en-CA', 'en-ZA', 'es-ES', 'es-AR', 'es-CL', 'es-MX', 'pt-BR', 'fr', 'ru', 'id', 'de', 'pl']
 
     # ensure variant matches pre-defined value
-    if variant not in ['a', 'b']:  # place expected ?v= values in this list
+    if variant not in ['a']:  # place expected ?v= values in this list
         variant = None
+
+    if variant == 'a' and locale == 'en-US':
+        show_newsletter = False  # Prevent showing the newsletter for pre-download experiment Issue #5944
 
     # `wait-face`, `reggiewatts` variations are currently localized for both en-US and de locales.
     if lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':
@@ -772,11 +775,3 @@ class FeaturesPrivateBrowsingView(BlogPostsView):
     blog_slugs = 'firefox'
     blog_tags = ['privacy', 'security', 'featured']
     template_name = 'firefox/features/private-browsing.html'
-
-
-class FirefoxHubView(BlogPostsView):
-    blog_posts_limit = 1
-    blog_posts_template_variable = 'articles'
-    blog_slugs = 'firefox'
-    blog_tags = ['home']
-    template_name = 'firefox/home.html'
