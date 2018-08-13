@@ -291,16 +291,35 @@ def get_translations_for_langfile(langfile):
     """
 
     cache_key = 'translations:%s' % langfile
-    translations = cache.get(cache_key, {})
+    translations = cache.get(cache_key, None)
 
     if translations:
         return translations
 
+    langs = []
     for lang in settings.PROD_LANGUAGES:
         if (lang in product_details.languages and
                 (lang == settings.LANGUAGE_CODE or
                  lang_file_is_active(langfile, lang))):
-            translations[lang] = product_details.languages[lang]['native']
+            langs.append(lang)
 
+    translations = get_translations_native_names(langs)
     cache.set(cache_key, translations, settings.DOTLANG_CACHE)
+    return translations
+
+
+def get_translations_native_names(locales):
+    """
+    Return a dict of locale codes and native language name strings.
+
+    Returned dict is suitable for use in view contexts and is filtered to only codes in PROD_LANGUAGES.
+
+    :param locales: list of locale codes
+    :return: dict, like {'en-US': 'English (US)', 'fr': 'Français'}
+    """
+    translations = {}
+    for locale in locales:
+        if locale in settings.PROD_LANGUAGES:
+            translations[locale] = product_details.languages[locale]['native']
+
     return translations

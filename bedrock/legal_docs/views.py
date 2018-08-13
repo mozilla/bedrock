@@ -15,10 +15,16 @@ from mdx_outline import OutlineExtension
 
 from bedrock.settings import path as base_path
 from lib import l10n_utils
-from product_details import product_details
+from lib.l10n_utils.dotlang import get_translations_native_names
 
 LEGAL_DOCS_PATH = base_path('vendor-local', 'src', 'legal-docs')
 CACHE_TIMEOUT = getattr(settings, 'LEGAL_DOCS_CACHE_TIMEOUT', 60 * 60)
+# legal-docs locales mapped to bedrock locales when they differ
+# https://github.com/mozilla/bedrock/issues/6000
+LEGAL_DOCS_LOCALES_TO_BEDROCK = {
+    'hi': 'hi-IN',
+}
+BEDROCK_LOCALES_TO_LEGAL_DOCS = {v: k for k, v in LEGAL_DOCS_LOCALES_TO_BEDROCK.items()}
 
 
 def load_legal_doc(doc_name, locale):
@@ -31,12 +37,25 @@ def load_legal_doc(doc_name, locale):
              value indicating whether the file is localized into the specified
              locale, and a dict of all available locales for that document
     """
+    # for file access convert bedrock locale to legal-docs equivalent
+    if locale in BEDROCK_LOCALES_TO_LEGAL_DOCS:
+        locale = BEDROCK_LOCALES_TO_LEGAL_DOCS[locale]
+
     source_dir = path.join(LEGAL_DOCS_PATH, doc_name)
     source_file = path.join(source_dir, locale + '.md')
     output = StringIO.StringIO()
     locales = [f.replace('.md', '') for f in listdir(source_dir) if f.endswith('.md')]
+    # convert legal-docs locales to bedrock equivalents
+    locales = [LEGAL_DOCS_LOCALES_TO_BEDROCK.get(l, l) for l in locales]
+    # filter out non-production locales and convert to dict with names
+    translations = get_translations_native_names(locales)
     localized = locale != settings.LANGUAGE_CODE
-    translations = {}
+
+    # it's possible the legal-docs repo changed the filename to match our locale.
+    # this makes it work for mapped locales even if the map becomes superfluous.
+    if not path.exists(source_file) and locale in LEGAL_DOCS_LOCALES_TO_BEDROCK:
+        locale = LEGAL_DOCS_LOCALES_TO_BEDROCK[locale]
+        source_file = path.join(source_dir, locale + '.md')
 
     if not path.exists(source_file):
         source_file = path.join(LEGAL_DOCS_PATH, doc_name, 'en-US.md')
@@ -53,10 +72,6 @@ def load_legal_doc(doc_name, locale):
         localized = False
     finally:
         output.close()
-
-    for lang in locales:
-        if lang in product_details.languages:
-            translations[lang] = product_details.languages[lang]['native']
 
     return {
         'content': content,
