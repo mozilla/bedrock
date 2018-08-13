@@ -15,7 +15,7 @@ from mdx_outline import OutlineExtension
 
 from bedrock.settings import path as base_path
 from lib import l10n_utils
-from product_details import product_details
+from lib.l10n_utils.dotlang import get_translations_native_names
 
 LEGAL_DOCS_PATH = base_path('vendor-local', 'src', 'legal-docs')
 CACHE_TIMEOUT = getattr(settings, 'LEGAL_DOCS_CACHE_TIMEOUT', 60 * 60)
@@ -47,10 +47,8 @@ def load_legal_doc(doc_name, locale):
     locales = [f.replace('.md', '') for f in listdir(source_dir) if f.endswith('.md')]
     # convert legal-docs locales to bedrock equivalents
     locales = [LEGAL_DOCS_LOCALES_TO_BEDROCK.get(l, l) for l in locales]
-    # filter out non-production locales
-    locales = [l for l in locales if l in settings.PROD_LANGUAGES]
-    # all codes in PROD_LANGUAGES are in product_details.languages
-    translations = {l: product_details.languages[l]['native'] for l in locales}
+    # filter out non-production locales and convert to dict with names
+    translations = get_translations_native_names(locales)
     localized = locale != settings.LANGUAGE_CODE
 
     # it's possible the legal-docs repo changed the filename to match our locale.
