@@ -3,7 +3,7 @@
 from __future__ import print_function, unicode_literals
 
 import datetime
-import os
+import platform
 import sys
 from subprocess import check_call
 from time import time
@@ -30,6 +30,7 @@ JOB_DEFAULTS = {
 }
 schedule = BlockingScheduler(job_defaults=JOB_DEFAULTS)
 
+HOSTNAME = platform.node()
 DB_UPDATE_MINUTES = config('DB_UPDATE_MINUTES', default='5', parser=int)
 LOCAL_DB_UPDATE = config('LOCAL_DB_UPDATE', default='False', parser=bool)
 DB_DOWNLOAD_IGNORE_GIT = config('DB_DOWNLOAD_IGNORE_GIT', default='False', parser=bool)
@@ -78,8 +79,7 @@ class scheduled_job(object):
 
     def log(self, message):
         msg = '[{}] Clock job {}@{}: {}'.format(
-            datetime.datetime.utcnow(), self.name,
-            os.getenv('DEIS_APP', 'default_app'), message)
+            datetime.datetime.utcnow(), self.name, HOSTNAME, message)
         print(msg, file=sys.stderr)
 
 
