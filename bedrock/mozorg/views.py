@@ -191,3 +191,14 @@ def home_view(request):
         template_name = 'mozorg/home/home.html'
 
     return l10n_utils.render(request, template_name, ctx)
+
+
+def about_view(request):
+    locale = l10n_utils.get_locale(request)
+
+    if locale.startswith('en-'):
+        template_name = 'mozorg/about-en.html'
+    else:
+        template_name = 'mozorg/about.html'
+
+    return l10n_utils.render(request, template_name)
