@@ -469,6 +469,12 @@
     },
     {
       "files": [
+        "css/mozorg/about-en.scss"
+      ],
+      "name": "about-en"
+    },
+    {
+      "files": [
         "css/styleguide/styleguide.scss"
       ],
       "name": "styleguide"
