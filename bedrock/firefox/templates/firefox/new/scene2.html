@@ -6,12 +6,6 @@
 
 {% extends "firefox/new/base.html" %}
 
-{% block experiments %}
-  {% if switch('firefox_download_scene2_email_experiment', ['en-US']) %}
-    {{ js_bundle('firefox_download_scene2_email_experiment') }}
-  {% endif %}
-{% endblock %}
-
 {% block canonical_urls %}
   {# the "scene 2" page should set canonical to the /firefox/new/ page to give that
      page the SEO weight of links directly to "scene 2".

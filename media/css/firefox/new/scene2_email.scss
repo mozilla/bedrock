@@ -2,9 +2,14 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../pebbles/includes/lib';
-@import '../../pebbles/components/newsletter';
-@import '../../pebbles/components/modal';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/includes/lib";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/button";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/modal";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/newsletter-form";
+
 
 
 // keep the button technically visible to grab correct download link for
@@ -24,7 +29,7 @@
 // Status bar
 .status {
     @include open-sans;
-    @include font-size-level6;
+    @include text-body-md;
     background: #deedfe;
     text-align: center;
     border-bottom: 1px solid rgba(0, 0, 0, .05);
@@ -60,21 +65,21 @@
 }
 
 .headline {
-    @include font-size-level3;
+    @include text-display-md;
     font-weight: normal;
     line-height: 1.3;
     margin-bottom: 1em;
 }
 
 .tagline {
-    @include font-size-level5;
+    @include text-display-xs;
     border-bottom: 1px solid rgba(255, 255, 255, .5);
     line-height: 1.5;
     margin-bottom: 2em;
     padding-bottom: 2em;
 }
 
-@media #{$mq-tablet} {
+@media #{$mq-md} {
     .main {
         padding-bottom: 60px;
     }
@@ -94,17 +99,13 @@
     }
 
     .content-main {
+        @include bidi(((text-align, left, right),));
         margin: 0;
-        text-align: left;
         width: 50%;
-
-        html[dir='rtl'] & {
-            text-align: right;
-        }
     }
 }
 
-@media #{$mq-desktop} {
+@media #{$mq-lg} {
     .main {
         padding-bottom: 120px;
     }
@@ -120,103 +121,43 @@
 
 
 // Newsletter form
-.c-newsletter {
-    @include font-size-level6;
+.mzp-c-newsletter {
+    @include bidi(((text-align, left, right),));
+    display: block;
+    padding: 0;
 
-    a:link,
-    a:visited {
-        color: #fff;
+    .mzp-c-newsletter-form {
+        padding: 0;
+    }
+
+    .mzp-c-button {
+        box-shadow: none;
+        background: $color-black;
+        border: 0;
+        color: $color-white;
+        transition: box-shadow 150ms, background-color 150ms, color 150ms;
 
         &:hover,
         &:focus {
-            color: #eee;
+            background: $color-white;
+            box-shadow: 4px 4px 0 0 #000;
+            color: $color-black;
+
+        }
+
+        &:active {
+            box-shadow: 2px 2px 0 0 #000;
+            transition: box-shadow 0ms;
         }
     }
 
-    input[type='email'],
-    select {
-        width: 100%;
-    }
+    .mzp-c-newsletter-thanks {
+        padding: 0;
 
-    input[type='email'] {
-        @include border-box;
-        background: #fff;
-        border-radius: 3px;
-        border: 1px solid #4a4a4f;
-        display: inline-block;
-        line-height: 1.25;
-        padding: .25em 8px;
-
-        &:hover {
-            border-color: #000;
-        }
-
-        &:focus {
-            border-color: #000;
-            box-shadow: 0 0 0 2px #45a1ff;
+        h3 {
+            font-weight: normal;
         }
     }
-
-    .field {
-        display: block;
-        margin-bottom: .75em;
-    }
-
-    label {
-        display: block;
-        font-weight: bold;
-        margin: 0 0 .25em;
-    }
-
-    .privacy-check-label {
-        @include font-size-small;
-        padding-left: 2em;
-        display: block;
-
-        input[type='checkbox'] {
-            margin-left: -1.5em;
-        }
-    }
-
-    .form-button {
-        @include border-box;
-        @include font-size-level6;
-        background-color: #000;
-        border-radius: 2px;
-        border: 2px solid #000;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
-        color: #fff;
-        cursor: pointer;
-        display: inline-block;
-        font-weight: bold;
-        margin-bottom: 8px;
-        padding: 8px 20px;
-        text-decoration: none;
-        transition: background-color 100ms, border-color 100ms, color 100ms;
-        width: 100%;
-
-        &:hover,
-        &:focus {
-            background-color: #fff;
-            color: #000;
-            border-color: #000;
-        }
-    }
-
-    #form-details label {
-        font-weight: normal;
-    }
-
-    .field-format label {
-        display: inline;
-        margin-right: 20px;
-    }
-
-    .form-submit .form-details {
-        display: block;
-        text-align: center;
-    }
-
 }
 
 // hide details for JS users
@@ -228,13 +169,26 @@
 .email-privacy {
     display: none;
 
-    #modal & {
-        @include open-sans;
-        display: block;
-        padding: 20px 40px;
+    .mzp-c-modal-window & {
+        h3 {
+            display: none;
+        }
     }
 }
 
+.mzp-t-dark {
+    :link,
+    :visited {
+        color: $color-white;
 
+        &:hover,
+        &:focus,
+        &:active {
+            color: $color-gray-20;
+        }
+    }
 
-
+    .mzp-c-form-errors {
+        color: $color-black;
+    }
+}

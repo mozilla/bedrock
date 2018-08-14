@@ -8,7 +8,7 @@
     var cop = new Mozilla.TrafficCop({
         id: 'experiment-download-scene2-email-082018',
         variations: {
-            'v=a': 50,
+            'v=a': 50, // control
             'v=b': 50,
         }
     });

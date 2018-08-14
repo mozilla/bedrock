@@ -565,7 +565,9 @@ def download_thanks(request):
         else:
             template = 'firefox/new/scene2.html'
     elif locale == 'en-US':
-        if experience in ['portland', 'forgood']:
+        if variant == 'b':
+            template = 'firefox/new/email/scene2-b.html'
+        elif experience in ['portland', 'forgood']:
             template = 'firefox/new/portland/scene2.html'
         elif experience in ['portland-fast', 'fast']:
             template = 'firefox/new/portland/scene2-fast.html'
@@ -573,12 +575,8 @@ def download_thanks(request):
             template = 'firefox/new/portland/scene2-safe.html'
         elif experience == 'betterbrowser':
             template = 'firefox/new/better-browser/scene2.html'
-        elif switch('firefox_download_scene2_email_experiment') and variant == 'a':
-            template = 'firefox/new/email/scene2-a.html'
-        elif switch('firefox_download_scene2_email_experiment') and variant == 'b':
-            template = 'firefox/new/email/scene2-b.html'
         else:
-            template = 'firefox/new/scene2.html'
+            template = 'firefox/new/email/scene2.html'
     else:
         template = 'firefox/new/scene2.html'
 

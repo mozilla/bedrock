@@ -66,7 +66,6 @@
     },
     {
       "files": [
-        "css/base/mozilla-modal.less",
         "css/firefox/new/scene2_email.scss"
       ],
       "name": "firefox_new_scene2_email"
@@ -979,7 +978,10 @@
     },
     {
       "files": [
-        "js/base/mozilla-modal.js",
+        "protocol/js/protocol-modal.js",
+        "protocol/js/protocol-newsletter.js",
+        "js/newsletter/form-protocol.js",
+        "js/firefox/new/scene2.js",
         "js/firefox/new/scene2-email.js"
       ],
       "name": "firefox_new_scene2_email"

@@ -2,44 +2,36 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function($) {
+(function() {
     'use strict';
 
-    var isIELT9 = window.Mozilla.Client.platform === 'windows' && /MSIE\s[1-8]\./.test(navigator.userAgent);
-    var $directDownloadLink = $('#direct-download-link');
-    var $platformLink = $('#download-button-wrapper-desktop .download-list li:visible .download-link');
-    var downloadURL;
+    // var $modalWrapper = $('.email-privacy');
+    // var $modalLink = $('.email-privacy-link');
 
-    // Bug 1354334 - add a hint for test automation that page has loaded.
-    $('html').addClass('download-ready');
+    // $modalLink.on('click', function(e) {
+    //     e.preventDefault();
+    //     Mozilla.Modal.createModal(this, $modalWrapper, {
+    //         title: $(this).text()
+    //     });
 
-    // Only auto-start the download if a visible platform link is detected.
-    if ($platformLink.length) {
-        downloadURL = $platformLink.attr('href');
+    //     window.dataLayer.push({
+    //         'event': 'in-page-interaction',
+    //         'eAction': 'link click',
+    //         'eLabel': 'How will Mozilla use my email?'
+    //     });
+    // });
 
-        // Pull download link from the download button and add to the 'click here' link.
-        // TODO: Remove and generate link in bedrock.
-        $directDownloadLink.attr('href', downloadURL);
+    var content = document.querySelector('.mzp-u-modal-content');
+    var trigger = document.querySelector('.email-privacy-link');
+    var title = document.querySelector('.email-privacy h3');
+    var strings = document.getElementById('strings');
 
-        // If user is not on an IE that blocks JS triggered downloads, start the
-        // platform-detected download a second after DOM ready event. We don't rely on
-        // the window load event as we have third-party tracking pixels.
-        if (!isIELT9) {
-            $(function() {
-                setTimeout(function() {
-                    window.location.href = downloadURL;
-                }, 1000);
-            });
-        }
-    }
-
-    var $modalWrapper = $('.email-privacy');
-    var $modalLink = $('.email-privacy-link');
-
-    $modalLink.on('click', function(e) {
+    trigger.addEventListener('click', function(e) {
         e.preventDefault();
-        Mozilla.Modal.createModal(this, $modalWrapper, {
-            title: $(this).text()
+        Mozilla.Modal.createModal(e.target, content, {
+            title: title.innerHTML,
+            className: 'mzp-t-firefox',
+            closeText: strings.dataset.close
         });
 
         window.dataLayer.push({
@@ -47,6 +39,6 @@
             'eAction': 'link click',
             'eLabel': 'How will Mozilla use my email?'
         });
-    });
+    }, false);
 
-})(window.jQuery);
+})();

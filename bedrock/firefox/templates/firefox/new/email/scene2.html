@@ -2,7 +2,13 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "firefox/new/base.html" %}
+{% extends "base-protocol.html" %}
+
+{% block experiments %}
+  {% if switch('firefox_download_scene2_email_experiment', ['en-US']) %}
+    {{ js_bundle('firefox_download_scene2_email_experiment') }}
+  {% endif %}
+{% endblock %}
 
 {% block canonical_urls %}
   {# the "scene 2" page should set canonical to the /firefox/new/ page to give that
@@ -10,6 +16,11 @@
      see https://github.com/mozilla/bedrock/pull/5463 #}
   <link rel="canonical" href="{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/">
 {% endblock %}
+
+{% block page_image %}{{ static('img/firefox/template/page-image.png') }}{% endblock %}
+{% block page_favicon %}{{ static('img/firefox/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/firefox/favicon-196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/firefox/ios-icon-180.png') }}{% endblock %}
 
 {% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/{% endblock %}
 
@@ -42,7 +53,7 @@
 
 {% block content %}
 <div class="status">
-  <div class="content">
+  <div class="mzp-l-content mzp-t-firefox">
     {# fallback_url is replaced by the platform download link via JS, but if
       something fails the user should still get a link to a working download path. #}
 
@@ -55,8 +66,8 @@
   </div>
 </div>
 
-<main class="main">
-  <div class="content">
+<main class="main mzp-t-firefox mzp-t-dark">
+  <div class="mzp-l-content">
     <div class="header-logos">
       <h2><a class="firefox" href="{{ url('firefox') }}" title="{{ firefox_logo_title }}">{{ high_res_img('logos/firefox/logo-quantum-wordmark-white.png', {'alt': firefox_logo_title, 'width': '133', 'height': '50'}) }}</a></h2>
       <h2><a class="mozilla" href="{{ url('mozorg.home') }}" title="{{ mozilla_logo_title }}"><img src="{{ static('img/logos/mozilla/wordmark-dark.svg')}}" alt="{{ mozilla_logo_title }}" width="101" height="34"></a></h2>
@@ -67,11 +78,16 @@
         {{ download_firefox(force_direct=true, dom_id='primary-download-button') }}
       </div>
 
-      <h1 class="headline">{% block headline %}{% endblock %}</h1>
+      <h1 class="headline">
+      {% block headline %}
+        {{ _('Learn how to make Firefox even smarter, faster and more secure.') }}
+      {% endblock %}
+      </h1>
       <p class="tagline">{{ _('Get informative tips, tricks and product announcements delivered to your inbox.') }}</p>
 
-      <div class="c-newsletter">
+      <div class="mzp-c-newsletter">
         {{ email_newsletter_form(
+              protocol_component=True,
               include_title=False,
               submit_text=_('Sign up now'),
               email_label=_('Enter your email address'),
@@ -80,7 +96,9 @@
         )}}
       </div>
 
-      <aside class="email-privacy">
+      <aside class="email-privacy mzp-u-modal-content">
+        <h3>{{ _('How will Mozilla use my email?') }}</h3>
+
         <p>
         {% trans
               manifesto=url('mozorg.about.manifesto'),
