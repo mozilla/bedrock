@@ -383,6 +383,8 @@ main {
 //* ====================================================================== */
 //  Perks
 
+$perk-text-max-width: 600px;
+
 .perk {
     position: relative;
 }
@@ -394,7 +396,7 @@ main {
     font-weight: bold;
     line-height: 1.4;
     margin: 0 auto 30px;
-    max-width: 650px;
+    max-width: $perk-text-max-width;
     width: 100%;
 }
 
@@ -427,7 +429,7 @@ main {
 .perk-text {
     line-height: 1.5;
     margin: 0 auto 1.25em;
-    max-width: 600px;
+    max-width: $perk-text-max-width;
     width: 100%;
 }
 
