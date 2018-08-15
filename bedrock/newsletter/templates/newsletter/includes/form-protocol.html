@@ -41,8 +41,19 @@
       {% endif %}
 
       <p>
-        <label for="id_email">{{ _('Your email address') }}</label>
-        {{ field_with_attrs(form.email, placeholder=_('yourname@example.com'), class='mzp-js-email-field')|safe }}
+        <label for="id_email">
+        {% if email_label %}
+          {{ email_label }}
+        {% else %}
+          {{ _('Your email address') }}
+        {% endif %}
+        </label>
+        {% if email_placeholder %}
+          {% set placeholder = email_placeholder %}
+        {% else %}
+          {% set placeholder = _('yourname@example.com') %}
+        {% endif %}
+        {{ field_with_attrs(form.email, placeholder=placeholder, class='mzp-js-email-field')|safe }}
       </p>
 
       <div id="newsletter-details" class="mzp-c-newsletter-details">
