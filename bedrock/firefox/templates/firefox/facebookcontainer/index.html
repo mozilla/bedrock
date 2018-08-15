@@ -145,8 +145,4 @@
 
 {% block js %}
   {{ js_bundle('firefox_facebook_container_video') }}
-
-  {% if switch('firefox-facebook-container-funnelcake', ['en-US']) %}
-    {{ js_bundle('firefox_facebook_container_funnelcake') }}
-  {% endif %}
 {% endblock %}
