@@ -25,18 +25,19 @@
         var xhr = new window.XMLHttpRequest();
 
         xhr.onload = function(r) {
+            var country = 'none';
+
             // make sure status is in the acceptable range
             if (r.target.status >= 200 && r.target.status < 300) {
-                var country;
 
                 try {
                     country = JSON.parse(r.target.responseText).country_code.toLowerCase();
                 } catch (e) {
                     country = 'none';
                 }
-
-                Yandex.onRequestComplete(country);
             }
+
+            Yandex.onRequestComplete(country);
         };
 
         xhr.open('GET', '/country-code.json');
@@ -66,7 +67,9 @@
         return false;
     };
 
-    Yandex.onRequestComplete = function(country) {
+    Yandex.onRequestComplete = function(data) {
+        var country = typeof data === 'string' ? data : 'none';
+
         clearTimeout(_geoTimeout);
 
         if (!_requestComplete) {
@@ -121,7 +124,7 @@
         // Add styling hook for Yandex specific CSS.
         document.body.classList.add('yandex');
 
-        //Update doenload button CTA and link href.
+        // Update download button CTA and link href.
         var button = document.querySelectorAll('.main-download .download-list .download-link[data-download-os="Desktop"]');
 
         for (var i = 0; i < button.length; i++) {

@@ -54,6 +54,7 @@
 .call-out-compact {
     background-color: #202340;
     color: #fff;
+    display: none;
 
     .call-out-title {
         @include font-size-level4;
@@ -134,4 +135,8 @@
             }
         }
     }
+}
+
+.js .call-out-compact {
+    display: block;
 }

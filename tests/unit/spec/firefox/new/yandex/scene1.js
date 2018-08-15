@@ -17,7 +17,6 @@ describe('yandex-scene1.js', function() {
 
         beforeEach(function() {
             spyOn(Mozilla.Yandex, 'onRequestComplete');
-            Mozilla.Yandex.USER_COUNTRY_CODE = 'none';
 
             xhr = sinon.useFakeXMLHttpRequest();
             xhr.onCreate = function(req) {
@@ -28,19 +27,9 @@ describe('yandex-scene1.js', function() {
         afterEach(function() {
             xhr.restore();
             xhrRequests = [];
-            Mozilla.Yandex.USER_COUNTRY_CODE = 'none';
         });
 
-        it('should do nothing if server errors out', function() {
-            Mozilla.Yandex.getLocation();
-
-            xhrRequests[0].respond(500, '', '');
-
-            expect(Mozilla.Yandex.onRequestComplete).not.toHaveBeenCalled();
-        });
-
-
-        it('should call onRequestComplete if server makes a response', function() {
+        it('should pass country to onRequestComplete if server makes a response', function() {
             var country = 'ru';
 
             Mozilla.Yandex.getLocation();
@@ -48,6 +37,14 @@ describe('yandex-scene1.js', function() {
             xhrRequests[0].respond(200, {'Content-Type': 'application/json'}, '{"country_code": "' + country + '"}');
 
             expect(Mozilla.Yandex.onRequestComplete).toHaveBeenCalledWith(country);
+        });
+
+        it('should call onRequestComplete even if server errors out', function() {
+            Mozilla.Yandex.getLocation();
+
+            xhrRequests[0].respond(500, '', '');
+
+            expect(Mozilla.Yandex.onRequestComplete).toHaveBeenCalledWith('none');
         });
     });
 
@@ -80,11 +77,6 @@ describe('yandex-scene1.js', function() {
         beforeEach(function() {
             spyOn(Mozilla.Yandex, 'updatePageContent');
             spyOn(Mozilla.Yandex, 'setCookie');
-            Mozilla.Yandex.USER_COUNTRY_CODE = 'none';
-        });
-
-        afterEach(function() {
-            Mozilla.Yandex.USER_COUNTRY_CODE = 'none';
         });
 
         it('should update page content on first call and set a cookie', function() {
