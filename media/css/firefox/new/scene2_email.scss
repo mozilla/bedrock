@@ -131,23 +131,15 @@ $image-path: '/media/protocol/img';
     }
 
     .mzp-c-button {
-        box-shadow: none;
         background: $color-black;
-        border: 0;
+        border-color: $color-black;
         color: $color-white;
-        transition: box-shadow 150ms, background-color 150ms, color 150ms;
 
         &:hover,
         &:focus {
             background: $color-white;
-            box-shadow: 4px 4px 0 0 #000;
             color: $color-black;
 
-        }
-
-        &:active {
-            box-shadow: 2px 2px 0 0 #000;
-            transition: box-shadow 0ms;
         }
     }
 
@@ -158,12 +150,6 @@ $image-path: '/media/protocol/img';
             font-weight: normal;
         }
     }
-}
-
-// hide details for JS users
-// (displayed when email field is focused)
-.js .mzp-c-newsletter-details {
-    @include hidden;
 }
 
 .email-privacy {

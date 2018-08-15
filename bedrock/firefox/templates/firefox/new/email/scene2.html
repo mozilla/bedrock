@@ -2,7 +2,9 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "base-protocol.html" %}
+{% add_lang_files "firefox/new/quantum" %}
+
+{% extends "firefox/base-protocol.html" %}
 
 {% block experiments %}
   {% if switch('firefox_download_scene2_email_experiment', ['en-US']) %}
@@ -16,11 +18,6 @@
      see https://github.com/mozilla/bedrock/pull/5463 #}
   <link rel="canonical" href="{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/">
 {% endblock %}
-
-{% block page_image %}{{ static('img/firefox/template/page-image.png') }}{% endblock %}
-{% block page_favicon %}{{ static('img/firefox/favicon.ico') }}{% endblock %}
-{% block page_favicon_large %}{{ static('img/firefox/favicon-196.png') }}{% endblock %}
-{% block page_ios_icon %}{{ static('img/firefox/ios-icon-180.png') }}{% endblock %}
 
 {% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/{% endblock %}
 
