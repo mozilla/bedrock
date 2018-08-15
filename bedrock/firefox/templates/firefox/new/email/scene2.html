@@ -49,21 +49,21 @@
 {% endif %}
 
 {% block content %}
-<div class="status">
-  <div class="mzp-l-content mzp-t-firefox">
-    {# fallback_url is replaced by the platform download link via JS, but if
-      something fails the user should still get a link to a working download path. #}
-
-    {% set id, fallback_url = 'direct-download-link', url('firefox.all') %}
-    <p>
-    {% trans %}
-      Your download should begin automatically. Didn’t work? <a id="{{ id }}" href="{{ fallback_url }}">Try downloading again</a>.
-    {% endtrans %}
-    </p>
-  </div>
-</div>
-
 <main class="main mzp-t-firefox mzp-t-dark">
+  <section class="status">
+    <div class="mzp-l-content mzp-t-firefox">
+      {# fallback_url is replaced by the platform download link via JS, but if
+        something fails the user should still get a link to a working download path. #}
+
+      {% set id, fallback_url = 'direct-download-link', url('firefox.all') %}
+      <p>
+      {% trans %}
+        Your download should begin automatically. Didn’t work? <a id="{{ id }}" href="{{ fallback_url }}">Try downloading again</a>.
+      {% endtrans %}
+      </p>
+    </div>
+  </section>
+
   <div class="mzp-l-content">
     <div class="header-logos">
       <h2><a class="firefox" href="{{ url('firefox') }}" title="{{ firefox_logo_title }}">{{ high_res_img('logos/firefox/logo-quantum-wordmark-white.png', {'alt': firefox_logo_title, 'width': '133', 'height': '50'}) }}</a></h2>
