@@ -410,14 +410,18 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
 
         # for copy test
         # https://bugzilla.mozilla.org/show_bug.cgi?id=1451051
+        variation = self.request.GET.get('v', None)
 
         if detect_channel(version) == 'alpha':
             if show_57_dev_firstrun(version):
                 template = 'firefox/developer/firstrun.html'
-        else:
-            template = 'firefox/dev-firstrun.html'
+            else:
+                template = 'firefox/dev-firstrun.html'
         elif show_57_firstrun(version):
-            template = 'firefox/firstrun/firstrun-quantum.html'
+            if locale == 'en-US' and variation in ['a', 'b', 'c', 'd']:
+                template = 'firefox/firstrun/firstrun-quantum-{}.html'.format(variation)
+            else:
+                template = 'firefox/firstrun/firstrun-quantum.html'
         else:
             template = 'firefox/firstrun/index.html'
 
