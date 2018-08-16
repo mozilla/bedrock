@@ -123,5 +123,7 @@
   {% if switch('tracking-pixel') %}
     {{ js_bundle('firefox_new_pixel') }}
   {% endif %}
+  {# Keep download JS in a separate bundle to email JS, to reduce risk of errors interrupting download. #}
   {{ js_bundle('firefox_new_scene2_email') }}
+  {{ js_bundle('firefox_new_scene2') }}
 {% endblock %}

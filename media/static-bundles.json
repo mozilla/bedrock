@@ -981,7 +981,6 @@
         "protocol/js/protocol-modal.js",
         "protocol/js/protocol-newsletter.js",
         "js/newsletter/form-protocol.js",
-        "js/firefox/new/scene2.js",
         "js/firefox/new/scene2-email.js"
       ],
       "name": "firefox_new_scene2_email"
