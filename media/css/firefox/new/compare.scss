@@ -1,0 +1,509 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/includes/lib";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/button";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/download-button";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/call-out";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/hero";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/feature-card";
+
+.section-title {
+    @include text-display-sm;
+}
+
+.section-intro {
+    text-align: center;
+
+    @media #{$mq-md} {
+        padding: $layout-sm 0;
+    }
+
+    .mzp-l-content {
+        max-width: $content-md;
+    }
+}
+
+.section-outro {
+    @include text-body-lg;
+    text-align: center;
+    padding: $spacing-lg 0;
+
+    .mzp-l-content {
+        max-width: $content-lg;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    @media #{$mq-md} {
+        padding: $layout-lg 0;
+    }
+
+    @media #{$mq-lg} {
+        padding: $layout-xl 0;
+    }
+}
+
+.secondary-cta {
+    @media #{$mq-md} {
+        .mzp-c-call-out-cta-container {
+            padding-top: $spacing-xl;
+        }
+    }
+
+    @media #{$mq-lg} {
+        padding: $layout-sm 0;
+    }
+}
+
+// Variation 1
+.compare-1 {
+    .page-body {
+        background-color: $color-gray-20;
+    }
+
+    .secondary-cta {
+        background: $color-white;
+    }
+
+    // HACK/DEBT: This should be prefixed upstream in the Protocol hero molecule
+    @supports (-webkit-mask-size: auto) {
+        .mzp-c-hero.mzp-t-firefox:after {
+            -webkit-mask: url('#{$image-path}/backgrounds/masks/hero/hero-curve.svg') center bottom no-repeat;
+            -webkit-mask-size: 100% 100%;
+            background-color: $color-gray-20;
+            bottom: -1px;
+            content: '';
+            display: block;
+            height: 25%;
+            max-height: 160px;
+            min-height: 75px;
+            position: absolute;
+            width: 100%;
+            z-index: 1;
+
+            @media #{$mq-lg} {
+                min-height: 140px;
+            }
+        }
+    }
+
+    // HACK/DEBT: compensate for antialiasing - this should be fixed upstream in Protocol
+    .mzp-c-hero.mzp-t-firefox:after {
+        bottom: -1px;
+    }
+}
+
+// Variation 2
+.compare-2 {
+    .mzp-c-hero.mzp-t-firefox:after {
+        display: none;
+    }
+
+    .section-title {
+        text-align: center;
+    }
+
+    .secondary-cta {
+        background: $color-gray-20;
+    }
+}
+
+
+//* ====================================================================== */
+//  Image sections
+.c-image-section {
+    position: relative;
+
+    &.mzp-l-center {
+        text-align: center;
+
+        .c-section-content {
+            margin: 0 auto;
+        }
+    }
+
+    &.mzp-t-dark {
+        color: $color-white;
+    }
+}
+
+.c-image-section-content {
+    margin: $spacing-lg auto;
+}
+
+.c-image-section-title {
+    @include text-display-sm;
+}
+
+@media #{$mq-md} {
+    .c-image-section-content {
+        margin: $layout-md 0;
+        max-width: 440px;
+        min-width: 260px;
+        width: 40%;
+    }
+
+    .c-image-section {
+        position: relative;
+
+        &.mzp-l-left {
+            .c-image-section-content {
+                @include bidi((
+                    (margin-left, 0, 60%),
+                    (margin-right, 60%, 0)
+                ));
+            }
+        }
+
+        &.mzp-l-right {
+            .c-image-section-content {
+                @include bidi((
+                    (margin-right, 0, 60%),
+                    (margin-left, 60%, 0)
+                ));
+            }
+        }
+    }
+
+}
+
+
+//* ====================================================================== */
+//  Fast
+.section-fast {
+    background: #0060df linear-gradient(to bottom, #0060df, #45a1ff);
+    border-bottom: 3px solid #09167c;
+    margin-bottom: 50px;
+    padding-bottom: 120px;
+
+    &:after {
+        background: url('/media/img/firefox/new/compare/illo-fast.png') center bottom no-repeat;
+        background-size: 288px 161px;
+        bottom: -41px;
+        content: '';
+        display: block;
+        height: 161px;
+        left: 50%;
+        margin-left: -144px;
+        position: absolute;
+        width: 288px;
+    }
+}
+
+@media #{$mq-sm} {
+    .section-fast {
+        margin-bottom: 80px;
+        padding-bottom: 180px;
+
+        &:after {
+            background-size: 432px 242px;
+            bottom: -62px;
+            height: 242px;
+            margin-left: -216px;
+            width: 432px;
+        }
+    }
+}
+
+@media #{$mq-md} {
+    .section-fast {
+        margin-bottom: 140px;
+        padding-bottom: 0;
+
+        &:after {
+            @include at2x('/media/img/firefox/new/compare/illo-fast.png', 577px, 323px);
+            bottom: -82px;
+            height: 323px;
+            left: auto;
+            margin-left: 0;
+            position: absolute;
+            right: 45%;
+            width: 577px;
+        }
+    }
+}
+
+//* ====================================================================== */
+//  Good
+.section-good {
+    background: #012d1c linear-gradient(to bottom right, #03aa6f, #012d1c);
+    padding-bottom: 160px;
+
+    &:after {
+        background: url('/media/img/firefox/new/compare/illo-good.png') center bottom no-repeat;
+        background-size: 386px 165px;
+        bottom: 0;
+        content: '';
+        display: block;
+        height: 165px;
+        left: 50%;
+        margin-left: -193px;
+        position: absolute;
+        width: 386px;
+    }
+}
+
+@media #{$mq-sm} {
+    .section-good {
+        padding-bottom: 220px;
+
+        &:after {
+            background-size: 579px 247px;
+            height: 247px;
+            margin-left: -289px;
+            width: 579px;
+        }
+    }
+}
+
+@media #{$mq-md} {
+    .section-good {
+        padding-bottom: 30px;
+
+        &:after {
+            @include at2x('/media/img/firefox/new/compare/illo-good.png', 773px, 331px);
+            height: 331px;
+            left: auto;
+            margin-left: 0;
+            position: absolute;
+            right: 35%;
+            width: 773px;
+        }
+    }
+}
+
+@media #{$mq-xl} {
+    .section-good:after {
+        right: auto;
+        left: 35%;
+        margin-left: -386px;
+    }
+}
+
+//* ====================================================================== */
+//  Buttons
+.compare {
+    .mzp-c-button.mzp-t-download {
+        background-color: $color-blue-60;
+        background-image: none;
+        border-radius: 3px;
+        border: none;
+        box-shadow: none;
+        color: $color-white;
+        line-height: 1.125;
+        padding: ($padding-md + 2px) ($padding-lg + 2px); //2px extra padding to compensate for no border.
+
+        &:hover,
+        &:focus {
+            background-color: $color-blue-70;
+            background-image: none;
+            box-shadow: 4px 4px 0 0 $color-black;
+            color: $color-white;
+            transition: box-shadow 100ms;
+        }
+
+        &:active {
+            box-shadow: 2px 2px 0 0 $color-black;
+            transition: box-shadow 0ms;
+        }
+    }
+}
+
+
+//* ====================================================================== */
+//  Tables
+
+$image-width: 21px;
+$image-top-height: 19px;
+$image-bottom-height: 28px;
+
+.c-compare-table {
+    width: 100%;
+    max-width: 516px;
+    margin: ($layout-md - $image-top-height) auto ($layout-xl - $image-bottom-height) auto;
+
+    th {
+        font-weight: normal;
+        text-align: left;
+    }
+
+    th,
+    td {
+        padding: $spacing-sm;
+    }
+
+    td {
+        text-align: center;
+    }
+
+    thead th {
+        text-align: center;
+    }
+
+    tbody {
+        tr {
+            background-color: #fff;
+
+            &:nth-child(odd) {
+                background-color: #f7f7f7;
+            }
+        }
+
+        td {
+            width: 80px;
+
+            span {
+                display: block;
+            }
+        }
+    }
+}
+
+
+@media (max-width: $screen-sm) {
+    @supports (display: grid) {
+        .c-compare-table {
+            tr {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            thead td {
+                display: none;
+            }
+
+            tbody {
+                th {
+                    grid-column-start: 1;
+                    grid-column-end: 3;
+                    text-align: center;
+                    font-weight: bold;
+                }
+
+                td {
+                    width: auto;
+                }
+            }
+        }
+    }
+}
+
+
+
+@media #{$mq-sm} {
+    .c-compare-table {
+        th,
+        td {
+            padding: $spacing-sm;
+        }
+    }
+
+    .c-compare-highlight {
+        position: relative;
+
+        &:before,
+        &:after {
+            background-image: url('/media/img/firefox/new/compare/table/highlight-white-left.png');
+            content: '';
+            display: block;
+            position: absolute;
+            right: 100%;
+            top: 0;
+            bottom: 0;
+            width: $image-width;
+            background-size: $image-width;
+        }
+
+        &:after {
+            background-image: url('/media/img/firefox/new/compare/table/highlight-white-right.png');
+            right: auto;
+            left: 100%;
+        }
+
+        tbody tr:nth-child(odd) &:before {
+            background-image: url('/media/img/firefox/new/compare/table/highlight-grey-left.png');
+        }
+
+        tbody tr:nth-child(odd) &:after {
+            background-image: url('/media/img/firefox/new/compare/table/highlight-grey-right.png');
+        }
+    }
+
+    .c-compare-first {
+        th,
+        td {
+            padding-top: $image-top-height + $spacing-md;
+        }
+
+        .c-compare-highlight {
+            background: url('/media/img/firefox/new/compare/table/highlight-top.png') top left / 3px $image-width repeat-x;
+
+            &:before {
+                background: url('/media/img/firefox/new/compare/table/highlight-top-left.png') top left / $image-width no-repeat,
+                            url('/media/img/firefox/new/compare/table/highlight-white-left.png') top left / $image-width repeat-y;
+            }
+
+            &:after {
+                background: url('/media/img/firefox/new/compare/table/highlight-top-right.png') top right / $image-width no-repeat,
+                            url('/media/img/firefox/new/compare/table/highlight-white-right.png') top right / $image-width repeat-y;
+            }
+        }
+    }
+
+    .c-compare-last {
+        th,
+        td {
+            padding-bottom: $image-bottom-height + $spacing-md;
+        }
+
+        .c-compare-highlight {
+            background: url('/media/img/firefox/new/compare/table/highlight-bottom.png') bottom left / 3px $image-bottom-height repeat-x;
+
+            &:before {
+                background: url('/media/img/firefox/new/compare/table/highlight-bottom-left.png') bottom left / $image-width no-repeat,
+                            url('/media/img/firefox/new/compare/table/highlight-white-left.png') bottom left / $image-width repeat-y;
+            }
+
+            &:after {
+                background: url('/media/img/firefox/new/compare/table/highlight-bottom-right.png') bottom right / $image-width no-repeat,
+                            url('/media/img/firefox/new/compare/table/highlight-white-right.png') bottom right / $image-width repeat-y;
+            }
+        }
+    }
+
+    tbody tr:nth-child(odd).c-compare-last {
+        background-image: linear-gradient(#fff, #fff);
+        background-repeat: repeat-x;
+        background-size: $image-bottom-height $image-bottom-height;
+        background-position: bottom left;
+
+        .c-compare-highlight {
+            background-image: url('/media/img/firefox/new/compare/table/highlight-bottom.png');
+
+            &:before {
+                background-image: url('/media/img/firefox/new/compare/table/highlight-bottom-left.png'),
+                                  url('/media/img/firefox/new/compare/table/highlight-grey-left.png');
+            }
+
+            &:after {
+                background-image: url('/media/img/firefox/new/compare/table/highlight-bottom-right.png'),
+                                  url('/media/img/firefox/new/compare/table/highlight-grey-right.png');
+            }
+        }
+    }
+}
+
+@media #{$mq-md} {
+    .c-compare-table {
+        tbody td {
+            width: 104px;
+        }
+    }
+}

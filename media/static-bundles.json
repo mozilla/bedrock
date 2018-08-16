@@ -243,6 +243,12 @@
     },
     {
       "files": [
+        "css/firefox/new/compare.scss"
+      ],
+      "name": "firefox_new_compare"
+    },
+    {
+      "files": [
         "css/security/security.scss"
       ],
       "name": "security"
@@ -1154,6 +1160,13 @@
         "js/mozorg/about-transparency.js"
       ],
       "name": "about-transparency"
+    },
+    {
+      "files": [
+        "js/base/mozilla-traffic-cop.js",
+        "js/firefox/new/compare-safari-experiment.js"
+      ],
+      "name": "firefox_new_compare_safari_experiment"
     },
     {
       "files": [

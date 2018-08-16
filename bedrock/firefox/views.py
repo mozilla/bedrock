@@ -615,7 +615,7 @@ def new(request):
     locale = l10n_utils.get_locale(request)
 
     # ensure variant matches pre-defined value
-    if variant not in ['a', 'b', 'c', 'd', 'e', 'f']:  # place expected ?v= values in this list
+    if variant not in ['a', 'b', 'c', 'd', 'e', 'f', '1', '2']:  # place expected ?v= values in this list
         variant = None
 
     if scene == '2':
@@ -657,6 +657,13 @@ def new(request):
                 template = 'firefox/new/portland/scene1-safe.html'
             elif experience == 'betterbrowser':
                 template = 'firefox/new/better-browser/scene1.html'
+            elif experience == 'safari':
+                if variant == 'a':
+                    template = 'firefox/new/scene1.html'
+                elif variant == '2':
+                    template = 'firefox/new/compare/scene1-safari-2.html'
+                else:
+                    template = 'firefox/new/compare/scene1-safari-1.html'
             else:
                 template = 'firefox/new/scene1.html'
         else:
