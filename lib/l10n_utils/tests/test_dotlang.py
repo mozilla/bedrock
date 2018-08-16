@@ -6,7 +6,6 @@
 
 from django.conf import settings
 from django.core import mail
-from django.core.cache import cache
 from django.core.urlresolvers import clear_url_caches
 from django.http import HttpRequest
 from django.test.utils import override_settings
@@ -20,7 +19,7 @@ from pyquery import PyQuery as pq
 
 from bedrock.mozorg.tests import TestCase
 from lib.l10n_utils import render
-from lib.l10n_utils.dotlang import (_, _lazy, FORMAT_IDENTIFIER_RE, lang_file_has_tag,
+from lib.l10n_utils.dotlang import (_, _lazy, cache, FORMAT_IDENTIFIER_RE, lang_file_has_tag,
                                     lang_file_is_active, parse, translate)
 from lib.l10n_utils.extract import extract_python
 
@@ -39,6 +38,7 @@ jinja_env = Jinja2.get_default().env
 class TestLangFilesActivation(TestCase):
     def setUp(self):
         clear_url_caches()
+        cache.clear()
 
     def test_lang_file_is_active(self):
         """

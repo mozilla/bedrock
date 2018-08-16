@@ -51,8 +51,14 @@ def page(name, tmpl, decorators=None, url_name=None, **kwargs):
         be applied to the view.
     @param url_name: The value to use as the URL name, default is to coerce
         the template path into a name as described above.
+    @param active_locales: A list of locale codes that should be active for this page
+        regardless of the state of the lang files. Useful for pages with locale-
+        specific templates or non-English text in the template. Ignores the lang
+        file activation tags.
+    @param add_active_locales: A list of locale codes that should be active for this page
+        in addition to those from the lang files.
     @param kwargs: Any additional arguments are passed to l10n_utils.render
-        after the request and the template name.
+        as the context.
     """
     pattern = r'^%s/$' % name if name else r'^$'
 

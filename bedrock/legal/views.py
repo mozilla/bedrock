@@ -2,8 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import re
-
 from django.template.loader import render_to_string
 
 from lib import l10n_utils
@@ -83,13 +81,3 @@ def fraud_report(request):
         submitted = request.GET.get('submitted') == 'True'
         template_vars['form_submitted'] = submitted
         return l10n_utils.render(request, 'legal/fraud-report.html', template_vars)
-
-
-def impressum(request):
-    # The "impressum" page is intended for Germany. Redirect to German (de) if
-    # requested in any other locale. (Bug 1248393)
-    if request.locale != 'de':
-        return redirect(re.sub(r'^/%s/' % request.locale, '/de/',
-                               reverse('legal.impressum')), permanent=True)
-
-    return l10n_utils.render(request, 'legal/impressum.html', {'localized': True})

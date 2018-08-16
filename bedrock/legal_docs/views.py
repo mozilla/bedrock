@@ -15,7 +15,6 @@ from mdx_outline import OutlineExtension
 
 from bedrock.settings import path as base_path
 from lib import l10n_utils
-from lib.l10n_utils.dotlang import get_translations_native_names
 
 LEGAL_DOCS_PATH = base_path('vendor-local', 'src', 'legal-docs')
 CACHE_TIMEOUT = getattr(settings, 'LEGAL_DOCS_CACHE_TIMEOUT', 60 * 60)
@@ -47,9 +46,8 @@ def load_legal_doc(doc_name, locale):
     locales = [f.replace('.md', '') for f in listdir(source_dir) if f.endswith('.md')]
     # convert legal-docs locales to bedrock equivalents
     locales = [LEGAL_DOCS_LOCALES_TO_BEDROCK.get(l, l) for l in locales]
-    # filter out non-production locales and convert to dict with names
-    translations = get_translations_native_names(locales)
-    localized = locale != settings.LANGUAGE_CODE
+    # filter out non-production locales
+    locales = [l for l in locales if l in settings.PROD_LANGUAGES]
 
     # it's possible the legal-docs repo changed the filename to match our locale.
     # this makes it work for mapped locales even if the map becomes superfluous.
@@ -59,7 +57,6 @@ def load_legal_doc(doc_name, locale):
 
     if not path.exists(source_file):
         source_file = path.join(LEGAL_DOCS_PATH, doc_name, 'en-US.md')
-        localized = False
 
     try:
         # Parse the Markdown file
@@ -69,14 +66,12 @@ def load_legal_doc(doc_name, locale):
         content = output.getvalue().decode('utf8')
     except IOError:
         content = None
-        localized = False
     finally:
         output.close()
 
     return {
         'content': content,
-        'localized': localized,
-        'translations': translations,
+        'active_locales': locales,
     }
 
 
@@ -116,8 +111,7 @@ class LegalDocView(TemplateView):
 
         context = super(LegalDocView, self).get_context_data(**kwargs)
         context[self.legal_doc_context_name] = legal_doc['content']
-        context['localized'] = legal_doc['localized']
-        context['translations'] = legal_doc['translations']
+        context['active_locales'] = legal_doc['active_locales']
         return context
 
     @classmethod

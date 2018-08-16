@@ -139,8 +139,7 @@ def privacy(request):
 
     template_vars = {
         'doc': process_legal_doc(doc['content']),
-        'localized': doc['localized'],
-        'translations': doc['translations'],
+        'active_locales': doc['active_locales'],
     }
 
     return l10n_utils.render(request, 'privacy/index.html', template_vars)

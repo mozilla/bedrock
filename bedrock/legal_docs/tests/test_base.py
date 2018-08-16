@@ -22,8 +22,7 @@ class TestLoadLegalDoc(TestCase):
         listdir_mock.return_value = ['en-US.md']
         doc = views.load_legal_doc('the_dude_is_legal', 'de')
         self.assertIsNone(doc['content'])
-        self.assertFalse(doc['localized'])
-        self.assertDictEqual(doc['translations'], {'en-US': 'English (US)'})
+        self.assertEqual(doc['active_locales'], ['en-US'])
 
     @patch('os.path.exists')
     @patch.object(views, 'listdir')
@@ -39,8 +38,7 @@ class TestLoadLegalDoc(TestCase):
         md_mock.markdownFromFile.assert_called_with(
             input=good_path, output=ANY, extensions=ANY)
         self.assertEqual(doc['content'], "You're not wrong Walter...")
-        self.assertFalse(doc['localized'])
-        self.assertDictEqual(doc['translations'], {'de': 'Deutsch', 'en-US': 'English (US)'})
+        self.assertEqual(doc['active_locales'], ['de', 'en-US'])
 
     @patch('os.path.exists')
     @patch.object(views, 'listdir')
@@ -56,8 +54,7 @@ class TestLoadLegalDoc(TestCase):
         md_mock.markdownFromFile.assert_called_with(
             input=good_path, output=ANY, extensions=ANY)
         self.assertEqual(doc['content'], "You're not wrong Walter...")
-        self.assertTrue(doc['localized'])
-        self.assertDictEqual(doc['translations'], {'de': 'Deutsch', 'en-US': 'English (US)'})
+        self.assertEqual(doc['active_locales'], ['de', 'en-US'])
 
     @patch('os.path.exists')
     @patch.object(views, 'listdir')
@@ -76,11 +73,7 @@ class TestLoadLegalDoc(TestCase):
         md_mock.markdownFromFile.assert_called_with(
             input=good_path, output=ANY, extensions=ANY)
         self.assertEqual(doc['content'], "You're not wrong Walter...")
-        self.assertTrue(doc['localized'])
-        self.assertDictEqual(doc['translations'], {
-            'hi-IN': u'\u0939\u093f\u0928\u094d\u0926\u0940 (\u092d\u093e\u0930\u0924)',
-            'en-US': 'English (US)',
-        })
+        self.assertEqual(doc['active_locales'], ['hi-IN', 'en-US'])
 
     @patch('os.path.exists')
     @patch.object(views, 'listdir')
@@ -98,11 +91,7 @@ class TestLoadLegalDoc(TestCase):
         md_mock.markdownFromFile.assert_called_with(
             input=good_path, output=ANY, extensions=ANY)
         self.assertEqual(doc['content'], "You're not wrong Walter...")
-        self.assertTrue(doc['localized'])
-        self.assertDictEqual(doc['translations'], {
-            'hi-IN': u'\u0939\u093f\u0928\u094d\u0926\u0940 (\u092d\u093e\u0930\u0924)',
-            'en-US': 'English (US)',
-        })
+        self.assertEqual(doc['active_locales'], ['hi-IN', 'en-US'])
 
 
 class TestLegalDocView(TestCase):
@@ -125,8 +114,7 @@ class TestLegalDocView(TestCase):
         doc_value = "Donny, you're out of your element!"
         lld_mock.return_value = {
             'content': doc_value,
-            'localized': True,
-            'translations': {'de': 'Deutsch', 'en-US': 'English (US)'},
+            'active_locales': ['de', 'en-US'],
         }
         good_resp = HttpResponse(doc_value)
         render_mock.return_value = good_resp
@@ -138,7 +126,6 @@ class TestLegalDocView(TestCase):
         eq_(resp['cache-control'], 'max-age={0!s}'.format(views.CACHE_TIMEOUT))
         eq_(resp.content, doc_value)
         eq_(render_mock.call_args[0][2]['doc'], doc_value)
-        self.assertTrue(render_mock.call_args[0][2]['localized'])
         lld_mock.assert_called_with('the_dude_exists', 'de')
 
     @patch.object(views, 'load_legal_doc')
@@ -148,8 +135,7 @@ class TestLegalDocView(TestCase):
         doc_value = "Donny, you're out of your element!"
         lld_mock.return_value = {
             'content': doc_value,
-            'localized': True,
-            'translations': {'es-ES': 'Espa\u00f1ol (de Espa\u00f1a)', 'en-US': 'English (US)'},
+            'active_locales': ['es-ES', 'en-US'],
         }
         good_resp = HttpResponse(doc_value)
         render_mock.return_value = good_resp
@@ -168,8 +154,7 @@ class TestLegalDocView(TestCase):
         doc_value = "Donny, you're out of your element!"
         lld_mock.return_value = {
             'content': doc_value,
-            'localized': True,
-            'translations': {'es-ES': 'Espa\u00f1ol (de Espa\u00f1a)', 'en-US': 'English (US)'},
+            'active_locales': ['es-ES', 'en-US'],
         }
         good_resp = HttpResponse(doc_value)
         render_mock.return_value = good_resp
