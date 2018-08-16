@@ -4,6 +4,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import json
+import os
 from urlparse import parse_qs
 
 from django.test import override_settings
@@ -884,6 +885,22 @@ class TestFirefoxNew(TestCase):
         req.locale = 'fr'
         views.download_thanks(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+
+    # yandex - issue 5635
+
+    @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='True')
+    def test_yandex_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/')
+        req.locale = 'ru'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/yandex/scene1.html', ANY)
+
+    @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='False')
+    def test_yandex_scene_1_switch_off(self, render_mock):
+        req = RequestFactory().get('/firefox/new/')
+        req.locale = 'ru'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
 
 
 class TestFirefoxNewNoIndex(TestCase):
