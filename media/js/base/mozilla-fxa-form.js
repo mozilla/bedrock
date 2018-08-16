@@ -39,7 +39,25 @@ Mozilla.FxaForm = (function(Mozilla) {
     function fetchTokens() {
         fxaSubmitButton.disabled = false;
 
-        fetch(fxaForm.getAttribute('action') + 'metrics-flow').then(function(resp) {
+        var destURL = fxaForm.getAttribute('action') + 'metrics-flow';
+        var entrypoint = document.getElementById('fxa-email-form-entrypoint');
+        var utmSource = document.getElementById('fxa-email-form-utm-source');
+        var utmCampaign = document.getElementById('fxa-email-form-utm-campaign');
+
+        // add required params to the token fetch request
+        destURL += '?form_type=email';
+        destURL += '&entrypoint=' + entrypoint.value;
+
+        // utm params may not be present, but include them if they are
+        if (utmSource) {
+            destURL += '&utm_source=' + utmSource.value;
+        }
+
+        if (utmCampaign) {
+            destURL += '&utm_campaign=' + utmCampaign.value;
+        }
+
+        fetch(destURL).then(function(resp) {
             return resp.json();
         }).then(function(r) {
             fxaForm.querySelector('[name="flow_id"]').value = r.flowId;

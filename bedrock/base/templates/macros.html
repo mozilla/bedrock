@@ -407,13 +407,13 @@
     <input type="hidden" name="action" value="email" />
     <input type="hidden" name="context" value="fx_desktop_v3" />
     <input type="hidden" name="service" value="sync" />
-    <input type="hidden" name="entrypoint" value="{{ entrypoint }}" />
+    <input type="hidden" name="entrypoint" value="{{ entrypoint }}" id="fxa-email-form-entrypoint" />
     {# flow_id and flow_begin_time will be populated via JS on page load #}
     <input type="hidden" name="flow_id" value="" />
     <input type="hidden" name="flow_begin_time" value="" />
 
   {% for attr, val in utm_params.items() %}
-    <input type="hidden" name="utm_{{ attr }}" value="{{ val }}" />
+    <input type="hidden" name="utm_{{ attr }}" value="{{ val }}" id="fxa-email-form-utm-{{ attr }}" />
   {% endfor %}
 
     <p>
