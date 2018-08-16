@@ -408,6 +408,8 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
     def get_template_names(self):
         version = self.kwargs.get('version') or ''
 
+        locale = l10n_utils.get_locale(self.request)
+
         # for copy test
         # https://bugzilla.mozilla.org/show_bug.cgi?id=1451051
         variation = self.request.GET.get('v', None)
