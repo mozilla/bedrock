@@ -573,6 +573,8 @@ def download_thanks(request):
             template = 'firefox/new/portland/scene2-safe.html'
         elif experience == 'betterbrowser':
             template = 'firefox/new/better-browser/scene2.html'
+        elif experience == 'compare':
+            template = 'firefox/new/compare/scene2.html'
         else:
             template = 'firefox/new/scene2.html'
     else:
@@ -637,6 +639,8 @@ def new(request):
                     template = 'firefox/new/scene1.html'
                 else:
                     template = 'firefox/new/better-browser/scene1-{}.html'.format(variant)
+            elif experience == 'compare':
+                template = 'firefox/new/compare/scene1-safari-b.html'
             else:
                 template = 'firefox/new/scene1.html'
         else:

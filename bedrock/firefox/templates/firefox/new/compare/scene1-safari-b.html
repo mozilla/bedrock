@@ -1,0 +1,159 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/new/compare/base-b.html" %}
+
+{% block body_class %}compare variant-safari-b{% endblock %}
+
+{% block page_title %}{{_('Firefox vs. Safari')}}{% endblock %}
+{% block hero_title %}Firefox vs. Safari{% endblock %}
+{% block hero_desc %}Simply put, Firefox beats Safari when it comes to portability, utility and privacy.{% endblock %}
+
+{% block details %}
+
+  <h2 class="c-compare-title">Portability: Take Firefox where you need to.</h2>
+  <table class="c-compare-table">
+    <thead>
+      <tr class="c-compare-first">
+          <td></td>
+          <th class="c-compare-highlight is-top">{{ high_res_img('firefox/new/compare/firefox.png', {'alt': 'Firefox', 'title': 'Firefox', 'width': '34', 'height': '35'}) }}</th>
+          <th>{{ high_res_img('firefox/new/compare/safari.png', {'alt': 'Safari', 'title': 'Safari', 'width': '34', 'height': '34'}) }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">OS availability</th>
+        <td class="c-compare-highlight">
+          {{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}
+          <span>All (Windows, Mac, Linux)</span>
+        </td>
+        <td>
+          {{ high_res_img('firefox/new/compare/no.png', {'alt': 'No', 'title': 'No', 'title': 'Yes', 'width': '17', 'height': '20'}) }}
+          <span>Mac only</span>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Mobile OS availability</th>
+        <td class="c-compare-highlight">
+          {{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}
+          <span>iOS, Android</span>
+        </td>
+        <td>
+          {{ high_res_img('firefox/new/compare/no.png', {'alt': 'No', 'title': 'No', 'title': 'Yes', 'width': '17', 'height': '20'}) }}
+          <span>iOS only</span></td>
+      </tr>
+      <tr>
+        <th scope="row">Bookmark management</th>
+        <td class="c-compare-highlight">{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+        <td>{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Syncs with mobile</th>
+        <td class="c-compare-highlight">{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+        <td>{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Password management</th>
+        <td class="c-compare-highlight">{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+        <td>
+          {{ high_res_img('firefox/new/compare/no.png', {'alt': 'No', 'title': 'No', 'title': 'Yes', 'width': '17', 'height': '20'}) }}
+          <span>Partial</span>
+        </td>
+      </tr>
+      <tr class="c-compare-last">
+        <th scope="row">Master password</th>
+        <td class="c-compare-highlight">{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+        <td>{{ high_res_img('firefox/new/compare/no.png', {'alt': 'No', 'title': 'No', 'title': 'Yes', 'width': '17', 'height': '20'}) }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="c-compare-title">Utility: Do what you want to.</h2>
+  <table class="c-compare-table">
+    <thead>
+      <tr class="c-compare-first">
+          <td></td>
+          <th class="c-compare-highlight">{{ high_res_img('firefox/new/compare/firefox.png', {'alt': 'Firefox', 'title': 'Firefox', 'width': '34', 'height': '35'}) }}</th>
+          <th>{{ high_res_img('firefox/new/compare/safari.png', {'alt': 'Safari', 'title': 'Safari', 'width': '34', 'height': '34'}) }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Form autofill</th>
+        <td class="c-compare-highlight">{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+        <td>{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Search engine options</th>
+        <td class="c-compare-highlight">{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+        <td>{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Autoplay blocking</th>
+        <td class="c-compare-highlight">{{ high_res_img('firefox/new/compare/no.png', {'alt': 'No', 'title': 'No', 'title': 'Yes', 'width': '17', 'height': '20'}) }}</td>
+        <td>{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+      </tr>
+      <tr>
+        <th scope="row">In-browser screenshot tool</th>
+        <td class="c-compare-highlight">{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+        <td>{{ high_res_img('firefox/new/compare/no.png', {'alt': 'No', 'title': 'No', 'title': 'Yes', 'width': '17', 'height': '20'}) }}</td>
+      </tr>
+      <tr class="c-compare-last">
+        <th scope="row">Languages available</th>
+        <td class="c-compare-highlight">
+          {{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}
+          <span>91</span>
+        </td>
+        <td>
+          {{ high_res_img('firefox/new/compare/no.png', {'alt': 'No', 'title': 'No', 'title': 'Yes', 'width': '17', 'height': '20'}) }}
+          <span>15</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="c-compare-title">Privacy: Safe and secure.</h2>
+  <table class="c-compare-table">
+    <thead>
+      <tr class="c-compare-first">
+          <td></td>
+          <th class="c-compare-highlight">{{ high_res_img('firefox/new/compare/firefox.png', {'alt': 'Firefox', 'title': 'Firefox', 'width': '34', 'height': '35'}) }}</th>
+          <th>{{ high_res_img('firefox/new/compare/safari.png', {'alt': 'Safari', 'title': 'Safari', 'width': '34', 'height': '34'}) }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Tracking protection</th>
+        <td class="c-compare-highlight">{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+        <td>{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Private browsing</th>
+        <td class="c-compare-highlight">{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+        <td>{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Security features</th>
+        <td class="c-compare-highlight">{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+        <td>{{ high_res_img('firefox/new/compare/no.png', {'alt': 'No', 'title': 'No', 'title': 'Yes', 'width': '17', 'height': '20'}) }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Block scripts</th>
+        <td class="c-compare-highlight">{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+        <td>{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Block cross-site tracking</th>
+        <td class="c-compare-highlight">{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+        <td>{{ high_res_img('firefox/new/compare/no.png', {'alt': 'No', 'title': 'No', 'title': 'Yes', 'width': '17', 'height': '20'}) }}</td>
+      </tr>
+      <tr class="c-compare-last">
+        <th scope="row">Ad filtering</th>
+        <td class="c-compare-highlight">{{ high_res_img('firefox/new/compare/yes.png', {'alt': 'Yes', 'title': 'Yes', 'width': '22', 'height': '20'}) }}</td>
+        <td>{{ high_res_img('firefox/new/compare/no.png', {'alt': 'No', 'title': 'No', 'title': 'Yes', 'width': '17', 'height': '20'}) }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}
