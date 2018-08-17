@@ -38,13 +38,6 @@
           </p>
           <p><a href="{{ firefox_url('desktop', 'all', 'esr') }}" class="button">{{ _('Get Firefox 60 ESR') }}</a></p>
         </div>
-        <div class="col">
-          <p>
-            <strong>{{ _('Firefox Extended Support Release (ESR 52)') }}</strong><br>
-            {{ _('An older version of Firefox that supports legacy Add-Ons and runs on Windows XP/Vista.') }}
-          </p>
-          <p><a href="{{ firefox_url('desktop', 'all', 'esr') }}#legacy" class="button button-light">{{ _('Get Firefox 52 ESR') }}</a></p>
-        </div>
         {% else %}
         <div class="col">
           <p>
@@ -52,6 +45,13 @@
             {{ _('The new super-fast Firefox, with features for IT professionals to configure and deploy Firefox in their organization.') }}
           </p>
           <p><a href="{{ firefox_url('desktop', 'all', 'esr') }}" class="button">{{ _('Get Firefox 60 ESR') }}</a></p>
+        </div>
+        <div class="col">
+          <p>
+            <strong>{{ _('Firefox Extended Support Release (ESR 52)') }}</strong><br>
+            {{ _('An older version of Firefox that supports legacy Add-Ons and runs on Windows XP/Vista.') }}
+          </p>
+          <p><a href="{{ firefox_url('desktop', 'all', 'esr') }}#legacy" class="button button-light">{{ _('Get Firefox 52 ESR') }}</a></p>
         </div>
         {% endif %}
       </div>
