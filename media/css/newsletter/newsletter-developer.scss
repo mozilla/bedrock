@@ -5,8 +5,8 @@
 @import '../pebbles/includes/lib';
 
 .section-intro {
-    background: url('/media/img/newsletter/developer/hearts.svg') top 30px center no-repeat,
-                url('/media/img/newsletter/developer/bg-image.png') top left no-repeat,
+    background: url('/media/img/newsletter/developer/8bit_hearts.svg') top 30px center no-repeat,
+                url('/media/img/newsletter/developer/bg_image.png') top left no-repeat,
                 #000;
 
     @include background-size(66px 44px, auto auto);
@@ -25,7 +25,7 @@
         @include background-size(96px 64px, auto auto);
         background-position: top 85px center, top center;
         height: 290px;
-        .page-title{
+        .page-title {
             margin-top: 150px;
         }
     }
