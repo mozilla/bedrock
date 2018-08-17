@@ -7,7 +7,16 @@
 {% set_lang_files "mozorg/newsletters" %}
 
 {% block page_title %}{{ _('Love the web? So do we!') }}{% endblock page_title %}
-{% block page_desc %}{{ _('Join thousands of developers like you who are learning the best of web development.') }}{% endblock %}
+
+{% block page_desc %}
+
+{% if l10n_has_tag('developer_page_desc_082018') %}
+{{ _('Join thousands of developers like you who are learning the best of web development.') }}
+{% else %}
+{{ _('Unlock the world of web development with our weekly Mozilla Developer Newsletter. Each edition brings you coding techniques and best practices, MDN updates, info about emerging technologies, developer tools tips, and more.') }}
+{% endif %}
+
+{% endblock %}
 
 {% block body_class %}newsletter-developer{% endblock %}
 
@@ -25,17 +34,14 @@
 <main role="main">
   <div class="section-intro">
     <div class="content">
-      <div id="tabzilla">
-        <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
-      </div>
+      <h1 class="page-title">{{ self.page_title() }}</h1>
     </div>
   </div>
 
   <section class="section-subscribe">
     <div class="content">
       <header class="header-main" role="banner">
-        <h1 class="page-title">{{ self.page_title() }}</h1>
-        <h2 class="section-title">{{ self.page_desc() }} {{ _('If you don’t like the Mozilla developer newsletter, you can easily unsubscribe (but we think you’ll like it).') }}</h2>
+        <h2 class="section-title">{{ self.page_desc() }}</h2>
       </header>
       {{ email_newsletter_form(newsletters='app-dev', include_language=False, include_title=False, spinner_color='#0c99d5', button_class='button-hollow') }}
     </div>
