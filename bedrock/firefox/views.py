@@ -25,7 +25,6 @@ from product_details.version_compare import Version
 from lib import l10n_utils
 from lib.l10n_utils.dotlang import lang_file_is_active
 from bedrock.base.urlresolvers import reverse
-from bedrock.base.waffle import switch
 from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
 from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.mozorg.util import HttpResponseJSON
@@ -409,7 +408,6 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
     def get_template_names(self):
         version = self.kwargs.get('version') or ''
 
-        experience = self.request.GET.get('xv', None)
         locale = l10n_utils.get_locale(self.request)
 
         # for copy test
@@ -422,13 +420,10 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
             else:
                 template = 'firefox/dev-firstrun.html'
         elif show_57_firstrun(version):
-            if (switch('firefox-facebook-container-funnelcake') and locale == 'en-US' and experience == 'facebook-container'):
-                template = 'firefox/firstrun/facebook-container.html'
+            if locale == 'en-US' and variation in ['a', 'b', 'c', 'd']:
+                template = 'firefox/firstrun/firstrun-quantum-{}.html'.format(variation)
             else:
-                if locale == 'en-US' and variation in ['a', 'b', 'c', 'd']:
-                    template = 'firefox/firstrun/firstrun-quantum-{}.html'.format(variation)
-                else:
-                    template = 'firefox/firstrun/firstrun-quantum.html'
+                template = 'firefox/firstrun/firstrun-quantum.html'
         else:
             template = 'firefox/firstrun/index.html'
 
