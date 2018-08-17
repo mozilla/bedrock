@@ -2,7 +2,6 @@
 
 from __future__ import print_function, unicode_literals
 
-from django.contrib.staticfiles.storage import staticfiles_storage
 from django.db import models
 from django.db.utils import DatabaseError
 
@@ -91,14 +90,6 @@ class PocketArticle(models.Model):
     def __unicode__(self):
         return self.title
 
-    @staticmethod
-    def fallback_image():
-        return staticfiles_storage.url('img/pocket/pocket-feed-default.png')
-
     @property
     def display_title(self):
         return Markup(self.title).unescape()
-
-    @property
-    def image(self):
-        return self.image_src or self.fallback_image()

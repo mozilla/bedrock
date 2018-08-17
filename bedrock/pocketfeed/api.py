@@ -8,7 +8,7 @@ from django.conf import settings
 from raven.contrib.django.raven_compat.models import client as sentry_client
 
 
-def get_articles_data(count=4):
+def get_articles_data(count=8):
     payload = {
         'consumer_key': settings.POCKET_CONSUMER_KEY,
         'access_token': settings.POCKET_ACCESS_TOKEN,

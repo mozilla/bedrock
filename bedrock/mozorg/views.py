@@ -186,7 +186,7 @@ def home_view(request):
 
     if locale.startswith('en-'):
         template_name = 'mozorg/home/home-en.html'
-        ctx['pocket_articles'] = PocketArticle.objects.all()
+        ctx['pocket_articles'] = PocketArticle.objects.all()[:4]
     else:
         template_name = 'mozorg/home/home.html'
 

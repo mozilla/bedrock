@@ -50,10 +50,10 @@ def test_refresh_articles():
     assert article.url == 'https://blog.mozilla.org/blog/2018/07/18/mozilla-responds-to-european-commissions-google-android-decision'
     assert article.image == article.image_src
 
-    # this article's image_src is http (not https), so should get the fallback image
+    # this article's image_src is http (not https), so should be None
     article = articles.get(pocket_id=2248108002)
-    assert article.image == PocketArticle.fallback_image()
+    assert article.image is None
 
-    # this article has an empty image_src, so should get the fallback image
+    # this article has an empty image_src, so should be None
     article = articles.get(pocket_id=2262115700)
-    assert article.image == PocketArticle.fallback_image()
+    assert article.image is None
