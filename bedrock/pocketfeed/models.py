@@ -2,7 +2,6 @@
 
 from __future__ import print_function, unicode_literals
 
-from django.contrib.staticfiles.storage import staticfiles_storage
 from django.db import models
 from django.db.utils import DatabaseError
 
@@ -53,16 +52,17 @@ class PocketArticleManager(models.Manager):
         for obj, article in articles_to_update:
             try:
                 if obj:
-                    for key, value in article.iteritems():
-                        setattr(obj, key, value)
-                    obj.save()
+                    if obj.time_shared != article['time_shared']:
+                        for key, value in article.iteritems():
+                            setattr(obj, key, value)
+                        obj.save()
+                        update_count += 1
                 else:
                     self.create(**article)
+                    update_count += 1
             except DatabaseError:
                 sentry_client.captureException()
                 raise
-
-            update_count += 1
 
         # clean up after changes
         if update_count:
@@ -91,14 +91,6 @@ class PocketArticle(models.Model):
     def __unicode__(self):
         return self.title
 
-    @staticmethod
-    def fallback_image():
-        return staticfiles_storage.url('img/pocket/pocket-feed-default.png')
-
     @property
     def display_title(self):
         return Markup(self.title).unescape()
-
-    @property
-    def image(self):
-        return self.image_src or self.fallback_image()

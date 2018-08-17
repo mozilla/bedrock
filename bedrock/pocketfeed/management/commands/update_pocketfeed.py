@@ -13,7 +13,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if settings.POCKET_CONSUMER_KEY and settings.POCKET_ACCESS_TOKEN:
-            updated, deleted = PocketArticle.objects.refresh(count=4)
+            updated, deleted = PocketArticle.objects.refresh(count=8)
 
             if updated is None:
                 raise CommandError('There was a problem updating the Pocket feed')

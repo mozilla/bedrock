@@ -225,7 +225,7 @@
             tag_label=article.domain,
             title=article.display_title,
             ga_title='Pocket Link {}'.format(loop.index),
-            image_url=article.image,
+            image_url=article.image_src or 'pocket/pocket-feed-default.png',
             aspect_ratio='mzp-has-aspect-16-9',
             link_url=article.url
           ) }}
