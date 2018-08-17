@@ -52,16 +52,17 @@ class PocketArticleManager(models.Manager):
         for obj, article in articles_to_update:
             try:
                 if obj:
-                    for key, value in article.iteritems():
-                        setattr(obj, key, value)
-                    obj.save()
+                    if obj.time_shared != article['time_shared']:
+                        for key, value in article.iteritems():
+                            setattr(obj, key, value)
+                        obj.save()
+                        update_count += 1
                 else:
                     self.create(**article)
+                    update_count += 1
             except DatabaseError:
                 sentry_client.captureException()
                 raise
-
-            update_count += 1
 
         # clean up after changes
         if update_count:
