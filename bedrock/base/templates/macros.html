@@ -388,6 +388,8 @@
     pages of the class, e.g., no matter URL of the firstrun page, entrypoint is
     always `firstrun`. must validate against [\w.:-]+
     REQUIRED
+  utm_source: used for analytics
+    REQUIRED
   class_name: applies a class to the form. default: 'fxa-email-form'
   utm_params: dictionary of utm_* params to include. 'utm_' will automatically
     be prepended to all keys. example:
@@ -396,13 +398,14 @@
       'content': 'accounts-page',
       'medium': 'referral',
       'campaign': 'accounts-page',
-      'source': 'accounts-page',
       'term': 'someterm',
     }
 
     all values must validate against /^[\w\/.%-]+/
+
+    DO NOT include utm_source in this dictionary! (It's already a required param.)
 #}
-{% macro fxa_email_form(entrypoint, class_name='fxa-email-form', utm_params={}) -%}
+{% macro fxa_email_form(entrypoint, utm_source, class_name='fxa-email-form',  utm_params={}) -%}
   <form action="{{ settings.FXA_ENDPOINT }}" data-mozillaonline-action="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}" id="fxa-email-form" class="{{ class_name }}">
     <input type="hidden" name="action" value="email" />
     <input type="hidden" name="context" value="fx_desktop_v3" />
@@ -412,6 +415,8 @@
     <input type="hidden" name="flow_id" value="" />
     <input type="hidden" name="flow_begin_time" value="" />
 
+    {# utm_source is required, other utm_ params are optional #}
+    <input type="hidden" name="utm_source" value={{ utm_source }} id="fxa-email-form-utm-source" />
   {% for attr, val in utm_params.items() %}
     <input type="hidden" name="utm_{{ attr }}" value="{{ val }}" id="fxa-email-form-utm-{{ attr }}" />
   {% endfor %}

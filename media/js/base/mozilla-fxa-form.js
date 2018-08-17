@@ -47,12 +47,9 @@ Mozilla.FxaForm = (function(Mozilla) {
         // add required params to the token fetch request
         destURL += '?form_type=email';
         destURL += '&entrypoint=' + entrypoint.value;
+        destURL += '&utm_source=' + utmSource.value;
 
-        // utm params may not be present, but include them if they are
-        if (utmSource) {
-            destURL += '&utm_source=' + utmSource.value;
-        }
-
+        // pass utm_campaign if available
         if (utmCampaign) {
             destURL += '&utm_campaign=' + utmCampaign.value;
         }

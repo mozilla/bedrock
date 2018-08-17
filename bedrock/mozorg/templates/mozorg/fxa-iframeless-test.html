@@ -21,7 +21,7 @@
     <div id="fxa-form-wrapper">
       {# Bug 1354710: firstrun pages need to pass funnelcake parameters to FxA #}
       {% set utm_source = 'firstrun' if not funnelcake_id else 'firstrun_f' + funnelcake_id %}
-      {{ fxa_email_form(entrypoint='firstrun', utm_params={'campaign': 'fxa-embedded-form', 'content': 'fx-{}'.format(version), 'medium': 'referral', 'source': utm_source}) }}
+      {{ fxa_email_form(entrypoint='firstrun', utm_source=utm_source, utm_params={'campaign': 'fxa-embedded-form', 'content': 'fx-{}'.format(version), 'medium': 'referral'}) }}
     </div>
   </div>
 </main>
