@@ -5,6 +5,7 @@ import re
 import requests
 
 from django.conf import settings
+from django.utils.timezone import make_aware, utc
 from raven.contrib.django.raven_compat.models import client as sentry_client
 
 
@@ -31,7 +32,7 @@ def complete_articles_data(articles):
         article['pocket_id'] = article['id']
 
         # convert time_shared from unix timestamp to datetime
-        article['time_shared'] = datetime.datetime.fromtimestamp(int(article['time_shared']))
+        article['time_shared'] = make_aware(datetime.datetime.fromtimestamp(int(article['time_shared'])), utc)
 
         # remove data points we don't need
         del article['comment']
