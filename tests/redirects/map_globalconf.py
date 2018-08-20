@@ -192,6 +192,8 @@ URLS = flatten((
     url_test('/{firefox,mobile}/download/', '/firefox/new/'),
     # also deals with anything after download/
     url_test('/firefox/download/stuff/', '/firefox/new/'),
+    # Issue #6045
+    url_test('/firefox/download', '/firefox/new/'),
 
     url_test('/firefox/firefox.exe', '/'),
     # should be case insensitive

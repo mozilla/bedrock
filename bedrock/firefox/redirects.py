@@ -76,7 +76,7 @@ redirectpatterns = (
     redirect(r'^download/?$', 'firefox.new'),
 
     # Bug 1409554
-    redirect(r'^(firefox|mobile)/download/', 'firefox.new'),
+    redirect(r'^(firefox|mobile)/download', 'firefox.new'),
 
     # bug 837883
     redirect(r'^firefox/firefox\.exe$', 'mozorg.home', re_flags='i'),
