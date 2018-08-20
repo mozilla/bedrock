@@ -26,9 +26,16 @@ data-panel1-text="{{ _('When you see the shield, Firefox is blocking some parts 
 data-panel1-step="{{ _('1 of 3') }}"
 data-panel1-button="{{ _('Next') }}"
 data-panel3-title="{{ _('Want to make changes?') }}"
-data-panel3-text="{{ _('It’s easy to turn off Tracking Protection for the website you’re on by clicking “Disable protection for this session.”') }}"
 
-{% if l10n_has_tag('tp_tour_firefox_201602') %}
+{% if l10n_has_tag('tp_tour_firefox_201809') %}
+  data-panel3-text="{{ _('It’s easy to turn off Tracking Protection for the website you’re on by clicking “Disable For This Session.”') }}"
+{% else %}
+  data-panel3-text="{{ _('It’s easy to turn off Tracking Protection for the website you’re on by clicking “Disable protection for this session.”') }}"
+{% endif %}
+
+{% if l10n_has_tag('tp_tour_firefox_201809') %}
+  data-panel3-text-new-tab="{{ _('It’s easy to turn off Tracking Protection for the website you’re on by clicking “Disable For This Site.”') }}"
+{% elif l10n_has_tag('tp_tour_firefox_201602') %}
   data-panel3-text-new-tab="{{ _('It’s easy to turn off Tracking Protection for the website you’re on by clicking “Disable protection for this site.”') }}"
 {% else %}
   data-panel3-text-new-tab="{{ _('It’s easy to turn off Tracking Protection for the website you’re on by clicking “Disable protection for this session.”') }}"
