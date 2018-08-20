@@ -249,6 +249,13 @@
     },
     {
       "files": [
+        "css/firefox/new/scene1.scss",
+        "css/firefox/new/compare-b.scss"
+      ],
+      "name": "firefox_new_compare_b"
+    },
+    {
+      "files": [
         "css/security/security.scss"
       ],
       "name": "security"
