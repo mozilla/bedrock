@@ -15,6 +15,7 @@ from django.test.client import Client
 
 from mock import patch
 
+from bedrock.grants import grants_db
 from bedrock.releasenotes.models import ProductRelease
 from bedrock.security.models import SecurityAdvisory
 
@@ -44,6 +45,14 @@ SEC_KNOWN_VULNS = [
 ]
 
 
+def get_grants_urls():
+    urls = {}
+    for grant in grants_db.GRANTS:
+        urls['/grants/{}.html'.format(grant.url)] = ['en-US']
+
+    return urls
+
+
 def get_security_urls():
     urls = {url: ['en-US'] for url in SEC_KNOWN_VULNS}
     for advisory in SecurityAdvisory.objects.all():
@@ -71,14 +80,18 @@ def get_release_notes_urls():
 
         try:
             rel_path = release.get_absolute_url()
+            req_path = release.get_sysreq_url()
         except urlresolvers.NoReverseMatch:
             continue
 
         # strip "/en-US" off the front
         if rel_path.startswith('/en-US'):
             rel_path = rel_path[6:]
+        if req_path.startswith('/en-US'):
+            req_path = req_path[6:]
 
         urls[rel_path] = ['en-US']
+        urls[req_path] = ['en-US']
 
     return urls
 
@@ -94,6 +107,8 @@ def get_static_urls():
             r'.*//$',
             r'^media/',
             r'^robots\.txt$',
+            # Redirects in en-US. Added via EXTRA_INDEX_URLS
+            r'firefox-klar/$',
         ]
     ]
 
@@ -102,42 +117,46 @@ def get_static_urls():
 
     # get_resolver is an undocumented but convenient function.
     # Try to retrieve all valid URLs on this site.
-    for key, value in urlresolvers.get_resolver(None).reverse_dict.iteritems():
-        path = value[0][0][0]
-        # Exclude pages that we don't want be indexed by search engines.
-        # Some other URLs are also unnecessary for the sitemap.
-        if any(exclude.search(path) for exclude in excludes):
-            continue
-
-        path_prefix = path.split('/', 2)[0]
-        nonlocale = path_prefix in settings.SUPPORTED_NONLOCALES
-        path = '/%s' % path
-        if nonlocale:
-            locales = []
-        else:
-            with patch('lib.l10n_utils.django_render') as render:
-                render.return_value = HttpResponse()
-                client.get('/' + settings.LANGUAGE_CODE + path)
-
-            # Exclude urls that did not call render
-            if not render.called:
+    # NOTE: have to use `iterlists()` here since the standard
+    # `iteritems()` only returns the first item in the list for the
+    # view since `reverse_dict` is a `MultiValueDict`.
+    for key, values in urlresolvers.get_resolver(None).reverse_dict.iterlists():
+        for value in values:
+            path = value[0][0][0]
+            # Exclude pages that we don't want be indexed by search engines.
+            # Some other URLs are also unnecessary for the sitemap.
+            if any(exclude.search(path) for exclude in excludes):
                 continue
 
-            locales = render.call_args[0][2]['translations'].keys()
+            path_prefix = path.split('/', 2)[0]
+            nonlocale = path_prefix in settings.SUPPORTED_NONLOCALES
+            path = '/%s' % path
+            if nonlocale:
+                locales = []
+            else:
+                with patch('lib.l10n_utils.django_render') as render:
+                    render.return_value = HttpResponse()
+                    client.get('/' + settings.LANGUAGE_CODE + path)
 
-            # zh-CN is a redirect on the homepage
-            if path == '/':
-                locales.remove('zh-CN')
+                # Exclude urls that did not call render
+                if not render.called:
+                    continue
 
-            # Firefox Focus has a different URL in German
-            if path == '/privacy/firefox-focus/':
-                locales.remove('de')
+                locales = render.call_args[0][2]['translations'].keys()
 
-            # just remove any locales not in our prod list
-            locales = list(set(locales).intersection(settings.PROD_LANGUAGES))
+                # zh-CN is a redirect on the homepage
+                if path == '/':
+                    locales.remove('zh-CN')
 
-        if path not in urls:
-            urls[path] = locales
+                # Firefox Focus has a different URL in German
+                if path == '/privacy/firefox-focus/':
+                    locales.remove('de')
+
+                # just remove any locales not in our prod list
+                locales = list(set(locales).intersection(settings.PROD_LANGUAGES))
+
+            if path not in urls:
+                urls[path] = locales
 
     return urls
 
@@ -146,6 +165,7 @@ def update_sitemaps():
     urls = get_static_urls()
     urls.update(get_release_notes_urls())
     urls.update(get_security_urls())
+    urls.update(get_grants_urls())
     # Output static files
     output_json(urls)
     output_xml(urls)
@@ -185,7 +205,7 @@ def output_xml(urls):
         }
         sitemap_tmpl.stream(ctx).dump(str(output_file))
 
-    output_file = settings.ROOT_PATH.joinpath('root_files', 'sitemap_index.xml')
+    output_file = settings.ROOT_PATH.joinpath('root_files', 'sitemap.xml')
     sitemap_tmpl = get_template('sitemaps/sitemap_index.xml').template
 
     ctx = {'canonical_url': settings.CANONICAL_URL, 'locales': sorted(urls_by_locale.keys())}
