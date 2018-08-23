@@ -7,7 +7,6 @@ import hashlib
 import hmac
 import re
 from collections import OrderedDict
-from time import time
 from urlparse import urlparse
 
 from django.conf import settings
@@ -78,12 +77,10 @@ def stub_attribution_code(request):
         return HttpResponseJSON({'error': 'Resource only available via XHR'}, status=400)
 
     response = None
-    rate = settings.STUB_ATTRIBUTION_RATE
-    key = settings.STUB_ATTRIBUTION_HMAC_KEY
-    if not rate:
+    if not settings.STUB_ATTRIBUTION_RATE:
         # return as though it was rate limited, since it was
         response = HttpResponseJSON({'error': 'rate limited'}, status=429)
-    elif not key:
+    elif not settings.STUB_ATTRIBUTION_HMAC_KEY:
         response = HttpResponseJSON({'error': 'service not configured'}, status=403)
 
     if response:
@@ -118,16 +115,46 @@ def stub_attribution_code(request):
         codes['source'] = 'www.mozilla.org'
         codes['medium'] = '(none)'
 
-    codes['timestamp'] = str(int(time()))
-    code = '&'.join('='.join(attr) for attr in codes.items())
-    code = querystringsafe_base64.encode(code)
-    sig = hmac.new(key, code, hashlib.sha256).hexdigest()
-    response = HttpResponseJSON({
-        'attribution_code': code,
-        'attribution_sig': sig,
-    })
+    code_data = sign_attribution_codes(codes)
+    if code_data:
+        response = HttpResponseJSON(code_data)
+    else:
+        response = HttpResponseJSON({'error': 'Invalid code'}, status=400)
+
     patch_response_headers(response, 300)  # 5 min
     return response
+
+
+def get_attrribution_code(codes):
+    """
+    Take the attribution codes and return the URL encoded string
+    respecting max length.
+    """
+    code = '&'.join('='.join(attr) for attr in codes.items())
+    if len(codes['campaign']) > 5 and len(code) > settings.STUB_ATTRIBUTION_MAX_LEN:
+        # remove 5 char at a time
+        codes['campaign'] = codes['campaign'][:-5] + '_'
+        code = get_attrribution_code(codes)
+
+    return code
+
+
+def sign_attribution_codes(codes):
+    """
+    Take the attribution codes and return the base64 encoded string
+    respecting max length and HMAC signature.
+    """
+    key = settings.STUB_ATTRIBUTION_HMAC_KEY
+    code = get_attrribution_code(codes)
+    if len(code) > settings.STUB_ATTRIBUTION_MAX_LEN:
+        return None
+
+    code = querystringsafe_base64.encode(code)
+    sig = hmac.new(key, code, hashlib.sha256).hexdigest()
+    return {
+        'attribution_code': code,
+        'attribution_sig': sig,
+    }
 
 
 @require_POST
