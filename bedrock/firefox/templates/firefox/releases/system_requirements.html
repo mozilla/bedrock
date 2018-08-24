@@ -6,8 +6,10 @@
 
 {% block gtm_page_id %}data-gtm-page-id="/firefox/system-requirements/"{% endblock %}
 
+{% set channel_name = '' if release.channel == 'Release' else release.channel %}
+
 {% block page_title_prefix %}{% endblock %}
-{% block page_title %}{{ _('{product} {version} System Requirements')|f(product=release.product, version=version) }}{% endblock %}
+{% block page_title %}{{ _('{product} {channel} {version} System Requirements')|f(product=release.product, channel=channel_name, version=version) }}{% endblock %}
 
 {% block body_id %}notes{% endblock %}
 {% block body_class %}fxos-notes sky{% endblock %}
@@ -18,7 +20,7 @@
 
 {% block content %}
   <header id="main-feature">
-    <h1>{{ _('{product} {version} System Requirements')|f(product=release.product, version=version) }}</h1>
+    <h1>{{ _('{product} {channel} {version} System Requirements')|f(product=release.product, channel=channel_name, version=version) }}</h1>
   </header>
 
   <div id="main-content">
