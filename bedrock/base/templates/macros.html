@@ -384,6 +384,8 @@
 {%- endmacro %}
 
 {#
+  This macro is intended to be shown only to users on Firefox 48 and up.
+
   entrypoint: used to tag a given "page type" and remains the same across all
     pages of the class, e.g., no matter URL of the firstrun page, entrypoint is
     always `firstrun`. must validate against [\w.:-]+

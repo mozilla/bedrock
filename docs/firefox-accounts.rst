@@ -11,8 +11,16 @@ Firefox Accounts Signup Form
 Introduction
 ------------
 
-Certain bedrock pages may feature a Firefox Accounts signup form. Testing the signup flow
-on a non-production environment requires additional steps.
+Certain bedrock pages may feature a Firefox Accounts signup form. As this form has conditional functionality based
+on distribution (e.g. the China re-pack), the form should only be displayed to users of Firefox 48 and up.
+
+.. note::
+
+    Firefox 48 is the minimum version needed to support the ``distribution`` property from UITour (which is how
+    we detect the China re-pack).
+
+
+Testing the signup flow on a non-production environment requires additional steps.
 
 Configuring bedrock
 -------------------
