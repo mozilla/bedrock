@@ -865,13 +865,6 @@
         "css/firefox/pocket.scss"
       ],
       "name": "product_pocket"
-    },
-    {
-      "files": [
-        "css/mozorg/fxa-iframeless-test.scss",
-        "css/base/mozilla-fxa-form.scss"
-      ],
-      "name": "fxa_iframeless_test"
     }
   ],
   "js": [
@@ -1526,12 +1519,6 @@
         "js/firefox/pocket.js"
       ],
       "name": "product_pocket"
-    },
-    {
-      "files": [
-        "js/base/mozilla-fxa-form.js"
-      ],
-      "name": "fxa_iframeless_test"
     }
   ]
 }

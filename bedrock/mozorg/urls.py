@@ -10,7 +10,6 @@ from bedrock.redirects.util import redirect
 
 
 urlpatterns = (
-    page('fxa-iframeless-test', 'mozorg/fxa-iframeless-test.html'),
     url(r'^$', views.home_view, name='mozorg.home'),
     url(r'about/$', views.about_view, name='mozorg.about'),
     page('about/manifesto', 'mozorg/about/manifesto.html'),
