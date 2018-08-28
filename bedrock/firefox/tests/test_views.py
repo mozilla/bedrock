@@ -847,44 +847,21 @@ class TestFirefoxNew(TestCase):
 
     # better browser test issue 5841
 
-    def test_better_browser_scene_1_va(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=betterbrowser&v=a')
+    def test_better_browser_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=betterbrowser')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/better-browser/scene1.html', ANY)
 
-    def test_better_browser_scene_1_vb(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=betterbrowser&v=b')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/better-browser/scene1-b.html', ANY)
-
-    def test_better_browser_scene_1_vc(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=betterbrowser&v=c')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/better-browser/scene1-c.html', ANY)
-
+    # d was the winning variation and the URL is being used in ads, make sure it works
     def test_better_browser_scene_1_vd(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=betterbrowser&v=d')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/better-browser/scene1-d.html', ANY)
-
-    def test_better_browser_scene_1_ve(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=betterbrowser&v=e')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/better-browser/scene1-e.html', ANY)
-
-    def test_better_browser_scene_1_vf(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=betterbrowser&v=f')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/better-browser/scene1-f.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/better-browser/scene1.html', ANY)
 
     def test_better_browser_scene_1_non_us(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=betterbrowser&v=c')
+        req = RequestFactory().get('/firefox/new/?xv=betterbrowser')
         req.locale = 'de'
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
