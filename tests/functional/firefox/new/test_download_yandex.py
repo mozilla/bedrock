@@ -7,7 +7,6 @@ import pytest
 from pages.firefox.new.download import DownloadPage
 
 
-@pytest.mark.skipif(reason='Test will only pass once SWITCH_FIRFOX_YANDEX=on')
 @pytest.mark.nondestructive
 def test_download_button_displayed(base_url, selenium):
     page = DownloadPage(selenium, base_url, locale='ru', params='?geo=us').open()
@@ -15,7 +14,6 @@ def test_download_button_displayed(base_url, selenium):
     assert page.download_button.is_transitional_link
 
 
-@pytest.mark.skipif(reason='Test will only pass once SWITCH_FIRFOX_YANDEX=on')
 @pytest.mark.nondestructive
 def test_yandex_download_button_displayed(base_url, selenium):
     page = DownloadPage(selenium, base_url, locale='ru', params='?geo=ru').open()
@@ -23,7 +21,6 @@ def test_yandex_download_button_displayed(base_url, selenium):
     assert page.download_button.is_yandex_link
 
 
-@pytest.mark.skipif(reason='Test will only pass once SWITCH_FIRFOX_YANDEX=on')
 @pytest.mark.nondestructive
 def test_other_platforms_modal(base_url, selenium):
     page = DownloadPage(selenium, base_url, params='?geo=us').open()
