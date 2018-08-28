@@ -11,7 +11,7 @@ from django.test import override_settings
 from django.test.client import RequestFactory
 
 import querystringsafe_base64
-from mock import patch, Mock, ANY
+from mock import patch, ANY
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
@@ -20,8 +20,8 @@ from bedrock.mozorg.tests import TestCase
 
 
 @override_settings(STUB_ATTRIBUTION_HMAC_KEY='achievers',
-                   STUB_ATTRIBUTION_RATE=1)
-@patch.object(views, 'time', Mock(return_value=12345.678))
+                   STUB_ATTRIBUTION_RATE=1,
+                   STUB_ATTRIBUTION_MAX_LEN=200)
 class TestStubAttributionCode(TestCase):
     def _get_request(self, params):
         rf = RequestFactory()
@@ -43,7 +43,6 @@ class TestStubAttributionCode(TestCase):
             'medium': '(none)',
             'campaign': '(not set)',
             'content': '(not set)',
-            'timestamp': '12345',
         }
         req = self._get_request({'dude': 'abides'})
         resp = views.stub_attribution_code(req)
@@ -56,7 +55,7 @@ class TestStubAttributionCode(TestCase):
         attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
-                         '153c1e8b7d4a582fa245d57d9c28ca9d6bcb65957e41924f826f1e7a5a2f8de9')
+                         '1cdbee664f4e9ea32f14510995b41729a80eddc94cf26dc3c74894c6264c723c')
 
     def test_no_valid_param_data(self):
         params = {'utm_source': 'br@ndt', 'utm_medium': 'ae<t>her'}
@@ -65,7 +64,6 @@ class TestStubAttributionCode(TestCase):
             'medium': '(none)',
             'campaign': '(not set)',
             'content': '(not set)',
-            'timestamp': '12345',
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -78,7 +76,7 @@ class TestStubAttributionCode(TestCase):
         attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
-                         '153c1e8b7d4a582fa245d57d9c28ca9d6bcb65957e41924f826f1e7a5a2f8de9')
+                         '1cdbee664f4e9ea32f14510995b41729a80eddc94cf26dc3c74894c6264c723c')
 
     def test_some_valid_param_data(self):
         params = {'utm_source': 'brandt', 'utm_content': 'ae<t>her'}
@@ -87,7 +85,6 @@ class TestStubAttributionCode(TestCase):
             'medium': '(direct)',
             'campaign': '(not set)',
             'content': '(not set)',
-            'timestamp': '12345',
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -100,7 +97,55 @@ class TestStubAttributionCode(TestCase):
         attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
-                         'bd6c54115eb1f331b64bec83225a667fa0e16090d7d6abb33dab6305cd858a9d')
+                         '37946edae923b50f31f9dc10013dc0d23bed7dc6272611e12af46ff7a8d9d7dc')
+
+    def test_campaign_data_too_long(self):
+        """If the code is too long then the utm_campaign value should be truncated"""
+        params = {
+            'utm_source': 'brandt',
+            'utm_medium': 'aether',
+            'utm_content': 'A144_A000_0000000',
+            'utm_campaign': 'The%7cDude%7cabides%7cI%7cdont%7cknow%7cabout%7cyou%7c'
+                            'but%7cI%7ctake%7ccomfort%7cin%7cthat' * 2,
+        }
+        final_params = {
+            'source': 'brandt',
+            'medium': 'aether',
+            'campaign': 'The|Dude|abides|I|dont|know|about|you|but|I|take|comfort|in|'
+                        'thatThe|Dude|abides|I|dont|know|about_',
+            'content': 'A144_A000_0000000',
+        }
+        req = self._get_request(params)
+        resp = views.stub_attribution_code(req)
+        self.assertEqual(resp.status_code, 200)
+        assert resp['cache-control'] == 'max-age=300'
+        data = json.loads(resp.content)
+        # will it blend?
+        code = querystringsafe_base64.decode(data['attribution_code'])
+        assert len(code) <= 200
+        attrs = parse_qs(code)
+        # parse_qs returns a dict with lists for values
+        attrs = {k: v[0] for k, v in attrs.items()}
+        self.assertDictEqual(attrs, final_params)
+        self.assertEqual(data['attribution_sig'],
+                         '5f4f928ad022b15ce10d6dc962e21e12bbfba924d73a2605f3085760d3f93923')
+
+    def test_other_data_too_long_not_campaign(self):
+        """If the code is too long but not utm_campaign return error"""
+        params = {
+            'utm_source': 'brandt',
+            'utm_campaign': 'dude',
+            'utm_content': 'A144_A000_0000000',
+            'utm_medium': 'The%7cDude%7cabides%7cI%7cdont%7cknow%7cabout%7cyou%7c'
+                          'but%7cI%7ctake%7ccomfort%7cin%7cthat' * 2,
+        }
+        final_params = {'error': 'Invalid code'}
+        req = self._get_request(params)
+        resp = views.stub_attribution_code(req)
+        self.assertEqual(resp.status_code, 400)
+        assert resp['cache-control'] == 'max-age=300'
+        data = json.loads(resp.content)
+        self.assertDictEqual(data, final_params)
 
     def test_returns_valid_data(self):
         params = {'utm_source': 'brandt', 'utm_medium': 'aether'}
@@ -109,7 +154,6 @@ class TestStubAttributionCode(TestCase):
             'medium': 'aether',
             'campaign': '(not set)',
             'content': '(not set)',
-            'timestamp': '12345',
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -122,7 +166,7 @@ class TestStubAttributionCode(TestCase):
         attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
-                         'ab55c9b24e230f08d3ad50bf9a3a836ef4405cfb6919cb1df8efe208be38e16d')
+                         'abcbb028f97d08b7f85d194e6d51b8a2d96823208fdd167ff5977786b562af66')
 
     def test_handles_referrer(self):
         params = {'utm_source': 'brandt', 'referrer': 'https://duckduckgo.com/privacy'}
@@ -131,7 +175,6 @@ class TestStubAttributionCode(TestCase):
             'medium': '(direct)',
             'campaign': '(not set)',
             'content': '(not set)',
-            'timestamp': '12345',
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -144,7 +187,7 @@ class TestStubAttributionCode(TestCase):
         attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
-                         'bd6c54115eb1f331b64bec83225a667fa0e16090d7d6abb33dab6305cd858a9d')
+                         '37946edae923b50f31f9dc10013dc0d23bed7dc6272611e12af46ff7a8d9d7dc')
 
     def test_handles_referrer_no_source(self):
         params = {'referrer': 'https://example.com:5000/searchin', 'utm_medium': 'aether'}
@@ -153,7 +196,6 @@ class TestStubAttributionCode(TestCase):
             'medium': 'referral',
             'campaign': '(not set)',
             'content': '(not set)',
-            'timestamp': '12345',
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -166,7 +208,7 @@ class TestStubAttributionCode(TestCase):
         attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
-                         '6b3dbb178e9abc22db66530df426b17db8590e8251fc153ba443e81ca60e355e')
+                         '70e177b822f24fa9f8bc8e1caa382204632b3b2548db19bb32b97042c0ef0d47')
 
     def test_handles_referrer_utf8(self):
         """Should ignore non-ascii domain names.
@@ -181,7 +223,6 @@ class TestStubAttributionCode(TestCase):
             'medium': '(none)',
             'campaign': '(not set)',
             'content': '(not set)',
-            'timestamp': '12345',
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -194,7 +235,7 @@ class TestStubAttributionCode(TestCase):
         attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
-                         '153c1e8b7d4a582fa245d57d9c28ca9d6bcb65957e41924f826f1e7a5a2f8de9')
+                         '1cdbee664f4e9ea32f14510995b41729a80eddc94cf26dc3c74894c6264c723c')
 
     @override_settings(STUB_ATTRIBUTION_RATE=0.2)
     def test_rate_limit(self):
