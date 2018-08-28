@@ -1157,13 +1157,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/new/better-browser-experiment.js"
-      ],
-      "name": "firefox_new_better_browser_experiment"
-    },
-    {
-      "files": [
         "js/libs/jquery.waypoints.min.js",
         "js/libs/jquery.waypoints-sticky.min.js",
         "js/hubs/sub-nav.js"

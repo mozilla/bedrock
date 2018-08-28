@@ -655,11 +655,8 @@ def new(request):
                 template = 'firefox/new/portland/scene1-fast.html'
             elif experience in ['portland-safe', 'safe']:
                 template = 'firefox/new/portland/scene1-safe.html'
-            elif experience == 'betterbrowser' and variant:
-                if variant == 'a':
-                    template = 'firefox/new/scene1.html'
-                else:
-                    template = 'firefox/new/better-browser/scene1-{}.html'.format(variant)
+            elif experience == 'betterbrowser':
+                template = 'firefox/new/better-browser/scene1.html'
             else:
                 template = 'firefox/new/scene1.html'
         else:
