@@ -10,11 +10,15 @@ describe('whatsnew-62.js', function () {
 
     describe('init', function () {
 
+        afterEach(function() {
+            Mozilla.WNP62.locale = null;
+        });
+
         it('should call showPocket if user is not logged in to FxA and lang is en', function () {
+            Mozilla.WNP62.locale = 'en';
             spyOn(Mozilla.WNP62, 'showPocket');
 
             Mozilla.WNP62.init({
-                // TODO lang: en
                 setup: false
             });
 
@@ -22,10 +26,10 @@ describe('whatsnew-62.js', function () {
         });
 
         it('should call showFxa if user is not logged in to FxA and lang is *not* en', function () {
+            Mozilla.WNP62.locale = 'fr';
             spyOn(Mozilla.WNP62, 'showFxa');
 
             Mozilla.WNP62.init({
-                // TODO lang: fr
                 setup: false
             });
 
