@@ -384,6 +384,46 @@ class TestWhatsNew(TestCase):
 
     # end 61.0 whatsnew tests
 
+    # begin 62.0 whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_62_0(self, render_mock):
+        """Should use Pocket/FxA/Fx mobile/Focus template for 62.0"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='62.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/whatsnew-fx62.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_62_0_old_major_version(self, render_mock):
+        """Should use Pocket/FxA/Fx mobile/Focus template when updating from older major version"""
+        req = self.rf.get('/firefox/whatsnew/?oldversion=61.0')
+        req.locale = 'en-US'
+        self.view(req, version='62.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/whatsnew-fx62.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_62_0_id_locale_template(self, render_mock):
+        """Should use id locale specific template when updating from older major version"""
+        req = self.rf.get('/firefox/whatsnew/?oldversion=61.0')
+        req.locale = 'id'
+        self.view(req, version='62.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/index.id.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_62_0_zh_TW_locale_template(self, render_mock):
+        """Should use zh-TW locale specific template when updating from older major version"""
+        req = self.rf.get('/firefox/whatsnew/?oldversion=61.0')
+        req.locale = 'zh-TW'
+        self.view(req, version='62.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/index.zh-TW.html'])
+
+    # end 62.0 whatsnew tests
+
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestFirstRun(TestCase):

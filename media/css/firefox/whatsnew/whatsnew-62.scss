@@ -87,9 +87,10 @@ $image-path: '/media/protocol/img';
     text-align: center;
 
     @media #{$mq-md} {
-        .page-header-inner {
-            display: flex;
+        &.show-up-to-date-message .page-header-inner {
             align-items: center;
+            display: flex;
+            justify-content: space-between;
         }
     }
 
@@ -113,11 +114,17 @@ $image-path: '/media/protocol/img';
         }
     }
 
+    .logo-fx {
+        @include bidi(((float, left, right),));
+    }
+
     .logo-pocket {
+        @include bidi(((float, right, left),));
         display: none;
     }
 
     .logo-moz {
+        @include bidi(((float, right, left),));
         display: inline;
     }
 
@@ -261,6 +268,8 @@ $image-path: '/media/protocol/img';
 }
 
 .fxa-container {
+    padding-bottom: $layout-xl;
+
     & > .mzp-l-content {
         max-width: $content-xl;
 
@@ -346,20 +355,6 @@ $image-path: '/media/protocol/img';
     .pocket-secondary {
         background: $color-white;
         padding-top: $spacing-xl;
-    }
-
-    .pocket-learnmore {
-        @include text-display-sm;
-        text-align: center;
-
-        & > .mzp-l-content {
-            max-width: $content-md + $layout-xl;
-        }
-
-        .pocket-learnmore-cta {
-            @include text-body-lg;
-            font-weight: bold;
-        }
     }
 
     .pocket-benefits {
@@ -481,6 +476,8 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Common layouts for all Firefoxes (mobile, Focus, Klar)
 .firefox-container {
+    padding-bottom: $layout-xl;
+
     .page-title {
         @include at2x('/media/img/logos/firefox/logo-quantum.png', 80px, 80px);
         background-position: center $spacing-lg;
@@ -504,6 +501,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.no-js,
 .no-send-to-device {
     .firefox-container > .mzp-l-content {
         max-width: $content-lg;

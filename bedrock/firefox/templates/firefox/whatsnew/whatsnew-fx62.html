@@ -38,8 +38,8 @@
 
       <h1 class="up-to-date-messaging">{{ _('Congrats! You’re using the latest version of Firefox.') }}</h1>
 
-      {{ high_res_img('logos/mozilla/wordmark-dark.svg', {'alt': 'Mozilla', 'width': '112', 'height': '32', 'class': 'logo-moz', 'id': 'logo-moz'}) }}
-      {{ high_res_img('logos/pocket/pocket-wordmark.svg', {'alt': 'Pocket', 'width': '134', 'height': '36', 'class': 'logo-pocket', 'id': 'logo-pocket'}) }}
+      <img src="{{ static('img/logos/mozilla/wordmark-dark.svg') }}" alt="Mozilla" width="112" height="32" class="logo-moz" id="logo-moz">
+      <img src="{{ static('img/logos/pocket/pocket-wordmark.svg') }}" alt="Pocket" width="134" height="36" class="logo-pocket" id="logo-pocket">
     </div>
   </header>
 
@@ -49,15 +49,15 @@
       If JavaScript fails or is disabled, show the Firefox mobile QR code by default.
       This is hidden when JS is available and all the regular view logic can take over.
     #}
-    <article class="content-container nojs-fx-mobile-container" id="nojs-fx-mobile">
+    <article class="content-container firefox-container" id="nojs-fx-mobile">
       <div class="mzp-l-content">
-        <header class="content-header">
+        <div class="content-body">
           <h2 class="page-title">{{ _('Get the Firefox Mobile App') }}</h2>
           <p class="tagline">{{ _('Privacy minded. Packed with features. Perfect for multitasking on mobile.') }}</p>
           <p>{{ _('All the things you love about Firefox, plus time-saving features. Sync bookmarks, passwords, and share links instantly between your devices.') }}</p>
 
           <h3>{{ _('Scan the QR code to download the app on your device.') }}</h3>
-        </header>
+        </div>
 
         <div class="qr-wrapper">
           <img src="{{ static('img/firefox/whatsnew_61/qrcode-firefox.png') }}" data-mozillaonline-link="{{ static('img/firefox/whatsnew/qrcode-mozillaonline.png') }}" width="350" height="350" alt="{{ _('QR code') }}">
@@ -77,16 +77,16 @@
     </article>{#-- /#nojs-fx-mobile-container --#}
 
 
-    {# If the user is not signed in, is reading English, and the switch is active, show Pocket. #}
-    {#% if LANG.startswith('en') and switch('firefox_whatsnew62_pocket') %#}
+    {# If the user is not signed in and is reading English, show Pocket. #}
+    {% if LANG.startswith('en') %}
     <article class="content-container pocket-container" id="pocket">
       <header class="mzp-c-hero">
         <div class="mzp-l-content">
-          <h2 class="mzp-c-hero-title">{{ _('Meet Pocket:') }}</h2>
-          <p class="c-hero-subtitle">{{ _('The Easiest Way to Capture & Collect Content that Fascinates You') }}</p>
+          <h2 class="mzp-c-hero-title">{{ _('Launch Pocket in Firefox') }}</h2>
+          <p class="c-hero-subtitle">{{ _('Capture Articles That Fuel Your Mind. Transform The Way You Read.') }}</p>
 
           <div class="mzp-c-hero-cta">
-            <p class="cta"><a class="mzp-c-button" href="https://getpocket.com/firefox_whatsnew">{{ _('Get Pocket') }}</a></p>
+            <p class="cta"><a class="mzp-c-button" href="https://getpocket.com/firefox_whatsnew">{{ _('Launch Now') }}</a></p>
             <p class="note">{{ _('Have an account?') }} <a href="https://getpocket.com/login">{{ _('Log In') }}</a></p>
           </div>
 
@@ -95,29 +95,22 @@
       </header>
 
       <div class="pocket-secondary">
-        <section class="pocket-learnmore">
-          <div class="mzp-l-content">
-            <p>{{ _('Use Pocket to save your favorite articles, stories and videos from across the web to Pocket with one click. Then read them in Pocket, turning downtime into quality time.') }}</p>
-            <p class="pocket-learnmore-cta"><a href="https://getpocket.com/firefox_learnmore?s=ffi&t=learnmore&tv=panel_tryit&v=storyboard_lm_nonfxa">{{ _('Learn More about Pocket') }}</a></p>
-          </div>
-        </section>
-
         <section class="pocket-benefits">
           <div class="pocket-benefits-container mzp-l-content">
-            <h3 class="section-title">{{ _('Save Your Favorite Content & Enjoy It Later in The App') }}</h3>
+            <h3 class="section-title">{{ _('A Dedicated Space to Fuel Your Mind') }}</h3>
 
             <ul class="pocket-benefits-list">
               <li>
-                <h4>{{ _('Log in to Pocket Easily') }}</h4>
-                <p>{{ _('One less password to remember when you log in to Pocket using your Firefox Account.') }}</p>
+                <h4>{{ _('Save Articles') }}</h4>
+                <p>{{ _('Pocket lets you capture interesting content from across the web with just one click.') }}</p>
               </li>
               <li>
-                <h4>{{ _('Read Anywhere – Even Offline') }}</h4>
-                <p>{{ _('Download the Pocket app on your iOS or Android devices.') }}</p>
+                <h4>{{ _('Absorb What You Read') }}</h4>
+                <p>{{ _('Pocket’s clean article view cuts out distractions. It creates a quiet place where you can focus while you read.') }}</p>
               </li>
               <li>
-                <h4>{{ _('Have a Dedicated Space to Enjoy Your Content') }}</h4>
-                <p>{{ _('Absorb the great content you’ve saved and collected throughout the day, any time you like.') }}</p>
+                <h4>{{ _('Read Anywhere') }}</h4>
+                <p>{{ _('Get everything you love about Pocket on your phone with our award winning app.') }}</p>
               </li>
             </ul>
 
@@ -127,10 +120,10 @@
 
               <ul class="app-store-badges">
                 <li class="android">
-                  {{ google_play_button(href='#TODO') }}
+                  {{ google_play_button(href='https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro') }}
                 </li>
                 <li class="ios">
-                  <a href="#TODO" data-link-type="download" data-download-os="iOS">
+                  <a href="https://itunes.apple.com/app/read-it-later-pro/id309601447?mt=8" data-link-type="download" data-download-os="iOS">
                     <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
                   </a>
                 </li>
@@ -144,13 +137,13 @@
         <div class="mzp-l-content">
           <div class="mzp-c-call-out-content">
             <div class="mzp-c-call-out-container">
-              <h2 class="mzp-c-call-out-title">{{ _('Fuel Your Mind With The Best Content on The Web') }}</h2>
+              <h2 class="mzp-c-call-out-title">{{ _('If you’re on Firefox, you already have Pocket') }}</h2>
             </div>
           </div>
           <div class="mzp-c-call-out-cta">
             <div class="mzp-c-call-out-cta-container">
               <div class="mzp-c-button-download">
-                <a class="mzp-c-button" href="https://getpocket.com/firefox_whatsnew">{{ _('Get Pocket') }}</a>
+                <a class="mzp-c-button" href="https://getpocket.com/firefox_whatsnew">{{ _('Launch Now') }}</a>
               </div>
             </div>
           </div>
@@ -159,8 +152,8 @@
     </article>{#-- /#pocket-container --#}
 
 
-    {# If the user is not signed in and is not reading English or the switch is off, display the FxA form. #}
-    {#% else %#}
+    {# If the user is not signed in and is not reading English, display the FxA form. #}
+    {% else %}
     <article class="content-container fxa-container" id="fx-account">
       <div class="mzp-l-content">
         <div class="content-body">
@@ -182,7 +175,7 @@
         </div>
       </div>
     </article>{#-- /#fxa-container --#}
-    {#% endif %#}
+    {% endif %}
 
 
     {#
@@ -314,7 +307,7 @@
         </div>
       {% endif %}
 
-        <ul class="mobile-download-buttons">
+        <ul class="app-store-badges">
           <li class="android">
             {{ google_play_button(href='https://mzl.la/2tabw1i', id='playStoreLink', product='Klar', extra_data_attributes={'download-product': 'Klar', 'download-version': 'android', 'download-location': 'primary cta'}) }}
           </li>

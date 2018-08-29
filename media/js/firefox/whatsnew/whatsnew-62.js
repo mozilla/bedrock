@@ -134,18 +134,18 @@ This iteration of /whatsnew has multiple states:
 
         // if user is not signed in to FxA...
         if (!fxaDetails.setup) {
-            // Show Pocket for en-US
-            if (this.locale === 'en') {
+            // Show Pocket for English locales
+            if (['en', 'en-US', 'en-CA', 'en-GB', 'en-ZA'].indexOf(this.locale) >= 0) {
                 this.showPocket();
-            // Show FxA for others
+            // Show FxA for everyone else
             } else {
                 this.showFxa();
             }
-            // if the user is signed in to FxA but doesn't have any mobile devices set up, show Fx mobile content
+        // if the user is signed in to FxA but doesn't have any mobile devices set up, show Fx mobile content
         } else if (fxaDetails.mobileDevices === 'unknown' || fxaDetails.mobileDevices === 0) {
             this.showFirefoxMobile();
-            // if user is signed in to FxA and has mobile devices set up, perform geo lookup
-            // to determine whether to show Focus or Klar content
+        // if user is signed in to FxA and has mobile devices set up, perform geo lookup
+        // to determine whether to show Focus or Klar content
         } else {
             this.geolocate(this.chooseFocusOrKlar.bind(this));
         }
