@@ -1011,13 +1011,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/new/experiment-download-scene2-email.js"
-      ],
-      "name": "firefox_download_scene2_email_experiment"
-    },
-    {
-      "files": [
         "js/base/stub-attribution.js",
         "js/base/stub-attribution-init.js"
       ],
