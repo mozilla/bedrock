@@ -691,6 +691,13 @@ def new(request):
                     template = 'firefox/new/compare/scene1-chrome-2.html'
                 else:
                     template = 'firefox/new/compare/scene1-chrome-1.html'
+            elif experience == 'edge':
+                if variant == 'a':
+                    template = 'firefox/new/scene1.html'
+                elif variant == '2':
+                    template = 'firefox/new/compare/scene1-edge-2.html'
+                else:
+                    template = 'firefox/new/compare/scene1-edge-1.html'
             else:
                 template = 'firefox/new/scene1.html'
         else:
