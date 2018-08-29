@@ -87,7 +87,7 @@
 
           <div class="mzp-c-hero-cta">
             <p class="cta"><a class="mzp-c-button" href="https://getpocket.com/firefox_whatsnew">{{ _('Launch Now') }}</a></p>
-            <p class="note">{{ _('Have an account?') }} <a href="https://getpocket.com/login">{{ _('Log In') }}</a></p>
+            <p class="note">{{ _('Have an account?') }} <a href="https://getpocket.com/login?src=whatsnew">{{ _('Log In') }}</a></p>
           </div>
 
           {{ high_res_img('firefox/whatsnew_62/pocket-hero-laptop.png', {'alt': '', 'width': '1006', 'height': '610', 'class': 'pocket-hero-image'}) }}
@@ -137,7 +137,7 @@
         <div class="mzp-l-content">
           <div class="mzp-c-call-out-content">
             <div class="mzp-c-call-out-container">
-              <h2 class="mzp-c-call-out-title">{{ _('If You’re Using Firefox, You Already Have Pocket.') }}</h2>
+              <h2 class="mzp-c-call-out-title">{{ _('If you’re using Firefox, you already have Pocket.') }}</h2>
             </div>
           </div>
           <div class="mzp-c-call-out-cta">
@@ -167,7 +167,7 @@
 
           {# firefox.accounts-features is en-US only for now, so other locales need an alternate URL #}
           {% set learn_more_url = url('firefox.accounts-features') if LANG == 'en-US' else url('firefox.features.sync') %}
-          <p class="more"><a href="{{ learn_more_url }}" target="_blank" rel="noopener noreferrer" class="mzp-c-cta-link">{{_('Find out more')}}</a></p>
+          <p class="more"><a href="{{ learn_more_url }}" target="_blank" rel="noopener noreferrer">{{_('Find out more')}}</a></p>
         </div>
 
         <div class="fxaccounts" id="fxa-iframe-config" data-host="{{ settings.FXA_IFRAME_SRC }}" data-mozillaonline-host="{{ settings.FXA_IFRAME_SRC_MOZILLAONLINE }}">

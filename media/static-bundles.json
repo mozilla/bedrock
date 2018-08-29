@@ -966,6 +966,7 @@
     {
       "files": [
         "js/base/mozilla-fxa-iframe.js",
+        "js/libs/spin.min.js",
         "js/base/send-yourself.js",
         "js/firefox/whatsnew/whatsnew-62.js",
         "js/firefox/whatsnew/whatsnew-62-init.js"

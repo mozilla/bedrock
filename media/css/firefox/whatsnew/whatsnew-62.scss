@@ -53,7 +53,7 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-md} {
         padding: 0;
-        text-align: left;
+        @include bidi(((text-align, left, right),));
 
         .tagline {
             margin: 0 0 $spacing-lg;
