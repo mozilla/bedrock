@@ -878,6 +878,82 @@ class TestFirefoxNew(TestCase):
         views.download_thanks(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
 
+    # Safari SEM campaign bug #1479085
+
+    def test_compare_safari_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=safari')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-safari-1.html', ANY)
+
+    def test_compare_safari_scene_1va(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=safari&v=a')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_compare_safari_scene_1v1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=safari&v=1')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-safari-1.html', ANY)
+
+    def test_compare_safari_scene_1v2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=safari&v=2')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-safari-2.html', ANY)
+
+    def test_compare_safari_scene_1_non_us(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=safari')
+        req.locale = 'fr'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_compare_safari_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=safari')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/email/scene2.html')
+
+    # Chrome SEM campaign bug #1479087
+
+    def test_compare_chrome_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=chrome')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-chrome-1.html', ANY)
+
+    def test_compare_chrome_scene_1va(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=chrome&v=a')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_compare_chrome_scene_1v1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=chrome&v=1')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-chrome-1.html', ANY)
+
+    def test_compare_chrome_scene_1v2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=chrome&v=2')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-chrome-2.html', ANY)
+
+    def test_compare_chrome_scene_1_non_us(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=chrome')
+        req.locale = 'fr'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_compare_chrome_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=chrome')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/email/scene2.html')
+
     # yandex - issue 5635
 
     @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='True')

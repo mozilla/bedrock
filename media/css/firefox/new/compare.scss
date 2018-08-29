@@ -231,6 +231,72 @@ $image-path: '/media/protocol/img';
 }
 
 //* ====================================================================== */
+//  Private
+.section-private {
+    background: #6300a5 linear-gradient(to right, #9300fd, #6300a5);
+    margin-bottom: 50px;
+    padding-bottom: 120px;
+
+    &:after {
+        background: url('/media/img/firefox/new/compare/illo-private.png') center bottom no-repeat;
+        background-size: 446px auto;
+        bottom: 0;
+        content: '';
+        display: block;
+        height: 165px;
+        left: -52px;
+        position: absolute;
+        width: 446px;
+    }
+}
+
+@media #{$mq-sm} {
+    .section-private {
+        margin-bottom: 80px;
+        padding-bottom: 180px;
+
+        &:after {
+            background-size: 626px auto;
+            height: 225px;
+            left: 50%;
+            margin-left: -280px;
+            width: 626px;
+        }
+    }
+}
+
+@media #{$mq-md} {
+    .section-private {
+        margin-bottom: 140px;
+        padding-bottom: 0;
+        min-height: 251px;
+
+        &:after {
+            background-size: 676px auto;
+            bottom: 0;
+            height: 251px;
+            left: auto;
+            margin-left: 0;
+            position: absolute;
+            right: calc(50% - 364px);
+            width: 1008px;
+        }
+    }
+}
+
+@media #{$mq-lg} {
+    .section-private {
+        min-height: 311px;
+
+        &:after {
+            @include at2x('/media/img/firefox/new/compare/illo-private.png', 1008px, 329px);
+            height: 329px;
+            right: calc(50% - 304px);
+        }
+    }
+}
+
+//* ====================================================================== */
 //  Good
 .section-good {
     background: #012d1c linear-gradient(to bottom right, #03aa6f, #012d1c);
