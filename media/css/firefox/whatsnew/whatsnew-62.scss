@@ -86,14 +86,6 @@ $image-path: '/media/protocol/img';
     position: relative;
     text-align: center;
 
-    @media #{$mq-md} {
-        &.show-up-to-date-message .page-header-inner {
-            align-items: center;
-            display: flex;
-            justify-content: space-between;
-        }
-    }
-
     .up-to-date-messaging {
         @include text-display-sm;
         display: none;
@@ -114,32 +106,41 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    .logo-fx {
-        @include bidi(((float, left, right),));
-    }
-
-    .logo-pocket {
-        @include bidi(((float, right, left),));
-        display: none;
-    }
-
+    .logo-pocket,
     .logo-moz {
-        @include bidi(((float, right, left),));
-        display: inline;
-    }
-
-    &.show-pocket {
-        .logo-pocket {
-            display: inline;
-        }
-
-        .logo-moz {
-            display: none;
-        }
+        display: none;
     }
 
     &.show-up-to-date-message .up-to-date-messaging {
         display: block;
+    }
+
+    @media #{$mq-md} {
+        &.show-up-to-date-message .page-header-inner {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .logo-fx,
+        .logo-pocket {
+            @include bidi(((float, left, right),));
+        }
+
+        .logo-moz {
+            @include bidi(((float, right, left),));
+            display: inline;
+        }
+
+        &.show-pocket {
+            .logo-pocket {
+                display: inline;
+            }
+
+            .logo-moz {
+                display: none;
+            }
+        }
     }
 }
 
@@ -383,31 +384,13 @@ $image-path: '/media/protocol/img';
     }
 
     .pocket-award {
-        @include text-display-xxs;
+        @include text-display-xs;
         font-weight: bold;
         text-align: center;
-        margin: $spacing-md auto $spacing-lg;
-        padding: 0 85px;
-        position: relative;
-
-        &:before,
-        &:after {
-            content: '';
-            width: 75px;
-            height: 16px;
-            display: inline-block;
-            background: url('/media/img/firefox/whatsnew_62/three-stars.svg') center center no-repeat;
-            background-size: 75px 16px;
-            left: 0;
-            position: absolute;
-            top: 50%;
-            margin-top: -8px;
-        }
-
-        &:after {
-            left: auto;
-            right: 0;
-        }
+        margin: $spacing-sm auto $spacing-lg;
+        padding-top: $spacing-xl;
+        background: url('/media/img/firefox/whatsnew_62/three-stars.svg') center top no-repeat;
+        background-size: 75px 16px;
     }
 
     .secondary-cta {
@@ -468,6 +451,10 @@ $image-path: '/media/protocol/img';
 
             .app-store-badges {
                 margin: $spacing-2xl auto;
+
+                li {
+                    margin: 0 $spacing-sm;
+                }
             }
         }
     }
