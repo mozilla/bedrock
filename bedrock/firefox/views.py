@@ -590,6 +590,7 @@ def download_thanks(request):
     experience = request.GET.get('xv', None)
     locale = l10n_utils.get_locale(request)
     variant = request.GET.get('v', None)
+    show_newsletter = locale in ['en-US', 'en-GB', 'en-CA', 'en-ZA', 'es-ES', 'es-AR', 'es-CL', 'es-MX', 'pt-BR', 'fr', 'ru', 'id', 'de', 'pl']
 
     # ensure variant matches pre-defined value
     if variant not in ['a', 'b']:  # place expected ?v= values in this list
@@ -616,9 +617,7 @@ def download_thanks(request):
         else:
             template = 'firefox/new/scene2.html'
     elif locale == 'en-US':
-        if variant == 'b':
-            template = 'firefox/new/email/scene2-b.html'
-        elif experience in ['portland', 'forgood']:
+        if experience in ['portland', 'forgood']:
             template = 'firefox/new/portland/scene2.html'
         elif experience in ['portland-fast', 'fast']:
             template = 'firefox/new/portland/scene2-fast.html'
@@ -627,11 +626,11 @@ def download_thanks(request):
         elif experience == 'betterbrowser':
             template = 'firefox/new/better-browser/scene2.html'
         else:
-            template = 'firefox/new/email/scene2.html'
+            template = 'firefox/new/scene2.html'
     else:
         template = 'firefox/new/scene2.html'
 
-    return l10n_utils.render(request, template)
+    return l10n_utils.render(request, template, {'show_newsletter': show_newsletter})
 
 
 def new(request):
