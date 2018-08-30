@@ -239,7 +239,11 @@
                   <ul>
                     <li><a class="current" href="#focus-privacy">{{ _('Automatic Privacy') }}</a></li>
                     <li><a href="#focus-speed">{{ _('Speed') }}</a></li>
-                    <li><a href="#focus-lightweight">{{ _('Lightweight') }}</a></li>
+                    {% if l10n_has_tag('oys_20180830') %}
+                      <li><a href="#focus-oys">{{ _('On Your Side') }}</a></li>
+                    {% else %}
+                      <li><a href="#focus-oys">{{ _('Lightweight') }}</a></li>
+                    {% endif %}
                   </ul>
 
                   <button class="previous" type="button" data-section="focus">{{ _('Previous') }}</button>
@@ -301,23 +305,29 @@
                 </div>{#--/.features-image-wrapper--#}
               </section>
 
-              <section class="page-article-section feature-content" id="focus-lightweight" data-section="focus" data-ga-label="firefox focus lightweight">
-                <h3>{{ _('Lightweight') }}</h3>
+              <section class="page-article-section feature-content" id="focus-oys" data-section="focus" data-ga-label="firefox focus on-your-side">
+                {% if l10n_has_tag('oys_20180830') %}
+                  <h3>{{ _('On Your Side') }}</h3>
 
-                <em>{{ _('iOS and Android') }}</em>
+                  <em>{{ _('iOS and Android') }}</em>
 
-                <p>
-                  {{ _('Save your mobile memory for the memories. Firefox Focus takes up less selfie space on your phone.') }}
-                </p>
+                  <p>
+                    {# L10n: next-level means better than anything anyone else has. Everyone else is down there on that level and we are up here on this one. #}
+                    {{ _('Focus has next-level privacy that’s free, always on and always on your side. It’s a purpose-driven product by Mozilla that’s built for you – not your data.') }}
+                  </p>
+                {% else %}
+                  <h3>{{ _('Lightweight') }}</h3>
+
+                  <em>{{ _('iOS and Android') }}</em>
+
+                  <p>
+                    {{ _('Save your mobile memory for the memories. Firefox Focus takes up less selfie space on your phone.') }}
+                  </p>
+                {% endif %}
 
                 <div class="features-image-wrapper">
                   {{ high_res_img('firefox/mobile/focus-lightweight.png', {'alt': _('Lightweight'), 'width': '298', 'height': '519'}) }}
 
-                  <ol class="features">
-                    <li class="feature-lightweight">
-                      {{ _('Small, yet powerful at less than 5MB.') }}
-                    </li>
-                  </ol>
                 </div>{#--/.features-image-wrapper--#}
               </section>
             </div>{#--/.features-scroller-content--#}
