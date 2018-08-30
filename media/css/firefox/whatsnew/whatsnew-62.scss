@@ -1,0 +1,526 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/includes/lib";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/button";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/hero";
+@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/call-out";
+@import 'send-yourself';
+
+
+//* -------------------------------------------------------------------------- */
+// Common elements
+
+.main-content {
+    background-color: $color-gray-20;
+    padding-top: $layout-md;
+}
+
+.page-title {
+    @include text-display-lg;
+    margin-bottom: 1em;
+}
+
+.content-body {
+    padding: $spacing-lg 0;
+    position: relative;
+    text-align: center;
+    margin-bottom: $spacing-lg;
+
+    h3 {
+        @include text-display-xs;
+        margin-top: $spacing-xl;
+        font-weight: bold;
+    }
+
+    .tagline {
+        @include text-display-sm;
+        line-height: 1.5;
+        margin: 0 auto $spacing-md;
+
+        li {
+            margin-bottom: .5em;
+        }
+    }
+
+    .more {
+        @include text-body-lg;
+    }
+
+    @media #{$mq-md} {
+        padding: 0;
+        @include bidi(((text-align, left, right),));
+
+        .tagline {
+            margin: 0 0 $spacing-lg;
+        }
+
+        ul.tagline {
+            list-style: disc;
+            padding-left: 1em;
+        }
+    }
+}
+
+.qr-wrapper {
+    max-width: 280px;
+    margin: 0 auto;
+
+    img {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .5);
+    }
+
+    @media #{$mq-md} {
+        max-width: none;
+    }
+}
+
+.page-header {
+    background-color: $color-white;
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    position: relative;
+    text-align: center;
+
+    .up-to-date-messaging {
+        @include text-display-sm;
+        display: none;
+        font-weight: normal;
+        margin: 1em 0;
+        padding: 0 $spacing-md;
+        width: calc(100% - 45px);
+
+        &:before {
+            background: url('/media/img/firefox/whatsnew/icon-green-check.svg') center left no-repeat;
+            background-size: 25px 25px;
+            content: '';
+            display: inline-block;
+            height: 25px;
+            margin: 0 10px 0 0;
+            vertical-align: middle;
+            width: 25px;
+        }
+    }
+
+    .logo-pocket,
+    .logo-moz {
+        display: none;
+    }
+
+    &.show-up-to-date-message .up-to-date-messaging {
+        display: block;
+    }
+
+    @media #{$mq-md} {
+        &.show-up-to-date-message .page-header-inner {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .logo-fx,
+        .logo-pocket {
+            @include bidi(((float, left, right),));
+        }
+
+        .logo-moz {
+            @include bidi(((float, right, left),));
+            display: inline;
+        }
+
+        &.show-pocket {
+            .logo-pocket {
+                display: inline;
+            }
+
+            .logo-moz {
+                display: none;
+            }
+        }
+    }
+}
+
+.app-store-badges {
+    margin: $spacing-xl auto;
+    max-width: $content-xs;
+    text-align: center;
+
+    li {
+        margin: 0 $spacing-sm;
+    }
+
+    @media #{$mq-sm} {
+        display: flex;
+        justify-content: space-between;
+        margin: $spacing-2xl auto $spacing-xl;
+    }
+
+    @media #{$mq-md} {
+        margin: $spacing-2xl 0 $spacing-xl;
+
+        li {
+            @include bidi((
+                (margin-left, 0, $spacing-md),
+                (margin-right, $spacing-md, 0)
+            ));
+        }
+    }
+}
+
+// Buttons
+.mzp-c-button {
+    background-color: $color-white;
+    background-image: none;
+    border-radius: 3px;
+    border: 2px solid $color-black;
+    border: none;
+    box-shadow: none;
+    color: $color-black;
+    line-height: 1.125;
+    padding: ($spacing-md + 2px) ($spacing-lg + 2px); //2px extra padding to compensate for no border.
+
+    &:hover,
+    &:focus {
+        background-color: $color-gray-10;
+        background-image: none;
+        box-shadow: 4px 4px 0 0 $color-black;
+        color: $color-black;
+        transition: box-shadow 100ms;
+    }
+
+    &:active {
+        box-shadow: 2px 2px 0 0 $color-black;
+        transition: box-shadow 0ms;
+    }
+}
+
+// Send Yourself widget
+.mzp-c-sendyourself {
+    a:link {
+        color: $color-link;
+
+        &:hover,
+        &:focus {
+            color: $color-link-hover;
+        }
+
+        &:visited {
+            color: $color-link-visited;
+
+            &:hover,
+            &:focus {
+                color: $color-link-visited-hover;
+            }
+        }
+    }
+}
+
+.mzp-c-sendyourself-field {
+    input[type="text"] {
+        border-radius: 3px;
+        padding: .75em $spacing-lg;
+    }
+
+    .mzp-c-button {
+        border-radius: 3px;
+        color: $color-black;
+        border-color: $color-black;
+
+        &:hover,
+        &:focus {
+            color: $color-black;
+            border-color: $color-black;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Conditional content
+
+// First we hide all the things
+.content-container {
+    display: none;
+}
+
+// Show no-js fallback by default
+.no-js #nojs-fx-mobile {
+    display: block;
+}
+
+// Show different sections based on user state
+.show-pocket #pocket,
+.show-fxa #fx-account,
+.show-fx-mobile #fx-mobile,
+.show-focus #fx-focus,
+.show-klar #fx-klar {
+    display: block;
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Firefox accounts
+
+#fxa-iframe-config {
+    display: none;
+}
+
+.fxa-container {
+    padding-bottom: $layout-xl;
+
+    & > .mzp-l-content {
+        max-width: $content-xl;
+
+        @media #{$mq-md} {
+            display: grid;
+            grid-column-gap: $layout-sm;
+            grid-template-columns: repeat(2, 1fr);
+
+            .content-body {
+                grid-column: 1;
+            }
+
+            #fxa-iframe-config {
+                grid-column: 2;
+                margin-top: $layout-2xl;
+            }
+        }
+
+        @media #{$mq-lg} {
+            grid-column-gap: $layout-xl;
+            grid-template-columns: auto 350px;
+        }
+    }
+
+    .page-title {
+        @include at2x('/media/img/logos/firefox/logo-quantum.png', 80px, 80px);
+        background-position: center $spacing-lg;
+        background-repeat: no-repeat;
+        padding-top: $layout-2xl;
+
+        @media #{$mq-md} {
+            @include bidi(((background-position, left 20px, right 20px),));
+        }
+    }
+
+    .tagline {
+        margin-bottom: $layout-lg;
+    }
+
+    #fxa {
+        border: none;
+        min-height: 220px;
+        position: relative;
+        width: 300px;
+    }
+
+    #fxa-iframe-config {
+        background: #fff;
+        display: block;
+        margin: $spacing-md auto;
+        padding: $spacing-md 0;
+        width: 300px;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Pocket
+.pocket-container {
+    .c-hero-subtitle {
+        @include text-display-md;
+        max-width: $content-md - $layout-xl;
+        margin: 0 auto 1.75em;
+    }
+
+    .mzp-c-hero-cta {
+        .mzp-c-button {
+            background-color: $color-blue-60;
+            color: $color-white;
+
+            &:hover,
+            &:focus {
+                background-color: $color-blue-70;
+                color: $color-white;
+            }
+        }
+    }
+
+    .pocket-hero-image {
+        display: none;
+    }
+
+    .pocket-secondary {
+        background: $color-white;
+        padding-top: $spacing-xl;
+    }
+
+    .pocket-benefits {
+        max-width: $content-sm;
+        text-align: center;
+        margin: 0 auto;
+
+        .section-title {
+            @include text-display-md;
+            text-align: center;
+            margin: 0 auto 2em;
+            max-width: $content-md - $layout-xl;
+        }
+    }
+
+    .pocket-benefits-list {
+        @include text-display-sm;
+
+        li {
+            margin-bottom: $layout-md;
+        }
+
+        h4 {
+            @include text-display-sm;
+        }
+    }
+
+    .pocket-award {
+        @include text-display-xs;
+        font-weight: bold;
+        text-align: center;
+        margin: $spacing-sm auto $spacing-lg;
+        padding-top: $spacing-xl;
+        background: url('/media/img/firefox/whatsnew_62/three-stars.svg') center top no-repeat;
+        background-size: 75px 16px;
+    }
+
+    .secondary-cta {
+        background-color: $color-blue-60;
+
+        .mzp-c-call-out-title {
+            @include text-display-sm;
+        }
+
+        .mzp-c-button:hover,
+        .mzp-c-button:focus {
+            background-color: $color-gray-20;
+            color: $color-black;
+        }
+    }
+
+    @media #{$mq-md} {
+        .mzp-c-hero {
+            padding-bottom: 0;
+        }
+
+        .pocket-hero-image {
+            display: block;
+            margin: $layout-sm auto -#{$layout-2xl};
+        }
+
+        .pocket-secondary {
+            padding-top: $layout-2xl;
+        }
+
+        .pocket-benefits {
+            @include bidi(((text-align, left, right),));
+            max-width: $content-lg;
+        }
+
+        @supports (display: grid) {
+            .pocket-benefits-container {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: auto;
+                grid-gap: 0 $layout-lg;
+            }
+
+            .section-title {
+                grid-column: 1 / span 2;
+                grid-row: 1;
+            }
+
+            .pocket-benefits-list {
+                grid-column: 1;
+                grid-row: 2;
+            }
+
+            .pocket-devices {
+                grid-column: 2;
+                grid-row: 2;
+            }
+
+            .app-store-badges {
+                margin: $spacing-2xl auto;
+
+                li {
+                    margin: 0 $spacing-sm;
+                }
+            }
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Common layouts for all Firefoxes (mobile, Focus, Klar)
+.firefox-container {
+    padding-bottom: $layout-xl;
+
+    .page-title {
+        @include at2x('/media/img/logos/firefox/logo-quantum.png', 80px, 80px);
+        background-position: center $spacing-lg;
+        background-repeat: no-repeat;
+        padding-top: $layout-2xl;
+
+        @media #{$mq-md} {
+            @include bidi(((background-position, left 20px, right 20px),));
+        }
+    }
+
+    &#fx-focus .page-title,
+    &#fx-klar .page-title {
+        @include at2x('/media/img/logos/firefox/logo-focus.png', 80px, 81px);
+    }
+}
+
+.has-send-to-device {
+    .firefox-container > .mzp-l-content {
+        max-width: $content-md + $layout-xl;
+    }
+}
+
+.no-js,
+.no-send-to-device {
+    .firefox-container > .mzp-l-content {
+        max-width: $content-lg;
+
+        @media #{$mq-md} {
+            display: grid;
+            grid-column-gap: $layout-sm;
+            grid-template-columns: repeat(2, 1fr);
+
+            .content-body {
+                grid-column: 1;
+                grid-row: 1 / span 2;
+            }
+
+            .qr-wrapper {
+                grid-column: 2;
+                margin: $layout-2xl auto $layout-sm;
+            }
+
+            .app-store-badges {
+                grid-column: 2;
+                margin: 0 auto;
+
+                li {
+                    margin: 0 $spacing-sm;
+                }
+            }
+        }
+
+        @media #{$mq-lg} {
+            grid-column-gap: $layout-xl;
+            grid-template-columns: auto 350px;
+        }
+    }
+}
