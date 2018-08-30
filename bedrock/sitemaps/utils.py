@@ -202,7 +202,7 @@ def output_xml(urls):
         }
         sitemap_tmpl.stream(ctx).dump(str(output_file))
 
-    output_file = settings.ROOT_PATH.joinpath('root_files', 'sitemap_index.xml')
+    output_file = settings.ROOT_PATH.joinpath('root_files', 'sitemap.xml')
     sitemap_tmpl = get_template('sitemaps/sitemap_index.xml').template
 
     ctx = {'canonical_url': settings.CANONICAL_URL, 'locales': sorted(urls_by_locale.keys())}
