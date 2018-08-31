@@ -126,9 +126,13 @@ $image-path: '/media/protocol/img';
             margin: $spacing-md 0;
         }
 
+        .logo-moz {
+            display: block;
+        }
+
         &.show-pocket {
             .logo-pocket {
-                display: inline;
+                display: block;
             }
 
             .logo-moz {
