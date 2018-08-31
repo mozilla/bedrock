@@ -110,6 +110,43 @@
           <a class="more" rel="external" href="https://mozilladevelopers.github.io/playground/css-grid/">{{ _('Learn more') }}</a>
         </div>
       </div>
+
+      {% if l10n_has_tag('new_features_20180830') %}
+      <div class="highlight-features">
+        <h2 class="section-title"><span>{{ _('Convenient Features') }}</span></h2>
+
+        <div class="section-body">
+          <h3 class="body-title">{{ _('Shapes Editor') }}</h3>
+          <img class="hero-image" src="{{ static('img/firefox/developer/hero-clip-ani.gif') }}" alt="">
+          <p>
+          {% trans %}
+            Firefox DevTools has a brand new shape path editor that takes
+            the guesswork out of fine-tuning your shadow-outside and clip-path
+            shapes by allowing you to very easily fine-tune your adjustments
+            with a visual editor.
+          {% endtrans %}
+          </p>
+        </div>
+      </div>
+
+      <div class="highlight-features">
+        <h2 class="section-title"><span>{{ _('Faster Information') }}</span></h2>
+
+        <div class="section-body">
+          <h3 class="body-title">{{ _('Fonts Panel') }}</h3>
+
+          <img class="hero-image" src="{{ static('img/firefox/developer/hero-fonts.png') }}" alt="">
+          <p>
+          {% trans %}
+            The new fonts panel in Firefox DevTools gives developers quick
+            access to all of the information they need about the fonts being
+            used in an element. It also includes valuable information such
+            as the font source, weight, style and more.
+          {% endtrans %}
+          </p>
+        </div>
+      </div>
+      {% endif %}
     </div>
   </section>
 
