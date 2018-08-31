@@ -116,20 +116,14 @@ $image-path: '/media/protocol/img';
     }
 
     @media #{$mq-md} {
-        &.show-up-to-date-message .page-header-inner {
-            align-items: center;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .logo-fx,
-        .logo-pocket {
+        .logo-fx {
             @include bidi(((float, left, right),));
         }
 
-        .logo-moz {
+        .logo-moz,
+        .logo-pocket {
             @include bidi(((float, right, left),));
-            display: inline;
+            margin: $spacing-md 0;
         }
 
         &.show-pocket {
@@ -139,6 +133,19 @@ $image-path: '/media/protocol/img';
 
             .logo-moz {
                 display: none;
+            }
+        }
+
+        &.show-up-to-date-message .page-header-inner {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+
+            .logo-fx,
+            .logo-moz,
+            .logo-pocket {
+                float: none;
+                margin: 0;
             }
         }
     }
@@ -207,14 +214,14 @@ $image-path: '/media/protocol/img';
         &:focus {
             color: $color-link-hover;
         }
+    }
 
-        &:visited {
-            color: $color-link-visited;
+    a:visited {
+        color: $color-link-visited;
 
-            &:hover,
-            &:focus {
-                color: $color-link-visited-hover;
-            }
+        &:hover,
+        &:focus {
+            color: $color-link-visited-hover;
         }
     }
 }
