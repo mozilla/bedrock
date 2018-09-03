@@ -573,7 +573,17 @@ class FeedbackView(TemplateView):
 
 
 class TrackingProtectionTourView(l10n_utils.LangFilesMixin, TemplateView):
-    template_name = 'firefox/tracking-protection-tour.html'
+
+    def get_template_names(self):
+        variation = self.request.GET.get('variation', None)
+        locale = l10n_utils.get_locale(self.request)
+
+        if locale.startswith('en') and variation in ['0', '1', '2']:
+            template = 'firefox/tracking-protection-tour/variation-{}.html'.format(variation)
+        else:
+            template = 'firefox/tracking-protection-tour/index.html'
+
+        return [template]
 
 
 def download_thanks(request):
