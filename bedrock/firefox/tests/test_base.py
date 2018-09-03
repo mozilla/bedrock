@@ -568,3 +568,51 @@ class FxVersionRedirectsMixin(object):
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
         eq_(response.status_code, 200)
         eq_(response['Cache-Control'], 'max-age=0')
+
+
+@patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
+class TestTrackingProtectionTour(TestCase):
+    def setUp(self):
+        self.view = fx_views.TrackingProtectionTourView.as_view()
+        self.rf = RequestFactory()
+
+    @override_settings(DEV=True)
+    def test_fx_tracking_protection_62_0(self, render_mock):
+        """Should use default tracking protection tour template"""
+        req = self.rf.get('/en-US/firefox/tracking-protection/start/')
+        self.view(req, version='62.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/tracking-protection-tour/index.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_tracking_protection_63_0_v0(self, render_mock):
+        """Should use variation 0 template"""
+        req = self.rf.get('/en-US/firefox/tracking-protection/start/?variation=0')
+        self.view(req, version='62.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/tracking-protection-tour/variation-0.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_tracking_protection_63_0_v1(self, render_mock):
+        """Should use variation 1 template"""
+        req = self.rf.get('/en-US/firefox/tracking-protection/start/?variation=1')
+        self.view(req, version='62.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/tracking-protection-tour/variation-1.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_tracking_protection_63_0_v2(self, render_mock):
+        """Should use variation 2 template"""
+        req = self.rf.get('/en-US/firefox/tracking-protection/start/?variation=2')
+        self.view(req, version='62.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/tracking-protection-tour/variation-2.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_tracking_protection_63_0_locales(self, render_mock):
+        """Should use default tracking protection tour template for non-en locales"""
+        req = self.rf.get('/firefox/tracking-protection/start/?variation=2')
+        req.locale = 'de'
+        self.view(req, version='62.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/tracking-protection-tour/index.html'])

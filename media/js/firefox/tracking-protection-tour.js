@@ -100,7 +100,9 @@ if (typeof Mozilla === 'undefined') {
                     // fade out content if user has landed on step 3 after page reload.
                     _$tracker.addClass('fade-out');
                 } else if (config.targets.indexOf('controlCenter-trackingBlock') !== -1) {
-                    Mozilla.UITour.showInfo('controlCenter-trackingBlock', _step3.titleText, _step3.panelTextAlt, undefined, buttons, options);
+                    var altTitle = _step3.titleTextAlt ? _step3.titleTextAlt : _step3.titleText;
+
+                    Mozilla.UITour.showInfo('controlCenter-trackingBlock', altTitle, _step3.panelTextAlt, undefined, buttons, options);
                 }
             });
         });
@@ -231,6 +233,7 @@ if (typeof Mozilla === 'undefined') {
     TPTour.getStep3Strings = function() {
         return {
             titleText: TPTour._getText('panel3Title'),
+            titleTextAlt: TPTour._getText('panel3TitleAlt'),
             panelText: TPTour._getText('panel3Text'),
             panelTextNewTab: TPTour._getText('panel3TextNewTab'),
             panelTextAlt: TPTour._getText('panel3TextAlt'),

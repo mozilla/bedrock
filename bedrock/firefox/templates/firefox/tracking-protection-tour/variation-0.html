@@ -1,0 +1,20 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/tracking-protection-tour" %}
+
+{% extends "firefox/tracking-protection-tour/index.html" %}
+
+{% block string_data %}
+data-panel1-title="{{ _('How Tracking Protection works') }}"
+data-panel1-text="{{ _('When you see the shield, Firefox is blocking some parts of the page that could track your browsing activity.') }}"
+data-panel1-step="{{ _('1 of 3') }}"
+data-panel1-button="{{ _('Next') }}"
+data-panel3-title="{{ _('Want to make changes?') }}"
+data-panel3-text="{{ _('It’s easy to turn off Tracking Protection for the website you’re on. Just select “Disable Blocking Temporarily.”') }}"
+data-panel3-text-new-tab="{{ _('It’s easy to turn off Tracking Protection for the website you’re on. Just select “Disable Blocking For This Site.”') }}"
+data-panel3-text-alt="{{ _('It’s easy to turn on Tracking Protection for the website you’re on by clicking “Enable Blocking For This Site.”') }}"
+data-panel3-step="{{ _('3 of 3') }}"
+data-panel3-button="{{ _('Got it!') }}"
+{% endblock %}

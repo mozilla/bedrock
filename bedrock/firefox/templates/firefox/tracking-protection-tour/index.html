@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% add_lang_files "firefox/tracking-protection-tour" %}
+
 {% extends "firefox/base-resp.html" %}
 
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
@@ -67,13 +69,17 @@ data-panel3-button="{{ _('Got it!') }}"
 <main role="main">
   <header>
     <div class="inner-container">
+      {% block header_title %}
       {% if l10n_has_tag('tp_tour_firefox_201601') %}
         <h1>{{ _('Tracking Protection') }}</h1>
       {% else %}
         <h1>{{ _('Private Browsing with Tracking Protection') }}</h1>
       {% endif %}
+      {% endblock %}
       <p class="prefs-link">
+      {% block header_help %}
         {{ _('Want to turn off this feature? <a href="%s">Visit Privacy Preferences</a>')|format('https://support.mozilla.org/kb/tracking-protection-pbm') }}
+      {% endblock %}
       </p>
     </div>
   </header>
@@ -97,8 +103,10 @@ data-panel3-button="{{ _('Got it!') }}"
           </div>
           <section id="info-panel" class="hidden">
             <header tabindex="-1">
+              {% block panel_2 %}
               <h2>{{ _('Differences to expect') }}</h2>
               <p>{{ _('Some page areas may be missing, because they could allow third parties to track you across different websites.') }}</p>
+              {% endblock %}
               <button class="close-btn" type="button">{{ _('Close') }}</button>
             </header>
             <footer>{{ _('2 of 3') }} <button type="button">{{ _('Next') }}</button></footer>
@@ -110,6 +118,7 @@ data-panel3-button="{{ _('Got it!') }}"
 
     <section id="end-state" class="hidden">
       <img src="{{ static('img/firefox/tracking-protection/shield-tab.svg') }}" width="145" alt="">
+      {% block thanks %}
       {% if l10n_has_tag('tp_tour_firefox_201601') %}
         <h2>{{ _('Thanks for learning about Tracking Protection.') }}</h2>
       {% else %}
@@ -117,6 +126,7 @@ data-panel3-button="{{ _('Got it!') }}"
       {% endif %}
       <p>{{ _('Learn more about how it works by visiting the <a rel="external" href="%s">FAQ page</a>.')|format('https://support.mozilla.org/kb/tracking-protection-pbm') }}</p>
       <button id="reload-btn" type="button" class="button">{{ _('Restart tour') }}</button>
+      {% endblock %}
     </section>
   </div>
 
