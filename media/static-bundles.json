@@ -364,7 +364,7 @@
     {
       "files": [
         "css/base/mozilla-accordion.less",
-        "css/mozorg/about-transparency.less"
+        "css/mozorg/about-transparency.scss"
       ],
       "name": "about-transparency"
     },
