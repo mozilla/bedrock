@@ -13,8 +13,9 @@
 }
 
 .data-header {
-    margin: 0 auto -10px;
+    margin: 0 auto;
     width: 100%;
+    max-width: 940px;
 
     img {
         width: 100%;
@@ -31,39 +32,13 @@
 }
 
 main {
-    background-color: #fff;
     margin: 0 auto;
     padding: 0 30px;
-    width: 1000px;
-
-    @media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
-        width: 780px;
-    }
-
-    @media only screen and (max-width: @breakTablet) {
-        width: 100%;
-    }
+    max-width: 1000px;
 
     p,
     ul {
         .font-size(1rem);
-    }
-
-    .title-shadow-box {
-        width: 360px;
-        min-height: 80px;
-
-        @media only screen and (max-width: @breakTablet) {
-            .font-size(2rem);
-        }
-
-        @media only screen and (max-width: @breakMobileLandscape) {
-            width: 260px;
-        }
-
-        @media only screen and (max-width: @breakMobile) {
-            width: 240px;
-        }
     }
 
     .lead-in {
@@ -203,6 +178,7 @@ main {
         @media only screen and (max-width: @breakDesktop) {
             display: block;
             width: 100%;
+            margin: 0;
         }
 
         p {
