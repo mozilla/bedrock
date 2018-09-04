@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "mozorg/about-base-resp.html" %}
+{% extends "mozorg/about-base.html" %}
 
 {% block page_title %}{{ _('Mozilla Lean Data Practices') }}{% endblock %}
 {% block body_class %}sand about-lean-data{% endblock %}
@@ -17,7 +17,7 @@
     <img src="{{ static('img/mozorg/about/lean-data/hero-data.svg') }}" alt="" />
   </div>
   <main role="main">
-    <h2 class="title-shadow-box">{{ _('Lean Data Practices') }}</h2>
+    <h2><span class="highlight">{{ _('Lean Data Practices') }}</span></h2>
     <p class="lead-in">{{ _('Staying lean and being smart about how you collect data can build trust with your users and ultimately help grow your business.') }}</p>
 
     <a href="https://github.com/mozilla/lean-data-practices" class="github-button more" rel="external">{{ _('Get the toolkit') }}</a>
