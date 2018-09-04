@@ -1,0 +1,89 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/new/compare/base-1.html" %}
+
+{% block experiments %}
+  {% if switch('firefox_new_compare_edge_experiment', ['en-US']) %}
+    {{ js_bundle('firefox_new_compare_edge_experiment') }}
+  {% endif %}
+{% endblock %}
+
+{% block body_class %}{{ super() }} variant-edge-1{% endblock %}
+
+{% block page_title %}{{ _('Firefox vs. Edge') }}{% endblock %}
+{% block hero_title %}{{ _('Browse Over the Edge') }}{% endblock %}
+{% block hero_desc %}{{ _('Soar beyond the default browser.') }}{% endblock %}
+
+{% block page_body %}
+<div class="page-body">
+  <section class="section-intro mzp-t-firefox">
+    <div class="mzp-l-content">
+      <h2 class="section-title">{{ _('Your PC came with Edge') }}</h2>
+      <p>{{ _('It’s the Microsoft default. But there’s a better choice. Firefox is faster, more flexible, and more private than Edge.') }}</p>
+    </div>
+  </section>
+
+  <section id="section-fast" class="section-fast c-image-section mzp-t-firefox mzp-t-dark mzp-l-right">
+    <div class="mzp-l-content">
+      <div class="c-image-section-content">
+        <h2 class="c-image-section-title">{{ _('Firefox is fast') }}</h2>
+        <p>{{ _('The New Firefox has a new engine. Twice as fast? Yes. Crazy-powerful engine? Yes. Less time waiting for browser pages to load? Double yes, yes. Faster than Edge? Yup. Firefox beats Edge in all browser benchmarks save one.') }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-flexible" class="mzp-l-content">
+    <div class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-third mzp-t-firefox">
+      <div class="mzp-c-card-feature-media-wrapper">
+        <div class="mzp-c-card-feature-media">
+          <img src="{{ static('img/firefox/new/compare/screen-fxcolor.png') }}" alt="">
+        </div>
+      </div>
+      <div class="mzp-c-card-feature-content">
+        <div class="mzp-c-card-feature-content-container">
+          <h2 class="mzp-c-card-feature-title">{{ _('Firefox is flexible') }}</h2>
+          <div class="mzp-c-card-feature-desc">
+            <p>{{ _('There are thousands of extensions in the Add-ons Store that can add even more functionality to Firefox.') }}</p>
+            <p>{{ _('You can change how it looks, how it works, and what it can do. Edge just isn’t as flexible.') }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-memory" class="mzp-l-content">
+    <div class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-third mzp-t-firefox">
+      <div class="mzp-c-card-feature-media-wrapper">
+        <div class="mzp-c-card-feature-media">
+          <img src="{{ static('img/firefox/new/compare/screen-aftereffects.png') }}" alt="">
+        </div>
+      </div>
+      <div class="mzp-c-card-feature-content">
+        <div class="mzp-c-card-feature-content-container">
+          <h2 class="mzp-c-card-feature-title">{{ _('Firefox uses 30% less memory') }}</h2>
+          <div class="mzp-c-card-feature-desc">
+            <p>{{ _('Firefox uses less memory than Edge thanks to a new multi-process architecture. That means your computer will run smoother and you’ll have more resources for doing more with your PC.') }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-good" class="section-good c-image-section mzp-t-firefox mzp-t-dark mzp-l-right">
+    <div class="mzp-l-content">
+      <div class="c-image-section-content">
+        <h2 class="c-image-section-title">{{ _('Firefox stands for good') }}</h2>
+        <p>{{ _('Did you know Firefox comes from the not-for-profit Mozilla? We keep the Internet healthier by supporting programs like tech education for women, truth in online journalism, and promoting civility in comments and online shared spaces.') }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-outro mzp-t-firefox">
+    <div class="mzp-l-content">
+      <p>{{ _('Firefox lets you browse the web your way. Change buttons, toolbars and features—and make your own themes. Firefox is completely yours.') }}</p>
+    </div>
+  </section>
+</div>
+{% endblock %}

@@ -954,6 +954,44 @@ class TestFirefoxNew(TestCase):
         views.download_thanks(req)
         render_mock.assert_called_once_with(req, 'firefox/new/email/scene2.html')
 
+    # Edge SEM campaign Bug #1479086
+
+    def test_compare_edge_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=edge')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-edge-1.html', ANY)
+
+    def test_compare_edge_scene_1va(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=edge&v=a')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_compare_edge_scene_1v1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=edge&v=1')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-edge-1.html', ANY)
+
+    def test_compare_edge_scene_1v2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=edge&v=2')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-edge-2.html', ANY)
+
+    def test_compare_edge_scene_1_non_us(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=edge')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_compare_edge_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=edge')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/email/scene2.html')
+
     # yandex - issue 5635
 
     @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='True')
