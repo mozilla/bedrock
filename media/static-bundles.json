@@ -461,7 +461,7 @@
     },
     {
       "files": [
-        "css/mozorg/about-patents.less",
+        "css/mozorg/about-patents.scss",
         "css/base/mozilla-accordion.less"
       ],
       "name": "about-patents"
