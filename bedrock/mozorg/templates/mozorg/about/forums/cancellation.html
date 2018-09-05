@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "mozorg/about-base-resp.html" %}
+{% extends "mozorg/about-base.html" %}
 
 {% block page_title %}{{ _('Newsgroups Message Cancellation Policy') }}{% endblock %}
 {% block body_id %}about-forum-cancellation{% endblock %}
@@ -12,14 +12,13 @@
 {% endblock %}
 
 {% block article %}
-<h1>{{ self.page_title() }}</h1>
-
+<h1><span class="highlight">{{ self.page_title() }}</span></h1>
 
 <h2 id="support-policy">{{ _('Support Newsgroups Cancellation Policy (mozilla.support.*)') }}</h2>
 
   <p>{{ _('The support newsgroups are monitored by the support newsgroup moderator and his assistants (if any).') }}</p>
 
-  <dl>
+  <dl class="prose">
     <dt>{{ _('Uncivil Posts') }}</dt>
       <dd>
         <p>
