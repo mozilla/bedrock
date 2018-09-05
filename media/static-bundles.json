@@ -93,7 +93,7 @@
     },
     {
       "files": [
-        "css/mozorg/about-forums.less"
+        "css/mozorg/about-forums.scss"
       ],
       "name": "about-forums"
     },

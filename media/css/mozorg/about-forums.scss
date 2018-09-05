@@ -1,0 +1,107 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../pebbles/includes/lib";
+
+
+.forum-group {
+    margin-bottom: ($gutter-width * 2);
+}
+
+.forum-group .top {
+    float: right;
+    color: $color-text-tertiary;
+    @include font-size-small;
+    text-transform: uppercase;
+}
+
+.forums {
+    @include font-size-small;
+
+    ul {
+        margin: 0;
+    }
+
+    & > li {
+        list-style-type: none;
+        border-top: 1px solid #CCC;
+        padding: 10px 20px;
+        margin: 0 -20px;
+        @include clearfix;
+    }
+
+    & > li:target{
+        background: #fff9c4;
+    }
+
+    .summary {
+        @media #{$mq-tablet} {
+            @include span(7);
+            margin-left: 0;
+        }
+    }
+
+    .subscribe {
+        color: $color-text-tertiary;
+        list-style-type: circle;
+
+        @media #{$mq-tablet} {
+            @include span(5);
+            margin-right: 0;
+        }
+    }
+
+    h4 {
+        position: relative;
+        letter-spacing: 0;
+        margin: 0 .5em 0 0;
+        @include open-sans;
+        @include font-size-level4;
+        font-weight: bold;
+
+        a {
+            position: absolute;
+            top: 0;
+            left: -1em;
+            @include font-size-small;
+            color: #ccc;
+        }
+    }
+
+    .description {
+        margin: 0;
+    }
+}
+
+.basic-content {
+
+    form {
+        a {
+            display: block;
+            margin-bottom: 5px;
+        }
+    }
+
+    img {
+        vertical-align: middle;
+    }
+
+    .toc {
+        margin: ($gutter-width * 2) 0;
+    }
+
+    @media #{$mq-phone} {
+        .data-table {
+            td,
+            th {
+                display: block;
+            }
+
+            td {
+                border-top: 0;
+                padding-top: 0;
+            }
+        }
+    }
+}
