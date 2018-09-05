@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros-protocol.html" import billboard, card, feature_card with context %}
+
 {% extends "base-protocol.html" %}
 
 {% add_lang_files "mozorg/about" %}
@@ -17,46 +19,6 @@
 {% block page_css %}
   {{ css_bundle('about-en') }}
 {% endblock %}
-
-{# TODO: migrate to global macro #}
-{% macro card_block(class, tag_label, media_icon, title, ga_title, desc, image_url, include_highres_image, video_url, aspect_ratio, link_url, meta, cta) -%}
-<section class="mzp-c-card {% if class %}{{ class }}{% endif %} {% if aspect_ratio %}{{ aspect_ratio }}{% endif %} {% if media_icon %}{{ media_icon }}{% endif %} {% if video_url %}has-video-embed{% endif %}">
-  <a class="mzp-c-card-block-link" href="{{ link_url }}" data-link-name="{{ ga_title }}" data-link-type="link">
-    <div class="mzp-c-card-media-wrapper">
-      {{ lazy_img(image_url=image_url, include_highres_image=include_highres_image, placeholder_url='placeholder.png', optional_attributes={'class': 'mzp-c-card-image'}) }}
-    </div>
-    <div class="mzp-c-card-content">
-    {% if tag_label %}
-      <div class="mzp-c-card-tag {% if tag_class %}{{ tag_class }}{% endif %}">{{ tag_label }}</div>
-    {% endif %}
-      <h2 class="mzp-c-card-title"><span>{{ title }}</span></h2>
-    {% if desc %}
-      <p class="mzp-c-card-desc">{{ desc }}</p>
-    {% endif %}
-    {% if meta %}
-      <p class="mzp-c-card-meta">{{ meta }}</p>
-    {% endif %}
-    {% if cta %}
-      <p class="mzp-c-card-cta"><span class="mzp-c-card-cta-text">{{ cta }}</span></p>
-    {% endif %}
-    </div>
-  </a>
-  {% if video_url %}
-  <div class="mzp-c-card-video-wrapper hidden">
-    <figure class="mzp-c-card-video-content">
-      <video class="mzp-c-card-video" preload="none" controls playsinline data-ga-label="{{ ga_title }}">
-        <source src="{{ video_url }}.webm" type="video/webm">
-        <source src="{{ video_url }}.mp4" type="video/mp4">
-      </video>
-      <figcaption>
-        <p>{% if desc %}{{ desc }}{% endif %} <a href="{{ link_url }}">{{ _('Read more') }}</a></p>
-      </figcaption>
-    </figure>
-  </div>
-  {% endif %}
-</section>
-{%- endmacro %}
-
 
 {% block content %}
 <section class="mzp-c-hero t-mission">
@@ -79,7 +41,7 @@
   <div class="mzp-l-content">
     <h1 class="c-page-title">{{ _('Our Mission in Action') }}</h1>
     <div class="mzp-l-card-half">
-      {{ card_block(
+      {{ card(
           class='mzp-c-card-medium',
           title=_('Pioneers of The Open Web'),
           ga_title='Pioneers of The Open Web',
@@ -89,7 +51,7 @@
           aspect_ratio='mzp-has-aspect-3-2',
           link_url=url('mozorg.about.leadership')
       )}}
-      {{ card_block(
+      {{ card(
           class='mzp-c-card-medium',
           title=_('Firefox: Fast for Good'),
           ga_title='Firefox: Fast for Good',
@@ -99,7 +61,7 @@
           aspect_ratio='mzp-has-aspect-3-2',
           link_url=url('firefox')
       )}}
-      {{ card_block(
+      {{ card(
           class='mzp-c-card-medium',
           title=_('Walking Our Privacy Talk'),
           ga_title='Walking Our Privacy Talk',
@@ -109,7 +71,7 @@
           aspect_ratio='mzp-has-aspect-3-2',
           link_url='https://blog.mozilla.org/Internetcitizen/2018/06/06/the-today-show-mozilla-firefox-facebook-container/'
       )}}
-      {{ card_block(
+      {{ card(
           class='mzp-c-card-medium',
           title=_('Talking Internet Issues IRL'),
           ga_title='Talking Internet Issues IRL',
@@ -123,34 +85,28 @@
   </div>
 </div>
 <div class="mzp-l-content">
-  <section class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-half t-foundation">
-    <div class="mzp-c-card-feature-media-wrapper">
-      <div class="mzp-c-card-feature-media">
-        {{ high_res_img('mozorg/about/foundation.jpg', {'alt': '', 'class': 'mzp-c-billboard-image', 'width': '720', 'height': '480'}) }}
-      </div>
-    </div>
-    <div class="mzp-c-card-feature-content">
-      <div class="mzp-c-card-feature-content-container">
-        <h2 class="mzp-c-card-feature-title">{{ _('Corporation. Foundation. Not-for-profit.') }}</h2>
-        <p class="mzp-c-card-feature-desc">{{ _('Mozilla puts people over profit in everything we say, build and do. In fact, there’s a non-profit Foundation at the heart of our enterprise.') }}</p>
-        <a class="mzp-c-cta-link" href="{{ url('foundation.index') }}">{{ _('Learn about the Mozilla Foundation') }}</a>
-      </div>
-    </div>
-  </section>
-  <section class="mzp-c-billboard mzp-l-billboard-right">
-    <div class="mzp-c-billboard-image-container">
-      {{ high_res_img('home/2018/billboard-healthy-internet.png', {'alt': '', 'class': 'mzp-c-billboard-image', 'width': '346', 'height': '346'}) }}
-    </div>
-    <div class="mzp-c-billboard-content">
-      <div class="mzp-c-billboard-content-container">
-        <div class="mzp-c-billboard-content-inner">
-          <h2 class="mzp-c-billboard-title">{{ _('The Mozilla Manifesto') }}</h2>
-          <p class="mzp-c-billboard-desc">{{ _('The principles we wrote in 1998 still guide us today. And in 2018, we created an addendum to emphasize inclusion, privacy and safety for everyone online.') }}</p>
-          <a class="mzp-c-cta-link" href="{{ url('mozorg.about.manifesto') }}">{{ _('Read The Manifesto') }}</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  {% call feature_card(
+      title=_('Corporation. Foundation. Not-for-profit.'),
+      ga_title='Corporation. Foundation. Not-for-profit.',
+      link_cta=_('Learn about the Mozilla Foundation'),
+      link_url=url('foundation.index'),
+      image_url='mozorg/about/foundation.jpg',
+      include_highres_image=True,
+      aspect_ratio='mzp-has-aspect-3-2',
+      class='mzp-l-card-feature-left-half t-foundation'
+  ) %}
+    <p>{{ _('Mozilla puts people over profit in everything we say, build and do. In fact, there’s a non-profit Foundation at the heart of our enterprise.') }}</p>
+  {% endcall %}
+
+  {{ billboard(
+      title=_('The Mozilla Manifesto'),
+      ga_title='The Mozilla Manifesto',
+      desc=_('The principles we wrote in 1998 still guide us today. And in 2018, we created an addendum to emphasize inclusion, privacy and safety for everyone online.'),
+      link_cta=_('Read The Manifesto'),
+      link_url=url('mozorg.about.manifesto'),
+      image_url='home/2018/billboard-healthy-internet.png',
+      include_highres_image=True
+  )}}
 </div>
 <div class="mzp-l-content">
   <section class="mzp-c-hero t-global">
@@ -189,7 +145,7 @@
   </section>
 
   <div class="mzp-l-card-half">
-    {{ card_block(
+    {{ card(
         class='mzp-c-card-medium',
         title=_('Work at Mozilla'),
         ga_title='Work at Mozilla',
@@ -200,7 +156,7 @@
         link_url='https://careers.mozilla.org',
         cta=_('Mozilla Careers')
     )}}
-    {{ card_block(
+    {{ card(
         class='mzp-c-card-medium',
         title=_('How You Can Help'),
         ga_title='How You Can Help',

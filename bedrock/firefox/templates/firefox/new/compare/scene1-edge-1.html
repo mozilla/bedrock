@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros-protocol.html" import feature_card with context %}
+
 {% extends "firefox/new/compare/base-1.html" %}
 
 {% block experiments %}
@@ -34,42 +36,30 @@
     </div>
   </section>
 
-  <section id="section-flexible" class="mzp-l-content">
-    <div class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-third mzp-t-firefox">
-      <div class="mzp-c-card-feature-media-wrapper">
-        <div class="mzp-c-card-feature-media">
-          <img src="{{ static('img/firefox/new/compare/screen-fxcolor.png') }}" alt="">
-        </div>
-      </div>
-      <div class="mzp-c-card-feature-content">
-        <div class="mzp-c-card-feature-content-container">
-          <h2 class="mzp-c-card-feature-title">{{ _('Firefox is flexible') }}</h2>
-          <div class="mzp-c-card-feature-desc">
-            <p>{{ _('There are thousands of extensions in the Add-ons Store that can add even more functionality to Firefox.') }}</p>
-            <p>{{ _('You can change how it looks, how it works, and what it can do. Edge just isn’t as flexible.') }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div id="section-flexible" class="mzp-l-content">
+    {% call feature_card(
+      title=_('Firefox is flexible'),
+      image_url='firefox/new/compare/screen-fxcolor.png',
+      include_highres_image=False,
+      aspect_ratio='mzp-has-aspect-3-2',
+      class='mzp-l-card-feature-left-third mzp-t-firefox'
+    ) %}
+      <p>{{ _('There are thousands of extensions in the Add-ons Store that can add even more functionality to Firefox.') }}</p>
+      <p>{{ _('You can change how it looks, how it works, and what it can do. Edge just isn’t as flexible.') }}</p>
+    {% endcall %}
+  </div>
 
-  <section id="section-memory" class="mzp-l-content">
-    <div class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-third mzp-t-firefox">
-      <div class="mzp-c-card-feature-media-wrapper">
-        <div class="mzp-c-card-feature-media">
-          <img src="{{ static('img/firefox/new/compare/screen-aftereffects.png') }}" alt="">
-        </div>
-      </div>
-      <div class="mzp-c-card-feature-content">
-        <div class="mzp-c-card-feature-content-container">
-          <h2 class="mzp-c-card-feature-title">{{ _('Firefox uses 30% less memory') }}</h2>
-          <div class="mzp-c-card-feature-desc">
-            <p>{{ _('Firefox uses less memory than Edge thanks to a new multi-process architecture. That means your computer will run smoother and you’ll have more resources for doing more with your PC.') }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div id="section-memory" class="mzp-l-content">
+    {% call feature_card(
+      title=_('Firefox uses 30% less memory'),
+      image_url='firefox/new/compare/screen-aftereffects.png',
+      include_highres_image=False,
+      aspect_ratio='mzp-has-aspect-3-2',
+      class='mzp-l-card-feature-left-third mzp-t-firefox'
+    ) %}
+      <p>{{ _('Firefox uses less memory than Edge thanks to a new multi-process architecture. That means your computer will run smoother and you’ll have more resources for doing more with your PC.') }}</p>
+    {% endcall %}
+  </div>
 
   <section id="section-good" class="section-good c-image-section mzp-t-firefox mzp-t-dark mzp-l-right">
     <div class="mzp-l-content">

@@ -162,14 +162,6 @@ class TestHomePage(TestCase):
     def setUp(self):
         self.rf = RequestFactory()
 
-    @patch.dict(os.environ, SWITCH_ELECTION_BUNDLE='True')
-    def test_home_en_election_template(self, render_mock):
-        req = RequestFactory().get('/')
-        req.locale = 'en-US'
-        views.home_view(req)
-        render_mock.assert_called_once_with(req, 'mozorg/home/home-en-election.html', ANY)
-
-    @patch.dict(os.environ, SWITCH_ELECTION_BUNDLE='False')
     def test_home_en_template(self, render_mock):
         req = RequestFactory().get('/')
         req.locale = 'en-US'

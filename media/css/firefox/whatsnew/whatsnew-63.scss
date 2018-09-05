@@ -186,7 +186,7 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Intro section
 
-#intro {
+.intro {
     background-color: $color-gray-10;
     min-height: 350px;
     padding-top: $layout-sm;
@@ -205,7 +205,7 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // What's new
 
-#whats-new {
+.whats-new {
     background-color: transparent;
 
     @media #{$mq-lg} {
@@ -216,7 +216,7 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Tracking Controls section
 
-#tracking-controls {
+.tracking-controls {
     .mzp-c-card-feature-title {
         @include text-display-md;
     }
@@ -225,7 +225,7 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Content Blocking section
 
-#content-blocking {
+.content-blocking.mzp-c-hero.mzp-t-dark {
     background-color: $color-blue-50;
 
     .mzp-c-hero-title {
@@ -254,7 +254,7 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Sync section
 
-#sync {
+.sync {
     .mzp-c-card-feature-title {
         @include text-display-md;
     }

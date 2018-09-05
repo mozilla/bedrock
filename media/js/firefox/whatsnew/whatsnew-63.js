@@ -19,7 +19,7 @@
     }
 
     function bindOpenPrefs() {
-        document.getElementById('privacy-prefs-link').addEventListener('click', function(e) {
+        document.querySelector('.tracking-controls .mzp-c-cta-link').addEventListener('click', function(e) {
             e.preventDefault();
 
             Mozilla.UITour.openPreferences('privacy');

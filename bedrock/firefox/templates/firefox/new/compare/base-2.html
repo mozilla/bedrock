@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros-protocol.html" import call_out_compact with context %}
+
 {% extends "firefox/base-protocol.html" %}
 
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
@@ -44,22 +46,12 @@
     </section>
 
   {% block secondary_download %}
-    <section class="secondary-cta mzp-c-call-out-compact mzp-t-firefox mzp-t-product-firefox">
-      <div class="mzp-l-content">
-        <div class="mzp-c-call-out-content">
-          <div class="mzp-c-call-out-container">
-          <h2 class="mzp-c-call-out-title">{{ _('Take control of your browser.') }}</h2>
-          </div>
-        </div>
-        <div class="mzp-c-call-out-cta">
-          <div class="mzp-c-call-out-cta-container">
-            <div class="mzp-c-button-download">
-              {{ download_firefox(alt_copy=_('Download Firefox'), download_location='secondary cta', button_color='mzp-c-button mzp-t-download') }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    {% call call_out_compact(
+      title=_('Take control of your browser.'),
+      class='secondary-cta mzp-t-product-firefox mzp-t-firefox'
+    ) %}
+      {{ download_firefox(alt_copy=_('Download Firefox'), download_location='secondary cta', button_color='mzp-c-button mzp-t-download') }}
+    {% endcall %}
   {% endblock %}
 </main>
 {% endblock %}

@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
+{% from "macros-protocol.html" import card, call_out, feature_card with context %}
+
 {% extends "base-protocol.html" %}
 
 {% block page_title %}{{ _('Pocket | Discover, Capture and Savor Content That Fascinates You') }}{% endblock %}
@@ -40,57 +42,48 @@
     </div>
   </section>
 
-  <section id="pocket-popularity" class="mzp-l-content">
-    <div class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-right-third">
-      <div class="mzp-c-card-feature-media-wrapper">
-        <div class="mzp-c-card-feature-media">
-          {{ high_res_img('firefox/products/pocket/pocket-illo-reading.png', {'alt': ''}) }}
-        </div>
-      </div>
-      <div class="mzp-c-card-feature-content">
-        <div class="mzp-c-card-feature-content-container">
-            <h2 class="mzp-c-card-feature-title">{{ _('Capture What Fascinates You') }}</h2>
-            <p class="mzp-c-card-feature-desc">
-              {{ _('Turn your downtime into quality time. Pocket is the place to save, read and get fueled by the best content on the web.') }}
-            </p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div id="pocket-popularity" class="mzp-l-content">
+    {% call feature_card(
+      title=_('Capture What Fascinates You'),
+      image_url='firefox/products/pocket/pocket-illo-reading.png',
+      include_highres_image=True,
+      aspect_ratio='mzp-has-aspect-16-9',
+      class='mzp-l-card-feature-right-third'
+    ) %}
+      <p>{{ _('Turn your downtime into quality time. Pocket is the place to save, read and get fueled by the best content on the web.') }}</p>
+    {% endcall %}
+  </div>
 
   <section id="pocket-features">
     <div class="mzp-c-call-out">
-      <div class="mzp-l-content">
-        <h2 class="mzp-c-call-out-title">{{ _('Fill Your Pocket in Firefox') }}</h2>
-        <p class="mzp-c-call-out-desc">{{ _('Use Firefox to browse, log in, save and see suggested content in Pocket.') }}</p>
-      </div>
+      {{ call_out(
+        title=_('Fill Your Pocket in Firefox'),
+        desc=_('Use Firefox to browse, log in, save and see suggested content in Pocket.')
+      )}}
     </div>
 
     <div class="mzp-l-content mzp-l-card-half">
-      <div class="mzp-c-card mzp-c-card-medium mzp-has-aspect-3-2">
-        <a class="mzp-c-card-block-link" href="https://support.mozilla.org/kb/save-web-pages-later-pocket-firefox">
-          <div class="mzp-c-card-media-wrapper">
-            {{ lazy_img(image_url='firefox/products/pocket/pocket-save.png', include_highres_image=True, placeholder_url='placeholder.png') }}
-          </div>
-          <div class="mzp-c-card-content">
-            <h3 class="mzp-c-card-title">{{ _('Save It Fast') }}</h3>
-            <p class="mzp-c-card-desc">{{ _('One click on the Pocket icon and content is saved to read later on any device, online or off. With your Firefox Account, logins and preferences travel with you.') }}</p>
-          </div>
-        </a>
-      </div>
+      {{ card(
+        class='mzp-c-card-medium',
+        title=_('Save It Fast'),
+        ga_title='Save It Fast',
+        desc=_('One click on the Pocket icon and content is saved to read later on any device, online or off. With your Firefox Account, logins and preferences travel with you.'),
+        image_url='firefox/products/pocket/pocket-save.png',
+        include_highres_image=True,
+        aspect_ratio='mzp-has-aspect-3-2',
+        link_url='https://support.mozilla.org/kb/save-web-pages-later-pocket-firefox',
+      )}}
 
-      <div class="mzp-c-card mzp-c-card-medium mzp-has-aspect-3-2">
-        <a class="mzp-c-card-block-link" href="https://help.getpocket.com/article/1142-firefox-new-tab-recommendations">
-          <div class="mzp-c-card-media-wrapper">
-            {{ lazy_img(image_url='firefox/products/pocket/pocket-discover.png', include_highres_image=True, placeholder_url='placeholder.png') }}
-          </div>
-          <div class="mzp-c-card-content">
-            <h3 class="mzp-c-card-title">{{ _('Get Great Recommendations') }}</h3>
-            <p class="mzp-c-card-desc">{{ _('Every new Firefox tab is a chance to discover quality content that compels you, selected by real people who have their pulse on the web.') }}</p>
-          </div>
-        </a>
-      </div>
-
+      {{ card(
+        class='mzp-c-card-medium',
+        title=_('Get Great Recommendations'),
+        ga_title='Get Great Recommendations',
+        desc=_('Every new Firefox tab is a chance to discover quality content that compels you, selected by real people who have their pulse on the web.'),
+        image_url='firefox/products/pocket/pocket-discover.png',
+        include_highres_image=True,
+        aspect_ratio='mzp-has-aspect-3-2',
+        link_url='https://help.getpocket.com/article/1142-firefox-new-tab-recommendations',
+      )}}
     </div>
   </section>
 

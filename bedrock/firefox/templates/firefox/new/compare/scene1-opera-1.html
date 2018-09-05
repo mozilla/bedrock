@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros-protocol.html" import feature_card with context %}
+
 {% extends "firefox/new/compare/base-1.html" %}
 
 {% block experiments %}
@@ -46,32 +48,26 @@
     </div>
   </section>
 
-  <section id="section-flexible" class="section-flexible mzp-l-content">
-    <div class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-third mzp-t-firefox">
-      <div class="mzp-c-card-feature-media-wrapper">
-        <div class="mzp-c-card-feature-media">
-          <img src="{{ static('img/firefox/new/compare/screen-fxcolor.png') }}" alt="">
-        </div>
-      </div>
-      <div class="mzp-c-card-feature-content">
-        <div class="mzp-c-card-feature-content-container">
-          <h2 class="mzp-c-card-feature-title">{{ _('Firefox is flexible') }}</h2>
-          <div class="mzp-c-card-feature-desc">
-            <p>
-            {% trans toolbars='https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars?utm_source=mozilla.org&utm_campaign=sem&utm_medium=referral',
-                     firefox_color='https://color.firefox.com/?utm_source=mozilla.org&utm_campaign=sem&utm_medium=referral',
-                     add_ons='https://addons.mozilla.org/firefox/?utm_source=mozilla.org&utm_campaign=sem&utm_medium=referral' %}
-              You can change almost everything about Firefox. <a href="{{ toolbars }}">Toolbars, menus, and buttons</a>
-              are yours to command.  And you can completely transform the way Firefox looks with
-              <a href="{{ firefox_color }}">Firefox Color</a>, our new virtual paint booth. Plus, there are thousands
-              of extensions in the <a href="{{ add_ons }}">Add-ons Store</a>.
-            {% endtrans %}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div id="section-flexible" class="section-flexible mzp-l-content">
+    {% call feature_card(
+      title=_('Firefox is flexible'),
+      image_url='firefox/new/compare/screen-fxcolor.png',
+      include_highres_image=False,
+      aspect_ratio='mzp-has-aspect-3-2',
+      class='mzp-l-card-feature-left-third mzp-t-firefox'
+    ) %}
+      <p>
+      {% trans toolbars='https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars?utm_source=mozilla.org&utm_campaign=sem&utm_medium=referral',
+              firefox_color='https://color.firefox.com/?utm_source=mozilla.org&utm_campaign=sem&utm_medium=referral',
+              add_ons='https://addons.mozilla.org/firefox/?utm_source=mozilla.org&utm_campaign=sem&utm_medium=referral' %}
+        You can change almost everything about Firefox. <a href="{{ toolbars }}">Toolbars, menus, and buttons</a>
+        are yours to command.  And you can completely transform the way Firefox looks with
+        <a href="{{ firefox_color }}">Firefox Color</a>, our new virtual paint booth. Plus, there are thousands
+        of extensions in the <a href="{{ add_ons }}">Add-ons Store</a>.
+      {% endtrans %}
+      </p>
+    {% endcall %}
+  </div>
 
   <section id="section-good" class="section-good c-image-section mzp-t-firefox mzp-t-dark mzp-l-right">
     <div class="mzp-l-content">
