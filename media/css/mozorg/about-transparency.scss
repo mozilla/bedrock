@@ -25,6 +25,12 @@
     @include font-size(20px);
 }
 
+.section#introduction {
+    p:last-child {
+        margin-bottom: 0;
+    }
+}
+
 .title-bar {
     background: #000;
     padding: $gutter-width 0;
@@ -103,9 +109,11 @@
         margin: 0 0 10px;
     }
 
-    a {
+    a.button {
         @include border-box;
         width: 100%;
+        display: block;
+        text-align: center;
     }
 
     span {
@@ -116,6 +124,13 @@
         ul {
             @include flexbox;
             margin: 0 -10px;
+        }
+
+        a.button {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         &.two-up li {
@@ -132,8 +147,8 @@
 
 .nav-previous {
     @include border-box;
-    padding: 20px;
-    margin: $gutter-width 10px;
+    padding: $gutter-width $gutter-width 0;
+    margin: $gutter-width 10px 0;
 
     ul {
         list-style: none;
@@ -151,6 +166,7 @@
 
     @media #{$mq-tablet} {
         margin: $gutter-width auto -40px;
+        padding: $gutter-width;
 
         li {
             display: inline;
