@@ -259,6 +259,12 @@ $color-dev-mediumblue: #306efe;
     background: $color-dev-mediumblue;
     color: #fff;
 
+    a:link,
+    a:visited {
+        color: #fff;
+        text-decoration: none;
+    }
+
     .hero-image {
         box-shadow: 0 15px 20px rgba(0, 0, 0, .15), 0 3px 6px rgba(0, 0, 0, .15);
     }
