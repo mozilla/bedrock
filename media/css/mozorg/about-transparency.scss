@@ -1,0 +1,194 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+
+.section {
+    @include clearfix;
+    padding: $gutter-width 0;
+
+    @media #{$mq-tablet} {
+        padding: ($gutter-width * 2) 0;
+    }
+}
+
+.content {
+    @include border-box;
+    margin: 0 auto;
+    overflow: visible;
+    padding: 0 $gutter-width;
+    max-width: $width-desktop;
+}
+
+.section-extra h3 {
+    @include font-size(20px);
+}
+
+.section#introduction {
+    p:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.title-bar {
+    background: #000;
+    padding: $gutter-width 0;
+
+    h1 {
+        color: #fff;
+        margin: 0;
+
+        span {
+            @include font-size-level4;
+            display: block;
+            margin: .5em 0 0;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        padding: ($gutter-width * 2) 0;
+    }
+}
+
+.accordion .section-title {
+    margin-bottom: .5em;
+}
+
+.accordion-initialized .section-title {
+    margin-bottom: 0;
+}
+
+#report-sections.accordion-initialized [data-accordion-role='tab'] {
+    @include border-box;
+    overflow: visible;
+    padding: 0 20px 0 40px;
+}
+
+#report-sections.accordion-initialized [data-accordion-role='tabpanel'] {
+    @include border-box;
+    margin-top: 1em;
+    padding: 0 20px 0 40px;
+}
+
+.section-extra .section-title {
+    @include font-size(32px);
+    margin-bottom: 1em;
+}
+
+.section-defs dt {
+    position: relative;
+}
+.section-defs dt:target:before {
+    content: '\25B8'; // right solid triangle
+    color: #000;
+    position: absolute;
+    left: -20px;
+}
+
+.footnotes {
+    @include font-size(14px);
+}
+
+.nav-report {
+    ul {
+        @include font-size(20px);
+        list-style: none;
+        margin: 0;
+        text-align: center;
+    }
+
+    li {
+        display: inline-block;
+        margin: 0 10px;
+    }
+
+    &.two-up li,
+    &.three-up li {
+        display: block;
+        margin: 0 0 10px;
+    }
+
+    a.button {
+        @include border-box;
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+
+    span {
+        display: block;
+    }
+
+    @media #{$mq-tablet} {
+        ul {
+            @include flexbox;
+            margin: 0 -10px;
+        }
+
+        a.button {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &.two-up li {
+            margin: 0 10px;
+            width: 50%;
+        }
+
+        &.three-up li {
+            margin: 0 10px;
+            width: 33.3%;
+        }
+    }
+}
+
+.nav-previous {
+    @include border-box;
+    padding: $gutter-width $gutter-width 0;
+    margin: $gutter-width 10px 0;
+
+    ul {
+        list-style: none;
+        margin: 0;
+    }
+
+    li {
+        display: block;
+        margin: 0 0 .5em;
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        margin: $gutter-width auto -40px;
+        padding: $gutter-width;
+
+        li {
+            display: inline;
+            margin: 0 10px .5em;
+            position: relative;
+
+            &:after {
+                content: '•';
+                position: absolute;
+                right: -22px;
+                text-align: center;
+                top: 0;
+                width: 20px;
+            }
+
+            &:last-child:after {
+                content: '';
+            }
+        }
+    }
+}
+
+#colophon {
+    margin-top: 40px;
+}
