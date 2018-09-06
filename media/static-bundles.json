@@ -871,6 +871,13 @@
         "css/firefox/pocket.scss"
       ],
       "name": "product_pocket"
+    },
+    {
+      "files": [
+        "css/base/mozilla-fxa-form.scss",
+        "css/firefox/profile-per-install.scss"
+      ],
+      "name": "profile_per_install"
     }
   ],
   "js": [
@@ -1537,6 +1544,14 @@
         "js/firefox/pocket.js"
       ],
       "name": "product_pocket"
+    },
+    {
+      "files": [
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-init.js"
+      ],
+      "name": "profile_per_install"
     }
   ]
 }

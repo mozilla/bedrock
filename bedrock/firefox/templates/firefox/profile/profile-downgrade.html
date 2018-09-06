@@ -1,0 +1,11 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% add_lang_files "firefox/profile-per-install" %}
+
+{% extends "firefox/profile/profile-base.html" %}
+
+{% block profile_state %}
+  <p class="mzp-c-article-intro">{{ _('We detected that you have installed and opened an older version of Firefox on your computer. You may need to take action.') }}</p>
+{% endblock %}

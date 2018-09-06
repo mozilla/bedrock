@@ -1,0 +1,107 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import "../../../node_modules/@mozilla-protocol/core/protocol/css/includes/lib";
+@import "../../../node_modules/@mozilla-protocol/core/protocol/css/components/article";
+@import "../../../node_modules/@mozilla-protocol/core/protocol/css/components/button";
+@import "../protocol/components/fxa";
+
+.mzp-c-article {
+    margin-bottom: $layout-lg;
+
+    &.mzp-l-content {
+        padding-left: $spacing-lg;
+        padding-right: $spacing-lg;
+    }
+
+    h2 {
+        @include text-display-sm;
+        margin-top: $layout-md;
+    }
+}
+
+.mzp-c-article-title {
+    @include text-display-sm;
+    color: $color-red-60;
+}
+
+.mzp-c-article-intro {
+    @include text-display-md;
+    font-weight: bold;
+    margin: $layout-md 0;
+}
+
+.page-header {
+    text-align: center;
+
+    .logo-fx,
+    .logo-moz {
+        display: block;
+        margin: 0 auto $spacing-md;
+    }
+
+    @media #{$mq-md} {
+        .logo-fx {
+            @include bidi(((float, left, right),));
+        }
+
+        .logo-moz {
+            @include bidi(((float, right, left),));
+            margin: $spacing-md 0;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Firefox Accounts
+
+.fxa-cta {
+   .signed-in {
+        @include at2x('/media/img/firefox/accounts/green-check.png', 30px, 30px);
+        background-position: left top;
+        background-repeat: no-repeat;
+        min-height: 30px;
+        padding-left: $spacing-2xl;
+    }
+
+    .fxa-email-form {
+        margin: 0;
+        width: auto;
+
+        .fxa-email-form-intro {
+            font-weight: bold;
+        }
+
+        .fxa-email-field {
+            padding: $spacing-sm $spacing-lg;
+            margin: 0;
+        }
+
+        .mzp-c-button {
+            background: $color-black;
+            border-radius: 2px;
+            border: 2px solid $color-black;
+            box-shadow: none;
+            color: $color-white;
+            padding: ($spacing-sm - 2px) ($spacing-lg - 2px); // minus 2px to compensate for border width
+
+            &:hover,
+            &:focus {
+                background: $color-white;
+                box-shadow: 4px 4px 0 0 $color-black;
+                color: $color-black;
+                transition: box-shadow 100ms;
+            }
+
+            &:active {
+                box-shadow: 2px 2px 0 0 $color-black;
+                transition: box-shadow 0ms;
+            }
+        }
+    }
+}
+

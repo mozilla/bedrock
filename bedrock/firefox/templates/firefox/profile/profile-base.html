@@ -1,0 +1,82 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% from "macros.html" import fxa_email_form with context %}
+
+{% add_lang_files "firefox/profile-per-install" %}
+
+{% extends "firefox/base-protocol.html" %}
+
+{% block page_title %}{{ _('An Important Change in Firefox: Dedicated Profiles') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('profile_per_install') }}
+{% endblock %}
+
+{% block body_class %}state-fxa-default{% endblock %}
+
+{% block site_header %}
+<header id="page-header" class="page-header">
+  <div class="mzp-l-content">
+    <a href="{{ url('firefox') }}">
+      {{ high_res_img('logos/firefox/logo-quantum-wordmark-large.png', {'alt': 'Firefox', 'width': '147', 'height': '55', 'class': 'logo-fx'}) }}
+    </a>
+
+    <a href="{{ url('mozorg.home') }}">
+      <img src="{{ static('img/logos/mozilla/wordmark-dark.svg') }}" alt="Mozilla" width="112" height="32" class="logo-moz" id="logo-moz">
+    </a>
+  </div>
+</header>
+{% endblock %}
+
+{% block content %}
+<article class="mzp-c-article mzp-t-firefox mzp-l-content">
+  <h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
+
+  {% block profile_state %}{% endblock %}
+
+  <h2>{{ _('What’s Changed') }}</h2>
+
+  <p>{{ _('Before, all Firefox installations were sharing a single profile by default. Now, Firefox provides dedicated profiles for each Firefox installation (this includes installations of Firefox Nightly, Firefox Beta, or Firefox ESR). This will make Firefox more stable when switching between Firefox installations on the same computer.') }}</p>
+
+  <h2>{{ _('How Dedicated Profiles Work') }}</h2>
+
+  <p>{{ _('Firefox saves information such as bookmarks, passwords and user preferences in a set of files called your profile. This profile is stored in a separate location from the Firefox program files.') }}</p>
+
+  <ul class="mzp-u-list-styled">
+    <li><p>{{ _('The installation you choose as your primary Firefox installation will keep your previously shared profile data like bookmarks, history and passwords.') }}</p></li>
+    <li><p>{{ _('You have not lost any personal data or customizations. Any previous profile data is safe and attached to the first Firefox installation that was opened after this change.') }}</p></li>
+    <li><p>{{ _('All of your Firefox installations will now have separate profiles.') }}</p></li>
+  </ul>
+
+  <h2>{{ _('What You Need to Do') }}</h2>
+
+  <ul class="mzp-u-list-styled">
+    <li><p>{{ _('If you do nothing, each installation will have a separate profile. This means your profile data will be different on each installation of Firefox.') }}</p></li>
+    <li><p>
+    {% trans support='https://support.mozilla.org/kb/profile-manager-create-and-remove-firefox-profiles' %}
+      You can change which installation uses which profile using the profile manager. Directions on how to use the profile manager are available on <a href="{{ support }}">this support page</a>.
+    {% endtrans %}
+    </p></li>
+    <li><p>{{ _('While profiles are now connected to each installation of Firefox, you can use your Firefox Account to keep them in sync. If you would like all of your profile data to be the same on all installations of Firefox, we recommend you sync all of your profiles with a Firefox Account.') }}</p></li>
+  </ul>
+
+  <aside>
+    <p>{{ _('A Firefox Account is the easiest way to make your profiles consistent on all of your versions of Firefox. You also get additional benefits like sending tabs and secure password storage.') }}</p>
+
+    <div class="fxa-cta show-fxa-supported-signed-in show-fxa-supported-signed-out">
+      <p class="show-fxa-supported-signed-in signed-in">{{ _('You’re signed in and ready to start using Sync.') }}</p>
+      <div class="show-fxa-supported-signed-out signed-out">
+        {{ fxa_email_form(entrypoint='accounts-page', utm_source='accounts-page', utm_params={'campaign': 'fxa-embedded-form', 'content': 'accounts-page', 'medium': 'referral'}, intro_text=_('Get Your Firefox Account'), button_text=_('Sign Up Now'), button_class='mzp-c-button') }}
+      </div>
+    </div>
+  </aside>
+
+</article>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('profile_per_install') }}
+{% endblock %}
+
