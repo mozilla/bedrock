@@ -10,6 +10,7 @@ from pages.firefox.features.landing import FeaturesLandingPage
 @pytest.mark.smoke
 @pytest.mark.sanity
 @pytest.mark.nondestructive
+@pytest.mark.skipif(reason='https://github.com/mozilla/bedrock/pull/6139')
 def test_download_button_is_displayed(base_url, selenium):
     page = FeaturesLandingPage(selenium, base_url).open()
     assert page.download_button.is_displayed
