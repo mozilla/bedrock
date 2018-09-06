@@ -1,0 +1,10 @@
+<section class="section section-newsletter">
+  <div class="content">
+  {% if LANG.startswith('en-') %}
+    {# L10n: line break for visual formatting #}
+    {{ email_newsletter_form('app-dev', 'Mozilla Developer Newsletter', subtitle=_('Get developer news, tricks and resources <br /> sent straight to your inbox.'), button_class='button-hollow button-light', include_language=False) }}
+  {% else %}
+    {{ email_newsletter_form(spinner_color='#fff', button_class='button-hollow button-light') }}
+  {% endif %}
+  </div>
+</section>

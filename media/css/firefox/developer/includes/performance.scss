@@ -1,0 +1,67 @@
+@import 'lib';
+
+
+//*------------------------------------------------------------------*/
+// Performance
+.section-performance {
+    .section-title {
+        color: $color-dev-mediumblue;
+
+        span {
+            border-color: $color-dev-mediumblue;
+        }
+    }
+
+    .section-body {
+        text-align: center;
+
+        p {
+            max-width: $width-tablet;
+            margin: 0 auto 1.5em;
+        }
+    }
+
+    .hero-image {
+        width: 580px;
+    }
+
+    .cta {
+        margin: 20px auto 40px;
+    }
+
+    a.button.button-hollow {
+        color: $color-dev-mediumblue;
+        border-color: $color-dev-mediumblue;
+        border-radius: 100px;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: transparentize($color-dev-mediumblue, .95);
+            border-color: lighten($color-dev-mediumblue, 5%);
+            color: lighten($color-dev-mediumblue, 5%);
+        }
+    }
+
+    @media #{$mq-tablet} {
+        padding-bottom: 80px;
+
+        &:before {
+            @include background-size(3000px 172px);
+            @include section-curve;
+            background-image: url('/media/img/firefox/developer/curve-performance-top.svg');
+            height: 172px;
+            top: -171px;
+        }
+    }
+}
+
+.firefox-developer-firstrun,
+.firefox-developer-whatsnew {
+    .section-performance {
+        p {
+            margin: 0 auto 1.25em;
+            max-width: $width-phone-wide;
+        }
+    }
+}
