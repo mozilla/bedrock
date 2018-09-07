@@ -5,7 +5,6 @@ smoke_tests: true
 regions:
   - oregon-b
   - tokyo
-  - frankfurt
   - iowa-a
 apps:
   - bedrock-dev
@@ -15,8 +14,6 @@ integration_tests:
     - headless
     - download
   tokyo:
-    - headless
-  frankfurt:
     - headless
   iowa-a:
     - download
