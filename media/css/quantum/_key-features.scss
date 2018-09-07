@@ -80,16 +80,6 @@
 
                 .key-feature-content {
                     float: right;
-                    text-align: right;
-
-                    h2:before {
-                        left: auto;
-                        right: 0;
-                    }
-
-                    p {
-                        float: right;
-                    }
                 }
             }
         }
@@ -126,16 +116,7 @@ html[dir="rtl"] .key-features-section .key-feature {
 
             .key-feature-content {
                 float: left;
-                text-align: left;
 
-                h2:before {
-                    left: 0;
-                    right: auto;
-                }
-
-                p {
-                    float: left;
-                }
             }
         }
     }
