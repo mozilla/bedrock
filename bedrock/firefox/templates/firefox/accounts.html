@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import google_play_button with context %}
+{% from "macros.html" import fxa_email_form with context %}
 
 {% extends "firefox/base-pebbles.html" %}
 
@@ -14,7 +14,7 @@
   {{ css_bundle('firefox_accounts') }}
 {% endblock %}
 
-{% block body_class %}firefox-accounts{% endblock %}
+{% block body_class %}firefox-accounts state-fxa-default {% endblock %}
 {% block site_header %}{% endblock %}
 
 {% block content %}
@@ -30,31 +30,30 @@
     <div class="main-content">
       <div class="main-copy">
         <p class="tagline">{{_('With a Firefox Account, you can get all your bookmarks, passwords, open tabs and more — everywhere you use Firefox.')}}</p>
-        <ol class="sign-up-instructions">
+        <ol class="sign-up-instructions show-fxa-supported-signed-out">
           <li>{{_('Sign up for a Firefox Account')}}</li>
           <li>{{_('Sign in everywhere you use Firefox')}}</li>
           <li>{{_('Sync what you want')}}</li>
         </ol>
-        <p class="signed-in">{{_('You’re signed in and ready to start using Sync.')}}</p>
       </div>
-      <div class="fxa-cta" id="fxa-iframe-config" data-host="{{ settings.FXA_IFRAME_SRC }}" data-mozillaonline-host="{{ settings.FXA_IFRAME_SRC_MOZILLAONLINE }}">
-        <iframe id="fxa" scrolling="no" data-src="{{ settings.FXA_IFRAME_SRC }}?action=email&amp;utm_campaign=fxa-embedded-form&amp;utm_medium=referral&amp;utm_source=accounts-page&amp;utm_content=accounts-page&amp;entrypoint=accounts-page&amp;service=sync&amp;context=iframe&amp;style=chromeless&amp;haltAfterSignIn=true"></iframe>
-      </div>
-      <div class="mobile">
-        <a id="button-sync-ios" class="button button-hollow button-light firefox-ios" rel="external" href="https://support.mozilla.org/kb/sync-firefox-bookmarks-and-browsing-history-iOS">{{_('Set up Sync for iOS')}}</a>
-        {# L10n: Line break below for visual formatting only. #}
-        <a id="button-sync-android" class="button button-hollow button-light firefox-android" rel="external" href="https://support.mozilla.org/kb/sync-bookmarks-tabs-history-and-passwords-android">{{_('Set up Sync on your <br>Android device')}}</a>
-        <div class="non-firefox">
-          <p>{{_('Download Firefox to start using Sync.')}}</p>
-          {{ google_play_button() }}
-          <a href="{{ firefox_ios_url('mozorg-sync_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
-            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
-          </a>
+      <div class="fxa-cta show-fxa-supported-signed-in show-fxa-supported-signed-out">
+        <p class="show-fxa-supported-signed-in signed-in">{{_('You’re signed in and ready to start using Sync.')}}</p>
+        <div class="show-fxa-supported-signed-out">
+          {{ fxa_email_form(entrypoint='accounts-page', utm_source='accounts-page', utm_params={'campaign': 'fxa-embedded-form', 'content': 'accounts-page', 'medium': 'referral'}) }}
         </div>
       </div>
-      <div class="download-firefox">
-        <p class="non-firefox">{{_('Download Firefox to start using Sync.')}}</p>
-        <p class="old-firefox">{{_('Get the latest Firefox to start using Sync.')}}</p>
+      <div class="mobile-ctas">
+        <span class="show-fxa-ios">
+          <a class="button button-hollow button-light" rel="external" href="https://support.mozilla.org/kb/sync-firefox-bookmarks-and-browsing-history-iOS">{{_('Set up Sync for iOS')}}</a>
+        </span>
+        {# L10n: Line break below for visual formatting only. #}
+        <span class="show-fxa-android">
+          <a class="button button-hollow button-light" rel="external" href="https://support.mozilla.org/kb/sync-bookmarks-tabs-history-and-passwords-android">{{_('Set up Sync on your <br>Android device')}}</a>
+        </span>
+      </div>
+      <div class="download-firefox show-fxa-not-fx show-fxa-unsupported show-fxa-default">
+        <p class="show-fxa-not-fx show-fxa-default">{{_('Download Firefox to start using Sync.')}}</p>
+        <p class="show-fxa-unsupported ">{{_('Get the latest Firefox to start using Sync.')}}</p>
         {{ download_firefox() }}
       </div>
     </div>
