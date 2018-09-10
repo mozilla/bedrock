@@ -139,6 +139,7 @@ html[dir="rtl"] .main-copy {
 // Firefox Accounts for container
 
 .fxa-cta {
+    @include border-box;
     background-color: #FFF;
     border-radius: 6px;
     color: $color-text-primary;
@@ -148,7 +149,6 @@ html[dir="rtl"] .main-copy {
 
     @media #{$mq-desktop} {
         float: right;
-        width: 400px;
     }
 
     @media #{$mq-desktop-wide} {
@@ -184,18 +184,6 @@ html[dir="rtl"] .fxa-cta {
 
     @media #{$mq-desktop} {
         margin-top: 40px;
-        float: right;
-    }
-}
-
-html[dir="rtl"] .signed-in {
-    &:before {
-        background-position: top right;
-        margin: 0 0 0 10px;
-    }
-
-    @media #{$mq-desktop} {
-        float: left;
     }
 }
 
