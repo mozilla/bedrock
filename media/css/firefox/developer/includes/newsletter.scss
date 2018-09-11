@@ -1,0 +1,146 @@
+@import 'lib';
+
+
+//*------------------------------------------------------------------*/
+// Newsletter
+.section-newsletter {
+    background: #2b2c32 url('/media/img/firefox/developer/newsletter-background.svg') center bottom no-repeat;
+    @include background-size(3000px 348px);
+    color: #fff;
+    min-height: 150px;
+    padding: 40px 0;
+
+    .content {
+        max-width: $width-desktop;
+    }
+
+    .form-title h3 {
+        @include font-size-level4;
+        font-weight: normal;
+        margin: 0 0 .5em;
+    }
+
+    .form-title h4 {
+        @include font-size-level5;
+        font-weight: normal;
+        margin: 0 0 1.25em;
+        line-height: 1.4;
+    }
+
+    #newsletter-form {
+        margin: 0 auto;
+        text-align: center;
+
+        input[type="email"] {
+            border-color: #fff;
+            border-radius: 0;
+            max-width: 400px;
+            padding: .5em 10px;
+            width: 90%;
+        }
+
+        #form-details {
+            @include font-size-level6;
+            padding-top: 20px;
+        }
+
+        button[type="submit"] {
+            @include font-size-level5;
+            margin: 20px 0 5px;
+            width: auto;
+            border-radius: 100px;
+        }
+
+        select {
+            max-width: 100%;
+        }
+
+        .field {
+            margin-bottom: 5px;
+        }
+    }
+
+    .thank {
+        max-width: $width-tablet;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    #footer-email-errors {
+        .errorlist {
+            background: #fff;
+            color: $color-mozred;
+            padding: 20px 30px;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        padding: 100px 0 40px;
+
+        #newsletter-form {
+            padding-left: 360px;
+            text-align: left;
+            width: auto;
+        }
+
+        .form-title {
+            float: left;
+            margin-left: -360px;
+            text-align: right;
+            width: 320px;
+        }
+    }
+
+    @media #{$mq-desktop} {
+        padding: 160px 0 60px;
+
+        #newsletter-form {
+            padding-left: 520px;
+            text-align: left;
+        }
+
+        .form-title {
+            margin-left: -520px;
+            width: 480px;
+        }
+    }
+}
+
+.firefox-developer-firstrun,
+.firefox-developer-whatsnew {
+    .section-newsletter {
+        padding: 100px 0;
+
+        .content {
+            padding: 0;
+        }
+
+        .form-title {
+            margin-bottom: 20px;
+            text-align: center;
+
+            @media #{$mq-tablet} {
+                margin-bottom: 0;
+                text-align: right;
+            }
+
+            h3 {
+                @include font-size(18px);
+
+                @media #{$mq-desktop} {
+                    @include font-size(28px);
+                }
+            }
+
+            h4 {
+                @include font-size(14px);
+                font-weight: normal;
+                line-height: $base-line-height;
+
+                @media #{$mq-desktop} {
+                    @include font-size(16px);
+                }
+            }
+        }
+    }
+}
