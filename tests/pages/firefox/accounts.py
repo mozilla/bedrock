@@ -13,7 +13,7 @@ class FirefoxAccountsPage(FirefoxBasePage):
     URL_TEMPLATE = '/{locale}/firefox/accounts/'
 
     _download_button_locator = (By.ID, 'download-button-desktop-release')
-    _accounts_form_locator = (By.ID, 'fxa-iframe-config')
+    _accounts_form_locator = (By.ID, 'fxa-email-form')
 
     @property
     def download_button(self):

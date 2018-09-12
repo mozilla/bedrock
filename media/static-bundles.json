@@ -805,7 +805,7 @@
     },
     {
       "files": [
-        "css/base/mozilla-fxa-iframe.scss",
+        "css/base/mozilla-fxa-form.scss",
         "css/firefox/accounts.scss"
       ],
       "name": "firefox_accounts"
@@ -1359,9 +1359,9 @@
     },
     {
       "files": [
-        "js/base/mozilla-fxa-iframe.js",
-        "js/base/uitour-lib.js",
-        "js/firefox/accounts.js"
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-fxa-form.js"
       ],
       "name": "firefox_accounts"
     },
