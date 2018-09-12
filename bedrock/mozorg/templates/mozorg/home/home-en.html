@@ -71,7 +71,11 @@
   {% if youtube_id %}
   <div class="mzp-c-card-video-wrapper hidden">
     <figure class="mzp-c-card-video-content">
-      <div class="video-play" data-id="{{ youtube_id }}"><h2>test</h2></div>
+      <div class="ytcontainer-video">
+        <div class="video-container">
+          <div class="video-play" data-id="{{ youtube_id }}"></div>
+        </div>
+      </div>
       <figcaption>
         <p>{% if desc %}{{ desc }}{% endif %} <a href="{{ link_url }}">{{ _('Read more') }}</a></p>
       </figcaption>
@@ -117,7 +121,7 @@
             title=_('Evolving the Firefox brand'),
             ga_title='Evolving the Firefox brand',
             desc=_('Say “Firefox” and most people think of a web browser on their laptop or phone. There’s more to the story, and our branding needs to evolve.'),
-            image_url='home/2018/cards/design-systems.jpg',
+            image_url='home/2018/cards/design-systems.png',
             aspect_ratio='mzp-has-aspect-16-9',
             link_url='https://blog.mozilla.org/opendesign/evolving-the-firefox-brand/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
@@ -129,7 +133,7 @@
             desc=_('Mozilla’s focus on leisurely reads is aimed at publishers burned by Facebook. It’s paying off: Traffic is already up 75 percent this year.'),
             image_url='home/2018/cards/pocket-article-illustration.jpg',
             aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://www.bloomberg.com/news/articles/2018-08-09/pocket-s-30-million-users-are-great-for-publishers'
+            link_url='https://www.bloomberg.com/news/articles/2018-08-09/pocket-s-30-million-users-are-great-for-publishers?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
         <!-- 3 -->
         {{ card_block(
@@ -140,7 +144,7 @@
             desc=_('These five principles guide how we put people first when we make products, manage data and advocate for policies.'),
             image_url='home/2018/cards/privacy-philosophy.png',
             aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://blog.mozilla.org/internetcitizen/2018/08/13/firefox-privacy-philosophy/',
+            link_url='https://blog.mozilla.org/internetcitizen/2018/08/13/firefox-privacy-philosophy/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
             youtube_id='fbF9gDSZX6U',
         )}}
         <!-- 4 -->
@@ -151,7 +155,7 @@
             desc=_('There’s a new currency in town (and no, we’re not talking about Bitcoin). We’re talking about attention. Tune in to IRL.'),
             image_url='home/2018/cards/irl-s3-e3.png',
             aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://blog.mozilla.org/blog/2018/06/26/new-firefox-releases-now-available-2/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+            link_url='https://irlpodcast.org/season3/episode3/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
         <!-- 5 -->
         {{ card_block(
@@ -359,7 +363,7 @@
             desc=_('The web could be the best platform for gaming, and Firefox is the the best browser for gaming. Here’s why. '),
             image_url='home/2018/cards/browser-game.png',
             aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://blog.mozilla.org/firefox/facebook-container-extension/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
+            link_url='https://blog.mozilla.org/firefox/get-your-game-on-in-the-browser/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
         )}}
 <!-- 17 -->
         {{ card_block(
