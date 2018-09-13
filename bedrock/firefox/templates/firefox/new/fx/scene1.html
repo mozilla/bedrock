@@ -1,0 +1,82 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/new/quantum" %}
+
+{% from "macros.html" import fxa_email_form with context %}
+
+{% extends "firefox/new/base.html" %}
+
+{# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
+{% block extrahead %}
+  {{ super() }}
+  {{ css_bundle('firefox_new_fx_scene1') }}
+{% endblock %}
+
+{% block experiments %}
+  {% if switch('experiment_firefox_new_scene1_fx', ['en-US']) %}
+    {% if v == 'x' %}
+      {{ js_bundle('firefox_new_scene1_fx_experiment_x') }}
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
+{% block body_id %}firefox-new-scene1{% endblock %}
+
+{% block messages %}
+<div class="version-message-container">
+  <div class="content">
+    <p class="version-message firefox-latest">{{_('Congrats! You’re using the latest version of Firefox.') }}</p>
+    <p class="version-message android-old">{{_('<a href="%(url)s">Update</a> your Firefox for the latest in speed and privacy.')|format(url='https://support.mozilla.org/kb/update-latest-version-firefox-android')}}</p>
+    <p class="version-message desktop-old">{{_('<a href="%(url)s">Update</a> your Firefox for the latest in speed and privacy.')|format(url='https://support.mozilla.org/kb/update-firefox-latest-version') }}</p>
+    <p class="version-message firefox-pre-release">{{_('You’re using a pre-release version of Firefox.') }}</p>
+  </div>
+</div>
+{% endblock %}
+
+{% block main_content %}
+<div class="main-download">
+  <div class="main-cta-wrapper">
+    <header>
+      <h1>You’ve got Firefox.</h1>
+      <h2>Make it even better with a Firefox Account.</h2>
+    </header>
+    <p>Sync bookmarks & passwords, send tabs and save to Pocket easily with one login.</p>
+    <div>
+      {{ fxa_email_form(entrypoint='accounts-page', button_class='button-black', utm_source='accounts-page', utm_params={'campaign': 'fxa-embedded-form', 'content': 'accounts-page', 'medium': 'referral'}) }}
+    </div>
+    <div class="download-again-wrapper">
+      <h2>Need to download again?</h2>
+
+      <div class="download-button-wrapper">
+        {# **WARNING**
+
+          The `locale_in_transition` parameter should be used very carefully. It's included
+          here because this template and scene2 share a lang file, and are therefore
+          translated into the same list of locales. Adding this to another download button
+          would significantly restrict the builds of Firefox available for download.
+
+          Bug 1290962
+        #}
+        {{ download_firefox(alt_copy=_('Download Now'), locale_in_transition=True, download_location='primary cta', button_color='button-hollow button-light') }}
+      </div>
+
+      <div id="refresh-firefox-wrapper">
+        <div class="refresh-inner-wrapper">
+          <button class="button button-hollow button-light" type="button" id="refresh-firefox" data-interaction="Refresh Firefox" data-element-action="Firefox Desktop" data-button-name="Refresh Firefox" data-cta-position="Primary">{{ _('Refresh Firefox') }}</button>
+          <small><a rel="external" href="https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=learn-more-link">{{ _('Learn more') }}</a></small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block additional_content %}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_new_fx_scene1') }}
+{% endblock %}
