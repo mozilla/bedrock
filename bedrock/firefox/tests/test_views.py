@@ -980,6 +980,38 @@ class TestFirefoxNew(TestCase):
         views.download_thanks(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
 
+    # fxa experiment for existing fx users bedrock/mozilla#5974
+
+    def test_fx_fxa_scene_1x(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=x')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/fx/scene1.html', ANY)
+
+    def test_fx_fxa_scene_1y(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=y')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_fx_fxa_scene_1_non_us(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=x')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_fx_fxa_scene_2x(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?v=x')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
+    def test_fx_fxa_scene_2y(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?v=y')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
     # yandex - issue 5635
 
     @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='True')

@@ -593,8 +593,11 @@ def download_thanks(request):
     show_newsletter = locale in ['en-US', 'en-GB', 'en-CA', 'en-ZA', 'es-ES', 'es-AR', 'es-CL', 'es-MX', 'pt-BR', 'fr', 'ru', 'id', 'de', 'pl']
 
     # ensure variant matches pre-defined value
-    if variant not in ['a', 'b']:  # place expected ?v= values in this list
+    if variant not in ['a', 'b', 'x', 'y']:  # place expected ?v= values in this list
         variant = None
+
+    if variant == 'x':
+        show_newsletter = False  # Prevent showing the newsletter for FxA account experiment mozilla/bedrock#5974
 
     # `wait-face`, `reggiewatts` variations are currently localized for both en-US and de locales.
     if lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':
@@ -644,7 +647,7 @@ def new(request):
     locale = l10n_utils.get_locale(request)
 
     # ensure variant matches pre-defined value
-    if variant not in ['a', 'b', 'c', 'd', 'e', 'f', '1', '2']:  # place expected ?v= values in this list
+    if variant not in ['a', 'b', 'c', 'd', 'e', 'f', '1', '2', 'x', 'y']:  # place expected ?v= values in this list
         variant = None
 
     if scene == '2':
@@ -678,7 +681,9 @@ def new(request):
         elif switch('firefox-yandex') and locale == 'ru':
             template = 'firefox/new/yandex/scene1.html'
         elif locale == 'en-US':
-            if experience in ['portland', 'forgood']:
+            if variant == 'x':
+                template = 'firefox/new/fx/scene1.html'
+            elif experience in ['portland', 'forgood']:
                 template = 'firefox/new/portland/scene1.html'
             elif experience in ['portland-fast', 'fast']:
                 template = 'firefox/new/portland/scene1-fast.html'
@@ -714,7 +719,7 @@ def new(request):
 
     # no harm done by passing 'v' to template, even when no experiment is running
     # (also makes tests easier to maintain by always sending a context)
-    return l10n_utils.render(request, template, {'experience': experience})
+    return l10n_utils.render(request, template, {'experience': experience, 'v': variant})
 
 
 def ios_testflight(request):
