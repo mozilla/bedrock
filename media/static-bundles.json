@@ -1083,6 +1083,15 @@
     },
     {
       "files": [
+        "protocol/js/protocol-newsletter.js",
+        "js/newsletter/form-protocol.js",
+        "js/base/mozilla-lazy-load.js",
+        "js/mozorg/about-en.js"
+      ],
+      "name": "about-en"
+    },
+    {
+      "files": [
         "js/base/mozilla-video-poster.js",
         "js/mozorg/about-video.js"
       ],
