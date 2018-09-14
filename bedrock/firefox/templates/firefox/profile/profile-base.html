@@ -68,7 +68,7 @@
     <div class="fxa-cta show-fxa-supported-signed-in show-fxa-supported-signed-out">
       <p class="show-fxa-supported-signed-in signed-in">{{ _('You’re signed in and ready to start using Sync.') }}</p>
       <div class="show-fxa-supported-signed-out signed-out">
-        {{ fxa_email_form(entrypoint='accounts-page', utm_source='accounts-page', utm_params={'campaign': 'fxa-embedded-form', 'content': 'accounts-page', 'medium': 'referral'}, intro_text=_('Get Your Firefox Account'), button_text=_('Sign Up Now'), button_class='mzp-c-button') }}
+        {{ fxa_email_form(entrypoint='accounts-page', utm_source='accounts-page', utm_params={'campaign': 'fxa-embedded-form', 'content': 'accounts-page', 'medium': 'referral'},) }}
       </div>
     </div>
   </aside>

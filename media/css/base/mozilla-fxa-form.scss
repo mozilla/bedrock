@@ -11,6 +11,7 @@
     color: #000;
     margin: 0 auto;
     position: relative;
+    width: 250px;
 
     label {
         @include visually-hidden;
@@ -20,15 +21,15 @@
         @include font-size-level5;
         border-radius: 2px;
         box-sizing: border-box;
-        padding: .5em 20px;
+        padding: 0.5em 20px;
+        margin-bottom: 1em;
         width: 100%;
     }
 
-    .button {
+    button.button {
         background: #0060df;
-        border-radius: 2px;
         border: none;
-        padding: .5em 20px;
+        border-radius: 2px;
         width: 100%;
 
         &:focus,
@@ -68,28 +69,7 @@
         margin: 0 0 1em;
     }
 
-    .agreement {
+    .disclaimer {
         @include font-size-small;
-    }
-
-    @media #{$mq-phone-wide} {
-        @supports (display: flex) {
-            .fxa-email-field-container {
-                display: flex;
-            }
-
-            .field {
-                width: 66%;
-                margin: 0 20px 0 0;
-
-                [dir='rtl'] & {
-                    margin: 0 0 0 20px;
-                }
-            }
-
-            .button {
-                width: 33%;
-            }
-        }
     }
 }

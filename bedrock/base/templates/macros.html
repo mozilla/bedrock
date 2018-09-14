@@ -407,7 +407,7 @@
 
     DO NOT include utm_source in this dictionary! (It's already a required param.)
 #}
-{% macro fxa_email_form(entrypoint, utm_source, class_name='fxa-email-form', utm_params={}, intro_text='', button_text='', button_class='button-blue') -%}
+{% macro fxa_email_form(entrypoint, utm_source, class_name='fxa-email-form',  utm_params={}) -%}
   <form action="{{ settings.FXA_ENDPOINT }}" data-mozillaonline-action="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}" id="fxa-email-form" class="{{ class_name }}">
     <input type="hidden" name="action" value="email" />
     <input type="hidden" name="context" value="fx_desktop_v3" />
@@ -423,35 +423,20 @@
     <input type="hidden" name="utm_{{ attr }}" value="{{ val }}" id="fxa-email-form-utm-{{ attr }}" />
   {% endfor %}
 
-    <p class="fxa-email-form-intro">
-    {% if intro_text %}
-      {{ intro_text }}
-    {% else %}
+    <p>
       {{ _('<strong>Enter your email</strong> to access Firefox Accounts.') }}
-    {% endif %}
     </p>
 
-    <p class="agreement">
+    <label for="fxa-email-field">{{ _('Email address') }}</label>
+    <input type="email" name="email" id="fxa-email-field" class="fxa-email-field" placeholder="user@example.com" required />
+
+    <p class="disclaimer">
     {% trans url1='https://accounts.firefox.com/legal/terms', url2='https://accounts.firefox.com/legal/privacy' %}
       By proceeding, you agree to the <a href="{{ url1 }}">Terms of Service</a> and
       <a href="{{ url2 }}">Privacy Notice</a>.
     {% endtrans %}
     </p>
 
-    <div class="fxa-email-field-container">
-      <p class="field">
-        <label for="fxa-email-field">{{ _('Email address') }}</label>
-        <input type="email" name="email" id="fxa-email-field" class="fxa-email-field" placeholder="user@example.com" required>
-      </p>
-
-      <button type="submit" class="button {{ button_class }}" id="fxa-email-form-submit">
-      {% if button_text %}
-        {{ button_text }}
-      {% else %}
-        {{ _('Continue') }}
-      {% endif %}
-      </button>
-    </div>
-
+    <button type="submit" class="button button-blue" id="fxa-email-form-submit">{{ _('Continue') }}</button>
   </form>
 {%- endmacro %}
