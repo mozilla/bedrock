@@ -25,6 +25,9 @@ urlpatterns = (
     url(r'^terms/firefox/$', LegalDocView.as_view(template_name='legal/terms/firefox.html', legal_doc_name='firefox_about_rights'),
         name='legal.terms.firefox'),
 
+    url(r'^terms/firefox-reality/$', LegalDocView.as_view(template_name='legal/terms/firefox-reality.html',
+        legal_doc_name='firefox_reality_about_rights'), name='legal.terms.firefox-reality'),
+
     url(r'^terms/thunderbird/$', LegalDocView.as_view(template_name='legal/terms/thunderbird.html', legal_doc_name='thunderbird_about_rights'),
         name='legal.terms.thunderbird'),
 
