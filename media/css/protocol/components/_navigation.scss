@@ -1,0 +1,47 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../../protocol/css/includes/lib';
+
+// TODO we need convert all bedrock download buttons to use protocol
+.mzp-c-navigation-download {
+    .download-button {
+        .download-link {
+            background-color: transparent;
+            background-image: none;
+            border-radius: 2px;
+            color: $color-green-60;
+            border: 2px solid $color-green-60;
+            box-shadow: none;
+            line-height: 1.125;
+            padding: $padding-sm $padding-md;
+
+            &:hover,
+            &:focus {
+                background-color: $color-green-60;
+                border-color: $color-green-60;
+                color: $color-white;
+            }
+        }
+
+        .download-list {
+            margin-bottom: 0;
+        }
+
+        .fx-privacy-link {
+            display: none;
+        }
+    }
+}
+
+.mzp-c-card {
+    .mzp-c-card-image {
+        opacity: 1;
+        transition: opacity 0.3s;
+    }
+
+    .mzp-c-card-image[data-src] {
+        opacity: 0;
+    }
+}

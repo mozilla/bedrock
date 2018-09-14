@@ -68,11 +68,22 @@
     {
       "files": [
         "css/sandstone/sandstone-resp.less",
-        "css/base/global-nav.less",
         "css/base/notification-banner.less",
         "css/tabzilla/tabzilla-static.less"
       ],
       "name": "responsive"
+    },
+    {
+      "files": [
+        "css/base/global-nav.less"
+      ],
+      "name": "responsive-global-nav"
+    },
+    {
+      "files": [
+        "css/sandstone/protocol-nav.scss"
+      ],
+      "name": "responsive-protocol-nav"
     },
     {
       "files": [
@@ -333,6 +344,18 @@
         "css/pebbles/global.scss"
       ],
       "name": "pebbles"
+    },
+    {
+      "files": [
+        "css/pebbles/global-nav.scss"
+      ],
+      "name": "pebbles-global-nav"
+    },
+    {
+      "files": [
+        "css/pebbles/protocol-nav.scss"
+      ],
+      "name": "pebbles-protocol-nav"
     },
     {
       "files": [
@@ -726,6 +749,12 @@
         "css/protocol/protocol.scss"
       ],
       "name": "protocol-core"
+    },
+    {
+      "files": [
+        "css/protocol/protocol-global-nav.scss"
+      ],
+      "name": "protocol-global-nav"
     },
     {
       "files": [
@@ -1575,7 +1604,6 @@
         "js/base/mozilla-image-helper.js",
         "js/base/nav-main-resp.js",
         "js/base/class-list-polyfill.js",
-        "js/base/mozilla-global-nav.js",
         "js/base/base-page-init.js",
         "js/base/core-datalayer.js",
         "js/base/core-datalayer-init.js",
@@ -1593,14 +1621,27 @@
             "js/base/mozilla-image-helper.js",
             "js/base/nav-main-resp.js",
             "js/base/class-list-polyfill.js",
-            "js/base/mozilla-global-nav.js",
             "js/base/base-page-init.js",
             "js/base/core-datalayer.js",
             "js/base/core-datalayer-init.js",
             "js/base/search-params.js"
         ],
         "name": "common-protocol"
-      },
+    },
+    {
+        "files": [
+            "protocol/js/protocol-menu.js",
+            "protocol/js/protocol-navigation.js",
+            "js/base/protocol/init-navigation.js"
+        ],
+        "name": "navigation-protocol"
+    },
+    {
+        "files": [
+            "js/base/mozilla-global-nav.js"
+        ],
+        "name": "navigation"
+    },
     {
       "files": [
         "js/libs/matchMedia.js",

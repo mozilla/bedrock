@@ -60,10 +60,17 @@
       {% endblock %}
     <![endif]-->
 
+    {% set show_protocol_nav = switch('navigation_protocol') %}
+
     <!--[if !lte IE 8]><!-->
     {# Global styles, hidden from IE8 and lower #}
     {% block site_css %}
       {{ css_bundle('pebbles') }}
+      {% if show_protocol_nav %}
+        {{ css_bundle('pebbles-protocol-nav') }}
+      {% else %}
+        {{ css_bundle('pebbles-global-nav') }}
+      {% endif %}
     {% endblock %}
 
     {# Page-specific styles, hidden from IE8 and lower #}
@@ -93,7 +100,11 @@
 
   {% block site_header %}
   {% if LANG.startswith('en-') %}
-    {% include 'includes/global-nav.html' %}
+    {% if show_protocol_nav %}
+      {% include 'includes/protocol/navigation/index.html' %}
+    {% else %}
+      {% include 'includes/global-nav.html' %}
+    {% endif %}
   {% else %}
     <header class="section masthead" id="masthead">
       <div class="content">
@@ -157,6 +168,11 @@
     {% block site_js %}
       <!--[if !lte IE 8]><!-->
         {{ js_bundle('common') }}
+        {% if show_protocol_nav %}
+          {{ js_bundle('navigation-protocol') }}
+        {% else %}
+          {{ js_bundle('navigation') }}
+        {% endif %}
       <!--<![endif]-->
 
       <!--[if lte IE 8]>

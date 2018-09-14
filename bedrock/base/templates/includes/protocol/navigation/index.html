@@ -1,0 +1,27 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+<div class="mzp-c-navigation">
+  <div class="mzp-c-navigation-l-content">
+    <div class="mzp-c-navigation-container">
+      <button class="mzp-c-navigation-menu-button" type="button" aria-controls="map-c-navigation-items">{{ _('Menu') }}</button>
+      <div class="mzp-c-navigation-logo"><a href="{{ url('mozorg.home') }}" data-link-name="mozilla home icon" data-link-type="nav">Mozilla</a></div>
+      <div class="mzp-c-navigation-items" id="mzp-c-navigation-items">
+        <div class="mzp-c-navigation-download">
+          {{ download_firefox(alt_copy=_('Download Firefox'), dom_id='protocol-nav-download-firefox', button_color='mzp-c-button mzp-t-download-secondary', download_location='nav') }}
+        </div>
+        <div class="mzp-c-navigation-menu">
+          <nav class="mzp-c-menu">
+            <ul class="mzp-c-menu-category-list">
+              {% include 'includes/protocol/navigation/menu/firefox.html' %}
+              {% include 'includes/protocol/navigation/menu/projects.html' %}
+              {% include 'includes/protocol/navigation/menu/developers.html' %}
+              {% include 'includes/protocol/navigation/menu/about.html' %}
+            </ul>
+          </nav>
+        </div><!-- close .mzp-c-navigation-menu -->
+      </div><!-- close .mzp-c-navigation-items -->
+    </div><!-- close .mzp-c-navigation-container -->
+  </div><!-- close .mzp-c-navigation-l-content -->
+</div><!-- close .mzp-c-navigation -->

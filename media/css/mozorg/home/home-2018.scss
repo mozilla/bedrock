@@ -15,6 +15,11 @@ $image-path: '/media/protocol/img';
 
 @import '../../hubs/nav-download-button-remove';
 
+.mzp-c-navigation {
+    position: relative;
+    z-index: 3;
+}
+
 // Override global-nav z-index for sticky header CTA.
 .moz-global-nav {
     z-index: 3;
@@ -105,10 +110,10 @@ $image-path: '/media/protocol/img';
 
 @media #{$mq-lg} {
     .download-firefox-primary-cta {
-        border-top: 100px solid #fff;
+        border-top: 94px solid #fff;
         position: relative;
-        top: -100px;
-        margin-bottom: -100px;
+        top: -94px;
+        margin-bottom: -94px;
         @include bidi(((text-align, left, right),));
 
         .mzp-l-content {

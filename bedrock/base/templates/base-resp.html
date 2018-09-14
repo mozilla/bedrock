@@ -58,10 +58,17 @@
       {{ css_bundle('oldIE') }}
     <![endif]-->
 
+    {% set show_protocol_nav = switch('navigation_protocol') %}
+
     <!--[if !lte IE 8]><!-->
     {# Global styles, hidden from IE8 and lower #}
     {% block site_css %}
       {{ css_bundle('responsive') }}
+      {% if show_protocol_nav %}
+        {{ css_bundle('responsive-protocol-nav') }}
+      {% else %}
+        {{ css_bundle('responsive-global-nav') }}
+      {% endif %}
     {% endblock %}
 
     {# Page-specific styles, hidden from IE8 and lower #}
@@ -91,7 +98,11 @@
 
     {% block global_nav %}
       {% if LANG.startswith('en-') %}
-        {% include 'includes/global-nav.html' %}
+        {% if show_protocol_nav %}
+          {% include 'includes/protocol/navigation/index.html' %}
+        {% else %}
+          {% include 'includes/global-nav.html' %}
+        {% endif %}
       {% endif %}
     {% endblock %}
 
@@ -179,6 +190,11 @@
 
     {% block site_js %}
       <!--[if !lte IE 8]><!-->
+        {% if show_protocol_nav %}
+          {{ js_bundle('navigation-protocol') }}
+        {% else %}
+          {{ js_bundle('navigation') }}
+        {% endif %}
         {{ js_bundle('common') }}
       <!--<![endif]-->
 

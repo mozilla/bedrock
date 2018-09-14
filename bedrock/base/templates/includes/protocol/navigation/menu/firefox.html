@@ -1,0 +1,103 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+ <li class="mzp-c-menu-category mzp-has-drop-down mzp-js-expandable">
+  <a class="mzp-c-menu-title" href="{{ url('firefox') }}" aria-haspopup="true" aria-controls="mzp-c-menu-panel-firefox">Firefox</a>
+  <div class="mzp-c-menu-panel mzp-has-card" id="mzp-c-menu-panel-firefox">
+    <div class="mzp-c-menu-panel-container">
+      <button class="mzp-c-menu-button-close" type="button" aria-controls="mzp-c-menu-panel-firefox">{{ _('Close Firefox menu') }}</button>
+      <div class="mzp-c-menu-panel-content">
+        <ul>
+          <li>
+            <section class="mzp-c-menu-item mzp-has-icon">
+              <a class="mzp-c-menu-item-link" href="{{ url('firefox') }}" data-link-name="Firefox Quantum Desktop Browser" data-link-type="nav" data-link-position="topnav" data-link-group="firefox">
+                <img src="{{ static('protocol/img/logos/firefox/firefox.png') }}" class="mzp-c-menu-item-icon" width="24" height="24" alt="">
+                <h4 class="mzp-c-menu-item-title">{{ _('Firefox Quantum Desktop Browser') }}</h4>
+                <p class="mzp-c-menu-item-desc">{{ _('Get the browser gives more power to you on Windows, Mac OS or Linux.') }}</p>
+              </a>
+              <ul class="mzp-c-menu-item-list">
+                <li><a href="{{ url('firefox.new') }}" data-link-name="Download" data-link-type="nav" data-link-position="subnav" data-link-group="firefox">{{ _('Download') }}</a></li>
+                <li><a href="{{ url('firefox') }}" data-link-name="New Features" data-link-type="nav" data-link-position="subnav" data-link-group="firefox">{{ _('New Features') }}</a></li>
+                <li><a href="https://addons.mozilla.org/firefox/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=nav&amp;utm_content=firefox" data-link-name="Extensions" data-link-type="nav" data-link-position="subnav" data-link-group="firefox">{{ _('Extensions') }}</a></li>
+                <li><a href="https://support.mozilla.org/products/firefox/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=nav&amp;utm_content=firefox" data-link-name="Support" data-link-type="nav" data-link-position="subnav" data-link-group="firefox">{{ _('Support') }}</a></li>
+                <li><a href="{{ url('privacy.notices.firefox') }}" data-link-name="Privacy" data-link-type="nav" data-link-position="subnav" data-link-group="firefox">{{ _('Privacy') }}</a></li>
+              </ul>
+            </section>
+          </li>
+          <li>
+            <section class="mzp-c-menu-item mzp-has-icon">
+              <a class="mzp-c-menu-item-link" href="{{ url('firefox.mobile') }}" data-link-name="Firefox Mobile Browsers" data-link-type="nav" data-link-position="topnav" data-link-group="firefox">
+                <svg class="mzp-c-menu-item-icon" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 1h10a3 3 0 0 1 3 3v16a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V4a3 3 0 0 1 3-3zm0 2a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H7zm3 16a1 1 0 0 1 0-2h4a1 1 0 0 1 0 2h-4z" fill="#000" fill-rule="nonzero"/></svg>
+                <h4 class="mzp-c-menu-item-title">{{ _('Firefox Mobile Browsers') }}</h4>
+                <p class="mzp-c-menu-item-desc">{{ _('Take Firefox and Firefox Focus with you. For Android and iOS.') }}</p>
+              </a>
+              <ul class="mzp-c-menu-item-list">
+                <li><a href="{{ url('firefox.mobile') }}" data-link-name="Get Firefox" data-link-type="nav" data-link-position="subnav" data-link-group="firefox">{{ _('Get Firefox') }}</a></li>
+                <li><a href="{{ url('firefox.mobile') }}" data-link-name="Get Firefox Focus" data-link-type="nav" data-link-position="subnav" data-link-group="firefox">{{ _('Get Firefox Focus') }}</a></li>
+                <li><a href="{{ url('firefox.mobile') }}" data-link-name="New Features" data-link-type="nav" data-link-position="subnav" data-link-group="firefox">{{ _('New Features') }}</a></li>
+                <li><a href="https://addons.mozilla.org/android/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=nav&amp;utm_content=firefox" data-link-name="Android Extensions" data-link-type="nav" data-link-position="subnav" data-link-group="firefox">{{ _('Android Extensions') }}</a></li>
+                <li><a href="https://support.mozilla.org/products/ios/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=nav&amp;utm_content=firefox" data-link-name="iOS Support" data-link-type="nav" data-link-position="subnav" data-link-group="firefox">{{ _('iOS Support') }}</a></li>
+                <li><a href="https://support.mozilla.org/products/android/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=nav&amp;utm_content=firefox" data-link-name="Android Support" data-link-type="nav" data-link-position="subnav" data-link-group="firefox">{{ _('Android Support') }}</a></li>
+              </ul>
+            </section>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <section class="mzp-c-menu-item mzp-has-icon">
+              <a class="mzp-c-menu-item-link" href="{{ url('firefox.pocket') }}" data-link-name="Pocket by Firefox" data-link-type="nav" data-link-position="topnav" data-link-group="firefox">
+                <svg class="mzp-c-menu-item-icon" width="24" height="22" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.5c-6.627 0-12-5.373-12-12v-6a3 3 0 0 1 3-3h18a3 3 0 0 1 3 3v6c0 6.627-5.373 12-12 12zm5.977-15.048a1.485 1.485 0 0 0-1.087.479l-4.923 4.924-4.835-4.851A1.476 1.476 0 0 0 6 6.452a1.5 1.5 0 0 0-1.071 2.55l-.024.016 4.94 4.96 1.06 1.06a1.5 1.5 0 0 0 2.121 0l1.06-1.06 4.964-4.96a1.5 1.5 0 0 0-1.073-2.566z" fill="#FF4056" fill-rule="nonzero"/></svg>
+                <h4 class="mzp-c-menu-item-title">{{ _('Pocket by Firefox') }}</h4>
+                <p class="mzp-c-menu-item-desc">{{ _('Save content. Absorb knowledge.') }}</p>
+              </a>
+            </section>
+          </li>
+          <li>
+            <section class="mzp-c-menu-item mzp-has-icon">
+              <a class="mzp-c-menu-item-link" href="{{ url('firefox.accounts') }}" data-link-name="Your Firefox Account" data-link-type="nav" data-link-position="topnav" data-link-group="firefox">
+                <svg class="mzp-c-menu-item-icon" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M21 21a1 1 0 0 1-2 0v-2a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v2a1 1 0 0 1-2 0v-2a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v2zm-9-9a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" fill="#000" fill-rule="nonzero"/></svg>
+                <h4 class="mzp-c-menu-item-title">{{ _('Your Firefox Account') }}</h4>
+                <p class="mzp-c-menu-item-desc">{{ _('Make the most of your Firefox experience, across every device.') }}</p>
+              </a>
+            </section>
+          </li>
+          <li>
+            <section class="mzp-c-menu-item mzp-has-icon">
+              <a class="mzp-c-menu-item-link" href="{{ url('firefox.enterprise.index') }}" data-link-name="Firefox for Enterprise" data-link-type="nav" data-link-position="topnav" data-link-group="firefox">
+                <svg class="mzp-c-menu-item-icon" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M20.289 15.5a1 1 0 0 1 1.842.78A11 11 0 1 1 7.6 1.912a1 1 0 0 1 .8 1.834A9 9 0 1 0 20.289 15.5zM23 12a1 1 0 0 1-1 1H12a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1 11 11 0 0 1 11 11zm-4.636-6.364A9 9 0 0 0 13 3.056V11h7.944a9 9 0 0 0-2.58-5.364z" fill="#000" fill-rule="nonzero"/></svg>
+                <h4 class="mzp-c-menu-item-title">{{ _('Firefox for Enterprise') }}</h4>
+                <p class="mzp-c-menu-item-desc">{{ _('Same speed and safety you trust, designed just for business.') }}</p>
+              </a>
+            </section>
+          </li>
+          <li>
+            <section class="mzp-c-menu-item mzp-has-icon">
+              <a class="mzp-c-menu-item-link" href="https://www.amazon.com/Mozilla-Firefox-for-Fire-TV/dp/B078B5YMPD" data-link-name="Firefox for Fire TV" data-link-type="nav" data-link-position="topnav" data-link-group="firefox">
+                <svg class="mzp-c-menu-item-icon" width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 3h18a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3zm0 2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H3zm13.496 6.132a1 1 0 0 1 0 1.736l-7 4A1 1 0 0 1 8 16V8a1 1 0 0 1 1.496-.868l7 4zM10 9.723v4.554L13.984 12 10 9.723z" fill="#000" fill-rule="nonzero"/></svg>
+                <h4 class="mzp-c-menu-item-title">{{ _('Firefox for Fire TV') }}</h4>
+                <p class="mzp-c-menu-item-desc">{{ _('Watch videos and browse the internet on your Amazon Fire TV.') }}</p>
+              </a>
+            </section>
+          </li>
+        </ul>
+      </div>
+      <div class="mzp-c-menu-panel-card">
+        <section class="mzp-c-card mzp-c-card-extra-small mzp-has-aspect-3-2">
+          <a class="mzp-c-card-block-link" href="https://addons.mozilla.org/firefox/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=nav&amp;utm_content=firefox" data-link-name="Add-ons" data-link-type="nav" data-link-position="card" data-link-group="firefox">
+            <div class="mzp-c-card-media-wrapper">
+              <img class="mzp-c-card-image" src="{{ static('img/placeholder.png') }}" data-src="{{ static('img/nav/cards/add-ons.png') }}" alt="">
+              <noscript>
+                <img class="mzp-c-card-image" src="{{ static('img/nav/cards/add-ons.png') }}" alt="">
+              </noscript>
+            </div>
+            <div class="mzp-c-card-content">
+            <h2 class="mzp-c-card-title">{{ _('Add-ons') }}</h2>
+            <p class="mzp-c-card-desc">{{ _('Learn how to customize the way Firefox works.') }}</p>
+            </div>
+          </a>
+        </section>
+      </div>
+    </div><!-- close .mzp-c-menu-panel-container -->
+  </div><!-- close .mzp-c-menu-panel -->
+</li><!-- close firefox -->
