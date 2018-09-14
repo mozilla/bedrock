@@ -79,6 +79,7 @@ class FirefoxPrivacyDocView(PrivacyDocView):
             self.template_name = 'privacy/notices/firefox-quantum.html'
         return doc
 
+
 firefox_notices = FirefoxPrivacyDocView.as_view(
     legal_doc_name='firefox_privacy_notice')
 
@@ -105,6 +106,10 @@ firefox_focus_notices = PrivacyDocView.as_view(
 firefox_rocket_notices = PrivacyDocView.as_view(
     template_name='privacy/notices/firefox-rocket.html',
     legal_doc_name='rocket_privacy_notice')
+
+firefox_reality_notices = PrivacyDocView.as_view(
+    template_name='privacy/notices/firefox-reality.html',
+    legal_doc_name='firefox_reality_privacy_notice')
 
 thunderbird_notices = PrivacyDocView.as_view(
     template_name='privacy/notices/thunderbird.html',

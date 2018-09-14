@@ -16,6 +16,7 @@ urlpatterns = (
     url(r'^/firefox-os/$', views.firefox_os_notices, name='privacy.notices.firefox-os'),
     url(r'^/firefox-fire-tv/$', views.firefox_fire_tv_notices, name='privacy.notices.firefox-fire-tv'),
     url(r'^/firefox-focus/$', views.firefox_focus_notices, name='privacy.notices.firefox-focus'),
+    url(r'^/firefox-reality/$', views.firefox_reality_notices, name='privacy.notices.firefox-reality'),
     url(r'^/firefox-rocket/$', views.firefox_rocket_notices, name='privacy.notices.firefox-rocket'),
     # bug 1319207 - special URL for Firefox Focus in de locale
     url(r'^/firefox-klar/$', views.firefox_focus_notices, name='privacy.notices.firefox-klar'),
