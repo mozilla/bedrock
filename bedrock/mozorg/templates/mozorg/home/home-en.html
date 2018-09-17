@@ -49,8 +49,8 @@
   {% endif %}
 {% endblock %}
 
-{% macro card_block(class, tag_label, media_icon, title, ga_title, desc, image_url, include_highres_image, video_url, aspect_ratio, link_url, meta) -%}
-<section class="mzp-c-card {% if class %}{{ class }}{% endif %} {% if aspect_ratio %}{{ aspect_ratio }}{% endif %} {% if media_icon %}{{ media_icon }}{% endif %} {% if video_url %}has-video-embed{% endif %}">
+{% macro card_block(class, tag_label, media_icon, title, ga_title, desc, image_url, include_highres_image, youtube_id, aspect_ratio, link_url, meta) -%}
+<section class="mzp-c-card {% if class %}{{ class }}{% endif %} {% if aspect_ratio %}{{ aspect_ratio }}{% endif %} {% if media_icon %}{{ media_icon }}{% endif %} {% if youtube_id %}has-video-embed{% endif %}">
   <a class="mzp-c-card-block-link" href="{{ link_url }}" data-link-name="{{ ga_title }}" data-link-type="link">
     <div class="mzp-c-card-media-wrapper">
       {{ lazy_img(image_url=image_url, include_highres_image=include_highres_image, placeholder_url='placeholder.png', optional_attributes={'class': 'mzp-c-card-image'}) }}
@@ -68,13 +68,14 @@
     {% endif %}
     </div>
   </a>
-  {% if video_url %}
+  {% if youtube_id %}
   <div class="mzp-c-card-video-wrapper hidden">
     <figure class="mzp-c-card-video-content">
-      <video class="mzp-c-card-video" preload="none" controls playsinline data-ga-label="{{ ga_title }}">
-        <source src="{{ video_url }}.webm" type="video/webm">
-        <source src="{{ video_url }}.mp4" type="video/mp4">
-      </video>
+      <div class="ytcontainer-video">
+        <div class="video-container">
+          <div class="video-play" data-id="{{ youtube_id }}"></div>
+        </div>
+      </div>
       <figcaption>
         <p>{% if desc %}{{ desc }}{% endif %} <a href="{{ link_url }}">{{ _('Read more') }}</a></p>
       </figcaption>
@@ -116,56 +117,55 @@
       <div class="mzp-l-card-hero">
         {{ card_block(
             class='mzp-c-card-large',
-            tag_label=_('Podcast'),
-            media_icon='mzp-has-video',
-            title=_('IRL season 3: The grand bargain'),
-            ga_title='IRL season 3: The grand bargain',
-            desc=_('You click “accept” every day, but often don’t know what you’re giving away. Is it a fair trade, or should you demand a better bargain?'),
-            image_url='home/2018/cards/irl-season-3.png',
-            include_highres_image=True,
+            tag_label=_('Branding'),
+            title=_('Evolving the Firefox brand'),
+            ga_title='Evolving the Firefox brand',
+            desc=_('Say “Firefox” and most people think of a web browser on their laptop or phone. There’s more to the story, and our branding needs to evolve.'),
+            image_url='home/2018/cards/design-systems.png',
             aspect_ratio='mzp-has-aspect-16-9',
-            link_url='https://irlpodcast.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
-            video_url='https://assets.mozilla.net/video/mozilla-home/irl-trailer'
+            link_url='https://blog.mozilla.org/opendesign/evolving-the-firefox-brand/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
+        <!-- 2 -->
         {{ card_block(
             tag_label=_('News'),
-            title=_('The New York Times reviews Firefox'),
-            ga_title='The New York Times reviews Firefox',
-            desc=_('The New York Times declares Firefox is back, and it’s time to give it a try.'),
-            image_url='home/2018/cards/nyt.png',
-            include_highres_image=True,
+            title=_('Bloomberg: Pocket’s 30M users are great for publishers'),
+            ga_title='Bloomberg: Pocket’s 30M users are great for publishers',
+            desc=_('Mozilla’s focus on leisurely reads is aimed at publishers burned by Facebook. It’s paying off: Traffic is already up 75 percent this year.'),
+            image_url='home/2018/cards/pocket-article-illustration.jpg',
             aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://www.nytimes.com/2018/06/20/technology/personaltech/firefox-chrome-browser-privacy.html'
+            link_url='https://www.bloomberg.com/news/articles/2018-08-09/pocket-s-30-million-users-are-great-for-publishers?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
+        <!-- 3 -->
         {{ card_block(
-            tag_label=_('News'),
-            title=_('The Verge: The future of news feeds'),
+            tag_label=_('Video'),
+            media_icon='mzp-has-video',
+            title=_('Our privacy philosophy explained'),
             ga_title='The Verge: The future of news feeds',
-            desc=_('Casey and Nate talk about the future of personalized recommendations and how Pocket is building a better news feed.'),
-            image_url='home/2018/cards/verge-pocket.png',
-            include_highres_image=True,
+            desc=_('These five principles guide how we put people first when we make products, manage data and advocate for policies.'),
+            image_url='home/2018/cards/privacy-philosophy.png',
             aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://www.theverge.com/2018/6/13/17446660/mozilla-firefox-pocket-recommendations-ceo-nate-weiner-interview-converge-podcast'
+            link_url='https://blog.mozilla.org/internetcitizen/2018/08/13/firefox-privacy-philosophy/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
+            youtube_id='fbF9gDSZX6U',
         )}}
+        <!-- 4 -->
         {{ card_block(
-            tag_label=_('Firefox'),
-            title=_('Get the newest Firefox'),
-            ga_title='Get the newest Firefox',
-            desc=_('The latest Firefox is here. Built to help you work smarter and faster.'),
-            image_url='home/2018/cards/firefox.png',
-            include_highres_image=True,
+            tag_label=_('Podcast'),
+            title=_('IRL: Paid attention'),
+            ga_title='IRL: Paid attention',
+            desc=_('There’s a new currency in town (and no, we’re not talking about Bitcoin). We’re talking about attention. Tune in to IRL.'),
+            image_url='home/2018/cards/irl-s3-e3.png',
             aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://blog.mozilla.org/blog/2018/06/26/new-firefox-releases-now-available-2/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+            link_url='https://irlpodcast.org/season3/episode3/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
+        <!-- 5 -->
         {{ card_block(
             tag_label=_('Privacy'),
-            title=_('Join The New Organs art project'),
-            ga_title='Join The New Organs art project',
-            desc=_('Have you ever suspected that your phone is eavesdropping on you? Tell us about it.'),
-            image_url='home/2018/cards/new-organs.png',
-            include_highres_image=True,
+            title=_('Make your browser a privacy superpower'),
+            ga_title='Make your browser a privacy superpower',
+            desc=_('Customize your Firefox with these privacy extensions so you can browse knowing your personal data is safe.'),
+            image_url='home/2018/cards/firefox-privacy.png',
             aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://blog.mozilla.org/internetcitizen/2018/06/21/is-your-smartphone-listening-to-you-probably-not-but-we-still-want-to-hear-from-you/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+            link_url='https://blog.mozilla.org/firefox/make-your-firefox-browser-a-privacy-superpower-with-these-extensions/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
       </div>
 
@@ -183,32 +183,28 @@
           </div>
         </div>
       </div>
-
+<!-- 6 -->
       <div class="mzp-l-card-half">
         {{ card_block(
             class='mzp-c-card-medium',
-            media_icon='mzp-has-video',
-            tag_label=_('Firefox'),
-            title=_('Introducing Side View'),
-            ga_title='Introducing Side View',
-            desc=_('View two different websites, next to each other in same browser window.'),
-            image_url='home/2018/cards/side-view.png',
-            include_highres_image=True,
+            tag_label=_('Test Pilot'),
+            title=_('Advance offers real-time recommendations'),
+            ga_title='Advance offers real-time recommendations',
+            desc=_('With the latest Firefox experiment, Advance, you can explore more of the web based on your current page and your most recent web history.'),
+            image_url='home/2018/cards/recommendations-screenshot.jpg',
             aspect_ratio='mzp-has-aspect-16-9',
-            link_url='https://blog.mozilla.org/firefox/its-a-new-firefox-multi-tasking-extension-side-view/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
-            video_url='https://assets.mozilla.net/video/mozilla-home/side-view'
+            link_url='https://blog.mozilla.org/blog/2018/08/07/firefox-offers-recommendations-with-latest-test-pilot-experiment-advance/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
         )}}
-
+<!-- 7 -->
         {{ card_block(
             class='mzp-c-card-medium',
-            tag_label=_('Open source'),
-            title=_('Open source isn’t just for software'),
-            ga_title='Open source isn’t just for software',
-            desc=_('Raise a glass to Opensourcery, an open source beer by Widmer Brothers. Recipe included.'),
-            image_url='home/2018/cards/open-sourcery.png',
-            include_highres_image=True,
+            tag_label=_('Pocket'),
+            title=_('Fresh front page, every time'),
+            ga_title='Fresh front page, every time',
+            desc=_('We’ve made it faster and easier for you to find things that are important to you whenever you open a new tab in Firefox.'),
+            image_url='home/2018/cards/pocket-front-page.png',
             aspect_ratio='mzp-has-aspect-16-9',
-            link_url='https://blog.mozilla.org/firefox/open-source-isnt-just-for-software-opensourcery-recipe/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+            link_url='https://blog.mozilla.org/firefox/open-your-own-front-page-using-firefox-new-tab/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
       </div>
     </div>
@@ -237,30 +233,28 @@
 
     <div class="mzp-l-content">
       <div class="mzp-l-card-half">
+<!-- 8 -->
         {{ card_block(
             class='mzp-c-card-medium',
-            tag_label=_('Tech talk'),
-            title=_('A cartoon intro to DNS security'),
-            ga_title='A cartoon intro to DNS security',
-            desc=_('We’re taking on the companies and organizations that want to secretly collect and sell user data.'),
-            image_url='home/2018/cards/dns-security.png',
+            tag_label=_('Emerging Technologies'),
+            title=_('An invisible tax: Video codecs'),
+            ga_title='An invisible tax: Video codecs',
+            desc=_('Here’s a surprising fact: It costs money to watch video online, even on free sites like YouTube. The open-source AV1 codec could change that.'),
+            image_url='home/2018/cards/video-codecs.png',
             include_highres_image=False,
             aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://hacks.mozilla.org/2018/05/a-cartoon-intro-to-dns-over-https/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
+            link_url='https://blog.mozilla.org/blog/2018/07/11/royalty-free-web-video-codecs/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
         )}}
-
+<!-- 9 -->
         {{ card_block(
             class='mzp-c-card-medium',
-            media_icon='mzp-has-video',
-            tag_label=_('Spotlight'),
-            title=_('Working for good: Metrofiets cargo bikes'),
-            ga_title='Working for good: Metrofiets cargo bikes',
-            desc=_('In this series, we’re profiling businesses that work to make the world better—and use Firefox to support a healthy, open and safe internet.'),
-            image_url='home/2018/cards/metrofiets.jpg',
-            include_highres_image=True,
+            tag_label=_('Internet Health'),
+            title=_('Attention economy to addiction economy'),
+            ga_title='Attention economy to addiction economy',
+            desc=_('As we depend more on our connected devices, it’s increasingly clear that there’s a dark side to the technology we use every day.'),
+            image_url='home/2018/cards/attention-economy.png',
             aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://blog.mozilla.org/firefox/metrofiets-cargo-bikes/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
-            video_url='https://assets.mozilla.net/video/mozilla-home/metrofiets'
+            link_url='https://blog.mozilla.org/internetcitizen/2018/07/27/attention-addiction/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
       </div>
 
@@ -280,70 +274,67 @@
       </div>
 
       <div class="mzp-l-card-third">
+<!-- 10 -->
         {{ card_block(
-            tag_label=_('Innovation'),
-            title=_('Common Voice speaks more languages'),
-            ga_title='Common Voice speaks more languages',
-            desc=_('Common Voice is on its way to being a tool communities can use to make speech technology in their own languages.'),
-            image_url='home/2018/cards/common-voice.png',
-            include_highres_image=True,
+            tag_label=_('Privacy'),
+            title=_('Seven apps that put privacy first'),
+            ga_title='Seven apps that put privacy first',
+            desc=_('Here are seven apps and services that are committed to your privacy and security, including search engines, email providers and more.'),
+            image_url='home/2018/cards/privacy-apps.png',
             aspect_ratio='mzp-has-aspect-16-9',
-            link_url='https://blog.mozilla.org/blog/2018/06/07/parlez-vous-deutsch-rhagor-o-leisiau-i-common-voice/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+            link_url='https://blog.mozilla.org/internetcitizen/2018/08/07/privacy-apps/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
-
+<!-- 11 -->
         {{ card_block(
-            tag_label=_('Spotlight'),
-            title=_('Working for good: Accel Lifestyles'),
-            ga_title='Working for good: Accel Lifestyles',
-            desc=_('Troubled by fast fashion production processes, Accel’s CEO set out to make change for the better.'),
-            image_url='home/2018/cards/accel-lifestyles.jpg',
+            tag_label=_('Rapid Fire'),
+            title=_('Marshall Erwin talks trust and security'),
+            ga_title='Marshall Erwin talks trust and security',
+            desc=_('Get Marshall’s take on why security, privacy and trust matter so much at Mozilla and Firefox.'),
+            image_url='home/2018/cards/marshall-erwin.jpg',
             include_highres_image=False,
             aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://blog.mozilla.org/firefox/working-for-good-accel-lifestyle/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+            link_url='https://blog.mozilla.org/internetcitizen/2018/08/09/marshall-erwin-trust/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
-
+<!-- 12 -->
         {{ card_block(
-            tag_label=_('Internet health'),
-            title=_('7 ways online rights have changed '),
-            ga_title='7 ways online rights have changed ',
-            desc=_('As 2018 hits the halfway point, here is our list of online issues we feel are most important.'),
-            image_url='home/2018/cards/online-rights.png',
-            include_highres_image=True,
+            tag_label=_('Partners'),
+            title=_('WeTransfer keeps community at heart'),
+            ga_title='WeTransfer keeps community at heart',
+            desc=_('WeTransfer, the independent file transfer and sharing service, makes file-sharing easy in Firefox while keeping user privacy at heart.'),
+            image_url='home/2018/cards/we-transfer.png',
             aspect_ratio='mzp-has-aspect-16-9',
-            link_url='https://blog.mozilla.org/internetcitizen/2018/06/25/changes-to-online-rights/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+            link_url='https://blog.mozilla.org/internetcitizen/2018/07/31/wetransfer/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
-
+<!-- 13 -->
         {{ card_block(
-            tag_label=_('Policy'),
-            title=_('SCOTUS scores a win for privacy'),
-            ga_title='SCOTUS scores a win for privacy',
-            desc=_('The U.S. Supreme Court held that the government must get a warrant to obtain records of cell phone location data.'),
-            image_url='home/2018/cards/scotus.png',
-            include_highres_image=True,
+            tag_label=_('Guest: Alyssa Bereznak'),
+            title=_('Gamification and the attention economy'),
+            ga_title='Gamification and the attention economy',
+            desc=_('The Ringer’s Alyssa Bereznak shares her insights into tech’s race for our attention and how gamification keeps us hooked.'),
+            image_url='home/2018/cards/instagram-alyssa-bereznak.png',
             aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://blog.mozilla.org/netpolicy/2018/06/22/the-supreme-court-scores-a-win-for-privacy/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+            link_url='https://blog.mozilla.org/internetcitizen/2018/07/20/the-ringers-alyssa-bereznak-on-gamification-and-the-attention-economy/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
-
+<!-- 14 -->
         {{ card_block(
-            tag_label=_('Internet health'),
-            title=_('Internet Health Report: Too big tech?'),
-            ga_title='Internet Health Report: Too big tech?',
-            desc=_('You know an internet company is big when your friends think you’re weird for opting out of their services. Has tech gotten too big?'),
-            image_url='home/2018/cards/health-report.png',
+            tag_label=_('Guest: Nick Briz'),
+            title=_('This is your digital fingerprint'),
+            ga_title='This is your digital fingerprint',
+            desc=_('Chicago-based teacher and activist Nick Briz explains how people are tracked, surveilled and monetized on the web.'),
+            image_url='home/2018/cards/digital-fingerprint.png',
             include_highres_image=False,
             aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://internethealthreport.org/2018/too-big-tech/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+            link_url='https://blog.mozilla.org/internetcitizen/2018/07/26/this-is-your-digital-fingerprint/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
-
+<!-- 15 -->
         {{ card_block(
-            tag_label=_('Innovation'),
-            title=_('WITHIN distributes films using WebVR'),
-            ga_title='WITHIN distributes films using WebVR',
-            desc=_('WebVR opens more opportunities for creative makers, from gamers to filmmakers, to reach more audiences with exciting VR content.'),
-            image_url='home/2018/cards/webvr.png',
-            include_highres_image=True,
+            tag_label=_('Guest: Laurie Davis Edwards'),
+            title=_('How the web changed dating forever'),
+            ga_title='How the web changed dating forever',
+            desc=_('There is a rise in the desire for perfection in relationships, except except it takes more than a quick swipe right to get it perfect.'),
+            image_url='home/2018/cards/online-dating.png',
             aspect_ratio='mzp-has-aspect-16-9',
-            link_url='https://blog.mozilla.org/blog/2018/06/13/within-webvr/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+            link_url='https://blog.mozilla.org/internetcitizen/2018/08/08/how-the-web-changed-dating-forever/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
       </div>
 
@@ -363,28 +354,28 @@
       </div>
 
       <div class="mzp-l-card-half">
+<!-- 16 -->
         {{ card_block(
             class='mzp-c-card-medium',
             tag_label=_('Privacy'),
-            title=_('Stop Facebook from following you'),
-            ga_title='Stop Facebook from following you',
-            desc=_('Don’t #DeleteFacebook. Instead isolate your Facebook activity from nosy trackers with the Facebook Container Extension. '),
-            image_url='home/2018/cards/facebook-container.png',
-            include_highres_image=True,
+            title=_('Get your game on, in the browser'),
+            ga_title='Get your game on, in the browser',
+            desc=_('The web could be the best platform for gaming, and Firefox is the the best browser for gaming. Here’s why. '),
+            image_url='home/2018/cards/browser-game.png',
             aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://blog.mozilla.org/firefox/facebook-container-extension/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
+            link_url='https://blog.mozilla.org/firefox/get-your-game-on-in-the-browser/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
         )}}
-
+<!-- 17 -->
         {{ card_block(
             class='mzp-c-card-medium',
-            tag_label=_('Video'),
-            title=_('The web demystified'),
-            ga_title='The web demystified',
-            desc=_('Our slightly techy, somewhat nerdy, very fun video series that introduces the web in a way that’s easy and understandable.'),
-            image_url='home/2018/cards/web-demystified.png',
+            tag_label=_('Mobile'),
+            title=_('Firefox Focus rolls out new features'),
+            ga_title='Firefox Focus rolls out new features',
+            desc=_('Find in page, desktop view and biometric access make Focus smarter than ever. Available for iOS, Android and now the BlackBerry Key2. '),
+            image_url='home/2018/cards/firefox-focus.jpg',
             include_highres_image=False,
             aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://hacks.mozilla.org/2018/04/a-new-video-series-web-demystified/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+            link_url='https://blog.mozilla.org/blog/2018/07/12/new-features-in-firefox-focus-for-ios-android-now-also-on-the-blackberry-key2/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
       </div>
 
