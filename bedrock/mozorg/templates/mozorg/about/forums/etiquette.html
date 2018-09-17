@@ -5,7 +5,7 @@
 {% extends "mozorg/about-base.html" %}
 
 {% block page_title %}{{ _('Mozilla Forum Etiquette') }}{% endblock %}
-{% block body_id %}about-forum-etiquette{% endblock %}
+{% set body_id = "about-forum-etiquette" %}
 
 {% block page_css %}
   {{ css_bundle('about-forums') }}

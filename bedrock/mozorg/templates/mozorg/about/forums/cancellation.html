@@ -5,7 +5,7 @@
 {% extends "mozorg/about-base.html" %}
 
 {% block page_title %}{{ _('Newsgroups Message Cancellation Policy') }}{% endblock %}
-{% block body_id %}about-forum-cancellation{% endblock %}
+{% set body_id = "about-forum-cancellation" %}
 
 {% block page_css %}
   {{ css_bundle('about-forums') }}
