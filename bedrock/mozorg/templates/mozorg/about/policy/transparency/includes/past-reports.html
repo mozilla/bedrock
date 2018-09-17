@@ -4,7 +4,9 @@
 
 
 {# Add links to previous reports as new reports are published. #}
-<nav class="content nav-previous">
+<div class="nav-previous">
+<div class="content">
+<nav>
   <h3>{{ _('Previous Reports') }}</h3>
   <ul>
     <li><a href="{{ url('mozorg.about.policy.transparency.jan-jun-2017') }}">{{ _('January-June 2017') }}</a></li>
@@ -13,3 +15,5 @@
     <li><a href="{{ url('mozorg.about.policy.transparency.jan-dec-2015') }}">{{ _('January-December 2015') }}</a></li>
   </ul>
 </nav>
+</div>
+</div>
