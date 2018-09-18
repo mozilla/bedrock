@@ -6,18 +6,6 @@
 
 @import 'includes/lib';
 
-@mixin section-curve {
-    position: absolute;
-    display: block;
-    left: 0;
-    content: '';
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    width: 100%;
-    visibility: visible;
-    z-index: 10;
-}
-
 body {
     scroll-behavior: smooth;
 }
