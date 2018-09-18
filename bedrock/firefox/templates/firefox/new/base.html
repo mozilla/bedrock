@@ -10,18 +10,33 @@
 
 {% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
 
-{# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
-{%- block page_title -%}
-  {% if LANG == 'en-CA' %}
-    Free Web Browser (CA)
-  {% elif LANG == 'en-GB' %}
-    Free Web Browser (UK)
-  {% else %}
-    {{_('Free Web Browser')}}
-  {% endif %}
-{%- endblock -%}
 
-{% block page_desc %}{{_('Download Mozilla Firefox, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox for Windows, macOS, Linux, Android and iOS today!')}}{% endblock %}
+{% if switch('firefox_new_title_experiment') %}
+    {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
+    {%- block page_title -%}
+    {% if LANG == 'en-CA' %}
+    The Fast and Free Web Browser 🦊 (CA)
+    {% elif LANG == 'en-GB' %}
+    The Fast and Free Web Browser 🦊 (UK)
+    {% else %}
+    {{_('The Fast and Free Web Browser 🦊')}}
+    {% endif %}
+    {%- endblock -%}
+    {% block page_title_suffix %}{% endblock %}
+    {% block page_desc %}{{_('Download Firefox for Windows, Mac, Linux, Android, and iOS. Firefox is an independent, people-first browser made by Mozilla. Get it now, it's free and fast. ✓')}}{% endblock %}
+{% else %}
+    {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
+    {%- block page_title -%}
+    {% if LANG == 'en-CA' %}
+    Free Web Browser (CA)
+    {% elif LANG == 'en-GB' %}
+    Free Web Browser (UK)
+    {% else %}
+    {{_('Free Web Browser')}}
+    {% endif %}
+    {%- endblock -%}
+    {% block page_desc %}{{_('Download Mozilla Firefox, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox for Windows, macOS, Linux, Android and iOS today!')}}{% endblock %}
+{% endif %}
 
 {#- This will appear as <meta property="og:title"> which can be used for social share -#}
 {% block page_og_title %}{{_('Download the fastest Firefox ever')}}{% endblock %}
