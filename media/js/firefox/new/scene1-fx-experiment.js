@@ -5,22 +5,22 @@
 (function(Mozilla) {
     'use strict';
 
-    var client = Mozilla.Client;
-    if(client.isFirefox){
-        client.getFirefoxDetails(function(details) {
-            // only initialize experiment if current Firefox user not logged into FxA
-            if (details.firefox && !details.setup && (client.FirefoxVersion.indexOf(62) === 0)) {
-                var cop = new Mozilla.TrafficCop({
-                    id: 'scene1_fx_experiment',
-                    variations: {
-                        '&v=y': 50, // control
-                        '&v=x': 50
-                    }
-                });
+    var ua = navigator.userAgent;
+    var isFirefox = /\s(Firefox)/.test(ua) && !/Iceweasel|IceCat|SeaMonkey|Camino|like\ Firefox/i.test(ua);
+    var isDesktop = /\sFirefox/.test(ua) && !/Mobile|Tablet|Fennec|FxiOS/.test(ua);
+    var firefoxVersion = /Firefox\/(\d+(?:\.\d+){1,2})/.exec(ua);
+    var isUpToDate = firefoxVersion && firefoxVersion.hasOwnProperty(1) ? firefoxVersion[1].indexOf(62) === 0 : false;
 
-                cop.init();
+    if(isFirefox && isDesktop && isUpToDate) {
+        var cop = new Mozilla.TrafficCop({
+            id: 'scene1_fx_experiment',
+            variations: {
+                '&v=y': 50, // control
+                '&v=x': 50
             }
         });
+
+        cop.init();
     }
 
 })(window.Mozilla);

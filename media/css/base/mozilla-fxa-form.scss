@@ -71,25 +71,4 @@
     .agreement {
         @include font-size-small;
     }
-
-    @media #{$mq-phone-wide} {
-        @supports (display: flex) {
-            .fxa-email-field-container {
-                display: flex;
-            }
-
-            .field {
-                width: 66%;
-                margin: 0 20px 0 0;
-
-                [dir='rtl'] & {
-                    margin: 0 0 0 20px;
-                }
-            }
-
-            .button {
-                width: 33%;
-            }
-        }
-    }
 }

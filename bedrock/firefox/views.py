@@ -593,7 +593,7 @@ def download_thanks(request):
     show_newsletter = locale in ['en-US', 'en-GB', 'en-CA', 'en-ZA', 'es-ES', 'es-AR', 'es-CL', 'es-MX', 'pt-BR', 'fr', 'ru', 'id', 'de', 'pl']
 
     # ensure variant matches pre-defined value
-    if variant not in ['a', 'b', 'x', 'y']:  # place expected ?v= values in this list
+    if variant not in ['a', 'x', 'y']:  # place expected ?v= values in this list
         variant = None
 
     if variant == 'x':
@@ -647,7 +647,7 @@ def new(request):
     locale = l10n_utils.get_locale(request)
 
     # ensure variant matches pre-defined value
-    if variant not in ['a', 'b', 'c', 'd', 'e', 'f', '1', '2', 'x', 'y']:  # place expected ?v= values in this list
+    if variant not in ['a', '1', '2', 'x', 'y']:  # place expected ?v= values in this list
         variant = None
 
     if scene == '2':
