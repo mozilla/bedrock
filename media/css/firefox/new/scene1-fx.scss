@@ -3,11 +3,22 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import '../../pebbles/includes/lib';
+@import '../../pebbles/components/fxa';
 
 
 #firefox-new-scene1 {
+
+    .main-content .header-content {
+        width: 100%;
+    }
+
     .main-download {
         max-width: 460px;
+        margin: 0 auto;
+
+        @media #{$mq-tablet} {
+            margin: 0;
+        }
     }
 
     .main-cta-wrapper {
@@ -93,6 +104,14 @@
 
         .button {
             border-radius: 2px;
+        }
+    }
+
+    .download-button-wrapper {
+        width: 100%;
+
+        @media #{$mq-tablet} {
+            width: auto;
         }
     }
 

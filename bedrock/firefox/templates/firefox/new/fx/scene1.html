@@ -40,11 +40,13 @@
   <div class="main-cta-wrapper">
     <header>
       <h1>You’ve got Firefox.</h1>
-      <h2>Make it even better with a Firefox Account.</h2>
     </header>
-    <p>Sync bookmarks & passwords, send tabs and save to Pocket easily with one login.</p>
-    <div>
-      {{ fxa_email_form(entrypoint='accounts-page', button_class='button-black', utm_source='accounts-page', utm_params={'campaign': 'fxa-embedded-form', 'content': 'accounts-page', 'medium': 'referral'}) }}
+    <div class="show-fxa-supported-signed-out">
+      <h2>Make it even better with a Firefox Account.</h2>
+      <p>Sync bookmarks & passwords, send tabs and save to Pocket easily with one login.</p>
+      <div>
+        {{ fxa_email_form(entrypoint='accounts-page', button_class='button button-black', utm_source='accounts-page', utm_params={'campaign': 'fxa-embedded-form', 'content': 'accounts-page', 'medium': 'referral'}) }}
+      </div>
     </div>
     <div class="download-again-wrapper">
       <h2>Need to download again?</h2>
