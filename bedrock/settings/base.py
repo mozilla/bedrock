@@ -124,7 +124,7 @@ PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'as', 'ast', 'az', 'azz', 'be', 'bg',
                   'mai', 'mk', 'ml', 'mr', 'ms', 'my', 'nb-NO', 'ne-NP', 'nl',
                   'nn-NO', 'oc', 'or', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
                   'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'son', 'sq',
-                  'sr', 'sv-SE', 'ta', 'te', 'th', 'tr', 'trs', 'uk', 'ur',
+                  'sr', 'sv-SE', 'ta', 'te', 'th', 'tl', 'tr', 'trs', 'uk', 'ur',
                   'uz', 'vi', 'xh', 'zh-CN', 'zh-TW', 'zu')
 
 LOCALES_PATH = ROOT_PATH / 'locale'
