@@ -124,6 +124,10 @@ facebook_notices = PrivacyDocView.as_view(
     legal_doc_name='facebook_privacy_info')
 facebook_notices = xframe_allow(facebook_notices)
 
+firefox_monitor_notices = PrivacyDocView.as_view(
+    template_name='privacy/notices/firefox-monitor.html',
+    legal_doc_name='firefox_monitor_terms_privacy')
+
 
 @cache_page(60 * 60)  # cache for 1 hour
 def privacy(request):
