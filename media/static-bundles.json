@@ -229,6 +229,14 @@
       "name": "firefox_new_scene1"
     },
     {
+      "files": [
+        "css/base/mozilla-fxa-form.scss",
+        "css/firefox/new/scene1.scss",
+        "css/firefox/new/scene1-fx.scss"
+      ],
+      "name": "firefox_new_fx_scene1"
+    },
+    {
         "files": [
           "css/firefox/new/scene1.scss",
           "css/firefox/new/yandex-scene1.scss"
@@ -986,6 +994,37 @@
         "js/firefox/new/scene1.js"
       ],
       "name": "firefox_new_scene1"
+    },
+    {
+      "files": [
+        "js/base/mozilla-traffic-cop.js",
+        "js/base/mozilla-client.js",
+        "js/firefox/new/scene1-fx-experiment.js"
+      ],
+      "name": "firefox_new_scene1_fx_experiment"
+    },
+    {
+      "files": [
+        "js/firefox/new/scene1-fx-experiment-y.js"
+      ],
+      "name": "firefox_new_scene1_fx_experiment_y"
+    },
+    {
+      "files": [
+        "js/firefox/new/scene1-fx-experiment-x.js"
+      ],
+      "name": "firefox_new_scene1_fx_experiment_x"
+    },
+    {
+      "files": [
+        "js/base/mozilla-modal.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-fxa-form.js",
+        "js/firefox/new/scene1.js",
+        "js/firefox/new/variation-scene1.js"
+      ],
+      "name": "firefox_new_fx_scene1"
     },
     {
         "files": [

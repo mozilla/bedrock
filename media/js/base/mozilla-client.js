@@ -185,13 +185,13 @@ if (typeof Mozilla === 'undefined') {
         isESR = isESR === undefined ? false : isESR;
         userVer = userVer === undefined ? Client._getFirefoxVersion() : userVer;
 
-        var $html = $(document.documentElement);
+        var html = document.documentElement;
 
-        if (!$html.attr('data-esr-versions') || !$html.attr('data-latest-firefox')) {
+        if (!html.getAttribute('data-esr-versions') || !html.getAttribute('data-latest-firefox')) {
             return false;
         }
 
-        var versions = isESR ? $html.attr('data-esr-versions').split(' ') : [$html.attr('data-latest-firefox')];
+        var versions = isESR ? html.getAttribute('data-esr-versions').split(' ') : [html.getAttribute('data-latest-firefox')];
         var userVerArr = userVer.match(/^(\d+(?:\.\d+){1,2})/)[1].split('.');
         var isUpToDate = false;
 
@@ -221,7 +221,7 @@ if (typeof Mozilla === 'undefined') {
      */
     Client.isFirefoxOutOfDate = function(clientVer, majorVer, latestVer) {
         var clientVersion = parseInt(clientVer, 10);
-        var latestVersion = typeof latestVer === 'undefined' ? parseInt($('html').attr('data-latest-firefox'), 10) : parseInt(latestVer, 10);
+        var latestVersion = typeof latestVer === 'undefined' ? parseInt(document.documentElement.getAttribute('data-latest-firefox'), 10) : parseInt(latestVer, 10);
         var majorVersions = Math.max(parseInt(majorVer, 10), 1); // majorVersions must be at least 1.
 
         if (isNaN(latestVersion) || isNaN(clientVersion) || isNaN(majorVersions)) {
@@ -242,7 +242,7 @@ if (typeof Mozilla === 'undefined') {
         var path = typeof pathName === 'undefined' ? window.location.pathname : pathName;
         var urlVersion =  /firefox\/(\d+(?:\.\d+)?\.\da?\d?)/.exec(path);
         var version = urlVersion ? parseInt(urlVersion[1], 10) : null;
-        var latestVersion = typeof latestVer === 'undefined' ? parseInt($('html').attr('data-latest-firefox'), 10) : parseInt(latestVer, 10);
+        var latestVersion = typeof latestVer === 'undefined' ? parseInt(document.documentElement.getAttribute('data-latest-firefox'), 10) : parseInt(latestVer, 10);
         var majorVersions = Math.max(parseInt(majorVer, 10), 1); // majorVersions must be at least 1.
 
         if (version && latestVersion && (version <= latestVersion - majorVersions)) {

@@ -12,6 +12,16 @@
   {{ css_bundle('firefox_new_scene1') }}
 {% endblock %}
 
+{% block experiments %}
+  {% if switch('experiment_firefox_new_scene1_fx', ['en-US']) %}
+    {% if v != 'y' %}
+      {{ js_bundle('firefox_new_scene1_fx_experiment') }}
+    {% elif v == 'y' %}
+      {{ js_bundle('firefox_new_scene1_fx_experiment_y') }}
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
 {% block body_id %}firefox-new-scene1{% endblock %}
 
 {% block messages %}
