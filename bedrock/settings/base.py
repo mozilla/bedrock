@@ -1345,6 +1345,8 @@ CSP_IMG_SRC = CSP_DEFAULT_SRC + (
     'www.googletagmanager.com',
     'www.google-analytics.com',
     'adservice.google.com',
+    'adservice.google.de',
+    'adservice.google.dk',
     'creativecommons.org',
 )
 CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + (
