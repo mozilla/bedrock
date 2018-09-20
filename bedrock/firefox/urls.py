@@ -112,4 +112,8 @@ urlpatterns = (
 
     page('firefox/switch', 'firefox/switch.html'),
     page('firefox/pocket', 'firefox/pocket.html'),
+
+    # Bug 1474285
+    page('firefox/profile-migrate', 'firefox/profile/profile-migrate.html'),
+    page('firefox/profile-downgrade', 'firefox/profile/profile-downgrade.html'),
 )

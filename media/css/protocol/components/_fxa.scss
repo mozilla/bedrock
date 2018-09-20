@@ -1,0 +1,27 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../../node_modules/@mozilla-protocol/core/protocol/css/includes/lib";
+
+// Hide elements marked for specific variations by default
+.show-fxa-default,
+.show-fxa-not-fx,
+.show-fxa-supported-signed-out,
+.show-fxa-supported-signed-in,
+.show-fxa-unsupported,
+.show-fxa-android,
+.show-fxa-ios {
+    display: none;
+}
+
+// Show elements for current variation
+.state-fxa-supported-signed-in  .show-fxa-supported-signed-in,
+.state-fxa-supported-signed-out .show-fxa-supported-signed-out,
+.state-fxa-unsupported          .show-fxa-unsupported,
+.state-fxa-android              .show-fxa-android,
+.state-fxa-ios                  .show-fxa-ios,
+.state-fxa-not-fx               .show-fxa-not-fx,
+.state-fxa-default              .show-fxa-default {
+    display: block;
+}

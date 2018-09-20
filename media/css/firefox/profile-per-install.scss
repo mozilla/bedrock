@@ -1,0 +1,83 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import "../../protocol/css/includes/lib";
+@import "../../protocol/css/components/article";
+@import "../protocol/components/fxa";
+
+.mzp-c-article {
+    margin-bottom: $layout-lg;
+
+    &.mzp-l-content {
+        padding-left: $spacing-lg;
+        padding-right: $spacing-lg;
+    }
+
+    h2 {
+        @include text-display-sm;
+        margin-top: $layout-md;
+    }
+}
+
+.mzp-c-article-title {
+    @include text-display-sm;
+    color: $color-red-60;
+}
+
+.mzp-c-article-intro {
+    @include text-display-md;
+    font-weight: bold;
+    margin: $layout-md 0;
+}
+
+.page-header {
+    text-align: center;
+
+    .logo-fx,
+    .logo-moz {
+        display: block;
+        margin: 0 auto $spacing-md;
+    }
+
+    @media #{$mq-md} {
+        .logo-fx {
+            @include bidi(((float, left, right),));
+        }
+
+        .logo-moz {
+            @include bidi(((float, right, left),));
+            margin: $spacing-md 0;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Firefox Accounts
+
+.fxa-cta {
+   .signed-in {
+        @include at2x('/media/img/firefox/accounts/green-check.png', 30px, 30px);
+        @include bidi((
+            (background-position, left top, right top),
+            (padding-left, $spacing-2xl, 0),
+            (padding-right, 0, $spacing-2xl),
+        ));
+        background-repeat: no-repeat;
+        min-height: 30px;
+    }
+
+    .fxa-email-form {
+        margin: 0;
+        width: auto;
+
+        strong {
+            font-size: inherit;
+            display: inline;
+        }
+    }
+}
+

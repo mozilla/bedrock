@@ -15,7 +15,6 @@ Mozilla.FxaForm = (function(Mozilla) {
 
     // swap form action for Fx China re-pack
     function init() {
-
         // disable form while we check distribution
         fxaSubmitButton.disabled = true;
 
