@@ -65,6 +65,9 @@ Mozilla.FxaForm = (function(Mozilla) {
     }
 
     if (fxaForm) {
-        init();
+        // form is Firefox only right now
+        if (Mozilla.Client.isFirefox) {
+            init();
+        }
     }
 })(window.Mozilla);

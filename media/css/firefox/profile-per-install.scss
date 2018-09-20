@@ -5,8 +5,8 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import "../../../node_modules/@mozilla-protocol/core/protocol/css/includes/lib";
-@import "../../../node_modules/@mozilla-protocol/core/protocol/css/components/article";
+@import "../../protocol/css/includes/lib";
+@import "../../protocol/css/components/article";
 @import "../protocol/components/fxa";
 
 .mzp-c-article {
@@ -61,10 +61,13 @@ $image-path: '/media/protocol/img';
 .fxa-cta {
    .signed-in {
         @include at2x('/media/img/firefox/accounts/green-check.png', 30px, 30px);
-        background-position: left top;
+        @include bidi((
+            (background-position, left top, right top),
+            (padding-left, $spacing-2xl, 0),
+            (padding-right, 0, $spacing-2xl),
+        ));
         background-repeat: no-repeat;
         min-height: 30px;
-        padding-left: $spacing-2xl;
     }
 
     .fxa-email-form {
