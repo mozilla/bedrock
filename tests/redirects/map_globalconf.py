@@ -1237,4 +1237,7 @@ URLS = flatten((
     # Bug 1436740
     url_test('/teach/{,smarton/}', '/internet-health/'),
     url_test('/teach/smarton/{tracking,security,surveillance}/', '/internet-health/privacy-security/'),
+
+    # Issue 6209
+    url_test('/pocket/', '/firefox/pocket/'),
 ))
