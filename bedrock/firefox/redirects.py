@@ -586,4 +586,7 @@ redirectpatterns = (
 
     # bug 1428783
     redirect(r'^firefox/dnt/?$', 'https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature'),
+
+    # issue 6209
+    redirect(r'^pocket/?', '/firefox/pocket/'),
 )
