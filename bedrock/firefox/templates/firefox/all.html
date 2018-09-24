@@ -104,7 +104,9 @@
     <h1>{{ self.page_title()  }}</h1>
     <h2>{{ self.page_desc() }}{% if self.learn_more_url() %} <a href="{{ self.learn_more_url() }}">{{ _('Learn more') }}</a>{% endif %}</h2>
     {% if channel == 'nightly' %}
-    <p class="warning">{{ _('<strong>Warning</strong>: Nightly is updated daily. It is most appropriate for core Mozilla contributors and early adopters, not regular users.') }}</p>
+    <p class="warning nightly">{{ _('<strong>Warning</strong>: Nightly is updated daily. It is most appropriate for core Mozilla contributors and early adopters, not regular users.') }}</p>
+    {% elif channel == 'release' %}
+    <p class="warning xpvista">{{ _('<a href="%(url)s">Mozilla no longer provides security updates for Firefox on Windows XP or Vista</a>, but you can still download the final Windows 32-bit version.')|format(url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista') }}</p>
     {% endif %}
     <ul>
       {% if channel != 'nightly' %}

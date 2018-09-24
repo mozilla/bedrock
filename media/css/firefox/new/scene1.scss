@@ -109,6 +109,20 @@ html.android.firefox-old {
     }
 }
 
+html.windows.xpvista {
+    .version-message-container {
+        display: block;
+    }
+
+    .version-message.windows-xpvista {
+        display: inline-block;
+
+        &:before {
+            background-image: url('/media/img/firefox/new/icon-alert.svg');
+        }
+    }
+}
+
 .linux-arm-download-instructions {
     display: none;
     margin-top: 40px;

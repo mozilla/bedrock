@@ -67,6 +67,11 @@
     };
 
     var setFirefoxStatus = function() {
+        // Windows XP/Vista warning overrides the Firefox status message
+        if ($html.hasClass('xpvista')) {
+            return;
+        }
+
         var status = getFirefoxStatus();
         $html.addClass(status);
 

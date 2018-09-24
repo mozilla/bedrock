@@ -146,10 +146,17 @@
         // to avoid lots of flickering
         var platform = window.site.platform = window.site.getPlatform();
         var version = window.site.platformVersion = window.site.getPlatformVersion();
+        var _version = version ? parseFloat(version) : 0;
 
         if (platform === 'windows') {
+            // Add class to allow Windows XP/Vista users to download Firefox 52 ESR, though these
+            // legacy platforms are now officially unsupported
+            if (_version >= 5.1 && _version <= 6) {
+                h.className += ' xpvista';
+            }
+
             // Add class to support downloading Firefox for Windows 64-bit on Windows 7 and later
-            if (version && parseFloat(version) >= 6.1) {
+            if (_version >= 6.1) {
                 h.className += ' win7up';
             }
         } else {
