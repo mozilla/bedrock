@@ -14,6 +14,7 @@
     },
     {
       "files": [
+        "css/base/mozilla-fxa-state.scss",
         "css/firefox/accounts-features.scss"
       ],
       "name": "firefox_accounts_features"
@@ -181,6 +182,7 @@
     },
     {
       "files": [
+        "css/base/mozilla-fxa-state.scss",
         "css/firefox/features/sync.scss"
       ],
       "name": "firefox-features-sync"
@@ -230,6 +232,7 @@
     },
     {
       "files": [
+        "css/base/mozilla-fxa-state.scss",
         "css/base/mozilla-fxa-form.scss",
         "css/firefox/new/scene1.scss",
         "css/firefox/new/scene1-fx.scss"
@@ -813,6 +816,7 @@
     },
     {
       "files": [
+        "css/base/mozilla-fxa-state.scss",
         "css/base/mozilla-fxa-form.scss",
         "css/firefox/accounts.scss"
       ],
@@ -882,6 +886,7 @@
     },
     {
       "files": [
+        "css/base/mozilla-fxa-state.scss",
         "css/base/mozilla-fxa-form.scss",
         "css/firefox/profile-per-install.scss"
       ],
