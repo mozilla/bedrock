@@ -25,14 +25,41 @@
         .span-all();
         margin-top: @baseLine;
     }
-    p.warning {
-        font-size: @largeFontSize;
-    }
     li {
         margin: 0;
         list-style-type: none;
         a:after {
             content: "\00A0\00BB";
+        }
+    }
+
+    .warning {
+        position: relative;
+        .border-box();
+        border: 2px solid #FFA500;
+        padding: 10px 15px;
+        color: @textColorSecondary;
+        background-color: #FAFAD2;
+        font-size: @largeFontSize;
+        text-align: left;
+
+        &.xpvista {
+            display: none;
+
+            .windows.xpvista & {
+                display: block;
+            }
+        }
+
+        a:link,
+        a:visited,
+        a:hover,
+        a:focus,
+        a:active {
+            color: @textColorSecondary;
+            text-decoration: underline;
+            .open-sans-light();
+            font-weight: bold;
         }
     }
 }

@@ -58,6 +58,9 @@
 {% block content %}
 <main class="main mzp-t-firefox mzp-t-dark">
   <section class="status">
+    <div class="mzp-l-content mzp-t-firefox windows-xpvista">
+      <p>{{ _('You’re using an insecure, outdated operating system <a href="%(url)s">no longer supported by Firefox</a>.')|format(url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista') }}</p>
+    </div>
     <div class="mzp-l-content mzp-t-firefox">
       {# fallback_url is replaced by the platform download link via JS, but if
         something fails the user should still get a link to a working download path. #}

@@ -41,6 +41,25 @@ $image-path: '/media/protocol/img';
     p {
         margin: 0;
     }
+
+    .windows-xpvista {
+        display: none;
+        max-width: none;
+        color: $color-black;
+        background-color: $brand-lemon-yellow;
+
+        .windows.xpvista & {
+            display: block;
+        }
+
+        a:link,
+        a:visited,
+        a:hover,
+        a:focus,
+        a:active {
+            color: $color-black;
+        }
+    }
 }
 
 .main {
