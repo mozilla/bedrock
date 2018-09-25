@@ -94,28 +94,26 @@
   <section id="download-firefox-primary-cta" class="download-firefox-primary-cta">
     <div class="mzp-l-content">
       <div class="primary-wrapper">
-          <h2 class="primary-title">{{ _('The new <strong>Firefox</strong>') }}</h2>
-          <h3 class="primary-title-sub">{{ _('Fast for good.') }}</h3>
-          <p class="primary-desc">{{ _('2x the speed. Built-in privacy protection. Powered by Mozilla.') }}</p>
-          <p class="primary-desc-sub">{{ _('There’s a better way to browse.') }}</p>
-          {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
+        <h2 class="primary-title">{{ _('Firefox') }}</h2>
+        <h3 class="primary-title-sub">{{ _('Fast. Private. Fearless.') }}</h3>
+        <p class="primary-desc-sub">{{ _('Firefox fights for you.') }}</p>
+        {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
       </div>
     </div>
   </section>
   <section id="download-firefox-sticky-cta" class="download-firefox-sticky-cta">
     <div class="mzp-l-content">
       <div class="primary-wrapper">
-          <h2 class="primary-title">{{ _('The new <strong>Firefox</strong>') }}</h2>
-          <h3 class="primary-title-sub">{{ _('Fast for good.') }}</h3>
-          <p class="primary-desc-sub">{{ _('There’s a better way to browse.') }}</p>
-          {{ download_firefox(dom_id='download-sticky', download_location='sticky cta') }}
+        <h2 class="primary-title">{{ _('<strong>Firefox</strong> fights for you.') }}</h2>
+        <h3 class="primary-title-sub">{{ _('Fast. Private. Fearless.') }}</h3>
+        <p class="primary-desc-sub">{{ _('Firefox fights for you.') }}</p>
+        {{ download_firefox(dom_id='download-sticky', download_location='sticky cta', button_color='button-small') }}
       </div>
     </div>
   </section>
   <div class="mozilla-content">
     <div class="mzp-l-content">
       <div class="mzp-l-card-hero">
-      {% if switch('firefox-monitor-homepage') %}
         {{ card_block(
             class='mzp-c-card-large',
             tag_label=_('Security'),
@@ -126,18 +124,6 @@
             aspect_ratio='mzp-has-aspect-16-9',
             link_url='https://monitor.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
-      {% else %}
-        {{ card_block(
-            class='mzp-c-card-large',
-            tag_label=_('Branding'),
-            title=_('Evolving the Firefox brand'),
-            ga_title='Evolving the Firefox brand',
-            desc=_('Say “Firefox” and most people think of a web browser on their laptop or phone. There’s more to the story, and our branding needs to evolve.'),
-            image_url='home/2018/cards/design-systems.png',
-            aspect_ratio='mzp-has-aspect-16-9',
-            link_url='https://blog.mozilla.org/opendesign/evolving-the-firefox-brand/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
-        )}}
-      {% endif %}
         <!-- 2 -->
         {{ card_block(
             tag_label=_('News'),
