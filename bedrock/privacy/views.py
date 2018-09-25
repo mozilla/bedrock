@@ -111,6 +111,10 @@ firefox_reality_notices = PrivacyDocView.as_view(
     template_name='privacy/notices/firefox-reality.html',
     legal_doc_name='firefox_reality_privacy_notice')
 
+firefox_screenshotgo_notices = PrivacyDocView.as_view(
+    template_name='privacy/notices/firefox-screenshotgo.html',
+    legal_doc_name='firefox_screenshotgo_privacy_notice')
+
 thunderbird_notices = PrivacyDocView.as_view(
     template_name='privacy/notices/thunderbird.html',
     legal_doc_name='thunderbird_privacy_policy')
