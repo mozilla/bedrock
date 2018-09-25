@@ -18,6 +18,7 @@ urlpatterns = (
     url(r'^/firefox-focus/$', views.firefox_focus_notices, name='privacy.notices.firefox-focus'),
     url(r'^/firefox-reality/$', views.firefox_reality_notices, name='privacy.notices.firefox-reality'),
     url(r'^/firefox-rocket/$', views.firefox_rocket_notices, name='privacy.notices.firefox-rocket'),
+    url(r'^/firefox-screenshotgo/$', views.firefox_screenshotgo_notices, name='privacy.notices.firefox-screenshotgo'),
     # bug 1319207 - special URL for Firefox Focus in de locale
     url(r'^/firefox-klar/$', views.firefox_focus_notices, name='privacy.notices.firefox-klar'),
     url(r'^/thunderbird/$', views.thunderbird_notices, name='privacy.notices.thunderbird'),
