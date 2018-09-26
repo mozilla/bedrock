@@ -5,10 +5,10 @@
 // This style sheet is served exclusively to Internet Explorer 8 and older.
 // Old versions get this minimal style while IE9 and up recieve more advanced styling.
 
-@import "../../../node_modules/@mozilla-protocol/core/protocol/css/includes/lib";
-@import "../../../node_modules/@mozilla-protocol/core/protocol/css/base/elements";
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/base/elements';
 
-@import "components/download-button";
+@import 'components/download-button';
 
 // An arbitrary container for translatable strings to use in scripts
 #strings {
