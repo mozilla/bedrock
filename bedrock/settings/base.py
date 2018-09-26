@@ -99,9 +99,8 @@ PROD_DETAILS_URL = config('PROD_DETAILS_URL',
 # This ultimately controls how LANGUAGES are constructed.
 PROD_DETAILS_CACHE_NAME = 'product-details'
 PROD_DETAILS_CACHE_TIMEOUT = 60 * 15  # 15 min
-default_pdstorage = 'PDDatabaseStorage' if PROD else 'PDFileStorage'
 PROD_DETAILS_STORAGE = config('PROD_DETAILS_STORAGE',
-                              default='product_details.storage.' + default_pdstorage)
+                              default='product_details.storage.PDDatabaseStorage')
 # path into which to clone the p-d json repo
 PROD_DETAILS_JSON_REPO_PATH = config('PROD_DETAILS_JSON_REPO_PATH',
                                      default=path('product_details_json'))
