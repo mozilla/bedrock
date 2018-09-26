@@ -18,6 +18,7 @@ from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.pocketfeed.models import PocketArticle
 from bedrock.wordpress.views import BlogPostsView
+from bedrock.base.waffle import switch
 from lib import l10n_utils
 
 credits_file = CreditsFile('credits')
@@ -185,7 +186,11 @@ def home_view(request):
     ctx = {}
 
     if locale.startswith('en-'):
-        template_name = 'mozorg/home/home-en.html'
+        if switch('election_bundle'):
+            template_name = 'mozorg/home/home-en-election.html'
+        else:
+            template_name = 'mozorg/home/home-en.html'
+
         ctx['pocket_articles'] = PocketArticle.objects.all()[:4]
     else:
         template_name = 'mozorg/home/home.html'

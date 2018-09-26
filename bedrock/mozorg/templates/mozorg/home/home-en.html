@@ -51,7 +51,7 @@
 
 {% macro card_block(class, tag_label, media_icon, title, ga_title, desc, image_url, include_highres_image, youtube_id, aspect_ratio, link_url, meta) -%}
 <section class="mzp-c-card {% if class %}{{ class }}{% endif %} {% if aspect_ratio %}{{ aspect_ratio }}{% endif %} {% if media_icon %}{{ media_icon }}{% endif %} {% if youtube_id %}has-video-embed{% endif %}">
-  <a class="mzp-c-card-block-link" href="{{ link_url }}" data-link-name="{{ ga_title }}" data-link-type="link">
+  <a class="mzp-c-card-block-link" href="{{ link_url }}" data-link-name="{{ ga_title }}" data-link-type="link" data-link-group="card">
     <div class="mzp-c-card-media-wrapper">
       {{ lazy_img(image_url=image_url, include_highres_image=include_highres_image, placeholder_url='placeholder.png', optional_attributes={'class': 'mzp-c-card-image'}) }}
     </div>
@@ -111,6 +111,7 @@
       </div>
     </div>
   </section>
+  {% block mozilla_content %}
   <div class="mozilla-content">
     <div class="mzp-l-content">
       <div class="mzp-l-card-hero">
@@ -397,7 +398,7 @@
       </aside>
     </div>
   </div>
-
+  {% endblock %}
   <div class="download-firefox-secondary-cta">
     <div class="mzp-l-content">
       <div class="secondary-content">
