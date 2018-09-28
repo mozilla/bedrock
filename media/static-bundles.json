@@ -669,9 +669,9 @@
     },
     {
       "files": [
-        "css/mozorg/about-lean-data.less"
+        "css/mozorg/lean-data.scss"
       ],
-      "name": "about-lean-data"
+      "name": "lean-data"
     },
     {
       "files": [

@@ -1,0 +1,117 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-protocol.html" %}
+
+{% block page_title %}{{ _('Lean Data Practices') }}{% endblock %}
+
+{% block page_desc %}
+  {{ _('Staying lean and being smart about how you collect data can build trust with your customers, partners, and supporters.') }}
+{% endblock %}
+
+{% block body_id %}lean-data{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('lean-data') }}
+{% endblock %}
+
+{% block content %}
+<section class="mzp-c-hero mzp-has-image">
+  <div class="mzp-l-content">
+    <div class="mzp-c-hero-body">
+      <h1 class="mzp-c-hero-title">{{ self.page_title() }}</h1>
+
+      <div class="mzp-c-hero-desc">
+        <p>{{ _('Staying lean and being smart about how you collect data can build trust with your users and ultimately help grow your business.') }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mzp-c-hero-image">
+    {{ high_res_img('mozorg/about/lean-data/lean-data-hero.png', {'alt': '', 'width': '424', 'height': '424'}) }}
+  </div>
+</section>
+
+<section>
+  <div class="mzp-l-content l-columns-two">
+    <div class="l-column">
+      <h2 class="c-subsection-title">{{ ('More Trust') }}</h2>
+      <p>{{ _('Your customers, investors, partners, and employees are more likely to use and refer you if they feel they can trust you with their data.') }}</p>
+    </div>
+
+    <div class="l-column">
+      <h2 class="c-subsection-title">{{ _('Less Risk') }}</h2>
+      <p>{{ ('Every additional byte you store increases the chances – and costs – of dealing with hackers, breaches, and surveillance issues.') }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="principles">
+  <div class="mzp-l-content">
+    <h2 class="c-section-title u-center">{{ _('The Three Principles') }}</h2>
+  </div>
+
+  <div class="mzp-l-content mzp-l-card-third">
+
+    <div class="mzp-c-card mzp-has-aspect-1-1">
+      <a class="mzp-c-card-block-link" href="{{ url('mozorg.about.policy.lean-data.stay-lean') }}">
+        <div class="mzp-c-card-media-wrapper">
+          {{ high_res_img('mozorg/about/lean-data/stay-lean-hero.png', {'alt': '', 'width': '424', 'height': '424'}) }}
+        </div>
+        <div class="mzp-c-card-content">
+          <h3 class="mzp-c-card-title">{{ _('Stay Lean') }}</h3>
+          <p class="mzp-c-card-desc">{{ _('Decide if all your data collection delivers value.') }}</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="mzp-c-card mzp-has-aspect-1-1">
+      <a class="mzp-c-card-block-link" href="{{ url('mozorg.about.policy.lean-data.build-security') }}">
+        <div class="mzp-c-card-media-wrapper">
+          {{ high_res_img('mozorg/about/lean-data/build-security-hero.png', {'alt': '', 'width': '424', 'height': '424'}) }}
+        </div>
+        <div class="mzp-c-card-content">
+          <h3 class="mzp-c-card-title">{{ _('Build Security') }}</h3>
+          <p class="mzp-c-card-desc">{{ _('Learn how to protect customer data.') }}</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="mzp-c-card mzp-has-aspect-1-1">
+      <a class="mzp-c-card-block-link" href="{{ url('mozorg.about.policy.lean-data.engage-users') }}">
+        <div class="mzp-c-card-media-wrapper">
+          {{ high_res_img('mozorg/about/lean-data/engage-users-hero.png', {'alt': '', 'width': '424', 'height': '424'}) }}
+        </div>
+        <div class="mzp-c-card-content">
+          <h3 class="mzp-c-card-title">{{ _('Engage Your Users') }}</h3>
+          <p class="mzp-c-card-desc">{{ _('Keep customers informed and empowered.') }}</p>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<section class="mzp-c-call-out">
+  <div class="mzp-l-content">
+    <h2 class="mzp-c-call-out-title">{{ _('Drive the conversation in your organization.') }}</h2>
+    <p class="mzp-c-call-out-desc">
+    {% trans %}
+      Lean Data works in any sector: business, civil society, government.
+      It can be spearheaded by any department: marketing, advocacy, engineering,
+      product, design, compliance, privacy, legal, customer support. You don’t
+      need a technical degree or a dedicated budget. All you need is a commitment
+      to make data decisions thoughtfully.
+    {% endtrans %}
+    </p>
+
+    <p class="c-call-out-cta">
+      <a href="https://docs.google.com/forms/d/191_0cQHpvBAutNRFZSkUjeeHfVRadKPa_v8Ct9x5mDQ/" class="mzp-c-button">{{ _('Contact Us') }}</a>
+    </p>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block js %}{% endblock %}

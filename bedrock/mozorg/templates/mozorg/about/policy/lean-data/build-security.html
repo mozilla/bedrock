@@ -1,0 +1,154 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-protocol.html" %}
+
+{% block page_title_prefix %}{{ _('Build Security') }} — {% endblock %}
+{% block page_title %}{{ _('Lean Data Practices') }}{% endblock %}
+
+{% block page_desc %}
+  {{ _('Staying lean and being smart about how you collect data can build trust with your customers, partners, and supporters.') }}
+{% endblock %}
+
+{% block body_id %}lean-data{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('lean-data') }}
+{% endblock %}
+
+{% block content %}
+<section class="mzp-c-hero mzp-has-image">
+  <div class="mzp-l-content l-content-narrow">
+    <div class="mzp-c-hero-body">
+      <h1 class="mzp-c-hero-title">{{ _('Build Security') }}</h1>
+
+      <div class="mzp-c-hero-desc">
+        <p>{{ _('How are you protecting customer data?') }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mzp-c-hero-image">
+    {{ high_res_img('mozorg/about/lean-data/build-security-hero.png', {'alt': '', 'width': '424', 'height': '424'}) }}
+  </div>
+</section>
+
+<section>
+  <div class="mzp-l-content l-content-narrow">
+    <h2 class="c-section-title">{{ _('1. Who has access to your data?') }}</h2>
+
+    <p>
+      <strong>{{ _('Grant sensitive data access only to the people who need it to perform their jobs.') }}</strong>
+      {{ _('Update this list regularly to account for people changing roles. This is especially true for engineers with administrative access to your infrastructure, as well as former vendors and consultants.') }}
+    </p>
+
+    <div class="c-highlight">
+      <h3 class="c-highlight-title"><span>{{ _('Example:') }}</span> {{ _('Shared Documents') }}</h3>
+
+      <p>{{ _('Team collaboration tools often have default settings that allow everyone in your organization to access all content. The risk? Sensitive data such as member lists, email addresses, or resumes may be easily available to more people than you think.') }}</p>
+    </div>
+
+    <h2 class="c-section-title">{{ _('2. Where is your data handled?') }}</h2>
+
+    <p>{{ _('Data is often handled and stored in multiple formats and countries, and by multiple parties.') }}</p>
+
+    <p>
+      <strong>{{ _('Make sure you understand how your data will be handled, including any profile-building, sharing or selling.') }}</strong>
+      {{ _('Common outsourced services include: recruitment, payroll, benefits, emails, surveys, donations and customer support. And these services may use other companies to host your data.') }}
+    </p>
+
+    <div class="c-highlight">
+      <h3 class="c-highlight-title"><span>{{ _('Example:') }}</span> {{ _('HR Data') }}</h3>
+
+      <p>{{ _('Employees who work in HR may handle sensitive personal data in several locations including paper, local desktop computers, shared online drives and third party platforms.') }}</p>
+    </div>
+
+    <h2 class="c-section-title">{{ _('3. What security measures do you have in place?') }}</h2>
+
+    <p>{{ _('Appropriate security will depend on the type of data you have, where it’s located and what your resources are. It also includes managing the vendors and consultants who provide your outsourced services.') }}</p>
+
+    <div class="c-highlight">
+      <h3 class="c-highlight-title"><span>{{ _('Example:') }}</span> {{ _('Security Measures') }}</h3>
+
+      <ul class="mzp-u-list-styled">
+        <li>{{ _('<strong>Physical measures</strong> such as ID cards, locks, document shredding.') }}</li>
+        <li>{{ _('<strong>Administrative measures</strong> such as access controls, passwords, and multi-factor authentication.') }}</li>
+        <li>{{ _('<strong>Technical measures</strong> such as penetration testing, encryption, intrusion protection, and vulnerability reporting.') }}</li>
+      </ul>
+    </div>
+
+    <h2 class="c-section-title">{{ _('4. What will you do if there is a problem?') }}</h2>
+
+    <p>{{ _('Data can be compromised in many ways. It is often an unexpected and resource-intensive effort to understand the facts and make decisions in a timely manner.') }}</p>
+
+    <p><strong>{{ _('Depending on the problem and risk it creates, you may also need to notify the people impacted or their governments.') }}</strong></p>
+
+    <div class="c-highlight">
+      <h3 class="c-highlight-title"><span>{{ _('Example:') }}</span> {{ _('Incident Response Plan') }}</h3>
+
+      <p>{{ _('A basic incident response plan should identify how incidents are reported and escalated for appropriate review. This includes incidents identified by employees, customers, and vendors.') }}</p>
+    </div>
+
+    <h2 class="c-subsection-title">{{ _('Resources') }}</h2>
+
+    <ul class="mzp-u-list-styled">
+      <li>{{ _('Use our <a href="%s">security access controls worksheet</a>.'|format('https://docs.google.com/document/d/1z_1llMFf18zkM0WRPzQd1VWc7Q3Nd8RILs-4em_jvZk/')) }}</li>
+      <li>{{ _('Use our <a href="%s">vendor security checklist</a>.'|format('https://docs.google.com/document/d/1EBDjGXUxvBWWLkIv5-rdaSCiwrK3a_50wXMNfaCIxgs/')) }}</li>
+      <li>{{ _('Review the <a href="%s">data location worksheet</a>.'|format('https://docs.google.com/document/d/1q79pxoqnFVSsNKrIYOpAF6I9nPFicRKPaP36APPlsP4/')) }}</li>
+      <li>{{ _('Check our <a href="%s">security measures worksheet</a>.'|format('https://docs.google.com/document/d/1KqE9Wy8OoHY2gJSG2QgoK653l83TwzDHfVSCYPIlISU/')) }}</li>
+      <li>{{ _('Check our <a href="%s">incident response plan worksheet</a>.'|format('https://docs.google.com/document/d/1IuGEx_8XicpBHn3NnHIUBDlA5nGfhwRliFSYflYDFog/')) }}</li>
+      <li><a href="https://docs.google.com/document/d/1TJafYmeFT3LIQe6YPLEHWwh37PGbK2RunntDIaN2lL8/">{{ _('Download the full toolkit.') }}</a></li>
+    </ul>
+
+  </div>
+</section>
+
+
+<section class="principles-other">
+  <div class="mzp-l-content l-content-narrow mzp-l-card-half">
+
+    <div class="mzp-c-card mzp-has-aspect-1-1">
+      <a class="mzp-c-card-block-link" href="{{ url('mozorg.about.policy.lean-data.stay-lean') }}">
+        <div class="mzp-c-card-media-wrapper">
+          {{ high_res_img('mozorg/about/lean-data/stay-lean-hero.png', {'alt': '', 'width': '424', 'height': '424'}) }}
+        </div>
+        <div class="mzp-c-card-content">
+          <h3 class="mzp-c-card-title">{{ _('Stay Lean') }}</h3>
+          <p class="mzp-c-card-desc">{{ _('Decide if all your data collection delivers value.') }}</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="mzp-c-card mzp-has-aspect-1-1">
+      <a class="mzp-c-card-block-link" href="{{ url('mozorg.about.policy.lean-data.engage-users') }}">
+        <div class="mzp-c-card-media-wrapper">
+          {{ high_res_img('mozorg/about/lean-data/engage-users-hero.png', {'alt': '', 'width': '424', 'height': '424'}) }}
+        </div>
+        <div class="mzp-c-card-content">
+          <h3 class="mzp-c-card-title">{{ _('Engage Your Users') }}</h3>
+          <p class="mzp-c-card-desc">{{ _('Keep customers informed and empowered.') }}</p>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<aside class="contact mzp-c-call-out-compact">
+  <div class="mzp-l-content l-content-narrow">
+    <div class="mzp-c-call-out-content">
+      <div class="mzp-c-call-out-container">
+        <h3 class="mzp-c-call-out-title">{{ _('Drive the conversation in your organization.') }}</h3>
+      </div>
+    </div>
+    <div class="mzp-c-call-out-cta">
+      <p class="mzp-c-call-out-cta-container">
+        <a href="https://docs.google.com/forms/d/191_0cQHpvBAutNRFZSkUjeeHfVRadKPa_v8Ct9x5mDQ/" class="mzp-c-button">{{ _('Contact Us') }}</a>
+      </p>
+    </div>
+  </div>
+</aside>
+{% endblock %}
+
+{% block js %}{% endblock %}
