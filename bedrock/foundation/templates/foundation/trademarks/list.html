@@ -9,124 +9,246 @@
 {% block body_class %}trademarks sand{% endblock %}
 
 {% block article_title %}
-  {{ _('List of Mozilla Trademarks') }}
+  {{ _('Mozilla Trademarks List') }}
 {% endblock %}
 
 {% block article %}
-  <table id="logos">
-    <tr>
-      <td>
-        {{ high_res_img('trademarks/firefox-logo-r.png', { 'alt': _('Firefox logo'), 'width': '100', 'height': '100' }) }}<span>&reg;</span>
-      </td>
-      <th>{{ _('Firefox logo') }}</th>
-    </tr>
-    <tr>
-      <td><img width="100" height="100" alt="{{ _('Firefox OS logo') }}" src="{{ static('img/trademarks/FirefoxOS_logo-wordmark.png') }}" /></td>
-      <th>{{ _('Firefox OS logo') }}</th>
-    </tr>
-    <tr>
-      <td><img width="100" height="100" alt="{{ _('Thunderbird logo') }}®" src="{{ static('img/trademarks/thunderbird_logo_100.png') }}" /><span>&reg;</span></td>
-      <th>{{ _('Thunderbird logo') }}</th>
-    </tr>
-    <tr>
-        <td><img width="100" height="100" alt="{{ _('Mozilla logo') }}™" src="{{ static('img/trademarks/mozilla-logo-tm.svg') }}" /><span>&trade;</span></td>
-        <th>{{ _('Mozilla logo') }}</th>
-      </tr>
-    <tr>
-      <td><img width="100" height="100" alt="{{ _('Mozilla dino mascot') }}™" src="{{ static('img/trademarks/dino-head.png') }}" /><span>&trade;</span></td>
-      <th>{{ _('Mozilla dino mascot') }}</th>
-    </tr>
-    <tr>
-      <td>
-        {{ high_res_img('trademarks/logo-wordmark-webmaker.png', { 'alt': _('Webmaker logo'), 'width': '100', 'height': '100' }) }}<span>&reg;</span>
-      </td>
-      <th>{{ _('Webmaker logo') }}</th>
-    </tr>
-    <tr>
-      <td>
-        {{ high_res_img('trademarks/lightbeam-logo.png', { 'alt': _('Lightbeam logo'), 'width': '100', 'height': '100' }) }}<span>&trade;</span>
-      </td>
-      <th>{{ _('Lightbeam logo') }}</th>
-    </tr>
-    <tr>
-      <td><img width="100" height="100" alt="{{ _('Camino logo') }}®" src="{{ static('img/trademarks/camino-logo-r.png') }}" /><span>&reg;</span></td>
-      <th>{{ _('Camino logo') }}</th>
-    </tr>
-    <tr>
-      <td id="communities"><img width="130" height="100" alt="{{ _('Mozilla Communities logo') }}™" src="{{ static('img/trademarks/community-logo.png') }}" /><span>&trade;</span></td>
-      <th>{{ _('Mozilla Communities logo') }}<br /><small><a href="https://wiki.mozilla.org/MCS:Licensing_Guidelines">{{ _('See the separate licensing guidelines for this logo') }}</a></small></th>
-    </tr>
-    <tr>
-      <td><img width="100" height="100" alt="{{ _('SUMO logo') }}™" src="{{ static('img/trademarks/sumo-logo.png') }}" /><span>&trade;</span></td>
-      <th>{{ _('SUMO logo') }}</th>
-    </tr>
-    <tr>
-      <td><img width="100" height="100" alt="{{ _('QMO logo') }}™" src="{{ static('img/trademarks/qmo-logo-tm.png') }}" /><span>&trade;</span></td>
-      <th>{{ _('QMO logo') }}</th>
-    </tr>
-    <tr>
-      <td><img width="100" height="100" alt="{{ _('G-Fox logo') }}®" src="{{ static('img/trademarks/gfox-logo-r.png') }}" /><span>&reg;</span></td>
-      <th>{{ _('G-Fox logo') }}</th>
-    </tr>
-    <tr>
-      <td><img width="100" height="100" alt="{{ _('Bugzilla logo') }}™" src="{{ static('img/trademarks/bugzilla-tm.png') }}" /><span>&trade;</span></td>
-      <th>{{ _('Bugzilla logo') }}</th>
-    </tr>
-    <tr>
-      <td><img width="100" height="100" alt="{{ _('Sunbird logo') }}®" src="{{ static('img/trademarks/sunbird-logo-r.png') }}" /><span>&reg;</span></td>
-      <th>{{ _('Sunbird logo') }}</th>
-    </tr>
-    <tr>
-      <td><img width="100" height="100" alt="{{ _('SeaMonkey logo') }}®" src="{{ static('img/trademarks/seamonkey-logo-r.png') }}" /><span>&reg;</span></td>
-      <th>{{ _('SeaMonkey logo') }}</th>
-    </tr>
-    <tr>
-      <td><img width="100" height="100" alt="{{ _('Foxkeh logo') }}®" src="{{ static('img/trademarks/foxkeh-logo-r.png') }}" /><span>&reg;</span></td>
-      <th>{{ _('Foxkeh logo') }}<br /><small>{{ _('This trademark is licensed under the Creative Commons Attribution-Non-Commercial-NoDerivs 2.1 Japan.') }}</small></th>
-    </tr>
-    <tr>
-      <td><img width="100" height="100" alt="{{ _('Creative Collective logo') }}™" src="{{ static('img/trademarks/creativecollective-logo.png') }}" /><span>&trade;</span></td>
-      <th>{{ _('Creative Collective logo') }}</th>
-    </tr>
-    <tr>
-      <td><img width="100" height="100" alt="{{ _('Campus Reps logo') }}™" src="{{ static('img/trademarks/campusreps-logo.png') }}" /><span>&trade;</span></td>
-      <th>{{ _('Campus Reps logo') }}</th>
-    </tr>
-    <tr>
-      <td><img width="100" height="100" alt="{{ _('Rust logo') }}™" src="{{ static('img/trademarks/rust-logo.png') }}" /><span>&trade;</span></td>
-      <th>{{ _('Rust logo') }}</th>
-    </tr>
-    <tr>
-      <td><img width="100" height="100" alt="{{ _('Cargo logo') }}™" src="{{ static('img/trademarks/cargo-logo.png') }}" /><span>&trade;</span></td>
-      <th>{{ _('Cargo logo') }}</th>
-    </tr>
-  </table>
+  <p>{% trans %}To the extent a name or logo does not appear on the list below, this does not constitute
+a waiver of any and all intellectual property rights that Mozilla or its subsidiaries has
+established in any of its products, features, service names, or logos.{% endtrans %}</p>
+
+  <p>{% trans %}See below for sample attribution notices.{% endtrans %}</p>
 
   <h2>{{ _('Wordmarks') }}</h2>
 
-  <ul id="marks">
-    <li>{{ _('Firefox') }}&reg;</li>
-    <li>{{ _('Firefox&reg; OS') }}</li>
-    <li>{{ _('Mozilla&reg; Webmaker') }}</li>
-    <li>{{ _('Lightbeam') }}&trade;</li>
-    <li>{{ _('Rust') }}&trade;</li>
-    <li>{{ _('Cargo') }}&trade;</li>
-    <li>{{ _('Thunderbird') }}&reg;</li>
-    <li>{{ _('Mozilla') }}&reg;</li>
-    <li>{{ _('Camino') }}&reg;</li>
-    <li>{{ _('Mozilla Communities') }}&trade;</li>
-    <li>{{ _('SUMO') }}&trade;</li>
-    <li>{{ _('QMO') }}&trade;</li>
-    <li>{{ _('SeaMonkey') }}&reg;</li>
-    <li>Bugzilla&trade;</li>
-    <li>Firebug&reg;</li>
-    <li>Foxkeh&trade;</li>
-    <li>Minimo&reg;</li>
-    <li>Sunbird&reg;</li>
-    <li>View Source&trade;</li>
-    <li>XUL&trade;</li>
+  <ul class="marks">
+    <li>{{ _('Mozilla') }}</li>
+    <li>{{ _('Firefox') }}</li>
+    <li>{{ _('Firefox Focus') }}</li>
+    <li>{{ _('Firefox Rocket') }}</li>
+    <li>Bugzilla</li>
+    <li>{{ _('Camino') }}</li>
+    <li>{{ _('Cargo') }}</li>
+    <li>Firebug</li>
+    <li>{{ _('Firefox Developer Edition') }}</li>
+    <li>{{ _('Firefox Friends') }}</li>
+    <li>{{ _('Firefox Nightly') }}</li>
+    <li>{{ _('Firefox OS') }}</li>
+    <li>Foxkeh</li>
+    <li>{{ _('Lightbeam') }}</li>
+    <li>{{ _('MDN') }}</li>
+    <li>Minimo</li>
+    <li>{{ _('Mozilla Communities') }}</li>
+    <li>{{ _('Mozilla Reps') }}</li>
+    <li>{{ _('Mozilla Webmaker') }}</li>
+    <li>{{ _('Mozillians') }}</li>
+    <li>{{ _('Pontoon') }}</li>
+    <li>{{ _('QMO') }}</li>
+    <li>{{ _('Rust') }}</li>
+    <li>{{ _('SeaMonkey') }}</li>
+    <li>{{ _('SUMO') }}</li>
+    <li>Sunbird</li>
+    <li>{{ _('Thunderbird') }}</li>
+    <li>View Source</li>
+    <li>XUL</li>
   </ul>
 
-  <p>{{ _('JavaScript is a trademark or registered trademark of Sun Microsystems, Inc. in the U.S. and other countries, used under license.') }}</p>
+  <h2>{{ _('Logos') }}</h2>
+  <table class="logos">
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('Mozilla logo') }}™" src="{{ static('img/trademarks/mozilla-logo-tm.svg') }}" /></td>
+      <th>{{ _('Mozilla logo') }}</th>
+    </tr>
+    <tr>
+      <td>
+        {{ high_res_img('trademarks/firefox-logo-r.png', { 'alt': _('Firefox logo'), 'width': '100', 'height': '100' }) }}
+      </td>
+      <th>{{ _('Firefox') }}</th>
+    </tr>
+    <tr>
+      <td>
+        <img width="100" height="100" alt="{{ _('Firefox Focus Logo') }}™" src="{{ static('img/trademarks/firefox-focus-logo.png') }}" />
+      </td>
+      <th>{{ _('Firefox Focus') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('Firefox Rocket Logo') }}™" src="{{ static('img/trademarks/logo-rocket-high-res.png') }}" /></td>
+      <th>{{ _('Firefox Rocket') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('Bugzilla logo') }}™" src="{{ static('img/trademarks/bugzilla-tm.png') }}" /></td>
+      <th>{{ _('Bugzilla') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('Camino logo') }}®" src="{{ static('img/trademarks/camino-logo-r.png') }}" /></td>
+      <th>{{ _('Camino') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('Campus Reps logo') }}™" src="{{ static('img/trademarks/campusreps-logo.png') }}" /></td>
+      <th>{{ _('Campus Reps') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" alt="{{ _('Cargo logo') }}™" src="{{ static('img/trademarks/cargo-logo.png') }}" /></td>
+      <th>{{ _('Cargo') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" alt="{{ _('Common Voice logo') }}™" src="{{ static('img/trademarks/common-voice_logo.png') }}" /></td>
+      <th>{{ _('Common Voice') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('Creative Collective logo') }}™" src="{{ static('img/trademarks/creativecollective-logo.png') }}" /></td>
+      <th>{{ _('Creative Collective') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('Firefox Developer Edition logo') }}™" src="{{ static('img/trademarks/logo-developer-quantum.png') }}" /></td>
+      <th>{{ _('Firefox Developer Edition') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" alt="{{ _('Firefox Friends logo') }}™" src="{{ static('img/trademarks/firefox-friends-logo.png') }}" /></td>
+      <th>{{ _('Firefox Friends') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('Nightly logo') }}™" src="{{ static('img/trademarks/nightly-logo.png') }}" /></td>
+      <th>{{ _('Firefox Nightly') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('Firefox OS logo') }}" src="{{ static('img/trademarks/FirefoxOS_logo-wordmark.png') }}" /></td>
+      <th>{{ _('Firefox OS') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('Foxkeh logo') }}®" src="{{ static('img/trademarks/foxkeh-logo-r.png') }}" /></td>
+      <th>{{ _('Foxkeh') }}<br /></th>
+    </tr>
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('G-Fox logo') }}®" src="{{ static('img/trademarks/gfox-logo-r.png') }}" /></td>
+      <th>{{ _('G-Fox') }}</th>
+    </tr>
+    <tr>
+      <td>
+        {{ high_res_img('trademarks/lightbeam-logo.png', { 'alt': _('Lightbeam logo'), 'width': '100', 'height': '100' }) }}
+      </td>
+      <th>{{ _('Lightbeam') }}</th>
+    </tr>
+    <tr>
+      <td id="communities"><img width="130" height="100" alt="{{ _('Mozilla Communities logo') }}™" src="{{ static('img/trademarks/community-logo.png') }}" /></td>
+      <th>{{ _('Mozilla Communities') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('Mozilla dino mascot') }}™" src="{{ static('img/trademarks/dino-head.png') }}" /></td>
+      <th>{{ _('Mozilla Dino') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" alt="{{ _('Mozilla reps logo') }}™" src="{{ static('img/trademarks/logo-mozilla-reps.png') }}" /></td>
+      <th>{{ _('Mozilla Reps') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('Mozilla small m logo') }}™" src="{{ static('img/trademarks/logo-mozm.png') }}" /></td>
+      <th>{{ _('Mozilla small m') }}</th>
+    </tr>
+    <tr>
+      <td>
+        {{ high_res_img('trademarks/logo-wordmark-webmaker.png', { 'alt': _('Webmaker logo'), 'width': '100', 'height': '100' }) }}
+      </td>
+      <th>{{ _('Webmaker') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('Pontoon logo') }}™" src="{{ static('img/trademarks/pontoon-logo.svg') }}" /></td>
+      <th>{{ _('Pontoon') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('QMO logo') }}™" src="{{ static('img/trademarks/qmo-logo-tm.png') }}" /></td>
+      <th>{{ _('QMO') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('Rust logo') }}™" src="{{ static('img/trademarks/rust-logo.png') }}" /></td>
+      <th>{{ _('Rust') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('SeaMonkey logo') }}®" src="{{ static('img/trademarks/seamonkey-logo-r.png') }}" /></td>
+      <th>{{ _('SeaMonkey') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('SUMO logo') }}™" src="{{ static('img/trademarks/sumo-logo.png') }}" /></td>
+      <th>{{ _('SUMO') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('Sunbird logo') }}®" src="{{ static('img/trademarks/sunbird-logo-r.png') }}" /></td>
+      <th>{{ _('Sunbird') }}</th>
+    </tr>
+    <tr>
+      <td><img width="100" height="100" alt="{{ _('Thunderbird logo') }}®" src="{{ static('img/trademarks/thunderbird_logo_100.png') }}" /></td>
+      <th>{{ _('Thunderbird') }}</th>
+    </tr>
+  </table>
+
+  <h2>{{ _('Pocket Trademark List') }}</h2>
+
+  <h3>{{ _('Wordmarks') }}</h3>
+
+  <ul class="marks">
+    <li>Pocket</li>
+    <li>Read It Later</li>
+  </ul>
+
+  <h3>{{ _('Logos') }}</h3>
+
+  <img width="300" alt="{{ _('Pocket wordmark') }}®" src="{{ static('img/trademarks/pocket.png') }}" />
+
+  <p>{% trans %}Website Logo and Wordmark{% endtrans %}</p>
+  <p>{% trans %}Pocket logos:{% endtrans %}</p>
+  <table class="logos">
+    <tr>
+      <td>
+        <p>{{ _('Mac') }}</p>
+        <img width="100" height="100" alt="{{ _('Pocket Mac logo') }}®" src="{{ static('img/trademarks/pocket_mac.png') }}" />
+      </td>
+      <td>
+        <p>{{ _('Android') }}</p>
+        <img width="100" height="100" alt="{{ _('Pocket Android logo') }}®" src="{{ static('img/trademarks/pocket_android.png') }}" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <p>{{ _('iOS') }}</p>
+        <img width="100" height="100" alt="{{ _('Pocket iOS logo') }}®" src="{{ static('img/trademarks/pocket_ios.png') }}" />
+      </td>
+      <td>
+        <p>{{ _('Other Apps') }}</p>
+        <img width="100" height="100" alt="{{ _('Pocket other apps logo') }}®" src="{{ static('img/trademarks/pocket_other-apps.png') }}" />
+      </td>
+    </tr>
+  </table>
+
+  <h2>{{ _('Sample Attribution Notices') }}</h2>
+
+  <p>{{ _('For all of the above Mozilla trademarks, sample attribution notices are as follows.') }}</p>
+  <ul>
+    <li>
+      <p>{{ _('For example, if using the Firefox wordmark:') }}</p>
+      <blockquote><p>{{ _('“Firefox is a trademark of the Mozilla Foundation in the U.S. and other countries.”') }}</p></blockquote>
+    </li>
+    <li>
+      <p>{{ _('If using the Firefox logo:') }}</p>
+      <blockquote><p>{{ _('"The Firefox logo is a trademark of the Mozilla Foundation in the U.S. and other
+  countries.”') }}</p></blockquote>
+    </li>
+    <li>
+      <p>{{ _('If using the Mozilla and Firefox wordmarks and the Firefox logo:') }}</p>
+      <blockquote><p>{{ _('“Mozilla, Firefox and the Firefox logo are trademarks of the Mozilla Foundation in the
+  U.S. and other countries.”') }}</p></blockquote>
+    </li>
+  </ul>
+
+  <p>{{ _('For all of the above Pocket trademarks, sample attribution are as follows.') }}</p>
+  <ul>
+    <li>
+      <p>{{ _('If using the Pocket wordmark:') }}</p>
+      <blockquote><p>{{ _('“Pocket is a trademark of Read It Later, Inc. in the U.S. and other countries.”') }}</p></blockquote>
+    </li>
+    <li>
+      <p>{{ _('If using the Pocket logo:') }}</p>
+      <blockquote><p>{{ _('“The Pocket logo is a trademark of Read It Later, Inc. in the U.S. and other countries.”') }}</p></blockquote>
+    </li>
+  </ul>
 
 {% endblock article %}

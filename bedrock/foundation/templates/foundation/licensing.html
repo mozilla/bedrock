@@ -40,35 +40,13 @@
 
   <h2>{{ _('Trademarks') }}</h2>
   <p>
-    {% trans
-      trademarks=url('foundation.trademarks.policy')
-      %}
-      Although our code is free, it is very important that we strictly
-      enforce our trademark rights, in order to be able to protect our
-      users against people who use the marks to commit fraud. Our trademarks
-      include, among others, the names Mozilla&reg;, mozilla.org&reg;,
-      Firefox&reg;, Thunderbird&reg;, Bugzilla&trade;, Camino&reg;,
-      Sunbird&reg;, SeaMonkey&reg;, and XUL&trade;, as well as the
-      Mozilla logo, Firefox logo, Thunderbird logo and the red lizard
-      logo. (The full list is in the
-      <a href="{{ trademarks }}">Mozilla Trademark Policy</a>.)
-      This means that, while you have considerable freedom to redistribute
-      and modify our software, there are tight restrictions on your
-      ability to use the Mozilla names and logos in ways which fall
-      in the domain of trademark law, even when built into binaries
-      that we provide.
+    {% trans %}
+    Although our code is free, it is very important that we strictly enforce our trademark rights, in order to be able to protect our users against people who use the marks to commit fraud. This means that, while you have considerable freedom to redistribute and modify our software, there are tight restrictions on your ability to use the Mozilla names and logos in ways which fall in the domain of trademark law, even when built into binaries that we provide.
     {% endtrans %}
   </p>
-
   <p>
-    {% trans
-      trademarks=url('foundation.trademarks.policy'),
-      email="mailto:trademarks@mozilla.org"
-    %}
-      For more detail on our trademark licensing, see our
-      <a href="{{ trademarks }}">Trademark Policy</a>. If you still have
-      questions after reading the policy, please contact
-      <a href="{{ email }}">trademarks@mozilla.org</a>.
+    {% trans trademarks=url('foundation.trademarks.policy'), email="mailto:trademark-permissions@mozilla.org"%}
+    For more detail on our trademark licensing, see our <a href="{{ trademarks }}">Mozilla Trademark Guidelines</a>. If you still have questions after reading the policy, please contact <a href="{{ email }}">trademark-permissions@mozilla.org</a>.
     {% endtrans %}
   </p>
 
