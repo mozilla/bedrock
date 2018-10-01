@@ -1,0 +1,174 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import "../../protocol/css/includes/lib";
+@import "../../protocol/css/components/button";
+@import "../../protocol/css/components/call-out";
+@import "../../protocol/css/components/hero";
+@import "../../protocol/css/components/download-button";
+
+
+// paper background
+.t-paper {
+      background-image: url('/media/img/firefox/election/hero-320.png'),  url('/media/img/firefox/election/paper-texture-sm.png');
+      background-position: top center;
+      background-repeat: no-repeat, repeat;
+      padding-top: 208px;
+}
+
+@media #{$mq-xs} {
+    .t-paper {
+          background-image: url('/media/img/firefox/election/hero-480.png'),  url('/media/img/firefox/election/paper-texture-sm.png');
+          padding-bottom: 0;
+    }
+}
+
+@media #{$mq-sm} {
+    .t-paper  {
+          background-image: url('/media/img/firefox/election/hero-768.png'),  url('/media/img/firefox/election/paper-texture-md.png');
+          padding-top: 304px;
+    }
+}
+
+@media #{$mq-md} {
+    .t-paper {
+          background-image: url('/media/img/firefox/election/hero-1056.png'),  url('/media/img/firefox/election/paper-texture-lg.png');
+          padding-top: 373px;
+    }
+}
+
+@media #{$mq-lg} {
+    .t-paper {
+          background-image: url('/media/img/firefox/election/hero-1280.png'),  url('/media/img/firefox/election/paper-texture-lg.png');
+    }
+}
+
+@media all and (min-width: 1440px) {
+    .t-paper {
+          background-image: url('/media/img/firefox/election/hero-max.png'),  url('/media/img/firefox/election/paper-texture-max.png');
+          background-repeat: no-repeat, repeat-y;
+    }
+}
+
+// hero modifications
+.mzp-c-hero {
+    padding-bottom: 0;
+}
+
+.mzp-c-hero-body {
+    max-width: 700px;
+}
+
+.mzp-c-hero-title {
+    color: #00A7E0;
+}
+
+.mzp-c-hero-desc {
+    margin-bottom: 0;
+}
+
+// facebook and propublica call out styling
+.mzp-c-call-out,
+.mzp-c-button-download {
+    text-align: left;
+
+    @media #{$mq-lg} {
+        text-align: center;
+    }
+
+    .mzp-c-button {
+        text-align: center;
+    }
+}
+
+.t-container,
+.t-pro {
+    background: transparent;
+}
+
+.mzp-c-call-out.t-container .mzp-l-content,
+.mzp-c-call-out.t-pro .mzp-l-content {
+    max-width: 616px;
+}
+
+.mzp-c-call-out.t-container .mzp-c-call-out-title {
+    background-image: url('/media/img/firefox/election/icon-container.png');
+    background-size: 63px auto;
+    background-position: top left;
+}
+
+.mzp-c-call-out.t-pro .mzp-c-call-out-title {
+    background-image: url('/media/img/firefox/election/icon-pro.png');
+    background-size: 63px auto;
+    background-position: top left;
+}
+
+@media #{$mq-lg} {
+    .mzp-c-call-out.t-container .mzp-c-call-out-title,
+    .mzp-c-call-out.t-pro .mzp-c-call-out-title {
+        background-position: top center;
+    }
+}
+
+// button
+.mzp-c-button,
+.download-link.mzp-c-button.mzp-t-download {
+    background-color: #000;
+    background-image: none;
+    border-radius: 3px;
+    border: none;
+    box-shadow: none;
+    color: $color-white;
+    line-height: 1.125;
+    padding: ($padding-md + 2px) ($padding-lg + 2px); //2px extra padding to compensate for no border.
+
+    &:hover,
+    &:focus {
+        background-color: $color-blue-70;
+        background-image: none;
+        box-shadow: 4px 4px 0 0 $color-black;
+        color: $color-white;
+        transition: box-shadow 100ms;
+    }
+
+    &:active {
+        box-shadow: 2px 2px 0 0 $color-black;
+        transition: box-shadow 0ms;
+    }
+}
+
+.download-link.mzp-c-button.mzp-t-download {
+    background-color: $color-blue-60;
+
+    &:hover,
+    &:focus {
+        background-color: $color-blue-70;
+    }
+}
+
+.mzp-c-button.t-dim {
+    background-color: $color-gray-50;
+    border-color: $color-gray-50;
+
+    &:hover,
+    &:focus {
+        background-color: $color-gray-70;
+    }
+}
+
+.c-pro-disclaimer {
+    background-color: $color-gray-30;
+    margin-bottom: 0;
+    padding: $spacing-md;
+    text-align: center;
+}
+
+#case-funnel {
+    .fx-privacy-link {
+        display: none;
+    }
+}

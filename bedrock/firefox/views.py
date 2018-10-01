@@ -400,6 +400,15 @@ def show_62_whatsnew(version, oldversion):
     return version >= v62 and (oldversion < v62 if oldversion else True)
 
 
+def show_62_firstrun(version):
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    return version >= Version('62.0')
+
+
 def show_57_firstrun(version):
     try:
         version = Version(version)
@@ -448,7 +457,7 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
 
     def get_template_names(self):
         version = self.kwargs.get('version') or ''
-
+        experience = self.request.GET.get('xv', None)
         locale = l10n_utils.get_locale(self.request)
 
         # for copy test
@@ -460,6 +469,11 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
                 template = 'firefox/developer/firstrun.html'
             else:
                 template = 'firefox/dev-firstrun.html'
+        elif show_62_firstrun(version):
+            if (switch('firefox-election-funnelcake') and locale == 'en-US' and experience == 'firefox-election'):
+                template = 'firefox/firstrun/firstrun-election.html'
+            else:
+                template = 'firefox/firstrun/firstrun-quantum.html'
         elif show_57_firstrun(version):
             if locale == 'en-US' and variation in ['a', 'b', 'c', 'd']:
                 template = 'firefox/firstrun/firstrun-quantum-{}.html'.format(variation)

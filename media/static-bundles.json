@@ -438,6 +438,12 @@
     },
     {
       "files": [
+        "css/firefox/election.scss"
+      ],
+      "name": "firefox_election"
+    },
+    {
+      "files": [
         "css/firefox/tracking-protection-tour.less"
       ],
       "name": "tracking-protection-tour"
@@ -1611,6 +1617,13 @@
         "js/base/mozilla-fxa-init.js"
       ],
       "name": "profile_per_install"
+    }
+    ,
+    {
+      "files": [
+        "js/firefox/election.js"
+      ],
+      "name": "firefox_election"
     }
   ]
 }
