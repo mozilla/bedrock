@@ -441,7 +441,8 @@ $image-bottom-height: 28px;
 @media (max-width: $screen-sm) {
     @supports (display: grid) {
         .c-compare-table {
-            tr {
+            thead tr,
+            tbody tr {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
             }
