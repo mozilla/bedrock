@@ -59,12 +59,21 @@
           <img class="hero-image" src="{{ static('img/firefox/developer/hero-clip-ani.gif') }}" alt="">
         </a>
         <p>
-        {% trans %}
-          Firefox DevTools has a brand new shape path editor that takes
-          the guesswork out of fine-tuning your shadow-outside and clip-path
-          shapes by allowing you to very easily fine-tune your adjustments
-          with a visual editor.
-        {% endtrans %}
+        {% if l10n_has_tag('new_features_shape_outside') %}
+          {% trans %}
+            Firefox DevTools has a brand new shape path editor that takes
+            the guesswork out of fine-tuning your shape-outside and clip-path
+            shapes by allowing you to very easily fine-tune your adjustments
+            with a visual editor.
+          {% endtrans %}
+        {% else %}
+          {% trans %}
+            Firefox DevTools has a brand new shape path editor that takes
+            the guesswork out of fine-tuning your shadow-outside and clip-path
+            shapes by allowing you to very easily fine-tune your adjustments
+            with a visual editor.
+          {% endtrans %}
+        {% endif %}
         </p>
         <a class="more" rel="external" href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/How_to/Edit_CSS_shapes">{{ _('Learn more') }}</a>
       </div>
