@@ -32,7 +32,7 @@
         <th scope="row">{{ _('Ad filtering') }}</th>
         <td class="c-compare-highlight">
           <img src="{{ static('img/firefox/new/compare/table/icon-yes.svg') }}" width="22" height="20" alt="{{ _('Yes') }}" title="{{ _('Yes') }}">
-          <span>{{ _('Partial') }}</span>
+          <span>{{ _('Partial *') }}</span>
         </td>
         <td>
           <img src="{{ static('img/firefox/new/compare/table/icon-yes.svg') }}" width="22" height="20" alt="{{ _('Yes') }}" title="{{ _('Yes') }}">
@@ -46,12 +46,12 @@
       </tr>
       <tr>
         <th scope="row">{{ _('Blocks scripts') }}</th>
-        <td class="c-compare-highlight"><img src="{{ static('img/firefox/new/compare/table/icon-yes.svg') }}" width="22" height="20" alt="{{ _('Yes') }}" title="{{ _('Yes') }}"></td>
+        <td class="c-compare-highlight"><img src="{{ static('img/firefox/new/compare/table/icon-yes.svg') }}" width="22" height="20" alt="{{ _('Yes') }}" title="{{ _('Yes') }}">*</td>
         <td><img src="{{ static('img/firefox/new/compare/table/icon-no.svg') }}" width="17" height="20" alt="{{ _('No') }}" title="{{ _('No') }}"></td>
       </tr>
       <tr>
         <th scope="row">{{ _('Blocks cross-site tracking') }}</th>
-        <td class="c-compare-highlight"><img src="{{ static('img/firefox/new/compare/table/icon-yes.svg') }}" width="22" height="20" alt="{{ _('Yes') }}" title="{{ _('Yes') }}"></td>
+        <td class="c-compare-highlight"><img src="{{ static('img/firefox/new/compare/table/icon-yes.svg') }}" width="22" height="20" alt="{{ _('Yes') }}" title="{{ _('Yes') }}">*</td>
         <td><img src="{{ static('img/firefox/new/compare/table/icon-no.svg') }}" width="17" height="20" alt="{{ _('No') }}" title="{{ _('No') }}"></td>
       </tr>
       <tr class="c-compare-last">
@@ -63,6 +63,9 @@
         </td>
       </tr>
     </tbody>
+    <tfoot>
+      <tr><td colspan="3">{{ _('* available in Private Browsing Mode') }}</td></tr>
+    </tfoot>
   </table>
 </section>
 
