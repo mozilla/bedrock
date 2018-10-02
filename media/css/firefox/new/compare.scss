@@ -199,6 +199,17 @@ $image-path: '/media/protocol/img';
         position: absolute;
         width: 288px;
     }
+
+    a:link,
+    a:visited {
+        color: $color-white;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        color: darken($color-white, 10%);
+    }
 }
 
 @media #{$mq-sm} {
@@ -231,6 +242,21 @@ $image-path: '/media/protocol/img';
             right: 45%;
             width: 577px;
         }
+    }
+}
+
+//* ====================================================================== */
+//  Flexible
+.section-flexible {
+    a:link,
+    a:visited {
+        color: $color-black;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        color: $color-gray-60;
     }
 }
 
