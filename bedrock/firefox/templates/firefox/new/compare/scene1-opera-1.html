@@ -1,0 +1,91 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/new/compare/base-1.html" %}
+
+{% block experiments %}
+  {% if switch('firefox_new_compare_opera_experiment', ['en-US']) %}
+    {{ js_bundle('firefox_new_compare_opera_experiment') }}
+  {% endif %}
+{% endblock %}
+
+{% block body_class %}{{ super() }} variant-opera-1{% endblock %}
+
+{% block page_title %}{{ _('Firefox vs. Opera') }}{% endblock %}
+{% block hero_title %}{{ _('Truly Unique, <br>Truly Fast') }}{% endblock %}
+{% block hero_desc %}{{ _('Firefox is a truly independent browser with its own code base.') }}{% endblock %}
+
+{% block page_body %}
+<div class="page-body">
+  <section class="section-intro mzp-t-firefox">
+    <div class="mzp-l-content">
+      <h2 class="section-title">{{ _('Opera is Chrome?') }}</h2>
+      <p>{{ _('Opera uses Google’s Chromium engine. Is it truly independent?') }}</p>
+      <p>
+      {% trans %}
+        Billed as an independent browser, Opera is built with the Google rendering and JavaScript engines.
+        For true independence, you need a completely different approach to browsing: Firefox.
+      {% endtrans %}
+      </p>
+    </div>
+  </section>
+
+  <section id="section-fast" class="section-fast c-image-section mzp-t-firefox mzp-t-dark mzp-l-right">
+    <div class="mzp-l-content">
+      <div class="c-image-section-content">
+        <h2 class="c-image-section-title">{{ _('Firefox is fast') }}</h2>
+        <p>
+        {% trans quantum='https://hacks.mozilla.org/2017/08/inside-a-super-fast-css-engine-quantum-css-aka-stylo/?utm_source=mozilla.org&utm_campaign=sem&utm_medium=referral' %}
+          Firefox uses an all-new, completely unique rendering engine called <a href="{{ quantum }}">Quantum</a>
+          that’s faster than ever. It can take advantage of multiple processor cores in the latest computers,
+          which means pages load faster than ever.
+        {% endtrans %}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-flexible" class="section-flexible mzp-l-content">
+    <div class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-third mzp-t-firefox">
+      <div class="mzp-c-card-feature-media-wrapper">
+        <div class="mzp-c-card-feature-media">
+          <img src="{{ static('img/firefox/new/compare/screen-fxcolor.png') }}" alt="">
+        </div>
+      </div>
+      <div class="mzp-c-card-feature-content">
+        <div class="mzp-c-card-feature-content-container">
+          <h2 class="mzp-c-card-feature-title">{{ _('Firefox is flexible') }}</h2>
+          <div class="mzp-c-card-feature-desc">
+            <p>
+            {% trans toolbars='https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars?utm_source=mozilla.org&utm_campaign=sem&utm_medium=referral',
+                     firefox_color='https://color.firefox.com/?utm_source=mozilla.org&utm_campaign=sem&utm_medium=referral',
+                     add_ons='https://addons.mozilla.org/firefox/?utm_source=mozilla.org&utm_campaign=sem&utm_medium=referral' %}
+              You can change almost everything about Firefox. <a href="{{ toolbars }}">Toolbars, menus, and buttons</a>
+              are yours to command.  And you can completely transform the way Firefox looks with
+              <a href="{{ firefox_color }}">Firefox Color</a>, our new virtual paint booth. Plus, there are thousands
+              of extensions in the <a href="{{ add_ons }}">Add-ons Store</a>.
+            {% endtrans %}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-good" class="section-good c-image-section mzp-t-firefox mzp-t-dark mzp-l-right">
+    <div class="mzp-l-content">
+      <div class="c-image-section-content">
+        <h2 class="c-image-section-title">{{ _('Firefox is good') }}</h2>
+        <p>
+        {% trans %}
+          Did you know Firefox comes from the not-for-profit Mozilla? We keep the Internet healthier by
+          supporting programs like tech education for women, truth in online journalism, and promoting
+          civility in comments and online shared spaces.
+        {% endtrans %}
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}
