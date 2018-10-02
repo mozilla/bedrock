@@ -296,7 +296,7 @@ urlpatterns = (
     page('internet-health/web-literacy', 'mozorg/internet-health/web-literacy.html'),
     page('internet-health/decentralization', 'mozorg/internet-health/decentralization.html'),
 
-    url(r'^moss/$', views.moss_view, name='mozorg.moss'),
+    url(r'^moss/$', views.moss_view, name='mozorg.moss.index'),
     page('moss/foundational-technology', 'mozorg/moss/foundational-technology.html'),
     page('moss/mission-partners', 'mozorg/moss/mission-partners.html'),
     page('moss/mission-partners-india', 'mozorg/moss/mission-partners-india.html'),
