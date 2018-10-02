@@ -41,7 +41,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .content-container {
     color: #fff;
-    display: none;
     z-index: 10;
 
     @media #{$mq-tablet} {
