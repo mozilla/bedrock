@@ -52,6 +52,13 @@ body {
     }
 }
 
+dl.faq {
+    dt {
+        @include font-size-level4;
+        margin: .5em 0;
+    }
+}
+
 @media #{$mq-phone-wide} {
     .masthead #page-heading h1 {
         @include font-size(28px);
