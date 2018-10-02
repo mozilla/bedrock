@@ -19,7 +19,7 @@
         font-style: italic;
     }
 
-    .content-container {
+    .notification-content-container {
         float: left;
         position: relative;
         width: 80%;
@@ -68,13 +68,13 @@
     }
 
     @media #{$mq-phone-wide} {
-        .content-container {
+        .notification-content-container {
             width: 65%;
         }
     }
 
     @media #{$mq-tablet} {
-        .content-container:after {
+        .notification-content-container:after {
             @include at2x('/media/img/notification/alarm-bell.png', 192px, 190px);
             background-repeat: no-repeat;
             content: '';
@@ -97,7 +97,7 @@
             padding-top: 40px;
         }
 
-        .content-container:after {
+        .notification-content-container:after {
             @include background-size(383px 380px);
             height: 380px;
             right: -320px;
