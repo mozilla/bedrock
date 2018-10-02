@@ -252,11 +252,6 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Conditional content
 
-// First we hide all the things
-.content-container {
-    display: none;
-}
-
 // Show no-js fallback by default
 .no-js #nojs-fx-mobile {
     display: block;
