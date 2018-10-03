@@ -36,7 +36,7 @@
     </div>
 
     <div class="mzp-c-hero-image">
-      <img src="{{ static('img/firefox/products/pocket/pocket-hero.png') }}" alt="">
+      {{ high_res_img('firefox/products/pocket/pocket-hero.png', {'alt': ''}) }}
     </div>
   </section>
 
@@ -44,7 +44,7 @@
     <div class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-right-third">
       <div class="mzp-c-card-feature-media-wrapper">
         <div class="mzp-c-card-feature-media">
-          <img src="{{ static('img/firefox/products/pocket/pocket-illo-reading.png') }}" alt="">
+          {{ high_res_img('firefox/products/pocket/pocket-illo-reading.png', {'alt': ''}) }}
         </div>
       </div>
       <div class="mzp-c-card-feature-content">
@@ -110,7 +110,7 @@
     </div>
 
     <div class="mzp-c-hero-image">
-      {{ lazy_img(image_url='firefox/products/pocket/pocket-illo-mobile.png', include_highres_image=False, placeholder_url='placeholder.png') }}
+      {{ lazy_img(image_url='firefox/products/pocket/pocket-illo-mobile.png', include_highres_image=True, placeholder_url='placeholder.png') }}
     </div>
   </section>
 
