@@ -125,4 +125,7 @@ urlpatterns = (
     # Bug 1474285
     page('firefox/profile-migrate', 'firefox/profile/profile-migrate.html'),
     page('firefox/profile-downgrade', 'firefox/profile/profile-downgrade.html'),
+
+    # Issue 6178
+    page('firefox/this-browser-comes-highly-recommended', 'firefox/recommended.html'),
 )

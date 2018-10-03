@@ -254,6 +254,12 @@
     },
     {
       "files": [
+        "css/firefox/recommended.scss"
+      ],
+      "name": "firefox_recommended"
+    },
+    {
+      "files": [
         "css/security/security.scss"
       ],
       "name": "security"
