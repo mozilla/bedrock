@@ -18,6 +18,9 @@ urlpatterns = (
     page('eula/thunderbird-1.5', 'legal/eula/thunderbird-1.5-eula.html'),
     page('eula/thunderbird-2', 'legal/eula/thunderbird-2-eula.html'),
     page('firefox', 'legal/firefox.html'),
+    # The "impressum" page is intended for Germany. Redirect to German (de) if
+    # requested in any other locale. (Bug 1248393)
+    page('impressum', 'legal/impressum.html', active_locales=['de']),
 
     url(r'^terms/mozilla/$', LegalDocView.as_view(template_name='legal/terms/mozilla.html', legal_doc_name='Websites_ToU'),
         name='legal.terms.mozilla'),
@@ -44,6 +47,4 @@ urlpatterns = (
         name='legal.report-infringement'),
 
     url('^fraud-report/$', views.fraud_report, name='legal.fraud-report'),
-    url('^impressum/$', views.impressum, name='legal.impressum'),
-
 )

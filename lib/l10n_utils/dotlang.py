@@ -287,7 +287,7 @@ def get_translations_for_langfile(langfile):
     Return the list of available translations for the langfile.
 
     :param langfile: the path to a lang file, retrieved with get_lang_path()
-    :return: dict, like {'en-US': 'English (US)', 'fr': 'Français'}
+    :return: list, like ['en-US', 'fr']
     """
 
     cache_key = 'translations:%s' % langfile
@@ -296,14 +296,13 @@ def get_translations_for_langfile(langfile):
     if translations:
         return translations
 
-    langs = []
+    translations = []
     for lang in settings.PROD_LANGUAGES:
         if (lang in product_details.languages and
                 (lang == settings.LANGUAGE_CODE or
                  lang_file_is_active(langfile, lang))):
-            langs.append(lang)
+            translations.append(lang)
 
-    translations = get_translations_native_names(langs)
     cache.set(cache_key, translations, settings.DOTLANG_CACHE)
     return translations
 
@@ -320,6 +319,7 @@ def get_translations_native_names(locales):
     translations = {}
     for locale in locales:
         if locale in settings.PROD_LANGUAGES:
-            translations[locale] = product_details.languages[locale]['native']
+            language = product_details.languages.get(locale)
+            translations[locale] = language['native'] if language else locale
 
     return translations

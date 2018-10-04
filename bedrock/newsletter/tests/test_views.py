@@ -8,11 +8,11 @@ from django.http import HttpResponse
 from django.test.client import RequestFactory
 
 import basket
-from bedrock.base.urlresolvers import reverse
 from mock import ANY, DEFAULT, patch
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
+from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg.tests import TestCase
 from bedrock.newsletter.tests import newsletters
 from bedrock.newsletter.views import (
@@ -340,7 +340,9 @@ class TestExistingNewsletterView(TestCase):
         self.data['lang'] = 'en'
         self.data['country'] = 'us'
 
-        url = reverse('newsletter.existing.token', args=(self.token,))
+        with self.activate('en-US'):
+            url = reverse('newsletter.existing.token', args=(self.token,))
+
         with patch.multiple('basket',
                             update_user=DEFAULT,
                             subscribe=DEFAULT,
