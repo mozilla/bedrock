@@ -47,6 +47,7 @@ urlpatterns = (
     page('firefox/channel/android', 'firefox/channel/android.html'),
     page('firefox/channel/ios', 'firefox/channel/ios.html'),
     page('firefox/developer', 'firefox/developer/index.html'),
+    page('firefox/election', 'firefox/election/index.html'),
     page('firefox/enterprise', 'firefox/enterprise/index.html'),
     page('firefox/enterprise/signup', 'firefox/enterprise/signup.html'),
     page('firefox/enterprise/signup/thanks', 'firefox/enterprise/signup-thanks.html'),

@@ -589,4 +589,7 @@ redirectpatterns = (
 
     # issue 6209
     redirect(r'^pocket/?', '/firefox/pocket/'),
+
+    # issue 6186
+    redirect(r'^vote/?', '/firefox/election/'),
 )
