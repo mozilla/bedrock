@@ -5,11 +5,10 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/includes/lib";
-@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/button";
-@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/modal";
-@import "../../../../node_modules/@mozilla-protocol/core/protocol/css/components/newsletter-form";
-
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/button';
+@import '../../../protocol/css/components/modal';
+@import '../../../protocol/css/components/newsletter-form';
 
 
 // keep the button technically visible to grab correct download link for
