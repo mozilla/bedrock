@@ -35,5 +35,6 @@ Contents
    uitour
    send-to-device
    firefox-accounts
+   funnelcake
    abtest
    analytics
