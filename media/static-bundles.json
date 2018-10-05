@@ -1628,13 +1628,18 @@
         "js/base/mozilla-fxa-init.js"
       ],
       "name": "profile_per_install"
-    }
-    ,
+    },
     {
       "files": [
         "js/firefox/election.js"
       ],
       "name": "firefox_election"
+    },
+    {
+      "files": [
+        "js/firefox/election-build.js"
+      ],
+      "name": "firefox_election_build"
     }
   ]
 }

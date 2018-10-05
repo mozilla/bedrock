@@ -470,7 +470,7 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
             else:
                 template = 'firefox/dev-firstrun.html'
         elif show_62_firstrun(version):
-            if (switch('firefox-election-funnelcake') and locale == 'en-US' and experience == 'firefox-election'):
+            if locale == 'en-US' and experience == 'firefox-election':
                 template = 'firefox/firstrun/firstrun-election.html'
             else:
                 template = 'firefox/firstrun/firstrun-quantum.html'
