@@ -11,7 +11,7 @@ Funnel cakes and Partner Builds
 Funnel cakes
 ------------
 
-In addition to being `an American delicacy <https://en.wikipedia.org/wiki/Funnel_cake>`
+In addition to being `an American delicacy <https://en.wikipedia.org/wiki/Funnel_cake>`_
 funnel cakes are what we call special builds of Firefox. They can come with
 extensions preinstalled and/or a custom first-run experience.
 
@@ -31,12 +31,14 @@ page by appending the query variable `f` with a value equal to the funnelcake
 number being requested.
 
 .. code-block::
-    https://bedrock-demo-shobson.oregon-b.moz.works/en-US/firefox/download/thanks/?f=137
+
+    https://www.mozilla.org/en-US/firefox/download/thanks/?f=137
 
 Bedrock checks to see if the funnelcake is configured (this is handled in the
 `www-config repo <https://github.com/mozmeao/www-config/blob/master/waffle_configs/bedrock-prod.env>`_)
 
-.. code-block::
+.. code-block:: bash
+
     FUNNELCAKE_135_LOCALES=en-US
     FUNNELCAKE_135_PLATFORMS=win,win64
 
@@ -45,11 +47,13 @@ Bedrock then converts that into a request to download a file like so:
 Windows:
 
 .. code-block::
+
     https://download.mozilla.org/?product=firefox-stub-f137&os=win&lang=en-US
 
 Mac (You can see the mac one does not pass the funnelcake number along.):
 
 .. code-block::
+
     https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang=en-US
 
 Someone in Release Engineering needs to set up the redirects on their side to
@@ -68,8 +72,6 @@ On the technical side:
 
 - Is the switch enabled?
 - Is the variable being passed?
-- If `force_direct` is set to True on the download button macro the funnelcake
-  will be ignored
 
 Partner builds
 --------------
@@ -78,15 +80,17 @@ Bedrock does not have an automated way of handling these, so you'll have to
 craft your own download button:
 
 .. code-block:: html
+
     <a href="https://download.mozilla.org/?product=firefox-election-edition&os=win&lang=en-US">
     Download</a>
 
 ------------
 
 Bugs that might have useful info:
+
 - https://bugzilla.mozilla.org/show_bug.cgi?id=1450463
 - https://bugzilla.mozilla.org/show_bug.cgi?id=1495050
 
 PRs that might have useful code:
+
 - https://github.com/mozilla/bedrock/pull/5555
--

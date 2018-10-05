@@ -260,9 +260,9 @@ explicitly "off" in the environment. ``DEV`` defaults to "true" in local develop
 
 To test switches locally:
 
-1. Set ``DEV=False`` in your ``.env`` file.
-1. Enable the switch in your ``.env`` file.
-1. Restart your web server.
+#. Set ``DEV=False`` in your ``.env`` file.
+#. Enable the switch in your ``.env`` file.
+#. Restart your web server.
 
 To configure switches for a demo branch. Follow the `configuration instructions here <http://bedrock.readthedocs.io/en/latest/pipeline.html#configuration>`_.
 

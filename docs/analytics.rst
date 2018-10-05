@@ -123,6 +123,7 @@ When a banner is dismissed:
 When doing a/b tests configure something like the following.
 
 .. code-block:: javascript
+
     if(href.indexOf('v=a') !== -1) {
         window.dataLayer.push({
             'data-ex-variant': 'de-page',
@@ -142,13 +143,13 @@ Some notes on how this looks in GA
 ``data-link-type="button"`` and ``data-link-name=""`` trigger a generic link
 click with the following structure:
 
-    Event Category: {{page ID}} Interactions
-    Event Action: {{data-link-type}} click
-    Event Label: {{data-link-name}}
+    | Event Category: {{page ID}} Interactions
+    | Event Action: {{data-link-type}} click
+    | Event Label: {{data-link-name}}
 
 Any element that has a ``data-button-name=""`` triggers an event with this
 structure:
 
-    Event Category: {{page ID}} Interactions
-    Event Action: button click
-    Event Label: {{data-button-name}}
+    | Event Category: {{page ID}} Interactions
+    | Event Action: button click
+    | Event Label: {{data-button-name}}

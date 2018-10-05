@@ -34,8 +34,8 @@ for the a/b test.
 
 The view can handle the url redirect in one of two ways:
 
-1. the same page, with some different content based on the `variation` variable
-1. a totally different page
+#. the same page, with some different content based on the `variation` variable
+#. a totally different page
 
 Content variation
 ~~~~~~~~~~~~~~~~~
@@ -54,7 +54,8 @@ different.
 Create the variant page like you would a new page. Make sure it is ``noindex``
 and does not have a ``canonical`` url.
 
-.. code-block:: python
+.. code-block:: jinja
+
     {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
 
@@ -68,7 +69,8 @@ Create a .js file where you initialize Traffic Cop and include that in the
 experiments block in the template that will be doing the redirection. Wrap the
 extra js include in a `switch <http://bedrock.readthedocs.io/en/latest/install.html#feature-flipping-aka-switches>`_.
 
-.. code-block:: javascript
+.. code-block:: jinja
+
     {% block experiments %}
       {% if switch('experiment-berlin-video', ['de']) %}
         {{ js_bundle('firefox_new_berlin_experiment') }}
@@ -88,6 +90,7 @@ reporting will add the test to an auto generated report in GA. The variable
 values may be provided by the analytics team.
 
 .. code-block:: javascript
+
     if(href.indexOf('v=a') !== -1) {
         window.dataLayer.push({
             'data-ex-variant': 'de-page',
@@ -116,7 +119,7 @@ Some things to consider checking:
 - Locales excluded from the test call the correct (default) template.
 
 A/B Test PRs that might have useful code to reuse
----
+-------------------------------------------------
 
 - https://github.com/mozilla/bedrock/pull/5736/files
 - https://github.com/mozilla/bedrock/pull/4645/files
