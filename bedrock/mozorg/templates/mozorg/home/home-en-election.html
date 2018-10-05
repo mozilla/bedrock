@@ -11,15 +11,15 @@
   <div class="mzp-l-content">
     <div class="mzp-l-card-hero">
       {% if switch('firefox-election-build') %}
-          {% set bundle-title = 'Get the Firefox Election Bundle' %}
+          {% set bundle_title = 'Get the Firefox Election Bundle' %}
       {% else %}
-        {% set bundle-title = 'Get the Firefox Election Collection' %}
+        {% set bundle_title = 'Get the Firefox Election Collection' %}
       {% endif %}
       {{ card_block(
           class='mzp-c-card-large',
           tag_label=_('Firefox'),
-          title=bundle-title,
-          ga_title=bundle-title,
+          title=bundle_title,
+          ga_title=bundle_title,
           desc=_('Decode political ad targeting and keep Facebook off your back.'),
           image_url='home/2018/cards/election/wise-up.jpg',
           aspect_ratio='mzp-has-aspect-16-9',

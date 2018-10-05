@@ -20,8 +20,8 @@
             // case-unsupported
             document.getElementById('case-unsupported').classList.remove('hidden');
         } else if (htmlClassName.indexOf('linux') > -1 ) {
-            // case-mannual
-            document.getElementById('case-mannual').classList.remove('hidden');
+            // case-manual
+            document.getElementById('case-manual').classList.remove('hidden');
         } else if (htmlClassName.indexOf('android') > -1  || htmlClassName.indexOf('ios') > -1 ) {
             // case-mobile
             document.getElementById('case-mobile').classList.remove('hidden');
