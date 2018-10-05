@@ -32,6 +32,7 @@
         button.textContent = strings.dataset.choicesButton;
         button.setAttribute('id', 'choose');
         button.setAttribute('type', 'button');
+        button.className = 'mzp-c-button';
 
         container.appendChild(copyContainer);
         container.appendChild(button);
@@ -52,7 +53,7 @@
     // Don't execute if features aren't supported and client isn't desktop Firefox
     if (supportsBaselineJS() && Mozilla.Client.isFirefoxDesktop) {
         strings = document.getElementById('strings');
-        topicHeaders = document.querySelectorAll('.privacy-body .content-girdle > section');
+        topicHeaders = document.querySelectorAll('.privacy-body .l-narrow > section');
         initialTopic = topicHeaders[0].querySelector('section');
         initialTopicContent = initialTopic.querySelector('div');
 

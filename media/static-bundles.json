@@ -848,9 +848,9 @@
     },
     {
       "files": [
-        "css/privacy/privacy-quantum.scss"
+        "css/privacy/privacy-protocol.scss"
       ],
-      "name": "privacy_quantum"
+      "name": "privacy_protocol"
     },
     {
       "files": [
@@ -1243,10 +1243,9 @@
     {
       "files": [
         "js/base/uitour-lib.js",
-        "js/privacy/privacy-quantum.js",
-        "js/privacy/privacy-quantum-firefox.js"
+        "js/privacy/privacy-firefox.js"
       ],
-      "name": "privacy_quantum_firefox"
+      "name": "privacy_firefox"
     },
     {
       "files": [
