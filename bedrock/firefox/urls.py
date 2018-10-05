@@ -89,6 +89,8 @@ urlpatterns = (
     url(tracking_protection_re, views.TrackingProtectionTourView.as_view(),
         name='firefox.tracking-protection-tour.start'),
 
+    page('firefox/features/adblocker', 'firefox/features/adblocker.html'),
+
     # Release notes
     url('^firefox/(?:%s/)?(?:%s/)?notes/$' % (platform_re, channel_re),
         bedrock.releasenotes.views.latest_notes, name='firefox.notes'),

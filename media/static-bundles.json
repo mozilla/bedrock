@@ -897,6 +897,12 @@
         "css/firefox/profile-per-install.scss"
       ],
       "name": "profile_per_install"
+    },
+    {
+      "files": [
+        "css/firefox/features/adblocker.scss"
+      ],
+      "name": "adblocker"
     }
   ],
   "js": [
