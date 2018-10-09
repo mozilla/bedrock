@@ -747,6 +747,10 @@ def ios_testflight(request):
                              {'newsletter_form': newsletter_form})
 
 
+def ad_blocker(request):
+    return l10n_utils.render(request, 'firefox/features/adblocker.html')
+
+
 class FeaturesBookmarksView(BlogPostsView):
     blog_posts_limit = 3
     blog_posts_template_variable = 'articles'

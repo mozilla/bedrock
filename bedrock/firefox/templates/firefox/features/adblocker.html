@@ -1,0 +1,168 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+ {% add_lang_files "firefox/adblocker" %}
+
+ {% extends "base-protocol.html" %}
+
+ {% block page_title %}{{ _('Firefox Adblocking Feature') }}{% endblock %}
+
+ {% block page_desc %}
+   {{ _('Mozilla makes browsers, apps, code and tools that put people before profit. Our mission: Keep the internet open and accessible to all.') }}
+ {% endblock %}
+
+ {% block page_css %}
+   {{ super() }}
+   {{ css_bundle('adblocker') }}
+ {% endblock %}
+
+ {% block content %}
+
+  <section class="mzp-c-hero mzp-t-product-firefox">
+    <div class="mzp-l-content">
+      <div class="mzp-c-hero-body">
+        <h1 class="mzp-c-hero-title">{{ _('Everything you need to know about ad blockers.') }}</h1>
+        <div class="mzp-c-hero-desc">
+          <p>{{ _('Ad blocker is a web browser extension-- that can detect web ads and prevent them from being displayed on a web page.') }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mzp-l-content l-content-image">
+    {{ high_res_img('firefox/features/privacy-illustration1.png', {'alt': '', 'class': 'mzp-c-billboard-image'}) }}
+  </section>
+
+  <section class="mzp-l-content l-content-narrow">
+    <h2 class="section-title">{{ _('How ad blockers work') }}</h2>
+    <div class="l-content-columns">
+      <div>
+        <h3>{{ _('A typical ad blocker') }}</h3>
+        <p>{{ _('Most ad blockers work in two ways.') }}</p>
+        <p>{{ _('First, they block communication from ad servers or others. Ads simply can’t get through.') }}</p>
+        <p>{{ _('Second, they hide parts of a web page that could be ads-- any section of a site that’s labeled "ad," for example. Most ad blockers use public and up-to-date lists of known ad servers.') }}</p>
+      </div>
+      <div>
+        <h3>{{ _('The Firefox ad blocker') }}</h3>
+        <p>
+          {% trans url='https://blog.mozilla.org/firefox/tracking-protection-always-on/' %}
+          Firefox doesn’t include ad blocking out of the box, but it does include <a href="{{ url }}">Tracking Protection</a>, which stops sites from installing those tracking cookies we talked about.
+          {% endtrans %}
+        </p>
+        <p>
+          {% trans url='https://support.mozilla.org/en-US/kb/tracking-protection' %}
+          It’s <a href="{{ url }}">easy to turn on</a>, and has the added benefit of making Firefox significantly faster.
+          {% endtrans %}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mzp-l-content l-content-narrow">
+    <h2 class="section-title">{{ _('Why use ad blockers?') }}</h2>
+    <p>{{ _('Ad blockers can also be used to make the web faster.') }}</p>
+    <p>{{ _('Ads can slow down sites while they load, or get in the way of a streamlined browsing experience.') }}</p>
+    <p>{{ _('Ads can also be flashy and annoying, distracting you from the stuff you really want to see.') }}</p>
+    <blockquote>{{ _('“Ads can slow down sites… or get in the way of a streamlined browsing experience.”') }}</blockquote>
+    <p>
+    {% trans %}
+    Finally, ad companies can track your movements online. It’s called "re-targeting" and it works like this: You visit a site and click on a product. That site puts a small piece of code in your browser called a cookie. When you surf the web, sites will know you clicked on that product and they’ll display ads for it.
+    {% endtrans %}
+    </p>
+  </section>
+
+  <section class="mzp-l-content l-content-narrow">
+    <h2 class="section-title">{{ _('Why you might not use an ad blocker') }}</h2>
+    <p>
+      {% trans %}
+      Many media and news organizations make most of their money from advertising. If you block ads on their sites, they won’t get paid. If enough people block ads, business could suffer, and so will the quality of reporting and writing. Luckily, most ad blockers let you make exceptions for your favorite sites.
+      {% endtrans %}
+    </p>
+  </section>
+
+  <section class="mzp-l-content l-content-image">
+    {{ high_res_img('firefox/features/privacy-illustration2.png', {'alt': '', 'class': 'mzp-c-billboard-image'}) }}
+  </section>
+
+  <section class="mzp-l-content l-content-narrow">
+    <h2 class="section-title">{{ _('How to set Tracking Protection on') }}</h2>
+    <p>{{ _('With Tracking Protection and an ad blocker installed, you’re getting a safe and speedy web experience. Here’s how to get started:') }}</p>
+    <ol class="mzp-u-list-styled">
+      <li>{{ _('Click the menu button and choose Options (or Preferences on a Mac.)') }}</li>
+      <li>{{ _('Click Privacy & Security on the left and go to the Tracking Protection section.') }}</li>
+      <li>{{_('Choose between the following options:') }}</li>
+      <ul class="mzp-u-list-styled">
+        <li>
+          <span>{{_('Always:') }} </span>
+          {{_('Keep Tracking Protection on as you browse.') }}
+        </li>
+        <li>
+          <span>{{_('Only in private windows:') }} </span>
+          {{_('Turns Tracking Protection on only if you’re using Private Browsing.') }}
+        </li>
+        <li>
+          <span>{{_('Never:') }} </span>
+          {{_('Turns off Tracking Protection for all sites.') }}
+        </li>
+      </ul>
+    </ol>
+  </section>
+
+  <section class="mzp-l-content l-content-image">
+    {{ high_res_img('firefox/features/laptop.png', {'alt': '', 'class': 'mzp-c-billboard-image'}) }}
+  </section>
+
+  <section class="mzp-l-content l-content-narrow">
+    <p>
+      {% trans %}
+      Set Tracking Protection to always on and you won’t be reminded of that one time you looked at a trendy pressure cooker. Pages will load faster, and you’ll have a better browsing experience.
+      {% endtrans %}
+    </p>
+  </section>
+
+  <section class="mzp-c-call-out tracking">
+    <div class="mzp-l-content">
+      <h2 class="mzp-c-call-out-title">{{_('Get Firefox with Tracking Protection') }}</h2>
+      <div class="download-firefox">
+        {{ download_firefox(download_location='primary cta') }}
+      </div>
+    </div>
+  </section>
+
+  <section class="mzp-c-call-out">
+    <div class="mzp-l-content">
+      <h2 class="mzp-c-hero-title">{{_('Where to find ad blockers') }}</h2>
+      <div class="mzp-c-call-out-desc l-content-columns">
+        <p>
+          {% trans url='https://addons.mozilla.org/en-US/firefox/search/?platform=mac&q=ad+blocker'%}
+          There are hundreds of ad blocker extensions available for Firefox and every other browser. You can find a list of them <a href="{{ url }}">here in the Firefox Addons marketplace</a>. The most popular blockers let you "whitelist" sites that you’d like to support by viewing ads. Others can block ads on other platforms like YouTube.
+          {% endtrans %}
+        </p>
+        <p>
+          {% trans url='https://blog.mozilla.org/firefox/ad-blocker-roundup-5-adblockers-that-improve-your-internet-experience/'%}
+          <a href="{{ url }}">We’ve compiled a list of trusted ad blocker add-ons</a>. These have been approved and tested by the Firefox community. Remember, you can get add-ons for your browser anywhere, but be extra careful when installing them. It’s not a good idea to install an untested or unapproved add-on.
+          {% endtrans %}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mzp-c-call-out-compact mzp-t-product-firefox mzp-t-firefox">
+    <div class="mzp-l-content">
+      <div class="mzp-c-call-out-content">
+        <div class="mzp-c-call-out-container">
+          <h1 class="mzp-c-call-out-title">{{_('Take control of your browser.') }}</h1>
+        </div>
+      </div>
+      <div class="mzp-c-call-out-cta">
+        <div class="mzp-c-call-out-cta-container">
+          <div class="download-firefox">
+            {{ download_firefox(download_location='primary cta') }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ {% endblock %}

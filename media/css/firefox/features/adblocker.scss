@@ -1,0 +1,130 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import "../../../protocol/css/includes/lib";
+@import "../../../protocol/css/components/billboard";
+@import "../../../protocol/css/components/button";
+@import "../../../protocol/css/components/download-button";
+@import "../../../protocol/css/components/card";
+@import "../../../protocol/css/components/feature-card";
+@import "../../../protocol/css/components/hero";
+@import "../../../protocol/css/templates/card-layout";
+@import "../../../protocol/css/components/call-out";
+
+/* -------------------------------------------------------------------------- */
+// Custom layout
+
+h1, h2, h3, blockquote {
+    font-family: 'Open Sans';
+}
+
+ul li span {
+    font-weight: bold;
+}
+
+blockquote {
+    @include text-display-sm;
+    margin: 30px 0;
+    text-align: left;
+
+}
+
+.mzp-c-call-out-compact.mzp-t-product-firefox.mzp-t-firefox {
+    background-color: #d7d7db;
+    .download-firefox {
+        margin: 0 0 -40px;
+    }
+}
+
+.mzp-l-content.l-content-narrow {
+    max-width: $content-md;
+        p {
+            text-align: left;
+        }
+    }
+
+.l-content-image {
+    max-width: $content-lg;
+}
+
+
+.l-content-columns {
+    text-align: left;
+    display: inline-block;
+
+    @media #{$mq-lg} {
+        column-gap: $spacing-xl;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    h3 {
+        @include text-display-sm;
+    }
+}
+
+.mzp-c-card-feature-media-wrapper {
+    margin-bottom: 50px;
+
+    @media #{$mq-lg} {
+        width: 100%;
+    }
+}
+
+.mzp-c-card-feature {
+    margin-bottom: 0;
+}
+
+section.mzp-c-hero {
+    padding: 0;
+}
+
+.mzp-c-billboard-image {
+    width: 100%;
+}
+
+.section-title {
+    @include text-display-lg;
+    text-align: center;
+}
+
+/* -------------------------------------------------------------------------- */
+// Blue download button
+
+.download-firefox {
+    a.download-link.button {
+        background-color: $color-blue-60;
+        background-image: none;
+        border-radius: 3px;
+        border: none;
+        box-shadow: none;
+        color: $color-white;
+        line-height: 1.125;
+        padding: ($padding-md + 2px) ($padding-lg + 2px); //2px extra padding to compensate for no border.
+
+        &:hover,
+        &:focus {
+            background-color: $color-blue-70;
+            background-image: none;
+            box-shadow: 4px 4px 0 0 $color-black;
+            color: $color-white;
+            transition: box-shadow 100ms;
+        }
+
+        &:active {
+            box-shadow: 2px 2px 0 0 $color-black;
+            transition: box-shadow 0ms;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+
+.mzp-c-call-out.tracking {
+    background-color: #fff;
+    margin-bottom: 50px;
+}
