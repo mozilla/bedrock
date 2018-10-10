@@ -141,6 +141,46 @@
         </div>
       </div><!-- close #default-newsletters -->
 
+      <div class="field{% if did_confirm %} hidden{% endif %}" id="other-newsletters">
+        <h3>{{ _('Getting too much email from us?') }}</h3>
+        <p>
+          {{ _('Not interested in our newsletters, but like those special announcements? No problem.') }}
+          {{ _('We can keep in touch with occasional messages that matter most to you.') }}
+        </p>
+        <p>{{ _('Check all categories that apply to you, and we promise to keep the mail to a minimum.') }}</p>
+        <div class="field-radios">
+        <table class="table">
+          <thead>
+          <tr>
+            <th colspan="2"></th>
+            <th>{{ _('I’m interested in:') }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for formpart in formset %}  {# each newsletter is a formset #}
+            {% if formpart.initial['newsletter'] in settings.OTHER_NEWSLETTERS %}
+            <tr class="subscription">
+              <th colspan="2">
+                <h4 class="title">
+                  {{ formpart.initial['title'] }}
+                  {% if formpart.initial['english_only'] %}
+                    <span class="en-only">({{ _('English&nbsp;only') }})</span>
+                  {% endif %}
+                </h4>
+                {{ formpart.newsletter }}
+                <p class="description">
+                  {{ formpart.initial['description'] }}
+                </p>
+              </th>
+              {{ formpart.subscribed_check }}
+            </tr>
+            {% endif %}
+          {% endfor %}
+          </tbody>
+        </table>
+        </div>
+      </div><!-- close #other-newsletters -->
+
       <div class="field{% if did_confirm %} hidden{% endif %}" id="remove-all-section">
         {{ form['remove_all'] }}
         {{ form.remove_all.label_tag(_('Remove me from all Mozilla emails')) }}
