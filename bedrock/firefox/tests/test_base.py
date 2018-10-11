@@ -637,12 +637,3 @@ class TestTrackingProtectionTour(TestCase):
         self.view(req, version='62.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/tracking-protection-tour/variation-2.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_tracking_protection_63_0_locales(self, render_mock):
-        """Should use default tracking protection tour template for non-en locales"""
-        req = self.rf.get('/firefox/tracking-protection/start/?variation=2')
-        req.locale = 'de'
-        self.view(req, version='62.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/tracking-protection-tour/index.html'])
