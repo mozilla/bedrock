@@ -34,18 +34,18 @@
     }
 
     .mozilla-logo {
-        @include font-size(15px);
+        @include font-size(20px);
         float: left;
-        height: 25px;
+        height: 20px;
         margin: 0;
 
         a {
             @include image-replaced;
             background: url('/media/img/favicon/favicon-196x196.png') top left no-repeat;
-            background-size: 25px 25px;
+            background-size: 20px 20px;
             display: block;
-            height: 25px;
-            width: 25px;
+            height: 20px;
+            width: 20px;
         }
     }
 
