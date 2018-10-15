@@ -19,9 +19,9 @@
     normalize-path "^2.0.1"
     through2 "^2.0.3"
 
-"@mozilla-protocol/core@2.4.2":
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/@mozilla-protocol/core/-/core-2.4.2.tgz#74dd781051955db61b98a42cd9b846f685b8fee6"
+"@mozilla-protocol/core@2.4.3":
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/@mozilla-protocol/core/-/core-2.4.3.tgz#4d4ebb5e7d55b57540334622a42bd761e2109ec3"
 
 JSONStream@^0.8.4:
   version "0.8.4"

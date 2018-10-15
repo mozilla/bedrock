@@ -110,10 +110,10 @@ $image-path: '/media/protocol/img';
 
 @media #{$mq-lg} {
     .download-firefox-primary-cta {
-        border-top: 94px solid #fff;
+        border-top: 100px solid #fff;
         position: relative;
-        top: -94px;
-        margin-bottom: -94px;
+        top: -100px;
+        margin-bottom: -100px;
         @include bidi(((text-align, left, right),));
 
         .mzp-l-content {
@@ -126,6 +126,12 @@ $image-path: '/media/protocol/img';
             @include border-box;
             max-width: 520px;
         }
+    }
+
+    .mzp-c-navigation + #outer-wrapper .download-firefox-primary-cta {
+        border-top: 94px solid #fff;
+        top: -94px;
+        margin-bottom: -94px;
     }
 }
 
