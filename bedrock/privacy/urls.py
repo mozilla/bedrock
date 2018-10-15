@@ -6,6 +6,7 @@ from django.conf.urls import url
 
 from bedrock.mozorg.util import page
 from bedrock.privacy import views
+from bedrock.redirects.util import redirect
 
 urlpatterns = (
     url(r'^/$', views.privacy, name='privacy'),
@@ -17,7 +18,8 @@ urlpatterns = (
     url(r'^/firefox-fire-tv/$', views.firefox_fire_tv_notices, name='privacy.notices.firefox-fire-tv'),
     url(r'^/firefox-focus/$', views.firefox_focus_notices, name='privacy.notices.firefox-focus'),
     url(r'^/firefox-reality/$', views.firefox_reality_notices, name='privacy.notices.firefox-reality'),
-    url(r'^/firefox-rocket/$', views.firefox_rocket_notices, name='privacy.notices.firefox-rocket'),
+    redirect(r'^/firefox-rocket/$', 'privacy.notices.firefox-lite', locale_prefix=False),
+    url(r'^/firefox-lite/$', views.firefox_lite_notices, name='privacy.notices.firefox-lite'),
     url(r'^/firefox-screenshotgo/$', views.firefox_screenshotgo_notices, name='privacy.notices.firefox-screenshotgo'),
     # bug 1319207 - special URL for Firefox Focus in de locale
     url(r'^/firefox-klar/$', views.firefox_focus_notices, name='privacy.notices.firefox-klar'),
