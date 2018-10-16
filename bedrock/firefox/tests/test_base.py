@@ -424,6 +424,36 @@ class TestWhatsNew(TestCase):
 
     # end 62.0 whatsnew tests
 
+    # begin 63.0 whatsnew tests
+
+    def test_fx_63_0(self, render_mock):
+        """Should use standard template for 63.0"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='63.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/whatsnew-fx63.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_63_0_id_locale_template(self, render_mock):
+        """Should use id locale specific template"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'id'
+        self.view(req, version='63.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/index.id.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_63_0_zh_TW_locale_template(self, render_mock):
+        """Should use zh-TW locale specific template"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'zh-TW'
+        self.view(req, version='63.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/index.zh-TW.html'])
+
+    # end 63.0 whatsnew tests
+
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestFirstRun(TestCase):

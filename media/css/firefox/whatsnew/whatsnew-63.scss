@@ -1,0 +1,265 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/button';
+@import '../../../protocol/css/components/call-out';
+@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/components/feature-card';
+
+
+//* -------------------------------------------------------------------------- */
+// Up-to-date page header
+
+.c-page-header {
+    background-color: $color-white;
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    position: relative;
+    text-align: center;
+
+    .c-page-header-up-to-date {
+        @include text-display-xs;
+        display: none;
+        font-weight: normal;
+        margin: 1em 0;
+        padding: 0 $spacing-md;
+        width: calc(100% - 45px);
+
+        &:before {
+            @include bidi((
+                (background-position, center left, center right),
+                (margin, 0 10px 0 0, 0 0 0 10px),
+            ));
+            background-image: url('/media/img/firefox/whatsnew/icon-green-check.svg');
+            background-repeat: no-repeat;
+            background-size: 25px 25px;
+            content: '';
+            display: inline-block;
+            height: 25px;
+            vertical-align: middle;
+            width: 25px;
+        }
+    }
+
+    .c-page-header-logo-moz {
+        display: none;
+    }
+
+    &.is-up-to-date .c-page-header-up-to-date {
+        display: block;
+    }
+
+    @media #{$mq-md} {
+        .c-page-header-logo-fx {
+            @include bidi(((float, left, right),));
+        }
+
+        .c-page-header-logo-moz {
+            @include bidi(((float, right, left),));
+            display: block;
+            margin: $spacing-md 0;
+        }
+
+        &.is-up-to-date .c-page-header-inner {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+
+            .c-page-header-logo-fx,
+            .c-page-header-logo-moz {
+                float: none;
+                margin: 0;
+            }
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Firefox Accounts form sticky header
+
+.c-fxa-sticky-signup {
+    background: $color-blue-60;
+    color: $color-white;
+    display: none;
+    text-align: center;
+
+    // only display FxA form to users who are signed out.
+    .state-fxa-supported-signed-out & {
+        display: block;
+    }
+
+    a:link,
+    a:visited {
+        color: inherit;
+    }
+
+    .c-fxa-sticky-signup-title {
+        @include text-display-sm;
+        margin: 0 auto $spacing-md;
+    }
+
+    .c-fxa-sticky-signup-content {
+        align-items: center;
+        display: flex;
+    }
+
+    .fxa-email-form-intro {
+        display: none;
+    }
+
+    .fxa-email-field-container {
+        .field {
+            label {
+                @include visually-hidden;
+            }
+
+            input[type="email"] {
+                border: none;
+                box-shadow: none;
+                padding: 16px 24px;
+                width: 100%;
+            }
+        }
+
+        .mzp-c-button {
+            width: 100%;
+        }
+    }
+
+    @media #{$mq-sm} {
+        .fxa-email-field-container {
+            @include grid-column-gap($spacing-md);
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+
+            .field {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        @include clearfix;
+        left: 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+
+        .c-fxa-sticky-signup-container {
+            @include grid-column-gap($spacing-lg);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
+
+        .c-fxa-sticky-signup-title {
+            margin: 0;
+        }
+
+        .fxa-email-form {
+            .agreement {
+                @include text-body-sm;
+            }
+        }
+
+        .fxa-email-field-container {
+            @include bidi((
+                (background-position, center left, center right),
+                (padding-left, 37px + $spacing-md, padding-right, 0),
+            ));
+            background-image: url('/media/img/firefox/whatsnew_63/avatar.svg');
+            background-repeat: no-repeat;
+        }
+
+        @media #{$mq-lg} {
+            .c-fxa-sticky-signup-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Intro section
+
+#intro {
+    background-color: $color-gray-10;
+    min-height: 350px;
+    padding-top: $layout-sm;
+
+    @media #{$mq-md} {
+        margin-bottom: $layout-xl;
+        padding-top: $layout-xl;
+
+        .mzp-c-hero-image {
+            bottom: -$spacing-2xl;
+            height: calc(100% + #{$spacing-2xl});
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// What's new
+
+#whats-new {
+    background-color: transparent;
+
+    @media #{$mq-lg} {
+        margin: $layout-xl 0 $layout-lg;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Tracking Controls section
+
+#tracking-controls {
+    .mzp-c-card-feature-title {
+        @include text-display-md;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Content Blocking section
+
+#content-blocking {
+    background-color: $color-blue-50;
+
+    .mzp-c-hero-title {
+        @include text-display-md;
+    }
+
+    @media #{$mq-md} {
+        .mzp-c-hero-image {
+            height: 100%;
+            top: -$layout-md;
+
+            img {
+                @include bidi(((margin-right, $layout-xl, margin-left, 0),));
+            }
+        }
+    }
+
+    @media #{$mq-xl} {
+        .mzp-c-hero-image {
+            height: calc(100% + #{$spacing-xl});
+            top: -$layout-xl;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Sync section
+
+#sync {
+    .mzp-c-card-feature-title {
+        @include text-display-md;
+    }
+
+    .mzp-c-card-feature-media img {
+        max-width: 519px;
+    }
+}
