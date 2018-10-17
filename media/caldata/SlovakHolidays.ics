@@ -502,4 +502,17 @@ DESCRIPTION:Veľkonočný pondelok\n[ Dni pracovného voľna ]\n----------
  -------------------------------------------\nwww.mozilla.sk
 TRANSP:TRANSPARENT
 END:VEVENT
+BEGIN:VEVENT
+CREATED:20181017T185430Z
+LAST-MODIFIED:20181017T185431Z
+DTSTAMP:20181017T185431Z
+UID:2b760a19-c021-47a8-88e1-d86641b68573
+SUMMARY:Výročie Deklarácie slovenského národa
+CATEGORIES:Sviatok
+DTSTART;VALUE=DATE:20181030
+DTEND;VALUE=DATE:20181031
+DESCRIPTION:Výročie Deklarácie slovenského národa\n[ Dni pracovného voľna ]\n----------
+ -------------------------------------------\nwww.mozilla.sk
+TRANSP:TRANSPARENT
+END:VEVENT
 END:VCALENDAR
