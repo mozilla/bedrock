@@ -36,7 +36,6 @@ urlpatterns = (
     redirect(r'^projects/calendar/', 'https://www.thunderbird.net/calendar/', locale_prefix=False),
     page('mission', 'mozorg/mission.html'),
     page('ITU', 'mozorg/itu.html'),
-    page('about/powered-by', 'mozorg/powered-by.html'),
     url('^about/forums/$', views.forums_view, name='mozorg.about.forums.forums'),
     page('about/forums/etiquette', 'mozorg/about/forums/etiquette.html'),
     page('about/forums/cancellation', 'mozorg/about/forums/cancellation.html'),

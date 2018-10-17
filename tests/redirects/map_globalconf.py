@@ -146,9 +146,6 @@ URLS = flatten((
     # bug 854561
     url_test('/projects/mozilla-based{.html,/}', '/about/mozilla-based/'),
 
-    # bug 851727
-    url_test('/projects/powered-by{.html,/}', '/about/powered-by/'),
-
     # bug 957664
     url_test('/press/awards{/,.html}', 'https://blog.mozilla.org/press/awards/'),
 

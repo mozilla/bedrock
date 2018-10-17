@@ -696,12 +696,6 @@
     },
     {
       "files": [
-        "css/mozorg/powered-by.less"
-      ],
-      "name": "powered-by"
-    },
-    {
-      "files": [
         "css/firefox/new/berlin.scss",
         "css/firefox/new/berlin-aus-gruenden.scss"
       ],
