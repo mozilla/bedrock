@@ -10,7 +10,13 @@
 
 {% block string_data %}
 data-panel1-title="{{ _('New in Firefox: Content Blocking') }}"
+
+{% if l10n_has_tag('remove_fastblock_1499589') %}
+data-panel1-text="{{ _('When you see the shield, Firefox is blocking parts of the page that can track you online.') }}"
+{% else %}
 data-panel1-text="{{ _('When you see the shield, Firefox is blocking parts of the page that can slow your browsing or track you online.') }}"
+{% endif %}
+
 data-panel1-step="{{ _('1 of 3') }}"
 data-panel1-button="{{ _('Next') }}"
 data-panel3-title="{{ _('Turn off blocking for trusted sites') }}"
@@ -32,7 +38,11 @@ data-panel3-button="{{ _('Got it!') }}"
 
 {% block panel_2 %}
   <h2>{{ _('Differences to expect') }}</h2>
+  {% if l10n_has_tag('remove_fastblock_1499589') %}
+  <p>{{ _('Content blocking can keep parts of pages or entire pages from loading.') }}</p>
+  {% else %}
   <p>{{ _('Content blocking can help pages load faster, but it can also keep parts of pages or entire pages from loading.') }}</p>
+  {% endif %}
 {% endblock %}
 
 {% block thanks %}
