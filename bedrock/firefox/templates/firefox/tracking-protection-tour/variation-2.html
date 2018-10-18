@@ -32,7 +32,11 @@ data-panel3-button="{{ _('Got it!') }}"
 
 {% block panel_2 %}
   <h2>{{ _('Differences to expect') }}</h2>
-  <p>{{ _('Content blocking can help pages load faster, but it can also  keep parts of pages or entire pages from loading.') }}</p>
+  {% if l10n_has_tag('remove_fastblock_1499589') %}
+  <p>{{ _('Content blocking can keep parts of pages or entire pages from loading.') }}</p>
+  {% else %}
+  <p>{{ _('Content blocking can help pages load faster, but it can also keep parts of pages or entire pages from loading.') }}</p>
+  {% endif %}
 {% endblock %}
 
 {% block thanks %}
