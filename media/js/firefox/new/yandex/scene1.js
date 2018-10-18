@@ -131,6 +131,9 @@
             button[i].href = Mozilla.Utils.trans('buttonLink');
             button[i].removeAttribute('data-direct-link');
             button[i].querySelector('.download-title').innerHTML = Mozilla.Utils.trans('buttonText');
+            button[i].setAttribute('data-link-name', 'Yandex redirect');
+            button[i].setAttribute('data-link-type', 'Download Firefox (RU)');
+            button[i].setAttribute('data-link-position', 'primary cta');
         }
 
         // Update privacy policy text for Yandex.
