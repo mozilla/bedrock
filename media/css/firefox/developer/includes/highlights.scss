@@ -6,6 +6,11 @@
     background: $color-dev-mediumblue;
     color: #fff;
 
+    .content {
+        @include flexbox;
+        @include flex-wrap;
+    }
+
     .hero-image {
         box-shadow: 0 15px 20px rgba(0, 0, 0, .15), 0 3px 6px rgba(0, 0, 0, .15);
     }
@@ -39,9 +44,9 @@
         .highlight-tools,
         .highlight-features {
             @include border-box;
-            @include span(6);
             margin-bottom: 0;
             padding: 20px 40px;
+            width: 50%;
         }
 
         .section-title,
