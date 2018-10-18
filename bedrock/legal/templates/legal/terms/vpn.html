@@ -1,0 +1,59 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "legal/base-resp.html" %}
+
+{% block page_title %}{{ _('VPN') }}{% endblock %}
+
+{% block body_class %}
+  {{ super() }} legal-docs
+{% endblock%}
+
+{% block article %}
+
+<article class="section-content" itemscope itemtype="http://schema.org/Article">
+  <header>
+    <h1 class="title-shadow-box">VPN: Terms of Service</h1>
+  </header>
+  <div itemprop="articleBody" class="article-body">
+    <h2>Payment Terms</h2>
+
+    <p>Mozilla (that’s us) has partnered with Proton VPN to bring you a Virtual Private Network (VPN) to make your online browsing more secure. You can purchase the VPN service through Mozilla; Proton VPN provides the service itself.</p>
+    
+    <p>These Payment Terms cover your Payment. Proton VPN’s <a href="https://protonvpn.com/terms-and-conditions">Terms and Conditions of Service</a> cover the VPN service itself. If there is any inconsistency between these terms and Proton VPN’s Terms, these terms apply.</p>
+    
+    <h3>Subscription and Payment Authorization</h3>
+    
+    <p>We offer the VPN service as a monthly, automatically renewing subscription. When you sign up, you authorize us to charge the payment card you provide for the subscription fees for the first month of the VPN service. Your plan renews automatically each month, and you authorize us to charge the monthly subscription fees each month.</p>
+    
+    <p>If you stop paying, we will suspend your account, and we may delete it after 2 months of not paying.</p>
+    
+    <p>We reserve the right to discontinue service immediately if we discover fraudulent payment, such as the use of a stolen payment card.</p>
+    
+    <h3>30-Day Money Back Guarantee</h3>
+    
+    <p>The first time you subscribe to this VPN service, you may cancel your account within the first 30 days, and Mozilla will refund your first month subscription.</p>
+    
+    <p>This offer only applies the first time you subscribe to the service. If you decide to subscribe to the service after cancelling, you are not eligible for the 30-day money back guarantee.</p>
+    
+    <h3>Cancellation</h3>
+    
+    <p>You may cancel your subscription to this VPN service at any time by clicking the “Cancel Subscription” link in any email that we send you. If you choose to cancel, your access to the service will stop immediately, and Mozilla will refund you for any unused portion of the service period within your then-current billing cycle. This means Mozilla will prorate your refund based on the remaining full days of the subscription period.</p>
+    
+    <p>We may, if we choose, provide you with a prorated refund for subscription fees paid during the period the Service was not available or usable, if you request it.</p>
+    
+    <p>Mozilla may issue any refund of subscription fees to the original payment method in the original currency you paid with and will process any refunds within 30 days of the request.</p>
+    
+    <h3>Termination</h3>
+    
+    <p>Mozilla can suspend or terminate your access to the VPN service at any time for any reason, including a decision to stop offering this VPN service altogether. We will try to notify you by the email address associated with your account before we suspend or terminate your access. If Mozilla suspends or terminates your access to the VPN, we will also end your subscription and will not charge you a subscription fee for subsequent months.</p>
+    
+    <h2>Privacy Notice</h2>
+    
+    <p>When Mozilla receives information from you, our <a href="{{ url('privacy.notices.websites') }}">Mozilla Privacy Policy</a> describes how we handle that information.  Your payment is processed by <a href="https://recurly.com/legal/privacy">Recurly</a> and <a href="https://stripe.com/us/privacy">Stripe</a>.</p>
+    
+    <p>Mozilla receives a record of your subscription and information about the status of your subscription and payment, but Mozilla does not receive your payment details. Mozilla also receives the email address you use to sign up for the VPN service as part of this record and to communicate with you about the VPN service.</p>
+  </div>
+</article>
+{% endblock %}
