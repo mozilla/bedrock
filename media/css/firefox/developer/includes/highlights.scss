@@ -6,11 +6,6 @@
     background: $color-dev-mediumblue;
     color: #fff;
 
-    .content {
-        @include flexbox;
-        @include flex-wrap;
-    }
-
     .hero-image {
         box-shadow: 0 15px 20px rgba(0, 0, 0, .15), 0 3px 6px rgba(0, 0, 0, .15);
     }
@@ -39,6 +34,11 @@
             background-image: url('/media/img/firefox/developer/curve-highlights-top.svg');
             height: 140px;
             top: -139px;
+        }
+
+        .content {
+            @include flexbox;
+            @include flex-wrap;
         }
 
         .highlight-tools,
