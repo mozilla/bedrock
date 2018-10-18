@@ -10,7 +10,7 @@
         box-shadow: 0 15px 20px rgba(0, 0, 0, .15), 0 3px 6px rgba(0, 0, 0, .15);
     }
 
-    .highlight-tools {
+    .highlight-item {
         padding-bottom: 20px;
         margin-bottom: 40px;
     }
@@ -36,12 +36,16 @@
             top: -139px;
         }
 
-        .highlight-tools,
-        .highlight-features {
+        .content {
+            @include flexbox;
+            @include flex-wrap;
+        }
+
+        .highlight-item {
             @include border-box;
-            @include span(6);
             margin-bottom: 0;
             padding: 20px 40px;
+            width: 50%;
         }
 
         .section-title,
