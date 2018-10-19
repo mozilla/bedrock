@@ -66,6 +66,13 @@
             <li><a href="{{ url('privacy.notices.websites') }}#cookies" data-link-type="footer" data-link-name="Cookies">{{ _('Cookies') }}</a></li>
             <li><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal">{{ _('Legal') }}</a></li>
           </ul>
+        {% if LANG.startswith('en-') %}
+          <p class="mzp-c-footer-license">
+          {% trans url='https://foundation.mozilla.org', link_type='footer', link_name='Mozilla Foundation' %}
+            Visit Mozilla Corporation’s not-for-profit parent, the <a href="{{ url }}" data-link-type="{{ link_type }}" data-link-name="{{ link_name }}">Mozilla Foundation</a>.
+          {% endtrans %}
+          </p>
+        {% endif %}
           <p class="mzp-c-footer-license">
           {%- trans url=url('foundation.licensing.website-content') -%}
             Portions of this content are ©1998–{{ current_year }} by individual mozilla.org
