@@ -653,4 +653,7 @@ redirectpatterns = (
     redirect(r'^teach/?$', 'mozorg.internet-health'),
     redirect(r'^teach/smarton/?$', 'mozorg.internet-health'),
     redirect(r'^teach/smarton/(?:tracking|security|surveillance)/?$', 'mozorg.internet-health.privacy-security'),
+
+    # issue 6266
+    redirect(r'^about/policy/leandata/?$', 'mozorg.about.policy.lean-data.index'),
 )
