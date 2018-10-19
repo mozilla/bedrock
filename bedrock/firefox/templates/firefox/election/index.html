@@ -4,7 +4,7 @@
 
 {% extends "base-protocol.html" %}
 
-{% block page_title %}{% if switch('firefox-election-build') %}Firefox Election Bundle{% else %}Firefox Election Collection{% endif %}{% endblock %}
+{% block page_title %}{% if switch('firefox-election-build') %}Firefox U.S. Election Bundle{% else %}Firefox U.S. Election Collection{% endif %}{% endblock %}
 {% block page_desc %}Decode political ad targeting and keep Facebook off your trail with these extensions.{% endblock %}
 
 {% block page_css %}
@@ -25,7 +25,7 @@
             <div class="mzp-c-hero-body">
               <h1 class="mzp-c-hero-title">Get Smart Before You Vote.</h1>
               <div class="mzp-c-hero-desc">
-                <p>Download the Firefox Election Bundle to get the already powerful Firefox browser supercharged with extensions that help you decode political ad targeting and keep Facebook off your trail.</p>
+                <p>Download the Firefox U.S. Election Bundle to get the already powerful Firefox browser supercharged with extensions that help you decode political ad targeting and keep Facebook off your trail.</p>
               </div>
             </div>
           </div>
@@ -58,7 +58,7 @@
         <div class="mzp-l-content">
           <div class="mzp-c-call-out-content">
             <div class="mzp-c-call-out-container">
-              <h2 class="mzp-c-call-out-title">Download Firefox Election Bundle</h2>
+              <h2 class="mzp-c-call-out-title">Download Firefox U.S. Election Bundle</h2>
             </div>
           </div>
           <div class="mzp-c-call-out-cta">
@@ -70,11 +70,11 @@
                   <p><a class="mzp-c-button" href="/en-US/" data-link-type="button" data-link-name="Unsupported Browser Election Content">Other special election content</a></p>
                 </div>
                 <div id="case-outofdate" class="hidden">
-                  <p>Your version of Firefox isn’t compatible with the Election Bundle. Once you’ve updated, please return to this page for the extensions.</p>
+                  <p>Your version of Firefox isn’t compatible with the U.S. Election Bundle. Once you’ve updated, please return to this page for the extensions.</p>
                   {{ download_firefox(alt_copy='Update Firefox', dom_id='btn-download-oldfx', button_color='mzp-c-button mzp-t-download') }}
                 </div>
                 <div id="case-mobile" class="hidden">
-                  <p>The Election Bundle is made just for Firefox on desktop. Visit this page on your computer to download it or add the extensions.</p>
+                  <p>The U.S. Election Bundle is made just for Firefox on desktop. Visit this page on your computer to download it or add the extensions.</p>
                   <p>Digital citizens need good info. Mozilla Corporation and Firefox can help you check your registration status, read political news curated by Pocket and get other helpful resources.</p>
                   <!-- hard code en-US because election content will not be localized -->
                   <p><a class="mzp-c-button" href="/en-US/">Other special election content</a></p>
@@ -91,7 +91,7 @@
                       data-download-os="Desktop"
                       data-download-version="firefox election bundle win"
                       data-download-location="election page">
-                      Download Firefox Election Bundle
+                      Download Firefox U.S. Election Bundle
                     </a>
                   </p>
                   <p id="case-funnel-mac" class="hidden">
@@ -102,7 +102,7 @@
                       data-download-os="Desktop"
                       data-download-version="firefox election bundle mac"
                       data-download-location="election page">
-                      Download Firefox Election Bundle
+                      Download Firefox U.S. Election Bundle
                     </a>
                   </p>
                   <p><a href="{{ url('firefox.new') }}" data-button-name="just firefox">Nah, just give me Firefox</a></p>
@@ -157,7 +157,7 @@
         </div>
       </section>
     </div>
-    <p class="c-pro-disclaimer">The Firefox Election Bundle is a project between ProPublica and the Mozilla Corporation.</p>
+    <p class="c-pro-disclaimer">The Firefox U.S. Election Bundle is a project between ProPublica and the Mozilla Corporation.</p>
   {% else %}
     <div id="case-not-firefox-desktop" class="hidden">
       <div class="t-paper">
@@ -299,7 +299,7 @@
         </div>
       </section>
     </div>
-    <p class="c-pro-disclaimer">The Firefox Election Collection is a project between ProPublica and the Mozilla Corporation.</p>
+    <p class="c-pro-disclaimer">The Firefox U.S. Election Collection is a project between ProPublica and the Mozilla Corporation.</p>
   {% endif %}
 </main>
 {% endblock %}
