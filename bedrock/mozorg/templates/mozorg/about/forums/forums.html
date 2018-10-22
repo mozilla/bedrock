@@ -8,7 +8,7 @@
 {% set mdn_forums = ['mozilla.mdn', 'mozilla.dev.mdc', 'mozilla.dev.mdn'] %}
 
 {% block page_title %}{{ _('Forums') }}{% endblock %}
-{% block body_id %}about-forums{% endblock %}
+{% set body_id = "about-forums" %}
 
 {% block page_css %}
   {{ css_bundle('about-forums') }}
