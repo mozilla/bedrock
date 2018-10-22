@@ -29,6 +29,13 @@
   {% endtrans %}
   </p>
 
+
+  {% if l10n_has_tag('foundation_legal_201810') %}
+  <p>
+  {{ _('The Corporation also owns and is responsible for maintenance of mozilla.org and blog.mozilla.org') }}
+  </p>
+  {% endif %}
+
   <p>
     <a href="https://mzl.la/foundation-strategy" class="read-strategy">{{ _('Read the Mozilla Foundation’s 2016-2018 Strategy') }}</a>
   </p>
