@@ -231,19 +231,20 @@
             {% endif %}
           {% endfor %}
 
-          {% for note in release.notes if note.tag == "Developer" %}
-            {% if loop.first %}
-            <div class="section-wrapper" id="{{ note.tag|lower() }}">
-              <h4>{{ note.tag }}</h4>
+          {# The Developer section is always visible with a MDN link #}
+          <div class="section-wrapper" id="developer">
+            <h4>{{ _('Developer') }}</h4>
+            {% for note in release.notes if note.tag == "Developer" %}
+              {% if loop.first %}
               <ul class="section-items">
               {% endif %}
               {{ note_entry(note) }}
               {% if loop.last %}
               </ul>
-              <a class="mdn-icon more" rel="external" href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version }}">{{ _('Developer Information') }}</a>
-            </div>
-            {% endif %}
-          {% endfor %}
+              {% endif %}
+            {% endfor %}
+            <a class="mdn-icon more" rel="external" href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version }}">{{ _('Developer Information') }}</a>
+          </div>
 
           {% for note in release.notes if note.tag == "HTML5" %}
             {% if loop.first %}
