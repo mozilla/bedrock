@@ -1,0 +1,104 @@
+<section class="section section-highlights">
+  <div class="content">
+    <div class="highlight-item">
+      <h2 class="section-title"><span>{{ _('New Tools') }}</span></h2>
+
+      <div class="section-body">
+        <a href="https://mozilladevelopers.github.io/playground/debugger/" rel="external">
+          <h3 id="devtools" class="body-title">{{ _('Firefox DevTools') }}</h3>
+          {# No alt tag needed as the h3 above explains the link content #}
+          <img class="hero-image" src="{{ static('img/firefox/developer/hero-debugger-ani.gif') }}" alt="">
+        </a>
+        <p>
+        {% if l10n_has_tag('ember_reference_fix') %}
+          {% trans %}
+            The new Firefox DevTools are powerful, flexible, and best of all,
+            hackable. This includes a best-in-class JavaScript debugger, which
+            can target multiple browsers and is built in React and Redux.
+          {% endtrans %}
+        {% else %}
+          {% trans %}
+            The new Firefox DevTools are powerful, flexible, and best of all,
+            hackable. This includes a best-in-class JavaScript debugger, which
+            can target multiple browsers and is built in React and Ember.
+          {% endtrans %}
+        {% endif %}
+        </p>
+        <a class="more" rel="external" href="https://mozilladevelopers.github.io/playground/debugger/">{{ _('Learn more') }}</a>
+      </div>
+    </div>
+
+    <div class="highlight-item">
+      <h2 class="section-title"><span>{{ _('Innovative Features') }}</span></h2>
+
+      <div class="section-body">
+        <a href="https://mozilladevelopers.github.io/playground/css-grid/" rel="external">
+          <h3 id="cssgrid" class="body-title">{{ _('Master CSS Grid') }}</h3>
+          {# No alt tag needed as the h3 above explains the link content #}
+          <img class="hero-image" src="{{ static('img/firefox/developer/hero-cssgrid-ani.gif') }}" alt="">
+        </a>
+        <p>
+        {% trans %}
+          Firefox is the only browser with tools built specifically for
+          building and designing with CSS Grid. These tools allow you to
+          visualize the grid, display associated area names, preview
+          transformations on the grid and much more.
+        {% endtrans %}
+        </p>
+        <a class="more" rel="external" href="https://mozilladevelopers.github.io/playground/css-grid/">{{ _('Learn more') }}</a>
+      </div>
+    </div>
+
+    {% if l10n_has_tag('new_features_20180830') %}
+    <div class="highlight-item">
+      <h2 class="section-title"><span>{{ _('Convenient Features') }}</span></h2>
+
+      <div class="section-body">
+        <a rel="external" href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/How_to/Edit_CSS_shapes">
+          <h3 class="body-title">{{ _('Shapes Editor') }}</h3>
+          <img class="hero-image" src="{{ static('img/firefox/developer/hero-clip-ani.gif') }}" alt="">
+        </a>
+        <p>
+        {% if l10n_has_tag('new_features_shape_outside') %}
+          {% trans %}
+            Firefox DevTools has a brand new shape path editor that takes
+            the guesswork out of fine-tuning your shape-outside and clip-path
+            shapes by allowing you to very easily fine-tune your adjustments
+            with a visual editor.
+          {% endtrans %}
+        {% else %}
+          {% trans %}
+            Firefox DevTools has a brand new shape path editor that takes
+            the guesswork out of fine-tuning your shadow-outside and clip-path
+            shapes by allowing you to very easily fine-tune your adjustments
+            with a visual editor.
+          {% endtrans %}
+        {% endif %}
+        </p>
+        <a class="more" rel="external" href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/How_to/Edit_CSS_shapes">{{ _('Learn more') }}</a>
+      </div>
+    </div>
+
+    <div class="highlight-item">
+      <h2 class="section-title"><span>{{ _('Faster Information') }}</span></h2>
+
+      <div class="section-body">
+        <a rel="external" href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/How_to/Edit_fonts">
+          <h3 class="body-title">{{ _('Fonts Panel') }}</h3>
+
+          <img class="hero-image" src="{{ static('img/firefox/developer/hero-fonts.gif') }}" alt="">
+        </a>
+        <p>
+        {% trans %}
+          The new fonts panel in Firefox DevTools gives developers quick
+          access to all of the information they need about the fonts being
+          used in an element. It also includes valuable information such
+          as the font source, weight, style and more.
+        {% endtrans %}
+        </p>
+        <a class="more" rel="external" href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/How_to/Edit_fonts">{{ _('Learn more') }}</a>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>

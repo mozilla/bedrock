@@ -384,6 +384,76 @@ class TestWhatsNew(TestCase):
 
     # end 61.0 whatsnew tests
 
+    # begin 62.0 whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_62_0(self, render_mock):
+        """Should use Pocket/FxA/Fx mobile/Focus template for 62.0"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='62.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/whatsnew-fx62.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_62_0_old_major_version(self, render_mock):
+        """Should use Pocket/FxA/Fx mobile/Focus template when updating from older major version"""
+        req = self.rf.get('/firefox/whatsnew/?oldversion=61.0')
+        req.locale = 'en-US'
+        self.view(req, version='62.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/whatsnew-fx62.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_62_0_id_locale_template(self, render_mock):
+        """Should use id locale specific template when updating from older major version"""
+        req = self.rf.get('/firefox/whatsnew/?oldversion=61.0')
+        req.locale = 'id'
+        self.view(req, version='62.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/index.id.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_62_0_zh_TW_locale_template(self, render_mock):
+        """Should use zh-TW locale specific template when updating from older major version"""
+        req = self.rf.get('/firefox/whatsnew/?oldversion=61.0')
+        req.locale = 'zh-TW'
+        self.view(req, version='62.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/index.zh-TW.html'])
+
+    # end 62.0 whatsnew tests
+
+    # begin 63.0 whatsnew tests
+
+    def test_fx_63_0(self, render_mock):
+        """Should use standard template for 63.0"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='63.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/whatsnew-fx63.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_63_0_id_locale_template(self, render_mock):
+        """Should use id locale specific template"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'id'
+        self.view(req, version='63.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/index.id.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_63_0_zh_TW_locale_template(self, render_mock):
+        """Should use zh-TW locale specific template"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'zh-TW'
+        self.view(req, version='63.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/index.zh-TW.html'])
+
+    # end 63.0 whatsnew tests
+
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestFirstRun(TestCase):
@@ -420,25 +490,6 @@ class TestFirstRun(TestCase):
         """Should use 57 quantum firstrun template"""
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='57.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/firstrun-quantum.html'])
-
-    # facebook container funnelcake - bug 1450106
-
-    @override_settings(DEV=True)
-    def test_fx_firstrun_fbcontainer(self, render_mock):
-        """Should use facebook container template"""
-        req = self.rf.get('/en-US/firefox/firstrun/?xv=facebook-container')
-        self.view(req, version='59.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/facebook-container.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_firstrun_fbcontainer_non_enUS(self, render_mock):
-        """Should use 57 quantum firstrun template for non en-US locales"""
-        req = self.rf.get('/firefox/firstrun/?xv=facebook-container')
-        req.locale = 'fr'
-        self.view(req, version='59.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/firstrun/firstrun-quantum.html'])
 
@@ -547,3 +598,42 @@ class FxVersionRedirectsMixin(object):
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
         eq_(response.status_code, 200)
         eq_(response['Cache-Control'], 'max-age=0')
+
+
+@patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
+class TestTrackingProtectionTour(TestCase):
+    def setUp(self):
+        self.view = fx_views.TrackingProtectionTourView.as_view()
+        self.rf = RequestFactory()
+
+    @override_settings(DEV=True)
+    def test_fx_tracking_protection_62_0(self, render_mock):
+        """Should use default tracking protection tour template"""
+        req = self.rf.get('/en-US/firefox/tracking-protection/start/')
+        self.view(req, version='62.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/tracking-protection-tour/index.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_tracking_protection_63_0_v0(self, render_mock):
+        """Should use variation 0 template"""
+        req = self.rf.get('/en-US/firefox/tracking-protection/start/?variation=0')
+        self.view(req, version='62.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/tracking-protection-tour/variation-0.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_tracking_protection_63_0_v1(self, render_mock):
+        """Should use variation 1 template"""
+        req = self.rf.get('/en-US/firefox/tracking-protection/start/?variation=1')
+        self.view(req, version='62.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/tracking-protection-tour/variation-1.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_tracking_protection_63_0_v2(self, render_mock):
+        """Should use variation 2 template"""
+        req = self.rf.get('/en-US/firefox/tracking-protection/start/?variation=2')
+        self.view(req, version='62.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/tracking-protection-tour/variation-2.html'])

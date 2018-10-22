@@ -1,6 +1,6 @@
 milestone()
 
-utils.ircNotification([stage: 'Test', status: 'starting'])
+utils.slackNotification([stage: 'Test', status: 'starting'])
 
 env.GIT_COMMIT = "latest"
 
@@ -42,7 +42,7 @@ if ( config.apps ) {
                                 parallel allTests
                             }
                         } catch(err) {
-                            utils.ircNotification([stage: "Integration Tests ${appname}-${region.name}", status: 'failure'])
+                            utils.slackNotification([stage: "Integration Tests ${appname}-${region.name}", status: 'failure'])
                             throw err
                         }
                         tested_apps << "${appname}-${region.name}".toString()
@@ -54,5 +54,5 @@ if ( config.apps ) {
 }
 if ( tested_apps ) {
     // huge success \o/
-    utils.ircNotification([message: "All tests passed: ${tested_apps.join(', ')}", status: 'success'])
+    utils.slackNotification([message: "All tests passed: ${tested_apps.join(', ')}", status: 'success'])
 }

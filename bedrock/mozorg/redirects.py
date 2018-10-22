@@ -229,8 +229,9 @@ redirectpatterns = (
     # bug 854561
     redirect(r'^projects/mozilla-based(\.html|/)?', 'mozorg.projects.mozilla-based'),
 
-    # bug 851727
-    redirect(r'^projects/powered-by(\.html|/)?', 'mozorg.powered-by'),
+    # issue 851727
+    redirect(r'^projects/powered-by(\.html|/)?', 'mozorg.home'),
+    redirect(r'^about/powered-by/?', 'mozorg.home'),
 
     # bug 957664
     redirect(r'^press/awards(?:/|\.html)?$', 'https://blog.mozilla.org/press/awards/'),

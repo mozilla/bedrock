@@ -4,52 +4,99 @@
 
 {% extends "foundation/base-resp.html" %}
 
-{% block page_title %}{{ _('Distribution Trademark Policy') }}{% endblock %}
+{% block page_title %}{{ _('Distribution of Firefox with Mozilla Trademarks') }}{% endblock %}
 
 {% block article_title %}
-  {{ _('Mozilla Trademark Policy for Distribution Partners') }}
+  {{ _('Distribution of Firefox with Mozilla Trademarks') }}
 {% endblock %}
 
 {% block article %}
-  <p><em>{{ _('Version 0.9 (DRAFT)') }}</em></p>
 
-  <p>{% trans faq=url('foundation.trademarks.faq') %}
-    (Have you read the <a href="{{ faq }}">FAQ</a>?)
-  {% endtrans %}</p>
+  <h2>{{ _('Distribution of Firefox with Mozilla Trademarks') }}</h2>
 
-  <h2>{{ _('Introduction') }}</h2>
+  <p>
+    {% trans license=url('mozorg.mpl.index') %}
+      What you can and cannot do with our Firefox software products and code – independent of our trademarks – is governed by a separate document, the <a href="{{ license }}">Mozilla Public License</a>. In turn, the Mozilla Public License does not contain any rules on our trademarks, as is expressly mentioned in its section 2.1. "Grants":
+    {% endtrans %}
+  </p>
+
+  <blockquote cite="{{ url('mozorg.mpl.2.0.index') }}">
+    <p>{{ _('"Each Contributor hereby grants You a world-wide, royalty-free, non-exclusive license: (a) under intellectual property rights (<em>other than patent or trademark</em>)…"') }}</p>
+  </blockquote>
 
   <p>
     {% trans %}
-      This document outlines the Mozilla Corporation's policy for
-      distribution of modified versions of Firefox, Thunderbird and future
-      products containing our trademarks. So, for example, it would apply to
-      computer manufacturers or ISPs wanting to ship Firefox or Thunderbird
-      with machines or on CDs.
+      If you wish to distribute Firefox branded with our trademarks, you must comply with the Mozilla Public License, the Mozilla Trademark Guidelines and either the below Unaltered Firefox Distribution Policy or the terms of a written distribution agreement with Mozilla.
     {% endtrans %}
   </p>
 
+  <h2>{{ _('Unaltered Firefox Distribution Policy') }}</h2>
+
   <p>
-    {% trans policy=url('foundation.trademarks.policy') %}
-      This document is meant as a companion document to the
-      <a href="{{ policy }}">Trademarks Policy</a>.
+    {% trans mozorg=url('mozorg.home') %}
+    You may distribute unaltered copies of Mozilla Firefox from <a href="{{ mozorg }}">Mozilla.org</a> without express permission from Mozilla as long as you comply with the following rules:
     {% endtrans %}
   </p>
+  <ul>
+    <li>{{_('You may not charge for Firefox. That means:') }}
+      <ul>
+        <li>{{ _('Distribution may not be subject to any fee.') }}</li>
+        <li>{{ _('Distribution may not be tied to purchasing a product or service.') }}</li>
+      </ul>
+    </li>
+
+    <li>{{ _('You may not collect personal information in the context of your distribution of Firefox.') }}</li>
+
+    <li>{{ _('You may not add to, remove, or change any part of Firefox, including the Mozilla trademarks themselves. For example, you may not add any extensions to Firefox.') }}</li>
+
+    <li>{{ _('You may not modify the installation process of Firefox or use it to install any other themes, plugins, extensions, or software.') }}</li>
+
+    <li>
+      {% trans %}
+      We suggest that if you want to distribute Firefox, you do so by linking to official downloads of Firefox at <a href="{{ mozorg }}">Mozilla.org</a> to help ensure safe, reliable downloads. If you wish to directly distribute copies of Firefox yourself, you must distribute the latest stable version available at <a href="{{ mozorg }}">Mozilla.org</a>.
+      {% endtrans %}
+    </li>
+
+    <li>{{ _('When distributing you must distribute the most recent version of Firefox.') }}</li>
+
+    <li>
+      {% trans %}
+      For Android versions of Firefox that you are distributing on a device: (1) the device must have at least 512MB of RAM; and (2) if the device does not have Google Play installed, you must have a means for providing the user with Firefox updates as they are released by Mozilla (see the <a href="https://wiki.mozilla.org/Release_Management/Calendar">release calendar</a>).
+      {% endtrans %}
+    </li>
+  </ul>
 
   <p>
     {% trans %}
-      Firefox and Thunderbird are open source projects, so this policy
-      only applies if you'd like to use our trademarks to identify your releases.
-      If you're not planning on doing that, then you don't have to worry about this
-      document.
+    Mozilla reserves the right to change this Unaltered Firefox Distribution Policy by posting changes on this webpage.
     {% endtrans %}
   </p>
 
-  <h3>{{ _('Unaltered Official Binaries') }}</h3>
+  <h2>{{ _('Modified Versions Require Prior Written Permission') }}</h2>
 
-  <p>{% trans %}<strong>You may distribute unchanged official binaries downloaded from mozilla.com to anyone in any way subject to governing law, without receiving any further permission from Mozilla Corporation.</strong> However, you must not remove or change any part of the official binary, including Mozilla trademarks. On your website or in other materials, you may truthfully state that the software you are providing is an unmodified version of a Mozilla application, keeping in mind the overall guidelines for the use of Mozilla trademarks in printed materials, detailed above. We suggest that, if you choose to provide visitors to your website the opportunity to download Mozilla binaries, you do so by means of a link to our site, to help ensure faster, more reliable downloads.{% endtrans %}</p>
+  <p>
+    {% trans %}
+    The open source nature of Firefox allows you to freely download and modify the Firefox source code. However, if you make <em>any</em> changes to Firefox, you may not redistribute that product using <em>any</em> Mozilla trademark without Mozilla’s prior written consent and, typically, a distribution agreement with Mozilla.  For example, you may not distribute a modified form of Firefox and continue to call it Firefox.
+    {% endtrans %}
+  </p>
 
-  <p>{% trans %}
-      If you choose to distribute Mozilla binaries yourself, we request that you make available the latest stable version (of course, you probably want to do so as well). The notification requirements of the MPL have been met for our binaries, so although it's a good idea to do so, you are not required to ship the source code along with the binaries.
-  {% endtrans %}</p>
+  <ul>
+    <li>{{ _('Changes requiring Mozilla’s prior written permission include (but are not limited to):') }}
+      <ul>
+        <li>{{ _('Changing the default home page or adding bookmarks,') }}</li>
+        <li>{{ _('Adding, modifying, or deleting source files,') }}</li>
+        <li>{{ _('Adding, modifying, or deleting content from installer files,') }}</li>
+        <li>{{ _('File location changes,') }}</li>
+        <li>{{ _('Adding extensions, add-ons or plugins, or') }}</li>
+        <li>{{ _('Installing themes other than those available in the most recent stable version of Firefox available at Mozilla.org.') }}</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p>
+    {% trans permissions="mailto:trademark-permissions@mozilla.com" %}
+    If you wish to distribute a modified version of Firefox with Mozilla trademarks please contact us with your request at <a href="{{ trademarks }}">trademark-permissions@mozilla.com</a>.
+    {% endtrans %}
+  </p>
+
 {% endblock article %}

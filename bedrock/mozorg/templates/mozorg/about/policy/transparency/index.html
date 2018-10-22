@@ -2,10 +2,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "mozorg/about-base-resp.html" %}
+{% extends "mozorg/about-base.html" %}
 
 {% block page_title %}{{ _('Transparency') }}{% endblock %}
-{% block body_class %}sand about-transparency{% endblock %}
+{% set body_id = "about-transparency" %}
+{% block body_class %}about-transparency{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('about-transparency') }}
@@ -19,9 +20,6 @@
 {% endblock %}
 
 {% block content %}
-  <div class="data-header">
-    <img src="{{ static('img/mozorg/about/transparency/hero-transparency.svg') }}" alt="">
-  </div>
   <main role="main">
     <header class="title-bar">
       <div class="content">
@@ -189,7 +187,7 @@
       <div class="content">
         <h2 class="section-title">{{ _('Definitions') }}</h2>
 
-        <dl class="simple">
+        <dl class="prose">
           <dt id="dfn-counter-notice">{{ _('Counter Notice') }}</dt>
           <dd>
             <p>{{ _('Documentation that meets the counter notification requirements <a href="%s">set forth here</a> in response to a <a href="%s">Takedown Notice</a>.')|format(url('legal.report-infringement'), url('mozorg.about.policy.transparency.index') + '#dfn-takedown-notice') }}</p>
@@ -228,25 +226,25 @@
           </dd>
 
           <dt id="dfn-natl-security-request">{{ _('National Security Request') }}</dt>
-          <dd>{{ _('A National Security Letter issued under 18 U.S.C.§2709, a Court Order issued under the Foreign Intelligence Surveillance Act or any other classified request for user information issued in the U.S.') }}</dd>
+          <dd><p>{{ _('A National Security Letter issued under 18 U.S.C.§2709, a Court Order issued under the Foreign Intelligence Surveillance Act or any other classified request for user information issued in the U.S.') }}</p></dd>
 
           <dt id="dfn-pen-register-order">{{ _('Pen Register Order') }}</dt>
-          <dd>{{ _('A Pen Register and Trap and Trace Order is a type of U.S. <a href="%s">Court Order</a> compelling a company to disclose data about a user’s real­time communications (excluding the content of the communications themselves) to law enforcement on an ongoing basis, usually for a period of 60 days.')|format('#dfn-court-order') }}</dd>
+          <dd><p>{{ _('A Pen Register and Trap and Trace Order is a type of U.S. <a href="%s">Court Order</a> compelling a company to disclose data about a user’s real­time communications (excluding the content of the communications themselves) to law enforcement on an ongoing basis, usually for a period of 60 days.')|format('#dfn-court-order') }}</p></dd>
 
           <dt id="dfn-search-warrant">{{ _('Search Warrant') }}</dt>
-          <dd>{{ _('A document authorizing law enforcement to obtain user data issued by a neutral and detached magistrate on the basis of finding that “probable cause” exists to believe that the items being sought will be found in the place to be searched.') }}</dd>
+          <dd><p>{{ _('A document authorizing law enforcement to obtain user data issued by a neutral and detached magistrate on the basis of finding that “probable cause” exists to believe that the items being sought will be found in the place to be searched.') }}</p></dd>
 
           <dt id="dfn-specific-user">{{ _('Specific User') }}</dt>
-          <dd>{{ _('An identifiable user of Mozilla’s products and services.') }}</dd>
+          <dd><p>{{ _('An identifiable user of Mozilla’s products and services.') }}</p></dd>
 
           <dt id="dfn-subpoena">{{ _('Subpoena') }}</dt>
-          <dd>{{ _('A formal request for the production of evidence or testimony that can be issued by a government agency or court. Judicial review is not necessarily required.') }}</dd>
+          <dd><p>{{ _('A formal request for the production of evidence or testimony that can be issued by a government agency or court. Judicial review is not necessarily required.') }}</p></dd>
 
           <dt id="dfn-takedown-notice">{{ _('Takedown Notice') }}</dt>
-          <dd>{{ _('Documentation that meets the requirements set forth in our <a href="%s">reporting copyright or trademark infringement page</a>.')|format(url('legal.report-infringement')) }}</dd>
+          <dd><p>{{ _('Documentation that meets the requirements set forth in our <a href="%s">reporting copyright or trademark infringement page</a>.')|format(url('legal.report-infringement')) }}</p></dd>
 
           <dt id="dfn-wiretap-order">{{ _('Wiretap Order') }}</dt>
-          <dd>{{ _('A type of U.S. Court Order compelling a company to disclose the metadata and content of a user’s real­time communications to law enforcement on an ongoing basis, usually for a period of 30 days.') }}</dd>
+          <dd><p>{{ _('A type of U.S. Court Order compelling a company to disclose the metadata and content of a user’s real­time communications to law enforcement on an ongoing basis, usually for a period of 30 days.') }}</p></dd>
         </dl>
       </div>
     </section>

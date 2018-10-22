@@ -11,7 +11,7 @@ from pages.regions.modal import Modal
 
 class DownloadPage(FirefoxBasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/new/'
+    URL_TEMPLATE = '/{locale}/firefox/new/{params}'
 
     _download_button_locator = (By.ID, 'download-button-desktop-release')
     _modal_link_locator = (By.ID, 'other-platforms-modal-link')

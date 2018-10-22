@@ -1,0 +1,201 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/button';
+@import "../../protocol/css/components/article";
+
+
+/* -------------------------------------------------------------------------- */
+// Layout
+
+.l-narrow {
+    margin: 0 auto;
+    max-width: $content-md;
+    padding: 0 $spacing-lg;
+}
+
+/* -------------------------------------------------------------------------- */
+// Policy header
+
+.privacy-head {
+    background-color: $color-gray-20;
+    padding: $spacing-lg 0;
+
+    @media #{$mq-md} {
+        padding: $spacing-xl $spacing-lg;
+    }
+
+    @media #{$mq-lg} {
+        padding: $spacing-2xl $spacing-lg;
+    }
+}
+
+.policy-title {
+    @include background-size(40px 40px);
+    @include bidi((
+        (background-position, left top, right top),
+        (padding-left, 40px + $spacing-sm, padding-right, 0),
+    ));
+    @include border-box;
+    background-repeat: no-repeat;
+    margin-bottom: $spacing-lg;
+
+    h1 {
+        @include text-display-md;
+        font-weight: normal;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    @media #{$mq-md} {
+        @include background-size(60px 60px);
+        @include bidi((
+            (background-position, left top, right top),
+            (padding-left, 60px + $spacing-md, padding-right, 0),
+        ));
+        min-height: 60px;
+    }
+
+    @media #{$mq-lg} {
+        @include background-size(90px 90px);
+        @include bidi((
+            (background-position, left top, right top),
+            (padding-left, 90px + $spacing-lg, padding-right, 0),
+        ));
+        margin-bottom: $spacing-xl;
+        min-height: 90px;
+    }
+}
+
+.product-firefox .policy-title {
+    background-image: url('/media/img/logos/firefox/logo-quantum.png');
+
+    @media #{$mq-high-res} {
+        background-image: url('/media/img/logos/firefox/logo-quantum-high-res.png');
+    }
+}
+
+.product-firefox-rocket .policy-title {
+    background-image: url('/media/img/logos/firefox/logo-rocket.png');
+
+    @media #{$mq-high-res} {
+        background-image: url('/media/img/logos/firefox/logo-rocket-high-res.png');
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Policy header intro
+
+.privacy-lead-in {
+    h2 {
+        @include text-display-lg;
+        font-weight: normal;
+    }
+
+    header {
+        margin-bottom: $spacing-xl;
+
+        @media #{$mq-md} {
+            margin-bottom: $spacing-2xl;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Main policy content
+
+.privacy-body {
+    section > header {
+        margin: $spacing-xl 0 $spacing-2xl;
+    }
+
+    section > section {
+        border-bottom: 1px solid $color-gray-40;
+        padding-bottom: $layout-md;
+
+        header {
+            margin-bottom: $spacing-xl;
+        }
+    }
+
+    section:last-child {
+
+        section:last-child {
+            border-bottom: none;
+        }
+    }
+
+    h2 {
+        @include text-display-md;
+        font-weight: normal;
+    }
+
+    h3 {
+        @include text-display-sm;
+        font-weight: normal;
+    }
+
+    hr {
+        display: none;
+    }
+
+    @media #{$mq-md} {
+        section > section {
+            padding-bottom: $layout-lg;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Privacy choices widget
+
+.data-choices {
+    @include clearfix;
+    position: relative;
+    background-color: $color-gray-10;
+    margin-bottom: $spacing-sm;
+    padding: $spacing-md;
+    text-align: center;
+
+    p {
+        display: inline-block;
+        margin: 0;
+        padding: $spacing-sm 0;
+    }
+
+    .mzp-c-button {
+        display: block;
+        margin: $spacing-md auto 0;
+        padding: $padding-sm $padding-md;
+    }
+
+    @media #{$mq-md} {
+        @include grid-column-gap($spacing-lg);
+        display: grid;
+        grid-template-columns: 4fr 1fr;
+
+        @include bidi(((text-align, left, right),));
+
+        .mzp-c-button {
+            margin: 0;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Policy footer
+
+.privacy-footnote {
+    background-color: $color-gray-20;
+    margin-top: $spacing-xl;
+    padding: $spacing-lg 0;
+}
+
+.back {
+    margin-bottom: 0;
+}

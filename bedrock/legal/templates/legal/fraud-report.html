@@ -62,55 +62,13 @@
         {% endtrans %}
         </li>
         <li>
-        {% trans url=url('foundation.trademarks.index') %}
+        {% trans url=url('foundation.trademarks.policy') %}
           Using the Mozilla trademarks (including logos) in any other way
           that violates our <a href="{{ url }}">Trademark Policy</a>
           (e.g. trademark is modified or used for commercial purposes).
         {% endtrans %}
         </li>
       </ol>
-
-      <p>
-      {% trans url1=url('foundation.trademarks.faq'), url2=url('styleguide.index') %}
-        While the uses of our trademarks described above are not allowed,
-        there are lots of ways our community members can use our
-        trademarks without requesting permission. For more information,
-        please review our <a href="{{ url1 }}">Trademark FAQs</a> and
-        <a href="{{ url2 }}">Mozilla Style Guide</a>.
-      {% endtrans %}
-      </p>
-
-      <p>
-      {% trans url=url('privacy') %}
-        Once you have reported a website or mobile app, we will analyze it
-        and, if necessary, take the appropriate action. If you would like
-        to provide your email address so that we can follow up with you if
-        we have questions, there is an optional email address field in the
-        form below. We will only use your email address in connection with
-        this report. Please see our <a href="{{ url }}">privacy policy</a>
-        for more information.
-      {% endtrans %}
-      </p>
-
-      <p>
-      {% trans url1='mailto:trademarks@mozilla.com',
-               url2=url('mozorg.contact.spaces.spaces-landing'),
-               url3='http://www.google.com/safebrowsing/report_badware/' %}
-
-        This form is only for reporting websites that misuse Mozilla
-        trademarks. If you need to contact us about a different trademark
-        matter, please instead send an
-        <a href="{{ url1 }}">email</a>. If you need to
-        contact Mozilla about anything else, please visit our
-        <a href="{{ url2 }}">Contacts page</a>
-        for the right way to do so. If you have concerns about non-Mozilla
-        sites engaging in bad activities unrelated to Mozilla trademarks,
-        please don’t use this form and instead contact the owner of that
-        website directly. If you are reporting a site distributing malware
-        or engaged in phishing, please also report the site to the
-        <a href="{{ url3 }}">Google Safe Browsing Team</a>.
-      {% endtrans %}
-      </p>
 
       <p>{{ _('Thank you for your help!') }}</p>
     </div><!--/.main-column-->

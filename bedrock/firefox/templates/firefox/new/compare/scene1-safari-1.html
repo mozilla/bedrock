@@ -1,0 +1,91 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/new/compare/base-1.html" %}
+
+{% block experiments %}
+  {% if switch('firefox_new_compare_safari_experiment', ['en-US']) %}
+    {{ js_bundle('firefox_new_compare_safari_experiment') }}
+  {% endif %}
+{% endblock %}
+
+{% block body_class %}{{ super() }} variant-safari-1{% endblock %}
+
+{% block page_title %}{{ _('Firefox vs. Safari') }}{% endblock %}
+{% block hero_title %}{{ _('Take Your Own Safari') }}{% endblock %}
+{% block hero_desc %}{{ _('Leave Apple’s browser behind and browse your way.') }}{% endblock %}
+
+{% block page_body %}
+<div class="page-body">
+  <section class="section-intro mzp-t-firefox">
+    <div class="mzp-l-content">
+      <h2 class="section-title">{{ _('Safari is Apple’s vision of the Web') }}</h2>
+      <p>{{ _('While it works for some, we know that not everyone has the same needs or tastes.') }}</p>
+    </div>
+  </section>
+
+  <section id="section-flexible" class="mzp-l-content">
+    <div class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-third mzp-t-firefox">
+      <div class="mzp-c-card-feature-media-wrapper">
+        <div class="mzp-c-card-feature-media">
+          <img src="{{ static('img/firefox/new/compare/screen-fxcolor.png') }}" alt="">
+        </div>
+      </div>
+      <div class="mzp-c-card-feature-content">
+        <div class="mzp-c-card-feature-content-container">
+          <h2 class="mzp-c-card-feature-title">{{ _('Firefox is flexible') }}</h2>
+          <div class="mzp-c-card-feature-desc">
+            <p>{{ _('You can change almost everything about Firefox. Toolbars, menus, and buttons are yours to command.') }}</p>
+            <p>{{ _('And you can completely transform the way Firefox looks with Firefox Color, our new virtual paint booth.') }}</p>
+            <p>{{ _('Plus, there are thousands of extensions in the Add-ons Store.') }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-fast" class="section-fast c-image-section mzp-t-firefox mzp-t-dark mzp-l-right">
+    <div class="mzp-l-content">
+      <div class="c-image-section-content">
+        <h2 class="c-image-section-title">{{ _('Firefox is fast') }}</h2>
+        <p>{{ _('We’ve spent the last few years rebuilding Firefox, making it faster than ever.') }}</p>
+        <p>{{ _('It can draw web pages faster than other browsers, and uses cutting-edge code to run web apps nearly as fast as desktop apps.') }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-memory" class="mzp-l-content">
+    <div class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-left-third mzp-t-firefox">
+      <div class="mzp-c-card-feature-media-wrapper">
+        <div class="mzp-c-card-feature-media">
+          <img src="{{ static('img/firefox/new/compare/screen-aftereffects.png') }}" alt="">
+        </div>
+      </div>
+      <div class="mzp-c-card-feature-content">
+        <div class="mzp-c-card-feature-content-container">
+          <h2 class="mzp-c-card-feature-title">{{ _('Firefox uses 30% less memory') }}</h2>
+          <div class="mzp-c-card-feature-desc">
+            <p>{{ _('Want to get the most out of your MacBook? Firefox uses 30 percent less memory than it used to, freeing up valuable resources so you can make more music and movies with your Mac.') }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-good" class="section-good c-image-section mzp-t-firefox mzp-t-dark mzp-l-right">
+    <div class="mzp-l-content">
+      <div class="c-image-section-content">
+        <h2 class="c-image-section-title">{{ _('Firefox is good') }}</h2>
+        <p>{{ _('Did you know Firefox comes from the not-for-profit Mozilla? We keep the Internet healthier by supporting programs like tech education for women, truth in online journalism, and promoting civility in comments and online shared spaces.') }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-outro mzp-t-firefox">
+    <div class="mzp-l-content">
+      <p>{{ _('Firefox lets you browse the web your way. Change buttons, toolbars and features—and make your own themes. Firefox is completely yours.') }}</p>
+    </div>
+  </section>
+</div>
+{% endblock %}

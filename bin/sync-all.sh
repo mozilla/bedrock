@@ -10,4 +10,3 @@ fi
 ./manage.py migrate --noinput
 ./manage.py l10n_update
 ./manage.py update_sitemaps
-./bin/run-db-update.sh --all

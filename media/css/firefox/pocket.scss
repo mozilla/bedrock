@@ -1,0 +1,146 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/button';
+@import '../../protocol/css/components/billboard';
+@import '../../protocol/css/components/call-out';
+@import '../../protocol/css/components/feature-card';
+@import '../../protocol/css/components/hero';
+@import '../../protocol/css/templates/card-layout';
+
+
+.mzp-t-dark {
+    :link,
+    :visited {
+        color: $color-white;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $color-gray-20;
+        }
+    }
+
+    .mzp-c-button {
+        box-shadow: none;
+        color: $color-black;
+
+        &:hover,
+        &:focus {
+            background: $color-white;
+            box-shadow: 4px 4px 0 0 #000;
+            color: $color-black;
+            transition: box-shadow 100ms;
+        }
+
+        &:active {
+            box-shadow: 2px 2px 0 0 #000;
+            transition: box-shadow 0ms;
+        }
+    }
+}
+
+.mzp-c-hero-title img {
+    display: block;
+    margin: 0 auto $spacing-lg;
+
+    @media #{$mq-md} {
+        margin: 0 0 $spacing-lg;
+    }
+}
+
+.mzp-c-hero-cta .note {
+    @include text-body-sm;
+    margin: 0;
+}
+
+.mzp-c-hero-image {
+    display: none;
+
+    @media #{$mq-md} {
+        display: block;
+    }
+}
+
+// Disable the shape mask
+.mzp-c-hero.mzp-t-firefox:after {
+    display: none;
+    mask: none;
+}
+
+.mzp-c-call-out {
+    background: transparent;
+}
+
+.mzp-t-firefox {
+    h1, h2, h3, h4 {
+        font-weight: normal;
+    }
+}
+
+@media #{$mq-md} {
+    .mzp-c-hero-image {
+        display: block;
+    }
+
+    .mzp-c-card-feature.mzp-l-card-feature-right-third {
+        margin-bottom: $layout-lg;
+    }
+}
+
+@media #{$mq-lg} {
+    .mzp-c-hero-body {
+        max-width: 480px;
+    }
+
+    .mzp-c-card-feature.mzp-l-card-feature-right-third {
+        margin-bottom: $layout-xl;
+    }
+}
+
+
+#pocket-hero {
+    background: #50aaa8 linear-gradient(to bottom, #50aaa8, #5ec4c0);
+    margin-bottom: $layout-sm;
+
+    @media #{$mq-md} {
+        margin-bottom: $layout-xl;
+
+        .mzp-c-hero-image {
+            bottom: -$layout-xl;
+            height: calc(100% + #{$layout-xl});
+            top: auto;
+        }
+    }
+
+    @media #{$mq-lg} {
+        margin-bottom: $layout-2xl;
+    }
+}
+
+#pocket-sidekick {
+    background: #44a1ff linear-gradient(to top, #44a1ff 0%, #0060df 73%, #2a4189 100%);
+    margin-bottom: 0;
+    margin-top: $spacing-xl;
+
+    .mzp-c-hero-title {
+        @include text-display-md;
+        margin-bottom: $layout-md;
+    }
+
+    @media #{$mq-md} {
+        margin-top: $layout-xl;
+
+        .mzp-c-hero-image {
+            bottom: 0;
+            height: calc(100% + #{$spacing-xl});
+            max-width: 50%;
+            top: auto;
+        }
+    }
+}

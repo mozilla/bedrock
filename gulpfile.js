@@ -24,7 +24,7 @@ const gulpStylelint = require('gulp-stylelint');
 const argv = require('yargs').argv;
 const browserSync = require('browser-sync').create();
 const merge = require('merge-stream');
-const staticBundles = require('./static-bundles.json');
+const staticBundles = require('./media/static-bundles.json');
 
 // directory for building LESS, SASS, and bundles
 const buildDir = 'static_build';
@@ -203,7 +203,7 @@ gulp.task('less:watch', () => {
 
 /**
  * Combine the CSS files after SASS/LESS compilation into bundles
- * based on definitions in the `static-bundles.json` file.
+ * based on definitions in the `media/static-bundles.json` file.
  */
 gulp.task('css:compile', ['sass', 'less'], () => {
     return merge(staticBundles.css.map(bundleCssFiles));
@@ -233,7 +233,7 @@ gulp.task('css:watch', () => {
 
 /**
  * Combine the JS files into bundles
- * based on definitions in the `static-bundles.json` file.
+ * based on definitions in the `media/static-bundles.json` file.
  */
 gulp.task('js:compile', ['assets'], () => {
     return merge(staticBundles.js.map(bundleJsFiles));

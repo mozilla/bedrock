@@ -16,8 +16,11 @@ from bedrock.mozorg.forums import ForumsFile
 from bedrock.mozorg.models import ContributorActivity, TwitterCache
 from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
+from bedrock.pocketfeed.models import PocketArticle
 from bedrock.wordpress.views import BlogPostsView
+from bedrock.base.waffle import switch
 from lib import l10n_utils
+from lib.l10n_utils.dotlang import lang_file_is_active
 
 credits_file = CreditsFile('credits')
 forums_file = ForumsFile('forums')
@@ -181,10 +184,38 @@ class DeveloperView(BlogPostsView):
 
 def home_view(request):
     locale = l10n_utils.get_locale(request)
+    ctx = {}
 
     if locale.startswith('en-'):
-        template_name = 'mozorg/home/home-en.html'
+        if switch('election_bundle'):
+            template_name = 'mozorg/home/home-en-election.html'
+        else:
+            template_name = 'mozorg/home/home-en.html'
+
+        ctx['pocket_articles'] = PocketArticle.objects.all()[:4]
     else:
         template_name = 'mozorg/home/home.html'
+
+    return l10n_utils.render(request, template_name, ctx)
+
+
+def about_view(request):
+    locale = l10n_utils.get_locale(request)
+
+    if locale.startswith('en-'):
+        template_name = 'mozorg/about-en.html'
+    else:
+        template_name = 'mozorg/about.html'
+
+    return l10n_utils.render(request, template_name)
+
+
+def moss_view(request):
+    locale = l10n_utils.get_locale(request)
+
+    if lang_file_is_active('mozorg/moss/index-092018', locale):
+        template_name = 'mozorg/moss/index-092018.html'
+    else:
+        template_name = 'mozorg/moss/index.html'
 
     return l10n_utils.render(request, template_name)

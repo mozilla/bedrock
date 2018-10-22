@@ -1,0 +1,138 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+
+#firefox-new-scene1 {
+
+    .main-content .header-content {
+        width: 100%;
+    }
+
+    .main-download {
+        max-width: 460px;
+        margin: 0 auto;
+
+        @media #{$mq-tablet} {
+            margin: 0;
+        }
+    }
+
+    .main-cta-wrapper {
+        h1 {
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-weight: bold;
+            @include font-size(24px);
+            margin-bottom: 16px;
+        }
+    }
+
+    .main-content:after,
+    .header-image,
+    .features {
+        display: none;
+    }
+
+    .fxa-email-form {
+        border-top: 1px solid rgba(255,255,255,0.8);
+        color: #FFF;
+        margin-top: 35px;
+        padding-top: 24px;
+
+        .button.button-black {
+            background: #000;
+            border-radius: 2px;
+            border: 2px solid #000;
+            box-shadow: none;
+            color: #FFF;
+
+            &:hover,
+            &:focus {
+                background: #FFF;
+                box-shadow: 4px 4px 0 0 #000;
+                color: #000;
+                transition: box-shadow 100ms;
+            }
+            &:active {
+                box-shadow: 2px 2px 0 0 #000;
+                transition: box-shadow 0ms;
+            }
+        }
+
+        .fxa-email-form-intro {
+            font-weight: bold;
+            @include font-size(18px);
+
+            strong {
+                display: inline;
+                font-size: inherit;
+                font-weight: inherit;
+            }
+        }
+
+        a:link,
+        a:visited {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            color: darken(#fff, 5%);
+        }
+    }
+
+    .download-again-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+
+        h2 {
+            @include font-size(16px);
+            margin-top: 60px;
+            width: 100%;
+        }
+
+        .button {
+            border-radius: 2px;
+        }
+    }
+
+    .download-button-wrapper {
+        width: 100%;
+
+        @media #{$mq-tablet} {
+            width: auto;
+        }
+    }
+
+    .refresh-inner-wrapper {
+        button {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        small {
+            @include font-size(12px);
+            display: block;
+
+            a {
+                color: #FFF;
+                text-decoration: none;
+
+                &:hover,
+                &:focus {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

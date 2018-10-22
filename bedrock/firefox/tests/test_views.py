@@ -4,13 +4,14 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import json
+import os
 from urlparse import parse_qs
 
 from django.test import override_settings
 from django.test.client import RequestFactory
 
 import querystringsafe_base64
-from mock import patch, Mock, ANY
+from mock import patch, ANY
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
@@ -19,8 +20,8 @@ from bedrock.mozorg.tests import TestCase
 
 
 @override_settings(STUB_ATTRIBUTION_HMAC_KEY='achievers',
-                   STUB_ATTRIBUTION_RATE=1)
-@patch.object(views, 'time', Mock(return_value=12345.678))
+                   STUB_ATTRIBUTION_RATE=1,
+                   STUB_ATTRIBUTION_MAX_LEN=200)
 class TestStubAttributionCode(TestCase):
     def _get_request(self, params):
         rf = RequestFactory()
@@ -42,7 +43,6 @@ class TestStubAttributionCode(TestCase):
             'medium': '(none)',
             'campaign': '(not set)',
             'content': '(not set)',
-            'timestamp': '12345',
         }
         req = self._get_request({'dude': 'abides'})
         resp = views.stub_attribution_code(req)
@@ -55,7 +55,7 @@ class TestStubAttributionCode(TestCase):
         attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
-                         '153c1e8b7d4a582fa245d57d9c28ca9d6bcb65957e41924f826f1e7a5a2f8de9')
+                         '1cdbee664f4e9ea32f14510995b41729a80eddc94cf26dc3c74894c6264c723c')
 
     def test_no_valid_param_data(self):
         params = {'utm_source': 'br@ndt', 'utm_medium': 'ae<t>her'}
@@ -64,7 +64,6 @@ class TestStubAttributionCode(TestCase):
             'medium': '(none)',
             'campaign': '(not set)',
             'content': '(not set)',
-            'timestamp': '12345',
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -77,7 +76,7 @@ class TestStubAttributionCode(TestCase):
         attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
-                         '153c1e8b7d4a582fa245d57d9c28ca9d6bcb65957e41924f826f1e7a5a2f8de9')
+                         '1cdbee664f4e9ea32f14510995b41729a80eddc94cf26dc3c74894c6264c723c')
 
     def test_some_valid_param_data(self):
         params = {'utm_source': 'brandt', 'utm_content': 'ae<t>her'}
@@ -86,7 +85,6 @@ class TestStubAttributionCode(TestCase):
             'medium': '(direct)',
             'campaign': '(not set)',
             'content': '(not set)',
-            'timestamp': '12345',
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -99,7 +97,55 @@ class TestStubAttributionCode(TestCase):
         attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
-                         'bd6c54115eb1f331b64bec83225a667fa0e16090d7d6abb33dab6305cd858a9d')
+                         '37946edae923b50f31f9dc10013dc0d23bed7dc6272611e12af46ff7a8d9d7dc')
+
+    def test_campaign_data_too_long(self):
+        """If the code is too long then the utm_campaign value should be truncated"""
+        params = {
+            'utm_source': 'brandt',
+            'utm_medium': 'aether',
+            'utm_content': 'A144_A000_0000000',
+            'utm_campaign': 'The%7cDude%7cabides%7cI%7cdont%7cknow%7cabout%7cyou%7c'
+                            'but%7cI%7ctake%7ccomfort%7cin%7cthat' * 2,
+        }
+        final_params = {
+            'source': 'brandt',
+            'medium': 'aether',
+            'campaign': 'The|Dude|abides|I|dont|know|about|you|but|I|take|comfort|in|'
+                        'thatThe|Dude|abides|I|dont|know|about_',
+            'content': 'A144_A000_0000000',
+        }
+        req = self._get_request(params)
+        resp = views.stub_attribution_code(req)
+        self.assertEqual(resp.status_code, 200)
+        assert resp['cache-control'] == 'max-age=300'
+        data = json.loads(resp.content)
+        # will it blend?
+        code = querystringsafe_base64.decode(data['attribution_code'])
+        assert len(code) <= 200
+        attrs = parse_qs(code)
+        # parse_qs returns a dict with lists for values
+        attrs = {k: v[0] for k, v in attrs.items()}
+        self.assertDictEqual(attrs, final_params)
+        self.assertEqual(data['attribution_sig'],
+                         '5f4f928ad022b15ce10d6dc962e21e12bbfba924d73a2605f3085760d3f93923')
+
+    def test_other_data_too_long_not_campaign(self):
+        """If the code is too long but not utm_campaign return error"""
+        params = {
+            'utm_source': 'brandt',
+            'utm_campaign': 'dude',
+            'utm_content': 'A144_A000_0000000',
+            'utm_medium': 'The%7cDude%7cabides%7cI%7cdont%7cknow%7cabout%7cyou%7c'
+                          'but%7cI%7ctake%7ccomfort%7cin%7cthat' * 2,
+        }
+        final_params = {'error': 'Invalid code'}
+        req = self._get_request(params)
+        resp = views.stub_attribution_code(req)
+        self.assertEqual(resp.status_code, 400)
+        assert resp['cache-control'] == 'max-age=300'
+        data = json.loads(resp.content)
+        self.assertDictEqual(data, final_params)
 
     def test_returns_valid_data(self):
         params = {'utm_source': 'brandt', 'utm_medium': 'aether'}
@@ -108,7 +154,6 @@ class TestStubAttributionCode(TestCase):
             'medium': 'aether',
             'campaign': '(not set)',
             'content': '(not set)',
-            'timestamp': '12345',
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -121,7 +166,7 @@ class TestStubAttributionCode(TestCase):
         attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
-                         'ab55c9b24e230f08d3ad50bf9a3a836ef4405cfb6919cb1df8efe208be38e16d')
+                         'abcbb028f97d08b7f85d194e6d51b8a2d96823208fdd167ff5977786b562af66')
 
     def test_handles_referrer(self):
         params = {'utm_source': 'brandt', 'referrer': 'https://duckduckgo.com/privacy'}
@@ -130,7 +175,6 @@ class TestStubAttributionCode(TestCase):
             'medium': '(direct)',
             'campaign': '(not set)',
             'content': '(not set)',
-            'timestamp': '12345',
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -143,7 +187,7 @@ class TestStubAttributionCode(TestCase):
         attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
-                         'bd6c54115eb1f331b64bec83225a667fa0e16090d7d6abb33dab6305cd858a9d')
+                         '37946edae923b50f31f9dc10013dc0d23bed7dc6272611e12af46ff7a8d9d7dc')
 
     def test_handles_referrer_no_source(self):
         params = {'referrer': 'https://example.com:5000/searchin', 'utm_medium': 'aether'}
@@ -152,7 +196,6 @@ class TestStubAttributionCode(TestCase):
             'medium': 'referral',
             'campaign': '(not set)',
             'content': '(not set)',
-            'timestamp': '12345',
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -165,7 +208,7 @@ class TestStubAttributionCode(TestCase):
         attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
-                         '6b3dbb178e9abc22db66530df426b17db8590e8251fc153ba443e81ca60e355e')
+                         '70e177b822f24fa9f8bc8e1caa382204632b3b2548db19bb32b97042c0ef0d47')
 
     def test_handles_referrer_utf8(self):
         """Should ignore non-ascii domain names.
@@ -180,7 +223,6 @@ class TestStubAttributionCode(TestCase):
             'medium': '(none)',
             'campaign': '(not set)',
             'content': '(not set)',
-            'timestamp': '12345',
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -193,7 +235,7 @@ class TestStubAttributionCode(TestCase):
         attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
-                         '153c1e8b7d4a582fa245d57d9c28ca9d6bcb65957e41924f826f1e7a5a2f8de9')
+                         '1cdbee664f4e9ea32f14510995b41729a80eddc94cf26dc3c74894c6264c723c')
 
     @override_settings(STUB_ATTRIBUTION_RATE=0.2)
     def test_rate_limit(self):
@@ -474,7 +516,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/download/thanks/')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
 
     # wait face campaign bug 1380044
 
@@ -488,7 +530,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/download/thanks/?xv=waitface')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene2.html', ANY)
 
     # reggie watts campaign bug 1413995
 
@@ -502,7 +544,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/download/thanks/?xv=reggiewatts')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/reggie-watts/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/reggie-watts/scene2.html', ANY)
 
     @patch.object(views, 'lang_file_is_active', lambda *x: True)
     def test_reggie_watts_translated_scene_1(self, render_mock):
@@ -516,7 +558,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/download/thanks/?xv=reggiewatts')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/reggie-watts/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/reggie-watts/scene2.html', ANY)
 
     @patch.object(views, 'lang_file_is_active', lambda *x: False)
     def test_reggie_watts_untranslated_scene_1(self, render_mock):
@@ -530,7 +572,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/download/thanks/?xv=reggiewatts')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
 
     # portland campaign bug 1444000
 
@@ -574,37 +616,37 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/download/thanks/?xv=portland')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2.html', ANY)
 
     def test_portland_scene_2_fast(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=portland-fast')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2-fast.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2-fast.html', ANY)
 
     def test_portland_scene_2_safe(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=portland-safe')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2-safe.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2-safe.html', ANY)
 
     def test_portland_scene_2_1(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=forgood')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2.html', ANY)
 
     def test_portland_scene_2_fast_1(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=fast')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2-fast.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2-fast.html', ANY)
 
     def test_portland_scene_2_safe_1(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=safe')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2-safe.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/portland/scene2-safe.html', ANY)
 
     def test_portland_nonenus_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=portland')
@@ -628,22 +670,23 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/download/thanks/?xv=portland')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
 
     def test_portland_nonenus_scene_2_fast(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=portland-fast')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
 
     def test_portland_nonenus_scene_2_safe(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=portland-safe')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
 
-    # berlin campaign bug 1447445
+    # berlin campaign bug 1447445 + 3 berlin variations bug 1473357
 
+    # berlin
     def test_berlin_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=berlin')
         req.locale = 'de'
@@ -654,7 +697,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/download/thanks/?xv=berlin')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2.html', ANY)
 
     def test_berlin_nonde_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=berlin')
@@ -666,57 +709,316 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/download/thanks/?xv=berlin')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
 
-    def test_herz_scene_1(self, render_mock):
+    # herz
+    def test_variation_herz_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=herz')
         req.locale = 'de'
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene1-herz.html', ANY)
 
-    def test_herz_scene_2(self, render_mock):
+    def test_variation_herz_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=herz')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2-herz.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2-herz.html', ANY)
 
-    def test_herz_nonde_scene_1(self, render_mock):
+    def test_variation_herz_nonde_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=herz')
         req.locale = 'en-US'
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
 
-    def test_herz_nonde_scene_2(self, render_mock):
+    def test_variation_herz_nonde_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=herz')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
+    # geschwindigkeit
+    def test_variation_speed_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=geschwindigkeit')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene1-gesch.html', ANY)
+
+    def test_variation_speed_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=geschwindigkeit')
+        req.locale = 'de'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2-gesch.html', ANY)
+
+    def test_variation_speed_nonde_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=geschwindigkeit')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_variation_speed_nonde_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=geschwindigkeit')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
+    # privatsphare
+    def test_variation_privacy_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=privatsphare')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene1-privat.html', ANY)
+
+    def test_variation_privacy_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=privatsphare')
+        req.locale = 'de'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2-privat.html', ANY)
+
+    def test_variation_privacy_nonde_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=privatsphare')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_variation_privacy_nonde_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=privatsphare')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
+    # auf-deiner-seite
+    def test_variation_oys_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=auf-deiner-seite')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene1-auf-deiner-seite.html', ANY)
+
+    def test_variation_oys_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=auf-deiner-seite')
+        req.locale = 'de'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2-auf-deiner-seite.html', ANY)
+
+    def test_variation_oys_nonde_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=auf-deiner-seite')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_variation_oys_nonde_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=auf-deiner-seite')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
 
     # berlin video test issue 5637
 
     def test_berlin_video_scene_1(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=berlin&v=b')
+        req = RequestFactory().get('/firefox/new/?xv=aus-gruenden')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene1-b.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene1-aus-gruenden.html', ANY)
 
     def test_berlin_video_scene_2(self, render_mock):
-        req = RequestFactory().get('/firefox/download/thanks/?xv=berlin&v=b')
+        req = RequestFactory().get('/firefox/download/thanks/?xv=aus-gruenden')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2-b.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2-aus-gruenden.html', ANY)
 
-    def test_berlin_video_control_scene_1(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=berlin&v=a')
+    # better browser test issue 5841
+
+    def test_better_browser_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=betterbrowser')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/better-browser/scene1.html', ANY)
+
+    # d was the winning variation and the URL is being used in ads, make sure it works
+    def test_better_browser_scene_1_vd(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=betterbrowser&v=d')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/better-browser/scene1.html', ANY)
+
+    def test_better_browser_scene_1_non_us(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=betterbrowser')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene1.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
 
-    def test_berlin_video_control_scene_2(self, render_mock):
-        req = RequestFactory().get('/firefox/download/thanks/?xv=berlin&v=a')
-        req.locale = 'de'
+    def test_better_browser_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=betterbrowser')
+        req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2.html')
+        render_mock.assert_called_once_with(req, 'firefox/new/better-browser/scene2.html', ANY)
+
+    def test_better_browser_scene_2_non_us(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=betterbrowser')
+        req.locale = 'fr'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
+    # Safari SEM campaign bug #1479085
+
+    def test_compare_safari_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=safari')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-safari-1.html', ANY)
+
+    def test_compare_safari_scene_1va(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=safari&v=a')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_compare_safari_scene_1v1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=safari&v=1')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-safari-1.html', ANY)
+
+    def test_compare_safari_scene_1v2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=safari&v=2')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-safari-2.html', ANY)
+
+    def test_compare_safari_scene_1_non_us(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=safari')
+        req.locale = 'fr'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_compare_safari_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=safari')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
+    # Chrome SEM campaign bug #1479087
+
+    def test_compare_chrome_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=chrome')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-chrome-1.html', ANY)
+
+    def test_compare_chrome_scene_1va(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=chrome&v=a')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_compare_chrome_scene_1v1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=chrome&v=1')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-chrome-1.html', ANY)
+
+    def test_compare_chrome_scene_1v2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=chrome&v=2')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-chrome-2.html', ANY)
+
+    def test_compare_chrome_scene_1_non_us(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=chrome')
+        req.locale = 'fr'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_compare_chrome_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=chrome')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
+    # Edge SEM campaign Bug #1479086
+
+    def test_compare_edge_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=edge')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-edge-1.html', ANY)
+
+    def test_compare_edge_scene_1va(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=edge&v=a')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_compare_edge_scene_1v1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=edge&v=1')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-edge-1.html', ANY)
+
+    def test_compare_edge_scene_1v2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=edge&v=2')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-edge-2.html', ANY)
+
+    def test_compare_edge_scene_1_non_us(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=edge')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_compare_edge_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=edge')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
+    # fxa experiment for existing fx users bedrock/mozilla#5974
+
+    def test_fx_fxa_scene_1x(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=x')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/fx/scene1.html', ANY)
+
+    def test_fx_fxa_scene_1y(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=y')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_fx_fxa_scene_1_non_us(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=x')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_fx_fxa_scene_2x(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?v=x')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
+    def test_fx_fxa_scene_2y(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?v=y')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
+    # yandex - issue 5635
+
+    @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='True')
+    def test_yandex_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/')
+        req.locale = 'ru'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/yandex/scene1.html', ANY)
+
+    @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='False')
+    def test_yandex_scene_1_switch_off(self, render_mock):
+        req = RequestFactory().get('/firefox/new/')
+        req.locale = 'ru'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
 
 
 class TestFirefoxNewNoIndex(TestCase):

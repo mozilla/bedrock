@@ -12,11 +12,9 @@
 // Common elements & variables
 
 main {
-    background: #000;
-    background: url('/media/img/firefox/switch/oval.png') top left 38% no-repeat,
-                url('/media/img/firefox/switch/wave.png') bottom left no-repeat,
-                linear-gradient(-53deg, #07090B 45%, #0042A9 63%, #01C2FA 100%) top left no-repeat,
-                #000;
+    background: #003eaa;
+    background: url('/media/img/firefox/quantum/fox-tail-header.png') top -200px center no-repeat,
+                linear-gradient(to bottom, #003eaa 40%, #004ec2 60%, #0060df 80%, #0080ff 90%, #00c7ff 100%);
     color: #fff;
     overflow: hidden;
     padding-top: 20px;
@@ -24,14 +22,13 @@ main {
 
     a:link,
     a:visited {
-        color: #48c7ff;
-        text-decoration: none;
+        color: #fff;
+        text-decoration: underline;
 
         &:hover,
         &:active,
         &:focus {
-            color: #48c7ff;
-            text-decoration: underline;
+            color: darken(#fff, 10%);
         }
     }
 
@@ -44,14 +41,6 @@ main {
     .tagline {
         @include font-size-level4;
         margin-bottom: 20px;
-    }
-
-    .outer-container {
-        z-index: 0;
-    }
-
-    .inner-container {
-        z-index: 1;
     }
 
     header {
@@ -92,6 +81,7 @@ main {
         position: relative;
 
         &:before {
+            background-image: url('/media/img/logos/social/social-icon-sprite.svg');
             content: '';
             height: 20px;
             left: 0;
@@ -100,16 +90,24 @@ main {
             width: 20px;
         }
 
-        &.facebook:before {
-            background: url('/media/img/firefox/switch/icon-fb.svg') center left no-repeat;
+        &.twitter:before {
+            background-position: 0 0;
+            height: 15px;
+            width: 18px;
         }
 
-        &.twitter:before {
-            background: url('/media/img/firefox/switch/icon-t.svg') center left no-repeat;
+        &.facebook:before {
+            background-position: 0 -77px;
+            height: 19px;
+            width: 10px;
         }
 
         &.email:before {
-            background: url('/media/img/firefox/switch/icon-e.svg') center left no-repeat;
+            @include font-size(18px);
+            background-image: none;
+            content: '@';
+            font-weight: bold;
+            line-height: 1;
         }
     }
 
@@ -150,32 +148,6 @@ main {
             }
         }
 
-        .outer-container {
-            position: relative;
-
-            &:before {
-                background: url('/media/img/firefox/switch/wave.png') top left no-repeat;
-                bottom: 0;
-                content: '';
-                height: 546px;
-                left: 0;
-                position: absolute;
-                width: 1428px;
-                z-index: -1;
-            }
-
-            &:after {
-                background: url('/media/img/firefox/switch/face.png') top left no-repeat;
-                content: '';
-                height: 1145px;
-                position: absolute;
-                right: -740px;
-                top: -120px;
-                width: 1138px;
-                z-index: -2;
-            }
-        }
-
         .inner-container {
             width: 60%;
         }
@@ -197,37 +169,6 @@ main {
                 }
             }
         }
-
-        .outer-container:after {
-            right: -650px;
-        }
-    }
-
-    @media #{$mq-desktop-wide} {
-        background: url('/media/img/firefox/switch/oval.png') top left 38% no-repeat,
-                    linear-gradient(-53deg, #07090B 40%, #0042A9 63%, #01C2FA 100%) top left no-repeat,
-                    #000;
-
-        .outer-container {
-            margin: 0 auto;
-            max-width: 1650px;
-
-            &:after {
-                right: -450px;
-                top: -180px;
-            }
-        }
-    }
-
-    @media screen and (min-width: 1650px) {
-        background: url('/media/img/firefox/switch/oval.png') top left 38% no-repeat,
-                    url('/media/img/firefox/switch/wave.png') bottom left no-repeat,
-                    linear-gradient(-53deg, #07090B 40%, #0042A9 63%, #01C2FA 100%) top left no-repeat,
-                    #000;
-
-        .outer-container:before {
-            content: none;
-        }
     }
 }
 
@@ -245,19 +186,9 @@ html[dir="rtl"] main {
             left: auto;
             right: 0;
         }
-
-        &.facebook:before,
-        &.twitter:before,
-        &.email:before {
-            background-position: center right;
-        }
     }
 
     @media #{$mq-tablet} {
-        .inner-container {
-            float: left;
-        }
-
         @supports (display: grid) {
             ol {
                 margin: 40px 0 20px 0;

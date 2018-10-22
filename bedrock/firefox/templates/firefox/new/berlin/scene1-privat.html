@@ -1,0 +1,25 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/new/quantum" %}
+
+{% extends "firefox/new/berlin/base-variation.html" %}v
+
+{% block body_class %}privat{% endblock %}
+
+{% block primary_download_button %}
+  {{ download_firefox(alt_copy='Jetzt herunterladen', locale_in_transition=true, dom_id="download-firefox", download_location='primary cta', button_color='button-green') }}
+{% endblock %}
+
+{% block main_heading %}Zeit für mehr<br> Privatsphäre{% endblock %}
+
+{% block detail_items %}
+  {% include 'firefox/new/berlin/includes/daten.html' %}
+  {% include 'firefox/new/berlin/includes/dich.html' %}
+  {% include 'firefox/new/berlin/includes/internet.html' %}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_new_scene1_berlin_variation') }}
+{% endblock %}

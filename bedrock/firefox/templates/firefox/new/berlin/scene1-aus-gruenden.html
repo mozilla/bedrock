@@ -1,0 +1,46 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/new/quantum" %}
+
+{% extends "firefox/new/berlin/base.html" %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_new_berlin_aus_gruenden') }}
+{% endblock %}
+
+{% block primary_download_button %}
+  {{ download_firefox(alt_copy='Jetzt herunterladen', locale_in_transition=true, dom_id="download-firefox", download_location='primary cta', button_color='button-green') }}
+{% endblock %}
+
+{% block media %}
+<div class="media">
+  <div class="media-content">
+    <div class="video-placeholder">
+      <a class="video-play" href="https://youtu.be/ZazlpgSOGfM" data-id="ZazlpgSOGfM">
+        <img src="{{ static('img/firefox/new/berlin/video-placeholder.jpg') }}" width="1250" height="703" alt="Sehen Sie sich das Video an" />
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block video %}
+<section class="video content-section">
+  <div class="content">
+    <h2>Firefox. Aus Gründen.</h2>
+
+    <p>
+      Wenn wir so viel darüber nachdenken, was gut für uns und die Welt
+      um uns herum ist, wieso machen wir uns dann nie Gedanken darüber,
+      wie wir online gehen? Entdecke jetzt den Browser mit Herz.
+      Gemeinsam mit uns.
+    </p>
+  </div>
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_new_scene1_berlin') }}
+{% endblock %}

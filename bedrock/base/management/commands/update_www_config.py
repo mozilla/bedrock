@@ -12,7 +12,7 @@ from bedrock.utils.git import GitRepo
 
 
 def get_config_file_name(app_name=None):
-    app_name = app_name or settings.DEIS_APP or 'bedrock-dev'
+    app_name = app_name or settings.APP_NAME or 'bedrock-dev'
     return os.path.join(settings.WWW_CONFIG_PATH, 'waffle_configs', '%s.env' % app_name)
 
 

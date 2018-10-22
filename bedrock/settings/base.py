@@ -99,9 +99,8 @@ PROD_DETAILS_URL = config('PROD_DETAILS_URL',
 # This ultimately controls how LANGUAGES are constructed.
 PROD_DETAILS_CACHE_NAME = 'product-details'
 PROD_DETAILS_CACHE_TIMEOUT = 60 * 15  # 15 min
-default_pdstorage = 'PDDatabaseStorage' if PROD else 'PDFileStorage'
 PROD_DETAILS_STORAGE = config('PROD_DETAILS_STORAGE',
-                              default='product_details.storage.' + default_pdstorage)
+                              default='product_details.storage.PDDatabaseStorage')
 # path into which to clone the p-d json repo
 PROD_DETAILS_JSON_REPO_PATH = config('PROD_DETAILS_JSON_REPO_PATH',
                                      default=path('product_details_json'))
@@ -125,7 +124,7 @@ PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'as', 'ast', 'az', 'azz', 'be', 'bg',
                   'mai', 'mk', 'ml', 'mr', 'ms', 'my', 'nb-NO', 'ne-NP', 'nl',
                   'nn-NO', 'oc', 'or', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
                   'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'son', 'sq',
-                  'sr', 'sv-SE', 'ta', 'te', 'th', 'tr', 'trs', 'uk', 'ur',
+                  'sr', 'sv-SE', 'ta', 'te', 'th', 'tl', 'tr', 'trs', 'uk', 'ur',
                   'uz', 'vi', 'xh', 'zh-CN', 'zh-TW', 'zu')
 
 LOCALES_PATH = ROOT_PATH / 'locale'
@@ -263,6 +262,7 @@ SUPPORTED_NONLOCALES = [
     'xbl',
     'csp-violation-capture',
     'country-code.json',
+    'revision.txt',
 ]
 
 # Pages that we don't want to be indexed by search engines.
@@ -277,6 +277,7 @@ NOINDEX_URLS = [
     r'^firefox/send-to-device-post',
     r'^firefox/feedback',
     r'^firefox/stub_attribution_code/',
+    r'^firefox.*/all/$',
     r'^.+/tracking-protection/start/$',
     r'^.+/(firstrun|whatsnew)/$',
     r'^l10n_example/',
@@ -298,10 +299,10 @@ NOINDEX_URLS = [
 
 # Pages we do want indexed but don't show up in automated URL discovery
 # or are only available in a non-default locale
-EXTRA_INDEX_URLS = [
-    '/de/privacy/firefox-klar/',
-    '/de/about/legal/impressum/',
-]
+EXTRA_INDEX_URLS = {
+    '/privacy/firefox-klar/': ['de'],
+    '/about/legal/impressum/': ['de'],
+}
 
 # Pages that have different URLs for different locales, e.g.
 #   'firefox/private-browsing/': {
@@ -365,11 +366,27 @@ PUENTE = {
     }
 }
 
+
+def get_app_name(hostname):
+    """
+    Get the app name from the host name.
+
+    The hostname in our deployments will be in the form `bedrock-{version}-{type}-{random-ID}`
+    where {version} is "dev", "stage", or "prod", and {type} is the process type
+    (e.g. "web" or "clock"). Everywhere else it won't be in this form and will return None.
+    """
+    if hostname.startswith('bedrock-'):
+        app_mode = hostname.split('-')[1]
+        return 'bedrock-' + app_mode
+
+    return None
+
+
 HOSTNAME = platform.node()
-DEIS_APP = config('DEIS_APP', default='')
-DEIS_DOMAIN = config('DEIS_DOMAIN', default='')
+APP_NAME = get_app_name(HOSTNAME)
+CLUSTER_NAME = config('CLUSTER_NAME', default='')
 ENABLE_HOSTNAME_MIDDLEWARE = config('ENABLE_HOSTNAME_MIDDLEWARE',
-                                    default=str(bool(DEIS_APP)), parser=bool)
+                                    default=str(bool(APP_NAME)), parser=bool)
 ENABLE_VARY_NOCACHE_MIDDLEWARE = config('ENABLE_VARY_NOCACHE_MIDDLEWARE',
                                         default='true', parser=bool)
 # set this to enable basic auth for the entire site
@@ -444,6 +461,7 @@ INSTALLED_APPS = (
     'bedrock.wordpress',
     'bedrock.sitemaps',
     'bedrock.etc',
+    'bedrock.pocketfeed',
     # last so that redirects here will be last
     'bedrock.redirects',
 
@@ -592,6 +610,11 @@ TWITTER_APP_KEYS = {
     'access_token': config('TWITTER_ACCESS_TOKEN', default=''),
     'access_token_secret': config('TWITTER_ACCESS_TOKEN_SECRET', default=''),
 }
+
+# used to connect to @MozillaHQ Pocket account
+POCKET_API_URL = config('POCKET_API_URL', default='https://getpocket.com/v3/firefox/profile-recs')
+POCKET_CONSUMER_KEY = config('POCKET_CONSUMER_KEY', default='')
+POCKET_ACCESS_TOKEN = config('POCKET_ACCESS_TOKEN', default='')
 
 # Contribute numbers
 # TODO: automate these
@@ -1149,6 +1172,13 @@ FXA_IFRAME_SRC = config('FXA_IFRAME_SRC',
 FXA_IFRAME_SRC_MOZILLAONLINE = config('FXA_IFRAME_SRC_MOZILLAONLINE',
                                       default='https://accounts.firefox.com.cn/')
 
+# Fx Accounts iframe-less form & JS endpoint
+FXA_ENDPOINT = config('FXA_ENDPOINT',
+                       default='https://accounts.firefox.com/')
+
+FXA_ENDPOINT_MOZILLAONLINE = config('FXA_ENDPOINT_MOZILLAONLINE',
+                                      default='https://accounts.firefox.com.cn/')
+
 # Google Play and Apple App Store settings
 from .appstores import (GOOGLE_PLAY_FIREFOX_LINK,  # noqa
                         GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE,  # noqa
@@ -1282,6 +1312,7 @@ GTM_CONTAINER_ID = config('GTM_CONTAINER_ID', default='')
 GMAP_API_KEY = config('GMAP_API_KEY', default='')
 STUB_ATTRIBUTION_HMAC_KEY = config('STUB_ATTRIBUTION_HMAC_KEY', default='')
 STUB_ATTRIBUTION_RATE = config('STUB_ATTRIBUTION_RATE', default=str(1 if DEV else 0), parser=float)
+STUB_ATTRIBUTION_MAX_LEN = config('STUB_ATTRIBUTION_MAX_LEN', default='200', parser=int)
 
 STATSD_CLIENT = config('STATSD_CLIENT', default='django_statsd.clients.normal')
 STATSD_HOST = config('STATSD_HOST', default='127.0.0.1')
@@ -1296,7 +1327,7 @@ DEAD_MANS_SNITCH_URL = config('DEAD_MANS_SNITCH_URL', default='')
 
 RAVEN_CONFIG = {
     'dsn': config('SENTRY_DSN', default=''),
-    'site': '.'.join(x for x in [DEIS_APP, DEIS_DOMAIN] if x),
+    'site': '.'.join(x for x in [APP_NAME, CLUSTER_NAME] if x),
     'release': config('GIT_SHA', default=''),
 }
 
@@ -1312,6 +1343,9 @@ CSP_IMG_SRC = CSP_DEFAULT_SRC + (
     'mozilla.org',
     'www.googletagmanager.com',
     'www.google-analytics.com',
+    'adservice.google.com',
+    'adservice.google.de',
+    'adservice.google.dk',
     'creativecommons.org',
 )
 CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + (
@@ -1344,6 +1378,8 @@ CSP_CHILD_SRC = (
 CSP_CONNECT_SRC = CSP_DEFAULT_SRC + (
     'www.googletagmanager.com',
     'www.google-analytics.com',
+    FXA_ENDPOINT,
+    FXA_ENDPOINT_MOZILLAONLINE,
 )
 CSP_REPORT_ONLY = config('CSP_REPORT_ONLY', default='false', parser=bool)
 CSP_REPORT_ENABLE = config('CSP_REPORT_ENABLE', default='false', parser=bool)

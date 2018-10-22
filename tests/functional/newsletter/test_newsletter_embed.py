@@ -23,7 +23,7 @@ from pages.plugincheck import PluginCheckPage
 @pytest.mark.nondestructive
 @pytest.mark.parametrize(('page_class', 'url_kwargs'), [
     pytest.mark.skipif((HomePage, None), reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1443566'),
-    (AboutPage, None),
+    pytest.mark.skipif((AboutPage, None), reason='using new protocol newsletter form'),
     pytest.mark.smoke((ContributePage, None)),
     (TwitterTaskPage, None),
     (MobileTaskPage, None),
@@ -49,7 +49,7 @@ def test_newsletter_default_values(page_class, url_kwargs, base_url, selenium):
 @pytest.mark.parametrize('page_class', [
     pytest.mark.skipif(HomePage, reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1443566'),
     ContributePage,
-    AboutPage])
+    pytest.mark.skipif((AboutPage, None), reason='using new protocol newsletter form')])
 def test_newsletter_successful_sign_up(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
     page.newsletter.expand_form()
@@ -65,7 +65,7 @@ def test_newsletter_successful_sign_up(page_class, base_url, selenium):
 @pytest.mark.parametrize('page_class', [
     pytest.mark.skipif(HomePage, reason='https://bugzilla.mozilla.org/show_bug.cgi?id=1443566'),
     ContributePage,
-    AboutPage])
+    pytest.mark.skipif((AboutPage, None), reason='using new protocol newsletter form')])
 def test_newsletter_sign_up_fails_when_missing_required_fields(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
     page.newsletter.expand_form()

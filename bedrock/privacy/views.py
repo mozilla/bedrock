@@ -79,6 +79,7 @@ class FirefoxPrivacyDocView(PrivacyDocView):
             self.template_name = 'privacy/notices/firefox-quantum.html'
         return doc
 
+
 firefox_notices = FirefoxPrivacyDocView.as_view(
     legal_doc_name='firefox_privacy_notice')
 
@@ -106,6 +107,14 @@ firefox_rocket_notices = PrivacyDocView.as_view(
     template_name='privacy/notices/firefox-rocket.html',
     legal_doc_name='rocket_privacy_notice')
 
+firefox_reality_notices = PrivacyDocView.as_view(
+    template_name='privacy/notices/firefox-reality.html',
+    legal_doc_name='firefox_reality_privacy_notice')
+
+firefox_screenshotgo_notices = PrivacyDocView.as_view(
+    template_name='privacy/notices/firefox-screenshotgo.html',
+    legal_doc_name='firefox_screenshotgo_privacy_notice')
+
 thunderbird_notices = PrivacyDocView.as_view(
     template_name='privacy/notices/thunderbird.html',
     legal_doc_name='thunderbird_privacy_policy')
@@ -119,6 +128,10 @@ facebook_notices = PrivacyDocView.as_view(
     legal_doc_name='facebook_privacy_info')
 facebook_notices = xframe_allow(facebook_notices)
 
+firefox_monitor_notices = PrivacyDocView.as_view(
+    template_name='privacy/notices/firefox-monitor.html',
+    legal_doc_name='firefox_monitor_terms_privacy')
+
 
 @cache_page(60 * 60)  # cache for 1 hour
 def privacy(request):
@@ -126,8 +139,7 @@ def privacy(request):
 
     template_vars = {
         'doc': process_legal_doc(doc['content']),
-        'localized': doc['localized'],
-        'translations': doc['translations'],
+        'active_locales': doc['active_locales'],
     }
 
     return l10n_utils.render(request, 'privacy/index.html', template_vars)

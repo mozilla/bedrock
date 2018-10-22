@@ -146,9 +146,6 @@ URLS = flatten((
     # bug 854561
     url_test('/projects/mozilla-based{.html,/}', '/about/mozilla-based/'),
 
-    # bug 851727
-    url_test('/projects/powered-by{.html,/}', '/about/powered-by/'),
-
     # bug 957664
     url_test('/press/awards{/,.html}', 'https://blog.mozilla.org/press/awards/'),
 
@@ -192,6 +189,8 @@ URLS = flatten((
     url_test('/{firefox,mobile}/download/', '/firefox/new/'),
     # also deals with anything after download/
     url_test('/firefox/download/stuff/', '/firefox/new/'),
+    # Issue #6045
+    url_test('/firefox/download', '/firefox/new/'),
 
     url_test('/firefox/firefox.exe', '/'),
     # should be case insensitive
@@ -898,7 +897,8 @@ URLS = flatten((
 
     # bug 1248393
     url_test('/de/about/legal/impressum/', status_code=requests.codes.ok),
-    url_test('/{en-US,fr,ja}/about/legal/impressum/', '/de/about/legal/impressum/'),
+    url_test('/{en-US,fr,ja}/about/legal/impressum/', '/de/about/legal/impressum/',
+             status_code=requests.codes.found),
 
     # bug 960543
     url_test('/firefox/{2,3}.0/eula/random/stuff/', '/legal/eula/firefox-{2,3}/'),
@@ -1055,9 +1055,6 @@ URLS = flatten((
 
     # Bug 1260423
     url_test('/firefox/choose', '/firefox/new/'),
-
-    # Bug 1283397
-    url_test('/firefox/pocket', 'https://getpocket.com/firefox/'),
 
     url_test('/firefox/{,46.0/,46.0.1/,47.0/,47.0.1/}secondrun', '/firefox/mobile/'),
 
@@ -1238,4 +1235,15 @@ URLS = flatten((
     # Bug 1436740
     url_test('/teach/{,smarton/}', '/internet-health/'),
     url_test('/teach/smarton/{tracking,security,surveillance}/', '/internet-health/privacy-security/'),
+
+    # Issue #5949
+    url_test('/foundation/trademarks/', '/foundation/trademarks/policy/'),
+    url_test('/foundation/trademarks/faq/', '/foundation/trademarks/policy/'),
+    url_test('/foundation/documents/domain-name-license.pdf', '/foundation/trademarks/policy/'),
+    url_test('/about/partnerships/distribution/', '/foundation/trademarks/distribution-policy/'),
+    url_test('/foundation/trademarks/poweredby/faq/', '/foundation/trademarks/policy/'),
+    url_test('/foundation/trademarks/l10n-website-policy/', '/foundation/trademarks/policy/'),
+
+    # Issue 6209
+    url_test('/pocket/', '/firefox/pocket/'),
 ))

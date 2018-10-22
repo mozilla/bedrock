@@ -70,13 +70,13 @@ redirectpatterns = (
     redirect(r'^firefoxos', '/firefox/os/'),
 
     # bug 1438302
-    no_redirect(r'^firefox/download/thanks/$'),
+    no_redirect(r'^firefox/download/thanks/?$'),
 
     # Bug 1006616
     redirect(r'^download/?$', 'firefox.new'),
 
     # Bug 1409554
-    redirect(r'^(firefox|mobile)/download/', 'firefox.new'),
+    redirect(r'^(firefox|mobile)/download', 'firefox.new'),
 
     # bug 837883
     redirect(r'^firefox/firefox\.exe$', 'mozorg.home', re_flags='i'),
@@ -494,9 +494,6 @@ redirectpatterns = (
     # bug 1260423
     redirect(r'^firefox/choose/?$', 'firefox.new'),
 
-    # bug 1283397
-    redirect(r'^firefox/pocket/?$', 'https://getpocket.com/firefox/'),
-
     # bug 1288552 - redirect /secondrun/ traffic from funnelcake test
     redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/secondrun(?:/.*)?',
              'firefox.mobile', query=False),
@@ -589,4 +586,10 @@ redirectpatterns = (
 
     # bug 1428783
     redirect(r'^firefox/dnt/?$', 'https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature'),
+
+    # issue 6209
+    redirect(r'^pocket/?', '/firefox/pocket/'),
+
+    # issue 6186
+    redirect(r'^vote/?', '/firefox/election/'),
 )

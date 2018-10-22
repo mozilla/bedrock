@@ -1,0 +1,368 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+@import '../../hubs/sections';
+
+@font-face {
+    font-display: swap;
+    font-family: 'Fira Sans Heavy';
+    font-style: normal;
+    font-weight: normal;
+    src: url('/media/fonts/FiraSans-Heavy.woff2') format('woff2'),
+         url('/media/fonts/FiraSans-Heavy.woff') format('woff');
+}
+
+/* -------------------------------------------------------------------------- */
+// Common elements
+
+$color-photon-blue: #0099db;
+
+// account for tracking pixel added on demos/stage/prod
+body {
+    background: #000;
+}
+
+#outer-wrapper {
+    background: #fff;
+}
+
+.content-section {
+    color: #000;
+    padding: 40px 0;
+    text-align: center;
+
+    @media #{$mq-desktop} {
+        padding: 50px 0;
+        text-align: left;
+    }
+}
+
+a.button:link.button-green:hover,
+a.button:link.button-green:focus,
+a.button:visited.button-green:hover,
+a.button:visited.button-green:focus {
+        background-color: #fff;
+        border-color: darken($color-button-green, 5%);
+        color: darken($color-button-green, 5%);
+}
+
+/* -------------------------------------------------------------------------- */
+// Top hero section
+
+.intro {
+    background: #23033d url('/media/img/firefox/new/berlin/mit-herz-mobile.png') top -40px center no-repeat;
+
+
+    .gesch & {
+        background: #000d41 url("/media/img/firefox/new/berlin/gesch-mobile.png") top center no-repeat;
+    }
+    .privat & {
+        background: #003906 url("/media/img/firefox/new/berlin/privat-mobile.png") top -40px center no-repeat;
+    }
+    .ads & {
+        background: #59013b url("/media/img/firefox/new/berlin/ads-mobile.png") top center no-repeat;
+    }
+
+    h1 {
+        margin-left: auto;
+        margin-right: auto;
+
+        .ads & {
+            max-width: 440px;
+            min-height: 4em;
+        }
+    }
+
+    h1,
+    h2 {
+        @include font-size-level1;
+        font-family: 'Fira Sans Heavy', sans-serif;
+        font-weight: normal;
+        color: #fff;
+        margin-bottom: 0;
+        text-transform: uppercase;
+    }
+
+    .logo {
+        margin: 0 auto 20px;
+        width: 250px;
+    }
+
+    .secondary-content {
+        margin-top: 260px;
+
+        .privat & {
+            margin-top: 290px;
+        }
+
+        .ads & {
+            margin-top: 290px;
+        }
+    }
+
+    .copy {
+        color: #fff;
+        padding: 0;
+        width: auto;
+
+        .fx-privacy-link {
+            a:active,
+            a:focus,
+            a:hover,
+            a:link,
+            a:visited {
+                color: #fff;
+            }
+        }
+
+        .help {
+            @include font-size-level4;
+            margin-top: 20px;
+
+            a:link,
+            a:visited {
+                color: #fff;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    @media #{$mq-tablet} {
+
+        h1 {
+            margin-left: auto;
+            margin-right: auto;
+
+            .ads & {
+                max-width: 600px;
+                min-height: 0;
+            }
+        }
+
+        background-position: top -20px center;
+    }
+
+    @media #{$mq-desktop} {
+        background: #23033d url('/media/img/firefox/new/berlin/mit-herz.png') top center no-repeat;
+        background: url('/media/img/firefox/new/berlin/purple-wave.png') bottom left no-repeat,
+                    url('/media/img/firefox/new/berlin/mit-herz.png') top center no-repeat,
+                    #23033d;
+
+        .gesch & {
+            background: #000d41 url("/media/img/firefox/new/berlin/gesch.png") center right 50% no-repeat;
+            background-size: cover;
+        }
+        .privat & {
+            background: #003906 url("/media/img/firefox/new/berlin/privat.png") center right 55%/cover no-repeat;
+            background-size: cover;
+        }
+        .ads & {
+            background: #59013b url("/media/img/firefox/new/berlin/ads.png") center right 40%/cover no-repeat;
+            background-size: cover;
+        }
+
+        &.content-section {
+            padding: 0;
+        }
+
+        .content {
+            min-height: 700px;
+        }
+
+        .logo {
+            margin: 60px 0 80px;
+            width: auto;
+        }
+
+        .secondary-content {
+            margin-top: 40px;
+
+            .gesch &,
+            .privat &,
+            .ads & {
+                margin-top: 40px;
+            }
+        }
+
+        .copy {
+            float: left;
+            width: 50%;
+            padding: 0 30px;
+        }
+    }
+
+    @media screen and (min-width: 1800px) {
+        .gesch & {
+            background-size: auto;
+        }
+        .privat & {
+            background-size: auto;
+        }
+        .ads & {
+            background-size: auto;
+        }
+    }
+
+}
+
+// always hide special scene 2 button (as it forces direct download)
+#download-button-wrapper-desktop {
+    height: 0;
+    visibility: hidden;
+    width: 0;
+}
+
+/* -------------------------------------------------------------------------- */
+// Detail content pillars
+
+.details ul {
+    li {
+        margin-bottom: 60px;
+        list-style-type: none;
+        width: 100%;
+    }
+
+    h3 {
+        margin-bottom: 20px;
+    }
+
+    p {
+        line-height: 30px;
+    }
+
+    a:link,
+    a:visited {
+        color: $color-photon-blue;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        color: $color-photon-blue;
+        text-decoration: underline;
+    }
+
+    @media #{$mq-desktop} {
+        li {
+            float: left;
+            width: 33%;
+            margin-bottom: 0;
+        }
+
+        h3,
+        p {
+            padding-right: 40px;
+        }
+    }
+
+    @media #{$mq-desktop-wide} {
+        h3,
+        p {
+            padding-right: 60px;
+        }
+    }
+}
+
+@supports(display: grid) {
+    .details ul {
+        @media #{$mq-desktop} {
+            display: grid;
+            grid-gap: 60px;
+            grid-template-columns: repeat(3, 1fr);
+
+            li {
+                float: none;
+                width: auto;
+            }
+
+            h3,
+            p {
+                padding-right: 0;
+            }
+        }
+
+        @media #{$mq-desktop-wide} {
+            h3,
+            p {
+                padding-right: 0;
+            }
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Bottom download CTA.
+
+.secondary-download.content-section {
+    padding: 20px 0;
+
+    .download-contain {
+        position: relative;
+        padding: 40px 0;
+
+        &:before {
+            background-color: #440070;
+            background-image: linear-gradient(to right, #440070 0%, #8000d6 100%);
+            content: '';
+            height: 6px;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+
+            .gesch & {
+                background-color: #001d78;
+                background-image: linear-gradient(to right, #001d78 0%, #005ae3 100%);
+            }
+            .privat & {
+                background-color: #056406;
+                background-image: linear-gradient(to right, #056406 0%, #0fbc02 100%);
+            }
+            .ads & {
+                background-color: #ad0095;
+                background-image: linear-gradient(to right, #ad0095 0%, #ff00db 100%);
+            }
+        }
+    }
+
+    h2 {
+        font-weight: normal;
+        margin-bottom: 40px;
+    }
+
+    @media #{$mq-desktop} {
+        .download-contain {
+            @include clearfix;
+            padding: 100px 0 60px;
+        }
+
+        h2 {
+            float: left;
+            text-align: left;
+            width: 66%;
+        }
+
+        .download-button-wrapper {
+            float: left;
+            text-align: left;
+            width: 33%;
+        }
+
+        .download-button {
+            margin-left: 40px;
+        }
+    }
+
+    .fx-privacy-link {
+        a:active,
+        a:focus,
+        a:hover,
+        a:link,
+        a:visited {
+            color: $color-photon-blue;
+        }
+    }
+}

@@ -11,50 +11,42 @@ Firefox Accounts Signup Form
 Introduction
 ------------
 
-Certain bedrock pages such as ``/firefox/accounts`` and ``/firefox/firstrun`` feature a
-Firefox Accounts signup form using an embedded ``iframe``. To test the signup flow on
-a non-production environment requires some additional Firefox profile configuration.
+Certain bedrock pages may feature a Firefox Accounts signup form. As this form has conditional functionality based
+on distribution (e.g. the China re-pack), the form should only be displayed to users of Firefox 48 and up.
 
-Demo Server Testing
+.. note::
+
+    Firefox 48 is the minimum version needed to support the ``distribution`` property from UITour (which is how
+    we detect the China re-pack).
+
+
+Testing the signup flow on a non-production environment requires additional steps.
+
+Configuring bedrock
 -------------------
 
-#. Open ``about:profiles``.
-#. Click the ``Create a New Profile`` button and enter the profile name ``FxA Test Demo``.
-#. Find ``FxA Test Demo`` in the profile list and click ``Launch profile in new browser``.
-#. Open ``about:config`` and add a new preference called ``identity.fxaccounts.autoconfig.uri`` with the value ``https://accounts.stage.mozaws.net``.
-#. Open ``about:preferences#sync`` and click ``Sign in``.
-#. Verify that the sign in page loads from ``https://accounts.stage.mozaws.net/`` (but don't actually sign in).
-#. Restart the browser.
-#. Navigate to the web page containing the form and test signing up.
+Set the following in your local ``.env`` file:
 
-Clearing the iframe cache
+``FXA_ENDPOINT=https://latest.dev.lcip.org/``
+
+Configuring a demo Server
 -------------------------
 
-To clear browser cache while testing multiple accounts, append ``/clear`` to the iframe's
-source URL, e.g. ``https://accounts.stage.mozaws.net/clear``
+Demo servers must have the same ``.env`` setting as above. See the :ref:`configure-demo-servers` docs.
 
-Embedding on a page
--------------------
+Local and Demo Server Testing
+-----------------------------
 
-To embed the Firefox Accounts iframe on a page:
+Follow the `instructions`_ provided by the FxA team. These instructions will launch a
+new Firefox instance with the necessary config already set. In the new instance of
+Firefox:
 
-#. Add the FxA JavaScript & Less files to the page's bundles:
-    - ``media/js/base/mozilla-fxa-iframe.js``
-    - ``media/css/base/mozilla-fxa-iframe.less``
-#. Add the following attributes and values to any element on the page (the
-   parent element of the ``<iframe>`` is a good option):
+#. Navigate to the page containing the Firefox Accounts form
+#. If testing locally, be sure to use ``127.0.0.1`` instead of ``localhost``
 
-    ``id="fxa-iframe-config" data-host="{{ settings.FXA_IFRAME_SRC }}" data-mozillaonline-host="{{ settings.FXA_IFRAME_SRC_MOZILLAONLINE }}"``
-#. Add the ``<iframe>`` to the page with the following attributes and values:
-    ``<iframe id="fxa" scrolling="no" data-src="{{ settings.FXA_IFRAME_SRC }}?utm_campaign=fxa-embedded-form&amp;utm_content=fx-{{ version }}&amp;service=sync&amp;context=iframe&amp;style=chromeless&amp;haltAfterSignIn=true"></iframe>``
+Firefox Accounts iframe
+-----------------------
 
-    .. note::
+If you need to work with/test the legacy Firefox Accounts iframe, see the :ref:`firefox-accounts-iframe` docs.
 
-        Note that each implementation of the ``<iframe>`` may require unique URL
-        parameters in the ``data-src`` attribute for some or all of the following:
-
-        - ``utm_medium``
-        - ``utm_source``
-        - ``entrypoint``
-
-.. _instructions here: https://support.mozilla.org/kb/profile-manager-create-and-remove-firefox-profiles
+.. _instructions: https://github.com/vladikoff/fxa-dev-launcher#basic-usage-example-in-os-x

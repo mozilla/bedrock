@@ -290,7 +290,7 @@
   </section>
 {%- endmacro %}
 
-{% macro fxa_create_account_button(button_location, id_prefix, campaign, entrypoint, content = '', source = '' ) %}
+{% macro fxa_create_account_button(button_location, id_prefix, campaign, entrypoint, button_text = '', button_class = '', content = '', source = '') %}
   {# - creates the "create account" button which links to accounts.firefox.com
        and fallback states including:
        - already logged in, not firefox, legacy firefox, Android Firefox, iOS Firefox
@@ -300,6 +300,8 @@
           - examples: 'primary cta', 'footer cta'
        - id_prefix is combined with some sufixes to create unique IDs for all buttons and links
          - example: 'features-header'
+     - button_text is the text label that appears on the button. Defaults to "Create account" if blank.
+     - button_class is a class name(s) appended after the 'button' class, for styling or other purposes. Defaults to 'button-hollow' if blank.
      - campaign is for utm_campaign on the Fxa and fallback links
      - entrypoint is for the fxa team, it indicates where the user came from
        - the prefix `mozilla.org:` will be appended to it
@@ -311,9 +313,15 @@
   {# Parameters for accounts.firefox.com link #}
   {% set service = 'sync' %}
   {% set context = 'fx_desktop_v3' %}
-  {% set entrypoint = 'mozilla.org:' + entrypoint %}
+  {% set entrypoint = 'mozilla.org-' + entrypoint %}
+  {% if not button_text %}
+    {% set button_text = _('Create account') %}
+  {% endif %}
+  {% if not button_class %}
+    {% set button_class = 'button-hollow' %}
+  {% endif %}
   {% if content %}
-    {% set utm_content = content %}
+    {% set utm_content = content.replace('/', '%2F') %}
   {% else %}
     {% set utm_content = request.path_info.replace('/', '%2F') %}
   {% endif %}
@@ -345,8 +353,8 @@
     {{ download_firefox(dom_id=download_id, download_location=button_location) }}
   </div>
   <div class="show-fxa-supported-signed-out">
-    <a href="{{ accounts_url }}" class="button button-hollow button-light" data-button-name="Create account" data-link-type="button" data-cta-position="{{ button_location }}" id="{{ account_id }}">
-      {{ _('Create account') }}
+    <a href="{{ accounts_url }}" class="button {{ button_class }}" data-button-name="Create account" data-link-type="button" data-cta-position="{{ button_location }}" id="{{ account_id }}">
+      {{ button_text }}
     </a>
   </div>
   <div class="show-fxa-supported-signed-in fxa-app-buttons">
@@ -363,14 +371,87 @@
     </ul>
   </div>
   <div class="show-fxa-unsupported">
-    <a href="https://support.mozilla.org/kb/update-firefox-latest-version/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign={{ campaign }}" class="button button-hollow button-light" data-link-type="link" data-link-name="Update your Firefox" id="{{ update_id }}">
+    <a href="https://support.mozilla.org/kb/update-firefox-latest-version/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign={{ campaign }}" class="button {{ button_class }}" data-link-type="link" data-link-name="Update your Firefox" id="{{ update_id }}">
       {{ _('Update your Firefox') }}
     </a>
   </div>
   <div class="show-fxa-android">
-    <a href="https://support.mozilla.org/kb/sync-bookmarks-tabs-history-and-passwords-android/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign={{ campaign }}" class="button button-hollow button-light" data-link-type="link" data-link-name="Learn more" id="{{ link_id }}">{{ _('Learn more') }}</a>
+    <a href="https://support.mozilla.org/kb/sync-bookmarks-tabs-history-and-passwords-android/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign={{ campaign }}" class="button {{ button_class }}" data-link-type="link" data-link-name="Learn more" id="{{ link_id }}">{{ _('Learn more') }}</a>
   </div>
   <div class="show-fxa-ios">
-    <a href="https://support.mozilla.org/kb/sync-firefox-bookmarks-and-browsing-history-iOS/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign={{ campaign }}" class="button button-hollow button-light" data-link-type="link" data-link-name="Learn more" id="{{ link_id }}">{{ _('Learn more') }}</a>
+    <a href="https://support.mozilla.org/kb/sync-firefox-bookmarks-and-browsing-history-iOS/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign={{ campaign }}" class="button {{ button_class }}" data-link-type="link" data-link-name="Learn more" id="{{ link_id }}">{{ _('Learn more') }}</a>
   </div>
+{%- endmacro %}
+
+{#
+  This macro is intended to be shown only to users on Firefox 48 and up.
+
+  entrypoint: used to tag a given "page type" and remains the same across all
+    pages of the class, e.g., no matter URL of the firstrun page, entrypoint is
+    always `firstrun`. must validate against [\w.:-]+
+    REQUIRED
+  utm_source: used for analytics
+    REQUIRED
+  class_name: applies a class to the form. default: 'fxa-email-form'
+  utm_params: dictionary of utm_* params to include. 'utm_' will automatically
+    be prepended to all keys. example:
+
+    {
+      'content': 'accounts-page',
+      'medium': 'referral',
+      'campaign': 'accounts-page',
+      'term': 'someterm',
+    }
+
+    all values must validate against /^[\w\/.%-]+/
+
+    DO NOT include utm_source in this dictionary! (It's already a required param.)
+#}
+{% macro fxa_email_form(entrypoint, utm_source, class_name='fxa-email-form', utm_params={}, intro_text='', button_text='', button_class='button button-blue') -%}
+  <form action="{{ settings.FXA_ENDPOINT }}" data-mozillaonline-action="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}" id="fxa-email-form" class="{{ class_name }}">
+    <input type="hidden" name="action" value="email" />
+    <input type="hidden" name="context" value="fx_desktop_v3" />
+    <input type="hidden" name="service" value="sync" />
+    <input type="hidden" name="entrypoint" value="{{ entrypoint }}" id="fxa-email-form-entrypoint" />
+    {# flow_id and flow_begin_time will be populated via JS on page load #}
+    <input type="hidden" name="flow_id" value="" />
+    <input type="hidden" name="flow_begin_time" value="" />
+
+    {# utm_source is required, other utm_ params are optional #}
+    <input type="hidden" name="utm_source" value={{ utm_source }} id="fxa-email-form-utm-source" />
+  {% for attr, val in utm_params.items() %}
+    <input type="hidden" name="utm_{{ attr }}" value="{{ val }}" id="fxa-email-form-utm-{{ attr }}" />
+  {% endfor %}
+
+    <p class="fxa-email-form-intro">
+    {% if intro_text %}
+      {{ intro_text }}
+    {% else %}
+      {{ _('<strong>Enter your email</strong> to access Firefox Accounts.') }}
+    {% endif %}
+    </p>
+
+    <p class="agreement">
+    {% trans url1='https://accounts.firefox.com/legal/terms', url2='https://accounts.firefox.com/legal/privacy' %}
+      By proceeding, you agree to the <a href="{{ url1 }}">Terms of Service</a> and
+      <a href="{{ url2 }}">Privacy Notice</a>.
+    {% endtrans %}
+    </p>
+
+    <div class="fxa-email-field-container">
+      <p class="field">
+        <label for="fxa-email-field">{{ _('Email address') }}</label>
+        <input type="email" name="email" id="fxa-email-field" class="fxa-email-field" placeholder="user@example.com" required>
+      </p>
+
+      <button type="submit" class="{{ button_class }}" id="fxa-email-form-submit">
+      {% if button_text %}
+        {{ button_text }}
+      {% else %}
+        {{ _('Continue') }}
+      {% endif %}
+      </button>
+    </div>
+
+  </form>
 {%- endmacro %}

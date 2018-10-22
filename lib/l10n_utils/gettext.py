@@ -241,14 +241,14 @@ def translations_for_template(template_name):
     Return the list of available translations for the template.
 
     :param template_name: name of the template passed to render.
-    :return: dict, like {'en-US': 'English (US)', 'fr': 'Français'}
+    :return: list, like ['en-US', 'fr']
     """
     lang_files = [get_lang_path(template_name)]
     template = get_template(template_name)
     lang_files.extend(parse_template(template.template.filename))
-    active_translations = {}
+    active_translations = []
     for lf in lang_files:
-        active_translations.update(get_translations_for_langfile(lf))
+        active_translations.extend(get_translations_for_langfile(lf))
 
     return active_translations
 

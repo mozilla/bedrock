@@ -1,0 +1,68 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+/* -------------------------------------------------------------------------- */
+// Top hero section with inlinne video.
+
+.intro {
+    background: #23003d url('/media/img/firefox/new/berlin/purple-wave.png') bottom left no-repeat;
+    padding: 0 0 20px;
+
+    h1,
+    h2 {
+        margin: 0;
+    }
+
+    .media {
+        margin-top: 20px;
+    }
+
+    @media #{$mq-desktop} {
+        @include clearfix;
+        background: #23033d url('/media/img/firefox/new/berlin/hearts-large.png') top center no-repeat;
+        background: url('/media/img/firefox/new/berlin/purple-wave.png') bottom left no-repeat,
+                    url('/media/img/firefox/new/berlin/hearts-large.png') top center no-repeat,
+                    #23033d;
+
+        .media {
+            float: right;
+            width: calc(50% - 60px);
+            margin-top: 150px;
+
+            @supports (display: flex) {
+                align-items: center;
+                display: flex;
+                min-height: 600px;
+                margin-top: 0;
+            }
+        }
+
+        .media-content {
+            position: relative;
+            width: 100%;
+        }
+
+    }
+}
+
+.video.content-section p {
+    max-width: 45em;
+    margin-bottom: 40px;
+}
+
+// give details section a different background color since the video has been removed.
+.details {
+    background: #f1f1f1;
+}
+
+// hide the horizontal gradient rule.
+.secondary-download.content-section .download-contain {
+    padding: 20px;
+
+    &:before {
+        content: none;
+    }
+}

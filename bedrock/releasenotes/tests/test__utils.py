@@ -1,4 +1,3 @@
-import pytest
 import time
 
 from mock import Mock, patch
@@ -40,9 +39,6 @@ class TestReleaseMemoizer(TestCase):
         memoizer._memoize_version(mem_func)
         assert gdv_cache.call_count == 2
 
-    # This test passes in Jenkins but fails in Circle (likely race condition).
-    # xfail for now, but should either improve/change test or remove.
-    @pytest.mark.xfail
     def test_calls_function_when_version_changes(self, gdv_cache):
         """Memoized function should be called after timeout or version change.
 
@@ -65,7 +61,7 @@ class TestReleaseMemoizer(TestCase):
         time.sleep(0.2)
         # not cached because the version changed
         mem_func()
-        time.sleep(1)
+        time.sleep(1.1)
         # not cached because timeout
         mem_func()
 

@@ -4,12 +4,14 @@
 
 {% add_lang_files "firefox/new/quantum" %}
 
-{% extends "firefox/new/berlin/base-herz.html" %}v
+{% extends "firefox/new/berlin/base-variation.html" %}v
+
+{% block body_class %}herz{% endblock %}
 
 {% block primary_download_button %}
   {{ download_firefox(alt_copy='Jetzt herunterladen', locale_in_transition=true, dom_id="download-firefox", download_location='primary cta', button_color='button-green') }}
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox_new_scene1_berlin_herz') }}
+  {{ js_bundle('firefox_new_scene1_berlin_variation') }}
 {% endblock %}

@@ -11,11 +11,14 @@ from bedrock.redirects.util import redirect
 
 urlpatterns = (
     url(r'^$', views.home_view, name='mozorg.home'),
-    page('about', 'mozorg/about.html'),
+    url(r'about/$', views.about_view, name='mozorg.about'),
     page('about/manifesto', 'mozorg/about/manifesto.html'),
     page('about/manifesto/details', 'mozorg/about/manifesto-details.html'),
     page('about/leadership', 'mozorg/about/leadership.html'),
-    page('about/policy/lean-data', 'mozorg/about/policy/lean-data.html'),
+    page('about/policy/lean-data', 'mozorg/about/policy/lean-data/index.html'),
+    page('about/policy/lean-data/build-security', 'mozorg/about/policy/lean-data/build-security.html'),
+    page('about/policy/lean-data/stay-lean', 'mozorg/about/policy/lean-data/stay-lean.html'),
+    page('about/policy/lean-data/engage-users', 'mozorg/about/policy/lean-data/engage-users.html'),
     page('about/policy/patents', 'mozorg/about/policy/patents/index.html'),
     page('about/policy/patents/license', 'mozorg/about/policy/patents/license.html'),
     page('about/policy/patents/license/1.0', 'mozorg/about/policy/patents/license-1.0.html'),
@@ -33,7 +36,6 @@ urlpatterns = (
     redirect(r'^projects/calendar/', 'https://www.thunderbird.net/calendar/', locale_prefix=False),
     page('mission', 'mozorg/mission.html'),
     page('ITU', 'mozorg/itu.html'),
-    page('about/powered-by', 'mozorg/powered-by.html'),
     url('^about/forums/$', views.forums_view, name='mozorg.about.forums.forums'),
     page('about/forums/etiquette', 'mozorg/about/forums/etiquette.html'),
     page('about/forums/cancellation', 'mozorg/about/forums/cancellation.html'),
@@ -293,11 +295,12 @@ urlpatterns = (
     page('internet-health/web-literacy', 'mozorg/internet-health/web-literacy.html'),
     page('internet-health/decentralization', 'mozorg/internet-health/decentralization.html'),
 
-    page('moss', 'mozorg/moss/index.html'),
+    url(r'^moss/$', views.moss_view, name='mozorg.moss.index'),
     page('moss/foundational-technology', 'mozorg/moss/foundational-technology.html'),
     page('moss/mission-partners', 'mozorg/moss/mission-partners.html'),
     page('moss/mission-partners-india', 'mozorg/moss/mission-partners-india.html'),
     page('moss/secure-open-source', 'mozorg/moss/secure-open-source.html'),
+
     page('plugincheck', 'mozorg/plugincheck.html'),
     url(r'^robots.txt$', views.Robots.as_view(), name='robots.txt'),
     url('^technology/$', views.TechnologyView.as_view(), name='mozorg.technology'),

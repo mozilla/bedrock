@@ -12,6 +12,16 @@
   {{ css_bundle('firefox_new_scene1') }}
 {% endblock %}
 
+{% block experiments %}
+  {% if switch('experiment_firefox_new_scene1_fx', ['en-US']) %}
+    {% if v != 'y' %}
+      {{ js_bundle('firefox_new_scene1_fx_experiment') }}
+    {% elif v == 'y' %}
+      {{ js_bundle('firefox_new_scene1_fx_experiment_y') }}
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
 {% block body_id %}firefox-new-scene1{% endblock %}
 
 {% block messages %}
@@ -21,6 +31,7 @@
     <p class="version-message android-old">{{_('<a href="%(url)s">Update</a> your Firefox for the latest in speed and privacy.')|format(url='https://support.mozilla.org/kb/update-latest-version-firefox-android')}}</p>
     <p class="version-message desktop-old">{{_('<a href="%(url)s">Update</a> your Firefox for the latest in speed and privacy.')|format(url='https://support.mozilla.org/kb/update-firefox-latest-version') }}</p>
     <p class="version-message firefox-pre-release">{{_('You’re using a pre-release version of Firefox.') }}</p>
+    <p class="version-message windows-xpvista">{{_('You’re using an insecure, outdated operating system <a href="%(url)s">no longer supported by Firefox</a>.')|format(url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista') }}</p>
   </div>
 </div>
 {% endblock %}

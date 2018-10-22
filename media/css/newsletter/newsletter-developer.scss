@@ -5,26 +5,40 @@
 @import '../pebbles/includes/lib';
 
 .section-intro {
-    background: url('/media/img/newsletter/developer/heart.svg') top 30px center no-repeat,
-                url('/media/img/newsletter/developer/grid.svg') top left repeat,
-                #0c99d5;
-    @include background-size(200px 199px, 60px 60px);
-    height: 230px;
+    background: url('/media/img/newsletter/developer/8bit_hearts.svg') top 85px center no-repeat,
+                url('/media/img/newsletter/developer/bg_image.png') top center no-repeat,
+                #000;
+
+    @include background-size(66px 44px, auto auto);
+    min-height: 230px;
     width: 100%;
 
+    h1 {
+        color: #fff;
+        font-weight: 100;
+        margin-top: 110px;
+        text-align: center;
+    }
+
     @media #{$mq-phone-wide} {
-        @include background-size(260px 258px, 80px 80px);
+        @include background-size(96px 64px, auto auto);
+        background-position: top 85px center, top center;
         height: 290px;
+
+        .page-title {
+            margin-top: 150px;
+        }
     }
 
     @media #{$mq-tablet} {
-        @include background-size(320px 318px, 90px 90px);
-        background-position: top 20px center, top left;
-        height: 340px;
+        @include background-size(116px 74px, auto auto);
+        background-position: top 85px center, top center;
+        height: 341px;
     }
 
     @media #{$mq-tablet} and #{$mq-short} {
-        @include background-size(260px 258px, 80px 80px);
+        @include background-size(116px 74px, auto auto);
+        background-position: top 85px center, top center;
         height: 290px;
     }
 

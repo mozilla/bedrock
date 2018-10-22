@@ -24,13 +24,13 @@ def demoAppURL(appname, region) {
 }
 
 /**
- * Send a notice to #www-notify on irc.mozilla.org with the build result
+ * Send a notice to #www-notify on mozilla.slack.com with the build result
  *
  * @param stage step of build/deploy
  * @param result outcome of build (will be uppercased)
 */
-def ircNotification(Map args) {
-    def command = "bin/irc-notify.sh"
+def slackNotification(Map args) {
+    def command = "bin/slack-notify.sh"
     for (arg in args) {
         command += " --${arg.key} '${arg.value}'"
     }
@@ -93,7 +93,7 @@ def pushDeis(region, config, appname, stageName) {
                 sh 'docker/bin/push2deis.sh'
             }
         } catch(err) {
-            ircNotification([stage: stageName, status: 'failure'])
+            slackNotification([stage: stageName, status: 'failure'])
             throw err
         }
     }
@@ -117,7 +117,7 @@ def deploy(region, config, appname, stageName, namespace) {
         try {
             sh 'bin/deploy.sh'
         } catch(err) {
-            ircNotification([stage: stageName, status: 'failure'])
+            slackNotification([stage: stageName, status: 'failure'])
             throw err
         }
     }

@@ -14,9 +14,10 @@ RUN yarn install --pure-lockfile
 RUN yarn global add gulp-cli@2.0.1
 
 # copy supporting files and media
-COPY .eslintrc.js .stylelintrc \
-     gulpfile.js static-bundles.json ./
+COPY .eslintrc.js .stylelintrc gulpfile.js ./
 COPY ./media ./media
+
+RUN gulp build --production
 
 
 ########
@@ -99,18 +100,8 @@ RUN ./bin/run-db-download.py --force
 # get fresh l10n files
 RUN ./manage.py l10n_update
 
-# generate the sitemaps
-RUN ./manage.py update_sitemaps
-
 RUN chown webdev.webdev -R .
 USER webdev
-
-
-########
-# build production assets
-#
-FROM assets AS assets-release
-RUN gulp build --production
 
 
 ########
@@ -118,7 +109,7 @@ RUN gulp build --production
 #
 FROM app-base AS release
 
-COPY --from=assets-release /app/static_final /app/static_final
+COPY --from=assets /app/static_final /app/static_final
 RUN honcho run --env docker/envfiles/prod.env docker/bin/build_staticfiles.sh
 
 # build args
@@ -130,7 +121,7 @@ ENV BRANCH_NAME=${BRANCH_NAME}
 # rely on build args
 RUN bin/run-sync-all.sh
 
-RUN echo "${GIT_SHA}" > ./static/revision.txt
+RUN echo "${GIT_SHA}" > ./root_files/revision.txt
 
 # Change User
 RUN chown webdev.webdev -R .

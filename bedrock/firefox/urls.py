@@ -26,7 +26,15 @@ ios_sysreq_re = sysreq_re.replace('firefox', 'firefox/ios')
 
 
 urlpatterns = (
-    url(r'^firefox/$', views.FirefoxHubView.as_view(), name='firefox'),
+    # Issue 5944 pre-download newsletter test.
+    # When removing this experiment, please remember to unskip the
+    # functional test in /test/functional/firefox/test_home.py
+    url(r'^firefox/$',
+        VariationTemplateView.as_view(template_name='firefox/home.html',
+                                      template_context_variations=['a', 'b', 'c'],
+                                      template_name_variations=['a', 'b', 'c'],
+                                      variation_locales=['en-US']),
+        name='firefox'),
     url(r'^firefox/(?:%s/)?(?:%s/)?all/$' % (platform_re, channel_re),
         views.all_downloads, name='firefox.all'),
     page('firefox/accounts', 'firefox/accounts.html'),
@@ -39,6 +47,7 @@ urlpatterns = (
     page('firefox/channel/android', 'firefox/channel/android.html'),
     page('firefox/channel/ios', 'firefox/channel/ios.html'),
     page('firefox/developer', 'firefox/developer/index.html'),
+    page('firefox/election', 'firefox/election/index.html'),
     page('firefox/enterprise', 'firefox/enterprise/index.html'),
     page('firefox/enterprise/signup', 'firefox/enterprise/signup.html'),
     page('firefox/enterprise/signup/thanks', 'firefox/enterprise/signup-thanks.html'),
@@ -80,6 +89,8 @@ urlpatterns = (
     url(tracking_protection_re, views.TrackingProtectionTourView.as_view(),
         name='firefox.tracking-protection-tour.start'),
 
+    page('firefox/features/adblocker', 'firefox/features/adblocker.html'),
+
     # Release notes
     url('^firefox/(?:%s/)?(?:%s/)?notes/$' % (platform_re, channel_re),
         bedrock.releasenotes.views.latest_notes, name='firefox.notes'),
@@ -111,4 +122,12 @@ urlpatterns = (
         name='firefox.stub_attribution_code'),
 
     page('firefox/switch', 'firefox/switch.html'),
+    page('firefox/pocket', 'firefox/pocket.html'),
+
+    # Bug 1474285
+    page('firefox/profile-migrate', 'firefox/profile/profile-migrate.html'),
+    page('firefox/profile-downgrade', 'firefox/profile/profile-downgrade.html'),
+
+    # Issue 6178
+    page('firefox/this-browser-comes-highly-recommended', 'firefox/recommended.html'),
 )

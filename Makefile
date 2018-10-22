@@ -88,7 +88,7 @@ docs: .docker-build-pull
 .docker-build-ci:
 	${MAKE} build-ci
 
-build-ci: .env .docker-build-pull submodules
+build-ci: .docker-build-pull
 	${DC_CI} build release
 #	tag intermediate images using cache
 	${DC_CI} build app assets builder app-base

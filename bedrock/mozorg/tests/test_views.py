@@ -162,14 +162,40 @@ class TestHomePage(TestCase):
     def setUp(self):
         self.rf = RequestFactory()
 
+    @patch.dict(os.environ, SWITCH_ELECTION_BUNDLE='True')
+    def test_home_en_election_template(self, render_mock):
+        req = RequestFactory().get('/')
+        req.locale = 'en-US'
+        views.home_view(req)
+        render_mock.assert_called_once_with(req, 'mozorg/home/home-en-election.html', ANY)
+
+    @patch.dict(os.environ, SWITCH_ELECTION_BUNDLE='False')
     def test_home_en_template(self, render_mock):
         req = RequestFactory().get('/')
         req.locale = 'en-US'
         views.home_view(req)
-        render_mock.assert_called_once_with(req, 'mozorg/home/home-en.html')
+        render_mock.assert_called_once_with(req, 'mozorg/home/home-en.html', ANY)
 
     def test_home_locale_template(self, render_mock):
         req = RequestFactory().get('/')
         req.locale = 'de'
         views.home_view(req)
-        render_mock.assert_called_once_with(req, 'mozorg/home/home.html')
+        render_mock.assert_called_once_with(req, 'mozorg/home/home.html', ANY)
+
+
+@patch('bedrock.mozorg.views.l10n_utils.render')
+class TestAboutPage(TestCase):
+    def setUp(self):
+        self.rf = RequestFactory()
+
+    def test_about_en_template(self, render_mock):
+        req = RequestFactory().get('/')
+        req.locale = 'en-US'
+        views.about_view(req)
+        render_mock.assert_called_once_with(req, 'mozorg/about-en.html')
+
+    def test_about_locale_template(self, render_mock):
+        req = RequestFactory().get('/')
+        req.locale = 'de'
+        views.about_view(req)
+        render_mock.assert_called_once_with(req, 'mozorg/about.html')

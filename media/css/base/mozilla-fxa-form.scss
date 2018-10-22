@@ -1,0 +1,74 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../pebbles/includes/lib';
+@import '../pebbles/components/buttons';
+@import '../pebbles/base/elements/forms';
+
+.fxa-email-form {
+    border: none;
+    color: #000;
+    margin: 0 auto;
+    position: relative;
+
+    label {
+        @include visually-hidden;
+    }
+
+    input[type="email"] {
+        @include font-size-level5;
+        border-radius: 2px;
+        box-sizing: border-box;
+        padding: .5em 20px;
+        width: 100%;
+    }
+
+    .button {
+        background: #0060df;
+        border-radius: 2px;
+        border: none;
+        padding: .5em 20px;
+        width: 100%;
+
+        &:focus,
+        &:hover {
+            background: #003eaa;
+        }
+
+        &:disabled {
+            cursor: default;
+            opacity: 0.2;
+
+            &:focus,
+            &:hover {
+                background: #0060df;
+            }
+        }
+    }
+
+    strong {
+        @include font-size-level4;
+        display: block;
+        font-weight: normal;
+        margin-bottom: 4px;
+    }
+
+    a {
+        color: #38383d;
+        text-decoration: underline;
+
+        &:focus,
+        &:hover {
+            color: #4a4a4f;
+        }
+    }
+
+    p {
+        margin: 0 0 1em;
+    }
+
+    .agreement {
+        @include font-size-small;
+    }
+}

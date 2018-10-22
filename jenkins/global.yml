@@ -3,11 +3,6 @@ environment:
   DOCKER_SELENIUM_VERSION: 3.5.3-astatine
 
 regions:
-  tokyo:
-    name: tokyo
-    config_repo: git@www-config:mozmeao/www-config
-    config_branch: git-sync-operator
-    deployment_log_base_url: https://s3-us-west-2.amazonaws.com/mozmeao-deployments/tokyo
   frankfurt:
     name: frankfurt
     config_repo: git@www-config:mozmeao/www-config

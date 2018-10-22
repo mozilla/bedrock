@@ -1,0 +1,122 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "base-protocol.html" %}
+
+{% block page_title %}{{ _('Pocket | Discover, Capture and Savor Content That Fascinates You') }}{% endblock %}
+{% block page_desc %}{{ _('Pocket is the place to save, read and get fueled by content that fascinates you. (Like a bookmark and a content recommendation engine, but better.)') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('product_pocket') }}
+{% endblock %}
+
+{% block body_id %}pocket-landing{% endblock %}
+
+{% set lazy_image_placeholder = 'mozorg/developer/hub/placeholder.png' %}
+
+{% block content %}
+<main class="mzp-t-firefox">
+  <section id="pocket-hero" class="mzp-c-hero mzp-has-image mzp-t-dark">
+    <div class="mzp-l-content">
+      <div class="mzp-c-hero-body">
+        <h1 class="mzp-c-hero-title">
+          <img src="{{ static('img/logos/pocket/pocket-wordmark-white.svg') }}" alt="{{ _('Pocket') }}" width="125" height="33">
+          {{ _('An Award-Winning App From Firefox') }}
+        </h1>
+        <div class="mzp-c-hero-desc">
+          <p>{{ _('Over 10 million users rely on Pocket to discover and savor the best articles, news, stories and videos. And as a member of the Firefox family, privacy is paramount.') }}</p>
+        </div>
+
+        <div class="mzp-c-hero-cta">
+          <p><a href="https://getpocket.com/firefox_learnmore" class="mzp-c-button mzp-c-button-primary" rel="external">{{ _('Learn More') }}</a></p>
+          <p class="note">{{ _('Already have an account?') }} <a href="https://getpocket.com/login" rel="external">{{ _('Log in') }}</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mzp-c-hero-image">
+      {{ high_res_img('firefox/products/pocket/pocket-hero.png', {'alt': ''}) }}
+    </div>
+  </section>
+
+  <section id="pocket-popularity" class="mzp-l-content">
+    <div class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-right-third">
+      <div class="mzp-c-card-feature-media-wrapper">
+        <div class="mzp-c-card-feature-media">
+          {{ high_res_img('firefox/products/pocket/pocket-illo-reading.png', {'alt': ''}) }}
+        </div>
+      </div>
+      <div class="mzp-c-card-feature-content">
+        <div class="mzp-c-card-feature-content-container">
+            <h2 class="mzp-c-card-feature-title">{{ _('Capture What Fascinates You') }}</h2>
+            <p class="mzp-c-card-feature-desc">
+              {{ _('Turn your downtime into quality time. Pocket is the place to save, read and get fueled by the best content on the web.') }}
+            </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pocket-features">
+    <div class="mzp-c-call-out">
+      <div class="mzp-l-content">
+        <h2 class="mzp-c-call-out-title">{{ _('Fill Your Pocket in Firefox') }}</h2>
+        <p class="mzp-c-call-out-desc">{{ _('Use Firefox to browse, log in, save and see suggested content in Pocket.') }}</p>
+      </div>
+    </div>
+
+    <div class="mzp-l-content mzp-l-card-half">
+      <div class="mzp-c-card mzp-c-card-medium mzp-has-aspect-3-2">
+        <a class="mzp-c-card-block-link" href="https://support.mozilla.org/kb/save-web-pages-later-pocket-firefox">
+          <div class="mzp-c-card-media-wrapper">
+            {{ lazy_img(image_url='firefox/products/pocket/pocket-save.png', include_highres_image=True, placeholder_url='placeholder.png') }}
+          </div>
+          <div class="mzp-c-card-content">
+            <h3 class="mzp-c-card-title">{{ _('Save It Fast') }}</h3>
+            <p class="mzp-c-card-desc">{{ _('One click on the Pocket icon and content is saved to read later on any device, online or off. With your Firefox Account, logins and preferences travel with you.') }}</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="mzp-c-card mzp-c-card-medium mzp-has-aspect-3-2">
+        <a class="mzp-c-card-block-link" href="https://help.getpocket.com/article/1142-firefox-new-tab-recommendations">
+          <div class="mzp-c-card-media-wrapper">
+            {{ lazy_img(image_url='firefox/products/pocket/pocket-discover.png', include_highres_image=True, placeholder_url='placeholder.png') }}
+          </div>
+          <div class="mzp-c-card-content">
+            <h3 class="mzp-c-card-title">{{ _('Get Great Recommendations') }}</h3>
+            <p class="mzp-c-card-desc">{{ _('Every new Firefox tab is a chance to discover quality content that compels you, selected by real people who have their pulse on the web.') }}</p>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section id="pocket-sidekick" class="mzp-c-hero mzp-has-image mzp-t-dark">
+    <div class="mzp-l-content">
+      <div class="mzp-c-hero-body">
+        <h2 class="mzp-c-hero-title">
+          {{ _('The Content You Love Belongs in Your Pocket.') }}
+        </h2>
+
+        <div class="mzp-c-hero-cta">
+          <p><a href="https://getpocket.com/firefox_learnmore" class="mzp-c-button mzp-c-button-primary" rel="external">{{ _('Try Pocket Now') }}</a></p>
+          <p class="note">{{ _('Already have an account?') }} <a href="https://getpocket.com/login" rel="external">{{ _('Log in') }}</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mzp-c-hero-image">
+      {{ lazy_img(image_url='firefox/products/pocket/pocket-illo-mobile.png', include_highres_image=True, placeholder_url='placeholder.png') }}
+    </div>
+  </section>
+
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('product_pocket') }}
+{% endblock %}

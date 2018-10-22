@@ -1,0 +1,142 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+.no-js .main-content .header-image > img {
+    @include visually-hidden;
+}
+
+.main-content .header-image img {
+    max-height: 529px;
+    box-shadow: none;
+}
+
+// Yandex specific CSS styles
+.yandex {
+    .main-download {
+        .download-button .fx-privacy-link {
+            display: inline-block;
+            margin-top: 40px;
+
+            a:link,
+            a:visited {
+                text-decoration: underline;
+            }
+
+            a:hover,
+            a:active,
+            a:focus {
+                color: darken(#fff, 10%);
+            }
+        }
+    }
+
+    .header-container {
+        h2 {
+            @include font-size-level5;
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        .main-download {
+            .download-button .fx-privacy-link {
+                text-align: left;
+            }
+        }
+    }
+}
+
+// Locale specific call out section.
+.call-out-compact {
+    background-color: #202340;
+    color: #fff;
+    display: none;
+
+    .call-out-title {
+        @include font-size-level4;
+        font-weight: normal;
+    }
+
+    .call-out-cta {
+        margin: 10px 0 0;
+    }
+
+    .call-out-content {
+        @include at2x('/media/img/logos/firefox/logo-quantum.png', 64px, 64px);
+        @include border-box;
+        @include background-size(64px 64px);
+        background-position: left top;
+        background-repeat: no-repeat;
+        padding: 84px 0 0 0;
+    }
+
+    @media #{$mq-tablet} {
+        @include clearfix;
+
+        .content {
+            margin: 0 auto;
+            max-width: 1056px;
+            padding-bottom: 40px;
+            padding-top: 40px;
+        }
+
+        .call-out-content {
+            background-position: left center;
+            padding: 0 0 0 84px;
+            min-height: 84px;
+        }
+
+        .call-out-title {
+            margin-bottom: 0;
+        }
+
+        .call-out-content {
+            float: left;
+            max-width: 624px;
+            width: calc(66.6% - 20px);
+        }
+
+        .call-out-cta {
+            float: right;
+            margin: 0;
+            position: relative;
+            width: calc(33.3% - 20px);
+        }
+
+        .download-button {
+            float: right;
+        }
+    }
+
+    @supports(display: grid) {
+        @media #{$mq-tablet} {
+
+            .content {
+                display: grid;
+                grid-column-gap: 20px;
+                grid-template-columns: 2fr 1fr;
+            }
+
+            .call-out-content {
+                width: auto;
+                align-items: center;
+                display: flex;
+            }
+
+            .call-out-cta {
+                align-items: center;
+                display: flex;
+                justify-content: flex-end;
+                width: auto;
+            }
+        }
+    }
+}
+
+.js .call-out-compact {
+    display: block;
+}

@@ -1,0 +1,64 @@
+@import 'lib';
+
+//*------------------------------------------------------------------*/
+// Highlights
+.section-highlights {
+    background: $color-dev-mediumblue;
+    color: #fff;
+
+    .hero-image {
+        box-shadow: 0 15px 20px rgba(0, 0, 0, .15), 0 3px 6px rgba(0, 0, 0, .15);
+    }
+
+    .highlight-item {
+        padding-bottom: 20px;
+        margin-bottom: 40px;
+    }
+
+    .more {
+        @include trailing-arrow;
+
+        &:hover,
+        &:active,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+
+    @media #{$mq-tablet} {
+        padding-bottom: 140px;
+
+        &:before {
+            @include background-size(3000px 140px);
+            @include section-curve;
+            background-image: url('/media/img/firefox/developer/curve-highlights-top.svg');
+            height: 140px;
+            top: -139px;
+        }
+
+        .content {
+            @include flexbox;
+            @include flex-wrap;
+        }
+
+        .highlight-item {
+            @include border-box;
+            margin-bottom: 0;
+            padding: 20px 40px;
+            width: 50%;
+        }
+
+        .section-title,
+        .body-title {
+            text-align: left;
+        }
+    }
+}
+
+.section-highlights {
+    a:link,
+    a:visited {
+        color: #fff;
+        text-decoration: none;
+    }
+}

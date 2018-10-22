@@ -1,0 +1,157 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-protocol.html" %}
+
+{% block page_title_prefix %}{{ _('Stay Lean') }} — {% endblock %}
+{% block page_title %}{{ _('Lean Data Practices') }}{% endblock %}
+
+{% block page_desc %}
+  {{ _('Staying lean and being smart about how you collect data can build trust with your customers, partners, and supporters.') }}
+{% endblock %}
+
+{% block body_id %}lean-data{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('lean-data') }}
+{% endblock %}
+
+{% block content %}
+<section class="mzp-c-hero mzp-has-image">
+  <div class="mzp-l-content l-content-narrow">
+    <div class="mzp-c-hero-body">
+      <h1 class="mzp-c-hero-title">{{ _('Stay Lean') }}</h1>
+
+      <div class="mzp-c-hero-desc">
+        <p>{{ _('Do I need this data to provide the value I’m trying to deliver?') }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mzp-c-hero-image">
+    {{ high_res_img('mozorg/about/lean-data/stay-lean-hero.png', {'alt': '', 'width': '424', 'height': '424'}) }}
+  </div>
+</section>
+
+<section class="mzp-l-content l-content-narrow">
+  <h2 class="c-section-title">{{ _('1. What data do you have?') }}</h2>
+
+  <p>{{ _('Understanding what data you collect is easier said than done – there is almost always more than you think.') }}</p>
+
+  <p>
+    <strong>{{ _('Evaluate data from the user’s perspective: what puts their privacy and security at risk?') }}</strong>
+    {{ _('And how can you categorize your data in ways that make sense for collection while honoring user privacy?') }}
+  </p>
+
+  <div class="c-highlight">
+    <h3 class="c-highlight-title"><span>{{ _('Example:') }}</span> {{ _('Server Logs') }}</h3>
+
+    <p>{{ _('IP addresses and timestamps are standard in most online exchanges and often overlooked in data evaluations. This data poses a security risk because it can be used to identify people and their actions.') }}</p>
+  </div>
+
+
+  <h2 class="c-section-title">{{ _('2. How do you collect your data?') }}</h2>
+
+  <p>{{ _('Multiple organizations may have access to parts of your data, causing a larger digital footprint than expected.') }}</p>
+
+  <p>
+    <strong>{{ _('Review where you collect or receive sensitive data.') }}</strong>
+    {{ _('This allows you to manage who has access, what is collected, and how it is communicated to your customers or supporters.') }}
+  </p>
+
+  <div class="c-highlight">
+    <h3 class="c-highlight-title"><span>{{ _('Example:') }}</span> {{ _('Outsourcing') }}</h3>
+
+    <p>{{ _('Most organizations use third party services for managing customer emails, surveys, events, and questions. Vendor templates often collect more data by default. This means you—and the vendor—may both absorb unnecessary risk.') }}</p>
+  </div>
+
+  <h2 class="c-section-title">{{ _('3. Why are you collecting this data?') }}</h2>
+
+  <p>{{ _('Many organizations collect large amounts of data, much of which is never used.') }}</p>
+
+  <p><strong>{{ _('Ask two important questions:') }}</strong></p>
+
+  <ol class="mzp-u-list-styled">
+    <li>{{ _('Is there is a valid purpose for sensitive data to be collected?') }}</li>
+    <li>{{ _('Is there an alternative way to achieve the purpose without that data?') }}</li>
+  </ol>
+
+  <p>{{ _('This process often yields innovative privacy-sensitive designs.') }}</p>
+
+  <div class="c-highlight">
+    <h3 class="c-highlight-title"><span>{{ _('Example:') }}</span> {{ _('First & Last Name') }}</h3>
+
+    <p>{{ _('Most sign-up forms ask for first and last name. A valid reason to have this data might be to increase email open rates through customized emails. An equally valuable alternative—that minimizes risk—would be to collect first name only.') }}</p>
+  </div>
+
+  <h2 class="c-section-title">{{ _('4. When do you delete data?') }}</h2>
+
+  <p>{{ _('Sometimes you need data indefinitely. But often, the value of the data diminishes over time.') }}</p>
+
+  <p><strong>{{ _('Delete sensitive data when it is no longer relevant, or de-identify it as much as possible.') }}</strong></p>
+
+  <div class="c-highlight">
+    <h3 class="c-highlight-title"><span>{{ _('Example:') }}</span> {{ _('Survey Results') }}</h3>
+
+    <p>{{ _('In many cases, a raw dataset containing sensitive data is no longer needed or used within 3-6 months after its collection. But it won’t go away until someone takes action to delete it.') }}</p>
+  </div>
+
+  <h2 class="c-subsection-title">{{ _('Resources') }}</h2>
+
+  <ul class="mzp-u-list-styled">
+    <li>{{ _('Inventory data using our <a href="%s">data categories worksheet</a>.'|format('https://docs.google.com/document/d/1ZlHR3UPlbWq1FuGda_-GQkSmctPU3G6UUaZct68k3Zk/')) }}</li>
+    <li>{{ _('Check our <a href="%s">outsourced services worksheet</a>.'|format('https://docs.google.com/document/d/1nMsdX8pPhpHsnC33rbc7YjHpG6tqSCtWXtREAFpJTRs/')) }}</li>
+    <li>{{ _('Use our <a href="%s">business justification and alternatives worksheet</a>.'|format('https://docs.google.com/document/d/1SSV25m9SkAuIHJ4_lgXnWbpgwTyo26XVWWB20ulM9qE/')) }}</li>
+    <li>{{ _('Check our <a href="%s">deletion and de-identification worksheet</a>.'|format('https://docs.google.com/document/d/1z_1llMFf18zkM0WRPzQd1VWc7Q3Nd8RILs-4em_jvZk/')) }}</li>
+    <li><a href="https://docs.google.com/document/d/1TJafYmeFT3LIQe6YPLEHWwh37PGbK2RunntDIaN2lL8/">{{ _('Download the full toolkit.') }}</a></li>
+  </ul>
+</section>
+
+<section class="principles-other">
+  <div class="mzp-l-content l-content-narrow mzp-l-card-half">
+
+    <div class="mzp-c-card mzp-has-aspect-1-1">
+      <a class="mzp-c-card-block-link" href="{{ url('mozorg.about.policy.lean-data.build-security') }}">
+        <div class="mzp-c-card-media-wrapper">
+          {{ high_res_img('mozorg/about/lean-data/build-security-hero.png', {'alt': '', 'width': '424', 'height': '424'}) }}
+        </div>
+        <div class="mzp-c-card-content">
+          <h3 class="mzp-c-card-title">{{ _('Build Security') }}</h3>
+          <p class="mzp-c-card-desc">{{ _('Learn how to protect customer data.') }}</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="mzp-c-card mzp-has-aspect-1-1">
+      <a class="mzp-c-card-block-link" href="{{ url('mozorg.about.policy.lean-data.engage-users') }}">
+        <div class="mzp-c-card-media-wrapper">
+          {{ high_res_img('mozorg/about/lean-data/engage-users-hero.png', {'alt': '', 'width': '424', 'height': '424'}) }}
+        </div>
+        <div class="mzp-c-card-content">
+          <h3 class="mzp-c-card-title">{{ _('Engage Your Users') }}</h3>
+          <p class="mzp-c-card-desc">{{ _('Keep customers informed and empowered.') }}</p>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<aside class="contact mzp-c-call-out-compact">
+  <div class="mzp-l-content l-content-narrow">
+    <div class="mzp-c-call-out-content">
+      <div class="mzp-c-call-out-container">
+        <h3 class="mzp-c-call-out-title">{{ _('Drive the conversation in your organization.') }}</h3>
+      </div>
+    </div>
+    <div class="mzp-c-call-out-cta">
+      <p class="mzp-c-call-out-cta-container">
+        <a href="https://docs.google.com/forms/d/191_0cQHpvBAutNRFZSkUjeeHfVRadKPa_v8Ct9x5mDQ/" class="mzp-c-button">{{ _('Contact Us') }}</a>
+      </p>
+    </div>
+  </div>
+</aside>
+{% endblock %}
+
+{% block js %}{% endblock %}

@@ -1,0 +1,42 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "base-protocol.html" %}
+
+{% block page_title %}{{ _('How Will Mozilla Use My Email?') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('privacy_email') }}
+{% endblock %}
+
+{% block page_class %}privacy-email{% endblock %}
+
+{% block content %}
+<div class="mzp-l-content article-wrapper">
+  <main class="mzp-c-article">
+    <h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
+
+    <p class="mzp-c-article-intro">
+    {% trans
+          manifesto=url('mozorg.about.manifesto'),
+          principles=url('privacy.principles')
+    %}
+      Mozilla doesn’t just value your email privacy and security – it’s part of our <a href="{{ manifesto }}">Manifesto</a>: “Individuals’ security and privacy on the internet are fundamental and must not be treated as optional.” <a href="{{ principles }}">You can learn about our Data Privacy Principles here</a>.
+    {% endtrans %}
+    </p>
+
+    <p><strong>{{ _('What we want you to know:') }}</strong></p>
+
+    <ul class="prose mzp-u-list-styled">
+      <li>{{ _('You don’t need to give us your email to download and use Firefox.') }}</li>
+      <li>{{ _('We asked for your email because our research shows that people who receive an introductory experience do more and better with Firefox.') }}</li>
+      <li>{{ _('You can expect emails designed to help you optimize Firefox to work best for you, learn more about privacy & security and find out how to make the best of your time on the web.') }}</li>
+      <li>{{ _('You can unsubscribe anytime, for any reason.') }}</li>
+      <li>{{ _('We will not share, sell or use your email for any other purposes.') }}</li>
+    </ul>
+  </main>
+</div>
+
+{% endblock %}
+

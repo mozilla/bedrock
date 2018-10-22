@@ -1,0 +1,329 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button, send_yourself with context %}
+
+{% add_lang_files "firefox/whatsnew_61" "firefox/sendto" %}
+
+{% extends "firefox/base-protocol.html" %}
+
+{% block page_title %}{{ _('See what’s new with Firefox') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_62') }}
+{% endblock %}
+
+{% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
+
+{% block string_data %}
+  {# L10n: Pocket is a brand name and should not be translated. #}
+  data-pocket-title="{{ _('Meet Pocket: The Easiest Way to Capture & Collect Content that Fascinates You') }}"
+  data-fxaccount-title="{{ _('Get a Firefox Account') }}"
+  data-fxmobile-title="{{ _('Download the Firefox Mobile App') }}"
+  {# L10n: For German, all instances of the string 'Firefox Focus' must be 'Firefox Klar' (as done on https://www.mozilla.org/de/firefox/focus/) #}
+  data-fxfocus-title="{{ _('Get the Firefox Focus Mobile App') }}"
+{% endblock %}
+
+{% block content %}
+<main class="mzp-t-firefox">
+  <header id="page-header" class="page-header">
+    <div class="mzp-l-content page-header-inner">
+      {{ high_res_img('logos/firefox/logo-quantum-wordmark-large.png', {'alt': 'Firefox', 'width': '147', 'height': '55', 'class': 'logo-fx'}) }}
+
+      <h1 class="up-to-date-messaging">{{ _('Congrats! You’re using the latest version of Firefox.') }}</h1>
+
+      <img src="{{ static('img/logos/mozilla/wordmark-dark.svg') }}" alt="Mozilla" width="112" height="32" class="logo-moz" id="logo-moz">
+      <img src="{{ static('img/logos/pocket/pocket-wordmark.svg') }}" alt="Pocket" width="134" height="36" class="logo-pocket" id="logo-pocket">
+    </div>
+  </header>
+
+  <div id="main-content" class="main-content {% if show_send_to_device %}has-send-to-device{% else %}no-send-to-device{% endif %}">
+
+    {#
+      If JavaScript fails or is disabled, show the Firefox mobile QR code by default.
+      This is hidden when JS is available and all the regular view logic can take over.
+    #}
+    <article class="content-container firefox-container" id="nojs-fx-mobile">
+      <div class="mzp-l-content">
+        <div class="content-body">
+          <h2 class="page-title">{{ _('Get the Firefox Mobile App') }}</h2>
+          <p class="tagline">{{ _('Privacy minded. Packed with features. Perfect for multitasking on mobile.') }}</p>
+          <p>{{ _('All the things you love about Firefox, plus time-saving features. Sync bookmarks, passwords, and share links instantly between your devices.') }}</p>
+
+          <h3>{{ _('Scan the QR code to download the app on your device.') }}</h3>
+        </div>
+
+        <div class="qr-wrapper">
+          <img src="{{ static('img/firefox/whatsnew_61/qrcode-firefox.png') }}" data-mozillaonline-link="{{ static('img/firefox/whatsnew/qrcode-mozillaonline.png') }}" width="350" height="350" alt="{{ _('QR code') }}">
+        </div>
+
+        <ul class="app-store-badges">
+          <li class="android">
+            {{ google_play_button(href='https://mzl.la/2M6EXbI', id='playStoreLink') }}
+          </li>
+          <li class="ios">
+            <a id="appStoreLink" href="https://mzl.la/2K035Mm" data-link-type="download" data-download-os="iOS">
+              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </article>{#-- /#nojs-fx-mobile-container --#}
+
+
+    {# If the user is not signed in and is reading English, show Pocket. #}
+    {% if LANG.startswith('en') %}
+    <article class="content-container pocket-container" id="pocket">
+      <header class="mzp-c-hero">
+        <div class="mzp-l-content">
+          <h2 class="mzp-c-hero-title">{{ _('Launch Pocket in Firefox') }}</h2>
+          <p class="c-hero-subtitle">{{ _('Capture articles that fuel your mind. Transform the way you read.') }}</p>
+
+          <div class="mzp-c-hero-cta">
+            <p class="cta"><a class="mzp-c-button" href="https://getpocket.com/firefox_whatsnew">{{ _('Launch Now') }}</a></p>
+            <p class="note">{{ _('Have an account?') }} <a href="https://getpocket.com/login?src=whatsnew">{{ _('Log In') }}</a></p>
+          </div>
+
+          {{ high_res_img('firefox/whatsnew_62/pocket-hero-laptop.png', {'alt': '', 'width': '1006', 'height': '610', 'class': 'pocket-hero-image'}) }}
+        </div>
+      </header>
+
+      <div class="pocket-secondary">
+        <section class="pocket-benefits">
+          <div class="pocket-benefits-container mzp-l-content">
+            <h3 class="section-title">{{ _('A dedicated space to fuel your mind') }}</h3>
+
+            <ul class="pocket-benefits-list">
+              <li>
+                <h4>{{ _('Save articles quickly') }}</h4>
+                <p>{{ _('Use Pocket to capture interesting content from across the web with just one click.') }}</p>
+              </li>
+              <li>
+                <h4>{{ _('Absorb what you read') }}</h4>
+                <p>{{ _('Pocket’s clean article view cuts out distractions. It creates a quiet place where you can focus while you read.') }}</p>
+              </li>
+              <li>
+                <h4>{{ _('Read anywhere') }}</h4>
+                <p>{{ _('Get everything you love about Pocket on your phone with our award winning app.') }}</p>
+              </li>
+            </ul>
+
+            <div class="pocket-devices">
+              {{ high_res_img('firefox/whatsnew_62/pocket-devices.png', {'alt': '', 'width': '465', 'height': '540', 'class': 'pocket-devices-image'}) }}
+              <p class="pocket-award">{{ _('Enjoy an Award-Winning Experience') }}</p>
+
+              <ul class="app-store-badges">
+                <li class="android">
+                  {{ google_play_button(href='https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro') }}
+                </li>
+                <li class="ios">
+                  <a href="https://itunes.apple.com/app/read-it-later-pro/id309601447?mt=8" data-link-type="download" data-download-os="iOS">
+                    <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <aside class="secondary-cta mzp-c-call-out-compact mzp-t-firefox mzp-t-dark">
+        <div class="mzp-l-content">
+          <div class="mzp-c-call-out-content">
+            <div class="mzp-c-call-out-container">
+              <h2 class="mzp-c-call-out-title">{{ _('If you’re using Firefox, you already have Pocket.') }}</h2>
+            </div>
+          </div>
+          <div class="mzp-c-call-out-cta">
+            <div class="mzp-c-call-out-cta-container">
+              <div class="mzp-c-button-download">
+                <a class="mzp-c-button" href="https://getpocket.com/firefox_whatsnew">{{ _('Launch Now') }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </article>{#-- /#pocket-container --#}
+
+
+    {# If the user is not signed in and is not reading English, display the FxA form. #}
+    {% else %}
+    <article class="content-container fxa-container" id="fx-account">
+      <div class="mzp-l-content">
+        <div class="content-body">
+          <h2 class="page-title">{{ _('Firefox Account: Simplify your online life.') }}</h2>
+
+          <ul class="tagline">
+            <li>{{ _('Send pages instantly between your devices') }}</li>
+            <li>{{ _('Sync bookmarks, history and more') }}</li>
+            <li>{{ _('View content offline and anytime with Pocket') }}</li>
+          </ul>
+
+          {# firefox.accounts-features is en-US only for now, so other locales need an alternate URL #}
+          {% set learn_more_url = url('firefox.accounts-features') if LANG == 'en-US' else url('firefox.features.sync') %}
+          <p class="more"><a href="{{ learn_more_url }}" target="_blank" rel="noopener noreferrer">{{_('Find out more')}}</a></p>
+        </div>
+
+        <div class="fxaccounts" id="fxa-iframe-config" data-host="{{ settings.FXA_IFRAME_SRC }}" data-mozillaonline-host="{{ settings.FXA_IFRAME_SRC_MOZILLAONLINE }}">
+          <iframe id="fxa" scrolling="no" data-src="{{ settings.FXA_IFRAME_SRC }}?action=email&amp;utm_campaign=fxa-embedded-form&amp;utm_medium=referral&amp;utm_source=whatsnew&amp;utm_content=fx-{{ version }}&amp;entrypoint=whatsnew&amp;service=sync&amp;context=fx_firstrun_v2&amp;style=chromeless&amp;haltAfterSignIn=true"></iframe>
+        </div>
+      </div>
+    </article>{#-- /#fxa-container --#}
+    {% endif %}
+
+
+    {#
+      If the user *is* signed in but does *not* have any mobile devices set up,
+      display either:
+        1) Send to Device widget (if supported by locale)
+        2) QR code for Firefox for mobile
+
+      All visitors in this state also see App & Play store badges.
+    #}
+    <article class="content-container firefox-container" id="fx-mobile">
+      <div class="mzp-l-content">
+        <div class="content-body">
+          <h2 class="page-title">{{ _('Get the Firefox Mobile App') }}</h2>
+          <p class="tagline">{{ _('Privacy minded. Packed with features. Perfect for multitasking on mobile.') }}</p>
+          <p>{{ _('All the things you love about Firefox, plus time-saving features. Sync bookmarks, passwords, and share links instantly between your devices.') }}</p>
+
+        {% if show_send_to_device %}
+          {# L10n: "spam" is unsolicited email, used here as a verb to mean "we won't send you spam" #}
+          <h3>{{ _('Send yourself a download link. We won’t store your info or spam you.') }}</h3>
+        {% else %}
+          <h3>{{ _('Scan the QR code to download the app on your device.') }}</h3>
+        {% endif %}
+        </div>
+
+      {% if show_send_to_device %}
+        <div class="send-yourself-wrapper">
+          {{ send_yourself(include_title=False, id='send-firefox', message_set='fx-50-whatsnew', spinner_color='#000') }}
+        </div>
+      {% else %}
+        <div class="qr-wrapper">
+          <img src="{{ static('img/firefox/whatsnew_61/qrcode-firefox.png') }}" data-mozillaonline-link="{{ static('img/firefox/whatsnew/qrcode-mozillaonline.png') }}" width="350" height="350" alt="{{ _('QR code') }}">
+        </div>
+      {% endif %}
+
+        <ul class="app-store-badges">
+          <li class="android">
+            {{ google_play_button(href='https://mzl.la/2M6EXbI', id='playStoreLink') }}
+          </li>
+          <li class="ios">
+            <a id="appStoreLink" href="https://mzl.la/2K035Mm" data-link-type="download" data-download-os="iOS">
+              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </article>{#-- /#fx-mobile-container --#}
+
+
+    {#
+      If the user is signed in *and* has mobile devices sync'ed, display either:
+        1) Send to Device widget for Firefox Focus (if supported by locale)
+        2) QR code for Firefox Focus
+
+      All visitors in this state also see App & Play store badges.
+    #}
+    <article class="content-container firefox-container" id="fx-focus">
+      <div class="mzp-l-content">
+        <div class="content-body">
+          {# L10n: For German, all instances of the string 'Firefox Focus' must be 'Firefox Klar' (as done on https://www.mozilla.org/de/firefox/focus/) #}
+          <h2 class="page-title">{{ _('Get the Firefox Focus App') }}</h2>
+          {# L10n: "monotasking" means to do one thing at a time (the opposite of multitasking). Alternative for translation: "Efficient browsing." #}
+          <p class="tagline">{{ _('Privacy obsessed. Automatic ad blocking. Monotasking perfected.') }}</p>
+          <p>{{ _('Our easy-to-use mobile browser includes always-on tracking protection and erases your browsing data after every session.') }}</p>
+
+        {% if show_send_to_device %}
+          {# L10n: "spam" is unsolicited email, used here as a verb to mean "we won't send you spam" #}
+          <h3>{{ _('Send yourself a download link. We won’t store your info or spam you.') }}</h3>
+        {% else %}
+          <h3>{{ _('Scan the QR code to download the app on your device.') }}</h3>
+        {% endif %}
+        </div>
+
+      {% if show_send_to_device %}
+        <div class="send-yourself-wrapper">
+          {{ send_yourself(include_title=False, id='send-focus', product='focus', message_set='fx-focus', spinner_color='#fff') }}
+        </div>
+      {% else %}
+        <div class="qr-wrapper">
+          <img src="{{ static('img/firefox/whatsnew_61/qrcode-focus.png') }}" width="350" height="350" alt="{{ _('QR code') }}">
+        </div>
+      {% endif %}
+
+        <ul class="app-store-badges">
+          <li class="android">
+            {{ google_play_button(href='https://mzl.la/2I0kjYd', id='playStoreLink', product='Focus', extra_data_attributes={'download-product': 'Focus', 'download-version': 'android', 'download-location': 'primary cta'}) }}
+          </li>
+          <li class="ios">
+            <a id="appStoreLink" href="https://mzl.la/2I1I2r5" data-link-type="download" data-download-os="iOS" data-download-product="Focus" data-download-version="ios" data-download-location="primary cta">
+              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </article>{# --/#focus-container --#}
+
+
+    {#
+      If the user is signed in *and* has mobile devices sync'ed, *and* is in Germany, Austria, or Switzerland display either:
+        1) Send to Device widget for Firefox Klar (if supported by locale)
+        2) QR code for Firefox Klar
+
+      All visitors in this state also see App & Play store badges.
+    #}
+    <article class="content-container firefox-container" id="fx-klar">
+      <div class="mzp-l-content">
+        <div class="content-body">
+          {# L10n: For German, all instances of the string 'Firefox Focus' must be 'Firefox Klar' (as done on https://www.mozilla.org/de/firefox/focus/) #}
+          <h2 class="page-title">{{ _('Get the Firefox Focus App') }} (Klar)</h2>
+          {# L10n: "monotasking" means to do one thing at a time (the opposite of multitasking). Alternative for translation: "Efficient browsing." #}
+          <p class="tagline">{{ _('Privacy obsessed. Automatic ad blocking. Monotasking perfected.') }}</p>
+          <p>{{ _('Our easy-to-use mobile browser includes always-on tracking protection and erases your browsing data after every session.') }}</p>
+
+        {% if show_send_to_device %}
+          {# L10n: "spam" is unsolicited email, used here as a verb to mean "we won't send you spam" #}
+          <h3>{{ _('Send yourself a download link. We won’t store your info or spam you.') }}</h3>
+        {% else %}
+          <h3>{{ _('Scan the QR code to download the app on your device.') }}</h3>
+        {% endif %}
+        </div>
+
+      {% if show_send_to_device %}
+        <div class="send-yourself-wrapper">
+          {{ send_yourself(include_title=False, id='send-klar', product='klar', message_set='fx-klar', spinner_color='#fff') }}
+        </div>
+      {% else %}
+        <div class="qr-wrapper">
+          <img src="{{ static('img/firefox/whatsnew_61/qrcode-klar.png') }}" width="350" height="350" alt="{{ _('QR code') }}">
+        </div>
+      {% endif %}
+
+        <ul class="app-store-badges">
+          <li class="android">
+            {{ google_play_button(href='https://mzl.la/2tabw1i', id='playStoreLink', product='Klar', extra_data_attributes={'download-product': 'Klar', 'download-version': 'android', 'download-location': 'primary cta'}) }}
+          </li>
+          <li class="ios">
+            <a id="appStoreLink" href="https://mzl.la/2JSz6da" data-link-type="download" data-download-os="iOS" data-download-product="Klar" data-download-version="ios" data-download-location="primary cta">
+              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </article>{# --/#klar-container --#}
+
+  </div>{#-- /.main-content --#}
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_62') }}
+{% endblock %}

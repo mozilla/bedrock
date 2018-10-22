@@ -2,8 +2,21 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function(Waypoint) {
+ /* global YT */
+ /* eslint no-unused-vars: [2, { "varsIgnorePattern": "onYouTubeIframeAPIReady" }] */
+
+// YouTube API hook has to be in global scope
+function onYouTubeIframeAPIReady() {
     'use strict';
+}
+
+(function($, Waypoint) {
+    'use strict';
+
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
     function getNextEl(el) {
         el = el.nextSibling;
@@ -16,64 +29,76 @@
         return null;
     }
 
-    /*
-     * Video Tracking
-     */
-
-    function trackVideoInteraction(title, state) {
-        window.dataLayer.push({
-            'event': 'video-interaction',
-            'videoTitle': title,
-            'interaction': state
-        });
-    }
-
     function initVideoEvents() {
-        var videos = document.querySelectorAll('video');
         var videoCards = document.querySelectorAll('.mzp-c-card.has-video-embed .mzp-c-card-block-link');
 
-        // open and play videos in a modal on click.
-        for (var i = 0; i < videoCards.length; i++) {
-            videoCards[i].addEventListener('click', playVideo, false);
-        }
+        function playVideo(event) {
+            var card = event.currentTarget;
+            var title = card.querySelector('.mzp-c-card-title').innerText;
+            var sibling = getNextEl(event.currentTarget);
+            var content = sibling.querySelector('.mzp-c-card-video-content');
 
-        // track video interaction events for GA.
-        for (var j = 0; j < videos.length; j++) {
-            videos[j].addEventListener('play', function() {
-                trackVideoInteraction(this.getAttribute('data-ga-label'), 'play');
-            }, false);
+            var videoLink = content.querySelector('.video-play');
+            var videoId = videoLink.getAttribute('data-id');
 
-            videos[j].addEventListener('pause', function() {
-                var action = this.currentTime === this.duration ? 'complete' : 'pause';
-                trackVideoInteraction(this.getAttribute('data-ga-label'), action);
-            }, false);
-        }
-    }
-
-    function playVideo(e) {
-        var card = e.currentTarget;
-        var title = card.querySelector('.mzp-c-card-title').innerText;
-        var sibling = getNextEl(e.currentTarget);
-        var content = sibling.querySelector('.mzp-c-card-video-content');
-
-        if (content) {
-            e.preventDefault();
-            var video = content.querySelector('video');
-
-            Mozilla.Modal.createModal(this, content, {
-                title: title,
-                onCreate: function() {
-                    try {
-                        video.load();
-                        video.play();
-                    } catch(err) {
-                        // fail silently
-                    }
+            var player = new YT.Player(videoLink, {
+                width: 640,
+                height: 360,
+                videoId: videoId,
+                playerVars: {
+                    modestbranding: 1, // hide YouTube logo.
+                    rel: 0, // do not show related videos on end.
                 },
-                onDestroy: function() {
-                    video.pause();
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
                 }
             });
+
+            function onPlayerReady(event) {
+                event.target.playVideo();
+            }
+
+            function onPlayerStateChange(event) {
+                var state;
+
+                switch(event.data) {
+                case YT.PlayerState.PLAYING:
+                    state = 'video play';
+                    break;
+                case YT.PlayerState.PAUSED:
+                    state = 'video paused';
+                    break;
+                case YT.PlayerState.ENDED:
+                    state = 'video complete';
+                    break;
+                }
+
+                if (state) {
+                    window.dataLayer.push({
+                        'event': 'video-interaction',
+                        'videoTitle': title,
+                        'interaction': state
+                    });
+                }
+            }
+
+            if (content) {
+                event.preventDefault();
+
+                Mozilla.Modal.createModal(this, content, {
+                    title: title,
+                    className: 'mzp-has-media',
+                    onDestroy: function() {
+                        player.destroy();
+                    }
+                });
+            }
+        }
+
+    // open and play videos in a modal on click.
+        for (var i = 0; i < videoCards.length; i++) {
+            videoCards[i].addEventListener('click', playVideo, false);
         }
     }
 
@@ -84,8 +109,8 @@
     initVideoEvents();
 
     /*
-     * Sticky CTA
-     */
+    * Sticky CTA
+    */
 
     var $stickyCTA = $(document.getElementById('download-firefox-sticky-cta'));
     var hasCookies = typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled();
@@ -93,15 +118,15 @@
 
     // init dismiss button
     function initStickyCTA() {
-        // add and remove aria-hidden
+    // add and remove aria-hidden
         var primaryTop = new Waypoint({
             element: document.getElementById('download-firefox-primary-cta'),
             handler: function(direction) {
                 if(direction === 'down') {
-                    // becomes percivable as the user scrolls down
+                // becomes percivable as the user scrolls down
                     $stickyCTA.removeAttr('aria-hidden');
                 } else {
-                    // hidden again as they scroll up
+                // hidden again as they scroll up
                     $stickyCTA.attr('aria-hidden', 'true');
                 }
             }
@@ -113,7 +138,7 @@
         $dismissButton.appendTo($stickyWrapper);
         // listen for click
         $dismissButton.one('click', function(){
-            // dismiss
+        // dismiss
             dismissStickyCTA(primaryTop);
         });
     }
@@ -144,4 +169,4 @@
         $stickyCTA.remove();
     }
 
-})(window.Waypoint);
+})(window.jQuery, window.Waypoint);

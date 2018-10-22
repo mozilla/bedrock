@@ -92,7 +92,7 @@ def get_db_file_url(filename):
 
 
 def get_extra_server_info():
-    server_name = [getattr(settings, x) for x in ['HOSTNAME', 'DEIS_APP', 'DEIS_DOMAIN']]
+    server_name = [getattr(settings, x) for x in ['HOSTNAME', 'CLUSTER_NAME']]
     server_name = '.'.join(x for x in server_name if x)
     server_info = {
         'name': server_name,

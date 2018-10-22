@@ -663,7 +663,7 @@ html[dir="rtl"] {
             @include transform(translateY(100%));
         }
 
-        &[data-current="focus-lightweight"] ul:before {
+        &[data-current="focus-oys"] ul:before {
             @include transform(translateY(200%));
         }
     }
@@ -725,10 +725,6 @@ html[dir="rtl"] {
 
         &.feature-speed:before {
             background-position: left top -257px;
-        }
-
-        &.feature-lightweight:before {
-            background-position: left top -178px;
         }
     }
 
@@ -858,10 +854,6 @@ html[dir="rtl"] {
 
         &.feature-speed:before {
             background-position: right top -257px;
-        }
-
-        &.feature-lightweight:before {
-            background-position: right top -178px;
         }
 
         @media #{$mq-tablet} {

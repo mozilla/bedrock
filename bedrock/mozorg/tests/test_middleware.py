@@ -32,18 +32,18 @@ class TestClacksOverheadMiddleware(TestCase):
 
 @override_settings(ENABLE_HOSTNAME_MIDDLEWARE=True)
 class TestHostnameMiddleware(TestCase):
-    @override_settings(HOSTNAME='foobar', DEIS_APP='bedrock-dev', DEIS_DOMAIN='example.com')
+    @override_settings(HOSTNAME='foobar', CLUSTER_NAME='oregon-b')
     def test_base(self):
         self.middleware = HostnameMiddleware()
         self.request = HttpRequest()
         self.response = HttpResponse()
 
         self.middleware.process_response(self.request, self.response)
-        self.assertEqual(self.response['X-Backend-Server'], 'foobar.bedrock-dev.example.com')
+        self.assertEqual(self.response['X-Backend-Server'], 'foobar.oregon-b')
 
     @override_settings(MIDDLEWARE_CLASSES=(list(settings.MIDDLEWARE_CLASSES) +
                                            ['bedrock.mozorg.middleware.HostnameMiddleware']),
-                       HOSTNAME='foobar', DEIS_APP='el-dudarino')
+                       HOSTNAME='foobar', CLUSTER_NAME='el-dudarino')
     def test_request(self):
         response = self.client.get('/en-US/')
         self.assertEqual(response['X-Backend-Server'], 'foobar.el-dudarino')

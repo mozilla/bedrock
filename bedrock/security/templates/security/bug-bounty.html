@@ -1,27 +1,59 @@
 {% extends "security/base.html" %}
 
-{% block page_title %}Mozilla Security Bug Bounty Program{% endblock %}
+{% block page_title %}Security Bug Bounty Program{% endblock %}
 {% set body_id = "bug-bounty" %}
 
 {% block article %}
   <article itemscope itemtype="http://schema.org/Article">
     <header>
-      <h1 itemprop="name"><span class="highlight">Bug Bounty Program</span></h1>
+      <h1 itemprop="name"><span class="highlight">Security Bug Bounty Program</span></h1>
     </header>
     <div itemprop="articleBody">
       <h2>Introduction</h2>
 
-      <p>The Mozilla Security Bug Bounty Program is designed to encourage
-        security research in Mozilla software and to reward those who help us create
-        the safest Internet clients in existence.</p>
+      <p>The Mozilla Security Bug Bounty Program is designed to encourage security research in Mozilla software and to reward those who help us make the internet a safer place.</p>
 
-      <p>Many thanks to <a href="http://en.wikipedia.org/wiki/Linspire">Linspire</a>
-        and <a href="http://www.markshuttleworth.com/">Mark Shuttleworth</a>, who
-        provided start-up funding for this endeavor.</p>
+      <h2>General Eligibility</h2>
 
-      <p>Mozilla has paid out around 3 million dollars in bounties to our various researchers!</p>
+      <p>To be eligible for a reward under this program: </p>
 
-      <p>Mozilla manages two different bug bounty programs.  One focuses on Firefox and other Mozilla applications and the other covers our websites and services.</p>
+      <ul class="prose">
+        <li>The security bug must be original and previously unreported.</li>
+        <li>The security bug must be a part of Mozilla’s code, not the code of a third party.  We will pay bounties for vulnerabilities in third-party libraries incorporated into shipped client code or third-party websites utilized by Mozilla.</li>
+        <li>You must not have written the buggy code or otherwise been involved in contributing the buggy code to the Mozilla project.</li>
+        <li>You must be old enough to be eligible participate in and receive payment from this program in your jurisdiction, or otherwise qualify to receive payment, whether through consent from your parent or guardian or some other way.</li>
+        <li>You must not be an employee, contractor, or otherwise have a business relationship with the Mozilla Foundation or any of its subsidiaries.</li>
+        <li>You should use your best effort not to access, modify, delete, or store user data or Mozilla’s data. Instead, use your own accounts or test accounts for security research purposes.</li>
+        <li>If you inadvertently access, modify, delete, or store user data, we ask that you notify Mozilla immediately at <a href="mailto:security@mozilla.org">security@mozilla.org</a> and delete any stored data after notifying us.</li>
+        <li>You must not be on a US sanctions list or in a country (e.g. Cuba, Iran, North Korea, Sudan and Syria) on the US sanctions list.</li>
+        <li>You must not exploit the security vulnerability for your own gain.</li>
+        <li>You must give us a reasonable amount of time to address the security issue you raise before making any part of it public.</li>
+      </ul>
+
+      <p>If a bug is reported by a team or by multiple researchers simultaneously, the bounty will be split evenly amongst them.</p>
+
+      <p>Do not threaten or attempt to extort Mozilla. We will not award a bounty if you threaten to withhold the security issue from us or if you threaten to release the vulnerability or any exposed data to the public.</p>
+
+      <h2>Safe Harbor</h2>
+
+      <p>Mozilla strongly supports security research into our products and wants to encourage that research.</p>
+
+      <p>As a result, we will not threaten or bring any legal action against anyone who makes a good faith effort to comply with this Bug Bounty Program, or for any accidental or good faith violation of this policy. This includes any claim under the DMCA for circumventing technological measures to protect the services and applications eligible under this policy.</p>
+
+      <p>As long as you comply with this policy:</p>
+
+      <ul class="prose">
+        <li>We consider your security research to be "authorized" under the Computer Fraud and Abuse Act,</li>
+        <li>We waive any restrictions in our applicable Terms of Service and <a href="{{ url('legal.terms.acceptable-use') }}">Acceptable Use Policy</a> that would prohibit your participation in this policy, for the limited purpose of your security research under this policy.</li>
+      </ul>
+
+      <p>We understand that many Mozilla systems and services are interconnected with third-party systems and services. While we can authorize your research on Mozilla’s systems and services, and promise that Mozilla will not bring or threaten litigation against you for your efforts under this policy, we cannot authorize efforts on third-party products or guarantee they won’t pursue legal action against you. However, if a third party threatens or brings any legal action against you for your efforts under this policy, we are willing to make clear&mdash;to the Court, the public, or otherwise--that we authorized your efforts to test and research the security of Mozilla’s eligible systems and services.</p>
+
+      <p><strong>If you’re not sure whether your conduct complies with this policy, please contact us first at <a href="mailto:security@mozilla.org">security@mozilla.org</a> and we will do our best to clarify.</strong></p>
+
+      <h2>Web and Client</h2>
+
+      <p>Mozilla manages two different bug bounty programs. One focuses on Firefox and other Mozilla applications and the other covers our websites and services.</p>
 
       <ul class="prose">
         <li><a href="{{ url('security.client-bug-bounty') }}">Client Bug Bounty Guidelines</a></li>

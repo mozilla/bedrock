@@ -121,7 +121,7 @@ def static(path):
 def js_bundle(name):
     """Include a JS bundle in the template.
 
-    Bundles are defined in the "static-bundles.json" file.
+    Bundles are defined in the "media/static-bundles.json" file.
     """
     path = 'js/BUNDLES/{}.js'.format(name)
     path = staticfiles_storage.url(path)
@@ -132,7 +132,7 @@ def js_bundle(name):
 def css_bundle(name):
     """Include a CSS bundle in the template.
 
-    Bundles are defined in the "static-bundles.json" file.
+    Bundles are defined in the "media/static-bundles.json" file.
     """
     path = 'css/BUNDLES/{}.css'.format(name)
     path = staticfiles_storage.url(path)

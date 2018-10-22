@@ -1,0 +1,43 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/new/quantum" %}
+
+{% extends "firefox/new/berlin/base-variation.html" %}
+
+{% block body_class %}berlin-scene2 privat{% endblock %}
+
+{% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/?xv=privatsphare{% endblock %}
+
+{% block string_data %}
+  data-pixels="{% for pixel in settings.TRACKING_PIXELS %}{{ pixel }}{% if not loop.last %}::{% endif %}{% endfor %}"
+{% endblock %}
+
+{% block head_content %}
+  <h2>Danke, dass Du Dich für Firefox entscheidest.</h2>
+{% endblock %}
+
+{% block secondary_content %}
+  <p class="help">
+    Dein Download startet automatisch. Falls nicht, <a href="{{ url('firefox.all') }}" id="direct-download-link">bitte hier klicken</a>.
+  </p>
+{% endblock %}
+
+{% block primary_download_button %}
+  {# Download button on scene2 is hidden visually. Both ID and CSS classes are needed to trigger auto-download #}
+  <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
+    {{ download_firefox(alt_copy='Jetzt herunterladen', force_direct=true, dom_id='primary-download-button') }}
+  </div>
+{% endblock %}
+
+{% block details %}{% endblock %}
+
+{% block secondary_download %}{% endblock %}
+
+{% block js %}
+  {% if switch('tracking-pixel') %}
+    {{ js_bundle('firefox_new_pixel') }}
+  {% endif %}
+  {{ js_bundle('firefox_new_scene2') }}
+{% endblock %}

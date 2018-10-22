@@ -21,5 +21,13 @@ class DownloadButton(Region):
     def is_displayed(self):
         return self.root.is_displayed() and self._platform_link.is_displayed() or False
 
+    @property
+    def is_transitional_link(self):
+        return '/firefox/download/thanks/' in self._platform_link.get_attribute('href')
+
+    @property
+    def is_yandex_link(self):
+        return 'https://yandex.ru/firefox/mozilla/' in self._platform_link.get_attribute('href')
+
     def click(self):
         self._platform_link.click()

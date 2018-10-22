@@ -5,16 +5,16 @@ stage ('Build Images') {
         try {
             sh 'docker/bin/check_if_tag.sh'
         } catch(err) {
-            utils.ircNotification([stage: 'Git Tag Check', status: 'failure'])
+            utils.slackNotification([stage: 'Git Tag Check', status: 'failure'])
             throw err
         }
     }
-    utils.ircNotification([stage: 'Test & Deploy', status: 'starting'])
+    utils.slackNotification([stage: 'Test & Deploy', status: 'starting'])
     lock ("bedrock-docker-build") {
         try {
             sh "make clean build-ci"
         } catch(err) {
-            utils.ircNotification([stage: 'Docker Build', status: 'failure'])
+            utils.slackNotification([stage: 'Docker Build', status: 'failure'])
             throw err
         }
         // save the files for later
@@ -36,7 +36,7 @@ if ( config.smoke_tests ) {
                 },
             ])
         } catch(err) {
-            utils.ircNotification([stage: 'Unit Test', status: 'failure'])
+            utils.slackNotification([stage: 'Unit Test', status: 'failure'])
             throw err
         }
     }
@@ -56,9 +56,12 @@ if ( config.push_public_registry != false ) {
                 utils.pushDockerhub('mozorg/bedrock_code')
                 utils.pushDockerhub('mozorg/bedrock_build')
                 utils.pushDockerhub('mozorg/bedrock')
+                // also upload static files to s3 bucket
+                // the script itself decides if this is a prod push or not
+                sh "bin/upload-staticfiles.sh"
             }
         } catch(err) {
-            utils.ircNotification([stage: 'Dockerhub Push Failed', status: 'failure'])
+            utils.slackNotification([stage: 'Dockerhub Push Failed', status: 'failure'])
             throw err
         }
     }
@@ -98,7 +101,7 @@ if ( config.apps ) {
                     } else if (region.config_repo){
                         utils.deploy(region, config, appname, stageName, namespace)
                     }
-                    utils.ircNotification([message: appURL, status: 'shipped'])
+                    utils.slackNotification([message: appURL, status: 'shipped'])
                 }
                 if ( config.integration_tests ) {
                     // queue up test closures
@@ -117,7 +120,7 @@ if ( config.apps ) {
                                 parallel allTests
                             }
                         } catch(err) {
-                            utils.ircNotification([stage: "Integration Tests ${appname}-${region.name}", status: 'failure'])
+                            utils.slackNotification([stage: "Integration Tests ${appname}-${region.name}", status: 'failure'])
                             throw err
                         }
                         tested_apps << "${appname}-${region.name}".toString()
@@ -128,6 +131,6 @@ if ( config.apps ) {
     }
     if ( tested_apps ) {
         // huge success \o/
-        utils.ircNotification([message: "All tests passed: ${tested_apps.join(', ')}", status: 'success'])
+        utils.slackNotification([message: "All tests passed: ${tested_apps.join(', ')}", status: 'success'])
     }
 }
