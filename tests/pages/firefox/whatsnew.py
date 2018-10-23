@@ -12,7 +12,7 @@ class FirefoxWhatsNewPage(FirefoxBasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/whatsnew/'
 
-    _qr_code_locator = (By.CSS_SELECTOR, '.rocket-code > img')
+    _qr_code_locator = (By.CSS_SELECTOR, '.qr-code img')
     _zh_tw_qr_code_locator = (By.CSS_SELECTOR, 'img.qrcode')
 
     @property

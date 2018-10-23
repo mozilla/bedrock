@@ -1,0 +1,55 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/whatsnew" %}
+
+{% extends "firefox/base-protocol.html" %}
+
+{% block page_title %}Firefox Lite{% endblock %}
+
+{% block body_id %}firefox-whatsnew-rocket{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox-whatsnew-lite') }}
+{% endblock %}
+
+{% block content %}
+<main role="main">
+  <header class="c-page-header main-header">
+    <div class="mzp-l-content">
+      <div class="c-page-header-inner">
+        <img src="{{ static('img/logos/mozilla/wordmark-dark.svg') }}" alt="Mozilla" width="90" class="c-page-header-logo-moz">
+        <h1 class="c-page-header-up-to-date">{{ _('Your Firefox is up to date.') }}</h1>
+      </div>
+    </div>
+  </header>
+  <div class="lite-body">
+    <div class="lite-content mzp-l-content">
+      <div class="lite-woman">
+          <img src="{{ static('img/firefox/whatsnew/lite/woman.png') }}" width="513" alt="">
+      </div>
+      <div class="lite-copy">
+        <div class="lite-container">
+          <img src="{{ static('img/logos/firefox/logo-lite.png') }}" width="120" alt="">
+          <h1><img src="{{ static('img/logos/firefox/logo-lite-wordmark-white.png') }}" width="300" alt="Firefox Lite"></h1>
+
+          {# Rough translation: A fast and lightweight Android browser designed for you! #}
+          <p class="lite-text">Sebuah peramban android yang cepat dan ringan yang di desain untuk kamu!</p>
+        </div>
+      </div>
+      <div class="lite-code qr-code">
+        <div class="lite-container">
+          <img src="{{ static('img/firefox/whatsnew/lite/qrcode.png') }}" width="250" alt="QR Code">
+        </div>
+      </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew') }}
+{% endblock %}
