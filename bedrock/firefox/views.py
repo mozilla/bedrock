@@ -515,41 +515,23 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
                 template = 'firefox/dev-whatsnew.html'
         elif channel == 'nightly':
             template = 'firefox/nightly_whatsnew.html'
+        elif locale == 'id':
+            if switch('firefox_lite_whatsnew'):
+                template = 'firefox/whatsnew/index-lite.id.html'
+            else:
+                template = 'firefox/whatsnew/index.id.html'
+        elif locale == 'zh-TW':
+            template = 'firefox/whatsnew/index.zh-TW.html'
         elif version.startswith('63.'):
-            if locale == 'id':
-                template = 'firefox/whatsnew/index.id.html'
-            elif locale == 'zh-TW':
-                template = 'firefox/whatsnew/index.zh-TW.html'
-            else:
-                template = 'firefox/whatsnew/whatsnew-fx63.html'
+            template = 'firefox/whatsnew/whatsnew-fx63.html'
         elif show_62_whatsnew(version, oldversion):
-            if locale == 'id':
-                template = 'firefox/whatsnew/index.id.html'
-            elif locale == 'zh-TW':
-                template = 'firefox/whatsnew/index.zh-TW.html'
-            else:
-                template = 'firefox/whatsnew/whatsnew-fx62.html'
+            template = 'firefox/whatsnew/whatsnew-fx62.html'
         elif show_61_whatsnew(version, oldversion):
-            if locale == 'id':
-                template = 'firefox/whatsnew/index.id.html'
-            elif locale == 'zh-TW':
-                template = 'firefox/whatsnew/index.zh-TW.html'
-            else:
-                template = 'firefox/whatsnew/whatsnew-fx61.html'
+            template = 'firefox/whatsnew/whatsnew-fx61.html'
         elif show_60_whatsnew(version, oldversion):
-            if locale == 'id':
-                template = 'firefox/whatsnew/index.id.html'
-            elif locale == 'zh-TW':
-                template = 'firefox/whatsnew/index.zh-TW.html'
-            else:
-                template = 'firefox/whatsnew/whatsnew-fx60.html'
+            template = 'firefox/whatsnew/whatsnew-fx60.html'
         elif show_59_whatsnew(version, oldversion):
-            if locale == 'id':
-                template = 'firefox/whatsnew/index.id.html'
-            elif locale == 'zh-TW':
-                template = 'firefox/whatsnew/index.zh-TW.html'
-            else:
-                template = 'firefox/whatsnew/whatsnew-fxa.html'
+            template = 'firefox/whatsnew/whatsnew-fxa.html'
         elif show_57_whatsnew(version, oldversion):
             # locale-specific templates don't seem to work for the default locale
             if locale == 'en-US':

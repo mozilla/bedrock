@@ -208,6 +208,43 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/whatsnew/index.html'])
 
+    # begin id locale-specific tests
+
+    @override_settings(DEV=True)
+    @patch.dict(os.environ, SWITCH_FIREFOX_LITE_WHATSNEW='True')
+    def test_id_locale_template_lite(self, render_mock):
+        """Should use id locale specific template for Firefox Lite"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'id'
+        self.view(req, version='63.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/index-lite.id.html'])
+
+    @override_settings(DEV=True)
+    @patch.dict(os.environ, SWITCH_FIREFOX_LITE_WHATSNEW='False')
+    def test_id_locale_template_rocket(self, render_mock):
+        """Should use id locale specific template for Firefox Rocket"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'id'
+        self.view(req, version='63.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/index.id.html'])
+
+    # end id locale-specific tests
+
+    # begin zh-TW locale-specific tests
+
+    @override_settings(DEV=True)
+    def test_zh_TW_locale_template(self, render_mock):
+        """Should use zh-TW locale specific template"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'zh-TW'
+        self.view(req, version='63.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/index.zh-TW.html'])
+
+    # end zh-TW locale-specific tests
+
     # begin 57.0 whatsnew tests
 
     @override_settings(DEV=True)
@@ -284,24 +321,6 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/whatsnew/index.html'])
 
-    @override_settings(DEV=True)
-    def test_fx_59_0_id_locale_template(self, render_mock):
-        """Should use id locale specific template when updating from older major version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=58.0')
-        req.locale = 'id'
-        self.view(req, version='59.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.id.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_59_0_zh_TW_locale_template(self, render_mock):
-        """Should use zh-TW locale specific template when updating from older major version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=58.0')
-        req.locale = 'zh-TW'
-        self.view(req, version='59.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.zh-TW.html'])
-
     # end 59.0 whatsnew tests
 
     # begin 60.0 whatsnew tests
@@ -323,24 +342,6 @@ class TestWhatsNew(TestCase):
         self.view(req, version='60.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/whatsnew/whatsnew-fx60.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_60_0_id_locale_template(self, render_mock):
-        """Should use id locale specific template when updating from older major version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=59.0')
-        req.locale = 'id'
-        self.view(req, version='60.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.id.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_60_0_zh_TW_locale_template(self, render_mock):
-        """Should use zh-TW locale specific template when updating from older major version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=59.0')
-        req.locale = 'zh-TW'
-        self.view(req, version='60.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.zh-TW.html'])
 
     # end 60.0 whatsnew tests
 
@@ -364,24 +365,6 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/whatsnew/whatsnew-fx61.html'])
 
-    @override_settings(DEV=True)
-    def test_fx_61_0_id_locale_template(self, render_mock):
-        """Should use id locale specific template when updating from older major version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=60.0')
-        req.locale = 'id'
-        self.view(req, version='61.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.id.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_61_0_zh_TW_locale_template(self, render_mock):
-        """Should use zh-TW locale specific template when updating from older major version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=60.0')
-        req.locale = 'zh-TW'
-        self.view(req, version='61.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.zh-TW.html'])
-
     # end 61.0 whatsnew tests
 
     # begin 62.0 whatsnew tests
@@ -404,24 +387,6 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/whatsnew/whatsnew-fx62.html'])
 
-    @override_settings(DEV=True)
-    def test_fx_62_0_id_locale_template(self, render_mock):
-        """Should use id locale specific template when updating from older major version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=61.0')
-        req.locale = 'id'
-        self.view(req, version='62.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.id.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_62_0_zh_TW_locale_template(self, render_mock):
-        """Should use zh-TW locale specific template when updating from older major version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=61.0')
-        req.locale = 'zh-TW'
-        self.view(req, version='62.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.zh-TW.html'])
-
     # end 62.0 whatsnew tests
 
     # begin 63.0 whatsnew tests
@@ -433,24 +398,6 @@ class TestWhatsNew(TestCase):
         self.view(req, version='63.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/whatsnew/whatsnew-fx63.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_63_0_id_locale_template(self, render_mock):
-        """Should use id locale specific template"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'id'
-        self.view(req, version='63.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.id.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_63_0_zh_TW_locale_template(self, render_mock):
-        """Should use zh-TW locale specific template"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'zh-TW'
-        self.view(req, version='63.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.zh-TW.html'])
 
     # end 63.0 whatsnew tests
 
