@@ -8,6 +8,8 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/protocol.scss';
 
 // TODO port these components to Protocol.
-@import 'components/global-nav';
 @import 'components/masthead';
 @import 'components/download-button';
+
+// Bedrock specific component tweaks.
+@import 'components/navigation';

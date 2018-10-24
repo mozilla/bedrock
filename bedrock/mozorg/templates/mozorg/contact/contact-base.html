@@ -16,7 +16,7 @@
 
 {% block site_header %}
   {% if LANG.startswith('en-') %}
-    {% include 'includes/global-nav.html' %}
+    {% include 'includes/navigation-switch.html' %}
   {% else %}
     {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
     {% include 'mozorg/home/includes/nav.html' %}
@@ -38,7 +38,7 @@
 
     <div class="map">
       {% block map %}{% endblock %}
-      <small>    
+      <small>
         {% trans link_openstreetmap='http://openstreetmap.org/copyright' %}
           © <a href="{{ link_openstreetmap }}">OpenStreetMap</a> contributors.
         {% endtrans %}

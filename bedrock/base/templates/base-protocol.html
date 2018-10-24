@@ -1,7 +1,12 @@
 {% extends 'base-pebbles.html' %}
 
+{% set show_protocol_nav = switch('navigation_protocol') %}
+
 {% block site_css %}
   {{ css_bundle('protocol-core') }}
+  {% if not show_protocol_nav %}
+    {{ css_bundle('protocol-global-nav') }}
+  {% endif %}
 {% endblock %}
 
 {% block old_ie_styles %}
@@ -12,7 +17,11 @@
 
 {% block site_header %}
   {% if LANG.startswith('en-') %}
-    {% include 'includes/global-nav.html' %}
+    {% if show_protocol_nav %}
+      {% include 'includes/protocol/navigation/index.html' %}
+    {% else %}
+      {% include 'includes/global-nav.html' %}
+    {% endif %}
   {% else %}
     {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
     {% include 'mozorg/home/includes/nav.html' %}
@@ -26,6 +35,11 @@
 {% block site_js %}
 <!--[if !lte IE 8]><!-->
   {{ js_bundle('common-protocol') }}
+  {% if show_protocol_nav %}
+    {{ js_bundle('navigation-protocol') }}
+  {% else %}
+    {{ js_bundle('navigation') }}
+  {% endif %}
 <!--<![endif]-->
 
 <!--[if lte IE 8]>

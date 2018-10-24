@@ -1,0 +1,34 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+// Protocol components for navigation.
+@import '../../protocol/css/components/card';
+@import '../../protocol/css/components/menu';
+@import '../../protocol/css/components/menu-item';
+@import '../../protocol/css/components/navigation';
+@import '../../protocol/css/base/includes/animations';
+
+// Bedrock specific navigation overrides.
+@import '../protocol/components/navigation';
+
+/**
+ * Sandstone specific overrides for Protocol Navigation and Menu components.
+ */
+.mzp-c-menu-category-list,
+.mzp-c-menu-panel-content {
+    li {
+        margin: 0;
+        list-style-type: none;
+    }
+}
+
+.mzp-c-menu-item .mzp-c-menu-item-title,
+.mzp-c-menu-panel-card .mzp-c-card .mzp-c-card-title {
+    font-weight: bold;
+    text-shadow: none;
+    letter-spacing: normal;
+}

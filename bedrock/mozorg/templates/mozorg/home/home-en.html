@@ -40,7 +40,7 @@
 
 {% block site_header %}
   {% if LANG.startswith('en-') %}
-    {% include 'includes/global-nav.html' %}
+    {% include 'includes/navigation-switch.html' %}
   {% else %}
     {% with is_home = True %}
       {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}

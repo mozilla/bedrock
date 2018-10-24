@@ -1,0 +1,53 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+// Protocol components for navigation.
+@import '../../../protocol/css/components/card';
+@import '../../../protocol/css/components/menu';
+@import '../../../protocol/css/components/menu-item';
+@import '../../../protocol/css/components/navigation';
+@import '../../../protocol/css/base/includes/animations';
+
+// Bedrock specific navigation overrides.
+@import '../../protocol/components/navigation';
+
+/**
+ * Pebbles specific overrides for Protocol Navigation and Menu components.
+ * 1. Pebbles pages use Zilla for body copy, so override in the navigation.
+ * 2. Because of 1, pages also set a base font-size of 112.5% on <html>, so compensate proportionally.
+ */
+.mzp-c-navigation {
+    @include open-sans;
+
+    .mzp-c-menu-title {
+        @include font-size(14px);
+    }
+}
+
+.mzp-c-menu-item {
+
+    .mzp-c-menu-item-title {
+        @include font-size(16px);
+        font-weight: bold;
+    }
+
+    .mzp-c-menu-item-desc,
+    .mzp-c-menu-item-list {
+        @include font-size(12px);
+    }
+}
+
+.mzp-c-menu-panel-card .mzp-c-card {
+    .mzp-c-card-title {
+        @include font-size(16px);
+        font-weight: bold;
+    }
+
+    .mzp-c-card-desc {
+        @include font-size(12px);
+    }
+}
