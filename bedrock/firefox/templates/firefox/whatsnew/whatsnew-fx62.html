@@ -3,6 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros.html" import google_play_button, send_yourself with context %}
+{% from "macros-protocol.html" import call_out_compact with context %}
 
 {% add_lang_files "firefox/whatsnew_61" "firefox/sendto" %}
 
@@ -133,22 +134,14 @@
         </section>
       </div>
 
-      <aside class="secondary-cta mzp-c-call-out-compact mzp-t-firefox mzp-t-dark">
-        <div class="mzp-l-content">
-          <div class="mzp-c-call-out-content">
-            <div class="mzp-c-call-out-container">
-              <h2 class="mzp-c-call-out-title">{{ _('If you’re using Firefox, you already have Pocket.') }}</h2>
-            </div>
-          </div>
-          <div class="mzp-c-call-out-cta">
-            <div class="mzp-c-call-out-cta-container">
-              <div class="mzp-c-button-download">
-                <a class="mzp-c-button" href="https://getpocket.com/firefox_whatsnew">{{ _('Launch Now') }}</a>
-              </div>
-            </div>
-          </div>
+      {% call call_out_compact(
+        title=_('If you’re using Firefox, you already have Pocket.'),
+        class='secondary-cta mzp-t-firefox mzp-t-dark'
+      ) %}
+        <div class="mzp-c-button-download">
+          <a class="mzp-c-button" href="https://getpocket.com/firefox_whatsnew">{{ _('Launch Now') }}</a>
         </div>
-      </aside>
+      {% endcall %}
     </article>{#-- /#pocket-container --#}
 
 

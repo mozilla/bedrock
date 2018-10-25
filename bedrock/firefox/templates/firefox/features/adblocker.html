@@ -2,6 +2,8 @@
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros-protocol.html" import call_out, call_out_compact with context %}
+
  {% add_lang_files "firefox/adblocker" %}
 
  {% extends "base-protocol.html" %}
@@ -121,19 +123,20 @@
     </p>
   </section>
 
-  <section class="mzp-c-call-out tracking">
-    <div class="mzp-l-content">
-      <h2 class="mzp-c-call-out-title">{{_('Get Firefox with Tracking Protection') }}</h2>
-      <div class="download-firefox">
-        {{ download_firefox(download_location='primary cta') }}
-      </div>
+  {% call call_out(
+    title=_('Get Firefox with Tracking Protection'),
+    class='tracking mzp-t-firefox',
+    include_cta=True
+  ) %}
+    <div class="download-firefox">
+      {{ download_firefox(download_location='primary cta') }}
     </div>
-  </section>
+  {% endcall %}
 
-  <section class="mzp-c-call-out">
-    <div class="mzp-l-content">
-      <h2 class="mzp-c-hero-title">{{_('Where to find ad blockers') }}</h2>
-      <div class="mzp-c-call-out-desc l-content-columns">
+  <section class="where-to-find">
+    <div class=" mzp-l-content l-content-narrow">
+      <h2 class="section-title">{{_('Where to find ad blockers') }}</h2>
+      <div class="l-content-columns">
         <p>
           {% trans url='https://addons.mozilla.org/en-US/firefox/search/?platform=mac&q=ad+blocker'%}
           There are hundreds of ad blocker extensions available for Firefox and every other browser. You can find a list of them <a href="{{ url }}">here in the Firefox Addons marketplace</a>. The most popular blockers let you "whitelist" sites that you’d like to support by viewing ads. Others can block ads on other platforms like YouTube.
@@ -148,21 +151,13 @@
     </div>
   </section>
 
-  <section class="mzp-c-call-out-compact mzp-t-product-firefox mzp-t-firefox">
-    <div class="mzp-l-content">
-      <div class="mzp-c-call-out-content">
-        <div class="mzp-c-call-out-container">
-          <h1 class="mzp-c-call-out-title">{{_('Take control of your browser.') }}</h1>
-        </div>
-      </div>
-      <div class="mzp-c-call-out-cta">
-        <div class="mzp-c-call-out-cta-container">
-          <div class="download-firefox">
-            {{ download_firefox(download_location='primary cta') }}
-          </div>
-        </div>
-      </div>
+  {% call call_out_compact(
+    title=_('Take control of your browser.'),
+    class='mzp-t-product-firefox mzp-t-firefox'
+  ) %}
+    <div class="download-firefox">
+      {{ download_firefox(download_location='secondary cta') }}
     </div>
-  </section>
+  {% endcall %}
 
  {% endblock %}

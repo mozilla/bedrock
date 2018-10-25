@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
+{% from "macros-protocol.html" import call_out_compact, picto_card with context %}
+
 {% extends "base-protocol.html" %}
 
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
@@ -40,28 +42,13 @@
   <div class="mzp-l-card-third mzp-l-content mzp-t-firefox">
     <ul>
       <li class="faster">
-        <section class="mzp-c-card-picto">
-          <div class="mzp-c-card-picto-content">
-            <h2 class="mzp-c-card-picto-title">{{_('2x Faster') }}</h2>
-            <p class="mzp-c-card-picto-desc">{{_('The best Firefox ever') }}</p>
-          </div>
-        </section>
+        {{ picto_card(title=_('2x Faster'), desc=_('The best Firefox ever')) }}
       </li>
       <li class="lighter">
-        <section class="mzp-c-card-picto">
-          <div class="mzp-c-card-picto-content">
-            <h2 class="mzp-c-card-picto-title">{{_('Lightweight') }}</h2>
-            <p class="mzp-c-card-picto-desc">{{_('Rebuilt to use less memory') }}</p>
-          </div>
-        </section>
+        {{ picto_card(title=_('Lightweight'), desc=_('Rebuilt to use less memory')) }}
       </li>
       <li class="private">
-        <section class="mzp-c-card-picto">
-          <div class="mzp-c-card-picto-content">
-            <h2 class="mzp-c-card-picto-title">{{_('Powerfully private') }}</h2>
-            <p class="mzp-c-card-picto-desc">{{_('Truly Private Browsing with Tracking Protection') }}</p>
-          </div>
-        </section>
+        {{ picto_card(title=_('Powerfully private'), desc=_('Truly Private Browsing with Tracking Protection')) }}
       </li>
     </ul>
   </div>
@@ -72,21 +59,14 @@
     </div>
   </aside>
 
-  <section class="secondary-cta mzp-c-call-out-compact mzp-t-firefox mzp-t-product-firefox">
-    <div class="mzp-l-content">
-      <div class="mzp-c-call-out-content">
-        <div class="mzp-c-call-out-container">
-        <h2 class="mzp-c-call-out-title">{{ _('Take control of your browser.') }}</h2>
-        </div>
-      </div>
-      <div class="mzp-c-call-out-cta">
-        <div class="mzp-c-call-out-cta-container">
-          <div class="mzp-c-button-download">
-            {{ download_firefox(alt_copy=_('Download Firefox'), download_location='secondary cta', button_color='mzp-c-button mzp-t-download') }}
-          </div>
-        </div>
-      </div>
+  {% call call_out_compact(
+    title=_('Take control of your browser.'),
+    class='secondary-cta mzp-t-product-firefox mzp-t-firefox'
+  ) %}
+    <div class="mzp-c-button-download">
+      {{ download_firefox(alt_copy=_('Download Firefox'), download_location='secondary cta', button_color='mzp-c-button mzp-t-download') }}
     </div>
-  </section>
+  {% endcall %}
+
 </main>
 {% endblock %}

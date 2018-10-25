@@ -34,9 +34,10 @@ blockquote {
 }
 
 .mzp-c-call-out-compact.mzp-t-product-firefox.mzp-t-firefox {
-    background-color: #d7d7db;
-    .download-firefox {
-        margin: 0 0 -40px;
+    background-color: $color-gray-30;
+
+    .fx-privacy-link {
+        margin-bottom: 0;
     }
 }
 
@@ -127,4 +128,17 @@ section.mzp-c-hero {
 .mzp-c-call-out.tracking {
     background-color: #fff;
     margin-bottom: 50px;
+}
+
+/* -------------------------------------------------------------------------- */
+
+.where-to-find {
+    background-color: $color-gray-20;
+
+    @media #{$mq-md} {
+        .mzp-l-content {
+            padding-bottom: $spacing-2xl;
+            padding-top: $spacing-2xl;
+        }
+    }
 }

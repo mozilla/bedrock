@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros-protocol.html" import billboard, card with context %}
+
 {% extends "base-protocol.html" %}
 
 {% add_lang_files "mozorg/home/index-quantum" %}
@@ -49,42 +51,6 @@
   {% endif %}
 {% endblock %}
 
-{% macro card_block(class, tag_label, media_icon, title, ga_title, desc, image_url, include_highres_image, youtube_id, aspect_ratio, link_url, meta) -%}
-<section class="mzp-c-card {% if class %}{{ class }}{% endif %} {% if aspect_ratio %}{{ aspect_ratio }}{% endif %} {% if media_icon %}{{ media_icon }}{% endif %} {% if youtube_id %}has-video-embed{% endif %}">
-  <a class="mzp-c-card-block-link" href="{{ link_url }}" data-link-name="{{ ga_title }}" data-link-type="link" data-link-group="card">
-    <div class="mzp-c-card-media-wrapper">
-      {{ lazy_img(image_url=image_url, include_highres_image=include_highres_image, placeholder_url='placeholder.png', optional_attributes={'class': 'mzp-c-card-image'}) }}
-    </div>
-    <div class="mzp-c-card-content">
-    {% if tag_label %}
-      <div class="mzp-c-card-tag {% if tag_class %}{{ tag_class }}{% endif %}">{{ tag_label }}</div>
-    {% endif %}
-      <h2 class="mzp-c-card-title"><span>{{ title }}</span></h2>
-    {% if desc %}
-      <p class="mzp-c-card-desc">{{ desc|truncatechars(140) }}</p>
-    {% endif %}
-    {% if meta %}
-      <p class="mzp-c-card-meta">{{ meta }}</p>
-    {% endif %}
-    </div>
-  </a>
-  {% if youtube_id %}
-  <div class="mzp-c-card-video-wrapper hidden">
-    <figure class="mzp-c-card-video-content">
-      <div class="ytcontainer-video">
-        <div class="video-container">
-          <div class="video-play" data-id="{{ youtube_id }}"></div>
-        </div>
-      </div>
-      <figcaption>
-        <p>{% if desc %}{{ desc }}{% endif %} <a href="{{ link_url }}">{{ _('Read more') }}</a></p>
-      </figcaption>
-    </figure>
-  </div>
-  {% endif %}
-</section>
-{%- endmacro %}
-
 {% block content %}
 <main>
   <header class="main-page-heading">
@@ -111,100 +77,107 @@
       </div>
     </div>
   </section>
-  {% block mozilla_content %}
+
   <div class="mozilla-content">
     <div class="mzp-l-content">
       <div class="mzp-l-card-hero">
-        {{ card_block(
-            class='mzp-c-card-large',
-            tag_label=_('Security'),
-            title=_('Protect yourself with Firefox Monitor'),
-            ga_title='Protect yourself with Firefox Monitor',
-            desc=_('Find out what hackers already know about you and get alerts when data breaches put you at risk.'),
-            image_url='home/2018/cards/firefox-monitor.png',
-            aspect_ratio='mzp-has-aspect-16-9',
-            link_url='https://monitor.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+        {% if switch('firefox-election-build') %}
+          {% set bundle_title = 'Get the Firefox U.S. Election Bundle' %}
+        {% else %}
+          {% set bundle_title = 'Get the Firefox U.S. Election Collection' %}
+        {% endif %}
+        <!-- 1 -->
+        {{ card(
+          class='mzp-c-card-large',
+          tag_label=_('Firefox'),
+          title=bundle_title,
+          ga_title=bundle_title,
+          desc=_('Decode political ad targeting and keep Facebook off your back.'),
+          image_url='home/2018/cards/election/wise-up.jpg',
+          aspect_ratio='mzp-has-aspect-16-9',
+          link_url='/firefox/election/'
         )}}
         <!-- 2 -->
-        {{ card_block(
-            tag_label=_('News'),
-            title=_('Bloomberg: Pocket’s 30M users are great for publishers'),
-            ga_title='Bloomberg: Pocket’s 30M users are great for publishers',
-            desc=_('Mozilla’s focus on leisurely reads is aimed at publishers burned by Facebook. It’s paying off: Traffic is already up 75 percent this year.'),
-            image_url='home/2018/cards/pocket-article-illustration.jpg',
-            aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://www.bloomberg.com/news/articles/2018-08-09/pocket-s-30-million-users-are-great-for-publishers?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+        {{ card(
+          tag_label=_('Video'),
+          media_icon='mzp-has-video',
+          title=_('When did the truth become so subjective?'),
+          ga_title='When did the truth become so subjective?',
+          desc=_('The truth is out there, and we have the ability to vote and shape our world based upon it.'),
+          image_url='home/2018/cards/election/truth.jpg',
+          include_highres_image=True,
+          aspect_ratio='mzp-has-aspect-16-9',
+          link_url='https://blog.mozilla.org/internetcitizen/2018/10/04/misinfo-nation-misinformation-democracy-internet/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
+          youtube_id='qldxyjEjjBQ'
         )}}
         <!-- 3 -->
-        {{ card_block(
-            tag_label=_('Video'),
-            media_icon='mzp-has-video',
-            title=_('Our privacy philosophy explained'),
-            ga_title='The Verge: The future of news feeds',
-            desc=_('These five principles guide how we put people first when we make products, manage data and advocate for policies.'),
-            image_url='home/2018/cards/privacy-philosophy.png',
-            aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://blog.mozilla.org/internetcitizen/2018/08/13/firefox-privacy-philosophy/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
-            youtube_id='fbF9gDSZX6U',
+        {{ card(
+          tag_label=_('Get involved'),
+          title=_('Election Day is almost here'),
+          ga_title='Election Day is almost here',
+          desc=_('Check your voter registration status to make sure you’re ready for Nov. 6.'),
+          image_url='home/2018/cards/election/registered-vote.png',
+          aspect_ratio='mzp-has-aspect-3-2',
+          link_url='https://blog.mozilla.org/internetcitizen/2018/09/20/be-a-voter-save-the-web/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
         )}}
         <!-- 4 -->
-        {{ card_block(
-            tag_label=_('Podcast'),
-            title=_('IRL: Paid attention'),
-            ga_title='IRL: Paid attention',
-            desc=_('There’s a new currency in town (and no, we’re not talking about Bitcoin). We’re talking about attention. Tune in to IRL.'),
-            image_url='home/2018/cards/irl-s3-e3.png',
-            aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://irlpodcast.org/season3/episode3/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+        {{ card(
+          tag_label=_('Podcast'),
+          title=_('IRL: What to expect when you’re electing'),
+          ga_title='IRL: What to expect when you’re electing',
+          desc=_('Veronica Belmont and Baratunde Thurston examine how the internet is changing our minds, our votes and democracy itself.'),
+          image_url='home/2018/cards/election/irl.png',
+          include_highres_image=True,
+          aspect_ratio='mzp-has-aspect-1-1',
+          link_url='https://irlpodcast.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
         <!-- 5 -->
-        {{ card_block(
-            tag_label=_('Privacy'),
-            title=_('Make your browser a privacy superpower'),
-            ga_title='Make your browser a privacy superpower',
-            desc=_('Customize your Firefox with these privacy extensions so you can browse knowing your personal data is safe.'),
-            image_url='home/2018/cards/firefox-privacy.png',
-            aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://blog.mozilla.org/firefox/make-your-firefox-browser-a-privacy-superpower-with-these-extensions/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+        {{ card(
+          tag_label=_('Pocket'),
+          title=_('Read Pocket’s Election Section'),
+          ga_title='Read Pocket’s Election Section',
+          desc=_('Here’s an easy way to follow the election, curated by Pocket.'),
+          include_highres_image=True,
+          image_url='home/2018/cards/election/pocket-election.png',
+          aspect_ratio='mzp-has-aspect-3-2',
+          link_url='https://getpocket.com/explore/midterms/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
       </div>
 
-      <div class="mzp-c-billboard mzp-l-billboard-right">
-        <div class="mzp-c-billboard-image-container">
-          {{ high_res_img('home/2018/billboard-more-power.png', {'alt': '', 'class': 'mzp-c-billboard-image', 'width': '346', 'height': '346'}) }}
-        </div>
-        <div class="mzp-c-billboard-content">
-          <div class="mzp-c-billboard-content-container">
-            <div class="mzp-c-billboard-content-inner">
-              <h2 class="mzp-c-billboard-title">{{ _('More power to you.') }}</h2>
-              <p class="mzp-c-billboard-desc">{{ _('Mozilla puts people before profit, creating products, technologies and programs that make the internet healthier for everyone.') }}</p>
-              <a class="mzp-c-cta-link" href="{{ url('mozorg.about') }}">{{ _('Learn more about us') }}</a>
-            </div>
-          </div>
-        </div>
-      </div>
-<!-- 6 -->
+      {{ billboard(
+        title=_('More power to you.'),
+        ga_title='More power to you.',
+        desc=_('Mozilla puts people before profit, creating products, technologies and programs that make the internet healthier for everyone.'),
+        link_cta=_('Learn more about us'),
+        link_url=url('mozorg.about'),
+        image_url='home/2018/billboard-more-power.png',
+        include_highres_image=True
+      )}}
+
       <div class="mzp-l-card-half">
-        {{ card_block(
-            class='mzp-c-card-medium',
-            tag_label=_('Test Pilot'),
-            title=_('Advance offers real-time recommendations'),
-            ga_title='Advance offers real-time recommendations',
-            desc=_('With the latest Firefox experiment, Advance, you can explore more of the web based on your current page and your most recent web history.'),
-            image_url='home/2018/cards/recommendations-screenshot.jpg',
-            aspect_ratio='mzp-has-aspect-16-9',
-            link_url='https://blog.mozilla.org/blog/2018/08/07/firefox-offers-recommendations-with-latest-test-pilot-experiment-advance/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
+        <!-- 6 -->
+        {{ card(
+          class='mzp-c-card-medium',
+          tag_label=_('Internet Health'),
+          title=_('Why fair elections need responsible tech'),
+          ga_title='Why fair elections need responsible tech',
+          desc=_('For democracy to thrive in the internet era, we need technology that respects rules and privacy.'),
+          image_url='home/2018/cards/election/responsible-tech.jpg',
+          include_highres_image=True,
+          aspect_ratio='mzp-has-aspect-16-9',
+          link_url='https://blog.mozilla.org/internetcitizen/2018/09/21/why-fair-elections-require-responsible-tech/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
         )}}
-<!-- 7 -->
-        {{ card_block(
-            class='mzp-c-card-medium',
-            tag_label=_('Pocket'),
-            title=_('Fresh front page, every time'),
-            ga_title='Fresh front page, every time',
-            desc=_('We’ve made it faster and easier for you to find things that are important to you whenever you open a new tab in Firefox.'),
-            image_url='home/2018/cards/pocket-front-page.png',
-            aspect_ratio='mzp-has-aspect-16-9',
-            link_url='https://blog.mozilla.org/firefox/open-your-own-front-page-using-firefox-new-tab/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+        <!-- 7 -->
+        {{ card(
+          class='mzp-c-card-medium',
+          tag_label=_('Guest: Alexios Mantzarlis'),
+          title=_('Nothing is as simple as it looks'),
+          ga_title='Nothing is as simple as it looks',
+          desc=_('Misinformation is a complicated problem facing media, publishers and consumers around the world.'),
+          include_highres_image=True,
+          image_url='home/2018/cards/election/nothing-simple.png',
+          aspect_ratio='mzp-has-aspect-16-9',
+          link_url='https://blog.mozilla.org/internetcitizen/2018/10/03/ifcn-article/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
       </div>
     </div>
@@ -216,7 +189,7 @@
         <p class="tagline">{{ _('Like this feed? <a href="%(url)s">Subscribe</a> via Pocket')|format(url='https://getpocket.com/@MozillaHQ') }}</p>
         <div class="mzp-l-card-quarter">
         {% for article in pocket_articles %}
-          {{ card_block(
+          {{ card(
             class='mzp-c-card-extra-small',
             tag_label=article.domain,
             title=article.display_title,
@@ -233,149 +206,140 @@
 
     <div class="mzp-l-content">
       <div class="mzp-l-card-half">
-<!-- 8 -->
-        {{ card_block(
-            class='mzp-c-card-medium',
-            tag_label=_('Emerging Technologies'),
-            title=_('An invisible tax: Video codecs'),
-            ga_title='An invisible tax: Video codecs',
-            desc=_('Here’s a surprising fact: It costs money to watch video online, even on free sites like YouTube. The open-source AV1 codec could change that.'),
-            image_url='home/2018/cards/video-codecs.png',
-            include_highres_image=False,
-            aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://blog.mozilla.org/blog/2018/07/11/royalty-free-web-video-codecs/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
+        <!-- 8 -->
+        {{ card(
+          class='mzp-c-card-medium',
+          tag_label=_('Guest: Dipayan Ghosh'),
+          title=_('Microtargeting and our politics'),
+          ga_title='Microtargeting and our politics',
+          desc=_('Dipayan Ghosh explains how we are sliced, diced and served up to political operations on social media. '),
+          include_highres_image=True,
+          image_url='home/2018/cards/election/microtargeting.jpg',
+          include_highres_image=False,
+          aspect_ratio='mzp-has-aspect-19-9',
+          link_url='https://blog.mozilla.org/internetcitizen/2018/10/04/microtargeting-dipayan-ghosh/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
         )}}
-<!-- 9 -->
-        {{ card_block(
-            class='mzp-c-card-medium',
-            tag_label=_('Internet Health'),
-            title=_('Attention economy to addiction economy'),
-            ga_title='Attention economy to addiction economy',
-            desc=_('As we depend more on our connected devices, it’s increasingly clear that there’s a dark side to the technology we use every day.'),
-            image_url='home/2018/cards/attention-economy.png',
-            aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://blog.mozilla.org/internetcitizen/2018/07/27/attention-addiction/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+        <!-- 9 -->
+        {{ card(
+          class='mzp-c-card-medium',
+          tag_label=_('Guest: Genevieve Valentine'),
+          title=_('Hello, I’m your election'),
+          ga_title='Hello, I’m your election',
+          desc=_('We invited science fiction and fantasy author Genevieve Valentine to describe elections in the future.'),
+          include_highres_image=True,
+          image_url='home/2018/cards/election/hello-election.jpg',
+          aspect_ratio='mzp-has-aspect-16-9',
+          link_url='https://blog.mozilla.org/internetcitizen/2018/10/04/election-genevieve-valentine/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
       </div>
 
-      <div class="mzp-c-billboard mzp-l-billboard-left">
-        <div class="mzp-c-billboard-image-container">
-          {{ high_res_img('home/2018/billboard-healthy-internet.png', {'alt': '', 'class': 'mzp-c-billboard-image', 'width': '346', 'height': '346'}) }}
-        </div>
-        <div class="mzp-c-billboard-content">
-          <div class="mzp-c-billboard-content-container">
-            <div class="mzp-c-billboard-content-inner">
-              <h2 class="mzp-c-billboard-title">{{ _('Support a healthy internet.') }}</h2>
-              <p class="mzp-c-billboard-desc">{{ _('The not-for-profit Mozilla Foundation supports open-source apps, web literacy curriculum, gender equality in tech and more.') }}</p>
-              <a class="mzp-c-cta-link" href="https://foundation.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=billboard">{{ _('Visit the Mozilla Foundation') }}</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      {{ billboard(
+        title=_('Support a healthy internet.'),
+        ga_title='Support a healthy internet.',
+        desc=_('The not-for-profit Mozilla Foundation supports open-source apps, web literacy curriculum, gender equality in tech and more.'),
+        link_cta=_('Visit the Mozilla Foundation'),
+        link_url='https://foundation.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=billboard',
+        image_url='home/2018/billboard-healthy-internet.png',
+        include_highres_image=True,
+        reverse=True
+      )}}
 
       <div class="mzp-l-card-third">
-<!-- 10 -->
-        {{ card_block(
-            tag_label=_('Privacy'),
-            title=_('Seven apps that put privacy first'),
-            ga_title='Seven apps that put privacy first',
-            desc=_('Here are seven apps and services that are committed to your privacy and security, including search engines, email providers and more.'),
-            image_url='home/2018/cards/privacy-apps.png',
-            aspect_ratio='mzp-has-aspect-16-9',
-            link_url='https://blog.mozilla.org/internetcitizen/2018/08/07/privacy-apps/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+        <!-- 10 -->
+        {{ card(
+          tag_label=_('Security'),
+          title=_('Protect yourself with Firefox Monitor'),
+          ga_title='Protect yourself with Firefox Monitor',
+          desc=_('Check your email address against known data breaches and sign up to be alerted if it happens in the future.'),
+          image_url='home/2018/cards/election/firefox-monitor.png',
+          aspect_ratio='mzp-has-aspect-16-9',
+          link_url='https://blog.mozilla.org/firefox/firefox-monitor-take-control-of-your-data/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
-<!-- 11 -->
-        {{ card_block(
-            tag_label=_('Rapid Fire'),
-            title=_('Marshall Erwin talks trust and security'),
-            ga_title='Marshall Erwin talks trust and security',
-            desc=_('Get Marshall’s take on why security, privacy and trust matter so much at Mozilla and Firefox.'),
-            image_url='home/2018/cards/marshall-erwin.jpg',
-            include_highres_image=False,
-            aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://blog.mozilla.org/internetcitizen/2018/08/09/marshall-erwin-trust/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+        <!-- 11 -->
+        {{ card(
+          tag_label=_('Emerging Technologies'),
+          title=_('Firefox Reality'),
+          ga_title='Firefox Reality',
+          desc=_('Explore the immersive web with Firefox Reality on Viveport, Oculus and Daydream.'),
+          image_url='home/2018/cards/election/firefox-reality.png',
+          aspect_ratio='mzp-has-aspect-1-1',
+          link_url='https://blog.mozilla.org/blog/2018/09/18/firefox-reality-now-available/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
-<!-- 12 -->
-        {{ card_block(
-            tag_label=_('Partners'),
-            title=_('WeTransfer keeps community at heart'),
-            ga_title='WeTransfer keeps community at heart',
-            desc=_('WeTransfer, the independent file transfer and sharing service, makes file-sharing easy in Firefox while keeping user privacy at heart.'),
-            image_url='home/2018/cards/we-transfer.png',
-            aspect_ratio='mzp-has-aspect-16-9',
-            link_url='https://blog.mozilla.org/internetcitizen/2018/07/31/wetransfer/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+        <!-- 12 -->
+        {{ card(
+          tag_label=_('Emerging Technologies'),
+          title=_('Firefox Reality Developers Guide'),
+          ga_title='Firefox Reality Developers Guide',
+          desc=_('Mozilla’s VR web browser is getting closer to release. Let’s talk about how to make your experiences work well in this new browser.'),
+          image_url='home/2018/cards/election/firefox-reality-developers.png',
+          aspect_ratio='mzp-has-aspect-16-9',
+          link_url='https://blog.mozvr.com/firefox-reality-developers-guide/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
-<!-- 13 -->
-        {{ card_block(
-            tag_label=_('Guest: Alyssa Bereznak'),
-            title=_('Gamification and the attention economy'),
-            ga_title='Gamification and the attention economy',
-            desc=_('The Ringer’s Alyssa Bereznak shares her insights into tech’s race for our attention and how gamification keeps us hooked.'),
-            image_url='home/2018/cards/instagram-alyssa-bereznak.png',
-            aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://blog.mozilla.org/internetcitizen/2018/07/20/the-ringers-alyssa-bereznak-on-gamification-and-the-attention-economy/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+        <!-- 13 -->
+        {{ card(
+          tag_label=_('Firefox'),
+          title=_('Side View is in a league of its own'),
+          ga_title='Side View is in a league of its own',
+          desc=_('Side View makes it easier to tackle game analysis, roster changes and player trades, all in one window.'),
+          include_highres_image=True,
+          image_url='home/2018/cards/election/side-view.png',
+          aspect_ratio='mzp-has-aspect-3-2',
+          link_url='https://blog.mozilla.org/firefox/let-firefoxs-side-view-extension-give-you-an-edge-for-fantasy-football-basketball-hockey-and-all-the-other-sportsballs/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
-<!-- 14 -->
-        {{ card_block(
-            tag_label=_('Guest: Nick Briz'),
-            title=_('This is your digital fingerprint'),
-            ga_title='This is your digital fingerprint',
-            desc=_('Chicago-based teacher and activist Nick Briz explains how people are tracked, surveilled and monetized on the web.'),
-            image_url='home/2018/cards/digital-fingerprint.png',
-            include_highres_image=False,
-            aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://blog.mozilla.org/internetcitizen/2018/07/26/this-is-your-digital-fingerprint/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+        <!-- 14 -->
+        {{ card(
+          tag_label=_('Developers'),
+          title=_('Box begone'),
+          ga_title='Box begone',
+          desc=_('Make your web layouts bust out of the rectangle with the Firefox Shape Path Editor.'),
+          image_url='home/2018/cards/election/css-shapes.png',
+          aspect_ratio='mzp-has-aspect-16-9',
+          link_url='https://hacks.mozilla.org/2018/09/make-your-web-layouts-bust-out-of-the-rectangle-with-the-firefox-shape-path-editor/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
-<!-- 15 -->
-        {{ card_block(
-            tag_label=_('Guest: Laurie Davis Edwards'),
-            title=_('How the web changed dating forever'),
-            ga_title='How the web changed dating forever',
-            desc=_('There is a rise in the desire for perfection in relationships, except except it takes more than a quick swipe right to get it perfect.'),
-            image_url='home/2018/cards/online-dating.png',
-            aspect_ratio='mzp-has-aspect-16-9',
-            link_url='https://blog.mozilla.org/internetcitizen/2018/08/08/how-the-web-changed-dating-forever/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+        <!-- 15 -->
+        {{ card(
+          tag_label=_('Emerging Technologies'),
+          title=_('Kudos for Common Voice'),
+          ga_title='Kudos for Common Voice',
+          desc=_('Common Voice was honored as a Finalist in the Experimental category in Fast Company’s 2018 Innovation by Design Awards.'),
+          image_url='home/2018/cards/election/common-voice.svg',
+          aspect_ratio='mzp-has-aspect-3-2',
+          link_url='https://blog.mozilla.org/blog/2018/09/10/fast-company-innovation-by-design-award-for-common-voice/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
       </div>
 
-      <div class="mzp-c-billboard mzp-l-billboard-right">
-        <div class="mzp-c-billboard-image-container">
-          {{ high_res_img('home/2018/billboard-open-minds.png', {'alt': '', 'class': 'mzp-c-billboard-image', 'width': '346', 'height': '346'}) }}
-        </div>
-        <div class="mzp-c-billboard-content">
-          <div class="mzp-c-billboard-content-container">
-            <div class="mzp-c-billboard-content-inner">
-              <h2 class="mzp-c-billboard-title">{{ _('Open source. <br>Open minds.') }}</h2>
-              <p class="mzp-c-billboard-desc">{{ _('Mozilla creates powerful web tech for everyone.') }}</p>
-              <a class="mzp-c-cta-link" href="{{ url('mozorg.technology') }}">{{ _('Explore Mozilla technology') }}</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      {{ billboard(
+        title=_('Open source. <br>Open minds.'),
+        ga_title='Open source. <br>Open minds.',
+        desc=_('Mozilla creates powerful web tech for everyone.'),
+        link_cta=_('Explore Mozilla technology'),
+        link_url=url('mozorg.technology'),
+        image_url='home/2018/billboard-open-minds.png',
+        include_highres_image=True
+      )}}
 
       <div class="mzp-l-card-half">
-<!-- 16 -->
-        {{ card_block(
-            class='mzp-c-card-medium',
-            tag_label=_('Privacy'),
-            title=_('Get your game on, in the browser'),
-            ga_title='Get your game on, in the browser',
-            desc=_('The web could be the best platform for gaming, and Firefox is the the best browser for gaming. Here’s why. '),
-            image_url='home/2018/cards/browser-game.png',
-            aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://blog.mozilla.org/firefox/get-your-game-on-in-the-browser/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
+        <!-- 16 -->
+        {{ card(
+          class='mzp-c-card-medium',
+          tag_label=_('Rapid Fire'),
+          title=_('Data, privacy and business practices'),
+          ga_title='Data, privacy and business practices',
+          desc=_('Rebecca Weiss is deep in the data and the decisions Mozilla makes about it. Her team’s role in a nutshell: find value in data.'),
+          image_url='home/2018/cards/election/rebecca-weiss.png',
+          aspect_ratio='mzp-has-aspect-16-9',
+          link_url='https://blog.mozilla.org/internetcitizen/2018/08/28/rebecca-weiss/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
         )}}
-<!-- 17 -->
-        {{ card_block(
-            class='mzp-c-card-medium',
-            tag_label=_('Mobile'),
-            title=_('Firefox Focus rolls out new features'),
-            ga_title='Firefox Focus rolls out new features',
-            desc=_('Find in page, desktop view and biometric access make Focus smarter than ever. Available for iOS, Android and now the BlackBerry Key2. '),
-            image_url='home/2018/cards/firefox-focus.jpg',
-            include_highres_image=False,
-            aspect_ratio='mzp-has-aspect-3-2',
-            link_url='https://blog.mozilla.org/blog/2018/07/12/new-features-in-firefox-focus-for-ios-android-now-also-on-the-blackberry-key2/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+        <!-- 17 -->
+        {{ card(
+          class='mzp-c-card-medium',
+          tag_label=_('Privacy'),
+          title=_('Here’s what we think about privacy'),
+          ga_title='Here’s what we think about privacy',
+          desc=_('At Firefox our privacy philosophy guides how we put people first when we make products, manage data and advocate for policies.'),
+          image_url='home/2018/cards/election/firefox-privacy-philosophy.png',
+          aspect_ratio='mzp-has-aspect-16-9',
+          link_url='https://blog.mozilla.org/internetcitizen/2018/08/13/firefox-privacy-philosophy/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
       </div>
 
@@ -387,18 +351,18 @@
         <div class="newsletter-content">
           {% set newsletter_id = 'mozilla-foundation' if LANG.startswith('en-') else 'mozilla-and-you' %}
           {{ email_newsletter_form(
-              newsletters=newsletter_id,
-              title=_('Love the Web?'),
-              subtitle=_('Get the Mozilla newsletter and help us keep it open and free.'),
-              button_class='button-dark',
-              submit_text=_('Sign up now'),
-              protocol_component=True
+            newsletters=newsletter_id,
+            title=_('Love the Web?'),
+            subtitle=_('Get the Mozilla newsletter and help us keep it open and free.'),
+            button_class='button-dark',
+            submit_text=_('Sign up now'),
+            protocol_component=True
           )}}
         </div>
       </aside>
     </div>
   </div>
-  {% endblock %}
+
   <div class="download-firefox-secondary-cta">
     <div class="mzp-l-content">
       <div class="secondary-content">
@@ -412,13 +376,13 @@
 
 {# https://github.com/mozilla/bedrock/issues/5741 #}
 <script type="application/ld+json">
-	{
-		"@context": "http://schema.org",
-		"@type": "Organization",
-		"name": "Mozilla",
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "Mozilla",
     "url": "https://www.mozilla.org",
     "logo": "{% filter absolute_url %}{{ static('img/mozorg/mozilla-256.jpg') }}{% endfilter %}",
-		"sameAs": [
+    "sameAs": [
       "https://www.wikidata.org/wiki/Q9661",
       "https://twitter.com/mozilla",
       "https://www.facebook.com/mozilla",
@@ -427,8 +391,8 @@
       "https://www.youtube.com/user/Mozilla",
       "https://wikipedia.org/wiki/Mozilla",
       "https://www.linkedin.com/company/mozilla-corporation"
-		]
-	}
+    ]
+  }
 </script>
 {% endblock %}
 
