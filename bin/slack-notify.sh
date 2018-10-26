@@ -68,8 +68,8 @@ else
     exit 1
 fi
 
-slack-cli -d "${CHANNEL}" "${MESSAGE}"
+slack-cli -d "${CHANNEL}" "${MESSAGE}" || true
 
 if [[ "${STATUS}-${BRANCH_NAME}" == "FAILURE-prod" ]]; then
-    slack-cli -d "${CHANNEL_FAILURE}" "${MESSAGE}"
+    slack-cli -d "${CHANNEL_FAILURE}" "${MESSAGE}" || true
 fi
