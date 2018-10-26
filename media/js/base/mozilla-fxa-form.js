@@ -24,7 +24,7 @@ Mozilla.FxaForm = (function(Mozilla) {
             Mozilla.Client.getFirefoxDetails(function(data) {
                 // only switch to China re-pack URL if UITour call is successful
                 // (marked by data.accurate being true)
-                if (data.accurate && data.distribution !== 'default') {
+                if (data.accurate && data.distribution && data.distribution.toLowerCase() === 'mozillaonline') {
                     fxaForm.action = mozillaonlineAction;
                 }
 
