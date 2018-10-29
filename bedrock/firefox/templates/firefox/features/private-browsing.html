@@ -38,19 +38,6 @@
 {% block features_list %}
 <section class="key-features-section main">
   <div class="content">
-    <section class="key-feature private-browsing-feature-1">
-      <div class="key-feature-content">
-        <h2>{{ _('Browse without a trace') }}</h2>
-        <p>
-        {% trans %}
-          Sharing is caring, but that should be your call. Firefox Private Browsing
-          automatically erases your online info like passwords, cookies and history
-          from your computer. So that when you close out, you leave no trace.
-        {% endtrans %}
-        </p>
-      </div>
-    </section>
-
     {% if (variation == 'a') and (request.locale in ['en-US', 'en-GB', 'en-CA', 'en-AU']) %}
     <section class="key-feature private-browsing-feature-new">
       <div class="key-feature-content">
@@ -70,6 +57,19 @@
       </div>
     </section>
     {% endif %}
+
+    <section class="key-feature private-browsing-feature-1">
+      <div class="key-feature-content">
+        <h2>{{ _('Browse without a trace') }}</h2>
+        <p>
+        {% trans %}
+          Sharing is caring, but that should be your call. Firefox Private Browsing
+          automatically erases your online info like passwords, cookies and history
+          from your computer. So that when you close out, you leave no trace.
+        {% endtrans %}
+        </p>
+      </div>
+    </section>
 
     <section class="key-feature private-browsing-feature-2">
       <div class="key-feature-content">
