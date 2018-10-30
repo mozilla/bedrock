@@ -1296,13 +1296,6 @@
     {
       "files": [
         "js/base/mozilla-traffic-cop.js",
-        "js/firefox/new/compare-safari-experiment.js"
-      ],
-      "name": "firefox_new_compare_safari_experiment"
-    },
-    {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
         "js/firefox/new/compare-chrome-experiment.js"
       ],
       "name": "firefox_new_compare_chrome_experiment"
