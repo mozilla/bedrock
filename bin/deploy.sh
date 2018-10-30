@@ -9,9 +9,8 @@ git clone --depth=1 -b ${CONFIG_BRANCH:=master} ${CONFIG_REPO} config_checkout
 cd config_checkout
 
 set -u
-sed -i -e "s|image: .*|image: ${DEPLOYMENT_DOCKER_IMAGE}|" all-clusters/${NAMESPACE}/${DEPLOYMENT_YAML:=deploy.yaml}
-cp {all-clusters,${CLUSTER_NAME}}/${NAMESPACE}/${DEPLOYMENT_YAML}
-git add {all-clusters,${CLUSTER_NAME}}/${NAMESPACE}/${DEPLOYMENT_YAML}
+sed -i -e "s|image: .*|image: ${DEPLOYMENT_DOCKER_IMAGE}|" ${CLUSTER_NAME}/${NAMESPACE}/${DEPLOYMENT_YAML:=deploy.yaml}
+git add ${CLUSTER_NAME}/${NAMESPACE}/${DEPLOYMENT_YAML}
 git commit -m "set image to ${DEPLOYMENT_DOCKER_IMAGE} in ${CLUSTER_NAME}" || echo "nothing new to commit"
 git push
 DEPLOYMENT_VERSION=$(git rev-parse --short HEAD)
