@@ -694,12 +694,7 @@ def new(request):
             elif experience == 'betterbrowser':
                 template = 'firefox/new/better-browser/scene1.html'
             elif experience == 'safari':
-                if variant == 'a':
-                    template = 'firefox/new/scene1.html'
-                elif variant == '2':
-                    template = 'firefox/new/compare/scene1-safari-2.html'
-                else:
-                    template = 'firefox/new/compare/scene1-safari-1.html'
+                template = 'firefox/new/compare/scene1-safari.html'
             elif experience == 'chrome':
                 if variant == 'a':
                     template = 'firefox/new/scene1.html'

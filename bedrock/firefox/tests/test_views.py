@@ -864,25 +864,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?xv=safari')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-safari-1.html', ANY)
-
-    def test_compare_safari_scene_1va(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=safari&v=a')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
-
-    def test_compare_safari_scene_1v1(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=safari&v=1')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-safari-1.html', ANY)
-
-    def test_compare_safari_scene_1v2(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=safari&v=2')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-safari-2.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-safari.html', ANY)
 
     def test_compare_safari_scene_1_non_us(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=safari')
