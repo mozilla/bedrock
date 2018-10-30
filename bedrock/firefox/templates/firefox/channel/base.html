@@ -17,7 +17,14 @@
 
 {% block body_class %}{% endblock %}
 
+{% block global_nav %}
+  {% if LANG.startswith('en-') %}
+    {% include 'includes/navigation-switch.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block site_header %}
+{% if not LANG.startswith('en-') %}
 <header id="masthead">
   <div class="container">
     <div class="logo">
@@ -39,6 +46,7 @@
     </nav>
   </div>
 </header>
+{% endif %}
 {% endblock %}
 
 {% block content %}
