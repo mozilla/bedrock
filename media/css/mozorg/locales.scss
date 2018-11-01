@@ -1,0 +1,91 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/includes/lib';
+
+.c-simple-header {
+    @include at2x('/media/img/mozorg/locales/world-map.png', 179px, 90px);
+    background-position: top center;
+    background-repeat: no-repeat;
+    padding-top: 90px + $spacing-md;
+    margin-top: $layout-xs;
+    text-align: center;
+
+    .c-simple-header-title {
+        @include text-display-md;
+    }
+
+    @media #{$mq-md} {
+        margin-top: $layout-lg;
+    }
+}
+
+.c-block-list {
+    margin: $layout-md 0;
+
+    .c-block-list-title {
+        @include text-display-sm;
+        border-bottom: 1px solid $color-gray-30;
+        padding-bottom: $spacing-md;
+    }
+
+    a:link,
+    a:visited {
+        color: $color-black;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:visited,
+    a:focus {
+        text-decoration: underline;
+    }
+
+    ul {
+        margin: $spacing-xl 0;
+
+        li {
+            margin-bottom: $spacing-lg;
+        }
+    }
+
+    @media #{$mq-sm} {
+        ul {
+            @include grid-gap($spacing-lg $spacing-xl);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @supports (display: grid) {
+            ul li {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        margin: $layout-lg 0;
+
+        ul {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    @media #{$mq-lg} {
+        margin: $layout-xl 0;
+
+        ul {
+            grid-template-columns: repeat(5, 1fr);
+        }
+    }
+
+    @media #{$mq-xl} {
+        ul {
+            grid-template-columns: repeat(6, 1fr);
+        }
+    }
+}

@@ -1,0 +1,118 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-protocol.html" %}
+
+{% block page_title %}Choose your language or locale to browse Mozilla.org{% endblock %}
+
+{% block page_desc %}
+  Select your country or region to indicate your preferred language. Learn how Mozilla puts people before profit, making products designed to keep the internet open to all.
+{% endblock %}
+
+{% block canonical_urls %}
+  {# This page should have a self referencing canonical URL but no hreflang entries #}
+  <link rel="canonical" href="{{ settings.CANONICAL_URL + '/locales/' }}">
+{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('locales') }}
+{% endblock %}
+
+{% block content %}
+<main role="main" class="mzp-l-content">
+  <header class="c-simple-header">
+    <h1 class="c-simple-header-title">Choose your language</h1>
+  </header>
+  <section class="c-block-list">
+    <h2 class="c-block-list-title">America</h2>
+    <ul>
+      <li><a href="/cak/">Maya Kaqchikel</a></li>
+      <li><a href="/en-CA/">English (Canadian)</a></li>
+      <li><a href="/en-US/">English (US)</a></li>
+      <li><a href="/es-AR/">Español (de Argentina)</a></li>
+      <li><a href="/es-CL/">Español (de Chile)</a></li>
+      <li><a href="/es-MX/">Español (de México)</a></li>
+      <li><a href="/gn/">Avañe'ẽ</a></li>
+      <li><a href="/pt-BR/">Português (do Brasil)</a></li>
+      <li><a href="/trs/">Triqui</a></li>
+    </ul>
+  </section>
+  <section class="c-block-list">
+    <h2 class="c-block-list-title">Asia Pacific</h2>
+    <ul>
+      <li><a href="/gu-IN/">જરાતી (ભારત)</a></li>
+      <li><a href="/hi-IN/">हिन्दी (भारत)</a></li>
+      <li><a href="/id/">Bahasa Indonesia</a></li>
+      <li><a href="/ja/">日本語</a></li>
+      <li><a href="/ko/">한국어</a></li>
+      <li><a href="/ml/">മലയാളം</a></li>
+      <li><a href="/mr/">मराठी</a></li>
+      <li><a href="/ms/">Melayu</a></li>
+      <li><a href="/pa-IN/">ਪੰਜਾਬੀ (ਭਾਰਤ)</a></li>
+      <li><a href="/ta/">தமிழ்</a></li>
+      <li><a href="/th/">ไทย</a></li>
+      <li><a href="/zh-CN/">中文 (简体)</a></li>
+      <li><a href="/zh-TW/">正體中文 (繁體)</a></li>
+    </ul>
+  </section>
+  <section class="c-block-list">
+    <h2 class="c-block-list-title">Europe</h2>
+    <ul>
+      <li><a href="/an/">aragonés</a></li>
+      <li><a href="/ast/">Asturianu</a></li>
+      <li><a href="/be/">Беларуская</a></li>
+      <li><a href="/bg/">Български</a></li>
+      <li><a href="/bs/">Bosanski</a></li>
+      <li><a href="/ca/">Català</a></li>
+      <li><a href="/cs/">Čeština</a></li>
+      <li><a href="/cy/">Cymraeg</a></li>
+      <li><a href="/da/">Dansk</a></li>
+      <li><a href="/de/">Deutsch</a></li>
+      <li><a href="/dsb/">Dolnoserbšćina</a></li>
+      <li><a href="/el/">Ελληνικά</a></li>
+      <li><a href="/en-GB/">English (British)</a></li>
+      <li><a href="/eo/">Esperanto</a></li>
+      <li><a href="/es-ES/">Español (de España)</a></li>
+      <li><a href="/et/">Eesti keel</a></li>
+      <li><a href="/eu/">Euskara</a></li>
+      <li><a href="/fi/">suomi</a></li>
+      <li><a href="/fr/">Français</a></li>
+      <li><a href="/fy-NL/">Frysk</a></li>
+      <li><a href="/gl/">Galego</a></li>
+      <li><a href="/hsb/">Hornjoserbsce</a></li>
+      <li><a href="/hu/">magyar</a></li>
+      <li><a href="/hy-AM/">Հայերեն</a></li>
+      <li><a href="/ia/">Interlingua</a></li>
+      <li><a href="/it/">Italiano</a></li>
+      <li><a href="/ka/">ქართული</a></li>
+      <li><a href="/lij/">Ligure</a></li>
+      <li><a href="/lt/">Lietuvių</a></li>
+      <li><a href="nb-NO">Norsk bokmål</a></li>
+      <li><a href="/nl/">Nederlands</a></li>
+      <li><a href="/nn-NO/">Norsk nynorsk</a></li>
+      <li><a href="/pl/">Polski</a></li>
+      <li><a href="/pt-PT/">Português (Europeu)</a></li>
+      <li><a href="/rm/">rumantsch</a></li>
+      <li><a href="/ro/">Română</a></li>
+      <li><a href="/ru/">Русский</a></li>
+      <li><a href="/sk/">slovenčina</a></li>
+      <li><a href="/sl/">Slovenščina</a></li>
+      <li><a href="/sq/">Shqip</a></li>
+      <li><a href="/sr/">Српски</a></li>
+      <li><a href="/sv-SE/">Svenska</a></li>
+      <li><a href="/tr/">Türkçe</a></li>
+      <li><a href="/uk/">Українська</a></li>
+    </ul>
+  </section>
+  <section class="c-block-list">
+    <h2 class="c-block-list-title">Middle East and Africa</h2>
+    <ul>
+      <li><a href="/ar/">عربي</a></li>
+      <li><a href="/az/">Azərbaycanca</a></li>
+      <li><a href="/fa/">فارسی</a></li>
+      <li><a href="/kab/">Taqbaylit</a></li>
+    </ul>
+  </section>
+</main>
+{% endblock %}
