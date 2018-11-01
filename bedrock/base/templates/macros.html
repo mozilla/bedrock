@@ -404,6 +404,7 @@
     }
 
     all values must validate against /^[\w\/.%-]+/
+    More info on how to pick names: https://mozilla.github.io/application-services/docs/accounts/metrics.html
 
     DO NOT include utm_source in this dictionary! (It's already a required param.)
 #}
@@ -413,6 +414,7 @@
     <input type="hidden" name="context" value="fx_desktop_v3" />
     <input type="hidden" name="service" value="sync" />
     <input type="hidden" name="entrypoint" value="{{ entrypoint }}" id="fxa-email-form-entrypoint" />
+    <input type="hidden" name="form_type" value="email" />
     {# flow_id and flow_begin_time will be populated via JS on page load #}
     <input type="hidden" name="flow_id" value="" />
     <input type="hidden" name="flow_begin_time" value="" />
