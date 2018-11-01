@@ -27,6 +27,12 @@
     },
     {
       "files": [
+        "css/mozorg/locales.scss"
+      ],
+      "name": "locales"
+    },
+    {
+      "files": [
         "css/base/mozilla-video-poster.less",
         "css/newsletter/moznewsletter-subscribe.less",
         "css/mozorg/mission.less"
