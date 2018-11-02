@@ -938,6 +938,12 @@
         "css/firefox/features/adblocker.scss"
       ],
       "name": "adblocker"
+    },
+    {
+      "files": [
+        "css/mozorg/what-is-a-browser.scss"
+      ],
+      "name": "what-is-a-browser"
     }
   ],
   "js": [

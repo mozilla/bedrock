@@ -80,7 +80,6 @@ urlpatterns = (
     page('about/policy/transparency/jul-dec-2017',
          'mozorg/about/policy/transparency/jul-dec-2017.html'),
 
-
     page('contact', 'mozorg/contact/contact-landing.html'),
     page('contact/spaces', 'mozorg/contact/spaces/spaces-landing.html'),
     page('contact/spaces/mountain-view', 'mozorg/contact/spaces/mountain-view.html'),
@@ -304,6 +303,7 @@ urlpatterns = (
     page('plugincheck', 'mozorg/plugincheck.html'),
     url(r'^robots.txt$', views.Robots.as_view(), name='robots.txt'),
     url('^technology/$', views.TechnologyView.as_view(), name='mozorg.technology'),
+    page('technology/what-is-a-browser', 'mozorg/what-is-a-browser.html'),
 
     url('^developer/$', views.DeveloperView.as_view(), name='mozorg.developer'),
     page('developer/css-grid', 'mozorg/developer/css-grid-demo.html'),
