@@ -263,6 +263,7 @@ SUPPORTED_NONLOCALES = [
     'csp-violation-capture',
     'country-code.json',
     'revision.txt',
+    'locales',
 ]
 
 # Pages that we don't want to be indexed by search engines.
