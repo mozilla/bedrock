@@ -8,6 +8,20 @@
   {{ css_bundle('firefox_releases_index') }}
 {% endblock %}
 
+{% block global_nav %}
+  {% if LANG.startswith('en-') %}
+    {% include 'includes/navigation-switch.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block tabzilla_tab %}{% endblock %}
+
+{% block site_header_nav %}
+  {% if not LANG.startswith('en-') %}
+    {% include 'firefox/includes/top-menu.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block breadcrumbs %}
   <nav class="breadcrumbs">
     <a href="{{ url('mozorg.home') }}">{{ _('Home') }}</a> >
