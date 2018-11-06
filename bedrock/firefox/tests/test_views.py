@@ -936,12 +936,6 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-edge-1.html', ANY)
 
-    def test_compare_edge_scene_1v2(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=edge&v=2')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-edge-2.html', ANY)
-
     def test_compare_edge_scene_1_non_us(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=edge')
         req.locale = 'de'
