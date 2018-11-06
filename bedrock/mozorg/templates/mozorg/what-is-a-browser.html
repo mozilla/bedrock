@@ -1,0 +1,133 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-protocol.html" %}
+
+{% add_lang_files "mozorg/technology/what-is-a-browser" %}
+
+{% block page_title %}{{ _('What is a web browser?') }}{% endblock %}
+
+{% block page_desc %}
+  {{ _('A web browser takes you anywhere on the internet, letting you see text, images and video from anywhere in the world.') }}
+{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('what-is-a-browser') }}
+{% endblock %}
+
+{% block content %}
+  <div class="mzp-l-content">
+  <article class="mzp-c-article">
+
+    <h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
+    <p class="mzp-c-article-intro">{{ _('A web browser takes you anywhere on the internet, letting you see text, images and video from anywhere in the world.') }}</p>
+
+    <img src="{{ static('img/mozorg/technology/illo-browser.png') }}" alt="" class="c-article-image">
+
+    <p>
+    {% trans %}
+      The web is a vast and powerful tool. Over the course of a few decades the internet has changed the way we work, the way we play and the way we interact with one another. Depending on how it’s used it bridges nations, drives commerce, nurtures relationships, drives the innovation engine of the future and is responsible for more memes than we know what to do with.
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans tools='https://blog.mozilla.org/firefox/internet-search-engine-browser/' %}
+      It’s important that everyone have access to the web, but it’s also vital that we all <a href="{{ tools }}">understand the tools</a> we use to access it. We use web browsers like Mozilla Firefox, Google Chrome, Microsoft Edge and Apple Safari every day, but do we understand what they are and how they work?
+    {% endtrans %}
+    {% trans %}
+      In a short period of time we’ve gone from being amazed by the ability to send an email to someone around the world, to a change in how we think of information. It’s not a question of how much you know anymore, but simply a question of what browser or app can get you to that information fastest.
+    {% endtrans %}
+    </p>
+
+    <blockquote aria-hidden="true" role="presentation">
+      <p>
+      {% trans %}
+        In a short period of time we’ve gone from being amazed by the ability to send an email to someone around the world, to a change in how we think about information.
+      {% endtrans %}
+      </p>
+    </blockquote>
+
+    <h2 class="c-section-title">{{ _('How does a web browser work?') }}</h2>
+
+    <p>
+    {% trans http='https://developer.mozilla.org/docs/Web/HTTP' %}
+      A web browser takes you anywhere on the internet. It retrieves information from other parts of the web and displays it on your desktop or mobile device. The information is transferred using the Hypertext Transfer Protocol, which defines how text, images and video are transmitted on the web. This information needs to be shared and displayed in a consistent format so that people using any browser, anywhere in the world can see the information.
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans standards='https://developer.mozilla.org/docs/Archive/Web_Standards' %}
+      Sadly, not all browser makers choose to interpret the format in the same way. For users, this means that a website can look and function differently. Creating consistency between browsers, so that any user can enjoy the internet, regardless of the browser they choose, is called <a href="{{ standards }}">web standards</a>.
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans html='https://developer.mozilla.org/docs/Glossary/HTML' %}
+      When the web browser fetches data from an internet connected server and it then uses a piece of software called a rendering engine to translate that data into text and images. This data is written in <a href="{{ html }}">Hypertext Markup Language</a> (HTML) and web browsers read this code to create what we see, hear and experience on the internet.
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans hyperlink='https://developer.mozilla.org/docs/Glossary/Hyperlink', url='https://wikipedia.org/wiki/URL' %}
+      <a href="{{ hyperlink }}">Hyperlinks</a> allow users to follow a path to other pages or sites on the web. Every webpage, image and video has its own unique <a href="{{ url }}">Uniform Resource Locator</a> (URL), which is also known as a web address. When a browser visits a server for data, the web address tells the browser where to look for each item that is described in the html, which then tells the browser where it goes on the web page.
+    {% endtrans %}
+    </p>
+
+    <h2 class="c-section-title">{{ _('Cookies (not the yummy kind)') }}</h2>
+
+    <p>
+    {% trans cookies='https://wikipedia.org/wiki/HTTP_cookie' %}
+      Websites save information about you in files called <a href="{{ cookies }}">cookies</a>. They are saved on your computer for the next time you visit that site. Upon your return, the website code will read that file to see that it’s you. For example, when you go to a website and the page remembers your username and password – that’s made possible by a cookie.
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans %}
+      There are also cookies that remember more detailed information about you. Perhaps your interests, your web browsing patterns, etc. This means that a site can provide you more targeted content – often in the form of ads. There are types of cookies, called <em>third-party</em> cookies, that come from sites you’re not even visiting at the time and can track you from site to site to gather information about you, which is sometimes sold to other companies. Sometimes you can block these kinds of cookies, though not all browsers allow you to.
+    {% endtrans %}
+    </p>
+
+    <blockquote aria-hidden="true" role="presentation">
+      <p>
+      {% trans %}
+        When you go to a website and the page remembers your username and password – that’s made possible by a cookie.
+      {% endtrans %}
+      </p>
+    </blockquote>
+
+    <h2 class="c-section-title">{{ _('Understanding privacy') }}</h2>
+
+    <p>
+    {% trans %}
+      Nearly all major browsers have a private browsing setting. These exist to hide the browsing history from other users on the same computer. Many people think that private browsing or incognito mode will hide both their identity and browsing history from internet service providers, governments and advertisers. They don’t. These settings just clear the history on your system, which is helpful if you’re dealing with sensitive personal information on a shared or public computer. Firefox goes beyond that.
+    {% endtrans %}
+    </p>
+
+    <div class="download-firefox">
+      {{ download_firefox(download_location='primary cta') }}
+    </div>
+
+    <p>
+    {% trans %}
+      Firefox helps you be more private online by letting you block trackers from following you around the web.
+    {% endtrans %}
+    </p>
+
+    <h2 class="c-section-title">{{ _('Making your web browser work for you') }}</h2>
+
+    <p>
+    {% trans %}
+      Most major web browsers let users modify their experience through extensions or add-ons. Extensions are bits of software that you can add to your browser to customize it or add functionality. Extensions can do all kinds of fun and practical things like enabling new features, foreign language dictionaries, or visual appearances and themes.
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans %}
+      All browser makers develop their products to display images and video as quickly and smoothly as possible making it easy for you to make the most of the web. They all work hard to make sure users have a browser that is fast, powerful and easy to use. Where they differ is why. It’s important to choose the right browser for you. Mozilla builds Firefox to ensure that users have control over their online lives and to ensure that the internet is a global, public resource, accessible to all.
+    {% endtrans %}
+    </p>
+
+  </article>
+</div>
+{% endblock %}
