@@ -44,11 +44,10 @@
     // only initialize experiment if all query params are as required
     if (mediumOk && sourceOk && contentOk) {
         var cop = new Mozilla.TrafficCop({
-            id: 'experiment_firefox_new_edge',
+            id: 'experiment_firefox_new_edge_adjusted',
             variations: {
-                'xv=edge&v=a': 33, // control
-                'xv=edge&v=1': 33,
-                'xv=edge&v=2': 33
+                'v=a': 50, // control
+                'v=3': 50
             }
         });
 
