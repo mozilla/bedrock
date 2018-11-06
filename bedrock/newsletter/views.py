@@ -60,8 +60,8 @@ invalid_email_address = _lazy(u'This is not a valid email address. '
 
 NEWSLETTER_STRINGS = {
     u'about-mozilla': {
-        'description': _lazy(u'Bringing you the best new opportunities to help support the open Web.'),
-        'title': _lazy(u'Mozilla Communities')},
+        'description': _lazy(u'Join Mozillians all around the world and learn about impactful opportunities to support Mozilla\u2019s mission.'),
+        'title': _lazy(u'Mozilla Community')},
     u'about-standards': {
         'title': _lazy(u'About Standards')},
     u'addon-dev': {
