@@ -401,6 +401,7 @@ $image-path: '/media/protocol/img';
 
     .video-container {
         height: 0;
+        margin-bottom: $spacing-lg;
         overflow: hidden;
         padding-bottom: 56.25%;
         position: relative;
