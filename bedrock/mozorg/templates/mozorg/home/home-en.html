@@ -41,6 +41,11 @@
 {% endblock %}
 
 {% block site_header %}
+
+  {% if switch('fundraising-eoy2018') %}
+    {% include 'mozorg/home/includes/fundraiser-eoy2018.html' %}
+  {% endif %}
+
   {% if LANG.startswith('en-') %}
     {% include 'includes/navigation-switch.html' %}
   {% else %}
@@ -67,6 +72,8 @@
       </div>
     </div>
   </section>
+
+{% if not switch('fundraising-eoy2018') %}
   <section id="download-firefox-sticky-cta" class="download-firefox-sticky-cta">
     <div class="mzp-l-content">
       <div class="primary-wrapper">
@@ -77,6 +84,7 @@
       </div>
     </div>
   </section>
+{% endif %}
 
   <div class="mozilla-content">
     <div class="mzp-l-content">
@@ -391,4 +399,7 @@
 
 {% block js %}
   {{ js_bundle('home') }}
+  {% if switch('fundraising-eoy2018') %}
+    {{ js_bundle('home-fundraiser-eoy2018') }}
+  {% endif %}
 {% endblock %}
