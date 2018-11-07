@@ -1,11 +1,248 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+$concert-coral: #ff4f5d;
+
+@import "../../protocol/css/includes/lib";
+@import "../../protocol/css/components/feature-card";
+@import "../../protocol/css/components/hero";
+@import '../../protocol/css/components/modal';
+@import '../../protocol/css/components/newsletter-form';
+
+
+//* -------------------------------------------------------------------------- */
+// General page styles
+
+.mzp-l-content.l-content-narrow {
+    max-width: $content-lg;
+}
+
+.firefox-concerts {
+    #outer-wrapper {
+        background: #41085e linear-gradient(to bottom, #000 0%, #06043c 400px, #41085e 60%);
+        color: $color-white;
+    }
+
+    .mzp-c-hero.mzp-t-dark {
+        background-color: transparent;
+    }
+
+    .mzp-c-hero-title {
+        color: $concert-coral;
+    }
+
+    .mzp-c-hero {
+        padding-bottom: 0;
+    }
+
+    .mzp-c-hero-desc {
+        margin-bottom: 0;
+    }
+
+    .mzp-c-hero.mzp-t-firefox:after {
+        display: none;
+    }
+
+    .tagline {
+        @include text-body-lg;
+    }
+
+    @media #{$mq-md} {
+        main {
+            background:
+                url('/media/img/firefox/concerts/confetti-right.svg') right -40px top 35px no-repeat,
+                transparent url('/media/img/firefox/concerts/confetti-left.svg') left -30px top -30px no-repeat;
+            @include background-size(360px 616px, 238px 806px);
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Artist cards
+
+.artist-card {
+    color: $color-white;
+
+    .date {
+        @include text-display-xs;
+        font-weight: bold;
+        margin-bottom: $spacing-sm;
+    }
+
+    .mzp-c-card-feature-title {
+        @include text-display-md;
+    }
+
+    .mzp-c-card-feature-desc {
+        color: $color-white;
+    }
+
+    .mzp-c-card-tag {
+        @include background-size(22px 22px);
+        @include bidi(((padding-left, $spacing-xl, 0),(padding-right, 0, $spacing-xl)));
+        background-position: left top;
+        background-repeat: no-repeat;
+        font-weight: bold;
+        margin-bottom: $spacing-lg;
+
+        &.countdown {
+            background-image: url('/media/img/firefox/concerts/icon-alarm.svg');
+            display: none;
+
+            .js & {
+                display: block; // we need JS for the timer
+            }
+        }
+
+        &.live {
+            background-image: url('/media/img/firefox/concerts/icon-live.svg');
+        }
+
+        &.ended {
+            background-image: url('/media/img/firefox/concerts/icon-ended.svg');
+        }
+    }
+
+    .stream-link {
+        margin-top: $spacing-lg;
+    }
+}
+
+.artist-featured {
+    .mzp-c-card-feature {
+        margin-bottom: $layout-xl;
+    }
+}
+
+.artist-next {
+    .mzp-c-card-feature.mzp-l-card-feature-right-half .mzp-c-card-feature-content {
+        align-items: start;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Firefox Accounts CTA
+
+.fxa-cta {
+    @include light-links;
+    display: none;
+
+    .js & {
+        display: block; // We need JS for FxA
+    }
+
+    .mzp-c-card-feature-title {
+        @include text-display-md;
+    }
+
+    .mzp-c-card-feature-desc {
+        @include text-body-lg;
+        color: $color-white;
+        margin-bottom: $spacing-xl;
+    }
+
+    .agreement {
+        @include text-body-xs;
+    }
+
+    .signin {
+        @include text-body-sm;
+        text-align: center;
+    }
+
+    label {
+        @include visually-hidden;
+    }
+
+    input[type='email'] {
+        width: 100%;
+        padding: $spacing-md;
+    }
+
+    .mzp-c-button {
+        width: 100%;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// For those outside the US
+
+.state-not-us {
+    .concert-content {
+        display: none;
+    }
+
+    .excluded-content {
+        display: block;
+    }
+}
+
+.excluded-content {
+    display: none;
+    margin-bottom: $layout-2xl;
+    text-align: center;
+
+    h2 {
+        @include text-display-md;
+        font-family: sharpsans, sans-serif;
+    }
+
+    .excluded-intro {
+        @include text-body-lg;
+    }
+}
+
+// Newsletter form
+.mzp-c-newsletter {
+    @include bidi(((text-align, left, right),));
+    @include light-links;
+    display: block;
+    padding: 0;
+    max-width: $content-sm;
+
+    .mzp-c-newsletter-form {
+        padding: 0;
+    }
+
+    .mzp-c-newsletter-thanks {
+        padding: 0;
+
+        h3 {
+            @include text-display-sm;
+            font-family: sharpsans, sans-serif;
+            font-weight: normal;
+        }
+    }
+}
+
+.email-privacy {
+    display: none;
+
+    .mzp-c-modal-window & {
+        h3 {
+            display: none;
+        }
+    }
+}
+
+
 .conditional-content {
     display: none;
 }
 
-.form .conditional-content.form-content {
+// Show the form if signed out
+.not-verified .conditional-content.form-content {
     display: block;
 }
 
-.verified .conditional-content.verified-content {
+// Show the message if signed in
+.is-verified .conditional-content.verified-content {
     display: block;
 }

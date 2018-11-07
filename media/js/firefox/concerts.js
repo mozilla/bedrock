@@ -1,5 +1,164 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
 (function(Mozilla) {
     'use strict';
+
+    var ConcertPage = {
+        US_COUNTRY_CODE: 'us',
+        COOKIE_ID: 'firefox-concerts',
+        COOKIE_EXPIRATION_DAYS: 3,
+    };
+
+    var _geoTimeout;
+    var _requestComplete = false;
+
+    // take params from URL and pass through signup button
+    ConcertPage.passThroughParams = function() {
+        var params = window.location.search.slice(1);
+        ['source','medium','campaign','content'].forEach(function(p) {
+            var param = 'utm_' + p;
+            if (params.indexOf(param) >= 0) {
+                var regex = RegExp(param + '=([^\#\&\?]+).*$');
+                if (regex.test(params)) {
+                    var value = params.match(regex)[1];
+                    document.getElementById(param).value = value;
+                }
+            }
+        });
+    };
+
+    ConcertPage.getLocation = function() {
+        // should /country-code.json be slow to load,
+        // just show the regular messaging after 3 seconds waiting.
+        _geoTimeout = setTimeout(ConcertPage.onRequestComplete, 3000);
+
+        var xhr = new window.XMLHttpRequest();
+
+        xhr.onload = function(r) {
+            var country = 'none';
+
+            // make sure status is in the acceptable range
+            if (r.target.status >= 200 && r.target.status < 300) {
+
+                try {
+                    country = JSON.parse(r.target.responseText).country_code.toLowerCase();
+                } catch (e) {
+                    country = 'none';
+                }
+            }
+
+            ConcertPage.onRequestComplete(country);
+        };
+
+        xhr.open('GET', '/country-code.json');
+        // must come after open call above for IE 10 & 11
+        xhr.timeout = 2000;
+        xhr.send();
+    };
+
+    ConcertPage.hasGeoOverride = function(location) {
+        var loc = location || window.location.search;
+        if (loc.indexOf('geo=') !== -1) {
+            var urlRe = /geo=([a-z]{2})/i;
+            var match = urlRe.exec(loc);
+            if (match) {
+                return match[1].toLowerCase();
+            }
+            return false;
+        }
+        return false;
+    };
+
+    ConcertPage.verifyLocation = function(location) {
+        if (location) {
+            return location !== ConcertPage.US_COUNTRY_CODE;
+        }
+
+        return false;
+    };
+
+    ConcertPage.onRequestComplete = function(data) {
+        var country = typeof data === 'string' ? data : 'none';
+
+        clearTimeout(_geoTimeout);
+
+        if (!_requestComplete) {
+            _requestComplete = true;
+
+            // Set a cookie so we don't have to query location on repeated page loads.
+            ConcertPage.setCookie(country);
+
+            // Update page content based on location.
+            ConcertPage.updatePageContent();
+        }
+    };
+
+    ConcertPage.updatePageContent = function() {
+        if (ConcertPage.shouldShowConcert() === 'false') {
+            // Add styling hook for excluded-specific CSS.
+            document.body.classList.add('state-not-us');
+        } else {
+            // Add styling hook for us-specific CSS.
+            document.body.classList.add('state-in-us');
+        }
+    };
+
+    ConcertPage.shouldShowConcert = function() {
+        // Is user in the US?
+        return ConcertPage.verifyLocation(ConcertPage.getCookie(ConcertPage.COOKIE_ID));
+    };
+
+    ConcertPage.cookieExpiresDate = function(date) {
+        var d = date || new Date();
+        d.setTime(d.getTime() + (ConcertPage.COOKIE_EXPIRATION_DAYS * 24 * 60 * 60 * 1000));
+        return d.toUTCString();
+    };
+
+    ConcertPage.setCookie = function(country) {
+        Mozilla.Cookies.setItem(ConcertPage.COOKIE_ID, country, ConcertPage.cookieExpiresDate());
+    };
+
+    ConcertPage.getCookie = function(id) {
+        return Mozilla.Cookies.getItem(id);
+    };
+
+    ConcertPage.hasCookie = function() {
+        return Mozilla.Cookies.hasItem(ConcertPage.COOKIE_ID);
+    };
+
+    ConcertPage.init = function() {
+        ConcertPage.passThroughParams();
+
+        var cookiesEnabled = typeof Mozilla.Cookies !== 'undefined' || Mozilla.Cookies.enabled();
+        var override = ConcertPage.hasGeoOverride();
+
+        // only show excluded content if cookies are enabled (let LiveNation deal with it)
+        if (cookiesEnabled) {
+            // if override URL is used, skip doing anything with cookies & show the expected content.
+            if (override) {
+                if (ConcertPage.verifyLocation(override)) {
+                    ConcertPage.showExcludedContent();
+                } else {
+                    ConcertPage.showConcertContent();
+                }
+            } else {
+                // if user already has a cookie, use that data and update page content straight away.
+                if (ConcertPage.hasCookie()) {
+                    ConcertPage.updatePageContent();
+                }
+                // else make a remote call to query location.
+                else {
+                    ConcertPage.getLocation();
+                }
+            }
+        } else {
+            ConcertPage.showConcertContent();
+        }
+    };
+    window.Mozilla.ConcertPage = ConcertPage;
+
 
     var stateStorageKey = 'fxaOauthState';
     var verifiedStorageKey = 'fxaOauthVerified';
@@ -70,12 +229,76 @@
 
     // if user has a verified cookie, we can skip the OAuth flow
     if (Mozilla.Cookies.hasItem(verifiedStorageKey)) {
-        className = 'verified';
+        className = 'is-verified';
     } else {
-        className = 'form';
+        className = 'not-verified';
         initOauth();
     }
 
     // apply className determined above to show proper content
-    document.documentElement.className += ' ' + className;
+    document.body.classList.add(className);
+
+    // Phosphorescent - December 11 at 9:30pm Eastern
+    var showtimeOne = 'December 11 2018 21:30:00 GMT-0500';
+    var countdownOne = document.getElementById('countdown-one');
+
+    // Calculate time from now to a future endtime
+    function getTimeRemaining(endtime) {
+        var t = Date.parse(endtime) - Date.parse(new Date());
+        var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+        var days = Math.floor(t / (1000 * 60 * 60 * 24));
+
+        return {
+            'total': t,
+            'days': days,
+            'hours': hours
+        };
+    }
+
+    // Initialize the countdown timer
+    function initializeClock(id, endtime) {
+        var clock = document.getElementById(id);
+        var daysSpan = clock.querySelector('.days');
+        var hoursSpan = clock.querySelector('.hours');
+
+        function updateClock() {
+            var t = getTimeRemaining(endtime);
+
+            daysSpan.innerHTML = t.days;
+            hoursSpan.innerHTML = t.hours;
+
+            if (t.total <= 0) {
+                clearInterval(timeinterval);
+            }
+        }
+
+        updateClock();
+        var timeinterval = setInterval(updateClock, 60000);
+    }
+
+    if (countdownOne) { // To avoid errors make sure the thing exists first
+        initializeClock('countdown-one', showtimeOne);
+    }
+
+
+    // Set up modal for the email privacy link
+    var content = document.querySelector('.mzp-u-modal-content');
+    var trigger = document.querySelector('.email-privacy-link');
+    var title = document.querySelector('.email-privacy h3');
+
+    trigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        Mzp.Modal.createModal(e.target, content, {
+            title: title.innerHTML,
+            className: 'mzp-t-firefox',
+            closeText: window.Mozilla.Utils.trans('global-close'),
+        });
+
+        window.dataLayer.push({
+            'event': 'in-page-interaction',
+            'eAction': 'link click',
+            'eLabel': 'How will Mozilla use my email?'
+        });
+    }, false);
+
 })(window.Mozilla);

@@ -41,12 +41,6 @@
     },
     {
       "files": [
-        "css/firefox/concerts.scss"
-      ],
-      "name": "firefox_concerts"
-    },
-    {
-      "files": [
         "css/base/notification-banner.less",
         "css/firefox/firstrun/firstrun.less",
         "css/base/mozilla-fxa-iframe.less"
@@ -875,6 +869,13 @@
     },
     {
       "files": [
+        "css/base/mozilla-fxa-state.scss",
+        "css/firefox/concerts.scss"
+      ],
+      "name": "firefox_concert_series"
+    },
+    {
+      "files": [
         "css/privacy/fb-privacy.less"
       ],
       "name": "fb_privacy"
@@ -1029,12 +1030,6 @@
         "js/base/core-datalayer-page-id.js"
       ],
       "name": "site"
-    },
-    {
-      "files": [
-        "js/firefox/concerts.js"
-      ],
-      "name": "firefox_concerts"
     },
     {
       "files": [
@@ -1543,6 +1538,16 @@
         "js/base/mozilla-fxa-form.js"
       ],
       "name": "firefox_accounts"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-modal.js",
+        "protocol/js/protocol-newsletter.js",
+        "js/newsletter/form-protocol.js",
+        "js/firefox/concerts.js",
+        "js/firefox/concerts-init.js"
+      ],
+      "name": "firefox_concert_series"
     },
     {
       "files": [
