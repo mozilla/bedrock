@@ -2,10 +2,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-
 import re
 
-
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render as django_render
@@ -193,16 +192,23 @@ class DeveloperView(BlogPostsView):
 
 def home_view(request):
     locale = l10n_utils.get_locale(request)
-    ctx = {}
+    donate_params = settings.DONATE_PARAMS.get(
+        locale, settings.DONATE_PARAMS['en-US'])
+
+    # presets are stored as a string but, for the home banner
+    # we need it as a list.
+    donate_params['preset_list'] = donate_params['presets'].split(',')
 
     if locale.startswith('en-'):
         template_name = 'mozorg/home/home-en.html'
 
-        ctx['pocket_articles'] = PocketArticle.objects.all()[:4]
     else:
         template_name = 'mozorg/home/home.html'
 
-    return l10n_utils.render(request, template_name, ctx)
+    return l10n_utils.render(request, template_name, {
+        'donate_params': donate_params,
+        'pocket_articles': PocketArticle.objects.all()[:4]
+    })
 
 
 def about_view(request):
