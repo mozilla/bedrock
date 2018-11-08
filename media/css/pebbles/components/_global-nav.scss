@@ -532,7 +532,7 @@ html.moz-nav-open .moz-global-nav-page-mask {
     .download-link:visited {
         @include font-size-small;
         background-color: #fff;
-        border-radius: 100px;
+        border-radius: 2px;
         border: 2px solid $color-button-green;
         color: $color-button-green;
         display: inline-block;

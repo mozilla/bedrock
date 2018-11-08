@@ -32,7 +32,7 @@
         button.textContent = strings.dataset.choicesButton;
         button.setAttribute('id', 'choose');
         button.setAttribute('type', 'button');
-        button.className = 'mzp-c-button';
+        button.className = 'mzp-c-button mzp-t-small';
 
         container.appendChild(copyContainer);
         container.appendChild(button);

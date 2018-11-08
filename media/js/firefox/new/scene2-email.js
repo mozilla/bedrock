@@ -11,7 +11,7 @@
 
     trigger.addEventListener('click', function(e) {
         e.preventDefault();
-        Mozilla.Modal.createModal(e.target, content, {
+        Mzp.Modal.createModal(e.target, content, {
             title: title.innerHTML,
             className: 'mzp-t-firefox',
             closeText: window.Mozilla.Utils.trans('global-close'),

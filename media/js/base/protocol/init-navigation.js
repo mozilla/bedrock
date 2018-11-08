@@ -6,11 +6,11 @@
  * Initialize Protocol language switcher.
  */
 (function() {
-    if (typeof Mozilla === 'undefined' || typeof Mozilla.Menu === 'undefined' || typeof Mozilla.Navigation === 'undefined') {
+    if (typeof Mzp === 'undefined' || typeof Mzp.Menu === 'undefined' || typeof Mzp.Navigation === 'undefined') {
         return;
     }
 
-    if (!Mozilla.Menu.isSupported()) {
+    if (!Mzp.Menu.isSupported()) {
         return;
     }
 
@@ -45,9 +45,9 @@
         }
     }
 
-    Mozilla.Menu.init({
+    Mzp.Menu.init({
         onMenuOpen: handleOnMenuOpen
     });
 
-    Mozilla.Navigation.init();
+    Mzp.Navigation.init();
 })();

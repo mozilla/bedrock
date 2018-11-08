@@ -6,10 +6,9 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../protocol/css/protocol.scss';
-
-// TODO port these components to Protocol.
-@import 'components/masthead';
-@import 'components/download-button';
+@import '../../protocol/css/components/button';
 
 // Bedrock specific component tweaks.
+@import 'components/masthead';
 @import 'components/navigation';
+@import 'components/download-button';

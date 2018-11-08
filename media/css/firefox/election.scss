@@ -6,11 +6,9 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import "../../protocol/css/includes/lib";
-@import "../../protocol/css/components/button";
 @import "../../protocol/css/components/call-out";
 @import "../../protocol/css/components/hero";
-@import "../../protocol/css/components/download-button";
-@import '../hubs/nav-download-button-remove';
+@import '../protocol/includes/navigation-hide-download-button';
 
 
 // paper background
@@ -74,14 +72,10 @@ $image-path: '/media/protocol/img';
 
 // facebook and propublica call out styling
 .mzp-c-call-out,
-.mzp-c-button-download {
+.c-button-download {
     text-align: left;
 
     @media #{$mq-lg} {
-        text-align: center;
-    }
-
-    .mzp-c-button {
         text-align: center;
     }
 }
@@ -112,52 +106,6 @@ $image-path: '/media/protocol/img';
     .mzp-c-call-out.t-container .mzp-c-call-out-title,
     .mzp-c-call-out.t-pro .mzp-c-call-out-title {
         background-position: top center;
-    }
-}
-
-// button
-.mzp-c-button,
-.download-link.mzp-c-button.mzp-t-download {
-    background-color: #000;
-    background-image: none;
-    border-radius: 3px;
-    border: none;
-    box-shadow: none;
-    color: $color-white;
-    line-height: 1.125;
-    padding: ($padding-md + 2px) ($padding-lg + 2px); //2px extra padding to compensate for no border.
-
-    &:hover,
-    &:focus {
-        background-color: $color-blue-70;
-        background-image: none;
-        box-shadow: 4px 4px 0 0 $color-black;
-        color: $color-white;
-        transition: box-shadow 100ms;
-    }
-
-    &:active {
-        box-shadow: 2px 2px 0 0 $color-black;
-        transition: box-shadow 0ms;
-    }
-}
-
-.download-link.mzp-c-button.mzp-t-download {
-    background-color: $color-blue-60;
-
-    &:hover,
-    &:focus {
-        background-color: $color-blue-70;
-    }
-}
-
-.mzp-c-button.t-dim {
-    background-color: $color-gray-50;
-    border-color: $color-gray-50;
-
-    &:hover,
-    &:focus {
-        background-color: $color-gray-70;
     }
 }
 

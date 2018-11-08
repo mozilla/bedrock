@@ -18,7 +18,7 @@
     <ul>
       {% for plat in builds -%}
         <li><a href="{{ plat.download_link_direct or plat.download_link }}"
-               class="download-link button button-green"
+               class="download-link button button-green mzp-c-button mzp-t-download"
                data-link-type="download"
                data-download-version="{{ plat.os }}"
                {% if plat.os == 'android' %}data-download-os="Android"
@@ -37,7 +37,7 @@
 {% set download_class = download_class ~ ' download-button-desktop' if not (show_android or show_ios) else download_class %}
 {% set download_class = download_class ~ ' download-button-ios' if not (show_desktop or show_android) else download_class %}
 
-<div id="{{ id }}" class="{{ download_class }}">
+<div id="{{ id }}" class="{{ download_class }} mzp-c-button-download-container">
   {# no JS #}
   <div class="nojs-download">
     {{ alt_buttons(builds) }}
@@ -61,7 +61,7 @@
   <ul class="download-list">
     {% for plat in builds %}
       <li class="os_{{ plat.os }}{% if plat.arch %} {{ plat.arch }}{% endif %}">
-        <a class="download-link button {{ button_color }}"
+        <a class="download-link button {{ button_color }} mzp-c-button mzp-t-download"
            href="{{ plat.download_link }}"{% if plat.download_link_direct %}
            data-direct-link="{{ plat.download_link_direct }}"{% endif %}
            data-link-type="download"
@@ -104,8 +104,8 @@
       </li>
     {% endfor %}
   </ul>
-  <small class="fx-privacy-link">
-    {% if LANG.startswith('en-') %} 
+  <small class="fx-privacy-link mzp-c-button-download-privacy-link">
+    {% if LANG.startswith('en-') %}
       {% set privacy_text = _('Firefox Privacy Notice') %}
     {% else %}
       {% set privacy_text = _('Firefox Privacy') %}

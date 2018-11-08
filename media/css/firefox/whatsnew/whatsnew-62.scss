@@ -6,7 +6,6 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/button';
 @import '../../../protocol/css/components/hero';
 @import '../../../protocol/css/components/call-out';
 @import 'send-yourself';
@@ -182,33 +181,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-// Buttons
-.mzp-c-button {
-    background-color: $color-white;
-    background-image: none;
-    border-radius: 3px;
-    border: 2px solid $color-black;
-    border: none;
-    box-shadow: none;
-    color: $color-black;
-    line-height: 1.125;
-    padding: ($spacing-md + 2px) ($spacing-lg + 2px); //2px extra padding to compensate for no border.
-
-    &:hover,
-    &:focus {
-        background-color: $color-gray-10;
-        background-image: none;
-        box-shadow: 4px 4px 0 0 $color-black;
-        color: $color-black;
-        transition: box-shadow 100ms;
-    }
-
-    &:active {
-        box-shadow: 2px 2px 0 0 $color-black;
-        transition: box-shadow 0ms;
-    }
-}
-
 // Send Yourself widget
 .mzp-c-sendyourself {
     a:link {
@@ -226,25 +198,6 @@ $image-path: '/media/protocol/img';
         &:hover,
         &:focus {
             color: $color-link-visited-hover;
-        }
-    }
-}
-
-.mzp-c-sendyourself-field {
-    input[type="text"] {
-        border-radius: 3px;
-        padding: .75em $spacing-lg;
-    }
-
-    .mzp-c-button {
-        border-radius: 3px;
-        color: $color-black;
-        border-color: $color-black;
-
-        &:hover,
-        &:focus {
-            color: $color-black;
-            border-color: $color-black;
         }
     }
 }
@@ -347,19 +300,6 @@ $image-path: '/media/protocol/img';
         margin: 0 auto 1.75em;
     }
 
-    .mzp-c-hero-cta {
-        .mzp-c-button {
-            background-color: $color-blue-60;
-            color: $color-white;
-
-            &:hover,
-            &:focus {
-                background-color: $color-blue-70;
-                color: $color-white;
-            }
-        }
-    }
-
     .pocket-hero-image {
         display: none;
     }
@@ -409,12 +349,6 @@ $image-path: '/media/protocol/img';
 
         .mzp-c-call-out-title {
             @include text-display-sm;
-        }
-
-        .mzp-c-button:hover,
-        .mzp-c-button:focus {
-            background-color: $color-gray-20;
-            color: $color-black;
         }
     }
 

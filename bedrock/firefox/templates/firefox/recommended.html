@@ -25,8 +25,8 @@
       <div class="mzp-c-hero-body">
         <h1 class="mzp-c-hero-title">{{ _('Fast. Private. Fearless. <br>Firefox fights for you.') }}</h1>
 
-        <div class="mzp-c-hero-cta mzp-c-button-download">
-          {{ download_firefox(alt_copy=_('Download Firefox'), download_location='primary cta', button_color='mzp-c-button mzp-t-download') }}
+        <div class="mzp-c-hero-cta">
+          {{ download_firefox(alt_copy=_('Download Firefox'), download_location='primary cta') }}
         </div>
 
         <div class="mzp-c-hero-desc">
@@ -63,9 +63,7 @@
     title=_('Take control of your browser.'),
     class='secondary-cta mzp-t-product-firefox mzp-t-firefox'
   ) %}
-    <div class="mzp-c-button-download">
-      {{ download_firefox(alt_copy=_('Download Firefox'), download_location='secondary cta', button_color='mzp-c-button mzp-t-download') }}
-    </div>
+    {{ download_firefox(alt_copy=_('Download Firefox'), download_location='secondary cta') }}
   {% endcall %}
 
 </main>

@@ -6,7 +6,6 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/button';
 @import '../../../protocol/css/components/call-out';
 @import '../../../protocol/css/components/hero';
 @import '../../../protocol/css/components/feature-card';
@@ -121,7 +120,7 @@ $image-path: '/media/protocol/img';
             input[type="email"] {
                 border: none;
                 box-shadow: none;
-                padding: 16px 24px;
+                padding: 18px 24px;
                 width: 100%;
             }
         }

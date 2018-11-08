@@ -6,7 +6,6 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../protocol/css/includes/lib';
-@import '../../protocol/css/components/download-button';
 @import '../../protocol/css/components/article';
 
 
@@ -37,34 +36,14 @@ $image-path: '/media/protocol/img';
 }
 
 /* -------------------------------------------------------------------------- */
-// Blue download button
+// Download button
 
 .download-firefox {
-    margin: $spacing-lg auto $spacing-sm;
     text-align: center;
 
-    a.download-link.button {
-        background-color: $color-blue-60;
-        background-image: none;
-        border-radius: 3px;
-        border: none;
-        box-shadow: none;
-        color: $color-white;
-        line-height: 1.125;
-        padding: ($padding-md + 2px) ($padding-lg + 2px); //2px extra padding to compensate for no border.
-
-        &:hover,
-        &:focus {
-            background-color: $color-blue-70;
-            background-image: none;
-            box-shadow: 4px 4px 0 0 $color-black;
-            color: $color-white;
-            transition: box-shadow 100ms;
-        }
-
-        &:active {
-            box-shadow: 2px 2px 0 0 $color-black;
-            transition: box-shadow 0ms;
-        }
+    .mzp-c-button-download-container {
+        margin: $spacing-lg 0;
     }
 }
+
+

@@ -104,9 +104,10 @@
     }
 
     input[type="text"] {
-        border-radius: 100px;
+        border-radius: 2px;
+        line-height: 1.5;
         margin-bottom: 1.25em;
-        padding: .9em 40px;
+        padding: 15px 40px;
         width: 100%;
 
         /*
@@ -118,30 +119,6 @@
          &:-moz-ui-invalid:not(output):focus {
             border-color: #D1D2D3;
             box-shadow: none;
-        }
-    }
-
-    .mzp-c-button {
-        @include font-size-level6;
-        @include open-sans;
-        background: none transparent;
-        border-radius: 100px;
-        border: 2px solid $color-button-light;
-        color: $color-button-light;
-        display: inline-block;
-        font-weight: bold;
-        padding: .9em 40px;
-        text-align: center;
-        text-decoration: none;
-        text-shadow: none;
-        transition: background-color 100ms ease-in-out, border-color 100ms ease-in-out;
-        width: 100%;
-
-        &:hover,
-        &:focus {
-            background-color: transparentize($color-button-light, .95);
-            border-color: darken($color-button-light, 5%);
-            color: darken($color-button-light, 5%);
         }
     }
 
