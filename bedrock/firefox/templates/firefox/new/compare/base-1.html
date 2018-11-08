@@ -31,8 +31,8 @@
             <p>{% block hero_desc %}{% endblock %}</p>
           </div>
 
-          <div class="mzp-c-hero-cta mzp-c-button-download">
-            {{ download_firefox(alt_copy=_('Download Firefox'), download_location='primary cta', button_color='mzp-c-button mzp-t-download') }}
+          <div class="mzp-c-hero-cta">
+            {{ download_firefox(alt_copy=_('Download Firefox'), download_location='primary cta') }}
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@
       title=_('Take control of your browser.'),
       class='secondary-cta mzp-t-product-firefox mzp-t-firefox'
     ) %}
-      {{ download_firefox(alt_copy=_('Download Firefox'), download_location='secondary cta', button_color='mzp-c-button mzp-t-download') }}
+      {{ download_firefox(alt_copy=_('Download Firefox'), download_location='secondary cta') }}
     {% endcall %}
   {% endblock %}
 </main>

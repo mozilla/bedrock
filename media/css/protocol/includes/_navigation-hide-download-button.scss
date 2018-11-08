@@ -1,0 +1,47 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../../protocol/css/includes/lib';
+
+// Bug 1429849 - Overrides to hide the download button in main navigation.
+
+/* -------------------------------------------------------------------------- */
+// Navigation overrides for `en` pages.
+
+#global-nav-download-firefox,
+#protocol-nav-download-firefox {
+    display: none;
+}
+
+.moz-global-nav .nav-primary-links {
+    @media #{$mq-md} {
+        width: calc(100% - 160px);
+    }
+
+    @media #{$mq-lg} {
+        width: calc(100% - 270px);
+    }
+
+}
+
+/* -------------------------------------------------------------------------- */
+// Legacy navigation overrides for non `en` localized pages
+
+#nav-download-firefox {
+    display: none;
+}
+
+#masthead {
+    @media #{$mq-md} {
+        .masthead-nav-main {
+            width: calc(100% - 120px);
+        }
+    }
+
+    @media #{$mq-xl} {
+        .masthead-nav-main {
+            width: calc(100% - 140px);
+        }
+    }
+}

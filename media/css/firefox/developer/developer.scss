@@ -48,7 +48,7 @@
         .download-link.button-arrow {
             @include font-size-level5;
             background: $color-dev-mediumblue linear-gradient(120deg, $color-dev-lightblue 0, $color-dev-mediumblue 100%) no-repeat;
-            border-radius: 100px;
+            border-radius: 2px;
             border: 0;
             margin-bottom: 10px;
             padding: 1em 40px;
@@ -238,7 +238,7 @@
     a.button.button-hollow {
         @include font-size-level5;
         border-color: #fff;
-        border-radius: 100px;
+        border-radius: 2px;
         color: #fff;
         margin-top: 20px;
 

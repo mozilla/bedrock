@@ -15,7 +15,6 @@
     a:link,
     a:visited {
         color: #000;
-        font-weight: bold;
         text-decoration: none;
     }
 
@@ -205,7 +204,7 @@
     .download-link:visited {
         @include font-size-small;
         background-color: #fff;
-        border-radius: 100px;
+        border-radius: 2px;
         border: 2px solid $color-button-green;
         color: $color-button-green;
         display: inline-block;

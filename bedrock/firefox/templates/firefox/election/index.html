@@ -36,7 +36,7 @@
             <div class="mzp-c-call-out-desc">
               <p>Facebook lets political advertisers target you by tracking your activity on and off their platform.</p>
               <p>With this extension, Firefox makes it easier to explore the web without Facebook watching, so you can keep your political opinions to yourself and your dinner companions.</p>
-              <p class="mzp-c-button-download">
+              <p class="c-button-download">
                 <small class="mzp-c-button-download-privacy-link">
                   <a href="{{ url('privacy.notices.firefox') }}">Firefox Privacy Notice</a>
                 </small>
@@ -63,7 +63,7 @@
           </div>
           <div class="mzp-c-call-out-cta">
             <div class="mzp-c-call-out-cta-container">
-              <div class="mzp-c-button-download">
+              <div class="c-button-download">
                 <div id="case-unsupported" class="hidden">
                   <p>Sad to say, your computer doesn’t support Firefox.  Even so, Digital citizens need good info. Mozilla Corporation and Firefox can help you check your registration status, read political news curated by Pocket and get other helpful resources.</p>
                   <!-- hard code en-US because election content will not be localized -->
@@ -71,7 +71,7 @@
                 </div>
                 <div id="case-outofdate" class="hidden">
                   <p>Your version of Firefox isn’t compatible with the U.S. Election Bundle. Once you’ve updated, please return to this page for the extensions.</p>
-                  {{ download_firefox(alt_copy='Update Firefox', dom_id='btn-download-oldfx', button_color='mzp-c-button mzp-t-download') }}
+                  {{ download_firefox(alt_copy='Update Firefox', dom_id='btn-download-oldfx') }}
                 </div>
                 <div id="case-mobile" class="hidden">
                   <p>The U.S. Election Bundle is made just for Firefox on desktop. Visit this page on your computer to download it or add the extensions.</p>
@@ -134,7 +134,7 @@
             <div class="mzp-c-call-out-desc">
               <p>Facebook helps political advertisers target you by tracking your activity on and off their platform.</p>
               <p>This extension makes it easier to explore the web without Facebook watching, so you can keep your political opinions to yourself and your dinner companions. </p>
-              <p class="mzp-c-button-download">
+              <p class="c-button-download">
                 <a class="mzp-c-button" rel="external" href="https://addons.mozilla.org/en-US/firefox/addon/facebook-container/" data-button-name="Facebook Container Get It">Get It</a><br>
                 <small class="mzp-c-button-download-privacy-link">
                   <a href="{{ url('privacy.notices.firefox') }}">Firefox Privacy Notice</a>
@@ -150,7 +150,7 @@
           <div class="mzp-c-call-out-desc">
             <p>Participate in ProPublica’s crowdsourcing extension that automatically gathers ads from Facebook, the biggest online platform for political discourse. Your contribution feeds a public database that lets you see what others are seeing and helps journalists flag misinformation. It’s a win-win for you and the web.</p>
             <p>Since the Political Ad Collector was developed by ProPublica, not Firefox, the <a rel="external" href="https://addons.mozilla.org/en-US/firefox/addon/facebook-ad-collector/privacy/">ProPublica privacy policy</a> applies to this extension.</p>
-            <p class="mzp-c-button-download">
+            <p class="c-button-download">
               <a class="mzp-c-button" rel="external" href="https://addons.mozilla.org/en-US/firefox/addon/facebook-ad-collector/" data-button-name="ProPublica Collector Get It">Get It</a>
             </p>
           </div>
@@ -177,7 +177,7 @@
             <div class="mzp-c-call-out-desc">
               <p>Facebook lets political advertisers target you by tracking your activity on and off their platform.</p>
               <p>With this extension, Firefox makes it easier to explore the web without Facebook watching, so you can keep your political opinions to yourself and your dinner companions.</p>
-              <p class="mzp-c-button-download">
+              <p class="c-button-download">
                 <small class="mzp-c-button-download-privacy-link">
                   <a href="{{ url('privacy.notices.firefox') }}">Firefox Privacy Notice</a>
                 </small>
@@ -199,7 +199,7 @@
         <div class="mzp-l-content">
           <div class="mzp-c-call-out-cta">
             <div class="mzp-c-call-out-cta-container">
-              <div class="mzp-c-button-download">
+              <div class="c-button-download">
                 <div>
                   <p>Sad to say, your computer doesn’t support Firefox.  Even so, Digital citizens need good info. Mozilla Corporation and Firefox can help you check your registration status, read political news curated by Pocket and get other helpful resources.</p>
                   <!-- hard code en-US because election content will not be localized -->
@@ -219,15 +219,15 @@
           </div>
           <div id="case-outofdate" class="hidden mzp-c-call-out-cta">
             <div class="mzp-c-call-out-cta-container">
-              <div class="mzp-c-button-download">
+              <div class="c-button-download">
                 <p>Your version of Firefox isn’t compatible with these extensions. Once you’ve updated, please return to this page for the extensions.</p>
-                {{ download_firefox(alt_copy='Update Firefox', dom_id='btn-download-oldfx', button_color='mzp-c-button mzp-t-download') }}
+                {{ download_firefox(alt_copy='Update Firefox', dom_id='btn-download-oldfx') }}
               </div>
             </div>
           </div>
           <div id="case-mobile" class="hidden mzp-c-call-out-cta">
             <div class="mzp-c-call-out-cta-container">
-              <div class="mzp-c-button-download">
+              <div class="c-button-download">
                 <p>These extensions are made for Firefox on desktop. Visit this page on your computer to download Firefox or add the extensions.</p>
                 <p>Digital citizens need good info. Mozilla Corporation and Firefox can help you check your registration status, read political news curated by Pocket and get other helpful resources.</p>
                 <!-- hard code en-US because election content will not be localized -->
@@ -237,9 +237,9 @@
           </div>
           <div id="case-download" class="mzp-c-call-out-cta">
             <div class="mzp-c-call-out-cta-container">
-              <div class="mzp-c-button-download">
+              <div class="c-button-download">
                 <p>Get Firefox and return to this page to add the extensions.</p>
-                <p>{{ download_firefox(alt_copy='Get Firefox', dom_id='btn-download-primary', button_color='mzp-c-button mzp-t-download') }}</p>
+                <p>{{ download_firefox(alt_copy='Get Firefox', dom_id='btn-download-primary') }}</p>
               </div>
             </div>
           </div>
@@ -251,8 +251,8 @@
           <div class="mzp-c-call-out-cta">
             <div class="mzp-c-call-out-cta-container">
               <p>Once you have Firefox return to this page to install the extensions.</p>
-              <p><a class="mzp-c-button t-dim" rel="external" href="https://addons.mozilla.org/en-US/firefox/addon/facebook-container/" data-button-name="Facebook Container Get It">Firefox Facebook Container Extension</a></p>
-              <p><a class="mzp-c-button t-dim" rel="external" href="https://addons.mozilla.org/en-US/firefox/addon/facebook-ad-collector/" data-button-name="ProPublica Collector Get It">ProPublica Facebook Political Ad Collector Extension</a></p>
+              <p><a class="mzp-c-button mzp-t-secondary" rel="external" href="https://addons.mozilla.org/en-US/firefox/addon/facebook-container/" data-button-name="Facebook Container Get It">Firefox Facebook Container Extension</a></p>
+              <p><a class="mzp-c-button mzp-t-secondary" rel="external" href="https://addons.mozilla.org/en-US/firefox/addon/facebook-ad-collector/" data-button-name="ProPublica Collector Get It">ProPublica Facebook Political Ad Collector Extension</a></p>
             </div>
           </div>
         </div>
@@ -276,7 +276,7 @@
             <div class="mzp-c-call-out-desc">
               <p>Facebook helps political advertisers target you by tracking your activity on and off their platform.</p>
               <p>This extension makes it easier to explore the web without Facebook watching, so you can keep your political opinions to yourself and your dinner companions. </p>
-              <p class="mzp-c-button-download">
+              <p class="c-button-download">
                 <a class="mzp-c-button" rel="external" href="https://addons.mozilla.org/en-US/firefox/addon/facebook-container/" data-button-name="Facebook Container Get It">Get It</a><br>
                 <small class="mzp-c-button-download-privacy-link">
                   <a href="{{ url('privacy.notices.firefox') }}">Firefox Privacy Notice</a>
@@ -292,7 +292,7 @@
           <div class="mzp-c-call-out-desc">
             <p>Participate in ProPublica’s crowdsourcing extension that automatically gathers ads from Facebook, the biggest online platform for political discourse. Your contribution feeds a public database that lets you see what others are seeing and helps journalists flag misinformation. It’s a win-win for you and the web.</p>
             <p>Since the Political Ad Collector was developed by ProPublica, not Firefox, the <a rel="external" href="https://addons.mozilla.org/en-US/firefox/addon/facebook-ad-collector/privacy/">ProPublica privacy policy</a> applies to this extension.</p>
-            <p class="mzp-c-button-download">
+            <p class="c-button-download">
               <a class="mzp-c-button" rel="external" href="https://addons.mozilla.org/en-US/firefox/addon/facebook-ad-collector/" data-button-name="ProPublica Collector Get It">Get It</a>
             </p>
           </div>

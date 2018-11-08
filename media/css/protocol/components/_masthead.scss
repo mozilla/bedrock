@@ -299,7 +299,7 @@ $color-button-green: #16da00;
     .download-link:visited {
         @include text-body-sm;
         background-color: #fff;
-        border-radius: 100px;
+        border-radius: 2px;
         border: 2px solid $color-button-green;
         color: $color-button-green;
         display: inline-block;

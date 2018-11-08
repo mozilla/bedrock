@@ -16,6 +16,35 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/components/navigation';
 
 /**
+ * Pebbles specific overrides for download button in main navigation.
+ */
+.mzp-c-navigation-download {
+    .download-button {
+        .download-link {
+            background-color: transparent;
+            background-image: none;
+            border-radius: 2px;
+            color: $color-green-60;
+            border: 2px solid $color-green-60;
+            box-shadow: none;
+            line-height: 1.125;
+            padding: $padding-sm $padding-md;
+
+            &:hover,
+            &:focus {
+                background-color: $color-green-60;
+                border-color: $color-green-60;
+                color: $color-white;
+            }
+        }
+
+        .fx-privacy-link {
+            display: none;
+        }
+    }
+}
+
+/**
  * Pebbles specific overrides for Protocol Navigation and Menu components.
  * 1. Pebbles pages use Zilla for body copy, so override in the navigation.
  * 2. Because of 1, pages also set a base font-size of 112.5% on <html>, so compensate proportionally.

@@ -3,7 +3,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import '../../protocol/css/includes/lib';
-@import '../../protocol/css/components/button';
 @import "../../protocol/css/components/article";
 
 
@@ -171,7 +170,6 @@
     .mzp-c-button {
         display: block;
         margin: $spacing-md auto 0;
-        padding: $padding-sm $padding-md;
     }
 
     @media #{$mq-md} {

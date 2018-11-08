@@ -6,7 +6,6 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/button';
 @import '../../../protocol/css/components/modal';
 @import '../../../protocol/css/components/newsletter-form';
 
@@ -154,19 +153,6 @@ $image-path: '/media/protocol/img';
 
     .mzp-c-newsletter-form {
         padding: 0;
-    }
-
-    .mzp-c-button {
-        background: $color-black;
-        border-color: $color-black;
-        color: $color-white;
-
-        &:hover,
-        &:focus {
-            background: $color-white;
-            color: $color-black;
-
-        }
     }
 
     .mzp-c-newsletter-thanks {

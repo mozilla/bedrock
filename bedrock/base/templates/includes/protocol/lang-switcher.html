@@ -5,7 +5,7 @@
  {% if translations|length > 1 %}
  <form id="lang_form" class="mzp-c-language-switcher" method="get" action="#">
    <label for="mzp-c-language-switcher-select">{{ _('Language') }}</label>
-   <select id="mzp-c-language-switcher-select" class="mzp-c-language-switcher-select" name="lang" dir="ltr">
+   <select id="mzp-c-language-switcher-select" class="mzp-js-language-switcher-select" name="lang" dir="ltr">
      {% for code, label in translations|dictsort -%}
        {# Don't escape the label as it may include entity references
         # like "Português (do&nbsp;Brasil)" (Bug 861149) #}

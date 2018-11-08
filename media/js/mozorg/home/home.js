@@ -86,7 +86,7 @@ function onYouTubeIframeAPIReady() {
             if (content) {
                 event.preventDefault();
 
-                Mozilla.Modal.createModal(this, content, {
+                Mzp.Modal.createModal(this, content, {
                     title: title,
                     className: 'mzp-has-media',
                     onDestroy: function() {

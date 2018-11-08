@@ -6,7 +6,6 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../protocol/css/includes/lib';
-@import '../../protocol/css/components/button';
 @import '../../protocol/css/components/billboard';
 @import '../../protocol/css/components/call-out';
 @import '../../protocol/css/components/feature-card';
@@ -14,7 +13,7 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/templates/card-layout';
 
 
-.mzp-t-dark {
+.mzp-t-dark .note {
     :link,
     :visited {
         color: $color-white;
@@ -23,24 +22,6 @@ $image-path: '/media/protocol/img';
         &:focus,
         &:active {
             color: $color-gray-20;
-        }
-    }
-
-    .mzp-c-button {
-        box-shadow: none;
-        color: $color-black;
-
-        &:hover,
-        &:focus {
-            background: $color-white;
-            box-shadow: 4px 4px 0 0 #000;
-            color: $color-black;
-            transition: box-shadow 100ms;
-        }
-
-        &:active {
-            box-shadow: 2px 2px 0 0 #000;
-            transition: box-shadow 0ms;
         }
     }
 }

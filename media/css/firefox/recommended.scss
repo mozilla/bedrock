@@ -26,37 +26,6 @@ $image-path: '/media/protocol/img';
     margin: $spacing-xl 0;
 }
 
-
-//* ====================================================================== */
-//  Download Buttons
-
-.mzp-c-button-download {
-    .mzp-c-button.mzp-t-download {
-        background-color: $color-blue-60;
-        background-image: none;
-        border-radius: 3px;
-        border: none;
-        box-shadow: none;
-        color: $color-white;
-        line-height: 1.125;
-        padding: ($padding-md + 2px) ($padding-lg + 2px); //2px extra padding to compensate for no border.
-
-        &:hover,
-        &:focus {
-            background-color: $color-blue-70;
-            background-image: none;
-            box-shadow: 4px 4px 0 0 $color-black;
-            color: $color-white;
-            transition: box-shadow 100ms;
-        }
-
-        &:active {
-            box-shadow: 2px 2px 0 0 $color-black;
-            transition: box-shadow 0ms;
-        }
-    }
-}
-
 //* ====================================================================== */
 //  Picto cards
 
@@ -100,11 +69,4 @@ $image-path: '/media/protocol/img';
     a:focus {
         color: $color-gray-60;
     }
-}
-
-//* ====================================================================== */
-//  Secondary CTA
-
-.secondary-cta .fx-privacy-link {
-    margin-bottom: 0;
 }
