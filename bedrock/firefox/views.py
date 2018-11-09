@@ -595,9 +595,11 @@ def download_thanks(request):
     show_newsletter = locale in ['en-US', 'en-GB', 'en-CA', 'en-ZA', 'es-ES', 'es-AR', 'es-CL', 'es-MX', 'pt-BR', 'fr', 'ru', 'id', 'de', 'pl']
 
     # ensure variant matches pre-defined value
-    if variant not in ['x', 'y']:  # place expected ?v= values in this list
+    if variant not in ['a', 'x', 'y']:  # place expected ?v= values in this list
         variant = None
 
+    if variant == 'a' and locale.startswith('en'):
+        show_newsletter = False  # Prevent showing the newsletter for pre-download experiment Issue #6456
     if variant == 'x' and locale == 'en-US':
         show_newsletter = False  # Prevent showing the newsletter for FxA account experiment mozilla/bedrock#5974
 
