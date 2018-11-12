@@ -10,14 +10,16 @@
 
 {% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
 
+{%- block page_title -%}{{_('Free Web Browser')}}{%- endblock -%}
+
 {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
-{%- block page_title -%}
+{%- block page_title_suffix -%}
   {% if LANG == 'en-CA' %}
-    Free Web Browser (CA)
+    — Mozilla (CA)
   {% elif LANG == 'en-GB' %}
-    Free Web Browser (UK)
+    — Mozilla (UK)
   {% else %}
-    {{_('Free Web Browser')}}
+    — Mozilla
   {% endif %}
 {%- endblock -%}
 
