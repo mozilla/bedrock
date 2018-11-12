@@ -206,8 +206,8 @@
             {%- endtrans -%}
           </p>
           <p>
-            {%- trans -%}
-              You don't need an account to use Firefox.  Accounts are required to sync data across devices, but we only ask you for an email address.  We don't want to know things like your name, address, birthday and phone number.
+            {%- trans accounts=url('firefox.accounts') -%}
+              You don't need an account to use Firefox.  <a href="{{ accounts }}">Accounts</a> are required to sync data across devices, but we only ask you for an email address.  We don't want to know things like your name, address, birthday and phone number.
             {%- endtrans -%}
           </p>
         </dd>
