@@ -1547,9 +1547,11 @@
     },
     {
       "files": [
+        "protocol/js/protocol-modal.js",
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-form.js"
+        "js/base/mozilla-fxa-form.js",
+        "js/firefox/accounts.js"
       ],
       "name": "firefox_accounts"
     },

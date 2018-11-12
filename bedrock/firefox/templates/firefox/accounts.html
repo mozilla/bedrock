@@ -1,64 +1,237 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
- # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% from "macros.html" import fxa_email_form with context %}
+ {% from "macros-protocol.html" import card, call_out, feature_card with context %}
+ {% from "macros.html" import fxa_email_form, google_play_button, send_to_device, fxa_create_account_button with context %}
 
-{% extends "firefox/base-pebbles.html" %}
+ {% extends "base-protocol.html" %}
 
-{% block page_title_prefix %}{{_('Get a Firefox Account')}}{% endblock %}
-{% block page_title %}{% endblock %}
-{% block page_desc %}{{_('Get easy access to your bookmarks, passwords, tabs and more from any computer or mobile device running Firefox.')}}{% endblock %}
+ {% block page_title %}{{ _('Get a Firefox Account – Keep your data private, safe and synced') }}{% endblock %}
+ {% block page_desc %}{{ _('Securely sync your passwords, bookmarks and tabs across all your devices. Get a Firefox Account now – One log-in – Power and privacy everywhere.)' }}{% endblock %}
 
-{% block page_css %}
-  {{ css_bundle('firefox_accounts') }}
-{% endblock %}
+ {% block page_css %}
+   {{ css_bundle('firefox_accounts') }}
+ {% endblock %}
 
-{% block body_class %}firefox-accounts state-fxa-default {% endblock %}
+ {% block content %}
 
-{% block content %}
-<main role="main">
-  <div class="content">
-    <header class="top-header">
-      <div class="header-logos">
-        <h2><a class="firefox" href="{{ url('firefox') }}">{{ high_res_img('logos/firefox/logo-quantum-wordmark-white.png', {'alt': 'Firefox', 'width': '133', 'height': '50'}) }}</a></h2>
-        <h2><a class="mozilla" href="{{ url('mozorg.home') }}"><img src="{{ static('img/logos/mozilla/wordmark-dark.svg')}}" alt="Mozilla" width="101" height="34"></a></h2>
-      </div>
-      <h1>{{_('Sign up, sign in, stay in sync.')}}</h1>
-    </header>
-    <div class="main-content">
-      <div class="main-copy">
-        <p class="tagline">{{_('With a Firefox Account, you can get all your bookmarks, passwords, open tabs and more — everywhere you use Firefox.')}}</p>
-        <ol class="sign-up-instructions show-fxa-supported-signed-out">
-          <li>{{_('Sign up for a Firefox Account')}}</li>
-          <li>{{_('Sign in everywhere you use Firefox')}}</li>
-          <li>{{_('Sync what you want')}}</li>
-        </ol>
-      </div>
-      <div class="fxa-cta show-fxa-supported-signed-in show-fxa-supported-signed-out">
-        <p class="show-fxa-supported-signed-in signed-in">{{_('You’re signed in and ready to start using Sync.')}}</p>
-        <div class="show-fxa-supported-signed-out">
-          {{ fxa_email_form(entrypoint='accounts-page', utm_source='accounts-page', utm_params={'campaign': 'fxa-embedded-form', 'content': 'accounts-page', 'medium': 'referral'}) }}
+  <section class="mzp-c-hero mzp-has-image mzp-t-firefox mzp-t-product-firefox">
+    <div class="mzp-l-content">
+      <div class="mzp-c-hero-body">
+        <h1 class="mzp-c-hero-title">{{ _('One log-in. Power and privacy everywhere.')}}</h1>
+        <div id="hero-cta" class="mzp-c-hero-cta">
+          <div class="show-fxa-supported-signed-out">
+              <a href="https://accounts.firefox.com/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org-button-light&utm_content=%2Ffirefox%2Faccounts%2F&utm_campaign=Create an Account" class="button account-benefits" data-button-name="Create account" data-link-type="button" data-cta-position="primary cta">
+                {{ _('Create a Firefox Account')}}
+              </a>
+          </div>
+          <div class="show-fxa-supported-signed-in">
+            <button class="mzp-c-button" type="button" id="fx-modal">{{ _('Download Firefox App')}}</button>
+          </div>
+          <div class="show-fxa-not-fx">
+            {{ download_firefox(dom_id=download_id, download_location=button_location) }}
+          </div>
         </div>
       </div>
-      <div class="mobile-ctas">
-        <span class="show-fxa-ios">
-          <a class="button button-hollow button-light" rel="external" href="https://support.mozilla.org/kb/sync-firefox-bookmarks-and-browsing-history-iOS">{{_('Set up Sync for iOS')}}</a>
-        </span>
-        {# L10n: Line break below for visual formatting only. #}
-        <span class="show-fxa-android">
-          <a class="button button-hollow button-light" rel="external" href="https://support.mozilla.org/kb/sync-bookmarks-tabs-history-and-passwords-android">{{_('Set up Sync on your <br>Android device')}}</a>
-        </span>
+    </div>
+    <div class="mzp-c-hero-image">
+      {{ high_res_img('firefox/accounts/fxa-hero-img.png', {'alt': ''}) }}
+    </div>
+  </section>
+
+  <div class="mzp-l-content">
+    <h2 id="subtitle">{{ _('Own your life on every device with a Firefox Account.')}}</h2>
+  </div>
+
+  <div class="mzp-l-content">
+    {% call feature_card(
+      title=_('Send tabs instantly to your devices'),
+      image_url='firefox/accounts/fxa-send.png',
+      include_highres_image=True,
+      aspect_ratio='mzp-has-aspect-1-1',
+      class='mzp-l-card-feature-right-half'
+    ) %}
+    <p>{{ _('Send an open tab on one device to all your others with a single tap. Much easier than texting or emailing yourself those links.') }}</p>
+    {% endcall %}
+
+    {% call feature_card(
+      title=_('Remember your passwords in Lockbox'),
+      image_url='firefox/accounts/fxa-lockbox.png',
+      include_highres_image=True,
+      aspect_ratio='mzp-has-aspect-1-1',
+      class='mzp-l-card-feature-left-half lockbox-card',
+      link_cta='Get the Lockbox App',
+      link_url='#'
+    ) %}
+      <p>{{ _('No more getting locked out of apps and websites. Lockbox secures all the passwords you’ve saved in Firefox and gives you easy access across all your iOS devices.') }}</p>
+
+      <ul class="mobile-download-buttons mobile-lockbox">
+          <li class="ios">
+            <a id="appStoreLink" href="https://app.adjust.com/kq8zhhz" data-link-type="download" data-download-os="iOS">
+              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+            </a>
+          </li>
+        </ul>
+
+    {% endcall %}
+
+    {% call feature_card(
+      title=_('Sync your bookmarks everywhere'),
+      image_url='firefox/accounts/fxa-sync.png',
+      include_highres_image=True,
+      aspect_ratio='mzp-has-aspect-1-1',
+      class='mzp-l-card-feature-right-half bookmarks-card'
+    ) %}
+      <p>{{ _('Bookmark a recipe at home. Check it at the market from your phone. Every bookmark you save is instantly added to all your synced devices.') }}</p>
+    {% endcall %}
+
+    {% call feature_card(
+      title=_('Put quality content in your Pocket'),
+      image_url='firefox/accounts/fxa-pocket.png',
+      include_highres_image=True,
+      aspect_ratio='mzp-has-aspect-1-1',
+      class='mzp-l-card-feature-left-half pocket-card',
+      link_cta='Get the Pocket App',
+      link_url='#'
+    ) %}
+
+      <p>{{ _('Discover the web’s best content, and absorb it anytime – even offline – on any device. Pocket’s listen feature will even read any article aloud to you. All from the Firefox toolbar.') }}</p>
+
+      <ul class="mobile-download-buttons mobile-pocket">
+        <li class="android">
+          {{ google_play_button(href='https://app.adjust.com/h5iycst', id='playStoreLink') }}
+        </li>
+        <li class="ios">
+          <a id="appStoreLink" href="https://app.adjust.com/h5iycst" data-link-type="download" data-download-os="iOS">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+          </a>
+        </li>
+      </ul>
+
+    {% endcall %}
+
+    {% call feature_card(
+     title=_('Pick up where you left off with Notes'),
+     image_url='firefox/accounts/fxa-notes.png',
+     include_highres_image=True,
+     aspect_ratio='mzp-has-aspect-1-1',
+     class='mzp-l-card-feature-right-half notes-card',
+     link_cta='Get the Notes App',
+     link_url='#'
+   ) %}
+
+   <p>{{ _('Your ideas and inspiration are secure and encrypted with Notes – and when you’re signed into your Account, they sync from your desktop to your Android devices.') }}</p>
+
+   <ul class="mobile-download-buttons mobile-notes">
+      <li class="android">
+        {{ google_play_button(href='https://play.google.com/store/apps/details?id=org.mozilla.testpilot.notes') }}
+      </li>
+    </ul>
+   {% endcall %}
+  </div>
+
+  <aside class="fxa-benefits mzp-u-modal-content">
+    <p class="mobile-title mobile-pocket">{{ _('Scan the QR Code to download the Pocket App on your mobile device.') }}</p>
+    <p class="mobile-title mobile-lockbox">{{ _('Scan the QR Code to download the Lockbox App on your mobile device.') }}</p>
+    <p class="mobile-title mobile-notes">{{ _('Scan the QR Code to download the Notes App on your mobile device.') }}</p>
+    <p id="fx-qr-title" class="mobile-title mobile-fx">{{ _('Scan the QR Code to download the Firefox App on your mobile device.') }}</p>
+    <div class="mzp-l-content">
+      <div id="qr-code"></div>
+    </div>
+
+    <section>
+      <div id="fx-app-buttons" class="show-fxa-supported-signed-in">
+          <ul class="mobile-download-buttons">
+            <li>
+              {{ google_play_button(id=android_id, extra_data_attributes={'download-location': button_location}) }}
+            </li>
+            <li>
+              <a href="{{ firefox_ios_url(app_store_campaign) }}" data-link-type="download" data-download-os="iOS" data-download-location="{{ button_location }}" id="{{ ios_id }}">
+                <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+              </a>
+            </li>
+          </ul>
+        </div>
+    </section>
+
+    <section>
+      <ul class="mobile-download-buttons mobile-pocket">
+        <li class="android">
+          {{ google_play_button(href='https://app.adjust.com/h5iycst', id='playStoreLink') }}
+        </li>
+        <li class="ios">
+          <a id="appStoreLink" href="https://app.adjust.com/h5iycst" data-link-type="download" data-download-os="iOS">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <ul class="mobile-download-buttons mobile-lockbox">
+        <li class="ios">
+          <a id="appStoreLink" href="https://app.adjust.com/kq8zhhz" data-link-type="download" data-download-os="iOS">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <ul class="mobile-download-buttons mobile-notes">
+        <li class="android">
+          {{ google_play_button(href='https://play.google.com/store/apps/details?id=org.mozilla.testpilot.notes') }}
+        </li>
+      </ul>
+    </section>
+  </aside>
+
+  <div id="bottom-banner">
+      <div class="mzp-l-content">
+        <div class="banner-title">
+          <p>{{ _('You deserve peace of mind everywhere.') }}</p>
+        </div>
       </div>
-      <div class="download-firefox show-fxa-not-fx show-fxa-unsupported show-fxa-default">
-        <p class="show-fxa-not-fx show-fxa-default">{{_('Download Firefox to start using Sync.')}}</p>
-        <p class="show-fxa-unsupported ">{{_('Get the latest Firefox to start using Sync.')}}</p>
-        {{ download_firefox() }}
+      <div id="bottom-cta">
+        <div id="fxa-sign-up-form">
+          <div class="fxa-cta show-fxa-supported-signed-in show-fxa-supported-signed-out">
+            <div class="show-fxa-supported-signed-in">
+              <ul class="mobile-download-buttons">
+                <li>
+                  {{ google_play_button(id=android_id, extra_data_attributes={'download-location': button_location}) }}
+                </li>
+                <li>
+                  <a href="{{ firefox_ios_url(app_store_campaign) }}" data-link-type="download" data-download-os="iOS" data-download-location="{{ button_location }}" id="{{ ios_id }}">
+                    <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="show-fxa-supported-signed-out">
+              {{ fxa_email_form(entrypoint='accounts-page', utm_source='accounts-page', utm_params={'campaign': 'fxa-embedded-form', 'content': 'accounts-page', 'medium': 'referral'}, button_class='button button-blue', button_text='Create an Account') }}
+              <div id="fxa-sign-in">
+                <p>{{_('Already have an account?')}} <a href="#">{{_('Sign In')}}</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="mobile-ctas">
+            <span class="show-fxa-ios">
+              <a class="button button-hollow button-light" rel="external" href="https://support.mozilla.org/kb/sync-firefox-bookmarks-and-browsing-history-iOS">{{_('Set up Sync for iOS')}}</a>
+            </span>
+            {# L10n: Line break below for visual formatting only. #}
+            <span class="show-fxa-android">
+              <a class="button button-hollow button-light" rel="external" href="https://support.mozilla.org/kb/sync-bookmarks-tabs-history-and-passwords-android">{{_('Set up Sync on your <br>Android device')}}</a>
+            </span>
+          </div>
+          <div class="download-firefox show-fxa-not-fx show-fxa-unsupported show-fxa-default">
+            {{ download_firefox(dom_id=download_id, download_location=button_location) }}
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</main>
-{% endblock %}
+
+ {% endblock %}
 
 {% block js %}
   {{ js_bundle('firefox_accounts') }}

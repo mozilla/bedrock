@@ -592,4 +592,9 @@ redirectpatterns = (
 
     # issue 6186
     redirect(r'^vote/?', '/firefox/election/'),
+
+    # fxa
+    redirect(r'^firefox/accounts/features/?', '/firefox/accounts/'),
+    redirect(r'^firefox/features/sync/?', '/firefox/accounts/'),
+    redirect(r'^firefox/features/send-tabs/?', '/firefox/accounts/'),
 )
