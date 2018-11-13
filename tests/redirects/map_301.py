@@ -1069,7 +1069,7 @@ URLS = flatten((
     url_test('/firebird', 'http://www.firefox.com'),
     url_test('/foundation/privacy-policy.html', '/privacy/websites/'),
     url_test('/get-involved.html', '/contribute/'),
-    url_test('/glimpsesearch.html', 'http://lxr.mozilla.org/'),
+    url_test('/glimpsesearch.html', 'https://dxr.mozilla.org/'),
     url_test('/hacking/bonsai.html', 'http://developer.mozilla.org/en/Hacking_with_Bonsai'),
     url_test('/hacking/code-review-faq.html', 'http://developer.mozilla.org/en/Code_Review_FAQ'),
     url_test('/hacking/coding-introduction.html',
@@ -1962,13 +1962,13 @@ URLS = flatten((
     url_test('/projects/ui/accessibility/span-checkbox.html',
              '/access/samples/span-checkbox.html'),
     url_test('/projects/ui/accessibility/ISimpleDOMNode.idl',
-             'http://lxr.mozilla.org/seamonkey/source/'
+             'https://dxr.mozilla.org/seamonkey/source/'
              'accessible/public/msaa/ISimpleDOMNode.idl?raw=1'),
     url_test('/projects/ui/accessibility/ISimpleDOMText.idl',
-             'http://lxr.mozilla.org/seamonkey/source/'
+             'https://dxr.mozilla.org/seamonkey/source/'
              'accessible/public/msaa/ISimpleDOMText.idl?raw=1'),
     url_test('/projects/ui/accessibility/ISimpleDOMDocument.idl',
-             'http://lxr.mozilla.org/seamonkey/source/'
+             'https://dxr.mozilla.org/seamonkey/source/'
              'accessible/public/msaa/ISimpleDOMDocument.idl?raw=1'),
     url_test('/projects/ui/accessibility/accesskey.html',
              '/access/keyboard/accesskey'),
