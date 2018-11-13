@@ -1331,6 +1331,13 @@
     },
     {
       "files": [
+        "js/base/mozilla-traffic-cop.js",
+        "js/firefox/new/compare-ie-experiment.js"
+      ],
+      "name": "firefox_new_compare_ie_experiment"
+    },
+    {
+      "files": [
         "js/libs/jquery.waypoints.min.js",
         "js/libs/jquery.waypoints-sticky.min.js",
         "js/hubs/sub-nav.js"
