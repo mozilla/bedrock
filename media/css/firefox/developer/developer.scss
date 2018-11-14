@@ -5,6 +5,7 @@
 @import '../../pebbles/includes/lib';
 @import '../../pebbles/components/newsletter';
 @import '../../hubs/sub-nav';
+@import '../../hubs/nav-download-button-remove';
 
 @import 'includes/lib';
 
@@ -81,14 +82,6 @@
                 }
             }
         }
-    }
-
-    // Conflicting download button in nav is confusing.
-    // Hide it for now pending a better solution.
-    #global-nav-download-firefox,
-    #sub-nav-download-firefox,
-    #nav-download-firefox {
-        display: none;
     }
 
     // Adjust nav width now that we don't need room for a button.
