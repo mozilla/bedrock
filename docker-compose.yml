@@ -55,7 +55,7 @@ services:
       - ./media/:/app/media:delegated
       - ./root_files/:/app/root_files:delegated
       - ./scripts/:/app/scripts:delegated
-      - ./test/:/app/test:delegated
+      - ./tests/:/app/tests:delegated
       - ./vendor-local/:/app/vendor-local:delegated
       - ./wsgi/:/app/wsgi:delegated
 
