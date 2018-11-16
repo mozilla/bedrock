@@ -1,0 +1,53 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base-pebbles.html" %}
+
+{% block page_title %}Give email, watch concert{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_concerts') }}
+{% endblock %}
+
+{% block content %}
+<main role="main">
+  <div class="content">
+    <small>JS will need to be enabled...</small>
+
+    <div class="conditional-content verified-content">
+      <p>You have been verified!</p>
+
+      <p><a href="https://www.buzzfeed.com/francescawade/introducing-the-animal-philharmonic-orchestra-77km" rel="external">Here is a tiny concert, just for you!</a></p>
+    </div>
+
+    <div class="conditional-content form-content">
+      <div id="fxa-form-wrapper" class="fxa-form" data-fxa-metrics-endpoint="{{ settings.FXA_ENDPOINT }}metrics-flow" data-fxa-oauth-api-endpoint="{{ settings.FXA_OAUTH_API_ENDPOINT }}">
+        Enter your email to be notified as the special event approaches.
+
+        <form action="{{ settings.FXA_OAUTH_ENDPOINT }}">
+          <input type="hidden" name="client_id" value="{{ settings.FXA_OAUTH_CLIENT_ID }}" />
+          <input type="hidden" name="scope" value="profile" />
+          <input type="hidden" name="state" id="state" value="" />
+          <input type="hidden" name="flow_id" id="flow_id" value="" />
+          <input type="hidden" name="flow_begin_time" id="flow_begin_time" value="" />
+          <input type="hidden" name="action" value="email" />
+          <input type="hidden" name="utm_campaign" id="utm_campaign" value="firefox-concert" />
+          <input type="hidden" name="utm_source" id="utm_source" value="mozilla.org" />
+          <!-- TODO: moar utm_ params?? -->
+
+          <label for="name">Email:</label>
+          <input type="email" name="email" required />
+          <button id="submit" type="submit" disabled>Submit</button>
+        </form>
+
+        <a id="fxa-sign-in" href="{{ settings.FXA_OAUTH_ENDPOINT }}/signup?client_id={{ settings.FXA_OAUTH_CLIENT_ID }}&scope=profile&action=email" rel="external">Sign In</a>
+      </div>
+    </div>{#-- /.form-content --#}
+  </div>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_concerts') }}
+{% endblock %}

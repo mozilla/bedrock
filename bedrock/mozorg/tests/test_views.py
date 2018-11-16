@@ -12,7 +12,7 @@ from django.http.response import Http404
 from django.test.client import RequestFactory
 
 from bedrock.base.urlresolvers import reverse
-from mock import ANY, patch
+from mock import ANY, Mock, patch
 from nose.tools import eq_, ok_
 
 from bedrock.mozorg.tests import TestCase
@@ -191,3 +191,103 @@ class TestAboutPage(TestCase):
         req.locale = 'de'
         views.about_view(req)
         render_mock.assert_called_once_with(req, 'mozorg/about.html')
+
+
+class TestOAuthFxa(TestCase):
+    def setUp(self):
+        self.rf = RequestFactory()
+
+    def test_missing_expected_state(self):
+        req = self.rf.get('/mozorg/oauth/fxa?state=thedude&code=abides')
+        response = views.oauth_fxa(req)
+        eq_(response.status_code, 302)
+        eq_(response['Location'], '/oauth/fxa/error/')
+
+    def test_missing_provided_state(self):
+        req = self.rf.get('/mozorg/oauth/fxa?code=abides')
+        req.COOKIES['fxaOauthState'] = 'thedude'
+        response = views.oauth_fxa(req)
+        eq_(response.status_code, 302)
+        eq_(response['Location'], '/oauth/fxa/error/')
+
+    def test_state_mismatch(self):
+        req = self.rf.get('/mozorg/oauth/fxa?state=thedude&code=abides')
+        req.COOKIES['fxaOauthState'] = 'walter'
+        response = views.oauth_fxa(req)
+        eq_(response.status_code, 302)
+        eq_(response['Location'], '/oauth/fxa/error/')
+
+    def test_missing_code(self):
+        req = self.rf.get('/mozorg/oauth/fxa?state=thedude')
+        req.COOKIES['fxaOauthState'] = 'thedude'
+        response = views.oauth_fxa(req)
+        eq_(response.status_code, 302)
+        eq_(response['Location'], '/oauth/fxa/error/')
+
+    @patch('bedrock.mozorg.views.get_fxa_oauth_token')
+    def test_token_failure(self, gfot_mock):
+        req = self.rf.get('/mozorg/oauth/fxa?state=thedude&code=abides')
+        req.COOKIES['fxaOauthState'] = 'thedude'
+        gfot_mock.return_value = None
+        response = views.oauth_fxa(req)
+        eq_(response.status_code, 302)
+        eq_(response['Location'], '/oauth/fxa/error/')
+
+    @patch('bedrock.mozorg.views.get_fxa_oauth_token')
+    @patch('bedrock.mozorg.views.get_fxa_profile_email')
+    def test_email_failure(self, gfpe_mock, gfot_mock):
+        req = self.rf.get('/mozorg/oauth/fxa?state=thedude&code=abides')
+        req.COOKIES['fxaOauthState'] = 'thedude'
+        gfot_mock.return_value = 'atoken'
+        gfpe_mock.return_value = None
+        response = views.oauth_fxa(req)
+        eq_(response.status_code, 302)
+        eq_(response['Location'], '/oauth/fxa/error/')
+
+    @patch('bedrock.mozorg.views.get_fxa_oauth_token')
+    @patch('bedrock.mozorg.views.get_fxa_profile_email')
+    @patch('bedrock.mozorg.views.fxa_concert_rsvp')
+    def test_rsvp_failure(self, rsvp_mock, gfpe_mock, gfot_mock):
+        req = self.rf.get('/mozorg/oauth/fxa?state=thedude&code=abides')
+        req.COOKIES['fxaOauthState'] = 'thedude'
+        gfot_mock.return_value = 'atoken'
+        gfpe_mock.return_value = 'maude@example.com'
+        rsvp_mock.return_value = None
+        response = views.oauth_fxa(req)
+        eq_(response.status_code, 302)
+        eq_(response['Location'], '/oauth/fxa/error/')
+
+    @patch('bedrock.mozorg.views.get_fxa_oauth_token')
+    @patch('bedrock.mozorg.views.get_fxa_profile_email')
+    @patch('bedrock.mozorg.views.fxa_concert_rsvp')
+    def test_success(self, rsvp_mock, gfpe_mock, gfot_mock):
+        req = self.rf.get('/mozorg/oauth/fxa?state=thedude&code=abides')
+        req.COOKIES['fxaOauthState'] = 'thedude'
+        gfot_mock.return_value = 'atoken'
+        gfpe_mock.return_value = 'maude@example.com'
+        response = views.oauth_fxa(req)
+        assert response.cookies['fxaOauthVerified'].value == 'True'
+        eq_(response.status_code, 302)
+        eq_(response['Location'], '/firefox/concerts/')
+
+    @patch('bedrock.mozorg.views.get_fxa_oauth_token')
+    @patch('bedrock.mozorg.views.get_fxa_profile_email')
+    @patch('bedrock.mozorg.views.fxa_concert_rsvp')
+    def test_rsvp_is_firefox(self, rsvp_mock, gfpe_mock, gfot_mock):
+        req = self.rf.get('/mozorg/oauth/fxa?state=thedude&code=abides', HTTP_USER_AGENT='Firefox')
+        req.COOKIES['fxaOauthState'] = 'thedude'
+        gfot_mock.return_value = 'atoken'
+        gfpe_mock.return_value = 'maude@example.com'
+        views.oauth_fxa(req)
+        rsvp_mock.assert_called_with('maude@example.com', True)
+
+    @patch('bedrock.mozorg.views.get_fxa_oauth_token')
+    @patch('bedrock.mozorg.views.get_fxa_profile_email')
+    @patch('bedrock.mozorg.views.fxa_concert_rsvp')
+    def test_rsvp_not_firefox(self, rsvp_mock, gfpe_mock, gfot_mock):
+        req = self.rf.get('/mozorg/oauth/fxa?state=thedude&code=abides', HTTP_USER_AGENT='Safari')
+        req.COOKIES['fxaOauthState'] = 'thedude'
+        gfot_mock.return_value = 'atoken'
+        gfpe_mock.return_value = 'maude@example.com'
+        views.oauth_fxa(req)
+        rsvp_mock.assert_called_with('maude@example.com', False)

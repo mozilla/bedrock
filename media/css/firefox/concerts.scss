@@ -1,0 +1,15 @@
+.conditional-content {
+    display: none;
+}
+
+.form .conditional-content.form-content {
+    display: block;
+}
+
+.error .conditional-content.error-content {
+    display: block;
+}
+
+.verified .conditional-content.verified-content {
+    display: block;
+}

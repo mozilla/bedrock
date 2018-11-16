@@ -1174,11 +1174,24 @@ FXA_IFRAME_SRC_MOZILLAONLINE = config('FXA_IFRAME_SRC_MOZILLAONLINE',
                                       default='https://accounts.firefox.com.cn/')
 
 # Fx Accounts iframe-less form & JS endpoint
+# This URL *MUST* end in a traling slash!
 FXA_ENDPOINT = config('FXA_ENDPOINT',
                        default='https://accounts.firefox.com/')
 
 FXA_ENDPOINT_MOZILLAONLINE = config('FXA_ENDPOINT_MOZILLAONLINE',
-                                      default='https://accounts.firefox.com.cn/')
+                                    default='https://accounts.firefox.com.cn/')
+
+# Fx Accounts OAuth relier flow URLs
+# TODO: we need to make sure there's a slash before 'oauth' below
+FXA_OAUTH_ENDPOINT = FXA_ENDPOINT + 'oauth'
+
+FXA_OAUTH_API_ENDPOINT = config('FXA_OAUTH_API_ENDPOINT',
+                                default='https://oauth-accounts.firefox.com/v1')
+
+# configures the PyFxA library
+FXA_OAUTH_SERVER_ENV = config('FXA_OAUTH_SERVER_ENV', default='production')
+FXA_OAUTH_CLIENT_ID = config('FXA_OAUTH_CLIENT_ID', default='')
+FXA_OAUTH_CLIENT_SECRET = config('FXA_OAUTH_CLIENT_SECRET', default='')
 
 # Google Play and Apple App Store settings
 from .appstores import (GOOGLE_PLAY_FIREFOX_LINK,  # noqa
