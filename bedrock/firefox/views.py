@@ -10,7 +10,7 @@ from collections import OrderedDict
 from urlparse import urlparse
 
 from django.conf import settings
-from django.http import Http404, HttpResponsePermanentRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponsePermanentRedirect
 from django.utils.cache import patch_response_headers
 from django.utils.encoding import force_text
 from django.views.decorators.csrf import csrf_exempt
@@ -787,3 +787,10 @@ class FeaturesPrivateBrowsingView(BlogPostsView):
 
 def firefox_home(request):
     return l10n_utils.render(request, 'firefox/home.html')
+
+
+def firefox_concerts(request):
+    if switch('firefox_concert_series'):
+        return l10n_utils.render(request, 'firefox/concerts.html')
+    else:
+        return HttpResponseRedirect(reverse('firefox'))

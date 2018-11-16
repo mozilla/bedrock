@@ -11,6 +11,12 @@ from django.http import HttpResponse
 from django.shortcuts import render as django_render
 from django.views.decorators.csrf import csrf_exempt
 
+import basket
+import fxa.constants
+import fxa.errors
+import fxa.oauth
+import fxa.profile
+
 import tweepy
 import commonware.log
 from lib import l10n_utils
@@ -22,6 +28,11 @@ except ImportError:
 
 
 log = commonware.log.getLogger('mozorg.util')
+
+FXA_CLIENTS = {
+    'oauth': None,
+    'profile': None,
+}
 
 
 class HttpResponseJSON(HttpResponse):
@@ -170,3 +181,53 @@ def get_tweets(account):
         return api.user_timeline(**account_opts)
     except Exception:
         return None
+
+
+def get_fxa_clients():
+    """Return and/or create FxA OAuth client instances"""
+    if FXA_CLIENTS['oauth'] is None:
+        server_urls = fxa.constants.ENVIRONMENT_URLS.get(settings.FXA_OAUTH_SERVER_ENV)
+        FXA_CLIENTS['oauth'] = fxa.oauth.Client(server_url=server_urls['oauth'])
+        FXA_CLIENTS['profile'] = fxa.profile.Client(server_url=server_urls['profile'])
+
+    return FXA_CLIENTS['oauth'], FXA_CLIENTS['profile']
+
+
+def get_fxa_oauth_token(code):
+    """Trade a one-time code for a longer use FxA OAuth token"""
+    oauthClient, _ = get_fxa_clients()
+
+    try:
+        token_resp = oauthClient.trade_code(code, client_id=settings.FXA_OAUTH_CLIENT_ID, client_secret=settings.FXA_OAUTH_CLIENT_SECRET)
+        token = token_resp['access_token']
+    except:
+        token = None
+
+    return token
+
+
+def get_fxa_profile_email(token):
+    """Retrieve the email address associated with an FxA OAuth token"""
+    _, profileClient = get_fxa_clients()
+
+    try:
+        email = profileClient.get_email(token)
+    except:
+        email = None
+
+    return email
+
+
+def fxa_concert_rsvp(email, isFx):
+    data = {
+        'email': email,
+        'is_firefox': 'Y' if isFx else 'N',
+        'campaign_id': 'firefox-concert-series-Q4-2018',  # or something. just here in case there's another of these some day.
+        'api_key': settings.BASKET_API_KEY,
+    }
+
+    try:
+        basket.request('post', 'fxa-concerts-rsvp', data=data)
+        return True
+    except:
+        return False

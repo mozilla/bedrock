@@ -41,6 +41,12 @@
     },
     {
       "files": [
+        "css/firefox/concerts.scss"
+      ],
+      "name": "firefox_concerts"
+    },
+    {
+      "files": [
         "css/base/notification-banner.less",
         "css/firefox/firstrun/firstrun.less",
         "css/base/mozilla-fxa-iframe.less"
@@ -1018,6 +1024,12 @@
         "js/base/core-datalayer-page-id.js"
       ],
       "name": "site"
+    },
+    {
+      "files": [
+        "js/firefox/concerts.js"
+      ],
+      "name": "firefox_concerts"
     },
     {
       "files": [

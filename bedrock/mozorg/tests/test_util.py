@@ -9,11 +9,23 @@ import os
 from django.test import RequestFactory
 from django.test.utils import override_settings
 
-from mock import ANY, patch
+import basket
+import fxa.constants
+import fxa.errors
+
+from mock import ANY, Mock, patch
 from nose.tools import ok_, eq_
 
 from bedrock.mozorg.tests import TestCase
-from bedrock.mozorg.util import get_fb_like_locale, get_tweets, page
+from bedrock.mozorg.util import (
+    get_fb_like_locale,
+    get_tweets,
+    page,
+    get_fxa_clients,
+    get_fxa_oauth_token,
+    get_fxa_profile_email,
+    fxa_concert_rsvp,
+)
 
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
@@ -119,3 +131,90 @@ class TestPageUtil(TestCase):
         url = page('lebowski/urban_achievers', 'lebowski/achievers.html',
                    url_name='proud.we.are.of.all.of.them')
         eq_(url.name, 'proud.we.are.of.all.of.them')
+
+
+@override_settings(FXA_OAUTH_SERVER_ENV='stable')
+@patch('bedrock.mozorg.util.fxa.oauth')
+@patch('bedrock.mozorg.util.fxa.profile')
+class GetFxAClientsTests(TestCase):
+    def test_get_fxa_clients(self, profile_mock, oauth_mock):
+        oauth, profile = get_fxa_clients()
+        oauth_mock.Client.assert_called_with(server_url=fxa.constants.STABLE_URLS['oauth'])
+        profile_mock.Client.assert_called_with(server_url=fxa.constants.STABLE_URLS['profile'])
+        assert oauth == oauth_mock.Client.return_value
+        assert profile == profile_mock.Client.return_value
+
+        get_fxa_clients()
+        assert oauth_mock.Client.call_count == 1
+
+
+@patch('bedrock.mozorg.util.get_fxa_clients')
+class FxAOauthTests(TestCase):
+    @override_settings(FXA_OAUTH_CLIENT_ID='12345', FXA_OAUTH_CLIENT_SECRET='67890')
+    def test_get_fxa_oauth_token_error(self, gfc_mock):
+        oauth_mock = Mock()
+        gfc_mock.return_value = oauth_mock, None
+        trade_code = oauth_mock.trade_code
+        trade_code.side_effect = fxa.errors.ClientError()
+        assert not get_fxa_oauth_token('abc123')
+        trade_code.assert_called_with('abc123', client_id='12345', client_secret='67890')
+
+    @override_settings(FXA_OAUTH_CLIENT_ID='12345', FXA_OAUTH_CLIENT_SECRET='67890')
+    def test_get_fxa_oauth_token_success(self, gfc_mock):
+        oauth_mock = Mock()
+        gfc_mock.return_value = oauth_mock, None
+        trade_code = oauth_mock.trade_code
+        trade_code.return_value = {'access_token': 'goodtoken'}
+        eq_(get_fxa_oauth_token('abc123'), 'goodtoken')
+        trade_code.assert_called_with('abc123', client_id='12345', client_secret='67890')
+
+    def test_get_fxa_profile_email_error(self, gfc_mock):
+        profile_mock = Mock()
+        gfc_mock.return_value = None, profile_mock
+        get_email = profile_mock.get_email
+        get_email.side_effect = fxa.errors.ClientError()
+        assert not get_fxa_profile_email('ralphs-card')
+        get_email.assert_called_with('ralphs-card')
+
+    def test_get_fxa_profile_email_success(self, gfc_mock):
+        profile_mock = Mock()
+        gfc_mock.return_value = None, profile_mock
+        get_email = profile_mock.get_email
+        get_email.return_value = 'maude@example.com'
+        eq_(get_email('ralphs-card'), 'maude@example.com')
+        get_email.assert_called_with('ralphs-card')
+
+
+@override_settings(BASKET_API_KEY='123456')
+class FxARSVPTests(TestCase):
+    def setUp(self):
+        patcher = patch('bedrock.mozorg.util.basket.request')
+        self.mock_rsvp = patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def test_is_fx(self):
+        fxa_concert_rsvp('thedude@example.com', True)
+
+        self.mock_rsvp.assert_called_with('post', 'fxa-concerts-rsvp', data={
+            'email': 'thedude@example.com',
+            'is_firefox': 'Y',
+            'campaign_id': 'firefox-concert-series-Q4-2018',
+            'api_key': '123456'
+        })
+
+    def test_not_fx(self):
+        fxa_concert_rsvp('thedude@example.com', False)
+
+        self.mock_rsvp.assert_called_with('post', 'fxa-concerts-rsvp', data={
+            'email': 'thedude@example.com',
+            'is_firefox': 'N',
+            'campaign_id': 'firefox-concert-series-Q4-2018',
+            'api_key': '123456'
+        })
+
+    def test_basket_success(self):
+        assert fxa_concert_rsvp('thedude@example.com', True) == True
+
+    def test_basket_failure(self):
+        self.mock_rsvp.side_effect = basket.BasketException
+        assert fxa_concert_rsvp('thedude@example.com', True) == False
