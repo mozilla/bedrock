@@ -4,6 +4,7 @@
 
 {% if translations|length > 1 %}
 <form id="lang_form" method="get" action="#">
+  <a class="mzp-c-cta-link" href="{{ url('mozorg.locales') }}">{{ _('Language') }}</a>
   <label for="page-language-select">{{ _('Language') }}</label>
   <select id="page-language-select" name="lang" dir="ltr">
     {% for code, label in translations|dictsort -%}
