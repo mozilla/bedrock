@@ -1246,4 +1246,12 @@ URLS = flatten((
 
     # Issue 6209
     url_test('/pocket/', '/firefox/pocket/'),
+
+    # Issue 6476
+    url_test('/foundation/', 'https://foundation.mozilla.org/'),
+    url_test('/foundation/about/', 'https://foundation.mozilla.org/about/'),
+    url_test('/foundation/documents/', 'https://foundation.mozilla.org/about/public-records/'),
+    url_test('/foundation/issues/', 'https://foundation.mozilla.org/initiatives/'),
+    url_test('/foundation/leadership-network/', 'https://foundation.mozilla.org/'),
+    url_test('/foundation/advocacy/', 'https://foundation.mozilla.org/'),
 ))
