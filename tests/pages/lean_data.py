@@ -7,12 +7,12 @@ from selenium.webdriver.common.by import By
 from pages.base import BasePage
 
 
-class AboutPage(BasePage):
+class LeanDataPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/about/'
+    URL_TEMPLATE = '/{locale}/about/policy/lean-data{slug}'
 
-    _read_mission_button_locator = (By.ID, 'read-mission-button')
+    _contact_button_locator = (By.ID, 'contact-button')
 
     @property
-    def is_read_mission_button_displayed(self):
-        return self.is_element_displayed(*self._read_mission_button_locator)
+    def is_contact_button_displayed(self):
+        return self.is_element_displayed(*self._contact_button_locator)

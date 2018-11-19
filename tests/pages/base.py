@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
 from pypom import Page, Region
-from regions.newsletter import NewsletterEmbedForm
+from regions.newsletter import NewsletterEmbedForm, LegacyNewsletterEmbedForm
 
 
 class BasePage(Page):
@@ -33,6 +33,10 @@ class BasePage(Page):
     @property
     def newsletter(self):
         return NewsletterEmbedForm(self)
+
+    @property
+    def legacy_newsletter(self):
+        return LegacyNewsletterEmbedForm(self)
 
     class Navigation(Region):
 
