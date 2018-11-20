@@ -25,7 +25,6 @@
         var flowIdField = document.getElementById('flow_id');
         var flowBeginTimeField = document.getElementById('flow_begin_time');
         var stateField = document.getElementById('state');
-        var submit = document.getElementById('submit');
         var fxaSignIn = document.getElementById('fxa-sign-in');
 
         // check for an existing state value in a cookie
@@ -63,8 +62,6 @@
                 flowBeginTimeField.value = r.flowBeginTime;
             }).catch(function() {
                 // silently fail, leaving flow_id and flow_begin_time as default empty value
-            }).finally(function() {
-                submit.disabled = false;
             });
         }
     }

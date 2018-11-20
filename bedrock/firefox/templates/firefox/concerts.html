@@ -34,7 +34,7 @@
 
           <label for="name">Email:</label>
           <input type="email" name="email" required />
-          <button id="submit" type="submit" disabled>Submit</button>
+          <button id="submit" type="submit">Submit</button>
         </form>
 
         <a id="fxa-sign-in" href="{{ settings.FXA_OAUTH_ENDPOINT }}/signup?client_id={{ settings.FXA_OAUTH_CLIENT_ID }}&scope=profile&action=email" rel="external">Sign In</a>
