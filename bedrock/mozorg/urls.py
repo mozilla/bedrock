@@ -300,6 +300,9 @@ urlpatterns = (
     page('moss/mission-partners-india', 'mozorg/moss/mission-partners-india.html'),
     page('moss/secure-open-source', 'mozorg/moss/secure-open-source.html'),
 
+    url(r'^oauth/fxa/$', views.oauth_fxa, name='mozorg.oauth.fxa'),
+    url(r'^oauth/fxa/error/$', views.oauth_fxa_error, name='mozorg.oauth.fxa-error'),
+
     page('plugincheck', 'mozorg/plugincheck.html'),
     url(r'^robots.txt$', views.Robots.as_view(), name='robots.txt'),
     url('^technology/$', views.TechnologyView.as_view(), name='mozorg.technology'),
