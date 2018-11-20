@@ -13,8 +13,8 @@ urlpatterns = (
     page('advocacy', 'foundation/advocacy.html'),
     page('leadership-network', 'foundation/leadership-network.html'),
 
-    # Bug 1419120  /foundation/annualreport/2016/
-    redirect(r'^annualreport/$', 'foundation.annualreport.2016.index',
+    # Issue 6478 /foundation/annualreport/2017/
+    redirect(r'^annualreport/$', 'foundation.annualreport.2017.index',
              name='foundation.annualreport', locale_prefix=False),
 
     # Older annual report financial faqs - these are linked from blog posts
@@ -65,6 +65,8 @@ urlpatterns = (
     page('annualreport/2015/faq', 'foundation/annualreport/2015/faq.html'),
 
     page('annualreport/2016', 'foundation/annualreport/2016/index.html'),
+
+    page('annualreport/2017', 'foundation/annualreport/2017/index.html'),
 
     page('feed-icon-guidelines', 'foundation/feed-icon-guidelines/index.html'),
     page('feed-icon-guidelines/faq', 'foundation/feed-icon-guidelines/faq.html'),
