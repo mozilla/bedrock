@@ -7,11 +7,6 @@ from bedrock.redirects.util import redirect
 
 
 urlpatterns = (
-    page('', 'foundation/index.html'),
-    page('about', 'foundation/about.html'),
-    page('issues', 'foundation/issues.html'),
-    page('advocacy', 'foundation/advocacy.html'),
-    page('leadership-network', 'foundation/leadership-network.html'),
 
     # Issue 6478 /foundation/annualreport/2017/
     redirect(r'^annualreport/$', 'foundation.annualreport.2017.index',
@@ -89,7 +84,4 @@ urlpatterns = (
     page('trademarks/community-edition-permitted-changes', 'foundation/trademarks/community-edition-permitted-changes.html'),
     page('trademarks/community-edition-policy', 'foundation/trademarks/community-edition-policy.html'),
     page('trademarks/poweredby/faq', 'foundation/trademarks/poweredby/faq.html'),
-
-    # documents
-    page('documents', 'foundation/documents/index.html'),
 )

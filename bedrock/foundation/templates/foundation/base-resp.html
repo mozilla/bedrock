@@ -15,18 +15,18 @@
 {% block body_attrs %}{{ super() }} data-global-nav-current-link="about-us"{% endblock %}
 
 {% set navigation_bar = [
-    (url('foundation.index'), 'index', _('The Mozilla Foundation')),
-    (url('foundation.about'), 'about', _('About the Foundation')),
+    ('https://foundation.mozilla.org/', 'index', _('The Mozilla Foundation')),
+    ('https://foundation.mozilla.org/about/', 'about', _('About the Foundation')),
     ('https://mzl.la/foundation-strategy', 'strategy', _('2016-2018 Strategy')),
     (url('foundation.licensing'), 'licensing', _('Licensing & Trademarks')),
-    (url('foundation.documents.index'), 'documents', _('Public Documents')),
+    ('https://foundation.mozilla.org/about/public-records/', 'documents', _('Public Documents')),
     ('https://careers.mozilla.org/', 'careers', _('Careers')),
 ] %}
 
 {% set programs = [
-  (url('foundation.issues'), 'issues', _('Key Internet Issues')),
-  (url('foundation.advocacy'), 'advocacy', _('Advocacy')),
-  (url('foundation.leadership-network'), 'leadership-network', _('Leadership Network'))
+  ('https://foundation.mozilla.org/initiatives/', 'issues', _('Key Internet Issues')),
+  ('https://foundation.mozilla.org/', 'advocacy', _('Advocacy')),
+  ('https://foundation.mozilla.org/', 'leadership-network', _('Leadership Network'))
 ] %}
 
 {% block content %}
