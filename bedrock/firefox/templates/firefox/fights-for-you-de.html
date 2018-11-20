@@ -1,0 +1,113 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% from "macros-protocol.html" import call_out, call_out_compact, hero, feature_card with context %}
+
+{% extends "base-protocol.html" %}
+
+{% block page_title %} Firefox Fights for you. Wir schützen Deine Daten und verkaufen sie niemals.{% endblock %}
+{% block page_desc %}Firefox respektiert Deine Privatsphäre und macht es Dir leicht, Deine Daten zu schützen. Mit klaren Privatsphäre-Optionen und Tracking-Schutz. Du entscheidest, was Du teilst und wann.{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('fights-for-you') }}
+{% endblock %}
+
+{% block body_id %}fights-for-you{% endblock %}
+
+{% block content %}
+
+<div class="fffy-c-hero">
+  {% call hero(
+    title='Firefox Fights For You',
+    desc='Privatsphäre sollte einfach sein. Daten sicher. Einstellungen eindeutig. Wir kämpfen für ein besseres Internet – mit Produkten, die Dir auch online die Kontrolle über Dein Leben geben.',
+    class='mzp-has-image mzp-t-firefox mzp-t-product-firefox mzp-t-dark',
+    include_cta=True
+  ) %}
+  {% endcall %}
+
+  <div class="fffy-c-product mzp-l-content">
+    {{ high_res_img('firefox/fights-for-you/hero.png', {'alt': '', 'width': '904', 'height': '646'}) }}
+  </div>
+
+  {% call call_out(
+    title='Deine Daten gehören Dir. Wir verkaufen sie niemals.',
+    desc='Firefox respektiert Deine Privatsphäre und macht es Dir leicht, Deine Daten zu schützen. Du entscheidest, was Du teilst und wann.',
+    class='mzp-t-dark mzp-t-firefox',
+    include_cta=True
+  ) %}
+    <div class="download-firefox">
+      {{ download_firefox(download_location='primary cta') }}
+    </div>
+  {% endcall %}
+</div>
+
+<div class="fffy-c-features">
+  <section class="mzp-l-content">
+    {% call feature_card(
+      title='Dein Schutz vor Hackern',
+      image_url='firefox/fights-for-you/pic-monitor.jpg',
+      aspect_ratio='mzp-has-aspect-16-9',
+      class='mzp-l-card-feature-left-third mzp-t-firefox fffy-t-monitor',
+      link_url='https://monitor.firefox.com',
+      link_cta='Jetzt zu Firefox Monitor',
+      ga_title='Try Monitor'
+    ) %}
+      <p>Warst Du schon einmal von einer Datenpanne betroffen? Firefox Monitor ist ein sicherer Weg, es herauszufinden. Wir können Dich sogar warnen, sobald wir bemerken, dass Du gehackt wurdest.</p>
+    {% endcall %}
+
+    {% call feature_card(
+      title='Deine Privatsphäre – ohne Wenn und Aber',
+      image_url='firefox/fights-for-you/pic-focus.jpg',
+      aspect_ratio='mzp-has-aspect-16-9',
+      class='mzp-l-card-feature-right-third mzp-t-firefox fffy-t-focus',
+      link_url='http://hyperurl.co/qnwyu5',
+      link_cta='Hol Dir Firefox Klar',
+      ga_title='Download Firefox Focus'
+    ) %}
+      <p>Die Firefox Klar App blockiert ganz automatisch Elemente zur Aktivitätenverfolgung und damit auch unerwünschte Inhalte. Noch ein Plus: Weniger Tracking bringt mehr Browser-Speed.</p>
+    {% endcall %}
+
+    {% call feature_card(
+      title='Good Tech für Dich – transparent und ehrlich',
+      image_url='firefox/fights-for-you/pic-privacy.jpg',
+      aspect_ratio='mzp-has-aspect-16-9',
+      class='mzp-l-card-feature-left-third mzp-t-firefox fffy-t-privacy',
+      link_url='https://blog.mozilla.org/internetcitizen/de/2018/08/31/so-stehen-wir-bei-mozilla-zu-deiner-privatsphaere/',
+      link_cta='Privatsphäre bei Firefox',
+      ga_title='Read our Policy'
+    ) %}
+      <p>Firefox Produkte werden für Menschen entwickelt, nicht für Profit. Wir erheben nur wenig Daten und sagen Dir immer, wofür wir sie verwenden. Unsere Datenschutz-Grundsätze geben bei allem, was wir tun, den Ton an. </p>
+    {% endcall %}
+  </section>
+
+  {# can't use macro here because of span tags in title #}
+  <section class="mzp-c-call-out-compact mzp-t-firefox mzp-t-dark fffy-c-footer-callout">
+    <div class="mzp-l-content">
+      <div class="mzp-c-call-out-content">
+        <div class="mzp-c-call-out-container">
+          <h2 class="mzp-c-call-out-title"><span>Dein Leben.</span> <span>Deine Privatsphäre.</span> <span>Dein Browser.</span><br><span>Firefox fights for you.</span></h2>
+        </div>
+      </div>
+      <div class="mzp-c-call-out-cta">
+        <div class="mzp-c-call-out-cta-container">
+          <div class="download-firefox">
+            {{ download_firefox(download_location='secondary cta') }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% if switch('fffy-survey', ['en-US']) %}
+    <div id="fffy-survey-link" class="mzp-l-content">
+        Please help us out by taking this <a href="https://www.surveygizmo.com/s3/4693873/FFFY-Heartbeat-Survey" target="_blank" rel="noopener noreferrer" data-link-type="link" data-link-name="survey">short survey</a>.
+    </div>
+  {% endif %}
+</div>
+
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('fights-for-you') }}
+{% endblock %}

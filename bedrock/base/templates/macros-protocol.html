@@ -26,6 +26,35 @@
 </section>
 {%- endmacro %}
 
+{# Hero: https://protocol.mozilla.org/patterns/organisms/hero.html #}
+{% macro hero(title, desc=None, class=None, include_cta=False, heading_level=2, image_url=None, include_highres_image=False, image_alt='') -%}
+<section class="mzp-c-hero{% if class %} {{ class }}{% endif %}{%if image_url%} mzp-has-image{% endif %}">
+  <div class="mzp-l-content">
+    <div class="mzp-c-hero-body">
+      <h{{ heading_level }} class="mzp-c-hero-title">{{ title }}</h{{ heading_level }}>
+      {% if desc %}
+      <div class="mzp-c-hero-desc">
+        <p>{{ desc }}</p>
+      </div>
+      {% endif %}
+      {% if include_cta %}
+        {{ caller() }}
+      {% endif %}
+    </div>
+  </div>
+  {% if image_url %}
+  <div class="mzp-c-hero-image">
+    {% set image = image_url if include_highres_image else 'img/' + image_url %}
+    {% if include_highres_image %}
+      {{ high_res_img(image, {'alt': image_alt}) }}
+    {% else %}
+      <img src="{{ static(image) }}" alt="">
+    {% endif %}
+  </div>
+  {% endif %}
+</section>
+{%- endmacro %}
+
 
 {# Call Out: https://protocol.mozilla.org/patterns/organisms/call-out.html#call-out #}
 {% macro call_out(title, desc=None, class=None, include_cta=False, heading_level=2) -%}
