@@ -624,13 +624,7 @@ def download_thanks(request):
         else:
             template = 'firefox/new/scene2.html'
     elif locale == 'en-US':
-        if experience in ['portland', 'forgood']:
-            template = 'firefox/new/portland/scene2.html'
-        elif experience in ['portland-fast', 'fast']:
-            template = 'firefox/new/portland/scene2-fast.html'
-        elif experience in ['portland-safe', 'safe']:
-            template = 'firefox/new/portland/scene2-safe.html'
-        elif experience == 'betterbrowser':
+        if experience == 'betterbrowser':
             template = 'firefox/new/better-browser/scene2.html'
         else:
             template = 'firefox/new/scene2.html'
@@ -687,12 +681,6 @@ def new(request):
         elif locale == 'en-US':
             if variant == 'x':
                 template = 'firefox/new/fx/scene1.html'
-            elif experience in ['portland', 'forgood']:
-                template = 'firefox/new/portland/scene1.html'
-            elif experience in ['portland-fast', 'fast']:
-                template = 'firefox/new/portland/scene1-fast.html'
-            elif experience in ['portland-safe', 'safe']:
-                template = 'firefox/new/portland/scene1-safe.html'
             elif experience == 'betterbrowser':
                 template = 'firefox/new/better-browser/scene1.html'
             elif experience == 'safari':
