@@ -1361,6 +1361,13 @@
     },
     {
       "files": [
+        "js/base/mozilla-traffic-cop.js",
+        "js/firefox/home/experiment-pre-download-locales.js"
+      ],
+      "name": "experiment-firefox-home-pre-download-locales"
+    },
+    {
+      "files": [
         "js/libs/jquery.hoverIntent.min.js",
         "js/libs/jquery.waypoints.min.js",
         "js/libs/jquery.jcarousel.min.js",
