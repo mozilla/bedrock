@@ -920,12 +920,6 @@
     },
     {
       "files": [
-        "css/firefox/new/portland.scss"
-      ],
-      "name": "firefox_new_portland"
-    },
-    {
-      "files": [
         "css/newsletter/fxnewsletter-subscribe.less",
         "css/firefox/channel.less"
       ],
@@ -1285,13 +1279,6 @@
         "js/firefox/releasenotes.js"
       ],
       "name": "releasenotes"
-    },
-    {
-      "files": [
-        "js/firefox/new/variation-scene1.js",
-        "js/firefox/new/portland-scene1.js"
-      ],
-      "name": "firefox_new_scene1_portland"
     },
     {
       "files": [
