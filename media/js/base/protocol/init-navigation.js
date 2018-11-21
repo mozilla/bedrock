@@ -3,18 +3,14 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /**
- * Initialize Protocol language switcher.
+ * Initialize Protocol Navigation.
  */
 (function() {
     if (typeof Mzp === 'undefined' || typeof Mzp.Menu === 'undefined' || typeof Mzp.Navigation === 'undefined') {
         return;
     }
 
-    if (!Mzp.Menu.isSupported()) {
-        return;
-    }
-
-    var _mqWideNav = window.matchMedia('(min-width: 768px)');
+    var hasMediaQueries = typeof window.matchMedia !== 'undefined';
 
     function onImageLoad(e) {
         e.target.removeAttribute('data-src');
@@ -22,7 +18,7 @@
     }
 
     function handleOnMenuOpen(el) {
-        if (!_mqWideNav.matches) {
+        if (!hasMediaQueries || !window.matchMedia('(min-width: 768px)').matches) {
             return;
         }
 

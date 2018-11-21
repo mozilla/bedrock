@@ -6,7 +6,18 @@
   <div class="mzp-c-navigation-l-content">
     <div class="mzp-c-navigation-container">
       <button class="mzp-c-navigation-menu-button" type="button" aria-controls="mzp-c-navigation-items">{{ _('Menu') }}</button>
-      <div class="mzp-c-navigation-logo"><a href="{{ url('mozorg.home') }}" data-link-name="mozilla home icon" data-link-type="nav">Mozilla</a></div>
+      <div class="mzp-c-navigation-logo">
+        <a href="{{ url('mozorg.home') }}" data-link-name="mozilla home icon" data-link-type="nav">
+        {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
+        {% if LANG == 'en-CA' %}
+          Mozilla (CA)
+        {% elif LANG == 'en-GB' %}
+          Mozilla (UK)
+        {% else %}
+          Mozilla
+        {% endif %}
+        </a>
+      </div>
       <div class="mzp-c-navigation-items" id="mzp-c-navigation-items">
         <div class="mzp-c-navigation-download">
           {{ download_firefox(alt_copy=_('Download Firefox'), dom_id='protocol-nav-download-firefox', button_color='mzp-t-secondary mzp-t-small', download_location='nav') }}
