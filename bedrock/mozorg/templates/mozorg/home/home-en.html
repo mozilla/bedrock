@@ -92,56 +92,59 @@
         <!-- 1 -->
         {{ card(
           class='mzp-c-card-large',
-          tag_label=_('Pocket'),
-          title=_('Listen is a new way to read with Pocket'),
-          ga_title='Listen is a new way to read with Pocket',
-          desc=_('With Pocket’s enhanced listen feature, you can read or listen to content on the go.'),
-          image_url='home/2018/cards/pocket.png',
+          tag_label=_('Video'),
+          media_icon='mzp-has-video',
+          title=_('We keep your data safe, never sold.'),
+          ga_title='We keep your data safe, never sold.',
+          desc=_('You have the right to your own life — and your own data. Everything we make and do fights for you.'),
+          image_url='home/2018/cards/nov/ffyr.png',
+          include_highres_image=True,
           aspect_ratio='mzp-has-aspect-16-9',
-          link_url='http://getpocket.com/blog/2018/10/introducing-the-new-pocket/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+          link_url=url('firefox.fights-for-you'),
+          youtube_id='rZAQ6vgt8nE'
         )}}
         <!-- 2 -->
         {{ card(
-          tag_label=_('News'),
-          title=_('Firefox on The Cheddar'),
-          ga_title='Firefox on The Cheddar',
-          desc=_('We want to be there to help protect you in your web experience — Denelle Dixon on why we built enhanced tracking protection into Firefox.'),
-          image_url='home/2018/cards/cheddar.jpg',
+          tag_label=_('Firefox Concert Series'),
+          title=_('Here’s to you. Here’s to the internet.'),
+          ga_title='Here’s to you. Here’s to the internet.',
+          desc=_('Here’s to watching it for free, from all kinds of artists, right from Firefox. Sign up and rock out!'),
+          image_url='home/2018/cards/nov/concerts.jpg',
           aspect_ratio='mzp-has-aspect-1-1',
-          link_url='https://blog.mozilla.org/internetcitizen/2018/11/05/cheddar-firefox-enhanced-tracking-protection/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+          link_url=url('firefox.concerts')
         )}}
         <!-- 3 -->
         {{ card(
-          tag_label=_('Firefox'),
-          title=_('Latest Firefox rolls out Enhanced Tracking Protection'),
-          ga_title='Latest Firefox rolls out Enhanced Tracking Protection',
-          desc=_('Get the power to block third-party cookies and effectively stop the most common form of cross-site tracking.'),
-          image_url='home/2018/cards/firefox.png',
+          tag_label=_('Podcast'),
+          title=_('IRL returns with Manoush Zomorodi'),
+          ga_title='IRL returns with Manoush Zomorodi',
+          desc=_('Explore the potential of ethical tech and how people everywhere can take the wheel back to enjoy a more citizen-centric web.'),
+          image_url='home/2018/cards/nov/irl.jpg',
           include_highres_image=True,
-          aspect_ratio='mzp-has-aspect-3-2',
-          link_url='https://blog.mozilla.org/blog/2018/10/23/latest-firefox-rolls-out-enhanced-tracking-protection/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
+          aspect_ratio='mzp-has-aspect-16-9',
+          link_url='https://blog.mozilla.org/internetcitizen/2018/11/07/irl-podcast-manoush-zomorodi/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
         )}}
         <!-- 4 -->
         {{ card(
-          tag_label=_('Security'),
-          title=_('Data Leeks: Recipes for online privacy'),
-          ga_title='Data Leeks: Recipes for online privacy',
-          desc=_('Not convinced that a data breach could have real, personal implications? These stories might change your mind.'),
-          image_url='home/2018/cards/data-leeks.jpg',
+          tag_label=_('Privacy'),
+          title=_('Better watch out'),
+          ga_title='Better watch out',
+          desc=_('On a scale from 1 to 10, how creepy are the gifts on your wish list this year?'),
+          image_url='home/2018/cards/nov/privacy.jpg',
           include_highres_image=True,
-          aspect_ratio='mzp-has-aspect-3-2',
-          link_url='https://www.dataleeks.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+          aspect_ratio='mzp-has-aspect-16-9',
+          link_url='https://foundation.mozilla.org/privacynotincluded/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
         <!-- 5 -->
         {{ card(
-          tag_label=_('Firefox'),
-          title=_('Browser hijacking explained'),
-          ga_title='Browser hijacking explained',
-          desc=_('A browser is hijacked by software that has been installed on your system, sometimes intentionally and sometimes without your knowing it.'),
-          image_url='home/2018/cards/browser-hijacking.png',
+          tag_label=_('Policy'),
+          title=_('Mozilla fights on For Net Neutrality'),
+          ga_title='Mozilla fights on For Net Neutrality',
+          desc=_('We will continue to do all that we can to support an open and vibrant internet that is a resource accessible to all.'),
+          image_url='home/2018/cards/nov/net-neutrality.png',
           include_highres_image=True,
-          aspect_ratio='mzp-has-aspect-3-2',
-          link_url='https://blog.mozilla.org/firefox/your-browser-is-hijacked-now-what/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+          aspect_ratio='mzp-has-aspect-16-9',
+          link_url='https://blog.mozilla.org/blog/2018/11/16/mozilla-fights-on-for-net-neutrality/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
       </div>
 
@@ -159,25 +162,27 @@
         <!-- 6 -->
         {{ card(
           class='mzp-c-card-medium',
-          tag_label=_('Emerging Technologies'),
-          title=_('Mixed reality data and consent'),
-          ga_title='Mixed reality data and consent',
-          desc=_('New kinds of data generated by mixed reality devices present an opportunity to change the conversation about permissions and consent.'),
-          image_url='home/2018/cards/data-consent.jpg',
-          aspect_ratio='mzp-has-aspect-3-2',
-          link_url='https://blog.mozvr.com/principles-of-mixed-reality-permissions/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
+          tag_label=_('Test Pilot'),
+          title=_('Let Price Wise track prices for you'),
+          ga_title='Let Price Wise track prices for you',
+          desc=_('Double down on deals from five major retailers in this Test Pilot feature for Firefox.'),
+          image_url='home/2018/cards/nov/price-wise.png',
+          include_highres_image=True,
+          aspect_ratio='mzp-has-aspect-16-9',
+          link_url='https://blog.mozilla.org/firefox/price-wise/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
         )}}
         <!-- 7 -->
         {{ card(
           class='mzp-c-card-medium',
-          tag_label=_('Firefox'),
-          title=_('Save a step when you’re searching'),
-          ga_title='Save a step when you’re searching',
-          desc=_('Quick and savvy web users know love the multiple ways you can get to search from within Firefox.'),
+          tag_label=_('Test Pilot'),
+          title=_('Upgrade your wish lists'),
+          ga_title='Upgrade your wish lists',
+          desc=_('Sharing links via email just got easier. Email Tabs makes it a snap to share URLs, titles and descriptions with friends in a handy list.'),
           include_highres_image=True,
-          image_url='home/2018/cards/search.png',
-          aspect_ratio='mzp-has-aspect-3-2',
-          link_url='https://blog.mozilla.org/firefox/save-a-search-step/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+          image_url='home/2018/cards/nov/email-tabs.png',
+          include_highres_image=True,
+          aspect_ratio='mzp-has-aspect-16-9',
+          link_url='https://blog.mozilla.org/firefox/email-tabs/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
       </div>
     </div>
@@ -209,24 +214,26 @@
         <!-- 8 -->
         {{ card(
           class='mzp-c-card-medium',
-          tag_label=_('Grants'),
-          title=_('Keeping AI accountable'),
-          ga_title='Keeping AI accountable',
-          desc=_('Meet the Creative Media Awards recipients whose projects use art and advocacy to highlight the unintended consequences of AI.'),
-          image_url='home/2018/cards/ai-accountable.jpg',
+          tag_label=_('Security'),
+          title=_('Be alert to website breaches'),
+          ga_title='Be alert to website breaches',
+          desc=_('With big thanks to our international community, Firefox Monitor can now alert users to data breaches in 26 languages.'),
+          image_url='home/2018/cards/nov/firefox-monitor.png',
+          include_highres_image=True,
           aspect_ratio='mzp-has-aspect-16-9',
-          link_url='https://blog.mozilla.org/blog/2018/10/24/keeping-ai-accountable-with-science-fiction-documentaries-and-doodles-plus-225000/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
+          link_url='https://blog.mozilla.org/blog/2018/11/14/firefox-monitor-launches-in-26-languages-and-adds-new-desktop-browser-feature/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
         )}}
         <!-- 9 -->
         {{ card(
           class='mzp-c-card-medium',
-          tag_label=_('Grants'),
-          title=_('Ethics in computer science competition'),
-          ga_title='Ethics in computer science competition',
-          desc=_('Up to $3.5 Million in prizes will be awarded. Initial Funding Concepts for Stage 1 are being accepted now through December 13, 2018.'),
-          image_url='home/2018/cards/ethics.png',
+          tag_label=_('Security'),
+          title=_('Six tips for safer online shopping'),
+          ga_title='Six tips for safer online shopping',
+          desc=_('Hackers know that many people are shopping online, and it’s likely why hacking spikes this time of year. These tips can help you be safer.'),
+          image_url='home/2018/cards/nov/shopping.png',
+          include_highres_image=True,
           aspect_ratio='mzp-has-aspect-16-9',
-          link_url='https://blog.mozilla.org/blog/2018/10/10/announcing-a-competition-for-ethics-in-computer-science-with-up-to-3-5-million-in-prizes/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+          link_url='https://blog.mozilla.org/firefox/6-tips-for-safe-online-shopping/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
       </div>
 
@@ -244,68 +251,68 @@
       <div class="mzp-l-card-third">
         <!-- 10 -->
         {{ card(
-          tag_label=_('Rapid Fire'),
-          title=_('Even better privacy protection'),
-          ga_title='Even better privacy protection',
-          desc=_('Enhanced Tracking Protection in Firefox, plus blocking fingerprinters and abusive cryptocurrency mining in future releases.'),
-          image_url='home/2018/cards/dolanjski.jpg',
+          tag_label=_('Security'),
+          title=_('How to protect your data while traveling'),
+          ga_title='How to protect your data while traveling',
+          desc=_('Have an hour before your flight? It’s a perfect time to be mindful of your data privacy and health — on and offline.'),
+          image_url='home/2018/cards/nov/travelling.jpg',
           include_highres_image=True,
           aspect_ratio='mzp-has-aspect-16-9',
-          link_url='https://blog.mozilla.org/internetcitizen/2018/11/02/peter-dolanjski-firefox-enhanced-tracking-protection/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+          link_url='https://blog.mozilla.org/internetcitizen/2017/03/28/protect-privacy-traveling/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
         <!-- 11 -->
         {{ card(
-          tag_label=_('Grants'),
-          title=_('Women Startup Challenge Europe'),
-          ga_title='Women Startup Challenge Europe',
-          desc=_('Women-led startup finalists from across Europe pitched their ventures before a panel of tech industry executives. Here are the winners.'),
-          image_url='home/2018/cards/women-startup.jpg',
+          tag_label=_('Internet Health'),
+          title=_('Is it safe?'),
+          ga_title='Is it safe?',
+          desc=_('The internet is where we could live, learn and communicate freely. To be ourselves, we need to be able to trust the systems that protect us.'),
+          image_url='home/2018/cards/nov/internet-safety.png',
+          include_highres_image=True,
           aspect_ratio='mzp-has-aspect-16-9',
-          link_url='https://blog.mozilla.org/blog/2018/10/26/women-who-tech-and-mozilla-announce-winners-of-women-startup-challenge-europe/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+          link_url='https://internethealthreport.org/2018/category/privacy-and-security/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
         <!-- 12 -->
         {{ card(
-          tag_label=_('Emerging Technologies'),
-          media_icon='mzp-has-video',
-          title=_('Firefox Reality gets recline mode'),
-          ga_title='Firefox Reality gets recline mode',
-          desc=_('Now available for download in the Viveport, Oculus and Daydream app stores.'),
-          image_url='home/2018/cards/reality.jpg',
+          tag_label=_('Pocket'),
+          title=_('Reads to recharge the creative mind'),
+          ga_title='Reads to recharge the creative mind',
+          desc=_('In the spirit of creative productivity, Pocket has bubbled up three articles that illuminate the creative mind and how it works.'),
+          image_url='home/2018/cards/nov/creative-mind.jpg',
           include_highres_image=True,
           aspect_ratio='mzp-has-aspect-16-9',
-          link_url='https://blog.mozvr.com/introducing-spoke/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
-          youtube_id='BcHiFM3m50A'
+          link_url='https://getpocket.com/blog/2018/11/reads-to-replenish-and-recharge-the-creative-mind/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
         <!-- 13 -->
         {{ card(
-          tag_label=_('Firefox'),
-          title=_('Get the new Firefox Focus'),
-          ga_title='Get the new Firefox Focus',
-          desc=_('The latest version comes with search suggestions, revamped visual design and an under-the-hood surprise for Android users.'),
-          image_url='home/2018/cards/focus.png',
+          tag_label=_('Developers'),
+          title=_('The power of web components'),
+          ga_title='The power of web components',
+          desc=_('Despite the long standardization process, the emerging promise of Web Components puts more power in the hand of creators.'),
+          image_url='home/2018/cards/nov/web-components.png',
           include_highres_image=True,
-          aspect_ratio='mzp-has-aspect-16-9',
-          link_url='https://blog.mozilla.org/blog/2018/10/02/new-firefox-focus-comes-with-search-suggestions-revamped-visual-design-and-an-under-the-hood-surprise-for-android-users/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+          aspect_ratio='mzp-has-aspect-3-2',
+          link_url='https://hacks.mozilla.org/2018/11/the-power-of-web-components/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
         <!-- 14 -->
+        {{ card(
+          tag_label=_('Emerging Technologies'),
+          title=_('Designing for the immersive web'),
+          ga_title='Designing for the immersive web',
+          desc=_('UX designer and creative catalyst Nadja Haldimann talks about how she approached working on the new Firefox Reality browser.'),
+          image_url='home/2018/cards/nov/immersive.png',
+          include_highres_image=True,
+          aspect_ratio='mzp-has-aspect-16-9',
+          link_url='https://blog.mozvr.com/lessons-learned-while-designing-for-the-immersive-web/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+        )}}
+        <!-- 15 -->
         {{ card(
           tag_label=_('Community'),
           title=_('Show support for Firefox with badges'),
           ga_title='Show support for Firefox with badges',
           desc=_('If you’re a Firefox user and want to show your support, we’ve made a collection of badges you can add to your website.'),
-          image_url='home/2018/cards/badges.png',
+          image_url='home/2018/cards/nov/badges.png',
           aspect_ratio='mzp-has-aspect-16-9',
           link_url='https://hacks.mozilla.org/2018/10/show-your-support-for-firefox-with-new-badges/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
-        )}}
-        <!-- 15 -->
-        {{ card(
-          tag_label=_('Developers'),
-          title=_('Are you a developer?'),
-          ga_title='Are you a developer?',
-          desc=_('Get the latest features, fast performance and the development tools you need to build for the open web with Firefox Develop Edition.'),
-          image_url='home/2018/cards/developer.png',
-          aspect_ratio='mzp-has-aspect-16-9',
-          link_url=url('firefox.developer.index')
         )}}
       </div>
 
@@ -323,24 +330,24 @@
         <!-- 16 -->
         {{ card(
           class='mzp-c-card-medium',
-          tag_label=_('Internet Health'),
-          title=_('Data Detox for a healthier digital life'),
-          ga_title='Data Detox for a healthier digital life',
-          desc=_('With data breaches, creepy ads following you, and years of photos on social media, now is the time for a Data Detox to regain control.'),
-          image_url='home/2018/cards/data-detox.png',
-          aspect_ratio='mzp-has-aspect-3-2',
-          link_url='https://blog.mozilla.org/internetcitizen/2017/11/08/data-detox/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
+          tag_label=_('Developers'),
+          title=_('Are you a developer?'),
+          ga_title='Are you a developer?',
+          desc=_('Get the latest features, fast performance and the development tools you need to build for the open web with Firefox Develop Edition.'),
+          image_url='home/2018/cards/nov/developer.png',
+          aspect_ratio='mzp-has-aspect-16-9',
+          link_url=url('firefox.developer.index'),
         )}}
         <!-- 17 -->
         {{ card(
           class='mzp-c-card-medium',
-          tag_label=_('Security'),
-          title=_('Tips to boost your digital security'),
-          ga_title='Tips to boost your digital security',
-          desc=_('There is little you can do to prevent a data breach. However, there is plenty you can do to protect yourself in anticipation of one.'),
-          image_url='home/2018/cards/digital-security.png',
-          aspect_ratio='mzp-has-aspect-3-2',
-          link_url='https://blog.mozilla.org/internetcitizen/2018/10/01/worried-about-data-breach-protect-passwords/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+          tag_label=_('Firefox'),
+          title=_('Get Firefox Focus'),
+          ga_title='Get Firefox Focus',
+          desc=_('The latest version comes with search suggestions, revamped visual design and an under-the-hood surprise for Android users.'),
+          image_url='home/2018/cards/nov/focus.png',
+          aspect_ratio='mzp-has-aspect-16-9',
+          link_url='https://blog.mozilla.org/blog/2018/10/02/new-firefox-focus-comes-with-search-suggestions-revamped-visual-design-and-an-under-the-hood-surprise-for-android-users/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
         )}}
       </div>
 
