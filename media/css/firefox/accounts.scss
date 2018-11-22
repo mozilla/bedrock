@@ -2,199 +2,239 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/fonts';
-$image-path: '/media/protocol/img';
+@import '../pebbles/includes/lib';
+@import '../hubs/sections';
+@import '../quantum/common';
+@import '../hubs/masthead';
 
-@import '../../protocol/css/includes/lib';
-@import '../../protocol/css/components/button';
-@import '../../protocol/css/components/billboard';
-@import '../../protocol/css/components/call-out';
-@import '../../protocol/css/components/feature-card';
-@import '../../protocol/css/components/hero';
-@import '../../protocol/css/templates/card-layout';
-@import '../../protocol/css/components/newsletter-form';
-@import '../../protocol/css/components/modal';
+/* -------------------------------------------------------------------------- */
+// Common elements
 
-.show {
-    display: block;
+main {
+    background: #003eaa;
+    background: url('/media/img/firefox/accounts/tail.png') top -350px center no-repeat,
+                linear-gradient(to bottom, #003eaa 0%, #00b0ff 100%);
+    color: #fff;
 }
 
-#subtitle {
-    @include text-display-md;
+/* -------------------------------------------------------------------------- */
+// Top header logos
+
+.top-header {
     text-align: center;
-    width: 50%;
-    margin: 0 auto;
-}
 
-/* -------------------------------------------------------------------------- */
-// Hero
-
-.mzp-c-hero.mzp-t-firefox:after {
-    display: none;
-    mask: none;
-}
-
-.mzp-c-call-out {
-    background: transparent;
-}
-
-.mzp-t-firefox {
-    h1, h2, h3, h4 {
-        font-weight: normal;
+    h1 {
+        @include font-size-level2;
+        margin: 40px 0;
     }
-}
 
-/* -------------------------------------------------------------------------- */
-// FXA Form
+    .header-logos {
+        margin-bottom: 20px;
 
-.fxa-benefits {
-    display: none;
-
-    .mzp-c-modal-window & {
-        h3 {
+        .mozilla {
             display: none;
         }
     }
-}
 
-/* -------------------------------------------------------------------------- */
-// Modal, custom styles
+    @media #{$mq-desktop} {
 
-.mobile-notes,
-.mobile-lockbox,
-.mobile-pocket {
-    display: none;
-}
-
-.mzp-c-modal-inner {
-    @media #{$mq-lg} {
-        max-width: 500px;
-        margin: 0 auto;
-    }
-    @media #{$mq-md} {
-        max-width: 500px;
-        margin: 0 auto;
-    }
-    header h2 {
-        font-weight: bold;
-        margin-bottom: 30px;
-    }
-
-    .mzp-c-modal-overlay-contents {
-        background: #fff;
-        color: #000;
-        padding: .5em;
-        text-align: center;
-
-        .mobile-title {
-            margin: 20px;
+        h1 {
+            margin: 40px 0 80px;
         }
 
-        .mobile-download-buttons {
-            li {
-            display: inline-block;
+        .header-logos {
+            @include clearfix;
+
+            .firefox {
+                float: left;
+            }
+
+            .mozilla {
+                display: block;
+                float: right;
+            }
+        }
+    }
+}
+
+html[dir="rtl"] .top-header {
+    @media #{$mq-desktop} {
+        .header-logos {
+
+            .firefox {
+                float: right;
+            }
+
+            .mozilla {
+                float: left;
             }
         }
     }
 }
 
 /* -------------------------------------------------------------------------- */
-// QR codes
+// Main page content container
 
-#qr-code {
-    height: 300px;
-    box-shadow: 0 3px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-}
+.main-content {
+    @include clearfix;
+    margin-bottom: 100px;
 
-.lockbox {
-    background: url('/media/img/firefox/accounts/lockbox-qr.png') center no-repeat;
-    background-size: contain;
-}
-
-.notes {
-    background: url('/media/img/firefox/accounts/notes-qr.png') center no-repeat;
-    background-size: contain;
-}
-
-.pocket {
-    background: url('/media/img/firefox/accounts/pocket-qr.png') center no-repeat;
-    background-size: contain;
-}
-
-.fx-qr {
-    background: url('/media/img/firefox/accounts/pocket-qr.png') center no-repeat;
-    background-size: contain;
-}
-
-/* -------------------------------------------------------------------------- */
-// Bottom Banner
-
-#bottom-banner {
-    align-items: center;
-    background: #2a0140 url('/media/img/firefox/accounts/blob-img.png') no-repeat;
-    background-size: cover;
-    background-position-y: -120px;
-    color: #fff;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    height: 300px;
-
-    #bottom-cta {
-        margin: 0 auto;
-    }
-
-    .banner-title p {
-        font-family: sans-serif;
-        font-weight: bold;
-        @include text-display-lg;
-        margin: 0;
-    }
-
-    form {
-        color: #fff;
-        width: 400px;
-        a {
-            color: #fff;
-        }
-        .fxa-email-form-intro, strong {
-            font-size: 1rem;
-            font-weight: bold;
-            display: inline-block;
-            margin: 0;
-        }
-    }
-
-    #fxa-sign-in {
-        @include text-body-xs;
-        width: 400px;
-        margin: 1em auto 0;
-        a {
-            color: #fff;
-        }
+    @media #{$mq-desktop} {
+        min-height: 400px;
     }
 }
 
 /* -------------------------------------------------------------------------- */
-// Conditional
+// Main page copy
 
-html.ios,
-html.android {
-    .mobile-notes,
-    .mobile-lockbox,
-    .mobile-pocket {
-        display: inline-block;
+.main-copy {
+    @include background-size(280px, 122px);
+    background-image: url('/media/img/firefox/accounts/sync-devices.png');
+    background-position: top center;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    max-width: 400px;
+    padding-top: 140px;
+    text-align: center;
+
+    .tagline {
+        @include font-size-level4;
     }
 
-    #fxa-sign-up-form,
-    #fxa-account-button,
-    .mzp-c-cta-link {
-        display: none;
+    ol {
+        list-style: decimal;
+        list-style-position: inside;
+
+        li {
+            margin-bottom: 10px;
+        }
     }
 
-    #fxa-account-button,
-    .show-fxa-supported-signed-in.fxa-app-buttons {
+    @media #{$mq-desktop} {
+        @include background-size(350px, 153px);
+        background-position: top left;
+        float: left;
+        max-width: 513px;
+        padding-top: 170px;
+        text-align: left;
+        width: calc(100% - 470px);
+    }
+
+    @media #{$mq-desktop-wide} {
+        @include background-size(513px, 224px);
+        padding-top: 240px;
+        width: calc(100% - 500px);
+    }
+}
+
+html[dir="rtl"] .main-copy {
+    @media #{$mq-desktop} {
+        background-position: top right;
+        float: right;
+        text-align: right;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Firefox Accounts for container
+
+.fxa-cta {
+    @include border-box;
+    background-color: #FFF;
+    border-radius: 6px;
+    color: $color-text-primary;
+    margin: 0 auto;
+    max-width: 400px;
+    padding: 40px;
+
+    @media #{$mq-desktop} {
+        float: right;
+    }
+
+    @media #{$mq-desktop-wide} {
+        max-width: 513px;
+        width: 513px;
+    }
+}
+
+html[dir="rtl"] .fxa-cta {
+    @media #{$mq-desktop} {
+        float: left;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Signed-in messaging.
+
+.signed-in {
+    margin-top: 20px;
+    min-height: 30px;
+    text-align: center;
+
+    &:before {
+        @include at2x('/media/img/firefox/accounts/green-check.png', 30px, 30px);
+        background-position: top left;
+        background-repeat: no-repeat;
+        content: '';
         display: block;
+        height: 30px;
+        margin: 0 auto 10px auto;
+        width: 30px;
+    }
+
+    @media #{$mq-desktop} {
+        margin-top: 40px;
     }
 }
 
+/* -------------------------------------------------------------------------- */
+// Download Firefox conditional CTA
+
+.download-firefox {
+    margin-top: 20px;
+    text-align: center;
+
+    .fx-privacy-link > a {
+        color: #fff;
+    }
+
+    @media #{$mq-desktop} {
+        margin-top: 60px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Mobile specific Firefox CTAs
+
+.mobile-ctas {
+    text-align: center;
+}
+
+/* -------------------------------------------------------------------------- */
+// States
+// Most states are handled by the fxa account states script
+
+
+// Non-eligible FxA states get single column for both LTR and RTL locales.
+html[dir="ltr"],
+html[dir="rtl"] {
+    &.no-js,
+    .state-fxa-unsupported,
+    .state-fxa-android,
+    .state-fxa-ios,
+    .state-fxa-not-fx,
+    .state-fxa-default {
+        .main-copy,
+        .fxa-cta {
+            float: none;
+            margin: 0 auto 40px;
+        }
+
+        .main-copy {
+            @media #{$mq-desktop} {
+                text-align: center;
+                background-position: top center;
+            }
+        }
+    }
+}

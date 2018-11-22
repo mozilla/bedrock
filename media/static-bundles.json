@@ -14,13 +14,6 @@
     },
     {
       "files": [
-        "css/base/mozilla-fxa-state.scss",
-        "css/firefox/accounts-features.scss"
-      ],
-      "name": "firefox_accounts_features"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-nightly.scss"
       ],
       "name": "nightly_whatsnew"
@@ -191,13 +184,6 @@
         "css/firefox/feedback.less"
       ],
       "name": "firefox_feedback"
-    },
-    {
-      "files": [
-        "css/base/mozilla-fxa-state.scss",
-        "css/firefox/features/sync.scss"
-      ],
-      "name": "firefox-features-sync"
     },
     {
       "files": [
@@ -876,6 +862,14 @@
     {
       "files": [
         "css/base/mozilla-fxa-state.scss",
+        "css/base/mozilla-fxa-form.scss",
+        "css/firefox/accounts-2018.scss"
+      ],
+      "name": "firefox_accounts_2018"
+    },
+    {
+      "files": [
+        "css/base/mozilla-fxa-state.scss",
         "css/firefox/concerts.scss"
       ],
       "name": "firefox_concert_series"
@@ -997,27 +991,6 @@
         "js/base/mozilla-notification-banner-init.js"
       ],
       "name": "firefox-update-notification"
-    },
-    {
-      "files": [
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js"
-      ],
-      "name": "firefox_accounts-features"
-    },
-    {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/accounts-features-experiment.js"
-      ],
-      "name": "firefox_accounts_features_experiment"
-    },
-    {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/experiment_features_header.js"
-      ],
-      "name": "experiment_features_header"
     },
     {
       "files": [
@@ -1500,20 +1473,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js"
-      ],
-      "name": "firefox-features-sync"
-    },
-    {
-      "files": [
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js"
-      ],
-      "name": "firefox_accounts_features"
-    },
-    {
-      "files": [
         "js/mozorg/contribute/signup.js"
       ],
       "name": "contribute-signup"
@@ -1547,13 +1506,21 @@
     },
     {
       "files": [
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-fxa-form.js"
+      ],
+      "name": "firefox_accounts"
+    },
+    {
+      "files": [
         "protocol/js/protocol-modal.js",
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
-        "js/firefox/accounts.js"
+        "js/firefox/accounts-2018.js"
       ],
-      "name": "firefox_accounts"
+      "name": "firefox_accounts_2018"
     },
     {
       "files": [

@@ -9,6 +9,7 @@
     var notes = document.querySelectorAll('.mobile-notes');
     var fxModal = document.getElementById('fx-modal');
     var qrCode = document.getElementById('qr-code');
+    var bottomBannerMobile = document.getElementById('bottom-banner-mobile');
 
     var fxQrTitle = document.getElementById('fx-qr-title');
     var fxAppButtons = document.getElementById('fx-app-buttons');
@@ -17,7 +18,7 @@
 
     function openFxModal() {
         fxQrTitle.style.display = 'block';
-        fxAppButtons.style.display = 'block';
+        fxAppButtons.style.display = 'inline-block';
         Mzp.Modal.createModal(this, content, {
             title: 'Download the Firefox App',
             className: 'mzp-t-firefox',
@@ -31,8 +32,10 @@
         qrCode.setAttribute('class', 'fx-qr');
     }
 
-    function openModal() {
+    function openModal(e) {
+        e.preventDefault();
         fxQrTitle.style.display = 'none';
+        fxAppButtons.style.display = 'none';
         var parent = this.closest('.mzp-c-card-feature');
         var productString = parent.className;
         var mobileButtons = document.querySelectorAll('.mobile-download-buttons');
@@ -74,6 +77,7 @@
             closeText: window.Mozilla.Utils.trans('global-close'),
             onDestroy: function() {
                 hide(mobileTitles, mobileButtons);
+                bottomBannerMobile.style.display = 'inline-block';
             }
         });
 

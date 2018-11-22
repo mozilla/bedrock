@@ -98,7 +98,7 @@ redirectpatterns = (
              to_kwargs={'channel': 'organizations'}),
 
     # bug 729329
-    redirect(r'^mobile/sync', 'firefox.features.sync'),
+    redirect(r'^mobile/sync', 'firefox.accounts'),
 
     # bug 882845
     redirect(r'^firefox/toolkit/download-to-your-devices', 'firefox.new'),
@@ -145,7 +145,7 @@ redirectpatterns = (
 
     # Bug 1110927
     redirect(r'^(products/)?firefox/start/central\.html$', 'firefox.new'),
-    redirect(r'^firefox/sync/firstrun\.html$', 'firefox.features.sync'),
+    redirect(r'^firefox/sync/firstrun\.html$', 'firefox.accounts'),
 
     # Bug 920212
     redirect(r'^firefox/fx(/.*)?', 'firefox'),
@@ -300,7 +300,7 @@ redirectpatterns = (
     redirect(r'^firefox/os(/.*)?$', 'https://support.mozilla.org/products/firefox-os'),
 
     # Bug 1252332
-    redirect(r'^sync/?$', 'firefox.features.sync'),
+    redirect(r'^sync/?$', 'firefox.accounts'),
 
     # Bug 424204
     redirect(r'^firefox/help/?$', 'https://support.mozilla.org/'),
@@ -531,7 +531,7 @@ redirectpatterns = (
     redirect(r'^Firefox/?$', 'firefox'),
 
     # bug 1370587
-    redirect(r'^firefox/sync/?', 'firefox.features.sync'),
+    redirect(r'^firefox/sync/?', 'firefox.accounts'),
 
     # bug 1386112
     redirect(r'^firefox/android/faq/?', 'https://support.mozilla.org/products/mobile'),
@@ -594,7 +594,7 @@ redirectpatterns = (
     redirect(r'^vote/?', '/firefox/election/'),
 
     # fxa
-    redirect(r'^firefox/accounts/features/?', '/firefox/accounts/'),
-    redirect(r'^firefox/features/sync/?', '/firefox/accounts/'),
-    redirect(r'^firefox/features/send-tabs/?', '/firefox/accounts/'),
+    redirect(r'^firefox/accounts/features/?', 'firefox.accounts'),
+    redirect(r'^firefox/features/sync/?', 'firefox.accounts'),
+    redirect(r'^firefox/features/send-tabs/?', 'firefox.accounts'),
 )

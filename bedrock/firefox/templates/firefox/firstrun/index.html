@@ -31,7 +31,7 @@
         <h1 id="title">{{_('Already using Firefox?')}}</h1>
         <p>{{_('Sign in to your account and we’ll sync the bookmarks, passwords and other great things you’ve saved to Firefox on other devices.')}}</p>
         {# firefox.accounts-features is en-US only for now, so other locales need an alternate URL #}
-        {% set learn_more_url = url('firefox.accounts-features') if LANG == 'en-US' else url('firefox.features.sync') %}
+        {% set learn_more_url = url('firefox.accounts') %}
         <a href="{{ learn_more_url }}" target="_blank" rel="noopener noreferrer">{{_('Learn more about Firefox Accounts')}}</a>
       </div>
       <div id="firefox-logo"></div>

@@ -1,0 +1,217 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/feature-card';
+@import '../../protocol/css/components/hero';
+@import '../../protocol/css/components/modal';
+
+.show {
+    display: block;
+}
+
+#subtitle {
+    @include text-display-md;
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    font-family: $font-open-sans;
+    font-weight: normal;
+}
+
+/* -------------------------------------------------------------------------- */
+// Custom Protocol
+// Hero
+
+.mzp-c-hero.mzp-t-firefox:after {
+    display: none;
+    mask: none;
+}
+
+.mzp-c-call-out {
+    background: transparent;
+}
+
+.mzp-t-firefox {
+    h1, h2, h3, h4 {
+        font-weight: normal;
+    }
+}
+
+// Cards
+
+.mzp-c-card-feature-content {
+    .mzp-c-cta-link {
+        &:link,
+        &:visited {
+            color: $color-link;
+            border-bottom-color: $color-link;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $color-link-hover;
+            border-bottom-color: $color-link-hover;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// FXA Form
+
+.fxa-benefits {
+    display: none;
+
+    .mzp-c-modal-window & {
+        h3 {
+            display: none;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Modal, custom styles
+
+.mobile-notes,
+.mobile-lockbox,
+.mobile-pocket {
+    display: none;
+}
+
+.mzp-c-modal-inner {
+    @media #{$mq-md} {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    @media #{$mq-lg} {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    header h2 {
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    .mzp-c-modal-overlay-contents {
+        background: #fff;
+        color: #000;
+        padding: .5em;
+        text-align: center;
+
+        .mobile-title {
+            margin: 20px;
+        }
+
+        .mobile-download-buttons {
+            li {
+                display: inline-block;
+            }
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// QR codes
+
+#qr-code {
+    height: 300px;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.lockbox {
+    background: url('/media/img/firefox/accounts/lockbox-qr.png') center no-repeat;
+    background-size: contain;
+}
+
+.notes {
+    background: url('/media/img/firefox/accounts/notes-qr.png') center no-repeat;
+    background-size: contain;
+}
+
+.pocket {
+    background: url('/media/img/firefox/accounts/pocket-qr.png') center no-repeat;
+    background-size: contain;
+}
+
+.fx-qr {
+    background: url('/media/img/firefox/accounts/fx-qr.png') center no-repeat;
+    background-size: contain;
+}
+
+/* -------------------------------------------------------------------------- */
+// Bottom Banner
+
+#bottom-banner {
+    align-items: center;
+    background: #2a0140 url('/media/img/firefox/accounts/blob-img.png') no-repeat;
+    background-size: cover;
+    background-position-y: -120px;
+    color: #fff;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    height: 300px;
+
+    #bottom-cta {
+        margin: 0 auto;
+    }
+
+    .banner-title p {
+        font-family: sans-serif;
+        font-weight: bold;
+        @include text-display-lg;
+        margin: 0;
+    }
+
+    form {
+        color: #fff;
+        width: 400px;
+        a {
+            color: #fff;
+        }
+        .fxa-email-form-intro, strong {
+            font-size: 1rem;
+            font-weight: bold;
+            display: inline-block;
+            margin: 0;
+        }
+    }
+
+    #fxa-sign-in {
+        @include text-body-xs;
+        width: 400px;
+        margin: 1em auto 0;
+        a {
+            color: #fff;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Conditional
+
+html.ios,
+html.android {
+    .mobile-notes,
+    .mobile-lockbox,
+    .mobile-pocket {
+        display: inline-block;
+    }
+
+    #fxa-sign-up-form,
+    #fxa-account-button,
+    .mzp-c-cta-link {
+        display: none;
+    }
+
+    #fxa-account-button,
+    .show-fxa-supported-signed-in.fxa-app-buttons {
+        display: block;
+    }
+}
+

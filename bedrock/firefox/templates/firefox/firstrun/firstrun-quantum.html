@@ -46,7 +46,7 @@
         </p>
       {% endblock %}
         {# firefox.accounts-features is en-US only for now, so other locales need an alternate URL #}
-        {% set learn_more_url = url('firefox.accounts-features') if LANG == 'en-US' else url('firefox.features.sync') %}
+        {% set learn_more_url = url('firefox.accounts') %}
         <a href="{{ learn_more_url }}" target="_blank" rel="noopener noreferrer">{{_('Learn more about Firefox Accounts')}}</a>
       </header>
       <div id="fxaccounts-wrapper">
