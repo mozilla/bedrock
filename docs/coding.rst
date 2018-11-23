@@ -33,6 +33,14 @@ template data as keyword arguments:
 
 The variable `latest_version` will be available in the template.
 
+This helper will also automatically look for translations of the page. If a page
+translation is included in bedrock (instead of being done as part of the normal
+l10n process) the translation should have the same file name as the English but
+include a dot and the locale before the file name.
+
+For example: a German translation of `filename.html` can be provided by creating
+`filename.de.html` in the same directory.
+
 Embedding images
 ----------------
 
