@@ -6,7 +6,6 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../protocol/css/includes/lib';
-@import '../../protocol/css/components/button';
 @import '../../protocol/css/components/call-out';
 @import '../../protocol/css/components/feature-card';
 @import '../../protocol/css/components/hero';
@@ -24,7 +23,7 @@ $image-path: '/media/protocol/img';
     font-family: system-ui, sans-serif;
 }
 
-$fffy-purple : #2A0140;
+$fffy-purple: #2A0140;
 $fffy-coral: #FF4F5D;
 $fffy-pink: #FF2889;
 
@@ -209,7 +208,7 @@ $fffy-pink: #FF2889;
 }
 
 #fffy-survey-link {
-    background-color: #9059ff;
+    background-color: #ffa336;
     bottom: 0;
     display: none;
     margin-bottom: 0;
@@ -227,7 +226,7 @@ $fffy-pink: #FF2889;
 
         &:hover,
         &:focus,
-        &active {
+        &:active {
             text-decoration: none;
         }
     }

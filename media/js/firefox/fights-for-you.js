@@ -28,7 +28,7 @@
                 'data-banner-name': 'FFFY Survey Link',
                 'data-banner-click': '1',
                 'event': 'in-page-interaction'
-            });
+            }, false);
         });
     }
 })();

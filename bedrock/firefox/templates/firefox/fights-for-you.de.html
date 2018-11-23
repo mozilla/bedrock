@@ -6,11 +6,22 @@
 
 {% extends "base-protocol.html" %}
 
-{% block page_title %} Firefox Fights for you. Wir schützen Deine Daten und verkaufen sie niemals.{% endblock %}
+{% block page_title %}Firefox Fights for you. Wir schützen Deine Daten und verkaufen sie niemals.{% endblock %}
 {% block page_desc %}Firefox respektiert Deine Privatsphäre und macht es Dir leicht, Deine Daten zu schützen. Mit klaren Privatsphäre-Optionen und Tracking-Schutz. Du entscheidest, was Du teilst und wann.{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('fights-for-you') }}
+{% endblock %}
+
+{% block extrahead %}
+<!--[if lt IE 10]>
+  <style>
+    .fffy-c-hero,
+    .mzp-c-call-out-compact.fffy-c-footer-callout {
+    background: #2A0140 !important;
+  }
+  </style>
+<![endif]-->
 {% endblock %}
 
 {% block body_id %}fights-for-you{% endblock %}
@@ -22,7 +33,6 @@
     title='Firefox Fights For You',
     desc='Privatsphäre sollte einfach sein. Daten sicher. Einstellungen eindeutig. Wir kämpfen für ein besseres Internet – mit Produkten, die Dir auch online die Kontrolle über Dein Leben geben.',
     class='mzp-has-image mzp-t-firefox mzp-t-product-firefox mzp-t-dark',
-    include_cta=True
   ) %}
   {% endcall %}
 
@@ -37,7 +47,7 @@
     include_cta=True
   ) %}
     <div class="download-firefox">
-      {{ download_firefox(download_location='primary cta') }}
+      {{ download_firefox(download_location='primary cta', dom_id='fffy-download-primary') }}
     </div>
   {% endcall %}
 </div>
@@ -81,29 +91,16 @@
     {% endcall %}
   </section>
 
-  {# can't use macro here because of span tags in title #}
-  <section class="mzp-c-call-out-compact mzp-t-firefox mzp-t-dark fffy-c-footer-callout">
-    <div class="mzp-l-content">
-      <div class="mzp-c-call-out-content">
-        <div class="mzp-c-call-out-container">
-          <h2 class="mzp-c-call-out-title"><span>Dein Leben.</span> <span>Deine Privatsphäre.</span> <span>Dein Browser.</span><br><span>Firefox fights for you.</span></h2>
-        </div>
-      </div>
-      <div class="mzp-c-call-out-cta">
-        <div class="mzp-c-call-out-cta-container">
-          <div class="download-firefox">
-            {{ download_firefox(download_location='secondary cta') }}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  {% if switch('fffy-survey', ['en-US']) %}
-    <div id="fffy-survey-link" class="mzp-l-content">
-        Please help us out by taking this <a href="https://www.surveygizmo.com/s3/4693873/FFFY-Heartbeat-Survey" target="_blank" rel="noopener noreferrer" data-link-type="link" data-link-name="survey">short survey</a>.
+  {% call call_out_compact(
+    title='<span>Dein Leben.</span> <span>Deine Privatsphäre.</span> <span>Dein Browser.</span><br><span>Firefox fights for you.</span>'|safe,
+    desc=None,
+    class='mzp-t-firefox mzp-t-dark fffy-c-footer-callout'
+  ) %}
+    <div class="download-firefox">
+      {{ download_firefox(download_location='secondary cta', dom_id='fffy-download-secondary') }}
     </div>
-  {% endif %}
+  {% endcall %}
 </div>
 
 {% endblock %}

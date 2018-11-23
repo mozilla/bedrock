@@ -13,6 +13,17 @@
   {{ css_bundle('fights-for-you') }}
 {% endblock %}
 
+{% block extrahead %}
+<!--[if lt IE 10]>
+  <style>
+    .fffy-c-hero,
+    .mzp-c-call-out-compact.fffy-c-footer-callout {
+    background: #2A0140 !important;
+  }
+  </style>
+<![endif]-->
+{% endblock %}
+
 {% block body_id %}fights-for-you{% endblock %}
 
 {% block content %}
@@ -22,7 +33,6 @@
     title='Firefox Fights For You',
     desc='You have the right to own your life – and your data. Everything we make and do fights for you.',
     class='mzp-has-image mzp-t-firefox mzp-t-product-firefox mzp-t-dark',
-    include_cta=True
   ) %}
   {% endcall %}
 
@@ -37,7 +47,7 @@
     include_cta=True
   ) %}
     <div class="download-firefox">
-      {{ download_firefox(download_location='primary cta') }}
+      {{ download_firefox(download_location='primary cta', dom_id='fffy-download-primary') }}
     </div>
   {% endcall %}
 </div>
@@ -81,23 +91,15 @@
     {% endcall %}
   </section>
 
-  {# can't use macro here because of span tags in title #}
-  <section class="mzp-c-call-out-compact mzp-t-firefox mzp-t-dark fffy-c-footer-callout">
-    <div class="mzp-l-content">
-      <div class="mzp-c-call-out-content">
-        <div class="mzp-c-call-out-container">
-          <h2 class="mzp-c-call-out-title"><span>Your life is your business.</span> <span>Not ours.</span><br> <span>Firefox fights for you.</span></h2>
-        </div>
-      </div>
-      <div class="mzp-c-call-out-cta">
-        <div class="mzp-c-call-out-cta-container">
-          <div class="download-firefox">
-            {{ download_firefox(download_location='secondary cta') }}
-          </div>
-        </div>
-      </div>
+  {% call call_out_compact(
+    title='<span>Your life is your business.</span> <span>Not ours.</span><br> <span>Firefox fights for you.</span>'|safe,
+    desc=None,
+    class='mzp-t-firefox mzp-t-dark fffy-c-footer-callout'
+  ) %}
+    <div class="download-firefox">
+      {{ download_firefox(download_location='secondary cta', dom_id='fffy-download-secondary') }}
     </div>
-  </section>
+  {% endcall %}
 
   {% if switch('fffy-survey', ['en-US']) %}
     <div id="fffy-survey-link" class="mzp-l-content">

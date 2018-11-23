@@ -784,14 +784,3 @@ def firefox_concerts(request):
         return l10n_utils.render(request, 'firefox/concerts.html')
     else:
         return HttpResponseRedirect(reverse('firefox'))
-
-
-def fights_for_you_view(request):
-    locale = l10n_utils.get_locale(request)
-
-    if locale.startswith('de'):
-        template_name = 'firefox/fights-for-you-de.html'
-    else:
-        template_name = 'firefox/fights-for-you.html'
-
-    return l10n_utils.render(request, template_name)
