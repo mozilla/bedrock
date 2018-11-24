@@ -11,7 +11,7 @@ var _SearchParams = function (search) {
     search = search.match(/^\??(.*)/)[1];
     search = search ? search.split(/[&;]/m) : [];
 
-    $.each(search, function (index, param) {
+    search.forEach(function (param) {
         param = param.split('=');
 
         var key = param[0];
@@ -38,19 +38,29 @@ _SearchParams.prototype.remove = function (key) {
 };
 
 _SearchParams.prototype.toString = function () {
-    return $.map(this.params, function (value, key) {
-        return [encodeURIComponent(key), encodeURIComponent(value)].join('=');
-    }).join('&');
+    var searchStrings = [];
+    var params = this.params;
+
+    for (var param in params){
+        if (params.hasOwnProperty(param)) {
+            searchStrings.push([encodeURIComponent(param), encodeURIComponent(params[param])].join('='));
+        }
+    }
+
+    return searchStrings.join('&');
 };
 
 _SearchParams.prototype.utmParams = function() {
     var utms = {};
+    var params = this.params;
 
-    $.each(this.params, function (key, val) {
-        if (key.indexOf('utm_') === 0) {
-            utms[key] = val;
+    for (var param in params){
+        if (params.hasOwnProperty(param)) {
+            if (param.indexOf('utm_') === 0) {
+                utms[param] = params[param];
+            }
         }
-    });
+    }
 
     return utms;
 };
