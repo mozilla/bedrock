@@ -69,6 +69,13 @@ $fffy-pink: #FF2889;
         @include text-display-lg;
     }
 
+    @media #{$mq-md} {
+        .mzp-has-image .mzp-c-hero-body {
+            width: 50%;
+            margin-right: 50%;
+        }
+    }
+
     .mzp-c-call-out.mzp-t-dark {
         background: transparent;
 
@@ -209,7 +216,7 @@ $fffy-pink: #FF2889;
 }
 
 #fffy-survey-link {
-    background-color: #ffa336;
+    background-color: $color-gray-20;
     bottom: 0;
     display: none;
     margin-bottom: 0;
