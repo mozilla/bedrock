@@ -9,7 +9,7 @@ import re
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render as django_render
-from django.views.decorators.cache import cache_page
+from django.views.decorators.cache import cache_page, never_cache
 from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
 
@@ -227,6 +227,7 @@ def moss_view(request):
     return l10n_utils.render(request, template_name)
 
 
+@never_cache
 def oauth_fxa(request):
     """
     Acts as an OAuth relier for Firefox Accounts. Currently specifically tuned to handle
