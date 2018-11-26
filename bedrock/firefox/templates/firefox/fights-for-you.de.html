@@ -6,6 +6,8 @@
 
 {% extends "base-protocol.html" %}
 
+{% set referrals = '?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fffy-page' %}
+
 {% block page_title %}Firefox Fights for you. Wir schützen Deine Daten und verkaufen sie niemals.{% endblock %}
 {% block page_desc %}Firefox respektiert Deine Privatsphäre und macht es Dir leicht, Deine Daten zu schützen. Mit klaren Privatsphäre-Optionen und Tracking-Schutz. Du entscheidest, was Du teilst und wann.{% endblock %}
 
@@ -16,6 +18,7 @@
 {% block extrahead %}
 <!--[if lt IE 10]>
   <style>
+    /* avoid IE9 background calc() bug */
     .fffy-c-hero,
     .mzp-c-call-out-compact.fffy-c-footer-callout {
     background: #2A0140 !important;
@@ -59,7 +62,7 @@
       image_url='firefox/fights-for-you/pic-monitor.jpg',
       aspect_ratio='mzp-has-aspect-16-9',
       class='mzp-l-card-feature-left-third mzp-t-firefox fffy-t-monitor',
-      link_url='https://monitor.firefox.com',
+      link_url='https://monitor.firefox.com' + referrals,
       link_cta='Jetzt zu Firefox Monitor',
       ga_title='Try Monitor'
     ) %}
@@ -71,7 +74,7 @@
       image_url='firefox/fights-for-you/pic-focus.jpg',
       aspect_ratio='mzp-has-aspect-16-9',
       class='mzp-l-card-feature-right-third mzp-t-firefox fffy-t-focus',
-      link_url='http://hyperurl.co/qnwyu5',
+      link_url=url('firefox.mobile'),
       link_cta='Hol Dir Firefox Klar',
       ga_title='Download Firefox Focus'
     ) %}
@@ -83,7 +86,7 @@
       image_url='firefox/fights-for-you/pic-privacy.jpg',
       aspect_ratio='mzp-has-aspect-16-9',
       class='mzp-l-card-feature-left-third mzp-t-firefox fffy-t-privacy',
-      link_url='https://blog.mozilla.org/internetcitizen/de/2018/08/31/so-stehen-wir-bei-mozilla-zu-deiner-privatsphaere/',
+      link_url='https://blog.mozilla.org/internetcitizen/de/2018/08/31/so-stehen-wir-bei-mozilla-zu-deiner-privatsphaere/' + referrals,
       link_cta='Privatsphäre bei Firefox',
       ga_title='Read our Policy'
     ) %}

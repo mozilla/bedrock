@@ -6,6 +6,8 @@
 
 {% extends "base-protocol.html" %}
 
+{% set referrals = '?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fffy-page' %}
+
 {% block page_title %}Firefox Fights For You. We keep your data safe, never sold.{% endblock %}
 {% block page_desc %}Firefox keeps what’s personal private. And makes the choices clear. You have the right to own your life–and your data. You decide what to share and when.{% endblock %}
 
@@ -16,6 +18,7 @@
 {% block extrahead %}
 <!--[if lt IE 10]>
   <style>
+    /* avoid IE9 background calc() bug */
     .fffy-c-hero,
     .mzp-c-call-out-compact.fffy-c-footer-callout {
     background: #2A0140 !important;
@@ -59,7 +62,7 @@
       image_url='firefox/fights-for-you/pic-monitor.jpg',
       aspect_ratio='mzp-has-aspect-16-9',
       class='mzp-l-card-feature-left-third mzp-t-firefox fffy-t-monitor',
-      link_url='https://monitor.firefox.com',
+      link_url='https://monitor.firefox.com' + referrals,
       link_cta='Try Firefox Monitor',
       ga_title='Try Monitor'
     ) %}
@@ -71,7 +74,7 @@
       image_url='firefox/fights-for-you/pic-focus.jpg',
       aspect_ratio='mzp-has-aspect-16-9',
       class='mzp-l-card-feature-right-third mzp-t-firefox fffy-t-focus',
-      link_url='http://hyperurl.co/mzvrdf',
+      link_url=url('firefox.mobile'),
       link_cta='Download Firefox Focus',
       ga_title='Download Firefox Focus'
     ) %}
@@ -83,7 +86,7 @@
       image_url='firefox/fights-for-you/pic-privacy.jpg',
       aspect_ratio='mzp-has-aspect-16-9',
       class='mzp-l-card-feature-left-third mzp-t-firefox fffy-t-privacy',
-      link_url='https://blog.mozilla.org/internetcitizen/2018/08/13/firefox-privacy-philosophy/',
+      link_url='https://blog.mozilla.org/internetcitizen/2018/08/13/firefox-privacy-philosophy/' + referrals,
       link_cta='Read our Privacy Principles',
       ga_title='Read our Policy'
     ) %}
