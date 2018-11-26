@@ -6,8 +6,6 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/button';
-
 
 .c-fundraiser {
     @include clearfix;
@@ -20,6 +18,34 @@ $image-path: '/media/protocol/img';
     // (if visitor previously dismissed)
     .js & {
         display: none;
+    }
+
+    .mzp-c-button.mzp-t-dark {
+        @include border-box;
+        @include text-cta;
+        @include transition(background-color 100ms, box-shadow 100ms, color 100ms, transform 100ms);
+        background-color: $color-white;
+        border-radius: 2px;
+        border: 2px solid $color-white;
+        color: $color-black;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: bold;
+        padding: ($padding-md - 2px) ($padding-xl - 2px); //2px extra padding removed to compensate for 2px border.
+        text-decoration: none;
+
+        &:focus,
+        &:hover {
+            @include transform(translate(-2px, -2px));
+            background-color: $color-black;
+            box-shadow: 4px 4px 0 0 $color-white;
+            color: $color-white;
+        }
+
+        &.mzp-t-secondary {
+            background-color: transparent;
+            color: $color-white;
+        }
     }
 }
 
@@ -39,8 +65,8 @@ $image-path: '/media/protocol/img';
     position: absolute;
     top: 0;
 
-    &:checked + .mzp-c-button {
-        background: $color-gray-70;
+    &:checked + .mzp-c-button.mzp-t-secondary {
+        background-color: $color-gray-70;
         font-weight: bold;
     }
 }
