@@ -1088,6 +1088,15 @@
     },
     {
       "files": [
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-fxa-form.js",
+        "js/firefox/whatsnew/whatsnew-64.js"
+      ],
+      "name": "firefox_whatsnew_64"
+    },
+    {
+      "files": [
         "js/base/mozilla-modal.js",
         "js/firefox/new/scene1.js"
       ],

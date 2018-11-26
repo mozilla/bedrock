@@ -1,0 +1,50 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+ {% from "macros-protocol.html" import call_out, feature_card with context %}
+
+ {% from "macros.html" import fxa_email_form with context %}
+
+ {% add_lang_files "firefox/whatsnew_64" %}
+
+ {% extends "firefox/base-protocol.html" %}
+
+ {% block page_title %}{{ _('Get a Firefox Account – Keep your data private, safe and synced') }}{% endblock %}
+ {% block page_desc %}{{_('Securely sync your passwords, bookmarks and tabs across all your devices. Get a Firefox Account now – One log-in – Power and privacy everywhere.')}}{% endblock %}
+
+ {% block page_css %}
+   {{ css_bundle('firefox_whatsnew_64') }}
+ {% endblock %}
+
+ {% block site_header %}{% endblock %}
+
+ {% block content %}
+
+  <h1>{{_('Now take your Firefox to the next level: get a Firefox Account')}}</h1>
+  <h2>{{_('One log-in gives you access to all these benefits')}}</h2>
+  <p>{{_('Create a Firefox Account')}}</p>
+  <p>{% trans login='#' %}Have an account? <a href="{{ login }}">Log in</a>{% endtrans %}</p>
+
+  <h1>{{_('Check out all the latest benefits of your Firefox Account')}}</h1>
+
+  <h3>{{_('Remember your passwords in Lockbox')}}</h3>
+  <p>{{_('No more getting locked out of apps and websites. Lockbox secures all the passwords you’ve saved in Firefox and gives you easy access across all your iOS devices.')}}</p>
+  <a href="#">{{_('Get the Lockbox App')}}</a>
+
+  <h3>{{_('Put quality content in your Pocket')}}</h3>
+  <p>{{_('Discover the web’s best content, and absorb it anytime – even offline – on any device. Pocket’s listen feature will even read any article aloud to you. Get it all from the Firefox toolbar or the Pocket app.')}}</p>
+  <a href="#">{{_('Get the Pocket App')}}</a>
+
+  <h3>{{_('Pick up where you left off with Notes')}}</h3>
+  <p>{{_('Your ideas and inspiration are secure and encrypted with Notes – and when you’re signed into your Account, they sync from your desktop to your Android devices.')}}</p>
+  <a href="#">{{_('Get the Notes App')}}</a>
+
+  <h3>{{_('Send tabs instantly to your devices')}}</h3>
+  <p>{{_('Send an open tab on one device to all your others with a single tap. Much easier than texting or emailing yourself those links.')}}</p>
+
+ {% endblock %}
+
+ {% block js %}
+   {{ js_bundle('firefox_whatsnew_64') }}
+ {% endblock %}
