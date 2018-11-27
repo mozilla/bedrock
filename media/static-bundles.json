@@ -148,6 +148,12 @@
     },
     {
       "files": [
+        "css/mozorg/participation-reporting.scss"
+      ],
+      "name": "participation-reporting"
+    },
+    {
+      "files": [
         "css/base/social-widgets.less",
         "css/mozorg/contribute/studentambassadors/landing.less"
       ],
