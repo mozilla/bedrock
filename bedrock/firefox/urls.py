@@ -53,6 +53,7 @@ urlpatterns = (
     page('firefox/enterprise/signup', 'firefox/enterprise/signup.html'),
     page('firefox/enterprise/signup/thanks', 'firefox/enterprise/signup-thanks.html'),
     page('firefox/facebookcontainer', 'firefox/facebookcontainer/index.html'),
+    page('firefox/fights-for-you', 'firefox/fights-for-you.html'),
     url(r'^firefox/features/$',
         VariationTemplateView.as_view(template_name='firefox/features/index.html',
             template_context_variations=['a', 'b']),

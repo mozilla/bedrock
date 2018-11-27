@@ -881,6 +881,12 @@
     },
     {
       "files": [
+        "css/firefox/fights-for-you.scss"
+      ],
+      "name": "fights-for-you"
+    },
+    {
+      "files": [
         "css/mozorg/internet-health.scss"
       ],
       "name": "internet-health"
@@ -958,6 +964,12 @@
         "js/firefox/facebook-container-video.js"
       ],
       "name": "firefox_facebook_container_video"
+    },
+    {
+      "files": [
+        "js/firefox/fights-for-you.js"
+      ],
+      "name": "fights-for-you"
     },
     {
       "files": [

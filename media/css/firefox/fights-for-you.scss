@@ -1,0 +1,241 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../libs/system-font';
+
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/call-out';
+@import '../../protocol/css/components/feature-card';
+@import '../../protocol/css/components/hero';
+
+
+.fffy-c-hero,
+.fffy-c-features,
+.fffy-c-footer-callout,
+.mzp-t-firefox h1,
+.mzp-t-firefox h2,
+.mzp-t-firefox h3,
+.mzp-t-firefox h4 {
+    font-family: system-ui, sans-serif;
+}
+
+$fffy-purple: #2A0140;
+$fffy-coral: #FF4F5D;
+$fffy-pink: #FF2889;
+
+.fffy-c-hero {
+    background-color: $fffy-purple;
+    background-image: url('/media/img/firefox/fights-for-you/noodle.svg'), url('/media/img/firefox/fights-for-you/chevron.svg');
+    background-position: top 200px left -60px, top -80px right calc(30% - 220px);
+    background-repeat: no-repeat;
+    background-size: 400px;
+    color: #fff;
+    padding-bottom: $layout-md;
+
+    @media #{$mq-sm} {
+        background-position: top 200px right calc(60% + 110px), top -80px right calc(30% - 220px);
+    }
+
+    @media #{$mq-md} {
+        background-position: top 90px left calc(44% - 400px), top right calc(30% - 220px);
+        background-size: auto;
+        padding-bottom: $layout-lg;
+    }
+
+    @media (min-width: 1440px) {
+        background-position: top 200px left -80px, top right calc(22% - 220px);
+    }
+
+    .mzp-c-hero.mzp-t-dark {
+        background: transparent;
+        padding-bottom: 0;
+
+        .mzp-l-content {
+            padding-bottom: 0;
+        }
+    }
+
+    .mzp-c-hero.mzp-t-firefox::after {
+        display: none;
+    }
+
+    .mzp-c-hero-title {
+        color: $fffy-coral;
+        @include text-display-lg;
+    }
+
+    @media #{$mq-md} {
+        .mzp-has-image .mzp-c-hero-body {
+            width: 50%;
+            margin-right: 50%;
+        }
+    }
+
+    .mzp-c-call-out.mzp-t-dark {
+        background: transparent;
+
+        .mzp-l-content {
+            background: url('/media/img/firefox/fights-for-you/callout-left.png'), url('/media/img/firefox/fights-for-you/callout-right.png');
+            background-position: bottom left, top 30px right;
+            background-repeat: no-repeat;
+            background-size: 228px, 108px;
+            min-height: 330px;
+            padding-top: 0;
+
+            // max-width instead of min-width because I want it to do site defaults above this
+            // and I don't want to have to re-define all of them
+            @media (max-width: 767px) {
+                max-width: 480px;
+            }
+        }
+    }
+
+    .mzp-c-call-out-title {
+        color: $fffy-pink;
+        @include text-display-lg;
+    }
+}
+
+.fffy-c-product {
+    margin: 0 auto;
+    max-width: 480px;
+    padding-top: 0;
+    text-align: center;
+
+    @media #{$mq-md} {
+        width: 840px;
+        max-width: 100%;
+    }
+
+    @media #{$mq-xl} {
+        width: 100%;
+    }
+}
+
+
+.fffy-c-features {
+    position: relative;
+
+    .mzp-c-card-feature {
+        img {
+            border-radius: 4px;
+        }
+    }
+
+    .mzp-c-card-feature-title {
+        color: $fffy-purple;
+    }
+
+    .mzp-c-card-feature-title:before {
+        content: url('/media/img/firefox/fights-for-you/icon-monitor.svg');
+        display: block;
+        width: 40px;
+        height: 40px;
+        padding-top: $spacing-sm;
+        padding-bottom: $spacing-md;
+
+
+        @media #{$mq-md} {
+            padding-top: 0;
+            padding-bottom: $spacing-lg;
+        }
+    }
+
+    .fffy-t-focus .mzp-c-card-feature-title:before {
+        content: url('/media/img/firefox/fights-for-you/icon-focus.svg');
+    }
+
+    .fffy-t-privacy .mzp-c-card-feature-title:before {
+        content: url('/media/img/firefox/fights-for-you/icon-privacy.svg');
+    }
+
+    .mzp-c-cta-link {
+        &:link,
+        &:visited {
+            color: $color-link;
+            border-bottom-color: $color-link;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $color-link-hover;
+            border-bottom-color: $color-link-hover;
+        }
+    }
+}
+
+.mzp-c-call-out-compact.fffy-c-footer-callout {
+    background: $fffy-purple;
+    background-image: url('/media/img/firefox/fights-for-you/footer-sm-left.png'), url('/media/img/firefox/fights-for-you/footer-sm-right.png');
+    background-position: bottom -14px left, top 10px right 10px;
+    background-size: 105px, 115px;
+    background-repeat: no-repeat;
+
+    .mzp-c-call-out-title {
+        color: $fffy-pink;
+
+        span {
+            display: inline-block;
+
+            &:last-child {
+                color: $fffy-coral;
+            }
+        }
+    }
+
+    @media #{$mq-sm} {
+        background-position: bottom -14px left, top 20px left calc(80% + 50px);
+    }
+
+    @media #{$mq-md} {
+        background-image: url('/media/img/firefox/fights-for-you/footer-md-top.png'), url('/media/img/firefox/fights-for-you/footer-md-bottom.png'), url('/media/img/firefox/fights-for-you/footer-md-dot.png');
+        background-size: 1024px, 1024px, 10px;
+        background-position: top 20px left calc(50% + 60px), bottom -14px center, center left 40px;
+
+        .mzp-c-call-out-title {
+            @include font-size(40px);
+        }
+    }
+
+    @media #{$mq-lg} {
+
+        .mzp-l-content {
+            max-width: $content-max;
+        }
+    }
+
+    @media #{$mq-xl} {
+        background-position: top 20px center, bottom -14px center, center left calc(50% - 650px);
+    }
+}
+
+#fffy-survey-link {
+    background-color: $color-gray-20;
+    bottom: 0;
+    display: none;
+    margin-bottom: 0;
+    max-width: 100%;
+    padding: $spacing-md;
+    position: sticky;
+    text-align: center;
+
+    a {
+        &:link,
+        &:visited {
+            color: $color-black;
+            font-weight: bold;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none;
+        }
+    }
+}
