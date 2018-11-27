@@ -1150,14 +1150,20 @@ nav.menu-bar {
     }
 
     .lang-switcher {
-        font-weight: bold;
         .span(4);
         margin: 2.75em 0 0;
         padding: 0 20px 0 0;
 
-        label {
+        label,
+        .mzp-c-cta-link {
             display: inline-block;
+            font-weight: bold;
             margin: 0 20px 5px 0;
+        }
+
+        // hide the <label> visually should a language link be shown instead.
+        .mzp-c-cta-link + label {
+            .visually-hidden;
         }
 
         select {
@@ -1180,8 +1186,11 @@ nav.menu-bar {
         padding: 0 0 0 20px;
     }
 
-    .lang-switcher label {
-        margin: 0 0 5px 20px;
+    .lang-switcher {
+        label,
+        .mzp-c-cta-link {
+            margin: 0 0 5px 20px;
+        }
     }
 
     .social-links li {
