@@ -7,6 +7,7 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../libs/system-font';
+@import '../protocol/base/fonts/sharpsans';
 
 @import '../../protocol/css/includes/lib';
 @import '../../protocol/css/components/call-out';
@@ -16,12 +17,16 @@ $image-path: '/media/protocol/img';
 
 .fffy-c-hero,
 .fffy-c-features,
-.fffy-c-footer-callout,
-.mzp-t-firefox h1,
-.mzp-t-firefox h2,
-.mzp-t-firefox h3,
-.mzp-t-firefox h4 {
+.fffy-c-footer-callout {
     font-family: system-ui, sans-serif;
+}
+
+#fights-for-you .mzp-t-firefox h1,
+#fights-for-you .mzp-t-firefox h2,
+#fights-for-you .mzp-t-firefox h3,
+#fights-for-you .mzp-t-firefox h4 {
+    font-family: sharpsans, sans-serif;
+    font-weight: normal;
 }
 
 $fffy-purple: #2A0140;
