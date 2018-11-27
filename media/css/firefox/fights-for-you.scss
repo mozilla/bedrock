@@ -47,8 +47,8 @@ $fffy-pink: #FF2889;
         padding-bottom: $layout-lg;
     }
 
-    @media #{$mq-xl} {
-        background-position: top 200px left -60px, top right calc(22% - 220px);
+    @media (min-width: 1440px) {
+        background-position: top 200px left -80px, top right calc(22% - 220px);
     }
 
     .mzp-c-hero.mzp-t-dark {
