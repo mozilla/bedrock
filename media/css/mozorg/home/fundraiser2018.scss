@@ -13,6 +13,7 @@ $image-path: '/media/protocol/img';
     background-color: $color-black;
     background-position: center center;
     color: $color-white;
+    padding: $spacing-md 0 0;
 
     // hide by default if JS is available to avoid flicker
     // (if visitor previously dismissed)
@@ -53,10 +54,6 @@ $image-path: '/media/protocol/img';
     @include text-display-lg;
     font-weight: normal;
     margin-bottom: $spacing-lg;
-
-    @media #{$mq-lg} {
-        margin-bottom: 0;
-    }
 }
 
 .c-fundraiser-amount-input {
@@ -85,13 +82,13 @@ $image-path: '/media/protocol/img';
 
 .c-fundraiser-options {
     label {
+        @include bidi(((margin, 0 $spacing-sm $spacing-md 0, 0 0 $spacing-md $spacing-sm),));
         @include open-sans;
-        margin: 0 $spacing-xs $spacing-md;
         display: inline-block;
         position: relative;
 
         &:first-child {
-            @include bidi(((margin-left, 0, $spacing-xs),(margin-right, $spacing-xs, 0)));
+            @include bidi(((margin-left, 0, $spacing-sm),(margin-right, $spacing-sm, 0)));
         }
     }
 
@@ -139,12 +136,13 @@ $image-path: '/media/protocol/img';
 
 @media #{$mq-lg} {
     .c-fundraiser {
-        padding: $spacing-md 0;
+        padding-bottom: $spacing-md;
     }
 
     .c-fundraiser-title {
         @include bidi(((float, left, right),(padding-right, $spacing-lg, 0), (padding-left, 0, $spacing-lg)));
         @include grid-half;
+        margin-bottom: 0;
     }
 
     .c-fundraiser-content {
