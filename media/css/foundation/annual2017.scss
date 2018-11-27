@@ -1,0 +1,192 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../protocol/css/includes/lib';
+
+/* -------------------------------------------------------------------------- */
+// Hero image & banner heading
+
+.c-banner {
+    color: #fff;
+
+    .c-banner-content {
+        @include at2x('/media/img/foundation/annualreport/2017/som-2017-small.jpg', 760px, 394px);
+        background-position: top center;
+        background-repeat: no-repeat;
+        min-height: 250px;
+        padding: $spacing-lg;
+        position: relative;
+    }
+
+    h1 {
+        color: $color-white;
+        line-height: 1.3;
+        max-width: 9em;
+
+        span {
+            @include box-decoration-break(clone);
+            background-color: $color-black;
+        }
+    }
+
+    @media #{$mq-sm} {
+        .c-banner-content {
+            padding: $spacing-xl;
+        }
+    }
+
+    @media #{$mq-md} {
+
+        .c-header-container {
+            width: 70%;
+            margin: 0 auto;
+        }
+
+        .c-banner-content {
+            @include at2x('/media/img/foundation/annualreport/2017/som-2017-large.jpg', 1250px, 394px);
+            padding: $spacing-xl 0;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .c-banner-content {
+            min-height: 274px;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Content sections
+
+.c-intro-section {
+    p {
+        @include zilla-slab;
+        @include text-display-sm;
+        font-style: italic;
+        margin-bottom: 0;
+    }
+}
+
+.c-intro-section,
+.c-content-section {
+    padding: $spacing-lg 0;
+
+    .c-copy-wrapper {
+        h2 {
+            @include text-display-md;
+        }
+
+        h3 {
+            @include text-display-sm;
+        }
+
+        img {
+            margin: $spacing-xl auto;
+        }
+
+        .c-copy-intro {
+            font-style: italic;
+        }
+    }
+
+    @media #{$mq-md} {
+
+        .c-copy-wrapper {
+            @include clearfix;
+            margin: 0 auto;
+            width: 90%;
+
+            header {
+                @include bidi(((float, left, right),));
+                width: 30%;
+            }
+
+            .c-copy {
+                @include bidi(((float, right, left),));
+                width: 65%;
+            }
+        }
+
+        &:nth-child(even) {
+            padding: $spacing-2xl 0 $spacing-lg;
+        }
+    }
+
+    @media #{$mq-xl} {
+        padding: $spacing-2xl 0 $spacing-lg;
+
+        .c-copy-wrapper {
+            width: 70%;
+        }
+    }
+}
+
+.c-content-section:nth-child(odd) {
+    background: $color-gray-20;
+    padding: $spacing-2xl $spacing-lg $spacing-lg;
+}
+
+/* -------------------------------------------------------------------------- */
+// Page footer
+
+.c-site-footer {
+
+    ul {
+        margin: 0 auto $spacing-xl;
+    }
+
+    li {
+        display: block;
+        margin: $spacing-lg auto;
+
+        a {
+            @include transition(background-color .1s ease-in-out);
+            background-color: $color-teal-70;
+            color: $color-white;
+            display: block;
+            font-weight: bold;
+            height: 100%;
+            line-height: 1.5;
+            min-height: 100px;
+            padding: $spacing-lg;
+            text-decoration: none;
+            text-transform: uppercase;
+
+            small {
+                display: block;
+                font-weight: 100;
+                text-transform: none;
+            }
+
+            &:hover,
+            &:active,
+            &:focus {
+                background-color: $color-teal-80;
+                color: $color-white;
+                text-decoration: none;
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+
+        ul {
+            width: 70%;
+        }
+
+        li {
+            @include bidi(((float, left, right),));
+            width: 50%;
+
+            &:first-child a {
+                @include bidi(((margin-right, 10px, margin-left, 0),));
+
+            }
+
+            &:last-child a {
+                @include bidi(((margin-left, 10px, margin-right, 0),));
+            }
+        }
+    }
+}

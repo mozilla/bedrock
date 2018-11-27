@@ -423,6 +423,12 @@
     },
     {
       "files": [
+        "css/foundation/annual2017.scss"
+      ],
+      "name": "annual_2017"
+    },
+    {
+      "files": [
         "css/base/mozilla-accordion.less"
       ],
       "name": "mozilla_accordion"
