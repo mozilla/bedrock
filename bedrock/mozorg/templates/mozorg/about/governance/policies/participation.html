@@ -10,7 +10,11 @@
 
 {% block article %}
 <h1><span class="highlight">{{ _('Mozilla Community Participation Guidelines') }}</span></h1>
-<h4>{{ _('Version 2.3 – Updated May 16, 2017') }}</h4>
+{% if l10n_has_tag('participation_nov2018') %}
+  <h4>{{ _('Version 3.0 – Updated November 28, 2018') }}</h4>
+{% else %}
+  <h4>{{ _('Version 2.3 – Updated May 16, 2017') }}</h4>
+{% endif %}
 
 <section id="introduction">
   <p>
@@ -95,6 +99,20 @@
   {% endtrans %}
   </p>
 
+{% if l10n_has_tag('participation_nov2018') %}
+  <p>
+  {% trans %}
+    While these guidelines / code of conduct are specifically aimed at Mozilla’s
+    work and community, we recognize that it is possible for actions taken outside
+    of Mozilla’s online or inperson spaces  to have a deep impact on community
+    health. (For example, in the past, we publicly identified an anonymous
+    posting aimed at a Mozilla employee in a non-Mozilla forum as clear grounds
+    for removal from the Mozilla community.) This is an active topic in the
+    diversity and inclusion realm. We anticipate wide-ranging discussions
+    among our communities about appropriate boundaries.
+  {% endtrans %}
+  </p>
+{% else %}
   <p>
   {% trans mailto_inclusion='mailto:inclusion@mozilla.com' %}
     If you experience behavior outside of Mozilla communities, in person
@@ -103,7 +121,7 @@
     <a href="{{ mailto_inclusion }}">inclusion@mozilla.com</a>. While these
     guidelines / code of conduct are specifically aimed at Mozilla’s work and
     community, we recognize that it is possible for actions taken outside of
-    Mozilla’s online or inperson spaces  to have a deep impact on community
+    Mozilla’s online or inperson spaces to have a deep impact on community
     health. (For example, in the past, we publicly identified an anonymous
     posting aimed at a Mozilla employee in a non-Mozilla forum as clear grounds
     for removal from the Mozilla community.) This is an active topic in the
@@ -111,6 +129,7 @@
     among our communities about appropriate boundaries.
   {% endtrans %}
   </p>
+{% endif %}
 </section>
 
 <section id="expected-behavior">
@@ -399,6 +418,34 @@
 
 <section id="reporting">
   <h2>{{ _('Reporting') }}</h2>
+
+{% if l10n_has_tag('participation_nov2018') %}
+  <p>
+  {% trans hotline='https://communityparticipationhotline.splashthat.com/' %}
+    If you believe you’re experiencing unacceptable behavior that will
+    not be tolerated as outlined above, <a href="{{ hotline }}">please use our hotline to report</a>.
+    Reports go directly to Mozilla’s Employment Counsel and HR People
+    Partners and are triaged by the Community Participation Guidelines
+    Response Lead.
+  {% endtrans %}
+  </p>
+
+  <p>
+  {% trans %}
+    After receiving a concise description of your situation, they will
+    review and determine next steps. In addition to conducting any
+    investigation, they can provide a range of resources, from a private
+    consultation to other community resources. They will involve other
+    colleagues or outside specialists (such as legal counsel), as needed
+    to appropriately address each situation.
+  {% endtrans %}
+  </p>
+
+  <ul class="prose">
+    <li>{{ _('Additional Resources: <a href="%s">How to Report</a>')|format(url('mozorg.about.governance.policies.reporting')) }}</li>
+    <li>{{ _('Questions: <a href="%s">inclusion@mozilla.com</a>')|format('mailto:inclusion@mozilla.com') }}</li>
+  </ul>
+{% else %}
   <p>
   {% trans mailto_inclusion='mailto:inclusion@mozilla.com',
       di_leader='Larissa Shapiro',
@@ -417,6 +464,7 @@
     appropriately address each situation.
   {% endtrans %}
   </p>
+{% endif %}
 
   <p>
   {% trans %}
@@ -430,13 +478,6 @@
   {% trans %}
     If you feel you have been unfairly accused of violating these guidelines,
     please follow the same reporting process.
-  {% endtrans %}
-  </p>
-
-  <h3>{{ _('Who to Contact') }}</h3>
-  <p>
-  {% trans mailto_inclusion='mailto:inclusion@mozilla.com' %}
-    <a href="{{ mailto_inclusion }}">inclusion@mozilla.com</a>
   {% endtrans %}
   </p>
 
