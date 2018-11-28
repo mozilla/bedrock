@@ -4,6 +4,11 @@
 
 @import '../pebbles/includes/lib';
 
+.reporting-matrix-container {
+    max-width: 100%;
+    overflow: auto;
+}
+
 .reporting-matrix {
     width: 100%;
 

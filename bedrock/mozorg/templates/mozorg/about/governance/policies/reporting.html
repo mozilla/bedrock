@@ -74,44 +74,46 @@
   {% endtrans %}
   </p>
 
-  <table class="data-table reporting-matrix">
-    <thead>
-      <tr>
-        <td colspan="2"></td>
-        <th scope="col" colspan="2" class="group-header">{{ _('By') }}</th>
-      </tr>
-      <tr>
-        <td colspan="2"></td>
-        <th scope="col">{{ _('Employee') }}</th>
-        <th scope="col">{{ _('Contributor') }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th rowspan="5" class="group-header">{{ _('About') }}</th>
-      </tr>
-      <tr>
-        <th scope="row">{{ _('Employee') }}</th>
-        <td><a href="https://app.convercent.com/en-us/LandingPage/4a6ee0c0-5bc1-e611-80d5-000d3ab1117e">{{ _('Employee Hotline') }}</a></td>
-        <td><a href="https://app.convercent.com/en-us/LandingPage/4a6ee0c0-5bc1-e611-80d5-000d3ab1117e">{{ _('Employee Hotline') }}</a></td>
-      </tr>
-      <tr>
-        <th scope="row">{{ _('Contributor') }}</th>
-        <td><a href="https://app.convercent.com/en-us/LandingPage/4a6ee0c0-5bc1-e611-80d5-000d3ab1117e">{{ _('Employee Hotline') }}</a></td>
-        <td><a href="https://events.mozilla.org/communityparticipationhotline">{{ _('Community Hotline') }}</a></td>
-      </tr>
-      <tr>
-        <th scope="row">{{ _('Contractor') }}</th>
-        <td><a href="https://app.convercent.com/en-us/LandingPage/4a6ee0c0-5bc1-e611-80d5-000d3ab1117e">{{ _('Employee Hotline') }}</a></td>
-        <td><a href="https://events.mozilla.org/communityparticipationhotline">{{ _('Community Hotline') }}</a></td>
-      </tr>
-      <tr>
-        <th scope="row">{{ _('Vendor') }}</th>
-        <td><a href="https://app.convercent.com/en-us/LandingPage/4a6ee0c0-5bc1-e611-80d5-000d3ab1117e">{{ _('Employee Hotline') }}</a></td>
-        <td><a href="https://events.mozilla.org/communityparticipationhotline">{{ _('Community Hotline') }}</a></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="reporting-matrix-container">
+    <table class="data-table reporting-matrix">
+      <thead>
+        <tr>
+          <td colspan="2"></td>
+          <th scope="col" colspan="2" class="group-header">{{ _('By') }}</th>
+        </tr>
+        <tr>
+          <td colspan="2"></td>
+          <th scope="col">{{ _('Employee') }}</th>
+          <th scope="col">{{ _('Contributor') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th rowspan="5" class="group-header">{{ _('About') }}</th>
+        </tr>
+        <tr>
+          <th scope="row">{{ _('Employee') }}</th>
+          <td><a href="https://app.convercent.com/en-us/LandingPage/4a6ee0c0-5bc1-e611-80d5-000d3ab1117e">{{ _('Employee Hotline') }}</a></td>
+          <td><a href="https://app.convercent.com/en-us/LandingPage/4a6ee0c0-5bc1-e611-80d5-000d3ab1117e">{{ _('Employee Hotline') }}</a></td>
+        </tr>
+        <tr>
+          <th scope="row">{{ _('Contributor') }}</th>
+          <td><a href="https://app.convercent.com/en-us/LandingPage/4a6ee0c0-5bc1-e611-80d5-000d3ab1117e">{{ _('Employee Hotline') }}</a></td>
+          <td><a href="https://events.mozilla.org/communityparticipationhotline">{{ _('Community Hotline') }}</a></td>
+        </tr>
+        <tr>
+          <th scope="row">{{ _('Contractor') }}</th>
+          <td><a href="https://app.convercent.com/en-us/LandingPage/4a6ee0c0-5bc1-e611-80d5-000d3ab1117e">{{ _('Employee Hotline') }}</a></td>
+          <td><a href="https://events.mozilla.org/communityparticipationhotline">{{ _('Community Hotline') }}</a></td>
+        </tr>
+        <tr>
+          <th scope="row">{{ _('Vendor') }}</th>
+          <td><a href="https://app.convercent.com/en-us/LandingPage/4a6ee0c0-5bc1-e611-80d5-000d3ab1117e">{{ _('Employee Hotline') }}</a></td>
+          <td><a href="https://events.mozilla.org/communityparticipationhotline">{{ _('Community Hotline') }}</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <h3>{{ _('If someone reports to you…') }}</h3>
 
