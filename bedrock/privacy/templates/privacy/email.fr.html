@@ -1,0 +1,35 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "base-protocol.html" %}
+
+{% block page_title %}Comment mon adresse sera-t-elle utilisée par Mozilla ?{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('privacy_email') }}
+{% endblock %}
+
+{% block page_class %}privacy-email{% endblock %}
+
+{% block content %}
+<div class="mzp-l-content article-wrapper">
+  <main class="mzp-c-article">
+    <h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
+
+    <p class="mzp-c-article-intro">
+      Mozilla n’accorde pas seulement de l’importance à la confidentialité et à la sécurité de votre adresse électronique — cela fait partie de notre <a href="{{ url('mozorg.about.manifesto') }}"></a>Manifeste</a> : « La sécurité et la vie privée de chacun sur Internet sont fondamentales et ne doivent pas être facultatives. » <a href="{{ url('privacy.principles') }}"></a>Apprenez-en davantage sur nos principes de confidentialité des données</a>. 
+    </p>
+
+    <p><strong>Ce que vous devez savoir :</strong></p>
+
+    <ul class="prose mzp-u-list-styled">
+      <li>Il n’est pas nécessaire de nous donner votre adresse pour télécharger et utiliser Firefox.</li>
+      <li>Nous vous avons demandé votre adresse parce que nos recherches montrent que les personnes auxquelles nous présentons une introduction arrivent à faire plus de choses avec Firefox.</li>
+      <li>Vous recevrez des courriels destinés à vous aider à optimiser le fonctionnement de Firefox pour votre utilisation personnelle, des informations sur la vie privée et la sécurité et sur la manière de profiter à fond de votre temps passé sur le Web.</li>
+      <li>Vous pouvez vous désinscrire à tout moment, quelle qu’en soit la raison.</li>
+      <li>Nous ne partagerons, ne vendrons ni n’utiliserons votre adresse pour aucun autre usage.</li>
+    </ul>
+  </main>
+</div>
+{% endblock %}

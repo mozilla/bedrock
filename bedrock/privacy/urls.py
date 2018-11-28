@@ -12,7 +12,7 @@ urlpatterns = (
     url(r'^/$', views.privacy, name='privacy'),
     page('/principles', 'privacy/principles.html'),
     page('/faq', 'privacy/faq.html'),
-    page('/email', 'privacy/email.html'),
+    page('/email', 'privacy/email.html', active_locales=['en-US', 'de', 'fr']),
     url(r'^/firefox/$', views.firefox_notices, name='privacy.notices.firefox'),
     url(r'^/firefox-os/$', views.firefox_os_notices, name='privacy.notices.firefox-os'),
     url(r'^/firefox-fire-tv/$', views.firefox_fire_tv_notices, name='privacy.notices.firefox-fire-tv'),

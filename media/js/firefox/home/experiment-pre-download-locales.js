@@ -40,6 +40,8 @@
     var medium = getUrlParam('utm_medium');
     var campaign = getUrlParam('utm_campaign');
 
+    var locale = document.getElementsByTagName('html')[0].getAttribute('lang') || '';
+
     var params = {
         utmSource: source ? source : 'www.mozilla.org',
         utmMedium: medium ? medium : 'download_button',
@@ -47,9 +49,9 @@
         utmContent: 'downloader_email_form_experiment_'
     };
 
-    var stringA = 'v=a&utm_source=' + params.utmSource + '&utm_medium=' + params.utmMedium + '&utm_campaign=' + params.utmCampaign + '&utm_content=' + params.utmContent + 'va';
-    var stringB = 'v=b&utm_source=' + params.utmSource + '&utm_medium=' + params.utmMedium + '&utm_campaign=' + params.utmCampaign + '&utm_content=' + params.utmContent + 'vb';
-    var stringC = 'v=c&utm_source=' + params.utmSource + '&utm_medium=' + params.utmMedium + '&utm_campaign=' + params.utmCampaign + '&utm_content=' + params.utmContent + 'vc';
+    var stringA = 'v=a&utm_source=' + params.utmSource + '&utm_medium=' + params.utmMedium + '&utm_campaign=' + params.utmCampaign + '&utm_content=' + params.utmContent + 'va_' + locale;
+    var stringB = 'v=b&utm_source=' + params.utmSource + '&utm_medium=' + params.utmMedium + '&utm_campaign=' + params.utmCampaign + '&utm_content=' + params.utmContent + 'vb_' + locale;
+    var stringC = 'v=c&utm_source=' + params.utmSource + '&utm_medium=' + params.utmMedium + '&utm_campaign=' + params.utmCampaign + '&utm_content=' + params.utmContent + 'vc_' + locale;
 
     var queries = {};
 
