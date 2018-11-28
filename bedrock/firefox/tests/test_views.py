@@ -839,6 +839,56 @@ class TestFirefoxNew(TestCase):
         views.download_thanks(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
 
+    # Internet Explorer SEM campaign Bug 1506301
+
+    def test_compare_ie_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=internetexplorer')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-ie-1.html', ANY)
+
+    def test_compare_ie_scene_1va(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=internetexplorer&v=a')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_compare_ie_scene_1v1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=internetexplorer&v=1')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-ie-1.html', ANY)
+
+    def test_compare_ie_scene_1v2(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=internetexplorer&v=2')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-ie-2.html', ANY)
+
+    def test_compare_ie_scene_1v3(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=internetexplorer&v=3')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-ie-3.html', ANY)
+
+    def test_compare_ie_scene_1v4(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=internetexplorer&v=4')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-ie-4.html', ANY)
+
+    def test_compare_ie_scene_1_non_us(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=internetexplorer')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+
+    def test_compare_ie_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=internetexplorer')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
     # fxa experiment for existing fx users bedrock/mozilla#5974
 
     def test_fx_fxa_scene_1x(self, render_mock):
