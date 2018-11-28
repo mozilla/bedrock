@@ -1,0 +1,37 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% extends "base-protocol.html" %}
+
+{% block page_title %}Wie verwendet Mozilla meine E-Mail-Adresse?{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('privacy_email') }}
+{% endblock %}
+
+{% block page_class %}privacy-email{% endblock %}
+
+{% block content %}
+<div class="mzp-l-content article-wrapper">
+  <main class="mzp-c-article">
+    <h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
+
+    <p class="mzp-c-article-intro">
+      Mozilla ist der Schutz Ihrer E-Mail-Privatsphäre und -Sicherheit nicht nur wichtig – sie sind Teil unseres <a href="{{ url('mozorg.about.manifesto') }}">Manifests</a>:„ Individuelle Sicherheit und Datenschutz im Internet sind von grundlegender Bedeutung und dürfen nicht als optional betrachtet werden.“ <a href="{{ url('privacy.principles') }}">Hier können Sie mehr über unsere Prinzipien zur Datensicherheit erfahren</a>.
+    </p>
+
+    <p><strong>Was Sie wissen sollten:</strong></p>
+
+    <ul class="prose mzp-u-list-styled">
+      <li>Sie müssen Ihre E-Mail-Adresse nicht angeben, um Firefox herunterzuladen und zu verwenden.</li>
+      <li>Wir fragen nach Ihrer E-Mail-Adresse, weil unsere Forschung zeigt, dass Menschen, die eine Einführung erhalten, mehr und besser mit Firefox arbeiten.</li>
+      <li>Sie können E-Mails erwarten, mit deren Hilfe Sie besser mit Firefox arbeiten können, mehr über Datenschutz und Sicherheit erfahren und herausfinden, wie Sie Ihre Zeit im Internet am besten nutzen können.</li>
+      <li>Sie können den Newsletter jederzeit aus beliebigen Gründen abbestellen.</li>
+      <li>Wir werden Ihre E-Mail-Adresse nicht weitergeben, verkaufen oder zu anderen Zwecken nutzen.</li>
+    </ul>
+  </main>
+
+</div>
+{% endblock %}
+

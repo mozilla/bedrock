@@ -1,0 +1,49 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% add_lang_files "firefox/hub/home-quantum" "firefox/shared" %}
+
+{% extends "firefox/home.html" %}
+
+{% block experiments %}{% endblock %}
+
+{% block page_css %}
+  {{ super() }}
+  {{ css_bundle('firefox-home-pre-download') }}
+{% endblock %}
+
+{% block button_primary %}
+  <div class="pre-download-button-container" {% block variant_name %}data-variant-name="v-2-headline-a"{% endblock %}>
+    <button class="button button-green" id="pre-download-button" type="button" data-button-name="Download Firefox CTA">{{ _('Download Firefox') }}</button>
+    <small class="fx-privacy-link">
+      <a href="{{ url('privacy.notices.firefox') }}">Firefox Privacy Notice</a>
+    </small>
+  </div>
+{% endblock %}
+
+{% block additional_content %}
+  <div class="pre-download-newsletter">
+    <div class="pre-download-newsletter-content">
+      <h2 class="pre-download-newsletter-title">{% block newsletter_title %}{{ _('Découvrez comment rendre Firefox plus intelligent, plus rapide et plus sûr.') }}{% endblock %}</h2>
+      <p class="pre-download-newsletter-desc">{{ _('Recevez des informations, des astuces et des nouvelles sur les produits directement dans votre boîte de réception.') }}</p>
+      {{ email_newsletter_form(
+          include_title=False,
+          spinner_color='#000',
+          button_class='button-hollow',
+          email_label=_('Saisissez votre adresse de courrier électronique'),
+          email_placeholder=_('votrenom@example.com'),
+          details='<a href="%s" class="email-privacy-link">%s</a>'|format(url('privacy.email'), _('Comment mon adresse sera-t-elle utilisée par Mozilla ?'))|safe,
+          submit_text=_('Je télécharge Firefox et je crée un compte'))
+      }}
+      <p class="pre-download-continue">
+        <a href="{{ url('firefox.download.thanks') }}?v=a" data-link-name="Continue FireFox Download" data-link-type="link">{{ _('Continuer le téléchargement de Firefox') }}</a>
+      </p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('firefox-home-pre-download-newsletter') }}
+{% endblock %}

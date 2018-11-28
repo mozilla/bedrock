@@ -18,8 +18,11 @@
 {% block page_desc %}{{ _('Responsive engine, less memory usage and packed with features. Download for desktop now.') }}{% endblock %}
 
 {% block experiments %}
-  {% if switch('experiment-firefox-home-pre-download', ['en']) %}
+  {% if switch('experiment-firefox-home-pre-download', ['en-US', 'en-GB', 'en-CA', 'en-ZA']) %}
     {{ js_bundle('experiment-firefox-home-pre-download') }}
+  {% endif %}
+  {% if switch('experiment-firefox-home-pre-download-locales', ['de', 'fr']) %}
+    {{ js_bundle('experiment-firefox-home-pre-download-locales') }}
   {% endif %}
 {% endblock %}
 
