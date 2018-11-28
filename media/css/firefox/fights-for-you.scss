@@ -250,12 +250,8 @@ $fffy-pink: #FF2889;
 /* -------------------------------------------------------------------------- */
 // YouTube iframe responsive in modal.
 
-.mzp-c-card-video-wrapper {
+.mzp-u-modal-content {
     display: none;
-
-    &.mzp-c-modal-overlay-contents {
-        display: block;
-    }
 }
 
 .ytcontainer-video {

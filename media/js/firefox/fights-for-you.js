@@ -42,7 +42,7 @@
 
     var content = document.getElementById('fffy-video-modal');
     var button = document.getElementById('fffy-video-button');
-    var container = document.getElementById('fffy-video-container');
+    var player = document.getElementById('fffy-video-player');
     var tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -57,7 +57,7 @@
         button.addEventListener('click', function(e) {
             e.preventDefault();
 
-            var player = new YT.Player(container, {
+            var ytPlayer = new YT.Player(player, {
                 height: '703',
                 width: '1250',
                 videoId: videoId,
@@ -76,7 +76,7 @@
                 className: 'mzp-has-media',
                 closeText: 'Close modal',
                 onDestroy: function() {
-                    player.destroy();
+                    ytPlayer.destroy();
                 }
             });
 
@@ -111,12 +111,12 @@
         });
     }
 
-    Mozilla.firstRunOnYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+    Mozilla.fffyOnYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
 })();
 
 // YouTube API hook has to be in global scope
 function onYouTubeIframeAPIReady() {
     'use strict';
 
-    Mozilla.firstRunOnYouTubeIframeAPIReady();
+    Mozilla.fffyOnYouTubeIframeAPIReady();
 }
