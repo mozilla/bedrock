@@ -10,6 +10,7 @@ $image-path: '/media/protocol/img';
 @import '../protocol/base/fonts/sharpsans';
 
 @import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/modal';
 @import '../../protocol/css/components/call-out';
 @import '../../protocol/css/components/feature-card';
 @import '../../protocol/css/components/hero';
@@ -242,5 +243,38 @@ $fffy-pink: #FF2889;
         &:active {
             text-decoration: none;
         }
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+// YouTube iframe responsive in modal.
+
+.mzp-c-card-video-wrapper {
+    display: none;
+
+    &.mzp-c-modal-overlay-contents {
+        display: block;
+    }
+}
+
+.ytcontainer-video {
+    max-width: 100%;
+
+    .video-container {
+        height: 0;
+        margin-bottom: $spacing-lg;
+        overflow: hidden;
+        padding-bottom: 56.25%;
+        position: relative;
+        width: 100%;
+    }
+
+    iframe {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top:0;
+        width: 100%;
     }
 }

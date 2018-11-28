@@ -31,4 +31,92 @@
             });
         }, false);
     }
+
 })();
+
+(function() {
+    'use strict';
+
+    /* global YT */
+    /* eslint no-unused-vars: [2, { "varsIgnorePattern": "onYouTubeIframeAPIReady" }] */
+
+    var content = document.getElementById('fffy-video-modal');
+    var button = document.getElementById('fffy-video-button');
+    var container = document.getElementById('fffy-video-container');
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    function onYouTubeIframeAPIReady() {
+        // lazy load video when visitor clicks the button
+        var videoId = button.getAttribute('data-id');
+
+        button.setAttribute('role', 'button');
+
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            var player = new YT.Player(container, {
+                height: '703',
+                width: '1250',
+                videoId: videoId,
+                playerVars: {
+                    modestbranding: 1, // hide YouTube logo.
+                    rel: 0, // do not show related videos on end.
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+
+            Mzp.Modal.createModal(e.target, content, {
+                title: 'Firefox Fights For You',
+                className: 'mzp-has-media',
+                closeText: 'Close modal',
+                onDestroy: function() {
+                    player.destroy();
+                }
+            });
+
+            function onPlayerReady(event) {
+                event.target.playVideo();
+            }
+
+            function onPlayerStateChange(event) {
+                var state;
+
+                switch(event.data) {
+                case YT.PlayerState.PLAYING:
+                    state = 'video play';
+                    break;
+                case YT.PlayerState.PAUSED:
+                    state = 'video paused';
+                    break;
+                case YT.PlayerState.ENDED:
+                    state = 'video complete';
+                    Mzp.Modal.closeModal();
+                    break;
+                }
+
+                if (state) {
+                    window.dataLayer.push({
+                        'event': 'video-interaction',
+                        'videoTitle': 'Firefox Fights For You',
+                        'interaction': state
+                    });
+                }
+            }
+        });
+    }
+
+    Mozilla.firstRunOnYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+})();
+
+// YouTube API hook has to be in global scope
+function onYouTubeIframeAPIReady() {
+    'use strict';
+
+    Mozilla.firstRunOnYouTubeIframeAPIReady();
+}

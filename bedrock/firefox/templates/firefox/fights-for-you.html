@@ -36,7 +36,9 @@
     title='Firefox Fights For You',
     desc='You have the right to own your life – and your data. Everything we make and do fights for you.',
     class='mzp-has-image mzp-t-firefox mzp-t-product-firefox mzp-t-dark',
+    include_cta=True
   ) %}
+  <a id="fffy-video-button" href="https://www.youtube.com/watch?v=rZAQ6vgt8nE" data-id="rZAQ6vgt8nE" class="mzp-c-button mzp-t-secondary mzp-t-dark mzp-t-small" data-link-type="button" data-link-name="Watch video">Watch video</a>
   {% endcall %}
 
   <div class="fffy-c-product mzp-l-content">
@@ -109,6 +111,13 @@
         Please help us out by taking this <a href="https://www.surveygizmo.com/s3/4693873/FFFY-Heartbeat-Survey" target="_blank" rel="noopener noreferrer" data-link-type="link" data-link-name="survey">short survey</a>.
     </div>
   {% endif %}
+</div>
+
+<div id="fffy-video-modal" class="mzp-c-card-video-wrapper">
+  <figure class="mzp-c-card-video-content">
+    <div id="fffy-video-container" class="ytcontainer-video">
+    </div>
+  </figure>
 </div>
 
 {% endblock %}

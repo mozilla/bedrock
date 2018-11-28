@@ -36,7 +36,9 @@
     title='Firefox Fights For You',
     desc='Privatsphäre sollte einfach sein. Daten sicher. Einstellungen eindeutig. Wir kämpfen für ein besseres Internet – mit Produkten, die Dir auch online die Kontrolle über Dein Leben geben.',
     class='mzp-has-image mzp-t-firefox mzp-t-product-firefox mzp-t-dark',
+    include_cta=True
   ) %}
+  <a id="fffy-video-button" href="https://www.youtube.com/watch?v=3NG6dZl9kpA" data-id="3NG6dZl9kpA" class="mzp-c-button mzp-t-secondary mzp-t-dark mzp-t-small" data-link-type="button" data-link-name="Watch video">Video anschauen</a>
   {% endcall %}
 
   <div class="fffy-c-product mzp-l-content">
@@ -104,6 +106,13 @@
       {{ download_firefox(download_location='secondary cta', dom_id='fffy-download-secondary') }}
     </div>
   {% endcall %}
+</div>
+
+<div id="fffy-video-modal" class="mzp-c-card-video-wrapper">
+  <figure class="mzp-c-card-video-content">
+    <div id="fffy-video-container" class="ytcontainer-video">
+    </div>
+  </figure>
 </div>
 
 {% endblock %}

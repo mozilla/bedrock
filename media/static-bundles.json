@@ -973,6 +973,7 @@
     },
     {
       "files": [
+        "protocol/js/protocol-modal.js",
         "js/firefox/fights-for-you.js"
       ],
       "name": "fights-for-you"
