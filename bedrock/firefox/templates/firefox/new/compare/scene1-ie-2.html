@@ -6,12 +6,6 @@
 
 {% extends "firefox/new/compare/base-1.html" %}
 
-{% block experiments %}
-  {% if switch('firefox_new_compare_ie_experiment', ['en-US']) %}
-    {{ js_bundle('firefox_new_compare_ie_experiment') }}
-  {% endif %}
-{% endblock %}
-
 {% block body_class %}{{ super() }} variant-ie-1{% endblock %}
 
 {% block page_title %}{{ _('Firefox vs. Internet Explorer') }}{% endblock %}

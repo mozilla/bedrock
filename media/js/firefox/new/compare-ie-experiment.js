@@ -60,7 +60,7 @@
         var cop = new Mozilla.TrafficCop({
             id: 'experiment_firefox_new_ie',
             variations: {
-                'v=a': 30, // control
+                'v=a': 20, // control
                 'v=1': 20,
                 'v=2': 20,
                 'v=3': 20,
