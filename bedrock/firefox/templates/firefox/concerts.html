@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros-protocol.html" import hero with context %}
+
 {% extends "firefox/base-protocol.html" %}
 
 {% block page_title_prefix %}Firefox Concert Series - {% endblock %}
@@ -17,16 +19,17 @@
 {% block content %}
 <main role="main">
   <div class="concert-content">
-    <header class="mzp-c-hero mzp-t-firefox mzp-t-product-firefox mzp-t-dark">
-      <div class="mzp-l-content">
-        <div class="mzp-c-hero-body">
-          <h1 class="mzp-c-hero-title">Here’s to you.<br> Here’s to live music.</h1>
-          <div class="mzp-c-hero-desc">
-            <p>Here’s to watching it free, from all kinds of artists, right from Firefox.</p>
-          </div>
-        </div>
-      </div>
-    </header>
+    {% call hero(
+      title=_('Here’s to you.<br> Here’s to live music.')|safe,
+      desc=_('Here’s to watching it free, from all kinds of artists, right from Firefox.'),
+      class='mzp-t-firefox mzp-t-product-firefox mzp-t-dark',
+      include_cta=False,
+      heading_level=1,
+      image_url=None,
+      include_highres_image=False,
+      image_alt=''
+    ) %}
+    {% endcall %}
 
     <div class="artist-featured mzp-l-content l-content-narrow">
       <section class="artist-card mzp-c-card-feature mzp-has-aspect-16-9 mzp-t-firefox mzp-t-dark">
