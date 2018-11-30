@@ -10,6 +10,7 @@
 {% extends "firefox/base-protocol.html" %}
 
 {% if not is_translation %}
+  {% set latest = _('Congrats! You’re using the latest version of Firefox.') %}
   {% set page_title = _('Get a Firefox Account – Keep your data private, safe and synced') %}
   {% set page_desc = _('Securely sync your passwords, bookmarks and tabs across all your devices. Get a Firefox Account now – One log-in – Power and privacy everywhere.') %}
   {% set hero_title_out = _('Now take your Firefox to the next level: get a Firefox Account') %}
@@ -45,7 +46,7 @@
   <header class="c-page-header">
     <div class="mzp-l-content c-page-header-inner">
       {{ high_res_img('logos/firefox/logo-quantum-wordmark-large.png', {'alt': 'Firefox', 'width': '147', 'height': '55', 'class': 'c-page-header-logo-fx'}) }}
-      <h1 class="c-page-header-up-to-date">{{ _('Congrats! You’re using the latest version of Firefox.') }}</h1>
+      <h1 class="c-page-header-up-to-date">{{ latest }}</h1>
       <img src="{{ static('img/logos/mozilla/wordmark-dark.svg') }}" alt="Mozilla" width="112" height="32" class="c-page-header-logo-moz">
     </div>
   </header>
