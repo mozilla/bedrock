@@ -26,6 +26,10 @@ $image-path: '/media/protocol/img';
 // Custom Protocol
 // Hero
 
+.mzp-c-hero-title {
+    margin-bottom: $spacing-2xl;
+}
+
 .mzp-c-hero.mzp-t-firefox:after {
     display: none;
     mask: none;
@@ -74,6 +78,11 @@ $image-path: '/media/protocol/img';
 
 /* -------------------------------------------------------------------------- */
 // Modal, custom styles
+
+#fx-modal-button {
+    background: $color-blue-60;
+    border: $color-blue-60;
+}
 
 .mobile-notes,
 .mobile-lockbox,
