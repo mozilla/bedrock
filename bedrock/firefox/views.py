@@ -520,7 +520,7 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
                 template = 'firefox/whatsnew/index-lite.id.html'
             else:
                 template = 'firefox/whatsnew/index.id.html'
-        elif locale == 'zh-TW':
+        elif locale == 'zh-TW' and not version.startswith('64.'):
             template = 'firefox/whatsnew/index.zh-TW.html'
         elif version.startswith('64.'):
             template = 'firefox/whatsnew/whatsnew-fx64.html'
