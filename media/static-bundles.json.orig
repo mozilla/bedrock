@@ -862,16 +862,16 @@
     {
       "files": [
         "css/base/mozilla-fxa-state.scss",
-        "css/firefox/accounts-2018.scss"
-      ],
-      "name": "firefox_accounts_2018"
-    },
-    {
-      "files": [
-        "css/base/mozilla-fxa-state.scss",
+<<<<<<< HEAD
         "css/firefox/concerts.scss"
       ],
       "name": "firefox_concert_series"
+=======
+        "css/base/mozilla-fxa-form.scss",
+        "css/firefox/accounts-2018.scss"
+      ],
+      "name": "firefox_accounts_2018"
+>>>>>>> Spin off a new template, keep the old page for l10n fallback
     },
     {
       "files": [

@@ -15,15 +15,14 @@ $image-path: '/media/protocol/img';
 }
 
 #subtitle {
+    @include open-sans;
     @include text-display-md;
-    text-align: center;
-    width: 50%;
     margin: 0 auto;
-    font-family: $font-open-sans;
-    font-weight: normal;
+    max-width: $content-md;
+    text-align: center;
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Custom Protocol
 // Hero
 
@@ -36,15 +35,13 @@ $image-path: '/media/protocol/img';
     background: transparent;
 }
 
-.mzp-t-firefox {
-    h1, h2, h3, h4 {
-        font-weight: normal;
-    }
-}
 
 // Cards
-
 .mzp-c-card-feature-content {
+    .mzp-c-card-feature-title {
+        @include text-display-md;
+    }
+
     .mzp-c-cta-link {
         &:link,
         &:visited {
@@ -61,7 +58,8 @@ $image-path: '/media/protocol/img';
     }
 }
 
-/* -------------------------------------------------------------------------- */
+
+//* -------------------------------------------------------------------------- */
 // FXA Form
 
 .fxa-benefits {
@@ -115,7 +113,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // QR codes
 
 #qr-code {
@@ -143,56 +141,106 @@ $image-path: '/media/protocol/img';
     background-size: contain;
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Bottom Banner
 
 #bottom-banner {
-    align-items: center;
-    background: #2a0140 url('/media/img/firefox/accounts/blob-img.png') no-repeat;
-    background-size: cover;
-    background-position-y: -120px;
-    color: #fff;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    height: 300px;
+    background: #2a0140 url('/media/img/firefox/accounts/blob-img.png') center -120px no-repeat;
+    @include background-size(cover);
+    color: $color-white;
+    padding: $spacing-md 0;
 
-    #bottom-cta {
-        margin: 0 auto;
-    }
-
-    .banner-title p {
-        font-family: sans-serif;
-        font-weight: bold;
+    .banner-title h2 {
+        @include open-sans;
         @include text-display-lg;
-        margin: 0;
+        margin: 0 0 $spacing-lg;
     }
 
-    form {
-        color: #fff;
-        width: 400px;
-        a {
-            color: #fff;
-        }
-        .fxa-email-form-intro, strong {
-            font-size: 1rem;
+    .mobile-download-buttons {
+        text-align: center;
+    }
+
+    .fxa-email-form {
+        @include light-links;
+        color: $color-white;
+        max-width: $content-sm;
+
+        .fxa-email-form-intro {
+            @include text-display-sm;
             font-weight: bold;
-            display: inline-block;
-            margin: 0;
+
+            strong {
+                display: inline;
+                margin: 0;
+            }
+        }
+
+        input[type='email'] {
+            @include border-box;
+            @include text-body-md;
+            border-radius: 2px;
+            padding: ($padding-md - 2px) ($padding-xl - 2px); //2px extra padding removed to compensate for 2px border.
+            width: 100%;
+        }
+
+        .mzp-c-button {
+            width: 100%;
+        }
+
+        .agreement {
+            @include text-body-xs;
+        }
+
+        label {
+            @include visually-hidden;
         }
     }
 
-    #fxa-sign-in {
-        @include text-body-xs;
-        width: 400px;
-        margin: 1em auto 0;
-        a {
-            color: #fff;
+    .fxa-signin {
+        @include text-body-sm;
+        @include light-links;
+        text-align: center;
+    }
+}
+
+@supports (display: grid) {
+    @media #{$mq-md} {
+        #bottom-banner {
+            .mzp-l-content {
+                @include grid-column-gap($spacing-xl);
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .banner-title {
+                grid-column: 1;
+                display: flex;
+                align-items: center;
+
+                h2 {
+                    margin: 0;
+                }
+            }
+
+            .banner-cta {
+                grid-column: 2;
+                max-width: $content-sm;
+            }
+
+            .mzp-c-button-download-container {
+                width: 100%;
+            }
+        }
+    }
+
+    @media #{$mq-lg} {
+        #bottom-banner .mzp-l-content {
+            grid-template-columns: 2fr 1fr;
         }
     }
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Conditional
 
 html.ios,
