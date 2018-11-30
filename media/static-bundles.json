@@ -616,6 +616,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-64.scss"
+      ],
+      "name": "firefox_whatsnew_64"
+    },
+    {
+      "files": [
         "css/mozorg/commit-access-policy.less"
       ],
       "name": "commit-access-policy"
@@ -1080,6 +1086,14 @@
         "js/firefox/whatsnew/whatsnew-63.js"
       ],
       "name": "firefox_whatsnew_63"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "protocol/js/protocol-modal.js",
+        "js/firefox/whatsnew/whatsnew-64.js"
+      ],
+      "name": "firefox_whatsnew_64"
     },
     {
       "files": [
