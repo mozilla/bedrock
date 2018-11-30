@@ -136,16 +136,17 @@
   </div>{#-- .concert-content --#}
 
   <section class="excluded-content">
-    <header class="mzp-c-hero mzp-t-firefox mzp-t-product-firefox mzp-t-dark">
-      <div class="mzp-l-content">
-        <div class="mzp-c-hero-body">
-          <h1 class="mzp-c-hero-title">Our apologies.</h1>
-          <div class="mzp-c-hero-desc">
-            <p>We are not able to stream these concerts outside the US.</p>
-          </div>
-        </div>
-      </div>
-    </header>
+    {% call hero(
+      title=_('Our apologies.'),
+      desc=_('We are not able to stream these concerts outside the US.'),
+      class='mzp-t-firefox mzp-t-product-firefox mzp-t-dark',
+      include_cta=False,
+      heading_level=1,
+      image_url=None,
+      include_highres_image=False,
+      image_alt=''
+    ) %}
+  {% endcall %}
 
     <div class="mzp-l-content l-content-narrow">
       <p>But sign up for our newsletter to learn about Firefox happenings in your area.</p>

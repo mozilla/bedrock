@@ -162,8 +162,11 @@ $concert-coral: #ff4f5d;
     }
 
     input[type='email'] {
+        @include border-box;
+        @include text-body-md;
+        border-radius: 2px;
+        padding: ($padding-md - 2px) ($padding-xl - 2px); //2px extra padding removed to compensate for 2px border.
         width: 100%;
-        padding: $spacing-md;
     }
 
     .mzp-c-button {
@@ -220,6 +223,14 @@ $concert-coral: #ff4f5d;
             font-family: sharpsans, sans-serif;
             font-weight: normal;
         }
+    }
+
+    input[type='email'] {
+        @include border-box;
+        @include text-body-md;
+        border-radius: 2px;
+        padding: ($padding-md - 2px) ($padding-xl - 2px); //2px extra padding removed to compensate for 2px border.
+        width: 100%;
     }
 }
 
