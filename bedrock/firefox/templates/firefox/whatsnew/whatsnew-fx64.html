@@ -1,50 +1,125 @@
-{# This Source Code Form is subject to the terms of the Mozilla Public
-  # License, v. 2.0. If a copy of the MPL was not distributed with this
-  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+{# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
- {% from "macros-protocol.html" import call_out, feature_card with context %}
+{% from "macros-protocol.html" import hero, call_out_compact with context %}
 
- {% from "macros.html" import fxa_email_form with context %}
+{% from "macros.html" import fxa_email_form, google_play_button with context %}
 
- {% add_lang_files "firefox/whatsnew_64" %}
+{% add_lang_files "firefox/whatsnew_64" %}
 
- {% extends "firefox/base-protocol.html" %}
+{% extends "firefox/base-protocol.html" %}
 
- {% block page_title %}{{ _('Get a Firefox Account – Keep your data private, safe and synced') }}{% endblock %}
- {% block page_desc %}{{_('Securely sync your passwords, bookmarks and tabs across all your devices. Get a Firefox Account now – One log-in – Power and privacy everywhere.')}}{% endblock %}
+{% block page_title %}{{ _('Get a Firefox Account – Keep your data private, safe and synced') }}{% endblock %}
+{% block page_desc %}{{_('Securely sync your passwords, bookmarks and tabs across all your devices. Get a Firefox Account now – One log-in – Power and privacy everywhere.')}}{% endblock %}
 
- {% block page_css %}
-   {{ css_bundle('firefox_whatsnew_64') }}
- {% endblock %}
+{% block page_css %}
+ {{ css_bundle('firefox_whatsnew_64') }}
+{% endblock %}
 
- {% block site_header %}{% endblock %}
+{% block site_header %}{% endblock %}
 
- {% block content %}
+{% block content %}
+<main class="mzp-t-firefox">
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
+      {{ high_res_img('logos/firefox/logo-quantum-wordmark-large.png', {'alt': 'Firefox', 'width': '147', 'height': '55', 'class': 'c-page-header-logo-fx'}) }}
+      <h1 class="c-page-header-up-to-date">{{ _('Congrats! You’re using the latest version of Firefox.') }}</h1>
+      <img src="{{ static('img/logos/mozilla/wordmark-dark.svg') }}" alt="Mozilla" width="112" height="32" class="c-page-header-logo-moz">
+    </div>
+  </header>
+  {% set content_blocking_image='firefox/whatsnew_64/hero.png' if DIR == 'ltr' else 'firefox/whatsnew_64/hero-rtl.png' %}
+  {% call hero(
+   title=_('Now take your Firefox to the next level: get a Firefox Account'),
+   desc=_('One log-in gives you access to all these benefits'),
+   class='mzp-has-image mzp-l-reverse wn64-t-intro',
+   image_url=content_blocking_image,
+   include_highres_image=true,
+   include_cta=True
+  ) %}
+  <p>
+    <a href="https://accounts.firefox.com/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org-fx.wnp64&utm_content=%2Ffirefox%2FWNP%2F64%2F&utm_campaign=wnp64&utm_source=wnp-64" class="mzp-c-button mzp-t-download">{{_('Create a Firefox Account')}}</a><br>
+    <span class="wn64-signin">{% trans login='https://accounts.firefox.com/signin' %}Have an account? <a href="{{ login }}">Log in</a>{% endtrans %}</span>
+  </p>
+  {% endcall %}
 
-  <h1>{{_('Now take your Firefox to the next level: get a Firefox Account')}}</h1>
-  <h2>{{_('One log-in gives you access to all these benefits')}}</h2>
-  <p>{{_('Create a Firefox Account')}}</p>
-  <p>{% trans login='#' %}Have an account? <a href="{{ login }}">Log in</a>{% endtrans %}</p>
+  <div class="mzp-l-content">
+    <div class="wn64-benefit wn64-notes">
+      {{ high_res_img('/media/img/firefox/whatsnew_64/fxa-notes.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      <h3>{{_('Pick up where you left off with Notes')}}</h3>
+      <p>{{_('Your ideas and inspiration are secure and encrypted with Notes – and when you’re signed into your Account, they sync from your desktop to your Android devices.')}}</p>
+      <p><a class="mzp-c-button wn64-benefit-link" data-app="notes" href="https://play.google.com/store/apps/details?id=org.mozilla.testpilot.notes">{{_('Get the Notes App')}}</a></p>
+    </div>
 
-  <h1>{{_('Check out all the latest benefits of your Firefox Account')}}</h1>
+    <div class="wn64-benefit wn64-lockbox">
+      {{ high_res_img('/media/img/firefox/whatsnew_64/fxa-lockbox.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      <h3>{{_('Remember your passwords in Lockbox')}}</h3>
+      <p>{{_('No more getting locked out of apps and websites. Lockbox secures all the passwords you’ve saved in Firefox and gives you easy access across all your iOS devices.')}}</p>
+      <p><a class="mzp-c-button wn64-benefit-link" data-app="lockbox" href="https://app.adjust.com/orzhlh0">{{_('Get the Lockbox App')}}</a></p>
+    </div>
 
-  <h3>{{_('Remember your passwords in Lockbox')}}</h3>
-  <p>{{_('No more getting locked out of apps and websites. Lockbox secures all the passwords you’ve saved in Firefox and gives you easy access across all your iOS devices.')}}</p>
-  <a href="#">{{_('Get the Lockbox App')}}</a>
+    <div class="wn64-benefit wn64-pocket">
+      {{ high_res_img('/media/img/firefox/whatsnew_64/fxa-pocket.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      <h3>{{_('Put quality content in your Pocket')}}</h3>
+      <p>{{_('Discover the web’s best content, and absorb it anytime – even offline – on any device. Pocket’s listen feature will even read any article aloud to you. Get it all from the Firefox toolbar or the Pocket app.')}}</p>
+      <p><a class="mzp-c-button wn64-benefit-link" data-app="pocket" href="https://getpocket.com/">{{_('Get the Pocket App')}}</a></p>
+    </div>
 
-  <h3>{{_('Put quality content in your Pocket')}}</h3>
-  <p>{{_('Discover the web’s best content, and absorb it anytime – even offline – on any device. Pocket’s listen feature will even read any article aloud to you. Get it all from the Firefox toolbar or the Pocket app.')}}</p>
-  <a href="#">{{_('Get the Pocket App')}}</a>
+    <div class="wn64-benefit wn64-sync">
+      {{ high_res_img('/media/img/firefox/whatsnew_64/fxa-sync.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      <h3>{{_('Send tabs instantly to your devices')}}</h3>
+      <p>{{_('Send an open tab on one device to all your others with a single tap. Much easier than texting or emailing yourself those links.')}}</p>
+    </div>
+  </div>
 
-  <h3>{{_('Pick up where you left off with Notes')}}</h3>
-  <p>{{_('Your ideas and inspiration are secure and encrypted with Notes – and when you’re signed into your Account, they sync from your desktop to your Android devices.')}}</p>
-  <a href="#">{{_('Get the Notes App')}}</a>
+  {% call call_out_compact(
+    title=_('Get a Firefox Account – Keep your data private, safe and synced'),
+    desc=None,
+    class='mzp-t-firefox'
+  ) %}
+    <p>
+      <a href="https://accounts.firefox.com/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org-fx.wnp64&utm_content=%2Ffirefox%2FWNP%2F64%2F&utm_campaign=wnp64&utm_source=wnp-64" class="mzp-c-button mzp-t-download">{{_('Create a Firefox Account')}}</a><br>
+      <span class="wn64-signin">{% trans login='https://accounts.firefox.com/signin' %}Have an account? <a href="{{ login }}">Log in</a>{% endtrans %}</span>
+    </p>
+  {% endcall %}
 
-  <h3>{{_('Send tabs instantly to your devices')}}</h3>
-  <p>{{_('Send an open tab on one device to all your others with a single tap. Much easier than texting or emailing yourself those links.')}}</p>
+  <aside id="wn64-modal" class="mzp-u-modal-content">
+    <div class="mobile-notes">
+      <div class="qr-notes">
+          <img class="mobile-qr" src="/media/img/firefox/whatsnew_64/lockbox-qr.png" height="300" width="300">
+          <ul class="mobile-download-buttons mobile-notes">
+            <li class="android">
+              {{ google_play_button(href='https://play.google.com/store/apps/details?id=org.mozilla.testpilot.notes') }}
+            </li>
+          </ul>
+      </div>
+    </div>
+    <div class="mobile-lockbox">
+        <img class="mobile-qr" src="/media/img/firefox/whatsnew_64/notes-qr.png" height="300" width="300">
+        <ul class="mobile-download-buttons mobile-lockbox">
+        <li class="ios">
+          <a href="https://app.adjust.com/kq8zhhz" data-link-type="download" data-download-os="iOS">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="" width="152" height="45">
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="mobile-pocket">
+        <img class="mobile-qr" src="/media/img/firefox/whatsnew_64/pocket-qr.png" height="300" width="300">
+        <ul class="mobile-download-buttons mobile-pocket">
+          <li class="android">
+            {{ google_play_button(href='https://app.adjust.com/h5iycst') }}
+          </li>
+          <li class="ios">
+            <a href="https://app.adjust.com/h5iycst" data-link-type="download" data-download-os="iOS">
+              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="" width="152" height="45">
+            </a>
+          </li>
+        </ul>
+    </div>
+  </aside>
+</main>
+{% endblock %}
 
- {% endblock %}
-
- {% block js %}
-   {{ js_bundle('firefox_whatsnew_64') }}
- {% endblock %}
+{% block js %}
+ {{ js_bundle('firefox_whatsnew_64') }}
+{% endblock %}
