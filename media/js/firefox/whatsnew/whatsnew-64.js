@@ -10,7 +10,9 @@
     var client = Mozilla.Client;
 
     for (var i = 0, len = buttons.length; i < len; i++) {
-        buttons[i].addEventListener('click', openModal);
+        var button = buttons[i];
+        button.addEventListener('click', openModal);
+        button.setAttribute('aria-role', 'button');
     }
 
     function openModal(e) {
