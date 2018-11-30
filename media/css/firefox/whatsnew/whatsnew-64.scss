@@ -105,13 +105,17 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Benifits section
 
-.wn64-benefit{
+.wn64-benefit {
     @include border-box
     margin-bottom: $layout-md;
     text-align: center;
 
+    &:nth-child(odd) {
+        clear: both;
+    }
+
     @media #{$mq-md} {
-        float: left;
+        @include bidi(((float, left, right),));
         margin-top: $layout-md;
         padding: 0 $layout-sm;
         width: 50%;
