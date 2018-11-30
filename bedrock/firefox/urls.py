@@ -96,6 +96,7 @@ urlpatterns = (
         name='firefox.tracking-protection-tour.start'),
 
     page('firefox/features/adblocker', 'firefox/features/adblocker.html'),
+    page('firefox/concerts', 'firefox/concerts.html'),
 
     # Release notes
     url('^firefox/(?:%s/)?(?:%s/)?notes/$' % (platform_re, channel_re),

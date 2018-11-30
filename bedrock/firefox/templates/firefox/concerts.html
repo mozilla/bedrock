@@ -2,48 +2,193 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "firefox/base-pebbles.html" %}
+{% from "macros-protocol.html" import hero with context %}
 
-{% block page_title %}Give email, watch concert{% endblock %}
+{% extends "firefox/base-protocol.html" %}
+
+{% block page_title_prefix %}Firefox Concert Series - {% endblock %}
+{% block page_title %}Watch free live concerts in Firefox{% endblock %}
+{% block page_desc %}Here’s to you. Here’s to live music. Here’s to watching free, from all kinds of artists, right from Firefox. Thanks for being part of our community. Firefox fights for you.{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('firefox_concerts') }}
+  {{ css_bundle('firefox_concert_series') }}
 {% endblock %}
+
+{% block body_class %}firefox-concerts{% endblock %}
 
 {% block content %}
 <main role="main">
-  <div class="content">
-    <div class="conditional-content verified-content">
-      <p>You have been verified!</p>
+  <div class="concert-content">
+    {% call hero(
+      title=_('Here’s to you.<br> Here’s to live music.')|safe,
+      desc=_('Here’s to watching it free, from all kinds of artists, right from Firefox.'),
+      class='mzp-t-firefox mzp-t-product-firefox mzp-t-dark',
+      include_cta=False,
+      heading_level=1,
+      image_url=None,
+      include_highres_image=False,
+      image_alt=''
+    ) %}
+    {% endcall %}
+
+    <div class="artist-featured mzp-l-content l-content-narrow">
+      <section class="artist-card mzp-c-card-feature mzp-has-aspect-16-9 mzp-t-firefox mzp-t-dark">
+        <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            <img src="{{ static('img/firefox/concerts/phosphorescent.jpg') }}" alt="Bearded musician Phosphorescent (Matthew Houck) holds a glass of Scotch and looks contemplatively into the distance. He wears a casual white shirt and tinted glasses. He is standing next to a figurine lamp, its shade askew.">
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+          {% if switch('firefox-concert-one-live') %}
+            <p class="mzp-c-card-tag live">Live</p>
+          {% elif switch('firefox-concert-one-over') %}
+            <p class="mzp-c-card-tag ended">Ended</p>
+          {% else %}
+            <p class="mzp-c-card-tag countdown" id="countdown-one">Starts in <span class="time days"></span> days, <span class="time hours"></span> hours</p>
+          {% endif %}
+            <p class="date"><time datetime="2018-12-11T21:30:00-0500">December 11 at 9:30pm Eastern</time></p>
+            <h2 class="mzp-c-card-feature-title">Phosphorescent</h2>
+            <p class="mzp-c-card-feature-desc">Live from DC, get a front row seat for one of the last shows on Phosphorescent’s <cite lang="fr">C’est La Vie</cite> tour.</p>
+
+          {% if switch('firefox-concert-one-live') %}
+            <p class="stream-link"><a href="#TBD" class="mzp-c-button mzp-t-primary mzp-t-dark">Watch Now</a></p>
+          {% endif %}
+          </div>
+        </div>
+      </section>
     </div>
 
-    <div class="conditional-content form-content">
-      <div id="fxa-form-wrapper" class="fxa-form" data-fxa-metrics-endpoint="{{ settings.FXA_ENDPOINT }}metrics-flow" data-fxa-oauth-api-endpoint="{{ settings.FXA_OAUTH_API_ENDPOINT }}">
-        Enter your email to be notified as the special event approaches.
+{# No TBA section for now
+    <div class="artist-next mzp-l-content l-content-narrow">
+      <section class="artist-card mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-right-half mzp-t-firefox mzp-t-dark">
+        <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            <img src="{{ static('img/firefox/concerts/concert.jpg') }}" alt="">
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <p class="date"><time datetime="2019-01">January 2019</time></p>
+            <h2 class="mzp-c-card-feature-title">To be announced</h2>
+            <p class="mzp-c-card-feature-desc">Check back here to find out who’s playing next!</p>
+          </div>
+        </div>
+      </section>
+    </div>
+#}
 
-        <form action="{{ settings.FXA_OAUTH_ENDPOINT }}">
-          <input type="hidden" name="client_id" value="{{ settings.FXA_OAUTH_CLIENT_ID }}" />
-          <input type="hidden" name="scope" value="profile" />
-          <input type="hidden" name="state" id="state" value="" />
-          <input type="hidden" name="flow_id" id="flow_id" value="" />
-          <input type="hidden" name="flow_begin_time" id="flow_begin_time" value="" />
-          <input type="hidden" name="action" value="email" />
-          <input type="hidden" name="utm_campaign" id="utm_campaign" value="firefox-concert" />
-          <input type="hidden" name="utm_source" id="utm_source" value="mozilla.org" />
-          <!-- TODO: moar utm_ params?? -->
+    <div class="fxa-cta mzp-l-content">
+      <section class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-right-half mzp-t-firefox mzp-t-dark">
+        <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            <img src="{{ static('img/firefox/concerts/concert.jpg') }}" alt="">
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
 
-          <label for="name">Email:</label>
-          <input type="email" name="email" required />
-          <button id="submit" type="submit">Submit</button>
-        </form>
+            <div class="conditional-content form-content">
+              <div id="fxa-form-wrapper" class="fxa-form" data-fxa-metrics-endpoint="{{ settings.FXA_ENDPOINT }}metrics-flow" data-fxa-oauth-api-endpoint="{{ settings.FXA_OAUTH_API_ENDPOINT }}">
+                <h2 class="mzp-c-card-feature-title">Get concert reminders.</h2>
+                <p class="mzp-c-card-feature-desc">Find out when the next show starts – and grab the keys to your online life – with a Firefox Account.</p>
 
-        <a id="fxa-sign-in" href="{{ settings.FXA_OAUTH_ENDPOINT }}/signup?client_id={{ settings.FXA_OAUTH_CLIENT_ID }}&scope=profile&action=email" rel="external">Sign In</a>
+                <p class="agreement">
+                {% trans url1='https://accounts.firefox.com/legal/terms', url2='https://accounts.firefox.com/legal/privacy' %}
+                  By proceeding, you agree to the <a href="{{ url1 }}">Terms of Service</a> and <a href="{{ url2 }}">Privacy Notice</a>.
+                {% endtrans %}
+                </p>
+
+                <form action="{{ settings.FXA_OAUTH_ENDPOINT }}">
+                  <input type="hidden" name="client_id" value="{{ settings.FXA_OAUTH_CLIENT_ID }}">
+                  <input type="hidden" name="scope" value="profile">
+                  <input type="hidden" name="state" id="state" value="">
+                  <input type="hidden" name="flow_id" id="flow_id" value="">
+                  <input type="hidden" name="flow_begin_time" id="flow_begin_time" value="">
+                  <input type="hidden" name="action" value="email">
+                  <input type="hidden" name="utm_source" id="utm_source" value="mozilla.org">
+                  <input type="hidden" name="utm_medium" id="utm_medium" value="concerts-landing-page">
+                  <input type="hidden" name="utm_campaign" id="utm_campaign" value="firefox-concert">
+                  <input type="hidden" name="utm_content" id="utm_content" value="">
+
+                  <p>
+                    <label for="name">Your email address</label>
+                    <input type="email" name="email" required placeholder="yourname@example.com">
+                  </p>
+                  <p>
+                    <button type="submit" class="mzp-c-button mzp-t-download" id="fxa-email-form-submit" data-button-name="Create an Account">Create an Account</button>
+                  </p>
+                </form>
+
+                <p class="signin">Already have a Firefox Account? <a id="fxa-sign-in" href="{{ settings.FXA_OAUTH_ENDPOINT }}/signup?client_id={{ settings.FXA_OAUTH_CLIENT_ID }}&scope=profile&action=email" rel="external">Sign in</a></p>
+              </div>
+            </div>{#-- /.form-content --#}
+
+            <div class="conditional-content verified-content">
+              <h2 class="mzp-c-card-feature-title">You’re signed in!</h2>
+              <p class="mzp-c-card-feature-desc">We’ll send you a reminder before the show starts.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </div>{#-- .concert-content --#}
+
+  <section class="excluded-content">
+    {% call hero(
+      title=_('Our apologies.'),
+      desc=_('We are not able to stream these concerts outside the US.'),
+      class='mzp-t-firefox mzp-t-product-firefox mzp-t-dark',
+      include_cta=False,
+      heading_level=1,
+      image_url=None,
+      include_highres_image=False,
+      image_alt=''
+    ) %}
+  {% endcall %}
+
+    <div class="mzp-l-content l-content-narrow">
+      <p>But sign up for our newsletter to learn about Firefox happenings in your area.</p>
+
+      <div class="mzp-c-newsletter">
+      {{ email_newsletter_form(
+          protocol_component=True,
+          include_title=False,
+          button_class='mzp-t-dark',
+          email_label=_('Enter your email address'),
+          details='<a href="%s" class="email-privacy-link">%s</a>'|format(url('privacy.email'), _('How will Mozilla use my email?'))|safe
+      )}}
       </div>
-    </div>{#-- /.form-content --#}
-  </div>
+
+      <aside class="email-privacy mzp-u-modal-content">
+        <h3>{{ _('How will Mozilla use my email?') }}</h3>
+
+        <p>
+        {% trans
+              manifesto=url('mozorg.about.manifesto'),
+              principles=url('privacy.principles')
+        %}
+          Mozilla doesn’t just value your email privacy and security – it’s part of our <a href="{{ manifesto }}">Manifesto</a>: “Individuals’ security and privacy on the internet are fundamental and must not be treated as optional.” <a href="{{ principles }}">You can learn about our Data Privacy Principles here</a>.
+        {% endtrans %}
+        </p>
+
+        <p><strong>{{ _('What we want you to know:') }}</strong></p>
+
+        <ul class="prose mzp-u-list-styled">
+          <li>{{ _('You don’t need to give us your email to download and use Firefox.') }}</li>
+          <li>{{ _('We asked for your email because our research shows that people who receive an introductory experience do more and better with Firefox.') }}</li>
+          <li>{{ _('You can expect emails designed to help you optimize Firefox to work best for you, learn more about privacy & security and find out how to make the best of your time on the web.') }}</li>
+          <li>{{ _('You can unsubscribe anytime, for any reason.') }}</li>
+          <li>{{ _('We will not share, sell or use your email for any other purposes.') }}</li>
+        </ul>
+      </aside>
+    </div>
+  </section>{#-- /.excluded-content --#}
+
 </main>
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox_concerts') }}
+  {{ js_bundle('firefox_concert_series') }}
 {% endblock %}
