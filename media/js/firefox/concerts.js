@@ -97,12 +97,20 @@
 
     ConcertPage.updatePageContent = function() {
         if (ConcertPage.shouldShowConcert() === 'false') {
-            // Add styling hook for excluded-specific CSS.
-            document.body.classList.add('state-not-us');
+            ConcertPage.showExcludedContent();
         } else {
-            // Add styling hook for us-specific CSS.
-            document.body.classList.add('state-in-us');
+            ConcertPage.showConcertContent();
         }
+    };
+
+    ConcertPage.showConcertContent = function() {
+        // Add styling hook for us-specific CSS.
+        document.body.classList.add('state-in-us');
+    };
+
+    ConcertPage.showExcludedContent = function() {
+        // Add styling hook for excluded-specific CSS.
+        document.body.classList.add('state-not-us');
     };
 
     ConcertPage.shouldShowConcert = function() {
