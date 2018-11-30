@@ -170,7 +170,7 @@
 
     var stateStorageKey = 'fxaOauthState';
     var verifiedStorageKey = 'fxaOauthVerified';
-    var cookieDays = 1;
+    var cookieDays = 14;
 
     var className;
     var state;

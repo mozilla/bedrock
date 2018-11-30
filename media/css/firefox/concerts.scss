@@ -23,7 +23,8 @@ $concert-coral: #ff4f5d;
 
 .firefox-concerts {
     #outer-wrapper {
-        background: #41085e linear-gradient(to bottom, #000 0%, #06043c 400px, #41085e 60%);
+        background-color: #41085e;
+        background-image: linear-gradient(to bottom, #000 0%, #06043c 400px, #41085e 60%);
         color: $color-white;
     }
 
