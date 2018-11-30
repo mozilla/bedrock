@@ -113,16 +113,55 @@
      * for latest, out-of-date, pre-release etc. For iOS there is
      * only a single state that shows the download button.
      */
-    if (client.isFirefoxDesktop ||client.isFirefoxAndroid) {
+    if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
         setFirefoxStatus();
     }
 
-    /**
-     * Enable modal to optionally download Firefox for other platforms.
-     * Don't show the modal for iOS or Android.
-     */
-    if ($modalLink.length && client.isDesktop) {
-        initOtherPlatformsModal();
+    if (client.isDesktop) {
+        /**
+         * If on macOS and any utm_* params exist in the URL, strip the 'utm_' part and
+         * append them to the download buttons pointing to /firefox/download/thanks/.
+         * https://bugzilla.mozilla.org/show_bug.cgi?id=1511104
+         */
+        if (window.site.platform === 'osx' && document.location.search.indexOf('utm_') > -1) {
+            // get all utm params
+            var utmParams = new window._SearchParams().utmParams();
+            var param;
+            var qs = '';
+            // get all the download links
+            var downloadLinks = document.getElementsByClassName('download-link');
+            var href;
+            var i;
+
+            // construct a new querystring and strip 'utm_' from all param keys
+            for (param in utmParams) {
+                if (utmParams.hasOwnProperty(param)) {
+                    qs += param.replace('utm_', '') + '=' + utmParams[param] + '&';
+                }
+            }
+
+            // remove trailing '&'
+            qs = qs.slice(0, -1);
+
+            // now append the constructed querystring to the download links
+            for (i = 0; i < downloadLinks.length; i++) {
+                // pull href for the download link
+                href = downloadLinks[i].href;
+
+                // only alter links going to download/thanks/
+                if (href.indexOf('download/thanks/') > 0) {
+                    downloadLinks[i].href = Mozilla.Utils.addQueryStringToUrl(href, qs, true);
+                }
+            }
+        }
+
+        /**
+         * Enable modal to optionally download Firefox for other platforms.
+         * Don't show the modal for iOS or Android.
+         */
+        if ($modalLink.length) {
+            initOtherPlatformsModal();
+        }
     }
 
 })(window.jQuery);

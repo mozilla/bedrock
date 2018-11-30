@@ -8,12 +8,21 @@ For 'standard' /new variations, this file will append all query params
 so the correct template is rendered on /download/thanks/.
 */
 
-(function($) {
+(function() {
     'use strict';
 
-    $('.download-link').each(function(i, link) {
-        if (link.href.indexOf('download/thanks/') > -1) {
-            link.href = link.href + location.search;
+    // copied from /firefox/new/scene1.js
+    var downloadLinks = document.getElementsByClassName('download-link');
+    var href;
+
+    for (var i = 0; i < downloadLinks.length; i++) {
+        // pull href for the download link
+        href = downloadLinks[i].href;
+
+        // only alter links going to download/thanks/
+        if (href.indexOf('download/thanks/') > 0) {
+            // update the href, skipping any utm_ params (lest we negatively impact analytics)
+            downloadLinks[i].href = Mozilla.Utils.addQueryStringToUrl(href, document.location.search, true);
         }
-    });
-})(window.jQuery);
+    }
+})();

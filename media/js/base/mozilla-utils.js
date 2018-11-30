@@ -76,6 +76,95 @@ if (typeof Mozilla === 'undefined') {
         return _$strings.data(stringId);
     };
 
+    Utils.queryStringToObject = function(queryString, skipUtmParams) {
+        var keyVals;
+        var keyValParts;
+        var obj = {};
+        var i;
+        var plusIndex;
+
+        // ignore preceeding '?' (if present)
+        if (queryString.indexOf('?') > -1) {
+            queryString = queryString.split('?')[1];
+        }
+
+        // split into an array of key=val items
+        keyVals = queryString.split('&');
+
+        for (i = 0; i < keyVals.length; i++) {
+            // for some links, we don't want to add utm params
+            // TODO: update tests
+            if (skipUtmParams && keyVals[i].indexOf('utm_') === 0) {
+                continue;
+            }
+
+            // find out where in the key=val pair the first = sign sits
+            // (indexOf finds the first occurrence)
+            plusIndex = keyVals[i].indexOf('=');
+
+            // skip malformed parts of the query string
+            // the first '=' must be present and not at the start or end of the string
+            if (plusIndex > 0 && plusIndex < keyVals[i].length - 1) {
+                // TODO: can there be more than one = sign in a key/val pair?
+                keyValParts = keyVals[i].split('=');
+                obj[keyValParts[0]] = keyValParts[1];
+            }
+        }
+
+        return obj;
+    };
+
+    /**
+     *
+     * @param {String} url - Any URL
+     * @param {String} queryString - A URL formatted querystring, e.g. walter=calm&dude=abides. Preceeding '?' is optional.
+     */
+    Utils.addQueryStringToUrl = function(url, queryString, skipUtmParams) {
+        // all potentially required vars
+        var baseUrl;
+        var urlParams = {};
+        var qsParams = {};
+        var mergedParams;
+        var finalQs = '';
+
+        // ensure querySting has the preceeding '?' (for consistency)
+        if (queryString.indexOf('?') !== 0) {
+            queryString = '?' + queryString;
+        }
+
+        // first, check to see if url already has query params
+        if (url.indexOf('?')) {
+            // if so, get the base URL
+            baseUrl = url.split('?')[0];
+
+            // convert the querystrings to objects for easy merging
+            urlParams = Mozilla.Utils.queryStringToObject(url);
+            qsParams = Mozilla.Utils.queryStringToObject(queryString, skipUtmParams);
+
+            // merge the two objects, favoring values in url over queryString
+            // (e.g. if a property exists in both, the value in url wins out)
+            mergedParams = Object.assign(qsParams, urlParams);
+
+            // construct a querystring from the merged params
+            for (var key in mergedParams) {
+                if (mergedParams.hasOwnProperty(key)) {
+                    finalQs += key + '=' + mergedParams[key] + '&';
+                }
+            }
+
+            // remove the trailing '&'
+            finalQs = finalQs.slice(0, -1);
+
+            // finally, append the constructed querystring on to the base url
+            url = baseUrl + '?' + finalQs;
+            // if url does not have query params, we just need to append the
+        } else {
+            url += queryString;
+        }
+
+        return url;
+    };
+
     window.Mozilla.Utils = Utils;
 
 })();
