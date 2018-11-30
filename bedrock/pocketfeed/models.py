@@ -32,6 +32,11 @@ class PocketArticleManager(models.Manager):
         article_ids = []
         articles_to_update = []
         for article in articles:
+            # apparently it's possible for an article to be
+            # in the feed multiple times ¯\_(ツ)_/¯
+            if article['id'] in article_ids:
+                continue
+
             article_ids.append(article['id'])
 
             try:
@@ -39,6 +44,10 @@ class PocketArticleManager(models.Manager):
                 obj = self.get(pocket_id=article['id'])
             except PocketArticle.DoesNotExist:
                 # this article from Pocket will be added to the db
+                articles_to_update.append((None, article))
+            except PocketArticle.MultipleObjectsReturned:
+                # multiple articles with the same ID snuck in. Fix that here.
+                self.filter(pocket_id=article['id']).delete()
                 articles_to_update.append((None, article))
             else:
                 # this existing 'obj' will be updated in the db with
