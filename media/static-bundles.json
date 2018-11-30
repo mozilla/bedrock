@@ -993,6 +993,13 @@
     },
     {
       "files": [
+        "js/base/mozilla-traffic-cop.js",
+        "js/firefox/experiment_features_header.js"
+      ],
+      "name": "experiment_features_header"
+    },
+    {
+      "files": [
         "js/base/mozilla-smoothscroll.js",
         "js/libs/jquery.waypoints.min.js",
         "js/libs/jquery.waypoints-sticky.min.js",
