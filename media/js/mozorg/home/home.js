@@ -8,6 +8,8 @@
 // YouTube API hook has to be in global scope
 function onYouTubeIframeAPIReady() {
     'use strict';
+
+    Mozilla.initHomePageVideos();
 }
 
 (function($, Waypoint) {
@@ -29,7 +31,7 @@ function onYouTubeIframeAPIReady() {
         return null;
     }
 
-    function initVideoEvents() {
+    function initHomePageVideos() {
         var videoCards = document.querySelectorAll('.mzp-c-card.has-video-embed .mzp-c-card-block-link');
 
         function playVideo(event) {
@@ -96,7 +98,7 @@ function onYouTubeIframeAPIReady() {
             }
         }
 
-    // open and play videos in a modal on click.
+        // open and play videos in a modal on click.
         for (var i = 0; i < videoCards.length; i++) {
             videoCards[i].addEventListener('click', playVideo, false);
         }
@@ -106,7 +108,7 @@ function onYouTubeIframeAPIReady() {
     Mozilla.LazyLoad.init();
 
     // Video card interactions.
-    initVideoEvents();
+    Mozilla.initHomePageVideos = initHomePageVideos;
 
     /*
     * Sticky CTA
