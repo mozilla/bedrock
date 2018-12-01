@@ -21,5 +21,5 @@ class FirefoxAccountsPage(FirefoxBasePage):
         return DownloadButton(self, root=el)
 
     @property
-    def create_account_button(self):
+    def is_create_account_form_displayed(self):
         return self.is_element_displayed(*self._create_account_form_locator)
