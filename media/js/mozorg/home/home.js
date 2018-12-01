@@ -15,6 +15,10 @@ function onYouTubeIframeAPIReady() {
 (function($, Waypoint) {
     'use strict';
 
+    if (window.Mozilla.Client.isFirefox) {
+        document.documentElement.classList.add('is-firefox');
+    }
+
     var tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -114,7 +118,7 @@ function onYouTubeIframeAPIReady() {
     * Sticky CTA
     */
 
-    var $stickyCTA = $(document.getElementById('download-firefox-sticky-cta'));
+    var $stickyCTA = $(document.querySelectorAll('.c-sticky-cta'));
     var hasCookies = typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled();
     $stickyCTA.attr('aria-hidden', 'true');
 
@@ -122,7 +126,7 @@ function onYouTubeIframeAPIReady() {
     function initStickyCTA() {
     // add and remove aria-hidden
         var primaryTop = new Waypoint({
-            element: document.getElementById('download-firefox-primary-cta'),
+            element: document.querySelectorAll('.c-primary-cta'),
             handler: function(direction) {
                 if(direction === 'down') {
                 // becomes percivable as the user scrolls down
@@ -135,11 +139,11 @@ function onYouTubeIframeAPIReady() {
         });
 
         // add button
-        var $dismissButton = $('<button>').addClass('sticky-dismiss').text('Dismiss download prompt.');
-        var $stickyWrapper = $stickyCTA.find('.primary-wrapper');
+        var $dismissButton = $('<button>').addClass('sticky-dismiss').text('Dismiss this prompt.');
+        var $stickyWrapper = $stickyCTA.find('.c-sticky-cta-wrapper');
         $dismissButton.appendTo($stickyWrapper);
         // listen for click
-        $dismissButton.one('click', function(){
+        $dismissButton.on('click', function() {
         // dismiss
             dismissStickyCTA(primaryTop);
         });

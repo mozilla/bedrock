@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import billboard, card with context %}
+{% from "macros-protocol.html" import billboard, card, call_out_compact with context %}
 
 {% extends "base-protocol.html" %}
 
@@ -62,25 +62,55 @@
     {# Main page h1 is hidden from view and exists mainly for SEO purposes #}
     <h1>{{ self.page_title() }}</h1>
   </header>
-  <section id="download-firefox-primary-cta" class="download-firefox-primary-cta">
+
+  <section id="download-firefox-primary-cta" class="c-primary-cta download-firefox-primary-cta">
     <div class="mzp-l-content">
-      <div class="primary-wrapper">
-        <h2 class="primary-title">{{ _('Firefox') }}</h2>
-        <h3 class="primary-title-sub">{{ _('Fast. Private. Fearless.') }}</h3>
-        <p class="primary-desc-sub">{{ _('Firefox fights for you.') }}</p>
-        {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
+      <div class="c-primary-cta-wrapper">
+        <h2 class="c-primary-cta-title">{{ _('Firefox') }}</h2>
+        <h3 class="c-primary-cta-title-sub">{{ _('Your life is your business. Not ours.') }}</h3>
+        <p class="c-primary-cta-desc-sub">{{ _('Firefox fights for you.') }}</p>
+        <div class="c-primary-cta-button">
+          {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
+        </div>
       </div>
     </div>
   </section>
 
 {% if not switch('fundraising-eoy2018') %}
-  <section id="download-firefox-sticky-cta" class="download-firefox-sticky-cta">
+  <section id="download-firefox-sticky-cta" class="c-sticky-cta download-firefox-sticky-cta">
     <div class="mzp-l-content">
-      <div class="primary-wrapper">
-        <h2 class="primary-title">{{ _('<strong>Firefox</strong> fights for you.') }}</h2>
-        <h3 class="primary-title-sub">{{ _('Fast. Private. Fearless.') }}</h3>
-        <p class="primary-desc-sub">{{ _('Firefox fights for you.') }}</p>
+      <div class="c-sticky-cta-wrapper">
+        <h2 class="c-sticky-cta-title">{{ _('<strong>Firefox</strong> fights for you.') }}</h2>
+        <h3 class="c-sticky-cta-title-sub">{{ _('Fast. Private. Fearless.') }}</h3>
+        <p class="c-sticky-cta-desc-sub">{{ _('Firefox fights for you.') }}</p>
+        <div class="c-sticky-cta-button">
         {{ download_firefox(dom_id='download-sticky', download_location='sticky cta', button_color='mzp-t-small') }}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+  <section id="fxaccount-primary-cta" class="c-primary-cta fxaccount-primary-cta">
+    <div class="mzp-l-content">
+      <div class="c-primary-cta-wrapper">
+        <h2 class="c-primary-cta-title">{{ _('Firefox') }}</h2>
+        {# L10n: Line break for visual formatting. #}
+        <h3 class="c-primary-cta-title-sub">{{ _('Live your life.<br> Own your life.') }}</h3>
+        <p class="c-primary-cta-button">
+          <a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-secondary" id="fxa-learn-primary">{{ _('Learn More') }}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+{% if not switch('fundraising-eoy2018') %}
+  <section id="fxaccount-sticky-cta" class="c-sticky-cta fxaccount-sticky-cta">
+    <div class="mzp-l-content">
+      <div class="c-sticky-cta-wrapper">
+        <h2 class="c-sticky-cta-title">{{ _('Firefox') }}</h2>
+        <h3 class="c-sticky-cta-title-sub">{{ _('Live your life. Own your life.') }}</h3>
+        <p class="c-sticky-cta-button"><a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-small" id="fxa-learn-sticky">{{ _('Learn More') }}</a></p>
       </div>
     </div>
   </section>
@@ -369,17 +399,29 @@
         </div>
       </aside>
     </div>
-  </div>
+  </div>{#-- /.mozilla-content --#}
 
-  <div class="download-firefox-secondary-cta">
+  <div id="download-firefox-secondary-cta" class="c-secondary-cta download-firefox-secondary-cta">
     <div class="mzp-l-content">
-      <div class="secondary-content">
-        <h2 class="secondary-title">{{ _('Supporting a healthy internet is easy.') }}</h2>
-        <p class="tagline">{{ _('Get started by browsing with Firefox powered by Mozilla.') }}</p>
-        {{ download_firefox(dom_id='download-secondary', download_location='secondary cta') }}
+      <div class="c-secondary-cta-content">
+        <h2 class="c-secondary-cta-title">{{ _('Supporting a healthy internet is easy.') }}</h2>
+        <p class="c-secondary-cta-tagline">{{ _('Get started by browsing with Firefox powered by Mozilla.') }}</p>
+        <div class="c-secondary-cta-button">
+          {{ download_firefox(dom_id='download-secondary', download_location='secondary cta') }}
+        </div>
       </div>
     </div>
   </div>
+
+  {% call call_out_compact(
+      title=_('The account that protects you rather than profits off you.'),
+      desc=None,
+      class='fxaccount-secondary-cta mzp-t-product-firefox mzp-t-firefox mzp-t-dark',
+      heading_level=2
+    ) %}
+    <a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-secondary mzp-t-dark" id="fxa-learn-secondary">{{ _('Learn More') }}</a>
+  {% endcall %}
+
 </main>
 
 {# https://github.com/mozilla/bedrock/issues/5741 #}
