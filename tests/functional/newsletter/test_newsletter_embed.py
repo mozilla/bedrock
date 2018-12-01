@@ -11,7 +11,6 @@ from pages.contribute.contribute import ContributePage
 from pages.mission import MissionPage
 from pages.firefox.all import FirefoxAllPage
 from pages.firefox.features.landing import FeaturesLandingPage
-from pages.firefox.features.feature import FeaturePage
 from pages.plugincheck import PluginCheckPage
 
 
@@ -54,7 +53,6 @@ def test_newsletter_sign_up_fails_when_missing_required_fields(page_class, base_
     (MissionPage, None),
     (FirefoxAllPage, None),
     (FeaturesLandingPage, None),
-    (FeaturePage, {'slug': 'sync'}),
     (PluginCheckPage, None)])
 def test_legacy_newsletter_default_values(page_class, url_kwargs, base_url, selenium):
     url_kwargs = url_kwargs or {}

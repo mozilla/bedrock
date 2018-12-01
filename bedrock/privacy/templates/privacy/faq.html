@@ -206,9 +206,15 @@
             {%- endtrans -%}
           </p>
           <p>
-            {%- trans -%}
-              You don't need an account to use Firefox.  Accounts are required to sync data across devices, but we only ask you for an email address.  We don't want to know things like your name, address, birthday and phone number.
+          {% if l10n_has_tag('firefox-accounts-112018') %}
+            {%- trans accounts=url('firefox.accounts') -%}
+              You don't need an account to use Firefox.  <a href="{{ accounts }}">Accounts</a> are required to sync data across devices, but we only ask you for an email address.  We don't want to know things like your name, address, birthday and phone number.
             {%- endtrans -%}
+          {% else %}
+            {%- trans -%}
+            You don't need an account to use Firefox. Accounts are required to sync data across devices, but we only ask you for an email address.  We don't want to know things like your name, address, birthday and phone number.
+            {%- endtrans -%}
+          {%- endif -%}
           </p>
         </dd>
         <dt>

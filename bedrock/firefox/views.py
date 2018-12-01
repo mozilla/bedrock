@@ -794,3 +794,14 @@ def firefox_concerts(request):
         return l10n_utils.render(request, 'firefox/concerts.html')
     else:
         return HttpResponseRedirect(reverse('firefox'))
+
+
+def firefox_accounts(request):
+    locale = l10n_utils.get_locale(request)
+
+    if lang_file_is_active('firefox/accounts-2018', locale):
+        template_name = 'firefox/accounts-2018.html'
+    else:
+        template_name = 'firefox/accounts.html'
+
+    return l10n_utils.render(request, template_name)

@@ -1,0 +1,275 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/feature-card';
+@import '../../protocol/css/components/hero';
+@import '../../protocol/css/components/modal';
+
+.show {
+    display: block;
+}
+
+#subtitle {
+    @include open-sans;
+    @include text-display-md;
+    margin: 0 auto;
+    max-width: $content-md;
+    text-align: center;
+}
+
+//* -------------------------------------------------------------------------- */
+// Custom Protocol
+// Hero
+
+.mzp-c-hero-title {
+    margin-bottom: $spacing-2xl;
+}
+
+.mzp-c-hero.mzp-t-firefox:after {
+    display: none;
+    mask: none;
+}
+
+.mzp-c-call-out {
+    background: transparent;
+}
+
+
+// Cards
+.mzp-c-card-feature-content {
+    .mzp-c-card-feature-title {
+        @include text-display-md;
+    }
+
+    .mzp-c-cta-link {
+        &:link,
+        &:visited {
+            color: $color-link;
+            border-bottom-color: $color-link;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $color-link-hover;
+            border-bottom-color: $color-link-hover;
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// FXA Form
+
+.fxa-benefits {
+    display: none;
+
+    .mzp-c-modal-window & {
+        h3 {
+            display: none;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Modal, custom styles
+
+#fx-modal-button {
+    background: $color-blue-60;
+    border: $color-blue-60;
+}
+
+.mobile-notes,
+.mobile-lockbox,
+.mobile-pocket {
+    display: none;
+}
+
+.mzp-c-modal-inner {
+    @media #{$mq-md} {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    @media #{$mq-lg} {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    header h2 {
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    .mzp-c-modal-overlay-contents {
+        background: #fff;
+        color: #000;
+        padding: .5em;
+        text-align: center;
+
+        .mobile-title {
+            margin: 20px;
+        }
+
+        .mobile-download-buttons {
+            li {
+                display: inline-block;
+            }
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// QR codes
+
+#qr-code {
+    height: 300px;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.lockbox {
+    background: url('/media/img/firefox/accounts/lockbox-qr.png') center no-repeat;
+    background-size: contain;
+}
+
+.notes {
+    background: url('/media/img/firefox/accounts/notes-qr.png') center no-repeat;
+    background-size: contain;
+}
+
+.pocket {
+    background: url('/media/img/firefox/accounts/pocket-qr.png') center no-repeat;
+    background-size: contain;
+}
+
+.fx-qr {
+    background: url('/media/img/firefox/accounts/fx-qr.png') center no-repeat;
+    background-size: contain;
+}
+
+//* -------------------------------------------------------------------------- */
+// Bottom Banner
+
+#bottom-banner {
+    background: #2a0140 url('/media/img/firefox/accounts/blob-img.png') center -120px no-repeat;
+    @include background-size(cover);
+    color: $color-white;
+    padding: $spacing-md 0;
+
+    .banner-title h2 {
+        @include open-sans;
+        @include text-display-lg;
+        margin: 0 0 $spacing-lg;
+    }
+
+    .mobile-download-buttons {
+        text-align: center;
+    }
+
+    .fxa-email-form {
+        @include light-links;
+        color: $color-white;
+        max-width: $content-sm;
+
+        .fxa-email-form-intro {
+            @include text-display-sm;
+            font-weight: bold;
+
+            strong {
+                display: inline;
+                margin: 0;
+            }
+        }
+
+        input[type='email'] {
+            @include border-box;
+            @include text-body-md;
+            border-radius: 2px;
+            padding: ($padding-md - 2px) ($padding-xl - 2px); //2px extra padding removed to compensate for 2px border.
+            width: 100%;
+        }
+
+        .mzp-c-button {
+            width: 100%;
+            margin-bottom: $spacing-md;
+        }
+
+        .agreement {
+            @include text-body-xs;
+        }
+
+        label {
+            @include visually-hidden;
+        }
+    }
+
+    .fxa-signin {
+        @include text-body-sm;
+        @include light-links;
+        text-align: center;
+    }
+}
+
+@supports (display: grid) {
+    @media #{$mq-md} {
+        #bottom-banner {
+            .mzp-l-content {
+                @include grid-column-gap($spacing-xl);
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .banner-title {
+                grid-column: 1;
+                display: flex;
+                align-items: center;
+
+                h2 {
+                    margin: 0;
+                }
+            }
+
+            .banner-cta {
+                grid-column: 2;
+                max-width: $content-sm;
+            }
+
+            .mzp-c-button-download-container {
+                width: 100%;
+            }
+        }
+    }
+
+    @media #{$mq-lg} {
+        #bottom-banner .mzp-l-content {
+            grid-template-columns: 2fr 1fr;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Conditional
+
+html.ios,
+html.android {
+    .mobile-notes,
+    .mobile-lockbox,
+    .mobile-pocket {
+        display: inline-block;
+    }
+
+    #fxa-sign-up-form,
+    #fxa-account-button,
+    .mzp-c-cta-link {
+        display: none;
+    }
+
+    #fxa-account-button,
+    .show-fxa-supported-signed-in.fxa-app-buttons {
+        display: block;
+    }
+}
+

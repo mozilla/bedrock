@@ -210,7 +210,7 @@ URLS = flatten((
     url_test('/firefox/organizations/all.html', '/firefox/organizations/all/'),
 
     # bug 729329
-    url_test('/mobile/sync/is/da/best/', '/firefox/features/sync/'),
+    url_test('/mobile/sync/is/da/best/', '/firefox/accounts/'),
 
     # bug 882845
     url_test('/firefox/toolkit/download-to-your-devices/because-i-say-so/', '/firefox/new/'),
@@ -305,7 +305,7 @@ URLS = flatten((
 
     # Bug 1110927
     url_test('/firefox/start/central.html', '/firefox/new/'),
-    url_test('/firefox/sync/firstrun.html', '/firefox/features/sync/'),
+    url_test('/firefox/sync/firstrun.html', '/firefox/accounts/'),
 
     # bug 876810
     url_test('/hacking/commit-access-policy/',
@@ -988,7 +988,7 @@ URLS = flatten((
     url_test('/firefox/tiles/',
              'https://support.mozilla.org/kb/about-tiles-new-tab'),
     # Bug 1252332
-    url_test('/sync/', '/firefox/features/sync/'),
+    url_test('/sync/', '/firefox/accounts/'),
 
     url_test('/projects/bonecho/', '/firefox/channel/desktop/'),
     url_test('/projects/bonsai/', 'https://wiki.mozilla.org/Bonsai'),
@@ -1149,7 +1149,7 @@ URLS = flatten((
     url_test('{/en-US,}/Firefox', '{/en-US,}/firefox/'),
 
     # Bug 1370587
-    url_test('/firefox/sync/', '/firefox/features/sync/'),
+    url_test('/firefox/sync/', '/firefox/accounts/'),
 
     # Bug 1380845
     url_test('/persona/privacy-policy/', '/privacy/archive/persona/2017-07/'),

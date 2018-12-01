@@ -157,7 +157,7 @@
           </ul>
 
           {# firefox.accounts-features is en-US only for now, so other locales need an alternate URL #}
-          {% set learn_more_url = url('firefox.accounts-features') if LANG == 'en-US' else url('firefox.features.sync') %}
+          {% set learn_more_url = url('firefox.accounts') %}
           <p class="more"><a href="{{ learn_more_url }}" target="_blank" rel="noopener noreferrer">{{_('Find out more')}}</a></p>
         </div>
 
