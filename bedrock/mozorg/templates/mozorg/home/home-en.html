@@ -134,6 +134,7 @@
           youtube_id='rZAQ6vgt8nE'
         )}}
         <!-- 2 -->
+      {% if switch('firefox_concert_series') %}
         {{ card(
           tag_label=_('Firefox Concert Series | Phosphorescent'),
           title=_('Here’s to you. Here’s to the internet.'),
@@ -143,6 +144,17 @@
           aspect_ratio='mzp-has-aspect-1-1',
           link_url=url('firefox.concerts')
         )}}
+      {% else %}
+        {{ card(
+          tag_label=_('News'),
+          title=_('Firefox on The Cheddar'),
+          ga_title='Firefox on The Cheddar',
+          desc=_('We want to be there to help protect you in your web experience — Denelle Dixon on why we built enhanced tracking protection into Firefox.'),
+          image_url='home/2018/cards/cheddar.jpg',
+          aspect_ratio='mzp-has-aspect-1-1',
+          link_url='https://blog.mozilla.org/internetcitizen/2018/11/05/cheddar-firefox-enhanced-tracking-protection/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
+          )}}
+      {% endif %}
         <!-- 3 -->
         {{ card(
           tag_label=_('Podcast'),
