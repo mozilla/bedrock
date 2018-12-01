@@ -147,7 +147,7 @@
             {{ google_play_button(id=android_id, extra_data_attributes={'download-location': button_location}) }}
           </li>
           <li>
-            <a href="{{ firefox_ios_url(app_store_campaign) }}" data-link-type="download" data-download-os="iOS" data-download-location="primary cta" id="{{ ios_id }}">
+            <a href="{{ firefox_ios_url(app_store_campaign) }}" data-link-type="download" data-download-os="iOS" data-download-location="primary cta" id="fxa-ff-ios-modal">
               <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
             </a>
           </li>
@@ -202,7 +202,7 @@
               {{ google_play_button(id=android_id, extra_data_attributes={'download-location': 'secondary cta'}) }}
             </li>
             <li>
-              <a href="{{ firefox_ios_url(app_store_campaign) }}" data-link-type="download" data-download-os="iOS" data-download-location="secondary cta" id="{{ ios_id }}">
+              <a href="{{ firefox_ios_url(app_store_campaign) }}" data-link-type="download" data-download-os="iOS" data-download-location="secondary cta" id="fxa-ff-ios">
                 <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
               </a>
             </li>
