@@ -46,6 +46,10 @@ $image-path: '/media/protocol/img';
         @include text-display-md;
     }
 
+    .mobile-content {
+        display: none;
+    }
+
     .mzp-c-cta-link {
         &:link,
         &:visited {
@@ -255,6 +259,10 @@ $image-path: '/media/protocol/img';
 
 html.ios,
 html.android {
+    .mzp-c-card-feature-content .mobile-content {
+        display: block;
+    }
+
     .mobile-notes,
     .mobile-lockbox,
     .mobile-pocket {
