@@ -13,7 +13,7 @@ class FirefoxAccountsPage(FirefoxBasePage):
     URL_TEMPLATE = '/{locale}/firefox/accounts/'
 
     _download_button_locator = (By.ID, 'features-hero-download')
-    _create_account_button_locator = (By.ID, 'features-hero-account')
+    _create_account_form_locator = (By.ID, 'fxa-email-form')
 
     @property
     def download_button(self):
@@ -21,5 +21,5 @@ class FirefoxAccountsPage(FirefoxBasePage):
         return DownloadButton(self, root=el)
 
     @property
-    def create_account_button(self):
-        return self.is_element_displayed(*self._create_account_button_locator)
+    def is_create_account_form_displayed(self):
+        return self.is_element_displayed(*self._create_account_form_locator)

@@ -7,17 +7,17 @@ import pytest
 from pages.firefox.accounts import FirefoxAccountsPage
 
 
-@pytest.mark.skip_if_firefox(reason='Download button is displayed only to non-Firefox users')
+@pytest.mark.skip_if_firefox(reason='Download button is only displayed to non-Firefox users')
 @pytest.mark.nondestructive
 def test_download_button_displayed(base_url, selenium):
     page = FirefoxAccountsPage(selenium, base_url).open()
-    assert not page.is_accounts_form_displayed
+    assert not page.is_create_account_form_displayed
     assert page.download_button.is_displayed
 
 
-@pytest.mark.skip_if_not_firefox(reason='Accounts iFrame is only displayed to Firefox users')
+@pytest.mark.skip_if_not_firefox(reason='Create Account form is only displayed to Firefox users')
 @pytest.mark.nondestructive
-def test_accounts_form_displayed(base_url, selenium):
+def test_create_account_form_displayed(base_url, selenium):
     page = FirefoxAccountsPage(selenium, base_url).open()
     assert not page.download_button.is_displayed
-    assert page.is_accounts_form_displayed
+    assert page.is_create_account_form_displayed
