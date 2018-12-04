@@ -48,12 +48,11 @@
           {% else %}
             <p class="mzp-c-card-tag countdown" id="countdown-one">Starts in <span class="time days"></span> days, <span class="time hours"></span> hours</p>
           {% endif %}
-            <p class="date"><time datetime="2018-12-11T21:30:00-0500">December 11 at 9:30pm Eastern</time></p>
-            <h2 class="mzp-c-card-feature-title">Phosphorescent</h2>
-            <p class="mzp-c-card-feature-desc">Live at the 9:30 Club, get a front row seat for one of the last shows on Phosphorescent’s <cite lang="fr">C’est La Vie</cite> tour.</p>
+            <h2 class="mzp-c-card-feature-title"><time datetime="2018-12-11T20:00:00-0500">Tuesday, Dec. 11</time>: Phosphorescent</h2>
+            <p class="mzp-c-card-feature-desc">Livestreamed from DC’s 9:30 Club, get a front row seat for one of the last shows on Phosphorescent’s <cite lang="fr">C’est La Vie</cite> tour. Special guest Liz Cooper and The Stampede kick off the show 8:00pm EST.</p>
 
           {% if switch('firefox-concert-one-live') %}
-            <p class="stream-link"><a href="#TBD" class="mzp-c-button mzp-t-primary mzp-t-dark">Watch Now</a></p>
+            <p class="stream-link"><a href="https://firefoxconcerts.livenation.com" rel="external" class="mzp-c-button mzp-t-dark">Watch Now</a></p>
           {% endif %}
           </div>
         </div>
@@ -147,7 +146,7 @@
       include_highres_image=False,
       image_alt=''
     ) %}
-  {% endcall %}
+    {% endcall %}
 
     <div class="mzp-l-content l-content-narrow">
       <p>But sign up for our newsletter to learn about Firefox happenings in your area.</p>

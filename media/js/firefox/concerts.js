@@ -246,8 +246,8 @@
     // apply className determined above to show proper content
     document.body.classList.add(className);
 
-    // Phosphorescent - December 11 at 9:30pm Eastern
-    var showtimeOne = 'December 11 2018 21:30:00 GMT-0500';
+    // Phosphorescent - December 11 at 8:00pm Eastern
+    var showtimeOne = 'December 11 2018 20:00:00 GMT-0500';
     var countdownOne = document.getElementById('countdown-one');
 
     // Calculate time from now to a future endtime
