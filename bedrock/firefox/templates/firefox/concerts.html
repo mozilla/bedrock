@@ -8,8 +8,22 @@
 
 {% block page_title_prefix %}Firefox Concert Series - {% endblock %}
 {% block page_title %}Watch free live concerts in Firefox{% endblock %}
-{% block page_desc %}Here’s to you. Here’s to live music. Here’s to watching free, from all kinds of artists, right from Firefox. Thanks for being part of our community. Firefox fights for you.{% endblock %}
-{% block page_image %}{{ static('img/firefox/concerts/page-image.jpg') }}{% endblock %}
+
+{%- block page_desc -%}
+  {%- if switch('firefox-concert-one-over') -%}
+    Here’s to you. Here’s to live music. Here’s to watching free, from all kinds of artists, right from Firefox. Thanks for being part of our community. Firefox fights for you.
+  {%- else -%}
+    Live on 12/11 get a front row seat for one of the last shows on Phosphorescent’s C’est La Vie tour.
+  {%- endif -%}
+{%- endblock -%}
+
+{%- block page_image -%}
+  {%- if switch('firefox-concert-one-over') -%}
+    {{ static('img/firefox/concerts/page-image.jpg') }}
+  {%- else -%}
+    {{ static('img/firefox/concerts/page-image-phosphorescent.jpg') }}
+  {%- endif -%}
+{%- endblock -%}
 
 {% block page_css %}
   {{ css_bundle('firefox_concert_series') }}
