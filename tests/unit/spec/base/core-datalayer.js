@@ -70,17 +70,17 @@ describe('core-datalayer.js', function() {
     describe('getLatestFxVersion', function() {
 
         afterEach(function() {
-            $('html').removeData('latest-firefox');
+            document.getElementsByTagName('html')[0].removeAttribute('data-latest-firefox');
         });
 
         it('will return the Firefox version from the data-latest-firefox attribute from the html element if present', function() {
-            $('html').data('latest-firefox', '48.0');
+            document.getElementsByTagName('html')[0].setAttribute('data-latest-firefox', '48.0');
 
             expect(Mozilla.Analytics.getLatestFxVersion()).toBe('48.0');
         });
 
-        it('will return undefined if no data-latest-firefox attribute is present on the html element', function() {
-            expect(Mozilla.Analytics.getLatestFxVersion()).toBeUndefined();
+        it('will return null if no data-latest-firefox attribute is present on the html element', function() {
+            expect(Mozilla.Analytics.getLatestFxVersion()).toBe(null);
         });
     });
 

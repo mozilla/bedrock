@@ -12,13 +12,17 @@ if (typeof Mozilla.Analytics == 'undefined') {
 
 (function() {
     var analytics = Mozilla.Analytics;
+    var isModernBrowser = 'querySelector' in document && 'querySelectorAll' in document;
 
     /** Returns whether page has download button.
     * @param {String} path - URL path name fallback if page ID does not exist.
     * @return {String} string.
     */
     analytics.pageHasDownload = function() {
-        return $('[data-download-os]').length ? 'true' : 'false';
+        if (!isModernBrowser) {
+            return 'false';
+        }
+        return document.querySelector('[data-download-os]') !== null ? 'true' : 'false';
     };
 
     /** Returns whether page has video.
@@ -26,7 +30,10 @@ if (typeof Mozilla.Analytics == 'undefined') {
     * @return {String} string.
     */
     analytics.pageHasVideo = function() {
-        return ($('video').length || $('iframe[src^="https://www.youtube"]').length) ? 'true' : 'false';
+        if (!isModernBrowser) {
+            return 'false';
+        }
+        return (document.querySelector('video') !== null || document.querySelector('iframe[src^="https://www.youtube"]') !== null) ? 'true' : 'false';
     };
 
     /** Returns page version.
@@ -44,7 +51,7 @@ if (typeof Mozilla.Analytics == 'undefined') {
     * @return {String} latest Fx version.
     */
     analytics.getLatestFxVersion = function() {
-        return $('html').data('latest-firefox');
+        return document.getElementsByTagName('html')[0].getAttribute('data-latest-firefox');
     };
 
     /** Returns an object containing GA-formatted FxA details
@@ -64,7 +71,7 @@ if (typeof Mozilla.Analytics == 'undefined') {
 
         if (FxaDetails.firefox === true) {
             // only add FxA account details if this is Fx, otherwise their segment is just 'Not Firefox'
-            if(FxaDetails.mobile) {
+            if (FxaDetails.mobile) {
                 // Firefox Mobile
                 formatted.FxASegment = 'Firefox Mobile';
             } else {
@@ -75,7 +82,7 @@ if (typeof Mozilla.Analytics == 'undefined') {
                     // set FxASegment with default value, to be refined
                     formatted.FxASegment = 'Logged in';
                     // Change FxASegment to Legacy if this is an old browser
-                    if(FxaDetails.legacy === true) {
+                    if (FxaDetails.legacy === true) {
                         formatted.FxASegment = 'Legacy Firefox';
                     }
 
@@ -118,7 +125,7 @@ if (typeof Mozilla.Analytics == 'undefined') {
 
                 } else {
                     // Not logged into FxA
-                    if(FxaDetails.legacy === true) {
+                    if (FxaDetails.legacy === true) {
                         // too old to support UITour or FxA, or pre FxASegment and logged out
                         formatted.FxASegment = 'Legacy Firefox';
                         formatted.FxALogin = 'unknown';

@@ -3,7 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // init core dataLayer object and push into dataLayer
-$(function() {
+(function() {
     var analytics = Mozilla.Analytics;
     var client = Mozilla.Client;
     var dataLayer = window.dataLayer = window.dataLayer || [];
@@ -48,4 +48,4 @@ $(function() {
     }
 
     analytics.updateDataLayerPush();
-});
+})();
