@@ -498,11 +498,11 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
         if ctx['num_version'] == 64:
             ctx['active_locales'] = [
                 'de',
+                'en-CA',
                 'en-GB',
                 'en-US',
                 'es-ES',
                 'fr',
-                'id',
                 'pl',
                 'pt-BR',
                 'ru',
@@ -536,7 +536,7 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
         elif locale == 'zh-TW' and not version.startswith('64.'):
             template = 'firefox/whatsnew/index.zh-TW.html'
         elif version.startswith('64.'):
-            template = 'firefox/whatsnew/whatsnew-fx64.html'
+            template = 'firefox/whatsnew/fx64/whatsnew-fx64.html'
         elif version.startswith('63.'):
             template = 'firefox/whatsnew/whatsnew-fx63.html'
         elif show_62_whatsnew(version, oldversion):

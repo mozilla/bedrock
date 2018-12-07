@@ -409,7 +409,7 @@ class TestWhatsNew(TestCase):
         req.locale = 'en-US'
         self.view(req, version='64.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/whatsnew-fx64.html'])
+        eq_(template, ['firefox/whatsnew/fx64/whatsnew-fx64.html'])
         context = render_mock.call_args[0][2]
         ok_('active_locales' in context)
         ok_('pt-BR' in context['active_locales'])
