@@ -11,14 +11,14 @@ var _SearchParams = function (search) {
     search = search.match(/^\??(.*)/)[1];
     search = search ? search.split(/[&;]/m) : [];
 
-    search.forEach(function (param) {
-        param = param.split('=');
+    for (var i = 0; i < search.length; i++) {
+        var param = search[i].split('=');
 
         var key = param[0];
         var value = param[1];
 
         params[key] = !isNaN(value) ? parseFloat(value) : value;
-    });
+    }
 };
 
 _SearchParams.prototype.get = function (key) {
