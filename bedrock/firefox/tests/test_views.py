@@ -519,62 +519,6 @@ class TestFirefoxNew(TestCase):
         views.download_thanks(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
 
-    # wait face campaign bug 1380044
-
-    def test_wait_face_scene_1(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=waitface')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene1.html', ANY)
-
-    def test_wait_face_scene_2(self, render_mock):
-        req = RequestFactory().get('/firefox/download/thanks/?xv=waitface')
-        req.locale = 'en-US'
-        views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/wait-face/scene2.html', ANY)
-
-    # reggie watts campaign bug 1413995
-
-    def test_reggie_watts_scene_1(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=reggiewatts')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/reggie-watts/scene1.html', ANY)
-
-    def test_reggie_watts_scene_2(self, render_mock):
-        req = RequestFactory().get('/firefox/download/thanks/?xv=reggiewatts')
-        req.locale = 'en-US'
-        views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/reggie-watts/scene2.html', ANY)
-
-    @patch.object(views, 'lang_file_is_active', lambda *x: True)
-    def test_reggie_watts_translated_scene_1(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=reggiewatts')
-        req.locale = 'de'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/reggie-watts/scene1.html', ANY)
-
-    @patch.object(views, 'lang_file_is_active', lambda *x: True)
-    def test_reggie_watts_translated_scene_2(self, render_mock):
-        req = RequestFactory().get('/firefox/download/thanks/?xv=reggiewatts')
-        req.locale = 'de'
-        views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/reggie-watts/scene2.html', ANY)
-
-    @patch.object(views, 'lang_file_is_active', lambda *x: False)
-    def test_reggie_watts_untranslated_scene_1(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=reggiewatts')
-        req.locale = 'de'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
-
-    @patch.object(views, 'lang_file_is_active', lambda *x: False)
-    def test_reggie_watts_untranslated_scene_2(self, render_mock):
-        req = RequestFactory().get('/firefox/download/thanks/?xv=reggiewatts')
-        req.locale = 'de'
-        views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
-
     # berlin campaign bug 1447445 + 3 berlin variations bug 1473357
 
     # berlin
