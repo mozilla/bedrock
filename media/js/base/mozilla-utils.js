@@ -15,10 +15,13 @@ if (typeof Mozilla === 'undefined') {
     // Replace Google Play links on Android devices to let them open the marketplace app
     Utils.initMobileDownloadLinks = function() {
         if (site.platform === 'android') {
-            $('a[href^="https://play.google.com/store/apps/"]').each(function() {
-                $(this).attr('href', $(this).attr('href')
-                    .replace('https://play.google.com/store/apps/', 'market://'));
-            });
+            var playLinks = document.querySelectorAll('a[href^="https://play.google.com/store/apps/"]');
+            for(var i = 0; i < playLinks.length; ++i) {
+                var playLink = playLinks[i];
+                var oldHref = playLink.getAttribute('href');
+                var newHref = oldHref.replace('https://play.google.com/store/apps/', 'market://');
+                playLink.setAttribute('href', newHref);
+            }
         }
     };
 
@@ -29,12 +32,16 @@ if (typeof Mozilla === 'undefined') {
         }
 
         var distribution = client.distribution.toLowerCase();
-        $('a[data-' + distribution + '-link]').each(function() {
-            $(this).attr('href', $(this).data(distribution + 'Link'));
-        });
-        $('img[data-' + distribution + '-link]').each(function() {
-            $(this).attr('src', $(this).data(distribution + 'Link'));
-        });
+        var links = document.querySelectorAll('a[data-' + distribution + '-link]');
+        var images = document.querySelectorAll('img[data-' + distribution + '-link]');
+        for (var i = 0; i < links.length; i++) {
+            var distributionLink = links[i].getAttribute('data-' + distribution + '-' + 'Link');
+            links[i].setAttribute('href', distributionLink);
+        }
+        for (var j = 0; j < images.length; j++) {
+            var distributionSrc = images[j].dataset[distribution + 'Link'];
+            images[j].setAttribute('src', distributionSrc);
+        }
     };
 
     // client-side redirects (handy for testing)
@@ -50,9 +57,13 @@ if (typeof Mozilla === 'undefined') {
     // then, each key name needs to be preceded by data- as this uses data attributes
     // to work. After this, you can access all strings defined inside the
     // string_data block in JS using Mozilla.Utils.trans('keyofstring'); Thank @mkelly
-    var _$strings = $('#strings');
+    var _strings = document.getElementById('strings');
     Utils.trans = function(stringId) {
-        return _$strings.data(stringId);
+        if (_strings) {
+            return _strings.dataset[stringId];
+        } else {
+            return undefined;
+        }
     };
 
     window.Mozilla.Utils = Utils;

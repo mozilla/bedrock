@@ -6,8 +6,31 @@
 /* global describe, beforeEach, afterEach, it, expect, spyOn */
 
 describe('mozilla-utils.js', function() {
-
     'use strict';
+
+    describe('trans', function () {
+        var stringDiv;
+
+        beforeEach(function () {
+            stringDiv = '<div id="strings" data-global-close="Close" ' +
+            'data-global-next="Next" ' +
+            'data-global-previous="Previous"> ' +
+            '</div>';
+
+            var container = document.createElement('div');
+            container.innerHTML = stringDiv;
+            $(container).appendTo('body');
+        });
+
+        afterEach(function() {
+            $(stringDiv).remove();
+        });
+
+        it('should correctly return translation value', function () {
+            var translation = Mozilla.Utils.trans('global-next');
+            expect(translation === 'Next');
+        });
+    });
 
     describe('initMobileDownloadLinks', function () {
 
