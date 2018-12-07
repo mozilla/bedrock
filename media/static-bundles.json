@@ -1633,7 +1633,6 @@
         "js/base/mozilla-utils.js",
         "js/newsletter/form.js",
         "js/base/mozilla-client.js",
-        "js/base/mozilla-image-helper.js",
         "js/base/nav-main-resp.js",
         "js/base/class-list-polyfill.js",
         "protocol/js/protocol-menu.js",
@@ -1647,24 +1646,23 @@
       "name": "common"
     },
     {
-        "files": [
-            "js/libs/jquery-3.2.1.min.js",
-            "protocol/js/protocol-lang-switcher.js",
-            "js/base/protocol/init-lang-switcher.js",
-            "js/base/mozilla-utils.js",
-            "js/base/mozilla-client.js",
-            "js/base/mozilla-image-helper.js",
-            "js/base/nav-main-resp.js",
-            "js/base/class-list-polyfill.js",
-            "protocol/js/protocol-menu.js",
-            "protocol/js/protocol-navigation.js",
-            "js/base/protocol/init-navigation.js",
-            "js/base/base-page-init.js",
-            "js/base/core-datalayer.js",
-            "js/base/core-datalayer-init.js",
-            "js/base/search-params.js"
-        ],
-        "name": "common-protocol"
+      "files": [
+          "js/libs/jquery-3.2.1.min.js",
+          "protocol/js/protocol-lang-switcher.js",
+          "js/base/protocol/init-lang-switcher.js",
+          "js/base/mozilla-utils.js",
+          "js/base/mozilla-client.js",
+          "js/base/nav-main-resp.js",
+          "js/base/class-list-polyfill.js",
+          "protocol/js/protocol-menu.js",
+          "protocol/js/protocol-navigation.js",
+          "js/base/protocol/init-navigation.js",
+          "js/base/base-page-init.js",
+          "js/base/core-datalayer.js",
+          "js/base/core-datalayer-init.js",
+          "js/base/search-params.js"
+      ],
+      "name": "common-protocol"
     },
     {
       "files": [
