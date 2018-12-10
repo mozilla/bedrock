@@ -9,7 +9,7 @@
 function onYouTubeIframeAPIReady() {
     'use strict';
 
-    Mozilla.firstRunOnYouTubeIframeAPIReady();
+    Mozilla.firefoxConcertsOnYouTubeIframeAPIReady();
 }
 
 
@@ -322,66 +322,69 @@ function onYouTubeIframeAPIReady() {
 
 
     // Video
-    var tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    var videoLink = document.querySelector('.js-video-play');
 
-    function onYouTubeIframeAPIReady() {
+    if (videoLink) {
+        var tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        // lazy load video when visitor clicks the placeholder.
-        var videoLink = document.querySelector('.js-video-play');
-        var videoId = videoLink.getAttribute('data-id');
+        function onYouTubeIframeAPIReady() {
 
-        videoLink.setAttribute('role', 'button');
+            // lazy load video when visitor clicks the placeholder.
+            var videoId = videoLink.getAttribute('data-id');
 
-        videoLink.addEventListener('click', function(e) {
-            e.preventDefault();
+            videoLink.setAttribute('role', 'button');
 
-            new YT.Player(videoLink, {
-                height: '703',
-                width: '1250',
-                videoId: videoId,
-                playerVars: {
-                    modestbranding: 1, // hide YouTube logo.
-                    rel: 0, // do not show related videos on end.
-                },
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
+            videoLink.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                new YT.Player(videoLink, {
+                    height: '703',
+                    width: '1250',
+                    videoId: videoId,
+                    playerVars: {
+                        modestbranding: 1, // hide YouTube logo.
+                        rel: 0, // do not show related videos on end.
+                    },
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+
+                function onPlayerReady(event) {
+                    event.target.playVideo();
+                }
+
+                function onPlayerStateChange(event) {
+                    var state;
+
+                    switch(event.data) {
+                    case YT.PlayerState.PLAYING:
+                        state = 'video play';
+                        break;
+                    case YT.PlayerState.PAUSED:
+                        state = 'video paused';
+                        break;
+                    case YT.PlayerState.ENDED:
+                        state = 'video complete';
+                        break;
+                    }
+
+                    if (state) {
+                        window.dataLayer.push({
+                            'event': 'video-interaction',
+                            'videoTitle': 'Firefox Concert - Phosphorescent',
+                            'interaction': state
+                        });
+                    }
                 }
             });
+        }
 
-            function onPlayerReady(event) {
-                event.target.playVideo();
-            }
-
-            function onPlayerStateChange(event) {
-                var state;
-
-                switch(event.data) {
-                case YT.PlayerState.PLAYING:
-                    state = 'video play';
-                    break;
-                case YT.PlayerState.PAUSED:
-                    state = 'video paused';
-                    break;
-                case YT.PlayerState.ENDED:
-                    state = 'video complete';
-                    break;
-                }
-
-                if (state) {
-                    window.dataLayer.push({
-                        'event': 'video-interaction',
-                        'videoTitle': 'Firefox Concert - Phosphorescent',
-                        'interaction': state
-                    });
-                }
-            }
-        });
+        Mozilla.firefoxConcertsOnYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
     }
-
-    Mozilla.firstRunOnYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
 
 })(window.Mozilla);
