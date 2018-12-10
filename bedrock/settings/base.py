@@ -1362,7 +1362,7 @@ RAVEN_CONFIG = {
 CSP_DEFAULT_SRC = config('CSP_DEFAULT_SRC', parser=ListOf(str),
                          default="'self',*.mozilla.net,*.mozilla.org,*.mozilla.com"
 )
-CSP_IMG_SRC = CSP_DEFAULT_SRC + (
+CSP_IMG_SRC = CSP_DEFAULT_SRC + [
     'data:',
     'mozilla.org',
     'www.googletagmanager.com',
@@ -1371,8 +1371,8 @@ CSP_IMG_SRC = CSP_DEFAULT_SRC + (
     'adservice.google.de',
     'adservice.google.dk',
     'creativecommons.org',
-)
-CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + (
+]
+CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + [
     # TODO fix things so that we don't need this
     "'unsafe-inline'",
     # TODO snap.svg.js passes a string to Function() which is
@@ -1383,12 +1383,12 @@ CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + (
     'tagmanager.google.com',
     'www.youtube.com',
     's.ytimg.com',
-)
-CSP_STYLE_SRC = CSP_DEFAULT_SRC + (
+]
+CSP_STYLE_SRC = CSP_DEFAULT_SRC + [
     # TODO fix things so that we don't need this
     "'unsafe-inline'",
-)
-CSP_CHILD_SRC = (
+]
+CSP_CHILD_SRC = [
     'www.googletagmanager.com',
     'www.google-analytics.com',
     'www.youtube-nocookie.com',
@@ -1397,13 +1397,13 @@ CSP_CHILD_SRC = (
     'accounts.firefox.com',
     'accounts.firefox.com.cn',
     'www.youtube.com',
-)
-CSP_CONNECT_SRC = CSP_DEFAULT_SRC + (
+]
+CSP_CONNECT_SRC = CSP_DEFAULT_SRC + [
     'www.googletagmanager.com',
     'www.google-analytics.com',
     FXA_ENDPOINT,
     FXA_ENDPOINT_MOZILLAONLINE,
-)
+]
 CSP_REPORT_ONLY = config('CSP_REPORT_ONLY', default='false', parser=bool)
 CSP_REPORT_ENABLE = config('CSP_REPORT_ENABLE', default='false', parser=bool)
 if CSP_REPORT_ENABLE:
