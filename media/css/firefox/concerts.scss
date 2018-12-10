@@ -127,6 +127,41 @@ $concert-coral: #ff4f5d;
 }
 
 
+// Video
+.mzp-c-card-feature-media {
+    @include aspect-ratio(16, 9);
+
+    iframe {
+        height: 100%;
+        width: 100%;
+    }
+
+    .video-play {
+        display: block;
+
+        &:after {
+            background: url('/media/img/icons/video-play.svg') top left no-repeat;
+            content: '';
+            height: 100px;
+            left: 50%;
+            margin: -50px 0 0 -50px;
+            opacity: 0.7;
+            position: absolute;
+            top: 50%;
+            transition: opacity .2s ease-in-out, transform .2s ease-in-out;
+            width: 100px;
+            z-index: 2;
+        }
+
+        &:hover:after,
+        &:focus:after {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+    }
+}
+
+
 //* -------------------------------------------------------------------------- */
 // Firefox Accounts CTA
 

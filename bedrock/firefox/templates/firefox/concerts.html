@@ -50,7 +50,15 @@
       <section class="artist-card mzp-c-card-feature mzp-has-aspect-16-9 mzp-t-firefox mzp-t-dark">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
-            <img src="{{ static('img/firefox/concerts/phosphorescent.jpg') }}" alt="Bearded musician Phosphorescent (Matthew Houck) holds a glass of Scotch and looks contemplatively into the distance. He wears a casual white shirt and tinted glasses. He is standing next to a figurine lamp, its shade askew.">
+          {% if switch('firefox-concert-one-live') %}
+            <a class="video-play" href="http://firefoxconcerts.livenation.com" rel="external" title="Watch the livestream">
+              <img src="{{ static('img/firefox/concerts/video-poster-phosphorescent.jpg') }}" alt="Phosphorescent (Matthew Houck) and his six-piece band perform on stage before a crowd. The lighting is tinted purple and the band is backed by a large, illuminated sign reading ‘C’est La Vie’, the title of their recent album.">
+            </a>
+          {% else %}
+            <a class="video-play js-video-play" href="https://youtu.be/PcNpDCdkhLc" data-id="PcNpDCdkhLc" title="Play the video">
+              <img src="{{ static('img/firefox/concerts/video-poster-phosphorescent.jpg') }}" alt="Phosphorescent (Matthew Houck) and his six-piece band perform on stage before a crowd. The lighting is tinted purple and the band is backed by a large, illuminated sign reading ‘C’est La Vie’, the title of their recent album.">
+            </a>
+          {% endif %}
           </div>
         </div>
         <div class="mzp-c-card-feature-content">
@@ -66,7 +74,7 @@
             <p class="mzp-c-card-feature-desc">Livestreamed from DC’s 9:30 Club, get a front row seat for one of the last shows on Phosphorescent’s <cite lang="fr">C’est La Vie</cite> tour. Special guest Liz Cooper and The Stampede kick off the show 8:00pm EST.</p>
 
           {% if switch('firefox-concert-one-live') %}
-            <p class="stream-link"><a href="https://firefoxconcerts.livenation.com" rel="external" class="mzp-c-button mzp-t-dark">Watch Now</a></p>
+            <p class="stream-link"><a href="http://firefoxconcerts.livenation.com" rel="external" class="mzp-c-button mzp-t-dark">Watch Now</a></p>
           {% endif %}
           </div>
         </div>
