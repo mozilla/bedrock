@@ -10,7 +10,7 @@
 {% block page_title %}Watch free live concerts in Firefox{% endblock %}
 
 {%- block page_desc -%}
-  {%- if switch('firefox-concert-one-over') -%}
+  {%- if switch('firefox_concert_one_over') -%}
     Here’s to you. Here’s to live music. Here’s to watching free, from all kinds of artists, right from Firefox. Thanks for being part of our community. Firefox fights for you.
   {%- else -%}
     Live on 12/11 get a front row seat for one of the last shows on Phosphorescent’s C’est La Vie tour.
@@ -18,7 +18,7 @@
 {%- endblock -%}
 
 {%- block page_image -%}
-  {%- if switch('firefox-concert-one-over') -%}
+  {%- if switch('firefox_concert_one_over') -%}
     {{ static('img/firefox/concerts/page-image.jpg') }}
   {%- else -%}
     {{ static('img/firefox/concerts/page-image-phosphorescent.jpg') }}
@@ -50,11 +50,11 @@
       <section class="artist-card mzp-c-card-feature mzp-has-aspect-16-9 mzp-t-firefox mzp-t-dark">
         <div class="mzp-c-card-feature-media-wrapper">
           <div class="mzp-c-card-feature-media">
-          {% if switch('firefox-concert-one-live') %}
+          {% if switch('firefox_concert_one_live') %}
             <a class="video-play" href="http://firefoxconcerts.livenation.com" rel="external" title="Watch the livestream">
               <img src="{{ static('img/firefox/concerts/video-poster-phosphorescent.jpg') }}" alt="Phosphorescent (Matthew Houck) and his six-piece band perform on stage before a crowd. The lighting is tinted purple and the band is backed by a large, illuminated sign reading ‘C’est La Vie’, the title of their recent album.">
             </a>
-          {% elif switch('firefox-concert-one-over') %}
+          {% elif switch('firefox_concert_one_over') %}
             <img src="{{ static('img/firefox/concerts/video-poster-phosphorescent.jpg') }}" alt="Phosphorescent (Matthew Houck) and his six-piece band perform on stage before a crowd. The lighting is tinted purple and the band is backed by a large, illuminated sign reading ‘C’est La Vie’, the title of their recent album.">
           {% else %}
             <a class="video-play js-video-play" href="https://youtu.be/PcNpDCdkhLc" data-id="PcNpDCdkhLc" title="Play the video">
@@ -65,15 +65,15 @@
         </div>
         <div class="mzp-c-card-feature-content">
           <div class="mzp-c-card-feature-content-container">
-          {% if switch('firefox-concert-one-live') %}
+          {% if switch('firefox_concert_one_live') %}
             <p class="mzp-c-card-tag live">Live</p>
-          {% elif switch('firefox-concert-one-over') %}
+          {% elif switch('firefox_concert_one_over') %}
             <p class="mzp-c-card-tag ended">Coming soon</p>
           {% else %}
             <p class="mzp-c-card-tag countdown" id="countdown-one">Starts in <span class="time days"></span> days, <span class="time hours"></span> hours</p>
           {% endif %}
 
-          {% if switch('firefox-concert-one-over') %}
+          {% if switch('firefox_concert_one_over') %}
             <h2 class="mzp-c-card-feature-title">Next concert: To be announced</h2>
             <p class="mzp-c-card-feature-desc">The first concert is over, but we have more music in the queue. Check back here to find out who’s playing next in the Firefox Concert Series! Sign up below to be the first to know when the next show is announced.</p>
           {% else %}
@@ -81,7 +81,7 @@
             <p class="mzp-c-card-feature-desc">Livestreamed from DC’s 9:30 Club, get a front row seat for one of the last shows on Phosphorescent’s <cite lang="fr">C’est La Vie</cite> tour. Special guest Liz Cooper and The Stampede kick off the show 8:00pm EST.</p>
           {% endif %}
 
-          {% if switch('firefox-concert-one-live') %}
+          {% if switch('firefox_concert_one_live') %}
             <p class="stream-link"><a href="http://firefoxconcerts.livenation.com" rel="external" class="mzp-c-button mzp-t-dark">Watch Now</a></p>
           {% endif %}
           </div>

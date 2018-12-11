@@ -134,22 +134,22 @@
           youtube_id='rZAQ6vgt8nE'
         )}}
         <!-- 2 -->
-      {% if switch('firefox_concert_series') %}
-        {{ card(
-          tag_label=_('Firefox Concert Series | Phosphorescent'),
-          title=_('Here’s to you. Here’s to live music.'),
-          ga_title='Here’s to you. Here’s to live music.',
-          desc=_('Here’s to watching it free, from all kinds of artists, right from Firefox. Rock out with Phosphorescent, LIVE on Dec. 11.'),
-          image_url='home/2018/cards/nov/concerts.jpg',
-          aspect_ratio='mzp-has-aspect-1-1',
-          link_url=url('firefox.concerts')
-        )}}
-      {% elif switch('firefox_concert_series') and switch('firefox-concert-one-over') %}
+      {% if switch('firefox_concert_series') and switch('firefox_concert_one_over') %}
         {{ card(
           tag_label=_('Firefox Concert Series'),
           title=_('Here’s to you. Here’s to live music.'),
           ga_title='Here’s to you. Here’s to live music.',
           desc=_('Here’s to watching it free, from all kinds of artists, right from Firefox. Join us and rock out with the Firefox Concert Series.'),
+          image_url='home/2018/cards/nov/concerts.jpg',
+          aspect_ratio='mzp-has-aspect-1-1',
+          link_url=url('firefox.concerts')
+        )}}
+      {% elif switch('firefox_concert_series') %}
+        {{ card(
+          tag_label=_('Firefox Concert Series | Phosphorescent'),
+          title=_('Here’s to you. Here’s to live music.'),
+          ga_title='Here’s to you. Here’s to live music.',
+          desc=_('Here’s to watching it free, from all kinds of artists, right from Firefox. Rock out with Phosphorescent, LIVE on Dec. 11.'),
           image_url='home/2018/cards/nov/concerts.jpg',
           aspect_ratio='mzp-has-aspect-1-1',
           link_url=url('firefox.concerts')
