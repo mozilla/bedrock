@@ -71,7 +71,6 @@
           aspect_ratio='mzp-has-aspect-3-2',
           link_url='https://blog.mozilla.org/Internetcitizen/2018/06/06/the-today-show-mozilla-firefox-facebook-container/'
       )}}
-      {% if l10n_has_tag('irl_card_about_2018') %}
       {{ card(
           class='mzp-c-card-medium',
           title=_('Talking Internet Issues IRL'),
@@ -82,18 +81,6 @@
           aspect_ratio='mzp-has-aspect-3-2',
           link_url='https://irlpodcast.org/'
       )}}
-      {% else %}
-      {{ card(
-          class='mzp-c-card-medium',
-          title=_('Talking Internet Issues IRL'),
-          ga_title='Talking Internet Issues IRL',
-          desc=_('In our Webby-winning podcast, IRL, Veronica Belmont gets real about the online issues that affect our real lives, from privacy and filter bubbles to feeding trolls.'),
-          image_url='mozorg/about/irl-fallback.jpg',
-          include_highres_image=True,
-          aspect_ratio='mzp-has-aspect-3-2',
-          link_url='https://irlpodcast.org/'
-      )}}
-      {% endif %}
     </div>
   </div>
 </div>
