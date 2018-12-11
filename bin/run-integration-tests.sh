@@ -20,9 +20,7 @@ CMD="${CMD} -r a"
 CMD="${CMD} --verbose"
 CMD="${CMD} -n ${PYTEST_PROCESSES}"
 CMD="${CMD} --base-url ${BASE_URL}"
-# rerun a flaky test once
-# DO NOT INCREASE THIS
-CMD="${CMD} --reruns 1"
+CMD="${CMD} --reruns 2"
 CMD="${CMD} --html ${RESULTS_PATH}/index.html"
 CMD="${CMD} --junitxml ${RESULTS_PATH}/junit.xml"
 if [ -n "${DRIVER}" ]; then CMD="${CMD} --driver ${DRIVER}"; fi
