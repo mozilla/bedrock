@@ -1069,6 +1069,8 @@
     {
       "files": [
         "js/base/uitour-lib.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
         "protocol/js/protocol-modal.js",
         "js/firefox/whatsnew/whatsnew-64.js"
       ],
