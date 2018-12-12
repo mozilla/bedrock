@@ -7,3 +7,12 @@ regions:
   - iowa-a
 apps:
   - bedrock-dev
+integration_tests:
+  oregon-b:
+    - firefox
+    - headless
+    - download
+  iowa-a:
+    - download
+    - firefox
+    - headless
