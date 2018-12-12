@@ -10,18 +10,3 @@ regions:
 apps:
   - bedrock-stage
   - bedrock-prod
-integration_tests:
-  oregon-b:
-    - chrome
-    - download
-    - firefox
-    - headless
-    - ie
-    - ie8
-  frankfurt:
-    - headless
-  iowa-a:
-    - chrome
-    - download
-    - firefox
-    - headless
