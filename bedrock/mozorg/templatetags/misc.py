@@ -229,10 +229,11 @@ def high_res_img(ctx, url, optional_attributes=None):
 
 @library.global_function
 @jinja2.contextfunction
-def lazy_img(ctx, image_url, placeholder_url, include_highres_image=False, optional_attributes=None):
+def lazy_img(ctx, image_url, placeholder_url, include_highres_image=False,
+             optional_attributes=None, highres_image_url=None):
     placeholder = static(path.join('img', placeholder_url))
 
-    external_img = re.match(r'^https://', image_url, flags=re.I)
+    external_img = re.match(r'^https?://', image_url, flags=re.I)
 
     # image could be external
     if not external_img:
@@ -245,6 +246,9 @@ def lazy_img(ctx, image_url, placeholder_url, include_highres_image=False, optio
         srcset = 'data-srcset="{image_high_res} 2x"'.format(image_high_res=image_high_res)
     else:
         srcset = ''
+
+    if highres_image_url:
+        srcset = 'data-srcset="{image_high_res} 2x"'.format(image_high_res=highres_image_url)
 
     if optional_attributes:
         class_name = optional_attributes.pop('class', 'lazy-image')
