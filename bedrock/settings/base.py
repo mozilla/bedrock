@@ -457,6 +457,7 @@ INSTALLED_APPS = (
     'bedrock.security',
     'bedrock.events',
     'bedrock.releasenotes',
+    'bedrock.contentcards',
     'bedrock.shapeoftheweb',
     'bedrock.utils',
     'bedrock.wordpress',
@@ -1287,6 +1288,11 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
     }
 }
 
+CONTENT_CARDS_PATH = config('CONTENT_CARDS_PATH', default=path('content_cards'))
+CONTENT_CARDS_REPO = config('CONTENT_CARDS_REPO', default='https://github.com/mozmeao/www-admin.git')
+CONTENT_CARDS_BRANCH = config('CONTENT_CARDS_BRANCH', default='master-processed')
+CONTENT_CARDS_URL = config('CONTENT_CARDS_URL', default=STATIC_URL)
+
 RELEASE_NOTES_PATH = config('RELEASE_NOTES_PATH', default=path('release_notes'))
 RELEASE_NOTES_REPO = config('RELEASE_NOTES_REPO', default='https://github.com/mozilla/release-notes.git')
 RELEASE_NOTES_BRANCH = config('RELEASE_NOTES_BRANCH', default='master')
@@ -1364,9 +1370,11 @@ RAVEN_CONFIG = {
 }
 
 # Django-CSP
-CSP_DEFAULT_SRC = config('CSP_DEFAULT_SRC', parser=ListOf(str),
-                         default="'self',*.mozilla.net,*.mozilla.org,*.mozilla.com"
-)
+CSP_DEFAULT_SRC = ["'self'", '*.mozilla.net', '*.mozilla.org', '*.mozilla.com']
+EXTRA_CSP_DEFAULT_SRC = config('CSP_DEFAULT_SRC', parser=ListOf(str), default='')
+if EXTRA_CSP_DEFAULT_SRC:
+    CSP_DEFAULT_SRC += EXTRA_CSP_DEFAULT_SRC
+
 CSP_IMG_SRC = CSP_DEFAULT_SRC + [
     'data:',
     'mozilla.org',

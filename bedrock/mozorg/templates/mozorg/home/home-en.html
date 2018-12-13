@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import billboard, card, call_out_compact with context %}
+{% from "macros-protocol.html" import billboard, card, call_out_compact, content_card with context %}
 
 {% extends "base-protocol.html" %}
 
@@ -111,63 +111,15 @@
     <div class="mzp-l-content">
       <div class="mzp-l-card-hero">
         <!-- 1 -->
-        {{ card(
-          class='mzp-c-card-large',
-          tag_label=_('Video'),
-          media_icon='mzp-has-video',
-          title=_('We keep your data safe, never sold.'),
-          ga_title='We keep your data safe, never sold.',
-          desc=_('You have the right to own your life — and your data. Everything we make and do fights for you.'),
-          image_url='home/2018/cards/dec/ffyr.png',
-          include_highres_image=True,
-          aspect_ratio='mzp-has-aspect-16-9',
-          link_url=url('firefox.fights-for-you'),
-          youtube_id='rZAQ6vgt8nE'
-        )}}
+        {{ content_card('card_1') }}
         <!-- 2 -->
-      {{ card(
-        tag_label=_('Internet Health'),
-        title=_('Goodbye, EdgeHTML'),
-        ga_title='Goodbye EdgeHTML',
-        desc=_('Microsoft is giving up on an independent shared platform for the internet, and in doing so, hands over control of more of online life to Google.'),
-        image_url='home/2018/cards/dec/edge.png',
-        include_highres_image=True,
-        aspect_ratio='mzp-has-aspect-1-1',
-        link_url='https://blog.mozilla.org/blog/2018/12/06/goodbye-edge/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
-        )}}
+        {{ content_card('card_2') }}
         <!-- 3 -->
-        {{ card(
-          tag_label=_('Firefox'),
-          title=_('Get the latest Firefox'),
-          ga_title='Get the latest Firefox',
-          desc=_('This version of Firefox has a couple of new features that simplify and personalize your online experience.'),
-          image_url='home/2018/cards/dec/firefox.jpg',
-          include_highres_image=True,
-          aspect_ratio='mzp-has-aspect-16-9',
-          link_url='https://blog.mozilla.org/blog/2018/12/11/latest-firefox-release-available-today/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
-        )}}
+        {{ content_card('card_3') }}
         <!-- 4 -->
-        {{ card(
-          tag_label=_('Privacy'),
-          title=_('Better watch out'),
-          ga_title='Better watch out',
-          desc=_('On a scale from 😄 to 😧, how creepy are the gifts on your wish list this year?'),
-          image_url='home/2018/cards/dec/privacy.jpg',
-          include_highres_image=True,
-          aspect_ratio='mzp-has-aspect-16-9',
-          link_url='https://foundation.mozilla.org/privacynotincluded/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
-        )}}
+        {{ content_card('card_4') }}
         <!-- 5 -->
-        {{ card(
-          tag_label=_('Security'),
-          title=_('Holiday tech support tips'),
-          ga_title='Holiday tech support tips',
-          desc=_('Earn some tech savvy points with your family. It’s the 2018 version of programming your parents’ VCR while you’re home for the holidays.'),
-          image_url='home/2018/cards/dec/holidays.png',
-          include_highres_image=True,
-          aspect_ratio='mzp-has-aspect-16-9',
-          link_url='https://blog.mozilla.org/internetcitizen/2018/12/19/holiday-tech-support/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
-        )}}
+        {{ content_card('card_5') }}
       </div>
 
       {{ billboard(
@@ -182,29 +134,9 @@
 
       <div class="mzp-l-card-half">
         <!-- 6 -->
-        {{ card(
-          class='mzp-c-card-medium',
-          tag_label=_('Podcast'),
-          title=_('Can ethical tech be a thing?'),
-          ga_title='Can ethical tech be a thing',
-          desc=_('We think so. Season 4 of IRL explores all the ways tech can have more positive influence on people, communities and societies. Listen in.'),
-          image_url='home/2018/cards/dec/irl.jpg',
-          include_highres_image=True,
-          aspect_ratio='mzp-has-aspect-16-9',
-          link_url='https://irlpodcast.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
-        )}}
+        {{ content_card('card_6') }}
         <!-- 7 -->
-        {{ card(
-          class='mzp-c-card-medium',
-          tag_label=_('Pocket'),
-          title=_('Pocket’s best of 2018'),
-          ga_title='Pockets best of 2018',
-          desc=_('Lose yourself in the articles, videos and publishers that captured the attention of the Pocket community this year.'),
-          image_url='home/2018/cards/dec/best-pocket.png',
-          include_highres_image=True,
-          aspect_ratio='mzp-has-aspect-16-9',
-          link_url='https://getpocket.com/blog/2018/11/2018-must-reads-on-pocket?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
-        )}}
+        {{ content_card('card_7') }}
       </div>
     </div>
 
@@ -233,29 +165,9 @@
     <div class="mzp-l-content">
       <div class="mzp-l-card-half">
         <!-- 8 -->
-        {{ card(
-          class='mzp-c-card-medium',
-          tag_label=_('Test Pilot'),
-          title=_('Let Price Wise track prices for you'),
-          ga_title='Let Price Wise track prices for you',
-          desc=_('Double down on deals from five major retailers in this Test Pilot feature for Firefox.'),
-          image_url='home/2018/cards/dec/price-wise.jpg',
-          include_highres_image=True,
-          aspect_ratio='mzp-has-aspect-16-9',
-          link_url='https://blog.mozilla.org/firefox/price-wise/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
-        )}}
+        {{ content_card('card_8') }}
         <!-- 9 -->
-        {{ card(
-          class='mzp-c-card-medium',
-          tag_label=_('Test Pilot'),
-          title=_('Upgrade your wish lists'),
-          ga_title='Upgrade your wish lists',
-          desc=_('Sharing links via email just got easier. Email Tabs makes it a snap to share URLs, titles and descriptions with friends in a handy list.'),
-          image_url='home/2018/cards/dec/email-tabs.jpg',
-          include_highres_image=True,
-          aspect_ratio='mzp-has-aspect-16-9',
-          link_url='https://blog.mozilla.org/firefox/email-tabs/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
-        )}}
+        {{ content_card('card_9') }}
       </div>
 
       {{ billboard(
@@ -271,73 +183,17 @@
 
       <div class="mzp-l-card-third">
         <!-- 10 -->
-        {{ card(
-          tag_label=_('Security'),
-          title=_('Protect yourself with Firefox Monitor'),
-          ga_title='Protect yourself with Firefox Monitor',
-          desc=_('Find out what hackers already know about you and get alerts when data breaches put you at risk.'),
-          image_url='home/2018/cards/dec/monitor.jpg',
-          include_highres_image=True,
-          aspect_ratio='mzp-has-aspect-16-9',
-          link_url='https://monitor.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
-        )}}
+        {{ content_card('card_10') }}
         <!-- 11 -->
-        {{ card(
-          tag_label=_('Security'),
-          title=_('Data Leeks: Recipes for online privacy'),
-          ga_title='Data Leeks: Recipes for online privacy',
-          desc=_('Not convinced that a data breach could have real, personal implications? These stories might change your mind.'),
-          image_url='home/2018/cards/dec/leeks.jpg',
-          include_highres_image=True,
-          aspect_ratio='mzp-has-aspect-16-9',
-          link_url='https://www.dataleeks.com?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
-        )}}
+        {{ content_card('card_11') }}
         <!-- 12 -->
-        {{ card(
-          tag_label=_('Security'),
-          title=_('Marriott data breach — What to do?'),
-          ga_title='Marriott data breach What to do?',
-          desc=_('These tips don’t apply just to this breach. They’re best practices every day of the week.'),
-          image_url='home/2018/cards/dec/marriott.png',
-          include_highres_image=True,
-          aspect_ratio='mzp-has-aspect-16-9',
-          link_url='https://blog.mozilla.org/internetcitizen/2018/11/30/marriott-data-breach-what-to-do/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
-        )}}
+        {{ content_card('card_12') }}
         <!-- 13 -->
-        {{ card(
-          tag_label=_('Grants'),
-          title=_('Mozilla Research Grant recipients announced'),
-          ga_title='Mozilla Research Grant recipients announced',
-          desc=_('We awarded grants to support research in four areas: Web of the Things, Core Web Technologies, Voice/Language/Speech, and Mixed Reality.'),
-          image_url='home/2018/cards/dec/grants.jpg',
-          include_highres_image=True,
-          aspect_ratio='mzp-has-aspect-16-9',
-          link_url='https://blog.mozilla.org/blog/2018/11/28/mozilla-funds-research-grants-in-four-areas/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
-        )}}
+        {{ content_card('card_13') }}
         <!-- 14 -->
-        {{ card(
-          tag_label=_('Video'),
-          media_icon='mzp-has-video',
-          title=_('Firefox Reality'),
-          ga_title='Firefox Reality',
-          desc=_('Firefox Reality 1.1 is now available for download in the Viveport, Oculus, and Daydream app stores.'),
-          image_url='home/2018/cards/dec/reality.jpg',
-          include_highres_image=True,
-          aspect_ratio='mzp-has-aspect-16-9',
-          link_url='https://blog.mozvr.com/firefox-reality-update-supports-360-videos-and-7-additional-languages/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card',
-          youtube_id='daK-nrAgCus'
-        )}}
-
+        {{ content_card('card_14') }}
         <!-- 15 -->
-        {{ card(
-          tag_label=_('Emerging Technologies'),
-          title=_('Firefox Reality Developers Guide'),
-          ga_title='Firefox Reality Developers Guide',
-          desc=_('Mozilla’s VR web browser is here. Let’s talk about how to make your experiences work well in this new browser.'),
-          image_url='home/2018/cards/dec/vr-guide.jpg',
-          aspect_ratio='mzp-has-aspect-16-9',
-          link_url='https://blog.mozvr.com/firefox-reality-developers-guide/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
-        )}}
+        {{ content_card('card_15') }}
       </div>
 
       {{ billboard(
@@ -352,28 +208,9 @@
 
       <div class="mzp-l-card-half">
         <!-- 16 -->
-        {{ card(
-          class='mzp-c-card-medium',
-          tag_label=_('Developers'),
-          title=_('Are you a developer?'),
-          ga_title='Are you a developer?',
-          desc=_('Get the latest features, fast performance and the development tools you need to build for the open web with Firefox Developer Edition.'),
-          image_url='home/2018/cards/dec/developer.jpg',
-          aspect_ratio='mzp-has-aspect-16-9',
-          link_url=url('firefox.developer.index'),
-        )}}
+        {{ content_card('card_16') }}
         <!-- 17 -->
-        {{ card(
-          class='mzp-c-card-medium',
-          tag_label=_('Developers'),
-          title=_('Rust 2018 is here… but what is it?'),
-          ga_title='Rust 2018 is here but what is it?',
-          desc=_('With this edition, we’ve focused on productivity… on making Rust developers as productive as they can be.'),
-          image_url='home/2018/cards/dec/rust.png',
-          include_highres_image=True,
-          aspect_ratio='mzp-has-aspect-16-9',
-          link_url='https://hacks.mozilla.org/2018/12/rust-2018-is-here/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage&utm_content=card'
-        )}}
+        {{ content_card('card_17') }}
       </div>
 
       <aside class="mzp-c-newsletter">

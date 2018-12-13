@@ -15,6 +15,7 @@ from django.views.generic import TemplateView
 from commonware.decorators import xframe_allow
 
 from bedrock.base.waffle import switch
+from bedrock.contentcards.models import get_page_content_cards
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forums import ForumsFile
 from bedrock.mozorg.models import ContributorActivity, TwitterCache
@@ -198,17 +199,18 @@ def home_view(request):
     # presets are stored as a string but, for the home banner
     # we need it as a list.
     donate_params['preset_list'] = donate_params['presets'].split(',')
+    ctx = {
+        'donate_params': donate_params,
+        'pocket_articles': PocketArticle.objects.all()[:4]
+    }
 
     if locale.startswith('en-'):
         template_name = 'mozorg/home/home-en.html'
-
+        ctx['page_content_cards'] = get_page_content_cards('home', 'en-US')
     else:
         template_name = 'mozorg/home/home.html'
 
-    return l10n_utils.render(request, template_name, {
-        'donate_params': donate_params,
-        'pocket_articles': PocketArticle.objects.all()[:4]
-    })
+    return l10n_utils.render(request, template_name, ctx)
 
 
 def about_view(request):
