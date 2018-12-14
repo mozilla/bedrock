@@ -20,6 +20,10 @@
       {{ js_bundle('firefox_new_scene1_fx_experiment_y') }}
     {% endif %}
   {% endif %}
+
+  {% if switch('experiment_firefox_new_win10_taskbar_funnelcake', ['en-US']) %}
+    {{ js_bundle('experiment_firefox_new_win10_taskbar_funnelcake') }}
+  {% endif %}
 {% endblock %}
 
 {% block body_id %}firefox-new-scene1{% endblock %}
