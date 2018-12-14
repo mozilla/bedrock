@@ -270,12 +270,6 @@
     },
     {
       "files": [
-        "css/firefox/new/reggie-watts.scss"
-      ],
-      "name": "firefox_new_reggie_watts"
-    },
-    {
-      "files": [
         "css/base/mozilla-modal.less",
         "css/mozorg/contribute/contribute-base.less"
       ],
@@ -647,12 +641,6 @@
           "css/firefox/new/better-browser.scss"
         ],
         "name": "firefox_new_better_browser"
-    },
-    {
-      "files": [
-        "css/firefox/new/wait-face.scss"
-      ],
-      "name": "firefox_new_wait_face"
     },
     {
       "files": [

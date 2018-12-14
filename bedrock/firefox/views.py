@@ -619,12 +619,7 @@ def download_thanks(request):
     if variant == 'x' and locale == 'en-US':
         show_newsletter = False  # Prevent showing the newsletter for FxA account experiment mozilla/bedrock#5974
 
-    # `wait-face`, `reggiewatts` variations are currently localized for both en-US and de locales.
-    if lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':
-        template = 'firefox/new/wait-face/scene2.html'
-    elif lang_file_is_active('firefox/new/reggiewatts', locale) and experience == 'reggiewatts':
-        template = 'firefox/new/reggie-watts/scene2.html'
-    elif locale == 'de':
+    if locale == 'de':
         if experience == 'berlin':
             template = 'firefox/new/berlin/scene2.html'
         elif experience == 'aus-gruenden':
@@ -673,11 +668,7 @@ def new(request):
         return HttpResponsePermanentRedirect(thanks_url)
     # if no/incorrect scene specified, show scene 1
     else:
-        if lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':
-            template = 'firefox/new/wait-face/scene1.html'
-        elif lang_file_is_active('firefox/new/reggiewatts', locale) and experience == 'reggiewatts':
-            template = 'firefox/new/reggie-watts/scene1.html'
-        elif locale == 'de':
+        if locale == 'de':
             if experience == 'berlin':
                 template = 'firefox/new/berlin/scene1.html'
             elif experience == 'aus-gruenden':
