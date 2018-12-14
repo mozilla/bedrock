@@ -133,8 +133,20 @@
 
 <aside class="fxa-benefits mzp-u-modal-content">
   <p class="mobile-title mobile-pocket">{{ _('Scan the QR Code to download the Pocket App on your mobile device.') }}</p>
-  <p class="mobile-title mobile-lockbox">{{ _('Scan the QR Code to download the Lockbox App on your Apple device.') }}</p>
-  <p class="mobile-title mobile-notes">{{ _('Scan the QR Code to download the Notes App on your Android device.') }}</p>
+  <p class="mobile-title mobile-lockbox">
+  {%- if l10n_has_tag('accounts_2018_qrcodes') -%}
+    {{ _('Scan the QR Code to download the Lockbox App on your Apple device.') }}
+  {%- else -%}
+    {{ _('Scan the QR Code to download the Lockbox App on your mobile device.') }}
+  {%- endif -%}
+  </p>
+  <p class="mobile-title mobile-notes">
+  {%- if l10n_has_tag('accounts_2018_qrcodes') -%}
+    {{ _('Scan the QR Code to download the Notes App on your Android device.') }}
+  {%- else -%}
+    {{ _('Scan the QR Code to download the Notes App on your mobile device.') }}
+  {%- endif -%}
+  </p>
   <p id="fx-qr-title" class="mobile-title mobile-fx">{{ _('Scan the QR Code to download the Firefox App on your mobile device.') }}</p>
   <div class="mzp-l-content">
     <div id="qr-code"></div>
