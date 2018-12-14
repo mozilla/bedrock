@@ -6,15 +6,20 @@
   <button type="button" class="c-fundraiser-close" id="fundraiser-close"><span>{{ _('Close') }}</span></button>
   <div class="content mzp-l-content">
     <h2 class="c-fundraiser-title">
+    {% if LANG.startswith('en') %}
+      Help Mozilla defend the web.
+    {% else %}
       {{ _('We all love the web. Join Mozilla in defending it.') }}
+    {% endif %}
     </h2>
 
     <div class="c-fundraiser-content">
       <p>
       {% if LANG.startswith('en') %}
-        Let’s protect the world’s largest public resource for future
-        generations. A few times a year, Mozilla asks for donations. Chip in to
-        help us keep the web healthy, wonderful and welcoming to all.
+        The future of the internet is at stake, with new threats to our
+        online privacy and security virtually every day. Chip in today to
+        help the not-for-profit Mozilla Foundation continue its mission to
+        make the internet safe, open and accessible to all.
       {% else %}
       {#
         L10n: The "cup of coffee" item below is meant to represent an

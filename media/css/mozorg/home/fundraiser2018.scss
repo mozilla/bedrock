@@ -54,6 +54,10 @@ $image-path: '/media/protocol/img';
     @include text-display-lg;
     font-weight: normal;
     margin-bottom: $spacing-lg;
+
+    html[lang^='en'] & {
+        @include text-display-xl;
+    }
 }
 
 .c-fundraiser-amount-input {
