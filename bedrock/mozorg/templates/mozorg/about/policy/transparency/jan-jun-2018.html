@@ -39,15 +39,15 @@
               <th scope="row">
                 <a href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-subpoena' }}">{{ _('Subpoenas') }}</a>
               </th>
-              <td>1[2]</td>
-              <td>{{ _('N/A') }}</td>
+              <td>1<sub>[2]</sub></td>
+              <td>{{ _('No') }}</td>
             </tr>
             <tr>
               <th scope="row">
                 <a href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-court-order' }}">{{ _('Court Orders') }}</a>
               </th>
-              <td>1</td>
-              <td>{{ _('N/A') }}</td>
+              <td>1<sub>[3]</sub></td>
+              <td>{{ _('No') }}</td>
             </tr>
             <tr>
               <th scope="row">
@@ -82,8 +82,9 @@
 
         <aside class="footnotes">
           <section id="footnote-1">
-            <p>{{ _('1. Mozilla has never received a National Security Request.') }}</p>
+            <p>{{ _('1. None of the Mozilla Foundation, Mozilla Corporation or Pocket have ever received a National Security Request.') }}</p>
             <p>{{ _('2. Issued to Mozilla Corporation in connection with Pocket.') }}</p>
+            <p>{{ _('3. Issued to Mozilla Corporation.') }}</p>
           </section>
         </aside>
       </div>
@@ -230,6 +231,7 @@
             </tr>
             <tr>
               <th scope="row">{{ _('Other <a href="%s">Specific User</a> Data Disclosure')|format(url('mozorg.about.policy.transparency.index') + '#dfn-specific-user') }}</th>
+              <td>0</td>
             </tr>
           </tbody>
         </table>
