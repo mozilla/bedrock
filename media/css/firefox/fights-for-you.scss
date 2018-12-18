@@ -274,3 +274,31 @@ $fffy-pink: #FF2889;
         width: 100%;
     }
 }
+
+// Compact modal for QR codes
+.mzp-c-modal.l-compact {
+    .c-modal-title {
+        display: none;
+    }
+
+    .mzp-c-modal-inner {
+        @media #{$mq-md} {
+            max-width: $content-sm;
+            margin: 0 auto;
+        }
+
+        .mzp-c-modal-overlay-contents {
+            padding: $spacing-lg;
+            text-align: center;
+
+            .qr-code-wrapper {
+                margin: 0 auto $spacing-lg;
+            }
+
+            .mobile-store-buttons li {
+                display: inline-block;
+            }
+        }
+    }
+}
+

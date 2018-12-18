@@ -32,6 +32,26 @@
         }, false);
     }
 
+    // Set up modal for the Focus link
+    var focusContent = document.getElementById('fffy-focus-modal');
+    var focusTrigger = document.querySelector('.fffy-t-focus .mzp-c-cta-link');
+    var focusTitle = focusContent.querySelector('.c-modal-title');
+
+    focusTrigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        Mzp.Modal.createModal(e.target, focusContent, {
+            title: focusTitle.innerHTML,
+            className: 'mzp-t-firefox l-compact',
+            closeText: window.Mozilla.Utils.trans('global-close'),
+        });
+
+        window.dataLayer.push({
+            'event': 'in-page-interaction',
+            'eAction': 'link click',
+            'eLabel': 'Download Firefox Focus'
+        });
+    }, false);
+
 })();
 
 (function() {

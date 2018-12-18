@@ -2,6 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
+{% from "macros.html" import google_play_button with context %}
 {% from "macros-protocol.html" import call_out, call_out_compact, hero, feature_card with context %}
 
 {% extends "base-protocol.html" %}
@@ -109,12 +110,33 @@
 </div>
 
 <div id="fffy-video-modal" class="mzp-u-modal-content">
-    <div class="ytcontainer-video">
-      <div class="video-container">
-        <div id="fffy-video-player"></div>
-      </div>
+  <div class="ytcontainer-video">
+    <div class="video-container">
+      <div id="fffy-video-player"></div>
     </div>
+  </div>
 </div>
+
+<aside id="fffy-focus-modal" class="mzp-u-modal-content">
+  <h3 class="c-modal-title">Bitte QR-Code scannen, um loszulegen.</h3>
+
+  <div class="modal-content-wrapper">
+    <div class="qr-code-wrapper">
+      <img src="{{ static('img/firefox/fights-for-you/qrcode-klar.png') }}" alt="" width="300" height="300">
+    </div>
+
+    <ul class="mobile-store-buttons">
+      <li class="android">
+        {{ google_play_button(href='https://app.adjust.com/rtnpf1x') }}
+      </li>
+      <li class="ios">
+        <a href="https://app.adjust.com/rtnpf1x" data-link-type="download" data-download-os="iOS">
+          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="" width="152" height="45">
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
 
 {% endblock %}
 
