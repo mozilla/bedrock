@@ -21,7 +21,10 @@
   {% if switch('experiment-firefox-home-pre-download', ['en-US', 'en-GB', 'en-CA', 'en-ZA']) %}
     {{ js_bundle('experiment-firefox-home-pre-download') }}
   {% endif %}
-  {% if switch('experiment-firefox-home-pre-download-locales', ['de', 'fr']) %}
+  {% if switch('experiment-firefox-home-pre-download-fr', ['fr']) %}
+    {{ js_bundle('experiment-firefox-home-pre-download-locales') }}
+  {% endif %}
+  {% if switch('experiment-firefox-home-pre-download-de', ['de']) %}
     {{ js_bundle('experiment-firefox-home-pre-download-locales') }}
   {% endif %}
 {% endblock %}
