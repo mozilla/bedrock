@@ -18,36 +18,10 @@
 {% block body_class %}{% endblock %}
 
 {% block global_nav %}
-  {% if LANG.startswith('en-') %}
-    {% include 'includes/protocol/navigation/index.html' %}
-  {% endif %}
+  {% include 'includes/protocol/navigation/index.html' %}
 {% endblock %}
 
-{% block site_header %}
-{% if not LANG.startswith('en-') %}
-<header id="masthead">
-  <div class="container">
-    <div class="logo">
-      <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="Mozilla">Mozilla</a>
-    </div>
-    <nav id="nav-main">
-      <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{ _('Menu') }}</span>
-      <ul id="nav-main-menu">
-        <li class="first products-item">
-          <a href="{{ url('firefox') }}" data-link-type="nav" data-link-name="Firefox">{{ _('Firefox') }}</a>
-        </li>
-        <li class="add-on-item">
-          <a rel="external" href="https://addons.mozilla.org/" data-link-type="nav" data-link-name="Add-ons">{{ _('Add-ons') }}</a>
-        </li>
-        <li class="support-item">
-          <a rel="external" href="https://support.mozilla.org/" data-link-type="nav" data-link-name="Support">{{ _('Support') }}</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</header>
-{% endif %}
-{% endblock %}
+{% block site_header %}{% endblock %}
 
 {% block content %}
 <main role="main">

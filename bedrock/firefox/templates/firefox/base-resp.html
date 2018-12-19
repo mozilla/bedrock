@@ -18,32 +18,10 @@
 {% block facebook_id %}14696440021{# facebook.com/Firefox #}{% endblock %}
 {% block twitter_id %}firefox{% endblock %}
 
-{% block global_nav %}{% endblock %}
-
 {% block site_header %}
   <header id="masthead">
-
-  {% block tabzilla_tab %}
-    <div id="tabzilla">
-      <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
-    </div>
-  {% endblock %}
-
-  {% block site_header_nav %}
-    {% include 'firefox/includes/top-menu.html' %}
-  {% endblock %}
-
   {% block site_header_logo %}
     <h2><a href="{{ url('firefox') }}">{{ high_res_img('logos/firefox/logo-quantum-wordmark-large.png', {'alt': 'Firefox', 'width': '185', 'height': '69'}) }}</a></h2>
   {% endblock %}
-
-  {% block alt_header %}{% endblock %}
-
-  {% block subnav %}{% endblock %}
-
-  {% block breadcrumbs %}{% endblock %}
-
-  {% block site_header_share %}{% endblock %}
-
   </header>
 {% endblock %}

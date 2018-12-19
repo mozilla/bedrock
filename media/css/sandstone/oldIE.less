@@ -10,7 +10,6 @@
 @import "lib.less";
 @import "reset.less";
 @import "buttons.less";
-@import "../base/menu.less";
 
 
 // General styles and containers
@@ -355,20 +354,6 @@ img {
         color: lighten(@linkBlue, 10%);
     }
 
-    #masthead nav li {
-        a:link,
-        a:visited {
-            color: @linkBlue;
-        }
-
-        li {
-            a:link,
-            a:visited {
-                color: @textColorSecondary;
-            }
-        }
-    }
-
     /* ensure link text is white for buttons in IE6 */
     .button,
     button.button,
@@ -379,67 +364,6 @@ img {
         color: @light;
     }
 }
-
-
-
-// Header navigation
-#masthead {
-    h2 {
-        padding: (@baseLine * 1.5) 0 @baseLine;
-        margin: 0 (@gridGutterWidth / 2);
-    }
-
-    nav {
-        float: right;
-        margin-right: 16px;
-        text-transform: uppercase;
-        .font-size(.8125em);
-
-        li {
-            .inline-block;
-            list-style-type: none;
-            margin: 0;
-            a,
-            b {
-                display: inline-block;
-                padding: 12px;
-                font-weight: normal;
-            }
-            b,
-            .current {
-                background-position: 50% 0;
-                background-repeat: no-repeat;
-                background-image: url("/media/img/sandstone/menu-current.png");
-            }
-            a:link,
-            a:visited {
-                color: @textColorSecondary;
-            }
-        }
-    }
-}
-
-#masthead .toggle {
-    display: none; /* oldIE never gets a mobile menu. */
-}
-
-
-
-// Header Breadcrumbs
-#masthead {
-    .breadcrumbs {
-        padding: 0 10px (@baseLine / 2) 10px;
-        float: none;
-
-        a,
-        span {
-            margin-right: .5em;
-            margin-left: .5em;
-        }
-    }
-}
-
-
 
 // Menu bar
 .menu-bar {

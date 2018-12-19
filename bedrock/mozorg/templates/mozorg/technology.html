@@ -20,14 +20,6 @@
   {{ css_bundle('technology') }}
 {% endblock %}
 
-{% block site_header %}
-  {% if LANG.startswith('en-') %}
-    {% include 'includes/protocol/navigation/index.html' %}
-  {% else %}
-    {% include 'mozorg/home/includes/nav.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block content %}
 {% include 'mozorg/developer/includes/sub-nav.html' %}
 

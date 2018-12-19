@@ -10,8 +10,6 @@
 
 {% block body_class %}{{ super() }} firefox-friends{% endblock %}
 
-{% block global_nav %}{% endblock %}
-
 {% block page_css %}
   {{ css_bundle('contribute-friends') }}
 {% endblock %}
@@ -20,10 +18,6 @@
 
 {% block site_header %}
 <header id="masthead">
-  <div id="tabzilla">
-    <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
-  </div>
-
   <div id="masthead-content">
     <img src="{{ static('img/contribute/friends/firefox-friends-logo.svg') }}" width="186" class="ff-logo" data-png="{{ static('img/contribute/friends/firefox-friends-logo.png') }}" data-fallback="true" alt="{{ _('Firefox Friends logo') }}" />
     <div class="ff-header-content">

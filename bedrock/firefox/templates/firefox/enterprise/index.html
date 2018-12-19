@@ -15,6 +15,12 @@
 {% block body_id %}firefox{% endblock %}
 {% block body_class %}{% endblock %}
 
+{% block site_header %}
+  {% with hide_nav_download_button=True %}
+    {% include 'includes/protocol/navigation/index.html' %}
+  {% endwith %}
+{% endblock %}
+
 {% block content %}
 <main role="main">
   <section class="intro content-section">

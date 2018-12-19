@@ -9,18 +9,12 @@
 {% endblock %}
 
 {% block global_nav %}
-  {% if LANG.startswith('en-') %}
-    {% include 'includes/protocol/navigation/index.html' %}
-  {% endif %}
+  {% include 'includes/protocol/navigation/index.html' %}
 {% endblock %}
 
 {% block tabzilla_tab %}{% endblock %}
 
-{% block site_header_nav %}
-  {% if not LANG.startswith('en-') %}
-    {% include 'firefox/includes/top-menu.html' %}
-  {% endif %}
-{% endblock %}
+{% block site_header_nav %}{% endblock %}
 
 {% block breadcrumbs %}
   <nav class="breadcrumbs">

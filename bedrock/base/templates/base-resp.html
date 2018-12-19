@@ -90,9 +90,7 @@
       {% block string_data %}{% endblock %}></div>
 
     {% block global_nav %}
-      {% if LANG.startswith('en-') %}
-        {% include 'includes/protocol/navigation/index.html' %}
-      {% endif %}
+      {% include 'includes/protocol/navigation/index.html' %}
     {% endblock %}
 
     <div id="outer-wrapper">
@@ -102,51 +100,7 @@
 
       <div id="wrapper">
 
-      {% block site_header %}
-        {% if not LANG.startswith('en-') %}
-        <header id="masthead">
-
-        {% block tabzilla_tab %}
-          <div id="tabzilla">
-            <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
-          </div>
-        {% endblock %}
-
-        {% block site_header_nav %}
-          <nav id="nav-main" role="navigation">
-            <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
-            <ul id="nav-main-menu">
-              <li class="first firefox-item">
-                <a href="{{ url('firefox') }}" data-link-type="nav" data-link-name="Firefox">{{ _('Firefox') }}</a>
-              </li>
-              <li class="internet-health-item">
-                <a href="{{ url('mozorg.internet-health') }}" data-link-type="nav" data-link-name="Internet Health">{{ _('Internet Health') }}</a>
-              </li>
-              <li class="technology-item">
-                <a href="{{ url('mozorg.technology') }}" data-link-type="nav" data-link-name="Web Innovations">{{ _('Web Innovations') }}</a>
-              </li>
-              <li class="last donate-item">
-                <a href="{{ donate_url('header') }}" data-link-type="nav" data-link-name="Donate">{{_('Donate')}}</a>
-              </li>
-            </ul>
-          </nav>
-        {% endblock %}
-
-        {% block site_header_logo %}
-          <h2><a href="{{ url('mozorg.home') }}">{{ high_res_img('sandstone/header-mozilla-stone.png', {'alt': 'Mozilla', 'width': '170', 'height': '45'}) }}</a></h2>
-        {% endblock %}
-
-        {% block alt_header %}{% endblock %}
-
-        {% block subnav %}{% endblock %}
-
-        {% block breadcrumbs %}{% endblock %}
-
-        {% block site_header_share %}{% endblock %}
-
-        </header>
-        {% endif %}
-      {% endblock %}
+      {% block site_header %}{% endblock %}
 
       {% block messages %}
         {% if messages %}

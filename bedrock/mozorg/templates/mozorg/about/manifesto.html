@@ -49,15 +49,6 @@
 
 {% block site_header_logo %}{% endblock %}
 
-{% block site_header %}
-  {% if LANG.startswith('en-') %}
-    {% include 'includes/protocol/navigation/index.html' %}
-  {% else %}
-    {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
-    {% include 'mozorg/home/includes/nav.html' %}
-  {% endif %}
-{% endblock %}
-
 {% macro twitter_link(content_id, text) -%}
   {{ twitter_share_url('https://mzl.la/manifesto', text|truncate(102, False, '…')) }}
 {%- endmacro %}

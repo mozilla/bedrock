@@ -30,7 +30,6 @@ module.exports = function(config) {
             'media/js/base/mozilla-share-cta.js',
             'media/js/base/mozilla-traffic-cop-funnelcake-geo.js',
             'media/js/base/mozilla-video-poster.js',
-            'media/js/base/nav-main-resp.js',
             'media/js/base/mozilla-smoothscroll.js',
             'media/js/base/search-params.js',
             'media/js/base/svg-animation-check.js',

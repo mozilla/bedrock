@@ -18,12 +18,3 @@
 {% block body_attrs %}{{ super() }} data-global-nav-current-link="firefox"{% endblock %}
 
 {% block tabzilla_tab %}{% endblock %}
-
-{% block site_header %}
-  {% if LANG.startswith('en-') %}
-    {% include 'includes/protocol/navigation/index.html' %}
-  {% else %}
-    {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
-    {% include 'mozorg/home/includes/nav.html' %}
-  {% endif %}
-{% endblock %}

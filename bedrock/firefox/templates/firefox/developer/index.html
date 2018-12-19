@@ -20,6 +20,11 @@
 {% block body_id %}firefox-developer{% endblock %}
 {% block body_class %}firefox-developer{% endblock %}
 
+{% block site_header %}
+  {% with hide_nav_download_button=True %}
+    {% include 'includes/protocol/navigation/index.html' %}
+  {% endwith %}
+{% endblock %}
 
 {% block content %}
 {% include 'firefox/includes/hub/sub-nav.html' %}
