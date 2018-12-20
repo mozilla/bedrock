@@ -53,10 +53,17 @@
             <div data-accordion-role="tabpanel">
               <p>
                 {# NOTE: Remember to update these links when publishing a new report. #}
+                {% if switch('transparency_report_dec_2018') %}
                   {% set link_userdata=url('mozorg.about.policy.transparency.jan-jun-2018') + '#government-user-data' %}
                   {% set link_removal=url('mozorg.about.policy.transparency.jan-jun-2018') + '#government-content-removal' %}
                   {% set link_copytrade=url('mozorg.about.policy.transparency.jan-jun-2018') + '#copyright-trademark' %}
                   {% set link_supplement=url('mozorg.about.policy.transparency.jan-jun-2018') + '#supplement' %}
+                {% else %}
+                  {% set link_userdata=url('mozorg.about.policy.transparency.jul-dec-2017') + '#government-user-data' %}
+                  {% set link_removal=url('mozorg.about.policy.transparency.jul-dec-2017') + '#government-content-removal' %}
+                  {% set link_copytrade=url('mozorg.about.policy.transparency.jul-dec-2017') + '#copyright-trademark' %}
+                  {% set link_supplement=url('mozorg.about.policy.transparency.jul-dec-2017') + '#supplement' %}
+                {% endif %}
 
                 {% if switch('transparency_report_dec_2018') %}
                 {% trans %}
