@@ -2,6 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
+{% from "macros.html" import google_play_button with context %}
 {% from "macros-protocol.html" import call_out, call_out_compact, hero, feature_card with context %}
 
 {% extends "base-protocol.html" %}
@@ -81,6 +82,17 @@
       ga_title='Download Firefox Focus'
     ) %}
       <p>Die Firefox Klar App blockiert ganz automatisch Elemente zur Aktivitätenverfolgung und damit auch unerwünschte Inhalte. Noch ein Plus: Weniger Tracking bringt mehr Browser-Speed.</p>
+
+      <ul class="app-store-badges u-mobile-content">
+        <li class="badge-android">
+          {{ google_play_button(href='https://mzl.la/2tabw1i', id='playStoreLink', product='Klar', extra_data_attributes={'download-product': 'Klar', 'download-version': 'android', 'download-location': 'primary cta'}) }}
+        </li>
+        <li class="badge-ios">
+          <a id="appStoreLink" href="https://mzl.la/2JSz6da" data-link-type="download" data-download-os="iOS" data-download-product="Klar" data-download-version="ios" data-download-location="primary cta">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+          </a>
+        </li>
+      </ul>
     {% endcall %}
 
     {% call feature_card(
@@ -109,12 +121,23 @@
 </div>
 
 <div id="fffy-video-modal" class="mzp-u-modal-content">
-    <div class="ytcontainer-video">
-      <div class="video-container">
-        <div id="fffy-video-player"></div>
-      </div>
+  <div class="ytcontainer-video">
+    <div class="video-container">
+      <div id="fffy-video-player"></div>
     </div>
+  </div>
 </div>
+
+<aside id="fffy-focus-modal" class="mzp-u-modal-content">
+  <h3 class="c-modal-title">Hol Dir Firefox Klar</h3>
+
+  <div class="modal-content-wrapper">
+    <p>Bitte QR-Code scannen, um loszulegen.</p>
+    <div class="qr-code-wrapper">
+      <img src="{{ static('img/firefox/fights-for-you/qrcode-klar.png') }}" alt="" width="300" height="300">
+    </div>
+  </div>
+</aside>
 
 {% endblock %}
 

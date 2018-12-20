@@ -176,6 +176,33 @@ $fffy-pink: #FF2889;
     }
 }
 
+.fffy-t-focus .u-mobile-content {
+    display: none;
+
+    .ios & {
+        display: block;
+
+        .badge-android {
+            display: none;
+        }
+    }
+
+    .android & {
+        display: block;
+
+        .badge-ios {
+            display: none;
+        }
+    }
+}
+
+.ios,
+.android {
+    .fffy-t-focus .mzp-c-cta-link {
+        display: none;
+    }
+}
+
 .mzp-c-call-out-compact.fffy-c-footer-callout {
     background: $fffy-purple;
     background-image: url('/media/img/firefox/fights-for-you/footer-sm-left.png'), url('/media/img/firefox/fights-for-you/footer-sm-right.png');
@@ -274,3 +301,31 @@ $fffy-pink: #FF2889;
         width: 100%;
     }
 }
+
+// Compact modal for QR codes
+.mzp-c-modal.l-compact {
+    .c-modal-title {
+        display: none;
+    }
+
+    .mzp-c-modal-inner {
+        @media #{$mq-md} {
+            max-width: $content-sm;
+            margin: 0 auto;
+        }
+
+        .mzp-c-modal-overlay-contents {
+            padding: $spacing-lg;
+            text-align: center;
+
+            .qr-code-wrapper {
+                margin: 0 auto $spacing-lg;
+            }
+
+            .mobile-store-buttons li {
+                display: inline-block;
+            }
+        }
+    }
+}
+
