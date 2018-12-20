@@ -82,6 +82,17 @@
       ga_title='Download Firefox Focus'
     ) %}
       <p>Die Firefox Klar App blockiert ganz automatisch Elemente zur Aktivitätenverfolgung und damit auch unerwünschte Inhalte. Noch ein Plus: Weniger Tracking bringt mehr Browser-Speed.</p>
+
+      <ul class="app-store-badges u-mobile-content">
+        <li class="badge-android">
+          {{ google_play_button(href='https://mzl.la/2tabw1i', id='playStoreLink', product='Klar', extra_data_attributes={'download-product': 'Klar', 'download-version': 'android', 'download-location': 'primary cta'}) }}
+        </li>
+        <li class="badge-ios">
+          <a id="appStoreLink" href="https://mzl.la/2JSz6da" data-link-type="download" data-download-os="iOS" data-download-product="Klar" data-download-version="ios" data-download-location="primary cta">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+          </a>
+        </li>
+      </ul>
     {% endcall %}
 
     {% call feature_card(
@@ -118,23 +129,13 @@
 </div>
 
 <aside id="fffy-focus-modal" class="mzp-u-modal-content">
-  <h3 class="c-modal-title">Bitte QR-Code scannen, um loszulegen.</h3>
+  <h3 class="c-modal-title">Hol Dir Firefox Klar</h3>
 
   <div class="modal-content-wrapper">
+    <p>Bitte QR-Code scannen, um loszulegen.</p>
     <div class="qr-code-wrapper">
       <img src="{{ static('img/firefox/fights-for-you/qrcode-klar.png') }}" alt="" width="300" height="300">
     </div>
-
-    <ul class="mobile-store-buttons">
-      <li class="android">
-        {{ google_play_button(href='https://app.adjust.com/rtnpf1x') }}
-      </li>
-      <li class="ios">
-        <a href="https://app.adjust.com/rtnpf1x" data-link-type="download" data-download-os="iOS">
-          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="" width="152" height="45">
-        </a>
-      </li>
-    </ul>
   </div>
 </aside>
 

@@ -78,11 +78,22 @@
       image_url='firefox/fights-for-you/pic-focus.jpg',
       aspect_ratio='mzp-has-aspect-16-9',
       class='mzp-l-card-feature-right-third mzp-t-firefox fffy-t-focus',
-      link_url='https://app.adjust.com/oh460vy',
+      link_url=url('firefox.mobile'),
       link_cta='Download Firefox Focus',
       ga_title='Download Firefox Focus'
     ) %}
       <p>The Firefox Focus mobile app automatically blocks trackers that follow you around the web. Less tracking means more speed.</p>
+
+      <ul class="app-store-badges u-mobile-content">
+        <li class="badge-android">
+          {{ google_play_button(href='https://mzl.la/2I0kjYd', id='playStoreLink', product='Focus', extra_data_attributes={'download-product': 'Focus', 'download-version': 'android', 'download-location': 'primary cta'}) }}
+        </li>
+        <li class="badge-ios">
+          <a id="appStoreLink" href="https://mzl.la/2I1I2r5" data-link-type="download" data-download-os="iOS" data-download-product="Focus" data-download-version="ios" data-download-location="primary cta">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+          </a>
+        </li>
+      </ul>
     {% endcall %}
 
     {% call feature_card(
@@ -124,23 +135,13 @@
 </div>
 
 <aside id="fffy-focus-modal" class="mzp-u-modal-content">
-  <h3 class="c-modal-title">{{ _('Scan the QR code to get started.') }}</h3>
+  <h3 class="c-modal-title">{{ _('Download Firefox Focus') }}</h3>
 
   <div class="modal-content-wrapper">
+    <p>{{ _('Scan the QR code to get started.') }}</p>
     <div class="qr-code-wrapper">
       <img src="{{ static('img/firefox/fights-for-you/qrcode-focus.png') }}" alt="" width="300" height="300">
     </div>
-
-    <ul class="mobile-store-buttons">
-      <li class="android">
-        {{ google_play_button(href='https://app.adjust.com/oh460vy') }}
-      </li>
-      <li class="ios">
-        <a href="https://app.adjust.com/oh460vy" data-link-type="download" data-download-os="iOS">
-          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="" width="152" height="45">
-        </a>
-      </li>
-    </ul>
   </div>
 </aside>
 
