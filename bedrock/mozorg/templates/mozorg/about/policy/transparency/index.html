@@ -53,13 +53,28 @@
             <div data-accordion-role="tabpanel">
               <p>
                 {# NOTE: Remember to update these links when publishing a new report. #}
+                {% if switch('transparency_report_dec_2018') %}
+                  {% set link_userdata=url('mozorg.about.policy.transparency.jan-jun-2018') + '#government-user-data' %}
+                  {% set link_removal=url('mozorg.about.policy.transparency.jan-jun-2018') + '#government-content-removal' %}
+                  {% set link_copytrade=url('mozorg.about.policy.transparency.jan-jun-2018') + '#copyright-trademark' %}
+                  {% set link_supplement=url('mozorg.about.policy.transparency.jan-jun-2018') + '#supplement' %}
+                {% else %}
                   {% set link_userdata=url('mozorg.about.policy.transparency.jul-dec-2017') + '#government-user-data' %}
                   {% set link_removal=url('mozorg.about.policy.transparency.jul-dec-2017') + '#government-content-removal' %}
                   {% set link_copytrade=url('mozorg.about.policy.transparency.jul-dec-2017') + '#copyright-trademark' %}
                   {% set link_supplement=url('mozorg.about.policy.transparency.jul-dec-2017') + '#supplement' %}
+                {% endif %}
+
+                {% if switch('transparency_report_dec_2018') %}
+                {% trans %}
+                  This report covers the Mozilla Foundation, Mozilla Corporation, and Pocket (from 2018). We report on <a href="{{ link_userdata }}">Government Demands for User Data</a>, <a href="{{ link_removal }}">Government Requests for Content Removal</a>, and <a href="{{ link_copytrade }}">Copyright and Trademark Requests</a>. We also include a <a href="{{ link_supplement }}">Supplement</a>, which provides additional information.
+                {% endtrans %}
+                {% else %}
                 {% trans %}
                   We report on <a href="{{ link_userdata }}">Government Demands for User Data</a>, <a href="{{ link_removal }}">Government Requests for Content Removal</a>, and <a href="{{ link_copytrade }}">Copyright and Trademark Requests</a>. We also include a <a href="{{ link_supplement }}">Supplement</a>, which provides additional information.
                 {% endtrans %}
+                {% endif %}
+
                 {{ _('With each additional report that we publish, we’ll continue to re­evaluate how we can be more transparent.') }}
               </p>
             </div>
