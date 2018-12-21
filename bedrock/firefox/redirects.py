@@ -600,4 +600,8 @@ redirectpatterns = (
 
     # issue 6512
     redirect(r'^firefox/firefox\.html$', 'firefox.new'),
+
+    # bug 1511420
+    redirect(r'^firefox/tracking-protection/start/?$', '/firefox/content-blocking/start/'),
+    redirect(r'^firefox/(?P<version>\d+\.\d+(?:\.\d+)?(?:a\d+)?)/tracking-protection/start/?$', '/firefox/{version}/content-blocking/start/'),
 )

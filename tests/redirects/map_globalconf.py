@@ -1254,4 +1254,12 @@ URLS = flatten((
     url_test('/foundation/issues/', 'https://foundation.mozilla.org/initiatives/'),
     url_test('/foundation/leadership-network/', 'https://foundation.mozilla.org/'),
     url_test('/foundation/advocacy/', 'https://foundation.mozilla.org/'),
+
+    # bug 1511420
+    url_test('/firefox/tracking-protection/start/', '/firefox/content-blocking/start/'),
+    url_test('/firefox/65.0/tracking-protection/start/', '/firefox/65.0/content-blocking/start/'),
+    url_test('/firefox/65.0/tracking-protection/start/?newtab=true&variation=1', '/firefox/65.0/content-blocking/start/?newtab=true&variation=1'),
+    url_test('/firefox/65.0.1/tracking-protection/start/', '/firefox/65.0.1/content-blocking/start/'),
+    url_test('/firefox/66.0a1/tracking-protection/start/', '/firefox/66.0a1/content-blocking/start/'),
+    url_test('/firefox/65.0a2/tracking-protection/start/', '/firefox/65.0a2/content-blocking/start/'),
 ))

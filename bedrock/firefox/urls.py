@@ -14,7 +14,7 @@ from bedrock.utils.views import VariationTemplateView
 latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
-tracking_protection_re = latest_re % (version_re, 'tracking-protection/start')
+content_blocking_re = latest_re % (version_re, 'content-blocking/start')
 platform_re = '(?P<platform>android|ios)'
 channel_re = '(?P<channel>beta|aurora|developer|nightly|organizations)'
 releasenotes_re = latest_re % (version_re, r'(aurora|release)notes')
@@ -85,8 +85,8 @@ urlpatterns = (
         name='firefox.installer-help'),
     url(firstrun_re, views.FirstrunView.as_view(), name='firefox.firstrun'),
     url(whatsnew_re, views.WhatsnewView.as_view(), name='firefox.whatsnew'),
-    url(tracking_protection_re, views.TrackingProtectionTourView.as_view(),
-        name='firefox.tracking-protection-tour.start'),
+    url(content_blocking_re, views.ContentBlockingTourView.as_view(),
+        name='firefox.content-blocking-tour.start'),
 
     page('firefox/features/adblocker', 'firefox/features/adblocker.html'),
     page('firefox/concerts', 'firefox/concerts.html'),

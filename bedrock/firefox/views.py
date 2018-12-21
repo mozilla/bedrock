@@ -590,15 +590,15 @@ class FeedbackView(TemplateView):
         return context
 
 
-class TrackingProtectionTourView(l10n_utils.LangFilesMixin, TemplateView):
+class ContentBlockingTourView(l10n_utils.LangFilesMixin, TemplateView):
 
     def get_template_names(self):
         variation = self.request.GET.get('variation', None)
 
         if variation in ['0', '1', '2']:
-            template = 'firefox/tracking-protection-tour/variation-{}.html'.format(variation)
+            template = 'firefox/content-blocking-tour/variation-{}.html'.format(variation)
         else:
-            template = 'firefox/tracking-protection-tour/index.html'
+            template = 'firefox/content-blocking-tour/index.html'
 
         return [template]
 

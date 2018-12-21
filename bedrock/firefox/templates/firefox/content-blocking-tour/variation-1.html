@@ -4,7 +4,7 @@
 
 {% add_lang_files "firefox/tracking-protection-tour" %}
 
-{% extends "firefox/tracking-protection-tour/index.html" %}
+{% extends "firefox/content-blocking-tour/index.html" %}
 
 {% block page_title %}{{ _('Firefox Content Blocking') }}{% endblock %}
 
@@ -20,8 +20,19 @@ data-panel1-text="{{ _('When you see the shield, Firefox is blocking parts of th
 data-panel1-step="{{ _('1 of 3') }}"
 data-panel1-button="{{ _('Next') }}"
 data-panel3-title="{{ _('Turn off blocking for trusted sites') }}"
+
+{% if l10n_has_tag('content_blocking_65_1511420') %}
+data-panel3-text="{{ _('If content blocking prevents you from using a site you trust, select “Turn off Blocking Temporarily.”')|forceescape }}"
+{% else %}
 data-panel3-text="{{ _('If content blocking prevents you from using a site you trust, you can select “Disable Blocking Temporarily” in this panel.')|forceescape }}"
+{% endif %}
+
+{% if l10n_has_tag('content_blocking_65_1511420') %}
+data-panel3-text-new-tab="{{ _('If content blocking prevents you from using a site you trust, select “Turn off Blocking for This Site.”')|forceescape }}"
+{% else %}
 data-panel3-text-new-tab="{{ _('If content blocking prevents you from using a site you trust, you can select “Disable Blocking For This Site” in this panel.')|forceescape }}"
+{% endif %}
+
 data-panel3-title-alt="{{ _('Want to make changes?') }}"
 data-panel3-text-alt="{{ _('To restore content blocking for a site, select “Enable Blocking For This Site“ in the Control Center panel.')|forceescape }}"
 data-panel3-step="{{ _('3 of 3') }}"
@@ -47,6 +58,10 @@ data-panel3-button="{{ _('Got it!') }}"
 
 {% block thanks %}
   <h2>{{ _('Thanks for learning about Content Blocking.') }}</h2>
-  <p>{{ _('Learn more about how it works by visiting the <a rel="external" href="%s">FAQ page</a>.')|format('https://support.mozilla.org/en-US/kb/content-blocking/') }}</p>
+  {% if l10n_has_tag('content_blocking_65_1511420') %}
+    <p>{{ _('<a rel="external" href="%s">Learn more</a> about how it works.')|format('https://support.mozilla.org/en-US/kb/content-blocking/') }}</p>
+  {% else %}
+    <p>{{ _('Learn more about how it works by visiting the <a rel="external" href="%s">FAQ page</a>.')|format('https://support.mozilla.org/en-US/kb/content-blocking/') }}</p>
+  {% endif %}
   <button id="reload-btn" type="button" class="button">{{ _('Restart Tour') }}</button>
 {% endblock %}

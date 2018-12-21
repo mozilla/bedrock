@@ -454,9 +454,9 @@
     },
     {
       "files": [
-        "css/firefox/tracking-protection-tour.less"
+        "css/firefox/content-blocking-tour.less"
       ],
-      "name": "tracking-protection-tour"
+      "name": "content-blocking-tour"
     },
     {
       "files": [
@@ -1177,10 +1177,10 @@
       "files": [
         "js/libs/jquery-3.2.1.min.js",
         "js/base/uitour-lib.js",
-        "js/firefox/tracking-protection-tour.js",
-        "js/firefox/tracking-protection-tour-init.js"
+        "js/firefox/content-blocking-tour.js",
+        "js/firefox/content-blocking-tour-init.js"
       ],
-      "name": "tracking-protection-tour"
+      "name": "content-blocking-tour"
     },
     {
       "files": [

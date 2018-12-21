@@ -4,7 +4,7 @@
 
 {% add_lang_files "firefox/tracking-protection-tour" %}
 
-{% extends "firefox/tracking-protection-tour/index.html" %}
+{% extends "firefox/content-blocking-tour/index.html" %}
 
 {% block page_title %}{{ _('Firefox Content Blocking') }}{% endblock %}
 
@@ -15,7 +15,13 @@ data-panel1-step="{{ _('1 of 3') }}"
 data-panel1-button="{{ _('Next') }}"
 data-panel3-title="{{ _('Turn off blocking for trusted sites') }}"
 data-panel3-text="{{ _('If content blocking prevents you from using a site you trust, you can select “Disable Blocking Temporarily“ in this panel.')|forceescape }}"
+
+{% if l10n_has_tag('content_blocking_65_1511420') %}
+data-panel3-text-new-tab="{{ _('If content blocking prevents you from using a site you trust, select “Turn off Blocking for This Site.”')|forceescape }}"
+{% else %}
 data-panel3-text-new-tab="{{ _('If content blocking prevents you from using a site you trust, you can select “Disable Blocking For This Site“ in this panel.')|forceescape }}"
+{% endif %}
+
 data-panel3-title-alt="{{ _('Want to make changes?') }}"
 data-panel3-text-alt="{{ _('To restore content blocking for a site, select “Enable Blocking For This Site“ in the Control Center panel.')|forceescape }}"
 data-panel3-step="{{ _('3 of 3') }}"

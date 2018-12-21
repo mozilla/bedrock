@@ -563,39 +563,39 @@ class FxVersionRedirectsMixin(object):
 
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
-class TestTrackingProtectionTour(TestCase):
+class TestContentBlockingTour(TestCase):
     def setUp(self):
-        self.view = fx_views.TrackingProtectionTourView.as_view()
+        self.view = fx_views.ContentBlockingTourView.as_view()
         self.rf = RequestFactory()
 
     @override_settings(DEV=True)
-    def test_fx_tracking_protection_62_0(self, render_mock):
-        """Should use default tracking protection tour template"""
-        req = self.rf.get('/en-US/firefox/tracking-protection/start/')
+    def test_fx_content_blocking_62_0(self, render_mock):
+        """Should use default content blocking tour template"""
+        req = self.rf.get('/en-US/firefox/content-blocking/start/')
         self.view(req, version='62.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/tracking-protection-tour/index.html'])
+        eq_(template, ['firefox/content-blocking-tour/index.html'])
 
     @override_settings(DEV=True)
-    def test_fx_tracking_protection_63_0_v0(self, render_mock):
+    def test_fx_content_blocking_63_0_v0(self, render_mock):
         """Should use variation 0 template"""
-        req = self.rf.get('/en-US/firefox/tracking-protection/start/?variation=0')
+        req = self.rf.get('/en-US/firefox/content-blocking/start/?variation=0')
         self.view(req, version='62.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/tracking-protection-tour/variation-0.html'])
+        eq_(template, ['firefox/content-blocking-tour/variation-0.html'])
 
     @override_settings(DEV=True)
-    def test_fx_tracking_protection_63_0_v1(self, render_mock):
+    def test_fx_content_blocking_63_0_v1(self, render_mock):
         """Should use variation 1 template"""
-        req = self.rf.get('/en-US/firefox/tracking-protection/start/?variation=1')
+        req = self.rf.get('/en-US/firefox/content-blocking/start/?variation=1')
         self.view(req, version='62.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/tracking-protection-tour/variation-1.html'])
+        eq_(template, ['firefox/content-blocking-tour/variation-1.html'])
 
     @override_settings(DEV=True)
-    def test_fx_tracking_protection_63_0_v2(self, render_mock):
+    def test_fx_content_blocking_63_0_v2(self, render_mock):
         """Should use variation 2 template"""
-        req = self.rf.get('/en-US/firefox/tracking-protection/start/?variation=2')
+        req = self.rf.get('/en-US/firefox/content-blocking/start/?variation=2')
         self.view(req, version='62.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/tracking-protection-tour/variation-2.html'])
+        eq_(template, ['firefox/content-blocking-tour/variation-2.html'])
