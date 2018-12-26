@@ -242,6 +242,18 @@ html.ios .header-content {
                 background-image: url('/media/img/firefox/new/icon-private.svg');
             }
 
+            &.open-source {
+                background-image: url('/media/img/firefox/new/icon-opensource.svg');
+            }
+
+            &.seamless {
+                background-image: url('/media/img/firefox/new/icon-seamless.svg');
+            }
+
+            &.blocker {
+                background-image: url('/media/img/firefox/new/icon-blocker.svg');
+            }
+
             &:last-child p {
                 margin-bottom: 20px;
             }

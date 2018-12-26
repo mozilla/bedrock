@@ -41,10 +41,13 @@
 {% endblock %}
 
 {% block main_content %}
+
+{% block header_content %}
 <header>
   <h1>{{ _('The new <strong>Firefox</strong>') }}</h1>
   <h2>{{ _('Fast for good.') }}</h2>
 </header>
+{% endblock %}
 
 <div class="main-download">
   <div class="main-cta-wrapper">
@@ -87,6 +90,27 @@
   <ul class="small-links ios">
     <li><a rel="external" href="https://support.mozilla.org/products/ios/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
   </ul>
+</div>
+{% endblock %}
+
+{% block features_content %}
+<div class="features">
+  <div class="content">
+    <ul>
+      <li class="faster">
+        <h3>{{_('2x Faster') }}</h3>
+        <p>{{_('The best Firefox ever') }}</p>
+      </li>
+      <li class="lighter">
+        <h3>{{_('Lightweight') }}</h3>
+        <p>{{_('Uses 30% less memory than Chrome') }}</p>
+      </li>
+      <li class="private">
+        <h3>{{_('Powerfully private') }}</h3>
+        <p>{{_('Truly Private Browsing with Tracking Protection') }}</p>
+      </li>
+    </ul>
+  </div>
 </div>
 {% endblock %}
 
