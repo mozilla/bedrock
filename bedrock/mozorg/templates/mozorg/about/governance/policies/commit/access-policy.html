@@ -91,37 +91,6 @@ This is the lowest level of access. It allows someone to check in to the <a href
   </tr>
 </table>
 
-<h4>{{ _('SVN') }}</h4>
-
-<table class="data-table">
-  <tr>
-    <td>mozilla.org/trunk</td>
-    <td>Reed Loden</td>
-  </tr>
-  <tr>
-    <td>services.mozilla.com/tags/production</td>
-    <td>Mike Connor</td>
-  </tr>
-  <tr>
-    <td>publicsuffix.org/trunk</td>
-    <td>Gerv Markham</td>
-  </tr>
-  <tr>
-    <td>getfirebug.com/tags/production</td>
-    <td>John Barton</td>
-  </tr>
-  <tr>
-    <td>mozillaonline.com/tags/production</td>
-    <td>Jia Mi</td>
-  </tr>
-</table>
-
-<p>
-{% trans bug='https://bugzilla.mozilla.org/form.itrequest' %}
-(To get a part of SVN added to this list, <a href="{{ bug }}">file a bug</a> on IT with the name of the restricted tag or branch and the name of the owner. Please try and keep restricted areas to a minimum.)
-{% endtrans %}
-</p>
-
 <h4 id="L10n">{{ _('L10n') }}</h4>
 
 <p>{{ _('In addition, l10n is a separate category so l10n-only access can be more freely given than might be the case if it were included in level 2. This exception is worth making because of the size and diversity of the l10n community and the looser relationship people in it sometimes have to the rest of the project. l10n access implies level 1 access but not level 2 access. The named vouchers are Axel Hecht and Jeff Beatty.') }}</p>
