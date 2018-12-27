@@ -1,0 +1,49 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/new/quantum" %}
+
+{% extends "firefox/new/scene1.html" %}
+
+{% block page_title_prefix %} {{_('Download Mozilla Firefox')}} {% endblock %}
+{%- block page_title -%} {{_('for Linux')}} {%- endblock -%}
+{%- block page_title_suffix -%} {{_(' — Free Web Browser')}} {%- endblock -%}
+
+{% block page_desc %}
+  {{ _('Download Mozilla Firefox for Linux, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox for Linux today!') }}
+{% endblock %}
+
+{#- This will appear as <meta property="og:title"> which can be used for social share -#}
+{% block page_og_title %}{{_('Download the fastest Firefox for Linux ever')}}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{_('Faster page loading, less memory usage and packed with features, the new Firefox for Linux is here.')}}{% endblock %}
+
+{% block main_title %}
+<header>
+  <h1>{{ _('Firefox for Linux') }}</h1>
+  <h2>{{ _('Own your online life.') }}</h2>
+</header>
+{% endblock %}
+
+{% block features_content %}
+<div class="features">
+  <div class="content">
+    <ul>
+      <li class="private">
+        <h3>{{_('Privacy - more than a policy') }}</h3>
+        <p>{{_('Your life, your business. Firefox blocks third-party tracking cookies on Linux.') }}</p>
+      </li>
+      <li class="faster">
+        <h3>{{_('2X Faster') }}</h3>
+        <p>{{_('Speed, meet security. Firefox is two times faster with 30% less memory than Chrome.') }}</p>
+      </li>
+      <li class="open-source">
+        <h3>{{_('Open source') }}</h3>
+        <p>{{_('Look under the hood. Like Linux, Firefox features are open source.') }}</p>
+      </li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
