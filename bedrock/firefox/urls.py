@@ -130,4 +130,7 @@ urlpatterns = (
 
     # Issue 6178
     page('firefox/this-browser-comes-highly-recommended', 'firefox/recommended.html'),
+
+    # Issue 6604, SEO firefox/new pages
+    page('firefox/windows', 'firefox/new/scene1_windows.html'),
 )

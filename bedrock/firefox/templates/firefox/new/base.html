@@ -68,6 +68,7 @@
       </div>
       <div class="header-container">
         <div class="header-content">
+          {% block main_title %}{% endblock %}
           {% block main_content %}{% endblock %}
         </div>
         <div class="header-image">
@@ -76,26 +77,7 @@
       </div>
     </div>
   </div>
-
-  <div class="features">
-    <div class="content">
-      <ul>
-        <li class="faster">
-          <h3>{{_('2x Faster') }}</h3>
-          <p>{{_('The best Firefox ever') }}</p>
-        </li>
-        <li class="lighter">
-          <h3>{{_('Lightweight') }}</h3>
-          <p>{{_('Uses 30% less memory than Chrome') }}</p>
-        </li>
-        <li class="private">
-          <h3>{{_('Powerfully private') }}</h3>
-          <p>{{_('Truly Private Browsing with Tracking Protection') }}</p>
-        </li>
-      </ul>
-    </div>
-  </div>
-
+  {% block features_content %}{% endblock %}
   {% block additional_content %}{% endblock %}
 </main>
 {% endblock %}
