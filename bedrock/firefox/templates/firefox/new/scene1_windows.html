@@ -20,10 +20,12 @@
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
 {% block page_og_desc %}{{_('Faster page loading, less memory usage and packed with features, the new Firefox for Windows is here.')}}{% endblock %}
 
-{% block header_content %}
+{% block main_title %}
 <header>
-  <h1>{{ _('Firefox fights for you') }}</h1>
-  <h2>{{ _('on Windows.') }}</h2>
+  <h1>
+    {{ _('Firefox fights for you') }}
+    <span>{{ _('on Windows.') }}</span>
+  </h1>
 </header>
 {% endblock %}
 

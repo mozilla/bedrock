@@ -68,9 +68,8 @@
       </div>
       <div class="header-container">
         <div class="header-content">
-          {% block main_content %}
-          {% block header_content %}{% endblock %}
-          {% endblock %}
+          {% block main_title %}{% endblock %}
+          {% block main_content %}{% endblock %}
         </div>
         <div class="header-image">
           {{ high_res_img('firefox/new/browser.png', {'alt': _('Screenshot'), 'width': '700', 'height': '529'}) }}

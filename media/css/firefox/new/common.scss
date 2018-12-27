@@ -33,6 +33,10 @@ body {
 
     h1 {
         @include font-size-level3;
+        span {
+            @include font-size-level4;
+            display: block;
+        }
     }
 
     h2 {
