@@ -1,0 +1,146 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% from "macros.html" import google_play_button with context %}
+{% from "macros-protocol.html" import call_out, call_out_compact, hero, feature_card with context %}
+
+{% extends "base-protocol.html" %}
+
+{% set referrals = '?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fffy-page' %}
+
+{% block page_title %}Firefox se bat pour vous. Nous gardons vos données en sécurité, nous ne les vendons pas, jamais.{% endblock %}
+{% block page_desc %}Firefox assure la confidentialité de vos informations personnelles, et vous offre des options très claires. Vous avez le droit de rester maître de votre vie – et de vos données. Vous décidez de ce que vous désirez partager, et à quel moment.{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('fights-for-you') }}
+{% endblock %}
+
+{% block extrahead %}
+<!--[if lt IE 10]>
+  <style>
+    /* avoid IE9 background calc() bug */
+    .fffy-c-hero,
+    .mzp-c-call-out-compact.fffy-c-footer-callout {
+    background: #2A0140 !important;
+  }
+  </style>
+<![endif]-->
+{% endblock %}
+
+{% block body_id %}fights-for-you{% endblock %}
+
+{% block content %}
+
+<div class="fffy-c-hero">
+  {% call hero(
+    title='Firefox se bat pour vous',
+    desc='Vous avez le droit de rester maître de votre vie – et de vos données. Tout ce que nous créons et décidons, nous le faisons pour vous.',
+    class='mzp-has-image mzp-t-firefox mzp-t-product-firefox mzp-t-dark',
+    include_cta=True
+  ) %}
+  <p><a id="fffy-video-button" href="https://www.youtube.com/watch?v=_WjOIlCG7xw" data-id="_WjOIlCG7xw" class="mzp-c-button mzp-t-secondary mzp-t-dark mzp-t-small" data-link-type="button" data-link-name="Watch video">Regarder la vidéo</a></p>
+  {% endcall %}
+
+  <div class="fffy-c-product mzp-l-content">
+    {{ high_res_img('firefox/fights-for-you/hero.png', {'alt': '', 'width': '904', 'height': '646'}) }}
+  </div>
+
+  {% call call_out(
+    title='Nous gardons vos données en sécurité, nous ne les vendons pas, jamais.',
+    desc='Firefox assure la confidentialité de vos informations personnelles, et vous laisse le choix en toute transparence. Vous décidez de ce que vous partagez, et à quel moment.',
+    class='mzp-t-dark mzp-t-firefox',
+    include_cta=True
+  ) %}
+    <div class="download-firefox">
+      {{ download_firefox(download_location='primary cta', dom_id='fffy-download-primary') }}
+    </div>
+  {% endcall %}
+</div>
+
+<div class="fffy-c-features">
+  <section class="mzp-l-content">
+    {% call feature_card(
+      title='Vous méritez une protection contre les pirates informatiques.',
+      image_url='firefox/fights-for-you/pic-monitor.jpg',
+      aspect_ratio='mzp-has-aspect-16-9',
+      class='mzp-l-card-feature-left-third mzp-t-firefox fffy-t-monitor',
+      link_url='https://monitor.firefox.com' + referrals,
+      link_cta='Essayer Firefox Monitor',
+      ga_title='Try Monitor'
+    ) %}
+      <p>Firefox Monitor vous fournit les outils pour garder vos informations en sécurité et vous alerte lorsqu’une violation de données qui vous concerne est détectée.</p>
+    {% endcall %}
+
+    {% call feature_card(
+      title='Vous méritez une confidentialité automatique.',
+      image_url='firefox/fights-for-you/pic-focus.jpg',
+      aspect_ratio='mzp-has-aspect-16-9',
+      class='mzp-l-card-feature-right-third mzp-t-firefox fffy-t-focus',
+      link_url='https://app.adjust.com/oh460vy',
+      link_cta='Télécharger Firefox Focus',
+      ga_title='Download Firefox Focus'
+    ) %}
+      <p>L’application mobile Firefox Focus bloque automatiquement les pisteurs qui vous suivent sur Internet. Moins de pistage égal plus de rapidité.</p>
+
+      <ul class="app-store-badges u-mobile-content">
+        <li class="badge-android">
+          {{ google_play_button(href='https://mzl.la/2tabw1i', id='playStoreLink', product='Klar', extra_data_attributes={'download-product': 'Klar', 'download-version': 'android', 'download-location': 'primary cta'}) }}
+        </li>
+        <li class="badge-ios">
+          <a id="appStoreLink" href="https://mzl.la/2JSz6da" data-link-type="download" data-download-os="iOS" data-download-product="Klar" data-download-version="ios" data-download-location="primary cta">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+          </a>
+        </li>
+      </ul>
+    {% endcall %}
+
+    {% call feature_card(
+      title='Vous méritez une technologie fiable.',
+      image_url='firefox/fights-for-you/pic-privacy.jpg',
+      aspect_ratio='mzp-has-aspect-16-9',
+      class='mzp-l-card-feature-left-third mzp-t-firefox fffy-t-privacy',
+      link_url='https://blog.mozilla.org/internetcitizen/fr/2018/12/20/philosophie-firefox-matiere-confidentialite/' + referrals,
+      link_cta='Lire nos Principes de confidentialité',
+      ga_title='Read our Policy'
+    ) %}
+      <p>Nous concevons les produits Firefox pour vous servir, et non pour générer des bénéfices. Pour nous, la confidentialité est plus qu’une politique. C’est un ensemble de principes qui guident nos décisions jour après jour.</p>
+    {% endcall %}
+  </section>
+
+
+  {% call call_out_compact(
+    title='<span>Votre vie ne regarde que vous.</span> <span>Elle ne nous concerne pas.</span> <span>Firefox se bat pour vous.</span>'|safe,
+    desc=None,
+    class='mzp-t-firefox mzp-t-dark fffy-c-footer-callout'
+  ) %}
+    <div class="download-firefox">
+      {{ download_firefox(download_location='secondary cta', dom_id='fffy-download-secondary') }}
+    </div>
+  {% endcall %}
+</div>
+
+<div id="fffy-video-modal" class="mzp-u-modal-content">
+  <div class="ytcontainer-video">
+    <div class="video-container">
+      <div id="fffy-video-player"></div>
+    </div>
+  </div>
+</div>
+
+<aside id="fffy-focus-modal" class="mzp-u-modal-content">
+  <h3 class="c-modal-title">Télécharger Firefox Focus</h3>
+
+  <div class="modal-content-wrapper">
+    <p>Scannez le QR code pour démarrer.</p>
+    <div class="qr-code-wrapper">
+      <img src="{{ static('img/firefox/fights-for-you/qrcode-focus.png') }}" alt="" width="300" height="300">
+    </div>
+  </div>
+</aside>
+
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('fights-for-you') }}
+{% endblock %}
