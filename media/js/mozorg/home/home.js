@@ -139,12 +139,15 @@ function onYouTubeIframeAPIReady() {
         });
 
         // add button
-        var $dismissButton = $('<button>').addClass('sticky-dismiss').text('Dismiss this prompt.');
+        var $dismissButton = $('<button type="button" class="sticky-dismiss">').text('Dismiss this prompt.');
         var $stickyWrapper = $stickyCTA.find('.c-sticky-cta-wrapper');
         $dismissButton.appendTo($stickyWrapper);
-        // listen for click
-        $dismissButton.on('click', function() {
-        // dismiss
+
+        // find all the buttons
+        var dismissButtons = $('.sticky-dismiss');
+        // listen for the click
+        dismissButtons.on('click', function() {
+            // dismiss the sticky banner
             dismissStickyCTA(primaryTop);
         });
     }
