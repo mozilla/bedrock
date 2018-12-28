@@ -54,10 +54,6 @@ $image-path: '/media/protocol/img';
     @include text-display-lg;
     font-weight: normal;
     margin-bottom: $spacing-lg;
-
-    html[lang^='en'] & {
-        @include text-display-xl;
-    }
 }
 
 .c-fundraiser-amount-input {
@@ -145,7 +141,7 @@ $image-path: '/media/protocol/img';
     }
 
     .c-fundraiser-title {
-        @include bidi(((float, left, right),(padding-right, $spacing-lg, 0), (padding-left, 0, $spacing-lg)));
+        @include bidi(((float, left, right),(padding-right, $spacing-xl, 0), (padding-left, 0, $spacing-xl)));
         @include grid-half;
         margin-bottom: 0;
     }
