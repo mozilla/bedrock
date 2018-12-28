@@ -17,6 +17,23 @@ body {
     overflow-x: hidden;
 }
 
+.section-cta {
+    a:link,
+    a:visited {
+        color: #000;
+        display: block;
+        font-weight: bold;
+        margin: 20px 0;
+        text-decoration: underline;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        text-decoration: none;
+    }
+}
+
 .page-section {
     padding: 40px 0;
     text-align: center;
