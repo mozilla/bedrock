@@ -871,7 +871,7 @@ html[dir="rtl"] {
 }
 
 // very basic styling for no-JS visitors
-#mobile-download-buttons-wrapper {
+.mobile-download-buttons-wrapper {
     background: #111;
     color: #fff;
     padding: 20px 0;
@@ -1065,26 +1065,26 @@ body[data-modal-product='focus'] #modal .window .inner {
     }
 }
 
-// hide app store badges in modal by default
-#modal-mobile-download-buttons-wrapper {
+// hide app store badges by default
+.mobile-download-buttons-wrapper {
     display: none;
     margin-top: 60px;
-
-    @media #{$mq-desktop} {
-        margin-top: 100px;
-    }
 }
 
 // for android/iOS, hide widget/QR code in favor of app store badges
 .android,
 .ios {
-    #modal-mobile-download-buttons-wrapper {
+    .mobile-download-buttons-wrapper {
         display: block;
     }
 
     .qr-code-wrapper,
     #modal-wrapper .desktop-download,
     #send-to-device {
+        display: none;
+    }
+
+    .header-product-ctas {
         display: none;
     }
 }
@@ -1099,10 +1099,4 @@ body[data-modal-product='focus'] #modal .window .inner {
     display: none;
 }
 
-// hide page-level app store badge wrapper if JS is available
-// (badges get moved into modal)
-.js {
-    #mobile-download-buttons-wrapper {
-        display: none;
-    }
-}
+
