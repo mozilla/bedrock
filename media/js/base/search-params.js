@@ -5,20 +5,38 @@
 // Retrieve search params as a object for easier access
 // This is a simple version of https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
 var _SearchParams = function (search) {
-    var params = this.params = {};
-
     search = search || location.search || '';
-    search = search.match(/^\??(.*)/)[1];
-    search = search ? search.split(/[&;]/m) : [];
 
-    for (var i = 0; i < search.length; i++) {
-        var param = search[i].split('=');
+    this.params = _SearchParams.queryStringToObject(search);
+};
+
+_SearchParams.objectToQueryString = function (obj) {
+    var searchStrings = [];
+
+    for (var param in obj) {
+        if (obj.hasOwnProperty(param)) {
+            searchStrings.push([encodeURIComponent(param), encodeURIComponent(obj[param])].join('='));
+        }
+    }
+
+    return searchStrings.join('&');
+};
+
+_SearchParams.queryStringToObject = function (qs) {
+    var params = {};
+    qs = qs.match(/^\??(.*)/)[1];
+    qs = qs ? qs.split(/[&;]/m) : [];
+
+    for (var i = 0; i < qs.length; i++) {
+        var param = qs[i].split('=');
 
         var key = param[0];
         var value = param[1];
 
         params[key] = !isNaN(value) ? parseFloat(value) : value;
     }
+
+    return params;
 };
 
 _SearchParams.prototype.get = function (key) {
@@ -38,16 +56,7 @@ _SearchParams.prototype.remove = function (key) {
 };
 
 _SearchParams.prototype.toString = function () {
-    var searchStrings = [];
-    var params = this.params;
-
-    for (var param in params){
-        if (params.hasOwnProperty(param)) {
-            searchStrings.push([encodeURIComponent(param), encodeURIComponent(params[param])].join('='));
-        }
-    }
-
-    return searchStrings.join('&');
+    return _SearchParams.objectToQueryString(this.params);
 };
 
 _SearchParams.prototype.utmParams = function() {
@@ -63,6 +72,22 @@ _SearchParams.prototype.utmParams = function() {
     }
 
     return utms;
+};
+
+// At times we need to propogate utm_ params from the current URL to an in-site link
+// (e.g. download links on /firefox/new/ pointing to /firefox/download/thanks/). To
+// maintain analytical integrity (GA/GTM), the 'utm_' part of the key must be removed.
+_SearchParams.prototype.utmParamsUnprefixed = function() {
+    var utms = this.utmParams();
+    var utmsUnprefixed = {};
+
+    for (var param in utms) {
+        if (utms.hasOwnProperty(param)) {
+            utmsUnprefixed[param.replace('utm_', '')] = utms[param];
+        }
+    }
+
+    return utmsUnprefixed;
 };
 
 _SearchParams.prototype.utmParamsFxA = function(pathname) {

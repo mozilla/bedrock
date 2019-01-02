@@ -11,18 +11,42 @@ so the correct template is rendered on /download/thanks/.
 (function() {
     'use strict';
 
-    // copied from /firefox/new/scene1.js
     var downloadLinks = document.getElementsByClassName('download-link');
+    var finalParams = {};
     var href;
+    var linkParams;
+    var linkRoot;
+    var params = new window._SearchParams().params;
 
+    // we need to propogate 'v' and/or 'xv' query params to ensure the correct template is loaded on /download/thanks/
+    if (params.hasOwnProperty('v')) {
+        finalParams.v = params['v'];
+    }
+
+    if (params.hasOwnProperty('xv')) {
+        finalParams.xv = params['xv'];
+    }
+
+    // merge the utm params from the current URL with any query params existing on in-page links
+    // that point to /download/thanks/.
     for (var i = 0; i < downloadLinks.length; i++) {
-        // pull href for the download link
         href = downloadLinks[i].href;
+        linkRoot = href.split('?')[0];
 
-        // only alter links going to download/thanks/
+        // only alter links going to /firefox/download/thanks/
         if (href.indexOf('download/thanks/') > 0) {
-            // update the href, skipping any utm_ params (lest we negatively impact analytics)
-            downloadLinks[i].href = Mozilla.Utils.addQueryStringToUrl(href, document.location.search, true);
+            // if the link has a querystring, merge it with the utm params from the current URL
+            // note: these links currently have no query params, so the code below is
+            // essentially future-proofing against what could be a tough to track bug
+            if (href.indexOf('?') > 0) {
+                // create an object of query params on the current href
+                linkParams = window._SearchParams.queryStringToObject(href.split('?')[1]);
+                // properties in finalParams will be overwritten by those in linkParams
+                // i.e. favor query param values in the download link over those found in the querystring of the current URL if they share a key
+                finalParams = Object.assign(finalParams, linkParams);
+            }
+
+            downloadLinks[i].href = linkRoot + '?' + window._SearchParams.objectToQueryString(finalParams);
         }
     }
 })();

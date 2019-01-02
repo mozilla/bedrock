@@ -124,33 +124,37 @@
          * https://bugzilla.mozilla.org/show_bug.cgi?id=1511104
          */
         if (window.site.platform === 'osx' && document.location.search.indexOf('utm_') > -1) {
-            // get all utm params
-            var utmParams = new window._SearchParams().utmParams();
-            var param;
-            var qs = '';
-            // get all the download links
+            // get an object of all utm params (unprefixed)
+            // if the href of the download link doesn't have any query params, finalParams will default to
+            // the value of utmParams. otherwise, finalParams will be a merge of download link params and
+            // utmParams.
             var downloadLinks = document.getElementsByClassName('download-link');
+            var finalParams = new window._SearchParams().utmParamsUnprefixed();
             var href;
-            var i;
+            var linkParams;
+            var linkRoot;
 
-            // construct a new querystring and strip 'utm_' from all param keys
-            for (param in utmParams) {
-                if (utmParams.hasOwnProperty(param)) {
-                    qs += param.replace('utm_', '') + '=' + utmParams[param] + '&';
-                }
-            }
 
-            // remove trailing '&'
-            qs = qs.slice(0, -1);
-
-            // now append the constructed querystring to the download links
-            for (i = 0; i < downloadLinks.length; i++) {
-                // pull href for the download link
+            // merge the utm params from the current URL with any query params existing on in-page links
+            // that point to /download/thanks/.
+            for (var i = 0; i < downloadLinks.length; i++) {
                 href = downloadLinks[i].href;
+                linkRoot = href.split('?')[0];
 
-                // only alter links going to download/thanks/
+                // only alter links going to /firefox/download/thanks/
                 if (href.indexOf('download/thanks/') > 0) {
-                    downloadLinks[i].href = Mozilla.Utils.addQueryStringToUrl(href, qs, true);
+                    // if the link has a querystring, merge it with the utm params from the current URL
+                    // note: these links currently have no query params, so the code below is
+                    // essentially future-proofing against what could be a tough to track bug
+                    if (href.indexOf('?') > 0) {
+                        // create an object of query params on the current href
+                        linkParams = window._SearchParams.queryStringToObject(href.split('?')[1]);
+                        // properties in utmParams will be overwritten by those in linkParams
+                        // i.e. favor query param values in the download link over those found in the querystring of the current URL if they share a key
+                        finalParams = Object.assign(finalParams, linkParams);
+                    }
+
+                    downloadLinks[i].href = linkRoot + '?' + window._SearchParams.objectToQueryString(finalParams);
                 }
             }
         }
