@@ -133,4 +133,6 @@ urlpatterns = (
 
     # Issue 6604, SEO firefox/new pages
     page('firefox/windows', 'firefox/new/scene1_windows.html'),
+    page('firefox/mac', 'firefox/new/scene1_mac.html'),
+    page('firefox/linux', 'firefox/new/scene1_linux.html'),
 )
