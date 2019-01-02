@@ -23,7 +23,7 @@ body {
         color: #000;
         display: inline-block;
         font-weight: bold;
-        margin: 20px 0;
+        margin: 0 0 20px;
         text-decoration: underline;
     }
 
@@ -934,10 +934,6 @@ html[dir="rtl"] .privacy-section {
         margin-bottom: 40px;
     }
 
-    p {
-        margin: 0 auto 40px;
-    }
-
     @media #{$mq-desktop} {
         position: relative;
 
@@ -950,13 +946,7 @@ html[dir="rtl"] .privacy-section {
             float: right;
             text-align: left;
             width: 50%;
-
-            p {
-                max-width: 24em;
-                margin: 0 0 40px;
-            }
         }
-
 
         .sync-section-image {
             float: left;
