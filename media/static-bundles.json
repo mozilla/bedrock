@@ -304,8 +304,7 @@
     {
       "files": [
         "css/newsletter/moznewsletter-subscribe.less",
-        "css/mozorg/home/home.scss",
-        "css/mozorg/home/fundraiser2018.scss"
+        "css/mozorg/home/home.scss"
       ],
       "name": "home"
     },
@@ -343,8 +342,7 @@
     },
     {
       "files": [
-        "css/mozorg/home/home-2018.scss",
-        "css/mozorg/home/fundraiser2018.scss"
+        "css/mozorg/home/home-2018.scss"
       ],
       "name": "home-2018"
     },
@@ -1162,12 +1160,6 @@
         "js/mozorg/home/home.js"
       ],
       "name": "home"
-    },
-    {
-      "files": [
-        "js/mozorg/home/fundraiser-eoy2018.js"
-      ],
-      "name": "home-fundraiser-eoy2018"
     },
     {
       "files": [
