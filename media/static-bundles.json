@@ -1101,6 +1101,12 @@
     },
     {
       "files": [
+        "js/firefox/new/experiment-win10-taskbar-funnelcake-scene2.js"
+      ],
+      "name": "experiment_firefox_new_win10_taskbar_funnelcake_scene2"
+    },
+    {
+      "files": [
         "js/base/mozilla-modal.js",
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
