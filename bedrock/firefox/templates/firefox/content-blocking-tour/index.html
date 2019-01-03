@@ -1,0 +1,149 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/tracking-protection-tour" %}
+
+{% extends "firefox/base-resp.html" %}
+
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{#- This will appear as <meta property="og:title"> which can be used for social share -#}
+{% block page_og_title %}
+  {{ _('Choose the independent browser') }}
+{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}
+  {{ _('Firefox is non-profit, non-corporate, non-compromised. Choosing Firefox isn’t just choosing a browser. It’s a vote for personal freedom.') }}
+{% endblock %}
+
+{#- Override <meta property="og:url"> for social share -#}
+{% block page_og_url %}{{ url('firefox') }}{% endblock %}
+
+{% block string_data %}
+data-panel1-title="{{ _('New in Firefox: Content Blocking') }}"
+
+{% if l10n_has_tag('remove_fastblock_1499589') %}
+data-panel1-text="{{ _('When you see the shield, Firefox is blocking parts of the page that can track you online.') }}"
+{% else %}
+data-panel1-text="{{ _('When you see the shield, Firefox is blocking parts of the page that can slow your browsing or track you online.') }}"
+{% endif %}
+
+data-panel1-step="{{ _('1 of 3') }}"
+data-panel1-button="{{ _('Next') }}"
+data-panel3-title="{{ _('Turn off blocking for trusted sites') }}"
+
+{% if l10n_has_tag('content_blocking_65_1511420') %}
+data-panel3-text="{{ _('If content blocking prevents you from using a site you trust, select “Turn off Blocking Temporarily.”')|forceescape }}"
+{% else %}
+data-panel3-text="{{ _('If content blocking prevents you from using a site you trust, you can select “Disable Blocking Temporarily” in this panel.')|forceescape }}"
+{% endif %}
+
+{% if l10n_has_tag('content_blocking_65_1511420') %}
+data-panel3-text-new-tab="{{ _('If content blocking prevents you from using a site you trust, select “Turn off Blocking for This Site.”')|forceescape }}"
+{% else %}
+data-panel3-text-new-tab="{{ _('If content blocking prevents you from using a site you trust, you can select “Disable Blocking For This Site” in this panel.')|forceescape }}"
+{% endif %}
+
+data-panel3-title-alt="{{ _('Want to make changes?') }}"
+
+{% if l10n_has_tag('content_blocking_65_1511420') %}
+data-panel3-text-alt="{{ _('To restore content blocking for a site, select “Turn on Blocking for This Site.“')|forceescape }}"
+{% else %}
+data-panel3-text-alt="{{ _('To restore content blocking for a site, select “Enable Blocking For This Site“ in the Control Center panel.')|forceescape }}"
+{% endif %}
+
+data-panel3-step="{{ _('3 of 3') }}"
+data-panel3-button="{{ _('Got it!') }}"
+{% endblock %}
+
+{# Google Analytics should never be enabled on this page! #}
+{% block google_analytics %}{% endblock %}
+
+{# Stub Attribution data should never be collected on this page! #}
+{% block stub_attribution %}{% endblock %}
+
+{% block site_css %}
+  {{ css_bundle('tracking-protection-tour') }}
+{% endblock %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('Firefox Content Blocking') }}{% endblock %}
+{% block body_id %}content-blocking-tour{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+{% block global_nav %}{% endblock %}
+
+{% block content %}
+<main role="main">
+  <header>
+    <div class="inner-container">
+      <h1>{{ _('Content Blocking') }}</h1>
+      <p class="prefs-link">
+        {{ _('Want to turn off this feature? <a href="%s">Visit Privacy Preferences</a>')|format('https://support.mozilla.org/en-US/kb/content-blocking/') }}
+      </p>
+    </div>
+  </header>
+
+  <div class="container">
+    <div id="dummy-content">
+      <noscript>
+        <p>{{ _('Please turn on JavaScript to display this page correctly.') }}</p>
+      </noscript>
+      <div class="primary-col">
+        <div class="dubious">
+          <iframe src="https://trackertest.org/" height="100%" width="100%" frameborder="0"></iframe>
+        </div>
+        <article role="presentation"></article>
+      </div>
+      <div class="secondary-col">
+        <aside role="presentation"></aside>
+        <div class="dubious-container">
+          <div class="dubious">
+            <iframe src="https://trackertest.org/set_cookie.html" height="100%" width="100%" frameborder="0"></iframe>
+          </div>
+          <section id="info-panel" class="hidden">
+            <header tabindex="-1">
+              <h2>{{ _('Differences to expect') }}</h2>
+              {% if l10n_has_tag('remove_fastblock_1499589') %}
+              <p>{{ _('Content blocking can keep parts of pages or entire pages from loading.') }}</p>
+              {% else %}
+              <p>{{ _('Content blocking can help pages load faster, but it can also keep parts of pages or entire pages from loading.') }}</p>
+              {% endif %}
+              <button class="close-btn" type="button">{{ _('Close') }}</button>
+            </header>
+            <footer>{{ _('2 of 3') }} <button type="button">{{ _('Next') }}</button></footer>
+          </section>
+        </div>
+        <aside role="presentation"></aside>
+      </div>
+    </div>
+
+    <section id="end-state" class="hidden">
+      <img src="{{ static('img/firefox/tracking-protection/shield-tab.svg') }}" width="145" alt="">
+      <h2>{{ _('Thanks for learning about Content Blocking.') }}</h2>
+      {% if l10n_has_tag('content_blocking_65_1511420') %}
+        <p>{{ _('<a rel="external" href="%s">Learn more</a> about how it works.')|format('https://support.mozilla.org/en-US/kb/content-blocking/') }}</p>
+      {% else %}
+        <p>{{ _('Learn more about how it works by visiting the <a rel="external" href="%s">FAQ page</a>.')|format('https://support.mozilla.org/en-US/kb/content-blocking/') }}</p>
+      {% endif %}
+      <button id="reload-btn" type="button" class="button">{{ _('Restart Tour') }}</button>
+    </section>
+  </div>
+
+</main>
+{% endblock %}
+
+{% block site_footer %}{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block site_js %}
+  {{ js_bundle('tracking-protection-tour') }}
+{% endblock %}
+
+{# Bug 1381776 #}
+{% block update_notification %}{% endblock %}

@@ -603,6 +603,19 @@ class TrackingProtectionTourView(l10n_utils.LangFilesMixin, TemplateView):
         return [template]
 
 
+class ContentBlockingTourView(l10n_utils.LangFilesMixin, TemplateView):
+
+    def get_template_names(self):
+        variation = self.request.GET.get('variation', None)
+
+        if variation in ['2']:
+            template = 'firefox/content-blocking-tour/variation-{}.html'.format(variation)
+        else:
+            template = 'firefox/content-blocking-tour/index.html'
+
+        return [template]
+
+
 def download_thanks(request):
     experience = request.GET.get('xv', None)
     locale = l10n_utils.get_locale(request)
