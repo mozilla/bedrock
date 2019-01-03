@@ -203,7 +203,9 @@
         <h2 class="section-title">{{ _('Moving browsers? We got you.') }}</h2>
         <p>{{ _('Instantly import your online info and favorites from any other browser.') }}</p>
       {% endif %}
-        <a href="{{ url('firefox.switch') }}">{{ _('Learn more') }}</a>
+        <div class="section-cta">
+          <a href="{{ url('firefox.switch') }}">{{ _('Learn more') }}</a>
+        </div>
       </div>
       <div class="section-media">
         <a href="{{ url('firefox.switch') }}">
@@ -402,13 +404,21 @@
   <section class="page-section sync-section" data-scroll-tracking="Sync your devices">
     <div class="content">
       <div class="sync-section-content">
-        <h2 class="section-title">{{ _('Sync your devices') }}</h2>
-        <p>
-        {% trans %}
-          Seamlessly access passwords, bookmarks and more. Plus, use our Send Tabs feature
-          to instantly share open tabs between desktop, mobile and tablet.
-        {% endtrans %}
-        </p>
+        {% if l10n_has_tag('firefox_sync_dec2018') %}
+          <h2 class="section-title">{{ _('Sync all your devices with a Firefox Account') }}</h2>
+          <p>{{ _('Take your privacy, passwords, and bookmarks with you wherever you go.') }}</p>
+          <div class="section-cta">
+            <a href="{{ url('firefox.accounts') }}">{{ _('Learn more about Firefox Accounts') }}</a>
+          </div>
+        {% else %}
+          <h2 class="section-title">{{ _('Sync your devices') }}</h2>
+          <p>
+          {% trans %}
+            Seamlessly access passwords, bookmarks and more. Plus, use our Send Tabs feature
+            to instantly share open tabs between desktop, mobile and tablet.
+          {% endtrans %}
+          </p>
+        {% endif %}
       </div>
 
       <div class="sync-section-image">

@@ -17,6 +17,23 @@ body {
     overflow-x: hidden;
 }
 
+.section-cta {
+    a:link,
+    a:visited {
+        color: #000;
+        display: inline-block;
+        font-weight: bold;
+        margin: 0 0 20px;
+        text-decoration: underline;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        text-decoration: none;
+    }
+}
+
 .page-section {
     padding: 40px 0;
     text-align: center;
@@ -917,10 +934,6 @@ html[dir="rtl"] .privacy-section {
         margin-bottom: 40px;
     }
 
-    p {
-        margin: 0 auto 40px;
-    }
-
     @media #{$mq-desktop} {
         position: relative;
 
@@ -933,13 +946,7 @@ html[dir="rtl"] .privacy-section {
             float: right;
             text-align: left;
             width: 50%;
-
-            p {
-                max-width: 24em;
-                margin: 0 0 40px;
-            }
         }
-
 
         .sync-section-image {
             float: left;
