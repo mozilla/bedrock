@@ -21,6 +21,7 @@
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-stylelint": "^3.9.0",
+    "gulp-svgmin": "^2.1.0",
     "gulp-uglify": "^3.0.0",
     "merge-stream": "^1.0.1",
     "yargs": "13.2.1"

@@ -26,6 +26,7 @@ const argv = require('yargs').argv;
 const browserSync = require('browser-sync').create();
 const merge = require('merge-stream');
 const staticBundles = require('./media/static-bundles.json');
+const svgmin = require('gulp-svgmin');
 
 // directory for building LESS, SASS, and bundles
 const buildDir = 'static_build';
@@ -309,6 +310,15 @@ function jsMinify() {
         .pipe(uglify({ie8: true}).on('error', handleError('UGLIFY')))
         .pipe(gulp.dest(finalDir));
 }
+
+/**
+ * Run SVG optimization check on all .svg images.
+ */
+gulp.task('svg:optim', function () {
+    return gulp.src('media/img/**/*.svg')
+        .pipe(svgmin())
+        .pipe(gulp.dest(finalDir));
+});
 
 /**
  * Run the JS test suite.
