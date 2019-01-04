@@ -1,13 +1,10 @@
 # see the following for documentation of these options
 # http://bedrock.readthedocs.io/en/latest/pipeline.html#configuration
 push_public_registry: true
-require_tag: true
 regions:
   - oregon-b
-  - frankfurt
-  - iowa-a
 apps:
-  - bedrock-prod
+  - bedrock-stage
 integration_tests:
   oregon-b:
     - chrome
@@ -16,10 +13,3 @@ integration_tests:
     - headless
     - ie
     - ie9
-  frankfurt:
-    - headless
-  iowa-a:
-    - chrome
-    - download
-    - firefox
-    - headless
