@@ -20,12 +20,10 @@ describe('mozilla-highlight-target.js', function() {
     describe('isTargetAvailable', function() {
 
         it('should throw an error if callback is not supplied', function() {
-            it('should throw an error if no callback is provided', function() {
-                spyOn(Mozilla.UITour, 'getConfiguration');
-                expect(function() {
-                    Mozilla.HighlightTarget.isTargetAvailable();
-                }).toThrowError('isTargetAvailable: second argument is not a function');
-            });
+            spyOn(Mozilla.UITour, 'getConfiguration');
+            expect(function() {
+                Mozilla.HighlightTarget.isTargetAvailable('foo');
+            }).toThrowError('isTargetAvailable: second argument is not a function');
         });
 
         it('should return true if target is available', function() {
