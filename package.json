@@ -17,6 +17,7 @@
     "gulp-eslint": "5.0.0",
     "gulp-filter": "^5.1.0",
     "gulp-if": "^2.0.2",
+    "gulp-imageoptim": "^1.0.9",
     "gulp-less": "^3.5.0",
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.4",

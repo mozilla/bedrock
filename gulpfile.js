@@ -27,6 +27,7 @@ const browserSync = require('browser-sync').create();
 const merge = require('merge-stream');
 const staticBundles = require('./media/static-bundles.json');
 const svgmin = require('gulp-svgmin');
+var imageOptim = require('gulp-imageoptim');
 
 // directory for building LESS, SASS, and bundles
 const buildDir = 'static_build';
@@ -318,6 +319,24 @@ gulp.task('svg:optim', function () {
     return gulp.src('media/img/**/*.svg')
         .pipe(svgmin())
         .pipe(gulp.dest(finalDir));
+});
+
+/**
+ * Run imageOptim on all images.
+ */
+gulp.task('img:optim', function() {
+    return gulp.src('media/img/**/*')
+        .pipe(imageOptim.optimize())
+        .pipe(gulp.dest(finalDir));
+});
+
+/**
+ * Run all image compression task.s
+ */
+
+gulp.task('img:compress', () => {
+    gulp.start('svg:optim');
+    gulp.start('img:optim');
 });
 
 /**
