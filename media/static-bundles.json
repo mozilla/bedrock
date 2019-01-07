@@ -951,7 +951,6 @@
     },
     {
       "files": [
-        "js/firefox/new/scene1-macos-attribution.js",
         "js/firefox/new/variation-scene1.js",
         "js/firefox/new/berlin-scene1-variation.js"
       ],
@@ -1012,7 +1011,6 @@
     },
     {
       "files": [
-        "js/firefox/new/scene1-macos-attribution.js",
         "js/firefox/new/variation-scene1.js"
       ],
       "name": "firefox_new_scene1_variation"
@@ -1067,8 +1065,7 @@
     {
       "files": [
         "js/base/mozilla-modal.js",
-        "js/firefox/new/scene1.js",
-        "js/firefox/new/scene1-macos-attribution.js"
+        "js/firefox/new/scene1.js"
       ],
       "name": "firefox_new_scene1"
     },
@@ -1113,7 +1110,6 @@
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
         "js/firefox/new/scene1.js",
-        "js/firefox/new/scene1-macos-attribution.js",
         "js/firefox/new/variation-scene1.js"
       ],
       "name": "firefox_new_fx_scene1"
@@ -1153,6 +1149,13 @@
         "js/base/stub-attribution-init.js"
       ],
       "name": "stub-attribution"
+    },
+    {
+      "files": [
+        "js/base/stub-attribution-macos.js",
+        "js/base/stub-attribution-macos-init.js"
+      ],
+      "name": "stub-attribution-macos"
     },
     {
       "files": [
@@ -1562,7 +1565,6 @@
     },
     {
       "files": [
-        "js/firefox/new/scene1-macos-attribution.js",
         "js/firefox/new/variation-scene1.js",
         "js/firefox/new/berlin-scene1.js"
       ],

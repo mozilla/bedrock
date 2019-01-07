@@ -10,6 +10,8 @@ var _SearchParams = function (search) {
     this.params = _SearchParams.queryStringToObject(search);
 };
 
+// takes an object of key/value pairs and converts it to a querystring, e.g.
+// key1=val1&key2=val2&key3=val3 etc
 _SearchParams.objectToQueryString = function (obj) {
     var searchStrings = [];
 
@@ -22,6 +24,7 @@ _SearchParams.objectToQueryString = function (obj) {
     return searchStrings.join('&');
 };
 
+// takes a querystring and converts it to an object of key/value pairs
 _SearchParams.queryStringToObject = function (qs) {
     var params = {};
     qs = qs.match(/^\??(.*)/)[1];

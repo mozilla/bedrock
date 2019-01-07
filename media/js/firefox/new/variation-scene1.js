@@ -12,18 +12,20 @@ so the correct template is rendered on /download/thanks/.
     'use strict';
 
     var downloadLinks = document.getElementsByClassName('download-link');
-    var finalParams = {};
     var href;
-    var linkParams;
+    var newQs;
     var params = new window._SearchParams().params;
+    var prefix;
 
-    // we need to propogate 'v' and/or 'xv' query params to ensure the correct template is loaded on /download/thanks/
-    if (params.hasOwnProperty('v')) {
-        finalParams.v = params['v'];
-    }
+    // we need to propogate 'v' or 'xv' query params to ensure the correct template is loaded on /download/thanks/
+    // only one of these keys should be present
 
+    // 'xv' denotes a 'variant' page for a specific marketing campaign
     if (params.hasOwnProperty('xv')) {
-        finalParams.xv = params['xv'];
+        newQs = 'xv=' + params['xv'];
+    // 'v' denotes an experiment variation
+    } else if (params.hasOwnProperty('v')) {
+        newQs = 'v=' + params['v'];
     }
 
     // merge v/xv params from the current URL with any query params existing on in-page links pointing to /download/thanks/
@@ -32,16 +34,9 @@ so the correct template is rendered on /download/thanks/.
 
         // only alter links going to /firefox/download/thanks/
         if (href.indexOf('download/thanks/') > 0) {
-            // if the link has a querystring, merge it with the v/xv params from the current URL
-            if (href.indexOf('?') > 0) {
-                // create an object of query params on the current href
-                linkParams = window._SearchParams.queryStringToObject(href.split('?')[1]);
-                // properties in linkParams will be overwritten by those in finalParams
-                // i.e. favor v/xv values in the current URL over those that may be present on the download link
-                finalParams = Object.assign(linkParams, finalParams);
-            }
-
-            downloadLinks[i].href = href.split('?')[0] + '?' + window._SearchParams.objectToQueryString(finalParams);
+            // account for an existing querystring on the link
+            prefix = (href.indexOf('?') > 0) ? '&': '?';
+            downloadLinks[i].href += prefix + newQs;
         }
     }
 })();
