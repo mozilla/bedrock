@@ -40,12 +40,16 @@ class BasePage(Page):
 
     class Navigation(Region):
 
-        _root_locator = (By.ID, 'nav-main')
-        _toggle_locator = (By.CLASS_NAME, 'toggle')
-        _menu_locator = (By.ID, 'nav-main-menu')
-        _firefox_locator = (By.CSS_SELECTOR, 'a[data-link-name="Firefox"]')
-        _internet_health_locator = (By.CSS_SELECTOR, 'a[data-link-name="Internet Health"]')
-        _technology_locator = (By.CSS_SELECTOR, 'a[data-link-name="Web Innovations"]')
+        _root_locator = (By.CLASS_NAME, 'mzp-c-navigation')
+        _toggle_locator = (By.CLASS_NAME, 'mzp-c-navigation-menu-button')
+        _menu_locator = (By.CLASS_NAME, 'mzp-c-navigation-items')
+        _firefox_menu_locator = (By.CSS_SELECTOR, '.mzp-c-menu-title[aria-controls="mzp-c-menu-panel-firefox"]')
+        _projects_menu_locator = (By.CSS_SELECTOR, '.mzp-c-menu-title[aria-controls="mzp-c-menu-panel-projects"]')
+        _developers_menu_locator = (By.CSS_SELECTOR, '.mzp-c-menu-title[aria-controls="mzp-c-menu-panel-developers"]')
+        _about_menu_locator = (By.CSS_SELECTOR, '.mzp-c-menu-title[aria-controls="mzp-c-menu-panel-about"]')
+        _firefox_desktop_page_locator = (By.CSS_SELECTOR, '.mzp-c-menu-item-link[data-link-name="Firefox Quantum Desktop Browser"]')
+        _developer_edition_page_locator = (By.CSS_SELECTOR, '.mzp-c-menu-item-link[data-link-name="Firefox Developer Edition"]')
+        _about_page_locator = (By.CSS_SELECTOR, '.mzp-c-menu-item-link[data-link-name="Mozilla"]')
 
         def show(self):
             assert not self.is_displayed, 'Menu is already displayed'
@@ -57,22 +61,30 @@ class BasePage(Page):
         def is_displayed(self):
             toggle = self.find_element(*self._toggle_locator)
             return (self.find_element(*self._menu_locator).is_displayed() and
-                toggle.get_attribute('aria-expanded') == 'true')
+                'is-active' in toggle.get_attribute('class'))
 
-        def open_firefox(self, locale='en-US'):
-            self.find_element(*self._firefox_locator).click()
+        def open_navigation_menu(self, locator):
+            firefox_menu = self.find_element(*locator)
+            firefox_menu.click()
+            self.wait.until(lambda s: firefox_menu.is_displayed)
+
+        def open_firefox_desktop_page(self):
+            self.open_navigation_menu(self._firefox_menu_locator)
+            self.find_element(*self._firefox_desktop_page_locator).click()
             from firefox.home import FirefoxHomePage
-            return FirefoxHomePage(self.selenium, self.page.base_url, locale).wait_for_page_to_load()
+            return FirefoxHomePage(self.selenium, self.page.base_url).wait_for_page_to_load()
 
-        def open_internet_health(self, locale='en-US'):
-            self.find_element(*self._internet_health_locator).click()
-            from internet_health import InternetHealthPage
-            return InternetHealthPage(self.selenium, self.page.base_url, locale).wait_for_page_to_load()
+        def open_developer_edition_page(self):
+            self.open_navigation_menu(self._developers_menu_locator)
+            self.find_element(*self._developer_edition_page_locator).click()
+            from firefox.developer import DeveloperPage
+            return DeveloperPage(self.selenium, self.page.base_url).wait_for_page_to_load()
 
-        def open_technology(self, locale='en-US'):
-            self.find_element(*self._technology_locator).click()
-            from technology import TechnologyPage
-            return TechnologyPage(self.selenium, self.page.base_url, locale).wait_for_page_to_load()
+        def open_about_page(self):
+            self.open_navigation_menu(self._about_menu_locator)
+            self.find_element(*self._about_page_locator).click()
+            from about import AboutPage
+            return AboutPage(self.selenium, self.page.base_url).wait_for_page_to_load()
 
     class Footer(Region):
 
