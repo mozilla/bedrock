@@ -23,7 +23,7 @@ describe('stub-attribution-macos.js', function () {
             };
 
             spyOn(Mozilla.StubAttributionMacOS, 'meetsRequirements').and.returnValue(true);
-            spyOn(window._SearchParams.prototype, 'utmParamsUnprefixed').and.returnValue(utmData);
+            spyOn(Mozilla.StubAttributionMacOS, 'getAttributionData').and.returnValue(utmData);
             Mozilla.StubAttributionMacOS.init();
             expect(Mozilla.StubAttributionMacOS.updateTransitionalLinks).toHaveBeenCalledWith(utmData);
         });
@@ -55,6 +55,104 @@ describe('stub-attribution-macos.js', function () {
             window.site.platform = 'osx';
             spyOn(Mozilla, 'dntEnabled').and.returnValue(false);
             expect(Mozilla.StubAttributionMacOS.meetsRequirements()).toBeTruthy();
+        });
+    });
+
+    describe('getAttributionData', function () {
+
+        var utms = {
+            'utm_campaign': 'non-fx-button',
+            'utm_medium': 'referral',
+            'utm_source': 'addons.mozilla.org',
+            'utm_content': 'rta%3Ae2JkZmNjZjM4LTBmMzgtNGM0YS04NzBjLTM3NzA2YjFmYTZiOX0'
+        };
+
+        afterEach(function () {
+            utms = {
+                'utm_campaign': 'non-fx-button',
+                'utm_medium': 'referral',
+                'utm_source': 'addons.mozilla.org',
+                'utm_content': 'rta%3Ae2JkZmNjZjM4LTBmMzgtNGM0YS04NzBjLTM3NzA2YjFmYTZiOX0'
+            };
+        });
+
+        it('should return a populated object if all utm_ params meet requirements', function () {
+            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(utms);
+            var data = Mozilla.StubAttributionMacOS.getAttributionData();
+            expect(data).not.toBe(null);
+            expect(data['campaign']).toEqual(utms['utm_campaign']);
+            expect(data['medium']).toEqual(utms['utm_medium']);
+            expect(data['source']).toEqual(utms['utm_source']);
+            expect(data['content']).toEqual(decodeURIComponent(utms['utm_content']));
+        });
+
+        it('should return null if utm_campaign is missing', function () {
+            delete (utms['utm_campaign']);
+
+            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(utms);
+            var data = Mozilla.StubAttributionMacOS.getAttributionData();
+            expect(data).toBe(null);
+        });
+
+        it('should return null if utm_campaign is invalid', function () {
+            utms['utm_campaign'] = 'overtheline';
+
+            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(utms);
+            var data = Mozilla.StubAttributionMacOS.getAttributionData();
+            expect(data).toBe(null);
+        });
+
+        it('should return null if utm_medium is missing', function () {
+            delete (utms['utm_medium']);
+
+            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(utms);
+            var data = Mozilla.StubAttributionMacOS.getAttributionData();
+            expect(data).toBe(null);
+        });
+
+        it('should return null if utm_medium is invalid', function () {
+            utms['utm_medium'] = 'webelieveinnothing';
+
+            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(utms);
+            var data = Mozilla.StubAttributionMacOS.getAttributionData();
+            expect(data).toBe(null);
+        });
+
+        it('should return null if utm_source is missing', function () {
+            delete (utms['utm_source']);
+
+            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(utms);
+            var data = Mozilla.StubAttributionMacOS.getAttributionData();
+            expect(data).toBe(null);
+        });
+
+        it('should return null if utm_source is invalid', function () {
+            utms['utm_source'] = 'autobahn';
+
+            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(utms);
+            var data = Mozilla.StubAttributionMacOS.getAttributionData();
+            expect(data).toBe(null);
+        });
+
+        it('should return null if utm_content is missing', function () {
+            delete (utms['utm_content']);
+
+            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(utms);
+            var data = Mozilla.StubAttributionMacOS.getAttributionData();
+            expect(data).toBe(null);
+        });
+
+        it('should return null if utm_content is invalid', function () {
+            var data;
+            utms['utm_content'] = 'thisstringismissingtheprefix';
+
+            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(utms);
+            data = Mozilla.StubAttributionMacOS.getAttributionData();
+            expect(data).toBe(null);
+
+            utms['utm_content'] = 'rta%3Ai_have_invalid*characters';
+            data = Mozilla.StubAttributionMacOS.getAttributionData();
+            expect(data).toBe(null);
         });
     });
 
@@ -98,10 +196,10 @@ describe('stub-attribution-macos.js', function () {
             expect(Mozilla.StubAttributionMacOS.appendToDownloadURL).not.toHaveBeenCalled();
         });
 
-        it('should do nothing if attribution data is not as expected', function () {
+        it('should not update download URLs if attribution data is null', function () {
             spyOn(Mozilla.StubAttributionMacOS, 'meetsRequirements').and.returnValue(true);
             spyOn(Mozilla.StubAttributionMacOS, 'appendToDownloadURL');
-            Mozilla.StubAttributionMacOS.updateTransitionalLinks({});
+            Mozilla.StubAttributionMacOS.updateTransitionalLinks(null);
             expect(Mozilla.StubAttributionMacOS.appendToDownloadURL).not.toHaveBeenCalled();
         });
     });

@@ -13,27 +13,22 @@ if (typeof Mozilla === 'undefined') {
     var StubAttributionMacOS = {};
 
     /**
-     * Updates all download links on the page with additional query params for
-     * stub attribution.
-     * @param {Object} data - attribution_code, attribution_sig.
+     * Updates all download links pointing to /firefox/download/thanks/ on the page with
+     * additional query params for stub attribution.
+     * @param {Object} data - campaign, medium, source, content
      */
     StubAttributionMacOS.updateTransitionalLinks = function (data) {
         /**
          * If data is missing or the browser does not meet requirements for
          * stub attribution, then do nothing.
          */
-        if (Object.getOwnPropertyNames(data).length === 0 || !StubAttributionMacOS.meetsRequirements()) {
+        if (data === null || !StubAttributionMacOS.meetsRequirements()) {
             return;
         }
 
-        // if the href of the download link doesn't have any query params, finalParams will default to
-        // the value of utmParams. otherwise, finalParams will be a merge of download link params and
-        // utmParams.
         var downloadLinks = document.getElementsByClassName('download-link');
         var url;
 
-        // merge the utm params from the current URL with any query params existing on in-page links
-        // that point to /download/thanks/.
         for (var i = 0; i < downloadLinks.length; i++) {
             url = downloadLinks[i].href;
 
@@ -46,23 +41,24 @@ if (typeof Mozilla === 'undefined') {
 
     /**
      * Appends stub attribution data as URL parameters.
-     * Note: data is already URI encoded when returned via the service.
-     * @param {String url - URL to append data to.
-     * @param {Object} data - attribution_code, attribution_sig.
+     * @param {String} url - URL to append data to.
+     * @param {Object} data - campaign, medium, source, content
      * @return {String} url + additional parameters.
      */
     StubAttributionMacOS.appendToDownloadURL = function (url, data) {
         var finalParams = data;
         var linkParams;
 
-        // if the link has a querystring, merge it with the utm_ params in the current URL
+        // if the link has a querystring, merge it with the utm_ params in the current
+        // URL
         // note: these links currently have no query params, so the code below is
         // essentially future-proofing against what could be a tough to track bug
         if (url.indexOf('?') > 0) {
             // create an object of query params on the current href
             linkParams = window._SearchParams.queryStringToObject(url.split('?')[1]);
             // properties in utmParams will be overwritten by those in linkParams
-            // i.e. favor param values in the download link over those found in the querystring of the current URL (if they share a key)
+            // i.e. favor param values in the download link over those found in the
+            // querystring of the current URL (if they share a key)
             finalParams = Object.assign(finalParams, linkParams);
         }
 
@@ -70,8 +66,39 @@ if (typeof Mozilla === 'undefined') {
     };
 
     /**
+     * Gets utm parameters from the current URL and ensures they meet the requirements
+     * @return {Object} - Stub attribution data object containing four keys or null.
+     */
+    StubAttributionMacOS.getAttributionData = function () {
+        var params = new window._SearchParams().utmParams();
+        var finalParams = {};
+
+        if (params.hasOwnProperty('utm_campaign') && params['utm_campaign'] === 'non-fx-button') {
+            finalParams['campaign'] = 'non-fx-button';
+        }
+
+        if (params.hasOwnProperty('utm_medium') && params['utm_medium'] === 'referral') {
+            finalParams['medium'] = 'referral';
+        }
+
+        if (params.hasOwnProperty('utm_source') && params['utm_source'] === 'addons.mozilla.org') {
+            finalParams['source'] = 'addons.mozilla.org';
+        }
+
+        // utm_content should *always* start with "rta%3A", followed by alphanumeric characters
+        if (params.hasOwnProperty('utm_content') && (/^rta%3A[a-zA-Z0-9]+$/).test(params['utm_content'])) {
+            // this value is already URI encoded, so we need to decode here as
+            // it will get re-encoded in _SearchParams.objectToQueryString
+            finalParams['content'] = decodeURIComponent(params['utm_content']);
+        }
+
+        return Object.getOwnPropertyNames(finalParams).length === 4 ? finalParams : null;
+    };
+
+    /**
      * Determines if requirements for stub attribution to work are satisfied.
-     * Stub attribution is only applicable to Windows users who get the stub installer.
+     * Stub attribution is only applicable to macOS users with specific utm_ values in
+     * the querystring.
      * @return {Boolean}.
      */
     StubAttributionMacOS.meetsRequirements = function () {
@@ -84,16 +111,13 @@ if (typeof Mozilla === 'undefined') {
             return false;
         }
 
-        /*if (Mozilla.dntEnabled()) {
+        if (Mozilla.dntEnabled()) {
             return false;
-        }*/
+        }
 
         return true;
     };
 
-    /**
-     * Determines whether to make a request to the stub authentication service.
-     */
     StubAttributionMacOS.init = function () {
         var data;
 
@@ -101,12 +125,7 @@ if (typeof Mozilla === 'undefined') {
             return;
         }
 
-        /**
-         * If cookie already exists, update download links on the page,
-         * else make a request to the service if within attribution rate.
-         */
-        var params = new window._SearchParams();
-        data = params.utmParamsUnprefixed();
+        data = StubAttributionMacOS.getAttributionData();
         StubAttributionMacOS.updateTransitionalLinks(data);
     };
 

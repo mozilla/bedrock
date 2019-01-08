@@ -77,22 +77,6 @@ _SearchParams.prototype.utmParams = function() {
     return utms;
 };
 
-// At times we need to propogate utm_ params from the current URL to an in-site link
-// (e.g. download links on /firefox/new/ pointing to /firefox/download/thanks/). To
-// maintain analytical integrity (GA/GTM), the 'utm_' part of the key must be removed.
-_SearchParams.prototype.utmParamsUnprefixed = function() {
-    var utms = this.utmParams();
-    var utmsUnprefixed = {};
-
-    for (var param in utms) {
-        if (utms.hasOwnProperty(param)) {
-            utmsUnprefixed[param.replace('utm_', '')] = utms[param];
-        }
-    }
-
-    return utmsUnprefixed;
-};
-
 _SearchParams.prototype.utmParamsFxA = function(pathname) {
     pathname = pathname || window.location.pathname || '';
 

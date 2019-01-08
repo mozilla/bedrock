@@ -113,7 +113,7 @@ if (typeof Mozilla === 'undefined') {
     /**
      * Appends stub attribution data as URL parameters.
      * Note: data is already URI encoded when returned via the service.
-     * @param {String url - URL to append data to.
+     * @param {String} url - URL to append data to.
      * @param {Object} data - attribution_code, attribution_sig.
      * @return {String} url + additional parameters.
      */

@@ -51,15 +51,6 @@ describe('search-params.js', function() {
             expect(utms.utm_sport).toEqual('bowling');
         });
 
-        it('should return an object of unprefixed utm_ values', function () {
-            var sp = new _SearchParams('utm_dude=lebowski&utm_sport=bowling&source=getfirefox');
-            var utms = sp.utmParamsUnprefixed();
-            var keys = Object.keys(utms);
-            expect(keys).toEqual(['dude', 'sport']);
-            expect(utms.dude).toEqual('lebowski');
-            expect(utms.sport).toEqual('bowling');
-        });
-
         it('should return an object of utm_ values with defaults for FxA', function () {
             var sp = new _SearchParams('utm_dude=lebowski&utm_sport=bowling&source=getfirefox');
             var utms = sp.utmParamsFxA('/es-ES/firefox/sync/');
