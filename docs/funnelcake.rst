@@ -4,9 +4,9 @@
 
 .. _funnelcake:
 
-=================
+===============================
 Funnel cakes and Partner Builds
-=================
+===============================
 
 Funnel cakes
 ------------
@@ -30,7 +30,7 @@ We signal to bedrock that we want a funnelcake when linking to the download
 page by appending the query variable `f` with a value equal to the funnelcake
 number being requested.
 
-.. code-block::
+.. code-block:: text
 
     https://www.mozilla.org/en-US/firefox/download/thanks/?f=137
 
@@ -46,13 +46,13 @@ Bedrock then converts that into a request to download a file like so:
 
 Windows:
 
-.. code-block::
+.. code-block:: text
 
     https://download.mozilla.org/?product=firefox-stub-f137&os=win&lang=en-US
 
 Mac (You can see the mac one does not pass the funnelcake number along.):
 
-.. code-block::
+.. code-block:: text
 
     https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang=en-US
 

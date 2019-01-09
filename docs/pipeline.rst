@@ -62,8 +62,7 @@ to change according to the settings in the `prod.yml file`_ in the repository.
 #. Check out the ``master`` branch
 #. Make sure the ``master`` branch is up to date with ``mozilla/bedrock master``
 #. Check that dev deployment is green:
-    #. View `deployment pipeline <https://ci.us-west.moz.works/blue/organizations/jenkins/bedrock_multibranch_pipeline/branches/>`_
-       and look at ``master`` branch
+    #. View `deployment pipeline`_ and look at ``master`` branch
 #. Tag and push the deployment by running ``bin/tag-release.sh --push``
 
 .. note::
@@ -136,6 +135,9 @@ The available branch configuration options are as follows:
 
 .. _configure-demo-servers:
 
+Configure Demo Servers
+~~~~~~~~~~~~~~~~~~~~~~
+
 You can also set app configuration environment variables via deployment as well for demos. The default environment variables
 are set in `jenkins/branches/demo/default.env`. To modify your app's settings you can create an env file named after your branch
 (e.g `jenkins/branches/demo/pmac-l10n.env` for the branch `demo/pmac-l10n.env`). The combination
@@ -205,7 +207,7 @@ Jenkins to become unresponsive. To make such changes it can be necessary to firs
 restart Jenkins, as this issue only appears some time after Jenkins has been started.
 A `bug for the IRC plugin`_ has been raised.
 
-.. _Deployment Pipeline: https://ci.us-west.moz.works/view/Bedrock%20Pipeline/
+.. _Deployment Pipeline: https://ci.us-west.moz.works/blue/organizations/jenkins/bedrock_multibranch_pipeline/branches/
 .. _CircleCI: https://circleci.com/
 .. _Sauce Labs: https://saucelabs.com/
 .. _Jenkinsfile: https://github.com/mozilla/bedrock/tree/master/Jenkinsfile

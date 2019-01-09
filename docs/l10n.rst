@@ -178,7 +178,7 @@ value should be either a string, or a list of strings, similar to the
     sometext = _('Foo about bar.')
 
 This file's strings would be extracted to `foo.lang`, and the lang files
-`foo.lang`, `bar.lang`, `main.lang` and `download_button.lang`would be
+`foo.lang`, `bar.lang`, `main.lang` and `download_button.lang` would be
 searched for matches in that order.
 
 l10n blocks
@@ -316,16 +316,14 @@ CSS
 If a localized page needs some locale-specific style tweaks, you can add the
 style rules to the page's stylesheet like this:
 
-    html[lang="it"] {
-      #features li {
-        font-size: 20px;
-      }
+.. code-block:: css
+
+    html[lang="it"] #features li {
+      font-size: 20px;
     }
 
-    html[dir="rtl"] {
-      #features {
-        float: right;
-      }
+    html[dir="rtl"] #features {
+      float: right;
     }
 
 If a locale needs site-wide style tweaks, font settings in particular, you can
@@ -346,6 +344,8 @@ custom font families as below:
   The font weight is 800 only
 
 Here's an example of ``intl.css``:
+
+.. code-block:: css
 
     @font-face {
       font-family: X-LocaleSpecific-Light;

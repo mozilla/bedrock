@@ -209,7 +209,8 @@ can be disabled in the browsersync options in the ``gulpfile.js`` by setting ``n
 Legal Docs
 ==========
 
-Legal docs (for example: the privacy policy) are generated from markdown files in the [legal-docs](https://github.com/mozilla/legal-docs) repo.
+Legal docs (for example: the privacy policy) are generated from markdown files in the
+`legal-docs repo <https://github.com/mozilla/legal-docs>`_.
 
 To view them or update to a more recent version update the submodule::
 
@@ -224,7 +225,7 @@ after changing settings you can run the following command::
 
     $ ./manage.py l10n_update
 
-You can read more details about how to localize content :ref:`here<l10n>`.
+You can read more details about how to localize content :ref:`here <l10n>`.
 
 Feature Flipping (aka Switches)
 ===============================
@@ -253,7 +254,7 @@ For example::
         ...
 
 Testing
-~~~~~~~
+-------
 
 If the environment variable ``DEV`` is set to a "true" value, then all switches will be considered "on" unless they are
 explicitly "off" in the environment. ``DEV`` defaults to "true" in local development and demo servers.
@@ -267,7 +268,7 @@ To test switches locally:
 To configure switches for a demo branch. Follow the `configuration instructions here <http://bedrock.readthedocs.io/en/latest/pipeline.html#configuration>`_.
 
 Traffic Cop
-~~~~~~~~~~~
+-----------
 
 Currently, these switches are used to enable/disable `Traffic Cop <https://github.com/mozilla/trafficcop/>`_ experiments
 on many pages of the site. We only add the Traffic Cop JavaScript snippet to a page when there is an active test. You

@@ -89,8 +89,10 @@ FROM app-base AS devapp
 
 CMD ["./bin/run-tests.sh"]
 
-COPY requirements/base.txt requirements/dev.txt ./requirements/
+RUN apt-install make
+COPY requirements/base.txt requirements/dev.txt requirements/docs.txt ./requirements/
 RUN pip install --no-cache-dir -r requirements/dev.txt
+RUN pip install --no-cache-dir -r requirements/docs.txt
 COPY ./setup.cfg ./
 COPY ./tests ./tests
 
