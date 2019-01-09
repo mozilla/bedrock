@@ -503,6 +503,7 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
                 'en-US',
                 'es-ES',
                 'fr',
+                'id',
                 'pl',
                 'pt-BR',
                 'ru',
