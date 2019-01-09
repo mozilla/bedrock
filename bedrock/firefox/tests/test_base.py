@@ -599,3 +599,26 @@ class TestTrackingProtectionTour(TestCase):
         self.view(req, version='62.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/tracking-protection-tour/variation-2.html'])
+
+
+@patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
+class TestContentBlockingTour(TestCase):
+    def setUp(self):
+        self.view = fx_views.ContentBlockingTourView.as_view()
+        self.rf = RequestFactory()
+
+    @override_settings(DEV=True)
+    def test_fx_content_blocking_65_0(self, render_mock):
+        """Should use default content blocking tour template"""
+        req = self.rf.get('/en-US/firefox/content-blocking/start/')
+        self.view(req, version='65.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/content-blocking-tour/index.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_content_blocking_65_0_v2(self, render_mock):
+        """Should use variation 2 template"""
+        req = self.rf.get('/en-US/firefox/content-blocking/start/?variation=2')
+        self.view(req, version='65.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/content-blocking-tour/variation-2.html'])
