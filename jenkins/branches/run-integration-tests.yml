@@ -12,4 +12,4 @@ integration_tests:
     - firefox
     - chrome
     - ie
-    - ie8
+    - ie9
