@@ -19,9 +19,9 @@ case $1 in
     BROWSER_NAME="internet explorer"
     PLATFORM="Windows 10"
     ;;
-  ie8)
+  ie9)
     BROWSER_NAME="internet explorer"
-    BROWSER_VERSION="8.0"
+    BROWSER_VERSION="9.0"
     PLATFORM="Windows 7"
     MARK_EXPRESSION=sanity
     ;;
