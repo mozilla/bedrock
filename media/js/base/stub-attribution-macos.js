@@ -86,7 +86,7 @@ if (typeof Mozilla === 'undefined') {
         }
 
         // utm_content should *always* start with "rta%3A", followed by alphanumeric characters
-        if (params.hasOwnProperty('utm_content') && (/^rta%3A[a-zA-Z0-9]+$/).test(params['utm_content'])) {
+        if (params.hasOwnProperty('utm_content') && (/^rta%3A[a-zA-Z0-9_\-]+$/).test(params['utm_content'])) {
             // this value is already URI encoded, so we need to decode here as
             // it will get re-encoded in _SearchParams.objectToQueryString
             finalParams['content'] = decodeURIComponent(params['utm_content']);

@@ -64,7 +64,7 @@ describe('stub-attribution-macos.js', function () {
             'utm_campaign': 'non-fx-button',
             'utm_medium': 'referral',
             'utm_source': 'addons.mozilla.org',
-            'utm_content': 'rta%3Ae2JkZmNjZjM4LTBmMzgtNGM0YS04NzBjLTM3NzA2YjFmYTZiOX0'
+            'utm_content': 'rta%3Ae2JkZmNjZjM4LTBmMzgtNGM0YS04NzB_TM3NzA2-jFmYTZiOX0'
         };
 
         afterEach(function () {
@@ -72,7 +72,7 @@ describe('stub-attribution-macos.js', function () {
                 'utm_campaign': 'non-fx-button',
                 'utm_medium': 'referral',
                 'utm_source': 'addons.mozilla.org',
-                'utm_content': 'rta%3Ae2JkZmNjZjM4LTBmMzgtNGM0YS04NzBjLTM3NzA2YjFmYTZiOX0'
+                'utm_content': 'rta%3Ae2JkZmNjZjM4LTBmMzgtNGM0YS04NzB_TM3NzA2-jFmYTZiOX0'
             };
         });
 
@@ -150,7 +150,7 @@ describe('stub-attribution-macos.js', function () {
             data = Mozilla.StubAttributionMacOS.getAttributionData();
             expect(data).toBe(null);
 
-            utms['utm_content'] = 'rta%3Ai_have_invalid*characters';
+            utms['utm_content'] = 'rta%3Ai-have_some(invalid*characters>';
             data = Mozilla.StubAttributionMacOS.getAttributionData();
             expect(data).toBe(null);
         });
