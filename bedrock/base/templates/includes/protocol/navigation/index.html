@@ -21,6 +21,14 @@
       <div class="mzp-c-navigation-items" id="mzp-c-navigation-items">
         <div class="mzp-c-navigation-download">
           {{ download_firefox(alt_copy=_('Download Firefox'), dom_id='protocol-nav-download-firefox', button_color='mzp-t-secondary mzp-t-small', download_location='nav') }}
+          {% if LANG == 'en-US' %}
+          <div class="c-navigation-fxa-cta-container">
+            <a class="c-navigation-fxa-cta mzp-c-button mzp-t-secondary mzp-t-small mzp-t-download" href="https://accounts.firefox.com/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org-globalnav&utm_source=www.mozilla.org&utm_content=Get%20a%20Firefox%20Account&utm_medium=referral&utm_campaign=globalnav" data-button-name="Create a Firefox Account" data-link-type="button" data-cta-position="secondary cta">
+              Get a Firefox Account
+            </a>
+            <p class="c-navigation-fxa-cta-small-link"><a data-link-type="nav" data-link-name="Check out the Benefits" href="{{ url('firefox.accounts') }}">Check out the Benefits</a></p>
+          </div>
+          {% endif %}
         </div>
         <div class="mzp-c-navigation-menu">
           <nav class="mzp-c-menu">

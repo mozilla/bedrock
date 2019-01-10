@@ -80,3 +80,44 @@ $image-path: '/media/protocol/img';
         @include font-size(12px);
     }
 }
+
+// Global FxA CTA experiment: issue #6629
+.mzp-c-navigation {
+    .c-navigation-fxa-cta {
+        @include font-size(14px);
+        background-color: transparent;
+        background-image: none;
+        border-radius: 2px;
+        border: 2px solid $color-green-60;
+        box-shadow: none;
+        color: $color-green-60;
+        display: inline-block;
+        font-weight: bold;
+        line-height: 1.125;
+        padding: $padding-sm $padding-md;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            background-color: $color-green-60;
+            border-color: $color-green-60;
+            color: $color-white;
+        }
+    }
+
+    .c-navigation-fxa-cta-small-link {
+        a:link,
+        a:visited {
+            @include font-size(10px);
+            color: #000;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            color: inherit;
+            text-decoration: underline;
+        }
+    }
+}

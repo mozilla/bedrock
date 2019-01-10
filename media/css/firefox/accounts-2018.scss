@@ -9,6 +9,7 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/feature-card';
 @import '../../protocol/css/components/hero';
 @import '../../protocol/css/components/modal';
+@import '../protocol/includes/navigation-hide-download-button'; // Global FxA CTA experiment: issue #6629
 
 .show {
     display: block;

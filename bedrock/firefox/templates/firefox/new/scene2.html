@@ -164,3 +164,6 @@
   {# Keep download JS in a separate bundle to email JS, to reduce risk of errors interrupting download. #}
   {{ js_bundle('firefox_new_scene2') }}
 {% endblock %}
+
+{# Issue issue #6629 #}
+{% block global_fxa_cta_experiment %}{% endblock %}
