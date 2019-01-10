@@ -79,8 +79,7 @@ test-image: .docker-build
 	${DC} run test-image
 
 docs: .docker-build-pull
-	${DC} run app $(MAKE) -C docs/ clean
-	${DC} run app $(MAKE) -C docs/ html
+	${DC} run app make -C docs/ clean html
 
 ###############
 # For use in CI

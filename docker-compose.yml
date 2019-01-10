@@ -36,6 +36,7 @@ services:
       - ./docker/:/app/docker:delegated
       - ./etc/:/app/etc:delegated
       - ./lib/:/app/lib:delegated
+      - ./docs/:/app/docs:delegated
       - ./media/:/app/media:delegated
       - ./root_files/:/app/root_files:delegated
       - ./scripts/:/app/scripts:delegated

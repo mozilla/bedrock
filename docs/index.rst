@@ -38,3 +38,4 @@ Contents
    funnelcake
    abtest
    analytics
+   architectural-decisions
