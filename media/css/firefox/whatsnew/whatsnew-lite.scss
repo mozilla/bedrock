@@ -3,6 +3,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import '../../../protocol/css/includes/lib';
+@import 'send-yourself';
 
 //* -------------------------------------------------------------------------- */
 // Up-to-date page header
@@ -61,18 +62,29 @@
 //* -------------------------------------------------------------------------- */
 // Page content
 
+.lite-container {
+    display: flex;
+    align-items: center;
+
+    @media #{$mq-lg} {
+        margin-left: 80px;
+    }
+
+    img {
+        margin-right: $spacing-md;
+    }
+}
+
 .lite-body {
-    background: linear-gradient(to top, #13e4ff, #0c85ff);
+    background: url('/media/img/firefox/whatsnew/lite/background-swoosh.png') no-repeat bottom, linear-gradient(#00e4ff, #3aa1ff, #0484ff);
     color: #fff;
     overflow: hidden;
     position: relative;
-    text-align: center;
+    padding-top: 10%;
 }
 
 .lite-text {
     @include text-display-md;
-    border-bottom: 2px solid $color-white;
-    border-top: 2px solid $color-white;
     font-weight: bold;
     margin: 0 auto $spacing-lg;
     max-width: 20em;
@@ -80,53 +92,89 @@
 }
 
 .lite-content {
-
     .lite-woman {
         display: none;
     }
 
+    .lite-copy {
+        text-align: center;
+        z-index: 1;
+    }
+
+    @media #{$mq-sm} {
+        .lite-copy {
+            width: $content-sm;
+            margin: 0 auto;
+        }
+    }
+
     @media #{$mq-lg} {
-        @include grid-column-gap($layout-lg);
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 2fr 0.5fr;
 
         .lite-woman {
-            animation: balloon 6s ease-in-out infinite;
             display: block;
             position: relative;
 
             img {
                 position: relative;
-                right: -40px;
+                top: -110px;
+                max-width: 130%;
             }
         }
 
+        .lite-copy {
+            margin: 100px 0 0;
+            max-height: $content-sm;
+            text-align: left;
+            width: $content-md;
+        }
+
         .lite-woman,
-        .lite-copy,
         .lite-code {
-            align-items: center;
-            display: flex;
-            justify-content: space-between;
             min-height: 700px;
         }
     }
 
     @media #{$mq-xl} {
         .lite-woman img {
-            right: -100px;
+            right: -40px;
         }
     }
 }
 
-@keyframes balloon {
-    0% {
-        transform: translateY(0) rotate(0deg);
+//* -------------------------------------------------------------------------- */
+// Send Yourself widget
+.mzp-c-sendyourself {
+    a:link {
+        color: #fff;
+
+        &:hover,
+        &:focus {
+            @include light-links;
+        }
     }
-    50% {
-        transform: translateY(-30px) rotate(-2deg);
-    }
-    100% {
-        transform: translateY(0) rotate(0deg);
+
+    a:visited {
+        color: $color-gray-10;
+
+        &:hover,
+        &:focus {
+            @include light-links;
+        }
     }
 }
 
+.has-send-to-device {
+    .firefox-container > .mzp-l-content {
+        max-width: $content-md + $layout-xl;
+    }
+}
+
+// Custom widget styles
+
+.mzp-c-sendyourself-field {
+    input[type="text"] {
+        border: 1px solid #fff;
+    }
+}

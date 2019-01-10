@@ -1595,9 +1595,16 @@
     {
       "files": [
         "js/base/send-to-device.js",
+        "js/base/send-yourself.js",
         "js/firefox/whatsnew/whatsnew.js"
       ],
       "name": "firefox_whatsnew"
+    },
+    {
+      "files": [
+        "js/base/send-yourself.js"
+      ],
+      "name": "whatsnew_lite"
     },
     {
       "files": [
