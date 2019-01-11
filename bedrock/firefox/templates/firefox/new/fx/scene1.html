@@ -80,8 +80,5 @@
 {% endblock %}
 
 {% block js %}
-  {% if switch('stub-attribution-macos') %}
-    {{ js_bundle('stub-attribution-macos') }}
-  {% endif %}
   {{ js_bundle('firefox_new_fx_scene1') }}
 {% endblock %}

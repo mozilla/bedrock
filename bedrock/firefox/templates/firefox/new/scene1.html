@@ -160,8 +160,9 @@
 {% endblock %}
 
 {% block js %}
+  {{ js_bundle('firefox_new_scene1') }}
+
   {% if switch('stub-attribution-macos') %}
     {{ js_bundle('stub-attribution-macos') }}
   {% endif %}
-  {{ js_bundle('firefox_new_scene1') }}
 {% endblock %}

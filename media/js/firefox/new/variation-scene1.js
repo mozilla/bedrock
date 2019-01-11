@@ -13,22 +13,28 @@ so the correct template is rendered on /download/thanks/.
 
     var downloadLinks = document.getElementsByClassName('download-link');
     var href;
-    var newQs;
+    var newQs = [];
     var params = new window._SearchParams().params;
     var prefix;
+    var regex = /^[a-zA-Z0-9_\-]+$/;
 
-    // we need to propogate 'v' or 'xv' query params to ensure the correct template is loaded on /download/thanks/
-    // only one of these keys should be present
+    // we need to propogate 'v' and/or 'xv' query params to ensure the correct
+    // template is loaded on /download/thanks/
 
     // 'xv' denotes a 'variant' page for a specific marketing campaign
-    if (params.hasOwnProperty('xv')) {
-        newQs = 'xv=' + params['xv'];
-    // 'v' denotes an experiment variation
-    } else if (params.hasOwnProperty('v')) {
-        newQs = 'v=' + params['v'];
+    if (params.hasOwnProperty('xv') && regex.test(params['xv'])) {
+        newQs.push('xv=' + params['xv']);
     }
 
-    // merge v/xv params from the current URL with any query params existing on in-page links pointing to /download/thanks/
+    // 'v' denotes an experiment variation
+    if (params.hasOwnProperty('v') && regex.test(params['v'])) {
+        newQs.push('v=' + params['v']);
+    }
+
+    newQs = newQs.join('&');
+
+    // merge v/xv params from the current URL with any query params existing on
+    // in-page links pointing to /download/thanks/
     for (var i = 0; i < downloadLinks.length; i++) {
         href = downloadLinks[i].href;
 
