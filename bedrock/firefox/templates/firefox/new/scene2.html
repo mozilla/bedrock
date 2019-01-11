@@ -161,9 +161,6 @@
   {% if show_newsletter %}
     {{ js_bundle('firefox_new_scene2_email') }}
   {% endif %}
-  {% if switch('experiment_firefox_new_win10_taskbar_funnelcake', ['en-US']) and funnelcake_id in ['138', '139'] %}
-    {{ js_bundle('experiment_firefox_new_win10_taskbar_funnelcake_scene2') }}
-  {% endif %}
   {# Keep download JS in a separate bundle to email JS, to reduce risk of errors interrupting download. #}
   {{ js_bundle('firefox_new_scene2') }}
 {% endblock %}
