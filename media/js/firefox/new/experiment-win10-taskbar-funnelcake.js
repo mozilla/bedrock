@@ -10,9 +10,8 @@
     var isFirefox = /\s(Firefox|FxiOS)/.test(ua) && !isLikeFirefox;
 
     var isWin10 = (ua.indexOf('Windows NT 10') > -1);
-    var isWin64 = (ua.indexOf('WOW64') > -1 || ua.indexOf('Win64') > -1);
 
-    if (window.site.platform === 'windows' && isWin10 && isWin64 && !isFirefox) {
+    if (window.site.platform === 'windows' && isWin10 && !isFirefox) {
         var mclane = new Mozilla.TrafficCop({
             id: 'experiment_win10_taskbar_funnelcake',
             variations: {
