@@ -1,5 +1,5 @@
 /* For reference read the Jasmine and Sinon docs
- * Jasmine docs: http://pivotal.github.io/jasmine/
+ * Jasmine docs: https://jasmine.github.io/2.4/introduction
  * Sinon docs: http://sinonjs.org/docs/
  */
 

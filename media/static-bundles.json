@@ -1152,6 +1152,13 @@
     },
     {
       "files": [
+        "js/base/stub-attribution-macos.js",
+        "js/base/stub-attribution-macos-init.js"
+      ],
+      "name": "stub-attribution-macos"
+    },
+    {
+      "files": [
         "protocol/js/protocol-modal.js",
         "protocol/js/protocol-newsletter.js",
         "js/base/mozilla-lazy-load.js",
@@ -1629,6 +1636,7 @@
         "js/base/mozilla-client.js",
         "js/base/nav-main-resp.js",
         "js/base/class-list-polyfill.js",
+        "js/base/object-assign-polyfill.js",
         "protocol/js/protocol-menu.js",
         "protocol/js/protocol-navigation.js",
         "js/base/protocol/init-navigation.js",
@@ -1641,20 +1649,21 @@
     },
     {
       "files": [
-          "js/libs/jquery-3.2.1.min.js",
-          "protocol/js/protocol-lang-switcher.js",
-          "js/base/protocol/init-lang-switcher.js",
-          "js/base/mozilla-utils.js",
-          "js/base/mozilla-client.js",
-          "js/base/nav-main-resp.js",
-          "js/base/class-list-polyfill.js",
-          "protocol/js/protocol-menu.js",
-          "protocol/js/protocol-navigation.js",
-          "js/base/protocol/init-navigation.js",
-          "js/base/base-page-init.js",
-          "js/base/core-datalayer.js",
-          "js/base/core-datalayer-init.js",
-          "js/base/search-params.js"
+        "js/libs/jquery-3.2.1.min.js",
+        "protocol/js/protocol-lang-switcher.js",
+        "js/base/protocol/init-lang-switcher.js",
+        "js/base/mozilla-utils.js",
+        "js/base/mozilla-client.js",
+        "js/base/nav-main-resp.js",
+        "js/base/class-list-polyfill.js",
+        "js/base/object-assign-polyfill.js",
+        "protocol/js/protocol-menu.js",
+        "protocol/js/protocol-navigation.js",
+        "js/base/protocol/init-navigation.js",
+        "js/base/base-page-init.js",
+        "js/base/core-datalayer.js",
+        "js/base/core-datalayer-init.js",
+        "js/base/search-params.js"
       ],
       "name": "common-protocol"
     },

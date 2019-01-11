@@ -665,8 +665,11 @@ def new(request):
         return HttpResponsePermanentRedirect(reverse('firefox.new'))
 
     scene = request.GET.get('scene', None)
+
+    # note: v and xv params only allow a-z, A-Z, 0-9, -, and _ charcaters
     experience = request.GET.get('xv', None)
     variant = request.GET.get('v', None)
+
     locale = l10n_utils.get_locale(request)
 
     # ensure variant matches pre-defined value

@@ -113,7 +113,7 @@
      * for latest, out-of-date, pre-release etc. For iOS there is
      * only a single state that shows the download button.
      */
-    if (client.isFirefoxDesktop ||client.isFirefoxAndroid) {
+    if (client.isFirefoxDesktop || client.isFirefoxAndroid) {
         setFirefoxStatus();
     }
 
