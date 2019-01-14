@@ -15,10 +15,6 @@ function onYouTubeIframeAPIReady() {
 (function($, Waypoint) {
     'use strict';
 
-    if (window.Mozilla.Client.isFirefox) {
-        document.documentElement.classList.add('is-firefox');
-    }
-
     var tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     var firstScriptTag = document.getElementsByTagName('script')[0];
