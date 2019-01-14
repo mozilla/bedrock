@@ -3,7 +3,6 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "/firefox/base-pebbles.html" %}
-{% add_lang_files "firstrun" "mobile" %}
 
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
@@ -125,9 +124,6 @@
 </main>
 {% endblock %}
 
-{% block js %}
-  {{ js_bundle('firefox_whatsnew') }}
-{% endblock %}
 
 {# Bug 1381776 #}
 {% block update_notification %}{% endblock %}
