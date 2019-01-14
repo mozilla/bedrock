@@ -1,0 +1,129 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "/firefox/base-pebbles.html" %}
+
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block extrahead %}
+  {{ css_bundle('nightly_whatsnew') }}
+{% endblock %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_favicon %}{{ static('img/firefox/nightly/favicon.png') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/firefox/nightly/favicon-192.png') }}{% endblock %}
+{% block page_image %}{{ static('img/firefox/nightly/page-image.png') }}{% endblock %}
+{% block page_title %}{{ _('An important change is coming to Firefox') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block body_id %}nightly-profiles{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main>
+  <header class="main-header">
+    <div class="content">
+      <div class="inner-container">
+        <div class="mozilla-logo">
+          <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="Mozilla">Mozilla</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="main-content">
+    <div class="content">
+      <div class="inner-container">
+        <header>
+          <h2>{{ self.page_title() }}</h2>
+          <p class="tagline">
+          {% trans %}
+            Starting with Firefox 67, Firefox Nightly will run a dedicated profile.
+          {% endtrans %}
+          </p>
+        </header>
+
+        <div class="body">
+          <section>
+          <h3>{{ _('What is changing?') }}</h3>
+          <p>
+            {% trans learn_profiles='https://support.mozilla.org/kb/profiles-where-firefox-stores-user-data' %}
+              Firefox saves information such as bookmarks, passwords and user preferences
+              in a set of files called your profile. This profile is stored in a separate
+              location from the Firefox program files.
+              <a href="{{ learn_profiles }}">Learn more about profiles</a>.
+            {% endtrans %}
+          </p>
+          <p>
+            {% trans %}
+              Previously, all Firefox installations shared a single profile by default.
+              On January 28, Firefox will begin creating dedicated profiles for each
+              installation, starting with Firefox 67. On that date, Firefox will begin
+              using a dedicated profile for Firefox Nightly, and this Nightly installation
+              will no longer share a profile with other Firefox installations on your
+              computer. Other versions of Firefox (Beta, ESR and Firefox) will have a
+              dedicated profile once they reach release 67.
+            {% endtrans %}
+          </p>
+          <p>
+            {% trans %}
+              This will make Firefox more stable when switching between installations on
+              the same computer and will also allow you to run different installations of
+              Firefox at the same time.
+            {% endtrans %}
+          </p>
+          </section>
+
+          <section>
+          <h3>{{ _('You already use a separate profile for Nightly?') }}</h3>
+          <p>
+            {% trans %}
+              Users who have already manually created separate profiles for different
+              installations will not notice the change (this has been the advised
+              procedure on Nightly for a while).
+            {% endtrans %}
+          </p>
+          </section>
+
+          <section>
+          <h3>{{ _('What should I do?') }}</h3>
+          <p>
+            {% trans %}
+              If you do nothing and are currently running different installations of Firefox
+              that share the same profile, your Nightly installation will start running a
+              dedicated profile on January 28th. If Nightly is the first installation of
+              Firefox you open on or after January 28, it will use your existing profile.
+              If Nightly is not the first installation you open, Nightly will get a new
+              profile. Your existing profile will remain associated with the first
+              installation you open on or after January 28.
+            {% endtrans %}
+          </p>
+          <p>
+            {% trans %}
+              If you would like all of your profile data to be the same on all installations
+              of Firefox, you can use a Firefox Account to keep them in sync.
+            {% endtrans %}
+          </p>
+          <p>
+            {% trans fxa=url('firefox.accounts') %}
+              A Firefox Account is the easiest way to make your profiles consistent on all
+              of your versions of Firefox. You also get additional benefits like sending tabs
+              and secure password storage. <a href="{{ fxa }}">Get started with a Firefox Account.</a>
+            {% endtrans %}
+          </p>
+          </section>
+        </div>{#-- /.body --#}
+      </div>{#-- /.inner-container --#}
+    </div>{#-- /.content --#}
+  </div>{#-- /.main-content --#}
+
+
+</main>
+{% endblock %}
+
+
+{# Bug 1381776 #}
+{% block update_notification %}{% endblock %}

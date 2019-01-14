@@ -64,6 +64,11 @@ h1, h2, h3, h4, h5, h6 {
         margin: 20px 0;
         text-align: left;
 
+        h3 {
+            @include font-size(20px);
+            font-weight: bold;
+        }
+
         &> * {
             @include multi-column-avoid-break;
         }
@@ -135,6 +140,21 @@ html[dir="rtl"] .main-content {
     @media #{$mq-tablet} {
         header {
             text-align: right;
+        }
+    }
+}
+
+#nightly-profiles .main-content {
+    background: transparent none;
+    color: $color-text-primary;
+
+    a:link,
+    a:visited {
+        color: $color-link;
+
+        &:hover,
+        &:focus {
+            color: $color-link-hover;
         }
     }
 }
