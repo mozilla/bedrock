@@ -600,6 +600,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-65.scss"
+      ],
+      "name": "firefox_whatsnew_65"
+    },
+    {
+      "files": [
         "css/mozorg/commit-access-policy.less"
       ],
       "name": "commit-access-policy"
@@ -1053,6 +1059,23 @@
         "js/firefox/whatsnew/whatsnew-64.js"
       ],
       "name": "firefox_whatsnew_64"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-fxa-form.js",
+        "js/firefox/whatsnew/whatsnew-65.js"
+      ],
+      "name": "firefox_whatsnew_65"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-newsletter.js",
+        "js/newsletter/form-protocol.js"
+      ],
+      "name": "firefox_whatsnew_65_newsletter"
     },
     {
       "files": [
