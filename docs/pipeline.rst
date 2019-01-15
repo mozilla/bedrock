@@ -44,17 +44,24 @@ and the full suite of headless and UI tests are then run against
 Firefox on Windows 10 using `Sauce Labs`_. This is handled by the pipeline, and is subject
 to change according to the settings in the `master.yml file`_ in the repository.
 
+Push to stage branch
+~~~~~~~~~~~~~~~~~~~~~
+
+Whenever a change is pushed to the stage branch, a production docker image is built, published to
+`Docker Hub`_, and deployed to a `public staging environment`_. Once the new image is deployed, the
+full suite of UI tests is run against it with Firefox, Chrome, and Internet Explorer on
+Windows 10, and the sanity suite is run with IE9.
+
 .. _tagged-commit:
 
 Push to prod branch (tagged)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When a tagged commit is pushed to the prod branch, everything that happens during a
-untagged push is still run. In addition, the full suite of UI tests is run against
-Chrome and Internet Explorer on Windows 10, and the sanity suite is run against older
-versions of Internet Explorer (currently IE6 & IE7). If successful, the change is
-pushed to staging, tested, and then to production and the same tests are then run against
-production. As with untagged pushes, this is all handled by the pipeline, and is subject
+When a tagged commit is pushed to the prod branch, a production docker image is built and published
+to `Docker Hub`_ if needed (usually this will have already happened as a result of a push to the stage branch),
+and deployed to each `production`_ deployment. After each deployment is complete, the full suite of UI tests is
+run against Firefox, Chrome and Internet Explorer on Windows 10, and the sanity suite is run against IE9.
+As with untagged pushes, this is all handled by the pipeline, and is subject
 to change according to the settings in the `prod.yml file`_ in the repository.
 
 **Push to prod cheat sheet**
@@ -222,3 +229,6 @@ A `bug for the IRC plugin`_ has been raised.
 .. _Sauce Labs platform configurator: https://wiki.saucelabs.com/display/DOCS/Platform+Configurator/
 .. _enhancement request: https://issues.jenkins-ci.org/browse/JENKINS-26210
 .. _bug for the IRC plugin: https://issues.jenkins-ci.org/browse/JENKINS-28175
+.. _public staging environment: https://www.allizom.org
+.. _Docker Hub: https://hub.docker.com/r/mozorg/bedrock/tags
+.. _production: https://www.mozilla.org

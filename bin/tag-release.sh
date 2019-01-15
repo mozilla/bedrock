@@ -19,6 +19,13 @@ while [[ $# -ge 1 ]]; do
   shift # past argument or value
 done
 
+echo "Did you test on stage first? If not, are you sure you want to skip going to stage?"
+read stage
+if [ "$stage" == "${stage#[Yy]}" ]; then
+    # $stage doesn't start with y or Y
+    exit
+fi
+
 # ensure all tags synced
 git fetch --tags "$moz_git_remote"
 date_tag=$(date +"%Y-%m-%d")
