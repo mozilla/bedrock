@@ -1677,13 +1677,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/firstrun/experiment-firstrun-copy.js"
-      ],
-      "name": "experiment_firstrun_copy"
-    },
-    {
-      "files": [
         "js/newsletter/mozilla.js"
       ],
       "name": "newsletter-mozilla"
