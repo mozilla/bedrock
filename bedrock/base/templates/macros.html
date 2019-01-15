@@ -268,7 +268,9 @@
           <p class="mzp-c-sendyourself-field">
             <label for="{{ id }}-input" class="mzp-js-input-label" data-alt="{{ _('Enter your email or phone number') }}">{{ _('Enter your email') }}</label>
             <input id="{{ id }}-input" class="mzp-c-sendyourself-input" name="phone-or-email" type="text" required>
-            <button type="submit" class="mzp-c-button">{{ _('Send') }}</button>
+            <div class="form-submit">
+              <button type="submit" class="mzp-c-button {{ button_theme }}">{{ _('Send') }}</button>
+            </div>
           </p>
           <p class="mzp-c-sendyourself-note mzp-is-sms">
             {{ _('SMS service available in select countries only. SMS &amp; data rates may apply.') }}

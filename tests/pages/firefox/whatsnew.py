@@ -5,7 +5,7 @@
 from selenium.webdriver.common.by import By
 
 from pages.firefox.base import FirefoxBasePage
-from pages.regions.send_to_device import SendToDevice
+from pages.regions.send_yourself import SendYourself
 
 
 class FirefoxWhatsNewPage(FirefoxBasePage):
@@ -16,13 +16,5 @@ class FirefoxWhatsNewPage(FirefoxBasePage):
     _zh_tw_qr_code_locator = (By.CSS_SELECTOR, 'img.qrcode')
 
     @property
-    def send_to_device(self):
-        return SendToDevice(self)
-
-    @property
-    def is_qr_code_displayed(self):
-        return self.is_element_displayed(*self._qr_code_locator)
-
-    @property
-    def is_zh_tw_qr_code_displayed(self):
-        return self.is_element_displayed(*self._zh_tw_qr_code_locator)
+    def send_yourself(self):
+        return SendYourself(self)
