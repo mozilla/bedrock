@@ -197,3 +197,65 @@
 .back {
     margin-bottom: 0;
 }
+
+/* Accordion styles */
+.privacy-body.interactive-widget {
+
+    & .l-narrow > section > header {
+        position: relative;
+
+        h2 {
+            @include bidi(((padding-right, 110px, padding-left, 0),));
+        }
+    }
+
+    h3 {
+        @include bidi(((padding-right, 40px, padding-left, 0),));
+        cursor: pointer;
+        font-weight: normal;
+        margin: 0;
+        position: relative;
+
+        &:after {
+            @include bidi(((right, 0, left, auto),));
+            background: transparent url('/media/img/privacy/arrowhead-up-16.svg') 0 0 no-repeat;
+            content: '';
+            display: block;
+            height: 16px;
+            position: absolute;
+            top: .25em;
+            width: 16px;
+            transition: transform .1s ease-in-out;
+        }
+    }
+
+    h3.collapsed:after {
+        transform: rotate(180deg);
+    }
+
+    .toggle {
+        @include bidi(((right, 0, left, auto),));
+        background: none;
+        border: 0;
+        border-bottom: 3px solid $color-black;
+        cursor: pointer;
+        display: inline-block;
+        line-height: 1.2;
+        max-width: 90px;
+        padding-bottom: 3px;
+        position: absolute;
+        top: 0;
+
+        &:hover,
+        &:active,
+        &:focus {
+            border-bottom-color: transparent;
+        }
+    }
+
+    @media #{$mq-md} {
+        section > section {
+            padding-bottom: $layout-md;
+        }
+    }
+}
