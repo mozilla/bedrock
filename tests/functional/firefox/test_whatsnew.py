@@ -37,6 +37,7 @@ def test_firefox_rocket_send_yourself(base_url, selenium):
     send_yourself.click_send()
     assert send_yourself.send_successful
 
+
 @pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
 @pytest.mark.nondestructive
 def test_qr_code_th_tw_locale(base_url, selenium):

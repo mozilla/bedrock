@@ -21,7 +21,7 @@ class FirefoxWhatsNewPage(FirefoxBasePage):
         return SendToDevice(self)
 
     @property
-    def send_to_device(self):
+    def send_yourself(self):
         return SendYourself(self)
 
     @property
