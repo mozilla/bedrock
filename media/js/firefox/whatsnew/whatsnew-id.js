@@ -14,7 +14,7 @@
          if (client.isFirefoxDesktop) {
              client.getFirefoxDetails(function(data) {
                  if (data.isUpToDate) {
-                     document.querySelector('.c-page-header').classList.add('is-up-to-date');
+                     document.querySelector('.c-page-header').classList.add('show-up-to-date-message');
                  }
              });
          }
