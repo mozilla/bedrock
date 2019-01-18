@@ -29,10 +29,13 @@ def test_send_to_device_fails_when_missing_required_fields(base_url, selenium):
 
 @pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
 @pytest.mark.nondestructive
-def test_firefox_rocket_qr_code(base_url, selenium):
+def test_firefox_rocket_send_yourself(base_url, selenium):
     page = FirefoxWhatsNewPage(selenium, base_url, locale='id').open()
-    assert not page.send_to_device.is_displayed
-    assert page.is_qr_code_displayed
+    assert page.send_yourself.is_displayed
+    send_yourself = page.send_yourself
+    send_yourself.type_email('success@example.com')
+    send_yourself.click_send()
+    assert send_yourself.send_successful
 
 
 @pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')

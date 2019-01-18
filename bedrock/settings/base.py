@@ -1279,6 +1279,11 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
         'email': {
             'all': 'download-klar-mobile-whatsnew',
         }
+    },
+    'download-firefox-rocket': {
+        'email': {
+            'all': 'download-firefox-rocket',
+        }
     }
 }
 

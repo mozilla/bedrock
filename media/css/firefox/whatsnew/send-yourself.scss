@@ -122,6 +122,10 @@
         }
     }
 
+    .mzp-c-button {
+        width: 100%;
+    }
+
     @media #{$mq-desktop} {
         @include clearfix;
 
