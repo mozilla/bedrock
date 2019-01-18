@@ -1603,6 +1603,7 @@
       "files": [
         "js/base/send-yourself.js",
         "js/libs/spin.min.js",
+        "js/base/uitour-lib.js",
         "js/firefox/whatsnew/whatsnew-id.js"
       ],
       "name": "whatsnew_lite"

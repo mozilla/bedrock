@@ -11,7 +11,7 @@ from pages.firefox.base import FirefoxBaseRegion
 class SendYourself(FirefoxBaseRegion):
 
     _root_locator = (By.CSS_SELECTOR, '.mzp-c-sendyourself')
-    _email_locator = (By.ID, 'send-yourself-input')
+    _email_locator = (By.ID, '.mzp-c-sendyourself-input')
     _submit_button_locator = (By.CSS_SELECTOR, '.mzp-c-sendyourself-field button[type="submit"]')
     _thank_you_locator = (By.CSS_SELECTOR, '.mzp-c-sendyourself-thanks')
 

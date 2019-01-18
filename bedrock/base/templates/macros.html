@@ -241,7 +241,7 @@
 
 {# The send_yourself macro refactors and replaces the send_to_device macro above.
    This version better supports multiple products and avoids duplicate IDs so more than one widget can be embedded in a page. #}
-{% macro send_yourself(include_title=True, title_text='', spinner_color='', message_set='default', id='send-yourself', product='firefox', field_title='', field_note='', button_theme='') %}
+{% macro send_yourself(include_title=True, title_text='', spinner_color='', message_set='default', id='send-yourself', product='firefox', field_title='', field_note='', button_theme='', dark_background=False) %}
   <section id="{{ id }}" class="mzp-c-sendyourself {% if include_title %}mzp-has-title{% endif %}" data-countries="{{ send_to_device_sms_countries(message_set) }}"{% if spinner_color %} data-spinner-color="{{ spinner_color }}"{% endif %}>
     <div class="mzp-c-sendyourself-container">
       {% if include_title %}
@@ -293,7 +293,7 @@
           <h3>{{ _('Your download link was sent.') }}</h3>
           <p class="mzp-is-sms">{{ _('Check your device for the email or text message!') }}</p>
           <p class="mzp-is-email">{{ _('Check your device for the email!') }}</p>
-          <button class="mzp-c-button mzp-t-secondary mzp-t-small mzp-t-dark mzp-js-send-another" type="button">{{ _('Send to another device') }}</button>
+          <button class="mzp-c-button mzp-t-secondary mzp-t-small {% if dark_background %}mzp-t-dark{% endif %} mzp-js-send-another" type="button">{{ _('Send to another device') }}</button>
         </div>
         <div class="mzp-js-loading-spinner mzp-u-hidden"></div>
       </form>
