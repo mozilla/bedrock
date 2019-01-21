@@ -343,20 +343,12 @@ html[dir="rtl"] .whats-new-section {
             margin: 0 auto;
             max-width: 645px;
 
-            .video-container {
-                height: 0;
-                overflow: hidden;
-                padding-bottom: 56.25%;
-                position: relative;
-                width: 100%;
-            }
-
-            .moz-video-button {
-                background-image: url('/media/img/firefox/home/quantum-vs-chrome-poster.png');
+            video {
+                display: block;
             }
         }
 
-        &.image  img {
+        &.image img {
             box-shadow: 2px 3px 8px 0 rgba(0, 0, 0, .2);
         }
     }

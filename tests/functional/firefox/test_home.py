@@ -14,11 +14,3 @@ def test_download_buttons_displayed(base_url, selenium):
     page = FirefoxHomePage(selenium, base_url).open()
     assert page.primary_download_button.is_displayed
     assert page.secondary_download_button.is_displayed
-
-
-@pytest.mark.nondestructive
-def test_play_video(base_url, selenium):
-    page = FirefoxHomePage(selenium, base_url).open()
-    page.play_video()
-    assert not page.is_video_overlay_displayed
-    assert page.is_video_displayed
