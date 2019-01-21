@@ -31,12 +31,11 @@ $image-path: '/media/protocol/img';
         width: calc(100% - 45px);
 
         &:before {
+            background: url('/media/img/firefox/whatsnew/icon-green-check.svg') no-repeat;
             @include bidi((
                 (background-position, center left, center right),
                 (margin, 0 10px 0 0, 0 0 0 10px),
             ));
-            background-image: url('/media/img/firefox/whatsnew/icon-green-check.svg');
-            background-repeat: no-repeat;
             background-size: 25px 25px;
             content: '';
             display: inline-block;
@@ -179,12 +178,11 @@ $image-path: '/media/protocol/img';
         }
 
         .fxa-email-field-container {
+            background: url('/media/img/firefox/whatsnew_63/avatar.svg') no-repeat;
             @include bidi((
                 (background-position, center left, center right),
                 (padding-left, 37px + $spacing-md, padding-right, 0),
             ));
-            background-image: url('/media/img/firefox/whatsnew_63/avatar.svg');
-            background-repeat: no-repeat;
         }
     }
 }
