@@ -143,6 +143,8 @@
      * Hides *all* topics across sections
      */
     function hideAllTopicContent() {
+        var count = 0;
+
         for (var i = 0, l = topics.length; i < l; i++) {
             var divElem = topics[i].querySelector('div');
             var topicHeading = topics[i].querySelector('h3');
@@ -150,7 +152,19 @@
             divElem.classList.add('hidden');
             divElem.setAttribute('aria-hidden', true);
 
+            // if the hidden element does not have a unique ID, create one.
+            if (!divElem.id) {
+                var uniqueId = 'c-privacy-topic-' + count;
+                divElem.id = uniqueId;
+                count += 1;
+            }
+
+            // ensure headings are keyboard focusable and have appropriate ARIA info.
             topicHeading.classList.add('collapsed');
+            topicHeading.setAttribute('aria-expanded', false);
+            topicHeading.setAttribute('aria-controls', divElem.id);
+            topicHeading.setAttribute('tabindex', '0');
+            topicHeading.setAttribute('role', 'button');
         }
     }
 
@@ -170,13 +184,9 @@
      */
     function showInitialTopic() {
         var initialTopic = topicHeaders[0].querySelector('section');
-        var initialTopicContent = initialTopic.querySelector('div');
         var initialTopicHeading = initialTopic.querySelector('h3');
 
-        initialTopicContent.classList.remove('hidden');
-        initialTopicContent.setAttribute('aria-hidden', false);
-
-        initialTopicHeading.classList.remove('collapsed');
+        toggleSection(initialTopicHeading);
     }
 
     /**
@@ -193,7 +203,6 @@
             property: 'data-is-expanded'
         });
 
-        var targetAction = isExpanded === 'true' ? 'add' : 'remove';
         var targetSection = document.getElementById(targetSectionId);
         var subSections = targetSection.querySelectorAll('section');
 
@@ -201,9 +210,17 @@
             var divElem = subSections[i].querySelector('div');
             var heading = subSections[i].querySelector('h3');
 
-            divElem.classList[targetAction]('hidden');
-            divElem.setAttribute('aria-hidden', isExpanded || 'false');
-            heading.classList[targetAction]('collapsed');
+            if (isExpanded === 'true') {
+                divElem.classList.add('hidden');
+                divElem.setAttribute('aria-hidden', true);
+                heading.classList.add('collapsed');
+                heading.setAttribute('aria-expanded', false);
+            } else {
+                divElem.classList.remove('hidden');
+                divElem.setAttribute('aria-hidden', false);
+                heading.classList.remove('collapsed');
+                heading.setAttribute('aria-expanded', true);
+            }
         }
 
         if (isExpanded === 'true') {
@@ -225,6 +242,21 @@
         }
     }
 
+    function toggleSection(el) {
+        var tabContent = el.parentElement.nextElementSibling;
+        if (tabContent.classList.contains('hidden')) {
+            tabContent.classList.remove('hidden');
+            tabContent.setAttribute('aria-hidden', false);
+            el.classList.remove('collapsed');
+            el.setAttribute('aria-expanded', true);
+        } else {
+            tabContent.classList.add('hidden');
+            tabContent.setAttribute('aria-hidden', true);
+            el.classList.add('collapsed');
+            el.setAttribute('aria-expanded', false);
+        }
+    }
+
     // Don't execute if features aren't supported
     if (supportsBaselineJS()) {
         strings = document.getElementById('strings');
@@ -243,24 +275,22 @@
          * It then calls the appropriate function based on the event target.
          * This avoids adding multiple event handlers on individual elements.
          */
-        mainContent.addEventListener('click', function(event) {
+        mainContent.addEventListener('click', function(e) {
             // hanle clicks on an individual topic
-            if (event.target.tagName === 'H3') {
-                var tabContent = event.target.parentElement.nextElementSibling;
-                if (tabContent.classList.contains('hidden')) {
-                    tabContent.classList.remove('hidden');
-                    tabContent.setAttribute('aria-hidden', false);
-                    event.target.classList.remove('collapsed');
-                } else {
-                    tabContent.classList.add('hidden');
-                    tabContent.setAttribute('aria-hidden', true);
-                    event.target.classList.add('collapsed');
-                }
+            if (e.target.tagName === 'H3') {
+                toggleSection(e.target);
             }
 
             // handle clicks on the master toggle buttons
-            if (event.target.classList.contains('toggle')) {
+            if (e.target.classList.contains('toggle')) {
                 toggleMainSectionTopics(event.target);
+            }
+        });
+
+        mainContent.addEventListener('keyup', function(e) {
+            // handle enter key to toggle sections
+            if (e.keyCode === 13 && e.target.tagName === 'H3') {
+                toggleSection(e.target);
             }
         });
     }
