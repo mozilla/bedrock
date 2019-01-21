@@ -4,8 +4,8 @@
 
 {% extends "firefox/new/scene1.html" %}
 
-{%- block page_title -%} {{_('Download Mozilla Firefox for Linux')}} {%- endblock -%}
-{%- block page_title_suffix -%} {{_(' — Free Web Browser')}} {%- endblock -%}
+{% block page_title_full %}{{_('Download Mozilla Firefox for Linux')}}{{_(' — Free Web Browser')}}{%- endblock -%}
+{% block page_title_suffix %}{% endblock %}
 
 {% block page_desc %}
   {{ _('Download Mozilla Firefox for Linux, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox for Linux today!') }}
