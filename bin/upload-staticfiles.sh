@@ -5,7 +5,9 @@ set -exo pipefail
 source docker/bin/set_git_env_vars.sh
 
 if [[ "$BRANCH_NAME" == "prod" ]]; then
-    BUCKETS=(stage prod)
+    BUCKETS=(prod)
+elif [[ "$BRANCH_NAME" == "stage" ]]; then
+    BUCKETS=(stage)
 elif [[ "$BRANCH_NAME" == "master" ]]; then
     BUCKETS=(dev)
 else
