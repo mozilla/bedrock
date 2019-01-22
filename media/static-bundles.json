@@ -1221,9 +1221,9 @@
     },
     {
       "files": [
-        "js/privacy/privacy-quantum.js"
+        "js/privacy/privacy-protocol.js"
       ],
-      "name": "privacy_quantum"
+      "name": "privacy_protocol"
     },
     {
       "files": [

@@ -7,5 +7,6 @@
 {% block body_class %}{{ super() }} product-firefox{% endblock %}
 
 {% block js %}
+  {{ super() }}
   {{ js_bundle('privacy_firefox') }}
 {% endblock %}
