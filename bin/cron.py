@@ -102,7 +102,7 @@ def schedule_database_jobs():
     @babis.decorator(ping_after=DEAD_MANS_SNITCH_URL)
     def update_upload_database():
         fn_name = 'update_upload_database'
-        command = 'bin/run-db-update.sh'
+        command = 'bin/run-db-update.sh --auth'
         time_since = get_time_since(fn_name)
         if time_since > 21600:  # 6 hours
             command += ' --all'

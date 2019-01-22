@@ -96,8 +96,17 @@ RUN pip install --no-cache-dir -r requirements/docs.txt
 COPY ./setup.cfg ./
 COPY ./tests ./tests
 
+# build args
+ARG GIT_SHA=latest
+ARG BRANCH_NAME=master
+ENV GIT_SHA=${GIT_SHA}
+ENV BRANCH_NAME=${BRANCH_NAME}
+
 # get fresh database
 RUN ./bin/run-db-download.py --force
+
+# rely on build args
+RUN bin/run-sync-all.sh
 
 # get fresh l10n files
 RUN ./manage.py l10n_update
