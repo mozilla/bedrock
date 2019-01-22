@@ -2,11 +2,11 @@
 # http://bedrock.readthedocs.io/en/latest/pipeline.html#configuration
 push_public_registry: true
 regions:
-  - oregon-b
+  - iowa-a
 apps:
   - bedrock-stage
 integration_tests:
-  oregon-b:
+  iowa-a:
     - chrome
     - download
     - firefox
