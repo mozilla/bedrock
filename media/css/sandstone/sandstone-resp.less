@@ -84,14 +84,11 @@ a.more {
 
 // Nightly visual style
 
-.space {
+.space #outer-wrapper {
     color: #fff;
     background: #000;
-
-    #outer-wrapper {
-        background: url('/media/img/firefox/horizon/stars.svg') center 60px no-repeat,
-                    linear-gradient(to bottom, #000, #002048 1000px, #000 2000px);
-    }
+    background: url('/media/img/firefox/horizon/stars.svg') center 60px no-repeat,
+                linear-gradient(to bottom, #000, #002048 1000px, #000 2000px);
 
     a {
         color: @linkBlue;
@@ -128,16 +125,13 @@ a.more {
 }
 
 // Firefox Developer Edition visual style
-.blueprint {
+.blueprint #outer-wrapper {
     color: #fff;
-
-    #outer-wrapper {
-        background: #1e1e21;
-        #gradient > .radial(top, left, ellipse, farthest-side, #00549e 0%, rgba(0, 0, 0, 0) 100%);
-        background-size: 100% 500px;
-        background-repeat: no-repeat;
-        background-position: top center;
-    }
+    background: #1e1e21;
+    #gradient > .radial(top, left, ellipse, farthest-side, #00549e 0%, rgba(0, 0, 0, 0) 100%);
+    background-size: 100% 500px;
+    background-repeat: no-repeat;
+    background-position: top center;
 
     a {
         color: @linkBlue;
