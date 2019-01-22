@@ -3,19 +3,11 @@
 push_public_registry: true
 require_tag: true
 regions:
-  - oregon-b
-  - frankfurt
   - iowa-a
+  - frankfurt
 apps:
   - bedrock-prod
 integration_tests:
-  oregon-b:
-    - chrome
-    - download
-    - firefox
-    - headless
-    - ie
-    - ie9
   frankfurt:
     - headless
   iowa-a:
@@ -23,3 +15,5 @@ integration_tests:
     - download
     - firefox
     - headless
+    - ie
+    - ie9
