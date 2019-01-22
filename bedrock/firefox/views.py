@@ -489,6 +489,7 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
 class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super(WhatsnewView, self).get_context_data(**kwargs)
+        locale = l10n_utils.get_locale(self.request)
 
         # add version to context for use in templates
         version = self.kwargs.get('version') or ''
@@ -508,6 +509,24 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
                 'pt-BR',
                 'ru',
                 'zh-TW',
+            ]
+
+        if ctx['num_version'] == 65:
+            ctx['show_newsletter'] = locale in [
+                'en-US',
+                'en-GB',
+                'en-CA',
+                'en-ZA',
+                'es-ES',
+                'es-AR',
+                'es-CL',
+                'es-MX',
+                'id',
+                'pt-BR',
+                'fr',
+                'ru',
+                'de',
+                'pl'
             ]
 
         return ctx
@@ -536,6 +555,8 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
                 template = 'firefox/whatsnew/index.id.html'
         elif locale == 'zh-TW' and not version.startswith('64.'):
             template = 'firefox/whatsnew/index.zh-TW.html'
+        elif version.startswith('65.'):
+            template = 'firefox/whatsnew/whatsnew-fx65.html'
         elif version.startswith('64.'):
             template = 'firefox/whatsnew/fx64/whatsnew-fx64.html'
         elif version.startswith('63.'):
