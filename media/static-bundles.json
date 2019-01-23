@@ -929,6 +929,12 @@
         "css/mozorg/update-browser.scss"
       ],
       "name": "update-browser"
+    },
+    {
+      "files": [
+        "css/mozorg/incognito-browser.scss"
+      ],
+      "name": "incognito-browser"
     }
   ],
   "js": [
