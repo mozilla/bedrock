@@ -7,7 +7,8 @@ if [ ! -e ./manage.py ]; then
 fi
 
 case "$BRANCH_NAME" in
-    "stage" | "prod") ENV_FILE=prod ;;
+    "stage") ENV_FILE=stage ;;
+    "prod") ENV_FILE=prod ;;
     *) ENV_FILE=master ;;
 esac
 
