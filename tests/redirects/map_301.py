@@ -1768,7 +1768,7 @@ URLS = flatten((
     url_test('/products/thunderbird/sysreq.html', '/thunderbird/system-requirements/'),
     url_test('/profilemanager/isp-rdf-info.txt', 'https://developer.mozilla.org/docs/Isp_Data'),
     url_test('/projects.html', 'https://www.mozilla.org/projects/'),
-    url_test('/projects/browsers.html', 'https://www.mozilla.org'),
+    url_test('/projects/browsers.html', '/firefox/new/'),
     url_test('/projects/bugzilla', 'https://www.bugzilla.org'),
     url_test('/projects/deerpark/', '/firefox/channel/desktop/'),
     url_test('/projects/distros.html', '/projects/mozilla-based.html'),

@@ -1710,7 +1710,7 @@ redirectpatterns = (
     redirect('^products/thunderbird(/.*)?$', '/thunderbird/'),
     redirect('^profilemanager/isp-rdf-info\.txt$', 'https://developer.mozilla.org/docs/Isp_Data'),
     redirect('^projects\.html$', 'https://www.mozilla.org/projects/'),
-    redirect('^projects/browsers\.html$', 'https://www.mozilla.org'),
+    redirect('^projects/browsers\.html$', '/firefox/new/'),
     redirect('^projects/bugzilla$', 'https://www.bugzilla.org'),
     redirect('^projects/camino/damagedBookmarks\.html$',
              'http://wiki.caminobrowser.org/QA:Damaged_Bookmarks'),
