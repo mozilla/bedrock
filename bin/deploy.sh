@@ -10,7 +10,7 @@ cd config_checkout
 
 set -u
 sed -i -e "s|image: .*|image: ${DEPLOYMENT_DOCKER_IMAGE}|" ${CLUSTER_NAME}/${NAMESPACE}/{clock-,}${DEPLOYMENT_YAML:=deploy.yaml}
-git add ${CLUSTER_NAME}/${NAMESPACE}/{clock-,${DEPLOYMENT_YAML}}
+git add ${CLUSTER_NAME}/${NAMESPACE}/{clock-,}${DEPLOYMENT_YAML}
 git commit -m "set image to ${DEPLOYMENT_DOCKER_IMAGE} in ${CLUSTER_NAME}" || echo "nothing new to commit"
 git push
 DEPLOYMENT_VERSION=$(git rev-parse --short HEAD)
