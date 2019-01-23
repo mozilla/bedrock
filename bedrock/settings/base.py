@@ -1288,9 +1288,14 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
     }
 }
 
+if DEV:
+    content_cards_default_branch = 'master-processed'
+else:
+    content_cards_default_branch = 'prod-processed'
+
 CONTENT_CARDS_PATH = config('CONTENT_CARDS_PATH', default=path('content_cards'))
 CONTENT_CARDS_REPO = config('CONTENT_CARDS_REPO', default='https://github.com/mozmeao/www-admin.git')
-CONTENT_CARDS_BRANCH = config('CONTENT_CARDS_BRANCH', default='master-processed')
+CONTENT_CARDS_BRANCH = config('CONTENT_CARDS_BRANCH', default=content_cards_default_branch)
 CONTENT_CARDS_URL = config('CONTENT_CARDS_URL', default=STATIC_URL)
 
 RELEASE_NOTES_PATH = config('RELEASE_NOTES_PATH', default=path('release_notes'))
