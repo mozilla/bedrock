@@ -15,8 +15,8 @@
         var mclane = new Mozilla.TrafficCop({
             id: 'experiment_win10_taskbar_funnelcake',
             variations: {
-                'f=138': 9, // control build
-                'f=139': 9  // taskbar build
+                'f=138': 18, // control build
+                'f=139': 18  // taskbar build
             }
         });
 
