@@ -4,9 +4,7 @@
 
  {% extends "base-protocol.html" %}
 
- {% from "macros-protocol.html" import call_out, call_out_compact with context %}
-
- {% add_lang_files "mozorg/technology/update-browser" %}
+ {% from "macros-protocol.html" import call_out_compact with context %}
 
  {% block page_title %}{{ _('Update your browser to fast, safe and secure Firefox.') }}{% endblock %}
 
@@ -22,14 +20,14 @@
    <div class="mzp-l-content">
    <article class="mzp-c-article">
      <h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
-     <p class="mzp-c-article-intro">{{ _('One of the most important things you can do to have safe, fast and secure online browsing experience is to make sure your browser is up to date. Update your browser like you would update your apps. No matter which browser you use, make sure you’re using the latest version.') }}</p>
+     <p class="mzp-c-article-intro">{{ _('One of the most important things you can do to have a safe, fast and secure online browsing experience is to make sure your browser is up to date. Update your browser like you would update your apps. No matter which browser you use, make sure you’re using the latest version.') }}</p>
 
      <img src="{{ static('img/mozorg/technology/fast.png') }}" alt="" class="c-article-image">
 
      <h2 class="c-section-title">{{ _('Stay safe, browse safe') }}</h2>
      <p>
-     {% trans %}
-        Up-to-date browsers protect you from viruses, security breaches and hacks. Older versions of browsers may be vulnerable to attacks and security holes. Firefox engineers have been known to ship a security update within a day of learning of a vulnerability.
+     {% trans security="https://hacks.mozilla.org/2018/03/shipping-a-security-update-of-firefox-in-less-than-a-day/"%}
+        Up-to-date browsers protect you from viruses, security breaches and hacks. Older versions of browsers may be vulnerable to attacks and security holes. Firefox engineers have been known to ship a security update <a href="{{ security }}">within a day</a> of learning of a vulnerability.
      {% endtrans %}
      </p>
 
@@ -42,33 +40,31 @@
 
      <h2 class="c-section-title">{{ _('The best privacy') }}</h2>
      <p>
-     {% trans %}
-        We are passionate about user privacy. With each new release we give you more ways to control who sees and accesses your personal browsing data. Tracking protection, private browsing and powerful privacy extensions all work together to make sure your private browsing information stays yours.
+     {% trans privacy="https://blog.mozilla.org/firefox/make-your-firefox-browser-a-privacy-superpower-with-these-extensions/"%}
+        We are passionate about user privacy. With each new release we give you more ways to control who sees and accesses your personal browsing data. Tracking protection, private browsing and <a href="{{ privacy }}">powerful privacy extensions</a> all work together to make sure your private browsing information stays yours.
      {% endtrans %}
      </p>
 
      <h2 class="c-section-title">{{ _('New features') }}</h2>
      <p>
-     {% trans %}
-        Whether it’s enabling powerful new Mixed Reality features, improving accessibility or testing extensions that enrich your life, new browser releases always have something new and innovative for you to enjoy. Don’t miss out by lagging behind on an older version.
+     {% trans accessibility="https://support.mozilla.org/en-US/kb/accessibility-features-firefox-make-firefox-and-we", extensions="https://blog.mozilla.org/firefox/its-a-new-firefox-multi-tasking-extension-side-view/" %}
+        Whether it’s enabling powerful new Mixed Reality features, improving <a href="{{ accessibility }}">accessibility</a> or testing <a href="{{ extensions }}">extensions that enrich your life</a>, new browser releases always have something new and innovative for you to enjoy. Don’t miss out by lagging behind on an older version.
      {% endtrans %}
      </p>
-   </article>
 
-   <article class="mzp-c-article">
-      <img src="{{ static('img/mozorg/technology/device.png') }}" alt="" class="c-article-image">
-      <h1 class="mzp-c-article-title">{{ _('Why Firefox?') }}</h1>
-      <p class="mzp-c-article-intro">
-        {% trans %}
-          Firefox is independent and a part of the not-profit Mozilla, which fights for your online rights, keeps corporate powers in check and makes the Internet accessible to everyone, everywhere. We believe the Internet is for people, not profit. Unlike other companies, we don’t sell access to your data. You’re in control over who sees your search and browsing history. All that and exceptional performance too.
-        {% endtrans %}
-      </p>
-      <h2 class="c-section-title">{{ _('How do I update?') }}</h2>
-      <p>
-      {% trans %}
-        Most major browsers update automatically, which means that when a new version is available, your system will download and install it for you. So that’s one less thing you have to worry about keeping on top of. First find out which version of your browser you’re on. Then, if you have your auto update switched off, here’s how to Firefox, Edge, Chrome, Opera or Safari.
-      {% endtrans %}
-      </p>
+     <img src="{{ static('img/mozorg/technology/device.png') }}" alt="" class="c-article-image">
+     <h1 class="mzp-c-article-title">{{ _('Why Firefox?') }}</h1>
+     <p>
+       {% trans %}
+         Firefox is independent and a part of the not-for-profit Mozilla, which fights for your online rights, keeps corporate powers in check and makes the internet accessible to everyone, everywhere. We believe the internet is for people, not profit. Unlike other companies, we don’t sell access to your data. You’re in control over who sees your search and browsing history. All that and exceptional performance too.
+       {% endtrans %}
+     </p>
+     <h2 class="c-section-title">{{ _('How do I update?') }}</h2>
+     <p>
+     {% trans version="https://blog.mozilla.org/firefox/info-worth-knowing-firefox-version-using/", firefox="https://support.mozilla.org/en-US/kb/update-firefox-latest-version", edge="https://www.microsoft.com/en-ca/windows/microsoft-edge", chrome="https://support.google.com/chrome/answer/95414", opera="https://help.opera.com/en/opera-tutorials/how-do-i-update-my-opera-browser/", safari="https://support.apple.com/en-ca/HT204416"%}
+       Most major browsers update automatically, which means that when a new version is available, your system will download and install it for you. So that’s one less thing you have to worry about keeping on top of. First find out <a href="{{ version }}">which version of your browser you’re on</a>. Then, if auto update is switched off, here’s how to manually update <a href="{{ firefox }}">Firefox</a>, <a href="{{ edge }}">Edge</a>, <a href="{{ chrome }}">Chrome</a>, <a href="{{ opera }}">Opera</a> or <a href="{{ safari }}">Safari</a>.
+     {% endtrans %}
+     </p>
    </article>
   </div>
 

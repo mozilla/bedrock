@@ -28,12 +28,6 @@ $image-path: '/media/protocol/img';
         display: block;
         margin: $layout-md auto;
     }
-
-    blockquote {
-        @include open-sans;
-        @include text-display-sm;
-        margin: $layout-md auto;
-    }
 }
 
 /* -------------------------------------------------------------------------- */
