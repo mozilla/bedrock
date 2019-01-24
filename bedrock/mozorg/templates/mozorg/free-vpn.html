@@ -1,0 +1,117 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+ {% extends "base-protocol.html" %}
+
+ {% from "macros-protocol.html" import call_out_compact with context %}
+
+ {% block page_title %}{{ _('Download a free VPN for Firefox to stay secure.') }}{% endblock %}
+
+ {% block page_desc %}
+   {{ _('The gold standard for private browsing and tracking protection – a Firefox VPN for Firefox. Download now.') }}
+ {% endblock %}
+
+ {% block page_css %}
+   {{ css_bundle('free-vpn') }}
+ {% endblock %}
+
+ {% block content %}
+   <div class="mzp-l-content">
+   <article class="mzp-c-article">
+     <h1 class="mzp-c-article-title">{{ _('Free VPN with Firefox') }}</h1>
+     <p>{{ _('Browse the web with more privacy and security.') }}</p>
+
+     <img src="{{ static('img/mozorg/technology/illo-vpn.png') }}" alt="" class="c-article-image">
+
+     <p class="mzp-c-article-intro">
+       {% trans private='https://support.mozilla.org/en-US/kb/private-browsing-use-firefox-without-history', tracking='https://support.mozilla.org/en-US/kb/what-happened-tracking-protection?redirectlocale=en-US&redirectslug=tracking-protection' %}
+       Firefox <a href="{{ private }}">Private Browsing</a> and <a href="{{ tracking }}">Tracking Protection</a> keep your browsing history and online activity safe from many prying eyes, but not all of them. For truly private browsing, you’ll need a VPN.
+       {% endtrans %}
+     </p>
+
+     <h2 class="mzp-c-article-subtitle">{{ _('What is a VPN?') }}</h2>
+     <p>
+     {% trans %}
+        VPNs route your web traffic through remote servers. Outside observers like your ISP, school, or employer, can’t see which websites you visit or access your browser history. A VPN will also mask your location—you will appear to be browsing from somewhere else.
+     {% endtrans %}
+     </p>
+
+     <h2 class="c-section-title">{{ _('Security on the Go') }}</h2>
+     <p>
+     {% trans %}
+        VPNs can give you an added layer of privacy and security when using public Wi-Fi in cafes, airports, or hotels.
+     {% endtrans %}
+     </p>
+
+     <h2 class="c-section-title">{{ _('Harder to Track') }}</h2>
+     <p>
+     {% trans %}
+        When you use a VPN, it will be difficult for advertisers to create an accurate profile of you. To them, you will appear as an anonymous computer in another location.
+     {% endtrans %}
+     </p>
+
+     <h2 class="mzp-c-article-subtitle">{{ _('How to get a VPN') }}</h2>
+     <p>
+     {% trans addons='https://addons.mozilla.org/en-US/firefox/search/?platform=mac&q=VPN' %}
+        To get a VPN, just add a free extension to Firefox. There are tons of options in the <a href="{{ addons }}">Add-ons store</a>, but here are a few popular options:
+     {% endtrans %}
+     </p>
+
+     <div class="mzp-l-card-third mzp-l-content mzp-t-firefox">
+       <ul class="vpn-list">
+         <li>
+           <img src="{{ static('img/mozorg/technology/hoxx-vpn.png') }}" alt="">
+           <div class="content">
+             <h2><a href="https://addons.mozilla.org/en-US/firefox/addon/hoxx-vpn-proxy/">{{ _('Hoxx VPN Proxy') }}</a></h2>
+             <p>
+               {% trans %}
+                Hoxx is free and has VPN servers all over the world. Install and browse safely.
+               {% endtrans %}
+             </p>
+           </div>
+         </li>
+         <li>
+           <img src="{{ static('img/mozorg/technology/hola-vpn.png') }}" alt="">
+           <div class="content">
+             <h2><a href="https://addons.mozilla.org/en-US/firefox/addon/hola-unblocker/">{{ _('Hola VPN Proxy') }}</a></h2>
+             <p>
+               {% trans free="https://hola.org/firefox" %}
+                Another <a href="{{ free }}">free VPN service</a> to help users bypass internet restrictions in some countries and institutions.
+               {% endtrans %}
+             </p>
+           </div>
+         </li>
+         <li>
+           <img src="{{ static('img/mozorg/technology/browsec-vpn.png') }}" alt="">
+           <div class="content">
+             <h2><a href="https://addons.mozilla.org/en-US/firefox/addon/browsec/">{{ _('Browsec VPN') }}</a></h2>
+             <p>
+               {% trans browsec="https://browsec.com/" %}
+                A free VPN service with more than 285,000 users. <a href="{{ browsec }}">Installs with a click!</a>
+               {% endtrans %}
+             </p>
+           </div>
+         </li>
+      </ul>
+    </div>
+
+     <h2 class="c-section-title">{{ _('How to Install a VPN Extension') }}</h2>
+     <p>
+      {% trans %}
+        Downloading and installing a VPN extension is as easy as installing any extension. Simply click the “Add to Firefox” button on the Add-ons page for your chosen VPN. Follow the instructions for your preferred VPN. To see your add-ons, click the Menu button and select add-ons.
+      {% endtrans %}
+     </p>
+   </article>
+  </div>
+
+  {% call call_out_compact(
+    title=_('Take control of your browser.'),
+    class='mzp-t-product-firefox mzp-t-firefox'
+  ) %}
+    <div class="download-firefox">
+      {{ download_firefox(download_location='secondary cta') }}
+    </div>
+  {% endcall %}
+
+ {% endblock %}

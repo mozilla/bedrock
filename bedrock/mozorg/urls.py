@@ -311,6 +311,7 @@ urlpatterns = (
     url(r'^robots.txt$', views.Robots.as_view(), name='robots.txt'),
     url('^technology/$', views.TechnologyView.as_view(), name='mozorg.technology'),
     page('technology/what-is-a-browser', 'mozorg/what-is-a-browser.html'),
+    page('firefox/features/free-vpn', 'mozorg/free-vpn.html'),
 
     url('^developer/$', views.DeveloperView.as_view(), name='mozorg.developer'),
     page('developer/css-grid', 'mozorg/developer/css-grid-demo.html'),

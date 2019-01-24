@@ -1,0 +1,86 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/article';
+@import '../../protocol/css/components/call-out';
+
+
+.mzp-c-article {
+    margin: 0 auto $layout-lg;
+
+    .mzp-c-article-title {
+        @include open-sans;
+        @include text-display-lg;
+    }
+
+    .mzp-c-article-subtitle {
+        @include open-sans;
+        @include text-display-md;
+        margin-top: 48px;
+    }
+
+    .c-section-title {
+        @include open-sans;
+        @include text-display-sm;
+        margin-top: $layout-md;
+    }
+
+    .c-article-image {
+        display: block;
+        margin: $layout-md auto;
+    }
+
+    blockquote {
+        @include open-sans;
+        @include text-display-sm;
+        margin: $layout-md auto;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+//  VPN List
+
+.vpn-list {
+    @include open-sans;
+    margin-top: 48px;
+
+    li {
+        display: grid;
+        grid-column-gap: 25px;
+        grid-template-columns: 50px auto;
+
+        h2 {
+            @include text-display-xs;
+        }
+
+        .content {
+            grid-column: 2/2;
+            grid-row: 1/2;
+            margin: 0;
+            min-width: 0;
+            width: auto;
+        }
+
+        img {
+            grid-column: 1/2;
+            grid-row: 1/3;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Download button
+
+.download-firefox {
+    text-align: center;
+
+    .mzp-c-button-download-container {
+        margin: $spacing-lg 0;
+    }
+}
+
