@@ -656,4 +656,7 @@ redirectpatterns = (
 
     # issue 6266
     redirect(r'^about/policy/leandata/?$', 'mozorg.about.policy.lean-data.index'),
+
+    # issue 6756 - vanity URL
+    redirect(r'^decentralization/?$', 'mozorg.internet-health.decentralization'),
 )
