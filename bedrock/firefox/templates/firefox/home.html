@@ -31,38 +31,9 @@
 
 {% block page_css %}
   {{ css_bundle('firefox-home') }}
-  {% if switch('firefox_home_fbvideochat_funnelcake', ['en-US']) %}
-    {{ css_bundle('firefox-home-fbvideochat-funnelcake') }}
-  {% endif %}
 {% endblock %}
 
 {% block body_id %}firefox-home{% endblock %}
-
-{% block site_header %}
-  {% if switch('firefox_home_fbvideochat_funnelcake', ['en-US']) %}
-    <div id="fbvideochat-banner" class="fbvideochat-banner">
-      <div class="content">
-        <div id="fbvideochat-close" class="fbvideochat-close"><button type="button"><span>Close</span></button></div>
-        <div class="header-content-wrapper">
-          <div class="header-content">
-            <p>Facebook Video Messenger calls are easy with</p>
-
-            <img class="banner-logo delay-load" src="{{ static('img/placeholder.png') }}" data-src="{{ static('img/logos/firefox/logo-quantum-wordmark-large.png') }}" data-srcset="{{ static('img/logos/firefox/logo-quantum-wordmark-large-high-res.png') }}" alt="" width="185" height="69" />
-
-            {{ download_firefox(dom_id='download-fbvideochat', alt_copy=_('Download now'), download_location='banner cta') }}
-          </div>
-          <div class="header-image-wrapper">
-            <figure class="header-image">
-              <img class="delay-load" src="{{ static('img/placeholder.png') }}" data-src="{{ static('img/firefox/home/fbvideochat-screenshot.jpg') }}" data-srcset="{{ static('img/firefox/home/fbvideochat-screenshot-high-res.jpg') }}" alt="" width="810" height="433" />
-              <figcaption>Launch your video experience by downloading Firefox.</figcaption>
-            </figure>
-          </div>{#-- /.header-image-wrapper --#}
-        </div>{#-- /.header-content-wrapper --#}
-      </div>{#-- /.content --#}
-    </div>{#-- /.fbvideochat-banner --#}
-  {% endif %}
-  {{ super() }}
-{% endblock %}
 
 {% block content %}
 {% with current='desktop' %}
@@ -461,7 +432,4 @@
 
 {% block js %}
   {{ js_bundle('firefox-home') }}
-  {% if switch('firefox_home_fbvideochat_funnelcake', ['en-US']) %}
-    {{ js_bundle('firefox-home-fbvideochat-funnelcake') }}
-  {% endif %}
 {% endblock %}
