@@ -13,14 +13,6 @@
 {% endblock %}
 
 {% block experiments %}
-  {% if switch('experiment_firefox_new_scene1_fx', ['en-US']) %}
-    {% if v != 'y' %}
-      {{ js_bundle('firefox_new_scene1_fx_experiment') }}
-    {% elif v == 'y' %}
-      {{ js_bundle('firefox_new_scene1_fx_experiment_y') }}
-    {% endif %}
-  {% endif %}
-
   {% if switch('experiment_firefox_new_win10_taskbar_funnelcake', ['en-US']) %}
     {{ js_bundle('experiment_firefox_new_win10_taskbar_funnelcake') }}
   {% endif %}

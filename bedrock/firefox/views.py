@@ -639,13 +639,11 @@ def download_thanks(request):
     pre_download_locales = ['en-US', 'en-GB', 'en-CA', 'en-ZA', 'de', 'fr']
 
     # ensure variant matches pre-defined value
-    if variant not in ['a', 'x', 'y']:  # place expected ?v= values in this list
+    if variant not in ['a']:  # place expected ?v= values in this list
         variant = None
 
     if variant == 'a' and locale in pre_download_locales:
         show_newsletter = False  # Prevent showing the newsletter for pre-download experiment Issue #6456
-    if variant == 'x' and locale == 'en-US':
-        show_newsletter = False  # Prevent showing the newsletter for FxA account experiment mozilla/bedrock#5974
 
     if locale == 'de':
         if experience == 'berlin':
@@ -687,7 +685,7 @@ def new(request):
     locale = l10n_utils.get_locale(request)
 
     # ensure variant matches pre-defined value
-    if variant not in ['a', '1', '2', '3', '4', 'x', 'y']:  # place expected ?v= values in this list
+    if variant not in ['a', '1', '2', '3', '4']:  # place expected ?v= values in this list
         variant = None
 
     if scene == '2':
@@ -717,9 +715,7 @@ def new(request):
         elif switch('firefox-yandex') and locale == 'ru':
             template = 'firefox/new/yandex/scene1.html'
         elif locale == 'en-US':
-            if variant == 'x':
-                template = 'firefox/new/fx/scene1.html'
-            elif experience == 'betterbrowser':
+            if experience == 'betterbrowser':
                 template = 'firefox/new/better-browser/scene1.html'
             elif experience == 'safari':
                 template = 'firefox/new/compare/scene1-safari.html'
