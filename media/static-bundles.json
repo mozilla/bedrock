@@ -1283,34 +1283,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/new/compare-edge-experiment.js"
-      ],
-      "name": "firefox_new_compare_edge_experiment"
-    },
-    {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/new/compare-chrome-experiment.js"
-      ],
-      "name": "firefox_new_compare_chrome_experiment"
-    },
-    {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/new/compare-opera-experiment.js"
-      ],
-      "name": "firefox_new_compare_opera_experiment"
-    },
-    {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/new/compare-ie-experiment.js"
-      ],
-      "name": "firefox_new_compare_ie_experiment"
-    },
-    {
-      "files": [
         "js/libs/jquery.waypoints.min.js",
         "js/libs/jquery.waypoints-sticky.min.js",
         "js/hubs/sub-nav.js"
