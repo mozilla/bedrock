@@ -713,6 +713,45 @@
         </div>
       </article>
 
+    {% if switch('leadership_higgins') %}
+      <article id="shani-higgins" data-id="shani-higgins" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+        <figure class="headshot">
+          {{ high_res_img('mozorg/about/leadership/shani-higgins.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+          <figcaption><h4 class="fn" itemprop="name">Shani Higgins</h4></figcaption>
+        </figure>
+
+        <div class="person-info">
+          <p class="title" itemprop="jobTitle">{{ _('VP, Business Operations and Revenue') }}</p>
+          <p class="since">{{ _('With Mozilla since:') }} 2019</p>
+
+          <ul class="utility">
+            <li><a class="file" rel="external" href="https://assets.mozilla.net/leadership/mozilla_portrait_Shani-Higgins.jpg">{{ _('Download high resolution photo') }}</a></li>
+            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#shani-higgins">{{ _('Link to this bio') }}</a></li>
+          </ul>
+        </div>
+
+        <div class="person-bio">
+          <p>
+          {% trans %}
+            As Vice President of Business Operations and Revenue, Shani is responsible for the strategy and implementation of data-driven improvements to customer success and driving resiliency and competitive differentiation in our product and business strategy.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Shani joins Mozilla from Technorati, a leading advertising technology company, where she served as CEO and led its sale to Synacor. During her time at Technorati she was instrumental in pivoting the company from a blog search engine into an advertising platform for publishers and offering the first agnostic header bidding management technology. During her tenure she held the role of General Manager, overseeing marketing, sales and operations and successfully grew the company’s revenues to over $25 million. Prior to her time at Technorati, Shani served in various lead business development and strategic sales roles at TACIT Software, which was acquired by Oracle, ZDnet which was acquired by CNET, and Infoseek which was acquired by Disney.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Shani holds a B.A. in Communications and Art History with a minor in Economics from Rutgers University.
+          {% endtrans %}
+          </p>
+        </div>
+      </article>
+    {% endif %}
+
       <article id="amy-keating" data-id="amy-keating" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/amy-keating.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
