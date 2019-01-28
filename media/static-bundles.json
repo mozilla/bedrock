@@ -66,6 +66,12 @@
     },
     {
       "files": [
+        "css/firefox/new/scene2-install.scss"
+      ],
+      "name": "firefox_new_scene2_install"
+    },
+    {
+      "files": [
         "css/sandstone/sandstone-resp.less",
         "css/base/notification-banner.less",
         "css/tabzilla/tabzilla-static.less",
@@ -1333,6 +1339,20 @@
         "js/firefox/home/experiment-pre-download-locales.js"
       ],
       "name": "experiment-firefox-home-pre-download-locales"
+    },
+    {
+      "files": [
+        "js/base/mozilla-traffic-cop.js",
+        "js/firefox/new/install/experiment.js"
+      ],
+      "name": "experiment-firefox-download-install"
+    },
+    {
+      "files": [
+        "js/base/stub-attribution.js",
+        "js/firefox/new/install/variant.js"
+      ],
+      "name": "experiment-firefox-download-install-variant"
     },
     {
       "files": [

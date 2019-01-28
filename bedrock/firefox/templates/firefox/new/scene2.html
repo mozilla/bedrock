@@ -133,6 +133,7 @@
       </aside>
 
       {% else %}
+      {% block main_content %}
       <aside class="mobile-download">
         <h1 class="headline">{{ _('Let’s do this!') }}</h1>
         <p class="tagline">{{ _('Sync up with Firefox on mobile:') }}</p>
@@ -147,6 +148,7 @@
           </li>
         </ul>
       </aside>
+      {% endblock %}
 
       {% endif %}
     </div>
