@@ -549,12 +549,6 @@
     },
     {
       "files": [
-        "css/firefox/home-fbvideochat-funnelcake.scss"
-      ],
-      "name": "firefox-home-fbvideochat-funnelcake"
-    },
-    {
-      "files": [
         "css/mozorg/history-slides.less"
       ],
       "name": "history-slides"
@@ -1428,12 +1422,6 @@
         "js/firefox/dev-whatsnew.js"
       ],
       "name": "firefox_developer_whatsnew"
-    },
-    {
-      "files": [
-        "js/firefox/home/fbvideochat-funnelcake.js"
-      ],
-      "name": "firefox-home-fbvideochat-funnelcake"
     },
     {
       "files": [
