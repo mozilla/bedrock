@@ -929,6 +929,12 @@
         "css/mozorg/what-is-a-browser.scss"
       ],
       "name": "what-is-a-browser"
+    },
+    {
+      "files": [
+        "css/mozorg/update-browser.scss"
+      ],
+      "name": "update-browser"
     }
   ],
   "js": [
