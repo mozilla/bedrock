@@ -1,0 +1,35 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/article';
+@import "../../protocol/css/components/call-out";
+
+
+.mzp-c-article {
+    margin: 0 auto $layout-lg;
+
+    .mzp-c-article-title {
+        @include text-display-lg;
+    }
+
+    .c-section-title-large {
+        @include text-display-md;
+        margin-top: $layout-md;
+    }
+
+    .c-section-title {
+        @include text-display-sm;
+        margin-top: $layout-md;
+    }
+
+    .c-article-image {
+        display: block;
+        margin: $layout-md auto;
+    }
+}
+
