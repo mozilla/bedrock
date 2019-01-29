@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros-protocol.html" import call_out_compact with context %}
+
 {% extends "base-protocol.html" %}
 
 {% block page_title %}{{ _('Incognito browser: What it really means') }}{% endblock %}
@@ -197,4 +199,14 @@
 
   </article>
 </div>
+
+{% call call_out_compact(
+  title=_('Take control of your browser.'),
+  class='mzp-t-product-firefox mzp-t-firefox'
+) %}
+  <div class="download-firefox">
+    {{ download_firefox(download_location='secondary cta') }}
+  </div>
+{% endcall %}
+
 {% endblock %}
