@@ -1,0 +1,224 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import call_out_compact with context %}
+
+{% extends "base-protocol.html" %}
+
+{% block page_title %}{{ _('Browser History: Epic power struggles that brought us modern browsers') }}{% endblock %}
+
+{% block page_desc %}
+  {{ _('The browser wars, underdogs vs giants, and moments that changed the world. Read about the history of the web browser.') }}
+{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('browser-history') }}
+{% endblock %}
+
+{% block content %}
+  <div class="mzp-l-content">
+  <article class="mzp-c-article">
+
+    <h1 class="mzp-c-article-title">{{ _('The History of Web Browsers') }}</h1>
+    <p class="mzp-c-article-intro">
+    {% trans %}
+      World history is rife with epic power struggles, world-conquering tyrants, and heroic
+      underdogs. The history of web browsers isn’t very different. University pioneers wrote
+      simple software that sparked an information revolution, and battle for browser
+      superiority and internet users.
+    {% endtrans %}
+    </p>
+
+    <img src="{{ static('img/mozorg/technology/browser-history-a.png') }}" alt="" class="c-article-image">
+
+    <h2 class="c-section-title">{{ _('Before Web Era') }}</h2>
+
+    <p>
+    {% trans %}
+      In 1950, computers took up whole rooms and were dumber than today’s pocket calculators.
+      But progress was swift, and by 1960 they were able to run complex programs. Governments
+      and universities across the globe thought it would be great if the machines could talk,
+      nurturing collaboration and scientific breakthroughs.
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans arpanet='https://en.wikipedia.org/wiki/ARPANET' %}
+      <a href="{{ arpanet }}">ARPANET</a> was the first successful networking project and in
+      1969 the first message was sent from the computer science lab at University of California,
+      Los Angeles (UCLA) to Stanford Research Institute (SRI), also in California.
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans %}
+      That sparked a revolution in computer networking. New networks formed, connecting
+      universities and research centers across the globe. But for the next 20 years, the
+      internet wasn’t accessible to the public. It was restricted to university and government
+      researchers, students, and private corporations. There were dozens of programs that
+      could trade information over telephone lines, but none of them were easy to use. The
+      real open internet, and the first web browser, wasn’t created until 1990.
+    {% endtrans %}
+    </p>
+
+    <h2 class="c-section-title">{{ _('Web Era') }}</h2>
+
+    <p>
+    {% trans cern='https://home.cern/topics/birth-web' %}
+      British computer scientist Tim Berners-Lee created the first web server and graphical web
+      browser in 1990 while <a href="{{ cern }}">working at CERN</a>, the European Organization
+      for Nuclear Research, in Switzerland. He called his new window into the internet
+      “WorldWideWeb.” It was an easy-to-use graphical interface created for the NeXT computer.
+      For the first time, text documents were linked together over a public network—the web as
+      we know it.
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans %}
+      A year later, Berners-Lee asked CERN math student Nicola Pellow to write the Line Mode
+      Browser, a program for basic computer terminals.
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans firefox='https://en.wikipedia.org/wiki/Firefox' %}
+      By 1993, the web exploded. Universities, governments, and private corporations all saw
+      opportunity in the open internet. Everyone needed new computer programs to access it.
+      That year, Mosaic was created at the National Center for Supercomputing Applications
+      (NCSA) at the University of Illinois Urbana-Champaign by computer scientist Marc Andreessen.
+      It was the very first popular web browser and the early ancestor of
+      <a href="{{ firefox }}">Mozilla Firefox</a>.
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans netscape='https://en.wikipedia.org/wiki/Netscape_(web_browser)' %}
+      NSCA Mosaic ran on Windows computers, was easy to use, and gave anyone with a PC access
+      to early web pages, chat rooms, and image libraries. The next year (1994), Andreessen
+      founded <a href="{{ netscape }}">Netscape</a> and released Netscape Navigator to the
+      public. It was wildly successful, and the first browser for the people. It was also the
+      first move in a new kind of war for internet users.
+    {% endtrans %}
+    </p>
+
+    <h2 class="c-section-title">{{ _('The Browser Wars') }}</h2>
+
+    <p>
+    {% trans ie='https://en.wikipedia.org/wiki/Internet_Explorer' %}
+      By 1995, Netscape Navigator wasn’t the only way to get online. Computer software giant
+      Microsoft licensed the old Mosaic code and built its own window to the web,
+      <a href="{{ ie }}">Internet Explorer</a>. The release sparked a war. Netscape and Microsoft
+      worked feverishly to make new versions of their programs, each attempting to outdo the
+      other with faster, better products.
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans blink='https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blink' %}
+      Netscape created and released JavaScript, which gave websites powerful computing
+      capabilities they never had before. (They also made the infamous
+      <a href="{{ blink }}">&lt;blink&gt; tag</a>.) Microsoft countered with Cascading Style
+      Sheets (CSS), which became the standard for web page design.
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans out_of_hand='https://medium.com/@ddprrt/tales-from-the-browser-wars-mozilla-stomps-internet-explorer-799035887cb1',
+             dino='https://medium.com/@ddprrt/tales-from-the-browser-wars-mozilla-stomps-internet-explorer-799035887cb1'
+    %}
+      Things got a <a href="{{ out_of_hand }}">little out of hand</a> in 1997 when Microsoft
+      released Internet Explorer 4.0. The team built a giant letter “e” and snuck it on the
+      lawn of Netscape headquarters. The Netscape team promptly knocked the giant “e” over
+      and <a href="{{ dino }}">put their own Mozilla dinosaur mascot on top of it</a>.
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans mozilla='https://en.wikipedia.org/wiki/Mozilla',
+             marketshare='https://en.wikipedia.org/wiki/Internet_Explorer#Market_adoption_and_usage_share'
+    %}
+      Then Microsoft began shipping Internet Explorer with their Windows operating system.
+      Within 4 years, it had 75% of the market and by 1999 it had 99% of the market. The company
+      faced antitrust litigation over the move, and Netscape decided to open source its codebase
+      and created the not-for-profit <a href="{{ mozilla }}">Mozilla</a>, which went on to create
+      and release Firefox in 2002. Realizing that having a browser monopoly wasn’t in the best
+      interests of users and the open web, Firefox was created to provide choice for web users.
+      By 2010, Mozilla Firefox and others had <a href="{{ marketshare }}">reduced Internet
+      Explorer’s market share to 50%</a>.
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans %}
+      Other competitors emerged during the late ‘90s and early 2000s, including Opera, Safari,
+      and Google Chrome. Microsoft Edge replaced Internet Explorer with the release of Windows
+      10 in 2015.
+    {% endtrans %}
+    </p>
+
+    <img src="{{ static('img/mozorg/technology/browser-history-b.png') }}" alt="" class="c-article-image">
+
+    <h2 class="mzp-c-article-title">{{ _('Browsing the Web Today') }}</h2>
+
+    <p>
+    {% trans applications='https://blog.mozilla.org/firefox/no-judgment-digital-definitions-app-vs-web-app/' %}
+      Today there are just a handful of ways to access the internet. Firefox, Google Chrome,
+      Microsoft Edge, Safari and Opera are the main competitors. Mobile devices have emerged
+      during the past decade as the preferred way to access the internet. Today, most internet
+      users only use mobile browsers and <a href="{{ applications }}">applications</a> to get
+      online. Mobile versions of the major browsers are available for iOS and Android devices.
+      While these apps are very useful for specific purposes, they only provide limited access
+      to the web.
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans vr='https://mixedreality.mozilla.org/' %}
+      In the future, the web will likely stray further from its hypertext roots to become a
+      vast sea of interactive experiences. Virtual reality has been on the horizon for decades
+      (at least since the release of Lawnmower Man in 1992 and the Nintendo Virtual Boy in 1995),
+      but the web may finally bring it to the masses. Firefox now has support for
+      <a href="{{ vr }}">WebVR and A-Frame</a>, which let developers quickly and easily build
+      virtual reality websites.  Most modern mobile devices support <a href="{{ vr }}">WebVR</a>,
+      and can easily be used as headsets with simple cardboard cases. A 3D virtual reality web
+      like the one imagined by science fiction author Neal Stephenson may be just around the
+      corner. If that’s the case, the web browser itself may completely disappear and become a
+      true window into another world.
+    {% endtrans %}
+    </p>
+
+    <p>
+    {% trans %}
+      Whatever the future of the web holds, Mozilla and Firefox will be there for users, ensuring
+      that they have powerful tools to experience the web and all it has to offer. The web is for
+      everyone, and everyone should have control of their online experience. That’s why we give
+      Firefox tools to protect user privacy and we never sell user data to advertisers.
+    {% endtrans %}
+    </p>
+
+    <h3 class="c-section-title">{{ _('Resources') }}</h3>
+
+    <ul class="mzp-u-list-styled">
+      <li><a href="https://en.wikipedia.org/wiki/Mosaic_(web_browser)">https://en.wikipedia.org/wiki/Mosaic_(web_browser)</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/History_of_the_web_browser">https://en.wikipedia.org/wiki/History_of_the_web_browser</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/History_of_the_Internet">https://en.wikipedia.org/wiki/History_of_the_Internet</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Browser_wars">https://en.wikipedia.org/wiki/Browser_wars</a></li>
+      <li><a href="https://home.cern/topics/birth-web">https://home.cern/topics/birth-web</a></li>
+      <li><a href="https://www.zdnet.com/article/before-the-web-the-internet-in-1991/">https://www.zdnet.com/article/before-the-web-the-internet-in-1991/</a></li>
+    </ul>
+
+  </article>
+</div>
+
+{% call call_out_compact(
+  title=_('Take control of your browser.'),
+  class='mzp-t-product-firefox mzp-t-firefox'
+) %}
+  <div class="download-firefox">
+    {{ download_firefox(download_location='secondary cta') }}
+  </div>
+{% endcall %}
+
+{% endblock %}
