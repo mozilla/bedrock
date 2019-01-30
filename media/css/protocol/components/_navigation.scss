@@ -21,3 +21,49 @@
     }
 }
 
+// Global FxA CTA experiment: issue #6629
+.mzp-c-navigation {
+    .c-navigation-fxa-cta-container {
+        display: none;
+    }
+
+    .c-navigation-fxa-cta-small-link {
+        margin-bottom: 0;
+        text-align: center;
+
+        a:link,
+        a:visited {
+            @include text-body-xs;
+            color: $color-black;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            color: inherit;
+            text-decoration: underline;
+        }
+    }
+
+    @media #{$mq-md} {
+        .c-navigation-fxa-cta-small-link {
+            text-align: right;
+        }
+    }
+}
+
+.mzp-c-navigation.show-fxa-button {
+    .mzp-c-button-download-container {
+        display: none;
+    }
+
+    .mzp-c-navigation-download {
+        margin-bottom: $spacing-sm;
+    }
+
+    .c-navigation-fxa-cta-container {
+        display: block;
+    }
+}
+

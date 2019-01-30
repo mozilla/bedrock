@@ -940,6 +940,12 @@
   "js": [
     {
       "files": [
+        "js/base/global-fxa-cta-experiment.js"
+      ],
+      "name": "global-fxa-cta-experiment"
+    },
+    {
+      "files": [
         "js/mozorg/contribute/contribute-nav.js"
       ],
       "name": "contribute-base"

@@ -7,6 +7,7 @@ import pytest
 from pages.internet_health import InternetHealthPage
 
 
+@pytest.mark.skip_if_firefox(reason='https://github.com/mozilla/bedrock/issues/6629')
 @pytest.mark.nondestructive
 def test_download_button_is_displayed(base_url, selenium):
     page = InternetHealthPage(selenium, base_url).open()

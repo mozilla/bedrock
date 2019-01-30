@@ -15,6 +15,11 @@
     display: none;
 }
 
+// Global FxA CTA experiment: issue #6629
+.c-navigation-fxa-cta-container {
+    display: none !important; /* stylelint-disable-line declaration-no-important */
+}
+
 .moz-global-nav .nav-primary-links {
     @media #{$mq-tablet} {
         width: calc(100% - 160px);
