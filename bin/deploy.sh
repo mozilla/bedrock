@@ -22,7 +22,7 @@ DEPLOYMENT_VERSION=$(git rev-parse --short HEAD)
 DEPLOYMENT_NAME=$(python3 -c "import yaml; print(yaml.load(open(\"$CLUSTER_NAME/$NAMESPACE/$DEPLOYMENT_YAML\"))['metadata']['name'])")
 CHECK_URL=$DEPLOYMENT_LOG_BASE_URL/$NAMESPACE/$DEPLOYMENT_NAME/$DEPLOYMENT_VERSION
 attempt_counter=0
-max_attempts=120
+max_attempts=180
 set +x
 until curl -sf $CHECK_URL; do
     if [ ${attempt_counter} -eq ${max_attempts} ]; then
