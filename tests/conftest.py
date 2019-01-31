@@ -7,4 +7,4 @@ import pytest
 
 @pytest.fixture(scope='session')
 def base_url(base_url, request):
-    return base_url or request.getfuncargvalue('live_server').url
+    return base_url or request.getfixturevalue('live_server').url
