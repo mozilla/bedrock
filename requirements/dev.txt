@@ -106,8 +106,9 @@ selenium==3.5.0 \
 pytest-xdist==1.26.1 \
     --hash=sha256:4a201bb3ee60f5dd6bb40c5209d4e491cecc4d5bafd656cfb10f86178786e568 \
     --hash=sha256:d03d1ff1b008458ed04fa73e642d840ac69b4107c168e06b71037c62d7813dd4
-pytest-rerunfailures==2.0.1 \
-    --hash=sha256:5b77224649ec1df6d5f0234a87cdea76ce1e74f5172e1dd8b80d79bbb8a6fdff
+pytest-rerunfailures==6.0 \
+    --hash=sha256:267e10c6aec4230bdee410fcb83901e4b41e4d7f53dff216c7f06c4c0dd6fd3f \
+    --hash=sha256:978349ae00687504fd0f9d0970c37199ccd89cbdb0cb8c4ed7ee417ede582b40
 pytest-base-url==1.1.0 \
     --hash=sha256:90a1ce6a00a558231117b5aee32300edecbc0c2fd701c13e8cec62177900d28c \
     --hash=sha256:001c1b2678dae82c2891db415251361b29ed6824cb2085e4821635119499071e
