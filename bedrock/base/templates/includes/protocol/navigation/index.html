@@ -19,6 +19,7 @@
         </a>
       </div>
       <div class="mzp-c-navigation-items" id="mzp-c-navigation-items">
+        {% if not hide_nav_download_button %}
         <div class="mzp-c-navigation-download">
           {{ download_firefox(alt_copy=_('Download Firefox'), dom_id='protocol-nav-download-firefox', button_color='mzp-t-secondary mzp-t-small', download_location='nav') }}
           {% if LANG == 'en-US' %}
@@ -30,6 +31,7 @@
           </div>
           {% endif %}
         </div>
+        {% endif %}
         <div class="mzp-c-navigation-menu">
           <nav class="mzp-c-menu">
             <ul class="mzp-c-menu-category-list">

@@ -74,8 +74,8 @@ class TestTemplateLangFiles(TestCase):
         # make a dummy object capable of having arbitrary attrs assigned
         request = type('request', (), {})()
         template.render({'request': request})
-        eq_(request.langfiles, ['dude', 'walter',
-                                'main', 'download_button'])
+        eq_(request.langfiles, ['dude', 'walter', 'navigation',
+                                'download_button', 'main'])
 
     def test_added_lang_files_inheritance(self):
         """
@@ -102,7 +102,7 @@ class TestTemplateLangFiles(TestCase):
         """
         self.client.get('/de/some-lang-files/')
         translate.assert_called_with(ANY, ['dude', 'walter', 'some_lang_files',
-                                           'main', 'download_button'])
+                                           'navigation', 'download_button', 'main'])
 
     @patch('lib.l10n_utils.settings.DEV', True)
     @patch('lib.l10n_utils.templatetags.helpers.translate')
@@ -112,7 +112,7 @@ class TestTemplateLangFiles(TestCase):
         """
         self.client.get('/de/active-de-lang-file/')
         translate.assert_called_with(ANY, ['inactive_de_lang_file', 'active_de_lang_file',
-                                           'main', 'download_button'])
+                                           'navigation', 'download_button', 'main'])
 
 
 class TestNoLocale(TestCase):

@@ -107,14 +107,12 @@
     },
     {
       "files": [
-        "css/base/menu-resp.less",
         "css/firefox/releasenotes.less"
       ],
       "name": "firefox_releasenotes"
     },
     {
       "files": [
-        "css/base/menu-resp.less",
         "css/base/mozilla-modal.less",
         "css/firefox/installer-help.less"
       ],
@@ -160,7 +158,6 @@
     },
     {
       "files": [
-        "css/base/menu-resp.less",
         "css/firefox/releases-index.less"
       ],
       "name": "firefox_releases_index"
@@ -678,7 +675,6 @@
     {
       "files": [
         "css/base/mozilla-share-cta.less",
-        "css/base/menu-resp.less",
         "css/newsletter/fxnewsletter-subscribe.less",
         "css/firefox/all.less"
       ],
@@ -705,7 +701,6 @@
     },
     {
       "files": [
-        "css/base/menu-resp.less",
         "css/firefox/unsupported-systems.less"
       ],
       "name": "firefox_unsupported_systems"
@@ -1617,7 +1612,6 @@
         "js/base/mozilla-utils.js",
         "js/newsletter/form.js",
         "js/base/mozilla-client.js",
-        "js/base/nav-main-resp.js",
         "js/base/class-list-polyfill.js",
         "js/base/object-assign-polyfill.js",
         "protocol/js/protocol-menu.js",
@@ -1637,7 +1631,6 @@
         "js/base/protocol/init-lang-switcher.js",
         "js/base/mozilla-utils.js",
         "js/base/mozilla-client.js",
-        "js/base/nav-main-resp.js",
         "js/base/class-list-polyfill.js",
         "js/base/object-assign-polyfill.js",
         "protocol/js/protocol-menu.js",

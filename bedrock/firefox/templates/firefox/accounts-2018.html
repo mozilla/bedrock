@@ -14,6 +14,12 @@
  {{ css_bundle('firefox_accounts_2018') }}
 {% endblock %}
 
+{% block site_header %}
+  {% with hide_nav_download_button=True %}
+    {% include 'includes/protocol/navigation/index.html' %}
+  {% endwith %}
+{% endblock %}
+
 {% block content %}
 
 <section class="mzp-c-hero mzp-has-image mzp-t-firefox mzp-t-product-firefox">

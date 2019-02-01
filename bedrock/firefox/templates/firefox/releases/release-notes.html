@@ -28,9 +28,7 @@
 {% endblock %}
 
 {% block global_nav %}
-  {% if LANG.startswith('en-') %}
-    {% include 'includes/protocol/navigation/index.html' %}
-  {% endif %}
+  {% include 'includes/protocol/navigation/index.html' %}
 {% endblock %}
 
 {# channel_name is for display purposes where needed.  #}
@@ -39,11 +37,7 @@
 {% block site_header %}
 <header id="masthead" class="relasenotes-header">
   <div class="container">
-    {% block site_header_nav %}
-      {% if not LANG.startswith('en-') %}
-        {% include 'firefox/includes/release-menu.html' %}
-      {% endif %}
-    {% endblock %}
+    {% block site_header_nav %}{% endblock %}
     {% block site_header_logo %}
       <h2>
         <a href="{{ url('firefox') }}">

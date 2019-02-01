@@ -23,15 +23,6 @@
   {% endif %}
 {% endblock %}
 
-{% block site_header %}
-  {% if LANG.startswith('en-') %}
-    {% include 'includes/protocol/navigation/index.html' %}
-  {% else %}
-    {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
-    {% include 'mozorg/home/includes/nav.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block content %}
 {% with current='privacy' %}
   {% include 'mozorg/internet-health/includes/sub-nav.html' %}

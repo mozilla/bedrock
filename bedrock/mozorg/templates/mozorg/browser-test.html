@@ -19,18 +19,6 @@
   {{ css_bundle('browser-test') }}
 {% endblock %}
 
-{% block site_header %}
-  <header class="section masthead" id="masthead">
-    <div class="content">
-    {% block tabzilla_tab %}
-      <div id="tabzilla">
-        <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
-      </div>
-    {% endblock %}
-    </div>
-  </header>
-{% endblock %}
-
 {% block content %}
 <main role="main">
   <header>

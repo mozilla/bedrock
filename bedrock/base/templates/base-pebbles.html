@@ -92,56 +92,9 @@
       {% block string_data %}{% endblock %}></div>
 
   {% block site_header %}
-  {% if LANG.startswith('en-') %}
     {% include 'includes/protocol/navigation/index.html' %}
-  {% else %}
-    <header class="section masthead" id="masthead">
-      <div class="content">
-
-      {% block tabzilla_tab %}
-        <div id="tabzilla">
-          <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="tabzilla">Mozilla</a>
-        </div>
-      {% endblock %}
-
-      {% block site_header_nav %}
-          <nav class="masthead-nav-main" id="nav-main">
-            <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{_('Menu')}}</span>
-            <ul class="nav-main-menu" id="nav-main-menu">
-              <li class="first firefox-item">
-                <a href="{{ url('firefox') }}" data-link-type="nav" data-link-name="Firefox">{{ _('Firefox') }}</a>
-              </li>
-              <li class="internet-health-item">
-                <a href="{{ url('mozorg.internet-health') }}" data-link-type="nav" data-link-name="Internet Health">{{ _('Internet Health') }}</a>
-              </li>
-              <li class="technology-item">
-                <a href="{{ url('mozorg.technology') }}" data-link-type="nav" data-link-name="Web Innovations">{{ _('Web Innovations') }}</a>
-              </li>
-              <li class="last donate-item">
-                <a href="{{ donate_url('header') }}" data-link-type="nav" data-link-name="Donate">{{_('Donate')}}</a>
-              </li>
-            </ul>
-          </nav>
-      {% endblock %}
-
-      {% block site_header_logo %}
-        <h2 class="masthead-logo"><a href="{{ url('mozorg.home') }}"><img src="{{ static('img/pebbles/moz-wordmark-dark-reverse.svg')}}" alt="Mozilla" width="94" height="30"></a></h2>
-      {% endblock %}
-
-      </div>
-    </header>
-  {% endif %}
   {% endblock %}
 
-  {#--
-  #outer-wrapper is needed (for now...) for nav-main-resp.js hooks. We will
-  refactor nav-main-resp.js in the future to not require #outer-wrapper. This
-  means:
-
-  ******************************************
-  *** DO NOT APPLY CSS TO #outer-wrapper ***
-  ******************************************
-  --#}
   <div id="outer-wrapper">
     {% block content %}{% endblock %}
 

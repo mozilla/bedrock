@@ -12,13 +12,6 @@
 
 {% block body_id %}fb-privacy{% endblock %}
 
-{% block site_header %}
-  <header id="masthead">
-    <a href="{{ url('mozorg.home') }}" id="tabzilla">{{ _('Mozilla') }}</a>
-    {% block site_header_nav %}{% endblock %}
-  </header>
-{% endblock %}
-
 {% block content %}
   <article id="main-content" role="main">
     {{ doc.section.contents|join|safe }}
@@ -27,4 +20,3 @@
 
 {% block email_form %}{% endblock %}
 {% block site_footer %}{% endblock %}
-{% block site_js %}{% endblock %}

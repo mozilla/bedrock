@@ -23,39 +23,14 @@
 {% block body_class %}{% endblock %}
 
 {% block site_header %}
-{% if LANG.startswith('en-') %}
   {% include 'includes/protocol/navigation/index.html' %}
   <header class="section masthead">
-{% else %}
-<header class="section masthead" id="masthead">
-  <div class="content">
-    <h1 class="masthead-logo">
-      <a href="{{ url('mozorg.home') }}"><img src="{{ static('img/pebbles/moz-wordmark-light-reverse.svg') }}" alt="Mozilla"></a>
-    </h1>
+    <div id="header-image">{% block header_image %}{% endblock %}</div>
 
-    <nav class="masthead-nav-main" id="nav-main">
-      <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{ _('Menu') }}</span>
-      <ul class="nav-main-menu" id="nav-main-menu">
-        <li class="first internet-health-item">
-          <a href="{{ url('mozorg.internet-health') }}" data-link-type="nav" data-link-name="Internet Health">{{ _('Internet Health') }}</a>
-        </li>
-        <li class="technology-item">
-          <a href="{{ url('mozorg.technology') }}" data-link-type="nav" data-link-name="Web Innovations">{{ _('Web Innovations') }}</a>
-        </li>
-        <li class="donate-item">
-          <a href="{{ donate_url('header') }}" data-link-type="nav" data-link-name="Donate">{{ _('Donate') }}</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-{% endif %}
-  <div id="header-image">{% block header_image %}{% endblock %}</div>
-
-  <div class="content" id="page-heading">
-    <h1>{% block page_heading %}{% endblock %}</h1>
-  </div>
-</header>
-
+    <div class="content" id="page-heading">
+      <h1>{% block page_heading %}{% endblock %}</h1>
+    </div>
+  </header>
 {% endblock %}
 
 {% block content %}

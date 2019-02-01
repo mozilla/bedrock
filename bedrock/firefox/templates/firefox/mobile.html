@@ -17,6 +17,12 @@
 
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
 
+{% block site_header %}
+  {% with hide_nav_download_button=True %}
+    {% include 'includes/protocol/navigation/index.html' %}
+  {% endwith %}
+{% endblock %}
+
 {% block content %}
   {% with current='mobile' %}
     {% include 'firefox/includes/hub/sub-nav.html' %}

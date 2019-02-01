@@ -103,25 +103,10 @@ a.more {
         color: #fff;
         text-shadow: none;
     }
+}
 
-    #masthead nav li {
-        a,
-        a:link,
-        a:visited {
-            color: @linkBlue;
-        }
-        li {
-            a,
-            a:link,
-            a:visited {
-                color: @textColorSecondary;
-            }
-        }
-    }
-
-    #masthead h2 img {
-        height: auto;
-    }
+#masthead {
+    padding: 20px 0 10px;
 }
 
 // Firefox Developer Edition visual style
@@ -145,21 +130,6 @@ a.more {
     h1, h2, h3, h4, h5, h6, .huge, .large {
         color: #fff;
         text-shadow: none;
-    }
-
-    #masthead nav li {
-        a,
-        a:link,
-        a:visited {
-            color: #fff;
-        }
-        li {
-            a,
-            a:link,
-            a:visited {
-                color: @textColorSecondary;
-            }
-        }
     }
 }
 
@@ -192,12 +162,6 @@ a.more {
             padding-left: @baseLine;
             padding-right: @baseLine;
         }
-    }
-
-    #masthead {
-        z-index: 10;
-        padding-left: 0;
-        padding-right: 0;
     }
 }
 
@@ -609,91 +573,9 @@ label.error {
     .clearfix;
 }
 
-/* }}} */
-/* {{{ Header Nav */
-#masthead {
 
-    h2 {
-        padding: (@baseLine * 1.5) 0 @baseLine;
-        margin: 0 (@gridGutterWidth / 2);
-    }
-
-    nav {
-        float: right;
-        margin: 0 16px;
-        text-transform: uppercase;
-        .font-size(13px);
-        .open-sans;
-
-        ul {
-            margin-bottom: 0;
-        }
-
-        li {
-            .inline-block;
-            list-style-type: none;
-            margin: 0;
-
-            a,
-            b {
-                display: inline-block;
-                padding: 12px;
-                font-weight: normal;
-            }
-
-            b,
-            .current {
-                background-position: 50% 0;
-                background-repeat: no-repeat;
-                background-image: url("/media/img/sandstone/menu-current.png");
-            }
-
-
-            a,
-            a:link,
-            a:visited {
-                color: @textColorSecondary;
-            }
-
-        }
-
-    }
-
-}
-
-.html-rtl #tabzilla,
-.html-rtl #masthead nav {
+.html-rtl #tabzilla {
     float: left;
-}
-
-
-#masthead .toggle {
-    display: none; /* Hidden in non-mobile views */
-}
-
-
-/* }}} */
-/* {{{ Header Breadcrumbs */
-
-#masthead {
-
-    nav.breadcrumbs {
-        padding: 0 10px (@baseLine / 2) 10px;
-        float: none;
-
-        a,
-        span {
-            margin-right: .5em;
-            margin-left: .5em;
-        }
-
-        a:first-child,
-        span:first-child {
-            margin-left: 0;
-        }
-
-    }
-
 }
 
 /* }}} */
@@ -1240,10 +1122,6 @@ nav.menu-bar {
         .font-size(13px);
     }
 
-    #masthead nav ul li a {
-        padding: 12px 5px;
-    }
-
     .sidebar {
         .span_narrow(3);
         .offset_narrow(1);
@@ -1345,68 +1223,6 @@ nav.menu-bar {
         margin-left: auto;
     }
 
-    #masthead {
-
-        .toggle {
-            display: block;
-            width: 32px;
-            height: 32px;
-            /*margin: -3px 0 0 -3px;*/
-            background: no-repeat center top url("/media/img/sandstone/icn-menu.png");
-            text-indent: -999em;
-            overflow: hidden;
-            cursor: pointer;
-            position:relative;
-            top:-3px;
-        }
-        .toggle.open {
-            background-position: center -100px;
-        }
-
-        h2 {
-            padding-top: @baseLine / 2;
-            padding-bottom: @baseLine / 2;
-        }
-
-        nav {
-            float: none;
-            padding-top: 10px;
-            margin-left: 10px;
-
-            ul li {
-                display: block;
-                a,
-                b {
-                    display: block;
-                    padding: 0;
-                }
-
-                b,
-                .current {
-                    background-image: none;
-                }
-            }
-        }
-
-        nav.breadcrumbs {
-            margin-left: 0;
-            a,
-            span {
-                margin-right: .3em;
-                margin-left: .3em;
-            }
-        }
-    }
-
-    .space #masthead nav li,
-    .blueprint #masthead nav li {
-        a,
-        a:link,
-        a:visited {
-            color: @textColorSecondary;
-        }
-    }
-
     .huge,
     .huge h1,
     .large,
@@ -1496,118 +1312,6 @@ nav.menu-bar {
                 float: none;
             }
         }
-    }
-
-    #nav-main {
-
-        #nav-main-menu li {
-            display: block;
-            float: none;
-            margin: 0 10px;
-            border-bottom: 1px solid #f2f2f2;
-        }
-
-        #nav-main-menu li:last-child {
-            border: 0;
-        }
-
-        .submenu hr {
-            display: none;
-        }
-
-        #nav-main-menu a,
-        #nav-main-menu b {
-            cursor: pointer;
-            display: block;
-            text-transform: none;
-            padding: 12px 35px 12px 10px;
-            margin: 0 -10px;
-        }
-
-        #nav-main-menu a.submenu-item {
-            background: 94% 50% no-repeat url("/media/img/sandstone/arrow-go.png");
-        }
-
-        #nav-main-menu a:hover,
-        #nav-main-menu a:focus,
-        #nav-main-menu a:active {
-            color: #fff;
-            text-decoration: none;
-            text-shadow: 1px 1px 0 rgba(0,0,0,.25);
-            background-color: #247ac1;
-            background-position: 94% 50%;
-            background-repeat: no-repeat;
-            background-image: -webkit-linear-gradient(top, #43a6e2, #247ac1);
-            background-image: linear-gradient(to bottom, #43a6e2, #247ac1);
-        }
-
-        #nav-main-menu a.submenu-item:hover,
-        #nav-main-menu a.submenu-item:focus,
-        #nav-main-menu a.submenu-item:active {
-            background-image: url("/media/img/sandstone/arrow-go.png"), -webkit-linear-gradient(top, #43a6e2, #247ac1);
-            background-image: url("/media/img/sandstone/arrow-go.png"), linear-gradient(to bottom, #43a6e2, #247ac1);
-        }
-
-        #nav-main-menu li.first > a {
-            border-radius: 10px 10px 0 0;
-        }
-
-        #nav-main-menu li.last > a {
-            border-radius: 0 0 10px 10px;
-        }
-    }
-
-    #nav-main-menu {
-        background: #fff;
-        position: absolute;
-        z-index: 99;
-        width: 200px;
-        margin: 20px 0 0 -20px;
-        left: -999em;
-        top: 30px;
-        overflow: visible;
-        .border-radius(10px);
-        .box-shadow(0 1px 3px 0 rgba(0,0,0,.5));
-    }
-
-    #nav-main:hover #nav-main-menu,
-    #nav-main-menu:target {
-        left: auto;
-    }
-
-    .js #nav-main-menu {
-        left: auto;
-        display: none;
-    }
-
-    #nav-main-menu:before {
-        content: "";
-        display: block;
-        width: 28px;
-        height: 10px;
-        background: no-repeat url("/media/img/sandstone/menu-point.png");
-        position: absolute;
-        left: 22px;
-        top: -10px;
-    }
-
-    .html-rtl #masthead nav {
-        float: right;
-    }
-
-    .html-rtl #masthead .toggle {
-        left: auto;
-        right: 10px;
-    }
-
-    .html-rtl #nav-main-menu {
-        margin-left: 0;
-        margin-right: -20px;
-    }
-
-    .html-rtl #nav-main-menu:before {
-        left: auto;
-        right: 12px;
     }
 
     #colophon {
