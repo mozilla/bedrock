@@ -456,16 +456,11 @@ html[lang^="en"] {
         .at2x('/media/img/firefox/channel/alert-icon.png', 130px, 114px);
         background-position: top 20px center;
         background-repeat: no-repeat;
-        float: left;
         padding-top: 162px;
-    }
-
-    &.test-pilot {
-        .at2x('/media/img/firefox/channel/test-pilot.png', 200px, 162px);
-        background-position: top center;
-        background-repeat: no-repeat;
-        float: right;
-        padding-top: 162px;
+        float: none;
+        margin: (@baseLine * 2) auto (@baseLine * 3);
+        text-align: center;
+        width: auto;
     }
 
     h3 {
@@ -502,11 +497,6 @@ html[lang^="en"] {
 
     @media only screen and (max-width: @breakTablet) {
         width: auto;
-
-        &.bugzilla,
-        &.test-pilot {
-            float: none;
-        }
     }
 
     @media only screen and (max-width: @breakMobileLandscape) {
@@ -517,36 +507,6 @@ html[lang^="en"] {
 
         ul li {
             .font-size(@baseFontSize);
-        }
-    }
-}
-
-#platform-android #help-out section,
-#platform-ios #help-out section {
-
-    &.bugzilla {
-        float: none;
-        margin: (@baseLine * 2) auto (@baseLine * 3);
-        text-align: center;
-        width: auto;
-    }
-}
-
-.html-rtl #help-out section {
-
-    &.bugzilla {
-        float: right;
-    }
-
-    &.test-pilot {
-        float: left;
-    }
-
-    @media only screen and (max-width: @breakTablet) {
-
-        &.bugzilla,
-        &.test-pilot {
-            float: none;
         }
     }
 }
