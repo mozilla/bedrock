@@ -8,9 +8,7 @@
     var Yandex = {
         RUSSIA_COUNTRY_CODE: 'ru',
         COOKIE_ID: 'firefox-yandex',
-        COOKIE_YANDEX_COHORT: 'firefox-yandex-cohort',
-        COOKIE_EXPIRATION_DAYS: 3,
-        YANDEX_SAMPLE_RATE: 0.9
+        COOKIE_EXPIRATION_DAYS: 3
     };
 
     var _client = Mozilla.Client;
@@ -112,8 +110,8 @@
     };
 
     Yandex.shouldShowYandex = function() {
-        // Is user in Russia and within Yandex cohort?
-        return Yandex.verifyLocation(Yandex.getCookie(Yandex.COOKIE_ID)) && Yandex.getCookie(Yandex.COOKIE_YANDEX_COHORT) === 'yes';
+        // Is user in Russia?
+        return Yandex.verifyLocation(Yandex.getCookie(Yandex.COOKIE_ID));
     };
 
     Yandex.showYandexMessaging = function() {
@@ -185,9 +183,7 @@
     };
 
     Yandex.setCookie = function(country) {
-        var cohort = Yandex.isWithinSampleRate() ? 'yes' : 'no';
         Mozilla.Cookies.setItem(Yandex.COOKIE_ID, country, Yandex.cookieExpiresDate());
-        Mozilla.Cookies.setItem(Yandex.COOKIE_YANDEX_COHORT, cohort, Yandex.cookieExpiresDate());
     };
 
     Yandex.getCookie = function(id) {
@@ -195,11 +191,7 @@
     };
 
     Yandex.hasCookie = function() {
-        return Mozilla.Cookies.hasItem(Yandex.COOKIE_ID) && Mozilla.Cookies.hasItem(Yandex.COOKIE_YANDEX_COHORT);
-    };
-
-    Yandex.isWithinSampleRate = function() {
-        return (Math.random() < Yandex.YANDEX_SAMPLE_RATE) ? true : false;
+        return Mozilla.Cookies.hasItem(Yandex.COOKIE_ID);
     };
 
     Yandex.init = function() {
