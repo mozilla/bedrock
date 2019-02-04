@@ -732,7 +732,8 @@
     },
     {
       "files": [
-        "css/firefox/home.scss"
+        "css/firefox/home.scss",
+        "css/base/mozilla-lazy-image.scss"
       ],
       "name": "firefox-home"
     },

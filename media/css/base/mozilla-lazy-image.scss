@@ -1,0 +1,23 @@
+/* -------------------------------------------------------------------------- */
+// lazy loaded images
+
+//don't display placeholder at same time as <img> in <noscript>
+.no-js {
+    .lazy-image {
+        display: none;
+    }
+
+    noscript .lazy-image {
+        display: block;
+    }
+}
+
+// fade in images as they load
+.lazy-image {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.lazy-image[data-src] {
+    opacity: 0;
+}

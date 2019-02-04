@@ -78,7 +78,7 @@
           </p>
       </div>
       <div class="whats-new-image">
-        {{ high_res_img('firefox/home/new-tab.png', {'alt': _('Screenshot of the redesigned Firefox new-tab page.'), 'width': '849', 'height': '540'}) }}
+        {{ lazy_img(image_url='firefox/home/new-tab.png', placeholder_url='firefox/home/spacer.gif', include_highres_image=True, optional_attributes={'alt': _('Screenshot of the redesigned Firefox new-tab page.'), 'width': '849', 'height': '540'}) }}
       </div>
     </div>
   </section>

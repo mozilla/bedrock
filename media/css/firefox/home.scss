@@ -76,17 +76,6 @@ body {
     }
 }
 
-//don't display placeholder at same time as <img> in <noscript>
-.no-js {
-    .lazy-image {
-        display: none;
-    }
-
-    noscript .lazy-image {
-        display: block;
-    }
-}
-
 /* -------------------------------------------------------------------------- */
 // Main page header
 
