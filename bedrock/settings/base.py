@@ -708,13 +708,14 @@ PRESS_BLOGS = {
     'de': 'press-de/',
     'en-GB': 'press-uk/',
     'en-US': 'press/',
-    'es-AR': 'press-latam/',
-    'es-CL': 'press-latam/',
+    'es-AR': 'press-es/',
+    'es-CL': 'press-es/',
     'es-ES': 'press-es/',
-    'es-MX': 'press-latam/',
+    'es-MX': 'press-es/',
     'fr': 'press-fr/',
     'it': 'press-it/',
     'pl': 'press-pl/',
+    'pt-BR': 'press-br/',
 }
 
 DONATE_LINK = ('https://donate.mozilla.org/{locale}/'
