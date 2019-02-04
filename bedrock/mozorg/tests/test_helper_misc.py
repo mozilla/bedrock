@@ -321,10 +321,14 @@ class TestPressBlogUrl(TestCase):
         eq_(self._render('en-GB'), 'https://blog.mozilla.org/press-uk/')
 
     def test_press_blog_url_latam(self):
-        """South American Spanishes have a specific blog"""
-        eq_(self._render('es-AR'), 'https://blog.mozilla.org/press-latam/')
-        eq_(self._render('es-CL'), 'https://blog.mozilla.org/press-latam/')
-        eq_(self._render('es-MX'), 'https://blog.mozilla.org/press-latam/')
+        """South American Spanishes use the es-ES blog"""
+        eq_(self._render('es-AR'), 'https://blog.mozilla.org/press-es/')
+        eq_(self._render('es-CL'), 'https://blog.mozilla.org/press-es/')
+        eq_(self._render('es-MX'), 'https://blog.mozilla.org/press-es/')
+
+    def test_press_blog_url_brazil(self):
+        """Brazilian Portuguese has its own br blog"""
+        eq_(self._render('pt-BR'), 'https://blog.mozilla.org/press-br/')
 
     def test_press_blog_url_other_locale(self):
         """No blog for locale, fallback to default press blog"""

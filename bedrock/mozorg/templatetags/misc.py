@@ -334,7 +334,7 @@ def press_blog_url(ctx):
     """Output a link to the press blog taking locales into account.
 
     Uses the locale from the current request. Checks to see if we have
-    a press blog that match this locale, returns the localized press blog
+    a press blog that matches this locale, returns the localized press blog
     url or falls back to the US press blog url if not.
 
     Examples
@@ -349,13 +349,13 @@ def press_blog_url(ctx):
 
         https://blog.mozilla.org/press/
 
-    For es-ES this would output:
+    For en-GB this would output:
 
-        https://blog.mozilla.org/press-es/
+        https://blog.mozilla.org/press-uk/
 
-    For es-MX this would output:
+    For de this would output:
 
-        https://blog.mozilla.org/press-latam/
+        https://blog.mozilla.org/press-de/
 
     """
     locale = getattr(ctx['request'], 'locale', 'en-US')
