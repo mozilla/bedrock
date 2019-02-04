@@ -16,32 +16,23 @@
 
 {% block body_id %}firefox-features-landing{% endblock %}
 
-{# when this experiment is removed also reenable the skipped test in tests/functional/firefox/features/test_landing.py #}
-{% block experiments %}
-  {% if switch('experiment_features_header', ['en-US']) %}
-    {{ js_bundle('experiment_features_header') }}
-  {% endif %}
-{% endblock %}
-
 {% block features_header %}
-  {% if variation != 'b' %}
-    <header class="main-header">
-      <div class="content">
-        <div class="header-image">
-          {{ high_res_img('firefox/features/quantum/devices.png', {'alt': '', 'width': '721', 'height': '553'}) }}
-        </div>{#--/.header-image--#}
-        <div class="header-content">
-          <h1><span>{{ _('Firefox features') }}</span></h1>
-        {% if l10n_has_tag('firefox-features-57-update') %}
-          <p>{{ _('Explore the features of the all new Firefox browser') }}</p>
-        {% endif %}
-          <div class="header-download">
-            {{ download_firefox(dom_id='features-header-download', download_location='primary cta') }}
-          </div>
-        </div>{#--/.header-content--#}
-      </div>{#--/.content--#}
-    </header>
-  {% endif %}
+<header class="main-header">
+  <div class="content">
+    <div class="header-image">
+      {{ high_res_img('firefox/features/quantum/devices.png', {'alt': '', 'width': '721', 'height': '553'}) }}
+    </div>{#--/.header-image--#}
+    <div class="header-content">
+      <h1><span>{{ _('Firefox features') }}</span></h1>
+    {% if l10n_has_tag('firefox-features-57-update') %}
+      <p>{{ _('Explore the features of the all new Firefox browser') }}</p>
+    {% endif %}
+      <div class="header-download">
+        {{ download_firefox(dom_id='features-header-download', download_location='primary cta') }}
+      </div>
+    </div>{#--/.header-content--#}
+  </div>{#--/.content--#}
+</header>
 {% endblock %}
 
 {% block features_list %}
