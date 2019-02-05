@@ -11,3 +11,9 @@ $image-path: '/media/protocol/img';
 // Bedrock specific component tweaks.
 @import 'components/navigation';
 @import 'components/download-button';
+
+
+// bug fix, remove after backported to Protocol
+.mzp-c-footer-links-social li a {
+    background-repeat: no-repeat;
+}

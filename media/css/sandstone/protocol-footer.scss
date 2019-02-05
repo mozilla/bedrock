@@ -1,0 +1,48 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+// Bedrock specific navigation overrides.
+@import '../../protocol/css/components/footer';
+@import '../../protocol/css/components/language-switcher';
+
+
+.mzp-c-footer {
+    @include open-sans;
+
+    .mzp-l-content {
+        width: 1000px;
+        margin: 0 auto;
+        padding: 40px 20px;
+
+        @media (max-width: 1000px) {
+            width: 720px;
+        }
+        @media (max-width: 760px) {
+            width: auto;
+        }
+    }
+}
+
+.mzp-c-footer {
+    li {
+        margin-left: 0;
+    }
+}
+
+.mzp-c-footer-heading {
+    font-family: 'Open Sans', X-LocaleSpecific, sans-serif;
+    font-weight: bold;
+    letter-spacing: normal;
+    text-shadow: none;
+    font-size: 16px;
+    font-size: 1rem;
+}
+
+// bug fix, remove after backported to Protocol
+.mzp-c-footer-links-social li a {
+    background-repeat: no-repeat;
+}
