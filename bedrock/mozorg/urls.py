@@ -313,6 +313,7 @@ urlpatterns = (
     page('technology/what-is-a-browser', 'mozorg/what-is-a-browser.html'),
     page('technology/update-your-browser', 'mozorg/update-browser.html'),
     page('technology/incognito-browser', 'mozorg/incognito-browser.html'),
+    page('technology/browser-history', 'mozorg/browser-history.html'),
 
     url('^developer/$', views.DeveloperView.as_view(), name='mozorg.developer'),
     page('developer/css-grid', 'mozorg/developer/css-grid-demo.html'),
