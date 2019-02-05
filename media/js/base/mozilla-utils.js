@@ -43,21 +43,6 @@ if (typeof Mozilla === 'undefined') {
         return '/' + newLang + '/' + urlpath + location.search;
     };
 
-    // language switcher
-    Utils.initLangSwitcher = function() {
-        var $language = $('#page-language-select');
-        var previousLanguage = $language.val();
-        $language.on('change', function() {
-            var newLanguage = $language.val();
-            window.dataLayer.push({
-                'event': 'change-language',
-                'languageSelected': newLanguage,
-                'previousLanguage': previousLanguage
-            });
-            Utils.doRedirect(Utils.switchPathLanguage(window.location, newLanguage));
-        });
-    };
-
     // client-side redirects (handy for testing)
     Utils.doRedirect = function(destination) {
         if (destination) {

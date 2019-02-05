@@ -20,7 +20,6 @@
         var utils = Mozilla.Utils;
 
         utils.initMobileDownloadLinks();
-        utils.initLangSwitcher();
 
         /* Bug 1264843: In partner distribution of desktop Firefox, switch the
         downloads to corresponding partner build of Firefox for Android. */

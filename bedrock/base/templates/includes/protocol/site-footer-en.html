@@ -11,31 +11,40 @@
       <div class="mzp-c-footer-sections">
         <section class="mzp-c-footer-section">
           <h5 class="mzp-c-footer-heading">
-            {{ _('Mozilla') }}
+            {{ _('Company') }}
           </h5>
           <ul class="mzp-c-footer-list">
             <li><a href="{{ url('mozorg.about') }}" data-link-type="footer" data-link-name="About">{{ _('About') }}</a></li>
-            <li><a href="https://blog.mozilla.org/" data-link-type="footer" data-link-name="Blog">{{ _('Blog') }}</a></li>
-            <li><a href="{{ url('mozorg.contact.contact-landing') }}" data-link-type="footer" data-link-name="Contact Us">{{ _('Contact Us') }}</a></li>
             <li><a href="{{ press_blog_url() }}" data-link-type="footer" data-link-name="Press Center">{{ _('Press Center') }}</a>
-            <li><a href="{{ donate_url('footer') }}" class="donate" data-link-type="footer" data-link-name="Donate">{{ _('Donate') }}</a></li>
-            <li><a href="https://wiki.mozilla.org/Webdev/GetInvolved/mozilla.org" data-link-type="footer" data-link-name="Contribute to this site">{{ _('Contribute to this site') }}</a></li>
-            {# TODO remove the "and" clause after tranlsation #}
-            {% if template_source_url and (LANG.startswith('en') or switch('footer-source-link')) %}
-              <li><a href="{{ template_source_url }}" data-link-type="footer" data-link-name="Source code for this page">{{ _('Source code for this page') }}</a></li>
-            {% endif %}
+            <li><a href="https://careers.mozilla.org" data-link-type="footer" data-link-name="Careers">{{ _('Careers') }}</a>
           </ul>
         </section>
         <section class="mzp-c-footer-section">
           <h5 class="mzp-c-footer-heading">
-          {{ _('Firefox') }}
+            {{ _('Developers') }}
           </h5>
           <ul class="mzp-c-footer-list">
-            <li><a href="{{ url('firefox.new') }}" data-link-type="footer" data-link-name="Download Firefox">{{ _('Download Firefox') }}</a></li>
-            <li><a href="{{ url('firefox') }}" data-link-type="footer" data-link-name="Desktop">{{ _('Desktop') }}</a></li>
-            <li><a href="{{ url('firefox.mobile') }}" data-link-type="footer" data-link-name="Mobile">{{ _('Mobile') }}</a></li>
-            <li><a href="{{ url('firefox.features.index') }}" data-link-type="footer" data-link-name="Features">{{ _('Features') }}</a></li>
-            <li><a href="{{ url('firefox.channel.desktop') }}" data-link-type="footer" data-link-name="Beta, Nightly, Developer Edition">{{ _('Beta, Nightly, Developer Edition') }}</a></li>
+            <li><a href="{{ url('firefox.channel.desktop') }}" data-link-type="footer" data-link-name="Beta, Nightly, Developer Edition">{{ _('Test New Features') }}</a></li>
+            <li><a href="https://developer.mozilla.org" data-link-type="footer" data-link-name="MDN">{{ _('Documentation (MDN)') }}</a></li>
+            <li><a href="https://developer.mozilla.org/docs/Tools" data-link-type="footer" data-link-name="Tools">{{ _('Tools') }}</a></li>
+          </ul>
+        </section>
+        <section class="mzp-c-footer-section">
+          <h5 class="mzp-c-footer-heading">
+            {{ _('Resources') }}
+          </h5>
+          <ul class="mzp-c-footer-list">
+            <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy">{{ _('Privacy') }}</a></li>
+            <li><a href="{{ url('mozorg.contact.contact-landing') }}" data-link-type="footer" data-link-name="Contact Us">{{ _('Contact') }}</a></li>
+          </ul>
+        </section>
+        <section class="mzp-c-footer-section">
+          <h5 class="mzp-c-footer-heading">
+            {{ _('Product Help') }}
+          </h5>
+          <ul class="mzp-c-footer-list">
+            <li><a href="https://support.mozilla.org/">{{ _('Support') }}</a></li>
+            <li><a href="https://bugzilla.mozilla.org/">{{ _('File a Bug') }}</a></li>
           </ul>
         </section>
       </div>
@@ -50,17 +59,14 @@
       </ul>
       <div class="mzp-c-footer-legal">
         <p class="mzp-c-footer-license">
-        {% if LANG.startswith('en-') %}
           {% trans url='https://foundation.mozilla.org', link_type='footer', link_name='Mozilla Foundation' %}
             Visit Mozilla Corporation’s not-for-profit parent, the <a href="{{ url }}" data-link-type="{{ link_type }}" data-link-name="{{ link_name }}">Mozilla Foundation</a>.
-          {% endtrans %}
-          <br>
-        {% endif %}
-        {%- trans url=url('foundation.licensing.website-content') -%}
-          Portions of this content are ©1998–{{ current_year }} by individual mozilla.org
-          contributors. Content available under a <a rel="license" href="{{ url }}">Creative Commons license</a>.
-        {%- endtrans -%}
-
+          {% endtrans %}<br>
+          {%- trans url=url('foundation.licensing.website-content') -%}
+              Portions of this content are ©1998–{{ current_year }} by individual mozilla.org
+              contributors. Content available under a <a rel="license" href="{{ url }}">Creative Commons license</a>.
+          {%- endtrans -%}
+        </p>
         <ul class="mzp-c-footer-terms">
           {% if LANG.startswith('en-') %}
           <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy">{{ _('Privacy') }}</a></li>
@@ -73,6 +79,7 @@
           <li><a href="{{ url('privacy.notices.websites') }}" data-link-type="footer" data-link-name="Privacy">{{ privacy_text }}</a></li>
           <li><a href="{{ url('privacy.notices.websites') }}#cookies" data-link-type="footer" data-link-name="Cookies">{{ _('Cookies') }}</a></li>
           <li><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal">{{ _('Legal') }}</a></li>
+          <li><a href="{{ url('mozorg.about.governance.policies.participation') }}">{{ _('Community Participation Guidelines') }}</a></li>
         </ul>
       </div>
     </nav>

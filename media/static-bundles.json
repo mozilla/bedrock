@@ -75,7 +75,8 @@
         "css/sandstone/sandstone-resp.less",
         "css/base/notification-banner.less",
         "css/tabzilla/tabzilla-static.less",
-        "css/sandstone/protocol-nav.scss"
+        "css/sandstone/protocol-nav.scss",
+        "css/sandstone/protocol-footer.scss"
       ],
       "name": "responsive"
     },
@@ -317,7 +318,8 @@
     {
       "files": [
         "css/pebbles/global.scss",
-        "css/pebbles/protocol-nav.scss"
+        "css/pebbles/protocol-nav.scss",
+        "css/pebbles/protocol-footer.scss"
       ],
       "name": "pebbles"
     },
@@ -1602,9 +1604,15 @@
         "js/newsletter/form.js",
         "js/base/mozilla-client.js",
         "js/base/class-list-polyfill.js",
+        "protocol/js/protocol-supports.js",
+        "protocol/js/protocol-utils.js",
         "protocol/js/protocol-menu.js",
         "protocol/js/protocol-navigation.js",
         "js/base/protocol/init-navigation.js",
+        "protocol/js/protocol-lang-switcher.js",
+        "js/base/protocol/init-lang-switcher.js",
+        "protocol/js/protocol-details.js",
+        "protocol/js/protocol-footer.js",
         "js/base/base-page-init.js",
         "js/base/core-datalayer.js",
         "js/base/core-datalayer-init.js",
@@ -1615,14 +1623,18 @@
     {
       "files": [
         "js/libs/jquery-3.2.1.min.js",
-        "protocol/js/protocol-lang-switcher.js",
-        "js/base/protocol/init-lang-switcher.js",
         "js/base/mozilla-utils.js",
         "js/base/mozilla-client.js",
         "js/base/class-list-polyfill.js",
+        "protocol/js/protocol-supports.js",
+        "protocol/js/protocol-utils.js",
         "protocol/js/protocol-menu.js",
         "protocol/js/protocol-navigation.js",
         "js/base/protocol/init-navigation.js",
+        "protocol/js/protocol-lang-switcher.js",
+        "js/base/protocol/init-lang-switcher.js",
+        "protocol/js/protocol-details.js",
+        "protocol/js/protocol-footer.js",
         "js/base/base-page-init.js",
         "js/base/core-datalayer.js",
         "js/base/core-datalayer-init.js",
