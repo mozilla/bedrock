@@ -72,4 +72,6 @@ By default the lazy load plugin will simply swap in images as they load. To add 
 
 This works because the plugin removes the ``data-src`` attribute as each image lazy loads.
 
+These styles are also available in `/media/css/base/mozilla-lazy-load.scss` if you want to include that in the static bundle for the page.
+
 .. _Intersection Observer API: https://developer.mozilla.org/docs/Web/API/Intersection_Observer_API

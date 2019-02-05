@@ -78,7 +78,7 @@
           </p>
       </div>
       <div class="whats-new-image">
-        {{ high_res_img('firefox/home/new-tab.png', {'alt': _('Screenshot of the redesigned Firefox new-tab page.'), 'width': '849', 'height': '540'}) }}
+        {{ lazy_img(image_url='firefox/home/new-tab.png', placeholder_url='firefox/home/spacer.gif', include_highres_image=True, optional_attributes={'alt': _('Screenshot of the redesigned Firefox new-tab page.'), 'width': '849', 'height': '540'}) }}
       </div>
     </div>
   </section>
@@ -133,7 +133,7 @@
             </p>
           </div>
           <div class="key-feature-media image">
-            {{ high_res_img('firefox/home/less-memory.png', {'alt': '', 'width': '645', 'height': '400'}) }}
+            {{ lazy_img(image_url='firefox/home/less-memory.png', placeholder_url='firefox/home/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '645', 'height': '400'}) }}
           </div>
         </div>
       </div>
@@ -152,7 +152,7 @@
             </p>
           </div>
           <div class="key-feature-media image">
-            {{ high_res_img('firefox/home/smooth-browsing.png', {'alt': _('Firefox screenshot showing many open tabs and browser windows running simultaneously.'), 'width': '645', 'height': '400'}) }}
+            {{ lazy_img(image_url='firefox/home/smooth-browsing.png', placeholder_url='firefox/home/spacer.gif', include_highres_image=True, optional_attributes={'alt': _('Firefox screenshot showing many open tabs and browser windows running simultaneously.'), 'width': '645', 'height': '400'}) }}
           </div>
         </div>
       </div>
@@ -175,7 +175,7 @@
       </div>
       <div class="section-media">
         <a href="{{ url('firefox.switch') }}">
-          {{ high_res_img('firefox/home/switch-to-firefox.png', {'alt': '', 'width': '643', 'height': '377'}) }}
+          {{ lazy_img(image_url='firefox/home/switch-to-firefox.png', placeholder_url='firefox/home/spacer.gif', include_highres_image=True, optional_attributes={'width': '643', 'height': '377'}) }}
         </a>
       </div>
     </div>
@@ -219,8 +219,8 @@
       </ul>
 
       <div class="privacy-section-media">
-        {{ high_res_img('firefox/home/private-browsing.png', {'alt': '', 'width': '502', 'height': '325'}) }}
-        {{ high_res_img('firefox/home/tracking-protection.png', {'alt': '', 'width': '503', 'height': '305'}) }}
+        {{ lazy_img(image_url='firefox/home/private-browsing.png', placeholder_url='firefox/home/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '502', 'height': '325'}) }}
+        {{ lazy_img(image_url='firefox/home/tracking-protection.png', placeholder_url='firefox/home/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '503', 'height': '305'}) }}
       </div>
     </div>
   </section>
@@ -388,7 +388,7 @@
       </div>
 
       <div class="sync-section-image">
-        {{ high_res_img('firefox/home/sync.png', {'alt': _('Image of Gif shared from desktop to mobile using the Send Tab feature.'), 'width': '788', 'height': '571'}) }}
+        {{ lazy_img(image_url='firefox/home/sync.png', placeholder_url='firefox/home/spacer.gif', include_highres_image=True, optional_attributes={'alt': _('Image of Gif shared from desktop to mobile using the Send Tab feature.'), 'width': '788', 'height': '571'}) }}
       </div>
     </div>
   </section>
