@@ -871,38 +871,42 @@ html[dir="rtl"] {
 }
 
 // very basic styling for no-JS visitors
-.mobile-download-buttons-wrapper {
-    background: #111;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-}
-
-.mobile-download-buttons {
-    margin: 1em 0;
-
-    @media #{$mq-phone-wide} {
-        @supports (display: flex) {
-            align-items: center;
-            display: flex;
-            justify-content: space-between;
-            margin: 1em auto;
-            width: 340px;
-
-            &.hidden {
-                display: none;
-            }
-
-            li {
-                margin: 0 auto; // so that a single item is centred
-            }
-        }
+.no-js {
+    .header-product-ctas {
+        display: none;
     }
 
-    .android-apk a {
-        display: inline-block;
-        margin: 10px 0;
-        @include font-size-level5;
+    .mobile-download-buttons-wrapper {
+        display: block;
+        text-align: center;
+    }
+
+    .mobile-download-buttons {
+        margin: 1em 0;
+
+        @media #{$mq-phone-wide} {
+            @supports (display: flex) {
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                margin: 1em auto;
+                width: 340px;
+
+                &.hidden {
+                    display: none;
+                }
+
+                li {
+                    margin: 0 auto; // so that a single item is centred
+                }
+            }
+        }
+
+        .android-apk a {
+            display: inline-block;
+            margin: 10px 0;
+            @include font-size-level5;
+        }
     }
 }
 
@@ -1098,5 +1102,4 @@ body[data-modal-product='focus'] #modal .window .inner {
 .ios .mobile-download-buttons .android-apk {
     display: none;
 }
-
 
