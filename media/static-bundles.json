@@ -1083,14 +1083,6 @@
       "name": "firefox_new_scene1"
     },
     {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/base/mozilla-client.js",
-        "js/firefox/new/experiment-win10-taskbar-funnelcake.js"
-      ],
-      "name": "experiment_firefox_new_win10_taskbar_funnelcake"
-    },
-    {
         "files": [
           "js/base/mozilla-modal.js",
           "js/firefox/new/yandex/scene1.js",
