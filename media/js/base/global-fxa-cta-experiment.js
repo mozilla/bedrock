@@ -8,7 +8,7 @@
 (function() {
     'use strict';
 
-    var SAMPLE_RATE = 0.1; // FxA button is shown at 10% sample rate.
+    var SAMPLE_RATE = 0.9; // FxA button is shown at 90% sample rate.
     var COOKIE_EXPIRATION_DAYS = 2;
     var COOKIE_ID = 'global-fxa-cta-exp';
     var nav = document.querySelector('.mzp-c-navigation');
