@@ -100,9 +100,9 @@
     },
     {
       "files": [
-        "css/firefox/releasenotes.scss"
+        "css/firefox/system-requirements.scss"
       ],
-      "name": "firefox_releasenotes"
+      "name": "firefox_system_requirements"
     },
     {
       "files": [
