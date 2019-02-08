@@ -1,3 +1,14 @@
+---
+name: Sprint Task ⚡️
+about: For project work and feature development
+---
+
+## Description
+
+Description, good enough that reading the card 1 month from now, you still know what it means.
+
+### Estimates
+
 | Estimates |  |
 | ------------- | ------------- |
 | TL | |
@@ -7,8 +18,6 @@
 | ANA | |
 | DES | |
 | COPY | |
-
-Description, good enough that reading the card 1 month from now, you still know what it means.
 
 ---
 
