@@ -7,7 +7,6 @@
 @import '../hubs/sections';
 @import '../hubs/sub-nav';
 @import '../quantum/common';
-@import '../quantum/features-scroller';
 
 /* -------------------------------------------------------------------------- */
 // Common elements & variables
@@ -175,124 +174,6 @@ html[dir="rtl"] .main-header-section {
 }
 
 /* -------------------------------------------------------------------------- */
-// What's new section
-
-.whats-new-section {
-    background: #ff1ad9;
-    background: linear-gradient(to right, #ff1ad9 0%, #ff9400 100%);
-    color: #fff;
-
-    h2.section-title {
-        margin: 0 auto 40px;
-        max-width: 30em;
-
-        &:before {
-            background: #fff;
-        }
-    }
-
-    ul li {
-        font-weight: bold;
-        margin: 0 auto 40px;
-        max-width: 30em;
-    }
-
-    .quote {
-        font-style: italic;
-        margin: 0 auto 30px;
-        max-width: 30em;
-
-        a:link,
-        a:visited {
-            color: #fff;
-            font-weight: bold;
-            text-decoration: underline;
-        }
-
-        a:hover,
-        a:active,
-        a:focus {
-            text-decoration: none;
-        }
-    }
-
-    @media #{$mq-tablet} {
-        background: url('/media/img/firefox/home/whats-new-tail.png') top -300px center no-repeat,
-                    linear-gradient(to right, #ff1ad9 0%, #ff9400 100%);
-    }
-
-    @media #{$mq-desktop} {
-        text-align: left;
-
-        h2.section-title {
-            margin: 0 0 40px;
-
-            &:before {
-                left: 0;
-                margin-left: 0;
-            }
-        }
-
-        ul li,
-        .quote {
-            margin: 0 0 30px;
-        }
-
-        .whats-new-content {
-            float: left;
-            width: 40%;
-        }
-
-        .whats-new-image {
-            margin-bottom: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 55%;
-
-            img {
-                display: block;
-                height: auto;
-                max-width: none;
-                width: 903px;
-            }
-        }
-    }
-
-    @media #{$mq-desktop-wide} {
-        .whats-new-content {
-            width: 25%;
-        }
-
-        .whats-new-image {
-            width: 70%;
-            right: -5px;
-        }
-    }
-}
-
-html[dir="rtl"] .whats-new-section {
-
-    @media #{$mq-desktop} {
-        text-align: right;
-
-        h2.section-title:before {
-            left: auto;
-            right: 0;
-        }
-
-        .whats-new-content {
-            float: right;
-        }
-
-        .whats-new-image {
-            left: 0;
-            right: auto;
-        }
-    }
-}
-
-/* -------------------------------------------------------------------------- */
 // Key features section
 
 .key-features-section {
@@ -321,6 +202,10 @@ html[dir="rtl"] .whats-new-section {
 
     .key-feature {
         margin: 40px 0 0;
+
+        &:first-child {
+            margin-top: 0;
+        }
 
         .content {
             padding: 0;
@@ -520,6 +405,12 @@ html[dir="rtl"] .key-features-section {
 
     h2 {
         margin-bottom: 20px;
+
+        a:link,
+        a:visited {
+            color: inherit;
+            text-decoration: none;
+        }
     }
 
     p {
@@ -620,6 +511,10 @@ html[dir="rtl"] .switch-section {
     h3 {
         font-weight: bold;
         margin-bottom: 20px;
+
+        a:link {
+            text-decoration: none;
+        }
     }
 
     header {
@@ -809,28 +704,6 @@ html[dir="rtl"] .privacy-section {
     }
 }
 
-/* -------------------------------------------------------------------------- */
-// Features scroller page specific styles & overrides
-
-@media #{$mq-desktop-wide} {
-    .features-scroller-section.page-section .features-scroller-header .features-scroller-nav {
-        &[data-current="video-screenshots"] ul:before {
-            @include transform(translateY(0));
-        }
-
-        &[data-current="video-pocket"] ul:before {
-            @include transform(translateY(100%));
-        }
-
-        &[data-current="video-gaming"] ul:before {
-            @include transform(translateY(200%));
-        }
-
-        &[data-current="video-library"] ul:before {
-            @include transform(translateY(300%));
-        }
-    }
-}
 
 /* -------------------------------------------------------------------------- */
 // Customization section
@@ -844,6 +717,24 @@ html[dir="rtl"] .privacy-section {
     h3 {
         font-weight: bold;
         margin-bottom: 10px;
+
+        a:link,
+        a:visited {
+            color: inherit;
+            text-decoration: none;
+        }
+    }
+
+    ul {
+        margin-bottom: 0;
+
+        li:last-child {
+            margin-bottom: 0;
+
+            p {
+                margin-bottom: 0;
+            }
+        }
     }
 
     ul li {
@@ -887,18 +778,22 @@ html[dir="rtl"] .privacy-section {
             flex-wrap: wrap;
 
             li {
-                margin: 40px auto;
+                margin: 40px auto 0 auto;
                 padding-top: 160px;
                 width: 30%;
+
+                p {
+                    margin-bottom: 0;
+                }
             }
         }
     }
 }
 
-@supports (display: grid) {
+.customization-section {
+    margin-top: 100px;
 
-    .customization-section {
-
+    @supports (display: grid) {
         @media #{$mq-desktop} {
             ul {
                 display: grid;
@@ -906,7 +801,7 @@ html[dir="rtl"] .privacy-section {
                 grid-template-columns: repeat(3, 1fr);
 
                 li {
-                    margin: 40px 0;
+                    margin: 40px 0 0 0;
                     width: auto;
                 }
             }
@@ -974,74 +869,6 @@ html[dir="rtl"] .sync-section {
     }
 }
 
-/* -------------------------------------------------------------------------- */
-// Browser for good section
-
-.browse-for-good-section {
-    padding-bottom: 130px;
-
-    .browse-for-good-section-container {
-        @include at2x('/media/img/firefox/home/mozilla.png', 300px, 261px);
-        background-position: top center;
-        background-repeat: no-repeat;
-        padding-top: 280px;
-    }
-
-    h2 {
-        margin-bottom: 20px;
-    }
-
-    p {
-        margin: 0 auto;
-        max-width: 24em;
-    }
-
-    @media #{$mq-tablet} {
-
-        .browse-for-good-section-container {
-            @include background-size(350px 305px);
-            @include clearfix;
-            background-position: top left;
-            min-height: 305px;
-            padding-top: 40px;
-        }
-
-        .browse-for-good-section-content {
-            float: right;
-            text-align: right;
-            width: 45%;
-
-            h2.section-title:before {
-                left: auto;
-                margin-left: 0;
-                right: 0;
-            }
-
-            p {
-                margin: 0;
-                float: right;
-            }
-        }
-    }
-
-    @media #{$mq-desktop} {
-        padding: 200px 0 0;
-
-        .browse-for-good-section-container {
-            @include background-size(450px 392px);
-            min-height: 392px;
-            padding-top: 100px;
-        }
-    }
-
-    @media #{$mq-desktop-wide} {
-        .browse-for-good-section-container {
-            @include background-size(541px 471px);
-            background-position: top left 20px;
-            min-height: 471px;
-        }
-    }
-}
 
 /* -------------------------------------------------------------------------- */
 // Secondary download section
@@ -1074,6 +901,12 @@ html[dir="rtl"] .sync-section {
         background-position: top center;
         background-repeat: no-repeat;
         padding-top: 220px;
+
+        a:link,
+        a:visited {
+            color: inherit;
+            text-decoration: none;
+        }
     }
 
     p {
