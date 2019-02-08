@@ -41,6 +41,10 @@
 {% endblock %}
 
 {% block site_header %}
+  {% if switch('fundraising-feb2019') %}
+    {% include 'mozorg/home/includes/fundraiser-feb2019.html' %}
+  {% endif %}
+
   {% include 'includes/protocol/navigation/index.html' %}
 {% endblock %}
 
@@ -64,6 +68,7 @@
     </div>
   </section>
 
+{% if not switch('fundraising-feb2019') %}
   <section id="download-firefox-sticky-cta" class="c-sticky-cta download-firefox-sticky-cta">
     <div class="mzp-l-content">
       <div class="c-sticky-cta-wrapper">
@@ -76,6 +81,7 @@
       </div>
     </div>
   </section>
+{% endif %}
 
   <section id="fxaccount-primary-cta" class="c-primary-cta fxaccount-primary-cta">
     <div class="mzp-l-content">
@@ -90,6 +96,7 @@
     </div>
   </section>
 
+{% if not switch('fundraising-feb2019') %}
   <section id="fxaccount-sticky-cta" class="c-sticky-cta fxaccount-sticky-cta">
     <div class="mzp-l-content">
       <div class="c-sticky-cta-wrapper">
@@ -99,6 +106,7 @@
       </div>
     </div>
   </section>
+{% endif %}
 
   <div class="mozilla-content">
     <div class="mzp-l-content">
@@ -273,4 +281,7 @@
 
 {% block js %}
   {{ js_bundle('home') }}
+  {% if switch('fundraising-feb2019') %}
+    {{ js_bundle('home-fundraiser-feb2019') }}
+  {% endif %}
 {% endblock %}
