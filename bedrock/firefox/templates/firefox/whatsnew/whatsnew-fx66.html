@@ -1,0 +1,45 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+ {% add_lang_files "firefox/whatsnew_66" %}
+
+ {% extends "firefox/base-protocol.html" %}
+
+ {% block page_title %}{{ _('Get a Firefox Account – Keep your data private, safe and synced') }}{% endblock %}
+ {% block page_desc %}{{_('Securely sync your passwords, bookmarks and tabs across all your devices. Get a Firefox Account now – One log-in – Power and privacy everywhere.')}}{% endblock %}
+
+ {% block page_css %}
+   {{ css_bundle('firefox_whatsnew_66') }}
+ {% endblock %}
+
+ {% block site_header %}{% endblock %}
+
+ {% block content %}
+
+  <p>{{_('Get a Firefox Account and all the benefits it unlocks.')}}</p>
+  <p>{{_('Get tips to live your best online life right in your inbox.')}}</p>
+
+  <h1>{{_('One log-in. Power and security everywhere.')}}</h1>
+
+  <h3>{{_('Remember your passwords in Lockbox')}}</h3>
+  <p>{{_('No more getting locked out of apps and websites. Lockbox secures all the passwords you’ve saved in Firefox and gives you easy access across all your iOS devices.')}}</p>
+  <a href="#">{{_('Get the Lockbox App')}}</a>
+
+  <h3>{{_('Put quality content in your Pocket')}}</h3>
+  <p>{{_('Discover the web’s best content, and absorb it anytime – even offline – on any device. Pocket’s listen feature will even read any article aloud to you. Get it all from the Firefox toolbar or the Pocket app.')}}</p>
+  <a href="#">{{_('Get the Pocket App')}}</a>
+
+  <h3>{{_('Pick up where you left off with Notes')}}</h3>
+  <p>{{_('Your ideas and inspiration are secure and encrypted with Notes – and when you’re signed into your Account, they sync from your desktop to your Android devices.')}}</p>
+  <a href="#">{{_('Get the Notes App')}}</a>
+
+  <h3>{{_('Take total control of the files you share ')}}</h3>
+  <p>{{_('Feel like a secret agent when you send files online, with a private, encrypted link that ‘self-destructs.’')}}</p>
+  <a href="#">{{_('Try Firefox Send')}}</a>
+
+ {% endblock %}
+
+ {% block js %}
+   {{ js_bundle('firefox_whatsnew_66') }}
+ {% endblock %}

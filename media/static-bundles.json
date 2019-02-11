@@ -590,6 +590,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-66.scss"
+      ],
+      "name": "firefox_whatsnew_66"
+    },
+    {
+      "files": [
         "css/mozorg/commit-access-policy.less"
       ],
       "name": "commit-access-policy"
@@ -1064,6 +1070,12 @@
         "js/newsletter/form-protocol.js"
       ],
       "name": "firefox_whatsnew_65_newsletter"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-66.js"
+      ],
+      "name": "firefox_whatsnew_66"
     },
     {
       "files": [
