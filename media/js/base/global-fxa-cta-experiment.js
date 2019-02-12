@@ -91,9 +91,8 @@
             return false;
         }
 
-        // Detect whether the Firefox is up-to-date in a non-strict way.
-        // The minor version is not considered.
-        return userMajorVersion === latestMajorVersion;
+        // User should be on Firefox Quantum or greater.
+        return userMajorVersion >= 57;
     }
 
     function init() {

@@ -132,6 +132,14 @@
     {% if switch('global-fxa-cta-experiment', ['en-US']) %}
       {{ js_bundle('global-fxa-cta-experiment') }}
     {% endif %}
+
+    {% if switch('global-fxa-cta-experiment-de', ['de']) %}
+      {{ js_bundle('global-fxa-cta-experiment') }}
+    {% endif %}
+
+    {% if switch('global-fxa-cta-experiment-fr', ['fr']) %}
+      {{ js_bundle('global-fxa-cta-experiment') }}
+    {% endif %}
     {% endblock %}
 
     {# Bug 1381776 #}
