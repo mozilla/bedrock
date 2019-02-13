@@ -283,7 +283,7 @@
 
             // handle clicks on the master toggle buttons
             if (e.target.classList.contains('toggle')) {
-                toggleMainSectionTopics(event.target);
+                toggleMainSectionTopics(e.target);
             }
         });
 
