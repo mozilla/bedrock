@@ -228,6 +228,7 @@
     },
     {
       "files": [
+        "css/base/mozilla-fxa-form.scss",
         "css/firefox/new/scene1.scss"
       ],
       "name": "firefox_new_scene1"
@@ -1088,6 +1089,14 @@
         "js/firefox/new/scene1.js"
       ],
       "name": "firefox_new_scene1"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-fxa-form.js",
+        "js/firefox/new/scene1_fxa_modal.js"
+      ],
+      "name": "firefox_new_scene1_fxa_modal"
     },
     {
         "files": [

@@ -1,0 +1,90 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../pebbles/includes/lib';
+
+
+// Hide header visually and add top padding to compensate
+#modal.firefox-account-modal > .window > .inner {
+    background: transparent;
+    max-width: 512px;
+    padding: 70px 0 0;
+
+    .content {
+        padding: 0;
+    }
+
+    header {
+        @include visually-hidden;
+    }
+}
+
+
+.js #modal #firefox-account {
+    display: block;
+    background: #fff;
+}
+
+
+#firefox-account {
+    display: none;
+    padding: 20px;
+
+    .fxa-title {
+        color: #000;
+        font-weight: bold;
+        margin: 20px 0;
+    }
+
+    .fxa-intro {
+        @include font-size-level5;
+        margin: 0 0 40px;
+    }
+
+    .button {
+        @include border-box;
+        width: 100%;
+        padding: .9em 40px;
+    }
+
+    .mzp-c-button-download-container {
+        width: 100%;
+    }
+
+    .mzp-c-button-download-privacy-link,
+    .fxa-email-form-intro {
+        @include visually-hidden;
+    }
+
+    .fxa-email-field-container {
+        margin-bottom: 10px;
+    }
+
+    .fxa-signin {
+        @include font-size-small;
+    }
+
+    .fxa-email-form .agreement {
+        @include font-size-extra-small;
+    }
+
+    #download-fxa-modal {
+        margin: 40px 0 0;
+    }
+
+    a:link,
+    a:visited {
+        color: $color-quantum-blue;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: darken($color-quantum-blue, 15%);
+        }
+    }
+
+    @media #{$mq-tablet} {
+        padding: 60px 40px;
+    }
+}

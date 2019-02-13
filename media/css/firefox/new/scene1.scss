@@ -7,6 +7,7 @@
 @import '../../hubs/sections';
 @import '../../quantum/newsletter';
 @import 'other-platforms';
+@import 'firefox-account';
 
 /* -------------------------------------------------------------------------- */
 // Conditional messaging shown to specific Firefox versions
@@ -203,6 +204,9 @@ html[dir="rtl"] .main-content {
 /* -------------------------------------------------------------------------- */
 // Refresh Firefox CTA shown for up-to-date Firefox users on release channel
 
+// NOTE: This button is being replaced by a link in the FXA modal, and should be
+// deprecated once that modal is fully localized (tag 'fxnew_account_032019').
+
 #refresh-firefox-wrapper {
     display: none;
 }
@@ -282,3 +286,4 @@ html.firefox-pre-release {
         }
     }
 }
+

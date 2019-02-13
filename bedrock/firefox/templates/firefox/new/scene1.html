@@ -4,6 +4,8 @@
 
 {% add_lang_files "firefox/new/quantum" %}
 
+{% from "macros.html" import fxa_link_fragment, fxa_email_form with context %}
+
 {% extends "firefox/new/base.html" %}
 
 {# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
@@ -54,13 +56,6 @@
       #}
       {{ download_firefox(alt_copy=_('Download Now'), locale_in_transition=True, download_location='primary cta') }}
     </div>
-
-    <div id="refresh-firefox-wrapper">
-      <div class="refresh-inner-wrapper">
-        <button class="button button-hollow button-light" type="button" id="refresh-firefox" data-interaction="Refresh Firefox" data-element-action="Firefox Desktop" data-button-name="Refresh Firefox" data-cta-position="Primary">{{ _('Refresh Firefox') }}</button>
-        <small><a rel="external" href="https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=learn-more-link">{{ _('Learn more') }}</a></small>
-      </div>
-    </div>
   </div>
 
   <p class="linux-arm-download-instructions">
@@ -70,6 +65,9 @@
   <ul id="other-platforms-languages-wrapper" class="small-links desktop hidden">
     <li><button id="other-platforms-modal-link" type="button">{{_('Advanced install options & other platforms') }}</button></li>
     <li><a href="{{ url('firefox.all') }}">{{_('Download in another language') }}</a></li>
+  {% if l10n_has_tag('fxnew_account_032019') %}
+    <li><a href="https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fix-problem-link">{{ _('Fix a problem') }}</a></li>
+  {% endif %}
     <li><a rel="external" href="https://support.mozilla.org/products/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
   </ul>
 
@@ -148,11 +146,29 @@
     </section>
   </div>
 </div>
+
+{% if l10n_has_tag('fxnew_account_032019') %}
+<div id="firefox-account">
+  <h4 class="fxa-title">{{ _('You’ve already got the Firefox browser. Now get everything else Firefox.') }}</h4>
+  <p class="fxa-intro">{{ _('Sync bookmarks, send tabs, save to Pocket and more with a Firefox Account.') }} <a href="{{ url('firefox.accounts') }}">{{ _('Learn more') }}</a></p>
+
+  {{ fxa_email_form(entrypoint='firefox-new', button_text=_('Get a Firefox Account'), utm_source='firefox-new', utm_params={'campaign': 'firefox-new', 'content': 'firefox-new-fxa', 'term': 'existing-users', 'medium': 'referral'}) }}
+
+  <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='accounts-page', utm_params={'campaign': 'fxa-embedded-form', 'content': '/firefox/new/', 'source': 'download-page'}) }}>{{ _('Sign In') }}</a></p>
+
+  {{ download_firefox(dom_id='download-fxa-modal', alt_copy=_('Download Anyway'), button_color='button-hollow button-blue', locale_in_transition=True, download_location='other') }}
+</div>
+{% endif %}
+
 {% include 'firefox/includes/schemaorg-app.html' %}
 {% endblock %}
 
 {% block js %}
   {{ js_bundle('firefox_new_scene1') }}
+
+  {% if l10n_has_tag('fxnew_account_032019') %}
+    {{ js_bundle('firefox_new_scene1_fxa_modal') }}
+  {% endif %}
 
   {% if switch('stub-attribution-macos') %}
     {{ js_bundle('stub-attribution-macos') }}
