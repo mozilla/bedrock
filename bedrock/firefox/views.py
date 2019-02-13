@@ -639,7 +639,7 @@ def download_thanks(request):
     pre_download_locales = ['fr']
 
     # ensure variant matches pre-defined value
-    if variant not in ['a', 'b', 'c', 'd']:  # place expected ?v= values in this list
+    if variant not in ['a', 'b', 'c']:  # place expected ?v= values in this list
         variant = None
 
     if variant in ['b', 'c'] and locale == 'en-US':

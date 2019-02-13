@@ -5,7 +5,36 @@
 (function(Mozilla) {
     'use strict';
 
-    var isChrome = !!window.chrome;
+    function isChromeDesktopWin() {
+        /**
+         * Thankfully this is only for a short-term, targeted experiment.
+         * This is not something we should ever do in fully-featured code.
+         * Let us never speak of this again.
+         **/
+        var isChrome = !!window.chrome;
+        var isOpera = typeof window.opr !== 'undefined';
+        var isEdge = window.navigator.userAgent.indexOf('Edge') > -1;
+        var isYandex = window.navigator.userAgent.indexOf('YaBrowser') > -1;
+
+        // Limit the platform to Windows (i.e. desktop).
+        if (window.site.platform !== 'windows') {
+            return false;
+        }
+
+        // Attack of the clones!
+        if (isEdge || isOpera || isYandex) {
+            return false;
+        }
+
+        // Filter out all other non-Chromium browsers.
+        if (!isChrome) {
+            return false;
+        }
+
+        // Assume Chrome (likely not 100% accurate).
+        return true;
+    }
+
 
     // courtesy of https://davidwalsh.name/query-string-javascript
     function getUrlParam(name) {
@@ -16,7 +45,7 @@
     }
 
     // if we already have a utm_content parameter, don't clobber existing stub attribution data.
-    if (window.site.platform === 'windows' && isChrome && !getUrlParam('utm_content')) {
+    if (isChromeDesktopWin() && !getUrlParam('utm_content')) {
         var cooper = new Mozilla.TrafficCop({
             id: 'experiment_firefox_download_install',
             variations: {

@@ -5,8 +5,6 @@
 (function(Mozilla) {
     'use strict';
 
-    var isChrome = !!window.chrome;
-
     function setAttributionValues(variant) {
         // preserve any existing utm params except for utm_content.
         var params = new window._SearchParams().utmParams();
@@ -40,8 +38,6 @@
         }
     }
 
-    if (window.site.platform === 'windows' && isChrome) {
-        init();
-    }
+    init();
 
 })(window.Mozilla);
