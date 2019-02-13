@@ -721,7 +721,7 @@ def new(request):
             elif experience == 'safari':
                 template = 'firefox/new/compare/scene1-safari.html'
             elif experience == 'edge':
-                template = 'firefox/new/compare/scene1-edge-1.html'
+                template = 'firefox/new/compare/scene1-edge.html'
             else:
                 template = 'firefox/new/scene1.html'
         else:

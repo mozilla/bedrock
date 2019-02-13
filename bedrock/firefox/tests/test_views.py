@@ -719,7 +719,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?xv=edge')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-edge-1.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-edge.html', ANY)
 
     def test_compare_edge_scene_1_non_us(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=edge')
