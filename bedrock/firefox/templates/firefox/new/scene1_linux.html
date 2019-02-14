@@ -1,6 +1,6 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
-  # License, v. 2.0. If a copy of the MPL was not distributed with this
-  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "firefox/new/scene1.html" %}
 
@@ -16,6 +16,8 @@
 
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
 {% block page_og_desc %}{{_('Faster page loading, less memory usage and packed with features, the new Firefox for Linux is here.')}}{% endblock %}
+
+{% block experiments %}{% endblock %}
 
 {% block main_title %}
 <header>
