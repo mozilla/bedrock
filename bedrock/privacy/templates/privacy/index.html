@@ -53,7 +53,9 @@
         </span>
       </p>
       {% if l10n_has_tag('privacy_email_2019') %}
-      <p><a href="https://app.onetrust.com/app/#/webform/4ba08202-2ede-4934-a89e-f0b0870f95f0">{{ _('See here for Data Subject Access Requests.') }}</a></p>
+      {% trans dsar='https://app.onetrust.com/app/#/webform/4ba08202-2ede-4934-a89e-f0b0870f95f0' %}
+      <p><a href="{{ dsar }}">See here for Data Subject Access Requests.</a></p>
+      {% endtrans %}
       {% endif %}
     </header>
   </section>
