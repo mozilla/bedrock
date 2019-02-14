@@ -636,7 +636,6 @@ def download_thanks(request):
     locale = l10n_utils.get_locale(request)
     variant = request.GET.get('v', None)
     show_newsletter = locale in ['en-US', 'en-GB', 'en-CA', 'en-ZA', 'es-ES', 'es-AR', 'es-CL', 'es-MX', 'pt-BR', 'fr', 'ru', 'id', 'de', 'pl']
-    pre_download_locales = ['fr']
 
     # ensure variant matches pre-defined value
     if variant not in ['a', 'b', 'c']:  # place expected ?v= values in this list
@@ -644,9 +643,6 @@ def download_thanks(request):
 
     if variant in ['b', 'c'] and locale == 'en-US':
         show_newsletter = False
-
-    if variant == 'a' and locale in pre_download_locales:
-        show_newsletter = False  # Prevent showing the newsletter for pre-download experiment Issue #6456
 
     if locale == 'de':
         if experience == 'berlin':

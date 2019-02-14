@@ -747,12 +747,6 @@
     },
     {
       "files": [
-        "css/firefox/home-pre-download.scss"
-      ],
-      "name": "firefox-home-pre-download"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-57-letter.scss"
       ],
       "name": "firefox-whatsnew-57-letter"
@@ -1313,33 +1307,6 @@
         "js/firefox/home/main.js"
       ],
       "name": "firefox-home"
-    },
-    {
-      "files": [
-         "js/firefox/home/pre-download-a-ga.js"
-      ],
-      "name": "firefox-home-pre-download-a-ga"
-    },
-    {
-      "files": [
-        "js/base/mozilla-modal.js",
-        "js/firefox/home/pre-download-newsletter.js"
-      ],
-      "name": "firefox-home-pre-download-newsletter"
-    },
-    {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/home/experiment-pre-download.js"
-      ],
-      "name": "experiment-firefox-home-pre-download"
-    },
-    {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/home/experiment-pre-download-locales.js"
-      ],
-      "name": "experiment-firefox-home-pre-download-locales"
     },
     {
       "files": [
