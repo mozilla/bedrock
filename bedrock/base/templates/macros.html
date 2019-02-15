@@ -301,6 +301,28 @@
   </section>
 {%- endmacro %}
 
+{% macro fxa_link_fragment(entrypoint, action='signin', utm_params={}) -%}
+  {% set fxa_path = '' %}
+  {% set fxa_queries = [
+    'service=sync',
+    'context=fx_desktop_v3'
+  ] %}
+
+  {% if action == 'signup' %}
+    {% set fxa_path = 'signup' %}
+  {% else %}
+    {% do fxa_queries.insert(0, 'action=email') %}
+  {% endif %}
+  {% do fxa_queries.append('entrypoint={}'.format(entrypoint)) %}
+  {% for param, val in utm_params.items() %}
+    {% if val and param in ['campaign', 'content', 'medium', 'source'] %}
+      {% do fxa_queries.append('utm_{}={}'.format(param, val.replace('/', '%2F'))) %}
+    {% endif %}
+  {% endfor %}
+
+  href="{{ settings.FXA_ENDPOINT}}{{ fxa_path }}?{{ fxa_queries|join('&') }}" data-mozillaonline-link="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}{{ fxa_path }}?{{ fxa_queries|join('&') }}"
+{%- endmacro %}
+
 {% macro fxa_create_account_button(button_location, id_prefix, campaign, entrypoint, button_text = '', button_class = '', content = '', source = '') %}
   {# - creates the "create account" button which links to accounts.firefox.com
        and fallback states including:
@@ -322,31 +344,12 @@
        - content will default to the path to the page, minus the locale
   #}
   {# Parameters for accounts.firefox.com link #}
-  {% set service = 'sync' %}
-  {% set context = 'fx_desktop_v3' %}
   {% set entrypoint = 'mozilla.org-' + entrypoint %}
   {% if not button_text %}
     {% set button_text = _('Create account') %}
   {% endif %}
   {% if not button_class %}
     {% set button_class = 'button-hollow' %}
-  {% endif %}
-  {% if content %}
-    {% set utm_content = content.replace('/', '%2F') %}
-  {% else %}
-    {% set utm_content = request.path_info.replace('/', '%2F') %}
-  {% endif %}
-
-  {# Create accounts.firefox.com link #}
-  {% set accounts_url = ['https://accounts.firefox.com/signup?service=', service,
-                          '&context=', context,
-                          '&entrypoint=', entrypoint,
-                          '&utm_content=', utm_content,
-                          '&utm_campaign=', campaign
-                        ]|join %}
-
-  {% if source %}
-    {% set accounts_url = accounts_url + '&utm_source=' + source %}
   {% endif %}
 
   {# Create ids for buttons and links #}
@@ -364,7 +367,7 @@
     {{ download_firefox(dom_id=download_id, download_location=button_location) }}
   </div>
   <div class="show-fxa-supported-signed-out">
-    <a href="{{ accounts_url }}" class="button {{ button_class }}" data-button-name="Create account" data-link-type="button" data-cta-position="{{ button_location }}" id="{{ account_id }}">
+    <a {{ fxa_link_fragment(entrypoint=entrypoint, action='signup', utm_params={'campaign': campaign, 'content': (content or request.path_info), 'source': source}) }} class="button {{ button_class }}" data-button-name="Create account" data-link-type="button" data-cta-position="{{ button_location }}" id="{{ account_id }}">
       {{ button_text }}
     </a>
   </div>
