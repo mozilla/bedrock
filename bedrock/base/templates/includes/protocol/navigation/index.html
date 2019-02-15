@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros.html" import fxa_link_fragment with context %}
+
 <div class="mzp-c-navigation">
   <div class="mzp-c-navigation-l-content">
     <div class="mzp-c-navigation-container">
@@ -34,7 +36,7 @@
               {% set fxa_link_text = 'Check out the Benefits' %}
             {% endif %}
             <div class="c-navigation-fxa-cta-container">
-              <a class="c-navigation-fxa-cta mzp-c-button mzp-t-secondary mzp-t-small mzp-t-download" href="https://accounts.firefox.com/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org-globalnav&utm_source=www.mozilla.org&utm_content=get-firefox-account&utm_medium=referral&utm_campaign=globalnav" data-button-name="Get a Firefox Account" data-link-type="button" data-cta-position="secondary cta">
+              <a class="c-navigation-fxa-cta mzp-c-button mzp-t-secondary mzp-t-small mzp-t-download" {{ fxa_link_fragment(entrypoint='mozilla.org-globalnav', action='signup', utm_params={'campaign': 'globalnav', 'content': 'get-firefox-account', 'medium': 'referral', 'source': 'www.mozilla.org'}) }} data-button-name="Get a Firefox Account" data-link-type="button" data-cta-position="secondary cta">
                 {{ fxa_button_text }}
               </a>
               <p class="c-navigation-fxa-cta-small-link"><a data-link-type="nav" data-link-name="Check out the Benefits" href="{{ url('firefox.accounts') }}">{{ fxa_link_text }}</a></p>

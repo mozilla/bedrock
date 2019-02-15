@@ -3,7 +3,7 @@
 
 {% from "macros-protocol.html" import hero, call_out_compact with context %}
 
-{% from "macros.html" import fxa_email_form, google_play_button with context %}
+{% from "macros.html" import fxa_email_form, fxa_link_fragment, google_play_button with context %}
 
 {% add_lang_files "firefox/whatsnew_64" %}
 
@@ -31,6 +31,12 @@
   {% set sync_head = _('Send tabs instantly to your devices') %}
   {% set sync_desc = _('Send an open tab on one device to all your others with a single tap. Much easier than texting or emailing yourself those links.') %}
 {% endif %}
+
+{% set fxa_utm_params = {
+  'campaign': 'wnp64',
+  'content': '/firefox/WNP/64/',
+  'source': 'wnp-64'
+} %}
 
 {% block page_title %}{{ page_title }}{% endblock %}
 {% block page_desc %}{{ page_desc }}{% endblock %}
@@ -62,8 +68,8 @@
    include_cta=True
   ) %}
   <p class="show-fxa-supported-signed-out show-fxa-default">
-    <a href="https://accounts.firefox.com/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org-fx.wnp64&utm_content=%2Ffirefox%2FWNP%2F64%2F&utm_campaign=wnp64&utm_source=wnp-64" class="mzp-c-button mzp-t-download">{{ button_create }}</a><br>
-    <span class="wn64-signin">{{ login_desc }} <a href="https://accounts.firefox.com/?action=email&service=sync&context=fx_desktop_v3&entrypoint=mozilla.org-fx.wnp64&utm_content=%2Ffirefox%2FWNP%2F64%2F&utm_campaign=wnp64&utm_source=wnp-64">{{ login_link }}</a></span>
+    <a {{ fxa_link_fragment(entrypoint='mozilla.org-fx.wnp64', action='signup', utm_params=fxa_utm_params) }} class="mzp-c-button mzp-t-download">{{ button_create }}</a><br>
+    <span class="wn64-signin">{{ login_desc }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-fx.wnp64', utm_params=fxa_utm_params) }}>{{ login_link }}</a></span>
   </p>
   {% endcall %}
   {% call hero(
@@ -109,8 +115,8 @@
     class='mzp-t-firefox t-wn64 show-fxa-default show-fxa-supported-signed-out'
   ) %}
     <p>
-      <a href="https://accounts.firefox.com/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org-fx.wnp64&utm_content=%2Ffirefox%2FWNP%2F64%2F&utm_campaign=wnp64&utm_source=wnp-64" class="mzp-c-button mzp-t-download">{{ button_create }}</a><br>
-      <span class="wn64-signin">{{ login_desc }} <a href="https://accounts.firefox.com/?action=email&service=sync&context=fx_desktop_v3&entrypoint=mozilla.org-fx.wnp64&utm_content=%2Ffirefox%2FWNP%2F64%2F&utm_campaign=wnp64&utm_source=wnp-64">{{ login_link }}</a></span>
+      <a {{ fxa_link_fragment(entrypoint='mozilla.org-fx.wnp64', action='signup', utm_params=fxa_utm_params) }} class="mzp-c-button mzp-t-download">{{ button_create }}</a><br>
+      <span class="wn64-signin">{{ login_desc }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-fx.wnp64', utm_params=fxa_utm_params) }}>{{ login_link }}</a></span>
     </p>
   {% endcall %}
 
