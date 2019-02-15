@@ -128,7 +128,7 @@ $image-bottom-height: 28px;
 }
 
 
-@media (max-width: $screen-sm) {
+@media (max-width: $screen-sm - 1px) {
     @supports (display: grid) {
         .c-compare-table {
             thead tr,

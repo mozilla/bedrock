@@ -37,12 +37,6 @@ if (typeof Mozilla === 'undefined') {
         });
     };
 
-    Utils.switchPathLanguage = function(location, newLang) {
-        // get path without locale
-        var urlpath = location.pathname.slice(1).split('/').slice(1).join('/');
-        return '/' + newLang + '/' + urlpath + location.search;
-    };
-
     // client-side redirects (handy for testing)
     Utils.doRedirect = function(destination) {
         if (destination) {

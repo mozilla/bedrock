@@ -20,10 +20,6 @@
             <li><a href="{{ press_blog_url() }}" data-link-type="footer" data-link-name="Press Center">{{ _('Press Center') }}</a>
             <li><a href="{{ donate_url('footer') }}" class="donate" data-link-type="footer" data-link-name="Donate">{{ _('Donate') }}</a></li>
             <li><a href="https://wiki.mozilla.org/Webdev/GetInvolved/mozilla.org" data-link-type="footer" data-link-name="Contribute to this site">{{ _('Contribute to this site') }}</a></li>
-            {# TODO remove the "and" clause after tranlsation #}
-            {% if template_source_url and (LANG.startswith('en') or switch('footer-source-link')) %}
-              <li><a href="{{ template_source_url }}" data-link-type="footer" data-link-name="Source code for this page">{{ _('Source code for this page') }}</a></li>
-            {% endif %}
           </ul>
         </section>
         <section class="mzp-c-footer-section">
