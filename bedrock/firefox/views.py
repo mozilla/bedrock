@@ -727,20 +727,6 @@ def new(request):
                 template = 'firefox/new/compare/scene1-safari.html'
             elif experience == 'edge':
                 template = 'firefox/new/compare/scene1-edge.html'
-            elif experience == 'opera':
-                if variant == 'a':
-                    template = 'firefox/new/scene1.html'
-                elif variant == '2':
-                    template = 'firefox/new/compare/scene1-opera-2.html'
-                else:
-                    template = 'firefox/new/compare/scene1-opera-1.html'
-            elif experience == 'internetexplorer':
-                if variant == 'a':
-                    template = 'firefox/new/scene1.html'
-                elif variant in ['1', '2', '3', '4']:
-                    template = 'firefox/new/compare/scene1-ie-{}.html'.format(variant)
-                else:
-                    template = 'firefox/new/compare/scene1-ie-1.html'
             elif variant in ['a', 'b', 'c']:
                 template = 'firefox/new/install/scene1.html'
             else:
