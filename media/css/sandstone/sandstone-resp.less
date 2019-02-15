@@ -562,7 +562,6 @@ label.error {
 #masthead,
 #main-feature,
 #main-content,
-#colophon,
 .billboard,
 .container {
     display: block;
@@ -865,218 +864,7 @@ nav.menu-bar {
 }
 
 /* }}} */
-/* {{{ Footer */
-
-#colophon {
-    .font-size(14px);
-    background: #000;
-    color: #fff;
-    line-height: 1.3;
-    margin: 0;
-    padding: 60px 0;
-    width: 100%;
-
-    .content {
-        margin: 0 auto;
-        padding: 0;
-        width: @widthDesktop  - (@gridGutterWidth * 2);
-    }
-
-    a:link,
-    a:visited {
-        color: #fff;
-        font-weight: normal;
-        text-decoration: none;
-    }
-
-    a:hover,
-    a:focus,
-    a:active {
-        color: #fff;
-        text-decoration: underline;
-    }
-
-    h5 {
-        .font-size(18px);
-        color: #fff;
-        margin-bottom: .9em;
-        text-shadow: none;
-
-        a:link,
-        a:visited {
-            font-weight: bold;
-        }
-    }
-
-    li {
-        list-style-type: none;
-        margin: 0 0 .8em;
-    }
-
-    nav {
-        .border-box;
-        .clearfix;
-        margin: 0 auto;
-    }
-
-    section {
-        margin-bottom: 40px;
-    }
-
-    .logo {
-        .font-size(16px);
-        margin-bottom: 40px;
-
-        a {
-            background: url('/media/img/pebbles/moz-wordmark-light-reverse.svg') no-repeat;
-            .background-size(100px, 32px);
-            .image-replaced;
-            display: inline-block;
-            height: 32px;
-            width: 100px;
-        }
-    }
-
-    .social-links {
-        margin: 2em 0 0;
-
-        li {
-            display: inline-block;
-            margin-right: 20px;
-
-            a {
-                display: block;
-                .image-replaced;
-                background-image: url('/media/img/logos/social/social-icon-sprite.svg');
-
-                &.twitter {
-                    background-position: 0 0;
-                    width: 18px;
-                    height: 15px;
-                }
-
-                &.instagram {
-                    background-position: 0 -25px;
-                    width: 19px;
-                    height: 19px;
-                }
-
-                &.youtube {
-                    background-position: 0 -54px;
-                    width: 19px;
-                    height: 13px;
-                }
-
-                &.facebook {
-                    background-position: 0 -77px;
-                    width: 10px;
-                    height: 19px;
-                }
-            }
-        }
-    }
-
-    .primary {
-        .font-size(16px);
-    }
-
-    .secondary {
-        .font-size(12px);
-    }
-
-    .small-links {
-        li {
-            display: inline;
-            padding-right: 20px;
-
-            &:last-child {
-                padding-right: 0;
-            }
-        }
-    }
-
-    .license {
-        a:link,
-        a:visited {
-            color: #9b9b9b;
-        }
-    }
-
-    .primary {
-        .logo,
-        section {
-            .span(4);
-            margin: 0;
-            padding: 0 20px 0 0;
-        }
-    }
-
-    .secondary {
-        padding-top: 20px;
-    }
-
-    .license {
-        margin-bottom: 0;
-    }
-
-    .small-links {
-        .span(8);
-        margin: 0;
-        padding: 0 20px 0 0;
-    }
-
-    .lang-switcher {
-        .span(4);
-        margin: 2.75em 0 0;
-        padding: 0 20px 0 0;
-
-        label,
-        .mzp-c-cta-link {
-            display: inline-block;
-            font-weight: bold;
-            margin: 0 20px 5px 0;
-        }
-
-        // hide the <label> visually should a language link be shown instead.
-        .mzp-c-cta-link + label {
-            .visually-hidden;
-        }
-
-        select {
-            border: none;
-            background: #ededed;
-        }
-
-        .js & button {
-            display: none;
-        }
-    }
-}
-
-[dir='rtl'] #colophon {
-    .logo,
-    section,
-    .small-links,
-    .lang-switcher {
-        float: right;
-        padding: 0 0 0 20px;
-    }
-
-    .lang-switcher {
-        label,
-        .mzp-c-cta-link {
-            margin: 0 0 5px 20px;
-        }
-    }
-
-    .social-links li {
-        margin: 0 0 0 20px;
-    }
-
-    .small-links li {
-        padding: 0 0 0 20px;
-    }
-}
+/* {{{ Utility classes */
 
 .visually-hidden {
     .visually-hidden();
@@ -1108,7 +896,6 @@ nav.menu-bar {
     #masthead,
     #main-feature,
     #main-content,
-    #colophon .content,
     .billboard,
     .container {
         width: @widthTablet - (@gridGutterWidth * 2);
@@ -1142,49 +929,6 @@ nav.menu-bar {
             .span_narrow(4);
         }
     }
-
-    #colophon {
-        h5 {
-            .font-size(16px);
-        }
-
-        .primary {
-            .font-size(14px);
-
-            .logo,
-            section {
-                .span_narrow(4);
-                margin: 0;
-                padding: 0 20px 0 0;
-            }
-        }
-
-        .small-links {
-            .span_narrow(8);
-            margin: 0;
-            padding: 0 20px 0 0;
-        }
-
-        .lang-switcher {
-            .span_narrow(4);
-            margin: 2.25em 0 0;
-            padding: 0 20px 0 0;
-        }
-    }
-
-    [dir='rtl'] #colophon {
-        .logo,
-        section,
-        .small-links,
-        .lang-switcher {
-            float: right;
-            padding: 0 0 0 20px;
-        }
-
-        .small-links li {
-            padding: 0 0 0 20px;
-        }
-    }
 }
 
 /* Mobile Layout: 320px */
@@ -1201,7 +945,6 @@ nav.menu-bar {
     #masthead,
     #main-feature,
     #main-content,
-    #colophon .content,
     .billboard,
     .container,
     .main-column,
@@ -1313,42 +1056,13 @@ nav.menu-bar {
             }
         }
     }
-
-    #colophon {
-        h5 {
-            .font-size(16px);
-        }
-
-        .primary {
-            .font-size(14px);
-        }
-
-        .primary .logo,
-        .primary section,
-        .small-links,
-        .lang-switcher {
-            float: none;
-            margin: 0;
-            padding: 0;
-            width: auto;
-        }
-
-        .primary .logo {
-            margin-bottom: 40px;
-        }
-
-        .lang-switcher {
-            margin-top: 2.25em;
-        }
-    }
 }
 
 
 /* Wide Mobile Layout: 480px */
 @media only screen and (min-width: @breakMobileLandscape) and (max-width: @breakTablet) {
 
-    #wrapper,
-    #colophon .content, {
+    #wrapper {
         width: @widthMobileLandscape;
     }
 

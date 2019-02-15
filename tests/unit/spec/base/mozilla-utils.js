@@ -9,34 +9,6 @@ describe('mozilla-utils.js', function() {
 
     'use strict';
 
-    describe('switchPathLanguage', function () {
-        var location = {};
-
-        it('should return the same URL with a different language prefix', function () {
-            location.pathname = '/en-US/firefox/new/';
-            location.search = '';
-            expect(Mozilla.Utils.switchPathLanguage(location, 'de')).toEqual('/de/firefox/new/');
-
-            location.pathname = '/fr/firefox/';
-            expect(Mozilla.Utils.switchPathLanguage(location, 'zh-TW')).toEqual('/zh-TW/firefox/');
-
-            location.pathname = '/de/';
-            expect(Mozilla.Utils.switchPathLanguage(location, 'fr')).toEqual('/fr/');
-        });
-
-        it('should return the same URL with a different language prefix and include the query string', function () {
-            location.pathname = '/en-US/firefox/new/';
-            location.search = '?dude=abide';
-            expect(Mozilla.Utils.switchPathLanguage(location, 'de')).toEqual('/de/firefox/new/?dude=abide');
-
-            location.pathname = '/fr/firefox/';
-            expect(Mozilla.Utils.switchPathLanguage(location, 'zh-TW')).toEqual('/zh-TW/firefox/?dude=abide');
-
-            location.pathname = '/de/';
-            expect(Mozilla.Utils.switchPathLanguage(location, 'fr')).toEqual('/fr/?dude=abide');
-        });
-    });
-
     describe('initMobileDownloadLinks', function () {
 
         var $link;

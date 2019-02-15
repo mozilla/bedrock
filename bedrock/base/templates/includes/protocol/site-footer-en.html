@@ -24,8 +24,8 @@
             {{ _('Developers') }}
           </h5>
           <ul class="mzp-c-footer-list">
-            <li><a href="{{ url('firefox.channel.desktop') }}" data-link-type="footer" data-link-name="Beta, Nightly, Developer Edition">{{ _('Test New Features') }}</a></li>
-            <li><a href="https://developer.mozilla.org" data-link-type="footer" data-link-name="MDN">{{ _('Documentation (MDN)') }}</a></li>
+            <li><a href="{{ url('firefox.channel.desktop') }}" data-link-type="footer" data-link-name="Test New Features">{{ _('Test New Features') }}</a></li>
+            <li><a href="https://developer.mozilla.org" data-link-type="footer" data-link-name="MDN">{{ _('MDN Web Docs') }}</a></li>
             <li><a href="https://developer.mozilla.org/docs/Tools" data-link-type="footer" data-link-name="Tools">{{ _('Tools') }}</a></li>
           </ul>
         </section>
@@ -43,8 +43,8 @@
             {{ _('Product Help') }}
           </h5>
           <ul class="mzp-c-footer-list">
-            <li><a href="https://support.mozilla.org/">{{ _('Support') }}</a></li>
-            <li><a href="https://bugzilla.mozilla.org/">{{ _('File a Bug') }}</a></li>
+            <li><a href="https://support.mozilla.org/" data-link-name="Support">{{ _('Support') }}</a></li>
+            <li><a href="https://bugzilla.mozilla.org/" data-link-name="File a Bug">{{ _('File a Bug') }}</a></li>
           </ul>
         </section>
       </div>
@@ -68,18 +68,11 @@
           {%- endtrans -%}
         </p>
         <ul class="mzp-c-footer-terms">
-          {% if LANG.startswith('en-') %}
           <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy">{{ _('Privacy') }}</a></li>
-          {% endif %}
-          {% if LANG.startswith('en-') %}
-            {% set privacy_text = _('Website Privacy Notice') %}
-          {% else %}
-            {% set privacy_text = _('Privacy') %}
-          {% endif %}
-          <li><a href="{{ url('privacy.notices.websites') }}" data-link-type="footer" data-link-name="Privacy">{{ privacy_text }}</a></li>
+          <li><a href="{{ url('privacy.notices.websites') }}" data-link-type="footer" data-link-name="Privacy">{{ _('Website Privacy Notice') }}</a></li>
           <li><a href="{{ url('privacy.notices.websites') }}#cookies" data-link-type="footer" data-link-name="Cookies">{{ _('Cookies') }}</a></li>
           <li><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal">{{ _('Legal') }}</a></li>
-          <li><a href="{{ url('mozorg.about.governance.policies.participation') }}">{{ _('Community Participation Guidelines') }}</a></li>
+          <li><a href="{{ url('mozorg.about.governance.policies.participation') }}" data-link-name="Community Participation Guidelines">{{ _('Community Participation Guidelines') }}</a></li>
         </ul>
       </div>
     </nav>
