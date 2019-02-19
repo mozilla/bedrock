@@ -134,4 +134,6 @@ urlpatterns = (
     page('firefox/windows', 'firefox/new/scene1_windows.html'),
     page('firefox/mac', 'firefox/new/scene1_mac.html'),
     page('firefox/linux', 'firefox/new/scene1_linux.html'),
+
+    page('firefox/windows-64-bit', 'firefox/windows-64-bit.html'),
 )
