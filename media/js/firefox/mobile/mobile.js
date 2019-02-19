@@ -6,7 +6,6 @@
     'use strict';
 
     var $body = $('body');
-    var $mobileDownloadButtons = $('.mobile-download-buttons').remove();
     var $modalContents = $('#modal-wrapper');
 
     function openModal(e) {
@@ -25,9 +24,6 @@
 
         Mozilla.Modal.createModal(this, $modalContents);
     }
-
-    // move app store badges inside modal
-    $('#modal-mobile-download-buttons-wrapper').append($mobileDownloadButtons);
 
     // clicking any download-looking button opens the modal
     $('.get-firefox, .get-focus').attr('role', 'button').on('click', openModal);

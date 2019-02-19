@@ -61,8 +61,21 @@
                 {{ _('Full-featured. Customizable. Lightning fast. Browse without compromise.') }}
               </p>
 
+              <div class="mobile-download-buttons-wrapper">
+                <ul class="mobile-download-buttons firefox" id="mobile-download-buttons-firefox">
+                  <li class="android">
+                    {{ google_play_button(href='https://app.adjust.com/2uo1qc?campaign=desktop_xp&amp;adgroup=Google_Play_Store&amp;creative=badge_en', id='playStoreLink') }}
+                  </li>
+                  <li class="ios">
+                    <a id="appStoreLink" href="https://app.adjust.com/2uo1qc?campaign=desktop_xp&amp;adgroup=iOS_App_Store&amp;creative=badge_en&amp;fallback=https%3A%2F%2Fitunes.apple.com%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8" data-link-type="download" data-download-os="iOS">
+                      <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
               <div class="header-product-ctas">
-                <a href="#mobile-download-buttons-firefox" class="button button-green get-firefox" data-product="firefox" data-button-name="Send to SMS Modal - Firefox Mobile">{{ _('Get Firefox') }}</a>
+                <button type="button" class="button button-green get-firefox" data-product="firefox" data-button-name="Send to SMS Modal - Firefox Mobile">{{ _('Get Firefox') }}</button>
                 <br>
                 <a href="#firefox" class="see-more">{{ _('See more') }}</a>
               </div>
@@ -82,8 +95,26 @@
                 {{ _('Automatic ad blocking and tracking protection on an easy-to-use private browser.') }}
               </p>
 
+              <div class="mobile-download-buttons-wrapper">
+                <ul class="mobile-download-buttons focus" id="mobile-download-buttons-focus">
+                  <li class="android">
+                    {{ google_play_button(href=settings.GOOGLE_PLAY_FIREFOX_FOCUS_LINK, id='playStoreLink', product='Focus') }}
+                  </li>
+                  {% if l10n_has_tag('focus_apk_link_012018') %}
+                  <li class="android-apk">
+                      <a href="https://archive.mozilla.org/pub/android/focus/latest/" data-link-type="download" data-download-os="Android">{{ _('Download the APK') }}</a>
+                  </li>
+                  {% endif %}
+                  <li class="ios">
+                    <a id="appStoreLink" href="{{ settings.APPLE_APPSTORE_FIREFOX_FOCUS_LINK }}" data-link-type="download" data-download-os="iOS">
+                      <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
               <div class="header-product-ctas">
-                <a href="#mobile-download-buttons-focus" class="button button-green get-focus" data-product="focus" data-button-name="Send to SMS Modal - Firefox Focus">{{ _('Get Firefox Focus') }}</a>
+                <button type="button" class="button button-green get-focus" data-product="focus" data-button-name="Send to SMS Modal - Firefox Focus">{{ _('Get Firefox Focus') }}</button>
                 <br>
                 <a href="#focus" class="see-more">{{ _('See more') }}</a>
               </div>
@@ -342,37 +373,6 @@
       </div>{#--/#focus-features--#}
     </article>
 
-    <aside id="mobile-download-buttons-wrapper">
-      <strong>{{ _('Firefox') }}</strong>
-      <ul class="mobile-download-buttons firefox" id="mobile-download-buttons-firefox">
-        <li class="android">
-          {{ google_play_button(href='https://app.adjust.com/2uo1qc?campaign=desktop_xp&amp;adgroup=Google_Play_Store&amp;creative=badge_en', id='playStoreLink') }}
-        </li>
-        <li class="ios">
-          <a id="appStoreLink" href="https://app.adjust.com/2uo1qc?campaign=desktop_xp&amp;adgroup=iOS_App_Store&amp;creative=badge_en&amp;fallback=https%3A%2F%2Fitunes.apple.com%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8" data-link-type="download" data-download-os="iOS">
-            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
-          </a>
-        </li>
-      </ul>
-
-      <strong>{{ _('Firefox Focus') }}</strong>
-      <ul class="mobile-download-buttons focus" id="mobile-download-buttons-focus">
-        <li class="android">
-          {{ google_play_button(href=settings.GOOGLE_PLAY_FIREFOX_FOCUS_LINK, id='playStoreLink', product='Focus') }}
-        </li>
-        {% if l10n_has_tag('focus_apk_link_012018') %}
-        <li class="android-apk">
-            <a href="https://archive.mozilla.org/pub/android/focus/latest/" data-link-type="download" data-download-os="Android">{{ _('Download the APK') }}</a>
-        </li>
-        {% endif %}
-        <li class="ios">
-          <a id="appStoreLink" href="{{ settings.APPLE_APPSTORE_FIREFOX_FOCUS_LINK }}" data-link-type="download" data-download-os="iOS">
-            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
-          </a>
-        </li>
-      </ul>
-    </aside>
-
     {#
       L10n: The content below is intended to be shown in a modal window when clicking any of the
       'Download' buttons above. Depending on the button clicked, the content below will either
@@ -415,7 +415,6 @@
           </div>
         </div>
 
-        <div id="modal-mobile-download-buttons-wrapper"></div>
       </div>{#--/#modal-wrapper--#}
     </div>{#--/#modal-outer-wrapper--#}
   </main>
