@@ -9,11 +9,6 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/article';
 @import '../../protocol/css/components/call-out';
 
-ul {
-    list-style: disc;
-    margin-left: $spacing-lg;
-}
-
 h1, h2 {
     @include open-sans;
     @include text-display-lg;
@@ -49,6 +44,11 @@ h1, h2 {
 
     .article-section {
         margin-bottom: $layout-lg;
+
+        ul {
+            list-style: disc;
+            margin-left: $spacing-lg;
+        }
     }
 
     hr {
