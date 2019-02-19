@@ -231,7 +231,7 @@ function onYouTubeIframeAPIReady() {
         // copied from base/mozilla-fxa-form.js
         function fetchTokens(destURL) {
             // add required params to the token fetch request
-            destURL += '?utm_campaign=firefox-concert-series-q4-2018&utm_source=mozilla.org';
+            destURL += '?entrypoint=concerts&form_type=email&utm_campaign=firefox-concert-series-q4-2018&utm_source=mozilla.org';
 
             fetch(destURL).then(function(resp) {
                 return resp.json();
