@@ -40,6 +40,7 @@ $image-path: '/media/protocol/img';
 
     .mzp-c-footer-heading {
         @include font-size(16px);
+        font-weight: bold;
     }
 
     .mzp-c-footer-primary {
