@@ -54,9 +54,10 @@
          <li>{{ _('If you see “(32-bit)” and you are running Firefox 56.0 or older, updating to the latest Firefox version should automatically upgrade you to 64-bit.') }}</li>
          <li>{{ _('If you see “(32-bit)” and are running Firefox 56.0.1 or newer, then your computer may not meet the minimum memory requirement for 64-bit (3 GB RAM or more). You can still manually install 64-bit Firefox, if you choose.') }}</li>
        </ul>
-       {% trans platforms='https://www.mozilla.org/firefox/all/' %}
-       If you need to run 32-bit Firefox or manually install 64-bit Firefox, you can simply download and re-run the Windows (32-bit or 64-bit) Firefox installer from the <a href="{{ platforms }}">Firefox platforms and languages download</a> page.
+       {% trans %}
+       If you need to run 32-bit Firefox or manually install 64-bit Firefox, you can simply download and re-run the Windows (32-bit or 64-bit) Firefox installer from the
        {% endtrans %}
+       <a href="{{ url('firefox.all') }}">{{_('Firefox platforms and languages download') }} page.</a>
       </p>
     </div>
 
