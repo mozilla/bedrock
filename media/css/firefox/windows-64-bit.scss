@@ -9,26 +9,18 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/article';
 @import '../../protocol/css/components/call-out';
 
-h1, h2 {
-    @include open-sans;
-    @include text-display-lg;
-}
-
 .mzp-c-hero {
     background: #33124e;
     color: #fff;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
     text-align: center;
     height: 400px;
     margin-bottom: $spacing-xl;
 
     .hero-content {
-        grid-column-start: 2;
-        grid-row-start: 2;
-
+        padding-top: $layout-xl;
         h1 {
+            @include open-sans;
+            @include text-display-lg;
             margin-bottom: $spacing-xl;
         }
 
@@ -44,6 +36,11 @@ h1, h2 {
 
     .article-section {
         margin-bottom: $layout-lg;
+
+        h2 {
+            @include open-sans;
+            @include text-display-lg;
+        }
 
         ul {
             list-style: disc;
@@ -66,8 +63,8 @@ h1, h2 {
     background: #33124e;
     color: #f07274;
     @media #{$mq-lg} {
+        @include background-size(contain);
         background-image: url('/media/img/firefox/shapes.png');
-        background-size: contain;
         background-position: bottom;
         background-repeat: no-repeat;
     }
