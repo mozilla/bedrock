@@ -1,0 +1,143 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/home/home-en.html" %}
+
+{% add_lang_files "mozorg/home/index-quantum" %}
+
+{% block page_title %}{{ _('Internet für Menschen, nicht für Profit') }}{% endblock %}
+
+{% block page_desc %}
+  {{ _('Mozilla ist die gemeinnützige Organisation hinter Firefox. Menschen sollten auch online die Kontrolle über ihr Leben haben. Dafür setzen wir uns ein.') }}
+{% endblock %}
+
+{% block main %}
+<main>
+  <header class="main-page-heading">
+    {# Main page h1 is hidden from view and exists mainly for SEO purposes #}
+    <h1>{{ self.page_title() }}</h1>
+  </header>
+
+  {% call download_banner(
+    title=_('Firefox'),
+    sub_title=_('Dein Leben. Deine Daten. Dein Browser.'),
+    desc=_('Firefox fights for you.'),
+    ) %}
+    {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
+  {% endcall %}
+
+  {% call download_banner_sticky(
+    title=_('<strong>Firefox</strong> fights for you.'),
+    sub_title=_('Dein Leben. Deine Daten. Dein Browser.'),
+    desc=_('Firefox fights for you.')
+    ) %}
+    {{ download_firefox(dom_id='download-sticky', download_location='sticky cta', button_color='mzp-t-small') }}
+  {% endcall %}
+
+  {{ fxa_banner(
+    title=_('Firefox'),
+    sub_title=_('Dein Leben. <br>Deine Daten.'),
+    link_cta=_('Weitere Infos'),
+  )}}
+
+  {{ fxa_banner_sticky(
+    title=_('Firefox'),
+    sub_title=_('Dein Leben. Deine Daten.'),
+    link_cta=_('Weitere Infos'),
+  )}}
+
+  <div class="mozilla-content">
+    <div class="mzp-l-content">
+      <div class="mzp-l-card-hero">
+        <!-- 1 -->
+        {{ content_card('card_1') }}
+        <!-- 2 -->
+        {{ content_card('card_2') }}
+        <!-- 3 -->
+        {{ content_card('card_3') }}
+        <!-- 4 -->
+        {{ content_card('card_4') }}
+        <!-- 5 -->
+        {{ content_card('card_5') }}
+      </div>
+
+      {{ billboard(
+        title=_('Für Dich & das Internet. <br>Schon seit 1998.'),
+        ga_title='Für Dich & das Internet. Schon seit 1998.',
+        desc=_('Mozilla setzt sich für ein gesundes Internet ein – und damit für die Menschen, die es nutzen. Damals. Heute. Morgen.'),
+        link_cta=_('Erfahre mehr über Mozilla'),
+        link_url=url('mozorg.about.manifesto'),
+        image_url='home/2018/billboard-more-power.png',
+        include_highres_image=True
+      )}}
+
+      <div class="mzp-l-card-half">
+        <!-- 6 -->
+        {{ content_card('card_6') }}
+        <!-- 7 -->
+        {{ content_card('card_7') }}
+      </div>
+
+      {{ billboard(
+        title=_('Technologien des offenen Webs.'),
+        ga_title='Technologien des offenen Webs.',
+        desc=_('Virtual Reality, IoT und mehr.'),
+        link_cta=_('Entdecke das Web der Zukunft'),
+        link_url=url('mozorg.technology'),
+        image_url='home/2018/billboard-open-minds.png',
+        include_highres_image=True,
+        reverse=True
+      )}}
+
+      <div class="mzp-l-card-third">
+        <!-- 8 -->
+        {{ content_card('card_8') }}
+        <!-- 9 -->
+        {{ content_card('card_9') }}
+        <!-- 10 -->
+        {{ content_card('card_10') }}
+        <!-- 11 -->
+        {{ content_card('card_11') }}
+        <!-- 12 -->
+        {{ content_card('card_12') }}
+        <!-- 13 -->
+        {{ content_card('card_13') }}
+      </div>
+
+      <aside class="mzp-c-newsletter">
+        <div class="mzp-c-newsletter-image">
+          {{ high_res_img('home/2018/newsletter-graphic.png', {'alt': ''}) }}
+        </div>
+
+        <div class="newsletter-content">
+          {{ email_newsletter_form(
+            title=_('Du liebst das Internet?'),
+            subtitle=_('Hol dir den Firefox Newsletter und sorg mit uns zusammen dafür, dass das Web frei und offen für alle bleibt.'),
+            button_class='button-dark',
+            submit_text=_('Anmelden'),
+            protocol_component=True
+          )}}
+        </div>
+      </aside>
+    </div>
+  </div>{#-- /.mozilla-content --#}
+
+  {% call download_banner_secondary(
+    title=_('Unterstütze ein gesundes Internet, das nicht nur von einigen wenigen bestimmt wird.'),
+    sub_title=_('Wenn du mit Mozillas Firefox durchs Web surfst, ist der erste Schritt schon getan.')
+  ) %}
+    {{ download_firefox(dom_id='download-secondary', download_location='secondary cta') }}
+  {% endcall %}
+
+  {% call call_out_compact(
+      title=_('Das Konto, das dich schützt, statt Profit mit dir zu machen.'),
+      desc=None,
+      class='fxaccount-secondary-cta mzp-t-product-firefox mzp-t-firefox mzp-t-dark',
+      heading_level=2
+    ) %}
+    <a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-secondary mzp-t-dark" id="fxa-learn-secondary">{{ _('Learn More') }}</a>
+  {% endcall %}
+
+</main>
+{% endblock %}

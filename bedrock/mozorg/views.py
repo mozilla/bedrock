@@ -207,6 +207,9 @@ def home_view(request):
     if locale.startswith('en-'):
         template_name = 'mozorg/home/home-en.html'
         ctx['page_content_cards'] = get_page_content_cards('home-2019', 'en-US')
+    elif locale == 'de':
+        template_name = 'mozorg/home/home-de.html'
+        ctx['page_content_cards'] = get_page_content_cards('home-de', 'de')
     else:
         template_name = 'mozorg/home/home.html'
 
