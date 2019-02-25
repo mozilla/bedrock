@@ -2,7 +2,9 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/* global __dirname, require, process, global */
+/* global __dirname, require, process, global, module */
+
+'use strict';
 
 const gulp = require('gulp');
 const cached = require('gulp-cached');
@@ -16,7 +18,6 @@ const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
 const sourcemaps = require('gulp-sourcemaps');
-const watch = require('gulp-watch');
 const del = require('del');
 const karma = require('karma');
 const eslint = require('gulp-eslint');
@@ -28,24 +29,30 @@ const staticBundles = require('./media/static-bundles.json');
 
 // directory for building LESS, SASS, and bundles
 const buildDir = 'static_build';
+
 // directory for the final assets ready for consumption
 const finalDir = 'static_final';
+
 const lintPathsJS = [
     'media/js/**/*.js',
     '!media/js/libs/*.js',
     'tests/unit/spec/**/*.js',
     'gulpfile.js'
 ];
+
 const lintPathsCSS = [
     'media/css/**/*.scss',
     'media/css/**/*.less',
     'media/css/**/*.css',
     '!media/css/libs/*'
 ];
+
 const cachedOpts = {
     optimizeMemory: true
 };
+
 global.watching = false;
+
 // gulp build --production
 const production = !!argv.production;
 
@@ -97,19 +104,6 @@ const bundleJsFiles = bundle => {
         .pipe(gulp.dest(finalDir));
 };
 
-const sassPipeline = () => {
-    return gulp.src(allBundleFiles('css', '.scss'), { base: buildDir, cwd: buildDir })
-        .pipe(gulpif(!production, sourcemaps.init()))
-        .pipe(sass({
-            sourceComments: !production,
-            outputStyle: production ? 'compressed' : 'nested'
-        }).on('error', handleError('SASS')))
-        .pipe(gulpif(!production, sourcemaps.write({
-            'includeContent': true
-        })))
-        .pipe(gulp.dest(finalDir));
-};
-
 /***********************
  * Start Tasks
  */
@@ -117,14 +111,16 @@ const sassPipeline = () => {
 /**
  * Delete the static_build directory and start fresh.
  */
-gulp.task('clean', () => {
-    return del([buildDir, finalDir]);
-});
+function clean(cb) {
+    del([buildDir, finalDir]).then(() => {
+        cb();
+    });
+}
 
 /**
  * Copy assets from various sources into the static_build dir for processing.
  */
-gulp.task('assets', () => {
+function assetsCopy() {
     return merge([
         // SASS and LESS go to build dir
         gulp.src([
@@ -143,38 +139,54 @@ gulp.task('assets', () => {
             .pipe(gulpif(global.watching, cached('all', cachedOpts)))
             .pipe(gulp.dest(finalDir)),
     ]);
-});
+}
 
 /**
  * Find all SASS files from bundles in the static_build directory and compile them.
  */
-gulp.task('sass', ['assets'], sassPipeline);
-gulp.task('sass:no-assets', sassPipeline);
-
-/**
- * Watch and only compile those SASS files that have changed
- */
-gulp.task('sass:watch', () => {
-    return watch(buildDir + '/css/**/*.scss', {base: buildDir})
-        // filter out internal imports (files starting with "_" )
-        .pipe(filter(file => {
-            return !file.relative.startsWith('_');
-        }))
-        .pipe(sourcemaps.init())
+function sassCompileAllFiles() {
+    return gulp.src(allBundleFiles('css', '.scss'), { base: buildDir, cwd: buildDir })
+        .pipe(gulpif(!production, sourcemaps.init()))
         .pipe(sass({
             sourceComments: !production,
             outputStyle: production ? 'compressed' : 'nested'
         }).on('error', handleError('SASS')))
-        .pipe(sourcemaps.write({
+        .pipe(gulpif(!production, sourcemaps.write({
             'includeContent': true
-        }))
+        })))
         .pipe(gulp.dest(finalDir));
-});
+}
+
+/**
+ * Watch and only compile those SASS files that have changed
+ */
+function sassWatch(cb) {
+    const sassWatcher = gulp.watch(buildDir + '/css/**/*.scss', {base: buildDir});
+
+    sassWatcher.on('change', function(path) {
+        return gulp.src(path, {base: buildDir})
+            // filter out internal imports (files starting with "_" )
+            .pipe(filter(file => {
+                return !file.relative.startsWith('_');
+            }))
+            .pipe(sourcemaps.init())
+            .pipe(sass({
+                sourceComments: !production,
+                outputStyle: production ? 'compressed' : 'nested'
+            }).on('error', handleError('SASS')))
+            .pipe(sourcemaps.write({
+                'includeContent': true
+            }))
+            .pipe(gulp.dest(finalDir));
+    });
+
+    cb();
+}
 
 /**
  * Find all LESS files from bundles in the static_build directory and compile them.
  */
-gulp.task('less', ['assets'], () => {
+function lessCompileAllFiles() {
     return gulp.src(allBundleFiles('css', '.less'), {base: buildDir, cwd: buildDir})
         //filter out unchanged less files, only works when watching
         .pipe(gulpif(global.watching, cached('less', cachedOpts)))
@@ -186,37 +198,48 @@ gulp.task('less', ['assets'], () => {
             'includeContent': true
         })))
         .pipe(gulp.dest(finalDir));
-});
+}
 
 /**
  * Watch all LESS files from bundles in the static_build directory and compile them.
  */
-gulp.task('less:watch', () => {
-    return watch(buildDir + '/css/**/*.less', {base: buildDir})
-        .pipe(sourcemaps.init())
-        .pipe(less({inlineJavaScript: true, ieCompat: true}).on('error', handleError('LESS')))
-        .pipe(sourcemaps.write({
-            'includeContent': true
-        }))
-        .pipe(gulp.dest(finalDir));
-});
+function lessWatch(cb) {
+    const lessWatcher = gulp.watch(buildDir + '/css/**/*.less', {base: buildDir});
+
+    lessWatcher.on('change', function(path) {
+        return gulp.src(path, {base: buildDir})
+            .pipe(sourcemaps.init())
+            .pipe(less({inlineJavaScript: true, ieCompat: true}).on('error', handleError('LESS')))
+            .pipe(sourcemaps.write({
+                'includeContent': true
+            }))
+            .pipe(gulp.dest(finalDir));
+    });
+
+    cb();
+}
 
 /**
  * Combine the CSS files after SASS/LESS compilation into bundles
  * based on definitions in the `media/static-bundles.json` file.
  */
-gulp.task('css:compile', ['sass', 'less'], () => {
+function cssCompileBundles() {
     return merge(staticBundles.css.map(bundleCssFiles));
-});
+}
 
+/**
+ * Watch for changes to CSS files in the `static_final` directory
+ * and recompile bundles when necessary.
+ */
+function cssWatch(cb) {
+    const cssWatcher = gulp.watch(finalDir + '/css/**/*.css');
 
-gulp.task('css:watch', () => {
-    return gulp.watch(finalDir + '/css/**/*.css', { debounceDelay: 200 }, event => {
+    cssWatcher.on('change', function(path) {
         let modBundles = staticBundles.css.filter(bundle => {
             let contains = false;
             bundle.files.every(filename => {
                 let cssfn = filename.replace(/\.(less|scss)$/i, '.css');
-                if (event.path.endsWith(cssfn)) {
+                if (path.endsWith(cssfn)) {
                     contains = true;
                     return false;
                 }
@@ -229,25 +252,30 @@ gulp.task('css:watch', () => {
             browserSync.reload();
         }
     });
-});
+
+    cb();
+}
 
 /**
  * Combine the JS files into bundles
  * based on definitions in the `media/static-bundles.json` file.
  */
-gulp.task('js:compile', ['assets'], () => {
+function jsCompileBundles() {
     return merge(staticBundles.js.map(bundleJsFiles));
-});
+}
 
 /**
- * Watch all JS and rebundle as necessary.
+ * Watch for changes to JS files in the `static_final` directory
+ * and recompile bundles when necessary.
  */
-gulp.task('js:watch', () => {
-    return gulp.watch(finalDir + '/js/**/*.js', { debounceDelay: 200 }, event => {
+function jsWatch(cb) {
+    const jsWatcher = gulp.watch(finalDir + '/js/**/*.js');
+
+    jsWatcher.on('change', function(path) {
         let modBundles = staticBundles.js.filter(bundle => {
             let contains = false;
             bundle.files.every(filename => {
-                if (event.path.endsWith(filename)) {
+                if (path.endsWith(filename)) {
                     contains = true;
                     return false;
                 }
@@ -260,50 +288,54 @@ gulp.task('js:watch', () => {
             browserSync.reload();
         }
     });
-});
+
+    cb();
+}
 
 /**
  * Minify all of the CSS files after compilation.
  */
-gulp.task('css:minify', ['css:compile'], () => {
+function cssMinify() {
     return gulp.src(finalDir + '/css/**/*.css', {base: buildDir})
         .pipe(cleanCSS().on('error', handleError('CLEANCSS')))
         .pipe(gulp.dest(finalDir));
-});
+}
 
 /**
  * Minify all of the JS files after compilation.
  */
-gulp.task('js:minify', ['js:compile'], () => {
+function jsMinify() {
     return gulp.src(finalDir + '/js/**/*.js', {base: buildDir})
         .pipe(uglify({ie8: true}).on('error', handleError('UGLIFY')))
         .pipe(gulp.dest(finalDir));
-});
+}
 
 /**
  * Run the JS test suite.
  */
-gulp.task('js:test', done => {
+function jsTest(cb) {
     new karma.Server({
         configFile: `${__dirname}/tests/unit/karma.conf.js`,
         singleRun: true
-    }, done).start();
-});
+    }, cb).start();
+}
+gulp.task('js:test', jsTest);
 
 /**
  * Run eslint style check on all JS.
  */
-gulp.task('js:lint', () => {
+function jsLint() {
     return gulp.src(lintPathsJS)
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
-});
+}
+gulp.task('js:lint', jsLint);
 
 /**
  * Run CSS style check on all CSS.
  */
-gulp.task('css:lint', () => {
+function cssLint() {
     return gulp.src(lintPathsCSS)
         .pipe(gulpStylelint({
             reporters: [{
@@ -311,28 +343,39 @@ gulp.task('css:lint', () => {
                 console: true
             }]
         }));
-});
+}
+gulp.task('css:lint', cssLint);
 
-gulp.task('all:watch', ['js:compile', 'css:compile'], () => {
+/**
+ * Watch for changes in the `media` directory and copy changed files to
+ * either `static_build` or `static_final` depending on the file type.
+ */
+function assetsWatch(cb) {
+    const assetsWatcher = gulp.watch(['media/**/*', '!media/**/*.{scss,less}'], {base: 'media'});
+    const cssWatcher = gulp.watch('media/**/*.{scss,less}', {base: 'media'});
     // send everything but scss and less to the final dir
-    watch([
-        'media/**/*',
-        '!media/**/*.{scss,less}'], {base: 'media'})
-        .pipe(cached('all', cachedOpts))
-        .pipe(gulp.dest(finalDir));
+    assetsWatcher.on('change', function(path) {
+        return gulp.src(path, {base: 'media'})
+            .pipe(cached('all', cachedOpts))
+            .pipe(gulp.dest(finalDir));
+    });
     // send scss and less to the build dir
-    watch('media/**/*.{scss,less}', {base: 'media'})
-        .pipe(cached('all', cachedOpts))
-        .pipe(gulp.dest(buildDir));
-});
+    cssWatcher.on('change', function(path) {
+        return gulp.src(path, {base: 'media'})
+            .pipe(cached('all', cachedOpts))
+            .pipe(gulp.dest(buildDir));
+    });
+
+    cb();
+}
 
 /**
  * Start the browser-sync daemon for local development.
  */
-gulp.task('browser-sync', ['all:watch'], () => {
+function browserSyncTask(cb) {
     const proxyURL = process.env.BS_PROXY_URL || 'localhost:8080';
     const openBrowser = !(process.env.BS_OPEN_BROWSER === 'false');
-    return browserSync.init({
+    browserSync.init({
         port: 8000,
         proxy: proxyURL,
         open: openBrowser,
@@ -348,47 +391,71 @@ gulp.task('browser-sync', ['all:watch'], () => {
             dir: finalDir
         }]
     });
-});
+    cb();
+}
 
 /**
  * Reload tasks used by `gulp watch`.
  */
-gulp.task('reload-sass', ['sass:no-assets'], browserSync.reload);
-gulp.task('reload', browserSync.reload);
+function reloadBrowser(cb) {
+    browserSync.reload();
+    cb();
+}
+
+const reloadSass = gulp.series(
+    sassCompileAllFiles,
+    reloadBrowser
+);
 
 // --------------------------
 // DEV/WATCH TASK
 // --------------------------
-gulp.task('watch', ['browser-sync'], () => {
+function devWatch(cb) {
     global.watching = true;
-
-    gulp.start('sass:watch');
-    gulp.start('less:watch');
-    gulp.start('css:watch');
-    gulp.start('js:watch');
 
     // --------------------------
     // watch:sass library files
     // --------------------------
-    gulp.watch(buildDir + '/css/**/_*.scss', ['reload-sass']);
+    gulp.watch(buildDir + '/css/**/_*.scss', reloadSass);
 
     // --------------------------
     // watch:js
     // --------------------------
-    gulp.watch('media/js/**/*.js', ['js:lint']);
+    gulp.watch('media/js/**/*.js', jsLint);
 
     // --------------------------
     // watch:html
     // --------------------------
-    gulp.watch('bedrock/*/templates/**/*.html', ['reload']);
+    gulp.watch('bedrock/*/templates/**/*.html', reloadBrowser);
 
     log.info(colors.green('Watching for changes...'));
-});
+
+    cb();
+}
 
 /**
  * Build all assets in prep for production.
  * Pass the `--production` flag to turn off sourcemaps.
  */
-gulp.task('build', ['assets', 'js:minify', 'css:minify']);
+const buildTask = gulp.series(
+    clean,
+    assetsCopy,
+    gulp.parallel(sassCompileAllFiles, lessCompileAllFiles),
+    gulp.parallel(jsCompileBundles, cssCompileBundles),
+    gulp.parallel(jsMinify, cssMinify)
+);
+gulp.task('build', buildTask);
 
-gulp.task('default', ['watch']);
+const defaultTask = gulp.series(
+    clean,
+    assetsCopy,
+    gulp.parallel(sassCompileAllFiles, lessCompileAllFiles),
+    gulp.parallel(jsCompileBundles, cssCompileBundles),
+    assetsWatch,
+    browserSyncTask,
+    gulp.parallel(sassWatch, lessWatch, cssWatch, jsWatch),
+    devWatch
+);
+gulp.task('default', defaultTask);
+
+module.exports = defaultTask;

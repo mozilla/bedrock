@@ -10,7 +10,7 @@ services:
       context: .
       target: assets
     image: mozorg/bedrock_assets:${GIT_COMMIT:-latest}
-    command: gulp watch
+    command: gulp
     ports:
       - "8000-8010:8000-8010"
     volumes:
