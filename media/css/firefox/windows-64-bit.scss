@@ -1,0 +1,68 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/article';
+@import '../../protocol/css/components/call-out';
+
+.mzp-c-hero {
+    background: #33124e;
+    color: #fff;
+    text-align: center;
+    height: 400px;
+    margin-bottom: $spacing-xl;
+
+    .hero-content {
+        padding-top: $layout-xl;
+        h1 {
+            @include open-sans;
+            @include text-display-lg;
+            margin-bottom: $spacing-xl;
+        }
+
+        p {
+            color: #f07274;
+            font-weight: bold;
+        }
+    }
+}
+
+.mzp-c-article {
+    margin: 0 auto $layout-lg;
+
+    .article-section {
+        margin-bottom: $layout-lg;
+
+        h2 {
+            @include open-sans;
+            @include text-display-lg;
+        }
+    }
+
+    hr {
+        margin: $layout-lg auto $layout-lg;
+        width: 100px;
+        border: 2px solid #33124e;
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+// Call out
+
+.mzp-c-call-out-compact {
+    background: #33124e;
+    color: #f07274;
+    @media #{$mq-lg} {
+        @include background-size(contain);
+        background-image: url('/media/img/firefox/shapes.png');
+        background-position: bottom;
+        background-repeat: no-repeat;
+    }
+
+}
+

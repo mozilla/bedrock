@@ -943,6 +943,12 @@
         "css/mozorg/browser-history.scss"
       ],
       "name": "browser-history"
+    },
+    {
+      "files": [
+        "css/firefox/windows-64-bit.scss"
+      ],
+      "name": "windows-64-bit"
     }
   ],
   "js": [
