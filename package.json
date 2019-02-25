@@ -5,10 +5,10 @@
   "private": true,
   "dependencies": {
     "@mozilla-protocol/core": "4.0.0",
-    "ansi-colors": "^1.1.0",
+    "ansi-colors": "3.2.3",
     "clean-css-cli": "4.0.5",
     "del": "^3.0.0",
-    "gulp": "^3.9.1",
+    "gulp": "4.0.0",
     "gulp-cached": "^1.1.1",
     "gulp-clean-css": "^3.9.3",
     "gulp-concat": "^2.6.1",
@@ -20,9 +20,8 @@
     "gulp-sourcemaps": "^2.6.4",
     "gulp-stylelint": "^3.9.0",
     "gulp-uglify": "^3.0.0",
-    "gulp-watch": "^5.0.0",
     "merge-stream": "^1.0.1",
-    "yargs": "^11.0.0"
+    "yargs": "13.2.1"
   },
   "repository": {
     "type": "git",
@@ -34,8 +33,8 @@
     "url": "https://bugzilla.mozilla.org/"
   },
   "devDependencies": {
-    "browser-sync": "^2.23.7",
-    "concurrently": "^3.5.1",
+    "browser-sync": "2.26.3",
+    "concurrently": "4.1.0",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.22",
     "karma-coverage": "^0.5.5",

@@ -436,12 +436,6 @@
     },
     {
       "files": [
-        "css/firefox/firstrun/firstrun-facebook-container.scss"
-      ],
-      "name": "firefox_firstrun_facebook_container"
-    },
-    {
-      "files": [
         "css/firefox/election.scss"
       ],
       "name": "firefox_election"
@@ -728,12 +722,6 @@
     },
     {
       "files": [
-        "css/protocol/protocol-global-nav.scss"
-      ],
-      "name": "protocol-global-nav"
-    },
-    {
-      "files": [
         "css/firefox/features/common.scss"
       ],
       "name": "firefox-features-hub-common"
@@ -877,12 +865,6 @@
         "css/firefox/fights-for-you.scss"
       ],
       "name": "fights-for-you"
-    },
-    {
-      "files": [
-        "css/mozorg/internet-health.scss"
-      ],
-      "name": "internet-health"
     },
     {
       "files": [
@@ -1174,12 +1156,6 @@
         "js/mozorg/contribute/contribute-stories.js"
       ],
       "name": "contribute-stories"
-    },
-    {
-      "files": [
-        "js/firefox/facebook-container-funnelcake.js"
-      ],
-      "name": "firefox_facebook_container_funnelcake"
     },
     {
       "files": [
