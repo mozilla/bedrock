@@ -214,15 +214,15 @@ Jenkins to become unresponsive. To make such changes it can be necessary to firs
 restart Jenkins, as this issue only appears some time after Jenkins has been started.
 A `bug for the IRC plugin`_ has been raised.
 
-.. _Deployment Pipeline: https://ci.us-west.moz.works/blue/organizations/jenkins/bedrock_multibranch_pipeline/branches/
+.. _Deployment Pipeline: https://ci.vpn1.moz.works/blue/organizations/jenkins/bedrock_multibranch_pipeline/branches/
 .. _CircleCI: https://circleci.com/
 .. _Sauce Labs: https://saucelabs.com/
 .. _Jenkinsfile: https://github.com/mozilla/bedrock/tree/master/Jenkinsfile
 .. _branch-specific YAML files: https://github.com/mozilla/bedrock/tree/master/jenkins/branches/
 .. _master.yml file: https://github.com/mozilla/bedrock/tree/master/jenkins/branches/master.yml
 .. _prod.yml file: https://github.com/mozilla/bedrock/tree/master/jenkins/branches/prod.yml
-.. _bedrock_integration_tests_runner: https://ci.us-west.moz.works/view/Bedrock/job/bedrock_integration_tests_runner/
-.. _configured in Jenkins: https://ci.us-west.moz.works/configure
+.. _bedrock_integration_tests_runner: https://ci.vpn1.moz.works/view/Bedrock/job/bedrock_integration_tests_runner/
+.. _configured in Jenkins: https://ci.vpn1.moz.works/configure
 .. _become unresponsive: https://issues.jenkins-ci.org/browse/JENKINS-28175
 .. _test dependencies: https://github.com/mozilla/bedrock/blob/master/requirements/dev.txt
 .. _Selenium Docker versions: https://hub.docker.com/r/selenium/hub/tags/
