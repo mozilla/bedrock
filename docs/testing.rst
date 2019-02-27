@@ -342,7 +342,7 @@ and also do not depend on a crawler to find them.
 .. _expected conditions: http://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.expected_conditions.html
 .. _Web QA style guide: https://wiki.mozilla.org/QA/Execution/Web_Testing/Docs/Automation/StyleGuide
 .. _LinkChecker: http://wummel.github.io/linkchecker/
-.. _Jenkins instance: https://ci.us-west.moz.works/
+.. _Jenkins instance: https://ci.vpn1.moz.works/
 .. _download: https://github.com/mozilla/bedrock/blob/master/tests/functional/test_download.py
 .. _localized download: https://github.com/mozilla/bedrock/blob/master/tests/functional/test_download_l10n.py
 .. _Basket: https://github.com/mozilla/basket
