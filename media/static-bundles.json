@@ -253,6 +253,12 @@
     },
     {
       "files": [
+        "css/firefox/campaign.scss"
+      ],
+      "name": "firefox_campaign"
+    },
+    {
+      "files": [
         "css/security/security.scss"
       ],
       "name": "security"

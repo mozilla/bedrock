@@ -1,0 +1,76 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import hero, picto_card with context %}
+
+{% add_lang_files "firefox/campaign" %}
+
+{% extends "firefox/base-protocol.html" %}
+
+{% block canonical_urls %}
+  {# the SEM campaign page should set canonical to the /firefox/new/ page. #}
+  <link rel="canonical" href="{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/">
+{% endblock %}
+
+{% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
+
+{%- block page_title -%}{{_('Free Web Browser')}}{%- endblock -%}
+
+{% block page_desc %}{{_('Download Mozilla Firefox, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox for Windows, macOS, Linux, Android and iOS today!')}}{% endblock %}
+
+{#- This will appear as <meta property="og:title"> which can be used for social share -#}
+{% block page_og_title %}{{_('Download the fastest Firefox ever')}}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{_('Faster page loading, less memory usage and packed with features, the new Firefox is here.')}}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_campaign') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main role="main">
+  <div class="main-content">
+    <div class="mzp-l-content">
+      <div class="header-logos">
+        <h2 class="logo-firefox"><a href="{{ url('firefox') }}" title="{{ firefox_logo_title }}">{{ high_res_img('logos/firefox/logo-quantum-wordmark-white.png', {'alt': firefox_logo_title, 'width': '133', 'height': '50'}) }}</a></h2>
+        <h2 class="logo-mozilla"><a href="{{ url('mozorg.home') }}" title="{{ mozilla_logo_title }}"><img src="{{ static('img/logos/mozilla/wordmark-dark.svg')}}" alt="{{ mozilla_logo_title }}" width="101" height="34"></a></h2>
+      </div>
+    </div>
+    {% call hero(
+      title=_('The new <strong>Firefox</strong>'),
+      desc=_('Fast for good.'),
+      class='mzp-has-image mzp-u-no-shape mzp-t-firefox mzp-t-dark',
+      include_cta=True,
+      image_url='firefox/new/browser.png',
+      include_highres_image=True,
+      heading_level=1
+    ) %}
+      {{ download_firefox(alt_copy=_('Download Now'), download_location='primary cta') }}
+    {% endcall %}
+  </div>
+  <div class="features">
+    <div class="mzp-l-card-third mzp-l-content mzp-t-firefox">
+    <ul>
+      <li class="faster">
+        {{ picto_card(title=_('2x Faster'), desc=_('The best Firefox ever')) }}
+      </li>
+      <li class="lighter">
+        {{ picto_card(title=_('Lightweight'), desc=_('Uses 30% less memory than Chrome')) }}
+      </li>
+      <li class="private">
+        {{ picto_card(title=_('Powerfully private'), desc=_('Truly Private Browsing with Tracking Protection')) }}
+      </li>
+    </ul>
+  </div>
+</main>
+{% endblock %}
+
+{# Bug 1381776 #}
+{% block update_notification %}{% endblock %}
+
+{# Issue issue #6629 #}
+{% block global_fxa_cta_experiment %}{% endblock %}
