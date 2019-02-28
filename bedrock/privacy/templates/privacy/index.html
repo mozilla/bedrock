@@ -35,27 +35,35 @@
   <section id="contact" class="section-content">
     <header>
       <h2>{{ _('Contact Mozilla') }}</h2>
-      <p>
-        {%- trans -%}
-          If you want to make a correction to your information, or you have any questions about our
-          privacy policies, please get in touch with:
-        {%- endtrans -%}
-      </p>
-      <p lang="en" dir="ltr" itemscope itemtype="http://schema.org/Organization">
-        <span itemprop="name">Mozilla Corporation</span><br>
-        <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-          {{ _('Attn:') }} <span itemprop="name">Legal Notices - Privacy</span><br>
-          <span itemprop="streetAddress">331 E. Evelyn Ave</span>,<br>
-          <span itemprop="addressLocality">Mountain View</span>,
-          <span itemprop="addressRegion">CA</span>
-          <span itemprop="postalCode">94041</span><br>
-          <span itemprop="email"><a href="mailto:compliance@mozilla.com">compliance@mozilla.com</a></span>
-        </span>
-      </p>
-      {% if l10n_has_tag('privacy_email_2019') %}
-      <p><a href="https://app.onetrust.com/app/#/webform/4ba08202-2ede-4934-a89e-f0b0870f95f0">{{ _('See here for Data Subject Access Requests.') }}</a></p>
-      {% endif %}
     </header>
+
+    <p>
+      {%- trans -%}
+        If you want to make a correction to your information, or you have any questions about our
+        privacy policies, please get in touch with:
+      {%- endtrans -%}
+    </p>
+
+    <p lang="en" dir="ltr" itemscope itemtype="http://schema.org/Organization">
+      <span itemprop="name">Mozilla Corporation</span><br>
+      <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+        {{ _('Attn:') }} <span itemprop="name">Legal Notices - Privacy</span><br>
+        <span itemprop="streetAddress">331 E. Evelyn Ave</span>,<br>
+        <span itemprop="addressLocality">Mountain View</span>,
+        <span itemprop="addressRegion">CA</span>
+        <span itemprop="postalCode">94041</span><br>
+        <span itemprop="email"><a href="mailto:compliance@mozilla.com">compliance@mozilla.com</a></span>
+      </span>
+    </p>
+
+  {% if l10n_has_tag('privacy_email_2019') %}
+    <p>
+    {% trans dsar='https://app.onetrust.com/app/#/webform/4ba08202-2ede-4934-a89e-f0b0870f95f0' %}
+      <a href="{{ dsar }}">See here for Data Subject Access Requests.</a>
+    {% endtrans %}
+    </p>
+  {% endif %}
+
   </section>
 {% endblock %}
 
