@@ -49,21 +49,6 @@ $image-path: '/media/protocol/img';
     .mobile-content {
         display: none;
     }
-
-    .mzp-c-cta-link {
-        &:link,
-        &:visited {
-            color: $color-link;
-            border-bottom-color: $color-link;
-        }
-
-        &:hover,
-        &:focus,
-        &:active {
-            color: $color-link-hover;
-            border-bottom-color: $color-link-hover;
-        }
-    }
 }
 
 
@@ -280,4 +265,3 @@ html.android {
         display: block;
     }
 }
-

@@ -159,21 +159,6 @@ $fffy-pink: #FF2889;
     .fffy-t-privacy .mzp-c-card-feature-title:before {
         content: url('/media/img/firefox/fights-for-you/icon-privacy.svg');
     }
-
-    .mzp-c-cta-link {
-        &:link,
-        &:visited {
-            color: $color-link;
-            border-bottom-color: $color-link;
-        }
-
-        &:hover,
-        &:focus,
-        &:active {
-            color: $color-link-hover;
-            border-bottom-color: $color-link-hover;
-        }
-    }
 }
 
 .fffy-t-focus .u-mobile-content {
@@ -328,4 +313,3 @@ $fffy-pink: #FF2889;
         }
     }
 }
-

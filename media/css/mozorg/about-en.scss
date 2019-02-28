@@ -148,16 +148,17 @@ $city-image-size: 106px;
     &:active {
         color: $color-black;
         text-decoration: none;
+
+        .c-city-title {
+            color: $color-link;
+        }
     }
 }
 
 .c-city-title {
     @include open-sans;
     @include text-body-sm;
-    border-bottom: 2px solid $color-gray-30;
-    border-image: linear-gradient(to top, $color-gray-30 1px, $color-white 1px);
-    border-image-width: 100%;
-    border-image-slice: 9;
+    border-bottom: 2px solid $color-link;
     padding-bottom: $spacing-sm;
     margin: 0 auto $spacing-sm;
     max-width: 200px;
@@ -165,8 +166,8 @@ $city-image-size: 106px;
     .c-city:hover &,
     .c-city:focus &,
     .c-city:active {
-        border-color: $color-black;
-        border-image: none;
+        @include transition(border-bottom-color 100ms ease-in-out);
+        border-color: transparent;
     }
 }
 
