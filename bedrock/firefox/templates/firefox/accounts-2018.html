@@ -28,15 +28,15 @@
       <h1 class="mzp-c-hero-title">{{ _('One log-in. Power and privacy everywhere.') }}</h1>
       <div id="hero-cta" class="mzp-c-hero-cta">
         <div class="show-fxa-supported-signed-out">
-          <a {{ fxa_link_fragment(entrypoint='accounts-page', action='signup', utm_params={'campaign': 'fxa-benefits-page', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'accounts-page'}) }} class="mzp-c-button mzp-t-primary mzp-t-download" data-button-name="Create account" data-link-type="button" data-cta-position="primary cta" id="features-hero-account">
+          <a {{ fxa_link_fragment(entrypoint='accounts-page', action='signup', utm_params={'campaign': 'fxa-benefits-page', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'accounts-page'}) }} class="mzp-c-button mzp-t-primary mzp-t-product" data-button-name="Create account" data-link-type="button" data-cta-position="primary cta" id="features-hero-account">
             {{ _('Create a Firefox Account') }}
           </a>
         </div>
         <div class="show-fxa-supported-signed-in">
-          <button class="mzp-c-button mzp-t-download" type="button" id="fx-modal" data-button-name="download the firefox app" data-cta-position="primary cta">{{ _('Download the Firefox App') }}</button>
+          <button class="mzp-c-button mzp-t-product" type="button" id="fx-modal" data-button-name="download the firefox app" data-cta-position="primary cta">{{ _('Download the Firefox App') }}</button>
         </div>
         <div class="show-fxa-not-fx">
-          {{ download_firefox(dom_id='features-hero-download', download_location='primary cta', button_color='mzp-c-button mzp-t-primary mzp-t-download') }}
+          {{ download_firefox(dom_id='features-hero-download', download_location='primary cta', button_color='mzp-c-button mzp-t-primary mzp-t-product') }}
         </div>
       </div>
     </div>
@@ -228,7 +228,7 @@
         </div>
 
         <div class="show-fxa-supported-signed-out">
-          {{ fxa_email_form(entrypoint='accounts-page', utm_source='accounts-page', utm_params={'campaign': 'fxa-embedded-form', 'content': 'accounts-page', 'medium': 'referral'}, button_class='mzp-c-button mzp-t-primary mzp-t-download', button_text=_('Create an Account')) }}
+          {{ fxa_email_form(entrypoint='accounts-page', utm_source='accounts-page', utm_params={'campaign': 'fxa-embedded-form', 'content': 'accounts-page', 'medium': 'referral'}, button_class='mzp-c-button mzp-t-primary mzp-t-product', button_text=_('Create an Account')) }}
 
           <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='accounts-page', utm_params={'campaign': 'fxa-embedded-form', 'content': '/firefox/accounts/', 'source': 'accounts-page'}) }}>{{ _('Sign In') }}</a></p>
         </div>
@@ -247,7 +247,7 @@
 
       <div class="show-fxa-not-fx show-fxa-unsupported show-fxa-default">
         <div class="download-firefox">
-          {{ download_firefox(dom_id='accounts-bottom', download_location='secondary cta', button_color='mzp-c-button mzp-t-primary mzp-t-download') }}
+          {{ download_firefox(dom_id='accounts-bottom', download_location='secondary cta', button_color='mzp-c-button mzp-t-primary mzp-t-product') }}
         </div>
       </div>
     </div>
