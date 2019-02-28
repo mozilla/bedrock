@@ -36,7 +36,7 @@
               {% set fxa_link_text = 'Check out the Benefits' %}
             {% endif %}
             <div class="c-navigation-fxa-cta-container">
-              <a class="c-navigation-fxa-cta mzp-c-button mzp-t-secondary mzp-t-small mzp-t-download" {{ fxa_link_fragment(entrypoint='mozilla.org-globalnav', action='signup', utm_params={'campaign': 'globalnav', 'content': 'get-firefox-account', 'medium': 'referral', 'source': 'www.mozilla.org'}) }} data-button-name="Get a Firefox Account" data-link-type="button" data-cta-position="secondary cta">
+              <a class="c-navigation-fxa-cta mzp-c-button mzp-t-secondary mzp-t-small mzp-t-product" {{ fxa_link_fragment(entrypoint='mozilla.org-globalnav', action='signup', utm_params={'campaign': 'globalnav', 'content': 'get-firefox-account', 'medium': 'referral', 'source': 'www.mozilla.org'}) }} data-button-name="Get a Firefox Account" data-link-type="button" data-cta-position="secondary cta">
                 {{ fxa_button_text }}
               </a>
               <p class="c-navigation-fxa-cta-small-link"><a data-link-type="nav" data-link-name="Check out the Benefits" href="{{ url('firefox.accounts') }}">{{ fxa_link_text }}</a></p>
