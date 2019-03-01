@@ -504,7 +504,7 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
                 'zh-TW',
             ]
 
-        if ctx['num_version'] == 65:
+        if ctx['num_version'] in [65, 66]:
             ctx['show_newsletter'] = locale in [
                 'en-US',
                 'en-GB',

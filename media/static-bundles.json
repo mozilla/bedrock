@@ -1073,6 +1073,11 @@
     },
     {
       "files": [
+        "js/libs/jquery.waypoints.min.js",
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "protocol/js/protocol-modal.js",
         "js/firefox/whatsnew/whatsnew-66.js"
       ],
       "name": "firefox_whatsnew_66"
