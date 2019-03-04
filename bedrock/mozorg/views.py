@@ -219,8 +219,8 @@ def home_view(request):
 def about_view(request):
     locale = l10n_utils.get_locale(request)
 
-    if locale.startswith('en-'):
-        template_name = 'mozorg/about-en.html'
+    if lang_file_is_active('mozorg/about-2019', locale):
+        template_name = 'mozorg/about-2019.html'
     else:
         template_name = 'mozorg/about.html'
 
