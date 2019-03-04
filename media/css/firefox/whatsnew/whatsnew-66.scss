@@ -106,6 +106,7 @@ $image-path: '/media/protocol/img';
     .c-sticky-signup-title {
         @include text-display-sm;
         margin: 0 auto $spacing-md;
+        text-align: left;
     }
 
     .c-sticky-signup-content {
@@ -133,7 +134,7 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-lg} {
         .c-sticky-signup-container {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1.5fr;
         }
     }
 }
