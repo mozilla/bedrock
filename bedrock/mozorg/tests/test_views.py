@@ -187,13 +187,15 @@ class TestAboutPage(TestCase):
     def setUp(self):
         self.rf = RequestFactory()
 
-    def test_about_en_template(self, render_mock):
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
+    def test_about_2019_template(self, render_mock):
         req = RequestFactory().get('/')
         req.locale = 'en-US'
         views.about_view(req)
-        render_mock.assert_called_once_with(req, 'mozorg/about-en.html')
+        render_mock.assert_called_once_with(req, 'mozorg/about-2019.html')
 
-    def test_about_locale_template(self, render_mock):
+    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    def test_about_old_template(self, render_mock):
         req = RequestFactory().get('/')
         req.locale = 'de'
         views.about_view(req)
