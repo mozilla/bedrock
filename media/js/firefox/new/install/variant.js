@@ -5,39 +5,26 @@
 (function(Mozilla) {
     'use strict';
 
-    function setAttributionValues(variant) {
-        // preserve any existing utm params except for utm_content.
-        var params = new window._SearchParams().utmParams();
+    var variant = document.querySelector('.main-download').getAttribute('data-variant');
 
+    var params = {
         /* eslint-disable camelcase */
-        return {
-            utm_source: params.utm_source || 'www.mozilla.org',
-            utm_medium: params.utm_medium || 'download_button',
-            utm_campaign: params.utm_campaign || 'download_thanks_page',
-            utm_content: 'download_thanks_install_experiment-v-' + variant,
-            referrer: document.referrer
-        };
+        utm_source: 'www.mozilla.org',
+        utm_medium: 'download_button',
+        utm_campaign: 'download_thanks_page',
+        utm_content: 'download_thanks_install_experiment-v-' + variant
         /* eslint-enable camelcase */
+    };
+
+    function trackGAEvent() {
+        window.dataLayer.push({
+            'data-ex-name': 'download_thanks_install_experiment',
+            'data-ex-variant': 'v-' + variant
+        });
     }
 
-    function init() {
-        if (!Mozilla.StubAttribution.meetsRequirements()) {
-            return;
-        }
-
-        var variant = document.querySelector('.main-download').getAttribute('data-variant');
-
-        if (variant) {
-            var data = setAttributionValues(variant);
-            Mozilla.StubAttribution.requestAuthentication(data);
-
-            window.dataLayer.push({
-                'data-ex-name': 'download_thanks_install_experiment',
-                'data-ex-variant': 'v-' + variant
-            });
-        }
+    if (variant) {
+        Mozilla.CustomStubAttribution.init(params, trackGAEvent);
     }
-
-    init();
 
 })(window.Mozilla);

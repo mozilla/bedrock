@@ -39,4 +39,5 @@ Contents
    funnelcake
    abtest
    analytics
+   stub-attribution
    architectural-decisions
