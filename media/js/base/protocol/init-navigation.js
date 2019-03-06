@@ -41,6 +41,62 @@
         }
     }
 
+    var nav = document.querySelector('.mzp-c-navigation');
+    var fxaButton = document.querySelector('.mzp-c-navigation .c-navigation-fxa-cta');
+
+    if (fxaButton) {
+        var fxaButtonAltHref = fxaButton.getAttribute('data-alt-href');
+    }
+
+    function showFxAButton() {
+        nav.classList.add('show-fxa-button');
+    }
+
+    function meetsRequirements() {
+        if (typeof Mozilla.Client === 'undefined') {
+            return false;
+        }
+
+        // User should be on Firefox desktop, nav should be present on page, and the FxA button should exist.
+        if (!Mozilla.Client.isFirefoxDesktop || !nav || !fxaButton) {
+            return false;
+        }
+
+        var userMajorVersion = Mozilla.Client._getFirefoxMajorVersion();
+        var latestMajorVersion = parseInt(document.documentElement.getAttribute('data-latest-firefox'), 10);
+
+        if (!userMajorVersion || !latestMajorVersion) {
+            return false;
+        }
+
+        // User should be on Firefox Quantum or greater.
+        return userMajorVersion >= 57;
+    }
+
+    function updateFxAButton() {
+        fxaButton.href = fxaButtonAltHref;
+    }
+
+    // If all other requirements are met, check the account state
+    if (meetsRequirements()) {
+        $(function() {
+            // Update the button if they're signed in
+            Mozilla.Client.getFxaDetails(function(details) {
+                if (details.setup) {
+                    updateFxAButton();
+                }
+            });
+        });
+    }
+
+    function initFxAButton() {
+        if (meetsRequirements()) {
+            showFxAButton();
+        }
+    }
+
+    initFxAButton();
+
     Mzp.Menu.init({
         onMenuOpen: handleOnMenuOpen
     });

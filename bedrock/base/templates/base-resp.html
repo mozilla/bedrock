@@ -151,21 +151,6 @@
     <!--[if !lte IE 8]><!-->
     {% block js %}{% endblock %}
 
-    {# Issue issue #6629 #}
-    {% block global_fxa_cta_experiment %}
-    {% if switch('global-fxa-cta-experiment', ['en-US']) %}
-      {{ js_bundle('global-fxa-cta-experiment') }}
-    {% endif %}
-
-    {% if switch('global-fxa-cta-experiment-de', ['de']) %}
-      {{ js_bundle('global-fxa-cta-experiment') }}
-    {% endif %}
-
-    {% if switch('global-fxa-cta-experiment-fr', ['fr']) %}
-      {{ js_bundle('global-fxa-cta-experiment') }}
-    {% endif %}
-    {% endblock %}
-
     {# Bug 1381776 #}
     {% block update_notification %}
       {% if switch('firefox-update-notification', ['en-US']) %}
