@@ -35,10 +35,10 @@
 <main role="main">
   <div class="main-content">
     <div class="mzp-l-content">
-      <div class="header-logos">
+      <header class="header-logos">
         <h2 class="logo-firefox"><a href="{{ url('firefox') }}" title="{{ firefox_logo_title }}">{{ high_res_img('logos/firefox/logo-quantum-wordmark-white.png', {'alt': firefox_logo_title, 'width': '133', 'height': '50'}) }}</a></h2>
         <h2 class="logo-mozilla"><a href="{{ url('mozorg.home') }}" title="{{ mozilla_logo_title }}"><img src="{{ static('img/logos/mozilla/wordmark-dark.svg')}}" alt="{{ mozilla_logo_title }}" width="101" height="34"></a></h2>
-      </div>
+      </header>
     </div>
     {% call hero(
       title=_('The new <strong>Firefox</strong>'),
@@ -52,7 +52,7 @@
       {{ download_firefox(alt_copy=_('Download Now'), download_location='primary cta') }}
     {% endcall %}
   </div>
-  <div class="features">
+  <section class="features">
     <div class="mzp-l-card-third mzp-l-content mzp-t-firefox">
     <ul>
       <li class="faster">
@@ -65,7 +65,7 @@
         {{ picto_card(title=_('Powerfully private'), desc=_('Truly Private Browsing with Tracking Protection')) }}
       </li>
     </ul>
-  </div>
+  </section>
 </main>
 {% endblock %}
 
