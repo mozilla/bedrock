@@ -644,6 +644,10 @@ def download_thanks(request):
     if variant in ['b', 'c'] and locale == 'en-US':
         show_newsletter = False
 
+    # if someone has already seen the newsletter pre-download, don't show it again.
+    if experience == 'pre-download':
+        show_newsletter = False
+
     if locale == 'de':
         if experience == 'berlin':
             template = 'firefox/new/berlin/scene2.html'
@@ -797,7 +801,13 @@ class FeaturesPrivateBrowsingView(BlogPostsView):
 
 
 def firefox_home(request):
-    return l10n_utils.render(request, 'firefox/home.html')
+    locale = l10n_utils.get_locale(request)
+    newsletter_locales = ['en-US', 'en-GB', 'en-CA', 'en-ZA', 'fr', 'de']
+    show_newsletter = switch('firefox_pre_download_newsletter') and locale in newsletter_locales
+
+    return l10n_utils.render(request,
+                             'firefox/home/index.html',
+                             {'show_newsletter': show_newsletter})
 
 
 def firefox_concerts(request):
