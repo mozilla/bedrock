@@ -1116,6 +1116,13 @@
     },
     {
       "files": [
+        "js/base/stub-attribution.js",
+        "js/base/stub-attribution-custom.js"
+      ],
+      "name": "stub-attribution-custom"
+    },
+    {
+      "files": [
         "js/base/stub-attribution-macos.js",
         "js/base/stub-attribution-macos-init.js"
       ],
@@ -1299,7 +1306,6 @@
     },
     {
       "files": [
-        "js/base/stub-attribution.js",
         "js/firefox/new/install/variant.js"
       ],
       "name": "experiment-firefox-download-install-variant"

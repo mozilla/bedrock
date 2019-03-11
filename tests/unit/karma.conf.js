@@ -35,6 +35,7 @@ module.exports = function(config) {
             'media/js/base/svg-animation-check.js',
             'media/js/base/mozilla-svg-image-fallback.js',
             'media/js/base/stub-attribution.js',
+            'media/js/base/stub-attribution-custom.js',
             'media/js/base/stub-attribution-macos.js',
             'media/js/firefox/new/yandex/scene1.js',
             'media/js/firefox/new-ios-redirect-helper.js',
@@ -71,6 +72,7 @@ module.exports = function(config) {
             'tests/unit/spec/base/send-to-device.js',
             'tests/unit/spec/base/core-datalayer.js',
             'tests/unit/spec/base/stub-attribution.js',
+            'tests/unit/spec/base/stub-attribution-custom.js',
             'tests/unit/spec/base/stub-attribution-macos.js',
             {
                 pattern: 'node_modules/sinon/pkg/sinon.js',
