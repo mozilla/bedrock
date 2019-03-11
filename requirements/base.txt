@@ -65,9 +65,9 @@ https://github.com/kurtmckee/feedparser/archive/2aa5286245ed40b13a0f77f997d124c1
     --hash=sha256:70a0535bc9252a01f062713af800658a21eee34e5474b2823ea706eda222a26f
 https://github.com/tweepy/tweepy/archive/3941489457db86710b770bc120409d6947904afa.tar.gz#egg=tweepy \
     --hash=sha256:a9b7728d94beeba624fae4be378542a222cf1c5cf845b916ba9a8b3f8f9e4559
-django-extensions==1.5.3 \
-    --hash=sha256:ca464577ddbc295ea5a93219adde7723e2e734f44a9c8cb928b75c6140d61519 \
-    --hash=sha256:b88d4773697a16a0a2a9ba6fcb082c6c51ec9543ca0f634541680fec4a6867b1
+django-extensions==2.1.6 \
+    --hash=sha256:109004f80b6f45ad1f56addaa59debca91d94aa0dc1cb19678b9364b4fe9b6f4 \
+    --hash=sha256:307766e5e6c1caffe76c5d99239d8115d14ae3f7cab2cd991fcffd763dad904b
 https://github.com/jsocol/bleach/archive/f9fc1c5e70463d5ca91efaa6f19f82d56ff346d8.tar.gz#egg=bleach \
     --hash=sha256:f0eef193d7937cc993f8a04a1df39fac71d0bbaff613be67bcba57bf35b88936
 https://github.com/aleray/mdx_outline/archive/41e22622a17a0d8e410bd921698ec767213a6305.tar.gz#egg=mdx_outline \
