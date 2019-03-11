@@ -34,13 +34,30 @@ Once the user reaches the download page, bedrock then checks if the cookie exist
 and if so appends the authenticated data to the download URL. The rest of the process
 is handled by the download service and stub installer.
 
+Local testing
+-------------
+
+For stub attribution to work locally or on a demo instance, a value for the HMAC key
+that is used to sign the attribution code must be set via an environment variable e.g.
+
+.. code-block:: html
+
+    STUB_ATTRIBUTION_HMAC_KEY='thedude'
+
+.. Note::
+
+    This value can be anything if all you need to do is test the bedrock functionality.
+    It only needs to match the value used to verify data passed to the stub installer
+    for full end-to-end testing via Telemetry.
+
 Measuring campaigns and experiments
 -----------------------------------
 
 Stub Attribution was originally designed for measuring the effectiveness of marketing
 campaigns where the top of the funnel was outside the remit of www.mozilla.org. For
 these types of campaigns, stub attribution requires zero configuration. It just works
-in the background and passes along any attribution data that exists.
+(as configured in  `/media/js/base/stub-attribution.js`) in the background and passes
+along any attribution data that exists.
 
 For campaigns or experiments that originate on www.mozilla.org, Stub Attribution
 requires some extra configuration. We want to avoid using first-party utm parameters
