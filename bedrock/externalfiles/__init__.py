@@ -15,8 +15,6 @@ from django.conf import settings
 from django.core.cache import caches
 from django.utils.http import http_date
 
-from bedrock.externalfiles.models import ExternalFile as EFModel
-
 
 log = logging.getLogger(__name__)
 
@@ -36,6 +34,8 @@ class ExternalFile(object):
 
     @property
     def file_object(self):
+        from bedrock.externalfiles.models import ExternalFile as EFModel
+
         efo = self._cache.get(self.cache_key)
         if not efo:
             try:
@@ -93,6 +93,8 @@ class ExternalFile(object):
         return StringIO(self.read()).readlines()
 
     def update(self):
+        from bedrock.externalfiles.models import ExternalFile as EFModel
+
         log.info('Updating {0}.'.format(self.name))
         content = self.validate_file()
         fo = self.file_object
