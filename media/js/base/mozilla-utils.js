@@ -16,7 +16,7 @@ if (typeof Mozilla === 'undefined') {
     Utils.initMobileDownloadLinks = function() {
         if (site.platform === 'android') {
             var playLinks = document.querySelectorAll('a[href^="https://play.google.com/store/apps/"]');
-            for(var i = 0; i < playLinks.length; ++i) {
+            for (var i = 0; i < playLinks.length; ++i) {
                 var playLink = playLinks[i];
                 var oldHref = playLink.getAttribute('href');
                 var newHref = oldHref.replace('https://play.google.com/store/apps/', 'market://');
@@ -39,7 +39,7 @@ if (typeof Mozilla === 'undefined') {
             links[i].setAttribute('href', distributionLink);
         }
         for (var j = 0; j < images.length; j++) {
-            var distributionSrc = images[j].dataset[distribution + 'Link'];
+            var distributionSrc = images[j].getAttribute('data-' + distribution + 'Link');
             images[j].setAttribute('src', distributionSrc);
         }
     };
@@ -60,7 +60,7 @@ if (typeof Mozilla === 'undefined') {
     var _strings = document.getElementById('strings');
     Utils.trans = function(stringId) {
         if (_strings) {
-            return _strings.dataset[stringId];
+            return _strings.getAttribute('data-' + stringId);
         } else {
             return undefined;
         }
