@@ -10,8 +10,9 @@ Jinja2==2.10 \
     --hash=sha256:f84be1bb0040caca4cea721fcbbbbd61f9be9464ca236387158b0feea01914a4
 icalendar==3.8.3 \
     --hash=sha256:41949b09031611799136e019168b84eb5ed899c8e4e692117d2d38504659fd16
-django-statsd-mozilla==0.3.14 \
-    --hash=sha256:616f9345c41343ce7763700546a3be9c63c8f8a40aa1b52503a2d64c8bf1deeb
+django-statsd-mozilla==0.4.0 \
+    --hash=sha256:81084f3d426f5184f0a0f1dbfe035cc26b66f041d2184559d916a228d856f0d3 \
+    --hash=sha256:0d87cb63de8107279cbb748caad9aa74c6a44e7e96ccc5dbf07b89f77285a4b8
 statsd==3.1 \
     --hash=sha256:788ffa29dfb754900e08b90881f7ea16c3c25ca2949548eea7b43d2ca739e33f \
     --hash=sha256:fbae5feb33ae9394c275bc834ab94684b94de03acc8f36387bd0bf0c51ef28ee
