@@ -635,6 +635,7 @@ def download_thanks(request):
     experience = request.GET.get('xv', None)
     locale = l10n_utils.get_locale(request)
     variant = request.GET.get('v', None)
+    newsletter = request.GET.get('n', None)
     show_newsletter = locale in ['en-US', 'en-GB', 'en-CA', 'en-ZA', 'es-ES', 'es-AR', 'es-CL', 'es-MX', 'pt-BR', 'fr', 'ru', 'id', 'de', 'pl']
 
     # ensure variant matches pre-defined value
@@ -644,8 +645,8 @@ def download_thanks(request):
     if variant in ['b', 'c'] and locale == 'en-US':
         show_newsletter = False
 
-    # if someone has already seen the newsletter pre-download, don't show it again.
-    if experience == 'pre-download':
+    # check to see if a URL explicitly asks to hide the newsletter
+    if newsletter == 'f':
         show_newsletter = False
 
     if locale == 'de':
