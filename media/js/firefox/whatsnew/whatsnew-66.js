@@ -44,7 +44,6 @@
     * Sticky CTA & bottom CTA
     */
 
-    var stickyCTA = document.getElementsByClassName('c-sticky-signup');
     var bottomSection = document.getElementById('bottom-signup');
 
     // init dismiss button
@@ -55,10 +54,8 @@
         for (var i = 0; i < dismissButtons.length; i++) {
             dismissButtons[i].addEventListener('click', function(){
                 this.parentNode.removeChild(this);
-                // move cta to bottom
-                for (var i = 0; i < stickyCTA.length; i++) {
-                    bottomSection.appendChild(stickyCTA[i]);
-                }
+                var parent = document.getElementById(this.dataset.parent);
+                bottomSection.appendChild(parent);
             });
         }
     }

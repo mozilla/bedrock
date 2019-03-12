@@ -37,15 +37,15 @@
     </div>
   </header>
 
-  <section class="c-sticky-signup fxa-form-cta">
+  <section class="c-sticky-signup fxa-form-cta" id="fxa-sticky-form">
       <div class="mzp-l-content">
         <div class="c-sticky-signup-container">
           <div class="c-sticky-signup-content">
             <h2 class="c-sticky-signup-title">{{ _('Get a Firefox Account and all the benefits it unlocks. ') }}</h2>
-            <button type="button" class="sticky-dismiss">{{ _('Close') }}</button>
+            <button type="button" class="sticky-dismiss" data-parent="fxa-sticky-form">{{ _('Close') }}</button>
           </div>
           {{ fxa_email_form(
-              entrypoint='whatsnew',
+              entrypoint='mozilla.org-whatsnew66',
               button_class='mzp-c-button',
               utm_source='whatsnew',
               utm_params={'campaign': 'fxa-embedded-form', 'content': 'whatsnew', 'medium': 'referral'})
@@ -55,12 +55,12 @@
     </section>
 
     {% if show_newsletter %}
-    <section class="c-sticky-signup newsletter-form-cta">
+    <section class="c-sticky-signup newsletter-form-cta" id="newsletter-sticky-form">
       <div class="mzp-l-content">
         <div class="c-sticky-signup-container">
           <div class="c-sticky-signup-content">
             <h2 class="c-sticky-signup-title">{{ _('Get tips to live your best online life right in your inbox.') }}</h2>
-            <button type="button" class="sticky-dismiss">Dismiss this prompt.</button>
+            <button type="button" class="sticky-dismiss" data-parent="newsletter-sticky-form">Dismiss this prompt.</button>
           </div>
           <div class="mzp-c-newsletter">
             {{ email_newsletter_form(
@@ -116,14 +116,14 @@
       {{ high_res_img('firefox/whatsnew_64/fxa-lockbox.png', {'alt': '', 'width': '590', 'height': '590'}) }}
       <h3>{{_('Remember your passwords in Lockbox')}}</h3>
       <p>{{_('No more getting locked out of apps and websites. Lockbox secures all the passwords you’ve saved in Firefox and gives you easy access across all your iOS devices.')}}</p>
-      <p><button class="mzp-c-button wn66-benefit-link" data-app="lockbox" href="#">{{_('Get the Lockbox App')}}</button></p>
+      <p><button class="mzp-c-button wn66-benefit-link" data-app="lockbox">{{_('Get the Lockbox App')}}</button></p>
     </div>
 
     <div class="wn66-benefit wn66-pocket">
       {{ high_res_img('firefox/whatsnew_64/fxa-pocket.png', {'alt': '', 'width': '590', 'height': '590'}) }}
       <h3>{{_('Put quality content in your Pocket')}}</h3>
       <p>{{_('Discover the web’s best content, and absorb it anytime – even offline – on any device. Pocket’s listen feature will even read any article aloud to you. Get it all from the Firefox toolbar or the Pocket app.')}}</p>
-      <p><button class="mzp-c-button wn66-benefit-link" data-app="pocket" href="#">{{_('Get the Pocket App')}}</button></p>
+      <p><button class="mzp-c-button wn66-benefit-link" data-app="pocket">{{_('Get the Pocket App')}}</button></p>
     </div>
 
     <div class="wn66-benefit wn66-notes">
@@ -134,7 +134,7 @@
       {% else %}
       <p>{{_('Your ideas and inspiration are secure and encrypted with Notes – and when you’re signed into your Account, they sync from your desktop to your Android devices.')}}</p>
       {% endif %}
-      <p><button class="mzp-c-button wn66-benefit-link" data-app="notes" href="#">{{_('Get the Notes App')}}</button></p>
+      <p><button class="mzp-c-button wn66-benefit-link" data-app="notes">{{_('Get the Notes App')}}</button></p>
     </div>
   </div>
 
