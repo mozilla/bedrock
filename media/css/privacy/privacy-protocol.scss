@@ -4,76 +4,101 @@
 
 $image-path: '/media/protocol/img';
 
+@import '../libs/system-font';
+
 @import '../../protocol/css/includes/lib';
 @import "../../protocol/css/components/article";
 
+$heading-purple: #20123A;
+$body-purple: #42425A;
+$border: 2px solid $color-gray-20;
+
+.mzp-t-firefox {
+    @include text-body-lg;
+    color: $body-purple;
+    font-family: system-ui, sans-serif;
+    line-height: 1.25;
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        color: $heading-purple;
+        font-family: sharpsans, system-ui, sans-serif;
+        font-weight: normal;
+    }
+}
 
 /* -------------------------------------------------------------------------- */
 // Layout
 
 .l-narrow {
     margin: 0 auto;
-    max-width: $content-md;
+    max-width: 640px;
     padding: 0 $spacing-lg;
 }
 
 /* -------------------------------------------------------------------------- */
 // Policy header
 
-.privacy-head {
-    background-color: $color-gray-20;
-    padding: $spacing-lg 0;
-
-    @media #{$mq-md} {
-        padding: $spacing-xl $spacing-lg;
-    }
-
-    @media #{$mq-lg} {
-        padding: $spacing-2xl $spacing-lg;
-    }
-}
-
 .policy-title {
-    @include background-size(40px 40px);
-    @include bidi((
-        (background-position, left top, right top),
-        (padding-left, 40px + $spacing-sm, padding-right, 0),
-    ));
-    @include border-box;
-    background-repeat: no-repeat;
     margin-bottom: $spacing-lg;
 
+    @media #{$mq-sm} {
+        margin-top: $layout-sm;
+        margin-bottom: $layout-md;
+    }
+
+    @media #{$mq-md} {
+        margin-top: $layout-sm;
+        margin-bottom: $layout-lg;
+    }
+
+    &:before {
+        @include background-size(40px 40px);
+        background-repeat: no-repeat;
+        content: '';
+        display: block;
+        height: 40px;
+        margin-bottom: $spacing-sm;
+        width: 40px;
+
+        @media #{$mq-sm} {
+            @include bidi((
+                (float, left, right),
+                (margin-right, $spacing-sm, margin-left, 0),
+            ));
+        }
+
+        @media #{$mq-md} {
+            @include background-size(48px 48px);
+            @include bidi((
+                (margin-right, $spacing-md, margin-left, 0),
+            ));
+            height: 48px;
+            width: 48px;
+        }
+
+        @media #{$mq-lg} {
+            @include bidi((
+                (left, $layout-xl, right, auto),
+            ));
+            position: absolute;
+        }
+    }
+
     h1 {
-        @include text-display-md;
-        font-weight: normal;
+        @include text-display-sm;
+        font-weight: bold;
     }
 
     a {
         color: inherit;
         text-decoration: none;
     }
-
-    @media #{$mq-md} {
-        @include background-size(60px 60px);
-        @include bidi((
-            (background-position, left top, right top),
-            (padding-left, 60px + $spacing-md, padding-right, 0),
-        ));
-        min-height: 60px;
-    }
-
-    @media #{$mq-lg} {
-        @include background-size(90px 90px);
-        @include bidi((
-            (background-position, left top, right top),
-            (padding-left, 90px + $spacing-lg, padding-right, 0),
-        ));
-        margin-bottom: $spacing-xl;
-        min-height: 90px;
-    }
 }
 
-.product-firefox .policy-title {
+.product-firefox .policy-title:before {
     background-image: url('/media/img/logos/firefox/logo-quantum.png');
 
     @media #{$mq-high-res} {
@@ -81,7 +106,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.product-firefox-lite .policy-title {
+.product-firefox-lite .policy-title:before {
     background-image: url('/media/img/logos/firefox/logo-lite.png');
 
     @media #{$mq-high-res} {
@@ -89,21 +114,19 @@ $image-path: '/media/protocol/img';
     }
 }
 
+
 /* -------------------------------------------------------------------------- */
 // Policy header intro
 
 .privacy-lead-in {
+    border-bottom: $border;
+    clear: both;
+    margin-bottom: $layout-sm;
+    padding-bottom: $layout-xs;
+
     h2 {
         @include text-display-lg;
         font-weight: normal;
-    }
-
-    header {
-        margin-bottom: $spacing-xl;
-
-        @media #{$mq-md} {
-            margin-bottom: $spacing-2xl;
-        }
     }
 }
 
@@ -111,45 +134,33 @@ $image-path: '/media/protocol/img';
 // Main policy content
 
 .privacy-body {
-    section > header {
-        margin: $spacing-xl 0 $spacing-2xl;
-    }
 
     section > section {
-        border-bottom: 1px solid $color-gray-40;
-        padding-bottom: $layout-md;
+        border-bottom: $border;
 
-        header {
+        > div {
+            margin-top: $spacing-sm * -1;
             margin-bottom: $spacing-xl;
         }
     }
 
-    section:last-child {
-
-        section:last-child {
-            border-bottom: none;
-        }
-    }
-
     h2 {
-        @include text-display-md;
-        font-weight: normal;
+        @include font-size(32px);
+        margin-bottom: $layout-md;
     }
 
     h3 {
         @include text-display-sm;
-        font-weight: normal;
+        margin: $layout-sm 0;
     }
 
     hr {
         display: none;
     }
+}
 
-    @media #{$mq-md} {
-        section > section {
-            padding-bottom: $layout-lg;
-        }
-    }
+#optional-features {
+    margin-top: $spacing-xl;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -157,13 +168,15 @@ $image-path: '/media/protocol/img';
 
 .data-choices {
     @include clearfix;
-    position: relative;
     background-color: $color-gray-10;
-    margin-bottom: $spacing-sm;
-    padding: $spacing-md;
+    border-radius: 8px;
+    margin-top: $spacing-xl;
+    padding: $spacing-sm;
+    position: relative;
     text-align: center;
 
     p {
+        @include text-body-md;
         display: inline-block;
         margin: 0;
         padding: $spacing-sm 0;
@@ -191,73 +204,60 @@ $image-path: '/media/protocol/img';
 // Policy footer
 
 .privacy-footnote {
-    background-color: $color-gray-20;
-    margin-top: $spacing-xl;
-    padding: $spacing-lg 0;
+    @include text-body-md;
+    padding: $spacing-2xl 0;
+
+    h3 {
+        @include visually-hidden;
+    }
 }
 
 .back {
     margin-bottom: 0;
 }
 
-/* Accordion styles */
-.privacy-body.interactive-widget {
+/* -------------------------------------------------------------------------- */
+// Summary and details widget
 
-    & .l-narrow > section > header {
-        position: relative;
-
-        h2 {
-            @include bidi(((padding-right, 110px, padding-left, 0),));
+.privacy-body {
+    .is-summary {
+        button {
+            @include bidi(((padding, 0 $spacing-xl 0 0, 0 0 0 $spacing-xl),));
+            background: transparent;
+            border: 0;
+            color: inherit;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            position: relative;
+            text-align: inherit;
+            width: 100%;
         }
     }
 
-    h3 {
-        @include bidi(((padding-right, 40px, padding-left, 0),));
-        cursor: pointer;
-        font-weight: normal;
-        margin: 0;
-        position: relative;
-
-        &:after {
-            @include bidi(((right, 0, left, auto),));
-            background: transparent url('#{$image-path}/icons/ui/expand-black.svg') 0 0 no-repeat;
-            content: '';
-            display: block;
-            height: 16px;
-            position: absolute;
-            top: .25em;
-            width: 16px;
-            transition: transform .1s ease-in-out;
-        }
+    .is-closed[aria-hidden="true"] {
+        display: none;
     }
+}
 
-    h3[aria-expanded="true"]:after {
-        transform: rotate(45deg);
-    }
+.privacy-body .is-summary button {
+    position: relative;
 
-    .toggle {
-        @include bidi(((right, 0, left, auto),));
-        background: none;
-        border: 0;
-        border-bottom: 3px solid $color-black;
-        cursor: pointer;
-        display: inline-block;
-        line-height: 1.2;
-        max-width: 90px;
-        padding-bottom: 3px;
+    &:before {
+        @include background-size(16px, 16px);
+        @include bidi(((right, 8px, left, auto),));
+        @include transition(transform 100ms ease-in-out);
+        background: $url-image-expand-black top left no-repeat;
+        content: '';
+        height: 16px;
+        margin-top: -8px;
         position: absolute;
-        top: 0;
-
-        &:hover,
-        &:active,
-        &:focus {
-            border-bottom-color: transparent;
-        }
+        top: 50%;
+        width: 16px;
     }
+}
 
-    @media #{$mq-md} {
-        section > section {
-            padding-bottom: $layout-md;
-        }
-    }
+.privacy-body .is-summary button[aria-expanded=true]:before {
+    @include transform(rotate(45deg));
 }

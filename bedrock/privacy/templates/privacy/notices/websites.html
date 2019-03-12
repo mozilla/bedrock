@@ -4,8 +4,8 @@
 
 {% extends "privacy/base-resp.html" %}
 
-{% do doc.select('body > section > section > div > p')|htmlattr(role='tab') %}
-{% do doc.select('body > section > section > div > ul')|htmlattr(role='tabpanel') %}
+{% do doc.select('body > section > section > p')|htmlattr(role='tab') %}
+{% do doc.select('body > section > section > ul')|htmlattr(role='tabpanel') %}
 
 {% block page_title %}{{ doc.h1.string }}{% endblock %}
 
@@ -17,9 +17,9 @@
       <h1 itemprop="name" class="title-shadow-box">{{ doc.h1.string }}</h1>
       {% if doc.select('[datetime]') %}
         <p class="meta"><time datetime="{{ doc.select('[datetime]')[0]['datetime'] }}" itemprop="dateModified">{{ doc.select('[datetime]')[0].string }}</time></p>
-        {{ doc.select('body > section > header > [datetime] ~ p')|join|safe }}
+        {{ doc.select('body > section > [datetime] ~ p')|join|safe }}
       {% else %}
-        {{ doc.select('body > section > header > p')|join|safe }}
+        {{ doc.select('body > section > p')|join|safe }}
       {% endif %}
     </header>
     <div itemprop="articleBody">

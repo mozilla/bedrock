@@ -16,8 +16,6 @@
 {% block body_class %}privacy-policy{% endblock %}
 
 {% block string_data %}
-  data-tabpanel-open-text="{{ _('Show All') }}"
-  data-tabpanel-close-text="{{ _('Hide All') }}"
   data-choices-copy="{{ _('Choose how you want to share this data in Firefox.') }}"
   data-choices-button="{{ _('Choose…') }}"
 {% endblock %}
@@ -30,21 +28,15 @@
 {% endif %}
 
 {% block content %}
-<article class="section-content mzp-t-firefox" itemtype="http://schema.org/Article">
-  <header class="privacy-head">
-    <div class="l-narrow">
-      <div class="policy-title">
-        <h1 itemprop="name">{{ header.h2|join|safe }}</h1>
-        <time datetime="{{ header.select('[datetime]')[0]['datetime'] }}" itemprop="dateModified">{{ header.select('[datetime]')[0].string }}</time>
-      </div>
+<article class="section-content mzp-l-content mzp-t-firefox" itemtype="http://schema.org/Article">
+  <header class="l-narrow">
+    <div class="policy-title">
+      <h1 itemprop="name">{{ header.h2|join|safe }}</h1>
+      <time datetime="{{ header.select('[datetime]')[0]['datetime'] }}" itemprop="dateModified">{{ header.select('[datetime]')[0].string }}</time>
+    </div>
 
-      <div class="privacy-lead-in">
-        {{ lead_in.select('header')|join|safe }}
-        <div class="optional-lead-in">
-          {{ lead_in.select('div p:nth-of-type(1)')|join|safe }}
-        </div>
-        {{ lead_in.select('div p:nth-of-type(2)')|join|safe }}
-      </div>
+    <div class="privacy-lead-in">
+      {{ lead_in|join|safe }}
     </div>
   </header>
 
@@ -60,7 +52,7 @@
   <section class="privacy-footnote">
     <div class="l-narrow">
     {% if footnote %}
-      {{ footnote.div|join|safe }}
+      {{ footnote|join|safe }}
     {% endif %}
 
       <p class="back">
