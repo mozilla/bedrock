@@ -1,182 +1,188 @@
 {# License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-  {% from "macros-protocol.html" import hero, call_out_compact with context %}
+{% from "macros-protocol.html" import hero, call_out_compact with context %}
 
-  {% from "macros.html" import fxa_email_form, fxa_link_fragment, google_play_button with context %}
+{% from "macros.html" import fxa_email_form, fxa_link_fragment, google_play_button with context %}
 
-  {% add_lang_files "firefox/whatsnew_66" %}
+{% add_lang_files "firefox/whatsnew_66" %}
 
-  {% extends "firefox/base-protocol.html" %}
+{% extends "firefox/base-protocol.html" %}
 
-  {% block page_title %}{{_('Get a Firefox Account – Keep your data private, safe and synced') }}{% endblock %}
-  {% block page_desc %}{{_('Securely sync your passwords, bookmarks and tabs across all your devices. Get a Firefox Account now – One log-in – Power and privacy everywhere.') }}{% endblock %}
+{% block page_title %}{{_('Get a Firefox Account – Keep your data private, safe and synced') }}{% endblock %}
+{% block page_desc %}{{_('Securely sync your passwords, bookmarks and tabs across all your devices. Get a Firefox Account now – One log-in – Power and privacy everywhere.') }}{% endblock %}
 
-  {% block page_css %}
-   {{ css_bundle('firefox_whatsnew_66') }}
-  {% endblock %}
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_66') }}
+{% endblock %}
 
-  {% set fxa_utm_params = {
-    'campaign': 'wnp66',
-    'content': '/firefox/WNP/66/',
-    'source': 'wnp-66'
-  } %}
+{% set fxa_utm_params = {
+  'campaign': 'wnp66',
+  'content': '/firefox/WNP/66/',
+  'source': 'wnp-66'
+} %}
 
-  {% block body_class %}state-fxa-default{% endblock %}
+{% block body_class %}state-fxa-default{% endblock %}
 
-  {% block site_header %}{% endblock %}
+{% block site_header %}{% endblock %}
 
-  {% block content %}
+{% block content %}
 
-  <main class="mzp-t-firefox">
-    <header class="c-page-header">
-      <div class="mzp-l-content c-page-header-inner">
-        {{ high_res_img('logos/firefox/logo-quantum-wordmark-large.png', {'alt': 'Firefox', 'width': '147', 'height': '55', 'class': 'c-page-header-logo-fx'}) }}
-        <h1 class="c-page-header-up-to-date">{{ _('Congrats! You’re using the latest version of Firefox.') }}</h1>
-        <img src="{{ static('img/logos/mozilla/wordmark-dark.svg') }}" alt="Mozilla" width="112" height="32" class="c-page-header-logo-moz">
+<main class="mzp-t-firefox">
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
+      {{ high_res_img('logos/firefox/logo-quantum-wordmark-large.png', {'alt': 'Firefox', 'width': '147', 'height': '55', 'class': 'c-page-header-logo-fx'}) }}
+      <h1 class="c-page-header-up-to-date">{{ _('Congrats! You’re using the latest version of Firefox.') }}</h1>
+      <img src="{{ static('img/logos/mozilla/wordmark-dark.svg') }}" alt="Mozilla" width="112" height="32" class="c-page-header-logo-moz">
+    </div>
+  </header>
+
+  <section class="c-sticky-signup fxa-form-cta">
+      <div class="mzp-l-content">
+        <div class="c-sticky-signup-container">
+          <div class="c-sticky-signup-content">
+            <h2 class="c-sticky-signup-title">{{ _('Get a Firefox Account and all the benefits it unlocks. ') }}</h2>
+            <button type="button" class="sticky-dismiss">{{ _('Close') }}</button>
+          </div>
+          {{ fxa_email_form(
+              entrypoint='whatsnew',
+              button_class='mzp-c-button',
+              utm_source='whatsnew',
+              utm_params={'campaign': 'fxa-embedded-form', 'content': 'whatsnew', 'medium': 'referral'})
+          }}
+        </div>
       </div>
-    </header>
+    </section>
 
-    <section class="c-sticky-signup fxa-form-cta">
-        <div class="mzp-l-content">
-          <div class="c-sticky-signup-container">
-            <div class="c-sticky-signup-content">
-              <h2 class="c-sticky-signup-title">{{ _('Get a Firefox Account and all the benefits it unlocks. ') }}</h2>
-              <button type="button" class="sticky-dismiss">Dismiss this prompt.</button>
-            </div>
-            {{ fxa_email_form(
-                entrypoint='whatsnew',
-                button_class='mzp-c-button',
-                utm_source='whatsnew',
-                utm_params={'campaign': 'fxa-embedded-form', 'content': 'whatsnew', 'medium': 'referral'})
+    {% if show_newsletter %}
+    <section class="c-sticky-signup newsletter-form-cta">
+      <div class="mzp-l-content">
+        <div class="c-sticky-signup-container">
+          <div class="c-sticky-signup-content">
+            <h2 class="c-sticky-signup-title">{{ _('Get tips to live your best online life right in your inbox.') }}</h2>
+            <button type="button" class="sticky-dismiss">Dismiss this prompt.</button>
+          </div>
+          <div class="mzp-c-newsletter">
+            {{ email_newsletter_form(
+              protocol_component=True,
+              include_title=False,
+              spinner_color='#fff',
+              button_class='mzp-c-button')
             }}
           </div>
         </div>
-      </section>
+      </div>
+    </section>
+    {% endif %}
 
-      {% if show_newsletter %}
-      <section class="c-sticky-signup newsletter-form-cta">
-        <div class="mzp-l-content">
-          <div class="c-sticky-signup-container">
-            <div class="c-sticky-signup-content">
-              <h2 class="c-sticky-signup-title">{{ _('Get tips to live your best online life right in your inbox.') }}</h2>
-              <button type="button" class="sticky-dismiss">Dismiss this prompt.</button>
-            </div>
-            <div class="mzp-c-newsletter">
-              {{ email_newsletter_form(
-                protocol_component=True,
-                include_title=False,
-                spinner_color='#fff',
-                button_class='mzp-c-button')
-              }}
-            </div>
-          </div>
-        </div>
-      </section>
+  {% set content_blocking_image='firefox/whatsnew_64/hero.png' if DIR == 'ltr' else 'firefox/whatsnew_64/hero-rtl.png' %}
+  {% call hero(
+    title=_('One log-in. Power and security everywhere.'),
+    class='mzp-has-image mzp-l-reverse t-wn64 show-fxa-default show-fxa-supported-signed-out',
+    image_url=content_blocking_image,
+    include_highres_image=true,
+    include_cta=True
+  ) %}
+
+  <p class="show-fxa-supported-signed-out show-fxa-default">
+    <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew66', action='signup', utm_params={'campaign': 'wnp66', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'wnp66'}) }} class="mzp-c-button mzp-t-download" data-button-name="Create account" data-link-type="button">
+      {{ _('Create a Firefox Account') }}
+    </a><br>
+    <span class="wn64-signin">{{ _('Have an account?') }}
+      <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew66', action='login', utm_params={'campaign': 'wnp66', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'wnp66'}) }}>{{ _('Log in') }}</a>
+    </span>
+  </p>
+
+  {% endcall %}
+  {% call hero(
+    title=_('It shouldn’t be hard to own your life online.'),
+    desc=_('That’s why Firefox gives more power to you with every update.'),
+    class='mzp-has-image mzp-l-reverse t-wn64 show-fxa-supported-signed-in',
+    image_url=content_blocking_image,
+    include_highres_image=true
+  ) %}
+  {% endcall %}
+
+  <div class="mzp-l-content">
+    <div class="wn66-benefit wn66-send">
+      {{ high_res_img('firefox/whatsnew_66/fxa-send.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      <h3>{{_('Take total control of the files you share ')}}</h3>
+      <p>{{_('Feel like a secret agent when you send files online, with a private, encrypted link that ‘self-destructs.’')}}</p>
+      <p><a class="mzp-c-cta-link" data-app="send" href="
+        https://send.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp66&utm_content=try-send&entrypoint=mozilla.org-whatsnew66">{{_('Try Firefox Send')}}</a></p>
+    </div>
+
+    <div class="wn66-benefit wn66-lockbox">
+      {{ high_res_img('firefox/whatsnew_64/fxa-lockbox.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      <h3>{{_('Remember your passwords in Lockbox')}}</h3>
+      <p>{{_('No more getting locked out of apps and websites. Lockbox secures all the passwords you’ve saved in Firefox and gives you easy access across all your iOS devices.')}}</p>
+      <p><button class="mzp-c-button wn66-benefit-link" data-app="lockbox" href="#">{{_('Get the Lockbox App')}}</button></p>
+    </div>
+
+    <div class="wn66-benefit wn66-pocket">
+      {{ high_res_img('firefox/whatsnew_64/fxa-pocket.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      <h3>{{_('Put quality content in your Pocket')}}</h3>
+      <p>{{_('Discover the web’s best content, and absorb it anytime – even offline – on any device. Pocket’s listen feature will even read any article aloud to you. Get it all from the Firefox toolbar or the Pocket app.')}}</p>
+      <p><button class="mzp-c-button wn66-benefit-link" data-app="pocket" href="#">{{_('Get the Pocket App')}}</button></p>
+    </div>
+
+    <div class="wn66-benefit wn66-notes">
+      {{ high_res_img('firefox/whatsnew_64/fxa-sync.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      <h3>{{_('Pick up where you left off with Notes')}}</h3>
+      {% if l10n_has_tag('wnp66_2019') %}
+      <p>{{_('Your ideas and inspiration are secure and encrypted with Notes – and when you’re signed in to your Account, they sync from your desktop to your Android devices.')}}</p>
+      {% else %}
+      <p>{{_('Your ideas and inspiration are secure and encrypted with Notes – and when you’re signed into your Account, they sync from your desktop to your Android devices.')}}</p>
       {% endif %}
+      <p><button class="mzp-c-button wn66-benefit-link" data-app="notes" href="#">{{_('Get the Notes App')}}</button></p>
+    </div>
+  </div>
 
-    {% set content_blocking_image='firefox/whatsnew_64/hero.png' if DIR == 'ltr' else 'firefox/whatsnew_64/hero-rtl.png' %}
-    {% call hero(
-     title=_('One log-in. Power and security everywhere.'),
-     class='mzp-has-image mzp-l-reverse t-wn64 show-fxa-default show-fxa-supported-signed-out',
-     image_url=content_blocking_image,
-     include_highres_image=true,
-     include_cta=True
-    ) %}
-    <p class="show-fxa-supported-signed-out show-fxa-default">
-      <a href="https://accounts.firefox.com/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org-fx.wnp64&utm_content=%2Ffirefox%2FWNP%2F64%2F&utm_campaign=wnp64&utm_source=wnp-64" class="mzp-c-button mzp-t-download">{{_('Create a Firefox Account') }}</a><br>
-      <span class="wn64-signin">{{ _('Have an account?') }} <a href="https://accounts.firefox.com/?action=email&service=sync&context=fx_desktop_v3&entrypoint=mozilla.org-fx.wnp64&utm_content=%2Ffirefox%2FWNP%2F64%2F&utm_campaign=wnp64&utm_source=wnp-64">{{ _('Log in') }}</a></span>
-    </p>
-    {% endcall %}
-    {% call hero(
-     title=_('It shouldn’t be hard to own your life online.'),
-     desc=_('That’s why Firefox gives more power to you with every update.'),
-     class='mzp-has-image mzp-l-reverse t-wn64 show-fxa-supported-signed-in',
-     image_url=content_blocking_image,
-     include_highres_image=true
-    ) %}
-    {% endcall %}
+  <section id="bottom-signup"></section>
 
-    <div class="mzp-l-content">
-      <div class="wn66-benefit wn66-send">
-        {{ high_res_img('firefox/whatsnew_66/fxa-send.png', {'alt': '', 'width': '590', 'height': '590'}) }}
-        <h3>{{_('Take total control of the files you share ')}}</h3>
-        <p>{{_('Feel like a secret agent when you send files online, with a private, encrypted link that ‘self-destructs.’')}}</p>
-        <p><a class="mzp-c-cta-link" data-app="send" href="
-          https://send.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp66&utm_content=try-send&entrypoint=mozilla.org-whatsnew66">{{_('Try Firefox Send')}}</a></p>
-      </div>
-
-      <div class="wn66-benefit wn66-lockbox">
-        {{ high_res_img('firefox/whatsnew_64/fxa-lockbox.png', {'alt': '', 'width': '590', 'height': '590'}) }}
-        <h3>{{_('Remember your passwords in Lockbox')}}</h3>
-        <p>{{_('Discover the web’s best content, and absorb it anytime – even offline – on any device. Pocket’s listen feature will even read any article aloud to you. Get it all from the Firefox toolbar or the Pocket app.')}}</p>
-        <p><a class="mzp-c-button wn66-benefit-link" data-app="lockbox" href="#">{{_('Get the Lockbox App')}}</a></p>
-      </div>
-
-      <div class="wn66-benefit wn66-pocket">
-        {{ high_res_img('firefox/whatsnew_64/fxa-pocket.png', {'alt': '', 'width': '590', 'height': '590'}) }}
-        <h3>{{_('Put quality content in your Pocket')}}</h3>
-        <p>{{_('Discover the web’s best content, and absorb it anytime – even offline – on any device. Pocket’s listen feature will even read any article aloud to you. Get it all from the Firefox toolbar or the Pocket app.')}}</p>
-        <p><a class="mzp-c-button wn66-benefit-link" data-app="pocket" href="#">{{_('Get the Pocket App')}}</a></p>
-      </div>
-
-      <div class="wn66-benefit wn66-notes">
-        {{ high_res_img('firefox/whatsnew_64/fxa-sync.png', {'alt': '', 'width': '590', 'height': '590'}) }}
-        <h3>{{_('Pick up where you left off with Notes')}}</h3>
-        {% if l10n_has_tag('wnp66_2019') %}
-        <p>{{_('Your ideas and inspiration are secure and encrypted with Notes – and when you’re signed in to your Account, they sync from your desktop to your Android devices.')}}</p>
-        {% else %}
-        <p>{{_('Your ideas and inspiration are secure and encrypted with Notes – and when you’re signed into your Account, they sync from your desktop to your Android devices.')}}</p>
-        {% endif %}
-        <p><a class="mzp-c-button wn66-benefit-link" data-app="notes" href="#">{{_('Get the Notes App')}}</a></p>
+  <aside id="wn66-modal" class="mzp-u-modal-content">
+    <div class="mobile-notes">
+      <div class="qr-notes">
+          <img class="mobile-qr" src="{{ static('img/firefox/whatsnew_64/notes-qr.png') }}" height="300" width="300">
+          <ul class="mobile-download-buttons mobile-notes">
+            <li class="android">
+              {{ google_play_button(href='https://play.google.com/store/apps/details?id=org.mozilla.testpilot.notes') }}
+            </li>
+          </ul>
       </div>
     </div>
 
-    <section id="bottom-signup"></section>
+    <div class="mobile-lockbox">
+      <img class="mobile-qr" src="{{ static('img/firefox/whatsnew_64/lockbox-qr.png') }}" height="300" width="300">
+        <ul class="mobile-download-buttons mobile-lockbox">
+        <li class="ios">
+          <a href="https://app.adjust.com/kq8zhhz" data-link-type="download" data-download-os="iOS">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="" width="152" height="45">
+          </a>
+        </li>
+      </ul>
+    </div>
 
-    <aside id="wn66-modal" class="mzp-u-modal-content">
-      <div class="mobile-notes">
-        <div class="qr-notes">
-            <img class="mobile-qr" src="{{ static('img/firefox/whatsnew_64/notes-qr.png') }}" height="300" width="300">
-            <ul class="mobile-download-buttons mobile-notes">
-              <li class="android">
-                {{ google_play_button(href='https://play.google.com/store/apps/details?id=org.mozilla.testpilot.notes') }}
-              </li>
-            </ul>
-        </div>
-      </div>
-
-      <div class="mobile-lockbox">
-        <img class="mobile-qr" src="{{ static('img/firefox/whatsnew_64/lockbox-qr.png') }}" height="300" width="300">
-          <ul class="mobile-download-buttons mobile-lockbox">
+    <div class="mobile-pocket">
+        <img class="mobile-qr" src="{{ static('img/firefox/whatsnew_64/pocket-qr.png') }}" height="300" width="300">
+        <ul class="mobile-download-buttons mobile-pocket">
+          <li class="android">
+            {{ google_play_button(href='https://app.adjust.com/h5iycst') }}
+          </li>
           <li class="ios">
-            <a href="https://app.adjust.com/kq8zhhz" data-link-type="download" data-download-os="iOS">
+            <a href="https://app.adjust.com/h5iycst" data-link-type="download" data-download-os="iOS">
               <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="" width="152" height="45">
             </a>
           </li>
         </ul>
-      </div>
+    </div>
+  </aside>
+</main>
+{% endblock %}
 
-      <div class="mobile-pocket">
-          <img class="mobile-qr" src="{{ static('img/firefox/whatsnew_64/pocket-qr.png') }}" height="300" width="300">
-          <ul class="mobile-download-buttons mobile-pocket">
-            <li class="android">
-              {{ google_play_button(href='https://app.adjust.com/h5iycst') }}
-            </li>
-            <li class="ios">
-              <a href="https://app.adjust.com/h5iycst" data-link-type="download" data-download-os="iOS">
-                <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="" width="152" height="45">
-              </a>
-            </li>
-          </ul>
-      </div>
-    </aside>
-  </main>
-  {% endblock %}
-
-  {% block js %}
-  {% if show_newsletter %}
-    {{ js_bundle('firefox_whatsnew_65_newsletter') }}
-  {% endif %}
-  {{ js_bundle('firefox_whatsnew_66') }}
-  {% endblock %}
+{% block js %}
+{% if show_newsletter %}
+  {{ js_bundle('firefox_whatsnew_65_newsletter') }}
+{% endif %}
+{{ js_bundle('firefox_whatsnew_66') }}
+{% endblock %}

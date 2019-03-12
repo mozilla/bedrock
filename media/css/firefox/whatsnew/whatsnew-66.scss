@@ -298,7 +298,7 @@ $image-path: '/media/protocol/img';
 
     &:after {
         @include text-body-lg;
-        background: transparent url('#{$image-path}/icons/ui/close-black.svg') center center no-repeat;
+        background: transparent url('#{$image-path}/icons/ui/close-white.svg') center center no-repeat;
         @include background-size(16px 16px);
         content: '';
         display: block;
@@ -306,7 +306,7 @@ $image-path: '/media/protocol/img';
         left: 0;
         position: absolute;
         right: 0;
-        top: $spacing-xs;
+        top: 0;
         width: 32px;
     }
 

@@ -1073,7 +1073,6 @@
     },
     {
       "files": [
-        "js/libs/jquery.waypoints.min.js",
         "js/base/uitour-lib.js",
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
