@@ -66,12 +66,6 @@
     },
     {
       "files": [
-        "css/firefox/new/scene2-install.scss"
-      ],
-      "name": "firefox_new_scene2_install"
-    },
-    {
-      "files": [
         "css/sandstone/sandstone-resp.less",
         "css/base/notification-banner.less",
         "css/tabzilla/tabzilla-static.less",
@@ -1326,15 +1320,16 @@
     {
       "files": [
         "js/base/mozilla-traffic-cop.js",
-        "js/firefox/new/install/experiment.js"
+        "js/firefox/new/headline/experiment-en.js"
       ],
-      "name": "experiment-firefox-download-install"
+      "name": "experiment-firefox-new-headline-en"
     },
     {
       "files": [
-        "js/firefox/new/install/variant.js"
+        "js/base/mozilla-traffic-cop.js",
+        "js/firefox/new/headline/experiment-de.js"
       ],
-      "name": "experiment-firefox-download-install-variant"
+      "name": "experiment-firefox-new-headline-de"
     },
     {
       "files": [

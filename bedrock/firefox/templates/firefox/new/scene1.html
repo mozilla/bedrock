@@ -14,11 +14,7 @@
   {{ css_bundle('firefox_new_scene1') }}
 {% endblock %}
 
-{% block experiments %}
-  {% if switch('experiment_firefox_download_install', ['en-US']) %}
-    {{ js_bundle('experiment-firefox-download-install') }}
-  {% endif %}
-{% endblock %}
+{% block experiments %}{% endblock %}
 
 {% block body_id %}firefox-new-scene1{% endblock %}
 
@@ -161,6 +157,18 @@
 {% endif %}
 
 {% include 'firefox/includes/schemaorg-app.html' %}
+{% endblock %}
+
+{% block stub_attribution %}
+  <!--[if !lte IE 8]><!-->
+  {{ js_bundle('stub-attribution-custom') }}
+  {% if switch('experiment_firefox_new_headlne_en', ['en-US', 'en-CA', 'en-GB']) %}
+    {{ js_bundle('experiment-firefox-new-headline-en') }}
+  {% endif %}
+  {% if switch('experiment_firefox_new_headlne_de', ['de']) %}
+    {{ js_bundle('experiment-firefox-new-headline-de') }}
+  {% endif %}
+  <!--<![endif]-->
 {% endblock %}
 
 {% block js %}

@@ -72,8 +72,10 @@ the page template where an experiment exists:
 .. code-block:: html
 
     {% block stub_attribution %}
+      <!--[if !lte IE 8]><!-->
       {{ js_bundle('stub-attribution-custom') }}
       {{ js_bundle('my-page-experiment-script') }}
+      <!--<![endif]-->
     {% endblock %}
 
 The `stub-attribution-custom` bundle contains the code that enables passing custom data

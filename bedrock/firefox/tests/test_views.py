@@ -749,44 +749,6 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
 
-    # how to install experiment - issue 6704
-
-    def test_install_scene_1_a(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?v=a')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/install/scene1.html', ANY)
-
-    def test_install_scene_1_b(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?v=b')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/install/scene1.html', ANY)
-
-    def test_install_scene_1_c(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?v=c')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/install/scene1.html', ANY)
-
-    def test_install_scene_2_a(self, render_mock):
-        req = RequestFactory().get('/firefox/download/thanks/?v=a')
-        req.locale = 'en-US'
-        views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/install/scene2-a.html', ANY)
-
-    def test_install_scene_2_b(self, render_mock):
-        req = RequestFactory().get('/firefox/download/thanks/?v=b')
-        req.locale = 'en-US'
-        views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/install/scene2-b.html', ANY)
-
-    def test_install_scene_2_c(self, render_mock):
-        req = RequestFactory().get('/firefox/download/thanks/?v=c')
-        req.locale = 'en-US'
-        views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/install/scene2-c.html', ANY)
-
 
 class TestFirefoxNewNoIndex(TestCase):
     def test_scene_1_noindex(self):
