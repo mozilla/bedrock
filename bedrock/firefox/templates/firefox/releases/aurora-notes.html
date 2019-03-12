@@ -2,12 +2,19 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "firefox/releases/release-notes.html" %}
+{% extends "firefox/releases/notes.html" %}
 
-{% block gtm_page_id %}data-gtm-page-id="/firefox/android/auroranotes/"{% endblock %}
-
-{% block page_css %}
-  {{ css_bundle('firefox_releasenotes_firefox') }}
-{% endblock %}
-
-{% set channel_name = 'Aurora' %}
+{% if release.product == 'Firefox for Android' %}
+{% set page_id = 'data-gtm-page-id="/firefox/android/auroranotes/"' %}
+{% set product_class = 'mzp-t-dark mzp-t-product-nightly' %}
+{% set download_button %}
+  {{ download_firefox('nightly', platform='android', alt_copy=_('Download')) }}
+{% endset %}
+{% elif release.product == 'Firefox' %}
+  {% set page_id = 'data-gtm-page-id="/firefox/auroranotes/"' %}
+  {% set product_class = 'mzp-t-dark mzp-t-product-developer t-aurora' %}
+  {% set download_title = _('Build, test, scale and more with the only browser built just for developers.') %}
+  {% set download_button %}
+    {{ download_firefox('alpha', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Developer Edition')) }}
+  {% endset %}
+{% endif %}

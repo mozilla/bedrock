@@ -1,0 +1,388 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% from "macros-protocol.html" import call_out, call_out_compact %}
+
+{% extends "firefox/base-protocol.html" %}
+
+{# channel_name is for display purposes where needed. Example: Beta #}
+{# channel_name may be over-ridden with more appropriate content #}
+{% set channel_name = channel_name|default(release.channel) %}
+
+{# page ID for gtm #}
+{# page_id may be over-ridden with more appropriate content #}
+{% set page_id = page_id|default('data-gtm-page-id="/firefox/releasenotes/"') %}
+
+{# feedback is the link in the header for giving feedback #}
+{# feedback may be over-ridden with more appropriate content #}
+{% if not feedback %}
+  {% set feedback='https://input.mozilla.org/feedback/firefox/' + release.version + '?utm_source=releasenotes' %}
+{% endif %}
+
+{# product_name is the product and channel together. Example: Firefox for Android Beta. #}
+{# product_name may be over-ridden with more appropriate content to avoid bad names like: Firefox Release Release #}
+{% set product_name = product_name|default(release.product + ' ' + release.channel) %}
+
+{# product_class is the class or classes applied to theme components for Release, Beta, Nightly, etc #}
+{# product_class may be over-ridden where the default firefox release theme is not apprpriate #}
+{% set product_class = product_class|default('mzp-t-product-firefox') %}
+
+{% if release.product != 'Firefox for iOS' and release.major_version_int < 57 %}
+  {% set pre_quantum = true %}
+{% elif release.product == 'Firefox for iOS' and release.major_version_int < 10 %}
+  {% set pre_quantum = true %}
+{% else %}
+  {% set pre_quantum = false %}
+{% endif %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{ _('{product} {channel} {version}, See All New Features, Updates and Fixes')|f(product=release.product, channel=channel_name, version=release.version) }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+{% block gtm_page_id %}{{ page_id }}{% endblock %}
+
+{% block body_id %}notes{% endblock %}
+{% block body_class %}mzp-t-firefox {% if pre_quantum %}t-pre-quantum {% endif %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_release_notes') }}
+{% endblock %}
+
+{% block global_nav %}
+  {% include 'includes/protocol/navigation/index.html' %}
+{% endblock %}
+
+{% if not primary_heading %}
+  {# L10n: The string will be filled in with a product name. Example:  "Firefox for Android Release Notes" #}
+  {% set primary_heading = _('%s <br> Release Notes')|format(product_name) %}
+{% endif %}
+
+{% set download_title = download_title|default(_('Get the most recent version')) %}
+
+{% block content %}
+<main role="main">
+  <article id="main-content">
+    {% set bugzilla_url='https://bugzilla.mozilla.org/' %}
+    {% if release.product == 'Firefox for Android' %}
+      {% set feedback_url='https://input.mozilla.org/feedback/android/' + release.version + '?utm_source=releasenotes' %}
+    {% else %}
+      {% set feedback_url='https://input.mozilla.org/feedback/firefox/' + release.version + '?utm_source=releasenotes' %}
+    {% endif %}
+    {% set call_out_desc = _('Release Notes tell you what’s new in Firefox. As always, we welcome your <a href="%(feedback)s">feedback</a>. You can also <a href="%(bugzilla)s">file a bug in Bugzilla</a> or see the <a href="%(check)s">system requirements</a> of this release.')|format(feedback=feedback_url, bugzilla=bugzilla_url, check=check_url) %}
+    {% call call_out(
+      heading_level=1,
+      title=primary_heading,
+      desc=call_out_desc|safe,
+      class='mzp-t-firefox ' + product_class,
+    ) %}
+    {% endcall %}
+
+    <header>
+    {% block platform_switch %}
+    <div class="mzp-c-navigation t-release">
+      <div class="mzp-c-navigation-l-content">
+        <div class="mzp-c-navigation-container">
+          <button class="mzp-c-navigation-menu-button has-label" type="button" aria-controls="release-nav">{{ _('Other Releases') }}</button>
+          <div class="mzp-c-navigation-items" id="release-nav" aria-expanded="false">
+            <div class="mzp-c-navigation-menu">
+              <nav class="mzp-c-menu mzp-is-basic">
+                <ul class="mzp-c-menu-category-list">
+                  {% if release.channel == 'Release' and equivalent_release_url %}
+                    <li class="mzp-c-menu-category"><a class="mzp-c-menu-title" href="{{ equivalent_release_url }}">{{ _('Desktop') }}</a></li>
+                  {% else %}
+                    <li class="mzp-c-menu-category"><a class="mzp-c-menu-title" href="{{ url('firefox.notes') }}">{{ _('Desktop') }}</a></li>
+                  {% endif %}
+
+                  {% if release.channel == 'Release' and equivalent_release_url %}
+                    <li class="mzp-c-menu-category"><a class="mzp-c-menu-title" href="{{ equivalent_release_url }}">{{ _('Android') }}</a></li>
+                  {% else %}
+                    <li class="mzp-c-menu-category"><a class="mzp-c-menu-title" href="{{ url('firefox.notes', platform='android') }}">{{ _('Android') }}</a></li>
+                  {% endif %}
+
+                  <li class="mzp-c-menu-category"><a class="mzp-c-menu-title" href="{{ url('firefox.notes', platform='ios') }}">{{ _('iOS') }}</a></li>
+
+                  <li class="mzp-c-menu-category mzp-has-drop-down mzp-js-expandable">
+                    <a class="mzp-c-menu-title" href="/firefox/channel/desktop/" aria-haspopup="true" aria-controls="release-other">{{ _('Other Releases') }}</a>
+                    <div class="mzp-c-menu-panel" id="release-other">
+                      <div class="mzp-c-menu-panel-container">
+                        <button class="mzp-c-menu-button-close" type="button" aria-controls="mzp-c-menu-panel-about">Close Other Releases menu</button>
+                        <div class="mzp-c-menu-panel-content">
+                          <ul>
+                            <li>
+                              <section class="mzp-c-menu-item">
+                                <div class="mzp-c-menu-item-head"><h3 class="mzp-c-menu-item-title">{{ _('Recent Desktop Releases') }}</h3></div>
+                                <ul class="mzp-c-menu-item-list">
+                                  <li><a href="{{ url('firefox.notes', channel='beta') }}">{{ _('Latest Beta &amp; Developer Edition') }}</a></li>
+                                  <li><a href="{{ url('firefox.notes', channel='nightly') }}">{{ _('Latest Nightly') }}</a></li>
+                                </ul>
+                              </section>
+                            </li>
+                          </ul>
+                          <ul>
+                            <li>
+                              <section class="mzp-c-menu-item">
+                                <div class="mzp-c-menu-item-head"><h3 class="mzp-c-menu-item-title">{{ _('Recent Android Releases') }}</h3></div>
+                                <ul class="mzp-c-menu-item-list">
+                                  <li><a href="{{ url('firefox.notes', platform='android', channel='beta') }}">{{ _('Latest Beta') }}</a></li>
+                                </ul>
+                              </section>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </nav>
+            </div><!-- close .mzp-c-navigation-menu -->
+          </div><!-- close .mzp-c-navigation-items -->
+        </div><!-- close .mzp-c-navigation-container -->
+      </div><!-- close .mzp-c-navigation-l-content -->
+    </div>
+
+    {% if release.version %}
+      {% block notes_heading_secondary %}
+      <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
+        <div class="mzp-l-sidebar">
+          <h2 class="c-release-summary">
+            <div class="c-release-version">{{ _('{version}')|f(version=release.version) }}</div>
+            <div class="c-release-product">{{ release.product }} {{ release.channel }}</div>
+          </h2>
+          {% if release.is_public %}
+            <p class="c-release-date">{{ _('{date}')|f(date=release.release_date|l10n_format_date) }}</p>
+          {% endif %}
+        </div>
+        <div class="mzp-l-main mzp-l-article">
+          {% if release.is_public %}
+            <div class="c-release-first-title">{{ _('Version {version}, first offered to {channel} channel users on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date, version=release.version) }}</div>
+            <div class="c-release-first-text">{{ release.text|safe }}</div>
+          {% else %}
+            <h2 class="c-release-draft-title">{{ _('We’re still preparing the notes for this release, and will post them here when they are ready. Please check back later.') }}</h2>
+            {% block extra_draft_description %}{% endblock %}
+          {% endif %}
+        </div>
+        {% endblock %}
+    {% endif %}
+    </header>
+  {% endblock %}
+
+    <section>
+    {% if release.is_public and release.notes %}
+      {% for note in release.notes if note.tag == "New" %}
+        {% if loop.first %}
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
+            <div class="mzp-l-sidebar"><h3>{{ note.tag }}</h3></div>
+            <div class="mzp-l-main mzp-l-article">
+              <ul>
+        {% endif %}
+        {{ note_entry(note) }}
+        {% if loop.last %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      {% for note in release.notes if note.tag == "Fixed" %}
+        {% if loop.first %}
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
+            <div class="mzp-l-sidebar"><h3>{{ note.tag }}</h3></div>
+            <div class="mzp-l-main mzp-l-article">
+              <ul>
+        {% endif %}
+        {{ note_entry(note) }}
+        {% if loop.last %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      {% for note in release.notes if note.tag == "Changed" %}
+        {% if loop.first %}
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
+            <div class="mzp-l-sidebar"><h3>{{ note.tag }}</h3></div>
+            <div class="mzp-l-main mzp-l-article">
+              <ul>
+        {% endif %}
+          {{ note_entry(note) }}
+        {% if loop.last %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      {% for note in release.notes if note.tag == "Enterprise" %}
+        {% if loop.first %}
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
+            <div class="mzp-l-sidebar"><h3>{{ note.tag }}</h3></div>
+            <div class="mzp-l-main mzp-l-article">
+              <ul>
+        {% endif %}
+        {{ note_entry(note) }}
+        {% if loop.last %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      {# The Developer section is always visible with a MDN link #}
+      <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="developer">
+        <div class="mzp-l-sidebar"><h3>{{ _('Developer') }}</h3></div>
+        <div class="mzp-l-main mzp-l-article">
+          {% for note in release.notes if note.tag == "Developer" %}
+            {% if loop.first %}
+              <ul>
+            {% endif %}
+            {{ note_entry(note) }}
+            {% if loop.last %}
+              </ul>
+            {% endif %}
+          {% endfor %}
+          <a class="mdn-icon more" rel="external" href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version }}">{{ _('Developer Information') }}</a>
+        </div>
+      </div>
+
+      {% for note in release.notes if note.tag == "HTML5" %}
+        {% if loop.first %}
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="web-platform">
+            <div class="mzp-l-sidebar"><h3>{{ _('Web Platform') }}</h3></div>
+            <div class="mzp-l-main mzp-l-article">
+              <ul>
+        {% endif %}
+        {{ note_entry(note) }}
+        {% if loop.last %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      {% for note in release.notes if note.tag == "Resolved" %}
+        {% if loop.first %}
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
+            <div class="mzp-l-sidebar"><h3>{{ note.tag }}</h3></div>
+            <div class="mzp-l-main mzp-l-article">
+              <ul>
+        {% endif %}
+        {{ note_entry(note) }}
+        {% if loop.last %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      {% for note in release.notes if not note.tag %}
+        {% if loop.first %}
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-right">
+            <div class="mzp-l-main mzp-l-article">
+              <ul class="untagged">
+        {% endif %}
+        {{ note_entry(note) }}
+        {% if loop.last %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      {% for note in release.notes if note.tag == "Known" %}
+        {% if loop.first %}
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="known">
+            <div class="mzp-l-sidebar"><h3>{{ _('unresolved') }}</h3></div>
+            <div class="mzp-l-main mzp-l-article">
+              <ul>
+        {% endif %}
+        {{ note_entry(note) }}
+        {% if loop.last %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    </section>
+
+    {% call call_out_compact(
+      title=download_title,
+      class='mzp-t-firefox ' + product_class
+    ) %}
+      <div class="download-firefox">
+        <div class="download-buttons">
+          {{ download_button }}
+        </div>
+      </div>
+    {% endcall %}
+
+    {% if not release.product == 'Firefox for iOS' %}
+    <section class="notes-footer">
+      <div class="container">
+        <div class="all-download">
+          {% if release.product == 'Firefox for Android' %}
+            {% if release.channel in ['Nightly', 'Aurora'] %}
+              <a href="{{ firefox_url('android', 'all', channel='nightly') }}">{{ _('All Firefox for Android Nightly downloads') }}</a>
+            {% else %}
+              <a href="{{ firefox_url('android', 'all', channel=channel_name|lower()) }}">{{ _('All Firefox for Android %s downloads')|format(channel_name) }}</a>
+            {% endif %}
+          {% elif release.product == 'Firefox Extended Support Release' %}
+            <a href="{{ firefox_url('desktop', 'all', channel='organizations') }}">{{ _('All Firefox ESR downloads') }}</a>
+          {% elif release.product == 'Firefox' %}
+            {% if release.channel == 'Aurora' %}
+              <a href="{{ firefox_url('desktop', 'all', channel='alpha') }}">{{ _('All Firefox Developer Edition downloads') }}</a>
+            {% else %}
+              <a href="{{ firefox_url('desktop', 'all', channel=channel_name|lower()) }}">{{ _('All Firefox %s downloads')|format(channel_name) }}</a>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+  </article>
+</main>
+
+{% block releasenotes_footer %}
+<div class="c-release-footer">
+  <div class="mzp-l-content">
+    <div class="c-release-footer-col">
+      <h2>{{ _('Need help or want to leave feedback?') }}</h2>
+      <a rel="external" href="https://bugzilla.mozilla.org/enter_bug.cgi">{{ _('File a bug') }}</a>
+      <a rel="external" href="https://input.mozilla.org/feedback?utm_source=releasenotes">{{ _('Leave feedback') }}</a>
+    </div>
+    <div class="c-release-footer-col">
+      <h2>{{ _('Get Involved') }}</h2>
+      <p>{{ _('Did you know that most of the content in Firefox Support was written by volunteers?') }}</p>
+      <a rel="external" href="https://support.mozilla.org/get-involved">{{ _('Find out more') }}</a>
+    </div>
+    <div class="c-release-footer-col">
+      <h2>{{ _('Other Resources') }}</h2>
+      {% block extra_resources %}{% endblock %}
+      <a rel="external" href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version }}">{{ _('Developer Information') }}</a>
+      <a rel="external"  href="{{ release.get_bug_search_url() }}">{{ _('Complete list of changes for this release') }}</a>
+      <a rel="external" href="https://blog.mozilla.org/press/kits/">{{ _('Press Kit') }}</a>
+      <a rel="external" href="https://blog.mozilla.org/press/">{{ _('Mozilla and Firefox News') }}</a>
+      <a href="{{ url('firefox.organizations.organizations') }}">{{ _('Firefox Extended Support Release') }}</a>
+      <a href="{{ url('firefox.releases.index') }}">{{ _('All Firefox for Desktop Releases') }}</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_release_notes') }}
+{% endblock %}
+
+{% macro note_entry(note) %}
+  <li id="note-{{ note.id }}">
+    {{ note.note|safe }}
+    {% if release.channel == 'Nightly' and note.bug -%}
+    <span class="bug-id"><a href="https://bugzilla.mozilla.org/show_bug.cgi?id={{ note.bug }}">{{ _('Bug %d')|format(note.bug) }}</a></span>
+    {%- endif %}
+  </li>
+{% endmacro %}

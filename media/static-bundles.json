@@ -114,12 +114,6 @@
     },
     {
       "files": [
-        "css/firefox/releasenotes.less"
-      ],
-      "name": "firefox_releasenotes"
-    },
-    {
-      "files": [
         "css/base/mozilla-modal.less",
         "css/firefox/installer-help.less"
       ],
@@ -165,9 +159,9 @@
     },
     {
       "files": [
-        "css/firefox/releases-index.less"
+        "css/firefox/release-notes-index.scss"
       ],
-      "name": "firefox_releases_index"
+      "name": "firefox_release_notes_index"
     },
     {
       "files": [
@@ -765,9 +759,9 @@
     },
     {
       "files": [
-        "css/firefox/releasenotes-firefox.less"
+        "css/firefox/release-notes.scss"
       ],
-      "name": "firefox_releasenotes_firefox"
+      "name": "firefox_release_notes"
     },
     {
       "files": [
@@ -1251,11 +1245,9 @@
     },
     {
       "files": [
-        "js/libs/jquery.waypoints.min.js",
-        "js/libs/jquery.waypoints-sticky.min.js",
         "js/firefox/releasenotes.js"
       ],
-      "name": "releasenotes"
+      "name": "firefox_release_notes"
     },
     {
       "files": [
