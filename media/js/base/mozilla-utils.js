@@ -56,7 +56,7 @@ if (typeof Mozilla === 'undefined') {
     // In order to use it, you need a block string_data bit inside your template,
     // then, each key name needs to be preceded by data- as this uses data attributes
     // to work. After this, you can access all strings defined inside the
-    // string_data block in JS using Mozilla.Utils.trans('keyofstring'); Thank @mkelly
+    // string_data block in JS using Mozilla.Utils.trans('key-of-string'); Thank @mkelly
     var _strings = document.getElementById('strings');
     Utils.trans = function(stringId) {
         if (_strings) {
