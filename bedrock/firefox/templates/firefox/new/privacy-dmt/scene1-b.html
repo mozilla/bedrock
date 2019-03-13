@@ -1,0 +1,28 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/new/quantum" %}
+
+{% extends "firefox/new/scene1.html" %}
+
+{% block experiments %}{% endblock %}
+
+{% block extrahead %}
+  {{ super() }}
+  {{ css_bundle('firefox_new_scene1_privacy_dmt') }}
+{% endblock %}
+
+{% block body_class %}variant-b{% endblock %}
+
+{% block main_title %}
+<header>
+  <h1>{{ _('Ultimate privacy comes standard') }}</h1>
+  <p class="tagline">{{ _('The new Firefox stops ads and websites from tracking your every move.') }}</p>
+</header>
+{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('firefox_new_scene1_variation') }}
+{% endblock %}

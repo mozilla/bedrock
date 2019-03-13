@@ -749,6 +749,57 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
 
+    # privacy dry market test - issue 6899
+
+    @patch.dict(os.environ, SWITCH_EXPERIMENT_FIREFOX_PRIVACY_DMT='True')
+    def test_privacy_dmt_scene_1_a(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=priv-dmt&v=a')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/privacy-dmt/scene1-a.html', ANY)
+
+    @patch.dict(os.environ, SWITCH_EXPERIMENT_FIREFOX_PRIVACY_DMT='True')
+    def test_privacy_dmt_scene_1_b(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=priv-dmt&v=b')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/privacy-dmt/scene1-b.html', ANY)
+
+    @patch.dict(os.environ, SWITCH_EXPERIMENT_FIREFOX_PRIVACY_DMT='True')
+    def test_privacy_dmt_scene_1_c(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=priv-dmt&v=c')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/privacy-dmt/scene1-c.html', ANY)
+
+    @patch.dict(os.environ, SWITCH_EXPERIMENT_FIREFOX_PRIVACY_DMT='True')
+    def test_privacy_dmt_scene_1_d(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=priv-dmt&v=d')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/privacy-dmt/scene1-d.html', ANY)
+
+    @patch.dict(os.environ, SWITCH_EXPERIMENT_FIREFOX_PRIVACY_DMT='True')
+    def test_privacy_dmt_scene_1_e(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=priv-dmt&v=e')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/privacy-dmt/scene1-e.html', ANY)
+
+    @patch.dict(os.environ, SWITCH_EXPERIMENT_FIREFOX_PRIVACY_DMT='True')
+    def test_privacy_dmt_scene_1_f(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=priv-dmt&v=f')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/privacy-dmt/scene1-f.html', ANY)
+
+    @patch.dict(os.environ, SWITCH_EXPERIMENT_FIREFOX_PRIVACY_DMT='True')
+    def test_privacy_dmt_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=priv-dmt')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/privacy-dmt/scene2.html', ANY)
+
 
 class TestFirefoxNewNoIndex(TestCase):
     def test_scene_1_noindex(self):
