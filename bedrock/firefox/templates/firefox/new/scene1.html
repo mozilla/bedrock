@@ -15,8 +15,8 @@
 {% endblock %}
 
 {% block experiments %}
-  {% if switch('experiment_firefox_download_install', ['en-US']) %}
-    {{ js_bundle('experiment-firefox-download-install') }}
+  {% if switch('experiment_firefox_new_privacy_dmt', ['en-US']) %}
+    {{ js_bundle('experiment_firefox_new_privacy_dmt') }}
   {% endif %}
 {% endblock %}
 

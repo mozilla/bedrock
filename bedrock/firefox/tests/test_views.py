@@ -749,43 +749,49 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
 
-    # how to install experiment - issue 6704
+    # privacy dry market test - issue 6899
 
-    def test_install_scene_1_a(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?v=a')
+    def test_privacy_dmt_scene_1_a(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=priv-dmt&v=a')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/install/scene1.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/privacy-dmt/scene1-a.html', ANY)
 
-    def test_install_scene_1_b(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?v=b')
+    def test_privacy_dmt_scene_1_b(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=priv-dmt&v=b')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/install/scene1.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/privacy-dmt/scene1-b.html', ANY)
 
-    def test_install_scene_1_c(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?v=c')
+    def test_privacy_dmt_scene_1_c(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=priv-dmt&v=c')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/install/scene1.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/privacy-dmt/scene1-c.html', ANY)
 
-    def test_install_scene_2_a(self, render_mock):
-        req = RequestFactory().get('/firefox/download/thanks/?v=a')
+    def test_privacy_dmt_scene_1_d(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=priv-dmt&v=d')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/privacy-dmt/scene1-d.html', ANY)
+
+    def test_privacy_dmt_scene_1_e(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=priv-dmt&v=e')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/privacy-dmt/scene1-e.html', ANY)
+
+    def test_privacy_dmt_scene_1_f(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=priv-dmt&v=f')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/privacy-dmt/scene1-f.html', ANY)
+
+    def test_privacy_dmt_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=priv-dmt')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/install/scene2-a.html', ANY)
-
-    def test_install_scene_2_b(self, render_mock):
-        req = RequestFactory().get('/firefox/download/thanks/?v=b')
-        req.locale = 'en-US'
-        views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/install/scene2-b.html', ANY)
-
-    def test_install_scene_2_c(self, render_mock):
-        req = RequestFactory().get('/firefox/download/thanks/?v=c')
-        req.locale = 'en-US'
-        views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/install/scene2-c.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/privacy-dmt/scene2.html', ANY)
 
 
 class TestFirefoxNewNoIndex(TestCase):

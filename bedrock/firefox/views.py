@@ -636,20 +636,8 @@ class ContentBlockingTourView(l10n_utils.LangFilesMixin, TemplateView):
 def download_thanks(request):
     experience = request.GET.get('xv', None)
     locale = l10n_utils.get_locale(request)
-    variant = request.GET.get('v', None)
     newsletter = request.GET.get('n', None)
     show_newsletter = locale in ['en-US', 'en-GB', 'en-CA', 'en-ZA', 'es-ES', 'es-AR', 'es-CL', 'es-MX', 'pt-BR', 'fr', 'ru', 'id', 'de', 'pl']
-
-    # ensure variant matches pre-defined value
-    if variant not in ['a', 'b', 'c']:  # place expected ?v= values in this list
-        variant = None
-
-    # check to see if a URL explicitly asks to hide the newsletter
-    if newsletter == 'f':
-        show_newsletter = False
-
-    if variant in ['b', 'c'] and locale == 'en-US':
-        show_newsletter = False
 
     # check to see if a URL explicitly asks to hide the newsletter
     if newsletter == 'f':
@@ -671,8 +659,8 @@ def download_thanks(request):
         else:
             template = 'firefox/new/scene2.html'
     elif locale == 'en-US':
-        if variant in ['a', 'b', 'c']:
-            template = 'firefox/new/install/scene2-{}.html'.format(variant)
+        if experience == 'priv-dmt':
+            template = 'firefox/new/privacy-dmt/scene2.html'
         elif experience == 'betterbrowser':
             template = 'firefox/new/better-browser/scene2.html'
         else:
@@ -698,7 +686,7 @@ def new(request):
 
     # ensure variant matches pre-defined value
 
-    if variant not in ['a', 'b', 'c']:  # place expected ?v= values in this list
+    if variant not in ['a', 'b', 'c', 'd', 'e', 'f']:  # place expected ?v= values in this list
         variant = None
 
     if scene == '2':
@@ -727,6 +715,14 @@ def new(request):
                 template = 'firefox/new/scene1.html'
         elif switch('firefox-yandex') and locale == 'ru':
             template = 'firefox/new/yandex/scene1.html'
+        elif switch('experiment_firefox_privacy_dmt') and locale == 'en-US':
+            if experience == 'priv-dmt':
+                if variant in ['a', 'b', 'c', 'd', 'e', 'f']:
+                    template = 'firefox/new/privacy-dmt/scene1-{}.html'.format(variant)
+                else:
+                    template = 'firefox/new/scene1.html'
+            else:
+                template = 'firefox/new/scene1.html'
         elif locale == 'en-US':
             if experience == 'betterbrowser':
                 template = 'firefox/new/better-browser/scene1.html'
@@ -734,8 +730,6 @@ def new(request):
                 template = 'firefox/new/compare/scene1-safari.html'
             elif experience == 'edge':
                 template = 'firefox/new/compare/scene1-edge.html'
-            elif variant in ['a', 'b', 'c']:
-                template = 'firefox/new/install/scene1.html'
             else:
                 template = 'firefox/new/scene1.html'
         else:

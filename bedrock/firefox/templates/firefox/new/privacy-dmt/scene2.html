@@ -1,0 +1,98 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/new/scene2.html" %}
+
+{% block experiments %}{% endblock %}
+
+{% block content %}
+<main class="main mzp-t-firefox mzp-t-dark">
+  <section class="status">
+    <div class="mzp-l-content mzp-t-firefox windows-xpvista">
+      <p>{{ _('You’re using an insecure, outdated operating system <a href="%(url)s">no longer supported by Firefox</a>.')|format(url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista') }}</p>
+    </div>
+    <div class="mzp-l-content mzp-t-firefox">
+      {# fallback_url is replaced by the platform download link via JS, but if
+        something fails the user should still get a link to a working download path. #}
+
+      {% set id, fallback_url = 'direct-download-link', url('firefox.all') %}
+      <p>
+        {% if l10n_has_tag('firefox_new_try_again_link_020818') %}
+          {% trans %}
+            Your download should begin automatically. Didn’t work? <a id="{{ id }}" href="{{ fallback_url }}">Try downloading again</a>.
+          {% endtrans %}
+        {% else %}
+          {% trans %}
+            Your download should begin automatically. If it doesn’t, <a id="{{ id }}" href="{{ fallback_url }}">click here</a>.
+          {% endtrans %}
+        {% endif %}
+      </p>
+    </div>
+  </section>
+
+  <div class="mzp-l-content">
+    <div class="header-logos">
+      <h2><a class="firefox" href="{{ url('firefox') }}" title="{{ firefox_logo_title }}">{{ high_res_img('logos/firefox/logo-quantum-wordmark-white.png', {'alt': firefox_logo_title, 'width': '133', 'height': '50'}) }}</a></h2>
+      <h2><a class="mozilla" href="{{ url('mozorg.home') }}" title="{{ mozilla_logo_title }}"><img src="{{ static('img/logos/mozilla/wordmark-dark.svg')}}" alt="{{ mozilla_logo_title }}" width="101" height="34"></a></h2>
+    </div>
+
+    <div class="content-main">
+      <div class="download-button-wrapper desktop" id="download-button-wrapper-desktop">
+        {{ download_firefox(force_direct=true, dom_id='primary-download-button') }}
+      </div>
+
+
+      <h1 class="headline">
+      {% block headline %}
+        {{ _('Thank you for downloading Firefox. Updates coming soon.') }}
+      {% endblock %}
+      </h1>
+      <p class="tagline">{{ _('Our new suite of privacy features is still in development, so they’re not included by default yet. To get updates about all things Firefox, enter your email.') }}</p>
+
+      <div class="mzp-c-newsletter">
+        {{ email_newsletter_form(
+              protocol_component=True,
+              include_title=False,
+              email_label=_('Enter your email address'),
+              details='<a href="%s" class="email-privacy-link">%s</a>'|format(url('privacy.email'), _('How will Mozilla use my email?'))|safe
+        )}}
+      </div>
+
+      <p>
+        In the meantime, you’ve now got the browser that <a href="{{ url('firefox.fights-for-you') }}">fights for you</a>. And you can start using these best-of-the-web privacy features right away:
+      </p>
+
+      <ul class="mzp-u-list-styled">
+        <li>Add <a href="{{ url('firefox.facebookcontainer.index') }}">Facebook Container</a> to prevent Facebook from seeing the websites you visit</li>
+        <li>Sign up for <a href="https://monitor.firefox.com">Firefox Monitor</a> to receive alerts you if your personal info is involved in a data breach</li>
+        <li>Set <a href="https://www.youtube.com/watch?v=QtEMYSJyd-c">Enhanced Tracking Protection</a> to “Strict” to block ad trackers</li>
+      </ul>
+
+      <aside class="email-privacy mzp-u-modal-content">
+        <h3>{{ _('How will Mozilla use my email?') }}</h3>
+
+        <p>
+        {% trans
+              manifesto=url('mozorg.about.manifesto'),
+              principles=url('privacy.principles')
+        %}
+          Mozilla doesn’t just value your email privacy and security – it’s part of our <a href="{{ manifesto }}">Manifesto</a>: “Individuals’ security and privacy on the internet are fundamental and must not be treated as optional.” <a href="{{ principles }}">You can learn about our Data Privacy Principles here</a>.
+        {% endtrans %}
+        </p>
+
+        <p><strong>{{ _('What we want you to know:') }}</strong></p>
+
+        <ul class="prose mzp-u-list-styled">
+          <li>{{ _('You don’t need to give us your email to download and use Firefox.') }}</li>
+          <li>{{ _('We asked for your email because our research shows that people who receive an introductory experience do more and better with Firefox.') }}</li>
+          <li>{{ _('You can expect emails designed to help you optimize Firefox to work best for you, learn more about privacy & security and find out how to make the best of your time on the web.') }}</li>
+          <li>{{ _('You can unsubscribe anytime, for any reason.') }}</li>
+          <li>{{ _('We will not share, sell or use your email for any other purposes.') }}</li>
+        </ul>
+      </aside>
+
+    </div>
+  </div>
+</main>
+{% endblock %}

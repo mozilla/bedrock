@@ -241,6 +241,13 @@
         "name": "firefox_new_scene1_yandex"
     },
     {
+        "files": [
+          "css/firefox/new/scene1.scss",
+          "css/firefox/new/scene1-privacy-dmt.scss"
+        ],
+        "name": "firefox_new_scene1_privacy_dmt"
+    },
+    {
       "files": [
         "css/firefox/new/compare.scss"
       ],
@@ -1104,6 +1111,13 @@
           "js/firefox/new/yandex/scene1-init.js"
         ],
         "name": "firefox_new_scene1_yandex"
+    },
+    {
+      "files": [
+        "js/base/mozilla-traffic-cop.js",
+        "js/firefox/new/experiment-privacy-dmt.js"
+      ],
+      "name": "experiment_firefox_new_privacy_dmt"
     },
     {
       "files": [
