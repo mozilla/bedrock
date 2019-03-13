@@ -57,6 +57,7 @@
     }
 }
 
+// Show FxA button to Firefoxes...
 html.is-firefox .mzp-c-navigation {
     .mzp-c-button-download-container {
         display: none;
@@ -68,5 +69,17 @@ html.is-firefox .mzp-c-navigation {
 
     .c-navigation-fxa-cta-container {
         display: block;
+    }
+}
+
+// ... but not on mobile platforms
+html.is-firefox.ios .mzp-c-navigation,
+html.is-firefox.android .mzp-c-navigation {
+    .mzp-c-button-download-container {
+        display: block;
+    }
+
+    .c-navigation-fxa-cta-container {
+        display: none;
     }
 }
