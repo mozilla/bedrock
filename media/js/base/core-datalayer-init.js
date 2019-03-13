@@ -3,7 +3,6 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // init core dataLayer object and push into dataLayer
-// This needs to happen on DOM ready for UITour (see https://github.com/mozilla/bedrock/issues/6624).
 $(function() {
     var analytics = Mozilla.Analytics;
     var client = Mozilla.Client;
