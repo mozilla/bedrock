@@ -24,7 +24,7 @@
         {% if not hide_nav_download_button %}
         <div class="mzp-c-navigation-download">
           {{ download_firefox(alt_copy=_('Download Firefox'), dom_id='protocol-nav-download-firefox', button_color='mzp-t-secondary mzp-t-small', download_location='nav') }}
-          {% if LANG in ['en-US', 'en-CA', 'en-GB', 'en-ZA', 'de', 'fr'] %}
+          {% if LANG.startswith('en-') %}
             <div class="c-navigation-fxa-cta-container">
               <a class="c-navigation-fxa-cta mzp-c-button mzp-t-secondary mzp-t-small mzp-t-product" {{ fxa_link_fragment(entrypoint='mozilla.org-globalnav', action='signup', utm_params={'campaign': 'globalnav', 'content': 'get-firefox-account', 'medium': 'referral', 'source': 'www.mozilla.org'}) }} data-button-name="Get a Firefox Account" data-link-type="button" data-cta-position="secondary cta" data-alt-href="{{ url('firefox.accounts') }}">
                 {{ _('Get a Firefox Account') }}
