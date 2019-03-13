@@ -153,6 +153,44 @@ def test_generate_yml_advisories_html(rts_mock):
 
 
 @patch('bedrock.security.utils.render_to_string')
+def test_generate_yml_advisories_html_non_cve(rts_mock):
+    rts_mock.return_value = 'html'
+    data = yaml_ordered_safe_load(StringIO(YML_ADVISORY_NON_CVE))
+    html = generate_yml_advisories_html(data)
+    assert html.startswith('<p>Some <strong>HTML</strong> that relates '
+                           'to the whole lot of em.</p>')
+    rts_mock.assert_has_calls([
+        call('security/partials/cve.html', {
+            'id': 'CVE-2016-2827',
+            'impact': 'Low',
+            'impact_class': 'low',
+            'title': 'A sample title for a CVE here',
+            'reporter': 'Reporty McReporterface',
+            'description': 'Short description <strong>with HTML</strong> and multiple lines!\n\n'
+                           'Can also have full breaks and ***markdown***!\n',
+            'bugs': [
+                {'url': 'https://bugzilla.mozilla.org/show_bug.cgi?id=1289085',
+                 'desc': 'Bug 1289085'},
+                {'url': 'https://bugzilla.mozilla.org/buglist.cgi?bug_id=1289085%2C1289087',
+                 'desc': 'stuff about the bugs'},
+            ]
+        }),
+        call('security/partials/cve.html', {
+            'id': 'MVID-2016-5270',
+            'impact': 'High',
+            'impact_class': 'high',
+            'title': 'Another sampile title, this time with more length!',
+            'reporter': 'A Nameless Evilcorp Employee',
+            'description': 'Another short description',
+            'bugs': [
+                {'url': 'https://example.com/warning.html',
+                 'desc': 'A different site that is totally not bugzilla'},
+            ]
+        }),
+    ])
+
+
+@patch('bedrock.security.utils.render_to_string')
 def test_generate_yml_advisories_missing_things(rts_mock):
     rts_mock.return_value = 'html'
     data = yaml_ordered_safe_load(StringIO(YML_ADVISORY_MISSING_THINGS))
@@ -202,6 +240,35 @@ YML_ADVISORY = dedent("""\
           - url: 1289085, 1289087
             desc: stuff about the bugs
       CVE-2016-5270:
+        title: Another sampile title, this time with more length!
+        impact: High
+        reporter: A Nameless Evilcorp Employee
+        description: Another short description
+        bugs:
+          - url: https://example.com/warning.html
+            desc: A different site that is totally not bugzilla
+    """)
+
+YML_ADVISORY_NON_CVE = dedent("""\
+    announced: September 13, 2016
+    fixed_in:
+      - Firefox 49
+    title: Security vulnerabilities fixed in Firefox 49
+    description: Some **HTML** that relates to the whole lot of em.
+    advisories:
+      CVE-2016-2827:
+        title: A sample title for a CVE here
+        impact: Low
+        reporter: Reporty McReporterface
+        description: |
+          Short description <strong>with HTML</strong> and multiple lines!
+
+          Can also have full breaks and ***markdown***!
+        bugs:
+          - url: 1289085
+          - url: 1289085, 1289087
+            desc: stuff about the bugs
+      MVID-2016-5270:
         title: Another sampile title, this time with more length!
         impact: High
         reporter: A Nameless Evilcorp Employee
