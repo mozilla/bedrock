@@ -21,7 +21,7 @@
     }
 }
 
-// Global FxA CTA experiment: issue #6629
+// Global FxA CTA
 .mzp-c-navigation {
     .c-navigation-fxa-cta-container {
         display: none;
@@ -51,9 +51,13 @@
             text-align: right;
         }
     }
+
+    &.fxa-signed-in .c-navigation-fxa-cta-small-link {
+        visibility: hidden;
+    }
 }
 
-.mzp-c-navigation.show-fxa-button {
+html.is-firefox {
     .mzp-c-button-download-container {
         display: none;
     }
@@ -66,4 +70,3 @@
         display: block;
     }
 }
-
