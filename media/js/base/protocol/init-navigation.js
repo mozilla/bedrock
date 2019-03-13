@@ -46,19 +46,24 @@
             return false;
         }
 
+        var nav = document.querySelector('.mzp-c-navigation');
         var fxaButton = document.querySelector('.mzp-c-navigation .c-navigation-fxa-cta');
 
-        // Button is hidden from most locales for now so make sure it exists first
+        // User should be on Firefox desktop, nav should be present on page, and the FxA button should exist.
+        if (!Mozilla.Client.isFirefoxDesktop || !nav || !fxaButton) {
+            return false;
+        }
+
+        // Button is hidden from most locales for now so make sure it exists before we mess with it.
         if (fxaButton) {
             var fxaButtonAltHref = fxaButton.getAttribute('data-alt-href');
 
-            $(function() {
-                // Update the button if user is signed in
-                Mozilla.Client.getFxaDetails(function(details) {
-                    if (details.setup) {
-                        fxaButton.href = fxaButtonAltHref;
-                    }
-                });
+            // Update the button if user is signed in
+            Mozilla.Client.getFxaDetails(function(details) {
+                if (details.setup) {
+                    nav.classList.add('fxa-signed-in');
+                    fxaButton.href = fxaButtonAltHref;
+                }
             });
         }
     }
