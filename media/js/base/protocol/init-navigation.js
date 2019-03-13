@@ -41,57 +41,25 @@
         }
     }
 
-    var nav = document.querySelector('.mzp-c-navigation');
-    var fxaButton = document.querySelector('.mzp-c-navigation .c-navigation-fxa-cta');
-
-    if (fxaButton) {
-        var fxaButtonAltHref = fxaButton.getAttribute('data-alt-href');
-    }
-
-    function showFxAButton() {
-        nav.classList.add('show-fxa-button');
-    }
-
-    function meetsRequirements() {
+    function initFxAButton() {
         if (typeof Mozilla.Client === 'undefined') {
             return false;
         }
 
-        // User should be on Firefox desktop, nav should be present on page, and the FxA button should exist.
-        if (!Mozilla.Client.isFirefoxDesktop || !nav || !fxaButton) {
-            return false;
-        }
+        var fxaButton = document.querySelector('.mzp-c-navigation .c-navigation-fxa-cta');
 
-        var userMajorVersion = Mozilla.Client._getFirefoxMajorVersion();
-        var latestMajorVersion = parseInt(document.documentElement.getAttribute('data-latest-firefox'), 10);
+        // Button is hidden from most locales for now so make sure it exists first
+        if (fxaButton) {
+            var fxaButtonAltHref = fxaButton.getAttribute('data-alt-href');
 
-        if (!userMajorVersion || !latestMajorVersion) {
-            return false;
-        }
-
-        // User should be on Firefox Quantum or greater.
-        return userMajorVersion >= 57;
-    }
-
-    function updateFxAButton() {
-        fxaButton.href = fxaButtonAltHref;
-    }
-
-    // If all other requirements are met, check the account state
-    if (meetsRequirements()) {
-        $(function() {
-            // Update the button if they're signed in
-            Mozilla.Client.getFxaDetails(function(details) {
-                if (details.setup) {
-                    updateFxAButton();
-                }
+            $(function() {
+                // Update the button if user is signed in
+                Mozilla.Client.getFxaDetails(function(details) {
+                    if (details.setup) {
+                        fxaButton.href = fxaButtonAltHref;
+                    }
+                });
             });
-        });
-    }
-
-    function initFxAButton() {
-        if (meetsRequirements()) {
-            showFxAButton();
         }
     }
 
