@@ -664,7 +664,9 @@ def download_thanks(request):
         else:
             template = 'firefox/new/scene2.html'
     elif locale == 'en-US':
-        if experience == 'betterbrowser':
+        if experience == 'priv-dmt':
+            template = 'firefox/new/privacy-dmt/scene2.html'
+        elif experience == 'betterbrowser':
             template = 'firefox/new/better-browser/scene2.html'
         else:
             template = 'firefox/new/scene2.html'
@@ -689,7 +691,7 @@ def new(request):
 
     # ensure variant matches pre-defined value
 
-    if variant not in []:  # place expected ?v= values in this list
+    if variant not in ['a', 'b', 'c', 'd', 'e', 'f']:  # place expected ?v= values in this list
         variant = None
 
     if scene == '2':
@@ -718,6 +720,14 @@ def new(request):
                 template = 'firefox/new/scene1.html'
         elif switch('firefox-yandex') and locale == 'ru':
             template = 'firefox/new/yandex/scene1.html'
+        elif switch('experiment_firefox_privacy_dmt') and locale == 'en-US':
+            if experience == 'priv-dmt':
+                if variant in ['a', 'b', 'c', 'd', 'e', 'f']:
+                    template = 'firefox/new/privacy-dmt/scene1-{}.html'.format(variant)
+                else:
+                    template = 'firefox/new/scene1.html'
+            else:
+                template = 'firefox/new/scene1.html'
         elif locale == 'en-US':
             if experience == 'betterbrowser':
                 template = 'firefox/new/better-browser/scene1.html'
