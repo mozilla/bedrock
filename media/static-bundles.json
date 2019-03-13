@@ -740,7 +740,8 @@
     },
     {
       "files": [
-        "css/firefox/home.scss",
+        "css/firefox/home/home.scss",
+        "css/firefox/home/pre-download-newsletter.scss",
         "css/base/mozilla-lazy-image.scss"
       ],
       "name": "firefox-home"
@@ -1306,6 +1307,13 @@
         "js/firefox/home/main.js"
       ],
       "name": "firefox-home"
+    },
+    {
+      "files": [
+        "js/base/mozilla-modal.js",
+        "js/firefox/home/pre-download-newsletter.js"
+      ],
+      "name": "pre-download-newsletter"
     },
     {
       "files": [

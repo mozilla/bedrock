@@ -1,0 +1,30 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% add_lang_files "firefox/hub/home-quantum" "firefox/shared" %}
+
+{% extends "firefox/home/index.html" %}
+
+{% block newsletter %}
+<div class="pre-download-newsletter">
+  <div class="pre-download-newsletter-content">
+    <h2 class="pre-download-newsletter-title">Découvrez comment rendre Firefox plus intelligent, plus rapide et plus sûr.</h2>
+    <p class="pre-download-newsletter-desc">Recevez des informations, des astuces et des nouvelles sur les produits directement dans votre boîte de réception.</p>
+    {{ email_newsletter_form(
+        include_title=False,
+        spinner_color='#000',
+        button_class='button-hollow',
+        email_label='Saisissez votre adresse de courrier électronique',
+        email_placeholder='votrenom@example.com',
+        submit_text='Je télécharge Firefox et je crée un compte'
+    )}}
+    <p class="pre-download-privacy">
+      <a href="url('privacy.email')">Comment mon adresse sera-t-elle utilisée par Mozilla ?</a>
+    </p>
+    <p class="pre-download-continue">
+      <a class="button button-hollow" href="{{ url('firefox.download.thanks') }}?n=f" data-link-name="Continue FireFox Download" data-link-type="link">{{ _('Continuer le téléchargement de Firefox') }}</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

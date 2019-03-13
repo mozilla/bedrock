@@ -248,10 +248,37 @@
     </div>
   </section>
 
+  {% if show_newsletter %}
+    {% block newsletter %}
+    <div class="pre-download-newsletter">
+      <div class="pre-download-newsletter-content">
+        <h2 class="pre-download-newsletter-title">Learn how to make your Firefox even smarter, faster and more secure.</h2>
+        <p class="pre-download-newsletter-desc">Get informative tips, tricks and product announcements delivered to your inbox.</p>
+        {{ email_newsletter_form(
+            include_title=False,
+            spinner_color='#000',
+            email_label='Enter your email address',
+            email_placeholder='yourname@example.com',
+            submit_text='Download Firefox & Sign Up'
+        )}}
+        <p class="pre-download-privacy">
+          <a href="url('privacy.email')">How will Mozilla use my email?</a>
+        </p>
+        <p class="pre-download-continue">
+          <a class="button button-hollow" href="{{ url('firefox.download.thanks') }}?n=f" data-link-name="Continue FireFox Download" data-link-type="link">Continue Firefox Download</a>
+        </p>
+      </div>
+    </div>
+    {% endblock %}
+  {% endif %}
+
   {% include 'firefox/includes/schemaorg-app.html' %}
 </main>
 {% endblock %}
 
 {% block js %}
   {{ js_bundle('firefox-home') }}
+  {% if show_newsletter %}
+    {{ js_bundle('pre-download-newsletter') }}
+  {% endif %}
 {% endblock %}
