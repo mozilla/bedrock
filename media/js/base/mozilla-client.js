@@ -357,7 +357,7 @@ if (typeof Mozilla === 'undefined') {
             return;
         }
         // set up the object with default values of false
-        var details = Client.FxaDetails = {
+        var details = {
             'firefox': false,
             'legacy': false,
             'mobile': false,
@@ -423,6 +423,7 @@ if (typeof Mozilla === 'undefined') {
 
         function returnFxaDetails() {
             window.clearTimeout(timer);
+            Client.FxaDetails = details;
             callback(details);
         }
 
