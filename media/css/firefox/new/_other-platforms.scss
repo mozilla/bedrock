@@ -119,6 +119,10 @@ html[dir="rtl"] #other-platforms-modal-link {
         }
     }
 
+    .section-current-firefox {
+        display: none;
+    }
+
     .section-current-platform {
         margin-bottom: 40px;
 
@@ -149,6 +153,7 @@ html[dir="rtl"] #other-platforms-modal-link {
         }
 
         .section-current-platform {
+            @include border-box;
             float: left;
             width: 50%;
         }
@@ -201,7 +206,7 @@ html[dir="rtl"] #other-platforms {
 }
 
 // Hide header visually and add top padding to compensate
-#modal > .window > .inner {
+#modal.other-platforms-modal > .window > .inner {
     background: transparent;
     max-width: 960px;
     padding: 70px 0 0;

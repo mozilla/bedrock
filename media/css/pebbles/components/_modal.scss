@@ -50,63 +50,64 @@ html.noscroll {
     .window {
         color: #333;
         padding: 20px;
+    }
 
-        .inner {
-            position: relative;
-            background: #fff;
-            padding: 20px;
-            @include clearfix;
+    .inner {
+        @include clearfix;
+        background: #fff;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
 
-            &> header {
-                @include font-size(48px);
-                color: #fff;
-                display: block;
-                height: auto;
-                line-height: 1.3;
-                padding: 0 60px 0 20px;
-                background: $color-mozred;
-                margin: -20px -20px 20px;
+        &> header {
+            @include font-size(48px);
+            color: #fff;
+            display: block;
+            height: auto;
+            line-height: 1.3;
+            padding: 0 60px 0 20px;
+            background: $color-mozred;
+            margin: -20px -20px 20px;
+        }
+
+        #modal-close {
+            cursor: pointer;
+            position: absolute;
+            right: 9px;
+            top: 9px;
+            z-index: 99;
+
+            a {
+                // TODO: remove <a> element from mozilla-modal.js with mozID rollout
+                display: none;
             }
 
-            #modal-close {
-                cursor: pointer;
-                position: absolute;
-                right: 9px;
-                top: 9px;
-                z-index: 99;
+            .button {
+                @include image-replaced;
+                background: transparent url('/media/img/mozid/modal-close.svg') center center no-repeat;
+                @include background-size(22px, 22px);
+                border-radius: 50%;
+                border: 2px solid #fff;
+                height: 42px;
+                min-width: 0;
+                padding: 0;
+                width: 42px;
 
-                a {
-                    // TODO: remove <a> element from mozilla-modal.js with mozID rollout
-                    display: none;
-                }
-
-                .button {
-                    @include image-replaced;
-                    background: transparent url('/media/img/mozid/modal-close.svg') center center no-repeat;
-                    @include background-size(22px, 22px);
-                    border-radius: 50%;
-                    border: 2px solid #fff;
-                    height: 42px;
-                    min-width: 0;
-                    padding: 0;
-                    width: 42px;
-
-                    &:hover,
-                    &:focus {
-                        @include transform(scale(1.1));
-                        box-shadow: none;
-                    }
+                &:hover,
+                &:focus {
+                    @include transform(scale(1.1));
+                    box-shadow: none;
                 }
             }
+        }
 
-            .overlay-contents {
-                background: transparent;
-                margin: 0 auto;
-                padding-top: 20px;
+        .overlay-contents {
+            background: transparent;
+            margin: 0 auto;
+            padding-top: 20px;
 
-                img, iframe {
-                    max-width: 100%;
-                }
+            img, iframe {
+                max-width: 100%;
             }
         }
     }

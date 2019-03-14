@@ -644,6 +644,10 @@ def download_thanks(request):
     if variant not in ['a', 'b', 'c']:  # place expected ?v= values in this list
         variant = None
 
+    # check to see if a URL explicitly asks to hide the newsletter
+    if newsletter == 'f':
+        show_newsletter = False
+
     if variant in ['b', 'c'] and locale == 'en-US':
         show_newsletter = False
 

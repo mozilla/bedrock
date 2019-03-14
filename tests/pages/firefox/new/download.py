@@ -14,8 +14,9 @@ class DownloadPage(FirefoxBasePage):
     URL_TEMPLATE = '/{locale}/firefox/new/{params}'
 
     _download_button_locator = (By.ID, 'download-button-desktop-release')
-    _modal_link_locator = (By.ID, 'other-platforms-modal-link')
-    _modal_content_locator = (By.ID, 'other-platforms')
+    _platforms_modal_link_locator = (By.ID, 'other-platforms-modal-link')
+    _platforms_modal_content_locator = (By.ID, 'other-platforms')
+    _account_modal_content_locator = (By.ID, 'firefox-account')
 
     @property
     def download_button(self):
@@ -29,6 +30,12 @@ class DownloadPage(FirefoxBasePage):
 
     def open_other_platforms_modal(self):
         modal = Modal(self)
-        self.find_element(*self._modal_link_locator).click()
-        self.wait.until(lambda s: modal.displays(self._modal_content_locator))
+        self.find_element(*self._platforms_modal_link_locator).click()
+        self.wait.until(lambda s: modal.displays(self._platforms_modal_content_locator))
+        return modal
+
+    def open_firefox_account_modal(self):
+        modal = Modal(self)
+        self.download_button.click()
+        self.wait.until(lambda s: modal.displays(self._account_modal_content_locator))
         return modal

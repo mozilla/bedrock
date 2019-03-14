@@ -39,9 +39,10 @@ Mozilla.Modal = (function(w, $) {
 
         // Create new modal
         var title = (options && options.title) ? options.title : '';
+        var className = (options && options.className) ? options.className : '';
 
         var $modal = $(
-            '<div id="modal" role="dialog" aria-labelledby="' + origin.getAttribute('id') + '" tabindex="-1">' +
+            '<div id="modal" class="modal ' + className + '" role="dialog" aria-labelledby="' + origin.getAttribute('id') + '" tabindex="-1">' +
             '  <div class="window">' +
             '    <div class="inner">' +
             '      <header>' + title + '</header>' +

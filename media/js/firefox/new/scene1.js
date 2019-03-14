@@ -7,53 +7,13 @@
 
     var $html = $(document.documentElement);
     var client = window.Mozilla.Client;
-    var $modalLink = $('#other-platforms-modal-link');
+    var $otherPlatformsModalLink = $('#other-platforms-modal-link');
     var $otherPlatformsLanguagesWrapper = $('#other-platforms-languages-wrapper');
-
-    var uiTourSendEvent = function(action, data) {
-        var event = new CustomEvent('mozUITour', {
-            bubbles: true,
-            detail: {
-                action: action,
-                data: data || {}
-            }
-        });
-
-        document.dispatchEvent(event);
-    };
-
-    var uiTourWaitForCallback = function(callback) {
-        var id = Math.random().toString(36).replace(/[^a-z]+/g, '');
-
-        function listener(event) {
-            if (typeof event.detail != 'object') {
-                return;
-            }
-            if (event.detail.callbackID !== id) {
-                return;
-            }
-
-            document.removeEventListener('mozUITourResponse', listener);
-            callback(event.detail.data);
-        }
-        document.addEventListener('mozUITourResponse', listener);
-
-        return id;
-    };
-
-    var showRefreshButton = function(canReset) {
-        if (canReset) {
-            $html.addClass('show-refresh');
-
-            $('#refresh-firefox').on('click', function() {
-                uiTourSendEvent('resetFirefox');
-            });
-        }
-    };
 
     var getFirefoxStatus = function() {
         var userMajorVersion = client._getFirefoxMajorVersion();
         var latestMajorVersion = parseInt($html.attr('data-latest-firefox'), 10);
+
         // Detect whether the Firefox is up-to-date in a non-strict way. The minor version and channel are not
         // considered. This can/should be strict, once the UX especially for ESR users is decided. (Bug 939470)
         if (userMajorVersion === latestMajorVersion) {
@@ -74,30 +34,17 @@
 
         var status = getFirefoxStatus();
         $html.addClass(status);
-
-        if (status === 'firefox-latest' && client.isFirefoxDesktop) {
-            // if user is on desktop release channel and has latest version, offer refresh button
-            client.getFirefoxDetails(function(data) {
-                // data.accurate will only be true if UITour API is working.
-                if (data.channel === 'release' && data.accurate) {
-                    // Bug 1274207 only show reset button if user profile supports it.
-                    uiTourSendEvent('getConfiguration', {
-                        callbackID: uiTourWaitForCallback(showRefreshButton),
-                        configuration: 'canReset'
-                    });
-                }
-            });
-        }
     };
 
     var initOtherPlatformsModal = function() {
         // show the modal cta button
         $otherPlatformsLanguagesWrapper.removeClass('hidden');
 
-        $modalLink.on('click', function(e) {
+        $otherPlatformsModalLink.on('click', function(e) {
             e.preventDefault();
             Mozilla.Modal.createModal(this, $('#other-platforms'), {
-                title: $(this).text()
+                title: $(this).text(),
+                className: 'other-platforms-modal'
             });
 
             window.dataLayer.push({
@@ -121,7 +68,7 @@
      * Enable modal to optionally download Firefox for other platforms.
      * Don't show the modal for iOS or Android.
      */
-    if ($modalLink.length && client.isDesktop) {
+    if ($otherPlatformsModalLink.length && client.isDesktop) {
         initOtherPlatformsModal();
     }
 
