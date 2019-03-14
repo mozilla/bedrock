@@ -116,8 +116,8 @@
 
     Yandex.showYandexMessaging = function() {
         // Update page title and description.
-        document.title = Mozilla.Utils.trans('pageTitle');
-        document.querySelector('meta[name="description"]').setAttribute('content', Mozilla.Utils.trans('pageDesc'));
+        document.title = Mozilla.Utils.trans('page-title');
+        document.querySelector('meta[name="description"]').setAttribute('content', Mozilla.Utils.trans('page-desc'));
 
         // Add styling hook for Yandex specific CSS.
         document.body.classList.add('yandex');
@@ -126,16 +126,16 @@
         var button = document.querySelectorAll('.main-download .download-list .download-link[data-download-os="Desktop"]');
 
         for (var i = 0; i < button.length; i++) {
-            button[i].href = Mozilla.Utils.trans('buttonLink');
+            button[i].href = Mozilla.Utils.trans('button-link');
             button[i].removeAttribute('data-direct-link');
-            button[i].querySelector('.download-title').innerHTML = Mozilla.Utils.trans('buttonText');
+            button[i].querySelector('.download-title').innerHTML = Mozilla.Utils.trans('button-text');
             button[i].setAttribute('data-link-name', 'Yandex redirect');
             button[i].setAttribute('data-link-type', 'Download Firefox (RU)');
             button[i].setAttribute('data-link-position', 'primary cta');
         }
 
         // Update privacy policy text for Yandex.
-        document.querySelector('.main-download .download-button .fx-privacy-link').innerHTML = Mozilla.Utils.trans('privacyNotice');
+        document.querySelector('.main-download .download-button .fx-privacy-link').innerHTML = Mozilla.Utils.trans('privacy-notice');
 
         // Update any elements with alt text translations.
         var elems = document.querySelectorAll('[data-yandex-alt]');
