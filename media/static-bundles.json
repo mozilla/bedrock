@@ -1092,7 +1092,6 @@
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
         "js/base/mozilla-fxa-form.js",
         "js/firefox/new/scene1_fxa_modal.js"
       ],
