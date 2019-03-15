@@ -88,9 +88,16 @@
     <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew66', action='signup', utm_params={'campaign': 'wnp66', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'wnp66'}) }} class="mzp-c-button mzp-t-product" data-button-name="Create account" data-link-type="button">
       {{ _('Create a Firefox Account') }}
     </a><br>
+
+    {% if l10n_has_tag('wnp66_log_in') %}
     <span class="wn64-signin">{{ _('Have an account?') }}
       <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew66', action='login', utm_params={'campaign': 'wnp66', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'wnp66'}) }}>{{ _('Log in') }}</a>
     </span>
+    {% else %}
+    <span class="wn64-signin">
+      <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew66', action='login', utm_params={'campaign': 'wnp66', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'wnp66'}) }}>{{ _('Already have an account?') }}</a>
+    </span>
+    {% endif %}
   </p>
 
   {% endcall %}
