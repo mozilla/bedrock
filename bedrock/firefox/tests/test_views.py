@@ -749,6 +749,44 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
 
+    # features test - issue 6830
+
+    def test_features_gb_a(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=a')
+        req.locale = 'en-GB'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/features/index.en-GB-a.html', ANY)
+
+    def test_features_gb_b(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=b')
+        req.locale = 'en-GB'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/features/index.en-GB-b.html', ANY)
+
+    def test_features_gb_c(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=c')
+        req.locale = 'en-GB'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/features/index.en-GB-c.html', ANY)
+
+    def test_features_de_a(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=a')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/features/index.de-a.html', ANY)
+
+    def test_features_de_b(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=b')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/features/index.de-b.html', ANY)
+
+    def test_features_de_c(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?v=c')
+        req.locale = 'de'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/features/index.de-c.html', ANY)
+
 
 class TestFirefoxNewNoIndex(TestCase):
     def test_scene_1_noindex(self):
