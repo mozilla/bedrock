@@ -162,7 +162,7 @@
 {% block stub_attribution %}
   <!--[if !lte IE 8]><!-->
   {{ js_bundle('stub-attribution-custom') }}
-  {% if switch('experiment_firefox_new_headlne_en', ['en-US', 'en-CA', 'en-GB']) %}
+  {% if switch('experiment_firefox_new_headlne_en', ['en-CA', 'en-GB']) %}
     {{ js_bundle('experiment-firefox-new-headline-en') }}
   {% endif %}
   {% if switch('experiment_firefox_new_headlne_de', ['de']) %}
