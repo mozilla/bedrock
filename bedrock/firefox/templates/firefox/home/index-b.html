@@ -1,0 +1,242 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% from "macros-protocol.html" import feature_card, hero, call_out_compact with context %}
+
+{% extends "firefox/base-protocol.html" %}
+
+
+{# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
+{% if LANG == 'en-CA' %}
+  {% set title_suffix = 'Firefox (CA)' %}
+{% elif LANG == 'en-GB' %}
+  {% set title_suffix = 'Firefox (UK)' %}
+{% else %}
+  {% set title_suffix = 'Firefox' %}
+{% endif %}
+{% block page_title %}{{ _('The new, fast browser for Mac, PC and Linux') }} | {{ title_suffix }}{% endblock %}
+{% block page_desc %}{{ _('Responsive engine, less memory usage and packed with features. Download for desktop now.') }}{% endblock %}
+
+{% block experiments %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox-desktop') }}
+{% endblock %}
+
+{% block body_id %}firefox-home{% endblock %}
+{% block body_class %}{{ super() }} mzp-t-firefox{% endblock %}
+
+{% block content %}
+<main role="main">
+  <header class="mzp-c-hero mzp-t-firefox mzp-has-image">
+    <div class="mzp-l-content">
+      <div class="mzp-c-hero-body">
+        <h1 class="mzp-c-hero-title">{{ _('<strong>Firefox</strong> Quantum') }}</h1>
+
+        <div class="mzp-c-hero-desc">
+          <p>{{ _('Fast, private,<br> on your side') }}</p>
+        </div>
+
+        <p class="mzp-c-hero-cta">
+          {{ download_firefox(dom_id='download-intro', alt_copy=_('Download now'), download_location='primary cta') }}
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <section class="mzp-t-dark c-trio t-privacy" data-scroll-tracking="Seriously Private Browsing">
+    <div class="mzp-l-content">
+      <h2>{{ _('Leave no trace with Private Browsing Mode') }}</h2>
+      <ul>
+        <li class="t-private">
+          <h3>{{ _('Keep sensitive searches private') }}</h3>
+          <p>
+          {% trans %}
+            Open a New Private Window to enter Private Browsing Mode. When you close out, your history is erased.
+          {% endtrans %}
+          </p>
+        </li>
+        <li class="t-tracking">
+          <h3>{{ _('Be invisible to advertisers ') }}</h3>
+          <p>
+          {% trans %}
+            Some ads have hidden trackers that follow you online. Firefox Tracking Protection, automatically on in Private Browsing Mode, stops them cold.
+          {% endtrans %}
+          </p>
+        </li>
+        <li class="t-faster">
+          <h3>{{ _('Load pages faster') }}</h3>
+          <p>
+          {% trans url='https://blog.mozilla.org/firefox/de/die-studie-zum-schutz-vor-aktivitatsverfolgung/' if LANG == 'de' else 'https://blog.mozilla.org/firefox/tracking-protection-study/' %}
+            By blocking ads and scripts that bog down browsing, <a href="{{ url }}">pages load faster</a>.
+          {% endtrans %}
+          </p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+
+  <section>
+    <div class="mzp-l-content">
+      <div data-scroll-tracking="Sync your devices">
+        {% call feature_card(
+          title=_('Opt in to a Firefox account'),
+          image_url='firefox/home/desktop-account.svg',
+          aspect_ratio='mzp-has-aspect-1-1',
+          class='mzp-l-card-feature-right-half mzp-t-firefox t-sync',
+          link_url=url('firefox.accounts'),
+          link_cta=_('Learn more about Firefox Accounts')
+        ) %}
+        <p>{{ _('We collect so little data about you, we don’t even have your email address. Opt in to an Account to take your privacy, passwords, and bookmarks with you wherever you go.') }}</p>
+        {% endcall %}
+      </div>
+    </div>
+
+    <div class="mzp-l-content">
+      <div class="c-trio t-custom" data-scroll-tracking="Customization Features">
+        <h2>{{ _('Make Firefox your own') }}</h2>
+        <ul>
+          <li class="t-extensions">
+            <h3>{{ _('Extend what your browser can do') }}</h3>
+            <p>
+            {# L10n: Locales can substitute their most popular extensions OR they can use "Personalize Firefox with thousands of extensions like password managers, ad blockers and more." #}
+            {% trans %}
+              Customize Firefox with thousands of extensions including LastPass, uBlock Origin and more.
+            {% endtrans %}
+            </p>
+          </li>
+          <li class="t-themes">
+            <h3>{{ _('Change up your look') }}</h3>
+            <p>
+            {% trans %}
+              Choose a new look from our theme categories or create your own.
+            {% endtrans %}
+            </p>
+          </li>
+          <li class="t-toolbar">
+            <h3>{{ _('Put your tools where you want them') }}</h3>
+
+            <p>
+            {% trans %}
+              Drag and drop features into your toolbar for easy access.
+            {% endtrans %}
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="t-compare">
+    <div class="mzp-l-content">
+      <section data-scroll-tracking="2x Faster" class="mzp-c-card-feature mzp-l-card-feature-left-third mzp-t-firefox">
+        <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            <video preload="none" controls playsinline poster="{{ static('img/firefox/home/quantum-vs-chrome-poster.png') }}" data-ga-label="Quantum vs Chrome Video"
+              <source src="https://assets.mozilla.net/video/firefox-home/quantum-vs-chrome.webm" type="video/webm">
+              <source src="https://assets.mozilla.net/video/firefox-home/quantum-vs-chrome.ogv" type="video/ogg; codecs='theora, vorbis'">
+              <source src="https://assets.mozilla.net/video/firefox-home/quantum-vs-chrome.mp4" type="video/mp4">
+              <a href="https://www.youtube.com/watch?v=YIywpvHewc0">
+                <img src="{{ static('img/firefox/home/quantum-vs-chrome-poster.png') }}" alt="">
+              </a>
+            </video>
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <h2 class="mzp-c-card-feature-title">{{ ('Faster than Chrome on many top sites') }}</h2>
+            <div class="mzp-c-card-feature-desc">
+              <p>{{ _('So pages load quicker.') }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="mzp-l-content">
+      <div data-scroll-tracking="30% lighter than chrome">
+        {% call feature_card(
+          title=_('Smoother computing'),
+          image_url='firefox/home/desktop-smooth.svg',
+          aspect_ratio='mzp-has-aspect-1-1',
+          class='mzp-l-card-feature-right-third mzp-t-firefox t-smooth',
+          link_url='https://blog.mozilla.org/firefox/quantum-performance-test/',
+          link_cta=_('Learn More')
+        ) %}
+        <p>
+        {% trans url='https://blog.mozilla.org/firefox/quantum-performance-test/' %}
+          Firefox uses <a href="{{ url }}">less memory</a> than Chrome for a better overall experience.
+        {% endtrans %}
+        </p>
+        {% endcall %}
+      </div>
+    </div>
+
+    <div class="mzp-l-content">
+      <div data-scroll-tracking="Switch from Chrome to Firefox in just a few minutes">
+        {% call feature_card(
+          title=_('Switching to Firefox is easy'),
+          image_url='firefox/home/desktop-change.png',
+          include_highres_image=True,
+          aspect_ratio='mzp-has-aspect-1-1',
+          class='mzp-l-card-feature-left-third mzp-t-firefox t-switch',
+          link_url=url('firefox.switch'),
+          link_cta=_('Learn More')
+        ) %}
+        <p>{{ _('Bring your settings from Chrome – Firefox does the rest.') }}</p>
+        {% endcall %}
+      </div>
+    </div>
+  </section>
+
+  {% call call_out_compact(
+    title=_('The browser built for you, not advertisers'),
+    desc=_('Fast, private, on your side'),
+    class='mzp-t-firefox mzp-t-dark t-you'
+    ) %}
+    <div class="download-firefox">
+      {{ download_firefox(dom_id='footer-download', alt_copy=_('Download now'), download_location='other') }}
+    </div>
+  {% endcall %}
+
+
+  {% if show_newsletter %}
+    {% block newsletter %}
+    <div id="pre-download-modal" class="mzp-u-modal-content">
+      <div class="pre-download-newsletter mzp-c-newsletter">
+        <div class="pre-download-newsletter-content">
+          <h2 class="pre-download-newsletter-title">Learn how to make your Firefox even smarter, faster and more secure.</h2>
+          <p class="pre-download-newsletter-desc">Get informative tips, tricks and product announcements delivered to your inbox.</p>
+          {{ email_newsletter_form(
+              protocol_component=True,
+              include_title=False,
+              spinner_color='#000',
+              email_label='Enter your email address',
+              email_placeholder='yourname@example.com',
+              submit_text='Download Firefox & Sign Up',
+              button_class='mzp-t-product'
+          )}}
+          <p class="pre-download-privacy">
+            <a href="{{ url('privacy.email') }}">How will Mozilla use my email?</a>
+          </p>
+          <p class="pre-download-continue">
+            <a class="mzp-c-button mzp-t-product" href="{{ url('firefox.download.thanks') }}?n=f" data-link-name="Continue FireFox Download" data-link-type="link">Continue Firefox Download</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  {% endif %}
+
+  {% include 'firefox/includes/schemaorg-app.html' %}
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox-desktop') }}
+  {% if show_newsletter %}
+    {{ js_bundle('pre-download-newsletter-protocol') }}
+  {% endif %}
+{% endblock %}

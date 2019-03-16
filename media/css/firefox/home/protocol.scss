@@ -1,0 +1,352 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../libs/system-font';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/feature-card';
+@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/components/call-out';
+@import '../../../protocol/css/components/modal';
+
+
+//* -------------------------------------------------------------------------- */
+// Page specific variables and over-rides
+
+$fx-body: #42425A;
+$fx-coral: #FF4F5D;
+$fx-orange: #FF7139;
+$fx-pink: #FF2889;
+$fx-purple: #20123A;
+
+.mzp-t-firefox {
+    &,
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-family: system-ui, sans-serif;
+    }
+}
+
+main .mzp-l-content {
+    max-width: 400px;
+
+    @media #{$mq-md} {
+        max-width: $content-max;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Hero
+
+.mzp-c-hero {
+    text-align: center;
+    color: $fx-purple;
+
+    &.mzp-t-firefox::after {
+        display: none;
+    }
+}
+
+.mzp-c-hero-title {
+    @include text-display-sm;
+    font-weight: bold;
+    padding-top: 0;
+
+    &:before {
+        @include at2x('#{$image-path}/logos/firefox/firefox.png', 48px, 48px);
+        background-repeat: no-repeat;
+        content: '';
+        display: inline-block;
+        height: 48px;
+        margin-top: -3px;
+        padding-right: $spacing-sm;
+        vertical-align: middle;
+        width: 48px;
+    }
+
+    strong {
+        font-weight: normal;
+    }
+}
+
+.mzp-c-hero-desc {
+    @include text-display-xl;
+    font-weight: bold;
+    margin-bottom: $spacing-md;
+    color: $fx-purple;
+
+    p {
+        margin-bottom: $spacing-lg;
+    }
+}
+
+.mzp-c-button-download-container {
+    margin-bottom: 0;
+}
+
+@media #{$mq-md} {
+    .mzp-c-hero.mzp-has-image {
+        align-items: center;
+        background: top left 50vw no-repeat url('/media/img/firefox/home/hero-small.jpg');
+        background-size: contain;
+        display: flex;
+        min-height: 560px;
+        text-align: left;
+
+        @media all #{$mq-high-res} {
+            background: top left 50vw no-repeat url('/media/img/firefox/home/hero-small-high-res.jpg');
+            background-size: contain;
+        }
+    }
+
+    .mzp-l-content {
+        width: 100%;
+    }
+}
+
+@media #{$mq-lg} and #{$mq-tall} {
+    .mzp-c-hero.mzp-has-image {
+        background: top left 50vw no-repeat url('/media/img/firefox/home/hero.jpg');
+        background-size: contain;
+        height: 60vh;
+        max-height: 672px;
+
+        @media all #{$mq-high-res} {
+            background: top left 50vw no-repeat url('/media/img/firefox/home/hero-high-res.jpg');
+            background-size: contain;
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Feature cards
+
+.mzp-c-card-feature {
+    .mzp-c-card-feature-media-wrapper,
+    .mzp-c-card-feature-content {
+        min-width: 0; // because of https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
+    }
+
+    .mzp-c-card-feature-title {
+        color: $fx-purple;
+    }
+
+    .mzp-c-card-feature-desc {
+        color: $fx-body;
+    }
+
+    @media #{$mq-lg} {
+        .mzp-c-card-feature-title {
+            @include text-display-lg;
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Trio
+
+.c-trio {
+    color: $fx-body;
+
+    h2 {
+        @include text-display-lg;
+        color: $fx-purple;
+        margin-top: $layout-lg;
+        text-align: center;
+    }
+
+    h3 {
+        @include text-display-sm;
+        color: $fx-purple;
+    }
+
+    ul {
+        @include clearfix();
+        margin-top: $layout-md;
+        margin-bottom: $layout-lg;
+
+        @media #{$mq-md} {
+            margin-top: $layout-xl;
+            margin-bottom: $layout-xl;
+        }
+    }
+
+    li {
+        background: top left no-repeat;
+        margin-bottom: $layout-sm;
+        padding-top: $layout-md;
+
+        &.t-private {
+            background-image: url('/media/img/firefox/home/icon-private.svg');
+        }
+        &.t-tracking {
+            background-image: url('/media/img/firefox/home/icon-tracking.svg');
+        }
+        &.t-faster {
+            background-image: url('/media/img/firefox/home/icon-faster.svg');
+        }
+        &.t-extensions {
+            background-image: url('/media/img/firefox/home/icon-extensions.svg');
+        }
+        &.t-themes {
+            background-image: url('/media/img/firefox/home/icon-theme.svg');
+        }
+        &.t-toolbar {
+            background-image: url('/media/img/firefox/home/icon-toolbar.svg');
+        }
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.t-privacy {
+    background-color: $fx-purple;
+    color: #fff;
+    margin-bottom: $layout-xl;
+
+    h2 {
+        color: $fx-pink;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    h3 {
+        color: #fff;
+    }
+
+    // protocol/issues#335
+    a:visited {
+        color: #ffffff;
+        opacity: 0.8;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        opacity: 1;
+    }
+}
+
+.t-custom {
+    h2 {
+        margin-top: $layout-sm;
+    }
+}
+
+@media #{$mq-md} {
+    .c-trio li {
+        @include bidi(((float, left, right),));
+        @include bidi(((margin-left, $layout-lg, margin-right, 0),));
+        padding-top: $layout-lg;
+        margin-bottom: 0;
+        width: calc(#{100% / 3} - (#{$layout-lg} - (#{$layout-lg} / 3)));
+
+        &:first-child {
+            @include bidi(((margin-left, 0, margin-right, 0),));
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Comparison feature cards
+
+.t-compare {
+    background-color: $color-gray-10;
+    padding-top: $layout-md;
+
+    video {
+        max-width: 480px;
+    }
+}
+
+.t-sync img {
+    max-width: 462px;
+}
+.t-smooth img {
+    max-width: 468px;
+}
+.t-switch img {
+    max-width: 553px;
+}
+
+@media #{$mq-md} {
+    .t-compare {
+        padding-top: $layout-lg;
+    }
+}
+
+@media #{$mq-lg} {
+    .t-compare {
+        padding-top: $layout-xl;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+//
+
+.mzp-c-call-out-compact.t-you {
+    background-color: $fx-purple;
+
+    .mzp-c-call-out-container {
+        &:before {
+            @include at2x('#{$image-path}/logos/firefox/firefox.png', 48px, 48px);
+            background-repeat: no-repeat;
+            content: '';
+            display: inline-block;
+            height: 48px;
+            margin-bottom: $layout-sm;
+            width: 48px;
+        }
+    }
+
+    .mzp-c-call-out-title {
+        @include text-display-xl;
+        color: $fx-orange;
+    }
+
+    .mzp-c-call-out-desc {
+        @include text-display-sm;
+        color: $fx-pink;
+        font-weight: bold;
+        padding-bottom: $layout-sm;
+    }
+
+    @media #{$mq-lg} {
+        background: $fx-purple top left calc(50% + 500px) no-repeat url('/media/img/firefox/home/bright.png');
+        padding-top: $layout-sm;
+
+        .mzp-l-content {
+            max-width: $content-max;
+        }
+
+        .mzp-c-call-out-container {
+            &:before {
+                margin-bottom: $layout-sm;
+            }
+        }
+
+        .mzp-c-call-out-title {
+            margin-bottom: $spacing-xl;
+        }
+
+        .mzp-c-call-out-desc {
+            padding-bottom: $layout-md;
+        }
+
+        .mzp-c-call-out-cta {
+            justify-content: flex-start;
+        }
+    }
+}

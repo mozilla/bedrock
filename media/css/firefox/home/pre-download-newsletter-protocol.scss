@@ -1,0 +1,110 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/newsletter-form';
+
+
+// Compact modal
+.mzp-c-modal.l-compact {
+
+    header {
+        display: none;
+    }
+
+    .mzp-c-modal-inner {
+        @media #{$mq-md} {
+            max-width: 530px;
+            margin: 0 auto;
+        }
+
+        .mzp-c-modal-overlay-contents {
+            padding: $spacing-lg;
+        }
+    }
+}
+
+
+.pre-download-newsletter {
+    background: $color-white;
+    color: $color-black;
+
+    h2 {
+        @include font-size(28px);
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    input[type='email'] {
+        @include border-box;
+        @include text-body-md;
+        border-radius: 2px;
+        padding: ($padding-md - 2px) ($padding-xl - 2px); //2px extra padding removed to compensate for 2px border.
+        width: 100%;
+    }
+
+    a:link,
+    a:visited {
+        color: $color-link;
+        text-decoration: underline;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        text-decoration: none;
+    }
+
+    &.mzp-c-newsletter {
+        display: block;
+        padding: $layout-sm;
+    }
+
+    .mzp-c-fieldnote {
+        display: none;
+    }
+
+    .mzp-c-newsletter-form,
+    .mzp-c-newsletter-thanks {
+        padding-top: 0;
+    }
+
+    .mzp-c-button {
+        text-align: center;
+    }
+
+    .mzp-c-form-submit {
+        margin-bottom: 0;
+    }
+
+    .pre-download-privacy {
+        @include text-body-md;
+        text-align: center;
+    }
+
+    .pre-download-continue {
+        margin-top: $layout-lg;
+
+        .mzp-c-button {
+            &:link,
+            &:visited {
+                border: 2px solid $color-link;
+                background: $color-white;
+                color: $color-link;
+                text-decoration: none;
+            }
+
+            &:hover,
+            &:active,
+            &:focus {
+                background: $color-link-hover;
+                border-color: $color-link-hover;
+                color: $color-white;
+            }
+        }
+    }
+}
