@@ -36,9 +36,8 @@ class FakePrefixer(object):
 
 
 @patch('bedrock.base.urlresolvers.get_url_prefix')
+@override_settings(ROOT_URLCONF='bedrock.base.tests.test_urlresolvers')
 class TestReverse(TestCase):
-    urls = 'bedrock.base.tests.test_urlresolvers'
-
     def test_unicode_url(self, get_url_prefix):
         # If the prefixer returns a unicode URL it should be escaped and cast
         # as a str object.

@@ -37,9 +37,11 @@ class TestL10nBlocks(TestCase):
 
 
 @patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
-@override_settings(ROOT=ROOT)
+@override_settings(
+    ROOT=ROOT,
+    ROOT_URLCONF='lib.l10n_utils.tests.test_files.urls',
+)
 class TestTransBlocks(TestCase):
-    urls = 'lib.l10n_utils.tests.test_files.urls'
 
     def test_trans_block_works(self):
         """ Sanity check to make sure translations work at all. """
@@ -61,9 +63,11 @@ class TestTransBlocks(TestCase):
 
 
 @patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
-@override_settings(ROOT=ROOT)
+@override_settings(
+    ROOT=ROOT,
+    ROOT_URLCONF='lib.l10n_utils.tests.test_files.urls',
+)
 class TestTemplateLangFiles(TestCase):
-    urls = 'lib.l10n_utils.tests.test_files.urls'
 
     def test_added_lang_files(self):
         """
