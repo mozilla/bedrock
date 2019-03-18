@@ -113,10 +113,7 @@ def get_accept_languages(request):
     languages = []
     pattern = re.compile(r'^([A-Za-z]{2,3})(?:-([A-Za-z]{2})(?:-[A-Za-z0-9]+)?)?$')
 
-    try:
-        parsed = parse_accept_lang_header(request.META.get('HTTP_ACCEPT_LANGUAGE', ''))
-    except ValueError:  # see https://code.djangoproject.com/ticket/21078
-        return languages
+    parsed = parse_accept_lang_header(request.META.get('HTTP_ACCEPT_LANGUAGE', ''))
 
     for lang, priority in parsed:
         m = pattern.match(lang)
