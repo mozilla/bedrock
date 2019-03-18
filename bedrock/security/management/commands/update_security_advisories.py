@@ -6,11 +6,10 @@ import glob
 import os
 import re
 import sys
-from optparse import make_option
 
 from django.conf import settings
 from django.core.cache import cache
-from django.core.management.base import NoArgsCommand, BaseCommand, CommandError
+from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Count
 
 from dateutil.parser import parse as parsedate
@@ -221,26 +220,26 @@ def delete_orphaned_products():
     return num_products
 
 
-class Command(NoArgsCommand):
+class Command(BaseCommand):
     help = 'Refresh database of MoFo Security Advisories.'
     lock_key = 'command-lock:update_security_advisories'
-    option_list = BaseCommand.option_list + (
-        make_option('--quiet',
+
+    def add_arguments(self, parser):
+        parser.add_argument('--quiet',
                     action='store_true',
                     dest='quiet',
                     default=False,
-                    help='Do not print output to stdout.'),
-        make_option('--skip-git',
+                    help='Do not print output to stdout.')
+        parser.add_argument('--skip-git',
                     action='store_true',
                     dest='no_git',
                     default=False,
-                    help='No update, just import all files'),
-        make_option('--clear-db',
+                    help='No update, just import all files')
+        parser.add_argument('--clear-db',
                     action='store_true',
                     dest='clear_db',
                     default=False,
-                    help='Clear all security advisory data and load all files'),
-    )
+                    help='Clear all security advisory data and load all files')
 
     def get_lock(self):
         lock = cache.get(self.lock_key)
