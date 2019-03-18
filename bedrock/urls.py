@@ -5,6 +5,7 @@
 from django.conf import settings
 from django.conf.urls import handler404, include, url
 
+from bedrock.base import views as base_views
 from watchman import views as watchman_views
 
 # The default django 500 handler doesn't run the ContextProcessors, which breaks
@@ -33,10 +34,10 @@ urlpatterns = (
 
     url(r'^healthz/$', watchman_views.ping, name="watchman.ping"),
     url(r'^readiness/$', watchman_views.status, name="watchman.status"),
-    url(r'^healthz-cron/$', 'bedrock.base.views.cron_health_check'),
-    url(r'^csp-violation-capture$', 'bedrock.base.views.csp_violation_capture',
+    url(r'^healthz-cron/$', base_views.cron_health_check),
+    url(r'^csp-violation-capture$', base_views.csp_violation_capture,
         name='csp-violation-capture'),
-    url(r'^country-code\.json$', 'bedrock.base.views.geolocate',
+    url(r'^country-code\.json$', base_views.geolocate,
         name='geolocate')
 )
 
