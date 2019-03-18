@@ -254,7 +254,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         if self.get_lock():
-            super(Command, self).handle(*args, **options)
+            self.handle_noargs(**options)
             self.release_lock()
 
     def handle_noargs(self, **options):
