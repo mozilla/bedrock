@@ -419,8 +419,6 @@ if ENABLE_CSP_MIDDLEWARE:
     MIDDLEWARE_CLASSES.append('csp.middleware.CSPMiddleware')
 
 INSTALLED_APPS = (
-    'cronjobs',  # for ./manage.py cron * cmd line tasks
-
     # Django contrib apps
     'django.contrib.auth',
     'django.contrib.contenttypes',

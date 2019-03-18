@@ -38,7 +38,7 @@ if [[ "$ALL" == true ]]; then
     # less frequent. these will modify the DB every time.
     # TODO fix this
     if [[ "$AUTH" == true ]]; then
-        python manage.py cron update_tweets
+        python manage.py update_tweets
     fi
-    python manage.py cron update_ical_feeds
+    python manage.py update_ical_feeds
 fi

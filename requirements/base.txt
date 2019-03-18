@@ -82,8 +82,6 @@ https://github.com/jezdez/django-appconf/archive/d7ff3bb0c35a0c2ec83afdb31f7bb79
     --hash=sha256:3e80e498209d7253e2cc1a4f9b02e7da819179a910c9275d5bc232de48e67c33
 https://github.com/jsocol/commonware/archive/b5544185b2d24adc1eb512735990752400ce9cbd.tar.gz#egg=commonware \
     --hash=sha256:93d8231145d43ca02e1ec3cee355333afa8e72adb9cf815767e17595749774d4
-https://github.com/jsocol/django-cronjobs/archive/cfda8176c5c3a50d1b58fcf57e87e23c467789bd.tar.gz#egg=django-cronjobs \
-    --hash=sha256:9556a8db9bb65e3f7ca1f6474193ccfecccd2daab1856963cbbba044db78fee8
 https://github.com/mozilla/nuggets/archive/ce506882b6943ea45ea4f98290fc4ef23e09a083.tar.gz#egg=nuggets \
     --hash=sha256:79eabfcf8d793503c11778f9f5f9b2e891a3b67a43815431c30bc52b19c3431d
 dj-database-url==0.3.0 \

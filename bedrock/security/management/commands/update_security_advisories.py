@@ -8,14 +8,14 @@ import re
 import sys
 
 from django.conf import settings
-from django.core.cache import cache
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import CommandError
 from django.db.models import Count
 
 from dateutil.parser import parse as parsedate
 
 from bedrock.security.models import HallOfFamer, MitreCVE, Product, SecurityAdvisory
 from bedrock.utils.git import GitRepo
+from bedrock.utils.management.cron_command import CronCommand
 from bedrock.security.utils import (
     FILENAME_RE,
     check_hof_data,
@@ -220,9 +220,9 @@ def delete_orphaned_products():
     return num_products
 
 
-class Command(BaseCommand):
+class Command(CronCommand):
     help = 'Refresh database of MoFo Security Advisories.'
-    lock_key = 'command-lock:update_security_advisories'
+    lock_key = 'update_security_advisories'
 
     def add_arguments(self, parser):
         parser.add_argument('--quiet',
@@ -241,26 +241,7 @@ class Command(BaseCommand):
                     default=False,
                     help='Clear all security advisory data and load all files')
 
-    def get_lock(self):
-        lock = cache.get(self.lock_key)
-        if not lock:
-            cache.set(self.lock_key, True, 60)
-            return True
-
-        return False
-
-    def release_lock(self):
-        cache.delete(self.lock_key)
-
-    def handle(self, *args, **options):
-        if self.get_lock():
-            self.handle_noargs(**options)
-            self.release_lock()
-
-    def handle_noargs(self, **options):
-        quiet = options['quiet']
-        no_git = options['no_git']
-        clear_db = options['clear_db']
+    def handle_safe(self, quiet, no_git, clear_db, **options):
         force = no_git or clear_db
         repo = GitRepo(ADVISORIES_PATH, ADVISORIES_REPO, branch_name=ADVISORIES_BRANCH,
                        name='Security Advisories')
