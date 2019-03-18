@@ -143,7 +143,7 @@ class TestLocaleTemplates(TestCase):
         en-US requests without l10n or locale template should render the
         originally requested template.
         """
-        django_render.side_effect = [TemplateDoesNotExist, TemplateDoesNotExist, True]
+        django_render.side_effect = [TemplateDoesNotExist(''), TemplateDoesNotExist(''), True]
         request = self.rf.get('/')
         request.locale = 'en-US'
         render(request, 'firefox/new.html', {'active_locales': ['en-US']})
@@ -154,7 +154,7 @@ class TestLocaleTemplates(TestCase):
         en-US requests with a locale-specific template should render the
         locale-specific template.
         """
-        django_render.side_effect = [TemplateDoesNotExist, True]
+        django_render.side_effect = [TemplateDoesNotExist(''), True]
         request = self.rf.get('/')
         request.locale = 'en-US'
         render(request, 'firefox/new.html', {'active_locales': ['en-US']})
@@ -174,7 +174,7 @@ class TestLocaleTemplates(TestCase):
         Non en-US requests without l10n or locale template should render the
         originally requested template.
         """
-        django_render.side_effect = [TemplateDoesNotExist, TemplateDoesNotExist, True]
+        django_render.side_effect = [TemplateDoesNotExist(''), TemplateDoesNotExist(''), True]
         request = self.rf.get('/')
         request.locale = 'de'
         render(request, 'firefox/new.html', {'active_locales': ['de']})
@@ -185,7 +185,7 @@ class TestLocaleTemplates(TestCase):
         Non en-US requests with a locale-specific template should render the
         locale-specific template.
         """
-        django_render.side_effect = [TemplateDoesNotExist, True]
+        django_render.side_effect = [TemplateDoesNotExist(''), True]
         request = self.rf.get('/')
         request.locale = 'es-ES'
         render(request, 'firefox/new.html', {'active_locales': ['es-ES']})
