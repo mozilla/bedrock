@@ -2,8 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from django.conf.urls import patterns
-
 from bedrock.base.urlresolvers import reverse
 
 from bedrock.mozorg.util import page
@@ -168,5 +166,5 @@ class PageRoot(PageNode):
 
     def as_urlpatterns(self):
         """Return a urlconf for this PageRoot and its children."""
-        return patterns('', *[node.page for node in self.preordered_nodes if
-                              node.template])
+        return [
+            node.page for node in self.preordered_nodes if node.template]
