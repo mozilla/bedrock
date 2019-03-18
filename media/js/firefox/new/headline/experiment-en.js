@@ -5,6 +5,16 @@
 (function(Mozilla) {
     'use strict';
 
+    // Check that cookies are supported.
+    if (typeof Mozilla.Cookies === 'undefined' || !Mozilla.Cookies.enabled()) {
+        return;
+    }
+
+    // Exclude users who are in alternate dry-market experiment (Issue #6899)
+    if (Mozilla.Cookies.hasItem('priv-dmt')) {
+        return;
+    }
+
     function getLocale() {
         var lang = document.getElementsByTagName('html')[0].getAttribute('lang');
         var locale;
