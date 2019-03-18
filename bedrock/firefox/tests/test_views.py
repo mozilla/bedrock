@@ -679,7 +679,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?xv=betterbrowser')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.de.html', ANY)
 
     def test_better_browser_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=betterbrowser')
@@ -725,7 +725,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?xv=edge')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene1.de.html', ANY)
 
     def test_compare_edge_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=edge')
