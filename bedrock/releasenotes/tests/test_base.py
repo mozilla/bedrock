@@ -284,7 +284,7 @@ class TestNotesRedirects(TestCase):
             url = '/en-US' + url_from
         response = self.client.get(url)
         assert response.status_code == 302
-        assert response['Location'] == 'http://testserver/en-US' + url_to
+        assert response['Location'] == '/en-US' + url_to
 
     @patch('bedrock.releasenotes.views.get_latest_release_or_404',
            Mock(return_value=ProductRelease(product='Firefox', version='22.0', channel='Release')))
@@ -343,7 +343,7 @@ class TestSysreqRedirect(TestCase):
             url = '/en-US' + url_from
         response = self.client.get(url)
         assert response.status_code == 302
-        assert response['Location'] == 'http://testserver/en-US' + url_to
+        assert response['Location'] == '/en-US' + url_to
 
     @patch('bedrock.releasenotes.views.get_latest_release_or_404',
            Mock(return_value=ProductRelease(product='Firefox', version='22.0', channel='Release')))
