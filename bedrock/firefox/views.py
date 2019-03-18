@@ -716,10 +716,8 @@ def new(request):
                 template = 'firefox/new/berlin/scene1-privat.html'
             elif experience == 'auf-deiner-seite':
                 template = 'firefox/new/berlin/scene1-auf-deiner-seite.html'
-            elif switch('firefox_new_de'):
-                template = 'firefox/new/scene1_de.html'
             else:
-                template = 'firefox/new/scene1.html'
+                template = 'firefox/new/scene1.de.html'
         elif switch('firefox-yandex') and locale == 'ru':
             template = 'firefox/new/yandex/scene1.html'
         elif switch('experiment_firefox_privacy_dmt') and locale == 'en-US':
@@ -740,8 +738,7 @@ def new(request):
             else:
                 template = 'firefox/new/scene1.html'
         elif locale == 'en-GB':
-            if switch('firefox_new_gb'):
-                template = 'firefox/new/scene1_en-gb.html'
+            template = 'firefox/new/scene1.en-gb.html'
         else:
             template = 'firefox/new/scene1.html'
 

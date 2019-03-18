@@ -13,7 +13,6 @@
 
   .features-title {
       color: #000;
-      font-size: 2rem;
       margin-bottom: 60px;
   }
 
@@ -73,7 +72,7 @@
     padding-top: 40px;
 
     ul {
-      display: flex;
+      @include flexbox;
       flex-wrap: wrap;
 
       li {
@@ -89,45 +88,120 @@
 }
 
 /* -------------------------------------------------------------------------- */
-// Custom compact callout styles TODO: upgrade to protocol
+// Compact Call Out component
 
-.call-out-compact {
-    background: url("/media/img/firefox/quantum/fox-tail-header.png") top -750px center no-repeat,
-    linear-gradient(to bottom, #003eaa 40%, #004ec2 60%, #0060df 80%, #0080ff 100%);
+.c-call-out-compact {
+    background: #003eaa url('/media/img/firefox/quantum/fox-tail-header.png') top -700px center no-repeat;
     color: #fff;
-    padding: 30px;
+    overflow: hidden;
 
-    @media #{$mq-desktop} {
-        padding: 50px;
+    &.t-dark {
+        color: #fff;
     }
 
-  h2 {
-    font-weight: 100;
-    font-size: 1.5rem;
-  }
+    .c-call-out-title {
+        @include font-size(21px);
+        line-height: 1.143;
 
-  .call-out-content {
-      align-items: center;
-      background-image: none;
-      background-position: center;
-      background-size: 64px 64px;
-      background-repeat: no-repeat;
-      display: flex;
-      flex-direction: column;
-      max-width: 1056px;
-      margin: 0 auto;
-      padding: 0;
-      justify-content: space-evenly;
-
-      .call-out-download {
-          margin: 20px;
-      }
-
-      @media #{$mq-desktop} {
-        background-image: url("/media/img/logos/firefox/logo-quantum.png");
-        background-position: left center;
-        flex-direction: row;
-        padding: 0 0 0 36px;
+        @media #{$mq-tablet} {
+            @include font-size(24px);
+            line-height: 1.166;
+        }
     }
-  }
+
+    .c-call-out-cta {
+        margin: 8px 0 0;
+    }
+
+    .c-button-download-container {
+        display: inline-block;
+        margin-bottom: 0;
+    }
+
+    &.t-product-firefox {
+        .c-call-out-content {
+            @include border-box;
+            @include background-size(64px 64px);
+            background-position: left top;
+            background-repeat: no-repeat;
+            padding: (64px + 24px) 0 0 0;
+        }
+    }
+
+    &.t-product-firefox .c-call-out-content {
+        @include at2x('/media/protocol/img/logos/firefox/firefox.png', 64px, 64px);
+    }
+
+    @media #{$mq-tablet} {
+        @include clearfix;
+
+        .content {
+            margin: 0 auto;
+            max-width: 1056px;
+            padding-bottom: 48px;
+            padding-top: 48px;
+        }
+
+        &.t-product-firefox,
+        &.t-product-beta,
+        &.t-product-developer,
+        &.t-product-nightly,
+        &.t-product-focus {
+            .c-call-out-content {
+                background-position: left center;
+                min-height: 64px + (32px * 2);
+                padding: 0 0 0 (64px + 32px);
+            }
+        }
+
+        .c-call-out-title {
+            margin-bottom: 0;
+        }
+
+        .c-call-out-content {
+            float: left;
+            max-width: 624px;
+            width: calc(66.6% - 24px);
+        }
+
+        .c-call-out-cta {
+            float: right;
+            margin: 0;
+            position: relative;
+            width: calc(33.3% - 24px);
+        }
+
+        .c-button-download-container {
+            float: left;
+        }
+    }
+
+    @supports(display: grid) {
+        @media #{$mq-tablet} {
+
+            .content {
+                column-gap: 32px;
+                display: grid;
+                grid-column-gap: 32px;
+                grid-template-columns: 2fr 1fr;
+            }
+
+            .c-call-out-content {
+                width: auto;
+                align-items: center;
+                display: flex;
+            }
+
+            .c-call-out-cta {
+                align-items: center;
+                display: flex;
+                justify-content: flex-end;
+                width: auto;
+            }
+        }
+    }
+}
+
+#newsletter-subscribe {
+    border-top: none;
 }

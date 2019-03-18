@@ -1,0 +1,64 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+ {% add_lang_files "firefox/new/quantum" %}
+
+ {% extends "firefox/new/scene1.html" %}
+
+ {# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
+ {% block extrahead %}
+   {{ super() }}
+   {{ css_bundle('firefox_new_scene1_gb_de') }}
+ {% endblock %}
+
+ {% block body_id %}firefox-new-scene1{% endblock %}
+
+ {% block features_content %}
+ <div class="features">
+   <div class="content">
+     <h3 class="features-title">Features made for you.</h3>
+     <ul>
+       <li class="private">
+         <h3>Private Browsing Mode</h3>
+         <p>Private browsing mode clears third-party cookies and won’t keep track of your passwords or history.</p>
+       </li>
+       <li class="faster">
+         <h3>Faster than ever</h3>
+         <p>The fastest-ever Firefox browser uses 30% less memory than Chrome. Load tabs, websites and stream without slowing down.</p>
+       </li>
+       <li class="tracking">
+         <h3>Enhanced Tracking Protection</h3>
+         <p>Stop third-party ad trackers with three levels of privacy protection.</p>
+       </li>
+       <li class="password">
+         <h3>Smart password management</h3>
+         <p>Lockbox remembers all the passwords you save in the Firefox browser and secures them on all your devices.</p>
+       </li>
+       <li class="sync">
+         <h3>Seamless device syncing</h3>
+         <p>Sync bookmarks, share open tabs, access passwords, save notes, and more on all your devices.</p>
+       </li>
+       <li class="switch">
+         <h3>Stress-free switching</h3>
+         <p>Import all your bookmarks, autofill passwords, logins, and settings from any browser straight into the Firefox browser.</p>
+       </li>
+     </ul>
+   </div>
+ </div>
+
+ <section class="c-call-out-compact t-product-firefox t-dark">
+  <div class="content">
+    <div class="c-call-out-content">
+      <div class="c-call-out-container">
+        <h2 class="c-call-out-title">Meet Firefox Quantum: Fast for good.</h2>
+      </div>
+    </div>
+    <div class="c-call-out-cta">
+      <div class="c-call-out-cta-container">
+        {{ download_firefox(dom_id='download-call-out-secondary', download_location='secondary cta') }}
+      </div>
+    </div>
+  </div>
+</section>
+ {% endblock %}

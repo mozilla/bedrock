@@ -4,10 +4,6 @@
 
 @import '../../pebbles/includes/lib';
 
-#test {
-    color: red;
-}
-
 .no-js .main-content .header-image > img {
     @include visually-hidden;
 }
