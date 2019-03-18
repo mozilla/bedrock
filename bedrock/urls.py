@@ -4,6 +4,7 @@
 
 from django.conf import settings
 from django.conf.urls import handler404, include, url
+from django.utils.module_loading import import_string
 
 from bedrock.base import views as base_views
 from watchman import views as watchman_views
@@ -42,5 +43,11 @@ urlpatterns = (
 )
 
 if settings.DEBUG:
-    urlpatterns += (url(r'^404/$', handler404),
-                    url(r'^500/$', handler500))
+
+    def show404(request):
+        return import_string(handler404)(request, '')
+
+    urlpatterns += (
+        url(r'^404/$', show404),
+        url(r'^500/$', import_string(handler500)),
+    )
