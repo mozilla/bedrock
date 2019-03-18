@@ -5,8 +5,8 @@ import mock
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.newsletter.forms import (
-    BooleanRadioRenderer, ManageSubscriptionsForm,
-    NewsletterFooterForm, NewsletterForm, UnlabeledTableCellRadios,
+    BooleanTabularRadioSelect, ManageSubscriptionsForm,
+    NewsletterFooterForm, NewsletterForm,
 )
 from bedrock.newsletter.tests import newsletters
 
@@ -16,61 +16,38 @@ newsletters_mock.return_value = newsletters
 
 
 class TestRenderers(TestCase):
-    def test_radios(self):
-        """Test radio button renderer"""
-        choices = ((123, "NAME_A"), (245, "NAME_2"))
-        renderer = UnlabeledTableCellRadios("name", "value", {}, choices)
-        output = str(renderer)
-        # The choices should not be labeled
-        self.assertNotIn("NAME_A", output)
-        self.assertNotIn("NAME_2", output)
-        # But the values should be in there
-        self.assertIn('value="123"', output)
-        self.assertIn('value="245"', output)
-        # Should be table cells
-        self.assertTrue(output.startswith("<td>"))
-        self.assertTrue(output.endswith("</td>"))
-        self.assertIn("</td><td>", output)
 
     def test_str_true(self):
         """renderer starts with True selected if value given is True"""
-        choices = ((False, "False"), (True, "True"))
-        renderer = BooleanRadioRenderer("name", value="True", attrs={},
-                                        choices=choices)
-        output = str(renderer)
+        widget = BooleanTabularRadioSelect()
+        output = widget.render("name", value=True)
 
         # The True choice should be checked
-        self.assertIn('checked=checked value="True"', output)
+        self.assertIn('value="true" checked', output)
 
     def test_str_false(self):
         """renderer starts with False selected if value given is False"""
-        choices = ((False, "False"), (True, "True"))
-        renderer = BooleanRadioRenderer("name", value="False", attrs={},
-                                        choices=choices)
-        output = str(renderer)
+        widget = BooleanTabularRadioSelect()
+        output = widget.render("name", value=False)
 
         # The False choice should be checked
-        self.assertIn('checked=checked value="False"', output)
+        self.assertIn('value="false" checked', output)
 
     def test_boolean_true(self):
         """renderer starts with True selected if value given is True"""
-        choices = ((False, "False"), (True, "True"))
-        renderer = BooleanRadioRenderer("name", value=True, attrs={},
-                                        choices=choices)
-        output = str(renderer)
+        widget = BooleanTabularRadioSelect()
+        output = widget.render("name", value=True)
 
         # The True choice should be checked
-        self.assertIn('checked=checked value="True"', output)
+        self.assertIn('value="true" checked', output)
 
     def test_boolean_false(self):
         """renderer starts with False selected if value given is False"""
-        choices = ((False, "False"), (True, "True"))
-        renderer = BooleanRadioRenderer("name", value=False, attrs={},
-                                        choices=choices)
-        output = str(renderer)
+        widget = BooleanTabularRadioSelect()
+        output = widget.render("name", value=False)
 
         # The False choice should be checked
-        self.assertIn('checked=checked value="False"', output)
+        self.assertIn('value="false" checked', output)
 
 
 class TestManageSubscriptionsForm(TestCase):
