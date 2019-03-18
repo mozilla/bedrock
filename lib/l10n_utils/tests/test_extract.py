@@ -5,7 +5,6 @@ from cStringIO import StringIO
 from babel.messages.catalog import Catalog
 from babel.messages.extract import extract
 from babel.messages.pofile import write_po
-from nose.tools import eq_
 from puente.commands import generate_options_map
 from puente.settings import get_setting
 
@@ -17,7 +16,7 @@ def test_extract_python():
                                   method=method)
 
     # god help you if these are ever unequal
-    eq_(TEST_PO_OUTPUT, output)
+    assert TEST_PO_OUTPUT == output
 
 
 def test_extract_jinja2():
@@ -27,7 +26,7 @@ def test_extract_jinja2():
                                   method=method)
 
     # god help you if these are ever unequal
-    eq_(TEST_TEMPLATE_OUTPUT, output)
+    assert TEST_TEMPLATE_OUTPUT == output
 
 
 def fake_extract_command(filename, fileobj, method,

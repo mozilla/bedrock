@@ -11,7 +11,6 @@ from django.test.utils import override_settings
 
 from django_jinja.backend import Jinja2
 from mock import call, Mock, patch
-from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
 from bedrock.base.urlresolvers import reverse
@@ -120,8 +119,8 @@ class TestFirefoxAll(TestCase):
         """
         resp = self.client.get(self._get_url() + '?q=DOES_NOT_EXIST')
         doc = pq(resp.content)
-        ok_(not doc('table.build-table'))
-        ok_(not doc('.not-found.hide'))
+        assert not doc('table.build-table')
+        assert not doc('.not-found.hide')
 
     def test_no_search_query(self):
         """
@@ -129,13 +128,13 @@ class TestFirefoxAll(TestCase):
         """
         resp = self.client.get(self._get_url())
         doc = pq(resp.content)
-        eq_(len(doc('.build-table')), 1)
-        eq_(len(doc('.not-found.hide')), 1)
+        assert len(doc('.build-table')) == 1
+        assert len(doc('.not-found.hide')) == 1
 
         num_builds = len(firefox_desktop.get_filtered_full_builds('release'))
         num_builds += len(firefox_desktop.get_filtered_test_builds('release'))
-        eq_(len(doc('tr[data-search]')), num_builds)
-        eq_(len(doc('tr#en-US a')), 5)
+        assert len(doc('tr[data-search]')) == num_builds
+        assert len(doc('tr#en-US a')) == 5
 
     def test_no_locale_details(self):
         """
@@ -144,9 +143,9 @@ class TestFirefoxAll(TestCase):
         include the localized build.
         """
         builds = firefox_desktop.get_filtered_full_builds('release')
-        ok_('uz' in firefox_desktop.firefox_primary_builds)
-        ok_('uz' not in firefox_desktop.languages)
-        eq_(len([build for build in builds if build['locale'] == 'uz']), 0)
+        assert 'uz' in firefox_desktop.firefox_primary_builds
+        assert 'uz' not in firefox_desktop.languages
+        assert len([build for build in builds if build['locale'] == 'uz']) == 0
 
     def test_android(self):
         """
@@ -155,10 +154,10 @@ class TestFirefoxAll(TestCase):
         """
         resp = self.client.get(self._get_url('android'))
         doc = pq(resp.content)
-        eq_(len(doc('tbody tr')), 1)
-        eq_(len(doc('tbody tr#multi a')), 2)
-        eq_(len(doc('tbody tr#multi .android')), 1)
-        eq_(len(doc('tbody tr#multi .android-x86')), 1)
+        assert len(doc('tbody tr')) == 1
+        assert len(doc('tbody tr#multi a')) == 2
+        assert len(doc('tbody tr#multi .android')) == 1
+        assert len(doc('tbody tr#multi .android-x86')) == 1
 
     def test_404(self):
         """
@@ -174,8 +173,8 @@ class TestFirefoxAll(TestCase):
     def test_301(self):
         """Android Aurora download page should be redirected to Nightly"""
         resp = self.client.get(self._get_url('android', 'aurora'))
-        eq_(resp.status_code, 301)
-        ok_(resp['Location'].endswith('/firefox/android/nightly/all/'))
+        assert resp.status_code == 301
+        assert resp['Location'].endswith('/firefox/android/nightly/all/')
 
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
@@ -224,7 +223,7 @@ class TestWhatsNew(TestCase):
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, version='35.0a2')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/dev-whatsnew.html'])
+        assert template == ['firefox/dev-whatsnew.html']
 
     @override_settings(DEV=True)
     def test_fx_dev_browser_57_0_a2_whatsnew(self, render_mock):
@@ -260,7 +259,7 @@ class TestWhatsNew(TestCase):
         req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=rv:10.0')
         self.view(req, version='54.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.html'])
+        assert template == ['firefox/whatsnew/index.html']
 
     @override_settings(DEV=True)
     def test_fx_default_whatsnew(self, render_mock):
@@ -268,7 +267,7 @@ class TestWhatsNew(TestCase):
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, version='62.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.html'])
+        assert template == ['firefox/whatsnew/index.html']
 
     # begin id locale-specific tests
 
@@ -279,7 +278,7 @@ class TestWhatsNew(TestCase):
         req.locale = 'id'
         self.view(req, version='63.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index-lite.id.html'])
+        assert template == ['firefox/whatsnew/index-lite.id.html']
 
     # end id locale-specific tests
 
@@ -292,7 +291,7 @@ class TestWhatsNew(TestCase):
         req.locale = 'zh-TW'
         self.view(req, version='63.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.zh-TW.html'])
+        assert template == ['firefox/whatsnew/index.zh-TW.html']
 
     # end zh-TW locale-specific tests
 
@@ -304,7 +303,7 @@ class TestWhatsNew(TestCase):
         req.locale = 'en-US'
         self.view(req, version='63.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/whatsnew-fx63.html'])
+        assert template == ['firefox/whatsnew/whatsnew-fx63.html']
 
     # end 63.0 whatsnew tests
 
@@ -316,10 +315,10 @@ class TestWhatsNew(TestCase):
         req.locale = 'en-US'
         self.view(req, version='64.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/fx64/whatsnew-fx64.html'])
+        assert template == ['firefox/whatsnew/fx64/whatsnew-fx64.html']
         context = render_mock.call_args[0][2]
-        ok_('active_locales' in context)
-        ok_('pt-BR' in context['active_locales'])
+        assert 'active_locales' in context
+        assert 'pt-BR' in context['active_locales']
 
     # end 64.0 whatsnew tests
 
@@ -331,10 +330,10 @@ class TestWhatsNew(TestCase):
         req.locale = 'en-US'
         self.view(req, version='65.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/whatsnew-fx65.html'])
+        assert template == ['firefox/whatsnew/whatsnew-fx65.html']
         context = render_mock.call_args[0][2]
-        ok_('show_newsletter' in context)
-        eq_(True, context['show_newsletter'])
+        assert 'show_newsletter' in context
+        assert context['show_newsletter']
 
     def test_fx_65_0_no_newsletter(self, render_mock):
         """Should not include newsletter for non-translated locales"""
@@ -342,10 +341,10 @@ class TestWhatsNew(TestCase):
         req.locale = 'el'
         self.view(req, version='65.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/whatsnew-fx65.html'])
+        assert template == ['firefox/whatsnew/whatsnew-fx65.html']
         context = render_mock.call_args[0][2]
-        ok_('show_newsletter' in context)
-        eq_(False, context['show_newsletter'])
+        assert 'show_newsletter' in context
+        assert not context['show_newsletter']
 
     # end 65.0 whatsnew tests
 
@@ -357,10 +356,10 @@ class TestWhatsNew(TestCase):
         req.locale = 'en-US'
         self.view(req, version='66.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/whatsnew-fx66.html'])
+        assert template == ['firefox/whatsnew/whatsnew-fx66.html']
         context = render_mock.call_args[0][2]
-        ok_('show_newsletter' in context)
-        eq_(True, context['show_newsletter'])
+        assert 'show_newsletter' in context
+        assert context['show_newsletter']
 
     def test_fx_66_0_no_newsletter(self, render_mock):
         """Should not include newsletter for non-translated locales"""
@@ -368,10 +367,10 @@ class TestWhatsNew(TestCase):
         req.locale = 'el'
         self.view(req, version='66.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/whatsnew-fx66.html'])
+        assert template == ['firefox/whatsnew/whatsnew-fx66.html']
         context = render_mock.call_args[0][2]
-        ok_('show_newsletter' in context)
-        eq_(False, context['show_newsletter'])
+        assert 'show_newsletter' in context
+        assert not context['show_newsletter']
 
     # end 66.0 whatsnew tests
 
@@ -388,7 +387,7 @@ class TestFirstRun(TestCase):
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='40.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/firstrun-quantum.html'])
+        assert template == ['firefox/firstrun/index.html']
 
     @override_settings(DEV=True)
     def test_fx_firstrun_56_0(self, render_mock):
@@ -396,7 +395,7 @@ class TestFirstRun(TestCase):
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='56.0a2')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/dev-firstrun.html'])
+        assert template == ['firefox/dev-firstrun.html']
 
     @override_settings(DEV=True)
     def test_fxdev_firstrun_57_0(self, render_mock):
@@ -404,7 +403,7 @@ class TestFirstRun(TestCase):
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='57.0a2')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/developer/firstrun.html'])
+        assert template == ['firefox/developer/firstrun.html']
 
     @override_settings(DEV=True)
     def test_fx_firstrun_57_0(self, render_mock):
@@ -412,7 +411,7 @@ class TestFirstRun(TestCase):
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='57.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/firstrun-quantum.html'])
+        assert template == ['firefox/firstrun/firstrun-quantum.html']
 
     # test redirect to /firefox/new/ for legacy /firstrun URLs - Bug 1343823
 
@@ -437,18 +436,17 @@ class FxVersionRedirectsMixin(object):
     @override_settings(DEV=True)  # avoid https redirects
     def assert_ua_redirects_to(self, ua, url_name, status_code=301):
         response = self.client.get(self.url, HTTP_USER_AGENT=ua)
-        eq_(response.status_code, status_code)
-        eq_(response['Cache-Control'], 'max-age=0')
-        eq_(response['Location'],
+        assert response.status_code == status_code
+        assert response['Cache-Control'] == 'max-age=0'
+        (response['Location'],
             'http://testserver%s' % reverse(url_name))
 
         # An additional redirect test with a query string
         query = '?ref=getfirefox'
         response = self.client.get(self.url + query, HTTP_USER_AGENT=ua)
-        eq_(response.status_code, status_code)
-        eq_(response['Cache-Control'], 'max-age=0')
-        eq_(response['Location'],
-            'http://testserver%s' % reverse(url_name) + query)
+        assert response.status_code == status_code
+        assert response['Cache-Control'] == 'max-age=0'
+        assert response['Location'] == 'http://testserver%s' % reverse(url_name) + query
 
     def test_non_firefox(self):
         """
@@ -470,8 +468,8 @@ class FxVersionRedirectsMixin(object):
         user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:13.0) '
                       'Gecko/20100101 Firefox/13.0')
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        eq_(response.status_code, 200)
-        eq_(response['Cache-Control'], 'max-age=0')
+        assert response.status_code == 200
+        assert response['Cache-Control'] == 'max-age=0'
 
     @override_settings(DEV=True)
     @patch.dict(product_details.firefox_versions,
@@ -487,8 +485,8 @@ class FxVersionRedirectsMixin(object):
         user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) '
                       'Gecko/20100101 Firefox/24.0')
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        eq_(response.status_code, 200)
-        eq_(response['Cache-Control'], 'max-age=0')
+        assert response.status_code == 200
+        assert response['Cache-Control'] == 'max-age=0'
 
     @override_settings(DEV=True)
     @patch.dict(product_details.firefox_versions,
@@ -502,8 +500,8 @@ class FxVersionRedirectsMixin(object):
         user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:16.0) '
                       'Gecko/20100101 Firefox/16.0')
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        eq_(response.status_code, 200)
-        eq_(response['Cache-Control'], 'max-age=0')
+        assert response.status_code == 200
+        assert response['Cache-Control'] == 'max-age=0'
 
     @override_settings(DEV=True)
     @patch.dict(product_details.firefox_versions,
@@ -517,8 +515,8 @@ class FxVersionRedirectsMixin(object):
         user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:18.0) '
                       'Gecko/20100101 Firefox/18.0')
         response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        eq_(response.status_code, 200)
-        eq_(response['Cache-Control'], 'max-age=0')
+        assert response.status_code == 200
+        assert response['Cache-Control'] == 'max-age=0'
 
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
@@ -533,7 +531,7 @@ class TestTrackingProtectionTour(TestCase):
         req = self.rf.get('/en-US/firefox/tracking-protection/start/')
         self.view(req, version='62.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/tracking-protection-tour/index.html'])
+        assert template == ['firefox/tracking-protection-tour/index.html']
 
     @override_settings(DEV=True)
     def test_fx_tracking_protection_63_0_v0(self, render_mock):
@@ -541,7 +539,7 @@ class TestTrackingProtectionTour(TestCase):
         req = self.rf.get('/en-US/firefox/tracking-protection/start/?variation=0')
         self.view(req, version='62.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/tracking-protection-tour/variation-0.html'])
+        assert template == ['firefox/tracking-protection-tour/variation-0.html']
 
     @override_settings(DEV=True)
     def test_fx_tracking_protection_63_0_v1(self, render_mock):
@@ -549,7 +547,7 @@ class TestTrackingProtectionTour(TestCase):
         req = self.rf.get('/en-US/firefox/tracking-protection/start/?variation=1')
         self.view(req, version='62.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/tracking-protection-tour/variation-1.html'])
+        assert template == ['firefox/tracking-protection-tour/variation-1.html']
 
     @override_settings(DEV=True)
     def test_fx_tracking_protection_63_0_v2(self, render_mock):
@@ -557,7 +555,7 @@ class TestTrackingProtectionTour(TestCase):
         req = self.rf.get('/en-US/firefox/tracking-protection/start/?variation=2')
         self.view(req, version='62.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/tracking-protection-tour/variation-2.html'])
+        assert template == ['firefox/tracking-protection-tour/variation-2.html']
 
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
@@ -572,7 +570,7 @@ class TestContentBlockingTour(TestCase):
         req = self.rf.get('/en-US/firefox/content-blocking/start/')
         self.view(req, version='65.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/content-blocking-tour/index.html'])
+        assert template == ['firefox/content-blocking-tour/index.html']
 
     @override_settings(DEV=True)
     def test_fx_content_blocking_65_0_v2(self, render_mock):
@@ -580,4 +578,4 @@ class TestContentBlockingTour(TestCase):
         req = self.rf.get('/en-US/firefox/content-blocking/start/?variation=2')
         self.view(req, version='65.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/content-blocking-tour/variation-2.html'])
+        assert template == ['firefox/content-blocking-tour/variation-2.html']

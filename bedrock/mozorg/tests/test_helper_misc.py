@@ -10,7 +10,6 @@ from django.test.utils import override_settings
 from django_jinja.backend import Jinja2
 from jinja2 import Markup
 from mock import patch
-from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
 from bedrock.base.templatetags.helpers import static
@@ -55,8 +54,9 @@ def render(s, context=None):
 
 
 def test_convert_to_high_res():
-    eq_(misc.convert_to_high_res('/media/img/the.dude.png'), '/media/img/the.dude-high-res.png')
-    eq_(misc.convert_to_high_res('/media/thats-a-bummer-man.jpg'),
+    assert misc.convert_to_high_res('/media/img/the.dude.png') == '/media/img/the.dude-high-res.png'
+    assert (
+        misc.convert_to_high_res('/media/thats-a-bummer-man.jpg') ==
         '/media/thats-a-bummer-man-high-res.jpg')
 
 
@@ -74,52 +74,61 @@ class TestImgL10n(TestCase):
     def test_works_for_default_lang(self, media_exists_mock):
         """Should output correct path for default lang always."""
         media_exists_mock.return_value = True
-        eq_(self._render('en-US', 'dino/head.png'),
+        assert (
+            self._render('en-US', 'dino/head.png') ==
             static('img/l10n/en-US/dino/head.png'))
 
-        eq_(self._render('en-US', 'dino/does-not-exist.png'),
+        assert (
+            self._render('en-US', 'dino/does-not-exist.png') ==
             static('img/l10n/en-US/dino/does-not-exist.png'))
 
     def test_works_for_other_lang(self, media_exists_mock):
         """Should use the request lang if file exists."""
         media_exists_mock.return_value = True
-        eq_(self._render('de', 'dino/head.png'),
+        assert (
+            self._render('de', 'dino/head.png') ==
             static('img/l10n/de/dino/head.png'))
 
     def test_defaults_when_lang_file_missing(self, media_exists_mock):
         """Should use default lang when file doesn't exist for lang."""
         media_exists_mock.return_value = False
-        eq_(self._render('is', 'dino/head.png'),
+        assert (
+            self._render('is', 'dino/head.png') ==
             static('img/l10n/en-US/dino/head.png'))
 
     def test_latam_spanishes_fallback_to_european_spanish(self, media_exists_mock):
         """Should use es-ES image when file doesn't exist for lang."""
         media_exists_mock.side_effect = [False, True]
-        eq_(self._render('es-AR', 'dino/head.png'),
+        assert (
+            self._render('es-AR', 'dino/head.png') ==
             static('img/l10n/es-ES/dino/head.png'))
 
         media_exists_mock.reset_mock()
         media_exists_mock.side_effect = [False, True]
-        eq_(self._render('es-CL', 'dino/head.png'),
+        assert (
+            self._render('es-CL', 'dino/head.png') ==
             static('img/l10n/es-ES/dino/head.png'))
 
         media_exists_mock.reset_mock()
         media_exists_mock.side_effect = [False, True]
-        eq_(self._render('es-MX', 'dino/head.png'),
+        assert (
+            self._render('es-MX', 'dino/head.png') ==
             static('img/l10n/es-ES/dino/head.png'))
 
         media_exists_mock.reset_mock()
         media_exists_mock.side_effect = [False, True]
-        eq_(self._render('es', 'dino/head.png'),
+        assert (
+            self._render('es', 'dino/head.png') ==
             static('img/l10n/es-ES/dino/head.png'))
 
     def test_file_not_checked_for_default_lang(self, media_exists_mock):
         """
         Should not check filesystem for default lang, but should for others.
         """
-        eq_(self._render('en-US', 'dino/does-not-exist.png'),
+        assert (
+            self._render('en-US', 'dino/does-not-exist.png') ==
             static('img/l10n/en-US/dino/does-not-exist.png'))
-        ok_(not media_exists_mock.called)
+        assert not media_exists_mock.called
 
         self._render('is', 'dino/does-not-exist.png')
         media_exists_mock.assert_called_once_with('img', 'is', 'dino/does-not-exist.png')
@@ -145,30 +154,30 @@ class TestL10nCSS(TestCase):
     def test_dev_when_css_file_exists(self, media_exists_mock):
         """Should output a path to the CSS file if exists."""
         media_exists_mock.return_value = True
-        eq_(self._render('de'), self.markup % (self.static_url_dev, 'de'))
-        eq_(self._render('es-ES'), self.markup % (self.static_url_dev, 'es-ES'))
+        assert self._render('de') == self.markup % (self.static_url_dev, 'de')
+        assert self._render('es-ES') == self.markup % (self.static_url_dev, 'es-ES')
 
     @override_settings(DEV=True)
     def test_dev_when_css_file_missing(self, media_exists_mock):
         """Should output nothing if the CSS file is missing."""
         media_exists_mock.return_value = False
-        eq_(self._render('en-US'), '')
-        eq_(self._render('fr'), '')
+        assert self._render('en-US') == ''
+        assert self._render('fr') == ''
 
     @override_settings(DEV=False)
     @patch('django.contrib.staticfiles.storage.staticfiles_storage.base_url', static_url_prod)
     def test_prod_when_css_file_exists(self, media_exists_mock):
         """Should output a path to the CSS file if exists."""
         media_exists_mock.return_value = True
-        eq_(self._render('de'), self.markup % (self.static_url_prod, 'de'))
-        eq_(self._render('es-ES'), self.markup % (self.static_url_prod, 'es-ES'))
+        assert self._render('de') == self.markup % (self.static_url_prod, 'de')
+        assert self._render('es-ES') == self.markup % (self.static_url_prod, 'es-ES')
 
     @override_settings(DEV=False)
     def test_prod_when_css_file_missing(self, media_exists_mock):
         """Should output nothing if the CSS file is missing."""
         media_exists_mock.return_value = False
-        eq_(self._render('en-US'), '')
-        eq_(self._render('fr'), '')
+        assert self._render('en-US') == ''
+        assert self._render('fr') == ''
 
 
 class TestVideoTag(TestCase):
@@ -184,7 +193,7 @@ class TestVideoTag(TestCase):
 
     def test_empty(self):
         # No video, no output.
-        eq_(render('{{ video() }}'), '')
+        assert render('{{ video() }}') == ''
 
     def test_video(self):
         # A few common variations
@@ -192,12 +201,12 @@ class TestVideoTag(TestCase):
         doc = pq(self._render("{{ video%s }}" % str(tuple(videos))))
 
         # Tags generated?
-        eq_(doc('video').length, 1)
-        eq_(doc('video source').length, 3)
+        assert doc('video').length == 1
+        assert doc('video source').length == 3
 
         # Extensions in the right order?
         for i, ext in enumerate(('webm', 'ogv', 'mp4')):
-            ok_(doc('video source:eq(%s)' % i).attr('src').endswith(ext))
+            assert doc('video source:eq(%s)' % i).attr('src').endswith(ext)
 
     def test_prefix(self):
         # Prefix should be applied to all videos.
@@ -206,10 +215,10 @@ class TestVideoTag(TestCase):
         expected = ('http://example.com/blah/meh.ogv',
                     'http://example.com/blah/meh.mp4')
 
-        eq_(doc('video source').length, 2)
+        assert doc('video source').length == 2
 
         for i in xrange(2):
-            eq_(doc('video source:eq(%s)' % i).attr('src'), expected[i])
+            assert doc('video source:eq(%s)' % i).attr('src') == expected[i]
 
     def test_fileformats(self):
         # URLs ending in strange extensions are ignored.
@@ -218,10 +227,10 @@ class TestVideoTag(TestCase):
         videos.append('http://example.net/noextension')
         doc = pq(self._render("{{ video%s }}" % (str(tuple(videos)))))
 
-        eq_(doc('video source').length, 2)
+        assert doc('video source').length == 2
 
         for i, ext in enumerate(('webm', 'ogv')):
-            ok_(doc('video source:eq(%s)' % i).attr('src').endswith(ext))
+            assert doc('video source:eq(%s)' % i).attr('src').endswith(ext)
 
 
 @override_settings(STATIC_URL='/media/')
@@ -305,34 +314,34 @@ class TestPressBlogUrl(TestCase):
 
     def test_press_blog_url_no_locale(self):
         """No locale, fallback to default press blog"""
-        eq_(self._render(''), 'https://blog.mozilla.org/press/')
+        assert self._render('') == 'https://blog.mozilla.org/press/'
 
     def test_press_blog_url_english(self):
         """en-US locale, default press blog"""
-        eq_(self._render('en-US'), 'https://blog.mozilla.org/press/')
+        assert self._render('en-US') == 'https://blog.mozilla.org/press/'
 
     def test_press_blog_url_europe(self):
         """Major European locales have their own blog"""
-        eq_(self._render('es-ES'), 'https://blog.mozilla.org/press-es/')
-        eq_(self._render('fr'), 'https://blog.mozilla.org/press-fr/')
-        eq_(self._render('de'), 'https://blog.mozilla.org/press-de/')
-        eq_(self._render('pl'), 'https://blog.mozilla.org/press-pl/')
-        eq_(self._render('it'), 'https://blog.mozilla.org/press-it/')
-        eq_(self._render('en-GB'), 'https://blog.mozilla.org/press-uk/')
+        assert self._render('es-ES') == 'https://blog.mozilla.org/press-es/'
+        assert self._render('fr') == 'https://blog.mozilla.org/press-fr/'
+        assert self._render('de') == 'https://blog.mozilla.org/press-de/'
+        assert self._render('pl') == 'https://blog.mozilla.org/press-pl/'
+        assert self._render('it') == 'https://blog.mozilla.org/press-it/'
+        assert self._render('en-GB') == 'https://blog.mozilla.org/press-uk/'
 
     def test_press_blog_url_latam(self):
         """South American Spanishes use the es-ES blog"""
-        eq_(self._render('es-AR'), 'https://blog.mozilla.org/press-es/')
-        eq_(self._render('es-CL'), 'https://blog.mozilla.org/press-es/')
-        eq_(self._render('es-MX'), 'https://blog.mozilla.org/press-es/')
+        assert self._render('es-AR') == 'https://blog.mozilla.org/press-es/'
+        assert self._render('es-CL') == 'https://blog.mozilla.org/press-es/'
+        assert self._render('es-MX') == 'https://blog.mozilla.org/press-es/'
 
     def test_press_blog_url_brazil(self):
         """Brazilian Portuguese has its own br blog"""
-        eq_(self._render('pt-BR'), 'https://blog.mozilla.org/press-br/')
+        assert self._render('pt-BR') == 'https://blog.mozilla.org/press-br/'
 
     def test_press_blog_url_other_locale(self):
         """No blog for locale, fallback to default press blog"""
-        eq_(self._render('oc'), 'https://blog.mozilla.org/press/')
+        assert self._render('oc') == 'https://blog.mozilla.org/press/'
 
 
 @override_settings(DONATE_LINK=TEST_DONATE_LINK,
@@ -348,7 +357,8 @@ class TestDonateUrl(TestCase):
 
     def test_donate_url_no_locale(self):
         """No locale, fallback to default page"""
-        eq_(self._render('', 'mozillaorg_footer'),
+        assert (
+            self._render('', 'mozillaorg_footer') ==
             'https://donate.mozilla.org//'
             '?presets=100,50,25,15&amp;amount=50'
             '&amp;utm_source=mozilla.org&amp;utm_medium=referral'
@@ -356,7 +366,8 @@ class TestDonateUrl(TestCase):
 
     def test_donate_url_english(self):
         """en-US locale, default page"""
-        eq_(self._render('en-US', 'mozillaorg_footer'),
+        assert (
+            self._render('en-US', 'mozillaorg_footer') ==
             'https://donate.mozilla.org/en-US/'
             '?presets=100,50,25,15&amp;amount=50'
             '&amp;utm_source=mozilla.org&amp;utm_medium=referral'
@@ -364,7 +375,8 @@ class TestDonateUrl(TestCase):
 
     def test_donate_url_spanish(self):
         """es-MX locale, a localized page"""
-        eq_(self._render('es-MX', 'mozillaorg_footer'),
+        assert (
+            self._render('es-MX', 'mozillaorg_footer') ==
             'https://donate.mozilla.org/es-MX/'
             '?presets=100,50,25,15&amp;amount=15'
             '&amp;utm_source=mozilla.org&amp;utm_medium=referral'
@@ -372,7 +384,8 @@ class TestDonateUrl(TestCase):
 
     def test_donate_url_other_locale(self):
         """No page for locale, fallback to default page"""
-        eq_(self._render('pt-PT', 'mozillaorg_footer'),
+        assert (
+            self._render('pt-PT', 'mozillaorg_footer') ==
             'https://donate.mozilla.org/pt-PT/'
             '?presets=100,50,25,15&amp;amount=50'
             '&amp;utm_source=mozilla.org&amp;utm_medium=referral'
@@ -390,26 +403,26 @@ class TestFirefoxTwitterUrl(TestCase):
 
     def test_firefox_twitter_url_no_locale(self):
         """No locale, fallback to default account"""
-        eq_(self._render(''), 'https://twitter.com/firefox')
+        assert self._render('') == 'https://twitter.com/firefox'
 
     def test_firefox_twitter_url_english(self):
         """en-US locale, default account"""
-        eq_(self._render('en-US'), 'https://twitter.com/firefox')
+        assert self._render('en-US') == 'https://twitter.com/firefox'
 
     def test_firefox_twitter_url_spanish(self):
         """es-ES locale, a local account"""
-        eq_(self._render('es-ES'), 'https://twitter.com/firefox_es')
+        assert self._render('es-ES') == 'https://twitter.com/firefox_es'
 
     def test_firefox_twitter_url_portuguese(self):
         """pt-BR locale, a local account"""
-        eq_(self._render('pt-BR'), 'https://twitter.com/firefoxbrasil')
+        assert self._render('pt-BR') == 'https://twitter.com/firefoxbrasil'
 
     def test_firefox_twitter_url_other_locale(self):
         """No account for locale, fallback to default account"""
-        eq_(self._render('es-AR'), 'https://twitter.com/firefox')
-        eq_(self._render('es-CL'), 'https://twitter.com/firefox')
-        eq_(self._render('es-MX'), 'https://twitter.com/firefox')
-        eq_(self._render('pt-PT'), 'https://twitter.com/firefox')
+        assert self._render('es-AR') == 'https://twitter.com/firefox'
+        assert self._render('es-CL') == 'https://twitter.com/firefox'
+        assert self._render('es-MX') == 'https://twitter.com/firefox'
+        assert self._render('pt-PT') == 'https://twitter.com/firefox'
 
 
 @override_settings(STATIC_URL='/media/')
@@ -537,23 +550,23 @@ class TestAbsoluteURLFilter(TestCase):
     def test_image_dev(self):
         """Should return a fully qualified URL including a protocol"""
         expected = settings.CANONICAL_URL + self.static_url_dev + self.image_path
-        eq_(self._render(self.inline_template), expected)
-        eq_(self._render(self.block_template), expected)
+        assert self._render(self.inline_template) == expected
+        assert self._render(self.block_template) == expected
 
     @patch('django.contrib.staticfiles.storage.staticfiles_storage.base_url', static_url_prod)
     def test_image_prod(self):
         """Should return a fully qualified URL including a protocol"""
         expected = 'https:' + self.static_url_prod + self.image_path
-        eq_(self._render(self.inline_template), expected)
-        eq_(self._render(self.block_template), expected)
+        assert self._render(self.inline_template) == expected
+        assert self._render(self.block_template) == expected
 
     @override_settings(DEV=False)
     def test_urls(self):
         """Should return a fully qualified URL including a protocol"""
         expected = 'https://www.mozilla.org/en-US/firefox/new/'
-        eq_(misc.absolute_url('/en-US/firefox/new/'), expected)
-        eq_(misc.absolute_url('//www.mozilla.org/en-US/firefox/new/'), expected)
-        eq_(misc.absolute_url('https://www.mozilla.org/en-US/firefox/new/'), expected)
+        assert misc.absolute_url('/en-US/firefox/new/') == expected
+        assert misc.absolute_url('//www.mozilla.org/en-US/firefox/new/') == expected
+        assert misc.absolute_url('https://www.mozilla.org/en-US/firefox/new/') == expected
 
 
 class TestFirefoxIOSURL(TestCase):
@@ -571,32 +584,44 @@ class TestFirefoxIOSURL(TestCase):
 
     def test_firefox_ios_url_no_locale(self):
         """No locale, fallback to default URL"""
-        eq_(self._render(''), 'https://itunes.apple.com'
+        assert (
+            self._render('') == 'https://itunes.apple.com'
             '/app/apple-store/id989804926?pt=373246&amp;mt=8')
 
     def test_firefox_ios_url_default(self):
         """should fallback to default URL"""
-        eq_(self._render('ar'), 'https://itunes.apple.com'
+        assert (
+            self._render('ar') == 'https://itunes.apple.com'
             '/app/apple-store/id989804926?pt=373246&amp;mt=8')
-        eq_(self._render('zu'), 'https://itunes.apple.com'
+        assert (
+            self._render('zu') == 'https://itunes.apple.com'
             '/app/apple-store/id989804926?pt=373246&amp;mt=8')
 
     def test_firefox_ios_url_localized(self):
         """should return localized URL"""
-        eq_(self._render('en-US'), 'https://itunes.apple.com/us'
+        assert (
+            self._render('en-US') == 'https://itunes.apple.com/us'
             '/app/apple-store/id989804926?pt=373246&amp;mt=8')
-        eq_(self._render('es-ES'), 'https://itunes.apple.com/es'
+        assert (
+            self._render('es-ES') == 'https://itunes.apple.com/es'
             '/app/apple-store/id989804926?pt=373246&amp;mt=8')
-        eq_(self._render('ja'), 'https://itunes.apple.com/jp'
+        assert (
+            self._render('ja') == 'https://itunes.apple.com/jp'
             '/app/apple-store/id989804926?pt=373246&amp;mt=8')
 
     def test_firefox_ios_url_param(self):
         """should return default or localized URL with ct param"""
-        eq_(self._render('', 'mozorg'), 'https://itunes.apple.com'
+        assert (
+            self._render('', 'mozorg') ==
+            'https://itunes.apple.com'
             '/app/apple-store/id989804926?pt=373246&amp;mt=8&amp;ct=mozorg')
-        eq_(self._render('en-US', 'mozorg'), 'https://itunes.apple.com/us'
+        assert (
+            self._render('en-US', 'mozorg') ==
+            'https://itunes.apple.com/us'
             '/app/apple-store/id989804926?pt=373246&amp;mt=8&amp;ct=mozorg')
-        eq_(self._render('es-ES', 'mozorg'), 'https://itunes.apple.com/es'
+        assert (
+            self._render('es-ES', 'mozorg') ==
+            'https://itunes.apple.com/es'
             '/app/apple-store/id989804926?pt=373246&amp;mt=8&amp;ct=mozorg')
 
 
@@ -604,14 +629,14 @@ class TestFirefoxIOSURL(TestCase):
 
 def test_f():
     s = render('{{ "{0} : {z}"|f("a", z="b") }}')
-    eq_(s, 'a : b')
+    assert s == 'a : b'
 
 
 def test_f_unicode():
     s = render('{{ "foo {0}"|f(bar) }}', {'bar': u'bar\xe9'})
-    eq_(s, u'foo bar\xe9')
+    assert s == u'foo bar\xe9'
     s = render('{{ t|f(bar) }}', {'t': u'\xe9 {0}', 'bar': 'baz'})
-    eq_(s, u'\xe9 baz')
+    assert s == u'\xe9 baz'
 
 
 def test_f_markup():
@@ -631,7 +656,7 @@ def test_f_markup():
 
     def _check(f, v):
         s = render(template, {'fmt': f, 'val': v})
-        eq_(expect, s)
+        assert expect == s
 
     for f, v in combinations:
         yield _check, f, v
@@ -640,13 +665,13 @@ def test_f_markup():
 def test_datetime():
     time = datetime(2009, 12, 25, 10, 11, 12)
     s = render('{{ d|datetime }}', {'d': time})
-    eq_(s, 'December 25, 2009')
+    assert s == 'December 25, 2009'
 
     s = render('{{ d|datetime("%Y-%m-%d %H:%M:%S") }}', {'d': time})
-    eq_(s, '2009-12-25 10:11:12')
+    assert s == '2009-12-25 10:11:12'
 
     s = render('{{ None|datetime }}')
-    eq_(s, '')
+    assert s == ''
 
 
 def test_datetime_unicode():
@@ -659,10 +684,10 @@ def test_ifeq():
     neq_context = {'a': 1, 'b': 2}
 
     s = render('{{ a|ifeq(b, "<b>something</b>") }}', eq_context)
-    eq_(s, '<b>something</b>')
+    assert s == '<b>something</b>'
 
     s = render('{{ a|ifeq(b, "<b>something</b>") }}', neq_context)
-    eq_(s, '')
+    assert s == ''
 
 
 def test_csrf():

@@ -8,7 +8,6 @@ from django.http import Http404, HttpResponse
 from django.test import override_settings, RequestFactory
 
 from mock import patch, ANY
-from nose.tools import eq_
 
 from bedrock.mozorg.tests import TestCase
 
@@ -123,9 +122,9 @@ class TestLegalDocView(TestCase):
         view = views.LegalDocView.as_view(template_name='base.html',
                                           legal_doc_name='the_dude_exists')
         resp = view(req)
-        eq_(resp['cache-control'], 'max-age={0!s}'.format(views.CACHE_TIMEOUT))
-        eq_(resp.content, doc_value)
-        eq_(render_mock.call_args[0][2]['doc'], doc_value)
+        assert resp['cache-control'] == 'max-age={0!s}'.format(views.CACHE_TIMEOUT)
+        assert resp.content == doc_value
+        assert render_mock.call_args[0][2]['doc'] == doc_value
         lld_mock.assert_called_with('the_dude_exists', 'de')
 
     @patch.object(views, 'load_legal_doc')
@@ -145,7 +144,7 @@ class TestLegalDocView(TestCase):
                                           legal_doc_name='the_dude_exists',
                                           cache_timeout=10)
         resp = view(req)
-        eq_(resp['cache-control'], 'max-age=10')
+        assert resp['cache-control'] == 'max-age=10'
 
     @patch.object(views, 'load_legal_doc')
     @patch.object(views.l10n_utils, 'render')
@@ -168,5 +167,5 @@ class TestLegalDocView(TestCase):
 
         view = DocTestView.as_view()
         resp = view(req)
-        eq_(resp['cache-control'], 'max-age=20')
+        assert resp['cache-control'] == 'max-age=20'
         lld_mock.assert_called_with('the_dude_abides', 'es-ES')

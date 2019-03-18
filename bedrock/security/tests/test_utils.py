@@ -7,7 +7,6 @@ from cStringIO import StringIO
 
 import pytest
 from mock import patch, call
-from nose.tools import eq_
 
 from bedrock.security.utils import (
     check_hof_data,
@@ -74,12 +73,12 @@ def test_parse_front_matter():
         Let's go bowling.
     """))
     yaml, md = parse_md_front_matter(lines)
-    eq_(yaml, dedent("""\
+    assert yaml == dedent("""\
         dude: abiding
         walter: angry
         donny: oblivious
-    """))
-    eq_(md, "\nLet's go bowling.\n")
+    """)
+    assert md == "\nLet's go bowling.\n"
 
 
 def test_parse_front_matter_only():
@@ -96,14 +95,14 @@ def test_parse_front_matter_only():
         Maude's thing.
     """))
     yaml, md = parse_md_front_matter(lines)
-    eq_(yaml, 'dude: abiding\nwalter: angry\n')
-    eq_(md, "\nArt\n---\n\nMaude's thing.\n")
+    assert yaml == 'dude: abiding\nwalter: angry\n'
+    assert md == "\nArt\n---\n\nMaude's thing.\n"
 
 
 def test_mfsa_id_from_filename():
-    eq_(mfsa_id_from_filename('announce/2014/mfsa2014-01.md'), '2014-01')
-    eq_(mfsa_id_from_filename('announce/2014/mfsa2014-101.md'), '2014-101')
-    eq_(mfsa_id_from_filename('announce/2016/mfsa2016-42.yml'), '2016-42')
+    assert mfsa_id_from_filename('announce/2014/mfsa2014-01.md') == '2014-01'
+    assert mfsa_id_from_filename('announce/2014/mfsa2014-101.md') == '2014-101'
+    assert mfsa_id_from_filename('announce/2016/mfsa2016-42.yml') == '2016-42'
     assert mfsa_id_from_filename('dude.txt') is None
 
 
