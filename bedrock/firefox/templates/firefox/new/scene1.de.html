@@ -2,52 +2,57 @@
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
- {% add_lang_files "firefox/new/quantum" %}
+{% add_lang_files "firefox/new/quantum" %}
 
- {% extends "firefox/new/scene1.html" %}
+{% extends "firefox/new/scene1.html" %}
 
- {# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
- {% block extrahead %}
-   {{ super() }}
-   {{ css_bundle('firefox_new_scene1_gb_de') }}
- {% endblock %}
+{# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
+{% block extrahead %}
+{{ super() }}
+{{ css_bundle('firefox_new_scene1_gb_de') }}
+{% endblock %}
 
- {% block body_id %}firefox-new-scene1{% endblock %}
+{% block body_id %}firefox-new-scene1{% endblock %}
 
- {% block features_content %}
- <div class="features">
-   <div class="content">
-     <h3 class="features-title">Features, wie für dich gemacht.</h3>
-     <ul>
-       <li class="private">
-         <h3>Privater Modus</h3>
-         <p>Passwörter, Chronik und Cookies werden automatisch gelöscht und Ad-Tracker einfach blockiert.</p>
-       </li>
-       <li class="faster">
-         <h3>Schneller Browser</h3>
-         <p>Ist 2x schneller als vorher und verbraucht bis zu 30 % weniger RAM als Chrome. Tabs & Webseiten laden schnell wie nie.</p>
-       </li>
-       <li class="tracking">
-         <h3>Blockiert Ad-Tracking</h3>
-         <p>Keine Chance für Cookies und Co.: Blockiere Tracker von Drittanbietern, die deine Aktivitäten im Internet verfolgen wollen.</p>
-       </li>
-       <li class="password">
-         <h3>Passwort-Manager</h3>
-         <p>Passwort merken, kannst du vergessen. Lass Firefox deine Zugangsdaten und Passwörter sicher für dich speichern.</p>
-       </li>
-       <li class="sync">
-         <h3>Synchronisiere deine Geräte</h3>
-         <p>Synchronisiere Lesezeichen, sende dir Tabs aufs Smartphone und greif überall sicher auf deine Passwörter zu.</p>
-       </li>
-       <li class="switch">
-         <h3>Einfacher Umstieg</h3>
-         <p>In wenigen Minuten importiert Firefox Lesezeichen, Autovervollständigungen, Passwörter und Einstellungen aus deinem alten Browser.</p>
-       </li>
-     </ul>
-   </div>
- </div>
+{% block features_content %}
+<div class="features">
+  <div class="content">
+    <h3 class="features-title">Features, wie für dich gemacht.</h3>
+    <ul>
+      <li class="private">
+        <h3>Privater Modus</h3>
+        <p>Passwörter, Chronik und Cookies werden automatisch gelöscht und Ad-Tracker einfach blockiert.</p>
+      </li>
+      <li class="faster">
+        <h3>Schneller Browser</h3>
+        <p>Ist 2x schneller als vorher und verbraucht bis zu 30 % weniger RAM als Chrome. Tabs & Webseiten laden schnell
+          wie nie.</p>
+      </li>
+      <li class="tracking">
+        <h3>Blockiert Ad-Tracking</h3>
+        <p>Keine Chance für Cookies und Co.: Blockiere Tracker von Drittanbietern, die deine Aktivitäten im Internet
+          verfolgen wollen.</p>
+      </li>
+      <li class="password">
+        <h3>Passwort-Manager</h3>
+        <p>Passwort merken, kannst du vergessen. Lass Firefox deine Zugangsdaten und Passwörter sicher für dich
+          speichern.</p>
+      </li>
+      <li class="sync">
+        <h3>Synchronisiere deine Geräte</h3>
+        <p>Synchronisiere Lesezeichen, sende dir Tabs aufs Smartphone und greif überall sicher auf deine Passwörter zu.
+        </p>
+      </li>
+      <li class="switch">
+        <h3>Einfacher Umstieg</h3>
+        <p>In wenigen Minuten importiert Firefox Lesezeichen, Autovervollständigungen, Passwörter und Einstellungen aus
+          deinem alten Browser.</p>
+      </li>
+    </ul>
+  </div>
+</div>
 
- <section class="c-call-out-compact t-product-firefox t-dark">
+<section class="c-call-out-compact t-product-firefox t-dark">
   <div class="content">
     <div class="c-call-out-content">
       <div class="c-call-out-container">
@@ -61,4 +66,4 @@
     </div>
   </div>
 </section>
- {% endblock %}
+{% endblock %}
