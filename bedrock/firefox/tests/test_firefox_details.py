@@ -8,7 +8,6 @@ from urlparse import parse_qsl, urlparse
 from django.core.cache import caches
 
 from mock import patch, Mock
-from nose.tools import eq_, ok_
 
 from bedrock.firefox.firefox_details import FirefoxDesktop, FirefoxAndroid, FirefoxIOS
 from bedrock.mozorg.tests import TestCase
@@ -426,87 +425,87 @@ class TestFirefoxDesktop(TestCase):
         # search english
         builds = firefox_desktop.get_filtered_full_builds('release', None,
                                                           'ujara')
-        eq_(len(builds), 1)
-        eq_(builds[0]['name_en'], 'Gujarati')
+        assert len(builds) == 1
+        assert builds[0]['name_en'] == 'Gujarati'
 
         # search native
         builds = firefox_desktop.get_filtered_full_builds('release', None,
                                                           u'જરા')
-        eq_(len(builds), 1)
-        eq_(builds[0]['name_en'], 'Gujarati')
+        assert len(builds) == 1
+        assert builds[0]['name_en'] == 'Gujarati'
 
         # with a space
         builds = firefox_desktop.get_filtered_full_builds('release', None,
                                                           'british english')
-        eq_(len(builds), 1)
-        eq_(builds[0]['name_en'], 'English (British)')
+        assert len(builds) == 1
+        assert builds[0]['name_en'] == 'English (British)'
 
         # with a comma
         builds = firefox_desktop.get_filtered_full_builds('release', None,
                                                           u'French, Français')
-        eq_(len(builds), 1)
-        eq_(builds[0]['name_en'], 'French')
+        assert len(builds) == 1
+        assert builds[0]['name_en'] == 'French'
 
     def test_windows64_build(self):
         # Aurora
         builds = firefox_desktop.get_filtered_full_builds('alpha')
         url = builds[0]['platforms']['win64']['download_url']
-        eq_(parse_qsl(urlparse(url).query)[1], ('os', 'win64'))
+        assert parse_qsl(urlparse(url).query)[1] == ('os', 'win64')
 
         # Beta
         builds = firefox_desktop.get_filtered_full_builds('beta')
         url = builds[0]['platforms']['win64']['download_url']
-        eq_(parse_qsl(urlparse(url).query)[1], ('os', 'win64'))
+        assert parse_qsl(urlparse(url).query)[1] == ('os', 'win64')
 
         # Release
         builds = firefox_desktop.get_filtered_full_builds('release')
         url = builds[0]['platforms']['win64']['download_url']
-        eq_(parse_qsl(urlparse(url).query)[1], ('os', 'win64'))
+        assert parse_qsl(urlparse(url).query)[1] == ('os', 'win64')
 
         # ESR
         builds = firefox_desktop.get_filtered_full_builds('esr')
         url = builds[0]['platforms']['win64']['download_url']
-        eq_(parse_qsl(urlparse(url).query)[1], ('os', 'win64'))
+        assert parse_qsl(urlparse(url).query)[1] == ('os', 'win64')
 
     def test_linux64_build(self):
         builds = firefox_desktop.get_filtered_full_builds('release')
         url = builds[0]['platforms']['linux64']['download_url']
-        eq_(parse_qsl(urlparse(url).query)[1], ('os', 'linux64'))
+        assert parse_qsl(urlparse(url).query)[1] == ('os', 'linux64')
 
     @patch.object(firefox_desktop._storage, 'data',
                   Mock(return_value=dict(FIREFOX_ESR='24.2')))
     def test_esr_versions(self):
         """ESR versions should be dynamic based on data."""
-        eq_(firefox_desktop.esr_major_versions, [24])
-        eq_(firefox_desktop.esr_minor_versions, ['24.2'])
+        assert firefox_desktop.esr_major_versions == [24]
+        assert firefox_desktop.esr_minor_versions == ['24.2']
 
     @patch.object(firefox_desktop._storage, 'data',
                   Mock(return_value=dict(FIREFOX_ESR='24.6.0',
                                          FIREFOX_ESR_NEXT='31.0.0')))
     def test_esr_versions_prev(self):
         """ESR versions should show previous when available."""
-        eq_(firefox_desktop.esr_major_versions, [24, 31])
-        eq_(firefox_desktop.esr_minor_versions, ['24.6.0', '31.0.0'])
+        assert firefox_desktop.esr_major_versions == [24, 31]
+        assert firefox_desktop.esr_minor_versions == ['24.6.0', '31.0.0']
 
     @patch.object(firefox_desktop._storage, 'data',
                   Mock(return_value=dict(LATEST_FIREFOX_VERSION='Phoenix',
                                          FIREFOX_ESR='Albuquerque')))
     def test_esr_versions_no_latest(self):
         """ESR versions should not blow up if current version is broken."""
-        eq_(firefox_desktop.esr_major_versions, [])
-        eq_(firefox_desktop.esr_minor_versions, [])
+        assert firefox_desktop.esr_major_versions == []
+        assert firefox_desktop.esr_minor_versions == []
 
     @patch.object(firefox_desktop._storage, 'data',
                   Mock(return_value=dict(LATEST_FIREFOX_VERSION='18.0.1')))
     def test_latest_major_version(self):
         """latest_major_version should return an int of the major version."""
-        eq_(firefox_desktop.latest_major_version('release'), 18)
+        assert firefox_desktop.latest_major_version('release') == 18
 
     @patch.object(firefox_desktop._storage, 'data',
                   Mock(return_value=dict(LATEST_FIREFOX_VERSION='Phoenix')))
     def test_latest_major_version_no_int(self):
         """latest_major_version should return 0 when no int."""
-        eq_(firefox_desktop.latest_major_version('release'), 0)
+        assert firefox_desktop.latest_major_version('release') == 0
 
     @patch.dict(os.environ, FUNNELCAKE_64_LOCALES='en-US', FUNNELCAKE_64_PLATFORMS='win')
     def test_funnelcake_direct_links_en_us_win_only(self):
@@ -514,63 +513,63 @@ class TestFirefoxDesktop(TestCase):
         Ensure funnelcake params are included for Windows en-US builds only.
         """
         url = firefox_desktop.get_download_url('release', '45.0', 'win', 'en-US', force_direct=True, funnelcake_id='64')
-        ok_('product=firefox-stub-f64' in url)
+        assert 'product=firefox-stub-f64' in url
 
         url = firefox_desktop.get_download_url('release', '45.0', 'win64', 'en-US', force_direct=True, funnelcake_id='64')
-        ok_('product=firefox-stub-f64' not in url)
+        assert 'product=firefox-stub-f64' not in url
 
         url = firefox_desktop.get_download_url('release', '45.0', 'win', 'de', force_direct=True, funnelcake_id='64')
-        ok_('product=firefox-stub-f64' not in url)
+        assert 'product=firefox-stub-f64' not in url
 
         url = firefox_desktop.get_download_url('release', '45.0', 'osx', 'en-US', force_direct=True, funnelcake_id='64')
-        ok_('product=firefox-stub-f64' not in url)
+        assert 'product=firefox-stub-f64' not in url
 
     def test_no_funnelcake_direct_links_if_not_configured(self):
         """
         Ensure funnelcake params are included for Linux and OSX en-US builds only.
         """
         url = firefox_desktop.get_download_url('release', '45.0', 'win', 'en-US', force_direct=True, funnelcake_id='64')
-        ok_('-f64' not in url)
+        assert '-f64' not in url
 
         url = firefox_desktop.get_download_url('release', '45.0', 'win', 'en-US', force_direct=True, force_full_installer=True, funnelcake_id='64')
-        ok_('-f64' not in url)
+        assert '-f64' not in url
 
         url = firefox_desktop.get_download_url('release', '45.0', 'win', 'en-US', force_direct=True, force_funnelcake=True, funnelcake_id='64')
-        ok_('-f64' not in url)
+        assert '-f64' not in url
 
         url = firefox_desktop.get_download_url('release', '45.0', 'osx', 'de', force_direct=True, funnelcake_id='64')
-        ok_('-f64' not in url)
+        assert '-f64' not in url
 
         url = firefox_desktop.get_download_url('release', '45.0', 'osx', 'en-US', force_direct=True, funnelcake_id='64')
-        ok_('-f64' not in url)
+        assert '-f64' not in url
 
         url = firefox_desktop.get_download_url('release', '45.0', 'osx', 'fr', force_direct=True, funnelcake_id='64')
-        ok_('-f64' not in url)
+        assert '-f64' not in url
 
         url = firefox_desktop.get_download_url('release', '45.0', 'linux', 'de', force_direct=True, funnelcake_id='64')
-        ok_('-f64' not in url)
+        assert '-f64' not in url
 
         url = firefox_desktop.get_download_url('release', '45.0', 'linux', 'en-US', force_direct=True, funnelcake_id='64')
-        ok_('-f64' not in url)
+        assert '-f64' not in url
 
         url = firefox_desktop.get_download_url('release', '45.0', 'linux', 'fr', force_direct=True, funnelcake_id='64')
-        ok_('-f64' not in url)
+        assert '-f64' not in url
 
     def test_stub_installer_win_only(self):
         """
         Ensure that builds not in the setting don't get stub.
         """
         url = firefox_desktop.get_download_url('release', '19.0', 'osx', 'en-US')
-        ok_('product=firefox-stub&' not in url)
+        assert 'product=firefox-stub&' not in url
 
         url = firefox_desktop.get_download_url('beta', '20.0b4', 'win', 'fr')
-        ok_('product=firefox-beta-stub&' in url)
+        assert 'product=firefox-beta-stub&' in url
 
         url = firefox_desktop.get_download_url('beta', '20.0b4', 'win64', 'fr')
-        ok_('product=firefox-beta-stub&' in url)
+        assert 'product=firefox-beta-stub&' in url
 
         url = firefox_desktop.get_download_url('beta', '20.0b4', 'linux', 'fr')
-        ok_('product=firefox-beta-stub&' not in url)
+        assert 'product=firefox-beta-stub&' not in url
 
 
 class TestFirefoxAndroid(TestCase):
@@ -582,13 +581,13 @@ class TestFirefoxAndroid(TestCase):
                   Mock(return_value=dict(version='22.0.1')))
     def test_latest_release_version(self):
         """latest_version should return the latest release version."""
-        eq_(firefox_android.latest_version('release'), '22.0.1')
+        assert firefox_android.latest_version('release') == '22.0.1'
 
     @patch.object(firefox_android._storage, 'data',
                   Mock(return_value=dict(beta_version='23.0')))
     def test_latest_beta_version(self):
         """latest_version should return the latest beta version."""
-        eq_(firefox_android.latest_version('beta'), '23.0')
+        assert firefox_android.latest_version('beta') == '23.0'
 
     def test_get_download_url_nightly(self):
         """
@@ -596,9 +595,11 @@ class TestFirefoxAndroid(TestCase):
         'org.mozilla.fennec_aurora' product regardless of the architecture type,
         if the force_direct option is unspecified.
         """
-        ok_(firefox_android.get_download_url('nightly', 'arm')
+        assert (
+            firefox_android.get_download_url('nightly', 'arm')
             .startswith(self.google_play_url_base + 'fennec_aurora'))
-        ok_(firefox_android.get_download_url('nightly', 'x86')
+        assert (
+            firefox_android.get_download_url('nightly', 'x86')
             .startswith(self.google_play_url_base + 'fennec_aurora'))
 
     @patch.object(firefox_android._storage, 'data',
@@ -609,10 +610,12 @@ class TestFirefoxAndroid(TestCase):
         on the architecture type, if the force_direct option is True. The ARM
         build URL should have api-15 instead of api-16.
         """
-        eq_(firefox_android.get_download_url('nightly', 'arm', 'multi', True),
+        assert (
+            firefox_android.get_download_url('nightly', 'arm', 'multi', True) ==
             self.archive_url_base + 'latest-mozilla-central-android-api-15/'
             'fennec-55.0a1.multi.android-arm.apk')
-        eq_(firefox_android.get_download_url('nightly', 'x86', 'multi', True),
+        assert (
+            firefox_android.get_download_url('nightly', 'x86', 'multi', True) ==
             self.archive_url_base + 'latest-mozilla-central-android-x86/'
             'fennec-55.0a1.multi.android-i386.apk')
 
@@ -623,10 +626,12 @@ class TestFirefoxAndroid(TestCase):
         get_download_url should return a mozilla-central archive link depending
         on the architecture type, if the force_direct option is True.
         """
-        eq_(firefox_android.get_download_url('nightly', 'arm', 'multi', True),
+        assert (
+            firefox_android.get_download_url('nightly', 'arm', 'multi', True) ==
             self.archive_url_base + 'latest-mozilla-central-android-api-16/'
             'fennec-56.0a1.multi.android-arm.apk')
-        eq_(firefox_android.get_download_url('nightly', 'x86', 'multi', True),
+        assert (
+            firefox_android.get_download_url('nightly', 'x86', 'multi', True) ==
             self.archive_url_base + 'latest-mozilla-central-android-x86/'
             'fennec-56.0a1.multi.android-i386.apk')
 
@@ -636,9 +641,11 @@ class TestFirefoxAndroid(TestCase):
         'org.mozilla.firefox_beta' product regardless of the architecture type,
         if the force_direct option is unspecified.
         """
-        ok_(firefox_android.get_download_url('beta', 'arm')
+        assert (
+            firefox_android.get_download_url('beta', 'arm')
             .startswith(self.google_play_url_base + 'firefox_beta'))
-        ok_(firefox_android.get_download_url('beta', 'x86')
+        assert (
+            firefox_android.get_download_url('beta', 'x86')
             .startswith(self.google_play_url_base + 'firefox_beta'))
 
     def test_get_download_url_beta_direct(self):
@@ -661,9 +668,11 @@ class TestFirefoxAndroid(TestCase):
         'org.mozilla.firefox' product regardless of the architecture type,
         if the force_direct option is unspecified.
         """
-        ok_(firefox_android.get_download_url('release', 'arm')
+        assert (
+            firefox_android.get_download_url('release', 'arm')
             .startswith(self.google_play_url_base + 'firefox'))
-        ok_(firefox_android.get_download_url('release', 'x86')
+        assert (
+            firefox_android.get_download_url('release', 'x86')
             .startswith(self.google_play_url_base + 'firefox'))
 
     def test_get_download_url_release_direct(self):
@@ -687,8 +696,8 @@ class TestFirefoxIos(TestCase):
 
     def test_latest_release_version(self):
         """latest_version should return the latest release version."""
-        eq_(firefox_ios.latest_version('release'), '5.0')
+        assert firefox_ios.latest_version('release') == '5.0'
 
     def test_latest_beta_version(self):
         """latest_version should return the latest beta version."""
-        eq_(firefox_ios.latest_version('beta'), '6.0')
+        assert firefox_ios.latest_version('beta') == '6.0'

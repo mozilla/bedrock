@@ -8,10 +8,9 @@ from django.test import RequestFactory, override_settings
 from django_jinja.backend import Jinja2
 from jinja2.nodes import Block
 from mock import patch, ANY, Mock
-from nose.plugins.skip import SkipTest
-from nose.tools import eq_, ok_
 from pathlib2 import Path
 from pyquery import PyQuery as pq
+import pytest
 
 from lib.l10n_utils import render
 from bedrock.mozorg.tests import TestCase
@@ -48,8 +47,8 @@ class TestTransBlocks(TestCase):
         doc = pq(response.content)
         gettext_call = doc('h1')
         trans_block = doc('p')
-        eq_(gettext_call.text(), 'Die Lage von Mozilla')
-        ok_(trans_block.text().startswith('Mozillas Vision des Internets ist'))
+        assert gettext_call.text() == 'Die Lage von Mozilla'
+        assert trans_block.text().startswith('Mozillas Vision des Internets ist')
 
     def test_trans_block_works_reload(self):
         """
@@ -74,24 +73,25 @@ class TestTemplateLangFiles(TestCase):
         # make a dummy object capable of having arbitrary attrs assigned
         request = type('request', (), {})()
         template.render({'request': request})
-        eq_(request.langfiles, ['dude', 'walter', 'navigation',
-                                'download_button', 'main'])
+        assert request.langfiles == [
+            'dude', 'walter', 'navigation', 'download_button', 'main']
 
+    @pytest.mark.skip(
+        reason='does not pick up the files from the parent. captured in '
+        'bug 797984.')
     def test_added_lang_files_inheritance(self):
         """
         Lang files specified in the template should be added to the defaults
         and any specified in parent templates.
         """
-        raise SkipTest
         # TODO fix this. it is broken. hence the skip.
-        #      does not pick up the files from the parent.
-        #      captured in bug 797984.
         template = jinja_env.get_template('even_more_lang_files.html')
         # make a dummy object capable of having arbitrary attrs assigned
         request = type('request', (), {})()
         template.render(request=request)
-        eq_(request.langfiles, ['donnie', 'smokey', 'jesus', 'dude', 'walter',
-                                'main', 'download_button'])
+        assert request.langfiles == [
+            'donnie', 'smokey', 'jesus', 'dude', 'walter', 'main',
+            'download_button']
 
     @patch('lib.l10n_utils.settings.DEV', True)
     @patch('lib.l10n_utils.templatetags.helpers.translate')

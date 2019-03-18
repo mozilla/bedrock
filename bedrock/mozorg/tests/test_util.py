@@ -14,7 +14,6 @@ import fxa.constants
 import fxa.errors
 
 from mock import ANY, Mock, patch
-from nose.tools import ok_, eq_
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.mozorg.util import (
@@ -63,7 +62,7 @@ class TestGetFacebookLikeLocale(TestCase):
         """
         Return the given locale if supported.
         """
-        eq_(get_fb_like_locale('en-PI'), 'en_PI')
+        assert get_fb_like_locale('en-PI') == 'en_PI'
 
     def test_first_supported_locale_for_language(self):
         """
@@ -71,13 +70,13 @@ class TestGetFacebookLikeLocale(TestCase):
         the supported locales and return the first one that
         matches the language.
         """
-        eq_(get_fb_like_locale('es-AR'), 'es_ES')
+        assert get_fb_like_locale('es-AR') == 'es_ES'
 
     def test_unsupported_locale(self):
         """
         Return the default en_US when locale isn't supported.
         """
-        eq_(get_fb_like_locale('zz-ZZ'), 'en_US')
+        assert get_fb_like_locale('zz-ZZ') == 'en_US'
 
 
 @patch('bedrock.mozorg.util.django_render')
@@ -91,7 +90,7 @@ class TestPageUtil(TestCase):
         """A url with a prefix in SUPPORTED_NONLOCALES should use normal render."""
         url = page('dude/abides', 'dude/abides.html', donny='alive')
         url.callback(self.rf.get('/dude/abides/'))
-        ok_(not l10n_mock.render.called)
+        assert not l10n_mock.render.called
         djrender_mock.assert_called_with(ANY, 'dude/abides.html', {'urlname': 'dude.abides',
                                                                    'donny': 'alive'})
 
@@ -100,7 +99,7 @@ class TestPageUtil(TestCase):
         """A url with a prefix not in SUPPORTED_NONLOCALES should use l10n render."""
         url = page('walter/abides', 'walter/abides.html', donny='ashes')
         url.callback(self.rf.get('/walter/abides/'))
-        ok_(not djrender_mock.called)
+        assert not djrender_mock.called
         l10n_mock.render.assert_called_with(ANY, 'walter/abides.html', {'urlname': 'walter.abides',
                                                                         'donny': 'ashes'})
 
@@ -109,7 +108,7 @@ class TestPageUtil(TestCase):
         """The final URL is what should be tested against the setting."""
         url = page('abides', 'abides.html', donny='alive')
         url.callback(self.rf.get('/dude/abides/'))
-        ok_(not l10n_mock.render.called)
+        assert not l10n_mock.render.called
         djrender_mock.assert_called_with(ANY, 'abides.html', {'urlname': 'abides',
                                                               'donny': 'alive'})
 
@@ -118,19 +117,19 @@ class TestPageUtil(TestCase):
         """Make sure the home page still works. "/" is a special case."""
         url = page('', 'index.html')
         url.callback(self.rf.get('/'))
-        ok_(not djrender_mock.called)
+        assert not djrender_mock.called
         l10n_mock.render.assert_called_with(ANY, 'index.html', {'urlname': 'index'})
 
     def test_url_name_set_from_template(self, l10n_mock, djrender_mock):
         """If not provided the URL pattern name should be set from the template path."""
         url = page('lebowski/urban_achievers', 'lebowski/achievers.html')
-        eq_(url.name, 'lebowski.achievers')
+        assert url.name == 'lebowski.achievers'
 
     def test_url_name_set_from_param(self, l10n_mock, djrender_mock):
         """If provided the URL pattern name should be set from the parameter."""
         url = page('lebowski/urban_achievers', 'lebowski/achievers.html',
                    url_name='proud.we.are.of.all.of.them')
-        eq_(url.name, 'proud.we.are.of.all.of.them')
+        assert url.name == 'proud.we.are.of.all.of.them'
 
 
 @override_settings(FXA_OAUTH_SERVER_ENV='stable')
@@ -165,7 +164,7 @@ class FxAOauthTests(TestCase):
         gfc_mock.return_value = oauth_mock, None
         trade_code = oauth_mock.trade_code
         trade_code.return_value = {'access_token': 'goodtoken'}
-        eq_(get_fxa_oauth_token('abc123'), 'goodtoken')
+        assert get_fxa_oauth_token('abc123') == 'goodtoken'
         trade_code.assert_called_with('abc123', client_id='12345', client_secret='67890')
 
     def test_get_fxa_profile_email_error(self, gfc_mock):
@@ -181,7 +180,7 @@ class FxAOauthTests(TestCase):
         gfc_mock.return_value = None, profile_mock
         get_email = profile_mock.get_email
         get_email.return_value = 'maude@example.com'
-        eq_(get_email('ralphs-card'), 'maude@example.com')
+        assert get_email('ralphs-card') == 'maude@example.com'
         get_email.assert_called_with('ralphs-card')
 
 
@@ -213,8 +212,8 @@ class FxARSVPTests(TestCase):
         })
 
     def test_basket_success(self):
-        assert fxa_concert_rsvp('thedude@example.com', True) == True
+        assert fxa_concert_rsvp('thedude@example.com', True)
 
     def test_basket_failure(self):
         self.mock_rsvp.side_effect = basket.BasketException
-        assert fxa_concert_rsvp('thedude@example.com', True) == False
+        assert not fxa_concert_rsvp('thedude@example.com', True)

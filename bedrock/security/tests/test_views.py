@@ -3,7 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from mock import patch
-from nose.tools import eq_, ok_
 from product_details import product_details
 from product_details.version_compare import Version
 
@@ -16,19 +15,19 @@ from bedrock.security.views import ProductView, ProductVersionView, product_is_o
                                                     'FIREFOX_ESR': '31.2.0'})
 @patch.object(product_details, 'thunderbird_versions', {'LATEST_THUNDERBIRD_VERSION': '31.2.0'})
 def test_product_is_obsolete():
-    ok_(product_is_obsolete('firefox', '3.6'))
-    ok_(product_is_obsolete('firefox', '32'))
-    ok_(product_is_obsolete('firefox-esr', '17.0'))
-    ok_(product_is_obsolete('thunderbird', '30'))
-    ok_(product_is_obsolete('seamonkey', '2.0'))
-    ok_(product_is_obsolete('seamonkey', '2.19'))
-    ok_(product_is_obsolete('other-things', '3000'))
+    assert product_is_obsolete('firefox', '3.6')
+    assert product_is_obsolete('firefox', '32')
+    assert product_is_obsolete('firefox-esr', '17.0')
+    assert product_is_obsolete('thunderbird', '30')
+    assert product_is_obsolete('seamonkey', '2.0')
+    assert product_is_obsolete('seamonkey', '2.19')
+    assert product_is_obsolete('other-things', '3000')
 
-    ok_(not product_is_obsolete('firefox', '33.0.2'))
-    ok_(not product_is_obsolete('firefox', '34.0'))
-    ok_(not product_is_obsolete('firefox-esr', '31.0'))
-    ok_(not product_is_obsolete('thunderbird', '31'))
-    ok_(not product_is_obsolete('seamonkey', '2.30'))
+    assert not product_is_obsolete('firefox', '33.0.2')
+    assert not product_is_obsolete('firefox', '34.0')
+    assert not product_is_obsolete('firefox-esr', '31.0')
+    assert not product_is_obsolete('thunderbird', '31')
+    assert not product_is_obsolete('seamonkey', '2.30')
 
 
 class TestViews(TestCase):
@@ -73,8 +72,8 @@ class TestKVRedirects(TestCase):
         # old urls lack '/en-US' prefix, but that will be the first redirect.
         path = '/en-US/security/known-vulnerabilities/{0}.html'.format(url_component)
         resp = self.client.get(path)
-        eq_(resp.status_code, 301)
-        eq_(expected, resp['Location'].split('/')[-2])
+        assert resp.status_code == 301
+        assert expected == resp['Location'].split('/')[-2]
 
     def test_correct_redirects(self):
         self._test_names('firefox', 'firefox')
@@ -97,15 +96,15 @@ class TestKVRedirects(TestCase):
         """
         path = '/en-US/security/known-vulnerabilities/the-dude-abides-15.html'
         resp = self.client.get(path)
-        eq_(resp.status_code, 410)
+        assert resp.status_code == 410
 
 
 class TestOldAdvisories(TestCase):
     def _test_redirect(self, path, expected):
         # old urls lack '/en-US' prefix, but that will be the first redirect.
         resp = self.client.get('/en-US' + path)
-        eq_(resp.status_code, 301)
-        ok_(resp['Location'].endswith(expected))
+        assert resp.status_code == 301
+        assert resp['Location'].endswith(expected)
 
     def test_old_urls(self):
         """Should redirect old URLs properly."""
