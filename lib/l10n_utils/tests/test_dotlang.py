@@ -30,13 +30,19 @@ TEMPLATE_DIRS = [str(ROOT_PATH.joinpath('templates'))]
 jinja_env = Jinja2.get_default().env
 
 
-@override_settings(DEV=False, LANGUAGE_CODE='en-US')
+@override_settings(
+    DEV=False,
+    ROOT_URLCONF='lib.l10n_utils.tests.test_files.urls',
+    ROOT=ROOT,
+    LANGUAGE_CODE='en-US',   # Triggers reset of Django's language cache
+)
 @patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
-@patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
-@patch.object(settings, 'ROOT', ROOT)
 class TestLangFilesActivation(TestCase):
     def setUp(self):
         clear_url_caches()
+        cache.clear()
+
+    def tearDown(self):
         cache.clear()
 
     def test_lang_file_is_active(self):
@@ -106,6 +112,9 @@ class TestDotlang(TestCase):
     def setUp(self):
         cache.clear()
         clear_url_caches()
+
+    def tearDown(self):
+        cache.clear()
 
     def test_parse(self):
         path = str(ROOT_PATH.joinpath('test.lang'))
@@ -193,8 +202,13 @@ class TestDotlang(TestCase):
             FORMAT_IDENTIFIER_RE.findall('%(foo_bar)s %s') ==
             [('%(foo_bar)s', 'foo_bar'), ('%s', '')])
 
-    @override_settings(ROOT=ROOT, EMAIL_SUBJECT_PREFIX='[bedrock] ',
-                       MANAGERS=('dude@example.com',))
+    @override_settings(
+        DEV=False,
+        ROOT=ROOT,
+        LANGUAGE_CODE='en-US',   # Triggers reset of Django's language cache
+        EMAIL_SUBJECT_PREFIX='[bedrock] ',
+        MANAGERS=('dude@example.com',),
+    )
     def test_format_identifier_mismatch(self):
         path = 'format_identifier_mismatch'
         expected = '%(foo)s is the new %s'
@@ -207,7 +221,11 @@ class TestDotlang(TestCase):
             '[bedrock] locale/fr/%s.lang is corrupted' % path)
         mail.outbox = []
 
-    @patch.object(settings, 'ROOT', ROOT)
+    @override_settings(
+        DEV=False,
+        ROOT=ROOT,
+        LANGUAGE_CODE='en-US',   # Triggers reset of Django's language cache
+    )
     def test_format_identifier_order(self):
         """
         Test that the order in which the format identifier appears doesn't
@@ -221,8 +239,11 @@ class TestDotlang(TestCase):
         assert len(mail.outbox) == 0
 
     @patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
-    @patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
-    @patch.object(settings, 'ROOT', ROOT)
+    @override_settings(
+        ROOT_URLCONF='lib.l10n_utils.tests.test_files.urls',
+        ROOT=ROOT,
+        LANGUAGE_CODE='en-US',   # Triggers reset of Django's language cache
+    )
     def test_lang_files_queried_in_order(self):
         """The more specific lang files should be searched first."""
         response = self.client.get('/de/trans-block-reload-test/')
@@ -230,7 +251,11 @@ class TestDotlang(TestCase):
         gettext_call = doc('h1')
         assert gettext_call.text() == 'Die Lage von Mozilla'
 
-    @patch.object(settings, 'ROOT', ROOT)
+    @override_settings(
+        DEV=False,
+        ROOT=ROOT,
+        LANGUAGE_CODE='en-US',   # Triggers reset of Django's language cache
+    )
     def test_extract_message_tweaks_do_not_break(self):
         """
         Extraction and translation matching should tweak msgids the same.
@@ -405,9 +430,20 @@ class TestDotlang(TestCase):
 
 
 @patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
-@patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
-@patch.object(settings, 'ROOT', ROOT)
+@override_settings(
+    DEV=False,
+    ROOT_URLCONF='lib.l10n_utils.tests.test_files.urls',
+    ROOT=ROOT,
+    LANGUAGE_CODE='en-US',   # Triggers reset of Django's language cache
+)
 class TestTranslationList(TestCase):
+    def setUp(self):
+        clear_url_caches()
+        cache.clear()
+
+    def tearDown(self):
+        cache.clear()
+
     def _test(self, lang, view_name):
         """
         The context of each view should have the 'links' dictionary which
@@ -419,7 +455,7 @@ class TestTranslationList(TestCase):
         template = view_name.replace('-', '_') + '.html'
         with patch('lib.l10n_utils.django_render') as django_render:
             render(request, template, {})
-        translations = django_render.call_args[0][2]['translations']
+            translations = django_render.call_args[0][2]['translations']
 
         # The en-US locale is always active
         assert translations['en-US'] == product_details.languages['en-US']['native']
