@@ -502,6 +502,10 @@ REASONS = [
 ]
 
 
+def _post_or_get(request, value, default=None):
+    return request.POST.get(value, request.GET.get(value, default))
+
+
 def updated(request):
     """View that users come to after submitting on the `existing`
     or `updated` pages.
@@ -514,8 +518,7 @@ def updated(request):
     all.
 
     """
-
-    unsub = request.REQUEST.get('unsub', '0')
+    unsub = _post_or_get(request, 'unsub', '0')
     try:
         unsub = int(unsub)
     except ValueError:
@@ -527,7 +530,7 @@ def updated(request):
     reasons_submitted = unsub == UNSUB_REASONS_SUBMITTED
 
     # Token might also have been passed (on remove_all only)
-    token = request.REQUEST.get('token', None)
+    token = _post_or_get(request, 'token', None)
     # token must be a UUID
     if token is not None and not UUID_REGEX.match(token):
         token = None
@@ -544,10 +547,10 @@ def updated(request):
         # paste together the English versions of the reasons they submitted,
         # so we can read them.  (Well, except for the free-form reason.)
         for i, reason in enumerate(REASONS):
-            if 'reason%d' % i in request.REQUEST:
+            if _post_or_get(request, 'reason%d' % i):
                 reasons.append(unicode(reason))
-        if 'reason-text-p' in request.REQUEST:
-            reasons.append(request.REQUEST.get('reason-text', ''))
+        if _post_or_get(request, 'reason-text-p'):
+            reasons.append(_post_or_get(request, 'reason-text', ''))
 
         reason_text = "\n\n".join(reasons) + "\n\n"
 
