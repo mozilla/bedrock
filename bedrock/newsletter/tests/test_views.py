@@ -24,19 +24,6 @@ from bedrock.newsletter.views import (
 )
 
 
-def assert_redirect(response, url):
-    """
-    Assert that the response indicates a redirect to the url.
-    """
-    # This is like Django TestCase's assertRedirect, only we're not
-    # using Django TestCase due to our lack of a database, so we
-    # need to fake our own.
-
-    assert url == response['Location'],\
-        "Response did not redirect to %s; Location=%s" % \
-        (url, response['Location'])
-
-
 class TestViews(TestCase):
     def setUp(self):
         self.rf = RequestFactory()
@@ -273,7 +260,7 @@ class TestExistingNewsletterView(TestCase):
         self.assertEqual(0, basket_patches['subscribe'].call_count)
         # Should redirect to the 'updated' view
         url = reverse('newsletter.updated')
-        assert_redirect(rsp, url)
+        assert rsp['Location'] == url
 
     @patch('bedrock.newsletter.utils.get_newsletters')
     def test_unsubscribing(self, get_newsletters, mock_basket_request):
@@ -302,7 +289,7 @@ class TestExistingNewsletterView(TestCase):
         self.assertEqual(0, basket_patches['unsubscribe'].call_count)
         # Should redirect to the 'updated' view
         url = reverse('newsletter.updated')
-        assert_redirect(rsp, url)
+        assert rsp['Location'] == url
 
     @patch('bedrock.newsletter.utils.get_newsletters')
     def test_remove_all(self, get_newsletters, mock_basket_request):
@@ -329,7 +316,7 @@ class TestExistingNewsletterView(TestCase):
         # Should redirect to the 'updated' view with unsub=1 and token
         url = reverse('newsletter.updated') + "?unsub=1"
         url += "&token=%s" % self.token
-        assert_redirect(rsp, url)
+        assert rsp['Location'] == url
 
     @patch('bedrock.newsletter.utils.get_newsletters')
     def test_change_lang_country(self, get_newsletters, mock_basket_request):
@@ -368,7 +355,7 @@ class TestExistingNewsletterView(TestCase):
                          msg=repr(add_msg.call_args_list))
         # Should redirect to the 'updated' view
         url = reverse('newsletter.updated')
-        assert_redirect(rsp, url)
+        assert rsp['Location'] == url
 
     @patch('bedrock.newsletter.utils.get_newsletters')
     def test_newsletter_ordering(self, get_newsletters, mock_basket_request):
@@ -493,7 +480,7 @@ class TestSetCountryView(TestCase):
 
         self.assertEqual(302, rsp.status_code)
         basket_mock.assert_called_with('post', 'user-meta', data={'country': 'gb'}, token=self.token)
-        assert_redirect(rsp, reverse('newsletter.country_success'))
+        assert rsp['Location'] == reverse('newsletter.country_success')
 
     @patch('basket.request')
     @patch('bedrock.newsletter.views.messages')

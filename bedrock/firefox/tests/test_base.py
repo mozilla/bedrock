@@ -438,15 +438,14 @@ class FxVersionRedirectsMixin(object):
         response = self.client.get(self.url, HTTP_USER_AGENT=ua)
         assert response.status_code == status_code
         assert response['Cache-Control'] == 'max-age=0'
-        (response['Location'],
-            'http://testserver%s' % reverse(url_name))
+        assert response['Location'] == reverse(url_name)
 
         # An additional redirect test with a query string
         query = '?ref=getfirefox'
         response = self.client.get(self.url + query, HTTP_USER_AGENT=ua)
         assert response.status_code == status_code
         assert response['Cache-Control'] == 'max-age=0'
-        assert response['Location'] == 'http://testserver%s' % reverse(url_name) + query
+        assert response['Location'] == reverse(url_name) + query
 
     def test_non_firefox(self):
         """
