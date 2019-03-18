@@ -4,29 +4,22 @@ from django.test import TestCase
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
+import pytest
 from bedrock.base.urlresolvers import find_supported, reverse, split_path, Prefixer
 from mock import patch, Mock
 
 
-# split_path tests use a test generator, which cannot be used inside of a
-# TestCase class
-def test_split_path():
-    testcases = [
-        # Basic
-        ('en-US/some/action', ('en-US', 'some/action')),
-        # First slash doesn't matter
-        ('/en-US/some/action', ('en-US', 'some/action')),
-        # Nor does capitalization
-        ('En-uS/some/action', ('en-US', 'some/action')),
-        # Unsupported languages return a blank language
-        ('unsupported/some/action', ('', 'unsupported/some/action')),
-    ]
-
-    for tc in testcases:
-        yield check_split_path, tc[0], tc[1]
-
-
-def check_split_path(path, result):
+@pytest.mark.parametrize('path, result', [
+    # Basic
+    ('en-US/some/action', ('en-US', 'some/action')),
+    # First slash doesn't matter
+    ('/en-US/some/action', ('en-US', 'some/action')),
+    # Nor does capitalization
+    ('En-uS/some/action', ('en-US', 'some/action')),
+    # Unsupported languages return a blank language
+    ('unsupported/some/action', ('', 'unsupported/some/action')),
+])
+def test_split_path(path, result):
     res = split_path(path)
     assert res == result
 
