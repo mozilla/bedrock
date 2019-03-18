@@ -128,6 +128,16 @@ class TestPrefixer(TestCase):
         prefixer = Prefixer(request)
         assert prefixer.get_best_language('de') is None
 
+    @override_settings(LANGUAGE_URL_MAP={'en-us': 'en-US'})
+    def test_get_best_language_handles_parse_accept_lang_header_error(self):
+        """
+        Should return None despite error raised by bug described in
+        https://code.djangoproject.com/ticket/21078
+        """
+        request = self.factory.get('/')
+        prefixer = Prefixer(request)
+        assert prefixer.get_best_language('en; q=1,') is None
+
     @override_settings(LANGUAGE_URL_MAP={'en-ar': 'en-AR', 'en-gb': 'en-GB', 'en-us': 'en-US'},
                        CANONICAL_LOCALES={'en': 'en-US'})
     def test_prefixer_with_non_supported_locale(self):

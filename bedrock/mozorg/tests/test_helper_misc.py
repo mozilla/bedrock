@@ -641,20 +641,25 @@ def test_f_unicode():
 
 def test_f_markup():
     format_string = 'Hello <b>{0}</b>'
+    format_markup = Markup(format_string)
     val_string = '<em>Steve</em>'
+    val_markup = Markup(val_string)
+    template = '{{ fmt|f(val) }}'
     expect = 'Hello &lt;b&gt;&lt;em&gt;Steve&lt;/em&gt;&lt;/b&gt;'
 
-    def markup_render(f, v):
-        return render('{{ fmt|f(val) }}', {'fmt': f, 'val': v})
+    combinations = (
+        (format_string, val_string),
+        (format_string, val_markup),
+        (format_markup, val_string),
+        (format_markup, val_markup),
+    )
 
-    assert markup_render(format_string, val_string) == expect
+    def _check(f, v):
+        s = render(template, {'fmt': f, 'val': v})
+        assert expect == s
 
-    format_markup = Markup(format_string)
-    val_markup = Markup(val_string)
-
-    assert markup_render(format_string, val_markup) == expect
-    assert markup_render(format_markup, val_string) == expect
-    assert markup_render(format_markup, val_markup) == expect
+    for f, v in combinations:
+        yield _check, f, v
 
 
 def test_datetime():

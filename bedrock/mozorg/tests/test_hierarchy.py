@@ -202,8 +202,9 @@ class TestPageNode(TestCase):
 
 
 class TestPageRoot(TestCase):
+    @patch('bedrock.mozorg.hierarchy.patterns')
     @patch.object(PageNode, 'page')
-    def test_as_urlpatterns(self, page):
+    def test_as_urlpatterns(self, page, patterns):
         """
         as_urlpatterns should return a urlconf with the pages for all the nodes
         included in the tree.
@@ -214,11 +215,14 @@ class TestPageRoot(TestCase):
         root = PageRoot('root', path='badsbi', template='fake3.html',
                         children=[parent])
 
+        patterns.return_value = 'asdf'
         # Mocking properties
         page.__get__ = lambda mock, self, cls: self.display_name
 
-        args = root.as_urlpatterns()
+        assert root.as_urlpatterns() == 'asdf'
 
+        args = patterns.call_args[0]
+        assert args[0] == ''
         assert 'child1' in args
         assert 'child2' in args
         assert 'root' in args
