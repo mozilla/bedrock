@@ -68,6 +68,10 @@ https://github.com/tweepy/tweepy/archive/3941489457db86710b770bc120409d6947904af
 django-extensions==2.1.6 \
     --hash=sha256:109004f80b6f45ad1f56addaa59debca91d94aa0dc1cb19678b9364b4fe9b6f4 \
     --hash=sha256:307766e5e6c1caffe76c5d99239d8115d14ae3f7cab2cd991fcffd763dad904b
+typing==3.6.6 \
+    --hash=sha256:a4c8473ce11a65999c8f59cb093e70686b6c84c98df58c1dae9b3b196089858a \
+    --hash=sha256:57dcf675a99b74d64dacf6fba08fb17cf7e3d5fdff53d4a30ea2a5e7e52543d4 \
+    --hash=sha256:4027c5f6127a6267a435201981ba156de91ad0d1d98e9ddc2aa173453453492d
 https://github.com/jsocol/bleach/archive/f9fc1c5e70463d5ca91efaa6f19f82d56ff346d8.tar.gz#egg=bleach \
     --hash=sha256:f0eef193d7937cc993f8a04a1df39fac71d0bbaff613be67bcba57bf35b88936
 https://github.com/aleray/mdx_outline/archive/41e22622a17a0d8e410bd921698ec767213a6305.tar.gz#egg=mdx_outline \
