@@ -13,7 +13,6 @@ from django.test.client import RequestFactory
 
 import querystringsafe_base64
 from mock import patch, ANY
-from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
 from bedrock.firefox import views
@@ -277,24 +276,24 @@ class TestSendToDeviceView(TestCase):
         req = RequestFactory().post('/', data)
         req.locale = locale
         resp = views.send_to_device_ajax(req)
-        eq_(resp.status_code, expected_status)
+        assert resp.status_code == expected_status
         return json.loads(resp.content)
 
     def test_phone_or_email_required(self):
         resp_data = self._request({
             'platform': 'android',
         })
-        ok_(not resp_data['success'])
-        ok_('phone-or-email' in resp_data['errors'])
-        ok_(not self.mock_send_sms.called)
-        ok_(not self.mock_subscribe.called)
+        assert not resp_data['success']
+        assert 'phone-or-email' in resp_data['errors']
+        assert not self.mock_send_sms.called
+        assert not self.mock_subscribe.called
 
     def test_send_android_sms(self):
         resp_data = self._request({
             'platform': 'android',
             'phone-or-email': '5558675309',
         })
-        ok_(resp_data['success'])
+        assert resp_data['success']
         self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
             'mobile_number': '5558675309',
             'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['android'],
@@ -306,7 +305,7 @@ class TestSendToDeviceView(TestCase):
             'platform': 'android',
             'phone-or-email': '015558675309',
         }, locale='de')
-        ok_(resp_data['success'])
+        assert resp_data['success']
         self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
             'mobile_number': '015558675309',
             'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['android'],
@@ -319,7 +318,7 @@ class TestSendToDeviceView(TestCase):
             'phone-or-email': '5558675309',
             'country': 'de',
         })
-        ok_(resp_data['success'])
+        assert resp_data['success']
         self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
             'mobile_number': '5558675309',
             'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['android'],
@@ -333,7 +332,7 @@ class TestSendToDeviceView(TestCase):
             'phone-or-email': '5558675309',
             'country': 'X2',
         })
-        ok_(resp_data['success'])
+        assert resp_data['success']
         self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
             'mobile_number': '5558675309',
             'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['android'],
@@ -345,7 +344,7 @@ class TestSendToDeviceView(TestCase):
             'phone-or-email': '5558675309',
             'country': 'dude',
         })
-        ok_(resp_data['success'])
+        assert resp_data['success']
         self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
             'mobile_number': '5558675309',
             'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['android'],
@@ -358,8 +357,8 @@ class TestSendToDeviceView(TestCase):
             'platform': 'android',
             'phone-or-email': '5558675309',
         }, 400)
-        ok_(not resp_data['success'])
-        ok_('system' in resp_data['errors'])
+        assert not resp_data['success']
+        assert 'system' in resp_data['errors']
 
     def test_send_bad_sms_number(self):
         self.mock_send_sms.side_effect = views.basket.BasketException('mobile_number is invalid')
@@ -367,8 +366,8 @@ class TestSendToDeviceView(TestCase):
             'platform': 'android',
             'phone-or-email': '555',
         })
-        ok_(not resp_data['success'])
-        ok_('number' in resp_data['errors'])
+        assert not resp_data['success']
+        assert 'number' in resp_data['errors']
 
     def test_send_android_email(self):
         resp_data = self._request({
@@ -376,7 +375,7 @@ class TestSendToDeviceView(TestCase):
             'phone-or-email': 'dude@example.com',
             'source-url': 'https://nihilism.info',
         })
-        ok_(resp_data['success'])
+        assert resp_data['success']
         self.mock_subscribe.assert_called_with('dude@example.com',
                                                views.SEND_TO_DEVICE_MESSAGE_SETS['default']['email']['android'],
                                                source_url='https://nihilism.info',
@@ -389,8 +388,8 @@ class TestSendToDeviceView(TestCase):
             'phone-or-email': 'dude@example.com',
             'source-url': 'https://nihilism.info',
         }, 400)
-        ok_(not resp_data['success'])
-        ok_('system' in resp_data['errors'])
+        assert not resp_data['success']
+        assert 'system' in resp_data['errors']
 
     def test_send_android_bad_email(self):
         resp_data = self._request({
@@ -398,9 +397,9 @@ class TestSendToDeviceView(TestCase):
             'phone-or-email': '@example.com',
             'source-url': 'https://nihilism.info',
         })
-        ok_(not resp_data['success'])
-        ok_('email' in resp_data['errors'])
-        ok_(not self.mock_subscribe.called)
+        assert not resp_data['success']
+        assert 'email' in resp_data['errors']
+        assert not self.mock_subscribe.called
 
     # an invalid value for 'message-set' should revert to 'default' message set
     def test_invalid_message_set(self):
@@ -409,7 +408,7 @@ class TestSendToDeviceView(TestCase):
             'phone-or-email': '5558675309',
             'message-set': 'the-dude-is-not-in',
         })
-        ok_(resp_data['success'])
+        assert resp_data['success']
         self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
             'mobile_number': '5558675309',
             'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['ios'],
@@ -423,7 +422,7 @@ class TestSendToDeviceView(TestCase):
             'phone-or-email': 'dude@example.com',
             'message-set': 'fx-android',
         })
-        ok_(resp_data['success'])
+        assert resp_data['success']
         self.mock_subscribe.assert_called_with('dude@example.com',
                                                 views.SEND_TO_DEVICE_MESSAGE_SETS['fx-android']['email']['android'],
                                                 source_url=None,
@@ -435,7 +434,7 @@ class TestSendToDeviceView(TestCase):
             'phone-or-email': '5558675309',
             'message-set': 'fx-android',
         })
-        ok_(resp_data['success'])
+        assert resp_data['success']
         self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
             'mobile_number': '5558675309',
             'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['fx-android']['sms']['android'],
@@ -448,7 +447,7 @@ class TestSendToDeviceView(TestCase):
             'phone-or-email': 'dude@example.com',
             'message-set': 'fx-mobile-download-desktop',
         })
-        ok_(resp_data['success'])
+        assert resp_data['success']
         self.mock_subscribe.assert_called_with('dude@example.com',
                                                 views.SEND_TO_DEVICE_MESSAGE_SETS['fx-mobile-download-desktop']['email']['all'],
                                                 source_url=None,
@@ -459,7 +458,7 @@ class TestSendToDeviceView(TestCase):
             'phone-or-email': '5558675309',
             'message-set': 'fx-mobile-download-desktop',
         })
-        ok_(resp_data['success'])
+        assert resp_data['success']
         self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
             'mobile_number': '5558675309',
             'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['fx-mobile-download-desktop']['sms']['all'],
@@ -471,7 +470,7 @@ class TestSendToDeviceView(TestCase):
             'phone-or-email': '(555) 867-5309',
             'message-set': 'fx-mobile-download-desktop',
         })
-        ok_(resp_data['success'])
+        assert resp_data['success']
         self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
             'mobile_number': '5558675309',
             'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['fx-mobile-download-desktop']['sms']['all'],
@@ -483,18 +482,18 @@ class TestSendToDeviceView(TestCase):
             'phone-or-email': '5558675309555867530912',
             'message-set': 'fx-mobile-download-desktop',
         })
-        ok_(not resp_data['success'])
+        assert not resp_data['success']
         self.mock_send_sms.assert_not_called()
-        ok_('number' in resp_data['errors'])
+        assert 'number' in resp_data['errors']
 
     def test_sms_number_too_short(self):
         resp_data = self._request({
             'phone-or-email': '555',
             'message-set': 'fx-mobile-download-desktop',
         })
-        ok_(not resp_data['success'])
+        assert not resp_data['success']
         self.mock_send_sms.assert_not_called()
-        ok_('number' in resp_data['errors'])
+        assert 'number' in resp_data['errors']
 
 
 @override_settings(DEV=False)
@@ -758,7 +757,7 @@ class TestFirefoxNewNoIndex(TestCase):
         response = views.new(req)
         doc = pq(response.content)
         robots = doc('meta[name="robots"]')
-        eq_(robots.length, 0)
+        assert robots.length == 0
 
     def test_scene_2_canonical(self):
         # Scene 2 of /firefox/new/ should contain a canonical tag to /firefox/new/.
@@ -767,25 +766,25 @@ class TestFirefoxNewNoIndex(TestCase):
         response = views.download_thanks(req)
         doc = pq(response.content)
         canonical = doc('link[rel="canonical"]')
-        eq_(canonical.length, 1)
-        ok_('/firefox/new/' in canonical.attr('href'))
+        assert canonical.length == 1
+        assert '/firefox/new/' in canonical.attr('href')
 
 
 class TestFeedbackView(TestCase):
     def test_get_template_names_default_unhappy(self):
         view = views.FeedbackView()
         view.request = RequestFactory().get('/')
-        eq_(view.get_template_names(), ['firefox/feedback/unhappy.html'])
+        assert view.get_template_names() == ['firefox/feedback/unhappy.html']
 
     def test_get_template_names_happy(self):
         view = views.FeedbackView()
         view.request = RequestFactory().get('/?score=5')
-        eq_(view.get_template_names(), ['firefox/feedback/happy.html'])
+        assert view.get_template_names() == ['firefox/feedback/happy.html']
 
     def test_get_template_names_unhappy(self):
         view = views.FeedbackView()
         view.request = RequestFactory().get('/?score=1')
-        eq_(view.get_template_names(), ['firefox/feedback/unhappy.html'])
+        assert view.get_template_names() == ['firefox/feedback/unhappy.html']
 
     def test_get_context_data_three_stars(self):
         view = views.FeedbackView()
@@ -816,7 +815,7 @@ class TestFirefoxConcerts(TestCase):
     def test_switch_off(self):
         req = RequestFactory().get('/firefox/concerts')
         res = views.firefox_concerts(req)
-        eq_(res.status_code, 302)
+        assert res.status_code == 302
         self.assertTrue(res['Location'].endswith(reverse('firefox')))
 
     @override_settings(DEV=True)

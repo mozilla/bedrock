@@ -12,9 +12,6 @@ from lib.l10n_utils import translation
 
 class TestCase(DjTestCase):
     """Base class for Bedrock test cases."""
-    def shortDescription(self):
-        # Stop nose using the test docstring and instead the test method name.
-        pass
 
     @contextmanager
     def activate(self, locale):

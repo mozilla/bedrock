@@ -1,6 +1,5 @@
 from bedrock.base.urlresolvers import reverse
 from mock import patch
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 from bedrock.mozorg.tests import TestCase
@@ -21,18 +20,18 @@ class TestNewsletterFooter(TestCase):
         with self.activate('en-US'):
             resp = self.client.get(reverse(self.view_name))
         doc = pq(resp.content)
-        eq_(doc('#id_country option[selected="selected"]').val(), 'us')
+        assert doc('#id_country option[selected="selected"]').val() == 'us'
 
         # no country in locale, no country selected
         with self.activate('fr'):
             resp = self.client.get(reverse(self.view_name))
         doc = pq(resp.content)
-        eq_(doc('#id_country option[selected="selected"]').val(), '')
+        assert doc('#id_country option[selected="selected"]').val() == ''
 
         with self.activate('pt-BR'):
             resp = self.client.get(reverse(self.view_name))
         doc = pq(resp.content)
-        eq_(doc('#id_country option[selected="selected"]').val(), 'br')
+        assert doc('#id_country option[selected="selected"]').val() == 'br'
 
     def test_language_selected(self):
         """
@@ -42,16 +41,16 @@ class TestNewsletterFooter(TestCase):
         with self.activate('fr'):
             resp = self.client.get(reverse(self.view_name))
         doc = pq(resp.content)
-        eq_(doc('#id_lang option[selected="selected"]').val(), 'fr')
+        assert doc('#id_lang option[selected="selected"]').val() == 'fr'
 
         # with hyphenated regional locale, should have only lang
         with self.activate('pt-BR'):
             resp = self.client.get(reverse(self.view_name))
         doc = pq(resp.content)
-        eq_(doc('#id_lang option[selected="selected"]').val(), 'pt')
+        assert doc('#id_lang option[selected="selected"]').val() == 'pt'
 
         # not supported. should default to ''
         with self.activate('af'):
             resp = self.client.get(reverse(self.view_name))
         doc = pq(resp.content)
-        eq_(doc('#id_lang option[selected="selected"]').val(), '')
+        assert doc('#id_lang option[selected="selected"]').val() == ''

@@ -5,7 +5,6 @@
 from django.test.client import RequestFactory
 from bedrock.base.urlresolvers import reverse
 
-from nose.tools import eq_
 
 from bedrock.mozorg.context_processors import funnelcake_param
 from bedrock.mozorg.tests import TestCase
@@ -20,17 +19,17 @@ class TestFunnelcakeParam(TestCase):
 
     def test_funnelcake_param_noop(self):
         """Should return an empty dict normally."""
-        eq_(self._funnelcake(), {})
+        assert self._funnelcake() == {}
 
     def test_funnelcake_param_f(self):
         """Should inject funnelcake into context."""
-        eq_(self._funnelcake(f='5'), {'funnelcake_id': '5'})
-        eq_(self._funnelcake(f='234'), {'funnelcake_id': '234'})
+        assert self._funnelcake(f='5') == {'funnelcake_id': '5'}
+        assert self._funnelcake(f='234') == {'funnelcake_id': '234'}
 
     def test_funnelcake_param_bad(self):
         """Should not inject bad funnelcake into context."""
-        eq_(self._funnelcake(f='5dude'), {})
-        eq_(self._funnelcake(f='123456'), {})
+        assert self._funnelcake(f='5dude') == {}
+        assert self._funnelcake(f='123456') == {}
 
     def test_funnelcake_param_increment_installer_help(self):
         """FC param should be +1 on the firefox/installer-help/ page.
@@ -39,7 +38,7 @@ class TestFunnelcakeParam(TestCase):
         """
         url = reverse('firefox.installer-help')
         ctx = self._funnelcake(url, f='20')
-        eq_(ctx['funnelcake_id'], '21')
+        assert ctx['funnelcake_id'] == '21'
 
         ctx = self._funnelcake(url, f='10')
-        eq_(ctx['funnelcake_id'], '11')
+        assert ctx['funnelcake_id'] == '11'

@@ -10,7 +10,6 @@ from django.test.client import RequestFactory
 
 from bedrock.base.urlresolvers import reverse
 from mock import Mock, patch
-from nose.tools import eq_, ok_
 
 from bedrock.press import forms as press_forms, views as press_views
 from bedrock.press.forms import (PressInquiryForm, SpeakerRequestForm)
@@ -48,8 +47,8 @@ class TestPressInquiry(TestCase):
 
         response = self.view(request)
 
-        eq_(response.status_code, 302)
-        eq_(response['Location'], '/en-US/press/press-inquiry/?success=True')
+        assert response.status_code == 302
+        assert response['Location'] == '/en-US/press/press-inquiry/?success=True'
 
     def test_view_post_missing_data(self):
         """
@@ -66,7 +65,7 @@ class TestPressInquiry(TestCase):
 
         response = self.view(request)
 
-        eq_(response.status_code, 200)
+        assert response.status_code == 200
         self.assertIn('Please enter your name.', response.content)
 
     def test_view_post_honeypot(self):
@@ -84,7 +83,7 @@ class TestPressInquiry(TestCase):
 
         response = self.view(request)
 
-        eq_(response.status_code, 200)
+        assert response.status_code == 200
         self.assertIn('An error has occurred', response.content)
 
     def test_form_valid_data(self):
@@ -94,7 +93,7 @@ class TestPressInquiry(TestCase):
         form = PressInquiryForm(self.data)
 
         # make sure form is valid
-        ok_(form.is_valid())
+        assert form.is_valid()
 
     def test_form_missing_data(self):
         """
@@ -106,7 +105,7 @@ class TestPressInquiry(TestCase):
         form = PressInquiryForm(self.data)
 
         # make sure form is invalid
-        ok_(not form.is_valid())
+        assert not form.is_valid()
 
         # make sure user_email errors are in form
         self.assertIn('user_email', form.errors)
@@ -119,7 +118,7 @@ class TestPressInquiry(TestCase):
 
         form = PressInquiryForm(self.data)
 
-        eq_(False, form.is_valid())
+        assert not form.is_valid()
 
     @patch('bedrock.press.views.render_to_string',
            return_value='rendered')
@@ -181,8 +180,8 @@ class TestSpeakerRequest(TestCase):
 
         response = self.view(request)
 
-        eq_(response.status_code, 302)
-        eq_(response['Location'], '/en-US/press/speakerrequest/?success=True')
+        assert response.status_code == 302
+        assert response['Location'] == '/en-US/press/speakerrequest/?success=True'
 
     def test_view_post_missing_data(self):
         """
@@ -199,7 +198,7 @@ class TestSpeakerRequest(TestCase):
 
         response = self.view(request)
 
-        eq_(response.status_code, 200)
+        assert response.status_code == 200
         self.assertIn('Please enter a URL', response.content)
 
     def test_view_post_honeypot(self):
@@ -217,7 +216,7 @@ class TestSpeakerRequest(TestCase):
 
         response = self.view(request)
 
-        eq_(response.status_code, 200)
+        assert response.status_code == 200
         self.assertIn('An error has occurred', response.content)
 
     def test_form_valid_data(self):
@@ -227,7 +226,7 @@ class TestSpeakerRequest(TestCase):
         form = SpeakerRequestForm(self.data)
 
         # make sure form is valid
-        ok_(form.is_valid())
+        assert form.is_valid()
 
     def test_form_missing_data(self):
         """
@@ -239,7 +238,7 @@ class TestSpeakerRequest(TestCase):
         form = SpeakerRequestForm(self.data)
 
         # make sure form is invalid
-        ok_(not form.is_valid())
+        assert not form.is_valid()
 
         # make sure url errors are in form
         self.assertIn('sr_event_url', form.errors)
@@ -252,7 +251,7 @@ class TestSpeakerRequest(TestCase):
 
         form = SpeakerRequestForm(self.data)
 
-        eq_(False, form.is_valid())
+        assert not form.is_valid()
 
     def test_form_valid_attachement(self):
         """
@@ -267,7 +266,7 @@ class TestSpeakerRequest(TestCase):
                 'sr_attachment': mock_attachment})
 
         # make sure form is valid
-        ok_(form.is_valid())
+        assert form.is_valid()
 
     def test_form_invalid_attachement(self):
         """
@@ -283,7 +282,7 @@ class TestSpeakerRequest(TestCase):
                 'sr_attachment': mock_attachment})
 
         # make sure form is not valid
-        ok_(not form.is_valid())
+        assert not form.is_valid()
 
         # make sure attachment errors are in form
         self.assertIn('sr_attachment', form.errors)
@@ -395,7 +394,7 @@ class TestSpeakerRequest(TestCase):
 
         self.view(request)
 
-        eq_(len(mail.outbox), 1)
+        assert len(mail.outbox) == 1
 
         m = mail.outbox[0]
 

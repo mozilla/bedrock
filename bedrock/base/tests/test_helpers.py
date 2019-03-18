@@ -3,7 +3,6 @@ from django.test import override_settings
 
 from django_jinja.backend import Jinja2
 from mock import patch
-from nose.tools import eq_
 
 from bedrock.base.templatetags import helpers
 
@@ -37,18 +36,18 @@ class HelpersTests(TestCase):
     def test_urlencode_with_unicode(self):
         template = '<a href="?var={{ key|urlencode }}">'
         context = {'key': '?& /()'}
-        eq_(render(template, context), '<a href="?var=%3F%26+%2F%28%29">')
+        assert render(template, context) == '<a href="?var=%3F%26+%2F%28%29">'
         # non-ascii
         context = {'key': u'\xe4'}
-        eq_(render(template, context), '<a href="?var=%C3%A4">')
+        assert render(template, context) == '<a href="?var=%C3%A4">'
 
     def test_mailtoencode_with_unicode(self):
         template = '<a href="?var={{ key|mailtoencode }}">'
         context = {'key': '?& /()'}
-        eq_(render(template, context), '<a href="?var=%3F%26%20/%28%29">')
+        assert render(template, context) == '<a href="?var=%3F%26%20/%28%29">'
         # non-ascii
         context = {'key': u'\xe4'}
-        eq_(render(template, context), '<a href="?var=%C3%A4">')
+        assert render(template, context) == '<a href="?var=%C3%A4">'
 
 
 @override_settings(SEND_TO_DEVICE_MESSAGE_SETS=SEND_TO_DEVICE_MESSAGE_SETS)
@@ -90,14 +89,14 @@ class TestGetDonateParams(TestCase):
     def test_en_us(self):
         ctx = {'LANG': 'en-US'}
         params = helpers.get_donate_params(ctx)
-        eq_(params['preset_list'], '50,30,20,10'.split(','))
+        assert params['preset_list'] == '50,30,20,10'.split(',')
 
     def test_id(self):
         ctx = {'LANG': 'id'}
         params = helpers.get_donate_params(ctx)
-        eq_(params['preset_list'], '270000,140000,70000,40000'.split(','))
+        assert params['preset_list'] == '270000,140000,70000,40000'.split(',')
 
     def test_undefined_locale(self):
         ctx = {'LANG': 'de'}
         params = helpers.get_donate_params(ctx)
-        eq_(params['preset_list'], '50,30,20,10'.split(','))
+        assert params['preset_list'] == '50,30,20,10'.split(',')

@@ -9,7 +9,6 @@ from django.test.client import RequestFactory
 
 import basket
 from mock import ANY, DEFAULT, patch
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 from bedrock.base.urlresolvers import reverse
@@ -33,8 +32,6 @@ def assert_redirect(response, url):
     # using Django TestCase due to our lack of a database, so we
     # need to fake our own.
 
-    # Django seems to stick this into the Location header
-    url = "http://testserver" + url
     assert url == response['Location'],\
         "Response did not redirect to %s; Location=%s" % \
         (url, response['Location'])
@@ -56,12 +53,12 @@ class TestViews(TestCase):
         token = 'the-dude'
         req = self.rf.get('/', {'token': token, 'unsub': 1})
         updated(req)
-        eq_(mock_render.call_args[0][2]['token'], None)
+        assert mock_render.call_args[0][2]['token'] is None
 
         token = '\'>"><img src=x onerror=alert(1)>'
         req = self.rf.get('/', {'token': token, 'unsub': 1})
         updated(req)
-        eq_(mock_render.call_args[0][2]['token'], None)
+        assert mock_render.call_args[0][2]['token'] is None
 
 
 # Always mock basket.request to be sure we never actually call basket

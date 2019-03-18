@@ -12,7 +12,6 @@ from django.test import TestCase
 from django.test.utils import override_settings
 
 from mock import ANY, MagicMock, Mock, patch
-from nose.tools import eq_, ok_
 
 from lib.l10n_utils.gettext import (_append_to_lang_file, langfiles_for_path,
                                     parse_python, parse_template,
@@ -75,7 +74,7 @@ class TestTemplateTagFuncs(TestCase):
     @override_settings(LANGUAGE_CODE='en-US')
     def test_template_tag_set_default_locale(self):
         """The default language should always have every tag."""
-        ok_(template_has_tag('the_dude', 'en-US', 'active'))
+        assert template_has_tag('the_dude', 'en-US', 'active')
 
 
 class TestPOFiles(TestCase):
@@ -140,21 +139,21 @@ class TestPOFiles(TestCase):
                                 'exist.lang')
         with patch('os.path.dirname') as dn_mock:
             _append_to_lang_file(path_exists, {})
-            ok_(not dn_mock.called)
+            assert not dn_mock.called
 
             dn_mock.reset_mock()
             dn_mock.return_value = os.path.join(ROOT, 'locale', 'templates',
                                                 'firefox')
             _append_to_lang_file(path_dir_exists, {})
-            ok_(dn_mock.called)
+            assert dn_mock.called
 
         md_mock.reset_mock()
         _append_to_lang_file(path_dir_exists, {})
-        ok_(not md_mock.called)
+        assert not md_mock.called
 
         md_mock.reset_mock()
         _append_to_lang_file(path_new, {})
-        ok_(md_mock.called)
+        assert md_mock.called
 
     @override_settings(ROOT=ROOT, DOTLANG_FILES=DOTLANG_FILES)
     @patch('lib.l10n_utils.gettext.parse_lang')
@@ -182,7 +181,7 @@ class TestParseTemplate(TempFileMixin, TestCase):
         """)
         codecs_mock.open.return_value = tempf
         lang_files = parse_template('file/doesnt/matter.html')
-        eq_(lang_files, ['lebowski'])
+        assert lang_files == ['lebowski']
 
     @patch('lib.l10n_utils.gettext.codecs')
     def test_multiple_lang_files_added(self, codecs_mock):
@@ -193,7 +192,7 @@ class TestParseTemplate(TempFileMixin, TestCase):
         """)
         codecs_mock.open.return_value = tempf
         lang_files = parse_template('file/doesnt/matter.html')
-        eq_(lang_files, ['lebowski', 'walter', 'dude'])
+        assert lang_files == ['lebowski', 'walter', 'dude']
 
 
 class TestParsePython(TempFileMixin, TestCase):
@@ -212,7 +211,7 @@ class TestParsePython(TempFileMixin, TestCase):
         """)
         codecs_mock.open.return_value = tempf
         lang_files = parse_python('file/doesnt/matter.py')
-        eq_(lang_files, ['lebowski'])
+        assert lang_files == ['lebowski']
 
     @patch('lib.l10n_utils.gettext.codecs')
     def test_new_multiple_lang_files_defined_list(self, codecs_mock):
@@ -229,7 +228,7 @@ class TestParsePython(TempFileMixin, TestCase):
         """)
         codecs_mock.open.return_value = tempf
         lang_files = parse_python('file/doesnt/matter.py')
-        eq_(lang_files, ['lebowski', 'dude'])
+        assert lang_files == ['lebowski', 'dude']
 
     @patch('lib.l10n_utils.gettext.codecs')
     def test_new_multiple_lang_files_multi_line(self, codecs_mock):
@@ -249,7 +248,7 @@ class TestParsePython(TempFileMixin, TestCase):
         """)
         codecs_mock.open.return_value = tempf
         lang_files = parse_python('file/doesnt/matter.py')
-        eq_(lang_files, ['lebowski', 'dude'])
+        assert lang_files == ['lebowski', 'dude']
 
     @patch('lib.l10n_utils.gettext.codecs')
     def test_new_single_lang_file_defined(self, codecs_mock):
@@ -267,7 +266,7 @@ class TestParsePython(TempFileMixin, TestCase):
         """)
         codecs_mock.open.return_value = tempf
         lang_files = parse_python('file/doesnt/matter.py')
-        eq_(lang_files, ['lebowski'])
+        assert lang_files == ['lebowski']
 
     @patch('lib.l10n_utils.gettext.codecs')
     def test_new_single_lang_file_defined_dbl_quote(self, codecs_mock):
@@ -285,7 +284,7 @@ class TestParsePython(TempFileMixin, TestCase):
         """)
         codecs_mock.open.return_value = tempf
         lang_files = parse_python('file/doesnt/matter.py')
-        eq_(lang_files, ['lebowski'])
+        assert lang_files == ['lebowski']
 
     @patch('lib.l10n_utils.gettext.codecs')
     def test_no_lang_files_defined(self, codecs_mock):
@@ -300,7 +299,7 @@ class TestParsePython(TempFileMixin, TestCase):
         """)
         codecs_mock.open.return_value = tempf
         lang_files = parse_python('file/doesnt/matter.py')
-        eq_(lang_files, [])
+        assert lang_files == []
 
 
 class TestLangfilesForPath(TestCase):
@@ -311,13 +310,13 @@ class TestLangfilesForPath(TestCase):
         """
         lang_files = langfiles_for_path('lib/l10n_utils/tests/test_files/'
                                         'templates/no_lang_files.html')
-        eq_(lang_files, ['no_lang_files'])
+        assert lang_files == ['no_lang_files']
 
     def test_templ_lang_files_defined(self):
         """ If lang files are set, they should be returned. """
         lang_files = langfiles_for_path('lib/l10n_utils/tests/test_files/'
                                         'templates/some_lang_files.html')
-        eq_(lang_files, ['dude', 'walter', 'main'])
+        assert lang_files == ['dude', 'walter', 'main']
 
     def test_py_no_lang_files_defined(self):
         """
@@ -326,7 +325,7 @@ class TestLangfilesForPath(TestCase):
         """
         lang_files = langfiles_for_path('lib/l10n_utils/tests/test_files/'
                                         'extract_me.py')
-        eq_(lang_files, [settings.DOTLANG_FILES[0]])
+        assert lang_files == [settings.DOTLANG_FILES[0]]
 
     def test_py_lang_files_defined(self):
         """
@@ -334,4 +333,4 @@ class TestLangfilesForPath(TestCase):
         """
         lang_files = langfiles_for_path('lib/l10n_utils/tests/test_files/'
                                         'extract_me_with_langfiles.py')
-        eq_(lang_files, ['lebowski', 'dude'])
+        assert lang_files == ['lebowski', 'dude']

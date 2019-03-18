@@ -12,7 +12,6 @@ from django.test.utils import override_settings
 
 from django_jinja.backend import Jinja2
 from mock import patch
-from nose.tools import assert_not_equal, eq_, ok_
 from pathlib2 import Path
 from product_details import product_details
 from pyquery import PyQuery as pq
@@ -45,25 +44,25 @@ class TestLangFilesActivation(TestCase):
         `lang_file_is_active` should return true if lang file has the
         comment, and false otherwise.
         """
-        ok_(lang_file_is_active('active_de_lang_file', 'de'))
-        ok_(lang_file_is_active('active_de_lang_file_bom', 'de'))
-        ok_(not lang_file_is_active('active_de_lang_file', 'es'))
-        ok_(not lang_file_is_active('inactive_de_lang_file', 'de'))
-        ok_(not lang_file_is_active('does_not_exist', 'de'))
+        assert lang_file_is_active('active_de_lang_file', 'de')
+        assert lang_file_is_active('active_de_lang_file_bom', 'de')
+        assert not lang_file_is_active('active_de_lang_file', 'es')
+        assert not lang_file_is_active('inactive_de_lang_file', 'de')
+        assert not lang_file_is_active('does_not_exist', 'de')
 
     def test_lang_file_has_tag(self):
         """
         `lang_file_has_tag` should return true if lang file has the
         comment, and false otherwise.
         """
-        ok_(lang_file_has_tag('active_de_lang_file', 'de', 'active'))
-        ok_(lang_file_has_tag('active_de_lang_file_bom', 'de', 'active'))
-        ok_(not lang_file_has_tag('active_de_lang_file', 'es', 'active'))
-        ok_(not lang_file_has_tag('inactive_de_lang_file', 'de', 'active'))
-        ok_(not lang_file_has_tag('file_does_not_exist', 'de', 'active'))
-        ok_(lang_file_has_tag('main', 'de', 'guten_tag'))
-        ok_(not lang_file_has_tag('main', 'de', 'tag_after_non_tag_lines'))
-        ok_(not lang_file_has_tag('main', 'de', 'no_such_tag'))
+        assert lang_file_has_tag('active_de_lang_file', 'de', 'active')
+        assert lang_file_has_tag('active_de_lang_file_bom', 'de', 'active')
+        assert not lang_file_has_tag('active_de_lang_file', 'es', 'active')
+        assert not lang_file_has_tag('inactive_de_lang_file', 'de', 'active')
+        assert not lang_file_has_tag('file_does_not_exist', 'de', 'active')
+        assert lang_file_has_tag('main', 'de', 'guten_tag')
+        assert not lang_file_has_tag('main', 'de', 'tag_after_non_tag_lines')
+        assert not lang_file_has_tag('main', 'de', 'no_such_tag')
 
     def test_active_locale_not_redirected(self):
         """ Active lang file should render correctly.
@@ -72,19 +71,18 @@ class TestLangFilesActivation(TestCase):
         but that should not cause it to be inactive.
         """
         response = self.client.get('/de/active-de-lang-file/')
-        eq_(response.status_code, 200)
+        assert response.status_code == 200
         doc = pq(response.content)
-        eq_(doc('h1').text(), 'Die Lage von Mozilla')
+        assert doc('h1').text() == 'Die Lage von Mozilla'
 
     def test_inactive_locale_redirected(self):
         """ Inactive locale should redirect to en-US. """
         response = self.client.get('/de/inactive-de-lang-file/')
-        eq_(response.status_code, 302)
-        eq_(response['location'],
-            'http://testserver/en-US/inactive-de-lang-file/')
+        assert response.status_code == 302
+        assert response['location'] == 'http://testserver/en-US/inactive-de-lang-file/'
         response = self.client.get('/de/inactive-de-lang-file/', follow=True)
         doc = pq(response.content)
-        eq_(doc('h1').text(), 'The State of Mozilla')
+        assert doc('h1').text() == 'The State of Mozilla'
 
     @override_settings(DEV=True)
     def test_inactive_locale_not_redirected_dev_true(self):
@@ -92,16 +90,16 @@ class TestLangFilesActivation(TestCase):
         Inactive lang file should not redirect in DEV mode.
         """
         response = self.client.get('/de/inactive-de-lang-file/')
-        eq_(response.status_code, 200)
+        assert response.status_code == 200
         doc = pq(response.content)
-        eq_(doc('h1').text(), 'Die Lage von Mozilla')
+        assert doc('h1').text() == 'Die Lage von Mozilla'
 
     def test_active_alternate_lang_file(self):
         """Template with active alternate lang file should activate from it."""
         response = self.client.get('/de/state-of-mozilla/')
-        eq_(response.status_code, 200)
+        assert response.status_code == 200
         doc = pq(response.content)
-        eq_(doc('h1').text(), 'Die Lage von Mozilla')
+        assert doc('h1').text() == 'Die Lage von Mozilla'
 
 
 class TestDotlang(TestCase):
@@ -121,7 +119,7 @@ class TestDotlang(TestCase):
             u'Firefox Beta': u'Firefox Beta',
             u'Firefox Aurora': u'Firefox Aurora',
         }
-        eq_(parsed, expected)
+        assert parsed == expected
 
     def test_parse_not_skip_untranslated(self):
         path = str(ROOT_PATH.joinpath('test.lang'))
@@ -136,7 +134,7 @@ class TestDotlang(TestCase):
             u'Firefox Aurora': u'Firefox Aurora',
             u'Firefox Developer Edition': u'Firefox Developer Edition',
         }
-        eq_(parsed, expected)
+        assert parsed == expected
 
     def test_parse_with_comments(self):
         path = str(ROOT_PATH.joinpath('test.lang'))
@@ -162,19 +160,19 @@ class TestDotlang(TestCase):
                 u'Firefox Aurora',
             ],
         }
-        eq_(parsed, expected)
+        assert parsed == expected
 
     @override_settings(EMAIL_SUBJECT_PREFIX='[bedrock] ', MANAGERS=('dude@example.com',))
     def test_parse_utf8_error(self):
         path = str(ROOT_PATH.joinpath('test_utf8_error.lang'))
         parsed = parse(path)
-        eq_(len(mail.outbox), 1)
-        eq_(mail.outbox[0].subject, '[bedrock] %s is corrupted' % path)
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].subject == '[bedrock] %s is corrupted' % path
         expected = {
             u'Update now': u'Niha rojane bike',
             u'Supported Devices': u'C�haz�n pi�tgiriy'
         }
-        eq_(parsed, expected)
+        assert parsed == expected
         mail.outbox = []
 
     def test_parse_ingnores_untranslated(self):
@@ -187,10 +185,12 @@ class TestDotlang(TestCase):
         self.assertDictEqual(parsed, expected)
 
     def test_format_identifier_re(self):
-        eq_(FORMAT_IDENTIFIER_RE.findall('%s %s'),
+        assert (
+            FORMAT_IDENTIFIER_RE.findall('%s %s') ==
             [('%s', ''), ('%s', '')])
 
-        eq_(FORMAT_IDENTIFIER_RE.findall('%(foo_bar)s %s'),
+        assert (
+            FORMAT_IDENTIFIER_RE.findall('%(foo_bar)s %s') ==
             [('%(foo_bar)s', 'foo_bar'), ('%s', '')])
 
     @override_settings(ROOT=ROOT, EMAIL_SUBJECT_PREFIX='[bedrock] ',
@@ -200,9 +200,10 @@ class TestDotlang(TestCase):
         expected = '%(foo)s is the new %s'
         with self.activate('fr'):
             result = translate(expected, [path])
-        eq_(expected, result)
-        eq_(len(mail.outbox), 1)
-        eq_(mail.outbox[0].subject,
+        assert expected == result
+        assert len(mail.outbox) == 1
+        assert (
+            mail.outbox[0].subject ==
             '[bedrock] locale/fr/%s.lang is corrupted' % path)
         mail.outbox = []
 
@@ -216,8 +217,8 @@ class TestDotlang(TestCase):
         expected = '%(foo)s is the new %(bar)s'
         with self.activate('fr'):
             result = translate(expected, [path])
-        assert_not_equal(expected, result)
-        eq_(len(mail.outbox), 0)
+        assert expected != result
+        assert len(mail.outbox) == 0
 
     @patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
     @patch.object(settings, 'ROOT_URLCONF', 'lib.l10n_utils.tests.test_files.urls')
@@ -227,7 +228,7 @@ class TestDotlang(TestCase):
         response = self.client.get('/de/trans-block-reload-test/')
         doc = pq(response.content)
         gettext_call = doc('h1')
-        eq_(gettext_call.text(), 'Die Lage von Mozilla')
+        assert gettext_call.text() == 'Die Lage von Mozilla'
 
     @patch.object(settings, 'ROOT', ROOT)
     def test_extract_message_tweaks_do_not_break(self):
@@ -242,17 +243,17 @@ class TestDotlang(TestCase):
         pypath = ROOT_PATH.joinpath('extract_me.py')
         with open(str(pypath)) as pyfile:
             vals = extract_python(pyfile, ['_'], [], {}).next()
-        eq_(vals[2], clean_string)
+        assert vals[2] == clean_string
 
         # translation
         # path won't exist for en-US as there isn't a dir for that
         # in locale.
         with self.activate('fr'):
             result = translate(dirty_string, ['does_not_exist'])
-            eq_(result, dirty_string)
+            assert result == dirty_string
 
             result = translate(dirty_string, ['tweaked_message_translation'])
-            eq_(result, trans_string)
+            assert result == trans_string
 
     @patch('lib.l10n_utils.dotlang.translate')
     def test_new_lang_files_do_not_modify_settings(self, trans_patch):
@@ -265,7 +266,7 @@ class TestDotlang(TestCase):
         _(trans_str)
         call_lang_files = [LANG_FILES] + settings.DOTLANG_FILES
         trans_patch.assert_called_with(trans_str, call_lang_files)
-        eq_(old_setting, settings.DOTLANG_FILES)
+        assert old_setting == settings.DOTLANG_FILES
 
     @patch('lib.l10n_utils.dotlang.translate')
     def test_gettext_ignores_default_lang_files(self, trans_patch):
@@ -385,7 +386,7 @@ class TestDotlang(TestCase):
 
     def test_gettext_str_interpolation(self):
         result = _('The %s %s.', 'dude', 'abides')
-        eq_(result, 'The dude abides.')
+        assert result == 'The dude abides.'
 
     @patch('lib.l10n_utils.dotlang.cache')
     def test_translate_skips_for_default_locale(self, cache_mock):
@@ -421,14 +422,14 @@ class TestTranslationList(TestCase):
         translations = django_render.call_args[0][2]['translations']
 
         # The en-US locale is always active
-        eq_(translations['en-US'], product_details.languages['en-US']['native'])
+        assert translations['en-US'] == product_details.languages['en-US']['native']
         # The de locale is active depending on the template
         if view_name == 'active-de-lang-file':
-            eq_(translations['de'], product_details.languages['de']['native'])
+            assert translations['de'] == product_details.languages['de']['native']
         else:
-            eq_('de' in translations, False)
+            assert 'de' not in translations
         # The fr locale is inactive
-        eq_('fr' in translations, False)
+        assert 'fr' not in translations
 
     def test_localized_en(self):
         self._test('en-US', 'active-de-lang-file')

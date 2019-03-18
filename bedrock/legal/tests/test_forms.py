@@ -9,7 +9,6 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test.client import RequestFactory
 
 from mock import Mock, patch
-from nose.tools import eq_, ok_
 from PIL import Image
 
 from bedrock.base.urlresolvers import reverse
@@ -60,8 +59,8 @@ class TestFraudReport(TestCase):
 
         response = legal_views.fraud_report(request)
 
-        eq_(response.status_code, 302)
-        eq_(response['Location'], '/en-US/about/legal/fraud-report/?submitted=True')
+        assert response.status_code == 302
+        assert response['Location'] == '/en-US/about/legal/fraud-report/?submitted=True'
 
     def test_view_post_missing_data(self):
         """
@@ -78,7 +77,7 @@ class TestFraudReport(TestCase):
 
         response = legal_views.fraud_report(request)
 
-        eq_(response.status_code, 200)
+        assert response.status_code == 200
         self.assertIn('Please enter a URL.', response.content)
 
     def test_view_post_honeypot(self):
@@ -96,7 +95,7 @@ class TestFraudReport(TestCase):
 
         response = legal_views.fraud_report(request)
 
-        eq_(response.status_code, 200)
+        assert response.status_code == 200
         self.assertIn('An error has occurred', response.content)
 
     def test_form_valid_data(self):
@@ -106,7 +105,7 @@ class TestFraudReport(TestCase):
         form = FraudReportForm(self.data)
 
         # make sure form is valid
-        ok_(form.is_valid())
+        assert form.is_valid()
 
     def test_form_invalid_data(self):
         """
@@ -118,7 +117,7 @@ class TestFraudReport(TestCase):
         form = FraudReportForm(self.data)
 
         # make sure form is invalid
-        eq_(False, form.is_valid())
+        assert not form.is_valid()
 
         # make sure url errors are in form
         self.assertIn('input_url', form.errors)
@@ -131,7 +130,7 @@ class TestFraudReport(TestCase):
 
         form = FraudReportForm(self.data)
 
-        eq_(False, form.is_valid())
+        assert not form.is_valid()
 
     def test_form_valid_attachement(self):
         """
@@ -141,7 +140,7 @@ class TestFraudReport(TestCase):
         mock_attachment = self._create_image_file()
         form = FraudReportForm(self.data, {'input_attachment': mock_attachment})
         # make sure form is valid
-        ok_(form.is_valid())
+        assert form.is_valid()
 
     def test_form_invalid_attachement_type(self):
         """
@@ -152,7 +151,7 @@ class TestFraudReport(TestCase):
         mock_attachment = self._create_text_file()
         form = FraudReportForm(self.data, {'input_attachment': mock_attachment})
         # make sure form is not valid
-        eq_(False, form.is_valid())
+        assert not form.is_valid()
         # make sure attachment errors are in form
         self.assertIn('input_attachment', form.errors)
 
@@ -166,7 +165,7 @@ class TestFraudReport(TestCase):
         form = FraudReportForm(self.data, {'input_attachment': mock_attachment})
         with patch.object(legal_forms, 'FRAUD_REPORT_FILE_SIZE_LIMIT', 100):
             # make sure form is not valid
-            eq_(False, form.is_valid())
+            assert not form.is_valid()
 
         # make sure attachment errors are in form
         self.assertIn('input_attachment', form.errors)
@@ -264,7 +263,7 @@ class TestFraudReport(TestCase):
 
         legal_views.fraud_report(request)
 
-        eq_(len(mail.outbox), 1)
+        assert len(mail.outbox) == 1
 
         m = mail.outbox[0]
 

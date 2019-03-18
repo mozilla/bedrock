@@ -8,7 +8,6 @@ from datetime import date, datetime
 from django.test.utils import override_settings
 
 from mock import patch
-from nose.tools import eq_
 from pytz import utc
 
 from bedrock.events.models import Event, calendar_id_from_google_url, calendar_url_for_event
@@ -75,7 +74,7 @@ class TestFutureQuerySet(TestCase):
         Should not raise error during DST change
         """
         mock_datetime.utcnow.return_value = datetime(2014, 11, 02, 01, 01)
-        eq_(Event.objects.future().count(), 0)
+        assert Event.objects.future().count() == 0
 
     @override_settings(USE_TZ=False)
     @patch('bedrock.events.models.datetime')
@@ -84,7 +83,7 @@ class TestFutureQuerySet(TestCase):
         Should not raise error during DST change
         """
         mock_datetime.utcnow.return_value = datetime(2014, 11, 02, 01, 01)
-        eq_(Event.objects.future().count(), 0)
+        assert Event.objects.future().count() == 0
 
 
 @override_settings(USE_TZ=False)
@@ -102,16 +101,16 @@ class TestQuerySets(TestCase):
         """
         Should return events with end_date less than patched now
         """
-        eq_(Event.objects.past().count(), 2)
+        assert Event.objects.past().count() == 2
 
     def test_current_and_future(self):
         """
         Should return events with end_date greater than patched now
         """
-        eq_(Event.objects.current_and_future().count(), 2)
+        assert Event.objects.current_and_future().count() == 2
 
     def test_future(self):
         """
         Should return events with start_date greater than patched now
         """
-        eq_(Event.objects.future().count(), 1)
+        assert Event.objects.future().count() == 1
