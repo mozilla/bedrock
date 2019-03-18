@@ -33,15 +33,6 @@ def strip_parenthetical(lang_name):
     return PARENTHETIC_RE.sub('', lang_name, 1)
 
 
-class SideRadios(widgets.RadioFieldRenderer):
-    """Render radio buttons as labels"""
-
-    def render(self):
-        radios = [unicode(w) for idx, w in enumerate(self)]
-
-        return mark_safe(''.join(radios))
-
-
 class PrivacyWidget(widgets.CheckboxInput):
     """Render a checkbox with privacy text. Lots of pages need this so
     it should be standardized"""

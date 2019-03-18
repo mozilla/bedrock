@@ -9,14 +9,12 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import widgets
 from django.utils.safestring import mark_safe
-
+from lib.l10n_utils.dotlang import _, _lazy
 from product_details import product_details
 
 from bedrock.mozorg.forms import (FORMATS, EmailInput, PrivacyWidget,
-                                  SideRadios, strip_parenthetical)
+                                  strip_parenthetical)
 from bedrock.newsletter import utils
-from lib.l10n_utils.dotlang import _, _lazy
-
 
 _newsletters_re = re.compile(r'^[\w,-]+$')
 
@@ -59,48 +57,54 @@ def get_lang_choices(newsletters=None):
     return sorted(lang_choices, key=itemgetter(1))
 
 
-class UnlabeledTableCellRadios(widgets.RadioFieldRenderer):
-    """Render radio buttons as table cells, without their labels"""
-
-    def render(self):
-        radios = [w.tag() for w in self]
-        if radios:
-            return mark_safe('<td>' + '</td><td>'.join(radios) + "</td>")
-        return mark_safe('')
-
-
-class BooleanRadioRenderer(widgets.RadioFieldRenderer):
-    """Return a boolean with two radio buttons, the first meaning
-    true and the second false, rendered as two table cells.
+class SimpleRadioSelect(widgets.RadioSelect):
     """
-    def render(self):
-        if self.value is True or self.value == 'True':
-            trueattrs = 'checked=checked'
-            falseattrs = ''
-        else:
-            trueattrs = ''
-            falseattrs = 'checked=checked'
+    Render radio buttons as just labels with no <ul> chrome.
+    """
+    template_name = 'newsletter/forms/simple_radio_select.html'
 
-        template = \
-            """
-            <td>
-              <input type="radio" name="{name}" {trueattrs} value="True">
-            </td>
-            <td>
-              <input type="radio" name="{name}" {falseattrs} value="False">
-            </td>
-            """
-        result = template.format(
-            name=self.name,
-            trueattrs=trueattrs,
-            falseattrs=falseattrs
+
+class BooleanTabularRadioSelect(widgets.RadioSelect):
+    """
+    A Select Widget intended to be used with NullBooleanField.
+    """
+    template_name = 'newsletter/forms/tabular_radio_select.html'
+    wrap_label = False
+
+    def __init__(self, attrs=None):
+        choices = (
+            ('true', _('Yes')),
+            ('false', _('No')),
         )
-        return mark_safe(result)
+        super(BooleanTabularRadioSelect, self).__init__(attrs, choices)
+
+    def format_value(self, value):
+        try:
+            return {
+                True: 'true', False: 'false',
+                'true': 'true', 'false': 'false',
+            }[value]
+        except KeyError:
+            return 'unknown'
+
+    def value_from_datadict(self, data, files, name):
+        value = data.get(name)
+        return {
+            True: True,
+            False: False,
+            'true': True,
+            'false': False,
+        }.get(value)
+
+    def get_context(self, name, value, attrs):
+        context = super(BooleanTabularRadioSelect, self).get_context(
+            name, value, attrs)
+        context['wrap_label'] = False
+        return context
 
 
 class TableCheckboxInput(widgets.CheckboxInput):
-    """Add table cell markup around the rendered checkbox, so we can use
-    it interchangeably with the BooleanRadioRenderer"""
+    """Add table cell markup around the rendered checkbox"""
     def render(self, *args, **kwargs):
         out = super(TableCheckboxInput, self).render(*args, **kwargs)
         return mark_safe("<td>" + out + "</td>")
@@ -133,7 +137,7 @@ class ManageSubscriptionsForm(forms.Form):
     @param kwargs: Other standard form kwargs
     """
 
-    format = forms.ChoiceField(widget=forms.RadioSelect(renderer=SideRadios),
+    format = forms.ChoiceField(widget=SimpleRadioSelect,
                                choices=FORMATS,
                                initial='H')
     remove_all = forms.BooleanField(required=False)
@@ -211,7 +215,7 @@ class NewsletterForm(forms.Form):
     title = forms.CharField(required=False)
     description = forms.CharField(required=False)
     subscribed_radio = forms.BooleanField(
-        widget=forms.RadioSelect(renderer=BooleanRadioRenderer),
+        widget=BooleanTabularRadioSelect,
         required=False,  # they have to answer, but answer can be False
     )
     subscribed_check = forms.BooleanField(
@@ -232,7 +236,7 @@ class NewsletterFooterForm(forms.Form):
     # currently used on /contribute/friends/ (custom markup)
     first_name = forms.CharField(widget=forms.TextInput, required=False)
     last_name = forms.CharField(widget=forms.TextInput, required=False)
-    fmt = forms.ChoiceField(widget=forms.RadioSelect(renderer=SideRadios),
+    fmt = forms.ChoiceField(widget=SimpleRadioSelect,
                             choices=FORMATS,
                             initial='H')
     privacy = forms.BooleanField(widget=PrivacyWidget)
