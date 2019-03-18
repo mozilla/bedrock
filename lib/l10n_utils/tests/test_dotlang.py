@@ -79,7 +79,7 @@ class TestLangFilesActivation(TestCase):
         """ Inactive locale should redirect to en-US. """
         response = self.client.get('/de/inactive-de-lang-file/')
         assert response.status_code == 302
-        assert response['location'] == 'http://testserver/en-US/inactive-de-lang-file/'
+        assert response['location'] == '/en-US/inactive-de-lang-file/'
         response = self.client.get('/de/inactive-de-lang-file/', follow=True)
         doc = pq(response.content)
         assert doc('h1').text() == 'The State of Mozilla'
