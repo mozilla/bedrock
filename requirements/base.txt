@@ -112,9 +112,9 @@ Markdown==2.6.6 \
 requests==2.11.0 \
     --hash=sha256:8b9b147f3dff1fc4055ff794ff931f735ed25e87efe667ed7c845a4bafae9b73 \
     --hash=sha256:b2ff053e93ef11ea08b0e596a1618487c4e4c5f1006d7a1706e3671c57dea385
-django-mozilla-product-details==0.12.1 \
-    --hash=sha256:a31a51102e8c2f047f8aa62b8bdc552f7a31d9c69f2cb16393225c3ee0db72b5 \
-    --hash=sha256:25ac11bd4544fef3236f32439f6b1de3bcf931f8b34c7786ab40f0ec85626eeb
+django-mozilla-product-details==0.13.1 \
+    --hash=sha256:fad2022fb9289aca574a9c1cb6bea90c9977302ad31494608b540d35c201e3a9 \
+    --hash=sha256:fdb87422ebd1b15ece9d338100c75d1dbe936930ca14e4f5644b9918b6b4f6f3
 raven==5.25.0 \
     --hash=sha256:aea92d403fddb9a82644880eca1590017ced49111ee8654d642013472efe3a53 \
     --hash=sha256:42a665e2d2febff0652102b495ed877e89cd983ef2a07174123be49ba571e479
