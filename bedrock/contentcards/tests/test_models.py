@@ -33,8 +33,11 @@ class TestGetDataFromFilePath(TestCase):
         )
 
 
-@override_settings(CONTENT_CARDS_PATH=str(DATA_PATH),
-                   STATIC_URL='/media/')
+@override_settings(
+    CONTENT_CARDS_PATH=str(DATA_PATH),
+    CONTENT_CARDS_URL='/media/',
+    STATIC_URL='/media/',
+)
 class TestContentCardModel(TestCase):
     def setUp(self):
         models.ContentCard.objects.refresh()
