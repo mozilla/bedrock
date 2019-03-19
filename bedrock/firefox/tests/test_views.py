@@ -866,3 +866,16 @@ class TestFirefoxHome(TestCase):
         req.locale = 'it'
         views.firefox_home(req)
         render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': False})
+
+class TestFirefoxNotes(TestCase):
+    desktop_release_url = '/firefox/60.0.2/releasenotes/'
+    desktop_beta_url = '/firefox/66.0beta/releasenotes/'
+    desktop_nightly_url = '/firefox/67.0a1/releasenotes/'
+
+    def test_release_notes_page_id_desktop_release(self):
+        req = RequestFactory().get(desktop_release_url)
+        req.locale = 'en-US'
+        response = views.new(req)
+        doc = pq(response.content)
+        page_id = doc('html').attr('data-gtm-page-id')
+        eq_(page_id, '/firefox/releasenotes/')
