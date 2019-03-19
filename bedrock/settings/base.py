@@ -142,6 +142,7 @@ EXCLUDE_EDIT_TEMPLATES = [
     'firefox/releases/beta-notes.html',
     'firefox/releases/aurora-notes.html',
     'firefox/releases/release-notes.html',
+    'firefox/releases/notes.html',
     'firefox/releases/system_requirements.html',
     'mozorg/credits.html',
     'mozorg/about/forums.html',
