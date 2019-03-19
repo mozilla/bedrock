@@ -40,13 +40,13 @@
         var murphy = new Mozilla.TrafficCop({
             id: 'priv-dmt',
             variations: {
-                'xv=priv-dmt&v=1': 98.2, // control
-                'xv=priv-dmt&v=a': 0.3,
-                'xv=priv-dmt&v=b': 0.3,
-                'xv=priv-dmt&v=c': 0.3,
-                'xv=priv-dmt&v=d': 0.3,
-                'xv=priv-dmt&v=e': 0.3,
-                'xv=priv-dmt&v=f': 0.3,
+                'xv=priv-dmt&v=1': 96.4, // control
+                'xv=priv-dmt&v=a': 0.6,
+                'xv=priv-dmt&v=b': 0.6,
+                'xv=priv-dmt&v=c': 0.6,
+                'xv=priv-dmt&v=d': 0.6,
+                'xv=priv-dmt&v=e': 0.6,
+                'xv=priv-dmt&v=f': 0.6,
             }
         });
 
