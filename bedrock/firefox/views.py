@@ -720,7 +720,7 @@ def new(request):
                 template = 'firefox/new/scene1.html'
         elif switch('firefox-yandex') and locale == 'ru':
             template = 'firefox/new/yandex/scene1.html'
-        elif switch('experiment_firefox_privacy_dmt') and locale == 'en-US':
+        elif switch('experiment_firefox_new_privacy_dmt') and locale == 'en-US':
             if experience == 'priv-dmt':
                 if variant in ['a', 'b', 'c', 'd', 'e', 'f']:
                     template = 'firefox/new/privacy-dmt/scene1-{}.html'.format(variant)
