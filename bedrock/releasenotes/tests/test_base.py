@@ -3,7 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.core.cache import caches
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
@@ -258,6 +258,7 @@ class TestReleaseNotesIndex(TestCase):
     @patch('bedrock.releasenotes.views.l10n_utils.render')
     @patch('bedrock.releasenotes.views.firefox_desktop', firefox_desktop)
     def test_relnotes_index_firefox(self, render_mock):
+        render_mock().render.return_value = HttpResponse('')
         with self.activate('en-US'):
             self.client.get(reverse('firefox.releases.index'))
         releases = render_mock.call_args[0][2]['releases']
