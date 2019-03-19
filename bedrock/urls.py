@@ -4,6 +4,7 @@
 
 from django.conf import settings
 from django.conf.urls import handler404, include, url
+
 from django.utils.module_loading import import_string
 
 from bedrock.base import views as base_views
@@ -20,7 +21,7 @@ urlpatterns = (
     url(r'^grants/', include('bedrock.grants.urls')),
     url(r'^about/legal/', include('bedrock.legal.urls')),
     url(r'^press/', include('bedrock.press.urls')),
-    url(r'^privacy', include('bedrock.privacy.urls')),
+    url(r'^privacy/', include('bedrock.privacy.urls')),
     url(r'^styleguide/', include('bedrock.styleguide.urls')),
     url(r'^security/', include('bedrock.security.urls')),
     url(r'^shapeoftheweb/', include('bedrock.shapeoftheweb.urls')),
