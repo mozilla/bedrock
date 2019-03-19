@@ -103,8 +103,8 @@ class TestDBActions(TestCase):
         all_files = [os.path.join(update_security_advisories.ADVISORIES_PATH, 'mfsa2016-42.yml')]
         gafn_mock.return_value = all_files
         git_mock().has_changes.return_value = True
-        update_security_advisories.Command().handle_noargs(quiet=True, no_git=False,
-                                                           clear_db=False)
+        update_security_advisories.Command().handle_safe(
+            quiet=True, no_git=False, clear_db=False)
         udbff_mock.assert_called_with(update_security_advisories.filter_advisory_filenames(
             all_files)[0])
         df_mock.assert_called_with(['mfsa2016-43.md'])
