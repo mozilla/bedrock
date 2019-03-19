@@ -206,6 +206,7 @@ html[dir="rtl"] .main-content {
 
 .newsletter-container {
     background: #fff;
+
     display: none;
 
     @media #{$mq-tablet} {
@@ -218,11 +219,13 @@ html.firefox-pre-release {
 
     .newsletter-container {
         display: block;
+    }
 
-        #newsletter-subscribe {
-            @media #{$mq-tablet} {
-                display: grid;
-            }
+    #newsletter-subscribe {
+        display: block;
+
+        @media #{$mq-tablet} {
+            display: grid;
         }
     }
 }
