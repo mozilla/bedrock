@@ -243,6 +243,13 @@
     },
     {
       "files": [
+        "css/firefox/new/scene1.scss",
+        "css/firefox/new/scene1_gb_de.scss"
+      ],
+      "name": "firefox_new_scene1_gb_de"
+    },
+    {
+      "files": [
         "css/firefox/new/compare.scss"
       ],
       "name": "firefox_new_compare"
