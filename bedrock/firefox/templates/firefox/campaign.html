@@ -56,7 +56,11 @@
         {{ picto_card(title=_('Lightweight'), desc=_('Uses 30% less memory than Chrome')) }}
       </li>
       <li class="private">
-        {{ picto_card(title=_('Powerfully private'), desc=_('Truly Private Browsing with Tracking Protection')) }}
+        {% if l10n_has_tag('truly_removal_2019') %}
+          {{ picto_card(title=_('Powerfully private'), desc=_('Private Browsing with Tracking Protection')) }}
+        {% else %}
+          {{ picto_card(title=_('Powerfully private'), desc=_('Truly Private Browsing with Tracking Protection')) }}
+        {% endif %}
       </li>
     </ul>
   </section>

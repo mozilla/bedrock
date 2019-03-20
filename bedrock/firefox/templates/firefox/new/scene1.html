@@ -96,7 +96,11 @@
       </li>
       <li class="private">
         <h3>{{_('Powerfully private') }}</h3>
-        <p>{{_('Truly Private Browsing with Tracking Protection') }}</p>
+        {% if l10n_has_tag('truly_removal_2019') %}
+          <p>{{_('Private Browsing with Tracking Protection') }}</p>
+        {% else %}
+          <p>{{_('Truly Private Browsing with Tracking Protection') }}</p>
+        {% endif %}
       </li>
     </ul>
   </div>

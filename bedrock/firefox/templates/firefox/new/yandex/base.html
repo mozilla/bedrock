@@ -87,7 +87,13 @@
         </li>
         <li class="private">
           <h3 data-yandex-alt="Визуальные закладки">{{_('Powerfully private') }}</h3>
-          <p data-yandex-alt="Браузерное расширение, которое преобразует сохраненные закладки в графическое панно на стартовой странице браузера.">{{_('Truly Private Browsing with Tracking Protection') }}</p>
+          <p data-yandex-alt="Браузерное расширение, которое преобразует сохраненные закладки в графическое панно на стартовой странице браузера.">
+            {% if l10n_has_tag('truly_removal_2019') %}
+              {{_('Private Browsing with Tracking Protection') }}
+            {% else %}
+              {{_('Truly Private Browsing with Tracking Protection') }}
+            {% endif %}
+          </p>
         </li>
       </ul>
     </div>
