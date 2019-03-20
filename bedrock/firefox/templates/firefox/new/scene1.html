@@ -164,15 +164,21 @@
 {% endblock %}
 
 {% block stub_attribution %}
-  <!--[if !lte IE 8]><!-->
-  {{ js_bundle('stub-attribution-custom') }}
-  {% if switch('experiment_firefox_new_headlne_en', ['en-US', 'en-CA', 'en-GB']) %}
-    {{ js_bundle('experiment-firefox-new-headline-en') }}
+  {% if settings.STUB_ATTRIBUTION_RATE %}
+    {% if LANG in ['en-US', 'en-CA', 'en-GB', 'de'] %}
+      <!--[if !lte IE 8]><!-->
+      {{ js_bundle('stub-attribution-custom') }}
+      {% if switch('experiment_firefox_new_headlne_en', ['en-US', 'en-CA', 'en-GB']) %}
+        {{ js_bundle('experiment-firefox-new-headline-en') }}
+      {% endif %}
+      {% if switch('experiment_firefox_new_headlne_de', ['de']) %}
+        {{ js_bundle('experiment-firefox-new-headline-de') }}
+      {% endif %}
+      <!--<![endif]-->
+    {% else %}
+      {{ js_bundle('stub-attribution') }}
+    {% endif %}
   {% endif %}
-  {% if switch('experiment_firefox_new_headlne_de', ['de']) %}
-    {{ js_bundle('experiment-firefox-new-headline-de') }}
-  {% endif %}
-  <!--<![endif]-->
 {% endblock %}
 
 {% block js %}
