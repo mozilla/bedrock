@@ -151,16 +151,18 @@ $image-path: '/media/protocol/img';
     display: block;
     padding: 0;
 
-    .mzp-c-newsletter-form {
-        padding: 0;
+    legend {
+        color: $color-white;
     }
 
+    .mzp-c-newsletter-form,
     .mzp-c-newsletter-thanks {
         padding: 0;
+        width: 100%;
+    }
 
-        h3 {
-            font-weight: normal;
-        }
+    .mzp-c-newsletter-thanks h3 {
+        font-weight: normal;
     }
 }
 
