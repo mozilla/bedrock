@@ -13,7 +13,7 @@ $image-path: '/media/protocol/img';
     background: #33124e;
     color: #fff;
     text-align: center;
-    height: 500px;
+    min-height: 500px;
     margin-bottom: $spacing-xl;
 
     .hero-content {
