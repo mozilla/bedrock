@@ -13,7 +13,7 @@ $image-path: '/media/protocol/img';
     background: #33124e;
     color: #fff;
     text-align: center;
-    height: 400px;
+    min-height: 500px;
     margin-bottom: $spacing-xl;
 
     .hero-content {
@@ -21,12 +21,19 @@ $image-path: '/media/protocol/img';
         h1 {
             @include open-sans;
             @include text-display-lg;
-            margin-bottom: $spacing-xl;
+            margin: 0 auto $spacing-2xl;
+            @media #{$mq-lg} {
+                width: 400px;
+            }
         }
 
         p {
             color: #f07274;
             font-weight: bold;
+        }
+
+        img {
+            margin-bottom: $spacing-md;
         }
     }
 }
