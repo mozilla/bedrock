@@ -69,11 +69,20 @@
     {{ download_firefox(dom_id='download-sticky', download_location='sticky cta', button_color='mzp-t-small') }}
   {% endcall %}
 
-  {{ fxa_banner(
-    title=_('Firefox'),
-    sub_title=_('Live your life.<br> Own your life.'),
-    link_cta=_('Learn More'),
-  )}}
+  {% if l10n_has_tag('mozorg_hero_subhead') %}
+    {{ fxa_banner(
+      logo_title=_('Firefox'),
+      title=_('Live your life.<br> Own your life.'),
+      sub_title=_('Take your privacy and bookmarks everywhere with a Firefox Account.'),
+      link_cta=_('Learn More'),
+    )}}
+  {% else %}
+    {{ fxa_banner(
+      logo_title=_('Firefox'),
+      title=_('Live your life.<br> Own your life.'),
+      link_cta=_('Learn More'),
+    )}}
+  {% endif %}
 
   {{ fxa_banner_sticky(
     title=_('Firefox'),
@@ -84,15 +93,10 @@
   <div class="mozilla-content">
     <div class="mzp-l-content">
       <div class="mzp-l-card-hero">
-        <!-- 1 -->
         {{ content_card('card_1') }}
-        <!-- 2 -->
         {{ content_card('card_2') }}
-        <!-- 3 -->
         {{ content_card('card_3') }}
-        <!-- 4 -->
         {{ content_card('card_4') }}
-        <!-- 5 -->
         {{ content_card('card_5') }}
       </div>
 
@@ -107,9 +111,7 @@
       )}}
 
       <div class="mzp-l-card-half">
-        <!-- 6 -->
         {{ content_card('card_6') }}
-        <!-- 7 -->
         {{ content_card('card_7') }}
       </div>
     </div>
@@ -138,9 +140,7 @@
 
     <div class="mzp-l-content">
       <div class="mzp-l-card-half">
-        <!-- 8 -->
         {{ content_card('card_8') }}
-        <!-- 9 -->
         {{ content_card('card_9') }}
       </div>
 
@@ -156,9 +156,7 @@
       )}}
 
       <div class="mzp-l-card-half">
-        <!-- 10 -->
         {{ content_card('card_10') }}
-        <!-- 11 -->
         {{ content_card('card_11') }}
       </div>
 
@@ -173,9 +171,7 @@
       )}}
 
       <div class="mzp-l-card-half">
-        <!-- 12 -->
         {{ content_card('card_12') }}
-        <!-- 13 -->
         {{ content_card('card_13') }}
       </div>
 

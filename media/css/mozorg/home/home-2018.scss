@@ -44,7 +44,7 @@ $image-path: '/media/protocol/img';
 .c-primary-cta-wrapper {
     position: relative;
 
-    h2, h3 {
+    h2, h3, h4 {
         @include open-sans;
     }
 
@@ -53,7 +53,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.c-primary-cta-title {
+.c-primary-cta-logo {
     @include text-display-sm;
     background: url('/media/img/logos/firefox/logo-quantum.png') top center no-repeat; //image is 189x189, no need for retina mq when displaying at 40px
     @include background-size(40px 40px);
@@ -63,9 +63,15 @@ $image-path: '/media/protocol/img';
     padding-top: $spacing-2xl;
 }
 
-.c-primary-cta-title-sub {
+.c-primary-cta-title {
     @include text-display-xl;
     margin-bottom: $spacing-sm;
+}
+
+.c-primary-cta-title-sub {
+    @include text-display-md;
+    max-width: 430px;
+    margin: 0 auto;
 }
 
 .c-primary-cta-button {
@@ -81,9 +87,14 @@ $image-path: '/media/protocol/img';
 .fxaccount-primary-cta {
     background-color: $color-white;
 
-    .c-primary-cta-title-sub {
+    .c-primary-cta-title {
         @include text-display-lg;
-        margin-bottom: $spacing-2xl;
+        margin-bottom: $spacing-xl;
+    }
+
+    .c-primary-cta-title-sub {
+        @include text-display-sm;
+        margin-bottom: $spacing-xl;
     }
 }
 
@@ -92,7 +103,7 @@ $image-path: '/media/protocol/img';
         padding-bottom: 40px;
     }
 
-    .c-primary-cta-title {
+    .c-primary-cta-logo {
         background-position: top left;
         margin-bottom: $spacing-2xl;
         padding-left: $spacing-2xl;
@@ -121,6 +132,10 @@ $image-path: '/media/protocol/img';
             background: url('/media/img/home/2018/banner-fffy.png') center bottom 10px no-repeat;
             @include background-size(360px 175px);
             padding-bottom: 180px;
+
+            .c-primary-cta-title-sub {
+                text-align: left;
+            }
         }
     }
 
@@ -146,6 +161,10 @@ $image-path: '/media/protocol/img';
         .c-primary-cta-wrapper {
             @include border-box;
             max-width: 520px;
+        }
+
+        .c-primary-cta-title-sub {
+            margin: 0;
         }
     }
 
