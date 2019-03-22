@@ -10,6 +10,11 @@
   <h2>{{ high_res_img('firefox/developer/title-inverse.png', {'alt': _('Firefox Developer Edition'), 'width': '220', 'height': '84'}) }}</h2>
 {% endblock %}
 
+{% block notes_heading_primary %}
+  {# must over ride or last Dev Edition will be treated as "latest"  #}
+  <h1>{{ _('Firefox Developer Edition<br> Release Notes') }}</h1>
+{% endblock %}
+
 {% block notes_heading_secondary %}
   <div class="version">
     <h2>{{ _('{version}')|f(version=release.version) }}</h2>

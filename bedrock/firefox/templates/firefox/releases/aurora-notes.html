@@ -17,3 +17,12 @@
 {% endblock %}
 
 {% set channel_name = 'Aurora' %}
+
+{% block notes_heading_primary %}
+  {# must over ride or last Aurora will be treated as "latest"  #}
+  {% if release.product == 'Firefox for Android' %}
+    <h1>{{ _('Firefox for Android Aurora<br> Release Notes') }}</h1>
+  {% else %}
+    <h1>{{ _('Firefox Aurora Release Notes') }}</h1>
+  {% endif %}
+{% endblock %}

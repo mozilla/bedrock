@@ -92,7 +92,12 @@
       <div class="intro">
         <div class="container">
           {% block notes_heading_primary %}
-            <h1>{{ _('See what’s new in Firefox!') }}</h1>
+            {% set product_name = release.product + ' ' + channel_name if channel_name else release.product %}
+            {% if release.is_latest %}
+              <h1>{{ _('See what’s new in %s!')|format(product_name) }}</h1>
+            {% else %}
+              <h1>{{ _('%s<br> Release Notes')|format(product_name) }}</h1>
+            {% endif %}
           {% endblock %}
           <p>
             {% trans

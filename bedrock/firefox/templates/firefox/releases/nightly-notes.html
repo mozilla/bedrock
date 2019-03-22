@@ -24,7 +24,11 @@
 {% endblock %}
 
 {% block notes_heading_primary %}
-  <h1>{{ _('See what landed recently in <span>Firefox Nightly</span>!') }}</h1>
+  {% if release.is_latest %}
+    <h1>{{ _('See what landed recently in <span>Firefox Nightly</span>!') }}</h1>
+  {% else %}
+    <h1>{{ _('Firefox Nightly Release Notes') }}</h1>
+  {% endif %}
 {% endblock %}
 
 {% block extra_resources %}
