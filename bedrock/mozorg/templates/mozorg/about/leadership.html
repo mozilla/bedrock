@@ -670,9 +670,15 @@
 
         <div class="person-bio">
           <p>
+          {% if l10n_has_tag('davidson_bio_2019') %}
+          {% trans %}
+            Alan Davidson is Vice President of Global Policy, Trust and Security for Mozilla. He is responsible for leading Mozilla’s public policy work promoting an open Internet and a healthy web around the world. He also supervises a trust and security team promoting innovative privacy and security features that put people in control of their online lives.
+          {% endtrans %}
+          {% else %}
           {% trans %}
             As Vice President of Global Policy, Trust and Security, Alan is responsible for leading Mozilla’s public policy work promoting an open Internet and a healthy web around the world. He will also supervise a trust and security team focused on promoting innovative privacy and security features that put people in control of their online lives.
           {% endtrans %}
+          {% endif %}
           </p>
 
           <p>
