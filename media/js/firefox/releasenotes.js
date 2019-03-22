@@ -4,23 +4,11 @@
 
 /* eslint no-unused-vars: [2, { "varsIgnorePattern": "stickyNav" }] */
 
-(function($, Mozilla, Waypoint) {
+(function($, Mozilla) {
     'use strict';
 
     var client = Mozilla.Client;
     var $html = $('html');
-    var $nav = $('#nav');
-
-    var stickyNav = new Waypoint.Sticky({
-        element: $nav,
-        handler: function(direction) {
-            if (direction === 'down'){
-                $nav.addClass('fixedNav');
-            } else{
-                $nav.removeClass('fixedNav');
-            }
-        }
-    });
 
     // navigation drop-down menu
     function initSubMenu() {
@@ -76,4 +64,4 @@
 
     initSubMenu();
 
-})(window.jQuery, window.Mozilla, window.Waypoint);
+})(window.jQuery, window.Mozilla);
