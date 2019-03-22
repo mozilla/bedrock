@@ -5,11 +5,11 @@
 {% extends "firefox/releases/release-notes.html" %}
 
 {% block gtm_page_id %}
-    {% if release.product == 'Firefox for Android' %}
-        data-gtm-page-id="/firefox/android/auroranotes/"
-    {% else %}
-        data-gtm-page-id="/firefox/auroranotes/"
-    {% endif %}
+  {% if release.product == 'Firefox for Android' %}
+    data-gtm-page-id="/firefox/android/auroranotes/"
+  {% else %}
+    data-gtm-page-id="/firefox/auroranotes/"
+  {% endif %}
 {% endblock %}
 
 {% block page_css %}
