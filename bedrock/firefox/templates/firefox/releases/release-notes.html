@@ -63,9 +63,9 @@
       </a>
     {% elif release.product == 'Firefox for Android' %}
       {% if release.channel in ['Nightly', 'Aurora'] %}
-        {{ download_firefox('nightly', platform='android', alt_copy=_('Download')) }}
+        {{ download_firefox('nightly', platform='android', alt_copy=_('Download Firefox for Android Nightly')) }}
       {% elif release.channel == 'Beta' %}
-        {{ download_firefox('beta', platform='android', alt_copy=_('Download')) }}
+        {{ download_firefox('beta', platform='android', alt_copy=_('Download Firefox for Android Beta')) }}
       {% else %}
         {{ google_play_button() }}
       {% endif %}
