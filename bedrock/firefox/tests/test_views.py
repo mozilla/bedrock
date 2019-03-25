@@ -526,13 +526,13 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?xv=berlin')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene1.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene1.html', ANY)
 
     def test_berlin_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=berlin')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene2.html', ANY)
 
     def test_berlin_nonde_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=berlin')
@@ -551,13 +551,13 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?xv=herz')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene1-herz.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene1-herz.html', ANY)
 
     def test_variation_herz_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=herz')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2-herz.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene2-herz.html', ANY)
 
     def test_variation_herz_nonde_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=herz')
@@ -576,13 +576,13 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?xv=geschwindigkeit')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene1-gesch.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene1-gesch.html', ANY)
 
     def test_variation_speed_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=geschwindigkeit')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2-gesch.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene2-gesch.html', ANY)
 
     def test_variation_speed_nonde_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=geschwindigkeit')
@@ -601,13 +601,13 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?xv=privatsphare')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene1-privat.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene1-privat.html', ANY)
 
     def test_variation_privacy_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=privatsphare')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2-privat.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene2-privat.html', ANY)
 
     def test_variation_privacy_nonde_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=privatsphare')
@@ -626,13 +626,13 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?xv=auf-deiner-seite')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene1-auf-deiner-seite.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene1-auf-deiner-seite.html', ANY)
 
     def test_variation_oys_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=auf-deiner-seite')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2-auf-deiner-seite.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene2-auf-deiner-seite.html', ANY)
 
     def test_variation_oys_nonde_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=auf-deiner-seite')
@@ -652,13 +652,13 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?xv=aus-gruenden')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene1-aus-gruenden.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene1-aus-gruenden.html', ANY)
 
     def test_berlin_video_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=aus-gruenden')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/berlin/scene2-aus-gruenden.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene2-aus-gruenden.html', ANY)
 
     # better browser test issue 5841
 
@@ -666,14 +666,14 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?xv=betterbrowser')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/better-browser/scene1.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/better-browser/scene1.html', ANY)
 
     # d was the winning variation and the URL is being used in ads, make sure it works
     def test_better_browser_scene_1_vd(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=betterbrowser&v=d')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/better-browser/scene1.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/better-browser/scene1.html', ANY)
 
     def test_better_browser_scene_1_non_us(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=betterbrowser')
@@ -685,7 +685,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/download/thanks/?xv=betterbrowser')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/better-browser/scene2.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/better-browser/scene2.html', ANY)
 
     def test_better_browser_scene_2_non_us(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=betterbrowser')
@@ -699,7 +699,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?xv=safari')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-safari.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/compare/scene1-safari.html', ANY)
 
     def test_compare_safari_scene_1_non_us(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=safari')
@@ -719,7 +719,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/?xv=edge')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/compare/scene1-edge.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/compare/scene1-edge.html', ANY)
 
     def test_compare_edge_scene_1_non_us(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=edge')
@@ -820,6 +820,211 @@ class TestFirefoxNewNoIndex(TestCase):
         canonical = doc('link[rel="canonical"]')
         eq_(canonical.length, 1)
         ok_('/firefox/new/' in canonical.attr('href'))
+
+
+@override_settings(DEV=False)
+@patch('bedrock.firefox.views.l10n_utils.render')
+class TestFirefoxCampaign(TestCase):
+    def test_scene_1_template(self, render_mock):
+        req = RequestFactory().get('/firefox/campaign/')
+        req.locale = 'en-US'
+        views.campaign(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/index.html', ANY)
+
+    # berlin campaign bug 1447445 + 3 berlin variations bug 1473357
+
+    # berlin
+    def test_berlin_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/campaign/?xv=berlin')
+        req.locale = 'de'
+        views.campaign(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene1.html', ANY)
+
+    def test_berlin_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=berlin')
+        req.locale = 'de'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene2.html', ANY)
+
+    def test_berlin_nonde_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=berlin')
+        req.locale = 'en-US'
+        views.campaign(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/index.html', ANY)
+
+    def test_berlin_nonde_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=berlin')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
+    # herz
+    def test_variation_herz_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/campaign/?xv=herz')
+        req.locale = 'de'
+        views.campaign(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene1-herz.html', ANY)
+
+    def test_variation_herz_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=herz')
+        req.locale = 'de'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene2-herz.html', ANY)
+
+    def test_variation_herz_nonde_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/campaign/?xv=herz')
+        req.locale = 'en-US'
+        views.campaign(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/index.html', ANY)
+
+    def test_variation_herz_nonde_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=herz')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
+    # geschwindigkeit
+    def test_variation_speed_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/campaign/?xv=geschwindigkeit')
+        req.locale = 'de'
+        views.campaign(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene1-gesch.html', ANY)
+
+    def test_variation_speed_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=geschwindigkeit')
+        req.locale = 'de'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene2-gesch.html', ANY)
+
+    def test_variation_speed_nonde_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/campaign/?xv=geschwindigkeit')
+        req.locale = 'en-US'
+        views.campaign(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/index.html', ANY)
+
+    def test_variation_speed_nonde_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=geschwindigkeit')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
+    # privatsphare
+    def test_variation_privacy_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/campaign/?xv=privatsphare')
+        req.locale = 'de'
+        views.campaign(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene1-privat.html', ANY)
+
+    def test_variation_privacy_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=privatsphare')
+        req.locale = 'de'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene2-privat.html', ANY)
+
+    def test_variation_privacy_nonde_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/campaign/?xv=privatsphare')
+        req.locale = 'en-US'
+        views.campaign(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/index.html', ANY)
+
+    def test_variation_privacy_nonde_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=privatsphare')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
+    # auf-deiner-seite
+    def test_variation_oys_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/campaign/?xv=auf-deiner-seite')
+        req.locale = 'de'
+        views.campaign(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene1-auf-deiner-seite.html', ANY)
+
+    def test_variation_oys_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=auf-deiner-seite')
+        req.locale = 'de'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene2-auf-deiner-seite.html', ANY)
+
+    def test_variation_oys_nonde_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/campaign/?xv=auf-deiner-seite')
+        req.locale = 'en-US'
+        views.campaign(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/index.html', ANY)
+
+    def test_variation_oys_nonde_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=auf-deiner-seite')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
+    # berlin video test issue 5637
+
+    def test_berlin_video_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/campaign/?xv=aus-gruenden')
+        req.locale = 'de'
+        views.campaign(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene1-aus-gruenden.html', ANY)
+
+    def test_berlin_video_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=aus-gruenden')
+        req.locale = 'de'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene2-aus-gruenden.html', ANY)
+
+    # better browser test issue 5841
+
+    def test_better_browser_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/campaign/?xv=betterbrowser')
+        req.locale = 'en-US'
+        views.campaign(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/better-browser/scene1.html', ANY)
+
+    def test_better_browser_scene_1_non_us(self, render_mock):
+        req = RequestFactory().get('/firefox/campaign/?xv=betterbrowser')
+        req.locale = 'de'
+        views.campaign(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/index.html', ANY)
+
+    def test_better_browser_scene_2(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=betterbrowser')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/better-browser/scene2.html', ANY)
+
+    def test_better_browser_scene_2_non_us(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=betterbrowser')
+        req.locale = 'fr'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
+    # Safari SEM campaign bug #1479085
+
+    def test_compare_safari_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/campaign/?xv=safari')
+        req.locale = 'en-US'
+        views.campaign(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/compare/scene1-safari.html', ANY)
+
+    def test_compare_safari_scene_1_non_us(self, render_mock):
+        req = RequestFactory().get('/firefox/campaign/?xv=safari')
+        req.locale = 'fr'
+        views.campaign(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/index.html', ANY)
+
+    # Edge SEM campaign Bug #1479086
+
+    def test_compare_edge_scene_1(self, render_mock):
+        req = RequestFactory().get('/firefox/campaign/?xv=edge')
+        req.locale = 'en-US'
+        views.campaign(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/compare/scene1-edge.html', ANY)
+
+    def test_compare_edge_scene_1_non_us(self, render_mock):
+        req = RequestFactory().get('/firefox/campaign/?xv=edge')
+        req.locale = 'de'
+        views.campaign(req)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/index.html', ANY)
 
 
 class TestFeedbackView(TestCase):

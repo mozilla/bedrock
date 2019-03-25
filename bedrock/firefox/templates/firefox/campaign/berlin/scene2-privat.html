@@ -4,11 +4,11 @@
 
 {% add_lang_files "firefox/new/quantum" %}
 
-{% extends "firefox/new/berlin/base.html" %}
+{% extends "firefox/campaign/berlin/base-variation.html" %}
 
-{% block body_class %}berlin-scene2{% endblock %}
+{% block body_class %}berlin-scene2 privat{% endblock %}
 
-{% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/?xv=berlin{% endblock %}
+{% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/?xv=privatsphare{% endblock %}
 
 {% block string_data %}
   data-pixels="{% for pixel in settings.TRACKING_PIXELS %}{{ pixel }}{% if not loop.last %}::{% endif %}{% endfor %}"
@@ -31,7 +31,6 @@
   </div>
 {% endblock %}
 
-{% block video %}{% endblock %}
 {% block details %}{% endblock %}
 
 {% block secondary_download %}{% endblock %}
