@@ -2,11 +2,12 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% macro download_banner(title, sub_title, desc) -%}
+{% macro download_banner(logo_title, title, sub_title, desc) -%}
 <section id="download-firefox-primary-cta" class="c-primary-cta download-firefox-primary-cta">
   <div class="mzp-l-content">
     <div class="c-primary-cta-wrapper">
-      <h2 class="c-primary-cta-title">{{ title }}</h2>
+      <h2 class="c-primary-cta-logo">{{ logo_title }}</h2>
+      <h3 class="c-primary-cta-title">{{ title }}</h3>
       <h3 class="c-primary-cta-title-sub">{{ sub_title }}</h3>
       <p class="c-primary-cta-desc-sub">{{ desc }}</p>
       <div class="c-primary-cta-button">
