@@ -4,16 +4,17 @@
 
 {% extends "firefox/releases/notes.html" %}
 
-{% block gtm_page_id %}
-  {% if release.product == 'Firefox for Android' %}
-    data-gtm-page-id="/firefox/android/auroranotes/"
-  {% else %}
-    data-gtm-page-id="/firefox/auroranotes/"
-  {% endif %}
-{% endblock %}
-
-{% block page_css %}
-  {{ css_bundle('firefox_releasenotes_firefox') }}
-{% endblock %}
-
-{% set channel_name = 'Aurora' %}
+{% if release.product == 'Firefox for Android' %}
+  {% set page_id = 'data-gtm-page-id="/firefox/android/auroranotes/"' %}
+  {% set download_button %}
+    {{ download_firefox('nightly', platform='android', alt_copy=_('Download Firefox for Android Nightly')) }}
+  {% endset %}
+  {% set download_all_link = firefox_url('android', 'all', channel='nightly') %}
+{% elif release.product == 'Firefox' %}
+  {% set page_id = 'data-gtm-page-id="/firefox/auroranotes/"' %}
+  {% set download_title = _('Build, test, scale and more with the only browser built just for developers.') %}
+  {% set download_button %}
+    {{ download_firefox('alpha', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Developer Edition')) }}
+  {% endset %}
+  {% set download_all_link = firefox_url('desktop', 'all', channel='alpha') %}
+{% endif %}

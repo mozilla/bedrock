@@ -4,12 +4,16 @@
 
 {% extends "firefox/releases/notes.html" %}
 
-{% block gtm_page_id %}
-    {% if release.product == 'Firefox for Android' %}
-        data-gtm-page-id="/firefox/android/beta/releasenotes/"
-    {% else %}
-        data-gtm-page-id="/firefox/beta/releasenotes/"
-    {% endif %}
-{% endblock %}
-
-{% set channel_name = 'Beta' %}
+{% if release.product == 'Firefox for Android' %}
+  {% set page_id = 'data-gtm-page-id="/firefox/android/beta/releasenotes"' %}
+  {% set download_button %}
+    {{ download_firefox('beta', platform='android', alt_copy=_('Download Firefox for Android Beta')) }}
+  {% endset %}
+  {% set download_all_link = firefox_url('android', 'all', channel='beta') %}
+{% elif release.product == 'Firefox' %}
+  {% set page_id = 'data-gtm-page-id="/firefox/beta/releasenotes/"' %}
+  {% set download_button %}
+    {{ download_firefox('beta', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Beta')) }}
+  {% endset %}
+  {% set download_all_link = firefox_url('desktop', 'all', channel='beta') %}
+{% endif %}

@@ -4,20 +4,26 @@
 
 {% extends "firefox/releases/notes.html" %}
 
-{% block gtm_page_id %}data-gtm-page-id="/firefox/auroranotes/"{% endblock %}
+{% set page_id = 'data-gtm-page-id="/firefox/auroranotes/"' %}
+{% set product_name = 'Firefox Developer Edition' %}
+{% set download_button %}
+ {{ download_firefox('alpha', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Developer Edition')) }}
+{% endset %}
+
+{% set download_all_link = firefox_url('desktop', 'all', channel='alpha') %}
 
 {% block site_header_logo %}
-  <h2>{{ high_res_img('firefox/developer/title-inverse.png', {'alt': _('Firefox Developer Edition'), 'width': '220', 'height': '84'}) }}</h2>
+ <h2>{{ high_res_img('firefox/developer/title-inverse.png', {'alt': _('Firefox Developer Edition'), 'width': '220', 'height': '84'}) }}</h2>
 {% endblock %}
 
 {% block notes_heading_secondary %}
-  <div class="version">
-    <h2>{{ _('{version}')|f(version=release.version) }}</h2>
-    <h3>{{ _('Firefox Developer Edition') }}</h3>
-    <p>{{ _('{date}')|f(date=release.release_date|l10n_format_date) }}</p>
-  </div>
-  <div class="description">
-      <h2>{{ _('Version {version}, first offered to Firefox Developer Edition channel users on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date, version=release.version) }}</h2>
-      <p>{{ release.text|safe }}</p>
-  </div>
+ <div class="version">
+   <h2>{{ _('{version}')|f(version=release.version) }}</h2>
+   <h3>{{ _('Firefox Developer Edition') }}</h3>
+   <p>{{ _('{date}')|f(date=release.release_date|l10n_format_date) }}</p>
+ </div>
+ <div class="description">
+     <h2>{{ _('Version {version}, first offered to Firefox Developer Edition channel users on {date}')|f(channel=release.channel, date=release.release_date|l10n_format_date, version=release.version) }}</h2>
+     <p>{{ release.text|safe }}</p>
+ </div>
 {% endblock %}
