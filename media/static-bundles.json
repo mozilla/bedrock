@@ -1270,8 +1270,6 @@
     },
     {
       "files": [
-        "js/libs/jquery.waypoints.min.js",
-        "js/libs/jquery.waypoints-sticky.min.js",
         "js/firefox/releasenotes.js"
       ],
       "name": "releasenotes"
