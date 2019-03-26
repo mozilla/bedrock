@@ -598,7 +598,7 @@ redirectpatterns = (
     redirect(r'^firefox/features/sync/?', 'firefox.accounts'),
     redirect(r'^firefox/features/send-tabs/?', 'firefox.accounts'),
 
-    # # issue 6512
+    # issue 6512
     redirect(r'^firefox/firefox\.html$', 'firefox.new'),
 
     # issue 6979
