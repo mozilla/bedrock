@@ -108,7 +108,7 @@
     },
     {
       "files": [
-        "css/firefox/releasenotes.less"
+        "css/firefox/releasenotes.scss"
       ],
       "name": "firefox_releasenotes"
     },
@@ -159,7 +159,7 @@
     },
     {
       "files": [
-        "css/firefox/releases-index.less"
+        "css/firefox/releases-index.scss"
       ],
       "name": "firefox_releases_index"
     },
@@ -775,9 +775,9 @@
     },
     {
       "files": [
-        "css/firefox/releasenotes-firefox.less"
+        "css/firefox/releasenotes.scss"
       ],
-      "name": "firefox_releasenotes_firefox"
+      "name": "firefox_releasenotes"
     },
     {
       "files": [
@@ -1267,12 +1267,6 @@
         "js/firefox/mobile/mobile.js"
       ],
       "name": "firefox-mobile"
-    },
-    {
-      "files": [
-        "js/firefox/releasenotes.js"
-      ],
-      "name": "releasenotes"
     },
     {
       "files": [

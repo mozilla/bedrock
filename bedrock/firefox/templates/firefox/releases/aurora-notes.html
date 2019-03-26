@@ -6,12 +6,14 @@
 
 {% if release.product == 'Firefox for Android' %}
   {% set page_id = 'data-gtm-page-id="/firefox/android/auroranotes/"' %}
+  {% set product_class = 'mzp-t-dark mzp-t-product-nightly' %}
   {% set download_button %}
     {{ download_firefox('nightly', platform='android', alt_copy=_('Download Firefox for Android Nightly')) }}
   {% endset %}
   {% set download_all_link = firefox_url('android', 'all', channel='nightly') %}
 {% elif release.product == 'Firefox' %}
   {% set page_id = 'data-gtm-page-id="/firefox/auroranotes/"' %}
+  {% set product_class = 'mzp-t-dark mzp-t-product-developer t-aurora' %}
   {% set download_title = _('Build, test, scale and more with the only browser built just for developers.') %}
   {% set download_button %}
     {{ download_firefox('alpha', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Developer Edition')) }}

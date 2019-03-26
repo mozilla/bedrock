@@ -1,4 +1,4 @@
-{% extends "firefox/base-resp.html" %}
+{% extends "firefox/base-protocol.html" %}
 
 {% block page_title %}{{ _('Mozilla Firefox Release Notes') }}{% endblock %}
 {% block page_desc %}{{ _('Release notes for each version of Firefox.') }}{% endblock %}
@@ -12,24 +12,16 @@
   {% include 'includes/protocol/navigation/index.html' %}
 {% endblock %}
 
-{% block site_header_nav %}{% endblock %}
-
-{% block breadcrumbs %}
-  <nav class="breadcrumbs">
-    <a href="{{ url('mozorg.home') }}">{{ _('Home') }}</a> >
-    <a href="{{ url('firefox.new') }}">{{ _('Firefox') }}</a> >
-    <span>{{ _('Release Notes') }}</span>
-  </nav>
-{% endblock %}
+{% block body_class %}{{ super() }} mzp-t-firefox{% endblock %}
 
 {% block content %}
-  <div id="main-feature">
+  <main id="main-content" class="mzp-l-content">
+    <a href="{{ url('firefox') }}" class="c-logo">
+      Firefox
+    </a>
     <h1>{{ _('Firefox Releases') }}</h1>
     <p>{{ _('Firefox release notes are specific to each version of the application. Select your version from the list below to see the release notes for it.') }}</p>
-  </div>
-
-  <div id="main-content">
-    <ol reversed>
+    <ol reversed class="c-release-list">
       {% for int_version, versions in releases -%}
       <li>
         <strong>{{ get_link(int_version, versions.major) }}</strong>
@@ -61,7 +53,7 @@
         </ol>
       </li>
     </ol>
-  </div>
+  </main>
 {% endblock %}
 
 {% macro get_link(int_version, version) %}
