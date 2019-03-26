@@ -140,10 +140,10 @@
         <div class="container">
           {% block notes_heading_secondary %}
           <div class="version">
-            <h2>{{ _('{version}')|f(version=release.version) }}</h2>
+            <h2>{{ release.version }}</h2>
             <h3>{{ release.product }} {{ release.channel }}</h3>
             {% if release.is_public %}
-              <p>{{ _('{date}')|f(date=release.release_date|l10n_format_date) }}</p>
+              <p>{{ release.release_date }}</p>
             {% endif %}
           </div>
           <div class="description">
