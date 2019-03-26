@@ -186,6 +186,10 @@ class ProductRelease(models.Model):
     def version_obj(self):
         return Version(self.version)
 
+    @property
+    def is_latest(self):
+        return self == get_latest_release(self.product, self.channel)
+
     def get_absolute_url(self):
         if self.product == 'Firefox for Android':
             urlname = 'firefox.android.releasenotes'

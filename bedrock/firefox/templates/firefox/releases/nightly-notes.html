@@ -4,7 +4,6 @@
 
 {% extends "firefox/releases/notes.html" %}
 
-{% set channel_name = 'Nightly' %}
 {% set notes_feed = url('firefox.nightly.notes.feed') %}
 {% set blog_feed = 'https://blog.nightly.mozilla.org/feed/' %}
 
@@ -18,14 +17,21 @@
 {% block page_image %}{{ static('img/firefox/nightly/page-image.png') }}{% endblock %}
 
 {% block body_class %}fx-notes space{% endblock %}
+{% set page_id = 'data-gtm-page-id="/firefox/nightly/releasenotes"' %}
+
+{% if release.is_latest %}
+  {% set primary_heading = _('See what landed recently in <span>Firefox Nightly</span>!') %}
+{% endif %}
 
 {% block site_header_logo %}
   <h2>{{ high_res_img('firefox/template/header-logo-nightly.png', {'alt': _('Firefox Nightly'), 'width': '305', 'height': '70'}) }}</h2>
 {% endblock %}
 
-{% block notes_heading_primary %}
-  <h1>{{ _('See what landed recently in <span>Firefox Nightly</span>!') }}</h1>
-{% endblock %}
+{% set download_button %}
+  {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Nightly')) }}
+{% endset %}
+
+{% set download_all_link = firefox_url('desktop', 'all', channel='nightly') %}
 
 {% block extra_resources %}
   <a rel="external" href="https://blog.nightly.mozilla.org/">{{ _('Firefox Nightly News') }}</a>

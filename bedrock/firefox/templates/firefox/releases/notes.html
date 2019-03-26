@@ -2,19 +2,15 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% from "macros.html" import google_play_button with context %}
-
 {% extends "firefox/base-resp.html" %}
 
-{% block gtm_page_id %}
-    {% if release.product == 'Firefox for Android' %}
-        data-gtm-page-id="/firefox/android/releasenotes/"
-    {% elif release.product == 'Firefox for iOS' %}
-        data-gtm-page-id="/firefox/ios/releasenotes/"
-    {% else %}
-        data-gtm-page-id="/firefox/releasenotes/"
-    {% endif %}
-{% endblock %}
+{# page ID for gtm #}
+{# page_id may be over-ridden with more appropriate content #}
+{% set page_id = page_id|default('data-gtm-page-id="/firefox/releasenotes/"') %}
+
+{# product_name is the product and channel together. Example: Firefox for Android Beta. #}
+{# product_name may be over-ridden with more appropriate content to avoid bad names like: Firefox Release Release #}
+{% set product_name = product_name|default(release.product + ' ' + release.channel) %}
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{ _('{product} {channel} {version}, See All New Features, Updates and Fixes')|f(product=release.product, channel=channel_name, version=release.version) }}{% endblock %}
@@ -31,8 +27,9 @@
   {% include 'includes/protocol/navigation/index.html' %}
 {% endblock %}
 
-{# channel_name is for display purposes where needed.  #}
-{% set channel_name = channel_name|default('') %}
+{% set channel_name = '' if release.channel == 'Release' else release.channel %}
+
+{% set download_title = download_title|default(_('Get the most recent version')) %}
 
 {% block site_header %}
 <header id="masthead" class="relasenotes-header">
@@ -55,34 +52,6 @@
 </header>
 {% endblock %}
 
-{% set download_button %}
-  <div class="download-buttons">
-    {% if release.product == 'Firefox for iOS' %}
-      <a rel="external" href="{{ firefox_ios_url('mozorg-releasenotes_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
-        <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}">
-      </a>
-    {% elif release.product == 'Firefox for Android' %}
-      {% if release.channel in ['Nightly', 'Aurora'] %}
-        {{ download_firefox('nightly', platform='android', alt_copy=_('Download Firefox for Android Nightly')) }}
-      {% elif release.channel == 'Beta' %}
-        {{ download_firefox('beta', platform='android', alt_copy=_('Download Firefox for Android Beta')) }}
-      {% else %}
-        {{ google_play_button() }}
-      {% endif %}
-    {% elif release.product == 'Firefox' %}
-      {% if release.channel == 'Nightly' %}
-        {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Nightly')) }}
-      {% elif release.channel == 'Aurora' %}
-        {{ download_firefox('alpha', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Developer Edition')) }}
-      {% elif release.channel == 'Beta' %}
-        {{ download_firefox('beta', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Beta')) }}
-      {% else %}
-        {{ download_firefox() }}
-      {% endif %}
-    {% endif %}
-  </div>
-{% endset %}
-
 {% block content %}
 <main role="main" class="release-notes">
   <article id="main-content">
@@ -91,31 +60,34 @@
     <header class="notes-head">
       <div class="intro">
         <div class="container">
-          {% block notes_heading_primary %}
-            <h1>{{ _('See what’s new in Firefox!') }}</h1>
-          {% endblock %}
+          {% if not primary_heading %}
+            {# L10n: The replacement text will be filled in with a product name. Example:  "Firefox for Android Release Notes" #}
+            {% set primary_heading = _('%s <br> Release Notes')|format(product_name) %}
+          {% endif %}
+          {% if release.product == 'Firefox for Android' %}
+            {% set feedback_url='https://input.mozilla.org/feedback/android/' + release.version + '?utm_source=releasenotes' %}
+          {% else %}
+            {% set feedback_url='https://input.mozilla.org/feedback/firefox/' + release.version + '?utm_source=releasenotes' %}
+          {% endif %}
+          {% set bugzilla_url='https://bugzilla.mozilla.org/' %}
+          <h1>{{ primary_heading }}</h1>
           <p>
-            {% trans
-            feedback='https://input.mozilla.org/feedback/android/' + release.version + '?utm_source=releasenotes'
-            if release.product == 'Firefox for Android'
-            else 'https://input.mozilla.org/feedback/firefox/' + release.version + '?utm_source=releasenotes',
-            bugzilla='https://bugzilla.mozilla.org/'
-            %}
-              Release Notes tell you what’s new in Firefox. As always, we welcome your <a href="{{ feedback }}">feedback</a>. You can also <a href="{{ bugzilla }}">file a bug in Bugzilla</a> or see the <a href="{{ check_url }}">system requirements</a> of this release.
-            {% endtrans %}
+            {{ _('Release Notes tell you what’s new in Firefox. As always, we welcome your <a href="%(feedback)s">feedback</a>. You can also <a href="%(bugzilla)s">file a bug in Bugzilla</a> or see the <a href="%(check)s">system requirements</a> of this release.')|format(feedback=feedback_url, bugzilla=bugzilla_url, check=check_url) }}
           </p>
         </div>
       </div>
 
-    {% block top_download_buttons %}
-      <div class="top-download-buttons">
-        <div class="container">
-          <div class="header-download">
-            {{ download_button }}
+    {% if download_button %}
+      {% block top_download_buttons %}
+        <div class="top-download-buttons">
+          <div class="container">
+            <div class="header-download">
+              {{ download_button }}
+            </div>
           </div>
         </div>
-      </div>
-    {% endblock %}
+      {% endblock %}
+    {% endif %}
 
     {% block platform_switch %}
       <nav id="nav" class="navigator">
@@ -168,10 +140,10 @@
         <div class="container">
           {% block notes_heading_secondary %}
           <div class="version">
-            <h2>{{ _('{version}')|f(version=release.version) }}</h2>
+            <h2>{{ release.version }}</h2>
             <h3>{{ release.product }} {{ release.channel }}</h3>
             {% if release.is_public %}
-              <p>{{ _('{date}')|f(date=release.release_date|l10n_format_date) }}</p>
+              <p>{{ release.release_date }}</p>
             {% endif %}
           </div>
           <div class="description">
@@ -321,25 +293,17 @@
     <section class="notes-footer">
       <div class="container">
         <div class="all-download">
-          <p class="message">{{ _('Download the latest version of Firefox') }}</p>
-          {% if release.product == 'Firefox for Android' %}
-            {% if release.channel in ['Nightly', 'Aurora'] %}
-              <a href="{{ firefox_url('android', 'all', channel='nightly') }}">{{ _('All Firefox Nightly for Android downloads') }}</a>
-            {% else %}
-              <a href="{{ firefox_url('android', 'all', channel=channel_name|lower()) }}">{{ _('All Firefox %s for Android downloads')|format(channel_name) }}</a>
-            {% endif %}
-          {% elif release.product == 'Firefox Extended Support Release' %}
-            <a href="{{ firefox_url('desktop', 'all', channel='organizations') }}">{{ _('All Firefox ESR downloads') }}</a>
-          {% elif release.product == 'Firefox' %}
-            {% if release.channel == 'Aurora' %}
-              <a href="{{ firefox_url('desktop', 'all', channel='alpha') }}">{{ _('All Firefox Developer Edition downloads') }}</a>
-            {% else %}
-              <a href="{{ firefox_url('desktop', 'all', channel=channel_name|lower()) }}">{{ _('All Firefox %s downloads')|format(channel_name) }}</a>
-            {% endif %}
+          <p class="message">{{ download_title }}</p>
+          {% if download_all_link %}
+            <a href="{{ download_all_link }}">{{ _('All %s downloads')|format(product_name) }}</a>
           {% endif %}
         </div>
 
-        {{ download_button }}
+        {% if download_button %}
+          <div class="download-buttons">
+            {{ download_button }}
+          </div>
+        {% endif %}
 
       </div>
     </section>

@@ -3,3 +3,28 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
 {% extends "firefox/releases/notes.html" %}
+{% from "macros.html" import google_play_button with context %}
+
+{% if release.product == 'Firefox for iOS' %}
+  {% set page_id = 'data-gtm-page-id="/firefox/ios/releasenotes/"' %}
+  {% set product_name = release.product %}
+  {% set download_button %}
+    <a rel="external" href="{{ firefox_ios_url('mozorg-releasenotes_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
+      <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}">
+    </a>
+  {% endset %}
+{% elif release.product == 'Firefox for Android' %}
+  {% set page_id = 'data-gtm-page-id="/firefox/android/releasenotes/"' %}
+  {% set product_name = 'Firefox for Android' %}
+  {% set download_button %}
+    {{ google_play_button() }}
+  {% endset %}
+  {% set download_all_link = firefox_url('android', 'all', channel=channel_name|lower()) %}
+{% elif release.product == 'Firefox' %}
+  {% set product_name = 'Firefox' %}
+  {% set primary_heading =  _('See what’s new in Firefox!') if release.is_latest else _('Firefox Release Notes') %}
+  {% set download_button %}
+    {{ download_firefox() }}
+  {% endset %}
+  {% set download_all_link = firefox_url('desktop', 'all', channel='release') %}
+{% endif %}
