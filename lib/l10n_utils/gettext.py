@@ -57,7 +57,11 @@ def parse_po(path):
                 if matches:
                     msgpath = matches.group(1)
             elif line.startswith('#.'):
-                msgcomment = line.lstrip('#.').strip()
+                commentline = line.lstrip('#.').strip()
+                if msgcomment:
+                    msgcomment += ' ' + commentline
+                else:
+                    msgcomment = commentline
             elif line.startswith('msgid'):
                 msgid = extract_content(line)
             elif line.startswith('msgstr') and msgid and msgpath:
