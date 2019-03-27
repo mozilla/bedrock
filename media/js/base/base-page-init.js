@@ -6,6 +6,8 @@
  * General DOM ready handler applied to all pages in base template.
  */
 (function($) {
+    'use strict';
+
     // page must be loaded and ready before onWindowLoad fires
     var loaded = false;
     var ready = false;

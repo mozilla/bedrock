@@ -6,6 +6,8 @@
  * Initialize Protocol Navigation.
  */
 (function() {
+    'use strict';
+
     if (typeof Mzp === 'undefined' || typeof Mzp.Menu === 'undefined' || typeof Mzp.Navigation === 'undefined') {
         return;
     }

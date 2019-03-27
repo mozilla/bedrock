@@ -6,6 +6,7 @@
 /* global describe, beforeEach, afterEach, it, expect, sinon */
 
 describe('core-datalayer.js', function() {
+    'use strict';
 
     describe('pageHasDownload', function() {
 

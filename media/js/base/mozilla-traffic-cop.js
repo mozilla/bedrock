@@ -3,8 +3,8 @@
 * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // create namespace
-if (typeof Mozilla === 'undefined') {
-    var Mozilla = {};
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
 }
 
 /**
@@ -95,6 +95,7 @@ Mozilla.TrafficCop.referrerCookieName = 'mozilla-traffic-cop-original-referrer';
  * currently viewing a variation, and (possibly) redirects to a variation
  */
 Mozilla.TrafficCop.prototype.init = function() {
+    'use strict';
     // respect the DNT
     if (typeof Mozilla.dntEnabled === 'function' && Mozilla.dntEnabled()) {
         return;
@@ -125,6 +126,7 @@ Mozilla.TrafficCop.prototype.init = function() {
  * developer.
  */
 Mozilla.TrafficCop.prototype.initiateCustomCallbackRoutine = function() {
+    'use strict';
     // set a cookie to remember the chosen variation
     Mozilla.Cookies.setItem(this.id, this.chosenVariation || Mozilla.TrafficCop.noVariationCookieValue, this.cookieExpiresDate);
 
@@ -137,6 +139,7 @@ Mozilla.TrafficCop.prototype.initiateCustomCallbackRoutine = function() {
  * redirected. May result in no redirect.
  */
 Mozilla.TrafficCop.prototype.initiateRedirectRoutine = function() {
+    'use strict';
     var redirectUrl;
 
     // make sure current page doesn't match a variation
@@ -179,6 +182,7 @@ Mozilla.TrafficCop.prototype.initiateRedirectRoutine = function() {
  * of users.
  */
 Mozilla.TrafficCop.prototype.verifyConfig = function() {
+    'use strict';
     if (!this.id || typeof this.id !== 'string') {
         return false;
     }
@@ -201,6 +205,7 @@ Mozilla.TrafficCop.prototype.verifyConfig = function() {
  * 'date' param used only for unit testing.
  */
 Mozilla.TrafficCop.generateCookieExpiresDate = function(cookieExpires, date) {
+    'use strict';
     // default to null, meaning a session-length cookie
     var d = null;
 
@@ -216,6 +221,7 @@ Mozilla.TrafficCop.generateCookieExpiresDate = function(cookieExpires, date) {
  * Checks to see if user is currently viewing a variation.
  */
 Mozilla.TrafficCop.isRedirectVariation = function(variations, queryString) {
+    'use strict';
     var isVariation = false;
     queryString = queryString || window.location.search;
 
@@ -234,6 +240,7 @@ Mozilla.TrafficCop.isRedirectVariation = function(variations, queryString) {
  * Returns the variation chosen for the current user/experiment.
  */
 Mozilla.TrafficCop.chooseVariation = function(id, variations, totalPercentage) {
+    'use strict';
     var rando;
     var runningTotal;
     var choice = Mozilla.TrafficCop.noVariationCookieValue;
@@ -275,6 +282,7 @@ Mozilla.TrafficCop.chooseVariation = function(id, variations, totalPercentage) {
  * which (if any) variation should be matched.
  */
 Mozilla.TrafficCop.generateRedirectUrl = function(chosenVariation, url) {
+    'use strict';
     var hash;
     var redirect;
     var urlParts;
@@ -303,10 +311,12 @@ Mozilla.TrafficCop.generateRedirectUrl = function(chosenVariation, url) {
 };
 
 Mozilla.TrafficCop.performRedirect = function(redirectURL) {
+    'use strict';
     window.location.href = redirectURL;
 };
 
 Mozilla.TrafficCop.setReferrerCookie = function(expirationDate, referrer) {
+    'use strict';
     // in order of precedence, referrer should be:
     // 1. custom value passed in via unit test
     // 2. value of document.referrer
@@ -317,10 +327,12 @@ Mozilla.TrafficCop.setReferrerCookie = function(expirationDate, referrer) {
 };
 
 Mozilla.TrafficCop.clearReferrerCookie = function() {
+    'use strict';
     Mozilla.Cookies.removeItem(Mozilla.TrafficCop.referrerCookieName);
 };
 
 // wrapper around document.referrer for better unit testing
 Mozilla.TrafficCop.getDocumentReferrer = function() {
+    'use strict';
     return document.referrer;
 };

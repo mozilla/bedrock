@@ -4,6 +4,8 @@
 
 // init core dataLayer object and push into dataLayer
 $(function() {
+    'use strict';
+
     var analytics = Mozilla.Analytics;
     var client = Mozilla.Client;
     var dataLayer = window.dataLayer = window.dataLayer || [];

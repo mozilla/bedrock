@@ -1,52 +1,36 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es6": true,
-        "jquery": true,
-        "jasmine": true
+    env: {
+        'jquery': true,
+        'jasmine': true
     },
-    "extends": "eslint:recommended",
-    "rules": {
-        "no-global-assign": 2,
-        "indent": [
-            2,
-            4
-        ],
-        "linebreak-style": [
-            2,
-            "unix"
-        ],
-        "quotes": [
-            2,
-            "single"
-        ],
-        "semi": [
-            2,
-            "always"
-        ],
-        "curly": [
-            2,
-            "all"
-        ],
-        "camelcase": [
-            2,
-            {
-                "properties": "always"
+    extends: '@mozilla-protocol/eslint-config',
+    rules: {
+        'no-useless-escape': 1,
+    },
+    /**
+     * Provide a set of overrides for `gulpfile.js` in the root directory.
+     * Ideally we want to extend @mozilla-protocol/eslint-config/index-node,
+     * however ESLint does not currently allow extends inside glob overrides.
+     * (see https://github.com/eslint/eslint/issues/8813)
+     * */
+    overrides: [
+        {
+            files: 'gulpfile.js',
+            env: {
+                'commonjs': true,
+                'node': true,
+                'es6': true
+            },
+            parserOptions: {
+                ecmaVersion: 8
+            },
+            rules: {
+                'strict': ['error', 'global'],
             }
-        ],
-        "eqeqeq": [
-            2,
-            "smart"
-        ],
-        "one-var-declaration-per-line": [
-            2,
-            "always"
-        ],
-        "new-cap": 2
-    },
-    "globals": {
-        "Mozilla": true,
-        "Mzp": true,
-        "site": true
+        }
+    ],
+    globals: {
+        'Mozilla': true,
+        'site': true
     }
 };

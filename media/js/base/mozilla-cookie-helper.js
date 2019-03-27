@@ -27,16 +27,18 @@
 \*/
 
 // create namespace
-if (typeof Mozilla === 'undefined') {
-    var Mozilla = {};
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
 }
 
 Mozilla.Cookies = {
     getItem: function (sKey) {
+        'use strict';
         if (!sKey) { return null; }
         return decodeURIComponent(document.cookie.replace(new RegExp('(?:(?:^|.*;)\\s*' + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=\\s*([^;]*).*$)|^.*$'), '$1')) || null;
     },
     setItem: function (sKey, sValue, vEnd, sPath, sDomain, bSecure) {
+        'use strict';
         if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) { return false; }
         var sExpires = '';
         if (vEnd) {
@@ -56,20 +58,24 @@ Mozilla.Cookies = {
         return true;
     },
     removeItem: function (sKey, sPath, sDomain) {
+        'use strict';
         if (!this.hasItem(sKey)) { return false; }
         document.cookie = encodeURIComponent(sKey) + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT' + (sDomain ? '; domain=' + sDomain : '') + (sPath ? '; path=' + sPath : '');
         return true;
     },
     hasItem: function (sKey) {
+        'use strict';
         if (!sKey) { return false; }
         return (new RegExp('(?:^|;\\s*)' + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=')).test(document.cookie);
     },
     keys: function () {
+        'use strict';
         var aKeys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, '').split(/\s*(?:\=[^;]*)?;\s*/);
         for (var nLen = aKeys.length, nIdx = 0; nIdx < nLen; nIdx++) { aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]); }
         return aKeys;
     },
     enabled: function() {
+        'use strict';
         /**
          * Cookies feature detect lifted from Modernizr
          * https://github.com/Modernizr/Modernizr/blob/master/feature-detects/cookies.js

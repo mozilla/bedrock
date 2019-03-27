@@ -6,8 +6,8 @@
 // adds classes to the body to indicate state of fxaccount
 
 // Create namespace
-if (typeof Mozilla === 'undefined') {
-    var Mozilla = {};
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
 }
 
 (function(Mozilla) {

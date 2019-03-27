@@ -244,7 +244,7 @@ describe('mozilla-notification-banner.js', function() {
                 'metaKey': false,
                 'ctrlKey': false,
                 'target': '/firefox/download/thanks/',
-                'preventDefault': function () {}
+                'preventDefault': function () {} // eslint-disable-line no-empty-function
             };
 
             spyOn(Mozilla.NotificationBanner, 'setCookie');
@@ -263,7 +263,7 @@ describe('mozilla-notification-banner.js', function() {
                 'metaKey': false,
                 'ctrlKey': true,
                 'target': '/firefox/download/thanks/',
-                'preventDefault': function () {}
+                'preventDefault': function () {} // eslint-disable-line no-empty-function
             };
 
             spyOn(Mozilla.NotificationBanner, 'setCookie');
@@ -291,14 +291,14 @@ describe('mozilla-notification-banner.js', function() {
                 'url': '/firefox/download/thanks/',
                 'close': 'Close',
                 'gaCloseLabel': 'Close',
-                confirmClick: function() {}
+                confirmClick: function() {} // eslint-disable-line no-empty-function
             };
 
             var event = {
                 'metaKey': false,
                 'ctrlKey': false,
                 'target': '/firefox/download/thanks/',
-                'preventDefault': function () {}
+                'preventDefault': function () {} // eslint-disable-line no-empty-function
             };
 
             spyOn(Mozilla.NotificationBanner, 'cutsTheMustard').and.returnValue(true);

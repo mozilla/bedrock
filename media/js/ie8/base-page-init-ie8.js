@@ -6,6 +6,8 @@
  * General DOM ready handler applied to all pages in base template.
  */
 $(document).ready(function() {
+    'use strict';
+
     var utilsie8 = Mozilla.UtilsIE8;
 
     utilsie8.initDownloadLinks();

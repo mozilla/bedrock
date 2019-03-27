@@ -35,8 +35,8 @@
  */
 
 // Create namespace
-if (typeof Mozilla === 'undefined') {
-    var Mozilla = {};
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
 }
 
 // {{{ Mozilla.Accordion
@@ -104,9 +104,7 @@ Mozilla.Accordion = function Accordion($accordion, options) {
         this.accordionId = accordionId;
 
         // Use the parent node's ID or generate an unique ID
-        this.id = (!$parent.is($accordion) && $parent.prop('id'))
-                ? $parent.attr('id')
-                : accordionId + '-' + (index + 1);
+        this.id = (!$parent.is($accordion) && $parent.prop('id')) ? $parent.attr('id') : accordionId + '-' + (index + 1);
 
         if (!headerId) {
             headerId = this.id + '-header';

@@ -14,12 +14,10 @@
         var personId;
 
         if (direction === 1) {
-            $origin = $origin.next().length ? $origin.next()
-                                            : $origin.siblings(':first');
+            $origin = $origin.next().length ? $origin.next() : $origin.siblings(':first');
             personId = $origin.attr('id');
         } else {
-            $origin = $origin.prev().length ? $origin.prev()
-                                            : $origin.siblings(':last');
+            $origin = $origin.prev().length ? $origin.prev() : $origin.siblings(':last');
             personId = $origin.attr('id');
         }
 

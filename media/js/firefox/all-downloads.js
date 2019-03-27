@@ -77,8 +77,7 @@
 
             // Replace the browser history to save the search query
             if (historyEnabled) {
-                history.replaceState({ query: searchQ }, document.title,
-                                     '?q=' + encodeURI(searchQ));
+                history.replaceState({ query: searchQ }, document.title, '?q=' + encodeURI(searchQ));
             }
         }
 

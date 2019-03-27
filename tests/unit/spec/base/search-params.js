@@ -3,7 +3,7 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect, _SearchParams */
+/* global describe, it, expect, _SearchParams */
 
 describe('search-params.js', function() {
 
