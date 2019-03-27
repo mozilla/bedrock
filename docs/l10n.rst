@@ -42,14 +42,14 @@ list them on the command line:
 
 .. code-block:: console
 
-    $ ./manage.py l10n_extract apps/mozorg/templates/mozorg/contribute.html
+    $ ./manage.py l10n_extract bedrock/mozorg/templates/mozorg/contribute.html
 
 Command line glob matching will work as well if you want all of the HTML files
 in a directory, for example:
 
 .. code-block:: console
 
-    $ ./manage.py l10n_extract apps/mozorg/templates/mozorg/*.html
+    $ ./manage.py l10n_extract bedrock/mozorg/templates/mozorg/*.html
 
 That will use gettext to get all the needed localizations from Python
 and HTML files, and will convert the result into a series of .lang
