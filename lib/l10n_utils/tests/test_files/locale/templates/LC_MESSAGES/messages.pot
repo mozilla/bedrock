@@ -12,7 +12,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Translate Toolkit 1.8.0\n"
 
-#. Said angrily, loudly, and repeatedly.
+#. Said angrily, loudly,
+#. and repeatedly.
 #: templates/some_lang_files.html:10
 msgid "Is this your homework Larry?"
 msgstr ""
