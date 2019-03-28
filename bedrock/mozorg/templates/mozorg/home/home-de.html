@@ -20,8 +20,8 @@
   </header>
 
   {% call download_banner(
-    title=_('Firefox'),
-    sub_title=_('Dein Leben. Deine Daten. Dein Browser.'),
+    logo_title=_('Firefox'),
+    title=_('Dein Leben. Deine Daten. Dein Browser.'),
     desc=_('Firefox fights for you.'),
     ) %}
     {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
@@ -38,7 +38,7 @@
   {{ fxa_banner(
     logo_title=_('Firefox'),
     title=_('Dein Leben. <br>Deine Daten.'),
-    link_cta=_('Learn More'),
+    link_cta=_('Weitere Infos'),
   )}}
 
   {{ fxa_banner_sticky(
@@ -50,15 +50,10 @@
   <div class="mozilla-content">
     <div class="mzp-l-content">
       <div class="mzp-l-card-hero">
-        <!-- 1 -->
         {{ content_card('card_1') }}
-        <!-- 2 -->
         {{ content_card('card_2') }}
-        <!-- 3 -->
         {{ content_card('card_3') }}
-        <!-- 4 -->
         {{ content_card('card_4') }}
-        <!-- 5 -->
         {{ content_card('card_5') }}
       </div>
 
@@ -73,9 +68,7 @@
       )}}
 
       <div class="mzp-l-card-half">
-        <!-- 6 -->
         {{ content_card('card_6') }}
-        <!-- 7 -->
         {{ content_card('card_7') }}
       </div>
 
@@ -91,17 +84,11 @@
       )}}
 
       <div class="mzp-l-card-third">
-        <!-- 8 -->
         {{ content_card('card_8') }}
-        <!-- 9 -->
         {{ content_card('card_9') }}
-        <!-- 10 -->
         {{ content_card('card_10') }}
-        <!-- 11 -->
         {{ content_card('card_11') }}
-        <!-- 12 -->
         {{ content_card('card_12') }}
-        <!-- 13 -->
         {{ content_card('card_13') }}
       </div>
 
