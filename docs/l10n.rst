@@ -59,6 +59,11 @@ modify or split up .lang files here as needed (just make sure they are
 being referenced correctly, from the code, see
 :ref:`Which .lang file should it use? <which-lang>`).
 
+Once you have extracted .lang files locally, they can then be added via
+pull request to the `mozilla.org l10n repository`_ for translation.
+You can read the `full documentation`_ for more information on the
+extraction workflow.
+
 .. _using-lang:
 
 Translating with .lang files
@@ -527,3 +532,6 @@ To test l10n locally you can set ``DEV=False`` in your ``.env`` file.
 
 If you are running your local server you will need to restart it after altering
 your ``.env`` file.
+
+.. _mozilla.org l10n repository: https://github.com/mozilla-l10n/www.mozilla.org/
+.. _full documentation: https://mozilla-l10n.github.io/documentation/products/mozilla_org/
