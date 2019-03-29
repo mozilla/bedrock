@@ -64,7 +64,7 @@ urlpatterns = (
                                       template_context_variations=['a']),
         name='firefox.features.private-browsing'),
     url(r'^firefox/ios/testflight/$', views.ios_testflight, name='firefox.ios.testflight'),
-    page('firefox/mobile', 'firefox/mobile.html'),
+    url(r'^firefox/mobile', views.firefox_mobile, name='firefox.mobile'),
     url('^firefox/send-to-device-post/$', views.send_to_device_ajax,
         name='firefox.send-to-device-post'),
     page('firefox/unsupported-systems', 'firefox/unsupported-systems.html'),

@@ -1,0 +1,231 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button, send_to_device with context %}
+{% from "macros-protocol.html" import feature_card, hero, call_out_compact with context %}
+
+{% add_lang_files "firefox/sendto" %}
+
+{% extends "firefox/base-protocol.html" %}
+
+{% block page_css %}
+  {{ css_bundle('firefox-mobile-protocol') }}
+{% endblock %}
+
+{% block page_title %}{{ _('Mobile browsers for iOS and Android') }} | {{ _('Firefox') }}{% endblock %}
+{% block page_desc %}{{ _('Download Firefox and Firefox Focus for mobile and tablet.') }}{% endblock %}
+
+{% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
+
+{% block site_header %}
+  {% with hide_nav_download_button=True %}
+    {% include 'includes/protocol/navigation/index.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block content %}
+  {% with current='mobile' %}
+    {% include 'firefox/includes/hub/sub-nav.html' %}
+  {% endwith %}
+
+  <main role="main">
+    <header class="mzp-c-hero mzp-t-firefox mzp-has-image t-hero-primary">
+      <div class="mzp-l-content">
+        <div class="mzp-c-hero-body">
+          <h1 class="mzp-c-hero-title"><span class="c-wordmark t-firefox">{{ _('Firefox') }}</span></h1>
+
+          <div class="mzp-c-hero-desc">
+            <p>{{ _('The mobile browser built for you') }}</p>
+            <p>{{ _('Take Firefox speed and privacy with you everywhere.') }}</p>
+          </div>
+
+          <div class="mzp-c-hero-cta">
+            <div class="header-product-ctas">
+              <button type="button" class="mzp-c-button mzp-t-product js-mobile" data-product="firefox" data-button-name="Send to SMS Modal - Firefox Mobile">{{ _('Get Firefox Mobile') }}</button>
+            </div>
+
+            <div class="mobile-download-buttons-wrapper">
+              <ul class="mobile-download-buttons firefox" id="mobile-download-buttons-firefox">
+                <li class="android">
+                  {{ google_play_button(href='https://app.adjust.com/2uo1qc?campaign=desktop_xp&amp;adgroup=Google_Play_Store&amp;creative=badge_en', id='playStoreLink') }}
+                </li>
+                <li class="ios">
+                  <a id="appStoreLink" href="https://app.adjust.com/2uo1qc?campaign=desktop_xp&amp;adgroup=iOS_App_Store&amp;creative=badge_en&amp;fallback=https%3A%2F%2Fitunes.apple.com%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8" data-link-type="download" data-download-os="iOS">
+                    <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="c-private t-private mzp-t-firefox">
+      <div class="mzp-l-content">
+        <h2>{{ _('Stay invisible on the go with Private Browsing mode') }}</h2>
+        <div class="c-private-cols">
+          <div class="c-private-col">
+            <img src="{{ static('img/firefox/mobile/protocol/screen-private.svg') }}" height="331" width="163">
+            <h3>{{ _('Keep sensitive searches private') }}</h3>
+            <p>{{ _('Leave no trace with <a href="%s">Private Browsing mode</a>. When you close out, your history and cookies are deleted.')|format(url('firefox.features.private-browsing')) }}</p>
+          </div>
+          <div class="c-private-col">
+            <img src="{{ static('img/firefox/mobile/protocol/screen-tracking.svg') }}" height="331" width="163">
+            <h3>{{ _('Stop advertisers from following you') }}</h3>
+            <p>{{ _('Stay off their radar with <a href="%s">Firefox Tracking Protection</a>, automatically on in Private Browsing mode.')|format(url('firefox.features.adblocker')) }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="t-account">
+      <div class="mzp-l-content">
+          {% call feature_card(
+            title=_('Own your life on every device with a Firefox Account.'),
+            image_url='firefox/home/desktop-account.svg',
+            aspect_ratio='mzp-has-aspect-1-1',
+            class='mzp-l-card-feature-right-half mzp-t-firefox',
+            link_url=url('firefox.accounts'),
+            link_cta=_('Learn more about Firefox Accounts')
+          ) %}
+          <p>{{ _('Sync your privacy, passwords, and bookmarks on the go. Send tabs across your devices.') }}</p>
+          {% endcall %}
+      </div>
+    </section>
+
+    <section>
+      <div class="mzp-l-content t-extend">
+        {% set extend_title = '<span>'|safe + _('Android only') + '</span><br>'|safe + _('Make Android your own') %}
+        {% call feature_card(
+          title=extend_title,
+          image_url='firefox/mobile/protocol/screen-frame.svg',
+          aspect_ratio='mzp-has-aspect-1-1',
+          class='mzp-l-card-feature-right-half mzp-t-firefox',
+        ) %}
+        <p>{{ _('Customize your Firefox mobile browser with thousands of <a href="%s">extensions</a> to block ads, manage passwords, stop Facebook from tracking you and more.')|format('https://addons.mozilla.org/firefox/extensions/') }}</p>
+        {% endcall %}
+      </div>
+      <div class="mzp-l-content t-theme">
+        {% set theme_title = '<span>'|safe + _('Android only') + '</span><br>'|safe + _('Change up your look') %}
+        {% call feature_card(
+          title=theme_title,
+          image_url='firefox/mobile/protocol/screen-frame.svg',
+          aspect_ratio='mzp-has-aspect-1-1',
+          class='mzp-l-card-feature-left-half mzp-t-firefox',
+        ) %}
+        <p>{{ _('Find something to love in music, fashion and other <a href="%s">themed</a> categories – or create your own')|format('https://addons.mozilla.org/firefox/themes/') }}</p>
+        {% endcall %}
+      </div>
+    </section>
+
+    <section class="mzp-c-hero mzp-t-firefox t-hero-secondary">
+      <div class="mzp-l-content">
+        <div class="mzp-c-hero-body">
+          <h1 class="mzp-c-hero-title"><span class="c-wordmark t-firefox">{{ _('Firefox') }}</span></h1>
+
+          <div class="mzp-c-hero-desc">
+            <p>{{ _('Get Firefox speed and privacy everywhere') }}</p>
+          </div>
+
+          <div class="mzp-c-hero-cta">
+            <div class="header-product-ctas">
+              <button type="button" class="mzp-c-button mzp-t-product js-mobile" data-product="firefox" data-button-name="Send to SMS Modal - Firefox Mobile">{{ _('Get Firefox Mobile') }}</button>
+            </div>
+
+            <div class="mobile-download-buttons-wrapper">
+              <ul class="mobile-download-buttons firefox" id="mobile-download-buttons-firefox">
+                <li class="android">
+                  {{ google_play_button(href='https://app.adjust.com/2uo1qc?campaign=desktop_xp&amp;adgroup=Google_Play_Store&amp;creative=badge_en', id='playStoreLink') }}
+                </li>
+                <li class="ios">
+                  <a id="appStoreLink" href="https://app.adjust.com/2uo1qc?campaign=desktop_xp&amp;adgroup=iOS_App_Store&amp;creative=badge_en&amp;fallback=https%3A%2F%2Fitunes.apple.com%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8" data-link-type="download" data-download-os="iOS">
+                    <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="focus" class="c-focus t-focus mzp-t-dark mzp-t-firefox">
+      <div class="mzp-l-content">
+        <h1 class="c-wordmark t-focus">{{ _('Firefox Focus') }}</h1>
+        <div class="c-focus-body">
+          <h2>{{ _('Set your life to private. Automatically.') }}</h2>
+          <p>{{ _('Firefox Focus is clean, simple, and the privacy features are always on.') }}</p>
+
+          <div class="header-product-ctas">
+            <button type="button" class="js-focus mzp-c-button mzp-t-secondary mzp-t-dark" data-product="focus" data-button-name="Send to SMS Modal - Firefox Focus">{{ _('Get Firefox Focus') }}</button>
+          </div>
+          <div class="mobile-download-buttons-wrapper">
+            <ul class="mobile-download-buttons focus" id="mobile-download-buttons-focus">
+              <li class="android">
+                {{ google_play_button(href=settings.GOOGLE_PLAY_FIREFOX_FOCUS_LINK, id='playStoreLink', product='Focus') }}
+              </li>
+              {% if l10n_has_tag('focus_apk_link_012018') %}
+              <li class="android-apk">
+                  <a href="https://archive.mozilla.org/pub/android/focus/latest/" data-link-type="download" data-download-os="Android">{{ _('Download the APK') }}</a>
+              </li>
+              {% endif %}
+              <li class="ios">
+                <a id="appStoreLink" href="{{ settings.APPLE_APPSTORE_FIREFOX_FOCUS_LINK }}" data-link-type="download" data-download-os="iOS">
+                  <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="c-focus-side">
+          <h3 class="t-block">{{ _('Automatically blocks ads') }}</h3>
+          <p>{{ _('Built-in tracking protection stops ads trackers cold – and helps pages load faster.') }}</p>
+          <h3 class="t-erase">{{ _('Automatically erases your history') }}</h3>
+          <p>{{ _('Your browsing history and cookies are wiped with a single tap – or whenever you close a tab.') }}</p>
+        </div>
+      </div>
+    </section>{#--/#focus--#}
+
+    {#
+      L10n: The content below is intended to be shown in a modal window when clicking any of the
+      'Download' buttons above. Depending on the button clicked, the content below will either
+      target/display copy for Firefox or Firefox Focus.
+
+      For supported locales, the Send to Device widget will be shown. If the user's locale
+      does not suppor the widget, a QR code will be shown.
+
+      For mobile devices, only the App/Play Store badges will be shown.
+    #}
+    <div id="modal-download-firefox" class="mzp-u-modal-content mzp-t-firefox">
+      <div class="desktop-download">
+        <h3>{{ _('Get Firefox for mobile') }}</h3>
+        {% if show_send_to_device %}
+          <p>{{ _('Send a download link to your phone. ') }}</p>
+          {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop') }}
+        {% else %}
+          <p>{{ _('Scan the QR code to get started') }}</p>
+          <div class="qr-code-wrapper">
+            <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
+                 data-mozillaonline-link="{{ static('img/firefox/mobile/qr-firefox-mozillaonline.png') }}" alt="">
+          </div>
+        {% endif %}
+      </div>
+    </div>{#--/#modal-download-firefox--#}
+
+    <div id="modal-download-focus" class="mzp-u-modal-content mzp-t-firefox">
+      <h3>{{ _('Get Firefox Focus') }}</h3>
+      <p>{{ _('Scan the QR code to get started') }}</p>
+      <div class="desktop-download">
+        <div class="qr-code-wrapper">
+          <img src="{{ static('img/firefox/mobile/protocol/qr-focus.png') }}" alt="">
+        </div>
+      </div>
+    </div>{#--/#modal-download-focus--#}
+  </main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox-mobile-protocol') }}
+{% endblock %}

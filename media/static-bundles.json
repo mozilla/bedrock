@@ -793,6 +793,13 @@
     },
     {
       "files": [
+        "css/base/send-to-device-protocol.scss",
+        "css/firefox/mobile-protocol.scss"
+      ],
+      "name": "firefox-mobile-protocol"
+    },
+    {
+      "files": [
         "css/base/mozilla-fxa-state.scss",
         "css/base/mozilla-fxa-form.scss",
         "css/firefox/accounts.scss"
@@ -1194,6 +1201,18 @@
         "js/firefox/mobile/mobile.js"
       ],
       "name": "firefox-mobile"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-modal.js",
+        "js/libs/spin.min.js",
+        "js/base/send-to-device.js",
+        "js/libs/jquery.waypoints.min.js",
+        "js/libs/jquery.waypoints-sticky.min.js",
+        "js/hubs/sub-nav.js",
+        "js/firefox/mobile/mobile-protocol.js"
+      ],
+      "name": "firefox-mobile-protocol"
     },
     {
       "files": [

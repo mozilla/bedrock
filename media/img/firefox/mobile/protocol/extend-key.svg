@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="97px" height="95px" viewBox="0 0 97 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Key</title>
+    <desc>Created with Sketch.</desc>
+    <g id="/firefox-(Desktop)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="/Mobile-1280" transform="translate(-345.000000, -2895.000000)" stroke="#FF2889" stroke-width="10">
+            <g id="Customization" transform="translate(199.000000, 2717.000000)">
+                <g id="Extensions">
+                    <g id="Extension-phone">
+                        <g transform="translate(75.187970, 25.153047)" id="Key">
+                            <g transform="translate(76.015451, 158.305600)">
+                                <path d="M66.8426021,0 C77.6398649,0 86.3905639,8.41549249 86.3905639,18.7952418 C86.3905639,29.1767418 77.6398649,37.593985 66.8426021,37.593985 C56.0453393,37.593985 47.2928195,29.1767418 47.2928195,18.7952418 C47.2928195,8.41549249 56.0453393,0 66.8426021,0 Z" id="Stroke-8"></path>
+                                <path d="M0.676278195,84.2105263 L53.3078571,33.0827068" id="Stroke-10" stroke-linecap="round"></path>
+                                <path d="M14.2101128,72.1804511 L21.7289098,79.6992481" id="Stroke-12" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path d="M30.7514662,58.6466165 L38.2702632,66.1654135" id="Stroke-14" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

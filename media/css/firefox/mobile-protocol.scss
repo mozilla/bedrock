@@ -1,0 +1,634 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../libs/system-font';
+
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/feature-card';
+@import '../../protocol/css/components/hero';
+@import '../../protocol/css/components/call-out';
+@import '../../protocol/css/components/modal';
+
+@import '../hubs/sub-nav-protocol';
+@import '../hubs/sub-nav-download-button-remove-protocol';
+
+//* -------------------------------------------------------------------------- */
+// Page specific variables and over-rides
+
+$fx-body: #42425A;
+$fx-blue: #0A84FF;
+$fx-pink: #FF2889;
+$fx-purple: #20123A;
+$fx-yellow: #FFE55B;
+
+// not yet recognized as valid by style lint, so we abstract it
+$mq-reduced-motion: 'screen and (prefers-reduced-motion: reduce)';
+
+.mzp-t-firefox {
+    &,
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-family: system-ui, sans-serif;
+    }
+}
+
+main .mzp-l-content {
+    max-width: 400px;
+
+    @media #{$mq-md} {
+        max-width: $content-max;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+//  Download buttons
+
+// hide app store badges by default
+.mobile-download-buttons-wrapper {
+    display: none;
+    margin-top: 60px;
+}
+
+// for android/iOS, hide widget/QR code in favor of app store badges
+.android,
+.ios {
+    .mobile-download-buttons-wrapper {
+        display: block;
+    }
+
+    .qr-code-wrapper,
+    #modal-wrapper .desktop-download,
+    #send-to-device {
+        display: none;
+    }
+
+    .header-product-ctas {
+        display: none;
+    }
+}
+
+// hide download links for one platform from the other
+.android .mobile-download-buttons .ios {
+    display: none;
+}
+
+.ios .mobile-download-buttons .android,
+.ios .mobile-download-buttons .android-apk {
+    display: none;
+}
+
+
+// very basic styling for no-JS visitors
+.no-js {
+    .header-product-ctas {
+        display: none;
+    }
+
+    .mobile-download-buttons-wrapper {
+        display: block;
+        text-align: center;
+    }
+
+    .mobile-download-buttons {
+        margin: 1em 0;
+
+        @media #{$mq-sm} {
+            @supports (display: flex) {
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                margin: 1em auto;
+                width: 340px;
+
+                &.hidden {
+                    display: none;
+                }
+
+                li {
+                    margin: 0 auto; // so that a single item is centred
+                }
+            }
+        }
+
+        .android-apk a {
+            display: inline-block;
+            margin: 10px 0;
+            @include text-body-sm;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+//  Wordmark
+
+.c-wordmark {
+    @include text-display-sm;
+    font-weight: bold;
+    padding-top: 0;
+
+    &:before {
+        @include at2x('#{$image-path}/logos/firefox/firefox.png', 48px, 48px);
+        @include bidi((
+            (background-position, top left, top right),
+            (padding-right, $spacing-sm, padding-left, 0),
+        ));
+        background-repeat: no-repeat;
+        content: '';
+        display: inline-block;
+        height: 48px;
+        margin-top: -3px;
+        vertical-align: middle;
+        width: 48px;
+    }
+
+    &.t-focus:before {
+        @include at2x('#{$image-path}/logos/firefox/focus.png', 48px, 48px);
+    }
+
+    strong {
+        font-weight: normal;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Hero
+
+.t-hero-primary {
+    &.mzp-c-hero {
+        text-align: center;
+        color: $fx-purple;
+
+        &.mzp-t-firefox::after {
+            display: none;
+        }
+    }
+
+    .mzp-c-hero-desc {
+        @include text-display-sm;
+
+        p:first-child {
+            @include text-display-xl;
+            font-weight: bold;
+            margin-bottom: $spacing-md;
+            color: $fx-purple;
+        }
+
+        p {
+            margin-bottom: $spacing-lg;
+        }
+    }
+
+    .mzp-c-button-download-container {
+        margin-bottom: 0;
+    }
+
+    @media #{$mq-md} {
+        &.mzp-c-hero.mzp-has-image {
+            @include bidi((
+                (background-image, url('/media/img/firefox/mobile/protocol/hero-small.jpg'), url('/media/img/firefox/mobile/protocol/hero-small-rtl.jpg')),
+                (background-position, top left 50vw, top right 50vw),
+                (text-align, left, right),
+            ));
+            align-items: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            display: flex;
+            min-height: 560px;
+
+            @media all #{$mq-high-res} {
+                @include bidi((
+                    (background-image, url('/media/img/firefox/mobile/protocol/hero-small-high-res.jpg'), url('/media/img/firefox/mobile/protocol/hero-small-high-res-rtl.jpg')),
+                ));
+            }
+        }
+
+        .mzp-l-content {
+            width: 100%;
+        }
+    }
+
+    @media #{$mq-lg} and #{$mq-tall} {
+        &.mzp-c-hero.mzp-has-image {
+            @include bidi((
+                (background-image, url('/media/img/firefox/mobile/protocol/hero.jpg'), url('/media/img/firefox/mobile/protocol/hero-rtl.jpg')),
+            ));
+            height: 60vh;
+            max-height: 672px;
+
+            @media all #{$mq-high-res} {
+                @include bidi((
+                    (background-image, url('/media/img/firefox/mobile/protocol/hero-high-res-rtl.jpg'), url('/media/img/firefox/mobile/protocol/hero-small-high-res-rtl.jpg')),
+                ));
+            }
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Private
+
+.t-private {
+    @include light-links;
+    background-color: $fx-purple;
+    color: #fff;
+
+    h2 {
+        @include text-display-lg;
+        color: $fx-pink;
+        margin-top: $spacing-md;
+    }
+
+    // protocol/issues#335
+    a:visited {
+        color: #ffffff;
+        opacity: 0.8;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        opacity: 1;
+    }
+}
+
+.c-private-col {
+    margin: $layout-xl 0;
+    text-align: center;
+
+    img {
+        margin: 0 auto;
+    }
+
+    h3 {
+        @include bidi(((text-align, left, right),));
+        @include text-display-sm;
+        margin-top: $spacing-2xl;
+    }
+
+    p {
+        @include bidi(((text-align, left, right),));
+        margin-top: $spacing-xl;
+    }
+}
+
+@media #{$mq-md} {
+
+    .t-private {
+        h2 {
+            margin-top: $layout-lg;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 800px;
+            text-align: center;
+        }
+    }
+
+    .c-private-cols {
+        @include bidi(((left, $layout-lg / 2, right, auto),));
+        margin: 0 auto;
+        max-width: 600px + ($layout-lg * 2);
+        position: relative;
+    }
+
+    .c-private-col {
+        @include bidi((
+            (float, left, right),
+            (text-align, left, right),
+        ));
+        @include border-box;
+        width: 50%;
+        padding: 0 ($layout-lg / 2);
+
+        img {
+            margin: 0;
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Feature cards
+
+.mzp-c-card-feature {
+    .mzp-c-card-feature-media-wrapper,
+    .mzp-c-card-feature-content {
+        min-width: 0;
+    }
+
+    .mzp-c-card-feature-title {
+        @include text-display-lg;
+        color: $fx-purple;
+    }
+
+    .mzp-c-card-feature-desc {
+        color: $fx-body;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Accounts
+
+
+.t-account {
+    background-color: $color-gray-10;
+    padding: $layout-md 0;
+
+    .mzp-c-card-feature-content-container {
+        max-width: 410px;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Customization
+
+
+.t-extend,
+.t-theme {
+    padding-top: 0;
+    padding-bottom: 0;
+
+    .mzp-c-card-feature {
+        margin-bottom: 0;
+    }
+
+    .mzp-c-card-feature-media {
+        padding-top: $layout-xl;
+
+        &:after {
+            border-bottom: 1px solid $color-gray-20;
+            content: '';
+            display: block;
+            height: 0;
+            max-width: 245px + 20px * 2;
+            margin: 0 auto;
+        }
+    }
+
+    .mzp-c-card-feature-content-container {
+        max-width: 325px;
+    }
+
+    .mzp-c-card-feature-title span {
+        @include text-body-md;
+        font-weight: normal;
+    }
+
+    img {
+        animation: custom 6s infinite step-end;
+        background-color: $fx-yellow;
+        background-image: url('/media/img/firefox/mobile/protocol/extend-key.svg'), url('/media/img/firefox/mobile/protocol/extend-eye.svg'), url('/media/img/firefox/mobile/protocol/extend-star.svg');
+        background-position: 50% 75%, 500px 500px, 500px 500px;
+        background-repeat: no-repeat;
+        max-width: 245px;
+        vertical-align: bottom;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.t-theme {
+    margin-bottom: $layout-xl;
+
+    .mzp-c-card-feature-content {
+        justify-content: end;
+    }
+
+     img {
+         background-image: url('/media/img/firefox/mobile/protocol/theme-yellow.svg'), url('/media/img/firefox/mobile/protocol/theme-pink.svg'), url('/media/img/firefox/mobile/protocol/theme-violet.svg');
+     }
+}
+
+@media #{$mq-reduced-motion} {
+    .t-extend,
+    .t-theme {
+        img {
+            animation: none;
+        }
+    }
+}
+
+@keyframes custom {
+  0% {
+    background-position: 50% 75%, 500px 500px, 500px 500px;
+  }
+  33% {
+    background-position: 500px 500px, 50% 75%, 500px 500px;
+  }
+  66% {
+    background-position: 500px 500px, 500px 500px, 50% 75%;
+  }
+}
+
+//* -------------------------------------------------------------------------- */
+// secondary hero
+
+.t-hero-secondary {
+    &.mzp-c-hero {
+        &.mzp-t-firefox::after {
+            display: none;
+        }
+    }
+
+    .mzp-c-hero-desc {
+        @include text-display-lg;
+        color: $fx-purple;
+        font-weight: bold;
+    }
+
+    .mzp-l-content {
+        padding-bottom: $layout-lg;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Focus
+
+
+.c-focus {
+    @include light-links;
+    background-color: #231142;
+    background-image: url('/media/img/firefox/mobile/protocol/focus-bg.png');
+    background-position: top left;
+    background-repeat: no-repeat;
+    color: #fff;
+    padding-top: $spacing-md;
+    padding-bottom: $spacing-md;
+    position: relative;
+
+    // protocol/issues#335
+    a:visited {
+        color: #ffffff;
+        opacity: 0.8;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        opacity: 1;
+    }
+
+    .c-wordmark {
+        margin-top: $layout-sm;
+        margin-bottom: $layout-sm;
+    }
+}
+
+.c-focus-body {
+    margin-bottom: $layout-lg;
+
+    h2 {
+        @include text-display-lg;
+        color: $fx-pink;
+        margin-top: 0;
+        margin-bottom: $spacing-2xl;
+    }
+
+    p {
+        @include text-display-sm;
+        font-weight: normal;
+    }
+
+    @media all and (max-width: #{$screen-md - 1px}) {
+        .header-product-ctas,
+        .mobile-download-buttons-wrapper {
+            position: absolute;
+            bottom: $layout-md;
+        }
+    }
+}
+
+.c-focus-side {
+    @media all and (max-width: #{$screen-md - 1px}) {
+        padding-bottom: 56px + $layout-md; // approximate height of button
+    }
+
+    h3 {
+        @include bidi(((background-position, top left, top right),));
+        @include text-display-sm;
+        background-repeat: no-repeat;
+        font-weight: normal;
+        margin-bottom: $layout-sm;
+        padding-top: $layout-md;
+
+        &.t-block {
+            background-image: url('/media/img/firefox/mobile/protocol/icon-block.svg');
+        }
+        &.t-erase {
+            background-image: url('/media/img/firefox/mobile/protocol/icon-erase.svg');
+        }
+    }
+
+    p {
+        margin-bottom: $layout-lg;
+    }
+}
+
+@media #{$mq-md} {
+    .c-focus {
+        background-image: url('/media/img/firefox/mobile/protocol/focus-bg-md.png');
+        background-position: top center;
+    }
+
+    .c-focus-body,
+    .c-focus-side {
+        @include bidi((
+            (float, left, right),
+            (margin-left, $layout-lg, margin-right, 0),
+        ));
+        width: calc(#{100% / 2} - (#{$layout-lg} - (#{$layout-lg} / 2)));
+    }
+
+    .c-focus-body {
+        @include bidi(((margin-left, 0, margin-right, 0),));
+    }
+
+    .c-focus-side {
+        max-width: 300px;
+    }
+}
+
+@media #{$mq-lg} {
+    .c-focus {
+        background-image: url('/media/img/firefox/mobile/protocol/focus-bg-lg.png');
+        background-position: top left 47%;
+    }
+
+    .c-focus-body {
+        h2 {
+            @include font-size(64px);
+        }
+    }
+}
+
+@media #{$mq-xl} {
+    .c-focus {
+        background-position: top left 44%;
+    }
+}
+
+
+
+//* -------------------------------------------------------------------------- */
+//  Modal
+
+.mzp-c-modal-inner {
+
+    h3 {
+        @include text-display-md;
+        color: $fx-purple;
+        margin-bottom: 0;
+
+        + p {
+            margin-bottom: $layout-md;
+        }
+    }
+
+    .mzp-c-modal-overlay-contents {
+        background: #fff;
+        color: #000;
+        padding: $layout-md;
+        text-align: center;
+    }
+
+    a:link,
+    a:visited {
+        color: $color-link;
+        text-decoration: underline;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        color: $color-link-hover;
+        text-decoration: none;
+    }
+}
+
+@media #{$mq-md} {
+    .mzp-c-modal-inner {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+//  Send to Device overrides
+
+#send-to-device {
+    margin: 0 auto;
+    text-align: center;
+
+    footer {
+        display: none;
+    }
+}
