@@ -1,0 +1,457 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+ {% extends "base-protocol.html" %}
+
+ {% block page_css %}
+   {{ css_bundle('enterprise_sla') }}
+ {% endblock %}
+
+ {% block content %}
+ <main class="section-content mzp-l-content mzp-t-firefox">
+  <header class="l-narrow">
+    <div class="policy-title">
+      <h1>{{_('Firefox Enterprise SLA') }}</h1>
+    </div>
+
+    <div class="privacy-lead-in">
+      <h2>Lorem ipsum dolor sit amet consectetur</h2>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum beatae minima velit quas vero dolorum ratione autem voluptate fuga reprehenderit dolore nemo laudantium, iure tempora officiis perspiciatis facilis maxime quis?</p>
+    </div>
+  </header>
+   <article class="privacy-body" itemprop="articleBody">
+     <div class="l-narrow">
+
+       <h2>{{_('Mozilla Enterprise Client Service Desk Products & Services') }}</h2>
+
+       <section class="mzp-c-details">
+         <h3>{{_('Hours of Operation') }}</h3>
+         <p>
+           {% trans leave='https://www.opm.gov/policy-data-oversight/pay-leave/pay-administration/fact-sheets/holidays-work-schedules-and-pay/' %}
+           Assistance for the initial pilot will be available during business hours from 8:30 AM to 5:30 PM PST, Monday through Friday, excluding US government holidays found <a href="{{ leave }}">here</a>, December 24th and the Friday after Thanksgiving.  During the pilot phase, out of hours support may be scheduled with appropriate notice. Extended hours of support will be reviewed based on demand.
+           {% endtrans %}
+         </p>
+       </section>
+
+       <section class="mzp-c-details">
+         <h3>{{_('Support Language') }}</h3>
+         <p>{{_('Assistance will only be provided in English. Language coverage will be reviewed based on demand.') }}</p>
+       </section>
+
+       <section class="mzp-c-details">
+         <h3>{{_('Contact Information') }}</h3>
+         <p>
+           {% trans enterprise='http://mozilla.force.com/enterprise' %}
+           Incidents and service requests can be created directly via our Mozilla Enterprise Client Service Desk web portal at <a href="{{ enterprise }}">http://mozilla.force.com/enterprise</a>.
+           {% endtrans %}
+         </p>
+       </section>
+
+       <section class="mzp-c-details">
+         <h3>{{_('Customer Data Processing') }}</h3>
+         <p>
+           {% trans privacy='http://mozilla.force.com/enterprise' %}
+           Use of information or data provided by Customer shall be in accordance with <a href="{{ privacy }}">Mozilla's Privacy Policy</a>.
+           {% endtrans %}
+         </p>
+       </section>
+
+       <section class="mzp-c-details">
+          <h3>{{_('Support Levels') }}</h3>
+          <p>{{_('In general, as incidents are reported and escalated they will flow through the three tiers.') }}</p>
+          <ol class="support-level-list">
+            <li>{{_('<strong>Mozilla Enterprise Service Desk Level I (SD1)</strong> – junior level Mozilla Enterprise Client Service Desk ') }}</li>
+            <li>{{_('<strong>Mozilla Enterprise Service Desk Level II (SD2)</strong> – senior level Mozilla Enterprise Client Service Desk') }}</li>
+            <li>{{_('<strong>Enterprise Engineering</strong> – networking and systems engineering staff') }}</li>
+          </ol>
+
+          <div id="service-level-chart">
+            <div class="service-lvl1">
+              <h4>{{_('Service Desk Level 1') }}</h4>
+              <ul>
+                <li>{{_('Evaluate and troubleshoot incoming incidents') }}</li>
+                <li>{{_('Escalate incidents to SD2 or Enterprise Engineering') }}</li>
+              </ul>
+            </div>
+
+            <div class="service-lvl2">
+              <h4>{{_('Service Desk Level 2') }}</h4>
+              <ul>
+                <li>{{_('Evaluate and troubleshoot incoming incidents') }}</li>
+                <li>{{_('Escalate incidents to Enterprise Engineering') }}</li>
+              </ul>
+            </div>
+
+            <div class="service-lvl3">
+              <h4>{{_('Enterprise Engineering') }}</h4>
+              <ul>
+                <li>{{_('Receives immediate notification of severity 1 & 2 issues') }}</li>
+                <li>{{_('Resolves all escalated incidents') }}</li>
+              </ul>
+            </div>
+          </div>
+
+          <div id="criteria-response-resolution-chart">
+            <!-- table -->
+          </div>
+
+        </section>
+
+        <section class="mzp-c-details">
+          <h3>{{_('Severity Criteria Response & Resolution Target') }}</h3>
+
+          <table class="severity-table">
+            <thead>
+              <tr>
+                <th>{{_('Criteria') }}</th>
+                <th>{{_('Avg') }}</th>
+                <th>{{_('Max') }}</th>
+                <th>{{_('Resolution Target') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="severity-red">
+                <th>
+                  {{_('Severity 1 Management (Defect only - High Impact AND High Urgency)') }}
+                  {{_('Definition: Significant defect with no workaround.') }}
+                </th>
+                <td>1</td>
+                <td>4</td>
+                <td>
+                  {{_('Triage Target of 2 business days. Service Desk will communicate Resolution target once triaged.') }}
+                  {{_('test') }}
+                </td>
+              </tr>
+              <tr class="severity-yellow">
+                <th>
+                  {{_('Severity 2 Management (Defects only.)') }}
+                  {{_('Definition: Significant defect with a reasonable workaround.') }}
+                </th>
+                <td>2</td>
+                <td>8</td>
+                <td>{{_('Triage Target of 2 business days. Service Desk will assess and communicate whether a resolution target is appropriate for the issue.') }}</td>
+              </tr>
+              <tr class="severity-l-green">
+                <th>
+                  {{_('Severity 3 Support request on customization or deployment') }}
+                </th>
+                <td>8</td>
+                <td>2 business days</td>
+                <td>{{_('Triage Target of 2 business days. Service Desk will assess and communicate whether a resolution target is appropriate for the issue.') }}</td>
+              </tr>
+              <tr class="severity-green">
+                <th>
+                  {{_('Severity 4 Feature request') }}
+                  {{_('Definition: Customer requests for new features.') }}
+                </th>
+                <td>2 business days</td>
+                <td>5 business days</td>
+                <td>{{_('Triage Target of 2 business days. Service Desk will assess and communicate whether a resolution target is appropriate for the issue.') }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </section>
+
+        <section class="mzp-c-details">
+          <h3>{{_('Response Times & Resolution Targets') }}</h3>
+          <ul>
+            <li>
+              {% trans %}
+              <strong>Response Time:</strong> Time allocated as a standard to notify the end user reporting the error the Mozilla Enterprise Client Service Desk is aware of the incident and working on it.
+              {% endtrans %}
+            </li>
+            <li>
+              {% trans %}
+              <strong>Important Note:</strong> If Service Desk is waiting for a response from an end user to provide more information on a reported incident, the item will be place “On Hold” within the ticketing system.  Items placed “On Hold” are in a holding queue and the “resolution time clock” is not running while the ticket is in this queue.
+              {% endtrans %}
+            </li>
+            <li>
+              {% trans %}
+              <strong>Triage Target:</strong> Issues reported to the Mozilla Enterprise Client Service Desk will be triaged within 2 business days.
+              {% endtrans %}
+            </li>
+            <li>
+              {% trans %}
+              <Strong>Incident Closure:</Strong> The Mozilla Enterprise Client Service Desk team will reach out to the user(s) who reported the incident for confirmation that the ticket has been successfully resolved.  The Mozilla Enterprise Client Service Desk will not close the ticket until the user confirms the incident is resolved OR if the Mozilla Enterprise Client Service Desk has reached out to the user(s) no less than three times over a period of no less than three separate days and received no response.
+              {% endtrans %}
+            </li>
+          </ul>
+        </section>
+
+        <section class="mzp-c-details">
+          <h3>{{_('Severity Definitions based on Impact & Urgency') }}</h3>
+          <p>
+            {% trans %}
+            Two different factors, impact and urgency, are used to rank and qualify the incident. These factors are driven by the relationship of the incident to the business processes of Mozilla over all. Thus, similar incidents may have vastly different priorities because of the effect the incident has on Mozilla’s various business functions. Using a matrix, impact and urgency are combined to establish the overall incident severity.
+            {% endtrans %}
+          </p>
+          <p>
+            <strong>{{_('Impact') }}</strong>
+            {% trans %}
+            Impact is a measure of the effect of an incident on a customer. Impact is often directly proportional to the number of customers or users influenced by the incident and is often based on how service levels will be affected. <br> Classifications are as follows:
+            {% endtrans %}
+          </p>
+
+        </section>
+
+        <section class="mzp-c-details">
+          <h3>{{_('Severity Criteria & Examples') }}</h3>
+
+          <table class="severity-table">
+              <thead>
+                <tr>
+                  <th>{{_('Criteria') }}</th>
+                  <th>{{_('Examples') }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="severity-red">
+                  <th>
+                    {{_('Severity 1 Management (Defect only - High Impact AND High Urgency)') }}
+                    <br>
+                    {{_('All severity one incidents will be given immediate attention and risk mitigation strategies will be executed.') }}
+                    <br>
+                    {{ _('Ticket types that can be severity 1: Software defect') }}
+                  </th>
+                  <td>
+                    {{ _('Critical security issue - Firefox is exposed to a security vulnerability with proof of active or imminent attacks on over 5% of Enterprise users.') }}
+                    <br>
+                    {{ _('Critical operation issue - Firefox cannot be installed or opened on over 5% of the Enterprise computers or cannot access over 5% of ALEXA 500 websites') }}
+                  </td>
+                </tr>
+                <tr class="severity-yellow">
+                  <th>
+                    {{_('Severity 2 management (Defects only.)') }}
+                    <br>
+                    {{_('High Impact AND Medium Urgency or Medium Impact AND High Urgency') }}
+                    <br>
+                    {{ _('Ticket types that can be severity 2: Software defect') }}
+                  </th>
+                  <td>
+                    {{ _('Security issue - Firefox is exposed to a security vulnerability without proof of active or imminent attacks on our users or with impact on less than 5% of Enterprise users') }}
+                    <br>
+                    {{ _('Operation issue - Firefox cannot be installed or opened on 5% or less of the Enterprise computers or cannot access 5% or less of ALEXA 500 websites') }}
+                  </td>
+                </tr>
+                <tr class="severity-l-green">
+                  <th>
+                    {{_('Severity 3 Management') }}
+                    <br>
+                    {{ _('Issues that are not critical to Firefox stability, security or compatibility with websites on the Enterprise current deployment.') }}
+                    <br>
+                    {{ _('Ticket types that can be severity 3: Support request on customization or deployment') }}
+                  </th>
+                  <td>
+                    {{ _('Standard support how-to requests to use various Enterprise or other features.') }}
+                  </td>
+                </tr>
+                <tr class="severity-green">
+                  <th>
+                    {{_('Severity 4 Feature request') }}
+                    <br>
+                    {{_('Customer requests for new features. Ticket will be resolved with a reference to an opened Bugzilla ticket for later action.') }}
+                    <br>
+                    {{ _('Ticket types that can be severity 4:
+                      Feature request') }}
+                  </th>
+                  <td>
+                    {{ _('Request to include a new feature  into the next release of Firefox') }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+        </section>
+
+        <section class="mzp-c-details">
+          <h3>{{_('Hardware Supported') }}</h3>
+          <p>
+            {% trans requirements='https://www.mozilla.org/en-US/firefox/system-requirements/' %}
+            Mozilla will only provide support to those machines that meet our system requirements for the latest supported Firefox releases. Examples of Firefox system requirements can be found <a href="{{ requirements }} ">here</a>.
+            {% endtrans %}
+          </p>
+        </section>
+
+        <section class="mzp-c-details">
+          <h3>{{_('Configuration Management') }}</h3>
+          <p>
+            {% trans deployment='' %}
+            In order to successfully deploy Firefox for Enterprise, your environment will need some form of configuration management solution that can deploy software packages to the machines that you wish to manage. <br>
+            Software solutions such as Microsoft Intune, System Center Configuration Manager, JAMF’s JAMF Pro, Chef and Puppet are common configuration management platforms that will allow you to deploy Firefox for Enterprise to the portion of your fleet that will be participating in the pilot, and push updated binaries as they are required. <br>
+            Find <a href="{{ deployment }}">here</a> a deployment guide on how to setup and deploy Firefox on your organization.
+            {% endtrans %}
+          </p>
+        </section>
+
+        <section class="mzp-c-details">
+          <h3>{{_('Software Packages Supported') }}</h3>
+          <p>{{_('Software install packages support includes:') }}</p>
+          <ul>
+            <li>{{ _('macOS - Only DMG packages are provided  at this time') }}</li>
+            <li>{{ _('Windows - Only installer exe packages are provided at this time') }}</li>
+            <li>{{ _('Linux - Handled on a case by case basis.') }}</li>
+          </ul>
+        </section>
+
+        <h2>{{_('Support Procedures') }}</h2>
+
+        <h3>{{_('Ticket Types') }}</h3>
+
+        <section class="mzp-c-details">
+          <h3>{{_('Customization or Deployment') }}</h3>
+          <p>
+            {% trans %}
+            Help requests on customization or deployment consist in support requests not requiring Firefox code changes but instead support requests to learn more about how Firefox works or best practices to customize and deploy Firefox in custom Enterprise environments.
+            {% endtrans %}
+          </p>
+          <p>
+            {{ _('The scope of these questions includes how to implement the following:') }}
+            <ul>
+              <li>{{ _('Firefox installation/deployment') }}</li>
+              <li>{{ _('Firefox customization') }}</li>
+              <li>{{ _('Firefox functionality') }}</li>
+              <li>{{ _('Firefox security') }}</li>
+              <li>{{ _('Firefox policies') }}</li>
+            </ul>
+          </p>
+          <p>
+            {{ _('The scope of questions excludes:') }}
+            <ul>
+              <li>{{ _('Rendering problems for specific web pages') }}</li>
+              <li>{{ _('Technical issues related to the underlying operating system') }}</li>
+              <li>{{ _('Device driver or printer problems') }}</li>
+            </ul>
+          </p>
+          <p>
+            {{ _('The following fields have to be filled-in in order to log a ticket of this type:') }}
+            <ul>
+              <li>{{ _('Subject') }}</li>
+              <li>{{ _('Description') }}</li>
+              <li>{{ _('Firefox version') }}</li>
+              <li>{{ _('Operating system with version') }}</li>
+              <li>{{ _('Question category (Firefox installation/deployment, Firefox customization, Firefox functionality, Firefox security, Firefox policies, other)') }}</li>
+              <li>{{ _('Relevant software environment details') }}</li>
+              <li>{{ _('Severity 3 only') }}</li>
+            </ul>
+          </p>
+        </section>
+
+        <section class="mzp-c-details">
+          <h3>{{_('Software Defect') }}</h3>
+          <p>
+            {% trans %}
+            Support requests on software defects consist in Firefox software defect reports that require Firefox code changes. <br>
+            The scope of these defects is limited to the following instances:
+            {% endtrans %}
+          </p>
+          <ul>
+            <li>{{ _('Security issue - Firefox is exposed to a security vulnerability with proof of active or imminent attacks on our users') }}</li>
+            <li>
+              {% trans alexa='https://www.alexa.com/topsites' %}
+              Operation issue - Firefox cannot be installed or opened on more than 1 Enterprise computers or cannot access more than 1 <a href="{{ alexa }}">ALEXA 500 websites.</a>
+              {% endtrans %}
+            </li>
+          </ul>
+          <p>{{ _('Scope of defects excludes:') }}</p>
+          <ul>
+            <li>{{ _('Rendering problems for specific web pages') }}</li>
+            <li>{{ _('Technical issues related to the underlying operating system') }}</li>
+            <li>{{ _('Device driver or printer problems') }}</li>
+            <li>{{ _('Third party software issues (including Flash)') }}</li>
+          </ul>
+          <p>{{ _('The following fields have to be filled in in order to log a ticket of this type:') }}</p>
+          <ul>
+            <li>{{ _('Subject') }}</li>
+            <li>{{ _('Description') }}</li>
+            <li>{{ _('Firefox version') }}</li>
+            <li>{{ _('Operating system with version') }}</li>
+            <li>{{ _('Category (Firefox installer/uninstaller, Firefox core browser, Firefox security, Firefox policies, other)') }}</li>
+            <li>{{ _('Relevant software environment details') }}</li>
+            <li>{{ _('Steps to reproduce') }}</li>
+            <li>{{ _('Browser log') }}</li>
+            <li>{{ _('Hardware details') }}</li>
+            <li>{{ _('Severity 1 and 2') }}</li>
+          </ul>
+        </section>
+
+        <section class="mzp-c-details">
+          <h3>{{_('Feature request') }}</h3>
+          <p>
+            {% trans %}
+            Feature requests allow Firefox Enterprise customers to raise needs and ideas to Firefox product management. These requests will contribute to Firefox roadmap but have no committed delivery.<br>
+            The following fields have to be filled-in in order to log a ticket of this type:
+            {% endtrans %}
+          </p>
+          <ul>
+            <li>{{ _('Subject') }}</li>
+            <li>{{ _('Description') }}</li>
+          </ul>
+        </section>
+
+        <section class="mzp-c-details">
+          <h3>{{_('Procedure to file a Ticket') }}</h3>
+          <ul>
+            <li>
+              {% trans salesforce='https://salesforce.Mozilla.com' %}
+              Incidents will be captured via the Mozilla Enterprise Client Service Desk portal at <a href='{{ salesforce }}'>https://salesforce.Mozilla.com.</a>
+              {% endtrans %}
+            </li>
+            <li>
+              {% trans %}
+              The Mozilla Enterprise Client Service Desk will attempt troubleshooting during the initial contact and ensure proper updates are made to the incident for ongoing case management (see section regarding incident classification).
+              {% endtrans %}
+            </li>
+            <li>
+              {% trans %}
+              Incidents will be resolved the Mozilla Enterprise Client Service Desk representative or escalated to the appropriate support function.
+              {% endtrans %}
+            </li>
+            <li>
+              {% trans %}
+              Emails from the Mozilla Enterprise Client Service Desk portal will be issued to the Mozilla Customer who initiated the incident when they are created, assigned, escalated, updated and closed.
+              {% endtrans %}
+            </li>
+            <li>
+              {% trans %}
+              Emails from the Mozilla Enterprise Client Service Desk portal will be sent when additional information is needed by the Mozilla Enterprise Client Service Desk representative.
+              {% endtrans %}
+            </li>
+            <li>
+              {% trans %}
+              All actions taken to resolve the ticket will be input into the Mozilla Enterprise Client Service Desk tracking system.
+              {% endtrans %}
+            </li>
+          </ul>
+        </section>
+
+        <h2>{{_('Customer Obligations') }}</h2>
+
+        <section class="mzp-c-details">
+          <h3>{{_('Compliance') }}</h3>
+          <p>
+            {% trans %}
+            The customer must ensure that all use of Firefox and the support services by the Customer, and its administrative users and other enterprise users, complies with the Agreement and this service level agreement.
+            {% endtrans %}
+          </p>
+        </section>
+
+        <section class="mzp-c-details">
+          <h3>{{_('Attempt to Fix') }}</h3>
+          <p>
+            {% trans %}
+            Customer will use reasonable efforts to resolve issues, to fix any error, defect, malfunction or network connectivity defect without escalation to Mozilla.
+            {% endtrans %}
+          </p>
+        </section>
+
+     </div>
+    </article>
+
+  </main>
+ {% endblock %}
+
+ {% block js %}
+   {{ js_bundle('privacy_protocol') }}
+ {% endblock %}

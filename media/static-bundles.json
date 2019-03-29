@@ -949,6 +949,13 @@
         "css/firefox/windows-64-bit.scss"
       ],
       "name": "windows-64-bit"
+    },
+    {
+      "files": [
+        "css/privacy/privacy-protocol.scss",
+        "css/firefox/sla.scss"
+      ],
+      "name": "enterprise_sla"
     }
   ],
   "js": [

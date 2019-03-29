@@ -1,0 +1,83 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../protocol/css/includes/lib';
+
+body {
+    ol {
+        list-style: decimal inside;
+    }
+    ul {
+        list-style: inside;
+    }
+}
+
+.severity-table {
+    border-left: 20px solid white;
+
+    thead {
+        background: #20123A;
+        color: #FFF;
+        @include font-size(15px);
+        height: $layout-xl;
+    }
+
+    tbody {
+        th, td {
+            padding: $spacing-md;
+            border: 2px solid #EDEDF0;
+            text-align: left;
+        }
+
+        %severity {
+            border-left: 20px solid;
+        }
+
+        .severity-red {
+            @extend %severity;
+            border-color: #DE3A3A;
+        }
+
+        .severity-yellow {
+            @extend %severity;
+            border-color: #FFC001;
+        }
+
+        .severity-l-green {
+            @extend %severity;
+            border-color: #92D050;
+        }
+
+        .severity-green {
+            @extend %severity;
+            border-color: #01AF50;
+        }
+    }
+}
+
+.service-lvl1 {
+    background: rgba(1,175,80,0.10);
+
+    h4 {
+        background: #01AF50;
+        color: #fff;
+    }
+}
+
+.service-lvl2 {
+    background: rgba(255,212,2,0.20);
+
+    h4 {
+        background: #FFD402;
+    }
+}
+
+.service-lvl3 {
+    background: rgba(222,58,58,0.10);
+
+    h4 {
+        background: #DE3A3A;
+        color: #fff;
+    }
+}
