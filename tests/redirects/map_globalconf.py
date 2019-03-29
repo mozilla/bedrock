@@ -1254,4 +1254,7 @@ URLS = flatten((
     url_test('/foundation/issues/', 'https://foundation.mozilla.org/initiatives/'),
     url_test('/foundation/leadership-network/', 'https://foundation.mozilla.org/'),
     url_test('/foundation/advocacy/', 'https://foundation.mozilla.org/'),
+
+    # Issue 6979
+    url_test('/firefoxfightsforyou/', '/firefox/fights-for-you/'),
 ))
