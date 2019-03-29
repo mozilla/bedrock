@@ -30,6 +30,30 @@ describe('stub-attribution-custom.js', function () {
             expect(result.utm_content).toEqual('download_thanks_experiment');
         });
 
+        it('should call return false if there is already utm_content', function() {
+            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue({
+                /* eslint-disable camelcase */
+                utm_content: 'some-other-content'
+                /* eslint-enable camelcase */
+            });
+
+            var result = Mozilla.CustomStubAttribution.setAttributionValues(params);
+            expect(result).toBeFalsy();
+        });
+
+        it('should call return false if utm_source is addons.mozilla.org', function() {
+            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue({
+                /* eslint-disable camelcase */
+                utm_campaign: 'non-fx-button',
+                utm_medium: 'referral',
+                utm_source: 'addons.mozilla.org'
+                /* eslint-enable camelcase */
+            });
+
+            var result = Mozilla.CustomStubAttribution.setAttributionValues(params);
+            expect(result).toBeFalsy();
+        });
+
         it('should return false if custom attribution data is not fully formed', function() {
             spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue({});
 
@@ -40,17 +64,6 @@ describe('stub-attribution-custom.js', function () {
                 utm_content: 'download_thanks_experiment'
                 /* eslint-enable camelcase */
             };
-
-            var result = Mozilla.CustomStubAttribution.setAttributionValues(params);
-            expect(result).toBeFalsy();
-        });
-
-        it('should return false if there is already utm_content', function() {
-            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue({
-                /* eslint-disable camelcase */
-                utm_content: 'some-other-content'
-                /* eslint-enable camelcase */
-            });
 
             var result = Mozilla.CustomStubAttribution.setAttributionValues(params);
             expect(result).toBeFalsy();
@@ -100,6 +113,14 @@ describe('stub-attribution-custom.js', function () {
 
             Mozilla.CustomStubAttribution.init(params, options.callback);
             expect(options.callback).toHaveBeenCalled();
+        });
+
+        it('should call regular stub attribution flow if custom data is not satisfied', function() {
+            spyOn(Mozilla.StubAttribution, 'meetsRequirements').and.returnValue(true);
+            spyOn(Mozilla.CustomStubAttribution, 'setAttributionValues').and.returnValue(false);
+            spyOn(Mozilla.StubAttribution, 'init');
+            Mozilla.CustomStubAttribution.init(params);
+            expect(Mozilla.StubAttribution.init).toHaveBeenCalled();
         });
 
     });

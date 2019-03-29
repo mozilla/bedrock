@@ -16,8 +16,8 @@
         // preserve any existing utm params.
         var current = new window._SearchParams().utmParams();
 
-        // if there's already a utm_content param then don't modify anything.
-        if (current.utm_content) {
+        // if utm_content exists or utm_source is from AMO then don't modify anything.
+        if (current.utm_content || current.utm_source === 'addons.mozilla.org') {
             return false;
         }
 
@@ -61,6 +61,8 @@
             if (typeof callback === 'function') {
                 callback();
             }
+        } else {
+            Mozilla.StubAttribution.init();
         }
     };
 
