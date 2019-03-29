@@ -16,6 +16,11 @@ the Windows stub installer, where it finally gets passed to Firefox for use in
 Telemetry. This attribution funnel enables Mozilla to better understand how
 different marketing campaigns effect overall retention in Firefox.
 
+.. Note::
+
+    The `AMO`_ team also relies on Stub Attribution on the /new page to inform
+    their `Return to AMO`_ feature.
+
 How does it work in bedrock?
 ----------------------------
 
@@ -109,9 +114,14 @@ a visitor may have.
 .. Note::
 
     There are some exceptions in the way that the custom attribution script behaves.
-    Existing utm data will not be overwritten if there is already a `utm_content` parameter
-    in the page URL. The custom attribution script will do nothing in this scenario. If
-    any other utm parameters exist on the page URL, those will be passed through to the
-    custom attribution script in favor of any custom values. This is to try and preserve
-    as much existing information as possible, whilst still retaining the `utm_content`
-    value that is essential to attributing an experiment.
+    Existing utm data will not be overwritten if there is already a `utm_content`
+    parameter in the page URL, or if the `utm_source` is from `addons.mozilla.org`.
+    The custom script will follow the regular attribution flow in this scenario and
+    will not modify anything. If any other utm parameters already exist on the page URL,
+    those will be passed through to the custom attribution script and will take
+    precedence over any custom values. This is to try and preserve as much existing
+    information as possible, whilst still retaining the `utm_content` value that is
+    essential to attributing an experiment.
+
+.. _AMO: https://addons.mozilla.org/firefox/
+.. _Return to AMO: https://wiki.mozilla.org/Add-ons/QA/Testplan/Return_to_AMO
