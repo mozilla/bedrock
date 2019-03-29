@@ -1,0 +1,359 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/templates/main-with-sidebar';
+@import '../../protocol/css/components/sidebar-menu';
+@import '../../protocol/css/components/article';
+
+$heading-purple: #20123a;
+$body-purple: #42425a;
+$border: 2px solid $color-gray-20;
+
+.mzp-t-firefox {
+    color: $body-purple;
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        color: $heading-purple;
+    }
+}
+
+.l-narrow {
+    margin: 0 auto;
+    max-width: 640px;
+    padding: 0 $spacing-lg;
+}
+
+.mzp-l-sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: $spacing-md;
+}
+
+.mzp-c-sidemenu {
+    display: none;
+
+    @media #{$mq-md} {
+        display: block;
+    }
+}
+
+.mzp-c-sidemenu-main {
+    @include text-body-sm;
+
+    a:link,
+    a:visited {
+        color: $body-purple;
+    }
+}
+
+.mzp-c-sidemenu-title {
+    @include text-body-sm;
+    font-weight: bold;
+}
+
+//* -------------------------------------------------------------------------- */
+// Page header/intro
+
+.c-page-intro {
+    border-bottom: $border;
+    margin-bottom: $spacing-xl;
+    max-width: $content-md;
+    padding: $layout-xl 0 $spacing-lg;
+
+    &:before {
+        background: url('/media/img/logos/firefox/logo-quantum.png') center top no-repeat;
+        @include background-size(48px 48px);
+        content: '';
+        display: block;
+        height: 48px;
+        left: auto;
+        margin-right: -48px;
+        position: absolute;
+        top: $layout-xs;
+        width: 48px;
+    }
+
+    .c-page-title {
+        @include text-display-lg;
+        font-weight: bold;
+    }
+
+    @media #{$mq-md} {
+        padding-top: 0;
+
+        &:before {
+            left: $layout-lg;
+        }
+
+    }
+
+    @media #{$mq-lg} {
+        &:before {
+            left: $layout-xl;
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Main article content
+
+.mzp-c-article {
+    h2 {
+        @include text-display-md;
+        font-weight: bold;
+        margin-bottom: $layout-md;
+    }
+
+    h3 {
+        @include text-display-sm;
+        font-weight: bold;
+        margin: $layout-sm 0;
+    }
+
+    h4 {
+        @include text-body-lg;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Summary and details widget
+
+.mzp-c-details {
+    border-bottom: $border;
+
+    & + h2 {
+        margin-top: $layout-lg;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+.mzp-c-article .is-closed[aria-hidden="true"] {
+    display: none;
+}
+
+.mzp-c-article .is-summary button {
+    @include bidi(((padding, 0 $spacing-xl 0 0, 0 0 0 $spacing-xl),));
+    background: transparent;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    position: relative;
+    position: relative;
+    text-align: inherit;
+    width: 100%;
+
+    &:before {
+        @include background-size(16px, 16px);
+        @include bidi(((right, 8px, left, auto),));
+        @include transition(transform 100ms ease-in-out);
+        background: $url-image-expand-black top left no-repeat;
+        content: '';
+        height: 16px;
+        margin-top: -8px;
+        position: absolute;
+        top: 50%;
+        width: 16px;
+    }
+
+    &[aria-expanded=true]:before {
+        @include transform(rotate(45deg));
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Data tables
+
+.c-severity-table {
+    @include text-body-sm;
+    border: solid $color-gray-20;
+    border-width: 0 2px 2px 0;
+    margin: 0 0 $spacing-xl;
+
+    thead th,
+    thead td {
+        @include bidi(((text-align, left, right),));
+        @include text-body-md;
+        background: $heading-purple;
+        color: $color-white;
+        padding: $spacing-md;
+    }
+
+    tbody {
+        th, td {
+            @include bidi(((text-align, left, right),));
+            border: solid $color-gray-20;
+            border-width: 2px 0 0 2px;
+            padding: $spacing-md;
+            position: relative;
+            vertical-align: top;
+        }
+
+        th {
+            font-weight: normal;
+
+            h4 {
+                @include text-body-sm;
+                color: $body-purple;
+                line-height: inherit;
+                margin: 0 0 1em;
+            }
+        }
+
+        %severity {
+            content: '';
+            display: block;
+            height: 100%;
+            left: -16px;
+            position: absolute;
+            top: 0;
+            width: 16px;
+        }
+
+        .t-severity-red > th:before {
+            @extend %severity;
+            background: #de3a3a;
+        }
+
+        .t-severity-yellow > th:before {
+            @extend %severity;
+            background: #ffc001;
+        }
+
+        .t-severity-light-green > th:before {
+            @extend %severity;
+            background: #92d050;
+        }
+
+        .t-severity-green > th:before {
+            @extend %severity;
+            background: #01af50;
+        }
+    }
+}
+
+.c-service-level {
+    padding: $spacing-md;
+    margin: 0 0 $spacing-sm;
+
+    h4 {
+        @include text-body-md;
+        font-weight: bold;
+        margin: -#{$spacing-md} -#{$spacing-md} 1em;
+        padding: $spacing-sm $spacing-md;
+    }
+
+    &.t-level-1 {
+        background: transparentize(#01af50, .9);
+
+        h4 {
+            background: #01af50;
+            color: $color-white;
+        }
+    }
+
+    &.t-level-2 {
+        background: transparentize(#ffd402, .8);
+
+        h4 {
+            background: #ffd402;
+        }
+    }
+
+    &.t-level-3 {
+        background: transparentize(#de3a3a, .9);
+
+        h4 {
+            background: #de3a3a;
+            color: $color-white;
+        }
+    }
+}
+
+.c-severity-matrix {
+    @include text-body-sm;
+    margin: 0 0 $spacing-xl;
+    width: 100%;
+
+    .c-axis-label {
+        @include text-body-md;
+        background: $heading-purple;
+        color: $color-white;
+        padding: $spacing-md;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    thead th {
+        padding: $spacing-md;
+    }
+
+    tbody {
+        th, td {
+            padding: $spacing-md;
+            position: relative;
+            text-align: center;
+            vertical-align: top;
+        }
+    }
+
+    .t-alt {
+        background: $color-gray-20;
+    }
+
+    .t-red {
+        background: #de3a3a;
+    }
+
+    .t-orange {
+        background: #ff9b01;
+    }
+
+    .t-yellow {
+        background: #ffd402;
+    }
+
+    .t-green {
+        background: #01af50;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Print styles
+
+@media print {
+    .mzp-t-firefox {
+        color: $color-black;
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: $color-black;
+        }
+    }
+
+    .mzp-c-sidemenu {
+        display: none;
+    }
+
+    .mzp-c-article .is-closed[aria-hidden='true'] {
+        display: block;
+    }
+}
