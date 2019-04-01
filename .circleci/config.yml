@@ -2,39 +2,37 @@ version: 2
 jobs:
   test_py:
     docker:
-      - image: circleci/python:2.7-stretch
+    - image: circleci/python:2.7-stretch
     steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          name: Python Tests
-          command: make clean test-image
-
+    - checkout
+    - setup_remote_docker
+    - run:
+        name: Python Tests
+        command: make clean test-image
   test_js:
     docker:
-      - image: "circleci/node:6.11.4-browsers"
+    - image: circleci/node:6.11.4-browsers
     steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-node-{{ checksum "yarn.lock" }}
-            - v1-node-
-      - run:
-          name: JS Tests
-          command: |
-            yarn install --pure-lockfile
-            npm install gulp-cli
-            node_modules/.bin/gulp css:lint
-            node_modules/.bin/gulp js:lint
-            node_modules/.bin/gulp js:test
-      - save_cache:
-          key: v1-node-{{ checksum "yarn.lock" }}
-          paths:
-            - node_modules
-
+    - checkout
+    - restore_cache:
+        keys:
+        - v1-node-{{ checksum "yarn.lock" }}
+        - v1-node-
+    - run:
+        name: JS Tests
+        command: |
+          yarn install --pure-lockfile
+          npm install gulp-cli
+          node_modules/.bin/gulp css:lint
+          node_modules/.bin/gulp js:lint
+          node_modules/.bin/gulp js:test
+    - save_cache:
+        key: v1-node-{{ checksum "yarn.lock" }}
+        paths:
+        - node_modules
 workflows:
   version: 2
   run_tests:
     jobs:
-      - test_py
-      - test_js
+    - test_py
+    - test_js
