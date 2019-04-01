@@ -235,13 +235,6 @@
         "name": "firefox_new_scene1_yandex"
     },
     {
-        "files": [
-          "css/firefox/new/scene1.scss",
-          "css/firefox/new/scene1-privacy-dmt.scss"
-        ],
-        "name": "firefox_new_scene1_privacy_dmt"
-    },
-    {
       "files": [
         "css/firefox/new/scene1.scss",
         "css/firefox/new/scene1_gb_de.scss"
@@ -1124,13 +1117,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/new/experiment-privacy-dmt.js"
-      ],
-      "name": "experiment_firefox_new_privacy_dmt"
-    },
-    {
-      "files": [
         "js/etc/firefox/retention/confetti.js"
       ],
       "name": "etc-firefox-retention-thank-you"
@@ -1370,20 +1356,6 @@
         "js/firefox/home/pre-download-newsletter.js"
       ],
       "name": "pre-download-newsletter"
-    },
-    {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/new/headline/experiment-en.js"
-      ],
-      "name": "experiment-firefox-new-headline-en"
-    },
-    {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/new/headline/experiment-de.js"
-      ],
-      "name": "experiment-firefox-new-headline-de"
     },
     {
       "files": [
