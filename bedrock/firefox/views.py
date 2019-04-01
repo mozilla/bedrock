@@ -664,9 +664,7 @@ def download_thanks(request):
         else:
             template = 'firefox/new/scene2.html'
     elif locale == 'en-US':
-        if experience == 'priv-dmt':
-            template = 'firefox/new/privacy-dmt/scene2.html'
-        elif experience == 'betterbrowser':
+        if experience == 'betterbrowser':
             template = 'firefox/campaign/better-browser/scene2.html'
         else:
             template = 'firefox/new/scene2.html'
@@ -727,11 +725,6 @@ def new(request):
                 template = 'firefox/campaign/compare/scene1-safari.html'
             elif experience == 'edge':
                 template = 'firefox/campaign/compare/scene1-edge.html'
-            elif experience == 'priv-dmt' and switch('experiment_firefox_new_privacy_dmt'):
-                if variant in ['a', 'b', 'c', 'd', 'e', 'f']:
-                    template = 'firefox/new/privacy-dmt/scene1-{}.html'.format(variant)
-                else:
-                    template = 'firefox/new/scene1.html'
             else:
                 template = 'firefox/new/scene1.html'
         else:
