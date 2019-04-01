@@ -48,6 +48,8 @@
     .c-card-feature-media {
         overflow: hidden;
         position: relative;
+        max-width: 520px;
+        margin: 0 auto;
     }
 
     .c-card-feature-media {
@@ -153,7 +155,7 @@
             }
 
             .c-card-feature-media-wrapper {
-                float: left;
+                float: right;
             }
         }
 
