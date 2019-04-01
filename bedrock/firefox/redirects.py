@@ -600,4 +600,7 @@ redirectpatterns = (
 
     # issue 6512
     redirect(r'^firefox/firefox\.html$', 'firefox.new'),
+
+    # issue 6979
+    redirect(r'^firefoxfightsforyou/?', 'firefox.fights-for-you'),
 )
