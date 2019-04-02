@@ -12,7 +12,6 @@ integration_tests:
     - headless
   iowa-a:
     - chrome
-    - download
     - firefox
     - headless
     - ie
