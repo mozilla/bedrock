@@ -6,6 +6,9 @@ import pytest
 import requests
 
 
+TIMEOUT = 60
+
+
 def pytest_generate_tests(metafunc):
     if 'not headless' in metafunc.config.option.markexpr:
         return  # test deslected by mark expression
@@ -62,5 +65,5 @@ def pytest_generate_tests(metafunc):
 @pytest.mark.headless
 @pytest.mark.nondestructive
 def test_generated_pages(url):
-    r = requests.head(url, allow_redirects=True)
+    r = requests.head(url, allow_redirects=True, timeout=TIMEOUT)
     assert requests.codes.ok == r.status_code
