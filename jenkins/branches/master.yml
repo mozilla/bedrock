@@ -8,5 +8,6 @@ apps:
   - bedrock-dev
 integration_tests:
   iowa-a:
+    - download
     - firefox
     - headless

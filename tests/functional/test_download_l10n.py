@@ -18,6 +18,8 @@ PAGE_PATHS = (
     '/firefox/android/nightly/all/',
 )
 
+TIMEOUT = 60
+
 
 @pytest.mark.download
 @pytest.mark.nondestructive
@@ -30,14 +32,14 @@ def test_localized_download_links(path, base_url):
 
     full_url = base_url + '/en-US' + path
     try:
-        r = requests.get(full_url)
+        r = requests.get(full_url, timeout=TIMEOUT)
     except requests.RequestException:
         # retry
-        r = requests.get(full_url)
+        r = requests.get(full_url, timeout=TIMEOUT)
     soup = BeautifulSoup(r.content, 'html.parser')
     table = soup.find('table', class_='build-table')
     urls = [a['href'] for a in table.find_all('a')]
     assert urls
     for url in urls:
-        r = requests.head(url, allow_redirects=True)
+        r = requests.head(url, allow_redirects=True, timeout=TIMEOUT)
         assert requests.codes.ok == r.status_code
