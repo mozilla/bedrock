@@ -42,7 +42,12 @@
 
           <div class="mzp-c-hero-cta">
             <div class="header-product-ctas">
-              <button type="button" class="mzp-c-button mzp-t-product js-mobile" data-product="firefox" data-button-name="Send to SMS Modal - Firefox Mobile">{{ _('Get Firefox Mobile') }}</button>
+              <button type="button"
+                      class="mzp-c-button mzp-t-product js-mobile"
+                      id="get-firefox"
+                      data-product="firefox"
+                      data-button-name="Send to SMS Modal - Firefox Mobile">
+                      {{ _('Get Firefox Mobile') }}</button>
             </div>
 
             <div class="mobile-download-buttons-wrapper">
@@ -131,7 +136,7 @@
 
           <div class="mzp-c-hero-cta">
             <div class="header-product-ctas">
-              <button type="button" class="mzp-c-button mzp-t-product js-mobile" data-product="firefox" data-button-name="Send to SMS Modal - Firefox Mobile">{{ _('Get Firefox Mobile') }}</button>
+              <button id="get-firefox" type="button" class="mzp-c-button mzp-t-product js-mobile" data-product="firefox" data-button-name="Send to SMS Modal - Firefox Mobile">{{ _('Get Firefox Mobile') }}</button>
             </div>
 
             <div class="mobile-download-buttons-wrapper">
@@ -159,7 +164,7 @@
           <p>{{ _('Firefox Focus is clean, simple, and the privacy features are always on.') }}</p>
 
           <div class="header-product-ctas">
-            <button type="button" class="js-focus mzp-c-button mzp-t-secondary mzp-t-dark" data-product="focus" data-button-name="Send to SMS Modal - Firefox Focus">{{ _('Get Firefox Focus') }}</button>
+            <button id="get-focus" type="button" class="js-focus mzp-c-button mzp-t-secondary mzp-t-dark" data-product="focus" data-button-name="Send to SMS Modal - Firefox Focus">{{ _('Get Firefox Focus') }}</button>
           </div>
           <div class="mobile-download-buttons-wrapper">
             <ul class="mobile-download-buttons focus" id="mobile-download-buttons-focus">
@@ -198,8 +203,8 @@
 
       For mobile devices, only the App/Play Store badges will be shown.
     #}
-    <div id="modal-download-firefox" class="mzp-u-modal-content mzp-t-firefox">
-      <div class="desktop-download">
+    <div id="modal" class="mzp-u-modal-content mzp-t-firefox">
+      <div id="modal-download-firefox" class="desktop-download">
         <h3>{{ _('Get Firefox for mobile') }}</h3>
         {% if show_send_to_device %}
           <p>{{ _('Send a download link to your phone. ') }}</p>
@@ -208,21 +213,25 @@
           <p>{{ _('Scan the QR code to get started') }}</p>
           <div class="qr-code-wrapper">
             <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
-                 data-mozillaonline-link="{{ static('img/firefox/mobile/qr-firefox-mozillaonline.png') }}" alt="">
+                 id="firefox-qr"
+                 data-mozillaonline-link="{{ static('img/firefox/mobile/qr-firefox-mozillaonline.png') }}"
+                 alt="QR code to scan for Firefox Focus.">
           </div>
         {% endif %}
       </div>
-    </div>{#--/#modal-download-firefox--#}
 
-    <div id="modal-download-focus" class="mzp-u-modal-content mzp-t-firefox">
-      <h3>{{ _('Get Firefox Focus') }}</h3>
-      <p>{{ _('Scan the QR code to get started') }}</p>
-      <div class="desktop-download">
-        <div class="qr-code-wrapper">
-          <img src="{{ static('img/firefox/mobile/protocol/qr-focus.png') }}" alt="">
+      <div id="modal-download-focus" class="desktop-download">
+        <h3>{{ _('Get Firefox Focus') }}</h3>
+        <p>{{ _('Scan the QR code to get started') }}</p>
+        <div class="desktop-download">
+          <div class="qr-code-wrapper">
+            <img src="{{ static('img/firefox/mobile/protocol/qr-focus.png') }}"
+                 id="focus-qr"
+                 alt="QR code to scan for Firefox mobile.">
+          </div>
         </div>
       </div>
-    </div>{#--/#modal-download-focus--#}
+    </div>
   </main>
 {% endblock %}
 

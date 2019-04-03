@@ -580,6 +580,11 @@ main .mzp-l-content {
 //* -------------------------------------------------------------------------- */
 //  Modal
 
+#modal-download-firefox,
+#modal-download-focus {
+    display: none;
+}
+
 .mzp-c-modal-inner {
 
     h3 {

@@ -75,7 +75,12 @@
               </div>
 
               <div class="header-product-ctas">
-                <button type="button" class="button button-green get-firefox" data-product="firefox" data-button-name="Send to SMS Modal - Firefox Mobile">{{ _('Get Firefox') }}</button>
+                <button type="button"
+                        class="button button-green get-firefox"
+                        id="get-firefox"
+                        data-product="firefox"
+                        data-button-name="Send to SMS Modal - Firefox Mobile">
+                        {{ _('Get Firefox') }}</button>
                 <br>
                 <a href="#firefox" class="see-more">{{ _('See more') }}</a>
               </div>
@@ -114,7 +119,7 @@
               </div>
 
               <div class="header-product-ctas">
-                <button type="button" class="button button-green get-focus" data-product="focus" data-button-name="Send to SMS Modal - Firefox Focus">{{ _('Get Firefox Focus') }}</button>
+                <button id="get-focus" type="button" class="button button-green get-focus" data-product="focus" data-button-name="Send to SMS Modal - Firefox Focus">{{ _('Get Firefox Focus') }}</button>
                 <br>
                 <a href="#focus" class="see-more">{{ _('See more') }}</a>
               </div>
@@ -149,7 +154,7 @@
               <div class="features-scroller-header-container">
                 <h2 class="section-title">{{ _('Firefox mobile') }}</h2>
 
-                <a href="#mobile-download-buttons-firefox" class="button button-green get-firefox" data-product="firefox" data-button-name="Send to SMS Modal - Firefox Mobile">{{ _('Download now') }}</a>
+                <a id="features-get-firefox" href="#mobile-download-buttons-firefox" class="button button-green get-firefox" data-product="firefox" data-button-name="Send to SMS Modal - Firefox Mobile">{{ _('Download now') }}</a>
 
                 <nav class="features-scroller-nav" data-section="firefox">
                   <ul>
@@ -270,7 +275,7 @@
               <div class="features-scroller-header-container">
                 <h2 class="section-title">{{ _('Firefox Focus') }}</h2>
 
-                <a href="#mobile-download-buttons-focus" class="button button-focus get-focus" data-product="focus" data-button-name="Send to SMS Modal - Firefox Focus">{{ _('Download now') }}</a>
+                <a id="features-get-focus" href="#mobile-download-buttons-focus" class="button button-focus get-focus" data-product="focus" data-button-name="Send to SMS Modal - Firefox Focus">{{ _('Download now') }}</a>
 
                 <nav class="features-scroller-nav" data-section="focus">
                   <ul>
@@ -402,7 +407,9 @@
 
           <div class="qr-code-wrapper">
             <img src="{{ static('img/firefox/mobile/qr-firefox.png') }}"
-                 data-mozillaonline-link="{{ static('img/firefox/mobile/qr-firefox-mozillaonline.png') }}" alt="">
+                 data-mozillaonline-link="{{ static('img/firefox/mobile/qr-firefox-mozillaonline.png') }}"
+                 id="firefox-qr"
+                 alt="">
           </div>
         {% endif %}
         </div>
@@ -411,7 +418,10 @@
           <p>{{ _('Scan the QR code to get started.') }}</p>
 
           <div class="qr-code-wrapper">
-            <img src="{{ static('img/firefox/mobile/qr-focus.png') }}" alt="">
+            <img src="{{ static('img/firefox/mobile/qr-focus.png') }}"
+                 id="focus-qr"
+                 alt=""
+            >
           </div>
         </div>
 
