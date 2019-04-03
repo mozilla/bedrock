@@ -105,10 +105,10 @@
                     <li class="mzp-c-menu-category"><a class="mzp-c-menu-title" href="{{ url('firefox.notes', platform='ios') }}">{{ _('iOS') }}</a></li>
 
                     <li class="mzp-c-menu-category mzp-has-drop-down mzp-js-expandable">
-                      <a class="mzp-c-menu-title" href="/firefox/channel/desktop/" aria-haspopup="true" aria-controls="release-other">{{ _('Other Releases') }}</a>
+                      <a class="mzp-c-menu-title" href="{{ url('firefox.channel.desktop') }}" aria-haspopup="true" aria-controls="release-other">{{ _('Pre-releases') }}</a>
                       <div class="mzp-c-menu-panel" id="release-other">
                         <div class="mzp-c-menu-panel-container">
-                          <button class="mzp-c-menu-button-close" type="button" aria-controls="mzp-c-menu-panel-about">Close Other Releases menu</button>
+                          <button class="mzp-c-menu-button-close" type="button" aria-controls="mzp-c-menu-panel-about">{{ _('Close "Pre-releases" menu') }}</button>
                           <div class="mzp-c-menu-panel-content">
                             <ul>
                               <li>

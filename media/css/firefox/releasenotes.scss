@@ -18,6 +18,19 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/article';
 @import '../../protocol/css/components/call-out';
 
+.mzp-t-dark{
+    // protocol/issues#335
+    a:visited {
+        color: #ffffff;
+        opacity: 0.8;
+    }
+
+    a:hover,
+    a:focus,
+    a:active {
+        opacity: 1;
+    }
+}
 
 /* -------------------------------------------------------------------------- */
 // Call out / page header
@@ -32,7 +45,11 @@ $image-path: '/media/protocol/img';
     background: linear-gradient(#000000, #001e44);
 }
 
-/* pre-quantum logos */
+/* pre-quantum logos
+  - cannot use at2x mixin here because it will over-ride the background-size,
+    which we don't want to have to reset here because it's different for
+    mobile and desktop
+*/
 .t-pre-quantum {
     /* firefox release */
     .mzp-c-call-out.mzp-t-product-firefox .mzp-c-call-out-title {
@@ -153,56 +170,55 @@ $image-path: '/media/protocol/img';
     }
 }
 
-/* default pagraph and list styles to reset the reset, normally these would be
-   applied with classes on the elements themselves but we don't have control
-   of that mark up */
+
 .mzp-l-article {
-    p + ul,
-    p + ol {
-        margin-top: -1em;
-    }
+    > ul > li {
+        margin-bottom: $layout-md;
 
-    ul ul,
-    ol ul {
-        @include bidi(((margin-left, $layout-sm, margin-right, 0),));
-        list-style: disc;
+        p + ul,
+        p + ol {
+            margin-top: -1em;
+        }
 
-        li {
-            margin-bottom: .25em;
+        ul,
+        ol {
+            @include bidi(((margin-left, $layout-sm, margin-right, 0),));
         }
 
         ul {
-            @include bidi(((margin-left, $layout-xs, margin-right, 0),));
-            list-style: circle;
-            margin-bottom: 0;
-        }
-
-        ol {
-            @include bidi(((margin-left, $layout-xs, margin-right, 0),));
-            list-style: decimal;
-            margin-bottom: 0;
-        }
-    }
-
-    ul ol,
-    ol ol {
-        @include bidi(((margin-left, $layout-sm, margin-right, 0),));
-        list-style: decimal;
-
-        li {
-            margin-bottom: .25em;
-        }
-
-        ol {
-            @include bidi(((margin-left, $layout-xs, margin-right, 0),));
-            list-style: lower-alpha;
-            margin-bottom: 0;
-        }
-
-        ul {
-            @include bidi(((margin-left, $layout-xs, margin-right, 0),));
             list-style: disc;
-            margin-bottom: 0;
+
+            li {
+                margin-bottom: .25em;
+            }
+
+            ul {
+                list-style: circle;
+                margin-bottom: 0;
+            }
+
+            ol {
+                list-style: decimal;
+                margin-bottom: 0;
+            }
+        }
+
+        ol {
+            list-style: decimal;
+
+            li {
+                margin-bottom: .25em;
+            }
+
+            ol {
+                list-style: lower-alpha;
+                margin-bottom: 0;
+            }
+
+            ul {
+                list-style: disc;
+                margin-bottom: 0;
+            }
         }
     }
 }
@@ -262,8 +278,8 @@ $image-path: '/media/protocol/img';
 }
 
 .mdn-icon {
-    align-items: center;
-    display: flex;
+    @include align-items(center);
+    @include flexbox;
     float: right;
     margin-top: 10px;
 
