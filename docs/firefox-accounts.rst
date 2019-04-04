@@ -44,9 +44,4 @@ Firefox:
 #. Navigate to the page containing the Firefox Accounts form
 #. If testing locally, be sure to use ``127.0.0.1`` instead of ``localhost``
 
-Firefox Accounts iframe
------------------------
-
-If you need to work with/test the legacy Firefox Accounts iframe, see the :ref:`firefox-accounts-iframe` docs.
-
 .. _instructions: https://github.com/vladikoff/fxa-dev-launcher#basic-usage-example-in-os-x
