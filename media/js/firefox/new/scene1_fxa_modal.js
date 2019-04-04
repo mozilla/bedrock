@@ -50,11 +50,11 @@
         client.getFxaDetails(function(details) {
             if (details.setup) {
                 for(var i = 0; i < downloadLinkPrimary.length; i++) {
-                    downloadLinkPrimary.removeEventListener('click', showFxAModal, false);
+                    downloadLinkPrimary[i].removeEventListener('click', showFxAModal, false);
                 }
 
                 for(var j = 0; j < downloadLinkSecondary.length; j++) {
-                    downloadLinkSecondary.removeEventListener('click', showFxAModal, false);
+                    downloadLinkSecondary[j].removeEventListener('click', showFxAModal, false);
                 }
             }
         });
