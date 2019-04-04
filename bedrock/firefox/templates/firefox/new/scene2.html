@@ -8,12 +8,8 @@
 
 {% extends "firefox/base-protocol.html" %}
 
-{% block canonical_urls %}
-  {# the "scene 2" page should set canonical to the /firefox/new/ page to give that
-     page the SEO weight of links directly to "scene 2".
-     see https://github.com/mozilla/bedrock/pull/5463 #}
-  <link rel="canonical" href="{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/">
-{% endblock %}
+{# "scene2" page should not be indexed to avoid it appearing in search results: issue 7024 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
 {% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/{% endblock %}
 
