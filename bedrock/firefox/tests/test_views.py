@@ -799,14 +799,14 @@ class TestFirefoxNewNoIndex(TestCase):
         eq_(robots.length, 0)
 
     def test_scene_2_canonical(self):
-        # Scene 2 of /firefox/new/ should contain a canonical tag to /firefox/new/.
+        # Scene 2 /firefox/download/thanks/ should always contain a noindex tag.
         req = RequestFactory().get('/firefox/download/thanks/')
         req.locale = 'en-US'
         response = views.download_thanks(req)
         doc = pq(response.content)
-        canonical = doc('link[rel="canonical"]')
-        eq_(canonical.length, 1)
-        ok_('/firefox/new/' in canonical.attr('href'))
+        robots = doc('meta[name="robots"]')
+        eq_(robots.length, 1)
+        ok_('noindex' in robots.attr('content'))
 
 
 @override_settings(DEV=False)
