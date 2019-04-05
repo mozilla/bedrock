@@ -4,6 +4,8 @@
 
 {% extends "firefox/releases/notes.html" %}
 
+{% set product_class = 'mzp-t-product-beta' %}
+
 {% if release.product == 'Firefox for Android' %}
   {% set page_id = 'data-gtm-page-id="/firefox/android/beta/releasenotes"' %}
   {% set download_button %}

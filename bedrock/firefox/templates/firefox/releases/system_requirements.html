@@ -12,11 +12,7 @@
 {% block page_title %}{{ _('{product} {channel} {version} System Requirements')|f(product=release.product, channel=channel_name, version=version) }}{% endblock %}
 
 {% block body_id %}notes{% endblock %}
-{% block body_class %}fxos-notes sky{% endblock %}
-
-{% block page_css %}
-  {{ css_bundle('firefox_releasenotes') }}
-{% endblock %}
+{% block body_class %}sky{% endblock %}
 
 {% block content %}
   <header id="main-feature">
