@@ -1245,13 +1245,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/home/experiment-brand.js"
-      ],
-      "name": "experiment-firefox-brand"
-    },
-    {
-      "files": [
         "js/libs/jquery.waypoints.min.js",
         "js/libs/jquery.waypoints-sticky.min.js",
         "js/hubs/sub-nav.js",

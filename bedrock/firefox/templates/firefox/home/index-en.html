@@ -17,6 +17,8 @@
 {% endif %}
 {% block page_title %}{{ _('The new, fast browser for Mac, PC and Linux') }} | {{ title_suffix }}{% endblock %}
 {% block page_desc %}{{ _('Responsive engine, less memory usage and packed with features. Download for desktop now.') }}{% endblock %}
+{% block page_og_title %}{{ _('Get the browser built for you, not advertisers') }} | {{ title_suffix }}{% endblock %}
+{% block page_og_desc %}{{ _('Check out Firefox again. It’s fast, private and on your side. And it works on Mac, PC and Linux.') }}{% endblock %}
 
 {% block experiments %}{% endblock %}
 
@@ -28,6 +30,9 @@
 {% block body_class %}{{ super() }} mzp-t-firefox{% endblock %}
 
 {% block content %}
+{% with current='desktop' %}
+  {% include 'firefox/includes/hub/sub-nav.html' %}
+{% endwith %}
 <main role="main">
   <header class="mzp-c-hero mzp-t-firefox mzp-has-image">
     <div class="mzp-l-content">
@@ -52,16 +57,16 @@
         <li class="t-private">
           <h3>{{ _('Keep sensitive searches private') }}</h3>
           <p>
-          {% trans %}
-            Open a New Private Window to enter Private Browsing Mode. When you close out, your history is erased.
+          {% trans url=url('firefox.features.private-browsing') %}
+            Open a New Private Window to enter <a href="{{ url }}">Private Browsing Mode</a>. When you close out, your history is erased.
           {% endtrans %}
           </p>
         </li>
         <li class="t-tracking">
           <h3>{{ _('Be invisible to advertisers ') }}</h3>
           <p>
-          {% trans %}
-            Some ads have hidden trackers that follow you online. Firefox Tracking Protection, automatically on in Private Browsing Mode, stops them cold.
+          {% trans url=url('firefox.features.adblocker') %}
+            Some ads have hidden trackers that follow you online. <a href="{{ url }}">Firefox Tracking Protection</a>, automatically on in Private Browsing Mode, stops them cold.
           {% endtrans %}
           </p>
         </li>
@@ -102,16 +107,16 @@
             <h3>{{ _('Extend what your browser can do') }}</h3>
             <p>
             {# L10n: Locales can substitute their most popular extensions OR they can use "Personalize Firefox with thousands of extensions like password managers, ad blockers and more." #}
-            {% trans %}
-              Customize Firefox with thousands of extensions including LastPass, uBlock Origin and more.
+            {% trans url="https://addons.mozilla.org/firefox/extensions/" %}
+              Customize Firefox with thousands of <a href="{{ url }}">extensions</a> including LastPass, uBlock Origin and more.
             {% endtrans %}
             </p>
           </li>
           <li class="t-themes">
             <h3>{{ _('Change up your look') }}</h3>
             <p>
-            {% trans %}
-              Choose a new look from our theme categories or create your own.
+            {% trans url="https://addons.mozilla.org/firefox/themes/" %}
+              Choose a new look from our <a href="{{ url }}">theme</a> categories or create your own.
             {% endtrans %}
             </p>
           </li>
@@ -119,8 +124,8 @@
             <h3>{{ _('Put your tools where you want them') }}</h3>
 
             <p>
-            {% trans %}
-              Drag and drop features into your toolbar for easy access.
+            {% trans url="https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars" %}
+              Drag and drop features into your <a href="{{ url }}">toolbar</a> for easy access.
             {% endtrans %}
             </p>
           </li>
@@ -158,18 +163,14 @@
     <div class="mzp-l-content">
       <div data-scroll-tracking="30% lighter than chrome">
         {% call feature_card(
-          title=_('Smoother computing'),
+          title=_('Firefox uses less memory'),
           image_url='firefox/home/desktop-smooth.svg',
           aspect_ratio='mzp-has-aspect-1-1',
           class='mzp-l-card-feature-right-third mzp-t-firefox t-smooth',
           link_url='https://blog.mozilla.org/firefox/quantum-performance-test/',
           link_cta=_('Learn More')
         ) %}
-        <p>
-        {% trans url='https://blog.mozilla.org/firefox/quantum-performance-test/' %}
-          Firefox uses <a href="{{ url }}">less memory</a> than Chrome for a better overall experience.
-        {% endtrans %}
-        </p>
+        <p>{{ _('Which means a smoother, faster web on every page.') }}</p>
         {% endcall %}
       </div>
     </div>
@@ -193,7 +194,7 @@
 
   {% call call_out_compact(
     title=_('The browser built for you, not advertisers'),
-    desc=_('Fast, private, on your side'),
+    desc=_('Firefox is fast, private and on your side'),
     class='mzp-t-firefox mzp-t-dark t-you'
     ) %}
     <div class="download-firefox">

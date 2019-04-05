@@ -760,12 +760,8 @@ def firefox_home(request):
     newsletter_locales = ['en-US', 'en-GB', 'en-CA', 'en-ZA', 'fr', 'de']
     show_newsletter = switch('firefox_pre_download_newsletter') and locale in newsletter_locales
 
-    # ensure variant matches pre-defined value
-    if variant not in ['a', 'b']:  # place expected ?v= values in this list
-        variant = None
-
-    if locale == 'en-US' and variant == 'b':
-        template = 'firefox/home/index-b.html'
+    if locale.startswith('en-'):
+        template = 'firefox/home/index-en.html'
     else:
         template = 'firefox/home/index.html'
 
