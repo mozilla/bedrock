@@ -327,79 +327,6 @@ def show_57_dev_whatsnew(version):
     return version >= Version('57.0')
 
 
-def show_57_whatsnew(version, oldversion):
-    try:
-        version = Version(version)
-        if oldversion:
-            oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    v57 = Version('57.0')
-    v58 = Version('58.0')
-
-    if oldversion:
-        return version >= v57 and version < v58 and oldversion < v57
-    else:
-        return version == v57
-
-
-def show_59_whatsnew(version, oldversion):
-    try:
-        version = Version(version)
-        if oldversion:
-            oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    v59 = Version('59.0')
-    v60 = Version('60.0')
-
-    if oldversion:
-        return version >= v59 and version < v60 and oldversion < v59
-    else:
-        return version >= v59 and version < v60
-
-
-def show_60_whatsnew(version, oldversion):
-    try:
-        version = Version(version)
-        if oldversion:
-            oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    v60 = Version('60.0')
-
-    return version >= v60 and (oldversion < v60 if oldversion else True)
-
-
-def show_61_whatsnew(version, oldversion):
-    try:
-        version = Version(version)
-        if oldversion:
-            oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    v61 = Version('61.0')
-
-    return version >= v61 and (oldversion < v61 if oldversion else True)
-
-
-def show_62_whatsnew(version, oldversion):
-    try:
-        version = Version(version)
-        if oldversion:
-            oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    v62 = Version('62.0')
-
-    return version >= v62 and (oldversion < v62 if oldversion else True)
-
-
 def show_62_firstrun(version):
     try:
         version = Version(version)
@@ -470,10 +397,8 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
                 template = 'firefox/firstrun/firstrun-election.html'
             else:
                 template = 'firefox/firstrun/firstrun-quantum.html'
-        elif show_57_firstrun(version):
-            template = 'firefox/firstrun/firstrun-quantum.html'
         else:
-            template = 'firefox/firstrun/index.html'
+            template = 'firefox/firstrun/firstrun-quantum.html'
 
         # return a list to conform with original intention
         return [template]
@@ -542,10 +467,7 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
         elif channel == 'nightly':
             template = 'firefox/nightly_whatsnew.html'
         elif locale == 'id':
-            if switch('firefox_lite_whatsnew'):
-                template = 'firefox/whatsnew/index-lite.id.html'
-            else:
-                template = 'firefox/whatsnew/index.id.html'
+            template = 'firefox/whatsnew/index-lite.id.html'
         elif locale == 'zh-TW' and not version.startswith('64.'):
             template = 'firefox/whatsnew/index.zh-TW.html'
         elif version.startswith('66.'):
@@ -556,22 +478,6 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
             template = 'firefox/whatsnew/fx64/whatsnew-fx64.html'
         elif version.startswith('63.'):
             template = 'firefox/whatsnew/whatsnew-fx63.html'
-        elif show_62_whatsnew(version, oldversion):
-            template = 'firefox/whatsnew/whatsnew-fx62.html'
-        elif show_61_whatsnew(version, oldversion):
-            template = 'firefox/whatsnew/whatsnew-fx61.html'
-        elif show_60_whatsnew(version, oldversion):
-            template = 'firefox/whatsnew/whatsnew-fx60.html'
-        elif show_59_whatsnew(version, oldversion):
-            template = 'firefox/whatsnew/whatsnew-fxa.html'
-        elif show_57_whatsnew(version, oldversion):
-            # locale-specific templates don't seem to work for the default locale
-            if locale == 'en-US':
-                template = 'firefox/whatsnew/fx57/whatsnew-57.en-US.html'
-            # locale-specific templates for de, en-GB, es-AR, es-CL, es-ES, es-MX,
-            # fr, id, pl, pt-BR, ru, zh-CN, and zh-TW
-            else:
-                template = 'firefox/whatsnew/fx57/whatsnew-57.html'
         else:
             template = 'firefox/whatsnew/index.html'
 

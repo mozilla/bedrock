@@ -78,59 +78,37 @@ body {
     }
 }
 
-/* -------------------------------------------------------------------------- */
-// Firefox accounts form iframe
+#fxaccounts-wrapper {
+    padding: 0 10px;
 
-#fxa {
-    border: none;
-    min-height: 220px;
-    position: relative;
-    width: 318px;
-}
+    .button {
+        @include font-size-level6;
+        @include open-sans;
+        background: none;
+        border-radius: 2px;
+        border-style: solid;
+        border-width: 2px;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: bold;
+        padding: .9em 40px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        text-shadow: none;
+        transition: background-color .1s ease-in-out, border-color .1s ease-in-out;
 
-#fxa-iframe-config {
-    background: #fff;
-    margin: 20px auto;
-    padding: 30px 0;
-    width: 320px;
+        background-color: transparent;
+        color: $color-button-light;
+        border-color: $color-button-light;
 
-    @media #{$mq-medium} {
-        margin: 20px 0;
-        padding: 30px 20px;
+        &:hover,
+        &:focus {
+            background-color: transparentize($color-button-light, .95);
+            border-color: darken($color-button-light, 5%);
+            color: darken($color-button-light, 5%);
+        }
     }
-}
-
-#skip-button {
-    -moz-appearance: none;
-    @include font-size(14px);
-    background-color: #fcfcfc;
-    border-radius: 2px;
-    border: 1px solid #0a84ff;
-    color: #0a84ff;
-    cursor: pointer;
-    display: block;
-    margin: 10px auto 0 auto;
-    min-height: 24px;
-    padding: 5px 10px;
-    transition: background-color 150ms, color 150ms, border-color 150ms;
-
-    &:not([disabled]):hover {
-        background-color: #0a84ff;
-        border-color: #0060df;
-        color: #fff;
-    }
-}
-
-#skip-button[disabled] {
-    background-color: #ebebeb;
-    border-color: #b1b1b1;
-    color: #6a6a6a;
-    cursor: default;
-    opacity: .5;
-}
-
-#skip-button.skipbutton-hidden {
-    display: none;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -197,53 +175,47 @@ body {
 /* -------------------------------------------------------------------------- */
 // Animations & transitions
 
-#main-header h1,
-#main-header .content,
-#main-header a {
-    opacity: 0;
-    transform: translateY(-5px);
-}
-
-#fxa-iframe-config {
-    opacity: 0;
-    transform: scale(.8);
-}
-
-// transition in
-#scene[data-content=true] {
-    #fxa-iframe-config {
-        opacity: 1;
-        transform: scale(1);
-        transition: opacity 1s 1s, transform 1s 1s;
-    }
-
-    #main-header {
-        h1,
-        .content,
-        a {
-            opacity: 1;
-            transform: translateY(0);
-            transition: transform .5s, opacity .8s;
-        }
-
-        h1 {
-            transition-delay: 0.5s;
-        }
-
-        .content {
-            transition-delay: 0.7s;
-        }
-
-        a {
-            transition-delay: 1.2s;
-        }
-    }
-}
-
-// tranition out
-#scene[data-sign-in=true] {
-    .fxaccounts-container {
+.js {
+    #main-header h1,
+    #main-header .content,
+    #main-header a {
         opacity: 0;
-        transition: opacity .5s;
+        transform: translateY(-5px);
+    }
+
+    #fxaccounts-wrapper {
+        opacity: 0;
+        transform: scale(.8);
+    }
+
+    // transition in
+    #scene[data-content=true] {
+        #fxaccounts-wrapper {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 1s 1s, transform 1s 1s;
+        }
+
+        #main-header {
+            h1,
+            .content,
+            a {
+                opacity: 1;
+                transform: translateY(0);
+                transition: transform .5s, opacity .8s;
+            }
+
+            h1 {
+                transition-delay: 0.5s;
+            }
+
+            .content {
+                transition-delay: 0.7s;
+            }
+
+            a {
+                transition-delay: 1.2s;
+            }
+        }
     }
 }

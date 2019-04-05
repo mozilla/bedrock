@@ -1174,14 +1174,6 @@ FIREFOX_TWITTER_ACCOUNTS = {
     'pt-BR': 'https://twitter.com/firefoxbrasil',
 }
 
-# Fx Accounts iframe source
-FXA_IFRAME_SRC = config('FXA_IFRAME_SRC',
-                        default='https://accounts.firefox.com/')
-
-# Bug 1264843: embed FxA server in China within Fx China repack
-FXA_IFRAME_SRC_MOZILLAONLINE = config('FXA_IFRAME_SRC_MOZILLAONLINE',
-                                      default='https://accounts.firefox.com.cn/')
-
 # Fx Accounts iframe-less form & JS endpoint
 # ***This URL *MUST* end in a traling slash!***
 
@@ -1256,7 +1248,7 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
             'all': 'download-firefox-mobile-reco',
         }
     },
-    'fx-50-whatsnew': {
+    'fx-whatsnew': {
         'sms_countries': config('STD_SMS_COUNTRIES_WHATSNEW50', default='US', parser=ListOf(str)),
         'sms': {
             'all': 'whatsnewfifty',
