@@ -3,7 +3,7 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect */
+/* global describe, beforeEach, afterEach, it, expect, sinon */
 
 describe('core-datalayer.js', function() {
 
@@ -81,6 +81,33 @@ describe('core-datalayer.js', function() {
 
         it('will return null if no data-latest-firefox attribute is present on the html element', function() {
             expect(Mozilla.Analytics.getLatestFxVersion()).toBe(null);
+        });
+    });
+
+    describe('isWin10S', function() {
+
+        beforeEach(function () {
+            window.external = sinon.stub();
+            window.external.getHostEnvironmentValue = sinon.stub();
+        });
+
+        it('should return true if Windows 10 has S mode enabled', function() {
+            spyOn(window.external, 'getHostEnvironmentValue').and.returnValue('{"os-mode": "2"}');
+            var result = Mozilla.Analytics.isWin10S();
+            expect(window.external.getHostEnvironmentValue).toHaveBeenCalledWith('os-mode');
+            expect(result).toBeTruthy();
+        });
+
+        it('should return false if Windows 10 is unlocked', function() {
+            spyOn(window.external, 'getHostEnvironmentValue').and.returnValue('{"os-mode": "0"}');
+            var result = Mozilla.Analytics.isWin10S();
+            expect(result).toBeFalsy();
+        });
+
+        it('should return false for everyone else', function() {
+            spyOn(window.external, 'getHostEnvironmentValue').and.returnValue(new TypeError('window.external.getHostEnvironmentValue is not a function'));
+            var result = Mozilla.Analytics.isWin10S();
+            expect(result).toBeFalsy();
         });
     });
 

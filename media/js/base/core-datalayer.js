@@ -54,6 +54,21 @@ if (typeof Mozilla.Analytics == 'undefined') {
         return document.getElementsByTagName('html')[0].getAttribute('data-latest-firefox');
     };
 
+    /** Returns true if user is running Windows 10 in S mode.
+    * @return {Boolean}.
+    */
+    analytics.isWin10S = function() {
+        try {
+            var mode = JSON.parse(window.external.getHostEnvironmentValue('os-mode'));
+            if (mode && mode['os-mode'] === '2') {
+                return true;
+            }
+            return false;
+        } catch(e) {
+            return false;
+        }
+    };
+
     /** Returns an object containing GA-formatted FxA details
     * The specs for this are a combination of:
     * - https://bugzilla.mozilla.org/show_bug.cgi?id=1457024#c33
