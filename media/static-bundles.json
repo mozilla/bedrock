@@ -712,8 +712,7 @@
     {
       "files": [
         "css/base/mozilla-lazy-image.scss",
-        "css/firefox/home/protocol.scss",
-        "css/firefox/home/pre-download-newsletter-protocol.scss"
+        "css/firefox/home/protocol.scss"
       ],
       "name": "firefox-desktop"
     },
@@ -1294,6 +1293,16 @@
     },
     {
       "files": [
+        "js/libs/jquery.waypoints.min.js",
+        "js/libs/jquery.waypoints-sticky.min.js",
+        "js/hubs/sub-nav.js",
+        "js/base/mozilla-lazy-load.js",
+        "js/firefox/home/main.js"
+      ],
+      "name": "firefox-desktop"
+    },
+    {
+      "files": [
         "js/base/mozilla-traffic-cop.js",
         "js/firefox/home/experiment-brand.js"
       ],
@@ -1301,20 +1310,13 @@
     },
     {
       "files": [
-        "js/libs/jquery.waypoints.min.js",
-        "js/libs/jquery.waypoints-sticky.min.js",
-        "js/hubs/sub-nav.js",
-        "js/base/mozilla-lazy-load.js",
-        "js/firefox/home/main.js",
-        "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.js"
+        "js/firefox/home/experiment-variation-brand.js"
       ],
-      "name": "firefox-desktop"
+      "name": "experiment-variation-firefox-brand"
     },
     {
       "files": [
-        "protocol/js/protocol-modal.js",
-        "js/firefox/home/pre-download-newsletter-protocol.js"
+        "protocol/js/protocol-modal.js"
       ],
       "name": "pre-download-newsletter-protocol"
     },

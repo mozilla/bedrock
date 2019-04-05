@@ -743,15 +743,19 @@ def firefox_home(request):
     show_newsletter = switch('firefox_pre_download_newsletter') and locale in newsletter_locales
 
     # ensure variant matches pre-defined value
-    if variant not in ['a', 'b']:  # place expected ?v= values in this list
+    if variant not in ['a', 'b', 'c', 'd', 'e']:  # place expected ?v= values in this list
         variant = None
 
-    if locale == 'en-US' and variant == 'b':
+    if locale == 'en-US' and variant is not None and variant is not 'a':
         template = 'firefox/home/index-b.html'
+
+        return l10n_utils.render(request,
+                             template,
+                             {'show_newsletter': show_newsletter, 'variation': variant})
     else:
         template = 'firefox/home/index.html'
 
-    return l10n_utils.render(request,
+        return l10n_utils.render(request,
                              template,
                              {'show_newsletter': show_newsletter})
 

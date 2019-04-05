@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="995px" height="709px" viewBox="0 0 995 763" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <title>Group 4</title>
+  <desc>Created with Sketch.</desc>
+  <defs>
+    <rect id="path-1" x="0" y="0" width="1078" height="800"/>
+    <linearGradient x1="0.32738872528076174" y1="0.9853054046630859" x2="0.4956525802612305" y2="0.8847676849365235" id="linearGradient-3" gradientTransform="matrix(1.238595, 0.058287, -0.359577, 1.042773, 0.207245, -0.070389)">
+      <stop stop-color="#722291" offset="0"/>
+      <stop stop-color="#E8288B" offset="0.5041"/>
+      <stop stop-color="#FF7139" offset="1"/>
+    </linearGradient>
+    <linearGradient x1="0.419" y1="0.647" x2="0.569" y2="0.634" id="linearGradient-4" gradientTransform="matrix(1.046601, -0.224714, 0.074682, 0.993078, -0.048327, 0.290107)">
+      <stop offset="0" style="stop-color: rgb(255, 113, 58);"/>
+      <stop offset="0.184" style="stop-color: rgb(253, 108, 64);"/>
+      <stop stop-color="#F65559" offset="0.53"/>
+      <stop stop-color="#F95E4F" offset="0.673"/>
+      <stop stop-color="#9C4966" offset="0.926"/>
+      <stop stop-color="#363C74" offset="1"/>
+    </linearGradient>
+    <path d="M3077.91393,2686.56594 L2161.48567,3610.25536 C2057.97651,3714.58466 1890.15547,3714.58619 1786.64444,3610.25878 L870.183043,2686.56936 L2811.05678,2319.26859 L3077.91393,2686.56594 Z" id="path-6"/>
+    <linearGradient id="gradient-0" gradientUnits="userSpaceOnUse" x1="2133.639" y1="2065.661" x2="2133.639" y2="3575.426" gradientTransform="matrix(0.427456, 0.904036, -0.242936, 0.114866, 1498.423027, 960.470316)">
+      <stop offset="0" style="stop-color: rgb(255, 200, 62);"/>
+      <stop offset="1" style="stop-color: rgb(254, 141, 73);"/>
+    </linearGradient>
+  </defs>
+  <g id="/firefox-(Desktop)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Slash-Firefox-Mobile-Example" transform="translate(-925.000000, 0.000000)">
+      <g id="Hero" transform="translate(415.000000, 0.000000)">
+        <g id="graphic" transform="translate(427.000000, 0.000000)">
+          <g id="Group-4">
+            <mask id="mask-2" fill="white">
+              <rect width="1078" height="800"/>
+            </mask>
+            <g id="Mask"/>
+            <g mask="url(#mask-2)">
+              <g transform="translate(-1274.000000, -2941.000000)">
+                <path d="M1745.03664,2902.87728 C1916.92567,3015.37431 1965.77847,3247.00203 1854.15243,3420.23227 C1742.5264,3593.46251 1512.69203,3642.69651 1340.80301,3530.19947 C574.607582,3028.74387 356.856333,1996.24787 854.444656,1224.05037 C1352.01275,451.884267 2376.51201,232.421051 3142.69969,733.871583 C3314.58871,846.368617 3363.44151,1077.99634 3251.81548,1251.22658 C3140.18944,1424.45682 2910.35508,1473.69081 2738.46606,1361.19378 C2316.05642,1084.73731 1751.22589,1205.73255 1476.90986,1631.43817 C1202.57135,2057.17869 1322.62273,2626.41802 1745.03664,2902.87728 Z" id="Mask" stroke="none" fill="url(#linearGradient-3)" fill-rule="nonzero" transform="translate(1949.547738, 2027.654271) scale(-1, 1) rotate(-29.000000) translate(-1949.547738, -2027.654271) " style=""/>
+                <path d="M 3290.337 1894.843 C 3435.261 1748.787 3670.23 1748.787 3815.155 1894.843 C 3960.079 2040.898 3960.079 2277.7 3815.155 2423.756 L 2532.069 3716.854 C 2387.146 3862.907 2152.181 3862.909 2007.255 3716.858 L 724.123 2423.76 C 579.196 2277.708 579.191 2040.905 724.113 1894.847 C 869.035 1748.789 1104.004 1748.785 1248.931 1894.838 L 2269.655 2923.489 L 3290.337 1894.843 Z" id="Stroke-3" stroke="none" fill="url(#linearGradient-4)" fill-rule="nonzero" style="" transform="matrix(0.615661, 0.788011, -0.788011, 0.615661, 3083.347077, -710.102435)"/>
+                <path d="M 3053.611 3396.005 L 1769.274 3604.622 C 1624.21 3628.185 1488.439 3529.544 1466.019 3384.299 L 1267.517 2098.336 L 3053.611 2942 L 3053.611 3396.005 Z" id="Stroke-3" style="fill: url(#gradient-0);"/>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

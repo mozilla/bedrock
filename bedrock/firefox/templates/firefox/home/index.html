@@ -28,6 +28,7 @@
 {% endblock %}
 
 {% block body_id %}firefox-home{% endblock %}
+{% block body_attrs %}{% if variation %}data-variant="{{ variation }}"{% endif %}{% endblock %}
 
 {% block content %}
 {% with current='desktop' %}
@@ -284,5 +285,8 @@
   {{ js_bundle('firefox-home') }}
   {% if show_newsletter %}
     {{ js_bundle('pre-download-newsletter') }}
+  {% endif %}
+  {% if switch('experiment-firefox-brand', ['en-US']) %}
+    {{ js_bundle('experiment-variation-firefox-brand') }}
   {% endif %}
 {% endblock %}
