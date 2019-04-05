@@ -236,6 +236,9 @@
       <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="developer">
         <div class="mzp-l-sidebar"><h3>{{ _('Developer') }}</h3></div>
         <div class="mzp-l-main mzp-l-article">
+          <div class="developer-more">
+            <a class="mdn-icon" rel="external" href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version }}">{{ _('Developer Information') }}</a>
+          </div>
           {% for note in release.notes if note.tag == "Developer" %}
             {% if loop.first %}
               <ul>
@@ -245,7 +248,6 @@
               </ul>
             {% endif %}
           {% endfor %}
-          <a class="mdn-icon more" rel="external" href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version }}">{{ _('Developer Information') }}</a>
         </div>
       </div>
 

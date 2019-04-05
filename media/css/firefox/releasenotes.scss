@@ -143,6 +143,12 @@ $image-path: '/media/protocol/img';
     @include text-body-md;
 }
 
+.c-release-first-text{
+    border-bottom: 2px solid $color-gray-40;
+    margin-bottom: $layout-md;
+    padding-bottom: $layout-md;
+}
+
 .mzp-l-content {
     .c-release-product {
         @include text-display-xs;
@@ -173,7 +179,13 @@ $image-path: '/media/protocol/img';
 
 .mzp-l-article {
     > ul > li {
+        border-bottom: 2px solid $color-gray-20;
         margin-bottom: $layout-md;
+        padding-bottom: $layout-md;
+
+        &:last-child {
+            border-bottom-color: $color-gray-40;
+        }
 
         p + ul,
         p + ol {
@@ -277,10 +289,20 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.developer-more {
+    border-bottom: 2px solid $color-gray-20;
+    margin-bottom: $layout-md;
+    padding-bottom: $layout-md;
+
+    &:last-child {
+        border-bottom-color: $color-gray-40;
+    }
+}
+
 .mdn-icon {
     @include align-items(center);
     @include flexbox;
-    float: right;
+    @include justify-content(end);
     margin-top: 10px;
 
     &:before {
