@@ -66,9 +66,6 @@ def integrationTestJob(propFileName, appURL='') {
                         }
                         finally {
                             junit 'results/*.xml'
-                            if ( propFileName == 'smoke' ) {
-                                sh 'docker/bin/cleanup_after_functional_tests.sh'
-                            }
                         }
                     }
                 }

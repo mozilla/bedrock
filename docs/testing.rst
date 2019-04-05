@@ -196,7 +196,6 @@ you can also read the `pytest markers`_ documentation for more options.
 Smoke tests
 ~~~~~~~~~~~
 
-Smoke tests are run on every commit to master as part of bedrocks deployment pipeline.
 These should be considered as critical baseline functional tests. (Note: we only run the
 full suite of cross-browser functional tests on tagged commits. See :ref:`tagged-commit`).
 If your test should be considered a smoke test you will need to apply a ``smoke`` marker

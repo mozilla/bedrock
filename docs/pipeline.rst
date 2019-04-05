@@ -37,10 +37,8 @@ unit tests, as well as the smoke suite of redirect headless HTTP(s) response che
 Push to master branch
 ~~~~~~~~~~~~~~~~~~~~~
 
-Whenever a change is pushed to the master branch, the smoke suite of
-headless (see :ref:`testing-redirects`) and UI tests (see :ref:`smoke-functional-tests`)
-are run against Firefox on Linux. If successful, the change is pushed to the dev environment,
-and the full suite of headless and UI tests are then run against
+Whenever a change is pushed to the master branch, a new image is built and deployed to the
+dev environment, and the full suite of headless and UI tests are then run against
 Firefox on Windows 10 using `Sauce Labs`_. This is handled by the pipeline, and is subject
 to change according to the settings in the `master.yml file`_ in the repository.
 
