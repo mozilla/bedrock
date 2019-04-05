@@ -480,12 +480,6 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-rocket.scss"
-      ],
-      "name": "firefox-whatsnew-rocket"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-lite.scss"
       ],
       "name": "firefox-whatsnew-lite"

@@ -467,10 +467,7 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
         elif channel == 'nightly':
             template = 'firefox/nightly_whatsnew.html'
         elif locale == 'id':
-            if switch('firefox_lite_whatsnew'):
-                template = 'firefox/whatsnew/index-lite.id.html'
-            else:
-                template = 'firefox/whatsnew/index.id.html'
+            template = 'firefox/whatsnew/index-lite.id.html'
         elif locale == 'zh-TW' and not version.startswith('64.'):
             template = 'firefox/whatsnew/index.zh-TW.html'
         elif version.startswith('66.'):

@@ -211,7 +211,6 @@ class TestWhatsNew(TestCase):
     # begin id locale-specific tests
 
     @override_settings(DEV=True)
-    @patch.dict(os.environ, SWITCH_FIREFOX_LITE_WHATSNEW='True')
     def test_id_locale_template_lite(self, render_mock):
         """Should use id locale specific template for Firefox Lite"""
         req = self.rf.get('/firefox/whatsnew/')
@@ -219,16 +218,6 @@ class TestWhatsNew(TestCase):
         self.view(req, version='63.0')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/whatsnew/index-lite.id.html'])
-
-    @override_settings(DEV=True)
-    @patch.dict(os.environ, SWITCH_FIREFOX_LITE_WHATSNEW='False')
-    def test_id_locale_template_rocket(self, render_mock):
-        """Should use id locale specific template for Firefox Rocket"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'id'
-        self.view(req, version='63.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.id.html'])
 
     # end id locale-specific tests
 

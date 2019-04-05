@@ -1248,7 +1248,7 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
             'all': 'download-firefox-mobile-reco',
         }
     },
-    'fx-50-whatsnew': {
+    'fx-whatsnew': {
         'sms_countries': config('STD_SMS_COUNTRIES_WHATSNEW50', default='US', parser=ListOf(str)),
         'sms': {
             'all': 'whatsnewfifty',
