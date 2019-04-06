@@ -42,10 +42,6 @@ $image-path: '/media/protocol/img';
         margin-bottom: 0;
     }
 
-    .mzp-c-hero.mzp-t-firefox:after {
-        display: none;
-    }
-
     .tagline {
         @include text-body-lg;
     }

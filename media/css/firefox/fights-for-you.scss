@@ -64,10 +64,6 @@ $fffy-purple: #2A0140; // do not update to match new colour tokens without updat
         }
     }
 
-    .mzp-c-hero.mzp-t-firefox::after {
-        display: none;
-    }
-
     .mzp-c-hero-title {
         color: $color-red-50;
         @include text-display-lg;

@@ -41,10 +41,6 @@ main .mzp-l-content {
 .mzp-c-hero {
     text-align: center;
     color: $color-purple-90;
-
-    &.mzp-t-firefox::after {
-        display: none;
-    }
 }
 
 .mzp-c-hero-title {
