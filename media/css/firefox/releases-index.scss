@@ -33,17 +33,12 @@ $image-path: '/media/protocol/img';
     }
 
     &:before {
-        @include background-size(40px 40px);
-        background-image: url('/media/img/logos/firefox/logo-quantum.png');
+        @include at2x('/media/img/logos/firefox/logo-quantum.png', 40px 40px);
         background-repeat: no-repeat;
         content: '';
         display: block;
         height: 40px;
         width: 40px;
-
-        @media #{$mq-high-res} {
-            background-image: url('/media/img/logos/firefox/logo-quantum-high-res.png');
-        }
 
         @media #{$mq-sm} {
             @include bidi((

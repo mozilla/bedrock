@@ -86,17 +86,13 @@ main .mzp-l-content {
 
 @media #{$mq-md} {
     .mzp-c-hero.mzp-has-image {
+        @include at2x('/media/img/firefox/home/hero-small.jpg', contain);
         align-items: center;
-        background: top left 50vw no-repeat url('/media/img/firefox/home/hero-small.jpg');
-        background-size: contain;
+        background-position: top left 50vw;
+        background-repeat: no-repeat;
         display: flex;
         min-height: 560px;
         text-align: left;
-
-        @media all #{$mq-high-res} {
-            background: top left 50vw no-repeat url('/media/img/firefox/home/hero-small-high-res.jpg');
-            background-size: contain;
-        }
     }
 
     .mzp-l-content {
@@ -106,15 +102,9 @@ main .mzp-l-content {
 
 @media #{$mq-lg} and #{$mq-tall} {
     .mzp-c-hero.mzp-has-image {
-        background: top left 50vw no-repeat url('/media/img/firefox/home/hero.jpg');
-        background-size: contain;
+        @include at2x('/media/img/firefox/home/hero.jpg', contain);
         height: 60vh;
         max-height: 672px;
-
-        @media all #{$mq-high-res} {
-            background: top left 50vw no-repeat url('/media/img/firefox/home/hero-high-res.jpg');
-            background-size: contain;
-        }
     }
 }
 
