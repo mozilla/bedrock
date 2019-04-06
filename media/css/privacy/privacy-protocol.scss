@@ -7,7 +7,8 @@ $image-path: '/media/protocol/img';
 @import '../libs/system-font';
 
 @import '../../protocol/css/includes/lib';
-@import "../../protocol/css/components/article";
+@import '../../protocol/css/includes/mixins/details';
+@import '../../protocol/css/components/article';
 
 $heading-purple: #20123A;
 $body-purple: #42425A;
@@ -220,44 +221,13 @@ $border: 2px solid $color-gray-20;
 // Summary and details widget
 
 .privacy-body {
-    .is-summary {
-        button {
-            @include bidi(((padding, 0 $spacing-xl 0 0, 0 0 0 $spacing-xl),));
-            background: transparent;
-            border: 0;
-            color: inherit;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: inherit;
-            font-weight: inherit;
-            position: relative;
-            text-align: inherit;
-            width: 100%;
-        }
-    }
-
-    .is-closed[aria-hidden="true"] {
-        display: none;
-    }
+    @include details;
 }
 
 .privacy-body .is-summary button {
-    position: relative;
-
-    &:before {
-        @include background-size(16px, 16px);
-        @include bidi(((right, 8px, left, auto),));
-        @include transition(transform 100ms ease-in-out);
-        background: $url-image-expand-black top left no-repeat;
-        content: '';
-        height: 16px;
-        margin-top: -8px;
-        position: absolute;
-        top: 50%;
-        width: 16px;
-    }
+    @include summary;
 }
 
 .privacy-body .is-summary button[aria-expanded=true]:before {
-    @include transform(rotate(45deg));
+    @include summary-open;
 }
