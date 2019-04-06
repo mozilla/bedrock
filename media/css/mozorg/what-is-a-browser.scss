@@ -29,7 +29,6 @@ $image-path: '/media/protocol/img';
     }
 
     blockquote {
-        @include open-sans;
         @include text-display-sm;
         margin: $layout-md auto;
     }
@@ -45,5 +44,3 @@ $image-path: '/media/protocol/img';
         margin: $spacing-lg 0;
     }
 }
-
-

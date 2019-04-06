@@ -16,7 +16,7 @@ $image-path: '/media/protocol/img';
 /* -------------------------------------------------------------------------- */
 // Custom layout
 
-h1, h2, h3, blockquote {
+h1, h2, h3 {
     @include open-sans;
 }
 
@@ -26,9 +26,8 @@ ul li span {
 
 blockquote {
     @include text-display-sm;
-    margin: 30px 0;
+    margin: $layout-sm 0;
     text-align: left;
-
 }
 
 .mzp-c-call-out-compact.mzp-t-product-firefox.mzp-t-firefox {
