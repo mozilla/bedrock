@@ -74,7 +74,7 @@ $image-path: '/media/protocol/img';
     li {
         @include clearfix;
         border: 0 solid $color-gray-20;
-        border-top-width: 4px;
+        border-top-width: 2px;
         padding: $spacing-md 0;
 
         &:first-child {

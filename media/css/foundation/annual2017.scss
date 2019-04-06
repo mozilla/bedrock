@@ -142,7 +142,7 @@
 
         a {
             @include transition(background-color .1s ease-in-out);
-            background-color: $color-teal-70;
+            background-color: $color-link;
             color: $color-white;
             display: block;
             font-weight: bold;
@@ -162,7 +162,7 @@
             &:hover,
             &:active,
             &:focus {
-                background-color: $color-teal-80;
+                background-color: $color-link-hover;
                 color: $color-white;
                 text-decoration: none;
             }

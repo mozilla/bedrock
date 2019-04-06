@@ -74,11 +74,6 @@ $image-path: '/media/protocol/img';
 /* -------------------------------------------------------------------------- */
 // Modal, custom styles
 
-#fx-modal-button {
-    background: $color-blue-60;
-    border: $color-blue-60;
-}
-
 .mobile-notes,
 .mobile-lockbox,
 .mobile-pocket {
@@ -183,7 +178,7 @@ $image-path: '/media/protocol/img';
             @include border-box;
             @include text-body-md;
             border-radius: 2px;
-            padding: ($padding-md - 2px) ($padding-xl - 2px); //2px extra padding removed to compensate for 2px border.
+            padding: ($spacing-md - 2px) ($spacing-xl - 2px); //2px extra padding removed to compensate for 2px border.
             width: 100%;
         }
 

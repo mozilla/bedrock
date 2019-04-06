@@ -10,7 +10,7 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/call-out';
 
 .mzp-c-hero {
-    background: #33124e;
+    background: $color-purple-90;
     color: #fff;
     text-align: center;
     min-height: 500px;
@@ -28,7 +28,7 @@ $image-path: '/media/protocol/img';
         }
 
         p {
-            color: #f07274;
+            color: $color-orange-50;
             font-weight: bold;
         }
 
@@ -53,7 +53,7 @@ $image-path: '/media/protocol/img';
     hr {
         margin: $layout-lg auto $layout-lg;
         width: 100px;
-        border: 2px solid #33124e;
+        border: 2px solid $color-purple-90;
     }
 }
 
@@ -61,9 +61,13 @@ $image-path: '/media/protocol/img';
 /* -------------------------------------------------------------------------- */
 // Call out
 
-.mzp-c-call-out-compact {
-    background: #33124e;
-    color: #f07274;
+.mzp-c-call-out-compact.mzp-t-dark {
+    background: $color-purple-90;
+
+    .mzp-c-call-out-title {
+        color: $color-orange-50;
+    }
+
     @media #{$mq-lg} {
         @include background-size(contain);
         background-image: url('/media/img/firefox/shapes.png');
@@ -72,4 +76,3 @@ $image-path: '/media/protocol/img';
     }
 
 }
-

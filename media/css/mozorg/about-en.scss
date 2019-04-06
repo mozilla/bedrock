@@ -57,8 +57,8 @@ $image-path: '/media/protocol/img';
 // Intro section
 
 .t-shade {
-    background: $color-gray-10;
-    background: $color-gray-10 linear-gradient($color-gray-10, #fff 350px);
+    background: $color-gray-20;
+    background: $color-gray-20 linear-gradient($color-gray-20, #fff 350px);
 
     @media #{$mq-lg}{
         margin-bottom: $layout-xl;

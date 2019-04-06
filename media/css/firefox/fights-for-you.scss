@@ -30,9 +30,7 @@ $image-path: '/media/protocol/img';
     font-weight: normal;
 }
 
-$fffy-purple: #2A0140;
-$fffy-coral: #FF4F5D;
-$fffy-pink: #FF2889;
+$fffy-purple: #2A0140; // do not update to match new colour tokens without updating background image assets
 
 .fffy-c-hero {
     background-color: $fffy-purple;
@@ -71,7 +69,7 @@ $fffy-pink: #FF2889;
     }
 
     .mzp-c-hero-title {
-        color: $fffy-coral;
+        color: $color-red-50;
         @include text-display-lg;
     }
 
@@ -102,7 +100,7 @@ $fffy-pink: #FF2889;
     }
 
     .mzp-c-call-out-title {
-        color: $fffy-pink;
+        color: $color-pink-50;
         @include text-display-lg;
     }
 }
@@ -196,13 +194,13 @@ $fffy-pink: #FF2889;
     background-repeat: no-repeat;
 
     .mzp-c-call-out-title {
-        color: $fffy-pink;
+        color: $color-pink-50;
 
         span {
             display: inline-block;
 
             &:last-child {
-                color: $fffy-coral;
+                color: $color-red-50;
             }
         }
     }
@@ -230,31 +228,6 @@ $fffy-pink: #FF2889;
 
     @media #{$mq-xl} {
         background-position: top 20px center, bottom -14px center, center left calc(50% - 650px);
-    }
-}
-
-#fffy-survey-link {
-    background-color: $color-gray-20;
-    bottom: 0;
-    display: none;
-    margin-bottom: 0;
-    max-width: 100%;
-    padding: $spacing-md;
-    position: sticky;
-    text-align: center;
-
-    a {
-        &:link,
-        &:visited {
-            color: $color-black;
-            font-weight: bold;
-        }
-
-        &:hover,
-        &:focus,
-        &:active {
-            text-decoration: none;
-        }
     }
 }
 

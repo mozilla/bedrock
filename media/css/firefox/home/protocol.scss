@@ -17,12 +17,6 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Page specific variables and over-rides
 
-$fx-body: #42425A;
-$fx-coral: #FF4F5D;
-$fx-orange: #FF7139;
-$fx-pink: #FF2889;
-$fx-purple: #20123A;
-
 .mzp-t-firefox {
     &,
     h1,
@@ -46,7 +40,7 @@ main .mzp-l-content {
 
 .mzp-c-hero {
     text-align: center;
-    color: $fx-purple;
+    color: $color-purple-90;
 
     &.mzp-t-firefox::after {
         display: none;
@@ -79,7 +73,7 @@ main .mzp-l-content {
     @include text-display-xl;
     font-weight: bold;
     margin-bottom: $spacing-md;
-    color: $fx-purple;
+    color: $color-purple-90;
 
     p {
         margin-bottom: $spacing-lg;
@@ -135,11 +129,11 @@ main .mzp-l-content {
     }
 
     .mzp-c-card-feature-title {
-        color: $fx-purple;
+        color: $color-purple-90;
     }
 
     .mzp-c-card-feature-desc {
-        color: $fx-body;
+        color: $color-gray-80;
     }
 
     @media #{$mq-lg} {
@@ -154,18 +148,18 @@ main .mzp-l-content {
 // Trio
 
 .c-trio {
-    color: $fx-body;
+    color: $color-gray-80;
 
     h2 {
         @include text-display-lg;
-        color: $fx-purple;
+        color: $color-purple-90;
         margin-top: $layout-lg;
         text-align: center;
     }
 
     h3 {
         @include text-display-sm;
-        color: $fx-purple;
+        color: $color-purple-90;
     }
 
     ul {
@@ -210,12 +204,12 @@ main .mzp-l-content {
 }
 
 .t-privacy {
-    background-color: $fx-purple;
+    background-color: $color-purple-90;
     color: #fff;
     margin-bottom: $layout-xl;
 
     h2 {
-        color: $fx-pink;
+        color: $color-pink-50;
         max-width: 600px;
         margin-left: auto;
         margin-right: auto;
@@ -262,7 +256,7 @@ main .mzp-l-content {
 // Comparison feature cards
 
 .t-compare {
-    background-color: $color-gray-10;
+    background-color: $color-gray-20;
     padding-top: $layout-md;
 
     video {
@@ -297,7 +291,7 @@ main .mzp-l-content {
 //
 
 .mzp-c-call-out-compact.t-you {
-    background-color: $fx-purple;
+    background-color: $color-purple-90;
 
     .mzp-c-call-out-container {
         &:before {
@@ -313,18 +307,19 @@ main .mzp-l-content {
 
     .mzp-c-call-out-title {
         @include text-display-xl;
-        color: $fx-orange;
+        color: $color-orange-50;
     }
 
     .mzp-c-call-out-desc {
         @include text-display-sm;
-        color: $fx-pink;
+        color: $color-pink-50;
         font-weight: bold;
         padding-bottom: $layout-sm;
     }
 
     @media #{$mq-lg} {
-        background: $fx-purple top left calc(50% + 500px) no-repeat url('/media/img/firefox/home/bright.png');
+        // do not update background colour without updating background image
+        background: #20123a top left calc(50% + 500px) no-repeat url('/media/img/firefox/home/bright.png');
         padding-top: $layout-sm;
 
         .mzp-l-content {
