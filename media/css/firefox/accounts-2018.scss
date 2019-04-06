@@ -139,6 +139,7 @@ $image-path: '/media/protocol/img';
 // Bottom Banner
 
 #bottom-banner {
+    @include light-links;
     background: #2a0140 url('/media/img/firefox/accounts/blob-img.png') center -120px no-repeat;
     @include background-size(cover);
     color: $color-white;
@@ -155,7 +156,6 @@ $image-path: '/media/protocol/img';
     }
 
     .fxa-email-form {
-        @include light-links;
         color: $color-white;
         max-width: $content-sm;
 
@@ -193,7 +193,6 @@ $image-path: '/media/protocol/img';
 
     .fxa-signin {
         @include text-body-sm;
-        @include light-links;
         text-align: center;
     }
 }

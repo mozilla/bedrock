@@ -204,18 +204,6 @@ main .mzp-l-content {
     h3 {
         color: #fff;
     }
-
-    // protocol/issues#335
-    a:visited {
-        color: #ffffff;
-        opacity: 0.8;
-    }
-
-    a:hover,
-    a:focus,
-    a:active {
-        opacity: 1;
-    }
 }
 
 .t-custom {

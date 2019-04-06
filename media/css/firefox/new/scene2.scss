@@ -177,17 +177,6 @@ $image-path: '/media/protocol/img';
 }
 
 .mzp-t-dark {
-    :link,
-    :visited {
-        color: $color-white;
-
-        &:hover,
-        &:focus,
-        &:active {
-            color: $color-gray-20;
-        }
-    }
-
     .mzp-c-form-errors {
         color: $color-black;
     }
