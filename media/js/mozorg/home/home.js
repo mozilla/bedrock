@@ -120,7 +120,7 @@ function onYouTubeIframeAPIReady() {
 
     // init dismiss button
     function initStickyCTA() {
-    // add and remove aria-hidden
+        // add and remove aria-hidden
         var primaryTop = new Waypoint({
             element: document.querySelectorAll('.c-primary-cta'),
             handler: function(direction) {
@@ -134,24 +134,42 @@ function onYouTubeIframeAPIReady() {
             }
         });
 
+        // hide sticky at top to prevent revealing through overscroll
+        var $stickyWrapper = $stickyCTA.find('.c-sticky-cta-wrapper');
+        $stickyWrapper.hide();
+        var mozContent = new Waypoint({
+            element: document.querySelectorAll('.mozilla-content'),
+            handler: function(direction) {
+                if(direction === 'down') {
+                    // reveal sticky
+                    $stickyWrapper.show();
+                } else {
+                    // hide sticky
+                    $stickyWrapper.hide();
+                }
+            },
+            offset: 100
+        });
+
         // add button
         var $dismissButton = $('<button type="button" class="sticky-dismiss">').text('Dismiss this prompt.');
-        var $stickyWrapper = $stickyCTA.find('.c-sticky-cta-wrapper');
         $dismissButton.appendTo($stickyWrapper);
 
         // find all the buttons
         var dismissButtons = $('.sticky-dismiss');
         // listen for the click
         dismissButtons.on('click', function() {
+            // destroy waypoints
+            primaryTop.destroy();
+            mozContent.destroy();
+
             // dismiss the sticky banner
-            dismissStickyCTA(primaryTop);
+            dismissStickyCTA();
         });
     }
 
     // handle dismiss
-    function dismissStickyCTA(stickyWayPoint) {
-        // destroy waypoint
-        stickyWayPoint.destroy();
+    function dismissStickyCTA() {
         // remove element
         $stickyCTA.remove();
         // set cookie, if cookies are supported
