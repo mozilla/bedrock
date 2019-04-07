@@ -23,6 +23,12 @@ $image-path: '/media/protocol/img';
     z-index: 3;
 }
 
+// Override footer z-index to hide download sticky behind it.
+.mzp-c-footer {
+    position: relative;
+    z-index: 2;
+}
+
 .main-page-heading {
     @include visually-hidden;
 }
@@ -292,6 +298,7 @@ $image-path: '/media/protocol/img';
 .download-firefox-sticky-cta {
     background-color: #bddefd;
 
+    .download-button,
     .download-list {
         margin-bottom: 0;
     }
