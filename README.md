@@ -22,8 +22,8 @@ general technical documentation. In addition, there are project-specific
 Contributing
 ------------
 
-Patches are welcome! Feel free to fork and contribute to this project on
-[GitHub][gh-bedrock]. If you find a problem and wish to report it, please [file
+Patches are welcome! Feel free to fork and contribute to [this project][gh-bedrock] on
+GitHub. If you find a problem and wish to report it, please [file
 a bug][bugzilla].
 
 Looking for a good first bug to work on? Take a look at the [wiki page][wiki] for a
