@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "base-protocol.html" %}
+ {% extends "base-protocol-mozilla.html" %}
 
 {% block page_title %}Wie verwendet Mozilla meine E-Mail-Adresse?{% endblock %}
 
@@ -10,7 +10,7 @@
   {{ css_bundle('privacy_email') }}
 {% endblock %}
 
-{% block page_class %}privacy-email{% endblock %}
+{% block body_class %}{{ super() }} privacy-email{% endblock %}
 
 {% block content %}
 <div class="mzp-l-content article-wrapper">
@@ -34,4 +34,3 @@
 
 </div>
 {% endblock %}
-
