@@ -75,6 +75,8 @@ clean:
 	-rm -rf static_build/
 #	state files
 	-rm -f .docker-build*
+# clean untracked files
+	git clean -f
 
 lint: .docker-build-pull
 	${DC} run test flake8 bedrock lib tests
