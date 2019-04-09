@@ -55,9 +55,18 @@ if (typeof Mozilla.Analytics == 'undefined') {
     };
 
     /** Returns true if user is running Windows 10 in S mode.
+    * @param {String} ua - User Agent string.
     * @return {Boolean}.
     */
-    analytics.isWin10S = function() {
+    analytics.isWin10S = function(ua) {
+        ua = ua || navigator.userAgent;
+
+        var isEdge = ua.indexOf('Edge') > -1;
+
+        if (!isEdge) {
+            return false;
+        }
+
         try {
             var mode = JSON.parse(window.external.getHostEnvironmentValue('os-mode'));
             if (mode && mode['os-mode'] === '2') {

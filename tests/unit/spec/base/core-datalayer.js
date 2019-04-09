@@ -86,6 +86,9 @@ describe('core-datalayer.js', function() {
 
     describe('isWin10S', function() {
 
+        var edgeUA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14931';
+        var chromeUA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36';
+
         beforeEach(function () {
             window.external = sinon.stub();
             window.external.getHostEnvironmentValue = sinon.stub();
@@ -93,20 +96,25 @@ describe('core-datalayer.js', function() {
 
         it('should return true if Windows 10 has S mode enabled', function() {
             spyOn(window.external, 'getHostEnvironmentValue').and.returnValue('{"os-mode": "2"}');
-            var result = Mozilla.Analytics.isWin10S();
+            var result = Mozilla.Analytics.isWin10S(edgeUA);
             expect(window.external.getHostEnvironmentValue).toHaveBeenCalledWith('os-mode');
             expect(result).toBeTruthy();
         });
 
         it('should return false if Windows 10 is unlocked', function() {
             spyOn(window.external, 'getHostEnvironmentValue').and.returnValue('{"os-mode": "0"}');
-            var result = Mozilla.Analytics.isWin10S();
+            var result = Mozilla.Analytics.isWin10S(edgeUA);
             expect(result).toBeFalsy();
         });
 
-        it('should return false for everyone else', function() {
+        it('should return false if API is not supported in Edge', function() {
             spyOn(window.external, 'getHostEnvironmentValue').and.returnValue(new TypeError('window.external.getHostEnvironmentValue is not a function'));
-            var result = Mozilla.Analytics.isWin10S();
+            var result = Mozilla.Analytics.isWin10S(edgeUA);
+            expect(result).toBeFalsy();
+        });
+
+        it('should return false for other browsers', function() {
+            var result = Mozilla.Analytics.isWin10S(chromeUA);
             expect(result).toBeFalsy();
         });
     });
