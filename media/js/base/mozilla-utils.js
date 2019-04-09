@@ -35,11 +35,11 @@ if (typeof Mozilla === 'undefined') {
         var links = document.querySelectorAll('a[data-' + distribution + '-link]');
         var images = document.querySelectorAll('img[data-' + distribution + '-link]');
         for (var i = 0; i < links.length; i++) {
-            var distributionLink = links[i].getAttribute('data-' + distribution + '-' + 'Link');
+            var distributionLink = links[i].getAttribute('data-' + distribution + '-link');
             links[i].setAttribute('href', distributionLink);
         }
         for (var j = 0; j < images.length; j++) {
-            var distributionSrc = images[j].getAttribute('data-' + distribution + 'Link');
+            var distributionSrc = images[j].getAttribute('data-' + distribution + '-link');
             images[j].setAttribute('src', distributionSrc);
         }
     };
