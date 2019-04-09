@@ -1,0 +1,180 @@
+{# License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import hero, call_out_compact with context %}
+
+{% from "macros.html" import fxa_email_form, fxa_link_fragment, google_play_button with context %}
+
+{% add_lang_files "firefox/whatsnew_67" %}
+
+{% extends "firefox/base-protocol.html" %}
+
+{% block page_title %}{{ _('Get a Firefox Account – Keep your data private, safe and synced') }}{% endblock %}
+{% block page_desc %}{{ _('Securely sync your passwords, bookmarks and tabs across all your devices. Get a Firefox Account now – One login – Power and privacy everywhere.') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_67') }}
+{% endblock %}
+
+{% set fxa_utm_params = {
+  'campaign': 'wnp67',
+  'content': '/firefox/WNP/67/',
+  'source': 'wnp-67'
+} %}
+
+{% block body_class %}state-fxa-default{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+
+<main class="mzp-t-firefox">
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
+      {{ high_res_img('logos/firefox/logo-quantum-wordmark-large.png', {'alt': 'Firefox', 'width': '147', 'height': '55', 'class': 'c-page-header-logo-fx'}) }}
+      <h1 class="c-page-header-up-to-date">{{ _('Congrats! You’re using the latest version of Firefox.') }}</h1>
+      <img src="{{ static('img/logos/mozilla/wordmark-dark.svg') }}" alt="Mozilla" width="112" height="32" class="c-page-header-logo-moz">
+    </div>
+  </header>
+
+  <section class="c-sticky-signup fxa-form-cta" id="fxa-sticky-form">
+    <div class="mzp-l-content">
+      <div class="c-sticky-signup-container">
+        <div class="c-sticky-signup-content">
+          <h2 class="c-sticky-signup-title">{{ _('Get a Firefox Account and all the benefits it unlocks. ') }}</h2>
+          <button type="button" class="sticky-dismiss" data-parent="fxa-sticky-form">{{ _('Close') }}</button>
+        </div>
+        {{ fxa_email_form(
+            entrypoint='mozilla.org-whatsnew67',
+            button_class='mzp-c-button',
+            utm_source='whatsnew',
+            utm_params={'campaign': 'fxa-embedded-form', 'content': 'whatsnew', 'medium': 'referral'})
+        }}
+      </div>
+    </div>
+  </section>
+
+  {% if show_newsletter %}
+  <section class="c-sticky-signup newsletter-form-cta" id="newsletter-sticky-form">
+    <div class="mzp-l-content">
+      <div class="c-sticky-signup-container">
+        <div class="c-sticky-signup-content">
+          <h2 class="c-sticky-signup-title">{{ _('Get the latest news from Mozilla and Firefox right in your inbox.') }}</h2>
+          <button type="button" class="sticky-dismiss" data-parent="newsletter-sticky-form">{{ _('Close') }}</button>
+        </div>
+        <div class="mzp-c-newsletter">
+          {{ email_newsletter_form(
+            protocol_component=True,
+            include_title=False,
+            spinner_color='#fff',
+            button_class='mzp-c-button')
+          }}
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  {# L10n: "More power to you" is an American English idiom wishing someone success in their endeavors, and here is also a play on words saying Firefox gives users more power and control over their web experience. A more literal alternative would be "You have more power with every update" #}
+  <h1 class="c-page-title mzp-l-content">{{ _('More power to you with every update') }}</h1>
+
+  {% set content_blocking_image='firefox/whatsnew_64/hero.png' if DIR == 'ltr' else 'firefox/whatsnew_64/hero-rtl.png' %}
+  {% call hero(
+    title=_('New to your browser'),
+    desc=_('Now you have the power to block video ads that autoplay when you open articles and links. Plus, Firefox has upped your protection against ad trackers.'),
+    class='mzp-has-image mzp-l-reverse t-wn67',
+    image_url=content_blocking_image,
+    include_highres_image=true,
+    include_cta=True
+  ) %}
+  {% endcall %}
+
+  <h2 class="c-section-title mzp-l-content">{{ _('Now with your Firefox Account') }}</h2>
+
+  <div class="mzp-l-content">
+    <div class="wn67-benefit wn67-lockbox">
+      {{ high_res_img('firefox/whatsnew_64/fxa-lockbox.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      {# L10n: "Lockbox" is a proper name; it should be capitalized and should not be translated. #}
+      <h3>{{ _('Take your passwords everywhere with Lockbox') }}</h3>
+      <p>{{ _('Securely access passwords you save to your Firefox Account from any device, everywhere you go – now available for both Android and iOS.') }}</p>
+      <p><button class="mzp-c-button wn67-benefit-link" data-app="lockbox">{{ _('Get the Lockbox App') }}</button></p>
+    </div>
+
+    <div class="wn67-benefit wn67-pocket">
+      {{ high_res_img('firefox/whatsnew_64/fxa-pocket.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      <h3>{{ _('Put quality content in your Pocket') }}</h3>
+      <p>{{ _('Read the articles you care about anytime, anywhere (even offline). And try Pocket’s listen feature so you can absorb great content on the go.') }}</p>
+      <p><button class="mzp-c-button wn67-benefit-link" data-app="pocket">{{ _('Get the Pocket App') }}</button></p>
+    </div>
+
+    <div class="wn67-benefit wn67-monitor">
+      {# TODO: New image for Monitor. #}
+      {{ high_res_img('firefox/whatsnew_64/fxa-sync.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      {# L10n: "Monitor" is a proper name; it should be capitalized and should not be translated. #}
+      <h3>{{ _('Keep an eye on data breaches with Monitor') }}</h3>
+      <p>{{ _('Find out if your information has been compromised by a data breach – and now you can sign up for alerts about future breaches with a Firefox Account.') }}</p>
+      <p><a class="mzp-c-cta-link" data-app="monitor" href="
+        https://monitor.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp67&utm_content=try-send&entrypoint=mozilla.org-whatsnew67">{{ _('Check Out Monitor') }}</a></p>
+    </div>
+
+    <div class="wn67-benefit wn67-send">
+      {{ high_res_img('firefox/whatsnew_66/fxa-send.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      {# L10n: "Send" is a proper name; it should be capitalized and should not be translated. #}
+      <h3>{{ _('Share large files securely with Send') }}</h3>
+      <p>{{ _('Use an encrypted link to safely share large files – up to 2.5GB with a Firefox Account. And you can set when your link expires, so your info doesn’t live in the cloud forever.') }}</p>
+      <p><a class="mzp-c-cta-link" data-app="send" href="
+        https://send.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp67&utm_content=try-send&entrypoint=mozilla.org-whatsnew67">{{_('Try Firefox Send')}}</a></p>
+    </div>
+  </div>
+
+  <section id="bottom-signup"></section>
+
+  <aside id="wn67-modal" class="mzp-u-modal-content">
+    <div class="mobile-notes">
+      <div class="qr-notes">
+          <img class="mobile-qr" src="{{ static('img/firefox/whatsnew_64/notes-qr.png') }}" height="300" width="300">
+          <ul class="mobile-download-buttons mobile-notes">
+            <li class="android">
+              {{ google_play_button(href='https://play.google.com/store/apps/details?id=org.mozilla.testpilot.notes') }}
+            </li>
+          </ul>
+      </div>
+    </div>
+
+    <div class="mobile-lockbox">
+      <img class="mobile-qr" src="{{ static('img/firefox/whatsnew_64/lockbox-qr.png') }}" height="300" width="300">
+      <ul class="mobile-download-buttons mobile-lockbox">
+        <li class="android">
+          {{ google_play_button(href='https://app.adjust.com/kq8zhhz') }}
+        </li>
+        <li class="ios">
+          <a href="https://app.adjust.com/kq8zhhz" data-link-type="download" data-download-os="iOS">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="" width="152" height="45">
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="mobile-pocket">
+        <img class="mobile-qr" src="{{ static('img/firefox/whatsnew_64/pocket-qr.png') }}" height="300" width="300">
+        <ul class="mobile-download-buttons mobile-pocket">
+          <li class="android">
+            {{ google_play_button(href='https://app.adjust.com/h5iycst') }}
+          </li>
+          <li class="ios">
+            <a href="https://app.adjust.com/h5iycst" data-link-type="download" data-download-os="iOS">
+              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="" width="152" height="45">
+            </a>
+          </li>
+        </ul>
+    </div>
+  </aside>
+</main>
+{% endblock %}
+
+{% block js %}
+{% if show_newsletter %}
+  {{ js_bundle('firefox_whatsnew_65_newsletter') }}
+{% endif %}
+{{ js_bundle('firefox_whatsnew_67') }}
+{% endblock %}

@@ -1,0 +1,461 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/call-out';
+@import '../../../protocol/css/components/feature-card';
+@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/components/modal';
+@import '../../../protocol/css/components/newsletter-form';
+
+@import '../../protocol/components/state-fxa';
+
+
+//* -------------------------------------------------------------------------- */
+// Intro section
+
+.mzp-c-hero {
+    background-color: $color-gray-20;
+
+    @media #{$mq-xl} {
+        padding: $layout-xl;
+    }
+}
+
+.c-page-title {
+    @include text-display-md;
+    text-align: center;
+}
+
+.c-section-title {
+    @include text-display-sm;
+    text-align: center;
+}
+
+//* -------------------------------------------------------------------------- */
+// Up-to-date page header
+
+.c-page-header {
+    background-color: $color-white;
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    position: relative;
+    text-align: center;
+
+    .c-page-header-up-to-date {
+        @include text-display-xs;
+        display: none;
+        font-weight: normal;
+        margin: 1em 0;
+        padding: 0 $spacing-md;
+        width: calc(100% - 45px);
+
+        &:before {
+            background: url('/media/img/firefox/whatsnew/icon-green-check.svg') no-repeat;
+            @include bidi((
+                (background-position, center left, center right),
+                (margin, 0 10px 0 0, 0 0 0 10px),
+            ));
+            background-size: 25px 25px;
+            content: '';
+            display: inline-block;
+            height: 25px;
+            vertical-align: middle;
+            width: 25px;
+        }
+    }
+
+    .c-page-header-logo-moz {
+        display: none;
+    }
+
+    &.is-up-to-date .c-page-header-up-to-date {
+        display: block;
+    }
+
+    @media #{$mq-md} {
+        .c-page-header-logo-fx {
+            @include bidi(((float, left, right),));
+        }
+
+        .c-page-header-logo-moz {
+            @include bidi(((float, right, left),));
+            display: block;
+            margin: $spacing-md 0;
+        }
+
+        &.is-up-to-date .c-page-header-inner {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+
+            .c-page-header-logo-fx,
+            .c-page-header-logo-moz {
+                float: none;
+                margin: 0;
+            }
+        }
+    }
+}
+
+// Sticky signup CTA component.
+.c-sticky-signup {
+    background: $color-blue-60;
+    color: $color-white;
+    display: none;
+    text-align: center;
+
+    a:link,
+    a:visited {
+        color: inherit;
+    }
+
+    .c-sticky-signup-title {
+        @include text-display-sm;
+        margin: 0 auto $spacing-md;
+        text-align: left;
+    }
+
+    .c-sticky-signup-content {
+        align-items: center;
+        display: flex;
+    }
+
+    @media #{$mq-md} {
+        @include clearfix;
+        left: 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+
+        .c-sticky-signup-container {
+            @include grid-column-gap($spacing-lg);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
+
+        .c-sticky-signup-title {
+            margin: 0;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .c-sticky-signup-container {
+            grid-template-columns: 1fr 1.5fr;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Firefox Accounts form sticky header
+
+.c-sticky-signup.fxa-form-cta {
+
+    // only display FxA form to users who are signed out.
+    .state-fxa-supported-signed-out & {
+        display: block;
+    }
+
+    .fxa-email-form-intro {
+        display: none;
+    }
+
+    .fxa-email-field-container {
+        .field {
+            label {
+                @include visually-hidden;
+            }
+
+            input[type="email"] {
+                border: none;
+                box-shadow: none;
+                padding: 18px 24px;
+                width: 100%;
+            }
+        }
+
+        .mzp-c-button {
+            width: 100%;
+        }
+    }
+
+    @media #{$mq-sm} {
+        .fxa-email-field-container {
+            @include grid-column-gap($spacing-md);
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+
+            .field {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        .fxa-email-form {
+            .agreement {
+                @include text-body-sm;
+            }
+        }
+
+        .fxa-email-field-container {
+            background: url('/media/img/firefox/whatsnew_63/avatar.svg') no-repeat;
+            @include bidi((
+                (background-position, center left, center right),
+                (padding-left, 37px + $spacing-md, padding-right, 0),
+            ));
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Firefox newsletter form sticky header
+
+.c-sticky-signup.newsletter-form-cta {
+
+    // only display FxA form to users who are signed out.
+    .state-fxa-supported-signed-in & {
+        display: block;
+    }
+
+    .mzp-c-newsletter {
+        @include bidi(((text-align, left, right),));
+        display: block;
+        padding: 0;
+        margin: 0 auto;
+    }
+
+    .mzp-c-newsletter-form {
+        padding-top: 0;
+    }
+
+    .mzp-c-newsletter-content {
+        @include text-body-sm;
+    }
+
+    input[type="email"] {
+        padding: 18px 24px;
+        border: none;
+        box-shadow: none;
+    }
+
+    label[for="id_email"] {
+        @include visually-hidden;
+    }
+
+    p {
+        margin-bottom: $spacing-sm;
+    }
+
+    .mzp-c-form-submit {
+        margin-bottom: 0;
+    }
+
+    .mzp-c-fieldnote {
+        @include bidi(((text-align, left, right),));
+        color: $color-white;
+    }
+
+    .mzp-c-newsletter-thanks {
+        padding-top: 0;
+        text-align: center;
+
+        h3 {
+            @include text-display-sm;
+        }
+    }
+
+    @media #{$mq-md} {
+        .mzp-c-newsletter {
+            margin: 0;
+        }
+
+        .mzp-c-newsletter-content {
+            @include bidi(((padding-right, 40%, padding-left, 0),));
+            position: relative;
+        }
+
+        .mzp-c-button[type="submit"] {
+            @include bidi(((right, 0, left, auto),));
+            position: absolute;
+            top: 0;
+            width: calc(40% - #{$spacing-md});
+        }
+
+        .mzp-c-newsletter-thanks {
+            @include bidi(((text-align, left, right),));
+        }
+    }
+}
+
+// Dismiss
+
+.sticky-dismiss {
+    background: transparent;
+    border: 0;
+    bottom: 0;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 0 0 0 $spacing-xl;
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 0;
+    height: 40px;
+
+    &:after {
+        @include text-body-lg;
+        background: transparent url('#{$image-path}/icons/ui/close-white.svg') center center no-repeat;
+        @include background-size(16px 16px);
+        content: '';
+        display: block;
+        height: 32px;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 32px;
+    }
+
+    &:hover:after,
+    &:focus:after {
+        @include transition(transform .1s ease-in-out);
+        @include transform(scale(1.1));
+    }
+
+    &:focus:after {
+        outline: 1px dotted $color-white;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Intro section
+
+.intro {
+    background-color: $color-gray-10;
+    min-height: 350px;
+    padding-top: $layout-sm;
+
+    @media #{$mq-md} {
+        margin-bottom: $layout-xl;
+        padding-top: $layout-xl;
+
+        .mzp-c-hero-image {
+            bottom: -$spacing-2xl;
+            height: calc(100% + #{$spacing-2xl});
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Benefits section
+
+.wn67-benefit {
+    @include border-box;
+    margin-bottom: $layout-md;
+    text-align: center;
+
+    &:nth-child(odd) {
+        clear: both;
+    }
+
+    @media #{$mq-md} {
+        @include bidi(((float, left, right),));
+        margin-top: $layout-md;
+        padding: 0 $layout-sm;
+        width: 50%;
+    }
+
+    @media #{$mq-lg} {
+        padding: 0 $layout-md;
+    }
+
+    h3 {
+        @include text-display-md;
+        text-align: left;
+    }
+
+    p {
+        text-align: left;
+    }
+
+    img {
+        margin: 0 auto;
+
+        @media #{$mq-sm} {
+            max-width: 320px;
+        }
+
+        @media #{$mq-md} {
+            max-width: 100%;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// callout container
+
+.t-wn67 {
+    &.mzp-c-call-out-compact {
+        background: $color-gray-10;
+    }
+
+    .mzp-c-call-out-cta-container {
+        @media #{$mq-md} {
+            text-align: center;
+        }
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+// Modal, custom styles
+
+.mobile-lockbox,
+.mobile-pocket {
+    display: none;
+}
+
+.app-lockbox .mobile-lockbox {
+    display: block;
+}
+
+.app-pocket .mobile-pocket {
+    display: block;
+}
+
+.mobile-download-buttons li {
+    display: inline-block;
+}
+
+.mobile-qr {
+     box-shadow: 0 3px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+     margin: $layout-xs;
+     max-height: 300px;
+ }
+
+.mzp-c-modal-inner {
+    header h2 {
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    .mzp-c-modal-overlay-contents {
+        background: #fff;
+        color: #000;
+        padding: .5em;
+        text-align: center;
+    }
+}
+
+@media #{$mq-md} {
+    .mzp-c-modal-inner {
+        margin: 0 auto;
+        max-width: 500px;
+    }
+}
+
