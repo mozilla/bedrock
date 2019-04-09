@@ -578,6 +578,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-67.scss"
+      ],
+      "name": "firefox_whatsnew_67"
+    },
+    {
+      "files": [
         "css/mozorg/commit-access-policy.less"
       ],
       "name": "commit-access-policy"
@@ -1012,6 +1018,17 @@
         "js/firefox/whatsnew/whatsnew-66.js"
       ],
       "name": "firefox_whatsnew_66"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-fxa-form.js",
+        "protocol/js/protocol-modal.js",
+        "js/firefox/whatsnew/whatsnew-67.js"
+      ],
+      "name": "firefox_whatsnew_67"
     },
     {
       "files": [

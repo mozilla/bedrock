@@ -429,7 +429,7 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
                 'zh-TW',
             ]
 
-        if ctx['num_version'] in [65, 66]:
+        if ctx['num_version'] in [65, 66, 67]:
             ctx['show_newsletter'] = locale in [
                 'en-US',
                 'en-GB',
@@ -470,6 +470,8 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
             template = 'firefox/whatsnew/index-lite.id.html'
         elif locale == 'zh-TW' and not version.startswith('64.'):
             template = 'firefox/whatsnew/index.zh-TW.html'
+        elif version.startswith('67.'):
+            template = 'firefox/whatsnew/whatsnew-fx67.html'
         elif version.startswith('66.'):
             template = 'firefox/whatsnew/whatsnew-fx66.html'
         elif version.startswith('65.'):
