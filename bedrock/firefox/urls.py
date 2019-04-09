@@ -37,7 +37,7 @@ urlpatterns = (
     page('firefox/channel/ios', 'firefox/channel/ios.html'),
     url(r'^firefox/concerts/', views.firefox_concerts, name='firefox.concerts'),
     page('firefox/developer', 'firefox/developer/index.html'),
-    page('firefox/election', 'firefox/election/index.html'),
+    url('firefox/election', views.election_with_cards, name="firefox.election"),
     page('firefox/enterprise', 'firefox/enterprise/index.html'),
     page('firefox/enterprise/signup', 'firefox/enterprise/signup.html'),
     page('firefox/enterprise/signup/thanks', 'firefox/enterprise/signup-thanks.html'),

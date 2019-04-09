@@ -461,7 +461,8 @@
     },
     {
       "files": [
-        "css/firefox/election.scss"
+        "css/firefox/election.scss",
+        "css/base/mozilla-lazy-image.scss"
       ],
       "name": "firefox_election"
     },
@@ -1654,15 +1655,11 @@
     },
     {
       "files": [
+        "js/base/mozilla-lazy-load.js",
+        "protocol/js/protocol-modal.js",
         "js/firefox/election.js"
       ],
       "name": "firefox_election"
-    },
-    {
-      "files": [
-        "js/firefox/election-build.js"
-      ],
-      "name": "firefox_election_build"
     }
   ]
 }

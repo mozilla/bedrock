@@ -6,117 +6,62 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import "../../protocol/css/includes/lib";
-@import "../../protocol/css/components/call-out";
-@import "../../protocol/css/components/hero";
+@import '../../protocol/css/templates/card-layout';
+@import '../../protocol/css/components/hero';
+@import '../../protocol/css/components/modal';
 
 
-// paper background
-.t-paper {
-      background-image: url('/media/img/firefox/election/hero-320.png'),  url('/media/img/firefox/election/paper-texture-sm.png');
-      background-position: top center;
-      background-repeat: no-repeat, repeat;
-      padding-top: 208px;
-}
-
-@media #{$mq-xs} {
-    .t-paper {
-          background-image: url('/media/img/firefox/election/hero-480.png'),  url('/media/img/firefox/election/paper-texture-sm.png');
-          padding-bottom: 0;
-    }
-}
-
-@media #{$mq-sm} {
-    .t-paper  {
-          background-image: url('/media/img/firefox/election/hero-768.png'),  url('/media/img/firefox/election/paper-texture-md.png');
-          padding-top: 304px;
-    }
+.mzp-c-hero.mzp-has-image {
+    @include at2x('/media/img/firefox/election/protest.png', 200px);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    padding-bottom: 200px;
 }
 
 @media #{$mq-md} {
-    .t-paper {
-          background-image: url('/media/img/firefox/election/hero-1056.png'),  url('/media/img/firefox/election/paper-texture-lg.png');
-          padding-top: 373px;
+    .mzp-c-hero.mzp-has-image {
+        align-items: center;
+        background-position: center right $layout-lg;
+        background-size: 300px, auto;
+        display: flex;
+        min-height: 400px;
+        padding-bottom: 0;
+    }
+
+    .mzp-l-content {
+        width: 100%;
     }
 }
 
 @media #{$mq-lg} {
-    .t-paper {
-          background-image: url('/media/img/firefox/election/hero-1280.png'),  url('/media/img/firefox/election/paper-texture-lg.png');
+    .mzp-c-hero.mzp-has-image {
+        background-position: center left calc(50% + 250px);
+        background-size: contain;
+        min-height: 520px;
     }
 }
 
-@media all and (min-width: 1440px) {
-    .t-paper {
-          background-image: url('/media/img/firefox/election/hero-max.png'),  url('/media/img/firefox/election/paper-texture-max.png');
-          background-repeat: no-repeat, repeat-y;
+
+//* -------------------------------------------------------------------------- */
+// YouTube iframe responsive in modal.
+
+.ytcontainer-video {
+    max-width: 100%;
+
+    .video-container {
+        height: 0;
+        margin-bottom: $spacing-lg;
+        overflow: hidden;
+        padding-bottom: 56.25%;
+        position: relative;
+        width: 100%;
     }
-}
 
-// hero modifications
-.mzp-c-hero {
-    padding-bottom: 0;
-}
-
-.mzp-c-hero-body {
-    max-width: 700px;
-}
-
-.mzp-c-hero-title {
-    color: #00A7E0;
-}
-
-.mzp-c-hero-desc {
-    margin-bottom: 0;
-}
-
-// facebook and propublica call out styling
-.mzp-c-call-out,
-.c-button-download {
-    text-align: left;
-
-    @media #{$mq-lg} {
-        text-align: center;
-    }
-}
-
-.t-container,
-.t-pro {
-    background: transparent;
-}
-
-.mzp-c-call-out.t-container .mzp-l-content,
-.mzp-c-call-out.t-pro .mzp-l-content {
-    max-width: 616px;
-}
-
-.mzp-c-call-out.t-container .mzp-c-call-out-title {
-    background-image: url('/media/img/firefox/election/icon-container.png');
-    background-size: 63px auto;
-    background-position: top left;
-}
-
-.mzp-c-call-out.t-pro .mzp-c-call-out-title {
-    background-image: url('/media/img/firefox/election/icon-pro.png');
-    background-size: 63px auto;
-    background-position: top left;
-}
-
-@media #{$mq-lg} {
-    .mzp-c-call-out.t-container .mzp-c-call-out-title,
-    .mzp-c-call-out.t-pro .mzp-c-call-out-title {
-        background-position: top center;
-    }
-}
-
-.c-pro-disclaimer {
-    background-color: $color-gray-30;
-    margin-bottom: 0;
-    padding: $spacing-md;
-    text-align: center;
-}
-
-#case-funnel {
-    .fx-privacy-link {
-        display: none;
+    iframe {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top:0;
+        width: 100%;
     }
 }
