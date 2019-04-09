@@ -122,7 +122,7 @@
           aspect_ratio='mzp-has-aspect-1-1',
           class='mzp-l-card-feature-left-half mzp-t-firefox',
         ) %}
-        <p>{{ _('Find something to love in music, fashion and other <a href="%s">themed</a> categories – or create your own')|format('https://addons.mozilla.org/firefox/themes/') }}</p>
+        <p>{{ _('Find something to love in music, fashion and other <a href="%s">themes</a> – or create your own')|format('https://addons.mozilla.org/firefox/themes/') }}</p>
         {% endcall %}
       </div>
     </section>
@@ -173,11 +173,9 @@
               <li class="android">
                 {{ google_play_button(href=settings.GOOGLE_PLAY_FIREFOX_FOCUS_LINK, id='playStoreLink', product='Focus') }}
               </li>
-              {% if l10n_has_tag('focus_apk_link_012018') %}
               <li class="android-apk">
                   <a href="https://archive.mozilla.org/pub/android/focus/latest/" data-link-type="download" data-download-os="Android">{{ _('Download the APK') }}</a>
               </li>
-              {% endif %}
               <li class="ios">
                 <a id="appStoreLink" href="{{ settings.APPLE_APPSTORE_FIREFOX_FOCUS_LINK }}" data-link-type="download" data-download-os="iOS">
                   <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">

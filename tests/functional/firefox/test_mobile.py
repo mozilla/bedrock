@@ -34,7 +34,7 @@ def test_get_firefox_send_to_device_fails_when_missing_required_fields(base_url,
         page.send_to_device.click_send()
 
 
-# Sandstone
+# Pebbles
 @pytest.mark.nondestructive
 def test_get_firefox_send_to_device_success_locale(base_url, selenium):
     page = FirefoxMobilePage(selenium, base_url, locale='fr').open()
@@ -48,7 +48,7 @@ def test_get_firefox_send_to_device_success_locale(base_url, selenium):
     modal.close()
 
 
-# Sandstone
+# Pebbles
 @pytest.mark.nondestructive
 def test_get_firefox_send_to_device_fails_when_missing_required_fields_locale(base_url, selenium):
     page = FirefoxMobilePage(selenium, base_url, locale='fr').open()
@@ -71,7 +71,7 @@ def test_get_firefox_qr_code(base_url, selenium):
     assert page.is_firefox_qr_code_displayed
 
 
-# Sandstone
+# Pebbles
 @pytest.mark.nondestructive
 def test_get_firefox_qr_code_locale(base_url, selenium):
     page = FirefoxMobilePage(selenium, base_url, locale='it').open()
@@ -94,7 +94,7 @@ def test_get_focus_header_button(base_url, selenium):
     assert page.is_focus_qr_code_displayed
 
 
-# Sandstone
+# Pebbles
 @pytest.mark.nondestructive
 def test_get_focus_header_button_locale(base_url, selenium):
     page = FirefoxMobilePage(selenium, base_url, locale='fr').open()
@@ -104,10 +104,10 @@ def test_get_focus_header_button_locale(base_url, selenium):
     modal.close()
 
 
-# scroll to section - Sandstone only
+# scroll to section - Pebbles only
 
 
-# Sandstone
+# Pebbles
 @pytest.mark.nondestructive
 def test_get_firefox_features_button_locale(base_url, selenium):
     page = FirefoxMobilePage(selenium, base_url, locale='fr').open()
@@ -118,7 +118,7 @@ def test_get_firefox_features_button_locale(base_url, selenium):
     modal.close()
 
 
-# Sandstone
+# Pebbles
 @pytest.mark.nondestructive
 def test_get_focus_features_button_locale(base_url, selenium):
     page = FirefoxMobilePage(selenium, base_url, locale='fr').open()

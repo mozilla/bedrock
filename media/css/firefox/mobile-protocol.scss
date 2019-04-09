@@ -13,8 +13,8 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/call-out';
 @import '../../protocol/css/components/modal';
 
-@import '../hubs/sub-nav-protocol';
-@import '../hubs/sub-nav-download-button-remove-protocol';
+@import '../protocol/hubs/sub-nav';
+@import '../protocol/hubs/sub-nav-download-button-remove';
 
 //* -------------------------------------------------------------------------- */
 // Page specific variables and over-rides
@@ -53,7 +53,6 @@ main .mzp-l-content {
 // hide app store badges by default
 .mobile-download-buttons-wrapper {
     display: none;
-    margin-top: 60px;
 }
 
 // for android/iOS, hide widget/QR code in favor of app store badges
@@ -174,7 +173,7 @@ main .mzp-l-content {
         @include text-display-sm;
 
         p:first-child {
-            @include text-display-xl;
+            @include text-display-lg;
             font-weight: bold;
             margin-bottom: $spacing-md;
             color: $fx-purple;
@@ -193,6 +192,7 @@ main .mzp-l-content {
         &.mzp-c-hero.mzp-has-image {
             @include bidi((
                 (background-image, url('/media/img/firefox/mobile/protocol/hero-small.jpg'), url('/media/img/firefox/mobile/protocol/hero-small-rtl.jpg')),
+                (background-position, top right, top left), // fallback for IE9
                 (background-position, top left 50vw, top right 50vw),
                 (text-align, left, right),
             ));
@@ -211,6 +211,14 @@ main .mzp-l-content {
 
         .mzp-l-content {
             width: 100%;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .mzp-c-hero-desc {
+            p:first-child {
+                @include text-display-xl;
+            }
         }
     }
 
@@ -417,15 +425,15 @@ main .mzp-l-content {
 }
 
 @keyframes custom {
-  0% {
-    background-position: 50% 75%, 500px 500px, 500px 500px;
-  }
-  33% {
-    background-position: 500px 500px, 50% 75%, 500px 500px;
-  }
-  66% {
-    background-position: 500px 500px, 500px 500px, 50% 75%;
-  }
+    0% {
+        background-position: 50% 75%, 500px 500px, 500px 500px;
+    }
+    33% {
+        background-position: 500px 500px, 50% 75%, 500px 500px;
+    }
+    66% {
+        background-position: 500px 500px, 500px 500px, 50% 75%;
+    }
 }
 
 //* -------------------------------------------------------------------------- */
@@ -585,7 +593,14 @@ main .mzp-l-content {
     display: none;
 }
 
+.mzp-c-modal-window {
+    padding-left: $spacing-sm;
+    padding-right: $spacing-sm;
+}
 .mzp-c-modal-inner {
+    background-color: transparent;
+    padding-left: 0;
+    padding-right: 0;
 
     h3 {
         @include text-display-md;
@@ -600,7 +615,7 @@ main .mzp-l-content {
     .mzp-c-modal-overlay-contents {
         background: #fff;
         color: #000;
-        padding: $layout-md;
+        padding: $layout-xs;
         text-align: center;
     }
 
@@ -618,10 +633,25 @@ main .mzp-l-content {
     }
 }
 
+@media #{$mq-sm} {
+    .mzp-c-modal-window {
+        padding-left: $layout-xs;
+        padding-right: $layout-xs;
+    }
+}
+
 @media #{$mq-md} {
     .mzp-c-modal-inner {
         max-width: 800px;
         margin: 0 auto;
+        padding-left: $layout-md;
+        padding-right: $layout-md;
+
+        .mzp-c-modal-overlay-contents {
+            background: #fff;
+            color: #000;
+            padding: $layout-md;
+        }
     }
 }
 
