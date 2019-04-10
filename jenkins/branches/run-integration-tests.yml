@@ -6,6 +6,7 @@ apps:
   - bedrock-integration-tests
 integration_tests:
   oregon-b:
+    - smoke
     - headless
     - download
     - firefox

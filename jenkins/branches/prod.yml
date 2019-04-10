@@ -11,6 +11,7 @@ integration_tests:
   frankfurt:
     - headless
   iowa-a:
+    - smoke
     - chrome
     - download
     - firefox
