@@ -7,7 +7,6 @@ import pytest
 from pages.firefox.installer_help import InstallerHelpPage
 
 
-@pytest.mark.smoke
 @pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_download_buttons_displayed(base_url, selenium):

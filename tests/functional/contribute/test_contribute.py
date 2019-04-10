@@ -7,7 +7,6 @@ import pytest
 from pages.contribute.contribute import ContributePage
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_play_video(base_url, selenium):
     page = ContributePage(selenium, base_url).open()

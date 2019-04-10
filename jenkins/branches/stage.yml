@@ -7,7 +7,6 @@ apps:
   - bedrock-stage
 integration_tests:
   iowa-a:
-    - smoke
     - chrome
     - download
     - firefox

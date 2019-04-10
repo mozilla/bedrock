@@ -8,7 +8,6 @@ import pytest
 from pages.leadership import LeadershipPage
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_open_corporation_biography(base_url, selenium):
     page = LeadershipPage(selenium, base_url).open()

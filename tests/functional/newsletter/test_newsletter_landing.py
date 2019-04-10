@@ -10,7 +10,6 @@ from pages.newsletter.firefox import FirefoxNewsletterPage
 from pages.newsletter.mozilla import MozillaNewsletterPage
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 @pytest.mark.parametrize('page_class', [FirefoxNewsletterPage, MozillaNewsletterPage])
 def test_default_values(page_class, base_url, selenium):
@@ -24,7 +23,6 @@ def test_default_values(page_class, base_url, selenium):
     assert page.is_privacy_policy_link_displayed
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_default_values_developer_newsletter(base_url, selenium):
     page = DeveloperNewsletterPage(selenium, base_url).open()

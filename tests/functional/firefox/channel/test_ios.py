@@ -7,7 +7,6 @@ import pytest
 from pages.firefox.channel.ios import ChannelIOSPage
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_download_buttons_are_displayed(base_url, selenium):
     page = ChannelIOSPage(selenium, base_url).open()

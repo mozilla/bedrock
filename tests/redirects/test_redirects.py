@@ -11,7 +11,6 @@ from .map_globalconf import URLS as GLOBAL_URLS
 from .map_locales import URLS as LOCALE_URLS
 
 
-@pytest.mark.smoke
 @pytest.mark.headless
 @pytest.mark.nondestructive
 @pytest.mark.django_db
@@ -21,7 +20,6 @@ def test_301_url(url, base_url):
     assert_valid_url(**url)
 
 
-@pytest.mark.smoke
 @pytest.mark.headless
 @pytest.mark.nondestructive
 @pytest.mark.django_db
@@ -31,7 +29,6 @@ def test_global_conf_url(url, base_url):
     assert_valid_url(**url)
 
 
-@pytest.mark.smoke
 @pytest.mark.headless
 @pytest.mark.nondestructive
 @pytest.mark.django_db
@@ -41,7 +38,6 @@ def test_htaccess_url(url, base_url):
     assert_valid_url(**url)
 
 
-@pytest.mark.smoke
 @pytest.mark.headless
 @pytest.mark.nondestructive
 @pytest.mark.django_db

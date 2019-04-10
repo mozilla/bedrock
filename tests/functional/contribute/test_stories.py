@@ -7,7 +7,6 @@ import pytest
 from pages.contribute.stories import ContributeStoriesPage
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_show_hide_story(base_url, selenium):
     page = ContributeStoriesPage(selenium, base_url).open()

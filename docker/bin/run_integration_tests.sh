@@ -33,12 +33,6 @@ case $1 in
     DRIVER=
     MARK_EXPRESSION=headless
     ;;
-  smoke)
-    BROWSER_NAME=firefox
-    BROWSER_VERSION="57.0"
-    PLATFORM="Windows 10"
-    MARK_EXPRESSION=smoke
-    ;;
   *)
     set +x
     echo "Missing or invalid required argument"

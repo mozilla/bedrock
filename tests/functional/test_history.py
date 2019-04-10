@@ -7,7 +7,6 @@ import pytest
 from pages.history import HistoryPage
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_slideshow_displayed(base_url, selenium):
     page = HistoryPage(selenium, base_url).open()
@@ -16,7 +15,6 @@ def test_slideshow_displayed(base_url, selenium):
     assert page.is_next_button_displayed
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 @pytest.mark.viewport('mobile')
 def test_list_displayed(base_url, selenium):

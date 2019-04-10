@@ -8,7 +8,6 @@ from .base import assert_valid_url
 from .map_410 import URLS_410
 
 
-@pytest.mark.smoke
 @pytest.mark.headless
 @pytest.mark.nondestructive
 @pytest.mark.django_db
@@ -17,7 +16,6 @@ def test_410_url(url, base_url):
     assert_valid_url(url, base_url=base_url, status_code=requests.codes.gone)
 
 
-@pytest.mark.smoke
 @pytest.mark.headless
 @pytest.mark.nondestructive
 @pytest.mark.django_db
@@ -28,7 +26,6 @@ def test_404_url(base_url):
         base_url=base_url)
 
 
-@pytest.mark.smoke
 @pytest.mark.headless
 @pytest.mark.nondestructive
 @pytest.mark.django_db

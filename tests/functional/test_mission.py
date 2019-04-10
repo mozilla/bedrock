@@ -7,7 +7,6 @@ import pytest
 from pages.mission import MissionPage
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_play_video(base_url, selenium):
     page = MissionPage(selenium, base_url).open()

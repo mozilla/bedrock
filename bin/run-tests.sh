@@ -5,4 +5,4 @@ python manage.py runscript check_calendars
 python manage.py version
 python manage.py migrate --noinput
 py.test lib bedrock
-py.test -r a -m smoke tests/redirects
+py.test -r a tests/redirects
