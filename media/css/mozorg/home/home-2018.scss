@@ -181,8 +181,7 @@ $image-path: '/media/protocol/img';
     }
 
     .fxaccount-primary-cta .mzp-l-content {
-        background-image: url('/media/img/firefox/accounts/fxa-hero-img.png');
-        background-size: 584px 389px;
+        @include at2x('/media/img/firefox/accounts/fxa-hero-img.png', 584px, 389px);
         background-position: 560px bottom;
         padding-bottom: $spacing-lg;
     }
