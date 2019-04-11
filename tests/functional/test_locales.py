@@ -7,7 +7,6 @@ import pytest
 from pages.locales import LocalesPage
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_locales_are_displayed(base_url, selenium):
     page = LocalesPage(selenium, base_url).open()

@@ -33,15 +33,11 @@ case $1 in
     DRIVER=
     MARK_EXPRESSION=headless
     ;;
-  smoke)
-    DRIVER=Remote
-    MARK_EXPRESSION=smoke
-    ;;
   *)
     set +x
     echo "Missing or invalid required argument"
     echo
-    echo "Usage: run_integration_tests.sh <chrome|firefox|ie{,6,7}|headless|smoke>"
+    echo "Usage: run_integration_tests.sh <chrome|firefox|ie{,6,7}|headless>"
     exit 1
     ;;
 esac
@@ -58,37 +54,6 @@ if [ -z "${BASE_URL}" ]; then
 
   DOCKER_LINKS=(--link bedrock-code-${BRANCH_AND_COMMIT}:bedrock)
   BASE_URL="http://bedrock:8000"
-fi
-
-if [ "${DRIVER}" = "Remote" ]; then
-  # Start Selenium hub and NUMBER_OF_NODES (default 5) firefox nodes.
-  # Waits until all nodes are ready and then runs tests against a local
-  # bedrock instance.
-
-  SELENIUM_VERSION=${DOCKER_SELENIUM_VERSION:-"3.5.3-astatine"}
-
-  docker pull selenium/hub:${SELENIUM_VERSION}
-  docker pull selenium/node-firefox:${SELENIUM_VERSION}
-
-  # start selenium grid hub
-  docker run -d --rm \
-    --name bedrock-selenium-hub-${BRANCH_AND_COMMIT} \
-    selenium/hub:${SELENIUM_VERSION}
-  DOCKER_LINKS=(${DOCKER_LINKS[@]} --link bedrock-selenium-hub-${BRANCH_AND_COMMIT}:hub)
-  SELENIUM_HOST="hub"
-
-  # start selenium grid nodes
-  for NODE_NUMBER in `seq ${NUMBER_OF_NODES:-5}`; do
-    docker run -d --rm --shm-size 2g \
-      --name bedrock-selenium-node-${NODE_NUMBER}-${BRANCH_AND_COMMIT} \
-      ${DOCKER_LINKS[@]} \
-      selenium/node-firefox:${SELENIUM_VERSION}
-    while ! ${SELENIUM_READY}; do
-      IP=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' bedrock-selenium-node-${NODE_NUMBER}-${BRANCH_AND_COMMIT}`
-      CMD="docker run --rm --link bedrock-selenium-hub-${BRANCH_AND_COMMIT}:hub tutum/curl curl http://hub:4444/grid/api/proxy/?id=http://${IP}:5555 | grep 'proxy found'"
-      if eval ${CMD}; then SELENIUM_READY=true; fi
-    done
-  done
 fi
 
 # make sure results dir exists or docker will create it

@@ -40,7 +40,6 @@ def test_get_firefox_qr_code_locale(base_url, selenium):
     modal.close()
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_get_focus_header_button(base_url, selenium):
     page = FirefoxMobilePage(selenium, base_url).open()
@@ -50,7 +49,6 @@ def test_get_focus_header_button(base_url, selenium):
     modal.close()
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_get_firefox_nav_button(base_url, selenium):
     page = FirefoxMobilePage(selenium, base_url).open()
@@ -61,7 +59,6 @@ def test_get_firefox_nav_button(base_url, selenium):
     modal.close()
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_get_focus_nav_button(base_url, selenium):
     page = FirefoxMobilePage(selenium, base_url).open()

@@ -7,7 +7,6 @@ import pytest
 from pages.firefox.nightly import FirstRunPage
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_first_run(base_url, selenium):
     page = FirstRunPage(selenium, base_url).open()

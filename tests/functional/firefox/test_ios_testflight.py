@@ -8,7 +8,6 @@ from selenium.common.exceptions import TimeoutException
 from pages.firefox.ios_testflight import iOSTestFlightPage
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_signup_default_values(base_url, selenium):
     page = iOSTestFlightPage(selenium, base_url).open()

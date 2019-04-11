@@ -7,14 +7,12 @@ import pytest
 from pages.firefox.enterprise import EnterprisePage
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_signup_button_is_displayed(base_url, selenium):
     page = EnterprisePage(selenium, base_url).open()
     assert page.signup_button.is_displayed
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_download_links_are_displayed(base_url, selenium):
     page = EnterprisePage(selenium, base_url).open()

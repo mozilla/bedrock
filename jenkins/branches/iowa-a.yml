@@ -1,7 +1,6 @@
 # see the following for documentation of these options
 # http://bedrock.readthedocs.io/en/latest/pipeline.html#configuration
 push_public_registry: true
-smoke_tests: false
 regions:
   - iowa-a
 apps:

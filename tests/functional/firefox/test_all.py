@@ -7,7 +7,6 @@ import pytest
 from pages.firefox.all import FirefoxAllPage
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_search_language(base_url, selenium):
     page = FirefoxAllPage(selenium, base_url).open()

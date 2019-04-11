@@ -171,15 +171,7 @@ following commands:
 Running the tests
 ~~~~~~~~~~~~~~~~~
 
-Smoke tests are run against a local bedrock instance using ``-m smoke``. These are also
-run automatically against GitHub pull requests.
-
-.. code-block:: bash
-
-    $ py.test -r a -m smoke tests/redirects/
-
-This will start a local instance of bedrock, run the smoke tests, and then stop the
-instance. If you wish to run the full set of tests, which requires a deployed instance
+If you wish to run the full set of tests, which requires a deployed instance
 of the site (e.g. www.mozilla.org) you can set the ``--base-url`` command line option:
 
 .. code-block:: bash

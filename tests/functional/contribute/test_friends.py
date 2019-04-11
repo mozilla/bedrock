@@ -8,7 +8,6 @@ from selenium.common.exceptions import TimeoutException
 from pages.contribute.friends import ContributeFriendsPage
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_signup_default_values(base_url, selenium):
     page = ContributeFriendsPage(selenium, base_url).open()
@@ -20,7 +19,6 @@ def test_signup_default_values(base_url, selenium):
     assert page.is_privacy_policy_link_displayed
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_click_fx_and_you(base_url, selenium):
     page = ContributeFriendsPage(selenium, base_url).open()

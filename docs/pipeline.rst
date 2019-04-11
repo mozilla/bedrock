@@ -32,15 +32,13 @@ Pull request
 ~~~~~~~~~~~~
 
 Once a pull request is submitted, `CircleCI`_ will run both the Python and  JavaScript
-unit tests, as well as the smoke suite of redirect headless HTTP(s) response checks.
+unit tests, as well as the suite of redirect headless HTTP(s) response checks.
 
 Push to master branch
 ~~~~~~~~~~~~~~~~~~~~~
 
-Whenever a change is pushed to the master branch, the smoke suite of
-headless (see :ref:`testing-redirects`) and UI tests (see :ref:`smoke-functional-tests`)
-are run against Firefox on Linux. If successful, the change is pushed to the dev environment,
-and the full suite of headless and UI tests are then run against
+Whenever a change is pushed to the master branch, a new image is built and deployed to the
+dev environment, and the full suite of headless and UI tests are then run against
 Firefox on Windows 10 using `Sauce Labs`_. This is handled by the pipeline, and is subject
 to change according to the settings in the `master.yml file`_ in the repository.
 
@@ -118,19 +116,17 @@ to set how it should be built by jenkins. Take the following example:
 .. code-block:: yaml
 
     # jenkins/branches/change-all-the-things.yml
-    smoke_tests: true
     apps:
       - bedrock-probably-broken
 
 This configuration would cause commits pushed to a branch named ``change-all-the-things`` to have docker
-images built for them, have the smoke and unit tests run, and deploy to a deis app named ``bedrock-probably-broken``
+images built for them, have the unit tests run, and deploy to a deis app named ``bedrock-probably-broken``
 in our us-west deis cluster. If you'd like it to create the deis app and pre-fill a local database for your app,
 you can set ``demo: true`` in the file. Note that if the app already exists it must have the ``jenkins`` user added via the
 ``deis perms:create jenkins -a <your app name>`` command.
 
 The available branch configuration options are as follows:
 
-* ``smoke_tests``: boolean. Set to ``true`` to cause the unit and smoke test suites run against the docker images.
 * ``push_public_registry``: boolean. Set to ``true`` to cause the built images to be pushed to the public docker hub.
 * ``require_tag``: boolean. Set to ``true`` to require that the commit being built have a git tag in the format YYYY-MM-DD.X.
 * ``regions``: list. A list of strings indicating the deployment regions for the set of apps. The valid values are in the ``regions`` area of

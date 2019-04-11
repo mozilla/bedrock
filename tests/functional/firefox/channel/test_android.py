@@ -7,7 +7,6 @@ import pytest
 from pages.firefox.channel.android import ChannelAndroidPage
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_download_buttons_are_displayed(base_url, selenium):
     page = ChannelAndroidPage(selenium, base_url).open()

@@ -7,7 +7,6 @@ import pytest
 from pages.contribute.tasks import ContributeSignUpPage
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_contribute_task_twitter(base_url, selenium):
     page = ContributeSignUpPage(selenium, base_url).open()
@@ -17,7 +16,6 @@ def test_contribute_task_twitter(base_url, selenium):
     assert twitter_task_page.is_follow_button_displayed
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_contribute_task_firefox_mobile(base_url, selenium):
     page = ContributeSignUpPage(selenium, base_url).open()
