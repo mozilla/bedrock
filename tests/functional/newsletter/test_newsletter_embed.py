@@ -7,7 +7,6 @@ from selenium.common.exceptions import TimeoutException
 
 from pages.home import HomePage
 from pages.about import AboutPage
-from pages.contribute.contribute import ContributePage
 from pages.mission import MissionPage
 from pages.firefox.all import FirefoxAllPage
 from pages.firefox.features.landing import FeaturesLandingPage
