@@ -2,24 +2,35 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as expected
+from selenium.webdriver.support.ui import WebDriverWait as Wait
 
 from pages.firefox.base import FirefoxBasePage
-from pages.regions.download_button import DownloadButton
 
 
 class FirefoxAccountsPage(FirefoxBasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/accounts/'
 
-    _download_button_locator = (By.ID, 'features-hero-download')
+    _download_buttons_locator = (By.CLASS_NAME, 'features-download')
     _create_account_form_locator = (By.ID, 'fxa-email-form')
 
     @property
-    def download_button(self):
-        el = self.find_element(*self._download_button_locator)
-        return DownloadButton(self, root=el)
+    def is_create_account_form_displayed(self):
+        wait = Wait(self, timeout=3)
+        try:
+            result = wait.until(expected.visibility_of_element_located((self._create_account_form_locator)))
+            return result
+        except TimeoutException:
+            return False
 
     @property
-    def is_create_account_form_displayed(self):
-        return self.is_element_displayed(*self._create_account_form_locator)
+    def are_download_buttons_displayed(self):
+        wait = Wait(self, timeout=3)
+        try:
+            result = wait.until(expected.visibility_of_all_elements_located((self._download_buttons_locator)))
+            return result
+        except TimeoutException:
+            return False
