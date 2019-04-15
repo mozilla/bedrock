@@ -23,7 +23,7 @@ RUN gulp build --production
 ########
 # Python dependencies builder
 #
-FROM python:2-stretch AS python-builder
+FROM python:3-slim AS python-builder
 
 WORKDIR /app
 ENV LANG=C.UTF-8
@@ -34,6 +34,7 @@ ENV PATH="/venv/bin:$PATH"
 COPY docker/bin/apt-install /usr/local/bin/
 RUN apt-install gettext build-essential libxml2-dev libxslt1-dev libxslt1.1
 
+RUN pip install virtualenv
 RUN virtualenv /venv
 
 COPY requirements/base.txt requirements/prod.txt ./requirements/
@@ -45,7 +46,7 @@ RUN pip install --no-cache-dir -r requirements/prod.txt
 ########
 # django app container
 #
-FROM python:2-slim-stretch AS app-base
+FROM python:3-slim AS app-base
 
 # Extra python env
 ENV PYTHONDONTWRITEBYTECODE=1
