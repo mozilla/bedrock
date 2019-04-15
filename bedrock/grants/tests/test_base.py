@@ -3,6 +3,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from builtins import range
 import re
 from datetime import date
 
@@ -50,7 +51,7 @@ class TestGrants(TestCase):
     def test_grant_year(self):
         """Grant year must be in the range 2006 to next year."""
         next_year = date.today().year + 1
-        valid_grant_years = range(2006, next_year)
+        valid_grant_years = list(range(2006, next_year))
         for grant in GRANTS:
             self.assertIn(grant.year, valid_grant_years)
 

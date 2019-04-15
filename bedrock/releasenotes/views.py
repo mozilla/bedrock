@@ -1,6 +1,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+from builtins import range
 import re
 from operator import attrgetter
 
@@ -141,8 +142,8 @@ def releases_index(request, product):
     # Starting with Firefox 10, ESR had been offered every 7 major releases, but
     # Firefox 59 wasn't ESR. Firefox 60 became the next ESR instead, and since
     # then ESR is offered every 8 major releases.
-    esr_major_versions = (range(10, 59, 7) +
-        range(60, int(firefox_desktop.latest_version().split('.')[0]), 8))
+    esr_major_versions = (list(range(10, 59, 7)) +
+        list(range(60, int(firefox_desktop.latest_version().split('.')[0]), 8)))
 
     if product == 'Firefox':
         major_releases = firefox_desktop.firefox_history_major_releases
@@ -158,14 +159,13 @@ def releases_index(request, product):
         major_pattern = r'^' + re.escape(converter % round(major_version, 1))
         releases[major_version] = {
             'major': release,
-            'minor': sorted(filter(lambda x: re.findall(major_pattern, x),
-                                   minor_releases),
-                            key=lambda x: map(lambda y: int(y), x.split('.')))
+            'minor': sorted([x for x in minor_releases if re.findall(major_pattern, x)],
+                            key=lambda x: [int(y) for y in x.split('.')])
         }
 
     return l10n_utils.render(
         request, '{product}/releases/index.html'.format(product=product.lower()),
-        {'releases': sorted(releases.items(), reverse=True)}
+        {'releases': sorted(list(releases.items()), reverse=True)}
     )
 
 
@@ -188,7 +188,7 @@ def nightly_feed(request):
                 notes[note.id] = note
 
     # Sort by date in descending order
-    notes = sorted(notes.values(), key=attrgetter('modified'), reverse=True)
+    notes = sorted(list(notes.values()), key=attrgetter('modified'), reverse=True)
 
     return l10n_utils.render(request, 'firefox/releases/nightly-feed.xml',
                              {'notes': notes},

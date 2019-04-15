@@ -1,6 +1,7 @@
 # taken and modified from tower tests
 
-from cStringIO import StringIO
+from builtins import str
+from io import StringIO
 
 from babel.messages.catalog import Catalog
 from babel.messages.extract import extract
@@ -41,7 +42,7 @@ def fake_extract_command(filename, fileobj, method,
 
     po_out = StringIO()
     write_po(po_out, catalog, width=80, omit_header=True)
-    return unicode(po_out.getvalue())
+    return str(po_out.getvalue())
 
 
 def fake_extract_from_dir(filename, fileobj, method, options, keywords, comment_tags):

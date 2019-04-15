@@ -6,7 +6,7 @@
 import argparse
 import json
 import sys
-import urllib2
+import urllib.request, urllib.error, urllib.parse
 import webbrowser
 
 
@@ -27,7 +27,7 @@ GITHUB_API_TEMPLATE = 'https://api.github.com/repos/{repo}/branches/{branch}'
 def get_current_rev(env):
     url = None
     try:
-        url = urllib2.urlopen(ENV_URLS[env] + REV_PATH)
+        url = urllib.request.urlopen(ENV_URLS[env] + REV_PATH)
         return url.read().strip()[:10]
     finally:
         if url:
@@ -38,7 +38,7 @@ def get_current_master(repo, branch):
     url = GITHUB_API_TEMPLATE.format(repo=repo, branch=branch)
     conn = None
     try:
-        conn = urllib2.urlopen(url, timeout=30)
+        conn = urllib.request.urlopen(url, timeout=30)
         info = json.loads(conn.read().strip())
         return info['commit']['sha'][:10]
     except Exception:
@@ -62,7 +62,7 @@ def write_stdout(out_str):
 def main():
     parser = argparse.ArgumentParser(description='Open github compare view '
                                                  'for bedrock.')
-    parser.add_argument('-e', '--env', default='prod', choices=ENV_URLS.keys(),
+    parser.add_argument('-e', '--env', default='prod', choices=list(ENV_URLS.keys()),
                         metavar='ENV', help='Environment: demo[1-3], '
                                             'stage, or prod (default)')
     parser.add_argument('-r', '--repo', default=DEFAULT_REPO,

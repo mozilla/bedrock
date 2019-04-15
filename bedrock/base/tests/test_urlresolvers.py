@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from builtins import object
 from django.conf.urls import url
 from django.test import TestCase
 from django.test.client import RequestFactory

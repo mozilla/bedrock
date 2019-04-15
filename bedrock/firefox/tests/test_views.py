@@ -5,7 +5,7 @@
 
 import json
 import os
-from urlparse import parse_qs
+from urllib.parse import parse_qs
 
 from django.urls import reverse
 from django.test import override_settings
@@ -52,7 +52,7 @@ class TestStubAttributionCode(TestCase):
         # will it blend?
         attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
         # parse_qs returns a dict with lists for values
-        attrs = {k: v[0] for k, v in attrs.items()}
+        attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
                          '1cdbee664f4e9ea32f14510995b41729a80eddc94cf26dc3c74894c6264c723c')
@@ -73,7 +73,7 @@ class TestStubAttributionCode(TestCase):
         # will it blend?
         attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
         # parse_qs returns a dict with lists for values
-        attrs = {k: v[0] for k, v in attrs.items()}
+        attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
                          '1cdbee664f4e9ea32f14510995b41729a80eddc94cf26dc3c74894c6264c723c')
@@ -94,7 +94,7 @@ class TestStubAttributionCode(TestCase):
         # will it blend?
         attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
         # parse_qs returns a dict with lists for values
-        attrs = {k: v[0] for k, v in attrs.items()}
+        attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
                          '37946edae923b50f31f9dc10013dc0d23bed7dc6272611e12af46ff7a8d9d7dc')
@@ -125,7 +125,7 @@ class TestStubAttributionCode(TestCase):
         assert len(code) <= 200
         attrs = parse_qs(code)
         # parse_qs returns a dict with lists for values
-        attrs = {k: v[0] for k, v in attrs.items()}
+        attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
                          '5f4f928ad022b15ce10d6dc962e21e12bbfba924d73a2605f3085760d3f93923')
@@ -163,7 +163,7 @@ class TestStubAttributionCode(TestCase):
         # will it blend?
         attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
         # parse_qs returns a dict with lists for values
-        attrs = {k: v[0] for k, v in attrs.items()}
+        attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
                          'abcbb028f97d08b7f85d194e6d51b8a2d96823208fdd167ff5977786b562af66')
@@ -184,7 +184,7 @@ class TestStubAttributionCode(TestCase):
         # will it blend?
         attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
         # parse_qs returns a dict with lists for values
-        attrs = {k: v[0] for k, v in attrs.items()}
+        attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
                          '37946edae923b50f31f9dc10013dc0d23bed7dc6272611e12af46ff7a8d9d7dc')
@@ -205,7 +205,7 @@ class TestStubAttributionCode(TestCase):
         # will it blend?
         attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
         # parse_qs returns a dict with lists for values
-        attrs = {k: v[0] for k, v in attrs.items()}
+        attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
                          '70e177b822f24fa9f8bc8e1caa382204632b3b2548db19bb32b97042c0ef0d47')
@@ -232,7 +232,7 @@ class TestStubAttributionCode(TestCase):
         # will it blend?
         attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
         # parse_qs returns a dict with lists for values
-        attrs = {k: v[0] for k, v in attrs.items()}
+        attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(data['attribution_sig'],
                          '1cdbee664f4e9ea32f14510995b41729a80eddc94cf26dc3c74894c6264c723c')

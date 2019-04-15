@@ -3,6 +3,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from __future__ import division
+from builtins import str
+from past.utils import old_div
 import json
 import platform
 import sys
@@ -127,7 +130,7 @@ PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'ast', 'az', 'azz', 'be', 'bg',
                   'sr', 'sv-SE', 'ta', 'te', 'th', 'tl', 'tr', 'trs', 'uk', 'ur',
                   'uz', 'vi', 'xh', 'zh-CN', 'zh-TW', 'zu')
 
-LOCALES_PATH = ROOT_PATH / 'locale'
+LOCALES_PATH = old_div(ROOT_PATH, 'locale')
 default_locales_repo = 'www.mozilla.org' if DEV else 'bedrock-l10n'
 default_locales_repo = 'https://github.com/mozilla-l10n/{}'.format(default_locales_repo)
 LOCALES_REPO = config('LOCALES_REPO', default=default_locales_repo)
@@ -203,12 +206,12 @@ def lazy_lang_group():
             groups.setdefault(prefix, []).append(lang)
 
     # add any group prefix to the group list if it is also a supported lang
-    for groupid in groups.keys():
+    for groupid in list(groups.keys()):
         if groupid in langs:
             groups[groupid].append(groupid)
 
     # exclude groups with a single member
-    return {gid: glist for gid, glist in groups.iteritems() if len(glist) > 1}
+    return {gid: glist for gid, glist in groups.items() if len(glist) > 1}
 
 
 def lazy_lang_url_map():

@@ -1,6 +1,7 @@
+from builtins import object
 import sys
 from contextlib import contextmanager
-from cStringIO import StringIO
+from io import StringIO
 from tempfile import TemporaryFile
 from textwrap import dedent
 

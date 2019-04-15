@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from builtins import object
 from django.db import models
 from django.db.utils import DatabaseError
 
@@ -60,7 +61,7 @@ class PocketArticleManager(models.Manager):
             try:
                 if obj:
                     if obj.time_shared != article['time_shared']:
-                        for key, value in article.iteritems():
+                        for key, value in article.items():
                             setattr(obj, key, value)
                         obj.save()
                         update_count += 1
@@ -91,7 +92,7 @@ class PocketArticle(models.Model):
 
     objects = PocketArticleManager()
 
-    class Meta:
+    class Meta(object):
         get_latest_by = 'time_shared'
         ordering = ['-time_shared']
 

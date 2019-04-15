@@ -1,5 +1,5 @@
 from __future__ import print_function
-import urlparse
+import urllib.parse
 import sys
 
 from django.conf import settings
@@ -14,7 +14,7 @@ except ImportError:
 from bedrock.mozorg.models import ContributorActivity
 
 
-urlparse.uses_netloc.append('mysql')
+urllib.parse.uses_netloc.append('mysql')
 QUERY = ('SELECT c_date, team_name, source_name, count(*) AS total, IFNULL(SUM(is_new), 0) AS new '
          'FROM contributor_active {where} GROUP BY c_date, team_name, source_name')
 
@@ -30,7 +30,7 @@ def get_external_data():
         print('Must set TABLEAU_DB_URL.')
         sys.exit(1)
 
-    url = urlparse.urlparse(settings.TABLEAU_DB_URL)
+    url = urllib.parse.urlparse(settings.TABLEAU_DB_URL)
     if not url.path:
         # bad db url
         print('TABLEAU_DB_URL not parseable.')

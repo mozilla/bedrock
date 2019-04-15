@@ -7,7 +7,7 @@ import hashlib
 import hmac
 import re
 from collections import OrderedDict
-from urlparse import urlparse
+from urllib.parse import urlparse
 
 from django.conf import settings
 from django.http import Http404, HttpResponseRedirect, HttpResponsePermanentRedirect
@@ -131,7 +131,7 @@ def get_attrribution_code(codes):
     Take the attribution codes and return the URL encoded string
     respecting max length.
     """
-    code = '&'.join('='.join(attr) for attr in codes.items())
+    code = '&'.join('='.join(attr) for attr in list(codes.items()))
     if len(codes['campaign']) > 5 and len(code) > settings.STUB_ATTRIBUTION_MAX_LEN:
         # remove 5 char at a time
         codes['campaign'] = codes['campaign'][:-5] + '_'
@@ -236,7 +236,7 @@ def send_to_device_ajax(request):
     else:
         resp_data = {
             'success': False,
-            'errors': form.errors.keys(),
+            'errors': list(form.errors.keys()),
         }
 
     return HttpResponseJSON(resp_data)

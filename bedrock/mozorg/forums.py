@@ -20,7 +20,7 @@ class ForumsFile(ExternalFile):
             raise ValueError('Error parsing forums file.')
 
         # currently 15 categories
-        if not len(forums.keys()) > 10:
+        if not len(list(forums.keys())) > 10:
             raise ValueError('Forums file truncated or corrupted.')
 
         return content

@@ -1,5 +1,6 @@
 # mostly borrowed from tower
 
+from past.builtins import basestring
 from babel.messages.extract import extract_python as babel_extract_py
 from jinja2 import ext
 

@@ -4,6 +4,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from builtins import next
+from builtins import str
 from django.conf import settings
 from django.core import mail
 from django.urls import clear_url_caches

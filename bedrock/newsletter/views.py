@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from builtins import map
+from builtins import str
 import json
 import re
 from cgi import escape
@@ -346,7 +348,11 @@ def existing(request, token=None):
     # Figure out which newsletters to display, and whether to show them
     # as already subscribed.
     initial = []
-    for newsletter, data in newsletter_data.iteritems():
+    for newsletter, data in newsletter_data.items():
+        # Ignore newsletters in the OTHER_NEWSLETTERS setting
+        if newsletter in settings.OTHER_NEWSLETTERS:
+            continue
+
         # Only show a newsletter if it has ['active'] == True and
         # ['show'] == True or the user is already subscribed
         if not data.get('active', False):
@@ -488,7 +494,7 @@ def existing(request, token=None):
     # and each value is the list of newsletter keys that are available in
     # that language code.
     newsletter_languages = defaultdict(list)
-    for newsletter, data in newsletter_data.iteritems():
+    for newsletter, data in newsletter_data.items():
         for lang in data['languages']:
             newsletter_languages[lang].append(newsletter)
     newsletter_languages = mark_safe(json.dumps(newsletter_languages))
@@ -567,7 +573,7 @@ def updated(request):
         # so we can read them.  (Well, except for the free-form reason.)
         for i, reason in enumerate(REASONS):
             if _post_or_get(request, 'reason%d' % i):
-                reasons.append(unicode(reason))
+                reasons.append(str(reason))
         if _post_or_get(request, 'reason-text-p'):
             reasons.append(_post_or_get(request, 'reason-text', ''))
 
@@ -663,11 +669,11 @@ def newsletter_subscribe(request):
                                  **kwargs)
             except basket.BasketException as e:
                 if e.code == basket.errors.BASKET_INVALID_EMAIL:
-                    errors.append(unicode(invalid_email_address))
+                    errors.append(str(invalid_email_address))
                 else:
                     log.exception("Error subscribing %s to newsletter %s" %
                                   (data['email'], data['newsletters']))
-                    errors.append(unicode(general_error))
+                    errors.append(str(general_error))
 
         else:
             if 'email' in form.errors:
@@ -679,7 +685,7 @@ def newsletter_subscribe(request):
                     errors.extend(form.errors[fieldname])
 
         # form error messages may contain unsanitized user input
-        errors = map(escape, errors)
+        errors = list(map(escape, errors))
 
         if request.is_ajax():
             # return JSON

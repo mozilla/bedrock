@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from builtins import object
 import os.path
 from datetime import date, datetime
 
@@ -27,7 +28,7 @@ class TestICalHelperFunctions(TestCase):
         self.assertEqual(calendar_id_from_google_url(GCAL_URL), GCAL_ID)
 
     def test_calendar_url_for_event(self):
-        class FakeEvent:
+        class FakeEvent(object):
             start_time = date(2015, 7, 10)
             end_time = date(2015, 7, 20)
 

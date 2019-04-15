@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from past.builtins import basestring
+from builtins import object
 from datetime import datetime
 
 from django.conf import settings
@@ -125,7 +127,7 @@ class Event(models.Model):
         'country_code': 'x-country-code',
     }
 
-    class Meta:
+    class Meta(object):
         ordering = ('start_time',)
 
     def __unicode__(self):
@@ -142,7 +144,7 @@ class Event(models.Model):
         return u'<abbr>{0:%b}</abbr>'.format(self.start_time)
 
     def update_from_ical(self, ical_event):
-        for field, ical_prop in self.field_to_ical.iteritems():
+        for field, ical_prop in self.field_to_ical.items():
             try:
                 value = ical_event.decoded(ical_prop)
             except KeyError:

@@ -1,3 +1,4 @@
+from builtins import object
 from django.db import models
 
 
@@ -5,7 +6,7 @@ class ConfigValue(models.Model):
     name = models.CharField(max_length=100, db_index=True, unique=True)
     value = models.CharField(max_length=200)
 
-    class Meta:
+    class Meta(object):
         app_label = 'base'
 
     def __unicode__(self):

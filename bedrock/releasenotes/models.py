@@ -1,3 +1,5 @@
+from builtins import str
+from builtins import object
 import codecs
 import json
 import os
@@ -57,7 +59,7 @@ FIELD_PROCESSORS = {
 
 class RNModel(object):
     def __init__(self, data):
-        for key, value in data.items():
+        for key, value in list(data.items()):
             if not hasattr(self, key):
                 continue
             if key in FIELD_PROCESSORS:
@@ -168,7 +170,7 @@ class ProductRelease(models.Model):
 
     objects = ProductReleaseManager()
 
-    class Meta:
+    class Meta(object):
         ordering = ['-release_date']
 
     def __unicode__(self):

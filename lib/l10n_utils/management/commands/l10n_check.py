@@ -3,6 +3,8 @@ from __future__ import print_function
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from builtins import next
+from builtins import object
 import datetime
 import errno
 import itertools
@@ -229,7 +231,7 @@ class L10nTemplate(object):
         print('%s: %s' % (lang, self.rel_path))
 
 
-class L10nParser():
+class L10nParser(object):
 
     file_version_re = re.compile('\W*Version: (\d+)\W*')
 
@@ -477,6 +479,6 @@ class Command(BaseCommand):
         langs = options['langs']
         if not langs:
             langs = os.listdir(l10n_file())
-            langs = filter(lambda x: x[0] != '.', langs)
+            langs = [x for x in langs if x[0] != '.']
 
         update_templates(langs)

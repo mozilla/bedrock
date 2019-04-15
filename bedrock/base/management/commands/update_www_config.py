@@ -27,7 +27,7 @@ def refresh_db_values():
 
     ConfigValue.objects.all().delete()
     count = 0
-    for name, value in values.iteritems():
+    for name, value in values.items():
         if value:
             ConfigValue.objects.create(name=name, value=value)
             count += 1

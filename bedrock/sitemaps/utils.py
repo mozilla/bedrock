@@ -1,6 +1,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+from builtins import str
 import json
 import re
 
@@ -140,7 +141,7 @@ def get_static_urls():
                 if not render.called:
                     continue
 
-                locales = render.call_args[0][2]['translations'].keys()
+                locales = list(render.call_args[0][2]['translations'].keys())
 
                 # zh-CN is a redirect on the homepage
                 if path == '/':
@@ -179,7 +180,7 @@ def output_json(urls):
 
 def output_xml(urls):
     urls_by_locale = {}
-    for url, locales in urls.iteritems():
+    for url, locales in urls.items():
         if not locales:
             urls_by_locale.setdefault('none', [])
             urls_by_locale['none'].append(url)
@@ -188,7 +189,7 @@ def output_xml(urls):
             urls_by_locale.setdefault(locale, [])
             urls_by_locale[locale].append(url)
 
-    for locale, urls in urls_by_locale.iteritems():
+    for locale, urls in urls_by_locale.items():
         if locale != 'none':
             output_file = settings.ROOT_PATH.joinpath('root_files', locale, 'sitemap.xml')
             output_file.parent.mkdir(exist_ok=True)

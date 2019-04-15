@@ -7,7 +7,7 @@ STATIC = './static/staticfiles.json'
 with open(STATIC) as static_fp:
     static_files = json.load(static_fp)
 
-for orig, hashed in static_files['paths'].items():
+for orig, hashed in list(static_files['paths'].items()):
     if '?' in orig:
         continue
 

@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from builtins import str
 import codecs
 import re
 from collections import OrderedDict
@@ -92,7 +93,7 @@ def generate_yml_advisories_html(data):
     if data.get('description', None):
         html.append(markdown(data['description']))
 
-    for cve, advisory in data['advisories'].items():
+    for cve, advisory in list(data['advisories'].items()):
         advisory['id'] = cve
         advisory['impact_class'] = advisory['impact'].lower().split(None, 1)[0]
         update_advisory_bugs(advisory)

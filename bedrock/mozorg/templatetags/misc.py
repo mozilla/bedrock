@@ -5,7 +5,7 @@ import re
 from os import path
 from os.path import splitext
 try:
-    import urlparse
+    import urllib.parse
 except ImportError:
     import urllib.parse as urlparse
 
@@ -171,7 +171,7 @@ def platform_img(ctx, url, optional_attributes=None):
             img_urls[platform + '-high-res'] = convert_to_high_res(img_urls[platform])
 
     img_attrs = {}
-    for platform, image in img_urls.iteritems():
+    for platform, image in img_urls.items():
         if is_l10n:
             image = l10n_img_file_name(ctx, image)
         else:
@@ -186,7 +186,7 @@ def platform_img(ctx, url, optional_attributes=None):
 
     img_attrs.update(optional_attributes)
     attrs = ' '.join('%s="%s"' % (attr, val)
-                     for attr, val in img_attrs.iteritems())
+                     for attr, val in img_attrs.items())
 
     # Don't download any image until the javascript sets it based on
     # data-src so we can do platform detection. If no js, show the
@@ -212,7 +212,7 @@ def high_res_img(ctx, url, optional_attributes=None):
     if optional_attributes:
         class_name = optional_attributes.pop('class', '')
         attrs = ' ' + ' '.join('%s="%s"' % (attr, val)
-                               for attr, val in optional_attributes.items())
+                               for attr, val in list(optional_attributes.items()))
     else:
         class_name = ''
         attrs = ''
@@ -253,7 +253,7 @@ def lazy_img(ctx, image_url, placeholder_url, include_highres_image=False,
         class_name = optional_attributes.pop('class', 'lazy-image')
         alt_text = optional_attributes.pop('alt', '')
         attrs = ' '.join('%s="%s"' % (attr, val)
-                         for attr, val in optional_attributes.items())
+                         for attr, val in list(optional_attributes.items()))
     else:
         class_name = 'lazy-image'
         alt_text = ''
@@ -307,7 +307,7 @@ def video(ctx, *args, **kwargs):
         if ext not in filetypes:
             continue
         videos[ext] = (v if 'prefix' not in kwargs else
-                       urlparse.urljoin(kwargs['prefix'], v))
+                       urllib.parse.urljoin(kwargs['prefix'], v))
 
     if not videos:
         return ''
@@ -528,7 +528,7 @@ def htmlattr(_list, **kwargs):
 
     """
     for tag in _list:
-        for attr, value in kwargs.iteritems():
+        for attr, value in kwargs.items():
             tag[attr] = value
 
     return _list

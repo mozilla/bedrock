@@ -1,6 +1,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+from builtins import str
 import json
 import uuid
 
@@ -30,7 +31,7 @@ class TestViews(TestCase):
 
     @patch('bedrock.newsletter.views.l10n_utils.render')
     def test_updated_allows_good_tokens(self, mock_render):
-        token = unicode(uuid.uuid4())
+        token = str(uuid.uuid4())
         req = self.rf.get('/', {'token': token, 'unsub': 1})
         updated(req)
         self.assertEqual(mock_render.call_args[0][2]['token'], token)
@@ -53,7 +54,7 @@ class TestViews(TestCase):
 @patch('basket.base.request')
 class TestExistingNewsletterView(TestCase):
     def setUp(self):
-        self.token = unicode(uuid.uuid4())
+        self.token = str(uuid.uuid4())
         self.user = {
             'newsletters': [u'mozilla-and-you'],
             'token': self.token,
@@ -129,7 +130,7 @@ class TestExistingNewsletterView(TestCase):
         # or they are marked 'show' and 'active' in the settings
         get_newsletters.return_value = newsletters
         # Find a newsletter without 'show' and subscribe the user to it
-        for newsletter, data in newsletters.iteritems():
+        for newsletter, data in newsletters.items():
             if not data.get('show', False):
                 self.user['newsletters'] = [newsletter]
                 break
@@ -148,10 +149,10 @@ class TestExistingNewsletterView(TestCase):
 
         shown = set([form.initial['newsletter'] for form in forms])
         inactive = set([newsletter for newsletter, data
-                       in newsletters.iteritems()
+                       in newsletters.items()
                        if not data.get('active', False)])
         to_show = set([newsletter for newsletter, data
-                       in newsletters.iteritems()
+                       in newsletters.items()
                        if data.get('show', False)]) - inactive
         subscribed = set(self.user['newsletters'])
 
@@ -171,7 +172,7 @@ class TestExistingNewsletterView(TestCase):
 
     def test_get_user_not_found(self, mock_basket_request):
         # Token in URL but not a valid token - should redirect to recovery
-        rand_token = unicode(uuid.uuid4())
+        rand_token = str(uuid.uuid4())
         url = reverse('newsletter.existing.token', args=(rand_token,))
         with patch.multiple('basket',
                             request=DEFAULT) as basket_patches:
@@ -203,7 +204,7 @@ class TestExistingNewsletterView(TestCase):
     def test_post_user_not_found(self, mock_basket_request):
         # User submits form and passed token, but no user was found
         # Should issue message and redirect to recovery
-        rand_token = unicode(uuid.uuid4())
+        rand_token = str(uuid.uuid4())
         url = reverse('newsletter.existing.token', args=(rand_token,))
         with patch.multiple('basket',
                             update_user=DEFAULT,
@@ -385,7 +386,7 @@ class TestExistingNewsletterView(TestCase):
     def test_newsletter_no_order(self, get_newsletters, mock_basket_request):
         """Newsletter views should work if we get no order from basket."""
         orderless_newsletters = {}
-        for key, val in newsletters.items():
+        for key, val in list(newsletters.items()):
             nl_copy = val.copy()
             del nl_copy['order']
             orderless_newsletters[key] = nl_copy
@@ -413,7 +414,7 @@ class TestExistingNewsletterView(TestCase):
 
 class TestConfirmView(TestCase):
     def setUp(self):
-        self.token = unicode(uuid.uuid4())
+        self.token = str(uuid.uuid4())
         self.url = reverse('newsletter.confirm', kwargs={'token': self.token})
 
     def test_normal(self):
@@ -469,7 +470,7 @@ class TestConfirmView(TestCase):
 
 class TestSetCountryView(TestCase):
     def setUp(self):
-        self.token = unicode(uuid.uuid4())
+        self.token = str(uuid.uuid4())
         self.url = reverse('newsletter.country', kwargs={'token': self.token})
 
     def test_normal_submit(self):
@@ -652,7 +653,7 @@ class TestNewsletterSubscribe(TestCase):
         resp = self.ajax_request(data)
         resp_data = json.loads(resp.content)
         self.assertFalse(resp_data['success'])
-        self.assertEqual(resp_data['errors'][0], unicode(invalid_email_address))
+        self.assertEqual(resp_data['errors'][0], str(invalid_email_address))
 
     @patch.object(basket, 'subscribe')
     def test_returns_ajax_basket_error(self, subscribe_mock):
@@ -668,7 +669,7 @@ class TestNewsletterSubscribe(TestCase):
         resp = self.ajax_request(data)
         resp_data = json.loads(resp.content)
         self.assertFalse(resp_data['success'])
-        self.assertEqual(resp_data['errors'][0], unicode(general_error))
+        self.assertEqual(resp_data['errors'][0], str(general_error))
 
     def test_shows_normal_form(self):
         """A normal GET should show the form."""

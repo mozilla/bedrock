@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from past.builtins import basestring
 import glob
 import os
 import re
@@ -123,7 +124,7 @@ def parse_cve_id(cve_id):
 
 
 def add_or_update_cve(data):
-    for cve_id, advisory in data['advisories'].iteritems():
+    for cve_id, advisory in data['advisories'].items():
         if not cve_id.startswith('CVE-'):
             # skip advisories that are not CVE
             continue
@@ -154,7 +155,7 @@ def add_or_update_cve(data):
         else:
             cve.products = list(set(cve.products).union(data['fixed_in']))
             cve.mfsa_ids = list(set(cve.mfsa_ids).union([data['mfsa_id']]))
-            for prop, value in cve_data.items():
+            for prop, value in list(cve_data.items()):
                 if value:
                     setattr(cve, prop, value)
 

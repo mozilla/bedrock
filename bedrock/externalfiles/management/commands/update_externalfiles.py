@@ -1,4 +1,5 @@
 from __future__ import print_function
+from builtins import str
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.utils.module_loading import import_string
@@ -30,7 +31,7 @@ class Command(BaseCommand):
 
         self.output('Loading community data into database')
 
-        for fid, finfo in settings.EXTERNAL_FILES.items():
+        for fid, finfo in list(settings.EXTERNAL_FILES.items()):
             klass = import_string(finfo['type'])
             try:
                 klass(fid).update()

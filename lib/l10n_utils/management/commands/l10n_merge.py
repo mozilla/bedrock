@@ -21,7 +21,7 @@ class Command(BaseCommand):
         langs = options['langs']
         if not langs:
             langs = os.listdir(os.path.join(settings.ROOT, 'locale'))
-            langs = filter(lambda x: x != 'templates', langs)
-            langs = filter(lambda x: x[0] != '.', langs)
+            langs = [x for x in langs if x != 'templates']
+            langs = [x for x in langs if x[0] != '.']
 
         merge_lang_files(langs)

@@ -1,4 +1,6 @@
 # coding=utf-8
+from builtins import str
+from builtins import range
 from django.test import override_settings
 
 from jinja2 import Markup

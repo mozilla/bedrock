@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from builtins import object
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils.functional import total_ordering
@@ -19,7 +20,7 @@ class Product(models.Model):
     product = models.CharField(max_length=50)
     product_slug = models.SlugField()
 
-    class Meta:
+    class Meta(object):
         ordering = ('slug',)
 
     def __unicode__(self):
@@ -77,7 +78,7 @@ class SecurityAdvisory(models.Model):
     html = models.TextField()
     last_modified = ModificationDateTimeField()
 
-    class Meta:
+    class Meta(object):
         ordering = ('-year', '-order')
         get_latest_by = 'last_modified'
 
@@ -116,7 +117,7 @@ class HallOfFamer(models.Model):
     date = models.DateField()
     url = models.CharField(max_length=200, blank=True)
 
-    class Meta:
+    class Meta(object):
         ordering = ('-date', 'id')
 
     @property
@@ -146,7 +147,7 @@ class MitreCVE(models.Model):
     mfsa_ids = JSONField(default='[]')
     bugs = JSONField(default='[]')
 
-    class Meta:
+    class Meta(object):
         ordering = ('-year', '-order')
 
     def __unicode__(self):
@@ -166,7 +167,7 @@ class MitreCVE(models.Model):
 
     def get_description(self):
         versions = []
-        for prod_name, prod_versions in self.product_versions().iteritems():
+        for prod_name, prod_versions in self.product_versions().items():
             versions.extend('%s < %s' % (prod_name, v) for v in prod_versions)
 
         description = self.description.strip()
@@ -190,7 +191,7 @@ class MitreCVE(models.Model):
 
     def get_product_data(self):
         product_data = []
-        for prod_name, versions in self.product_versions().iteritems():
+        for prod_name, versions in self.product_versions().items():
             product_data.append({
                 'product_name': prod_name,
                 'version': {

@@ -1,6 +1,6 @@
 import datetime
-import urllib
-import urlparse
+import urllib.request, urllib.parse, urllib.error
+import urllib.parse
 
 from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
@@ -73,17 +73,17 @@ def urlparams(url_, hash=None, **query):
     New query params will be appended to exising parameters, except duplicate
     names, which will be replaced.
     """
-    url = urlparse.urlparse(url_)
+    url = urllib.parse.urlparse(url_)
     fragment = hash if hash is not None else url.fragment
 
     # Use dict(parse_qsl) so we don't get lists of values.
     q = url.query
-    query_dict = dict(urlparse.parse_qsl(smart_str(q))) if q else {}
-    query_dict.update((k, v) for k, v in query.items())
+    query_dict = dict(urllib.parse.parse_qsl(smart_str(q))) if q else {}
+    query_dict.update((k, v) for k, v in list(query.items()))
 
-    query_string = _urlencode([(k, v) for k, v in query_dict.items()
+    query_string = _urlencode([(k, v) for k, v in list(query_dict.items())
                                if v is not None])
-    new = urlparse.ParseResult(url.scheme, url.netloc, url.path, url.params,
+    new = urllib.parse.ParseResult(url.scheme, url.netloc, url.path, url.params,
                                query_string, fragment)
     return new.geturl()
 
@@ -91,25 +91,25 @@ def urlparams(url_, hash=None, **query):
 def _urlencode(items):
     """A Unicode-safe URLencoder."""
     try:
-        return urllib.urlencode(items)
+        return urllib.parse.urlencode(items)
     except UnicodeEncodeError:
-        return urllib.urlencode([(k, smart_str(v)) for k, v in items])
+        return urllib.parse.urlencode([(k, smart_str(v)) for k, v in items])
 
 
 @library.filter
 def mailtoencode(txt):
     """Url encode a string using %20 for spaces."""
-    if isinstance(txt, unicode):
+    if isinstance(txt, str):
         txt = txt.encode('utf-8')
-    return urllib.quote(txt)
+    return urllib.parse.quote(txt)
 
 
 @library.filter
 def urlencode(txt):
     """Url encode a string using + for spaces."""
-    if isinstance(txt, unicode):
+    if isinstance(txt, str):
         txt = txt.encode('utf-8')
-    return urllib.quote_plus(txt)
+    return urllib.parse.quote_plus(txt)
 
 
 @library.global_function

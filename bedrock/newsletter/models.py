@@ -21,7 +21,7 @@ class NewsletterManager(models.Manager):
 
         self.all().delete()
         count = 0
-        for slug, data in new_data.iteritems():
+        for slug, data in new_data.items():
             self.create(
                 slug=slug,
                 data=data,

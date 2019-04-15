@@ -48,7 +48,7 @@ def get_lang_choices(newsletters=None):
             lang_name = product_details.languages[lang]['native']
         else:
             try:
-                locale = [loc for loc in product_details.languages.keys()
+                locale = [loc for loc in list(product_details.languages.keys())
                           if loc.startswith(lang)][0]
             except IndexError:
                 continue
@@ -120,7 +120,7 @@ class CountrySelectForm(forms.Form):
 
     def __init__(self, locale, *args, **kwargs):
         regions = product_details.get_regions(locale)
-        regions = sorted(regions.iteritems(), key=itemgetter(1))
+        regions = sorted(iter(regions.items()), key=itemgetter(1))
         super(CountrySelectForm, self).__init__(*args, **kwargs)
         self.fields['country'].choices = regions
 
@@ -149,7 +149,7 @@ class ManageSubscriptionsForm(forms.Form):
 
     def __init__(self, locale, *args, **kwargs):
         regions = product_details.get_regions(locale)
-        regions = sorted(regions.iteritems(), key=itemgetter(1))
+        regions = sorted(iter(regions.items()), key=itemgetter(1))
         lang_choices = get_lang_choices()
         languages = [x[0] for x in lang_choices]
 
@@ -249,7 +249,7 @@ class NewsletterFooterForm(forms.Form):
     # out which languages to list in the form.
     def __init__(self, newsletters, locale, data=None, *args, **kwargs):
         regions = product_details.get_regions(locale)
-        regions = sorted(regions.iteritems(), key=itemgetter(1))
+        regions = sorted(iter(regions.items()), key=itemgetter(1))
 
         try:
             newsletters = validate_newsletters(newsletters)

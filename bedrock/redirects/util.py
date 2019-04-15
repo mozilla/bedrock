@@ -2,9 +2,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from past.builtins import basestring
 import re
-from urllib import urlencode
-from urlparse import parse_qs
+from urllib.parse import urlencode
+from urllib.parse import parse_qs
 
 from django.urls import NoReverseMatch, RegexURLResolver, reverse
 from django.conf.urls import url
@@ -178,7 +179,7 @@ def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=
 
     def _view(request, *args, **kwargs):
         # don't want to have 'None' in substitutions
-        kwargs = {k: v or '' for k, v in kwargs.items()}
+        kwargs = {k: v or '' for k, v in list(kwargs.items())}
         args = [x or '' for x in args]
 
         # If it's a callable, call it and get the url out.

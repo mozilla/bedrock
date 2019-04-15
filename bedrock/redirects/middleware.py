@@ -1,3 +1,4 @@
+from builtins import object
 from django.urls import Resolver404
 
 from .util import get_resolver

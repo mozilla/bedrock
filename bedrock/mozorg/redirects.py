@@ -3,7 +3,7 @@ from bedrock.redirects.util import gone, redirect, ua_redirector
 
 def to_uppercase(url):
     def decider(request, **kwargs):
-        kwargs = {k: v.upper() for k, v in kwargs.items() if k != 'locale'}
+        kwargs = {k: v.upper() for k, v in list(kwargs.items()) if k != 'locale'}
         return url.format(**kwargs)
 
     return decider

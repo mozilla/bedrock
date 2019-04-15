@@ -4,8 +4,9 @@ Taken from zamboni.amo.middleware.
 This is django-localeurl, but with mozilla style capital letters in
 the locale codes.
 """
+from builtins import object
 import base64
-import urllib
+import urllib.request, urllib.parse, urllib.error
 from warnings import warn
 
 from django.conf import settings
@@ -37,7 +38,7 @@ class LocaleURLMiddleware(object):
 
         if full_path != request.path:
             query_string = request.META.get('QUERY_STRING', '')
-            full_path = urllib.quote(full_path.encode('utf-8'))
+            full_path = urllib.parse.quote(full_path.encode('utf-8'))
 
             if query_string:
                 full_path = '?'.join(

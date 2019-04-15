@@ -1,3 +1,4 @@
+from builtins import str
 from django.conf import settings
 
 from mock import patch

@@ -3,7 +3,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import os
-from urlparse import parse_qsl, urlparse
+from urllib.parse import parse_qsl, urlparse
 
 from django.core.cache import caches
 

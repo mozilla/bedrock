@@ -38,7 +38,7 @@ class TestForums(TestCase):
 
     def test_forums_ordered(self):
         """Should give an ordered dict of forums from file."""
-        for title, forums_list in self.forums_file._parse(FORUMS_GOOD_CONTENT).items():
+        for title, forums_list in list(self.forums_file._parse(FORUMS_GOOD_CONTENT).items()):
             for i, forum in enumerate(forums_list):
                 self.assertDictEqual(forum, FORUMS_GOOD_DICT[title][i])
 

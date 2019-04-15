@@ -1,3 +1,4 @@
+from builtins import object
 from django.db import models
 
 
@@ -6,5 +7,5 @@ class ExternalFile(models.Model):
     content = models.TextField()
     last_modified = models.DateTimeField(auto_now=True)
 
-    class Meta:
+    class Meta(object):
         app_label = 'externalfiles'

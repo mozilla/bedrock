@@ -106,7 +106,7 @@ def get_extra_server_info():
     else:
         db_info['last_update'] = timeago.format(datetime.fromtimestamp(db_info['updated']))
         db_info['file_url'] = get_db_file_url(db_info['file_name'])
-        for key, value in db_info.items():
+        for key, value in list(db_info.items()):
             server_info['db_%s' % key] = value
 
     return server_info

@@ -1,3 +1,4 @@
+from builtins import object
 from django.utils.functional import cached_property
 from django.views.generic import TemplateView
 

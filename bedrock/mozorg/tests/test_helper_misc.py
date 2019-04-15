@@ -1,5 +1,7 @@
 # coding: utf-8
 
+from builtins import str
+from builtins import range
 import os.path
 
 from datetime import datetime
@@ -217,7 +219,7 @@ class TestVideoTag(TestCase):
 
         assert doc('video source').length == 2
 
-        for i in xrange(2):
+        for i in range(2):
             assert doc('video source:eq(%s)' % i).attr('src') == expected[i]
 
     def test_fileformats(self):

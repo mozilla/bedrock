@@ -4,6 +4,9 @@
 # and instead uses a simple dict for in-memory storage. These were adapted
 # from the cache backend tests in Django itself.
 
+from builtins import str
+from builtins import range
+from builtins import object
 import os
 import time
 import warnings
@@ -17,7 +20,7 @@ def f():
     return 42
 
 
-class C:
+class C(object):
     def m(n):
         return 24
 
@@ -45,8 +48,8 @@ def caches_setting_for_tests(base=None, **params):
     # This results in the following search order:
     # params -> _caches_setting_base -> base
     base = base or {}
-    setting = dict((k, base.copy()) for k in _caches_setting_base.keys())
-    for key, cache_params in setting.items():
+    setting = dict((k, base.copy()) for k in list(_caches_setting_base.keys()))
+    for key, cache_params in list(setting.items()):
         cache_params.update(_caches_setting_base[key])
         cache_params.update(params)
     return setting
@@ -189,21 +192,21 @@ class SimpleDictCacheTests(TestCase):
             'ascii2': {'x': 1}
         }
         # Test `set`
-        for (key, value) in stuff.items():
+        for (key, value) in list(stuff.items()):
             cache.set(key, value)
             self.assertEqual(cache.get(key), value)
 
         # Test `add`
-        for (key, value) in stuff.items():
+        for (key, value) in list(stuff.items()):
             cache.delete(key)
             cache.add(key, value)
             self.assertEqual(cache.get(key), value)
 
         # Test `set_many`
-        for (key, value) in stuff.items():
+        for (key, value) in list(stuff.items()):
             cache.delete(key)
         cache.set_many(stuff)
-        for (key, value) in stuff.items():
+        for (key, value) in list(stuff.items()):
             self.assertEqual(cache.get(key), value)
 
     def test_binary_string(self):

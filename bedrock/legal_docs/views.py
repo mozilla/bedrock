@@ -3,7 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from os import path, listdir
-import StringIO
+import io
 
 from django.conf import settings
 from django.http import Http404
@@ -23,7 +23,7 @@ CACHE_TIMEOUT = getattr(settings, 'LEGAL_DOCS_CACHE_TIMEOUT', 60 * 60)
 LEGAL_DOCS_LOCALES_TO_BEDROCK = {
     'hi': 'hi-IN',
 }
-BEDROCK_LOCALES_TO_LEGAL_DOCS = {v: k for k, v in LEGAL_DOCS_LOCALES_TO_BEDROCK.items()}
+BEDROCK_LOCALES_TO_LEGAL_DOCS = {v: k for k, v in list(LEGAL_DOCS_LOCALES_TO_BEDROCK.items())}
 
 
 def load_legal_doc(doc_name, locale):
@@ -42,7 +42,7 @@ def load_legal_doc(doc_name, locale):
 
     source_dir = path.join(LEGAL_DOCS_PATH, doc_name)
     source_file = path.join(source_dir, locale + '.md')
-    output = StringIO.StringIO()
+    output = io.StringIO()
     locales = [f.replace('.md', '') for f in listdir(source_dir) if f.endswith('.md')]
     # convert legal-docs locales to bedrock equivalents
     locales = [LEGAL_DOCS_LOCALES_TO_BEDROCK.get(l, l) for l in locales]

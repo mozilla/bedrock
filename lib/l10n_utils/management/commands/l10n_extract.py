@@ -120,7 +120,7 @@ def extract_from_files(filenames,
                     print('! %s does not exist!' % filename)
                     break
                 options = {}
-                for opattern, odict in options_map.items():
+                for opattern, odict in list(options_map.items()):
                     if pathmatch(opattern, filename):
                         options = odict
                 if callback:

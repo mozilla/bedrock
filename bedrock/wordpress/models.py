@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from builtins import object
 import operator
 import random
 
@@ -107,7 +108,7 @@ class BlogPostManager(models.Manager):
 
             try:
                 if obj:
-                    for key, value in post.iteritems():
+                    for key, value in post.items():
                         setattr(obj, key, value)
                     obj.save()
                 else:
@@ -148,7 +149,7 @@ class BlogPost(models.Model):
 
     objects = BlogPostManager()
 
-    class Meta:
+    class Meta(object):
         get_latest_by = 'date'
         ordering = ['-date']
 

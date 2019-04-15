@@ -21,7 +21,7 @@ grant_labels = {
 
 
 def grant_info(request, slug):
-    grant_data = filter(lambda k: k.url == slug, GRANTS)
+    grant_data = [k for k in GRANTS if k.url == slug]
 
     if not grant_data:
         raise Http404
@@ -39,7 +39,7 @@ def grants(request):
         raise Http404
 
     if type_filter:
-        grants = filter(lambda k: k.type == type_filter, GRANTS)
+        grants = [k for k in GRANTS if k.type == type_filter]
     else:
         grants = GRANTS
 

@@ -1,3 +1,5 @@
+from builtins import str
+from builtins import object
 from django.core.cache import cache
 from django.db import models
 from django.db.models.signals import post_save
@@ -85,7 +87,7 @@ class ContributorActivity(models.Model):
 
     objects = ContributorActivityManager()
 
-    class Meta:
+    class Meta(object):
         unique_together = ('date', 'source_name', 'team_name')
         get_latest_by = 'date'
         ordering = ['-date']

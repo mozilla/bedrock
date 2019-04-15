@@ -1,3 +1,4 @@
+from builtins import object
 import json
 import re
 
@@ -73,7 +74,7 @@ class ContentCard(models.Model):
 
     objects = ContentCardManager()
 
-    class Meta:
+    class Meta(object):
         ordering = ('id',)
 
     def __unicode__(self):

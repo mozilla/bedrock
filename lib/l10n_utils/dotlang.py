@@ -10,6 +10,7 @@ system.
 It caches them using the django caching library, but it could
 potentially just use thread-local variables. Caching seems safer at
 the expense of another caching layer."""
+from past.builtins import basestring
 import codecs
 import inspect
 import os
