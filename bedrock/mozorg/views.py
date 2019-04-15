@@ -5,7 +5,7 @@
 import re
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render as django_render
 from django.views.decorators.cache import cache_page, never_cache

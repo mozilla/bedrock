@@ -8,10 +8,7 @@ from datetime import datetime
 from hashlib import sha256
 from shutil import rmtree
 from subprocess import check_output, CalledProcessError, STDOUT
-try:
-    from cStringIO import StringIO
-except ImportError:
-    from StringIO import StringIO
+from io import StringIO
 
 from django.conf import settings
 

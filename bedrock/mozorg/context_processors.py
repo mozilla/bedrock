@@ -6,7 +6,7 @@ import re
 from datetime import datetime
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from bedrock.mozorg.util import get_fb_like_locale
 from lib.l10n_utils import get_locale

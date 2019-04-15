@@ -185,7 +185,7 @@ def gettext(text, *args, **kwargs):
     return text
 
 
-_lazy_proxy = lazy(gettext, unicode)
+_lazy_proxy = lazy(gettext, str)
 
 
 def gettext_lazy(*args, **kwargs):

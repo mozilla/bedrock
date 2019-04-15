@@ -17,7 +17,7 @@ from django.core.cache import caches
 from django.template.loader import get_template
 from jinja2 import Environment
 
-from dotlang import (parse as parse_lang, get_lang_path,
+from .dotlang import (parse as parse_lang, get_lang_path,
                      get_translations_for_langfile, lang_file_tag_set)
 from lib.l10n_utils.utils import ContainsEverything
 
@@ -340,7 +340,7 @@ def find_lang_files(lang):
 
 def merge_lang_files(langs):
     for lang in langs:
-        print 'Merging into %s...' % lang
+        print('Merging into %s...' % lang)
 
         for f in find_lang_files('templates'):
             # Make sure the directory exists (might be a subdirectory)

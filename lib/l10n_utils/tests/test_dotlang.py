@@ -6,7 +6,7 @@
 
 from django.conf import settings
 from django.core import mail
-from django.core.urlresolvers import clear_url_caches
+from django.urls import clear_url_caches
 from django.http import HttpRequest
 from django.test.utils import override_settings
 

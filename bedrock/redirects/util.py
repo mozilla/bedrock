@@ -6,7 +6,7 @@ import re
 from urllib import urlencode
 from urlparse import parse_qs
 
-from django.core.urlresolvers import NoReverseMatch, RegexURLResolver, reverse
+from django.urls import NoReverseMatch, RegexURLResolver, reverse
 from django.conf.urls import url
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect, HttpResponseGone
 from django.utils.encoding import force_text
