@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 # flake8: noqa
-import misc
-import social_widgets
+from . import misc
+from . import social_widgets

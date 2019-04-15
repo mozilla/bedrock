@@ -85,7 +85,7 @@ def main():
         write_stdout(compare_url)
         if not args.print_only:
             webbrowser.open(compare_url)
-    except Exception, e:
+    except Exception as e:
         sys.stderr.write('\nERROR: {0}\n'.format(e))
         return 1
     return 0

@@ -1,3 +1,4 @@
+from __future__ import print_function
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
@@ -307,8 +308,8 @@ class L10nParser():
                     yield ('content', comment)
 
             elif name == 'block_begin':
-                space = self.tokens.next()
-                block = self.tokens.next()
+                space = next(self.tokens)
+                block = next(self.tokens)
 
                 if block[1] == 'name':
                     type = block[2]
@@ -331,8 +332,8 @@ class L10nParser():
                         # that means the template has been customized
                         # and we shouldn't touch it
 
-                        ident_space = self.tokens.next()
-                        ident = self.tokens.next()
+                        ident_space = next(self.tokens)
+                        ident = next(self.tokens)
 
                         if ident[2] == 'content':
                             # This is the content block, stop parsing
@@ -456,7 +457,7 @@ class L10nParser():
                 break
 
     def scan_next(self, name):
-        token = self.tokens.next()
+        token = next(self.tokens)
         if token and token[1] == name:
             return token[2]
         # Put it back on the list

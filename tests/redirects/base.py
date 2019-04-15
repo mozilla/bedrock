@@ -1,3 +1,4 @@
+from __future__ import print_function
 import re
 from urlparse import urlparse, parse_qs
 
@@ -145,7 +146,7 @@ def assert_valid_url(url, location=None, status_code=requests.codes.moved_perman
 
     if resp_headers and not follow_redirects:
         for name, value in resp_headers.items():
-            print name, value
+            print(name, value)
             assert name in resp.headers
             assert resp.headers[name].lower() == value.lower()
 

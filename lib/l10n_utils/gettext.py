@@ -4,6 +4,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from __future__ import print_function
 import codecs
 import os
 import re
@@ -154,7 +155,7 @@ def parse_template(path):
     lang_files = []
 
     def ignore_whitespace(tokens):
-        token = tokens.next()
+        token = next(tokens)
         if token[1] == 'whitespace':
             return ignore_whitespace(tokens)
         return token

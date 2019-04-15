@@ -79,7 +79,7 @@ class SimpleDictCacheTests(TestCase):
         cache.set('somekey', 'value')
 
         # should not be set in the prefixed cache
-        self.assertFalse(caches['prefix'].has_key('somekey'))  # noqa
+        self.assertFalse('somekey' in caches['prefix'])  # noqa
 
         caches['prefix'].set('somekey', 'value2')
 
@@ -118,10 +118,10 @@ class SimpleDictCacheTests(TestCase):
     def test_has_key(self):
         # The cache can be inspected for cache keys
         cache.set("hello1", "goodbye1")
-        self.assertEqual(cache.has_key("hello1"), True)  # noqa
-        self.assertEqual(cache.has_key("goodbye1"), False)  # noqa
+        self.assertEqual("hello1" in cache, True)  # noqa
+        self.assertEqual("goodbye1" in cache, False)  # noqa
         cache.set("no_expiry", "here", None)
-        self.assertEqual(cache.has_key("no_expiry"), True)  # noqa
+        self.assertEqual("no_expiry" in cache, True)  # noqa
 
     def test_in(self):
         # The in operator can be used to inspect cache contents
@@ -178,7 +178,7 @@ class SimpleDictCacheTests(TestCase):
 
         cache.add("expire2", "newvalue")
         self.assertEqual(cache.get("expire2"), "newvalue")
-        self.assertEqual(cache.has_key("expire3"), False)  # noqa
+        self.assertEqual("expire3" in cache, False)  # noqa
 
     def test_unicode(self):
         # Unicode values can be cached
@@ -322,7 +322,7 @@ class SimpleDictCacheTests(TestCase):
         count = 0
         # Count how many keys are left in the cache.
         for i in range(1, initial_count):
-            if cull_cache.has_key('cull%d' % i):  # noqa
+            if 'cull%d' % i in cull_cache:  # noqa
                 count = count + 1
         self.assertEqual(count, final_count)
 
@@ -449,11 +449,11 @@ class SimpleDictCacheTests(TestCase):
         cache.set('answer1', 42)
 
         # has_key
-        self.assertTrue(cache.has_key('answer1'))  # noqa
+        self.assertTrue('answer1' in cache)  # noqa
         self.assertTrue(cache.has_key('answer1', version=1))  # noqa
         self.assertFalse(cache.has_key('answer1', version=2))  # noqa
 
-        self.assertFalse(caches['v2'].has_key('answer1'))  # noqa
+        self.assertFalse('answer1' in caches['v2'])  # noqa
         self.assertTrue(caches['v2'].has_key('answer1', version=1))  # noqa
         self.assertFalse(caches['v2'].has_key('answer1', version=2))  # noqa
 

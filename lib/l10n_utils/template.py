@@ -55,7 +55,7 @@ class L10nBlockExtension(Extension):
                 if token.type == 'sub':
                     locales[-1] += '-'
                     prev_sub = True
-                parser.stream.next()
+                next(parser.stream)
 
         # Add version if provided.
         if parser.stream.current.type == 'integer':
@@ -97,14 +97,14 @@ class LoadLangExtension(Extension):
 
     def parse(self, parser):
         # Skip over the block name
-        name = parser.stream.next()
+        name = next(parser.stream)
         lineno = name.lineno
 
         # Grab all the args
         args = [parser.stream.expect('string').value]
         while parser.stream.current.type == 'string':
             args.append(parser.stream.current.value)
-            parser.stream.next()
+            next(parser.stream)
 
         # Make a node that calls the lang_files helper
         content_nodes = [nodes.Call(nodes.Name('lang_files', 'load'),

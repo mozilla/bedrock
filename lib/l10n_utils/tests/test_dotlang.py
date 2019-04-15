@@ -267,7 +267,7 @@ class TestDotlang(TestCase):
         # extraction
         pypath = ROOT_PATH.joinpath('extract_me.py')
         with open(str(pypath)) as pyfile:
-            vals = extract_python(pyfile, ['_'], [], {}).next()
+            vals = next(extract_python(pyfile, ['_'], [], {}))
         assert vals[2] == clean_string
 
         # translation

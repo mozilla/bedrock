@@ -16,6 +16,7 @@ from jinja2 import Markup
 from raven.contrib.django.raven_compat.models import client as sentry_client
 
 from bedrock.wordpress.api import get_posts_data, complete_posts_data
+from functools import reduce
 
 
 def make_datetime(datestr):
