@@ -305,6 +305,8 @@ def detect_channel(version):
                 return 'nightly'
             if version.endswith('a2'):
                 return 'alpha'
+            if version.endswith('beta'):
+                return 'beta'
 
     return 'unknown'
 
@@ -459,13 +461,21 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
             oldversion = oldversion[3:]
 
         channel = detect_channel(version)
-        if channel == 'alpha':
-            if show_57_dev_whatsnew(version):
+
+        if channel == 'nightly':
+            template = 'firefox/nightly_whatsnew.html'
+        elif channel == 'alpha':
+            if version.startswith('68.') and switch('dev_whatsnew_68'):
+                template = 'firefox/developer/whatsnew-fx68.html'
+            elif show_57_dev_whatsnew(version):
                 template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/dev-whatsnew.html'
-        elif channel == 'nightly':
-            template = 'firefox/nightly_whatsnew.html'
+        elif channel == 'beta':
+            if version.startswith('68.'):
+                template = 'firefox/whatsnew/beta/whatsnew-fx68.html'
+            else:
+                template = 'firefox/whatsnew/index.html'
         elif locale == 'id':
             template = 'firefox/whatsnew/index-lite.id.html'
         elif locale == 'zh-TW' and not version.startswith('64.'):

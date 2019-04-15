@@ -44,12 +44,14 @@
             <h2 class="c-sticky-signup-title">{{ _('Get a Firefox Account and all the benefits it unlocks. ') }}</h2>
             <button type="button" class="sticky-dismiss" data-parent="fxa-sticky-form">{{ _('Close') }}</button>
           </div>
+          {% block fxa_form %}
           {{ fxa_email_form(
               entrypoint='mozilla.org-whatsnew66',
               button_class='mzp-c-button',
               utm_source='whatsnew',
               utm_params={'campaign': 'fxa-embedded-form', 'content': 'whatsnew', 'medium': 'referral'})
           }}
+          {% endblock %}
         </div>
       </div>
     </section>
@@ -84,6 +86,7 @@
     include_cta=True
   ) %}
 
+  {% block fxa_cta %}
   <p class="show-fxa-supported-signed-out show-fxa-default">
     <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew66', action='signup', utm_params={'campaign': 'wnp66', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'wnp66'}) }} class="mzp-c-button mzp-t-product" data-button-name="Create account" data-link-type="button">
       {{ _('Create a Firefox Account') }}
@@ -100,6 +103,7 @@
     </span>
     {% endif %}
   </p>
+  {% endblock %}
 
   {% endcall %}
   {% call hero(
