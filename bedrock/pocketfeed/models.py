@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import print_function, unicode_literals
-
 from django.db import models
 from django.db.utils import DatabaseError
 

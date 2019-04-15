@@ -1,6 +1,4 @@
 """Test redirects from the global.conf file."""
-from __future__ import absolute_import
-
 import pytest
 import requests
 

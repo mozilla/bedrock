@@ -4,8 +4,6 @@
 # and instead uses a simple dict for in-memory storage. These were adapted
 # from the cache backend tests in Django itself.
 
-from __future__ import unicode_literals
-
 import os
 import time
 import warnings
