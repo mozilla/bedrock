@@ -170,7 +170,7 @@
     </header>
   {% endblock %}
 
-    <section>
+    <section class="c-release-notes">
     {% if release.is_public and release.notes %}
       {% for note in release.notes if note.tag == "New" %}
         {% if loop.first %}
