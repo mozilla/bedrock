@@ -5,7 +5,7 @@ from builtins import str
 import json
 import re
 
-from django.core import urlresolvers
+from django.urls import resolvers
 from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import get_template
@@ -57,7 +57,7 @@ def get_security_urls():
     for advisory in SecurityAdvisory.objects.all():
         try:
             adv_url = advisory.get_absolute_url()
-        except urlresolvers.NoReverseMatch:
+        except resolvers.NoReverseMatch:
             continue
 
         # strip "/en-US" off the front
@@ -80,7 +80,7 @@ def get_release_notes_urls():
         try:
             rel_path = release.get_absolute_url()
             req_path = release.get_sysreq_url()
-        except urlresolvers.NoReverseMatch:
+        except resolvers.NoReverseMatch:
             continue
 
         # strip "/en-US" off the front
@@ -119,7 +119,7 @@ def get_static_urls():
     # NOTE: have to use `iterlists()` here since the standard
     # `iteritems()` only returns the first item in the list for the
     # view since `reverse_dict` is a `MultiValueDict`.
-    for key, values in urlresolvers.get_resolver(None).reverse_dict.iterlists():
+    for key, values in resolvers.get_resolver(None).reverse_dict.iterlists():
         for value in values:
             path = value[0][0][0]
             # Exclude pages that we don't want be indexed by search engines.
