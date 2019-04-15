@@ -143,12 +143,6 @@ $image-path: '/media/protocol/img';
     @include text-body-md;
 }
 
-.c-release-first-text{
-    border-bottom: 2px solid $color-gray-40;
-    margin-bottom: $layout-md;
-    padding-bottom: $layout-md;
-}
-
 .mzp-l-content {
     .c-release-product {
         @include text-display-xs;
@@ -173,18 +167,53 @@ $image-path: '/media/protocol/img';
 
     h3 {
         @include text-display-sm;
+        margin-bottom: $layout-sm;
     }
 }
 
+.c-release-notes > .mzp-l-content {
+    padding-top: $layout-lg;
+
+    &:before {
+        content: '';
+        display: block;
+        width: calc(100% - #{ $layout-xs * 2});
+        height: 2px;
+        background-color: $color-gray-20;
+        position: absolute;
+        top: 0;
+        left: $layout-xs;
+
+        @media #{$mq-md} {
+            left: $layout-lg;
+            width: calc(100% - #{ $layout-lg * 2});
+        }
+
+        @media #{$mq-lg} {
+            left: $layout-xl;
+            width: calc(100% - #{ $layout-xl * 2});
+        }
+    }
+}
 
 .mzp-l-article {
     > ul > li {
         border-bottom: 2px solid $color-gray-20;
-        margin-bottom: $layout-md;
-        padding-bottom: $layout-md;
+        margin-bottom: $layout-sm;
+        padding-bottom: $layout-sm;
 
         &:last-child {
-            border-bottom-color: $color-gray-40;
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        > ul,
+        > ol,
+        > p {
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
 
         p + ul,
@@ -281,7 +310,7 @@ $image-path: '/media/protocol/img';
 .bug-id {
     @include bidi(((text-align, right, left),));
     display: block;
-    margin-bottom: 1.25em;
+    margin-bottom: 0;
 
     p + &,
     ul + & {
@@ -295,7 +324,9 @@ $image-path: '/media/protocol/img';
     padding-bottom: $layout-md;
 
     &:last-child {
-        border-bottom-color: $color-gray-40;
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
     }
 }
 
@@ -338,6 +369,10 @@ $image-path: '/media/protocol/img';
 
 /* -------------------------------------------------------------------------- */
 // Compact call out
+
+.mzp-c-call-out-compact {
+    margin-top: $layout-md;
+}
 
 /* nightly footer gradient */
 .mzp-c-call-out-compact.mzp-t-product-nightly {
