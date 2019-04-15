@@ -7,7 +7,7 @@ import re
 from urllib.parse import urlencode
 from urllib.parse import parse_qs
 
-from django.urls import NoReverseMatch, RegexURLResolver, reverse
+from django.urls import NoReverseMatch, URLResolver, reverse
 from django.conf.urls import url
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect, HttpResponseGone
 from django.utils.encoding import force_text
@@ -32,7 +32,7 @@ def register(patterns):
 
 
 def get_resolver(patterns=None):
-    return RegexURLResolver(r'^/', patterns or redirectpatterns)
+    return URLResolver(r'^/', patterns or redirectpatterns)
 
 
 def header_redirector(header_name, regex, match_dest, nomatch_dest, case_sensitive=False):
