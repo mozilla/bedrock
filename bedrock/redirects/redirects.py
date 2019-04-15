@@ -2118,5 +2118,5 @@ redirectpatterns = (
     # These were causing 404s due to bad Wordpress links ending in "%E2%80%8E"
     # When passing through the URL system it is a \u200E character.
     # https://en.wikipedia.org/wiki/Left-to-right_mark
-    redirect(ur'^(.*)\u200E$', '/{}', locale_prefix=False),
+    redirect(r'^(.*)\u200E$', '/{}', locale_prefix=False),
 )
