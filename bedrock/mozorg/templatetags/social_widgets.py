@@ -4,7 +4,7 @@ from __future__ import division
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 from past.utils import old_div
 from datetime import datetime
-import urllib.request, urllib.parse, urllib.error
+import urllib.parse
 
 from django_jinja import library
 

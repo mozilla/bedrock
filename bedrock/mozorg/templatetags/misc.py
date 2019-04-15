@@ -4,10 +4,7 @@ import random
 import re
 from os import path
 from os.path import splitext
-try:
-    import urllib.parse
-except ImportError:
-    import urllib.parse as urlparse
+import urllib.parse
 
 from django.conf import settings
 from django.contrib.staticfiles.finders import find as find_static

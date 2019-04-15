@@ -6,7 +6,7 @@ the locale codes.
 """
 from builtins import object
 import base64
-import urllib.request, urllib.parse, urllib.error
+import urllib.parse
 from warnings import warn
 
 from django.conf import settings

@@ -1,5 +1,4 @@
 import datetime
-import urllib.request, urllib.parse, urllib.error
 import urllib.parse
 
 from django.conf import settings
