@@ -116,10 +116,10 @@ def get_static_urls():
 
     # get_resolver is an undocumented but convenient function.
     # Try to retrieve all valid URLs on this site.
-    # NOTE: have to use `iterlists()` here since the standard
-    # `iteritems()` only returns the first item in the list for the
+    # NOTE: have to use `lists()` here since the standard
+    # `items()` only returns the first item in the list for the
     # view since `reverse_dict` is a `MultiValueDict`.
-    for key, values in resolvers.get_resolver(None).reverse_dict.iterlists():
+    for key, values in resolvers.get_resolver(None).reverse_dict.lists():
         for value in values:
             path = value[0][0][0]
             # Exclude pages that we don't want be indexed by search engines.
