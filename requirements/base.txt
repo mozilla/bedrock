@@ -157,13 +157,8 @@ django_csp==3.5 \
 pathlib2==2.1.0 \
     --hash=sha256:24e0b33e1333b55e73c9d1e9a8342417d519f7789a9d3b440f4acd00ea45157e \
     --hash=sha256:deb3a960c1d55868dfbcac98432358b92ba89d95029cddd4040db1f27405055c
-querystringsafe_base64==0.2.0 \
-    --hash=sha256:1064ad8d8bf5a88501e9f895b6560d1c45949645557fd6020abec8bbbe9462ec \
-    --hash=sha256:682df1043abd816be9805cc06cb2da67add4311735af5de925f81dd2cfea82da \
-    --hash=sha256:977ae9b93f64413e83f84763cac8046e0d17d0e0a599842cb0be80c573b85cb2 \
-    --hash=sha256:fc15ea4ce494a4585497513ac947095262bdcad3cb304c6c870418d45824a659 \
-    --hash=sha256:d54e3c7aa7a2e7fbd49ee4bd39595eadad636f56e16b33c14ba2e3a1f928f312 \
-    --hash=sha256:1bf7cae5509a1e4bc17ebf3518aa1e2a21bd6e03a7f82f156eb2d84bdaa7dc58
+querystringsafe_base64==1.1.1 \
+    --hash=sha256:bad9187c0406456020ee354be7f51d2e0dfc262dadde0449cbdd1fd78d437eed
 funcsigs==1.0.2 \
     --hash=sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca \
     --hash=sha256:a7bb0f2cf3a3fd1ab2732cb49eba4252c2af4240442415b4abce3b87022a8f50

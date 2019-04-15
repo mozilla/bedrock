@@ -29,7 +29,7 @@ class GitRepo(object):
         self.branch_name = branch_name
         db_latest_key = '%s:%s:%s' % (self.path_str, remote_url or '',
                                          branch_name)
-        self.db_latest_key = sha256(db_latest_key).hexdigest()
+        self.db_latest_key = sha256(db_latest_key.encode()).hexdigest()
         self.repo_name = name or self.path.name
 
     def git(self, *args):

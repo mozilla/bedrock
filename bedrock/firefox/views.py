@@ -150,8 +150,8 @@ def sign_attribution_codes(codes):
     if len(code) > settings.STUB_ATTRIBUTION_MAX_LEN:
         return None
 
-    code = querystringsafe_base64.encode(code)
-    sig = hmac.new(key, code, hashlib.sha256).hexdigest()
+    code = querystringsafe_base64.encode(code.encode())
+    sig = hmac.new(key.encode(), code, hashlib.sha256).hexdigest()
     return {
         'attribution_code': code,
         'attribution_sig': sig,
