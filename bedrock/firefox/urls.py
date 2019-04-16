@@ -19,11 +19,11 @@ content_blocking_re = latest_re % (version_re, 'content-blocking/start')
 platform_re = '(?P<platform>android|ios)'
 channel_re = '(?P<channel>beta|aurora|developer|nightly|organizations)'
 releasenotes_re = latest_re % (version_re, r'(aurora|release)notes')
-android_releasenotes_re = releasenotes_re.replace('firefox', 'firefox/android')
-ios_releasenotes_re = releasenotes_re.replace('firefox', 'firefox/ios')
+android_releasenotes_re = releasenotes_re.replace(r'firefox', 'firefox/android')
+ios_releasenotes_re = releasenotes_re.replace(r'firefox', 'firefox/ios')
 sysreq_re = latest_re % (version_re, 'system-requirements')
-android_sysreq_re = sysreq_re.replace('firefox', 'firefox/android')
-ios_sysreq_re = sysreq_re.replace('firefox', 'firefox/ios')
+android_sysreq_re = sysreq_re.replace(r'firefox', 'firefox/android')
+ios_sysreq_re = sysreq_re.replace(r'firefox', 'firefox/ios')
 
 
 urlpatterns = (

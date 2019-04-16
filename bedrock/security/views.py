@@ -159,7 +159,7 @@ class OldAdvisoriesListView(CachedRedirectView):
 
 
 class KVRedirectsView(CachedRedirectView):
-    prod_ver_re = re.compile('(\w+)(\d{2})$')
+    prod_ver_re = re.compile(r'(\w+)(\d{2})$')
 
     def get_redirect_url(self, *args, **kwargs):
         url_component = kwargs['filename'].replace(' ', '')

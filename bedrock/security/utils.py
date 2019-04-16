@@ -13,7 +13,7 @@ from django.template.loader import render_to_string
 from markdown import markdown
 
 
-FILENAME_RE = re.compile('mfsa(\d{4}-\d{2,3})\.(md|yml)$')
+FILENAME_RE = re.compile(r'mfsa(\d{4}-\d{2,3})\.(md|yml)$')
 
 
 def mfsa_id_from_filename(filename):

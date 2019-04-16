@@ -15,7 +15,7 @@ class TestGrants(TestCase):
     def test_grant_url_slug(self):
         """Grant url slug must be composed of a-z, 0-9, _, and -."""
         for grant in GRANTS:
-            self.assertTrue(re.match('^[a-z0-9_\-]+$', grant.url), "'%s' is not a valid url slug" % grant.url)
+            self.assertTrue(re.match(r'^[a-z0-9_\-]+$', grant.url), "'%s' is not a valid url slug" % grant.url)
 
     def test_grant_grantee(self):
         """Grant grantee must be a string."""
@@ -46,7 +46,7 @@ class TestGrants(TestCase):
     def test_grant_total_support(self):
         """Grant total_support must look like a monetary amount."""
         for grant in GRANTS:
-            self.assertTrue(re.match('^\$\d{1,3},\d{3}(\.\d{2})?$', grant.total_support), "'%s' is not a valid total_support" % grant.total_support)
+            self.assertTrue(re.match(r'^\$\d{1,3},\d{3}(\.\d{2})?$', grant.total_support), "'%s' is not a valid total_support" % grant.total_support)
 
     def test_grant_year(self):
         """Grant year must be in the range 2006 to next year."""

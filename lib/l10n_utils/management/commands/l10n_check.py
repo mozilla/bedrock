@@ -233,7 +233,7 @@ class L10nTemplate(object):
 
 class L10nParser(object):
 
-    file_version_re = re.compile('\W*Version: (\d+)\W*')
+    file_version_re = re.compile(r'\W*Version: (\d+)\W*')
 
     def __init__(self):
         self.tmpl = None
