@@ -7,18 +7,6 @@ about: For project work and feature development
 
 Description, good enough that reading the card 1 month from now, you still know what it means.
 
-### Estimates
-
-| Estimates |  |
-| ------------- | ------------- |
-| TL | |
-| PM | |
-| ENG | |
-| SEO | |
-| ANA | |
-| DES | |
-| COPY | |
-
 ---
 
 #### :yellow_heart: Success Criteria :yellow_heart:
