@@ -58,6 +58,25 @@
     },
     {
       "files": [
+        "css/firefox/new/newsletter/scene2-centered.scss"
+      ],
+      "name": "experiment_firefox_new_pre_download_scene2_centered"
+    },
+    {
+      "files": [
+        "css/firefox/new/newsletter/scene1-embed.scss"
+      ],
+      "name": "experiment_firefox_new_pre_download_scene1_embed"
+    },
+    {
+      "files": [
+        "css/firefox/home/pre-download-newsletter.scss",
+        "css/firefox/new/newsletter/scene1-pre-download.scss"
+      ],
+      "name": "experiment_firefox_new_pre_download_scene1_modal"
+    },
+    {
+      "files": [
         "css/sandstone/sandstone-resp.less",
         "css/base/notification-banner.less",
         "css/tabzilla/tabzilla-static.less",
@@ -1050,6 +1069,13 @@
     },
     {
       "files": [
+        "js/base/mozilla-traffic-cop.js",
+        "js/firefox/new/newsletter/experiment.js"
+      ],
+      "name": "experiment_firefox_new_pre_download"
+    },
+    {
+      "files": [
         "js/etc/firefox/retention/confetti.js"
       ],
       "name": "etc-firefox-retention-thank-you"
@@ -1068,6 +1094,36 @@
         "js/firefox/new/scene2-email.js"
       ],
       "name": "firefox_new_scene2_email"
+    },
+    {
+      "files": [
+        "js/firefox/new/newsletter/variation.js"
+      ],
+      "name": "experiment_firefox_new_pre_download_scene1_variation"
+    },
+    {
+      "files": [
+        "js/firefox/new/newsletter/scene1-embed.js"
+      ],
+      "name": "experiment_firefox_new_pre_download_scene1_embed"
+    },
+    {
+      "files": [
+        "js/firefox/new/newsletter/scene1-modal.js"
+      ],
+      "name": "experiment_firefox_new_pre_download_scene1_modal"
+    },
+    {
+      "files": [
+        "js/firefox/new/newsletter/scene2-centered.js"
+      ],
+      "name": "experiment_firefox_new_pre_download_scene2_centered"
+    },
+    {
+      "files": [
+        "js/firefox/new/newsletter/scene2-embed.js"
+      ],
+      "name": "experiment_firefox_new_pre_download_scene2_embed"
     },
     {
       "files": [

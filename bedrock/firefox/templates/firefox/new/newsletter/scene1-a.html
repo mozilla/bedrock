@@ -1,0 +1,23 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/new/quantum" %}
+
+{% extends "firefox/new/scene1.html" %}
+
+{% block experiments %}{% endblock %}
+
+{% block extrahead %}
+  {{ super() }}
+{% endblock %}
+
+{% block stub_attribution %}
+  {% if settings.STUB_ATTRIBUTION_RATE %}
+    <!--[if !lte IE 8]><!-->
+    {{ js_bundle('stub-attribution-custom') }}
+    {{ js_bundle('experiment_firefox_new_pre_download_scene1_variation') }}
+    {{ js_bundle('firefox_new_scene1_variation') }}
+    <!--<![endif]-->
+  {% endif %}
+{% endblock %}

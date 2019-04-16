@@ -52,11 +52,12 @@
 {% endif %}
 
 {% block content %}
-<main class="main mzp-t-firefox mzp-t-dark">
+<main class="main mzp-t-firefox {% block theme %}mzp-t-dark{% endblock %}">
   <section class="status">
     <div class="mzp-l-content mzp-t-firefox windows-xpvista">
       <p>{{ _('You’re using an insecure, outdated operating system <a href="%(url)s">no longer supported by Firefox</a>.')|format(url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista') }}</p>
     </div>
+    {% block download_status %}
     <div class="mzp-l-content mzp-t-firefox">
       {# fallback_url is replaced by the platform download link via JS, but if
         something fails the user should still get a link to a working download path. #}
@@ -74,6 +75,7 @@
         {% endif %}
       </p>
     </div>
+    {% endblock %}
   </section>
 
   <div class="mzp-l-content">
@@ -87,70 +89,69 @@
         {{ download_firefox(force_direct=true, dom_id='primary-download-button') }}
       </div>
 
-      {% if show_newsletter and l10n_has_tag('download_thanks_newsletter_092018') %}
-
-      <h1 class="headline">
-      {% block headline %}
-        {{ _('Learn how to make Firefox even smarter, faster and more secure.') }}
-      {% endblock %}
-      </h1>
-      {% block tagline %}
-      <p class="tagline">{{ _('Get informative tips, tricks and product announcements delivered to your inbox.') }}</p>
-      {% endblock %}
-
-      <div class="mzp-c-newsletter">
-        {{ email_newsletter_form(
-              protocol_component=True,
-              include_title=False,
-              email_label=_('Enter your email address'),
-              details='<a href="%s" class="email-privacy-link">%s</a>'|format(url('privacy.email'), _('How will Mozilla use my email?'))|safe
-        )}}
-      </div>
-
-      {% block additional_content %}{% endblock %}
-
-      <aside class="email-privacy mzp-u-modal-content">
-        <h3>{{ _('How will Mozilla use my email?') }}</h3>
-
-        <p>
-        {% trans
-              manifesto=url('mozorg.about.manifesto'),
-              principles=url('privacy.principles')
-        %}
-          Mozilla doesn’t just value your email privacy and security – it’s part of our <a href="{{ manifesto }}">Manifesto</a>: “Individuals’ security and privacy on the internet are fundamental and must not be treated as optional.” <a href="{{ principles }}">You can learn about our Data Privacy Principles here</a>.
-        {% endtrans %}
-        </p>
-
-        <p><strong>{{ _('What we want you to know:') }}</strong></p>
-
-        <ul class="prose mzp-u-list-styled">
-          <li>{{ _('You don’t need to give us your email to download and use Firefox.') }}</li>
-          <li>{{ _('We asked for your email because our research shows that people who receive an introductory experience do more and better with Firefox.') }}</li>
-          <li>{{ _('You can expect emails designed to help you optimize Firefox to work best for you, learn more about privacy & security and find out how to make the best of your time on the web.') }}</li>
-          <li>{{ _('You can unsubscribe anytime, for any reason.') }}</li>
-          <li>{{ _('We will not share, sell or use your email for any other purposes.') }}</li>
-        </ul>
-      </aside>
-
-      {% else %}
       {% block main_content %}
-      <aside class="mobile-download">
-        <h1 class="headline">{{ _('Let’s do this!') }}</h1>
-        <p class="tagline">{{ _('Sync up with Firefox on mobile:') }}</p>
-        <ul>
-          <li>
-            {{ google_play_button(extra_data_attributes={'download-location': 'other'}) }}
-          </li>
-          <li>
-            <a href="{{ firefox_ios_url('mozorg-scene_2-appstore-button') }}" data-link-type="download" data-download-os="iOS" data-download-location="other">
-              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
-            </a>
-          </li>
-        </ul>
-      </aside>
-      {% endblock %}
+        {% if show_newsletter and l10n_has_tag('download_thanks_newsletter_092018') %}
+          <h1 class="headline">
+          {% block headline %}
+            {{ _('Learn how to make Firefox even smarter, faster and more secure.') }}
+          {% endblock %}
+          </h1>
+          {% block tagline %}
+          <p class="tagline">{{ _('Get informative tips, tricks and product announcements delivered to your inbox.') }}</p>
+          {% endblock %}
 
-      {% endif %}
+          {% block newsletter %}
+          <div class="mzp-c-newsletter">
+            {{ email_newsletter_form(
+                  protocol_component=True,
+                  include_title=False,
+                  email_label=_('Enter your email address'),
+                  details='<a href="%s" class="email-privacy-link">%s</a>'|format(url('privacy.email'), _('How will Mozilla use my email?'))|safe
+            )}}
+          </div>
+          {% endblock %}
+
+          {% block additional_content %}{% endblock %}
+
+          <aside class="email-privacy mzp-u-modal-content">
+            <h3>{{ _('How will Mozilla use my email?') }}</h3>
+
+            <p>
+            {% trans
+                  manifesto=url('mozorg.about.manifesto'),
+                  principles=url('privacy.principles')
+            %}
+              Mozilla doesn’t just value your email privacy and security – it’s part of our <a href="{{ manifesto }}">Manifesto</a>: “Individuals’ security and privacy on the internet are fundamental and must not be treated as optional.” <a href="{{ principles }}">You can learn about our Data Privacy Principles here</a>.
+            {% endtrans %}
+            </p>
+
+            <p><strong>{{ _('What we want you to know:') }}</strong></p>
+
+            <ul class="prose mzp-u-list-styled">
+              <li>{{ _('You don’t need to give us your email to download and use Firefox.') }}</li>
+              <li>{{ _('We asked for your email because our research shows that people who receive an introductory experience do more and better with Firefox.') }}</li>
+              <li>{{ _('You can expect emails designed to help you optimize Firefox to work best for you, learn more about privacy & security and find out how to make the best of your time on the web.') }}</li>
+              <li>{{ _('You can unsubscribe anytime, for any reason.') }}</li>
+              <li>{{ _('We will not share, sell or use your email for any other purposes.') }}</li>
+            </ul>
+          </aside>
+        {% else %}
+          <aside class="mobile-download">
+            <h1 class="headline">{{ _('Let’s do this!') }}</h1>
+            <p class="tagline">{{ _('Sync up with Firefox on mobile:') }}</p>
+            <ul>
+              <li>
+                {{ google_play_button(extra_data_attributes={'download-location': 'other'}) }}
+              </li>
+              <li>
+                <a href="{{ firefox_ios_url('mozorg-scene_2-appstore-button') }}" data-link-type="download" data-download-os="iOS" data-download-location="other">
+                  <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+                </a>
+              </li>
+            </ul>
+          </aside>
+        {% endif %}
+      {% endblock %}
     </div>
   </div>
 </main>

@@ -787,6 +787,68 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/features/index.de-c.html', ANY)
 
+    # pre-download test - issue 6935
+
+    def test_pre_download_scene_1_a(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=pre-dl&v=a')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/newsletter/scene1-a.html', ANY)
+
+    def test_pre_download_scene_1_b(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=pre-dl&v=b')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/newsletter/scene1-b.html', ANY)
+
+    def test_pre_download_scene_1_c(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=pre-dl&v=c')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/newsletter/scene1-c.html', ANY)
+
+    def test_pre_download_scene_1_d(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=pre-dl&v=d')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/newsletter/scene1-d.html', ANY)
+
+    def test_pre_download_scene_1_e(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=pre-dl&v=e')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/newsletter/scene1-e.html', ANY)
+
+    def test_pre_download_scene_2_a(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=pre-dl&v=a')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/newsletter/scene2-a.html', ANY)
+
+    def test_pre_download_scene_2_b(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=pre-dl&v=b')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/newsletter/scene2-b.html', ANY)
+
+    def test_pre_download_scene_2_c(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=pre-dl&v=c')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/newsletter/scene2-c.html', ANY)
+
+    def test_pre_download_scene_2_d(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=pre-dl&v=d')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/newsletter/scene2-d.html', ANY)
+
+    def test_pre_download_scene_2_e(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=pre-dl&v=e')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/newsletter/scene2-e.html', ANY)
+
 
 class TestFirefoxNewNoIndex(TestCase):
     def test_scene_1_noindex(self):

@@ -1,0 +1,10 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../../pebbles/includes/lib';
+
+.modal .pre-download-newsletter .form-details {
+    /* we're already showing the privacy link in page, so hide the default blurb that is shown via JS. */
+    display: none !important; /* stylelint-disable-line declaration-no-important */
+}

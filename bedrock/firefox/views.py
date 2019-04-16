@@ -543,12 +543,17 @@ def download_thanks(request):
     experience = request.GET.get('xv', None)
     locale = l10n_utils.get_locale(request)
     variant = request.GET.get('v', None)
+    signup = request.GET.get('s', None)
     newsletter = request.GET.get('n', None)
     show_newsletter = locale in ['en-US', 'en-GB', 'en-CA', 'en-ZA', 'es-ES', 'es-AR', 'es-CL', 'es-MX', 'pt-BR', 'fr', 'ru', 'id', 'de', 'pl']
 
     # ensure variant matches pre-defined value
-    if variant not in []:  # place expected ?v= values in this list
+    if variant not in ['a', 'b', 'c', 'd', 'e']:  # place expected ?v= values in this list
         variant = None
+
+    # did someone sign up for the newsletter on scene 1?
+    if signup != 't':
+        signup = None
 
     # check to see if a URL explicitly asks to hide the newsletter
     if newsletter == 'f':
@@ -572,12 +577,17 @@ def download_thanks(request):
     elif locale == 'en-US':
         if experience == 'betterbrowser':
             template = 'firefox/campaign/better-browser/scene2.html'
+        elif experience == 'pre-dl':
+            if variant in ['a', 'b', 'c', 'd', 'e']:
+                template = 'firefox/new/newsletter/scene2-{}.html'.format(variant)
+            else:
+                template = 'firefox/new/scene2.html'
         else:
             template = 'firefox/new/scene2.html'
     else:
         template = 'firefox/new/scene2.html'
 
-    return l10n_utils.render(request, template, {'show_newsletter': show_newsletter})
+    return l10n_utils.render(request, template, {'show_newsletter': show_newsletter, 'signup': signup})
 
 
 def new(request):
@@ -595,7 +605,7 @@ def new(request):
 
     # ensure variant matches pre-defined value
 
-    if variant not in ['a', 'b', 'c', 'd', 'e', 'f']:  # place expected ?v= values in this list
+    if variant not in ['a', 'b', 'c', 'd', 'e']:  # place expected ?v= values in this list
         variant = None
 
     if scene == '2':
@@ -638,6 +648,11 @@ def new(request):
                 template = 'firefox/campaign/compare/scene1-safari.html'
             elif experience == 'edge':
                 template = 'firefox/campaign/compare/scene1-edge.html'
+            elif experience == 'pre-dl':
+                if variant in ['a', 'b', 'c', 'd', 'e']:
+                    template = 'firefox/new/newsletter/scene1-{}.html'.format(variant)
+                else:
+                    template = 'firefox/new/scene1.html'
             else:
                 template = 'firefox/new/scene1.html'
         else:
