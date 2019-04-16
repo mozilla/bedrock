@@ -6,7 +6,7 @@
 from builtins import next
 import codecs
 from os import path
-from io import StringIO
+from io import StringIO, IOBase
 from textwrap import dedent
 
 from django.conf import settings
@@ -240,7 +240,7 @@ class TestL10nCheck(TestCase):
         # cause the template to be read and parsed before mocking open
         template.blocks
         codecs_open = 'lib.l10n_utils.management.commands.l10n_check.codecs.open'
-        open_mock = MagicMock(spec=file)
+        open_mock = MagicMock(spec=IOBase)
         with patch(codecs_open, open_mock):
             template.update('zh-TW')
             file_handle = open_mock.return_value.__enter__.return_value
@@ -258,7 +258,7 @@ class TestL10nCheck(TestCase):
         # cause the template to be read and parsed before mocking open
         template.blocks
         codecs_open = 'lib.l10n_utils.management.commands.l10n_check.codecs.open'
-        open_mock = MagicMock(spec=file)
+        open_mock = MagicMock(spec=IOBase)
         open_buffer = StringIO()
         # for writing the new file
         open_mock.return_value.__enter__.return_value = open_buffer
@@ -293,7 +293,7 @@ class TestL10nCheck(TestCase):
         # cause the template to be read and parsed before mocking open
         template.blocks
         codecs_open = 'lib.l10n_utils.management.commands.l10n_check.codecs.open'
-        open_mock = MagicMock(spec=file)
+        open_mock = MagicMock(spec=IOBase)
         with patch(codecs_open, open_mock):
             template.copy('zh-TW')
             file_handle = open_mock.return_value.__enter__.return_value
@@ -310,7 +310,7 @@ class TestL10nCheck(TestCase):
         # cause the template to be read and parsed before mocking open
         template.blocks
         codecs_open = 'lib.l10n_utils.management.commands.l10n_check.codecs.open'
-        open_mock = MagicMock(spec=file)
+        open_mock = MagicMock(spec=IOBase)
         open_buffer = StringIO()
         open_mock.return_value.__enter__.return_value = open_buffer
         with patch(codecs_open, open_mock):
