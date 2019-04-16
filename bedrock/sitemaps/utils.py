@@ -174,7 +174,7 @@ def output_json(urls):
     output_file = settings.ROOT_PATH.joinpath('root_files', 'sitemap.json')
 
     # Output the data as a JSON file for convenience
-    with output_file.open('wb') as json_file:
+    with output_file.open('w') as json_file:
         json.dump(urls, json_file)
 
 
