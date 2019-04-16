@@ -6,7 +6,6 @@ from django.test.client import RequestFactory
 from django_jinja.backend import Jinja2
 from pyquery import PyQuery as pq
 
-from product_details import product_details
 from bedrock.mozorg.tests import TestCase
 
 jinja_env = Jinja2.get_default()
@@ -20,6 +19,7 @@ def render(s, context=None):
 class TestDownloadButtons(TestCase):
 
     def latest_version(self):
+        from product_details import product_details
         return product_details.firefox_versions['LATEST_FIREFOX_VERSION']
 
     def check_desktop_links(self, links):
@@ -289,6 +289,7 @@ class TestDownloadButtons(TestCase):
 class TestDownloadList(TestCase):
 
     def latest_version(self):
+        from product_details import product_details
         return product_details.firefox_versions['LATEST_FIREFOX_VERSION']
 
     def check_desktop_links(self, links):

@@ -15,7 +15,6 @@ from django.test.utils import override_settings
 from django_jinja.backend import Jinja2
 from mock import patch
 from pathlib2 import Path
-from product_details import product_details
 from pyquery import PyQuery as pq
 
 from bedrock.mozorg.tests import TestCase
@@ -451,6 +450,7 @@ class TestTranslationList(TestCase):
         The context of each view should have the 'links' dictionary which
         contains the canonical and alternate URLs of the page.
         """
+        from product_details import product_details
         request = HttpRequest()
         request.path = '/' + lang + '/' + view_name + '/'
         request.locale = lang

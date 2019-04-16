@@ -20,7 +20,6 @@ from bedrock.releasenotes.models import ProductRelease
 
 TESTS_PATH = Path(__file__).parent
 DATA_PATH = str(TESTS_PATH.joinpath('data'))
-firefox_desktop = FirefoxDesktop(json_dir=DATA_PATH)
 RELEASES_PATH = str(TESTS_PATH)
 
 
@@ -257,27 +256,28 @@ class TestReleaseNotesIndex(TestCase):
         self.pd_cache.clear()
 
     @patch('bedrock.releasenotes.views.l10n_utils.render')
-    @patch('bedrock.releasenotes.views.firefox_desktop', firefox_desktop)
     def test_relnotes_index_firefox(self, render_mock):
-        render_mock().render.return_value = HttpResponse('')
-        with self.activate('en-US'):
-            self.client.get(reverse('firefox.releases.index'))
-        releases = render_mock.call_args[0][2]['releases']
-        assert len(releases) == len(firefox_desktop.firefox_history_major_releases)
-        assert releases[0][0] == 36.0
-        assert releases[0][1]['major'] == '36.0'
-        assert releases[0][1]['minor'] == []
-        assert releases[3][0] == 33.1
-        assert releases[3][1]['major'] == '33.1'
-        assert releases[3][1]['minor'] == ['33.1.1']
-        assert releases[4][0] == 33.0
-        assert releases[4][1]['major'] == '33.0'
-        assert releases[4][1]['minor'] == ['33.0.1', '33.0.2', '33.0.3']
-        assert releases[6][0] == 31.0
-        assert releases[6][1]['major'] == '31.0'
-        assert (
-            releases[6][1]['minor'] ==
-            ['31.1.0', '31.1.1', '31.2.0', '31.3.0', '31.4.0', '31.5.0'])
+        firefox_desktop = FirefoxDesktop(json_dir=DATA_PATH)
+        with patch('bedrock.releasenotes.views.firefox_desktop', firefox_desktop):
+            render_mock().render.return_value = HttpResponse('')
+            with self.activate('en-US'):
+                self.client.get(reverse('firefox.releases.index'))
+            releases = render_mock.call_args[0][2]['releases']
+            assert len(releases) == len(firefox_desktop.firefox_history_major_releases)
+            assert releases[0][0] == 36.0
+            assert releases[0][1]['major'] == '36.0'
+            assert releases[0][1]['minor'] == []
+            assert releases[3][0] == 33.1
+            assert releases[3][1]['major'] == '33.1'
+            assert releases[3][1]['minor'] == ['33.1.1']
+            assert releases[4][0] == 33.0
+            assert releases[4][1]['major'] == '33.0'
+            assert releases[4][1]['minor'] == ['33.0.1', '33.0.2', '33.0.3']
+            assert releases[6][0] == 31.0
+            assert releases[6][1]['major'] == '31.0'
+            assert (
+                releases[6][1]['minor'] ==
+                ['31.1.0', '31.1.1', '31.2.0', '31.3.0', '31.4.0', '31.5.0'])
 
 
 class TestNotesRedirects(TestCase):

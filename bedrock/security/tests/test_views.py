@@ -3,7 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from mock import patch
-from product_details import product_details
 from product_details.version_compare import Version
 
 from bedrock.mozorg.tests import TestCase
@@ -11,23 +10,27 @@ from bedrock.security.models import Product
 from bedrock.security.views import ProductView, ProductVersionView, product_is_obsolete
 
 
-@patch.object(product_details, 'firefox_versions', {'LATEST_FIREFOX_VERSION': '33.0',
-                                                    'FIREFOX_ESR': '31.2.0'})
-@patch.object(product_details, 'thunderbird_versions', {'LATEST_THUNDERBIRD_VERSION': '31.2.0'})
 def test_product_is_obsolete():
-    assert product_is_obsolete('firefox', '3.6')
-    assert product_is_obsolete('firefox', '32')
-    assert product_is_obsolete('firefox-esr', '17.0')
-    assert product_is_obsolete('thunderbird', '30')
-    assert product_is_obsolete('seamonkey', '2.0')
-    assert product_is_obsolete('seamonkey', '2.19')
-    assert product_is_obsolete('other-things', '3000')
+    from product_details import product_details
+    with (
+        patch.object(product_details, 'firefox_versions', {
+            'LATEST_FIREFOX_VERSION': '33.0', 'FIREFOX_ESR': '31.2.0'}),
+        patch.object(product_details, 'thunderbird_versions', {
+            'LATEST_THUNDERBIRD_VERSION': '31.2.0'}),
+    ):
+        assert product_is_obsolete('firefox', '3.6')
+        assert product_is_obsolete('firefox', '32')
+        assert product_is_obsolete('firefox-esr', '17.0')
+        assert product_is_obsolete('thunderbird', '30')
+        assert product_is_obsolete('seamonkey', '2.0')
+        assert product_is_obsolete('seamonkey', '2.19')
+        assert product_is_obsolete('other-things', '3000')
 
-    assert not product_is_obsolete('firefox', '33.0.2')
-    assert not product_is_obsolete('firefox', '34.0')
-    assert not product_is_obsolete('firefox-esr', '31.0')
-    assert not product_is_obsolete('thunderbird', '31')
-    assert not product_is_obsolete('seamonkey', '2.30')
+        assert not product_is_obsolete('firefox', '33.0.2')
+        assert not product_is_obsolete('firefox', '34.0')
+        assert not product_is_obsolete('firefox-esr', '31.0')
+        assert not product_is_obsolete('thunderbird', '31')
+        assert not product_is_obsolete('seamonkey', '2.30')
 
 
 class TestViews(TestCase):

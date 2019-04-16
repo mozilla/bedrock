@@ -3,7 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 from urllib.parse import parse_qs, urlparse
 
-from django.conf.urls import RegexURLPattern
+from django.urls import URLPattern
 from django.test import TestCase
 from django.test.client import RequestFactory
 
@@ -129,10 +129,10 @@ class TestRedirectUrlPattern(TestCase):
 
     def test_name(self):
         """
-        Should return a RegexURLPattern with a matching name attribute
+        Should return a URLPattern with a matching name attribute
         """
         url_pattern = redirect(r'^the/dude$', 'abides', name='Lebowski')
-        assert isinstance(url_pattern, RegexURLPattern)
+        assert isinstance(url_pattern, URLPattern)
         assert url_pattern.name == 'Lebowski'
 
     def test_no_query(self):
