@@ -1,4 +1,4 @@
-# These settings will always be overriding for all test runs
+from bedrock.settings import *  # noqa
 
 # this bypasses bcrypt to speed up test fixtures
 PASSWORD_HASHERS = (
