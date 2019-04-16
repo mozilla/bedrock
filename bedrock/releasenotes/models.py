@@ -182,7 +182,7 @@ class ProductRelease(models.Model):
 
     @cached_property
     def major_version_int(self):
-        return self.version_obj.major
+        return self.version_obj.major or 0
 
     @cached_property
     def version_obj(self):
