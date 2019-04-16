@@ -133,9 +133,9 @@ babel==2.3.4 \
 django-jinja==2.4.1 \
     --hash=sha256:8a49d73de616a12075eee14c6d3bbab936261a463457d40348d8b8e2995cfbed \
     --hash=sha256:ceaa0eeebc4d91a5800967e50f4f087f0b6457503e3c2af85dc199bed8732a9a
-django-jinja-markdown==1.0 \
-    --hash=sha256:b6ad614bc761b01f073833d4367547990e9c9898152e9b4b4b43b0ef7b9b95bc \
-    --hash=sha256:31a49dcfdbff597caba5de093b5ec7f7320170e08fc0b1ef638c99caedd6c5f3
+django-jinja-markdown==1.0.1 \
+    --hash=sha256:233dcde5d6895416f5613e4ca030e88f18a163e4b676e7aa815d191754f53085 \
+    --hash=sha256:d41db694bbf3085b026df227428427b859478a2846b55088429e3ccc7115c0c5
 Markdown==2.6.6 \
     --hash=sha256:9a292bb40d6d29abac8024887bcfc1159d7a32dc1d6f1f6e8d6d8e293666c504 \
     --hash=sha256:022239550fb4a84bcc3b3b42dff9a41efc56d773ef17c4f28016dd8f265c82d0

@@ -60,9 +60,12 @@ def load_legal_doc(doc_name, locale):
 
     try:
         # Parse the Markdown file
-        md.markdownFromFile(input=source_file, output=output,
-                            extensions=['attr_list', 'headerid',
-                                        OutlineExtension((('wrapper_cls', ''),))])
+        md.markdownFromFile(
+            input=source_file, output=output, extensions=[
+                'markdown.extensions.attr_list',
+                'markdown.extensions.headerid',
+                OutlineExtension((('wrapper_cls', ''),))
+            ])
         content = output.getvalue().decode('utf8')
     except IOError:
         content = None

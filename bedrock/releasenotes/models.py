@@ -24,7 +24,11 @@ from bedrock.releasenotes.utils import memoize
 LONG_RN_CACHE_TIMEOUT = 7200  # 2 hours
 cache = caches['release-notes']
 markdowner = markdown.Markdown(extensions=[
-    'tables', 'codehilite', 'fenced_code', 'toc', 'nl2br'
+    'markdown.extensions.tables',
+    'markdown.extensions.codehilite',
+    'markdown.extensions.fenced_code',
+    'markdown.extensions.toc',
+    'markdown.extensions.nl2br',
 ])
 
 
