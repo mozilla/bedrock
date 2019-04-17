@@ -1283,7 +1283,7 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
 }
 
 if DEV:
-    content_cards_default_branch = 'master-processed'
+    content_cards_default_branch = 'dev-processed'
 else:
     content_cards_default_branch = 'prod-processed'
 
