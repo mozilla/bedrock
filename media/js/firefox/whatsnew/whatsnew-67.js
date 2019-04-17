@@ -41,10 +41,8 @@
     }
 
     /*
-    * Sticky CTA & bottom CTA
+    * Sticky CTA
     */
-
-    var bottomSection = document.getElementById('bottom-signup');
 
     // init dismiss button
     function initStickyCTA() {
@@ -54,8 +52,8 @@
         for (var i = 0; i < dismissButtons.length; i++) {
             dismissButtons[i].addEventListener('click', function(){
                 this.parentNode.removeChild(this);
-                var parent = document.getElementById(this.dataset.parent);
-                bottomSection.appendChild(parent);
+                var parent = document.getElementById('sticky-cta');
+                parent.classList.add('is-not-sticky');
             });
         }
     }

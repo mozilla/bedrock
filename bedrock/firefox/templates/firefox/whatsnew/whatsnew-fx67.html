@@ -1,7 +1,7 @@
 {# License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import hero, call_out_compact with context %}
+{% from "macros-protocol.html" import hero, call_out_compact, feature_card with context %}
 
 {% from "macros.html" import fxa_email_form, fxa_link_fragment, google_play_button with context %}
 
@@ -29,118 +29,128 @@
 {% block content %}
 
 <main class="mzp-t-firefox">
-  <header class="c-page-header">
-    <div class="mzp-l-content c-page-header-inner">
-      {{ high_res_img('logos/firefox/logo-quantum-wordmark-large.png', {'alt': 'Firefox', 'width': '147', 'height': '55', 'class': 'c-page-header-logo-fx'}) }}
-      <h1 class="c-page-header-up-to-date">{{ _('Congrats! You’re using the latest version of Firefox.') }}</h1>
-      <img src="{{ static('img/logos/mozilla/wordmark-dark.svg') }}" alt="Mozilla" width="112" height="32" class="c-page-header-logo-moz">
+  <header class="mzp-l-content c-page-header">
+    <div class="c-page-header-inner">
+      {{ high_res_img('firefox/whatsnew_67/logo.png', {'alt': 'Firefox', 'width': '147', 'height': '55', 'class': 'c-page-header-logo-fx'}) }}
+      <h1 class="c-page-header-up-to-date"><span>{{ _('Congrats! You’re using the latest version of Firefox.') }}</span></h1>
     </div>
   </header>
 
-  <section class="c-sticky-signup fxa-form-cta" id="fxa-sticky-form">
-    <div class="mzp-l-content">
-      <div class="c-sticky-signup-container">
-        <div class="c-sticky-signup-content">
-          <h2 class="c-sticky-signup-title">{{ _('Get a Firefox Account and all the benefits it unlocks. ') }}</h2>
-          <button type="button" class="sticky-dismiss" data-parent="fxa-sticky-form">{{ _('Close') }}</button>
-        </div>
-        {{ fxa_email_form(
-            entrypoint='mozilla.org-whatsnew67',
-            button_class='mzp-c-button',
-            utm_source='whatsnew',
-            utm_params={'campaign': 'fxa-embedded-form', 'content': 'whatsnew', 'medium': 'referral'})
-        }}
-      </div>
-    </div>
-  </section>
+  <div class="mzp-l-content">
+    {# L10n: "More power to you" is an American English idiom wishing someone success in their endeavors, and here is also a play on words saying Firefox gives users more power and control over their web experience. A more literal alternative would be "You have more power with every update" #}
+    <h2 class="c-page-title">{{ _('More power to you with every update') }}</h2>
+    <!--
+    {% set content_blocking_image='firefox/whatsnew_67/update.svg' %}
+    {% call hero(
+      heading_level=3,
+      title=_('New to your browser'),
+      desc=_('Now you have the power to block video ads that autoplay when you open articles and links. Plus, Firefox has upped your protection against ad trackers.'),
+      class='mzp-has-image mzp-l-reverse t-wn67',
+      image_url=content_blocking_image,
+      include_highres_image=false,
+      include_cta=False
+    ) %}
+    {% endcall %}
+    -->
 
-  {% if show_newsletter %}
-  <section class="c-sticky-signup newsletter-form-cta" id="newsletter-sticky-form">
-    <div class="mzp-l-content">
-      <div class="c-sticky-signup-container">
-        <div class="c-sticky-signup-content">
-          <h2 class="c-sticky-signup-title">{{ _('Get the latest news from Mozilla and Firefox right in your inbox.') }}</h2>
-          <button type="button" class="sticky-dismiss" data-parent="newsletter-sticky-form">{{ _('Close') }}</button>
-        </div>
-        <div class="mzp-c-newsletter">
-          {{ email_newsletter_form(
-            protocol_component=True,
-            include_title=False,
-            spinner_color='#fff',
-            button_class='mzp-c-button')
-          }}
-        </div>
-      </div>
-    </div>
-  </section>
-  {% endif %}
-
-  {# L10n: "More power to you" is an American English idiom wishing someone success in their endeavors, and here is also a play on words saying Firefox gives users more power and control over their web experience. A more literal alternative would be "You have more power with every update" #}
-  <h1 class="c-page-title mzp-l-content">{{ _('More power to you with every update') }}</h1>
-
-  {% set content_blocking_image='firefox/whatsnew_64/hero.png' if DIR == 'ltr' else 'firefox/whatsnew_64/hero-rtl.png' %}
-  {% call hero(
-    title=_('New to your browser'),
-    desc=_('Now you have the power to block video ads that autoplay when you open articles and links. Plus, Firefox has upped your protection against ad trackers.'),
-    class='mzp-has-image mzp-l-reverse t-wn67',
-    image_url=content_blocking_image,
-    include_highres_image=true,
-    include_cta=True
-  ) %}
-  {% endcall %}
+    {% call feature_card(
+      title=_('New to your browser'),
+      image_url='firefox/whatsnew_67/update.svg',
+      include_highres_image=False,
+      aspect_ratio='mzp-l-card-feature-right-66',
+      class='wn67-intro'
+    ) %}
+    <p>{{ _('Now you have the power to block video ads that autoplay when you open articles and links. Plus, Firefox has upped your protection against ad trackers.') }}</p>
+    {% endcall %}
+  </div>
 
   <h2 class="c-section-title mzp-l-content">{{ _('Now with your Firefox Account') }}</h2>
 
-  <div class="mzp-l-content">
-    <div class="wn67-benefit wn67-lockbox">
-      {{ high_res_img('firefox/whatsnew_64/fxa-lockbox.png', {'alt': '', 'width': '590', 'height': '590'}) }}
-      {# L10n: "Lockbox" is a proper name; it should be capitalized and should not be translated. #}
-      <h3>{{ _('Take your passwords everywhere with Lockbox') }}</h3>
-      <p>{{ _('Securely access passwords you save to your Firefox Account from any device, everywhere you go – now available for both Android and iOS.') }}</p>
-      <p><button class="mzp-c-button wn67-benefit-link" data-app="lockbox">{{ _('Get the Lockbox App') }}</button></p>
-    </div>
+  <div class="mzp-l-content c-section-benifits">
 
-    <div class="wn67-benefit wn67-pocket">
-      {{ high_res_img('firefox/whatsnew_64/fxa-pocket.png', {'alt': '', 'width': '590', 'height': '590'}) }}
-      <h3>{{ _('Put quality content in your Pocket') }}</h3>
-      <p>{{ _('Read the articles you care about anytime, anywhere (even offline). And try Pocket’s listen feature so you can absorb great content on the go.') }}</p>
-      <p><button class="mzp-c-button wn67-benefit-link" data-app="pocket">{{ _('Get the Pocket App') }}</button></p>
-    </div>
-
-    <div class="wn67-benefit wn67-monitor">
-      {# TODO: New image for Monitor. #}
-      {{ high_res_img('firefox/whatsnew_64/fxa-sync.png', {'alt': '', 'width': '590', 'height': '590'}) }}
       {# L10n: "Monitor" is a proper name; it should be capitalized and should not be translated. #}
-      <h3>{{ _('Keep an eye on data breaches with Monitor') }}</h3>
+      {% call feature_card(
+        title=_('Keep an eye on data breaches with Monitor'),
+        ga_title='Check Out Monitor',
+        link_cta=_('Check Out Monitor'),
+        link_url='https://monitor.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp67&utm_content=try-send&entrypoint=mozilla.org-whatsnew67',
+        image_url='firefox/whatsnew_67/monitor.svg',
+        include_highres_image=False,
+        aspect_ratio='mzp-l-card-feature-left-66',
+        class='wn67-lockbox'
+      ) %}
       <p>{{ _('Find out if your information has been compromised by a data breach – and now you can sign up for alerts about future breaches with a Firefox Account.') }}</p>
-      <p><a class="mzp-c-cta-link" data-app="monitor" href="
-        https://monitor.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp67&utm_content=try-send&entrypoint=mozilla.org-whatsnew67">{{ _('Check Out Monitor') }}</a></p>
-    </div>
+      {% endcall %}
 
-    <div class="wn67-benefit wn67-send">
-      {{ high_res_img('firefox/whatsnew_66/fxa-send.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      {# L10n: "Lockbox" is a proper name; it should be capitalized and should not be translated. #}
+      {% call feature_card(
+        title=_('Take your passwords everywhere with Lockbox'),
+        image_url='firefox/whatsnew_67/lockbox.svg',
+        include_highres_image=False,
+        aspect_ratio='mzp-l-card-feature-right-66',
+        class='wn67-lockbox'
+      ) %}
+        <p>{{ _('Securely access passwords you save to your Firefox Account from any device, everywhere you go – now available for both Android and iOS.') }}</p>
+        <p><a class="mzp-c-cta-link wn67-benefit-link" data-app="lockbox" href="https://lockbox.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp67&utm_content=get-lockbox&entrypoint=mozilla.org-whatsnew67" data-link-name="Get the Lockbox App" data-link-type="link">{{ _('Get the Lockbox App') }}</a></p>
+      {% endcall %}
+
+      {% call feature_card(
+        title=_('Put quality content in your Pocket'),
+        image_url='firefox/whatsnew_67/pocket.svg',
+        include_highres_image=False,
+        aspect_ratio='mzp-l-card-feature-left-66',
+        class='wn67-lockbox'
+      ) %}
+        <p>{{ _('Read the articles you care about anytime, anywhere (even offline). And try Pocket’s listen feature so you can absorb great content on the go.') }}</p>
+        <p><a class="mzp-c-cta-link wn67-benefit-link" data-app="pocket" href="https://getpocket.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp67&utm_content=get-pocket&entrypoint=mozilla.org-whatsnew67" data-link-name="Get the Pocket App" data-link-type="link">{{ _('Get the Pocket App') }}</a></p>
+      {% endcall %}
+
       {# L10n: "Send" is a proper name; it should be capitalized and should not be translated. #}
-      <h3>{{ _('Share large files securely with Send') }}</h3>
+      {% call feature_card(
+        title=_('Share large files securely with Send'),
+        ga_title='Try Firefox Send',
+        image_url='firefox/whatsnew_67/send.svg',
+        include_highres_image=False,
+        aspect_ratio='mzp-l-card-feature-right-66',
+        class='wn67-lockbox'
+      ) %}
       <p>{{ _('Use an encrypted link to safely share large files – up to 2.5GB with a Firefox Account. And you can set when your link expires, so your info doesn’t live in the cloud forever.') }}</p>
-      <p><a class="mzp-c-cta-link" data-app="send" href="
-        https://send.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp67&utm_content=try-send&entrypoint=mozilla.org-whatsnew67">{{_('Try Firefox Send')}}</a></p>
-    </div>
+      <p><a class="mzp-c-cta-link" href="https://send.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp67&utm_content=try-send&entrypoint=mozilla.org-whatsnew67" data-link-name="Try Firefox Send" data-link-type="link">{{ _('Try Firefox Send') }}</a></p>
+      {% endcall %}
   </div>
 
-  <section id="bottom-signup"></section>
-
-  <aside id="wn67-modal" class="mzp-u-modal-content">
-    <div class="mobile-notes">
-      <div class="qr-notes">
-          <img class="mobile-qr" src="{{ static('img/firefox/whatsnew_64/notes-qr.png') }}" height="300" width="300">
-          <ul class="mobile-download-buttons mobile-notes">
-            <li class="android">
-              {{ google_play_button(href='https://play.google.com/store/apps/details?id=org.mozilla.testpilot.notes') }}
-            </li>
-          </ul>
+  <section id="sticky-cta" class="c-sticky-signup">
+    <div class="c-sticky-signup-container fxa-form-cta" id="fxa-sticky-form">
+      <div class="c-sticky-signup-content">
+        <h2 class="c-sticky-signup-title">{{ _('Get a Firefox Account and all the benefits it unlocks. ') }}</h2>
+        <button type="button" class="sticky-dismiss" data-parent="fxa-sticky-form">{{ _('Close') }}</button>
+      </div>
+      {{ fxa_email_form(
+          entrypoint='mozilla.org-whatsnew67',
+          button_class='mzp-c-button mzp-t-product mzp-t-small',
+          utm_source='whatsnew',
+          utm_params={'campaign': 'fxa-embedded-form', 'content': 'whatsnew', 'medium': 'referral'})
+      }}
+    </div>
+    {% if show_newsletter %}
+    <div class="c-sticky-signup-container newsletter-form-cta" id="newsletter-sticky-form" >
+      <div class="c-sticky-signup-content">
+        <h2 class="c-sticky-signup-title">{{ _('Get the latest news from Mozilla and Firefox right in your inbox.') }}</h2>
+        <button type="button" class="sticky-dismiss" data-parent="newsletter-sticky-form">{{ _('Close') }}</button>
+      </div>
+      <div class="mzp-c-newsletter">
+        {{ email_newsletter_form(
+          protocol_component=True,
+          include_title=False,
+          spinner_color='#fff',
+          button_class='mzp-c-button mzp-t-product mzp-t-small')
+        }}
       </div>
     </div>
+    {% endif %}
+  </section>
 
+  <aside id="wn67-modal" class="mzp-u-modal-content">
     <div class="mobile-lockbox">
       <img class="mobile-qr" src="{{ static('img/firefox/whatsnew_64/lockbox-qr.png') }}" height="300" width="300">
       <ul class="mobile-download-buttons mobile-lockbox">

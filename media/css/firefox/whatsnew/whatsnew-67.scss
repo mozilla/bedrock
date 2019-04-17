@@ -15,107 +15,203 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/components/state-fxa';
 
 
-//* -------------------------------------------------------------------------- */
-// Intro section
-
-.mzp-c-hero {
-    background-color: $color-gray-20;
-
-    @media #{$mq-xl} {
-        padding: $layout-xl;
-    }
-}
-
-.c-page-title {
-    @include text-display-md;
-    text-align: center;
-}
-
-.c-section-title {
-    @include text-display-sm;
-    text-align: center;
+main {
+    color: $color-off-black;
 }
 
 //* -------------------------------------------------------------------------- */
 // Up-to-date page header
 
-.c-page-header {
-    background-color: $color-white;
-    border-bottom: 1px solid rgba(0, 0, 0, .05);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
-    position: relative;
-    text-align: center;
+.c-page-header-up-to-date {
+    @include text-display-xxs;
+    display: none;
 
-    .c-page-header-up-to-date {
-        @include text-display-xs;
-        display: none;
+    span {
+        background-color: #6EE7C4;
+        border-radius: 2px;
+        display: inline-block;
         font-weight: normal;
-        margin: 1em 0;
-        padding: 0 $spacing-md;
-        width: calc(100% - 45px);
-
-        &:before {
-            background: url('/media/img/firefox/whatsnew/icon-green-check.svg') no-repeat;
-            @include bidi((
-                (background-position, center left, center right),
-                (margin, 0 10px 0 0, 0 0 0 10px),
-            ));
-            background-size: 25px 25px;
-            content: '';
-            display: inline-block;
-            height: 25px;
-            vertical-align: middle;
-            width: 25px;
-        }
+        padding: $spacing-sm $spacing-md;
+        max-width: $content-sm;
     }
 
-    .c-page-header-logo-moz {
-        display: none;
-    }
-
-    &.is-up-to-date .c-page-header-up-to-date {
+    .is-up-to-date & {
         display: block;
     }
+}
 
-    @media #{$mq-md} {
-        .c-page-header-logo-fx {
-            @include bidi(((float, left, right),));
+@media #{$mq-md} {
+    .c-page-header-inner {
+        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr max-content 1fr;
+    }
+
+    .c-page-header-up-to-date {
+        margin: 0;
+    }
+}
+
+
+
+//* -------------------------------------------------------------------------- */
+// Intro section
+
+.c-page-title {
+    @include text-display-xl;
+    max-width: $content-md;
+    margin: 0 auto $layout-sm auto;
+    text-align: center;
+}
+
+.mzp-c-card-feature.mzp-l-card-feature-right-66.wn67-intro {
+    margin-bottom: $layout-md;
+    max-width: $content-lg;
+
+    .mzp-c-card-feature-title {
+        @include visually-hidden;
+    }
+
+    .mzp-c-card-feature-desc {
+        @include font-size(24px);
+    }
+}
+
+@media #{$mq-md} {
+    .c-page-title {
+        margin: $layout-sm auto $layout-xl;
+    }
+
+    .mzp-c-card-feature.mzp-l-card-feature-right-66.wn67-intro {
+        .mzp-c-card-feature-media-wrapper {
+            width: 339px;
         }
-
-        .c-page-header-logo-moz {
-            @include bidi(((float, right, left),));
-            display: block;
-            margin: $spacing-md 0;
-        }
-
-        &.is-up-to-date .c-page-header-inner {
-            align-items: center;
-            display: flex;
-            justify-content: space-between;
-
-            .c-page-header-logo-fx,
-            .c-page-header-logo-moz {
-                float: none;
-                margin: 0;
-            }
+        .mzp-c-card-feature-desc {
+            @include font-size(30px);
         }
     }
 }
 
-// Sticky signup CTA component.
+//* -------------------------------------------------------------------------- */
+// Benefits section
+
+.c-section-title {
+    @include visually-hidden;
+}
+
+.c-section-benifits{
+    position: relative;
+}
+
+.mzp-c-card-feature {
+    margin-bottom: $layout-md;
+
+    .mzp-c-card-feature-media img {
+        max-width: 300px;
+        margin: 0 auto;
+
+        [dir='rtl'] & {
+            transform: scaleX(-1);
+        }
+    }
+
+    @media #{$mq-md} {
+        margin-bottom: $layout-xl;
+
+        .mzp-c-card-feature-title {
+            @include font-size(32px);
+        }
+
+        .mzp-c-card-feature-media img {
+            max-width: 100%;
+        }
+
+        .mzp-c-card-feature-media-wrapper {
+            align-self: center;
+        }
+
+        &.mzp-l-card-feature-left-66,
+        &.mzp-l-card-feature-right-66 {
+            @include grid-column-gap($layout-md);
+            display: grid;
+
+            .mzp-c-card-feature-content {
+                @include flexbox;
+                align-items: center;
+            }
+        }
+
+        &.mzp-l-card-feature-left-66 {
+            .mzp-c-card-feature-content {
+                grid-column: 1;
+                grid-row: 1;
+                width: auto;
+            }
+
+            .mzp-c-card-feature-media-wrapper {
+                grid-column: 2;
+                grid-row: 1;
+                width: auto;
+            }
+        }
+
+        &.mzp-l-card-feature-left-66 {
+            grid-template-columns: 2fr 1fr;
+        }
+
+        &.mzp-l-card-feature-right-66 {
+            .mzp-c-card-feature-content {
+                grid-column: 2;
+                grid-row: 1;
+                width: auto;
+            }
+
+            .mzp-c-card-feature-media-wrapper {
+                grid-column: 1;
+                grid-row: 1;
+                width: auto;
+            }
+        }
+
+        &.mzp-l-card-feature-right-66 {
+            grid-template-columns: 1fr 2fr;
+        }
+    }
+
+    @media #{$mq-lg} {
+        &.mzp-l-card-feature-left-66,
+        &.mzp-l-card-feature-right-66 {
+            @include grid-column-gap($layout-lg);
+        }
+    }
+}
+
+
+
+//* -------------------------------------------------------------------------- */
+// Sticky signup CTA
+
 .c-sticky-signup {
-    background: $color-blue-60;
-    color: $color-white;
-    display: none;
-    text-align: center;
+    max-width: $content-lg;
+    margin: 0 auto $layout-lg;
 
     a:link,
     a:visited {
         color: inherit;
     }
 
+    .c-sticky-signup-container {
+        @include clearfix;
+        background: $color-off-black;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        color: $color-white;
+        display: none;
+        padding: $spacing-xl;
+        text-align: center;
+    }
+
     .c-sticky-signup-title {
-        @include text-display-sm;
+        @include font-size(20px);
         margin: 0 auto $spacing-md;
         text-align: left;
     }
@@ -126,11 +222,13 @@ $image-path: '/media/protocol/img';
     }
 
     @media #{$mq-md} {
-        @include clearfix;
-        left: 0;
         position: sticky;
-        top: 0;
+        bottom: $spacing-md;
         z-index: 100;
+
+        &.is-not-sticky {
+            position: relative;
+        }
 
         .c-sticky-signup-container {
             @include grid-column-gap($spacing-lg);
@@ -150,14 +248,65 @@ $image-path: '/media/protocol/img';
     }
 }
 
-//* -------------------------------------------------------------------------- */
-// Firefox Accounts form sticky header
 
-.c-sticky-signup.fxa-form-cta {
+// Dismiss
 
-    // only display FxA form to users who are signed out.
-    .state-fxa-supported-signed-out & {
+.sticky-dismiss {
+    background: transparent;
+    border: 0;
+    bottom: 0;
+    cursor: pointer;
+    display: none;
+    height: 40px;
+    overflow: hidden;
+    padding: 0 0 0 $spacing-xl;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 0;
+
+    &:after {
+        @include text-body-lg;
+        background: transparent url('#{$image-path}/icons/ui/close-white.svg') center center no-repeat;
+        @include background-size(16px 16px);
+        content: '';
         display: block;
+        height: 32px;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 32px;
+    }
+
+    &:hover:after,
+    &:focus:after {
+        @include transition(transform .1s ease-in-out);
+        @include transform(scale(1.1));
+    }
+
+    &:focus:after {
+        outline: 1px dotted $color-white;
+    }
+
+    @media #{$mq-md} {
+        display: block;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Firefox Accounts form
+
+.fxa-form-cta {
+
+    &.c-sticky-signup-container {
+        display: none;
+
+        // only display FxA form to users who are signed out.
+        .state-fxa-supported-signed-out & {
+            display: grid;
+        }
     }
 
     .fxa-email-form-intro {
@@ -173,7 +322,7 @@ $image-path: '/media/protocol/img';
             input[type="email"] {
                 border: none;
                 box-shadow: none;
-                padding: 18px 24px;
+                padding: 12px 16px;
                 width: 100%;
             }
         }
@@ -197,8 +346,13 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-md} {
         .fxa-email-form {
+            display: grid;
+
             .agreement {
                 @include text-body-sm;
+                grid-row-start: 2;
+                margin-top: $spacing-sm;
+                margin-bottom: 0;
             }
         }
 
@@ -212,14 +366,19 @@ $image-path: '/media/protocol/img';
     }
 }
 
+
 //* -------------------------------------------------------------------------- */
-// Firefox newsletter form sticky header
+// Firefox newsletter form
 
-.c-sticky-signup.newsletter-form-cta {
+.newsletter-form-cta {
 
-    // only display FxA form to users who are signed out.
-    .state-fxa-supported-signed-in & {
-        display: block;
+    &.c-sticky-signup-container {
+        display: none;
+
+        // only display FxA form to users who are signed out.
+        .state-fxa-supported-signed-in & {
+            display: grid;
+        }
     }
 
     .mzp-c-newsletter {
@@ -238,7 +397,7 @@ $image-path: '/media/protocol/img';
     }
 
     input[type="email"] {
-        padding: 18px 24px;
+        padding: 12px 18px;
         border: none;
         box-shadow: none;
     }
@@ -292,125 +451,6 @@ $image-path: '/media/protocol/img';
     }
 }
 
-// Dismiss
-
-.sticky-dismiss {
-    background: transparent;
-    border: 0;
-    bottom: 0;
-    cursor: pointer;
-    overflow: hidden;
-    padding: 0 0 0 $spacing-xl;
-    position: absolute;
-    right: 0;
-    top: 5px;
-    width: 0;
-    height: 40px;
-
-    &:after {
-        @include text-body-lg;
-        background: transparent url('#{$image-path}/icons/ui/close-white.svg') center center no-repeat;
-        @include background-size(16px 16px);
-        content: '';
-        display: block;
-        height: 32px;
-        left: 0;
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 32px;
-    }
-
-    &:hover:after,
-    &:focus:after {
-        @include transition(transform .1s ease-in-out);
-        @include transform(scale(1.1));
-    }
-
-    &:focus:after {
-        outline: 1px dotted $color-white;
-    }
-}
-
-//* -------------------------------------------------------------------------- */
-// Intro section
-
-.intro {
-    background-color: $color-gray-10;
-    min-height: 350px;
-    padding-top: $layout-sm;
-
-    @media #{$mq-md} {
-        margin-bottom: $layout-xl;
-        padding-top: $layout-xl;
-
-        .mzp-c-hero-image {
-            bottom: -$spacing-2xl;
-            height: calc(100% + #{$spacing-2xl});
-        }
-    }
-}
-
-//* -------------------------------------------------------------------------- */
-// Benefits section
-
-.wn67-benefit {
-    @include border-box;
-    margin-bottom: $layout-md;
-    text-align: center;
-
-    &:nth-child(odd) {
-        clear: both;
-    }
-
-    @media #{$mq-md} {
-        @include bidi(((float, left, right),));
-        margin-top: $layout-md;
-        padding: 0 $layout-sm;
-        width: 50%;
-    }
-
-    @media #{$mq-lg} {
-        padding: 0 $layout-md;
-    }
-
-    h3 {
-        @include text-display-md;
-        text-align: left;
-    }
-
-    p {
-        text-align: left;
-    }
-
-    img {
-        margin: 0 auto;
-
-        @media #{$mq-sm} {
-            max-width: 320px;
-        }
-
-        @media #{$mq-md} {
-            max-width: 100%;
-        }
-    }
-}
-
-//* -------------------------------------------------------------------------- */
-// callout container
-
-.t-wn67 {
-    &.mzp-c-call-out-compact {
-        background: $color-gray-10;
-    }
-
-    .mzp-c-call-out-cta-container {
-        @media #{$mq-md} {
-            text-align: center;
-        }
-    }
-}
-
 
 /* -------------------------------------------------------------------------- */
 // Modal, custom styles
@@ -458,4 +498,3 @@ $image-path: '/media/protocol/img';
         max-width: 500px;
     }
 }
-
