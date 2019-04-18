@@ -6,7 +6,7 @@ from .base import flatten, url_test
 
 # supported locales
 LOCALES = [
-    'ar', 'ast', 'bg', 'bn-IN', 'ca', 'cs', 'de', 'dsb', 'el', 'en-GB',
+    'ar', 'ast', 'bg', 'ca', 'cs', 'de', 'dsb', 'el', 'en-GB',
     'en-US', 'es-CL', 'es-ES', 'fr', 'fy-NL', 'gd', 'it', 'ja', 'ko', 'nl',
     'pt-BR', 'pt-PT', 'ru', 'son', 'sv-SE', 'ta', 'tr', 'uk', 'zh-CN', 'zh-TW']
 

@@ -83,7 +83,6 @@ APPLE_APPSTORE_COUNTRY_MAP = {
     'en-US': 'us',  # United States
     'uz': 'uz',     # Uzbekistan
     'vi': 'vt',     # Vietnam
-    'en-ZA': 'za',  # South Africa
 }
 
 # Link to Firefox Focus for iOS on the Apple App Store via app.adjust.

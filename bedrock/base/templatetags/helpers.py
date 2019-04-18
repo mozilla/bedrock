@@ -45,7 +45,7 @@ def switch(cxt, name, locales=None):
 
     If the `locales` argument is a list of locales then it will only check the switch in those
     locales, and return False otherwise. The `locales` argument could also contain a "locale group",
-    which is a list of locales for a prefix (e.g. "en" expands to "en-US, en-GB, en-ZA").
+    which is a list of locales for a prefix (e.g. "en" expands to "en-US, en-GB").
     """
     if locales:
         if cxt['LANG'] not in expand_locale_groups(locales):

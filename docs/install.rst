@@ -240,7 +240,7 @@ environment variable ``SWITCH_THE_DUDE``. If the value of that variable is any o
 You can also supply a list of locale codes that will be the only ones for which the switch is active.
 If the page is viewed in any other locale the switch will always return ``False``, even in ``DEV``
 mode. This list can also include a "Locale Group", which is all locales with a common prefix
-(e.g. "en-US, en-GB, en-ZA" or "zh-CN, zh-TW"). You specify these with just the prefix. So if you
+(e.g. "en-US, en-GB" or "zh-CN, zh-TW"). You specify these with just the prefix. So if you
 used ``switch('the-dude', ['en', 'de'])`` in a template, the switch would be active for German and
 any English locale the site supports.
 
