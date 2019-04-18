@@ -113,16 +113,16 @@ if Path(PROD_DETAILS_TEST_DIR).is_dir():
     PROD_DETAILS_DIR = PROD_DETAILS_TEST_DIR
 
 # Accepted locales
-PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'as', 'ast', 'az', 'azz', 'be', 'bg',
-                  'bn-BD', 'bn-IN', 'br', 'bs', 'ca', 'cak', 'cs',
+PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'ast', 'az', 'azz', 'be', 'bg',
+                  'bn', 'br', 'bs', 'ca', 'cak', 'cs',
                   'cy', 'da', 'de', 'dsb', 'el', 'en-CA', 'en-GB', 'en-US',
-                  'en-ZA', 'eo', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'et',
+                  'eo', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'et',
                   'eu', 'fa', 'ff', 'fi', 'fr', 'fy-NL', 'ga-IE', 'gd',
                   'gl', 'gn', 'gu-IN', 'he', 'hi-IN', 'hr', 'hsb',
                   'hu', 'hy-AM', 'ia', 'id', 'is', 'it', 'ja', 'ja-JP-mac',
                   'ka', 'kab', 'kk', 'km', 'kn', 'ko', 'lij', 'lt', 'ltg', 'lv',
-                  'mai', 'mk', 'ml', 'mr', 'ms', 'my', 'nb-NO', 'ne-NP', 'nl',
-                  'nn-NO', 'oc', 'or', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
+                  'mk', 'ml', 'mr', 'ms', 'my', 'nb-NO', 'ne-NP', 'nl',
+                  'nn-NO', 'oc', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
                   'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'son', 'sq',
                   'sr', 'sv-SE', 'ta', 'te', 'th', 'tl', 'tr', 'trs', 'uk', 'ur',
                   'uz', 'vi', 'xh', 'zh-CN', 'zh-TW', 'zu')
@@ -755,6 +755,12 @@ DONATE_PARAMS = {
         'presets': '34,17,8,5',
         'default': '17'
     },
+    'bn': {
+        'currency': 'bdt',
+        'symbol': u'৳',
+        'presets': '1700,840,420,250',
+        'default': '840'
+    },
     'bn-BD': {
         'currency': 'bdt',
         'symbol': u'৳',
@@ -1208,7 +1214,7 @@ from .appstores import (GOOGLE_PLAY_FIREFOX_LINK,  # noqa
                         APPLE_APPSTORE_FIREFOX_FOCUS_LINK, GOOGLE_PLAY_FIREFOX_FOCUS_LINK)
 
 # Locales that should display the 'Send to Device' widget
-SEND_TO_DEVICE_LOCALES = ['de', 'en-GB', 'en-US', 'en-ZA',
+SEND_TO_DEVICE_LOCALES = ['de', 'en-GB', 'en-US',
                           'es-AR', 'es-CL', 'es-ES', 'es-MX',
                           'fr', 'id', 'pl', 'pt-BR', 'ru', 'zh-TW']
 
