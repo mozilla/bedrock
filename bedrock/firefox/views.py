@@ -25,6 +25,7 @@ from lib import l10n_utils
 from lib.l10n_utils.dotlang import lang_file_is_active
 from bedrock.base.urlresolvers import reverse
 from bedrock.base.waffle import switch
+from bedrock.contentcards.models import get_page_content_cards
 from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
 from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.mozorg.util import HttpResponseJSON
@@ -804,3 +805,17 @@ def firefox_accounts(request):
         template_name = 'firefox/accounts.html'
 
     return l10n_utils.render(request, template_name)
+
+
+def election_with_cards(request):
+    locale = l10n_utils.get_locale(request)
+    ctx = {'page_content_cards': get_page_content_cards('election-en', locale)}
+
+    if locale == 'de':
+        template_name = 'firefox/election/index-de.html'
+        ctx['page_content_cards'] = get_page_content_cards('election-de', 'de')
+    else:
+        template_name = 'firefox/election/index.html'
+        ctx['page_content_cards'] = get_page_content_cards('election-en', 'en-US')
+
+    return l10n_utils.render(request, template_name, ctx)
