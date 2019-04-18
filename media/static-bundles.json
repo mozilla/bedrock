@@ -658,6 +658,8 @@
     },
     {
       "files": [
+        "css/base/mozilla-fxa-state.scss",
+        "css/base/mozilla-fxa-form.scss",
         "css/firefox/firstrun/firstrun-quantum.scss"
       ],
       "name": "firefox_firstrun_quantum"
@@ -1487,6 +1489,9 @@
     },
     {
       "files": [
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-fxa-form.js",
         "js/firefox/firstrun/firstrun_quantum.js"
       ],
       "name": "firefox_firstrun_quantum"

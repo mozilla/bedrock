@@ -2,9 +2,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../pebbles/includes/lib';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
 
-/* -------------------------------------------------------------------------- */
+@import '../../../protocol/css/includes/lib';
+
+
+//* -------------------------------------------------------------------------- */
 // Common elements & variables
 
 $mq-medium: 'screen and (min-width: 790px)';
@@ -35,12 +39,9 @@ body {
     background: url("/media/img/firefox/firstrun/fox-tail-header.png") top -200px center no-repeat,
                 linear-gradient(to bottom, #003eaa 40%, #004ec2 60%, #0060df 80%, #0080ff 90%, #00c7ff 100%) top center no-repeat,
                 #003eaa;
-    margin: 0;
-    min-height: 100vh;
-}
-
-* {
     font-family: 'Fira Sans Light', sans-serif;
+    min-height: 100vh;
+    -moz-osx-font-smoothing: unset;
 }
 
 #outer-wrapper {
@@ -53,14 +54,16 @@ body {
     min-height: 100vh;
 }
 
-/* -------------------------------------------------------------------------- */
+
+//* -------------------------------------------------------------------------- */
 // Main page content container
 
 .fxaccounts-container {
-    color: #fff;
-    z-index: 10;
+    @include light-links;
+    color: $color-white;
     margin: auto;
     text-align: center;
+    z-index: 10;
 
     @media #{$mq-medium} {
         align-items: center;
@@ -78,71 +81,41 @@ body {
     }
 }
 
-#fxaccounts-wrapper {
-    padding: 0 10px;
 
-    .button {
-        @include font-size-level6;
-        @include open-sans;
-        background: none;
-        border-radius: 2px;
-        border-style: solid;
-        border-width: 2px;
-        cursor: pointer;
-        display: inline-block;
-        font-weight: bold;
-        padding: .9em 40px;
-        position: relative;
-        text-align: center;
-        text-decoration: none;
-        text-shadow: none;
-        transition: background-color .1s ease-in-out, border-color .1s ease-in-out;
-
-        background-color: transparent;
-        color: $color-button-light;
-        border-color: $color-button-light;
-
-        &:hover,
-        &:focus {
-            background-color: transparentize($color-button-light, .95);
-            border-color: darken($color-button-light, 5%);
-            color: darken($color-button-light, 5%);
-        }
-    }
-}
-
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Main page content header
 
 #main-header {
+    @include light-links;
+    color: $color-white;
+    padding: 20px;
     position: relative;
     text-align: center;
-    padding: 20px;
 
     h1 {
         @include at2x('/media/img/logos/firefox/logo-quantum.png', 90px, 90px);
-        @include font-size(38px);
+        @include text-display-md;
+        font-family: 'Fira Sans Light', sans-serif;
+        font-weight: normal;
         background-position: top center;
         background-repeat: no-repeat;
-        font-weight: normal;
         margin-bottom: 10px;
         padding-top: 110px;
 
         @media #{$mq-medium} {
-            background-position: top left;
-
-            html[dir="rtl"] & {
-                background-position: top right;
-            }
+            @include bidi(((background-position, top left, top right),));
         }
     }
 
     ul {
-        padding-left: 20px;
+        @include bidi((
+            (padding-left, 20px, 0),
+            (padding-right, 0, 20px),
+        ));
     }
 
     .content {
-        @include font-size(19px);
+        @include text-body-lg;
         background: url('/media/img/firefox/firstrun/sync/sync-devices-icons-anim.svg') bottom center no-repeat;
         line-height: 1.5;
         margin: 0 auto 40px;
@@ -150,29 +123,13 @@ body {
         padding-bottom: 210px;
     }
 
-    a {
-        @include font-size(19px);
-        color: #fff;
-        display: block;
-        font-weight: 400;
-    }
-
     @media #{$mq-medium} {
-        text-align: left;
-
-        html[dir="rtl"] & {
-            text-align: right;
-
-            ul {
-                padding-left: 0;
-                padding-right: 20px;
-            }
-        }
+        @include bidi(((text-align, left, right),));
     }
 }
 
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Animations & transitions
 
 .js {
@@ -217,5 +174,50 @@ body {
                 transition-delay: 1.2s;
             }
         }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// FxA form
+
+#fxaccounts-wrapper {
+    @include light-links;
+    color: $color-white;
+
+    .fxa-signin {
+        @include text-body-md;
+        margin-top: $spacing-md;
+        text-align: center;
+    }
+}
+
+.fxa-email-form {
+    color: $color-white;
+    padding: 0 $spacing-md;
+
+    .fxa-email-form-intro {
+        @include text-body-lg;
+    }
+
+    .agreement {
+        @include text-body-xs;
+    }
+
+    label {
+        @include visually-hidden;
+    }
+
+    input[type='email'] {
+        @include border-box;
+        @include text-body-md;
+        border-radius: 2px;
+        padding: ($padding-md - 2px) ($padding-xl - 2px); //2px extra padding removed to compensate for 2px border.
+        width: 100%;
+    }
+
+    .mzp-c-button {
+        width: 100%;
+        border-color: $color-white;
     }
 }
