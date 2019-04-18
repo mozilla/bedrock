@@ -51,6 +51,12 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.state-fxa-not-fx strong.show-fxa-not-fx {
+    display: inline;
+    margin: 0;
+}
+
+
 
 //* -------------------------------------------------------------------------- */
 // FXA Form
@@ -254,6 +260,9 @@ html.android {
         display: inline-block;
     }
 
+    .lockbox-card .mzp-c-button,
+    .pocket-card .mzp-c-button,
+    .notes-card .mzp-c-button,
     #fxa-sign-up-form,
     #fxa-account-button,
     .mzp-c-cta-link {

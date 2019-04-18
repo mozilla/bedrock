@@ -83,7 +83,7 @@
 
     }
 
-    var qrLinks = document.querySelectorAll('.mzp-c-card-feature .mzp-c-cta-link');
+    var qrLinks = document.querySelectorAll('.qr-modal .mzp-c-button');
     var content = document.querySelector('.mzp-u-modal-content');
 
     for (var i = 0; i < qrLinks.length; i++) {
