@@ -62,14 +62,14 @@
 
   {% if l10n_has_tag('firefox_send_20190420') %}
     {% call feature_card(
-      title=_('Take total control of the files you share'),
+      title=_('Share files safely – and privately'),
       image_url='firefox/accounts/fxa-fxsend.png',
       include_highres_image=True,
       aspect_ratio='mzp-has-aspect-1-1',
       class='mzp-l-card-feature-right-half mzp-t-firefox',
       ga_title='Try Firefox Send'
     ) %}
-    <p>{{ _('Feel like a secret agent when you send files online, with a private, encrypted link that ‘self-destructs.’') }}</p>
+    <p>{{ _('Send docs and videos — anything up to 2.5 GB — with a private, encrypted link that ‘self-destructs’ when you say so. And since your large files get deleted from the cloud when you’re done sharing, your stuff doesn’t hang around online forever.') }}</p>
     <a class="mzp-c-button mzp-t-secondary mzp-t-product" href="https://send.firefox.com/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fxa-features-nonfx&amp;utm_content=try-send&amp;entrypoint=mozilla.org-fxa.features" data-link-name="Try Firefox Send" data-link-type="button">{{ _('Try Firefox Send') }}</a>
     {% endcall %}
   {% endif %}
@@ -197,13 +197,7 @@
 
 <aside class="fxa-benefits mzp-u-modal-content">
   <p class="mobile-title mobile-pocket">{{ _('Scan the QR Code to download the Pocket App on your mobile device.') }}</p>
-  <p class="mobile-title mobile-lockbox">
-  {%- if l10n_has_tag('accounts_2018_qrcodes') -%}
-    {{ _('Scan the QR Code to download the Lockbox App on your Apple device.') }}
-  {%- else -%}
-    {{ _('Scan the QR Code to download the Lockbox App on your mobile device.') }}
-  {%- endif -%}
-  </p>
+  <p class="mobile-title mobile-lockbox">{{ _('Scan the QR Code to download the Lockbox App on your mobile device.') }}</p>
   <p class="mobile-title mobile-notes">
   {%- if l10n_has_tag('accounts_2018_qrcodes') -%}
     {{ _('Scan the QR Code to download the Notes App on your Android device.') }}
@@ -246,6 +240,9 @@
 
   <section>
     <ul class="mobile-download-buttons mobile-lockbox">
+      <li class="android">
+          {{ google_play_button(href='https://app.adjust.com/kq8zhhz') }}
+      </li>
       <li class="ios">
         <a href="https://app.adjust.com/kq8zhhz" data-link-type="download" data-download-os="iOS">
           <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
