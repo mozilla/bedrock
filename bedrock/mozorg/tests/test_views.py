@@ -157,14 +157,30 @@ class TestAboutPage(TestCase):
         req = RequestFactory().get('/')
         req.locale = 'en-US'
         views.about_view(req)
-        render_mock.assert_called_once_with(req, 'mozorg/about-2019.html')
+        render_mock.assert_called_once_with(req, 'mozorg/about-2019.html', ANY)
 
     @patch.object(views, 'lang_file_is_active', lambda *x: False)
     def test_about_old_template(self, render_mock):
         req = RequestFactory().get('/')
         req.locale = 'de'
         views.about_view(req)
-        render_mock.assert_called_once_with(req, 'mozorg/about.html')
+        render_mock.assert_called_once_with(req, 'mozorg/about.html', ANY)
+
+    # Page render performance test issue #7118
+
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
+    def test_about_render_perf_control(self, render_mock):
+        req = RequestFactory().get('/?v=a')
+        req.locale = 'en-US'
+        views.about_view(req)
+        render_mock.assert_called_once_with(req, 'mozorg/perf-exp/control.html', ANY)
+
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
+    def test_about_render_perf_variation(self, render_mock):
+        req = RequestFactory().get('/?v=b')
+        req.locale = 'en-US'
+        views.about_view(req)
+        render_mock.assert_called_once_with(req, 'mozorg/perf-exp/variation.html', ANY)
 
 
 @override_settings(DEV=True)

@@ -201,13 +201,24 @@ def home_view(request):
 
 def about_view(request):
     locale = l10n_utils.get_locale(request)
+    variant = request.GET.get('v', None)
+    allowed_variants = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+
+    # ensure variant matches pre-defined value
+    if variant not in allowed_variants:
+        variant = None
 
     if lang_file_is_active('mozorg/about-2019', locale):
-        template_name = 'mozorg/about-2019.html'
+        if variant == 'a':
+            template_name = 'mozorg/perf-exp/control.html'
+        elif variant in allowed_variants:
+            template_name = 'mozorg/perf-exp/variation.html'
+        else:
+            template_name = 'mozorg/about-2019.html'
     else:
         template_name = 'mozorg/about.html'
 
-    return l10n_utils.render(request, template_name)
+    return l10n_utils.render(request, template_name, {'variant': variant})
 
 
 def moss_view(request):

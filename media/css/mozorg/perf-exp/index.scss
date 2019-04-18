@@ -1,0 +1,140 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+
+/* stylelint-disable declaration-no-important */
+
+.backgrounds-invisible {
+    .mzp-c-hero.t-mission {
+        background-image: none !important;
+    }
+}
+
+.ui-invisible {
+    .mzp-c-navigation-download,
+    .mzp-c-navigation-menu-button {
+        display: none !important;
+    }
+
+    .mzp-c-hero.t-mission {
+        .mzp-c-hero-cta .mzp-c-button {
+            display: none !important;
+        }
+    }
+
+    #newsletter-submit,
+    .mzp-c-newsletter-content {
+        display: none !important;
+    }
+}
+
+.text-invisible {
+    .mzp-c-menu-category-list .mzp-c-menu-title,
+    .mzp-c-navigation-download .mzp-c-button {
+        color: transparent !important;
+    }
+
+    .c-page-title {
+        color: transparent !important;
+    }
+
+    .mzp-c-hero.t-mission {
+        color: transparent !important;
+
+        .mzp-c-hero-desc,
+        .mzp-c-hero-cta .mzp-c-button {
+            color: transparent !important;
+        }
+    }
+
+    #outer-wrapper {
+        .mzp-c-card {
+            .mzp-c-card-title,
+            .mzp-c-card-desc,
+            .mzp-c-card-cta .mzp-c-card-cta-text {
+                color: transparent !important;
+            }
+        }
+    }
+
+    .t-global {
+        .mzp-c-hero-title,
+        .mzp-c-hero-desc,
+        .mzp-c-hero-desc a {
+            color: transparent !important;
+        }
+    }
+
+    .c-city-title,
+    .c-city-desc {
+        color: transparent !important;
+    }
+
+    .mzp-c-card-feature {
+        .mzp-c-card-feature-title,
+        .mzp-c-card-feature-desc,
+        .mzp-c-cta-link {
+            color: transparent !important;
+        }
+    }
+
+    .mzp-c-billboard {
+        .mzp-c-billboard-title,
+        .mzp-c-billboard-desc,
+        .mzp-c-cta-link {
+            color: transparent !important;
+        }
+    }
+
+    .mzp-c-newsletter-header,
+    .mzp-c-newsletter-content,
+    #newsletter-submit,
+    .mzp-c-fieldnote {
+        color: transparent !important;
+    }
+
+    #colophon {
+        .mzp-c-footer-section,
+        .mzp-c-footer-list li a,
+        .mzp-c-footer-license,
+        .mzp-c-footer-license a,
+        .mzp-c-footer-terms a,
+        .mzp-c-language-switcher-link {
+            color: transparent !important;
+        }
+    }
+}
+
+.images-invisible {
+    .mzp-c-card-feature .mzp-c-card-feature-media,
+    .mzp-c-billboard .mzp-c-billboard-image-container,
+    .mzp-c-newsletter .mzp-c-newsletter-image {
+        visibility: hidden !important;
+    }
+
+    .c-city:before {
+        background-image: none !important;
+    }
+}
+
+.fonts-delayed {
+    .mzp-c-hero-title,
+    .mzp-c-hero-desc,
+    .c-page-title,
+    .mzp-c-card-title,
+    .mzp-c-card-feature-title,
+    .mzp-c-billboard-title,
+    .c-city-desc strong,
+    .mzp-c-newsletter-title,
+    #read-mission-button,
+    .mzp-c-navigation-download {
+        font-family: X-LocaleSpecific, sans-serif !important;
+    }
+}
+
+/* stylelint-enable declaration-no-important */
