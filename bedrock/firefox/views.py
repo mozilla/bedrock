@@ -629,44 +629,10 @@ def new(request):
         return HttpResponsePermanentRedirect(thanks_url)
     # if no/incorrect scene specified, show scene 1
     else:
-        if locale == 'de':
-            if experience == 'berlin':
-                template = 'firefox/campaign/berlin/scene1.html'
-            elif experience == 'aus-gruenden':
-                template = 'firefox/campaign/berlin/scene1-aus-gruenden.html'
-            elif experience == 'herz':
-                template = 'firefox/campaign/berlin/scene1-herz.html'
-            elif experience == 'geschwindigkeit':
-                template = 'firefox/campaign/berlin/scene1-gesch.html'
-            elif experience == 'privatsphare':
-                template = 'firefox/campaign/berlin/scene1-privat.html'
-            elif experience == 'auf-deiner-seite':
-                template = 'firefox/campaign/berlin/scene1-auf-deiner-seite.html'
-            elif variant in ['a', 'b', 'c']:
-                template = 'firefox/new/features/index.de-{}.html'.format(variant)
-            else:
-                template = 'firefox/new/scene1.html'
-        elif switch('firefox-yandex') and locale == 'ru':
+        if locale == 'ru' and switch('firefox-yandex'):
             template = 'firefox/new/yandex/scene1.html'
-        elif locale == 'en-GB':
-            if variant in ['a', 'b', 'c']:
-                template = 'firefox/new/features/index.en-GB-{}.html'.format(variant)
-            else:
-                template = 'firefox/new/scene1.html'
-        elif locale == 'en-US':
-            if experience == 'betterbrowser':
-                template = 'firefox/campaign/better-browser/scene1.html'
-            elif experience == 'safari':
-                template = 'firefox/campaign/compare/scene1-safari.html'
-            elif experience == 'edge':
-                template = 'firefox/campaign/compare/scene1-edge.html'
-            elif experience == 'pre-dl':
-                if variant in ['a', 'b', 'c', 'd', 'e']:
-                    template = 'firefox/new/newsletter/scene1-{}.html'.format(variant)
-                else:
-                    template = 'firefox/new/scene1.html'
-            else:
-                template = 'firefox/new/scene1.html'
+        elif locale == 'en-US' and experience == 'pre-dl' and variant in ['a', 'b', 'c', 'd', 'e']:
+            template = 'firefox/new/newsletter/scene1-{}.html'.format(variant)
         else:
             template = 'firefox/new/scene1.html'
 

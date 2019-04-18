@@ -8,7 +8,7 @@
 
 {% block body_class %}berlin-scene2 privat{% endblock %}
 
-{% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/?xv=privatsphare{% endblock %}
+{% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/campaign/?xv=privatsphare{% endblock %}
 
 {% block string_data %}
   data-pixels="{% for pixel in settings.TRACKING_PIXELS %}{{ pixel }}{% if not loop.last %}::{% endif %}{% endfor %}"

@@ -18,9 +18,6 @@
   {% if switch('experiment_firefox_new_pre_download', ['en-US']) %}
     {{ js_bundle('experiment_firefox_new_pre_download') }}
   {% endif %}
-  {% if switch('experiment_firefox_new_features', ['en-GB', 'de']) %}
-    {{ js_bundle('experiment_firefox_new_features') }}
-  {% endif %}
 {% endblock %}
 
 {% block body_id %}firefox-new-scene1{% endblock %}

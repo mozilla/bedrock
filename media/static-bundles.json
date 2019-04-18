@@ -158,9 +158,9 @@
     },
     {
       "files": [
-        "css/firefox/new/berlin-variation.scss"
+        "css/firefox/campaign/berlin-variation.scss"
       ],
-      "name": "firefox_new_berlin_variation"
+      "name": "firefox_campaign_berlin_variation"
     },
     {
       "files": [
@@ -239,12 +239,6 @@
       "name": "firefox_new_scene1"
     },
     {
-      "files": [
-        "css/firefox/new/scene1-features-experiment.scss"
-      ],
-      "name": "experiment_firefox_new_features"
-    },
-    {
         "files": [
           "css/firefox/new/scene1.scss",
           "css/firefox/new/yandex-scene1.scss"
@@ -260,9 +254,9 @@
     },
     {
       "files": [
-        "css/firefox/new/compare.scss"
+        "css/firefox/campaign/compare.scss"
       ],
-      "name": "firefox_new_compare"
+      "name": "firefox_campaign_compare"
     },
     {
       "files": [
@@ -636,9 +630,9 @@
     },
     {
         "files": [
-          "css/firefox/new/better-browser.scss"
+          "css/firefox/campaign/better-browser.scss"
         ],
-        "name": "firefox_new_better_browser"
+        "name": "firefox_campaign_better_browser"
     },
     {
       "files": [
@@ -693,10 +687,10 @@
     },
     {
       "files": [
-        "css/firefox/new/berlin.scss",
-        "css/firefox/new/berlin-aus-gruenden.scss"
+        "css/firefox/campaign/berlin.scss",
+        "css/firefox/campaign/berlin-aus-gruenden.scss"
       ],
-      "name": "firefox_new_berlin_aus_gruenden"
+      "name": "firefox_campaign_berlin_aus_gruenden"
     },
     {
       "files": [
@@ -771,9 +765,9 @@
     },
     {
       "files": [
-        "css/firefox/new/berlin.scss"
+        "css/firefox/campaign/berlin.scss"
       ],
-      "name": "firefox_new_berlin"
+      "name": "firefox_campaign_berlin"
     },
     {
       "files": [
@@ -951,9 +945,9 @@
     {
       "files": [
         "js/firefox/new/variation-scene1.js",
-        "js/firefox/new/berlin-scene1-variation.js"
+        "js/firefox/campaign/berlin-scene1-variation.js"
       ],
-      "name": "firefox_new_scene1_berlin_variation"
+      "name": "firefox_campaign_scene1_berlin_variation"
     },
     {
       "files": [
@@ -1080,19 +1074,6 @@
           "js/firefox/new/yandex/scene1-init.js"
         ],
         "name": "firefox_new_scene1_yandex"
-    },
-    {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/new/experiment-features.js"
-      ],
-      "name": "experiment_firefox_new_features"
-    },
-    {
-      "files": [
-        "js/firefox/new/experiment-features-variation.js"
-      ],
-      "name": "experiment_firefox_new_features_variation"
     },
     {
       "files": [
@@ -1535,9 +1516,9 @@
     {
       "files": [
         "js/firefox/new/variation-scene1.js",
-        "js/firefox/new/berlin-scene1.js"
+        "js/firefox/campaign/berlin-scene1.js"
       ],
-      "name": "firefox_new_scene1_berlin"
+      "name": "firefox_campaign_scene1_berlin"
     },
     {
       "files": [
