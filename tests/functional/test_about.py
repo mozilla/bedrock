@@ -7,6 +7,7 @@ import pytest
 from pages.about import AboutPage
 
 
+@pytest.mark.skip(reason='https://github.com/mozilla/bedrock/issues/7118')
 @pytest.mark.nondestructive
 def test_read_mission_button_displayed(base_url, selenium):
     page = AboutPage(selenium, base_url).open()

@@ -1,0 +1,12 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "mozorg/about-2019.html" %}
+
+{% block experiments %}{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('about-page-performance-control') }}
+{% endblock %}

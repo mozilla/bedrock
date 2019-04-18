@@ -488,6 +488,12 @@
     },
     {
       "files": [
+        "css/mozorg/perf-exp/index.scss"
+      ],
+      "name": "about-page-performance"
+    },
+    {
+      "files": [
         "css/styleguide/styleguide.scss"
       ],
       "name": "styleguide"
@@ -1170,6 +1176,33 @@
         "js/mozorg/about-en.js"
       ],
       "name": "about-en"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-newsletter.js",
+        "js/newsletter/form-protocol.js",
+        "js/base/mozilla-lazy-load.js"
+      ],
+      "name": "about-page-performance"
+    },
+    {
+      "files": [
+        "js/mozorg/perf-exp/variation.js"
+      ],
+      "name": "about-page-performance-control"
+    },
+    {
+      "files": [
+        "js/mozorg/perf-exp/variation.js"
+      ],
+      "name": "about-page-performance-variation"
+    },
+    {
+      "files": [
+        "js/base/mozilla-traffic-cop.js",
+        "js/mozorg/perf-exp/experiment.js"
+      ],
+      "name": "experiment-about-page-performance"
     },
     {
       "files": [

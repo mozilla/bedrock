@@ -16,12 +16,18 @@
 
 {% block body_id %}about{% endblock %}
 
+{% block experiments %}
+  {% if switch('experiment_about_page_performance') %}
+    {{ js_bundle('experiment-about-page-performance') }}
+  {% endif %}
+{% endblock %}
+
 {% block page_css %}
   {{ css_bundle('about-en') }}
 {% endblock %}
 
 {% block content %}
-<section class="mzp-c-hero t-mission">
+<section class="mzp-c-hero t-mission" {% if variant %}data-variant="{{ variant }}"{% endif%}>
   <div class="mzp-l-content">
     <div class="mzp-c-hero-body">
       <h1 class="mzp-c-hero-title">{{ _('Mozilla makes browsers, apps, code and tools that put people before profit.') }}</h1>
@@ -31,7 +37,7 @@
       </div>
 
       <p class="mzp-c-hero-cta">
-        <a id="read-mission-button" class="mzp-c-button" href="{{ url('mozorg.mission') }}">{{ _('Read Our Mission') }}</a>
+        <a id="read-mission-button" class="mzp-c-button" href="{{ url('mozorg.mission') }}" data-button-name="Read Our Mission" data-link-type="button" data-cta-position="primary cta">{{ _('Read Our Mission') }}</a>
       </p>
     </div>
   </div>
