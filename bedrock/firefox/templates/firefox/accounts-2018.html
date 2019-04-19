@@ -8,7 +8,13 @@
 {% extends "base-protocol.html" %}
 
 {% block page_title %}{{ _('Get a Firefox Account – Keep your data private, safe and synced') }}{% endblock %}
-{% block page_desc %}{{ _('Securely sync your passwords, bookmarks and tabs across all your devices. Get a Firefox Account now – One log-in – Power and privacy everywhere.') }}{% endblock %}
+{% block page_desc %}
+{% if l10n_has_tag('firefox_send_20190420') %}
+  {{ _('Securely sync your passwords, bookmarks and tabs across all your devices. Get a Firefox Account now – One login – Power and privacy everywhere.') }}
+{% else %}
+  {{ _('Securely sync your passwords, bookmarks and tabs across all your devices. Get a Firefox Account now – One log-in – Power and privacy everywhere.') }}
+{% endif %}
+{% endblock %}
 
 {% block page_css %}
  {{ css_bundle('firefox_accounts_2018') }}
