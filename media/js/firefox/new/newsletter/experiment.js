@@ -14,11 +14,11 @@
     var cole = new Mozilla.TrafficCop({
         id: 'experiment-firefox-new-pre-download',
         variations: {
-            'xv=pre-dl&v=a': 92,
-            'xv=pre-dl&v=b': 2,
-            'xv=pre-dl&v=c': 2,
-            'xv=pre-dl&v=d': 2,
-            'xv=pre-dl&v=e': 2
+            'xv=pre-dl&v=a': 88,
+            'xv=pre-dl&v=b': 3,
+            'xv=pre-dl&v=c': 3,
+            'xv=pre-dl&v=d': 3,
+            'xv=pre-dl&v=e': 3
         }
     });
 
