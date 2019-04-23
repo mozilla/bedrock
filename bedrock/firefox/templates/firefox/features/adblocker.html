@@ -49,17 +49,17 @@
   <section class="mzp-l-content l-content-narrow">
     <h2 class="section-title">{{ _('Find the right ad blocker for you') }}</h2>
     <p>
-      {% trans url='https://addons.mozilla.org/en-US/firefox/addon/adblocker-ultimate/?src=collection&collection_id=314d7111-6e17-485e-9946-315cb2f477e7' %}
+      {% trans url='https://addons.mozilla.org/firefox/addon/adblocker-ultimate/?src=collection&collection_id=314d7111-6e17-485e-9946-315cb2f477e7' %}
       There’s <a href="{{ url }}">AdBlocker Ultimate</a> that gets rid of every single ad, but buyer beware. Some of your favorite newspapers and magazines rely on advertising. Too many people blocking their ads could put them out of business.
       {% endtrans %}
     </p>
     <p>
-      {% trans url='https://addons.mozilla.org/en-US/firefox/addon/popup-blocker/?src=collection&collection_id=314d7111-6e17-485e-9946-315cb2f477e7' %}
+      {% trans url='https://addons.mozilla.org/firefox/addon/popup-blocker/?src=collection&collection_id=314d7111-6e17-485e-9946-315cb2f477e7' %}
       Popup ads are the worst. Block them with <a href="{{ url }}">Popup Blocker</a> and never deal with another annoying popup again.
       {% endtrans %}
     </p>
     <p>
-      {% trans url='https://addons.mozilla.org/en-US/firefox/addon/adblock-for-firefox/?src=collection&collection_id=314d7111-6e17-485e-9946-315cb2f477e7' %}
+      {% trans url='https://addons.mozilla.org/firefox/addon/adblock-for-firefox/?src=collection&collection_id=314d7111-6e17-485e-9946-315cb2f477e7' %}
       One of the most popular ad blockers for Chrome, Safari and Firefox is <a href="{{ url }}">AdBlock</a>. Use it to block ads on Facebook, YouTube and Hulu.
       {% endtrans %}
     </p>
@@ -68,7 +68,7 @@
   <section class="mzp-l-content l-content-narrow">
     <h2 class="section-title">{{_('Create an tracker-free zone with Content Blocking') }}</h2>
     <p>
-      {% trans privacy='https://restoreprivacy.com/firefox-privacy/', blocking='https://support.mozilla.org/en-US/kb/content-blocking' %}
+      {% trans privacy='https://restoreprivacy.com/firefox-privacy/', blocking='https://support.mozilla.org/kb/content-blocking' %}
       On Firefox, you can use <a href="{{ privacy }}">Privacy</a> or <a href="{{ blocking }}">Content Blocking</a> settings to get even more control over ad trackers that serve you the ads.
       {% endtrans %}
     </p>
@@ -82,7 +82,7 @@
     <h2 class="section-title">{{_('Choose your level of protection') }}</h2>
     <p>
       {% trans %}
-      To start, click on the Firefox menu in the top right-hand corner of your screen. It looks like four lines stacked on top of each other. In the drop-down menu, click on Content Blocking. You should see a blue pop-up with different selections.
+      To start, click on the Firefox menu in the top right-hand corner of your screen. It looks like three lines stacked on top of each other. In the drop-down menu, click on Content Blocking. You should see a blue pop-up with different selections.
       {% endtrans %}
     </p>
   </section>
@@ -113,7 +113,7 @@
     <h2 class="section-title">{{_('Do-it-yourself Custom mode') }}</h2>
     <p>
       {% trans %}
-      The custom setting give you the ultimate choice. You to decide what you’re blocking and if you’re blocking trackers, cookies or both. If you allow cookies from a website, you’ll automatically be in Custom mode.
+      The custom setting gives you the ultimate choice. This allows you to decide what you’re blocking and if you’re blocking trackers, cookies or both. If you allow cookies from a website, you’ll automatically be in Custom mode.
       {% endtrans %}
     </p>
   </section>
@@ -135,7 +135,7 @@
   <section class="mzp-l-content l-content-narrow">
     <h2 class="section-title">{{_('Take a bite out of cookies') }}</h2>
     <p>
-      {% trans url='https://support.mozilla.org/en-US/kb/storage?redirectlocale=en-US&as=u&redirectslug=permission-store-data&utm_source=inproduct' %}
+      {% trans url='https://support.mozilla.org/kb/storage' %}
       <a href="{{ url }}">Cookies</a> are sent by websites you visit. They live on your computer and monitor what you’ve been doing on a site. When an airline hikes your rates because you’ve looked at plane tickets once that day, that is the handiwork of a cookie.
       {% endtrans %}
     </p>
@@ -150,7 +150,7 @@
   <section class="mzp-l-content l-content-narrow">
     <h2 class="section-title">{{_('Send a Do Not Track signal') }}</h2>
     <p>
-      {% trans url='https://support.mozilla.org/en-US/kb/how-do-i-turn-do-not-track-feature' %}
+      {% trans url='https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature' %}
       If you don’t want your online behavior used for ads, you can send websites a polite “thanks but no thanks” letter by checking the <a href="{{ url }}">Do Not Track</a> option of Firefox. Participation is voluntary, but the websites that participate will stop tracking you immediately.
       {% endtrans %}
     </p>
@@ -165,7 +165,7 @@
         {% endtrans %}
       </p>
       <p>
-        {% trans url='https://www.mozilla.org/en-US/firefox/new/' %}
+        {% trans url=url('firefox.new') %}
         If you want to learn more about ad blocking, there are hundreds of ad blocker extensions available for Firefox and other browsers. If want to try out the ad blockers Firefox uses, <a href="{{ url }}">click here to download</a> a browser that puts privacy first.
         {% endtrans %}
       </p>
