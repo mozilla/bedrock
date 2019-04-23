@@ -184,6 +184,40 @@ class TestWhatsNew(TestCase):
         self.view = fx_views.WhatsnewView.as_view()
         self.rf = RequestFactory(HTTP_USER_AGENT='Firefox')
 
+    # begin nightly whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_nightly_68_0_a1_whatsnew(self, render_mock):
+        """Should show nightly whatsnew template"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='68.0a1')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/nightly_whatsnew.html'])
+
+    # end nightly whatsnew tests
+
+    # begin beta whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_beta_whatsnew(self, render_mock):
+        """Should show beta whatsnew template"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='67.0beta')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/index.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_beta_68_0_beta_whatsnew(self, render_mock):
+        """Should show beta 68 whatsnew template"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='68.0beta')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/beta/whatsnew-fx68.html'])
+
+    # end beta whatsnew tests
+
+    # begin dev edition whatsnew tests
+
     @override_settings(DEV=True)
     def test_fx_dev_browser_35_0_a2_whatsnew(self, render_mock):
         """Should show dev browser whatsnew template"""
@@ -191,6 +225,34 @@ class TestWhatsNew(TestCase):
         self.view(req, version='35.0a2')
         template = render_mock.call_args[0][1]
         eq_(template, ['firefox/dev-whatsnew.html'])
+
+    @override_settings(DEV=True)
+    def test_fx_dev_browser_57_0_a2_whatsnew(self, render_mock):
+        """Should show dev browser 57 whatsnew template"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='57.0a2')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/developer/whatsnew.html'])
+
+    @override_settings(DEV=True)
+    @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68='True')
+    def test_fx_dev_browser_68_0_a2_whatsnew_on(self, render_mock):
+        """Should show dev browser 68 whatsnew template"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='68.0a2')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/developer/whatsnew-fx68.html'])
+
+    @override_settings(DEV=True)
+    @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68='False')
+    def test_fx_dev_browser_68_0_a2_whatsnew_off(self, render_mock):
+        """Should show regular dev browser whatsnew template"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='68.0a2')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/developer/whatsnew.html'])
+
+    # end dev edition whatsnew tests
 
     @override_settings(DEV=True)
     def test_rv_prefix(self, render_mock):
