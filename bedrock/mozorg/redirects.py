@@ -659,4 +659,7 @@ redirectpatterns = (
 
     # issue 6756 - vanity URL
     redirect(r'^decentralization/?$', 'mozorg.internet-health.decentralization'),
+
+    # issue 6971
+    redirect(r'^gear/?$', 'https://mozillagear.corpmerchandise.com/')
 )
