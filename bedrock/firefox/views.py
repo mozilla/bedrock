@@ -809,7 +809,10 @@ def firefox_accounts(request):
 
 def election_with_cards(request):
     locale = l10n_utils.get_locale(request)
-    ctx = {'page_content_cards': get_page_content_cards('election-en', locale)}
+    ctx = {
+        'page_content_cards': get_page_content_cards('election-en', locale),
+        'active_locales': ['de', 'en-US']
+    }
 
     if locale == 'de':
         template_name = 'firefox/election/index-de.html'
