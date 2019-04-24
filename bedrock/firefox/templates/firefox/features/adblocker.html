@@ -8,10 +8,10 @@
 
  {% extends "base-protocol.html" %}
 
- {% block page_title %}{{ _('Adblock: Everything you need to know about it') }}{% endblock %}
+ {% block page_title %}{{ _('How to block annoying ads using an ad blocker') }}{% endblock %}
 
  {% block page_desc %}
-   {{ _('Ad blockers are browser extensions that can detect ads and prevent them from being displayed on a web page. Find out the pros and cons of using ad blockers.') }}
+   {{ _('How to stop seeing too many ads and keep companies from following you around online. An ad blocker guide from the Firefox web browser.') }}
  {% endblock %}
 
  {% block page_css %}
@@ -24,132 +24,152 @@
   <section class="mzp-c-hero mzp-t-product-firefox">
     <div class="mzp-l-content">
       <div class="mzp-c-hero-body">
-        <h1 class="mzp-c-hero-title">{{ _('Everything you need to know about ad blockers.') }}</h1>
+        <h1 class="mzp-c-hero-title">{{ _('The ad blocker – a secret weapon against annoying ads.') }}</h1>
+        <h2 class="mzp-c-hero-subtitle">{{ _('So many ads, so little patience… It’s time to stop the madness.') }}</h2>
         <div class="mzp-c-hero-desc">
-          <p>{{ _('Ad blocker is a web browser extension-- that can detect web ads and prevent them from being displayed on a web page.') }}</p>
+          <p>{{ _('The average person sees an average of 4,000 ads a day. If you think that’s too many, an ad blocker is your new best friend.') }}</p>
+          <p>
+            {% trans %}
+            An ad blocker is a piece of software that can be used to block ads, and they work in two ways. The first way is when an ad blocker blocks the signal from an advertiser’s server, so the ad never shows up on your page. Another way ad blockers work is by blocking out sections of a website that could be ads.
+            {% endtrans %}
+          </p>
+          <p>
+            {% trans firefox=url('firefox.new'), addons='https://blog.mozilla.org/firefox/ad-blocker-roundup-5-adblockers-that-improve-your-internet-experience/' %}
+            These ads might be loud video ads, ads that follow you around the web, trackers, third-party cookies, and more. To use an ad blocker, you can search for ad blocker add-ons that are available in your browser. <a href="{{ firefox }}">Firefox</a>, for example, has <a href="{{ addons }}">this list of approved ad blocker add-ons</a>. Click on this list (or ad blockers that are approved for your browser) and see which fits your needs.
+            {% endtrans %}
+          </p>
+        </div>
+        <div class="mzp-c-hero-cta">
+          {{ download_firefox(download_location='primary cta') }}
         </div>
       </div>
     </div>
   </section>
 
-  <section class="mzp-l-content l-content-image">
-    {{ high_res_img('firefox/features/privacy-illustration1.png', {'alt': '', 'class': 'mzp-c-billboard-image'}) }}
-  </section>
-
   <section class="mzp-l-content l-content-narrow">
-    <h2 class="section-title">{{ _('How ad blockers work') }}</h2>
-    <div class="l-content-columns">
-      <div>
-        <h3>{{ _('A typical ad blocker') }}</h3>
-        <p>{{ _('Most ad blockers work in two ways.') }}</p>
-        <p>{{ _('First, they block communication from ad servers or others. Ads simply can’t get through.') }}</p>
-        <p>{{ _('Second, they hide parts of a web page that could be ads-- any section of a site that’s labeled "ad," for example. Most ad blockers use public and up-to-date lists of known ad servers.') }}</p>
-      </div>
-      <div>
-        <h3>{{ _('The Firefox ad blocker') }}</h3>
-        <p>
-          {% trans url='https://blog.mozilla.org/firefox/tracking-protection-always-on/' %}
-          Firefox doesn’t include ad blocking out of the box, but it does include <a href="{{ url }}">Tracking Protection</a>, which stops sites from installing those tracking cookies we talked about.
-          {% endtrans %}
-        </p>
-        <p>
-          {% trans url='https://support.mozilla.org/en-US/kb/tracking-protection' %}
-          It’s <a href="{{ url }}">easy to turn on</a>, and has the added benefit of making Firefox significantly faster.
-          {% endtrans %}
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="mzp-l-content l-content-narrow">
-    <h2 class="section-title">{{ _('Why use ad blockers?') }}</h2>
-    <p>{{ _('Ad blockers can also be used to make the web faster.') }}</p>
-    <p>{{ _('Ads can slow down sites while they load, or get in the way of a streamlined browsing experience.') }}</p>
-    <p>{{ _('Ads can also be flashy and annoying, distracting you from the stuff you really want to see.') }}</p>
-    <blockquote>{{ _('“Ads can slow down sites… or get in the way of a streamlined browsing experience.”') }}</blockquote>
+    <h2 class="section-title">{{ _('Find the right ad blocker for you') }}</h2>
     <p>
-    {% trans %}
-    Finally, ad companies can track your movements online. It’s called "re-targeting" and it works like this: You visit a site and click on a product. That site puts a small piece of code in your browser called a cookie. When you surf the web, sites will know you clicked on that product and they’ll display ads for it.
-    {% endtrans %}
+      {% trans url='https://addons.mozilla.org/firefox/addon/adblocker-ultimate/?src=collection&collection_id=314d7111-6e17-485e-9946-315cb2f477e7' %}
+      There’s <a href="{{ url }}">AdBlocker Ultimate</a> that gets rid of every single ad, but buyer beware. Some of your favorite newspapers and magazines rely on advertising. Too many people blocking their ads could put them out of business.
+      {% endtrans %}
+    </p>
+    <p>
+      {% trans url='https://addons.mozilla.org/firefox/addon/popup-blocker/?src=collection&collection_id=314d7111-6e17-485e-9946-315cb2f477e7' %}
+      Popup ads are the worst. Block them with <a href="{{ url }}">Popup Blocker</a> and never deal with another annoying popup again.
+      {% endtrans %}
+    </p>
+    <p>
+      {% trans url='https://addons.mozilla.org/firefox/addon/adblock-for-firefox/?src=collection&collection_id=314d7111-6e17-485e-9946-315cb2f477e7' %}
+      One of the most popular ad blockers for Chrome, Safari and Firefox is <a href="{{ url }}">AdBlock</a>. Use it to block ads on Facebook, YouTube and Hulu.
+      {% endtrans %}
     </p>
   </section>
 
   <section class="mzp-l-content l-content-narrow">
-    <h2 class="section-title">{{ _('Why you might not use an ad blocker') }}</h2>
+    <h2 class="section-title">{{_('Create a tracker-free zone with Content Blocking') }}</h2>
     <p>
-      {% trans %}
-      Many media and news organizations make most of their money from advertising. If you block ads on their sites, they won’t get paid. If enough people block ads, business could suffer, and so will the quality of reporting and writing. Luckily, most ad blockers let you make exceptions for your favorite sites.
+      {% trans privacy='https://restoreprivacy.com/firefox-privacy/', blocking='https://support.mozilla.org/kb/content-blocking' %}
+      On Firefox, you can use <a href="{{ privacy }}">Privacy</a> or <a href="{{ blocking }}">Content Blocking</a> settings to get even more control over ad trackers that serve you the ads.
       {% endtrans %}
     </p>
   </section>
 
   <section class="mzp-l-content l-content-image">
-    {{ high_res_img('firefox/features/privacy-illustration2.png', {'alt': '', 'class': 'mzp-c-billboard-image'}) }}
+    {{ high_res_img('firefox/features/adblocker/content-blocking-title.png', {'alt': '', 'class': 'mzp-c-billboard-image'}) }}
   </section>
 
   <section class="mzp-l-content l-content-narrow">
-    <h2 class="section-title">{{ _('How to set Tracking Protection on') }}</h2>
-    <p>{{ _('With Tracking Protection and an ad blocker installed, you’re getting a safe and speedy web experience. Here’s how to get started:') }}</p>
-    <ol class="mzp-u-list-styled">
-      <li>{{ _('Click the menu button and choose Options (or Preferences on a Mac.)') }}</li>
-      <li>{{ _('Click Privacy & Security on the left and go to the Tracking Protection section.') }}</li>
-      <li>{{_('Choose between the following options:') }}</li>
-      <ul class="mzp-u-list-styled">
-        <li>
-          <span>{{_('Always:') }} </span>
-          {{_('Keep Tracking Protection on as you browse.') }}
-        </li>
-        <li>
-          <span>{{_('Only in private windows:') }} </span>
-          {{_('Turns Tracking Protection on only if you’re using Private Browsing.') }}
-        </li>
-        <li>
-          <span>{{_('Never:') }} </span>
-          {{_('Turns off Tracking Protection for all sites.') }}
-        </li>
-      </ul>
-    </ol>
-  </section>
-
-  <section class="mzp-l-content l-content-image">
-    {{ high_res_img('firefox/features/laptop.png', {'alt': '', 'class': 'mzp-c-billboard-image'}) }}
-  </section>
-
-  <section class="mzp-l-content l-content-narrow">
+    <h2 class="section-title">{{_('Choose your level of protection') }}</h2>
     <p>
       {% trans %}
-      Set Tracking Protection to always on and you won’t be reminded of that one time you looked at a trendy pressure cooker. Pages will load faster, and you’ll have a better browsing experience.
+      To start, click on the Firefox menu in the top right-hand corner of your screen. It looks like three lines stacked on top of each other. In the drop-down menu, click on Content Blocking. You should see a blue pop-up with different selections.
       {% endtrans %}
     </p>
   </section>
 
-  {% call call_out(
-    title=_('Get Firefox with Tracking Protection'),
-    class='tracking mzp-t-firefox',
-    include_cta=True
-  ) %}
-    <div class="download-firefox">
-      {{ download_firefox(download_location='primary cta') }}
-    </div>
-  {% endcall %}
-
-  <section class="where-to-find">
-    <div class=" mzp-l-content l-content-narrow">
-      <h2 class="section-title">{{_('Where to find ad blockers') }}</h2>
-      <div class="l-content-columns">
-        <p>
-          {% trans url='https://addons.mozilla.org/en-US/firefox/search/?platform=mac&q=ad+blocker'%}
-          There are hundreds of ad blocker extensions available for Firefox and every other browser. You can find a list of them <a href="{{ url }}">here in the Firefox Addons marketplace</a>. The most popular blockers let you "whitelist" sites that you’d like to support by viewing ads. Others can block ads on other platforms like YouTube.
-          {% endtrans %}
-        </p>
-        <p>
-          {% trans url='https://blog.mozilla.org/firefox/ad-blocker-roundup-5-adblockers-that-improve-your-internet-experience/'%}
-          <a href="{{ url }}">We’ve compiled a list of trusted ad blocker add-ons</a>. These have been approved and tested by the Firefox community. Remember, you can get add-ons for your browser anywhere, but be extra careful when installing them. It’s not a good idea to install an untested or unapproved add-on.
-          {% endtrans %}
-        </p>
-      </div>
-    </div>
+  <section class="mzp-l-content l-content-narrow">
+    <h2 class="section-title">{{_('Go easy with Standard mode') }}</h2>
+    <p>
+      {% trans url=url('firefox.features.private-browsing') %}
+      If ads don’t bother you and you don’t mind being followed by trackers and third-party cookies, then the Standard setting should work for you. To get trackers off your tail in Standard mode, use a <a href="{{ url }}">Private Browsing</a> window.
+      {% endtrans %}
+    </p>
   </section>
+
+  <section class="mzp-l-content l-content-image">
+    {{ high_res_img('firefox/features/adblocker/content-blocking.png', {'alt': '', 'class': 'mzp-c-billboard-image'}) }}
+  </section>
+
+  <section class=" mzp-l-content l-content-narrow">
+    <h2 class="section-title">{{_('Get tough with Strict mode') }}</h2>
+    <p>
+      {% trans %}
+      If seeing too many ads ruins your day, then the Strict mode is a better fit. This mode will block known third-party trackers and cookies in all Firefox windows.
+      {% endtrans %}
+    </p>
+  </section>
+
+  <section class="mzp-l-content l-content-narrow">
+    <h2 class="section-title">{{_('Do-it-yourself Custom mode') }}</h2>
+    <p>
+      {% trans %}
+      The custom setting gives you the ultimate choice. You can decide what you’re blocking, including trackers, cookies and more. If you allow cookies from a website, you’ll automatically be in Custom mode.
+      {% endtrans %}
+    </p>
+  </section>
+
+  <section class="mzp-l-content l-content-image">
+    {{ high_res_img('firefox/features/adblocker/content-blocking-custom.png', {'alt': '', 'class': 'mzp-c-billboard-image'}) }}
+  </section>
+
+  <section class="mzp-l-content l-content-narrow">
+    <h2 class="section-title">{{_('Cover your trail, block trackers') }}</h2>
+    <p>
+      {% trans %}
+      Click on the trackers box and you’ll be able to block trackers in two ways. One way to block trackers is to do it when you’re working in a Private Window. Another way to do it is to block trackers in all windows. Keep in mind that if you choose to always block trackers, some pages might not load correctly.
+      {% endtrans %}
+    </p>
+    {{ high_res_img('firefox/features/adblocker/custom-trackers.png', {'alt': ''}) }}
+  </section>
+
+  <section class="mzp-l-content l-content-narrow">
+    <h2 class="section-title">{{_('Take a bite out of cookies') }}</h2>
+    <p>
+      {% trans url='https://support.mozilla.org/kb/storage' %}
+      <a href="{{ url }}">Cookies</a> are sent by websites you visit. They live on your computer and monitor what you’ve been doing on a site. When an airline hikes your rates because you’ve looked at plane tickets once that day, that is the handiwork of a cookie.
+      {% endtrans %}
+    </p>
+    <p>
+      {% trans %}
+      In Firefox, you can block all third-party cookies or just those set by trackers. Be aware that blocking all cookies can break some sites.
+      {% endtrans %}
+    </p>
+    {{ high_res_img('firefox/features/adblocker/third-party-cookies.png', {'alt': ''}) }}
+  </section>
+
+  <section class="mzp-l-content l-content-narrow">
+    <h2 class="section-title">{{_('Send a Do Not Track signal') }}</h2>
+    <p>
+      {% trans url='https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature' %}
+      If you don’t want your online behavior used for ads, you can send websites a polite “thanks but no thanks” letter by checking the <a href="{{ url }}">Do Not Track</a> option of Firefox. Participation is voluntary, but the websites that participate will stop tracking you immediately.
+      {% endtrans %}
+    </p>
+    {{ high_res_img('firefox/features/adblocker/dnt_screenshot.png', {'alt': ''}) }}
+  </section>
+
+  <section class="mzp-l-content l-content-narrow">
+      <h2 class="section-title">{{_('Speed up thanks to ad blockers') }}</h2>
+      <p>
+        {% trans %}
+        In some cases, an ad blocker can help your browser go faster. When an ad is loading, it can slow down a website. At the same time, it takes longer to find what you’re looking for if you’re too busy closing yet another ad.
+        {% endtrans %}
+      </p>
+      <p>
+        {% trans url=url('firefox.new') %}
+        If you want to learn more about ad blocking, there are hundreds of ad blocker extensions available for Firefox and other browsers. If want to try out the ad blockers Firefox uses, <a href="{{ url }}">click here to download</a> a browser that puts privacy first.
+        {% endtrans %}
+      </p>
+    </section>
 
   {% call call_out_compact(
     title=_('Take control of your browser.'),

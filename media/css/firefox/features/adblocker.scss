@@ -6,10 +6,8 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import "../../../protocol/css/includes/lib";
-@import "../../../protocol/css/components/billboard";
-@import "../../../protocol/css/components/card";
-@import "../../../protocol/css/components/feature-card";
 @import "../../../protocol/css/components/hero";
+@import "../../../protocol/css/components/billboard";
 @import "../../../protocol/css/templates/card-layout";
 @import "../../../protocol/css/components/call-out";
 
@@ -65,28 +63,15 @@ blockquote {
     }
 }
 
-.mzp-c-card-feature-media-wrapper {
-    margin-bottom: 50px;
-
-    @media #{$mq-lg} {
-        width: 100%;
+section.mzp-c-hero {
+    padding: 0;
+    .mzp-c-hero-subtitle {
+        @include text-display-sm;
     }
 }
 
-.mzp-c-card-feature {
-    margin-bottom: 0;
-}
-
-section.mzp-c-hero {
-    padding: 0;
-}
-
-.mzp-c-billboard-image {
-    width: 100%;
-}
-
 .section-title {
-    @include text-display-lg;
+    @include text-display-md;
     text-align: center;
 }
 
@@ -95,17 +80,4 @@ section.mzp-c-hero {
 .mzp-c-call-out.tracking {
     background-color: #fff;
     margin-bottom: 50px;
-}
-
-/* -------------------------------------------------------------------------- */
-
-.where-to-find {
-    background-color: $color-gray-20;
-
-    @media #{$mq-md} {
-        .mzp-l-content {
-            padding-bottom: $spacing-2xl;
-            padding-top: $spacing-2xl;
-        }
-    }
 }
