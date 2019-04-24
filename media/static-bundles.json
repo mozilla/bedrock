@@ -396,7 +396,8 @@
     {
       "files": [
         "css/base/mozilla-modal.less",
-        "css/base/notification-modal.less"
+        "css/base/notification-modal.less",
+        "css/base/notification-banner.less"
       ],
       "name": "firefox-update-notification-firstrun-whatsnew"
     },
