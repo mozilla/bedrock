@@ -18,19 +18,6 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/article';
 @import '../../protocol/css/components/call-out';
 
-.mzp-t-dark{
-    // protocol/issues#335
-    a:visited {
-        color: #ffffff;
-        opacity: 0.8;
-    }
-
-    a:hover,
-    a:focus,
-    a:active {
-        opacity: 1;
-    }
-}
 
 /* -------------------------------------------------------------------------- */
 // Call out / page header

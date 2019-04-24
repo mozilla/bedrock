@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "base-protocol.html" %}
+ {% extends "base-protocol-mozilla.html" %}
 
 {% block page_title %}Comment mon adresse sera-t-elle utilisée par Mozilla ?{% endblock %}
 
@@ -10,7 +10,7 @@
   {{ css_bundle('privacy_email') }}
 {% endblock %}
 
-{% block page_class %}privacy-email{% endblock %}
+{% block body_class %}{{ super() }} privacy-email{% endblock %}
 
 {% block content %}
 <div class="mzp-l-content article-wrapper">
@@ -18,7 +18,7 @@
     <h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
 
     <p class="mzp-c-article-intro">
-      Mozilla n’accorde pas seulement de l’importance à la confidentialité et à la sécurité de votre adresse électronique — cela fait partie de notre <a href="{{ url('mozorg.about.manifesto') }}"></a>Manifeste</a> : « La sécurité et la vie privée de chacun sur Internet sont fondamentales et ne doivent pas être facultatives. » <a href="{{ url('privacy.principles') }}"></a>Apprenez-en davantage sur nos principes de confidentialité des données</a>. 
+      Mozilla n’accorde pas seulement de l’importance à la confidentialité et à la sécurité de votre adresse électronique — cela fait partie de notre <a href="{{ url('mozorg.about.manifesto') }}"></a>Manifeste</a> : « La sécurité et la vie privée de chacun sur Internet sont fondamentales et ne doivent pas être facultatives. » <a href="{{ url('privacy.principles') }}"></a>Apprenez-en davantage sur nos principes de confidentialité des données</a>.
     </p>
 
     <p><strong>Ce que vous devez savoir :</strong></p>

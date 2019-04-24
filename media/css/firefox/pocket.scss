@@ -13,19 +13,6 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/templates/card-layout';
 
 
-.mzp-t-dark .note {
-    :link,
-    :visited {
-        color: $color-white;
-
-        &:hover,
-        &:focus,
-        &:active {
-            color: $color-gray-20;
-        }
-    }
-}
-
 .mzp-c-hero-title img {
     display: block;
     margin: 0 auto $spacing-lg;

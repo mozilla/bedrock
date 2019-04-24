@@ -322,25 +322,6 @@ $image-path: '/media/protocol/img';
 }
 
 //* -------------------------------------------------------------------------- */
-// Intro section
-
-.intro {
-    background-color: $color-gray-10;
-    min-height: 350px;
-    padding-top: $layout-sm;
-
-    @media #{$mq-md} {
-        margin-bottom: $layout-xl;
-        padding-top: $layout-xl;
-
-        .mzp-c-hero-image {
-            bottom: -$spacing-2xl;
-            height: calc(100% + #{$spacing-2xl});
-        }
-    }
-}
-
-//* -------------------------------------------------------------------------- */
 // Benefits section
 
 .wn66-benefit {
@@ -381,22 +362,6 @@ $image-path: '/media/protocol/img';
 
         @media #{$mq-md} {
             max-width: 100%;
-        }
-    }
-}
-
-//* -------------------------------------------------------------------------- */
-// callout container
-
-.t-wn64 {
-
-    &.mzp-c-call-out-compact {
-        background: $color-gray-10;
-    }
-
-    .mzp-c-call-out-cta-container {
-        @media #{$mq-md} {
-            text-align: center;
         }
     }
 }
@@ -454,4 +419,3 @@ $image-path: '/media/protocol/img';
         text-align: center;
     }
 }
-

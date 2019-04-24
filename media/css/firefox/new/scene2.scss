@@ -44,7 +44,7 @@ $image-path: '/media/protocol/img';
         display: none;
         max-width: none;
         color: $color-black;
-        background-color: $brand-lemon-yellow;
+        background-color: $color-yellow-30;
 
         .windows.xpvista & {
             display: block;
@@ -177,17 +177,6 @@ $image-path: '/media/protocol/img';
 }
 
 .mzp-t-dark {
-    :link,
-    :visited {
-        color: $color-white;
-
-        &:hover,
-        &:focus,
-        &:active {
-            color: $color-gray-20;
-        }
-    }
-
     .mzp-c-form-errors {
         color: $color-black;
     }
