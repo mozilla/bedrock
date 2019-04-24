@@ -2,7 +2,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../pebbles/includes/lib';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
 
 // Security impact levels
 
@@ -12,10 +15,9 @@
 }
 
 .level {
-    @include font-size-extra-small;
-    @include open-sans;
-    background: #f3f3f3;
-    border-right: 3px solid #ccc;
+    @include text-body-xs;
+    background: $color-gray-10;
+    border-right: 3px solid $color-gray-30;
     box-shadow: 0 1px 1px rgba(0,0,0,0.05), 0 -1px 0 rgba(0,0,0,0.05) inset;
     color: #000;
     display: inline-block;
@@ -26,23 +28,23 @@
     width: 90px;
 
     &.moderate {
-        background: #fcf580;
-        border-color: #f6e120;
+        background: $color-yellow-10;
+        border-color: $color-yellow-40;
     }
 
     &.high {
-        background: #ffc080;
-        border-color: #ff6c20;
+        background: $color-orange-10;
+        border-color: $color-orange-50;
     }
 
     &.critical {
-        background: #ff8080;
-        border-color: #ff2020;
+        background: $color-red-10;
+        border-color: $color-red-50;
     }
 }
 
 // move levels to the left once there's enough space
-@media #{$mq-phone-wide} {
+@media #{$mq-sm} {
     .level-item {
         padding-left: 110px;
 
@@ -76,7 +78,7 @@
         position: absolute;
         left: -1em;
         width: 1em;
-        color: $color-text-tertiary;
+        color: $color-gray-40;
         vertical-align: middle;
     }
 }

@@ -1,7 +1,7 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
-{% extends "base-pebbles-basic.html" %}
+{% extends "base-protocol-basic.html" %}
 
 {% block page_title %}Credits FAQ{% endblock %}
 {% set body_id = 'credits-faq' %}
@@ -17,7 +17,7 @@
 {% block page_og_url %}{{ canonical_url }}{% endblock %}
 
 {% block article %}
-<h1><span class="highlight">Credits FAQ</span></h1>
+<h1 class="mzp-c-article-title">Credits FAQ</h1>
 
 <p>The appropriate giving of credit can be a controversial subject in free software projects. At Mozilla, we do it with a <a href="{{ url('mozorg.credits') }}">single global credits list</a>.</p>
 

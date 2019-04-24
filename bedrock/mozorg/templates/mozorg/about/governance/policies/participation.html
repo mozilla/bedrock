@@ -9,7 +9,7 @@
 
 
 {% block article %}
-<h1><span class="highlight">{{ _('Mozilla Community Participation Guidelines') }}</span></h1>
+<h1 class="mzp-c-article-title">{{ _('Mozilla Community Participation Guidelines') }}</h1>
 {% if l10n_has_tag('participation_nov2018') %}
   <h4>{{ _('Version 3.0 – Updated November 28, 2018') }}</h4>
 {% else %}
@@ -38,7 +38,7 @@
   {% endtrans %}
   </p>
 
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>{{ _('Background') }}</li>
     <li>{{ _('Family status') }}</li>
     <li>{{ _('Gender') }}</li>
@@ -81,7 +81,7 @@
   {% endtrans %}
   </p>
 
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>{{ _('Working in Mozilla spaces.') }}</li>
     <li>{{ _('Working with other Mozillians and other Mozilla community participants virtually or co-located.') }}</li>
     <li>{{ _('Representing Mozilla at public events.') }}</li>
@@ -187,7 +187,7 @@
   {% endtrans %}
   </p>
 
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>{{ _('Remote (on video or phone)') }}</li>
     <li>{{ _('Not native language speakers') }}</li>
     <li>{{ _('Coming from a different culture') }}</li>
@@ -286,7 +286,7 @@
   {% endtrans %}
   </p>
 
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>{{ _('Background') }}</li>
     <li>{{ _('Family status') }}</li>
     <li>{{ _('Gender') }}</li>
@@ -341,7 +341,7 @@
   {% endtrans %}
   </p>
 
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>{{ _('‘Talking over’ or ‘heckling’ speakers.') }}</li>
     <li>{{ _('Drinking alcohol to excess or using recreational drugs
       to excess, or pushing others to do so.') }}</li>
@@ -441,7 +441,7 @@
   {% endtrans %}
   </p>
 
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>{{ _('Additional Resources: <a href="%s">How to Report</a>')|format(url('mozorg.about.governance.policies.reporting')) }}</li>
     <li>{{ _('Questions: <a href="%s">inclusion@mozilla.com</a>')|format('mailto:inclusion@mozilla.com') }}</li>
   </ul>

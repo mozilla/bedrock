@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "base-pebbles-basic.html" %}
+{% extends "base-protocol-basic.html" %}
 
 {% block page_css %}
   {{ css_bundle('security') }}
@@ -29,10 +29,10 @@
     (url('security.bug-bounty.web-hall-of-fame'), 'web-hall-of-fame', 'Hall of Fame'),
 ] %}
 
-{% block body_class %}{% endblock %}
+{% block body_class %}mzp-t-mozilla {% endblock %}
 
 {% block side_nav %}
-  {{ side_nav_lists([navigation_bar_security, navigation_bar_client_bounty, navigation_bar_web_bounty], body_id) }}
+  {{ sidemenu_lists([navigation_bar_security, navigation_bar_client_bounty, navigation_bar_web_bounty], body_id) }}
 {% endblock %}
 
 {% block newsletter %}{% endblock %}

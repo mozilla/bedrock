@@ -2,12 +2,15 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../pebbles/includes/lib';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
 
 p.note {
-    border-color: #ddd;
+    border-color: $color-gray-20;
     border-style: solid;
     border-width: 2px 0;
     background: #f1f1f1;
-    padding: $gutter-width;
+    padding: $layout-sm;
 }

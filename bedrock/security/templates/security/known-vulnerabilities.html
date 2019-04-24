@@ -6,7 +6,7 @@
 {% block article %}
   <article itemscope itemtype="http://schema.org/Article">
     <header>
-      <h1 itemprop="name"><span class="highlight">Known Vulnerabilities in Mozilla Products</span></h1>
+      <h1 itemprop="name" class="mzp-c-article-title">Known Vulnerabilities in Mozilla Products</h1>
     </header>
     <div itemprop="articleBody">
       <p>The links below list security vulnerabilities known to affect
@@ -28,7 +28,7 @@
         <a href="{{ url('security.index') }}#pgpkey">security</a> page.</p>
 
       <h2>Product Advisories</h2>
-      <ul class="prose">
+      <ul class="mzp-u-list-styled">
         <li><a href="{{ url('security.product-advisories', slug='firefox') }}">Firefox</a></li>
         <li><a href="{{ url('security.product-advisories', slug='firefox-esr') }}">Firefox ESR</a></li>
         <li><a href="{{ url('security.product-advisories', slug='firefox-os') }}">Firefox OS</a></li>
@@ -40,7 +40,7 @@
       <h2>Advisories for older products</h2>
 
       <h3>Firefox</h3>
-      <ul class="prose">
+      <ul class="mzp-u-list-styled">
         <li><a href="{{ url('security.product-version-advisories', product='firefox', version='3.6') }}">Firefox 3.6</a></li>
         <li><a href="{{ url('security.product-version-advisories', product='firefox', version='3.5') }}">Firefox 3.5</a></li>
         <li><a href="{{ url('security.product-version-advisories', product='firefox', version='3.0') }}">Firefox 3.0</a></li>
@@ -50,7 +50,7 @@
       </ul>
 
       <h3>Thunderbird</h3>
-      <ul class="prose">
+      <ul class="mzp-u-list-styled">
         <li><a href="{{ url('security.product-version-advisories', product='thunderbird', version='3.1') }}">Thunderbird 3.1</a></li>
         <li><a href="{{ url('security.product-version-advisories', product='thunderbird', version='3.0') }}">Thunderbird 3.0</a></li>
         <li><a href="{{ url('security.product-version-advisories', product='thunderbird', version='2.0') }}">Thunderbird 2.0</a></li>
@@ -59,14 +59,14 @@
       </ul>
 
       <h3>SeaMonkey</h3>
-      <ul class="prose">
+      <ul class="mzp-u-list-styled">
         <li><a href="{{ url('security.product-version-advisories', product='seamonkey', version='2.0') }}">SeaMonkey 2.0</a></li>
         <li><a href="{{ url('security.product-version-advisories', product='seamonkey', version='1.1') }}">SeaMonkey 1.1</a></li>
         <li><a href="{{ url('security.product-version-advisories', product='seamonkey', version='1.0') }}">SeaMonkey 1.0</a></li>
       </ul>
 
       <h3>Older</h3>
-      <ul class="prose">
+      <ul class="mzp-u-list-styled">
         <li><a href="{{ url('security.product-advisories', slug='mozilla-suite') }}">Mozilla Suite 1.7</a></li>
         <li><a href="{{ url('security.older-vulnerabilities') }}">Older vulnerabilities</a></li>
       </ul>

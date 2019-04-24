@@ -1,0 +1,47 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/components/article';
+@import '../../protocol/css/templates/main-with-sidebar';
+@import '../../protocol/css/components/sidebar-menu';
+@import '../../protocol/css/components/newsletter-form';
+
+
+.side-reference {
+    border-bottom: 2px solid #ddd;
+    margin: 2em 0;
+    padding-bottom: (1.25em / 2);
+
+    h4 {
+        @include text-body-lg;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    .more {
+        display: block;
+        padding: (1.25em / 2) 0;
+    }
+}
+
+.t-love {
+    // mozilla/protocol#371
+    .mzp-c-newsletter-image {
+        margin-top: $layout-lg;
+    }
+
+    // mozilla/protocol#370
+    input[type='email'] {
+        @include border-box;
+        @include text-body-md;
+        border-radius: 2px;
+        padding: ($spacing-md - 2px) ($spacing-xl - 2px); //2px extra padding removed to compensate for 2px border.
+        width: 100%;
+    }
+}

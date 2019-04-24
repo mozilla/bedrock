@@ -7,7 +7,7 @@
 {% block page_title %}{{ _('Handling Mozilla Security Bugs') }}{% endblock %}
 
 {% block article %}
-  <h1><span class="highlight">{{ _('Handling Mozilla Security Bugs') }}</span></h1>
+  <h1 class="mzp-c-article-title">{{ _('Handling Mozilla Security Bugs') }}</h1>
 
   <p>{{ _(' Version 1.1') }}</p>
 
@@ -38,7 +38,7 @@
 
   <p>{{ _('mozilla.org has adopted the following general policies for handling bug reports related to security vulnerabilities:') }}</p>
 
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>{{ _('Security bug reports can be treated as special and handled differently than “normal” bugs. In particular, the mozilla.org Bugzilla system will allow bug reports related to security vulnerabilities to be marked as “Security-Sensitive,” and will have special access control features specifically for use with such bug reports. However a security bug can revert back to being a normal bug (by having the “Security-Sensitive” flag removed), in which case the access control restrictions will no longer be in effect.') }}</li>
     <li>{{ _('Full information about security bugs will be restricted to a known group of people, using the Bugzilla access control restrictions described above. However that group can and will be expanded as necessary and appropriate.') }}</li>
     <li>{{ _('As noted above, information about security bugs can be held confidential for some period of time; there is no pre-determined limit on how long that time period might be. However this is offset by the fact that the person reporting a bug has visibility into the activities (if any) being taken to address the bug, and has the power to open the bug report for public scrutiny.') }}</li>
@@ -62,7 +62,7 @@
   The Mozilla security module owner and peers will form the core of the Mozilla security bug group, and will select a number of other people to round out the group’s membership. Each and every member of the Mozilla security bug group will automatically have access to all Mozilla bugs marked “Security-Sensitive.” The members of the Mozilla security bug group will be drawn primarily from the following groups:
   {% endtrans %}</p>
 
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>{{ _('security developers (i.e., those whose bugs are often singled out as security-relevant or who have security-relevant bugs assigned to them), and security QA people who are the QA contacts for those bugs;') }}</li>
     <li>{{ _('“exploit hunters” with a good track record of finding significant Mozilla security vulnerabilities;') }}</li>
     <li>{{ _('representatives of the various companies and groups actively distributing Mozilla-based products; and') }}</li>
@@ -77,7 +77,7 @@
 
   <p>{{ _('Besides the permanent security bug group members described above, there are two other categories of people who may participate in security bug group activities and have access to otherwise-confidential security bug reports:') }}</p>
 
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>{{ _('A person who reports a security bug will have continued access to all Bugzilla activities associated with that bug, even if the bug is marked “Security-Sensitive.”') }}</li>
     <li>{{ _('Any other persons may be given access to a particular security bug, by someone else (who does have access) adding them to the CC list for that bug.') }}</li>
   </ul>
@@ -90,7 +90,7 @@
 
   <p>{{ _('The security module owner and peers will also work with mozilla.org to populate the initial security bug group. We expect that the Mozilla security bug group will initially be significantly larger than the core group of module owner and peers, and that it may grow even further over time. New members can be added to the Mozilla security bug group as follows:') }}</p>
 
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>{{ _('New people can apply to join the security bug group, or may be recruited by existing members. Applicants for membership must have someone currently in the security bug group who is willing to vouch for them and nominate them for membership. Nomination is done by the “voucher” sending email to the security bug group private mailing list.') }}</li>
     <li>{{ _('The applicant’s nomination for membership will then be considered for a period of a few days, during which members of the security bug group can speak out in favor of or against the applicant.') }}</li>
     <li>{{ _('At the end of this period, the security module owner will decide to accept the applicant or not, based on feedback and objections from the security bug group in general and from the module owner’s peers in particular. If anyone else in the security bug group has a problem with the module owner’s decision then they can appeal to mozilla.org staff, who will make the final decision.') }}</li>
@@ -98,7 +98,7 @@
 
   <p>{{ _('The criteria for membership in the Mozilla security bug group are as follows:') }}</p>
 
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>{{ _('The applicant must be trusted by those already in the group.') }}</li>
     <li>{{ _('The applicant should have a legitimate purpose for wishing to join the group.') }}</li>
     <li>{{ _('The applicant must be able to add value to the group’s activities in some way.') }}</li>
@@ -112,7 +112,7 @@
 
   <p>{{ _('The security module owner, peers, and other members of the Mozilla security bug group will <em>not</em> be asked to sign formal nondisclosure agreements or other legal paperwork. However we do expect members of the group') }}</p>
 
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>{{ _('not to disclose security bug information to others who are not members of the Mozilla security bug group or are not otherwise involved in resolving the bug, except that if a member of the Mozilla security bug group is employed by a distributor of Mozilla-based products, then that member may share such information within that distributor, provided that this information is shared only with those who have a need to know, only to the extent they need to know, and such information is labeled and treated as the organization generally treats confidential material,') }}</li>
     <li>{{ _('not to post descriptions of exploits in public forums like newsgroups, and') }}</li>
     <li>{{ _('to be careful in whom they add to the CC field of a bug (since all those CC’d on a security bug potentially have access to the complete bug report).') }}</li>
@@ -120,7 +120,7 @@
 
   <p>{{ _('When a bug is put into the security bug group, the group members, bug reporter, and others associated with the bug will decide by consensus, either through comments on the bug or the group mailing list, whether an immediate warning to users is appropriate and how it should be worded. The goals of this warning are:') }}</p>
 
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>{{ _('to inform Mozilla users and testers of potential security risks in the versions they are using, and what can be done to mitigate those risks, and') }}</li>
     <li>{{ _('to establish, for each bug, the amount of information a distributor can reveal immediately (before a fix is available) without putting other distributors and their customers at risk.') }}</li>
   </ul>
@@ -133,7 +133,7 @@
 
   <p>{{ _('However we will ask all individuals and organizations reporting security bugs through Bugzilla to follow the voluntary guidelines below:') }}</p>
 
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>{{ _('Before making a security bug world-readable, please provide a few days notice to the Mozilla security bug group by sending email to the private security bug group mailing list.') }}</li>
     <li>{{ _('Please try not to keep bugs in the security-sensitive category for an unreasonably long amount of time.') }}</li>
     <li>{{ _('Please try to be understanding and accommodating if a Mozilla distributor has a legitimate need to keep a bug in the security-sensitive category for some reasonable additional time period, e.g., to get a new release distributed to users. (Regarding this point, if all Mozilla distributors have a representative on the security bug group, then even if a bug remains in the security-sensitive category all affected distributors can still be informed and take appropriate action.)') }}</li>

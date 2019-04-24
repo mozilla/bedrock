@@ -1,22 +1,22 @@
 {% extends "security/base.html" %}
 
-{% block body_id %}older-vulnerabilities{% endblock %}
+{% set body_id="older-vulnerabilities" %}
 
 {% block page_title %}{{ _('Older Vulnerabilities in Mozilla Products') }}{% endblock %}
 
-{% block sidebar %}{% endblock %}
+{% block side_nav %}{% endblock %}
 
 {% block article %}
   <article itemscope itemtype="http://schema.org/Article">
     <header>
-      <h1 itemprop="name"><span class="highlight">{{ self.page_title() }}</span></h1>
+      <h1 itemprop="name" class="mzp-c-article-title">{{ self.page_title() }}</h1>
     </header>
     <div itemprop="articleBody">
     <p class="intro">This page archives security announcements made for older versions of
     Mozilla projects. Please see the active <a href="{{ url('security.known-vulnerabilities') }}">
       Known Vulnerabilities</a> page for more recent security advisories.</p>
 
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li><a href="#firefox0.10.1">Fixed in Firefox Preview Release update (0.10.1)</a></li>
     <li><a href="#mozilla1.7.3">Fixed in Firefox Preview Release, Mozilla 1.7.3, Thunderbird
       0.8</a></li>
@@ -32,7 +32,7 @@
 
   <h3 id="firefox0.10.1">Fixed in Firefox Preview Release update (0.10.1)</h3>
 
-  <table class="data-table">
+  <table class="mzp-u-data-table">
     <tbody>
     <tr>
       <th>#</th>
@@ -69,7 +69,7 @@
 
   <h3 id="mozilla1.7.3">Fixed in Firefox Preview Release, Mozilla 1.7.3, Thunderbird 0.8</h3>
 
-  <table class="data-table">
+  <table class="mzp-u-data-table">
     <tbody>
     <tr>
       <th>#</th>
@@ -263,7 +263,7 @@
   </table>
 
   <h3 id="mozilla1.7.2">Fixed in Mozilla 1.7.2/Firefox 0.9.3/Thunderbird 0.7.3</h3>
-  <table class="data-table">
+  <table class="mzp-u-data-table">
     <tbody>
     <tr>
       <th>#</th>
@@ -332,7 +332,7 @@
     </tbody>
   </table>
   <h3 id="mozilla1.7.1">Fixed in Mozilla 1.7.1/Firefox 0.9.2/Thunderbird 0.7.2</h3>
-  <table class="data-table">
+  <table class="mzp-u-data-table">
     <tbody>
     <tr>
       <th>#</th>
@@ -363,7 +363,7 @@
     </tbody>
   </table>
   <h3 id="mozilla1.7">Fixed in Mozilla 1.7/Firefox 0.9/Thunderbird 0.7</h3>
-  <table class="data-table">
+  <table class="mzp-u-data-table">
   <tbody>
   <tr>
     <th>#</th>
@@ -609,7 +609,7 @@
   </table>
 
   <h3 id="mozilla1.6">Fixed in Mozilla 1.6</h3>
-  <table class="data-table">
+  <table class="mzp-u-data-table">
     <tbody>
     <tr>
       <th>#</th>
@@ -657,7 +657,7 @@
     </tbody>
   </table>
   <h3 id="nov-2003">November 2003 Update</h3>
-  <table class="data-table">
+  <table class="mzp-u-data-table">
     <tbody>
     <tr>
       <th>#</th>
@@ -825,7 +825,7 @@
   <br>
   <h3 id="jul-2003">July 2003 Update</h3>
   <br>
-  <table class="data-table">
+  <table class="mzp-u-data-table">
   <colgroup>
     <col class="vuln_number">
     <col class="vuln_type">
@@ -1107,7 +1107,7 @@
   <br>
   <h3 id="feb-2003">February 2003 Update</h3>
   <br>
-  <table class="data-table">
+  <table class="mzp-u-data-table">
     <colgroup>
       <col class="vuln_number">
       <col class="vuln_type">
@@ -1199,7 +1199,7 @@
   <br>
   <h3 id="dec-2002">Updates up to December 2002</h3>
   <br>
-  <table class="data-table">
+  <table class="mzp-u-data-table">
   <colgroup>
     <col class="vuln_number">
     <col class="vuln_type">

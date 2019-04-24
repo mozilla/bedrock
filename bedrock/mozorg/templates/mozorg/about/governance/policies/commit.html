@@ -9,7 +9,7 @@
 
 
 {% block article %}
-<h1><span class="highlight">{{ self.page_title() }}</span></h1>
+<h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
 
 <p>{{ _('This document outlines the procedure for getting commit access to the Mozilla Foundation repositories.') }}</p>
 
@@ -25,7 +25,7 @@
 
 <p>{{ _('Here is a list of the steps that need to happen to become a Mozilla committer. Employment with any particular entity (including the Mozilla Foundation or Corporation) does not change the need to follow these steps.') }}</p>
 
-<ol class="prose">
+<ol class="mzp-u-list-styled">
   <li>{% trans policy=url('mozorg.about.governance.policies.commit.access-policy') %}
     Read the <a href="{{ policy }}">Commit Access Policy</a>, and decide which level of access you need to apply for.
   {% endtrans %}</li>
@@ -74,7 +74,7 @@ You will need one or more vouchers. The <a href="{{ policy }}">Commit Access Pol
 <p>{{ _('If your account in a particular SCM is inactive for more than 6 months, it may be deactivated. However, the knowledge that you have achieved a particular level of access is retained. Therefore, getting your account reactivated is a simple matter of filing a bug asking IT to turn it back on. Such bugs should be dealt with extremely quickly.') }}</p>
 
 <h2 id="problems">{{ _('Useful Information') }}</h2>
-<ul class="prose">
+<ul class="mzp-u-list-styled">
   <li>{% trans rheeet='https://ftp.mozilla.org/pub/mozilla.org/mozilla/libraries/bonus-tracks/rheet.wav' %}
     Need to hear a <a href="{{ rheeet }}">rheeet</a>?
   {% endtrans %}</li>

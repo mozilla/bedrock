@@ -2,22 +2,20 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../pebbles/includes/lib';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
 
 .links {
     li {
         margin-bottom: 1.25em;
         padding-bottom: 0.25em;
-        border-bottom: 2px solid #ddd;
-    }
-    h4 {
-        a {
-            @include trailing-double-caret;
-        }
+        border-bottom: 2px solid $color-gray-20;
     }
 }
 
-@media #{$mq-desktop} {
+@media #{$mq-lg} {
     @supports (display: grid) {
         .links {
             display: grid;

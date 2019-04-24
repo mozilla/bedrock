@@ -2,7 +2,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../pebbles/includes/lib';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+
 
 .advisory {
     .summary {
@@ -14,10 +18,10 @@
         }
         dd {
             margin-bottom: 10px;
-            padding-left: $gutter-width;
+            padding-left: $layout-sm;
         }
 
-        @media #{$mq-phone-wide} {
+        @media #{$mq-sm} {
             @supports (display: grid) {
                 display: grid;
                 grid-template-columns: 100px 1fr;
@@ -37,8 +41,11 @@
     }
 
     .cve {
+        h5 {
+            @include font-size(16px);
+        }
         p {
-            margin-bottom: 10px;
+            margin-bottom: $spacing-sm;
         }
     }
 }

@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block article %}
-<h1><span class="highlight">{{ self.page_title() }}</span></h1>
+<h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
 
 <section class="lead-content">
 
@@ -38,7 +38,8 @@
   </p>
   <a href="https://www.google.com/" ><img src="{{ static('img/logos/google/logo_google.svg') }}" width="75" height="25" alt="Google" /></a>
   <form method="get" action="https://groups.google.com/groups">
-    <input type="text" name="as_q" maxlength="256" value="" placeholder="{{ _('Search Forums') }}" />
+    <label for="as_q">{{ _('Search Forums') }}</label>
+    <input type="text" id="as_q" name="as_q" maxlength="256" value="" placeholder="{{ _('Search Forums') }}" />
       <input type="hidden" name="hl" value="en" />
       <input type="hidden" name="lr" value="" />
       <input type="hidden" name="as_ugroup" value="mozilla.*" />
@@ -47,7 +48,7 @@
 
   <nav class="toc">
     <h3>{{ _('Categories:') }}</h3>
-    <ul class="prose">
+    <ul class="mzp-u-list-styled">
       {% for title in forums.ordered.keys() %}
         <li><a href="#{{ title|slugify }}">{{ title }}</a></li>
       {% endfor %}

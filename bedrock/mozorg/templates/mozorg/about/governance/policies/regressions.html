@@ -8,10 +8,10 @@
 {% set body_id = "regression" %}
 
 {% block article %}
-<h1><span class="highlight">{{ self.page_title() }}</span></h1>
+<h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
 <nav role="directory">
   <p>{{ _('In this document:') }}</p>
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li><a href="#basic-policy">{{ _('Basic Policy') }}</a>: {{ _('Patch authors will be notified with a bug of regressions and have 3 days to respond or get backed out.') }}</li>
     <li><a href="#requirements">{{ _('Requirements') }}</a>: {{ _('Requirements for bugs.') }}</li>
     <li><a href="#outcomes">{{ _('Acceptable Outcomes') }}</a>: {{ _('Responses to regressions.') }}</li>
@@ -27,7 +27,7 @@
 <section id="requirements">
   <h2>{{ _('Requirements') }}</h2>
   <p>{{ _('To be fair, some initial work up front should be done prior to filing a bug and requesting a needinfo from the original author.  Here is what to expect:') }}</p>
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>{{ _('On integration branches (higher volume), a talos sheriff will have verified the root cause within 1 week of the patch landing.') }}</li>
     <li>{{ _('a patch or set of patches from a bug must be identified as the root cause. This can take place through retriggers on the tree or in the case of many patches landing at once this would take place through a push to try backing out the suspected patch(es).') }}</li>
     <li>{{ _('links in the bug to document the regression (and any related regressions/improvements).') }}</li>
@@ -38,7 +38,7 @@
 <section id="outcomes">
   <h2>{{ _('Acceptable Outcomes') }}</h2>
   <p>{{ _('What we expect from a developer when asking them to look at a regression:') }}</p>
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>{{ _('A promise to attempt a fix at the bug is agreed upon, the bug is assigned to someone and an estimated timeline is documented in the bug.') }}</li>
     <li>{{ _('The bug will contain enough details and evidence to support accepting this regression, we will mark it as wontfix.') }}</li>
     <li>{{ _('It is agreed that this should be backed out and a sheriff will verify the backout removes the regressions.') }}</li>
@@ -48,7 +48,7 @@
 <section id="other">
   <h2>{{ _('Other Scenarios') }}</h2>
   <p>{{ _('There are many reasons why a regression will not fall into the above workflow. Here a few examples of other scenarios and how we will handle them:') }}</p>
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>{{ _('A bug related to the alert is not filed within 1 week of the patch landing. This removes the urgency and required action.') }}</li>
     <li>{{ _('We only caught a regression at uplift time. There is a chance this isn’t easily determined, this will be documented and identified patch authors will use their judgement to fix the bug.') }}</li>
     <li>{{ _('Regression is unrelated to code (say pgo issue) - this should be documented in the bug and closed as wontfix.') }}</li>

@@ -7,13 +7,8 @@
 {% block page_title %}{{ _('Mozilla Commit Access Policy') }}{% endblock %}
 {% set body_id = "commit-access-policy" %}
 
-{% block page_css %}
-  {{ super() }}
-  {{ css_bundle('commit-access-policy') }}
-{% endblock %}
-
 {% block article %}
-<h1><span class="highlight">{{ self.page_title() }}</span></h1>
+<h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
 
 <h2>{{ _('v.1.1') }}</h2>
 
@@ -41,7 +36,7 @@ Therefore, a good policy balances the use of technical and social controls to mi
 
 <p>{{ _('3 levels, in order of increasing access:') }}</p>
 
-<ol class="prose">
+<ol class="mzp-u-list-styled">
   <li>
     {{ _('Try/User access - ‘try’ trees and user repositories in Hg, plus any other tree placed at this level.') }}
     <p>{{ _('Requirements: one voucher - any other user with level 2 or above access.') }}</p>
@@ -80,7 +75,7 @@ This is the lowest level of access. It allows someone to check in to the <a href
 
 <h4>{{ _('Hg') }}</h4>
 
-<table class="data-table">
+<table class="mzp-u-data-table">
   <tr>
     <td><a href="http://hg.mozilla.org/projects/nss/">projects/nss</a></td>
     <td>Wan-Teh Chang</td>

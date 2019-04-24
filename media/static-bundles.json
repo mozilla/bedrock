@@ -434,6 +434,12 @@
     },
     {
       "files": [
+        "css/protocol/basic.scss"
+      ],
+      "name": "protocol-basic"
+    },
+    {
+      "files": [
         "css/etc/firefox/retention/thank-you.scss",
         "css/etc/firefox/retention/thank-you-referral.scss"
       ],
@@ -581,12 +587,6 @@
         "css/firefox/whatsnew/whatsnew-67.0.5.scss"
       ],
       "name": "firefox_whatsnew_67.0.5"
-    },
-    {
-      "files": [
-        "css/mozorg/commit-access-policy.less"
-      ],
-      "name": "commit-access-policy"
     },
     {
       "files": [
@@ -876,7 +876,7 @@
     },
     {
       "files": [
-        "css/mozorg/commit-access-requirements.less"
+        "css/mozorg/commit-access-requirements.scss"
       ],
       "name": "commit-access-requirements"
     },
@@ -1605,6 +1605,8 @@
       "files": [
         "js/libs/jquery-3.4.1.min.js",
         "js/base/mozilla-utils.js",
+        "protocol/js/protocol-newsletter.js",
+        "js/newsletter/form-protocol.js",
         "js/base/mozilla-client.js",
         "js/base/class-list-polyfill.js",
         "protocol/js/protocol-supports.js",

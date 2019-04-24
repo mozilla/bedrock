@@ -185,3 +185,43 @@
   </div>
 </{{ base_el }}>
 {%- endmacro %}
+
+
+
+{# sidemenu_lists() takes an arrya of lists and makes nav menus
+  The list has the link, a body_id, and a the text to display
+  {% set navigation_bar_client_bounty = [
+      (url('security.client-bug-bounty'),'client-bug-bounty', 'Client Bug Bounty'),
+      (url('security.bug-bounty.faq'), 'faq', 'Frequently Asked Questions'),
+  ] %}
+
+  {% set navigation_bar_web_bounty = [
+      (url('security.web-bug-bounty'), 'web-bug-bounty', 'Web Bug Bounty'),
+      (url('security.bug-bounty.web-eligible-sites'), 'web-eligible-sites', 'Eligible Websites'),
+  ] %}
+
+  {{ sidemenu_lists([navigation_bar_client_bounty, navigation_bar_web_bounty]) }}
+#}
+
+{% macro sidemenu_lists(arr, body_id='') -%}
+  <nav class="mzp-c-sidemenu">
+    <section class="mzp-c-sidemenu-main">
+      {% for menu in arr %}
+
+        <h4 class="mzp-c-sidemenu-title {% if menu[0][1] == body_id and body_id != '' %}mzp-is-current{% endif %}">
+          <a href="{{ menu[0][0]|e }}">{{ menu[0][2]|e }}</a>
+        </h4>
+
+        <ul>
+        {% for href, id, caption in menu %}
+          {% if loop.index > 1 %}
+          <li {% if id == body_id and body_id != '' %}class="mzp-is-current"{% endif %}>
+            <a href="{{ href|e }}">{{ caption|e }}</a>
+          </li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+      {% endfor %}
+    </section>
+  </nav>
+{%- endmacro %}

@@ -6,7 +6,7 @@
 
 {% block page_title %}{{ _('Mozilla Patents') }}{% endblock %}
 {% set body_id = "about-patents" %}
-{% block body_class %}about-patents{% endblock %}
+{% block body_class %}{{ super() }} about-patents{% endblock %}
 
 
 {% block page_css %}
@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block article %}
-  <h1><span class="highlight">{{ _('Open Innovation and Software Patents') }}</span></h1>
+  <h1 class="mzp-c-article-title">{{ _('Open Innovation and Software Patents') }}</h1>
   <nav id="patent-nav">
     <ul>
       <li><a href="{{ url('mozorg.about.policy.patents.license') }}">{{ _('Mozilla Open Software Patent License (MOSPL)') }}</a></li>
@@ -29,7 +29,7 @@
     <h2>{{ _('The patent system is challenging for software development, and this is especially true for open source software.') }}</h2>
     <p>{{ _('While some patent owners use their patents defensively, many others use them offensively to prevent others from developing innovative and competitive software. Both the costs of fighting a patent infringement lawsuit and the potential damages involved can be large, making even the threat of patent infringement enough to prevent new innovations. Open source projects are particularly vulnerable because they tend to be smaller entities without money to defend infringement suits, let alone create a defensive patent portfolio.') }}</p>
     <p>{{ _('Unfortunately, the problem is only worsening:') }}</p>
-    <ul class="prose">
+    <ul class="mzp-u-list-styled">
       <li>{{ _('The number of patents applications that cover software has grown exponentially over the past decade, and overburdened patent offices applying unclear and non-technical standards have granted many vague or overbroad software patents.') }}</li>
       <li>{{ _('When considering the validity of a patent application, patent offices primarily look to their own databases for “prior art” (information used to invalidate a patent during the application process). For written publications beyond that, patent offices often rely on the applicant to identify and provide copies of prior art for them. This means patent examiners rarely ever see open source repositories, code, comments, presentations, or discussions and that much of the innovation created by open source software projects and work that exists in their repositories may go overlooked before a patent right is granted to someone else.') }}</li>
       <li>{{ _('Once a patent is granted, courts generally presume it is valid, making it many times more expensive to fight. Because of this, patent busting projects become hard to scale, even if there is valid prior art in the open source software world or if the patent shouldn’t have been granted for other reasons.') }}</li>
@@ -59,40 +59,30 @@
     <p><a href="{{ url('mozorg.about.policy.patents.guide') }}">{{ _('Open Software Patent License Guide') }}</a></p>
 
     <h2>{{ _('FAQ') }}</h2>
-    <div id="faq" class="accordion accordion-auto-init zebra">
-      <section>
-        <h2 data-accordion-role="tab">{{ _('What happens if I’m using one of Mozilla’s products, such as Firefox? Does this license apply to my use?') }}</h2>
-        <div data-accordion-role="tabpanel">
-          <p>{{ _('Not unless you want it to - the choice is yours. The code that we write is licensed under open source licenses that contain express or sometimes implied patent licenses. We generally use the Mozilla Public License v2, but have also released code under Apache Public License and BSD licenses, among others. Your use of the code we write is subject to those open source licenses, independent of the MOSPL. However, you may choose to also take a license to the patents under the MOSPL.') }}</p>
-        </div>
-      </section>
-      <section>
-        <h2 data-accordion-role="tab">{{ _('How does this license apply to me? ') }}</h2>
-        <div data-accordion-role="tabpanel">
-          <p>{{ _('You automatically benefit from the license if you need it - meaning if you would otherwise infringe a patent without the license. The license will continue to benefit you as long as you adhere to the conditions of the license. If you would like to make it explicitly clear that the license does not apply to you, or if you would like to terminate the license, you need only make a public statement of your intention to no longer be party to the license by following the instructions in Section 4(b) of the license.') }}</p>
-        </div>
-      </section>
-      <section>
-        <h2 data-accordion-role="tab">{{ _('Does the MOSPL affect any other non-exclusive licenses that I receive?') }}</h2>
-        <div data-accordion-role="tabpanel">
-          <p>{{ _('No, the MOSPL doesn’t negatively affect any license you might have independently received. For example, Mozilla may have granted you a patent license under the Mozilla Public License v2 (that we provide to all users of Firefox). We may also have granted you a patent license (or agreed to make licenses available on a royalty-free basis) through our contribution at a standard-setting organization like the W3C in connection with the practice of a standard. The MOSPL separately ensures you are permitted to develop software on your own, independent of Firefox or a W3C standard, that might otherwise be covered by a patent. If you decide you do not want the MOSPL to apply to you, it will not affect your other licenses in connection with Firefox or W3C standards.') }}</p>
-        </div>
-      </section>
-      <section>
-        <h2 data-accordion-role="tab">{{_('How does this project address the software patent quality issues?') }}</h2>
-        <div data-accordion-role="tabpanel">
+    <div id="faq">
+      <details>
+        <summary><h3>{{ _('What happens if I’m using one of Mozilla’s products, such as Firefox? Does this license apply to my use?') }}</h3></summary>
+        <p>{{ _('Not unless you want it to - the choice is yours. The code that we write is licensed under open source licenses that contain express or sometimes implied patent licenses. We generally use the Mozilla Public License v2, but have also released code under Apache Public License and BSD licenses, among others. Your use of the code we write is subject to those open source licenses, independent of the MOSPL. However, you may choose to also take a license to the patents under the MOSPL.') }}</p>
+      </details>
+      <details>
+        <summary><h3>{{ _('How does this license apply to me? ') }}</h3></summary>
+        <p>{{ _('You automatically benefit from the license if you need it - meaning if you would otherwise infringe a patent without the license. The license will continue to benefit you as long as you adhere to the conditions of the license. If you would like to make it explicitly clear that the license does not apply to you, or if you would like to terminate the license, you need only make a public statement of your intention to no longer be party to the license by following the instructions in Section 4(b) of the license.') }}</p>
+      </details>
+      <details>
+        <summary><h3>{{ _('Does the MOSPL affect any other non-exclusive licenses that I receive?') }}</h3></summary>
+        <p>{{ _('No, the MOSPL doesn’t negatively affect any license you might have independently received. For example, Mozilla may have granted you a patent license under the Mozilla Public License v2 (that we provide to all users of Firefox). We may also have granted you a patent license (or agreed to make licenses available on a royalty-free basis) through our contribution at a standard-setting organization like the W3C in connection with the practice of a standard. The MOSPL separately ensures you are permitted to develop software on your own, independent of Firefox or a W3C standard, that might otherwise be covered by a patent. If you decide you do not want the MOSPL to apply to you, it will not affect your other licenses in connection with Firefox or W3C standards.') }}</p>
+      </details>
+      <details>
+        <summary><h3>{{_('How does this project address the software patent quality issues?') }}</h3></summary>
         {% trans guide=url('mozorg.about.policy.patents.guide') %}
           <p>The more innovations in open source projects are patented, the easier it will be for patent examiners to identify them as prior art for future applications. This will lead to higher quality software patents. We do not predict that Mozilla’s own patents and defensive publications will, by themselves, be enough to substantially increase the quality of every type of issued patent. However, we hope that the example this project sets along with the <a href="{{ guide }}">Open Software Patent Licensing Guide</a> we’ve provided will encourage others to consider openly licensing their portfolio and applying for patents on their open source innovations to help increase software patent quality. Mozilla has also begun to advocate publicly for patent law reform that would further advance software patent quality: <a rel="external" href="https://blog.mozilla.org/netpolicy/files/2015/05/Mozilla-USPTO-Filing-May-2015-5-6.pdf">https://blog.mozilla.org/netpolicy/files/2015/05/Mozilla-USPTO-Filing-May-2015-5-6.pdf</a>.</p>
         {% endtrans %}
-        </div>
-      </section>
-      <section>
-        <h2 data-accordion-role="tab">{{_('Why aren’t the License on Transfer (LOT) or the Innovator’s Patent Agreement (IPA) on your list of potential open patent licenses?') }}</h2>
-        <div data-accordion-role="tabpanel">
-          <p>{{_('The Innovator’s Patent Agreement is a well considered initiative targeted to address the problem of patent lawsuits that do not have the permission of the original inventor. While this can work to help individual inventors within a company ensure their work won’t be used in unintended ways, it doesn’t explicitly ensure openness or inclusivity for communities or ecosystems in the same way that MOSPL or the other licenses do.') }}</p>
-          <p>{{_('License on Transfer is also an impactful initiative that addresses the narrower problem of patent trolls buying up patents and then shaking down entire industries. While these suits pose an obvious threat to innovation in general, LOT does not provide any direct assurances or commitments to open source innovation.') }}</p>
-        </div>
-      </section>
+      </details>
+      <details>
+        <summary><h3>{{_('Why aren’t the License on Transfer (LOT) or the Innovator’s Patent Agreement (IPA) on your list of potential open patent licenses?') }}</h3></summary>
+        <p>{{_('The Innovator’s Patent Agreement is a well considered initiative targeted to address the problem of patent lawsuits that do not have the permission of the original inventor. While this can work to help individual inventors within a company ensure their work won’t be used in unintended ways, it doesn’t explicitly ensure openness or inclusivity for communities or ecosystems in the same way that MOSPL or the other licenses do.') }}</p>
+        <p>{{_('License on Transfer is also an impactful initiative that addresses the narrower problem of patent trolls buying up patents and then shaking down entire industries. While these suits pose an obvious threat to innovation in general, LOT does not provide any direct assurances or commitments to open source innovation.') }}</p>
+      </details>
     </div>
   </section>
 

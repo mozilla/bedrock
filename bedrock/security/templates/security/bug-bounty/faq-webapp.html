@@ -6,13 +6,13 @@
 {% block article %}
   <article itemscope itemtype="http://schema.org/Article">
     <header>
-      <h1 itemprop="name"><span class="highlight">Web Bug Bounty FAQ</span></h1>
+      <h1 itemprop="name" class="mzp-c-article-title">Web Bug Bounty FAQ</h1>
     </header>
 
     <div itemprop="articleBody">
       <h3>General questions</h3>
 
-      <ul class="prose">
+      <ul class="mzp-u-list-styled">
         <li><a href="#why">Why do we include web applications as part
           of our bug bounty program?</a></li>
         <li><a href="#howto">How can I find potential vulnerabilities
@@ -22,7 +22,7 @@
 
       <h3>Eligible bugs</h3>
 
-      <ul class="prose">
+      <ul class="mzp-u-list-styled">
         <li><a href="#eligible-bugs">Which domains and web applications will be
           considered to be part of the bug bounty?</a></li>
         <li><a href="{{ url('security.web-bug-bounty') }}#payouts-section">
@@ -33,7 +33,7 @@
 
       <h3>Bug reporting</h3>
 
-      <ul class="prose">
+      <ul class="mzp-u-list-styled">
         <li><a href="#what-next">Once I have found a vulnerability,
           what next?</a></li>
         <li><a href="#nondisclosure">If I report the bug directly to you,
@@ -47,7 +47,7 @@
 
       <h2 id="general-questions">General questions</h2>
 
-      <dl class="prose">
+      <dl class="mzp-u-list-styled">
         <dt id="why">Why do we include web applications as part of our bug bounty program?</dt>
         <dd>
           <p>Mozilla client software relies heavily on web services, and Mozilla’s
@@ -70,7 +70,7 @@
 
       <h2 id="eligible-bugs">Eligible bugs</h2>
 
-      <dl class="prose">
+      <dl class="mzp-u-list-styled">
         <dt id="eligible-bugs">Which domains and web applications will be considered to be part of the bug bounty?</dt>
         <dd>
           <p>Although all of our non-community websites are considered in scope for acknowledgment on our
@@ -90,7 +90,7 @@
 
       <h2 id="bug-reporting">Bug reporting</h2>
 
-      <dl class="prose">
+      <dl class="mzp-u-list-styled">
         <dt id="what-next">Once I have found a vulnerability, what next?</dt>
         <dd>
           <p>The sooner we can reproduce the bug, the sooner we can fix it
@@ -149,7 +149,7 @@
 
           <p>Please answer the following questions to the best of your ability:</p>
 
-          <ol class="prose">
+          <ol class="mzp-u-list-styled">
             <li>What is the necessary position of the attacker?
               <ul>
                 <li>Do you need to be logged in or unauthenticated?</li>
@@ -167,7 +167,7 @@
             </li>
 
             <li>How might a malicious actor use this attack?
-              <ul class="prose">
+              <ul class="mzp-u-list-styled">
                 <li>Stealing a victim's session information</li>
                 <li>Redirect users to malicious websites</li>
                 <li>Read files on server outside the web root</li>
@@ -183,7 +183,7 @@
           <p>Please describe the process required, step-by-step, in the proper order.
            If there are multiple parties involved, please describe them all clearly. For example:</p>
 
-          <ol class="prose">
+          <ol class="mzp-u-list-styled">
             <li>Visit <code>https://shop.firefox.com/order?name=value&amp;name2=value2</code></li>
             <li>Click the "Log in" link and login</li>
             <li>Click the "Order" button</li>

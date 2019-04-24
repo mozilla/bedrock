@@ -8,12 +8,10 @@
 {% block page_title %}{{ _('Mozilla Security') }}{% endblock %}
 {% set body_id = "security-index" %}
 
-{% block body_id %}security-landing{% endblock %}
-
 {% block article %}
   <article itemscope itemtype="http://schema.org/Article">
     <header>
-      <h1 itemprop="name"><span class="highlight">Mozilla Security</span></h1>
+      <h1 itemprop="name" class="mzp-c-article-title">Mozilla Security</h1>
     </header>
     <div itemprop="articleBody">
       <p class="intro">Whether you’re using the Web or checking your email, you care about your security and privacy. At Mozilla we understand the importance of security. Here you will find alerts and announcements on security and privacy issues, general tips for surfing the Web and using email more securely, more information about how we maintain and enhance the security of our products, and useful links for developers.</p>
@@ -63,7 +61,7 @@
       <section id="browsing">
         <h2 id="Tips_for_secure_browsing">Tips for Secure Browsing</h2>
 
-        <ul class="prose">
+        <ul class="mzp-u-list-styled">
           <li>Always use the most current version of your
             <a href="/firefox/">browser</a>.
           </li>
@@ -87,7 +85,7 @@
       <section id="email">
         <h2 id="Tips_for_using_email_securely">Tips for Using Email Securely</h2>
 
-        <ul class="prose">
+        <ul class="mzp-u-list-styled">
           <li>Be aware that it is extremely easy for someone to forge an email
             message to make it appear as if the message has been sent by your bank,
             a software vendor (e.g., Microsoft), or another entity with whom you do
@@ -114,7 +112,7 @@
       <p>Report security-related bugs and learn more about how we secure our
         products:</p>
 
-      <ul class="prose">
+      <ul class="mzp-u-list-styled">
         <li><strong>If you believe that you've found a Mozilla-related
           security vulnerability, please report it by sending email to the
           address <a href="mailto:security@mozilla.org">security@mozilla.org</a>.</strong> Note that your report may be

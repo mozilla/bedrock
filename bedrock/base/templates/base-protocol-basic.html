@@ -1,29 +1,31 @@
-{% from "macros.html" import side_nav_lists with context %}
+{% from "macros-protocol.html" import sidemenu_lists with context %}
 
-{% extends 'base-pebbles.html' %}
+{% extends 'base-protocol.html' %}
 
 {% block site_css %}
   {{ super() }}
-  {{ css_bundle('pebbles-basic') }}
+  {{ css_bundle('protocol-basic') }}
 {% endblock %}
 
 {% block body_id %}{{ body_id }}{% endblock %}
 
 {% block content %}
   {% block main_feature %}{% endblock %}
-  <main id="main-content" class="basic-content content">
-    <div class="basic-main{% if self.sidebar() %} basic-main-with-side{% endif%}">
-      {% block article %}{% endblock %}
-    </div>
+  <div id="main-content" class="mzp-l-content{% if self.side_nav()|trim|length or self.side_extra()|trim|length %} mzp-has-sidebar mzp-l-sidebar-right{% endif %}">
+    <main class="mzp-l-main">
+        <article class="mzp-c-article">
+          {% block article %}{% endblock %}
+        </article>
+    </main>
     {% block sidebar %}
-      <aside class="basic-side">
+      <aside class="mzp-l-sidebar">
         {% block side_nav %}
         {% endblock %}
         {% block side_extra %}
         {% endblock %}
       </aside>
     {% endblock %}
-  </main>
+  </div>
 
   {% block newsletter %}
     <aside class="section section-newsletter" id="newsletter-subscribe">
