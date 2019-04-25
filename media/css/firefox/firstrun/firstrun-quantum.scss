@@ -32,14 +32,17 @@ $mq-medium: 'screen and (min-width: 790px)';
 }
 
 html {
+    height: 100%;
     min-height: 100vh;
 }
 
 body {
+    background: #003eaa;
     background: url("/media/img/firefox/firstrun/fox-tail-header.png") top -200px center no-repeat,
                 linear-gradient(to bottom, #003eaa 40%, #004ec2 60%, #0060df 80%, #0080ff 90%, #00c7ff 100%) top center no-repeat,
                 #003eaa;
     font-family: 'Fira Sans Light', sans-serif;
+    height: 100%;
     min-height: 100vh;
     -moz-osx-font-smoothing: unset;
 }
@@ -64,14 +67,17 @@ body {
     margin: auto;
     text-align: center;
     z-index: 10;
+    max-width: 390px;
 
-    @media #{$mq-medium} {
-        align-items: center;
-        display: grid;
-        grid-column-gap: 20px;
-        grid-template-columns: 390px 1fr;
-        margin: 0 auto;
-        max-width: (390px * 2) + 20px;
+    @supports (display: grid) {
+        @media #{$mq-medium} {
+            align-items: center;
+            display: grid;
+            grid-column-gap: 20px;
+            grid-template-columns: 390px 1fr;
+            margin: 0 auto;
+            max-width: (390px * 2) + 20px;
+        }
 
         // a bit more space between once the screen is wide enough
         @media screen and (min-width: 900px) {
@@ -118,7 +124,7 @@ body {
         @include text-body-lg;
         background: url('/media/img/firefox/firstrun/sync/sync-devices-icons-anim.svg') bottom center no-repeat;
         line-height: 1.5;
-        margin: 0 auto 40px;
+        margin: 0 0 40px;
         max-width: 350px;
         padding-bottom: 210px;
     }
