@@ -143,6 +143,12 @@
         for (var j = 0; j < elems.length; j++) {
             elems[j].innerText = elems[j].getAttribute('data-yandex-alt');
         }
+
+        var secondaryButton = document.querySelectorAll('.call-out-compact .download-list .download-link[data-download-os="Desktop"]');
+
+        for (var k = 0; k < button.length; k++) {
+            secondaryButton[k].querySelector('.download-title').innerHTML = Mozilla.Utils.trans('secondary-button-text');
+        }
     };
 
     Yandex.showYandexBrowserImage = function() {
