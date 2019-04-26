@@ -4,7 +4,12 @@
 
 {% add_lang_files "firefox/new/quantum" %}
 
-{% extends "firefox/firstrun/base-pebbles.html" %}
+{% from "macros.html" import fxa_email_form, fxa_link_fragment with context %}
+
+{% extends "firefox/base-protocol.html" %}
+
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
 {% block body_id %}firstrun-quantum-onboarding{% endblock %}
 
@@ -12,8 +17,24 @@
   {{ _('Welcome to Firefox') }}
 {% endblock %}
 
-{% block site_css %}
+{% block page_css %}
   {{ css_bundle('firefox_firstrun_quantum') }}
+{% endblock %}
+
+{% block gtm_page_id %}data-gtm-page-id="/firefox/firstrun/"{% endblock %}
+
+{% block extrahead %}
+  {% if switch('firefox-update-notification-modal', ['en-US']) %}
+    {{ css_bundle('firefox-update-notification-firstrun-whatsnew') }}
+  {% endif %}
+{% endblock %}
+
+{# Bug 1387984 #}
+{% block update_notification %}
+  {% if switch('firefox-update-notification-modal', ['en-US']) %}
+    {% include 'includes/firefox-update-instructions.html' %}
+    {{ js_bundle('firefox-update-notification-firstrun-whatsnew') }}
+  {% endif %}
 {% endblock %}
 
 {% block global_nav %}{% endblock %}
@@ -38,10 +59,13 @@
           {{_('Sign in to your account and we’ll sync the bookmarks, passwords and other great things you’ve saved to Firefox on other devices.')}}
         {% endif %}
         </p>
+        <p><a href="{{ url('firefox.accounts') }}">{{_('Learn more about Firefox Accounts')}}</a></p>
       {% endblock %}
       </header>
       <div id="fxaccounts-wrapper">
-        <a class="button" href="{{ url('firefox.accounts') }}">{{_('Learn more about Firefox Accounts')}}</a>
+        {{ fxa_email_form(entrypoint='firstrun-page', utm_source='firstrun-page', utm_params={'campaign': 'fxa-embedded-form', 'content': 'firstrun-page', 'medium': 'referral'}, button_class='mzp-c-button mzp-t-product',) }}
+
+        <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='accounts-page', utm_params={'campaign': 'fxa-embedded-form', 'content': 'firefox-firstrun', 'source': 'firstrun-page'}) }}>{{ _('Sign In') }}</a></p>
       </div>
     </main>
 
@@ -49,10 +73,6 @@
 {% endblock %}
 
 {% block site_footer %}{% endblock %}
-
-{# update-notification does not play well with current firstrun animated background and layout #}
-{% block extrahead %}{% endblock %}
-{% block update_notification %}{% endblock %}
 
 {% block js %}
   {{ js_bundle('firefox_firstrun_quantum') }}

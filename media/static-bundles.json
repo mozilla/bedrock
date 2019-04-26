@@ -397,7 +397,8 @@
     {
       "files": [
         "css/base/mozilla-modal.less",
-        "css/base/notification-modal.less"
+        "css/base/notification-modal.less",
+        "css/base/notification-banner.less"
       ],
       "name": "firefox-update-notification-firstrun-whatsnew"
     },
@@ -659,6 +660,7 @@
     },
     {
       "files": [
+        "css/base/mozilla-fxa-form.scss",
         "css/firefox/firstrun/firstrun-quantum.scss"
       ],
       "name": "firefox_firstrun_quantum"
@@ -1494,6 +1496,7 @@
     },
     {
       "files": [
+        "js/base/mozilla-fxa-form.js",
         "js/firefox/firstrun/firstrun_quantum.js"
       ],
       "name": "firefox_firstrun_quantum"

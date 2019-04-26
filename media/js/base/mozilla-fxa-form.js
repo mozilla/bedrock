@@ -13,6 +13,12 @@ Mozilla.FxaForm = (function(Mozilla) {
     var fxaForm = document.getElementById('fxa-email-form');
     var fxaSubmitButton = document.getElementById('fxa-email-form-submit');
 
+    var supportsFetch = 'fetch' in window;
+
+    if (!supportsFetch) {
+        return;
+    }
+
     // swap form action for Fx China re-pack
     function init() {
         // disable form while we check distribution
