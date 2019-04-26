@@ -63,7 +63,7 @@
       {% endblock %}
       </header>
       <div id="fxaccounts-wrapper">
-        {{ fxa_email_form(entrypoint='firstrun-page', utm_source='firstrun-page', utm_params={'campaign': 'fxa-embedded-form', 'content': 'firstrun-page', 'medium': 'referral'}, button_class='mzp-c-button mzp-t-product',) }}
+        {{ fxa_email_form(entrypoint='mozilla.org-firstrun_page', utm_source='firstrun-page', utm_params={'campaign': 'fxa-embedded-form', 'content': 'firstrun-page', 'medium': 'referral'}, button_class='mzp-c-button mzp-t-product',) }}
 
         <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='accounts-page', utm_params={'campaign': 'fxa-embedded-form', 'content': 'firefox-firstrun', 'source': 'firstrun-page'}) }}>{{ _('Sign In') }}</a></p>
       </div>

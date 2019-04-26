@@ -39,7 +39,7 @@
       <div id="hero-cta" class="mzp-c-hero-cta">
         <div class="show-fxa-supported-signed-out">
           <a
-          {{ fxa_link_fragment(entrypoint='mozilla.org-accounts-page', action='signup', utm_params={'campaign': 'fxa-benefits-page', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'accounts-page'}) }} class="mzp-c-button mzp-t-primary mzp-t-product" data-cta-position="primary cta" id="features-hero-account">
+          {{ fxa_link_fragment(entrypoint='mozilla.org-accounts_page', action='signup', utm_params={'campaign': 'fxa-benefits-page', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'accounts-page'}) }} class="mzp-c-button mzp-t-primary mzp-t-product" data-cta-position="primary cta" id="features-hero-account">
             {{ _('Create a Firefox Account') }}
           </a>
         </div>
@@ -126,7 +126,7 @@
       {{ download_firefox(download_location='primary cta', button_color='mzp-c-button mzp-t-secondary mzp-t-product') }}
     </div>
     <div class="show-fxa-supported-signed-out">
-      <a {{ fxa_link_fragment(entrypoint='accounts-page', action='signup', utm_params={'campaign': 'fxa-benefits-page', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'accounts-page'}) }} class="mzp-c-button mzp-t-secondary mzp-t-product" data-button-name="Create account" data-link-type="button">
+      <a {{ fxa_link_fragment(entrypoint='mozilla.org-accounts_page', action='signup', utm_params={'campaign': 'fxa-benefits-page', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'accounts-page'}) }} class="mzp-c-button mzp-t-secondary mzp-t-product" data-button-name="Create account" data-link-type="button">
           {{ _('Create a Firefox Account') }}
       </a>
     </div>
@@ -147,7 +147,7 @@
       {{ download_firefox(dom_id='sync-download', download_location='primary cta', button_color='mzp-c-button mzp-t-secondary mzp-t-product') }}
     </div>
     <div class="show-fxa-supported-signed-out">
-      <a {{ fxa_link_fragment(entrypoint='accounts-page', action='signup', utm_params={'campaign': 'fxa-benefits-page', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'accounts-page'}) }} class="mzp-c-button mzp-t-secondary mzp-t-product" data-button-name="Create account" data-link-type="button">
+      <a {{ fxa_link_fragment(entrypoint='mozilla.org-accounts_page', action='signup', utm_params={'campaign': 'fxa-benefits-page', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'accounts-page'}) }} class="mzp-c-button mzp-t-secondary mzp-t-product" data-button-name="Create account" data-link-type="button">
           {{ _('Create a Firefox Account') }}
       </a>
     </div>
@@ -291,14 +291,13 @@
 
         <div class="show-fxa-supported-signed-out">
           {{ fxa_email_form(
-            entrypoint='mozilla.org-fxa_benefits',
-            utm_source='mozilla.org-fxa_benefits',
-            utm_params={'referrer': 'https://www.mozilla.org/en-US/firefox/accounts/'},
+            entrypoint='mozilla.org-accounts_page',
+            utm_source='accounts_page',
             button_class='mzp-c-button mzp-t-primary mzp-t-product',
             button_text=_('Create an Account'))
           }}
 
-          <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='accounts-page', utm_params={'campaign': 'fxa-embedded-form', 'content': '/firefox/accounts/', 'source': 'accounts-page'}) }}>{{ _('Sign In') }}</a></p>
+          <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='mozzila.org-accounts_page', utm_params={'campaign': 'fxa-embedded-form', 'content': '/firefox/accounts/', 'source': 'accounts-page'}) }}>{{ _('Sign In') }}</a></p>
         </div>
       </div>
 
