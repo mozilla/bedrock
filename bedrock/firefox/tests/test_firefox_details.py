@@ -49,14 +49,17 @@ GOOD_VERSIONS_NO_DEV = {
 }
 
 
-class TestLatestBuilds(TestCase):
+class PatchFirefoxDesktopMixin:
+    firefox_desktop_versions = GOOD_VERSIONS
+
     def setUp(self):
         self.firefox_desktop = FirefoxDesktop(json_dir=PROD_DETAILS_DIR)
         self.p1 = patch.object(
             self.firefox_desktop, 'firefox_primary_builds', GOOD_BUILDS)
         self.p2 = patch.object(self.firefox_desktop, 'firefox_beta_builds', {})
         self.p3 = patch.object(
-            self.firefox_desktop, 'firefox_versions', GOOD_VERSIONS)
+            self.firefox_desktop, 'firefox_versions',
+            self.firefox_desktop_versions)
         self.p1.start()
         self.p2.start()
         self.p3.start()
@@ -65,6 +68,9 @@ class TestLatestBuilds(TestCase):
         self.p1.stop()
         self.p2.stop()
         self.p3.stop()
+
+
+class TestLatestBuilds(PatchFirefoxDesktopMixin, TestCase):
 
     def test_latest_builds(self):
         """Should return platforms if localized build does exist."""
@@ -88,24 +94,9 @@ class TestLatestBuilds(TestCase):
         self.assertIs(result[1], GOOD_PLATS)
 
 
-class TestLatestBuildsNoDevEdition(TestCase):
+class TestLatestBuildsNoDevEdition(PatchFirefoxDesktopMixin, TestCase):
     """Should get same results as above and not blow up"""
-
-    def setUp(self):
-        self.firefox_desktop = FirefoxDesktop(json_dir=PROD_DETAILS_DIR)
-        self.p1 = patch.object(
-            self.firefox_desktop, 'firefox_primary_builds', GOOD_BUILDS)
-        self.p2 = patch.object(self.firefox_desktop, 'firefox_beta_builds', {})
-        self.p3 = patch.object(
-            self.firefox_desktop, 'firefox_versions', GOOD_VERSIONS_NO_DEV)
-        self.p1.start()
-        self.p2.start()
-        self.p3.start()
-
-    def tearDown(self):
-        self.p1.stop()
-        self.p2.stop()
-        self.p3.stop()
+    firefox_desktop_versions = GOOD_VERSIONS_NO_DEV
 
     def test_latest_builds(self):
         """Should return platforms if localized build does exist."""
@@ -134,6 +125,7 @@ class TestFirefoxDesktop(TestCase):
 
     def setUp(self):
         self.pd_cache.clear()
+        self.firefox_desktop = FirefoxDesktop(json_dir=PROD_DETAILS_DIR)
 
     def test_get_download_url(self):
         url = self.firefox_desktop.get_download_url('release', '17.0.1', 'osx', 'pt-BR', True)
