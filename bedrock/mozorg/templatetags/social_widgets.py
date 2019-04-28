@@ -2,7 +2,6 @@ from __future__ import division
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-from past.utils import old_div
 from datetime import datetime
 import urllib.parse
 
@@ -76,9 +75,9 @@ def format_tweet_timestamp(tweet):
         if diff.seconds < 60:
             label = _('%ds') % diff.seconds
         elif diff.seconds < 60 * 60:
-            label = _('%dm') % round(old_div(diff.seconds, 60))
+            label = _('%dm') % round(diff.seconds / 60)
         else:
-            label = _('%dh') % round(old_div(diff.seconds, 60 / 60))
+            label = _('%dh') % round(diff.seconds / 60 / 60)
     else:
         label = created.strftime("%-d %b")
 

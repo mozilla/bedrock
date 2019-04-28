@@ -5,7 +5,6 @@
 
 from __future__ import division
 from builtins import str
-from past.utils import old_div
 import json
 import platform
 import sys
@@ -130,7 +129,7 @@ PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'ast', 'az', 'azz', 'be', 'bg',
                   'sr', 'sv-SE', 'ta', 'te', 'th', 'tl', 'tr', 'trs', 'uk', 'ur',
                   'uz', 'vi', 'xh', 'zh-CN', 'zh-TW', 'zu')
 
-LOCALES_PATH = old_div(ROOT_PATH, 'locale')
+LOCALES_PATH = ROOT_PATH / 'locale'
 default_locales_repo = 'www.mozilla.org' if DEV else 'bedrock-l10n'
 default_locales_repo = 'https://github.com/mozilla-l10n/{}'.format(default_locales_repo)
 LOCALES_REPO = config('LOCALES_REPO', default=default_locales_repo)
