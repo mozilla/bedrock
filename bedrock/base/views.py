@@ -5,19 +5,17 @@ from datetime import datetime
 from os import getenv
 from time import time
 
+import timeago
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_safe
-
-import timeago
+from lib import l10n_utils
 from raven.contrib.django.models import client
 
-from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.utils import git
-from lib import l10n_utils
 
 
 def get_geo_from_request(request):
@@ -46,7 +44,7 @@ def geolocate(request):
     """
     country_code = get_geo_from_request(request)
     if country_code is None:
-        return HttpResponseJSON({
+        return JsonResponse({
             "error": {
                 "errors": [{
                     "domain": "geolocation",
@@ -58,7 +56,7 @@ def geolocate(request):
             }
         }, status=404)
 
-    return HttpResponseJSON({
+    return JsonResponse({
         'country_code': country_code,
     })
 

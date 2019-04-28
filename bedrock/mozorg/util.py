@@ -3,12 +3,10 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from builtins import next
-import json
 import os
 
 from django.conf import settings
 from django.conf.urls import url
-from django.http import HttpResponse
 from django.shortcuts import render as django_render
 from django.views.decorators.csrf import csrf_exempt
 
@@ -34,16 +32,6 @@ FXA_CLIENTS = {
     'oauth': None,
     'profile': None,
 }
-
-
-class HttpResponseJSON(HttpResponse):
-    def __init__(self, data, status=None, cors=False):
-        super(HttpResponseJSON, self).__init__(content=json.dumps(data),
-                                               content_type='application/json',
-                                               status=status)
-
-        if cors:
-            self['Access-Control-Allow-Origin'] = '*'
 
 
 def page(name, tmpl, decorators=None, url_name=None, **kwargs):

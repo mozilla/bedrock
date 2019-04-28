@@ -2,42 +2,36 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from builtins import map
-from builtins import str
 import json
 import re
 from cgi import escape
 from collections import defaultdict
 from operator import itemgetter
 
-from django.conf import settings
-from django.contrib import messages
-from django.forms.formsets import formset_factory
-from django.http import HttpResponseRedirect
-from django.shortcuts import redirect
-from django.utils.safestring import mark_safe
-from django.views.decorators.cache import never_cache
-
 import basket
 import basket.errors
 import commonware.log
-from jinja2 import Markup
-
 import lib.l10n_utils as l10n_utils
 import requests
+from django.conf import settings
+from django.contrib import messages
+from django.forms.formsets import formset_factory
+from django.http import HttpResponseRedirect, JsonResponse
+from django.shortcuts import redirect
+from django.utils.safestring import mark_safe
+from django.views.decorators.cache import never_cache
+from jinja2 import Markup
+from lib.l10n_utils.dotlang import _, _lazy
 
 from bedrock.base import waffle
-from lib.l10n_utils.dotlang import _, _lazy
 from bedrock.base.urlresolvers import reverse
-
-from .forms import (CountrySelectForm, EmailForm, ManageSubscriptionsForm,
-                    NewsletterForm, NewsletterFooterForm)
 # Cannot use short "from . import utils" because we need to mock
 # utils.get_newsletters in our tests
 from bedrock.base.views import get_geo_from_request
-from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter import utils
 
+from .forms import (CountrySelectForm, EmailForm, ManageSubscriptionsForm,
+                    NewsletterFooterForm, NewsletterForm)
 
 log = commonware.log.getLogger('b.newsletter')
 
@@ -697,7 +691,7 @@ def newsletter_subscribe(request):
             else:
                 resp = {'success': True}
 
-            return HttpResponseJSON(resp)
+            return JsonResponse(resp)
         else:
             ctx = {'newsletter_form': form}
             if not errors:
