@@ -604,7 +604,7 @@ class FeedbackView(TemplateView):
        '&utm_content=Heartbeat_{0}stars')
 
     def get_score(self):
-        return self.request.GET.get('score', 0)
+        return self.request.GET.get('score', '0')
 
     def get_template_names(self):
         score = self.get_score()
