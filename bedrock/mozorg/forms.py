@@ -9,12 +9,9 @@ import re
 from datetime import datetime
 from random import randrange
 
-from django import forms
 from django.urls import reverse
 from django.forms import widgets
 from django.utils.safestring import mark_safe
-
-from localflavor.us.us_states import STATE_CHOICES
 
 from lib.l10n_utils.dotlang import _
 from lib.l10n_utils.dotlang import _lazy
@@ -91,19 +88,3 @@ class TelInput(widgets.TextInput):
 class NumberInput(widgets.TextInput):
     input_type = 'number'
 
-
-class L10nSelect(forms.Select):
-    def render_option(self, selected_choices, option_value, option_label):
-        if option_value == '':
-            option_label = u'-- {0} --'.format(_('select'))
-        return super(L10nSelect, self).render_option(selected_choices, option_value, option_label)
-
-
-class USStateSelectBlank(widgets.Select):
-    """Version of USStateSelect widget with a blank first selection."""
-
-    def __init__(self, attrs=None, empty_msg=None):
-        if empty_msg is None:
-            empty_msg = ''
-        us_states_blank = (('', empty_msg),) + STATE_CHOICES
-        super(USStateSelectBlank, self).__init__(attrs, choices=us_states_blank)
