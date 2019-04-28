@@ -10,7 +10,6 @@ system.
 It caches them using the django caching library, but it could
 potentially just use thread-local variables. Caching seems safer at
 the expense of another caching layer."""
-from past.builtins import basestring
 import codecs
 import inspect
 import os
@@ -151,7 +150,7 @@ def _get_extra_lang_files():
         finally:
             del frame
         if new_lang_files:
-            if isinstance(new_lang_files, basestring):
+            if isinstance(new_lang_files, str):
                 new_lang_files = [new_lang_files]
     return [lf for lf in new_lang_files if lf not in settings.DOTLANG_FILES]
 

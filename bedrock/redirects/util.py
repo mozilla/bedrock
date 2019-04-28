@@ -2,7 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from past.builtins import basestring
 import re
 from urllib.parse import urlencode
 from urllib.parse import parse_qs
@@ -167,7 +166,7 @@ def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=
         view_decorators.append(cache_control_expires(cache_timeout))
 
     if vary:
-        if isinstance(vary, basestring):
+        if isinstance(vary, str):
             vary = [vary]
         view_decorators.append(vary_on_headers(*vary))
 

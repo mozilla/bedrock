@@ -2,7 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from past.builtins import basestring
 from builtins import object
 from datetime import datetime
 
@@ -150,7 +149,7 @@ class Event(models.Model):
             except KeyError:
                 pass
             else:
-                if isinstance(value, basestring):
+                if isinstance(value, str):
                     value = value.strip()
                 setattr(self, field, value)
 

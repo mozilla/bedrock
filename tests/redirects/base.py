@@ -1,5 +1,4 @@
 from __future__ import print_function
-from past.builtins import basestring
 import re
 from urllib.parse import urlparse, parse_qs
 
@@ -130,7 +129,7 @@ def assert_valid_url(url, location=None, status_code=requests.codes.moved_perman
         if query:
             # all query values must be lists
             for k, v in list(query.items()):
-                if isinstance(v, basestring):
+                if isinstance(v, str):
                     query[k] = [v]
             # parse the QS from resp location header and compare to query arg
             # since order doesn't matter.

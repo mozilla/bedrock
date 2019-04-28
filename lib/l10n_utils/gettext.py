@@ -6,7 +6,6 @@
 
 from __future__ import print_function
 from builtins import next
-from past.builtins import basestring
 import codecs
 import os
 import re
@@ -136,7 +135,7 @@ def parse_python(path):
 
     if result:
         new_lang_files = eval(untokenize(result))
-        if isinstance(new_lang_files, basestring):
+        if isinstance(new_lang_files, str):
             new_lang_files = [new_lang_files]
         # remove empties
         return [lf for lf in new_lang_files if lf]

@@ -1,4 +1,3 @@
-from past.builtins import basestring
 from builtins import object
 from django.views.generic import TemplateView
 
@@ -18,7 +17,7 @@ class BlogPostsMixin(object):
         ctx = super(BlogPostsMixin, self).get_context_data(**kwargs)
         blog = BlogPost.objects.all()
         if self.blog_slugs:
-            if isinstance(self.blog_slugs, basestring):
+            if isinstance(self.blog_slugs, str):
                 blog_slugs = [self.blog_slugs]
             else:
                 blog_slugs = self.blog_slugs

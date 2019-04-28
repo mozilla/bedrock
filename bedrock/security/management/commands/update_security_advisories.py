@@ -2,7 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from past.builtins import basestring
 import glob
 import os
 import re
@@ -84,7 +83,7 @@ def add_or_update_advisory(data, html):
     prodver_objs = []
 
     fixed_in = data.pop('fixed_in')
-    if isinstance(fixed_in, basestring):
+    if isinstance(fixed_in, str):
         fixed_in = [fixed_in]
 
     for productname in fixed_in:

@@ -1,4 +1,3 @@
-from past.builtins import basestring
 import basket
 
 from bedrock.newsletter.models import Newsletter
@@ -22,7 +21,7 @@ def get_languages_for_newsletters(newsletters=None):
     if newsletters is None:
         newsletters = list(all_newsletters.values())
     else:
-        if isinstance(newsletters, basestring):
+        if isinstance(newsletters, str):
             newsletters = [nl.strip() for nl in newsletters.split(',')]
         newsletters = [all_newsletters.get(nl, {}) for nl in newsletters]
 
