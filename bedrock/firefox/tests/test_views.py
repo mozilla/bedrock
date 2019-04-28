@@ -50,7 +50,7 @@ class TestStubAttributionCode(TestCase):
         assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         # will it blend?
-        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
+        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code'].encode()).decode())
         # parse_qs returns a dict with lists for values
         attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
@@ -71,7 +71,7 @@ class TestStubAttributionCode(TestCase):
         assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         # will it blend?
-        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
+        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code'].encode()).decode())
         # parse_qs returns a dict with lists for values
         attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
@@ -92,7 +92,7 @@ class TestStubAttributionCode(TestCase):
         assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         # will it blend?
-        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
+        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code'].encode()).decode())
         # parse_qs returns a dict with lists for values
         attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
@@ -121,7 +121,7 @@ class TestStubAttributionCode(TestCase):
         assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         # will it blend?
-        code = querystringsafe_base64.decode(data['attribution_code'])
+        code = querystringsafe_base64.decode(data['attribution_code'].encode()).decode()
         assert len(code) <= 200
         attrs = parse_qs(code)
         # parse_qs returns a dict with lists for values
@@ -161,7 +161,7 @@ class TestStubAttributionCode(TestCase):
         assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         # will it blend?
-        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
+        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code'].encode()).decode())
         # parse_qs returns a dict with lists for values
         attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
@@ -182,7 +182,7 @@ class TestStubAttributionCode(TestCase):
         assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         # will it blend?
-        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
+        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code'].encode()).decode())
         # parse_qs returns a dict with lists for values
         attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
@@ -203,7 +203,7 @@ class TestStubAttributionCode(TestCase):
         assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         # will it blend?
-        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
+        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code'].encode()).decode())
         # parse_qs returns a dict with lists for values
         attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
@@ -230,7 +230,7 @@ class TestStubAttributionCode(TestCase):
         assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         # will it blend?
-        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code']))
+        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code'].encode()).decode())
         # parse_qs returns a dict with lists for values
         attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)

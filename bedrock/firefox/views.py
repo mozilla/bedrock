@@ -150,7 +150,7 @@ def sign_attribution_codes(codes):
     code = querystringsafe_base64.encode(code.encode())
     sig = hmac.new(key.encode(), code, hashlib.sha256).hexdigest()
     return {
-        'attribution_code': code,
+        'attribution_code': code.decode(),
         'attribution_sig': sig,
     }
 
