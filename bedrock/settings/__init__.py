@@ -72,7 +72,7 @@ MEDIA_URL = CDN_BASE_URL + MEDIA_URL
 STATIC_URL = CDN_BASE_URL + STATIC_URL
 logging.config.dictConfig(LOGGING)
 
-if (len(sys.argv) > 1 and sys.argv[1] == 'test') or sys.argv[0].endswith('py.test'):
+if (len(sys.argv) > 1 and sys.argv[1] == 'test') or 'pytest' in sys.modules:
     # Using the CachedStaticFilesStorage for tests breaks all the things.
     STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
     # TEMPLATE_DEBUG has to be True for Jinja to call the template_rendered
