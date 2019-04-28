@@ -149,6 +149,8 @@ class Event(models.Model):
             except KeyError:
                 pass
             else:
+                if isinstance(value, bytes):
+                    value = value.decode('utf-8')
                 if isinstance(value, str):
                     value = value.strip()
                 setattr(self, field, value)
