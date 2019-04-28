@@ -4,21 +4,20 @@ Taken from zamboni.amo.middleware.
 This is django-localeurl, but with mozilla style capital letters in
 the locale codes.
 """
-from builtins import object
 import base64
 import urllib.parse
+from urllib.parse import unquote
 from warnings import warn
 
 from django.conf import settings
 from django.core.exceptions import MiddlewareNotUsed
-from django.http import HttpResponsePermanentRedirect, HttpResponse
-from django.utils.encoding import force_text
-
-from . import urlresolvers
+from django.http import HttpResponse, HttpResponsePermanentRedirect
 from lib.l10n_utils import translation
 
+from . import urlresolvers
 
-class LocaleURLMiddleware(object):
+
+class LocaleURLMiddleware:
     """
     1. Search for the locale.
     2. Save it in the request.
@@ -42,7 +41,7 @@ class LocaleURLMiddleware(object):
 
             if query_string:
                 full_path = '?'.join(
-                    [full_path, force_text(query_string, errors='ignore')])
+                    [full_path, unquote(query_string, errors='ignore')])
 
             response = HttpResponsePermanentRedirect(full_path)
 
@@ -59,7 +58,7 @@ class LocaleURLMiddleware(object):
         translation.activate(prefixer.locale or settings.LANGUAGE_CODE)
 
 
-class BasicAuthMiddleware(object):
+class BasicAuthMiddleware:
     """
     Middleware to protect the entire site with a single basic-auth username and password.
     Set the BASIC_AUTH_CREDS environment variable to enable.
