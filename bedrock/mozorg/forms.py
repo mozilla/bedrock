@@ -35,7 +35,7 @@ class PrivacyWidget(widgets.CheckboxInput):
     """Render a checkbox with privacy text. Lots of pages need this so
     it should be standardized"""
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         attrs['required'] = 'required'
         input_txt = super(PrivacyWidget, self).render(name, value, attrs)
 
@@ -53,7 +53,7 @@ class PrivacyWidget(widgets.CheckboxInput):
 class HoneyPotWidget(widgets.TextInput):
     """Render a text field to (hopefully) trick bots. Will be used on many pages."""
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         honeypot_txt = _(u'Leave this field empty.')
         # semi-randomized in case we have more than one per page.
         # this is maybe/probably overthought
@@ -87,4 +87,3 @@ class TelInput(widgets.TextInput):
 
 class NumberInput(widgets.TextInput):
     input_type = 'number'
-
