@@ -15,7 +15,7 @@ from pyquery import PyQuery as pq
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox import views as fx_views
-from bedrock.firefox.firefox_details import FirefoxDesktop  #, FirefoxAndroid, FirefoxIOS
+from bedrock.firefox.firefox_details import FirefoxDesktop  # , FirefoxAndroid, FirefoxIOS
 from bedrock.mozorg.tests import TestCase
 
 

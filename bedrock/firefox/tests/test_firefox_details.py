@@ -5,7 +5,6 @@
 import os
 from urllib.parse import parse_qsl, urlparse
 
-from cryptography.hazmat.primitives.asymmetric.ec import BrainpoolP384R1
 from django.core.cache import caches
 from mock import Mock, patch
 
@@ -599,7 +598,8 @@ class TestFirefoxDesktop(TestCase):
         url = self.firefox_desktop.get_download_url('release', '45.0', 'win', 'en-US', force_direct=True, funnelcake_id='64')
         assert '-f64' not in url
 
-        url = self.firefox_desktop.get_download_url('release', '45.0', 'win', 'en-US', force_direct=True, force_full_installer=True, funnelcake_id='64')
+        url = self.firefox_desktop.get_download_url(
+            'release', '45.0', 'win', 'en-US', force_direct=True, force_full_installer=True, funnelcake_id='64')
         assert '-f64' not in url
 
         url = self.firefox_desktop.get_download_url('release', '45.0', 'win', 'en-US', force_direct=True, force_funnelcake=True, funnelcake_id='64')
