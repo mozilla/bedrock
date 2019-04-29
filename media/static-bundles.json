@@ -753,6 +753,12 @@
     },
     {
       "files": [
+        "css/firefox/enterprise-sla.scss"
+      ],
+      "name": "firefox-enterprise-sla"
+    },
+    {
+      "files": [
         "css/firefox/releasenotes.scss"
       ],
       "name": "firefox_releasenotes"
@@ -1670,6 +1676,12 @@
         "js/firefox/election.js"
       ],
       "name": "firefox_election"
+    },
+    {
+      "files": [
+        "js/firefox/enterprise-sla.js"
+      ],
+      "name": "firefox-enterprise-sla"
     }
   ]
 }
