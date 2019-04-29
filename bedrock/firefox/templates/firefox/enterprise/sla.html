@@ -1,12 +1,18 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
-  # License, v. 2.0. If a copy of the MPL was not distributed with this
-  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "base-protocol.html" %}
 
 {% block page_title_prefix %}{% endblock %}
-{% block page_title %}Mozilla Enterprise Client Support Service Level Agreement{% endblock %}
-{% block page_desc %}{% endblock %}
+{%- block page_title -%}
+  {#- L10n: HTML page title -#}
+  {{ _('Mozilla Enterprise Client Support Service Level Agreement') }}
+{%- endblock -%}
+{%- block page_desc -%}
+  {#- L10n: HTML page description -#}
+  {{ _('This service level agreement outlines the technology support provided by the Mozilla Enterprise Client Service Desk.') }}
+{%- endblock -%}
 
 {% block page_css %}
   {{ css_bundle('firefox-enterprise-sla') }}

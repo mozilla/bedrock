@@ -9,20 +9,7 @@ $font-path: '/media/fonts';
 @import '../../protocol/css/components/sidebar-menu';
 @import '../../protocol/css/components/article';
 
-$heading-purple: #20123a;
-$body-purple: #42425a;
 $border: 2px solid $color-gray-20;
-
-.mzp-t-firefox {
-    color: $body-purple;
-
-    h1,
-    h2,
-    h3,
-    h4 {
-        color: $heading-purple;
-    }
-}
 
 .l-narrow {
     margin: 0 auto;
@@ -49,7 +36,7 @@ $border: 2px solid $color-gray-20;
 
     a:link,
     a:visited {
-        color: $body-purple;
+        color: $color-black;
     }
 }
 
@@ -189,7 +176,7 @@ $border: 2px solid $color-gray-20;
     thead td {
         @include bidi(((text-align, left, right),));
         @include text-body-md;
-        background: $heading-purple;
+        background: $color-off-black;
         color: $color-white;
         padding: $spacing-md;
     }
@@ -209,7 +196,6 @@ $border: 2px solid $color-gray-20;
 
             h4 {
                 @include text-body-sm;
-                color: $body-purple;
                 line-height: inherit;
                 margin: 0 0 1em;
             }
@@ -292,7 +278,7 @@ $border: 2px solid $color-gray-20;
 
     .c-axis-label {
         @include text-body-md;
-        background: $heading-purple;
+        background: $color-off-black;
         color: $color-white;
         padding: $spacing-md;
         text-align: center;
