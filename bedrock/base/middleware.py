@@ -12,7 +12,9 @@ from warnings import warn
 from django.conf import settings
 from django.core.exceptions import MiddlewareNotUsed
 from django.http import HttpResponse, HttpResponsePermanentRedirect
+from django.utils.deprecation import MiddlewareMixin
 from lib.l10n_utils import translation
+from commonware.middleware import RobotsTagHeader as OldRobotsTagHeader
 
 from . import urlresolvers
 
@@ -28,7 +30,7 @@ class LocaleURLMiddleware:
         if not settings.USE_I18N or not settings.USE_L10N:
             warn("USE_I18N or USE_L10N is False but LocaleURLMiddleware is "
                  "loaded. Consider removing bedrock.base.middleware."
-                 "LocaleURLMiddleware from your MIDDLEWARE_CLASSES setting.")
+                 "LocaleURLMiddleware from your MIDDLEWARE setting.")
         self.get_response = get_response
 
     def __call__(self, request):
@@ -70,9 +72,16 @@ class BasicAuthMiddleware:
     Middleware to protect the entire site with a single basic-auth username and password.
     Set the BASIC_AUTH_CREDS environment variable to enable.
     """
-    def __init__(self):
+    def __init__(self, get_response=None):
         if not settings.BASIC_AUTH_CREDS:
             raise MiddlewareNotUsed
+        self.get_response = None
+
+    def __call__(self, request):
+        response = self.process_request(request)
+        if response:
+            return response
+        return self.get_response(request)
 
     def process_request(self, request):
         required_auth = settings.BASIC_AUTH_CREDS
@@ -92,3 +101,7 @@ class BasicAuthMiddleware:
             realm = settings.APP_NAME or 'bedrock-demo'
             response['WWW-Authenticate'] = 'Basic realm="{}"'.format(realm)
             return response
+
+
+class RobotsTagHeader(OldRobotsTagHeader, MiddlewareMixin):
+    pass

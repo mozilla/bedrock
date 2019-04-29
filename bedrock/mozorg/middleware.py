@@ -19,7 +19,8 @@ class CacheMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        return self.process_response(self.get_response(request))
+        response = self.get_response(request)
+        return self.process_response(request, response)
 
     def process_response(self, request, response):
         cache = (request.method != 'POST' and
@@ -54,7 +55,8 @@ class ClacksOverheadMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        return self.process_response(self.get_response(request))
+        response = self.get_response(request)
+        return self.process_response(request, response)
 
     @staticmethod
     def process_response(request, response):
@@ -74,7 +76,8 @@ class HostnameMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        return self.process_response(self.get_response(request))
+        response = self.get_response(request)
+        return self.process_response(request, response)
 
     def process_response(self, request, response):
         response['X-Backend-Server'] = self.backend_server
@@ -88,7 +91,8 @@ class VaryNoCacheMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        return self.process_response(self.get_response(request))
+        response = self.get_response(request)
+        return self.process_response(request, response)
 
     @staticmethod
     def process_response(request, response):

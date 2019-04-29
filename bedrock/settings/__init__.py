@@ -16,7 +16,7 @@ except ImportError as exc:
 if DEV:
     ALLOWED_HOSTS = ['*']
 else:
-    MIDDLEWARE_CLASSES += ('commonware.middleware.FrameOptionsHeader',)
+    MIDDLEWARE += ['commonware.middleware.FrameOptionsHeader']
 
 
 if CACHES['default']['BACKEND'] == 'django_pylibmc.memcached.PyLibMCCache':
