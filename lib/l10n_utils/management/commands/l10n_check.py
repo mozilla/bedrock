@@ -289,7 +289,7 @@ class L10nParser(object):
 
             if name == 'comment_begin':
                 # Check comments for the version string
-                comment = self.tokens.next()[2]
+                comment = next(self.tokens)[2]
 
                 matches = self.file_version_re.match(comment)
                 if matches:
@@ -423,8 +423,8 @@ class L10nParser(object):
             buffer = was_content if in_was else main_content
 
             if token[1] == 'block_begin':
-                space = self.tokens.next()[2]
-                name = self.tokens.next()[2]
+                space = next(self.tokens)[2]
+                name = next(self.tokens)[2]
 
                 if name == 'endl10n':
                     self.scan_until('block_end')
