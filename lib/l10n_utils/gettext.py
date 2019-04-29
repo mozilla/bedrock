@@ -369,7 +369,7 @@ def _append_to_lang_file(dest, new_msgs):
 
     with codecs.open(dest, 'a', 'utf-8') as out:
         for msg in new_msgs:
-            if isinstance(msg, basestring):
+            if isinstance(msg, str):
                 msg = [None, msg]
             out_str = u'\n\n'
             if msg[0]:
