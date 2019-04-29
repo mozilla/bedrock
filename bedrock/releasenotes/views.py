@@ -24,6 +24,7 @@ SUPPORT_URLS = {
 
 def release_notes_template(channel, product, version=None):
     channel = channel or 'release'
+    version = version or 0
     if product == 'Firefox' and channel == 'Aurora' and version >= 35:
         return 'firefox/releases/dev-browser-notes.html'
 
