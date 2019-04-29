@@ -1,12 +1,18 @@
-from builtins import object
 from django.urls import Resolver404
 
 from .util import get_resolver
 
 
-class RedirectsMiddleware(object):
-    def __init__(self, resolver=None):
+class RedirectsMiddleware:
+    def __init__(self, get_response=None, resolver=None):
+        self.get_response = get_response
         self.resolver = resolver or get_resolver()
+
+    def __call__(self, request):
+        response = self.process_request(request)
+        if response:
+            return response
+        return self.get_response(request)
 
     def process_request(self, request):
         try:

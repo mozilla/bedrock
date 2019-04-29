@@ -2,7 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from builtins import object
 import datetime
 from email.utils import formatdate
 import time
@@ -14,7 +13,13 @@ from django.utils.cache import add_never_cache_headers
 from django_statsd.middleware import GraphiteRequestTimingMiddleware
 
 
-class CacheMiddleware(object):
+class CacheMiddleware:
+
+    def __init__(self, get_response=None):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        return self.process_response(self.get_response(request))
 
     def process_response(self, request, response):
         cache = (request.method != 'POST' and
@@ -42,8 +47,15 @@ class MozorgRequestTimingMiddleware(GraphiteRequestTimingMiddleware):
             f.process_view(request, view, view_args, view_kwargs)
 
 
-class ClacksOverheadMiddleware(object):
+class ClacksOverheadMiddleware:
     # bug 1144901
+
+    def __init__(self, get_response=None):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        return self.process_response(self.get_response(request))
+
     @staticmethod
     def process_response(request, response):
         if response.status_code == 200:
@@ -51,23 +63,32 @@ class ClacksOverheadMiddleware(object):
         return response
 
 
-class HostnameMiddleware(object):
-    def __init__(self):
+class HostnameMiddleware:
+    def __init__(self, get_response=None):
         if not settings.ENABLE_HOSTNAME_MIDDLEWARE:
             raise MiddlewareNotUsed
 
         values = [getattr(settings, x) for x in ['HOSTNAME', 'CLUSTER_NAME']]
         self.backend_server = '.'.join(x for x in values if x)
 
+        self.get_response = get_response
+
+    def __call__(self, request):
+        return self.process_response(self.get_response(request))
+
     def process_response(self, request, response):
         response['X-Backend-Server'] = self.backend_server
         return response
 
 
-class VaryNoCacheMiddleware(object):
-    def __init__(self):
+class VaryNoCacheMiddleware:
+    def __init__(self, get_response=None):
         if not settings.ENABLE_VARY_NOCACHE_MIDDLEWARE:
             raise MiddlewareNotUsed
+        self.get_response = get_response
+
+    def __call__(self, request):
+        return self.process_response(self.get_response(request))
 
     @staticmethod
     def process_response(request, response):

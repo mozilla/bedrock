@@ -24,11 +24,18 @@ class LocaleURLMiddleware:
     3. Strip them from the URL.
     """
 
-    def __init__(self):
+    def __init__(self, get_response=None):
         if not settings.USE_I18N or not settings.USE_L10N:
             warn("USE_I18N or USE_L10N is False but LocaleURLMiddleware is "
                  "loaded. Consider removing bedrock.base.middleware."
                  "LocaleURLMiddleware from your MIDDLEWARE_CLASSES setting.")
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.process_request(request)
+        if response:
+            return response
+        return self.get_response(request)
 
     def process_request(self, request):
         prefixer = urlresolvers.Prefixer(request)

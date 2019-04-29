@@ -17,7 +17,7 @@ class TestLocaleURLMiddleware(TestCase):
         """Should redirect to lang prefixed url."""
         path = '/the/dude/'
         req = self.rf.get(path, HTTP_ACCEPT_LANGUAGE='de')
-        resp = LocaleURLMiddleware().process_request(req)
+        resp = self.middleware.process_request(req)
         self.assertEqual(resp['Location'], '/de' + path)
 
     @override_settings(DEV_LANGUAGES=('es', 'fr'),
@@ -26,7 +26,7 @@ class TestLocaleURLMiddleware(TestCase):
         """Should redirect to default lang if not in settings."""
         path = '/the/dude/'
         req = self.rf.get(path, HTTP_ACCEPT_LANGUAGE='de')
-        resp = LocaleURLMiddleware().process_request(req)
+        resp = self.middleware.process_request(req)
         self.assertEqual(resp['Location'], '/en-US' + path)
 
     @override_settings(DEV_LANGUAGES=('de', 'fr'))
@@ -38,6 +38,6 @@ class TestLocaleURLMiddleware(TestCase):
         corrected_querystring = '?abide=s'
         req = self.rf.get(path + corrupt_querystring,
                           HTTP_ACCEPT_LANGUAGE='de')
-        resp = LocaleURLMiddleware().process_request(req)
+        resp = self.middleware.process_request(req)
         self.assertEqual(resp['Location'],
                          '/de' + path + corrected_querystring)
