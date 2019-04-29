@@ -3,20 +3,19 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import re
-from urllib.parse import urlencode
-from urllib.parse import parse_qs
+from urllib.parse import parse_qs, urlencode
 
-from django.urls import NoReverseMatch, URLResolver, reverse
+import commonware.log
 from django.conf.urls import url
-from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect, HttpResponseGone
+from django.http import (HttpResponseGone, HttpResponsePermanentRedirect,
+                         HttpResponseRedirect)
+from django.urls import NoReverseMatch, URLResolver, re_path, reverse
+from django.urls.resolvers import RegexPattern
 from django.utils.encoding import force_text
 from django.utils.html import strip_tags
 from django.views.decorators.vary import vary_on_headers
 
-import commonware.log
-
 from bedrock.mozorg.decorators import cache_control_expires
-
 
 log = commonware.log.getLogger('redirects.util')
 LOCALE_RE = r'^(?P<locale>\w{2,3}(?:-\w{2})?/)?'
@@ -31,7 +30,8 @@ def register(patterns):
 
 
 def get_resolver(patterns=None):
-    return URLResolver(r'^/', patterns or redirectpatterns)
+    patterns = patterns or redirectpatterns
+    return URLResolver(RegexPattern(r'^/'), patterns)
 
 
 def header_redirector(header_name, regex, match_dest, nomatch_dest, case_sensitive=False):
