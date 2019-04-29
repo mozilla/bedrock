@@ -138,8 +138,8 @@ class TestPageNode(TestCase):
         child1 = PageNode('', template='test1.html')
         child2 = PageNode('', template='test1.html')
         PageRoot('', children=[child1, child2])
-        assert child1.__next__ == child2
-        assert child2.__next__ is None
+        assert child1.next == child2
+        assert child2.next is None
 
     def test_next_cross(self):
         """
@@ -167,11 +167,11 @@ class TestPageNode(TestCase):
                 PageNode('', children=[child4, PageNode('')])
             ])
         ])
-        assert root.__next__ == child1
-        assert child1.__next__ == child2
-        assert child2.__next__ == child3
-        assert child3.__next__ == child4
-        assert child4.__next__ is None
+        assert root.next == child1
+        assert child1.next == child2
+        assert child2.next == child3
+        assert child3.next == child4
+        assert child4.next is None
 
     @patch('bedrock.mozorg.hierarchy.reverse')
     def test_url(self, reverse):
