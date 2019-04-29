@@ -88,7 +88,7 @@
 
   {% block fxa_cta %}
   <p class="show-fxa-supported-signed-out show-fxa-default">
-    <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew66', action='signup', utm_params={'campaign': 'wnp66', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'wnp66'}) }} class="mzp-c-button mzp-t-product" data-button-name="Create account" data-link-type="button">
+    <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew66', action='signup', utm_params={'campaign': 'wnp66', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'wnp66'}) }} class="mzp-c-button mzp-t-product" data-button-name="Create account" data-link-type="FxA-Sync">
       {{ _('Create a Firefox Account') }}
     </a><br>
 
