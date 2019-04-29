@@ -46,12 +46,12 @@ def internet_explorer(selenium):
 @pytest.fixture(autouse=True)
 def filter_capabilities(request):
     marker = None
-    if request.node.get_marker('skip_if_firefox') and request.getfuncargvalue('firefox'):
-        marker = request.node.get_marker('skip_if_firefox')
-    if request.node.get_marker('skip_if_not_firefox') and not request.getfuncargvalue('firefox'):
-        marker = request.node.get_marker('skip_if_not_firefox')
-    if request.node.get_marker('skip_if_internet_explorer') and request.getfuncargvalue('internet_explorer'):
-        marker = request.node.get_marker('skip_if_internet_explorer')
+    if request.node.get_closest_marker('skip_if_firefox') and request.getfixturevalue('firefox'):
+        marker = request.node.get_closest_marker('skip_if_firefox')
+    if request.node.get_closest_marker('skip_if_not_firefox') and not request.getfixturevalue('firefox'):
+        marker = request.node.get_closest_marker('skip_if_not_firefox')
+    if request.node.get_closest_marker('skip_if_internet_explorer') and request.getfixturevalue('internet_explorer'):
+        marker = request.node.get_closest_marker('skip_if_internet_explorer')
 
     if marker:
         reason = marker.kwargs.get('reason') or marker.name
