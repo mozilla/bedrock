@@ -1129,8 +1129,7 @@ URLS = flatten((
     url_test('/styleguide/identity/firefoxos/{,subpages/}', '/styleguide/'),
 
     # Bug 1324504
-    url_test('/contribute/studentambassadors/join/', 'https://campus.mozilla.community/'),
-    url_test('/contribute/studentambassadors/thanks/', 'https://campus.mozilla.community/'),
+    url_test('/contribute/studentambassadors/{,join/,thanks/}', 'https://campus.mozilla.community/'),
 
      # Bug 1340600
     url_test('/css-grid', '/developer/css-grid/', query={
@@ -1257,4 +1256,9 @@ URLS = flatten((
 
     # Issue 6979
     url_test('/firefoxfightsforyou/', '/firefox/fights-for-you/'),
+
+    # Issue 6994
+    url_test('/contribute/signup/', 'https://activate.mozilla.community/'),
+    url_test('/contribute/task/{,devtools-challenger/, firefox-mobile/}', 'https://activate.mozilla.community/'),
+    url_test('/contribute/friends/', '/contribute/'),
 ))

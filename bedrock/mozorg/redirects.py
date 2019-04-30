@@ -107,8 +107,7 @@ redirectpatterns = (
 
     # Bug 781914
     redirect(r'^contribute/areas.html$', 'mozorg.contribute.index'),
-    redirect(r'^contribute/universityambassadors',
-             'mozorg.contribute.studentambassadors.landing'),
+    redirect(r'^contribute/universityambassadors', 'https://campus.mozilla.community/'),
 
     # Bug 1144949
     redirect(r'^contribute/page/?$',
@@ -612,9 +611,8 @@ redirectpatterns = (
     # Bug 1335040
     redirect(r'^gigabit(/.*)?', 'https://learning.mozilla.org/gigabit/'),
 
-    # Bug 1324504
-    redirect(r'^/contribute/studentambassadors/join/?$', 'https://campus.mozilla.community/'),
-    redirect(r'^/contribute/studentambassadors/thanks/?$', 'https://campus.mozilla.community/'),
+    # Bug 1324504, issue 6994
+    redirect(r'^/contribute/studentambassadors(/.*)?', 'https://campus.mozilla.community/'),
 
     # Bug 1340600 - vanity URL
     redirect(r'^css-?grid/?$', 'mozorg.developer.css-grid-demo', query={
@@ -661,5 +659,10 @@ redirectpatterns = (
     redirect(r'^decentralization/?$', 'mozorg.internet-health.decentralization'),
 
     # issue 6971
-    redirect(r'^gear/?$', 'https://mozillagear.corpmerchandise.com/')
+    redirect(r'^gear/?$', 'https://mozillagear.corpmerchandise.com/'),
+
+    # issue 6994
+    redirect(r'^contribute/signup/?$', 'https://activate.mozilla.community/'),
+    redirect(r'^/contribute/task(/.*)?', 'https://activate.mozilla.community/'),
+    redirect(r'^contribute/friends/?$', 'mozorg.contribute.index'),
 )

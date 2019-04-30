@@ -7,7 +7,6 @@ from datetime import date
 import json
 
 from django.core.cache import cache
-from django.db.utils import DatabaseError
 from django.http.response import Http404
 from django.test import override_settings
 from django.test.client import RequestFactory
@@ -38,39 +37,6 @@ class TestViews(TestCase):
             resp = self.client.get(reverse('mozorg.home'), {'f': '999999999'})
             assert 'product=firefox-stub&' in resp.content
             assert 'product=firefox-stub-f999999999&' not in resp.content
-
-
-class TestContributeStudentAmbassadorsLanding(TestCase):
-    def setUp(self):
-        self.rf = RequestFactory()
-        self.get_req = self.rf.get('/')
-        self.no_exist = views.TwitterCache.DoesNotExist()
-        cache.clear()
-
-    @patch.object(views.l10n_utils, 'render')
-    @patch.object(views.TwitterCache.objects, 'get')
-    def test_db_exception_works(self, mock_manager, mock_render):
-        """View should function properly without the DB."""
-        mock_manager.side_effect = DatabaseError
-        views.contribute_studentambassadors_landing(self.get_req)
-        mock_render.assert_called_with(ANY, ANY, {'tweets': []})
-
-    @patch.object(views.l10n_utils, 'render')
-    @patch.object(views.TwitterCache.objects, 'get')
-    def test_no_db_row_works(self, mock_manager, mock_render):
-        """View should function properly without data in the DB."""
-        mock_manager.side_effect = views.TwitterCache.DoesNotExist
-        views.contribute_studentambassadors_landing(self.get_req)
-        mock_render.assert_called_with(ANY, ANY, {'tweets': []})
-
-    @patch.object(views.l10n_utils, 'render')
-    @patch.object(views.TwitterCache.objects, 'get')
-    def test_db_cache_works(self, mock_manager, mock_render):
-        """View should use info returned by DB."""
-        good_val = 'The Dude tweets, man.'
-        mock_manager.return_value.tweets = good_val
-        views.contribute_studentambassadors_landing(self.get_req)
-        mock_render.assert_called_with(ANY, ANY, {'tweets': good_val})
 
 
 class TestRobots(TestCase):
