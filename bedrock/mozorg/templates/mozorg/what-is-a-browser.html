@@ -4,11 +4,13 @@
 
 {% extends "base-protocol.html" %}
 
-{% add_lang_files "mozorg/technology/what-is-a-browser" %}
-
-{% block page_title %}{{ _('What is a web browser?') }}{% endblock %}
+{% block page_title %}
+  {# L10n: HTML page title #}
+  {{ _('What is a web browser?') }}
+{% endblock %}
 
 {% block page_desc %}
+  {# L10n: HTML page description #}
   {{ _('A web browser takes you anywhere on the internet, letting you see text, images and video from anywhere in the world.') }}
 {% endblock %}
 
