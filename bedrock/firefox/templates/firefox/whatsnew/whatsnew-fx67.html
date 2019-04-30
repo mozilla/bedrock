@@ -1,4 +1,5 @@
-{# License, v. 2.0. If a copy of the MPL was not distributed with this
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros-protocol.html" import hero, call_out_compact, feature_card with context %}
@@ -39,25 +40,12 @@
   <div class="mzp-l-content">
     {# L10n: "More power to you" is an American English idiom wishing someone success in their endeavors, and here is also a play on words saying Firefox gives users more power and control over their web experience. A more literal alternative would be "You have more power with every update" #}
     <h2 class="c-page-title">{{ _('More power to you with every update') }}</h2>
-    <!--
-    {% set content_blocking_image='firefox/whatsnew_67/update.svg' %}
-    {% call hero(
-      heading_level=3,
-      title=_('New to your browser'),
-      desc=_('Now you have the power to block video ads that autoplay when you open articles and links. Plus, Firefox has upped your protection against ad trackers.'),
-      class='mzp-has-image mzp-l-reverse t-wn67',
-      image_url=content_blocking_image,
-      include_highres_image=false,
-      include_cta=False
-    ) %}
-    {% endcall %}
-    -->
-
     {% call feature_card(
       title=_('New to your browser'),
+      heading_level=3,
       image_url='firefox/whatsnew_67/update.svg',
       include_highres_image=False,
-      aspect_ratio='mzp-l-card-feature-right-66',
+      aspect_ratio='l-card-feature-right-66',
       class='wn67-intro'
     ) %}
     <p>{{ _('Now you have the power to block video ads that autoplay when you open articles and links. Plus, Firefox has upped your protection against ad trackers.') }}</p>
@@ -87,7 +75,7 @@
         title=_('Take your passwords everywhere with Lockbox'),
         image_url='firefox/whatsnew_67/lockbox.svg',
         include_highres_image=False,
-        aspect_ratio='mzp-l-card-feature-right-66',
+        aspect_ratio='l-card-feature-right-66',
         class='wn67-lockbox'
       ) %}
         <p>{{ _('Securely access passwords you save to your Firefox Account from any device, everywhere you go – now available for both Android and iOS.') }}</p>
@@ -111,7 +99,7 @@
         ga_title='Try Firefox Send',
         image_url='firefox/whatsnew_67/send.svg',
         include_highres_image=False,
-        aspect_ratio='mzp-l-card-feature-right-66',
+        aspect_ratio='l-card-feature-right-66',
         class='wn67-lockbox'
       ) %}
       <p>{{ _('Use an encrypted link to safely share large files – up to 2.5GB with a Firefox Account. And you can set when your link expires, so your info doesn’t live in the cloud forever.') }}</p>
@@ -129,7 +117,7 @@
           entrypoint='mozilla.org-whatsnew67',
           button_class='mzp-c-button mzp-t-product mzp-t-small',
           utm_source='whatsnew',
-          utm_params={'campaign': 'fxa-embedded-form', 'content': 'whatsnew', 'medium': 'referral'})
+          utm_params=fxa_utm_params)
       }}
     </div>
     {% if show_newsletter %}
