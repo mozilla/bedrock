@@ -319,9 +319,6 @@
               <li><a href="https://groups.google.com/forum/#!forum/mozilla.governance">{{ _('Participate in our governance forum') }}</a></li>
               {% if l10n_has_tag('join-us') %}
                 <li><a href="{{ url('mozorg.contribute.index') }}">{{ _('Join us as a volunteer') }}</a></li>
-                <li><a href="{{ url('mozorg.contribute.studentambassadors.landing') }}">{{ _('Join us as a student ambassador') }}</a></li>
-              {% else %}
-                <li>{{ _('Join us as a <a href="%(volunteer)s">volunteer</a> or <a href="%(ambassador)s">student ambassador</a>')|format(volunteer=url('mozorg.contribute.index'), ambassador=url('mozorg.contribute.studentambassadors.landing')) }}</li>
               {% endif %}
               <li><a href="https://teach.mozilla.org/web-literacy/skills/">{{ _('Learn how to collaborate online') }}</a></li>
             </ul>

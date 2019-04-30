@@ -132,13 +132,6 @@
     },
     {
       "files": [
-        "css/base/social-widgets.less",
-        "css/mozorg/contribute/studentambassadors/landing.less"
-      ],
-      "name": "contribute-studentambassadors-landing"
-    },
-    {
-      "files": [
         "css/firefox/campaign/berlin-variation.scss"
       ],
       "name": "firefox_campaign_berlin_variation"
@@ -331,13 +324,6 @@
     },
     {
       "files": [
-        "css/newsletter/moznewsletter-subscribe.less",
-        "css/mozorg/contribute/taskview.less"
-      ],
-      "name": "contribute-taskview"
-    },
-    {
-      "files": [
         "css/mozorg/home/home-2018.scss",
         "css/mozorg/home/fundraiser-apr2019.scss"
       ],
@@ -457,12 +443,6 @@
     },
     {
       "files": [
-        "css/mozorg/contribute/signup.less"
-      ],
-      "name": "contribute-signup"
-    },
-    {
-      "files": [
         "css/firefox/developer/developer.scss",
         "css/firefox/developer/whatsnew.scss"
       ],
@@ -512,12 +492,6 @@
         "css/newsletter/newsletter-mozilla.scss"
       ],
       "name": "newsletter-mozilla"
-    },
-    {
-      "files": [
-        "css/mozorg/contribute/friends.less"
-      ],
-      "name": "contribute-friends"
     },
     {
       "files": [
@@ -1184,13 +1158,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-svg-image-fallback.js",
-        "js/mozorg/contribute/friends.js"
-      ],
-      "name": "contribute-friends"
-    },
-    {
-      "files": [
         "js/base/mozilla-modal.js",
         "js/firefox/installer-help.js"
       ],
@@ -1377,12 +1344,6 @@
     },
     {
       "files": [
-        "js/mozorg/contribute/signup.js"
-      ],
-      "name": "contribute-signup"
-    },
-    {
-      "files": [
         "js/base/mozilla-modal.js",
         "js/foundation/annual2012.js"
       ],
@@ -1435,12 +1396,6 @@
         "js/firefox/concerts-init.js"
       ],
       "name": "firefox_concert_series"
-    },
-    {
-      "files": [
-        "js/mozorg/contribute/taskview.js"
-      ],
-      "name": "contribute-taskview"
     },
     {
       "files": [
