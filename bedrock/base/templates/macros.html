@@ -247,12 +247,10 @@
 
 {%- endmacro %}
 
-{% macro fxa_cta_link(button_location, id_prefix, campaign, entrypoint, button_text = '', button_class = '', content = '', source = '', action='signup', utm_params={}) %}
-<div class="show-fxa-supported-signed-out">
-  <a {{ fxa_link_fragment(entrypoint="{{ entrypoint }}", action="{{ action }}", utm_params={'campaign': campaign, 'content': (content or request.path_info), 'source': source}) }} class="js-fxa-cta-link {{ button_class }}" data-button-name="Create account" data-link-type="FxA-Sync" data-cta-position="{{ button_location }}" id="{{ account_id }}">
+{% macro fxa_cta_link(entrypoint, campaign, content, source, button_class, button_location, button_text, account_id, action='signin', utm_params={}) %}
+  <a {{ fxa_link_fragment(entrypoint=entrypoint, action="{{ action }}", utm_params={'campaign': campaign, 'content': (content or request.path_info), 'source': source}) }} class="js-fxa-cta-link {{ button_class }}" data-button-name="Create account" data-link-type="FxA-Sync" data-cta-position="{{ button_location }}" id="{{ account_id }}">
     {{ button_text }}
   </a>
-</div>
 {%- endmacro %}
 
 {% macro fxa_create_account_button(button_location, id_prefix, campaign, entrypoint, button_text = '', button_class = '', content = '', source = '') %}

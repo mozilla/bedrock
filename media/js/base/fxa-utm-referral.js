@@ -23,8 +23,8 @@
         // var data;
         // data = UtmUrl.getAttributionData();
 
-        // var linkFragment = document.querySelectorAll('.fxa_link_fragment');
-        // console.log(linkFragment);
+        var linkFragment = document.querySelectorAll('.js-fxa-cta-link');
+        console.log(linkFragment);
 
     };
 
