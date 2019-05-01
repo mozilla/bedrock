@@ -367,7 +367,7 @@
     {{ download_firefox(dom_id=download_id, download_location=button_location) }}
   </div>
   <div class="show-fxa-supported-signed-out">
-    <a {{ fxa_link_fragment(entrypoint=entrypoint, action='signup', utm_params={'campaign': campaign, 'content': (content or request.path_info), 'source': source}) }} class="button {{ button_class }}" data-button-name="Create account" data-link-type="button" data-cta-position="{{ button_location }}" id="{{ account_id }}">
+    <a {{ fxa_link_fragment(entrypoint=entrypoint, action='signup', utm_params={'campaign': campaign, 'content': (content or request.path_info), 'source': source}) }} class="button {{ button_class }}" data-button-name="Create account" data-link-type="FxA-Sync" data-cta-position="{{ button_location }}" id="{{ account_id }}">
       {{ button_text }}
     </a>
   </div>
