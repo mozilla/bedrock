@@ -15,20 +15,34 @@
             // this value is already URI encoded, so we need to decode here as
             // it will get re-encoded in _SearchParams.objectToQueryString
             finalParams['source'] = decodeURIComponent(params['utm_source']);
+            console.log(finalParams);
         }
         return Object.getOwnPropertyNames(finalParams);
     };
 
-    UtmUrl.getAttributionData.init = function (){
-        // var data;
-        // data = UtmUrl.getAttributionData();
+    UtmUrl.appendToDownloadURL = function (url, data) {
+        var finalParams = data;
+        var linkParams;
 
-        var linkFragment = document.querySelectorAll('.js-fxa-cta-link');
-        console.log(linkFragment);
+        if (url.indexOf('?') > 0) {
+            linkParams = window._SearchParams.queryStringToObject(url.split('?')[1]);
+            finalParams = Object.assign(finalParams, linkParams);
+        }
 
+        return url.split('?')[0] + '?' + window._SearchParams.objectToQueryString(finalParams);
     };
 
-    // window.Mozilla.UtmUrl = UtmUrl;
+    UtmUrl.getAttributionData.init = function (){
+        UtmUrl.getAttributionData();
+
+        var ctaLinks = document.getElementsByClassName('js-fxa-cta-link');
+        var url;
+
+        for (var i = 0; i < ctaLinks.length; i++) {
+            console.log(ctaLinks[i].href);
+        }
+    };
+
     UtmUrl.getAttributionData.init();
 
 })(window.Mozilla);
