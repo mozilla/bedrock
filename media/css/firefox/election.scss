@@ -18,6 +18,13 @@ $image-path: '/media/protocol/img';
     padding-bottom: 200px;
 }
 
+.mzp-c-hero-title {
+    @include at2x('/media/img/firefox/election/firefox-logo.png', 100px);
+    background-repeat: no-repeat;
+    background-position: top left;
+    padding-top: $layout-lg;
+}
+
 @media #{$mq-md} {
     .mzp-c-hero.mzp-has-image {
         align-items: center;
@@ -30,6 +37,10 @@ $image-path: '/media/protocol/img';
 
     .mzp-l-content {
         width: 100%;
+    }
+
+    .mzp-c-hero-desc {
+        max-width: 430px;
     }
 }
 
