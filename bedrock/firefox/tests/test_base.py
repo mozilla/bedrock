@@ -375,6 +375,32 @@ class TestWhatsNew(TestCase):
 
     # end 66.0 whatsnew tests
 
+    # begin 67.0 whatsnew tests
+
+    def test_fx_67_0(self, render_mock):
+        """Should use standard template for 67.0"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='67.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/whatsnew-fx67.html'])
+        context = render_mock.call_args[0][2]
+        ok_('show_newsletter' in context)
+        eq_(True, context['show_newsletter'])
+
+    def test_fx_67_0_no_newsletter(self, render_mock):
+        """Should not include newsletter for non-translated locales"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'el'
+        self.view(req, version='67.0')
+        template = render_mock.call_args[0][1]
+        eq_(template, ['firefox/whatsnew/whatsnew-fx67.html'])
+        context = render_mock.call_args[0][2]
+        ok_('show_newsletter' in context)
+        eq_(False, context['show_newsletter'])
+
+    # end 67.0 whatsnew tests
+
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestFirstRun(TestCase):

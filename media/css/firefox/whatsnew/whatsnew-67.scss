@@ -1,0 +1,501 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/call-out';
+@import '../../../protocol/css/components/feature-card';
+@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/components/modal';
+@import '../../../protocol/css/components/newsletter-form';
+
+@import '../../protocol/components/state-fxa';
+
+
+main {
+    color: $color-off-black;
+}
+
+//* -------------------------------------------------------------------------- */
+// Up-to-date page header
+
+.c-page-header-up-to-date {
+    @include text-display-xxs;
+    display: none;
+    margin-top: $layout-xs;
+
+    span {
+        background-color: #6EE7C4;
+        border-radius: 2px;
+        display: inline-block;
+        font-weight: normal;
+        padding: $spacing-sm $spacing-md;
+        max-width: $content-sm;
+    }
+
+    .is-up-to-date & {
+        display: block;
+    }
+}
+
+@media #{$mq-md} {
+    .c-page-header-inner {
+        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr max-content 1fr;
+    }
+
+    .c-page-header-up-to-date {
+        margin: 0 $layout-sm;
+    }
+}
+
+
+
+//* -------------------------------------------------------------------------- */
+// Intro section
+
+.c-page-title {
+    @include text-display-xl;
+    max-width: $content-md;
+    margin: 0 auto $layout-sm auto;
+    text-align: center;
+}
+
+.mzp-c-card-feature.l-card-feature-right-66.wn67-intro {
+    margin-bottom: $layout-md;
+    max-width: $content-lg;
+
+    .mzp-c-card-feature-title {
+        display: none;
+    }
+
+    .mzp-c-card-feature-desc {
+        @include font-size(24px);
+    }
+}
+
+@media #{$mq-md} {
+    .c-page-title {
+        margin: $layout-sm auto $layout-xl;
+    }
+
+    .mzp-c-card-feature.l-card-feature-right-66.wn67-intro {
+        .mzp-c-card-feature-media-wrapper {
+            width: 339px;
+        }
+        .mzp-c-card-feature-desc {
+            @include font-size(30px);
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Benefits section
+
+.c-section-title {
+    @include visually-hidden;
+}
+
+.c-section-benifits{
+    position: relative;
+}
+
+.mzp-c-card-feature {
+    margin-bottom: $layout-md;
+
+    .mzp-c-card-feature-media img {
+        max-width: 300px;
+        margin: 0 auto;
+
+        [dir='rtl'] & {
+            transform: scaleX(-1);
+        }
+    }
+
+    @media #{$mq-md} {
+        margin-bottom: $layout-xl;
+
+        .mzp-c-card-feature-title {
+            @include font-size(32px);
+        }
+
+        .mzp-c-card-feature-media img {
+            max-width: 100%;
+        }
+
+        .mzp-c-card-feature-media-wrapper {
+            align-self: center;
+        }
+
+        &.mzp-l-card-feature-left-66,
+        &.l-card-feature-right-66 {
+            @include grid-column-gap($layout-md);
+            display: grid;
+
+            .mzp-c-card-feature-content {
+                @include flexbox;
+                align-items: center;
+            }
+        }
+
+        &.mzp-l-card-feature-left-66 {
+            .mzp-c-card-feature-content {
+                grid-column: 1;
+                grid-row: 1;
+                width: auto;
+            }
+
+            .mzp-c-card-feature-media-wrapper {
+                grid-column: 2;
+                grid-row: 1;
+                width: auto;
+            }
+        }
+
+        &.mzp-l-card-feature-left-66 {
+            grid-template-columns: 2fr 1fr;
+        }
+
+        &.l-card-feature-right-66 {
+            .mzp-c-card-feature-content {
+                grid-column: 2;
+                grid-row: 1;
+                width: auto;
+            }
+
+            .mzp-c-card-feature-media-wrapper {
+                grid-column: 1;
+                grid-row: 1;
+                width: auto;
+            }
+        }
+
+        &.l-card-feature-right-66 {
+            grid-template-columns: 1fr 2fr;
+        }
+    }
+
+    @media #{$mq-lg} {
+        &.mzp-l-card-feature-left-66,
+        &.l-card-feature-right-66 {
+            @include grid-column-gap($layout-lg);
+        }
+    }
+}
+
+
+
+//* -------------------------------------------------------------------------- */
+// Sticky signup CTA
+
+.c-sticky-signup {
+    max-width: $content-lg;
+    margin: 0 auto $layout-lg;
+
+    a:link,
+    a:visited {
+        color: inherit;
+    }
+
+    .c-sticky-signup-container {
+        @include clearfix;
+        background: $color-off-black;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        color: $color-white;
+        display: none;
+        padding: $spacing-xl;
+        text-align: center;
+    }
+
+    .c-sticky-signup-title {
+        @include font-size(20px);
+        margin: 0 auto $spacing-md;
+        text-align: left;
+    }
+
+    .c-sticky-signup-content {
+        align-items: center;
+        display: flex;
+    }
+
+    @media #{$mq-md} {
+        position: sticky;
+        bottom: $spacing-md;
+        z-index: 100;
+
+        &.is-not-sticky {
+            position: relative;
+        }
+
+        .c-sticky-signup-container {
+            @include grid-column-gap($spacing-lg);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+        }
+
+        .c-sticky-signup-title {
+            margin: 0;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .c-sticky-signup-container {
+            grid-template-columns: 1fr 1.5fr;
+        }
+    }
+}
+
+
+// Dismiss
+
+.sticky-dismiss {
+    background: transparent;
+    border: 0;
+    bottom: 0;
+    cursor: pointer;
+    display: none;
+    height: 40px;
+    overflow: hidden;
+    padding: 0 0 0 $spacing-xl;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 0;
+
+    &:after {
+        @include text-body-lg;
+        background: transparent url('#{$image-path}/icons/ui/close-white.svg') center center no-repeat;
+        @include background-size(16px 16px);
+        content: '';
+        display: block;
+        height: 32px;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 32px;
+    }
+
+    &:hover:after,
+    &:focus:after {
+        @include transition(transform .1s ease-in-out);
+        @include transform(scale(1.1));
+    }
+
+    &:focus:after {
+        outline: 1px dotted $color-white;
+    }
+
+    @media #{$mq-md} {
+        display: block;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Firefox Accounts form
+
+.fxa-form-cta {
+
+    &.c-sticky-signup-container {
+        display: none;
+
+        // only display FxA form to users who are signed out.
+        .state-fxa-supported-signed-out & {
+            display: grid;
+        }
+    }
+
+    .fxa-email-form-intro {
+        display: none;
+    }
+
+    .fxa-email-field-container {
+        .field {
+            label {
+                @include visually-hidden;
+            }
+
+            input[type="email"] {
+                border: none;
+                box-shadow: none;
+                padding: 12px 16px;
+                width: 100%;
+            }
+        }
+
+        .mzp-c-button {
+            width: 100%;
+        }
+    }
+
+    @media #{$mq-sm} {
+        .fxa-email-field-container {
+            @include grid-column-gap($spacing-md);
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+
+            .field {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        .fxa-email-form {
+            display: grid;
+
+            .agreement {
+                @include text-body-sm;
+                grid-row-start: 2;
+                margin-top: $spacing-sm;
+                margin-bottom: 0;
+            }
+        }
+
+        .fxa-email-field-container {
+            background: url('/media/img/firefox/whatsnew_63/avatar.svg') no-repeat;
+            @include bidi((
+                (background-position, center left, center right),
+                (padding-left, 37px + $spacing-md, padding-right, 0),
+            ));
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Firefox newsletter form
+
+.newsletter-form-cta {
+
+    &.c-sticky-signup-container {
+        display: none;
+
+        // only display FxA form to users who are signed out.
+        .state-fxa-supported-signed-in & {
+            display: grid;
+        }
+    }
+
+    .mzp-c-newsletter {
+        @include bidi(((text-align, left, right),));
+        display: block;
+        padding: 0;
+        margin: 0 auto;
+    }
+
+    .mzp-c-newsletter-form {
+        padding-top: 0;
+    }
+
+    .mzp-c-newsletter-content {
+        @include text-body-sm;
+    }
+
+    input[type="email"] {
+        padding: 12px 18px;
+        border: none;
+        box-shadow: none;
+    }
+
+    label[for="id_email"] {
+        @include visually-hidden;
+    }
+
+    p {
+        margin-bottom: $spacing-sm;
+    }
+
+    .mzp-c-form-submit {
+        margin-bottom: 0;
+    }
+
+    .mzp-c-fieldnote {
+        @include bidi(((text-align, left, right),));
+        color: $color-white;
+    }
+
+    .mzp-c-newsletter-thanks {
+        padding-top: 0;
+        text-align: center;
+
+        h3 {
+            @include text-display-sm;
+        }
+    }
+
+    @media #{$mq-md} {
+        .mzp-c-newsletter {
+            margin: 0;
+        }
+
+        .mzp-c-newsletter-content {
+            @include bidi(((padding-right, 40%, padding-left, 0),));
+            position: relative;
+        }
+
+        .mzp-c-button[type="submit"] {
+            @include bidi(((right, 0, left, auto),));
+            position: absolute;
+            top: 0;
+            width: calc(40% - #{$spacing-md});
+        }
+
+        .mzp-c-newsletter-thanks {
+            @include bidi(((text-align, left, right),));
+        }
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+// Modal, custom styles
+
+.mobile-lockbox,
+.mobile-pocket {
+    display: none;
+}
+
+.app-lockbox .mobile-lockbox {
+    display: block;
+}
+
+.app-pocket .mobile-pocket {
+    display: block;
+}
+
+.mobile-download-buttons li {
+    display: inline-block;
+}
+
+.mobile-qr {
+     box-shadow: 0 3px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+     margin: $layout-xs;
+     max-height: 300px;
+ }
+
+.mzp-c-modal-inner {
+    header h2 {
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    .mzp-c-modal-overlay-contents {
+        background: #fff;
+        color: #000;
+        padding: .5em;
+        text-align: center;
+    }
+}
+
+@media #{$mq-md} {
+    .mzp-c-modal-inner {
+        margin: 0 auto;
+        max-width: 500px;
+    }
+}
