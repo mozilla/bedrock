@@ -191,7 +191,7 @@ class TestWhatsNew(TestCase):
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, version='68.0a1')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/nightly_whatsnew.html'])
+        assert template == ['firefox/nightly_whatsnew.html']
 
     # end nightly whatsnew tests
 
@@ -203,7 +203,7 @@ class TestWhatsNew(TestCase):
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, version='67.0beta')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.html'])
+        assert template == ['firefox/whatsnew/index.html']
 
     @override_settings(DEV=True)
     def test_fx_beta_68_0_beta_whatsnew(self, render_mock):
@@ -211,7 +211,7 @@ class TestWhatsNew(TestCase):
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, version='68.0beta')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/beta/whatsnew-fx68.html'])
+        assert template == ['firefox/whatsnew/beta/whatsnew-fx68.html']
 
     # end beta whatsnew tests
 
@@ -231,7 +231,7 @@ class TestWhatsNew(TestCase):
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, version='57.0a2')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/developer/whatsnew.html'])
+        assert template == ['firefox/developer/whatsnew.html']
 
     @override_settings(DEV=True)
     @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68='True')
@@ -240,7 +240,7 @@ class TestWhatsNew(TestCase):
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, version='68.0a2')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/developer/whatsnew-fx68.html'])
+        assert template == ['firefox/developer/whatsnew-fx68.html']
 
     @override_settings(DEV=True)
     @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68='False')
@@ -249,7 +249,7 @@ class TestWhatsNew(TestCase):
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, version='68.0a2')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/developer/whatsnew.html'])
+        assert template == ['firefox/developer/whatsnew.html']
 
     # end dev edition whatsnew tests
 
