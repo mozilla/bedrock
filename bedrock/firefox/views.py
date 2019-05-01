@@ -821,12 +821,15 @@ def election_with_cards(request):
     locale = l10n_utils.get_locale(request)
     ctx = {
         'page_content_cards': get_page_content_cards('election-en', locale),
-        'active_locales': ['de', 'en-US']
+        'active_locales': ['de', 'fr', 'en-US']
     }
 
     if locale == 'de':
         template_name = 'firefox/election/index-de.html'
         ctx['page_content_cards'] = get_page_content_cards('election-de', 'de')
+    elif locale == 'fr':
+        template_name = 'firefox/election/index-fr.html'
+        ctx['page_content_cards'] = get_page_content_cards('election-fr', 'fr')
     else:
         template_name = 'firefox/election/index.html'
         ctx['page_content_cards'] = get_page_content_cards('election-en', 'en-US')
