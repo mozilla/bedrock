@@ -19,9 +19,10 @@ $image-path: '/media/protocol/img';
 }
 
 .mzp-c-hero-title {
-    @include at2x('/media/img/firefox/election/firefox-logo.png', 100px);
+    background-image: url('/media/img/logos/firefox/release-lockup.png');
+    background-size: 100px auto;
     background-repeat: no-repeat;
-    background-position: top left;
+    background-position: top center;
     padding-top: $layout-lg;
 }
 
@@ -37,6 +38,10 @@ $image-path: '/media/protocol/img';
 
     .mzp-l-content {
         width: 100%;
+    }
+
+    .mzp-c-hero-title {
+        background-position: top left;
     }
 
     .mzp-c-hero-desc {
