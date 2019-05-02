@@ -14,10 +14,9 @@
         if (params.hasOwnProperty('utm_source') && (/^[\w/.%-]+$/).test(params['utm_source'])) {
             // this value is already URI encoded, so we need to decode here as
             // it will get re-encoded in _SearchParams.objectToQueryString
-            finalParams['source'] = decodeURIComponent(params['utm_source']);
-            console.log(finalParams);
+            finalParams['utm_source'] = decodeURIComponent(params['utm_source']);
         }
-        return Object.getOwnPropertyNames(finalParams);
+        return Object.getOwnPropertyNames(finalParams).length === 1 ? finalParams : null;
     };
 
     UtmUrl.appendToDownloadURL = function (url, data) {
@@ -26,20 +25,23 @@
 
         if (url.indexOf('?') > 0) {
             linkParams = window._SearchParams.queryStringToObject(url.split('?')[1]);
-            finalParams = Object.assign(finalParams, linkParams);
+            finalParams = Object.getOwnPropertyNames(finalParams, linkParams);
+            console.log(finalParams);
         }
-
         return url.split('?')[0] + '?' + window._SearchParams.objectToQueryString(finalParams);
     };
 
     UtmUrl.getAttributionData.init = function (){
-        UtmUrl.getAttributionData();
-
+        var params = UtmUrl.getAttributionData();
         var ctaLinks = document.getElementsByClassName('js-fxa-cta-link');
-        var url;
+        var link;
 
         for (var i = 0; i < ctaLinks.length; i++) {
-            console.log(ctaLinks[i].href);
+            if (params) {
+                var url = UtmUrl.appendToDownloadURL(params);
+                ctaLinks[i].href = url;
+                console.log(ctaLinks[i].getAttribute('data-mozillaonline-link'));
+            }
         }
     };
 
@@ -55,3 +57,6 @@
 // validate with regex
 // before adding to fxa_link_fragment function looks for common classname on fxa_link_fragment
 // query for that selector in DOM
+// does the function does the thing -- test UtmUrl.getAttributionData.init, updates link in page. assert
+// spec/base/stub-attribution-macos.js
+// update button to fxa_link_cta
