@@ -382,10 +382,9 @@ class TestWhatsNew(TestCase):
         req.locale = 'en-US'
         self.view(req, version='67.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/whatsnew-fx67.html'])
+        assert template == ['firefox/whatsnew/whatsnew-fx67.html']
         context = render_mock.call_args[0][2]
-        ok_('show_newsletter' in context)
-        eq_(True, context['show_newsletter'])
+        assert context['show_newsletter']
 
     def test_fx_67_0_no_newsletter(self, render_mock):
         """Should not include newsletter for non-translated locales"""
@@ -393,10 +392,10 @@ class TestWhatsNew(TestCase):
         req.locale = 'el'
         self.view(req, version='67.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/whatsnew-fx67.html'])
+        assert template == ['firefox/whatsnew/whatsnew-fx67.html']
         context = render_mock.call_args[0][2]
-        ok_('show_newsletter' in context)
-        eq_(False, context['show_newsletter'])
+        assert 'show_newsletter' in context
+        assert not context['show_newsletter']
 
     # end 67.0 whatsnew tests
 
