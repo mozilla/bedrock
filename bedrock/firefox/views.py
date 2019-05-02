@@ -559,7 +559,7 @@ def download_thanks(request):
     show_newsletter = locale in ['en-US', 'en-GB', 'en-CA', 'es-ES', 'es-AR', 'es-CL', 'es-MX', 'pt-BR', 'fr', 'ru', 'id', 'de', 'pl']
 
     # ensure variant matches pre-defined value
-    if variant not in []:  # place expected ?v= values in this list
+    if variant not in ['b']:  # place expected ?v= values in this list
         variant = None
 
     # check to see if a URL explicitly asks to hide the newsletter
@@ -584,6 +584,8 @@ def download_thanks(request):
     elif locale == 'en-US':
         if experience == 'betterbrowser':
             template = 'firefox/campaign/better-browser/scene2.html'
+        elif experience == 'th' and variant == 'b':
+            template = 'firefox/new/trailhead/thanks.html'
         else:
             template = 'firefox/new/scene2.html'
     else:
@@ -607,7 +609,7 @@ def new(request):
 
     # ensure variant matches pre-defined value
 
-    if variant not in []:  # place expected ?v= values in this list
+    if variant not in ['a', 'b']:  # place expected ?v= values in this list
         variant = None
 
     if scene == '2':
@@ -621,6 +623,8 @@ def new(request):
     else:
         if locale == 'ru' and switch('firefox-yandex'):
             template = 'firefox/new/yandex/scene1.html'
+        elif locale == 'en-US' and experience == 'th' and variant in ['a', 'b']:
+            template = 'firefox/new/trailhead/download-{}.html'.format(variant)
         else:
             template = 'firefox/new/scene1.html'
 

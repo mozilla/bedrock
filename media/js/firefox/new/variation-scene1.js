@@ -16,7 +16,7 @@ so the correct template is rendered on /download/thanks/.
     var newQs = [];
     var params = new window._SearchParams().params;
     var prefix;
-    var regex = /^[a-zA-Z0-9_\-]+$/;
+    var regex = /^[a-zA-Z0-9_-]+$/;
 
     // we need to propogate 'v' and/or 'xv' query params to ensure the correct
     // template is loaded on /download/thanks/

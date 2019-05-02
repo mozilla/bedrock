@@ -39,19 +39,11 @@
     </div>
   </section>
 
-  <div class="mzp-l-card-third mzp-l-content mzp-t-firefox">
-    <ul>
-      <li class="faster">
-        {{ picto_card(title=_('2x Faster'), desc=_('The best Firefox ever')) }}
-      </li>
-      <li class="lighter">
-        {{ picto_card(title=_('Lightweight'), desc=_('Rebuilt to use less memory')) }}
-      </li>
-      <li class="private">
-        {{ picto_card(title=_('Powerfully private'), desc=_('Private Browsing with Tracking Protection')) }}
-      </li>
-    </ul>
-  </div>
+  <ul class="mzp-l-card-third mzp-l-content">
+    {{ picto_card(title=_('2x Faster'), desc=_('The best Firefox ever'), class='faster') }}
+    {{ picto_card(title=_('Lightweight'), desc=_('Rebuilt to use less memory'), class='lighter') }}
+    {{ picto_card(title=_('Powerfully private'), desc=_('Private Browsing with Tracking Protection'), class='private') }}
+  </ul>
 
   <aside class="c-aside">
     <div class="mzp-l-content">
