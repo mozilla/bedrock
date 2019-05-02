@@ -18,6 +18,14 @@ $image-path: '/media/protocol/img';
     padding-bottom: 200px;
 }
 
+.mzp-c-hero-title {
+    background-image: url('/media/img/logos/firefox/release-lockup.png');
+    background-size: 100px auto;
+    background-repeat: no-repeat;
+    background-position: top center;
+    padding-top: $layout-lg;
+}
+
 @media #{$mq-md} {
     .mzp-c-hero.mzp-has-image {
         align-items: center;
@@ -30,6 +38,14 @@ $image-path: '/media/protocol/img';
 
     .mzp-l-content {
         width: 100%;
+    }
+
+    .mzp-c-hero-title {
+        background-position: top left;
+    }
+
+    .mzp-c-hero-desc {
+        max-width: 430px;
     }
 }
 
