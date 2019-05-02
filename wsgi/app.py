@@ -5,14 +5,9 @@ try:
     import newrelic.agent
 except ImportError:
     newrelic = False
+else:
+    newrelic.agent.initialize()
 
-
-if newrelic:
-    newrelic_ini = config('NEWRELIC_PYTHON_INI_FILE', default='')
-    if newrelic_ini:
-        newrelic.agent.initialize(newrelic_ini)
-    else:
-        newrelic = False
 
 import os
 
