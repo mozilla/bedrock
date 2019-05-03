@@ -243,7 +243,7 @@
     {% endif %}
   {% endfor %}
 
-  href="{{ settings.FXA_ENDPOINT }}{{ fxa_path }}?service={{ service_type }}&{{ fxa_queries|join('&') }}" data-mozillaonline-link="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}{{ fxa_path }}?{{ fxa_queries|join('&') }}"
+  href="{{ settings.FXA_ENDPOINT }}{{ fxa_path }}?service={{ service_type }}&{{ fxa_queries|join('&') }}" data-mozillaonline-link="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}{{ fxa_path }}?service={{ service_type }}&{{ fxa_queries|join('&') }}"
 
 {%- endmacro %}
 
