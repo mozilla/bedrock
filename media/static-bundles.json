@@ -336,8 +336,7 @@
     },
     {
       "files": [
-        "css/mozorg/home/home-2018.scss",
-        "css/mozorg/home/fundraiser-apr2019.scss"
+        "css/mozorg/home/home-2018.scss"
       ],
       "name": "home-2018"
     },
@@ -1120,12 +1119,6 @@
         "js/mozorg/home/home.js"
       ],
       "name": "home"
-    },
-    {
-      "files": [
-        "js/mozorg/home/fundraiser-apr2019.js"
-      ],
-      "name": "home-fundraiser-apr2019"
     },
     {
       "files": [

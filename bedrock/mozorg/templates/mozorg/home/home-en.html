@@ -42,10 +42,6 @@
 {% endblock %}
 
 {% block site_header %}
-  {% if LANG.startswith('en') and switch('home-fundraising-apr2019') %}
-    {% include 'mozorg/home/includes/fundraiser-apr2019.html' %}
-  {% endif %}
-
   {% include 'includes/protocol/navigation/index.html' %}
 {% endblock %}
 
@@ -65,7 +61,6 @@
     {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
   {% endcall %}
 
-{% if not switch('home-fundraising-apr2019') %}
   {% call download_banner_sticky(
     title=_('<strong>Firefox</strong> fights for you.'),
     sub_title=_('Fast. Private. Fearless.'),
@@ -73,7 +68,6 @@
     ) %}
     {{ download_firefox(dom_id='download-sticky', download_location='sticky cta', button_color='mzp-t-small') }}
   {% endcall %}
-{% endif %}
 
   {{ fxa_banner(
     logo_title=_('Firefox'),
@@ -82,13 +76,11 @@
     link_cta=_('Learn More'),
   )}}
 
-{% if not switch('home-fundraising-apr2019') %}
   {{ fxa_banner_sticky(
     title=_('Firefox'),
     sub_title=_('Live your life. Own your life.'),
     link_cta=_('Learn More'),
   )}}
-{% endif %}
 
   <div class="mozilla-content">
     <div class="mzp-l-content mzp-t-mozilla">
@@ -238,7 +230,4 @@
 
 {% block js %}
   {{ js_bundle('home') }}
-  {% if switch('home-fundraising-apr2019') %}
-    {{ js_bundle('home-fundraiser-apr2019') }}
-  {% endif %}
 {% endblock %}
