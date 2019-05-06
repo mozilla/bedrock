@@ -90,13 +90,13 @@
               <div class="mzp-c-navigation-menu">
                 <nav class="mzp-c-menu mzp-is-basic">
                   <ul class="mzp-c-menu-category-list">
-                    {% if release.channel == 'Release' and equivalent_release_url %}
+                    {% if release.channel == 'Release' and release.product == 'Firefox for Android' and equivalent_release_url %}
                       <li class="mzp-c-menu-category"><a class="mzp-c-menu-title" href="{{ equivalent_release_url }}">{{ _('Desktop') }}</a></li>
                     {% else %}
                       <li class="mzp-c-menu-category"><a class="mzp-c-menu-title" href="{{ url('firefox.notes') }}">{{ _('Desktop') }}</a></li>
                     {% endif %}
 
-                    {% if release.channel == 'Release' and equivalent_release_url %}
+                    {% if release.channel == 'Release' and release.product == 'Firefox' and equivalent_release_url %}
                       <li class="mzp-c-menu-category"><a class="mzp-c-menu-title" href="{{ equivalent_release_url }}">{{ _('Android') }}</a></li>
                     {% else %}
                       <li class="mzp-c-menu-category"><a class="mzp-c-menu-title" href="{{ url('firefox.notes', platform='android') }}">{{ _('Android') }}</a></li>
