@@ -6,7 +6,7 @@ try:
 except ImportError:
     newrelic = False
 else:
-    newrelic.agent.initialize()
+    newrelic.agent.initialize('newrelic.ini')
 
 
 import os
