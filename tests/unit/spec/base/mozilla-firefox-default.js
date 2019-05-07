@@ -3,7 +3,7 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn, jasmine */
+/* global describe, beforeEach, it, expect, sinon, spyOn, jasmine */
 
 describe('mozilla-firefox-default.js', function() {
 
@@ -32,7 +32,9 @@ describe('mozilla-firefox-default.js', function() {
                     defaultBrowser: true
                 });
             });
-            Mozilla.FirefoxDefault.isDefaultBrowser(function() {});
+            Mozilla.FirefoxDefault.isDefaultBrowser(function() {
+                // eslint-disable-line no-empty-function
+            });
             expect(Mozilla.UITour.getConfiguration).toHaveBeenCalledWith('appinfo', jasmine.any(Function));
         });
 

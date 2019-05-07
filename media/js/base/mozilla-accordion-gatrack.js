@@ -3,13 +3,14 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // Create namespace
-if (typeof Mozilla === 'undefined') {
-    var Mozilla = {};
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
 }
 
 // If accordion is present, set up global GA functions
 if (typeof Mozilla.Accordion === 'function') {
     Mozilla.Accordion.globalOnExpand = function(section) {
+        'use strict';
         // Google Analytics event tracking
 
         window.dataLayer.push({
@@ -21,6 +22,7 @@ if (typeof Mozilla.Accordion === 'function') {
     };
 
     Mozilla.Accordion.globalOnCollapse = function(section) {
+        'use strict';
         // Google Analytics event tracking
 
         window.dataLayer.push({

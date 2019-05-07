@@ -59,7 +59,7 @@
     }
 
     // replace() support for others
-    if (window.DOMTokenList && DOMTokenList.prototype.replace == null) {
+    if (window.DOMTokenList && DOMTokenList.prototype.replace === null) {
         DOMTokenList.prototype.replace = ClassList.prototype.replace;
     }
 })();

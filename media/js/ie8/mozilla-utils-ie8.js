@@ -3,8 +3,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // Create namespace
-if (typeof Mozilla === 'undefined') {
-    var Mozilla = {};
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
 }
 
 (function() {
@@ -19,7 +19,6 @@ if (typeof Mozilla === 'undefined') {
      * @param {userAgent} optional UA string for testing purposes.
      */
     UtilsIE8.triggerIEDownload = function(link, userAgent) {
-        'use strict';
         var ua = userAgent !== undefined ? userAgent : navigator.userAgent;
         // Only open if we got a link and this is IE < 9.
         if (link && window.site.platform === 'windows' && /MSIE\s[1-8]\./.test(ua)) {

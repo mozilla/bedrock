@@ -3,7 +3,7 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect, spyOn */
+/* global describe, beforeEach, afterEach, it, expect */
 
 describe('mozilla-utils.js', function() {
     'use strict';
@@ -53,8 +53,7 @@ describe('mozilla-utils.js', function() {
 
         var $link;
         var defaultHref = 'https://test.example.com/?id=org.mozilla.firefox';
-        var partnerAHref = defaultHref.replace('org.mozilla.firefox',
-                                               'com.partnera.firefox');
+        var partnerAHref = defaultHref.replace('org.mozilla.firefox', 'com.partnera.firefox');
 
         beforeEach(function () {
             $link = $([

@@ -9,13 +9,9 @@
  * @author    Nick Burka <nick@silverorange.com>
  */
 
-$(document).ready(function() {
-    Mozilla.ImageHelper.initPlatformImages();
-});
-
 // create namespace
-if (typeof Mozilla == 'undefined') {
-    var Mozilla = {};
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
 }
 
 // {{{ Mozilla.ImageHelper
@@ -23,7 +19,9 @@ if (typeof Mozilla == 'undefined') {
 /**
  * ImageHelper object
  */
-Mozilla.ImageHelper = function() {};
+Mozilla.ImageHelper = function() {
+    'use strict';
+};
 
 Mozilla.ImageHelper._isHighDpi = null;
 
@@ -33,6 +31,8 @@ Mozilla.ImageHelper._isHighDpi = null;
 // {{{ initPlatformImages()
 
 Mozilla.ImageHelper.initPlatformImages = function() {
+    'use strict';
+
     $('.platform-img').each(function() {
         var $img = $(this);
         var dataAttribute = 'src-';
@@ -74,6 +74,8 @@ Mozilla.ImageHelper.initPlatformImages = function() {
 // {{{ isHighDpi()
 
 Mozilla.ImageHelper.isHighDpi = function() {
+    'use strict';
+
     if (Mozilla.ImageHelper._isHighDpi === null) {
         var mediaQuery = '(-webkit-min-device-pixel-ratio: 1.5),' +
                           '(-o-min-device-pixel-ratio: 3/2),' +
@@ -88,3 +90,9 @@ Mozilla.ImageHelper.isHighDpi = function() {
 };
 
 // }}}
+
+$(document).ready(function() {
+    'use strict';
+
+    Mozilla.ImageHelper.initPlatformImages();
+});

@@ -5,8 +5,8 @@
  Portions based on http://blog.gospodarets.com/native_smooth_scrolling/
 */
 
-if (typeof Mozilla === 'undefined') {
-    var Mozilla = {};
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
 }
 
 Mozilla.smoothScroll = (function() {

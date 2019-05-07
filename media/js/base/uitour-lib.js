@@ -3,15 +3,15 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // create namespace
-if (typeof Mozilla == 'undefined') {
-    var Mozilla = {};
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
 }
 
 (function() {
     'use strict';
 
     // create namespace
-    if (typeof Mozilla.UITour == 'undefined') {
+    if (typeof Mozilla.UITour === 'undefined') {
         Mozilla.UITour = {};
     }
 
@@ -43,7 +43,7 @@ if (typeof Mozilla == 'undefined') {
         var id = _generateCallbackID();
 
         function listener(event) {
-            if (typeof event.detail != 'object') {
+            if (typeof event.detail !== 'object') {
                 return;
             }
             if (event.detail.callbackID !== id) {
@@ -256,10 +256,10 @@ if (typeof Mozilla == 'undefined') {
 
     var notificationListener = null;
     function _notificationListener(event) {
-        if (typeof event.detail != 'object') {
+        if (typeof event.detail !== 'object') {
             return;
         }
-        if (typeof notificationListener != 'function') {
+        if (typeof notificationListener !== 'function') {
             return;
         }
         notificationListener(event.detail.event, event.detail.params);

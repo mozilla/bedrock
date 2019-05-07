@@ -3,7 +3,7 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect */
+/* global describe, it, expect */
 
 describe('stub-attribution-custom.js', function () {
 
@@ -105,7 +105,7 @@ describe('stub-attribution-custom.js', function () {
 
         it('should fire a callback once authenticated', function() {
             var options = {
-                callback: function() {}
+                callback: function() {} // eslint-disable-line no-empty-function
             };
             spyOn(options, 'callback');
             spyOn(Mozilla.StubAttribution, 'meetsRequirements').and.returnValue(true);

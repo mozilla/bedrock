@@ -3,6 +3,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 (function() {
+    'use strict';
 
     var pocket = document.querySelectorAll('.mobile-pocket');
     var lockbox = document.querySelectorAll('.mobile-lockbox');
@@ -42,17 +43,17 @@
         var mobileTitles = document.querySelectorAll('.mobile-title');
 
         function show(product){
-            for (var i = 0; i < product.length; i++){
+            for (var i = 0; i < product.length; i++) {
                 product[i].style.display = 'block';
             }
         }
 
         function hide(mobileTitles, mobileButtons){
-            for (var i = 0; i < mobileTitles.length; i++){
+            for (var i = 0; i < mobileTitles.length; i++) {
                 mobileTitles[i].style.display = 'none';
             }
-            for (i = 0; i < mobileButtons.length; i++){
-                mobileButtons[i].style.display = 'none';
+            for (var j = 0; j < mobileButtons.length; j++) {
+                mobileButtons[j].style.display = 'none';
             }
         }
 
@@ -89,7 +90,5 @@
     for (var i = 0; i < qrLinks.length; i++) {
         qrLinks[i].addEventListener('click', openModal);
     }
-
-
 
 })();

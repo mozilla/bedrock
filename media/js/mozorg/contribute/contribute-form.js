@@ -3,6 +3,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 $(document).ready(function() {
+    'use strict';
+
     $('#help-form #id_contribute-email, #help-form #form-submit').on('focus', function() {
         $('#help-form .help-form-details').slideDown();
     });

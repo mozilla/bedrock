@@ -3,7 +3,7 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect */
+/* global describe, it, expect */
 
 describe('mozilla-smoothscroll.js', function () {
 

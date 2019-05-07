@@ -6,11 +6,13 @@
 * Utility class for core dataLayer object to track contextual user and page data
 */
 
-if (typeof Mozilla.Analytics == 'undefined') {
-    Mozilla.Analytics = {};
+if (typeof window.Mozilla.Analytics === 'undefined') {
+    window.Mozilla.Analytics = {};
 }
 
 (function() {
+    'use strict';
+
     var analytics = Mozilla.Analytics;
     var isModernBrowser = 'querySelector' in document && 'querySelectorAll' in document;
 

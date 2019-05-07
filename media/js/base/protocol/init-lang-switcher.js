@@ -6,6 +6,8 @@
  * Initialize Protocol language switcher.
  */
 (function() {
+    'use strict';
+
     if (typeof Mzp === 'undefined' || typeof Mzp.LangSwitcher === 'undefined') {
         return;
     }
