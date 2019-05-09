@@ -17,9 +17,7 @@
 
 {% block fxa_cta %}
 <p class="show-fxa-supported-signed-out show-fxa-default">
-  <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew68a2', action='signup', utm_params={'campaign': 'wnp68a2', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'wnp68a2'}) }} class="mzp-c-button mzp-t-product" data-button-name="Create account" data-link-type="FxA-Sync">
-    {{ _('Create a Firefox Account') }}
-  </a><br>
+  {{ fxa_cta_link(entrypoint='mozilla.org-whatsnew68a2', action='signup', button_text=_('Create a Firefox Account'), button_class='mzp-c-button mzp-t-product', campaign='wnp68a2', content='accounts-page-top-cta', medium='referral', source='wnp68a2') }}<br>
 
   {% if l10n_has_tag('wnp66_log_in') %}
   {% set link = fxa_link_fragment(entrypoint='mozilla.org-whatsnew68a2', action='login', utm_params={'campaign': 'wnp68a2', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'wnp68a2'}) %}

@@ -225,10 +225,9 @@
   </section>
 {%- endmacro %}
 
-{% macro fxa_link_fragment(entrypoint, action='signin', utm_params={}) -%}
+{% macro fxa_link_fragment(entrypoint, service_type='sync', action='signin', utm_params={}) -%}
   {% set fxa_path = '' %}
   {% set fxa_queries = [
-    'service=sync',
     'context=fx_desktop_v3'
   ] %}
 
@@ -244,7 +243,14 @@
     {% endif %}
   {% endfor %}
 
-  href="{{ settings.FXA_ENDPOINT}}{{ fxa_path }}?{{ fxa_queries|join('&') }}" data-mozillaonline-link="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}{{ fxa_path }}?{{ fxa_queries|join('&') }}"
+  href="{{ settings.FXA_ENDPOINT }}{{ fxa_path }}?service={{ service_type }}&{{ fxa_queries|join('&') }}" data-mozillaonline-link="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}{{ fxa_path }}?service={{ service_type }}&{{ fxa_queries|join('&') }}"
+
+{%- endmacro %}
+
+{% macro fxa_cta_link(entrypoint, campaign, content, source, button_class, button_location, button_text, account_id, action='signin', medium='referral') %}
+  <a {{ fxa_link_fragment(entrypoint=entrypoint, action="{{ action }}", utm_params={'campaign': campaign, 'content': (content or request.path_info), 'source': source, 'medium': medium }) }} class="js-fxa-cta-link {{ button_class }}" data-button-name="Create account" data-link-type="FxA-Sync" data-cta-position="{{ button_location }}" id="{{ account_id }}">
+    {{ button_text }}
+  </a>
 {%- endmacro %}
 
 {% macro fxa_create_account_button(button_location, id_prefix, campaign, entrypoint, button_text = '', button_class = '', content = '', source = '') %}
@@ -346,7 +352,7 @@
 
     DO NOT include utm_source in this dictionary! (It's already a required param.)
 #}
-{% macro fxa_email_form(entrypoint, utm_source, class_name='fxa-email-form', utm_params={}, intro_text='', button_text='', button_class='button button-blue') -%}
+{% macro fxa_email_form(entrypoint, utm_source, class_name='fxa-email-form', utm_params={}, intro_text='', button_text='', button_class='js-fxa-cta-link button button-blue') -%}
   <form action="{{ settings.FXA_ENDPOINT }}" data-mozillaonline-action="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}" id="fxa-email-form" class="{{ class_name }}">
     <input type="hidden" name="action" value="email" />
     <input type="hidden" name="context" value="fx_desktop_v3" />
