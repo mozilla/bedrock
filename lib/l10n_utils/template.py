@@ -28,7 +28,7 @@ class L10nBlockExtension(Extension):
 
     def parse(self, parser):
         # Jump over first token ("l10n"), grab line number.
-        lineno = parser.stream.next().lineno
+        lineno = next(parser.stream).lineno
 
         # Block name is mandatory.
         name = parser.stream.expect('name').value
