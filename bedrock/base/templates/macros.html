@@ -247,8 +247,8 @@
 
 {%- endmacro %}
 
-{% macro fxa_cta_link(entrypoint, campaign, content, source, button_class, button_location, button_text, account_id, action='signin', utm_params={}) %}
-  <a {{ fxa_link_fragment(entrypoint=entrypoint, action="{{ action }}", utm_params={'campaign': campaign, 'content': (content or request.path_info), 'source': source}) }} class="js-fxa-cta-link {{ button_class }}" data-button-name="Create account" data-link-type="FxA-Sync" data-cta-position="{{ button_location }}" id="{{ account_id }}">
+{% macro fxa_cta_link(entrypoint, campaign, content, source, button_class, button_location, button_text, account_id, action='signin', medium='referral') %}
+  <a {{ fxa_link_fragment(entrypoint=entrypoint, action="{{ action }}", utm_params={'campaign': campaign, 'content': (content or request.path_info), 'source': source, 'medium': medium }) }} class="js-fxa-cta-link {{ button_class }}" data-button-name="Create account" data-link-type="FxA-Sync" data-cta-position="{{ button_location }}" id="{{ account_id }}">
     {{ button_text }}
   </a>
 {%- endmacro %}
