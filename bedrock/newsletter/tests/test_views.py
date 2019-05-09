@@ -251,10 +251,9 @@ class TestExistingNewsletterView(TestCase):
         # Should have called update_user with subscription list
         self.assertEqual(1, basket_patches['update_user'].call_count)
         kwargs = basket_patches['update_user'].call_args[1]
-        self.assertEqual(
-            {'newsletters': u'mozilla-and-you,firefox-tips', 'lang': u'en'},
-            kwargs
-        )
+        self.assertEqual(set(kwargs), set(['newsletters', 'lang']))
+        self.assertEqual(kwargs['lang'], 'en')
+        self.assertEqual(set(kwargs['newsletters'].split(',')), set(['mozilla-and-you', 'firefox-tips']))
         # Should not have called unsubscribe
         self.assertEqual(0, basket_patches['unsubscribe'].call_count)
         # Should not have called subscribe

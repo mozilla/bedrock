@@ -80,8 +80,8 @@ class TestDBActions(TestCase):
         make_mfsa('2015-103')
         all_files = ['mfsa2015-100.md', 'mfsa2015-101.md']
         assert (
-            update_security_advisories.get_files_to_delete_from_db(all_files) ==
-            ['mfsa2015-102.md', 'mfsa2015-103.md'])
+            set(update_security_advisories.get_files_to_delete_from_db(all_files)) ==
+            set(['mfsa2015-102.md', 'mfsa2015-103.md']))
 
     def test_delete_orphaned_products(self):
         make_mfsa('2015-100')
