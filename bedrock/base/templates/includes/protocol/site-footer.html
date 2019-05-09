@@ -46,7 +46,7 @@
       </ul>
       <div class="mzp-c-footer-legal">
         <p class="mzp-c-footer-license">
-        {% if LANG.startswith('en-') %}
+        {% if LANG.startswith('en-') or LANG.startswith('es-') or LANG in ['de', 'fr', 'pl', 'pt-BR', 'it', 'zh-CN', 'zh-TW', 'ja', 'ko', 'ru'] %}
           {% trans url='https://foundation.mozilla.org', link_type='footer', link_name='Mozilla Foundation' %}
             Visit Mozilla Corporation’s not-for-profit parent, the <a href="{{ url }}" data-link-type="{{ link_type }}" data-link-name="{{ link_name }}">Mozilla Foundation</a>.
           {% endtrans %}
