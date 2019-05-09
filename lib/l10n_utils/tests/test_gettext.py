@@ -110,7 +110,7 @@ class TestPOFiles(TestCase):
         langfiles_mock.return_value = ['some_lang_files',
                                        'firefox/fx']
         pot_to_langfiles('messages')
-        append_mock.assert_called_with(ANY, self.good_messages)
+        append_mock.assert_any_call(ANY, self.good_messages)
 
     @patch('os.path.exists', TRUE_MOCK)
     @patch('lib.l10n_utils.gettext.codecs')

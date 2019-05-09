@@ -25,11 +25,11 @@ class TestLoadLegalDoc(TestCase):
 
     @patch('os.path.exists')
     @patch.object(views, 'listdir')
-    @patch.object(views, 'StringIO')
+    @patch.object(views.io, 'StringIO')
     @patch.object(views, 'md')
     def test_legal_doc_exists(self, md_mock, sio_mock, listdir_mock, exists_mock):
         """Should return the content of the en-US file if it exists."""
-        sio_mock.StringIO.return_value.getvalue.return_value = "You're not wrong Walter..."
+        sio_mock().getvalue.return_value = "You're not wrong Walter..."
         exists_mock.return_value = False
         listdir_mock.return_value = ['.mkdir', 'de.md', 'en-US.md']
         doc = views.load_legal_doc('the_dude_exists', 'de')
@@ -41,11 +41,11 @@ class TestLoadLegalDoc(TestCase):
 
     @patch('os.path.exists')
     @patch.object(views, 'listdir')
-    @patch.object(views, 'StringIO')
+    @patch.object(views.io, 'StringIO')
     @patch.object(views, 'md')
     def test_localized_legal_doc_exists(self, md_mock, sio_mock, listdir_mock, exists_mock):
         """Localization works, and list of translations doesn't include non .md files and non-prod locales."""
-        sio_mock.StringIO.return_value.getvalue.return_value = "You're not wrong Walter..."
+        sio_mock().getvalue.return_value = "You're not wrong Walter..."
         exists_mock.return_value = True
         listdir_mock.return_value = ['.mkdir', 'de.md', 'en-US.md', 'sw.md']
         doc = views.load_legal_doc('the_dude_exists', 'de')
@@ -57,14 +57,14 @@ class TestLoadLegalDoc(TestCase):
 
     @patch('os.path.exists')
     @patch.object(views, 'listdir')
-    @patch.object(views, 'StringIO')
+    @patch.object(views.io, 'StringIO')
     @patch.object(views, 'md')
     def test_localized_legal_doc_mapped_locale(self, md_mock, sio_mock, listdir_mock, exists_mock):
         """Should output bedrock locale when legal-docs locale exists"""
         bedrock_locale = 'hi-IN'
         ld_locale = 'hi'
         ld_filename = '%s.md' % ld_locale
-        sio_mock.StringIO.return_value.getvalue.return_value = "You're not wrong Walter..."
+        sio_mock().getvalue.return_value = "You're not wrong Walter..."
         exists_mock.return_value = True
         listdir_mock.return_value = [ld_filename, 'en-US.md']
         doc = views.load_legal_doc('the_dude_exists', bedrock_locale)
@@ -76,13 +76,13 @@ class TestLoadLegalDoc(TestCase):
 
     @patch('os.path.exists')
     @patch.object(views, 'listdir')
-    @patch.object(views, 'StringIO')
+    @patch.object(views.io, 'StringIO')
     @patch.object(views, 'md')
     def test_localized_legal_doc_mapped_locale_fixed(self, md_mock, sio_mock, listdir_mock, exists_mock):
         """Should fallback to bedrock locale when legal-docs locale changes to match"""
         bedrock_locale = 'hi-IN'
         ld_filename = '%s.md' % bedrock_locale
-        sio_mock.StringIO.return_value.getvalue.return_value = "You're not wrong Walter..."
+        sio_mock().getvalue.return_value = "You're not wrong Walter..."
         exists_mock.side_effect = [False, True]
         listdir_mock.return_value = [ld_filename, 'en-US.md']
         doc = views.load_legal_doc('the_dude_exists', bedrock_locale)
