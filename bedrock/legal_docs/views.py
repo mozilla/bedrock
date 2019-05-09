@@ -66,7 +66,7 @@ def load_legal_doc(doc_name, locale):
                 'markdown.extensions.headerid',
                 OutlineExtension((('wrapper_cls', ''),))
             ])
-        content = output.getvalue().decode('utf8')
+        content = output.getvalue()
     except IOError:
         content = None
     finally:

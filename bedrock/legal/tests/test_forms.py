@@ -45,7 +45,7 @@ class TestFraudReport(TestCase):
         return SimpleUploadedFile('image.png', io.read(), 'image/png')
 
     def _create_text_file(self):
-        return SimpleUploadedFile('stuff.txt', 'This is not an image', 'text/plain')
+        return SimpleUploadedFile('stuff.txt', b'This is not an image', 'text/plain')
 
     def test_view_post_valid_data(self):
         """

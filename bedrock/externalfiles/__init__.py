@@ -85,7 +85,7 @@ class ExternalFile(object):
         return self.validate_content(content)
 
     def read(self):
-        return self.file_object.content.encode('utf-8')
+        return self.file_object.content
 
     def readlines(self):
         return StringIO(self.read()).readlines()

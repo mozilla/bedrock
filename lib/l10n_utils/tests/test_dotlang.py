@@ -4,8 +4,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from builtins import next
-from builtins import str
+import io
 from django.conf import settings
 from django.core import mail
 from django.urls import clear_url_caches
@@ -179,8 +178,8 @@ class TestDotlang(TestCase):
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == '[bedrock] %s is corrupted' % path
         expected = {
-            u'Update now': u'Niha rojane bike',
-            u'Supported Devices': u'C�haz�n pi�tgiriy'
+            'Update now': 'Niha rojane bike',
+            'Supported Devices': 'C�haz�n pi�tgiriy�'
         }
         assert parsed == expected
         mail.outbox = []
@@ -267,7 +266,7 @@ class TestDotlang(TestCase):
 
         # extraction
         pypath = ROOT_PATH.joinpath('extract_me.py')
-        with open(str(pypath)) as pyfile:
+        with io.open(str(pypath), 'rb') as pyfile:
             vals = next(extract_python(pyfile, ['_'], [], {}))
         assert vals[2] == clean_string
 

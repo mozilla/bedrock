@@ -57,7 +57,7 @@ class CreditsFile(ExternalFile):
             else:
                 continue
 
-            sortkey = unicodedata.normalize('NFKD', sortkey.decode('utf8')).encode('ascii', 'ignore')
-            names.append([name.decode('utf8'), sortkey.upper()])
+            sortkey = unicodedata.normalize('NFKD', sortkey).encode('ascii', 'ignore').decode()
+            names.append([name, sortkey.upper()])
 
         return sorted(names, key=itemgetter(1))
