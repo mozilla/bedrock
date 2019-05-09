@@ -52,7 +52,7 @@ class TwitterCache(models.Model):
     updated = ModificationDateTimeField()
     objects = TwitterCacheManager()
 
-    def __unicode__(self):
+    def __str__(self):
         return u'Tweets from @' + self.account
 
 

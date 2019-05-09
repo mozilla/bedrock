@@ -96,7 +96,7 @@ class PocketArticle(models.Model):
         get_latest_by = 'time_shared'
         ordering = ['-time_shared']
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     @property

@@ -77,7 +77,7 @@ class ContentCard(models.Model):
     class Meta(object):
         ordering = ('id',)
 
-    def __unicode__(self):
+    def __str__(self):
         return '{} ({})'.format(self.card_name, self.locale)
 
     @property

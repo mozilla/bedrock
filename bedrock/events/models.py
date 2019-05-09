@@ -129,7 +129,7 @@ class Event(models.Model):
     class Meta(object):
         ordering = ('start_time',)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     @property

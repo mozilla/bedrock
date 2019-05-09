@@ -177,7 +177,7 @@ class ProductRelease(models.Model):
     class Meta(object):
         ordering = ['-release_date']
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     @cached_property
