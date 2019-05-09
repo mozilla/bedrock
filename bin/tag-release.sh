@@ -19,10 +19,12 @@ while [[ $# -ge 1 ]]; do
   shift # past argument or value
 done
 
-echo "Did you test on stage first? If not, are you sure you want to skip going to stage?"
-read stage
+# prompt for confirmation, evaluate after first letter typed
+read -p "Did you test on stage first? If not, are you sure you want to skip going to stage? (y to continue, n to cancel)" -n 1 stage
+echo    # because the user doesn't press enter anymore we have to add a new line here for readability
 if [ "$stage" == "${stage#[Yy]}" ]; then
     # $stage doesn't start with y or Y
+    echo "Cancelled."
     exit
 fi
 
