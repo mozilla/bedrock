@@ -4,10 +4,11 @@
 
 {% from "macros-protocol.html" import hero, content_card with context %}
 
-{% extends "base-protocol.html" %}
+{% extends "firefox/base-protocol.html" %}
 
 {% block page_title %}EU Election{% endblock %}
 {% block page_desc %}Decode political ad targeting and keep trackers off your trail with these resources and tools.{% endblock %}
+{% block page_image %}{{ static('img/firefox/election/share.png') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('firefox_election') }}
