@@ -367,15 +367,15 @@ class TestDotlang(TestCase):
         """
         # test the case when LANG_FILES is a string
         trans_str = 'Translate me'
-        # have to call __unicode__ directly because the value is a Mock
-        # object, and the `unicode()` function throws an exception.
-        _lazy(trans_str, lang_files='maude').__unicode__()
+        # have to call __str__ directly because the value is a Mock
+        # object, and the `str()` function throws an exception.
+        _lazy(trans_str, lang_files='maude').__str__()
         call_lang_files = ['maude'] + settings.DOTLANG_FILES
         trans_patch.assert_called_with(trans_str, call_lang_files)
 
         # test the case when LANG_FILES is a list
         lang_files_list = ['maude', 'bunny', 'uli']
-        _lazy(trans_str, lang_files=lang_files_list).__unicode__()
+        _lazy(trans_str, lang_files=lang_files_list).__str__()
         call_lang_files = lang_files_list + settings.DOTLANG_FILES
         trans_patch.assert_called_with(trans_str, call_lang_files)
 
@@ -391,9 +391,9 @@ class TestDotlang(TestCase):
         dude_says = extract_me_with_langfiles_lazy.do_translate()
         dirty_string = u"I'm The Dude, so that's what you call me, man."
         self.assertFalse(trans_patch.called)
-        # have to call __unicode__ directly because the value is a Mock
-        # object, and the `unicode()` function throws an exception.
-        dude_says.__unicode__()
+        # have to call __str__ directly because the value is a Mock
+        # object, and the `str()` function throws an exception.
+        dude_says.__str__()
         trans_patch.assert_called_with(dirty_string, ['donnie', 'walter'] +
                                        settings.DOTLANG_FILES)
 
