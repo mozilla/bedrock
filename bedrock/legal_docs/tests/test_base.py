@@ -123,7 +123,7 @@ class TestLegalDocView(TestCase):
                                           legal_doc_name='the_dude_exists')
         resp = view(req)
         assert resp['cache-control'] == 'max-age={0!s}'.format(views.CACHE_TIMEOUT)
-        assert resp.content == doc_value
+        assert resp.content.decode('utf-8') == doc_value
         assert render_mock.call_args[0][2]['doc'] == doc_value
         lld_mock.assert_called_with('the_dude_exists', 'de')
 
