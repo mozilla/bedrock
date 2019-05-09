@@ -22,7 +22,7 @@ class TestCredits(TestCase):
             Walter Sobchak,Sobchak
             Theodore Donald Kerabatsos,Kerabatsos
             Tantek Çelik,Çelik
-        """.encode('utf8')))
+        """))
         self.assertListEqual(self.credits_file.rows, [
             ['Tantek Çelik', 'CELIK'],
             ['The Dude', 'DUDE'],
@@ -61,7 +61,7 @@ class TestCredits(TestCase):
             Walter Sobchak,Sobchak
             Theodore Donald Kerabatsos,Kerabatsos
             Tantek Çelik,Çelik
-        """.encode('utf8')))
+        """))
         good_names = OrderedDict()
         good_names['C'] = ['Tantek Çelik']
         good_names['D'] = ['The Dude']
