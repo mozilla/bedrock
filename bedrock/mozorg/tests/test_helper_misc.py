@@ -1,7 +1,5 @@
 # coding: utf-8
 
-from builtins import str
-from builtins import range
 import os.path
 
 from datetime import datetime
@@ -207,20 +205,17 @@ class TestVideoTag(TestCase):
         assert doc('video source').length == 3
 
         # Extensions in the right order?
-        for i, ext in enumerate(('webm', 'ogv', 'mp4')):
-            assert doc('video source:eq(%s)' % i).attr('src').endswith(ext)
+        extensions = [os.path.splitext(el.attrib['src'])[1] for el in doc('video source')]
+        assert extensions == ['.webm', '.ogv', '.mp4']
 
     def test_prefix(self):
         # Prefix should be applied to all videos.
         doc = pq(self._render("{{ video('meh.mp4', 'meh.ogv', "
                         "prefix='http://example.com/blah/') }}"))
-        expected = ('http://example.com/blah/meh.ogv',
-                    'http://example.com/blah/meh.mp4')
-
-        assert doc('video source').length == 2
-
-        for i in range(2):
-            assert doc('video source:eq(%s)' % i).attr('src') == expected[i]
+        assert [el.attrib['src'] for el in doc('video source')] == [
+            'http://example.com/blah/meh.ogv',
+            'http://example.com/blah/meh.mp4',
+        ]
 
     def test_fileformats(self):
         # URLs ending in strange extensions are ignored.
@@ -231,8 +226,8 @@ class TestVideoTag(TestCase):
 
         assert doc('video source').length == 2
 
-        for i, ext in enumerate(('webm', 'ogv')):
-            assert doc('video source:eq(%s)' % i).attr('src').endswith(ext)
+        extensions = [os.path.splitext(el.attrib['src'])[1] for el in doc('video source')]
+        assert extensions == ['.webm', '.ogv']
 
 
 @override_settings(STATIC_URL='/media/')
