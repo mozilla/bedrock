@@ -26,38 +26,9 @@
   </p>
 {% endblock %}
 
-
-{% block features_header_download %}
-  {% if (variation == 'a') and (request.locale in ['en-US', 'en-GB', 'en-CA', 'en-AU']) %}
-    {# nothing #}
-  {% else %}
-    {{ super() }}
-  {% endif %}
-{% endblock %}
-
 {% block features_list %}
 <section class="key-features-section main">
   <div class="content">
-    {% if (variation == 'a') and (request.locale in ['en-US', 'en-GB', 'en-CA', 'en-AU']) %}
-    <section class="key-feature private-browsing-feature-new">
-      <div class="key-feature-content">
-        <h2>Open a new, blank Private Window</h2>
-        <p>
-          Click the menu button <img src="{{ static('img/firefox/election/icon-menu.svg') }}" alt="Open menu" height="12" width="14"> and then click New Private Window.
-        </p>
-      </div>
-    </section>
-
-    <section class="key-feature private-browsing-feature-link">
-      <div class="key-feature-content">
-        <h2>Open a link in a new Private Window</h2>
-        <p>
-          Hold down the Ctrl key while you click on any link and choose Open Link in New Private Window from the context menu.
-        </p>
-      </div>
-    </section>
-    {% endif %}
-
     <section class="key-feature private-browsing-feature-1">
       <div class="key-feature-content">
         <h2>{{ _('Browse without a trace') }}</h2>

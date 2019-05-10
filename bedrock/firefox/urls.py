@@ -8,7 +8,6 @@ from bedrock.mozorg.util import page
 import views
 import bedrock.releasenotes.views
 from bedrock.releasenotes import version_re
-from bedrock.utils.views import VariationTemplateView
 
 
 latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
@@ -60,8 +59,7 @@ urlpatterns = (
         views.FeaturesPasswordManagerView.as_view(),
         name='firefox.features.password-manager'),
     url('^firefox/features/private-browsing/$',
-        VariationTemplateView.as_view(template_name='firefox/features/private-browsing.html',
-                                      template_context_variations=['a']),
+        views.FeaturesPrivateBrowsingView.as_view(),
         name='firefox.features.private-browsing'),
     url(r'^firefox/ios/testflight/$', views.ios_testflight, name='firefox.ios.testflight'),
     page('firefox/mobile', 'firefox/mobile.html'),
