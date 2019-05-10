@@ -7,7 +7,7 @@
 
     var isFirefox = /\sFirefox/.test(navigator.userAgent);
 
-    if (window.site.platform !== 'windows' && !isFirefox) {
+    if (window.site.platform !== 'windows' || isFirefox) {
         return;
     }
 
