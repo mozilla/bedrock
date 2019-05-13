@@ -11,7 +11,6 @@ from bedrock.utils.git import GitRepo
 
 class Command(BaseCommand):
     help = 'Clones or updates l10n info from github'
-    args = ''
 
     def handle(self, *args, **options):
         repo = GitRepo(settings.LOCALES_PATH, settings.LOCALES_REPO)

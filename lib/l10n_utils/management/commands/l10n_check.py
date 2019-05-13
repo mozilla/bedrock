@@ -465,14 +465,16 @@ class L10nParser():
 
 
 class Command(BaseCommand):
-    args = ''
     help = 'Checks which content needs to be localized.'
+
+    def add_arguments(self, parser):
+        # Positional arguments
+        parser.add_argument('langs', nargs='*')
 
     def handle(self, *args, **options):
         # Look through languages passed in, or all of them
-        if args:
-            langs = args
-        else:
+        langs = options['langs']
+        if not langs:
             langs = os.listdir(l10n_file())
             langs = filter(lambda x: x[0] != '.', langs)
 

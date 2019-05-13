@@ -137,14 +137,18 @@ def extract_from_files(filenames,
 
 
 class Command(BaseCommand):
-    args = '<filename filename ...>'
     help = dedent("""
         Extracts a .lang file with new translations from all source files.
         If <filename>s are provided only extract from those files.
     """).strip()
 
+    def add_arguments(self, parser):
+        # Positional arguments
+        parser.add_argument('filenames', nargs='*')
+
     def handle(self, *args, **options):
-        if args:
+        filenames = options['filenames']
+        if filenames:
             # mimics puente.management.commands.extract for a list of files
             outputdir = os.path.join(settings.ROOT, 'locale', 'templates',
                                      'LC_MESSAGES')
@@ -159,7 +163,7 @@ class Command(BaseCommand):
                 charset='utf-8',
             )
 
-            for filename, lineno, msg, cmts, ctxt in extract_from_files(args):
+            for filename, lineno, msg, cmts, ctxt in extract_from_files(filenames):
                 catalog.add(msg, None, [(filename, lineno)], auto_comments=cmts,
                             context=ctxt)
 
