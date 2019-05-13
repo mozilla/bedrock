@@ -47,21 +47,14 @@
     {% endcall %}
   </div>
   <section class="features">
-    <div class="mzp-l-card-third mzp-l-content mzp-t-firefox">
-    <ul>
-      <li class="faster">
-        {{ picto_card(title=_('2x Faster'), desc=_('The best Firefox ever')) }}
-      </li>
-      <li class="lighter">
-        {{ picto_card(title=_('Lightweight'), desc=_('Uses 30% less memory than Chrome')) }}
-      </li>
-      <li class="private">
-        {% if l10n_has_tag('truly_removal_2019') %}
-          {{ picto_card(title=_('Powerfully private'), desc=_('Private Browsing with Tracking Protection')) }}
-        {% else %}
-          {{ picto_card(title=_('Powerfully private'), desc=_('Truly Private Browsing with Tracking Protection')) }}
-        {% endif %}
-      </li>
+    <ul class="mzp-l-card-third mzp-l-content mzp-t-firefox">
+      {{ picto_card(title=_('2x Faster'), desc=_('The best Firefox ever'), class='faster') }}
+      {{ picto_card(title=_('Lightweight'), desc=_('Uses 30% less memory than Chrome'), class='lighter') }}
+      {% if l10n_has_tag('truly_removal_2019') %}
+        {{ picto_card(title=_('Powerfully private'), desc=_('Private Browsing with Tracking Protection'), class='private') }}
+      {% else %}
+        {{ picto_card(title=_('Powerfully private'), desc=_('Truly Private Browsing with Tracking Protection'), class='private') }}
+      {% endif %}
     </ul>
   </section>
 </main>

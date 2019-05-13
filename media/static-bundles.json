@@ -207,6 +207,18 @@
     },
     {
       "files": [
+        "css/firefox/new/trailhead/download.scss"
+      ],
+      "name": "firefox_new_download"
+    },
+    {
+      "files": [
+        "css/firefox/new/trailhead/thanks.scss"
+      ],
+      "name": "firefox_new_thanks"
+    },
+    {
+      "files": [
         "css/base/mozilla-fxa-form.scss",
         "css/firefox/new/scene1.scss"
       ],
@@ -1007,6 +1019,32 @@
         "js/firefox/whatsnew/whatsnew-67.js"
       ],
       "name": "firefox_whatsnew_67"
+    },
+    {
+      "files": [
+        "js/base/mozilla-traffic-cop.js",
+        "js/firefox/new/trailhead/experiment.js"
+      ],
+      "name": "experiment_firefox_new_trailhead"
+    },
+    {
+      "files": [
+        "js/firefox/new/trailhead/variation.js"
+      ],
+      "name": "experiment_firefox_new_trailhead_variation"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-modal.js",
+        "js/firefox/new/trailhead/download.js"
+      ],
+      "name": "firefox_new_download"
+    },
+    {
+      "files": [
+        "js/firefox/new/scene2.js"
+      ],
+      "name": "firefox_new_thanks"
     },
     {
       "files": [

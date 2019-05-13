@@ -177,11 +177,11 @@
 
 
 {# Picto Card: https://protocol.mozilla.org/patterns/molecules/picto-card.html #}
-{% macro picto_card(title, desc, class=None, heading_level=2) -%}
-<section class="mzp-c-card-picto {% if class %}{{ class }}{% endif %}">
+{% macro picto_card(title=None, desc=None, class=None, heading_level=2, base_el='li') -%}
+<{{ base_el }} class="mzp-c-card-picto {% if class %}{{ class }}{% endif %}">
   <div class="mzp-c-card-picto-content">
-    <h{{ heading_level }} class="mzp-c-card-picto-title">{{ title }}</h{{ heading_level }}>
-    <p class="mzp-c-card-picto-desc">{{ desc }}</p>
+    {% if title %}<h{{ heading_level }} class="mzp-c-card-picto-title">{{ title }}</h{{ heading_level }}>{% endif %}
+    {% if desc %}<p class="mzp-c-card-picto-desc">{{ desc }}</p>{% endif %}
   </div>
-</section>
+</{{ base_el }}>
 {%- endmacro %}

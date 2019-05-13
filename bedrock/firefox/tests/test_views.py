@@ -534,6 +534,32 @@ class TestFirefoxNew(TestCase):
         views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
 
+    # trailhead - issue 7159
+
+    def test_trailhead_va_control(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=th&v=a')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/download-a.html', ANY)
+
+    def test_trailhead_vb_variant(self, render_mock):
+        req = RequestFactory().get('/firefox/new/?xv=th&v=b')
+        req.locale = 'en-US'
+        views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/download-b.html', ANY)
+
+    def test_trailhead_vb_thanks_control(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=th&v=a')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
+    def test_trailhead_vb_thanks_variant(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/?xv=th&v=b')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/thanks.html', ANY)
+
 
 class TestFirefoxNewNoIndex(TestCase):
     def test_scene_1_noindex(self):
