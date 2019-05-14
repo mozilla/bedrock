@@ -23,7 +23,7 @@ def test_yandex_download_button_displayed(base_url, selenium):
 
 @pytest.mark.nondestructive
 def test_other_platforms_modal(base_url, selenium):
-    page = DownloadPage(selenium, base_url, params='?geo=us').open()
-    modal = page.open_other_platforms_modal()
+    page = DownloadPage(selenium, base_url, locale='ru', params='?geo=us').open()
+    modal = page.open_legacy_other_platforms_modal()
     assert modal.is_displayed
     modal.close()

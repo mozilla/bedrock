@@ -499,24 +499,40 @@ class TestSendToDeviceView(TestCase):
 @override_settings(DEV=False)
 @patch('bedrock.firefox.views.l10n_utils.render')
 class TestFirefoxNew(TestCase):
-    def test_scene_1_template(self, render_mock):
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
+    def test_download_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'en-US'
         views.new(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/download.html', ANY)
+
+    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    def test_download_old_template(self, render_mock):
+        req = RequestFactory().get('/firefox/new/')
+        req.locale = 'de'
+        views.new(req)
         render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
 
-    def test_scene_2_redirect(self, render_mock):
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
+    def test_thanks_template(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/')
+        req.locale = 'en-US'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/thanks.html', ANY)
+
+    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    def test_thanks_old_template(self, render_mock):
+        req = RequestFactory().get('/firefox/download/thanks/')
+        req.locale = 'de'
+        views.download_thanks(req)
+        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+
+    def test_thanks_redirect(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&dude=abides')
         req.locale = 'en-US'
         resp = views.new(req)
         assert resp.status_code == 301
         assert resp['location'].endswith('/firefox/download/thanks/?scene=2&dude=abides')
-
-    def test_scene_2_template(self, render_mock):
-        req = RequestFactory().get('/firefox/download/thanks/')
-        req.locale = 'en-US'
-        views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
 
     # yandex - issue 5635
 
@@ -528,41 +544,16 @@ class TestFirefoxNew(TestCase):
         render_mock.assert_called_once_with(req, 'firefox/new/yandex/scene1.html', ANY)
 
     @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='False')
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
     def test_yandex_scene_1_switch_off(self, render_mock):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'ru'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
-
-    # trailhead - issue 7159
-
-    def test_trailhead_va_control(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=th&v=a')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/download-a.html', ANY)
-
-    def test_trailhead_vb_variant(self, render_mock):
-        req = RequestFactory().get('/firefox/new/?xv=th&v=b')
-        req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/download-b.html', ANY)
-
-    def test_trailhead_vb_thanks_control(self, render_mock):
-        req = RequestFactory().get('/firefox/download/thanks/?xv=th&v=a')
-        req.locale = 'en-US'
-        views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
-
-    def test_trailhead_vb_thanks_variant(self, render_mock):
-        req = RequestFactory().get('/firefox/download/thanks/?xv=th&v=b')
-        req.locale = 'en-US'
-        views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/thanks.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/download.html', ANY)
 
 
 class TestFirefoxNewNoIndex(TestCase):
-    def test_scene_1_noindex(self):
+    def test_download_noindex(self):
         # Scene 1 of /firefox/new/ should never contain a noindex tag.
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'en-US'
@@ -571,7 +562,7 @@ class TestFirefoxNewNoIndex(TestCase):
         robots = doc('meta[name="robots"]')
         assert robots.length == 0
 
-    def test_scene_2_canonical(self):
+    def test_thanks_canonical(self):
         # Scene 2 /firefox/download/thanks/ should always contain a noindex tag.
         req = RequestFactory().get('/firefox/download/thanks/')
         req.locale = 'en-US'
@@ -616,7 +607,7 @@ class TestFirefoxCampaign(TestCase):
         req = RequestFactory().get('/firefox/download/thanks/?xv=berlin')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/thanks.html', ANY)
 
     # herz
     def test_variation_herz_scene_1(self, render_mock):
@@ -641,7 +632,7 @@ class TestFirefoxCampaign(TestCase):
         req = RequestFactory().get('/firefox/download/thanks/?xv=herz')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/thanks.html', ANY)
 
     # geschwindigkeit
     def test_variation_speed_scene_1(self, render_mock):
@@ -666,7 +657,7 @@ class TestFirefoxCampaign(TestCase):
         req = RequestFactory().get('/firefox/download/thanks/?xv=geschwindigkeit')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/thanks.html', ANY)
 
     # privatsphare
     def test_variation_privacy_scene_1(self, render_mock):
@@ -691,7 +682,7 @@ class TestFirefoxCampaign(TestCase):
         req = RequestFactory().get('/firefox/download/thanks/?xv=privatsphare')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/thanks.html', ANY)
 
     # auf-deiner-seite
     def test_variation_oys_scene_1(self, render_mock):
@@ -716,7 +707,7 @@ class TestFirefoxCampaign(TestCase):
         req = RequestFactory().get('/firefox/download/thanks/?xv=auf-deiner-seite')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/thanks.html', ANY)
 
     # berlin video test issue 5637
 
@@ -752,11 +743,12 @@ class TestFirefoxCampaign(TestCase):
         views.download_thanks(req)
         render_mock.assert_called_once_with(req, 'firefox/campaign/better-browser/scene2.html', ANY)
 
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
     def test_better_browser_scene_2_non_us(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=betterbrowser')
         req.locale = 'fr'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/thanks.html', ANY)
 
     # Safari SEM campaign bug #1479085
 

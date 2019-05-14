@@ -23,3 +23,21 @@ class Modal(Region):
 
     def displays(self, selector):
         return self.is_element_displayed(*selector)
+
+
+class ModalProtocol(Region):
+
+    _root_locator = (By.CLASS_NAME, 'mzp-c-modal')
+    _close_locator = (By.CLASS_NAME, 'mzp-c-modal-button-close')
+
+    def close(self):
+        modal = self.selenium.find_element(*self._root_locator)
+        self.find_element(*self._close_locator).click()
+        self.wait.until(expected.staleness_of(modal))
+
+    @property
+    def is_displayed(self):
+        return self.page.is_element_displayed(*self._root_locator)
+
+    def displays(self, selector):
+        return self.is_element_displayed(*selector)

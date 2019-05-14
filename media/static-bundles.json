@@ -1044,19 +1044,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/new/trailhead/experiment.js"
-      ],
-      "name": "experiment_firefox_new_trailhead"
-    },
-    {
-      "files": [
-        "js/firefox/new/trailhead/variation.js"
-      ],
-      "name": "experiment_firefox_new_trailhead_variation"
-    },
-    {
-      "files": [
         "protocol/js/protocol-modal.js",
         "js/firefox/new/trailhead/download.js"
       ],

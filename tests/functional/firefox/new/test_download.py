@@ -24,22 +24,9 @@ def test_click_download_button(base_url, selenium):
     assert thank_you_page.seed_url in selenium.current_url
 
 
-# This test is running temporarily against the `de` whilst `en-US` test is running
-# See: https://github.com/mozilla/bedrock/issues/7140
 @pytest.mark.nondestructive
 def test_other_platforms_modal(base_url, selenium):
-    page = DownloadPage(selenium, base_url, locale='de', params='').open()
+    page = DownloadPage(selenium, base_url, params='').open()
     modal = page.open_other_platforms_modal()
-    assert modal.is_displayed
-    modal.close()
-
-
-# This test is running temporarily against the `de` whilst `en-US` test is running
-# See: https://github.com/mozilla/bedrock/issues/7140
-@pytest.mark.nondestructive
-@pytest.mark.skip_if_not_firefox(reason='Create Account form is only displayed to Firefox users')
-def test_firefox_account_modal(base_url, selenium):
-    page = DownloadPage(selenium, base_url, locale='de', params='').open()
-    modal = page.open_firefox_account_modal()
     assert modal.is_displayed
     modal.close()

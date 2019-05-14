@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 
 from pages.firefox.base import FirefoxBasePage
 from pages.regions.download_button import DownloadButton
-from pages.regions.modal import Modal
+from pages.regions.modal import Modal, ModalProtocol
 
 
 class DownloadPage(FirefoxBasePage):
@@ -14,9 +14,10 @@ class DownloadPage(FirefoxBasePage):
     URL_TEMPLATE = '/{locale}/firefox/new/{params}'
 
     _download_button_locator = (By.ID, 'download-button-desktop-release')
-    _platforms_modal_link_locator = (By.ID, 'other-platforms-modal-link')
-    _platforms_modal_content_locator = (By.ID, 'other-platforms')
-    _account_modal_content_locator = (By.ID, 'firefox-account')
+    _platforms_modal_link_locator = (By.CLASS_NAME, 'js-platform-modal-button')
+    _platforms_modal_content_locator = (By.CLASS_NAME, 'mzp-u-modal-content')
+    _legacy_platforms_modal_link_locator = (By.ID, 'other-platforms-modal-link')
+    _legacy_platforms_modal_content_locator = (By.ID, 'other-platforms')
 
     @property
     def download_button(self):
@@ -29,13 +30,13 @@ class DownloadPage(FirefoxBasePage):
         return ThankYouPage(self.selenium, self.base_url).wait_for_page_to_load()
 
     def open_other_platforms_modal(self):
-        modal = Modal(self)
+        modal = ModalProtocol(self)
         self.find_element(*self._platforms_modal_link_locator).click()
         self.wait.until(lambda s: modal.displays(self._platforms_modal_content_locator))
         return modal
 
-    def open_firefox_account_modal(self):
+    def open_legacy_other_platforms_modal(self):
         modal = Modal(self)
-        self.download_button.click()
-        self.wait.until(lambda s: modal.displays(self._account_modal_content_locator))
+        self.find_element(*self._legacy_platforms_modal_link_locator).click()
+        self.wait.until(lambda s: modal.displays(self._legacy_platforms_modal_content_locator))
         return modal

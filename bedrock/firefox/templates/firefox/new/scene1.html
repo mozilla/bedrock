@@ -14,11 +14,7 @@
   {{ css_bundle('firefox_new_scene1') }}
 {% endblock %}
 
-{% block experiments %}
-  {% if switch('experiment_firefox_new_trailhead', ['en-US']) %}
-    {{ js_bundle('experiment_firefox_new_trailhead') }}
-  {% endif %}
-{% endblock %}
+{% block experiments %}{% endblock %}
 
 {% block body_id %}firefox-new-scene1{% endblock %}
 
