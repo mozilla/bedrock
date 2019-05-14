@@ -79,16 +79,6 @@
 </aside>
 {% endblock %}
 
-{% block stub_attribution %}
-  {% if settings.STUB_ATTRIBUTION_RATE %}
-    <!--[if !lte IE 8]><!-->
-    {{ js_bundle('stub-attribution-custom') }}
-    {{ js_bundle('experiment_firefox_new_trailhead_variation') }}
-    {{ js_bundle('firefox_new_scene1_variation') }}
-    <!--<![endif]-->
-  {% endif %}
-{% endblock %}
-
 {% block js %}
   {{ js_bundle('firefox_new_download') }}
 
