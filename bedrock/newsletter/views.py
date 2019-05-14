@@ -66,8 +66,6 @@ NEWSLETTER_STRINGS = {
         'title': _lazy(u'About Standards')},
     u'addon-dev': {
         'title': _lazy(u'Addon Development')},
-    u'addons': {
-        'title': _lazy(u'About Addons')},
     u'affiliates': {
         'description': _lazy(u'A monthly newsletter to keep you up to date with the '
                              u'Firefox Affiliates program.'),
@@ -78,7 +76,7 @@ NEWSLETTER_STRINGS = {
     u'app-dev': {
         'description': _lazy(u'A developer\u2019s guide to highlights of Web platform '
                              u'innovations, best practices, new documentation and more.'),
-        'title': _lazy(u'Mozilla Developer Newsletter')},
+        'title': _lazy(u'Developer Newsletter')},
     u'aurora': {
         'description': _lazy(u'Aurora'),
         'title': _lazy(u'Aurora')},
@@ -127,8 +125,15 @@ NEWSLETTER_STRINGS = {
         'title': _lazy(u'Get Firefox for Android')},
     u'get-involved': {
         'title': _lazy(u'Get Involved')},
+    u'internet-health-report': {
+        'title': _lazy(u'Internet Health Report'),
+        'description': _lazy(u'Keep up with our annual compilation of research and stories on the issues of privacy '
+                             u'&amp; security, openness, digital inclusion, decentralization, and web literacy.')},
     u'join-mozilla': {
         'title': _lazy(u'Join Mozilla')},
+    u'knowledge-is-power': {
+        'description': _lazy(u'Get all the knowledge you need to stay safer and smarter online.'),
+        'title': _lazy(u'Knowledge is Power')},
     u'labs': {
         'title': _lazy(u'About Labs')},
     u'maker-party': {
@@ -145,17 +150,15 @@ NEWSLETTER_STRINGS = {
         'description': _lazy(u'Keep up with releases and news about Firefox for Android.'),
         'title': _lazy(u'Firefox for Android')},
     u'mozilla-and-you': {
-        'description': _lazy(u'A monthly newsletter and special announcements giving you tips to '
-                             u'improve your experience with Firefox on your desktop and Android device.'),
-        'title': _lazy(u'Firefox')},
+        'description': _lazy(u'Get how-tos, advice and news to make your Firefox experience work best for you.'),
+        'title': _lazy(u'Firefox News')},
     u'mozilla-festival': {
         'description': u"Special announcements about Mozilla's annual, hands-on festival "
                        u"dedicated to forging the future of the open Web.",
         'title': _lazy(u'Mozilla Festival')},
     u'mozilla-foundation': {
-        'description': _lazy(u'News and special updates about our work to promote openness, innovation '
-                             u'and participation on the Internet, including ways for you to get involved.'),
-        'title': _lazy(u'Mozilla')},
+        'description': _lazy(u'Regular updates to keep you informed and active in our fight for a better internet.'),
+        'title': _lazy(u'Mozilla News')},
     u'mozilla-general': {
         'description': _lazy(u'Special announcements and messages from the team dedicated to keeping '
                              u'the Web free and open.'),
@@ -168,6 +171,9 @@ NEWSLETTER_STRINGS = {
     u'mozilla-phone': {
         'description': _lazy(u'Email updates for vouched Mozillians on mozillians.org.'),
         'title': _lazy(u'Mozillians')},
+    u'mozilla-technology': {
+        'description': _lazy(u"We're building the technology of the future. Come explore with us."),
+        'title': _lazy(u'Mozilla Labs')},
     u'os': {
         'description': _lazy(u'Firefox OS news, tips, launch information and where to buy.'),
         'title': _lazy(u'Firefox OS')},
@@ -178,10 +184,17 @@ NEWSLETTER_STRINGS = {
         'description': _lazy(u'Former University program from 2008-2011, now retired and relaunched as '
                              u'the Firefox Student Ambassadors program.'),
         'title': _lazy(u'Student Reps')},
+    u'take-action-for-the-internet': {
+        'description': _lazy(u'Add your voice to petitions, events and initiatives '
+                             u'that fight for the future of the web.'),
+        'title': _lazy(u'Take Action for the Internet')},
+    u'test-pilot': {
+        'description': _lazy(u'Help us make a better Firefox for you by test-driving '
+                             u'our latest products and features.'),
+        'title': _lazy(u'New Product Testing')},
     u'webmaker': {
         'description': _lazy(u'Special announcements helping you get the most out of Webmaker.'),
-        'title': _lazy(u'Webmaker'),
-    },
+        'title': _lazy(u'Webmaker')},
 }
 
 
@@ -276,7 +289,7 @@ def existing(request, token=None):
     can manage their subscriptions without needing an account somewhere with
     userid & password.
     """
-    locale = getattr(request, 'locale', 'en-US')
+    locale = l10n_utils.get_locale(request)
 
     if not token:
         return redirect(reverse('newsletter.recovery'))
@@ -303,10 +316,13 @@ def existing(request, token=None):
     #  u'email': u'user@example.com'
     # }
 
-    user_exists = False
+    has_fxa = 'fxa' in request.GET
+    user = None
     if token:
         try:
-            user = basket.user(token)
+            # ask for fxa status if not passed in the URL
+            params = None if has_fxa else {'fxa': 1}
+            user = basket.request('get', 'user', token=token, params=params)
         except basket.BasketNetworkException:
             # Something wrong with basket backend, no point in continuing,
             # we'd probably fail to subscribe them anyway.
@@ -315,15 +331,15 @@ def existing(request, token=None):
             return l10n_utils.render(request, 'newsletter/existing.html')
         except basket.BasketException as e:
             log.exception("FAILED to get user from token (%s)", e.desc)
-        else:
-            user_exists = True
 
-    if not user_exists:
+    if not user:
         # Bad or no token
         messages.add_message(request, messages.ERROR, bad_token)
         # Redirect to the recovery page
         return redirect(reverse('newsletter.recovery'))
 
+    # if `has_fxa` not returned from basket, set it from the URL
+    user.setdefault('has_fxa', has_fxa)
     # Get the newsletter data - it's a dictionary of dictionaries
     newsletter_data = utils.get_newsletters()
 
@@ -331,16 +347,14 @@ def existing(request, token=None):
     # as already subscribed.
     initial = []
     for newsletter, data in newsletter_data.iteritems():
-        # Ignore newsletters in the OTHER_NEWSLETTERS setting
-        if newsletter in settings.OTHER_NEWSLETTERS:
-            continue
-
         # Only show a newsletter if it has ['active'] == True and
         # ['show'] == True or the user is already subscribed
         if not data.get('active', False):
             continue
 
-        if data.get('show', False) or newsletter in user['newsletters']:
+        if (data.get('show', False) or newsletter in user['newsletters'] or
+                (user['has_fxa'] and newsletter in settings.FXA_NEWSLETTERS and
+                 any(locale.startswith(l) for l in settings.FXA_NEWSLETTERS_LOCALES))):
             langs = data['languages']
             nstrings = NEWSLETTER_STRINGS.get(newsletter)
             if nstrings:
@@ -359,6 +373,7 @@ def existing(request, token=None):
                 'newsletter': newsletter,
                 'description': Markup(description),
                 'english_only': len(langs) == 1 and langs[0].startswith('en'),
+                'indented': data.get('indent', False),
             }
             if 'order' in data:
                 form_data['order'] = data['order']

@@ -94,9 +94,9 @@ class TestExistingNewsletterView(TestCase):
         url = "%s?confirm=1" % reverse('newsletter.existing.token', args=(self.token,))
         # noinspection PyUnresolvedReferences
         with patch.multiple('basket',
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render') as render:
-                basket_patches['user'].return_value = self.user
+                basket_patches['request'].return_value = self.user
                 render.return_value = HttpResponse('')
                 self.client.get(url)
         request, template_name, context = render.call_args[0]
@@ -113,9 +113,9 @@ class TestExistingNewsletterView(TestCase):
                             update_user=DEFAULT,
                             subscribe=DEFAULT,
                             unsubscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render') as render:
-                basket_patches['user'].return_value = self.user
+                basket_patches['request'].return_value = self.user
                 render.return_value = HttpResponse('')
                 self.client.get(url)
         request, template_name, context = render.call_args[0]
@@ -138,9 +138,9 @@ class TestExistingNewsletterView(TestCase):
                             update_user=DEFAULT,
                             subscribe=DEFAULT,
                             unsubscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render') as render:
-                basket_patches['user'].return_value = self.user
+                basket_patches['request'].return_value = self.user
                 render.return_value = HttpResponse('')
                 self.client.get(url)
         request, template_name, context = render.call_args[0]
@@ -174,11 +174,11 @@ class TestExistingNewsletterView(TestCase):
         rand_token = unicode(uuid.uuid4())
         url = reverse('newsletter.existing.token', args=(rand_token,))
         with patch.multiple('basket',
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render') as render:
                 render.return_value = HttpResponse('')
                 with patch('django.contrib.messages.add_message') as add_msg:
-                    basket_patches['user'].side_effect = basket.BasketException
+                    basket_patches['request'].side_effect = basket.BasketException
                     rsp = self.client.get(url)
         # Should have given a message
         self.assertEqual(1, add_msg.call_count,
@@ -192,10 +192,10 @@ class TestExistingNewsletterView(TestCase):
         # recovery *without* calling Exact Target
         token = "not a token"
         url = reverse('newsletter.existing.token', args=(token,))
-        with patch.multiple('basket', user=DEFAULT) as basket_patches:
+        with patch.multiple('basket', request=DEFAULT) as basket_patches:
             with patch('django.contrib.messages.add_message') as add_msg:
                 rsp = self.client.get(url, follow=False)
-        self.assertEqual(0, basket_patches['user'].call_count)
+        self.assertEqual(0, basket_patches['request'].call_count)
         self.assertEqual(1, add_msg.call_count)
         self.assertEqual(302, rsp.status_code)
         self.assertTrue(rsp['Location'].endswith(reverse('newsletter.recovery')))
@@ -209,11 +209,11 @@ class TestExistingNewsletterView(TestCase):
                             update_user=DEFAULT,
                             subscribe=DEFAULT,
                             unsubscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render') as render:
                 render.return_value = HttpResponse('')
                 with patch('django.contrib.messages.add_message') as add_msg:
-                    basket_patches['user'].side_effect = basket.BasketException
+                    basket_patches['request'].side_effect = basket.BasketException
                     rsp = self.client.post(url, self.data)
         # Shouldn't call basket except for the attempt to find the user
         self.assertEqual(0, basket_patches['update_user'].call_count)
@@ -239,10 +239,10 @@ class TestExistingNewsletterView(TestCase):
                             update_user=DEFAULT,
                             subscribe=DEFAULT,
                             unsubscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('django.contrib.messages.add_message') as add_msg:
                 with patch('lib.l10n_utils.render'):
-                    basket_patches['user'].return_value = self.user
+                    basket_patches['request'].return_value = self.user
                     rsp = self.client.post(url, self.data)
         # Should have given no messages
         self.assertEqual(0, add_msg.call_count,
@@ -272,9 +272,9 @@ class TestExistingNewsletterView(TestCase):
                             update_user=DEFAULT,
                             subscribe=DEFAULT,
                             unsubscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render'):
-                basket_patches['user'].return_value = self.user
+                basket_patches['request'].return_value = self.user
                 rsp = self.client.post(url, self.data)
         # Should have called update_user with list of newsletters
         self.assertEqual(1, basket_patches['update_user'].call_count)
@@ -301,9 +301,9 @@ class TestExistingNewsletterView(TestCase):
                             update_user=DEFAULT,
                             subscribe=DEFAULT,
                             unsubscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render'):
-                basket_patches['user'].return_value = self.user
+                basket_patches['request'].return_value = self.user
                 rsp = self.client.post(url, self.data)
         # Should not have updated user details at all
         self.assertEqual(0, basket_patches['update_user'].call_count)
@@ -330,10 +330,10 @@ class TestExistingNewsletterView(TestCase):
         with patch.multiple('basket',
                             update_user=DEFAULT,
                             subscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render'):
                 with patch('django.contrib.messages.add_message') as add_msg:
-                    basket_patches['user'].return_value = self.user
+                    basket_patches['request'].return_value = self.user
                     rsp = self.client.post(url, self.data)
 
         # We have an existing user with a change to their email data,
@@ -369,9 +369,9 @@ class TestExistingNewsletterView(TestCase):
                             update_user=DEFAULT,
                             subscribe=DEFAULT,
                             unsubscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render') as render:
-                basket_patches['user'].return_value = self.user
+                basket_patches['request'].return_value = self.user
                 render.return_value = HttpResponse('')
                 self.client.get(url)
         request, template_name, context = render.call_args[0]
@@ -398,9 +398,9 @@ class TestExistingNewsletterView(TestCase):
                             update_user=DEFAULT,
                             subscribe=DEFAULT,
                             unsubscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render') as render:
-                basket_patches['user'].return_value = self.user
+                basket_patches['request'].return_value = self.user
                 render.return_value = HttpResponse('')
                 self.client.get(url)
         request, template_name, context = render.call_args[0]
