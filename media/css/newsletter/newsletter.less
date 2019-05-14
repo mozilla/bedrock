@@ -25,6 +25,13 @@
             .open-sans-light;
             .font-size(@largeFontSize);
         }
+        p {
+            .open-sans-light;
+            &.disclaimer {
+                .font-size(@smallFontSize);
+                margin-top: 1em;
+            }
+        }
         .field-contents {
             label {
                 float: none;
@@ -132,6 +139,12 @@
                 }
                 &.subcategory {
                     white-space: nowrap;
+                }
+                &.indented {
+                    padding-left: 2em;
+                    h4 {
+                        .font-size(@largeFontSize);
+                    }
                 }
             }
             td {

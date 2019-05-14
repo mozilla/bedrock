@@ -691,15 +691,13 @@ FACEBOOK_LIKE_LOCALES = ['af_ZA', 'ar_AR', 'az_AZ', 'be_BY', 'bg_BG',
 # e.g. '//mozorg.cdn.mozilla.net'
 CDN_BASE_URL = config('CDN_BASE_URL', default='')
 
-# Used on the newsletter preference center, included in the "interests" section.
-OTHER_NEWSLETTERS = [
-    'firefox-desktop',
-    'mobile',
-    'os',
-    'firefox-ios',
-    'mozilla-general',
-    'firefox-os',
+# newsletters that always show for FxA holders
+FXA_NEWSLETTERS = [
+    'test-pilot',
+    'take-action-for-the-internet',
+    'knowledge-is-power',
 ]
+FXA_NEWSLETTERS_LOCALES = ['en', 'de', 'fr']
 
 # Regional press blogs map to locales
 PRESS_BLOG_ROOT = 'https://blog.mozilla.org/'

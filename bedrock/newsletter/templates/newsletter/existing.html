@@ -19,7 +19,6 @@
     {% if did_confirm %}
       <h1>{{ _('Thanks for Subscribing!') }}</h1>
 
-      {% if l10n_has_tag('newsletter_confirm_2016') %}
         <p>
           {{ _('You’re awesome!') }}
           {{ _('And we’re not just saying that because you trusted us with your email address.') }}
@@ -30,10 +29,6 @@
           {{ _('Mozilla touches on a variety of important issues.') }}
           {{ _('Open your inbox (and your heart) even more — take a look at other topics we cover.') }}
         </p>
-      {% else %}
-        <p>{{ _('Your newsletter subscription has been confirmed.') }}</p>
-        <p>{{ _('Please be sure to add our sending address: mozilla@e.mozilla.org to your address book to ensure we always reach your inbox.') }}</p>
-      {% endif %}
     {% else %}
       <h1>{{ _('Manage your Email Preferences') }}</h1>
 
@@ -91,6 +86,7 @@
             {{ lang }}
           </div>
           {{ lang.errors }}
+          <p class="disclaimer">{{ _('Not all subscriptions are supported in all the languages listed. Almost all are offered in English, German and French.') }}</p>
         </div>
 
         <div class="field format-field">
@@ -99,11 +95,18 @@
             {{ form['format'] }}
           </div>
           {{ form['format'].errors }}
+          <p class="disclaimer">{{ _('Text subscribers will receive an email twice a year to confirm continuation of the subscription. Those emails may include HTML.') }}</p>
+        </div>
+        <div class="field">
+          <p>{{ _('Many of our communications are related to an account you’ve signed up for, such as Firefox Accounts, MDN Web Docs, or Add-on Developer. To manage one of your accounts or see a list of all the accounts visit our <a href="%s">account management support page</a>.')|format('https://support.mozilla.org/kb/managing-account-data') }}
+
+          <p>{{ _('To get access to the whole world of Firefox products, knowledge and services in one account, join us! Learn more about the benefits <a href="%s">here</a>.')|format(url('firefox.accounts')) }}</p>
+
+          <p>{{ _('There are many ways to engage with Mozilla and Firefox. If you didn’t find what you were looking for here, check out our <a href="%s">community pages</a>.')|format(url('mozorg.about.forums.forums')) }}</p>
         </div>
       </div><!-- close #basic-settings -->
 
       <div class="field" id="default-newsletters">
-        <h2>{{ _('Newsletters') }}</h2>
         <div class="field-radios">
         <table class="table">
           <thead>
@@ -115,14 +118,10 @@
           </thead>
           <tbody>
           {% for formpart in formset %}  {# each newsletter is a formset #}
-            {% if formpart.initial['newsletter'] not in settings.OTHER_NEWSLETTERS %}
             <tr class="subscription">
-              <th>
+              <th{% if formpart.initial['indented'] %} class="indented"{% endif %}>
                 <h4 class="title">
                   {{ formpart.initial['title'] }}
-                  {% if formpart.initial['english_only'] %}
-                    <span class="en-only">({{ _('English&nbsp;only') }})</span>
-                  {% endif %}
                 </h4>
                 {# hidden field: #}
                 {{ formpart.newsletter }}
@@ -134,7 +133,6 @@
               </th>
               {{ formpart.subscribed_radio }}
             </tr>
-            {% endif %}
           {% endfor %}
           </tbody>
         </table>
@@ -143,7 +141,7 @@
 
       <div class="field{% if did_confirm %} hidden{% endif %}" id="remove-all-section">
         {{ form['remove_all'] }}
-        {{ form.remove_all.label_tag(_('Remove me from all Mozilla emails')) }}
+        {{ form.remove_all.label_tag(_('Remove me from all the subscriptions on this page')) }}
       </div>
 
       <div class="field submit-field">
