@@ -8,6 +8,9 @@
 
 {% extends "firefox/new/trailhead/base.html" %}
 
+{# "scene2" page should not be indexed to avoid it appearing in search results: issue 7024 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
 {% block extrahead %}
   {{ super() }}
   {{ css_bundle('firefox_new_thanks') }}
