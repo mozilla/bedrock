@@ -112,6 +112,44 @@ class TestFirefoxAll(TestCase):
 
             return reverse('firefox.all', kwargs=kwargs)
 
+    @patch.object(fx_views, 'lang_file_is_active', lambda *x: True)
+    def test_all_builds_results(self):
+        """
+        The unified page should display builds for all products
+        """
+        resp = self.client.get(self._get_url())
+        doc = pq(resp.content)
+        assert len(doc('.c-all-downloads-build')) == 8
+
+        desktop_release_builds = len(firefox_desktop.get_filtered_full_builds('release'))
+        assert len(doc('.c-locale-list[data-product="desktop_release"] > li')) == desktop_release_builds
+        assert len(doc('.c-locale-list[data-product="desktop_release"] > li[data-language="en-US"] > ul > li > a')) == 5
+
+        desktop_beta_builds = len(firefox_desktop.get_filtered_full_builds('beta'))
+        assert len(doc('.c-locale-list[data-product="desktop_beta"] > li')) == desktop_beta_builds
+        assert len(doc('.c-locale-list[data-product="desktop_beta"] > li[data-language="en-US"] > ul > li > a')) == 5
+
+        desktop_developer_builds = len(firefox_desktop.get_filtered_full_builds('alpha'))
+        assert len(doc('.c-locale-list[data-product="desktop_developer"] > li')) == desktop_developer_builds
+        assert len(doc('.c-locale-list[data-product="desktop_developer"] > li[data-language="en-US"] > ul > li > a')) == 5
+
+        desktop_nightly_builds = len(firefox_desktop.get_filtered_full_builds('nightly'))
+        assert len(doc('.c-locale-list[data-product="desktop_nightly"] > li')) == desktop_nightly_builds
+        assert len(doc('.c-locale-list[data-product="desktop_nightly"] > li[data-language="en-US"] > ul > li > a')) == 5
+
+        android_release_builds = len(firefox_android.get_filtered_full_builds('release'))
+        assert len(doc('.c-locale-list[data-product="android_release"] > li')) == android_release_builds
+        assert len(doc('.c-locale-list[data-product="android_release"] > li[data-language="multi"] > ul > li > a')) == 2
+
+        android_beta_builds = len(firefox_android.get_filtered_full_builds('beta'))
+        assert len(doc('.c-locale-list[data-product="android_beta"] > li')) == android_beta_builds
+        assert len(doc('.c-locale-list[data-product="android_beta"] > li[data-language="multi"] > ul > li > a')) == 2
+
+        android_nightly_builds = len(firefox_android.get_filtered_full_builds('nightly'))
+        assert len(doc('.c-locale-list[data-product="android_nightly"] > li')) == android_nightly_builds
+        assert len(doc('.c-locale-list[data-product="android_nightly"] > li[data-language="multi"] > ul > li > a')) == 2
+
+    @patch.object(fx_views, 'lang_file_is_active', lambda *x: False)
     def test_no_search_results(self):
         """
         Tables should be gone and not-found message should be shown when there
@@ -122,6 +160,7 @@ class TestFirefoxAll(TestCase):
         assert not doc('table.build-table')
         assert not doc('.not-found.hide')
 
+    @patch.object(fx_views, 'lang_file_is_active', lambda *x: False)
     def test_no_search_query(self):
         """
         When not searching all builds should show.

@@ -653,9 +653,21 @@
       "files": [
         "css/base/mozilla-share-cta.less",
         "css/newsletter/fxnewsletter-subscribe.less",
-        "css/firefox/all.less"
+        "css/firefox/all/all.less"
       ],
       "name": "firefox_all"
+    },
+    {
+      "files": [
+        "css/firefox/all/all-unified.scss"
+      ],
+      "name": "firefox_all_unified"
+    },
+    {
+      "files": [
+        "css/firefox/all/all-unified-old-ie.scss"
+      ],
+      "name": "firefox_all_unified_old_ie"
     },
     {
       "files": [
@@ -1510,9 +1522,18 @@
       "files": [
         "js/base/mozilla-share-cta.js",
         "js/base/mozilla-pager.js",
-        "js/firefox/all-downloads.js"
+        "js/firefox/all/all-downloads.js"
       ],
       "name": "firefox_all"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-modal.js",
+        "protocol/js/protocol-sidemenu.js",
+        "js/firefox/all/all-downloads-unified.js",
+        "js/firefox/all/all-downloads-unified-init.js"
+      ],
+      "name": "firefox_all_unified"
     },
     {
       "files": [
