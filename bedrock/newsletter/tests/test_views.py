@@ -76,13 +76,13 @@ class TestExistingNewsletterView(TestCase):
             u'format': self.user['format'],
             u'privacy': u'on',
             u'form-0-newsletter': u'mozilla-and-you',
-            u'form-0-subscribed_radio': u'True',
+            u'form-0-subscribed_radio': u'true',
             u'form-1-newsletter': u'mobile',
-            u'form-1-subscribed_radio': u'False',
+            u'form-1-subscribed_radio': u'false',
             u'form-2-newsletter': u'firefox-tips',
-            u'form-2-subscribed_check': u'False',
+            u'form-2-subscribed_check': u'false',
             u'form-3-newsletter': u'join-mozilla',
-            u'form-3-subscribed_check': u'False',
+            u'form-3-subscribed_check': u'false',
             u'submit': u'Save Preferences',
         }
         super(TestExistingNewsletterView, self).setUp()
@@ -231,7 +231,7 @@ class TestExistingNewsletterView(TestCase):
     def test_subscribing(self, get_newsletters, mock_basket_request):
         get_newsletters.return_value = newsletters
         # They subscribe to firefox-tips
-        self.data['form-2-subscribed_check'] = u'True'
+        self.data['form-2-subscribed_check'] = u'true'
         # in English - and that's their language too
         self.user['lang'] = u'en'
         self.data['lang'] = u'en'
