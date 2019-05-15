@@ -1,0 +1,50 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/whatsnew_67.0.5" %}
+
+{% extends "firefox/base-protocol.html" %}
+
+{% block page_title %}{{ _('Get a Firefox Account – Keep your data private, safe and synced') }}{% endblock %}
+{% block page_desc %}{{ _('Securely sync your passwords, bookmarks and tabs across all your devices. Get a Firefox Account now – One login – Power and privacy everywhere.') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_67.0.5') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+
+<h1>{{ _('Congrats! You’re using the latest version of Firefox.') }}</h1>
+
+<h2>{{ _('Your account connects you to all of our products.') }}</h2>
+<h2>{{ _('Including Firefox Monitor, your watchful eye for data breaches') }}</h2>
+<p>{{ _('See if your info was compromised in another company’s data breach, and get automatically signed up for future alerts.') }}</p>
+<a href="#">{{ _('Sign In to Monitor') }}</a>
+
+<h2>{{ _('And soon it’ll connect you to something bigger.') }}</h2>
+
+<h3>{{ _('Help us build a better Firefox for you.') }}</h3>
+<p>{{ _('Get into the open source spirit by test-driving upcoming products.') }}</p>
+
+<h3>{{ _('Help us keep Big Tech in check.') }}</h3>
+<p>{{ _('We support communities all over the world standing up for a healthier internet.  Add your voice to the fight.') }}</p>
+
+<h2>{{ _('You’ve got the latest browser. Now get the rest of Firefox.') }}</h2>
+<h2>{{ _('Join Firefox for a whole family of respectful products, plus all the knowledge you need to protect yourself online.') }}</h2>
+<button>{{ _('Continue') }}</button>
+
+<a href="#">{{ _('Learn More about joining Firefox') }}</a>
+
+<h3>{{ _('Products that respect') }}</h3>
+<p>{{ _('Firefox products like Send, Lockwise and Monitor help you get things done without invading your privacy.') }}</p>
+
+<h3>{{ _('Knowledge that protects') }}</h3>
+<p>{{ _('Learn everything you need to know (but don’t yet) about staying smart and safe online.') }}</p>
+
+<h3>{{ _('Fierce defense of your privacy') }}</h3>
+<p>{{ _('Everything we make and do honors our Personal Data Promise: Take less. Keep it safe. No secrets.') }}</p>
+
+{% endblock %}
