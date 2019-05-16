@@ -7,13 +7,12 @@
 import json
 import os.path
 
+import tweepy
 from django.test.client import RequestFactory
 
-import tweepy
-
+from bedrock.mozorg.templatetags.social_widgets import (format_tweet_body,
+                                                        format_tweet_timestamp)
 from bedrock.mozorg.tests import TestCase
-from bedrock.mozorg.templatetags.social_widgets import *  # noqa
-
 
 TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                'test_files')

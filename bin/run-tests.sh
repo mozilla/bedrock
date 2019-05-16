@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-flake8 bedrock lib tests
+flake8
 python manage.py runscript check_calendars
 python manage.py version
 python manage.py migrate --noinput

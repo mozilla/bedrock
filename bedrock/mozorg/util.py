@@ -189,7 +189,7 @@ def get_fxa_oauth_token(code):
     try:
         token_resp = oauthClient.trade_code(code, client_id=settings.FXA_OAUTH_CLIENT_ID, client_secret=settings.FXA_OAUTH_CLIENT_SECRET)
         token = token_resp['access_token']
-    except:
+    except Exception:
         token = None
 
     return token
@@ -201,7 +201,7 @@ def get_fxa_profile_email(token):
 
     try:
         email = profileClient.get_email(token)
-    except:
+    except Exception:
         email = None
 
     return email
@@ -218,5 +218,5 @@ def fxa_concert_rsvp(email, isFx):
     try:
         basket.request('post', 'fxa-concerts-rsvp', data=data)
         return True
-    except:
+    except Exception:
         return False

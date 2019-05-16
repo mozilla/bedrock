@@ -9,7 +9,7 @@ import commonware.log
 from django.conf.urls import url
 from django.http import (HttpResponseGone, HttpResponsePermanentRedirect,
                          HttpResponseRedirect)
-from django.urls import NoReverseMatch, URLResolver, re_path, reverse
+from django.urls import NoReverseMatch, URLResolver, reverse
 from django.urls.resolvers import RegexPattern
 from django.utils.encoding import force_text
 from django.utils.html import strip_tags

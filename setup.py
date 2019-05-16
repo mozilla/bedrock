@@ -1,7 +1,4 @@
-import os
-
 from setuptools import setup, find_packages
-
 
 setup(name='bedrock',
       version='1.0',
@@ -12,6 +9,6 @@ setup(name='bedrock',
       license='',
       url='',
       include_package_data=True,
-      classifiers = [],
+      classifiers=[],
       packages=find_packages(exclude=['tests']),
       install_requires=[])

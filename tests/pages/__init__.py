@@ -12,4 +12,5 @@ def scroll_element_into_view(self, strategy, locator, x=0, y=0):
         'window.scrollBy(arguments[1], arguments[2]);', el, x, y)
     return el
 
+
 WebView.scroll_element_into_view = scroll_element_into_view

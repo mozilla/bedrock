@@ -27,11 +27,11 @@ def deactivate():
 
 def get_language():
     """Returns the currently selected language."""
-    l = getattr(_active, "value", None)
-    if l is None:
+    lang = getattr(_active, "value", None)
+    if lang is None:
         return settings.LANGUAGE_CODE
 
-    return l
+    return lang
 
 
 def get_language_bidi():
