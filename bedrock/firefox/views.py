@@ -25,6 +25,7 @@ from product_details.version_compare import Version
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.base.waffle import switch
+from bedrock.contentcards.models import get_page_content_cards
 from bedrock.firefox.firefox_details import firefox_android, firefox_desktop
 from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.newsletter.forms import NewsletterFooterForm
