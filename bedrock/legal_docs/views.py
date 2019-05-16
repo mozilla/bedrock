@@ -42,7 +42,7 @@ def load_legal_doc(doc_name, locale):
 
     source_dir = path.join(LEGAL_DOCS_PATH, doc_name)
     source_file = path.join(source_dir, locale + '.md')
-    output = io.StringIO()
+    output = io.BytesIO()
     locales = [f.replace('.md', '') for f in listdir(source_dir) if f.endswith('.md')]
     # convert legal-docs locales to bedrock equivalents
     locales = [LEGAL_DOCS_LOCALES_TO_BEDROCK.get(l, l) for l in locales]
@@ -63,10 +63,10 @@ def load_legal_doc(doc_name, locale):
         md.markdownFromFile(
             input=source_file, output=output, extensions=[
                 'markdown.extensions.attr_list',
-                'markdown.extensions.headerid',
+                'markdown.extensions.toc',
                 OutlineExtension((('wrapper_cls', ''),))
             ])
-        content = output.getvalue()
+        content = output.getvalue().decode('utf-8')
     except IOError:
         content = None
     finally:

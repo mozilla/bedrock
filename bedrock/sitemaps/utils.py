@@ -141,18 +141,18 @@ def get_static_urls():
                 if not render.called:
                     continue
 
-                locales = list(render.call_args[0][2]['translations'].keys())
+                locales = set(render.call_args[0][2]['translations'].keys())
 
                 # zh-CN is a redirect on the homepage
                 if path == '/':
-                    locales.remove('zh-CN')
+                    locales -= {'zh-CN'}
 
                 # Firefox Focus has a different URL in German
                 if path == '/privacy/firefox-focus/':
-                    locales.remove('de')
+                    locales -= {'de'}
 
                 # just remove any locales not in our prod list
-                locales = list(set(locales).intersection(settings.PROD_LANGUAGES))
+                locales = list(locales.intersection(settings.PROD_LANGUAGES))
 
             if path not in urls:
                 urls[path] = locales
