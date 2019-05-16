@@ -39,6 +39,8 @@ def test_localized_download_links(path, base_url):
     soup = BeautifulSoup(r.content, 'html.parser')
     table = soup.find('table', class_='build-table')
     urls = [a['href'] for a in table.find_all('a')]
+    # Bug 1552228 skip broken dev edition link for 'as' until bug is resolved
+    urls = [url for url in urls if 'product=firefox-devedition-latest-ssl&os=win64&lang=as' not in url]
     assert urls
     for url in urls:
         r = requests.head(url, allow_redirects=True, timeout=TIMEOUT)
