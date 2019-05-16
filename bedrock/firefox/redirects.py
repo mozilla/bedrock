@@ -178,15 +178,15 @@ redirectpatterns = (
              'https://support.mozilla.org/kb/how-does-phishing-and-malware-protection-work'),
 
     # bug 1006079
-    redirect(r'^mobile/home/?(?:index.html)?$',
+    redirect(r'^mobile/home/?(?:index\.html)?$',
              'https://blog.mozilla.org/services/2012/08/31/retiring-firefox-home/'),
 
     # bug 949562
-    redirect(r'^mobile/home/1\.0/releasenotes(?:/(?:index.html)?)?$',
+    redirect(r'^mobile/home/1\.0/releasenotes(?:/(?:index\.html)?)?$',
              'http://website-archive.mozilla.org/www.mozilla.org/firefox_home/mobile/home/1.0/releasenotes/'),
-    redirect(r'^mobile/home/1\.0\.2/releasenotes(?:/(?:index.html)?)?$',
+    redirect(r'^mobile/home/1\.0\.2/releasenotes(?:/(?:index\.html)?)?$',
              'http://website-archive.mozilla.org/www.mozilla.org/firefox_home/mobile/home/1.0.2/releasenotes/'),
-    redirect(r'^mobile/home/faq(?:/(?:index.html)?)?$',
+    redirect(r'^mobile/home/faq(?:/(?:index\.html)?)?$',
              'http://website-archive.mozilla.org/www.mozilla.org/firefox_home/mobile/home/faq/'),
 
     # bug 960064
@@ -200,7 +200,7 @@ redirectpatterns = (
              'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'),
 
     # bug 858315
-    redirect(r'^projects/devpreview/firstrun(?:/(?:index.html)?)?$', '/firefox/firstrun/'),
+    redirect(r'^projects/devpreview/firstrun(?:/(?:index\.html)?)?$', '/firefox/firstrun/'),
     redirect(r'^projects/devpreview/(?P<page>[\/\w\.-]+)?$',
              'http://website-archive.mozilla.org/www.mozilla.org/devpreview_releasenotes/projects/devpreview/{page}'),
 
@@ -274,9 +274,9 @@ redirectpatterns = (
              'http://www.seamonkey-project.org/dev/review-and-flags'),
     redirect(r'^projects/seamonkey/releases/(?P<vers>1\..*)\.html$',
              'http://www.seamonkey-project.org/releases/{vers}'),
-    redirect(r'^projects/seamonkey/releases/seamonkey(?P<x>.*)/index.html$',
+    redirect(r'^projects/seamonkey/releases/seamonkey(?P<x>.*)/index\.html$',
              'http://www.seamonkey-project.org/releases/seamonkey{x}/'),
-    redirect(r'^projects/seamonkey/releases/seamonkey(?P<x>.*/.*).html$',
+    redirect(r'^projects/seamonkey/releases/seamonkey(?P<x>.*/.*)\.html$',
              'http://www.seamonkey-project.org/releases/seamonkey{x}'),
     redirect(r'^projects/seamonkey/releases/updates/(?P<x>.*)$',
              'http://www.seamonkey-project.org/releases/updates/{x}'),
@@ -549,7 +549,7 @@ redirectpatterns = (
     redirect(r'^firefox/(new/)?addon', 'https://addons.mozilla.org'),
     redirect(r'^firefox/tips', '/firefox/features/'),
     redirect(r'^firefox/new/.+', '/firefox/new/'),
-    redirect(r'^firefox/38.0.3/releasenotes/$', '/firefox/38.0.5/releasenotes/'),
+    redirect(r'^firefox/38\.0\.3/releasenotes/$', '/firefox/38.0.5/releasenotes/'),
     redirect(r'^firefox/default\.htm', '/firefox/'),
     redirect(r'^firefox/android/(?P<version>\d+\.\d+(?:\.\d+)?)$', '/firefox/android/{version}/releasenotes/'),
     redirect(r'^firefox/stats/', '/firefox/'),

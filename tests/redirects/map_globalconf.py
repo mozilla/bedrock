@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-# flake8: noqa
-
-import re
 
 import requests
 
@@ -394,7 +391,8 @@ URLS = flatten((
     url_test('/press/mozilla-2004-08-18.html',
              'https://blog.mozilla.org/press/2004/08/mozilla-affiliate-in-japan-kicks-off/'),
     url_test('/press/mozilla-2004-09-14-01.html',
-             'https://blog.mozilla.org/press/2004/09/mozilla-foundation-announces-first-payments-of-security-bug-bounty-program-further-strengthens-browser-security/'),
+             'https://blog.mozilla.org/press/2004/09/mozilla-foundation-announces-first-payments-of-security'
+             '-bug-bounty-program-further-strengthens-browser-security/'),
     url_test('/press/mozilla-2004-09-14-02.html',
              'https://blog.mozilla.org/press/2004/09/firefox-preview-release-and-thunderbird-0-8-released/'),
     url_test('/press/mozilla-2004-09-20.html',
@@ -428,7 +426,8 @@ URLS = flatten((
     url_test('/press/mozilla-2005-07-28.html',
              'https://blog.mozilla.org/press/2005/07/mozilla-headlines-two-key-open-source-development-conferences-in-august/'),
     url_test('/press/mozilla-2005-08-03.html',
-             'https://blog.mozilla.org/press/2005/08/mozilla-foundation-forms-new-organization-to-further-the-creation-of-free-open-source-internet-software-including-the-award-winning-mozilla-firefox-browser/'),
+             'https://blog.mozilla.org/press/2005/08/mozilla-foundation-forms-new-organization-to-further-the-creation-of-free'
+             '-open-source-internet-software-including-the-award-winning-mozilla-firefox-browser/'),
     url_test('/press/mozilla-2005-10-03.html',
              'https://blog.mozilla.org/press/2005/10/mozilla-launches-beta-of-comprehensive-online-developer-center/'),
     url_test('/press/mozilla-2005-10-19.html',
@@ -450,7 +449,8 @@ URLS = flatten((
     url_test('/press/mozilla-2006-01-25.html',
              'https://blog.mozilla.org/press/2006/01/indie-film-all-stars-foin-firefox-flicks-crew/'),
     url_test('/press/mozilla-2006-02-03.html',
-             'https://blog.mozilla.org/press/2006/02/mozilla-releases-preview-of-application-framework-for-development-of-cross-platform-internet-client-applications/'),
+             'https://blog.mozilla.org/press/2006/02/mozilla-releases-preview-of-application-framework-for'
+             '-development-of-cross-platform-internet-client-applications/'),
     url_test('/press/mozilla-2006-03-02.html',
              'https://blog.mozilla.org/press/2006/03/mozilla-announces-winners-of-extend-firefox-competition/'),
     url_test('/press/mozilla-2006-04-12.html',
@@ -462,7 +462,8 @@ URLS = flatten((
     url_test('/press/mozilla-2006-06-14.html',
              'https://blog.mozilla.org/press/2006/06/mozilla-feeds-soccer-fans-passion-with-new-firefox-add-on/'),
     url_test('/press/mozilla-2006-10-11.html',
-             'https://blog.mozilla.org/press/2006/10/qualcomm-launches-project-in-collaboration-with-mozilla-foundation-to-develop-open-source-version-of-eudora-email-program/'),
+             'https://blog.mozilla.org/press/2006/10/qualcomm-launches-project-in-collaboration-with-mozilla'
+             '-foundation-to-develop-open-source-version-of-eudora-email-program/'),
     url_test('/press/mozilla-2006-10-24-02.html',
              'https://blog.mozilla.org/press/2006/10/firefox-moving-the-internet-forward/'),
     url_test('/press/mozilla-2006-10-24.html',
@@ -478,7 +479,8 @@ URLS = flatten((
     url_test('/press/mozilla-2007-03-27.html',
              'https://blog.mozilla.org/press/2007/03/mozilla-launches-new-firefox-add-ons-web-site/'),
     url_test('/press/mozilla-2007-03-28.html',
-             'https://blog.mozilla.org/press/2007/03/mozilla-and-ebay-working-together-to-make-the-auction-experience-easier-for-firefox-users-in-france-germany-and-the-uk/'),
+             'https://blog.mozilla.org/press/2007/03/mozilla-and-ebay-working-together-to-make-the-auction-experience'
+             '-easier-for-firefox-users-in-france-germany-and-the-uk/'),
     url_test('/press/mozilla-2007-04-19.html',
              'https://blog.mozilla.org/press/2007/04/mozilla-thunderbird-2-soars-to-new-heights/'),
     url_test('/press/mozilla-2007-05-16.html',
@@ -524,7 +526,8 @@ URLS = flatten((
     url_test('/press/mozilla1.0.html',
              'https://blog.mozilla.org/press/2002/06/mozilla-org-launches-mozilla-1-0/'),
     url_test('/press/open-source-security.html',
-             'https://blog.mozilla.org/press/2000/01/open-source-development-of-security-products-possible-worldwide-enhancing-security-and-privacy-for-e-commerce-and-communication/'),
+             'https://blog.mozilla.org/press/2000/01/open-source-development-of-security-products-possible'
+             '-worldwide-enhancing-security-and-privacy-for-e-commerce-and-communication/'),
 
     # Bug 608370, 957664
     url_test('/press/kit{.html,s/}', 'https://blog.mozilla.org/press/kits/'),
@@ -1081,7 +1084,8 @@ URLS = flatten((
     url_test('/firefox/{49.0,49.0.1,50.0a1,51.0a2}/firstrun/learnmore',
              '/firefox/features/?utm_campaign=redirect&utm_medium=firefox-browser&utm_source=firefox-browser&utm_content=learnmore-tab'),
     url_test('/firefox/windows-10/welcome',
-             'https://support.mozilla.org/kb/how-change-your-default-browser-windows-10?utm_campaign=redirect&utm_medium=firefox-browser&utm_source=firefox-browser&utm_content=windows10-welcome-tab'),
+             'https://support.mozilla.org/kb/how-change-your-default-browser-windows-10?utm_campaign=redirect'
+             '&utm_medium=firefox-browser&utm_source=firefox-browser&utm_content=windows10-welcome-tab'),
 
     # bug 1319207
     url_test('/de/privacy/firefox-focus/', '/de/privacy/firefox-klar/'),
@@ -1130,7 +1134,7 @@ URLS = flatten((
     # Bug 1324504
     url_test('/contribute/studentambassadors/{,join/,thanks/}', 'https://campus.mozilla.community/'),
 
-     # Bug 1340600
+    # Bug 1340600
     url_test('/css-grid', '/developer/css-grid/', query={
         'utm_source': 'redirect',
         'utm_medium': 'collateral',

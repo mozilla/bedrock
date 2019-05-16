@@ -2040,7 +2040,7 @@ redirectpatterns = (
     redirect(r'^thunderbird/about/legal/eula/thunderbird',
              'legal.eula.thunderbird-1.5-eula'),
     # bug 1204579
-    redirect(r'^thunderbird/2.0.0.0/eula/?$', 'legal.eula.thunderbird-2-eula'),
+    redirect(r'^thunderbird/2\.0\.0\.0/eula/?$', 'legal.eula.thunderbird-2-eula'),
     redirect(r'^thunderbird/about/legal/?$', 'legal.terms.mozilla'),
     redirect(r'^thunderbird/about(/mission)?/?$',
              'https://wiki.mozilla.org/Thunderbird'),
