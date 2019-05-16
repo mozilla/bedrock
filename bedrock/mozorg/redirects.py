@@ -363,7 +363,7 @@ redirectpatterns = (
              'https://developer.mozilla.org/docs/Web/Accessibility/Implementing_MSAA_server'),
     redirect(r'^access/windows/zoomtext\.html$',
              'https://developer.mozilla.org/docs/Mozilla/Accessibility/ZoomText'),
-    redirect('^access/donate(\.html|/)?$', 'https://donate.mozilla.org/'),
+    redirect(r'^access/donate(\.html|/)?$', 'https://donate.mozilla.org/'),
 
     # bug 1148187
     redirect(r'^access/(?P<page>.+)$',
@@ -458,7 +458,7 @@ redirectpatterns = (
              'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino/Download_Rhino'),
     redirect(r'^rhino/doc\.html$',
              'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino/Documentation'),
-    redirect('^rhino/shell\.html$',
+    redirect(r'^rhino/shell\.html$',
              'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino/Shell'),
     redirect(r'^rhino/?', 'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino'),
 
