@@ -2087,6 +2087,7 @@ URLS = flatten((
              'http://developer.mozilla.org/en/Debugging_Mozilla_on_Linux_FAQ'),
     url_test('/unix/solaris-build.html',
              'http://developer.mozilla.org/en/Mozilla_Build_FAQ#Unix-specific_questions'),
+    url_test('/unix/customizing.html', 'https://www-archive.mozilla.org/unix/customizing.html'),
     url_test('/webtools', 'https://developer.mozilla.org/en/Mozilla_Development_Tools'),
     url_test('/xmlextras/', 'http://developer.mozilla.org/en/XML_Extras'),
     url_test('/xmlextras/xmldataislands/example1.html',
