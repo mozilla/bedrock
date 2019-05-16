@@ -338,7 +338,8 @@
 {%- endmacro %}
 
 {#
-  This macro is intended to be shown only to users on Firefox 48 and up.
+  This macro is typically shown only to users on Firefox 48 and up.
+  If you intend to show it to non-Firefox browsers, set all_browsers=True.
 
   entrypoint: used to tag a given "page type" and remains the same across all
     pages of the class, e.g., no matter URL of the firstrun page, entrypoint is
@@ -346,6 +347,9 @@
     REQUIRED
   utm_source: used for analytics
     REQUIRED
+  style: an optional param to invoke an alternatively styled page at accounts.firefox.com
+  all_browsers: when True, omits the context and service parameters, allowing
+    a browser-agnostic sign-up flow.
   class_name: applies a class to the form. default: 'fxa-email-form'
   utm_params: dictionary of utm_* params to include. 'utm_' will automatically
     be prepended to all keys. example:
@@ -362,11 +366,13 @@
 
     DO NOT include utm_source in this dictionary! (It's already a required param.)
 #}
-{% macro fxa_email_form(entrypoint, utm_source, style, class_name='fxa-email-form', utm_params={}, intro_text='', button_text='', button_class='js-fxa-cta-link button button-blue') -%}
+{% macro fxa_email_form(entrypoint, utm_source, style, all_browsers=False, class_name='fxa-email-form', utm_params={}, form_title='', intro_text='', button_text='', button_class='js-fxa-cta-link button button-blue') -%}
   <form action="{{ settings.FXA_ENDPOINT }}" data-mozillaonline-action="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}" id="fxa-email-form" class="{{ class_name }}">
     <input type="hidden" name="action" value="email" />
+  {% if not all_browsers %}
     <input type="hidden" name="context" value="fx_desktop_v3" />
     <input type="hidden" name="service" value="sync" />
+  {% endif %}
     <input type="hidden" name="entrypoint" value="{{ entrypoint }}" id="fxa-email-form-entrypoint" />
     <input type="hidden" name="form_type" value="email" />
     {# flow_id and flow_begin_time will be populated via JS on page load #}
@@ -381,6 +387,10 @@
   {% if style %}
     <input type="hidden" name="style" value="{{ style }}" />
   {% endif %}
+
+    {% if form_title %}
+      <h2 class="fxa-email-form-title">{{ form_title }}</h2>
+    {% endif %}
 
     <p class="fxa-email-form-intro">
     {% if intro_text %}

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" viewBox="0 0 3900 646" width="3900" height="646">
+  <style>
+    .st0{fill:#fff}
+  </style>
+  <path d="M2342.7 88.8c105.5-7.7 203.8-39.2 290.1-88.8H1924l159.8 362.7c2.8-143 114.2-263.2 258.9-273.9z" class="st0"/>
+  <path d="M3084.3 358.8L3881.9 0h-502.2c-75.4 137-175.8 258.8-295.4 358.8z" class="st0"/>
+  <path d="M2115.1 433.8l-31.3-71.1c-.2 8.1 0 16.2.5 24.4 10.2 153.5 142.4 268.8 295.3 257.5 268.8-19.8 511.8-124.4 704.7-285.7l-536.1 241.2c-165.9 74.6-359.8.2-433.1-166.3z" class="st0"/>
+  <path d="M2342.7 88.8c-144.7 10.7-256.1 130.9-258.9 273.9l31.4 71.2c73.3 166.4 267.2 240.8 433 166.2l536.2-241.2c119.6-100 220-221.8 295.4-358.8h-747c-86.3 49.5-184.6 81-290.1 88.7z" class="st0"/>
+  <linearGradient id="SVGID_1_" x1="2591.318" x2="2977.954" y1="-28.161" y2="598.571" gradientTransform="translate(0 -412)" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#f565ff"/>
+    <stop offset=".191" stop-color="#ca4fdb"/>
+    <stop offset=".448" stop-color="#a83ebe"/>
+    <stop offset=".638" stop-color="#9031aa"/>
+    <stop offset=".715" stop-color="#812a9d"/>
+    <stop offset=".85" stop-color="#7c2799"/>
+    <stop offset="1" stop-color="#31154c"/>
+  </linearGradient>
+  <path fill="url(#SVGID_1_)" d="M2632.8 0H1924l159.8 362.7 31.4 71.2c73.3 166.4 267.2 240.8 433 166.2l536.2-241.2c.1-.1.2-.2.4-.3L3881.9 0h-502.2s0 .1-.1 1h-746.8"/>
+  <linearGradient id="SVGID_2_" x1="3054.294" x2="2136.355" y1="269.507" y2="1143.787" gradientTransform="translate(0 -412)" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#722291"/>
+    <stop offset=".388" stop-color="#71228f"/>
+    <stop offset=".722" stop-color="#531c6f"/>
+    <stop offset="1" stop-color="#20123a"/>
+  </linearGradient>
+  <path fill="url(#SVGID_2_)" d="M2083.8 362.7c-.2 8.1 0 16.2.5 24.4 10.2 153.5 142.4 268.8 295.3 257.5 268.7-19.8 511.7-124.4 704.6-285.6l.2-.1c119.6-100 220-221.8 295.4-358.8h-747c-86.3 49.5-184.6 81-290.1 88.7-144.7 10.7-256.1 130.9-258.9 273.9"/>
+</svg>

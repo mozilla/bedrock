@@ -603,4 +603,7 @@ redirectpatterns = (
 
     # issue 6979
     redirect(r'^firefoxfightsforyou/?', 'firefox.fights-for-you'),
+
+    # issue 7210
+    redirect(r'^firefox/account/?$', 'firefox.accounts'),
 )
