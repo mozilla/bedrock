@@ -1,0 +1,119 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/call-out';
+@import '../../../protocol/css/components/feature-card';
+@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/components/modal';
+@import '../../../protocol/css/components/newsletter-form';
+
+@import '../../protocol/components/state-fxa';
+
+body {
+    background: url('/media/img/firefox/whatsnew_67/noodles.png') no-repeat;
+    background-size: 860px;
+    background-position-x: -350px;
+    background-position-y: $layout-md;
+}
+
+main {
+    color: $color-off-black;
+}
+
+//* -------------------------------------------------------------------------- */
+// Up-to-date page header
+
+.c-page-header {
+    background: #fff;
+    margin-bottom: $spacing-2xl;
+    margin-left: 0;
+}
+
+.c-page-header-up-to-date {
+    @include text-display-xxs;
+    display: none;
+    margin-top: $layout-xs;
+
+    span {
+        background-color: #6EE7C4;
+        border-radius: 2px;
+        display: inline-block;
+        font-weight: normal;
+        padding: $spacing-sm $spacing-md;
+        max-width: $content-sm;
+    }
+
+    .is-up-to-date & {
+        display: block;
+    }
+}
+
+@media #{$mq-md} {
+    .c-page-header-inner {
+        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr max-content 1fr;
+    }
+
+    .c-page-header-up-to-date {
+        margin: 0 $layout-sm;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// CTA
+
+.card {
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.21);
+    padding: $spacing-xl $spacing-2xl $spacing-xl $spacing-2xl;
+    margin: 0 auto;
+
+    @media #{$mq-lg} {
+        width: 600px;
+    }
+
+    h1 {
+        @include text-display-md;
+        width: 85%;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Benefits
+
+.benefits {
+    width: $content-lg;
+
+    .benefits-list {
+        margin-left: $layout-2xl;
+
+        div {
+            margin-bottom: $layout-lg;
+            p {
+                width: $content-sm;
+            }
+        }
+
+        .glyphs {
+            position: absolute;
+            width: 40px;
+            left: $layout-2xl;
+            &:nth-child(2) {
+                top: $layout-xl;
+            }
+        }
+    }
+
+    h2 {
+        @include text-display-sm;
+    }
+}
+
+

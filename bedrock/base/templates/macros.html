@@ -327,6 +327,16 @@
   </div>
 {%- endmacro %}
 
+{% macro monitor_button(utm_source='', utm_campaign='', button_text='', button_class='mzp-c-button mzp-t-product') -%}
+  <a action="{{ settings.FXA_ENDPOINT }}" href="https://monitor.firefox.com/oauth/init?utm_source={{ utm_source }}&utm_campaign={{ utm_campaign }}&form_type=email&entrypoint=mozilla.org-whatsnew67" class="{{ button_class }}" id="fxa-monitor-submit" data-button-name="Continue">
+    {% if button_text %}
+      {{ button_text }}
+    {% else %}
+      {{ _('Sign In to Monitor') }}
+    {% endif %}
+  </a>
+{%- endmacro %}
+
 {#
   This macro is intended to be shown only to users on Firefox 48 and up.
 

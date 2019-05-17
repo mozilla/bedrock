@@ -1,0 +1,96 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import hero, call_out_compact, feature_card with context %}
+
+{% from "macros.html" import fxa_email_form, monitor_button, fxa_link_fragment with context %}
+
+{% add_lang_files "firefox/whatsnew_67" %}
+
+{% extends "firefox/base-protocol.html" %}
+
+{% block page_title %}{{ _('Get a Firefox Account – Keep your data private, safe and synced') }}{% endblock %}
+{% block page_desc %}{{ _('Securely sync your passwords, bookmarks and tabs across all your devices. Get a Firefox Account now – One login – Power and privacy everywhere.') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_67.0.5') }}
+{% endblock %}
+
+{% set fxa_utm_params = {
+  'campaign': 'wnp67',
+  'content': '/firefox/WNP/67/',
+  'source': 'wnp-67'
+} %}
+
+{% block body_class %}state-fxa-default{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+
+<main class="mzp-t-firefox">
+  <header class="mzp-l-content c-page-header">
+    <div class="c-page-header-inner">
+      {{ high_res_img('firefox/whatsnew_67/logo.png', {'alt': 'Firefox', 'width': '147', 'height': '55', 'class': 'c-page-header-logo-fx'}) }}
+      <h1 class="c-page-header-up-to-date"><span>{{ _('Congrats! You’re using the latest version of Firefox.') }}</span></h1>
+    </div>
+  </header>
+  <section class="mzp-l-content">
+    <div class="card">
+      <div class="show-fxa-supported-signed-out">
+        <h1>{{ _('You’ve got the latest browser. Now get the rest of Firefox.') }}</h1>
+        <p>{{ _('Join Firefox for a whole family of respectful products, plus all the knowledge you need to protect yourself online.') }}</p>
+        {% block fxa_form %}
+          {{ fxa_email_form(
+              entrypoint='mozilla.org-whatsnew6705',
+              button_class='mzp-c-button',
+              utm_source='whatsnew',
+              utm_params={'campaign': 'fxa-embedded-form', 'content': 'whatsnew', 'medium': 'referral'})
+          }}
+        {% endblock %}
+      </div>
+      <!-- <div class="show-fxa-supported-signed-in"> -->
+      <div>
+        <h1>Monitor cta</h1>
+        {{ monitor_button(
+          utm_source='whatsnew-trailhead',
+          utm_campaign='whatsnew-trailhead'
+        ) }}
+      </div>
+    </div>
+  </section>
+  <section class="mzp-l-content benefits">
+    <div class="benefits-list">
+      <div class="show-fxa-supported-signed-out">
+        <div class="respect">
+          <img src="{{ static('img/firefox/whatsnew_67/lockbox_glyph.png') }}" class="glyphs">
+          <img src="{{ static('img/firefox/whatsnew_67/send_glyph.png') }}" class="glyphs">
+          <h2>{{ _('Products that respect') }}</h2>
+          <p>
+            {% trans send='https://send.firefox.com/', lockwise='https://lockbox.firefox.com/', monitor='https://monitor.firefox.com/' %}
+            Firefox products like <a href="{{ send }}">Send</a>, <a href="{{ lockwise }}">Lockwise</a> and <a href="{{ monitor }}">Monitor</a> help you get things done without invading your privacy.
+            {% endtrans %}
+          </p>
+        </div>
+        <hr>
+        <div class="protects">
+          <img src="{{ static('img/firefox/whatsnew_67/protects_glyph.png') }}" class="glyphs">
+          <h2>{{ _('Knowledge that protects') }}</h2>
+          <p>{{ _('Learn everything you need to know (but don’t yet) about staying smart and safe online.') }}</p>
+        </div>
+        <hr>
+        <div class="privacy">
+          <img src="{{ static('img/firefox/whatsnew_67/heart_glyph.png') }}" class="glyphs">
+          <h2>{{ _('Fierce defense of your privacy') }}</h2>
+          <p>{{ _('Everything we make and do honors our Personal Data Promise: <strong>Take less. Keep it safe. No secrets.</strong>') }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_trailhead') }}
+{% endblock %}
