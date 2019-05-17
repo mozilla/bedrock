@@ -15,7 +15,6 @@ $image-path: '/media/protocol/img';
 }
 
 #subtitle {
-    @include open-sans;
     @include text-display-md;
     margin: 0 auto;
     max-width: $content-md;
@@ -140,13 +139,12 @@ $image-path: '/media/protocol/img';
 
 #bottom-banner {
     @include light-links;
-    background: #2a0140 url('/media/img/firefox/accounts/blob-img.png') center -120px no-repeat;
+    background: $color-purple-90;
     @include background-size(cover);
     color: $color-white;
     padding: $spacing-md 0;
 
     .banner-title h2 {
-        @include open-sans;
         @include text-display-lg;
         margin: 0 0 $spacing-lg;
     }
@@ -160,7 +158,7 @@ $image-path: '/media/protocol/img';
         max-width: $content-sm;
 
         .fxa-email-form-intro {
-            @include text-display-sm;
+            @include text-display-xs;
             font-weight: bold;
 
             strong {

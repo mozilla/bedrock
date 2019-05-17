@@ -156,7 +156,6 @@ $city-image-size: 106px;
 }
 
 .c-city-title {
-    @include open-sans;
     @include text-body-sm;
     border-bottom: 2px solid $color-link;
     padding-bottom: $spacing-sm;
@@ -177,7 +176,7 @@ $city-image-size: 106px;
 
     strong {
         @include font-size(50px);
-        @include zilla-slab;
+        @include font-mozilla;
         display: block;
         font-weight: bold;
         margin-bottom: $spacing-sm;

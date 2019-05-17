@@ -50,7 +50,6 @@ $image-path: '/media/protocol/img';
  * 2. Because of 1, pages also set a base font-size of 112.5% on <html>, so compensate proportionally.
  */
 .mzp-c-navigation {
-    @include open-sans;
 
     .mzp-c-menu-title {
         @include font-size(14px);

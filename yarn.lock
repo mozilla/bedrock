@@ -37,10 +37,10 @@
     normalize-path "^2.0.1"
     through2 "^2.0.3"
 
-"@mozilla-protocol/core@6.0.1":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/@mozilla-protocol/core/-/core-6.0.1.tgz#88107f83590182a44c322f799041acb1f1f1bd1f"
-  integrity sha512-edVsiYkThKKQvAD5TvrU9v5BI+1z6UuyZd61VI6NZRbMxLVxPbPlJGfKMMl+KiZsuYNL1NdFEWRLwvKNbGJqGg==
+"@mozilla-protocol/core@7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@mozilla-protocol/core/-/core-7.0.0.tgz#c2dad26b361204d85f739b738bbbac8c0c39411b"
+  integrity sha512-KA9ei3PAQAgFtF40pcHSBq4cM9PI/VEzg7aauWPmiMFnkjLld5F/oJD5SS/aNqmficeqseaEiiyDEDGRZ4iMag==
 
 "@mozilla-protocol/eslint-config@^1.1.0":
   version "1.1.0"
