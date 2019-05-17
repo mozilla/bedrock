@@ -19,20 +19,6 @@ PAGE_PATHS = (
 )
 
 TIMEOUT = 60
-# Bug 1552228
-DEVEDITION_LOCALE_SKIPS = ['as', 'bn-BD', 'bn-IN', 'en-ZA', 'mai', 'ml', 'or']
-
-
-def _skip_url(url):
-    """Return boolean if we should skip the test for the URL
-
-    Needed due to Bug 1552228.
-    """
-    for locale in DEVEDITION_LOCALE_SKIPS:
-        if 'lang={}'.format(locale) in url:
-            return True
-
-    return False
 
 
 @pytest.mark.download
@@ -53,9 +39,6 @@ def test_localized_download_links(path, base_url):
     soup = BeautifulSoup(r.content, 'html.parser')
     table = soup.find('table', class_='build-table')
     urls = [a['href'] for a in table.find_all('a')]
-    if 'developer' in path:
-        # Bug 1552228 skip broken dev edition links for broken locales until bug is resolved
-        urls = [url for url in urls if not _skip_url(url)]
     assert urls
     for url in urls:
         r = requests.head(url, allow_redirects=True, timeout=TIMEOUT)
