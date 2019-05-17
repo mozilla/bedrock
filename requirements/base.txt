@@ -112,8 +112,8 @@ https://github.com/timmyomahony/django-pagedown/archive/78556863faa5654f749c5562
     --hash=sha256:3e7bfaf54a560889838104c100d8b37930306243d8913942c4675cfcc54bccc7
 https://github.com/jezdez/django-appconf/archive/d7ff3bb0c35a0c2ec83afdb31f7bb79e0f1b222c.tar.gz#egg=django-appconf \
     --hash=sha256:3e80e498209d7253e2cc1a4f9b02e7da819179a910c9275d5bc232de48e67c33
-https://github.com/jsocol/commonware/archive/b5544185b2d24adc1eb512735990752400ce9cbd.tar.gz#egg=commonware \
-    --hash=sha256:93d8231145d43ca02e1ec3cee355333afa8e72adb9cf815767e17595749774d4
+https://github.com/mozilla/commonware/archive/v0.5.0.tar.gz#egg=commonware \
+    --hash=sha256:edefcb5081b702bccba7c279df259ef80ad1e8f9f889d99f3fe621fb05edf756
 https://github.com/mozilla/nuggets/archive/ce506882b6943ea45ea4f98290fc4ef23e09a083.tar.gz#egg=nuggets \
     --hash=sha256:79eabfcf8d793503c11778f9f5f9b2e891a3b67a43815431c30bc52b19c3431d
 dj-database-url==0.3.0 \

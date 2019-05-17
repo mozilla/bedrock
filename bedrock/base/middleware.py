@@ -9,12 +9,14 @@ import urllib.parse
 from urllib.parse import unquote
 from warnings import warn
 
+from commonware.middleware import FrameOptionsHeader as OldFrameOptionsHeader
+from commonware.middleware import RobotsTagHeader as OldRobotsTagHeader
 from django.conf import settings
 from django.core.exceptions import MiddlewareNotUsed
 from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.utils.deprecation import MiddlewareMixin
+
 from lib.l10n_utils import translation
-from commonware.middleware import RobotsTagHeader as OldRobotsTagHeader
 
 from . import urlresolvers
 
@@ -104,4 +106,8 @@ class BasicAuthMiddleware:
 
 
 class RobotsTagHeader(OldRobotsTagHeader, MiddlewareMixin):
+    pass
+
+
+class FrameOptionsHeader(OldFrameOptionsHeader, MiddlewareMixin):
     pass
