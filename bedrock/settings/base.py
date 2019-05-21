@@ -693,6 +693,7 @@ CDN_BASE_URL = config('CDN_BASE_URL', default='')
 
 # newsletters that always show for FxA holders
 FXA_NEWSLETTERS = [
+    'firefox-accounts-journey',
     'test-pilot',
     'take-action-for-the-internet',
     'knowledge-is-power',
