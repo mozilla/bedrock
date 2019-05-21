@@ -2,11 +2,9 @@
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import hero, call_out_compact, feature_card with context %}
-
 {% from "macros.html" import fxa_email_form, monitor_button, fxa_link_fragment with context %}
 
-{% add_lang_files "firefox/whatsnew_67" %}
+{% add_lang_files "firefox/whatsnew_67.0.5" %}
 
 {% extends "firefox/base-protocol.html" %}
 
@@ -41,22 +39,29 @@
       <div class="show-fxa-supported-signed-out">
         <h1>{{ _('You’ve got the latest browser. Now get the rest of Firefox.') }}</h1>
         <p>{{ _('Join Firefox for a whole family of respectful products, plus all the knowledge you need to protect yourself online.') }}</p>
-        {% block fxa_form %}
-          {{ fxa_email_form(
-              entrypoint='mozilla.org-whatsnew6705',
-              button_class='mzp-c-button',
-              utm_source='whatsnew',
-              utm_params={'campaign': 'fxa-embedded-form', 'content': 'whatsnew', 'medium': 'referral'})
-          }}
-        {% endblock %}
+        <div class="c-signup-container fxa-form-cta">
+          {% block fxa_form %}
+            {{ fxa_email_form(
+                entrypoint='mozilla.org-whatsnew6705',
+                button_class='mzp-c-button mzp-t-product mzp-t-small',
+                utm_source='whatsnew',
+                utm_params={'campaign': 'fxa-embedded-form', 'content': 'whatsnew', 'medium': 'referral'})
+            }}
+          {% endblock %}
+        </div>
+        <a href="#">{{ _('Learn more about joining Firefox') }}</a>
       </div>
-      <!-- <div class="show-fxa-supported-signed-in"> -->
-      <div>
-        <h1>Monitor cta</h1>
-        {{ monitor_button(
-          utm_source='whatsnew-trailhead',
-          utm_campaign='whatsnew-trailhead'
-        ) }}
+      <div class="show-fxa-supported-signed-in">
+        <h1>{{ _('Your account connects you to all of our products. ') }}</h1>
+        <img class="glyphs" id="monitor-logo" src="{{ static('img/firefox/whatsnew_67/monitor_icon.svg') }}" alt="">
+        <div class="mzp-l-hero-content">
+          <h2>{{ _('Including Firefox Monitor, your watchful eye for data breaches') }}</h2>
+          <p>{{ _('See if your info was compromised in another company’s data breach, and get automatically signed up for future alerts.') }}</p>
+          {{ monitor_button(
+            utm_source='whatsnew-trailhead',
+            utm_campaign='whatsnew-trailhead'
+          ) }}
+        </div>
       </div>
     </div>
   </section>
@@ -64,8 +69,8 @@
     <div class="benefits-list">
       <div class="show-fxa-supported-signed-out">
         <div class="respect">
-          <img src="{{ static('img/firefox/whatsnew_67/lockbox_glyph.png') }}" class="glyphs">
-          <img src="{{ static('img/firefox/whatsnew_67/send_glyph.png') }}" class="glyphs">
+          <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/lockbox_glyph.svg') }}" alt="">
+          <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/send_glyph.svg') }}" alt="">
           <h2>{{ _('Products that respect') }}</h2>
           <p>
             {% trans send='https://send.firefox.com/', lockwise='https://lockbox.firefox.com/', monitor='https://monitor.firefox.com/' %}
@@ -73,17 +78,32 @@
             {% endtrans %}
           </p>
         </div>
-        <hr>
         <div class="protects">
-          <img src="{{ static('img/firefox/whatsnew_67/protects_glyph.png') }}" class="glyphs">
+          <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/protects_glyph.svg') }}" alt="">
           <h2>{{ _('Knowledge that protects') }}</h2>
           <p>{{ _('Learn everything you need to know (but don’t yet) about staying smart and safe online.') }}</p>
         </div>
-        <hr>
         <div class="privacy">
-          <img src="{{ static('img/firefox/whatsnew_67/heart_glyph.png') }}" class="glyphs">
+          <img src="{{ static('img/firefox/whatsnew_67/heart_glyph.svg') }}" class="glyphs">
           <h2>{{ _('Fierce defense of your privacy') }}</h2>
           <p>{{ _('Everything we make and do honors our Personal Data Promise: <strong>Take less. Keep it safe. No secrets.</strong>') }}</p>
+        </div>
+      </div>
+      <div class="show-fxa-supported-signed-in">
+        <h2>{{ _('And soon it’ll connect you to something bigger.') }}</h2>
+        <div class="protects">
+          <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/experiments.svg') }}" alt="">
+          <div class="benefit-content">
+            <h3>{{ _('Help us build a better Firefox for you.') }}</h3>
+            <p>{{ _('Get into the open source spirit by test-driving upcoming products.') }}</p>
+          </div>
+        </div>
+        <div class="privacy">
+          <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/inbox.svg') }}" alt="">
+          <div class="benefit-content">
+            <h3>{{ _('Help us keep Big Tech in check.') }}</h3>
+            <p>{{ _('We support communities all over the world standing up for a healthier internet.  Add your voice to the fight.') }}</p>
+          </div>
         </div>
       </div>
     </div>

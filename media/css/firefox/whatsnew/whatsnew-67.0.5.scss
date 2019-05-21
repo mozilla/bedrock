@@ -9,7 +9,6 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/call-out';
 @import '../../../protocol/css/components/feature-card';
 @import '../../../protocol/css/components/hero';
-@import '../../../protocol/css/components/modal';
 @import '../../../protocol/css/components/newsletter-form';
 
 @import '../../protocol/components/state-fxa';
@@ -75,13 +74,29 @@ main {
     padding: $spacing-xl $spacing-2xl $spacing-xl $spacing-2xl;
     margin: 0 auto;
 
+    h1 {
+        @include text-display-lg;
+        width: 85%;
+        margin-bottom: 1em;
+    }
+
+    // signed in
+    .show-fxa-supported-signed-in {
+        #monitor-logo {
+            float: left;
+        }
+
+        .mzp-l-hero-content {
+            margin-left: $layout-xl;
+        }
+    }
+
     @media #{$mq-lg} {
         width: 600px;
     }
 
-    h1 {
-        @include text-display-md;
-        width: 85%;
+    h2 {
+        @include text-display-sm;
     }
 }
 
@@ -89,10 +104,22 @@ main {
 // Benefits
 
 .benefits {
-    width: $content-lg;
+    width: $content-md;
 
     .benefits-list {
-        margin-left: $layout-2xl;
+
+        h2 {
+            @include text-display-md;
+            margin-bottom: $layout-lg;
+        }
+
+        .benefit-content {
+            padding-left: $layout-xl;
+
+            h3 {
+                @include text-display-xs;
+            }
+        }
 
         div {
             margin-bottom: $layout-lg;
@@ -102,18 +129,74 @@ main {
         }
 
         .glyphs {
-            position: absolute;
-            width: 40px;
-            left: $layout-2xl;
-            &:nth-child(2) {
-                top: $layout-xl;
+            float: left;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// FxA Form
+
+.c-signup-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.fxa-form-cta {
+
+    .fxa-email-form {
+        width: 100%;
+        margin-bottom: $spacing-lg;
+
+        a {
+            color: $color-off-black;
+        }
+    }
+
+    .fxa-email-form-intro {
+        display: none;
+    }
+
+    .fxa-email-field-container {
+        .field {
+            label {
+                @include visually-hidden;
+            }
+
+            input[type="email"] {
+                box-shadow: none;
+                padding: 12px 16px;
+                width: 100%;
+            }
+        }
+
+        .mzp-c-button {
+            width: 100%;
+        }
+    }
+
+    @media #{$mq-sm} {
+        .fxa-email-field-container {
+            @include grid-column-gap($spacing-md);
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+
+            .field {
+                margin-bottom: 0;
             }
         }
     }
 
-    h2 {
-        @include text-display-sm;
+    @media #{$mq-md} {
+        .fxa-email-form {
+            display: grid;
+
+            .agreement {
+                @include text-body-sm;
+                grid-row-start: 2;
+                margin-top: $spacing-sm;
+                margin-bottom: 0;
+            }
+        }
     }
 }
-
-

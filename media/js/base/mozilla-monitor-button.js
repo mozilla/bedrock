@@ -7,7 +7,7 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-Mozilla.MonitorButton = (function(Mozilla) {
+Mozilla.MonitorButton = (function() {
     'use strict';
 
     var monitorButton = document.getElementById('fxa-monitor-submit');
