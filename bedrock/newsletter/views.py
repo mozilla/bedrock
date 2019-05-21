@@ -358,7 +358,11 @@ def existing(request, token=None):
             langs = data['languages']
             nstrings = NEWSLETTER_STRINGS.get(newsletter)
             if nstrings:
-                title = nstrings['title']
+                if newsletter == 'firefox-accounts-journey' and locale.startswith('en'):
+                    # alternate english title
+                    title = u'Firefox Account Tips'
+                else:
+                    title = nstrings['title']
                 description = nstrings.get('description', u'')
             else:
                 # Firefox Marketplace for Desktop/Android/Firefox OS should be
