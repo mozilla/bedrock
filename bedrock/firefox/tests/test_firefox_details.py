@@ -573,7 +573,6 @@ class TestFirefoxDesktop(TestCase):
 
 
 class TestFirefoxAndroid(TestCase):
-    archive_url_base = 'https://archive.mozilla.org/pub/mobile/nightly/'
     google_play_url_base = ('https://play.google.com/store/apps/details'
                             '?id=org.mozilla.')
 
@@ -602,38 +601,19 @@ class TestFirefoxAndroid(TestCase):
             firefox_android.get_download_url('nightly', 'x86')
             .startswith(self.google_play_url_base + 'fennec_aurora'))
 
-    @patch.object(firefox_android._storage, 'data',
-                  Mock(return_value=dict(nightly_version='55.0a1')))
-    def test_get_download_url_nightly_direct_legacy(self):
-        """
-        get_download_url should return a mozilla-central archive link depending
-        on the architecture type, if the force_direct option is True. The ARM
-        build URL should have api-15 instead of api-16.
-        """
-        assert (
-            firefox_android.get_download_url('nightly', 'arm', 'multi', True) ==
-            self.archive_url_base + 'latest-mozilla-central-android-api-15/'
-            'fennec-55.0a1.multi.android-arm.apk')
-        assert (
-            firefox_android.get_download_url('nightly', 'x86', 'multi', True) ==
-            self.archive_url_base + 'latest-mozilla-central-android-x86/'
-            'fennec-55.0a1.multi.android-i386.apk')
-
-    @patch.object(firefox_android._storage, 'data',
-                  Mock(return_value=dict(nightly_version='56.0a1')))
     def test_get_download_url_nightly_direct(self):
         """
-        get_download_url should return a mozilla-central archive link depending
-        on the architecture type, if the force_direct option is True.
+        get_download_url should return a bouncer link depending on the
+        architecture type, if the force_direct option is True.
         """
-        assert (
-            firefox_android.get_download_url('nightly', 'arm', 'multi', True) ==
-            self.archive_url_base + 'latest-mozilla-central-android-api-16/'
-            'fennec-56.0a1.multi.android-arm.apk')
-        assert (
-            firefox_android.get_download_url('nightly', 'x86', 'multi', True) ==
-            self.archive_url_base + 'latest-mozilla-central-android-x86/'
-            'fennec-56.0a1.multi.android-i386.apk')
+        url = firefox_android.get_download_url('nightly', 'arm', 'multi', True)
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'fennec-nightly-latest'),
+                              ('os', 'android'), ('lang', 'multi')])
+        url = firefox_android.get_download_url('nightly', 'x86', 'multi', True)
+        self.assertListEqual(parse_qsl(urlparse(url).query),
+                             [('product', 'fennec-nightly-latest'),
+                              ('os', 'android-x86'), ('lang', 'multi')])
 
     def test_get_download_url_beta(self):
         """

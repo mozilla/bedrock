@@ -329,6 +329,7 @@ class FirefoxAndroid(_ProductDetails):
 
     # Product names defined in bouncer
     product_map = {
+        'nightly': 'fennec-nightly-latest',
         'beta': 'fennec-beta-latest',
         'release': 'fennec-latest',
     }
@@ -465,20 +466,7 @@ class FirefoxAndroid(_ProductDetails):
         :return: string url
         """
         if force_direct:
-            # Use a direct archive link for Nightly
-            if channel == 'nightly':
-                if arch == 'x86':
-                    api_version = 'x86'
-                elif self.latest_major_version(channel) < 56:
-                    api_version = 'api-15'
-                else:
-                    api_version = 'api-16'
-
-                return self.archive_urls[arch] % (self.archive_repo[channel],
-                                                  api_version,
-                                                  self.latest_version(channel))
-
-            # Use a bouncer link for Beta/Release
+            # Use a bouncer link
             return '?'.join([self.bouncer_url, urlencode([
                 ('product', self.product_map.get(channel, 'fennec-latest')),
                 ('os', self.platform_map[arch]),
