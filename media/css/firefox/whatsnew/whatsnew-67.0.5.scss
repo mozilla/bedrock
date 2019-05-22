@@ -6,16 +6,12 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/call-out';
-@import '../../../protocol/css/components/feature-card';
 @import '../../../protocol/css/components/hero';
-@import '../../../protocol/css/components/newsletter-form';
-
 @import '../../protocol/components/state-fxa';
 
 body {
     background: url('/media/img/firefox/whatsnew_67/noodles.png') no-repeat;
-    background-size: 860px;
+    background-size: 850px;
     background-position-x: -350px;
     background-position-y: $layout-md;
 }
@@ -75,12 +71,10 @@ main {
     margin: 0 auto;
 
     h1 {
-        @include text-display-lg;
-        width: 85%;
+        font-size: 2.25rem;
         margin-bottom: 1em;
     }
 
-    // signed in
     .show-fxa-supported-signed-in {
         #monitor-logo {
             float: left;
@@ -104,13 +98,30 @@ main {
 // Benefits
 
 .benefits {
-    width: $content-md;
+    @media #{$mq-lg} {
+        width: $content-md;
+    }
 
     .benefits-list {
+        .respect-glyphs {
+            display: flex;
+            flex-direction: column;
+            float: left;
+            margin-bottom: 0;
+
+            img {
+                align-self: center;
+                margin-bottom: 20px;
+            }
+        }
 
         h2 {
-            @include text-display-md;
+            @include text-display-sm;
             margin-bottom: $layout-lg;
+        }
+
+        hr {
+            border-top-width: 2px;
         }
 
         .benefit-content {
@@ -122,14 +133,12 @@ main {
         }
 
         div {
-            margin-bottom: $layout-lg;
-            p {
-                width: $content-sm;
-            }
+            margin-bottom: $layout-md;
         }
 
         .glyphs {
             float: left;
+            width: 40px;
         }
     }
 }
@@ -143,7 +152,6 @@ main {
 }
 
 .fxa-form-cta {
-
     .fxa-email-form {
         width: 100%;
         margin-bottom: $spacing-lg;

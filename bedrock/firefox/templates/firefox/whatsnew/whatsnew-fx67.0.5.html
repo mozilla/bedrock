@@ -49,7 +49,7 @@
             }}
           {% endblock %}
         </div>
-        <a href="#">{{ _('Learn more about joining Firefox') }}</a>
+        <a href="{{ url('firefox.accounts') }}">{{ _('Learn more about joining Firefox') }}</a>
       </div>
       <div class="show-fxa-supported-signed-in">
         <h1>{{ _('Your account connects you to all of our products. ') }}</h1>
@@ -68,42 +68,43 @@
   <section class="mzp-l-content benefits">
     <div class="benefits-list">
       <div class="show-fxa-supported-signed-out">
-        <div class="respect">
+        <div class="respect-glyphs">
           <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/lockbox_glyph.svg') }}" alt="">
           <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/send_glyph.svg') }}" alt="">
-          <h2>{{ _('Products that respect') }}</h2>
+        </div>
+        <div class="benefit-content">
+          <h3>{{ _('Products that respect') }}</h3>
           <p>
             {% trans send='https://send.firefox.com/', lockwise='https://lockbox.firefox.com/', monitor='https://monitor.firefox.com/' %}
             Firefox products like <a href="{{ send }}">Send</a>, <a href="{{ lockwise }}">Lockwise</a> and <a href="{{ monitor }}">Monitor</a> help you get things done without invading your privacy.
             {% endtrans %}
           </p>
         </div>
-        <div class="protects">
-          <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/protects_glyph.svg') }}" alt="">
-          <h2>{{ _('Knowledge that protects') }}</h2>
+        <hr>
+        <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/protects_glyph.svg') }}" alt="">
+        <div class="benefit-content">
+          <h3>{{ _('Knowledge that protects') }}</h3>
           <p>{{ _('Learn everything you need to know (but don’t yet) about staying smart and safe online.') }}</p>
         </div>
-        <div class="privacy">
-          <img src="{{ static('img/firefox/whatsnew_67/heart_glyph.svg') }}" class="glyphs">
-          <h2>{{ _('Fierce defense of your privacy') }}</h2>
+        <hr>
+        <img src="{{ static('img/firefox/whatsnew_67/heart_glyph.svg') }}" class="glyphs">
+        <div class="benefit-content">
+          <h3>{{ _('Fierce defense of your privacy') }}</h3>
           <p>{{ _('Everything we make and do honors our Personal Data Promise: <strong>Take less. Keep it safe. No secrets.</strong>') }}</p>
         </div>
       </div>
       <div class="show-fxa-supported-signed-in">
         <h2>{{ _('And soon it’ll connect you to something bigger.') }}</h2>
-        <div class="protects">
-          <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/experiments.svg') }}" alt="">
-          <div class="benefit-content">
-            <h3>{{ _('Help us build a better Firefox for you.') }}</h3>
-            <p>{{ _('Get into the open source spirit by test-driving upcoming products.') }}</p>
-          </div>
+        <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/experiments.svg') }}" alt="">
+        <div class="benefit-content">
+          <h3>{{ _('Help us build a better Firefox for you.') }}</h3>
+          <p>{{ _('Get into the open source spirit by test-driving upcoming products.') }}</p>
         </div>
-        <div class="privacy">
-          <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/inbox.svg') }}" alt="">
-          <div class="benefit-content">
-            <h3>{{ _('Help us keep Big Tech in check.') }}</h3>
-            <p>{{ _('We support communities all over the world standing up for a healthier internet.  Add your voice to the fight.') }}</p>
-          </div>
+        <hr>
+        <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/inbox.svg') }}" alt="">
+        <div class="benefit-content">
+          <h3>{{ _('Help us keep Big Tech in check.') }}</h3>
+          <p>{{ _('We support communities all over the world standing up for a healthier internet.  Add your voice to the fight.') }}</p>
         </div>
       </div>
     </div>
