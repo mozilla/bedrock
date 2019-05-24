@@ -4,8 +4,7 @@ push_public_registry: true
 regions:
   - frankfurt
 apps:
-  - bedrock-stage
   - bedrock-prod
 integration_tests:
   frankfurt:
-    - firefox
+    - headless
