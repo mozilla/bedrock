@@ -328,7 +328,7 @@
 {%- endmacro %}
 
 {% macro monitor_button(utm_source='', utm_campaign='', button_text='', button_class='mzp-c-button mzp-t-product') -%}
-  <a action="{{ settings.FXA_ENDPOINT }}" href="https://fx-breach-alerts.herokuapp.com/oauth/init?utm_source={{ utm_source }}&utm_campaign={{ utm_campaign }}&form_type=email&entrypoint=mozilla.org-whatsnew6705" class="{{ button_class }}" id="fxa-monitor-submit" data-button-name="Continue">
+  <a data-action="{{ settings.FXA_ENDPOINT }}" href="https://fx-breach-alerts.herokuapp.com/oauth/init?utm_source={{ utm_source }}&utm_campaign={{ utm_campaign }}&form_type=email&entrypoint=mozilla.org-whatsnew6705" class="{{ button_class }}" id="fxa-monitor-submit" data-button-name="Continue">
     {% if button_text %}
       {{ button_text }}
     {% else %}

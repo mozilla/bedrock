@@ -20,7 +20,7 @@ Mozilla.MonitorButton = (function() {
         return;
     }
 
-    var destURL = monitorButton.getAttribute('action') + 'metrics-flow';
+    var destURL = monitorButton.getAttribute('data-action') + 'metrics-flow';
 
     fetch(destURL).then(function(resp) {
         return resp.json();
@@ -32,5 +32,5 @@ Mozilla.MonitorButton = (function() {
     }).catch(function() {
         // silently fail, leaving flow_id and flow_begin_time as default empty value
     });
-})(window.Mozilla);
+})();
 

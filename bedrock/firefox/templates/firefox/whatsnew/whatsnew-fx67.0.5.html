@@ -30,7 +30,7 @@
   </header>
   <section class="mzp-l-content">
     <div class="card">
-      <div class="show-fxa-supported-signed-out">
+      <div class="show-fxa-default show-fxa-supported-signed-out">
         <h1>{{ _('You’ve got the latest browser. Now get the rest of Firefox.') }}</h1>
         <p>{{ _('Join Firefox for a whole family of respectful products, plus all the knowledge you need to protect yourself online.') }}</p>
         <div class="c-signup-container fxa-form-cta">
@@ -59,9 +59,9 @@
       </div>
     </div>
   </section>
-  <section class="mzp-l-content benefits">
+  <section class="mzp-l-content c-benefits">
     <div class="benefits-list">
-      <div class="show-fxa-supported-signed-out">
+      <div class="show-fxa-default show-fxa-supported-signed-out">
         <div class="respect-glyphs">
           <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/lockbox_glyph.svg') }}" alt="">
           <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/send_glyph.svg') }}" alt="">
@@ -81,7 +81,7 @@
           <p>{{ _('Learn everything you need to know (but don’t yet) about staying smart and safe online.') }}</p>
         </div>
         <hr>
-        <img src="{{ static('img/firefox/whatsnew_67/heart_glyph.svg') }}" class="glyphs">
+        <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/heart_glyph.svg') }}" alt="">
         <div class="benefit-content">
           <h3>{{ _('Fierce defense of your privacy') }}</h3>
           <p>{{ _('Everything we make and do honors our Personal Data Promise: <strong>Take less. Keep it safe. No secrets.</strong>') }}</p>
@@ -107,5 +107,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox_whatsnew_trailhead') }}
+  {{ js_bundle('firefox_whatsnew_67.0.5') }}
 {% endblock %}

@@ -10,7 +10,7 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/components/state-fxa';
 
 body {
-    background: url('/media/img/firefox/whatsnew_67/noodles.png') no-repeat;
+    background: $color-white url('/media/img/firefox/whatsnew_67/noodles.png') no-repeat;
     background-size: 850px;
     background-position-x: -350px;
     background-position-y: $layout-md;
@@ -67,8 +67,9 @@ main {
     background: #fff;
     border-radius: 3px;
     box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.21);
-    padding: $spacing-xl $spacing-2xl $spacing-xl $spacing-2xl;
+    padding: $spacing-xl $spacing-2xl;
     margin: 0 auto;
+    max-width: 600px;
 
     h1 {
         font-size: 2.25rem;
@@ -85,10 +86,6 @@ main {
         }
     }
 
-    @media #{$mq-lg} {
-        width: 600px;
-    }
-
     h2 {
         @include text-display-sm;
     }
@@ -97,7 +94,7 @@ main {
 //* -------------------------------------------------------------------------- */
 // Benefits
 
-.benefits {
+.c-benefits {
     @media #{$mq-lg} {
         width: $content-md;
     }
@@ -122,6 +119,7 @@ main {
 
         hr {
             border-top-width: 2px;
+            clear:left;
         }
 
         .benefit-content {
