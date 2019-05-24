@@ -362,7 +362,7 @@
 
     DO NOT include utm_source in this dictionary! (It's already a required param.)
 #}
-{% macro fxa_email_form(entrypoint, utm_source, class_name='fxa-email-form', utm_params={}, intro_text='', button_text='', button_class='js-fxa-cta-link button button-blue') -%}
+{% macro fxa_email_form(entrypoint, utm_source, style, class_name='fxa-email-form', utm_params={}, intro_text='', button_text='', button_class='js-fxa-cta-link button button-blue') -%}
   <form action="{{ settings.FXA_ENDPOINT }}" data-mozillaonline-action="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}" id="fxa-email-form" class="{{ class_name }}">
     <input type="hidden" name="action" value="email" />
     <input type="hidden" name="context" value="fx_desktop_v3" />
@@ -378,6 +378,9 @@
   {% for attr, val in utm_params.items() %}
     <input type="hidden" name="utm_{{ attr }}" value="{{ val }}" id="fxa-email-form-utm-{{ attr }}" />
   {% endfor %}
+  {% if style %}
+    <input type="hidden" name="style" value="{{ style }}" />
+  {% endif %}
 
     <p class="fxa-email-form-intro">
     {% if intro_text %}
