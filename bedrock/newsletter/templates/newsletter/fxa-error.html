@@ -1,0 +1,20 @@
+{% extends 'newsletter/base.html' %}
+
+{% set_lang_files "mozorg/newsletters" %}
+
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block body_id %}newsletter-fxa-error{% endblock body_id %}
+
+{% block content %}
+  {% block main_feature %}
+    <div id="main-feature">
+      <h1>{{ _('Manage your <span>Newsletter Subscriptions</span>') }}</h1>
+    </div>
+  {% endblock %}
+
+  <p class="container billboard">
+    {{ _('We are sorry, but there was a problem with our system. Please try again later!') }}
+  </p>
+{% endblock %}
