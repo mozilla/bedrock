@@ -23,7 +23,7 @@ $image-path: '/media/protocol/img';
             @include open-sans;
             @include text-display-lg;
             margin: 0 auto $spacing-2xl;
-            max-width: 555px;
+            max-width: 580px;
         }
 
         p {
@@ -40,6 +40,13 @@ $image-path: '/media/protocol/img';
 .mzp-c-article {
     margin: 0 auto $layout-lg;
 
+    img {
+        display: block;
+        margin: auto;
+        width: 100%;
+        max-width: 580px;
+    }
+
     .article-section {
         margin-bottom: $layout-lg;
 
@@ -47,19 +54,6 @@ $image-path: '/media/protocol/img';
             @include open-sans;
             @include text-display-lg;
         }
-
-        img {
-            display: block;
-            margin: auto;
-            width: 100%;
-            max-width: 580px;
-        }
-    }
-
-    hr {
-        margin: $layout-lg auto $layout-lg;
-        width: 100px;
-        border: 2px solid $color-purple-90;
     }
 }
 
