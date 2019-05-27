@@ -225,11 +225,11 @@
       "name": "firefox_new_scene1"
     },
     {
-        "files": [
-          "css/firefox/new/scene1.scss",
-          "css/firefox/new/yandex-scene1.scss"
-        ],
-        "name": "firefox_new_scene1_yandex"
+      "files": [
+        "css/firefox/new/scene1.scss",
+        "css/firefox/new/yandex-scene1.scss"
+      ],
+      "name": "firefox_new_scene1_yandex"
     },
     {
       "files": [
@@ -572,12 +572,6 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-67.0.5.scss"
-      ],
-      "name": "firefox_whatsnew_67.0.5"
-    },
-    {
-      "files": [
         "css/mozorg/commit-access-policy.less"
       ],
       "name": "commit-access-policy"
@@ -607,10 +601,10 @@
       "name": "privacy_email"
     },
     {
-        "files": [
-          "css/firefox/campaign/better-browser.scss"
-        ],
-        "name": "firefox_campaign_better_browser"
+      "files": [
+        "css/firefox/campaign/better-browser.scss"
+      ],
+      "name": "firefox_campaign_better_browser"
     },
     {
       "files": [
@@ -911,6 +905,12 @@
         "css/firefox/windows-64-bit.scss"
       ],
       "name": "windows-64-bit"
+    },
+    {
+      "files": [
+        "css/firefox/features/safebrowser.scss"
+      ],
+      "name": "safebrowser"
     }
   ],
   "js": [
@@ -1033,17 +1033,6 @@
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-form.js",
-        "js/base/mozilla-monitor-button.js",
-        "protocol/js/protocol-modal.js"
-      ],
-      "name": "firefox_whatsnew_67.0.5"
-    },
-    {
-      "files": [
         "js/base/mozilla-traffic-cop.js",
         "js/firefox/new/trailhead/experiment.js"
       ],
@@ -1083,12 +1072,12 @@
       "name": "firefox_new_scene1_fxa_modal"
     },
     {
-        "files": [
-          "js/base/mozilla-modal.js",
-          "js/firefox/new/yandex/scene1.js",
-          "js/firefox/new/yandex/scene1-init.js"
-        ],
-        "name": "firefox_new_scene1_yandex"
+      "files": [
+        "js/base/mozilla-modal.js",
+        "js/firefox/new/yandex/scene1.js",
+        "js/firefox/new/yandex/scene1-init.js"
+      ],
+      "name": "firefox_new_scene1_yandex"
     },
     {
       "files": [
