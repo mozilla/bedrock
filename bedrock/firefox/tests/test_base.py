@@ -402,12 +402,20 @@ class TestWhatsNew(TestCase):
     # begin 67.0.5 whatsnew tests
 
     def test_fx_67_0_5(self, render_mock):
-        """Should use standard template for 67.0"""
+        """Should use trailhead template for 67.0.5"""
         req = self.rf.get('/firefox/whatsnew/')
         req.locale = 'en-US'
         self.view(req, version='67.0.5')
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/whatsnew-fx67.0.5.html']
+
+    def test_fx_67_0_5_locales(self, render_mock):
+        """Should use standard template for 67.0.5 for other locales"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'es-ES'
+        self.view(req, version='67.0.5')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx67.html']
 
     # end 67.0.5 whatsnew tests
 
