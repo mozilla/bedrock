@@ -1,0 +1,27 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-protocol.html" %}
+
+{% block html_attrs %}data-convert-project-id="{{ settings.CONVERT_PROJECT_ID }}"{% endblock %}
+
+{% block experiments %}
+  {% if switch('convert-experiment-script') %}
+    {# Pre-fetch the DNS lookup prior to loading the convert script #}
+    <link rel="dns-prefetch" href="https://cdn-3.convertexperiments.com/">
+    {{ js_bundle('convert') }}
+  {% endif %}
+{% endblock %}
+
+{% block body_class %}mzp-t-mozilla{% endblock %}
+
+{% block site_js %}
+<!--[if !IE]><!-->
+  {{ js_bundle('common-protocol-no-jquery') }}
+<!--<![endif]-->
+
+<!--[if IE]>
+  {{ js_bundle('common-ie') }}
+<![endif]-->
+{% endblock %}

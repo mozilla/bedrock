@@ -1,0 +1,28 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button with context %}
+{% from "macros-protocol.html" import hero, picto_card with context %}
+
+{% extends "exp/base/base-firefox.html" %}
+
+{% block canonical_urls %}
+  {# the SEM campaign page should set canonical to the /firefox/new/ page. #}
+  <link rel="canonical" href="{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/">
+{% endblock %}
+
+{# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
+{% block extrahead %}
+  {{ css_bundle('protocol-core') }}
+  {{ css_bundle('exp-firefox-new') }}
+{% endblock %}
+
+{% block old_ie_styles %}{% endblock %}
+{% block site_css %}{% endblock %}
+{% block page_css %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{# Bug 1381776 #}
+{% block update_notification %}{% endblock %}

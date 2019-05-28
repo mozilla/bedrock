@@ -230,6 +230,18 @@
     },
     {
       "files": [
+        "css/exp/opt-out.scss"
+      ],
+      "name": "exp-opt-out"
+    },
+    {
+      "files": [
+        "css/exp/firefox/new/download.scss"
+      ],
+      "name": "exp-firefox-new"
+    },
+    {
+      "files": [
         "css/security/security.scss"
       ],
       "name": "security"
@@ -1530,12 +1542,47 @@
     },
     {
       "files": [
+        "js/base/mozilla-utils.js",
+        "js/base/mozilla-client.js",
+        "js/base/class-list-polyfill.js",
+        "protocol/js/protocol-supports.js",
+        "protocol/js/protocol-utils.js",
+        "protocol/js/protocol-menu.js",
+        "protocol/js/protocol-navigation.js",
+        "js/base/protocol/init-navigation.js",
+        "protocol/js/protocol-lang-switcher.js",
+        "js/base/protocol/init-lang-switcher.js",
+        "protocol/js/protocol-details.js",
+        "protocol/js/protocol-footer.js",
+        "js/base/base-page-init.js",
+        "js/base/core-datalayer.js",
+        "js/base/core-datalayer-init.js",
+        "js/base/search-params.js",
+        "js/base/fxa-utm-referral.js"
+      ],
+      "name": "common-protocol-no-jquery"
+    },
+    {
+      "files": [
         "js/base/mozilla-article.js",
         "js/newsletter/form-protocol.js",
         "protocol/js/protocol-newsletter.js",
         "protocol/js/protocol-sidemenu.js"
       ],
       "name": "basic-article"
+    },
+    {
+      "files": [
+        "js/libs/jquery-3.4.1.min.js",
+        "js/exp/convert.js"
+      ],
+      "name": "convert"
+    },
+    {
+      "files": [
+        "js/libs/jquery-3.4.1.min.js"
+      ],
+      "name": "jquery"
     },
     {
       "files": [

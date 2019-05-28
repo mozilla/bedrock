@@ -1,0 +1,43 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "exp/firefox/new/base.html" %}
+
+{% block page_title_prefix %}Download Firefox — {% endblock %}
+
+{% block page_title %}kostenloser Browser{% endblock %}
+
+{# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
+{% block page_title_suffix %} — Mozilla{% endblock %}
+
+{% block page_desc %}Download Mozilla Firefox, den kostenlosen Browser für Windows, Mac, Linux, Android und iOS. Firefox wird von Mozilla entwickelt – der Non-Profit-Organisation, die sich für deine Online-Rechte stark macht.{% endblock %}
+
+{#- This will appear as <meta property="og:title"> which can be used for social share -#}
+{% block page_og_title %}Jetzt den schnellsten Firefox aller Zeiten herunterladen{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}Der neue Firefox: schnellere Seitenladezeiten, weniger Speicherverbrauch und vollgepackt mit neuen Funktionen.{% endblock %}
+
+{% block content %}
+<main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
+  {% call hero(
+    title='Hol dir den neuesten Firefox Browser.',
+    desc='Und damit eines der Firefox Produkte, für die deine Privatsphäre an erster Stelle steht.',
+    class='mzp-has-image mzp-t-dark',
+    include_cta=True,
+    image_url='firefox/new/trailhead/browser-window.svg',
+    heading_level=1
+  ) %}
+    {{ download_firefox(alt_copy='Jetzt herunterladen', download_location='primary cta') }}
+  {% endcall %}
+
+  <section class="features">
+    <ul class="mzp-l-card-third mzp-l-content">
+      {{ picto_card(title='Komm zu Firefox', desc='Verbinde alle deine Firefox Produkte miteinander und bleib in Sachen Online-Sicherheit immer auf dem neuesten Stand.', class='join') }}
+      {{ picto_card(title='Passwörter immer dabei', desc='<strong>Firefox Lockwise</strong> hat deine gespeicherten Passwörter immer und auf allen deinen Geräten für dich parat.'|safe, class='lockwise') }}
+      {{ picto_card(title='Schütze deine Privatsphäre', desc='Im <strong>Privaten Modus</strong> wird dein Browserverlauf automatisch gelöscht, sodass andere Benutzer deines Computers ihn nicht sehen können.'|safe, class='private') }}
+    </ul>
+  </section>
+</main>
+{% endblock %}
