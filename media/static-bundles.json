@@ -572,6 +572,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-67.0.5.scss"
+      ],
+      "name": "firefox_whatsnew_67.0.5"
+    },
+    {
+      "files": [
         "css/mozorg/commit-access-policy.less"
       ],
       "name": "commit-access-policy"
@@ -1030,6 +1036,17 @@
         "js/firefox/whatsnew/whatsnew-67.js"
       ],
       "name": "firefox_whatsnew_67"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-monitor-button.js",
+        "protocol/js/protocol-modal.js"
+      ],
+      "name": "firefox_whatsnew_67.0.5"
     },
     {
       "files": [
