@@ -1,0 +1,51 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "exp/firefox/new/base.html" %}
+
+{% block page_title_prefix %}Download Firefox — {% endblock %}
+
+{% block page_title %}Free Web Browser{% endblock %}
+
+{# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
+{%- block page_title_suffix -%}
+  {% if LANG == 'en-CA' %}
+    — Mozilla (CA)
+  {% elif LANG == 'en-GB' %}
+    — Mozilla (UK)
+  {% else %}
+    — Mozilla
+  {% endif %}
+{%- endblock -%}
+
+{% block page_desc %}Download Mozilla Firefox, a free web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox for Windows, macOS, Linux, Android and iOS today!{% endblock %}
+
+{#- This will appear as <meta property="og:title"> which can be used for social share -#}
+{% block page_og_title %}Download the fastest Firefox ever{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}Faster page loading, less memory usage and packed with features, the new Firefox is here.{% endblock %}
+
+{% block content %}
+<main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
+  {% call hero(
+    title='Get the latest Firefox browser.',
+    desc='And start getting the respect you deserve with our family of privacy-first products.',
+    class='mzp-has-image mzp-t-dark',
+    include_cta=True,
+    image_url='firefox/new/trailhead/browser-window.svg',
+    heading_level=1
+  ) %}
+    {{ download_firefox(alt_copy='Download Now', download_location='primary cta') }}
+  {% endcall %}
+
+  <section class="features">
+    <ul class="mzp-l-card-third mzp-l-content">
+      {{ picto_card(title='Join Firefox', desc='Connect to a whole family of respectful products, plus all the knowledge you need to protect yourself online.', class='join') }}
+      {{ picto_card(title='Passwords made portable', desc='<strong>Firefox Lockwise</strong> makes the passwords you save in Firefox available on all your devices.'|safe, class='lockwise') }}
+      {{ picto_card(title='Protect your privacy', desc='<strong>Private Browsing</strong> clears your history to keep it secret from anyone who uses your computer.'|safe, class='private') }}
+    </ul>
+  </section>
+</main>
+{% endblock %}
