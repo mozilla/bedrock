@@ -6,30 +6,10 @@
 @import '../../protocol/css/includes/lib';
 
 
-// TODO: Remove these @font-face rules when Protocol 7 lands in bedrock
-@font-face {
-    font-family: 'Firefox Sans';
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-    src: url('https://assets.mozilla.net/fonts/FirefoxSharpSans-Medium.woff2') format('woff2'),
-         url('https://assets.mozilla.net/fonts/FirefoxSharpSans-Medium.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'Firefox Sans';
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-    src: url('https://assets.mozilla.net/fonts/FirefoxSharpSans-Bold.woff2') format('woff2'),
-         url('https://assets.mozilla.net/fonts/FirefoxSharpSans-Bold.woff') format('woff');
-}
-
 .mzp-t-firefox {
     color: $color-off-black;
 
     h1, h2, h3, h4 {
-        font-family: 'Firefox Sans', sans-serif;
         font-weight: bold;
     }
 }
@@ -177,13 +157,23 @@
 
     a:link,
     a:visited {
-        color: $color-off-black;
         display: block;
         text-decoration: none;
 
-        &:hover .c-product-list-desc,
-        &:focus .c-product-list-desc {
+        .c-product-list-title {
+            color: $color-off-black;
+        }
+
+        .c-product-list-desc {
             text-decoration: underline;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            .c-product-list-desc {
+                text-decoration: none;
+            }
         }
     }
 
@@ -197,13 +187,14 @@
 }
 
 .c-product-list-title {
-    @include text-display-sm;
+    @include background-size(50px, 50px);
     @include bidi((
         (background-position, left top, right top),
         (padding-left, $layout-lg, 0),
         (padding-right, 0, $layout-lg),
         (text-align, left, right),
     ));
+    @include text-display-sm;
     background-repeat: no-repeat;
     margin: 0 auto $spacing-lg;
     min-height: 50px;
@@ -216,22 +207,18 @@
 
     .t-product-firefox & {
         background-image: url('/media/img/logos/firefox/logo-quantum.png');
-        @include background-size(50px, 50px);
     }
 
     .t-product-lockwise & {
         background-image: url('/media/img/logos/firefox/logo-lockwise.svg');
-        @include background-size(50px, 50px);
     }
 
     .t-product-monitor & {
         background-image: url('/media/img/logos/firefox/logo-monitor.svg');
-        @include background-size(50px, 50px);
     }
 
     .t-product-send & {
         background-image: url('/media/img/logos/firefox/logo-send.svg');
-        @include background-size(50px, 50px);
     }
 
     @media #{$mq-sm} {
@@ -245,7 +232,6 @@
 
 .c-accounts-products-tagline {
     @include font-size(32px);
-    font-family: 'Firefox Sans', sans-serif;
     font-weight: bold;
     color: $color-red-50;
     max-width: $content-md;
@@ -434,7 +420,6 @@
 
 .c-accounts-movement .c-section-title {
     @include font-size(32px);
-    font-family: 'Firefox Sans', sans-serif;
     font-weight: bold;
     color: $color-red-50;
     max-width: $content-md;
