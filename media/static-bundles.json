@@ -1467,7 +1467,8 @@
       "files": [
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-form.js"
+        "js/base/mozilla-fxa-form.js",
+        "js/firefox/accounts-2019.js"
       ],
       "name": "firefox_accounts_2019"
     },
