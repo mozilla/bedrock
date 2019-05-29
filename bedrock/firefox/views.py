@@ -448,6 +448,7 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
 
     def get_template_names(self):
         locale = l10n_utils.get_locale(self.request)
+        trailhead_locales = ['en-US', 'en-CA', 'en-GB', 'de', 'fr']
 
         version = self.kwargs.get('version') or ''
         oldversion = self.request.GET.get('oldversion', '')
@@ -475,7 +476,7 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
             template = 'firefox/whatsnew/index-lite.id.html'
         elif locale == 'zh-TW' and not version.startswith('64.'):
             template = 'firefox/whatsnew/index.zh-TW.html'
-        elif version == '67.0.5' and locale in ['en-US', 'en-CA', 'en-GB', 'de', 'fr']:
+        elif version.startswith('67.0.') and locale in trailhead_locales:
             template = 'firefox/whatsnew/whatsnew-fx67.0.5.html'
         elif version.startswith('67.'):
             template = 'firefox/whatsnew/whatsnew-fx67.html'
