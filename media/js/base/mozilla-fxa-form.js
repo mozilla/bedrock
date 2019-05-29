@@ -12,6 +12,8 @@ Mozilla.FxaForm = (function(Mozilla) {
 
     var fxaForm = document.getElementById('fxa-email-form');
     var fxaSubmitButton = document.getElementById('fxa-email-form-submit');
+    var fxaFormContextField = fxaForm.querySelector('[name="context"]');
+    var fxaFormServiceField = fxaForm.querySelector('[name="service"]');
 
     var supportsFetch = 'fetch' in window;
 
@@ -71,9 +73,14 @@ Mozilla.FxaForm = (function(Mozilla) {
     }
 
     if (fxaForm) {
-        // form is Firefox only right now
+        // Sync is Firefox only
         if (Mozilla.Client.isFirefox) {
             init();
+        } else {
+            // Omit the fields required for sync.
+            // This allows non-Firefoxes to create accounts.
+            fxaFormContextField.value = '';
+            fxaFormServiceField.value = '';
         }
     }
 })(window.Mozilla);
