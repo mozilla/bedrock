@@ -462,14 +462,20 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
             template = 'firefox/nightly_whatsnew.html'
         elif channel == 'alpha':
             if version.startswith('68.') and switch('dev_whatsnew_68'):
-                template = 'firefox/developer/whatsnew-fx68.html'
+                if locale in trailhead_locales and switch('dev_whatsnew_68_trailhead'):
+                    template = 'firefox/developer/whatsnew-fx68-trailhead.html'
+                else:
+                    template = 'firefox/developer/whatsnew-fx68.html'
             elif show_57_dev_whatsnew(version):
                 template = 'firefox/developer/whatsnew.html'
             else:
                 template = 'firefox/dev-whatsnew.html'
         elif channel == 'beta':
             if version.startswith('68.'):
-                template = 'firefox/whatsnew/beta/whatsnew-fx68.html'
+                if locale in trailhead_locales and switch('beta_whatsnew_68_trailhead'):
+                    template = 'firefox/whatsnew/beta/whatsnew-fx68-trailhead.html'
+                else:
+                    template = 'firefox/whatsnew/beta/whatsnew-fx68.html'
             else:
                 template = 'firefox/whatsnew/index.html'
         elif locale == 'id':

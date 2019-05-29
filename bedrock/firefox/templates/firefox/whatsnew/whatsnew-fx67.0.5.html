@@ -52,10 +52,13 @@
         <div class="mzp-l-hero-content">
           <h2>{{ _('Including Firefox Monitor, your watchful eye for data breaches') }}</h2>
           <p>{{ _('See if your info was compromised in another company’s data breach, and get automatically signed up for future alerts.') }}</p>
-          {{ monitor_button(
-            utm_source='whatsnew6705',
-            utm_campaign='whatsnew6705'
-          ) }}
+          {% block monitor_button %}
+            {{ monitor_button(
+              entrypoint='mozilla.org-whatsnew6705',
+              utm_source='whatsnew6705',
+              utm_campaign='whatsnew6705'
+            ) }}
+          {% endblock %}
         </div>
       </div>
     </div>

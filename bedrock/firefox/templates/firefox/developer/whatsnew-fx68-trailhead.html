@@ -1,0 +1,25 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/whatsnew_67.0.5" %}
+
+{% extends "firefox/whatsnew/whatsnew-fx67.0.5.html" %}
+
+{% block fxa_form %}
+  {{ fxa_email_form(
+      entrypoint='mozilla.org-whatsnew68a2',
+      button_class='mzp-c-button mzp-t-product mzp-t-small',
+      utm_source='whatsnew68a2',
+      style='trailhead',
+      utm_params={'campaign': 'fxa-embedded-form', 'content': 'whatsnew', 'medium': 'referral'})
+  }}
+{% endblock %}
+
+{% block monitor_button %}
+  {{ monitor_button(
+    entrypoint='mozilla.org-whatsnew68a2',
+    utm_source='whatsnew68a2',
+    utm_campaign='whatsnew68a2'
+  ) }}
+{% endblock %}
