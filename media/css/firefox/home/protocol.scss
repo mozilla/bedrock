@@ -33,7 +33,7 @@ main .mzp-l-content {
 
 .mzp-c-hero-title {
     @include text-display-sm;
-    font-weight: bold;
+    font-weight: normal;
     padding-top: 0;
 
     &:before {
@@ -46,10 +46,6 @@ main .mzp-l-content {
         padding-right: $spacing-sm;
         vertical-align: middle;
         width: 48px;
-    }
-
-    strong {
-        font-weight: normal;
     }
 }
 
@@ -69,9 +65,9 @@ main .mzp-l-content {
 
 @media #{$mq-md} {
     .mzp-c-hero.mzp-has-image {
-        @include at2x('/media/img/firefox/home/hero-small.jpg', contain);
+        @include at2x('/media/img/firefox/home/hero-small.jpg', 1640px);
         align-items: center;
-        background-position: top left 50vw;
+        background-position: top center;
         background-repeat: no-repeat;
         display: flex;
         min-height: 610px;
@@ -87,19 +83,6 @@ main .mzp-l-content {
 
     .mzp-l-content {
         width: 100%;
-    }
-}
-
-@media #{$mq-lg} and #{$mq-tall} {
-    .mzp-c-hero.mzp-has-image {
-        @include at2x('/media/img/firefox/home/hero.jpg', contain);
-        height: 60vh;
-        max-height: 672px;
-
-        .test-var-e & {
-            height: auto;
-            max-height: none;
-        }
     }
 }
 
@@ -280,8 +263,7 @@ main .mzp-l-content {
     }
 
     @media #{$mq-lg} {
-        // do not update background colour without updating background image
-        background: $color-off-black top left calc(50% + 500px) no-repeat url('/media/img/firefox/home/bright.png');
+        background: $color-off-black;
         padding-top: $layout-sm;
 
         .mzp-l-content {

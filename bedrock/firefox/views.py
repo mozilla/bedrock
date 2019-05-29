@@ -746,18 +746,14 @@ def firefox_home(request):
     if variant not in ['a', 'b', 'c', 'd', 'e']:  # place expected ?v= values in this list
         variant = None
 
-    if locale == 'en-US' and variant is not None and variant is not 'a':
+    if locale == 'en-US' and variant is not None and variant != 'a':
         template = 'firefox/home/index-b.html'
-
-        return l10n_utils.render(request,
-                             template,
-                             {'show_newsletter': show_newsletter, 'variation': variant})
     else:
         template = 'firefox/home/index.html'
 
-        return l10n_utils.render(request,
-                             template,
-                             {'show_newsletter': show_newsletter})
+    return l10n_utils.render(request,
+                        template,
+                        {'show_newsletter': show_newsletter, 'variation': variant})
 
 
 def firefox_concerts(request):

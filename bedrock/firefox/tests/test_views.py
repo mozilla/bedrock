@@ -842,14 +842,14 @@ class TestFirefoxHome(TestCase):
     def test_switch_off(self, render_mock):
         req = RequestFactory().get('/firefox/')
         views.firefox_home(req)
-        render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': False})
+        render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': False, 'variation': None})
 
     @override_settings(DEV=True)
     @patch('bedrock.firefox.views.l10n_utils.render')
     def test_switch_on(self, render_mock):
         req = RequestFactory().get('/firefox/')
         views.firefox_home(req)
-        render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': True})
+        render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': True, 'variation': None})
 
     @override_settings(DEV=True)
     @patch('bedrock.firefox.views.l10n_utils.render')
@@ -857,7 +857,7 @@ class TestFirefoxHome(TestCase):
         req = RequestFactory().get('/firefox/')
         req.locale = 'de'
         views.firefox_home(req)
-        render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': True})
+        render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': True, 'variation': None})
 
     @override_settings(DEV=True)
     @patch('bedrock.firefox.views.l10n_utils.render')
@@ -865,7 +865,7 @@ class TestFirefoxHome(TestCase):
         req = RequestFactory().get('/firefox/')
         req.locale = 'fr'
         views.firefox_home(req)
-        render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': True})
+        render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': True, 'variation': None})
 
     @override_settings(DEV=True)
     @patch('bedrock.firefox.views.l10n_utils.render')
@@ -873,4 +873,25 @@ class TestFirefoxHome(TestCase):
         req = RequestFactory().get('/firefox/')
         req.locale = 'it'
         views.firefox_home(req)
-        render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': False})
+        render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': False, 'variation': None})
+
+    @patch('bedrock.firefox.views.l10n_utils.render')
+    def test_brand_var_a(self, render_mock):
+        req = RequestFactory().get('/firefox/?v=a')
+        req.locale = 'en-US'
+        views.firefox_home(req)
+        render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': False, 'variation': 'a'})
+
+    @patch('bedrock.firefox.views.l10n_utils.render')
+    def test_brand_var_b(self, render_mock):
+        req = RequestFactory().get('/firefox/?v=b')
+        req.locale = 'en-US'
+        views.firefox_home(req)
+        render_mock.assert_called_once_with(req, 'firefox/home/index-b.html', {'show_newsletter': False, 'variation': 'b'})
+
+    @patch('bedrock.firefox.views.l10n_utils.render')
+    def test_brand_locale_var_b(self, render_mock):
+        req = RequestFactory().get('/firefox/?v=b')
+        req.locale = 'fr'
+        views.firefox_home(req)
+        render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': False, 'variation': 'b'})
