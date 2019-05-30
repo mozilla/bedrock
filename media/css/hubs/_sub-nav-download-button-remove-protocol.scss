@@ -1,0 +1,13 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+// Bug 1429849 - Override to hide the download button in sub navigation menu.
+
+#sub-nav-download-firefox {
+    display: none;
+}
+
+.moz-sub-nav .sub-nav-primary-links-container {
+    width: 100%;
+}

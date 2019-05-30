@@ -8,8 +8,11 @@
     var cop = new Mozilla.TrafficCop({
         id: 'experiment_firefox_desktop_brand',
         variations: {
-            'v=a': 93,  // control
-            'v=b': 7   // new brand
+            'v=a': 2,  // control
+            'v=b': 2,  // new brand
+            'v=c': 2,  // new brand, no quantum
+            'v=d': 2,  // new brand, browser in headline
+            'v=e': 2   // new brand, product image
         }
     });
 
