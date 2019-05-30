@@ -14,7 +14,6 @@ class FirefoxAccountsPage(FirefoxBasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/accounts/'
 
-    _download_buttons_locator = (By.CLASS_NAME, 'features-download')
     _create_account_form_locator = (By.ID, 'fxa-email-form')
 
     @property
@@ -22,15 +21,6 @@ class FirefoxAccountsPage(FirefoxBasePage):
         wait = Wait(self, timeout=3)
         try:
             result = wait.until(expected.visibility_of_element_located((self._create_account_form_locator)))
-            return result
-        except TimeoutException:
-            return False
-
-    @property
-    def are_download_buttons_displayed(self):
-        wait = Wait(self, timeout=3)
-        try:
-            result = wait.until(expected.visibility_of_all_elements_located((self._download_buttons_locator)))
             return result
         except TimeoutException:
             return False
