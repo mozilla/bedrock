@@ -290,7 +290,7 @@
             button_text=_('Create an Account'))
           }}
 
-          <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='mozzila.org-accounts_page', utm_params={'campaign': 'fxa-embedded-form', 'content': '/firefox/accounts/', 'source': 'accounts-page'}) }}>{{ _('Sign In') }}</a></p>
+          <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='mozzila.org-accounts_page', action='signin', utm_params={'campaign': 'fxa-embedded-form', 'content': '/firefox/accounts/', 'source': 'accounts-page'}) }}>{{ _('Sign In') }}</a></p>
         </div>
       </div>
 

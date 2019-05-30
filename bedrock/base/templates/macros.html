@@ -233,6 +233,8 @@
 
   {% if action == 'signup' %}
     {% set fxa_path = 'signup' %}
+  {% elif action == 'signin' %}
+    {% set fxa_path = 'signin' %}
   {% else %}
     {% do fxa_queries.insert(0, 'action=email') %}
   {% endif %}
