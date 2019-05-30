@@ -1037,7 +1037,7 @@
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
         "js/base/mozilla-monitor-button.js",
-        "protocol/js/protocol-modal.js"
+        "js/firefox/whatsnew/up-to-date.js"
       ],
       "name": "firefox_whatsnew_67.0.5"
     },
