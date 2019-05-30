@@ -77,7 +77,7 @@
       image_url='firefox/fights-for-you/pic-focus.jpg',
       aspect_ratio='mzp-has-aspect-16-9',
       class='mzp-l-card-feature-right-third mzp-t-firefox fffy-t-focus',
-      link_url='https://app.adjust.com/oh460vy',
+      link_url=url('firefox.mobile'),
       link_cta='Télécharger Firefox Focus',
       ga_title='Download Firefox Focus'
     ) %}
@@ -85,10 +85,10 @@
 
       <ul class="app-store-badges u-mobile-content">
         <li class="badge-android">
-          {{ google_play_button(href='https://mzl.la/2tabw1i', id='playStoreLink', product='Klar', extra_data_attributes={'download-product': 'Klar', 'download-version': 'android', 'download-location': 'primary cta'}) }}
+          {{ google_play_button(href=focus_adjust_url('android', 'fights-for-you-page'), id='playStoreLink', product='Focus', extra_data_attributes={'download-product': 'Focus', 'download-version': 'android', 'download-location': 'primary cta'}) }}
         </li>
         <li class="badge-ios">
-          <a id="appStoreLink" href="https://mzl.la/2JSz6da" data-link-type="download" data-download-os="iOS" data-download-product="Klar" data-download-version="ios" data-download-location="primary cta">
+          <a id="appStoreLink" href="{{ focus_adjust_url('ios', 'fights-for-you-page') }}" data-link-type="download" data-download-os="iOS" data-download-product="Focus" data-download-version="ios" data-download-location="primary cta">
             <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
           </a>
         </li>

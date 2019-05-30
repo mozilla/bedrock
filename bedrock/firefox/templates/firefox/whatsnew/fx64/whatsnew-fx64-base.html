@@ -92,7 +92,7 @@
       {{ high_res_img('firefox/whatsnew_64/fxa-lockbox.png', {'alt': '', 'width': '590', 'height': '590'}) }}
       <h3>{{ lockbox_head }}</h3>
       <p>{{ lockbox_desc }}</p>
-      <p><a class="mzp-c-button wn64-benefit-link" data-app="lockbox" href="https://app.adjust.com/orzhlh0">{{ lockbox_link }}</a></p>
+      <p><a class="mzp-c-button wn64-benefit-link" data-app="lockbox" href="https://lockwise.firefox.com/">{{ lockbox_link }}</a></p>
     </div>
 
     <div class="wn64-benefit wn64-pocket">
@@ -135,7 +135,7 @@
       <img class="mobile-qr" src="{{ static('img/firefox/whatsnew_64/lockbox-qr.png') }}" height="300" width="300">
         <ul class="mobile-download-buttons mobile-lockbox">
         <li class="ios">
-          <a href="https://app.adjust.com/kq8zhhz" data-link-type="download" data-download-os="iOS">
+          <a href="{{ lockwise_adjust_url('ios', 'whatsnew-64-page') }}" data-link-type="download" data-download-os="iOS">
             <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="" width="152" height="45">
           </a>
         </li>
@@ -145,10 +145,10 @@
         <img class="mobile-qr" src="{{ static('img/firefox/whatsnew_64/pocket-qr.png') }}" height="300" width="300">
         <ul class="mobile-download-buttons mobile-pocket">
           <li class="android">
-            {{ google_play_button(href='https://app.adjust.com/h5iycst') }}
+            {{ google_play_button(href=pocket_adjust_url('android', 'whatsnew-64-page')) }}
           </li>
           <li class="ios">
-            <a href="https://app.adjust.com/h5iycst" data-link-type="download" data-download-os="iOS">
+            <a href="{{ pocket_adjust_url('ios', 'whatsnew-64-page') }}" data-link-type="download" data-download-os="iOS">
               <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="" width="152" height="45">
             </a>
           </li>

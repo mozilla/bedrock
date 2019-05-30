@@ -17,6 +17,7 @@ from django.template.defaultfilters import slugify as django_slugify
 from django.template.defaulttags import CsrfTokenNode
 from django.template.loader import render_to_string
 from django.utils import six
+from django.utils.http import urlquote
 from django.utils.translation import ugettext as _
 try:
     from django.utils.encoding import smart_unicode as smart_text
@@ -493,22 +494,22 @@ def firefox_ios_url(ctx, ct_param=None):
 
     For en-US this would output:
 
-        https://itunes.apple.com/us/app/apple-store/id989804926?pt=373246&amp;mt=8
+        https://itunes.apple.com/us/app/firefox-private-safe-browser/id989804926
 
     For es-ES this would output:
 
-        https://itunes.apple.com/es/app/apple-store/id989804926?pt=373246&amp;mt=8
+        https://itunes.apple.com/es/app/firefox-private-safe-browser/id989804926
 
     For ja this would output:
 
-        https://itunes.apple.com/jp/app/apple-store/id989804926?pt=373246&amp;mt=8
+        https://itunes.apple.com/jp/app/firefox-private-safe-browser/id989804926
 
     """
     locale = getattr(ctx['request'], 'locale', 'en-US')
     link = firefox_ios.get_download_url('release', locale)
 
     if ct_param:
-        return link + '&ct=' + ct_param
+        return link + '?ct=' + ct_param
 
     return link
 
@@ -597,3 +598,124 @@ def datetime(t, fmt=None):
 def ifeq(a, b, text):
     """Return ``text`` if ``a == b``."""
     return jinja2.Markup(text if a == b else '')
+
+
+def _get_adjust_link(adjust_url, app_store_url, google_play_url, redirect, locale, adgroup, creative=None):
+    link = adjust_url
+    params = 'campaign=www.mozilla.org&adgroup=' + adgroup
+    redirect_url = None
+
+    # Get the appropriate app store URL to use as a fallback redirect.
+    if redirect == 'ios':
+        countries = settings.APPLE_APPSTORE_COUNTRY_MAP
+        if locale in countries:
+            redirect_url = app_store_url.format(country=countries[locale])
+        else:
+            redirect_url = app_store_url.replace('/{country}/', '/')
+    elif redirect == 'android':
+        redirect_url = google_play_url
+
+    # Optional creative parameter.
+    if creative:
+        params += '&creative=' + creative
+
+    if redirect_url:
+        link += '?redirect=' + urlquote(redirect_url, safe='') + '&' + params
+    else:
+        link += '?' + params
+
+    return link
+
+
+@library.global_function
+@jinja2.contextfunction
+def firefox_adjust_url(ctx, redirect, adgroup, creative=None):
+    """
+    Return an adjust.com link for Firefox on mobile.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ firefox_adjust_url('ios', 'accounts-page') }}
+    """
+    adjust_url = settings.ADJUST_FIREFOX_URL
+    app_store_url = settings.APPLE_APPSTORE_FIREFOX_LINK
+    play_store_url = settings.GOOGLE_PLAY_FIREFOX_LINK
+    locale = getattr(ctx['request'], 'locale', 'en-US')
+
+    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, adgroup, creative)
+
+
+@library.global_function
+@jinja2.contextfunction
+def focus_adjust_url(ctx, redirect, adgroup, creative=None):
+    """
+    Return an adjust.com link for Focus/Klar on mobile.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ focus_adjust_url('ios', 'fights-for-you-page') }}
+    """
+    klar_locales = ['de']
+    adjust_url = settings.ADJUST_FOCUS_URL
+    app_store_url = settings.APPLE_APPSTORE_FOCUS_LINK
+    play_store_url = settings.GOOGLE_PLAY_FOCUS_LINK
+    locale = getattr(ctx['request'], 'locale', 'en-US')
+
+    if locale in klar_locales:
+        adjust_url = settings.ADJUST_KLAR_URL
+        app_store_url = settings.APPLE_APPSTORE_KLAR_LINK
+        play_store_url = settings.GOOGLE_PLAY_KLAR_LINK
+
+    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, adgroup, creative)
+
+
+@library.global_function
+@jinja2.contextfunction
+def pocket_adjust_url(ctx, redirect, adgroup, creative=None):
+    """
+    Return an adjust.com link for Pocket on mobile.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ pocket_adjust_url('ios', 'accounts-page') }}
+    """
+    adjust_url = settings.ADJUST_POCKET_URL
+    app_store_url = settings.APPLE_APPSTORE_POCKET_LINK
+    play_store_url = settings.GOOGLE_PLAY_POCKET_LINK
+    locale = getattr(ctx['request'], 'locale', 'en-US')
+
+    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, adgroup, creative)
+
+
+@library.global_function
+@jinja2.contextfunction
+def lockwise_adjust_url(ctx, redirect, adgroup, creative=None):
+    """
+    Return an adjust.com link for Lockwise on mobile.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ lockwise_adjust_url('ios', 'accounts-page') }}
+    """
+    adjust_url = settings.ADJUST_LOCKWISE_URL
+    app_store_url = settings.APPLE_APPSTORE_LOCKWISE_LINK
+    play_store_url = settings.GOOGLE_PLAY_LOCKWISE_LINK
+    locale = getattr(ctx['request'], 'locale', 'en-US')
+
+    return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, adgroup, creative)

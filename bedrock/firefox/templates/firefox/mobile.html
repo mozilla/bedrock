@@ -64,10 +64,10 @@
               <div class="mobile-download-buttons-wrapper">
                 <ul class="mobile-download-buttons firefox" id="mobile-download-buttons-firefox">
                   <li class="android">
-                    {{ google_play_button(href='https://app.adjust.com/2uo1qc?campaign=desktop_xp&amp;adgroup=Google_Play_Store&amp;creative=badge_en', id='playStoreLink') }}
+                    {{ google_play_button(href=firefox_adjust_url('android', 'mobile-page'), id='playStoreLink') }}
                   </li>
                   <li class="ios">
-                    <a id="appStoreLink" href="https://app.adjust.com/2uo1qc?campaign=desktop_xp&amp;adgroup=iOS_App_Store&amp;creative=badge_en&amp;fallback=https%3A%2F%2Fitunes.apple.com%2Fapp%2Fapple-store%2Fid989804926%3Fpt%3D373246%26ct%3Dadjust_tracker%26mt%3D8" data-link-type="download" data-download-os="iOS">
+                    <a id="appStoreLink" href="{{ firefox_adjust_url('ios', 'mobile-page') }}" data-link-type="download" data-download-os="iOS">
                       <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
                     </a>
                   </li>
@@ -98,7 +98,7 @@
               <div class="mobile-download-buttons-wrapper">
                 <ul class="mobile-download-buttons focus" id="mobile-download-buttons-focus">
                   <li class="android">
-                    {{ google_play_button(href=settings.GOOGLE_PLAY_FIREFOX_FOCUS_LINK, id='playStoreLink', product='Focus') }}
+                    {{ google_play_button(href=focus_adjust_url('android', 'mobile-page'), id='playStoreLink', product='Focus') }}
                   </li>
                   {% if l10n_has_tag('focus_apk_link_012018') %}
                   <li class="android-apk">
@@ -106,7 +106,7 @@
                   </li>
                   {% endif %}
                   <li class="ios">
-                    <a id="appStoreLink" href="{{ settings.APPLE_APPSTORE_FIREFOX_FOCUS_LINK }}" data-link-type="download" data-download-os="iOS">
+                    <a id="appStoreLink" href="{{ focus_adjust_url('ios', 'mobile-page') }}" data-link-type="download" data-download-os="iOS">
                       <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
                     </a>
                   </li>

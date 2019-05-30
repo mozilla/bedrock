@@ -54,7 +54,7 @@
 </aside>
 {%- endmacro %}
 
-{% macro google_play_button(class_name='', extra_data_attributes={}, extra_img_attributes={}, href=settings.GOOGLE_PLAY_FIREFOX_LINK, id='', product='Firefox', target='') -%}
+{% macro google_play_button(class_name='', extra_data_attributes={}, extra_img_attributes={}, href=settings.GOOGLE_PLAY_FIREFOX_LINK_UTMS, id='', product='Firefox', target='') -%}
 {% set optional_img_attributes = {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True} %}
 {% do optional_img_attributes.update(extra_img_attributes) %}
 <a{% if class_name %} class="{{ class_name }}"{% endif %}{% if id %} id="{{ id }}"{% endif %}{% if target %} target="{{ target }}" rel="external noopener noreferrer"{% else %} rel="external"{% endif %} href="{{ href }}"{% if product in ['Firefox', 'Focus'] %} data-link-type="download" data-download-os="Android"{% endif %}{% if product == 'Firefox' %} data-mozillaonline-link="{{ settings.GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE }}"{% endif %}{% for attr, val in extra_data_attributes.items() %} data-{{ attr }}="{{ val }}"{% endfor %}>
@@ -70,7 +70,7 @@
   {% if ios_link == '' %}
     {% set ios_link = firefox_ios_url('mozorg') %}
   {% endif %}
-  {% set android_link = settings.GOOGLE_PLAY_FIREFOX_LINK %}
+  {% set android_link = settings.GOOGLE_PLAY_FIREFOX_LINK_UTMS %}
   <section id="send-to-device" class="{% if include_logo %}logo {% endif %}{% if include_title %}title{% else %}no-title{% endif %}" data-countries="{{ send_to_device_sms_countries(message_set) }}"{% if spinner_color %} data-spinner-color="{{ spinner_color }}"{% endif %}>
     <div class="form-container">
       {% if include_title %}

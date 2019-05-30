@@ -5,25 +5,24 @@
 from django.utils.http import urlquote
 
 
+# Base link to Firefox for Android on the Google Play store.
+GOOGLE_PLAY_FIREFOX_LINK = 'https://play.google.com/store/apps/details?id=org.mozilla.firefox'
+
 # Link to Firefox for Android on the Google Play store with Google Analytics
 # campaign parameters.
 # To clarify below, 'referrer' key value must be a URL encoded string of utm_*
 # key/values (https://bugzilla.mozilla.org/show_bug.cgi?id=1099429#c0).
-GOOGLE_PLAY_FIREFOX_LINK = ('https://play.google.com/store/apps/details?' +
-                            'id=org.mozilla.firefox&referrer=' +
-                            urlquote('utm_source=mozilla&utm_medium=Referral&'
-                                     'utm_campaign=mozilla-org'))
+GOOGLE_PLAY_FIREFOX_LINK_UTMS = (GOOGLE_PLAY_FIREFOX_LINK + '&referrer=' +
+                                 urlquote('utm_source=mozilla&utm_medium=Referral&'
+                                          'utm_campaign=mozilla-org'))
 
 # Bug 1264843: link to China build of Fx4A, for display within Fx China repack
-GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE = GOOGLE_PLAY_FIREFOX_LINK.replace(
+GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE = GOOGLE_PLAY_FIREFOX_LINK_UTMS.replace(
     'org.mozilla.firefox', 'cn.mozilla.firefox')
 
 # Link to Firefox for iOS on the Apple App Store with Google Analytics campaign
 # patameters. Each implementation should add a "ct" parameter for analytics.
-# Note: this URL is likely to change for Fx42. See bug comment:
-# https://bugzilla.mozilla.org/show_bug.cgi?id=1196310#c18
-APPLE_APPSTORE_FIREFOX_LINK = ('https://itunes.apple.com/{country}/app/' +
-                               'apple-store/id989804926?pt=373246&mt=8')
+APPLE_APPSTORE_FIREFOX_LINK = 'https://itunes.apple.com/{country}/app/firefox-private-safe-browser/id989804926'
 
 # Map Mozilla's locale codes to Apple's country codes so we can link to a
 # localized App Store page when possible. Here's the official territory list:
@@ -85,14 +84,33 @@ APPLE_APPSTORE_COUNTRY_MAP = {
     'vi': 'vt',     # Vietnam
 }
 
-# Link to Firefox Focus for iOS on the Apple App Store via app.adjust.
-# Fallback parameter sends users who are on the wrong platform to the iTunes website.
-# https://bugzilla.mozilla.org/show_bug.cgi?id=1350170
-APPLE_APPSTORE_FIREFOX_FOCUS_LINK = ('https://app.adjust.com/b8s7qo?campaign=moz.org&adgroup=Focus&creative=iOS&' +
-                                     'fallback=https%3A%2F%2Fitunes.apple.com%2Fapp%2Fid1055677337%3Fmt%3D8')
+# Link to Firefox Focus on the Apple App Store.
+APPLE_APPSTORE_FOCUS_LINK = 'https://itunes.apple.com/{country}/app/firefox-focus-privacy-browser/id1055677337'
 
-# Link to Firefox Focus for Android on the Google Play Store via app.adjust.
-# Fallback parameter sends users who are on the wrong platform to the Play Store website.
-# https://bugzilla.mozilla.org/show_bug.cgi?id=1350170
-GOOGLE_PLAY_FIREFOX_FOCUS_LINK = ('https://app.adjust.com/b8s7qo?campaign=moz.org&adgroup=Focus&creative=android' +
-                                  '&fallback=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.focus')
+# Link to Firefox Focus on the Google Play store.
+GOOGLE_PLAY_FOCUS_LINK = 'https://play.google.com/store/apps/details?id=org.mozilla.focus'
+
+# Link to Firefox Focus on the Apple App Store.
+APPLE_APPSTORE_KLAR_LINK = 'https://itunes.apple.com/{country}/app/klar-by-firefox/id1073435754'
+
+# Link to Firefox Klar on the Google Play store.
+GOOGLE_PLAY_KLAR_LINK = 'https://play.google.com/store/apps/details?id=org.mozilla.klar'
+
+# Link to Pocket on the Apple App Store.
+APPLE_APPSTORE_POCKET_LINK = 'https://itunes.apple.com/{country}/app/pocket-save-read-grow/id309601447'
+
+# Link to Pocket on the Google Play store.
+GOOGLE_PLAY_POCKET_LINK = 'https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro'
+
+# Link to Lockwise on the Apple App Store.
+APPLE_APPSTORE_LOCKWISE_LINK = 'https://itunes.apple.com/{country}/app/id1314000270?mt=8'
+
+# Link to Lockwise on the Google Play store.
+GOOGLE_PLAY_LOCKWISE_LINK = 'https://play.google.com/store/apps/details?id=mozilla.lockbox'
+
+# app.adjust.com links for all of the above products (Issue 7214)
+ADJUST_FIREFOX_URL = 'https://app.adjust.com/2uo1qc'
+ADJUST_FOCUS_URL = 'https://app.adjust.com/b8s7qo'
+ADJUST_KLAR_URL = 'https://app.adjust.com/jfcx5x'
+ADJUST_POCKET_URL = 'https://app.adjust.com/m54twk'
+ADJUST_LOCKWISE_URL = 'https://app.adjust.com/6tteyjo'
