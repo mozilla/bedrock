@@ -22,8 +22,8 @@
 {% block content %}
 
 <main class="mzp-t-firefox">
-  <header class="mzp-l-content c-page-header">
-    <div class="c-page-header-inner">
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
       {{ high_res_img('firefox/whatsnew_67/logo.png', {'alt': 'Firefox', 'width': '147', 'height': '55', 'class': 'c-page-header-logo-fx'}) }}
       <h1 class="c-page-header-up-to-date"><span>{{ _('Congrats! You’re using the latest version of Firefox.') }}</span></h1>
     </div>
@@ -73,7 +73,7 @@
         <div class="benefit-content">
           <h3>{{ _('Products that respect') }}</h3>
           <p>
-            {% trans send='https://send.firefox.com/', lockwise='https://lockbox.firefox.com/', monitor='https://monitor.firefox.com/' %}
+            {% trans send='https://send.firefox.com/', lockwise='https://lockwise.firefox.com/', monitor='https://monitor.firefox.com/' %}
             Firefox products like <a href="{{ send }}">Send</a>, <a href="{{ lockwise }}">Lockwise</a> and <a href="{{ monitor }}">Monitor</a> help you get things done without invading your privacy.
             {% endtrans %}
           </p>
