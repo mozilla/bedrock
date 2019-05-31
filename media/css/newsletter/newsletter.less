@@ -4,8 +4,30 @@
 
 @import "../sandstone/lib.less";
 
+
+@color-off-black: #20123a;
+
+
+body {
+    color: @color-off-black;
+
+    h1, h2, h3, h4 {
+        .open-sans;
+        color: @color-off-black;
+        font-weight: bold;
+    }
+}
+
+.billboard {
+    background: transparent none;
+    margin: 32px auto;
+    border: 0;
+}
+
 .mzp-c-navigation + #outer-wrapper,
 .moz-global-nav-drawer + #outer-wrapper {
+    background: #fff none;
+    border-top: 0;
     padding-top: @baseLine * 2;
 }
 
@@ -17,21 +39,24 @@
 }
 
 #existing-newsletter-form {
+    .explanatory {
+        .font-size(16px);
+    }
+
     .field {
         .clearfix();
         padding-bottom: @baseLine;
+
         label,
         .field-label {
-            .open-sans-light;
             .font-size(@largeFontSize);
         }
-        p {
-            .open-sans-light;
-            &.disclaimer {
-                .font-size(@smallFontSize);
-                margin-top: 1em;
-            }
+
+        p.disclaimer {
+            .font-size(@smallFontSize);
+            margin-top: 1em;
         }
+
         .field-contents {
             label {
                 float: none;
@@ -40,45 +65,47 @@
                 font-family: inherit;
                 .font-size(@baseFontSize);
             }
+
             input[type="email"],
             select {
                 width: 100%;
                 .border-box();
             }
         }
-        &.format-field {
-            .field-contents {
-                label {
-                    text-align: left;
-                    margin-right: 20px;
-                    line-height: 30px;
-                }
-            }
+
+        &.format-field .field-contents label {
+            text-align: left;
+            margin-right: 20px;
+            line-height: 30px;
         }
-        .field-radios {
-            input[type="radio"] {
-                vertical-align: text-top;
-            }
+
+        .field-radios input[type="radio"] {
+            vertical-align: text-top;
         }
+
         .errorlist {
             .span(3);
         }
     }
+
     h2 {
         .font-size(32px);
-        letter-spacing: -.5px;
     }
+
     h3 {
         .font-size(32px);
         line-height: 1.3;
     }
+
     h3.field-label {
         letter-spacing: normal;
         font-family: inherit;
     }
+
     #basic-settings {
         .span(4);
     }
+
     #default-newsletters,
     #other-newsletters,
     #remove-all-section,
@@ -86,70 +113,84 @@
         .span(7);
         float: right;
     }
+
     #other-newsletters {
         margin-top: @baseLine;
         padding: @baseLine*2 0;
         background: url('/media/img/newsletter/divider.png') no-repeat top center;
     }
+
     #remove-all-section {
         label {
             display: inline;
             float: none;
-            width: auto;
             margin: auto;
-            font-family: inherit;
-            .font-size(@smallFontSize);
             text-align: left;
-            color: @textColorTertiary;
+            width: auto;
         }
+
         input {
             vertical-align: text-top;
         }
     }
+
     .table {
         margin-bottom: 0;
         width: 100%;
+
         thead th {
+            .open-sans;
             padding: 0 10px 10px;
             color: @textColorTertiary;
-            .open-sans;
             font-size: @smallFontSize;
             text-align: center;
             white-space: nowrap;
         }
+
         tbody {
             th {
                 padding: 15px 15px 15px 0;
                 font-weight: normal;
                 text-align: left;
                 vertical-align: top;
-                h4 {
-                    margin: 0 0 5px 0;
-                    .font-size(22px);
-                    .en-only {
-                        color: @textColorTertiary;
-                        .font-size(@baseFontSize);
-                    }
-                }
+
                 .description {
                     margin: 0.2em 0 0 0;
-                    color: @textColorTertiary;
-                    .font-size(@smallFontSize);
-                    line-height: 1.3;
                 }
+
                 &.subcategory {
                     white-space: nowrap;
                 }
-                &.indented {
-                    padding-left: 2em;
-                    h4 {
-                        .font-size(@largeFontSize);
-                    }
-                }
             }
+
             td {
                 padding-right: 0;
                 text-align: center;
+            }
+
+            .indented {
+                th {
+                    padding-left: 24px;
+                    border-top: 0;
+                }
+
+                td {
+                    border-top: 0;
+                }
+
+                .title {
+                    .font-size(18px);
+                }
+            }
+
+            .title {
+                .font-size(22px);
+                font-weight: normal;
+                margin: 0 0 .25em;
+
+                .en-only {
+                    .font-size(@baseFontSize);
+                }
             }
         }
     }
@@ -259,6 +300,8 @@
         background-image: url("/media/img/newsletter/envelopes.png");
         background-repeat: no-repeat;
         background-position: 100% 100%;
+        border: 1px solid @borderColor;
+
         .field {
             margin: 5px 0;
         }

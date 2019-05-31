@@ -97,7 +97,8 @@
           {{ form['format'].errors }}
           <p class="disclaimer">{{ _('Text subscribers will receive an email twice a year to confirm continuation of the subscription. Those emails may include HTML.') }}</p>
         </div>
-        <div class="field">
+
+        <div class="explanatory">
           <p>{{ _('Many of our communications are related to an account you’ve signed up for, such as Firefox Accounts, MDN Web Docs, or Add-on Developer. To manage one of your accounts or see a list of all the accounts visit our <a href="%s">account management support page</a>.')|format('https://support.mozilla.org/kb/managing-account-data') }}
 
           <p>{{ _('To get access to the whole world of Firefox products, knowledge and services in one account, join us! Learn more about the benefits <a href="%s">here</a>.')|format(url('firefox.accounts')) }}</p>
@@ -118,8 +119,8 @@
           </thead>
           <tbody>
           {% for formpart in formset %}  {# each newsletter is a formset #}
-            <tr class="subscription">
-              <th{% if formpart.initial['indented'] %} class="indented"{% endif %}>
+            <tr class="subscription {% if formpart.initial['indented'] %}indented{% endif %}">
+              <th>
                 <h4 class="title">
                   {{ formpart.initial['title'] }}
                 </h4>
