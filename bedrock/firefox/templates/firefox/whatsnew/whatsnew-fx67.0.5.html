@@ -22,8 +22,8 @@
 {% block content %}
 
 <main class="mzp-t-firefox">
-  <header class="mzp-l-content c-page-header">
-    <div class="c-page-header-inner">
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
       {{ high_res_img('firefox/whatsnew_67/logo.png', {'alt': 'Firefox', 'width': '147', 'height': '55', 'class': 'c-page-header-logo-fx'}) }}
       <h1 class="c-page-header-up-to-date"><span>{{ _('Congrats! You’re using the latest version of Firefox.') }}</span></h1>
     </div>
@@ -44,11 +44,7 @@
             }}
           {% endblock %}
         </div>
-        {% if LANG.startswith('en-') %}
-          <a href="{{ url('firefox.accounts') }}">{{ _('Learn more about joining Firefox') }}</a>
-        {% else %}
-          <a href="{{ url('firefox.accounts') }}">{{ _('Learn More about joining Firefox') }}</a>
-        {% endif %}
+        <a href="{{ url('firefox.accounts') }}">{{ _('Learn more about joining Firefox') }}</a>
       </div>
       <div class="show-fxa-supported-signed-in">
         <h1>{{ _('Your account connects you to all of our products. ') }}</h1>
