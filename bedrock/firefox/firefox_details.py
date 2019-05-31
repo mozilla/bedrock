@@ -228,13 +228,21 @@ class FirefoxDesktop(_ProductDetails):
         :param locale_in_transition: Include the locale in the transition URL
         :return: string url
         """
-        _version = version
+        # no longer used, but still passed in. leaving here for now
+        # as it will likely be used in future.
+        # _version = version
         _locale = 'ja-JP-mac' if platform == 'osx' and locale == 'ja' else locale
         channel = 'devedition' if channel == 'alpha' else channel
         force_direct = True if channel != 'release' else force_direct
         stub_platforms = ['win', 'win64']
         esr_channels = ['esr', 'esr_next']
         include_funnelcake_param = False
+
+        # support optional MSI installer downloads
+        # bug 1493205
+        is_msi = platform.endswith('-msi')
+        if is_msi:
+            platform = platform[:-4]
 
         # Bug 1345467 - Only allow specifically configured funnelcake builds
         if funnelcake_id:
@@ -259,15 +267,15 @@ class FirefoxDesktop(_ProductDetails):
         # otherwise build a full download URL
         prod_name = 'firefox' if channel == 'release' else 'firefox-%s' % channel
         suffix = 'latest-ssl'
+        if is_msi:
+            suffix = 'msi-' + suffix
+
         if channel in esr_channels:
             # nothing special about ESR other than there is no stub.
             # included in this contitional to avoid the following elif.
             if channel == 'esr_next':
-                # no firefox-esr-next-latest-ssl alias just yet
-                # could come in future in bug 1408868
-                prod_name = 'firefox'
-                suffix = '%s-SSL' % _version
-        elif platform in stub_platforms and not force_full_installer:
+                prod_name = 'firefox-esr-next'
+        elif platform in stub_platforms and not is_msi and not force_full_installer:
             # Use the stub installer for approved platforms
             # append funnelcake id to version if we have one
             if include_funnelcake_param:
@@ -278,6 +286,8 @@ class FirefoxDesktop(_ProductDetails):
             # Nightly uses a different product name for localized builds,
             # and is the only one ಠ_ಠ
             suffix = 'latest-l10n-ssl'
+            if is_msi:
+                suffix = 'msi-' + suffix
 
         product = '%s-%s' % (prod_name, suffix)
 
