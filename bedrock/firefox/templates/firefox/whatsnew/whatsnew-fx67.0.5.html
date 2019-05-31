@@ -44,7 +44,11 @@
             }}
           {% endblock %}
         </div>
-        <a href="{{ url('firefox.accounts') }}">{{ _('Learn more about joining Firefox') }}</a>
+        {% if LANG.startswith('en-') %}
+          <a href="{{ url('firefox.accounts') }}">{{ _('Learn more about joining Firefox') }}</a>
+        {% else %}
+          <a href="{{ url('firefox.accounts') }}">{{ _('Learn More about joining Firefox') }}</a>
+        {% endif %}
       </div>
       <div class="show-fxa-supported-signed-in">
         <h1>{{ _('Your account connects you to all of our products. ') }}</h1>
@@ -70,7 +74,7 @@
         <div class="benefit-content">
           <h3>{{ _('Products that respect') }}</h3>
           <p>
-            {% trans send='https://send.firefox.com/', lockwise='https://lockbox.firefox.com/', monitor='https://monitor.firefox.com/' %}
+            {% trans send='https://send.firefox.com/', lockwise='https://lockwise.firefox.com/', monitor='https://monitor.firefox.com/' %}
             Firefox products like <a href="{{ send }}">Send</a>, <a href="{{ lockwise }}">Lockwise</a> and <a href="{{ monitor }}">Monitor</a> help you get things done without invading your privacy.
             {% endtrans %}
           </p>
@@ -85,7 +89,9 @@
         <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/heart_glyph.svg') }}" alt="">
         <div class="benefit-content">
           <h3>{{ _('Fierce defense of your privacy') }}</h3>
-          <p>{{ _('Everything we make and do honors our Personal Data Promise: <strong>Take less. Keep it safe. No secrets.</strong>') }}</p>
+          <p>{{ _('Everything we make and do honors our Personal Data Promise:') }}
+            <strong>{{ _('Take less. Keep it safe. No secrets.') }}</strong>
+          </p>
         </div>
       </div>
       <div class="show-fxa-supported-signed-in">
