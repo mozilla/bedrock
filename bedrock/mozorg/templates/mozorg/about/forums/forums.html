@@ -62,7 +62,7 @@
 
 <!--BEGIN_LIST-->
 
-{% for title, forums_list in forums.ordered.iteritems() %}
+{% for title, forums_list in forums.ordered.items() %}
 
   <section id="{{ title|slugify }}" class="forum-group">
     <a href="#" class="top">{{ _('Back to top') }}</a>

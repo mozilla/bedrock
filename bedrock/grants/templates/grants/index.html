@@ -32,7 +32,7 @@
 <div class="filters">
     <h4>Filter by</h4>
     <ul>
-        {% for key, label in grant_labels.iteritems() %}
+        {% for key, label in grant_labels.items() %}
             {% if key == filter %}
                 <li>{{ label }}</li>
             {% else %}
