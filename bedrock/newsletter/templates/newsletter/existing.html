@@ -119,7 +119,7 @@
           </thead>
           <tbody>
           {% for formpart in formset %}  {# each newsletter is a formset #}
-            <tr class="subscription">
+            <tr class="subscription {% if formpart.initial['indented'] %}indented{% endif %}">
               <th>
                 <h4 class="title">
                   {{ formpart.initial['title'] }}

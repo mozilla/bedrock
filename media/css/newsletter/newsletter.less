@@ -154,16 +154,6 @@ body {
                 text-align: left;
                 vertical-align: top;
 
-                h4 {
-                    .font-size(22px);
-                    font-weight: normal;
-                    margin: 0 0 5px 0;
-
-                    .en-only {
-                        .font-size(@baseFontSize);
-                    }
-                }
-
                 .description {
                     margin: 0.2em 0 0 0;
                 }
@@ -171,19 +161,36 @@ body {
                 &.subcategory {
                     white-space: nowrap;
                 }
-
-                &.indented {
-                    padding-left: 2em;
-
-                    h4 {
-                        .font-size(@largeFontSize);
-                    }
-                }
             }
 
             td {
                 padding-right: 0;
                 text-align: center;
+            }
+
+            .indented {
+                th {
+                    padding-left: 24px;
+                    border-top: 0;
+                }
+
+                td {
+                    border-top: 0;
+                }
+
+                .title {
+                    .font-size(18px);
+                }
+            }
+
+            .title {
+                .font-size(22px);
+                font-weight: normal;
+                margin: 0 0 .25em;
+
+                .en-only {
+                    .font-size(@baseFontSize);
+                }
             }
         }
     }
