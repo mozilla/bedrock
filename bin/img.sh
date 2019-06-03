@@ -2,8 +2,7 @@
 
 # are there images to optimize?
 fileschanged=$(git diff --diff-filter=ACM --name-only HEAD | grep ".png\|.jpg\|.svg" | wc -l)
-if [ $fileschanged == 0 ]
-then
+if [ $fileschanged == 0 ]; then
     echo "No images to optimize. Did you remember to stage them?"
     exit 1
 fi
@@ -13,8 +12,7 @@ msgs=()
 # ask to optimize with tinypng, we don't want to do this multiple times
 read -p "Tinypng png and jpg images? " -n 1 -r
 echo    # new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
+if [[ $REPLY =~ ^[Yy]$ ]]; then
     # is there a tinyPNG API key
     key="${HOME}/.tinypng"
     if ! [ -f "$key" ]; then
@@ -36,9 +34,8 @@ git diff --diff-filter=ACM --name-only HEAD | grep ".svg" | xargs svgo --disable
 
 # check SVGs have viewbox
 echo "Checking for viewboxes..."
-svgs=`git diff --diff-filter=ACM --name-only HEAD | grep ".svg"`
-for svg in $svgs
-do
+svgs=$(git diff --diff-filter=ACM --name-only HEAD | grep ".svg")
+for svg in $svgs; do
     if ! grep -qi viewbox "$svg"; then
         msgs+=("✘ $svg is missing viewbox")
     fi
@@ -47,8 +44,7 @@ done
 # check -high-res have corresponding low res
 echo "Checking high-res images have a matching low-res..."
 highresimages=`git diff --diff-filter=ACM --name-only HEAD | grep "\-high\-res"`
-for highresimage in $highresimages
-do
+for highresimage in $highresimages; do
     lowresimage=${highresimage/-high-res/}
     if ! [ -f "$lowresimage" ]; then
         msgs+=("✘ $lowresimage not found")
@@ -60,9 +56,8 @@ if [ ${#msgs[@]} -eq 0 ]; then
     exit 0
 else
     echo "... hmmm something isn't right."
-    for i in "${msgs[@]}"
-        do
-            echo $i
+    for i in "${msgs[@]}"; do
+        echo $i
     done
     exit 1
 fi
