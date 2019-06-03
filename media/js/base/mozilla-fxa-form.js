@@ -78,8 +78,8 @@ Mozilla.FxaForm = (function(Mozilla) {
         } else {
             // Omit the fields required for sync.
             // This allows non-Firefoxes to create accounts.
-            fxaFormContextField.remove();
-            fxaFormServiceField.remove();
+            fxaForm.removeChild(fxaFormContextField);
+            fxaForm.removeChild(fxaFormServiceField);
             fetchTokens();
         }
     }
