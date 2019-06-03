@@ -14,12 +14,7 @@ Mozilla.FxaForm = (function(Mozilla) {
     var fxaSubmitButton = document.getElementById('fxa-email-form-submit');
     var fxaFormContextField = fxaForm.querySelector('[name="context"]');
     var fxaFormServiceField = fxaForm.querySelector('[name="service"]');
-
     var supportsFetch = 'fetch' in window;
-
-    if (!supportsFetch) {
-        return;
-    }
 
     // swap form action for Fx China re-pack
     function init() {
@@ -45,6 +40,10 @@ Mozilla.FxaForm = (function(Mozilla) {
 
     // get tokens from FxA for analytics purposes
     function fetchTokens() {
+        if (!supportsFetch) {
+            return;
+        }
+
         fxaSubmitButton.disabled = false;
 
         var destURL = fxaForm.getAttribute('action') + 'metrics-flow';
@@ -79,8 +78,9 @@ Mozilla.FxaForm = (function(Mozilla) {
         } else {
             // Omit the fields required for sync.
             // This allows non-Firefoxes to create accounts.
-            fxaFormContextField.remove();
-            fxaFormServiceField.remove();
+            fxaForm.removeChild(fxaFormContextField);
+            fxaForm.removeChild(fxaFormServiceField);
+            fetchTokens();
         }
     }
 })(window.Mozilla);
