@@ -8,16 +8,16 @@
     var cop = new Mozilla.TrafficCop({
         id: 'experiment-about-page-performance',
         variations: {
-            'v=a': 2,
-            'v=b': 2,
-            'v=c': 2,
-            'v=d': 2,
-            'v=e': 2,
-            'v=f': 2,
-            'v=g': 2,
-            'v=h': 2,
-            'v=i': 2,
-            'v=j': 2
+            'v=a': 5,
+            'v=b': 5,
+            'v=c': 5,
+            'v=d': 5,
+            'v=e': 5,
+            'v=f': 5,
+            'v=g': 5,
+            'v=h': 5,
+            'v=i': 5,
+            'v=j': 5
         }
     });
 
