@@ -7,7 +7,6 @@ import pytest
 from pages.firefox.accounts import FirefoxAccountsPage
 
 
-@pytest.mark.skip(reason='Page is temporarily behind the switch "firefox_accounts_trailhead"')
 @pytest.mark.nondestructive
 def test_account_form(base_url, selenium):
     page = FirefoxAccountsPage(selenium, base_url).open()
