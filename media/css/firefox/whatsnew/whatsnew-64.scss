@@ -168,7 +168,7 @@ $image-path: '/media/protocol/img';
 // Modal, custom styles
 
 .mobile-notes,
-.mobile-lockbox,
+.mobile-lockwise,
 .mobile-pocket {
     display: none;
 }
@@ -177,7 +177,7 @@ $image-path: '/media/protocol/img';
     display: block;
 }
 
-.app-lockbox .mobile-lockbox {
+.app-lockwise .mobile-lockwise {
     display: block;
 }
 

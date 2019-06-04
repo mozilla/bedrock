@@ -118,15 +118,21 @@
       {{ high_res_img('firefox/whatsnew_66/fxa-send.png', {'alt': '', 'width': '590', 'height': '590'}) }}
       <h3>{{_('Take total control of the files you share ')}}</h3>
       <p>{{_('Feel like a secret agent when you send files online, with a private, encrypted link that ‘self-destructs.’')}}</p>
-      <p><a class="mzp-c-cta-link" data-app="send" href="
-        https://send.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp66&utm_content=try-send&entrypoint=mozilla.org-whatsnew66">{{_('Try Firefox Send')}}</a></p>
+      <p><a class="mzp-c-cta-link" data-app="send" href="https://send.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp66&utm_content=try-send&entrypoint=mozilla.org-whatsnew66">{{_('Try Firefox Send')}}</a></p>
     </div>
 
-    <div class="wn66-benefit wn66-lockbox">
-      {{ high_res_img('firefox/whatsnew_64/fxa-lockbox.png', {'alt': '', 'width': '590', 'height': '590'}) }}
-      <h3>{{_('Remember your passwords in Lockbox')}}</h3>
-      <p>{{_('No more getting locked out of apps and websites. Lockbox secures all the passwords you’ve saved in Firefox and gives you easy access across all your iOS devices.')}}</p>
-      <p><button class="mzp-c-button wn66-benefit-link" data-app="lockbox">{{_('Get the Lockbox App')}}</button></p>
+    <div class="wn66-benefit wn66-lockwise">
+      {{ high_res_img('firefox/whatsnew_64/fxa-lockwise.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      {% if l10n_has_tag('lockwise_update_201906') %}
+        <h3>{{_('Remember your passwords in Lockwise')}}</h3>
+        <p>{{_('No more getting locked out of apps and websites. Lockwise secures all the passwords you’ve saved in Firefox and gives you easy access across all your iOS devices.')}}</p>
+        <p><button class="mzp-c-button wn66-benefit-link" data-app="lockwise">{{_('Get the Lockwise App')}}</button></p>
+      {% else %}
+        <h3>{{_('Remember your passwords in Lockbox')}}</h3>
+        <p>{{_('No more getting locked out of apps and websites. Lockbox secures all the passwords you’ve saved in Firefox and gives you easy access across all your iOS devices.')}}</p>
+        <p><button class="mzp-c-button wn66-benefit-link" data-app="lockwise">{{_('Get the Lockbox App')}}</button></p>
+      {% endif %}
+
     </div>
 
     <div class="wn66-benefit wn66-pocket">
@@ -162,9 +168,9 @@
       </div>
     </div>
 
-    <div class="mobile-lockbox">
-      <img class="mobile-qr" src="{{ static('img/firefox/whatsnew_64/lockbox-qr.png') }}" height="300" width="300">
-        <ul class="mobile-download-buttons mobile-lockbox">
+    <div class="mobile-lockwise">
+      <img class="mobile-qr" src="{{ static('img/firefox/whatsnew_64/lockwise-qr.png') }}" height="300" width="300">
+        <ul class="mobile-download-buttons mobile-lockwise">
         <li class="ios">
           <a href="{{ lockwise_adjust_url('ios', 'whatsnew-64-page') }}" data-link-type="download" data-download-os="iOS">
             <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="" width="152" height="45">

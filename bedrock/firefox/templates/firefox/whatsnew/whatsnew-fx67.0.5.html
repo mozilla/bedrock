@@ -67,15 +67,21 @@
     <div class="benefits-list">
       <div class="show-fxa-default show-fxa-supported-signed-out">
         <div class="respect-glyphs">
-          <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/lockbox_glyph.svg') }}" alt="">
+          <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/lockwise_glyph.svg') }}" alt="">
           <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/send_glyph.svg') }}" alt="">
         </div>
         <div class="benefit-content">
           <h3>{{ _('Products that respect') }}</h3>
           <p>
-            {% trans send='https://send.firefox.com/', lockwise='https://lockwise.firefox.com/', monitor='https://monitor.firefox.com/' %}
-            Firefox products like <a href="{{ send }}">Send</a>, <a href="{{ lockwise }}">Lockwise</a> and <a href="{{ monitor }}">Monitor</a> help you get things done without invading your privacy.
-            {% endtrans %}
+            {% if l10n_has_tag('lockwise_update_201906') %}
+              {% trans send='https://send.firefox.com/', lockwise='https://lockwise.firefox.com/', monitor='https://monitor.firefox.com/' %}
+              Firefox products like <a href="{{ send }}">Send</a>, <a href="{{ lockwise }}">Lockwise</a> and <a href="{{ monitor }}">Monitor</a> help you get things done without invading your privacy.
+              {% endtrans %}
+            {% else %}
+              {% trans send='https://send.firefox.com/', lockwise='https://lockwise.firefox.com/', monitor='https://monitor.firefox.com/' %}
+              Firefox products like <a href="{{ send }}">Send</a>, <a href="{{ lockwise }}">Lockbox</a> and <a href="{{ monitor }}">Monitor</a> help you get things done without invading your privacy.
+              {% endtrans %}
+            {% endif %}
           </p>
         </div>
         <hr>

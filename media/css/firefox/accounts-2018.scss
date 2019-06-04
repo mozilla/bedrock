@@ -70,7 +70,7 @@ $image-path: '/media/protocol/img';
 // Modal, custom styles
 
 .mobile-notes,
-.mobile-lockbox,
+.mobile-lockwise,
 .mobile-pocket {
     display: none;
 }
@@ -115,8 +115,8 @@ $image-path: '/media/protocol/img';
     box-shadow: 0 3px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
-.lockbox {
-    background: url('/media/img/firefox/accounts/lockbox-qr.png') center no-repeat;
+.lockwise {
+    background: url('/media/img/firefox/accounts/lockwise-qr.png') center no-repeat;
     background-size: contain;
 }
 
@@ -244,12 +244,12 @@ html.android {
     }
 
     .mobile-notes,
-    .mobile-lockbox,
+    .mobile-lockwise,
     .mobile-pocket {
         display: inline-block;
     }
 
-    .lockbox-card .mzp-c-button,
+    .lockwise-card .mzp-c-button,
     .pocket-card .mzp-c-button,
     .notes-card .mzp-c-button,
     #fxa-sign-up-form,

@@ -78,22 +78,42 @@
     {% endcall %}
   {% endif %}
 
-  {% call feature_card(
-    title=_('Remember your passwords in Lockbox'),
-    image_url='firefox/accounts/fxa-lockbox.png',
-    include_highres_image=True,
-    aspect_ratio='mzp-has-aspect-1-1',
-    class='mzp-l-card-feature-left-half mzp-t-firefox lockbox-card qr-modal',
-    ga_title='Get the Lockbox App'
-  ) %}
-    {% if l10n_has_tag('firefox_send_20190420') %}
-      <p>{{ _('No more getting locked out of apps and websites. Lockbox secures all the passwords you’ve saved in Firefox and gives you easy access across all your Android and iOS devices.') }}</p>
-    {% else %}
-      <p>{{ _('No more getting locked out of apps and websites. Lockbox secures all the passwords you’ve saved in Firefox and gives you easy access across all your iOS devices.') }}</p>
-    {% endif %}
+  {% if l10n_has_tag('lockwise_update_201906') %}
+    {% call feature_card(
+      title=_('Remember your passwords in Lockwise'),
+      image_url='firefox/accounts/fxa-lockwise.png',
+      include_highres_image=True,
+      aspect_ratio='mzp-has-aspect-1-1',
+      class='mzp-l-card-feature-left-half mzp-t-firefox lockwise-card qr-modal',
+      ga_title='Get the Lockwise App'
+    ) %}
+  {% else %}
+    {% call feature_card(
+      title=_('Remember your passwords in Lockbox'),
+      image_url='firefox/accounts/fxa-lockwise.png',
+      include_highres_image=True,
+      aspect_ratio='mzp-has-aspect-1-1',
+      class='mzp-l-card-feature-left-half mzp-t-firefox lockwise-card qr-modal',
+      ga_title='Get the Lockwise App'
+    ) %}
+  {% endif %}
+
+  {% if l10n_has_tag('lockwise_update_201906') %}
+    <p>{{ _('No more getting locked out of apps and websites. Lockwise secures all the passwords you’ve saved in Firefox and gives you easy access across all your Android and iOS devices.') }}</p>
+  {% elif l10n_has_tag('firefox_send_20190420') %}
+    <p>{{ _('No more getting locked out of apps and websites. Lockbox secures all the passwords you’ve saved in Firefox and gives you easy access across all your Android and iOS devices.') }}</p>
+  {% else %}
+    <p>{{ _('No more getting locked out of apps and websites. Lockbox secures all the passwords you’ve saved in Firefox and gives you easy access across all your iOS devices.') }}</p>
+  {% endif %}
 
     <div>
-      <a class="mzp-c-button mzp-t-secondary mzp-t-product" href="https://lockwise.firefox.com/" data-link-name="Get the Lockbox App" data-link-type="button">{{ _('Get the Lockbox App') }}</a>
+      <a class="mzp-c-button mzp-t-secondary mzp-t-product" href="https://app.adjust.com/kq8zhhz" data-link-name="Get the Lockwise App" data-link-type="button">
+        {% if l10n_has_tag('firefox_send_20190420') %}
+          {{ _('Get the Lockwise App') }}
+        {% else %}
+          {{ _('Get the Lockbox App') }}
+        {% endif %}
+      </a>
     </div>
 
     <ul class="mobile-content">
@@ -197,7 +217,13 @@
 
 <aside class="fxa-benefits mzp-u-modal-content">
   <p class="mobile-title mobile-pocket">{{ _('Scan the QR Code to download the Pocket App on your mobile device.') }}</p>
-  <p class="mobile-title mobile-lockbox">{{ _('Scan the QR Code to download the Lockbox App on your mobile device.') }}</p>
+  <p class="mobile-title mobile-lockwise">
+    {% if l10n_has_tag('firefox_send_20190420') %}
+      {{ _('Scan the QR Code to download the Lockwise App on your mobile device.') }}
+    {% else %}
+      {{ _('Scan the QR Code to download the Lockbox App on your mobile device.') }}
+    {% endif %}
+  </p>
   <p class="mobile-title mobile-notes">
   {%- if l10n_has_tag('accounts_2018_qrcodes') -%}
     {{ _('Scan the QR Code to download the Notes App on your Android device.') }}
@@ -239,7 +265,7 @@
   </section>
 
   <section>
-    <ul class="mobile-download-buttons mobile-lockbox">
+    <ul class="mobile-download-buttons mobile-lockwise">
       <li class="android">
           {{ google_play_button(href=lockwise_adjust_url('android','accounts-page')) }}
       </li>

@@ -301,15 +301,24 @@
             {% endtrans %}
             </p>
             <p>
-            {% trans vpn='https://www.engadget.com/2018/10/23/mozilla-firefox-protonvpn-test/',
-                     lockbox='https://testpilot.firefox.com/experiments/firefox-lockbox/'
-            %}
-              The overhaul of our core browser has given Mozilla Corporation the ability to begin the exploration
-              of new user engagement and revenue models derived from Firefox to meet these ambitious goals.
-              Specifically in 2018 we began testing in Firefox a new paid virtual private network
-              (<a href="{{ vpn }}">VPN</a>) service and a password manager called <a href="{{ lockbox }}">Lockbox</a>
-              which is currently being offered for free. Over time, with deep engagement with our users, we expect
-              to offer premium solutions.
+              {% trans vpn='https://www.engadget.com/2018/10/23/mozilla-firefox-protonvpn-test/',
+              lockwise='https://testpilot.firefox.com/experiments/firefox-lockbox/'
+              %}
+              {% if l10n_has_tag('lockwise_update_201906') %}
+                The overhaul of our core browser has given Mozilla Corporation the ability to begin the exploration
+                of new user engagement and revenue models derived from Firefox to meet these ambitious goals.
+                Specifically in 2018 we began testing in Firefox a new paid virtual private network
+                (<a href="{{ vpn }}">VPN</a>) service and a password manager called <a href="{{ lockwise }}">Lockwise</a>
+                which is currently being offered for free. Over time, with deep engagement with our users, we expect
+                to offer premium solutions.
+              {% else %}
+                The overhaul of our core browser has given Mozilla Corporation the ability to begin the exploration
+                of new user engagement and revenue models derived from Firefox to meet these ambitious goals.
+                Specifically in 2018 we began testing in Firefox a new paid virtual private network
+                (<a href="{{ vpn }}">VPN</a>) service and a password manager called <a href="{{ lockwise }}">Lockbox</a>
+                which is currently being offered for free. Over time, with deep engagement with our users, we expect
+                to offer premium solutions.
+              {% endif %}
             {% endtrans %}
             </p>
             <p>
