@@ -788,7 +788,7 @@ def firefox_accounts(request):
         'promise_url': promise_url + promise_query,
     }
 
-    if lang_file_is_active('firefox/accounts-2019', locale) and switch('firefox_accounts_trailhead'):
+    if lang_file_is_active('firefox/accounts-2019', locale):
         template_name = 'firefox/accounts-2019.html'
     elif lang_file_is_active('firefox/accounts-2018', locale):
         template_name = 'firefox/accounts-2018.html'
