@@ -143,10 +143,10 @@
       <img class="mobile-qr" src="{{ static('img/firefox/whatsnew_64/lockbox-qr.png') }}" height="300" width="300">
       <ul class="mobile-download-buttons mobile-lockbox">
         <li class="android">
-          {{ google_play_button(href='https://app.adjust.com/kq8zhhz') }}
+          {{ google_play_button(href=lockwise_adjust_url('android', 'whatsnew-67-page')) }}
         </li>
         <li class="ios">
-          <a href="https://app.adjust.com/kq8zhhz" data-link-type="download" data-download-os="iOS">
+          <a href="{{ lockwise_adjust_url('ios', 'whatsnew-67-page') }}" data-link-type="download" data-download-os="iOS">
             <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="" width="152" height="45">
           </a>
         </li>
@@ -157,10 +157,10 @@
         <img class="mobile-qr" src="{{ static('img/firefox/whatsnew_64/pocket-qr.png') }}" height="300" width="300">
         <ul class="mobile-download-buttons mobile-pocket">
           <li class="android">
-            {{ google_play_button(href='https://app.adjust.com/h5iycst') }}
+            {{ google_play_button(href=pocket_adjust_url('android', 'whatsnew-67-page')) }}
           </li>
           <li class="ios">
-            <a href="https://app.adjust.com/h5iycst" data-link-type="download" data-download-os="iOS">
+            <a href="{{ pocket_adjust_url('ios', 'whatsnew-67-page') }}" data-link-type="download" data-download-os="iOS">
               <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="" width="152" height="45">
             </a>
           </li>

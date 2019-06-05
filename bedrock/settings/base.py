@@ -1205,10 +1205,16 @@ FXA_OAUTH_CLIENT_SECRET = config('FXA_OAUTH_CLIENT_SECRET', default='')
 FXA_OAUTH_SERVER_ENV = config('FXA_OAUTH_SERVER_ENV', default='production')
 
 # Google Play and Apple App Store settings
-from .appstores import (GOOGLE_PLAY_FIREFOX_LINK,  # noqa
+from .appstores import (GOOGLE_PLAY_FIREFOX_LINK, GOOGLE_PLAY_FIREFOX_LINK_UTMS,  # noqa
                         GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE,  # noqa
                         APPLE_APPSTORE_FIREFOX_LINK, APPLE_APPSTORE_COUNTRY_MAP,
-                        APPLE_APPSTORE_FIREFOX_FOCUS_LINK, GOOGLE_PLAY_FIREFOX_FOCUS_LINK)
+                        APPLE_APPSTORE_FOCUS_LINK, GOOGLE_PLAY_FOCUS_LINK,
+                        APPLE_APPSTORE_KLAR_LINK, GOOGLE_PLAY_KLAR_LINK,
+                        APPLE_APPSTORE_POCKET_LINK, GOOGLE_PLAY_POCKET_LINK,
+                        APPLE_APPSTORE_LOCKWISE_LINK, GOOGLE_PLAY_LOCKWISE_LINK,
+                        ADJUST_FIREFOX_URL, ADJUST_FOCUS_URL,
+                        ADJUST_KLAR_URL, ADJUST_POCKET_URL,
+                        ADJUST_LOCKWISE_URL)
 
 # Locales that should display the 'Send to Device' widget
 SEND_TO_DEVICE_LOCALES = ['de', 'en-GB', 'en-US',

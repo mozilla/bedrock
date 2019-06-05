@@ -49,10 +49,10 @@
 
             <ul class="mobile-download-buttons">
               <li class="android">
-                {{ google_play_button(href=settings.GOOGLE_PLAY_FIREFOX_FOCUS_LINK, id='playStoreLink', product='Focus') }}
+                {{ google_play_button(href=focus_adjust_url('android', 'fb-container-page'), id='playStoreLink', product='Focus') }}
               </li>
               <li class="ios">
-                <a id="appStoreLink" href="{{ settings.APPLE_APPSTORE_FIREFOX_FOCUS_LINK }}" data-link-type="download" data-download-os="iOS">
+                <a id="appStoreLink" href="{{ focus_adjust_url('ios', 'fb-container-page') }}" data-link-type="download" data-download-os="iOS">
                   <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
                 </a>
               </li>

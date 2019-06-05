@@ -586,43 +586,43 @@ class TestFirefoxIOSURL(TestCase):
         """No locale, fallback to default URL"""
         assert (
             self._render('') == 'https://itunes.apple.com'
-            '/app/apple-store/id989804926?pt=373246&amp;mt=8')
+            '/app/firefox-private-safe-browser/id989804926')
 
     def test_firefox_ios_url_default(self):
         """should fallback to default URL"""
         assert (
             self._render('ar') == 'https://itunes.apple.com'
-            '/app/apple-store/id989804926?pt=373246&amp;mt=8')
+            '/app/firefox-private-safe-browser/id989804926')
         assert (
             self._render('zu') == 'https://itunes.apple.com'
-            '/app/apple-store/id989804926?pt=373246&amp;mt=8')
+            '/app/firefox-private-safe-browser/id989804926')
 
     def test_firefox_ios_url_localized(self):
         """should return localized URL"""
         assert (
             self._render('en-US') == 'https://itunes.apple.com/us'
-            '/app/apple-store/id989804926?pt=373246&amp;mt=8')
+            '/app/firefox-private-safe-browser/id989804926')
         assert (
             self._render('es-ES') == 'https://itunes.apple.com/es'
-            '/app/apple-store/id989804926?pt=373246&amp;mt=8')
+            '/app/firefox-private-safe-browser/id989804926')
         assert (
             self._render('ja') == 'https://itunes.apple.com/jp'
-            '/app/apple-store/id989804926?pt=373246&amp;mt=8')
+            '/app/firefox-private-safe-browser/id989804926')
 
     def test_firefox_ios_url_param(self):
         """should return default or localized URL with ct param"""
         assert (
             self._render('', 'mozorg') ==
             'https://itunes.apple.com'
-            '/app/apple-store/id989804926?pt=373246&amp;mt=8&amp;ct=mozorg')
+            '/app/firefox-private-safe-browser/id989804926?ct=mozorg')
         assert (
             self._render('en-US', 'mozorg') ==
             'https://itunes.apple.com/us'
-            '/app/apple-store/id989804926?pt=373246&amp;mt=8&amp;ct=mozorg')
+            '/app/firefox-private-safe-browser/id989804926?ct=mozorg')
         assert (
             self._render('es-ES', 'mozorg') ==
             'https://itunes.apple.com/es'
-            '/app/apple-store/id989804926?pt=373246&amp;mt=8&amp;ct=mozorg')
+            '/app/firefox-private-safe-browser/id989804926?ct=mozorg')
 
 
 # from jingo
@@ -689,3 +689,185 @@ def test_csrf():
     s = render('{{ csrf() }}', {'csrf_token': 'fffuuu'})
     csrf = "<input type='hidden' name='csrfmiddlewaretoken' value='fffuuu' />"
     assert csrf in s
+
+
+class TestFirefoxAdjustUrl(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, locale, redirect, adgroup, creative=None):
+        req = self.rf.get('/')
+        req.locale = locale
+
+        if creative:
+            return render("{{{{ firefox_adjust_url('{0}', '{1}', '{2}') }}}}".format(
+                          redirect, adgroup, creative), {'request': req})
+
+        return render("{{{{ firefox_adjust_url('{0}', '{1}') }}}}".format(
+                      redirect, adgroup), {'request': req})
+
+    def test_firefox_ios_adjust_url(self):
+        """Firefox for mobile with an App Store URL redirect"""
+        assert (
+            self._render('en-US', 'ios', 'test-page') == 'https://app.adjust.com/2uo1qc?redirect='
+            'https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Ffirefox-private-safe-browser%2Fid989804926'
+            '&amp;campaign=www.mozilla.org&amp;adgroup=test-page')
+
+    def test_firefox_ios_adjust_url_creative(self):
+        """Firefox for mobile with an App Store URL redirect and creative param"""
+        assert (
+            self._render('de', 'ios', 'test-page', 'experiment-name') == 'https://app.adjust.com/2uo1qc?redirect='
+            'https%3A%2F%2Fitunes.apple.com%2Fde%2Fapp%2Ffirefox-private-safe-browser%2Fid989804926'
+            '&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;creative=experiment-name')
+
+    def test_firefox_android_adjust_url(self):
+        """Firefox for mobile with a Play Store redirect"""
+        assert (
+            self._render('en-US', 'android', 'test-page') == 'https://app.adjust.com/2uo1qc?redirect='
+            'https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.firefox'
+            '&amp;campaign=www.mozilla.org&amp;adgroup=test-page')
+
+    def test_firefox_no_redirect_adjust_url(self):
+        """Firefox for mobile with no redirect"""
+        assert (
+            self._render('en-US', None, 'test-page') == 'https://app.adjust.com/2uo1qc?'
+            'campaign=www.mozilla.org&amp;adgroup=test-page')
+
+
+class TestFocusAdjustUrl(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, locale, redirect, adgroup, creative=None):
+        req = self.rf.get('/')
+        req.locale = locale
+
+        if creative:
+            return render("{{{{ focus_adjust_url('{0}', '{1}', '{2}') }}}}".format(
+                          redirect, adgroup, creative), {'request': req})
+
+        return render("{{{{ focus_adjust_url('{0}', '{1}') }}}}".format(
+                      redirect, adgroup), {'request': req})
+
+    def test_focus_ios_adjust_url(self):
+        """Firefox Focus with an App Store URL redirect"""
+        assert (
+            self._render('en-US', 'ios', 'test-page') == 'https://app.adjust.com/b8s7qo?redirect='
+            'https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Ffirefox-focus-privacy-browser%2Fid1055677337'
+            '&amp;campaign=www.mozilla.org&amp;adgroup=test-page')
+
+    def test_focus_ios_adjust_url_creative(self):
+        """Firefox Focus with an App Store URL redirect and creative param"""
+        assert (
+            self._render('fr', 'ios', 'test-page', 'experiment-name') == 'https://app.adjust.com/b8s7qo?'
+            'redirect=https%3A%2F%2Fitunes.apple.com%2Ffr%2Fapp%2Ffirefox-focus-privacy-browser%2Fid1055677337'
+            '&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;creative=experiment-name')
+
+    def test_focus_android_adjust_url(self):
+        """Firefox Focus for mobile with a Play Store redirect"""
+        assert (
+            self._render('en-US', 'android', 'test-page') == 'https://app.adjust.com/b8s7qo?redirect='
+            'https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.focus'
+            '&amp;campaign=www.mozilla.org&amp;adgroup=test-page')
+
+    def test_focus_no_redirect_adjust_url(self):
+        """Firefox Focus for mobile with no redirect"""
+        assert (
+            self._render('en-US', None, 'test-page') == 'https://app.adjust.com/b8s7qo?'
+            'campaign=www.mozilla.org&amp;adgroup=test-page')
+
+    def test_klar_ios_adjust_url(self):
+        """Firefox Klar with an App Store URL redirect"""
+        assert (
+            self._render('de', 'ios', 'test-page') == 'https://app.adjust.com/jfcx5x?redirect='
+            'https%3A%2F%2Fitunes.apple.com%2Fde%2Fapp%2Fklar-by-firefox%2Fid1073435754'
+            '&amp;campaign=www.mozilla.org&amp;adgroup=test-page')
+
+    def test_klar_android_adjust_url(self):
+        """Firefox Klar for mobile with a Play Store redirect"""
+        assert (
+            self._render('de', 'android', 'test-page') == 'https://app.adjust.com/jfcx5x?redirect='
+            'https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dorg.mozilla.klar'
+            '&amp;campaign=www.mozilla.org&amp;adgroup=test-page')
+
+
+class TestLockwiseAdjustUrl(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, locale, redirect, adgroup, creative=None):
+        req = self.rf.get('/')
+        req.locale = locale
+
+        if creative:
+            return render("{{{{ lockwise_adjust_url('{0}', '{1}', '{2}') }}}}".format(
+                          redirect, adgroup, creative), {'request': req})
+
+        return render("{{{{ lockwise_adjust_url('{0}', '{1}') }}}}".format(
+                      redirect, adgroup), {'request': req})
+
+    def test_lockwise_ios_adjust_url(self):
+        """Firefox Lockwise for mobile with an App Store URL redirect"""
+        assert (
+            self._render('en-US', 'ios', 'test-page') == 'https://app.adjust.com/6tteyjo?redirect='
+            'https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fid1314000270%3Fmt%3D8'
+            '&amp;campaign=www.mozilla.org&amp;adgroup=test-page')
+
+    def test_lockwise_ios_adjust_url_creative(self):
+        """Firefox Lockwise for mobile with an App Store URL redirect and creative param"""
+        assert (
+            self._render('de', 'ios', 'test-page', 'experiment-name') == 'https://app.adjust.com/6tteyjo'
+            '?redirect=https%3A%2F%2Fitunes.apple.com%2Fde%2Fapp%2Fid1314000270%3Fmt%3D8'
+            '&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;creative=experiment-name')
+
+    def test_lockwise_android_adjust_url(self):
+        """Firefox Lockwise for mobile with a Play Store redirect"""
+        assert (
+            self._render('en-US', 'android', 'test-page') == 'https://app.adjust.com/6tteyjo?redirect='
+            'https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dmozilla.lockbox'
+            '&amp;campaign=www.mozilla.org&amp;adgroup=test-page')
+
+    def test_lockwise_no_redirect_adjust_url(self):
+        """Firefox Lockwise for mobile with no redirect"""
+        assert (
+            self._render('en-US', None, 'test-page') == 'https://app.adjust.com/6tteyjo'
+            '?campaign=www.mozilla.org&amp;adgroup=test-page')
+
+
+class TestPocketAdjustUrl(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, locale, redirect, adgroup, creative=None):
+        req = self.rf.get('/')
+        req.locale = locale
+
+        if creative:
+            return render("{{{{ pocket_adjust_url('{0}', '{1}', '{2}') }}}}".format(
+                          redirect, adgroup, creative), {'request': req})
+
+        return render("{{{{ pocket_adjust_url('{0}', '{1}') }}}}".format(
+                      redirect, adgroup), {'request': req})
+
+    def test_pocket_ios_adjust_url(self):
+        """Pocket for mobile with an App Store URL redirect"""
+        assert (
+            self._render('en-US', 'ios', 'test-page') == 'https://app.adjust.com/m54twk?redirect='
+            'https%3A%2F%2Fitunes.apple.com%2Fus%2Fapp%2Fpocket-save-read-grow%2Fid309601447'
+            '&amp;campaign=www.mozilla.org&amp;adgroup=test-page')
+
+    def test_pocket_ios_adjust_url_creative(self):
+        """Pocket for mobile with an App Store URL redirect and creative param"""
+        assert (
+            self._render('de', 'ios', 'test-page', 'experiment-name') == 'https://app.adjust.com/m54twk?redirect='
+            'https%3A%2F%2Fitunes.apple.com%2Fde%2Fapp%2Fpocket-save-read-grow%2Fid309601447'
+            '&amp;campaign=www.mozilla.org&amp;adgroup=test-page&amp;creative=experiment-name')
+
+    def test_pocket_android_adjust_url(self):
+        """Pocket for mobile with a Play Store redirect"""
+        assert (
+            self._render('en-US', 'android', 'test-page') == 'https://app.adjust.com/m54twk?redirect='
+            'https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.ideashower.readitlater.pro'
+            '&amp;campaign=www.mozilla.org&amp;adgroup=test-page')
+
+    def test_pocket_no_redirect_adjust_url(self):
+        """Pocket for mobile with no redirect"""
+        assert (
+            self._render('en-US', None, 'test-page') == 'https://app.adjust.com/m54twk?'
+            'campaign=www.mozilla.org&amp;adgroup=test-page')

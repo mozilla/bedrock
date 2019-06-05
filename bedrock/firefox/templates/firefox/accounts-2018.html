@@ -93,15 +93,15 @@
     {% endif %}
 
     <div>
-      <a class="mzp-c-button mzp-t-secondary mzp-t-product" href="https://app.adjust.com/kq8zhhz" data-link-name="Get the Lockbox App" data-link-type="button">{{ _('Get the Lockbox App') }}</a>
+      <a class="mzp-c-button mzp-t-secondary mzp-t-product" href="https://lockwise.firefox.com/" data-link-name="Get the Lockbox App" data-link-type="button">{{ _('Get the Lockbox App') }}</a>
     </div>
 
     <ul class="mobile-content">
       <li class="android">
-          {{ google_play_button(href='https://app.adjust.com/kq8zhhz') }}
+          {{ google_play_button(href=lockwise_adjust_url('android', 'accounts-page')) }}
       </li>
       <li class="ios">
-        <a href="https://app.adjust.com/kq8zhhz" data-link-type="download" data-download-os="iOS">
+        <a href="{{ lockwise_adjust_url('ios', 'accounts-page') }}" data-link-type="download" data-download-os="iOS">
           <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
         </a>
       </li>
@@ -162,10 +162,10 @@
 
     <ul class="mobile-content">
       <li class="android">
-        {{ google_play_button(href='https://app.adjust.com/h5iycst') }}
+        {{ google_play_button(href=pocket_adjust_url('android', 'accounts-page')) }}
       </li>
       <li class="ios">
-        <a href="https://app.adjust.com/h5iycst" data-link-type="download" data-download-os="iOS">
+        <a href="{{ pocket_adjust_url('ios', 'accounts-page') }}" data-link-type="download" data-download-os="iOS">
           <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
         </a>
       </li>
@@ -228,10 +228,10 @@
   <section>
     <ul class="mobile-download-buttons mobile-pocket">
       <li class="android">
-        {{ google_play_button(href='https://app.adjust.com/h5iycst') }}
+        {{ google_play_button(href=pocket_adjust_url('android', 'accounts-page')) }}
       </li>
       <li class="ios">
-        <a href="https://app.adjust.com/h5iycst" data-link-type="download" data-download-os="iOS">
+        <a href="{{ pocket_adjust_url('ios', 'accounts-page') }}" data-link-type="download" data-download-os="iOS">
           <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
         </a>
       </li>
@@ -241,10 +241,10 @@
   <section>
     <ul class="mobile-download-buttons mobile-lockbox">
       <li class="android">
-          {{ google_play_button(href='https://app.adjust.com/kq8zhhz') }}
+          {{ google_play_button(href=lockwise_adjust_url('android','accounts-page')) }}
       </li>
       <li class="ios">
-        <a href="https://app.adjust.com/kq8zhhz" data-link-type="download" data-download-os="iOS">
+        <a href="{{ lockwise_adjust_url('ios', 'accounts-page') }}" data-link-type="download" data-download-os="iOS">
           <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
         </a>
       </li>
