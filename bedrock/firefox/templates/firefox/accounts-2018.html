@@ -79,24 +79,21 @@
   {% endif %}
 
   {% if l10n_has_tag('lockwise_update_201906') %}
-    {% call feature_card(
-      title=_('Remember your passwords in Lockwise'),
-      image_url='firefox/accounts/fxa-lockwise.png',
-      include_highres_image=True,
-      aspect_ratio='mzp-has-aspect-1-1',
-      class='mzp-l-card-feature-left-half mzp-t-firefox lockwise-card qr-modal',
-      ga_title='Get the Lockwise App'
-    ) %}
+    {% set lockwise_title = _('Remember your passwords in Lockwise') %}
+    {% set lockwise_ga_title = 'Get the Lockwise App' %}
   {% else %}
-    {% call feature_card(
-      title=_('Remember your passwords in Lockbox'),
-      image_url='firefox/accounts/fxa-lockwise.png',
-      include_highres_image=True,
-      aspect_ratio='mzp-has-aspect-1-1',
-      class='mzp-l-card-feature-left-half mzp-t-firefox lockwise-card qr-modal',
-      ga_title='Get the Lockwise App'
-    ) %}
+    {% set lockwise_title = _('Remember your passwords in Lockbox') %}
+    {% set lockwise_ga_title = 'Get the Lockbox App' %}
   {% endif %}
+
+  {% call feature_card(
+    title=lockwise_title,
+    image_url='firefox/accounts/fxa-lockbox.png',
+    include_highres_image=True,
+    aspect_ratio='mzp-has-aspect-1-1',
+    class='mzp-l-card-feature-left-half mzp-t-firefox lockbox-card qr-modal',
+    ga_title=lockwise_ga_title
+  ) %}
 
   {% if l10n_has_tag('lockwise_update_201906') %}
     <p>{{ _('No more getting locked out of apps and websites. Lockwise secures all the passwords you’ve saved in Firefox and gives you easy access across all your Android and iOS devices.') }}</p>
