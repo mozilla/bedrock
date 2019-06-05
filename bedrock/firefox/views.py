@@ -769,8 +769,24 @@ def firefox_concerts(request):
         return HttpResponseRedirect(reverse('firefox'))
 
 
+PROMISE_BLOG_URLS = {
+    'de': 'https://blog.mozilla.org/firefox/de/firefox-versprechen-fuer-deine-persoenlichen-daten/',
+    'fr': 'https://blog.mozilla.org/firefox/fr/engagements-concernant-les-donnees-personnelles-de-firefox/',
+    'en-US': 'https://blog.mozilla.org/firefox/firefox-data-privacy-promise/',
+}
+
+
 def firefox_accounts(request):
     locale = l10n_utils.get_locale(request)
+
+    # get localized blog post URL for 2019 page
+    promise_query = ('?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=accounts-trailhead'
+                     '&amp;utm_content=accounts-value&amp;utm_term=respect-you-deserve')
+    promise_url = PROMISE_BLOG_URLS.get(locale, PROMISE_BLOG_URLS['en-US'])
+
+    context = {
+        'promise_url': promise_url + promise_query,
+    }
 
     if lang_file_is_active('firefox/accounts-2019', locale) and switch('firefox_accounts_trailhead'):
         template_name = 'firefox/accounts-2019.html'
@@ -779,7 +795,7 @@ def firefox_accounts(request):
     else:
         template_name = 'firefox/accounts.html'
 
-    return l10n_utils.render(request, template_name)
+    return l10n_utils.render(request, template_name, context)
 
 
 def election_with_cards(request):
