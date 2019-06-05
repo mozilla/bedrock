@@ -104,7 +104,6 @@
       <h3 class="c-accounts-value-title">{{ _('Get the respect you deserve.') }}</h3>
 
       <p>
-      {% set promise_url = 'https://blog.mozilla.org/firefox/de/firefox-versprechen-fuer-deine-persoenlichen-daten/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=accounts-trailhead&amp;utm_content=accounts-value&amp;utm_term=respect-you-deserve' if LANG == 'de' else 'https://blog.mozilla.org/firefox/firefox-data-privacy-promise/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=accounts-trailhead&amp;utm_content=accounts-value&amp;utm_term=respect-you-deserve' %}
       {% trans promise=promise_url|safe %}
         You’ll always get the truth from us. Everything we make and do honors our <a href="{{ promise }}">Personal Data Promise</a>:
       {% endtrans %}
