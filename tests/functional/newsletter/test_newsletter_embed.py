@@ -9,7 +9,6 @@ from pages.home import HomePage
 from pages.about import AboutPage
 from pages.contribute.contribute import ContributePage
 from pages.mission import MissionPage
-from pages.firefox.all import FirefoxAllPage
 from pages.firefox.features.landing import FeaturesLandingPage
 from pages.plugincheck import PluginCheckPage
 
@@ -51,7 +50,6 @@ def test_newsletter_sign_up_fails_when_missing_required_fields(page_class, base_
 @pytest.mark.parametrize(('page_class', 'url_kwargs'), [
     (ContributePage, None),
     (MissionPage, None),
-    (FirefoxAllPage, None),
     (FeaturesLandingPage, None),
     (PluginCheckPage, None)])
 def test_legacy_newsletter_default_values(page_class, url_kwargs, base_url, selenium):
@@ -65,7 +63,7 @@ def test_legacy_newsletter_default_values(page_class, url_kwargs, base_url, sele
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('page_class', [FirefoxAllPage])
+@pytest.mark.parametrize('page_class', [ContributePage])
 def test_legacy_newsletter_successful_sign_up(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
     page.legacy_newsletter.expand_form()
@@ -78,7 +76,7 @@ def test_legacy_newsletter_successful_sign_up(page_class, base_url, selenium):
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('page_class', [FirefoxAllPage])
+@pytest.mark.parametrize('page_class', [ContributePage])
 def test_legacy_newsletter_sign_up_fails_when_missing_required_fields(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
     page.legacy_newsletter.expand_form()

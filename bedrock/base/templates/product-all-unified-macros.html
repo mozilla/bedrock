@@ -1,0 +1,104 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% macro select_product_list(products, disabled=False) %}
+ <select id="select-product" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %}>
+  {% for p_name, p_label in products %}
+    <option value="{{ p_name }}">{{ p_label }}</option>
+  {% endfor %}
+</select>
+{% endmacro %}
+
+{% macro select_version_list(id, version, disabled=False) %}
+  {% set version_select_id = 'select_' ~ id ~ '_version' %}
+  <label for="{{ version_select_id }}" class="c-selection-label">{{ _('Which version would you like?') }}</label>
+  <select id="{{ version_select_id }}" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %}>
+    <option value="{{ id }}">{{ version }}</option>
+    {% if id == 'desktop_esr' and desktop_esr_next_version %}
+      <option value="desktop_esr_next">{{ version }}</option>
+    {% endif %}
+  </select>
+{% endmacro %}
+
+{% macro product_options(id, platforms, builds, version, disabled=False, hide_version=False, hide_language=False) %}
+  <div class="c-selection-options" data-product="{{ id }}">
+    <p class="c-selection c-selection-version{% if hide_version %} hidden{% endif%}">
+      {{ select_version_list(id, version, disabled) }}
+    </p>
+    <p class="c-selection c-selection-platform">
+      {% set platform_select_id = 'select_' ~ id ~ '_platform' %}
+      {{ select_platform_list(platform_select_id, platforms, disabled) }}
+    </p>
+    <p class="c-selection c-selection-language"{% if hide_language %} hidden{% endif%}>
+      {% set platform_lang_id = 'select_' ~ id ~ '_language' %}
+      {{ select_language_list(platform_lang_id, builds, disabled) }}
+    </p>
+  </div>
+{% endmacro %}
+
+{% macro select_platform_list(id, platforms, disabled=False) %}
+  <label for="{{ id }}" class="c-selection-label">{{ _('Which operating system are you using?') }}</label>
+  <select id="{{ id }}" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %}>
+    {% for p_name, p_label in platforms %}
+      <option value="{{ p_name }}">{{ p_label }}</option>
+    {% endfor %}
+  </select>
+{% endmacro %}
+
+{% macro select_language_list(id, builds, disabled=False) %}
+  <label for="{{ id }}" class="c-selection-label">{{ _('Would you like to select a different language?') }}</label>
+  <select id="{{ id }}" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %}>
+    {% for build in builds %}
+      <option value="{{ build.locale }}"{% if build.locale == 'en-US' %} selected{% endif%}>
+      {%- if build.name_native and build.name_native != build.name_en -%}
+        {{ build.name_en }} — {{ build.name_native }}
+      {%- else -%}
+        {{ build.name_en }}
+      {%- endif -%}
+      </option>
+    {% endfor %}
+  </select>
+{% endmacro %}
+
+{% macro build_locale_list(id, product_label, platforms, builds, channel) %}
+  {% if builds %}
+    <ol class="c-locale-list" data-product="{{ id }}">
+    {% for build in builds %}
+      {{ build_locale_list_item(product_label, platforms, build) }}
+    {% endfor %}
+    </ol>
+  {% endif %}
+{% endmacro %}
+
+{% macro build_locale_list_item(product_label, platforms, build) %}
+  <li class="c-locale-list-item" data-language="{{ build.locale }}">
+    <h4 class="c-locale-label">
+      {%- if build.name_native and build.name_native != build.name_en -%}
+        {{ build.name_en }} <span>{{ build.name_native }}</span>
+      {%- else -%}
+        {{ build.name_en }}
+      {%- endif -%}
+    </h4>
+
+    <ul class="c-download-list">
+    {% for p_name, p_label in platforms %}
+      <li>{{ build_link(build, p_name, p_label, _('Download %(product_label)s for %(platform)s in %(locale)s')|format(product_label=product_label, platform=p_label|replace('\n', ' '), locale=build.name_en)) }}</li>
+    {% endfor %}
+    </ul>
+  </li>
+{% endmacro %}
+
+{#
+  build: Locale dictionary from product details.
+  platform: Value in build.platforms to use. One of 'win', 'win64', 'osx', 'linux' and 'linux64'.
+  tooltip: Text to display as tooltip for download link.
+#}
+{% macro build_link(build, platform, platform_label, tooltip) %}
+  <a href="{{ build.platforms[platform].download_url }}" title="{{ tooltip }}"
+    data-download-version="{{ platform }}" data-download-language="{{ build.name_en|lower}}" data-link-type="download"
+    {% if platform == 'android' %} data-download-os="Android"
+    {% elif platform == 'ios' %} data-download-os="iOS"
+    {% else %} data-download-os="Desktop"{% endif %}>{{ platform_label }}
+  </a>
+{% endmacro %}

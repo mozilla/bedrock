@@ -9,13 +9,6 @@ import requests
 
 PAGE_PATHS = (
     '/firefox/all/',
-    '/firefox/beta/all/',
-    '/firefox/developer/all/',
-    '/firefox/nightly/all/',
-    '/firefox/organizations/all/',
-    '/firefox/android/all/',
-    '/firefox/android/beta/all/',
-    '/firefox/android/nightly/all/',
 )
 
 TIMEOUT = 60
@@ -37,8 +30,8 @@ def test_localized_download_links(path, base_url):
         # retry
         r = requests.get(full_url, timeout=TIMEOUT)
     soup = BeautifulSoup(r.content, 'html.parser')
-    table = soup.find('table', class_='build-table')
-    urls = [a['href'] for a in table.find_all('a')]
+    lists = soup.find('div', class_='c-all-downloads')
+    urls = [a['href'] for a in lists.find_all(attrs={'data-link-type': 'download'})]
     assert urls
     for url in urls:
         r = requests.head(url, allow_redirects=True, timeout=TIMEOUT)
