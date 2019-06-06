@@ -22,9 +22,9 @@
   {% set notes_head = _('Pick up where you left off with Notes') %}
   {% set notes_desc = _('Your ideas and inspiration are secure and encrypted with Notes – and when you’re signed into your Account, they sync from your desktop to your Android devices.') %}
   {% set notes_link = _('Get the Notes App') %}
-  {% set lockbox_head = _('Remember your passwords in Lockbox') %}
-  {% set lockbox_desc = _('No more getting locked out of apps and websites. Lockbox secures all the passwords you’ve saved in Firefox and gives you easy access across all your iOS devices.') %}
-  {% set lockbox_link = _('Get the Lockbox App') %}
+  {% set lockwise_head = _('Remember your passwords in Lockwise') %}
+  {% set lockwise_desc = _('No more getting locked out of apps and websites. Lockwise secures all the passwords you’ve saved in Firefox and gives you easy access across all your iOS devices.') %}
+  {% set lockwise_link = _('Get the Lockwise App') %}
   {% set pocket_head = _('Put quality content in your Pocket') %}
   {% set pocket_desc = _('Discover the web’s best content, and absorb it anytime – even offline – on any device. Pocket’s listen feature will even read any article aloud to you. Get it all from the Firefox toolbar or the Pocket app.') %}
   {% set pocket_link = _('Get the Pocket App') %}
@@ -88,11 +88,11 @@
       <p><a class="mzp-c-button wn64-benefit-link" data-app="notes" href="https://play.google.com/store/apps/details?id=org.mozilla.testpilot.notes">{{ notes_link }}</a></p>
     </div>
 
-    <div class="wn64-benefit wn64-lockbox">
-      {{ high_res_img('firefox/whatsnew_64/fxa-lockbox.png', {'alt': '', 'width': '590', 'height': '590'}) }}
-      <h3>{{ lockbox_head }}</h3>
-      <p>{{ lockbox_desc }}</p>
-      <p><a class="mzp-c-button wn64-benefit-link" data-app="lockbox" href="https://lockwise.firefox.com/">{{ lockbox_link }}</a></p>
+    <div class="wn64-benefit wn64-lockwise">
+      {{ high_res_img('firefox/whatsnew_64/fxa-lockwise.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      <h3>{{ lockwise_head }}</h3>
+      <p>{{ lockwise_desc }}</p>
+      <p><a class="mzp-c-button wn64-benefit-link" data-app="lockwise" href="https://app.adjust.com/orzhlh0">{{ lockwise_link }}</a></p>
     </div>
 
     <div class="wn64-benefit wn64-pocket">
@@ -131,9 +131,9 @@
           </ul>
       </div>
     </div>
-    <div class="mobile-lockbox">
-      <img class="mobile-qr" src="{{ static('img/firefox/whatsnew_64/lockbox-qr.png') }}" height="300" width="300">
-        <ul class="mobile-download-buttons mobile-lockbox">
+    <div class="mobile-lockwise">
+      <img class="mobile-qr" src="{{ static('img/firefox/whatsnew_64/lockwise-qr.png') }}" height="300" width="300">
+        <ul class="mobile-download-buttons mobile-lockwise">
         <li class="ios">
           <a href="{{ lockwise_adjust_url('ios', 'whatsnew-64-page') }}" data-link-type="download" data-download-os="iOS">
             <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="" width="152" height="45">

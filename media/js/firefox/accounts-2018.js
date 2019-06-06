@@ -6,7 +6,7 @@
     'use strict';
 
     var pocket = document.querySelectorAll('.mobile-pocket');
-    var lockbox = document.querySelectorAll('.mobile-lockbox');
+    var lockwise = document.querySelectorAll('.mobile-lockwise');
     var notes = document.querySelectorAll('.mobile-notes');
     var fxModal = document.getElementById('fx-modal');
     var qrCode = document.getElementById('qr-code');
@@ -58,9 +58,9 @@
         }
 
         switch (true) {
-        case productString.includes('lockbox'):
-            qrCode.setAttribute('class', 'lockbox');
-            show(lockbox);
+        case productString.includes('lockwise'):
+            qrCode.setAttribute('class', 'lockwise');
+            show(lockwise);
             break;
         case productString.includes('pocket'):
             qrCode.setAttribute('class', 'pocket');
