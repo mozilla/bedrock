@@ -74,7 +74,7 @@
       <h2>{{ _('Firefox Lockwise') }}</h2>
       <p>
         {% trans %}
-        You're carrying a fairly powerful tiny computer in your pocket. You might know it as your phone. It's got its
+        You’re carrying a fairly powerful tiny computer in your pocket. You might know it as your phone. It’s got its
         own internet browser, apps that connect to the web, passwords, and logins. You use it in coffee shops and other
         public places that make it easy for hackers to steal your information.
         {% endtrans %}
@@ -104,7 +104,7 @@
       <h2>{{ _('Private Browsing') }}</h2>
       <p>
         {% trans %}
-        Speaking of private browsing, it’s a powerful privacy tool that’s easy to use. On Firefox, private browsing means we don't save information about where you’ve been, clicked or looked. Private browsing leaves smaller digital footprints, giving away less about what you do and where you go online.
+        Speaking of private browsing, it’s a powerful privacy tool that’s easy to use. On Firefox, private browsing means we don’t save information about where you’ve been, clicked or looked. Private browsing leaves smaller digital footprints, giving away less about what you do and where you go online.
         {% endtrans %}
       </p>
     </section>
@@ -112,6 +112,8 @@
     <section class="article-section">
       <h2>{{ _('Containers') }}</h2>
       <p>
+        {# L10n: Feng shui is a traditional Chinese practice meant to bring harmony to one's environment. This is an anglicized form of a Chinese word and may be difficult to translate. Alternative: 'good housekeeping'. #}
+
         {% trans %}
         Cleaning up your online space isn’t just good feng shui, it can lessen the worry of being tracked. Separate identities for your work websites or your personal interests keep trackers confined to one area. Ads that have nothing to do with work won’t pop-up in the middle of a presentation. For this purpose, we created Containers.
         {% endtrans %}
@@ -131,7 +133,7 @@
     <section class="article-section">
       <h2>{{ _('Firefox Focus') }}</h2>
       <p>
-        {% trans url='https://www.mozilla.org/en-US/firefox/mobile/' %}
+        {% trans url=url('firefox.mobile') %}
         Security is about your peace of mind. You shouldn’t have to worry about whether you’re on a safe browser. Using <a href="{{ url }}">Firefox Focus</a> can help you worry less about internet privacy on a mobile device. Its privacy features are always on, and your browsing history is wiped clean after each session. No trace, no trackers, no data for hackers to steal.
         {% endtrans %}
       </p>
