@@ -128,7 +128,7 @@
           {{ product_options('android_nightly', android_nightly_platforms, android_nightly_full_builds, android_nightly_latest_version, disabled=True, hide_version=True, hide_language=True) }}
         </fieldset>
 
-        <div class="c-download hidden">
+        <div id="download-info" class="c-download hidden" aria-live="polite">
           <p class="c-download-info">
             {{ _('You are about to download:') }}
             <br>

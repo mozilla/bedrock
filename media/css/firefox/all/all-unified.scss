@@ -260,6 +260,7 @@ $image-path: '/media/protocol/img';
         @include text-display-sm;
 
         span {
+            @include text-display-xs;
             display: block;
             font-weight: normal;
         }

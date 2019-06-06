@@ -3,7 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% macro select_product_list(products, disabled=False) %}
- <select id="select-product" class="c-selection-input"{% if disabled %} disabled{% endif %}>
+ <select id="select-product" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %}>
   {% for p_name, p_label in products %}
     <option value="{{ p_name }}">{{ p_label }}</option>
   {% endfor %}
@@ -13,7 +13,7 @@
 {% macro select_version_list(id, version, disabled=False) %}
   {% set version_select_id = 'select_' ~ id ~ '_version' %}
   <label for="{{ version_select_id }}" class="c-selection-label">{{ _('Which version would you like?') }}</label>
-  <select id="{{ version_select_id }}" class="c-selection-input" {% if disabled %}disabled{% endif %}>
+  <select id="{{ version_select_id }}" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %}>
     <option value="{{ id }}">{{ version }}</option>
     {% if id == 'desktop_esr' and desktop_esr_next_version %}
       <option value="desktop_esr_next">{{ version }}</option>
@@ -39,7 +39,7 @@
 
 {% macro select_platform_list(id, platforms, disabled=False) %}
   <label for="{{ id }}" class="c-selection-label">{{ _('Which operating system are you using?') }}</label>
-  <select id="{{ id }}" class="c-selection-input"{% if disabled %} disabled{% endif %}>
+  <select id="{{ id }}" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %}>
     {% for p_name, p_label in platforms %}
       <option value="{{ p_name }}">{{ p_label }}</option>
     {% endfor %}
@@ -48,7 +48,7 @@
 
 {% macro select_language_list(id, builds, disabled=False) %}
   <label for="{{ id }}" class="c-selection-label">{{ _('Would you like to select a different language?') }}</label>
-  <select id="{{ id }}" class="c-selection-input{% if disabled %} disabled{% endif %}">
+  <select id="{{ id }}" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %}>
     {% for build in builds %}
       <option value="{{ build.locale }}"{% if build.locale == 'en-US' %} selected{% endif%}>
       {%- if build.name_native and build.name_native != build.name_en -%}
@@ -73,7 +73,13 @@
 
 {% macro build_locale_list_item(product_label, platforms, build) %}
   <li class="c-locale-list-item" data-language="{{ build.locale }}">
-    <h4 class="c-locale-label">{{ build.name_en }}</h4>
+    <h4 class="c-locale-label">
+      {%- if build.name_native and build.name_native != build.name_en -%}
+        {{ build.name_en }} <span>{{ build.name_native }}</span>
+      {%- else -%}
+        {{ build.name_en }}
+      {%- endif -%}
+    </h4>
 
     <ul class="c-download-list">
     {% for p_name, p_label in platforms %}
