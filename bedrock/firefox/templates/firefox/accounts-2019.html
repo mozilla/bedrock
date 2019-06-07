@@ -52,7 +52,7 @@
         utm_params={'campaign': 'accounts-trailhead', 'content': 'form-upper', 'medium': 'referral'})
       }}
 
-      <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-accounts_page', action='signin', utm_params={'campaign': 'accounts-trailhead', 'content': 'form-upper', 'source': 'accounts_page'}) }}>{{ _('Sign In') }}</a></p>
+      <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-accounts_page', action='signin', utm_params={'campaign': 'accounts-trailhead', 'content': 'form-upper', 'source': 'accounts_page'}) }} class="js-fxa-cta-link">{{ _('Sign In') }}</a></p>
     </div>
   </div>
 </section>

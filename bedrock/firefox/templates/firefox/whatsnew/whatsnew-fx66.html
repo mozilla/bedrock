@@ -97,7 +97,7 @@
     </span>
     {% else %}
     <span class="wn64-signin">
-      <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew66', action='login', utm_params={'campaign': 'wnp66', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'wnp66'}) }}>{{ _('Already have an account?') }}</a>
+      <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew66', action='login', utm_params={'campaign': 'wnp66', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'wnp66'}) }} class="js-fxa-cta-link">{{ _('Already have an account?') }}</a>
     </span>
     {% endif %}
   </p>

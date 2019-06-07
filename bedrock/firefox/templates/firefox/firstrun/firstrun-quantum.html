@@ -65,7 +65,7 @@
       <div id="fxaccounts-wrapper">
         {{ fxa_email_form(entrypoint='mozilla.org-firstrun_page', utm_source='firstrun-page', utm_params={'campaign': 'fxa-embedded-form', 'content': 'firstrun-page', 'medium': 'referral'}, button_class='mzp-c-button mzp-t-product',) }}
 
-        <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-firstrun_page', utm_params={'campaign': 'fxa-embedded-form', 'medium': 'referral', 'content': 'firstrun-page', 'source': 'firstrun-page'}) }}>{{ _('Sign In') }}</a></p>
+        <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-firstrun_page', utm_params={'campaign': 'fxa-embedded-form', 'medium': 'referral', 'content': 'firstrun-page', 'source': 'firstrun-page'}) }} class="js-fxa-cta-link">{{ _('Sign In') }}</a></p>
       </div>
     </main>
 

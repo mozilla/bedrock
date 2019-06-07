@@ -68,8 +68,8 @@
    include_cta=True
   ) %}
   <p class="show-fxa-supported-signed-out show-fxa-default">
-    <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew64', action='signup', utm_params=fxa_utm_params) }} class="mzp-c-button mzp-t-product">{{ button_create }}</a><br>
-    <span class="wn64-signin">{{ login_desc }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew64', utm_params=fxa_utm_params) }}>{{ login_link }}</a></span>
+    <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew64', action='signup', utm_params=fxa_utm_params) }} class="js-fxa-cta-link mzp-c-button mzp-t-product">{{ button_create }}</a><br>
+    <span class="wn64-signin">{{ login_desc }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew64', utm_params=fxa_utm_params) }} class="js-fxa-cta-link">{{ login_link }}</a></span>
   </p>
   {% endcall %}
   {% call hero(
@@ -115,8 +115,8 @@
     class='mzp-t-firefox t-wn64 show-fxa-default show-fxa-supported-signed-out'
   ) %}
     <p>
-      <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew64', action='signup', utm_params=fxa_utm_params) }} class="mzp-c-button mzp-t-product">{{ button_create }}</a><br>
-      <span class="wn64-signin">{{ login_desc }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew64', utm_params=fxa_utm_params) }}>{{ login_link }}</a></span>
+      <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew64', action='signup', utm_params=fxa_utm_params) }} class="js-fxa-cta-link mzp-c-button mzp-t-product">{{ button_create }}</a><br>
+      <span class="wn64-signin">{{ login_desc }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew64', utm_params=fxa_utm_params) }} class="js-fxa-cta-link">{{ login_link }}</a></span>
     </p>
   {% endcall %}
 
