@@ -299,7 +299,7 @@
     {{ download_firefox(dom_id=download_id, download_location=button_location) }}
   </div>
   <div class="show-fxa-supported-signed-out">
-    <a {{ fxa_link_fragment(entrypoint=entrypoint, action='signup', utm_params={'campaign': campaign, 'content': (content or request.path_info), 'source': source}) }} class="button {{ button_class }}" data-link-name="Create account" data-link-type="FxA-Sync" data-cta-position="{{ button_location }}" id="{{ account_id }}">
+    <a {{ fxa_link_fragment(entrypoint=entrypoint, action='signup', utm_params={'campaign': campaign, 'content': (content or request.path_info), 'source': source}) }} class="js-fxa-cta-link button {{ button_class }}" data-link-name="Create account" data-link-type="FxA-Sync" data-cta-position="{{ button_location }}" id="{{ account_id }}">
       {{ button_text }}
     </a>
   </div>
@@ -366,7 +366,7 @@
 
     DO NOT include utm_source in this dictionary! (It's already a required param.)
 #}
-{% macro fxa_email_form(entrypoint, utm_source, style, class_name='fxa-email-form', utm_params={}, form_title='', intro_text='', button_text='', button_class='js-fxa-cta-link button button-blue') -%}
+{% macro fxa_email_form(entrypoint, utm_source, style, class_name='fxa-email-form', utm_params={}, form_title='', intro_text='', button_text='', button_class='button button-blue') -%}
   {% set service  = 'sync' %}
   <form action="{{ settings.FXA_ENDPOINT }}" data-mozillaonline-action="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}" id="fxa-email-form" class="{{ class_name }}">
     <input type="hidden" name="action" value="email" />
@@ -412,7 +412,7 @@
         <input type="email" name="email" id="fxa-email-field" class="fxa-email-field" placeholder="user@example.com" required>
       </p>
 
-      <button type="submit" class="{{ button_class }}" id="fxa-email-form-submit" data-link-type="FxA-{{ service|title }}" data-link-name="Continue">
+      <button type="submit" class="js-fxa-cta-link {{ button_class }}" id="fxa-email-form-submit" data-link-type="FxA-{{ service|title }}" data-link-name="Continue">
       {% if button_text %}
         {{ button_text }}
       {% else %}

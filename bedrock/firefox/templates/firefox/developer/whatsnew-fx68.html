@@ -26,7 +26,7 @@
   </span>
   {% else %}
   <span class="wn64-signin">
-    <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew68a2', action='login', utm_params={'campaign': 'wnp68a2', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'wnp68a2'}) }}>{{ _('Already have an account?') }}</a>
+    <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew68a2', action='login', utm_params={'campaign': 'wnp68a2', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'wnp68a2'}) }} class="js-fxa-cta-link">{{ _('Already have an account?') }}</a>
   </span>
   {% endif %}
 </p>

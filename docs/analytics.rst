@@ -54,6 +54,10 @@ Since GTM listeners pass the interacted element object to the dataLayer, the use
 
     When adding any new elements to a Bedrock page, please follow the below guidelines to ensure accurate analytics tracking.
 
+.. Important::
+
+    Do not use `data-link-type` and `data-button-name` attributes together or the event will be captured twice by GA.
+
 For all nav, footer, and CTA/button link elements, add these data attributes:
 
 +--------------------------+--------------------------------+
@@ -82,6 +86,16 @@ For all download buttons, add these data attributes:
 |    data-download-os      | name or text of the link       |
 +--------------------------+--------------------------------+
 |   data-download-version  |'standard', 'developer', 'beta' |
++--------------------------+--------------------------------+
+
+For all links to accounts.firefox.com use these data attributes:
+
++--------------------------+--------------------------------+
+|    Data Attribute        |        Expected Value          |
++==========================+================================+
+|   data-link-type         | FxA-ServiceName (eg. FxA-Sync) |
++--------------------------+--------------------------------+
+|   data-link-name         | name or text of the link       |
 +--------------------------+--------------------------------+
 
 For all conditional banners, add the following calls.
@@ -153,3 +167,5 @@ structure:
     | Event Category: {{page ID}} Interactions
     | Event Action: button click
     | Event Label: {{data-button-name}}
+
+
