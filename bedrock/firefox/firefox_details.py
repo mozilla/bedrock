@@ -30,7 +30,9 @@ class FirefoxDesktop(_ProductDetails):
     # Human-readable platform names
     platform_labels = OrderedDict([
         ('win64', 'Windows 64-bit'),
+        ('win64-msi', 'Windows 64-bit MSI'),
         ('win', 'Windows 32-bit'),
+        ('win-msi', 'Windows 32-bit MSI'),
         ('osx', 'macOS'),
         ('linux64', 'Linux 64-bit'),
         ('linux', 'Linux 32-bit'),
@@ -38,8 +40,8 @@ class FirefoxDesktop(_ProductDetails):
 
     # Recommended/modern vs traditional/legacy platforms
     platform_classification = OrderedDict([
-        ('recommended', ('win64', 'osx', 'linux64')),
-        ('traditional', ('win', 'linux')),
+        ('recommended', ('win64', 'win64-msi', 'osx', 'linux64')),
+        ('traditional', ('linux', 'win', 'win-msi')),
     ])
 
     # Human-readable channel names
@@ -80,6 +82,11 @@ class FirefoxDesktop(_ProductDetails):
                     platforms[platform] = self.platform_labels[platform]
         else:
             platforms = self.platform_labels.copy()
+
+        # Msi installers are not yet available for ESR builds.
+        if channel == 'esr' or channel == 'esr-next':
+            del platforms['win64-msi']
+            del platforms['win-msi']
 
         return platforms.items()
 
@@ -143,6 +150,7 @@ class FirefoxDesktop(_ProductDetails):
                 # Append 64-bit builds
                 if 'Windows' in _builds:
                     _builds['Windows 64-bit'] = _builds['Windows']
+                    # TODO do we need to do anything here for MSI?
                 if 'Linux' in _builds:
                     _builds['Linux 64-bit'] = _builds['Linux']
                 return version, _builds

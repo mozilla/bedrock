@@ -95,10 +95,12 @@
   tooltip: Text to display as tooltip for download link.
 #}
 {% macro build_link(build, platform, platform_label, tooltip) %}
-  <a href="{{ build.platforms[platform].download_url }}" title="{{ tooltip }}"
-    data-download-version="{{ platform }}" data-download-language="{{ build.name_en|lower}}" data-link-type="download"
-    {% if platform == 'android' %} data-download-os="Android"
-    {% elif platform == 'ios' %} data-download-os="iOS"
-    {% else %} data-download-os="Desktop"{% endif %}>{{ platform_label }}
-  </a>
+  {% if build.platforms[platform] %}
+    <a href="{{ build.platforms[platform].download_url }}" title="{{ tooltip }}"
+      data-download-version="{{ platform }}" data-download-language="{{ build.name_en|lower}}" data-link-type="download"
+      {% if platform == 'android' %} data-download-os="Android"
+      {% elif platform == 'ios' %} data-download-os="iOS"
+      {% else %} data-download-os="Desktop"{% endif %}>{{ platform_label }}
+    </a>
+  {% endif %}
 {% endmacro %}
