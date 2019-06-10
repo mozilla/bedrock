@@ -580,7 +580,7 @@ class TestFirefoxCampaign(TestCase):
         req = RequestFactory().get('/firefox/campaign/')
         req.locale = 'en-US'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html', ANY)
 
     # berlin campaign bug 1447445 + 3 berlin variations bug 1473357
 
@@ -601,7 +601,7 @@ class TestFirefoxCampaign(TestCase):
         req = RequestFactory().get('/firefox/new/?xv=berlin')
         req.locale = 'en-US'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html', ANY)
 
     def test_berlin_nonde_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=berlin')
@@ -626,7 +626,7 @@ class TestFirefoxCampaign(TestCase):
         req = RequestFactory().get('/firefox/campaign/?xv=herz')
         req.locale = 'en-US'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html', ANY)
 
     def test_variation_herz_nonde_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=herz')
@@ -651,7 +651,7 @@ class TestFirefoxCampaign(TestCase):
         req = RequestFactory().get('/firefox/campaign/?xv=geschwindigkeit')
         req.locale = 'en-US'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html', ANY)
 
     def test_variation_speed_nonde_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=geschwindigkeit')
@@ -676,7 +676,7 @@ class TestFirefoxCampaign(TestCase):
         req = RequestFactory().get('/firefox/campaign/?xv=privatsphare')
         req.locale = 'en-US'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html', ANY)
 
     def test_variation_privacy_nonde_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=privatsphare')
@@ -701,7 +701,7 @@ class TestFirefoxCampaign(TestCase):
         req = RequestFactory().get('/firefox/campaign/?xv=auf-deiner-seite')
         req.locale = 'en-US'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html', ANY)
 
     def test_variation_oys_nonde_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=auf-deiner-seite')
@@ -735,7 +735,7 @@ class TestFirefoxCampaign(TestCase):
         req = RequestFactory().get('/firefox/campaign/?xv=betterbrowser')
         req.locale = 'de'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html', ANY)
 
     def test_better_browser_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=betterbrowser')
@@ -760,9 +760,9 @@ class TestFirefoxCampaign(TestCase):
 
     def test_compare_safari_scene_1_non_us(self, render_mock):
         req = RequestFactory().get('/firefox/campaign/?xv=safari')
-        req.locale = 'fr'
+        req.locale = 'de'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html', ANY)
 
     # Edge SEM campaign Bug #1479086
 
@@ -776,7 +776,7 @@ class TestFirefoxCampaign(TestCase):
         req = RequestFactory().get('/firefox/campaign/?xv=edge')
         req.locale = 'de'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html', ANY)
 
 
 class TestFeedbackView(TestCase):

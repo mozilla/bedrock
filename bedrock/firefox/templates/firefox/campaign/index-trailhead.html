@@ -1,0 +1,126 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button with context %}
+{% from "macros-protocol.html" import hero, picto_card with context %}
+
+{% add_lang_files "firefox/campaign-trailhead" %}
+
+{% extends "firefox/base-protocol.html" %}
+
+{% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
+
+{%- block page_title -%}{{_('Free Web Browser')}}{%- endblock -%}
+
+{# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
+{%- block page_title_suffix -%}
+  {% if LANG == 'en-CA' %}
+    — Mozilla (CA)
+  {% elif LANG == 'en-GB' %}
+    — Mozilla (UK)
+  {% else %}
+    — Mozilla
+  {% endif %}
+{%- endblock -%}
+
+{% block page_desc %}{{_('Download Mozilla Firefox, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox for Windows, macOS, Linux, Android and iOS today!')}}{% endblock %}
+
+{#- This will appear as <meta property="og:title"> which can be used for social share -#}
+{% block page_og_title %}{{_('Download the fastest Firefox ever')}}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{_('Faster page loading, less memory usage and packed with features, the new Firefox is here.')}}{% endblock %}
+
+{% block canonical_urls %}
+  {# the SEM campaign page should set canonical to the /firefox/new/ page. #}
+  <link rel="canonical" href="{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/new/">
+{% endblock %}
+
+{# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
+{% block extrahead %}
+  {{ css_bundle('protocol-core') }}
+  {{ css_bundle('firefox_campaign_trailhead') }}
+{% endblock %}
+
+{% block old_ie_styles %}{% endblock %}
+{% block site_css %}{% endblock %}
+{% block page_css %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{# Bug 1381776 #}
+{% block update_notification %}{% endblock %}
+
+{% block content %}
+<main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
+  {% call hero(
+    title=_('Get the latest Firefox browser.'),
+    desc=_('And start getting the respect you deserve with our family of privacy-first products.'),
+    class='mzp-has-image mzp-t-dark',
+    include_cta=True,
+    image_url='firefox/new/trailhead/browser-window.svg',
+    heading_level=1
+  ) %}
+    {{ download_firefox(alt_copy=_('Download Now'), locale_in_transition=True, download_location='primary cta') }}
+
+    <ul class="small-links desktop">
+      <li><button class="platform-modal-button js-platform-modal-button hidden" type="button">{{_('Advanced install options & other platforms') }}</button></li>
+      <li><a href="{{ url('firefox.all') }}">{{_('Download in another language') }}</a></li>
+      <li><a href="https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fix-problem-link">{{ _('Fix a problem') }}</a></li>
+    </ul>
+
+    <ul class="small-links android">
+      <li><a href="{{ url('firefox.all', channel='android') }}">{{_('Download in another language') }}</a></li>
+      <li><a rel="external" href="https://support.mozilla.org/products/mobile/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
+    </ul>
+
+    <ul class="small-links ios">
+      <li><a rel="external" href="https://support.mozilla.org/products/ios/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
+    </ul>
+  {% endcall %}
+  <section class="features">
+    <ul class="mzp-l-card-third mzp-l-content">
+      {{ picto_card(title=_('Join Firefox'), desc=_('Connect to a whole family of respectful products, plus all the knowledge you need to protect yourself online.'), class='join') }}
+      {{ picto_card(title=_('Passwords made portable'), desc=_('<strong>Firefox Lockwise</strong> makes the passwords you save in Firefox available on all your devices.'), class='lockwise') }}
+      {{ picto_card(title=_('Protect your privacy'), desc=_('<strong>Private Browsing</strong> clears your history to keep it secret from anyone who uses your computer.'), class='private') }}
+    </ul>
+  </section>
+</main>
+
+<aside class="mzp-u-modal-content other-platforms-content">
+    <section class="section-other-platforms">
+      <h4 class="other-platforms-title">{{ _('Advanced Install Options & Other Platforms') }}</h4>
+
+      {{ download_firefox_desktop_list(force_full_installer=True) }}
+
+      <ul class="other-platforms-mobile">
+        <li class="android">
+          {{ google_play_button(extra_data_attributes={'download-location': 'other'}) }}
+        </li>
+        <li class="ios">
+          <a href="{{ firefox_ios_url('mozorg-fxnew_page_scene1_modal-appstore-button') }}" data-link-type="download" data-download-os="iOS" data-download-location="other">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section-current-platform">
+      {# L10n: Line breaks below for visual formatting. #}
+      <h4 class="other-platforms-title heading-windows">{{_('Download Firefox <br>for Windows') }}</h4>
+      <h4 class="other-platforms-title heading-mac">{{_('Download Firefox <br>for macOS') }}</h4>
+      <h4 class="other-platforms-title heading-linux">{{_('Download Firefox <br>for Linux') }}</h4>
+
+      {{ download_firefox(dom_id='download-other-platforms-modal', alt_copy=_('Download Now'), locale_in_transition=True, download_location='other') }}
+    </section>
+</aside>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_campaign_trailhead') }}
+
+  {% if switch('stub-attribution-macos') %}
+    {{ js_bundle('stub-attribution-macos') }}
+  {% endif %}
+{% endblock %}

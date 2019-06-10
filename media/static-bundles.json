@@ -258,6 +258,12 @@
     },
     {
       "files": [
+        "css/firefox/campaign/download.scss"
+      ],
+      "name": "firefox_campaign_trailhead"
+    },
+    {
+      "files": [
         "css/security/security.scss"
       ],
       "name": "security"
@@ -946,6 +952,13 @@
         "js/firefox/campaign/berlin-scene1-variation.js"
       ],
       "name": "firefox_campaign_scene1_berlin_variation"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-modal.js",
+        "js/firefox/campaign/download.js"
+      ],
+      "name": "firefox_campaign_trailhead"
     },
     {
       "files": [

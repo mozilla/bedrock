@@ -1,0 +1,332 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/components/modal';
+@import '../../../protocol/css/components/picto-card';
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/templates/card-layout';
+
+
+/**
+ * Product button color override.
+ * Can be removed once Protocol is updated.
+ * https://github.com/mozilla/protocol/issues/380
+ */
+.mzp-c-button.mzp-t-product,
+a.mzp-c-button.mzp-t-product {
+    background-color: $color-blue-50;
+
+    &:focus,
+    &:hover {
+        background-color: $color-blue-60;
+    }
+}
+
+.mzp-c-hero.mzp-t-dark {
+    @include background-size(auto 100%);
+    background-color: $color-off-black;
+
+    .mzp-c-hero-title {
+        @include at2x('/media/img/logos/firefox/release-lockup-white.png', 147px, 48px);
+        background-position: top center;
+        background-repeat: no-repeat;
+        padding-top: $layout-xl;
+    }
+
+    .mzp-c-hero-image img {
+        top: 48px;
+        bottom: auto;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
+    }
+
+    .small-links {
+        @include text-body-xs;
+        margin-top: $spacing-2xl;
+
+        li {
+            line-height: 2.5;
+        }
+
+        .platform-modal-button {
+            @include text-body-xs;
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            text-decoration: underline;
+
+            &:active,
+            &:focus,
+            &:hover {
+                text-decoration: none;
+            }
+
+            // Hide modal link for Linux users on Arm as they already get alternate messaging.
+            .linux.arm & {
+                display: none;
+            }
+
+            &.hidden {
+                display: none;
+            }
+        }
+    }
+
+    .small-links.android,
+    .small-links.ios {
+        display: none;
+    }
+
+    @media #{$mq-md} {
+        @include bidi((
+            (background-image, url('/media/img/firefox/new/trailhead/hero-bg.svg'), url('/media/img/firefox/new/trailhead/hero-bg-rtl.svg')),
+            (background-position, top right -600px, top left -600px),
+        ));
+        background-repeat: no-repeat;
+
+        .mzp-c-hero-title {
+            @include bidi(((background-position, top left, top right),));
+            max-width: 9em;
+        }
+
+        .mzp-c-hero-desc {
+            max-width: 21em;
+        }
+    }
+
+    @media #{$mq-lg} {
+        @include bidi(((background-position, top right -480px, top left -480px),));
+    }
+
+    @media #{$mq-xl} {
+        @include bidi(((background-position, top right -260px, top left -260px),));
+    }
+}
+
+html.android .mzp-c-hero {
+    .small-links.desktop,
+    .small-links.ios {
+        display: none;
+    }
+
+    .small-links.android {
+        display: block;
+    }
+}
+
+html.ios .mzp-c-hero {
+    .small-links.android,
+    .small-links.desktop {
+        display: none;
+    }
+
+    .small-links.ios {
+        display: block;
+    }
+}
+
+/**
+ * Picto card custom icon sizes.
+ * These should be standardized into a `large` icon size.
+ * https://github.com/mozilla/protocol/issues/382
+ */
+.mzp-c-card-picto .mzp-c-card-picto-content {
+    padding-top: 140px;
+
+    &:before {
+        background-color: transparent;
+        background-position: top left;
+        background-repeat: no-repeat;
+    }
+
+    @media #{$mq-lg} {
+        .mzp-c-card-picto-title {
+            @include text-display-sm;
+            margin-bottom: $spacing-xl;
+        }
+    }
+}
+
+.join .mzp-c-card-picto-content::before {
+    height: 104px;
+    width: 104px;
+    margin-left: -52px;
+    background-image: url('/media/img/firefox/new/trailhead/icon-join.svg');
+}
+
+.lockwise .mzp-c-card-picto-content::before {
+    height: 96px;
+    width: 152px;
+    margin-left: -76px;
+    background-image: url('/media/img/firefox/new/trailhead/icon-lockwise.svg');
+}
+
+.private .mzp-c-card-picto-content::before {
+    height: 83px;
+    width: 113px;
+    margin-left: -56px;
+    background-image: url('/media/img/firefox/new/trailhead/icon-private.svg');
+}
+
+//* ====================================================================== */
+//  Other platforms modal
+
+.other-platforms-content {
+    @include clearfix;
+    background: $color-white;
+    color: $color-black;
+    margin-top: $spacing-lg;
+    text-align: center;
+
+    .other-platforms-title {
+        @include text-display-sm;
+        margin-bottom: $spacing-2xl;
+    }
+
+    .section-current-platform,
+    .section-other-platforms {
+        padding: $spacing-xs;
+    }
+
+    .section-other-platforms {
+        margin-bottom: $spacing-lg;
+
+        ul {
+            padding: 0 $spacing-lg;
+        }
+    }
+
+    .download-platform-lists {
+        margin: $spacing-lg $spacing-xl;
+    }
+
+    .download-platform-list {
+        list-style: none;
+        margin: $spacing-lg auto;
+        text-align: center;
+
+        &.recommended li {
+            font-weight: bold;
+        }
+
+        &.traditional {
+            border-color: $color-gray-30;
+            border-style: solid;
+            border-width: 1px 0;
+            padding: $spacing-lg;
+        }
+
+        li {
+            display: block;
+            line-height: 2;
+            margin: $spacing-xs 0 $spacing-xs #{-$spacing-lg};
+        }
+
+        a:link,
+        a:visited {
+            @include text-body-md;
+            background: url('/media/img/firefox/new/down-arrow-blue.svg') left center no-repeat;
+            @include background-size(20px 16px);
+            color: $color-blue-50;
+            display: inline-block;
+            padding-left: $spacing-lg;
+        }
+    }
+
+    .other-platforms-mobile {
+        ul {
+            list-style: none;
+        }
+
+        li {
+            display: inline-block;
+            margin: $spacing-sm 0;
+        }
+    }
+
+    .section-current-firefox {
+        display: none;
+    }
+
+    .section-current-platform {
+        margin-bottom: $spacing-xl;
+
+        .other-platforms-title {
+            display: none;
+        }
+    }
+
+    .fx-privacy-link {
+        a:link,
+        a:visited {
+            color: $color-black;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            text-decoration: underline;
+        }
+    }
+
+    @media #{$mq-md} {
+        .section-other-platforms {
+            @include bidi(((float, right, left),));
+            padding: $spacing-md;
+            width: calc(50% - #{$spacing-md * 2});
+        }
+
+        .section-current-platform {
+            @include bidi(((float, left, right),));
+            @include border-box;
+            padding: $spacing-md;
+            width: calc(50% - #{$spacing-md * 2});
+        }
+    }
+}
+
+// Headings are shown conditionally based on detected platform.
+.osx .other-platforms-content .heading-mac {
+    display: block;
+}
+
+.windows .other-platforms-content .heading-windows {
+    display: block;
+}
+
+.linux .other-platforms-content .heading-linux {
+    display: block;
+}
+
+/**
+ * Custom narrow modal style.
+ * These should be standardized into a narrow theme.
+ * https://github.com/mozilla/protocol/issues/358
+ */
+.mzp-c-modal.other-platforms-modal {
+
+    .mzp-c-modal-window > .mzp-c-modal-inner {
+        background: transparent;
+        max-width: 960px;
+        padding: $spacing-xl 0 0;
+
+        header {
+            // Hide header visually and add top padding to compensate
+            @include visually-hidden;
+        }
+    }
+
+    .mzp-c-modal-close {
+        @include bidi(((right, 0, left, auto),));
+    }
+}
+
