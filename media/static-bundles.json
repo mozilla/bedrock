@@ -760,12 +760,6 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-zh-tw.scss"
-      ],
-      "name": "firefox_whatsnew_zh_tw"
-    },
-    {
-      "files": [
         "css/newsletter/newsletter-firefox.scss"
       ],
       "name": "newsletter-firefox"

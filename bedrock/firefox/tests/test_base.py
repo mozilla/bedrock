@@ -363,19 +363,6 @@ class TestWhatsNew(TestCase):
 
     # end id locale-specific tests
 
-    # begin zh-TW locale-specific tests
-
-    @override_settings(DEV=True)
-    def test_zh_TW_locale_template(self, render_mock):
-        """Should use zh-TW locale specific template"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'zh-TW'
-        self.view(req, version='63.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/index.zh-TW.html']
-
-    # end zh-TW locale-specific tests
-
     # begin 63.0 whatsnew tests
 
     def test_fx_63_0(self, render_mock):
