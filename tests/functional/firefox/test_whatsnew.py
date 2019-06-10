@@ -36,4 +36,3 @@ def test_firefox_rocket_send_yourself(base_url, selenium):
     send_yourself.type_email('success@example.com')
     send_yourself.click_send()
     assert send_yourself.send_successful
-
