@@ -140,9 +140,15 @@ class TestHomePage(TestCase):
         views.home_view(req)
         render_mock.assert_called_once_with(req, 'mozorg/home/home-de.html', ANY)
 
-    def test_home_locale_template(self, render_mock):
+    def test_home_fr_template(self, render_mock):
         req = RequestFactory().get('/')
         req.locale = 'fr'
+        views.home_view(req)
+        render_mock.assert_called_once_with(req, 'mozorg/home/home-fr.html', ANY)
+
+    def test_home_locale_template(self, render_mock):
+        req = RequestFactory().get('/')
+        req.locale = 'es'
         views.home_view(req)
         render_mock.assert_called_once_with(req, 'mozorg/home/home.html', ANY)
 
