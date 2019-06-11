@@ -258,6 +258,12 @@
     },
     {
       "files": [
+        "css/firefox/campaign/download.scss"
+      ],
+      "name": "firefox_campaign_trailhead"
+    },
+    {
+      "files": [
         "css/security/security.scss"
       ],
       "name": "security"
