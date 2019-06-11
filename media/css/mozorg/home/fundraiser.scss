@@ -63,7 +63,6 @@ $image-path: '/media/protocol/img';
 .c-fundraiser-options {
     label {
         @include bidi(((margin, 0 $spacing-sm $spacing-md 0, 0 0 $spacing-md $spacing-sm),));
-        @include open-sans;
         display: inline-block;
         position: relative;
 

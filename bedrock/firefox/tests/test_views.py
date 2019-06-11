@@ -731,6 +731,7 @@ class TestFirefoxCampaign(TestCase):
         views.campaign(req)
         render_mock.assert_called_once_with(req, 'firefox/campaign/better-browser/scene1.html', ANY)
 
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
     def test_better_browser_scene_1_non_us(self, render_mock):
         req = RequestFactory().get('/firefox/campaign/?xv=betterbrowser')
         req.locale = 'de'
@@ -758,9 +759,10 @@ class TestFirefoxCampaign(TestCase):
         views.campaign(req)
         render_mock.assert_called_once_with(req, 'firefox/campaign/compare/scene1-safari.html', ANY)
 
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
     def test_compare_safari_scene_1_non_us(self, render_mock):
         req = RequestFactory().get('/firefox/campaign/?xv=safari')
-        req.locale = 'de'
+        req.locale = 'fr'
         views.campaign(req)
         render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html', ANY)
 
@@ -772,9 +774,10 @@ class TestFirefoxCampaign(TestCase):
         views.campaign(req)
         render_mock.assert_called_once_with(req, 'firefox/campaign/compare/scene1-edge.html', ANY)
 
+    @patch.object(views, 'lang_file_is_active', lambda *x: True)
     def test_compare_edge_scene_1_non_us(self, render_mock):
         req = RequestFactory().get('/firefox/campaign/?xv=edge')
-        req.locale = 'de'
+        req.locale = 'fr'
         views.campaign(req)
         render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html', ANY)
 

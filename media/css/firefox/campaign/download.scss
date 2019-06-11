@@ -12,21 +12,6 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/templates/card-layout';
 
 
-/**
- * Product button color override.
- * Can be removed once Protocol is updated.
- * https://github.com/mozilla/protocol/issues/380
- */
-.mzp-c-button.mzp-t-product,
-a.mzp-c-button.mzp-t-product {
-    background-color: $color-blue-50;
-
-    &:focus,
-    &:hover {
-        background-color: $color-blue-60;
-    }
-}
-
 .mzp-c-hero.mzp-t-dark {
     @include background-size(auto 100%);
     background-color: $color-off-black;
