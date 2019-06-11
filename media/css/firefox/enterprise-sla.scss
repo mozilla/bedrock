@@ -36,11 +36,12 @@ $border: 2px solid $color-gray-20;
 
     a:link,
     a:visited {
-        color: $color-black;
+        color: $color-off-black;
     }
 }
 
-.mzp-c-sidemenu-title {
+.mzp-t-firefox .mzp-c-sidemenu-title {
+    @include font-base;
     @include text-body-sm;
     font-weight: bold;
 }
@@ -49,6 +50,7 @@ $border: 2px solid $color-gray-20;
 // Page header/intro
 
 .c-page-intro {
+    @include text-body-lg;
     border-bottom: $border;
     margin-bottom: $spacing-xl;
     max-width: $content-md;
@@ -94,13 +96,13 @@ $border: 2px solid $color-gray-20;
 
 .mzp-c-article {
     h2 {
-        @include text-display-md;
+        @include text-display-sm;
         font-weight: bold;
         margin-bottom: $layout-md;
     }
 
     h3 {
-        @include text-display-sm;
+        @include text-display-xs;
         font-weight: bold;
         margin: $layout-sm 0;
     }
@@ -238,6 +240,7 @@ $border: 2px solid $color-gray-20;
     margin: 0 0 $spacing-sm;
 
     h4 {
+        @include font-base;
         @include text-body-md;
         font-weight: bold;
         margin: -#{$spacing-md} -#{$spacing-md} 1em;

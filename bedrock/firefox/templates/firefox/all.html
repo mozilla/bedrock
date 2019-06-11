@@ -74,7 +74,7 @@
 
 {% block site_header_logo %}
   {% if platform == 'desktop' and channel == 'alpha' %}
-    <h2><a href="{{ url('firefox.developer.index') }}">{{ high_res_img('logos/firefox/logo-dev-edition-quantum-wordmark.png', {'alt': _('Firefox Developer Edition'), 'width': '220', 'height': '84'}) }}</a></h2>
+    <h2><a href="{{ url('firefox.developer.index') }}">{{ high_res_img('logos/firefox/logo-dev-edition-quantum-wordmark.png', {'alt': _('Firefox Developer Edition'), 'width': '260', 'height': '84'}) }}</a></h2>
   {% elif channel == 'nightly' %}
     <h2>{{ high_res_img('firefox/template/header-logo-nightly.png', {'alt': _('Firefox Nightly'), 'width': '305', 'height': '70'}) }}</h2>
   {% else %}

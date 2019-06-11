@@ -42,7 +42,6 @@ ul.download-list {
 
 .download-other {
     @include text-body-xs;
-    @include open-sans;
     color: #666;
 
     a:link,

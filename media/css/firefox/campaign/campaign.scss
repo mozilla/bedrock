@@ -5,16 +5,15 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../protocol/css/includes/lib';
-@import '../../protocol/css/components/hero';
-@import '../../protocol/css/components/picto-card';
-@import '../../protocol/css/templates/card-layout';
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/components/picto-card';
+@import '../../../protocol/css/templates/card-layout';
 
 //* ====================================================================== */
 //  Main content background
 
 .main-content {
-    @include open-sans;
     background: #003eaa;
     background: url('/media/img/firefox/quantum/fox-tail-header.png') top -200px center no-repeat,
                 linear-gradient(to bottom, #003eaa 40%, #004ec2 60%, #0060df 80%, #0080ff 90%, #00c7ff 100%);
@@ -102,6 +101,7 @@ $image-path: '/media/protocol/img';
     }
 
     .mzp-c-hero-desc {
+        @include font-firefox;
         @include text-display-md;
     }
 

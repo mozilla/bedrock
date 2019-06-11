@@ -252,7 +252,7 @@
     },
     {
       "files": [
-        "css/firefox/campaign.scss"
+        "css/firefox/campaign/campaign.scss"
       ],
       "name": "firefox_campaign"
     },

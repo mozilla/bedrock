@@ -18,7 +18,6 @@ $image-path: '/media/protocol/img';
 @import '../includes/lib';
 
 .mzp-c-footer {
-    @include open-sans;
 
     .mzp-l-content {
         @include border-box;

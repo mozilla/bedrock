@@ -13,24 +13,6 @@ $image-path: '/media/protocol/img';
 
 $mq-medium: 'screen and (min-width: 790px)';
 
-@font-face {
-    font-display: swap;
-    font-family: 'Fira Sans Light';
-    font-style: normal;
-    font-weight: normal;
-    src: url('/media/fonts/FiraSans-Light.woff2') format('woff2'),
-         url('/media/fonts/FiraSans-Light.woff') format('woff');
-}
-
-@font-face {
-    font-display: swap;
-    font-family: 'Fira Sans Light';
-    font-style: normal;
-    font-weight: bold;
-    src: url('/media/fonts/FiraSans-SemiBold.woff2') format('woff2'),
-         url('/media/fonts/FiraSans-SemiBold.woff') format('woff');
-}
-
 html {
     height: 100%;
     min-height: 100vh;
@@ -41,10 +23,8 @@ body {
     background: url("/media/img/firefox/firstrun/fox-tail-header.png") top -200px center no-repeat,
                 linear-gradient(to bottom, #003eaa 40%, #004ec2 60%, #0060df 80%, #0080ff 90%, #00c7ff 100%) top center no-repeat,
                 #003eaa;
-    font-family: 'Fira Sans Light', sans-serif;
     height: 100%;
     min-height: 100vh;
-    -moz-osx-font-smoothing: unset;
 }
 
 #outer-wrapper {
@@ -100,9 +80,7 @@ body {
 
     h1 {
         @include at2x('/media/img/logos/firefox/logo-quantum.png', 90px, 90px);
-        @include text-display-md;
-        font-family: 'Fira Sans Light', sans-serif;
-        font-weight: normal;
+        @include text-display-sm;
         background-position: top center;
         background-repeat: no-repeat;
         margin-bottom: 10px;

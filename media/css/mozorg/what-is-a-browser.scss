@@ -13,12 +13,10 @@ $image-path: '/media/protocol/img';
     margin: 0 auto $layout-lg;
 
     .mzp-c-article-title {
-        @include open-sans;
         @include text-display-lg;
     }
 
     .c-section-title {
-        @include open-sans;
         @include text-display-sm;
         margin-top: $layout-md;
     }

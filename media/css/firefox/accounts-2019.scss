@@ -5,15 +5,6 @@
 
 @import '../../protocol/css/includes/lib';
 
-
-.mzp-t-firefox {
-    color: $color-off-black;
-
-    h1, h2, h3, h4 {
-        font-weight: bold;
-    }
-}
-
 .c-section-title {
     @include text-display-md;
     max-width: $content-sm;

@@ -23,7 +23,8 @@ $image-path: '/media/protocol/img';
     text-align: center;
 
     .c-page-header-up-to-date {
-        @include text-display-xs;
+        @include font-base;
+        @include text-body-lg;
         display: none;
         font-weight: normal;
         margin: 1em 0;
