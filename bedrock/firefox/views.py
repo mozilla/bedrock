@@ -759,7 +759,10 @@ def campaign(request):
         elif experience == 'auf-deiner-seite':
             template = 'firefox/campaign/berlin/scene1-auf-deiner-seite.html'
         else:
-            template = 'firefox/campaign/index-trailhead.html'
+            if lang_file_is_active('firefox/campaign-trailhead', locale):
+                template = 'firefox/campaign/index-trailhead.html'
+            else:
+                template = 'firefox/campaign/index.html'
     elif locale == 'en-US':
         if experience == 'betterbrowser':
             template = 'firefox/campaign/better-browser/scene1.html'
