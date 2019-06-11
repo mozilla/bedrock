@@ -13,7 +13,7 @@
             <section class="mzp-c-menu-item mzp-has-icon">
               <a class="mzp-c-menu-item-link" href="{{ url('firefox') }}" data-link-name="Firefox Quantum Desktop Browser" data-link-type="nav" data-link-position="topnav" data-link-group="firefox">
                 <img src="{{ static('protocol/img/logos/firefox/firefox.png') }}" class="mzp-c-menu-item-icon" width="24" height="24" alt="">
-                {% if l10n_has_tag('firefox_quantum_removal2019') %}
+                {% if LANG.startswith('en-') %}
                   <h4 class="mzp-c-menu-item-title">{{ _('Firefox Desktop Browser') }}</h4>
                 {% else %}
                   <h4 class="mzp-c-menu-item-title">{{ _('Firefox Quantum Desktop Browser') }}</h4>
