@@ -20,6 +20,10 @@
     padding: $spacing-lg 0;
     text-align: center;
 
+    .c-accounts-hero-body-signed-in {
+        display: none;
+    }
+
     .c-accounts-hero-title {
         @include text-display-lg;
         background: transparent url('/media/img/logos/firefox/logo-master-wordmark-dark.svg') center top no-repeat;
@@ -34,6 +38,16 @@
 
     .c-accounts-hero-desc {
         @include text-body-lg;
+    }
+
+    .state-fxa-supported-signed-in & {
+        .c-accounts-hero-body-default {
+            display: none;
+        }
+
+        .c-accounts-hero-body-signed-in {
+            display: block;
+        }
     }
 
     @media #{$mq-md} {
@@ -66,6 +80,7 @@
 
         .c-accounts-hero-title {
             @include bidi(((background-position, left top, right top),));
+            max-width: 12em;
         }
 
         @supports (display: grid) {
