@@ -76,22 +76,24 @@ if (typeof window.Mozilla === 'undefined') {
 
         for (var i = 0; i < ctaLinks.length; i++) {
             // get the link off the element
-            var oldAccountsLink = ctaLinks[i].href;
-            // verify this a link to accounts.firefox.com or dev server, otherwise we shouldn't touch it
-            if(oldAccountsLink.indexOf('https://accounts.firefox.com') === 0 || oldAccountsLink.indexOf('https://latest.dev.lcip.org') === 0) {
-                // get the China repack link, so that can be updated too
-                var oldMozillaOnlineLink = ctaLinks[i].getAttribute('data-mozillaonline-link');
+            var oldAccountsLink =  ctaLinks[i].hasAttribute('href') ? ctaLinks[i].href : null ;
+            // verify this is a link to accounts.firefox.com or dev server, otherwise we shouldn't touch it
+            if(oldAccountsLink) {
+                if(oldAccountsLink.indexOf('https://accounts.firefox.com') === 0 || oldAccountsLink.indexOf('https://latest.dev.lcip.org') === 0) {
+                    // get the China repack link, so that can be updated too
+                    var oldMozillaOnlineLink = ctaLinks[i].getAttribute('data-mozillaonline-link');
 
-                // append our new UTM param data to create new FxA links.
-                var newAccountsLink = UtmUrl.appendToDownloadURL(oldAccountsLink, params);
+                    // append our new UTM param data to create new FxA links.
+                    var newAccountsLink = UtmUrl.appendToDownloadURL(oldAccountsLink, params);
 
-                // set the FxA button to use the new link.
-                ctaLinks[i].href = newAccountsLink;
+                    // set the FxA button to use the new link.
+                    ctaLinks[i].href = newAccountsLink;
 
-                // also handle mozilla-online links for FxA China Repack.
-                if (oldMozillaOnlineLink) {
-                    var newMozillaOnlineLink = UtmUrl.appendToDownloadURL(oldMozillaOnlineLink, params);
-                    ctaLinks[i].setAttribute('data-mozillaonline-link', newMozillaOnlineLink);
+                    // also handle mozilla-online links for FxA China Repack.
+                    if (oldMozillaOnlineLink) {
+                        var newMozillaOnlineLink = UtmUrl.appendToDownloadURL(oldMozillaOnlineLink, params);
+                        ctaLinks[i].setAttribute('data-mozillaonline-link', newMozillaOnlineLink);
+                    }
                 }
             }
         }
