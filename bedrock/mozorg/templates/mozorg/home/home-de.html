@@ -21,30 +21,29 @@
 
   {% call download_banner(
     logo_title=_('Firefox'),
-    title=_('Dein Leben. Deine Daten. Dein Browser.'),
-    desc=_('Firefox fights for you.'),
+    title=_('Dein Leben.<br> Deine Daten.')|safe,
+    desc=_('Hol dir echte Privatsphäre auf jedes deiner Geräte.'),
     ) %}
     {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
   {% endcall %}
 
   {% call download_banner_sticky(
     title=_('<strong>Firefox</strong> fights for you.'),
-    sub_title=_('Dein Leben. Deine Daten. Dein Browser.'),
-    desc=_('Firefox fights for you.')
+    sub_title=_('Dein Leben. Deine Daten.')
     ) %}
     {{ download_firefox(dom_id='download-sticky', download_location='sticky cta', button_color='mzp-t-small') }}
   {% endcall %}
 
   {{ fxa_banner(
     logo_title=_('Firefox'),
-    title=_('Dein Leben. <br>Deine Daten.'),
-    sub_title=_('Nimm Lesezeichen und Privatsphäre-Features mit auf jedes Gerät – mit deinem Firefox-Konto.'),
+    title=_('Tech mit R.E.S.P.E.K.T.'),
+    sub_title=_('Firefox kann mehr als nur einen richtig guten Browser.'),
     link_cta=_('Weitere Infos'),
   )}}
 
   {{ fxa_banner_sticky(
     title=_('Firefox'),
-    sub_title=_('Dein Leben. Deine Daten.'),
+    sub_title=_('Tech mit R.E.S.P.E.K.T.'),
     link_cta=_('Weitere Infos'),
   )}}
 
@@ -84,13 +83,15 @@
         reverse=True
       )}}
 
-      <div class="mzp-l-card-third">
+      <div class="mzp-l-card-half">
         {{ content_card('card_8') }}
         {{ content_card('card_9') }}
+      </div>
+
+      <div class="mzp-l-card-third">
         {{ content_card('card_10') }}
         {{ content_card('card_11') }}
         {{ content_card('card_12') }}
-        {{ content_card('card_13') }}
       </div>
 
       <aside class="mzp-c-newsletter">
