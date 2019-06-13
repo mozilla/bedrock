@@ -313,33 +313,6 @@ function jsMinify() {
 }
 
 /**
- * Run SVG optimization check on all .svg images.
- */
-gulp.task('svg:optim', function () {
-    return gulp.src('media/img/**/*.svg')
-        .pipe(svgmin())
-        .pipe(gulp.dest(finalDir));
-});
-
-/**
- * Run imageOptim on all images.
- */
-gulp.task('img:optim', function() {
-    return gulp.src('media/img/**/*')
-        .pipe(imageOptim.optimize())
-        .pipe(gulp.dest(finalDir));
-});
-
-/**
- * Run all image compression task.s
- */
-
-gulp.task('img:compress', () => {
-    gulp.start('svg:optim');
-    gulp.start('img:optim');
-});
-
-/**
  * Run the JS test suite.
  */
 function jsTest(cb) {
@@ -380,9 +353,12 @@ gulp.task('css:lint', cssLint);
  * either `static_build` or `static_final` depending on the file type.
  */
 function assetsWatch(cb) {
-    const assetsWatcher = gulp.watch(['media/**/*', '!media/**/*.{scss,less}'], {base: 'media'});
+    const assetsWatcher = gulp.watch(['media/**/*', '!media/**/*.{scss,less}', '!media/img/**/*'], {base: 'media'});
     const cssWatcher = gulp.watch('media/**/*.{scss,less}', {base: 'media'});
-    // send everything but scss and less to the final dir
+    const imageWatcher = gulp.watch(['media/img/**/*', '!media/img/**/*.svg'], {base: 'media'});
+    const svgWatcher = gulp.watch('media/img/**/*.svg', {base: 'media'});
+
+    // send everything but scss, less, and images to the final dir
     assetsWatcher.on('change', function(path) {
         return gulp.src(path, {base: 'media'})
             .pipe(cached('all', cachedOpts))
@@ -393,6 +369,22 @@ function assetsWatch(cb) {
         return gulp.src(path, {base: 'media'})
             .pipe(cached('all', cachedOpts))
             .pipe(gulp.dest(buildDir));
+    });
+
+    // optimize changed images and send to final dir
+    imageWatcher.on('change', function(path) {
+        return gulp.src(path, {base: 'media'})
+            .pipe(imageOptim.optimize())
+            .pipe(cached('all', cachedOpts))
+            .pipe(gulp.dest(finalDir));
+    });
+
+    // optimize change svg and send to final dir
+    svgWatcher.on('change', function(path) {
+        return gulp.src(path, {base: 'media'})
+            .pipe(svgmin())
+            .pipe(cached('all', cachedOpts))
+            .pipe(gulp.dest(finalDir));
     });
 
     cb();
