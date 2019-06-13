@@ -11,15 +11,15 @@ Mozilla.MonitorButton = (function() {
     'use strict';
 
     var monitorButton = document.getElementById('fxa-monitor-submit');
-    var buttonURL = monitorButton.getAttribute('href');
 
     // fetch request
     var supportsFetch = 'fetch' in window;
 
-    if (!supportsFetch) {
+    if (!supportsFetch || !monitorButton) {
         return;
     }
 
+    var buttonURL = monitorButton.getAttribute('href');
     var destURL = monitorButton.getAttribute('data-action') + 'metrics-flow';
 
     fetch(destURL).then(function(resp) {
