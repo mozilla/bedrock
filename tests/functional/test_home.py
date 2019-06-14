@@ -10,7 +10,7 @@ from pages.home import HomePage
 @pytest.mark.skip_if_firefox(reason='Download button is displayed only to non-Firefox users')
 @pytest.mark.sanity
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('locale', ['en-US', 'de'])
+@pytest.mark.parametrize('locale', ['en-US', 'de', 'fr'])
 def test_download_button_is_displayed(locale, base_url, selenium):
     page = HomePage(selenium, base_url, locale=locale).open()
     assert page.primary_download_button.is_displayed
@@ -19,7 +19,7 @@ def test_download_button_is_displayed(locale, base_url, selenium):
 
 @pytest.mark.skip_if_not_firefox(reason='Firefox Accounts CTA is displayed only to Firefox users')
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('locale', ['en-US', 'de'])
+@pytest.mark.parametrize('locale', ['en-US', 'de', 'fr'])
 def test_accounts_button_is_displayed(locale, base_url, selenium):
     page = HomePage(selenium, base_url, locale=locale).open()
     assert page.is_primary_accounts_button
@@ -29,5 +29,5 @@ def test_accounts_button_is_displayed(locale, base_url, selenium):
 @pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_download_button_is_displayed_locales(base_url, selenium):
-    page = HomePage(selenium, base_url, locale='fr').open()
+    page = HomePage(selenium, base_url, locale='es').open()
     assert page.intro_download_button.is_displayed
