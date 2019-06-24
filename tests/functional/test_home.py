@@ -29,5 +29,5 @@ def test_accounts_button_is_displayed(locale, base_url, selenium):
 @pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_download_button_is_displayed_locales(base_url, selenium):
-    page = HomePage(selenium, base_url, locale='es').open()
+    page = HomePage(selenium, base_url, locale='es-ES').open()
     assert page.intro_download_button.is_displayed
