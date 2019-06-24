@@ -27,17 +27,18 @@ if (typeof window.Mozilla === 'undefined') {
     FxaState.convertFxaDetailsToStateAndDo = function(details, callback) {
         var stateClass = '';
 
-        if(details.firefox) {
-            if(details.legacy) {
+        if (details.firefox) {
+            if (details.legacy) {
                 stateClass = 'state-fxa-unsupported';
-            } else if(details.mobile) {
-                if(details.mobile === 'ios') {
+            } else if (details.mobile) {
+                if (details.mobile === 'ios') {
                     stateClass = 'state-fxa-ios';
                 } else {
                     stateClass = 'state-fxa-android';
                 }
             } else {
-                if(details.setup) {
+                // Query param `signed-in=true` is used for integration testing and demo review only.
+                if (details.setup || window.location.search.indexOf('signed-in=true') !== -1) {
                     stateClass = 'state-fxa-supported-signed-in';
                 } else {
                     stateClass = 'state-fxa-supported-signed-out';
