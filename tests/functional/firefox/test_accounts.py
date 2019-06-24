@@ -3,11 +3,23 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
+import urllib
 
 from pages.firefox.accounts import FirefoxAccountsPage
 
 
 @pytest.mark.nondestructive
 def test_account_form(base_url, selenium):
-    page = FirefoxAccountsPage(selenium, base_url).open()
-    assert page.is_create_account_form_displayed, "Create account form is displayed for signed out users"
+    page = FirefoxAccountsPage(selenium, base_url, params='').open()
+    page.join_firefox_form.type_email('success@example.com')
+    page.join_firefox_form.click_continue()
+    url = urllib.unquote(selenium.current_url)
+    assert 'email=success@example.com' in url, 'Email address is not in URL'
+
+
+@pytest.mark.nondestructive
+@pytest.mark.skip_if_not_firefox(reason='Signed-in state is shown only to Firefox users.')
+def test_signed_in_call_to_action(base_url, selenium):
+    page = FirefoxAccountsPage(selenium, base_url, params='?signed-in=true').open()
+    assert not page.join_firefox_form.is_displayed
+    assert page.is_firefox_monitor_button_displayed
