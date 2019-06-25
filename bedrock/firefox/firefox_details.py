@@ -150,7 +150,6 @@ class FirefoxDesktop(_ProductDetails):
                 # Append 64-bit builds
                 if 'Windows' in _builds:
                     _builds['Windows 64-bit'] = _builds['Windows']
-                    # TODO do we need to do anything here for MSI?
                 if 'Linux' in _builds:
                     _builds['Linux 64-bit'] = _builds['Linux']
                 return version, _builds

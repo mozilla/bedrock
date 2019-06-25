@@ -8,12 +8,12 @@
 
 {%- block page_title -%}
   {#- L10n: HTML page title. Replace "English (US)" with your local language. -#}
-  {{ _('Download the Firefox browser in English (US) and more than 90 other languages') }}
+  {{ _('Download the Firefox Browser in English (US) and more than 90 other languages') }}
 {%- endblock -%}
 
 {%- block page_desc -%}
   {#- L10n: HTML page description, also used as the introductory text. -#}
-  {{ _('Everyone deserves access to the internet — your chosen language should never be a barrier. That’s why — with the help of dedicated volunteers around the world — we make Firefox available in more than 90 languages.') }}
+  {{ _('Everyone deserves access to the internet — your language should never be a barrier. That’s why — with the help of dedicated volunteers around the world — we make the Firefox Browser available in more than 90 languages.') }}
 {%- endblock -%}
 
 {% block page_css %}
@@ -36,14 +36,8 @@
   <div class="mzp-l-content">
     <div id="product-select-form" class="c-product-select-form" data-supported="true">
       <div class="c-intro">
-        <h1 class="c-intro-heading">{{ _('Choose which Firefox browser to download in your language') }}</h1>
-        <p>
-        {% trans %}
-          Everyone deserves access to the internet — your language should never be a barrier.
-          That’s why — with the help of dedicated volunteers around the world — we make the
-          Firefox desktop browser available in more than 90 languages.
-        {% endtrans %}
-        </p>
+        <h1 class="c-intro-heading">{{ _('Choose which Firefox Browser to download in your language') }}</h1>
+        <p>{{ self.page_desc() }}</p>
         <div class="c-product-links" data-product="desktop_release">
           <ul>
             <li><a href="{{ firefox_url('desktop', 'sysreq', 'release') }}">{{ _('Check the system requirements') }}</a></li>
@@ -270,27 +264,59 @@
   </div>
 </main>
 
-<div id="browser-help" class="c-browser-help mzp-u-modal-content">
+<div id="browser-help" class="c-help mzp-u-modal-content">
   <ul>
     <li>
-      <h2 class="c-browser-help-title"><a href="{{ url('firefox') }}">Firefox</a></h2>
-      <p class="c-browser-help-desc">{{ _('The standard Firefox browser — fast and private. If you’re not sure which Firefox to choose, choose this.') }}</p>
+      <h2 class="c-help-title"><a href="{{ url('firefox') }}">Firefox</a></h2>
+      <p class="c-help-desc">{{ _('The standard Firefox browser — fast and private. If you’re not sure which Firefox to choose, choose this.') }}</p>
     </li>
     <li>
-      <h2 class="c-browser-help-title"><a href="{{ url('firefox.channel.desktop') }}#beta">Firefox <span>Beta</span></a></h2>
-      <p class="c-browser-help-desc">{{ _('Get a sneak peek at the latest Firefox browser features before they’re released.') }}</p>
+      <h2 class="c-help-title"><a href="{{ url('firefox.channel.desktop') }}#beta">Firefox <span>Beta</span></a></h2>
+      <p class="c-help-desc">{{ _('Get a sneak peek at the latest Firefox browser features before they’re released.') }}</p>
     </li>
     <li>
-      <h2 class="c-browser-help-title"><a href="{{ url('firefox.developer.index') }}">Firefox <span>Developer Edition</span></a></h2>
-      <p class="c-browser-help-desc">{{ _('Test your sites against soon-to-be-released Firefox browser features with powerful, flexible DevTools that are on by default.') }}</p>
+      <h2 class="c-help-title"><a href="{{ url('firefox.developer.index') }}">Firefox <span>Developer Edition</span></a></h2>
+      <p class="c-help-desc">{{ _('Test your sites against soon-to-be-released Firefox browser features with powerful, flexible DevTools that are on by default.') }}</p>
     </li>
     <li>
-      <h2 class="c-browser-help-title"><a href="{{ url('firefox.channel.desktop') }}#nightly">Firefox <span>Nightly</span></a></h2>
-      <p class="c-browser-help-desc">{{ _('The pre-alpha version for power users who like to hunt crashes and test new features as they’re coded.') }}</p>
+      <h2 class="c-help-title"><a href="{{ url('firefox.channel.desktop') }}#nightly">Firefox <span>Nightly</span></a></h2>
+      <p class="c-help-desc">{{ _('The pre-alpha version for power users who like to hunt crashes and test new features as they’re coded.') }}</p>
     </li>
     <li>
-      <h2 class="c-browser-help-title"><a href="{{ url('firefox.organizations.organizations') }}">Firefox <span>Extended Support Release</span></a></h2>
-      <p class="c-browser-help-desc">{{ _('Count on stability and ease of use with this Firefox browser built for enterprise.') }}</p>
+      <h2 class="c-help-title"><a href="{{ url('firefox.organizations.organizations') }}">Firefox <span>Extended Support Release</span></a></h2>
+      <p class="c-help-desc">{{ _('Count on stability and ease of use with this Firefox browser built for enterprise.') }}</p>
+    </li>
+  </ul>
+</div>
+
+<div id="installer-help" class="c-help mzp-u-modal-content">
+  <ul>
+    <li>
+      <h2 class="c-help-title">{{ _('64-bit installers') }}</h2>
+      <p class="c-help-desc">
+        {% trans %}
+          Choose a 64-bit installer for computers with 64-bit processors, which allow them to allocate more RAM
+          to individual programs — particularly important for games and other demanding applications.
+        {% endtrans %}
+      </p>
+    </li>
+    <li>
+      <h2 class="c-help-title">{{ _('32-bit installers') }}</h2>
+      <p class="c-help-desc">
+        {% trans url='https://support.mozilla.org/kb/choosing-firefox-cpu-architecture-windows-os' %}
+          Choose a 32-bit installer for computers with 32-bit processors — or for older or less powerful computers.
+          <a href="{{ url }}">If you aren’t sure</a> whether to choose a 64-bit or 32-bit installer, we recommend
+          you go with 32-bit.
+        {% endtrans %}
+      </p>
+    </li>
+    <li>
+      <h2 class="c-help-title">{{ _('MSI installers') }}</h2>
+      <p class="c-help-desc">
+        {% trans %}
+          Windows installers for corporate IT that simplify the configuration, deployment and management of the Firefox Browser.
+        {% endtrans %}
+      </p>
     </li>
   </ul>
 </div>
