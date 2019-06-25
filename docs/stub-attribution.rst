@@ -58,6 +58,10 @@ that is used to sign the attribution code must be set via an environment variabl
 Measuring campaigns and experiments
 -----------------------------------
 
+.. Note::
+
+    If you are performing an A/B test you will also need to configure traffic cop as outlined on `A/B Testing <https://bedrock.readthedocs.io/en/latest/abtest.html>`_.
+
 Stub Attribution was originally designed for measuring the effectiveness of marketing
 campaigns where the top of the funnel was outside the remit of www.mozilla.org. For
 these types of campaigns, stub attribution requires zero configuration. It just works
