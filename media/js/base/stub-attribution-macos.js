@@ -46,7 +46,8 @@ if (typeof window.Mozilla === 'undefined') {
      * @return {String} url + additional parameters.
      */
     StubAttributionMacOS.appendToDownloadURL = function (url, data) {
-        var finalParams = data;
+        // clone the passed `data` object to avoid mutating it indirectly.
+        var finalParams = Object.assign({}, data);
         var linkParams;
 
         // if the link has a querystring, merge it with the utm_ params in the current

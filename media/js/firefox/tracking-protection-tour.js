@@ -199,8 +199,9 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     TPTour.handleVisibilityChange = function() {
+        var hidden = typeof TPTour.documentHidden === 'boolean' ? TPTour.documentHidden : document.hidden;
         clearTimeout(_highlightTimeout);
-        if (TPTour.documentHidden || document.hidden) {
+        if (hidden) {
             TPTour.hidePanels();
         } else {
             _highlightTimeout = setTimeout(TPTour.showTourStep, 300);

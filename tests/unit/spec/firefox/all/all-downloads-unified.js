@@ -19,7 +19,7 @@ describe('all-downloads-unified.js', function() {
         ].join();
 
         beforeEach(function () {
-            document.documentElement.insertAdjacentHTML('beforeend', select);
+            document.body.insertAdjacentHTML('beforeend', select);
         });
 
         afterEach(function () {
@@ -53,7 +53,7 @@ describe('all-downloads-unified.js', function() {
         ].join();
 
         beforeEach(function () {
-            document.documentElement.insertAdjacentHTML('beforeend', select);
+            document.body.insertAdjacentHTML('beforeend', select);
         });
 
         afterEach(function () {
@@ -105,7 +105,7 @@ describe('all-downloads-unified.js', function() {
         ].join();
 
         beforeEach(function () {
-            document.documentElement.insertAdjacentHTML('beforeend', downloadList);
+            document.body.insertAdjacentHTML('beforeend', downloadList);
         });
 
         afterEach(function () {
@@ -127,7 +127,7 @@ describe('all-downloads-unified.js', function() {
         var downloadLink = '<a href="#" id="download-button-primary">Download Now</a>';
 
         beforeEach(function () {
-            document.documentElement.insertAdjacentHTML('beforeend', downloadLink);
+            document.body.insertAdjacentHTML('beforeend', downloadLink);
         });
 
         afterEach(function () {
@@ -249,10 +249,10 @@ describe('all-downloads-unified.js', function() {
                     '</ul>' +
                 '</li>' +
             '</ol>'
-        ];
+        ].join();
 
         beforeEach(function () {
-            document.documentElement.insertAdjacentHTML('beforeend', options);
+            document.body.insertAdjacentHTML('beforeend', options);
         });
 
         afterEach(function () {

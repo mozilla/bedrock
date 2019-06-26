@@ -22,7 +22,7 @@
     "gulp-sourcemaps": "^2.6.4",
     "gulp-stylelint": "^3.9.0",
     "gulp-uglify": "^3.0.0",
-    "merge-stream": "^1.0.1",
+    "merge-stream": "2.0.0",
     "yargs": "13.2.1"
   },
   "repository": {
@@ -37,12 +37,12 @@
   "devDependencies": {
     "browser-sync": "2.26.3",
     "concurrently": "4.1.0",
-    "jasmine-core": "^2.4.1",
-    "karma": "^0.13.22",
-    "karma-coverage": "^0.5.5",
-    "karma-firefox-launcher": "^0.1.7",
-    "karma-jasmine": "^0.3.8",
-    "sinon": "^1.17.3"
+    "jasmine-core": "3.4.0",
+    "karma": "4.1.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-firefox-launcher": "1.1.0",
+    "karma-jasmine": "2.0.1",
+    "sinon": "7.3.2"
   },
   "bin": {
     "browser-sync": "/.bin/browser-sync"

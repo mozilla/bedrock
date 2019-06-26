@@ -10,6 +10,19 @@
 describe('yandex-scene1.js', function() {
     'use strict';
 
+    beforeEach(function() {
+        // stub out Mozilla.Cookie lib
+        window.Mozilla.Cookies = sinon.stub();
+        window.Mozilla.Cookies.enabled = sinon.stub().returns(true);
+        window.Mozilla.Cookies.setItem = sinon.stub();
+        window.Mozilla.Cookies.getItem = sinon.stub();
+        window.Mozilla.Cookies.hasItem = sinon.stub();
+
+        // stub out google tag manager
+        window.dataLayer = sinon.stub();
+        window.dataLayer.push = sinon.stub();
+    });
+
     describe('getLocation', function() {
 
         var xhr;
@@ -79,16 +92,14 @@ describe('yandex-scene1.js', function() {
             spyOn(Mozilla.Yandex, 'setCookie');
         });
 
-        it('should update page content on first call and set a cookie', function() {
+        it('should update page content on first call only and set a cookie', function() {
             Mozilla.Yandex.onRequestComplete(country);
             expect(Mozilla.Yandex.updatePageContent).toHaveBeenCalled();
             expect(Mozilla.Yandex.setCookie).toHaveBeenCalledWith(country);
-        });
 
-        it('should not update page content on second call', function() {
             Mozilla.Yandex.onRequestComplete(country);
-            expect(Mozilla.Yandex.updatePageContent).not.toHaveBeenCalled();
-            expect(Mozilla.Yandex.setCookie).not.toHaveBeenCalled();
+            expect(Mozilla.Yandex.updatePageContent).toHaveBeenCalledTimes(1);
+            expect(Mozilla.Yandex.setCookie).toHaveBeenCalledTimes(1);
         });
     });
 
