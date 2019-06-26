@@ -9,12 +9,22 @@
 
 {%- block page_title -%}
   {# L10n: HTML page title #}
-  {{ _('Get a Firefox Account – Keep your data private, safe and synced') }}
+  {%- if l10n_has_tag('accounts-metadata-072019') -%}
+    {{ _('There is a way to protect your privacy. Join Firefox.') }}
+  {%- else -%}
+    {{ _('Get a Firefox Account – Keep your data private, safe and synced') }}
+  {%- endif -%}
 {%- endblock -%}
 {%- block page_desc -%}
   {# L10n: HTML page description #}
-  {{ _('Securely sync your passwords, bookmarks and tabs across all your devices. Get a Firefox Account now – One login – Power and privacy everywhere.') }}
+  {%- if l10n_has_tag('accounts-metadata-072019') -%}
+    {{ _('Take your stand against an industry that’s selling your data to third parties. Stay smart and safe online with technology that fights for you.') }}
+  {%- else -%}
+    {{ _('Securely sync your passwords, bookmarks and tabs across all your devices. Get a Firefox Account now – One login – Power and privacy everywhere.') }}
+  {%- endif -%}
 {%- endblock -%}
+
+{% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
 
 {% block page_css %}
  {{ css_bundle('firefox_accounts_2019') }}
