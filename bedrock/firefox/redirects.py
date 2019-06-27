@@ -606,4 +606,7 @@ redirectpatterns = (
 
     # issue 7210
     redirect(r'^firefox/account/?$', 'firefox.accounts'),
+
+    # issue 7287
+    redirect(r'^accounts/?$', 'firefox.accounts'),
 )
