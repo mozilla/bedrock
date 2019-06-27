@@ -2,7 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 from django.conf.urls import url
-from django.views.generic import RedirectView
 
 from bedrock.mozorg.util import page
 
@@ -30,7 +29,6 @@ urlpatterns = (
     url(r'^firefox/$', views.firefox_home, name='firefox'),
     url(r'^firefox/(?:%s/)?(?:%s/)?all/$' % (platform_re, channel_re),
         views.firefox_all, name='firefox.all'),
-    url(r'^accounts/$', RedirectView.as_view(pattern_name='firefox.accounts', permanent=False)),
     url(r'^firefox/accounts/', views.firefox_accounts, name='firefox.accounts'),
     url(r'^firefox/campaign/$', views.campaign, name='firefox.campaign'),
     page('firefox/channel/desktop', 'firefox/channel/desktop.html'),

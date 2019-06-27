@@ -1261,4 +1261,7 @@ URLS = flatten((
     url_test('/contribute/signup/', 'https://activate.mozilla.community/'),
     url_test('/contribute/task/{,devtools-challenger/, firefox-mobile/}', 'https://activate.mozilla.community/'),
     url_test('/contribute/friends/', '/contribute/'),
+
+    # Issue 7287
+    url_test('/accounts/', '/firefox/accounts/'),
 ))
