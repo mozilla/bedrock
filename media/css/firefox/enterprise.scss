@@ -2,297 +2,169 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../pebbles/includes/lib';
-@import '../hubs/sections';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
 
-$enterprise-grid-spacing: 60px;
+@import "../../protocol/css/includes/lib";
+@import '../../protocol/css/components/hero';
 
 /* -------------------------------------------------------------------------- */
 // Common elements
 
 $color-photon-blue: #0099db;
 
-#outer-wrapper {
-    background: #fff;
+.u-visually-hidden {
+    @include visually-hidden;
 }
 
-body {
-    @include open-sans;
-}
-
-.content-section {
-    color: #000;
-    padding: 40px 0;
-    text-align: center;
-
-    @media #{$mq-desktop} {
-        padding: 50px 0;
-        text-align: left;
-    }
+h2 {
+    @include text-body-lg;
 }
 
 /* -------------------------------------------------------------------------- */
-// Top hero section
+// Hero
 
-.intro {
-    background: #0f257e url('/media/img/firefox/enterprise/wave.png') bottom left no-repeat;
-    color: #fff;
+.mzp-c-hero.t-enterprise {
+    // dark colour fallback incase svg image doesn't load/display
+    background: $color-off-black;
+    background-image: url('/media/img/firefox/enterprise/ent-noodles.svg'),
+        linear-gradient(transparent 550px, #fff 550px, #fff 1000px);
+    background-position: bottom left, top center;
+    background-repeat: no-repeat, repeat-x;
+    background-size: 1221px 680px, 480px 1000px;
+    margin-bottom: $layout-sm;
+    min-height: 540px;
+    padding-top: $layout-sm;
 
-    h1 {
-        @include font-size-level2;
-        @include open-sans;
-        margin-bottom: 0;
+    html[dir=rtl] & {
+        background: $color-off-black;
+        min-height: 0;
     }
 
-    .copy {
-        padding: 0;
-        width: auto;
+   &.mzp-t-product-firefox .mzp-c-hero-title {
+       @include at2x('/media/img/logos/firefox/logo-quantum-full-wordmark-white.png', auto, 48px);
+       @include text-display-xl;
+       padding-top: $layout-lg + 48px;
+   }
 
-        p {
-            margin: 1.25em 0;
-        }
+   .mzp-c-hero-body {
+       background-color: $color-off-black;
+       border-top-right-radius: 100px;
+       margin-bottom: 100px;
+   }
 
-        .button {
-            margin-top: 30px;
-        }
+   .mzp-c-hero-image {
+        display: none;
     }
 
-    .copy-cta {
-        display: inline-block;
-        text-align: center;
+    @media #{$mq-sm} {
+        background-position: top left, top center;
+        margin-bottom: $layout-md;
+        min-height: 680px - $layout-xl; // to keep bg image from being cut off
+        padding-top: $layout-xl;
     }
 
-    .copy-cta-2 {
-        margin-top: 20px;
+    @media #{$mq-md} {
+        background-image: url('/media/img/firefox/enterprise/ent-noodles-wide.svg'),
+                    linear-gradient(transparent 680px, #fff 680px, #fff 1200px);
+        background-position: top center, top center;
+        background-repeat: no-repeat, repeat-x, repeat-x;
+        background-size: 2560px 793px, 480px 1200px;
+        min-height: 793px - $layout-md; // to keep bg image from being cut off
+        padding-top: $layout-md;
 
-        a {
-            @include font-size(16px);
-            color: #fff;
-        }
-    }
-
-    @media #{$mq-phone-wide} {
-        background: #0f257e url('/media/img/firefox/enterprise/wave.png') bottom left no-repeat;
-        background: url('/media/img/firefox/enterprise/wave.png') bottom -100px left no-repeat,
-                    url('/media/img/firefox/enterprise/circle.png') top -40px right no-repeat,
-                    linear-gradient(90deg, #003da7, #181562);
-    }
-
-    @media #{$mq-desktop} {
-        background: #0f257e url('/media/img/firefox/enterprise/wave.png') bottom left no-repeat;
-        background: url('/media/img/firefox/enterprise/laptop.png') top 150px left 600px no-repeat,
-                    url('/media/img/firefox/enterprise/wave.png') bottom left no-repeat,
-                    url('/media/img/firefox/enterprise/circle.png') top 100px left calc(50% + 100px) no-repeat,
-                    linear-gradient(90deg, #003da7, #181562);
-
-        @media #{$mq-high-res} {
-            background: #0f257e url('/media/img/firefox/enterprise/wave.png') bottom left no-repeat;
-            background: url('/media/img/firefox/enterprise/laptop-high-res.png') top 150px left 600px no-repeat,
-                        url('/media/img/firefox/enterprise/wave.png') bottom left no-repeat,
-                        url('/media/img/firefox/enterprise/circle.png') top 100px left calc(50% + 100px) no-repeat,
-                        linear-gradient(90deg, #003da7, #181562);
-            background-size: 807px 455px,
-                        auto,
-                        auto,
-                        100%;
+        html[dir=rtl] & {
+            background: $color-off-black;
+            min-height: 0;
         }
 
-        &.content-section {
-            padding: 0;
-        }
+        .mzp-c-hero-image {
+            display: block;
 
-        .content {
-            min-height: 700px;
-        }
-
-        .copy {
-            float: left;
-            width: 480px;
-            padding: 0 30px;
-
-            .logo {
-                margin: $enterprise-grid-spacing 0 40px;
+            img {
+                bottom: auto;
+                left: $layout-sm;
+                top: calc(50% - 296px); // estimated to match design
             }
         }
     }
-
-    @media #{$mq-desktop-wide} {
-        background: #0f257e url('/media/img/firefox/enterprise/laptop.png') center right no-repeat;
-        background: url('/media/img/firefox/enterprise/laptop.png') top 150px left calc(50% + 270px) no-repeat,
-                    url('/media/img/firefox/enterprise/wave.png') bottom left no-repeat,
-                    url('/media/img/firefox/enterprise/circle.png') top 120px left calc(50% - 150px) no-repeat,
-                    url('/media/img/firefox/enterprise/curve.png') top 0 right calc(50% - 400px) no-repeat,
-                    linear-gradient(90deg, #003da7, #181562);
-
-        @media #{$mq-high-res} {
-            background: #0f257e url('/media/img/firefox/enterprise/laptop-high-res.png') center right no-repeat;
-            background: url('/media/img/firefox/enterprise/laptop-high-res.png') top 150px left calc(50% + 270px) no-repeat,
-                        url('/media/img/firefox/enterprise/wave.png') bottom left no-repeat,
-                        url('/media/img/firefox/enterprise/circle.png') top 120px left calc(50% - 150px) no-repeat,
-                        url('/media/img/firefox/enterprise/curve.png') top 0 right calc(50% - 400px) no-repeat,
-                        linear-gradient(90deg, #003da7, #181562);
-            background-size: 788px 455px,
-                        auto,
-                        auto,
-                        auto,
-                        100%;
-        }
-    }
 }
 
-
 /* -------------------------------------------------------------------------- */
-// Detail content pillars
+// Feature trio
 
-.details ul {
+.c-features {
+    @include clearfix;
+
     li {
-        margin-bottom: $enterprise-grid-spacing;
-        list-style-type: none;
+        margin-bottom: $layout-lg;
         width: 100%;
     }
 
     h3 {
-        margin-bottom: 20px;
+        @include font-size(24px);
+        margin-bottom: $spacing-md;
     }
 
-    p {
-        line-height: 30px;
-    }
+    @media #{$mq-lg} {
+        margin-right: $layout-md * -1;
 
-    a:link,
-    a:visited {
-        color: $color-photon-blue;
-        text-decoration: none;
-    }
-
-    a:hover,
-    a:active,
-    a:focus {
-        color: $color-photon-blue;
-        text-decoration: underline;
-    }
-
-    @media #{$mq-desktop} {
         li {
-            float: left;
+            @include bidi(((float, left, right),));
             width: 33%;
-            margin-bottom: 0;
         }
 
         h3,
         p {
-            padding-right: 40px;
+            padding-right: $layout-md;
         }
     }
 
-    @media #{$mq-desktop-wide} {
+    @media #{$mq-xl} {
+        margin-right: $layout-lg * -1;
+
         h3,
         p {
-            padding-right: $enterprise-grid-spacing;
+            padding-right: $layout-lg;
         }
     }
 }
 
-@supports(display: grid) {
-    .details ul {
-        @media #{$mq-desktop} {
-            display: grid;
-            grid-gap: $enterprise-grid-spacing;
-            grid-template-columns: repeat(3, 1fr);
-
-            li {
-                float: none;
-                width: auto;
-            }
-
-            h3,
-            p {
-                padding-right: 0;
-            }
-        }
-
-        @media #{$mq-desktop-wide} {
-            h3,
-            p {
-                padding-right: 0;
-            }
-        }
-    }
-}
 
 /* -------------------------------------------------------------------------- */
-// Download table
+// Downloads and Resources
 
-.download-table {
-    @include font-size-level6;
-    border-collapse: separate;
-    border-spacing: 0 4px;
-    margin-top: 40px;
-    width: 100%;
+.c-links {
+    background-color: $color-gray-20;
+    margin-bottom: $layout-lg;
+    padding: $spacing-md;
 
-    caption {
-        text-align: left;
-
-        h3 {
-            @include font-size-level5;
-            margin-bottom: 20px;
-        }
+    + .c-links {
+        margin-top: $layout-md * -1;
     }
 
-    tr {
-        background-color: #ededf0;
-        margin-bottom: 4px;
-    }
-
-    th {
+    h3 {
+        @include text-body-md;
+        @include font-base;
         font-weight: normal;
     }
 
-    tr,
-    th,
-    td {
-        padding: 10px;
-    }
-
-    th,
-    td {
-        display: block;
-        text-align: left;
-    }
-
-    a:link,
-    a:visited {
-        color: #0060df;
+    a {
         font-weight: bold;
-        text-decoration: none;
     }
 
-    a:hover,
-    a:active,
-    a:focus {
-        text-decoration: underline;
-    }
+    @media #{$mq-md} {
+        @supports (display:grid) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
 
-    @media #{$mq-desktop} {
-        margin-top: 60px;
+            h3 {
+                margin-bottom: 0;
+            }
 
-        th {
-            text-align: left;
-        }
-
-        td {
-            text-align: right;
-        }
-
-        tr,
-        th,
-        td {
-            padding: 20px;
-        }
-
-        th,
-        td {
-            display: table-cell;
+            a {
+                justify-self: flex-end;
+            }
         }
     }
 }
@@ -302,8 +174,8 @@ body {
 
 .enterprise-head {
     @include clearfix;
-    @include font-size-level3;
-    @include open-sans;
+    @include text-display-xs;
+    @include font-firefox;
     background-color: #0f257e;
     background-image: linear-gradient(90deg, #003da7, #181562);
     color: #fff;
@@ -314,21 +186,23 @@ body {
     margin-right: 10px;
     vertical-align: text-bottom;
 
-    @media #{$mq-tablet} {
+    @media #{$mq-md} {
         float: none;
     }
 }
 
 .enterprise-form {
-    @include open-sans;
+    @include font-firefox;
     margin-bottom: 60px;
 
     h1 {
-        @include font-size-level2;
+        @include text-display-md;
+        @include font-firefox;
         margin-bottom: 20px;
     }
 
     label {
+        @include font-firefox;
         display: block;
         font-weight: bold;
         margin-bottom: 5px;
@@ -351,7 +225,7 @@ body {
 }
 
 .enterprise-compare-list {
-    @include font-size-level6;
+    @include text-body-sm;
     @include clearfix;
     column-width: 300px;
 
@@ -377,7 +251,7 @@ body {
     }
 }
 
-@media #{$mq-tablet} {
+@media #{$mq-md} {
     .enterprise-form {
         h1 {
             margin-bottom: 40px;
@@ -387,13 +261,13 @@ body {
 
 
 /* -------------------------------------------------------------------------- */
-// Thank you page_css
+// Thank you page
 
 .thanks-head {
-    @include font-size-level3;
+    @include text-display-md;
     margin-bottom: 60px;
 }
 
 .thanks-subhead {
-    @include font-size-level4;
+    @include text-display-sm;
 }
