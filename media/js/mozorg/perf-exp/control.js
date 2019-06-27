@@ -6,7 +6,7 @@
     'use strict';
 
     window.dataLayer.push({
-        'data-ex-name': 'about_page_performance',
+        'data-ex-name': 'about_page_performance_mobile',
         'data-ex-variant': 'v_a'
     });
 })();
