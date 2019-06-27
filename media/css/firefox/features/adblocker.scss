@@ -18,12 +18,6 @@ ul li span {
     font-weight: bold;
 }
 
-blockquote {
-    @include text-display-sm;
-    margin: $layout-sm 0;
-    text-align: left;
-}
-
 .mzp-c-call-out-compact.mzp-t-product-firefox.mzp-t-firefox {
     background-color: $color-gray-20;
 
