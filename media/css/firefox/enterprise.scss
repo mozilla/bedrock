@@ -44,7 +44,6 @@ h2 {
    &.mzp-t-product-firefox .mzp-c-hero-title {
        @include at2x('/media/img/logos/firefox/logo-quantum-full-wordmark-white.png', auto, 48px);
        @include text-display-xl;
-       font-weight: normal;
        padding-top: $layout-lg + 48px;
    }
 
@@ -66,12 +65,11 @@ h2 {
     }
 
     @media #{$mq-md} {
-        background-image: url('/media/img/firefox/enterprise/ent-noodles.svg'),
-                    linear-gradient(transparent 680px, #fff 680px, #fff 1200px),
-                    linear-gradient(90deg, #fff 1002px, $color-off-black 1002px, $color-off-black 2423px, #fff 2423px, #fff 3425px);
-        background-position: top center, top center, top center;
+        background-image: url('/media/img/firefox/enterprise/ent-noodles-wide.svg'),
+                    linear-gradient(transparent 680px, #fff 680px, #fff 1200px);
+        background-position: top center, top center;
         background-repeat: no-repeat, repeat-x, repeat-x;
-        background-size: 1425px 793px, 480px 1200px, 3425px 1000px;
+        background-size: 2560px 793px, 480px 1200px;
         min-height: 793px - $layout-md; // to keep bg image from being cut off
         padding-top: $layout-md;
 
@@ -86,7 +84,7 @@ h2 {
             img {
                 bottom: auto;
                 left: $layout-sm;
-                top: calc(50% - 256px); // estimated to match design
+                top: calc(50% - 296px); // estimated to match design
             }
         }
     }
