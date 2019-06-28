@@ -7,11 +7,10 @@ $image-path: '/media/protocol/img';
 
 @import "../../protocol/css/includes/lib";
 @import '../../protocol/css/components/hero';
+@import '../../protocol/css/components/article';
 
 /* -------------------------------------------------------------------------- */
 // Common elements
-
-$color-photon-blue: #0099db;
 
 .u-visually-hidden {
     @include visually-hidden;
@@ -175,9 +174,7 @@ h2 {
 .enterprise-head {
     @include clearfix;
     @include text-display-xs;
-    @include font-firefox;
-    background-color: #0f257e;
-    background-image: linear-gradient(90deg, #003da7, #181562);
+    background-color: $color-off-black;
     color: #fff;
 }
 
@@ -197,7 +194,6 @@ h2 {
 
     h1 {
         @include text-display-md;
-        @include font-firefox;
         margin-bottom: 20px;
     }
 
@@ -214,9 +210,18 @@ h2 {
     input[type=tel],
     textarea,
     select {
+        @include text-body-md;
         margin-bottom: 40px;
         max-width: 100%;
         width: 430px;
+        padding: 0.25em 8px;
+    }
+
+    input[type=text],
+    input[type=email],
+    input[type=tel],
+    textarea {
+        border: 1px solid $color-gray-40;
     }
 
     input[type=tel] {
@@ -263,11 +268,19 @@ h2 {
 /* -------------------------------------------------------------------------- */
 // Thank you page
 
-.thanks-head {
+#enterprise-signup,
+#enterprise-thanks {
+    .mzp-c-article {
+        padding-top: $layout-md;
+        min-height: 55vh;
+    }
+}
+
+h1.thanks-head {
     @include text-display-md;
     margin-bottom: 60px;
 }
 
-.thanks-subhead {
+h2.thanks-subhead {
     @include text-display-sm;
 }
