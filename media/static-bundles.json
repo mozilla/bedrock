@@ -1180,7 +1180,7 @@
     },
     {
       "files": [
-        "js/libs/jquery-3.2.1.min.js",
+        "js/libs/jquery-3.4.1.min.js",
         "js/base/uitour-lib.js",
         "js/firefox/tracking-protection-tour.js",
         "js/firefox/tracking-protection-tour-init.js"
@@ -1615,7 +1615,7 @@
     },
     {
       "files": [
-        "js/libs/jquery-3.2.1.min.js",
+        "js/libs/jquery-3.4.1.min.js",
         "js/libs/spin.min.js",
         "js/base/mozilla-utils.js",
         "js/newsletter/form.js",
@@ -1640,7 +1640,7 @@
     },
     {
       "files": [
-        "js/libs/jquery-3.2.1.min.js",
+        "js/libs/jquery-3.4.1.min.js",
         "js/base/mozilla-utils.js",
         "js/base/mozilla-client.js",
         "js/base/class-list-polyfill.js",
