@@ -26,12 +26,15 @@ h2 {
 
 .mzp-c-hero.t-enterprise {
     // dark colour fallback incase svg image doesn't load/display
-   background: $color-off-black;
-   background: url('/media/img/firefox/enterprise/ent-noodles.svg') top left no-repeat,
-            linear-gradient(90deg, #fff 1000px, $color-off-black 1000px, $color-off-black 2425px, #fff 2425px, #fff 3425px) top center repeat;
-   background-size: cover, 3425px auto;
-   margin-bottom: $layout-sm;
-   padding-top: $layout-sm;
+    background: $color-off-black;
+    background-image: url('/media/img/firefox/enterprise/ent-noodles.svg'),
+        linear-gradient(transparent 550px, #fff 550px, #fff 1000px);
+    background-position: bottom left, top center;
+    background-repeat: no-repeat, repeat-x;
+    background-size: 1221px 680px, 480px 1000px;
+    margin-bottom: $layout-sm;
+    min-height: 540px;
+    padding-top: $layout-sm;
 
    &.mzp-t-product-firefox .mzp-c-hero-title {
        @include at2x('/media/img/logos/firefox/logo-quantum-full-wordmark-white.png', auto, 48px);
@@ -51,13 +54,20 @@ h2 {
     }
 
     @media #{$mq-sm} {
+        background-position: top left, top center;
         margin-bottom: $layout-md;
-        min-height: 560px; // too keep bg image from being cut off
+        min-height: 680px - $layout-xl; // to keep bg image from being cut off
         padding-top: $layout-xl;
     }
 
     @media #{$mq-md} {
-        margin-bottom: $layout-lg;
+        background-image: url('/media/img/firefox/enterprise/ent-noodles.svg'),
+                    linear-gradient(transparent 680px, #fff 680px, #fff 1200px),
+                    linear-gradient(90deg, #fff 1002px, $color-off-black 1002px, $color-off-black 2423px, #fff 2423px, #fff 3425px);
+        background-position: top center, top center, top center;
+        background-repeat: no-repeat, repeat-x, repeat-x;
+        background-size: 1425px 793px, 480px 1200px, 3425px 1000px;
+        min-height: 793px - $layout-md; // to keep bg image from being cut off
         padding-top: $layout-md;
 
         .mzp-c-hero-image {
@@ -69,12 +79,6 @@ h2 {
                 top: calc(50% - 256px); // estimated to match design
             }
         }
-    }
-
-    @media #{$mq-lg} {
-        background-position: top center;
-        background-size: 1425px auto, 3425px auto;
-        min-height: 697px;
     }
 }
 
@@ -98,7 +102,7 @@ h2 {
         margin-right: $layout-md * -1;
 
         li {
-            float: left;
+            @include bidi(((float, left, right),));
             width: 33%;
         }
 
