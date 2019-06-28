@@ -36,6 +36,11 @@ h2 {
     min-height: 540px;
     padding-top: $layout-sm;
 
+    html[dir=rtl] & {
+        background: $color-off-black;
+        min-height: 0;
+    }
+
    &.mzp-t-product-firefox .mzp-c-hero-title {
        @include at2x('/media/img/logos/firefox/logo-quantum-full-wordmark-white.png', auto, 48px);
        @include text-display-xl;
@@ -69,6 +74,11 @@ h2 {
         background-size: 1425px 793px, 480px 1200px, 3425px 1000px;
         min-height: 793px - $layout-md; // to keep bg image from being cut off
         padding-top: $layout-md;
+
+        html[dir=rtl] & {
+            background: $color-off-black;
+            min-height: 0;
+        }
 
         .mzp-c-hero-image {
             display: block;
