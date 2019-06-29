@@ -23,8 +23,7 @@ from bedrock.mozorg.models import ContributorActivity
 from bedrock.mozorg.util import (
     fxa_concert_rsvp,
     get_fxa_oauth_token,
-    get_fxa_profile_email,
-    HttpResponseJSON
+    get_fxa_profile_email
 )
 from bedrock.pocketfeed.models import PocketArticle
 from bedrock.wordpress.views import BlogPostsView
