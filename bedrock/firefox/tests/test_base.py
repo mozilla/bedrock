@@ -99,6 +99,7 @@ class TestFirefoxAll(TestCase):
     def setUp(self):
         self.pd_cache.clear()
         self.firefox_desktop = FirefoxDesktop(json_dir=PROD_DETAILS_DIR)
+        self.firefox_android = FirefoxAndroid(json_dir=PROD_DETAILS_DIR)
         self.patcher = patch.object(
             fx_views, 'firefox_desktop', self.firefox_desktop)
         self.patcher.start()
