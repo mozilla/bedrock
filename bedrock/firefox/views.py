@@ -424,79 +424,6 @@ def show_57_dev_whatsnew(version):
     return version >= Version('57.0')
 
 
-def show_57_whatsnew(version, oldversion):
-    try:
-        version = Version(version)
-        if oldversion:
-            oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    v57 = Version('57.0')
-    v58 = Version('58.0')
-
-    if oldversion:
-        return version >= v57 and version < v58 and oldversion < v57
-    else:
-        return version == v57
-
-
-def show_59_whatsnew(version, oldversion):
-    try:
-        version = Version(version)
-        if oldversion:
-            oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    v59 = Version('59.0')
-    v60 = Version('60.0')
-
-    if oldversion:
-        return version >= v59 and version < v60 and oldversion < v59
-    else:
-        return version >= v59 and version < v60
-
-
-def show_60_whatsnew(version, oldversion):
-    try:
-        version = Version(version)
-        if oldversion:
-            oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    v60 = Version('60.0')
-
-    return version >= v60 and (oldversion < v60 if oldversion else True)
-
-
-def show_61_whatsnew(version, oldversion):
-    try:
-        version = Version(version)
-        if oldversion:
-            oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    v61 = Version('61.0')
-
-    return version >= v61 and (oldversion < v61 if oldversion else True)
-
-
-def show_62_whatsnew(version, oldversion):
-    try:
-        version = Version(version)
-        if oldversion:
-            oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    v62 = Version('62.0')
-
-    return version >= v62 and (oldversion < v62 if oldversion else True)
-
-
 def show_62_firstrun(version):
     try:
         version = Version(version)
@@ -560,12 +487,8 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
                 template = 'firefox/developer/firstrun.html'
             else:
                 template = 'firefox/dev-firstrun.html'
-        elif show_62_firstrun(version):
-            template = 'firefox/firstrun/firstrun-quantum.html'
-        elif show_57_firstrun(version):
-            template = 'firefox/firstrun/firstrun-quantum.html'
         else:
-            template = 'firefox/firstrun/index.html'
+            template = 'firefox/firstrun/firstrun-quantum.html'
 
         # return a list to conform with original intention
         return [template]
@@ -601,7 +524,6 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
                 'en-US',
                 'en-GB',
                 'en-CA',
-                'en-ZA',
                 'es-ES',
                 'es-AR',
                 'es-CL',
@@ -728,7 +650,7 @@ def download_thanks(request):
     locale = l10n_utils.get_locale(request)
     variant = request.GET.get('v', None)
     newsletter = request.GET.get('n', None)
-    show_newsletter = locale in ['en-US', 'en-GB', 'en-CA', 'en-ZA', 'es-ES', 'es-AR', 'es-CL', 'es-MX', 'pt-BR', 'fr', 'ru', 'id', 'de', 'pl']
+    show_newsletter = locale in ['en-US', 'en-GB', 'en-CA', 'en-ZA','es-ES', 'es-AR', 'es-CL', 'es-MX', 'pt-BR', 'fr', 'ru', 'id', 'de', 'pl']
 
     # ensure variant matches pre-defined value
     if variant not in ['b']:  # place expected ?v= values in this list
@@ -740,15 +662,15 @@ def download_thanks(request):
 
     if locale == 'de':
         if experience == 'berlin':
-            template = 'firefox/new/berlin/scene2.html'
+            template = 'firefox/campaign/berlin/scene2.html'
         elif experience == 'aus-gruenden':
-            template = 'firefox/new/berlin/scene2-aus-gruenden.html'
+            template = 'firefox/campaign/berlin/scene2-aus-gruenden.html'
         elif experience == 'herz':
-            template = 'firefox/new/berlin/scene2-herz.html'
+            template = 'firefox/campaign/berlin/scene2-herz.html'
         elif experience == 'geschwindigkeit':
-            template = 'firefox/new/berlin/scene2-gesch.html'
+            template = 'firefox/campaign/berlin/scene2-gesch.html'
         elif experience == 'privatsphare':
-            template = 'firefox/new/berlin/scene2-privat.html'
+            template = 'firefox/campaign/berlin/scene2-privat.html'
         elif experience == 'auf-deiner-seite':
             template = 'firefox/campaign/berlin/scene2-auf-deiner-seite.html'
         elif lang_file_is_active('firefox/new/trailhead', locale):

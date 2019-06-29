@@ -310,14 +310,6 @@ class TestWhatsNew(TestCase):
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, version='68.0a2')
 
-    def test_fx_57_0_locale(self, render_mock):
-        """Should use regular template for 57.0 in locales without the letter"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'nl'
-        self.view(req, version='57.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/fx57/whatsnew-57.html']
-
     @override_settings(DEV=True)
     @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68='True')
     @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68_TRAILHEAD='True')
