@@ -650,7 +650,7 @@ def download_thanks(request):
     locale = l10n_utils.get_locale(request)
     variant = request.GET.get('v', None)
     newsletter = request.GET.get('n', None)
-    show_newsletter = locale in ['en-US', 'en-GB', 'en-CA', 'en-ZA','es-ES', 'es-AR', 'es-CL', 'es-MX', 'pt-BR', 'fr', 'ru', 'id', 'de', 'pl']
+    show_newsletter = locale in ['en-US', 'en-GB', 'en-CA', 'es-ES', 'es-AR', 'es-CL', 'es-MX', 'pt-BR', 'fr', 'ru', 'id', 'de', 'pl']
 
     # ensure variant matches pre-defined value
     if variant not in ['b']:  # place expected ?v= values in this list
