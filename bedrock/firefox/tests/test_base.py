@@ -245,6 +245,14 @@ class TestWhatsNew(TestCase):
     # begin beta whatsnew tests
 
     @override_settings(DEV=True)
+    def test_fx_beta_whatsnew(self, render_mock):
+        """Should show beta whatsnew template"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='67.0beta')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/index.html']
+
+    @override_settings(DEV=True)
     @patch.dict(os.environ, SWITCH_BETA_WHATSNEW_68_TRAILHEAD='True')
     def test_fx_beta_68_0_trailhead_whatsnew_on(self, render_mock):
         """Should show beta 68 trailhead template"""
@@ -309,6 +317,8 @@ class TestWhatsNew(TestCase):
         """Should show dev browser 68 trailhead template"""
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, version='68.0a2')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/developer/whatsnew-fx68.html']
 
     @override_settings(DEV=True)
     @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68='True')
@@ -327,6 +337,8 @@ class TestWhatsNew(TestCase):
         """Should show regular dev browser whatsnew template"""
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, version='68.0a2')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/developer/whatsnew.html']
 
     # end dev edition whatsnew tests
 
@@ -340,15 +352,15 @@ class TestWhatsNew(TestCase):
 
     @override_settings(DEV=True)
     def test_fx_default_whatsnew(self, render_mock):
-        """Should use standard template for 54.0"""
+        """Should use standard template for 62.0"""
         req = self.rf.get('/en-US/firefox/whatsnew/')
-        self.view(req, version='54.0')
+        self.view(req, version='62.0')
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/index.html']
 
     # begin id locale-specific tests
 
-    @patch.dict(os.environ, SWITCH_FIREFOX_LITE_WHATSNEW='True')
+    @override_settings(DEV=True)
     def test_id_locale_template_lite(self, render_mock):
         """Should use id locale specific template for Firefox Lite"""
         req = self.rf.get('/firefox/whatsnew/')
@@ -356,15 +368,6 @@ class TestWhatsNew(TestCase):
         self.view(req, version='63.0')
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/index-lite.id.html']
-
-    @patch.dict(os.environ, SWITCH_FIREFOX_LITE_WHATSNEW='False')
-    def test_id_locale_template_rocket(self, render_mock):
-        """Should use id locale specific template for Firefox Rocket"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'id'
-        self.view(req, version='63.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/index.id.html']
 
     # end id locale-specific tests
 
@@ -505,7 +508,7 @@ class TestFirstRun(TestCase):
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='40.0')
         template = render_mock.call_args[0][1]
-        assert template == ['firefox/firstrun/index.html']
+        assert template == ['firefox/firstrun/firstrun-quantum.html']
 
     @override_settings(DEV=True)
     def test_fx_firstrun_56_0(self, render_mock):
@@ -547,6 +550,93 @@ class TestFirstRun(TestCase):
         resp = self.view(req, version='39.0a2')
         assert resp.status_code == 301
         assert resp['location'].endswith('/firefox/new/')
+
+
+@patch.object(fx_views, 'firefox_desktop', firefox_desktop)
+class FxVersionRedirectsMixin(object):
+    @override_settings(DEV=True)  # avoid https redirects
+    def assert_ua_redirects_to(self, ua, url_name, status_code=301):
+        response = self.client.get(self.url, HTTP_USER_AGENT=ua)
+        assert response.status_code == status_code
+        assert response['Cache-Control'] == 'max-age=0'
+        assert response['Location'] == reverse(url_name)
+
+        # An additional redirect test with a query string
+        query = '?ref=getfirefox'
+        response = self.client.get(self.url + query, HTTP_USER_AGENT=ua)
+        assert response.status_code == status_code
+        assert response['Cache-Control'] == 'max-age=0'
+        assert response['Location'] == reverse(url_name) + query
+
+    def test_non_firefox(self):
+        """
+        Any non-Firefox user agents should be permanently redirected to
+        /firefox/new/.
+        """
+        user_agent = 'random'
+        self.assert_ua_redirects_to(user_agent, 'firefox.new')
+
+    @override_settings(DEV=True)
+    @patch.dict(product_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='13.0.5')
+    @patch('bedrock.firefox.firefox_details.firefox_desktop.latest_builds',
+           return_value=('13.0.5', GOOD_PLATS))
+    def test_current_minor_version_firefox(self, latest_mock):
+        """
+        Should show current even if behind by a patch version
+        """
+        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:13.0) '
+                      'Gecko/20100101 Firefox/13.0')
+        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
+        assert response.status_code == 200
+        assert response['Cache-Control'] == 'max-age=0'
+
+    @override_settings(DEV=True)
+    @patch.dict(product_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='25.0',
+                FIREFOX_ESR='24.1')
+    @patch('bedrock.firefox.firefox_details.firefox_desktop.latest_builds',
+           return_value=('25.0', GOOD_PLATS))
+    def test_esr_firefox(self, latest_mock):
+        """
+        Currently released ESR firefoxen should not redirect. At present
+        that is 24.0.x.
+        """
+        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) '
+                      'Gecko/20100101 Firefox/24.0')
+        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
+        assert response.status_code == 200
+        assert response['Cache-Control'] == 'max-age=0'
+
+    @override_settings(DEV=True)
+    @patch.dict(product_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='16.0')
+    @patch('bedrock.firefox.firefox_details.firefox_desktop.latest_builds',
+           return_value=('16.0', GOOD_PLATS))
+    def test_current_firefox(self, latest_mock):
+        """
+        Currently released firefoxen should not redirect.
+        """
+        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:16.0) '
+                      'Gecko/20100101 Firefox/16.0')
+        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
+        assert response.status_code == 200
+        assert response['Cache-Control'] == 'max-age=0'
+
+    @override_settings(DEV=True)
+    @patch.dict(product_details.firefox_versions,
+                LATEST_FIREFOX_VERSION='16.0')
+    @patch('bedrock.firefox.firefox_details.firefox_desktop.latest_builds',
+           return_value=('16.0', GOOD_PLATS))
+    def test_future_firefox(self, latest_mock):
+        """
+        Pre-release firefoxen should not redirect.
+        """
+        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:18.0) '
+                      'Gecko/20100101 Firefox/18.0')
+        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
+        assert response.status_code == 200
+        assert response['Cache-Control'] == 'max-age=0'
 
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
