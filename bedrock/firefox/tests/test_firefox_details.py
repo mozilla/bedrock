@@ -155,11 +155,6 @@ class TestFirefoxDesktop(TestCase):
         """
         The ESR version should give us a bouncer url. There is no stub for ESR.
         """
-        url = self.firefox_desktop.get_download_url('esr', '28.0a2', 'win64', 'en-US', True)
-        self.assertListEqual(parse_qsl(urlparse(url).query),
-                             [('product', 'firefox-esr-latest-ssl'),
-                              ('os', 'win'),
-                              ('lang', 'en-US')])
         # MSI installer
         url = self.firefox_desktop.get_download_url('esr', '28.0a2', 'win-msi', 'en-US', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
