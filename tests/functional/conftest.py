@@ -61,7 +61,7 @@ def filter_capabilities(request):
 @pytest.fixture
 def selenium(request, selenium):
     viewport = VIEWPORT['desktop']
-    if request.keywords.get('viewport') is not None:
+    if request.keywords.get('viewport'):
         viewport = VIEWPORT[request.keywords.get('viewport').args[0]]
     selenium.set_window_size(viewport['width'], viewport['height'])
     return selenium
