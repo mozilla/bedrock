@@ -596,7 +596,7 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
                 'zh-TW',
             ]
 
-        if ctx['num_version'] in [65, 66]:
+        if ctx['num_version'] in [65, 66, 67, 68]:
             ctx['show_newsletter'] = locale in [
                 'en-US',
                 'en-GB',
@@ -662,22 +662,6 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
             template = 'firefox/whatsnew/fx64/whatsnew-fx64.html'
         elif version.startswith('63.'):
             template = 'firefox/whatsnew/whatsnew-fx63.html'
-        elif show_62_whatsnew(version, oldversion):
-            template = 'firefox/whatsnew/whatsnew-fx62.html'
-        elif show_61_whatsnew(version, oldversion):
-            template = 'firefox/whatsnew/whatsnew-fx61.html'
-        elif show_60_whatsnew(version, oldversion):
-            template = 'firefox/whatsnew/whatsnew-fx60.html'
-        elif show_59_whatsnew(version, oldversion):
-            template = 'firefox/whatsnew/whatsnew-fxa.html'
-        elif show_57_whatsnew(version, oldversion):
-            # locale-specific templates don't seem to work for the default locale
-            if locale == 'en-US':
-                template = 'firefox/whatsnew/fx57/whatsnew-57.en-US.html'
-            # locale-specific templates for de, en-GB, es-AR, es-CL, es-ES, es-MX,
-            # fr, id, pl, pt-BR, ru, zh-CN, and zh-TW
-            else:
-                template = 'firefox/whatsnew/fx57/whatsnew-57.html'
         else:
             template = 'firefox/whatsnew/index.html'
 
