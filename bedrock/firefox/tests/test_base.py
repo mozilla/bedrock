@@ -15,7 +15,7 @@ from pyquery import PyQuery as pq
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox import views as fx_views
-from bedrock.firefox.firefox_details import FirefoxDesktop  # , FirefoxAndroid, FirefoxIOS
+from bedrock.firefox.firefox_details import FirefoxDesktop, FirefoxAndroid
 from bedrock.mozorg.tests import TestCase
 
 
@@ -23,10 +23,6 @@ TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), 'test_data')
 PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, 'product_details_json')
 GOOD_PLATS = {'Windows': {}, 'OS X': {}, 'Linux': {}}
 jinja_env = Jinja2.get_default().env
-
-# firefox_desktop = FirefoxDesktop(json_dir=PROD_DETAILS_DIR)
-# firefox_android = FirefoxAndroid(json_dir=PROD_DETAILS_DIR)
-# firefox_ios = FirefoxIOS(json_dir=PROD_DETAILS_DIR)
 
 
 class TestInstallerHelp(TestCase):
