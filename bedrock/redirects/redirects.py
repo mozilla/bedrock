@@ -2080,10 +2080,10 @@ redirectpatterns = (
     redirect(r'^unix/solaris-build\.html$',
              'http://developer.mozilla.org/en/Mozilla_Build_FAQ#Unix-specific_questions'),
     # bug 1551914
-    redirect('^unix/customizing\.html$', 'https://www-archive.mozilla.org/unix/customizing.html'),
+    redirect(r'^unix/customizing\.html$', 'https://www-archive.mozilla.org/unix/customizing.html'),
     redirect('^webtools$', 'https://developer.mozilla.org/en/Mozilla_Development_Tools'),
     redirect('^xmlextras/$', 'http://developer.mozilla.org/en/XML_Extras'),
-    redirect('^xmlextras/xmldataislands/example1\.html$',
+    redirect(r'^xmlextras/xmldataislands/example1\.html$',
              'http://developer.mozilla.org/@api/deki/files/2861/=example1.html'),
     redirect(r'^xmlextras/xmldataislands/$',
              'http://developer.mozilla.org/en/Using_XML_Data_Islands_in_Mozilla'),
