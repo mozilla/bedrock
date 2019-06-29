@@ -343,10 +343,6 @@ def existing(request, token=None):
     # as already subscribed.
     initial = []
     for newsletter, data in newsletter_data.items():
-        # Ignore newsletters in the OTHER_NEWSLETTERS setting
-        if newsletter in settings.OTHER_NEWSLETTERS:
-            continue
-
         # Only show a newsletter if it has ['active'] == True and
         # ['show'] == True or the user is already subscribed
         if not data.get('active', False):
