@@ -401,6 +401,8 @@ def detect_channel(version):
                 return 'nightly'
             if version.endswith('a2'):
                 return 'alpha'
+            if version.endswith('beta'):
+                return 'beta'
 
     return 'unknown'
 
