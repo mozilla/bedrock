@@ -4,10 +4,6 @@
 
 import pytest
 
-VIEWPORT = {
-    'desktop': {'width': 1280, 'height': 1024},
-    'mobile': {'width': 320, 'height': 480}}
-
 
 @pytest.fixture
 def capabilities(request, capabilities):
@@ -59,10 +55,12 @@ def filter_capabilities(request):
 
 
 @pytest.fixture
-def selenium(request, selenium):
-    viewport = VIEWPORT['desktop']
-    request_keywords_viewport = request.keywords.get('viewport')
-    if hasattr(request_keywords_viewport, 'args'):
-        viewport = VIEWPORT[request_keywords_viewport.args[0]]
-    selenium.set_window_size(viewport['width'], viewport['height'])
+def selenium(selenium):
+    selenium.set_window_size(1280, 1024)  # width, height
+    return selenium
+
+
+@pytest.fixture
+def selenium_mobile(selenium):
+    selenium.set_window_size(320, 480)  # width, height
     return selenium

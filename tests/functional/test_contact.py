@@ -66,22 +66,20 @@ def test_communities_region_menus(slug, base_url, selenium):
 
 
 @pytest.mark.nondestructive
-@pytest.mark.viewport('mobile')
-def test_spaces_mobile_navigation(base_url, selenium):
-    page = SpacesPage(selenium, base_url, slug='').open()
+def test_spaces_mobile_navigation(base_url, selenium_mobile):
+    page = SpacesPage(selenium_mobile, base_url, slug='').open()
     assert not page.is_desktop_nav_displayed
     assert page.is_mobile_nav_displayed
     expected_url = '/contact/spaces/mountain-view/'
     page.select_mobile_nav_item('Mountain View', expected_url)
-    assert expected_url in selenium.current_url, 'Page did not navigate to expected URL'
+    assert expected_url in selenium_mobile.current_url, 'Page did not navigate to expected URL'
 
 
 @pytest.mark.nondestructive
-@pytest.mark.viewport('mobile')
-def test_communities_mobile_navigation(base_url, selenium):
-    page = CommunitiesPage(selenium, base_url, slug='').open()
+def test_communities_mobile_navigation(base_url, selenium_mobile):
+    page = CommunitiesPage(selenium_mobile, base_url, slug='').open()
     assert not page.is_desktop_nav_displayed
     assert page.is_mobile_nav_displayed
     expected_url = '/contact/communities/north-america/'
     page.select_mobile_nav_item('North America', expected_url)
-    assert expected_url in selenium.current_url, 'Page did not navigate to expected URL'
+    assert expected_url in selenium_mobile.current_url, 'Page did not navigate to expected URL'
