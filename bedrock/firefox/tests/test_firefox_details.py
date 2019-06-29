@@ -139,7 +139,7 @@ class TestFirefoxDesktop(TestCase):
                               ('os', 'win64'),
                               ('lang', 'en-US')])
         # Windows 64-bit MSI installer
-        url = firefox_desktop.get_download_url('release', '38.0', 'win64-msi', 'en-US', True)
+        url = self.firefox_desktop.get_download_url('release', '38.0', 'win64-msi', 'en-US', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'firefox-msi-latest-ssl'),
                               ('os', 'win64'),
@@ -155,13 +155,13 @@ class TestFirefoxDesktop(TestCase):
         """
         The ESR version should give us a bouncer url. There is no stub for ESR.
         """
-        url = firefox_desktop.get_download_url('esr', '28.0a2', 'win64', 'en-US', True)
+        url = self.firefox_desktop.get_download_url('esr', '28.0a2', 'win64', 'en-US', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'firefox-esr-latest-ssl'),
                               ('os', 'win'),
                               ('lang', 'en-US')])
         # MSI installer
-        url = firefox_desktop.get_download_url('esr', '28.0a2', 'win-msi', 'en-US', True)
+        url = self.firefox_desktop.get_download_url('esr', '28.0a2', 'win-msi', 'en-US', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'firefox-esr-msi-latest-ssl'),
                               ('os', 'win'),
@@ -201,7 +201,7 @@ class TestFirefoxDesktop(TestCase):
                              [('product', 'firefox-esr-next-latest-ssl'),
                               ('os', 'win64'),
                               ('lang', 'en-US')])
-        url = firefox_desktop.get_download_url('esr_next', '52.4.1esr', 'win64-msi', 'en-US', True)
+        url = self.firefox_desktop.get_download_url('esr_next', '52.4.1esr', 'win64-msi', 'en-US', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'firefox-esr-next-msi-latest-ssl'),
                               ('os', 'win64'),
@@ -238,12 +238,12 @@ class TestFirefoxDesktop(TestCase):
                               ('os', 'win64'),
                               ('lang', 'en-US')])
         # MSI installer
-        url = firefox_desktop.get_download_url('alpha', '28.0a2', 'win64-msi', 'en-US', True)
+        url = self.firefox_desktop.get_download_url('alpha', '28.0a2', 'win64-msi', 'en-US', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'firefox-devedition-msi-latest-ssl'),
                               ('os', 'win64'),
                               ('lang', 'en-US')])
-        url = firefox_desktop.get_download_url('alpha', '28.0a2', 'osx', 'en-US', True)
+        url = self.firefox_desktop.get_download_url('alpha', '28.0a2', 'osx', 'en-US', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'firefox-devedition-latest-ssl'),
                               ('os', 'osx'),
@@ -302,12 +302,12 @@ class TestFirefoxDesktop(TestCase):
                               ('os', 'win'),
                               ('lang', 'pt-BR')])
         # MSI installer
-        url = firefox_desktop.get_download_url('alpha', '28.0a2', 'win-msi', 'pt-BR', True)
+        url = self.firefox_desktop.get_download_url('alpha', '28.0a2', 'win-msi', 'pt-BR', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'firefox-devedition-msi-latest-ssl'),
                               ('os', 'win'),
                               ('lang', 'pt-BR')])
-        url = firefox_desktop.get_download_url('alpha', '28.0a2', 'win64', 'pt-BR', True)
+        url = self.firefox_desktop.get_download_url('alpha', '28.0a2', 'win64', 'pt-BR', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'firefox-devedition-stub'),
                               ('os', 'win64'),
@@ -339,12 +339,12 @@ class TestFirefoxDesktop(TestCase):
                               ('os', 'win'),
                               ('lang', 'en-US')])
         # MSI installer
-        url = firefox_desktop.get_download_url('nightly', '50.0a1', 'win64-msi', 'en-US', True)
+        url = self.firefox_desktop.get_download_url('nightly', '50.0a1', 'win64-msi', 'en-US', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'firefox-nightly-msi-latest-ssl'),
                               ('os', 'win64'),
                               ('lang', 'en-US')])
-        url = firefox_desktop.get_download_url('nightly', '50.0a1', 'win64', 'en-US', True)
+        url = self.firefox_desktop.get_download_url('nightly', '50.0a1', 'win64', 'en-US', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'firefox-nightly-stub'),
                               ('os', 'win64'),
@@ -413,12 +413,12 @@ class TestFirefoxDesktop(TestCase):
                               ('os', 'win64'),
                               ('lang', 'pt-BR')])
         # MSI installer
-        url = firefox_desktop.get_download_url('nightly', '50.0a1', 'win64-msi', 'pt-BR', True)
+        url = self.firefox_desktop.get_download_url('nightly', '50.0a1', 'win64-msi', 'pt-BR', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'firefox-nightly-msi-latest-l10n-ssl'),
                               ('os', 'win64'),
                               ('lang', 'pt-BR')])
-        url = firefox_desktop.get_download_url('nightly', '50.0a1', 'osx', 'pt-BR', True)
+        url = self.firefox_desktop.get_download_url('nightly', '50.0a1', 'osx', 'pt-BR', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'firefox-nightly-latest-l10n-ssl'),
                               ('os', 'osx'),
@@ -681,11 +681,11 @@ class TestFirefoxAndroid(TestCase):
         get_download_url should return a bouncer link depending on the
         architecture type, if the force_direct option is True.
         """
-        url = firefox_android.get_download_url('nightly', 'arm', 'multi', True)
+        url = self.firefox_android.get_download_url('nightly', 'arm', 'multi', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'fennec-nightly-latest'),
                               ('os', 'android'), ('lang', 'multi')])
-        url = firefox_android.get_download_url('nightly', 'x86', 'multi', True)
+        url = self.firefox_android.get_download_url('nightly', 'x86', 'multi', True)
         self.assertListEqual(parse_qsl(urlparse(url).query),
                              [('product', 'fennec-nightly-latest'),
                               ('os', 'android-x86'), ('lang', 'multi')])
