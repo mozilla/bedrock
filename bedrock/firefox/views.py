@@ -561,7 +561,7 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
             else:
                 template = 'firefox/dev-firstrun.html'
         elif show_62_firstrun(version):
-                template = 'firefox/firstrun/firstrun-quantum.html'
+            template = 'firefox/firstrun/firstrun-quantum.html'
         elif show_57_firstrun(version):
             template = 'firefox/firstrun/firstrun-quantum.html'
         else:
