@@ -43,10 +43,11 @@ $image-path: '/media/protocol/img';
             border: none;
             color: #fff;
             cursor: pointer;
-            display: inline-block;
+            text-decoration: underline;
+            display: ruby;
+            white-space: nowrap;
             margin: 0;
             padding: 0;
-            text-decoration: underline;
 
             &:active,
             &:focus,
