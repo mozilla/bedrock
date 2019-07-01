@@ -215,7 +215,96 @@
 {% endblock %}
 
 {# https://github.com/mozilla/bedrock/issues/5741 #}
-<script type="application/ld+json"> { "@context": "http://schema.org", "@type": "Organization", "@id":"https://www.mozilla.org/#organization", "name":	"Mozilla", "alternateName": "MoCo", "legalName": "Mozilla Corporation", "description": "Mozilla makes browsers, apps, code and tools that put people before profit. Our mission: Keep the internet open and accessible to all.", "url": "https://www.mozilla.org", "logo": "{% filter absolute_url %}{{ static('img/mozorg/mozilla-256.jpg') }}{% endfilter %}", "diversityPolicy":	"https://blog.mozilla.org/inclusion/mozilla-workplace-transition-policy-guidelines/", "ethicsPolicy":	"https://www.mozilla.org/about/manifesto/", "foundingDate":	"2005-08-03", "founder": "Mitchell Baker", "sameAs": [ "https://www.wikidata.org/wiki/Q169925", "https://twitter.com/mozilla", "https://www.facebook.com/mozilla", "https://github.com/mozilla", "https://www.instagram.com/mozilla/", "https://www.youtube.com/user/Mozilla", "https://en.wikipedia.org/wiki/Mozilla_Corporation", "https://www.linkedin.com/company/mozilla-corporation" ], "brand":[ { "@type":"brand", "@id": "https://www.mozilla.org/#mozilla", "url":	"https://www.mozilla.org", "logo": "{% filter absolute_url %}{{ static('img/mozorg/mozilla-256.jpg') }}{% endfilter %}", "name": "Mozilla", "sameAs":[ "https://en.wikipedia.org/wiki/Mozilla", "https://www.wikidata.org/wiki/Q9661" ] }, { "@type":"brand", "@id": "https://www.mozilla.org/#firefoxbrand", "url": "https://www.mozilla.org/firefox/", "logo": "{% filter absolute_url %}{{ static('img/logos/firefox/logo-master-wordmark-dark.svg') }}{% endfilter %}", "name": "Firefox", "sameAs":[ "https://twitter.com/firefox", "https://www.instagram.com/firefox/", "https://www.youtube.com/firefox" ]}, { "@type":"SoftwareApplication", "@id": "https://www.mozilla.org/#firefoxbrowser", "url":	"https://www.mozilla.org/firefox/", "image": "{% filter absolute_url %}{{ static('img/logos/firefox/logo-quantum-high-res.png') }}{% endfilter %}", "name": "Firefox Browser", "OperatingSystem":	["MacOS","Windows","Linux","iOS","Android"], "offers": { "@type": "Offer", "price": "0.00", "priceCurrency": "USD" }, "applicationCategory":"Browser", "sameAs":[ "https://en.wikipedia.org/wiki/Firefox", "https://www.wikidata.org/wiki/Q698" ]}, { "@type":"Product", "@id": "https://www.mozilla.org/#firefoxmonitor", "url":	"https://monitor.firefox.com", "logo": "{% filter absolute_url %}{{ static('img/logos/firefox/logo-monitor.svg') }}{% endfilter %}", "name": "Firefox Monitor", "sameAs":["https://www.wikidata.org/wiki/Q64828890"]}, { "@type":"Product", "@id": "https://www.mozilla.org/#firefoxlockwise", "url":	"https://lockwise.firefox.com", "logo": "{% filter absolute_url %}{{ static('img/logos/firefox/logo-lockwise.svg') }}{% endfilter %}", "name": "Firefox Lockwise", "sameAs":["https://www.wikidata.org/wiki/Q64829394", "https://en.wikipedia.org/wiki/Firefox_Lockwise"]}, { "@type":"Product", "@id": "https://www.mozilla.org/#firefoxsend", "url":	"https://send.firefox.com", "logo": "{% filter absolute_url %}{{ static('img/logos/firefox/logo-send.svg') }}{% endfilter %}", "name": "Firefox Send", "sameAs":["https://en.wikipedia.org/wiki/Firefox_Send", "https://www.wikidata.org/wiki/Q62394165"]} ], "parentOrganization":{ "@id":	"https://foundation.mozilla.org/#organisation", "name":	"Mozilla Foundation", "url":	"https://foundation.mozilla.org", "@type": "NGO", "sameAs":[ "https://www.wikidata.org/wiki/Q55672", "https://foundation.mozilla.org", "https://en.wikipedia.org/wiki/Mozilla_Foundation" ] } }]} </script>
+<script type="application/ld+json">
+{ "@context": "http://schema.org",
+  "@type": "Organization",
+  "@id":"https://www.mozilla.org/#organization",
+  "name":	"Mozilla",
+  "alternateName": "MoCo",
+  "legalName": "Mozilla Corporation",
+  "description": "Mozilla makes browsers, apps, code and tools that put people before profit. Our mission: Keep the internet open and accessible to all.",
+  "url": "https://www.mozilla.org",
+  "logo": "{% filter absolute_url %}{{ static('img/mozorg/mozilla-256.jpg') }}{% endfilter %}",
+  "diversityPolicy":	"https://blog.mozilla.org/inclusion/mozilla-workplace-transition-policy-guidelines/",
+  "ethicsPolicy":	"https://www.mozilla.org/about/manifesto/",
+  "foundingDate":	"2005-08-03",
+  "founder": "Mitchell Baker",
+  "sameAs": [ 
+    "https://www.wikidata.org/wiki/Q169925",
+    "https://twitter.com/mozilla",
+    "https://www.facebook.com/mozilla",
+    "https://github.com/mozilla",
+    "https://www.instagram.com/mozilla/",
+    "https://www.youtube.com/user/Mozilla",
+    "https://en.wikipedia.org/wiki/Mozilla_Corporation",
+    "https://www.linkedin.com/company/mozilla-corporation" ],
+  "brand":[
+    { "@type":"brand",
+      "@id": "https://www.mozilla.org/#mozilla",
+      "url":	"https://www.mozilla.org",
+      "logo": "{% filter absolute_url %}{{ static('img/mozorg/mozilla-256.jpg') }}{% endfilter %}",
+      "name": "Mozilla",
+      "sameAs":[ "https://en.wikipedia.org/wiki/Mozilla", "https://www.wikidata.org/wiki/Q9661" ] },
+    { "@type":"brand", 
+      "@id": "https://www.mozilla.org/#firefoxbrand",
+      "url": "https://www.mozilla.org/firefox/",
+      "logo": "{% filter absolute_url %}{{ static('img/logos/firefox/logo-master-wordmark-dark.svg') }}{% endfilter %}",
+      "name": "Firefox",
+      "sameAs":[ 
+       "https://twitter.com/firefox",
+       "https://www.instagram.com/firefox/",
+       "https://www.youtube.com/firefox" ]},
+    { "@type":"SoftwareApplication", 
+      "@id": "https://www.mozilla.org/#firefoxbrowser",
+      "url":	"https://www.mozilla.org/firefox/",
+      "image": "{% filter absolute_url %}{{ static('img/logos/firefox/logo-quantum-high-res.png') }}{% endfilter %}",
+      "name": "Firefox Browser",
+      "OperatingSystem":	[
+      "MacOS",
+      "Windows",
+      "Linux",
+      "iOS",
+      "Android"],
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "USD" },
+       "applicationCategory":"Browser",
+       "sameAs":[ 
+        "https://en.wikipedia.org/wiki/Firefox",
+        "https://www.wikidata.org/wiki/Q698" ]},
+    { "@type":"Product",
+      "@id": "https://www.mozilla.org/#firefoxmonitor",
+      "url":	"https://monitor.firefox.com",
+      "logo": "{% filter absolute_url %}{{ static('img/logos/firefox/logo-monitor.svg') }}{% endfilter %}",
+      "name": "Firefox Monitor",
+      "sameAs":"https://www.wikidata.org/wiki/Q64828890"},
+    { "@type":"Product",
+      "@id": "https://www.mozilla.org/#firefoxlockwise",
+      "url":	"https://lockwise.firefox.com",
+      "logo": "{% filter absolute_url %}{{ static('img/logos/firefox/logo-lockwise.svg') }}{% endfilter %}",
+      "name": "Firefox Lockwise",
+      "sameAs":[
+        "https://www.wikidata.org/wiki/Q64829394",
+        "https://en.wikipedia.org/wiki/Firefox_Lockwise"]},
+    { "@type":"Product",
+      "@id": "https://www.mozilla.org/#firefoxsend",
+      "url": "https://send.firefox.com",
+      "logo": "{% filter absolute_url %}{{ static('img/logos/firefox/logo-send.svg') }}{% endfilter %}",
+      "name": "Firefox Send",
+      "sameAs":[
+        "https://en.wikipedia.org/wiki/Firefox_Send",
+        "https://www.wikidata.org/wiki/Q62394165"]} ],
+  "parentOrganization":{ 
+    "@type": "NGO",
+    "@id":	"https://foundation.mozilla.org/#organisation",
+    "name":	"Mozilla Foundation",
+    "url":	"https://foundation.mozilla.org",
+    "sameAs":[ 
+      "https://www.wikidata.org/wiki/Q55672",
+      "https://foundation.mozilla.org",
+      "https://en.wikipedia.org/wiki/Mozilla_Foundation" ] } 
+}]} </script>
 {% endblock %}
 
 {% block js %}
