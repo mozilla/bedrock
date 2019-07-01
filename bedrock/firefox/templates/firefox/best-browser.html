@@ -2,7 +2,7 @@
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
- {% from "macros-protocol.html" import call_out_compact, hero with context %}
+ {% from "macros-protocol.html" import call_out_compact with context %}
 
  {% add_lang_files "firefox/best-browser" %}
 
@@ -19,9 +19,9 @@
  {% endblock %}
 
  {% block content %}
- <div class="mzp-c-hero">
-   <div class="hero-content">
-     <img src="{{ static('protocol/img/logos/firefox/firefox.png') }}" width="50" height="50" alt="">
+ <div class="seo-hero">
+   <div class="hero-content mzp-l-content">
+     <img src="{{ static('img/logos/firefox/logo-quantum.png') }}" width="50" height="50" alt="">
      <p>{{ _('Privacy, speed, and security.') }}</p>
      <h1>{{ _('How to choose the best browser for you.') }}</h1>
      <div class="download-firefox">
@@ -53,7 +53,7 @@
       {% trans %}
       When you use a browser for everything, it needs to be fast.  But for the same reason, it needs to be private. A browser has access to everything you do online, so it can put you at real risk if it doesn’t have strong privacy features.
       {% endtrans %}
-      <footer>{{ _('Marshall Erwin, ') }}<cite>{{ _('Senior Director of Trust and Security at Mozilla') }}</cite></footer>
+      <footer><cite>{{ _('Marshall Erwin, Senior Director of Trust and Security at Mozilla') }}</cite></footer>
       </p>
      </blockquote>
 
@@ -90,7 +90,7 @@
          {% endtrans %}
        </p>
        <p>
-         {% trans data='https://data.firefox.com/dashboard/user-activity', privacy='https://www.mozilla.org/privacy/firefox/' %}
+         {% trans data=url('privacy.notices.firefox'), privacy=url('privacy.notices.firefox') %}
          The second is not storing too much user data. Hackers can’t steal what’s not there, which is why Firefox keeps a minimum amount of information about its users. <a href="{{ data }}">Firefox knows</a> if you use the browser and your general location <a href="{{ privacy }}">but not the name of your childhood pet or your favorite color.</a>
          {% endtrans %}
        </p>
@@ -109,8 +109,8 @@
           {% trans %}
           We visit hundreds or even thousands of websites each day, and you can’t expect users to make security and privacy decisions for each of these sites. That is why a browser that gives you more control is so important - because it offers real, meaningful protection.
           {% endtrans %}
-          <footer>{{ _('Marshall Erwin, ') }}<cite>{{ _('Senior Director of Trust and Security at Mozilla') }}</cite></footer>
         </p>
+        <footer><cite>{{ _('Marshall Erwin, Senior Director of Trust and Security at Mozilla') }}</cite></footer>
        </blockquote>
      </section>
 
@@ -132,7 +132,7 @@
         {% endtrans %}
       </p>
       <p>
-        {% trans privacy='https://www.mozilla.org/privacy/firefox/' %}
+        {% trans privacy=url('privacy.notices.firefox') %}
         One easy way to check is to visit a browser’s content setting page and privacy policy. The privacy webpage should outline if your data is shared and why. It’s why the <a href="{{ privacy }}">Firefox privacy notice</a> is easy to read and easy to find.
         {% endtrans %}
       </p>
@@ -142,8 +142,8 @@
         {% endtrans %}
       </p>
       <p>
-        {% trans firefox='https://www.mozilla.org/firefox/new/' %}
-        At <a href="{{ firefox }}"></a>Firefox, we’ve worked hard to build a browser that is twice as fast as before and gives users more control over their online life.
+        {% trans firefox=url('firefox.new') %}
+        At <a href="{{ firefox }}">Firefox</a>, we’ve worked hard to build a browser that is twice as fast as before and gives users more control over their online life.
         {% endtrans %}
       </p>
     </section>

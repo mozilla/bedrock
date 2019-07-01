@@ -9,7 +9,7 @@ $image-path: '/media/protocol/img';
 @import "../../protocol/css/components/article";
 @import "../../protocol/css/components/call-out";
 
-.mzp-c-hero {
+.seo-hero {
     background: $color-purple-90 url('/media/img/firefox/best-browser/hero-pattern.png') 55% 60% no-repeat;
     @include background-size(2500px);
     color: #fff;
@@ -18,8 +18,8 @@ $image-path: '/media/protocol/img';
     margin-bottom: $spacing-xl;
 
     .hero-content {
-        padding-top: $layout-xl;
-        padding-bottom: $layout-xl;
+        padding: $layout-xl 0;
+
         h1 {
             @include font-base;
             @include text-display-lg;
