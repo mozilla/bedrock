@@ -133,16 +133,16 @@ class TestDownloadButtons(TestCase):
         doc = pq(render("{{ download_firefox() }}",
                         {'request': get_request}))
 
-        # The first 5 links should be for desktop.
+        # The first 7 links should be for desktop.
         links = doc('.download-list a')
 
-        for link in links[:5]:
+        for link in links[:7]:
             assert (
                 pq(link).attr('data-direct-link')
                 .startswith('https://download.mozilla.org'))
 
-        # The seventh link is mobile and should not have the attr
-        assert pq(links[5]).attr('data-direct-link') is None
+        # The eighth link is mobile and should not have the attr
+        assert pq(links[7]).attr('data-direct-link') is None
 
     def test_nightly_desktop(self):
         """
@@ -156,11 +156,13 @@ class TestDownloadButtons(TestCase):
                         {'request': get_request}))
 
         list = doc('.download-list li')
-        assert list.length == 4
+        assert list.length == 6
         assert pq(list[0]).attr('class') == 'os_win'
-        assert pq(list[1]).attr('class') == 'os_osx'
-        assert pq(list[2]).attr('class') == 'os_linux64'
-        assert pq(list[3]).attr('class') == 'os_linux'
+        assert pq(list[1]).attr('class') == 'os_win64-msi'
+        assert pq(list[2]).attr('class') == 'os_win-msi'
+        assert pq(list[3]).attr('class') == 'os_osx'
+        assert pq(list[4]).attr('class') == 'os_linux64'
+        assert pq(list[5]).attr('class') == 'os_linux'
         # stub disabled for now for non-en-US locales
         # bug 1339870
         # assert 'stub' in pq(pq(list[1]).find('a')[0]).attr('href')
@@ -174,12 +176,14 @@ class TestDownloadButtons(TestCase):
                         {'request': get_request}))
 
         list = doc('.download-list li')
-        assert list.length == 5
+        assert list.length == 7
         assert pq(list[0]).attr('class') == 'os_win64'
-        assert pq(list[1]).attr('class') == 'os_win'
-        assert pq(list[2]).attr('class') == 'os_osx'
-        assert pq(list[3]).attr('class') == 'os_linux64'
-        assert pq(list[4]).attr('class') == 'os_linux'
+        assert pq(list[1]).attr('class') == 'os_win64-msi'
+        assert pq(list[2]).attr('class') == 'os_win'
+        assert pq(list[3]).attr('class') == 'os_win-msi'
+        assert pq(list[4]).attr('class') == 'os_osx'
+        assert pq(list[5]).attr('class') == 'os_linux64'
+        assert pq(list[6]).attr('class') == 'os_linux'
 
     def test_beta_desktop(self):
         """The Beta channel should not have Windows 64 build yet"""
@@ -190,12 +194,14 @@ class TestDownloadButtons(TestCase):
                         {'request': get_request}))
 
         list = doc('.download-list li')
-        assert list.length == 5
+        assert list.length == 7
         assert pq(list[0]).attr('class') == 'os_win64'
-        assert pq(list[1]).attr('class') == 'os_win'
-        assert pq(list[2]).attr('class') == 'os_osx'
-        assert pq(list[3]).attr('class') == 'os_linux64'
-        assert pq(list[4]).attr('class') == 'os_linux'
+        assert pq(list[1]).attr('class') == 'os_win64-msi'
+        assert pq(list[2]).attr('class') == 'os_win'
+        assert pq(list[3]).attr('class') == 'os_win-msi'
+        assert pq(list[4]).attr('class') == 'os_osx'
+        assert pq(list[5]).attr('class') == 'os_linux64'
+        assert pq(list[6]).attr('class') == 'os_linux'
 
     def test_firefox_desktop(self):
         """The Release channel should not have Windows 64 build yet"""
@@ -206,12 +212,14 @@ class TestDownloadButtons(TestCase):
                         {'request': get_request}))
 
         list = doc('.download-list li')
-        assert list.length == 5
+        assert list.length == 7
         assert pq(list[0]).attr('class') == 'os_win64'
-        assert pq(list[1]).attr('class') == 'os_win'
-        assert pq(list[2]).attr('class') == 'os_osx'
-        assert pq(list[3]).attr('class') == 'os_linux64'
-        assert pq(list[4]).attr('class') == 'os_linux'
+        assert pq(list[1]).attr('class') == 'os_win64-msi'
+        assert pq(list[2]).attr('class') == 'os_win'
+        assert pq(list[3]).attr('class') == 'os_win-msi'
+        assert pq(list[4]).attr('class') == 'os_osx'
+        assert pq(list[5]).attr('class') == 'os_linux64'
+        assert pq(list[6]).attr('class') == 'os_linux'
 
     def test_latest_nightly_android(self):
         """The download button should have a Google Play link"""
@@ -290,6 +298,7 @@ class TestDownloadList(TestCase):
             'firefox-%s' % self.latest_version(),
             'firefox-stub',
             'firefox-latest-ssl',
+            'firefox-msi-latest-ssl',
             'firefox-beta-stub',
             'firefox-beta-latest-ssl',
         ]
@@ -310,12 +319,14 @@ class TestDownloadList(TestCase):
 
         # Check that links classes are ordered as expected.
         list = doc('.download-platform-list li')
-        assert list.length == 5
+        assert list.length == 7
         assert pq(list[0]).attr('class') == 'os_win64'
-        assert pq(list[1]).attr('class') == 'os_osx'
-        assert pq(list[2]).attr('class') == 'os_linux64'
-        assert pq(list[3]).attr('class') == 'os_win'
+        assert pq(list[1]).attr('class') == 'os_win64-msi'
+        assert pq(list[2]).attr('class') == 'os_osx'
+        assert pq(list[3]).attr('class') == 'os_linux64'
         assert pq(list[4]).attr('class') == 'os_linux'
+        assert pq(list[5]).attr('class') == 'os_win'
+        assert pq(list[6]).attr('class') == 'os_win-msi'
 
         links = doc('.download-platform-list a')
 
@@ -340,12 +351,14 @@ class TestDownloadList(TestCase):
 
         # Check that links classes are ordered as expected.
         list = doc('.download-platform-list li')
-        assert list.length == 5
+        assert list.length == 7
         assert pq(list[0]).attr('class') == 'os_win64'
-        assert pq(list[1]).attr('class') == 'os_osx'
-        assert pq(list[2]).attr('class') == 'os_linux64'
-        assert pq(list[3]).attr('class') == 'os_win'
+        assert pq(list[1]).attr('class') == 'os_win64-msi'
+        assert pq(list[2]).attr('class') == 'os_osx'
+        assert pq(list[3]).attr('class') == 'os_linux64'
         assert pq(list[4]).attr('class') == 'os_linux'
+        assert pq(list[5]).attr('class') == 'os_win'
+        assert pq(list[6]).attr('class') == 'os_win-msi'
 
         links = doc('.download-platform-list a')
 
@@ -367,11 +380,13 @@ class TestDownloadList(TestCase):
 
         # Check that links classes are ordered as expected.
         list = doc('.download-platform-list li')
-        assert list.length == 4
+        assert list.length == 6
         assert pq(list[0]).attr('class') == 'os_win'
-        assert pq(list[1]).attr('class') == 'os_osx'
-        assert pq(list[2]).attr('class') == 'os_linux64'
-        assert pq(list[3]).attr('class') == 'os_linux'
+        assert pq(list[1]).attr('class') == 'os_win64-msi'
+        assert pq(list[2]).attr('class') == 'os_osx'
+        assert pq(list[3]).attr('class') == 'os_linux64'
+        assert pq(list[4]).attr('class') == 'os_linux'
+        assert pq(list[5]).attr('class') == 'os_win-msi'
 
         links = doc('.download-platform-list a')
 

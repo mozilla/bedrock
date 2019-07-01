@@ -38,7 +38,11 @@
 {% endmacro %}
 
 {% macro select_platform_list(id, platforms, disabled=False) %}
-  <label for="{{ id }}" class="c-selection-label">{{ _('Which operating system are you using?') }}</label>
+  <label for="{{ id }}" class="c-selection-label">{{ _('Select your preferred installer') }}</label>
+  <a href="#installer-help" class="c-button-help icon-installer-help" title="{{ _('Learn about installers') }}">
+    {# L10n: Used as an accessible label for a help button. The text is replaced with a "?" icon. #}
+    {{ _('Get help') }}
+  </a>
   <select id="{{ id }}" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %}>
     {% for p_name, p_label in platforms %}
       <option value="{{ p_name }}">{{ p_label }}</option>
@@ -47,7 +51,7 @@
 {% endmacro %}
 
 {% macro select_language_list(id, builds, disabled=False) %}
-  <label for="{{ id }}" class="c-selection-label">{{ _('Would you like to select a different language?') }}</label>
+  <label for="{{ id }}" class="c-selection-label">{{ _('Select your preferred language') }}</label>
   <select id="{{ id }}" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %}>
     {% for build in builds %}
       <option value="{{ build.locale }}"{% if build.locale == 'en-US' %} selected{% endif%}>
@@ -95,10 +99,12 @@
   tooltip: Text to display as tooltip for download link.
 #}
 {% macro build_link(build, platform, platform_label, tooltip) %}
-  <a href="{{ build.platforms[platform].download_url }}" title="{{ tooltip }}"
-    data-download-version="{{ platform }}" data-download-language="{{ build.name_en|lower}}" data-link-type="download"
-    {% if platform == 'android' %} data-download-os="Android"
-    {% elif platform == 'ios' %} data-download-os="iOS"
-    {% else %} data-download-os="Desktop"{% endif %}>{{ platform_label }}
-  </a>
+  {% if build.platforms[platform] %}
+    <a href="{{ build.platforms[platform].download_url }}" title="{{ tooltip }}"
+      data-download-version="{{ platform }}" data-download-language="{{ build.name_en|lower}}" data-link-type="download"
+      {% if platform == 'android' %} data-download-os="Android"
+      {% elif platform == 'ios' %} data-download-os="iOS"
+      {% else %} data-download-os="Desktop"{% endif %}>{{ platform_label }}
+    </a>
+  {% endif %}
 {% endmacro %}

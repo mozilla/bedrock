@@ -290,42 +290,42 @@ def all_downloads_unified(request):
     context = {
         'products': products.items(),
 
-        'desktop_release_platforms': product_desktop.platforms(channel_release, True),
+        'desktop_release_platforms': product_desktop.platforms(channel_release),
         'desktop_release_full_builds': product_desktop.get_filtered_full_builds(channel_release, latest_release_version_desktop),
         'desktop_release_channel_label': product_desktop.channel_labels.get(channel_release, 'Firefox'),
         'desktop_release_latest_version': latest_release_version_desktop,
 
-        'desktop_beta_platforms': product_desktop.platforms(channel_beta, True),
+        'desktop_beta_platforms': product_desktop.platforms(channel_beta),
         'desktop_beta_full_builds': product_desktop.get_filtered_full_builds(channel_beta, latest_beta_version_desktop),
         'desktop_beta_channel_label': product_desktop.channel_labels.get(channel_beta, 'Firefox'),
         'desktop_beta_latest_version': latest_beta_version_desktop,
 
-        'desktop_developer_platforms': product_desktop.platforms(channel_dev, True),
+        'desktop_developer_platforms': product_desktop.platforms(channel_dev),
         'desktop_developer_full_builds': product_desktop.get_filtered_full_builds(channel_dev, latest_developer_version_desktop),
         'desktop_developer_channel_label': product_desktop.channel_labels.get(channel_dev, 'Firefox'),
         'desktop_developer_latest_version': latest_developer_version_desktop,
 
-        'desktop_nightly_platforms': product_desktop.platforms(channel_nightly, True),
+        'desktop_nightly_platforms': product_desktop.platforms(channel_nightly),
         'desktop_nightly_full_builds': product_desktop.get_filtered_full_builds(channel_nightly, latest_nightly_version_desktop),
         'desktop_nightly_channel_label': product_desktop.channel_labels.get(channel_nightly, 'Firefox'),
         'desktop_nightly_latest_version': latest_nightly_version_desktop,
 
-        'desktop_esr_platforms': product_desktop.platforms(channel_esr, True),
+        'desktop_esr_platforms': product_desktop.platforms(channel_esr),
         'desktop_esr_full_builds': product_desktop.get_filtered_full_builds(channel_esr, latest_esr_version_desktop),
         'desktop_esr_channel_label': product_desktop.channel_labels.get(channel_esr, 'Firefox'),
         'desktop_esr_latest_version': latest_esr_version_desktop,
 
-        'android_release_platforms': product_android.platforms(channel_release, True),
+        'android_release_platforms': product_android.platforms(channel_release),
         'android_release_full_builds': product_android.get_filtered_full_builds(channel_release, latest_release_version_android),
         'android_release_channel_label': product_android.channel_labels.get(channel_release, 'Firefox'),
         'android_release_latest_version': latest_release_version_android,
 
-        'android_beta_platforms': product_android.platforms(channel_beta, True),
+        'android_beta_platforms': product_android.platforms(channel_beta),
         'android_beta_full_builds': product_android.get_filtered_full_builds(channel_beta, latest_beta_version_android),
         'android_beta_channel_label': product_android.channel_labels.get(channel_beta, 'Firefox'),
         'android_beta_latest_version': latest_beta_version_android,
 
-        'android_nightly_platforms': product_android.platforms(channel_nightly, True),
+        'android_nightly_platforms': product_android.platforms(channel_nightly),
         'android_nightly_full_builds': product_android.get_filtered_full_builds(channel_nightly, latest_nightly_version_android),
         'android_nightly_channel_label': product_android.channel_labels.get(channel_nightly, 'Firefox'),
         'android_nightly_latest_version': latest_nightly_version_android,
