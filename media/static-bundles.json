@@ -937,6 +937,12 @@
         "css/firefox/features/safebrowser.scss"
       ],
       "name": "safebrowser"
+    },
+    {
+      "files": [
+        "css/firefox/bestbrowser.scss"
+      ],
+      "name": "bestbrowser"
     }
   ],
   "js": [
