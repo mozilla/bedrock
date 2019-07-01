@@ -18,7 +18,8 @@ $image-path: '/media/protocol/img';
     margin-bottom: $spacing-xl;
 
     .hero-content {
-        padding: $layout-xl 0;
+        padding-top: $layout-xl;
+        padding-bottom: $layout-xl;
 
         h1 {
             @include font-base;
