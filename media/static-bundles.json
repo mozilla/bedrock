@@ -813,17 +813,9 @@
     {
       "files": [
         "css/base/mozilla-fxa-state.scss",
-        "css/base/mozilla-fxa-form.scss",
         "css/firefox/accounts.scss"
       ],
       "name": "firefox_accounts"
-    },
-    {
-      "files": [
-        "css/base/mozilla-fxa-state.scss",
-        "css/firefox/accounts-2018.scss"
-      ],
-      "name": "firefox_accounts_2018"
     },
     {
       "files": [
@@ -1480,21 +1472,13 @@
     },
     {
       "files": [
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-form.js"
-      ],
-      "name": "firefox_accounts"
-    },
-    {
-      "files": [
         "protocol/js/protocol-modal.js",
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
-        "js/firefox/accounts-2018.js"
+        "js/firefox/accounts.js"
       ],
-      "name": "firefox_accounts_2018"
+      "name": "firefox_accounts"
     },
     {
       "files": [
