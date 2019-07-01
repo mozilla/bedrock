@@ -28,7 +28,7 @@ h2 {
     // dark colour fallback incase svg image doesn't load/display
     background: $color-off-black;
     background-image: url('/media/img/firefox/enterprise/ent-noodles.svg'),
-        linear-gradient(transparent 550px, #fff 550px, #fff 1000px);
+                      linear-gradient(transparent 550px, #fff 550px, #fff 1000px);
     background-position: bottom left, top center;
     background-repeat: no-repeat, repeat-x;
     background-size: 1221px 680px, 480px 1000px;
@@ -66,7 +66,7 @@ h2 {
 
     @media #{$mq-md} {
         background-image: url('/media/img/firefox/enterprise/ent-noodles-wide.svg'),
-                    linear-gradient(transparent 680px, #fff 680px, #fff 1200px);
+                          linear-gradient(transparent 680px, #fff 680px, #fff 1200px);
         background-position: top center, top center;
         background-repeat: no-repeat, repeat-x, repeat-x;
         background-size: 2560px 793px, 480px 1200px;
