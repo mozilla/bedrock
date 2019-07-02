@@ -9,7 +9,7 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'media/js/libs/jquery-3.2.1.min.js',
+            'media/js/libs/jquery-3.4.1.min.js',
             'media/js/base/site.js',
             'media/js/base/mozilla-utils.js',
             'media/js/base/dnt-helper.js',

@@ -57,7 +57,7 @@ if (typeof window.Mozilla === 'undefined') {
 
     TPTour.step2 = function() {
         _$step2Panel.removeClass('hidden');
-        _$step2Panel.find('header').focus();
+        _$step2Panel.find('header').trigger('focus');
         _$tracker.addClass('fade-out');
         TPTour.replaceURLState('2');
         TPTour.state = 'step2';
