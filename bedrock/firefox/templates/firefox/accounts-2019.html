@@ -33,7 +33,7 @@
 {% block body_class %}firefox-accounts mzp-t-firefox state-fxa-default {% endblock %}
 
 {% block site_header %}
-  {% with hide_nav_download_button=False, hide_nav_get_account_button=True %}
+  {% with hide_nav_cta=False, hide_nav_download_button=False, hide_nav_get_account_button=True %}
     {% include 'includes/protocol/navigation/index.html' %}
   {% endwith %}
 {% endblock %}
