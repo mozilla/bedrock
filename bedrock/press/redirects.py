@@ -174,7 +174,7 @@ redirectpatterns = (
     redirect(r'^press/mozilla-foundation\.html$',
              'https://blog.mozilla.org/press/2003/07/mozilla-org-announces-launch-of-the-'
              'mozilla-foundation-to-lead-open-source-browser-efforts/'),
-    redirect(r'^press/mozilla1.0\.html$',
+    redirect(r'^press/mozilla1\.0\.html$',
              'https://blog.mozilla.org/press/2002/06/mozilla-org-launches-mozilla-1-0/'),
     redirect(r'^press/open-source-security\.html$',
              'https://blog.mozilla.org/press/2000/01/open-source-development-of-security-products-'

@@ -296,7 +296,7 @@ urlpatterns = (
     url(r'^oauth/fxa/error/$', views.oauth_fxa_error, name='mozorg.oauth.fxa-error'),
 
     page('plugincheck', 'mozorg/plugincheck.html'),
-    url(r'^robots.txt$', views.Robots.as_view(), name='robots.txt'),
+    url(r'^robots\.txt$', views.Robots.as_view(), name='robots.txt'),
     url('^technology/$', views.TechnologyView.as_view(), name='mozorg.technology'),
     page('technology/what-is-a-browser', 'mozorg/what-is-a-browser.html'),
     page('technology/update-your-browser', 'mozorg/update-browser.html'),
