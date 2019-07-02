@@ -878,6 +878,7 @@ class TestFirefoxHome(TestCase):
         views.firefox_home(req)
         render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': False, 'variation': None})
 
+    @override_settings(DEV=False)
     @patch('bedrock.firefox.views.l10n_utils.render')
     def test_brand_var_a(self, render_mock):
         req = RequestFactory().get('/firefox/?v=a')
@@ -885,6 +886,7 @@ class TestFirefoxHome(TestCase):
         views.firefox_home(req)
         render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': False, 'variation': 'a'})
 
+    @override_settings(DEV=False)
     @patch('bedrock.firefox.views.l10n_utils.render')
     def test_brand_var_b(self, render_mock):
         req = RequestFactory().get('/firefox/?v=b')
@@ -892,6 +894,7 @@ class TestFirefoxHome(TestCase):
         views.firefox_home(req)
         render_mock.assert_called_once_with(req, 'firefox/home/index-b.html', {'show_newsletter': False, 'variation': 'b'})
 
+    @override_settings(DEV=False)
     @patch('bedrock.firefox.views.l10n_utils.render')
     def test_brand_locale_var_b(self, render_mock):
         req = RequestFactory().get('/firefox/?v=b')
