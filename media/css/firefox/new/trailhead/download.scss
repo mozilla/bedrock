@@ -44,10 +44,12 @@ $image-path: '/media/protocol/img';
             color: #fff;
             cursor: pointer;
             text-decoration: underline;
-            display: ruby;
-            white-space: nowrap;
             margin: 0;
             padding: 0;
+
+            @media #{$mq-md} {
+                @include bidi(((text-align, left, right),));
+            }
 
             &:active,
             &:focus,
