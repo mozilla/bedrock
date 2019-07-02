@@ -26,4 +26,4 @@ class JoinFirefoxForm(Region):
 
     def click_continue(self):
         self.find_element(*self._continue_button_locator).click()
-        self.wait.until(lambda s: '/signup?action=email' in s.current_url)
+        self.wait.until(lambda s: '?action=email' in s.current_url)
