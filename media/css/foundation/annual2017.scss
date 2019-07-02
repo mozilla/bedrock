@@ -61,7 +61,7 @@
 
 .c-intro-section {
     p {
-        @include zilla-slab;
+        @include font-mozilla;
         @include text-display-sm;
         font-style: italic;
         margin-bottom: 0;
@@ -74,11 +74,11 @@
 
     .c-copy-wrapper {
         h2 {
-            @include text-display-md;
+            @include text-display-sm;
         }
 
         h3 {
-            @include text-display-sm;
+            @include text-display-xs;
         }
 
         img {

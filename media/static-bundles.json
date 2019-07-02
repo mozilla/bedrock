@@ -100,9 +100,9 @@
     },
     {
       "files": [
-        "css/firefox/releasenotes.scss"
+        "css/firefox/system-requirements.scss"
       ],
-      "name": "firefox_releasenotes"
+      "name": "firefox_system_requirements"
     },
     {
       "files": [
@@ -252,9 +252,15 @@
     },
     {
       "files": [
-        "css/firefox/campaign.scss"
+        "css/firefox/campaign/campaign.scss"
       ],
       "name": "firefox_campaign"
+    },
+    {
+      "files": [
+        "css/firefox/campaign/download.scss"
+      ],
+      "name": "firefox_campaign_trailhead"
     },
     {
       "files": [
@@ -931,6 +937,12 @@
         "css/firefox/features/safebrowser.scss"
       ],
       "name": "safebrowser"
+    },
+    {
+      "files": [
+        "css/firefox/bestbrowser.scss"
+      ],
+      "name": "bestbrowser"
     }
   ],
   "js": [
@@ -1489,6 +1501,7 @@
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-monitor-button.js",
         "js/firefox/accounts-2019.js"
       ],
       "name": "firefox_accounts_2019"

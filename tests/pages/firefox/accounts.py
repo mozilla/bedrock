@@ -2,25 +2,28 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as expected
-from selenium.webdriver.support.ui import WebDriverWait as Wait
 
 from pages.firefox.base import FirefoxBasePage
+from pages.regions.join_firefox_form import JoinFirefoxForm
 
 
 class FirefoxAccountsPage(FirefoxBasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/accounts/'
+    URL_TEMPLATE = '/{locale}/firefox/accounts/{params}'
 
-    _create_account_form_locator = (By.ID, 'fxa-email-form')
+    _firefox_monitor_button_locator = (By.ID, 'fxa-monitor-submit')
+
+    def wait_for_page_to_load(self):
+        self.wait.until(lambda s: self.seed_url in s.current_url)
+        el = self.find_element(By.TAG_NAME, 'body')
+        self.wait.until(lambda s: 'state-fxa-default' not in el.get_attribute('class'))
+        return self
 
     @property
-    def is_create_account_form_displayed(self):
-        wait = Wait(self, timeout=3)
-        try:
-            result = wait.until(expected.visibility_of_element_located((self._create_account_form_locator)))
-            return result
-        except TimeoutException:
-            return False
+    def join_firefox_form(self):
+        return JoinFirefoxForm(self)
+
+    @property
+    def is_firefox_monitor_button_displayed(self):
+        return self.is_element_displayed(*self._firefox_monitor_button_locator)

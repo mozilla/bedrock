@@ -22,7 +22,7 @@ $image-path: '/media/protocol/img';
 .firefox-concerts {
     #outer-wrapper {
         background-color: #41085e;
-        background-image: linear-gradient(to bottom, #000 0%, #06043c 400px, #41085e 60%);
+        background-image: linear-gradient(to bottom, $color-off-black 0%, $color-purple-90 400px, $color-purple-80 60%);
         color: $color-white;
     }
 
@@ -44,15 +44,6 @@ $image-path: '/media/protocol/img';
 
     .tagline {
         @include text-body-lg;
-    }
-
-    @media #{$mq-md} {
-        main {
-            background:
-                url('/media/img/firefox/concerts/confetti-right.svg') right -40px top 35px no-repeat,
-                transparent url('/media/img/firefox/concerts/confetti-left.svg') left -30px top -30px no-repeat;
-            @include background-size(360px 616px, 238px 806px);
-        }
     }
 }
 
@@ -160,8 +151,12 @@ $image-path: '/media/protocol/img';
 // Firefox Accounts CTA
 
 .fxa-cta {
-    @include light-links;
     display: none;
+
+    .mzp-t-dark {
+        @include light-links;
+        color: $color-white;
+    }
 
     .js & {
         display: block; // We need JS for FxA
@@ -224,7 +219,6 @@ $image-path: '/media/protocol/img';
 
     h2 {
         @include text-display-md;
-        font-family: sharpsans, sans-serif;
     }
 
     .excluded-intro {
@@ -249,8 +243,6 @@ $image-path: '/media/protocol/img';
 
         h3 {
             @include text-display-sm;
-            font-family: sharpsans, sans-serif;
-            font-weight: normal;
         }
     }
 

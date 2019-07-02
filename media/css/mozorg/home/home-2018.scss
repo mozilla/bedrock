@@ -50,20 +50,15 @@ $image-path: '/media/protocol/img';
 .c-primary-cta-wrapper {
     position: relative;
 
-    h2, h3, h4 {
-        @include open-sans;
-    }
-
     p {
         margin-bottom: 0;
     }
 }
 
 .c-primary-cta-logo {
-    @include text-display-sm;
+    @include text-display-xs;
     background: url('/media/img/logos/firefox/logo-quantum.png') top center no-repeat; //image is 189x189, no need for retina mq when displaying at 40px
     @include background-size(40px 40px);
-    font-weight: normal;
     line-height: 40px;
     margin-bottom: $spacing-sm;
     padding-top: $spacing-2xl;
@@ -74,10 +69,14 @@ $image-path: '/media/protocol/img';
     margin-bottom: $spacing-sm;
 }
 
-.c-primary-cta-title-sub {
-    @include text-display-md;
-    max-width: 430px;
-    margin: 0 auto;
+h3,
+h4 {
+    &.c-primary-cta-title-sub {
+        @include font-base;
+        @include text-display-sm;
+        max-width: 430px;
+        margin: 0 auto;
+    }
 }
 
 .c-primary-cta-button {
@@ -99,7 +98,7 @@ $image-path: '/media/protocol/img';
     }
 
     .c-primary-cta-title-sub {
-        @include text-display-sm;
+        @include text-display-xs;
         margin-bottom: $spacing-xl;
     }
 }
@@ -225,10 +224,6 @@ $image-path: '/media/protocol/img';
 .c-sticky-cta-wrapper {
     position: relative;
 
-    h2, h3 {
-        @include open-sans;
-    }
-
     p {
         margin-bottom: 0;
     }
@@ -247,9 +242,6 @@ $image-path: '/media/protocol/img';
     width: 40px;
 }
 
-.c-sticky-cta-title-sub {
-    @include text-display-xl;
-}
 
 .c-sticky-cta-title-sub,
 .c-sticky-cta-desc-sub {
@@ -326,7 +318,8 @@ $image-path: '/media/protocol/img';
     }
 
     .c-sticky-cta-title-sub {
-        @include text-display-xs;
+        @include font-base;
+        @include text-body-lg;
         display: block;
         float: left;
         line-height: 40px;
@@ -420,7 +413,6 @@ $image-path: '/media/protocol/img';
 
     .section-heading {
         @include text-display-xs;
-        @include open-sans;
         margin-bottom: $spacing-sm;
     }
 
@@ -461,7 +453,6 @@ $image-path: '/media/protocol/img';
 }
 
 .c-secondary-cta-title {
-    @include open-sans;
     @include text-display-md;
 }
 

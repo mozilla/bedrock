@@ -20,7 +20,7 @@ $image-path: '/media/protocol/img';
         padding-top: $layout-xl;
         padding-bottom: $layout-xl;
         h1 {
-            @include open-sans;
+            @include font-base;
             @include text-display-lg;
             margin: 0 auto $spacing-2xl;
             max-width: 580px;
@@ -51,7 +51,7 @@ $image-path: '/media/protocol/img';
         margin-bottom: $layout-lg;
 
         h2 {
-            @include open-sans;
+            @include font-base;
             @include text-display-lg;
         }
     }
@@ -67,12 +67,4 @@ $image-path: '/media/protocol/img';
     .mzp-c-call-out-title {
         color: $color-orange-50;
     }
-
-    @media #{$mq-lg} {
-        @include background-size(contain);
-        background-image: url('/media/img/firefox/shapes.png');
-        background-position: bottom;
-        background-repeat: no-repeat;
-    }
-
 }

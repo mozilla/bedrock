@@ -3,18 +3,28 @@
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
 {% from "macros-protocol.html" import feature_card with context %}
-{% from "macros.html" import fxa_email_form, fxa_link_fragment with context %}
+{% from "macros.html" import fxa_email_form, fxa_link_fragment, monitor_button with context %}
 
 {% extends "firefox/base-protocol.html" %}
 
 {%- block page_title -%}
   {# L10n: HTML page title #}
-  {{ _('Get a Firefox Account – Keep your data private, safe and synced') }}
+  {%- if l10n_has_tag('accounts-metadata-072019') -%}
+    {{ _('There is a way to protect your privacy. Join Firefox.') }}
+  {%- else -%}
+    {{ _('Get a Firefox Account – Keep your data private, safe and synced') }}
+  {%- endif -%}
 {%- endblock -%}
 {%- block page_desc -%}
   {# L10n: HTML page description #}
-  {{ _('Securely sync your passwords, bookmarks and tabs across all your devices. Get a Firefox Account now – One login – Power and privacy everywhere.') }}
+  {%- if l10n_has_tag('accounts-metadata-072019') -%}
+    {{ _('Take your stand against an industry that’s selling your data to third parties. Stay smart and safe online with technology that fights for you.') }}
+  {%- else -%}
+    {{ _('Securely sync your passwords, bookmarks and tabs across all your devices. Get a Firefox Account now – One login – Power and privacy everywhere.') }}
+  {%- endif -%}
 {%- endblock -%}
+
+{% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
 
 {% block page_css %}
  {{ css_bundle('firefox_accounts_2019') }}
@@ -29,17 +39,32 @@
 {% endblock %}
 
 {% block content %}
-
+{% set has_signed_in_copy = l10n_has_tag('accounts-signed-in-06132019') %}
 
 <section class="c-accounts-hero">
   <div class="mzp-l-content">
-    <div class="c-accounts-hero-body">
+    <div class="c-accounts-hero-body {% if has_signed_in_copy %}c-accounts-hero-body-default{% endif %}">
       {# L10n: the span here is for visual formatting to display the phrase "Join Firefox" in a different color. #}
       <h1 class="c-accounts-hero-title">{{ _('There is a way to protect your privacy. <span>Join Firefox.</span>') }}</h1>
 
       {# L10n: This refers to the way some tech companies treat personal information as a commodity, as if their users are the product they're selling to their advertisers. #}
       <p class="c-accounts-hero-desc">{{ _('Take your stand against an industry that’s making you the product.') }}</p>
     </div>
+
+    {% if has_signed_in_copy %}
+    <div class="c-accounts-hero-body c-accounts-hero-body-signed-in">
+      {# L10n: the span here is to display the phrase "Now try Firefox Monitor." in a different color. Line breaks are for visual formatting. #}
+      <h2 class="c-accounts-hero-title">{{ _('You’re signed <br>in to Firefox. <br><span>Now try Firefox Monitor.</span>') }}</h2>
+
+      <p class="c-accounts-hero-desc">{{ _('See if you’ve been involved in an online data breach.') }}</p>
+
+      {{ monitor_button(
+        entrypoint='mozilla.org-accounts_page',
+        utm_source='accounts_page',
+        utm_campaign='accounts-trailhead'
+      ) }}
+    </div>
+    {% endif %}
 
     <div class="c-accounts-form">
       {{ fxa_email_form(
@@ -52,14 +77,20 @@
         utm_params={'campaign': 'accounts-trailhead', 'content': 'form-upper', 'medium': 'referral'})
       }}
 
-      <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-accounts_page', action='signin', utm_params={'campaign': 'accounts-trailhead', 'content': 'form-upper', 'source': 'accounts_page'}) }}>{{ _('Sign In') }}</a></p>
+      <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-accounts_page', action='signin', utm_params={'campaign': 'accounts-trailhead', 'content': 'form-upper', 'source': 'accounts_page'}) }} class="js-fxa-cta-link">{{ _('Sign In') }}</a></p>
     </div>
   </div>
 </section>
 
 <section class="c-accounts-products">
   <div class="mzp-l-content">
-    <h2 class="c-section-title">{{ _('Get technology that fights for you.') }}</h2>
+    <h2 class="c-section-title">
+      {% if has_signed_in_copy %}
+        {{ _('Firefox is technology that fights for you.') }}
+      {% else %}
+        {{ _('Get technology that fights for you.') }}
+      {% endif %}
+    </h2>
 
     <ul class="c-product-list">
       <li class="c-product-list-item t-product-firefox">
@@ -89,7 +120,13 @@
       </li>
     </ul>
 
-    <p class="c-accounts-products-tagline">{{ _('And get it all on every device, without feeling trapped in a single operating system.') }}</p>
+    <p class="c-accounts-products-tagline">
+      {% if has_signed_in_copy %}
+        {{ _('Get it all on every device, without feeling trapped in a single operating system.') }}
+      {% else %}
+        {{ _('And get it all on every device, without feeling trapped in a single operating system.') }}
+      {% endif %}
+    </p>
   </div>
 </section>
 

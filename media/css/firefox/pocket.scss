@@ -35,20 +35,8 @@ $image-path: '/media/protocol/img';
     }
 }
 
-// Disable the shape mask
-.mzp-c-hero.mzp-t-firefox:after {
-    display: none;
-    mask: none;
-}
-
 .mzp-c-call-out {
     background: transparent;
-}
-
-.mzp-t-firefox {
-    h1, h2, h3, h4 {
-        font-weight: normal;
-    }
 }
 
 @media #{$mq-md} {

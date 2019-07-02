@@ -12,27 +12,12 @@ $image-path: '/media/protocol/img';
 @import '../../../../protocol/css/templates/card-layout';
 
 
-/**
- * Product button color override.
- * Can be removed once Protocol is updated.
- * https://github.com/mozilla/protocol/issues/380
- */
-.mzp-c-button.mzp-t-product,
-a.mzp-c-button.mzp-t-product {
-    background-color: $color-blue-50;
-
-    &:focus,
-    &:hover {
-        background-color: $color-blue-60;
-    }
-}
-
 .mzp-c-hero.mzp-t-dark {
     @include background-size(auto 100%);
     background-color: $color-off-black;
 
     .mzp-c-hero-title {
-        @include at2x('/media/img/logos/firefox/release-lockup-white.png', 147px, 48px);
+        @include at2x('/media/img/logos/firefox/logo-quantum-wordmark-white.png', 147px, 48px);
         background-position: top center;
         background-repeat: no-repeat;
         padding-top: $layout-xl;
@@ -182,7 +167,7 @@ html.ios .mzp-c-hero {
 .other-platforms-content {
     @include clearfix;
     background: $color-white;
-    color: $color-black;
+    color: $color-off-black;
     margin-top: $spacing-lg;
     text-align: center;
 

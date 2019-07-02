@@ -9,7 +9,7 @@ $image-path: '/media/protocol/img';
 
 .moz-sub-nav {
     @include clearfix();
-    @include open-sans;
+    @include font-base;
     background: #fff;
     display: none; // hidden for mobile
     min-height: 52px;

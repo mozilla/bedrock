@@ -130,4 +130,5 @@ urlpatterns = (
     page('firefox/enterprise/sla', 'firefox/enterprise/sla.html'),
 
     page('firefox/features/safebrowser', 'firefox/features/safebrowser.html'),
+    page('firefox/best-browser', 'firefox/best-browser.html'),
 )

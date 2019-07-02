@@ -12,29 +12,12 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../libs/system-font';
-@import '../protocol/base/fonts/sharpsans';
-
 @import '../../protocol/css/includes/lib';
 @import '../../protocol/css/components/modal';
 @import '../../protocol/css/components/call-out';
 @import '../../protocol/css/components/feature-card';
 @import '../../protocol/css/components/hero';
 
-
-.fffy-c-hero,
-.fffy-c-features,
-.fffy-c-footer-callout {
-    font-family: system-ui, sans-serif;
-}
-
-#fights-for-you .mzp-t-firefox h1,
-#fights-for-you .mzp-t-firefox h2,
-#fights-for-you .mzp-t-firefox h3,
-#fights-for-you .mzp-t-firefox h4 {
-    font-family: 'Sharp Sans', sans-serif;
-    font-weight: bold;
-}
 
 $fffy-purple: #2A0140; // do not update to match new colour tokens without updating background image assets
 
@@ -190,10 +173,6 @@ $fffy-purple: #2A0140; // do not update to match new colour tokens without updat
 
 .mzp-c-call-out-compact.fffy-c-footer-callout {
     background: $fffy-purple;
-    background-image: url('/media/img/firefox/fights-for-you/footer-sm-left.png'), url('/media/img/firefox/fights-for-you/footer-sm-right.png');
-    background-position: bottom -14px left, top 10px right 10px;
-    background-size: 105px, 115px;
-    background-repeat: no-repeat;
 
     .mzp-c-call-out-title {
         color: $color-pink-50;
@@ -207,15 +186,7 @@ $fffy-purple: #2A0140; // do not update to match new colour tokens without updat
         }
     }
 
-    @media #{$mq-sm} {
-        background-position: bottom -14px left, top 20px left calc(80% + 50px);
-    }
-
     @media #{$mq-md} {
-        background-image: url('/media/img/firefox/fights-for-you/footer-md-top.png'), url('/media/img/firefox/fights-for-you/footer-md-bottom.png'), url('/media/img/firefox/fights-for-you/footer-md-dot.png');
-        background-size: 1024px, 1024px, 10px;
-        background-position: top 20px left calc(50% + 60px), bottom -14px center, center left 40px;
-
         .mzp-c-call-out-title {
             @include font-size(40px);
         }
@@ -226,10 +197,6 @@ $fffy-purple: #2A0140; // do not update to match new colour tokens without updat
         .mzp-l-content {
             max-width: $content-max;
         }
-    }
-
-    @media #{$mq-xl} {
-        background-position: top 20px center, bottom -14px center, center left calc(50% - 650px);
     }
 }
 

@@ -6,9 +6,24 @@
     'use strict';
 
     var browserHelpContent = document.getElementById('browser-help');
+    var browserHelpIcon = document.getElementById('icon-browser-help');
     var downloadList = document.getElementById('all-downloads');
     var form = document.getElementById('product-select-form');
-    var helpIcon = document.getElementById('icon-browser-help');
+    var installerHelpContent = document.getElementById('installer-help');
+    var installerHelpIcon = document.querySelectorAll('.icon-installer-help');
+
+    function showHelpModal(modalContent, modalTitle, eventLabel) {
+        Mzp.Modal.createModal(this, modalContent, {
+            title: modalTitle,
+            className: 'help-modal'
+        });
+
+        window.dataLayer.push({
+            'event': 'in-page-interaction',
+            'eAction': 'link click',
+            'eLabel': eventLabel
+        });
+    }
 
     if (!Mozilla.FirefoxDownloader.isSupported()) {
         downloadList.style.display = 'block';
@@ -19,19 +34,18 @@
 
     Mozilla.FirefoxDownloader.init();
 
-    helpIcon.addEventListener('click', function(e) {
+    // Browser help modal.
+    browserHelpIcon.addEventListener('click', function(e) {
         e.preventDefault();
-
-        Mzp.Modal.createModal(this, browserHelpContent, {
-            title: helpIcon.textContent,
-            className: 'browser-help-modal'
-        });
-
-        window.dataLayer.push({
-            'event': 'in-page-interaction',
-            'eAction': 'link click',
-            'eLabel': 'Get Help'
-        });
+        showHelpModal.call(this, browserHelpContent, browserHelpIcon.textContent, 'Get Browser Help');
     }, false);
+
+    // Installer help modal.
+    for (var i = 0; i < installerHelpIcon.length; i++) {
+        installerHelpIcon[i].addEventListener('click', function(e) {
+            e.preventDefault();
+            showHelpModal.call(this, installerHelpContent, e.target.textContent, 'Get Installer Help');
+        }, false);
+    }
 
 })(window.Mozilla);

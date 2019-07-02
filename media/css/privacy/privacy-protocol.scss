@@ -4,8 +4,6 @@
 
 $image-path: '/media/protocol/img';
 
-@import '../libs/system-font';
-
 @import '../../protocol/css/includes/lib';
 @import '../../protocol/css/includes/mixins/details';
 @import '../../protocol/css/components/article';
@@ -14,21 +12,6 @@ $heading-purple: #20123A;
 $body-purple: #42425A;
 $border: 2px solid $color-gray-20;
 
-.mzp-t-firefox {
-    @include text-body-lg;
-    color: $body-purple;
-    font-family: system-ui, sans-serif;
-    line-height: 1.25;
-
-    h1,
-    h2,
-    h3,
-    h4 {
-        color: $heading-purple;
-        font-family: sharpsans, system-ui, sans-serif;
-        font-weight: normal;
-    }
-}
 
 /* -------------------------------------------------------------------------- */
 // Layout
@@ -43,6 +26,7 @@ $border: 2px solid $color-gray-20;
 // Policy header
 
 .policy-title {
+    @include font-firefox;
     margin-bottom: $spacing-lg;
 
     @media #{$mq-sm} {
@@ -89,7 +73,7 @@ $border: 2px solid $color-gray-20;
     }
 
     h1 {
-        @include text-display-sm;
+        @include text-display-xs;
         font-weight: bold;
     }
 
@@ -127,7 +111,6 @@ $border: 2px solid $color-gray-20;
 
     h2 {
         @include text-display-lg;
-        font-weight: normal;
     }
 }
 
@@ -151,7 +134,7 @@ $border: 2px solid $color-gray-20;
     }
 
     h3 {
-        @include text-display-sm;
+        @include text-display-xs;
         margin: $layout-sm 0;
     }
 

@@ -36,7 +36,8 @@ $image-path: '/media/protocol/img';
     text-align: center;
 
     .c-page-header-up-to-date {
-        @include text-display-xs;
+        @include font-base;
+        @include text-body-lg;
         display: none;
         font-weight: normal;
         margin: 1em 0;
@@ -104,7 +105,7 @@ $image-path: '/media/protocol/img';
     }
 
     .c-sticky-signup-title {
-        @include text-display-sm;
+        @include text-display-xs;
         margin: 0 auto $spacing-md;
         text-align: left;
     }
@@ -345,7 +346,7 @@ $image-path: '/media/protocol/img';
     }
 
     h3 {
-        @include text-display-md;
+        @include text-display-sm;
         text-align: left;
     }
 

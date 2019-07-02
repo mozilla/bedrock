@@ -28,6 +28,7 @@ main {
     margin-top: $layout-xs;
 
     span {
+        @include font-base;
         background-color: #6EE7C4;
         border-radius: 2px;
         display: inline-block;

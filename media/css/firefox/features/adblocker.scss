@@ -14,22 +14,12 @@ $image-path: '/media/protocol/img';
 /* -------------------------------------------------------------------------- */
 // Custom layout
 
-h1, h2, h3 {
-    @include open-sans;
-}
-
 ul li span {
     font-weight: bold;
 }
 
-blockquote {
-    @include text-display-sm;
-    margin: $layout-sm 0;
-    text-align: left;
-}
-
 .mzp-c-call-out-compact.mzp-t-product-firefox.mzp-t-firefox {
-    background-color: $color-gray-30;
+    background-color: $color-gray-20;
 
     .fx-privacy-link {
         margin-bottom: 0;
@@ -71,7 +61,7 @@ section.mzp-c-hero {
 }
 
 .section-title {
-    @include text-display-md;
+    @include text-display-sm;
     text-align: center;
 }
 

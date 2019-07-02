@@ -122,6 +122,7 @@ $image-path: '/media/protocol/img';
 }
 
 .c-release-version {
+    @include font-base;
     @include text-display-xl;
 }
 
@@ -132,15 +133,18 @@ $image-path: '/media/protocol/img';
 
 .mzp-l-content {
     .c-release-product {
-        @include text-display-xs;
+        @include font-base;
+        @include text-display-xxs;
     }
      .c-release-date {
+        @include font-base;
         @include text-display-xxs;
     }
 
     .c-release-first-title,
     .c-release-draft-title {
-        @include text-display-xs;
+        @include font-base;
+        @include text-display-xxs;
         font-weight: bold;
 
         // pushes the text down after the big release-version text
@@ -153,7 +157,8 @@ $image-path: '/media/protocol/img';
     }
 
     h3 {
-        @include text-display-sm;
+        @include font-base;
+        @include text-display-xs;
         margin-bottom: $layout-sm;
     }
 }
@@ -378,7 +383,8 @@ $image-path: '/media/protocol/img';
     padding: $layout-sm 0;
 
     h2 {
-        @include text-display-sm;
+        @include font-base;
+        @include text-body-md;
     }
     a {
         display: block;
