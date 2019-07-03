@@ -644,6 +644,8 @@ format_string = 'Hello <b>{0}</b>'
 format_markup = Markup(format_string)
 val_string = '<em>Steve</em>'
 val_markup = Markup(val_string)
+
+
 @pytest.mark.parametrize('f, v', [
     (format_string, val_string),
     (format_string, val_markup),
