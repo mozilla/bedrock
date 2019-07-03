@@ -1,4 +1,3 @@
-from builtins import object
 from django.views.generic import TemplateView
 
 from bedrock.wordpress.models import BlogPost

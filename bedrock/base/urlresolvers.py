@@ -1,4 +1,3 @@
-from builtins import object
 from threading import local
 
 from django.conf import settings

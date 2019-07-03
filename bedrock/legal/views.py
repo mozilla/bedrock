@@ -1,20 +1,15 @@
-from __future__ import absolute_import
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from django.template.loader import render_to_string
-
-from lib import l10n_utils
-
 from django.core.mail import EmailMessage
 from django.shortcuts import redirect
+from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_protect
 
 from bedrock.base.urlresolvers import reverse
-
-from .forms import FraudReportForm
-
+from bedrock.legal.forms import FraudReportForm
+from lib import l10n_utils
 
 FRAUD_REPORT_EMAIL_FROM = 'Mozilla.com <noreply@mozilla.com>'
 FRAUD_REPORT_EMAIL_SUBJECT = 'New trademark infringement report: %s; %s'

@@ -1,7 +1,6 @@
 """
 Replacement library (function really) for Waffle that uses environment variables.
 """
-from builtins import str
 from django.conf import settings
 
 from bedrock.base.waffle_config import config

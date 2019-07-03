@@ -2,7 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from builtins import object
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils.functional import total_ordering

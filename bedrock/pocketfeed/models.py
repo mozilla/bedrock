@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from builtins import object
 from django.db import models
 from django.db.utils import DatabaseError
 

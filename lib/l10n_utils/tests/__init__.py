@@ -1,4 +1,3 @@
-from builtins import object
 import sys
 from contextlib import contextmanager
 from io import StringIO

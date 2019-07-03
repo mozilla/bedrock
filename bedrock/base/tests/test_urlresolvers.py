@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from builtins import object
 from django.urls import re_path
 from django.test import TestCase
 from django.test.client import RequestFactory

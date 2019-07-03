@@ -1,5 +1,3 @@
-from builtins import str
-from builtins import range
 from django.conf import settings
 
 import requests

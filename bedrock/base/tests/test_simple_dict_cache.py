@@ -4,9 +4,6 @@
 # and instead uses a simple dict for in-memory storage. These were adapted
 # from the cache backend tests in Django itself.
 
-from builtins import str
-from builtins import range
-from builtins import object
 import os
 import time
 import warnings

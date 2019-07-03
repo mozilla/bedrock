@@ -1,5 +1,3 @@
-from builtins import str
-from builtins import object
 import codecs
 import json
 import os

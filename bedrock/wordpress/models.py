@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from builtins import object
 import operator
 import random
 
