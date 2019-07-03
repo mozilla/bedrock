@@ -1,5 +1,4 @@
 """Test redirects from the global.conf file."""
-from __future__ import absolute_import
 from operator import itemgetter
 
 import pytest

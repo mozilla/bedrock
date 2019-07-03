@@ -6,10 +6,7 @@ import codecs
 import logging
 import os.path
 from time import mktime
-try:
-    from cStringIO import StringIO
-except ImportError:
-    from StringIO import StringIO
+from io import StringIO
 
 from django.conf import settings
 from django.core.cache import caches
@@ -19,7 +16,7 @@ from django.utils.http import http_date
 log = logging.getLogger(__name__)
 
 
-class ExternalFile(object):
+class ExternalFile:
     def __init__(self, file_id):
         try:
             fileinfo = settings.EXTERNAL_FILES[file_id]
@@ -87,7 +84,7 @@ class ExternalFile(object):
         return self.validate_content(content)
 
     def read(self):
-        return self.file_object.content.encode('utf-8')
+        return self.file_object.content
 
     def readlines(self):
         return StringIO(self.read()).readlines()

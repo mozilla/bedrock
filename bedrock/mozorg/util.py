@@ -2,12 +2,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import json
 import os
 
 from django.conf import settings
 from django.conf.urls import url
-from django.http import HttpResponse
 from django.shortcuts import render as django_render
 from django.views.decorators.csrf import csrf_exempt
 
@@ -33,16 +31,6 @@ FXA_CLIENTS = {
     'oauth': None,
     'profile': None,
 }
-
-
-class HttpResponseJSON(HttpResponse):
-    def __init__(self, data, status=None, cors=False):
-        super(HttpResponseJSON, self).__init__(content=json.dumps(data),
-                                               content_type='application/json',
-                                               status=status)
-
-        if cors:
-            self['Access-Control-Allow-Origin'] = '*'
 
 
 def page(name, tmpl, decorators=None, url_name=None, **kwargs):
@@ -200,7 +188,7 @@ def get_fxa_oauth_token(code):
     try:
         token_resp = oauthClient.trade_code(code, client_id=settings.FXA_OAUTH_CLIENT_ID, client_secret=settings.FXA_OAUTH_CLIENT_SECRET)
         token = token_resp['access_token']
-    except:
+    except Exception:
         token = None
 
     return token
@@ -212,7 +200,7 @@ def get_fxa_profile_email(token):
 
     try:
         email = profileClient.get_email(token)
-    except:
+    except Exception:
         email = None
 
     return email
@@ -229,5 +217,5 @@ def fxa_concert_rsvp(email, isFx):
     try:
         basket.request('post', 'fxa-concerts-rsvp', data=data)
         return True
-    except:
+    except Exception:
         return False

@@ -79,7 +79,7 @@ clean:
 	git clean -f
 
 lint: .docker-build-pull
-	${DC} run test flake8 bedrock lib tests
+	${DC} run test flake8
 	${DC} run assets gulp js:lint css:lint
 
 test: .docker-build-pull

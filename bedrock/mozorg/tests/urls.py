@@ -12,9 +12,10 @@ from bedrock.mozorg.util import page
 def mock_view(request):
     return HttpResponse('test')
 
-urlpatterns = (
+
+urlpatterns = [
     url(r'', include('%s.urls' % settings.PROJECT_MODULE)),
 
     # Used by test_helper
     page('base', 'base-resp.html'),
-)
+]

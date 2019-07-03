@@ -15,8 +15,7 @@ from pyquery import PyQuery as pq
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox import views as fx_views
-from bedrock.firefox.firefox_details import FirefoxDesktop, FirefoxAndroid, FirefoxIOS
-from bedrock.firefox.utils import product_details
+from bedrock.firefox.firefox_details import FirefoxDesktop, FirefoxAndroid
 from bedrock.mozorg.tests import TestCase
 
 
@@ -24,10 +23,6 @@ TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), 'test_data')
 PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, 'product_details_json')
 GOOD_PLATS = {'Windows': {}, 'OS X': {}, 'Linux': {}}
 jinja_env = Jinja2.get_default().env
-
-firefox_desktop = FirefoxDesktop(json_dir=PROD_DETAILS_DIR)
-firefox_android = FirefoxAndroid(json_dir=PROD_DETAILS_DIR)
-firefox_ios = FirefoxIOS(json_dir=PROD_DETAILS_DIR)
 
 
 class TestInstallerHelp(TestCase):
@@ -94,12 +89,19 @@ class TestInstallerHelp(TestCase):
                                                  locale=None)
 
 
-@patch.object(fx_views, 'firefox_desktop', firefox_desktop)
 class TestFirefoxAll(TestCase):
     pd_cache = caches['product-details']
 
     def setUp(self):
         self.pd_cache.clear()
+        self.firefox_desktop = FirefoxDesktop(json_dir=PROD_DETAILS_DIR)
+        self.firefox_android = FirefoxAndroid(json_dir=PROD_DETAILS_DIR)
+        self.patcher = patch.object(
+            fx_views, 'firefox_desktop', self.firefox_desktop)
+        self.patcher.start()
+
+    def tearDown(self):
+        self.patcher.stop()
 
     def _get_url(self, platform='desktop', channel='release'):
         with self.activate('en-US'):
@@ -121,35 +123,35 @@ class TestFirefoxAll(TestCase):
         doc = pq(resp.content)
         assert len(doc('.c-all-downloads-build')) == 8
 
-        desktop_release_builds = len(firefox_desktop.get_filtered_full_builds('release'))
+        desktop_release_builds = len(self.firefox_desktop.get_filtered_full_builds('release'))
         assert len(doc('.c-locale-list[data-product="desktop_release"] > li')) == desktop_release_builds
         assert len(doc('.c-locale-list[data-product="desktop_release"] > li[data-language="en-US"] > ul > li > a')) == 7
 
-        desktop_beta_builds = len(firefox_desktop.get_filtered_full_builds('beta'))
+        desktop_beta_builds = len(self.firefox_desktop.get_filtered_full_builds('beta'))
         assert len(doc('.c-locale-list[data-product="desktop_beta"] > li')) == desktop_beta_builds
         assert len(doc('.c-locale-list[data-product="desktop_beta"] > li[data-language="en-US"] > ul > li > a')) == 7
 
-        desktop_developer_builds = len(firefox_desktop.get_filtered_full_builds('alpha'))
+        desktop_developer_builds = len(self.firefox_desktop.get_filtered_full_builds('alpha'))
         assert len(doc('.c-locale-list[data-product="desktop_developer"] > li')) == desktop_developer_builds
         assert len(doc('.c-locale-list[data-product="desktop_developer"] > li[data-language="en-US"] > ul > li > a')) == 7
 
-        desktop_nightly_builds = len(firefox_desktop.get_filtered_full_builds('nightly'))
+        desktop_nightly_builds = len(self.firefox_desktop.get_filtered_full_builds('nightly'))
         assert len(doc('.c-locale-list[data-product="desktop_nightly"] > li')) == desktop_nightly_builds
         assert len(doc('.c-locale-list[data-product="desktop_nightly"] > li[data-language="en-US"] > ul > li > a')) == 7
 
-        desktop_esr_builds = len(firefox_desktop.get_filtered_full_builds('esr'))
+        desktop_esr_builds = len(self.firefox_desktop.get_filtered_full_builds('esr'))
         assert len(doc('.c-locale-list[data-product="desktop_esr"] > li')) == desktop_esr_builds
         assert len(doc('.c-locale-list[data-product="desktop_esr"] > li[data-language="en-US"] > ul > li > a')) == 5
 
-        android_release_builds = len(firefox_android.get_filtered_full_builds('release'))
+        android_release_builds = len(self.firefox_android.get_filtered_full_builds('release'))
         assert len(doc('.c-locale-list[data-product="android_release"] > li')) == android_release_builds
         assert len(doc('.c-locale-list[data-product="android_release"] > li[data-language="multi"] > ul > li > a')) == 2
 
-        android_beta_builds = len(firefox_android.get_filtered_full_builds('beta'))
+        android_beta_builds = len(self.firefox_android.get_filtered_full_builds('beta'))
         assert len(doc('.c-locale-list[data-product="android_beta"] > li')) == android_beta_builds
         assert len(doc('.c-locale-list[data-product="android_beta"] > li[data-language="multi"] > ul > li > a')) == 2
 
-        android_nightly_builds = len(firefox_android.get_filtered_full_builds('nightly'))
+        android_nightly_builds = len(self.firefox_android.get_filtered_full_builds('nightly'))
         assert len(doc('.c-locale-list[data-product="android_nightly"] > li')) == android_nightly_builds
         assert len(doc('.c-locale-list[data-product="android_nightly"] > li[data-language="multi"] > ul > li > a')) == 2
 
@@ -174,8 +176,10 @@ class TestFirefoxAll(TestCase):
         assert len(doc('.build-table')) == 1
         assert len(doc('.not-found.hide')) == 1
 
-        num_builds = len(firefox_desktop.get_filtered_full_builds('release'))
-        num_builds += len(firefox_desktop.get_filtered_test_builds('release'))
+        num_builds = len(
+            self.firefox_desktop.get_filtered_full_builds('release'))
+        num_builds += len(
+            self.firefox_desktop.get_filtered_test_builds('release'))
         assert len(doc('tr[data-search]')) == num_builds
         assert len(doc('tr#en-US a')) == 7
 
@@ -185,9 +189,9 @@ class TestFirefoxAll(TestCase):
         locale details are not updated yet, the filtered build list should not
         include the localized build.
         """
-        builds = firefox_desktop.get_filtered_full_builds('release')
-        assert 'uz' in firefox_desktop.firefox_primary_builds
-        assert 'uz' not in firefox_desktop.languages
+        builds = self.firefox_desktop.get_filtered_full_builds('release')
+        assert 'uz' in self.firefox_desktop.firefox_primary_builds
+        assert 'uz' not in self.firefox_desktop.languages
         assert len([build for build in builds if build['locale'] == 'uz']) == 0
 
     def test_android(self):
@@ -546,93 +550,6 @@ class TestFirstRun(TestCase):
         resp = self.view(req, version='39.0a2')
         assert resp.status_code == 301
         assert resp['location'].endswith('/firefox/new/')
-
-
-@patch.object(fx_views, 'firefox_desktop', firefox_desktop)
-class FxVersionRedirectsMixin(object):
-    @override_settings(DEV=True)  # avoid https redirects
-    def assert_ua_redirects_to(self, ua, url_name, status_code=301):
-        response = self.client.get(self.url, HTTP_USER_AGENT=ua)
-        assert response.status_code == status_code
-        assert response['Cache-Control'] == 'max-age=0'
-        assert response['Location'] == reverse(url_name)
-
-        # An additional redirect test with a query string
-        query = '?ref=getfirefox'
-        response = self.client.get(self.url + query, HTTP_USER_AGENT=ua)
-        assert response.status_code == status_code
-        assert response['Cache-Control'] == 'max-age=0'
-        assert response['Location'] == reverse(url_name) + query
-
-    def test_non_firefox(self):
-        """
-        Any non-Firefox user agents should be permanently redirected to
-        /firefox/new/.
-        """
-        user_agent = 'random'
-        self.assert_ua_redirects_to(user_agent, 'firefox.new')
-
-    @override_settings(DEV=True)
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='13.0.5')
-    @patch('bedrock.firefox.firefox_details.firefox_desktop.latest_builds',
-           return_value=('13.0.5', GOOD_PLATS))
-    def test_current_minor_version_firefox(self, latest_mock):
-        """
-        Should show current even if behind by a patch version
-        """
-        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:13.0) '
-                      'Gecko/20100101 Firefox/13.0')
-        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        assert response.status_code == 200
-        assert response['Cache-Control'] == 'max-age=0'
-
-    @override_settings(DEV=True)
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='25.0',
-                FIREFOX_ESR='24.1')
-    @patch('bedrock.firefox.firefox_details.firefox_desktop.latest_builds',
-           return_value=('25.0', GOOD_PLATS))
-    def test_esr_firefox(self, latest_mock):
-        """
-        Currently released ESR firefoxen should not redirect. At present
-        that is 24.0.x.
-        """
-        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) '
-                      'Gecko/20100101 Firefox/24.0')
-        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        assert response.status_code == 200
-        assert response['Cache-Control'] == 'max-age=0'
-
-    @override_settings(DEV=True)
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='16.0')
-    @patch('bedrock.firefox.firefox_details.firefox_desktop.latest_builds',
-           return_value=('16.0', GOOD_PLATS))
-    def test_current_firefox(self, latest_mock):
-        """
-        Currently released firefoxen should not redirect.
-        """
-        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:16.0) '
-                      'Gecko/20100101 Firefox/16.0')
-        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        assert response.status_code == 200
-        assert response['Cache-Control'] == 'max-age=0'
-
-    @override_settings(DEV=True)
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='16.0')
-    @patch('bedrock.firefox.firefox_details.firefox_desktop.latest_builds',
-           return_value=('16.0', GOOD_PLATS))
-    def test_future_firefox(self, latest_mock):
-        """
-        Pre-release firefoxen should not redirect.
-        """
-        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:18.0) '
-                      'Gecko/20100101 Firefox/18.0')
-        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        assert response.status_code == 200
-        assert response['Cache-Control'] == 'max-age=0'
 
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())

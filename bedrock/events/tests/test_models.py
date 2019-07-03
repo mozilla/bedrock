@@ -73,7 +73,7 @@ class TestFutureQuerySet(TestCase):
         """
         Should not raise error during DST change
         """
-        mock_datetime.utcnow.return_value = datetime(2014, 11, 02, 01, 01)
+        mock_datetime.utcnow.return_value = datetime(2014, 11, 0o2, 0o1, 0o1)
         assert Event.objects.future().count() == 0
 
     @override_settings(USE_TZ=False)
@@ -82,7 +82,7 @@ class TestFutureQuerySet(TestCase):
         """
         Should not raise error during DST change
         """
-        mock_datetime.utcnow.return_value = datetime(2014, 11, 02, 01, 01)
+        mock_datetime.utcnow.return_value = datetime(2014, 11, 0o2, 0o1, 0o1)
         assert Event.objects.future().count() == 0
 
 
@@ -95,7 +95,7 @@ class TestQuerySets(TestCase):
         self.mock_datetime = datetime_patcher.start()
         self.addCleanup(datetime_patcher.stop)
 
-        self.mock_datetime.utcnow.return_value = datetime(2015, 05, 04, 12, 00)
+        self.mock_datetime.utcnow.return_value = datetime(2015, 0o5, 0o4, 12, 00)
 
     def test_past(self):
         """

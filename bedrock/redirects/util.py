@@ -3,20 +3,19 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import re
-from urllib import urlencode
-from urlparse import parse_qs
+from urllib.parse import parse_qs, urlencode
 
-from django.core.urlresolvers import NoReverseMatch, RegexURLResolver, reverse
+import commonware.log
 from django.conf.urls import url
-from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect, HttpResponseGone
+from django.http import (HttpResponseGone, HttpResponsePermanentRedirect,
+                         HttpResponseRedirect)
+from django.urls import NoReverseMatch, URLResolver, reverse
+from django.urls.resolvers import RegexPattern
 from django.utils.encoding import force_text
 from django.utils.html import strip_tags
 from django.views.decorators.vary import vary_on_headers
 
-import commonware.log
-
 from bedrock.mozorg.decorators import cache_control_expires
-
 
 log = commonware.log.getLogger('redirects.util')
 LOCALE_RE = r'^(?P<locale>\w{2,3}(?:-\w{2})?/)?'
@@ -31,7 +30,8 @@ def register(patterns):
 
 
 def get_resolver(patterns=None):
-    return RegexURLResolver(r'^/', patterns or redirectpatterns)
+    patterns = patterns or redirectpatterns
+    return URLResolver(RegexPattern(r'^/'), patterns)
 
 
 def header_redirector(header_name, regex, match_dest, nomatch_dest, case_sensitive=False):
@@ -166,7 +166,7 @@ def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=
         view_decorators.append(cache_control_expires(cache_timeout))
 
     if vary:
-        if isinstance(vary, basestring):
+        if isinstance(vary, str):
             vary = [vary]
         view_decorators.append(vary_on_headers(*vary))
 

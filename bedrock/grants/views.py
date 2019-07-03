@@ -8,7 +8,7 @@ from django.http import Http404
 from lib import l10n_utils
 import bleach
 
-from grants_db import GRANTS
+from bedrock.grants.grants_db import GRANTS
 
 grant_labels = {
     '': 'All',
@@ -20,7 +20,7 @@ grant_labels = {
 
 
 def grant_info(request, slug):
-    grant_data = filter(lambda k: k.url == slug, GRANTS)
+    grant_data = [k for k in GRANTS if k.url == slug]
 
     if not grant_data:
         raise Http404
@@ -38,7 +38,7 @@ def grants(request):
         raise Http404
 
     if type_filter:
-        grants = filter(lambda k: k.type == type_filter, GRANTS)
+        grants = [k for k in GRANTS if k.type == type_filter]
     else:
         grants = GRANTS
 

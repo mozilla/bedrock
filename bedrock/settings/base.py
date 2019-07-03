@@ -203,12 +203,12 @@ def lazy_lang_group():
             groups.setdefault(prefix, []).append(lang)
 
     # add any group prefix to the group list if it is also a supported lang
-    for groupid in groups.keys():
+    for groupid in groups:
         if groupid in langs:
             groups[groupid].append(groupid)
 
     # exclude groups with a single member
-    return {gid: glist for gid, glist in groups.iteritems() if len(glist) > 1}
+    return {gid: glist for gid, glist in groups.items() if len(glist) > 1}
 
 
 def lazy_lang_url_map():
@@ -395,7 +395,7 @@ ENABLE_VARY_NOCACHE_MIDDLEWARE = config('ENABLE_VARY_NOCACHE_MIDDLEWARE',
 # e.g. BASIC_AUTH_CREDS="thedude:thewalrus"
 BASIC_AUTH_CREDS = config('BASIC_AUTH_CREDS', default='')
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'allow_cidr.middleware.AllowCIDRMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'bedrock.mozorg.middleware.MozorgRequestTimingMiddleware',
@@ -406,7 +406,7 @@ MIDDLEWARE_CLASSES = [
     # must come before LocaleURLMiddleware
     'bedrock.redirects.middleware.RedirectsMiddleware',
     'bedrock.base.middleware.LocaleURLMiddleware',
-    'commonware.middleware.RobotsTagHeader',
+    'bedrock.base.middleware.RobotsTagHeader',
     'bedrock.mozorg.middleware.ClacksOverheadMiddleware',
     'bedrock.mozorg.middleware.HostnameMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -416,7 +416,7 @@ MIDDLEWARE_CLASSES = [
 
 ENABLE_CSP_MIDDLEWARE = config('ENABLE_CSP_MIDDLEWARE', default='true', parser=bool)
 if ENABLE_CSP_MIDDLEWARE:
-    MIDDLEWARE_CLASSES.append('csp.middleware.CSPMiddleware')
+    MIDDLEWARE.append('csp.middleware.CSPMiddleware')
 
 INSTALLED_APPS = (
     # Django contrib apps

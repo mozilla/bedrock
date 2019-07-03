@@ -45,7 +45,7 @@ class TestFraudReport(TestCase):
         return SimpleUploadedFile('image.png', io.read(), 'image/png')
 
     def _create_text_file(self):
-        return SimpleUploadedFile('stuff.txt', 'This is not an image', 'text/plain')
+        return SimpleUploadedFile('stuff.txt', b'This is not an image', 'text/plain')
 
     def test_view_post_valid_data(self):
         """
@@ -78,7 +78,7 @@ class TestFraudReport(TestCase):
         response = legal_views.fraud_report(request)
 
         assert response.status_code == 200
-        self.assertIn('Please enter a URL.', response.content)
+        self.assertIn(b'Please enter a URL.', response.content)
 
     def test_view_post_honeypot(self):
         """
@@ -96,7 +96,7 @@ class TestFraudReport(TestCase):
         response = legal_views.fraud_report(request)
 
         assert response.status_code == 200
-        self.assertIn('An error has occurred', response.content)
+        self.assertIn(b'An error has occurred', response.content)
 
     def test_form_valid_data(self):
         """

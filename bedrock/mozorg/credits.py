@@ -13,7 +13,7 @@ from bedrock.externalfiles import ExternalFile
 
 class CreditsFile(ExternalFile):
     def validate_content(self, content):
-        rows = list(csv.reader(content.strip().encode('utf8').split('\n')))
+        rows = list(csv.reader(content.strip().split('\n')))
         if len(rows) < 2200:  # it's 2273 as of now
             raise ValueError('Much smaller file than expected. {0} rows.'.format(len(rows)))
 
@@ -57,7 +57,7 @@ class CreditsFile(ExternalFile):
             else:
                 continue
 
-            sortkey = unicodedata.normalize('NFKD', sortkey.decode('utf8')).encode('ascii', 'ignore')
-            names.append([name.decode('utf8'), sortkey.upper()])
+            sortkey = unicodedata.normalize('NFKD', sortkey).encode('ascii', 'ignore').decode()
+            names.append([name, sortkey.upper()])
 
         return sorted(names, key=itemgetter(1))

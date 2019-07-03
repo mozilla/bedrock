@@ -26,7 +26,7 @@ class TestPageNode(TestCase):
         """
         child = PageNode('test', path='asdf')
         PageRoot('test', path='blah', children=[
-                 PageNode('test', path='whoo', children=[child])
+            PageNode('test', path='whoo', children=[child])
         ])
         assert child.full_path == 'blah/whoo/asdf'
 
@@ -217,9 +217,4 @@ class TestPageRoot(TestCase):
         # Mocking properties
         page.__get__ = lambda mock, self, cls: self.display_name
 
-        args = root.as_urlpatterns()
-
-        assert 'child1' in args
-        assert 'child2' in args
-        assert 'root' in args
-        assert 'parent' not in args
+        assert root.as_urlpatterns() == ['root', 'child1', 'child2']

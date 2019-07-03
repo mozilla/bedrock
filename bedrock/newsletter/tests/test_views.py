@@ -30,7 +30,7 @@ class TestViews(TestCase):
 
     @patch('bedrock.newsletter.views.l10n_utils.render')
     def test_updated_allows_good_tokens(self, mock_render):
-        token = unicode(uuid.uuid4())
+        token = str(uuid.uuid4())
         req = self.rf.get('/', {'token': token, 'unsub': 1})
         updated(req)
         self.assertEqual(mock_render.call_args[0][2]['token'], token)
@@ -53,7 +53,7 @@ class TestViews(TestCase):
 @patch('basket.base.request')
 class TestExistingNewsletterView(TestCase):
     def setUp(self):
-        self.token = unicode(uuid.uuid4())
+        self.token = str(uuid.uuid4())
         self.user = {
             'newsletters': [u'mozilla-and-you'],
             'token': self.token,
@@ -129,7 +129,7 @@ class TestExistingNewsletterView(TestCase):
         # or they are marked 'show' and 'active' in the settings
         get_newsletters.return_value = newsletters
         # Find a newsletter without 'show' and subscribe the user to it
-        for newsletter, data in newsletters.iteritems():
+        for newsletter, data in newsletters.items():
             if not data.get('show', False):
                 self.user['newsletters'] = [newsletter]
                 break
@@ -148,10 +148,10 @@ class TestExistingNewsletterView(TestCase):
 
         shown = set([form.initial['newsletter'] for form in forms])
         inactive = set([newsletter for newsletter, data
-                       in newsletters.iteritems()
+                       in newsletters.items()
                        if not data.get('active', False)])
         to_show = set([newsletter for newsletter, data
-                       in newsletters.iteritems()
+                       in newsletters.items()
                        if data.get('show', False)]) - inactive
         subscribed = set(self.user['newsletters'])
 
@@ -171,7 +171,7 @@ class TestExistingNewsletterView(TestCase):
 
     def test_get_user_not_found(self, mock_basket_request):
         # Token in URL but not a valid token - should redirect to recovery
-        rand_token = unicode(uuid.uuid4())
+        rand_token = str(uuid.uuid4())
         url = reverse('newsletter.existing.token', args=(rand_token,))
         with patch.multiple('basket',
                             request=DEFAULT) as basket_patches:
@@ -203,7 +203,7 @@ class TestExistingNewsletterView(TestCase):
     def test_post_user_not_found(self, mock_basket_request):
         # User submits form and passed token, but no user was found
         # Should issue message and redirect to recovery
-        rand_token = unicode(uuid.uuid4())
+        rand_token = str(uuid.uuid4())
         url = reverse('newsletter.existing.token', args=(rand_token,))
         with patch.multiple('basket',
                             update_user=DEFAULT,
@@ -250,10 +250,9 @@ class TestExistingNewsletterView(TestCase):
         # Should have called update_user with subscription list
         self.assertEqual(1, basket_patches['update_user'].call_count)
         kwargs = basket_patches['update_user'].call_args[1]
-        self.assertEqual(
-            {'newsletters': u'mozilla-and-you,firefox-tips', 'lang': u'en'},
-            kwargs
-        )
+        self.assertEqual(set(kwargs), set(['newsletters', 'lang']))
+        self.assertEqual(kwargs['lang'], 'en')
+        self.assertEqual(set(kwargs['newsletters'].split(',')), set(['mozilla-and-you', 'firefox-tips']))
         # Should not have called unsubscribe
         self.assertEqual(0, basket_patches['unsubscribe'].call_count)
         # Should not have called subscribe
@@ -266,7 +265,7 @@ class TestExistingNewsletterView(TestCase):
     def test_unsubscribing(self, get_newsletters, mock_basket_request):
         get_newsletters.return_value = newsletters
         # They unsubscribe from the one newsletter they're subscribed to
-        self.data['form-0-subscribed_radio'] = u'false'
+        self.data['form-0-subscribed_radio'] = u'False'
         url = reverse('newsletter.existing.token', args=(self.token,))
         with patch.multiple('basket',
                             update_user=DEFAULT,
@@ -413,7 +412,7 @@ class TestExistingNewsletterView(TestCase):
 
 class TestConfirmView(TestCase):
     def setUp(self):
-        self.token = unicode(uuid.uuid4())
+        self.token = str(uuid.uuid4())
         self.url = reverse('newsletter.confirm', kwargs={'token': self.token})
 
     def test_normal(self):
@@ -469,7 +468,7 @@ class TestConfirmView(TestCase):
 
 class TestSetCountryView(TestCase):
     def setUp(self):
-        self.token = unicode(uuid.uuid4())
+        self.token = str(uuid.uuid4())
         self.url = reverse('newsletter.country', kwargs={'token': self.token})
 
     def test_normal_submit(self):
@@ -509,8 +508,8 @@ class TestRecoveryView(TestCase):
     def test_unknown_email(self, mock_basket):
         """Unknown email addresses give helpful error message"""
         data = {'email': 'unknown@example.com'}
-        mock_basket.side_effect = basket.BasketException(status_code=404,
-                                                  code=basket.errors.BASKET_UNKNOWN_EMAIL)
+        mock_basket.side_effect = basket.BasketException(
+            status_code=404, code=basket.errors.BASKET_UNKNOWN_EMAIL)
         rsp = self.client.post(self.url, data)
         self.assertTrue(mock_basket.called)
         self.assertEqual(200, rsp.status_code)
@@ -652,7 +651,7 @@ class TestNewsletterSubscribe(TestCase):
         resp = self.ajax_request(data)
         resp_data = json.loads(resp.content)
         self.assertFalse(resp_data['success'])
-        self.assertEqual(resp_data['errors'][0], unicode(invalid_email_address))
+        self.assertEqual(resp_data['errors'][0], str(invalid_email_address))
 
     @patch.object(basket, 'subscribe')
     def test_returns_ajax_basket_error(self, subscribe_mock):
@@ -668,7 +667,7 @@ class TestNewsletterSubscribe(TestCase):
         resp = self.ajax_request(data)
         resp_data = json.loads(resp.content)
         self.assertFalse(resp_data['success'])
-        self.assertEqual(resp_data['errors'][0], unicode(general_error))
+        self.assertEqual(resp_data['errors'][0], str(general_error))
 
     def test_shows_normal_form(self):
         """A normal GET should show the form."""

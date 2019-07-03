@@ -4,16 +4,16 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import io
 from django.conf import settings
 from django.core import mail
-from django.core.urlresolvers import clear_url_caches
+from django.urls import clear_url_caches
 from django.http import HttpRequest
 from django.test.utils import override_settings
 
 from django_jinja.backend import Jinja2
 from mock import patch
 from pathlib2 import Path
-from product_details import product_details
 from pyquery import PyQuery as pq
 
 from bedrock.mozorg.tests import TestCase
@@ -178,8 +178,8 @@ class TestDotlang(TestCase):
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == '[bedrock] %s is corrupted' % path
         expected = {
-            u'Update now': u'Niha rojane bike',
-            u'Supported Devices': u'C�haz�n pi�tgiriy'
+            'Update now': 'Niha rojane bike',
+            'Supported Devices': 'C�haz�n pi�tgiriy�'
         }
         assert parsed == expected
         mail.outbox = []
@@ -266,8 +266,8 @@ class TestDotlang(TestCase):
 
         # extraction
         pypath = ROOT_PATH.joinpath('extract_me.py')
-        with open(str(pypath)) as pyfile:
-            vals = extract_python(pyfile, ['_'], [], {}).next()
+        with io.open(str(pypath), 'rb') as pyfile:
+            vals = next(extract_python(pyfile, ['_'], [], {}))
         assert vals[2] == clean_string
 
         # translation
@@ -367,15 +367,15 @@ class TestDotlang(TestCase):
         """
         # test the case when LANG_FILES is a string
         trans_str = 'Translate me'
-        # have to call __unicode__ directly because the value is a Mock
-        # object, and the `unicode()` function throws an exception.
-        _lazy(trans_str, lang_files='maude').__unicode__()
+        # have to call __str__ directly because the value is a Mock
+        # object, and the `str()` function throws an exception.
+        _lazy(trans_str, lang_files='maude').__str__()
         call_lang_files = ['maude'] + settings.DOTLANG_FILES
         trans_patch.assert_called_with(trans_str, call_lang_files)
 
         # test the case when LANG_FILES is a list
         lang_files_list = ['maude', 'bunny', 'uli']
-        _lazy(trans_str, lang_files=lang_files_list).__unicode__()
+        _lazy(trans_str, lang_files=lang_files_list).__str__()
         call_lang_files = lang_files_list + settings.DOTLANG_FILES
         trans_patch.assert_called_with(trans_str, call_lang_files)
 
@@ -391,9 +391,9 @@ class TestDotlang(TestCase):
         dude_says = extract_me_with_langfiles_lazy.do_translate()
         dirty_string = u"I'm The Dude, so that's what you call me, man."
         self.assertFalse(trans_patch.called)
-        # have to call __unicode__ directly because the value is a Mock
-        # object, and the `unicode()` function throws an exception.
-        dude_says.__unicode__()
+        # have to call __str__ directly because the value is a Mock
+        # object, and the `str()` function throws an exception.
+        dude_says.__str__()
         trans_patch.assert_called_with(dirty_string, ['donnie', 'walter'] +
                                        settings.DOTLANG_FILES)
 
@@ -449,6 +449,7 @@ class TestTranslationList(TestCase):
         The context of each view should have the 'links' dictionary which
         contains the canonical and alternate URLs of the page.
         """
+        from product_details import product_details
         request = HttpRequest()
         request.path = '/' + lang + '/' + view_name + '/'
         request.locale = lang

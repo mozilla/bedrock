@@ -12,7 +12,7 @@ class SimpleDictCache(LocMemCache):
     def add(self, key, value, timeout=DEFAULT_TIMEOUT, version=None):
         key = self.make_key(key, version=version)
         self.validate_key(key)
-        with self._lock.writer():
+        with self._lock:
             if self._has_expired(key):
                 self._set(key, value, timeout)
                 return True
@@ -22,13 +22,13 @@ class SimpleDictCache(LocMemCache):
         key = self.make_key(key, version=version)
         self.validate_key(key)
         value = default
-        with self._lock.reader():
+        with self._lock:
             if not self._has_expired(key):
                 value = self._cache[key]
         if value is not default:
             return value
 
-        with self._lock.writer():
+        with self._lock:
             try:
                 del self._cache[key]
                 del self._expire_info[key]
@@ -39,7 +39,7 @@ class SimpleDictCache(LocMemCache):
     def set(self, key, value, timeout=DEFAULT_TIMEOUT, version=None):
         key = self.make_key(key, version=version)
         self.validate_key(key)
-        with self._lock.writer():
+        with self._lock:
             self._set(key, value, timeout)
 
     def incr(self, key, delta=1, version=None):
@@ -48,6 +48,6 @@ class SimpleDictCache(LocMemCache):
             raise ValueError("Key '%s' not found" % key)
         new_value = value + delta
         key = self.make_key(key, version=version)
-        with self._lock.writer():
+        with self._lock:
             self._cache[key] = new_value
         return new_value

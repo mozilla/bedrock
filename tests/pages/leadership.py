@@ -35,8 +35,9 @@ class LeadershipPage(BasePage):
         return modal
 
     def is_biography_displayed(self, value):
-        return self.is_element_displayed(*(By.CSS_SELECTOR,
-               '#modal .vcard.has-bio[data-id="{0}"]'.format(value)))
+        return self.is_element_displayed(
+            *(By.CSS_SELECTOR, '#modal .vcard.has-bio[data-id="{0}"]'.format(value))
+        )
 
     def get_next_leader(self, index, leaders):
         current_index = leaders.index(index)

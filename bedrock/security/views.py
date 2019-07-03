@@ -3,7 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import re
 
-from django.core.urlresolvers import NoReverseMatch
+from django.urls import NoReverseMatch
 from django.db.models import Q
 from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_safe
@@ -159,7 +159,7 @@ class OldAdvisoriesListView(CachedRedirectView):
 
 
 class KVRedirectsView(CachedRedirectView):
-    prod_ver_re = re.compile('(\w+)(\d{2})$')
+    prod_ver_re = re.compile(r'(\w+)(\d{2})$')
 
     def get_redirect_url(self, *args, **kwargs):
         url_component = kwargs['filename'].replace(' ', '')

@@ -1,6 +1,4 @@
 """Test redirects from the global.conf file."""
-from __future__ import absolute_import
-
 import pytest
 import requests
 
@@ -30,7 +28,7 @@ def test_404_url(base_url):
 @pytest.mark.nondestructive
 @pytest.mark.django_db
 def test_x_robots_tag(base_url):
-    assert_valid_url(base_url, resp_headers={'x-robots-tag': 'noodp'})
+    assert_valid_url('/en-US/', status_code=200, resp_headers={'x-robots-tag': 'noodp'}, base_url=base_url)
 
 
 @pytest.mark.headless

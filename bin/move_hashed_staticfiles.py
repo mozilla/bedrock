@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-from __future__ import print_function, unicode_literals
-
 import json
 import os
 import sys
@@ -13,7 +11,7 @@ def get_hashed_filenames(static_path):
     with open(json_file) as jsonf:
         staticfiles = json.load(jsonf)
 
-    return staticfiles['paths'].values()
+    return list(staticfiles['paths'].values())
 
 
 def move_hashed_files(static_path, hashed_path):

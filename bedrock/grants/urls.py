@@ -6,7 +6,7 @@ from django.conf.urls import url
 from bedrock.redirects.util import redirect
 from bedrock.mozorg.util import page
 
-import views
+from bedrock.grants import views
 
 
 urlpatterns = (

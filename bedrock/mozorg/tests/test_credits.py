@@ -2,8 +2,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-from __future__ import unicode_literals
-
 from collections import OrderedDict
 from textwrap import dedent
 
@@ -24,7 +22,7 @@ class TestCredits(TestCase):
             Walter Sobchak,Sobchak
             Theodore Donald Kerabatsos,Kerabatsos
             Tantek Çelik,Çelik
-        """.encode('utf8')))
+        """))
         self.assertListEqual(self.credits_file.rows, [
             ['Tantek Çelik', 'CELIK'],
             ['The Dude', 'DUDE'],
@@ -63,7 +61,7 @@ class TestCredits(TestCase):
             Walter Sobchak,Sobchak
             Theodore Donald Kerabatsos,Kerabatsos
             Tantek Çelik,Çelik
-        """.encode('utf8')))
+        """))
         good_names = OrderedDict()
         good_names['C'] = ['Tantek Çelik']
         good_names['D'] = ['The Dude']

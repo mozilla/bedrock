@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import print_function, unicode_literals
-
 from django.db import models
 from django.db.utils import DatabaseError
 
@@ -62,7 +60,7 @@ class PocketArticleManager(models.Manager):
             try:
                 if obj:
                     if obj.time_shared != article['time_shared']:
-                        for key, value in article.iteritems():
+                        for key, value in article.items():
                             setattr(obj, key, value)
                         obj.save()
                         update_count += 1
@@ -97,7 +95,7 @@ class PocketArticle(models.Model):
         get_latest_by = 'time_shared'
         ordering = ['-time_shared']
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     @property

@@ -16,9 +16,8 @@ def test_slideshow_displayed(base_url, selenium):
 
 
 @pytest.mark.nondestructive
-@pytest.mark.viewport('mobile')
-def test_list_displayed(base_url, selenium):
-    page = HistoryPage(selenium, base_url).open()
+def test_list_displayed(base_url, selenium_mobile):
+    page = HistoryPage(selenium_mobile, base_url).open()
     assert not page.is_slideshow_displayed
     assert not page.is_previous_button_displayed
     assert not page.is_next_button_displayed

@@ -4,15 +4,16 @@
 
 import re
 
+from commonware.decorators import xframe_allow
 from django.conf import settings
-from django.core.urlresolvers import reverse
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render as django_render
+from django.urls import reverse
 from django.views.decorators.cache import cache_page, never_cache
 from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
-
-from commonware.decorators import xframe_allow
+from lib import l10n_utils
+from lib.l10n_utils.dotlang import lang_file_is_active
 
 from bedrock.base.waffle import switch
 from bedrock.contentcards.models import get_page_content_cards
@@ -22,13 +23,10 @@ from bedrock.mozorg.models import ContributorActivity
 from bedrock.mozorg.util import (
     fxa_concert_rsvp,
     get_fxa_oauth_token,
-    get_fxa_profile_email,
-    HttpResponseJSON
+    get_fxa_profile_email
 )
 from bedrock.pocketfeed.models import PocketArticle
 from bedrock.wordpress.views import BlogPostsView
-from lib import l10n_utils
-from lib.l10n_utils.dotlang import lang_file_is_active
 
 credits_file = CreditsFile('credits')
 forums_file = ForumsFile('forums')
@@ -60,7 +58,9 @@ def mozid_data_view(request, source_name):
              'totalactive': activity['total__sum'],
              'new': activity['new__sum']} for activity in qs]
 
-    return HttpResponseJSON(data, cors=True)
+    response = JsonResponse(data, safe=False)
+    response['Access-Control-Allow-Origin'] = '*'
+    return response
 
 
 @xframe_allow

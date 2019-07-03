@@ -3,7 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 from datetime import date
 from textwrap import dedent
-from cStringIO import StringIO
+from io import StringIO
 
 import pytest
 from mock import patch, call

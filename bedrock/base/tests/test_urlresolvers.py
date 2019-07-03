@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls import url
+from django.urls import re_path
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
@@ -26,11 +26,11 @@ def test_split_path(path, result):
 
 # Test urlpatterns
 urlpatterns = [
-    url(r'^test/$', lambda r: None, name='test.view')
+    re_path(r'^test/$', lambda r: None, name='test.view')
 ]
 
 
-class FakePrefixer(object):
+class FakePrefixer:
     def __init__(self, fix):
         self.fix = fix
 

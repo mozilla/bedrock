@@ -1,7 +1,7 @@
 from threading import local
 
 from django.conf import settings
-from django.core.urlresolvers import reverse as django_reverse
+from django.urls import reverse as django_reverse
 from django.utils.encoding import iri_to_uri
 from django.utils.functional import lazy
 from django.utils.translation.trans_real import parse_accept_lang_header
@@ -45,7 +45,7 @@ def _get_language_map():
     :return: dict
     """
     LUM = settings.LANGUAGE_URL_MAP
-    langs = dict(LUM.items() + settings.CANONICAL_LOCALES.items())
+    langs = dict(list(LUM.items()) + list(settings.CANONICAL_LOCALES.items()))
     # Add missing short locales to the list. This will automatically map
     # en to en-GB (not en-US), es to es-AR (not es-ES), etc. in alphabetical
     # order. To override this behavior, explicitly define a preferred locale
@@ -86,7 +86,7 @@ def split_path(path_):
         return '', path
 
 
-class Prefixer(object):
+class Prefixer:
     def __init__(self, request):
         self.request = request
         split = split_path(request.path_info)

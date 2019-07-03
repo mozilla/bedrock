@@ -3,7 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
-import urllib
+from urllib.parse import unquote
 
 from pages.firefox.accounts import FirefoxAccountsPage
 
@@ -13,7 +13,7 @@ def test_account_form(base_url, selenium):
     page = FirefoxAccountsPage(selenium, base_url, params='').open()
     page.join_firefox_form.type_email('success@example.com')
     page.join_firefox_form.click_continue()
-    url = urllib.unquote(selenium.current_url)
+    url = unquote(selenium.current_url)
     assert 'email=success@example.com' in url, 'Email address is not in URL'
 
 

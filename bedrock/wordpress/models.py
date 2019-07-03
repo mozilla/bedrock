@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import print_function, unicode_literals
-
 import operator
 import random
 
@@ -18,6 +16,7 @@ from jinja2 import Markup
 from raven.contrib.django.raven_compat.models import client as sentry_client
 
 from bedrock.wordpress.api import get_posts_data, complete_posts_data
+from functools import reduce
 
 
 def make_datetime(datestr):
@@ -108,7 +107,7 @@ class BlogPostManager(models.Manager):
 
             try:
                 if obj:
-                    for key, value in post.iteritems():
+                    for key, value in post.items():
                         setattr(obj, key, value)
                     obj.save()
                 else:
@@ -153,7 +152,7 @@ class BlogPost(models.Model):
         get_latest_by = 'date'
         ordering = ['-date']
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s: %s' % (self.blog_name, self.title)
 
     def get_absolute_url(self):

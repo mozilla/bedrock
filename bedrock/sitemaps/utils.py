@@ -1,12 +1,10 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-from __future__ import print_function, unicode_literals
-
 import json
 import re
 
-from django.core import urlresolvers
+from django.urls import resolvers
 from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import get_template
@@ -58,7 +56,7 @@ def get_security_urls():
     for advisory in SecurityAdvisory.objects.all():
         try:
             adv_url = advisory.get_absolute_url()
-        except urlresolvers.NoReverseMatch:
+        except resolvers.NoReverseMatch:
             continue
 
         # strip "/en-US" off the front
@@ -81,7 +79,7 @@ def get_release_notes_urls():
         try:
             rel_path = release.get_absolute_url()
             req_path = release.get_sysreq_url()
-        except urlresolvers.NoReverseMatch:
+        except resolvers.NoReverseMatch:
             continue
 
         # strip "/en-US" off the front
@@ -117,10 +115,10 @@ def get_static_urls():
 
     # get_resolver is an undocumented but convenient function.
     # Try to retrieve all valid URLs on this site.
-    # NOTE: have to use `iterlists()` here since the standard
-    # `iteritems()` only returns the first item in the list for the
+    # NOTE: have to use `lists()` here since the standard
+    # `items()` only returns the first item in the list for the
     # view since `reverse_dict` is a `MultiValueDict`.
-    for key, values in urlresolvers.get_resolver(None).reverse_dict.iterlists():
+    for key, values in resolvers.get_resolver(None).reverse_dict.lists():
         for value in values:
             path = value[0][0][0]
             # Exclude pages that we don't want be indexed by search engines.
@@ -142,18 +140,18 @@ def get_static_urls():
                 if not render.called:
                     continue
 
-                locales = render.call_args[0][2]['translations'].keys()
+                locales = set(render.call_args[0][2]['translations'].keys())
 
                 # zh-CN is a redirect on the homepage
                 if path == '/':
-                    locales.remove('zh-CN')
+                    locales -= {'zh-CN'}
 
                 # Firefox Focus has a different URL in German
                 if path == '/privacy/firefox-focus/':
-                    locales.remove('de')
+                    locales -= {'de'}
 
                 # just remove any locales not in our prod list
-                locales = list(set(locales).intersection(settings.PROD_LANGUAGES))
+                locales = list(locales.intersection(settings.PROD_LANGUAGES))
 
             if path not in urls:
                 urls[path] = locales
@@ -175,13 +173,13 @@ def output_json(urls):
     output_file = settings.ROOT_PATH.joinpath('root_files', 'sitemap.json')
 
     # Output the data as a JSON file for convenience
-    with output_file.open('wb') as json_file:
+    with output_file.open('w') as json_file:
         json.dump(urls, json_file)
 
 
 def output_xml(urls):
     urls_by_locale = {}
-    for url, locales in urls.iteritems():
+    for url, locales in urls.items():
         if not locales:
             urls_by_locale.setdefault('none', [])
             urls_by_locale['none'].append(url)
@@ -190,7 +188,7 @@ def output_xml(urls):
             urls_by_locale.setdefault(locale, [])
             urls_by_locale[locale].append(url)
 
-    for locale, urls in urls_by_locale.iteritems():
+    for locale, urls in urls_by_locale.items():
         if locale != 'none':
             output_file = settings.ROOT_PATH.joinpath('root_files', locale, 'sitemap.xml')
             output_file.parent.mkdir(exist_ok=True)

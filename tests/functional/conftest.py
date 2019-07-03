@@ -4,10 +4,6 @@
 
 import pytest
 
-VIEWPORT = {
-    'desktop': {'width': 1280, 'height': 1024},
-    'mobile': {'width': 320, 'height': 480}}
-
 
 @pytest.fixture
 def capabilities(request, capabilities):
@@ -46,12 +42,12 @@ def internet_explorer(selenium):
 @pytest.fixture(autouse=True)
 def filter_capabilities(request):
     marker = None
-    if request.node.get_marker('skip_if_firefox') and request.getfuncargvalue('firefox'):
-        marker = request.node.get_marker('skip_if_firefox')
-    if request.node.get_marker('skip_if_not_firefox') and not request.getfuncargvalue('firefox'):
-        marker = request.node.get_marker('skip_if_not_firefox')
-    if request.node.get_marker('skip_if_internet_explorer') and request.getfuncargvalue('internet_explorer'):
-        marker = request.node.get_marker('skip_if_internet_explorer')
+    if request.node.get_closest_marker('skip_if_firefox') and request.getfixturevalue('firefox'):
+        marker = request.node.get_closest_marker('skip_if_firefox')
+    if request.node.get_closest_marker('skip_if_not_firefox') and not request.getfixturevalue('firefox'):
+        marker = request.node.get_closest_marker('skip_if_not_firefox')
+    if request.node.get_closest_marker('skip_if_internet_explorer') and request.getfixturevalue('internet_explorer'):
+        marker = request.node.get_closest_marker('skip_if_internet_explorer')
 
     if marker:
         reason = marker.kwargs.get('reason') or marker.name
@@ -59,9 +55,12 @@ def filter_capabilities(request):
 
 
 @pytest.fixture
-def selenium(request, selenium):
-    viewport = VIEWPORT['desktop']
-    if request.keywords.get('viewport') is not None:
-        viewport = VIEWPORT[request.keywords.get('viewport').args[0]]
-    selenium.set_window_size(viewport['width'], viewport['height'])
+def selenium(selenium):
+    selenium.set_window_size(1280, 1024)  # width, height
+    return selenium
+
+
+@pytest.fixture
+def selenium_mobile(selenium):
+    selenium.set_window_size(320, 480)  # width, height
     return selenium

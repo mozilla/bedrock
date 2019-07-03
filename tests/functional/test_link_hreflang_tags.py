@@ -21,4 +21,4 @@ def test_link_hreflang_tags(url, locales, base_url):
         full_url = '{}/{}{}'.format(base_url, locale, url)
         link_url = '{}/{}{}'.format('https://www.mozilla.org', locale, url)
         resp = requests.get(full_url, timeout=5)
-        assert LINK_TEMPLATE.format(url=link_url) in resp.content
+        assert LINK_TEMPLATE.format(url=link_url).encode('utf-8') in resp.content

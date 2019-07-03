@@ -66,7 +66,7 @@ class TestPressInquiry(TestCase):
         response = self.view(request)
 
         assert response.status_code == 200
-        self.assertIn('Please enter your name.', response.content)
+        self.assertIn(b'Please enter your name.', response.content)
 
     def test_view_post_honeypot(self):
         """
@@ -84,7 +84,7 @@ class TestPressInquiry(TestCase):
         response = self.view(request)
 
         assert response.status_code == 200
-        self.assertIn('An error has occurred', response.content)
+        self.assertIn(b'An error has occurred', response.content)
 
     def test_form_valid_data(self):
         """
@@ -199,7 +199,7 @@ class TestSpeakerRequest(TestCase):
         response = self.view(request)
 
         assert response.status_code == 200
-        self.assertIn('Please enter a URL', response.content)
+        self.assertIn(b'Please enter a URL', response.content)
 
     def test_view_post_honeypot(self):
         """
@@ -217,7 +217,7 @@ class TestSpeakerRequest(TestCase):
         response = self.view(request)
 
         assert response.status_code == 200
-        self.assertIn('An error has occurred', response.content)
+        self.assertIn(b'An error has occurred', response.content)
 
     def test_form_valid_data(self):
         """

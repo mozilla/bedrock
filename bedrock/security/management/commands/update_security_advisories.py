@@ -31,7 +31,7 @@ ADVISORIES_REPO = settings.MOFO_SECURITY_ADVISORIES_REPO
 ADVISORIES_PATH = settings.MOFO_SECURITY_ADVISORIES_PATH
 ADVISORIES_BRANCH = settings.MOFO_SECURITY_ADVISORIES_BRANCH
 
-SM_RE = re.compile('seamonkey', flags=re.IGNORECASE)
+SM_RE = re.compile(r'seamonkey', flags=re.IGNORECASE)
 FNULL = open(os.devnull, 'w')
 HOF_FILES = ['client.yml', 'web.yml']
 HOF_DIRECTORY = 'bug-bounty-hof'
@@ -48,8 +48,9 @@ def fix_product_name(name):
 
 
 def filter_advisory_filenames(filenames):
-    return [os.path.join(ADVISORIES_PATH, fn) for fn in filenames
-            if FILENAME_RE.search(fn)]
+    return [
+        os.path.join(ADVISORIES_PATH, fn) for fn in filenames if FILENAME_RE.search(fn)
+    ]
 
 
 def delete_files(filenames):
@@ -83,7 +84,7 @@ def add_or_update_advisory(data, html):
     prodver_objs = []
 
     fixed_in = data.pop('fixed_in')
-    if isinstance(fixed_in, basestring):
+    if isinstance(fixed_in, str):
         fixed_in = [fixed_in]
 
     for productname in fixed_in:
@@ -123,7 +124,7 @@ def parse_cve_id(cve_id):
 
 
 def add_or_update_cve(data):
-    for cve_id, advisory in data['advisories'].iteritems():
+    for cve_id, advisory in data['advisories'].items():
         if not cve_id.startswith('CVE-'):
             # skip advisories that are not CVE
             continue
@@ -213,8 +214,9 @@ def get_files_to_delete_from_db(filenames):
 
 def delete_orphaned_products():
     """Delete any products with no advisories"""
-    products = Product.objects.annotate(num_advisories=Count('advisories'))\
-                              .filter(num_advisories=0)
+    products = Product.objects.annotate(num_advisories=Count('advisories')).filter(
+        num_advisories=0
+    )
     num_products = products.count()
     products.delete()
     return num_products
@@ -225,26 +227,36 @@ class Command(CronCommand):
     lock_key = 'update_security_advisories'
 
     def add_arguments(self, parser):
-        parser.add_argument('--quiet',
-                    action='store_true',
-                    dest='quiet',
-                    default=False,
-                    help='Do not print output to stdout.')
-        parser.add_argument('--skip-git',
-                    action='store_true',
-                    dest='no_git',
-                    default=False,
-                    help='No update, just import all files')
-        parser.add_argument('--clear-db',
-                    action='store_true',
-                    dest='clear_db',
-                    default=False,
-                    help='Clear all security advisory data and load all files')
+        parser.add_argument(
+            '--quiet',
+            action='store_true',
+            dest='quiet',
+            default=False,
+            help='Do not print output to stdout.',
+        )
+        parser.add_argument(
+            '--skip-git',
+            action='store_true',
+            dest='no_git',
+            default=False,
+            help='No update, just import all files',
+        )
+        parser.add_argument(
+            '--clear-db',
+            action='store_true',
+            dest='clear_db',
+            default=False,
+            help='Clear all security advisory data and load all files',
+        )
 
     def handle_safe(self, quiet, no_git, clear_db, **options):
         force = no_git or clear_db
-        repo = GitRepo(ADVISORIES_PATH, ADVISORIES_REPO, branch_name=ADVISORIES_BRANCH,
-                       name='Security Advisories')
+        repo = GitRepo(
+            ADVISORIES_PATH,
+            ADVISORIES_REPO,
+            branch_name=ADVISORIES_BRANCH,
+            name='Security Advisories',
+        )
 
         def printout(msg, ending=None):
             if not quiet:
@@ -291,7 +303,9 @@ class Command(CronCommand):
                 printout('Deleted {0} orphaned products.'.format(num_products))
 
         if errors:
-            raise CommandError('Encountered {0} errors:\n\n'.format(len(errors)) +
-                               '\n==========\n'.join(errors))
+            raise CommandError(
+                'Encountered {0} errors:\n\n'.format(len(errors))
+                + '\n==========\n'.join(errors)
+            )
 
         repo.set_db_latest()

@@ -5,30 +5,41 @@ This is django-localeurl, but with mozilla style capital letters in
 the locale codes.
 """
 import base64
-import urllib
+import urllib.parse
+from urllib.parse import unquote
 from warnings import warn
 
+from commonware.middleware import FrameOptionsHeader as OldFrameOptionsHeader
+from commonware.middleware import RobotsTagHeader as OldRobotsTagHeader
 from django.conf import settings
 from django.core.exceptions import MiddlewareNotUsed
-from django.http import HttpResponsePermanentRedirect, HttpResponse
-from django.utils.encoding import force_text
+from django.http import HttpResponse, HttpResponsePermanentRedirect
+from django.utils.deprecation import MiddlewareMixin
 
-from . import urlresolvers
 from lib.l10n_utils import translation
 
+from . import urlresolvers
 
-class LocaleURLMiddleware(object):
+
+class LocaleURLMiddleware:
     """
     1. Search for the locale.
     2. Save it in the request.
     3. Strip them from the URL.
     """
 
-    def __init__(self):
+    def __init__(self, get_response=None):
         if not settings.USE_I18N or not settings.USE_L10N:
             warn("USE_I18N or USE_L10N is False but LocaleURLMiddleware is "
                  "loaded. Consider removing bedrock.base.middleware."
-                 "LocaleURLMiddleware from your MIDDLEWARE_CLASSES setting.")
+                 "LocaleURLMiddleware from your MIDDLEWARE setting.")
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.process_request(request)
+        if response:
+            return response
+        return self.get_response(request)
 
     def process_request(self, request):
         prefixer = urlresolvers.Prefixer(request)
@@ -37,11 +48,11 @@ class LocaleURLMiddleware(object):
 
         if full_path != request.path:
             query_string = request.META.get('QUERY_STRING', '')
-            full_path = urllib.quote(full_path.encode('utf-8'))
+            full_path = urllib.parse.quote(full_path.encode('utf-8'))
 
             if query_string:
                 full_path = '?'.join(
-                    [full_path, force_text(query_string, errors='ignore')])
+                    [full_path, unquote(query_string, errors='ignore')])
 
             response = HttpResponsePermanentRedirect(full_path)
 
@@ -58,14 +69,21 @@ class LocaleURLMiddleware(object):
         translation.activate(prefixer.locale or settings.LANGUAGE_CODE)
 
 
-class BasicAuthMiddleware(object):
+class BasicAuthMiddleware:
     """
     Middleware to protect the entire site with a single basic-auth username and password.
     Set the BASIC_AUTH_CREDS environment variable to enable.
     """
-    def __init__(self):
+    def __init__(self, get_response=None):
         if not settings.BASIC_AUTH_CREDS:
             raise MiddlewareNotUsed
+        self.get_response = None
+
+    def __call__(self, request):
+        response = self.process_request(request)
+        if response:
+            return response
+        return self.get_response(request)
 
     def process_request(self, request):
         required_auth = settings.BASIC_AUTH_CREDS
@@ -85,3 +103,11 @@ class BasicAuthMiddleware(object):
             realm = settings.APP_NAME or 'bedrock-demo'
             response['WWW-Authenticate'] = 'Basic realm="{}"'.format(realm)
             return response
+
+
+class RobotsTagHeader(OldRobotsTagHeader, MiddlewareMixin):
+    pass
+
+
+class FrameOptionsHeader(OldFrameOptionsHeader, MiddlewareMixin):
+    pass

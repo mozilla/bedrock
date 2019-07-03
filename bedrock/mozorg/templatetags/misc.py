@@ -1,15 +1,10 @@
 # coding: utf-8
 
-from __future__ import unicode_literals, print_function
-
 import random
 import re
 from os import path
 from os.path import splitext
-try:
-    import urlparse
-except ImportError:
-    import urllib.parse as urlparse
+import urllib.parse
 
 from django.conf import settings
 from django.contrib.staticfiles.finders import find as find_static
@@ -173,7 +168,7 @@ def platform_img(ctx, url, optional_attributes=None):
             img_urls[platform + '-high-res'] = convert_to_high_res(img_urls[platform])
 
     img_attrs = {}
-    for platform, image in img_urls.iteritems():
+    for platform, image in img_urls.items():
         if is_l10n:
             image = l10n_img_file_name(ctx, image)
         else:
@@ -188,7 +183,7 @@ def platform_img(ctx, url, optional_attributes=None):
 
     img_attrs.update(optional_attributes)
     attrs = ' '.join('%s="%s"' % (attr, val)
-                     for attr, val in img_attrs.iteritems())
+                     for attr, val in img_attrs.items())
 
     # Don't download any image until the javascript sets it based on
     # data-src so we can do platform detection. If no js, show the
@@ -309,7 +304,7 @@ def video(ctx, *args, **kwargs):
         if ext not in filetypes:
             continue
         videos[ext] = (v if 'prefix' not in kwargs else
-                       urlparse.urljoin(kwargs['prefix'], v))
+                       urllib.parse.urljoin(kwargs['prefix'], v))
 
     if not videos:
         return ''
@@ -397,7 +392,8 @@ def donate_url(ctx, source=''):
     donate_url_params = settings.DONATE_PARAMS.get(
         locale, settings.DONATE_PARAMS['en-US'])
 
-    return settings.DONATE_LINK.format(locale=locale, presets=donate_url_params['presets'],
+    return settings.DONATE_LINK.format(
+        locale=locale, presets=donate_url_params['presets'],
         default=donate_url_params['default'], source=source,
         currency=donate_url_params['currency'])
 
@@ -530,7 +526,7 @@ def htmlattr(_list, **kwargs):
 
     """
     for tag in _list:
-        for attr, value in kwargs.iteritems():
+        for attr, value in kwargs.items():
             tag[attr] = value
 
     return _list

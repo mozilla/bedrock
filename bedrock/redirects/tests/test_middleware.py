@@ -13,7 +13,7 @@ patterns = [
     redirect(r'^dude/already/10th/', '/far/out/'),
     redirect(r'^walter/prior/restraint/', '/finishes/coffee/'),
 ]
-middleware = RedirectsMiddleware(get_resolver(patterns))
+middleware = RedirectsMiddleware(resolver=get_resolver(patterns))
 
 
 class TestRedirectsMiddleware(TestCase):

@@ -8,34 +8,30 @@ from cgi import escape
 from collections import defaultdict
 from operator import itemgetter
 
-from django.conf import settings
-from django.contrib import messages
-from django.forms.formsets import formset_factory
-from django.http import HttpResponseRedirect
-from django.shortcuts import redirect
-from django.utils.safestring import mark_safe
-from django.views.decorators.cache import never_cache
-
 import basket
 import basket.errors
 import commonware.log
-from jinja2 import Markup
-
 import lib.l10n_utils as l10n_utils
 import requests
+from django.conf import settings
+from django.contrib import messages
+from django.forms.formsets import formset_factory
+from django.http import HttpResponseRedirect, JsonResponse
+from django.shortcuts import redirect
+from django.utils.safestring import mark_safe
+from django.views.decorators.cache import never_cache
+from jinja2 import Markup
+from lib.l10n_utils.dotlang import _, _lazy
 
 from bedrock.base import waffle
-from lib.l10n_utils.dotlang import _, _lazy
 from bedrock.base.urlresolvers import reverse
-
-from .forms import (CountrySelectForm, EmailForm, ManageSubscriptionsForm,
-                    NewsletterForm, NewsletterFooterForm)
 # Cannot use short "from . import utils" because we need to mock
 # utils.get_newsletters in our tests
 from bedrock.base.views import get_geo_from_request
-from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter import utils
 
+from .forms import (CountrySelectForm, EmailForm, ManageSubscriptionsForm,
+                    NewsletterFooterForm, NewsletterForm)
 
 log = commonware.log.getLogger('b.newsletter')
 
@@ -346,7 +342,7 @@ def existing(request, token=None):
     # Figure out which newsletters to display, and whether to show them
     # as already subscribed.
     initial = []
-    for newsletter, data in newsletter_data.iteritems():
+    for newsletter, data in newsletter_data.items():
         # Only show a newsletter if it has ['active'] == True and
         # ['show'] == True or the user is already subscribed
         if not data.get('active', False):
@@ -488,7 +484,7 @@ def existing(request, token=None):
     # and each value is the list of newsletter keys that are available in
     # that language code.
     newsletter_languages = defaultdict(list)
-    for newsletter, data in newsletter_data.iteritems():
+    for newsletter, data in newsletter_data.items():
         for lang in data['languages']:
             newsletter_languages[lang].append(newsletter)
     newsletter_languages = mark_safe(json.dumps(newsletter_languages))
@@ -567,7 +563,7 @@ def updated(request):
         # so we can read them.  (Well, except for the free-form reason.)
         for i, reason in enumerate(REASONS):
             if _post_or_get(request, 'reason%d' % i):
-                reasons.append(unicode(reason))
+                reasons.append(str(reason))
         if _post_or_get(request, 'reason-text-p'):
             reasons.append(_post_or_get(request, 'reason-text', ''))
 
@@ -663,11 +659,11 @@ def newsletter_subscribe(request):
                                  **kwargs)
             except basket.BasketException as e:
                 if e.code == basket.errors.BASKET_INVALID_EMAIL:
-                    errors.append(unicode(invalid_email_address))
+                    errors.append(str(invalid_email_address))
                 else:
                     log.exception("Error subscribing %s to newsletter %s" %
                                   (data['email'], data['newsletters']))
-                    errors.append(unicode(general_error))
+                    errors.append(str(general_error))
 
         else:
             if 'email' in form.errors:
@@ -679,7 +675,7 @@ def newsletter_subscribe(request):
                     errors.extend(form.errors[fieldname])
 
         # form error messages may contain unsanitized user input
-        errors = map(escape, errors)
+        errors = list(map(escape, errors))
 
         if request.is_ajax():
             # return JSON
@@ -691,7 +687,7 @@ def newsletter_subscribe(request):
             else:
                 resp = {'success': True}
 
-            return HttpResponseJSON(resp)
+            return JsonResponse(resp)
         else:
             ctx = {'newsletter_form': form}
             if not errors:

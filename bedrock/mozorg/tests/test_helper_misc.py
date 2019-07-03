@@ -7,6 +7,7 @@ from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
+import pytest
 from django_jinja.backend import Jinja2
 from jinja2 import Markup
 from mock import patch
@@ -205,20 +206,18 @@ class TestVideoTag(TestCase):
         assert doc('video source').length == 3
 
         # Extensions in the right order?
-        for i, ext in enumerate(('webm', 'ogv', 'mp4')):
-            assert doc('video source:eq(%s)' % i).attr('src').endswith(ext)
+        extensions = [os.path.splitext(el.attrib['src'])[1] for el in doc('video source')]
+        assert extensions == ['.webm', '.ogv', '.mp4']
 
     def test_prefix(self):
         # Prefix should be applied to all videos.
-        doc = pq(self._render("{{ video('meh.mp4', 'meh.ogv', "
-                        "prefix='http://example.com/blah/') }}"))
-        expected = ('http://example.com/blah/meh.ogv',
-                    'http://example.com/blah/meh.mp4')
-
-        assert doc('video source').length == 2
-
-        for i in xrange(2):
-            assert doc('video source:eq(%s)' % i).attr('src') == expected[i]
+        doc = pq(self._render(
+            "{{ video('meh.mp4', 'meh.ogv', prefix='http://example.com/blah/') }}")
+        )
+        assert [el.attrib['src'] for el in doc('video source')] == [
+            'http://example.com/blah/meh.ogv',
+            'http://example.com/blah/meh.mp4',
+        ]
 
     def test_fileformats(self):
         # URLs ending in strange extensions are ignored.
@@ -229,8 +228,8 @@ class TestVideoTag(TestCase):
 
         assert doc('video source').length == 2
 
-        for i, ext in enumerate(('webm', 'ogv')):
-            assert doc('video source:eq(%s)' % i).attr('src').endswith(ext)
+        extensions = [os.path.splitext(el.attrib['src'])[1] for el in doc('video source')]
+        assert extensions == ['.webm', '.ogv']
 
 
 @override_settings(STATIC_URL='/media/')
@@ -344,8 +343,10 @@ class TestPressBlogUrl(TestCase):
         assert self._render('oc') == 'https://blog.mozilla.org/press/'
 
 
-@override_settings(DONATE_LINK=TEST_DONATE_LINK,
-    DONATE_PARAMS=TEST_DONATE_PARAMS)
+@override_settings(
+    DONATE_LINK=TEST_DONATE_LINK,
+    DONATE_PARAMS=TEST_DONATE_PARAMS,
+)
 class TestDonateUrl(TestCase):
     rf = RequestFactory()
 
@@ -639,22 +640,22 @@ def test_f_unicode():
     assert s == u'\xe9 baz'
 
 
-def test_f_markup():
-    format_string = 'Hello <b>{0}</b>'
-    val_string = '<em>Steve</em>'
+format_string = 'Hello <b>{0}</b>'
+format_markup = Markup(format_string)
+val_string = '<em>Steve</em>'
+val_markup = Markup(val_string)
+
+
+@pytest.mark.parametrize('f, v', [
+    (format_string, val_string),
+    (format_string, val_markup),
+    (format_markup, val_string),
+    (format_markup, val_markup),
+])
+def test_f_markup(f, v):
     expect = 'Hello &lt;b&gt;&lt;em&gt;Steve&lt;/em&gt;&lt;/b&gt;'
-
-    def markup_render(f, v):
-        return render('{{ fmt|f(val) }}', {'fmt': f, 'val': v})
-
-    assert markup_render(format_string, val_string) == expect
-
-    format_markup = Markup(format_string)
-    val_markup = Markup(val_string)
-
-    assert markup_render(format_string, val_markup) == expect
-    assert markup_render(format_markup, val_string) == expect
-    assert markup_render(format_markup, val_markup) == expect
+    s = render('{{ fmt|f(val) }}', {'fmt': f, 'val': v})
+    assert expect == s
 
 
 def test_datetime():
@@ -687,7 +688,7 @@ def test_ifeq():
 
 def test_csrf():
     s = render('{{ csrf() }}', {'csrf_token': 'fffuuu'})
-    csrf = "<input type='hidden' name='csrfmiddlewaretoken' value='fffuuu' />"
+    csrf = '<input type="hidden" name="csrfmiddlewaretoken" value="fffuuu">'
     assert csrf in s
 
 

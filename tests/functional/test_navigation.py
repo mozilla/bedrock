@@ -23,19 +23,18 @@ def test_navigation(base_url, selenium):
 
 
 @pytest.mark.nondestructive
-@pytest.mark.viewport('mobile')
-def test_mobile_navigation(base_url, selenium):
-    page = HomePage(selenium, base_url).open()
+def test_mobile_navigation(base_url, selenium_mobile):
+    page = HomePage(selenium_mobile, base_url).open()
     page.navigation.show()
     firefox_desktop_page = page.navigation.open_firefox_desktop_page()
-    assert firefox_desktop_page.seed_url in selenium.current_url
+    assert firefox_desktop_page.seed_url in selenium_mobile.current_url
 
     page.open()
     page.navigation.show()
     developer_edition_page = page.navigation.open_developer_edition_page()
-    assert developer_edition_page.seed_url in selenium.current_url
+    assert developer_edition_page.seed_url in selenium_mobile.current_url
 
     page.open()
     page.navigation.show()
     about_page = page.navigation.open_about_page()
-    assert about_page.seed_url in selenium.current_url
+    assert about_page.seed_url in selenium_mobile.current_url

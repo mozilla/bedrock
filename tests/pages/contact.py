@@ -62,8 +62,7 @@ class SpacesPage(ContactPage):
 
     @property
     def spaces(self):
-        return [self.Space(self, root=el) for el in
-            self.find_elements(*self._desktop_nav_locator)]
+        return [self.Space(self, root=el) for el in self.find_elements(*self._desktop_nav_locator)]
 
     class Space(Region):
 
@@ -92,8 +91,7 @@ class CommunitiesPage(ContactPage):
 
     @property
     def regions(self):
-        return [self.Region(self, root=el) for el in
-            self.find_elements(*self._desktop_nav_locator)]
+        return [self.Region(self, root=el) for el in self.find_elements(*self._desktop_nav_locator)]
 
     class Region(Region):
 
@@ -105,8 +103,7 @@ class CommunitiesPage(ContactPage):
 
         @property
         def communities(self):
-            return [self.Community(self.page, root=el) for el in
-                self.find_elements(*self._communities_locator)]
+            return [self.Community(self.page, root=el) for el in self.find_elements(*self._communities_locator)]
 
         @property
         def is_selected(self):

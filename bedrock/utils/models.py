@@ -12,7 +12,7 @@ class GitRepoState(models.Model):
     latest_ref = models.CharField(max_length=100)
     latest_ref_timestamp = models.IntegerField(default=0)
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s: %s' % (self.repo_name, self.latest_ref)
 
     @property

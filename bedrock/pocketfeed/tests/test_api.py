@@ -20,9 +20,8 @@ def test_get_articles_data(req_mock):
 
     api.get_articles_data(count=7)
 
-    req_mock.post.assert_called_once_with('test_url',
-                                         json=expected_payload,
-                                         timeout=5)
+    req_mock.post.assert_called_once_with(
+        'test_url', json=expected_payload, timeout=5)
 
 
 @patch.object(api, 'requests')

@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
 from pypom import Page, Region
-from regions.newsletter import NewsletterEmbedForm, LegacyNewsletterEmbedForm
+from pages.regions.newsletter import NewsletterEmbedForm, LegacyNewsletterEmbedForm
 
 
 class BasePage(Page):
@@ -60,8 +60,10 @@ class BasePage(Page):
         @property
         def is_displayed(self):
             toggle = self.find_element(*self._toggle_locator)
-            return (self.find_element(*self._menu_locator).is_displayed() and
-                'is-active' in toggle.get_attribute('class'))
+            return (
+                self.find_element(*self._menu_locator).is_displayed() and
+                'is-active' in toggle.get_attribute('class')
+            )
 
         def open_navigation_menu(self, locator):
             firefox_menu = self.find_element(*locator)
@@ -71,19 +73,19 @@ class BasePage(Page):
         def open_firefox_desktop_page(self):
             self.open_navigation_menu(self._firefox_menu_locator)
             self.find_element(*self._firefox_desktop_page_locator).click()
-            from firefox.home import FirefoxHomePage
+            from .firefox.home import FirefoxHomePage
             return FirefoxHomePage(self.selenium, self.page.base_url).wait_for_page_to_load()
 
         def open_developer_edition_page(self):
             self.open_navigation_menu(self._developers_menu_locator)
             self.find_element(*self._developer_edition_page_locator).click()
-            from firefox.developer import DeveloperPage
+            from .firefox.developer import DeveloperPage
             return DeveloperPage(self.selenium, self.page.base_url).wait_for_page_to_load()
 
         def open_about_page(self):
             self.open_navigation_menu(self._about_menu_locator)
             self.find_element(*self._about_page_locator).click()
-            from about import AboutPage
+            from .about import AboutPage
             return AboutPage(self.selenium, self.page.base_url).wait_for_page_to_load()
 
     class Footer(Region):
