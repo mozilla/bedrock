@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
 from pypom import Page, Region
-from tests.pages.regions.newsletter import NewsletterEmbedForm, LegacyNewsletterEmbedForm
+from pages.regions.newsletter import NewsletterEmbedForm, LegacyNewsletterEmbedForm
 
 
 class BasePage(Page):
