@@ -21,7 +21,7 @@
 {% block body_class %}firefox-developer{% endblock %}
 
 {% block site_header %}
-  {% with hide_nav_cta=True, hide_nav_download_button=True, hide_nav_get_account_button=True %}
+  {% with hide_nav_download_button=True %}
     {% include 'includes/protocol/navigation/index.html' %}
   {% endwith %}
 {% endblock %}
