@@ -210,8 +210,9 @@ class TestVideoTag(TestCase):
 
     def test_prefix(self):
         # Prefix should be applied to all videos.
-        doc = pq(self._render("{{ video('meh.mp4', 'meh.ogv', "
-                        "prefix='http://example.com/blah/') }}"))
+        doc = pq(self._render(
+            "{{ video('meh.mp4', 'meh.ogv', prefix='http://example.com/blah/') }}")
+        )
         assert [el.attrib['src'] for el in doc('video source')] == [
             'http://example.com/blah/meh.ogv',
             'http://example.com/blah/meh.mp4',
@@ -341,8 +342,10 @@ class TestPressBlogUrl(TestCase):
         assert self._render('oc') == 'https://blog.mozilla.org/press/'
 
 
-@override_settings(DONATE_LINK=TEST_DONATE_LINK,
-    DONATE_PARAMS=TEST_DONATE_PARAMS)
+@override_settings(
+    DONATE_LINK=TEST_DONATE_LINK,
+    DONATE_PARAMS=TEST_DONATE_PARAMS,
+)
 class TestDonateUrl(TestCase):
     rf = RequestFactory()
 

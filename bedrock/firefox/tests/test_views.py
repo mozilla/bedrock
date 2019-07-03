@@ -19,15 +19,20 @@ from bedrock.firefox import views
 from bedrock.mozorg.tests import TestCase
 
 
-@override_settings(STUB_ATTRIBUTION_HMAC_KEY='achievers',
-                   STUB_ATTRIBUTION_RATE=1,
-                   STUB_ATTRIBUTION_MAX_LEN=200)
+@override_settings(
+    STUB_ATTRIBUTION_HMAC_KEY='achievers',
+    STUB_ATTRIBUTION_RATE=1,
+    STUB_ATTRIBUTION_MAX_LEN=200,
+)
 class TestStubAttributionCode(TestCase):
     def _get_request(self, params):
         rf = RequestFactory()
-        return rf.get('/', params,
-                      HTTP_X_REQUESTED_WITH='XMLHttpRequest',
-                      HTTP_ACCEPT='application/json')
+        return rf.get(
+            '/',
+            params,
+            HTTP_X_REQUESTED_WITH='XMLHttpRequest',
+            HTTP_ACCEPT='application/json',
+        )
 
     def test_not_ajax_request(self):
         req = RequestFactory().get('/', {'source': 'malibu'})
@@ -50,12 +55,16 @@ class TestStubAttributionCode(TestCase):
         assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         # will it blend?
-        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code'].encode()).decode())
+        attrs = parse_qs(
+            querystringsafe_base64.decode(data['attribution_code'].encode()).decode()
+        )
         # parse_qs returns a dict with lists for values
         attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
-        self.assertEqual(data['attribution_sig'],
-                         '1cdbee664f4e9ea32f14510995b41729a80eddc94cf26dc3c74894c6264c723c')
+        self.assertEqual(
+            data['attribution_sig'],
+            '1cdbee664f4e9ea32f14510995b41729a80eddc94cf26dc3c74894c6264c723c',
+        )
 
     def test_no_valid_param_data(self):
         params = {'utm_source': 'br@ndt', 'utm_medium': 'ae<t>her'}
@@ -71,12 +80,16 @@ class TestStubAttributionCode(TestCase):
         assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         # will it blend?
-        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code'].encode()).decode())
+        attrs = parse_qs(
+            querystringsafe_base64.decode(data['attribution_code'].encode()).decode()
+        )
         # parse_qs returns a dict with lists for values
         attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
-        self.assertEqual(data['attribution_sig'],
-                         '1cdbee664f4e9ea32f14510995b41729a80eddc94cf26dc3c74894c6264c723c')
+        self.assertEqual(
+            data['attribution_sig'],
+            '1cdbee664f4e9ea32f14510995b41729a80eddc94cf26dc3c74894c6264c723c',
+        )
 
     def test_some_valid_param_data(self):
         params = {'utm_source': 'brandt', 'utm_content': 'ae<t>her'}
@@ -92,12 +105,16 @@ class TestStubAttributionCode(TestCase):
         assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         # will it blend?
-        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code'].encode()).decode())
+        attrs = parse_qs(
+            querystringsafe_base64.decode(data['attribution_code'].encode()).decode()
+        )
         # parse_qs returns a dict with lists for values
         attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
-        self.assertEqual(data['attribution_sig'],
-                         '37946edae923b50f31f9dc10013dc0d23bed7dc6272611e12af46ff7a8d9d7dc')
+        self.assertEqual(
+            data['attribution_sig'],
+            '37946edae923b50f31f9dc10013dc0d23bed7dc6272611e12af46ff7a8d9d7dc',
+        )
 
     def test_campaign_data_too_long(self):
         """If the code is too long then the utm_campaign value should be truncated"""
@@ -106,13 +123,13 @@ class TestStubAttributionCode(TestCase):
             'utm_medium': 'aether',
             'utm_content': 'A144_A000_0000000',
             'utm_campaign': 'The%7cDude%7cabides%7cI%7cdont%7cknow%7cabout%7cyou%7c'
-                            'but%7cI%7ctake%7ccomfort%7cin%7cthat' * 2,
+            'but%7cI%7ctake%7ccomfort%7cin%7cthat' * 2,
         }
         final_params = {
             'source': 'brandt',
             'medium': 'aether',
             'campaign': 'The|Dude|abides|I|dont|know|about|you|but|I|take|comfort|in|'
-                        'thatThe|Dude|abides|I|dont|know|about_',
+            'thatThe|Dude|abides|I|dont|know|about_',
             'content': 'A144_A000_0000000',
         }
         req = self._get_request(params)
@@ -127,8 +144,10 @@ class TestStubAttributionCode(TestCase):
         # parse_qs returns a dict with lists for values
         attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
-        self.assertEqual(data['attribution_sig'],
-                         '5f4f928ad022b15ce10d6dc962e21e12bbfba924d73a2605f3085760d3f93923')
+        self.assertEqual(
+            data['attribution_sig'],
+            '5f4f928ad022b15ce10d6dc962e21e12bbfba924d73a2605f3085760d3f93923',
+        )
 
     def test_other_data_too_long_not_campaign(self):
         """If the code is too long but not utm_campaign return error"""
@@ -137,7 +156,7 @@ class TestStubAttributionCode(TestCase):
             'utm_campaign': 'dude',
             'utm_content': 'A144_A000_0000000',
             'utm_medium': 'The%7cDude%7cabides%7cI%7cdont%7cknow%7cabout%7cyou%7c'
-                          'but%7cI%7ctake%7ccomfort%7cin%7cthat' * 2,
+            'but%7cI%7ctake%7ccomfort%7cin%7cthat' * 2,
         }
         final_params = {'error': 'Invalid code'}
         req = self._get_request(params)
@@ -161,12 +180,16 @@ class TestStubAttributionCode(TestCase):
         assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         # will it blend?
-        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code'].encode()).decode())
+        attrs = parse_qs(
+            querystringsafe_base64.decode(data['attribution_code'].encode()).decode()
+        )
         # parse_qs returns a dict with lists for values
         attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
-        self.assertEqual(data['attribution_sig'],
-                         'abcbb028f97d08b7f85d194e6d51b8a2d96823208fdd167ff5977786b562af66')
+        self.assertEqual(
+            data['attribution_sig'],
+            'abcbb028f97d08b7f85d194e6d51b8a2d96823208fdd167ff5977786b562af66',
+        )
 
     def test_handles_referrer(self):
         params = {'utm_source': 'brandt', 'referrer': 'https://duckduckgo.com/privacy'}
@@ -182,15 +205,22 @@ class TestStubAttributionCode(TestCase):
         assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         # will it blend?
-        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code'].encode()).decode())
+        attrs = parse_qs(
+            querystringsafe_base64.decode(data['attribution_code'].encode()).decode()
+        )
         # parse_qs returns a dict with lists for values
         attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
-        self.assertEqual(data['attribution_sig'],
-                         '37946edae923b50f31f9dc10013dc0d23bed7dc6272611e12af46ff7a8d9d7dc')
+        self.assertEqual(
+            data['attribution_sig'],
+            '37946edae923b50f31f9dc10013dc0d23bed7dc6272611e12af46ff7a8d9d7dc',
+        )
 
     def test_handles_referrer_no_source(self):
-        params = {'referrer': 'https://example.com:5000/searchin', 'utm_medium': 'aether'}
+        params = {
+            'referrer': 'https://example.com:5000/searchin',
+            'utm_medium': 'aether',
+        }
         final_params = {
             'source': 'example.com:5000',
             'medium': 'referral',
@@ -203,12 +233,16 @@ class TestStubAttributionCode(TestCase):
         assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         # will it blend?
-        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code'].encode()).decode())
+        attrs = parse_qs(
+            querystringsafe_base64.decode(data['attribution_code'].encode()).decode()
+        )
         # parse_qs returns a dict with lists for values
         attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
-        self.assertEqual(data['attribution_sig'],
-                         '70e177b822f24fa9f8bc8e1caa382204632b3b2548db19bb32b97042c0ef0d47')
+        self.assertEqual(
+            data['attribution_sig'],
+            '70e177b822f24fa9f8bc8e1caa382204632b3b2548db19bb32b97042c0ef0d47',
+        )
 
     def test_handles_referrer_utf8(self):
         """Should ignore non-ascii domain names.
@@ -230,12 +264,16 @@ class TestStubAttributionCode(TestCase):
         assert resp['cache-control'] == 'max-age=300'
         data = json.loads(resp.content)
         # will it blend?
-        attrs = parse_qs(querystringsafe_base64.decode(data['attribution_code'].encode()).decode())
+        attrs = parse_qs(
+            querystringsafe_base64.decode(data['attribution_code'].encode()).decode()
+        )
         # parse_qs returns a dict with lists for values
         attrs = {k: v[0] for k, v in list(attrs.items())}
         self.assertDictEqual(attrs, final_params)
-        self.assertEqual(data['attribution_sig'],
-                         '1cdbee664f4e9ea32f14510995b41729a80eddc94cf26dc3c74894c6264c723c')
+        self.assertEqual(
+            data['attribution_sig'],
+            '1cdbee664f4e9ea32f14510995b41729a80eddc94cf26dc3c74894c6264c723c',
+        )
 
     @override_settings(STUB_ATTRIBUTION_RATE=0.2)
     def test_rate_limit(self):
@@ -280,217 +318,285 @@ class TestSendToDeviceView(TestCase):
         return json.loads(resp.content)
 
     def test_phone_or_email_required(self):
-        resp_data = self._request({
-            'platform': 'android',
-        })
+        resp_data = self._request({'platform': 'android'})
         assert not resp_data['success']
         assert 'phone-or-email' in resp_data['errors']
         assert not self.mock_send_sms.called
         assert not self.mock_subscribe.called
 
     def test_send_android_sms(self):
-        resp_data = self._request({
-            'platform': 'android',
-            'phone-or-email': '5558675309',
-        })
+        resp_data = self._request(
+            {'platform': 'android', 'phone-or-email': '5558675309'}
+        )
         assert resp_data['success']
-        self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
-            'mobile_number': '5558675309',
-            'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['android'],
-            'lang': 'en-US',
-        })
+        self.mock_send_sms.assert_called_with(
+            'post',
+            'subscribe_sms',
+            data={
+                'mobile_number': '5558675309',
+                'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms'][
+                    'android'
+                ],
+                'lang': 'en-US',
+            },
+        )
 
     def test_send_android_sms_non_en_us(self):
-        resp_data = self._request({
-            'platform': 'android',
-            'phone-or-email': '015558675309',
-        }, locale='de')
+        resp_data = self._request(
+            {'platform': 'android', 'phone-or-email': '015558675309'}, locale='de'
+        )
         assert resp_data['success']
-        self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
-            'mobile_number': '015558675309',
-            'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['android'],
-            'lang': 'de',
-        })
+        self.mock_send_sms.assert_called_with(
+            'post',
+            'subscribe_sms',
+            data={
+                'mobile_number': '015558675309',
+                'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms'][
+                    'android'
+                ],
+                'lang': 'de',
+            },
+        )
 
     def test_send_android_sms_with_country(self):
-        resp_data = self._request({
-            'platform': 'android',
-            'phone-or-email': '5558675309',
-            'country': 'de',
-        })
+        resp_data = self._request(
+            {'platform': 'android', 'phone-or-email': '5558675309', 'country': 'de'}
+        )
         assert resp_data['success']
-        self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
-            'mobile_number': '5558675309',
-            'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['android'],
-            'lang': 'en-US',
-            'country': 'de',
-        })
+        self.mock_send_sms.assert_called_with(
+            'post',
+            'subscribe_sms',
+            data={
+                'mobile_number': '5558675309',
+                'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms'][
+                    'android'
+                ],
+                'lang': 'en-US',
+                'country': 'de',
+            },
+        )
 
     def test_send_android_sms_with_invalid_country(self):
-        resp_data = self._request({
-            'platform': 'android',
-            'phone-or-email': '5558675309',
-            'country': 'X2',
-        })
+        resp_data = self._request(
+            {'platform': 'android', 'phone-or-email': '5558675309', 'country': 'X2'}
+        )
         assert resp_data['success']
-        self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
-            'mobile_number': '5558675309',
-            'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['android'],
-            'lang': 'en-US',
-        })
+        self.mock_send_sms.assert_called_with(
+            'post',
+            'subscribe_sms',
+            data={
+                'mobile_number': '5558675309',
+                'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms'][
+                    'android'
+                ],
+                'lang': 'en-US',
+            },
+        )
 
-        resp_data = self._request({
-            'platform': 'android',
-            'phone-or-email': '5558675309',
-            'country': 'dude',
-        })
+        resp_data = self._request(
+            {'platform': 'android', 'phone-or-email': '5558675309', 'country': 'dude'}
+        )
         assert resp_data['success']
-        self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
-            'mobile_number': '5558675309',
-            'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['android'],
-            'lang': 'en-US',
-        })
+        self.mock_send_sms.assert_called_with(
+            'post',
+            'subscribe_sms',
+            data={
+                'mobile_number': '5558675309',
+                'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms'][
+                    'android'
+                ],
+                'lang': 'en-US',
+            },
+        )
 
     def test_send_android_sms_basket_error(self):
         self.mock_send_sms.side_effect = views.basket.BasketException
-        resp_data = self._request({
-            'platform': 'android',
-            'phone-or-email': '5558675309',
-        }, 400)
+        resp_data = self._request(
+            {'platform': 'android', 'phone-or-email': '5558675309'}, 400
+        )
         assert not resp_data['success']
         assert 'system' in resp_data['errors']
 
     def test_send_bad_sms_number(self):
-        self.mock_send_sms.side_effect = views.basket.BasketException('mobile_number is invalid')
-        resp_data = self._request({
-            'platform': 'android',
-            'phone-or-email': '555',
-        })
+        self.mock_send_sms.side_effect = views.basket.BasketException(
+            'mobile_number is invalid'
+        )
+        resp_data = self._request({'platform': 'android', 'phone-or-email': '555'})
         assert not resp_data['success']
         assert 'number' in resp_data['errors']
 
     def test_send_android_email(self):
-        resp_data = self._request({
-            'platform': 'android',
-            'phone-or-email': 'dude@example.com',
-            'source-url': 'https://nihilism.info',
-        })
+        resp_data = self._request(
+            {
+                'platform': 'android',
+                'phone-or-email': 'dude@example.com',
+                'source-url': 'https://nihilism.info',
+            }
+        )
         assert resp_data['success']
-        self.mock_subscribe.assert_called_with('dude@example.com',
-                                               views.SEND_TO_DEVICE_MESSAGE_SETS['default']['email']['android'],
-                                               source_url='https://nihilism.info',
-                                               lang='en-US')
+        self.mock_subscribe.assert_called_with(
+            'dude@example.com',
+            views.SEND_TO_DEVICE_MESSAGE_SETS['default']['email']['android'],
+            source_url='https://nihilism.info',
+            lang='en-US',
+        )
 
     def test_send_android_email_basket_error(self):
         self.mock_subscribe.side_effect = views.basket.BasketException
-        resp_data = self._request({
-            'platform': 'android',
-            'phone-or-email': 'dude@example.com',
-            'source-url': 'https://nihilism.info',
-        }, 400)
+        resp_data = self._request(
+            {
+                'platform': 'android',
+                'phone-or-email': 'dude@example.com',
+                'source-url': 'https://nihilism.info',
+            },
+            400,
+        )
         assert not resp_data['success']
         assert 'system' in resp_data['errors']
 
     def test_send_android_bad_email(self):
-        resp_data = self._request({
-            'platform': 'android',
-            'phone-or-email': '@example.com',
-            'source-url': 'https://nihilism.info',
-        })
+        resp_data = self._request(
+            {
+                'platform': 'android',
+                'phone-or-email': '@example.com',
+                'source-url': 'https://nihilism.info',
+            }
+        )
         assert not resp_data['success']
         assert 'email' in resp_data['errors']
         assert not self.mock_subscribe.called
 
     # an invalid value for 'message-set' should revert to 'default' message set
     def test_invalid_message_set(self):
-        resp_data = self._request({
-            'platform': 'ios',
-            'phone-or-email': '5558675309',
-            'message-set': 'the-dude-is-not-in',
-        })
+        resp_data = self._request(
+            {
+                'platform': 'ios',
+                'phone-or-email': '5558675309',
+                'message-set': 'the-dude-is-not-in',
+            }
+        )
         assert resp_data['success']
-        self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
-            'mobile_number': '5558675309',
-            'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['ios'],
-            'lang': 'en-US',
-        })
+        self.mock_send_sms.assert_called_with(
+            'post',
+            'subscribe_sms',
+            data={
+                'mobile_number': '5558675309',
+                'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['default']['sms']['ios'],
+                'lang': 'en-US',
+            },
+        )
 
     # /firefox/android/ embedded widget (bug 1221328)
     def test_android_embedded_email(self):
-        resp_data = self._request({
-            'platform': 'android',
-            'phone-or-email': 'dude@example.com',
-            'message-set': 'fx-android',
-        })
+        resp_data = self._request(
+            {
+                'platform': 'android',
+                'phone-or-email': 'dude@example.com',
+                'message-set': 'fx-android',
+            }
+        )
         assert resp_data['success']
-        self.mock_subscribe.assert_called_with('dude@example.com',
-                                                views.SEND_TO_DEVICE_MESSAGE_SETS['fx-android']['email']['android'],
-                                                source_url=None,
-                                                lang='en-US')
+        self.mock_subscribe.assert_called_with(
+            'dude@example.com',
+            views.SEND_TO_DEVICE_MESSAGE_SETS['fx-android']['email']['android'],
+            source_url=None,
+            lang='en-US',
+        )
 
     def test_android_embedded_sms(self):
-        resp_data = self._request({
-            'platform': 'android',
-            'phone-or-email': '5558675309',
-            'message-set': 'fx-android',
-        })
+        resp_data = self._request(
+            {
+                'platform': 'android',
+                'phone-or-email': '5558675309',
+                'message-set': 'fx-android',
+            }
+        )
         assert resp_data['success']
-        self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
-            'mobile_number': '5558675309',
-            'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['fx-android']['sms']['android'],
-            'lang': 'en-US',
-        })
+        self.mock_send_sms.assert_called_with(
+            'post',
+            'subscribe_sms',
+            data={
+                'mobile_number': '5558675309',
+                'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['fx-android']['sms'][
+                    'android'
+                ],
+                'lang': 'en-US',
+            },
+        )
 
     # /firefox/mobile-download/desktop
     def test_fx_mobile_download_desktop_email(self):
-        resp_data = self._request({
-            'phone-or-email': 'dude@example.com',
-            'message-set': 'fx-mobile-download-desktop',
-        })
+        resp_data = self._request(
+            {
+                'phone-or-email': 'dude@example.com',
+                'message-set': 'fx-mobile-download-desktop',
+            }
+        )
         assert resp_data['success']
-        self.mock_subscribe.assert_called_with('dude@example.com',
-                                                views.SEND_TO_DEVICE_MESSAGE_SETS['fx-mobile-download-desktop']['email']['all'],
-                                                source_url=None,
-                                                lang='en-US')
+        self.mock_subscribe.assert_called_with(
+            'dude@example.com',
+            views.SEND_TO_DEVICE_MESSAGE_SETS['fx-mobile-download-desktop']['email'][
+                'all'
+            ],
+            source_url=None,
+            lang='en-US',
+        )
 
     def test_fx_mobile_download_desktop_sms(self):
-        resp_data = self._request({
-            'phone-or-email': '5558675309',
-            'message-set': 'fx-mobile-download-desktop',
-        })
+        resp_data = self._request(
+            {
+                'phone-or-email': '5558675309',
+                'message-set': 'fx-mobile-download-desktop',
+            }
+        )
         assert resp_data['success']
-        self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
-            'mobile_number': '5558675309',
-            'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['fx-mobile-download-desktop']['sms']['all'],
-            'lang': 'en-US',
-        })
+        self.mock_send_sms.assert_called_with(
+            'post',
+            'subscribe_sms',
+            data={
+                'mobile_number': '5558675309',
+                'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS[
+                    'fx-mobile-download-desktop'
+                ]['sms']['all'],
+                'lang': 'en-US',
+            },
+        )
 
     def test_sms_number_with_punctuation(self):
-        resp_data = self._request({
-            'phone-or-email': '(555) 867-5309',
-            'message-set': 'fx-mobile-download-desktop',
-        })
+        resp_data = self._request(
+            {
+                'phone-or-email': '(555) 867-5309',
+                'message-set': 'fx-mobile-download-desktop',
+            }
+        )
         assert resp_data['success']
-        self.mock_send_sms.assert_called_with('post', 'subscribe_sms', data={
-            'mobile_number': '5558675309',
-            'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS['fx-mobile-download-desktop']['sms']['all'],
-            'lang': 'en-US',
-        })
+        self.mock_send_sms.assert_called_with(
+            'post',
+            'subscribe_sms',
+            data={
+                'mobile_number': '5558675309',
+                'msg_name': views.SEND_TO_DEVICE_MESSAGE_SETS[
+                    'fx-mobile-download-desktop'
+                ]['sms']['all'],
+                'lang': 'en-US',
+            },
+        )
 
     def test_sms_number_too_long(self):
-        resp_data = self._request({
-            'phone-or-email': '5558675309555867530912',
-            'message-set': 'fx-mobile-download-desktop',
-        })
+        resp_data = self._request(
+            {
+                'phone-or-email': '5558675309555867530912',
+                'message-set': 'fx-mobile-download-desktop',
+            }
+        )
         assert not resp_data['success']
         self.mock_send_sms.assert_not_called()
         assert 'number' in resp_data['errors']
 
     def test_sms_number_too_short(self):
-        resp_data = self._request({
-            'phone-or-email': '555',
-            'message-set': 'fx-mobile-download-desktop',
-        })
+        resp_data = self._request(
+            {'phone-or-email': '555', 'message-set': 'fx-mobile-download-desktop'}
+        )
         assert not resp_data['success']
         self.mock_send_sms.assert_not_called()
         assert 'number' in resp_data['errors']
@@ -504,7 +610,9 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'en-US'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/download.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/new/trailhead/download.html', ANY
+        )
 
     @patch.object(views, 'lang_file_is_active', lambda *x: False)
     def test_download_old_template(self, render_mock):
@@ -518,7 +626,9 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/download/thanks/')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/thanks.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/new/trailhead/thanks.html', ANY
+        )
 
     @patch.object(views, 'lang_file_is_active', lambda *x: False)
     def test_thanks_old_template(self, render_mock):
@@ -532,7 +642,9 @@ class TestFirefoxNew(TestCase):
         req.locale = 'en-US'
         resp = views.new(req)
         assert resp.status_code == 301
-        assert resp['location'].endswith('/firefox/download/thanks/?scene=2&dude=abides')
+        assert resp['location'].endswith(
+            '/firefox/download/thanks/?scene=2&dude=abides'
+        )
 
     # yandex - issue 5635
 
@@ -549,7 +661,9 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'ru'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/download.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/new/trailhead/download.html', ANY
+        )
 
 
 class TestFirefoxNewNoIndex(TestCase):
@@ -580,7 +694,9 @@ class TestFirefoxCampaign(TestCase):
         req = RequestFactory().get('/firefox/campaign/')
         req.locale = 'en-US'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/index-trailhead.html', ANY
+        )
 
     # berlin campaign bug 1447445 + 3 berlin variations bug 1473357
 
@@ -589,125 +705,165 @@ class TestFirefoxCampaign(TestCase):
         req = RequestFactory().get('/firefox/campaign/?xv=berlin')
         req.locale = 'de'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene1.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/berlin/scene1.html', ANY
+        )
 
     def test_berlin_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=berlin')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene2.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/berlin/scene2.html', ANY
+        )
 
     def test_berlin_nonde_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/?xv=berlin')
         req.locale = 'en-US'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/index-trailhead.html', ANY
+        )
 
     def test_berlin_nonde_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=berlin')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/thanks.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/new/trailhead/thanks.html', ANY
+        )
 
     # herz
     def test_variation_herz_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/campaign/?xv=herz')
         req.locale = 'de'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene1-herz.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/berlin/scene1-herz.html', ANY
+        )
 
     def test_variation_herz_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=herz')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene2-herz.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/berlin/scene2-herz.html', ANY
+        )
 
     def test_variation_herz_nonde_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/campaign/?xv=herz')
         req.locale = 'en-US'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/index-trailhead.html', ANY
+        )
 
     def test_variation_herz_nonde_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=herz')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/thanks.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/new/trailhead/thanks.html', ANY
+        )
 
     # geschwindigkeit
     def test_variation_speed_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/campaign/?xv=geschwindigkeit')
         req.locale = 'de'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene1-gesch.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/berlin/scene1-gesch.html', ANY
+        )
 
     def test_variation_speed_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=geschwindigkeit')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene2-gesch.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/berlin/scene2-gesch.html', ANY
+        )
 
     def test_variation_speed_nonde_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/campaign/?xv=geschwindigkeit')
         req.locale = 'en-US'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/index-trailhead.html', ANY
+        )
 
     def test_variation_speed_nonde_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=geschwindigkeit')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/thanks.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/new/trailhead/thanks.html', ANY
+        )
 
     # privatsphare
     def test_variation_privacy_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/campaign/?xv=privatsphare')
         req.locale = 'de'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene1-privat.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/berlin/scene1-privat.html', ANY
+        )
 
     def test_variation_privacy_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=privatsphare')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene2-privat.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/berlin/scene2-privat.html', ANY
+        )
 
     def test_variation_privacy_nonde_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/campaign/?xv=privatsphare')
         req.locale = 'en-US'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/index-trailhead.html', ANY
+        )
 
     def test_variation_privacy_nonde_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=privatsphare')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/thanks.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/new/trailhead/thanks.html', ANY
+        )
 
     # auf-deiner-seite
     def test_variation_oys_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/campaign/?xv=auf-deiner-seite')
         req.locale = 'de'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene1-auf-deiner-seite.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/berlin/scene1-auf-deiner-seite.html', ANY
+        )
 
     def test_variation_oys_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=auf-deiner-seite')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene2-auf-deiner-seite.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/berlin/scene2-auf-deiner-seite.html', ANY
+        )
 
     def test_variation_oys_nonde_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/campaign/?xv=auf-deiner-seite')
         req.locale = 'en-US'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/index-trailhead.html', ANY
+        )
 
     def test_variation_oys_nonde_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=auf-deiner-seite')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/thanks.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/new/trailhead/thanks.html', ANY
+        )
 
     # berlin video test issue 5637
 
@@ -715,13 +871,17 @@ class TestFirefoxCampaign(TestCase):
         req = RequestFactory().get('/firefox/campaign/?xv=aus-gruenden')
         req.locale = 'de'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene1-aus-gruenden.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/berlin/scene1-aus-gruenden.html', ANY
+        )
 
     def test_berlin_video_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=aus-gruenden')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/berlin/scene2-aus-gruenden.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/berlin/scene2-aus-gruenden.html', ANY
+        )
 
     # better browser test issue 5841
 
@@ -729,27 +889,35 @@ class TestFirefoxCampaign(TestCase):
         req = RequestFactory().get('/firefox/campaign/?xv=betterbrowser')
         req.locale = 'en-US'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/better-browser/scene1.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/better-browser/scene1.html', ANY
+        )
 
     @patch.object(views, 'lang_file_is_active', lambda *x: True)
     def test_better_browser_scene_1_non_us(self, render_mock):
         req = RequestFactory().get('/firefox/campaign/?xv=betterbrowser')
         req.locale = 'de'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/index-trailhead.html', ANY
+        )
 
     def test_better_browser_scene_2(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=betterbrowser')
         req.locale = 'en-US'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/better-browser/scene2.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/better-browser/scene2.html', ANY
+        )
 
     @patch.object(views, 'lang_file_is_active', lambda *x: True)
     def test_better_browser_scene_2_non_us(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/?xv=betterbrowser')
         req.locale = 'fr'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/thanks.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/new/trailhead/thanks.html', ANY
+        )
 
     # Safari SEM campaign bug #1479085
 
@@ -757,14 +925,18 @@ class TestFirefoxCampaign(TestCase):
         req = RequestFactory().get('/firefox/campaign/?xv=safari')
         req.locale = 'en-US'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/compare/scene1-safari.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/compare/scene1-safari.html', ANY
+        )
 
     @patch.object(views, 'lang_file_is_active', lambda *x: True)
     def test_compare_safari_scene_1_non_us(self, render_mock):
         req = RequestFactory().get('/firefox/campaign/?xv=safari')
         req.locale = 'fr'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/index-trailhead.html', ANY
+        )
 
     # Edge SEM campaign Bug #1479086
 
@@ -772,14 +944,18 @@ class TestFirefoxCampaign(TestCase):
         req = RequestFactory().get('/firefox/campaign/?xv=edge')
         req.locale = 'en-US'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/compare/scene1-edge.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/compare/scene1-edge.html', ANY
+        )
 
     @patch.object(views, 'lang_file_is_active', lambda *x: True)
     def test_compare_edge_scene_1_non_us(self, render_mock):
         req = RequestFactory().get('/firefox/campaign/?xv=edge')
         req.locale = 'fr'
         views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html', ANY)
+        render_mock.assert_called_once_with(
+            req, 'firefox/campaign/index-trailhead.html', ANY
+        )
 
 
 class TestFeedbackView(TestCase):
@@ -845,14 +1021,20 @@ class TestFirefoxHome(TestCase):
     def test_switch_off(self, render_mock):
         req = RequestFactory().get('/firefox/')
         views.firefox_home(req)
-        render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': False, 'variation': None})
+        render_mock.assert_called_once_with(
+            req,
+            'firefox/home/index.html',
+            {'show_newsletter': False, 'variation': None},
+        )
 
     @override_settings(DEV=True)
     @patch('bedrock.firefox.views.l10n_utils.render')
     def test_switch_on(self, render_mock):
         req = RequestFactory().get('/firefox/')
         views.firefox_home(req)
-        render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': True, 'variation': None})
+        render_mock.assert_called_once_with(
+            req, 'firefox/home/index.html', {'show_newsletter': True, 'variation': None}
+        )
 
     @override_settings(DEV=True)
     @patch('bedrock.firefox.views.l10n_utils.render')
@@ -860,7 +1042,9 @@ class TestFirefoxHome(TestCase):
         req = RequestFactory().get('/firefox/')
         req.locale = 'de'
         views.firefox_home(req)
-        render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': True, 'variation': None})
+        render_mock.assert_called_once_with(
+            req, 'firefox/home/index.html', {'show_newsletter': True, 'variation': None}
+        )
 
     @override_settings(DEV=True)
     @patch('bedrock.firefox.views.l10n_utils.render')
@@ -868,7 +1052,9 @@ class TestFirefoxHome(TestCase):
         req = RequestFactory().get('/firefox/')
         req.locale = 'fr'
         views.firefox_home(req)
-        render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': True, 'variation': None})
+        render_mock.assert_called_once_with(
+            req, 'firefox/home/index.html', {'show_newsletter': True, 'variation': None}
+        )
 
     @override_settings(DEV=True)
     @patch('bedrock.firefox.views.l10n_utils.render')
@@ -876,7 +1062,11 @@ class TestFirefoxHome(TestCase):
         req = RequestFactory().get('/firefox/')
         req.locale = 'it'
         views.firefox_home(req)
-        render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': False, 'variation': None})
+        render_mock.assert_called_once_with(
+            req,
+            'firefox/home/index.html',
+            {'show_newsletter': False, 'variation': None},
+        )
 
     @override_settings(DEV=False)
     @patch('bedrock.firefox.views.l10n_utils.render')
@@ -884,7 +1074,9 @@ class TestFirefoxHome(TestCase):
         req = RequestFactory().get('/firefox/?v=a')
         req.locale = 'en-US'
         views.firefox_home(req)
-        render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': False, 'variation': 'a'})
+        render_mock.assert_called_once_with(
+            req, 'firefox/home/index.html', {'show_newsletter': False, 'variation': 'a'}
+        )
 
     @override_settings(DEV=False)
     @patch('bedrock.firefox.views.l10n_utils.render')
@@ -892,7 +1084,11 @@ class TestFirefoxHome(TestCase):
         req = RequestFactory().get('/firefox/?v=b')
         req.locale = 'en-US'
         views.firefox_home(req)
-        render_mock.assert_called_once_with(req, 'firefox/home/index-b.html', {'show_newsletter': False, 'variation': 'b'})
+        render_mock.assert_called_once_with(
+            req,
+            'firefox/home/index-b.html',
+            {'show_newsletter': False, 'variation': 'b'},
+        )
 
     @override_settings(DEV=False)
     @patch('bedrock.firefox.views.l10n_utils.render')
@@ -900,4 +1096,6 @@ class TestFirefoxHome(TestCase):
         req = RequestFactory().get('/firefox/?v=b')
         req.locale = 'fr'
         views.firefox_home(req)
-        render_mock.assert_called_once_with(req, 'firefox/home/index.html', {'show_newsletter': False, 'variation': 'b'})
+        render_mock.assert_called_once_with(
+            req, 'firefox/home/index.html', {'show_newsletter': False, 'variation': 'b'}
+        )

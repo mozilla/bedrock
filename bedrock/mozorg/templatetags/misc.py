@@ -392,7 +392,8 @@ def donate_url(ctx, source=''):
     donate_url_params = settings.DONATE_PARAMS.get(
         locale, settings.DONATE_PARAMS['en-US'])
 
-    return settings.DONATE_LINK.format(locale=locale, presets=donate_url_params['presets'],
+    return settings.DONATE_LINK.format(
+        locale=locale, presets=donate_url_params['presets'],
         default=donate_url_params['default'], source=source,
         currency=donate_url_params['currency'])
 

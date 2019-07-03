@@ -15,8 +15,8 @@ from django.core.cache import caches
 from django.template.loader import get_template
 from jinja2 import Environment
 
-from .dotlang import (parse as parse_lang, get_lang_path,
-                     get_translations_for_langfile, lang_file_tag_set)
+from .dotlang import (
+    parse as parse_lang, get_lang_path, get_translations_for_langfile, lang_file_tag_set)
 from lib.l10n_utils.utils import ContainsEverything
 
 

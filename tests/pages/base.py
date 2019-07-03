@@ -60,8 +60,10 @@ class BasePage(Page):
         @property
         def is_displayed(self):
             toggle = self.find_element(*self._toggle_locator)
-            return (self.find_element(*self._menu_locator).is_displayed() and
-                'is-active' in toggle.get_attribute('class'))
+            return (
+                self.find_element(*self._menu_locator).is_displayed() and
+                'is-active' in toggle.get_attribute('class')
+            )
 
         def open_navigation_menu(self, locator):
             firefox_menu = self.find_element(*locator)

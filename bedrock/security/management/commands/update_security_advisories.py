@@ -48,8 +48,9 @@ def fix_product_name(name):
 
 
 def filter_advisory_filenames(filenames):
-    return [os.path.join(ADVISORIES_PATH, fn) for fn in filenames
-            if FILENAME_RE.search(fn)]
+    return [
+        os.path.join(ADVISORIES_PATH, fn) for fn in filenames if FILENAME_RE.search(fn)
+    ]
 
 
 def delete_files(filenames):
@@ -213,8 +214,9 @@ def get_files_to_delete_from_db(filenames):
 
 def delete_orphaned_products():
     """Delete any products with no advisories"""
-    products = Product.objects.annotate(num_advisories=Count('advisories'))\
-                              .filter(num_advisories=0)
+    products = Product.objects.annotate(num_advisories=Count('advisories')).filter(
+        num_advisories=0
+    )
     num_products = products.count()
     products.delete()
     return num_products
@@ -225,26 +227,36 @@ class Command(CronCommand):
     lock_key = 'update_security_advisories'
 
     def add_arguments(self, parser):
-        parser.add_argument('--quiet',
-                    action='store_true',
-                    dest='quiet',
-                    default=False,
-                    help='Do not print output to stdout.')
-        parser.add_argument('--skip-git',
-                    action='store_true',
-                    dest='no_git',
-                    default=False,
-                    help='No update, just import all files')
-        parser.add_argument('--clear-db',
-                    action='store_true',
-                    dest='clear_db',
-                    default=False,
-                    help='Clear all security advisory data and load all files')
+        parser.add_argument(
+            '--quiet',
+            action='store_true',
+            dest='quiet',
+            default=False,
+            help='Do not print output to stdout.',
+        )
+        parser.add_argument(
+            '--skip-git',
+            action='store_true',
+            dest='no_git',
+            default=False,
+            help='No update, just import all files',
+        )
+        parser.add_argument(
+            '--clear-db',
+            action='store_true',
+            dest='clear_db',
+            default=False,
+            help='Clear all security advisory data and load all files',
+        )
 
     def handle_safe(self, quiet, no_git, clear_db, **options):
         force = no_git or clear_db
-        repo = GitRepo(ADVISORIES_PATH, ADVISORIES_REPO, branch_name=ADVISORIES_BRANCH,
-                       name='Security Advisories')
+        repo = GitRepo(
+            ADVISORIES_PATH,
+            ADVISORIES_REPO,
+            branch_name=ADVISORIES_BRANCH,
+            name='Security Advisories',
+        )
 
         def printout(msg, ending=None):
             if not quiet:
@@ -291,7 +303,9 @@ class Command(CronCommand):
                 printout('Deleted {0} orphaned products.'.format(num_products))
 
         if errors:
-            raise CommandError('Encountered {0} errors:\n\n'.format(len(errors)) +
-                               '\n==========\n'.join(errors))
+            raise CommandError(
+                'Encountered {0} errors:\n\n'.format(len(errors))
+                + '\n==========\n'.join(errors)
+            )
 
         repo.set_db_latest()

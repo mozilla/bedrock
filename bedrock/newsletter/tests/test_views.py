@@ -508,8 +508,8 @@ class TestRecoveryView(TestCase):
     def test_unknown_email(self, mock_basket):
         """Unknown email addresses give helpful error message"""
         data = {'email': 'unknown@example.com'}
-        mock_basket.side_effect = basket.BasketException(status_code=404,
-                                                  code=basket.errors.BASKET_UNKNOWN_EMAIL)
+        mock_basket.side_effect = basket.BasketException(
+            status_code=404, code=basket.errors.BASKET_UNKNOWN_EMAIL)
         rsp = self.client.post(self.url, data)
         self.assertTrue(mock_basket.called)
         self.assertEqual(200, rsp.status_code)

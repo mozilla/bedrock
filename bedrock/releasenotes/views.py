@@ -142,7 +142,8 @@ def releases_index(request, product):
     # Starting with Firefox 10, ESR had been offered every 7 major releases, but
     # Firefox 59 wasn't ESR. Firefox 60 became the next ESR instead, and since
     # then ESR is offered every 8 major releases.
-    esr_major_versions = (list(range(10, 59, 7)) +
+    esr_major_versions = (
+        list(range(10, 59, 7)) +
         list(range(60, int(firefox_desktop.latest_version().split('.')[0]), 8)))
 
     if product == 'Firefox':
@@ -175,8 +176,7 @@ def nightly_feed(request):
     releases = get_releases_or_404('firefox', 'nightly', 5)
 
     for release in releases:
-        link = reverse('firefox.desktop.releasenotes',
-                        args=(release.version, 'release'))
+        link = reverse('firefox.desktop.releasenotes', args=(release.version, 'release'))
 
         for note in release.notes:
             if note.id in notes:

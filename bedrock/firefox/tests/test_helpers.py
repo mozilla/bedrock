@@ -46,8 +46,10 @@ class TestDownloadButtons(TestCase):
 
         # Check that the rest of the links are Android and iOS
         assert pq(links[4]).attr('href') == settings.GOOGLE_PLAY_FIREFOX_LINK_UTMS
-        assert (pq(links[5]).attr('href') ==
-            settings.APPLE_APPSTORE_FIREFOX_LINK.replace('/{country}/', '/'))
+        assert (
+            pq(links[5]).attr('href') ==
+            settings.APPLE_APPSTORE_FIREFOX_LINK.replace('/{country}/', '/')
+        )
 
     def test_button_force_direct(self):
         """

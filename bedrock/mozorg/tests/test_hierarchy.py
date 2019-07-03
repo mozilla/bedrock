@@ -26,7 +26,7 @@ class TestPageNode(TestCase):
         """
         child = PageNode('test', path='asdf')
         PageRoot('test', path='blah', children=[
-                 PageNode('test', path='whoo', children=[child])
+            PageNode('test', path='whoo', children=[child])
         ])
         assert child.full_path == 'blah/whoo/asdf'
 

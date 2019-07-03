@@ -569,9 +569,11 @@ redirectpatterns = (
     redirect(r'^firefox/organizations/faq/?$', 'firefox.organizations.organizations'),
 
     # bug 1425865 - Amazon Fire TV goes to SUMO until we have a product page.
-    redirect(r'^firefox/fire-tv/?$',
+    redirect(
+        r'^firefox/fire-tv/?$',
         'https://support.mozilla.org/products/firefox-fire-tv/',
-        permanent=False),
+        permanent=False,
+    ),
 
     # bug 1430894
     redirect(r'^firefox/interest-dashboard/?', 'https://support.mozilla.org/kb/firefox-add-technology-modernizing'),
