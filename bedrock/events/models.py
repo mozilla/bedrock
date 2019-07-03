@@ -7,7 +7,7 @@ from datetime import datetime
 from django.conf import settings
 from django.db import models
 from django.db.models.query import QuerySet
-
+from django.utils.encoding import force_text
 from icalendar import Calendar
 from pytz import timezone
 
@@ -148,8 +148,7 @@ class Event(models.Model):
             except KeyError:
                 pass
             else:
-                if isinstance(value, bytes):
-                    value = value.decode('utf-8')
+                value = force_text(value, strings_only=True)
                 if isinstance(value, str):
                     value = value.strip()
                 setattr(self, field, value)
