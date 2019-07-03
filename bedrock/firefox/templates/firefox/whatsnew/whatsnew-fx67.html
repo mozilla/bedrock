@@ -54,6 +54,7 @@
 
   <h2 class="c-section-title mzp-l-content">{{ _('Now with your Firefox Account') }}</h2>
 
+  {% block benefits %}
   <div class="mzp-l-content c-section-benifits">
 
       {# L10n: "Monitor" is a proper name; it should be capitalized and should not be translated. #}
@@ -120,6 +121,7 @@
       <p><a class="mzp-c-cta-link" href="https://send.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp67&utm_content=try-send&entrypoint=mozilla.org-whatsnew67" data-link-name="Try Firefox Send" data-link-type="link">{{ _('Try Firefox Send') }}</a></p>
       {% endcall %}
   </div>
+  {% endblock %}
 
   <section id="sticky-cta" class="c-sticky-signup">
     <div class="c-sticky-signup-container fxa-form-cta" id="fxa-sticky-form">
@@ -127,12 +129,14 @@
         <h2 class="c-sticky-signup-title">{{ _('Get a Firefox Account and all the benefits it unlocks. ') }}</h2>
         <button type="button" class="sticky-dismiss" data-parent="fxa-sticky-form">{{ _('Close') }}</button>
       </div>
+      {% block fxa_form %}
       {{ fxa_email_form(
           entrypoint='mozilla.org-whatsnew67',
           button_class='mzp-c-button mzp-t-product mzp-t-small',
           utm_source='whatsnew',
           utm_params=fxa_utm_params)
       }}
+      {% endblock %}
     </div>
     {% if show_newsletter %}
     <div class="c-sticky-signup-container newsletter-form-cta" id="newsletter-sticky-form" >

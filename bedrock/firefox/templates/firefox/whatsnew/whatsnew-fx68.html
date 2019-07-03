@@ -1,0 +1,85 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/whatsnew_67" %}
+
+{% extends "firefox/whatsnew/whatsnew-fx67.html" %}
+
+{% block fxa_form %}
+  {{ fxa_email_form(
+      entrypoint='mozilla.org-whatsnew68',
+      button_class='mzp-c-button mzp-t-product mzp-t-small',
+      utm_source='whatsnew68',
+      utm_params={ 'campaign': 'wnp68', 'content': '/firefox/WNP/68/', 'source': 'wnp-68'})
+  }}
+{% endblock %}
+
+{% block benefits %}
+<div class="mzp-l-content c-section-benifits">
+
+    {# L10n: "Monitor" is a proper name; it should be capitalized and should not be translated. #}
+    {% call feature_card(
+      title=_('Keep an eye on data breaches with Monitor'),
+      ga_title='Check Out Monitor',
+      link_cta=_('Check Out Monitor'),
+      link_url='https://monitor.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp68&utm_content=try-send&entrypoint=mozilla.org-whatsnew68',
+      image_url='firefox/whatsnew_67/monitor.svg',
+      include_highres_image=False,
+      aspect_ratio='mzp-l-card-feature-left-66',
+      class='wn67-lockwise'
+    ) %}
+    <p>{{ _('Find out if your information has been compromised by a data breach – and now you can sign up for alerts about future breaches with a Firefox Account.') }}</p>
+    {% endcall %}
+
+    {# L10n: "Lockwise" is a proper name; it should be capitalized and should not be translated. #}
+
+    {% if l10n_has_tag('lockwise_update_201906') %}
+      {% call feature_card(
+        title=_('Take your passwords everywhere with Lockwise'),
+        image_url='firefox/whatsnew_67/lockwise.svg',
+        include_highres_image=False,
+        aspect_ratio='l-card-feature-right-66',
+        class='wn67-lockwise'
+      ) %}
+        <p>{{ _('Securely access passwords you save to your Firefox Account from any device, everywhere you go – now available for both Android and iOS.') }}</p>
+        <p><a class="mzp-c-cta-link wn67-benefit-link" data-app="lockwise" href="https://lockwise.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp68&utm_content=get-lockwise&entrypoint=mozilla.org-whatsnew68" data-link-name="Get the Lockwise App" data-link-type="link">{{ _('Get the Lockwise App') }}</a></p>
+      {% endcall %}
+    {% else %}
+      {% call feature_card(
+        title=_('Take your passwords everywhere with Lockbox'),
+        image_url='firefox/whatsnew_67/lockwise.svg',
+        include_highres_image=False,
+        aspect_ratio='l-card-feature-right-66',
+        class='wn67-lockwise'
+      ) %}
+        <p>{{ _('Securely access passwords you save to your Firefox Account from any device, everywhere you go – now available for both Android and iOS.') }}</p>
+        <p><a class="mzp-c-cta-link wn67-benefit-link" data-app="lockwise" href="https://lockwise.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp68&utm_content=get-lockwise&entrypoint=mozilla.org-whatsnew68" data-link-name="Get the Lockwise App" data-link-type="link">{{ _('Get the Lockbox App') }}</a></p>
+      {% endcall %}
+    {% endif %}
+
+    {% call feature_card(
+      title=_('Put quality content in your Pocket'),
+      image_url='firefox/whatsnew_67/pocket.svg',
+      include_highres_image=False,
+      aspect_ratio='mzp-l-card-feature-left-66',
+      class='wn67-lockwise'
+    ) %}
+      <p>{{ _('Read the articles you care about anytime, anywhere (even offline). And try Pocket’s listen feature so you can absorb great content on the go.') }}</p>
+      <p><a class="mzp-c-cta-link wn67-benefit-link" data-app="pocket" href="https://getpocket.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp68&utm_content=get-pocket&entrypoint=mozilla.org-whatsnew68" data-link-name="Get the Pocket App" data-link-type="link">{{ _('Get the Pocket App') }}</a></p>
+    {% endcall %}
+
+    {# L10n: "Send" is a proper name; it should be capitalized and should not be translated. #}
+    {% call feature_card(
+      title=_('Share large files securely with Send'),
+      ga_title='Try Firefox Send',
+      image_url='firefox/whatsnew_67/send.svg',
+      include_highres_image=False,
+      aspect_ratio='l-card-feature-right-66',
+      class='wn67-lockwise'
+    ) %}
+    <p>{{ _('Use an encrypted link to safely share large files – up to 2.5GB with a Firefox Account. And you can set when your link expires, so your info doesn’t live in the cloud forever.') }}</p>
+    <p><a class="mzp-c-cta-link" href="https://send.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp68&utm_content=try-send&entrypoint=mozilla.org-whatsnew68" data-link-name="Try Firefox Send" data-link-type="link">{{ _('Try Firefox Send') }}</a></p>
+    {% endcall %}
+</div>
+{% endblock %}
