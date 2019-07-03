@@ -61,7 +61,7 @@ FIELD_PROCESSORS = {
 
 class RNModel:
     def __init__(self, data):
-        for key, value in list(data.items()):
+        for key, value in data.items():
             if not hasattr(self, key):
                 continue
             if key in FIELD_PROCESSORS:

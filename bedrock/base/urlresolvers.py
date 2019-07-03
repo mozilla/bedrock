@@ -50,7 +50,7 @@ def _get_language_map():
     # en to en-GB (not en-US), es to es-AR (not es-ES), etc. in alphabetical
     # order. To override this behavior, explicitly define a preferred locale
     # map with the CANONICAL_LOCALES setting.
-    langs.update((k.split('-')[0], v) for k, v in list(LUM.items()) if
+    langs.update((k.split('-')[0], v) for k, v in LUM.items() if
                  k.split('-')[0] not in langs)
     return langs
 

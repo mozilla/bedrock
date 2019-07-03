@@ -80,7 +80,7 @@ class Command(BaseCommand):
             if version_key == 'FIREFOX_ESR_NEXT':
                 return
         builds = len([locale for locale, build in
-                      list(self.file_storage.data('firefox_primary_builds.json').items())
+                      self.file_storage.data('firefox_primary_builds.json').items()
                       if version in build])
         if builds < min_builds:
             raise ValueError('Too few builds for {}'.format(version_key))

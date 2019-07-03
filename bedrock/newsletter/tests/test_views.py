@@ -384,7 +384,7 @@ class TestExistingNewsletterView(TestCase):
     def test_newsletter_no_order(self, get_newsletters, mock_basket_request):
         """Newsletter views should work if we get no order from basket."""
         orderless_newsletters = {}
-        for key, val in list(newsletters.items()):
+        for key, val in newsletters.items():
             nl_copy = val.copy()
             del nl_copy['order']
             orderless_newsletters[key] = nl_copy

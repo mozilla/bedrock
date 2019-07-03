@@ -78,9 +78,9 @@ def urlparams(url_, hash=None, **query):
     # Use dict(parse_qsl) so we don't get lists of values.
     q = url.query
     query_dict = dict(urllib.parse.parse_qsl(smart_str(q))) if q else {}
-    query_dict.update((k, v) for k, v in list(query.items()))
+    query_dict.update((k, v) for k, v in query.items())
 
-    query_string = _urlencode([(k, v) for k, v in list(query_dict.items())
+    query_string = _urlencode([(k, v) for k, v in query_dict.items()
                                if v is not None])
     new = urllib.parse.ParseResult(
         url.scheme, url.netloc, url.path, url.params, query_string, fragment)

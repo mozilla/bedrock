@@ -166,7 +166,7 @@ def releases_index(request, product):
 
     return l10n_utils.render(
         request, '{product}/releases/index.html'.format(product=product.lower()),
-        {'releases': sorted(list(releases.items()), reverse=True)}
+        {'releases': sorted(releases.items(), reverse=True)}
     )
 
 
@@ -188,7 +188,7 @@ def nightly_feed(request):
                 notes[note.id] = note
 
     # Sort by date in descending order
-    notes = sorted(list(notes.values()), key=attrgetter('modified'), reverse=True)
+    notes = sorted(notes.values(), key=attrgetter('modified'), reverse=True)
 
     return l10n_utils.render(request, 'firefox/releases/nightly-feed.xml',
                              {'notes': notes},

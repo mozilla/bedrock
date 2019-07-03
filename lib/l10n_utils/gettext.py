@@ -301,7 +301,7 @@ def pot_to_langfiles(domain='django'):
     # specify a list of lang files to pull from, so we need to check
     # all of them for the strings and add it to the first lang file
     # specified if not found.
-    for path, msgs in list(all_msgs.items()):
+    for path, msgs in all_msgs.items():
         lang_files = [lang_file('%s.lang' % f, root)
                       for f in langfiles_for_path(path)]
 

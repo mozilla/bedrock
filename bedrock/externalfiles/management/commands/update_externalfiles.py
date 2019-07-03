@@ -29,7 +29,7 @@ class Command(BaseCommand):
 
         self.output('Loading community data into database')
 
-        for fid, finfo in list(settings.EXTERNAL_FILES.items()):
+        for fid, finfo in settings.EXTERNAL_FILES.items():
             klass = import_string(finfo['type'])
             try:
                 klass(fid).update()

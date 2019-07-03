@@ -130,7 +130,7 @@ def assert_valid_url(url, location=None, status_code=requests.codes.moved_perman
             location = location.split('?')[0]
         if query:
             # all query values must be lists
-            for k, v in list(query.items()):
+            for k, v in query.items():
                 if isinstance(v, str):
                     query[k] = [v]
             # parse the QS from resp location header and compare to query arg
@@ -147,7 +147,7 @@ def assert_valid_url(url, location=None, status_code=requests.codes.moved_perman
             assert location == resp_location
 
     if resp_headers and not follow_redirects:
-        for name, value in list(resp_headers.items()):
+        for name, value in resp_headers.items():
             print(name, value)
             assert name in resp.headers
             assert resp.headers[name].lower() == value.lower()

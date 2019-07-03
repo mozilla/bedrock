@@ -178,7 +178,7 @@ def redirect(pattern, to, permanent=True, locale_prefix=True, anchor=None, name=
 
     def _view(request, *args, **kwargs):
         # don't want to have 'None' in substitutions
-        kwargs = {k: v or '' for k, v in list(kwargs.items())}
+        kwargs = {k: v or '' for k, v in kwargs.items()}
         args = [x or '' for x in args]
 
         # If it's a callable, call it and get the url out.

@@ -155,7 +155,7 @@ def add_or_update_cve(data):
         else:
             cve.products = list(set(cve.products).union(data['fixed_in']))
             cve.mfsa_ids = list(set(cve.mfsa_ids).union([data['mfsa_id']]))
-            for prop, value in list(cve_data.items()):
+            for prop, value in cve_data.items():
                 if value:
                     setattr(cve, prop, value)
 

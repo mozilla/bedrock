@@ -203,7 +203,7 @@ def lazy_lang_group():
             groups.setdefault(prefix, []).append(lang)
 
     # add any group prefix to the group list if it is also a supported lang
-    for groupid in list(groups.keys()):
+    for groupid in groups:
         if groupid in langs:
             groups[groupid].append(groupid)
 

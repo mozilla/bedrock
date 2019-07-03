@@ -59,7 +59,7 @@ class TestStubAttributionCode(TestCase):
             querystringsafe_base64.decode(data['attribution_code'].encode()).decode()
         )
         # parse_qs returns a dict with lists for values
-        attrs = {k: v[0] for k, v in list(attrs.items())}
+        attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data['attribution_sig'],
@@ -84,7 +84,7 @@ class TestStubAttributionCode(TestCase):
             querystringsafe_base64.decode(data['attribution_code'].encode()).decode()
         )
         # parse_qs returns a dict with lists for values
-        attrs = {k: v[0] for k, v in list(attrs.items())}
+        attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data['attribution_sig'],
@@ -109,7 +109,7 @@ class TestStubAttributionCode(TestCase):
             querystringsafe_base64.decode(data['attribution_code'].encode()).decode()
         )
         # parse_qs returns a dict with lists for values
-        attrs = {k: v[0] for k, v in list(attrs.items())}
+        attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data['attribution_sig'],
@@ -142,7 +142,7 @@ class TestStubAttributionCode(TestCase):
         assert len(code) <= 200
         attrs = parse_qs(code)
         # parse_qs returns a dict with lists for values
-        attrs = {k: v[0] for k, v in list(attrs.items())}
+        attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data['attribution_sig'],
@@ -184,7 +184,7 @@ class TestStubAttributionCode(TestCase):
             querystringsafe_base64.decode(data['attribution_code'].encode()).decode()
         )
         # parse_qs returns a dict with lists for values
-        attrs = {k: v[0] for k, v in list(attrs.items())}
+        attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data['attribution_sig'],
@@ -209,7 +209,7 @@ class TestStubAttributionCode(TestCase):
             querystringsafe_base64.decode(data['attribution_code'].encode()).decode()
         )
         # parse_qs returns a dict with lists for values
-        attrs = {k: v[0] for k, v in list(attrs.items())}
+        attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data['attribution_sig'],
@@ -237,7 +237,7 @@ class TestStubAttributionCode(TestCase):
             querystringsafe_base64.decode(data['attribution_code'].encode()).decode()
         )
         # parse_qs returns a dict with lists for values
-        attrs = {k: v[0] for k, v in list(attrs.items())}
+        attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data['attribution_sig'],
@@ -268,7 +268,7 @@ class TestStubAttributionCode(TestCase):
             querystringsafe_base64.decode(data['attribution_code'].encode()).decode()
         )
         # parse_qs returns a dict with lists for values
-        attrs = {k: v[0] for k, v in list(attrs.items())}
+        attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data['attribution_sig'],

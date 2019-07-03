@@ -84,7 +84,7 @@ cfg = {
     'root': {},
 }
 
-for key, value in list(settings.LOGGING.items()):
+for key, value in settings.LOGGING.items():
     if hasattr(cfg[key], 'update'):
         cfg[key].update(value)
     else:

@@ -64,7 +64,7 @@ def write_stdout(out_str):
 def main():
     parser = argparse.ArgumentParser(description='Open github compare view '
                                                  'for bedrock.')
-    parser.add_argument('-e', '--env', default='prod', choices=list(ENV_URLS.keys()),
+    parser.add_argument('-e', '--env', default='prod', choices=list(ENV_URLS),
                         metavar='ENV', help='Environment: demo[1-3], '
                                             'stage, or prod (default)')
     parser.add_argument('-r', '--repo', default=DEFAULT_REPO,

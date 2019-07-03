@@ -209,7 +209,7 @@ def high_res_img(ctx, url, optional_attributes=None):
     if optional_attributes:
         class_name = optional_attributes.pop('class', '')
         attrs = ' ' + ' '.join('%s="%s"' % (attr, val)
-                               for attr, val in list(optional_attributes.items()))
+                               for attr, val in optional_attributes.items())
     else:
         class_name = ''
         attrs = ''
@@ -250,7 +250,7 @@ def lazy_img(ctx, image_url, placeholder_url, include_highres_image=False,
         class_name = optional_attributes.pop('class', 'lazy-image')
         alt_text = optional_attributes.pop('alt', '')
         attrs = ' '.join('%s="%s"' % (attr, val)
-                         for attr, val in list(optional_attributes.items()))
+                         for attr, val in optional_attributes.items())
     else:
         class_name = 'lazy-image'
         alt_text = ''

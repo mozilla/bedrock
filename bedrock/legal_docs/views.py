@@ -23,7 +23,7 @@ CACHE_TIMEOUT = getattr(settings, 'LEGAL_DOCS_CACHE_TIMEOUT', 60 * 60)
 LEGAL_DOCS_LOCALES_TO_BEDROCK = {
     'hi': 'hi-IN',
 }
-BEDROCK_LOCALES_TO_LEGAL_DOCS = {v: k for k, v in list(LEGAL_DOCS_LOCALES_TO_BEDROCK.items())}
+BEDROCK_LOCALES_TO_LEGAL_DOCS = {v: k for k, v in LEGAL_DOCS_LOCALES_TO_BEDROCK.items()}
 
 
 def load_legal_doc(doc_name, locale):

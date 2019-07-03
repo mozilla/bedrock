@@ -48,7 +48,7 @@ def get_lang_choices(newsletters=None):
             lang_name = product_details.languages[lang]['native']
         else:
             try:
-                locale = [loc for loc in list(product_details.languages.keys())
+                locale = [loc for loc in product_details.languages
                           if loc.startswith(lang)][0]
             except IndexError:
                 continue
