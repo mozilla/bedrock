@@ -79,7 +79,7 @@ def write_block(block, dest, force_was=False):
     dest.write('\n\n')
 
 
-class L10nTemplate(object):
+class L10nTemplate:
 
     def __init__(self, template=None, source=None):
         """
@@ -228,7 +228,7 @@ class L10nTemplate(object):
         print('%s: %s' % (lang, self.rel_path))
 
 
-class L10nParser(object):
+class L10nParser:
 
     file_version_re = re.compile(r'\W*Version: (\d+)\W*')
 

@@ -5,7 +5,7 @@ class ConfigValue(models.Model):
     name = models.CharField(max_length=100, db_index=True, unique=True)
     value = models.CharField(max_length=200)
 
-    class Meta(object):
+    class Meta:
         app_label = 'base'
 
     def __str__(self):

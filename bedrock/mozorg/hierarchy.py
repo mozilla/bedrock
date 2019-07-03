@@ -7,7 +7,7 @@ from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg.util import page
 
 
-class PageNode(object):
+class PageNode:
     """
     A utility for representing a hierarchical page structure.
 

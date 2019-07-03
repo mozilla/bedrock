@@ -17,7 +17,7 @@ def f():
     return 42
 
 
-class C(object):
+class C:
     def m(n):
         return 24
 

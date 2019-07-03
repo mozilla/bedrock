@@ -91,7 +91,7 @@ class PocketArticle(models.Model):
 
     objects = PocketArticleManager()
 
-    class Meta(object):
+    class Meta:
         get_latest_by = 'time_shared'
         ordering = ['-time_shared']
 

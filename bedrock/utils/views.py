@@ -5,7 +5,7 @@ from bedrock.utils import expand_locale_groups
 from lib.l10n_utils import LangFilesMixin, get_locale
 
 
-class VariationMixin(object):
+class VariationMixin:
     template_name_variations = None
     template_context_variations = None
     variation_locales = None

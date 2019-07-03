@@ -85,7 +85,7 @@ class ContributorActivity(models.Model):
 
     objects = ContributorActivityManager()
 
-    class Meta(object):
+    class Meta:
         unique_together = ('date', 'source_name', 'team_name')
         get_latest_by = 'date'
         ordering = ['-date']

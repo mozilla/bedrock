@@ -19,7 +19,7 @@ from bedrock.utils.models import GitRepoState
 GIT = getattr(settings, 'GIT_BIN', 'git')
 
 
-class GitRepo(object):
+class GitRepo:
     def __init__(self, path, remote_url=None, branch_name='master', name=None):
         self.path = Path(path)
         self.path_str = str(self.path)

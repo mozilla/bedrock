@@ -30,7 +30,7 @@ urlpatterns = [
 ]
 
 
-class FakePrefixer(object):
+class FakePrefixer:
     def __init__(self, fix):
         self.fix = fix
 

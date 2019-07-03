@@ -158,7 +158,7 @@ def get_best_translation(translations, accept_languages):
     return translations[0]
 
 
-class LangFilesMixin(object):
+class LangFilesMixin:
     """Generic views mixin that uses l10n_utils to render responses."""
     active_locales = None
     add_active_locales = None

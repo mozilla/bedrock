@@ -19,7 +19,7 @@ class Product(models.Model):
     product = models.CharField(max_length=50)
     product_slug = models.SlugField()
 
-    class Meta(object):
+    class Meta:
         ordering = ('slug',)
 
     def __str__(self):
@@ -77,7 +77,7 @@ class SecurityAdvisory(models.Model):
     html = models.TextField()
     last_modified = ModificationDateTimeField()
 
-    class Meta(object):
+    class Meta:
         ordering = ('-year', '-order')
         get_latest_by = 'last_modified'
 
@@ -116,7 +116,7 @@ class HallOfFamer(models.Model):
     date = models.DateField()
     url = models.CharField(max_length=200, blank=True)
 
-    class Meta(object):
+    class Meta:
         ordering = ('-date', 'id')
 
     @property
@@ -146,7 +146,7 @@ class MitreCVE(models.Model):
     mfsa_ids = JSONField(default='[]')
     bugs = JSONField(default='[]')
 
-    class Meta(object):
+    class Meta:
         ordering = ('-year', '-order')
 
     def __str__(self):

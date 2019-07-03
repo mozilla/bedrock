@@ -73,7 +73,7 @@ class ContentCard(models.Model):
 
     objects = ContentCardManager()
 
-    class Meta(object):
+    class Meta:
         ordering = ('id',)
 
     def __str__(self):

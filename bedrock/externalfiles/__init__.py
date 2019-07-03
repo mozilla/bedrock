@@ -16,7 +16,7 @@ from django.utils.http import http_date
 log = logging.getLogger(__name__)
 
 
-class ExternalFile(object):
+class ExternalFile:
     def __init__(self, file_id):
         try:
             fileinfo = settings.EXTERNAL_FILES[file_id]

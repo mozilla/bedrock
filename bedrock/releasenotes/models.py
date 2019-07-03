@@ -59,7 +59,7 @@ FIELD_PROCESSORS = {
 }
 
 
-class RNModel(object):
+class RNModel:
     def __init__(self, data):
         for key, value in list(data.items()):
             if not hasattr(self, key):
@@ -172,7 +172,7 @@ class ProductRelease(models.Model):
 
     objects = ProductReleaseManager()
 
-    class Meta(object):
+    class Meta:
         ordering = ['-release_date']
 
     def __str__(self):

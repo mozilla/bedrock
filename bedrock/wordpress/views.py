@@ -6,7 +6,7 @@ from lib.l10n_utils import LangFilesMixin
 from raven.contrib.django.raven_compat.models import client as sentry_client
 
 
-class BlogPostsMixin(object):
+class BlogPostsMixin:
     blog_tags = None
     blog_slugs = None
     blog_posts_limit = 4

@@ -6,5 +6,5 @@ class ExternalFile(models.Model):
     content = models.TextField()
     last_modified = models.DateTimeField(auto_now=True)
 
-    class Meta(object):
+    class Meta:
         app_label = 'externalfiles'

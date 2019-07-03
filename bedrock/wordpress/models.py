@@ -148,7 +148,7 @@ class BlogPost(models.Model):
 
     objects = BlogPostManager()
 
-    class Meta(object):
+    class Meta:
         get_latest_by = 'date'
         ordering = ['-date']
 

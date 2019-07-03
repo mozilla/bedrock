@@ -86,7 +86,7 @@ def split_path(path_):
         return '', path
 
 
-class Prefixer(object):
+class Prefixer:
     def __init__(self, request):
         self.request = request
         split = split_path(request.path_info)

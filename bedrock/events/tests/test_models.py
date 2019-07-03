@@ -27,7 +27,7 @@ class TestICalHelperFunctions(TestCase):
         self.assertEqual(calendar_id_from_google_url(GCAL_URL), GCAL_ID)
 
     def test_calendar_url_for_event(self):
-        class FakeEvent(object):
+        class FakeEvent:
             start_time = date(2015, 7, 10)
             end_time = date(2015, 7, 20)
 

@@ -6,7 +6,7 @@
 import re
 
 
-class ContainsEverything(object):
+class ContainsEverything:
     """An object whose instances will claim to contain anything."""
     def __contains__(self, item):
         return True

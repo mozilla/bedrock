@@ -125,7 +125,7 @@ class Event(models.Model):
         'country_code': 'x-country-code',
     }
 
-    class Meta(object):
+    class Meta:
         ordering = ('start_time',)
 
     def __str__(self):
