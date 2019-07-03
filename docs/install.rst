@@ -80,16 +80,15 @@ If you make a change to ``media/static-bundles.json``, you'll need to restart Do
 Local Installation
 ------------------
 
-These instructions assume you have Python, pip, and NodeJS installed. If you don't have `pip` installed
+These instructions assume you have Python 3.6+, pip, and NodeJS installed. If you don't have `pip` installed
 (you probably do) you can install it with the instructions in `the pip docs <https://pip.pypa.io/en/stable/installing/>`_.
 
-You need to create a virtual environment for Python libraries. Skip the first instruction if you already have virtualenv installed::
+You need to create a virtual environment for Python libraries::
 
-    $ pip install virtualenv                       # installs virtualenv, skip if already have it
-    $ virtualenv -p python2.7 venv                 # create a virtual env in the folder `venv`
+    $ python3 -m venv venv                         # create a virtual env in the folder `venv`
     $ source venv/bin/activate                     # activate the virtual env. On Windows, run: venv\Scripts\activate.bat
-    $ pip install -U pip                           # securely upgrade pip
-    $ pip install -r requirements/dev.txt         # installs dependencies
+    $ pip install --upgrade pip                    # securely upgrade pip
+    $ pip install -r requirements/dev.txt          # installs dependencies
 
 If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting the arch flags and try again::
 
@@ -98,7 +97,7 @@ If you are on OSX and some of the compiled dependencies fails to compile, try ex
 
 If you are on Linux, you will need at least the following packages or their equivalent for your distro::
 
-    $ python-dev libxslt-dev
+    $ python3-dev libxslt-dev
 
 Sync the database and all of the external data locally. This gets product-details, security-advisories,
 credits, release notes, localizations, legal-docs etc::
@@ -287,5 +286,5 @@ Notes
 
 A shortcut for activating virtual envs in zsh or bash is `. venv/bin/activate`. The dot is the same as `source`.
 
-There's a project called `virtualenvwrapper <http://www.doughellmann.com/docs/virtualenvwrapper/>`_ that provides a better interface for managing/activating virtual envs, so you can use that if you want.
+There's a project called `pew <https://pypi.org/project/pew/>`_ that provides a better interface for managing/activating virtual envs, so you can use that if you want.
 Also if you need help managing various versions of Python on your system, the `pyenv <https://github.com/pyenv/pyenv>`_ project can help.
