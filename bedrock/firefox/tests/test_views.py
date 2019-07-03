@@ -1099,3 +1099,20 @@ class TestFirefoxHome(TestCase):
         render_mock.assert_called_once_with(
             req, 'firefox/home/index.html', {'show_newsletter': False, 'variation': 'b'}
         )
+
+
+class TestAccountsPage(TestCase):
+    @patch('bedrock.firefox.views.l10n_utils.render')
+    def test_accounts_page_2019(self, render_mock):
+        req = RequestFactory().get('/firefox/accounts/')
+        req.locale = 'en-US'
+        views.firefox_accounts(req)
+        render_mock.assert_called_once_with(req, 'firefox/accounts-2019.html', ANY)
+
+    @patch('bedrock.firefox.views.l10n_utils.render')
+    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    def test_accounts_page_legacy(self, render_mock):
+        req = RequestFactory().get('/firefox/accounts/')
+        req.locale = 'fr'
+        views.firefox_accounts(req)
+        render_mock.assert_called_once_with(req, 'firefox/accounts.html', ANY)

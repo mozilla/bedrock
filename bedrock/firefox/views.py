@@ -958,8 +958,6 @@ def firefox_accounts(request):
 
     if lang_file_is_active('firefox/accounts-2019', locale):
         template_name = 'firefox/accounts-2019.html'
-    elif lang_file_is_active('firefox/accounts-2018', locale):
-        template_name = 'firefox/accounts-2018.html'
     else:
         template_name = 'firefox/accounts.html'
 
