@@ -7,6 +7,7 @@ from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
+import pytest
 from django_jinja.backend import Jinja2
 from jinja2 import Markup
 from mock import patch
@@ -639,27 +640,20 @@ def test_f_unicode():
     assert s == u'\xe9 baz'
 
 
-def test_f_markup():
-    format_string = 'Hello <b>{0}</b>'
-    format_markup = Markup(format_string)
-    val_string = '<em>Steve</em>'
-    val_markup = Markup(val_string)
-    template = '{{ fmt|f(val) }}'
+format_string = 'Hello <b>{0}</b>'
+format_markup = Markup(format_string)
+val_string = '<em>Steve</em>'
+val_markup = Markup(val_string)
+@pytest.mark.parametrize('f, v', [
+    (format_string, val_string),
+    (format_string, val_markup),
+    (format_markup, val_string),
+    (format_markup, val_markup),
+])
+def test_f_markup(f, v):
     expect = 'Hello &lt;b&gt;&lt;em&gt;Steve&lt;/em&gt;&lt;/b&gt;'
-
-    combinations = (
-        (format_string, val_string),
-        (format_string, val_markup),
-        (format_markup, val_string),
-        (format_markup, val_markup),
-    )
-
-    def _check(f, v):
-        s = render(template, {'fmt': f, 'val': v})
-        assert expect == s
-
-    for f, v in combinations:
-        yield _check, f, v
+    s = render('{{ fmt|f(val) }}', {'fmt': f, 'val': v})
+    assert expect == s
 
 
 def test_datetime():
