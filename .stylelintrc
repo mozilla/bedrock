@@ -36,5 +36,8 @@
     "no-extra-semicolons": true,
     "no-missing-end-of-source-newline": true,
     "no-eol-whitespace": true
-  }
+  },
+  "ignoreFiles": [
+    "media/css/sandstone/mixins/at2x.less"
+  ]
 }
