@@ -14,6 +14,7 @@ class EnterprisePage(FirefoxBasePage):
     _signup_button_locator = (By.CSS_SELECTOR, '.qa-sign-up')
     _download_release_locator = (By.CSS_SELECTOR, '.qa-download-release')
     _download_esr_locator = (By.CSS_SELECTOR, '.qa-download-esr')
+    _download_msi_locator = (By.CSS_SELECTOR, '.qa-download-msi')
 
     @property
     def signup_button(self):
@@ -26,3 +27,7 @@ class EnterprisePage(FirefoxBasePage):
     @property
     def download_esr_link(self):
         return self.find_element(*self._download_esr_locator)
+
+    @property
+    def download_msi_link(self):
+        return self.find_element(*self._download_msi_locator)
