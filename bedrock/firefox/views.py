@@ -613,6 +613,11 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
                 template = 'firefox/whatsnew/index.html'
         elif locale == 'id':
             template = 'firefox/whatsnew/index-lite.id.html'
+        elif version.startswith('68.'):
+            if locale in trailhead_locales:
+                template = 'firefox/whatsnew/whatsnew-fx68-trailhead.html'
+            else:
+                template = 'firefox/whatsnew/whatsnew-fx68.html'
         elif version.startswith('67.0.') and locale in trailhead_locales:
             template = 'firefox/whatsnew/whatsnew-fx67.0.5.html'
         elif version.startswith('67.'):
