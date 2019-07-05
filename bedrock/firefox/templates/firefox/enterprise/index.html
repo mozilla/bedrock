@@ -26,8 +26,8 @@
 {% block content %}
 <main role="main">
   {% call hero(
-    title=_('Firefox Quantum for Enterprise'),
-    desc=_('Speed up your business by giving employees a managed version of the super-fast new Firefox. <em>Now with Windows Group Policy support.</em>'),
+    title=_('Firefox for Enterprise'),
+    desc=_('Speed up your business by giving employees a managed version of the super-fast new Firefox.'),
     class='mzp-has-image mzp-t-dark mzp-t-product-firefox t-enterprise',
     include_cta=True,
     image_url='firefox/enterprise/fx-browser-img.svg',
@@ -72,7 +72,11 @@
     </div>
     <div class="c-links">
       <h3>{{ _('Firefox Extended Support Release (ESR)') }}</h3>
-      <a class="qa-download-esr" href="{{ firefox_url('desktop', 'all', 'esr') }}">{{ _('Download ESR') }}</a>
+      <a class="qa-download-esr" href="{{ firefox_url('desktop', 'all') }}">{{ _('Download ESR') }}</a>
+    </div>
+    <div class="c-links">
+      <h3>{{ _('Firefox MSI Installers') }}</h3>
+      <a class="qa-download-esr" href="{{ firefox_url('desktop', 'all') }}">{{ _('Download MSI') }}</a>
     </div>
 
     <h2>{{ _('Resources') }}</h2>
