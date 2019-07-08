@@ -36,16 +36,15 @@
   {{ _('Mozilla newsgroups are sponsored by <a href="%s">Giganews Newsgroups</a>, to whom we are very grateful.')|format('https://www.giganews.com/') }}
   <a href="https://www.giganews.com/"><img src="{{ static('img/mozorg/about/giganews.png') }}" alt="" height="25" width="89" /></a>
   </p>
-
+  <a href="https://www.google.com/" ><img
+    src="{{ static('img/logos/google/logo_google.svg') }}"
+    width="75" height="32" alt="Google" /></a>
   <form method="get" action="https://groups.google.com/groups">
-  <a href="https://www.google.com/"><img
-       src="https://www.google.com/logos/Logo_25wht.gif"
-       width="75" height="32" alt="Google" /></a>
-     <input type="text" name="as_q" maxlength="256" value="" placeholder="{{ _('Search Forums') }}" />
-       <input type="hidden" name="hl" value="en" />
-       <input type="hidden" name="lr" value="" />
-       <input type="hidden" name="as_ugroup" value="mozilla.*" />
-       <input type="submit" name="btnG" value="{{ _('Search') }}" class="form-button" />
+    <input type="text" name="as_q" maxlength="256" value="" placeholder="{{ _('Search Forums') }}" />
+      <input type="hidden" name="hl" value="en" />
+      <input type="hidden" name="lr" value="" />
+      <input type="hidden" name="as_ugroup" value="mozilla.*" />
+      <input type="submit" name="btnG" value="{{ _('Search') }}" class="form-button" />
   </form>
 
   <nav class="toc">
