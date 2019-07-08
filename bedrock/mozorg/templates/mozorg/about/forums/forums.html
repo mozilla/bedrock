@@ -38,8 +38,8 @@
   </p>
   <a href="https://www.google.com/" ><img src="{{ static('img/logos/google/logo_google.svg') }}" width="75" height="25" alt="Google" /></a>
   <form method="get" action="https://groups.google.com/groups">
-    <label for="as_q">{{ _('Search Forums') }}</label>
-    <input type="text" id="as_q" name="as_q" maxlength="256" value="" placeholder="{{ _('Search Forums') }}" />
+    <label for="query">{{ _('Search Forums') }}</label>
+    <input type="text" id="as_q" name="as_q" maxlength="256" value="" id="query" />
       <input type="hidden" name="hl" value="en" />
       <input type="hidden" name="lr" value="" />
       <input type="hidden" name="as_ugroup" value="mozilla.*" />

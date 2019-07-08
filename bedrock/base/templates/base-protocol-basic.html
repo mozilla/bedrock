@@ -13,9 +13,9 @@
   {% block main_feature %}{% endblock %}
   <div id="main-content" class="mzp-l-content{% if self.side_nav()|trim|length or self.side_extra()|trim|length %} mzp-has-sidebar mzp-l-sidebar-right{% endif %}">
     <main class="mzp-l-main">
-        <article class="mzp-c-article">
-          {% block article %}{% endblock %}
-        </article>
+      <article class="mzp-c-article">
+        {% block article %}{% endblock %}
+      </article>
     </main>
     {% block sidebar %}
       <aside class="mzp-l-sidebar">
