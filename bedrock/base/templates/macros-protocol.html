@@ -205,6 +205,9 @@
 
 {% macro sidemenu_lists(arr, body_id='') -%}
   <nav class="mzp-c-sidemenu">
+    <section class="mzp-c-sidemenu-summary mzp-js-toggle" aria-controls="sidebar-menu">
+      <h3 class="mzp-c-sidemenu-label">Menu</h3>
+    </section>
     <section class="mzp-c-sidemenu-main">
       {% for menu in arr %}
 

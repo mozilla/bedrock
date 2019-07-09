@@ -1605,7 +1605,6 @@
       "files": [
         "js/libs/jquery-3.4.1.min.js",
         "js/base/mozilla-utils.js",
-        "protocol/js/protocol-newsletter.js",
         "js/newsletter/form-protocol.js",
         "js/base/mozilla-client.js",
         "js/base/class-list-polyfill.js",
@@ -1625,6 +1624,13 @@
         "js/base/fxa-utm-referral.js"
       ],
       "name": "common-protocol"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-newsletter.js",
+        "protocol/js/protocol-sidemenu.js"
+      ],
+      "name": "basic-protocol"
     },
     {
       "files": [

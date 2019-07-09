@@ -36,3 +36,13 @@
     </aside>
   {% endblock %}
 {% endblock %}
+
+{% block site_js %}
+  {{ super() }}
+  <!--[if !lte IE 8]><!-->
+    {{ js_bundle('basic-protocol') }}
+  <!--<![endif]-->
+{% endblock %}
+
+
+
