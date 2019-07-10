@@ -33,6 +33,27 @@ template data as keyword arguments:
 
 The variable `latest_version` will be available in the template.
 
+Optimizing images
+----------------
+
+Images can take a long time to load and eat up a lot of bandwidth. Always take care
+to optimize images before uploading them to the site.
+
+The script `img.sh` can be used to optimize images locally on the command line:
+
+# Before you run it for the first time you will need to run `npm install`
+# Add the image files to git's staging area `git add *`
+# Run the script `./bin/img.sh`
+# The optimized files will not automatically be staged, so be sure to add them before commiting
+
+The script will:
+
+- optimize JPG and PNG files using `tinypng <https://tinypng.com/>`_ (this step is optional
+  since running compression on the same images over and over degrades them)
+- optimize SVG images locally with svgo
+- check that SVGs have a viewbox (needed for IE support)
+- check that images that end in `-high-res` have low res versions as well
+
 Embedding images
 ----------------
 
