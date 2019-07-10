@@ -9,6 +9,7 @@ from subprocess import check_output, CalledProcessError, STDOUT
 from io import StringIO
 
 from django.conf import settings
+from django.utils.encoding import force_str
 
 import timeago
 from pathlib2 import Path
@@ -38,7 +39,7 @@ class GitRepo:
         finally:
             os.chdir(curdir)
 
-        return output.strip()
+        return force_str(output.strip())
 
     @property
     def current_hash(self):
