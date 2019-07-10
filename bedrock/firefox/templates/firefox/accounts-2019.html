@@ -69,12 +69,12 @@
     <div class="c-accounts-form">
       {{ fxa_email_form(
         entrypoint='mozilla.org-accounts_page',
-        utm_source='accounts_page',
+        utm_source='accounts-page',
         form_title=_('Join Firefox'),
         intro_text=_('Enter your email address to get started.'),
         button_class='mzp-c-button mzp-t-primary mzp-t-product',
         style='trailhead',
-        utm_params={'campaign': 'accounts-trailhead', 'content': 'form-upper', 'medium': 'referral'})
+        utm_params={'campaign': 'accounts-trailhead'})
       }}
 
       <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-accounts_page', action='signin', utm_params={'campaign': 'accounts-trailhead', 'content': 'form-upper', 'source': 'accounts_page'}) }} class="js-fxa-cta-link">{{ _('Sign In') }}</a></p>
