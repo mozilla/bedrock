@@ -25,12 +25,12 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     fi
 
     # tinypng png and jpg images
-    git diff --diff-filter=ACM --name-only HEAD | grep ".png\|.jpg" | xargs tinypng
+    git diff --diff-filter=ACM --name-only HEAD | grep ".png\|.jpg" | xargs ./node_modules/tinypng-cli/tinypng-cli.js
 fi
 
 # svgo svg images
 echo "Optimizing SVGs..."
-git diff --diff-filter=ACM --name-only HEAD | grep ".svg" | xargs svgo --disable=removeViewBox
+git diff --diff-filter=ACM --name-only HEAD | grep ".svg" | xargs ./node_modules/svgo/bin/svgo --disable=removeViewBox
 
 # check SVGs have viewbox
 echo "Checking for viewboxes..."
@@ -43,7 +43,7 @@ done
 
 # check -high-res have corresponding low res
 echo "Checking high-res images have a matching low-res..."
-highresimages=`git diff --diff-filter=ACM --name-only HEAD | grep "\-high\-res"`
+highresimages=$(git diff --diff-filter=ACM --name-only HEAD | grep "\-high\-res")
 for highresimage in $highresimages; do
     lowresimage=${highresimage/-high-res/}
     if ! [ -f "$lowresimage" ]; then

@@ -45,7 +45,7 @@
     "karma-jasmine": "2.0.1",
     "sinon": "7.3.2",
     "svgo": "^1.2.2",
-    "tinypng-cli": "0.0.7"
+    "tinypng-cli": "^0.0.7"
   },
   "bin": {
     "browser-sync": "/.bin/browser-sync"
