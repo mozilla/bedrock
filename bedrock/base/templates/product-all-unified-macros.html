@@ -16,7 +16,7 @@
   <select id="{{ version_select_id }}" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %}>
     <option value="{{ id }}">{{ version }}</option>
     {% if id == 'desktop_esr' and desktop_esr_next_version %}
-      <option value="desktop_esr_next">{{ version }}</option>
+      <option value="desktop_esr_next">{{ desktop_esr_next_version }}</option>
     {% endif %}
   </select>
 {% endmacro %}
