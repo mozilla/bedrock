@@ -17,11 +17,6 @@
   {{ css_bundle('firefox_whatsnew_67') }}
 {% endblock %}
 
-{% set fxa_utm_params = {
-  'campaign': 'fxa-embedded-form',
-  'content': 'get-firefox-account'
-} %}
-
 {% block body_class %}state-fxa-default{% endblock %}
 
 {% block site_header %}{% endblock %}
@@ -133,7 +128,7 @@
           entrypoint='mozilla.org-whatsnew67',
           button_class='mzp-c-button mzp-t-product mzp-t-small',
           utm_source='whatsnew67',
-          utm_params=fxa_utm_params)
+          content='unlock-benefits')
       }}
       {% endblock %}
     </div>

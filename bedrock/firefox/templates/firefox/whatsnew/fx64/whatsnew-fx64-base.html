@@ -3,7 +3,7 @@
 
 {% from "macros-protocol.html" import hero, call_out_compact with context %}
 
-{% from "macros.html" import fxa_email_form, fxa_link_fragment, google_play_button with context %}
+{% from "macros.html" import fxa_link_fragment, google_play_button with context %}
 
 {% add_lang_files "firefox/whatsnew_64" %}
 
@@ -31,12 +31,6 @@
   {% set sync_head = _('Send tabs instantly to your devices') %}
   {% set sync_desc = _('Send an open tab on one device to all your others with a single tap. Much easier than texting or emailing yourself those links.') %}
 {% endif %}
-
-{% set fxa_utm_params = {
-  'campaign': 'wnp64',
-  'content': '/firefox/WNP/64/',
-  'source': 'whatsnew64'
-} %}
 
 {% block page_title %}{{ page_title }}{% endblock %}
 {% block page_desc %}{{ page_desc }}{% endblock %}
@@ -68,8 +62,8 @@
    include_cta=True
   ) %}
   <p class="show-fxa-supported-signed-out show-fxa-default">
-    <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew64', action='signup', utm_params=fxa_utm_params) }} class="js-fxa-cta-link mzp-c-button mzp-t-product">{{ button_create }}</a><br>
-    <span class="wn64-signin">{{ login_desc }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew64', utm_params=fxa_utm_params) }} class="js-fxa-cta-link">{{ login_link }}</a></span>
+    <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew64', action='signup', utm_params={'source': 'whatsnew64'}) }} class="js-fxa-cta-link mzp-c-button mzp-t-product">{{ button_create }}</a><br>
+    <span class="wn64-signin">{{ login_desc }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew64', utm_params={'source': 'whatsnew64'}) }} class="js-fxa-cta-link">{{ login_link }}</a></span>
   </p>
   {% endcall %}
   {% call hero(
@@ -115,8 +109,8 @@
     class='mzp-t-firefox t-wn64 show-fxa-default show-fxa-supported-signed-out'
   ) %}
     <p>
-      <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew64', action='signup', utm_params=fxa_utm_params) }} class="js-fxa-cta-link mzp-c-button mzp-t-product">{{ button_create }}</a><br>
-      <span class="wn64-signin">{{ login_desc }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew64', utm_params=fxa_utm_params) }} class="js-fxa-cta-link">{{ login_link }}</a></span>
+      <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew64', action='signup', utm_params={'source': 'whatsnew64'}) }} class="js-fxa-cta-link mzp-c-button mzp-t-product">{{ button_create }}</a><br>
+      <span class="wn64-signin">{{ login_desc }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew64', utm_params={'source': 'whatsnew64'}) }} class="js-fxa-cta-link">{{ login_link }}</a></span>
     </p>
   {% endcall %}
 

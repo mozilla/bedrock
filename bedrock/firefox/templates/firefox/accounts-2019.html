@@ -59,8 +59,8 @@
       <p class="c-accounts-hero-desc">{{ _('See if you’ve been involved in an online data breach.') }}</p>
 
       {{ monitor_button(
-        entrypoint='mozilla.org-accounts_page',
-        utm_source='accounts_page',
+        entrypoint='mozilla.org-accounts-page',
+        utm_source='accounts-page',
         utm_campaign='accounts-trailhead'
       ) }}
     </div>
@@ -68,13 +68,13 @@
 
     <div class="c-accounts-form">
       {{ fxa_email_form(
-        entrypoint='mozilla.org-accounts_page',
-        utm_source='accounts-page',
+        entrypoint='mozilla.org-firefox-accounts',
+        utm_source='firefox-accounts',
         form_title=_('Join Firefox'),
         intro_text=_('Enter your email address to get started.'),
         button_class='mzp-c-button mzp-t-primary mzp-t-product',
         style='trailhead',
-        utm_params={'campaign': 'accounts-trailhead'})
+        campaign= 'trailhead')
       }}
 
       <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-accounts_page', action='signin', utm_params={'campaign': 'accounts-trailhead', 'content': 'form-upper', 'source': 'accounts_page'}) }} class="js-fxa-cta-link">{{ _('Sign In') }}</a></p>
