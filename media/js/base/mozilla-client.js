@@ -402,9 +402,9 @@ if (typeof window.Mozilla === 'undefined') {
 
                     // device counts
                     // device counts are only available in Fx50+, fallback 'unknown' if not detectable
-                    details.setup = event.detail.data.hasOwnProperty('setup') ? event.detail.data.setup : 'unknown';
-                    details.desktopDevices =  event.detail.data.hasOwnProperty('desktopDevices') ? event.detail.data.desktopDevices : 'unknown';
-                    details.mobileDevices =  event.detail.data.hasOwnProperty('mobileDevices') ? event.detail.data.mobileDevices : 'unknown';
+                    details.setup = Object.prototype.hasOwnProperty.call(event.detail.data, 'setup') ? event.detail.data.setup : 'unknown';
+                    details.desktopDevices = Object.prototype.hasOwnProperty.call(event.detail.data, 'desktopDevices') ? event.detail.data.desktopDevices : 'unknown';
+                    details.mobileDevices = Object.prototype.hasOwnProperty.call(event.detail.data, 'mobileDevices') ? event.detail.data.mobileDevices : 'unknown';
 
                     returnFxaDetails();
                 };

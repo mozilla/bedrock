@@ -22,10 +22,10 @@
         }
 
         // if custom attribution data is not fully formed then return false.
-        if (!params.hasOwnProperty('utm_source') ||
-            !params.hasOwnProperty('utm_medium') ||
-            !params.hasOwnProperty('utm_campaign') ||
-            !params.hasOwnProperty('utm_content')) {
+        if (!Object.prototype.hasOwnProperty.call(params, 'utm_source') ||
+            !Object.prototype.hasOwnProperty.call(params, 'utm_medium') ||
+            !Object.prototype.hasOwnProperty.call(params, 'utm_campaign') ||
+            !Object.prototype.hasOwnProperty.call(params, 'utm_content')) {
             return false;
         }
 

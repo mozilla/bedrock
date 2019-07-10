@@ -22,12 +22,12 @@ so the correct template is rendered on /download/thanks/.
     // template is loaded on /download/thanks/
 
     // 'xv' denotes a 'variant' page for a specific marketing campaign
-    if (params.hasOwnProperty('xv') && regex.test(params['xv'])) {
+    if (Object.prototype.hasOwnProperty.call(params, 'xv') && regex.test(params['xv'])) {
         newQs.push('xv=' + params['xv']);
     }
 
     // 'v' denotes an experiment variation
-    if (params.hasOwnProperty('v') && regex.test(params['v'])) {
+    if (Object.prototype.hasOwnProperty.call(params, 'v') && regex.test(params['v'])) {
         newQs.push('v=' + params['v']);
     }
 

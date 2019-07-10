@@ -3,8 +3,6 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, it, expect, Mozilla */
-
 describe('dnt-helper.js', function() {
 
     'use strict';

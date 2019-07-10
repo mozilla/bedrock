@@ -325,7 +325,7 @@ if (typeof window.Mozilla === 'undefined') {
         if (NotificationBanner.cutsTheMustard() && typeof options === 'object') {
 
             for (var i in options) {
-                if (options.hasOwnProperty(i)) {
+                if (Object.prototype.hasOwnProperty.call(options, i)) {
                     _options[i] = options[i];
                 }
             }
