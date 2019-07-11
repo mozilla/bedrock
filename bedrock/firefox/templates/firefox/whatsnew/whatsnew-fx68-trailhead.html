@@ -12,14 +12,14 @@
       button_class='mzp-c-button mzp-t-product mzp-t-small',
       utm_source='whatsnew68',
       style='trailhead',
-      utm_params={'campaign': 'fxa-embedded-form', 'content': 'whatsnew', 'medium': 'referral'})
+      utm_campaign='trailhead')
   }}
 {% endblock %}
 
 {% block monitor_button %}
   {{ monitor_button(
     entrypoint='mozilla.org-whatsnew68',
-    utm_source='whatsnew68',
-    utm_campaign='whatsnew68'
-  ) }}
+    utm_source='whatsnew68-trailhead',
+    utm_campaign='wnp-monitor-cta')
+  }}
 {% endblock %}
