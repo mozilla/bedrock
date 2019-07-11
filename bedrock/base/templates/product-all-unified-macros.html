@@ -14,7 +14,11 @@
   {% set version_select_id = 'select_' ~ id ~ '_version' %}
   <label for="{{ version_select_id }}" class="c-selection-label">{{ _('Which version would you like?') }}</label>
   <select id="{{ version_select_id }}" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %}>
-    <option value="{{ id }}">{{ version }}</option>
+    {# ESR can have two versions available. ESR Latest should always come first in the dropdown. #}
+    {% if id == 'desktop_esr_next' %}
+      <option value="desktop_esr">{{ desktop_esr_latest_version }}</option>
+    {% endif %}
+      <option value="{{ id }}">{{ version }}</option>
     {% if id == 'desktop_esr' and desktop_esr_next_version %}
       <option value="desktop_esr_next">{{ desktop_esr_next_version }}</option>
     {% endif %}

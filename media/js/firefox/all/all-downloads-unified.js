@@ -56,12 +56,20 @@
     };
 
     /**
-     * Set the currently selected product. The data-attribute on the <form> is
+     * Show the form for the currently selected product. The data-attribute on the <form> is
      * used to display the appropriate options for each individual product item.
      * @param {String} product `id`.
      */
-    FirefoxDownloader.setProductSelection = function(id) {
+    FirefoxDownloader.setFormSelection = function(id) {
         form.setAttribute('data-current', id);
+    };
+
+    /**
+     * Get the currently displayed product form.
+     * @returns {String} product `id`.
+     */
+    FirefoxDownloader.getFormSelection = function() {
+        return form.getAttribute('data-current');
     };
 
     /**
@@ -69,7 +77,17 @@
      * @returns {Object} product `id` and `label`.
      */
     FirefoxDownloader.getProductSelection = function() {
-        return FirefoxDownloader.getSelectOption(productSelect);
+        var product = FirefoxDownloader.getSelectOption(productSelect);
+
+        // ESR can have two versions available but it's listed as a single product in the dropdown.
+        if (product.id === 'desktop_esr') {
+            var version = FirefoxDownloader.getFormSelection();
+            if (version === 'desktop_esr_next') {
+                product.id = version;
+            }
+        }
+
+        return product;
     };
 
     /**
@@ -269,7 +287,7 @@
      * @param {Object} event object.
      */
     FirefoxDownloader.onProductChange = function(e) {
-        FirefoxDownloader.setProductSelection(e.target.value);
+        FirefoxDownloader.setFormSelection(e.target.value);
         FirefoxDownloader.generateDownloadURL();
     };
 
@@ -277,7 +295,12 @@
      * Product ESR input <select> handler.
      * @param {Object} event object.
      */
-    FirefoxDownloader.onVersionChange = function() {
+    FirefoxDownloader.onVersionChange = function(e) {
+        // ESR can have two versions available in product details.
+        if (e.target.value === 'desktop_esr' || e.target.value === 'desktop_esr_next') {
+            FirefoxDownloader.setFormSelection(e.target.value);
+        }
+        FirefoxDownloader.setAllSelectOptions(e.target.value, versionSelect);
         FirefoxDownloader.generateDownloadURL();
     };
 
@@ -358,7 +381,7 @@
         }
 
         if (pageLang && product.id && product.label) {
-            FirefoxDownloader.setProductSelection(product.id);
+            FirefoxDownloader.setFormSelection(product.id);
             FirefoxDownloader.setAllSelectOptions(pageLang, languageSelect);
             FirefoxDownloader.generateDownloadURL();
             FirefoxDownloader.enableForm();

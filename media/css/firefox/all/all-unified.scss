@@ -64,6 +64,17 @@ $image-path: '/media/protocol/img';
         }
     }
 
+    &[data-current="desktop_esr_next"] {
+        .c-selection-options[data-product="desktop_esr_next"] {
+            display: block;
+        }
+
+        // ESR Next has the same product links as regular ESR
+        .c-product-links[data-product="desktop_esr"] {
+            display: block;
+        }
+    }
+
     &[data-current="android_release"] {
         .c-selection-options[data-product="android_release"] {
             display: block;
