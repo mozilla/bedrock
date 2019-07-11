@@ -292,7 +292,7 @@
 
     DO NOT include utm_source in this dictionary! (It's already a required param.)
 #}
-{% macro fxa_email_form(entrypoint, utm_source, style, campaign, content, term, class_name='fxa-email-form', form_title='', intro_text='', button_text='', button_class='button button-blue') -%}
+{% macro fxa_email_form(entrypoint, utm_source, utm_campaign, utm_content, utm_term, style, class_name='fxa-email-form', form_title='', intro_text='', button_text='', button_class='button button-blue') -%}
   {% set service  = 'sync' %}
   <form action="{{ settings.FXA_ENDPOINT }}" data-mozillaonline-action="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}" id="fxa-email-form" class="{{ class_name }}">
     <input type="hidden" name="action" value="email" />
@@ -310,19 +310,19 @@
 
     {# utm_campaign is used to identify specific marketing campaigns. (For example: trailhead or skyline) If there is one, the campaign name is appended to the default value of `fxa-embedded-form`. #}
     {% if campaign %}
-      <input type="hidden" name="utm_campaign" value="{{ campaign }}-fxa-embedded-form" id="fxa-email-form-utm-campaign" />
+      <input type="hidden" name="utm_campaign" value="{{ utm_campaign }}-fxa-embedded-form" id="fxa-email-form-utm-campaign" />
     {% else %}
       <input type="hidden" name="utm_campaign" value="fxa-embedded-form" id="fxa-email-form-utm-campaign" />
     {% endif %}
 
     {# utm_content is optional. It should only be declared when there is new messaging associated with the form. (For example: `get-the-rest-of-firefox`) #}
     {% if content %}
-      <input type="hidden" name="utm_content" value="{{ content }}" id="fxa-email-form-utm-content" />
+      <input type="hidden" name="utm_content" value="{{ utm_content }}" id="fxa-email-form-utm-content" />
     {% endif %}
 
     {# utm_term is optional. It is used for paid search keywords. This should be provided if needed. #}
     {% if term %}
-      <input type="hidden" name="utm_term" value="{{ term }}" id="fxa-email-form-utm-term" />
+      <input type="hidden" name="utm_term" value="{{ utm_term }}" id="fxa-email-form-utm-term" />
     {% endif %}
 
     {% if style %}
