@@ -109,14 +109,19 @@
             </a>
             {{ select_product_list(products, disabled=True) }}
           </p>
-          {# Show the ESR version select dropdown if there are multiple ESR's available. #}
-          {% set hide_esr_version_select = False if desktop_esr_next_version else True %}
 
           {{ product_options('desktop_release', desktop_release_platforms, desktop_release_full_builds, desktop_release_latest_version, disabled=True, hide_version=True, hide_language=False) }}
           {{ product_options('desktop_beta', desktop_beta_platforms, desktop_beta_full_builds, desktop_beta_latest_version, disabled=True, hide_version=True, hide_language=False) }}
           {{ product_options('desktop_developer', desktop_developer_platforms, desktop_developer_full_builds, desktop_developer_latest_version, disabled=True, hide_version=True, hide_language=False) }}
           {{ product_options('desktop_nightly', desktop_nightly_platforms, desktop_nightly_full_builds, desktop_nightly_latest_version, disabled=True, hide_version=True, hide_language=False) }}
+
+          {# Show the ESR version select dropdown if there are multiple ESR's available. #}
+          {% set hide_esr_version_select = not desktop_esr_next_version %}
           {{ product_options('desktop_esr', desktop_esr_platforms, desktop_esr_full_builds, desktop_esr_latest_version, disabled=True, hide_version=hide_esr_version_select, hide_language=False) }}
+          {% if desktop_esr_next_version %}
+            {{ product_options('desktop_esr_next', desktop_esr_platforms_next, desktop_esr_full_builds_next, desktop_esr_next_version, disabled=True, hide_version=hide_esr_version_select, hide_language=False) }}
+          {% endif %}
+
           {{ product_options('android_release', android_release_platforms, android_release_full_builds, android_release_latest_version, disabled=True, hide_version=True, hide_language=True) }}
           {{ product_options('android_beta', android_beta_platforms, android_beta_full_builds, android_beta_latest_version, disabled=True, hide_version=True, hide_language=True) }}
           {{ product_options('android_nightly', android_nightly_platforms, android_nightly_full_builds, android_nightly_latest_version, disabled=True, hide_version=True, hide_language=True) }}

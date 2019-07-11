@@ -273,6 +273,67 @@ describe('all-downloads-unified.js', function() {
 
     });
 
+    describe('getProductSelection', function() {
+        it('should return the selected product', function() {
+            var product = {
+                id: 'desktop_esr',
+                label: 'Firefox Extended Support Release'
+            };
+
+            spyOn(Mozilla.FirefoxDownloader, 'getSelectOption').and.returnValue(product);
+            spyOn(Mozilla.FirefoxDownloader, 'getFormSelection');
+            expect(Mozilla.FirefoxDownloader.getProductSelection()).toEqual(product);
+        });
+
+        it('should return the correct ESR product', function() {
+            var next = 'desktop_esr_next';
+            var product = {
+                id: 'desktop_esr',
+                label: 'Firefox Extended Support Release'
+            };
+
+            spyOn(Mozilla.FirefoxDownloader, 'getSelectOption').and.returnValue(product);
+            spyOn(Mozilla.FirefoxDownloader, 'getFormSelection').and.returnValue(next);
+            var result = Mozilla.FirefoxDownloader.getProductSelection();
+            expect(result.id).toEqual(next);
+            expect(result.label).toEqual(product.label);
+        });
+    });
+
+    describe('onVersionChange', function() {
+        it('should update the form fields and generate a download URL', function() {
+            var e = {
+                target: {
+                    value: 'desktop_release'
+                }
+            };
+
+            spyOn(Mozilla.FirefoxDownloader, 'setFormSelection');
+            spyOn(Mozilla.FirefoxDownloader, 'setAllSelectOptions');
+            spyOn(Mozilla.FirefoxDownloader, 'generateDownloadURL');
+
+            Mozilla.FirefoxDownloader.onVersionChange(e);
+            expect(Mozilla.FirefoxDownloader.setFormSelection).not.toHaveBeenCalled();
+            expect(Mozilla.FirefoxDownloader.setAllSelectOptions).toHaveBeenCalledWith(e.target.value, jasmine.any(Object));
+            expect(Mozilla.FirefoxDownloader.generateDownloadURL).toHaveBeenCalled();
+        });
+
+        it('should update the product selection for ESR', function() {
+            var e = {
+                target: {
+                    value: 'desktop_esr_next'
+                }
+            };
+
+            spyOn(Mozilla.FirefoxDownloader, 'setFormSelection');
+            spyOn(Mozilla.FirefoxDownloader, 'setAllSelectOptions');
+            spyOn(Mozilla.FirefoxDownloader, 'generateDownloadURL');
+
+            Mozilla.FirefoxDownloader.onVersionChange(e);
+            expect(Mozilla.FirefoxDownloader.setFormSelection).toHaveBeenCalledWith(e.target.value);
+        });
+    });
+
     describe('init', function() {
         var platform = 'windows';
         var language = 'de';
@@ -282,7 +343,7 @@ describe('all-downloads-unified.js', function() {
         };
 
         beforeEach(function() {
-            spyOn(Mozilla.FirefoxDownloader, 'setProductSelection');
+            spyOn(Mozilla.FirefoxDownloader, 'setFormSelection');
             spyOn(Mozilla.FirefoxDownloader, 'setAllSelectOptions');
             spyOn(Mozilla.FirefoxDownloader, 'generateDownloadURL');
             spyOn(Mozilla.FirefoxDownloader, 'enableForm');
