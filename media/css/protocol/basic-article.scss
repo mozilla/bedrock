@@ -6,9 +6,10 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../protocol/css/components/article';
-@import '../../protocol/css/templates/main-with-sidebar';
-@import '../../protocol/css/components/sidebar-menu';
 @import '../../protocol/css/components/newsletter-form';
+@import '../../protocol/css/components/sidebar-menu';
+@import '../../protocol/css/includes/mixins/details';
+@import '../../protocol/css/templates/main-with-sidebar';
 
 
 .side-reference {
@@ -27,6 +28,21 @@ $image-path: '/media/protocol/img';
     .more {
         display: block;
         padding: (1.25em / 2) 0;
+    }
+
+    /* collapse on mobile */
+    &.is-details {
+        @include details;
+
+        .is-summary button {
+            @include summary;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .is-summary button[aria-expanded=true]:before {
+            @include summary-open;
+        }
     }
 }
 

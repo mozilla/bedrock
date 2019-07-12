@@ -434,9 +434,9 @@
     },
     {
       "files": [
-        "css/protocol/basic.scss"
+        "css/protocol/basic-article.scss"
       ],
-      "name": "protocol-basic"
+      "name": "basic-article"
     },
     {
       "files": [
@@ -1605,7 +1605,6 @@
       "files": [
         "js/libs/jquery-3.4.1.min.js",
         "js/base/mozilla-utils.js",
-        "js/newsletter/form-protocol.js",
         "js/base/mozilla-client.js",
         "js/base/class-list-polyfill.js",
         "protocol/js/protocol-supports.js",
@@ -1627,10 +1626,12 @@
     },
     {
       "files": [
+        "js/base/mozilla-article.js",
+        "js/newsletter/form-protocol.js",
         "protocol/js/protocol-newsletter.js",
         "protocol/js/protocol-sidemenu.js"
       ],
-      "name": "basic-protocol"
+      "name": "basic-article"
     },
     {
       "files": [

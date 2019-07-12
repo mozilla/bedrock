@@ -4,19 +4,14 @@
 
 {% block site_css %}
   {{ super() }}
-  {{ css_bundle('protocol-basic') }}
+  {{ css_bundle('basic-article') }}
 {% endblock %}
 
 {% block body_id %}{{ body_id }}{% endblock %}
 
 {% block content %}
   {% block main_feature %}{% endblock %}
-  <div id="main-content" class="mzp-l-content{% if self.side_nav()|trim|length or self.side_extra()|trim|length %} mzp-has-sidebar mzp-l-sidebar-right{% endif %}">
-    <main class="mzp-l-main">
-      <article class="mzp-c-article">
-        {% block article %}{% endblock %}
-      </article>
-    </main>
+  <div id="main-content" class="mzp-l-content{% if self.side_nav()|trim|length or self.side_extra()|trim|length %} mzp-has-sidebar mzp-l-sidebar-left{% endif %}">
     {% block sidebar %}
       <aside class="mzp-l-sidebar">
         {% block side_nav %}
@@ -25,6 +20,12 @@
         {% endblock %}
       </aside>
     {% endblock %}
+
+    <main class="mzp-l-main">
+      <article class="mzp-c-article">
+        {% block article %}{% endblock %}
+      </article>
+    </main>
   </div>
 
   {% block newsletter %}
@@ -40,7 +41,7 @@
 {% block site_js %}
   {{ super() }}
   <!--[if !lte IE 8]><!-->
-    {{ js_bundle('basic-protocol') }}
+    {{ js_bundle('basic-article') }}
   <!--<![endif]-->
 {% endblock %}
 

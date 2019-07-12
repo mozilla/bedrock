@@ -10,6 +10,10 @@
 
     var newsletterForm = document.getElementById('newsletter-form');
 
+    if(!newsletterForm) {
+        return;
+    }
+
     // handle errors
     var errorArray = [];
     var newsletterErrors = document.getElementById('newsletter-errors');

@@ -186,8 +186,6 @@
 </{{ base_el }}>
 {%- endmacro %}
 
-
-
 {# sidemenu_lists() takes an array of lists and makes nav menus
   The list has the link, a body_id, and a the text to display
   {% set navigation_bar_client_bounty = [
@@ -206,7 +204,17 @@
 {% macro sidemenu_lists(arr, body_id='') -%}
   <nav class="mzp-c-sidemenu">
     <section class="mzp-c-sidemenu-summary mzp-js-toggle" aria-controls="sidebar-menu">
-      <h3 class="mzp-c-sidemenu-label">Menu</h3>
+      <h3 class="mzp-c-sidemenu-label">{{ _('Menu') }}</h3>
+      <ul>
+        <li>{{ arr[0][0][2]|e }}</li>
+        {% for menu in arr %}
+          {% for href, id, caption in menu %}
+            {% if id == body_id and body_id != '' %}
+              <li class="mzp-is-current">{{ caption|e }}</li>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      </ul>
     </section>
     <section class="mzp-c-sidemenu-main">
       {% for menu in arr %}
