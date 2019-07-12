@@ -910,10 +910,6 @@ class FeaturesPrivateBrowsingView(BlogPostsView):
 def firefox_home(request):
     locale = l10n_utils.get_locale(request)
     variant = request.GET.get('v', None)
-    newsletter_locales = ['en-US', 'en-GB', 'en-CA', 'en-ZA', 'fr', 'de']
-    show_newsletter = (
-        switch('firefox_pre_download_newsletter') and locale in newsletter_locales
-    )
 
     # ensure variant matches pre-defined value
     if variant not in [
@@ -931,7 +927,7 @@ def firefox_home(request):
         template = 'firefox/home/index.html'
 
     return l10n_utils.render(
-        request, template, {'show_newsletter': show_newsletter, 'variation': variant}
+        request, template, {'variation': variant}
     )
 
 
