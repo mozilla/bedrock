@@ -3,65 +3,78 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% add_lang_files "privacy/index" %}
+{% from "macros-protocol.html" import sidemenu_lists with context %}
 {% extends "base-protocol.html" %}
-
-{% block page_title %}
-  {{ header.h2|join|safe }}
-{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('privacy_protocol') }}
 {% endblock %}
 
-{% block body_class %}privacy-policy{% endblock %}
+{% block body_class %}mzp-t-firefox{% endblock %}
 
-{% block string_data %}
-  data-choices-copy="{{ _('Choose how you want to share this data in Firefox.') }}"
-  data-choices-button="{{ _('Choose…') }}"
+{% block page_title %}
+  {{ doc.h1.string|join|safe }}
 {% endblock %}
 
-{% set header = doc.body.section.extract() %}
-{% set lead_in = doc.body.section.extract() %}
-{% set footnote = doc.body.select('#footnote') %}
-{% if footnote %}
-  {% set footnote = footnote[0].extract() %}
+{% if LANG == 'de' %}
+  {# bug 1319207 - As product names are not exposed to L10n, best to specify unique name for de #}
+  {% set focus_url = url('privacy.notices.firefox-klar') %}
+  {% set focus_name = 'Firefox Klar' %}
+{% else %}
+  {% set focus_url = url('privacy.notices.firefox-focus') %}
+  {% set focus_name =  _('Firefox Focus') %}
 {% endif %}
 
+{% set navigation_bar = [
+  (url('privacy'), 'privacy-home', _('Mozilla Privacy')),
+  (url('privacy.notices.websites'), 'privacy-websites', _('Mozilla Websites, Communications &amp; Cookies')),
+  (url('privacy.notices.firefox'), 'privacy-quantum', _('Firefox Browser')),
+  (url('privacy.notices.firefox-fire-tv'), 'privacy-fire-tv', _('Firefox for Fire TV')),
+  (url('privacy.notices.firefox-reality'), 'privacy-reality', _('Firefox Reality')),
+  (url('privacy.notices.firefox-os'), 'privacy-os', _('Firefox OS')),
+  (focus_url, 'privacy-focus', focus_name),
+  (url('privacy.notices.thunderbird'), 'privacy-thunderbird', _('Thunderbird')),
+] -%}
+
 {% block content %}
-<article class="section-content mzp-l-content mzp-t-firefox" itemtype="http://schema.org/Article">
-  <header class="l-narrow">
-    <div class="policy-title">
-      <h1 itemprop="name">{{ header.h2|join|safe }}</h1>
-      <time datetime="{{ header.select('[datetime]')[0]['datetime'] }}" itemprop="dateModified">{{ header.select('[datetime]')[0].string }}</time>
-    </div>
+<div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
+  <aside class="mzp-l-sidebar">
+    {{ sidemenu_lists([navigation_bar], body_id) }}
+  </aside>
+  <article class="mzp-l-main" itemtype="http://schema.org/Article">
+    <header>
+      {% if self.article_header_logo()|trim|length %}
+      <img class="privacy-logo" src="{% block article_header_logo %}{% endblock %}" alt="">
+      {% endif %}
+      <div class="privacy-title">
+        <h1 itemprop="name">{% block title %}{% endblock %}</h1>
+        {% block time %}{% endblock %}
+      </div>
 
-    <div class="privacy-lead-in">
-      {{ lead_in|join|safe }}
-    </div>
-  </header>
-
-  <main class="privacy-body" itemprop="articleBody">
-    <div class="l-narrow">
-    {% set sections = doc.body.find_all('section', recursive=False) %}
-    {% for section in sections %}
-      {{ section|safe }}
-    {% endfor %}
-    </div>
-  </main>
-
-  <section class="privacy-footnote">
-    <div class="l-narrow">
-    {% if footnote %}
-      {{ footnote|join|safe }}
-    {% endif %}
-
-      <p class="back">
-        <a href="{{ url('privacy') }}">{{ _('Back to Mozilla Privacy Policy') }}</a>
-      </p>
-    </div>
-  </section>
-</article>
+      {% if self.lead_in()|trim|length %}
+      <div class="privacy-lead-in">
+        {% block lead_in %}{% endblock %}
+      </div>
+      {% endif %}
+    </header>
+    <main class="privacy-body" itemprop="articleBody">
+      <div class="l-narrow">
+      {% block sections %}
+      {% endblock %}
+      </div>
+    </main>
+    <footer class="privacy-footnote">
+      <div>
+        {% if self.footnote()|trim|length %}
+          {% block footnote%}{% endblock %}
+        {% endif %}
+      </div>
+    </footer>
+  </article>
+</div>
 {% endblock %}
+
+{% block email_form %}{% endblock %}
 
 {% block js %}
   {{ js_bundle('privacy_protocol') }}
