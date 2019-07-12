@@ -11,6 +11,10 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/includes/mixins/details';
 @import '../../protocol/css/templates/main-with-sidebar';
 
+// mozilla/protocol#407
+.mzp-c-sidemenu {
+    background-color: $color-gray-20;
+}
 
 .side-reference {
     border-bottom: 2px solid #ddd;
@@ -48,8 +52,10 @@ $image-path: '/media/protocol/img';
 
 .t-love {
     // mozilla/protocol#371
-    .mzp-c-newsletter-image {
-        margin-top: $layout-lg;
+    @media #{$mq-md} {
+        .mzp-c-newsletter-image {
+            margin-top: $layout-xl;
+        }
     }
 
     // mozilla/protocol#370
