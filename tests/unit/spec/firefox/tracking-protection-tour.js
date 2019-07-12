@@ -161,7 +161,7 @@ describe('tracking-protection-tour.js', function() {
 
         describe('shoud open "controlCenter" and highlight "trackingUnblock" if target is available', function() {
 
-            beforeEach(function() {            
+            beforeEach(function() {
                 spyOn(Mozilla.UITour, 'getConfiguration').and.callFake(function(configName, callback) {
                     callback({
                         targets: ['controlCenter-trackingUnblock']
@@ -360,6 +360,10 @@ describe('tracking-protection-tour.js', function() {
     });
 
     describe('handleVisibilityChange', function() {
+
+        afterEach(function() {
+            Mozilla.TPTour.documentHidden = null;
+        });
 
         it('should hide UITour highlights when document is hidden', function() {
             Mozilla.TPTour.documentHidden = true;

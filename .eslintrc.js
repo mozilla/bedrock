@@ -15,7 +15,7 @@ module.exports = {
      * */
     overrides: [
         {
-            files: 'gulpfile.js',
+            files: ['gulpfile.js', 'tests/unit/karma.conf.js'],
             env: {
                 'commonjs': true,
                 'node': true,

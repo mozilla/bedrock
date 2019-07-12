@@ -10,6 +10,15 @@
 describe('mozilla-traffic-cop-funnelcake-geo.js', function() {
     'use strict';
 
+    beforeEach(function() {
+        // stub out Mozilla.Cookie lib
+        window.Mozilla.Cookies = sinon.stub();
+        window.Mozilla.Cookies.enabled = sinon.stub().returns(true);
+        window.Mozilla.Cookies.setItem = sinon.stub();
+        window.Mozilla.Cookies.getItem = sinon.stub();
+        window.Mozilla.Cookies.hasItem = sinon.stub();
+    });
+
     describe('checkInCohort', function() {
         it('should return true if user has the provided cookie', function() {
             spyOn(Mozilla.Cookies, 'hasItem').and.returnValue(true);

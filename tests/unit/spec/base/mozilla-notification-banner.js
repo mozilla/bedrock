@@ -16,9 +16,21 @@ describe('mozilla-notification-banner.js', function() {
         window.Mozilla.Cookies.setItem = sinon.stub();
         window.Mozilla.Cookies.getItem = sinon.stub();
         window.Mozilla.Cookies.hasItem = sinon.stub();
+
+        // stub out google tag manager
+        window.dataLayer = sinon.stub();
+        window.dataLayer.push = sinon.stub();
     });
 
     describe('init', function() {
+
+        afterEach(function() {
+            var notification = document.querySelector('.notification-banner');
+
+            if (notification) {
+                document.body.removeChild(notification);
+            }
+        });
 
         var options = {
             'id': 'fx-out-of-date-banner-copy1-direct-1',
@@ -124,6 +136,14 @@ describe('mozilla-notification-banner.js', function() {
 
     describe('show', function() {
 
+        afterEach(function() {
+            var notification = document.querySelector('.notification-banner');
+
+            if (notification) {
+                document.body.removeChild(notification);
+            }
+        });
+
         it('should display the notification and set a cookie', function() {
             var options = {
                 'id': 'fx-out-of-date-banner-copy1-direct-1',
@@ -151,7 +171,6 @@ describe('mozilla-notification-banner.js', function() {
             expect(Mozilla.NotificationBanner.bind).toHaveBeenCalled();
             expect(Mozilla.NotificationBanner.setCookie).toHaveBeenCalledWith(options.id);
             expect(Mozilla.NotificationBanner.trackGAShow).toHaveBeenCalledWith(options);
-            document.body.removeChild(notification);
         });
     });
 
@@ -239,7 +258,31 @@ describe('mozilla-notification-banner.js', function() {
 
     describe('confirm', function() {
 
+        afterEach(function() {
+            var notification = document.querySelector('.notification-banner');
+
+            if (notification) {
+                document.body.removeChild(notification);
+            }
+        });
+
         it('should set a cookie before redirecting for regular click', function() {
+            var options = {
+                'id': 'fx-out-of-date-banner-copy1-direct-1',
+                'name': 'fx-out-of-date',
+                'experimentName': 'fx-out-of-date-banner-copy1',
+                'experimentVariant': 'direct-1',
+                'heading': 'Your browser security is at risk.',
+                'message': 'Update Firefox now to protect yourself from the latest malware.',
+                'confirm': 'Update now',
+                'gaConfirmAction': 'Update Firefox',
+                'gaConfirmLabel': 'Firefox for Desktop',
+                'url': '/firefox/download/thanks/',
+                'close': 'Close',
+                'gaCloseLabel': 'Close',
+                'confirmClick': null
+            };
+
             var event = {
                 'metaKey': false,
                 'ctrlKey': false,
@@ -251,6 +294,7 @@ describe('mozilla-notification-banner.js', function() {
             spyOn(Mozilla.NotificationBanner, 'doRedirect');
             spyOn(Mozilla.NotificationBanner, 'trackGAConfirm');
             spyOn(event, 'preventDefault');
+            Mozilla.NotificationBanner.init(options);
             Mozilla.NotificationBanner.confirm(event);
             expect(event.preventDefault).toHaveBeenCalled();
             expect(Mozilla.NotificationBanner.setCookie).toHaveBeenCalledWith(Mozilla.NotificationBanner.COOKIE_INTERACTION_VALUE);
@@ -259,6 +303,22 @@ describe('mozilla-notification-banner.js', function() {
         });
 
         it('should only set cookie for control click', function() {
+            var options = {
+                'id': 'fx-out-of-date-banner-copy1-direct-1',
+                'name': 'fx-out-of-date',
+                'experimentName': 'fx-out-of-date-banner-copy1',
+                'experimentVariant': 'direct-1',
+                'heading': 'Your browser security is at risk.',
+                'message': 'Update Firefox now to protect yourself from the latest malware.',
+                'confirm': 'Update now',
+                'gaConfirmAction': 'Update Firefox',
+                'gaConfirmLabel': 'Firefox for Desktop',
+                'url': '/firefox/download/thanks/',
+                'close': 'Close',
+                'gaCloseLabel': 'Close',
+                'confirmClick': null
+            };
+
             var event = {
                 'metaKey': false,
                 'ctrlKey': true,
@@ -270,6 +330,7 @@ describe('mozilla-notification-banner.js', function() {
             spyOn(Mozilla.NotificationBanner, 'doRedirect');
             spyOn(Mozilla.NotificationBanner, 'trackGAConfirm');
             spyOn(event, 'preventDefault');
+            Mozilla.NotificationBanner.init(options);
             Mozilla.NotificationBanner.confirm(event);
             expect(event.preventDefault).not.toHaveBeenCalled();
             expect(Mozilla.NotificationBanner.setCookie).toHaveBeenCalledWith(Mozilla.NotificationBanner.COOKIE_INTERACTION_VALUE);
@@ -291,7 +352,7 @@ describe('mozilla-notification-banner.js', function() {
                 'url': '/firefox/download/thanks/',
                 'close': 'Close',
                 'gaCloseLabel': 'Close',
-                confirmClick: function() {} // eslint-disable-line no-empty-function
+                'confirmClick': function() {} // eslint-disable-line no-empty-function
             };
 
             var event = {
