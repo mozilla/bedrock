@@ -215,6 +215,14 @@ To view them or update to a more recent version update the submodule::
 
     $ git submodule update --init --recursive
 
+To add a new commit of the git submodule to bedrock:
+
+    $ cd vendor-local/src/legal-docs
+    $ git checkout master
+    $ git pull
+    $ cd .. (back to project root)
+    $ git commit -am "Update legal-docs git submodule"
+
 Localization
 ============
 
