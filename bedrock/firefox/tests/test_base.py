@@ -286,11 +286,11 @@ class TestWhatsNew(TestCase):
 
     @override_settings(DEV=True)
     def test_fx_dev_browser_35_0_a2_whatsnew(self, render_mock):
-        """Should show dev browser whatsnew template"""
+        """Should defaultr whatsnew template"""
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, version='35.0a2')
         template = render_mock.call_args[0][1]
-        assert template == ['firefox/dev-whatsnew.html']
+        assert template == ['firefox/whatsnew/index.html']
 
     @override_settings(DEV=True)
     def test_fx_dev_browser_57_0_a2_whatsnew(self, render_mock):
@@ -532,11 +532,11 @@ class TestFirstRun(TestCase):
 
     @override_settings(DEV=True)
     def test_fx_firstrun_56_0(self, render_mock):
-        """Should use the default dev edition firstrun template"""
+        """Should use the default firstrun template"""
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='56.0a2')
         template = render_mock.call_args[0][1]
-        assert template == ['firefox/dev-firstrun.html']
+        assert template == ['firefox/firstrun/firstrun-quantum.html']
 
     @override_settings(DEV=True)
     def test_fxdev_firstrun_57_0(self, render_mock):
