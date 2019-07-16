@@ -908,27 +908,7 @@ class FeaturesPrivateBrowsingView(BlogPostsView):
 
 
 def firefox_home(request):
-    locale = l10n_utils.get_locale(request)
-    variant = request.GET.get('v', None)
-
-    # ensure variant matches pre-defined value
-    if variant not in [
-        'a',
-        'b',
-        'c',
-        'd',
-        'e',
-    ]:  # place expected ?v= values in this list
-        variant = None
-
-    if locale == 'en-US' and variant is not None and variant != 'a':
-        template = 'firefox/home/index-b.html'
-    else:
-        template = 'firefox/home/index.html'
-
-    return l10n_utils.render(
-        request, template, {'variation': variant}
-    )
+    return l10n_utils.render(request, 'firefox/home/index.html')
 
 
 def firefox_concerts(request):
