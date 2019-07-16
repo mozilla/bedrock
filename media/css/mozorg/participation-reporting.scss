@@ -2,7 +2,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../pebbles/includes/lib';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/includes/lib';
 
 .reporting-matrix-container {
     max-width: 100%;
@@ -13,7 +16,7 @@
     width: 100%;
 
     .group-header {
-        background-color: #f3f3f3;
+        background-color: $color-gray-20;
         padding-top: .5em;
         text-align: center;
         vertical-align: middle;
@@ -22,17 +25,5 @@
     thead tr + tr th,
     thead tr + tr td {
         padding-top: .5em;
-    }
-}
-
-blockquote {
-    @include font-size-level4;
-    border-left: 3px solid #eee;
-    font-style: italic;
-    margin: 1em auto;
-    padding: 1em 30px;
-
-    & > :last-child {
-        margin-bottom: 0;
     }
 }

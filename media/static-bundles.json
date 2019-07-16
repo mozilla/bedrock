@@ -434,6 +434,12 @@
     },
     {
       "files": [
+        "css/protocol/basic-article.scss"
+      ],
+      "name": "basic-article"
+    },
+    {
+      "files": [
         "css/etc/firefox/retention/thank-you.scss",
         "css/etc/firefox/retention/thank-you-referral.scss"
       ],
@@ -581,12 +587,6 @@
         "css/firefox/whatsnew/whatsnew-67.0.5.scss"
       ],
       "name": "firefox_whatsnew_67.0.5"
-    },
-    {
-      "files": [
-        "css/mozorg/commit-access-policy.less"
-      ],
-      "name": "commit-access-policy"
     },
     {
       "files": [
@@ -876,7 +876,7 @@
     },
     {
       "files": [
-        "css/mozorg/commit-access-requirements.less"
+        "css/mozorg/commit-access-requirements.scss"
       ],
       "name": "commit-access-requirements"
     },
@@ -1623,6 +1623,15 @@
         "js/base/fxa-utm-referral.js"
       ],
       "name": "common-protocol"
+    },
+    {
+      "files": [
+        "js/base/mozilla-article.js",
+        "js/newsletter/form-protocol.js",
+        "protocol/js/protocol-newsletter.js",
+        "protocol/js/protocol-sidemenu.js"
+      ],
+      "name": "basic-article"
     },
     {
       "files": [

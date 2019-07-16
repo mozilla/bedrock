@@ -18,12 +18,12 @@
    # 3. Process the markdown and copy the results:
    #    python -m markdown -x markdown.extensions.toc policy.md > policy.html
    # 4. Paste the document contents in `policy.html` below.
-   # 5. Add the `<span class="highlight"></span>` element around the `<h1>` content
+   # 5. Add the `class="mzp-c-article-title"` attribute to the `<h1>`
    #    (or just keep that line)
-   # 6. Add `class="prose"` to any top-level `<ol>` or `<ul>` elements
+   # 6. Add `class="mzp-u-list-styled"` to any top-level `<ol>` or `<ul>` elements
    #    (no class is required on nested lists)
    #}
-  <h1><span class="highlight">Mozilla Root Store Policy</span></h1>
+  <h1 class="mzp-c-article-title">Mozilla Root Store Policy</h1>
   <p><em>Version 2.6.1</em></p>
   <p><em><a href="https://wiki.mozilla.org/CA/Root_Store_Policy_Archive">Effective July 1, 2018</a></em></p>
   <h2 id="1-introduction">1. Introduction</h2>
@@ -44,7 +44,7 @@
   <p>This policy applies, as appropriate, to certificates matching any of the following (and the CAs which control or issue
     them):
   </p>
-  <ol class="prose">
+  <ol class="mzp-u-list-styled">
     <li>CA certificates included in, or under consideration for inclusion in, the Mozilla root program.</li>
     <li>Intermediate certificates which have at least one valid, unrevoked chain up to such a CA certificate and which are
         not technically constrained to prevent issuance of working server or email certificates. Such technical constraints
@@ -82,7 +82,7 @@
   <h2 id="2-certificate-authorities">2. Certificate Authorities</h2>
   <h3 id="21-ca-operations">2.1 CA Operations</h3>
   <p>CAs whose certificates are included in Mozilla's root program MUST:</p>
-  <ol class="prose">
+  <ol class="mzp-u-list-styled">
     <li>provide some service relevant to users of our software products;</li>
     <li>follow industry best practice for securing their networks, for example by conforming to the <a href="https://cabforum.org/network-security/">CAB
         Forum Network Security Guidelines</a> or a successor document;</li>
@@ -101,7 +101,7 @@
   </p>
   <h3 id="22-validation-practices">2.2 Validation Practices</h3>
   <p>We consider verification of certificate signing requests to be acceptable if it meets or exceeds the following requirements:</p>
-  <ol class="prose">
+  <ol class="mzp-u-list-styled">
     <li>All information that is supplied by the certificate subscriber MUST be verified by using an independent source of information
       or an alternative communication channel before it is included in the certificate.</li>
     <li>For a certificate capable of being used for digitally signing or encrypting email messages, the CA takes reasonable
@@ -133,7 +133,7 @@
     Baseline Requirements, Mozilla’s Root Store Policy takes precedence. The following is a list of known places where this
     policy takes precedence over the Baseline Requirements. If you find an inconsistency that is not listed here, notify Mozilla
     so the item can be considered for addition or clarification.</p>
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>Insofar as the Baseline Requirements attempt to define their own scope, the scope of this policy (section 1.1) overrides
         that. Mozilla thus requires CA operations relating to issuance of <strong>all</strong> SSL certificates in the scope
         of this policy to conform to the Baseline Requirements.</li>
@@ -147,7 +147,7 @@
     certificates. This section describes the requirements for those audits.</p>
   <h4 id="311-audit-criteria">3.1.1 Audit Criteria</h4>
   <p>We consider the criteria for CA operations published in the following documents to be acceptable:</p>
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>WebTrust "<a href="http://www.webtrust.org/homepage-documents/item54279.pdf">Principles and Criteria for Certification
         Authorities - Version 2.0
       </a>" or later in <a href="http://www.webtrust.org/homepage-documents/item27839.aspx">WebTrust Program for Certification
@@ -172,7 +172,7 @@
   <p>If being audited to the WebTrust criteria, the following audit requirements apply (see section 3.1.1 for specific version
     numbers):
   </p>
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>For the SSL trust bit, a CA and all subordinate CAs technically capable of issuing server certificates must have all
         of the following audits:
       <ul>
@@ -193,7 +193,7 @@
   </ul>
   <h5 id="3122-etsi">3.1.2.2 ETSI</h5>
   <p>If being audited to the ETSI criteria, the following audit requirements apply (see section 3.1.1 for version numbers):</p>
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>For the SSL trust bit, a CA and all subordinate CAs technically capable of issuing server certificates must have one
         of the following audits, with at least one of the noted policies or sets of policies:
       <ul>
@@ -226,7 +226,7 @@
     via the CCADB within three months of the point-in-time date or the end date of the period.</p>
   <h4 id="314-public-audit-information">3.1.4 Public Audit Information</h4>
   <p>The publicly-available documentation relating to each audit MUST contain at least the following clearly-labelled information:</p>
-  <ol class="prose">
+  <ol class="mzp-u-list-styled">
     <li>name of the company being audited;</li>
     <li>name and address of the organization performing the audit;</li>
     <li>Distinguished Name and SHA256 fingerprint of each root and intermediate certificate that was in scope;</li>
@@ -251,7 +251,7 @@
   <h3 id="33-cps-and-cpses">3.3 CPs and CPSes</h3>
   <p>We rely on publicly disclosed documentation (e.g., in a Certificate Policy and Certification Practice Statement) to ascertain
     that our requirements are met. Therefore, the following MUST be true:</p>
-  <ol class="prose">
+  <ol class="mzp-u-list-styled">
     <li>the publicly disclosed documentation provides sufficient information for Mozilla to determine whether and how the
         CA complies with this policy, including a description of the steps taken by the CA to verify certificate requests;</li>
     <li>the documentation is available from the CA’s official website;</li>
@@ -279,7 +279,7 @@
     <a href="mailto:certificates@mozilla.org">by email</a>.</p>
   <p>Mozilla has requirements for the use of the CCADB above and beyond those in the CCADB Policy, as follows:</p>
   <h3 id="41-additional-requirements">4.1 Additional Requirements</h3>
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>If the revocation of an intermediate certificate chaining up to a root in Mozilla’s root program is due to a security
       concern, as well as performing the actions defined in the CCADB Policy, a <a href="https://bugzilla.mozilla.org/enter_bug.cgi?product=NSS&amp;component=CA%20Certificate%20Mis-Issuance&amp;groups=crypto-core-security">security
         bug must be filed in Bugzilla
@@ -293,7 +293,7 @@
   <p>Root certificates in our root program, and any certificate which chains up to them, MUST use only algorithms and key sizes
     from the following set:
   </p>
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>RSA keys whose modulus size in bits is divisible by 8, and is at least 2048.</li>
     <li>Digest algorithms: SHA-1 (see below), SHA-256, SHA-384, or SHA-512.</li>
     <li>ECDSA keys using one of the following curve-hash pairs:
@@ -306,7 +306,7 @@
   <h4 id="511-sha-1">5.1.1 SHA-1</h4>
   <p>CAs MAY sign SHA-1 hashes over end-entity certificates which chain up to roots in Mozilla's program only if all the following
     are true:</p>
-  <ol class="prose">
+  <ol class="mzp-u-list-styled">
     <li>The end-entity certificate:
       <ul>
         <li>is not within the scope of the Baseline Requirements;</li>
@@ -324,7 +324,7 @@
   <p>Point 2 does not apply if the certificate is an OCSP signing certificate manually issued directly from a root.</p>
   <p>CAs MAY sign SHA-1 hashes over intermediate certificates which chain up to roots in Mozilla's program only if the certificate
     to be signed is a duplicate of an existing SHA-1 intermediate certificate with the only changes being all of:</p>
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>a new key (of the same size);</li>
     <li>a new serial number (of the same length);</li>
     <li>the addition of an EKU and/or a pathlen constraint to meet the requirements outlined above.</li>
@@ -342,7 +342,7 @@
   <p>CAs MUST maintain current best practices to prevent algorithm attacks against certificates. As such, all new certificates
     MUST have a serial number greater than zero, containing at least 64 bits of output from a CSPRNG.</p>
   <p>CAs MUST NOT issue certificates that have:</p>
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>ASN.1 DER encoding errors;</li>
     <li>invalid public keys (e.g., RSA certificates with public exponent equal to 1);</li>
     <li>duplicate issuer names and serial numbers (except that a Certificate Transparency pre-certificate is allowed to match
@@ -390,7 +390,7 @@
   <p>We recognize that technically constraining intermediate certificates as described above may not be practical in some cases.
     All certificates that are capable of being used to issue new certificates, that are not technically constrained, and that
     directly or transitively chain to a certificate included in Mozilla’s root program:</p>
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>MUST be audited in accordance with Mozilla’s Root Store Policy. If the CA has a currently valid audit report at the
       time of creation of the certificate, then the new certificate MUST appear on the CA's next periodic audit reports.</li>
     <li>MUST be publicly disclosed in the CCADB by the CA that has their certificate included in Mozilla’s root program. The
@@ -409,7 +409,7 @@
   <p>For end-entity certificates, if the CA provides revocation information via an Online Certificate Status Protocol (OCSP)
     service:
   </p>
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>it MUST update that service at least every four days; and</li>
     <li>responses MUST have a defined value in the nextUpdate field, and it MUST be no more than ten days after the thisUpdate
       field; and</li>
@@ -440,7 +440,7 @@
     wiki page, "<a href="https://wiki.mozilla.org/CA/Application_Process">Applying for root inclusion in Mozilla products</a>",
     provides further details about how to submit a formal request. The request MUST be made by an authorized representative
     of the subject CA, and MUST include the following:</p>
-  <ol class="prose">
+  <ol class="mzp-u-list-styled">
     <li>the certificate data (or links to the data) for the CA certificate(s) requested for inclusion;</li>
     <li>for each CA certificate requested for inclusion, whether or not the CA issues certificates for each of the following
       purposes within the certificate hierarchy associated with the CA certificate:
@@ -462,7 +462,7 @@
   </p>
   <h3 id="72-updates">7.2 Updates</h3>
   <p>Changes MAY be made to root certificates that are included in Mozilla's root program as follows:</p>
-  <ol class="prose">
+  <ol class="mzp-u-list-styled">
     <li>enabling a trust bit in a root certificate that is currently included, may only be done after careful consideration
       of the CA’s current policies, practices, and audits, and may be requested by a representative of the CA or a representative
       of Mozilla by submitting a bug report into the mozilla.org Bugzilla system, as described in Mozilla’s wiki page, "<a
@@ -502,7 +502,7 @@
   <h2 id="8-ca-operational-changes">8. CA Operational Changes</h2>
   <p>CAs SHOULD NOT assume that trust is transferable. All CAs whose certificates are included in Mozilla's root program MUST
     <a href="mailto:certificates@mozilla.org">notify Mozilla</a> if:</p>
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>ownership or control of the CA’s certificate(s) changes, or</li>
     <li>an organization other than the CA obtains control of an unconstrained intermediate certificate (as defined in section
       5.3.2 of this policy) that directly or transitively chains to the CA's included certificate(s); or,</li>
@@ -546,7 +546,7 @@
     MUST confirm that there are appropriate procedures in place to ensure that the requirements are met and that those procedures
     are followed.</p>
   <p>The following steps MUST be taken by the organization(s) concerned:</p>
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li>Make sure the annual audit statements are current.</li>
     <li>Notify Mozilla of the pending change.</li>
     <li>Create a transfer plan (and legal agreement if more than one organization is involved) and have it reviewed by the auditors.</li>

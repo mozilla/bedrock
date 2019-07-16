@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block article %}
-<h1><span class="highlight">{{ self.page_title() }}</span></h1>
+<h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
 
 
 <h2 id="ground-rules">Ground Rules</h2>
@@ -22,7 +22,7 @@
 {{ _('Please respect these rules, and each other.') }}
 </p>
 
-<dl class="prose">
+<dl class="mzp-u-list-styled">
   <dt>{{ _('Be civil.') }}</dt>
 
   <dd>
@@ -70,7 +70,7 @@
     {{ _('Please don’t do it.') }}
     {{ _('Or, if you must, make sure you set the Followup-To and Reply-To fields to ensure that replies go only to one, not to both.') }}</p>
 
-    <table class="data-table">
+    <table class="mzp-u-data-table">
     <caption>{{ _('example:') }}</caption>
 
     <tr>
@@ -109,7 +109,7 @@
     {{ _('Might we recommend:') }}
     </p>
 
-    <ul class="prose">
+    <ul class="mzp-u-list-styled">
       <li><a href="news://comp.infosystems.www.advocacy">comp.infosystems.www.advocacy</a></li>
       <li><a href="news://comp.os.linux.advocacy">comp.os.linux.advocacy</a></li>
       <li><a href="news://comp.os.ms-windows.advocacy">comp.os.ms-windows.advocacy</a></li>

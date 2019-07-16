@@ -8,7 +8,7 @@
 {% set body_id = "module-ownership" %}
 
 {% block article %}
-<h1><span class="highlight">{{ self.page_title() }}</span></h1>
+<h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
 <p>{{ _('The Mozilla project is far too big for any one person — or even a small set of people — to make the decisions. Instead, decision-making is distributed to a range of participants through the project being split into “<a href="%s">Modules</a>”, each of which has a Module Owner. A module is, in the case of code, a piece of functionality, or in the case of non-code, an activity, with reasonably well-defined boundaries. (Some of the below explanation is code-focussed, but analogous points can be made for non-code.)')|format('https://wiki.mozilla.org/Modules') }}</p>
 <p>{{ _('Of course, “reasonably well-defined boundaries” doesn’t provide absolute clarity. Trying to create absolute definitions would require elaborate rules and exceptions that aren’t needed in most cases. Rather than spend energy devising such definitions, we prefer to let module owners manage any overlap or shared ownership if possible, with mediation when necessary.') }}</p>
 <p>{{ _('The work of the module owners and the health of the system are overseen by the owner and peers of the <a href="%(ownership)s">“Module Ownership” module</a>. A number of larger modules (e.g. Firefox, Thunderbird, SeaMonkey) have sub-modules subordinate to them. The module owner and peers of the appropriate module is responsible for sub-module ownership appointment and removal in those areas. Mozilla uses <a href="%(modules)s">its wiki</a> to track modules, module owners and peers.')|format(ownership='https://wiki.mozilla.org/Modules/Activities#Module_Ownership_System', modules='https://wiki.mozilla.org/Modules') }}</p>
@@ -29,7 +29,7 @@
 <section>
   <h2>{{ _('Criteria for Module Ownership') }}</h2>
   <p>{{ _('There are a number of important elements of good module ownership. First is the person’s expertise with the area in question. But over time we’ve learned that a set of additional criteria is also important, and that a great hacker can be a poor module owner. The criteria that go into the mix for a good module owner include:') }}</p>
-  <ol class="prose">
+  <ol class="mzp-u-list-styled">
     <li>{{ _('Expertise with the code in or activity of the module') }}</li>
     <li>{{ _('Current level of involvement with the module') }}</li>
     <li>{{ _('Understanding/vision of where the module ought to be headed') }}</li>
@@ -38,7 +38,7 @@
     <li>{{ _('Ability to consider varying perspectives and needs of different consumers of that module') }}</li>
   </ol>
   <p>{{ _('And particularly for code modules:') }}</p>
-  <ol class="prose">
+  <ol class="mzp-u-list-styled">
     <li>{{ _('Appropriate understanding of Mozilla codebase as a whole and the module’s relationship to it') }}</li>
     <li>{{ _('Ability to evaluate code for that module, including contributions of patches and new features') }}</li>
     <li>{{ _('Ability to evaluate impact of code on other parts of the codebase') }}</li>

@@ -2,15 +2,23 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../pebbles/includes/lib';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
 
-.data-table {
+@import '../../../protocol/css/includes/lib';
+
+#older-vulnerabilities {
+    .mzp-c-article {
+        max-width: 100%;
+    }
+}
+
+.mzp-u-data-table {
     th,
     td {
         vertical-align: top;
     }
     td {
         @include font-size(14px);
-        @include open-sans;
     }
 }

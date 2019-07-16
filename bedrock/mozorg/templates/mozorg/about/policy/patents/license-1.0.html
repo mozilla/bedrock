@@ -6,7 +6,7 @@
 
 {% block page_title %}{{ _('Mozilla Open Software Patent License Agreement v1.0') }}{% endblock %}
 {% set body_id = "about-patents-license-1-0" %}
-{% block body_class %}about-patents{% endblock %}
+{% block body_class %}{{ super() }} about-patents{% endblock %}
 
 
 {% block page_css %}
@@ -18,11 +18,11 @@
 {% endblock %}
 
 {% block article %}
-<h1><span class="highlight">{{ _('Open Innovation and Software Patents') }}</span></h1>
+<h1 class="mzp-c-article-title">{{ _('Open Innovation and Software Patents') }}</h1>
 <section>
   <h2>{{ _('Mozilla Open Software Patent License Agreement v1.0') }}</h2>
   <p>{{ _('This Open Software Patent License Agreement (“<strong>Agreement</strong>”) is made between you and the Licensor identified below.  For purposes of this Agreement, you means you and your Affiliates, and Licensor means the Mozilla Corporation, Mozilla Foundation and any of their Affiliates.') }}</p>
-  <ol class="prose">
+  <ol class="mzp-u-list-styled">
     <li><strong>{{ _('Definitions') }}</strong>
       <ol type="a">
         <li id="affiliate"><strong>{{ _('“Affiliate”') }} </strong>{{ _('means any entity owned or controlled by you or Licensor, as applicable, either now or in the future.') }}</li>

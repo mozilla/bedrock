@@ -9,13 +9,13 @@
 
 
 {% block article %}
-<h1><span class="highlight">{{ _('Official Mozilla Policies') }}</span></h1>
+<h1 class="mzp-c-article-title">{{ _('Official Mozilla Policies') }}</h1>
 
 <p>{{ _('This page provides links to various policies that are used to run the Mozilla community. This list is not necessarily comprehensive and other policies may be posted on other Mozilla sites.') }}</p>
 
 <h2>{{ _('Governance') }}</h2>
 
-<ul class="prose">
+<ul class="mzp-u-list-styled">
   <li><a href="{{ url('mozorg.about.governance.policies.module-ownership') }}">{{ _('Mozilla Modules and Module Ownership') }}</a></li>
   <li><a href="//wiki.mozilla.org/Modules">{{ _('Module Owners List') }}</a></li>
   <li><a href="{{ url('mozorg.about.governance.policies.participation') }}">{{ _('Mozilla Community Participation Guidelines') }}</a></li>
@@ -25,14 +25,14 @@
 
 <h2>{{ _('Hacking') }}</h2>
 
-<ul class="prose">
+<ul class="mzp-u-list-styled">
   <li><a href="{{ url('mozorg.about.governance.policies.commit.access-policy') }}">{{ _('Commit Access Policy') }}</a></li>
   <li><a href="{{ url('mozorg.about.governance.policies.regressions') }}">{{ _('Performance Regressions Policy') }}</a></li>
 </ul>
 
 <h2>{{ _('Licensing') }}</h2>
 
-<ul class="prose">
+<ul class="mzp-u-list-styled">
   <li><a href="{{ url('mozorg.mpl.index') }}">{{ _('Source Code Licensing Terms') }}</a></li>
   <li><a href="{{ url('mozorg.mpl.license-policy') }}">{{ _('Mozilla Foundation License Policy') }}</a></li>
   <li><a href="{{ url('legal.eula') }}">{{ _('Mozilla Corporation End-User Licensing Agreement') }}</a></li>
@@ -41,14 +41,14 @@
 
 <h2>{{ _('Privacy') }}</h2>
 
-<ul class="prose">
+<ul class="mzp-u-list-styled">
   <li><a href="{{ url('privacy') }}">{{ _('Mozilla Privacy Policy') }}</a></li>
   <li><a href="{{ url('privacy.notices.firefox') }}">{{ _('Mozilla Firefox Privacy Notice') }}</a></li>
 </ul>
 
 <h2>{{ _('Security') }}</h2>
 
-<ul class="prose">
+<ul class="mzp-u-list-styled">
   <li><a href="{{ url('mozorg.about.governance.policies.security.tld-idn') }}">{{ _('IDN-enabled TLDs') }}</a></li>
   <li><a href="{{ url('mozorg.about.governance.policies.security.certs.policy') }}">{{ _('Mozilla CA Certificate Policy') }}</a></li>
   <li><a href="{{ url('mozorg.about.governance.policies.security.membership') }}">{{ _('Mozilla Security Group Membership Policy') }}</a></li>
@@ -57,14 +57,14 @@
 </ul>
 
 <h2>{{ _('Trademarks') }} </h2>
-<ul class="prose">
+<ul class="mzp-u-list-styled">
   <li><a href="{{ url('foundation.trademarks.policy') }}">{{ _('Mozilla Trademark Guidelines') }}</a></li>
   <li><a href="{{ url('foundation.trademarks.distribution-policy') }}">{{ _('Distribution of Firefox with Mozilla Trademarks') }}</a></li>
 </ul>
 
 <h2>{{ _('Website') }}</h2>
 
-<ul class="prose">
+<ul class="mzp-u-list-styled">
   <li><a href="{{ url('foundation.licensing.website-markup') }}">{{ _('Website Markup Usage Policy') }}</a></li>
   <li><a href="{{ url('foundation.licensing.website-content') }}">{{ _('Mozilla.org Site Licensing Policies') }}</a></li>
 </ul>

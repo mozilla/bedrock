@@ -2,8 +2,21 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import "../pebbles/includes/lib";
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
 
+@import '../../protocol/css/includes/lib';
+
+
+.c-forum-search {
+    background-color: $color-gray-20;
+    margin-bottom: $spacing-md;
+    padding: $spacing-sm;
+
+    input[type=text] {
+        margin-bottom: $spacing-sm;
+    }
+}
 
 .forum-group {
     margin-bottom: ($gutter-width * 2);
@@ -11,13 +24,13 @@
 
 .forum-group .top {
     float: right;
-    color: $color-text-tertiary;
-    @include font-size-small;
-    text-transform: uppercase;
+    color: $color-gray-50;
+    padding-left: $layout-sm;
+    @include text-body-sm;
 }
 
 .forums {
-    @include font-size-small;
+    @include text-body-sm;
 
     ul {
         margin: 0;
@@ -25,29 +38,30 @@
 
     & > li {
         list-style-type: none;
-        border-top: 1px solid #CCC;
+        border-top: 1px solid $color-gray-30;
         padding: 10px 20px;
         margin: 0 -20px;
         @include clearfix;
     }
 
     & > li:target{
-        background: #fff9c4;
+        background: $color-yellow-5;
     }
 
     .summary {
-        @media #{$mq-tablet} {
-            @include span(7);
-            margin-left: 0;
+        @media #{$mq-lg} {
+            @include border-box;
+            float: left;
+            padding-right: $layout-sm;
+            width: 50%;
         }
     }
 
     .subscribe {
-        color: $color-text-tertiary;
-        list-style-type: circle;
+        color: $color-gray-70;
+        list-style-type: disc;
 
-        @media #{$mq-tablet} {
-            @include span(5);
+        @media #{$mq-lg} {
             margin-right: 0;
         }
     }
@@ -56,52 +70,32 @@
         position: relative;
         letter-spacing: 0;
         margin: 0 .5em 0 0;
-        @include open-sans;
-        @include font-size-level4;
+        @include font-base;
+        @include text-body-md;
         font-weight: bold;
 
         a {
             position: absolute;
             top: 0;
             left: -1em;
-            @include font-size-small;
-            color: #ccc;
-        }
-    }
+            @include text-body-sm;
+            color: $color-gray-30;
 
-    .description {
-        margin: 0;
+            &:hover,
+            &:focus {
+                color: $color-link-hover;
+            }
+        }
     }
 }
 
-.basic-content {
-
-    form {
-        a {
-            display: block;
-            margin-bottom: 5px;
-        }
-    }
+.mzp-c-article {
 
     img {
         vertical-align: middle;
     }
 
     .toc {
-        margin: ($gutter-width * 2) 0;
-    }
-
-    @media #{$mq-phone} {
-        .data-table {
-            td,
-            th {
-                display: block;
-            }
-
-            td {
-                border-top: 0;
-                padding-top: 0;
-            }
-        }
+        margin: $layout-md 0;
     }
 }

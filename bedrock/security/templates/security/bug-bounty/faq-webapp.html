@@ -4,219 +4,214 @@
 {% set body_id = "faq-webapp" %}
 
 {% block article %}
-  <article itemscope itemtype="http://schema.org/Article">
-    <header>
-      <h1 itemprop="name"><span class="highlight">Web Bug Bounty FAQ</span></h1>
-    </header>
+  <header>
+    <h1 class="mzp-c-article-title">Web Bug Bounty FAQ</h1>
+  </header>
 
-    <div itemprop="articleBody">
-      <h3>General questions</h3>
+  <h3>General questions</h3>
 
-      <ul class="prose">
-        <li><a href="#why">Why do we include web applications as part
-          of our bug bounty program?</a></li>
-        <li><a href="#howto">How can I find potential vulnerabilities
-          and are there things I shouldn't do in trying to discover them?</a></li>
-        <li><a href="{{ url('security.web-bug-bounty') }}#payouts-section">What are the bounty payouts?</a></li>
-      </ul>
+  <ul class="mzp-u-list-styled">
+    <li><a href="#why">Why do we include web applications as part
+      of our bug bounty program?</a></li>
+    <li><a href="#howto">How can I find potential vulnerabilities
+      and are there things I shouldn't do in trying to discover them?</a></li>
+    <li><a href="{{ url('security.web-bug-bounty') }}#payouts-section">What are the bounty payouts?</a></li>
+  </ul>
 
-      <h3>Eligible bugs</h3>
+  <h3>Eligible bugs</h3>
 
-      <ul class="prose">
-        <li><a href="#eligible-bugs">Which domains and web applications will be
-          considered to be part of the bug bounty?</a></li>
-        <li><a href="{{ url('security.web-bug-bounty') }}#payouts-section">
-          What types of issues will be considered as part of the bounty program?</a></li>
-        <li><a href="#dos-bugs">Why don't you provide a reward for denial of service
-          bugs?</a></li>
-      </ul>
+  <ul class="mzp-u-list-styled">
+    <li><a href="#eligible-bugs">Which domains and web applications will be
+      considered to be part of the bug bounty?</a></li>
+    <li><a href="{{ url('security.web-bug-bounty') }}#payouts-section">
+      What types of issues will be considered as part of the bounty program?</a></li>
+    <li><a href="#dos-bugs">Why don't you provide a reward for denial of service
+      bugs?</a></li>
+  </ul>
 
-      <h3>Bug reporting</h3>
+  <h3>Bug reporting</h3>
 
-      <ul class="prose">
-        <li><a href="#what-next">Once I have found a vulnerability,
-          what next?</a></li>
-        <li><a href="#nondisclosure">If I report the bug directly to you,
-          do I have to keep the bug confidential in order to receive a bouncy?</a></li>
-        <li><a href="#cooperation">If I don’t have the time to assist you further, can I still receive a
-          bug bounty?</a></li>
-        <li><a href="#attack-scenario">What does a valid attack scenario look like?</a></li>
-        <li><a href="#step-by-step-exploit">What does a valid step-by-step exploit process look like?</a></li>
-        <li><a href="#xss-reporting">How should I report an XSS vulnerability?</a></li>
-      </ul>
+  <ul class="mzp-u-list-styled">
+    <li><a href="#what-next">Once I have found a vulnerability,
+      what next?</a></li>
+    <li><a href="#nondisclosure">If I report the bug directly to you,
+      do I have to keep the bug confidential in order to receive a bouncy?</a></li>
+    <li><a href="#cooperation">If I don’t have the time to assist you further, can I still receive a
+      bug bounty?</a></li>
+    <li><a href="#attack-scenario">What does a valid attack scenario look like?</a></li>
+    <li><a href="#step-by-step-exploit">What does a valid step-by-step exploit process look like?</a></li>
+    <li><a href="#xss-reporting">How should I report an XSS vulnerability?</a></li>
+  </ul>
 
-      <h2 id="general-questions">General questions</h2>
+  <h2 id="general-questions">General questions</h2>
 
-      <dl class="prose">
-        <dt id="why">Why do we include web applications as part of our bug bounty program?</dt>
-        <dd>
-          <p>Mozilla client software relies heavily on web services, and Mozilla’s
-          community uses our websites and services to communicate and coordinate activity.
-          Our goal is to make these products and services as safe and secure as possible.
-          </p>
-        </dd>
+  <dl class="mzp-u-list-styled">
+    <dt id="why">Why do we include web applications as part of our bug bounty program?</dt>
+    <dd>
+      <p>Mozilla client software relies heavily on web services, and Mozilla’s
+      community uses our websites and services to communicate and coordinate activity.
+      Our goal is to make these products and services as safe and secure as possible.
+      </p>
+    </dd>
 
-        <dt id="howto">How can I find potential vulnerabilities and are there things I shouldn’t do in trying to discover them?</dt>
-        <dd>
-          <p>We have received many questions around how to discover web application
-            security issues, largely revolving around use of automated attack tools
-            such as ZAP and Burp.</p>
-          <p>We request that people refrain from using automated tools against our production web
-            services, as it is important to maintain our services' availability and minimize
-            unintentional vandalism. Since our code is open source, you are encouraged to run
-            it on your own server instance or examine the it directly for potential issues.</p>
-        </dd>
-      </dl>
+    <dt id="howto">How can I find potential vulnerabilities and are there things I shouldn’t do in trying to discover them?</dt>
+    <dd>
+      <p>We have received many questions around how to discover web application
+        security issues, largely revolving around use of automated attack tools
+        such as ZAP and Burp.</p>
+      <p>We request that people refrain from using automated tools against our production web
+        services, as it is important to maintain our services' availability and minimize
+        unintentional vandalism. Since our code is open source, you are encouraged to run
+        it on your own server instance or examine the it directly for potential issues.</p>
+    </dd>
+  </dl>
 
-      <h2 id="eligible-bugs">Eligible bugs</h2>
+  <h2 id="eligible-bugs">Eligible bugs</h2>
 
-      <dl class="prose">
-        <dt id="eligible-bugs">Which domains and web applications will be considered to be part of the bug bounty?</dt>
-        <dd>
-          <p>Although all of our non-community websites are considered in scope for acknowledgment on our
-          <a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">hall of fame</a>, only
-          a limited subset are eligible for monetary payouts. Please see our
-          <a href="{{ url('security.bug-bounty.web-eligible-sites') }}">list of eligible sites</a>
-          for additional information.</p>
-        </dd>
+  <dl class="mzp-u-list-styled">
+    <dt id="eligible-bugs">Which domains and web applications will be considered to be part of the bug bounty?</dt>
+    <dd>
+      <p>Although all of our non-community websites are considered in scope for acknowledgment on our
+      <a href="{{ url('security.bug-bounty.web-hall-of-fame') }}">hall of fame</a>, only
+      a limited subset are eligible for monetary payouts. Please see our
+      <a href="{{ url('security.bug-bounty.web-eligible-sites') }}">list of eligible sites</a>
+      for additional information.</p>
+    </dd>
 
-        <dt id="dos-bugs">Why don’t you provide a reward for denial-of-service bugs?</dt>
-        <dd>
-          <p>Denial-of-services bugs are generally less serious than other web application
-          security bugs and in many cases don't require a technical vulnerability
-          within the web application.</p>
-        </dd>
-      </dl>
+    <dt id="dos-bugs">Why don’t you provide a reward for denial-of-service bugs?</dt>
+    <dd>
+      <p>Denial-of-services bugs are generally less serious than other web application
+      security bugs and in many cases don't require a technical vulnerability
+      within the web application.</p>
+    </dd>
+  </dl>
 
-      <h2 id="bug-reporting">Bug reporting</h2>
+  <h2 id="bug-reporting">Bug reporting</h2>
 
-      <dl class="prose">
-        <dt id="what-next">Once I have found a vulnerability, what next?</dt>
-        <dd>
-          <p>The sooner we can reproduce the bug, the sooner we can fix it
-            and send you your bounty. Please submit all bugs using the
-            <a href="https://bugzilla.mozilla.org/form.web.bounty">Bugzilla web bounty form</a>.
-            <strong>Do not send vulnerabilities via email and please avoid using video.</strong></p>
+  <dl class="mzp-u-list-styled">
+    <dt id="what-next">Once I have found a vulnerability, what next?</dt>
+    <dd>
+      <p>The sooner we can reproduce the bug, the sooner we can fix it
+        and send you your bounty. Please submit all bugs using the
+        <a href="https://bugzilla.mozilla.org/form.web.bounty">Bugzilla web bounty form</a>.
+        <strong>Do not send vulnerabilities via email and please avoid using video.</strong></p>
 
-          <p>There are three main things you can provide which will help us
-            to evaluate your submission quickly and pay a bounty sooner:</p>
+      <p>There are three main things you can provide which will help us
+        to evaluate your submission quickly and pay a bounty sooner:</p>
 
-          <ol>
-            <li><a href="#attack-scenario">What is the attack scenario?</a></li>
-            <li><a href="#step-by-step-exploit">What is the step-by-step exploit process?</a></li>
-            <li>What is the security impact?</li>
-          </ol>
+      <ol>
+        <li><a href="#attack-scenario">What is the attack scenario?</a></li>
+        <li><a href="#step-by-step-exploit">What is the step-by-step exploit process?</a></li>
+        <li>What is the security impact?</li>
+      </ol>
 
-          <p>Once you have <em>written</em> your step-by-step instructions,
-            repeat the attack by following them exactly. This helps prevent
-            errors and omissions in your submission.</p>
+      <p>Once you have <em>written</em> your step-by-step instructions,
+        repeat the attack by following them exactly. This helps prevent
+        errors and omissions in your submission.</p>
 
-          <p>We prefer to receive bug reports in English. If English is not
-            your native language and you are not fluent, please submit bugs
-            in your native language. Please note that this may delay our
-            response time.</p>
-        </dd>
+      <p>We prefer to receive bug reports in English. If English is not
+        your native language and you are not fluent, please submit bugs
+        in your native language. Please note that this may delay our
+        response time.</p>
+    </dd>
 
-        <dt id="nondisclosure">If I report the bug directly to you, do I have to keep the bug confidential to receive a bounty?</dt>
-        <dd>
-          <p>We’re rewarding you for finding a bug, not trying to buy
-          your silence. However, if you report the bug through the standard
-          Mozilla process and haven’t already published information about it then
-          we do ask that you keep the bug private for a limited period of time to
-          give us a chance to fix the bug before the bug is made public.</p>
+    <dt id="nondisclosure">If I report the bug directly to you, do I have to keep the bug confidential to receive a bounty?</dt>
+    <dd>
+      <p>We’re rewarding you for finding a bug, not trying to buy
+      your silence. However, if you report the bug through the standard
+      Mozilla process and haven’t already published information about it then
+      we do ask that you keep the bug private for a limited period of time to
+      give us a chance to fix the bug before the bug is made public.</p>
 
-          <p>Bug reporters may open the bug to public view earlier whenever circumstances
-          warrant it (e.g., if you feel your bug report is being completely ignored).
-          However, in the interests of protecting our users, we would appreciate a
-          reasonable amount of time to address the issue before the information is
-          publicly disclosed.</p>
-        </dd>
+      <p>Bug reporters may open the bug to public view earlier whenever circumstances
+      warrant it (e.g., if you feel your bug report is being completely ignored).
+      However, in the interests of protecting our users, we would appreciate a
+      reasonable amount of time to address the issue before the information is
+      publicly disclosed.</p>
+    </dd>
 
-        <dt id="cooperation">If I don’t have the time to assist you further, can I still receive a bug bounty?</dt>
-        <dd>
-          <p>We’re rewarding you for finding a bug, not trying to buy your cooperation.</p>
-          <p>However, we do invite you to work together with us, and we hope that you’ll
-          accept that offer in the spirit in which it was intended. In return, you’ll get
-          the opportunity to work as a full member of the team and see exactly how Mozilla
-          security bugs are resolved.</p>
-        </dd>
+    <dt id="cooperation">If I don’t have the time to assist you further, can I still receive a bug bounty?</dt>
+    <dd>
+      <p>We’re rewarding you for finding a bug, not trying to buy your cooperation.</p>
+      <p>However, we do invite you to work together with us, and we hope that you’ll
+      accept that offer in the spirit in which it was intended. In return, you’ll get
+      the opportunity to work as a full member of the team and see exactly how Mozilla
+      security bugs are resolved.</p>
+    </dd>
 
-        <dt id="attack-scenario">What does a valid attack scenario look like?</dt>
-        <dd>
-          <p>Please describe how an attacker would use the bug you
-          are submitting, any necessary conditions for it to work, and what the attacker
-          would gain through a successful attack.</p>
+    <dt id="attack-scenario">What does a valid attack scenario look like?</dt>
+    <dd>
+      <p>Please describe how an attacker would use the bug you
+      are submitting, any necessary conditions for it to work, and what the attacker
+      would gain through a successful attack.</p>
 
-          <p>Please answer the following questions to the best of your ability:</p>
+      <p>Please answer the following questions to the best of your ability:</p>
 
-          <ol class="prose">
-            <li>What is the necessary position of the attacker?
-              <ul>
-                <li>Do you need to be logged in or unauthenticated?</li>
-                <li>Do certain cookies need to be set?</li>
-                <li>Do you need to connect from a specific system?</li>
-              </ul>
-            </li>
+      <ol class="mzp-u-list-styled">
+        <li>What is the necessary position of the attacker?
+          <ul>
+            <li>Do you need to be logged in or unauthenticated?</li>
+            <li>Do certain cookies need to be set?</li>
+            <li>Do you need to connect from a specific system?</li>
+          </ul>
+        </li>
 
-            <li>Are there any other assumptions that must be made about the victim?
-              <ul>
-                <li>Do they need to be running a specific web browser?</li>
-                <li>Does the victim need to be tricked into clicking on a specific link?</li>
-                <li>Does the user need to be a member of a specific group?</li>
-              </ul>
-            </li>
+        <li>Are there any other assumptions that must be made about the victim?
+          <ul>
+            <li>Do they need to be running a specific web browser?</li>
+            <li>Does the victim need to be tricked into clicking on a specific link?</li>
+            <li>Does the user need to be a member of a specific group?</li>
+          </ul>
+        </li>
 
-            <li>How might a malicious actor use this attack?
-              <ul class="prose">
-                <li>Stealing a victim's session information</li>
-                <li>Redirect users to malicious websites</li>
-                <li>Read files on server outside the web root</li>
-                <li>Executing remote OS commands</li>
-                <li>XSSing users</li>
-              </ul>
-            </li>
-          </ol>
-        </dd>
+        <li>How might a malicious actor use this attack?
+          <ul class="mzp-u-list-styled">
+            <li>Stealing a victim's session information</li>
+            <li>Redirect users to malicious websites</li>
+            <li>Read files on server outside the web root</li>
+            <li>Executing remote OS commands</li>
+            <li>XSSing users</li>
+          </ul>
+        </li>
+      </ol>
+    </dd>
 
-        <dt id="step-by-step-exploit">What does a valid step-by-step exploit process look like?</dt>
-        <dd>
-          <p>Please describe the process required, step-by-step, in the proper order.
-           If there are multiple parties involved, please describe them all clearly. For example:</p>
+    <dt id="step-by-step-exploit">What does a valid step-by-step exploit process look like?</dt>
+    <dd>
+      <p>Please describe the process required, step-by-step, in the proper order.
+        If there are multiple parties involved, please describe them all clearly. For example:</p>
 
-          <ol class="prose">
-            <li>Visit <code>https://shop.firefox.com/order?name=value&amp;name2=value2</code></li>
-            <li>Click the "Log in" link and login</li>
-            <li>Click the "Order" button</li>
-            <li>Place order for "Firefox Plush"
-            <li>Continue navigation to the Shipping Address page</li>
-            <li>Add the following payload <code>"&gt;&lt;img src=x onerror=alert(document.domain);// &gt;</code> into the "City" field, then click Submit</li>
-            <li>The XSS payload ends up in the <code>POST</code> parameter named <code>city_order</code></li>
-            <li>Visitors to the page <code>/past_orders_by_city</code> are affected by stored XSS</li>
-          </ol>
+      <ol class="mzp-u-list-styled">
+        <li>Visit <code>https://shop.firefox.com/order?name=value&amp;name2=value2</code></li>
+        <li>Click the "Log in" link and login</li>
+        <li>Click the "Order" button</li>
+        <li>Place order for "Firefox Plush"
+        <li>Continue navigation to the Shipping Address page</li>
+        <li>Add the following payload <code>"&gt;&lt;img src=x onerror=alert(document.domain);// &gt;</code> into the "City" field, then click Submit</li>
+        <li>The XSS payload ends up in the <code>POST</code> parameter named <code>city_order</code></li>
+        <li>Visitors to the page <code>/past_orders_by_city</code> are affected by stored XSS</li>
+      </ol>
 
-          <p>Include the HTTP request(s), any necessary header values and/or
-            <code>POST</code> parameters along with your bug submission.</p>
+      <p>Include the HTTP request(s), any necessary header values and/or
+        <code>POST</code> parameters along with your bug submission.</p>
 
-          <p>Once you have <em>written</em> your step-by-step instructions,
-          repeat the attack by following them exactly. This helps prevent errors
-          and omissions in your submission.</p>
-        </dd>
+      <p>Once you have <em>written</em> your step-by-step instructions,
+      repeat the attack by following them exactly. This helps prevent errors
+      and omissions in your submission.</p>
+    </dd>
 
-        <dt id="xss-reporting">How should I report an XSS vulnerability?</dt>
-        <dd>
-          <p>For a reflected XSS vulnerabilities, the affected URL along with
-          a working payload is usually sufficient. For stored XSS attacks, please
-          describe the step-by-step exploit process, as above.</p>
+    <dt id="xss-reporting">How should I report an XSS vulnerability?</dt>
+    <dd>
+      <p>For a reflected XSS vulnerabilities, the affected URL along with
+      a working payload is usually sufficient. For stored XSS attacks, please
+      describe the step-by-step exploit process, as above.</p>
 
-          <p>Please use <code>alert(document.domain)</code> and not
-          <code>alert(1)</code> in your proof-of-concept.</p>
+      <p>Please use <code>alert(document.domain)</code> and not
+      <code>alert(1)</code> in your proof-of-concept.</p>
 
-          <p>Self-XSSes &mdash; where the attacker tricks users into copying
-          and pasting malicious script content &mdash; are not eligible for
-          bounties.</p>
-        </dd>
-      </dl>
-
-    </div>
-  </article>
+      <p>Self-XSSes &mdash; where the attacker tricks users into copying
+      and pasting malicious script content &mdash; are not eligible for
+      bounties.</p>
+    </dd>
+  </dl>
 {% endblock %}
