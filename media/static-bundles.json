@@ -68,12 +68,6 @@
     },
     {
       "files": [
-        "css/mozorg/itu.less"
-      ],
-      "name": "itu"
-    },
-    {
-      "files": [
         "css/mozorg/namespaces.scss"
       ],
       "name": "namespaces"
