@@ -17,12 +17,6 @@
 {% block page_title %}{{ _('The new, fast browser for Mac, PC and Linux') }} | {{ title_suffix }}{% endblock %}
 {% block page_desc %}{{ _('Responsive engine, less memory usage and packed with features. Download for desktop now.') }}{% endblock %}
 
-{% block experiments %}
-  {% if switch('experiment-firefox-brand', ['en-US']) %}
-    {{ js_bundle('experiment-firefox-brand') }}
-  {% endif %}
-{% endblock %}
-
 {% block page_css %}
   {{ css_bundle('firefox-home') }}
 {% endblock %}
@@ -259,8 +253,4 @@
 
 {% block js %}
   {{ js_bundle('firefox-home') }}
-
-  {% if switch('experiment-firefox-brand', ['en-US']) %}
-    {{ js_bundle('experiment-variation-firefox-brand') }}
-  {% endif %}
 {% endblock %}

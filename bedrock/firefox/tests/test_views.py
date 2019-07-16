@@ -1015,37 +1015,12 @@ class TestFirefoxConcerts(TestCase):
 
 
 class TestFirefoxHome(TestCase):
-    @override_settings(DEV=False)
     @patch('bedrock.firefox.views.l10n_utils.render')
-    def test_brand_var_a(self, render_mock):
-        req = RequestFactory().get('/firefox/?v=a')
+    def test_firefox_home(self, render_mock):
+        req = RequestFactory().get('/firefox/')
         req.locale = 'en-US'
         views.firefox_home(req)
-        render_mock.assert_called_once_with(
-            req, 'firefox/home/index.html', {'variation': 'a'}
-        )
-
-    @override_settings(DEV=False)
-    @patch('bedrock.firefox.views.l10n_utils.render')
-    def test_brand_var_b(self, render_mock):
-        req = RequestFactory().get('/firefox/?v=b')
-        req.locale = 'en-US'
-        views.firefox_home(req)
-        render_mock.assert_called_once_with(
-            req,
-            'firefox/home/index-b.html',
-            {'variation': 'b'},
-        )
-
-    @override_settings(DEV=False)
-    @patch('bedrock.firefox.views.l10n_utils.render')
-    def test_brand_locale_var_b(self, render_mock):
-        req = RequestFactory().get('/firefox/?v=b')
-        req.locale = 'fr'
-        views.firefox_home(req)
-        render_mock.assert_called_once_with(
-            req, 'firefox/home/index.html', {'variation': 'b'}
-        )
+        render_mock.assert_called_once_with(req, 'firefox/home/index.html')
 
 
 class TestAccountsPage(TestCase):
