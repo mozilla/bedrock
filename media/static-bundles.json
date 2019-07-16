@@ -480,23 +480,9 @@
     },
     {
       "files": [
-        "css/base/mozilla-video-poster.less",
-        "css/newsletter/moznewsletter-subscribe.less",
-        "css/mozorg/about.less"
+        "css/mozorg/about.scss"
       ],
       "name": "about"
-    },
-    {
-      "files": [
-        "css/mozorg/about-en.scss"
-      ],
-      "name": "about-en"
-    },
-    {
-      "files": [
-        "css/mozorg/perf-exp/index.scss"
-      ],
-      "name": "about-page-performance"
     },
     {
       "files": [
@@ -1200,36 +1186,9 @@
         "protocol/js/protocol-newsletter.js",
         "js/newsletter/form-protocol.js",
         "js/base/mozilla-lazy-load.js",
-        "js/mozorg/about-en.js"
+        "js/mozorg/about.js"
       ],
-      "name": "about-en"
-    },
-    {
-      "files": [
-        "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.js",
-        "js/base/mozilla-lazy-load.js"
-      ],
-      "name": "about-page-performance"
-    },
-    {
-      "files": [
-        "js/mozorg/perf-exp/variation.js"
-      ],
-      "name": "about-page-performance-control"
-    },
-    {
-      "files": [
-        "js/mozorg/perf-exp/variation.js"
-      ],
-      "name": "about-page-performance-variation"
-    },
-    {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/mozorg/perf-exp/experiment.js"
-      ],
-      "name": "experiment-about-page-performance"
+      "name": "about"
     },
     {
       "files": [
