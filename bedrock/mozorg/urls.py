@@ -29,7 +29,6 @@ urlpatterns = (
     page('developer/browsertest', 'mozorg/browser-test.html'),
     page('about/partnerships/distribution', 'mozorg/partnerships-distribution.html'),
     page('about/history', 'mozorg/about/history.html'),
-    page('about/history/details', 'mozorg/about/history-details.html'),
     page('about/mozilla-based', 'mozorg/projects/mozilla-based.html'),
     # Bug 981063, catch all for old calendar urls.
     # must be here to avoid overriding the above

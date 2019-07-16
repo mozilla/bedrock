@@ -2,303 +2,200 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% add_lang_files "mozorg/about/history" "mozorg/about" %}
+{% add_lang_files "mozorg/about/history-details" "mozorg/about" %}
 
-{% extends "mozorg/base-resp.html" %}
+{% extends "mozorg/about-base.html" %}
 
-{% block page_title %}{{ _('Looking back. Looking ahead.') }}{% endblock %}
-{% block body_id %}about-history{% endblock %}
-{% block body_class %}sand{% endblock %}
-{% block body_attrs %}{{ super() }} data-global-nav-current-link="about-us"{% endblock %}
+{% block page_title %}{{ _('History of the Mozilla Project') }}{% endblock %}
+{% block body_class %}mzp-t-mozilla{% endblock %}
 
-{% block page_css %}
-  {{ css_bundle('history-slides') }}
-{% endblock %}
+{% set body_id = 'about-history' %}
 
-{% block js %}
-  {{ js_bundle('history-slides') }}
-{% endblock %}
+{% block article %}
+  <h1 class="mzp-c-article-title">{{ _('History of the Mozilla Project') }}</h1>
 
-{% block site_header_logo %}{% endblock %}
+  <p>
+    {% trans coderush='https://air.mozilla.org/code-rush/',
+             sourcerelease='http://web.archive.org/web/20021001071727/wp.netscape.com/newsref/pr/newsrelease558.html'
+    %}
+      The Mozilla project was <a href="{{ coderush}}">created in 1998</a>
+      with the <a href="{{ sourcerelease }}">release of the Netscape browser
+      suite source code</a>.
+    {% endtrans %}
+    {% trans %}
+      It was intended to harness the creative power of thousands of
+      programmers on the Internet and fuel unprecedented levels of
+      innovation in the browser market.
+    {% endtrans %}
+    {% trans firstyear='http://www-archive.mozilla.org/mozilla-at-one.html' %}
+      Within the <a href="{{ firstyear }}">first year</a>, new community
+      members from around the world had already contributed new
+      functionality, enhanced existing features and became engaged in the
+      management and planning of the project itself.
+    {% endtrans %}
+  </p>
 
-{% block content %}
-<article id="history-slides">
-  <header class="page-head">
-    <h1 class="page-title">{{ _('Looking back. Looking ahead.') }}</h1>
-    <p class="intro">
-    {{ _('Mozilla exists to promote openness, innovation and opportunity on the Internet.') }}
-    <br>
-    {{ _('Take a closer look at who we are, including some of our biggest achievements and milestones.') }}
-    </p>
-  </header>
+  <p>
+    {% trans stevecase='http://www-archive.mozilla.org/stevecase.html' %}
+      By creating an open community, the Mozilla project had become
+      <a href="{{ stevecase }}">larger than any one company</a>.
+    {% endtrans %}
+    {% trans mission='http://www-archive.mozilla.org/mission.html',
+             browsers='http://www.oreillynet.com/pub/a/mozilla/2002/09/12/mozilla_browsers.html',
+             bugzilla='http://www.bugzilla.org',
+             projects=url('firefox')
+    %}
+      Community members got involved and expanded the scope of the project’s
+      <a href="{{ mission }}">original mission</a> — instead of just working
+      on Netscape’s next browser, people started creating
+      <a href="{{ browsers }}">a variety of browsers</a>,
+      <a href="{{ bugzilla }}">development tools</a> and a range of other
+      <a href="{{ projects }}">projects</a>.
+    {% endtrans %}
+    {% trans %}
+      People contributed to Mozilla in different ways, but everyone was
+      passionate about creating free software that would enable people to
+      have a choice in how they experienced the Internet.
+    {% endtrans %}
+  </p>
 
-  <div id="slideshow-stage">
+  <p>
+    {% trans mozilla1='http://www.mozillazine.org/articles/article2278.html' %}
+      After several years of development,
+      <a href="{{ mozilla1 }}">Mozilla 1.0</a>, the first major version, was
+      released in 2002. This version featured many improvements to the
+      browser, email client and other applications included in the suite,
+      but not many people were using it.
+    {% endtrans %}
+    {% trans over90='http://www.onestat.com/html/aboutus_pressbox4.html' %}
+      By 2002, <a href="{{ over90 }}">well over 90% of Internet users</a>
+      were browsing with Internet Explorer.
+    {% endtrans %}
+    {% trans charter='http://www-archive.mozilla.org/projects/firefox/charter.html' %}
+      Not many people noticed at the time,
+      but the first version of Phoenix (later renamed to Firefox) was also
+      released by Mozilla community members that year with the goal of
+      providing the <a href="{{ charter }}">best possible browsing experience</a>
+      to the widest possible set of people.
+    {% endtrans %}
+  </p>
 
-    <div id="slideshow">
-      <div class="slide-control">
-        <button class="prev">{{ _('Previous') }}</button>
-        <button class="next">{{ _('Next') }}</button>
-      </div>
-      <ul class="sequence-canvas slides">
-        <li id="fact01" class="slide">
-          <span class="number">01</span>
-          <div class="message">
-            <p>
-            {% trans %}
-              The Mozilla Project launched at Netscape on March 31, 1998, to offer choice to users and drive innovation on the Web.
-            {% endtrans %}
-            </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
-          <span class="back"></span>
-        </li>
+  <p>
+    {% trans foundation='https://blog.mozilla.org/press/2003/07/mozilla-org-announces-launch-of-the-mozilla-foundation-to-lead-open-source-browser-efforts/' %}
+      In 2003, the Mozilla project created the Mozilla Foundation, an
+      <a href="{{ foundation }}">independent non-profit organization</a>
+      supported by individual donors and a variety of companies.
+    {% endtrans %}
+    {% trans manifesto=url('mozorg.about.manifesto') %}
+      The new Mozilla Foundation continued the role of managing the daily
+      operations of the project and also officially took on the role of
+      promoting <a href="{{ manifesto }}">openness, innovation and opportunity</a>
+      on the Internet.
+    {% endtrans %}
+    {% trans grants=url('grants') %}
+      It did this by continuing to release software, such as Firefox and
+      Thunderbird, and expanding to new areas, such as providing
+      <a href="{{ grants }}">grants</a> to support accessibility
+      improvements on the Web.
+    {% endtrans %}
+  </p>
 
-        <li id="fact02" class="slide">
-          <span class="number">02</span>
-          <div class="message">
-            <p>
-            {% trans %}
-              Proudly non-profit, Mozilla makes products like Firefox with a mission to keep the power of the Web in the hands of users everywhere.
-            {% endtrans %}
-            </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
-          <span class="block3"></span>
-          <span class="logo"></span>
-          <span class="back"></span>
-        </li>
+  <p>
+    {% trans firefox1='https://blog.mozilla.org/press/2004/11/mozilla-foundation-releases-the-highly-anticipated-mozilla-firefox-1-0-web-browser/',
+             millions='https://blog.mozilla.org/press/2005/10/firefox-surpasses-100-million-downloads/'
+    %}
+      <a href="{{ firefox1 }}">Firefox 1.0</a> was released in 2004 and
+      became a big success — in less than a year, it was downloaded
+      <a href="{{ millions }}">over 100 million times</a>.
+    {% endtrans %}
+    {% trans %}
+      New versions of Firefox have come out regularly since then and keep
+      setting new records. The popularity of Firefox has helped bring choice
+      back to users.
+    {% endtrans %}
+    {% trans innovation='https://blog.mozilla.org/press/2006/12/the-world-economic-forum-announces-technology-pioneers-2007-mozilla-selected/' %}
+      The renewed competition has
+      <a href="{{ innovation }}">accelerated innovation</a> and improved the
+      Internet for everyone.
+    {% endtrans %}
+  </p>
 
-        <li id="fact03" class="slide">
-          <span class="number">03</span>
-          <div class="message">
-            <p>
-            {# L10N: "The New York Times" is the proper name of an English publication and should not be translated. #}
-            {% trans %}
-              More than 10,000 contributors expressed their support for our mission by paying for a full-page ad in <cite>The New York Times</cite> on the day Firefox 1.0 launched in 2004.
-            {% endtrans %}
-            </p>
-          </div>
-          <span class="block1"></span>
-          <span class="back"></span>
-        </li>
+  <p>
+    {% trans firefoxos='https://support.mozilla.org/products/firefox-os' %}
+      In 2013, we launched <a href="{{ firefoxos }}">Firefox OS</a> to
+      unleash the full power of the Web on smartphones and once again offer
+      control and choice to a new generation of people coming online.
+    {% endtrans %}
+  </p>
 
-        <li id="fact04" class="slide">
-          <span class="number">04</span>
-          <div class="message">
-            <p>
-            {% trans %}
-              Today Mozilla has contributors on every continent, including Antarctica (where Firefox is used by 80% of people).
-            {% endtrans %}
-            </p>
-          </div>
-          <span class="block1"></span>
-          <span class="back"></span>
-        </li>
+  <p>
+    {% trans %}
+      Mozilla also celebrated its 15th anniversary in 2013.
+    {% endtrans %}
+    {% trans %}
+      The community has shown that commercial companies can benefit by
+      collaborating in open source projects and that great end user products
+      can be produced as open source software.
+    {% endtrans %}
+    {% trans all=firefox_url('desktop', 'all') %}
+      More people than ever before are using the Internet and are
+      experiencing it <a href="{{ all }}">in their own language</a>.
+    {% endtrans %}
+    {% trans range='http://www.wikipedia.org',
+             areas='http://creativecommons.org/'
+    %}
+      A sustainable organization has been created that uses market mechanisms
+      to support a public benefit mission and this model has been reused by
+      others to create open, transparent and collaborative organizations in
+      a <a href="{{ range }}">broad range</a>
+      <a href="{{ areas }}">of areas</a>.
+    {% endtrans %}
+  </p>
 
-        <li id="fact05" class="slide">
-          <span class="number">05</span>
-          <div class="message">
-            <p>
-          {% if l10n_has_tag('history_nov2014') %}
-            {% trans %}
-              Firefox Add-Ons allow you to customize and take control of your Web experience. Nearly 4 billion of them have been downloaded by users so far.
-            {% endtrans %}
-          {% else %}
-            {% trans %}
-              Firefox Add-Ons allow you to customize and take control of your Web experience. Over 3 billion of them have been downloaded by users so far.
-            {% endtrans %}
-          {% endif %}
-            </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
-          <span class="block3"></span>
-          <span class="back"></span>
-        </li>
+  <p>
+    {% trans %}
+      The future is full of challenges and opportunities equal to those of
+      our past.
+    {% endtrans %}
+    {% trans %}
+      There’s no guarantee that the Internet will remain open or enjoyable
+      or safe.
+    {% endtrans %}
+    {% trans %}
+      Mozilla will continue to provide an opportunity for people to make
+      their voices heard and to shape their own online lives.
+    {% endtrans %}
+    {% trans %}
+      Of course, we’re not alone in doing this.
+    {% endtrans %}
+    {% trans %}
+      The Mozilla community, together with other open source projects and
+      other public benefit organizations, exists only because of the people
+      who are engaged in making our common goals a reality.
+    {% endtrans %}
+    {% trans contribute=url('mozorg.contribute.index') %}
+      If you want to join us in our mission, please
+      <a href="{{ contribute }}">get involved</a>.
+    {% endtrans %}
+  </p>
 
-        <li id="fact06" class="slide">
-          <span class="number">06 <span class="keyhole"></span></span>
-          <div class="message">
-            <p>
-            {% trans %}
-              Mozilla is leading the way in online privacy with browser innovations like Do Not Track and Lightbeam that give users greater control of their personal data.
-            {% endtrans %}
-            </p>
-          </div>
-          <span class="block1"></span>
-          <span class="back"></span>
-        </li>
+  <p>
+    {% trans %}
+      For more information about Mozilla’s history, see the following:
+    {% endtrans %}
+  </p>
 
-        <li id="fact07" class="slide">
-          <span class="number">07</span>
-          <div class="message">
-            <p>
-            {% trans %}
-              Our global community has helped translate Firefox into over 70 languages, making the browser available to more than 90% of the world's population.
-            {% endtrans %}
-            </p>
-          </div>
-          <span class="block1"></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact08" class="slide">
-          <span class="number">08</span>
-          <div class="message">
-            <p>
-            {% trans %}
-              In 2008, 8,002,530 people chose Firefox in a single day to set a Guinness World Record for “Most Downloads of a Software Application in 24 Hours.”
-            {% endtrans %}
-            </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact09" class="slide">
-          <span class="number">09</span>
-          <div class="message">
-            <p>
-            {% trans %}
-              The Mozilla Festival is our largest annual event, bringing together hundreds of creative minds to realize the full power and potential of the Web.
-            {% endtrans %}
-            </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
-          <span class="logo"><span></span></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact10" class="slide">
-          <span class="number">10</span>
-          <div class="message">
-            <p>
-            {% trans %}
-              Mozilla Webmaker works to create a more Web-literate planet, providing tools and projects to help people take greater control of their online lives.
-            {% endtrans %}
-            </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact11" class="slide">
-          <span class="number">11</span>
-          <div class="message">
-            <p>
-          {% if l10n_has_tag('history_nov2014') %}
-            {% trans %}
-              Firefox for Android brings the Firefox desktop browsing experience to phones and tablets. Available on Google Play, it has been downloaded more than 80 million times.
-            {% endtrans %}
-          {% else %}
-            {% trans %}
-              Mozilla leads the Open Badges program, an online standard that helps people gain recognition for 21st century skills and unlock new career opportunities.
-            {% endtrans %}
-          {% endif %}
-            </p>
-          </div>
-          <span class="block1"></span>
-          <span class="droid"></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact12" class="slide">
-          <span class="number">12</span>
-          <div class="message">
-            <p>
-            {% trans %}
-              The Mozilla Developer Network is a community-driven Web resource that provides the best documentation, tutorials and tools available to more than 2 million visitors each month.
-            {% endtrans %}
-            </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
-          <span class="stars"></span>
-          <span class="rocket"></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact13" class="slide">
-          <span class="number">13</span>
-          <div class="message">
-            <p>
-            {% trans %}
-              Mozilla works to care for and preserve the Web as a shared public resource for the benefit of everyone.
-            {% endtrans %}
-            </p>
-          </div>
-          <span class="block1"></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact14" class="slide">
-          <span class="number">14</span>
-          <div class="message">
-            <p>
-            {% trans %}
-              In 2013, Mozilla launched Firefox OS to unleash the full power of the Web on smartphones and once again offer control and choice to a new generation of people coming online.
-            {% endtrans %}
-            </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
-          <span class="shadow"></span>
-          <span class="phone"></span>
-          <span class="fox"></span>
-          <span class="back"></span>
-        </li>
-
-        <li id="fact15" class="slide">
-          <span class="number">15</span>
-          <div class="message">
-            <p>
-            {% trans %}
-              The work Mozilla does is made possible thanks to tens of thousands of volunteers who believe the Web should remain open and accessible to all.
-            {% endtrans %}
-            </p>
-          </div>
-          <span class="block1"></span>
-          <span class="block2"></span>
-          <span class="back"></span>
-        </li>
-
-      </ul>
-    </div>
-  </div>
-</article>
-
-<div class="billboard">
-  <ul class="links">
+  <ul>
+    <li><a href="https://wiki.mozilla.org/Historical_Documents">{{ _('Mozilla Bookmarks') }}</a></li>
+    <li><a href="https://wiki.mozilla.org/Timeline">{{ _('Timeline of Mozilla Project') }}</a></li>
+    <li><a href="http://mozillamemory.org/index.php">{{ _('Mozilla Digital Memory Bank') }}</a></li>
     <li>
-      <h4><a href="{{ url('mozorg.about') }}">{{ _('About Mozilla') }}</a></h4>
-      <p>{{ _('A look at our projects, products and principles') }}</p>
-    </li>
-    <li>
-      <h4><a href="{{ url('mozorg.mission') }}">{{ _('The Mozilla mission') }}</a></h4>
-      <p>{{ _('What drives us and makes us different') }}</p>
-    </li>
-    <li>
-      <h4><a href="{{ url('mozorg.about.history-details') }}">{{ _('More history') }}</a></h4>
-      <p>{{ _('Where we came from and how we got to where we are') }}</p>
-    </li>
-    <li>
-      <h4><a href="{{ url('firefox') }}">{{ _('Our products') }}</a></h4>
-      <p>{{ _('An overview of what we make and what we’re working on') }}</p>
-    </li>
-    <li>
-      <h4><a href="{{ url('mozorg.contribute.index') }}">{{ _('Get involved') }}</a></h4>
-      <p>{{ _('Become a volunteer contributor in a number of different areas') }}</p>
-    </li>
-    <li>
-      <h4><a href="{{ url('mozorg.about.governance.governance') }}">{{ _('Governance') }}</a></h4>
-      <p>{{ _('Our organization, structure and broader community') }}</p>
+      {% trans link="http://www.foxkeh.com/downloads/" %}
+        <a href="{{ link }}">The History of Firefox and Mozilla Posters</a>
+        (available in English and Japanese)
+      {% endtrans %}
     </li>
   </ul>
-</div>
-
 {% endblock %}
+
+{% block newsletter %}{% endblock %}

@@ -525,12 +525,6 @@
     },
     {
       "files": [
-        "css/mozorg/history-slides.less"
-      ],
-      "name": "history-slides"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-63.scss"
       ],
       "name": "firefox_whatsnew_63"
@@ -570,12 +564,6 @@
         "css/mozorg/contribute/contribute-embed.less"
       ],
       "name": "contribute-embed"
-    },
-    {
-      "files": [
-        "css/mozorg/about-base.less"
-      ],
-      "name": "about-base-resp"
     },
     {
       "files": [
@@ -1213,13 +1201,6 @@
         "js/firefox/mobile/mobile.js"
       ],
       "name": "firefox-mobile"
-    },
-    {
-      "files": [
-        "js/libs/jquery.sequence.js",
-        "js/mozorg/history-slides.js"
-      ],
-      "name": "history-slides"
     },
     {
       "files": [
