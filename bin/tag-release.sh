@@ -22,9 +22,9 @@ done
 # compare master and stage
 echo "Comparing master branch to staging..."
 git fetch "$moz_git_remote"
-stage_hash=`git rev-parse $moz_git_remote/stage`
-master_hash=`git rev-parse master`
-if [ $stage_hash != $master_hash ]; then
+stage_hash=$(git rev-parse "${moz_git_remote}/stage")
+master_hash=$(git rev-parse master)
+if [[ "$stage_hash" != "$master_hash" ]]; then
     read -p "Master branch does NOT match stage branch! Are you sure you want to continue? (Type Override to continue, n to cancel)" no_match
     if [ "$no_match" == "${no_match#[Override]}" ]; then
         # do not continue tagging release
