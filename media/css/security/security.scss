@@ -11,3 +11,13 @@ $image-path: '/media/protocol/img';
         'components/level',
         'components/links',
         'components/note';
+
+.pgp-key {
+    overflow-x: scroll;
+}
+
+// mozilla/protocol#422
+.mzp-c-article {
+    width: $content-md;
+    max-width: 100%;
+}
