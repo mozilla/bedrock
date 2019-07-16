@@ -341,7 +341,8 @@ function cssLint() {
             reporters: [{
                 formatter: 'string',
                 console: true
-            }]
+            }],
+            debug: true
         }));
 }
 gulp.task('css:lint', cssLint);
