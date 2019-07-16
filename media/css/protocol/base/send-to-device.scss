@@ -1,0 +1,106 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+
+#send-to-device {
+    max-width: 500px;
+
+    h2.thank-you {
+        @include text-display-sm;
+    }
+
+    .thank-you p {
+        background: lighten($color-green-50, 30%);
+        color: $color-black;
+        padding: $spacing-sm;
+        border-radius: 2px;
+    }
+
+    .error-list {
+        background: lighten($color-red-50, 30%);
+        color: $color-black;
+        padding: $spacing-sm;
+        border-radius: 2px;
+    }
+
+    .form-input input {
+        @include border-box;
+        @include text-body-md;
+        border-radius: 2px;
+        padding: ($spacing-md - 2px) ($spacing-xl - 2px); //2px extra padding removed to compensate for 2px border.
+        margin-bottom: $spacing-sm;
+        width: 100%;
+    }
+
+    .form-submit button {
+        margin-bottom: $spacing-sm;
+        width: 100%;
+    }
+
+    .legal {
+        @include text-body-sm;
+    }
+
+    .email {
+        display: block;
+    }
+
+    .sms-country {
+        .email {
+            display: none;
+        }
+    }
+
+    .sms {
+        display: none;
+    }
+
+    .sms-country {
+        .sms {
+            display: block;
+        }
+    }
+
+    footer {
+        @include clearfix;
+
+        li {
+            float: left;
+            width: 50%;
+
+            a {
+                padding: $spacing-sm;
+            }
+
+            &.app-store {
+                text-align: right;
+            }
+
+            &.google-play {
+                text-align: left;
+            }
+        }
+
+        &.ios .google-play {
+            display: none;
+        }
+
+        &.android .app-store {
+            display: none;
+        }
+
+        &.ios,
+        &.android {
+            li {
+                float: none;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    }
+}
