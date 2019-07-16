@@ -7,12 +7,11 @@
 {% block side_nav %}{% endblock %}
 
 {% block article %}
-  <article itemscope itemtype="http://schema.org/Article">
-    <header>
-      <h1 itemprop="name" class="mzp-c-article-title">{{ self.page_title() }}</h1>
-    </header>
-    <div itemprop="articleBody">
-    <p class="intro">This page archives security announcements made for older versions of
+  <header>
+    <h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
+  </header>
+
+  <p class="intro">This page archives security announcements made for older versions of
     Mozilla projects. Please see the active <a href="{{ url('security.known-vulnerabilities') }}">
       Known Vulnerabilities</a> page for more recent security advisories.</p>
 
@@ -1550,6 +1549,4 @@
   </tr>
   </tbody>
   </table>
-  </div>
-</article>
 {% endblock %}

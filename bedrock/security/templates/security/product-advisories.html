@@ -8,44 +8,40 @@
 {% endblock %}
 
 {% block article %}
-  <article itemscope itemtype="http://schema.org/Article">
-    <header>
-      <h1 itemprop="name" class="mzp-c-article-title">{{ title }}</h1>
-    </header>
-    <div itemprop="articleBody">
-      {% if is_obsolete %}
-        <p class="note">{{ product_name }} is unsupported.
-          {% if product_slug == 'firefox' %}
-            Please <a href="{{ url('firefox.new') }}">upgrade to the latest version</a>.
-          {% elif product_slug == 'firefox-esr' %}
-            Please <a href="{{ url('firefox.organizations.organizations') }}">upgrade to the latest version</a>.
-          {% elif product_slug.startswith('thunderbird') %}
-            {# could be thunderbird-esr which is always obsolete now #}
-            Please <a href="https://thunderbird.net">upgrade to the latest version</a>.
-          {% elif product_slug == 'seamonkey' %}
-            Please <a href="http://www.seamonkey-project.org/">upgrade to the latest version</a>.
-          {% else %}
-            Please upgrade to the latest version.
-          {% endif %}
-        </p>
+  <header>
+    <h1 class="mzp-c-article-title">{{ title }}</h1>
+  </header>
+
+  {% if is_obsolete %}
+    <p class="note">{{ product_name }} is unsupported.
+      {% if product_slug == 'firefox' %}
+        Please <a href="{{ url('firefox.new') }}">upgrade to the latest version</a>.
+      {% elif product_slug == 'firefox-esr' %}
+        Please <a href="{{ url('firefox.organizations.organizations') }}">upgrade to the latest version</a>.
+      {% elif product_slug.startswith('thunderbird') %}
+        {# could be thunderbird-esr which is always obsolete now #}
+        Please <a href="https://thunderbird.net">upgrade to the latest version</a>.
+      {% elif product_slug == 'seamonkey' %}
+        Please <a href="http://www.seamonkey-project.org/">upgrade to the latest version</a>.
+      {% else %}
+        Please upgrade to the latest version.
       {% endif %}
+    </p>
+  {% endif %}
 
-      {% include "security/partials/impact_key.html" %}
+  {% include "security/partials/impact_key.html" %}
 
-      {% for version in product_versions %}
-        <h3 id="{{ version.html_id }}" class="level-heading"><a href="#{{ version.html_id }}">
-          <span class="anchor">#</span>
-          Fixed in {{ version.name }}
-        </a></h3>
-        <ul>
-        {% for advisory in version.advisories.all() %}
-          <li class="level-item"><a href="{{ advisory.get_absolute_url() }}" data=version="{{ version.html_id }}">
-            <span class="level {{ advisory.impact_class }}">{{ advisory.id }}</span> {{ advisory.title|safe }}
-          </a></li>
-        {% endfor %}
-        </ul>
-      {% endfor %}
-
-    </div>
-  </article>
+  {% for version in product_versions %}
+    <h3 id="{{ version.html_id }}" class="level-heading"><a href="#{{ version.html_id }}">
+      <span class="anchor">#</span>
+      Fixed in {{ version.name }}
+    </a></h3>
+    <ul>
+    {% for advisory in version.advisories.all() %}
+      <li class="level-item"><a href="{{ advisory.get_absolute_url() }}" data=version="{{ version.html_id }}">
+        <span class="level {{ advisory.impact_class }}">{{ advisory.id }}</span> {{ advisory.title|safe }}
+      </a></li>
+    {% endfor %}
+    </ul>
+  {% endfor %}
 {% endblock %}
