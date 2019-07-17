@@ -2,124 +2,194 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "mozorg/base-resp.html" %}
+{% from "macros-protocol.html" import billboard, card, feature_card with context %}
 
-{% block page_title %}{{ _('Get to know Mozilla') }}{% endblock %}
+{% extends "base-protocol-mozilla.html" %}
+
+{% add_lang_files "mozorg/about-2019" %}
+
+{% block page_title %}{{ _('Learn About Mozilla') }}{% endblock %}
+
+{% block page_desc %}
+  {{ _('Mozilla makes browsers, apps, code and tools that put people before profit. Our mission: Keep the internet open and accessible to all.') }}
+{% endblock %}
+
 {% block body_id %}about{% endblock %}
-{% block body_class %}sand{% endblock %}
-{% block body_attrs %}{{ super() }} data-global-nav-current-link="about-us"{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('about') }}
 {% endblock %}
 
 {% block content %}
-<main>
-  <header class="page-header">
-    <h1><span class="content">{{ _('Get to know Mozilla') }}</span></h1>
-  </header>
+<section class="mzp-c-hero t-mission" {% if variant %}data-variant="{{ variant }}"{% endif%}>
+  <div class="mzp-l-content">
+    <div class="mzp-c-hero-body">
+      <h1 class="mzp-c-hero-title">{{ _('Mozilla makes browsers, apps, code and tools that put people before profit.') }}</h1>
 
-  <div class="section">
-    <div class="content content-main">
-      <p class="intro">{{ _('Learn more about our projects, products and principles designed to help people take control and explore the full potential of their lives online.') }}</p>
-
-      <div class="video">
-        {% if request.locale == 'en-US' %}
-          <div class="moz-video-container">
-            <button class="moz-video-button" type="button" aria-controls="htmlPlayer">{{ _('Play video') }}</button>
-            {{ video('Mozilla_2014_i_am.webm',
-                     'Mozilla_2014_i_am.ogv',
-                     'Mozilla_2014_i_am.mp4',
-                     h=259, w=460,
-                     prefix='//videos.cdn.mozilla.net/uploads/mozillaorg/',
-                     poster=static('img/mozorg/about/poster-i-am.jpg')) }}
-          </div>
-          <p>{{ _('The heart of Mozilla is a global community with a shared mission. Watch the video to meet Mozillians from all over the world and all walks of life.') }}</p>
-        {% else %}
-          <img class="placeholder-img" src="{{ static('img/mozorg/about/poster-i-am.jpg') }}" alt="Mozilla">
-        {% endif %}
+      <div class="mzp-c-hero-desc">
+        <p>{{ _('Our mission: Keep the internet open and accessible to all.') }}</p>
       </div>
 
-      <ul class="links">
-        <li>
-          <h4><a href="{{ url('mozorg.mission') }}">{{ _('The Mozilla mission') }}</a></h4>
-          <p>{{ _('What drives us and makes us different') }}</p>
-        </li>
-        <li>
-          <h4><a href="https://careers.mozilla.org/">{{ _('Career center') }}</a></h4>
-          {% if l10n_has_tag('about_links') %}
-          <p>{{ _('Want to work at Mozilla? Apply today!') }}</p>
-          {% else %}
-          <p>{{ _('Want to work on Firefox? Apply today!') }}</p>
-          {% endif %}
-        </li>
-        <li>
-          <h4><a href="https://blog.mozilla.org/">{{ _('Mozilla blog') }}</a></h4>
-          <p>{{ _('News, notes and ramblings from the Mozilla project') }}</p>
-        </li>
-        <li>
-          <h4><a href="{{ url('styleguide.index') }}">{{ _('Mozilla style guide') }}</a></h4>
-          <p>{{ _('Logos, copy rules, visual assets and more') }}</p>
-        </li>
-        <li>
-          <h4><a href="{{ url('mozorg.contact.spaces.spaces-landing') }}">{{ _('Locations & contacts') }}</a></h4>
-          <p>{{ _('Addresses, emails, support and feedback forms') }}</p>
-        </li>
-        {% if l10n_has_tag('about_links') %}
-        <li>
-          <h4><a href="{{ url('foundation.moco') }} ">{{ _('The Mozilla Corporation') }}</a></h4>
-          <p>{{ _('A corporation that serves the public good. Seriously.') }}</p>
-        </li>
-        {% endif %}
-      </ul>
-
-      <ul class="links">
-        {% if l10n_has_tag('about_leadership') %}
-        <li>
-          <h4><a href="{{ url('mozorg.about.leadership') }}">{{ _('Mozilla leadership') }}</a></h4>
-          <p>{{ _('Our Management Teams, Reps Council and Boards of Directors') }}</p>
-        </li>
-        {% endif %}
-        <li>
-          <h4><a href="{{ url('firefox') }}">{{ _('Our products') }}</a></h4>
-          <p>{{ _('An overview of what we make and what we’re working on') }}</p>
-        </li>
-        <li>
-          <h4><a href="{{ url('mozorg.contribute.index') }}">{{ _('Get involved') }}</a></h4>
-          <p>{{ _('Become a volunteer contributor in a number of different areas') }}</p>
-        </li>
-        <li>
-          <h4><a href="{{ press_blog_url() }}">{{ _('Press center') }}</a></h4>
-          <p>{{ _('Press info and other useful stuff') }}</p>
-        </li>
-        <li>
-          <h4><a href="{{ url('privacy') }}">{{ _('Privacy center') }}</a></h4>
-          <p>{{ _('How Mozilla handles your personal information') }}</p>
-        </li>
-        {% if l10n_has_tag('about_links') %}
-        <li>
-          <h4><a href="https://foundation.mozilla.org/">{{ _('The Mozilla Foundation') }}</a></h4>
-          <p>{{ _('The non-profit organization behind Firefox and all Mozilla products') }}</p>
-        </li>
-         {% endif %}
-      </ul>
+      <p class="mzp-c-hero-cta">
+        <a id="read-mission-button" class="mzp-c-button" href="{{ url('mozorg.mission') }}" data-link-name="Read Our Mission" data-link-type="button" data-cta-position="primary cta">{{ _('Read Our Mission') }}</a>
+      </p>
     </div>
   </div>
-</main>
-{% endblock %}
+</section>
 
-{% block email_form %}
-  <aside id="newsletter-subscribe">
-    <div class="content container">
-    {% if LANG.startswith('en-') %}
-      {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Sign up. Read up.<br> Make a difference.'), subtitle=_('Get the Mozilla newsletter and help us keep the Web free and open.'), button_class='button-red') }}
-    {% else %}
-      {{ email_newsletter_form(button_class='button-red') }}
-    {% endif %}
+<div class="t-shade">
+  <div class="mzp-l-content">
+    <h1 class="c-page-title">{{ _('Our Mission in Action') }}</h1>
+    <div class="mzp-l-card-half">
+      {{ card(
+          class='mzp-c-card-medium',
+          title=_('Pioneers of The Open Web'),
+          ga_title='Pioneers of The Open Web',
+          desc=_('Our leadership has been at the forefront of building a healthier internet since Day 1. What began as an alternative to corporate domination has grown into a global force for good online.'),
+          image_url='mozorg/about/leaders.jpg',
+          include_highres_image=True,
+          aspect_ratio='mzp-has-aspect-3-2',
+          link_url=url('mozorg.about.leadership')
+      )}}
+      {{ card(
+          class='mzp-c-card-medium',
+          title=_('Firefox: Fast for Good'),
+          ga_title='Firefox: Fast for Good',
+          desc=_('When you use the new Firefox, you get a blazing fast experience while supporting Mozilla’s mission to keep the internet healthy, weird and welcoming to all.'),
+          image_url='mozorg/about/firefox.jpg',
+          include_highres_image=True,
+          aspect_ratio='mzp-has-aspect-3-2',
+          link_url=url('firefox')
+      )}}
+      {{ card(
+          class='mzp-c-card-medium',
+          title=_('Walking Our Privacy Talk'),
+          ga_title='Walking Our Privacy Talk',
+          desc=_('When the Facebook breach was revealed, Mozilla had an immediate response – and a Firefox product to support user privacy.'),
+          image_url='mozorg/about/container.jpg',
+          include_highres_image=True,
+          aspect_ratio='mzp-has-aspect-3-2',
+          link_url='https://blog.mozilla.org/Internetcitizen/2018/06/06/the-today-show-mozilla-firefox-facebook-container/'
+      )}}
+      {{ card(
+          class='mzp-c-card-medium',
+          title=_('Talking Internet Issues IRL'),
+          ga_title='Talking Internet Issues IRL',
+          desc=_('In Mozilla’s IRL podcast, host Manoush Zomorodi shares real stories of life online and real talk about the future of the Web.'),
+          image_url='mozorg/about/irl.jpg',
+          include_highres_image=True,
+          aspect_ratio='mzp-has-aspect-3-2',
+          link_url='https://irlpodcast.org/'
+      )}}
+    </div>
+  </div>
+</div>
+<div class="mzp-l-content">
+  {% call feature_card(
+      title=_('Corporation. Foundation. Not-for-profit.'),
+      ga_title='Corporation. Foundation. Not-for-profit.',
+      link_cta=_('Learn about the Mozilla Foundation'),
+      link_url='https://foundation.mozilla.org/',
+      image_url='mozorg/about/foundation.jpg',
+      include_highres_image=True,
+      aspect_ratio='mzp-has-aspect-3-2',
+      class='mzp-l-card-feature-left-half t-foundation'
+  ) %}
+    <p>{{ _('Mozilla puts people over profit in everything we say, build and do. In fact, there’s a non-profit Foundation at the heart of our enterprise.') }}</p>
+  {% endcall %}
+
+  {{ billboard(
+      title=_('The Mozilla Manifesto'),
+      ga_title='The Mozilla Manifesto',
+      desc=_('The principles we wrote in 1998 still guide us today. And in 2018, we created an addendum to emphasize inclusion, privacy and safety for everyone online.'),
+      link_cta=_('Read The Manifesto'),
+      link_url=url('mozorg.about.manifesto'),
+      image_url='home/2018/billboard-healthy-internet.png',
+      include_highres_image=True
+  )}}
+</div>
+<div class="mzp-l-content">
+  <section class="mzp-c-hero t-global">
+    <div class="mzp-l-content">
+      <div class="mzp-c-hero-body">
+        <h1 class="mzp-c-hero-title">{{ _('A Global View') }}</h1>
+        <div class="mzp-c-hero-desc">
+          {% trans url=url('mozorg.contact.spaces.spaces-landing') %}
+            With <a href="{{ url }}">offices all over the world</a>, we consider the internet from multiple cultures and contexts.
+          {% endtrans %}
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="c-cities">
+    <a class="c-city c-city-sf" href="{{ url('mozorg.contact.spaces.san-francisco') }}">
+        <h3 class="c-city-title">{{ _('San Francisco') }}</h3>
+      {# L10n: The number inside the strong tag will be big, bold, and on its own line. Remove the strong tag if you need to put the number in the middle of the phrase  #}
+      <p class="c-city-desc">{{ _('<strong>2000</strong> non-employee guests welcomed each year') }}</p>
+    </a>
+    <a class="c-city c-city-berlin" href="{{ url('mozorg.contact.spaces.berlin') }}">
+      <h3 class="c-city-title">{{ _('Berlin') }}</h3>
+      {# L10n: The number inside the strong tag will be big, bold, and on its own line. Remove the strong tag if you need to put the number in the middle of the phrase  #}
+      <p class="c-city-desc">{{ _('<strong>500</strong> annual attendees to the Berlin speaker series') }} </p>
+    </a>
+    <a class="c-city c-city-taipei" href="{{ url('mozorg.contact.spaces.taipei') }}">
+      <h3 class="c-city-title">{{ _('Taipei') }}</h3>
+      {# L10n: The number inside the strong tag will be big, bold, and on its own line. Remove the strong tag if you need to put the number in the middle of the phrase  #}
+      <p class="c-city-desc">{{ _('<strong>400</strong> collaborative visits with Mozilla employees each year.') }}</p>
+    </a>
+    <a class="c-city c-city-toronto" href="{{ url('mozorg.contact.spaces.toronto') }}">
+      <h3 class="c-city-title">{{ _('Toronto') }}</h3>
+      {# L10n: The number inside the strong tag will be big, bold, and on its own line. Remove the strong tag if you need to put the number in the middle of the phrase  #}
+      <p class="c-city-desc">{{ _('<strong>800</strong> bottles of cold brew coffee consumed yearly.') }}</p>
+    </a>
+  </section>
+
+  <div class="mzp-l-card-half">
+    {{ card(
+        class='mzp-c-card-medium',
+        title=_('Work at Mozilla'),
+        ga_title='Work at Mozilla',
+        desc=_('Join a mission-driven organization that builds purpose-driven products.'),
+        image_url='mozorg/about/careers.jpg',
+        include_highres_image=True,
+        aspect_ratio='mzp-has-aspect-3-2',
+        link_url='https://careers.mozilla.org',
+        cta=_('Mozilla Careers')
+    )}}
+    {{ card(
+        class='mzp-c-card-medium',
+        title=_('How You Can Help'),
+        ga_title='How You Can Help',
+        desc=_('Your voice. Your code. Your support. There are so many ways to join the fight for a healthy internet.'),
+        image_url='mozorg/about/involved.jpg',
+        include_highres_image=True,
+        aspect_ratio='mzp-has-aspect-3-2',
+        link_url=url('mozorg.contribute.index'),
+        cta=_('Get Involved')
+    )}}
+  </div>
+</div>
+<div class="mzp-l-content">
+  <aside class="mzp-c-newsletter">
+    <div class="mzp-c-newsletter-image">
+      {{ high_res_img('home/2018/newsletter-graphic.png', {'alt': ''}) }}
+    </div>
+
+    <div class="newsletter-content">
+      {% set newsletter_id = 'mozilla-foundation' if LANG.startswith('en-') else 'mozilla-and-you' %}
+      {{ email_newsletter_form(
+          newsletters=newsletter_id,
+          title=_('Get The Mozilla Newsletter'),
+          subtitle=_('Stay informed about the issues affecting the internet, and learn how you can get involved in protecting the world’s newest public resource.'),
+          button_class='button-dark',
+          submit_text=_('Subscribe'),
+          protocol_component=True
+      )}}
     </div>
   </aside>
+</div>
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('about_video') }}
+  {{ js_bundle('about') }}
 {% endblock %}
