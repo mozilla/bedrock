@@ -26,9 +26,7 @@
     },
     {
       "files": [
-        "css/base/mozilla-video-poster.less",
-        "css/newsletter/moznewsletter-subscribe.less",
-        "css/mozorg/mission.less"
+        "css/mozorg/mission.scss"
       ],
       "name": "mission"
     },
@@ -1186,13 +1184,6 @@
         "js/mozorg/about.js"
       ],
       "name": "about"
-    },
-    {
-      "files": [
-        "js/base/mozilla-video-poster.js",
-        "js/mozorg/about-video.js"
-      ],
-      "name": "about_video"
     },
     {
       "files": [
