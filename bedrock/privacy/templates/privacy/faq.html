@@ -2,256 +2,255 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "privacy/base-resp.html" %}
+{% extends "privacy/base-protocol.html" %}
 
 {% block page_title %}{{ _('Mozilla’s Data Privacy FAQ') }}{% endblock %}
 {% block page_desc %}{{ _('At Mozilla we respect and protect your personal information.') }}{% endblock %}
 
-{% block body_id %}privacy-principles{% endblock %}
+{% block body_id %}privacy-faq{% endblock %}
+{% block body_class %}mzp-t-mozilla{% endblock %}
 
 {% block article %}
-  <article class="section-content" itemscope itemtype="http://schema.org/Article">
-    <header>
-      <h1 class="title-shadow-box" itemprop="name">{{ self.page_title() }}</h1>
-    </header>
-    <div itemprop="articleBody">
-      <h2>
-        {%- trans -%}
-          We Stand for People Over Profit.
+  <header>
+    <h1 class="mzp-c-article-title" itemprop="name">{{ self.page_title() }}</h1>
+  </header>
+  <div itemprop="articleBody" class="mzp-c-article">
+    <h2>
+      {%- trans -%}
+        We Stand for People Over Profit.
+      {%- endtrans -%}
+    </h2>
+    <p>
+      {%- trans -%}
+        It can be tricky for people to know what to expect of any software or services they use today. The technology that powers our lives is complex and people don’t have the time to dig into the details. That is still true for Firefox, where we find that people have many different ideas of what is happening under the hood in their browser.
+      {%- endtrans -%}
+    </p>
+    <p>
+      {%- trans -%}
+        At Mozilla, we respect and protect your personal information:
+      {%- endtrans -%}
+    </p>
+
+    <ul class="mzp-u-list-styled">
+      <li>
+        {%- trans link=url('privacy.principles') -%}
+          We follow a set of <a href="{{ link }}">Data Privacy Principles</a> that shape our approach to privacy in the Firefox desktop and mobile browsers.
         {%- endtrans -%}
-      </h2>
-      <p>
+      </li>
+      <li>
         {%- trans -%}
-          It can be tricky for people to know what to expect of any software or services they use today. The technology that powers our lives is complex and people don’t have the time to dig into the details. That is still true for Firefox, where we find that people have many different ideas of what is happening under the hood in their browser.
+          We only collect the data we need to make the best products.
         {%- endtrans -%}
-      </p>
-      <p>
+      </li>
+      <li>
         {%- trans -%}
-          At Mozilla, we respect and protect your personal information:
+          We put people in control of their data and online experiences.
         {%- endtrans -%}
-      </p>
-
-      <ul>
-        <li>
-          {%- trans link=url('privacy.principles') -%}
-            We follow a set of <a href="{{ link }}">Data Privacy Principles</a> that shape our approach to privacy in the Firefox desktop and mobile browsers.
-          {%- endtrans -%}
-        </li>
-        <li>
-          {%- trans -%}
-            We only collect the data we need to make the best products.
-          {%- endtrans -%}
-        </li>
-        <li>
-          {%- trans -%}
-            We put people in control of their data and online experiences.
-          {%- endtrans -%}
-        </li>
-        <li>
-          {%- trans -%}
-            We adhere to “no surprises” principle, meaning we work hard to ensure people’s understanding of Firefox matches reality.
-          {%- endtrans -%}
-        </li>
-      </ul>
-
-      <p>
+      </li>
+      <li>
         {%- trans -%}
-          The following questions and answers should help you understand what to expect from Mozilla and Firefox:
+          We adhere to “no surprises” principle, meaning we work hard to ensure people’s understanding of Firefox matches reality.
         {%- endtrans -%}
-      </p>
+      </li>
+    </ul>
 
-      <dl class="prose">
-        <dt>
-          {%- trans -%}
-            I use Firefox for almost everything on the Web. You folks at Mozilla must know a ton of stuff about me, right?
-          {%- endtrans -%}
-        </dt>
-        <dd>
-          <p>
-            {%- trans -%}
-              Firefox, the web browser that runs on your device or computer, is your gateway to the internet. Your browser will manage a lot of information about the websites you visit, but that information stays on your device. Mozilla, the company that makes Firefox, doesn’t collect it (unless you ask us to).
-            {%- endtrans -%}
-          </p>
-        </dd>
-        <dt>
-          {%- trans -%}
-            Really, you don’t collect my browsing history?
-          {%- endtrans -%}
-        </dt>
-        <dd>
-          <p>
-            {%- trans link="https://addons.mozilla.org/firefox/addon/firefox-pioneer/" -%}
-            Mozilla doesn’t know as much as you’d expect about how people browse the web. As a browser maker, that’s actually a big challenge for us. That is why we’ve built opt-in tools, such as <a href="{{ link }}">Firefox Pioneer</a>, which allows interested users to give us insight into their web browsing.  If you sync your browsing history across Firefox installations, we don’t know what that history is - because it’s encrypted by your device.
-            {%- endtrans -%}
-          </p>
-        <dt>
-            {%- trans -%}
-            It seems like every company on the web is buying and selling my data. You’re probably no different.
-            {%- endtrans -%}
-        </dt>
-        <dd>
-          <p>
-            {%- trans -%}
-              Mozilla doesn’t sell data about you, and we don’t buy data about you.
-            {%- endtrans -%}
-          </p>
-        </dd>
-        <dt>
-          {%- trans -%}
-            Wait, so how do you make money?
-          {%- endtrans -%}
-        </dt>
-        <dd>
-          <p>
-            {%- trans link=url('foundation.annualreport') -%}
-              Mozilla is not your average organization. Founded as a community open source project in 1998, Mozilla is a mission-driven organization working towards a more healthy internet. The majority of Mozilla Corporation’s revenue is from royalties earned through Firefox web browser search partnerships and distribution deals around the world. You can learn more about how we make money in our <a href="{{ link }}">annual financial report</a>.
-            {%- endtrans -%}
-          </p>
-        </dd>
-        <dt>
-          {%- trans -%}
-            Okay, those first few were softballs. What data do you collect?
-          {%- endtrans -%}
-        </dt>
-        <dd>
-          <p>
-            {%- trans privacy=url('privacy.notices.firefox'), data='https://firefox-source-docs.mozilla.org/toolkit/components/telemetry/telemetry/' -%}
-              Mozilla does collect a limited set of data by default from Firefox that helps us to understand how people use the browser. That data is tied to a random identifier, rather than your name or email address. You can read more about that on our <a href="{{ privacy }}">privacy notice</a> and you can read the <a href="{{ data }}">full documentation for that data collection</a>.
-            {%- endtrans -%}
-          </p>
-          <p>
-            {%- trans -%}
-              We make our documentation public so that anyone can verify what we say is true, tell us if we need to improve, and have confidence that we aren’t hiding anything.
-            {%- endtrans -%}
-          </p>
-        </dd>
-        <dt>
-          {# L10n: "gobbledygook" is a fun way to say nonsense or gibberish #}
-          {%- trans -%}
-            That documentation is gobbledygook to me! Can you give it to me in plain English?
-          {%- endtrans -%}
-        </dt>
-        <dd>
-          <p>
-            {%- trans -%}
-              There are two categories of data that we collect by default in our release version of Firefox.
-            {%- endtrans -%}
-          </p>
-          <p>
-            {%- trans -%}
-              The first is what we call "technical data." This is data about the browser itself, such as the operating system it is running on and information about errors or crashes.
-            {%- endtrans -%}
-          </p>
-          <p>
-            {%- trans -%}
-              The second is what we call "interaction data." This is data about an individual's engagement with Firefox, such as the number of tabs that were open, the status of user preferences, or number of times certain browser features were used, such as screenshots or containers. For example,  we collect this data in terms of the back button, that arrow in the upper left corner of your browser that lets you navigate back to a previous webpage in a way that shows us someone used the back button, but doesn’t tell what specific webpages are accessed.
-            {%- endtrans -%}
-          </p>
-        </dd>
-        <dt>
-          {%- trans -%}
-            Do you collect more data in pre-release versions of Firefox?
-          {%- endtrans -%}
-        </dt>
-        <dd>
-          <p>
-            {%- trans -%}
-            Sort-of. In addition to the data described above, we receive crash and error reports by default in pre-release version of Firefox.
-            {%- endtrans -%}
-          </p>
-          <p>
-            {%- trans link='https://support.mozilla.org/kb/shield' -%}
-              We may also collect additional data in pre-release for one of our <a href="{{ link }}">studies</a>. For example, some studies require what we call “web activity data” data, which may include URLs and other information about certain websites. This helps us answer specific questions to improve Firefox, for example, how to better integrate popular websites in specific locales.
-            {%- endtrans -%}
-          </p>
-          <p>
-            {%- trans -%}
-              Mozilla’s pre-release versions of Firefox are development platforms, frequently updated with experimental features. We collect more data in pre-release than what we do after release in order to understand how these experimental features are working. You can opt out of having this data collected in preferences.
-            {%- endtrans -%}
-          </p>
-        </dd>
-        <dt>
-          {%- trans -%}
-            But why do you collect any data at all?
-          {%- endtrans -%}
-        </dt>
-        <dd>
-          <p>
-            {%- trans -%}
-              If we don’t know how the browser is performing or which features people use, we can’t make it better and deliver the great product you want. We’ve invested in building data collection and analysis tools that allow us to make smart decisions about our product while respecting people's privacy.
-            {%- endtrans -%}
-          </p>
-        </dd>
-        <dt>
-          {%- trans -%}
-            Data collection still bugs me. Can I turn it off?
-          {%- endtrans -%}
-        </dt>
-        <dd>
-          <p>
-            {%- trans settings='https://support.mozilla.org/kb/firefox-options-preferences-and-settings', data='https://support.mozilla.org/kb/share-telemetry-data-mozilla-help-improve-firefox#w_how-do-i-opt-in-or-opt-out-of-sending-performance-data' -%}
-              Yes. User control is one of our data privacy principles. We put that into practice in Firefox on our <a href="{{ settings }}">privacy settings page</a>, which serves as a one-stop shop for anyone looking to take control of their privacy in Firefox. You can <a href="{{ data }}">turn off data collection</a> there.
-            {%- endtrans -%}
-          </p>
-        </dd>
-        <dt>
-          {%- trans -%}
-            What about my account data?
-          {%- endtrans -%}
-        </dt>
-        <dd>
-          <p>
-            {%- trans -%}
-              We are big believers of data minimization and not asking for things we don't need.
-            {%- endtrans -%}
-          </p>
-          <p>
-          {% if l10n_has_tag('firefox-accounts-112018') %}
-            {%- trans accounts=url('firefox.accounts') -%}
-              You don't need an account to use Firefox.  <a href="{{ accounts }}">Accounts</a> are required to sync data across devices, but we only ask you for an email address.  We don't want to know things like your name, address, birthday and phone number.
-            {%- endtrans -%}
-          {% else %}
-            {%- trans -%}
-            You don't need an account to use Firefox. Accounts are required to sync data across devices, but we only ask you for an email address.  We don't want to know things like your name, address, birthday and phone number.
-            {%- endtrans -%}
-          {%- endif -%}
-          </p>
-        </dd>
-        <dt>
-          {%- trans -%}
-            You use digital advertising as part of your marketing mix. Do you buy people's data to better target your online ads?
-          {%- endtrans -%}
-        </dt>
-        <dd>
-          <p>
-            {%- trans -%}
-              No, we do not buy people's data to target advertising.
-            {%- endtrans -%}
-          </p>
-          <p>
-            {%- trans -%}
-              We do ask our advertising partners to use only first party data that websites and publishers know about all users, such as the browser you are using and the device you are on.
-            {%- endtrans -%}
-          </p>
-        </dd>
-        <dt>
-          {%- trans -%}
-            Well, it seems like you really have my back on this privacy stuff.
-          {%- endtrans -%}
-        </dt>
-        <dd>
-          <p>
-            {%- trans -%}
-              Yes, we do.
-            {%- endtrans -%}
-          </p>
-        </dd>
-      </dl>
+    <p>
+      {%- trans -%}
+        The following questions and answers should help you understand what to expect from Mozilla and Firefox:
+      {%- endtrans -%}
+    </p>
 
-      <p>
-        <a href="https://internethealthreport.org/">{{ _('Find out more about how Mozilla protects the internet.') }}</a>
-      </p>
+    <dl class="mzp-u-list-styled">
+      <dt>
+        {%- trans -%}
+          I use Firefox for almost everything on the Web. You folks at Mozilla must know a ton of stuff about me, right?
+        {%- endtrans -%}
+      </dt>
+      <dd>
+        <p>
+          {%- trans -%}
+            Firefox, the web browser that runs on your device or computer, is your gateway to the internet. Your browser will manage a lot of information about the websites you visit, but that information stays on your device. Mozilla, the company that makes Firefox, doesn’t collect it (unless you ask us to).
+          {%- endtrans -%}
+        </p>
+      </dd>
+      <dt>
+        {%- trans -%}
+          Really, you don’t collect my browsing history?
+        {%- endtrans -%}
+      </dt>
+      <dd>
+        <p>
+          {%- trans link="https://addons.mozilla.org/firefox/addon/firefox-pioneer/" -%}
+          Mozilla doesn’t know as much as you’d expect about how people browse the web. As a browser maker, that’s actually a big challenge for us. That is why we’ve built opt-in tools, such as <a href="{{ link }}">Firefox Pioneer</a>, which allows interested users to give us insight into their web browsing.  If you sync your browsing history across Firefox installations, we don’t know what that history is - because it’s encrypted by your device.
+          {%- endtrans -%}
+        </p>
+      <dt>
+          {%- trans -%}
+          It seems like every company on the web is buying and selling my data. You’re probably no different.
+          {%- endtrans -%}
+      </dt>
+      <dd>
+        <p>
+          {%- trans -%}
+            Mozilla doesn’t sell data about you, and we don’t buy data about you.
+          {%- endtrans -%}
+        </p>
+      </dd>
+      <dt>
+        {%- trans -%}
+          Wait, so how do you make money?
+        {%- endtrans -%}
+      </dt>
+      <dd>
+        <p>
+          {%- trans link=url('foundation.annualreport') -%}
+            Mozilla is not your average organization. Founded as a community open source project in 1998, Mozilla is a mission-driven organization working towards a more healthy internet. The majority of Mozilla Corporation’s revenue is from royalties earned through Firefox web browser search partnerships and distribution deals around the world. You can learn more about how we make money in our <a href="{{ link }}">annual financial report</a>.
+          {%- endtrans -%}
+        </p>
+      </dd>
+      <dt>
+        {%- trans -%}
+          Okay, those first few were softballs. What data do you collect?
+        {%- endtrans -%}
+      </dt>
+      <dd>
+        <p>
+          {%- trans privacy=url('privacy.notices.firefox'), data='https://firefox-source-docs.mozilla.org/toolkit/components/telemetry/telemetry/' -%}
+            Mozilla does collect a limited set of data by default from Firefox that helps us to understand how people use the browser. That data is tied to a random identifier, rather than your name or email address. You can read more about that on our <a href="{{ privacy }}">privacy notice</a> and you can read the <a href="{{ data }}">full documentation for that data collection</a>.
+          {%- endtrans -%}
+        </p>
+        <p>
+          {%- trans -%}
+            We make our documentation public so that anyone can verify what we say is true, tell us if we need to improve, and have confidence that we aren’t hiding anything.
+          {%- endtrans -%}
+        </p>
+      </dd>
+      <dt>
+        {# L10n: "gobbledygook" is a fun way to say nonsense or gibberish #}
+        {%- trans -%}
+          That documentation is gobbledygook to me! Can you give it to me in plain English?
+        {%- endtrans -%}
+      </dt>
+      <dd>
+        <p>
+          {%- trans -%}
+            There are two categories of data that we collect by default in our release version of Firefox.
+          {%- endtrans -%}
+        </p>
+        <p>
+          {%- trans -%}
+            The first is what we call "technical data." This is data about the browser itself, such as the operating system it is running on and information about errors or crashes.
+          {%- endtrans -%}
+        </p>
+        <p>
+          {%- trans -%}
+            The second is what we call "interaction data." This is data about an individual's engagement with Firefox, such as the number of tabs that were open, the status of user preferences, or number of times certain browser features were used, such as screenshots or containers. For example,  we collect this data in terms of the back button, that arrow in the upper left corner of your browser that lets you navigate back to a previous webpage in a way that shows us someone used the back button, but doesn’t tell what specific webpages are accessed.
+          {%- endtrans -%}
+        </p>
+      </dd>
+      <dt>
+        {%- trans -%}
+          Do you collect more data in pre-release versions of Firefox?
+        {%- endtrans -%}
+      </dt>
+      <dd>
+        <p>
+          {%- trans -%}
+          Sort-of. In addition to the data described above, we receive crash and error reports by default in pre-release version of Firefox.
+          {%- endtrans -%}
+        </p>
+        <p>
+          {%- trans link='https://support.mozilla.org/kb/shield' -%}
+            We may also collect additional data in pre-release for one of our <a href="{{ link }}">studies</a>. For example, some studies require what we call “web activity data” data, which may include URLs and other information about certain websites. This helps us answer specific questions to improve Firefox, for example, how to better integrate popular websites in specific locales.
+          {%- endtrans -%}
+        </p>
+        <p>
+          {%- trans -%}
+            Mozilla’s pre-release versions of Firefox are development platforms, frequently updated with experimental features. We collect more data in pre-release than what we do after release in order to understand how these experimental features are working. You can opt out of having this data collected in preferences.
+          {%- endtrans -%}
+        </p>
+      </dd>
+      <dt>
+        {%- trans -%}
+          But why do you collect any data at all?
+        {%- endtrans -%}
+      </dt>
+      <dd>
+        <p>
+          {%- trans -%}
+            If we don’t know how the browser is performing or which features people use, we can’t make it better and deliver the great product you want. We’ve invested in building data collection and analysis tools that allow us to make smart decisions about our product while respecting people's privacy.
+          {%- endtrans -%}
+        </p>
+      </dd>
+      <dt>
+        {%- trans -%}
+          Data collection still bugs me. Can I turn it off?
+        {%- endtrans -%}
+      </dt>
+      <dd>
+        <p>
+          {%- trans settings='https://support.mozilla.org/kb/firefox-options-preferences-and-settings', data='https://support.mozilla.org/kb/share-telemetry-data-mozilla-help-improve-firefox#w_how-do-i-opt-in-or-opt-out-of-sending-performance-data' -%}
+            Yes. User control is one of our data privacy principles. We put that into practice in Firefox on our <a href="{{ settings }}">privacy settings page</a>, which serves as a one-stop shop for anyone looking to take control of their privacy in Firefox. You can <a href="{{ data }}">turn off data collection</a> there.
+          {%- endtrans -%}
+        </p>
+      </dd>
+      <dt>
+        {%- trans -%}
+          What about my account data?
+        {%- endtrans -%}
+      </dt>
+      <dd>
+        <p>
+          {%- trans -%}
+            We are big believers of data minimization and not asking for things we don't need.
+          {%- endtrans -%}
+        </p>
+        <p>
+        {% if l10n_has_tag('firefox-accounts-112018') %}
+          {%- trans accounts=url('firefox.accounts') -%}
+            You don't need an account to use Firefox.  <a href="{{ accounts }}">Accounts</a> are required to sync data across devices, but we only ask you for an email address.  We don't want to know things like your name, address, birthday and phone number.
+          {%- endtrans -%}
+        {% else %}
+          {%- trans -%}
+          You don't need an account to use Firefox. Accounts are required to sync data across devices, but we only ask you for an email address.  We don't want to know things like your name, address, birthday and phone number.
+          {%- endtrans -%}
+        {%- endif -%}
+        </p>
+      </dd>
+      <dt>
+        {%- trans -%}
+          You use digital advertising as part of your marketing mix. Do you buy people's data to better target your online ads?
+        {%- endtrans -%}
+      </dt>
+      <dd>
+        <p>
+          {%- trans -%}
+            No, we do not buy people's data to target advertising.
+          {%- endtrans -%}
+        </p>
+        <p>
+          {%- trans -%}
+            We do ask our advertising partners to use only first party data that websites and publishers know about all users, such as the browser you are using and the device you are on.
+          {%- endtrans -%}
+        </p>
+      </dd>
+      <dt>
+        {%- trans -%}
+          Well, it seems like you really have my back on this privacy stuff.
+        {%- endtrans -%}
+      </dt>
+      <dd>
+        <p>
+          {%- trans -%}
+            Yes, we do.
+          {%- endtrans -%}
+        </p>
+      </dd>
+    </dl>
 
-    </div>
-  </article>
+    <p>
+      <a href="https://internethealthreport.org/">{{ _('Find out more about how Mozilla protects the internet.') }}</a>
+    </p>
+
+  </div>
 {% endblock %}

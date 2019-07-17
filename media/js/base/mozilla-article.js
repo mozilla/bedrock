@@ -8,13 +8,13 @@
     var _mqWide = matchMedia('(max-width: 767px)');
 
     if (_mqWide.matches) {
-        Mzp.Details.init('.side-reference > h4');
+        Mzp.Details.init('.side-reference-title');
     }
     _mqWide.addListener(function(mq) {
         if (mq.matches) {
-            Mzp.Details.init('.side-reference > h4');
+            Mzp.Details.init('.side-reference-title');
         } else {
-            Mzp.Details.destroy('.side-reference > h4');
+            Mzp.Details.destroy('.side-reference-title');
         }
     });
 

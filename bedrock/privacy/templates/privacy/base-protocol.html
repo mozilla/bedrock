@@ -40,8 +40,10 @@
 <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
   <aside class="mzp-l-sidebar">
     {{ sidemenu_lists([navigation_bar], body_id) }}
+    {% block side_extra %}{% endblock %}
   </aside>
   <article class="mzp-l-main" itemtype="http://schema.org/Article">
+    {% block article %}
     <header>
       {% if self.article_header_logo()|trim|length %}
       <img class="privacy-logo" src="{% block article_header_logo %}{% endblock %}" alt="">
@@ -70,6 +72,7 @@
         {% endif %}
       </div>
     </footer>
+    {% endblock %}
   </article>
 </div>
 {% endblock %}

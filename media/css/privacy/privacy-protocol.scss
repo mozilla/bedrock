@@ -9,10 +9,12 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/sidebar-menu';
 @import '../../protocol/css/templates/main-with-sidebar';
 
+@import '../protocol/basic-article';
+
 $border: 2px solid $color-gray-20;
 
-h4.mzp-c-sidemenu-title  {
-    display: none; // this page needs updating
+.mzp-c-sidemenu .mzp-c-sidemenu-title  {
+    @include font-base;
 }
 
 @media #{$mq-md} {
@@ -21,7 +23,7 @@ h4.mzp-c-sidemenu-title  {
     }
 
     .mzp-c-sidemenu-main {
-        margin-left: -22px; // flush with left side of container
+        margin-left: -16px; // flush with left side of container
     }
 }
 
@@ -239,6 +241,37 @@ h4.mzp-c-sidemenu-title  {
         + div {
             margin-top: $spacing-sm * -1;
             margin-bottom: $spacing-xl;
+        }
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+// Privacy Principles page
+
+#privacy-principles,
+#privacy-faq {
+    .mzp-l-sidebar {
+        padding-top: 0;
+    }
+}
+
+#privacy-principles {
+
+    ol {
+        @include text-display-md;
+        @include font-mozilla;
+        font-weight: bold;
+        margin-left: 1.15em;
+
+        h2 {
+            margin-bottom: $spacing-xs;
+        }
+
+        p {
+            @include font-base;
+            @include text-body-md;
+            font-weight: normal;
         }
     }
 }

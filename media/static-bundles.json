@@ -1179,6 +1179,7 @@
     {
       "files": [
         "protocol/js/protocol-sidemenu.js",
+        "js/base/mozilla-article.js",
         "js/privacy/privacy-protocol.js"
       ],
       "name": "privacy_protocol"
