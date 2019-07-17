@@ -2,18 +2,18 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/fonts';
-$image-path: '/media/protocol/img';
+$font-path: "/media/fonts";
+$image-path: "/media/protocol/img";
 
 // Protocol components for navigation.
-@import '../../../protocol/css/components/card';
-@import '../../../protocol/css/components/menu';
-@import '../../../protocol/css/components/menu-item';
-@import '../../../protocol/css/components/navigation';
-@import '../../../protocol/css/base/includes/animations';
+@import "../../../protocol/css/components/card";
+@import "../../../protocol/css/components/menu";
+@import "../../../protocol/css/components/menu-item";
+@import "../../../protocol/css/components/navigation";
+@import "../../../protocol/css/base/includes/animations";
 
 // Bedrock specific navigation overrides.
-@import '../../protocol/components/navigation';
+@import "../../protocol/components/navigation";
 
 /**
  * Pebbles specific overrides for download button in main navigation.
@@ -24,16 +24,15 @@ $image-path: '/media/protocol/img';
             background-color: transparent;
             background-image: none;
             border-radius: 2px;
-            color: #12bc00;
-            border: 2px solid #12bc00;
+            border: 2px solid #0060df;
             box-shadow: none;
-            line-height: 1.125;
+            color: #0060df;
             padding: $spacing-sm $spacing-md;
 
             &:hover,
             &:focus {
-                background-color: #12bc00;
-                border-color: #12bc00;
+                background-color: #0060df;
+                border-color: #0060df;
                 color: $color-white;
             }
         }
@@ -50,6 +49,8 @@ $image-path: '/media/protocol/img';
  * 2. Because of 1, pages also set a base font-size of 112.5% on <html>, so compensate proportionally.
  */
 .mzp-c-navigation {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
 
     .mzp-c-menu-title {
         @include font-size(14px);
@@ -57,7 +58,6 @@ $image-path: '/media/protocol/img';
 }
 
 .mzp-c-menu-item {
-
     .mzp-c-menu-item-title {
         @include font-size(16px);
         font-weight: bold;
@@ -87,19 +87,19 @@ $image-path: '/media/protocol/img';
         background-color: transparent;
         background-image: none;
         border-radius: 2px;
-        border: 2px solid #12bc00;
+        border: 2px solid #0060df;
         box-shadow: none;
-        color: #12bc00;
+        color: #0060df;
         display: inline-block;
-        font-weight: bold;
-        line-height: 1.125;
+        font-weight: 700;
         padding: $spacing-sm $spacing-md;
         text-decoration: none;
+        line-height: 1.3;
 
         &:hover,
         &:focus {
-            background-color: #12bc00;
-            border-color: #12bc00;
+            background-color: #0060df;
+            border-color: #0060df;
             color: $color-white;
         }
     }
