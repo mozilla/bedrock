@@ -295,16 +295,48 @@ html.ios .mzp-c-hero {
     display: block;
 }
 
+//* ====================================================================== */
+//  Join Firefox modal
+
+.join-firefox-content {
+    background: $color-white;
+    color: $color-off-black;
+    margin-top: $spacing-lg;
+    padding: $spacing-lg;
+    text-align: center;
+
+    .join-firefox-title {
+        @include text-display-sm;
+    }
+
+    .join-firefox-button {
+        margin-bottom: $spacing-lg;
+    }
+
+    .mzp-c-button,
+    .mzp-c-button-download-container {
+        width: 100%;
+    }
+
+    .mzp-c-button-download-container {
+        margin-bottom: 0;
+
+        // Hide the privacy link as there's already a one visible prior to clicking download.
+        .fx-privacy-link {
+            display: none;
+        }
+    }
+}
+
 /**
  * Custom narrow modal style.
  * These should be standardized into a narrow theme.
  * https://github.com/mozilla/protocol/issues/358
  */
-.mzp-c-modal.other-platforms-modal {
+.mzp-c-modal {
 
     .mzp-c-modal-window > .mzp-c-modal-inner {
         background: transparent;
-        max-width: 960px;
         padding: $spacing-xl 0 0;
 
         header {
@@ -315,6 +347,23 @@ html.ios .mzp-c-hero {
 
     .mzp-c-modal-close {
         @include bidi(((right, 0, left, auto),));
+    }
+}
+
+/**
+ * Custom narrow modal style.
+ * These should be standardized into a narrow theme.
+ * https://github.com/mozilla/protocol/issues/358
+ */
+.other-platforms-modal {
+    .mzp-c-modal-window > .mzp-c-modal-inner {
+        max-width: 960px;
+    }
+}
+
+.join-firefox-modal {
+    .mzp-c-modal-window > .mzp-c-modal-inner {
+        max-width: 580px;
     }
 }
 

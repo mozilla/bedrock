@@ -1053,6 +1053,12 @@
     },
     {
       "files": [
+        "js/firefox/new/trailhead/join-modal.js"
+      ],
+      "name": "firefox_new_download_join_modal"
+    },
+    {
+      "files": [
         "js/firefox/new/scene2.js"
       ],
       "name": "firefox_new_thanks"
