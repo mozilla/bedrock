@@ -58,6 +58,10 @@ $image-path: '/media/protocol/img';
         }
     }
 
+    @media #{$mq-lg} {
+        padding-top: 0;
+    }
+
     // mozilla/protocol#370
     input[type='email'] {
         @include border-box;
