@@ -29,15 +29,9 @@
 
     var initFxAccountModal = function() {
         var downloadLinkPrimary = document.querySelectorAll('#download-button-desktop-release .download-list .download-link[data-download-os="Desktop"]');
-        var downloadLinkSecondary = document.querySelectorAll('#download-other-platforms-modal .download-list .download-link[data-download-os="Desktop"]');
 
-
-        for (var j = 0; j < downloadLinkPrimary.length; j++) {
-            downloadLinkPrimary[j].addEventListener('click', showFxAModal, false);
-        }
-
-        for (var k = 0; k < downloadLinkSecondary.length; k++) {
-            downloadLinkSecondary[k].addEventListener('click', showFxAModal, false);
+        for (var i = 0; i < downloadLinkPrimary.length; i++) {
+            downloadLinkPrimary[i].addEventListener('click', showFxAModal, false);
         }
 
         // Don't trigger the modal for signed in users
@@ -45,10 +39,6 @@
             if (details.setup) {
                 for (var i = 0; i < downloadLinkPrimary.length; i++) {
                     downloadLinkPrimary[i].removeEventListener('click', showFxAModal, false);
-                }
-
-                for (var j = 0; j < downloadLinkSecondary.length; j++) {
-                    downloadLinkSecondary[j].removeEventListener('click', showFxAModal, false);
                 }
             }
         });

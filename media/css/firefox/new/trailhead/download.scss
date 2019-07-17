@@ -302,8 +302,8 @@ html.ios .mzp-c-hero {
     background: $color-white;
     color: $color-off-black;
     margin-top: $spacing-lg;
-    text-align: center;
     padding: $spacing-lg;
+    text-align: center;
 
     .join-firefox-title {
         @include text-display-sm;
@@ -333,7 +333,7 @@ html.ios .mzp-c-hero {
  * These should be standardized into a narrow theme.
  * https://github.com/mozilla/protocol/issues/358
  */
- .mzp-c-modal {
+.mzp-c-modal {
 
     .mzp-c-modal-window > .mzp-c-modal-inner {
         background: transparent;
