@@ -163,9 +163,9 @@ redirectpatterns = (
     # https://wiki.mozilla.org/Telemetry/FAQ
     redirect(r'telemetry/?$', 'https://wiki.mozilla.org/Telemetry/FAQ'),
 
-    # Bug 854561 - move /projects/mozilla-based/ to
-    # /about/mozilla-based/
-    redirect(r'^projects/mozilla-based/?$', '/about/mozilla-based/'),
+    # Bug 854561, Issue 7448
+    redirect(r'^projects/mozilla-based(\.html|/)?', 'https://developer.mozilla.org/docs/Archive/List_of_Mozilla-Based_Applications'),
+    redirect(r'^about/mozilla-based/?$', 'https://developer.mozilla.org/docs/Archive/List_of_Mozilla-Based_Applications'),
 
     # Bug 867773, 1238851 - Redirect the Persona URLs to MDN
     redirect(r'^persona(?:/(?:about|developer-faq))?/?$',
@@ -224,9 +224,6 @@ redirectpatterns = (
 
     # bug 925551
     redirect(r'^plugincheck/more_info\.html$', 'mozorg.plugincheck'),
-
-    # bug 854561
-    redirect(r'^projects/mozilla-based(\.html|/)?', 'mozorg.projects.mozilla-based'),
 
     # issue 851727
     redirect(r'^projects/powered-by(\.html|/)?', 'mozorg.home'),
