@@ -1,49 +1,42 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "mozorg/base-resp.html" %}
+{% extends "mozorg/base.html" %}
 
 {% block page_title %}{{ _('Historical Licensing Documents') }}{% endblock %}
 
 {% block page_desc %}{{ _('Historical Licensing Documents') }}{% endblock %}
 
-{% block page_css %}
-    {{ css_bundle('mpl') }}
-{% endblock %}
+{% block article %}
+  <h1 class="mzp-c-article-title">Historical Licensing Documents</h1>
 
-{% block content %}
+  <section class="mpl-historical">
+    <p>These files are made available for historical and reference purposes only, and should not be used to license software.</p>
+    <dl class="mzp-u-list-styled">
+      <dt><a href="{{ url('mozorg.mpl.1.1.index') }}">Mozilla Public License, version 1.1</a></dt>
+      <dd>This is the Mozilla Public License, version 1.1. It is also available in <a href="{{ static('MPL/1.1/index.txt') }}">plain text</a>. MPL 1.1 is obsoleted by MPL 2.0, and Mozilla strongly recommends against using this license for new code.</dd>
 
-<div id="main-content">
-    <h1>Historical Licensing Documents</h1>
+      <dt><a href="{{ url('mozorg.mpl.1.1.faq') }}">MPL version 1.1 FAQ</a></dt>
+      <dd>This is the FAQ for MPL 1.1. Because MPL 1.1 has been replaced by MPL 2.0, this FAQ should be used for historical reference purposes only.</dd>
 
-    <section>
-        <p>These files are made available for historical and reference purposes only, and should not be used to license software.</p>
-        <dl>
-            <dt><a href="{{ url('mozorg.mpl.1.1.index') }}">Mozilla Public License, version 1.1</a></dt>
-            <dd>This is the Mozilla Public License, version 1.1. It is also available in <a href="{{ static('MPL/1.1/index.txt') }}">plain text</a>. MPL 1.1 is obsoleted by MPL 2.0, and Mozilla strongly recommends against using this license for new code.</dd>
+      <dt><a href="/MPL/NPL/1.1/">Netscape Public License, version 1.1</a></dt>
+      <dd>This is the Netscape Public License, in the form of Amendments to the Mozilla Public License, along with the MPL itself.  It is also available in <a href="/MPL/NPL/1.1/index.txt">plain text</a>. NPL 1.1 is obsolete and should not be used.</dd>
 
-            <dt><a href="{{ url('mozorg.mpl.1.1.faq') }}">MPL version 1.1 FAQ</a></dt>
-            <dd>This is the FAQ for MPL 1.1. Because MPL 1.1 has been replaced by MPL 2.0, this FAQ should be used for historical reference purposes only.</dd>
+      <dt><a href="http://www-archive.mozilla.org/MPL/relicensing-faq.html">Relicensing FAQ</a></dt>
+      <dd>This gives the details of the process we used between 2001 and 2004 to change the Mozilla source code from MPL or NPL only to the MPL/GPL/LGPL tri-licence.</dd>
 
-            <dt><a href="/MPL/NPL/1.1/">Netscape Public License, version 1.1</a></dt>
-            <dd>This is the Netscape Public License, in the form of Amendments to the Mozilla Public License, along with the MPL itself.  It is also available in <a href="/MPL/NPL/1.1/index.txt">plain text</a>. NPL 1.1 is obsolete and should not be used.</dd>
+      <dt><a href="/MPL/NPL/1.0/annotated/">Annotated Netscape Public License, version 1.0</a>, and <br /><a href="/MPL/NPL/1.0/annotated/"> Annotated Mozilla Public License, version 1.0</a></dt>
+      <dd>Since legal documents are difficult for non-lawyers to read, Mozilla has in the past provided a version of the license which contains informal explanations of various sections of the license, in the form of hyperlinks.  Note that <em>these explanations are not the license.</em> The explanations are not a legal document, or legal advice. If you need to know <em>exactly</em> what the license requires, you need to read and understand the license itself; if you need legal advice, you need to talk to a lawyer. The annotations are merely a good faith effort to explain the license in simpler language.</dd>
 
-            <dt><a href="http://www-archive.mozilla.org/MPL/relicensing-faq.html">Relicensing FAQ</a></dt>
-            <dd>This gives the details of the process we used between 2001 and 2004 to change the Mozilla source code from MPL or NPL only to the MPL/GPL/LGPL tri-licence.</dd>
+      <dt><a href="/MPL/NPL/1.0/">Netscape Public License, version 1.0</a></dt>
+      <dd>This is the license under which the Mozilla source code was initially released. It is also available in <a href="/MPL/NPL/1.0/index.txt">plain text</a>. The NPL is obsolete and should not be used.</dd>
 
-            <dt><a href="/MPL/NPL/1.0/annotated/">Annotated Netscape Public License, version 1.0</a>, and <br /><a href="/MPL/NPL/1.0/annotated/"> Annotated Mozilla Public License, version 1.0</a></dt>
-            <dd>Since legal documents are difficult for non-lawyers to read, Mozilla has in the past provided a version of the license which contains informal explanations of various sections of the license, in the form of hyperlinks.  Note that <em>these explanations are not the license.</em> The explanations are not a legal document, or legal advice. If you need to know <em>exactly</em> what the license requires, you need to read and understand the license itself; if you need legal advice, you need to talk to a lawyer. The annotations are merely a good faith effort to explain the license in simpler language.</dd>
+      <dt><a href="/MPL/1.0/">Mozilla Public License, version 1.0</a></dt>
+      <dd>This is the original version of the MPL. It is also available in <a href="/MPL/1.0/index.txt">plain text</a>. MPL 1.0 is obsolete and should not be used.</dd>
 
-            <dt><a href="/MPL/NPL/1.0/">Netscape Public License, version 1.0</a></dt>
-            <dd>This is the license under which the Mozilla source code was initially released. It is also available in <a href="/MPL/NPL/1.0/index.txt">plain text</a>. The NPL is obsolete and should not be used.</dd>
-
-            <dt><a href="/MPL/1.0/">Mozilla Public License, version 1.0</a></dt>
-            <dd>This is the original version of the MPL. It is also available in <a href="/MPL/1.0/index.txt">plain text</a>. MPL 1.0 is obsolete and should not be used.</dd>
-
-            <dt><a href="/MPL/NPL/1.0/FAQ.html">NPL version 1.0 FAQ</a></dt>
-            <dd>This is a set of Frequently Asked Questions about NPL and MPL 1.0, and about the process by which we arrived at these licenses.</dd>
-        </dl>
-    </section>
-</div>
+      <dt><a href="/MPL/NPL/1.0/FAQ.html">NPL version 1.0 FAQ</a></dt>
+      <dd>This is a set of Frequently Asked Questions about NPL and MPL 1.0, and about the process by which we arrived at these licenses.</dd>
+    </dl>
+  </section>
 {% endblock %}

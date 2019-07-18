@@ -2,82 +2,75 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "mozorg/base-resp.html" %}
+{% extends "mozorg/base.html" %}
 
 {% block page_title %}{{ _('About MPL 2.0: Revision Process and Changes FAQ') }}{% endblock %}
 
 {% block page_desc %}{{ _('About MPL 2.0: Revision Process and Changes FAQ') }}{% endblock %}
 
-{% block page_css %}
-    {{ css_bundle('mpl') }}
-{% endblock %}
+{% block article %}
+  <h1 class="mzp-c-article-title">About MPL 2.0: Revision Process and Changes FAQ</h1>
 
-{% block content %}
+  <section>
+    <h3 id="how-drafted">1. How was MPL 2.0 drafted?</h3>
+    <p>MPL 2.0 was drafted over a period of 21 months in a public process that included extensive feedback from a variety of people, including MPL users, lawyers, and open source community groups like the Free Software Foundation and Open Source Initiative.</p>
 
-<div id="main-content">
-    <h1>About MPL 2.0: Revision Process and Changes FAQ</h1>
+    <h3 id="publicly-documented">2. Is the revision process publicly documented?</h3>
+    <p>Historical documents about the revision process are available from <a href="{{ url('mozorg.mpl.index') }}">this website</a>.</p>
 
-    <section>
-        <h3 id="how-drafted">1. How was MPL 2.0 drafted?</h3>
-        <p>MPL 2.0 was drafted over a period of 21 months in a public process that included extensive feedback from a variety of people, including MPL users, lawyers, and open source community groups like the Free Software Foundation and Open Source Initiative.</p>
+    <h3 id="who-can-update">3. Section 6 of MPL 1.1 says Netscape can update the license, but Mozilla isn't Netscape. Can Mozilla still update the license?</h3>
+    <p>As part of the creation of the Mozilla Foundation, Netscape assigned
+    the ability to publish new licenses to Mozilla, making the Mozilla
+    Foundation Netscape's successor for this purpose.</p>
 
-        <h3 id="publicly-documented">2. Is the revision process publicly documented?</h3>
-        <p>Historical documents about the revision process are available from <a href="{{ url('mozorg.mpl.index') }}">this website</a>.</p>
+    <h2 id="upgrading-a-project">Upgrading a project from MPL 1.1 to MPL
+    2.0</h2>
 
-        <h3 id="who-can-update">3. Section 6 of MPL 1.1 says Netscape can update the license, but Mozilla isn't Netscape. Can Mozilla still update the license?</h3>
-        <p>As part of the creation of the Mozilla Foundation, Netscape assigned
-        the ability to publish new licenses to Mozilla, making the Mozilla
-        Foundation Netscape's successor for this purpose.</p>
+    <h3 id="why-should-i-upgrade">4. I use MPL 1.1 for my project. Why should I upgrade to MPL 2.0?</h3>
+    <p>If your project is licensed under MPL 1.1, there are several important reasons why you should move your project to MPL 2.0:</p>
+    <ul class="mzp-u-list-styled">
+        <li>MPL 2.0 makes compliance simpler, both for you and for people who receive code from you.</li>
+        <li>MPL 2.0 provides patent protections for you and your contributors more in line with those of other open source licenses, and allows your entire community to protect any contributor if the contributor is sued.</li>
+        <li>Compatibility with Apache and GPL makes code reuse and redistribution easier for you and for the broader open source community.</li>
+    </ul>
+    <p>For a more complete list of reasons why, see the question about "<a href="#what-has-changed">what has changed</a>", below.</p>
 
-        <h2 id="upgrading-a-project">Upgrading a project from MPL 1.1 to MPL
-        2.0</h2>
+    <h3 id="how-do-i-upgrade">5. I am the author of code which I have placed under MPL version 1.1. How do I license my project under MPL 2.0 instead of MPL 1.1?</h3>
+    <p>If you are the author, to change the license from MPL 1.1 to MPL 2.0, replace the old license header with the new header from MPL 2.0 Exhibit A.</p>
 
-        <h3 id="why-should-i-upgrade">4. I use MPL 1.1 for my project. Why should I upgrade to MPL 2.0?</h3>
-        <p>If your project is licensed under MPL 1.1, there are several important reasons why you should move your project to MPL 2.0:</p>
-        <ul>
-            <li>MPL 2.0 makes compliance simpler, both for you and for people who receive code from you.</li>
-            <li>MPL 2.0 provides patent protections for you and your contributors more in line with those of other open source licenses, and allows your entire community to protect any contributor if the contributor is sued.</li>
-            <li>Compatibility with Apache and GPL makes code reuse and redistribution easier for you and for the broader open source community.</li>
-        </ul>
-        <p>For a more complete list of reasons why, see the question about "<a href="#what-has-changed">what has changed</a>", below.</p>
+    <h3 id="upgrading-someone-elses-code">6. I am distributing code written by someone else under the terms of MPL 1.1. Can I distribute that code under the terms of MPL 2.0 instead of MPL 1.1? If so, how?</h3>
+    <p>Yes, you can, because MPL 1.1 allows anyone who received code under the terms of MPL 1.1 to distribute under the terms of a later version of the MPL.</p>
+    <p>To do this, replace the old license header with the new header from MPL 2.0 Exhibit A. If you received the code under <em>only</em> MPL 1.1, and not a combination of the MPL plus a member of the GNU family of licenses (such as the Mozilla Tri-License), then you must also add the text of Exhibit B to the license header.</p>
 
-        <h3 id="how-do-i-upgrade">5. I am the author of code which I have placed under MPL version 1.1. How do I license my project under MPL 2.0 instead of MPL 1.1?</h3>
-        <p>If you are the author, to change the license from MPL 1.1 to MPL 2.0, replace the old license header with the new header from MPL 2.0 Exhibit A.</p>
+    <h2 id="changes-from-mpl-1.1">Changes from MPL 1.1</h2>
 
-        <h3 id="upgrading-someone-elses-code">6. I am distributing code written by someone else under the terms of MPL 1.1. Can I distribute that code under the terms of MPL 2.0 instead of MPL 1.1? If so, how?</h3>
-        <p>Yes, you can, because MPL 1.1 allows anyone who received code under the terms of MPL 1.1 to distribute under the terms of a later version of the MPL.</p>
-        <p>To do this, replace the old license header with the new header from MPL 2.0 Exhibit A. If you received the code under <em>only</em> MPL 1.1, and not a combination of the MPL plus a member of the GNU family of licenses (such as the Mozilla Tri-License), then you must also add the text of Exhibit B to the license header.</p>
+    <h3 id="what-hasnt-changed">7. What <i>has not</i> changed between MPL 1.1 and MPL 2.0?</h3>
+    <p>The most important part of the license - the file-level copyleft - is essentially the same in MPL 2.0 and MPL 1.1.</p>
 
-        <h2 id="changes-from-mpl-1.1">Changes from MPL 1.1</h2>
+    <h3 id="what-has-changed">8. What <i>has</i> changed between MPL 1.1 and MPL
+    2.0?</h3>
+    <p>The primary change is simplification. For example, rather than exactly specifying the amount of time source code must be available, the source code must simply be made available when the executable is made available. License headers have been made shorter, and notification requirements have been simplified. Overall, the license is substantially shorter and should be easier to understand.</p>
+    <p>In addition, a handful of new features have been added to the license. For example, the license is now compatible with the Apache license - anyone who complies with the terms of the MPL should also be compliant with the Apache license's terms. Similarly, by default, the license allows the code to be distributed alongside code licensed under the GPL or LGPL. In addition, patent protections have been brought more in line with what other licenses (such as Apache) use, while also allowing any member of a community to defend a contributor who has been sued for infringement.</p>
+    <p>A <a href="{{ url('mozorg.mpl.2.0.differences') }}">word-by-word redline of all changes</a> is also available for those seeking to analyze the changes in more detail. Note, however, that the changes are extensive, and you may find that simply reading the <a href="./">new license itself</a> will provide a clearer understanding of its contents.</p>
 
-        <h3 id="what-hasnt-changed">7. What <i>has not</i> changed between MPL 1.1 and MPL 2.0?</h3>
-        <p>The most important part of the license - the file-level copyleft - is essentially the same in MPL 2.0 and MPL 1.1.</p>
+    <h3 id="government-entities-removal">9. Why did the new license remove the government entities language?</h3>
+    <p>Software licensed under the MPL is a commercial item as defined in 48 C.F.R. 2.101, unless it was originally written at the direction, and for the use, of the US government. As a result, removing the language from the license simplifies the license without changing the rights and responsibilities that US Government users have towards MPL-licensed code.</p>
 
-        <h3 id="what-has-changed">8. What <i>has</i> changed between MPL 1.1 and MPL
-        2.0?</h3>
-        <p>The primary change is simplification. For example, rather than exactly specifying the amount of time source code must be available, the source code must simply be made available when the executable is made available. License headers have been made shorter, and notification requirements have been simplified. Overall, the license is substantially shorter and should be easier to understand.</p>
-        <p>In addition, a handful of new features have been added to the license. For example, the license is now compatible with the Apache license - anyone who complies with the terms of the MPL should also be compliant with the Apache license's terms. Similarly, by default, the license allows the code to be distributed alongside code licensed under the GPL or LGPL. In addition, patent protections have been brought more in line with what other licenses (such as Apache) use, while also allowing any member of a community to defend a contributor who has been sued for infringement.</p>
-        <p>A <a href="{{ url('mozorg.mpl.2.0.differences') }}">word-by-word redline of all changes</a> is also available for those seeking to analyze the changes in more detail. Note, however, that the changes are extensive, and you may find that simply reading the <a href="./">new license itself</a> will provide a clearer understanding of its contents.</p>
+    <h3 id="why-no-full-license-copy">10. Why doesn't the new license require distributors to include a complete copy of the license with the distributed Source Code?</h3>
+    <p>When MPL 1.1 was written, source code distribution occurred primarily through tarballs and zip files. In contrast, modern software distribution often occurs on a file-by-file basis over the web (e.g., http://hg.mozilla.org). As a result, MPL 2.0 requires distributors to tell recipients how to get the license (for example, by linking to it in the header of a single source file), rather than requiring them to distribute the entire license itself. In most cases, distributing the license with the code - as was required in MPL 1.1 - is still the best and easiest way to meet this requirement. However, given the diversity of modern source code and executable distribution practices, it was sensible to give more flexibilty and place the burden on the distributor to pick an effective notification mechanism.</p>
 
-        <h3 id="government-entities-removal">9. Why did the new license remove the government entities language?</h3>
-        <p>Software licensed under the MPL is a commercial item as defined in 48 C.F.R. 2.101, unless it was originally written at the direction, and for the use, of the US government. As a result, removing the language from the license simplifies the license without changing the rights and responsibilities that US Government users have towards MPL-licensed code.</p>
+    <h3 id="why-no-build-scripts">11. Why did the new license remove the reference to build scripts and documentation from the definition of Source Code?</h3>
+    <p>If you choose to license software under the MPL, it is considered a best practice to release all of the software, including interface files and build scripts, under the MPL. However, since these terms only apply to specific types of software distributed in specific ways, and MPL is now applied to a wide variety of software distributed in a number of different ways, we removed these reference and will allow the broader definition of "preferred form" to be interpreted as appropriate to a given situation.</p>
 
-        <h3 id="why-no-full-license-copy">10. Why doesn't the new license require distributors to include a complete copy of the license with the distributed Source Code?</h3>
-        <p>When MPL 1.1 was written, source code distribution occurred primarily through tarballs and zip files. In contrast, modern software distribution often occurs on a file-by-file basis over the web (e.g., http://hg.mozilla.org). As a result, MPL 2.0 requires distributors to tell recipients how to get the license (for example, by linking to it in the header of a single source file), rather than requiring them to distribute the entire license itself. In most cases, distributing the license with the code - as was required in MPL 1.1 - is still the best and easiest way to meet this requirement. However, given the diversity of modern source code and executable distribution practices, it was sensible to give more flexibilty and place the burden on the distributor to pick an effective notification mechanism.</p>
+    <h3 id="what-does-inform-mean">12. Section 3.2 now requires that I "inform" recipients how they can obtain the Source Code form. Could you give some examples of what it means to "inform"?</h3>
+    <p>Historically, informing recipients of source availability was done by means of the "About" box of a piece of software. However, other mechanisms for informing users are also acceptable when appropriate for the type of software being distributed. As a specific example, when using MPL-licensed JavaScript on a website, recipients could be informed by having links to the source in the "Legal" or "Notices" section of the website. More generally, notices should be put in the place a reasonable person is likely to look for legal information about the software they have recieved.</p>
 
-        <h3 id="why-no-build-scripts">11. Why did the new license remove the reference to build scripts and documentation from the definition of Source Code?</h3>
-        <p>If you choose to license software under the MPL, it is considered a best practice to release all of the software, including interface files and build scripts, under the MPL. However, since these terms only apply to specific types of software distributed in specific ways, and MPL is now applied to a wide variety of software distributed in a number of different ways, we removed these reference and will allow the broader definition of "preferred form" to be interpreted as appropriate to a given situation.</p>
-
-        <h3 id="what-does-inform-mean">12. Section 3.2 now requires that I "inform" recipients how they can obtain the Source Code form. Could you give some examples of what it means to "inform"?</h3>
-        <p>Historically, informing recipients of source availability was done by means of the "About" box of a piece of software. However, other mechanisms for informing users are also acceptable when appropriate for the type of software being distributed. As a specific example, when using MPL-licensed JavaScript on a website, recipients could be informed by having links to the source in the "Legal" or "Notices" section of the website. More generally, notices should be put in the place a reasonable person is likely to look for legal information about the software they have recieved.</p>
-
-        <h3 id="why-explicit-compatibility">13. Unlike MPL 1.1, MPL 2.0 contains explicit provisions for distribution alongside GPL- and LGPL-licensed code. Why?</h3>
-        <p>Providing an explicit mechanism by which MPL and GPL code can be distributed together has several significant benefits:</p>
-        <ul>
-            <li><p>It allows elimination of the common dual and tri-license approach, which reduces license proliferation, since (for compatibility and proliferation purposes) each dual-license and tri-license is a separate license.</p></li>
-            <li><p>Along with Apache compatibility, it creates a series of upwards-compatible free software licenses covering much of the world's free and open source software.</p></li>
-            <li><p>It helps protect the original licensor's ability to reintegrate modifications made downstream, by requiring that the initial distribution of changes occurs under both licenses and not just the GPL.</p></li>
-        </ul>
-    </section>
-</div>
+    <h3 id="why-explicit-compatibility">13. Unlike MPL 1.1, MPL 2.0 contains explicit provisions for distribution alongside GPL- and LGPL-licensed code. Why?</h3>
+    <p>Providing an explicit mechanism by which MPL and GPL code can be distributed together has several significant benefits:</p>
+    <ul class="mzp-u-list-styled">
+        <li><p>It allows elimination of the common dual and tri-license approach, which reduces license proliferation, since (for compatibility and proliferation purposes) each dual-license and tri-license is a separate license.</p></li>
+        <li><p>Along with Apache compatibility, it creates a series of upwards-compatible free software licenses covering much of the world's free and open source software.</p></li>
+        <li><p>It helps protect the original licensor's ability to reintegrate modifications made downstream, by requiring that the initial distribution of changes occurs under both licenses and not just the GPL.</p></li>
+    </ul>
+  </section>
 {% endblock %}

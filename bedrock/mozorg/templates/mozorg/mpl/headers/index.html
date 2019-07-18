@@ -2,20 +2,14 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/. -#}
 
-{% extends "mozorg/base-resp.html" %}
+{% extends "mozorg/base.html" %}
 
 {% block page_title %}{{ _('Mozilla License Headers') }}{% endblock %}
 
 {% block page_desc %}{{ _('Mozilla License Headers') }}{% endblock %}
 
-{% block page_css %}
-  {{ css_bundle('mpl') }}
-{% endblock %}
-
-{% block content %}
-
-<div id="main-content">
-  <h1>Mozilla License Headers</h1>
+{% block article %}
+  <h1 class="mzp-c-article-title">Mozilla License Headers</h1>
 
   <section>
     <p>This page gives copy-and-pasteable license headers for Mozilla code. When adding license headers to new files to be checked in to the Mozilla source tree, always use the appropriate one of the following.</p>
@@ -25,22 +19,22 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
-</pre>
+</pre></br>
 <pre id="mpl-python">
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-</pre>
+</pre></br>
 <pre id="mpl-html">
 &lt;!-- This Source Code Form is subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. --&gt;
-</pre>
+</pre></br>
 <pre id="mpl-text">
 This Source Code Form is subject to the terms of the Mozilla Public
 License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at https://mozilla.org/MPL/2.0/.
-</pre>
+</pre></br>
   </section>
 
   <section>
@@ -49,20 +43,19 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 <pre id="pd-c">
 /* Any copyright is dedicated to the Public Domain.
  * https://creativecommons.org/publicdomain/zero/1.0/ */
-</pre>
+</pre></br>
 <pre id="pd-python">
 # Any copyright is dedicated to the Public Domain.
 # https://creativecommons.org/publicdomain/zero/1.0/
-</pre>
+</pre></br>
 <pre id="pd-html">
 &lt;!-- Any copyright is dedicated to the Public Domain.
    - https://creativecommons.org/publicdomain/zero/1.0/ --&gt;
-</pre>
+</pre></br>
 <pre id="pd-text">
 Any copyright is dedicated to the Public Domain.
 https://creativecommons.org/publicdomain/zero/1.0/
-</pre>
+</pre></br>
     <p>Licensing questions? Ask in <a href="{{ url('mozorg.about.forums.forums') }}#legal">mozilla.legal</a>.</p>
   </section>
-</div>
 {% endblock %}

@@ -2,21 +2,15 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "mozorg/base-resp.html" %}
+{% extends "mozorg/base.html" %}
 
 {% block page_title %}{{ _('Permissive-Code-into-MPL Developer Guidelines') }}{% endblock %}
 
 {% block page_desc %}{{ _('Copying Permissively-Licensed Code into an MPL 2 File: Guidelines
   for Developers') }}{% endblock %}
 
-{% block page_css %}
-    {{ css_bundle('mpl') }}
-{% endblock %}
-
-{% block content %}
-
-<div id="main-content">
-  <h1>Copying permissively-Licensed Code into an MPL 2 File: Guidelines for Developers</h1>
+{% block article %}
+  <h1 class="mzp-c-article-title">Copying permissively-Licensed Code into an MPL 2 File: Guidelines for Developers</h1>
 
   <section>
     <p>This document explains what to do when you want to copy a piece of code which is licensed under the BSD, MIT, Apache License 2 or another standard permissive open source licence into an existing Mozilla project file which is licensed under the <a href="{{ url('mozorg.mpl.2.0.index') }}">MPL 2</a>.</p>
@@ -46,7 +40,7 @@ Thanks,
 J. Random Hacker
 
 [0] https://www.mozilla.org/MPL/2.0/
-</pre>
+</pre></br>
     <p>The difficulty with this route is that it makes it harder to be certain we can legally send fixes we make to their code back upstream, which is why option 1) is preferred.</p>
     <p>In rare circumstances, it might be that it's possible to relicense the MPLed code instead, particularly if it only forms a small part of the resultant combined file. Consult the licensing team if you want to investigate this route.</p>
 
@@ -64,7 +58,7 @@ J. Random Hacker
  *   [Full copy of permissively-licensed copyright and permissions notice,
  *   indented two additional spaces]
  */
-</pre>
+</pre></br>
     <p>So that's the standard MPL 2 header, then the extra sentence "This file incorporates...", then the other boilerplate, indented 2 spaces. For example, for the Apache License 2.0:</p>
 <pre>
 /* This Source Code Form is subject to the terms of the Mozilla Public
@@ -88,9 +82,8 @@ J. Random Hacker
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-</pre>
+</pre></br>
     <p>As you can see, the additional boilerplate makes this solution sub-optimal - and even more so if a file contains code under two or more permissive licences. And copying code <i>out</i> of such a file gets extremely complicated. This is why it is suggested that the other two routes are investigated first.</p>
     <p>As always, if you have questions, contact the <a href="mailto:licensing@mozilla.org">licensing team</a>.</p>
   </section>
-</div>
 {% endblock %}
