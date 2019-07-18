@@ -675,7 +675,7 @@
     },
     {
       "files": [
-        "css/firefox/unsupported-systems.less"
+        "css/firefox/unsupported-systems.scss"
       ],
       "name": "firefox_unsupported_systems"
     },
