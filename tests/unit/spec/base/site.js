@@ -3,8 +3,6 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, it, expect */
-
 describe('site.js', function () {
 
     'use strict';

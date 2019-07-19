@@ -74,20 +74,20 @@ if (typeof window.Mozilla === 'undefined') {
         var params = new window._SearchParams().utmParams();
         var finalParams = {};
 
-        if (params.hasOwnProperty('utm_campaign') && params['utm_campaign'] === 'non-fx-button') {
+        if (Object.prototype.hasOwnProperty.call(params, 'utm_campaign') && params['utm_campaign'] === 'non-fx-button') {
             finalParams['campaign'] = 'non-fx-button';
         }
 
-        if (params.hasOwnProperty('utm_medium') && params['utm_medium'] === 'referral') {
+        if (Object.prototype.hasOwnProperty.call(params, 'utm_medium') && params['utm_medium'] === 'referral') {
             finalParams['medium'] = 'referral';
         }
 
-        if (params.hasOwnProperty('utm_source') && params['utm_source'] === 'addons.mozilla.org') {
+        if (Object.prototype.hasOwnProperty.call(params, 'utm_source') && params['utm_source'] === 'addons.mozilla.org') {
             finalParams['source'] = 'addons.mozilla.org';
         }
 
         // utm_content should *always* start with "rta%3A", followed by alphanumeric characters
-        if (params.hasOwnProperty('utm_content') && (/^rta%3A[a-zA-Z0-9_\-]+$/).test(params['utm_content'])) {
+        if (Object.prototype.hasOwnProperty.call(params, 'utm_content') && (/^rta%3A[a-zA-Z0-9_\-]+$/).test(params['utm_content'])) {
             // this value is already URI encoded, so we need to decode here as
             // it will get re-encoded in _SearchParams.objectToQueryString
             finalParams['content'] = decodeURIComponent(params['utm_content']);

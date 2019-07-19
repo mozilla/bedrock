@@ -3,7 +3,7 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect, sinon */
+/* global sinon */
 
 describe('mozilla-lazy-load.js', function() {
 

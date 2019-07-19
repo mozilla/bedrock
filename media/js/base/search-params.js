@@ -19,7 +19,7 @@
         var searchStrings = [];
 
         for (var param in obj) {
-            if (obj.hasOwnProperty(param)) {
+            if (Object.prototype.hasOwnProperty.call(obj, param)) {
                 searchStrings.push([encodeURIComponent(param), encodeURIComponent(obj[param])].join('='));
             }
         }
@@ -70,7 +70,7 @@
         var params = this.params;
 
         for (var param in params){
-            if (params.hasOwnProperty(param)) {
+            if (Object.prototype.hasOwnProperty.call(params, param)) {
                 if (param.indexOf('utm_') === 0) {
                     utms[param] = params[param];
                 }

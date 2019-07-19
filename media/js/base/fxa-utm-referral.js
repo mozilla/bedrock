@@ -25,7 +25,7 @@ if (typeof window.Mozilla === 'undefined') {
 
         for (var i = 0; i < utms.length; i++) {
             var utm = utms[i];
-            if (params.hasOwnProperty(utm)) {
+            if (Object.prototype.hasOwnProperty.call(params, utm)) {
                 var param = decodeURIComponent(params[utm]);
                 if ((allowedChars).test(param)) {
                     finalParams[utm] = param;

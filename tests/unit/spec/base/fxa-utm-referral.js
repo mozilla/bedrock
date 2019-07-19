@@ -3,8 +3,6 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, it, expect, Mozilla */
-
 describe('fxa-utm-referral.js', function() {
 
     'use strict';
