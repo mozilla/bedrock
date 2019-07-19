@@ -46,9 +46,10 @@ License
 -------
 
 This software is licensed under the [MPL version 2.0][MPL]. For more
-information, read the file ``LICENSE``.
+information, read this repository's [LICENSE][LICENSE].
 
 [MPL]: https://www.mozilla.org/MPL/
+[LICENSE]: https://github.com/mozilla/bedrock/blob/master/LICENSE
 
 ![](http://i.imgur.com/ElotJSI.jpg)
 
