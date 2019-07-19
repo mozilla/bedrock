@@ -191,7 +191,7 @@ function lessCompileAllFiles() {
         //filter out unchanged less files, only works when watching
         .pipe(gulpif(global.watching, cached('less', cachedOpts)))
         .pipe(gulpif(!production, sourcemaps.init()))
-        .pipe(less({inlineJavaScript: true, ieCompat: true}).on('error', handleError('LESS')))
+        .pipe(less({javascriptEnabled: true, ieCompat: true}).on('error', handleError('LESS')))
         // we don't serve the source files
         // so include scss content inside the sourcemaps
         .pipe(gulpif(!production, sourcemaps.write({
@@ -209,7 +209,7 @@ function lessWatch(cb) {
     lessWatcher.on('change', function(path) {
         return gulp.src(path, {base: buildDir})
             .pipe(sourcemaps.init())
-            .pipe(less({inlineJavaScript: true, ieCompat: true}).on('error', handleError('LESS')))
+            .pipe(less({javascriptEnabled: true, ieCompat: true}).on('error', handleError('LESS')))
             .pipe(sourcemaps.write({
                 'includeContent': true
             }))
