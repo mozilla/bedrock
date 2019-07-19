@@ -515,6 +515,50 @@ class TestWhatsNew(TestCase):
 
     # end 68.0 whatsnew tests
 
+    # end 68.0 whatsnew experiment tests
+
+    def test_whatsnew68_va_control(self, render_mock):
+        """Should use trailhead template for variant A"""
+        req = self.rf.get('/firefox/whatsnew/?v=a')
+        req.locale = 'en-US'
+        self.view(req, version='68.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx68-trailhead.html']
+
+    def test_whatsnew68_vb_light(self, render_mock):
+        """Should use template B for variant B"""
+        req = self.rf.get('/firefox/whatsnew/?v=b')
+        req.locale = 'en-US'
+        self.view(req, version='68.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx68-b.html']
+
+    def test_whatsnew68_vc_dark(self, render_mock):
+        """Should use template C for variant C"""
+        req = self.rf.get('/firefox/whatsnew/?v=c')
+        req.locale = 'en-US'
+        self.view(req, version='68.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx68-c.html']
+
+    def test_whatsnew68_vd_icon(self, render_mock):
+        """Should use template D for variant D"""
+        req = self.rf.get('/firefox/whatsnew/?v=d')
+        req.locale = 'en-US'
+        self.view(req, version='68.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx68-d.html']
+
+    def test_whatsnew68_ve_monitor(self, render_mock):
+        """Should use template E for variant E"""
+        req = self.rf.get('/firefox/whatsnew/?v=e')
+        req.locale = 'en-US'
+        self.view(req, version='68.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx68-e.html']
+
+    # end 68.0 whatsnew experiment tests
+
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestFirstRun(TestCase):

@@ -1,0 +1,294 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/hero';
+@import '../../protocol/components/state-fxa';
+
+.content-wrapper {
+    background-color: $color-gray-10;
+}
+
+.content-main {
+    background: transparent url('/media/img/firefox/whatsnew_67/noodles.png') -350px 0 no-repeat;
+    @include background-size(850px, auto);
+    padding-top: $spacing-2xl;
+}
+
+.c-section-title-secondary {
+    @include text-display-sm;
+    margin: 0 auto $layout-md;
+    max-width: $content-md;
+}
+
+.c-utilities {
+    @include text-body-sm;
+    max-width: $content-md;
+    text-align: center;
+}
+
+//* -------------------------------------------------------------------------- */
+// Up-to-date page header
+
+.c-page-header {
+    background: $color-white;
+}
+
+.c-page-header-up-to-date {
+    @include text-display-xxs;
+    color: $color-off-black;
+    display: none;
+    margin-top: $layout-xs;
+
+    span {
+        background-color: $color-green-50;
+        border-radius: 4px;
+        box-shadow: 0 2px 24px transparentize($color-off-black, .85);
+        display: inline-block;
+        font-weight: normal;
+        max-width: $content-sm;
+        padding: $spacing-sm $spacing-lg;
+    }
+
+    .is-up-to-date & {
+        display: block;
+    }
+}
+
+@media #{$mq-md} {
+    .c-page-header-inner {
+        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr max-content 1fr;
+    }
+
+    .c-page-header-up-to-date {
+        margin: 0 $layout-sm;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Emphasis box
+
+.c-emphasis-box {
+    @include border-box;
+    background: $color-white;
+    border-radius: 6px;
+    box-shadow: 0 0 16px transparentize($color-off-black, .85);
+    color: $color-gray-90;
+    margin: 0 auto $layout-sm;
+    max-width: $content-md - ($layout-md * 2);
+    padding: $spacing-xl $layout-md;
+
+    .c-emphasis-box-pretitle {
+        @include text-display-sm;
+        color: $color-off-black;
+        margin-bottom: $spacing-lg;
+    }
+
+    .c-emphasis-box-title {
+        @include text-display-md;
+        color: $color-off-black;
+    }
+
+    .c-emphasis-box-logo {
+        display: block;
+        margin: 0 auto $spacing-lg;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Extra content
+
+.c-block {
+    @include border-box;
+    margin: 0 auto $spacing-2xl;
+    max-width: $content-md - ($layout-md * 2);
+    padding: 0 $layout-md;
+
+    .c-block-title {
+        @include text-display-xs;
+    }
+
+    .c-block-icon {
+        margin-bottom: $spacing-md;
+    }
+}
+
+@media #{$mq-md} {
+    .l-blocks-two {
+        display: flex;
+        margin: 0 auto;
+        max-width: $content-md - ($layout-md * 2);
+        padding: 0 $layout-md;
+
+        .c-block {
+            flex: 1 1 0;
+            padding: 0 $spacing-lg;
+        }
+    }
+}
+
+
+@media #{$mq-lg} {
+    .l-blocks-three {
+        display: flex;
+        margin: 0 auto;
+        max-width: $content-lg;
+
+        .c-block {
+            flex: 1 1 0;
+            padding: 0 $spacing-lg;
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// FxA Form
+
+.c-signup-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.fxa-form-cta {
+    .fxa-email-form {
+        width: 100%;
+        margin-bottom: $spacing-lg;
+
+        a {
+            color: $color-off-black;
+        }
+    }
+
+    .fxa-email-form-intro {
+        display: none;
+    }
+
+    .fxa-email-field-container {
+        .field {
+            label {
+                @include visually-hidden;
+            }
+
+            input[type="email"] {
+                box-shadow: none;
+                padding: 12px 16px;
+                width: 100%;
+            }
+        }
+
+        .mzp-c-button {
+            width: 100%;
+        }
+    }
+
+    @media #{$mq-sm} {
+        .fxa-email-field-container {
+            @include grid-column-gap($spacing-md);
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+
+            .field {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        .fxa-email-form {
+            display: grid;
+
+            .agreement {
+                @include text-body-sm;
+                grid-row-start: 2;
+                margin-top: $spacing-sm;
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Dark theme
+
+.t-dark {
+
+    &.content-wrapper {
+        background-color: $color-off-black;
+        color: $color-white;
+    }
+
+    :link {
+        color: $color-white;
+
+        &:hover,
+        &:focus {
+            color: $color-pink-5;
+        }
+
+        &:active,
+        &:focus {
+            background-color: transparentize($color-white, .95);
+        }
+    }
+
+    :visited {
+        color: $color-pink-10;
+
+        &:hover,
+        &:focus {
+            color: $color-white;
+        }
+    }
+
+    .c-page-header {
+        background-color: $color-violet-90;
+    }
+
+    .c-emphasis-box {
+        background-color: $color-gray-10;
+
+        :link {
+            color: $color-link;
+
+            &:hover,
+            &:focus {
+                color: $color-link-hover;
+            }
+
+            &:active,
+            &:focus {
+                background-color: transparentize($color-black, .95);
+            }
+        }
+
+        :visited {
+            color: $color-link-visited;
+
+            &:hover,
+            &:focus {
+                color: $color-link-visited-hover;
+            }
+        }
+
+        .mzp-c-button {
+            border-radius: 4px;
+            color: $color-white;
+
+            &:hover,
+            &:focus {
+                background-color: $color-link-hover;
+                color: $color-white;
+            }
+        }
+    }
+}

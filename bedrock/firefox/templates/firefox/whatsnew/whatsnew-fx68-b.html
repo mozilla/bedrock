@@ -1,0 +1,162 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/whatsnew_67.0.5" %}
+
+{% extends "firefox/whatsnew/whatsnew-fx68-trailhead.html" %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_modular') }}
+{% endblock %}
+
+{% block body_attrs %}{{ super() }} data-variant="b"{% endblock %}
+
+{% block content %}
+<main class="mzp-t-firefox content-wrapper {% block container_class %}{% endblock %}">
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
+    {% block header_logo %}
+      {{ high_res_img('logos/firefox/logo-quantum-wordmark-large.png', {'alt': 'Firefox', 'width': '122', 'height': '40', 'class': 'c-page-header-logo-fx'}) }}
+    {% endblock %}
+      <h1 class="c-page-header-up-to-date"><span>{{ _('Congrats! You’re using the latest version of Firefox.') }}</span></h1>
+    </div>
+  </header>
+
+  <section class="content-main">
+    <div class="mzp-l-content">
+
+      <div class="c-emphasis-box show-fxa-default show-fxa-supported-signed-out">
+      {% block main_content_signed_out %}
+        <h2 class="c-emphasis-box-title">{{ _('You’ve got the latest browser. Now get the rest of Firefox.') }}</h2>
+        <p>{{ _('Join Firefox for a whole family of respectful products, plus all the knowledge you need to protect yourself online.') }}</p>
+        <div class="c-signup-container fxa-form-cta">
+          {% block fxa_form %}
+            {{ fxa_email_form(
+                entrypoint='mozilla.org-whatsnew6705',
+                button_class='mzp-c-button mzp-t-product mzp-t-small',
+                utm_source='whatsnew6705',
+                style='trailhead',
+                utm_campaign='trailhead',
+                utm_content='get-the-rest-of-firefox')
+            }}
+          {% endblock %}
+        </div>
+        <p><a href="{{ url('firefox.accounts') }}">{{ _('Learn more about joining Firefox') }}</a></p>
+      {% endblock %}
+      </div>
+
+      <div class="c-emphasis-box show-fxa-supported-signed-in">
+      {% block main_content_signed_in %}
+        <h2 class="c-emphasis-box-pretitle">{{ _('Your account connects you to all of our products. ') }}</h2>
+
+        <img class="c-emphasis-box-logo" src="{{ static('img/firefox/whatsnew_67/monitor_icon.svg') }}" alt="">
+        <h3 class="c-emphasis-box-title">{{ _('Including Firefox Monitor, your watchful eye for data breaches') }}</h3>
+        <p>{{ _('See if your info was compromised in another company’s data breach, and get automatically signed up for future alerts.') }}</p>
+        {% block monitor_button %}
+          {{ monitor_button(
+            entrypoint='mozilla.org-whatsnew6705',
+            utm_source='whatsnew6705',
+            utm_campaign='whatsnew6705'
+          ) }}
+        {% endblock %}
+
+      {% endblock %}
+      </div>
+
+    </div>
+  </section>
+
+  <section class="content-extra show-fxa-default show-fxa-supported-signed-out">
+    <div class="mzp-l-content">
+
+      <div class="l-blocks-three">
+
+        <div class="c-block">
+          <div class="c-block-icon">
+            <img src="{{ static('img/firefox/whatsnew_67/lockwise_glyph.svg') }}" alt="">
+            <img src="{{ static('img/firefox/whatsnew_67/send_glyph.svg') }}" alt="">
+          </div>
+
+          <h3 class="c-block-title">{{ _('Products that respect') }}</h3>
+          <div class="c-block-body">
+            <p>
+              {% if l10n_has_tag('lockwise_update_201906') %}
+                {% trans send='https://send.firefox.com/', lockbox='https://lockwise.firefox.com/', monitor='https://monitor.firefox.com/' %}
+                Firefox products like <a href="{{ send }}">Send</a>, <a href="{{ lockbox }}">Lockwise</a> and <a href="{{ monitor }}">Monitor</a> help you get things done without invading your privacy.
+                {% endtrans %}
+              {% else %}
+                {% trans send='https://send.firefox.com/', lockbox='https://lockwise.firefox.com/', monitor='https://monitor.firefox.com/' %}
+                Firefox products like <a href="{{ send }}">Send</a>, <a href="{{ lockbox }}">Lockbox</a> and <a href="{{ monitor }}">Monitor</a> help you get things done without invading your privacy.
+                {% endtrans %}
+              {% endif %}
+            </p>
+          </div>
+        </div>
+
+        <div class="c-block">
+          <div class="c-block-icon">
+            <img src="{{ static('img/firefox/whatsnew_67/protects_glyph.svg') }}" alt="">
+          </div>
+          <h3 class="c-block-title">{{ _('Knowledge that protects') }}</h3>
+          <div class="c-block-body">
+            <p>{{ _('Learn everything you need to know (but don’t yet) about staying smart and safe online.') }}</p>
+          </div>
+        </div>
+
+        <div class="c-block">
+          <div class="c-block-icon">
+            <img class="glyphs" src="{{ static('img/firefox/whatsnew_67/heart_glyph.svg') }}" alt="">
+          </div>
+          <h3 class="c-block-title">{{ _('Fierce defense of your privacy') }}</h3>
+          <div class="c-block-body">
+            <p>{{ _('Everything we make and do honors our Personal Data Promise: <strong>Take less. Keep it safe. No secrets.</strong>') }}</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>{# end signed out #}
+
+  <section class="content-extra show-fxa-supported-signed-in">
+    <div class="mzp-l-content">
+      <h2 class="c-section-title-secondary">{{ _('And soon it’ll connect you to something bigger.') }}</h2>
+
+      <div class="l-blocks-two">
+
+        <div class="c-block">
+          <div class="c-block-icon">
+            <img src="{{ static('img/firefox/whatsnew_67/experiments.svg') }}" alt="">
+          </div>
+          <h3 class="c-block-title">{{ _('Help us build a better Firefox for you.') }}</h3>
+          <div class="c-block-body">
+            <p>{{ _('Get into the open source spirit by test-driving upcoming products.') }}</p>
+          </div>
+        </div>
+
+        <div class="c-block">
+          <div class="c-block-icon">
+            <img src="{{ static('img/firefox/whatsnew_67/inbox.svg') }}" alt="">
+          </div>
+          <h3 class="c-block-title">{{ _('Help us keep Big Tech in check.') }}</h3>
+          <div class="c-block-body">
+            <p>{{ _('We support communities all over the world standing up for a healthier internet.  Add your voice to the fight.') }}</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>{# end signed in #}
+
+  <aside class="mzp-l-content c-utilities">
+    <p>
+    {% trans notes=url('firefox.notes') %}
+      Read the <a href="{{ notes }}">Release Notes</a> to know more about what’s new in your Firefox Browser.
+    {% endtrans %}
+    </p>
+  </aside>
+
+</main>
+{% endblock %}

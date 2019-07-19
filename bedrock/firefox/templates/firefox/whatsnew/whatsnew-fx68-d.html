@@ -1,0 +1,12 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/whatsnew_67.0.5" %}
+
+{% extends "firefox/whatsnew/whatsnew-fx68-trailhead.html" %}
+
+{% block page_favicon %}{{ static('img/firefox/favicon-notice.png') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/firefox/favicon-notice-196.png') }}{% endblock %}
+
+{% block body_attrs %}{{ super() }} data-variant="d"{% endblock %}

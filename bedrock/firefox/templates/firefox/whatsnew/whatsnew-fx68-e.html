@@ -1,0 +1,29 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/whatsnew_67.0.5" %}
+
+{% extends "firefox/whatsnew/whatsnew-fx68-trailhead.html" %}
+
+{% block body_attrs %}{{ super() }} data-variant="e"{% endblock %}
+
+{% block content_signed_out %}
+  <h1>{{ _('Your account connects you to all of our products. ') }}</h1>
+  <img class="glyphs" id="monitor-logo" src="{{ static('img/firefox/whatsnew_67/monitor_icon.svg') }}" alt="">
+  <div class="mzp-l-hero-content">
+    <h2>{{ _('Including Firefox Monitor, your watchful eye for data breaches') }}</h2>
+    <p>{{ _('See if your info was compromised in another company’s data breach, and get automatically signed up for future alerts.') }}</p>
+    {% block monitor_button %}
+      {{ monitor_button(
+        entrypoint='mozilla.org-whatsnew68-e',
+        utm_source='whatsnew68-e',
+        utm_campaign='whatsnew68-e'
+      ) }}
+    {% endblock %}
+  </div>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_68E_monitor') }}
+{% endblock %}

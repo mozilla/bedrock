@@ -1,0 +1,17 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/whatsnew_67.0.5" %}
+
+{% extends "firefox/whatsnew/whatsnew-fx68-b.html" %}
+
+{% block body_attrs %}data-variant="c"{% endblock %}
+
+{% block container_class %}{{ super() }} t-dark{% endblock %}
+
+{% block header_logo %}
+  {{ high_res_img('logos/firefox/logo-quantum-wordmark-white.png', {'alt': 'Firefox', 'width': '120', 'height': '40', 'class': 'c-page-header-logo-fx'}) }}
+{% endblock %}
+
+
