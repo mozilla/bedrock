@@ -6,11 +6,13 @@
 
 {% block page_title %}{{ _('The State of Mozilla Annual Report, 2010') }}{% endblock %}
 
+{% set body_id = 'welcome' %}
+
 {% block article_title %}
   {{ _('The State of Mozilla Annual Report, 2010') }}
 {% endblock %}
 
-{% block article %}
+{% block article_content %}
   <figure class="figure">
     <div class="mozilla-video-control">
       <video width="640" height="360" controls="controls" poster="{{ static('img/foundation/annualreport/2010/poster-manifesto.jpg') }}">
@@ -19,13 +21,13 @@
         <source src="https://videos.cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.theora.ogv" type='video/ogg; codecs="theora, vorbis"' />
       </video>
     </div>
-  </figure>
+  </figure></br>
 
   <div id="video-description">{# FIXME: put this to the right of the video like it is on the old page? #}
     <h3>{{ _('A Different Kind of Browser') }} <span class="time">1:45</span></h3>
     <p>{{ _('What’s Mozilla all about? Why are we doing this? We’re glad you asked.') }}</p>
     <p class="download">{{ _('Download this video:') }}</p>
-    <ul class="download">
+    <ul class="mzp-u-list-styled">
       <li><a href="https://videos.cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.webm">{{ _('WebM format') }}</a></li>
       <li><a href="https://videos.cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.theora.ogv">{{ _('Ogg Theora format') }}</a></li>
       <li><a href="https://videos.cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.mp4">{{ _('MPEG-4 format') }}</a></li>

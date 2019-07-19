@@ -6,12 +6,14 @@
 
 {% block page_title %}{{ _('The State of Mozilla Annual Report - Ahead') }}{% endblock %}
 
+{% set body_id = 'ahead' %}
+
 {% block article_header %}
   <h2>{{ _('The State of Mozilla Annual Report, 2010') }}</h2>
   <p>{{ _('Ahead') }}</p>
 {% endblock %}
 
-{% block article %}
+{% block article_content %}
   <figure class="figure">
     <div class="mozilla-video-control">
       <video width="640" height="360" controls="controls" poster="{{ static('img/foundation/annualreport/2010/poster-ahead.jpg') }}">
@@ -20,14 +22,14 @@
         <source src="https://videos.cdn.mozilla.net/serv/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.theora%202.ogv" type='video/ogg; codecs="theora, vorbis"' />
       </video>
     </div>
-  </figure>
+  </figure></br>
   <div id="video-description">{# FIXME: put this to the right of the video like it is on the old page? #}
     <h3>{{ _('Looking Ahead') }}</h3>
     <h4>Mitchell Baker</h4>
     <p>{{ _('Mitchell Baker, Chair discusses the state of Mozilla.') }}</p>
 
     <p class="download">{{ _('Download this video:') }}</p>
-    <ul class="download">
+    <ul class="mzp-u-list-styled">
       <li><a href="https://videos.cdn.mozilla.net/serv/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.webm">{{ _('WebM format') }}</a></li>
       <li><a href="https://videos.cdn.mozilla.net/serv/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.theora%202.ogv">{{ _('Ogg Theora format') }}</a></li>
       <li><a href="https://videos.cdn.mozilla.net/serv/brand/State%20of%20Mozilla%202011%20(fcp2)-RC%20-%20720p%20-%20MPEG-4.mp4">{{ _('MPEG-4 format') }}</a></li>
@@ -56,7 +58,7 @@
 
   <p class="return-to-top"><a href="#">{{ _('Return to top') }}</a></p>
 
-  <ul class="nav-paging bottom">
+  <ul class="mzp-u-list-styled">
       <li class="prev"><a href="{{ url('foundation.annualreport.2010.people') }}">{{ _('People') }}</a></li>
       <li class="next"><a href="{{ url('foundation.annualreport.2010.faq') }}">{{ _('FAQ') }}</a></li>
   </ul>

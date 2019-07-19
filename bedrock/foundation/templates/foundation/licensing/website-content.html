@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "foundation/base-resp.html" %}
+{% extends "foundation/base.html" %}
 
 {% block page_title %}{{ _('Mozilla.org Site Licensing Policies') }}{% endblock %}
 
@@ -10,7 +10,7 @@
   {{ _('Mozilla.org Site Licensing Policies') }}
 {% endblock %}
 
-{% block article %}
+{% block article_content %}
   <p>
   {% trans %}
     Unless otherwise indicated, the text of documents in this collection is available under the Creative
@@ -37,7 +37,7 @@
   </p>
   <p>{{ _('If you have any questions about complying with our licensing terms for this collection, you should email:') }}</p>
 
-  <ul>
+  <ul class="mzp-u-list-styled">
     <li>{{ _('<a href="mailto:%(email)s">%(email)s</a> for general trademark questions; or'|format(email='trademarks@mozilla.com')) }}
     <li>{{ _('<a href="mailto:%(email)s">%(email)s</a> for permission to use Mozilla’s trademarks or logos; or'|format(email='trademark-permissions@mozilla.com')) }} </li>
     <li>{{ _('<a href="mailto:%(email)s">%(email)s</a> for copyright questions.'|format(email='licensing@mozilla.org')) }}</li>
@@ -50,4 +50,4 @@
   {% endtrans %}
   </p>
 
-{% endblock article %}
+{% endblock %}

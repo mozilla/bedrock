@@ -415,10 +415,9 @@
     },
     {
       "files": [
-        "css/newsletter/moznewsletter-subscribe.less",
-        "css/foundation/foundation.less"
+        "css/foundation/feed-icon-guidelines.scss"
       ],
-      "name": "foundation"
+      "name": "foundation-feed-icon-guidelines"
     },
     {
       "files": [

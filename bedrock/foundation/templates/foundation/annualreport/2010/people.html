@@ -6,12 +6,14 @@
 
 {% block page_title %}{{ _('The State of Mozilla Annual Report - People') }}{% endblock %}
 
+{% set body_id = 'people' %}
+
 {% block article_header %}
   <h2>{{ _('The State of Mozilla Annual Report, 2010') }}</h2>
   <p>{{ _('People') }}</p>
 {% endblock %}
 
-{% block article %}
+{% block article_content %}
     <p>{{ _('In the Mozilla world, people are everything. Building freedom into the Internet means ensuring that communities of people are free to build the Internet they want.') }}</p>
 
     <p>{{ _('New Mozilla communities have sprung up in Latin America, the Middle East and Africa, further expanding the reach and diversity of Mozilla.') }}</p>
@@ -71,7 +73,7 @@
       <h3>{{ _('Getting Involved') }} <span class="time">2:58</span></h3>
       <p>{{ _('Mozilla is a fun, diverse community of people from around the world.') }}</p>
       <p class="download">{{ _('Download this video:') }}</p>
-      <ul class="download">
+      <ul class="mzp-u-list-styled">
         <li><a href="https://videos.cdn.mozilla.net/serv/webmademovies/Moz_Doc_0329_GetInvolved_ST.webm">{{ _('WebM format') }}</a></li>
         <li><a href="https://videos.cdn.mozilla.net/serv/webmademovies/Moz_Doc_0329_GetInvolved_ST.ogv">{{ _('Ogg Theora format') }}</a></li>
         <li><a href="https://videos.cdn.mozilla.net/serv/webmademovies/Moz_Doc_0329_GetInvolved_ST.mp4">{{ _('MPEG-4 format') }}</a></li>
@@ -80,7 +82,7 @@
     </div>
   </div>
 
-  <ul class="nav-paging bottom">
+  <ul class="mzp-u-list-styled">
     <li class="prev"><a href="{{ url('foundation.annualreport.2010.opportunities') }}">{{ _('Opportunities') }}</a></li>
     <li class="next"><a href="{{ url('foundation.annualreport.2010.ahead') }}">{{ _('Ahead') }}</a></li>
   </ul>

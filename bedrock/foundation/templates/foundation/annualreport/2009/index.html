@@ -6,14 +6,15 @@
 
 {% block page_title %}{{ _('The State of Mozilla') }}{% endblock %}
 
+{% set body_id = 'introduction' %}
+
 {% block article_title %}
   {{ _('The State of Mozilla Annual Report, 2009') }}
 {% endblock %}
 
-{% block article %}
+{% block article_content %}
   <h3 class="timestamp">November 18, 2010</h3>
 
-  <blockquote>
     <p>{% trans %}<span class="first-char">M</span>ozilla has filed its audited financial
       statements for 2009. This is the perfect time to look at the state of the
       Mozilla mission, our successes, our opportunities and our challenges.{% endtrans %}</p>
@@ -68,7 +69,6 @@
 
     <p>{% trans %}<cite>Mitchell Baker, on behalf of the Mozilla community<br/>November 18,
       2010</cite>{% endtrans %}</p>
-  </blockquote>
 
   <a href="https://www.flickr.com/photos/gen/4784616521/"
      title="Mozilla Summit 2010 by Gen Kanai, on Flickr"><img

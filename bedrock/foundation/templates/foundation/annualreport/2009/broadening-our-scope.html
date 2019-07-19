@@ -6,12 +6,14 @@
 
 {% block page_title %}{{ _('State of Mozilla 2009 - Broadening Our Scope') }}{% endblock %}
 
+{% set body_id = 'broadening-scope' %}
+
 {% block article_header %}
   <h2>{{ _('The State of Mozilla Annual Report, 2009') }}</h2>
   <p>{{ _('Broadening Our Scope') }}</p>
 {% endblock %}
 
-{% block article %}
+{% block article_content %}
   <h3 class="timestamp">November 18, 2010</h3>
 
   <p>{% trans %}The Internet is in a period of dramatic change. We've built the traits we

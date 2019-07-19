@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "foundation/base-resp.html" %}
+{% extends "foundation/base.html" %}
 
 {% block page_title %}{{ _('More About the Open Web Fund') }}{% endblock %}
 
@@ -10,7 +10,7 @@
   {{ _('More About the Open Web Fund') }}
 {% endblock %}
 
-{% block article %}
+{% block article_content %}
   <p>{% trans %}The Mozilla community's greatest achievement is the creation of the open source Firefox web browser. Building on our experience with Firefox, we
   believe that even more people can – and must – get involved in the cause of keeping the internet open. Artists, lawyers, teachers, filmmakers, anyone who
   cares about the future of the internet - these people have skills and creativity that can help make the open web stronger in very concrete ways. We've
@@ -47,10 +47,10 @@
 
   <h2>How can you be a part of Mozilla Drumbeat?</h2>
 
-  <ul>
+  <ul class="mzp-u-list-styled">
     <li>{% trans people="//www.drumbeat.org/people" %}<a href="{{ people }}">Join</a> Drumbeat{% endtrans %}</li>
     <li>{% trans projects="//www.drumbeat.org/projects" %}Get involved in a <a href="{{ projects }}">project</a>{% endtrans %}</li>
     <li>{% trans openwebfund=donate_url('openwebfund') %}<a href="{{ openwebfund }}">Donate</a> to the Mozilla Drumbeat Open Web Fund</a>{% endtrans %}</li>
   </ul>
 
-{% endblock article %}
+{% endblock %}
