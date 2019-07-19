@@ -78,10 +78,7 @@ urlpatterns = (
 
     page('trademarks/policy', 'foundation/trademarks/policy.html'),
     page('trademarks/list', 'foundation/trademarks/list.html'),
-    page('trademarks/faq', 'foundation/trademarks/faq.html'),
-    page('trademarks/l10n-website-policy', 'foundation/trademarks/l10n-website-policy.html'),
     page('trademarks/distribution-policy', 'foundation/trademarks/distribution-policy.html'),
     page('trademarks/community-edition-permitted-changes', 'foundation/trademarks/community-edition-permitted-changes.html'),
     page('trademarks/community-edition-policy', 'foundation/trademarks/community-edition-policy.html'),
-    page('trademarks/poweredby/faq', 'foundation/trademarks/poweredby/faq.html'),
 )

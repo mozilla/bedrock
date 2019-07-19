@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "foundation/base-resp.html" %}
+{% extends "foundation/base.html" %}
 
 {% block page_title %}{{ _('Termination of the Community Edition Builds') }}{% endblock %}
 
@@ -10,7 +10,7 @@
   {{ _('Termination of the Community Edition Builds') }}
 {% endblock %}
 
-{% block article %}
+{% block article_content %}
   <p><em><time datetime="2009-04-07">{{ _('April 7, 2009') }}</time></em></p>
 
   <p>{% trans discussion="https://groups.google.com/group/mozilla.governance/browse_thread/thread/2903bc645085b41d/54e8efe5d335ac3f" %}
@@ -22,12 +22,12 @@
     Edition program.
   {% endtrans %}</p>
 
-  <ul>
+  <ul class="mzp-u-list-styled">
     <li><a href="#create">{{ _('What Do I Do If I Want to Create a Modified Build?') }}</a></li>
     <li><a href="#before">{{ _('What Happens to Builds Made Before the Policy Change?') }}</a></li>
   </ul>
 
-  <dl>
+  <dl class="mzp-u-list-styled">
     <dt><a name="create">{{ _('What Do I Do If I Want to Create a Modified Build?') }}</a></dt>
     <dd>
       <br>
@@ -80,4 +80,4 @@
       </ul>
     </dd>
   </dl>
-{% endblock article %}
+{% endblock %}

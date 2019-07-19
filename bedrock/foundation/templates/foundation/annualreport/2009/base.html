@@ -4,15 +4,48 @@
 
 {# base for 2009 annual report pages #}
 
-{% extends 'foundation/base-resp.html' %}
+{% extends "base-article.html" %}
 
-{% block js %}
-  {{ super() }}
+{% block page_title_suffix %}{% endblock %}
+
+{% block body_class %}mzp-t-mozilla{% endblock %}
+
+{% set navigation_bar = [
+  (url('foundation.annualreport.2009.index'), 'introduction', _('Introduction')),
+  (url('foundation.annualreport.2009.a-competitive-world'), 'competitive-world', _('A Competitive World')),
+  (url('foundation.annualreport.2009.broadening-our-scope'), 'broadening-scope', _('Broadening our Scope')),
+  (url('foundation.annualreport.2009.sustainability'), 'sustainability', _('Sustainability')),
+  (url('foundation.annualreport.2009.faq'), 'faq', _('FAQ')),
+] %}
+
+{% block side_nav %}
+  {{ sidemenu_lists([navigation_bar], body_id) }}
 {% endblock %}
 
-{% block subnav %}
+{% block article %}
+  <header>
+    <h1 class="mzp-c-article-title">{{ _('The Mozilla Foundation') }}</h1>
+    {% block article_header %}
+      <h2>{{ self.article_title() }}</h2>
+    {% endblock %}
+  </header>
+  {% block article_content %}{% endblock %}
 {% endblock %}
 
-{% block sidebar %}{# 2009 inter-page nav is along the side #}
-  {% include 'foundation/annualreport/2009/nav.inc.html' %}
+{% block email_form %}
+  <div class="mzp-l-content">
+    <aside class="mzp-c-newsletter t-love">
+      <div class="mzp-c-newsletter-image">
+        <img src="{{ static('img/newsletter/love-news.svg') }}" alt="" height="172" width="200">
+      </div>
+
+      <div class="newsletter-content">
+        {% if LANG.startswith('en-') %}
+          {{ email_newsletter_form(protocol_component=true, newsletters='mozilla-foundation', title=_('Sign up. Read up.<br> Make a difference.'), subtitle=_('Get the Mozilla newsletter and help us keep the Web free and open.'), button_class='button-red') }}
+        {% else %}
+          {{ email_newsletter_form(protocol_component=true, button_class='button-red') }}
+        {% endif %}
+      </div>
+    </aside>
+  </div>
 {% endblock %}

@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "foundation/base-resp.html" %}
+{% extends "foundation/base.html" %}
 
 {% block page_title %}{{ _('Mozilla Licensing Policies') }}{% endblock %}
 
@@ -12,7 +12,7 @@
   {{ _('Licensing & Trademarks') }}
 {% endblock %}
 
-{% block article %}
+{% block article_content %}
   <h2>{{ _('Source Code') }}</h2>
   <p>
     {% trans

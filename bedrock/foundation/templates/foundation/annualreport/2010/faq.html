@@ -6,12 +6,14 @@
 
 {% block page_title %}{{ _('The State of Mozilla Annual Report - FAQ') }}{% endblock %}
 
+{% set body_id = 'faq' %}
+
 {% block article_header %}
   <h2>{{ _('The State of Mozilla Annual Report, 2010') }}</h2>
   <p>{{ _('FAQ') }}</p>
 {% endblock %}
 
-{% block article %}
+{% block article_content %}
   <div class="img-right">
     <img src="{{ static('img/foundation/annualreport/2010/photo-not-every-venture.jpg') }}" width="297" height="396" alt="Mozilla Firefox billboard, San Francisco" />
     <p>{{ _('Mozilla Firefox billboard, San Francisco') }}</p>
@@ -52,7 +54,7 @@
       </div>
   </div>
 
-  <ul class="nav-paging bottom">
+  <ul class="mzp-u-list-styled">
       <li class="prev"><a href="{{ url('foundation.annualreport.2010.ahead') }}">{{ _('Ahead') }}</a></li>
   </ul>
  {% endblock %}

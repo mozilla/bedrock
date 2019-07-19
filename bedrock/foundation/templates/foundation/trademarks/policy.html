@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "foundation/base-resp.html" %}
+{% extends "foundation/base.html" %}
 
 {% block page_title %}{{ _('Mozilla Trademark Guidelines') }}{% endblock %}
 
@@ -10,7 +10,7 @@
   {{ _('Mozilla Trademark Guidelines') }}
 {% endblock %}
 
-{% block article %}
+{% block article_content %}
 
   <p>{{ _('When using Mozilla trademarks you must comply with these Mozilla Trademark Guidelines.') }}</p>
 
@@ -23,7 +23,7 @@
 
   <p>{{ _('You may do the following <em>without</em> receiving specific permission from Mozilla (or its affiliates):') }}</p>
 
-  <ul>
+  <ul class="mzp-u-list-styled">
 
     <li>{{ _('Use Mozilla wordmarks in text to refer to and/or link to Mozilla and/or applicable Mozilla programs, products, services and technologies.') }}</li>
 
@@ -43,7 +43,7 @@
 
   <h4>{{ _('Do:') }}</h4>
 
-  <ul>
+  <ul class="mzp-u-list-styled">
 
     <li>{{ _('Give a Mozilla logo adequate spacing from the other elements on the web page or document (see the Mozilla Logo and Firefox Logo Guidelines below).') }}</li>
 
@@ -74,7 +74,7 @@
 
   <h4>{{ _('Don’t:') }}</h4>
 
-  <ul>
+  <ul class="mzp-u-list-styled">
 
     <li>{{ _('Don’t use Mozilla trademarks unless specifically permitted under these General Guidelines or the Additional Guidelines below.') }}</li>
 
@@ -111,7 +111,7 @@ or other commercial use.') }}</li>
 
   <p>{% trans %}In addition to the General Guidelines above, your add-on developer name and everything about your add-on (including the add-on name, icon, description, graphics and screenshots) must be unique and free of Mozilla trademarks unless (1) you’ve received prior written permission from Mozilla or (2) you’re only using a Mozilla wordmark to describe that your add-on works with Firefox and as long as your add-on icon and/or name:{% endtrans %}</p>
 
-  <ul>
+  <ul class="mzp-u-list-styled">
 
   <li>{{ _('Does not suggest or give the impression your add-on is actually published by, affiliated with or endorsed by Mozilla; and') }}</li>
 
@@ -141,4 +141,4 @@ or other commercial use.') }}</li>
 
   <p>{% trans trademarks="mailto:trademark-permissions@mozilla.com" %}If you have any questions, please contact us at <a href="{{ trademarks }}">trademark-permissions@mozilla.com</a>.{% endtrans %}</p>
 
-{% endblock article %}
+{% endblock %}

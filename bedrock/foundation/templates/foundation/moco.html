@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "foundation/base-resp.html" %}
+{% extends "foundation/base.html" %}
 
 {% block page_title %}{{ _('About the Mozilla Corporation') }}{% endblock %}
 
@@ -10,7 +10,7 @@
   {{ _('About the Mozilla Corporation') }}
 {% endblock %}
 
-{% block article %}
+{% block article_content %}
   <p>
     {% trans
       established="http://www-archive.mozilla.org/press/mozilla-2005-08-03.html"
@@ -40,7 +40,7 @@
   </p>
 
   <h3>{{ _('Board of Directors') }}</h3>
-  <ul>
+  <ul class="mzp-u-list-styled">
     {# L10n: This "Chair" is the chairperson of the board of directors, not something to sit on #}
     <li><a href="{{ url('mozorg.about.leadership') }}#mitchell-baker">Mitchell Baker</a>, {{ _('Chair') }}</li>
     <li><a href="{{ url('mozorg.about.leadership') }}#chris-beard">Chris Beard</a></li>
@@ -49,7 +49,7 @@
   </ul>
 
   <h2>{{ _('Documents') }}</h2>
-  <ul>
+  <ul class="mzp-u-list-styled">
     <li><a href="{{ url('foundation.documents.articles-of-incorporation') }}">{{ _('Articles of  Incorporation') }}</a></li>
     <li><a href="{{ url('foundation.documents.bylaws') }}">{{ _('Bylaws of the Mozilla Corporation') }}</a></li>
   </ul>

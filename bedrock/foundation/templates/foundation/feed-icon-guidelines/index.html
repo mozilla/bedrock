@@ -2,15 +2,19 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "foundation/base-resp.html" %}
+{% extends "foundation/base.html" %}
 
 {% block page_title %}{{ _('Feed Icon Guidelines') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('foundation-feed-icon-guidelines') }}
+{% endblock %}
 
 {% block article_title %}
   {{ _('Feed Icon Guidelines') }}
 {% endblock %}
 
-{% block article %}
+{% block article_content %}
   <p>
     {% trans
       synd="https://en.wikipedia.org/wiki/Web_syndication",
@@ -245,4 +249,4 @@
       of the icon.
     {% endtrans %}
   </p>
-{% endblock article %}
+{% endblock %}
