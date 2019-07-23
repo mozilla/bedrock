@@ -84,7 +84,7 @@
           </div>
           <ul class="subscribe">
             {% if forum.id in mdn_forums %}
-              <li>{{ _('Follow:') }} <a href="https://discourse.mozilla-community.org/c/mdn">{{ _('MDN category on Discourse') }}</a></li>
+              <li>{{ _('Follow:') }} <a href="https://discourse.mozilla.org/c/mdn">{{ _('MDN category on Discourse') }}</a></li>
               <li>{{ _('Email-in:') }} <a href="mailto:mdn@mozilla-community.org">mdn@mozilla-community.org</a></li>
               <li>{{ _('Archives, up to June 2017:') }} <a href="https://groups.google.com/group/{{ forum.id }}/topics">{{ _('%s Google Group')|format(forum.id) }}</a></li>
             {% elif forum.id.startswith('mozilla.') %}
