@@ -1832,3 +1832,37 @@ textarea:focus {
     }
 
 }
+
+#survey-message {
+    .border-box;
+    .font-size(12px);
+    background: #fff0b3;
+    bottom: 0;
+    display: none;
+    min-height: 30px;
+    overflow: hidden;
+    padding: 10px 20px;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    z-index: 90;
+    transform: translateY(100%);
+
+    .survey-button {
+        background-color: #00b6e0;
+        border-radius: 2px;
+        color: #fff;
+        height: 20px;
+        margin-left: 10px;
+        padding: 2px 5px;
+    }
+
+    &.show {
+        display: block;
+    }
+
+    &.show.animate {
+        transition: transform .25s ease-in;
+        transform: translateY(0);
+    }
+}

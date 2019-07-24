@@ -150,7 +150,27 @@
 
 {% endblock contrib_content %}
 
+{% block cta %}
+
+  {% set localized_surveys = {'en-US': 'GHJYW6D'} %}
+
+  {% if LANG in localized_surveys and switch('contribute-survey') %}
+    <div id="survey-message">
+      <span class="survey-invite">
+        Hello! Would you be willing to take a minute to answer a few questions?
+      </span>
+      <a class="survey-button" href="https://www.surveymonkey.com/r/{{ localized_surveys[LANG] }}">
+        Sure. I’ll help.
+      </a>
+    </div>
+  {% endif %}
+
+{% endblock %}
+
 {% block js %}
   {{ js_bundle('contribute-base') }}
   {{ js_bundle('contribute-landing') }}
+  {% if switch('contribute-survey') %}
+    {{ js_bundle('contribute-survey') }}
+  {% endif %}
 {% endblock %}

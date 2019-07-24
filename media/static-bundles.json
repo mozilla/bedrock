@@ -916,6 +916,12 @@
     },
     {
       "files": [
+        "js/mozorg/contribute/contribute-survey.js"
+      ],
+      "name": "contribute-survey"
+    },
+    {
+      "files": [
         "js/firefox/new/variation-scene1.js",
         "js/firefox/campaign/berlin-scene1-variation.js"
       ],
