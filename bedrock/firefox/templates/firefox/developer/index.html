@@ -4,7 +4,7 @@
 
 {% add_lang_files "firefox/products/developer-quantum" "firefox/shared" %}
 
-{% extends "firefox/base-pebbles.html" %}
+{% extends "firefox/base-protocol.html" %}
 
 {% block page_title %}{{_('Firefox Developer Edition')}}{% endblock %}
 {% block page_desc %}{{ _('Firefox Developer Edition is the blazing fast browser that offers cutting edge developer tools and latest features like CSS Grid support and framework debugging') }}{% endblock %}
@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block body_id %}firefox-developer{% endblock %}
-{% block body_class %}firefox-developer{% endblock %}
+{% block body_class %}firefox-developer mzp-t-firefox t-home{% endblock %}
 
 {% block site_header %}
   {% with hide_nav_download_button=True %}
@@ -29,67 +29,68 @@
 {% block content %}
 {% include 'firefox/includes/hub/sub-nav.html' %}
 <main role="main">
-  <section class="section section-intro">
-    <div class="content">
+  <section class="t-intro">
+    <div class="mzp-l-content">
+      <h1 class="intro-title">{{ _('Firefox Quantum: Developer Edition') }}</h1>
+      <p class="intro-tagline">{{ _('Welcome to your new favorite browser. Get the latest features, fast performance, and the development tools you need to build for the open web.') }}</p>
 
-      <div class="section-body">
-        <h1 class="page-title">{{ _('Firefox Quantum: Developer Edition') }}</h1>
-        <p class="tagline">{{ _('Welcome to your new favorite browser. Get the latest features, fast performance, and the development tools you need to build for the open web.') }}</p>
+      {{ download_firefox('alpha', platform='desktop', dom_id='intro-download', button_color='button-arrow', download_location='primary cta') }}
 
-        {{ download_firefox('alpha', platform='desktop', dom_id='intro-download', button_color='button-arrow', download_location='primary cta') }}
-
-        <p class="feedback-note">
-          {{ _('Firefox Developer Edition automatically sends feedback to Mozilla.') }}
-          <a href="{{ url('privacy.notices.firefox') }}#telemetry" class="more">{{ _('Learn more') }}</a>
-        </p>
-      </div>
-
-      {{ high_res_img('firefox/developer/hero-screenshot.png', {'class': 'hero-image', 'alt': '', 'width': '1200', 'height': '400'}) }}
-
+      <p class="intro-feedback-note">
+        {{ _('Firefox Developer Edition automatically sends feedback to Mozilla.') }}
+        <a href="{{ url('privacy.notices.firefox') }}#telemetry" class="more">{{ _('Learn more') }}</a>
+      </p>
+    </div>
+    <div class="intro-image">
+      {{ high_res_img('firefox/developer/hero-screenshot.png', {'alt': '', 'width': '1200', 'height': '337'}) }}
     </div>
   </section>
 
-  <section class="section section-performance">
-    <div class="content">
-      <h2 class="section-title"><span>{{ _('Faster Performance') }}</span></h2>
-
-      <div class="section-body">
-        <h3 class="body-title">{{ _('A Next-Generation CSS Engine') }}</h3>
-        <img class="hero-image" src="{{ static('img/firefox/developer/stylo-engine.svg') }}" alt="">
-        <p>
-        {% trans %}
-          Firefox has been rebuilt from the ground up to be faster and more
-          powerful than ever. This includes a new CSS engine that has
-          state-of-the-art innovations and is blazingly fast.
-        {% endtrans %}
-        </p>
-        <p class="cta"><a href="https://hacks.mozilla.org/2017/08/inside-a-super-fast-css-engine-quantum-css-aka-stylo/" class="button button-hollow">{{ _('Learn more') }}</a></p>
-      </div>
-    </div>
-  </section>
+  {% include '/firefox/developer/includes/performance.html' %}
 
   {% include '/firefox/developer/includes/highlights.html' %}
 
   {% include '/firefox/developer/includes/features.html' %}
 
-  {% include '/firefox/developer/includes/engage.html' %}
+  <section class="t-engage mzp-t-dark">
+    {% include '/firefox/developer/includes/engage.html' %}
 
-  <section class="section section-download">
-    <div class="content">
-      <div class="section-body">
-        <h2>{{ _('Download the Firefox browser made for developers') }}</h2>
-        {{ download_firefox('alpha', platform='desktop', dom_id='footer-download', button_color='button-arrow', download_location='footer cta') }}
-      </div>
+    <div class="mzp-l-content t-download">
+      <section class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-right-half">
+        <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+              {{ high_res_img('firefox/developer/browser.png', {'alt': '', 'width': '334', 'height': '228'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <h2 class="mzp-c-card-feature-title">{{ _('Download the Firefox browser made for developers') }}</h2>
+            <div class="mzp-c-card-feature-desc">
+                {{ download_firefox('alpha', platform='desktop', dom_id='footer-download', button_color='button-arrow', download_location='footer cta') }}
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </section>
-
-  <section class="section section-newsletter">
-    <div class="content">
-    {% if LANG.startswith('en-') %}
-      {{ email_newsletter_form('app-dev', title='Get the most out of Firefox Developer Edition', subtitle='Learn about Dev Edition and subscribe to the Mozilla Developer Newsletter.', button_class='button-hollow button-light', include_language=False) }}
-    {% else %}
-      {{ email_newsletter_form(spinner_color='#fff', button_class='button-hollow button-light') }}
-    {% endif %}
+  <section class="t-newsletter">
+    <div class="mzp-l-content">
+      <div class="mzp-c-newsletter">
+        {% if LANG.startswith('en-') %}
+          {{ email_newsletter_form(
+            'app-dev',
+            title='Get the most out of Firefox Developer Edition',
+            subtitle='Learn about Dev Edition and subscribe to the Mozilla Developer Newsletter.',
+            button_class='mzp-t-product mzp-t-small',
+            include_language=False,
+            protocol_component=True) }}
+        {% else %}
+          {{ email_newsletter_form(
+            protocol_component=True,
+            spinner_color='#fff',
+            button_class='mzp-c-button mzp-t-product') }}
+        {% endif %}
+      </div>
     </div>
   </section>
 </main>

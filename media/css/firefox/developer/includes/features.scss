@@ -1,0 +1,32 @@
+@import '../../../../protocol/css/includes/lib';
+
+.t-features {
+    @include text-body-sm;
+    text-align: center;
+}
+
+.c-feature-name {
+    @include text-display-xs;
+}
+
+.c-feature-img {
+    margin-bottom: $layout-sm;
+}
+
+.c-feature-desc {
+    margin-bottom: $layout-xs;
+}
+
+@media #{$mq-md} {
+    .t-features {
+        @include text-body-md;
+    }
+
+    .c-feature-img {
+        margin-bottom: $layout-sm;
+    }
+
+    .c-feature-desc {
+        margin-bottom: $layout-xs;
+    }
+}

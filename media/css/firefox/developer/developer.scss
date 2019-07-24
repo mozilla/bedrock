@@ -2,245 +2,79 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../pebbles/includes/lib';
-@import '../../pebbles/components/newsletter';
-@import '../../hubs/sub-nav';
-@import '../../hubs/sub-nav-download-button-remove';
+@import '../../hubs/sub-nav-protocol';
+@import '../../hubs/sub-nav-download-button-remove-protocol';
 
-@import 'includes/lib';
-
-.firefox-developer {
-    main {
-        @include open-sans;
-    }
-
-    .section-title {
-        @include font-size-level5;
-        margin: 20px auto 40px;
-        max-width: $width-tablet;
-        text-align: center;
-        text-transform: uppercase;
-
-        span {
-            padding-bottom: 2px;
-            border-bottom: 3px solid;
-            line-height: 2;
-        }
-    }
-
-    .hero-image {
-        display: block;
-        margin: 0 auto 40px;
-    }
-
-    .section-body {
-        margin: 0 auto;
-    }
-
-    .body-title {
-        @include font-size-level3;
-        font-weight: normal;
-        margin: 0 auto 1.5em;
-        text-align: center;
-    }
-
-    // Download button
-    .download-button {
-        .download-link.button-arrow {
-            @include font-size-level5;
-            background: $color-dev-mediumblue linear-gradient(120deg, $color-dev-lightblue 0, $color-dev-mediumblue 100%) no-repeat;
-            border-radius: 2px;
-            border: 0;
-            margin-bottom: 10px;
-            padding: 1em 40px;
-
-            strong:before {
-                @include background-size(12px 28px);
-                background-image: url('/media/img/hubs/down-arrow-light-sprite.png');
-                background-position: left top;
-                content: '';
-                display: block;
-                float: left;
-                height: 14px;
-                margin: .35em 10px 0 0;
-                width: 12px;
-            }
-        }
-
-        .fx-privacy-link {
-            @include font-size-small;
-
-            a:link,
-            a:visited {
-                text-decoration: none;
-                color: $color-link;
-
-                &:hover,
-                &:focus,
-                &:active {
-                    text-decoration: underline;
-                }
-            }
-        }
-    }
-
-    // Adjust nav width now that we don't need room for a button.
-    .moz-global-nav .nav-primary-links {
-        width: 100%;
-
-        @media #{$mq-tablet} {
-            width: calc(100% - 160px);
-        }
-
-        @media #{$mq-desktop} {
-            width: calc(100% - 250px);
-        }
-    }
-
-    .moz-sub-nav .sub-nav-primary-links-container {
-        width: 100%;
-    }
-}
-
-// needs to be in cascade after .firefox-developer .section-title
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/templates/card-layout';
+@import 'includes/engage';
+@import 'includes/features';
+@import 'includes/gallery-grid';
 @import 'includes/highlights';
-@import 'includes/features-gallery';
-@import 'includes/performance';
-@import 'includes/download';
+@import 'includes/intro';
 @import 'includes/newsletter';
+@import 'includes/performance';
+
+
+// https://github.com/mozilla/protocol/issues/374
+.mzp-t-dark a.mzp-c-cta-link {
+    text-decoration: none;
+}
 
 //*------------------------------------------------------------------*/
-// Intro
-.section-intro {
-    background-color: #fff;
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    overflow: hidden;
-    text-align: center;
+// Title and subtitles for entire page
 
-    .page-title {
-        @include font-size-level2;
-        font-weight: normal;
-        margin: 0 auto 1em;
-    }
+.c-title,
+.t-performance .mzp-c-card-feature-title {
+    @include text-body-md;
+}
 
-    .tagline {
-        max-width: $width-tablet;
-        text-align: center;
-        margin: 0 auto 1.5em;
-    }
+.c-subtitle {
+    @include text-display-sm;
+    @include font-firefox;
+    line-height: $text-display-line-height;
+    font-weight: bold;
+    margin-bottom: $spacing-md;
 
-    .download-button {
-        margin: 40px auto 20px;
-    }
+    .t-features & {
+        @include text-display-md;
+        margin: 0 auto $layout-md;
+        max-width: $content-lg;
 
-    .feedback-note {
-        @include font-size-small;
-        margin: 0 auto 2em;
-        max-width: $width-phone;
-        color: #aaa;
+        br {
+            display: none;
 
-        a:link,
-        a:visited {
-            @include trailing-arrow;
-            text-decoration: none;
-
-            &:hover,
-            &:focus,
-            &:active {
-                text-decoration: underline;
-            }
-        }
-    }
-
-    .hero-image {
-        display: none;
-    }
-
-    @media #{$mq-tablet} {
-        @include background-size(1700px 450px);
-        background-image: url('/media/img/firefox/developer/hero-background.png');
-        padding-top: 40px;
-
-        .hero-image {
-            display: block;
-            margin: 40px auto -60px;
-        }
-    }
-
-    @media #{$mq-desktop} {
-        @include at2x('/media/img/firefox/developer/hero-background.png', 3400px, 900px);
-
-        .hero-image {
-            margin-top: 60px;
-        }
-    }
-
-    @media #{$mq-desktop-wide} {
-        .hero-image {
-            margin-bottom: -80px;
         }
     }
 }
 
+@media #{$mq-md} {
+    .c-subtitle {
+
+        .t-features & {
+            margin-bottom: $layout-xl;
+
+            br {
+                display: block;
+            }
+        }
+    }
+}
 
 //*------------------------------------------------------------------*/
-// Engagement
-.section-engage {
-    background: $color-dev-mediumblue linear-gradient(120deg, $color-dev-lightblue 0, $color-dev-mediumblue 100%) no-repeat;
-    color: #fff;
-    text-align: center;
+// Padding for page content sections
 
-    h3 {
-        @include font-size(24px);
-        font-weight: normal;
-        margin: 0 0 20px;
-    }
+.t-performance,
+.t-highlights,
+.t-features {
 
-    .speak-up {
-        border-bottom: 1px solid #fff;
-        margin-bottom: 40px;
-        padding-bottom: 40px;
-    }
+    &.mzp-l-content {
+        padding-top: $layout-md;
+        padding-bottom: $layout-sm;
 
-    @media #{$mq-tablet} {
-        padding: 180px 20px 60px;
-
-        h3 {
-            @include font-size-level3;
-        }
-
-        .speak-up,
-        .get-involved {
-            @include border-box;
-            @include span(6);
-            padding: 20px 40px;
-        }
-
-        .speak-up {
-            border-bottom: 0;
-            margin-bottom: 0;
-            padding-bottom: 20px;
-        }
-
-        .get-involved {
-            border-left: 1px solid #fff;
-        }
-    }
-
-    a.button.button-hollow {
-        @include font-size-level5;
-        border-color: #fff;
-        border-radius: 2px;
-        color: #fff;
-        margin-top: 20px;
-
-        &:hover,
-        &:focus,
-        &:active {
-            background-color: rgba(255, 255, 255, .1);
-            border-color: #fff;
-            color: #fff;
+        @media #{$mq-lg} {
+            padding-top: $layout-xl;
+            padding-bottom: $layout-xl;
         }
     }
 }

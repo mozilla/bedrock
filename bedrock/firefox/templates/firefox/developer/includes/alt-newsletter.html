@@ -1,10 +1,21 @@
-<section class="section section-newsletter">
-  <div class="content">
-  {% if LANG.startswith('en-') %}
-    {# L10n: line break for visual formatting #}
-    {{ email_newsletter_form('app-dev', 'Mozilla Developer Newsletter', subtitle=_('Get developer news, tricks and resources <br /> sent straight to your inbox.'), button_class='button-hollow button-light', include_language=False) }}
-  {% else %}
-    {{ email_newsletter_form(spinner_color='#fff', button_class='button-hollow button-light') }}
-  {% endif %}
+<section class="t-newsletter">
+  <div class="mzp-l-content">
+      <div class="mzp-c-newsletter">
+        {% if LANG.startswith('en-') %}
+          {# L10n: line break for visual formatting #}
+          {{ email_newsletter_form(
+            'app-dev',
+            title='Mozilla Developer Newsletter',
+            subtitle=_('Get developer news, tricks and resources <br /> sent straight to your inbox.'),
+            button_class='mzp-t-product',
+            include_language=False,
+            protocol_component=True) }}
+        {% else %}
+          {{ email_newsletter_form(
+            protocol_component=True,
+            spinner_color='#fff',
+            button_class='mzp-c-button mzp-t-product') }}
+        {% endif %}
+      </div>
   </div>
 </section>
