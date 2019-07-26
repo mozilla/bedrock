@@ -22,11 +22,11 @@ html {
 .page-content {
     border: 5px solid rgb(98, 0, 255);
     text-align: center;
+    margin-bottom: 3em;
 }
 
 .mzp-c-hero-body {
     border: 5px solid rgb(255, 217, 0);
-    margin: 0 auto;
 }
 .fxa-signin {
     margin-top: 1em;
@@ -34,13 +34,16 @@ html {
 }
 
 .mzp-c-hero-title {
-    font-size: 3em;
+    font-size: 1.5em;
     border: 3px dashed blue;
 }
 .fxa-signin, .agreement {
     color: $color-gray-70;
-    font-size: .8em;
     border: 3px dashed blue;
+}
+
+.fxa-signin {
+    font-size: 65%;
 }
 .field {
     padding: 0;
@@ -54,9 +57,8 @@ html {
 section .mzp-l-content, section .mzp-c-hero-image {
     display: inline-block;
     text-align: left;
-    width: 700px;
+    max-width: 330px;
     border: 5px solid rgb(255, 0, 128);
-    margin: 0 auto;
 }
 
 .mzp-c-hero-desc {
@@ -71,7 +73,6 @@ section .mzp-l-content, section .mzp-c-hero-image {
 
 .fxa-email-form-intro {
     font-weight: bold;
-    font-size: 1.7em;
     border: 3px dashed rgb(157, 255, 0);
 }
 .mzp-c-button {
@@ -88,7 +89,23 @@ section .mzp-l-content, section .mzp-c-hero-image {
     text-align: center;
     border: 3px dashed rgb(255, 136, 0);
     .mzp-c-box-emphasis-content {
-        padding: 2em;
+        padding: 1em;
         border: 3px dashed rgb(255, 30, 0);
+    }
+}
+
+@media #{$mq-sm} {
+    .mzp-c-hero-title {
+        font-size: 3em;
+    }
+    section .mzp-l-content, section .mzp-c-hero-image {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    .fxa-email-form-intro {
+        font-size: 1.7em;
+    }
+    .mzp-c-box-emphasis-content {
+        padding: 2em;
     }
 }
