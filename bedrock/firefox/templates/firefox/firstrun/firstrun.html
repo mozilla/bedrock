@@ -1,0 +1,85 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/new/quantum" %}
+
+{% from "macros.html" import fxa_email_form, fxa_link_fragment with context %}
+
+{% extends "firefox/base-protocol.html" %}
+
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block body_id %}firstrun-quantum-onboarding{% endblock %}
+
+{% block page_title %}
+  {{ _('Welcome to Firefox') }}
+{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_firstrun_quantum') }}
+{% endblock %}
+
+{% block gtm_page_id %}data-gtm-page-id="/firefox/firstrun/"{% endblock %}
+
+{% block extrahead %}
+  {% if switch('firefox-update-notification-modal', ['en-US']) %}
+    {{ css_bundle('firefox-update-notification-firstrun-whatsnew') }}
+  {% endif %}
+{% endblock %}
+
+{# Bug 1387984 #}
+{% block update_notification %}
+  {% if switch('firefox-update-notification-modal', ['en-US']) %}
+    {% include 'includes/firefox-update-instructions.html' %}
+    {{ js_bundle('firefox-update-notification-firstrun-whatsnew') }}
+  {% endif %}
+{% endblock %}
+
+{% block global_nav %}{% endblock %}
+{% block site_header %}{% endblock %}
+
+{% block content %}
+  <div id="scene">
+    <main class="fxaccounts-container">
+      <header id="main-header">
+      {% block main_copy %}
+        <h1>
+        {% if l10n_has_tag('firstrun_email_only_form') %}
+          {{ _('Take Firefox with You') }}
+        {% else %}
+          {{_('Already using Firefox?')}}
+        {% endif %}
+        </h1>
+        <p class="content">
+        {% if l10n_has_tag('firstrun_email_only_form') %}
+          {{ _('Get your bookmarks, history, passwords and other settings on all your devices.') }}
+        {% else %}
+          {{_('Sign in to your account and we’ll sync the bookmarks, passwords and other great things you’ve saved to Firefox on other devices.')}}
+        {% endif %}
+        </p>
+        <p><a href="{{ url('firefox.accounts') }}">{{_('Learn more about Firefox Accounts')}}</a></p>
+        <section class="mzp-c-box-emphasis" >
+          <div class="mzp-c-box-emphasis-content" id="fxaccounts-wrapper">
+            {{ fxa_email_form(
+              entrypoint='mozilla.org-firstrun',
+              utm_source='firstrun',
+              button_class='mzp-c-button mzp-t-product')
+            }}
+            <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-firstrun_page', utm_params={'campaign': 'fxa-embedded-form', 'medium': 'referral', 'content': 'firstrun-page', 'source': 'firstrun-page'}) }} class="js-fxa-cta-link">{{ _('Sign In') }}</a></p>
+          </div>
+        </section>
+      {% endblock %}
+      </header>
+      
+    </main>
+
+  </div>{# /#scene #}
+{% endblock %}
+
+{% block site_footer %}{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_firstrun_quantum') }}
+{% endblock %}

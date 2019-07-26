@@ -337,21 +337,21 @@
     {% if intro_text %}
       {{ intro_text }}
     {% else %}
-      {{ _('<strong>Enter your email</strong> to access Firefox Accounts.') }}
+      {{ _('Enter your email to access Firefox Accounts.') }}
     {% endif %}
-    </p>
-
-    <p class="agreement">
-    {% trans url1='https://accounts.firefox.com/legal/terms', url2='https://accounts.firefox.com/legal/privacy' %}
-      By proceeding, you agree to the <a href="{{ url1 }}">Terms of Service</a> and
-      <a href="{{ url2 }}">Privacy Notice</a>.
-    {% endtrans %}
     </p>
 
     <div class="fxa-email-field-container">
       <p class="field">
         <label for="fxa-email-field">{{ _('Email address') }}</label>
         <input type="email" name="email" id="fxa-email-field" class="fxa-email-field" placeholder="user@example.com" required>
+      </p>
+
+      <p class="agreement">
+        {% trans url1='https://accounts.firefox.com/legal/terms', url2='https://accounts.firefox.com/legal/privacy' %}
+          By proceeding, you agree to the <a href="{{ url1 }}">Terms of Service</a> and
+          <a href="{{ url2 }}">Privacy Notice</a>.
+        {% endtrans %}
       </p>
 
       <button type="submit" class="{{ button_class }}" id="fxa-email-form-submit" data-link-type="FxA-{{ service|title }}" data-link-name="Continue">
