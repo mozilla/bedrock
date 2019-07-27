@@ -45,10 +45,12 @@
 {% block content %}
   <section class="hero mzp-has-image mzp-t-firefox mzp-t-product-firefox">
     <div class="page-content">
-      <div class="browser-logo">
-      </div>
+      
       <div class="mzp-l-content">
         <div class="mzp-c-hero-body">
+          <div class="browser-logo">
+            <img class="browser-logo" src="{{ static('img/logos/firefox/logo-quantum-full-wordmark-high-res.png') }}" />
+          </div>
           <h1 class="mzp-c-hero-title">
             {% if l10n_has_tag('firstrun_email_only_form') %}
               {{ _('Take Firefox with You') }}
@@ -77,7 +79,7 @@
         </div>
       </div>
       <div class="mzp-c-hero-image">
-        <img src="{{ static('img/firefox/firstrun/deviceSwoosh.gif') }}" alt="gif showing three devices with a swooshing color motion going across all screens">
+        <img class="hero-photo" src="{{ static('img/firefox/firstrun/deviceSwoosh.gif') }}" alt="gif showing three devices with a swooshing color motion going across all screens">
       </div>
     </div>
   </section>
