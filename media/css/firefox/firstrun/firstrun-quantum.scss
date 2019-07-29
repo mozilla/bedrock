@@ -16,40 +16,14 @@ html {
     min-height: 100vh;
 }
 
-.page-content {
-    text-align: center;
-    margin-bottom: 3em;
-}
-
-.fxa-signin {
-    margin-top: 1em;
-}
-
-.mzp-c-hero-title {
-    font-size: 1.5em;
-}
-.fxa-signin, .agreement {
-    color: $color-gray-70;
-}
-
-.fxa-signin {
-    font-size: 65%;
-}
-.field {
-    padding: 0;
-    margin: 0;
-}
-.agreement {
-    padding-bottom: 1em;
-}
 section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
     display: inline-block;
     text-align: left;
     max-width: 330px;
 }
 
-.mzp-c-hero-image {
-    margin-top: 1em;
+.agreement {
+    padding-bottom: 1em;
 }
 
 .browser-logo img {
@@ -59,9 +33,25 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
     max-width: 250px;
 }
 
+.field {
+    padding: 0;
+    margin: 0;
+}
+
+.mzp-c-button {
+    width: 100%;
+}
 
 .mzp-c-hero-desc {
     padding-bottom: 1em;
+}
+
+.mzp-c-hero-image {
+    margin-top: 1em;
+}
+
+.mzp-c-hero-title {
+    font-size: 1.5em;
 }
 
 .fxa-email-field {
@@ -71,9 +61,21 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 .fxa-email-form-intro {
     font-weight: bold;
 }
-.mzp-c-button {
-    width: 100%;
+
+.fxa-signin {
+    margin-top: 1em;
+    font-size: 65%;
 }
+
+.fxa-signin, .agreement {
+    color: $color-gray-70;
+}
+
+.page-content {
+    text-align: center;
+    margin-bottom: 3em;
+}
+
 /* -------------------------------------------------------------------------- */
 // Emphasis Box style, this should go away when Protocal PR #441 is landed. Issue #385
 
@@ -89,27 +91,36 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 }
 
 @media #{$mq-sm} {
-    .mzp-c-hero-title {
-        font-size: 2.8em;
-    }
-    section .mzp-l-content, div.mzp-c-hero-image {
-        max-width: 600px;
-        position: relative;
-    }
+
     div.mzp-c-hero-image {
        height: 100%;
        vertical-align: top;
     }
 
-    .fxa-email-form-intro {
-        font-size: 2em;
+    section .mzp-l-content, div.mzp-c-hero-image {
+        max-width: 600px;
+        position: relative;
     }
+
+    .mzp-c-hero-title {
+        font-size: 2.8em;
+    }
+
     .mzp-c-box-emphasis-content {
         padding: 2em;
     }
+
+    .fxa-email-form-intro {
+        font-size: 2em;
+    }
+
 }
 
 @media #{$mq-lg} {
+
+    div.mzp-c-hero-image {
+       margin-top: 8em;
+    }
     section .mzp-l-content, div.mzp-c-hero-image {
         max-width: 700px;
     }
@@ -118,7 +129,4 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
         font-size: 1.9em;
     }
 
-    div.mzp-c-hero-image {
-       margin-top: 8em;
-    }
 }
