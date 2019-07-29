@@ -72,8 +72,8 @@ Mozilla.FxaForm = (function(Mozilla) {
     }
 
     if (fxaForm) {
-        // Sync is Firefox only
-        if (Mozilla.Client.isFirefox) {
+        // Sync is Firefox for desktop only.
+        if (Mozilla.Client.isFirefoxDesktop) {
             init();
         } else {
             // Omit the fields required for sync.
