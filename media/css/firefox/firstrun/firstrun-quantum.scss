@@ -11,8 +11,6 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Common elements & variables
 
-$mq-medium: 'screen and (min-width: 790px)';
-
 html {
     height: 100%;
     min-height: 100vh;
@@ -95,7 +93,7 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
         font-size: 2.8em;
     }
     section .mzp-l-content, div.mzp-c-hero-image {
-        max-width: 700px;
+        max-width: 600px;
         position: relative;
     }
     div.mzp-c-hero-image {
@@ -104,7 +102,7 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
     }
 
     .fxa-email-form-intro {
-        font-size: 1.7em;
+        font-size: 2em;
     }
     .mzp-c-box-emphasis-content {
         padding: 2em;
@@ -112,9 +110,15 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 }
 
 @media #{$mq-lg} {
+    section .mzp-l-content, div.mzp-c-hero-image {
+        max-width: 700px;
+    }
+
+    .fxa-email-form-intro {
+        font-size: 1.9em;
+    }
 
     div.mzp-c-hero-image {
        margin-top: 8em;
     }
 }
-
