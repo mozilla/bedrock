@@ -49,6 +49,11 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
     text-align: left;
     max-width: 330px;
 }
+
+.mzp-c-hero-image {
+    margin-top: 1em;
+}
+
 .browser-logo img {
     display: block;
     padding-bottom: 1.5em;
@@ -95,7 +100,6 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
     div.mzp-c-hero-image {
        height: 100%;
        vertical-align: top;
-       margin-top: 8em;
     }
 
     .fxa-email-form-intro {
@@ -105,3 +109,11 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
         padding: 2em;
     }
 }
+
+@media #{$mq-lg} {
+
+    div.mzp-c-hero-image {
+       margin-top: 7em;
+    }
+}
+
