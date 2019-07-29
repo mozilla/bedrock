@@ -8,9 +8,11 @@
 $(document).ready(function() {
     'use strict';
 
-    var utilsie8 = Mozilla.UtilsIE8;
+    // Initialize download buttons.
+    Mozilla.UtilsIE8.initDownloadLinks();
 
-    utilsie8.initDownloadLinks();
+    // Initialize navigation.
+    Mozilla.UtilsIE8.initNavigation();
 
     $(window).on('load', function() {
         $('html').addClass('loaded');
