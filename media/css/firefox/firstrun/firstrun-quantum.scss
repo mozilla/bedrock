@@ -18,8 +18,8 @@ html {
 
 section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
     display: inline-block;
-    text-align: left;
     max-width: 330px;
+    text-align: left;
 }
 
 .agreement {
@@ -28,14 +28,14 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 
 .browser-logo img {
     display: block;
+    max-width: 250px;
     padding-bottom: 2em;
     padding-top: 1em;
-    max-width: 250px;
 }
 
 .field {
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
 
 .mzp-c-button {
@@ -63,8 +63,8 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 }
 
 .fxa-signin {
-    margin-top: 1em;
     font-size: 65%;
+    margin-top: 1em;
 }
 
 .fxa-signin, .agreement {
@@ -72,8 +72,8 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 }
 
 .page-content {
-    text-align: center;
     margin-bottom: 3em;
+    text-align: center;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -81,8 +81,8 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 
 .mzp-c-box-emphasis {
     background: $color-white;
-    box-shadow: 0 0 10px 0 $color-gray-30;
     border-radius: 0.2em;
+    box-shadow: 0 0 10px 0 $color-gray-30;
     text-align: center;
 
     .mzp-c-box-emphasis-content {
