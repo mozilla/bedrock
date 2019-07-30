@@ -85,20 +85,14 @@ $image-path: '/media/protocol/img';
     max-width: $content-md - ($layout-md * 2);
     padding: $spacing-xl $layout-md;
 
-    .c-emphasis-box-pretitle {
-        @include text-display-sm;
-        color: $color-off-black;
-        margin-bottom: $spacing-lg;
-    }
-
-    .c-emphasis-box-title {
-        @include text-display-md;
-        color: $color-off-black;
-    }
-
     .c-emphasis-box-logo {
         display: block;
         margin: 0 auto $spacing-lg;
+    }
+
+    .c-emphasis-box-title {
+        @include text-display-sm;
+        color: $color-off-black;
     }
 }
 

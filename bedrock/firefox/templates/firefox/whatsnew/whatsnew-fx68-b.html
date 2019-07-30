@@ -48,10 +48,13 @@
 
       <div class="c-emphasis-box show-fxa-supported-signed-in">
       {% block main_content_signed_in %}
-        <h2 class="c-emphasis-box-pretitle">{{ _('Your account connects you to all of our products. ') }}</h2>
+
 
         <img class="c-emphasis-box-logo" src="{{ static('img/firefox/whatsnew_67/monitor_icon.svg') }}" alt="">
-        <h3 class="c-emphasis-box-title">{{ _('Including Firefox Monitor, your watchful eye for data breaches') }}</h3>
+        <h2 class="c-emphasis-box-title">
+          {{ _('Your account connects you to all of our products. ') }}
+          {{ _('Including Firefox Monitor, your watchful eye for data breaches') }}
+        </h2>
         <p>{{ _('See if your info was compromised in another company’s data breach, and get automatically signed up for future alerts.') }}</p>
         {% block monitor_button %}
           {{ monitor_button(
@@ -121,7 +124,6 @@
 
   <section class="content-extra show-fxa-supported-signed-in">
     <div class="mzp-l-content">
-      <h2 class="c-section-title-secondary">{{ _('And soon it’ll connect you to something bigger.') }}</h2>
 
       <div class="l-blocks-two">
 
