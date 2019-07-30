@@ -1315,13 +1315,6 @@
     },
     {
       "files": [
-        "js/libs/jquery.validate.js",
-        "js/legal/fraud-report.js"
-      ],
-      "name": "legal_fraud_report"
-    },
-    {
-      "files": [
         "js/libs/jquery.waypoints.min.js",
         "js/libs/jquery.waypoints-sticky.min.js",
         "js/hubs/sub-nav.js",
@@ -1576,7 +1569,6 @@
     },
     {
       "files": [
-        "js/libs/jquery.validate.js",
         "js/libs/modernizr.custom.inputtypes.js",
         "js/press/speaker-request.js"
       ],
