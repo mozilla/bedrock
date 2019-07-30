@@ -312,7 +312,7 @@ class SpeakerRequestForm(forms.Form):
         attachment = cleaned_data.get("sr_attachment")
 
         if attachment:
-            if attachment._size > SPEAKER_REQUEST_FILE_SIZE_LIMIT:
+            if attachment.size > SPEAKER_REQUEST_FILE_SIZE_LIMIT:
                 raise forms.ValidationError(
                     _("Attachment must not exceed 5MB"))
 

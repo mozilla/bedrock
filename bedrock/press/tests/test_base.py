@@ -259,7 +259,7 @@ class TestSpeakerRequest(TestCase):
         """
         # attachment within size limit
         mock_attachment = Mock(
-            _size=press_forms.SPEAKER_REQUEST_FILE_SIZE_LIMIT)
+            size=press_forms.SPEAKER_REQUEST_FILE_SIZE_LIMIT)
 
         form = SpeakerRequestForm(
             self.data, {
@@ -275,7 +275,7 @@ class TestSpeakerRequest(TestCase):
         """
         # attachment within size limit
         mock_attachment = Mock(
-            _size=(press_forms.SPEAKER_REQUEST_FILE_SIZE_LIMIT + 1))
+            size=(press_forms.SPEAKER_REQUEST_FILE_SIZE_LIMIT + 1))
 
         form = SpeakerRequestForm(
             self.data, {
@@ -325,7 +325,7 @@ class TestSpeakerRequest(TestCase):
         """
         mock_attachment = Mock(
             content_type='text/plain',
-            _size=(press_forms.SPEAKER_REQUEST_FILE_SIZE_LIMIT))
+            size=(press_forms.SPEAKER_REQUEST_FILE_SIZE_LIMIT))
 
         # make sure name attribute is treated as string
         mock_attachment.name = 'img.jpg'
