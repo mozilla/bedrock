@@ -6,7 +6,6 @@
     'use strict';
 
     $(document).ready(function(){
-        $('#speaker-request-form').validate();
 
         if (Modernizr.inputtypes.date) {
             $('.date-note').hide();
