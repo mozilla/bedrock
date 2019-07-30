@@ -14,4 +14,22 @@
   {{ high_res_img('logos/firefox/logo-quantum-wordmark-white.png', {'alt': 'Firefox', 'width': '120', 'height': '40', 'class': 'c-page-header-logo-fx'}) }}
 {% endblock %}
 
+{% block fxa_form %}
+  {{ fxa_email_form(
+      entrypoint='mozilla.org-whatsnew68-c',
+      button_class='mzp-c-button mzp-t-product mzp-t-small',
+      utm_source='whatsnew68-c',
+      style='trailhead',
+      utm_campaign='whatsnew68-c',
+      utm_content='whatsnew68-experiment-c')
+  }}
+{% endblock %}
 
+{% block monitor_button %}
+  {{ monitor_button(
+    entrypoint='mozilla.org-whatsnew68-c',
+    utm_source='whatsnew68-c',
+    utm_campaign='whatsnew68-c',
+    utm_content='whatsnew68-experiment-c'
+  ) }}
+{% endblock %}

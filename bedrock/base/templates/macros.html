@@ -255,8 +255,8 @@
   </a>
 {%- endmacro %}
 
-{% macro monitor_button(entrypoint='', utm_source='', utm_campaign='', button_text='', button_class='mzp-c-button mzp-t-product') -%}
-  <a data-action="{{ settings.FXA_ENDPOINT }}" href="https://monitor.firefox.com/oauth/init?utm_source={{ utm_source }}&utm_campaign={{ utm_campaign }}&form_type=email&entrypoint={{ entrypoint }}" class="{{ button_class }}" id="fxa-monitor-submit" data-link-name="Continue" data-link-type="button">
+{% macro monitor_button(entrypoint='', utm_source='', utm_campaign='', utm_content='', button_text='', button_class='mzp-c-button mzp-t-product') -%}
+  <a data-action="{{ settings.FXA_ENDPOINT }}" href="https://monitor.firefox.com/oauth/init?utm_source={{ utm_source }}&utm_campaign={{ utm_campaign }}&utm_content={{ utm_content }}&form_type=email&entrypoint={{ entrypoint }}" class="{{ button_class }}" id="fxa-monitor-submit" data-link-name="Continue" data-link-type="button">
     {% if button_text %}
       {{ button_text }}
     {% else %}

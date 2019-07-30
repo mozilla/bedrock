@@ -10,3 +10,23 @@
 {% block page_favicon_large %}{{ static('img/firefox/favicon-notice-196.png') }}{% endblock %}
 
 {% block body_attrs %}{{ super() }} data-variant="d"{% endblock %}
+
+{% block fxa_form %}
+  {{ fxa_email_form(
+      entrypoint='mozilla.org-whatsnew68-d',
+      button_class='mzp-c-button mzp-t-product mzp-t-small',
+      utm_source='whatsnew68-d',
+      style='trailhead',
+      utm_campaign='whatsnew68-d',
+      utm_content='whatsnew68-experiment-d')
+  }}
+{% endblock %}
+
+{% block monitor_button %}
+  {{ monitor_button(
+    entrypoint='mozilla.org-whatsnew68-d',
+    utm_source='whatsnew68-d',
+    utm_campaign='whatsnew68-d',
+    utm_content='whatsnew68-experiment-d'
+  ) }}
+{% endblock %}

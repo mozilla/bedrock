@@ -33,12 +33,12 @@
         <div class="c-signup-container fxa-form-cta">
           {% block fxa_form %}
             {{ fxa_email_form(
-                entrypoint='mozilla.org-whatsnew6705',
+                entrypoint='mozilla.org-whatsnew68-b',
                 button_class='mzp-c-button mzp-t-product mzp-t-small',
-                utm_source='whatsnew6705',
+                utm_source='whatsnew68-b',
                 style='trailhead',
                 utm_campaign='trailhead',
-                utm_content='get-the-rest-of-firefox')
+                utm_content='whatsnew68-experiment-b')
             }}
           {% endblock %}
         </div>
@@ -58,9 +58,10 @@
         <p>{{ _('See if your info was compromised in another company’s data breach, and get automatically signed up for future alerts.') }}</p>
         {% block monitor_button %}
           {{ monitor_button(
-            entrypoint='mozilla.org-whatsnew6705',
-            utm_source='whatsnew6705',
-            utm_campaign='whatsnew6705'
+            entrypoint='mozilla.org-whatsnew68-b',
+            utm_source='whatsnew68-b',
+            utm_campaign='whatsnew68-b',
+            utm_content='whatsnew68-experiment-b'
           ) }}
         {% endblock %}
 

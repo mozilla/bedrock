@@ -38,6 +38,7 @@ $image-path: '/media/protocol/img';
     background: $color-white;
 }
 
+// Eventually to be replaced by an upstream component. See https://github.com/mozilla/protocol/issues/383
 .c-page-header-up-to-date {
     @include text-display-xxs;
     color: $color-off-black;
@@ -74,12 +75,13 @@ $image-path: '/media/protocol/img';
 
 //* -------------------------------------------------------------------------- */
 // Emphasis box
+// Eventually to be replaced by an upstream component. See https://github.com/mozilla/protocol/issues/385
 
 .c-emphasis-box {
     @include border-box;
     background: $color-white;
     border-radius: 6px;
-    box-shadow: 0 0 16px transparentize($color-off-black, .85);
+    box-shadow: 0 0 16px transparentize($color-off-black, .85), 0 0 2px transparentize($color-off-black, .9);
     color: $color-gray-90;
     margin: 0 auto $layout-sm;
     max-width: $content-md - ($layout-md * 2);
@@ -246,6 +248,7 @@ $image-path: '/media/protocol/img';
 
     .c-page-header {
         background-color: $color-violet-90;
+        border-bottom: 2px solid $color-violet-80;
     }
 
     .c-emphasis-box {
