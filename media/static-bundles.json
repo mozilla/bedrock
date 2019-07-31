@@ -1041,9 +1041,9 @@
       "files": [
         "js/libs/mozilla-traffic-cop.js",
         "js/base/mozilla-client.js",
-        "js/firefox/whatsnew/experiment-whatsnew-68-enUS.js"
+        "js/firefox/whatsnew/experiment-whatsnew-68-enUSGB.js"
       ],
-      "name": "experiment-whatsnew-68-enUS"
+      "name": "experiment-whatsnew-68-enUSGB"
     },
     {
       "files": [
@@ -1052,14 +1052,6 @@
         "js/firefox/whatsnew/experiment-whatsnew-68-enCA.js"
       ],
       "name": "experiment-whatsnew-68-enCA"
-    },
-    {
-      "files": [
-        "js/libs/mozilla-traffic-cop.js",
-        "js/base/mozilla-client.js",
-        "js/firefox/whatsnew/experiment-whatsnew-68-enGB.js"
-      ],
-      "name": "experiment-whatsnew-68-enGB"
     },
     {
       "files": [
