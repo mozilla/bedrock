@@ -2,76 +2,74 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "privacy/base-resp.html" %}
+{% extends "privacy/base-protocol.html" %}
 
 {% block page_title_suffix %}{% endblock %}
 {% block page_title %}{{ _('Mozilla Privacy') }}{% endblock %}
 
-{% block breadcrumbs %}{% endblock %}
-
+{% block body_class %}mzp-t-mozilla format-none{% endblock%}
 {% block body_id %}privacy-landing{% endblock %}
 
-{% block main_feature %}
-  <hgroup id="main-feature" class="center">
-    <h1 class="large">{{ _('Mozilla Privacy') }}</h1>
-  </hgroup>
-{% endblock %}
+{% block article_header_logo %}{{ static('img/trademarks/logo-mozm.png') }}{% endblock %}
 
-{% block article %}
-  <article class="section-content" itemscope itemtype="http://schema.org/Article">
-    <header>
-      <h1 itemprop="name">{{ doc.h1.string }}</h1>
-      {% if doc.select('[datetime]') %}
-        <p class="meta"><time datetime="{{ doc.select('[datetime]')[0]['datetime'] }}" itemprop="dateModified">{{ doc.select('[datetime]')[0].string }}</time></p>
-        {{ doc.select('body > section > header > [datetime] ~ p')|join|safe }}
-      {% else %}
-        {{ doc.select('body > section > header > p')|join|safe }}
-      {% endif %}
-    </header>
-    <div itemprop="articleBody">
-      {{ doc.select('body > section > section')|join|safe }}
-    </div>
-  </article>
-  <section id="contact" class="section-content">
-    <header>
-      <h2>{{ _('Contact Mozilla') }}</h2>
-    </header>
+{% do doc.select('body > section > section ul')|htmlattr(class="mzp-u-list-styled") %}
+{% do doc.select('body > section > section ol')|htmlattr(class="mzp-u-list-styled") %}
 
-    <p>
-      {%- trans -%}
-        If you want to make a correction to your information, or you have any questions about our
-        privacy policies, please get in touch with:
-      {%- endtrans -%}
-    </p>
-
-    <p lang="en" dir="ltr" itemscope itemtype="http://schema.org/Organization">
-      <span itemprop="name">Mozilla Corporation</span><br>
-      <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-        {{ _('Attn:') }} <span itemprop="name">Legal Notices - Privacy</span><br>
-        <span itemprop="streetAddress">331 E. Evelyn Ave</span>,<br>
-        <span itemprop="addressLocality">Mountain View</span>,
-        <span itemprop="addressRegion">CA</span>
-        <span itemprop="postalCode">94041</span><br>
-        <span itemprop="email"><a href="mailto:compliance@mozilla.com">compliance@mozilla.com</a></span>
-      </span>
-    </p>
-
-  {% if l10n_has_tag('privacy_email_2019') %}
-    <p>
-    {% trans dsar='https://app.onetrust.com/app/#/webform/4ba08202-2ede-4934-a89e-f0b0870f95f0' %}
-      <a href="{{ dsar }}">See here for Data Subject Access Requests.</a>
-    {% endtrans %}
-    </p>
+{% block title %}{{ doc.h1.string|join|safe }}{% endblock%}
+{% block time %}
+  {% if doc.select('[datetime]') %}
+  <time datetime="{{ doc.select('[datetime]')[0]['datetime'] }}" itemprop="dateModified">{{ doc.select('[datetime]')[0].string }}</time>
   {% endif %}
+{% endblock %}
+{% block lead_in %}
+  {% if doc.select('[datetime]') %}
+    {{ doc.select('body > section > header > [datetime] ~ p')|join|safe }}
+  {% else %}
+    {{ doc.select('body > section > header > p')|join|safe }}
+  {% endif %}
+{% endblock %}
+{% block sections %}
+  {{ doc.select('body > section > section')|join|safe }}
+{% endblock %}
+{% block footnote %}
+  <section id="contact" class="section-content">
+      <header>
+        <h2>{{ _('Contact Mozilla') }}</h2>
+      </header>
 
+      <p>
+        {%- trans -%}
+          If you want to make a correction to your information, or you have any questions about our
+          privacy policies, please get in touch with:
+        {%- endtrans -%}
+      </p>
+
+      <p lang="en" dir="ltr" itemscope itemtype="http://schema.org/Organization">
+        <span itemprop="name">Mozilla Corporation</span><br>
+        <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+          {{ _('Attn:') }} <span itemprop="name">Legal Notices - Privacy</span><br>
+          <span itemprop="streetAddress">331 E. Evelyn Ave</span>,<br>
+          <span itemprop="addressLocality">Mountain View</span>,
+          <span itemprop="addressRegion">CA</span>
+          <span itemprop="postalCode">94041</span><br>
+          <span itemprop="email"><a href="mailto:compliance@mozilla.com">compliance@mozilla.com</a></span>
+        </span>
+      </p>
+
+    {% if l10n_has_tag('privacy_email_2019') %}
+      <p>
+      {% trans dsar='https://app.onetrust.com/app/#/webform/4ba08202-2ede-4934-a89e-f0b0870f95f0' %}
+        <a href="{{ dsar }}">See here for Data Subject Access Requests.</a>
+      {% endtrans %}
+      </p>
+    {% endif %}
   </section>
 {% endblock %}
 
-{% block side_nav %}{% endblock %}
 
 {% block side_extra %}
-  <section id="side-principles">
-    <h2>{{ _('Data Privacy Principles') }}</h2>
+  <section id="side-principles" class="side-reference">
+    <h2 class="side-reference-title">{{ _('Data Privacy Principles') }}</h2>
     <p>
       {% if l10n_has_tag('updates-072018') %}
       {%- trans principles=url('privacy.principles'), faq=url('privacy.faq') -%}
@@ -95,47 +93,9 @@
       {% endif %}
     </p>
   </section>
-  <section id="side-notices">
-    {% if l10n_has_tag('updates-052018') %}
-      <h2>{{ _('Privacy Notices') }}</h2>
-    {% else %}
-      <h2>{{ _('Our Privacy Notices') }}</h2>
-    {% endif %}
-    <p>
-      {% if l10n_has_tag('updates-052018') %}
-        {%- trans -%}
-          Our Privacy Notices describe the data our products and services receive,
-          share, and use, as well as choices available to you.
-        {%- endtrans -%}
-      {% else %}
-        {%- trans -%}
-          We created short and clear Privacy Notices to describe how each of our products and services
-          receives, shares, and uses data and what your choices are. Learn more:
-        {%- endtrans -%}
-      {% endif %}
-    </p>
-    <nav>
-      <ul>
-        <li class="policy-websites"><a href="{{ url('privacy.notices.websites') }}">{{ _('Mozilla Websites, Communications &amp; Cookies') }}</a></li>
-        <li class="policy-firefox"><a href="{{ url('privacy.notices.firefox') }}">{{ _('Firefox Browser') }}</a></li>
-        <li class="policy-firefox-fire-tv"><a href="{{ url('privacy.notices.firefox-fire-tv') }}">{{ _('Firefox for Fire TV') }}</a></li>
-        <li class="policy-firefox-reality"><a href="{{ url('privacy.notices.firefox-reality') }}">{{ _('Firefox Reality') }}</a></li>
-        <li class="policy-firefox-os"><a href="{{ url('privacy.notices.firefox-os') }}">{{ _('Firefox OS') }}</a></li>
-        <li class="policy-firefox-focus">
-        {% if LANG == 'de' %}
-          {# bug 1319207 - As product names are not exposed to L10n, best to specify unique name for de #}
-          <a href="{{ url('privacy.notices.firefox-klar') }}">Firefox Klar</a>
-        {% else %}
-          <a href="{{ url('privacy.notices.firefox-focus') }}">{{ _('Firefox Focus') }}</a>
-        {% endif %}
-        </li>
-        <li class="policy-thunderbird"><a href="{{ url('privacy.notices.thunderbird') }}">{{ _('Thunderbird') }}</a></li>
-      </ul>
-    </nav>
-  </section>
   {% if l10n_has_tag('updates-052018') %}
-    <section id="side-transparency">
-      <h2>{{ _('Transparency Report') }}</h2>
+    <section id="side-transparency" class="side-reference">
+      <h2 class="side-reference-title">{{ _('Transparency Report') }}</h2>
       <p>
         {%- trans report=url('mozorg.about.policy.transparency.index') -%}
           As an open source project, transparency and openness are an essential
@@ -148,8 +108,8 @@
     </section>
   {% endif %}
 
-  <section id="side-involved">
-    <h2>{{ _('Get Involved') }}</h2>
+  <section id="side-involved" class="side-reference">
+    <h2 class="side-reference-title">{{ _('Get Involved') }}</h2>
     <p>
       {% set group_url = 'https://groups.google.com/forum/?fromgroups#!forum/mozilla.governance' %}
       {% if l10n_has_tag('updates-052018') %}
@@ -180,7 +140,7 @@
       {% endif %}
     </p>
   </section>
-  <section id="side-archives">
-    <h2><a href="{{ url('privacy.archive.index') }}">{{ _('Outdated Policies') }}</a></h2>
+  <section id="side-archives" class="side-reference">
+    <h2 class="side-reference-title"><a href="{{ url('privacy.archive.index') }}">{{ _('Outdated Policies') }}</a></h2>
   </section>
 {% endblock %}

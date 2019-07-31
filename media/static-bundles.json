@@ -802,12 +802,6 @@
     },
     {
       "files": [
-        "css/privacy/fb-privacy.less"
-      ],
-      "name": "fb_privacy"
-    },
-    {
-      "files": [
         "css/privacy/privacy-protocol.scss"
       ],
       "name": "privacy_protocol"
@@ -1172,6 +1166,8 @@
     },
     {
       "files": [
+        "protocol/js/protocol-sidemenu.js",
+        "js/base/mozilla-article.js",
         "js/privacy/privacy-protocol.js"
       ],
       "name": "privacy_protocol"

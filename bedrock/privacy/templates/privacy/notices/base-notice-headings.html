@@ -1,0 +1,50 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "privacy/base-protocol.html" %}
+
+{% block page_css %}
+  {{ css_bundle('privacy_protocol') }}
+{% endblock %}
+
+{% block body_class %}{{ super() }} format-headings{% endblock %}
+
+{% block string_data %}
+  data-choices-copy="{{ _('Choose how you want to share this data in Firefox.') }}"
+  data-choices-button="{{ _('Choose…') }}"
+{% endblock %}
+
+{% set has_parent_section = doc.select('h1') %}
+{% if has_parent_section %}
+  {% set header = doc.body.section %}
+  {% set title = header.h1 %}
+  {% set lead_in = doc.body.section.section.extract() %}
+  {% set sections = doc.body.section.find_all('section', recursive=False) %}
+{% else %}
+  {% set header = doc.body.section.extract() %}
+  {% set title = header.h2 %}
+  {% set lead_in = doc.body.section.extract() %}
+  {% set sections = doc.body.find_all('section', recursive=False) %}
+{% endif %}
+
+{% set footnote = doc.body.select('#footnote') %}
+{% if footnote %}
+  {% set footnote = footnote[0].extract() %}
+{% endif %}
+
+{% block page_title %}{{ title.get_text()|join }}{% endblock %}
+
+{% block title %}{{ title|join|safe }}{% endblock%}
+{% block time %}<time datetime="{{ header.select('[datetime]')[0]['datetime'] }}" itemprop="dateModified">{{ header.select('[datetime]')[0].string }}</time>{% endblock %}
+{% block lead_in %}{{ lead_in|join|safe }}{% endblock %}
+{% block sections %}
+    {% for section in sections %}
+      {{ section|safe }}
+    {% endfor %}
+{% endblock %}
+{% block footnote %}{{ footnote|join|safe }}{% endblock%}
+
+{% block js %}
+  {{ js_bundle('privacy_protocol') }}
+{% endblock %}

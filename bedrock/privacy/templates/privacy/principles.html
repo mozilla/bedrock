@@ -2,73 +2,72 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "privacy/base-resp.html" %}
+{% extends "privacy/base-protocol.html" %}
 
 {% block page_title %}{{ _('Data Privacy Principles') }}{% endblock %}
 {% block page_desc %}{{ _('Mozilla is an open source project with a mission to improve your Internet experience. This is a driving force behind our privacy practices.') }}{% endblock %}
 
 {% block body_id %}privacy-principles{% endblock %}
+{% block body_class %}mzp-t-mozilla{% endblock %}
 
 {% block article %}
-  <article class="section-content" itemscope itemtype="http://schema.org/Article">
-    <header>
-      <h1 class="title-shadow-box" itemprop="name">{{ self.page_title() }}</h1>
-      <p itemprop="description">
-        {%- trans link=url('mozorg.about.manifesto') -%}
-          The following five principles stem from the <a href="{{ link }}">Mozilla 
-          Manifesto</a> and inform how we:
-        {%- endtrans -%}
-      </p>
-      <ul>
-        <li>{{ _('develop our products and services') }}</li>
-        <li>{{ _('manage user data we collect') }}</li>
-        <li>{{ _('select and interact with partners') }}</li>
-        <li>{{ _('shape our public policy and advocacy work') }}</li>
-      </ul>
-    </header>
-    <div itemprop="articleBody">
-      <ol>
-        <li>
-          <h2>{{ _('No surprises') }}</h2>
-          <p>
-            {%- trans -%}
-              Use and share information in a way that is transparent and benefits the user.
-            {%- endtrans -%}
-          </p>
-        </li>
-        <li>
-          <h2>{{ _('User control') }}</h2>
-          <p>
-            {%- trans -%}
-              Develop products and advocate for best practices that put users in control of their data and online experiences.
-            {%- endtrans -%}
-          </p>
-        </li>
-        <li>
-          <h2>{{ _('Limited data') }}</h2>
-          <p>
-            {%- trans -%}
-              Collect what we need, de-identify where we can and delete when no longer necessary.
-            {%- endtrans -%}
-          </p>
-        </li>
-        <li>
-          <h2>{{ _('Sensible settings') }}</h2>
-          <p>
-            {%- trans -%}
-              Design for a thoughtful balance of safety and user experience. 
-            {%- endtrans -%}
-          </p>
-        </li>
-        <li>
-          <h2>{{ _('Defense in depth') }}</h2>
-          <p>
-            {%- trans -%}
-              Maintain multi-layered security controls and practices, many of which are publicly verifiable.
-            {%- endtrans -%}
-          </p>
-        </li>
-      </ol>
-    </div>
-  </article>
+  <header>
+    <h1 class="mzp-c-article-title" itemprop="name">{{ self.page_title() }}</h1>
+    <p itemprop="description">
+      {%- trans link=url('mozorg.about.manifesto') -%}
+        The following five principles stem from the <a href="{{ link }}">Mozilla
+        Manifesto</a> and inform how we:
+      {%- endtrans -%}
+    </p>
+    <ul class="mzp-u-list-styled">
+      <li>{{ _('develop our products and services') }}</li>
+      <li>{{ _('manage user data we collect') }}</li>
+      <li>{{ _('select and interact with partners') }}</li>
+      <li>{{ _('shape our public policy and advocacy work') }}</li>
+    </ul>
+  </header>
+  <div itemprop="articleBody" class="mzp-c-article">
+    <ol class="mzp-u-list-styled">
+      <li>
+        <h2>{{ _('No surprises') }}</h2>
+        <p>
+          {%- trans -%}
+            Use and share information in a way that is transparent and benefits the user.
+          {%- endtrans -%}
+        </p>
+      </li>
+      <li>
+        <h2>{{ _('User control') }}</h2>
+        <p>
+          {%- trans -%}
+            Develop products and advocate for best practices that put users in control of their data and online experiences.
+          {%- endtrans -%}
+        </p>
+      </li>
+      <li>
+        <h2>{{ _('Limited data') }}</h2>
+        <p>
+          {%- trans -%}
+            Collect what we need, de-identify where we can and delete when no longer necessary.
+          {%- endtrans -%}
+        </p>
+      </li>
+      <li>
+        <h2>{{ _('Sensible settings') }}</h2>
+        <p>
+          {%- trans -%}
+            Design for a thoughtful balance of safety and user experience.
+          {%- endtrans -%}
+        </p>
+      </li>
+      <li>
+        <h2>{{ _('Defense in depth') }}</h2>
+        <p>
+          {%- trans -%}
+            Maintain multi-layered security controls and practices, many of which are publicly verifiable.
+          {%- endtrans -%}
+        </p>
+      </li>
+    </ol>
+  </div>
 {% endblock %}

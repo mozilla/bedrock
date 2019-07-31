@@ -6,26 +6,67 @@ $image-path: '/media/protocol/img';
 
 @import '../../protocol/css/includes/lib';
 @import '../../protocol/css/includes/mixins/details';
-@import '../../protocol/css/components/article';
+@import '../../protocol/css/components/sidebar-menu';
+@import '../../protocol/css/templates/main-with-sidebar';
 
-$heading-purple: #20123A;
-$body-purple: #42425A;
+@import '../protocol/basic-article';
+
 $border: 2px solid $color-gray-20;
 
+.mzp-c-sidemenu .mzp-c-sidemenu-title  {
+    @include font-base;
+}
 
-/* -------------------------------------------------------------------------- */
-// Layout
+@media #{$mq-md} {
+    .mzp-l-sidebar {
+        padding-top: 156px; // height of privacy-title
+    }
 
-.l-narrow {
-    margin: 0 auto;
-    max-width: 640px;
-    padding: 0 $spacing-lg;
+    .mzp-c-sidemenu-main {
+        margin-left: -16px; // flush with left side of container
+    }
+}
+
+@media #{$mq-lg} {
+    .mzp-l-main {
+        > header,
+        > main,
+        > footer {
+            max-width: 640px; // narrow max-width for readability
+        }
+    }
 }
 
 /* -------------------------------------------------------------------------- */
 // Policy header
 
-.policy-title {
+.privacy-logo {
+    height: 40px;
+    margin-bottom: $spacing-sm;
+    width: auto;
+
+    @media #{$mq-sm} {
+        @include bidi((
+            (float, left, right),
+            (margin-right, $spacing-sm, margin-left, 0),
+        ));
+    }
+
+    @media #{$mq-md} {
+        @include bidi((
+            (left, $layout-lg, right, auto),
+        ));
+        position: absolute;
+    }
+
+    @media #{$mq-lg} {
+        @include bidi((
+            (left, $layout-xl, right, auto),
+        ));
+    }
+}
+
+.privacy-title {
     @include font-firefox;
     margin-bottom: $spacing-lg;
 
@@ -35,41 +76,9 @@ $border: 2px solid $color-gray-20;
     }
 
     @media #{$mq-md} {
+        min-height: 56px; // keep consistant height of element even if time element is not present
         margin-top: $layout-sm;
         margin-bottom: $layout-lg;
-    }
-
-    &:before {
-        @include background-size(40px 40px);
-        background-repeat: no-repeat;
-        content: '';
-        display: block;
-        height: 40px;
-        margin-bottom: $spacing-sm;
-        width: 40px;
-
-        @media #{$mq-sm} {
-            @include bidi((
-                (float, left, right),
-                (margin-right, $spacing-sm, margin-left, 0),
-            ));
-        }
-
-        @media #{$mq-md} {
-            @include background-size(48px 48px);
-            @include bidi((
-                (margin-right, $spacing-md, margin-left, 0),
-            ));
-            height: 48px;
-            width: 48px;
-        }
-
-        @media #{$mq-lg} {
-            @include bidi((
-                (left, $layout-xl, right, auto),
-            ));
-            position: absolute;
-        }
     }
 
     h1 {
@@ -80,22 +89,6 @@ $border: 2px solid $color-gray-20;
     a {
         color: inherit;
         text-decoration: none;
-    }
-}
-
-.product-firefox .policy-title:before {
-    background-image: url('/media/img/logos/firefox/logo-quantum.png');
-
-    @media #{$mq-high-res} {
-        background-image: url('/media/img/logos/firefox/logo-quantum-high-res.png');
-    }
-}
-
-.product-firefox-lite .policy-title:before {
-    background-image: url('/media/img/logos/firefox/logo-lite.png');
-
-    @media #{$mq-high-res} {
-        background-image: url('/media/img/logos/firefox/logo-lite-high-res.png');
     }
 }
 
@@ -119,13 +112,8 @@ $border: 2px solid $color-gray-20;
 
 .privacy-body {
 
-    section > section {
+    > div > section > section {
         border-bottom: $border;
-
-        > div {
-            margin-top: $spacing-sm * -1;
-            margin-bottom: $spacing-xl;
-        }
     }
 
     h2 {
@@ -138,8 +126,19 @@ $border: 2px solid $color-gray-20;
         margin: $layout-sm 0;
     }
 
+    h4 {
+        @include text-body-md;
+        margin: $layout-sm 0;
+    }
+
     hr {
         display: none;
+    }
+}
+
+.format-none {
+    .privacy-body h2 {
+        margin-top: $layout-md;
     }
 }
 
@@ -196,21 +195,83 @@ $border: 2px solid $color-gray-20;
     }
 }
 
-.back {
-    margin-bottom: 0;
-}
-
 /* -------------------------------------------------------------------------- */
 // Summary and details widget
 
-.privacy-body {
+.format-headings .privacy-body {
     @include details;
+
+    .is-summary {
+        button {
+            @include summary;
+            @include bidi(((padding-left, 0, padding-right, 0),));
+        }
+
+        button[aria-expanded=true]:before {
+            @include summary-open;
+        }
+
+        + div {
+            margin-top: $spacing-sm * -1;
+            margin-bottom: $spacing-xl;
+        }
+    }
 }
 
-.privacy-body .is-summary button {
-    @include summary;
+.format-paragraphs .privacy-body {
+    @include details;
+
+    .is-summary {
+        button {
+            padding: 0;
+
+            &:after {
+                color: $color-link;
+                content: attr(data-open);
+                cursor: pointer;
+                margin-left: 0.5ex;
+                text-decoration: underline;
+            }
+        }
+
+        button[aria-expanded=true]:after {
+            content: attr(data-close);
+        }
+
+        + div {
+            margin-top: $spacing-sm * -1;
+            margin-bottom: $spacing-xl;
+        }
+    }
 }
 
-.privacy-body .is-summary button[aria-expanded=true]:before {
-    @include summary-open;
+
+/* -------------------------------------------------------------------------- */
+// Privacy Principles page
+
+#privacy-principles,
+#privacy-faq {
+    .mzp-l-sidebar {
+        padding-top: 0;
+    }
+}
+
+#privacy-principles {
+
+    ol {
+        @include text-display-md;
+        @include font-mozilla;
+        font-weight: bold;
+        margin-left: 1.15em;
+
+        h2 {
+            margin-bottom: $spacing-xs;
+        }
+
+        p {
+            @include font-base;
+            @include text-body-md;
+            font-weight: normal;
+        }
+    }
 }

@@ -35,10 +35,6 @@
     margin-bottom: 1.25em;
     padding-bottom: (1.25em / 2);
 
-    h3 {
-        @include font-size-level4;
-    }
-
     p {
         margin: 0;
     }
@@ -47,4 +43,8 @@
         display: block;
         padding: (1.25em / 2) 0;
     }
+}
+
+.side-reference-title {
+    @include font-size-level4;
 }
