@@ -286,7 +286,7 @@ class TestWhatsNew(TestCase):
 
     @override_settings(DEV=True)
     def test_fx_dev_browser_35_0_a2_whatsnew(self, render_mock):
-        """Should defaultr whatsnew template"""
+        """Should default whatsnew template"""
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, version='35.0a2')
         template = render_mock.call_args[0][1]
