@@ -1,0 +1,25 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-article.html" %}
+
+{% block body_class %}mzp-t-mozilla{% endblock %}
+
+{% block email_form %}
+<div class="mzp-l-content">
+  <aside class="mzp-c-newsletter t-love">
+    <div class="mzp-c-newsletter-image">
+      <img src="{{ static('img/newsletter/love-news.svg') }}" alt="" height="172" width="200">
+    </div>
+
+    <div class="newsletter-content">
+      {% if LANG.startswith('en-') %}
+        {{ email_newsletter_form(protocol_component=true, newsletters='mozilla-foundation', title=_('Get Mozilla updates')) }}
+      {% else %}
+        {{ email_newsletter_form(protocol_component=true) }}
+      {% endif %}
+    </div>
+  </aside>
+</div>
+{% endblock %}

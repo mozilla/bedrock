@@ -142,12 +142,6 @@
     },
     {
       "files": [
-        "css/mozorg/mpl.less"
-      ],
-      "name": "mpl"
-    },
-    {
-      "files": [
         "css/base/mozilla-modal.less",
         "css/foundation/annual2012.less"
       ],

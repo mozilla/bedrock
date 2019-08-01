@@ -2,20 +2,14 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "mozorg/base-resp.html" %}
+{% extends "mozorg/base.html" %}
 
 {% block page_title %}{{ _('MPL-in-GPL Developer Guidelines') }}{% endblock %}
 
 {% block page_desc %}{{ _('Combining MPL-Licensed files with an &#40;L&#41;GPL-Licensed Project: Guidelines for Developers') }}{% endblock %}
 
-{% block page_css %}
-  {{ css_bundle('mpl') }}
-{% endblock %}
-
-{% block content %}
-
-<div id="main-content">
-  <h1>Combining MPL-Licensed files with an (L)GPL-Licensed Project: Guidelines for Developers</h1>
+{% block article %}
+  <h1 class="mzp-c-article-title">Combining MPL-Licensed files with an (L)GPL-Licensed Project: Guidelines for Developers</h1>
 
   <section>
     <h2 id="introduction">Introduction</h2>
@@ -33,7 +27,7 @@ License, v. 2.0. If a copy of the MPL was not distributed with this file,
 You can obtain one at http://mozilla.org/MPL/2.0/.
 
 Copyright (c) 20xx, MPL Contributor1 contrib1@example.net
-</pre>
+</pre></br>
     <p>This is the preferred mechanism, since it makes it easiest to reuse the file in other MPL-licensed projects, as intended by the original author, without prohibiting use in (L)GPL projects.</p>
     <h3 id="unmodified-mpl-licensed-files-adding-an-lgpl-notice">Unmodified MPL-licensed Files - Adding an (L)GPL notice</h3>
     <p>If a developer combines unmodified MPL-licensed files into a project with (L)GPL-licensed files, and is required by project policy to use an (L)GPL header, or otherwise wants to do so, the developer may add an (L)GPL notice prior to distribution. It is very important that the developer preserve all other copyright and permission notices as they appeared in the original code, as required by the MPL. In this case, the header should look like this:</p>
@@ -59,9 +53,9 @@ Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program. If not, see http://www.gnu.org/licenses/.
-</pre>
+</pre></br>
     <p>Note that:</p>
-    <ul>
+    <ul class="mzp-u-list-styled">
         <li><p>the MPL header has not been <em>removed</em>: Section 3.3 requires that the initial distribution of the MPL-licensed materials, in combination with the (L)GPL-licensed materials, be made under the terms of both licenses.</p></li>
         <li><p>no new copyright statements ("Copyright (c) 20xx, The New Distributor") have been added, because no copyrightable changes have been made.</p></li>
         <li><p>adding the additional header has no practical effect, because the file was already usable in combination with (L)GPL code whether or not the header was added.</p></li>
@@ -104,7 +98,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 Copyright (c) 20XX, MPL Contributor1 contrib1@example.net
 Copyright (c) 20XX, MPL and (L)GPL Contributor2 contrib2@example.net
-</pre>
+</pre></br>
     <p>It is very important that the developer preserve the copyright and permission notices as they appeared in the original code, as required by the MPL. We recommend making a clear separation and using indentation, as in the example above.</p>
     <p>This manner of organizing the notices in the file makes it convenient for developers to choose whether to contribute under the MPL and (L)GPL, or under the (L)GPL alone. If they wish to make their contributions available under the MPL and (L)GPL, they can add their copyright notices to the lower group. If they wish to contribute under the (L)GPL alone, they can add their copyright notices at the top.</p>
     <p>Note, however, that in a single source file it is typically very difficult, and often completely infeasible, to determine which parts of such a file are covered by permissive terms, so if possible, a project should attempt to maintain both licenses, as described in previous sections.</p>
@@ -116,5 +110,4 @@ Copyright (c) 20XX, MPL and (L)GPL Contributor2 contrib2@example.net
     <p>Note that, while this article uses (L)GPL throughout, no special license changes are necessary when an MPL-licensed application links against an LGPL-licensed library. In the case of the LGPL, the licensing and notice requirements discussed above apply only when MPL-licensed files are to be included directly in the library itself.</p>
     <p><small>This work is based on "<a href="https://www.softwarefreedom.org/resources/2007/gpl-non-gpl-collaboration.html">Maintaining Permissive-Licensed Files in a GPL-Licensed Project: Guidelines for Developers</a>", authored by the SFLC, to whom we are very grateful. Both that work and this work are available under <a href="http://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>.</small></p>
   </section>
-</div>
 {% endblock %}
