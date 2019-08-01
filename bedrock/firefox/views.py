@@ -582,6 +582,7 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
     def get_template_names(self):
         locale = l10n_utils.get_locale(self.request)
         trailhead_locales = ['en-US', 'en-CA', 'en-GB', 'de', 'fr']
+        variant = self.request.GET.get('v', None)
 
         version = self.kwargs.get('version') or ''
         oldversion = self.request.GET.get('oldversion', '')
@@ -615,7 +616,12 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
             template = 'firefox/whatsnew/index-lite.id.html'
         elif version.startswith('68.'):
             if locale in trailhead_locales:
-                template = 'firefox/whatsnew/whatsnew-fx68-trailhead.html'
+                if variant in ['b', 'c', 'd', 'e']:
+                    template = 'firefox/whatsnew/whatsnew-fx68-{}.html'.format(
+                        variant
+                    )
+                else:
+                    template = 'firefox/whatsnew/whatsnew-fx68-trailhead.html'
             else:
                 template = 'firefox/whatsnew/whatsnew-fx68.html'
         elif version.startswith('67.0.') and locale in trailhead_locales:
@@ -758,7 +764,7 @@ def new(request):
 
     scene = request.GET.get('scene', None)
 
-    # note: v and xv params only allow a-z, A-Z, 0-9, -, and _ charcaters
+    # note: v and xv params only allow a-z, A-Z, 0-9, -, and _ characters
     experience = request.GET.get('xv', None)
     variant = request.GET.get('v', None)
 
@@ -796,7 +802,7 @@ def new(request):
 
 def campaign(request):
 
-    # note: v and xv params only allow a-z, A-Z, 0-9, -, and _ charcaters
+    # note: v and xv params only allow a-z, A-Z, 0-9, -, and _ characters
     experience = request.GET.get('xv', None)
     variant = request.GET.get('v', None)
 

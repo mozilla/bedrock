@@ -6,13 +6,27 @@
 
 {% extends "firefox/whatsnew/whatsnew-fx67.0.5.html" %}
 
+{% block experiments %}
+  {% if switch('experiment_whatsnew_68', ['en-US','en-CA','en-GB','fr','de']) %}
+    {% if LANG in ['en-US', 'en-GB'] %}
+      {{ js_bundle('experiment-whatsnew-68-enUSGB') }}
+    {% elif LANG == 'en-CA' %}
+      {{ js_bundle('experiment-whatsnew-68-enCA') }}
+    {% elif LANG == 'fr' %}
+      {{ js_bundle('experiment-whatsnew-68-fr') }}
+    {% elif LANG == 'de' %}
+      {{ js_bundle('experiment-whatsnew-68-de') }}
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
 {% block fxa_form %}
   {{ fxa_email_form(
       entrypoint='mozilla.org-whatsnew68',
       button_class='mzp-c-button mzp-t-product mzp-t-small',
       utm_source='whatsnew68',
       style='trailhead',
-      utm_campaign='trailhead')
+      utm_campaign='whatsnew68')
   }}
 {% endblock %}
 

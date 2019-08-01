@@ -20,7 +20,6 @@
 {% block site_header %}{% endblock %}
 
 {% block content %}
-
 <main class="mzp-t-firefox">
   <header class="c-page-header">
     <div class="mzp-l-content c-page-header-inner">
@@ -28,9 +27,12 @@
       <h1 class="c-page-header-up-to-date"><span>{{ _('Congrats! You’re using the latest version of Firefox.') }}</span></h1>
     </div>
   </header>
+
   <section class="mzp-l-content">
     <div class="card">
+
       <div class="show-fxa-default show-fxa-supported-signed-out">
+      {% block content_signed_out %}
         <h1>{{ _('You’ve got the latest browser. Now get the rest of Firefox.') }}</h1>
         <p>{{ _('Join Firefox for a whole family of respectful products, plus all the knowledge you need to protect yourself online.') }}</p>
         <div class="c-signup-container fxa-form-cta">
@@ -45,9 +47,12 @@
             }}
           {% endblock %}
         </div>
-        <a href="{{ url('firefox.accounts') }}">{{ _('Learn more about joining Firefox') }}</a>
+        <p><a href="{{ url('firefox.accounts') }}">{{ _('Learn more about joining Firefox') }}</a></p>
+      {% endblock %}
       </div>
+
       <div class="show-fxa-supported-signed-in">
+      {% block content_signed_in %}
         <h1>{{ _('Your account connects you to all of our products. ') }}</h1>
         <img class="glyphs" id="monitor-logo" src="{{ static('img/firefox/whatsnew_67/monitor_icon.svg') }}" alt="">
         <div class="mzp-l-hero-content">
@@ -61,9 +66,12 @@
             ) }}
           {% endblock %}
         </div>
+      {% endblock %}
       </div>
+
     </div>
   </section>
+
   <section class="mzp-l-content c-benefits">
     <div class="benefits-list">
       <div class="show-fxa-default show-fxa-supported-signed-out">

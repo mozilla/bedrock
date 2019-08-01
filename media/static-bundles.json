@@ -555,6 +555,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-modular.scss"
+      ],
+      "name": "firefox_whatsnew_modular"
+    },
+    {
+      "files": [
         "css/mozorg/contribute/contribute-embed.less"
       ],
       "name": "contribute-embed"
@@ -1008,6 +1014,54 @@
         "js/firefox/whatsnew/up-to-date.js"
       ],
       "name": "firefox_whatsnew_67.0.5"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-monitor-button.js",
+        "js/firefox/whatsnew/up-to-date.js"
+      ],
+      "name": "firefox_whatsnew_68E_monitor"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/base/mozilla-client.js",
+        "js/firefox/whatsnew/experiment-whatsnew-68-enUSGB.js"
+      ],
+      "name": "experiment-whatsnew-68-enUSGB"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/base/mozilla-client.js",
+        "js/firefox/whatsnew/experiment-whatsnew-68-enCA.js"
+      ],
+      "name": "experiment-whatsnew-68-enCA"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/base/mozilla-client.js",
+        "js/firefox/whatsnew/experiment-whatsnew-68-fr.js"
+      ],
+      "name": "experiment-whatsnew-68-fr"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/base/mozilla-client.js",
+        "js/firefox/whatsnew/experiment-whatsnew-68-de.js"
+      ],
+      "name": "experiment-whatsnew-68-de"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/experiment-variation-whatsnew-68.js"
+      ],
+      "name": "experiment-variation-whatsnew-68"
     },
     {
       "files": [

@@ -71,14 +71,12 @@ body {
         margin-bottom: 1em;
     }
 
-    .show-fxa-supported-signed-in {
-        #monitor-logo {
-            float: left;
-        }
+    #monitor-logo {
+        float: left;
+    }
 
-        .mzp-l-hero-content {
-            margin-left: $layout-xl;
-        }
+    .mzp-l-hero-content {
+        margin-left: $layout-xl;
     }
 
     h2 {
