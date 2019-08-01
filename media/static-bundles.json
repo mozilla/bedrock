@@ -826,13 +826,6 @@
     },
     {
       "files": [
-        "css/base/mozilla-modal.less",
-        "css/firefox/dev-firstrun.less"
-      ],
-      "name": "firefox_developer_firstrun"
-    },
-    {
-      "files": [
         "css/newsletter/fxnewsletter-subscribe.less",
         "css/firefox/channel.less"
       ],
@@ -1312,13 +1305,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-modal.js",
-        "js/firefox/dev-whatsnew.js"
-      ],
-      "name": "firefox_developer_whatsnew"
-    },
-    {
-      "files": [
         "js/newsletter/developer.js"
       ],
       "name": "newsletter-developer"
@@ -1482,13 +1468,6 @@
         "js/mozorg/manifesto.js"
       ],
       "name": "manifesto"
-    },
-    {
-      "files": [
-        "js/base/mozilla-modal.js",
-        "js/firefox/dev-firstrun.js"
-      ],
-      "name": "firefox_developer_firstrun"
     },
     {
       "files": [

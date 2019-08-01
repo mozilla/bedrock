@@ -527,7 +527,7 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
             if show_57_dev_firstrun(version):
                 template = 'firefox/developer/firstrun.html'
             else:
-                template = 'firefox/dev-firstrun.html'
+                template = 'firefox/firstrun/firstrun-quantum.html'
         else:
             template = 'firefox/firstrun/firstrun-quantum.html'
 
@@ -602,7 +602,7 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
             elif show_57_dev_whatsnew(version):
                 template = 'firefox/developer/whatsnew.html'
             else:
-                template = 'firefox/dev-whatsnew.html'
+                template = 'firefox/whatsnew/index.html'
         elif channel == 'beta':
             if version.startswith('68.'):
                 if locale in trailhead_locales and switch('beta_whatsnew_68_trailhead'):
