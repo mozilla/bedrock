@@ -58,8 +58,9 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
     width: 100%;
 }
 
-.fxa-email-form-intro {
-    font-weight: bold;
+.fxa-email-form-intro, .fxa-email-form-intro strong {
+    font-weight: normal;
+    @include text-display-xs;
 }
 
 .fxa-signin {
@@ -110,8 +111,8 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
         padding: 2em;
     }
 
-    .fxa-email-form-intro {
-        font-size: 2em;
+    .fxa-email-form-intro, .fxa-email-form-intro strong  {
+        @include text-display-sm;
     }
 
 }
@@ -124,9 +125,4 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
     section .mzp-l-content, div.mzp-c-hero-image {
         max-width: 700px;
     }
-
-    .fxa-email-form-intro {
-        font-size: 1.9em;
-    }
-
 }
