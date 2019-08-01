@@ -333,6 +333,52 @@ describe('all-downloads-unified.js', function() {
         });
     });
 
+    describe('getHash', function() {
+        it('should return a product id if a valid hash identifier exists', function() {
+            expect(Mozilla.FirefoxDownloader.getHash('#product-desktop-release')).toEqual('desktop_release');
+            expect(Mozilla.FirefoxDownloader.getHash('#product-desktop-beta')).toEqual('desktop_beta');
+            expect(Mozilla.FirefoxDownloader.getHash('#product-desktop-developer')).toEqual('desktop_developer');
+            expect(Mozilla.FirefoxDownloader.getHash('#product-desktop-nightly')).toEqual('desktop_nightly');
+            expect(Mozilla.FirefoxDownloader.getHash('#product-desktop-esr')).toEqual('desktop_esr');
+            expect(Mozilla.FirefoxDownloader.getHash('#product-android-release')).toEqual('android_release');
+            expect(Mozilla.FirefoxDownloader.getHash('#product-android-beta')).toEqual('android_beta');
+            expect(Mozilla.FirefoxDownloader.getHash('#product-android-nightly')).toEqual('android_nightly');
+        });
+
+        it('should return null if the hash identifier does not map to a valid product id', function() {
+            expect(Mozilla.FirefoxDownloader.getHash('#product-firefox-fortress')).toEqual(null);
+        });
+    });
+
+    describe('setHash', function() {
+        it('should set a hash identifier when passed a product id', function() {
+            expect(Mozilla.FirefoxDownloader.setHash('desktop_nightly_dude')).toEqual('#product-desktop-nightly-dude');
+        });
+    });
+
+    describe('onHashChange', function() {
+        it('should update the product selection if a valid hash identifier exists', function() {
+            var id = 'firefox_beta';
+            spyOn(Mozilla.FirefoxDownloader, 'getHash').and.returnValue(id);
+            spyOn(Mozilla.FirefoxDownloader, 'setProductSelection');
+            spyOn(Mozilla.FirefoxDownloader, 'generateDownloadURL');
+
+            Mozilla.FirefoxDownloader.onHashChange();
+            expect(Mozilla.FirefoxDownloader.setProductSelection).toHaveBeenCalledWith(id);
+            expect(Mozilla.FirefoxDownloader.generateDownloadURL).toHaveBeenCalled();
+        });
+
+        it('should not update the product selection if a hash identifier is invalid', function() {
+            spyOn(Mozilla.FirefoxDownloader, 'getHash').and.returnValue(null);
+            spyOn(Mozilla.FirefoxDownloader, 'setProductSelection');
+            spyOn(Mozilla.FirefoxDownloader, 'generateDownloadURL');
+
+            Mozilla.FirefoxDownloader.onHashChange();
+            expect(Mozilla.FirefoxDownloader.setProductSelection).not.toHaveBeenCalled();
+            expect(Mozilla.FirefoxDownloader.generateDownloadURL).not.toHaveBeenCalled();
+        });
+    });
+
     describe('init', function() {
         var platform = 'windows';
         var language = 'de';
@@ -342,6 +388,7 @@ describe('all-downloads-unified.js', function() {
         };
 
         beforeEach(function() {
+            spyOn(Mozilla.FirefoxDownloader, 'setHash');
             spyOn(Mozilla.FirefoxDownloader, 'setFormSelection');
             spyOn(Mozilla.FirefoxDownloader, 'setAllSelectOptions');
             spyOn(Mozilla.FirefoxDownloader, 'generateDownloadURL');
@@ -349,6 +396,7 @@ describe('all-downloads-unified.js', function() {
         });
 
         it('should initialize the form as expected', function() {
+            spyOn(Mozilla.FirefoxDownloader, 'getHash').and.returnValue(false);
             spyOn(Mozilla.FirefoxDownloader, 'getPageLanguage').and.returnValue(language);
             spyOn(Mozilla.FirefoxDownloader, 'getProductSelection').and.returnValue(product);
             spyOn(Mozilla.FirefoxDownloader, 'getPlatform').and.returnValue(platform);
@@ -357,9 +405,22 @@ describe('all-downloads-unified.js', function() {
             expect(Mozilla.FirefoxDownloader.setAllSelectOptions).toHaveBeenCalledTimes(2);
             expect(Mozilla.FirefoxDownloader.generateDownloadURL).toHaveBeenCalled();
             expect(Mozilla.FirefoxDownloader.enableForm).toHaveBeenCalled();
+            expect(Mozilla.FirefoxDownloader.setHash).toHaveBeenCalled();
+        });
+
+        it('should update the product selection of a hash identifier exists', function() {
+            spyOn(Mozilla.FirefoxDownloader, 'getHash').and.returnValue('desktop_beta');
+            spyOn(Mozilla.FirefoxDownloader, 'getPageLanguage').and.returnValue(language);
+            spyOn(Mozilla.FirefoxDownloader, 'getProductSelection').and.returnValue(product);
+            spyOn(Mozilla.FirefoxDownloader, 'getPlatform').and.returnValue(platform);
+            spyOn(Mozilla.FirefoxDownloader, 'setProductSelection');
+
+            Mozilla.FirefoxDownloader.init();
+            expect(Mozilla.FirefoxDownloader.setProductSelection).toHaveBeenCalledWith('desktop_beta');
         });
 
         it('should error if product or language cannot be determined', function() {
+            spyOn(Mozilla.FirefoxDownloader, 'getHash').and.returnValue(false);
             spyOn(Mozilla.FirefoxDownloader, 'getPageLanguage').and.returnValue(false);
             spyOn(Mozilla.FirefoxDownloader, 'getProductSelection').and.returnValue({
                 'id': undefined,
@@ -372,6 +433,7 @@ describe('all-downloads-unified.js', function() {
             expect(Mozilla.FirefoxDownloader.setAllSelectOptions).not.toHaveBeenCalled();
             expect(Mozilla.FirefoxDownloader.generateDownloadURL).not.toHaveBeenCalled();
             expect(Mozilla.FirefoxDownloader.enableForm).not.toHaveBeenCalled();
+            expect(Mozilla.FirefoxDownloader.setHash).not.toHaveBeenCalled();
             expect(Mozilla.FirefoxDownloader.onError).toHaveBeenCalled();
         });
     });
