@@ -18,7 +18,7 @@
     margin: 0 auto;
     padding: 20px 0;
     min-width: $width-phone;
-    width: $width-desktop-wide;
+    max-width: $width-desktop-wide;
 }
 
 // An arbitrary container for translatable strings to use in scripts
@@ -40,21 +40,6 @@ img {
 
 label {
     display: block;
-}
-
-.masthead .toggle {
-    display: none; /* oldIE never gets a mobile menu. */
-}
-
-/* oldIE never gets slide out drawer */
-.moz-global-nav {
-    .nav-button-menu {
-        display: none;
-    }
-}
-
-.moz-global-nav-drawer {
-    display: none;
 }
 
 .visually-hidden {
