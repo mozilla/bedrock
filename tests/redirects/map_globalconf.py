@@ -139,8 +139,9 @@ URLS = flatten((
     # bug 925551
     url_test('/plugincheck/more_info.html', '/plugincheck/'),
 
-    # bug 854561
-    url_test('/projects/mozilla-based{.html,/}', '/about/mozilla-based/'),
+    # bug 854561, Issue 7448
+    url_test('/projects/mozilla-based{.html,/}', 'https://developer.mozilla.org/docs/Archive/List_of_Mozilla-Based_Applications'),
+    url_test('/about/mozilla-based/', 'https://developer.mozilla.org/docs/Archive/List_of_Mozilla-Based_Applications'),
 
     # bug 957664
     url_test('/press/awards{/,.html}', 'https://blog.mozilla.org/press/awards/'),

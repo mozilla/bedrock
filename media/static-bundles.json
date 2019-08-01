@@ -8,12 +8,6 @@
     },
     {
       "files": [
-        "css/mozorg/projects/mozilla-based.less"
-      ],
-      "name": "projects_mozilla_based"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-nightly.scss"
       ],
       "name": "nightly_whatsnew"
