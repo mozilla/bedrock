@@ -4,6 +4,7 @@
 
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
+$break-large: 1305px;
 
 @import '../../../protocol/css/includes/lib';
 
@@ -18,7 +19,7 @@ html {
 
 section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
     display: inline-block;
-    max-width: 330px;
+    max-width: 320px;
     text-align: left;
 }
 
@@ -29,8 +30,7 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 .browser-logo img {
     display: block;
     max-width: 250px;
-    padding-bottom: 2em;
-    padding-top: 1em;
+    padding: $spacing-lg 0 $spacing-xl;
 }
 
 .field {
@@ -51,7 +51,7 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 }
 
 .mzp-c-hero-title {
-    font-size: 1.5em;
+    @include text-display-md;
 }
 
 .fxa-email-field {
@@ -59,12 +59,17 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 }
 
 .fxa-email-form-intro, .fxa-email-form-intro strong {
-    font-weight: normal;
+    font-weight: bold;
     @include text-display-xs;
+    display: inline;
+}
+
+.fxa-email-field-container {
+    margin-top: $spacing-lg;
 }
 
 .fxa-signin {
-    font-size: 65%;
+    @include text-body-xs;
     margin-top: 1em;
 }
 
@@ -103,10 +108,6 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
         position: relative;
     }
 
-    .mzp-c-hero-title {
-        @include text-display-lg;
-    }
-
     .mzp-c-box-emphasis-content {
         padding: 2em;
     }
@@ -120,9 +121,15 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 @media #{$mq-lg} {
 
     div.mzp-c-hero-image {
-       margin-top: 8em;
+       margin-top: 4em;
     }
     section .mzp-l-content, div.mzp-c-hero-image {
         max-width: 700px;
     }
+}
+
+@media screen and (min-width: $break-large) {
+    div.mzp-c-hero-image {
+        margin-top: 8em;
+     }
 }
