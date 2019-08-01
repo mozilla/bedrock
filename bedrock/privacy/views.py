@@ -42,7 +42,7 @@ class PrivacyDocView(LegalDocView):
 
 
 class FirefoxPrivacyDocView(PrivacyDocView):
-    template_name = 'privacy/notices/firefox.html'
+    template_name = 'privacy/notices/base-notice-paragraphs.html'
 
     def get_legal_doc(self):
         doc = super(FirefoxPrivacyDocView, self).get_legal_doc()
