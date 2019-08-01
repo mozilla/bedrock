@@ -91,6 +91,15 @@
     };
 
     /**
+     * Set the product dropdown to a specific value.
+     * @param {String} product `id`.
+     */
+    FirefoxDownloader.setProductSelection = function(id) {
+        FirefoxDownloader.setSelectOption(id, productSelect.options);
+        FirefoxDownloader.setFormSelection(id);
+    };
+
+    /**
      * Get the currently selected ESR product.
      * @param {String} `product`.
      * @returns {Object} product `id` and `label`.
@@ -289,6 +298,7 @@
     FirefoxDownloader.onProductChange = function(e) {
         FirefoxDownloader.setFormSelection(e.target.value);
         FirefoxDownloader.generateDownloadURL();
+        FirefoxDownloader.setHash(e.target.value);
     };
 
     /**
@@ -356,6 +366,85 @@
 
         // show product options.
         downloadInfo.classList.remove('hidden');
+
+        // listen for hash changes to update the product dropdown.
+        window.addEventListener('hashchange', FirefoxDownloader.onHashChange, false);
+    };
+
+    /**
+     * Checks window.location.hash for a valid product identifier.
+     * @param {String} url (optional).
+     * @returns {String} product `id` if valid.
+     */
+    FirefoxDownloader.getHash = function(url) {
+        var urlString = typeof url === 'string' ? url : window.location.href;
+        var hash;
+
+        if (urlString.indexOf('#') > -1) {
+            var urlParts = urlString.split('#');
+            hash = urlParts[1];
+        }
+
+        switch(hash) {
+        case 'product-desktop-release':
+            hash = 'desktop_release';
+            break;
+        case 'product-desktop-beta':
+            hash = 'desktop_beta';
+            break;
+        case 'product-desktop-developer':
+            hash = 'desktop_developer';
+            break;
+        case 'product-desktop-nightly':
+            hash = 'desktop_nightly';
+            break;
+        case 'product-desktop-esr':
+            hash = 'desktop_esr';
+            break;
+        case 'product-android-release':
+            hash = 'android_release';
+            break;
+        case 'product-android-beta':
+            hash = 'android_beta';
+            break;
+        case 'product-android-nightly':
+            hash = 'android_nightly';
+            break;
+        default:
+            hash = null;
+            break;
+        }
+
+        return hash;
+    };
+
+    /**
+     * Sets window.location.hash based on the product ID.
+     * @param {String} productId.
+     * @param {String} hash (optional).
+     * @returns {String} id.
+     */
+    FirefoxDownloader.setHash = function(productId, hash) {
+        var id = typeof hash === 'string' ? hash : window.location.hash;
+        id = '#product-' + productId.replace(/_/g, '-');
+
+        if (!hash) {
+            window.location.hash = id;
+        }
+        return id;
+    };
+
+    /**
+     * Updates currently selected product based on window.location.hash
+     */
+    FirefoxDownloader.onHashChange = function() {
+        var id = FirefoxDownloader.getHash();
+
+        // Only update the product if the hash is valid.
+        if (id) {
+            FirefoxDownloader.setProductSelection(id);
+            FirefoxDownloader.generateDownloadURL();
+        }
     };
 
     /**
@@ -372,6 +461,13 @@
      * Initialize the form and show the default selection.
      */
     FirefoxDownloader.init = function() {
+        // Set the product if there's a valid hash identifier in the URL.
+        var hash = FirefoxDownloader.getHash();
+
+        if (hash) {
+            FirefoxDownloader.setProductSelection(hash);
+        }
+
         var pageLang = FirefoxDownloader.getPageLanguage();
         var product = FirefoxDownloader.getProductSelection();
         var platform = FirefoxDownloader.getPlatform(window.site.platform);
@@ -381,6 +477,10 @@
         }
 
         if (pageLang && product.id && product.label) {
+            // If there's no hash in the URL, set one.
+            if (!hash) {
+                FirefoxDownloader.setHash(product.id);
+            }
             FirefoxDownloader.setFormSelection(product.id);
             FirefoxDownloader.setAllSelectOptions(pageLang, languageSelect);
             FirefoxDownloader.generateDownloadURL();
