@@ -1148,6 +1148,7 @@
         "js/base/mozilla-lazy-load.js",
         "js/libs/jquery.waypoints.min.js",
         "js/newsletter/form-protocol.js",
+        "js/mozorg/home/youtube.js",
         "js/mozorg/home/home.js"
       ],
       "name": "home"
