@@ -24,7 +24,7 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 }
 
 .agreement {
-    padding-bottom: 1em;
+    padding-bottom: $spacing-sm;
 }
 
 .browser-logo img {
@@ -43,11 +43,11 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 }
 
 .mzp-c-hero-desc {
-    padding-bottom: 1em;
+    padding-bottom: $spacing-md;
 }
 
 .mzp-c-hero-image {
-    margin-top: 1em;
+    margin-top: $spacing-sm;
 }
 
 .mzp-c-hero-title {
@@ -70,7 +70,7 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 
 .fxa-signin {
     @include text-body-xs;
-    margin-top: 1em;
+    margin-top: $spacing-sm;
 }
 
 .fxa-signin, .agreement {
@@ -78,7 +78,7 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 }
 
 .page-content {
-    margin-bottom: 3em;
+    margin-bottom: $spacing-xl;
     text-align: center;
 }
 
@@ -92,11 +92,14 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
     text-align: center;
 
     .mzp-c-box-emphasis-content {
-        padding: 1em;
+        padding: $spacing-lg;
     }
 }
 
 @media #{$mq-sm} {
+    .mzp-c-hero-title {
+        @include text-display-lg;
+    }
 
     div.mzp-c-hero-image {
        height: 100%;
@@ -109,7 +112,7 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
     }
 
     .mzp-c-box-emphasis-content {
-        padding: 2em;
+        padding: $spacing-md;
     }
 
     .fxa-email-form-intro, .fxa-email-form-intro strong  {
@@ -118,18 +121,22 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 
 }
 
+@media #{$mq-md} {
+    .mzp-c-hero-title {
+        @include text-display-md;
+    }
+}
+
 @media #{$mq-lg} {
 
-    div.mzp-c-hero-image {
-       margin-top: 4em;
-    }
     section .mzp-l-content, div.mzp-c-hero-image {
         max-width: 700px;
     }
 }
 
-@media screen and (min-width: $break-large) {
+@media screen and (min-width: $break-large) { // This is custom in order to make sure that the image doesn't bounce when screen size changes.
     div.mzp-c-hero-image {
-        margin-top: 8em;
+        margin-top: $layout-2xl;
      }
 }
+
