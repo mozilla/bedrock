@@ -529,7 +529,7 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
             else:
                 template = 'firefox/firstrun/firstrun-quantum.html'
         else:
-            template = 'firefox/firstrun/firstrun-quantum.html'
+            template = 'firefox/firstrun/firstrun.html'
 
         # return a list to conform with original intention
         return [template]

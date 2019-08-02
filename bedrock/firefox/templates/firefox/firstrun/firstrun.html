@@ -38,47 +38,54 @@
 {% endblock %}
 
 {% block global_nav %}{% endblock %}
-{% block site_header %}{% endblock %}
+{% block site_header %}   {% endblock %}
+
+{% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
 
 {% block content %}
-  <div id="scene">
-    <main class="fxaccounts-container">
-      <header id="main-header">
-      {% block main_copy %}
-        <h1>
-        {% if l10n_has_tag('firstrun_email_only_form') %}
-          {{ _('Take Firefox with You') }}
-        {% else %}
-          {{_('Already using Firefox?')}}
-        {% endif %}
-        </h1>
-        <p class="content">
-        {% if l10n_has_tag('firstrun_email_only_form') %}
-          {{ _('Get your bookmarks, history, passwords and other settings on all your devices.') }}
-        {% else %}
-          {{_('Sign in to your account and we’ll sync the bookmarks, passwords and other great things you’ve saved to Firefox on other devices.')}}
-        {% endif %}
-        </p>
-        <p><a href="{{ url('firefox.accounts') }}">{{_('Learn more about Firefox Accounts')}}</a></p>
-        <section class="mzp-c-box-emphasis" >
-          <div class="mzp-c-box-emphasis-content" id="fxaccounts-wrapper">
-            {{ fxa_email_form(
-              entrypoint='mozilla.org-firstrun',
-              utm_source='firstrun',
-              button_class='mzp-c-button mzp-t-product')
-            }}
-            <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-firstrun_page', utm_params={'campaign': 'fxa-embedded-form', 'medium': 'referral', 'content': 'firstrun-page', 'source': 'firstrun-page'}) }} class="js-fxa-cta-link">{{ _('Sign In') }}</a></p>
-          </div>
-        </section>
-      {% endblock %}
-      </header>
+  <section class="hero mzp-has-image mzp-t-firefox mzp-t-product-firefox">
+    <div class="page-content">
       
-    </main>
-
-  </div>{# /#scene #}
+      <div class="mzp-l-content">
+        <div class="mzp-c-hero-body">
+          <div class="browser-logo">
+            <img class="browser-logo" src="{{ static('img/logos/firefox/logo-quantum-full-wordmark-high-res.png') }}" />
+          </div>
+          <h1 class="mzp-c-hero-title">
+            {% if l10n_has_tag('firstrun_email_only_form') %}
+              {{ _('Take Firefox with You') }}
+            {% else %}
+              {{_('Already using Firefox?')}}
+            {% endif %}
+          </h1>
+          <div class="mzp-c-hero-desc">
+            <p>
+            {% if l10n_has_tag('firstrun_email_only_form') %}
+              {{ _('Get your bookmarks, history, passwords and other settings on all your devices.') }}
+            {% else %}
+              {{_('Sign in to your account and we’ll sync the bookmarks, passwords and other great things you’ve saved to Firefox on other devices.')}}
+            {% endif %}</p>
+          </div>
+          <aside class="c-box-emphasis" >
+            <div class="c-box-emphasis-content" id="fxaccounts-wrapper">
+              {{ fxa_email_form(
+                entrypoint='mozilla.org-firstrun',
+                utm_source='firstrun',
+                button_class='mzp-c-button mzp-t-product')
+              }}
+              <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-firstrun_page', utm_params={'campaign': 'fxa-embedded-form', 'medium': 'referral', 'content': 'firstrun-page', 'source': 'firstrun-page'}) }} class="js-fxa-cta-link">{{ _('Sign In') }}</a></p>
+            </div>
+          </aside>
+        </div>
+      </div>
+      <div class="mzp-c-hero-image">
+        <img class="hero-photo" src="{{ static('img/firefox/firstrun/deviceSwoosh.gif') }}" alt="">
+      </div>
+    </div>
+  </section>
 {% endblock %}
 
-{% block site_footer %}{% endblock %}
+{% block site_footer %}{% include 'includes/site-footer.html' %}{% endblock %}
 
 {% block js %}
   {{ js_bundle('firefox_firstrun_quantum') }}
