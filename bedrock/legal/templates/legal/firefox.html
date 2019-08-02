@@ -2,26 +2,22 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "privacy/base-resp.html" %}
+{% extends "base-article.html" %}
 
 {% block page_title %}Firefox Notices{% endblock %}
-
-{% block breadcrumbs %}{% endblock %}
-
-{% block body_id %}firefox-notices{% endblock %}
 
 {% block article %}
   <article class="section-content" itemscope itemtype="http://schema.org/Article">
     <header>
-      <img class="logo" src="/media/img/privacy/logo-firefox.png" alt="">
-      <h1 itemprop="name">Firefox Notices</h1>
+      <img src="/media/img/logos/firefox/logo-quantum.png" height="70" width="70" alt="">
+      <h1 class="mzp-c-article-title" itemprop="name">Firefox Notices</h1>
     </header>
     <div itemprop="articleBody">
       <p>
         Mozilla Firefox is free and open source software, built by a community of thousands from all
         over the world. There are a few things you should know:
       </p>
-      <ul>
+      <ul class="mzp-u-list-styled">
         <li>
           Firefox is made available to you under the terms of the <a href="{{ url('mozorg.mpl.index') }}">Mozilla Public
           License</a>. This means you may use, copy and distribute Firefox to others. You are also
@@ -54,7 +50,7 @@
           Security section, and unchecking the options for “Tell me if the site I’m visiting is a
           suspected attack site” and “Tell me if the site I’m visiting is a suspected forgery”
         </p>
-        <ol>
+        <ol class="mzp-u-list-styled">
           <li>
             Mozilla and its contributors, licensors and partners work to provide the most accurate and
             up-to-date phishing and malware information. However, they cannot guarantee that this
@@ -111,4 +107,4 @@
   </article>
 {% endblock %}
 
-{% block side_nav %}{% endblock %}
+{% block newsletter %}{% endblock %}
