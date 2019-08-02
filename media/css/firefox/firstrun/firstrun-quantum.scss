@@ -85,13 +85,13 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 /* -------------------------------------------------------------------------- */
 // Emphasis Box style, this should go away when Protocal PR #441 is landed. Issue #385
 
-.mzp-c-box-emphasis {
+.c-box-emphasis {
     background: $color-white;
     border-radius: 0.2em;
     box-shadow: 0 0 10px 0 $color-gray-30;
     text-align: center;
 
-    .mzp-c-box-emphasis-content {
+    .c-box-emphasis-content {
         padding: $spacing-lg;
     }
 }
