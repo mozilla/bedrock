@@ -1,0 +1,43 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../protocol/components/navigation-ie';
+@import '../protocol/components/navigation';
+@import '../../protocol/css/base/elements/sections';
+
+/**
+ * Sandstone specific overrides for download button in main navigation.
+ */
+.mzp-c-navigation-download {
+    .download-button {
+        .download-link {
+            background-color: transparent;
+            background-image: none;
+            border-radius: 2px;
+            color: #12bc00;
+            border: 2px solid #12bc00;
+            box-shadow: none;
+            line-height: 1.125;
+            padding: $spacing-sm $spacing-md;
+
+            &:hover,
+            &:focus {
+                background-color: #12bc00;
+                border-color: #12bc00;
+                color: $color-white;
+            }
+        }
+
+        .fx-privacy-link {
+            display: none;
+        }
+    }
+}
+
+.is-js-dependent {
+    display: none;
+}

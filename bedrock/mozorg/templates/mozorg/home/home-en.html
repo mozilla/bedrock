@@ -48,7 +48,7 @@
 {% block content %}
 {% block main %}
 <main>
-  <header class="main-page-heading">
+  <header class="main-page-heading visually-hidden">
     {# Main page h1 is hidden from view and exists mainly for SEO purposes #}
     <h1>{{ self.page_title() }}</h1>
   </header>
@@ -197,7 +197,7 @@
   {% call call_out_compact(
     title=_('The account that protects you rather than profits off you.'),
     desc=None,
-    class='fxaccount-secondary-cta mzp-t-product-firefox mzp-t-firefox mzp-t-dark',
+    class='fxaccount-secondary-cta mzp-t-product-firefox mzp-t-firefox mzp-t-dark is-js-dependent',
     heading_level=2
   ) %}
     <a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-secondary mzp-t-dark" id="fxa-learn-secondary">{{ _('Learn More') }}</a>

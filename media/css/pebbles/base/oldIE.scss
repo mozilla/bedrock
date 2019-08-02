@@ -5,11 +5,21 @@
 // This style sheet is served exclusively to Internet Explorer 8 and older.
 // Old versions get this minimal style while IE9 and up recieve more advanced styling.
 
-@import
-    '../includes/lib',
-    'elements',
-    '../components/buttons',
-    '../components/buttons-download';
+@import '../includes/lib';
+@import 'elements';
+@import '../components/buttons';
+@import '../components/buttons-download';
+@import '../../protocol/components/navigation-ie';
+@import '../../protocol/components/navigation';
+@import '../../../protocol/css/base/elements/sections';
+
+.content {
+    @include border-box;
+    margin: 0 auto;
+    padding: 20px 0;
+    min-width: $width-phone;
+    max-width: $width-desktop-wide;
+}
 
 // An arbitrary container for translatable strings to use in scripts
 #strings {
@@ -32,25 +42,43 @@ label {
     display: block;
 }
 
-.masthead .toggle {
-    display: none; /* oldIE never gets a mobile menu. */
-}
-
-/* oldIE never gets slide out drawer */
-.moz-global-nav {
-    .nav-button-menu {
-        display: none;
-    }
-}
-
-.moz-global-nav-drawer {
-    display: none;
-}
-
 .visually-hidden {
     @include visually-hidden;
 }
 
 .hidden {
     @include hidden;
+}
+
+.is-js-dependent {
+    display: none;
+}
+
+/**
+ * Pebbles specific overrides for download button in main navigation.
+ */
+ .mzp-c-navigation-download {
+    .download-button {
+        .download-link {
+            background-color: transparent;
+            background-image: none;
+            border-radius: 2px;
+            color: #12bc00;
+            border: 2px solid #12bc00;
+            box-shadow: none;
+            line-height: 1.125;
+            padding: $spacing-sm $spacing-md;
+
+            &:hover,
+            &:focus {
+                background-color: #12bc00;
+                border-color: #12bc00;
+                color: $color-white;
+            }
+        }
+
+        .fx-privacy-link {
+            display: none;
+        }
+    }
 }

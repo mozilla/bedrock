@@ -1,0 +1,154 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+
+/* -------------------------------------------------------------------------- */
+// Navigation styles
+
+.top-header-navigation {
+    background: $color-white;
+    color: $color-black;
+    margin-bottom: $layout-lg;
+
+    .mzp-c-navigation-l-content {
+        padding: $layout-xs;
+    }
+
+    .mzp-c-navigation-container {
+        @include clearfix;
+        margin: 0 auto;
+        max-width: $content-max;
+        position: relative;
+    }
+
+    // Mozilla Logo
+    .mzp-c-navigation-logo {
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 112px;
+
+        a {
+            @include image-replaced;
+            background-image: url('/media/img/nav/logo-black.png');
+            background-repeat: no-repeat;
+            display: block;
+            height: 32px;
+            margin: 0 auto;
+            width: 112px;
+        }
+    }
+
+    // Download button
+    .mzp-c-navigation-download {
+        display: inline-block;
+        *display: inline;
+        margin: 0;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 0;
+        zoom: 1;
+
+        .mzp-c-button-download-container {
+            display: inline-block;
+            *display: inline;
+            margin-bottom: 0;
+            zoom: 1;
+
+            // hide privacy link
+            .mzp-c-button-download-privacy-link {
+                display: none;
+            }
+        }
+
+        // hide FxA button
+        .c-navigation-fxa-cta-container {
+            display: none;
+        }
+    }
+
+    // Nav buttom
+    .mzp-c-navigation-menu-button {
+        @include image-replaced;
+        background-color: transparent;
+        background-image: url('/media/img/nav/menu.png');
+        background-position-x: center;
+        background-position-y: center;
+        background-repeat: no-repeat;
+        border-radius: 4px;
+        border: none;
+        display: none;
+        height: 32px;
+        left: 120px;
+        padding: 1px 2px;
+        position: absolute;
+        top: 0;
+        width: 28px;
+
+        &:hover,
+        &:active,
+        &:focus,
+        &.mzp-is-active  {
+            background-color: $color-gray-20;
+        }
+    }
+
+    .mzp-c-navigation-items {
+        margin-top: $layout-xs;
+    }
+
+    // hide panel close buttons
+    .mzp-c-menu-button-close {
+        display: none;
+    }
+
+    .mzp-c-menu-title {
+        display: inline-block;
+        *display: inline;
+        font-weight: bold;
+        margin-bottom: $spacing-xl;
+        zoom: 1;
+    }
+
+    .mzp-c-menu-category {
+        margin-bottom: $spacing-2xl;
+    }
+
+    // hide cards
+    .mzp-c-menu-panel-card {
+        display: none;
+    }
+
+    .mzp-c-navigation-menu {
+        display: none;
+        position: relative;
+        top: $layout-lg;
+
+        ul {
+            list-style-type: none;
+            margin: 0 0 $spacing-lg;
+            padding: 0;
+
+            li {
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+        .mzp-c-menu-panel {
+            padding-left: $spacing-xl;
+        }
+    }
+}
+
+.js .top-header-navigation {
+    .mzp-c-navigation-menu-button {
+        display: block;
+    }
+}

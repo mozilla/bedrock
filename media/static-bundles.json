@@ -32,7 +32,8 @@
     },
     {
       "files": [
-        "css/sandstone/oldIE.less"
+        "css/sandstone/oldIE.less",
+        "css/sandstone/old-ie.scss"
       ],
       "name": "oldIE"
     },

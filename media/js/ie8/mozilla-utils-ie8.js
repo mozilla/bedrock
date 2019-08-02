@@ -39,6 +39,15 @@ if (typeof window.Mozilla === 'undefined') {
         $('.download-list').attr('role', 'presentation');
     };
 
+    UtilsIE8.initNavigation = function() {
+        $('.mzp-c-navigation-menu-button').on('click', function(e) {
+            e.preventDefault();
+            var $menuButton = $(e.target);
+            var $menu = $('#' + $menuButton.attr('aria-controls'));
+            $menu.find('.mzp-c-navigation-menu').toggle();
+        });
+    };
+
     window.Mozilla.UtilsIE8 = UtilsIE8;
 
 })();

@@ -5,10 +5,15 @@
 // This style sheet is served exclusively to Internet Explorer 8 and older.
 // Old versions get this minimal style while IE9 and up recieve more advanced styling.
 
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
 @import '../../protocol/css/includes/lib';
 @import '../../protocol/css/base/elements';
 @import '../../protocol/css/components/button';
 
+@import 'components/navigation-ie';
+@import 'components/navigation';
 @import 'components/download-button';
 
 // An arbitrary container for translatable strings to use in scripts
@@ -32,21 +37,6 @@ label {
     display: block;
 }
 
-.masthead .toggle {
-    display: none; /* oldIE never gets a mobile menu. */
-}
-
-/* oldIE never gets slide out drawer */
-.moz-global-nav {
-    .nav-button-menu {
-        display: none;
-    }
-}
-
-.moz-global-nav-drawer {
-    display: none;
-}
-
 .visually-hidden {
     @include visually-hidden;
 }
@@ -55,8 +45,16 @@ label {
     @include hidden;
 }
 
-// Make sure form details are visible
+.is-js-dependent {
+    display: none;
+}
+
+/* Make sure form details are visible */
 /* stylelint-disable declaration-no-important  */
 .js .mzp-c-newsletter-details {
     display: block !important;
+}
+
+.mzp-c-newsletter-thanks {
+    display: none;
 }
