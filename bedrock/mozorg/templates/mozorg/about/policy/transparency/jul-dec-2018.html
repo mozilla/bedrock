@@ -1,0 +1,279 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+    # License, v. 2.0. If a copy of the MPL was not distributed with this
+    # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+  
+    {% extends "mozorg/about/policy/transparency/report-base.html" %}
+  
+    {% block page_title %}{{ _('Transparency Report - July-December, 2018') }}{% endblock %}
+  
+    {% block report_title %}
+      <h1>{{ _('Transparency Report') }} <span>{{ _('Reporting Period: July 1, 2018 to December 31, 2018') }}</span></h1>
+    {% endblock %}
+  
+    {% block report_body %}
+      <section class="section" id="government-user-data">
+        <h2 class="section-title" data-accordion-role="tab">{{ _('Government Demands for User Data') }}</h2>
+  
+        <div class="content" data-accordion-role="tabpanel">
+          <p>
+            {{ _('In the Reporting Period, Mozilla received one subpoena for user data.') }}
+          </p>
+  
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">{{ _('Legal Processes') }}</th>
+                <th scope="col">{{ _('Received') }}</th>
+                <th scope="col">{{ _('Data Produced') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                  <a href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-search-warrant' }}">{{ _('Search Warrants') }}</a>
+                </th>
+                <td>0</td>
+                <td>{{ _('0') }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <a href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-subpoena' }}">{{ _('Subpoenas') }}</a>
+                </th>
+                <td>1<sup><a href="#footnote-1">1</a></sup></td>
+                <td>{{ _('No') }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <a href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-court-order' }}">{{ _('Court Orders') }}</a>
+                </th>
+                <td>0<sup><a href="#footnote-2">2</a></sup></td>
+                <td>{{ _('0') }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <a href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-wiretap-order' }}">{{ _('Wiretap Orders') }}</a>
+                </th>
+                <td>0</td>
+                <td>{{ _('0') }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <a href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-pen-register-order' }}">{{ _('Pen Register Orders') }}</a>
+                </th>
+                <td>0</td>
+                <td>{{ _('0') }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <a href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-emergency-request' }}">{{ _('Emergency Requests') }}</a>
+                </th>
+                <td>0</td>
+                <td>{{ _('0') }}</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <a href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-natl-security-request' }}">{{ _('National Security Requests') }}</a> <sup><a href="#footnote-3">3</a></sup>
+                </th>
+                <td>0</td>
+                <td>{{ _('0') }}</td>
+              </tr>
+            </tbody>
+          </table>
+  
+          <aside class="footnotes">
+            <section id="footnote-1">
+              <p>{{ _('1. Issued to Mozilla Corporation in connection with Pocket.') }}</p>
+            </section>
+            <section id="footnote-2">
+              <p>{{ _('2. Issued to Mozilla Corporation.') }}</p>
+            </section>
+            <section id="footnote-3">
+              <p>{{ _('3. None of the Mozilla Foundation, Mozilla Corporation or Pocket have ever received a National Security Request.') }}</p>
+            </section>
+          </aside>
+        </div>
+      </section>
+  
+      <section class="section" id="government-content-removal">
+        <h2 class="section-title" data-accordion-role="tab">{{ _('Government Demands for Content Removal') }}</h2>
+  
+        <div class="content" data-accordion-role="tabpanel">
+          <p>{{ _('In the Reporting Period, Mozilla did not receive any government requests for content removal from our services.') }}</p>
+  
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">{{ _('Requesting Country') }}</th>
+                <th scope="col">{{ _('Requests Received') }}</th>
+                <th scope="col">{{ _('Data Produced') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">{{ _('N/A') }}</th>
+                <td>0</td>
+                <td>{{ _('0') }}</td>
+              </tr>
+            </tbody>
+          </table>
+  
+        </div>
+      </section>
+  
+      <section class="section" id="copyright-trademark">
+        <h2 class="section-title" data-accordion-role="tab">{{ _('Copyright and Trademark Requests') }}</h2>
+  
+        <div class="content" data-accordion-role="tabpanel">
+          <h3>{{ _('Copyright') }}</h3>
+          <p>{{ _('In the Reporting Period, we received 14 Copyright Takedown Notices and 0 Counter Notices.') }}</p>
+  
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">{{ _('Mozilla Service') }}</th>
+                <th scope="col">
+                  <a href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-takedown-notice' }}">{{ _('Takedown Notices') }}</a>
+                </th>
+                <th scope="col">
+                  <a href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-counter-notice' }}">{{ _('Counter Notices') }}</a>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">{{ _('Firefox Add-ons') }}</th>
+                <td>14</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <th scope="row">{{ _('Pocket') }}</th>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <th scope="row">{{ _('Other Services') }}</th>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+  
+          <h3>{{ _('Trademark') }}</h3>
+          <p>{{ _('In the Reporting Period, we received 20 Trademark Takedown Notices and 0 Counter Notices.') }}</p>
+  
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">{{ _('Mozilla Service') }}</th>
+                <th scope="col">
+                  <a href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-takedown-notice' }}">{{ _('Takedown Notices') }}</a>
+                </th>
+                <th scope="col">
+                  <a href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-counter-notice' }}">{{ _('Counter Notices') }}</a>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">{{ _('Firefox Add-ons') }}</th>
+                <td>20</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <th scope="row">{{ _('Pocket') }}</th>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <th scope="row">{{ _('Other Services') }}</th>
+                <td>0</td>
+                <td>0</td>
+            </tbody>
+          </table>
+          <h3>{{ _('Personal Data Requests') }}</h3>
+          <p>{{ _('In the Reporting Period, we received 439 requests.') }}</p>
+
+          <table class="data-table">
+            <thread>
+              <th scope="col">{{ _('Service') }}</th>
+              <th scope="col">{{ _('Received') }}</th>
+            </thread>
+            <tbody>
+              <tr>
+                <th scope="row">{{ _('Mozilla') }}</th>
+                <td>33</td>
+              </tr>
+              <tr>
+                <th scope="row">{{ _('Pocket') }}</th>
+                <td>406</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+  
+      <section class="section" id="supplement">
+        <h2 class="section-title" data-accordion-role="tab">{{ _('Supplement') }}</h2>
+  
+        <div class="content" data-accordion-role="tabpanel">
+          <h3>{{ _('Legislative Reform') }}</h3>
+          <p>
+            {% trans india='https://blog.mozilla.org/netpolicy/2018/07/27/indian-draft-data-protection-bill/',
+                     kenya='https://ca.go.ke/wp-content/uploads/2018/11/Mozilla-Submission-of-Comments-Kenya-Privacy-and-Data-Protection-Bill-2018.pdf',
+                     brazil='https://blog.mozilla.org/netpolicy/2018/07/02/brazilian-data-protection-bill/',
+                     american='https://blog.mozilla.org/netpolicy/2018/11/20/mozilla-files-comments-on-ntias-proposed-american-privacy-framework/',
+                     workshop='https://blog.mozilla.org/netpolicy/2018/12/21/privacy-in-practice-mozilla-talks-lean-data-in-india/',
+                     panel='https://blog.mozilla.org/netpolicy/2018/09/19/lessons-from-carpenter-mozilla-panel-discussion-at-icdppc/' %}
+              During the Reporting Period, we continued fighting for strong data protection rules around the world, including work on the first data protection laws in <a href="{{ india }}">India</a>, <a href="{{ kenya }}">Kenya</a>, and <a href="{{ brazil }}">Brazil</a>, pushing for the swift adoption of the EU’s ePrivacy Regulation, and filing comment on the National Telecommunications and Information Administration’s proposed <a href="{{ american }}">American Privacy Framework</a> in the US.  We also held a <a href="{{ workshop }}">workshop in Delhi</a> with companies large and small on our Lean Data Practices framework, and held a <a href="{{ panel }}">panel</a> in Brussels on the recent US Supreme Court Carpenter decision, which extended warrant protections to cell site location information.
+            {% endtrans %}
+          </p>
+          <p>
+            {% trans government='https://blog.mozilla.org/netpolicy/2018/07/04/a-step-forward-for-government-vulnerability-disclosure-in-europe/',
+                     commented='https://blog.mozilla.org/netpolicy/2018/08/22/europe_lawful_access/',
+                     action='https://blog.mozilla.org/netpolicy/files/2019/06/Sub46.pdf' %}
+              Mozilla continued advocating for EU Member States to enact <a href="{{ government }}">government vulnerability disclosure programs in the EU Cybersecurity Act</a>, and <a href="{{ commented }}">commented</a> on the EU proposals around cross-border data access for law enforcement. In Australia, we <a href="{{ action }}">took action</a> on legislation that would give the government new powers to undermine encryption. 
+            {% endtrans %}
+          </p>
+          <p>
+            {% trans copyright='https://blog.mozilla.org/netpolicy/2018/09/07/eu-copyright-reform-the-facts/',
+                     content='https://blog.mozilla.org/netpolicy/2018/11/21/the-eu-terrorist-content-regulation-a-threat-to-the-ecosystem-and-our-users-rights/' %}
+              We also <a href="{{ copyright }}">engaged heavily on the EU Copyright Directive</a>, to minimise the damage to individuals’ rights and the open internet arising from the directive’s upload filters, and spoke out against the <a href="{{ content }}">EU’s Terrorist Content Regulation</a>.  
+            {% endtrans %} 
+          </p>
+          
+          <h3>{{ _('Threat Indicators &amp; Data Disclosures') }}</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th scope="col">{{ _('Type of Disclosure') }}</th>
+                <th scope="col">{{ _('Number of Disclosures') }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><a href="{{ url('mozorg.about.policy.transparency.index') + '#dfn-threat-indicator' }}">{{ _('Cybersecurity Threat Indicator') }}</a></th>
+                <td>0</td>
+              </tr>
+              <tr>
+                <th scope="row">{{ _('Other <a href="%s">Specific User</a> Data Disclosure')|format(url('mozorg.about.policy.transparency.index') + '#dfn-specific-user') }}</th>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    {% endblock %}
+  
+    {% block report_nav %}
+      <aside class="section nav-block">
+        <nav class="content nav-report two-up">
+          <ul>
+            <li><a class="button" href="{{ url('mozorg.about.policy.transparency.index') + '#faq' }}">{{ _('FAQ') }}</a></li>
+            <li><a class="button" href="{{ url('mozorg.about.policy.transparency.index') + '#definitions' }}">{{ _('Definitions') }}</a></li>
+          </ul>
+        </nav>
+  
+        {% include 'mozorg/about/policy/transparency/includes/past-reports.html' %}
+      </aside>
+    {% endblock %}
+  
