@@ -51,7 +51,7 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 }
 
 .mzp-c-hero-title {
-    @include text-display-md;
+    @include text-display-lg;
 }
 
 .fxa-email-field {
@@ -87,19 +87,16 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 
 .c-box-emphasis {
     background: $color-white;
-    border-radius: 0.2em;
+    border-radius: 6px;
     box-shadow: 0 0 10px 0 $color-gray-30;
     text-align: center;
 
     .c-box-emphasis-content {
-        padding: $spacing-lg;
+        padding: $spacing-xl;
     }
 }
 
 @media #{$mq-sm} {
-    .mzp-c-hero-title {
-        @include text-display-lg;
-    }
 
     div.mzp-c-hero-image {
        height: 100%;
@@ -114,17 +111,6 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
     .mzp-c-box-emphasis-content {
         padding: $spacing-md;
     }
-
-    .fxa-email-form-intro, .fxa-email-form-intro strong  {
-        @include text-display-sm;
-    }
-
-}
-
-@media #{$mq-md} {
-    .mzp-c-hero-title {
-        @include text-display-md;
-    }
 }
 
 @media #{$mq-lg} {
@@ -137,6 +123,6 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 @media screen and (min-width: $break-large) { // This is custom in order to make sure that the image doesn't bounce when screen size changes.
     div.mzp-c-hero-image {
         margin-top: $layout-2xl;
-     }
+    }
 }
 
