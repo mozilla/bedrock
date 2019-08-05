@@ -2,41 +2,32 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "base-resp.html" %}
+{% extends "base-article.html" %}
 
-{% block body_class %}sand{% endblock %}
+{% block body_class %}mzp-t-mozilla{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('grants') }}
 {% endblock %}
 
-{% block breadcrumbs %}
-  <nav class="breadcrumbs">
-    <a href="{{ url('mozorg.home') }}">Home</a> >
-    <a href="{{ url('grants') }}">{{ _('Mozilla Grants') }}</a> >
-  </nav>
+{% set navigation_bar = [
+  (url('mozorg.home'), 'home', _('Home')),
+  (url('grants'), 'grants', _('Mozilla Grants')),
+] %}
+
+{% block side_nav %}
+  {{ sidemenu_lists([navigation_bar], body_id) }}
 {% endblock %}
 
-{% block content %}
-<div id="main-content">
-    <div class="row">
+{% block side_extra %}
+<section class="c-grants-side-reference">
+  <h3 class="c-grants-side-reference-title">Help us build a better Web</h3>
 
-        <article class="main-column">
-            {% block article %}{% endblock %}
-        </article>
+  <p>We're a non-profit organization working to build a Web that is open, accessible, safe and — most of all — a force for good.</p>
+  <p>Mozilla builds communities and gives people tools to control their online experience. We are about enriching people's lives instead of  benefiting shareholders. We believe a better Web means a happier future for all of us — and we depend on your collaboration and financial support to build it.</p>
+  <p>So please consider making a donation today: <a href="{{ donate_url('grants') }}">Join us here</a>.</p>
+</section>
 
-        <aside class="sidebar">
-            {% block sidebar %}
-            <h3>Help us build a better Web</h3>
-
-            <p>We're a non-profit organization working to build a Web that is open, accessible, safe and — most of all — a force for good.</p>
-            <p>Mozilla builds communities and gives people tools to control their online experience. We are about enriching people's lives instead of  benefiting shareholders. We believe a better Web means a happier future for all of us — and we depend on your collaboration and financial support to build it.</p>
-            <p>So please consider making a donation today: <a href="{{ donate_url('grants') }}">Join us here</a>.</p>
-            {% endblock %}
-        </aside>
-
-    </div>
-</div>
 {% endblock %}
 
-{% block email_form %}&nbsp;{% endblock %}
+{% block newsletter %}{% endblock %}
