@@ -9,7 +9,7 @@ from django.test.utils import override_settings
 
 from bedrock.base.urlresolvers import reverse
 from mock import patch, Mock
-from pathlib2 import Path
+from pathlib import Path
 
 from bedrock.firefox.firefox_details import FirefoxDesktop
 from bedrock.mozorg.tests import TestCase
@@ -52,9 +52,7 @@ class TestReleaseViews(TestCase):
 
     @patch('bedrock.releasenotes.models.get_release')
     def test_get_release_or_404(self, get_release):
-        assert (
-            views.get_release_or_404('version', 'product') ==
-            get_release.return_value)
+        assert views.get_release_or_404('version', 'product') == get_release.return_value
         get_release.assert_called_with('product', 'version', None, False)
         get_release.return_value = None
         with self.assertRaises(Http404):
@@ -89,9 +87,7 @@ class TestReleaseViews(TestCase):
         get_release_or_404.assert_called_with('27.0', 'Firefox', True)
         assert self.last_ctx['version'] == '27.0'
         assert self.last_ctx['release'] == mock_release
-        assert (
-            self.mock_render.call_args[0][1] ==
-            mock_release_notes_template.return_value)
+        assert self.mock_render.call_args[0][1] == mock_release_notes_template.return_value
         mock_equiv_rel_url.assert_called_with(mock_release)
         mock_release_notes_template.assert_called_with(
             mock_release.channel, 'Firefox', 34)
@@ -120,39 +116,21 @@ class TestReleaseViews(TestCase):
         get_release_or_404.assert_called_with('27.0.1', 'Firefox')
         assert self.last_ctx['release'] == get_release_or_404.return_value
         assert self.last_ctx['version'] == '27.0.1'
-        assert (
-            self.mock_render.call_args[0][1] ==
-            'firefox/releases/system_requirements.html')
+        assert self.mock_render.call_args[0][1] == 'firefox/releases/system_requirements.html'
 
     def test_release_notes_template(self):
         """
         Should return correct template name based on channel
         and product
         """
-        assert (
-            views.release_notes_template('Nightly', 'Firefox') ==
-            'firefox/releases/nightly-notes.html')
-        assert (
-            views.release_notes_template('Aurora', 'Firefox') ==
-            'firefox/releases/aurora-notes.html')
-        assert (
-            views.release_notes_template('Aurora', 'Firefox', 35) ==
-            'firefox/releases/dev-browser-notes.html')
-        assert (
-            views.release_notes_template('Aurora', 'Firefox', 34) ==
-            'firefox/releases/aurora-notes.html')
-        assert (
-            views.release_notes_template('Beta', 'Firefox') ==
-            'firefox/releases/beta-notes.html')
-        assert (
-            views.release_notes_template('Release', 'Firefox') ==
-            'firefox/releases/release-notes.html')
-        assert (
-            views.release_notes_template('ESR', 'Firefox') ==
-            'firefox/releases/esr-notes.html')
-        assert (
-            views.release_notes_template('', '') ==
-            'firefox/releases/release-notes.html')
+        assert views.release_notes_template('Nightly', 'Firefox') == 'firefox/releases/nightly-notes.html'
+        assert views.release_notes_template('Aurora', 'Firefox') == 'firefox/releases/aurora-notes.html'
+        assert views.release_notes_template('Aurora', 'Firefox', 35) == 'firefox/releases/dev-browser-notes.html'
+        assert views.release_notes_template('Aurora', 'Firefox', 34) == 'firefox/releases/aurora-notes.html'
+        assert views.release_notes_template('Beta', 'Firefox') == 'firefox/releases/beta-notes.html'
+        assert views.release_notes_template('Release', 'Firefox') == 'firefox/releases/release-notes.html'
+        assert views.release_notes_template('ESR', 'Firefox') == 'firefox/releases/esr-notes.html'
+        assert views.release_notes_template('', '') == 'firefox/releases/release-notes.html'
 
     @override_settings(DEV=False)
     def test_non_public_release(self):
@@ -181,9 +159,8 @@ class TestReleaseViews(TestCase):
         Should return the url for the equivalent android release
         """
         release = Mock()
-        assert (
-            views.equivalent_release_url(release) ==
-            release.equivalent_android_release.return_value.get_absolute_url.return_value)
+        assert views.equivalent_release_url(release) == \
+            release.equivalent_android_release.return_value.get_absolute_url.return_value
 
     def test_desktop_equivalent_release_url(self):
         """
@@ -191,9 +168,8 @@ class TestReleaseViews(TestCase):
         """
         release = Mock()
         release.equivalent_android_release.return_value = None
-        assert (
-            views.equivalent_release_url(release) ==
-            release.equivalent_desktop_release.return_value.get_absolute_url.return_value)
+        assert views.equivalent_release_url(release) == \
+            release.equivalent_desktop_release.return_value.get_absolute_url.return_value
 
     def test_get_download_url_android(self):
         """
@@ -217,18 +193,14 @@ class TestReleaseViews(TestCase):
 
     def test_check_url(self):
         with self.activate('en-US'):
-            assert (
-                views.check_url('Firefox for Android', '45.0') ==
-                'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device')
-            assert (
-                views.check_url('Firefox for Android', '46.0') ==
-                '/en-US/firefox/android/46.0/system-requirements/')
-            assert (
-                views.check_url('Firefox for iOS', '1.4') ==
-                '/en-US/firefox/ios/1.4/system-requirements/')
-            assert (
-                views.check_url('Firefox', '42.0') ==
-                '/en-US/firefox/42.0/system-requirements/')
+            assert views.check_url('Firefox for Android', '45.0') == \
+                'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'
+            assert views.check_url('Firefox for Android', '46.0') == \
+                '/en-US/firefox/android/46.0/system-requirements/'
+            assert views.check_url('Firefox for iOS', '1.4') == \
+                '/en-US/firefox/ios/1.4/system-requirements/'
+            assert views.check_url('Firefox', '42.0') == \
+                '/en-US/firefox/42.0/system-requirements/'
 
     @override_settings(DEV=False)
     def test_nightly_feed(self):
@@ -274,9 +246,7 @@ class TestReleaseNotesIndex(TestCase):
             assert releases[4][1]['minor'] == ['33.0.1', '33.0.2', '33.0.3']
             assert releases[6][0] == 31.0
             assert releases[6][1]['major'] == '31.0'
-            assert (
-                releases[6][1]['minor'] ==
-                ['31.1.0', '31.1.1', '31.2.0', '31.3.0', '31.4.0', '31.5.0'])
+            assert releases[6][1]['minor'] == ['31.1.0', '31.1.1', '31.2.0', '31.3.0', '31.4.0', '31.5.0']
 
 
 class TestNotesRedirects(TestCase):

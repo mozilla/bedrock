@@ -2,7 +2,7 @@
 from django.test import override_settings
 
 from jinja2 import Markup
-from pathlib2 import Path
+from pathlib import Path
 
 from bedrock.contentcards import models
 from bedrock.mozorg.tests import TestCase

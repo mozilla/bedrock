@@ -8,7 +8,7 @@ from time import time
 
 import babis
 from apscheduler.schedulers.blocking import BlockingScheduler
-from pathlib2 import Path
+from pathlib import Path
 
 
 # ROOT path of the project. A pathlib.Path object.

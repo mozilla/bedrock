@@ -155,9 +155,6 @@ contextlib2==0.5.4 \
 django_csp==3.5 \
     --hash=sha256:04600237701e6d6ff78ed7d41209ff923988148bf292c128f6b474b9befe444f \
     --hash=sha256:8b9997df89a7a936d7c397e051367f974aa1d1a97d0b32acb4300087b3bed071
-pathlib2==2.1.0 \
-    --hash=sha256:24e0b33e1333b55e73c9d1e9a8342417d519f7789a9d3b440f4acd00ea45157e \
-    --hash=sha256:deb3a960c1d55868dfbcac98432358b92ba89d95029cddd4040db1f27405055c
 querystringsafe_base64==1.1.1 \
     --hash=sha256:bad9187c0406456020ee354be7f51d2e0dfc262dadde0449cbdd1fd78d437eed
 funcsigs==1.0.2 \

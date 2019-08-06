@@ -6,7 +6,7 @@ from django.db import models, transaction
 
 from django_extensions.db.fields.json import JSONField
 from jinja2 import Markup
-from pathlib2 import Path
+from pathlib import Path
 
 from bedrock.base.urlresolvers import reverse
 
