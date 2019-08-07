@@ -107,10 +107,6 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
         max-width: 600px;
         position: relative;
     }
-
-    .mzp-c-box-emphasis-content {
-        padding: $spacing-md;
-    }
 }
 
 @media #{$mq-lg} {
