@@ -20,7 +20,7 @@ html {
 section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
     display: inline-block;
     max-width: 320px;
-    text-align: left;
+    @include bidi(((text-align, left, right),));
 }
 
 .agreement {
