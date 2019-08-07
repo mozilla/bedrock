@@ -6,7 +6,7 @@ from bedrock.pocketfeed.models import PocketArticle
 import json
 import pytest
 import responses
-from pathlib2 import Path
+from pathlib import Path
 
 
 TEST_DATA = Path(__file__).with_name('test_data')

@@ -12,7 +12,7 @@ from django.conf import settings
 from django.utils.encoding import force_str
 
 import timeago
-from pathlib2 import Path
+from pathlib import Path
 
 from bedrock.utils.models import GitRepoState
 

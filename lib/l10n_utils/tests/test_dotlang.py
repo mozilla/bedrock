@@ -13,7 +13,7 @@ from django.test.utils import override_settings
 
 from django_jinja.backend import Jinja2
 from mock import patch
-from pathlib2 import Path
+from pathlib import Path
 from pyquery import PyQuery as pq
 
 from bedrock.mozorg.tests import TestCase
@@ -194,13 +194,9 @@ class TestDotlang(TestCase):
         self.assertDictEqual(parsed, expected)
 
     def test_format_identifier_re(self):
-        assert (
-            FORMAT_IDENTIFIER_RE.findall('%s %s') ==
-            [('%s', ''), ('%s', '')])
+        assert FORMAT_IDENTIFIER_RE.findall('%s %s') == [('%s', ''), ('%s', '')]
 
-        assert (
-            FORMAT_IDENTIFIER_RE.findall('%(foo_bar)s %s') ==
-            [('%(foo_bar)s', 'foo_bar'), ('%s', '')])
+        assert FORMAT_IDENTIFIER_RE.findall('%(foo_bar)s %s') == [('%(foo_bar)s', 'foo_bar'), ('%s', '')]
 
     @override_settings(
         DEV=False,
@@ -216,9 +212,7 @@ class TestDotlang(TestCase):
             result = translate(expected, [path])
         assert expected == result
         assert len(mail.outbox) == 1
-        assert (
-            mail.outbox[0].subject ==
-            '[bedrock] locale/fr/%s.lang is corrupted' % path)
+        assert mail.outbox[0].subject == '[bedrock] locale/fr/%s.lang is corrupted' % path
         mail.outbox = []
 
     @override_settings(
@@ -394,8 +388,7 @@ class TestDotlang(TestCase):
         # have to call __str__ directly because the value is a Mock
         # object, and the `str()` function throws an exception.
         dude_says.__str__()
-        trans_patch.assert_called_with(dirty_string, ['donnie', 'walter'] +
-                                       settings.DOTLANG_FILES)
+        trans_patch.assert_called_with(dirty_string, ['donnie', 'walter'] + settings.DOTLANG_FILES)
 
     @patch('lib.l10n_utils.dotlang.translate')
     def test_gettext_works_without_extra_lang_files(self, trans_patch):

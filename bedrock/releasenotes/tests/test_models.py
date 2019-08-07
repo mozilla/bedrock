@@ -8,7 +8,7 @@ from django.core.cache import caches
 from django.test.utils import override_settings
 
 from mock import call, patch
-from pathlib2 import Path
+from pathlib import Path
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.releasenotes import models

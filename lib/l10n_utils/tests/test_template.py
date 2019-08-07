@@ -8,7 +8,7 @@ from django.test import RequestFactory, override_settings
 from django_jinja.backend import Jinja2
 from jinja2.nodes import Block
 from mock import patch, ANY, Mock
-from pathlib2 import Path
+from pathlib import Path
 from pyquery import PyQuery as pq
 import pytest
 

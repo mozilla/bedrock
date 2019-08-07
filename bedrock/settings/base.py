@@ -12,7 +12,7 @@ from django.utils.functional import lazy
 
 import dj_database_url
 from everett.manager import ListOf
-from pathlib2 import Path
+from pathlib import Path
 
 from bedrock.base.config_manager import config
 
