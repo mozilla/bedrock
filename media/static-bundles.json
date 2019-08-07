@@ -605,7 +605,7 @@
     {
       "files": [
         "css/base/mozilla-fxa-form.scss",
-        "css/firefox/firstrun/firstrun-quantum.scss"
+        "css/firefox/firstrun/firstrun.scss"
       ],
       "name": "firefox_firstrun_quantum"
     },

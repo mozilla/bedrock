@@ -1,0 +1,124 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+$break-large: 1305px;
+
+@import '../../../protocol/css/includes/lib';
+
+
+//* -------------------------------------------------------------------------- */
+// Common elements & variables
+
+html {
+    height: 100%;
+    min-height: 100vh;
+}
+
+section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
+    display: inline-block;
+    max-width: 320px;
+    @include bidi(((text-align, left, right),));
+}
+
+.agreement {
+    padding-bottom: $spacing-sm;
+}
+
+.browser-logo img {
+    display: block;
+    max-width: 250px;
+    padding: $spacing-lg 0 $spacing-xl;
+}
+
+.field {
+    margin: 0;
+    padding: 0;
+}
+
+.mzp-c-button {
+    width: 100%;
+}
+
+.mzp-c-hero-desc {
+    padding-bottom: $spacing-md;
+}
+
+.mzp-c-hero-image {
+    margin-top: $spacing-sm;
+}
+
+.mzp-c-hero-title {
+    @include text-display-lg;
+}
+
+.fxa-email-field {
+    width: 100%;
+}
+
+.fxa-email-form-intro, .fxa-email-form-intro strong {
+    font-weight: bold;
+    @include text-display-xs;
+    display: inline;
+}
+
+.fxa-email-field-container {
+    margin-top: $spacing-lg;
+}
+
+.fxa-signin {
+    @include text-body-xs;
+    margin-top: $spacing-sm;
+}
+
+.fxa-signin, .agreement {
+    color: $color-gray-70;
+}
+
+.page-content {
+    margin-bottom: $spacing-xl;
+    text-align: center;
+}
+
+/* -------------------------------------------------------------------------- */
+// Emphasis Box style, this should go away when Protocal PR #441 is landed. Issue #385
+
+.c-box-emphasis {
+    background: $color-white;
+    border-radius: 6px;
+    box-shadow: 0 0 10px 0 $color-gray-30;
+    text-align: center;
+
+    .c-box-emphasis-content {
+        padding: $spacing-xl;
+    }
+}
+
+@media #{$mq-sm} {
+
+    div.mzp-c-hero-image {
+       height: 100%;
+       vertical-align: top;
+    }
+
+    section .mzp-l-content, div.mzp-c-hero-image {
+        max-width: 600px;
+        position: relative;
+    }
+}
+
+@media #{$mq-lg} {
+
+    section .mzp-l-content, div.mzp-c-hero-image {
+        max-width: 700px;
+    }
+}
+
+@media screen and (min-width: $break-large) { // This is custom in order to make sure that the image doesn't bounce when screen size changes.
+    div.mzp-c-hero-image {
+        margin-top: $layout-2xl;
+    }
+}
+

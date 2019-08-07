@@ -176,7 +176,7 @@ $image-path: '/media/protocol/img';
     @media #{$mq-sm} {
         .fxa-email-field-container {
             @include grid-column-gap($spacing-md);
-            display: grid;
+            display: block;
             grid-template-columns: 2fr 1fr;
 
             .field {
