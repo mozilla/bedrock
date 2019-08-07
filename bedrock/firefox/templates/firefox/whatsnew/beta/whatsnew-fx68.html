@@ -9,25 +9,24 @@
 {% block fxa_form %}
 {{ fxa_email_form(
     entrypoint='mozilla.org-whatsnew68beta',
-    button_class='mzp-c-button',
-    utm_source='whatsnew68beta')
+    button_class='mzp-c-button')
 }}
 {% endblock %}
 
 {% block fxa_cta %}
 <p class="show-fxa-supported-signed-out show-fxa-default">
-  <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew68beta', action='signup', utm_params={'campaign': 'wnp68beta', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'wnp68beta'}) }} class="js-fxa-cta-link mzp-c-button mzp-t-product" data-link-name="Create account" data-link-type="FxA-Sync">
+  <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew68beta', action='signup', utm_campaign='wnp68beta', utm_content='accounts-page-top-cta') }} class="js-fxa-cta-link mzp-c-button mzp-t-product" data-link-name="Create account" data-link-type="FxA-Sync">
     {{ _('Create a Firefox Account') }}
   </a><br>
 
   {% if l10n_has_tag('wnp66_log_in') %}
-  {% set link = fxa_link_fragment(entrypoint='mozilla.org-whatsnew68beta', action='login', utm_params={'campaign': 'wnp68beta', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'wnp68beta'}) %}
+  {% set link = fxa_link_fragment(entrypoint='mozilla.org-whatsnew68beta', action='login', utm_campaign='wnp68beta', utm_content='accounts-page-top-cta') %}
   <span class="wn64-signin">
     {{ _('Have an account? <a %s >Log in</a>')|format(link) }}
   </span>
   {% else %}
   <span class="wn64-signin">
-    <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew68beta', action='login', utm_params={'campaign': 'wnp68beta', 'content': 'accounts-page-top-cta', 'medium': 'referral', 'source': 'wnp68beta'}) }} class="js-fxa-cta-link">{{ _('Already have an account?') }}</a>
+    <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew68beta', action='login', utm_campaign='wnp68beta', utm_content='accounts-page-top-cta') }} class="js-fxa-cta-link">{{ _('Already have an account?') }}</a>
   </span>
   {% endif %}
 </p>

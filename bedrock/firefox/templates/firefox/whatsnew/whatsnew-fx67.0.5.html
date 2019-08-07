@@ -2,7 +2,7 @@
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import fxa_email_form, monitor_button, fxa_link_fragment with context %}
+{% from "macros.html" import fxa_email_form, monitor_button with context %}
 
 {% add_lang_files "firefox/whatsnew_67.0.5" %}
 
@@ -40,7 +40,6 @@
             {{ fxa_email_form(
                 entrypoint='mozilla.org-whatsnew6705',
                 button_class='mzp-c-button mzp-t-product mzp-t-small',
-                utm_source='whatsnew6705',
                 style='trailhead',
                 utm_campaign='trailhead',
                 utm_content='get-the-rest-of-firefox')
@@ -61,7 +60,6 @@
           {% block monitor_button %}
             {{ monitor_button(
               entrypoint='mozilla.org-whatsnew6705',
-              utm_source='whatsnew6705',
               utm_campaign='whatsnew6705'
             ) }}
           {% endblock %}
