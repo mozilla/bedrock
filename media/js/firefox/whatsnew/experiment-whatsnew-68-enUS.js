@@ -30,11 +30,11 @@
         var deckard = new Mozilla.TrafficCop({
             id: 'experiment_firefox_whatsnew_68',
             variations: {
-                'v=a': 1,  // control
-                'v=b': 1,  // new layout, light
-                'v=c': 1,  // new layout, dark
-                'v=d': 1,  // notification favicon
-                'v=e': 1   // monitor CTA
+                'v=a': 5,  // control
+                'v=b': 5,  // new layout, light
+                'v=c': 5,  // new layout, dark
+                'v=d': 5,  // notification favicon
+                'v=e': 5   // monitor CTA
             }
         });
 
