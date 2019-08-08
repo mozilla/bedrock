@@ -527,7 +527,7 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
             if show_57_dev_firstrun(version):
                 template = 'firefox/developer/firstrun.html'
             else:
-                template = 'firefox/firstrun/firstrun-quantum.html'
+                template = 'firefox/firstrun/firstrun.html'
         else:
             template = 'firefox/firstrun/firstrun.html'
 

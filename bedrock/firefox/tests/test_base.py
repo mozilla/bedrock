@@ -580,7 +580,7 @@ class TestFirstRun(TestCase):
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='56.0a2')
         template = render_mock.call_args[0][1]
-        assert template == ['firefox/firstrun/firstrun-quantum.html']
+        assert template == ['firefox/firstrun/firstrun.html']
 
     @override_settings(DEV=True)
     def test_fxdev_firstrun_57_0(self, render_mock):
