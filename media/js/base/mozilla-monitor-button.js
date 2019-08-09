@@ -26,7 +26,9 @@ Mozilla.MonitorButton = (function () {
     var destURL = monitorButton.getAttribute('data-action') + 'metrics-flow';
 
     // collect values from monitor button
-    var utmParams = _SearchParams.queryStringToObject(buttonURL);
+    var utmParams = window._SearchParams.queryStringToObject(buttonURL);
+
+    console.log(utmParams);
 
     var utmSource = utmParams.utm_source;
     var utmCampaign = utmParams.utm_campaign;
