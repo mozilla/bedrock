@@ -958,45 +958,6 @@ class TestFirefoxCampaign(TestCase):
         )
 
 
-class TestFeedbackView(TestCase):
-    def test_get_template_names_default_unhappy(self):
-        view = views.FeedbackView()
-        view.request = RequestFactory().get('/')
-        assert view.get_template_names() == ['firefox/feedback/unhappy.html']
-
-    def test_get_template_names_happy(self):
-        view = views.FeedbackView()
-        view.request = RequestFactory().get('/?score=5')
-        assert view.get_template_names() == ['firefox/feedback/happy.html']
-
-    def test_get_template_names_unhappy(self):
-        view = views.FeedbackView()
-        view.request = RequestFactory().get('/?score=1')
-        assert view.get_template_names() == ['firefox/feedback/unhappy.html']
-
-    def test_get_context_data_three_stars(self):
-        view = views.FeedbackView()
-        view.request = RequestFactory().get('/?score=3')
-
-        ctx = view.get_context_data()
-        self.assertTrue(ctx['donate_stars_url'].endswith('Heartbeat_3stars'))
-
-    def test_get_context_data_five_stars(self):
-        view = views.FeedbackView()
-        view.request = RequestFactory().get('/?score=5')
-
-        ctx = view.get_context_data()
-        self.assertTrue(ctx['donate_stars_url'].endswith('Heartbeat_5stars'))
-
-    def test_get_context_data_one_star(self):
-        """donate_stars_url should be undefined"""
-        view = views.FeedbackView()
-        view.request = RequestFactory().get('/?score=1')
-
-        ctx = view.get_context_data()
-        self.assertFalse('donate_stars_url' in ctx)
-
-
 class TestFirefoxConcerts(TestCase):
     @override_settings(DEV=False)
     @override_settings(SWITCH_FIREFOX_CONCERT_SERIES=False)

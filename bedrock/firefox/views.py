@@ -643,36 +643,6 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
         return [template]
 
 
-class FeedbackView(TemplateView):
-
-    donate_url = (
-        'https://donate.mozilla.org/'
-        '?utm_source=Heartbeat_survey&utm_medium=referral'
-        '&utm_content=Heartbeat_{0}stars'
-    )
-
-    def get_score(self):
-        return self.request.GET.get('score', '0')
-
-    def get_template_names(self):
-        score = self.get_score()
-        if score > '3':
-            template = 'firefox/feedback/happy.html'
-        else:
-            template = 'firefox/feedback/unhappy.html'
-
-        return [template]
-
-    def get_context_data(self, **kwargs):
-        context = super(FeedbackView, self).get_context_data(**kwargs)
-        score = self.get_score()
-
-        if score in ['3', '4', '5']:
-            context['donate_stars_url'] = self.donate_url.format(score)
-
-        return context
-
-
 class TrackingProtectionTourView(l10n_utils.LangFilesMixin, TemplateView):
     def get_template_names(self):
         variation = self.request.GET.get('variation', None)

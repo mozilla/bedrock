@@ -105,9 +105,6 @@ urlpatterns = (
     url('^firefox/releases/$', bedrock.releasenotes.views.releases_index,
         {'product': 'Firefox'}, name='firefox.releases.index'),
 
-    # Bug 1108828. Different templates for different URL params.
-    url('firefox/feedback/$', views.FeedbackView.as_view(), name='firefox.feedback'),
-
     url('^firefox/stub_attribution_code/$', views.stub_attribution_code,
         name='firefox.stub_attribution_code'),
 

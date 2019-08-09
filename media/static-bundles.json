@@ -144,13 +144,6 @@
     },
     {
       "files": [
-        "css/base/mozilla-share-cta.less",
-        "css/firefox/feedback.less"
-      ],
-      "name": "firefox_feedback"
-    },
-    {
-      "files": [
         "css/press/press.less"
       ],
       "name": "press"
@@ -1348,12 +1341,6 @@
         "js/mozorg/about-leadership.js"
       ],
       "name": "about-leadership"
-    },
-    {
-      "files": [
-        "js/base/mozilla-share-cta.js"
-      ],
-      "name": "firefox_feedback"
     },
     {
       "files": [
