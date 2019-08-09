@@ -1,0 +1,79 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/whatsnew_2019" %}
+
+{% extends "firefox/base-protocol.html" %}
+
+{% block page_title %}{{ _('With Firefox, your privacy comes first') }}{% endblock %}
+{% block page_desc %}{{ _('Everything we make and do honors our Personal Data Promise: Take less. Keep it safe. No secrets.') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_2019') }}
+{% endblock %}
+
+{% block body_class %}state-fxa-default{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main class="mzp-t-firefox content-wrapper {% block container_class %}{% endblock %}">
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
+    {% block header_logo %}
+      {{ high_res_img('logos/firefox/logo-quantum-wordmark-large.png', {'alt': 'Firefox', 'width': '122', 'height': '40', 'class': 'c-page-header-logo-fx'}) }}
+    {% endblock %}
+      <h1 class="c-page-header-up-to-date"><span>{{ _('Congrats! You’re using the latest version of Firefox.') }}</span></h1>
+    </div>
+  </header>
+
+  <section class="content-main">
+    <div class="mzp-l-content">
+    {% block content_main %}
+      <div class="c-emphasis-box show-fxa-default">
+        <h2 class="c-emphasis-box-title">{{ _('Get the respect you deserve') }}</h2>
+        <p>
+        {% trans promise='#' %}
+          Your privacy comes first. Everything we make and do honors our <a href="{{ promise }}">Personal Data Promise</a>:
+        {% endtrans %}
+        </p>
+
+        {# L10n: line breaks for formatting #}
+        <p><strong>{{ _('Take less.<br> Keep it safe.<br> No secrets.') }}</strong></p>
+      </div>
+    {% endblock %}
+    </div>
+  </section>
+
+  <section class="content-extra">
+    <div class="mzp-l-content">
+    {% block content_secondary %}
+      <div class="c-picto-block">
+        <div class="c-picto-block-glyph">
+          <img src="{{ static('img/firefox/glyphs/layers.svg') }}" alt="">
+        </div>
+        <h3 class="c-picto-block-title">{{ _('Protect yourself online — and protect the internet for everyone') }}</h3>
+        <div class="c-picto-block-body">
+          <p>{{ _('When you use Firefox, you’re helping to keep the internet safe for all.') }}</p>
+          <p class="cta-link"><a href="{{ url('mozorg.home') }}">{{ _('Learn more') }}</a></p>
+        </div>
+      </div>
+    {% endblock %}
+    </div>
+  </section>
+
+  <aside class="mzp-l-content c-utilities">
+    <p>
+    {% trans notes=url('firefox.notes') %}
+      Read the <a href="{{ notes }}">Release Notes</a> to know more about what’s new in your Firefox Browser.
+    {% endtrans %}
+    </p>
+  </aside>
+
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_2019') }}
+{% endblock %}

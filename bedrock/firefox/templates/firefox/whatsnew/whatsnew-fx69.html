@@ -1,0 +1,104 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import monitor_button with context %}
+
+{% add_lang_files "firefox/whatsnew_69" %}
+
+{% extends "firefox/whatsnew/whatsnew-2019.html" %}
+
+{% block page_title %}{{ _('Firefox Monitor — see if you’ve been in another company’s data breach') }}{% endblock %}
+{% block page_desc %}{{ _('Use Firefox Monitor to see if your info was compromised in another company’s data breach — and get automatically signed up for future alerts.') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_2019') }}
+{% endblock %}
+
+{% block body_class %}state-fxa-default{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content_main %}
+<div class="c-emphasis-box show-fxa-default show-fxa-not-fx show-fxa-supported-signed-out">
+  <img class="c-emphasis-box-logo" src="{{ static('img/logos/firefox/logo-monitor.svg') }}" alt="">
+  <h2 class="c-emphasis-box-title">
+  {% if LANG.startswith('en-') %}
+    Have you checked out<br> Firefox Monitor?
+  {% else %}
+    {{ _('Have you checked out Firefox Monitor?') }}
+  {% endif %}
+  </h2>
+  <p>{{ _('Sign up to see if your info was compromised in another company’s data breach, and automatically get alerts when your info might be at risk.') }}</p>
+
+  {{ monitor_button(
+    button_id='monitor-button-signed-out',
+    entrypoint='mozilla.org-firefox-whatsnew69',
+    utm_campaign='whatsnew69',
+    utm_content='whatsnew69-signed-out',
+    button_text=_('Sign Up for Monitor')
+  ) }}
+</div>
+
+<div class="c-emphasis-box show-fxa-supported-signed-in">
+  <img class="c-emphasis-box-logo" src="{{ static('img/logos/firefox/logo-monitor.svg') }}" alt="">
+  <h2 class="c-emphasis-box-title">{{ _('Have you checked out Firefox Monitor? It’s included with your Firefox account.') }}</h2>
+  <p>{{ _('Use Firefox Monitor to see if your info was compromised in another company’s data breach — and get automatically signed up for future alerts.') }}</p>
+
+  {{ monitor_button(
+    button_id='monitor-button-signed-in',
+    entrypoint='mozilla.org-firefox-whatsnew69',
+    utm_campaign='whatsnew69',
+    utm_content='whatsnew69-signed-in',
+    button_text=_('Sign In')
+  ) }}
+</div>
+{% endblock %}
+
+{% block content_secondary %}
+<div class="show-fxa-supported-signed-out">
+  <div class="c-picto-block">
+    <div class="c-picto-block-image">
+      <img src="{{ static('img/icons/tracking-protection.svg') }}" alt="">
+    </div>
+
+    <h3 class="c-picto-block-title">{{ _('Your Firefox Browser now automatically blocks online snoopers') }}</h3>
+    <div class="c-picto-block-body">
+      <p>{{ _('Now it’s harder than ever for spying companies to track you online. That’s because Enhanced Tracking Protection — a feature that blocks known tracking cookies — is on by default in your updated browser.') }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="show-fxa-supported-signed-in">
+  <div class="l-columns-two">
+    <div class="c-picto-block">
+      <div class="c-picto-block-image">
+        <img src="{{ static('img/firefox/glyphs/tracking-protection.svg') }}" alt="">
+      </div>
+
+      <h3 class="c-picto-block-title">{{ _('Your Firefox Browser now automatically blocks online snoopers') }}</h3>
+      <div class="c-picto-block-body">
+        <p>{{ _('Now it’s harder than ever for spying companies to track you online. That’s because Enhanced Tracking Protection — a feature that blocks known tracking cookies — is on by default in your updated browser.') }}</p>
+      </div>
+    </div>
+
+    <div class="c-picto-block">
+      <div class="c-picto-block-image">
+        <img src="{{ static('img/firefox/glyphs/pocket.svg') }}" alt="">
+      </div>
+
+      <h3 class="c-picto-block-title">{{ _('Put quality content in your Pocket') }}</h3>
+      <div class="c-picto-block-body">
+        <p>{{ _('Discover the web’s best content, and absorb it anytime — even offline — on any device. Pocket’s listen feature will even read any article aloud to you. Get it all from the Firefox toolbar or the Pocket app.') }}</p>
+        <p><a href="https://getpocket.com/firefox_learnmore/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp69&utm_content=get-pocket&entrypoint=mozilla.org-firefox-whatsnew69">{{ _('Get the Pocket App') }}</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('firefox_whatsnew_69') }}
+{% endblock %}

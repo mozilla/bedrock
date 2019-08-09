@@ -559,6 +559,18 @@ class TestWhatsNew(TestCase):
 
     # end 68.0 whatsnew experiment tests
 
+    # begin 69.0 whatsnew tests
+
+    def test_fx_69_0(self, render_mock):
+        """Should use whatsnew-69 template for 69.0"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='69.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx69.html']
+
+    # end 69.0 whatsnew tests
+
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestFirstRun(TestCase):
