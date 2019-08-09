@@ -7,7 +7,7 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-Mozilla.MonitorButton = (function() {
+Mozilla.MonitorButton = (function () {
     'use strict';
 
     var monitorButton = document.getElementById('fxa-monitor-submit');
@@ -20,17 +20,39 @@ Mozilla.MonitorButton = (function() {
     }
 
     var buttonURL = monitorButton.getAttribute('href');
+    // strip url to everything after `?`
+    buttonURL = buttonURL.match(/\?(.*)/)[1];
+
     var destURL = monitorButton.getAttribute('data-action') + 'metrics-flow';
 
-    fetch(destURL).then(function(resp) {
+    // collect values from monitor button
+    var utmParams = _SearchParams.queryStringToObject(buttonURL);
+
+    var utmSource = utmParams.utm_source;
+    var utmCampaign = utmParams.utm_campaign;
+    var entrypoint = utmParams.entrypoint;
+    var formType = utmParams.form_type;
+
+    // add required params to the token fetch request
+    destURL += '?' + formType;
+    destURL += '&' + entrypoint;
+    destURL += '&' + utmSource;
+
+    // pass utm_campaign if available
+    if (utmCampaign) {
+        destURL += '&' + utmCampaign;
+    }
+
+    fetch(destURL).then(function (resp) {
         return resp.json();
-    }).then(function(r) {
-        // add retrieved flowBeginTime and flowId values to cta url
+    }).then(function (r) {
+        // add retrieved deviceID, flowBeginTime and flowId values to cta url
+        buttonURL += '&deviceId=' + r.deviceId;
         buttonURL += '&flowBeginTime=' + r.flowBeginTime;
         buttonURL += '&flowId=' + r.flowId;
         monitorButton.setAttribute('href', buttonURL);
-    }).catch(function() {
-        // silently fail, leaving flow_id and flow_begin_time as default empty value
+    }).catch(function () {
+        // silently fail: deviceId, flowBeginTime, flowId are not added to url.
     });
 })();
 

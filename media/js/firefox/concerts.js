@@ -13,7 +13,7 @@ function onYouTubeIframeAPIReady() {
 }
 
 
-(function(Mozilla) {
+(function (Mozilla) {
     'use strict';
 
     var ConcertPage = {
@@ -26,9 +26,9 @@ function onYouTubeIframeAPIReady() {
     var _requestComplete = false;
 
     // take params from URL and pass through signup button
-    ConcertPage.passThroughParams = function() {
+    ConcertPage.passThroughParams = function () {
         var params = window.location.search.slice(1);
-        ['source','medium','campaign','content'].forEach(function(p) {
+        ['source', 'medium', 'campaign', 'content'].forEach(function (p) {
             var param = 'utm_' + p;
             if (params.indexOf(param) >= 0) {
                 var regex = RegExp(param + '=([^\#\&\?]+).*$');
@@ -40,14 +40,14 @@ function onYouTubeIframeAPIReady() {
         });
     };
 
-    ConcertPage.getLocation = function() {
+    ConcertPage.getLocation = function () {
         // should /country-code.json be slow to load,
         // just show the regular messaging after 3 seconds waiting.
         _geoTimeout = setTimeout(ConcertPage.onRequestComplete, 3000);
 
         var xhr = new window.XMLHttpRequest();
 
-        xhr.onload = function(r) {
+        xhr.onload = function (r) {
             var country = 'none';
 
             // make sure status is in the acceptable range
@@ -69,7 +69,7 @@ function onYouTubeIframeAPIReady() {
         xhr.send();
     };
 
-    ConcertPage.hasGeoOverride = function(location) {
+    ConcertPage.hasGeoOverride = function (location) {
         var loc = location || window.location.search;
         if (loc.indexOf('geo=') !== -1) {
             var urlRe = /geo=([a-z]{2})/i;
@@ -82,7 +82,7 @@ function onYouTubeIframeAPIReady() {
         return false;
     };
 
-    ConcertPage.verifyLocation = function(location) {
+    ConcertPage.verifyLocation = function (location) {
         if (location) {
             return location !== ConcertPage.US_COUNTRY_CODE;
         }
@@ -90,7 +90,7 @@ function onYouTubeIframeAPIReady() {
         return false;
     };
 
-    ConcertPage.onRequestComplete = function(data) {
+    ConcertPage.onRequestComplete = function (data) {
         var country = typeof data === 'string' ? data : 'none';
 
         clearTimeout(_geoTimeout);
@@ -106,7 +106,7 @@ function onYouTubeIframeAPIReady() {
         }
     };
 
-    ConcertPage.updatePageContent = function() {
+    ConcertPage.updatePageContent = function () {
         if (ConcertPage.shouldShowConcert() === 'false') {
             ConcertPage.showExcludedContent();
         } else {
@@ -114,40 +114,40 @@ function onYouTubeIframeAPIReady() {
         }
     };
 
-    ConcertPage.showConcertContent = function() {
+    ConcertPage.showConcertContent = function () {
         // Add styling hook for us-specific CSS.
         document.body.classList.add('state-in-us');
     };
 
-    ConcertPage.showExcludedContent = function() {
+    ConcertPage.showExcludedContent = function () {
         // Add styling hook for excluded-specific CSS.
         document.body.classList.add('state-not-us');
     };
 
-    ConcertPage.shouldShowConcert = function() {
+    ConcertPage.shouldShowConcert = function () {
         // Is user in the US?
         return ConcertPage.verifyLocation(ConcertPage.getCookie(ConcertPage.COOKIE_ID));
     };
 
-    ConcertPage.cookieExpiresDate = function(date) {
+    ConcertPage.cookieExpiresDate = function (date) {
         var d = date || new Date();
         d.setTime(d.getTime() + (ConcertPage.COOKIE_EXPIRATION_DAYS * 24 * 60 * 60 * 1000));
         return d.toUTCString();
     };
 
-    ConcertPage.setCookie = function(country) {
+    ConcertPage.setCookie = function (country) {
         Mozilla.Cookies.setItem(ConcertPage.COOKIE_ID, country, ConcertPage.cookieExpiresDate());
     };
 
-    ConcertPage.getCookie = function(id) {
+    ConcertPage.getCookie = function (id) {
         return Mozilla.Cookies.getItem(id);
     };
 
-    ConcertPage.hasCookie = function() {
+    ConcertPage.hasCookie = function () {
         return Mozilla.Cookies.hasItem(ConcertPage.COOKIE_ID);
     };
 
-    ConcertPage.init = function() {
+    ConcertPage.init = function () {
         ConcertPage.passThroughParams();
 
         var cookiesEnabled = typeof Mozilla.Cookies !== 'undefined' || Mozilla.Cookies.enabled();
@@ -202,6 +202,7 @@ function onYouTubeIframeAPIReady() {
         var metricsFlowEndpoint = fxaFormWrapper.getAttribute('data-fxa-metrics-endpoint');
         var flowIdField = document.getElementById('flow_id');
         var flowBeginTimeField = document.getElementById('flow_begin_time');
+        var deviceIdField = document.getElementById('device_id');
         var stateField = document.getElementById('state');
         var fxaSignIn = document.getElementById('fxa-sign-in');
 
@@ -233,13 +234,14 @@ function onYouTubeIframeAPIReady() {
             // add required params to the token fetch request
             destURL += '?entrypoint=concerts&form_type=email&utm_campaign=firefox-concert-series-q4-2018&utm_source=mozilla.org';
 
-            fetch(destURL).then(function(resp) {
+            fetch(destURL).then(function (resp) {
                 return resp.json();
-            }).then(function(r) {
+            }).then(function (r) {
+                deviceIdField.value = r.deviceId;
                 flowIdField.value = r.flowId;
                 flowBeginTimeField.value = r.flowBeginTime;
-            }).catch(function() {
-                // silently fail, leaving flow_id and flow_begin_time as default empty value
+            }).catch(function () {
+                // silently fail, leaving device_id, flow_id and flow_begin_time as default empty value
             });
         }
     }
@@ -305,7 +307,7 @@ function onYouTubeIframeAPIReady() {
     var trigger = document.querySelector('.email-privacy-link');
     var title = document.querySelector('.email-privacy h3');
 
-    trigger.addEventListener('click', function(e) {
+    trigger.addEventListener('click', function (e) {
         e.preventDefault();
         Mzp.Modal.createModal(e.target, content, {
             title: title.innerHTML,
@@ -338,7 +340,7 @@ function onYouTubeIframeAPIReady() {
 
         videoLink.setAttribute('role', 'button');
 
-        videoLink.addEventListener('click', function(e) {
+        videoLink.addEventListener('click', function (e) {
             e.preventDefault();
 
             new YT.Player(videoLink, {
@@ -362,7 +364,7 @@ function onYouTubeIframeAPIReady() {
             function onPlayerStateChange(event) {
                 var state;
 
-                switch(event.data) {
+                switch (event.data) {
                 case YT.PlayerState.PLAYING:
                     state = 'video play';
                     break;

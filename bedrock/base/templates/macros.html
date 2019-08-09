@@ -300,9 +300,10 @@
     <input type="hidden" name="service" value="{{ service }}" />
     <input type="hidden" name="entrypoint" value="{{ entrypoint }}" id="fxa-email-form-entrypoint" />
     <input type="hidden" name="form_type" value="email" />
-    {# flow_id and flow_begin_time will be populated via JS on page load #}
+    {# device_id, flow_id and flow_begin_time will be populated via JS on page load #}
     <input type="hidden" name="flow_id" value="" />
     <input type="hidden" name="flow_begin_time" value="" />
+    <input type="hidden" name="device_id" value="" />
 
     {# utm_source is required #}
     <input type="hidden" name="utm_source" value={{ utm_source }} id="fxa-email-form-utm-source" />
@@ -354,12 +355,12 @@
         {% endtrans %}
       </p>
 
-      <button 
-        type="submit" 
-        class="{{ button_class }}" 
-        id="fxa-email-form-submit" 
-        data-cta-type="FxA-Sync" 
-        data-cta-text="Register" 
+      <button
+        type="submit"
+        class="{{ button_class }}"
+        id="fxa-email-form-submit"
+        data-cta-type="FxA-Sync"
+        data-cta-text="Register"
         data-cta-position="Primary"
       >
       {% if button_text %}

@@ -64,6 +64,7 @@ Mozilla.FxaForm = (function(Mozilla) {
         fetch(destURL).then(function(resp) {
             return resp.json();
         }).then(function(r) {
+            fxaForm.querySelector('[name="device_id"]').value = r.deviceId;
             fxaForm.querySelector('[name="flow_id"]').value = r.flowId;
             fxaForm.querySelector('[name="flow_begin_time"]').value = r.flowBeginTime;
         }).catch(function() {
