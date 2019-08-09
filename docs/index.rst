@@ -41,3 +41,4 @@ Contents
    analytics
    stub-attribution
    architectural-decisions
+   browser-support
