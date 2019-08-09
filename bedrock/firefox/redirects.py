@@ -611,4 +611,7 @@ redirectpatterns = (
 
     # issue 7287
     redirect(r'^accounts/?$', 'firefox.accounts'),
+
+    # issue 7436
+    redirect(r'^firefox/feedback/?$', 'https://support.mozilla.org/questions/new/desktop'),
 )

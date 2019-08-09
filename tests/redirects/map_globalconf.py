@@ -1271,4 +1271,7 @@ URLS = flatten((
 
     # Issue 7435
     url_test('/about/history/details/', '/about/history/'),
+
+    # Issue 7436
+    url_test('/firefox/feedback/', 'https://support.mozilla.org/questions/new/desktop'),
 ))
