@@ -14,6 +14,20 @@
 
 {% block contrib_page_title %}{{ _('Volunteer with Mozilla!') }}{% endblock %}
 
+{% block survey %}
+  {% set localized_surveys = {'en-US': 'GHJYW6D'} %}
+  {% if LANG in localized_surveys and switch('contribute-survey') %}
+    <div id="survey-message">
+      <span class="survey-invite">
+        We would love to get your opinion on your experience with our site with a short survey.
+      </span>
+      <a class="survey-button" href="https://www.surveymonkey.com/r/{{ localized_surveys[LANG] }}">
+        Take Survey.
+      </a>
+    </div>
+  {% endif %}
+{% endblock %}
+
 {% block contrib_content %}
   <section id="landing-intro" class="section landing-intro">
     <div id="slideshow" class="cycle-slideshow" data-cycle-speed="1000" data-cycle-timeout="6000" data-cycle-slides="> .slide" data-cycle-fx="fade" data-cycle-pause-on-hover="false" data-cycle-log="false">
@@ -150,27 +164,7 @@
 
 {% endblock contrib_content %}
 
-{% block cta %}
-
-  {% set localized_surveys = {'en-US': 'GHJYW6D'} %}
-
-  {% if LANG in localized_surveys and switch('contribute-survey') %}
-    <div id="survey-message">
-      <span class="survey-invite">
-        Hello! Would you be willing to take a minute to answer a few questions?
-      </span>
-      <a class="survey-button" href="https://www.surveymonkey.com/r/{{ localized_surveys[LANG] }}">
-        Sure. I’ll help.
-      </a>
-    </div>
-  {% endif %}
-
-{% endblock %}
-
 {% block js %}
   {{ js_bundle('contribute-base') }}
   {{ js_bundle('contribute-landing') }}
-  {% if switch('contribute-survey') %}
-    {{ js_bundle('contribute-survey') }}
-  {% endif %}
 {% endblock %}
