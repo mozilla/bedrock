@@ -226,6 +226,7 @@ textarea:focus {
 // @Header
 .page-head {
     padding: 11.714em 0 20px; /* 185px */
+    position: relative;
     margin-top: 0;
     background: #fff;
 
@@ -1835,34 +1836,32 @@ textarea:focus {
 
 #survey-message {
     .border-box;
-    .font-size(12px);
-    background: #fff0b3;
-    bottom: 0;
-    display: none;
+    background: #ffea80;
     min-height: 30px;
     overflow: hidden;
     padding: 10px 20px;
-    position: fixed;
     text-align: center;
     width: 100%;
-    z-index: 90;
-    transform: translateY(100%);
 
     .survey-button {
-        background-color: #00b6e0;
+        background-color: #0095dd;
         border-radius: 2px;
         color: #fff;
         height: 20px;
         margin-left: 10px;
         padding: 2px 5px;
+
+        &:hover,
+        &:focus {
+            background-color: #33aae4;
+            text-decoration: none;
+        }
     }
 
-    &.show {
-        display: block;
-    }
-
-    &.show.animate {
-        transition: transform .25s ease-in;
-        transform: translateY(0);
+    @media only screen and (min-width: @breakTablet) {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 90;
     }
 }
