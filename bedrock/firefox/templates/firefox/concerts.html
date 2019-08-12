@@ -106,11 +106,11 @@
                     <input type="email" name="email" required placeholder="yourname@example.com">
                   </p>
                   <p>
-                    <button type="submit" class="mzp-c-button mzp-t-product" id="fxa-email-form-submit" data-button-name="Create an Account">Create an Account</button>
+                    <button type="submit" class="mzp-c-button mzp-t-product" id="fxa-email-form-submit" data-cta-type="FxA-Sync" data-cta-position="Primary">Create an Account</button>
                   </p>
                 </form>
 
-                <p class="signin">Already have a Firefox Account? <a id="fxa-sign-in" href="{{ settings.FXA_OAUTH_ENDPOINT }}/signup?client_id={{ settings.FXA_OAUTH_CLIENT_ID }}&scope=profile&action=email" rel="external">Sign in</a></p>
+                <p class="signin">Already have a Firefox Account? <a id="fxa-sign-in" href="{{ settings.FXA_OAUTH_ENDPOINT }}/signup?client_id={{ settings.FXA_OAUTH_CLIENT_ID }}&scope=profile&action=email" data-cta-type="FxA-Sync" data-cta-position="Primary" rel="external">Sign in</a></p>
               </div>
             </div>{#-- /.form-content --#}
 

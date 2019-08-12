@@ -108,18 +108,9 @@ If there are valid UTM parameters in the URL we should copy them onto the link t
 
 Adding the class `js-fxa-link-cta` will trigger the global JavaScript function that handles this. If you use the `fxa_cta_link` macro to generate the link this is added automatically. If you used `fxa_link_fragment` you will need to add it manually.
 
-DataLayer
-~~~~~~~~~
 
-For datalayer values in FxA links, please use the following standard format: `FxA-ServiceName`. Examples from our existing site:
+Google Analytics Guidelines
+---------------------------
 
-```
-data-link-type="FxA-Sync"
-```
-
-We may add other data link types later.
-
-You can combine this with `data-link-name` to provide more information.
-
-Do not use `data-link-type` and `data-button-name` together, GA will log two events instead of one.
+For GTM datalayer attribute values in FxA links, please use the :ref:`analytics<analytics>` documentation.
 
