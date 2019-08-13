@@ -44,7 +44,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     header {
-        @include at2x('/media/img/firefox/firstrun/logo-nightly.png', 120px, 124px);
+        @include at2x('/media/img/logos/firefox/nightly-logo.png', 124px, 124px);
         background-position: top center;
         background-repeat: no-repeat;
         padding-top: 160px;
@@ -108,7 +108,7 @@ h1, h2, h3, h4, h5, h6 {
         }
 
         header {
-            @include background-size(140px 145px);
+            @include background-size(145px 145px);
             padding: 0 0 0 185px;
             min-height: 145px;
         }
@@ -120,7 +120,7 @@ h1, h2, h3, h4, h5, h6 {
 
     @media #{$mq-desktop-wide} {
         header {
-            @include background-size(179px 185px);
+            @include background-size(185px 185px);
             padding: 0 0 0 220px;
             min-height: 185px;
         }

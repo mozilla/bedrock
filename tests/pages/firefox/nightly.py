@@ -11,9 +11,9 @@ class FirstRunPage(BasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/nightly/firstrun/'
 
-    _start_testing_locator = (By.CSS_SELECTOR, '#nightly-box .test .button')
-    _start_coding_locator = (By.CSS_SELECTOR, '#nightly-box .code .button')
-    _start_localizing_locator = (By.CSS_SELECTOR, '#nightly-box .localize .button')
+    _start_testing_locator = (By.CSS_SELECTOR, '.contribute .test .mzp-c-button')
+    _start_coding_locator = (By.CSS_SELECTOR, '.contribute .code .mzp-c-button')
+    _start_localizing_locator = (By.CSS_SELECTOR, '.contribute .localize .mzp-c-button')
 
     @property
     def is_start_testing_displayed(self):

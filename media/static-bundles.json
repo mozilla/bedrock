@@ -489,7 +489,7 @@
     },
     {
       "files": [
-        "css/firefox/nightly_firstrun.less"
+        "css/firefox/nightly-firstrun.scss"
       ],
       "name": "nightly_firstrun"
     },

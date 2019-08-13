@@ -1,0 +1,85 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/picto-card';
+@import '../../protocol/css/components/hero';
+@import '../../protocol/css/templates/card-layout';
+
+main {
+    background-color: $color-off-black;
+    color: $color-white;
+}
+
+.mzp-c-hero.main-header {
+    background: linear-gradient($color-black, $color-off-black);
+    padding-bottom: 0;
+
+    .mzp-c-hero-title {
+        @include at2x('/media/img/logos/firefox/nightly-logo.png', 100px, 100px);
+        padding-top: 120px;
+    }
+
+    @media #{$mq-md} {
+        .mzp-c-hero-title {
+            background-size: 180px 180px;
+            padding-top: 200px;
+        }
+    }
+}
+
+.contribute {
+    background: #321c64;
+    padding-top: 0;
+
+    .contribute-title {
+        @include text-display-xs;
+        font-weight: normal;
+        margin: $spacing-lg auto;
+        max-width: 580px;
+        text-align: center;
+    }
+
+    .mzp-c-card-picto-content {
+        padding-top: 90px;
+
+        &:before {
+            background-color: transparent;
+            height: 70px;
+            margin-left: -35px;
+            width: 70px;
+        }
+    }
+
+    .mzp-c-card-picto-desc p {
+        color: $color-white;
+    }
+
+    .test .mzp-c-card-picto-content::before {
+        background-image: url('/media/img/firefox/firstrun/test.png');
+    }
+    .code .mzp-c-card-picto-content::before {
+        background-image: url('/media/img/firefox/firstrun/code.png');
+    }
+    .localize .mzp-c-card-picto-content::before {
+        background-image: url('/media/img/firefox/firstrun/localize.png');
+    }
+}
+
+.locale-specific {
+    @include light-links;
+    max-width: 1060px;
+    margin-right: 0 auto;
+    padding-top: $layout-md;
+
+    h3,
+    h4,
+    h5,
+    h6 {
+        @include text-display-sm;
+    }
+}
