@@ -7,7 +7,7 @@ if (typeof window.Mozilla === 'undefined') {
     window.Mozilla = {};
 }
 
-Mozilla.MonitorButton = (function () {
+Mozilla.MonitorButton = (function() {
     'use strict';
 
     var monitorButton = document.getElementById('fxa-monitor-submit');
@@ -21,39 +21,25 @@ Mozilla.MonitorButton = (function () {
 
     var buttonURL = monitorButton.getAttribute('href');
     // strip url to everything after `?`
-    buttonURL = buttonURL.match(/\?(.*)/)[1];
+    var buttonURLParams = buttonURL.match(/\?(.*)/)[1];
 
     var destURL = monitorButton.getAttribute('data-action') + 'metrics-flow';
 
     // collect values from monitor button
-    var utmParams = window._SearchParams.queryStringToObject(buttonURL);
-
-    console.log(utmParams);
-
-    var utmSource = utmParams.utm_source;
-    var utmCampaign = utmParams.utm_campaign;
-    var entrypoint = utmParams.entrypoint;
-    var formType = utmParams.form_type;
+    var params = window._SearchParams.queryStringToObject(buttonURLParams);
 
     // add required params to the token fetch request
-    destURL += '?' + formType;
-    destURL += '&' + entrypoint;
-    destURL += '&' + utmSource;
+    destURL += '&' + params;
 
-    // pass utm_campaign if available
-    if (utmCampaign) {
-        destURL += '&' + utmCampaign;
-    }
-
-    fetch(destURL).then(function (resp) {
+    fetch(destURL).then(function(resp) {
         return resp.json();
-    }).then(function (r) {
+    }).then(function(r) {
         // add retrieved deviceID, flowBeginTime and flowId values to cta url
         buttonURL += '&deviceId=' + r.deviceId;
         buttonURL += '&flowBeginTime=' + r.flowBeginTime;
         buttonURL += '&flowId=' + r.flowId;
         monitorButton.setAttribute('href', buttonURL);
-    }).catch(function () {
+    }).catch(function() {
         // silently fail: deviceId, flowBeginTime, flowId are not added to url.
     });
 })();
