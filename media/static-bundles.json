@@ -316,9 +316,16 @@
     },
     {
       "files": [
-        "css/mozorg/home/home-2018.scss"
+        "css/mozorg/home/home-2018.scss",
+        "css/mozorg/home/fundraiser.scss"
       ],
       "name": "home-2018"
+    },
+    {
+      "files": [
+        "js/mozorg/home/fundraiser.js"
+      ],
+      "name": "home-fundraiser"
     },
     {
       "files": [
