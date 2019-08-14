@@ -1006,7 +1006,8 @@
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
         "js/base/mozilla-monitor-button.js",
-        "js/firefox/whatsnew/up-to-date.js"
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/firefox/whatsnew/account-conditional-ctas.js"
       ],
       "name": "firefox_whatsnew_67.0.5"
     },
@@ -1016,6 +1017,7 @@
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-monitor-button.js",
+        "js/base/mozilla-monitor-button-init.js",
         "js/firefox/whatsnew/up-to-date.js"
       ],
       "name": "firefox_whatsnew_68E_monitor"
@@ -1398,7 +1400,8 @@
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
         "js/base/mozilla-monitor-button.js",
-        "js/firefox/accounts-2019.js"
+        "js/firefox/accounts-2019.js",
+        "js/firefox/whatsnew/account-conditional-ctas.js"
       ],
       "name": "firefox_accounts_2019"
     },
