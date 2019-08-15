@@ -6,25 +6,27 @@
 
 {% extends "firefox/whatsnew/whatsnew-fx66.html" %}
 
+{% set _entrypoint = 'mozilla.org-whatsnew68a2' %}
+
 {% block fxa_form %}
 {{ fxa_email_form(
-    entrypoint='mozilla.org-whatsnew68a2',
+    entrypoint=_entrypoint,
     button_class='mzp-c-button')
 }}
 {% endblock %}
 
 {% block fxa_cta %}
 <p class="show-fxa-supported-signed-out show-fxa-default">
-  {{ fxa_cta_link(entrypoint='mozilla.org-whatsnew68a2', action='signup', button_text=_('Create a Firefox Account'), button_class='mzp-c-button mzp-t-product', utm_campaign='wnp68a2', utm_content='accounts-page-top-cta') }}<br>
+  {{ fxa_cta_link(entrypoint=_entrypoint, action='signup', button_text=_('Create a Firefox Account'), button_class='mzp-c-button mzp-t-product', utm_campaign='wnp68a2', utm_content='accounts-page-top-cta') }}<br>
 
   {% if l10n_has_tag('wnp66_log_in') %}
-  {% set link = fxa_link_fragment(entrypoint='mozilla.org-whatsnew68a2', action='login', utm_campaign='wnp68a2', utm_content='accounts-page-top-cta') %}
+  {% set link = fxa_link_fragment(entrypoint=_entrypoint, action='login', utm_campaign='wnp68a2', utm_content='accounts-page-top-cta') %}
   <span class="wn64-signin">
     {{ _('Have an account? <a %s >Log in</a>')|format(link) }}
   </span>
   {% else %}
   <span class="wn64-signin">
-    <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew68a2', action='login', utm_campaign='wnp68a2', utm_content='accounts-page-top-cta') }} class="js-fxa-cta-link">{{ _('Already have an account?') }}</a>
+    <a {{ fxa_link_fragment(entrypoint=_entrypoint, action='login', utm_campaign='wnp68a2', utm_content='accounts-page-top-cta') }} class="js-fxa-cta-link">{{ _('Already have an account?') }}</a>
   </span>
   {% endif %}
 </p>

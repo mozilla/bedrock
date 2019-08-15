@@ -313,7 +313,7 @@
     <input type="hidden" name="utm_source" value={{ entrypoint }} id="fxa-email-form-utm-source" />
     <input type="hidden" name="utm_medium" value="referral" id="fxa-email-form-utm-medium" />
 
-    {# utm_campaign is used to identify specific marketing campaigns. (For example: trailhead or skyline) If there is one, the campaign name is appended to the default value of `fxa-embedded-form`. #}
+    {# utm_campaign is used to identify specific marketing campaigns. (For example: trailhead or skyline) If there is one, the campaign name is prepended to the default value of `fxa-embedded-form`. #}
     {% if utm_campaign %}
       <input type="hidden" name="utm_campaign" value="{{ utm_campaign }}-fxa-embedded-form" id="fxa-email-form-utm-campaign" />
     {% else %}

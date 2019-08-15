@@ -8,6 +8,8 @@
 
 {% extends "firefox/base-protocol.html" %}
 
+{% set _entrypoint = 'mozilla.org-firstrun' %}
+
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
@@ -69,10 +71,10 @@
           <aside class="c-box-emphasis" >
             <div class="c-box-emphasis-content" id="fxaccounts-wrapper">
               {{ fxa_email_form(
-                entrypoint='mozilla.org-firstrun',
+                entrypoint=_entrypoint,
                 button_class='mzp-c-button mzp-t-product')
               }}
-              <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-firstrun', utm_campaign='fxa-embedded-form') }} class="js-fxa-cta-link">{{ _('Sign In') }}</a></p>
+              <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint=_entrypoint, utm_campaign='fxa-embedded-form') }} class="js-fxa-cta-link">{{ _('Sign In') }}</a></p>
             </div>
           </aside>
         </div>
