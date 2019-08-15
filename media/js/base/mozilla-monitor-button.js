@@ -38,11 +38,11 @@ if (typeof window.Mozilla === 'undefined') {
         var params = window._SearchParams.queryStringToObject(buttonURLParams);
 
         // add required params to the token fetch request
-        destURL += '&entrypoint=' + params.entrypoint;
+        destURL += '?entrypoint=' + params.entrypoint;
         destURL += '&form_type=' + params.form_type;
-        destURL += '&utm_campaign=' + params.campaign;
-        destURL += '&utm_content=' + params.content;
-        destURL += '&utm_source=' + params.source;
+        destURL += '&utm_campaign=' + params.utm_campaign;
+        destURL += '&utm_content=' + params.utm_content;
+        destURL += '&utm_source=' + params.utm_source;
 
         fetch(destURL).then(function(resp) {
             return resp.json();
