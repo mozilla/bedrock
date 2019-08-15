@@ -4,10 +4,10 @@
 
 $font-path: '/media/fonts';
 
-@import '../../protocol/css/includes/lib';
-@import '../../protocol/css/templates/main-with-sidebar';
-@import '../../protocol/css/components/sidebar-menu';
-@import '../../protocol/css/components/article';
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/templates/main-with-sidebar';
+@import '../../../protocol/css/components/sidebar-menu';
+@import '../../../protocol/css/components/article';
 
 $border: 2px solid $color-gray-20;
 

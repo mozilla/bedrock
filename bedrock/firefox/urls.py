@@ -67,7 +67,6 @@ urlpatterns = (
     page('firefox/unsupported-systems', 'firefox/unsupported-systems.html'),
     url(r'^firefox/new/$', views.new, name='firefox.new'),
     url(r'^firefox/download/thanks/$', views.download_thanks, name='firefox.download.thanks'),
-    page('firefox/organizations', 'firefox/organizations/organizations.html'),
     page('firefox/nightly/firstrun', 'firefox/nightly_firstrun.html'),
     url(r'^firefox/installer-help/$', views.installer_help,
         name='firefox.installer-help'),

@@ -51,7 +51,6 @@ def test_x_robots_tag(base_url):
     '/firefox/mobile/',
     '/firefox/new/',
     '/firefox/nightly/firstrun/',
-    '/firefox/organizations/',
     '/firefox/os/',
     '/firefox/os/notes/1.1/',
     '/firefox/partners/',

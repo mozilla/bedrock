@@ -1199,8 +1199,8 @@ URLS = flatten((
     # bug 1416708
     url_test('/firefox/quantum/', '/firefox/'),
 
-    # bug 1421584
-    url_test('/firefox/organizations/faq/', '/firefox/organizations/'),
+    # bug 1421584, issue 7491
+    url_test('/firefox/organizations/faq/', '/firefox/enterprise/'),
 
     # bug 1425865
     url_test('/firefox/fire-tv/', 'https://support.mozilla.org/products/firefox-fire-tv/', status_code=302),
@@ -1274,4 +1274,7 @@ URLS = flatten((
 
     # Issue 7436
     url_test('/firefox/feedback/', 'https://support.mozilla.org/questions/new/desktop'),
+
+    # Issue 7491
+    url_test('/firefox/organizations/', '/firefox/enterprise/'),
 ))

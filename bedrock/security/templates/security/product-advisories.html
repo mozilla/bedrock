@@ -17,7 +17,7 @@
       {% if product_slug == 'firefox' %}
         Please <a href="{{ url('firefox.new') }}">upgrade to the latest version</a>.
       {% elif product_slug == 'firefox-esr' %}
-        Please <a href="{{ url('firefox.organizations.organizations') }}">upgrade to the latest version</a>.
+        Please <a href="{{ url('firefox.enterprise.index') }}">upgrade to the latest version</a>.
       {% elif product_slug.startswith('thunderbird') %}
         {# could be thunderbird-esr which is always obsolete now #}
         Please <a href="https://thunderbird.net">upgrade to the latest version</a>.
