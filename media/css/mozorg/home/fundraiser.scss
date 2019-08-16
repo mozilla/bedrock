@@ -9,9 +9,26 @@ $image-path: '/media/protocol/img';
 
 @keyframes fadein {
     0% {background-color: black;}
-    33% {background-color: $color-violet-40;}
-    66% {background-color: $color-blue-40;}
-    100% {background-color: $color-green-40;}
+    5% {background: linear-gradient(125deg, $color-green-40 0%, $color-blue-40 10%, $color-violet-40 40%);}
+    10% {background: linear-gradient(125deg, $color-green-40 5%, $color-blue-40 15%, $color-violet-40 45%);}
+    15% {background: linear-gradient(125deg, $color-green-40 10%, $color-blue-40 20%, $color-violet-40 50%);}
+    20% {background: linear-gradient(125deg, $color-green-40 15%, $color-blue-40 25%, $color-violet-40 55%);}
+    25% {background: linear-gradient(125deg, $color-green-40 20%, $color-blue-40 30%, $color-violet-40 60%);}
+    30% {background: linear-gradient(125deg, $color-green-40 25%, $color-blue-40 35%, $color-violet-40 65%);}
+    35% {background: linear-gradient(125deg, $color-green-40 30%, $color-blue-40 40%, $color-violet-40 70%);}
+    40% {background: linear-gradient(125deg, $color-green-40 35%, $color-blue-40 45%, $color-violet-40 75%);}
+    45% {background: linear-gradient(125deg, $color-green-40 40%, $color-blue-40 50%, $color-violet-40 80%);}
+    50% {background: linear-gradient(125deg, $color-green-40 45%, $color-blue-40 55%, $color-violet-40 85%);}
+    55% {background: linear-gradient(125deg, $color-green-40 50%, $color-blue-40 60%, $color-violet-40 90%);}
+    60% {background: linear-gradient(125deg, $color-green-40 55%, $color-blue-40 65%, $color-violet-40 95%);}
+    65% {background: linear-gradient(125deg, $color-green-40 60%, $color-blue-40 70%, $color-violet-40 100%);}
+    70% {background: linear-gradient(125deg, $color-green-40 65%, $color-blue-40 75%, $color-violet-40 100%);}
+    75% {background: linear-gradient(125deg, $color-green-40 70%, $color-blue-40 80%, $color-violet-40 100%);}
+    80% {background: linear-gradient(125deg, $color-green-40 75%, $color-blue-40 85%, $color-violet-40 100%);}
+    85% {background: linear-gradient(125deg, $color-green-40 80%, $color-blue-40 90%, $color-violet-40 100%);}
+    90% {background: linear-gradient(125deg, $color-green-40 85%, $color-blue-40 95%, $color-violet-40 100%);}
+    95% {background: linear-gradient(125deg, $color-green-40 90%, $color-blue-40 100%, $color-violet-40 100%);}
+    100% {background: linear-gradient(125deg, $color-green-40 95%, $color-blue-40 100%, $color-violet-40 100%);}
 }
 
 .c-fundraiser {
@@ -44,7 +61,8 @@ $image-path: '/media/protocol/img';
         background-color: $color-green-40;
         color: black;
         animation-name: fadein;
-        animation-duration: 5s;
+        animation-duration: 1.5s;
+
     }
 }
 
@@ -74,8 +92,6 @@ $image-path: '/media/protocol/img';
 .c-fundraiser-content strong {
     background-color: $color-green-40;
     color: black;
-    animation-name: fadein;
-    animation-duration: 5s;
 }
 
 .c-fundraiser-recurring {
