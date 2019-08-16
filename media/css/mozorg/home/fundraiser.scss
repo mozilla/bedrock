@@ -7,6 +7,11 @@ $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
 
+@keyframes fadein {
+    from {background-color: black;}
+    to {background-color: $color-green-40;}
+}
+
 .c-fundraiser {
     @include clearfix;
     background: black;
@@ -31,11 +36,6 @@ $image-path: '/media/protocol/img';
         }
     }
 }
-
-@keyframes fadein {
-    from {background-color: black;}
-    to {background-color: $color-green-40;}
-  }
 
 .c-fundraiser {
     h2 span {
