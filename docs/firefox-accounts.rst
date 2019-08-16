@@ -46,6 +46,7 @@ The templates's respective JavaScript and CSS bundles should also include the fo
 .. code-block:: text
 
     js/base/mozilla-fxa-form.js
+    js/base/mozilla-fxa-form-init.js
 
 This script will automatically handle things like tracking metrics flow (see the Tracking Signups section below), as well as configuring Sync and distribution ID (e.g. the China re-pack) for Firefox browsers.
 
@@ -206,11 +207,12 @@ A button can then be invoked using:
 
     {{ monitor_button(entrypoint='mozilla.org-firefox-accounts')}}
 
-The templates's respective JavaScript bundle should also include the following dependency:
+The templates's respective JavaScript bundle should also include the following dependencies:
 
 .. code-block:: text
 
     js/base/mozilla-monitor-button.js
+    js/base/mozilla-monitor-button-init.js
 
 This script will automatically handle things like tracking metrics flow (in the same way we do for https://accounts.firefox.com).
 
