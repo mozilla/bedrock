@@ -9,6 +9,7 @@ $image-path: '/media/protocol/img';
 
 @keyframes fadein {
     0% {background-color: black;}
+    2% {background: linear-gradient(125deg, $color-blue-40 5%, $color-violet-40 35%);}
     5% {background: linear-gradient(125deg, $color-green-40 0%, $color-blue-40 10%, $color-violet-40 40%);}
     10% {background: linear-gradient(125deg, $color-green-40 5%, $color-blue-40 15%, $color-violet-40 45%);}
     15% {background: linear-gradient(125deg, $color-green-40 10%, $color-blue-40 20%, $color-violet-40 50%);}
@@ -26,9 +27,9 @@ $image-path: '/media/protocol/img';
     75% {background: linear-gradient(125deg, $color-green-40 70%, $color-blue-40 80%, $color-violet-40 100%);}
     80% {background: linear-gradient(125deg, $color-green-40 75%, $color-blue-40 85%, $color-violet-40 100%);}
     85% {background: linear-gradient(125deg, $color-green-40 80%, $color-blue-40 90%, $color-violet-40 100%);}
-    90% {background: linear-gradient(125deg, $color-green-40 85%, $color-blue-40 95%, $color-violet-40 100%);}
-    95% {background: linear-gradient(125deg, $color-green-40 90%, $color-blue-40 100%, $color-violet-40 100%);}
-    100% {background: linear-gradient(125deg, $color-green-40 95%, $color-blue-40 100%, $color-violet-40 100%);}
+    90% {background: linear-gradient(125deg, $color-green-40 85%, $color-blue-40 95%);}
+    95% {background: linear-gradient(125deg, $color-green-40 90%, $color-blue-40 100%);}
+    100% {background: linear-gradient(125deg, $color-green-40 95%, $color-blue-40 100%);}
 }
 
 .c-fundraiser {

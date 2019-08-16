@@ -323,12 +323,6 @@
     },
     {
       "files": [
-        "js/mozorg/home/fundraiser.js"
-      ],
-      "name": "home-fundraiser"
-    },
-    {
-      "files": [
         "css/pebbles/base/oldIE.scss"
       ],
       "name": "oldIE-pebbles"
@@ -1172,6 +1166,12 @@
         "js/mozorg/home/home.js"
       ],
       "name": "home"
+    },
+    {
+      "files": [
+        "js/mozorg/home/fundraiser.js"
+      ],
+      "name": "home-fundraiser"
     },
     {
       "files": [
