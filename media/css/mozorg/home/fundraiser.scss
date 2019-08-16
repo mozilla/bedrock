@@ -9,7 +9,7 @@ $image-path: '/media/protocol/img';
 
 .c-fundraiser {
     @include clearfix;
-    background: $color-purple-90;
+    background: black;
     background-size: cover;
     color: $color-white;
     padding: $spacing-md 0 0;
@@ -32,10 +32,29 @@ $image-path: '/media/protocol/img';
     }
 }
 
+@keyframes fadein {
+    from {background-color: black;}
+    to {background-color: $color-green-40;}
+  }
+
+.c-fundraiser {
+    h2 span {
+        background-color: $color-green-40;
+        color: black;
+        animation-name: fadein;
+        animation-duration: 3s;
+    }
+}
+
+
 .c-fundraiser-title {
     @include text-display-lg;
-    font-weight: normal;
+    font-weight: bold;
+    margin-top: $spacing-xl;
     margin-bottom: $spacing-lg;
+    @include font-mozilla;
+    color: $color-green-40;
+    line-height: 1.25em;
 }
 
 .c-fundraiser-amount-input {
@@ -48,6 +67,13 @@ $image-path: '/media/protocol/img';
         background-color: rgba(255, 255, 255, .25);
         font-weight: bold;
     }
+}
+
+.c-fundraiser-content strong {
+    background-color: $color-green-40;
+    color: black;
+    animation-name: fadein;
+    animation-duration: 3s;
 }
 
 .c-fundraiser-recurring {
