@@ -8,8 +8,10 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/includes/lib';
 
 @keyframes fadein {
-    from {background-color: black;}
-    to {background-color: $color-green-40;}
+    0% {background-color: black;}
+    33% {background-color: $color-violet-40;}
+    66% {background-color: $color-blue-40;}
+    100% {background-color: $color-green-40;}
 }
 
 .c-fundraiser {
@@ -42,7 +44,7 @@ $image-path: '/media/protocol/img';
         background-color: $color-green-40;
         color: black;
         animation-name: fadein;
-        animation-duration: 3s;
+        animation-duration: 5s;
     }
 }
 
@@ -73,7 +75,7 @@ $image-path: '/media/protocol/img';
     background-color: $color-green-40;
     color: black;
     animation-name: fadein;
-    animation-duration: 3s;
+    animation-duration: 5s;
 }
 
 .c-fundraiser-recurring {
