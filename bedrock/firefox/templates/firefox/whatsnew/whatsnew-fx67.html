@@ -4,7 +4,7 @@
 
 {% from "macros-protocol.html" import hero, call_out_compact, feature_card with context %}
 
-{% from "macros.html" import fxa_email_form, fxa_link_fragment, google_play_button with context %}
+{% from "macros.html" import fxa_email_form, google_play_button with context %}
 
 {% add_lang_files "firefox/whatsnew_67" %}
 
@@ -127,7 +127,6 @@
       {{ fxa_email_form(
           entrypoint='mozilla.org-whatsnew67',
           button_class='mzp-c-button mzp-t-product mzp-t-small',
-          utm_source='whatsnew67',
           utm_content='unlock-benefits')
       }}
       {% endblock %}

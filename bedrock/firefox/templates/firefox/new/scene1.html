@@ -161,12 +161,10 @@
   {{ fxa_email_form(
     entrypoint='mozilla.org-firefox-new',
     button_text=_('Get a Firefox Account'),
-    utm_source='firefox-new',
     utm_term='existing-users')
   }}
 
-  <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-firefox_new', utm_params={'campaign': 'fxa-embedded-form', 'content': '/firefox/new/', 'source': 'download-page'}) }} class="js-fxa-cta-link" data-cta-type="FxA-Sync">{{ _('Sign In') }}</a></p>
-
+  <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-firefox-new', utm_campaign='fxa-embedded-form') }} class="js-fxa-cta-link" data-cta-type="FxA-Sync">{{ _('Sign In') }}</a></p>
   {{ download_firefox(dom_id='download-fxa-modal', alt_copy=_('Download Anyway'), button_color='button-hollow button-blue', locale_in_transition=True, download_location='other') }}
 </div>
 {% endif %}

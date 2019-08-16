@@ -8,6 +8,8 @@
 
 {% extends "firefox/base-protocol.html" %}
 
+{% set _entrypoint = 'mozilla.org-firstrun' %}
+
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
@@ -45,7 +47,7 @@
 {% block content %}
   <section class="hero mzp-has-image mzp-t-firefox mzp-t-product-firefox">
     <div class="page-content">
-      
+
       <div class="mzp-l-content">
         <div class="mzp-c-hero-body">
           <div class="browser-logo">
@@ -69,11 +71,10 @@
           <aside class="c-box-emphasis" >
             <div class="c-box-emphasis-content" id="fxaccounts-wrapper">
               {{ fxa_email_form(
-                entrypoint='mozilla.org-firstrun',
-                utm_source='mozilla.org-firstrun',
+                entrypoint=_entrypoint,
                 button_class='mzp-c-button mzp-t-product')
               }}
-              <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-firstrun_page', utm_params={'campaign': 'fxa-embedded-form', 'medium': 'referral', 'content': 'firstrun-page', 'source': 'mozilla.org-firstrun'}) }} class="js-fxa-cta-link">{{ _('Sign In') }}</a></p>
+              <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint=_entrypoint, utm_campaign='fxa-embedded-form') }} class="js-fxa-cta-link">{{ _('Sign In') }}</a></p>
             </div>
           </aside>
         </div>

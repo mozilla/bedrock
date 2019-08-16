@@ -63,8 +63,7 @@
       <p class="c-accounts-hero-desc">{{ _('See if you’ve been involved in an online data breach.') }}</p>
 
       {{ monitor_button(
-        entrypoint= _entrypoint,
-        utm_source=_utm_source,
+        entrypoint=_entrypoint,
         utm_campaign=_utm_campaign
       ) }}
     </div>
@@ -73,7 +72,6 @@
     <div class="c-accounts-form">
       {{ fxa_email_form(
         entrypoint=_entrypoint,
-        utm_source=_utm_source,
         form_title=_('Join Firefox'),
         intro_text=_('Enter your email address to get started.'),
         button_class='mzp-c-button mzp-t-primary mzp-t-product',
@@ -81,11 +79,7 @@
         utm_campaign=_utm_campaign)
       }}
 
-      <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(
-        entrypoint=_entrypoint,
-        action='signin',
-        utm_params={'campaign': _utm_campaign, 'content': 'form-upper', 'source': _utm_source }
-        ) }} class="js-fxa-cta-link">{{ _('Sign In') }}</a></p>
+      <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint=_entrypoint, action='signin', utm_campaign=_utm_campaign, utm_content='form-upper') }} class="js-fxa-cta-link">{{ _('Sign In') }}</a></p>
     </div>
   </div>
 </section>

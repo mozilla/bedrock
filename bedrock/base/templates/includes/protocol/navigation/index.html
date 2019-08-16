@@ -29,7 +29,7 @@
           {% endif %}
           {% if not hide_nav_get_account_button %}
             <div class="c-navigation-fxa-cta-container">
-              <a class="c-navigation-fxa-cta mzp-c-button mzp-t-secondary mzp-t-small mzp-t-product js-fxa-cta-link" {{ fxa_link_fragment(entrypoint='mozilla.org-globalnav', action='signup', utm_params={'campaign': 'globalnav', 'content': 'get-firefox-account', 'medium': 'referral', 'source': 'www.mozilla.org'}) }} data-cta-text="Get a Firefox Account" data-cta-type="FxA-Sync" data-cta-position="Navigation" data-alt-href="{{ url('firefox.accounts') }}">
+              <a class="c-navigation-fxa-cta mzp-c-button mzp-t-secondary mzp-t-small mzp-t-product js-fxa-cta-link" {{ fxa_link_fragment(entrypoint='mozilla.org-globalnav', action='signup', utm_campaign='globalnav', utm_content='get-firefox-account') }} data-cta-text="Get a Firefox Account" data-cta-type="FxA-Sync" data-cta-position="Navigation" data-alt-href="{{ url('firefox.accounts') }}">
                 {{ _('Get a Firefox Account') }}
               </a>
               <p class="c-navigation-fxa-cta-small-link"><a data-link-type="nav" data-link-name="Check out the Benefits" href="{{ url('firefox.accounts') }}">{{ _('Check out the Benefits') }}</a></p>
