@@ -53,15 +53,25 @@ if (typeof window.Mozilla === 'undefined') {
             var entrypoint = document.getElementById('fxa-email-form-entrypoint');
             var utmSource = document.getElementById('fxa-email-form-utm-source');
             var utmCampaign = document.getElementById('fxa-email-form-utm-campaign');
+            var utmContent = document.getElementById('fxa-email-form-utm-content');
+            var utmTerm = document.getElementById('fxa-email-form-utm-term');
 
             // add required params to the token fetch request
             destURL += '?form_type=email';
             destURL += '&entrypoint=' + entrypoint.value;
             destURL += '&utm_source=' + utmSource.value;
 
-            // pass utm_campaign if available
+            // add optional utm params to the token fetch request
             if (utmCampaign) {
                 destURL += '&utm_campaign=' + utmCampaign.value;
+            }
+
+            if (utmContent) {
+                destURL += '&utm_content=' + utmContent.value;
+            }
+
+            if (utmTerm) {
+                destURL += '&utm_term=' + utmTerm.value;
             }
 
             fetch(destURL).then(function(resp) {

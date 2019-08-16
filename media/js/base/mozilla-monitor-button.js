@@ -38,17 +38,22 @@ if (typeof window.Mozilla === 'undefined') {
         var params = window._SearchParams.queryStringToObject(buttonURLParams);
 
         // add required params to the token fetch request
-        if (params.utm_content) {
-            destURL += '&utm_content=' + params.utm_content;
-        }
+        destURL += '?entrypoint=' + params.entrypoint;
+        destURL += '&form_type=' + params.form_type;
+        destURL += '&utm_source=' + params.utm_source;
 
+        // add optional utm params to the token fetch request
         if (params.utm_campaign) {
             destURL += '&utm_campaign=' + params.utm_campaign;
         }
 
-        destURL += '?entrypoint=' + params.entrypoint;
-        destURL += '&form_type=' + params.form_type;
-        destURL += '&utm_source=' + params.utm_source;
+        if (params.utm_content) {
+            destURL += '&utm_content=' + params.utm_content;
+        }
+
+        if (params.utm_term) {
+            destURL += '&utm_term=' + params.utm_term;
+        }
 
         fetch(destURL).then(function(resp) {
             return resp.json();
