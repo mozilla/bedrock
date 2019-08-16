@@ -2,7 +2,9 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "firefox/base-pebbles.html" %}
+{% extends "firefox/base-protocol.html" %}
+
+{% from "macros-protocol.html" import hero, picto_card with context %}
 
 {% block page_title %}{{ _('Switch from Chrome to Firefox in just a few minutes') }}{% endblock %}
 {% block page_desc %}{{ _('Switching to Firefox is fast, easy and risk-free, because Firefox imports your bookmarks, autofills, passwords and preferences from Chrome.') }}{% endblock %}
@@ -16,61 +18,70 @@
 {% block content %}
 {% include 'firefox/includes/hub/sub-nav.html' %}
 <main>
-  <div class="outer-container">
-    <div class="content">
-      <div class="inner-container">
-        <header>
-          <h1>{{ _('Switch from Chrome to Firefox in just a few minutes') }}</h1>
-          <p class="tagline">{{ _('Switching to Firefox is fast, easy and risk-free. Firefox imports your bookmarks, autofills, passwords and preferences from Chrome.') }}</p>
-        </header>
+  {% call hero(
+    title=_('Switch from Chrome to Firefox in just a few minutes'),
+    desc=_('Switching to Firefox is fast, easy and risk-free. Firefox imports your bookmarks, autofills, passwords and preferences from Chrome.'),
+    class='mzp-has-image mzp-t-product-firefox t-switch',
+    include_cta=False,
+    heading_level=1
+  ) %}
+  {% endcall %}
 
-        <ol>
-          <li>{{ _('Select what to take from Chrome.') }}</li>
-          <li>{{ _('Let Firefox do the rest.') }}</li>
-          <li>{{ _('Enjoy the web faster, all set up for you.') }}</li>
-        </ol>
-
-        {{ download_firefox(alt_copy=_('Download and switch'), download_location='primary cta') }}
-
-        <footer>
-          <p>{{ _('You can use Firefox and still have Chrome. Chrome won’t change on your machine one bit.') }} {{ _('Share with your friends how to switch to Firefox') }}</p>
-
-          {% set share_url = settings.CANONICAL_URL + canonical_path %}
-          <ul class="share-options">
-            <li>
-              <a class="facebook" data-link-type="social share" data-link-name="Facebook" href="https://www.facebook.com/sharer/sharer.php?s=100&p[url]={{ share_url|urlencode }}">
-                {{ _('Share to Facebook') }}
-              </a>
-            </li>
-            <li>
-              {# L10n: the string below is for a referral Twitter message. #}
-              {% set tweet_text = _('🔥 Firefox makes switching from Chrome really fast. Try it out!') %}
-              <a class="twitter" data-link-type="social share" data-link-name="Twitter" href="https://www.twitter.com/intent/tweet?url={{ share_url|urlencode }}&text={{ tweet_text|urlencode }}">
-                {{ _('Send a tweet') }}
-              </a>
-            </li>
-            <li>
-              {# L10n: the string below is the subject line for an email referral message. #}
-              {% set email_subject = _('Switch to Firefox')|mailtoencode %}
-              {# L10n: the string below is the introduction of the email referral message body. #}
-              {% set email_intro = _('Hey,')|mailtoencode %}
-              {# L10n: the string below is the first sentance of the email referral message body. #}
-              {% set email_start = _('Firefox makes switching from Chrome really fast. I like it a lot, and you should try it.')|mailtoencode %}
-              {# L10n: the string below is the second sentance of the email referral message body. At the end of the string after the colon, a URL will be added automatically. #}
-              {% set email_end = _('Check it out and let me know what you think:')|mailtoencode %}
-
-              {% set email_body = email_intro + '%0D%0A%0D%0A' + email_start + '%0D%0A%0D%0A' + email_end + '%20' + share_url|urlencode %}
-              <a class="email" data-link-type="social share" data-link-name="Email" href="{{ 'mailto:?subject=%s&body=%s'|format(email_subject, email_body)|e }}">
-                {{ _('Send an email') }}
-              </a>
-            </li>
-          </ul>
-
-          <p>{{ _('Still not convinced that switching to Firefox is easy?') }} <a href="https://support.mozilla.org/kb/switching-chrome-firefox">{{ _('Learn more') }}</a></p>
-        </footer>
-      </div>
+  <section class="c-steps mzp-l-content">
+    <ol class="c-steps-list">
+      <li class="c-steps-item">{{ _('Select what to take from Chrome.') }}</li>
+      <li class="c-steps-item">{{ _('Let Firefox do the rest.') }}</li>
+      <li class="c-steps-item">{{ _('Enjoy the web faster, all set up for you.') }}</li>
+    </ol>
+    <div class="c-steps-cta">
+    {{ download_firefox(alt_copy=_('Download and switch'), download_location='primary cta') }}
     </div>
-  </div>
+  </section>
+
+  <section class="c-share">
+    <div class="mzp-l-content">
+
+      {% if l10n_has_tag('switch_201908') %}
+        <h2 class="c-share-title">{{ _('Share your Firefox experience.') }}</h2>
+        <p>{{ _('Tell your friends and family about the easy switch.') }}</p>
+      {% else %}
+        <p>{{ _('You can use Firefox and still have Chrome. Chrome won’t change on your machine one bit.') }} {{ _('Share with your friends how to switch to Firefox') }}</p>
+      {% endif %}
+
+      {% set share_url = settings.CANONICAL_URL + canonical_path %}
+      <ul class="c-share-options">
+        <li>
+          <a class="facebook" data-link-type="social share" data-link-name="Facebook" href="https://www.facebook.com/sharer/sharer.php?s=100&p[url]={{ share_url|urlencode }}">
+            {{ _('Share to Facebook') }}
+          </a>
+        </li>
+        <li>
+          {# L10n: the string below is for a referral Twitter message. #}
+          {% set tweet_text = _('🔥 Firefox makes switching from Chrome really fast. Try it out!') %}
+          <a class="twitter" data-link-type="social share" data-link-name="Twitter" href="https://www.twitter.com/intent/tweet?url={{ share_url|urlencode }}&text={{ tweet_text|urlencode }}">
+            {{ _('Send a tweet') }}
+          </a>
+        </li>
+        <li>
+          {# L10n: the string below is the subject line for an email referral message. #}
+          {% set email_subject = _('Switch to Firefox')|mailtoencode %}
+          {# L10n: the string below is the introduction of the email referral message body. #}
+          {% set email_intro = _('Hey,')|mailtoencode %}
+          {# L10n: the string below is the first sentance of the email referral message body. #}
+          {% set email_start = _('Firefox makes switching from Chrome really fast. I like it a lot, and you should try it.')|mailtoencode %}
+          {# L10n: the string below is the second sentance of the email referral message body. At the end of the string after the colon, a URL will be added automatically. #}
+          {% set email_end = _('Check it out and let me know what you think:')|mailtoencode %}
+
+          {% set email_body = email_intro + '%0D%0A%0D%0A' + email_start + '%0D%0A%0D%0A' + email_end + '%20' + share_url|urlencode %}
+          <a class="email" data-link-type="social share" data-link-name="Email" href="{{ 'mailto:?subject=%s&body=%s'|format(email_subject, email_body)|e }}">
+            {{ _('Send an email') }}
+          </a>
+        </li>
+      </ul>
+
+      <p>{{ _('Still not convinced that switching to Firefox is easy?') }} <a href="https://support.mozilla.org/kb/switching-chrome-firefox">{{ _('Learn more') }}</a></p>
+    </div>
+  </section>
 </main>
 {% endblock %}
 
