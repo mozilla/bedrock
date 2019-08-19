@@ -53,7 +53,7 @@
     {# Main page h1 is hidden from view and exists mainly for SEO purposes #}
     <h1>{{ self.page_title() }}</h1>
   </header>
-  
+
   {% call download_banner(
     logo_title=_('Firefox'),
     title=_('Your life is your business. Not ours.'),
@@ -69,7 +69,7 @@
     ) %}
     {{ download_firefox(dom_id='download-sticky', download_location='sticky cta', button_color='mzp-t-small') }}
   {% endcall %}
-  
+
   {{ fxa_banner(
     logo_title=_('Firefox'),
     title=_('Live your life.<br> Own your life.'),
