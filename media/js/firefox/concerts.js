@@ -12,7 +12,6 @@ function onYouTubeIframeAPIReady() {
     Mozilla.firefoxConcertsOnYouTubeIframeAPIReady();
 }
 
-
 (function(Mozilla) {
     'use strict';
 
@@ -28,7 +27,7 @@ function onYouTubeIframeAPIReady() {
     // take params from URL and pass through signup button
     ConcertPage.passThroughParams = function() {
         var params = window.location.search.slice(1);
-        ['source','medium','campaign','content'].forEach(function(p) {
+        ['source', 'medium', 'campaign', 'content'].forEach(function(p) {
             var param = 'utm_' + p;
             if (params.indexOf(param) >= 0) {
                 var regex = RegExp(param + '=([^\#\&\?]+).*$');
@@ -178,7 +177,6 @@ function onYouTubeIframeAPIReady() {
     };
     window.Mozilla.ConcertPage = ConcertPage;
 
-
     var stateStorageKey = 'fxaOauthState';
     var verifiedStorageKey = 'fxaOauthVerified';
     var cookieDays = 14;
@@ -197,11 +195,13 @@ function onYouTubeIframeAPIReady() {
         Next, we retrieve metrics information from an asynchronous FxA call. When this
         call completes, the submit button on the form is enabled.
     */
+
     function initOauth() {
         var fxaFormWrapper = document.getElementById('fxa-form-wrapper');
         var metricsFlowEndpoint = fxaFormWrapper.getAttribute('data-fxa-metrics-endpoint');
         var flowIdField = document.getElementById('flow_id');
         var flowBeginTimeField = document.getElementById('flow_begin_time');
+        var deviceIdField = document.getElementById('device_id');
         var stateField = document.getElementById('state');
         var fxaSignIn = document.getElementById('fxa-sign-in');
 
@@ -236,10 +236,11 @@ function onYouTubeIframeAPIReady() {
             fetch(destURL).then(function(resp) {
                 return resp.json();
             }).then(function(r) {
+                deviceIdField.value = r.deviceId;
                 flowIdField.value = r.flowId;
                 flowBeginTimeField.value = r.flowBeginTime;
             }).catch(function() {
-                // silently fail, leaving flow_id and flow_begin_time as default empty value
+                // silently fail, leaving device_id, flow_id and flow_begin_time as default empty value
             });
         }
     }
@@ -299,7 +300,6 @@ function onYouTubeIframeAPIReady() {
         initializeClock('countdown-one', showtimeOne);
     }
 
-
     // Set up modal for the email privacy link
     var content = document.querySelector('.mzp-u-modal-content');
     var trigger = document.querySelector('.email-privacy-link');
@@ -319,7 +319,6 @@ function onYouTubeIframeAPIReady() {
             'eLabel': 'How will Mozilla use my email?'
         });
     }, false);
-
 
     // Video
     var videoLink = document.querySelector('.js-video-play');

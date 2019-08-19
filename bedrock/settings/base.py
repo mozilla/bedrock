@@ -91,10 +91,6 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-US'
 
-# Use Ship It as the source for product_details
-PROD_DETAILS_URL = config('PROD_DETAILS_URL',
-                          default='https://product-details.mozilla.org/1.0/')
-
 # Tells the product_details module where to find our local JSON files.
 # This ultimately controls how LANGUAGES are constructed.
 PROD_DETAILS_CACHE_NAME = 'product-details'
@@ -105,12 +101,10 @@ PROD_DETAILS_STORAGE = config('PROD_DETAILS_STORAGE',
 PROD_DETAILS_JSON_REPO_PATH = config('PROD_DETAILS_JSON_REPO_PATH',
                                      default=path('product_details_json'))
 PROD_DETAILS_JSON_REPO_URI = config('PROD_DETAILS_JSON_REPO_URI',
-                                    default='https://github.com/mozilla/product-details-json.git')
+                                    default='https://github.com/mozilla-releng/product-details.git')
+PROD_DETAILS_JSON_REPO_BRANCH = config('PROD_DETAILS_JSON_REPO_BRANCH', default='production')
 # path to updated p-d data for testing before loading into DB
-PROD_DETAILS_TEST_DIR = str(Path(PROD_DETAILS_JSON_REPO_PATH).joinpath('product-details'))
-# if the repo is cloned it will be most up-to-date
-if Path(PROD_DETAILS_TEST_DIR).is_dir():
-    PROD_DETAILS_DIR = PROD_DETAILS_TEST_DIR
+PROD_DETAILS_TEST_DIR = str(Path(PROD_DETAILS_JSON_REPO_PATH).joinpath('public', '1.0'))
 
 # Accepted locales
 PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'ast', 'az', 'azz', 'be', 'bg',

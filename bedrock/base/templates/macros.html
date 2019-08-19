@@ -225,10 +225,14 @@
   </section>
 {%- endmacro %}
 
-{% macro fxa_link_fragment(entrypoint, service_type='sync', action='signin', utm_params={}) -%}
+{# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#linking-to-accountsfirefoxcom #}
+{% macro fxa_link_fragment(entrypoint, service_type='sync', action='signin', utm_campaign=None, utm_content=None, utm_term=None) -%}
   {% set fxa_path = '' %}
   {% set fxa_queries = [
-    'context=fx_desktop_v3'
+    'entrypoint=' ~ entrypoint,
+    'context=fx_desktop_v3',
+    'utm_source=' ~ entrypoint,
+    'utm_medium=referral'
   ] %}
 
   {% if action == 'signup' %}
@@ -238,25 +242,54 @@
   {% else %}
     {% do fxa_queries.insert(0, 'action=email') %}
   {% endif %}
-  {% do fxa_queries.append('entrypoint={}'.format(entrypoint)) %}
-  {% for param, val in utm_params.items() %}
-    {% if val and param in ['campaign', 'content', 'medium', 'source'] %}
-      {% do fxa_queries.append('utm_{}={}'.format(param, val.replace('/', '%2F'))) %}
-    {% endif %}
-  {% endfor %}
+
+  {# utm_campaign is optional #}
+  {% if utm_campaign %}
+    {% do fxa_queries.append('utm_campaign=' ~ utm_campaign) %}
+  {% endif %}
+
+  {# utm_content is optional #}
+  {% if utm_content %}
+    {% do fxa_queries.append('utm_content=' ~ utm_content) %}
+  {% endif %}
+
+  {# utm_term is optional #}
+  {% if utm_term %}
+    {% do fxa_queries.append('utm_term=' ~ utm_term) %}
+  {% endif %}
 
   href="{{ settings.FXA_ENDPOINT }}{{ fxa_path }}?service={{ service_type }}&{{ fxa_queries|join('&') }}" data-mozillaonline-link="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}{{ fxa_path }}?service={{ service_type }}&{{ fxa_queries|join('&') }}"
 
 {%- endmacro %}
 
-{% macro fxa_cta_link(entrypoint, campaign, content, source, button_class, button_location, button_text, account_id, action='signin', medium='referral') %}
-  <a {{ fxa_link_fragment(entrypoint=entrypoint, action="{{ action }}", utm_params={'campaign': campaign, 'content': (content or request.path_info), 'source': source, 'medium': medium }) }} class="js-fxa-cta-link {{ button_class }}" data-link-name="Create account" data-link-type="FxA-Sync" data-cta-position="{{ button_location }}" id="{{ account_id }}">
+{# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#linking-to-accountsfirefoxcom #}
+{% macro fxa_cta_link(entrypoint, button_text, service_type='sync', action='signin', account_id=None, button_class=None, utm_campaign=None, utm_content=None, utm_term=None) %}
+  <a {{ fxa_link_fragment(entrypoint=entrypoint, service_type=service_type, action=action, utm_campaign=utm_campaign, utm_content=utm_content, utm_term=utm_term) }} class="js-fxa-cta-link{% if button_class %} {{ button_class }}{% endif %}" data-cta-text="Create account" data-cta-type="FxA-Sync" data-cta-position="{{ button_location }}" {%if account_id %}id="{{ account_id }}"{% endif %}>
     {{ button_text }}
   </a>
 {%- endmacro %}
 
-{% macro monitor_button(entrypoint='', utm_source='', utm_campaign='', utm_content='', button_text='', button_class='mzp-c-button mzp-t-product') -%}
-  <a data-action="{{ settings.FXA_ENDPOINT }}" href="https://monitor.firefox.com/oauth/init?utm_source={{ utm_source }}&utm_campaign={{ utm_campaign }}&utm_content={{ utm_content }}&form_type=email&entrypoint={{ entrypoint }}" class="{{ button_class }}" id="fxa-monitor-submit" data-link-name="Continue" data-link-type="button">
+{# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#linking-to-monitorfirefoxcom #}
+{% macro monitor_button(entrypoint, form_type='email', utm_campaign=None, utm_content=None, utm_term=None, button_text=None, button_class='mzp-c-button mzp-t-product') -%}
+  {% set fxa_queries = [
+    'form_type=' ~ form_type,
+    'entrypoint=' ~ entrypoint,
+    'utm_source=' ~ entrypoint,
+    'utm_campaign=' ~ utm_campaign,
+    'utm_medium=referral'
+  ] %}
+
+  {# utm_content is optional #}
+  {% if utm_content %}
+    {% do fxa_queries.append('utm_content=' ~ utm_content) %}
+  {% endif %}
+
+  {# utm_term is optional #}
+  {% if utm_term %}
+    {% do fxa_queries.append('utm_term=' ~ utm_term) %}
+  {% endif %}
+
+  <a data-action="{{ settings.FXA_ENDPOINT }}" href="https://monitor.firefox.com/oauth/init?{{ fxa_queries|join('&') }}" {%if button_class %}class="{{ button_class }}"{% endif %} id="fxa-monitor-submit" data-cta-text="Sign In to Monitor" data-cta-type="FxA-Monitor">
     {% if button_text %}
       {{ button_text }}
     {% else %}
@@ -265,34 +298,8 @@
   </a>
 {%- endmacro %}
 
-{#
-  This macro is typically shown only to users on Firefox 48 and up.
-  If you intend to show it to non-Firefox browsers, set all_browsers=True.
-
-  entrypoint: used to tag a given "page type" and remains the same across all
-    pages of the class, e.g., no matter URL of the firstrun page, entrypoint is
-    always `firstrun`. must validate against [\w.:-]+
-    REQUIRED
-  utm_source: used for analytics
-    REQUIRED
-  style: an optional param to invoke an alternatively styled page at accounts.firefox.com
-  class_name: applies a class to the form. default: 'fxa-email-form'
-  utm_params: dictionary of utm_* params to include. 'utm_' will automatically
-    be prepended to all keys. example:
-
-    {
-      'content': 'accounts-page',
-      'medium': 'referral',
-      'campaign': 'accounts-page',
-      'term': 'someterm',
-    }
-
-    all values must validate against /^[\w\/.%-]+/
-    More info on how to pick names: https://mozilla.github.io/application-services/docs/accounts/metrics.html
-
-    DO NOT include utm_source in this dictionary! (It's already a required param.)
-#}
-{% macro fxa_email_form(entrypoint, utm_source, utm_campaign, utm_content, utm_term, style, class_name='fxa-email-form', form_title='', intro_text='', button_text='', button_class='button button-blue') -%}
+{# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#signup-form #}
+{% macro fxa_email_form(entrypoint, utm_campaign=None, utm_content=None, utm_term=None, style=None, class_name='fxa-email-form', form_title=None, intro_text=none, button_text=None, button_class='button button-blue') -%}
   {% set service  = 'sync' %}
   <form action="{{ settings.FXA_ENDPOINT }}" data-mozillaonline-action="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}" id="fxa-email-form" class="{{ class_name }}">
     <input type="hidden" name="action" value="email" />
@@ -300,15 +307,14 @@
     <input type="hidden" name="service" value="{{ service }}" />
     <input type="hidden" name="entrypoint" value="{{ entrypoint }}" id="fxa-email-form-entrypoint" />
     <input type="hidden" name="form_type" value="email" />
-    {# flow_id and flow_begin_time will be populated via JS on page load #}
+    {# device_id, flow_id and flow_begin_time will be populated via JS on page load #}
     <input type="hidden" name="flow_id" value="" />
     <input type="hidden" name="flow_begin_time" value="" />
-
-    {# utm_source is required #}
-    <input type="hidden" name="utm_source" value={{ utm_source }} id="fxa-email-form-utm-source" />
+    <input type="hidden" name="device_id" value="" />
+    <input type="hidden" name="utm_source" value={{ entrypoint }} id="fxa-email-form-utm-source" />
     <input type="hidden" name="utm_medium" value="referral" id="fxa-email-form-utm-medium" />
 
-    {# utm_campaign is used to identify specific marketing campaigns. (For example: trailhead or skyline) If there is one, the campaign name is appended to the default value of `fxa-embedded-form`. #}
+    {# utm_campaign is used to identify specific marketing campaigns. (For example: trailhead or skyline) If there is one, the campaign name is prepended to the default value of `fxa-embedded-form`. #}
     {% if utm_campaign %}
       <input type="hidden" name="utm_campaign" value="{{ utm_campaign }}-fxa-embedded-form" id="fxa-email-form-utm-campaign" />
     {% else %}
@@ -354,12 +360,12 @@
         {% endtrans %}
       </p>
 
-      <button 
-        type="submit" 
-        class="{{ button_class }}" 
-        id="fxa-email-form-submit" 
-        data-cta-type="FxA-Sync" 
-        data-cta-text="Register" 
+      <button
+        type="submit"
+        class="{{ button_class }}"
+        id="fxa-email-form-submit"
+        data-cta-type="FxA-Sync"
+        data-cta-text="Register"
         data-cta-position="Primary"
       >
       {% if button_text %}

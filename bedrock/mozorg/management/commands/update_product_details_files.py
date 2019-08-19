@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
@@ -23,7 +25,11 @@ class Command(BaseCommand):
         self.db_storage = PDDatabaseStorage()
         self.repo = GitRepo(settings.PROD_DETAILS_JSON_REPO_PATH,
                             settings.PROD_DETAILS_JSON_REPO_URI,
+                            settings.PROD_DETAILS_JSON_REPO_BRANCH,
                             name='Product Details')
+        # fake last-modified string since the releng repo doesn't store those files
+        # and we rely on git commits for updates
+        self.last_modified = datetime.now().isoformat()
         super(Command, self).__init__(stdout, stderr, no_color)
 
     def add_arguments(self, parser):
@@ -32,10 +38,12 @@ class Command(BaseCommand):
         parser.add_argument('--database', default='default',
                             help=('Specifies the database to use, if using a db. '
                                   'Defaults to "default".')),
+        parser.add_argument('-f', '--force', action='store_true', dest='force', default=False,
+                            help='Load the data even if nothing new from git.'),
 
     def handle(self, *args, **options):
         # don't really care about deleted files. almost never happens in p-d.
-        if not self.update_file_data():
+        if not (self.update_file_data() or options['force']):
             if not options['quiet']:
                 print('Product Details data was already up to date')
             return
@@ -61,14 +69,18 @@ class Command(BaseCommand):
     def load_changes(self, options, modified_files):
         with transaction.atomic(using=options['database']):
             for filename in modified_files:
+                # skip the l10n directory for now
+                if filename.startswith('l10n/'):
+                    continue
+
                 self.db_storage.update(filename,
                                        self.file_storage.content(filename),
-                                       self.file_storage.last_modified(filename))
+                                       self.last_modified)
                 if not options['quiet']:
                     print('Updated ' + filename)
 
-            self.db_storage.update('/', '', self.file_storage.last_modified('/'))
-            self.db_storage.update('regions/', '', self.file_storage.last_modified('regions/'))
+            self.db_storage.update('/', '', self.last_modified)
+            self.db_storage.update('regions/', '', self.last_modified)
 
     def update_file_data(self):
         self.repo.update()

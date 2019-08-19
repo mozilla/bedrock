@@ -41,4 +41,17 @@
         fxaSigninLink.href = finalFxaSigninURI;
     }
 
+    // Prevent double-requesting Flow IDs, inits FxaForm even on non-firefox browsers.
+    if (Mozilla.Client.isFirefoxDesktop) {
+        Mozilla.Client.getFxaDetails(function(details) {
+            if (details.setup) {
+                Mozilla.MonitorButton.init();
+            } else {
+                Mozilla.FxaForm.init();
+            }
+        });
+    } else {
+        Mozilla.FxaForm.init();
+    }
+
 })(window.Mozilla);

@@ -144,13 +144,6 @@
     },
     {
       "files": [
-        "css/base/mozilla-share-cta.less",
-        "css/firefox/feedback.less"
-      ],
-      "name": "firefox_feedback"
-    },
-    {
-      "files": [
         "css/press/press.less"
       ],
       "name": "press"
@@ -946,6 +939,7 @@
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-form-init.js",
         "js/firefox/whatsnew/whatsnew-63.js"
       ],
       "name": "firefox_whatsnew_63"
@@ -966,6 +960,7 @@
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-form-init.js",
         "js/firefox/whatsnew/whatsnew-65.js"
       ],
       "name": "firefox_whatsnew_65"
@@ -983,6 +978,7 @@
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-form-init.js",
         "protocol/js/protocol-modal.js",
         "js/firefox/whatsnew/whatsnew-66.js"
       ],
@@ -994,6 +990,7 @@
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-form-init.js",
         "protocol/js/protocol-modal.js",
         "js/firefox/whatsnew/whatsnew-67.js"
       ],
@@ -1006,7 +1003,8 @@
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
         "js/base/mozilla-monitor-button.js",
-        "js/firefox/whatsnew/up-to-date.js"
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/firefox/whatsnew/account-conditional-ctas.js"
       ],
       "name": "firefox_whatsnew_67.0.5"
     },
@@ -1016,6 +1014,7 @@
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-monitor-button.js",
+        "js/base/mozilla-monitor-button-init.js",
         "js/firefox/whatsnew/up-to-date.js"
       ],
       "name": "firefox_whatsnew_68E_monitor"
@@ -1095,6 +1094,7 @@
     {
       "files": [
         "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-form-init.js",
         "js/firefox/new/scene1_fxa_modal.js"
       ],
       "name": "firefox_new_scene1_fxa_modal"
@@ -1351,12 +1351,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-share-cta.js"
-      ],
-      "name": "firefox_feedback"
-    },
-    {
-      "files": [
         "js/base/mozilla-modal.js",
         "js/foundation/annual2012.js"
       ],
@@ -1388,6 +1382,7 @@
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-form-init.js",
         "js/firefox/accounts.js"
       ],
       "name": "firefox_accounts"
@@ -1415,6 +1410,7 @@
     {
       "files": [
         "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-form-init.js",
         "js/firefox/firstrun/firstrun_quantum.js"
       ],
       "name": "firefox_firstrun_quantum"

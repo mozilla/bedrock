@@ -2,6 +2,8 @@
 .. License, v. 2.0. If a copy of the MPL was not distributed with this
 .. file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+.. _analytics:
+
 ============================
 Analytics
 ============================
@@ -54,27 +56,17 @@ Since GTM listeners pass the interacted element object to the dataLayer, the use
 
     When adding any new elements to a Bedrock page, please follow the below guidelines to ensure accurate analytics tracking.
 
-.. Important::
+For all generic CTA links and <button> elements, add these data attributes (* indicates a required attribute):
 
-    Do not use `data-link-type` and `data-button-name` attributes together or the event will be captured twice by GA.
-
-For all nav, footer, and CTA/button link elements, add these data attributes:
-
-+--------------------------+--------------------------------+
-|    Data Attribute        |        Expected Value          |
-+==========================+================================+
-|    data-link-type        | 'nav', 'footer', or 'button'   |
-+--------------------------+--------------------------------+
-|    data-link-name        | name or text of the link       |
-+--------------------------+--------------------------------+
-
-For all button elements, add this data attribute:
-
-+--------------------------+--------------------------------+
-|    Data Attribute        |        Expected Value          |
-+==========================+================================+
-|   data-button-name       | name or text of the link       |
-+--------------------------+--------------------------------+
++--------------------------+---------------------------------------------------------------------+
+|    Data Attribute        |        Expected Value                                               |
++==========================+=====================================================================+
+|    data-cta-type *       | Link type (e.g. 'Navigation', 'Footer', or 'Button')                |
++--------------------------+---------------------------------------------------------------------+
+|    data-cta-text         | name or text of the link                                            |
++--------------------------+---------------------------------------------------------------------+
+|    data-cta-position     | Location of CTA on the page (e.g. 'Primary', 'Secondary', 'Header') |
++--------------------------+---------------------------------------------------------------------+
 
 For all download buttons, add these data attributes:
 
@@ -85,18 +77,20 @@ For all download buttons, add these data attributes:
 +--------------------------+--------------------------------+
 |    data-download-os      | name or text of the link       |
 +--------------------------+--------------------------------+
-|   data-download-version  |'standard', 'developer', 'beta' |
+|    data-download-version |'standard', 'developer', 'beta' |
 +--------------------------+--------------------------------+
 
-For all links to accounts.firefox.com use these data attributes:
+For all links to accounts.firefox.com use these data attributes (* indicates a required attribute):
 
-+--------------------------+--------------------------------+
-|    Data Attribute        |        Expected Value          |
-+==========================+================================+
-|   data-link-type         | FxA-ServiceName (eg. FxA-Sync) |
-+--------------------------+--------------------------------+
-|   data-link-name         | name or text of the link       |
-+--------------------------+--------------------------------+
++--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|    Data Attribute        |        Expected Value                                                                                                                                                                                              |
++==========================+====================================================================================================================================================================================================================+
+|    data-cta-type *       | FxA-ServiceName (e.g. 'FxA-Sync', 'FxA-Monitor', 'FxA-Lockwise')                                                                                                                                                   |
++--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|    data-cta-text         | Name or text of the link (e.g. 'Sign Up', 'Join Now', 'Start Here'). We use this when the link text is not useful, as is the case with many FxA forms that say, 'Continue'. We replace 'Continue' with 'Register'. |
++--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|    data-cta-position     | Location of CTA on the page (e.g. 'Primary', 'Secondary', 'Header')                                                                                                                                                |
++--------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 For all conditional banners, add the following calls.
 
@@ -154,18 +148,11 @@ When doing a/b tests configure something like the following.
 Some notes on how this looks in GA
 ----------------------------------
 
-``data-link-type="button"`` and ``data-link-name=""`` trigger a generic link
+``data-cta-type=""`` and ``data-cta-name=""`` trigger a generic link / buton
 click with the following structure:
 
     | Event Category: {{page ID}} Interactions
-    | Event Action: {{data-link-type}} click
-    | Event Label: {{data-link-name}}
-
-Any element that has a ``data-button-name=""`` triggers an event with this
-structure:
-
-    | Event Category: {{page ID}} Interactions
-    | Event Action: button click
-    | Event Label: {{data-button-name}}
+    | Event Action: {{data-cta-type}} click
+    | Event Label: {{data-cta-name}}
 
 
