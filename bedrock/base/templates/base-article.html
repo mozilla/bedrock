@@ -40,7 +40,7 @@
 
 {% block site_js %}
   {{ super() }}
-  <!--[if !lte IE 8]><!-->
+  <!--[if !IE]><!-->
     {{ js_bundle('basic-article') }}
   <!--<![endif]-->
 {% endblock %}

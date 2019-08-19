@@ -82,7 +82,7 @@ the page template where an experiment exists:
 
     {% block stub_attribution %}
       {% if settings.STUB_ATTRIBUTION_RATE %}
-        <!--[if !lte IE 8]><!-->
+        <!--[if !IE]><!-->
         {{ js_bundle('stub-attribution-custom') }}
         {{ js_bundle('my-page-experiment-script') }}
         <!--<![endif]-->

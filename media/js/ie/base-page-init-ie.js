@@ -9,10 +9,10 @@ $(document).ready(function() {
     'use strict';
 
     // Initialize download buttons.
-    Mozilla.UtilsIE8.initDownloadLinks();
+    Mozilla.UtilsIE.initDownloadLinks();
 
     // Initialize navigation.
-    Mozilla.UtilsIE8.initNavigation();
+    Mozilla.UtilsIE.initNavigation();
 
     $(window).on('load', function() {
         $('html').addClass('loaded');

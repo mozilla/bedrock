@@ -26,19 +26,19 @@ We deliver enhanced CSS & JS to browsers in our browser support matrix (below). 
 
 Basic support consists of no page-specific CSS or JS. Instead, we deliver basic semantic HTML, a universal CSS stylesheet that gets applied to all pages, and a universal JS bundle that only handles downloading Firefox (click a button, get a file), and Google Analytics.
 
-Browser Support Matrix (Updated 20190809)
+Browser Support Matrix (Updated 20190409)
 -----------------------------------------
 
 **The following browsers have enhanced support:**
 
   * All evergreen browsers (Firefox, Chrome, Safari, Edge, Opera, etc.)
-  * IE9 and above.
+  * IE10 and above.
 
 **The following browsers have basic support:**
 
   * All other IE browsers.
 
-Exceptions (Updated 20190809)
+Exceptions (Updated 20190409)
 -----------------------------
 
 Some pages of the website provide critical functionality to older browsers. In particular, the Firefox desktop download funnel enables users on older browsers to get a modern browser. To the extent possible, we try to deliver enhanced experiences to all user agents on these pages.
@@ -48,7 +48,11 @@ Some pages of the website provide critical functionality to older browsers. In p
   * www.mozilla.org/firefox/new/
   * www.mozilla.org/firefox/download/thanks/
 
-Future Support (Updated 20190809)
+.. Note::
+
+    An enhanced experience can be defined as a step above basic support. This can be achieved by delivering extra page-specific CSS or JS to legacy browsers. It does not mean continuing to deliver 1st class support.
+
+Future Support (Updated 20190409)
 ---------------------------------
 
-The audience visiting in IE9 and IE10 is small and growing smaller. In late 2019 these browsers will be moved to the basic support list.
+Since IE10 does not support conditional comments (the mechanism currently used to deliver basic support to old IE browsers), in the future bedrock will adopt a universal JS feature detection snippet. This snippet will be used to limit the execution of JS on older browsers, delivering a better degraded experience.

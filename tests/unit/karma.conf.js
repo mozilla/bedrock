@@ -37,7 +37,7 @@ module.exports = function(config) {
             'media/js/firefox/all/all-downloads-unified.js',
             'media/js/firefox/new/yandex/scene1.js',
             'media/js/firefox/tracking-protection-tour.js',
-            'media/js/ie8/mozilla-utils-ie8.js',
+            'media/js/ie/mozilla-utils-ie.js',
             'tests/unit/spec/base/core-datalayer-page-id.js',
             'tests/unit/spec/base/core-datalayer.js',
             'tests/unit/spec/base/dnt-helper.js',
@@ -61,7 +61,7 @@ module.exports = function(config) {
             'tests/unit/spec/firefox/all/all-downloads-unified.js',
             'tests/unit/spec/firefox/new/yandex/scene1.js',
             'tests/unit/spec/firefox/tracking-protection-tour.js',
-            'tests/unit/spec/ie8/mozilla-utils-ie8.js',
+            'tests/unit/spec/ie/mozilla-utils-ie.js',
             {
                 pattern: 'node_modules/sinon/pkg/sinon.js',
                 watched: false,

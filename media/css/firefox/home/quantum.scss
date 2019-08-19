@@ -3,6 +3,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import '../../pebbles/includes/lib';
+@import 'includes/header';
 @import '../../pebbles/components/video-poster';
 @import '../../hubs/sections';
 @import '../../hubs/sub-nav';
@@ -72,104 +73,6 @@ body {
 
     @media #{$mq-desktop} {
         padding: 80px 0;
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-// Main page header
-
-.main-header-section {
-
-    h1 {
-        @include at2x('/media/img/logos/firefox/logo-quantum.png', 90px, 90px);
-        @include font-size-level2;
-        background-position: top center;
-        background-repeat: no-repeat;
-        color: #000;
-        margin: 0 auto 10px;
-        padding-top: 110px;
-    }
-
-    h2 {
-        @include font-size-level3;
-        margin-top: 20px;
-    }
-
-    h3 {
-        @include font-size-level3;
-    }
-
-    .download-button {
-        margin: 40px 0;
-    }
-
-    .fx-privacy-link a {
-        color: #000;
-    }
-
-    @media #{$mq-tablet} {
-        min-height: 550px;
-        text-align: left;
-        padding-top: 40px;
-
-        h1 {
-            background-position: left center;
-            margin: -40px 0 10px;
-            padding: 40px 0 40px 110px;
-        }
-
-        .header-content {
-            float: left;
-            width: 55%;
-        }
-
-        .header-image {
-            margin-bottom: 0;
-            position: absolute;
-            right: 0;
-            top: 20px;
-            width: 45%;
-
-            img {
-                display: block;
-                height: auto;
-                max-width: none;
-                width: 903px;
-            }
-        }
-    }
-
-    @media #{$mq-desktop-wide} {
-        padding-top: 80px;
-
-        .header-content {
-            width: 43%;
-        }
-
-        .header-image {
-            width: 57%;
-        }
-    }
-}
-
-html[dir="rtl"] .main-header-section {
-
-    @media #{$mq-tablet} {
-
-        h1 {
-            background-position: right center;
-            padding: 40px 110px 40px 0;
-        }
-
-        .header-content {
-            float: right;
-            text-align: right;
-        }
-
-        .header-image {
-            left: 0;
-            right: auto;
-        }
     }
 }
 

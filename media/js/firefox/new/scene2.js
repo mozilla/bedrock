@@ -5,7 +5,6 @@
 (function($) {
     'use strict';
 
-    var isIELT9 = window.Mozilla.Client.platform === 'windows' && /MSIE\s[1-8]\./.test(navigator.userAgent);
     var $directDownloadLink = $('#direct-download-link');
     var $platformLink = $('#download-button-wrapper-desktop .download-list li:visible .download-link');
     var downloadURL;
@@ -21,16 +20,13 @@
         // TODO: Remove and generate link in bedrock.
         $directDownloadLink.attr('href', downloadURL);
 
-        // If user is not on an IE that blocks JS triggered downloads, start the
-        // platform-detected download a second after DOM ready event. We don't rely on
-        // the window load event as we have third-party tracking pixels.
-        if (!isIELT9) {
-            $(function() {
-                setTimeout(function() {
-                    window.location.href = downloadURL;
-                }, 1000);
-            });
-        }
+        // Start the platform-detected download a second after DOM ready event.
+        // We don't rely on the window load event as we have third-party tracking pixels.
+        $(function() {
+            setTimeout(function() {
+                window.location.href = downloadURL;
+            }, 1000);
+        });
     }
 
 })(window.jQuery);
