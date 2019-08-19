@@ -7,7 +7,6 @@ import pytest
 from pages.firefox.developer import DeveloperPage
 
 
-@pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_download_buttons_are_displayed(base_url, selenium):
     page = DeveloperPage(selenium, base_url).open()

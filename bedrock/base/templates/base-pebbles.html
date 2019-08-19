@@ -9,7 +9,7 @@
 
     {{ js_bundle('site') }}
 
-    <!--[if !lte IE 8]><!-->
+    <!--[if !IE]><!-->
     {% block experiments %}{% endblock %}
     <!--<![endif]-->
 
@@ -50,28 +50,30 @@
 
     {{ l10n_css() }}
 
-    <!--[if lte IE 8]>
+    <!--[if lt IE 9]>
       {# Only needed for IE before v9 #}
       <script src="{{ static('js/libs/html5shiv.js') }}"></script>
+    <![endif]-->
 
-      {# Basic styles, only for IE8 and lower #}
+    <!--[if IE]>
+      {# Basic styles, only for IE9 and lower #}
       {% block old_ie_styles %}
       {{ css_bundle('oldIE-pebbles') }}
       {% endblock %}
     <![endif]-->
 
-    <!--[if !lte IE 8]><!-->
-    {# Global styles, hidden from IE8 and lower #}
+    <!--[if !IE]><!-->
+    {# Global styles, hidden from IE9 and lower #}
     {% block site_css %}
       {{ css_bundle('pebbles') }}
     {% endblock %}
 
-    {# Page-specific styles, hidden from IE8 and lower #}
+    {# Page-specific styles, hidden from IE9 and lower #}
     {% block page_css %}{% endblock %}
     <!--<![endif]-->
 
     {% block extrahead %}
-      {# Extra header stuff (scripts, styles, metadata, etc) seen by all browsers. Use the 'page_css' block for CSS you want to hide from IE7 and lower. #}
+      {# Extra header stuff (scripts, styles, metadata, etc) seen by all browsers. Use the 'page_css' block for CSS you want to hide from IE9 and lower. #}
     {% endblock %}
 
     {% block js_pretrack %}{# include JavaScript that must be run pre GA tracking here #}{% endblock %}
@@ -91,29 +93,25 @@
       data-global-fx-out-of-date-banner-confirm="{{ _('Update Firefox') }}"
       {% block string_data %}{% endblock %}></div>
 
-  {% block site_header %}
-    {% include 'includes/protocol/navigation/menu-mozilla/index.html' %}
-  {% endblock %}
-
-  <div id="outer-wrapper">
-    {% block content %}{% endblock %}
-
-    {% block site_footer %}
-      {% include 'includes/site-footer.html' %}
+    {% block site_header %}
+      {% include 'includes/protocol/navigation/menu-mozilla/index.html' %}
     {% endblock %}
-  </div>
 
-  <!--[if IE 9]>
-    {{ js_bundle('matchmedia') }}
-  <![endif]-->
+    <div id="outer-wrapper">
+      {% block content %}{% endblock %}
+
+      {% block site_footer %}
+        {% include 'includes/site-footer.html' %}
+      {% endblock %}
+    </div>
 
     {% block site_js %}
-      <!--[if !lte IE 8]><!-->
+      <!--[if !IE]><!-->
         {{ js_bundle('common') }}
       <!--<![endif]-->
 
-      <!--[if lte IE 8]>
-        {{ js_bundle('common-ie8') }}
+      <!--[if IE]>
+        {{ js_bundle('common-ie') }}
       <![endif]-->
     {% endblock %}
 
@@ -124,7 +122,7 @@
       {% endif %}
     {% endblock %}
 
-    <!--[if !lte IE 8]><!-->
+    <!--[if !IE]><!-->
     {% block js %}{% endblock %}
 
     {% if self.structured_data()|trim|length %}

@@ -13,12 +13,12 @@
 {% endblock %}
 
 {% block site_js %}
-<!--[if !lte IE 8]><!-->
+<!--[if !IE]><!-->
   {{ js_bundle('common-protocol') }}
 <!--<![endif]-->
 
-<!--[if lte IE 8]>
-  {{ js_bundle('common-ie8') }}
+<!--[if IE]>
+  {{ js_bundle('common-ie') }}
 <![endif]-->
 {% endblock %}
 

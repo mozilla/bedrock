@@ -21,6 +21,12 @@
   {{ css_bundle('firefox-quantum') }}
 {% endblock %}
 
+{% block extrahead %}
+  <!--[if IE 9]><!-->
+    {{ css_bundle('firefox-home-ie9') }}
+  <!--<![endif]-->
+{% endblock %}
+
 {% block body_id %}firefox-home{% endblock %}
 
 {% block content %}
@@ -84,7 +90,7 @@
         </li>
       </ul>
 
-      <div class="privacy-section-media">
+      <div class="privacy-section-media is-js-dependent">
         {{ lazy_img(image_url='firefox/home/quantum/private-browsing.png', placeholder_url='firefox/home/quantum/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '502', 'height': '325'}) }}
         {{ lazy_img(image_url='firefox/home/quantum/tracking-protection.png', placeholder_url='firefox/home/quantum/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '503', 'height': '305'}) }}
       </div>
@@ -111,7 +117,7 @@
         {% endif %}
       </div>
 
-      <div class="sync-section-image">
+      <div class="sync-section-image is-js-dependent">
         {{ lazy_img(image_url='firefox/home/quantum/sync.png', placeholder_url='firefox/home/quantum/spacer.gif', include_highres_image=True, optional_attributes={'alt': _('Image of Gif shared from desktop to mobile using the Send Tab feature.'), 'width': '788', 'height': '571'}) }}
       </div>
     </div>
@@ -203,7 +209,7 @@
             {% endtrans %}
             </p>
           </div>
-          <div class="key-feature-media image">
+          <div class="key-feature-media image is-js-dependent">
             {{ lazy_img(image_url='firefox/home/quantum/less-memory.png', placeholder_url='firefox/home/quantum/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '645', 'height': '400'}) }}
           </div>
         </div>
@@ -225,7 +231,7 @@
           <a href="{{ url('firefox.switch') }}">{{ _('Learn more') }}</a>
         </div>
       </div>
-      <div class="section-media">
+      <div class="section-media is-js-dependent">
         <a href="{{ url('firefox.switch') }}">
           {{ lazy_img(image_url='firefox/home/quantum/switch-to-firefox.png', placeholder_url='firefox/home/quantum/spacer.gif', include_highres_image=True, optional_attributes={'width': '643', 'height': '377'}) }}
         </a>

@@ -669,6 +669,12 @@
     },
     {
       "files": [
+        "css/firefox/home/ie9.scss"
+      ],
+      "name": "firefox-home-ie9"
+    },
+    {
+      "files": [
         "css/mozorg/book.scss"
       ],
       "name": "book"
@@ -1358,14 +1364,14 @@
     {
       "files": [
         "js/libs/jquery-1.11.3.min.js",
-        "js/ie8/mozilla-utils-ie8.js",
+        "js/ie/mozilla-utils-ie.js",
         "js/base/mozilla-client.js",
-        "js/ie8/base-page-init-ie8.js",
+        "js/ie/base-page-init-ie.js",
         "js/base/core-datalayer.js",
         "js/base/core-datalayer-init.js",
         "js/base/search-params.js"
       ],
-      "name": "common-ie8"
+      "name": "common-ie"
     },
     {
       "files": [
@@ -1551,13 +1557,6 @@
         "protocol/js/protocol-sidemenu.js"
       ],
       "name": "basic-article"
-    },
-    {
-      "files": [
-        "js/libs/matchMedia.js",
-        "js/libs/matchMedia.addListener.js"
-      ],
-      "name": "matchmedia"
     },
     {
       "files": [

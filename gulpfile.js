@@ -295,7 +295,13 @@ function jsWatch(cb) {
  */
 function cssMinify() {
     return gulp.src(finalDir + '/css/**/*.css', {base: buildDir})
-        .pipe(cleanCSS().on('error', handleError('CLEANCSS')))
+        .pipe(cleanCSS({
+            compatibility: {
+                properties: {
+                    iePrefixHack: true, // controls keeping IE prefix hack used in oldIE.scss
+                },
+            }
+        }).on('error', handleError('CLEANCSS')))
         .pipe(gulp.dest(finalDir));
 }
 
