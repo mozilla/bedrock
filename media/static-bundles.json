@@ -1404,8 +1404,7 @@
     {
       "files": [
         "js/base/mozilla-fxa-form.js",
-        "js/base/mozilla-fxa-form-init.js",
-        "js/firefox/firstrun/firstrun_quantum.js"
+        "js/base/mozilla-fxa-form-init.js"
       ],
       "name": "firefox_firstrun_quantum"
     },
