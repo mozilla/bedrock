@@ -30,10 +30,6 @@ urlpatterns = (
     url(r'', include('bedrock.newsletter.urls')),
     url(r'^etc/', include('bedrock.etc.urls')),
 
-    # L10n example.
-    url(r'^l10n_example/',
-        include('bedrock.l10n_example.urls')),
-
     url(r'^healthz/$', watchman_views.ping, name="watchman.ping"),
     url(r'^readiness/$', watchman_views.status, name="watchman.status"),
     url(r'^healthz-cron/$', base_views.cron_health_check),

@@ -281,7 +281,6 @@ NOINDEX_URLS = [
     r'^firefox/enterprise/signup/',
     r'^.+/tracking-protection/start/$',
     r'^.+/(firstrun|whatsnew)/$',
-    r'^l10n_example/',
     r'^m/',
     r'^newsletter/(confirm|existing|hacks\.mozilla\.org|recovery|updated|fxa-error)/',
     r'^newsletter/opt-out-confirmation/',
