@@ -1,35 +1,27 @@
 <section class="t-highlights mzp-l-content">
   <div class="c-gallery-grid">
-    <div class="c-gallery-item">
+    <div class="c-gallery-item" id="devtools">
       <a href="https://mozilladevelopers.github.io/playground/debugger/" rel="external">
         <img class="highlight-image" src="{{ static('img/firefox/developer/hero-debugger-ani.gif') }}" alt="_('Firefox DevTools')">
       </a>
       <h2 class="c-title">{{ _('New Tools') }}</h2>
-      <h3 id="devtools" class="c-subtitle">{{ _('Firefox DevTools') }}</h3>
+      <h3 class="c-subtitle">{{ _('Firefox DevTools') }}</h3>
       <p>
-      {% if l10n_has_tag('ember_reference_fix') %}
-        {% trans %}
-          The new Firefox DevTools are powerful, flexible, and best of all,
-          hackable. This includes a best-in-class JavaScript debugger, which
-          can target multiple browsers and is built in React and Redux.
-        {% endtrans %}
-      {% else %}
-        {% trans %}
-          The new Firefox DevTools are powerful, flexible, and best of all,
-          hackable. This includes a best-in-class JavaScript debugger, which
-          can target multiple browsers and is built in React and Ember.
-        {% endtrans %}
-      {% endif %}
+      {% trans %}
+        The new Firefox DevTools are powerful, flexible, and best of all,
+        hackable. This includes a best-in-class JavaScript debugger, which
+        can target multiple browsers and is built in React and Redux.
+      {% endtrans %}
       </p>
       <p><a class="mzp-c-cta-link" rel="external" href="https://mozilladevelopers.github.io/playground/debugger/">{{ _('Learn more') }}</a></p>
     </div>
 
-    <div class="c-gallery-item">
+    <div class="c-gallery-item" id="cssgrid">
       <a href="https://mozilladevelopers.github.io/playground/css-grid/" rel="external">
         <img class="highlight-image" src="{{ static('img/firefox/developer/hero-cssgrid-ani.gif') }}" alt="_('Master CSS Grid')">
       </a>
       <h2 class="c-title">{{ _('Innovative Features') }}</h2>
-      <h3 id="cssgrid" class="c-subtitle">{{ _('Master CSS Grid') }}</h3>
+      <h3 class="c-subtitle">{{ _('Master CSS Grid') }}</h3>
       <p>
       {% trans %}
         Firefox is the only browser with tools built specifically for
@@ -43,7 +35,7 @@
 
     {% if l10n_has_tag('new_features_20180830') %}
     <div class="c-gallery-item">
-      <a rel="external" href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/How_to/Edit_CSS_shapes">
+      <a rel="external" href="https://developer.mozilla.org/docs/Tools/Page_Inspector/How_to/Edit_CSS_shapes">
         <img class="highlight-image" src="{{ static('img/firefox/developer/hero-clip-ani.gif') }}" alt="_('Shapes Editor')">
       </a>
       <h2 class="c-title">{{ _('Convenient Features') }}</h2>
@@ -65,11 +57,11 @@
         {% endtrans %}
       {% endif %}
       </p>
-      <p><a class="mzp-c-cta-link" rel="external" href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/How_to/Edit_CSS_shapes">{{ _('Learn more') }}</a></p>
+      <p><a class="mzp-c-cta-link" rel="external" href="https://developer.mozilla.org/docs/Tools/Page_Inspector/How_to/Edit_CSS_shapes">{{ _('Learn more') }}</a></p>
     </div>
 
     <div class="c-gallery-item">
-      <a rel="external" href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/How_to/Edit_fonts">
+      <a rel="external" href="https://developer.mozilla.org/docs/Tools/Page_Inspector/How_to/Edit_fonts">
         <img class="highlight-image" src="{{ static('img/firefox/developer/hero-fonts.gif') }}" alt="_('Fonts Panel')">
       </a>
       <h2 class="c-title">{{ _('Faster Information') }}</h2>
@@ -82,7 +74,7 @@
         as the font source, weight, style and more.
       {% endtrans %}
       </p>
-      <p><a class="mzp-c-cta-link" rel="external" href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector/How_to/Edit_fonts">{{ _('Learn more') }}</a></p>
+      <p><a class="mzp-c-cta-link" rel="external" href="https://developer.mozilla.org/docs/Tools/Page_Inspector/How_to/Edit_fonts">{{ _('Learn more') }}</a></p>
     </div>
     {% endif %}
   </div>
