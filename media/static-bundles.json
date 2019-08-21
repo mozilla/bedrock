@@ -543,9 +543,9 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-2019.scss"
+        "css/firefox/whatsnew/whatsnew-69.scss"
       ],
-      "name": "firefox_whatsnew_2019"
+      "name": "firefox_whatsnew_69"
     },
     {
       "files": [
@@ -1479,13 +1479,6 @@
         "js/firefox/whatsnew/whatsnew.js"
       ],
       "name": "firefox_whatsnew"
-    },
-    {
-      "files": [
-        "js/base/uitour-lib.js",
-        "js/firefox/whatsnew/up-to-date.js"
-      ],
-      "name": "firefox_whatsnew_2019"
     },
     {
       "files": [

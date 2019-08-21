@@ -84,7 +84,7 @@ $image-path: '/media/protocol/img';
     box-shadow: 0 4px 16px transparentize($color-off-black, .76), 0 0 2px transparentize($color-off-black, .9);
     margin: 0 auto $layout-sm;
     max-width: $content-md - ($layout-md * 2);
-    padding: $spacing-xl $layout-md;
+    padding: $spacing-xl;
 
     .c-emphasis-box-logo {
         display: block;
@@ -94,6 +94,18 @@ $image-path: '/media/protocol/img';
 
     .c-emphasis-box-title {
         @include text-display-sm;
+
+        br {
+            display: none;
+        }
+    }
+
+    @media #{$mq-md} {
+        padding: $spacing-xl $layout-md;
+
+        .c-emphasis-box-title br {
+            display: block;
+        }
     }
 }
 
@@ -221,7 +233,7 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Dark theme
 
-.t-dark {
+.mzp-t-dark {
 
     &.content-wrapper {
         background-color: $color-off-black;
