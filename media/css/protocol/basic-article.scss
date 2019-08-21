@@ -11,11 +11,6 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/includes/mixins/details';
 @import '../../protocol/css/templates/main-with-sidebar';
 
-// mozilla/protocol#407
-.mzp-c-sidemenu {
-    background-color: $color-gray-20;
-}
-
 .side-reference {
     border-bottom: 2px solid #ddd;
     margin: 2em 0;

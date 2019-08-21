@@ -228,7 +228,6 @@ $border: 2px solid $color-gray-20;
             &:after {
                 color: $color-link;
                 content: attr(data-open);
-                cursor: pointer;
                 margin-left: 0.5ex;
                 text-decoration: underline;
             }
