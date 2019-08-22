@@ -1,146 +1,119 @@
-@import 'lib';
-
+@import '../../../../protocol/css/includes/lib';
+@import '../../../../protocol/css/components/newsletter-form';
 
 //*------------------------------------------------------------------*/
 // Newsletter
-.section-newsletter {
-    background: #2b2c32 url('/media/img/firefox/developer/newsletter-background.svg') center bottom no-repeat;
-    @include background-size(3000px 348px);
-    color: #fff;
-    min-height: 150px;
-    padding: 40px 0;
+.t-newsletter {
+    background: #08204e url('/media/img/firefox/developer/newsletter-bg.svg') center bottom no-repeat;
+    background-size: cover;
+    padding: $layout-md $layout-xs;
 
-    .content {
-        max-width: $width-desktop;
+    .mzp-l-content {
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0 4px 16px 0 #20123A;
+        padding-top: $layout-md;
+        padding-bottom: $layout-md;
+        min-width: 0;
+        max-width: $content-sm;
     }
 
-    .form-title h3 {
-        @include font-size-level4;
-        font-weight: normal;
-        margin: 0 0 .5em;
-    }
-
-    .form-title h4 {
-        @include font-size-level5;
-        font-weight: normal;
-        margin: 0 0 1.25em;
-        line-height: 1.4;
-    }
-
-    #newsletter-form {
-        margin: 0 auto;
+    .mzp-c-newsletter {
+        display: block;
+        margin-bottom: 0;
+        padding: 0;
         text-align: center;
 
-        input[type="email"] {
-            border-color: #fff;
-            border-radius: 0;
-            max-width: 400px;
-            padding: .5em 10px;
-            width: 90%;
-        }
-
-        #form-details {
-            @include font-size-level6;
-            padding-top: 20px;
-        }
-
-        button[type="submit"] {
-            @include font-size-level5;
-            margin: 20px 0 5px;
-            width: auto;
+        input[type=email] {
+            border: 2px solid $color-gray-30;
             border-radius: 2px;
+            padding-top: 10px; // to make input match button height
+            padding-bottom: 10px; // to make input match button height
+        }
+        label[for=id_email]{
+            @include visually-hidden;
         }
 
-        select {
-            max-width: 100%;
-        }
-
-        .field {
-            margin-bottom: 5px;
-        }
-    }
-
-    .thank {
-        max-width: $width-tablet;
-        margin: 0 auto;
-        text-align: center;
-    }
-
-    #footer-email-errors {
-        .errorlist {
-            background: #fff;
-            color: $color-mozred;
-            padding: 20px 30px;
+        legend {
+            @include font-size(14px);
         }
     }
 
-    @media #{$mq-tablet} {
-        padding: 100px 0 40px;
+    .mzp-c-newsletter-form {
+        padding-top: 0;
+        @include font-size(14px);
+    }
 
-        #newsletter-form {
-            padding-left: 360px;
+    .mzp-c-newsletter-title {
+        @include font-size(24px);
+        margin-bottom: $layout-2xs;
+    }
+
+    .mzp-c-newsletter-tagline{
+        margin-bottom: $layout-sm;
+
+        br {
+            display: none;
+        }
+    }
+
+    .mzp-c-newsletter-details {
+        text-align: left;
+    }
+
+    .mzp-c-form-submit {
+        margin-bottom: 0;
+    }
+
+    .mzp-c-fieldnote {
+        display: none;
+    }
+
+    .mzp-c-newsletter-thanks {
+        padding-top: 0;
+
+        h3 {
+            @include font-size(24px);
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+    }
+
+    @media #{$mq-md} {
+        padding: $layout-md $layout-md;
+
+        .mzp-l-content {
+            max-width: $content-xl;
+        }
+
+        .mzp-c-newsletter {
             text-align: left;
-            width: auto;
         }
 
-        .form-title {
-            float: left;
-            margin-left: -360px;
-            text-align: right;
-            width: 320px;
-        }
-    }
-
-    @media #{$mq-desktop} {
-        padding: 160px 0 60px;
-
-        #newsletter-form {
-            padding-left: 520px;
-            text-align: left;
+        .mzp-c-newsletter-form {
+            display: grid;
+            grid-column-gap: $layout-md;
+            grid-template-columns: auto 285px;
         }
 
-        .form-title {
-            margin-left: -520px;
-            width: 480px;
+        .mzp-c-newsletter-tagline,
+        .mzp-c-button {
+            margin-bottom: 0;
         }
     }
-}
 
-.firefox-developer-firstrun,
-.firefox-developer-whatsnew {
-    .section-newsletter {
-        padding: 100px 0;
-
-        .content {
-            padding: 0;
+    @media #{$mq-lg} {
+        .mzp-l-content {
+            padding-right: $layout-md;
+            padding-left: $layout-md;
         }
 
-        .form-title {
-            margin-bottom: 20px;
-            text-align: center;
-
-            @media #{$mq-tablet} {
-                margin-bottom: 0;
-                text-align: right;
-            }
-
-            h3 {
-                @include font-size(18px);
-
-                @media #{$mq-desktop} {
-                    @include font-size(28px);
-                }
-            }
-
-            h4 {
-                @include font-size(14px);
-                font-weight: normal;
-                line-height: $base-line-height;
-
-                @media #{$mq-desktop} {
-                    @include font-size(16px);
-                }
-            }
+        .mzp-c-newsletter-form {
+            grid-column-gap: $layout-lg;
+            padding-left: 84px + $layout-md; // width of icon
+            background: url('/media/img/firefox/developer/mail.svg') top left no-repeat;
         }
     }
 }

@@ -4,7 +4,7 @@
 
 {% add_lang_files "firefox/products/developer-quantum" "firefox/shared" %}
 
-{% extends "firefox/base-pebbles.html" %}
+{% extends "firefox/base-protocol.html" %}
 
 {% block page_title %}{{_('Firefox Developer Edition')}}{% endblock %}
 {% block page_desc %}{{ _('Firefox Developer Edition is the blazing fast browser that offers cutting edge developer tools and latest features like CSS Grid support and framework debugging') }}{% endblock %}
@@ -13,7 +13,7 @@
 {% block page_favicon_large %}{{ static('img/firefox/developer/favicon-196.png') }}{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('firefox_developer_quantum_whatsnew') }}
+  {{ css_bundle('firefox_developer') }}
 {% endblock %}
 
 {% block body_id %}firefox-developer{% endblock %}
@@ -21,14 +21,12 @@
 
 {% block content %}
 <main role="main">
-  <section class="section section-intro">
-    <div class="content">
-      <div class="section-body">
-        <h1 class="page-title">{{ _('Congrats. You now have Firefox Quantum: Developer Edition.') }}</h1>
-        <p class="tagline">{{ _('This isn’t just an update. This is Firefox Quantum: A brand new Firefox that has been rebuilt from the ground-up to be faster, sleeker, and more powerful than ever.') }}</p>
+  <section class="t-intro">
+    <div class="mzp-l-content">
+      <h1 class="intro-title">{{ _('Congrats. You now have Firefox Quantum: Developer Edition.') }}</h1>
+      <p class="intro-tagline">{{ _('This isn’t just an update. This is Firefox Quantum: A brand new Firefox that has been rebuilt from the ground-up to be faster, sleeker, and more powerful than ever.') }}</p>
 
-        {% include '/firefox/developer/includes/intro-features.html' %}
-      </div>
+      {% include '/firefox/developer/includes/intro-features.html' %}
     </div>
   </section>
 
@@ -36,13 +34,14 @@
 
   {% include '/firefox/developer/includes/highlights.html' %}
 
-  {% include '/firefox/developer/includes/alt-performance.html' %}
+  {% include '/firefox/developer/includes/performance.html' %}
 
   {% include '/firefox/developer/includes/features.html' %}
 
-  {% include '/firefox/developer/includes/engage.html' %}
-
-  {% include '/firefox/developer/includes/nightly.html' %}
+  <section class="t-engage mzp-t-dark">
+    {% include '/firefox/developer/includes/engage.html' %}
+    {% include '/firefox/developer/includes/nightly.html' %}
+  </section>
 </main>
 {% endblock %}
 
@@ -50,3 +49,7 @@
 
 {# Bug 1381776 #}
 {% block update_notification %}{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_developer') }}
+{% endblock %}

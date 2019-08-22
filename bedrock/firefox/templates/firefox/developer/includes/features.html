@@ -1,123 +1,117 @@
-<section class="section section-features">
-  <div class="content">
-    <h2 class="section-title"><span>{{ _('Design. Code. Test. Refine.') }}</span></h2>
+<section class="t-features mzp-l-content">
+  <h2 class="c-title"><span>{{ _('Design. Code. Test. Refine.') }}</span></h2>
+  {# L10n: line break for visual formatting #}
+  <h3 class="c-subtitle">{{ _('Build and Perfect your sites<br> with Firefox DevTools') }}</h3>
 
-    <div class="section-body">
-      {# L10n: line break for visual formatting #}
-      <h3 class="body-title">{{ _('Build and Perfect your sites<br> with Firefox DevTools') }}</h3>
+  <ul class="c-gallery-grid">
+    <li class="c-gallery-item">
+      <img class="c-feature-img" src="{{ static('img/firefox/developer/feature-inspector.svg') }}" alt="">
+      <h3 class="c-feature-name">{{ _('Inspector') }}</h3>
+      <p class="c-feature-desc">
+        {{ _('Inspect and refine code to build pixel-perfect layouts.') }}
+        {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+          <p class="c-feature-more"><a href="https://developer.mozilla.org/docs/Tools/Page_Inspector" class="mzp-c-cta-link" rel="external">{{ _('Learn more about Page Inspector') }}</a></p>
+        {% endif %}
+      </p>
+    </li>
 
-      <ul class="features-list gallery-list has-three-cols">
-        <li class="gallery-item feature">
-          <img class="icon" src="{{ static('img/firefox/developer/feature-inspector.svg') }}" alt="">
-          <h3 class="name">{{ _('Inspector') }}</h3>
-          <p class="desc">
-            {{ _('Inspect and refine code to build pixel-perfect layouts.') }}
-            {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
-              <a href="https://developer.mozilla.org/docs/Tools/Page_Inspector" class="features-learn-more" rel="external">{{ _('Learn more about Page Inspector') }}</a>
-            {% endif %}
-          </p>
-        </li>
+    <li class="c-gallery-item">
+      <img class="c-feature-img" src="{{ static('img/firefox/developer/feature-console.svg') }}" alt="">
+      <h3 class="c-feature-name">{{ _('Console') }}</h3>
+      <p class="c-feature-desc">
+        {{ _('Track CSS, JavaScript, security and network issues.') }}
+        {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+          <p class="c-feature-more"><a href="https://developer.mozilla.org/docs/Tools/Web_Console" class="mzp-c-cta-link" rel="external">{{ _('Learn more about Web Console') }}</a></p>
+        {% endif %}
+      </p>
+    </li>
 
-        <li class="gallery-item feature">
-          <img class="icon" src="{{ static('img/firefox/developer/feature-console.svg') }}" alt="">
-          <h3 class="name">{{ _('Console') }}</h3>
-          <p class="desc">
-            {{ _('Track CSS, JavaScript, security and network issues.') }}
-            {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
-              <a href="https://developer.mozilla.org/docs/Tools/Web_Console" class="features-learn-more" rel="external">{{ _('Learn more about Web Console') }}</a>
-            {% endif %}
-          </p>
-        </li>
+    <li class="c-gallery-item">
+      <img class="c-feature-img" src="{{ static('img/firefox/developer/feature-debugger.svg') }}" alt="">
+      <h3 class="c-feature-name">{{ _('Debugger') }}</h3>
+      <p class="c-feature-desc">
+        {{ _('Powerful JavaScript debugger with support for your framework.') }}
+        {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+          <p class="c-feature-more"><a href="https://developer.mozilla.org/docs/Tools/Debugger" class="mzp-c-cta-link" rel="external">{{ _('Learn more about JavaScript Debugger') }}</a></p>
+        {% endif %}
+      </p>
+    </li>
 
-        <li class="gallery-item feature">
-          <img class="icon" src="{{ static('img/firefox/developer/feature-debugger.svg') }}" alt="">
-          <h3 class="name">{{ _('Debugger') }}</h3>
-          <p class="desc">
-            {{ _('Powerful JavaScript debugger with support for your framework.') }}
-            {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
-              <a href="https://developer.mozilla.org/docs/Tools/Debugger" class="features-learn-more" rel="external">{{ _('Learn more about JavaScript Debugger') }}</a>
-            {% endif %}
-          </p>
-        </li>
+    <li class="c-gallery-item">
+      <img class="c-feature-img" src="{{ static('img/firefox/developer/feature-network.svg') }}" alt="">
+      <h3 class="c-feature-name">{{ _('Network') }}</h3>
+      <p class="c-feature-desc">
+        {{ _('Monitor network requests that can slow or block your site.') }}
+        {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+          <p class="c-feature-more"><a href="https://developer.mozilla.org/docs/Tools/Network_Monitor" class="mzp-c-cta-link" rel="external">{{ _('Learn more about Network Monitor') }}</a></p>
+        {% endif %}
+      </p>
+    </li>
 
-        <li class="gallery-item feature">
-          <img class="icon" src="{{ static('img/firefox/developer/feature-network.svg') }}" alt="">
-          <h3 class="name">{{ _('Network') }}</h3>
-          <p class="desc">
-            {{ _('Monitor network requests that can slow or block your site.') }}
-            {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
-              <a href="https://developer.mozilla.org/docs/Tools/Network_Monitor" class="features-learn-more" rel="external">{{ _('Learn more about Network Monitor') }}</a>
-            {% endif %}
-          </p>
-        </li>
+    <li class="c-gallery-item">
+      <img class="c-feature-img" src="{{ static('img/firefox/developer/feature-storage.svg') }}" alt="">
+      <h3 class="c-feature-name">{{ _('Storage panel') }}</h3>
+      <p class="c-feature-desc">
+        {{ _('Add, modify and remove cache, cookies, databases and session data.') }}
+        {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+          <p class="c-feature-more"><a href="https://developer.mozilla.org/docs/Tools/Storage_Inspector" class="mzp-c-cta-link" rel="external">{{ _('Learn more about Storage Panel') }}</a></p>
+        {% endif %}
+      </p>
+    </li>
 
-        <li class="gallery-item feature">
-          <img class="icon" src="{{ static('img/firefox/developer/feature-storage.svg') }}" alt="">
-          <h3 class="name">{{ _('Storage panel') }}</h3>
-          <p class="desc">
-            {{ _('Add, modify and remove cache, cookies, databases and session data.') }}
-            {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
-              <a href="https://developer.mozilla.org/docs/Tools/Storage_Inspector" class="features-learn-more" rel="external">{{ _('Learn more about Storage Panel') }}</a>
-            {% endif %}
-          </p>
-        </li>
+    <li class="c-gallery-item">
+      <img class="c-feature-img" src="{{ static('img/firefox/developer/feature-responsive-mode.svg') }}" alt="">
+      <h3 class="c-feature-name">{{ _('Responsive Design Mode') }}</h3>
+      <p class="c-feature-desc">
+        {{ _('Test sites on emulated devices in your browser.') }}
+        {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+          <p class="c-feature-more"><a href="https://developer.mozilla.org/docs/Tools/Responsive_Design_View" class="mzp-c-cta-link" rel="external">{{ _('Learn more about Responsive Design View') }}</a></p>
+        {% endif %}
+      </p>
+    </li>
 
-        <li class="gallery-item feature">
-          <img class="icon" src="{{ static('img/firefox/developer/feature-responsive-mode.svg') }}" alt="">
-          <h3 class="name">{{ _('Responsive Design Mode') }}</h3>
-          <p class="desc">
-            {{ _('Test sites on emulated devices in your browser.') }}
-            {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
-              <a href="https://developer.mozilla.org/docs/Tools/Responsive_Design_View" class="features-learn-more" rel="external">{{ _('Learn more about Responsive Design View') }}</a>
-            {% endif %}
-          </p>
-        </li>
+    <li class="c-gallery-item">
+      <img class="c-feature-img" src="{{ static('img/firefox/developer/feature-visual-editing.svg') }}" alt="">
+      <h3 class="c-feature-name">{{ _('Visual Editing') }}</h3>
+      <p class="c-feature-desc">
+        {{ _('Fine-tune animations, alignment and padding.') }}
+        {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+          <p class="c-feature-more"><a href="https://hacks.mozilla.org/2015/11/developer-edition-44-creative-tools-and-more" class="mzp-c-cta-link" rel="external">{{ _('Learn more about Visual Editing') }}</a></p>
+        {% endif %}
+      </p>
+    </li>
 
-        <li class="gallery-item feature">
-          <img class="icon" src="{{ static('img/firefox/developer/feature-visual-editing.svg') }}" alt="">
-          <h3 class="name">{{ _('Visual Editing') }}</h3>
-          <p class="desc">
-            {{ _('Fine-tune animations, alignment and padding.') }}
-            {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
-              <a href="https://hacks.mozilla.org/2015/11/developer-edition-44-creative-tools-and-more" class="features-learn-more" rel="external">{{ _('Learn more about Visual Editing') }}</a>
-            {% endif %}
-          </p>
-        </li>
+    <li class="c-gallery-item">
+      <img class="c-feature-img" src="{{ static('img/firefox/developer/feature-performance.svg') }}" alt="">
+      <h3 class="c-feature-name">{{ _('Performance') }}</h3>
+      <p class="c-feature-desc">
+        {{ _('Unblock bottlenecks, streamline processes, optimize assets.') }}
+        {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+          <p class="c-feature-more"><a href="https://developer.mozilla.org/docs/Tools/Performance" class="mzp-c-cta-link" rel="external">{{ _('Learn more about Performance Tools') }}</a></p>
+        {% endif %}
+      </p>
+    </li>
 
-        <li class="gallery-item feature">
-          <img class="icon" src="{{ static('img/firefox/developer/feature-performance.svg') }}" alt="">
-          <h3 class="name">{{ _('Performance') }}</h3>
-          <p class="desc">
-            {{ _('Unblock bottlenecks, streamline processes, optimize assets.') }}
-            {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
-              <a href="https://developer.mozilla.org/docs/Tools/Performance" class="features-learn-more" rel="external">{{ _('Learn more about Performance Tools') }}</a>
-            {% endif %}
-          </p>
-        </li>
+    <li class="c-gallery-item">
+      <img class="c-feature-img" src="{{ static('img/firefox/developer/feature-memory.svg') }}" alt="">
+      <h3 class="c-feature-name">{{ _('Memory') }}</h3>
+      <p class="c-feature-desc">
+        {{ _('Find memory leaks and make your application zippy.') }}
+        {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+          <p class="c-feature-more"><a href="https://developer.mozilla.org/docs/Tools/Memory" class="mzp-c-cta-link" rel="external">{{ _('Learn more about Memory Tools') }}</a></p>
+        {% endif %}
+      </p>
+    </li>
 
-        <li class="gallery-item feature">
-          <img class="icon" src="{{ static('img/firefox/developer/feature-memory.svg') }}" alt="">
-          <h3 class="name">{{ _('Memory') }}</h3>
-          <p class="desc">
-            {{ _('Find memory leaks and make your application zippy.') }}
-            {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
-              <a href="https://developer.mozilla.org/docs/Tools/Memory" class="features-learn-more" rel="external">{{ _('Learn more about Memory Tools') }}</a>
-            {% endif %}
-          </p>
-        </li>
-
-        <li class="gallery-item feature">
-          <img class="icon" src="{{ static('img/firefox/developer/feature-style-editor.svg') }}" alt="">
-          <h3 class="name">{{ _('Style Editor') }}</h3>
-          <p class="desc">
-            {{ _('Edit and manage all your CSS stylesheets in your browser.') }}
-            {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
-              <a href="https://developer.mozilla.org/docs/Tools/Style_Editor" class="features-learn-more" rel="external">{{ _('Learn more about Style Editor') }}</a>
-            {% endif %}
-          </p>
-        </li>
-      </ul>
-    </div>
-
-  </div>
+    <li class="c-gallery-item">
+      <img class="c-feature-img" src="{{ static('img/firefox/developer/feature-style-editor.svg') }}" alt="">
+      <h3 class="c-feature-name">{{ _('Style Editor') }}</h3>
+      <p class="c-feature-desc">
+        {{ _('Edit and manage all your CSS stylesheets in your browser.') }}
+        {% if l10n_has_tag('quantum-firstrun-whatsnew') %}
+          <p class="c-feature-more"><a href="https://developer.mozilla.org/docs/Tools/Style_Editor" class="mzp-c-cta-link" rel="external">{{ _('Learn more about Style Editor') }}</a></p>
+        {% endif %}
+      </p>
+    </li>
+  </ul>
 </section>

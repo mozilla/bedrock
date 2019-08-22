@@ -63,6 +63,8 @@
 
         {% if include_language %}
           <p>{{ form.lang|safe }}</p>
+        {% else %}
+          <input type="hidden" name="lang" id="id_lang"  value="en">
         {% endif %}
 
         <fieldset class="mzp-u-inline">

@@ -1,0 +1,298 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/includes/lib';
+
+.moz-sub-nav {
+    @include clearfix();
+    @include font-base;
+    background: #fff;
+    display: none; // hidden for mobile
+    min-height: 52px;
+    overflow: hidden;
+
+    .sub-nav-primary-links {
+        a:link,
+        a:visited {
+            color: #000;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:focus,
+        a:active {
+            color: #000;
+            text-decoration: underline;
+            transition: color 0.1s ease-in-out;
+        }
+    }
+
+    .nav-horizontal-menu {
+        @include clearfix;
+        border-top: 2px solid #000;
+        margin: 0 60px;
+        position: relative;
+
+        @media #{$mq-lg} {
+            margin: 0 85px;
+        }
+    }
+
+    .nav-horizontal-menu-container {
+        max-width: $content-max;
+        margin: 0 auto;
+    }
+
+    .sub-nav-primary-links-container {
+        float: left;
+        width: calc(100% - 200px);
+    }
+
+    .sub-nav-primary-links {
+        @include font-size(16px);
+        list-style-type: none;
+        margin: 0;
+        padding: 13px 0 0;
+
+        &> li {
+            display: inline-block;
+            padding: 0 20px 10px 0;
+
+            a:hover,
+            a:active,
+            a:focus {
+                text-decoration: none;
+            }
+
+            a:focus {
+                outline: none;
+            }
+
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        display: block;
+        margin-bottom: 20px;
+
+        .sub-nav-logo-link + .sub-nav-primary-links  {
+            margin-left: 45px;
+        }
+
+        &.stuck {
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+            position: fixed;
+            top: 0;
+            transform: translateY(-4px);
+            width: 100%;
+            z-index: 200;
+
+            .sub-nav-download-wrapper {
+                height: auto;
+                width: 200px;
+            }
+        }
+    }
+
+    @media #{$mq-lg} {
+        .sub-nav-primary-links {
+            li {
+                padding: 0 20px 10px 0;
+
+                &:last-child {
+                    padding-right: 0;
+                }
+            }
+        }
+
+        .sub-nav-logo-link + .sub-nav-primary-links  {
+            margin-left: 98px;
+        }
+    }
+
+    @media #{$mq-xl} {
+        .sub-nav-primary-links li {
+            padding-right: 40px;
+        }
+
+        .sub-nav-logo-link + .sub-nav-primary-links  {
+            margin-left: 118px;
+        }
+    }
+
+    // black outline firefox logo
+    .sub-nav-logo-link {
+        display: block;
+        position: absolute;
+        top: 2px;
+        left: 0;
+        height: 26px;
+        padding-top: 10px;
+        width: 26px;
+
+        .sub-nav-logo-path {
+            transition: fill 0.1s ease-in-out;
+        }
+    }
+
+    .sub-nav-download-wrapper {
+        float: right;
+        text-align: right;
+        overflow: hidden;
+        width: 0;
+        height: 0;
+    }
+}
+
+// A mixin to apply theme colors to specific elements
+@mixin theme-color($theme-name, $theme-color) {
+    .moz-sub-nav.#{$theme-name} {
+        .sub-nav-primary-links > li {
+            a:hover,
+            a:active,
+            a:focus {
+                color: $theme-color;
+            }
+
+            a.current {
+                color: $theme-color;
+
+                &:hover {
+                    cursor: default;
+                }
+            }
+        }
+
+        .sub-nav-logo-link {
+            &:hover,
+            a:active,
+            &:focus {
+                .sub-nav-logo-path {
+                    fill: $theme-color;
+                }
+            }
+        }
+    }
+}
+
+@include theme-color('firefox', $color-orange-70);
+@include theme-color('internet-health', $color-green-70);
+@include theme-color('technology', $color-purple-70);
+
+
+/* -------------------------------------------------------------------------- */
+// Customized Firefox download button for sub navigation.
+// Near-total copy pasta from global-nav.html. TODO: DRY this up
+
+#sub-nav-download-firefox {
+    margin: 7px 0 0;
+    opacity: 0;
+    transform: translateY(-100px);
+    transition: opacity 0.3s ease 0.1s, transform 0.4s ease-in-out;
+    visibility: hidden;
+
+    .download-list {
+        margin: 0;
+
+        &> li {
+            margin: 0;
+        }
+    }
+
+    .download-link:link,
+    .download-link:visited {
+        @include font-size(12px);
+        border-radius: 2px;
+        display: inline-block;
+        font-weight: bold;
+        padding: .5em 20px;
+        text-decoration: none;
+        transition: color .1s ease-in-out, background-color .1s ease-in-out;
+
+        .download-title {
+            font-weight: bold;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            transition: color .1s ease-in-out, background-color .1s ease-in-out;
+        }
+    }
+
+    .fx-privacy-link {
+        display: none;
+    }
+}
+
+@media #{$mq-md} {
+    .moz-sub-nav.stuck #sub-nav-download-firefox {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+    }
+
+    .other .moz-sub-nav.stuck #sub-nav-download-firefox,
+    .oldwin .moz-sub-nav.stuck #sub-nav-download-firefox,
+    .oldmac .moz-sub-nav.stuck #sub-nav-download-firefox {
+        display: none;
+    }
+}
+
+html[dir="rtl"] {
+    .sub-nav-primary-links-container {
+        float: right;
+    }
+
+    .sub-nav-primary-links > li {
+        padding: 0 0 10px 20px;
+
+        &:last-child {
+            padding-left: 0;
+        }
+    }
+
+    @media #{$mq-md} {
+        .sub-nav-logo-link + .sub-nav-primary-links  {
+            margin-left: 0;
+            margin-right: 45px;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .sub-nav-logo-link + .sub-nav-primary-links  {
+            margin-left: 0;
+            margin-right: 98px;
+        }
+    }
+
+    @media #{$mq-xl} {
+        .sub-nav-primary-links li {
+            padding-left: 40px;
+            padding-right: 0;
+        }
+
+        .sub-nav-logo-link + .sub-nav-primary-links  {
+            margin-left: 0;
+            margin-right: 120px;
+        }
+    }
+
+    // black outline firefox logo
+    .sub-nav-logo-link {
+        left: auto;
+        right: 0;
+    }
+
+    .sub-nav-download-wrapper {
+        float: left;
+        text-align: left;
+    }
+}

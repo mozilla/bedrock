@@ -1,9 +1,18 @@
-<section class="section section-download">
-  <div class="content">
-    <div class="section-body">
-      <h2>{{ _('Want to be on the cutting-edge?') }}</h2>
-      <p>{{ _('Firefox Nightly receives daily updates and allows you to access features months before they go mainstream.') }}</p>
-      {{ download_firefox('nightly', platform='desktop', dom_id='footer-download', button_color='button-arrow', download_location='footer cta') }}
+<div class="mzp-l-content t-download t-nightly">
+  <section class="mzp-c-card-feature mzp-has-aspect-3-2 mzp-l-card-feature-right-half">
+    <div class="mzp-c-card-feature-media-wrapper">
+      <div class="mzp-c-card-feature-media">
+          {{ high_res_img('firefox/developer/browser-nightly.png', {'alt': '', 'width': '334', 'height': '228'}) }}
+      </div>
     </div>
-  </div>
-</section>
+    <div class="mzp-c-card-feature-content">
+      <div class="mzp-c-card-feature-content-container">
+        <h2 class="mzp-c-card-feature-title">{{ _('Want to be on the cutting-edge?') }}</h2>
+        <div class="mzp-c-card-feature-desc">
+            <p>{{ _('Firefox Nightly receives daily updates and allows you to access features months before they go mainstream.') }}</p>
+            <p>{{ download_firefox('nightly', platform='desktop', dom_id='footer-download', button_color='button-arrow', download_location='footer cta') }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
