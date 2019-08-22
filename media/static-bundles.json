@@ -543,9 +543,9 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-modular.scss"
+        "css/firefox/whatsnew/whatsnew-69.scss"
       ],
-      "name": "firefox_whatsnew_modular"
+      "name": "firefox_whatsnew_69"
     },
     {
       "files": [
@@ -1058,6 +1058,17 @@
         "js/firefox/whatsnew/experiment-variation-whatsnew-68.js"
       ],
       "name": "experiment-variation-whatsnew-68"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-monitor-button.js",
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/firefox/whatsnew/whatsnew-69.js"
+      ],
+      "name": "firefox_whatsnew_69"
     },
     {
       "files": [

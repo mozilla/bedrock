@@ -6,8 +6,8 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/hero';
 @import '../../protocol/components/state-fxa';
+
 
 .content-wrapper {
     background-color: $color-gray-10;
@@ -38,7 +38,7 @@ $image-path: '/media/protocol/img';
     background: $color-white;
 }
 
-// Eventually to be replaced by an upstream component. See https://github.com/mozilla/protocol/issues/383
+// To be replaced by an upstream component. See https://github.com/mozilla/protocol/issues/383
 .c-page-header-up-to-date {
     @include text-display-xxs;
     color: $color-off-black;
@@ -48,7 +48,7 @@ $image-path: '/media/protocol/img';
     span {
         background-color: $color-green-50;
         border-radius: 4px;
-        box-shadow: 0 2px 24px transparentize($color-off-black, .85);
+        box-shadow: 0 2px 8px transparentize($color-off-black, .76), 0 0 2px transparentize($color-off-black, .9);
         display: inline-block;
         font-weight: normal;
         max-width: $content-sm;
@@ -75,57 +75,74 @@ $image-path: '/media/protocol/img';
 
 //* -------------------------------------------------------------------------- */
 // Emphasis box
-// Eventually to be replaced by an upstream component. See https://github.com/mozilla/protocol/issues/385
+// To be replaced by an upstream component. See https://github.com/mozilla/protocol/issues/385
 
 .c-emphasis-box {
     @include border-box;
     background: $color-white;
     border-radius: 6px;
-    box-shadow: 0 0 16px transparentize($color-off-black, .85), 0 0 2px transparentize($color-off-black, .9);
-    color: $color-gray-90;
+    box-shadow: 0 4px 16px transparentize($color-off-black, .76), 0 0 2px transparentize($color-off-black, .9);
     margin: 0 auto $layout-sm;
     max-width: $content-md - ($layout-md * 2);
-    padding: $spacing-xl $layout-md;
+    padding: $spacing-xl;
 
     .c-emphasis-box-logo {
         display: block;
         margin: 0 auto $spacing-lg;
+        width: 50px;
     }
 
     .c-emphasis-box-title {
         @include text-display-sm;
-        color: $color-off-black;
+
+        br {
+            display: none;
+        }
+    }
+
+    @media #{$mq-md} {
+        padding: $spacing-xl $layout-md;
+
+        .c-emphasis-box-title br {
+            display: block;
+        }
     }
 }
 
 
 //* -------------------------------------------------------------------------- */
 // Extra content
+// To be replaced by revamped picto card. See https://github.com/mozilla/protocol/issues/382
 
-.c-block {
+.c-picto-block {
     @include border-box;
     margin: 0 auto $spacing-2xl;
     max-width: $content-md - ($layout-md * 2);
     padding: 0 $layout-md;
 
-    .c-block-title {
+    .c-picto-block-title {
         @include text-display-xs;
     }
 
-    .c-block-icon {
+    .c-picto-block-image {
+        align-items: center;
+        display: flex;
         margin-bottom: $spacing-md;
+        min-height: $layout-md;
     }
 }
 
 @media #{$mq-md} {
-    .l-blocks-two {
+    .l-columns-two,
+    .l-columns-three {
         display: flex;
         margin: 0 auto;
         max-width: $content-md - ($layout-md * 2);
         padding: 0 $layout-md;
+        flex-wrap: wrap;
 
-        .c-block {
-            flex: 1 1 0;
+        .c-picto-block {
+            flex: 1 1 50%;
             padding: 0 $spacing-lg;
         }
     }
@@ -133,13 +150,13 @@ $image-path: '/media/protocol/img';
 
 
 @media #{$mq-lg} {
-    .l-blocks-three {
+    .l-columns-three {
         display: flex;
         margin: 0 auto;
         max-width: $content-lg;
 
-        .c-block {
-            flex: 1 1 0;
+        .c-picto-block {
+            flex: 1 1 33.3%;
             padding: 0 $spacing-lg;
         }
     }
@@ -216,7 +233,7 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Dark theme
 
-.t-dark {
+.mzp-t-dark {
 
     &.content-wrapper {
         background-color: $color-off-black;
@@ -253,6 +270,7 @@ $image-path: '/media/protocol/img';
 
     .c-emphasis-box {
         background-color: $color-gray-10;
+        color: $color-off-black;
 
         :link {
             color: $color-link;

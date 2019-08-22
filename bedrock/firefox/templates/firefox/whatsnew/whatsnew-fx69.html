@@ -1,0 +1,126 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import monitor_button with context %}
+
+{% add_lang_files "firefox/whatsnew_69" %}
+
+{% extends "firefox/base-protocol.html" %}
+
+{% block page_title %}{{ _('Firefox Monitor — see if you’ve been in another company’s data breach') }}{% endblock %}
+{% block page_desc %}{{ _('Use Firefox Monitor to see if your info was compromised in another company’s data breach — and get automatically signed up for future alerts.') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_69') }}
+{% endblock %}
+
+{% block body_class %}state-fxa-default{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main class="content-wrapper mzp-t-firefox mzp-t-dark">
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
+      {{ high_res_img('logos/firefox/logo-quantum-wordmark-white.png', {'alt': 'Firefox', 'width': '120', 'height': '40', 'class': 'c-page-header-logo-fx'}) }}
+      <h1 class="c-page-header-up-to-date"><span>{{ _('Congrats! You’re using the latest version of Firefox.') }}</span></h1>
+    </div>
+  </header>
+
+  <section class="content-main">
+    <div class="mzp-l-content">
+      <div class="c-emphasis-box show-fxa-default show-fxa-not-fx show-fxa-supported-signed-out">
+        <img class="c-emphasis-box-logo" src="{{ static('img/logos/firefox/logo-monitor.svg') }}" alt="">
+        <h2 class="c-emphasis-box-title">
+        {% if LANG.startswith('en-') %}
+          Have you checked out<br> Firefox Monitor?
+        {% else %}
+          {{ _('Have you checked out Firefox Monitor?') }}
+        {% endif %}
+        </h2>
+        <p>{{ _('Sign up to see if your info was compromised in another company’s data breach, and automatically get alerts when your info might be at risk.') }}</p>
+
+        {{ monitor_button(
+          button_id='monitor-button-signed-out',
+          entrypoint='mozilla.org-firefox-whatsnew69',
+          utm_campaign='whatsnew69',
+          utm_content='whatsnew69-signed-out',
+          button_text=_('Sign Up for Monitor')
+        ) }}
+      </div>
+
+      <div class="c-emphasis-box show-fxa-supported-signed-in">
+        <img class="c-emphasis-box-logo" src="{{ static('img/logos/firefox/logo-monitor.svg') }}" alt="">
+        <h2 class="c-emphasis-box-title">{{ _('Have you checked out Firefox Monitor? It’s included with your Firefox account.') }}</h2>
+        <p>{{ _('Use Firefox Monitor to see if your info was compromised in another company’s data breach — and get automatically signed up for future alerts.') }}</p>
+
+        {{ monitor_button(
+          button_id='monitor-button-signed-in',
+          entrypoint='mozilla.org-firefox-whatsnew69',
+          utm_campaign='whatsnew69',
+          utm_content='whatsnew69-signed-in',
+          button_text=_('Sign In')
+        ) }}
+      </div>
+    </div>
+  </section>
+
+  <section class="content-extra">
+    <div class="mzp-l-content">
+      <div class="show-fxa-supported-signed-out">
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            <img src="{{ static('img/icons/tracking-protection.svg') }}" alt="">
+          </div>
+
+          <h3 class="c-picto-block-title">{{ _('Your Firefox Browser now automatically blocks online snoopers') }}</h3>
+          <div class="c-picto-block-body">
+            <p>{{ _('Now it’s harder than ever for spying companies to track you online. That’s because Enhanced Tracking Protection — a feature that blocks known tracking cookies — is on by default in your updated browser.') }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="show-fxa-supported-signed-in">
+        <div class="l-columns-two">
+          <div class="c-picto-block">
+            <div class="c-picto-block-image">
+              <img src="{{ static('img/firefox/glyphs/tracking-protection.svg') }}" alt="">
+            </div>
+
+            <h3 class="c-picto-block-title">{{ _('Your Firefox Browser now automatically blocks online snoopers') }}</h3>
+            <div class="c-picto-block-body">
+              <p>{{ _('Now it’s harder than ever for spying companies to track you online. That’s because Enhanced Tracking Protection — a feature that blocks known tracking cookies — is on by default in your updated browser.') }}</p>
+            </div>
+          </div>
+
+          <div class="c-picto-block">
+            <div class="c-picto-block-image">
+              <img src="{{ static('img/firefox/glyphs/pocket.svg') }}" alt="">
+            </div>
+
+            <h3 class="c-picto-block-title">{{ _('Put quality content in your Pocket') }}</h3>
+            <div class="c-picto-block-body">
+              <p>{{ _('Discover the web’s best content, and absorb it anytime — even offline — on any device. Pocket’s listen feature will even read any article aloud to you. Get it all from the Firefox toolbar or the Pocket app.') }}</p>
+              <p><a href="https://getpocket.com/firefox_learnmore/?utm_source=mozilla.org-firefox-whatsnew69&utm_medium=referral&utm_campaign=wnp69&utm_content=get-pocket&entrypoint=mozilla.org-firefox-whatsnew69">{{ _('Get the Pocket App') }}</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="mzp-l-content c-utilities">
+    <p>
+    {% trans notes=url('firefox.notes') %}
+      Read the <a href="{{ notes }}">Release Notes</a> to know more about what’s new in your Firefox Browser.
+    {% endtrans %}
+    </p>
+  </aside>
+
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_69') }}
+{% endblock %}

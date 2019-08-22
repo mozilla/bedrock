@@ -7,7 +7,7 @@
 {% extends "firefox/whatsnew/whatsnew-fx68-trailhead.html" %}
 
 {% block page_css %}
-  {{ css_bundle('firefox_whatsnew_modular') }}
+  {{ css_bundle('firefox_whatsnew_69') }}
 {% endblock %}
 
 {% block body_attrs %}{{ super() }} data-variant="b"{% endblock %}
@@ -123,24 +123,24 @@
   <section class="content-extra show-fxa-supported-signed-in">
     <div class="mzp-l-content">
 
-      <div class="l-blocks-two">
+      <div class="l-columns-two">
 
-        <div class="c-block">
-          <div class="c-block-icon">
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
             <img src="{{ static('img/firefox/whatsnew_67/experiments.svg') }}" alt="">
           </div>
-          <h3 class="c-block-title">{{ _('Help us build a better Firefox for you.') }}</h3>
-          <div class="c-block-body">
+          <h3 class="c-picto-block-title">{{ _('Help us build a better Firefox for you.') }}</h3>
+          <div class="c-picto-block-body">
             <p>{{ _('Get into the open source spirit by test-driving upcoming products.') }}</p>
           </div>
         </div>
 
-        <div class="c-block">
-          <div class="c-block-icon">
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
             <img src="{{ static('img/firefox/whatsnew_67/inbox.svg') }}" alt="">
           </div>
-          <h3 class="c-block-title">{{ _('Help us keep Big Tech in check.') }}</h3>
-          <div class="c-block-body">
+          <h3 class="c-picto-block-title">{{ _('Help us keep Big Tech in check.') }}</h3>
+          <div class="c-picto-block-body">
             <p>{{ _('We support communities all over the world standing up for a healthier internet.  Add your voice to the fight.') }}</p>
           </div>
         </div>
