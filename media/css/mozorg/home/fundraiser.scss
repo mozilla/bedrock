@@ -7,40 +7,42 @@ $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
 
-@keyframes fadein {
-    0% {background-color: black;}
-    1% {background: linear-gradient(125deg, $color-blue-40 5%);}
-    4% {background: linear-gradient(125deg, $color-green-40 0%, $color-blue-40 5%);}
-    5% {background: linear-gradient(125deg, $color-green-40 0%, $color-blue-40 10%);}
-    10% {background: linear-gradient(125deg, $color-green-40 5%, $color-blue-40 15%);}
-    15% {background: linear-gradient(125deg, $color-green-40 10%, $color-blue-40 20%);}
-    20% {background: linear-gradient(125deg, $color-green-40 15%, $color-blue-40 25%);}
-    25% {background: linear-gradient(125deg, $color-green-40 20%, $color-blue-40 30%);}
-    30% {background: linear-gradient(125deg, $color-green-40 25%, $color-blue-40 35%);}
-    35% {background: linear-gradient(125deg, $color-green-40 30%, $color-blue-40 40%);}
-    40% {background: linear-gradient(125deg, $color-green-40 35%, $color-blue-40 45%);}
-    45% {background: linear-gradient(125deg, $color-green-40 40%, $color-blue-40 50%);}
-    50% {background: linear-gradient(125deg, $color-green-40 45%, $color-blue-40 55%);}
-    55% {background: linear-gradient(125deg, $color-green-40 50%, $color-blue-40 60%);}
-    60% {background: linear-gradient(125deg, $color-green-40 55%, $color-blue-40 65%);}
-    65% {background: linear-gradient(125deg, $color-green-40 60%, $color-blue-40 70%);}
-    70% {background: linear-gradient(125deg, $color-green-40 65%, $color-blue-40 75%);}
-    75% {background: linear-gradient(125deg, $color-green-40 70%, $color-blue-40 80%);}
-    80% {background: linear-gradient(125deg, $color-green-40 75%, $color-blue-40 85%);}
-    85% {background: linear-gradient(125deg, $color-green-40 80%, $color-blue-40 90%);}
-    90% {background: linear-gradient(125deg, $color-green-40 85%, $color-blue-40 95%);}
-    95% {background: linear-gradient(125deg, $color-green-40 90%, $color-blue-40 100%);}
+@keyframes swoosh {
+    0% {background: $color-blue-40;}
+    78% {background: $color-blue-40;}
+    79% {background: linear-gradient(125deg, $color-blue-40 5%);}
+    80% {background: linear-gradient(125deg, $color-green-40 0%, $color-blue-40 5%);}
+    81% {background: linear-gradient(125deg, $color-green-40 0%, $color-blue-40 10%);}
+    82% {background: linear-gradient(125deg, $color-green-40 5%, $color-blue-40 15%);}
+    83% {background: linear-gradient(125deg, $color-green-40 10%, $color-blue-40 20%);}
+    84% {background: linear-gradient(125deg, $color-green-40 15%, $color-blue-40 25%);}
+    85% {background: linear-gradient(125deg, $color-green-40 20%, $color-blue-40 30%);}
+    86% {background: linear-gradient(125deg, $color-green-40 25%, $color-blue-40 35%);}
+    87% {background: linear-gradient(125deg, $color-green-40 30%, $color-blue-40 40%);}
+    88% {background: linear-gradient(125deg, $color-green-40 35%, $color-blue-40 45%);}
+    89% {background: linear-gradient(125deg, $color-green-40 40%, $color-blue-40 50%);}
+    90% {background: linear-gradient(125deg, $color-green-40 45%, $color-blue-40 55%);}
+    91% {background: linear-gradient(125deg, $color-green-40 50%, $color-blue-40 60%);}
+    92% {background: linear-gradient(125deg, $color-green-40 55%, $color-blue-40 65%);}
+    93% {background: linear-gradient(125deg, $color-green-40 60%, $color-blue-40 70%);}
+    94% {background: linear-gradient(125deg, $color-green-40 65%, $color-blue-40 75%);}
+    95% {background: linear-gradient(125deg, $color-green-40 70%, $color-blue-40 80%);}
+    96% {background: linear-gradient(125deg, $color-green-40 75%, $color-blue-40 85%);}
+    97% {background: linear-gradient(125deg, $color-green-40 80%, $color-blue-40 90%);}
+    98% {background: linear-gradient(125deg, $color-green-40 85%, $color-blue-40 95%);}
+    99% {background: linear-gradient(125deg, $color-green-40 90%, $color-blue-40 100%);}
     100% {background: linear-gradient(125deg, $color-green-40 95%, $color-blue-40 100%);}
+    100% {background-color: $color-green-40;}
 }
 
 .c-fundraiser {
     @include clearfix;
-    background: black;
     background-size: cover;
+    background-color: black;
     color: $color-white;
     padding: $spacing-md 0 0;
-    z-index: 3;
     position: relative;
+    z-index: 3;
 
     // hide by default if JS is available to avoid flicker
     // (if visitor previously dismissed)
@@ -58,24 +60,21 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.c-fundraiser {
-    h2 span {
-        background-color: $color-green-40;
-        color: black;
-        animation-name: fadein;
-        animation-duration: 1s;
-    }
-}
-content {
+.content {
     vertical-align: middle;
 }
 
 .c-fundraiser-title {
+    @include font-mozilla;
     @include text-display-lg;
     font-weight: bold;
-    @include font-mozilla;
-    color: $color-green-40;
     line-height: 1.25em;
+    span {
+        animation-duration: 3s;
+        animation-name: swoosh;
+        background-color: $color-green-40;
+        color: black;
+    }
 }
 
 .c-fundraiser-amount-input {
@@ -104,7 +103,7 @@ content {
 
 .c-fundraiser-options {
     label {
-        @include bidi(((margin, 0 $spacing-sm 0 0, 0 0 0 $spacing-sm),));
+        @include bidi(((margin, $spacing-sm $spacing-sm 0 0, 0 0 0 $spacing-sm),));
         display: inline-block;
         position: relative;
 
@@ -117,14 +116,15 @@ content {
         @include bidi(((margin-right, $spacing-md, 0),(margin-left, 0, $spacing-md)));
         display: inline-block;
     }
+    margin-bottom: $spacing-sm;
 }
 
 // Close button
 .c-fundraiser-close {
-    @include image-replaced;
-    @include bidi(((right, $spacing-sm, auto), (left, auto, $spacing-sm)));
-    background: transparent url('#{$image-path}/icons/ui/close-white.svg') center center no-repeat;
     @include background-size(16px 16px);
+    @include bidi(((right, $spacing-sm, auto), (left, auto, $spacing-sm)));
+    @include image-replaced;
+    background: transparent url('#{$image-path}/icons/ui/close-white.svg') center center no-repeat;
     border: none;
     display: none;
     height: 42px;
@@ -161,20 +161,20 @@ content {
         padding-bottom: $spacing-md;
     }
 
-    .content-table {
+    .content {
         display: table;
     }
 
     .c-fundraiser-title {
         @include bidi(((table-cell, left, right),(padding-right, $spacing-xl, 0), (padding-left, 0, $spacing-xl)));
+        @include grid-half;
         display: table-cell;
         vertical-align: middle;
-        @include grid-half;
     }
 
     .c-fundraiser-content {
         @include bidi(((table-cell, right, left),));
-        display: table-cell;
         @include grid-half;
+        display: table-cell;
     }
 }

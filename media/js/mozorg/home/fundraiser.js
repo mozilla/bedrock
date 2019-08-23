@@ -9,7 +9,7 @@
     var fundraiserClose = document.getElementById('fundraiser-close');
     var cookieDurationDays = 1;
     var cookiesOK = typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled();
-    var storageKey = 'fundraiser-jun2019';
+    var storageKey = 'fundraiser-sept2019';
     var wasClosed = false;
 
     // see if visitor previously dismissed the banner
