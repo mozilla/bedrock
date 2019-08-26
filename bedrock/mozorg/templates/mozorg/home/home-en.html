@@ -42,7 +42,9 @@
 {% endblock %}
 
 {% block site_header %}
-  {% include 'mozorg/home/includes/fundraiser.html' %}
+  {% if switch('home-fundraising-sept2019') %}
+    {% include 'mozorg/home/includes/fundraiser.html' %}
+  {% endif %}
   {% include 'includes/protocol/navigation/index.html' %}
 {% endblock %}
 
