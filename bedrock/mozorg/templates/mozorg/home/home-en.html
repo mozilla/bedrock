@@ -217,5 +217,7 @@
 
 {% block js %}
   {{ js_bundle('home') }}
-  {{ js_bundle('home-fundraiser') }}
+  {% if switch('home-fundraising-sept2019') %}
+    {{ js_bundle('home-fundraiser') }}
+  {% endif %}
 {% endblock %}
