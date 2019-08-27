@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render as django_render
 from django.template import TemplateDoesNotExist, loader
 from django.utils.translation.trans_real import parse_accept_lang_header
+from django.views.generic import TemplateView
 
 from bedrock.base.urlresolvers import split_path
 
@@ -164,7 +165,7 @@ class LangFilesMixin:
     add_active_locales = None
 
     def get_context_data(self, **kwargs):
-        ctx = super(LangFilesMixin, self).get_context_data(**kwargs)
+        ctx = super().get_context_data(**kwargs)
         if self.active_locales:
             ctx['active_locales'] = self.active_locales
         if self.add_active_locales:
@@ -175,3 +176,7 @@ class LangFilesMixin:
     def render_to_response(self, context, **response_kwargs):
         return render(self.request, self.get_template_names(),
                       context, **response_kwargs)
+
+
+class L10nTemplateView(LangFilesMixin, TemplateView):
+    pass

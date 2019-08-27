@@ -1,6 +1,7 @@
 import json
 import logging
 import os.path
+import re
 from datetime import datetime
 from os import getenv
 from time import time
@@ -9,6 +10,8 @@ import timeago
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
+from django.views.generic import RedirectView
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST, require_safe
@@ -29,6 +32,26 @@ def get_geo_from_request(request):
         return None
 
     return country_code.upper()
+
+
+@method_decorator(never_cache, name='dispatch')
+class GeoRedirectView(RedirectView):
+    # dict of country codes to full URLs or URL names
+    geo_urls = None
+    # default URL or URL name for countries not in `geo_urls`
+    default_url = None
+    # default to sending the query parameters through to the redirect
+    query_string = True
+
+    def get_redirect_url(self, *args, **kwargs):
+        country_code = get_geo_from_request(self.request)
+        url = self.geo_urls.get(country_code, self.default_url)
+        if re.match(r'https?://', url, re.I):
+            self.url = url
+        else:
+            self.pattern_name = url
+
+        return super().get_redirect_url(*args, **kwargs)
 
 
 @require_safe
