@@ -594,7 +594,6 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
     def get_template_names(self):
         locale = l10n_utils.get_locale(self.request)
         trailhead_locales = ['en-US', 'en-CA', 'en-GB', 'de', 'fr']
-        variant = self.request.GET.get('v', None)
 
         version = self.kwargs.get('version') or ''
         oldversion = self.request.GET.get('oldversion', '')
@@ -639,26 +638,14 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
             template = 'firefox/whatsnew/whatsnew-fx69.html'
         elif version.startswith('68.'):
             if locale in trailhead_locales:
-                if variant in ['b', 'c', 'd', 'e']:
-                    template = 'firefox/whatsnew/whatsnew-fx68-{}.html'.format(
-                        variant
-                    )
-                else:
-                    template = 'firefox/whatsnew/whatsnew-fx68-trailhead.html'
+                template = 'firefox/whatsnew/whatsnew-fx68-trailhead.html'
             else:
                 template = 'firefox/whatsnew/whatsnew-fx68.html'
-        elif version.startswith('67.0.') and locale in trailhead_locales:
-            template = 'firefox/whatsnew/whatsnew-fx67.0.5.html'
         elif version.startswith('67.'):
-            template = 'firefox/whatsnew/whatsnew-fx67.html'
-        elif version.startswith('66.'):
-            template = 'firefox/whatsnew/whatsnew-fx66.html'
-        elif version.startswith('65.'):
-            template = 'firefox/whatsnew/whatsnew-fx65.html'
-        elif version.startswith('64.'):
-            template = 'firefox/whatsnew/fx64/whatsnew-fx64.html'
-        elif version.startswith('63.'):
-            template = 'firefox/whatsnew/whatsnew-fx63.html'
+            if version.startswith('67.0.') and locale in trailhead_locales:
+                template = 'firefox/whatsnew/whatsnew-fx67.0.5.html'
+            else:
+                template = 'firefox/whatsnew/whatsnew-fx67.html'
         else:
             template = 'firefox/whatsnew/index.html'
 

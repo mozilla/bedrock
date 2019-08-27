@@ -511,30 +511,6 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-63.scss"
-      ],
-      "name": "firefox_whatsnew_63"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-64.scss"
-      ],
-      "name": "firefox_whatsnew_64"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-65.scss"
-      ],
-      "name": "firefox_whatsnew_65"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-66.scss"
-      ],
-      "name": "firefox_whatsnew_66"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-67.scss"
       ],
       "name": "firefox_whatsnew_67"
@@ -983,57 +959,6 @@
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
         "js/base/mozilla-fxa-form-init.js",
-        "js/firefox/whatsnew/whatsnew-63.js"
-      ],
-      "name": "firefox_whatsnew_63"
-    },
-    {
-      "files": [
-        "js/base/uitour-lib.js",
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "protocol/js/protocol-modal.js",
-        "js/firefox/whatsnew/whatsnew-64.js"
-      ],
-      "name": "firefox_whatsnew_64"
-    },
-    {
-      "files": [
-        "js/base/uitour-lib.js",
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-form.js",
-        "js/base/mozilla-fxa-form-init.js",
-        "js/firefox/whatsnew/whatsnew-65.js"
-      ],
-      "name": "firefox_whatsnew_65"
-    },
-    {
-      "files": [
-        "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.js"
-      ],
-      "name": "firefox_whatsnew_65_newsletter"
-    },
-    {
-      "files": [
-        "js/base/uitour-lib.js",
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-form.js",
-        "js/base/mozilla-fxa-form-init.js",
-        "protocol/js/protocol-modal.js",
-        "js/firefox/whatsnew/whatsnew-66.js"
-      ],
-      "name": "firefox_whatsnew_66"
-    },
-    {
-      "files": [
-        "js/base/uitour-lib.js",
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-form.js",
-        "js/base/mozilla-fxa-form-init.js",
         "protocol/js/protocol-modal.js",
         "js/firefox/whatsnew/whatsnew-67.js"
       ],
@@ -1050,63 +975,6 @@
         "js/firefox/whatsnew/account-conditional-ctas.js"
       ],
       "name": "firefox_whatsnew_67.0.5"
-    },
-    {
-      "files": [
-        "js/base/uitour-lib.js",
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-monitor-button.js",
-        "js/base/mozilla-monitor-button-init.js",
-        "js/firefox/whatsnew/up-to-date.js"
-      ],
-      "name": "firefox_whatsnew_68E_monitor"
-    },
-    {
-      "files": [
-        "js/libs/mozilla-traffic-cop.js",
-        "js/base/mozilla-client.js",
-        "js/firefox/whatsnew/experiment-whatsnew-68-enUS.js"
-      ],
-      "name": "experiment-whatsnew-68-enUS"
-    },
-    {
-      "files": [
-        "js/libs/mozilla-traffic-cop.js",
-        "js/base/mozilla-client.js",
-        "js/firefox/whatsnew/experiment-whatsnew-68-enCA.js"
-      ],
-      "name": "experiment-whatsnew-68-enCA"
-    },
-    {
-      "files": [
-        "js/libs/mozilla-traffic-cop.js",
-        "js/base/mozilla-client.js",
-        "js/firefox/whatsnew/experiment-whatsnew-68-enGB.js"
-      ],
-      "name": "experiment-whatsnew-68-enGB"
-    },
-    {
-      "files": [
-        "js/libs/mozilla-traffic-cop.js",
-        "js/base/mozilla-client.js",
-        "js/firefox/whatsnew/experiment-whatsnew-68-fr.js"
-      ],
-      "name": "experiment-whatsnew-68-fr"
-    },
-    {
-      "files": [
-        "js/libs/mozilla-traffic-cop.js",
-        "js/base/mozilla-client.js",
-        "js/firefox/whatsnew/experiment-whatsnew-68-de.js"
-      ],
-      "name": "experiment-whatsnew-68-de"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/experiment-variation-whatsnew-68.js"
-      ],
-      "name": "experiment-variation-whatsnew-68"
     },
     {
       "files": [
