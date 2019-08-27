@@ -42,6 +42,9 @@
 {% endblock %}
 
 {% block site_header %}
+  {% if switch('home-fundraising-sept2019') %}
+    {% include 'mozorg/home/includes/fundraiser.html' %}
+  {% endif %}
   {% include 'includes/protocol/navigation/index.html' %}
 {% endblock %}
 
@@ -214,4 +217,7 @@
 
 {% block js %}
   {{ js_bundle('home') }}
+  {% if switch('home-fundraising-sept2019') %}
+    {{ js_bundle('home-fundraiser') }}
+  {% endif %}
 {% endblock %}
