@@ -270,7 +270,7 @@
 {%- endmacro %}
 
 {# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#linking-to-monitorfirefoxcom #}
-{% macro monitor_button(entrypoint, form_type='email', utm_campaign=None, utm_content=None, utm_term=None, button_text=None, button_class='mzp-c-button mzp-t-product', button_id='fxa-monitor-submit') -%}
+{% macro monitor_button(entrypoint, form_type='button', utm_campaign=None, utm_content=None, utm_term=None, button_text=None, button_class='mzp-c-button mzp-t-product', button_id='fxa-monitor-submit') -%}
   {% set fxa_queries = [
     'form_type=' ~ form_type,
     'entrypoint=' ~ entrypoint,
