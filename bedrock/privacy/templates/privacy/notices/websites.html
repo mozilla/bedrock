@@ -8,3 +8,6 @@
 {% block body_class %}mzp-t-mozilla format-none{% endblock%}
 
 {% block article_header_logo %}{{ static('img/trademarks/logo-mozm.png') }}{% endblock %}
+
+{# disable GA on the websites privacy policy. Bug 1576673 #}
+{% block google_analytics %}{% endblock %}
