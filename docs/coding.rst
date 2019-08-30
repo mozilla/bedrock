@@ -40,7 +40,7 @@ template data as keyword arguments:
 The variable `latest_version` will be available in the template.
 
 Optimizing images
-----------------
+-----------------
 
 Images can take a long time to load and eat up a lot of bandwidth. Always take care
 to optimize images before uploading them to the site.
