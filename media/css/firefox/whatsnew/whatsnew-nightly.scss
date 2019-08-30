@@ -44,7 +44,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     header {
-        @include at2x('/media/img/logos/firefox/nightly-logo.png', 124px, 124px);
+        @include at2x('/media/img/logos/firefox/nightly.png', 124px, 124px);
         background-position: top center;
         background-repeat: no-repeat;
         padding-top: 160px;

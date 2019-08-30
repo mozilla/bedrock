@@ -20,7 +20,7 @@ main {
     padding-bottom: 0;
 
     .mzp-c-hero-title {
-        @include at2x('/media/img/logos/firefox/nightly-logo.png', 100px, 100px);
+        @include at2x('/media/img/logos/firefox/nightly.png', 100px, 100px);
         padding-top: 120px;
     }
 
