@@ -58,7 +58,13 @@
       <h2 class="enterprise-section-title">{{ _('Unmatched data protection — on the release cadence that suits you') }}</h2>
 
       <ul class="mzp-l-card-third">
-        {{ picto_card(title=_('Your data stays your business'), desc=_('The Firefox browser is open source, provides Enhanced Tracking Protection and soon will support DNS over HTTPS — all part of our longstanding commitment to data protection.'), class='privacy') }}
+        {% if LANG == 'en-US' %}
+          {% set _desc = _('The Firefox browser is open source, provides Enhanced Tracking Protection and soon will support DNS over HTTPS — all part of our longstanding commitment to data protection.') %}
+        {% else %}
+          {% set _desc = _('The Firefox browser is open source and provides Enhanced Tracking Protection — all part of our longstanding commitment to data protection.') %}
+        {% endif %}
+
+        {{ picto_card(title=_('Your data stays your business'), desc=_desc, class='privacy') }}
         {{ picto_card(title=_('Deploy when and how you want'), desc=_('With install packages and a wide expansion of group policies and features, deployment is faster and more flexible than ever — and a breeze in Windows and MacOS environments.'), class='deploy') }}
         {{ picto_card(title=_('Choose your release cadence'), desc=_('Get rapid releases to make sure you get the latest features faster, or go extended to ensure a super stable experience.'), class='release') }}
       </ul>
@@ -81,7 +87,7 @@
           <li>{{ _('24/7 private help for customization, deployment and management of Firefox') }}</li>
           <li>{{ _('SLAs on critical security bug fixing') }}</li>
           <li>{{ _('Access to the enterprise critical issues distribution list') }}</li>
-          <li>{{ _('Access to a private customer portal') }}</li>
+          <li>{{ _('A private customer portal') }}</li>
           <li>{{ _('The ability to contribute to Firefox and our roadmap') }}</li>
         </ul>
       {% endcall %}
