@@ -91,10 +91,10 @@ $image-path: '/media/protocol/img';
 }
 
 .mzp-t-beta .c-page-section:before {
-    background-image: url('/media/img/logos/firefox/beta-logo.png');
+    background-image: url('/media/img/logos/firefox/beta.png');
 
     @media #{$mq-high-res} {
-        background-image: url('/media/img/logos/firefox/beta-logo-high-res.png');
+        background-image: url('/media/img/logos/firefox/beta-high-res.png');
     }
 }
 
@@ -107,10 +107,10 @@ $image-path: '/media/protocol/img';
 }
 
 .mzp-t-nightly .c-page-section:before {
-    background-image: url('/media/img/logos/firefox/nightly-logo.png');
+    background-image: url('/media/img/logos/firefox/nightly.png');
 
     @media #{$mq-high-res} {
-        background-image: url('/media/img/logos/firefox/nightly-logo-high-res.png');
+        background-image: url('/media/img/logos/firefox/nightly-high-res.png');
     }
 }
 

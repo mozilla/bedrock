@@ -13,7 +13,7 @@
 }
 
 .intro-title {
-    @include at2x('/media/img/logos/firefox/logo-dev-edition-quantum-wordmark-wide.png', 368px, 52px);
+    @include at2x('/media/img/logos/firefox/developer-wordmark.png', 368px, 68px);
     @include text-display-lg;
     background-position: top center;
     background-repeat: no-repeat;
