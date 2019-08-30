@@ -4,16 +4,16 @@
 
 {% extends "foundation/base.html" %}
 
-{% block page_title %}{{ _('Distribution of Firefox with Mozilla Trademarks') }}{% endblock %}
+{% block page_title %}{{ _('Distribution Policy for Mozilla Software') }}{% endblock %}
 
 {% block article_title %}
-  {{ _('Distribution of Firefox with Mozilla Trademarks') }}
+  {{ _('Distribution Policy for Mozilla Software') }}
 {% endblock %}
 
 {% block article_content %}
   <p>
     {% trans license=url('mozorg.mpl.index') %}
-      What you can and cannot do with our Firefox software products and code – independent of our trademarks – is governed by a separate document, the <a href="{{ license }}">Mozilla Public License</a>. In turn, the Mozilla Public License does not contain any rules on our trademarks, as is expressly mentioned in its section 2.1. "Grants":
+      What you can and cannot do with our software products and code – independent of our trademarks – is governed by the relevant software licenses. For example, most Firefox code is released under the <a href="{{ license }}">Mozilla Public License</a> version 2.0. The Mozilla Public License does not contain grant permission to use Mozilla trademarks, as is set out in its section 2.1. "Grants":
     {% endtrans %}
   </p>
 
@@ -22,12 +22,12 @@
   </blockquote>
 
   <p>
-    {% trans %}
-      If you wish to distribute Firefox branded with our trademarks, you must comply with the Mozilla Public License, the Mozilla Trademark Guidelines and either the below Unaltered Firefox Distribution Policy or the terms of a written distribution agreement with Mozilla.
+    {% trans trademark_guidlines=url('foundation.trademarks.policy') %}
+      In the following, the term “Mozilla software” refers to software developed and/or distributed by Mozilla or by one of its affiliates. If you wish to distribute Firefox and other Mozilla software branded with our trademarks, you must comply with the relevant software licenses, the <a href="{{ trademark_guidlines }}">Mozilla Trademark Guidelines</a> and either the Unaltered Software Distribution Policy or the terms of a written distribution agreement with Mozilla.
     {% endtrans %}
   </p>
 
-  <h2>{{ _('Unaltered Firefox Distribution Policy') }}</h2>
+  <h2>{{ _('Unaltered Software Distribution Policy') }}</h2>
 
   <p>
     {% trans mozorg=url('mozorg.home') %}
@@ -35,26 +35,28 @@
     {% endtrans %}
   </p>
   <ul class="mzp-u-list-styled">
-    <li>{{_('You may not charge for Firefox. That means:') }}
+    <li>{{_('You may not charge for the software. That means:') }}
       <ul>
         <li>{{ _('Distribution may not be subject to any fee.') }}</li>
         <li>{{ _('Distribution may not be tied to purchasing a product or service.') }}</li>
       </ul>
     </li>
 
-    <li>{{ _('You may not collect personal information in the context of your distribution of Firefox.') }}</li>
+    <li>{{ _('You may not collect personal information in the context of your distribution of the software.') }}</li>
 
-    <li>{{ _('You may not add to, remove, or change any part of Firefox, including the Mozilla trademarks themselves. For example, you may not add any extensions to Firefox.') }}</li>
+    <li>{{ _('You may not add to, remove, or change any part of the software, including the Mozilla trademarks themselves. For example, you may not add any extensions to Firefox.') }}</li>
 
-    <li>{{ _('You may not modify the installation process of Firefox or use it to install any other themes, plugins, extensions, or software.') }}</li>
+    <li>{{ _('You may not modify the installation process of the software or use it to install any other themes, plugins, extensions, or software.') }}</li>
 
     <li>
-      {% trans %}
-      We suggest that if you want to distribute Firefox, you do so by linking to official downloads of Firefox at <a href="{{ mozorg }}">Mozilla.org</a> to help ensure safe, reliable downloads. If you wish to directly distribute copies of Firefox yourself, you must distribute the latest stable version available at <a href="{{ mozorg }}">Mozilla.org</a>.
+      {% trans 
+      mozorg=url('mozorg.home'), 
+      mozdownloads=url('firefox.new') %}
+      We suggest that if you want to distribute Mozilla software, you do so by linking to official downloads of Firefox at <a href="{{ mozorg }}">Mozilla.org</a> to help ensure safe, reliable downloads. If you wish to directly distribute copies of Firefox yourself, you must distribute the latest stable version available at <a href="{{ mozdownloads }}">Mozilla.org</a>.
       {% endtrans %}
     </li>
 
-    <li>{{ _('When distributing you must distribute the most recent version of Firefox.') }}</li>
+    <li>{{ _('When distributing you must distribute the most recent version of Firefox and other Mozilla software.') }}</li>
 
     <li>
       {% trans %}
@@ -65,7 +67,7 @@
 
   <p>
     {% trans %}
-    Mozilla reserves the right to change this Unaltered Firefox Distribution Policy by posting changes on this webpage.
+    Mozilla reserves the right to change this Unaltered Software Distribution Policy by posting changes on this webpage.
     {% endtrans %}
   </p>
 
@@ -73,7 +75,7 @@
 
   <p>
     {% trans %}
-    The open source nature of Firefox allows you to freely download and modify the Firefox source code. However, if you make <em>any</em> changes to Firefox, you may not redistribute that product using <em>any</em> Mozilla trademark without Mozilla’s prior written consent and, typically, a distribution agreement with Mozilla.  For example, you may not distribute a modified form of Firefox and continue to call it Firefox.
+    The open source nature of Firefox and other Mozilla software allows you to freely download and modify the Firefox source code. However, if you make <em>any</em> changes to Firefox or other Mozilla software, you may not redistribute that product using <em>any</em> Mozilla trademark without Mozilla’s prior written consent and, typically, a distribution agreement with Mozilla.  For example, you may not distribute a modified form of Firefox and continue to call it Firefox.
     {% endtrans %}
   </p>
 
@@ -92,7 +94,13 @@
 
   <p>
     {% trans permissions="mailto:trademark-permissions@mozilla.com" %}
-    If you wish to distribute a modified version of Firefox with Mozilla trademarks please contact us with your request at <a href="{{ permissions }}">trademark-permissions@mozilla.com</a>.
+    If you wish to distribute a modified version of Firefox or other Mozilla software with Mozilla trademarks please contact us with your request at <a href="{{ permissions }}">trademark-permissions@mozilla.com</a>.
+    {% endtrans %}
+  </p>
+  <h4>{{ _('Mozilla General Trademark Guidelines') }}</h4>
+  <p>
+    {% trans trademark_guidlines=url('foundation.trademarks.policy') %}
+    Mozilla’s general <a href="{{ trademark_guidlines }}" >trademark guidelines</a> include more information about permitted uses of our trademarks.
     {% endtrans %}
   </p>
 
