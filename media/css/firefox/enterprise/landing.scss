@@ -27,8 +27,11 @@ html {
 // Generic Container Styles
 
 .cta-container {
-    display: inline-block;
     margin-bottom: 0;
+
+    &> .mzp-c-button-download-container {
+        display: inline-block;
+    }
 }
 
 .enterprise-section {

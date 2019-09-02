@@ -47,9 +47,11 @@
     <p class="mzp-c-hero-desc">
       {{ _('Get the <a href="%s">Firefox Extended Support Release or Rapid Release</a> browser for comprehensive data security and data protection.')|format('https://support.mozilla.org/kb/choosing-firefox-update-channel') }}
     </p>
-    <div class="cta-container mzp-c-button-download-container">
-      <a id="primary-download-button" href="#download" class="mzp-c-button mzp-t-product">{{ _('Download') }}</a>
-      <a href="{{ url('privacy.notices.firefox') }}" class="mzp-c-button-download-privacy-link">{{ _('Firefox Privacy Notice') }}</a>
+    <div class="cta-container">
+      <div class="mzp-c-button-download-container">
+        <a id="primary-download-button" href="#download" class="mzp-c-button mzp-t-product">{{ _('Download') }}</a>
+        <a href="{{ url('privacy.notices.firefox') }}" class="mzp-c-button-download-privacy-link">{{ _('Firefox Privacy Notice') }}</a>
+      </div>
     </div>
   {% endcall %}
 
@@ -171,9 +173,12 @@
           </ul>
 
           <div class="cta-container">
-            <a id="package-win64-download-button" href="https://mozilla.box.com/s/5uvc1hjsimtx3wvs9qdpbda47h2tix5c" class="mzp-c-button mzp-t-product" data-cta-type="Enterprise-Package" data-cta-text="Windows64" data-cta-position="Primary">
-              {{ _('Download') }}
-            </a>
+            <div class="mzp-c-button-download-container">
+              <a id="package-win64-download-button" href="https://mozilla.box.com/s/5uvc1hjsimtx3wvs9qdpbda47h2tix5c" class="mzp-c-button mzp-t-product" data-cta-type="Enterprise-Package" data-cta-text="Windows64" data-cta-position="Primary">
+                {{ _('Download') }}
+              </a>
+              <a href="{{ url('privacy.notices.firefox') }}" class="mzp-c-button-download-privacy-link">{{ _('Firefox Privacy Notice') }}</a>
+            </div>
           </div>
 
         {% endcall %}
@@ -194,9 +199,12 @@
           </ul>
 
           <div class="cta-container">
-            <a id="package-mac-download-button" href="https://mozilla.box.com/s/qd58fn88r0zxg3pw132ul489egxqvi6k" class="mzp-c-button mzp-t-product" data-cta-type="Enterprise-Package" data-cta-text="Mac" data-cta-position="Primary">
-              {{ _('Download') }}
-            </a>
+            <div class="mzp-c-button-download-container">
+              <a id="package-mac-download-button" href="https://mozilla.box.com/s/qd58fn88r0zxg3pw132ul489egxqvi6k" class="mzp-c-button mzp-t-product" data-cta-type="Enterprise-Package" data-cta-text="Mac" data-cta-position="Primary">
+                {{ _('Download') }}
+              </a>
+              <a href="{{ url('privacy.notices.firefox') }}" class="mzp-c-button-download-privacy-link">{{ _('Firefox Privacy Notice') }}</a>
+            </div>
           </div>
 
         {% endcall %}
@@ -218,9 +226,12 @@
           </ul>
 
           <div class="cta-container">
-            <a id="package-win32-download-button" href="https://mozilla.box.com/s/yjerfy3sgre39mve7n5jjtcy9p10vf3k" class="mzp-c-button mzp-t-product" data-cta-type="Enterprise-Package" data-cta-text="Windows32" data-cta-position="Primary">
-              {{ _('Download') }}
-            </a>
+            <div class="mzp-c-button-download-container">
+              <a id="package-win32-download-button" href="https://mozilla.box.com/s/yjerfy3sgre39mve7n5jjtcy9p10vf3k" class="mzp-c-button mzp-t-product" data-cta-type="Enterprise-Package" data-cta-text="Windows32" data-cta-position="Primary">
+                {{ _('Download') }}
+              </a>
+              <a href="{{ url('privacy.notices.firefox') }}" class="mzp-c-button-download-privacy-link">{{ _('Firefox Privacy Notice') }}</a>
+            </div>
           </div>
         {% endcall %}
       </ul>
