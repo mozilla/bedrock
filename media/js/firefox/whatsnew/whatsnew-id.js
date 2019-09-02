@@ -6,7 +6,7 @@
     'use strict';
 
     var client = Mozilla.Client;
-    var form = new Mozilla.SendYourself('download-firefox-rocket');
+    var form = new Mozilla.SendToDevice('download-firefox-rocket');
     form.init();
 
     function checkUpToDate() {

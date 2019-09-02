@@ -987,7 +987,7 @@ body[data-modal-product='focus'] #modal .window .inner {
     }
 }
 
-#send-to-device {
+.send-to-device {
     background: transparent;
     color: #fff;
 
@@ -1023,7 +1023,7 @@ body[data-modal-product='focus'] #modal .window .inner {
         width: 100%;
     }
 
-    .input {
+    .send-to-device-form-fields {
         button[type="submit"] {
             background-color: transparent;
             display: block;
@@ -1040,7 +1040,7 @@ body[data-modal-product='focus'] #modal .window .inner {
             margin-bottom: 0;
         }
 
-        #id-input {
+        .send-to-device-input {
             border-radius: 2px;
             height: auto;
             padding: 0.75em 20px;

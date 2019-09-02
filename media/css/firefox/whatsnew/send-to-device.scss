@@ -18,7 +18,7 @@ $font-open-sans-light: 'Open Sans Light', X-LocaleSpecific, sans-serif;
 //* -------------------------------------------------------------------------- */
 // Minimal Send to Device widget styles for /whatsnew
 
-#send-to-device {
+.send-to-device {
     a {
         color: #fff;
         font-weight: bold;
@@ -46,7 +46,7 @@ $font-open-sans-light: 'Open Sans Light', X-LocaleSpecific, sans-serif;
     }
 }
 
-#send-to-device-form {
+.send-to-device-form {
     @include font-size-level6;
 
     .inline-field {
@@ -160,7 +160,7 @@ $font-open-sans-light: 'Open Sans Light', X-LocaleSpecific, sans-serif;
     }
 }
 
-html[dir="rtl"] #send-to-device-form {
+html[dir="rtl"] .send-to-device-form {
 
     @media #{$mq-desktop} {
         .form-input {

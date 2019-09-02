@@ -63,15 +63,9 @@
 {%- endmacro %}
 
 
-{# send_to_device macro is being deprecated in favor of the send_yourself macro below. #}
-{% macro send_to_device(platform, include_title=True, title_text='', include_logo=False, ios_link='', spinner_color='', message_set='default') %}
-  {# If no App Store link is specified, use base with default "ct" param value #}
-  {# See https://bugzilla.mozilla.org/show_bug.cgi?id=1196310#c23 #}
-  {% if ios_link == '' %}
-    {% set ios_link = firefox_ios_url('mozorg') %}
-  {% endif %}
-  {% set android_link = settings.GOOGLE_PLAY_FIREFOX_LINK_UTMS %}
-  <section id="send-to-device" class="{% if include_logo %}logo {% endif %}{% if include_title %}title{% else %}no-title{% endif %}" data-countries="{{ send_to_device_sms_countries(message_set) }}"{% if spinner_color %} data-spinner-color="{{ spinner_color }}"{% endif %}>
+{# Docs: https://bedrock.readthedocs.io/en/latest/send-to-device.html #}
+{% macro send_to_device(platform='all', product='firefox', message_set='default', id='send-to-device', include_title=True, title_text=None, input_label=None, legal_note_email=None, legal_note_sms=None, spinner_color='#000') %}
+  <section id="{{ id }}" class="send-to-device" data-countries="{{ send_to_device_sms_countries(message_set) }}" data-spinner-color="{{ spinner_color }}">
     <div class="form-container">
       {% if include_title %}
         <h2 class="form-heading">
@@ -83,7 +77,7 @@
         </h2>
       {% endif %}
       <h2 class="thank-you hidden">{{ _('Your download link was sent.') }}</h2>
-      <form id="send-to-device-form" action="{{ url('firefox.send-to-device-post') }}" method="post"{% if platform == 'select' %} class="dropdown"{% endif %}>
+      <form class="send-to-device-form" action="{{ url('firefox.send-to-device-post') }}" method="post">
         <ul class="error-list hidden">
           <li class="sms">
           {% if l10n_has_tag('sendto_updates_bug1395342') %}
@@ -93,48 +87,50 @@
           {% endif %}
           </li>
           <li class="email">{{ _('Please enter an email address.') }}</li>
-          <li class="platform">{{ _('Please make a selection before proceeding.') }}</li>
           <li class="system">{{ _('An error occurred in our system. Please try again later.') }}</li>
         </ul>
-        <div class="input">
+        <div class="send-to-device-form-fields">
           <div class="platform-container">
-            {% if platform == 'select' %}
-            {# User selects OS they would like to receive link for. #}
-              <label for="id-platform">
-                {{ _('Select iOS or Android') }}
-              </label>
-              <select id="id-platform" name="platform" autocomplete="off" required>
-                <option value="" selected>{{ _('Choose OS') }}</option>
-                <option value="ios">iOS</option>
-                <option value="android">Android</option>
-              </select>
-            {% else %}
-              <input type="hidden" id="id-platform" name="platform" value="{{ platform }}">
-            {% endif %}
+            <input type="hidden" name="platform" value="{{ platform }}">
             <input type="hidden" name="source-url" value="{{ request.build_absolute_uri(request.path) }}">
             <input type="hidden" name="message-set" value="{{ message_set }}">
+            <input type="hidden" name="product" value="{{ product }}">
           </div>
           <div class="inline-field">
-            <label id="form-input-label" for="id-input" data-alt="{% if l10n_has_tag('sendto_updates_bug1395342') %}{{ _('Enter your email or phone number') }}{% else %}{{ _('Enter your email or 10-digit phone number') }}{% endif %}">{{ _('Enter your email') }}</label>
+            <label class="form-input-label" for="{{ id }}-input" data-alt="{% if l10n_has_tag('sendto_updates_bug1395342') %}{{ _('Enter your email or phone number') }}{% else %}{{ _('Enter your email or 10-digit phone number') }}{% endif %}">
+              {% if input_label %}
+                {{ input_label }}
+              {% else %}
+                {{ _('Enter your email') }}
+              {% endif %}
+            </label>
             <div class="form-input">
-              <input id="id-input" name="phone-or-email" type="text" required>
+              <input id="{{ id }}-input" class="send-to-device-input" name="phone-or-email" type="text" required>
             </div>
             <div class="form-submit">
-              <button type="submit" class="button mzp-c-button mzp-t-product"
-              {% if platform == 'android' %} data-download-os="Android"
-              {% elif platform == 'ios' %} data-download-os="iOS" {% endif %}>{{ _('Send') }}</button>
+              <button type="submit" class="button mzp-c-button mzp-t-product">{{ _('Send') }}</button>
             </div>
           </div>
           <p class="legal sms">
-          {% if l10n_has_tag('sendto_updates_bug1395342') %}
-            {{ _('SMS service available in select countries only. SMS &amp; data rates may apply.') }}
-          {% else %}
-            {{ _('SMS service available to U.S. phone numbers only. SMS &amp; data rates may apply.') }}
-          {% endif %}
-            {{ _('The intended recipient of the email or SMS must have consented.')}} <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ _('Learn more')}}</a>
+            {% if legal_note_sms %}
+              {{ legal_note_sms }}
+            {% else %}
+              {% if l10n_has_tag('sendto_updates_bug1395342') %}
+                {{ _('SMS service available in select countries only. SMS &amp; data rates may apply.') }}
+              {% else %}
+                {{ _('SMS service available to U.S. phone numbers only. SMS &amp; data rates may apply.') }}
+              {% endif %}
+                {{ _('The intended recipient of the email or SMS must have consented.')}}
+            {% endif %}
+            <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ _('Learn more')}}</a>
           </p>
           <p class="legal email">
-            {{ _('The intended recipient of the email must have consented.')}} <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ _('Learn more')}}</a>
+            {% if legal_note_email %}
+              {{ legal_note_email }}
+            {% else %}
+              {{ _('The intended recipient of the email must have consented.') }}
+            {% endif %}
+            <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ _('Learn more')}}</a>
           </p>
         </div>
         <div class="thank-you hidden">
@@ -143,83 +139,6 @@
           <a href="#" role="button" class="more send-another">{{ _('Send to another device') }}</a>
         </div>
         <div class="loading-spinner"></div>
-      </form>
-    </div>
-    <footer>
-      <ul class="{{ platform }}">
-        {% if platform == 'android' %}
-          <li class="android-all">
-            <a href="{{ firefox_url('android', 'all') }}">{{_('Systems &amp; Languages')}}</a>
-          </li>
-        {% endif %}
-        <li class="app-store">
-          <a class="more" href="{{ ios_link }}" data-link-type="download" data-download-os="iOS">{{ _('Go to the App Store')}}</a>
-        </li>
-        <li class="google-play">
-          <a class="more" href="{{ android_link }}" data-link-type="download" data-download-os="Android">{{ _('Go to Google Play')}}</a>
-        </li>
-      </ul>
-    </footer>
-  </section>
-{%- endmacro %}
-
-{# The send_yourself macro refactors and replaces the send_to_device macro above.
-   This version better supports multiple products and avoids duplicate IDs so more than one widget can be embedded in a page. #}
-{% macro send_yourself(include_title=True, title_text='', spinner_color='', message_set='default', id='send-yourself', product='firefox', field_title='', field_note='', button_theme='', dark_background=False) %}
-  <section id="{{ id }}" class="mzp-c-sendyourself {% if include_title %}mzp-has-title{% endif %}" data-countries="{{ send_to_device_sms_countries(message_set) }}"{% if spinner_color %} data-spinner-color="{{ spinner_color }}"{% endif %}>
-    <div class="mzp-c-sendyourself-container">
-      {% if include_title %}
-        <h3 class="mzp-c-sendyourself-title">
-        {% if title_text %}
-          {{ title_text }}
-        {% else %}
-          {{ _('Send Firefox to your smartphone or tablet') }}
-        {% endif %}
-        </h3>
-      {% endif %}
-      <form id="{{ id }}-form" class="mzp-c-sendyourself-form" action="{{ url('firefox.send-to-device-post') }}" method="post">
-        <ul class="mzp-c-form-errors mzp-u-hidden">
-          <li class="mzp-js-error-sms">{{ _('Sorry, we can’t send SMS messages to this phone number.') }}</li>
-          <li class="mzp-js-error-email">{{ _('Please enter an email address.') }}</li>
-          <li class="mzp-js-error-system">{{ _('An error occurred in our system. Please try again later.') }}</li>
-        </ul>
-        <div class="mzp-u-hidden">
-          <input type="hidden" name="product" value="{{ product }}">
-          <input type="hidden" name="source-url" value="{{ request.build_absolute_uri(request.path) }}">
-          <input type="hidden" name="message-set" value="{{ message_set }}">
-        </div>
-        <div class="mzp-c-sendyourself-formfields">
-          <p class="mzp-c-sendyourself-field">
-            <label for="{{ id }}-input" class="mzp-js-input-label" data-alt="{{ _('Enter your email or phone number') }}">
-              {% if field_title %}
-                {{ field_title }}
-              {% else %}
-                {{ _('Enter your email') }}
-              {% endif %}
-            </label>
-            <input id="{{ id }}-input" class="mzp-c-sendyourself-input" name="phone-or-email" type="text" required>
-            <button type="submit" class="mzp-c-button {{ button_theme }}">{{ _('Send') }}</button>
-          </p>
-          <p class="mzp-c-sendyourself-note mzp-is-sms">
-            {{ _('SMS service available in select countries only. SMS &amp; data rates may apply.') }}
-            {{ _('The intended recipient of the email or SMS must have consented.') }} <a href="{{ url('privacy.notices.websites') }}#campaigns">{{ _('Learn more') }}</a>
-          </p>
-          <p class="mzp-c-sendyourself-note mzp-is-email">
-            {% if field_note %}
-              {{ field_note }}
-            {% else %}
-              {{ _('The intended recipient of the email must have consented.') }}
-            {% endif %}
-            <a href="{{ url('privacy.notices.websites') }}#campaigns">{{ _('Learn more') }}</a>
-          </p>
-        </div>
-        <div class="mzp-c-sendyourself-thanks mzp-u-hidden">
-          <h3>{{ _('Your download link was sent.') }}</h3>
-          <p class="mzp-is-sms">{{ _('Check your device for the email or text message!') }}</p>
-          <p class="mzp-is-email">{{ _('Check your device for the email!') }}</p>
-          <button class="mzp-c-button mzp-t-secondary mzp-t-small {% if dark_background %}mzp-t-dark{% endif %} mzp-js-send-another" type="button">{{ _('Send to another device') }}</button>
-        </div>
-        <div class="mzp-js-loading-spinner mzp-u-hidden"></div>
       </form>
     </div>
   </section>

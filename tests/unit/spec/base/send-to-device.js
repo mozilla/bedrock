@@ -16,15 +16,15 @@ describe('send-to-device.js', function() {
     beforeEach(function () {
 
         var formMarkup = [
-            '<section id="send-to-device" data-countries="|us|gb|">' +
+            '<section id="send-to-device" class="send-to-device" data-countries="|us|gb|">' +
                 '<div class="form-container">' +
-                    '<form id="send-to-device-form">' +
+                    '<form class="send-to-device-form">' +
                         '<ul class="error-list hidden"></ul>' +
-                        '<div class="input">' +
-                            '<input type="hidden" id="id-platform" value="all">' +
-                            '<label id="form-input-label" for="id-input" data-alt="Enter your email or 10-digit phone number.">Enter your email.</label>' +
+                        '<div class="send-to-device-form-fields">' +
+                            '<input type="hidden" value="all">' +
+                            '<label id="form-input-label" for="send-to-device-input" data-alt="Enter your email or 10-digit phone number.">Enter your email.</label>' +
                             '<div class="inline-field">' +
-                                '<input id="id-input" type="text" required>' +
+                                '<input id="send-to-device-input" class="send-to-device-input" type="text" required>' +
                                 '<button type="submit">Send</button>' +
                             '</div>' +
                         '</div>' +
@@ -145,7 +145,7 @@ describe('send-to-device.js', function() {
             spyOn(form, 'showSMS').and.callThrough();
             form.init();
             expect(form.showSMS).toHaveBeenCalled();
-            expect($('#send-to-device-form').hasClass('sms-country')).toBeTruthy();
+            expect($('.send-to-device-form').hasClass('sms-country')).toBeTruthy();
         });
 
         it('should not call showSMS if users is outside a supported country', function() {
@@ -208,7 +208,7 @@ describe('send-to-device.js', function() {
             spyOn(form, 'onFormSuccess').and.callThrough();
 
             form.init();
-            $('#send-to-device-form').submit();
+            $('.send-to-device-form').submit();
             expect($.post).toHaveBeenCalled();
             expect(form.onFormSuccess).toHaveBeenCalledWith('success');
         });
@@ -227,7 +227,7 @@ describe('send-to-device.js', function() {
             spyOn(form, 'onFormError').and.callThrough();
 
             form.init();
-            $('#send-to-device-form').submit();
+            $('.send-to-device-form').submit();
             expect($.post).toHaveBeenCalled();
             expect(form.onFormError).toHaveBeenCalledWith('Please enter an email address.');
         });
@@ -244,7 +244,7 @@ describe('send-to-device.js', function() {
             spyOn(form, 'onFormFailure').and.callThrough();
 
             form.init();
-            $('#send-to-device-form').submit();
+            $('.send-to-device-form').submit();
             expect($.post).toHaveBeenCalled();
             expect(form.onFormFailure).toHaveBeenCalledWith('An error occurred in our system. Please try again later.');
         });

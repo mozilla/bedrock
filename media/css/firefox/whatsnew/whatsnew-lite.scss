@@ -3,7 +3,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import '../../../protocol/css/includes/lib';
-@import 'send-yourself';
 
 //* -------------------------------------------------------------------------- */
 // Up-to-date page header
@@ -103,7 +102,7 @@
 
     @media #{$mq-sm} {
         .lite-copy {
-            width: $content-sm;
+            max-width: $content-sm;
             margin: 0 auto;
         }
     }
@@ -128,18 +127,12 @@
             margin: 100px 0 0;
             max-height: $content-sm;
             text-align: left;
-            width: $content-md;
+            max-width: $content-md;
         }
 
         .lite-woman,
         .lite-code {
             min-height: 700px;
-        }
-    }
-
-    @media #{$mq-xl} {
-        .lite-woman img {
-            right: -40px;
         }
     }
 }
