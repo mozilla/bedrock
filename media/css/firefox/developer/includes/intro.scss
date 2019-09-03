@@ -13,12 +13,10 @@
 }
 
 .intro-title {
-    @include at2x('/media/img/logos/firefox/developer-wordmark.png', 368px, 68px);
     @include text-display-lg;
     background-position: top center;
     background-repeat: no-repeat;
-    margin: 0 auto $layout-sm;
-    padding-top: (52px + $layout-md);
+    margin: $layout-sm auto;
 }
 
 .intro-tagline {
