@@ -1,0 +1,512 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import "../../../protocol/css/includes/lib";
+@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/components/picto-card';
+@import '../../../protocol/css/components/feature-card';
+@import '../../../protocol/css/components/call-out';
+@import '../../../protocol/css/templates/card-layout';
+
+/* -------------------------------------------------------------------------- */
+// Smooth Scroll
+
+html {
+    scroll-behavior: smooth;
+
+    @media (prefers-reduced-motion: reduce) {
+        scroll-behavior: auto;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Generic Container Styles
+
+.cta-container {
+    margin-bottom: 0;
+
+    &> .mzp-c-button-download-container {
+        display: inline-block;
+    }
+}
+
+.enterprise-section {
+    margin-bottom: $layout-md;
+
+    .enterprise-section-title {
+        @include text-display-md;
+        margin: 0 auto $layout-xs;
+        max-width: 18em;
+        text-align: center;
+    }
+
+    @media #{$mq-md} {
+        margin-bottom: $layout-xl;
+
+        .enterprise-section-title {
+            margin-bottom: $layout-xl;
+        }
+    }
+}
+
+.enterprise-languages {
+    text-align: center;
+}
+
+/* -------------------------------------------------------------------------- */
+// Call Out Theme Color
+
+.mzp-c-call-out-compact.mzp-t-dark.enterprise-callout {
+    background-color: $color-off-black;
+
+    .mzp-c-call-out-desc {
+        color: $color-white;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Sub Navigation
+// Should be replaced by https://github.com/mozilla/protocol/issues/471
+
+.c-sub-navigation {
+    background: $color-white;
+
+    .mzp-l-content {
+        padding-top: 0;
+    }
+
+    .c-sub-navigation-content {
+        border-top: 1px solid $color-gray-30;
+        padding-top: $spacing-lg;
+    }
+
+    .c-sub-navigation-title {
+        @include font-base;
+        @include text-body-md;
+    }
+
+    .c-sub-navigation-list {
+        margin: 0;
+    }
+
+    .c-sub-navigation-item {
+        padding: $spacing-sm 0;
+
+        a:link,
+        a:visited {
+            @include font-base;
+            @include text-body-md;
+            color: $color-black;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            text-decoration: underline;
+        }
+    }
+
+    @media #{$mq-md} {
+        @include clearfix;
+
+        .c-sub-navigation-title {
+            @include bidi((
+                (float, left, right),
+                (margin-right, $spacing-sm * 2, margin-left, 0),
+            ));
+            margin-bottom: 0;
+        }
+
+        .c-sub-navigation-list {
+            @include bidi((
+                (float, left, right),
+                (margin-left, -$spacing-sm, margin-right, 0),
+            ));
+        }
+
+        .c-sub-navigation-item {
+            display: inline-block;
+            padding: 0 $spacing-sm;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .c-sub-navigation-list {
+            @include bidi(((margin-left, -$spacing-md, margin-right, 0),));
+        }
+        .c-sub-navigation-title {
+            @include bidi(((margin-right, $spacing-md * 2, margin-left, 0),));
+        }
+
+        .c-sub-navigation-item {
+            padding: 0 $spacing-md;
+        }
+    }
+
+    @media #{$mq-xl} {
+        .c-sub-navigation-list {
+            @include bidi(((margin-left, -$spacing-lg, margin-right, 0),));
+        }
+
+        .c-sub-navigation-title {
+            @include bidi(((margin-right, $spacing-lg * 2, margin-left, 0),));
+        }
+
+        .c-sub-navigation-item {
+            padding: 0 $spacing-lg;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Hero
+
+.mzp-c-hero.t-enterprise {
+    // dark colour fallback incase svg image doesn't load/display
+    background: $color-off-black;
+    background-image: url('/media/img/firefox/enterprise/ent-noodles.svg'),
+                      linear-gradient(transparent 550px, #fff 550px, #fff 1000px);
+    background-position: bottom left, top center;
+    background-repeat: no-repeat, repeat-x;
+    background-size: 1221px 680px, 480px 1000px;
+    margin-bottom: $layout-sm;
+    min-height: 540px;
+    padding-top: $layout-sm;
+
+    html[dir=rtl] & {
+        background: $color-off-black;
+        min-height: 0;
+    }
+
+   &.mzp-t-product-firefox .mzp-c-hero-title {
+       @include at2x('/media/img/logos/firefox/logo-quantum-full-wordmark-white.png', auto, 48px);
+       @include text-display-xl;
+       padding-top: $layout-lg + 48px;
+   }
+
+   .mzp-c-hero-body {
+       background-color: $color-off-black;
+       border-top-right-radius: 100px;
+       margin-bottom: 100px;
+   }
+
+   .mzp-c-hero-image {
+        display: none;
+    }
+
+    @media #{$mq-sm} {
+        background-position: top left, top center;
+        margin-bottom: $layout-md;
+        min-height: 680px - $layout-xl; // to keep bg image from being cut off
+        padding-top: $layout-xl;
+    }
+
+    @media #{$mq-md} {
+        background-image: url('/media/img/firefox/enterprise/ent-noodles-wide.svg'),
+                          linear-gradient(transparent 680px, #fff 680px, #fff 1200px);
+        background-position: top center, top center;
+        background-repeat: no-repeat, repeat-x, repeat-x;
+        background-size: 2560px 793px, 480px 1200px;
+        min-height: 793px - $layout-md; // to keep bg image from being cut off
+        padding-top: $layout-md;
+
+        html[dir=rtl] & {
+            background: $color-off-black;
+            min-height: 0;
+        }
+
+        .mzp-c-hero-image {
+            display: block;
+
+            img {
+                bottom: auto;
+                left: $layout-sm;
+                top: calc(50% - 296px); // estimated to match design
+            }
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Picto Cards
+
+// Custom Overrides pending https://github.com/mozilla/protocol/issues/382
+.mzp-c-card-picto {
+    @include bidi(((text-align, left, right),));
+    padding-top: 0;
+
+    .mzp-c-card-picto-content:before {
+        @include bidi(((left, 0, right, 0),));
+        background-color: transparent;
+        margin-left: 0;
+    }
+
+    @media #{$mq-md} {
+        .mzp-c-card-picto-content:before {
+            @include bidi(((left, $spacing-lg, right, 0),));
+        }
+    }
+
+    &.privacy .mzp-c-card-picto-content:before {
+        background-image: url('/media/img/firefox/enterprise/icon-data-privacy.svg');
+        height: 53px;
+        width: 44px;
+    }
+
+    &.deploy .mzp-c-card-picto-content:before {
+        background-image: url('/media/img/firefox/enterprise/icon-deploy.svg');
+        height: 53px;
+        width: 53px;
+    }
+
+    &.release .mzp-c-card-picto-content:before {
+        background-image: url('/media/img/firefox/enterprise/icon-release.svg');
+        height: 53px;
+        width: 49px;
+    }
+
+    &.win64 .mzp-c-card-picto-content:before {
+        background-image: url('/media/img/firefox/enterprise/icon-win64.svg');
+        height: 58px;
+        width: 56px;
+    }
+
+    &.mac .mzp-c-card-picto-content:before {
+        background-image: url('/media/img/firefox/enterprise/icon-mac.svg');
+        height: 57px;
+        width: 46px;
+    }
+
+    &.win32 .mzp-c-card-picto-content:before {
+        background-image: url('/media/img/firefox/enterprise/icon-win32.svg');
+        height: 58px;
+        width: 56px;
+    }
+
+    &.docs .mzp-c-card-picto-content:before {
+        background-image: url('/media/img/firefox/enterprise/icon-documentation.svg');
+        height: 52px;
+        width: 52px;
+    }
+
+    &.notes .mzp-c-card-picto-content:before {
+        background-image: url('/media/img/firefox/enterprise/icon-notes.svg');
+        height: 52px;
+        width: 45px;
+    }
+
+    &.faq .mzp-c-card-picto-content:before {
+        background-image: url('/media/img/firefox/enterprise/icon-faq.svg');
+        height: 51px;
+        width: 52px;
+    }
+}
+
+// Vertically align buttons in package download lists.
+@supports(display: flex) {
+    @media #{$mq-md} {
+        .enterprise-download-lists {
+            display: flex;
+
+            .mzp-c-card-picto {
+                align-items: stretch;
+                display: flex;
+                flex: 1;
+            }
+
+            .mzp-c-card-picto-content {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .mzp-c-card-picto-title {
+                flex-grow: 1;
+            }
+
+            .mzp-c-card-picto-desc {
+                display: flex;
+                flex-direction: column;
+                flex-grow: 2;
+                justify-content: space-between;
+            }
+        }
+    }
+}
+
+// Resource Link Styles
+.enterprise-resources .mzp-c-card-picto-title {
+    @include text-body-md;
+}
+
+/* -------------------------------------------------------------------------- */
+// Comparison Section
+
+.enterprise-section-plans {
+    .enterprise-section-title {
+        max-width: 24em;
+    }
+}
+
+// Prototype Pager Component.
+// Should be replaced by  https://github.com/mozilla/protocol/issues/462
+.c-pager {
+    .c-pager-tab {
+        @include clearfix;
+        display: none;
+    }
+
+    .c-pager-tab-button {
+        @include bidi(((float, left, right),));
+        @include border-box;
+        background-color: inherit;
+        border-bottom: 2px solid $color-gray-20;
+        border-left: none;
+        border-right: 1px solid $color-gray-50;
+        border-top: none;
+        padding: $spacing-md $spacing-xs;
+        width: 50%;
+        word-wrap: break-word;
+
+        &:last-child {
+            border-right: none;
+        }
+    }
+
+    .c-pager-page {
+        @include border-box;
+        border-radius: 10px;
+        border: 1px solid $color-gray-50;
+        padding: $spacing-lg;
+        text-align: center;
+    }
+
+    &.is-active {
+        .c-pager-tab {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            border: 1px solid $color-gray-50;
+            border-bottom: none;
+            display: block;
+        }
+
+        .c-pager-page {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-top: none;
+        }
+
+        .c-pager-tab-button[aria-expanded="true"] {
+            border-bottom: 2px solid $color-blue-50;
+        }
+
+        .c-pager-page[aria-hidden="true"] {
+            display: none;
+        }
+
+        .c-pager-page[aria-hidden="false"] {
+            display: block;
+        }
+
+        .c-pager-hide-when-active {
+            display: none;
+        }
+    }
+
+    @media #{$mq-md} {
+        .c-pager-page {
+            padding: $spacing-xl;
+        }
+
+        .c-pager-container {
+            @include clearfix;
+        }
+
+        .c-pager-page {
+            @include bidi((
+                (float, left, right),
+                (margin-right, $spacing-xl * 2, margin-left, 0),
+            ));
+            width: calc(50% - #{$spacing-xl});
+
+            &:last-child {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+    }
+
+    @media #{$mq-lg} {
+        .c-pager-page {
+            @include bidi(((margin-right, $spacing-2xl * 2, margin-left, 0),));
+            width: calc(50% - #{$spacing-2xl});
+
+            &:last-child {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+    }
+
+    @supports (display: grid) {
+        @media #{$mq-md} {
+            .c-pager-container {
+                display: grid;
+                grid-column-gap: $spacing-2xl;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .c-pager-page {
+                @include bidi(((margin, 0, 0),));
+                width: auto;
+            }
+        }
+
+        @media #{$mq-lg} {
+            .c-pager-container {
+                grid-column-gap: $spacing-2xl * 2;
+            }
+        }
+    }
+}
+
+.comparison {
+    .comparison-title-tier {
+        @include text-body-lg;
+        font-weight: normal;
+
+        html[lang^='en'] & {
+            text-transform: uppercase;
+        }
+    }
+
+    .comparison-title-price {
+        @include text-display-sm;
+
+        span {
+            @include text-body-md;
+            color: $color-gray-70;
+            display: block;
+            font-weight: normal;
+            margin-top: $spacing-md;
+        }
+    }
+
+    .comparison-list {
+        border-top: 1px solid $color-gray-30;
+        margin: $spacing-xl 0;
+
+        li {
+            border-bottom: 1px solid $color-gray-30;
+            padding: $spacing-lg 0;
+        }
+    }
+
+    .comparison-cta {
+        margin-top: $spacing-lg;
+    }
+}

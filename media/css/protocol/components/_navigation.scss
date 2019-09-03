@@ -28,7 +28,7 @@
     }
 
     .c-navigation-fxa-cta-small-link {
-        margin-bottom: 0;
+        margin-bottom: $spacing-xs;
         text-align: center;
 
         a:link,
@@ -53,7 +53,7 @@
     }
 
     &.fxa-signed-in .c-navigation-fxa-cta-small-link {
-        visibility: hidden;
+        display: none;
     }
 }
 
@@ -64,7 +64,7 @@ html.is-firefox .mzp-c-navigation {
     }
 
     .mzp-c-navigation-download {
-        margin-bottom: $spacing-sm;
+        margin-bottom: 0;
     }
 
     .c-navigation-fxa-cta-container {

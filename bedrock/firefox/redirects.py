@@ -565,8 +565,8 @@ redirectpatterns = (
     # bug 1416708
     redirect(r'^firefox/quantum/?', 'firefox'),
 
-    # bug 1421584
-    redirect(r'^firefox/organizations/faq/?$', 'firefox.organizations.organizations'),
+    # bug 1421584, issue 7491
+    redirect(r'^firefox/organizations/faq/?$', 'firefox.enterprise.index'),
 
     # bug 1425865 - Amazon Fire TV goes to SUMO until we have a product page.
     redirect(
@@ -614,4 +614,7 @@ redirectpatterns = (
 
     # issue 7436
     redirect(r'^firefox/feedback/?$', 'https://support.mozilla.org/questions/new/desktop'),
+
+    # issue 7491
+    redirect(r'^firefox/organizations/?$', 'firefox.enterprise.index'),
 )

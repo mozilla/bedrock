@@ -27,7 +27,7 @@
   {%- elif channel == 'esr' and l10n_has_tag('esr_page_desc_bug1421584') -%}
     {{ _('Firefox ESR is intended for system administrators who deploy and maintain the desktop environment in organizations such as schools, governments and businesses.') }}
   {%- elif channel == 'esr' -%}
-    {{ _('Firefox ESR is intended for groups who deploy and maintain the desktop environment in large organizations. <a href="%s">Learn more.</a>')|format(url('firefox.organizations.organizations')) }}
+    {{ _('Firefox ESR is intended for groups who deploy and maintain the desktop environment in large organizations. <a href="%s">Learn more.</a>')|format(url('firefox.enterprise.index')) }}
   {%- else -%}
     {{ _('Firefox is made in large part by volunteers around the world. That’s why we offer it in 90 languages (and why there’s heart and soul in every piece of code).') }}
   {%- endif -%}
@@ -92,7 +92,7 @@
 
 {% block learn_more_url %}
   {%- if channel == 'esr' and l10n_has_tag('esr_page_desc_bug1421584') -%}
-    {{ url('firefox.organizations.organizations') }}
+    {{ url('firefox.enterprise.index') }}
   {%- endif -%}
 {% endblock %}
 

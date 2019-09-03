@@ -674,13 +674,19 @@
     },
     {
       "files": [
-        "css/firefox/enterprise.scss"
+        "css/firefox/enterprise/landing.scss"
       ],
-      "name": "firefox_enterprise"
+      "name": "firefox-enterprise"
     },
     {
       "files": [
-        "css/firefox/enterprise-sla.scss"
+        "css/firefox/enterprise/signup.scss"
+      ],
+      "name": "firefox-enterprise-signup"
+    },
+    {
+      "files": [
+        "css/firefox/enterprise/sla.scss"
       ],
       "name": "firefox-enterprise-sla"
     },
@@ -780,12 +786,6 @@
         "css/firefox/fights-for-you.scss"
       ],
       "name": "fights-for-you"
-    },
-    {
-      "files": [
-        "css/firefox/organizations.less"
-      ],
-      "name": "firefox_organizations"
     },
     {
       "files": [
@@ -1595,7 +1595,13 @@
     },
     {
       "files": [
-        "js/firefox/enterprise-sla.js"
+        "js/firefox/enterprise/landing.js"
+      ],
+      "name": "firefox-enterprise"
+    },
+    {
+      "files": [
+        "js/firefox/enterprise/sla.js"
       ],
       "name": "firefox-enterprise-sla"
     }
