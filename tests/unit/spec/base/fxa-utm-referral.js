@@ -31,12 +31,14 @@ describe('fxa-utm-referral.js', function() {
 
         it('should return an object without any danagerous params', function () {
             var dangerousSource = {
-                'utm_source': '<script>console.log("test");</script>',
-                'utm_content': 'rel-esr',
+                'utm_source': 'www.mozilla.org',
+                'utm_campaign': 'rel-esr',
+                'utm_content': '<script>console.log("test");</script>',
             };
 
             var safeSource = {
-                'utm_content': 'rel-esr'
+                'utm_source': 'www.mozilla.org',
+                'utm_campaign': 'rel-esr'
             };
 
             expect(Mozilla.UtmUrl.getAttributionData(dangerousSource)).toEqual(safeSource);
@@ -54,17 +56,39 @@ describe('fxa-utm-referral.js', function() {
             expect(Mozilla.UtmUrl.getAttributionData(dangerousData)).toBeNull();
         });
 
+        it('should not return an object if utm_source is missing', function () {
+            var data = {
+                'utm_content': 'rel-esr',
+                'utm_medium': 'referral',
+                'utm_term': 4242,
+                'utm_campaign': 'F100_4242_otherstuff_in_here'
+            };
+
+            expect(Mozilla.UtmUrl.getAttributionData(data)).toBeNull();
+        });
+
+        it('should not return an object if utm_campaign is missing', function () {
+            var data = {
+                'utm_source': 'desktop-snippet',
+                'utm_content': 'rel-esr',
+                'utm_medium': 'referral',
+                'utm_term': 4242,
+            };
+
+            expect(Mozilla.UtmUrl.getAttributionData(data)).toBeNull();
+        });
+
         it('should not strip allowed special characters', function () {
             var specialData = {
                 'utm_source': 'blog.mozilla.org',
-                'utm_content': 'my-experiment',
+                'utm_campaign': 'my-experiment',
                 'utm_medium': '%25',
                 'utm_term': '%2F'
             };
 
             var specialSource = {
                 'utm_source': 'blog.mozilla.org',
-                'utm_content': 'my-experiment',
+                'utm_campaign': 'my-experiment',
                 'utm_medium': '%',
                 'utm_term': '/'
             };
@@ -74,13 +98,13 @@ describe('fxa-utm-referral.js', function() {
 
         it('decode URL components', function () {
             var encodedData = {
-                'utm_medium': '%25',
-                'utm_term': '%2F'
+                'utm_source': '%25',
+                'utm_campaign': '%2F'
             };
 
             var encodedSource = {
-                'utm_medium': '%',
-                'utm_term': '/'
+                'utm_source': '%',
+                'utm_campaign': '/'
             };
 
             expect(Mozilla.UtmUrl.getAttributionData(encodedData)).toEqual(encodedSource);
@@ -125,7 +149,7 @@ describe('fxa-utm-referral.js', function() {
 
             var url = 'https://accounts.firefox.com/?utm_medium=medium-one&utm_term=term-one&utm_campaign=campaign-one&utm_source=source-one&utm_content=content-one';
 
-            expect(Mozilla.UtmUrl.appendToDownloadURL(url, data)).toEqual('https://accounts.firefox.com/?utm_medium=medium-two&utm_term=term-two&utm_campaign=campaign-two&utm_source=source-two&utm_content=content-two');
+            expect(Mozilla.UtmUrl.appendToDownloadURL(url, data)).toEqual('https://accounts.firefox.com/?utm_source=source-two&utm_content=content-two&utm_medium=medium-two&utm_term=term-two&utm_campaign=campaign-two');
         });
 
         it('does not leave out new params if there are existing params to over write', function () {
@@ -139,7 +163,18 @@ describe('fxa-utm-referral.js', function() {
 
             var url = 'https://accounts.firefox.com/?utm_campaign=campaign-one&utm_source=source-one&utm_content=content-one';
 
-            expect(Mozilla.UtmUrl.appendToDownloadURL(url, data)).toEqual('https://accounts.firefox.com/?utm_campaign=campaign-two&utm_source=source-two&utm_content=content-two&utm_medium=medium-two&utm_term=term-two');
+            expect(Mozilla.UtmUrl.appendToDownloadURL(url, data)).toEqual('https://accounts.firefox.com/?utm_source=source-two&utm_content=content-two&utm_medium=medium-two&utm_term=term-two&utm_campaign=campaign-two');
+        });
+
+        it('removes UTM params that are no longer present in the new referral data', function() {
+            var data = {
+                'utm_source': 'source-two',
+                'utm_campaign': 'campaign-two'
+            };
+
+            var url = 'https://accounts.firefox.com/?utm_campaign=campaign-one&utm_source=source-one&utm_content=content-one';
+
+            expect(Mozilla.UtmUrl.appendToDownloadURL(url, data)).toEqual('https://accounts.firefox.com/?utm_source=source-two&utm_campaign=campaign-two');
         });
 
         it('does not override port, path, or file name', function () {
@@ -188,8 +223,8 @@ describe('fxa-utm-referral.js', function() {
             var secondExpected = document.getElementById('test-second-expected');
             var secondExpectedHref = secondExpected.getAttribute('href');
 
-            expect(expectedHref).toEqual('https://accounts.firefox.com/?service=sync&action=email&context=fx_desktop_v3&entrypoint=mozilla.org-accounts_page&utm_content=content-two&utm_source=source-two&utm_medium=medium-two&utm_campaign=campaign-two&utm_term=term-two');
-            expect(secondExpectedHref).toEqual('https://accounts.firefox.com/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org-globalnav&utm_content=content-two&utm_source=source-two&utm_medium=medium-two&utm_campaign=campaign-two&utm_term=term-two');
+            expect(expectedHref).toEqual('https://accounts.firefox.com/?service=sync&action=email&context=fx_desktop_v3&entrypoint=mozilla.org-accounts_page&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two');
+            expect(secondExpectedHref).toEqual('https://accounts.firefox.com/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org-globalnav&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two');
         });
 
         it('updates the data-mozilla-online attribute of links with class js-fxa-cta-link', function () {
@@ -208,8 +243,8 @@ describe('fxa-utm-referral.js', function() {
             var secondExpected = document.getElementById('test-second-expected');
             var secondExpectedOnline = secondExpected.getAttribute('data-mozillaonline-link');
 
-            expect(expectedOnline).toEqual('https://accounts.firefox.com.cn/?service=sync&action=email&context=fx_desktop_v3&entrypoint=mozilla.org-accounts_page&utm_content=content-two&utm_source=source-two&utm_medium=medium-two&utm_campaign=campaign-two&utm_term=term-two');
-            expect(secondExpectedOnline).toEqual('https://accounts.firefox.com.cn/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org-globalnav&utm_content=content-two&utm_source=source-two&utm_medium=medium-two&utm_campaign=campaign-two&utm_term=term-two');
+            expect(expectedOnline).toEqual('https://accounts.firefox.com.cn/?service=sync&action=email&context=fx_desktop_v3&entrypoint=mozilla.org-accounts_page&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two');
+            expect(secondExpectedOnline).toEqual('https://accounts.firefox.com.cn/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org-globalnav&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two');
         });
 
         it('does not make change if there are no UTM params', function () {
