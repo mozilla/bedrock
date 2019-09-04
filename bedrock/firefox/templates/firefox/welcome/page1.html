@@ -1,0 +1,79 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import monitor_button with context %}
+
+{% add_lang_files "firefox/welcome/page1" %}
+
+{% extends "firefox/welcome/base.html" %}
+
+{% block page_title %}{{ _('More than a browser - Firefox products protect your life online') }}{% endblock %}
+{% block page_desc %}{{ _('Use Firefox Monitor to see if your info was compromised in another company’s data breach — and get automatically signed up for future alerts.') }}{% endblock %}
+
+{% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
+
+{% block body_class %}welcome-page1{% endblock %}
+
+{% block content_intro %}
+  <h1 class="c-page-title">{{ _('You’re on track to stay protected') }}</h1>
+  <p class="c-page-tagline">{{ _('You’ve got the web browser that protects your privacy — now it’s time to get a lookout for hackers.') }}</p>
+{% endblock %}
+
+{% block content_primary %}
+  <h2 class="body-primary-title"><img src="{{ static('img/logos/monitor/monitor-wordmark.svg') }}" width="256" height="" alt="Firefox Monitor"></h2>
+
+  <div class="body-primary-body">
+    {# L10n: "Firefox Monitor" is a product name and shouldn't be translated. #}
+    <p>{{ _('Firefox Monitor shows you if your information has been leaked in a known data breach, and alerts you in case it happens in the future.') }}</p>
+
+    <p class="primary-cta">{{ monitor_button(
+      button_id='monitor-button-signed-out',
+      entrypoint='mozilla.org-firefox-lifecycle-resources',
+      utm_campaign='welcome',
+      button_text=_('Check Your Breach Report'),
+      cta_type="Lifecycle-Monitor"
+    ) }}</p>
+  </div>
+{% endblock %}
+
+{% block content_secondary %}
+  <div class="c-picto-block t-adjacent-image">
+    <div class="c-picto-block-image">
+      <img src="{{ static('img/icons/private-browsing.svg') }}" alt="">
+    </div>
+
+    <h3 class="c-picto-block-title">{{ _('Stay ahead of hackers') }}</h3>
+    <div class="c-picto-block-body">
+      <p>
+      {% trans security_tips='https://monitor.firefox.com/security-tips/?utm_source=mozilla.org-firefox-lifecycle-resources&utm_medium=referral&utm_campaign=LifecycleP1&entrypoint=mozilla.org-firefox-lifecycle-resources' %}
+        Find ways to protect your info with <a href="{{ security_tips }}">Monitor Security Tips</a>.
+      {% endtrans %}
+      </p>
+    </div>
+  </div>
+
+  <div class="c-picto-block t-adjacent-image">
+    <div class="c-picto-block-image">
+      <img src="{{ static('img/icons/warning.svg') }}" alt="">
+    </div>
+
+    <h3 class="c-picto-block-title">{{ _('Stay in the know') }}</h3>
+    <div class="c-picto-block-body">
+      <p>
+      {# L10n: "Evite" is a proper name and shouldn't be translated. #}
+      {% trans evite_breach='https://blog.mozilla.org/firefox/evite-data-breach/?utm_source=mozilla.org-firefox-lifecycle-resources&utm_medium=referral&utm_campaign=LifecycleP1&entrypoint=mozilla.org-firefox-lifecycle-resources' %}
+        Were you one of 100,985,047 invited to the <a href="{{ evite_breach }}">Evite data breach “party”</a>?
+      {% endtrans %}
+      </p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content_utility %}
+  <p><strong><a href="https://support.mozilla.org/kb/firefox-browser-welcome-content/?utm_source=mozilla.org-firefox-lifecycle-resources&utm_medium=referral&utm_campaign=LifecycleP1&entrypoint=mozilla.org-firefox-lifecycle-resources">{{ _('Why am I seeing this?') }}</a></strong></p>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_welcome_page1') }}
+{% endblock %}

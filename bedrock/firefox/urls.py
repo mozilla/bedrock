@@ -108,6 +108,8 @@ urlpatterns = (
     url('^firefox/stub_attribution_code/$', views.stub_attribution_code,
         name='firefox.stub_attribution_code'),
 
+    page('firefox/welcome/1', 'firefox/welcome/page1.html'),
+
     page('firefox/switch', 'firefox/switch.html'),
     page('firefox/pocket', 'firefox/pocket.html'),
 

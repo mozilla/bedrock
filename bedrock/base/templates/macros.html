@@ -189,7 +189,7 @@
 {%- endmacro %}
 
 {# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#linking-to-monitorfirefoxcom #}
-{% macro monitor_button(entrypoint, form_type='button', utm_campaign=None, utm_content=None, utm_term=None, button_text=None, button_class='mzp-c-button mzp-t-product', button_id='fxa-monitor-submit') -%}
+{% macro monitor_button(entrypoint, form_type='button', utm_campaign=None, utm_content=None, utm_term=None, button_text=None, button_class='mzp-c-button mzp-t-product', button_id='fxa-monitor-submit', cta_type=None, cta_position=None) -%}
   {% set fxa_queries = [
     'form_type=' ~ form_type,
     'entrypoint=' ~ entrypoint,
@@ -208,7 +208,7 @@
     {% do fxa_queries.append('utm_term=' ~ utm_term) %}
   {% endif %}
 
-  <a data-action="{{ settings.FXA_ENDPOINT }}" href="https://monitor.firefox.com/oauth/init?{{ fxa_queries|join('&') }}" {% if button_class %}class="{{ button_class }}"{% endif %} id="{{ button_id }}" data-cta-text="Sign In to Monitor" data-cta-type="FxA-Monitor">
+  <a data-action="{{ settings.FXA_ENDPOINT }}" href="https://monitor.firefox.com/oauth/init?{{ fxa_queries|join('&') }}" {% if button_class %}class="{{ button_class }}"{% endif %} id="{{ button_id }}" data-cta-text="{% if button_text %}{{ button_text }}{% else %}Sign In to Monitor{% endif %}" data-cta-type="{% if cta_type %}{{ cta_type }}{% else %}FxA-Monitor{% endif %}" data-cta-position="{% if cta_position %}{{ cta_position }}{% else %}Primary{% endif %}">
     {% if button_text %}
       {{ button_text }}
     {% else %}

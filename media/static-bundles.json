@@ -865,6 +865,12 @@
         "css/firefox/bestbrowser.scss"
       ],
       "name": "bestbrowser"
+    },
+    {
+      "files": [
+        "css/firefox/welcome.scss"
+      ],
+      "name": "firefox_welcome"
     }
   ],
   "js": [
@@ -918,6 +924,13 @@
         "js/firefox/new/variation-scene1.js"
       ],
       "name": "firefox_new_scene1_variation"
+    },
+    {
+      "files": [
+        "js/base/mozilla-monitor-button.js",
+        "js/base/mozilla-monitor-button-init.js"
+      ],
+      "name": "firefox_welcome_page1"
     },
     {
       "files": [
