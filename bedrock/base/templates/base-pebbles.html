@@ -127,6 +127,14 @@
     <!--[if !lte IE 8]><!-->
     {% block js %}{% endblock %}
 
+    {% if self.structured_data()|trim|length or self.structured_data()|trim|length %}
+      <script type="application/ld+json">
+    {% endif %}
+    {% block structured_data %}{% endblock %}
+    {% if self.structured_data()|trim|length or self.structured_data()|trim|length %}
+      </script>
+    {% endif %}
+
     {# Bug 1381776 #}
     {% block update_notification %}
       {% if switch('firefox-update-notification', ['en-US']) %}
