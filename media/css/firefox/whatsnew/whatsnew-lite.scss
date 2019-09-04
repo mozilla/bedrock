@@ -19,7 +19,7 @@
         display: none;
         font-weight: normal;
         margin: 0;
-        min-height: 26px;
+        min-height: 30px;
         width: 100%;
 
         &:before {
@@ -46,6 +46,7 @@
 
     @media #{$mq-md} {
         .c-page-header-inner {
+            min-height: 30px;
             position: relative;
         }
 
@@ -53,7 +54,7 @@
             display: block;
             left: 0;
             position: absolute;
-            top: 0;
+            top: 2px;
         }
     }
 }
@@ -134,41 +135,5 @@
         .lite-code {
             min-height: 700px;
         }
-    }
-}
-
-//* -------------------------------------------------------------------------- */
-// Send Yourself widget
-.mzp-c-sendyourself {
-    a:link {
-        color: #fff;
-
-        &:hover,
-        &:focus {
-            @include light-links;
-        }
-    }
-
-    a:visited {
-        color: $color-gray-10;
-
-        &:hover,
-        &:focus {
-            @include light-links;
-        }
-    }
-}
-
-.has-send-to-device {
-    .firefox-container > .mzp-l-content {
-        max-width: $content-md + $layout-xl;
-    }
-}
-
-// Custom widget styles
-
-.mzp-c-sendyourself-field {
-    input[type="text"] {
-        border: 1px solid #fff;
     }
 }
