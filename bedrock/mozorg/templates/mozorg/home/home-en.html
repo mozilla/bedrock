@@ -208,11 +208,6 @@
 
 </main>
 {% endblock %}
-
-{# https://github.com/mozilla/bedrock/issues/5741 #}
-{% block structured_data %}
-{% include 'mozorg/home/includes/structured-data.html' %}
-{% endblock %}
 {% endblock %}
 
 {% block js %}
@@ -220,4 +215,9 @@
   {% if switch('home-fundraising-sept2019') %}
     {{ js_bundle('home-fundraiser') }}
   {% endif %}
+{% endblock %}
+
+{# https://github.com/mozilla/bedrock/issues/5741 #}
+{% block structured_data %}
+{% include 'mozorg/home/includes/structured-data.html' %}
 {% endblock %}

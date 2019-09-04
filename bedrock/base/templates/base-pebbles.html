@@ -127,6 +127,8 @@
     <!--[if !lte IE 8]><!-->
     {% block js %}{% endblock %}
 
+    {% block structured_data %}{% endblock %}
+
     {# Bug 1381776 #}
     {% block update_notification %}
       {% if switch('firefox-update-notification', ['en-US']) %}
