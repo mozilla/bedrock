@@ -335,6 +335,8 @@ STATICFILES_FINDERS = (
 STATICFILES_DIRS = (
     path('static_final'),
 )
+if DEBUG:
+    STATICFILES_DIRS += (path('media'),)
 
 
 def set_whitenoise_headers(headers, path, url):
