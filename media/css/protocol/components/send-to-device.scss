@@ -7,7 +7,7 @@ $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
 
-#send-to-device {
+.send-to-device {
     max-width: 500px;
 
     h2.thank-you {
@@ -46,6 +46,10 @@ $image-path: '/media/protocol/img';
         @include text-body-sm;
     }
 
+    .more {
+        color: inherit;
+    }
+
     .email {
         display: block;
     }
@@ -66,40 +70,21 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    footer {
-        @include clearfix;
+    @media #{$mq-lg} {
+        max-width: none;
 
-        li {
-            float: left;
-            width: 50%;
+        .inline-field {
+            @include clearfix;
 
-            a {
-                padding: $spacing-sm;
+            .send-to-device-input {
+                @include bidi(((float, left, right),));
+                width: 70%;
+                margin-bottom: 0;
             }
 
-            &.app-store {
-                text-align: right;
-            }
-
-            &.google-play {
-                text-align: left;
-            }
-        }
-
-        &.ios .google-play {
-            display: none;
-        }
-
-        &.android .app-store {
-            display: none;
-        }
-
-        &.ios,
-        &.android {
-            li {
-                float: none;
-                width: 100%;
-                text-align: center;
+            .form-submit {
+                @include bidi(((float, right, left),));
+                width: 25%;
             }
         }
     }

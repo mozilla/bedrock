@@ -440,6 +440,7 @@
     },
     {
       "files": [
+        "css/protocol/components/send-to-device.scss",
         "css/firefox/whatsnew/whatsnew-lite.scss"
       ],
       "name": "firefox-whatsnew-lite"
@@ -1473,7 +1474,7 @@
     },
     {
       "files": [
-        "js/base/send-yourself.js",
+        "js/base/send-to-device.js",
         "js/libs/spin.min.js",
         "js/base/uitour-lib.js",
         "js/firefox/whatsnew/whatsnew-id.js"

@@ -4,7 +4,7 @@
 
 {% add_lang_files "firefox/whatsnew" "firefox/sendto"%}
 
-{% from "macros.html" import send_yourself with context %}
+{% from "macros.html" import send_to_device with context %}
 
 {% extends "firefox/base-protocol.html" %}
 
@@ -42,10 +42,18 @@
         {# Rough translation: A fast and lightweight Android browser designed for you! #}
         <p class="lite-text">Peramban Android yang cepat dan ringan yang didesain untuk kamu!</p>
         {# Rough translation:
-          field_title: "Enter your e-mail address and send Firefox Lite to your mobile."
-          field_note: "Email recipients must agree in advance." #}
-        <div class="send-yourself-wrapper">
-          {{ send_yourself(include_title=False, product='download-firefox-rocket', id='download-firefox-rocket', message_set='download-firefox-rocket', spinner_color='#000', field_title='Masukkan alamat surel dan kirimkan Firefox Lite ke ponselmu.', field_note='Penerima email harus menyetujui sebelumnya.', button_theme='mzp-t-product', dark_background=True) }}
+          input_label: "Enter your e-mail address and send Firefox Lite to your mobile."
+          legal_note_email: "Email recipients must agree in advance." #}
+        <div class="send-to-device-wrapper">
+          {{ send_to_device(
+            include_title=False,
+            product='download-firefox-rocket',
+            id='download-firefox-rocket',
+            message_set='download-firefox-rocket',
+            spinner_color='#fff',
+            input_label='Masukkan alamat surel dan kirimkan Firefox Lite ke ponselmu.',
+            legal_note_email='Penerima email harus menyetujui sebelumnya.')
+          }}
         </div>
       </div>
     </div>

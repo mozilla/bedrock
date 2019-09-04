@@ -10,8 +10,8 @@ from pages.firefox.base import FirefoxBaseRegion
 
 class SendToDevice(FirefoxBaseRegion):
 
-    _root_locator = (By.ID, 'send-to-device')
-    _email_locator = (By.ID, 'id-input')
+    _root_locator = (By.CSS_SELECTOR, '.send-to-device')
+    _email_locator = (By.CSS_SELECTOR, '.send-to-device-input')
     _submit_button_locator = (By.CSS_SELECTOR, '.form-submit > button')
     _thank_you_locator = (By.CSS_SELECTOR, '.thank-you')
 

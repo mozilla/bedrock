@@ -3,7 +3,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 @import '../../../protocol/css/includes/lib';
-@import 'send-yourself';
 
 //* -------------------------------------------------------------------------- */
 // Up-to-date page header
@@ -20,7 +19,7 @@
         display: none;
         font-weight: normal;
         margin: 0;
-        min-height: 26px;
+        min-height: 30px;
         width: 100%;
 
         &:before {
@@ -47,6 +46,7 @@
 
     @media #{$mq-md} {
         .c-page-header-inner {
+            min-height: 30px;
             position: relative;
         }
 
@@ -54,7 +54,7 @@
             display: block;
             left: 0;
             position: absolute;
-            top: 0;
+            top: 2px;
         }
     }
 }
@@ -103,7 +103,7 @@
 
     @media #{$mq-sm} {
         .lite-copy {
-            width: $content-sm;
+            max-width: $content-sm;
             margin: 0 auto;
         }
     }
@@ -128,54 +128,12 @@
             margin: 100px 0 0;
             max-height: $content-sm;
             text-align: left;
-            width: $content-md;
+            max-width: $content-md;
         }
 
         .lite-woman,
         .lite-code {
             min-height: 700px;
         }
-    }
-
-    @media #{$mq-xl} {
-        .lite-woman img {
-            right: -40px;
-        }
-    }
-}
-
-//* -------------------------------------------------------------------------- */
-// Send Yourself widget
-.mzp-c-sendyourself {
-    a:link {
-        color: #fff;
-
-        &:hover,
-        &:focus {
-            @include light-links;
-        }
-    }
-
-    a:visited {
-        color: $color-gray-10;
-
-        &:hover,
-        &:focus {
-            @include light-links;
-        }
-    }
-}
-
-.has-send-to-device {
-    .firefox-container > .mzp-l-content {
-        max-width: $content-md + $layout-xl;
-    }
-}
-
-// Custom widget styles
-
-.mzp-c-sendyourself-field {
-    input[type="text"] {
-        border: 1px solid #fff;
     }
 }

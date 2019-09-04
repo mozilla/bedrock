@@ -31,8 +31,8 @@ def test_send_to_device_fails_when_missing_required_fields(base_url, selenium):
 @pytest.mark.nondestructive
 def test_firefox_rocket_send_yourself(base_url, selenium):
     page = FirefoxWhatsNewPage(selenium, base_url, locale='id').open()
-    assert page.send_yourself.is_displayed
-    send_yourself = page.send_yourself
-    send_yourself.type_email('success@example.com')
-    send_yourself.click_send()
-    assert send_yourself.send_successful
+    assert page.send_to_device.is_displayed
+    send_to_device = page.send_to_device
+    send_to_device.type_email('success@example.com')
+    send_to_device.click_send()
+    assert send_to_device.send_successful

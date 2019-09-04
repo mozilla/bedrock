@@ -6,7 +6,6 @@ from selenium.webdriver.common.by import By
 
 from pages.firefox.base import FirefoxBasePage
 from pages.regions.send_to_device import SendToDevice
-from pages.regions.send_yourself import SendYourself
 
 
 class FirefoxWhatsNewPage(FirefoxBasePage):
@@ -18,10 +17,6 @@ class FirefoxWhatsNewPage(FirefoxBasePage):
     @property
     def send_to_device(self):
         return SendToDevice(self)
-
-    @property
-    def send_yourself(self):
-        return SendYourself(self)
 
     @property
     def is_qr_code_displayed(self):
