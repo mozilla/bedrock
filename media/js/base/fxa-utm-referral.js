@@ -16,7 +16,7 @@ if (typeof window.Mozilla === 'undefined') {
     /**
      * Fetch and validate utm params from the page URL for FxA referral.
      * https://mozilla.github.io/application-services/docs/accounts/metrics.html#descriptions-of-metrics-related-query-parameters
-     * @returns {Object} if one or more valit utms exist, else {null}.
+     * @returns {Object} if both utm_source and utm_campaign are valid, else {null}.
      */
     UtmUrl.getAttributionData = function (params) {
         var allowedChars = /^[\w/.%-]+$/;
@@ -33,11 +33,17 @@ if (typeof window.Mozilla === 'undefined') {
             }
         }
 
-        return Object.getOwnPropertyNames(finalParams).length >= 1 ? finalParams : null;
+        // Both utm_source and utm_campaign are considered required, so only pass on referral data if they exist.
+        if (Object.prototype.hasOwnProperty.call(finalParams, 'utm_source') && Object.prototype.hasOwnProperty.call(finalParams, 'utm_campaign')) {
+            return finalParams;
+        }
+
+        return null;
     };
 
     /**
-     * Append an object of URL parameters to a given URL.
+     * Append an object of UTM parameters to a given URL.
+     * Object parameters will erase all existing UTM parameters, whether present or not.
      * @param {String} URL to append parameters to.
      * @param {Object} data object consisting of one or more parameters.
      * @returns {String} URL containing updated parameters.
@@ -48,6 +54,17 @@ if (typeof window.Mozilla === 'undefined') {
 
         if (url.indexOf('?') > 0) {
             linkParams = window._SearchParams.queryStringToObject(url.split('?')[1]);
+
+            // If the URL query string has existing UTM parameters then remove them,
+            // as we don't want to muddle data from different campaign sources.
+            var utms = ['utm_source', 'utm_campaign', 'utm_content', 'utm_term', 'utm_medium'];
+            for (var i = 0; i < utms.length; i++) {
+                var utm = utms[i];
+                if (Object.prototype.hasOwnProperty.call(linkParams, utm)) {
+                    delete linkParams[utm];
+                }
+            }
+
             finalParams = Object.assign(linkParams, data);
         } else {
             finalParams = data;
@@ -60,7 +77,7 @@ if (typeof window.Mozilla === 'undefined') {
      * If there are valid utm params on the page URL, query the
      * DOM and update Firefox Account links with the new utm data
      */
-    UtmUrl.getAttributionData.init = function (urlParams){
+    UtmUrl.getAttributionData.init = function (urlParams) {
         var params = UtmUrl.getAttributionData(urlParams);
         var ctaLinks = document.getElementsByClassName('js-fxa-cta-link');
 
@@ -70,7 +87,7 @@ if (typeof window.Mozilla === 'undefined') {
         }
 
         // feature detect support for object modification.
-        if (typeof Object.assign !== 'function' || typeof Object.getOwnPropertyNames !== 'function') {
+        if (typeof Object.assign !== 'function') {
             return;
         }
 
@@ -78,8 +95,8 @@ if (typeof window.Mozilla === 'undefined') {
             // get the link off the element
             var oldAccountsLink =  ctaLinks[i].hasAttribute('href') ? ctaLinks[i].href : null ;
             // verify this is a link to accounts.firefox.com or dev server, otherwise we shouldn't touch it
-            if(oldAccountsLink) {
-                if(oldAccountsLink.indexOf('https://accounts.firefox.com') === 0 || oldAccountsLink.indexOf('https://latest.dev.lcip.org') === 0) {
+            if (oldAccountsLink) {
+                if (oldAccountsLink.indexOf('https://accounts.firefox.com') === 0 || oldAccountsLink.indexOf('https://latest.dev.lcip.org') === 0) {
                     // get the China repack link, so that can be updated too
                     var oldMozillaOnlineLink = ctaLinks[i].getAttribute('data-mozillaonline-link');
 
