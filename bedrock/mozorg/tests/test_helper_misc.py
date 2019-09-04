@@ -78,6 +78,9 @@ class TestImgL10n(TestCase):
         assert (
             self._render('en-US', 'dino/head.png') ==
             static('img/l10n/en-US/dino/head.png'))
+        assert (
+            self._render('en-US', 'img/dino/head.png') ==
+            static('img/l10n/en-US/dino/head.png'))
 
         assert (
             self._render('en-US', 'dino/does-not-exist.png') ==
@@ -88,6 +91,9 @@ class TestImgL10n(TestCase):
         media_exists_mock.return_value = True
         assert (
             self._render('de', 'dino/head.png') ==
+            static('img/l10n/de/dino/head.png'))
+        assert (
+            self._render('de', 'img/dino/head.png') ==
             static('img/l10n/de/dino/head.png'))
 
     def test_defaults_when_lang_file_missing(self, media_exists_mock):
@@ -254,6 +260,9 @@ class TestPlatformImg(TestCase):
         markup = self._render('test.png')
         self.assertIn(u'data-src-windows="/media/img/test-windows.png"', markup)
         self.assertIn(u'data-src-mac="/media/img/test-mac.png"', markup)
+        markup = self._render('img/test.png')
+        self.assertIn(u'data-src-windows="/media/img/test-windows.png"', markup)
+        self.assertIn(u'data-src-mac="/media/img/test-mac.png"', markup)
 
     def test_platform_img_with_optional_attributes(self, find_static):
         """Should return expected markup with optional attributes"""
@@ -266,12 +275,19 @@ class TestPlatformImg(TestCase):
         self.assertIn(u'data-src-windows-high-res="/media/img/test-windows-high-res.png"', markup)
         self.assertIn(u'data-src-mac-high-res="/media/img/test-mac-high-res.png"', markup)
         self.assertIn(u'data-high-res="true"', markup)
+        markup = self._render('img/test.png', {'high-res': True})
+        self.assertIn(u'data-src-windows-high-res="/media/img/test-windows-high-res.png"', markup)
+        self.assertIn(u'data-src-mac-high-res="/media/img/test-mac-high-res.png"', markup)
+        self.assertIn(u'data-high-res="true"', markup)
 
     def test_platform_img_with_l10n(self, find_static):
         """Should return expected markup with l10n image path"""
         l10n_url_win = self._render_l10n('test-windows.png')
         l10n_url_mac = self._render_l10n('test-mac.png')
         markup = self._render('test.png', {'l10n': True})
+        self.assertIn(u'data-src-windows="' + l10n_url_win + '"', markup)
+        self.assertIn(u'data-src-mac="' + l10n_url_mac + '"', markup)
+        markup = self._render('/img/test.png', {'l10n': True})
         self.assertIn(u'data-src-windows="' + l10n_url_win + '"', markup)
         self.assertIn(u'data-src-mac="' + l10n_url_mac + '"', markup)
 
@@ -444,10 +460,14 @@ class TestHighResImg(TestCase):
 
     def test_high_res_img_no_optional_attributes(self):
         """Should return expected markup without optional attributes"""
-        markup = self._render('test.png')
         expected = (
             u'<img class="" src="/media/img/test.png" '
             u'srcset="/media/img/test-high-res.png 1.5x">')
+        markup = self._render('test.png')
+        self.assertEqual(markup, expected)
+        markup = self._render('img/test.png')
+        self.assertEqual(markup, expected)
+        markup = self._render('/img/test.png')
         self.assertEqual(markup, expected)
 
     def test_high_res_img_with_optional_attributes(self):
@@ -467,6 +487,14 @@ class TestHighResImg(TestCase):
         expected = (
             u'<img class="" src="' + l10n_url + '" '
             u'srcset="' + l10n_hr_url + ' 1.5x">')
+        self.assertEqual(markup, expected)
+
+        l10n_url = self._render_l10n('img/test.png')
+        l10n_hr_url = misc.convert_to_high_res(l10n_url)
+        markup = self._render('test.png', {'l10n': True})
+        expected = (
+            u'<img class="" src="' + l10n_url + '" '
+                                                u'srcset="' + l10n_hr_url + ' 1.5x">')
         self.assertEqual(markup, expected)
 
     def test_high_res_img_with_l10n_and_optional_attributes(self):
