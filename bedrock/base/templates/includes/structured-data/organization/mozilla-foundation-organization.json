@@ -1,0 +1,31 @@
+{
+    "@context": "http://schema.org",
+      "@type": "NGO",
+      "@id": "https://foundation.mozilla.org/#organisation",
+      "name": "Mozilla Foundation",
+      "url": "https://foundation.mozilla.org",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q55672",
+        "https://foundation.mozilla.org",
+        "https://en.wikipedia.org/wiki/Mozilla_Foundation"
+      ],
+      "subOrganization": {
+        "@type": "Organization",
+		"@id": "https://www.mozilla.org/#organization",
+    	"name": "Mozilla",
+    	"alternateName": "MoCo",
+    	"legalName": "Mozilla Corporation",
+    	"url": "https://www.mozilla.org",
+    	"logo": "https://www.mozilla.org/media/img/mozorg/mozilla-256.4720741d4108.jpg",
+    	"sameAs": [
+      	"https://www.wikidata.org/wiki/Q169925",
+      	"https://twitter.com/mozilla",
+      	"https://www.facebook.com/mozilla",
+      	"https://github.com/mozilla",
+      	"https://www.instagram.com/mozilla/",
+      	"https://www.youtube.com/user/Mozilla",
+      	"https://en.wikipedia.org/wiki/Mozilla_Corporation",
+      	"https://www.linkedin.com/company/mozilla-corporation"
+    	]
+      }
+  }

@@ -1,0 +1,61 @@
+{
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "@id": "https://www.mozilla.org/#organization",
+    "name": "Mozilla",
+    "alternateName": "MoCo",
+    "legalName": "Mozilla Corporation",
+    "description": "Mozilla makes browsers, apps, code and tools that put people before profit. Our mission: Keep the internet open and accessible to all.",
+    "url": "https://www.mozilla.org",
+    "logo": "https://www.mozilla.org/media/img/mozorg/mozilla-256.4720741d4108.jpg",
+    "diversityPolicy": "https://blog.mozilla.org/inclusion/mozilla-workplace-transition-policy-guidelines/",
+    "ethicsPolicy": "https://www.mozilla.org/about/manifesto/",
+    "foundingDate": "2005-08-03",
+    "founder": "Mitchell Baker",
+    "sameAs": [
+      "https://www.wikidata.org/wiki/Q169925",
+      "https://twitter.com/mozilla",
+      "https://www.facebook.com/mozilla",
+      "https://github.com/mozilla",
+      "https://www.instagram.com/mozilla/",
+      "https://www.youtube.com/user/Mozilla",
+      "https://en.wikipedia.org/wiki/Mozilla_Corporation",
+      "https://www.linkedin.com/company/mozilla-corporation"
+    ],
+    "brand": [{
+        "@type": "brand",
+        "@id": "https://www.mozilla.org/#mozilla",
+        "url": "https://www.mozilla.org",
+        "logo": "https://www.mozilla.org/media/img/mozorg/mozilla-256.4720741d4108.jpg",
+        "name": "Mozilla",
+        "sameAs": ["https://en.wikipedia.org/wiki/Mozilla", "https://www.wikidata.org/wiki/Q9661"]
+      },
+      {
+        "@type": "brand",
+        "@id": "https://www.mozilla.org/#firefoxbrand",
+        "url": "https://www.mozilla.org/firefox/",
+        "logo": "https://www.mozilla.org/media/img/logos/firefox/logo-master-wordmark-dark.9969bf7e6192.svg",
+        "name": "Firefox",
+        "sameAs": [
+          "https://twitter.com/firefox",
+          "https://www.instagram.com/firefox/",
+          "https://www.youtube.com/firefox"
+        ]
+      }     ],
+      "owns": [
+      {
+      include all products
+    	}
+    ],
+    "parentOrganization": {
+      "@type": "NGO",
+      "@id": "https://foundation.mozilla.org/#organisation",
+      "name": "Mozilla Foundation",
+      "url": "https://foundation.mozilla.org",
+      "sameAs": [
+        "https://www.wikidata.org/wiki/Q55672",
+        "https://foundation.mozilla.org",
+        "https://en.wikipedia.org/wiki/Mozilla_Foundation"
+      ]
+    }
+  }

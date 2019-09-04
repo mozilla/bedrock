@@ -1,0 +1,31 @@
+{
+	"@context": "https://schema.org/",
+    "@type": "Product",
+    "@id": "https://www.mozilla.org/#firefoxsend",
+    "url": "https://send.firefox.com",
+    "logo": "https://www.example.com/example-logo.jpg",
+    "image": [
+        "https://example.com/photos/1x1/photo.jpg",
+        "https://example.com/photos/4x3/photo.jpg",
+        "https://example.com/photos/16x9/photo.jpg"
+        ],
+    "name": "Firefox Send",
+    "brand": {
+        "@type": "Brand",
+        "@id": "https://www.mozilla.org/#firefoxbrand",
+        "name": "Firefox"
+        },
+    "sameAs": [
+        "https://en.wikipedia.org/wiki/Firefox_Send",
+        "https://send.firefox.com",
+        "https://www.wikidata.org/wiki/Q62394165",
+        "https://play.google.com/store/apps/details?id=org.mozilla.firefoxsend"
+        ],
+    "offers": {
+        "@type": "Offer",
+        "url": "https://send.firefox.com",
+        "priceCurrency": "USD",
+        "price": "0",
+        "availability": "https://schema.org/InStock"
+        }
+}

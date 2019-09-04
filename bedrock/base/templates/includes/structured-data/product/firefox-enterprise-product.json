@@ -1,0 +1,28 @@
+{
+	"@context": "https://schema.org/",
+    "@type": "Product",
+    "@id": "https://www.mozilla.org/#firefoxenterprise",
+    "url": "https://www.mozilla.org/en-US/firefox/enterprise/",
+    "logo": "https://www.example.com/example-logo.jpg",
+    "image": [
+        "https://example.com/photos/1x1/photo.jpg",
+        "https://example.com/photos/4x3/photo.jpg",
+        "https://example.com/photos/16x9/photo.jpg"
+        ],
+    "name": "Firefox Browser Enterprise",
+    "alternateName": "Firefox for Enterprise",
+    "brand": {
+        "@type": "Brand",
+        "@id": "https://www.mozilla.org/#firefoxbrand",
+        "name": "Firefox"
+        },
+    "sameAs": [
+        "https://www.youtube.com/watch?v=pnQUOFgj3oA"
+        ],
+    "offers": {
+        "@type": "Offer",
+        "priceCurrency": "USD",
+        "price": "0",
+        "availability": "https://schema.org/InStock"
+        }
+}

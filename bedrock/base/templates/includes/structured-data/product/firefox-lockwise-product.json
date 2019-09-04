@@ -1,0 +1,31 @@
+{
+	"@context": "https://schema.org/",
+    "@type": "Product",
+    "@id": "https://www.mozilla.org/#firefoxlockwise",
+    "url": "https://lockwise.firefox.com",
+    "logo": "https://www.example.com/example-logo.jpg",
+    "image": [
+        "https://example.com/photos/1x1/photo.jpg",
+        "https://example.com/photos/4x3/photo.jpg",
+        "https://example.com/photos/16x9/photo.jpg"
+        ],
+    "name": "Firefox Lockwise",
+    "brand": {
+        "@type": "Brand",
+        "@id": "https://www.mozilla.org/#firefoxbrand",
+        "name": "Firefox"
+        },
+    "sameAs": [
+        "https://en.wikipedia.org/wiki/Firefox_Lockwise",
+        "https://www.wikidata.org/wiki/Q64829394",
+        "https://play.google.com/store/apps/details?id=mozilla.lockbox",
+        "https://apps.apple.com/us/app/firefox-lockbox/id1314000270"
+        ],
+    "offers": {
+        "@type": "Offer",
+        "url": "https://lockwise.firefox.com",
+        "priceCurrency": "USD",
+        "price": "0",
+        "availability": "https://schema.org/InStock"
+        }
+}

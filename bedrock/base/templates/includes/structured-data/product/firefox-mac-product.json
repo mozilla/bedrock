@@ -1,0 +1,26 @@
+{
+	"@context": "https://schema.org/",
+    "@type": "Product",
+    "@id": "https://www.mozilla.org/#firefoxmac",
+    "url": "https://www.mozilla.org/en-US/firefox/mac/",
+    "logo": "https://www.example.com/example-logo.jpg",
+    "image": [
+        "https://example.com/photos/1x1/photo.jpg",
+        "https://example.com/photos/4x3/photo.jpg",
+        "https://example.com/photos/16x9/photo.jpg"
+        ],
+    "name": "Firefox Browser Mac",
+    "alternateName": "Firefox Mac",
+    "brand": {
+        "@type": "Brand",
+        "@id": "https://www.mozilla.org/#firefoxbrand",
+        "name": "Firefox"
+        },
+    "offers": {
+        "@type": "Offer",
+        "url": "https://www.mozilla.org/en-US/firefox/mac/",
+        "priceCurrency": "USD",
+        "price": "0",
+        "availability": "https://schema.org/InStock"
+        }
+}
