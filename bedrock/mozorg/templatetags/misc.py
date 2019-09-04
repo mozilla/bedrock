@@ -30,6 +30,10 @@ from bedrock.firefox.firefox_details import firefox_ios
 ALL_FX_PLATFORMS = ('windows', 'linux', 'mac', 'android', 'ios')
 
 
+def _strip_img_prefix(url):
+    return re.sub(r'^/?img/', '', url)
+
+
 def _l10n_media_exists(type, locale, url):
     """ checks if a localized media file exists for the locale """
     return find_static(path.join(type, 'l10n', locale, url)) is not None
@@ -100,6 +104,7 @@ def l10n_img(ctx, url):
         $ROOT/media/img/l10n/fr/firefoxos/screenshot.png
 
     """
+    url = _strip_img_prefix(url)
     return static(l10n_img_file_name(ctx, url))
 
 
@@ -156,6 +161,7 @@ def field_with_attrs(bfield, **kwargs):
 @library.global_function
 @jinja2.contextfunction
 def platform_img(ctx, url, optional_attributes=None):
+    url = _strip_img_prefix(url)
     optional_attributes = optional_attributes or {}
     img_urls = {}
     platforms = optional_attributes.pop('platforms', ALL_FX_PLATFORMS)
@@ -198,6 +204,7 @@ def platform_img(ctx, url, optional_attributes=None):
 @library.global_function
 @jinja2.contextfunction
 def high_res_img(ctx, url, optional_attributes=None):
+    url = _strip_img_prefix(url)
     url_high_res = convert_to_high_res(url)
     if optional_attributes and optional_attributes.pop('l10n', False) is True:
         url = l10n_img(ctx, url)
@@ -227,12 +234,14 @@ def high_res_img(ctx, url, optional_attributes=None):
 @jinja2.contextfunction
 def lazy_img(ctx, image_url, placeholder_url, include_highres_image=False,
              optional_attributes=None, highres_image_url=None):
+    placeholder_url = _strip_img_prefix(placeholder_url)
     placeholder = static(path.join('img', placeholder_url))
 
     external_img = re.match(r'^https?://', image_url, flags=re.I)
 
     # image could be external
     if not external_img:
+        image_url = _strip_img_prefix(image_url)
         image = static(path.join('img', image_url))
     else:
         image = image_url
