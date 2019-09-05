@@ -6,7 +6,7 @@
 
 {% add_lang_files "firefox/new/quantum" %}
 
-{% extends "firefox/base-protocol.html" %}
+{% extends "firefox/base/base-protocol.html" %}
 
 {# "scene2" page should not be indexed to avoid it appearing in search results: issue 7024 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}

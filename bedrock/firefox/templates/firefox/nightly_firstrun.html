@@ -6,7 +6,7 @@
 
 {% from "macros-protocol.html" import hero, picto_card with context %}
 
-{% extends "/firefox/base-protocol.html" %}
+{% extends "/firefox/base/base-protocol.html" %}
 
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}

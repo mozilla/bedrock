@@ -4,7 +4,7 @@
 
 {% add_lang_files "firefox/tracking-protection-tour" %}
 
-{% extends "firefox/base-resp.html" %}
+{% extends "firefox/base/base-resp.html" %}
 
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
