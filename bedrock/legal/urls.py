@@ -34,6 +34,8 @@ urlpatterns = (
     url(r'^terms/firefox-screenshotgo/$', LegalDocView.as_view(template_name='legal/terms/firefox-screenshotgo.html',
         legal_doc_name='firefox_screenshotgo_about_rights'), name='legal.terms.firefox-screenshotgo'),
 
+    page('terms/firefox-private-network', 'legal/terms/firefox-private-network.html'),
+
     url(r'^terms/thunderbird/$', LegalDocView.as_view(template_name='legal/terms/thunderbird.html', legal_doc_name='thunderbird_about_rights'),
         name='legal.terms.thunderbird'),
 

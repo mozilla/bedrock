@@ -1,0 +1,101 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "privacy/base-protocol.html" %}
+
+{% block body_class %}{{ super() }} format-headings{% endblock %}
+
+{% set body_id = "privacy-private-network" %}
+
+{% block page_title %}{{ _('Firefox Private Network Privacy Notice') }}{% endblock %}
+{% block page_desc %}{{ _('This privacy notice explains what data is needed to offer Firefox Private Network (“Service”) and why.') }}{% endblock %}
+
+{% block article_header_logo %}{{ static('img/logos/firefox/logo-quantum.png') }}{% endblock %}
+
+{% block title %}{{ _('Firefox Private Network Privacy Notice') }}{% endblock %}
+{% block time %}{{ _('Version 1.0, dated September 10, 2019') }}{% endblock %}
+
+{% block lead_in %}
+  <h2>{{ _('At Mozilla, we design products with your privacy in mind.') }}</h2>
+  <p>{{ _('This privacy notice explains what data is needed to offer Firefox Private Network (“Service”) and why.') }}</p>
+  <p>
+  {% trans policy=url('privacy') %}
+    To learn more about how we receive and handle information, and how you can engage with your data, read the
+    <a href="{{ policy }}">Mozilla Privacy Policy</a>.
+  {% endtrans %}
+  </p>
+{% endblock %}
+
+{% block sections %}
+  <section>
+    <h2>{{ _('Things you should know:') }}</h2>
+    <section>
+      <h3>
+      {% trans %}
+        Enabling this Service keeps your Firefox web browsing activity private from your internet service provider,
+        and most websites you visit, by encrypting and routing it through our partner Cloudflare’s network instead.
+      {% endtrans %}
+      </h3>
+      <div>
+        <ul>
+          <li>
+            <p>
+            {% trans cloudflare='https://www.cloudflare.com/mozilla/firefox-private-network-privacy-notice/' %}
+              <strong>Cloudflare receives your web browsing data to provide the Service:</strong> As you browse,
+              Firefox will encrypt the data you send to websites and send it to Cloudflare. Cloudflare will also
+              receive your computer’s IP address, the IP address of the site you are browsing to, the timestamp,
+              and a unique identifier. Cloudflare does not share this data with others and deletes this after
+              24 hours unless necessary for its security or legal obligations. Learn more at
+              <a href="{{ cloudflare }}">Cloudflare's Privacy Policy for Firefox Private Network</a>.
+            {% endtrans %}
+            </p>
+          </li>
+          <li>
+            <p>
+            {% trans service='https://support.mozilla.org/kb/video-calls-fpn' %}
+              <strong>This Service protects most—but not all—of your web browsing:</strong> The Service only works
+              in Firefox and for websites that communicate with your computer using TCP (Transmission Control Protocol).
+              For example, it does not work for data exchanged on certain video conferencing services (such as Google
+              Hangouts, Facebook Messenger, GoToMeeting) or on applications outside of Firefox (such as other apps on
+              your device). <a href="{{ service }}">Learn more here</a>.
+            {% endtrans %}
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <h3>{{ _('Mozilla receives data to understand service performance, interaction with Firefox, and how we can improve this feature.') }}</h3>
+      <div>
+      <ul>
+        <li>
+          <p>
+          {% trans %}
+            <strong>Technical data.</strong> Firefox sends Mozilla data about your device, operating system,
+            version, and a unique identifier that Mozilla connects to your Firefox Account.
+          {% endtrans %}
+          </p>
+        </li>
+        <li>
+          <p>
+          {% trans %}
+            <strong>Interaction data.</strong> Mozilla receives data about when you install Firefox Private Network,
+            when you use the service, and engagement with our surveys and Firefox.
+          {% endtrans %}
+          </p>
+        </li>
+        <li>
+          <p>
+          {% trans privacy=url('legal.terms.services') %}
+            <strong>Registration data.</strong> This service requires a Firefox Account, which sends Mozilla your email
+            address, locale, and IP address. Learn more about <a href="{{ privacy }}">Firefox Account data practices</a>.
+          {% endtrans %}
+          </p>
+          <p>{{ _('Read the <a href="%s">telemetry documentation</a>.')|format('https://github.com/mozilla/secure-proxy/blob/master/docs/metrics.md') }}</p>
+        </li>
+      </ul>
+    </div>
+    </section>
+  </section>
+{% endblock %}
