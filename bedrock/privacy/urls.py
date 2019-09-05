@@ -27,6 +27,7 @@ urlpatterns = (
     url(r'^websites/$', views.websites_notices, name='privacy.notices.websites'),
     url(r'^facebook/$', views.facebook_notices, name='privacy.notices.facebook'),
     url(r'^firefox-monitor/$', views.firefox_monitor_notices, name='privacy.notices.firefox-monitor'),
+    page('firefox-private-network', 'privacy/notices/firefox-private-network.html'),
 
     page('archive', 'privacy/archive/index.html'),
     page('archive/firefox/2006-10', 'privacy/archive/firefox-2006-10.html'),
