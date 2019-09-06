@@ -4,8 +4,12 @@
 
 .. _install:
 
+==================
 Installing Bedrock
 ==================
+
+Installation Methods
+====================
 
 There are two primary methods of installing bedrock: Docker and Local. Whichever you choose you'll start by getting the source::
 

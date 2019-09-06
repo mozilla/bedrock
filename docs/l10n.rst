@@ -9,7 +9,7 @@ Localization
 ============
 
 The site is fully localizable. Localization files are not shipped with the code
-distribution, but are available in a separate GitHub repository. The proper repo
+distribution, but are available in separate GitHub repositories. The proper repos
 can be cloned and kept up-to-date using the ``l10n_update`` management command:
 
 .. code-block:: console
@@ -17,9 +17,413 @@ can be cloned and kept up-to-date using the ``l10n_update`` management command:
     $ ./manage.py l10n_update
 
 If you don't already have a ``locale`` directory, this command will clone the
-git repo containing the translation files (either the dev or prod files
+git repo containing the .lang translation files (either the dev or prod files
 depending on your ``DEV`` setting). If the folder is already present, it will
-update the repository to the latest version.
+update the repository to the latest version. It do the same thing for the
+repository for the .ftl translation files in ``git-repos/www-l10n`` directory.
+
+Fluent
+======
+
+Bedrock's Localization (l10n) system is based on `Project Fluent`_. This is a
+departure from the legacy system (see below) that relied on a gettext work flow
+of string extraction from template and code files, in that it relies on developers
+directly editing the default language (English in our case) Fluent files and using
+the string IDs created there in their templates and views.
+
+The default files for the Fluent system live in the ``l10n`` directory in the root
+of the bedrock project. This directory houses directories for each locale the developers
+directly implement (mostly simplified English "en", and "en-US"). The simplified English
+files are the default fallback for every string ID on the site and should be strings that
+are plain and easy to understand English, as free from colloquialisms as possible. The
+translators are able to easily understand the meaning of the string, and can then add their
+own local flair to the ideas.
+
+.. note::
+
+    We have some :ref:`fluent tools <fluent>` to aid in the transition from the legacy system.
+
+.. _Project Fluent: https://projectfluent.org/
+
+.ftl files
+----------
+
+When adding translatable strings to the site you start by putting them all into an .ftl
+file in the ``l10n/en/`` directory with a path that matches or is somehow meaningful
+for the expected location of the template or view in which they'll be used. For example,
+strings for the ``mozorg/mission.html`` template would go into the ``l10n/en/mozorg/mission.ftl``
+file. Locales are activated for a particular .ftl file, not template or URL, so you should use
+a unique file for most URLs, unless they're meant to be translated and activated for new locales
+simultaneously.
+
+You can have shared .ftl files that you can load into any template render, but only the first
+.ftl file in the list of the ones for a page render will determine whether the page is active
+for a locale.
+
+Activation of a locale happens automatically once certain rules are met. A developer can mark
+some string IDs as being "Required", which means that the file won't be activated for a locale
+until that locale has translated all of those required strings. The other rule is a percentage
+completion rule: a certain percentage (configurable) of the strings IDs in the "en" file must
+be translated in the file for a locale before it will be marked as active. We'll get into how
+exactly this works later.
+
+Translating with .ftl files
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The `Fluent file syntax`_ is well document on the Fluent Project's site. We use "double hash" or
+"group" comments to indicate strings required for activation. A group comment only ends when
+another group comment starts however, so you should either group your required strings at the
+bottom of a file, or also have a "not required" group comment. Here's an example:
+
+.. code-block:: fluent
+
+    ### File for example.html
+
+    ## Required
+    example_page_title = The Page Title
+    example_page_desc = This page is a test.
+
+    ## Not required
+    example_footer = This string isn't as important
+
+
+Any group comment (a comment that starts with "##") that starts with "Required" (case does not
+matter) will start a required strings block, and any other group comment will end it.
+
+Once you have your strings in your .ftl file you can place them in your template. We'll use the
+above .ftl file for a simple Jinja template example:
+
+.. code-block:: jinja
+
+    <!doctype html>
+    <html>
+    <head>
+        <title>{{ ftl('example-page-title') }}</title>
+    </head>
+    <body>
+        <h1>{{ ftl('example-page-title') }}</h1>
+        <p>{{ ftl('example-page-desc') }}</p>
+        <footer>
+            <p>{{ ftl('example-footer') }}</p>
+        </footer>
+    </body>
+    </html>
+
+.. _Fluent file syntax: https://projectfluent.org/fluent/guide/
+
+FTL String IDs
+~~~~~~~~~~~~~~
+
+Our convention for string ID creation is the following:
+
+1. String IDs should be all lower-case alphanumeric characters.
+2. Words should be separated with hyphens.
+3. IDs should be prefixed with the name of the template file (e.g. ``firefox-new-skyline`` for ``firefox-new-skyline.html``)
+4. If you need to create a new string for the same place on a page and to transition to it as it is translated, you can
+   add a version suffix to the string ID: e.g. ``firefox-new-skyline-main-page-title-v2``.
+4. The ID should be as descriptive as possible to make sense to the developer, but could be anything as long as it adheres
+   to the rules above.
+
+The ``ftl`` helper function
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``ftl()`` function takes a string ID and returns the string in the current language,
+or simplified english if the string isn't translated. If you'd like to use a different
+string ID in the case that the primary one isn't translated you can specify that like this:
+
+.. code-block:: python
+
+    ftl('primary-string-id', fallback='fallback-string-id')
+
+When a fallback is specified it will be used only if the primary isn't translated in the current
+locale. English locales (e.g. en-US, en-GB) will never use the fallback and will print the simplified
+english version of the primary string if not overridden in the more specific locale.
+
+You can also pass in replacement variables into the ``ftl()`` function for use with `fluent variables`_.
+If you had a variable in your fluent file like this:
+
+.. code-block:: fluent
+
+    welcome = Welcome, { $user }!
+
+You could use that in a template like this:
+
+.. code-block:: jinja
+
+    <h2>{{ ftl('welcome', user='Dude') }}<h2>
+
+For our purposes these are mostly useful for things that can change, but which shouldn't involve
+retranslation of a string (e.g. URLs or email addresses).
+
+This helper is available in Jinja templates and Python code in views. For use in a view you should
+always call it in the view itself:
+
+.. code-block:: python
+
+    # views.py
+    from lib.l10n_utils import render
+    from lib.l10n_utils.fluent import ftl
+
+    def about_view(request):
+        hello_string = ftl('about-hello')
+        render(request, 'about.html', {'hello': hello_string}, ftl_files='about')
+
+If you need to use this string in a view, but define it outside of the view itself, you can use the
+``ftl_lazy`` variant which will delay evaluation until render time. This is mostly useful for defining
+messages shared among several views in constants in a ``views.py`` or ``models.py`` file.
+
+The ``ftl_has_messages`` helper function
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Another useful template too is the ``ftl_has_messages()`` function. You pass it any number
+of string IDs and it will return ``True`` only if all of those message IDs exist in the current
+translation. This is useful when you want to add a new block of HTML to a page that is already
+translated, but don't want it to appear untranslated on any page.
+
+.. code-block:: jinja
+
+    {% if ftl_has_messages('new-title', 'new-description') %}
+      <h3>{{ ftl('new-title') }}</h3>
+      <p>{{ ftl('new-description') }}</p>
+    {% else %}
+      <h3>{{ ftl('title') }}</h3>
+      <p>{{ ftl('description') }}</p>
+    {% endif %}
+
+If you'd like to have it return true when any of the given message IDs exist in the translation
+instead of requiring all of them, you can pass the optional ``require_all=False`` parameter and
+it will do just that.
+
+There is a version of this function for use in views called ``has_messages``. It works exactly the
+same way but is meant to be used in the view Python code.
+
+.. code-block:: python
+
+    # views.py
+    from lib.l10n_utils import render
+    from lib.l10n_utils.fluent import ftl, has_messages
+
+    def about_view(request):
+        if has_messages('about-hello-v2', 'about-title-v2'):
+            hello_string = ftl('about-hello-v2')
+            title_string = ftl('about-title-v2')
+        else:
+            hello_string = ftl('about-hello')
+            title_string = ftl('about-title')
+
+        render(request, 'about.html', {'hello': hello_string, 'title': title_string}, ftl_files='about')
+
+.. _fluent variables: https://projectfluent.org/fluent/guide/variables.html
+
+.. _specifying_fluent_files:
+
+Specifying Fluent files
+-----------------------
+
+You have to tell the system which Fluent files to use for a particular template or view.
+This is done in either the ``page()`` helper in a ``urls.py`` file, or in the call
+to ``l10n_utils.render()`` in a view.
+
+Using the ``page()`` function
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you just need to render a template, which is quite common for bedrock, you will probably
+just add a line like the following to your ``urls.py`` file:
+
+.. code-block:: python
+
+    urlpatterns = [
+        page('about', 'about.html'),
+        page('about/contact', 'about/contact.html'),
+    ]
+
+To tell this page to use the Fluent framework for l10n you just need to tell it which file(s)
+to use:
+
+.. code-block:: python
+
+    urlpatterns = [
+        page('about', 'about.html', ftl_files='about'),
+        page('about/contact', 'about/contact.html', ftl_files=['about/contact', 'about']),
+    ]
+
+The system uses the first (or only) file in the list to determine which locales are active for that
+URL. You can pass a string or list of strings to the ``ftl_files`` argument. The files you specify
+can include the ``.ftl`` extension or not, and they will be combined with the list of default files
+which contain strings for global elements like navigation and footer. There will also be files for
+reusable widgets like the newsletter form, but those should always come last in the list.
+
+Using the class-based view
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Bedrock includes a generic class-based view (CBV) that sets up l10n for you. If you need to do anything fancier
+than just render the page, then you can use this:
+
+.. code-block:: python
+
+    from lib.l10n_utils import L10nTemplateView
+
+    class AboutView(L10nTemplateView):
+        template_name = 'about.html'
+        ftl_files = ['about']
+
+Using that CBV will do the right things for l10n, and then you can override other useful methods
+(e.g. ``get_context_data``) to do what you need. Also, if you do need to do anything fancy with
+the context, and you find that you need to dynamically set the fluent files list, you can easily do
+so by setting ``ftl_files`` in the context instead of the class attribute.
+
+.. code-block:: python
+
+    from lib.l10n_utils import L10nTemplateView
+
+    class AboutView(L10nTemplateView):
+        template_name = 'about.html'
+
+        def get_context_data(self, **kwargs):
+            ctx = super().get_context_data(**kwargs)
+            ftl_files = ['about']
+            if request.GET.get('fancy'):
+                ftl_files.append('fancy')
+
+            ctx['ftl_files'] = ftl_files
+            return ctx
+
+Using in a view function
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Lastly there's the good old function views. These should use ``l10n_utils.render`` directly to render
+the template with the context. You can use the ``ftl_files`` argument with this function as well.
+
+.. code-block:: python
+
+    from lib.l10n_utils import render
+
+    def about_view(request):
+        render(request, 'about.html', {'name': 'Duder'}, ftl_files='about')
+
+Fluent File Activation
+----------------------
+
+Fluent files are activated automatically when processed from the l10n team's repo
+into our own based on a couple of rules.
+
+1. If a fluent file has a group of required strings, all of those strings must be present in
+   the translation in order for it to be activated.
+2. A translation must contain a minimum percent of the string IDs from the English file to be activated.
+
+If both of these conditions are met the locale is activated for that particular Fluent file. Any view
+using that file as its primary (first in the list) file will be available in that locale.
+
+Deactivation
+~~~~~~~~~~~~
+
+If the automated system activates a locale but we for some reason need to ensure that this page remains
+unavailable in that locale, we can add this locale to a list of deactivated locales in the metadata file
+for that FTL file. For example, say we needed to make sure that the `mozorg/mission.ftl` file remained
+inactive for German, even though the translation is already done. We would add ``de`` to the ``inactive_locales``
+list in the ``metadata/mozorg/mission.json`` file:
+
+.. code-block:: json
+
+    {
+      "active_locales": [
+        "de",
+        "fr",
+        "en-GB",
+        "en-US",
+      ],
+      "inactive_locales": [
+        "de"
+      ],
+      "percent_required": 85
+    }
+
+This would ensure that even though ``de`` appears in both lists, it will remain deactivated on the site. We
+could just remove it from the active list, but automation would keep attempting to add it back, so for now
+this is the best solution we have, and is an indication of the full list of locales that have satisfied the rules.
+
+Alternate Rules
+~~~~~~~~~~~~~~~
+
+It's also possible to change the percentage of string completion required for activation on a per-file basis. In
+the same metadata file as above, if a ``percent_required`` key exists in the JSON data (see above) it will be used
+as the minimum percent of string completion required for that file in order to activate new locales.
+
+.. note::
+
+    Once a locale is activated for a Fluent file it will **NOT** be automatically deactivated, even if the
+    rules change. If you need to deactivate a locale you should follow the `Deactivation`_ instructions.
+
+
+Activation Status
+~~~~~~~~~~~~~~~~~
+
+You can determine and use the activation status of a Fluent file in a view to make some decisions; what
+template to render for example. The way you would do that is with the ``ftl_file_is_active`` function.
+For example:
+
+.. code-block:: python
+
+    # views.py
+    from lib.l10n_utils import L10nTemplateView
+    from lib.l10n_utils.fluent import ftl_file_is_active
+
+    # class-based view example
+    class AboutView(L10nTemplateView):
+        def get_template_names(self):
+            if ftl_file_is_active('about_new'):
+                template_name = 'about_new.html'
+                self.ftl_files = ['about_new', 'about']
+            else:
+                template_name = 'about.html'
+                self.ftl_files = ['about']
+
+            return [template_name]
+
+    # function view example
+    def about_view(request):
+        if ftl_file_is_active('about_new'):
+            template = 'about_new.html'
+            ftl_files = ['about_new', 'about']
+        else:
+            template = 'about.html'
+            ftl_files = ['about']
+
+        render(request, template, ftl_files=ftl_files)
+
+Active Locales
+~~~~~~~~~~~~~~
+
+To see which locales are active for a particular .ftl file you can either look in
+the metadata file for that .ftl file, which is the one with the same path but in
+the ``metadata`` folder instead of a locale folder in the www-l10n repository. Or
+if you'd like something a bit nicer looking and more convenient there is the
+``active_locales`` management command:
+
+.. code-block:: bash
+
+    $ ./manage.py l10n_update
+    $ ./manage.py active_locales mozorg/mission
+    There are 91 active locales for mozorg/mission.ftl:
+    - af
+    - an
+    - ar
+    - ast
+    - az
+    - be
+    - bg
+    - bn
+    ...
+
+You get an alphabetically sorted list of all of the active locales for that .ftl file.
+You should run ``./manage.py l10n_update`` as shown above for the most accurate and
+up-to-date results.
+
+Legacy
+======
+
+This section describes the legacy l10n system based on .lang files, which will
+be frozen and no longer supported for new translations in January of 2020.
 
 .lang files
 -----------
@@ -187,7 +591,7 @@ This file's strings would be extracted to `foo.lang`, and the lang files
 searched for matches in that order.
 
 l10n blocks
-------------------
+-----------
 
 Bedrock also has a block-based translation system that works like the
 ``{% block %}`` template tag, and marks large sections of translatable
@@ -435,11 +839,14 @@ When using ``l10n_has_tag``, be sure to coordinate with the localization team to
 decide on a good tag name. Always use underscores instead of hyphens if you need
 to visually separate words.
 
+All
+===
+
 Locale-specific Templates
 -------------------------
 
-While the ``l10n_has_tag`` template function is great in small doses, it doesn't
-scale particularly well. A template filled with conditional copy can be
+While the ``l10n_has_tag`` or ``ftl_has_messages`` template functions are great in small doses,
+they don't scale particularly well. A template filled with conditional copy can be
 difficult to comprehend, particularly when the conditional copy has associated
 CSS and/or JavaScript.
 

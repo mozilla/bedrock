@@ -11,6 +11,7 @@ help:
 	@echo "run           - docker-compose up the entire system for dev"
 	@echo ""
 	@echo "pull          - pull the latest production images from Docker Hub"
+	@echo "run-shell     - open a bash shell in a fresh container"
 	@echo "shell         - open a bash shell in the running app"
 	@echo "djshell       - start the Django Python shell in the running app"
 	@echo "fresh-data    - pull the latest database and update all external data"
@@ -55,6 +56,9 @@ submodules:
 
 fresh-data:
 	${DC} exec app bin/sync-all.sh
+
+run-shell:
+	${DC} run --rm app bash
 
 shell:
 	${DC} exec app bash
@@ -106,4 +110,4 @@ build-ci: .docker-build-pull
 test-ci: .docker-build-ci
 	${DC_CI} run test-image
 
-.PHONY: default clean build pull submodules docs lint run shell test test-image rebuild build-ci test-ci fresh-data djshell
+.PHONY: default clean build pull submodules docs lint run run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell

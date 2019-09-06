@@ -101,7 +101,7 @@ class TestPageUtil(TestCase):
         url.callback(self.rf.get('/walter/abides/'))
         assert not djrender_mock.called
         l10n_mock.render.assert_called_with(ANY, 'walter/abides.html', {'urlname': 'walter.abides',
-                                                                        'donny': 'ashes'})
+                                                                        'donny': 'ashes'}, ftl_files=None)
 
     @override_settings(SUPPORTED_NONLOCALES=['dude'])
     def test_locale_redirect_exclusion_nested(self, l10n_mock, djrender_mock):
@@ -118,7 +118,7 @@ class TestPageUtil(TestCase):
         url = page('', 'index.html')
         url.callback(self.rf.get('/'))
         assert not djrender_mock.called
-        l10n_mock.render.assert_called_with(ANY, 'index.html', {'urlname': 'index'})
+        l10n_mock.render.assert_called_with(ANY, 'index.html', {'urlname': 'index'}, ftl_files=None)
 
     def test_url_name_set_from_template(self, l10n_mock, djrender_mock):
         """If not provided the URL pattern name should be set from the template path."""

@@ -80,6 +80,7 @@ COPY manage.py LICENSE newrelic.ini contribute.json ./
 COPY ./docker ./docker
 COPY ./vendor-local ./vendor-local
 COPY ./bedrock ./bedrock
+COPY ./l10n ./l10n
 COPY ./media ./media
 
 

@@ -32,7 +32,7 @@ urlpatterns = (
     # Bug 981063, catch all for old calendar urls.
     # must be here to avoid overriding the above
     redirect(r'^projects/calendar/', 'https://www.thunderbird.net/calendar/', locale_prefix=False),
-    page('mission', 'mozorg/mission.html'),
+    page('mission', 'mozorg/mission.html', ftl_files=['mozorg/mission']),
     url('^about/forums/$', views.forums_view, name='mozorg.about.forums.forums'),
     page('about/forums/etiquette', 'mozorg/about/forums/etiquette.html'),
     page('about/forums/cancellation', 'mozorg/about/forums/cancellation.html'),

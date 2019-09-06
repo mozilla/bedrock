@@ -33,13 +33,8 @@ bedrock_db_info.json
 james.ini
 test-results.xml
 tests/unit/coverage
+/git-repos
 /bedrock/externalfiles/files_cache
-/mofo_security_advisories
-/release_notes
-/content_cards
-/product_details_json
-/community_data
-/www_config
 supervisord.log
 .idea
 .env

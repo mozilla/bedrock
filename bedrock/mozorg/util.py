@@ -33,7 +33,7 @@ FXA_CLIENTS = {
 }
 
 
-def page(name, tmpl, decorators=None, url_name=None, **kwargs):
+def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, **kwargs):
     """
     Define a bedrock page.
 
@@ -55,7 +55,8 @@ def page(name, tmpl, decorators=None, url_name=None, **kwargs):
         specific templates or non-English text in the template. Ignores the lang
         file activation tags.
     @param add_active_locales: A list of locale codes that should be active for this page
-        in addition to those from the lang files.
+        in addition to those from the lang or ftl files.
+    @param ftl_files: A list of FTL files that combined contain the strings for this page.
     @param kwargs: Any additional arguments are passed to l10n_utils.render
         as the context.
     """
@@ -81,7 +82,7 @@ def page(name, tmpl, decorators=None, url_name=None, **kwargs):
         if name_prefix in settings.SUPPORTED_NONLOCALES:
             return django_render(request, tmpl, kwargs)
 
-        return l10n_utils.render(request, tmpl, kwargs)
+        return l10n_utils.render(request, tmpl, kwargs, ftl_files=ftl_files)
 
     # This is for graphite so that we can differentiate pages
     _view.page_name = url_name

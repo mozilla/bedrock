@@ -120,12 +120,12 @@ class TestTemplateLangFiles(TestCase):
 
 
 class TestNoLocale(TestCase):
-    @patch('lib.l10n_utils.get_lang_path')
+    @patch('lib.l10n_utils.get_l10n_path')
     @patch('lib.l10n_utils.django_render')
-    def test_render_no_locale(self, django_render, get_lang_path):
+    def test_render_no_locale(self, django_render, get_l10n_path):
         # Our render method doesn't blow up if the request has no .locale
         # (can happen on 500 error path, for example)
-        get_lang_path.return_value = None
+        get_l10n_path.return_value = None
         request = Mock(spec=object)
         # Note: no .locale on request
         # Should not cause an exception

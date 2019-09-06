@@ -33,6 +33,18 @@ TAG_REGEX = re.compile(r"^## ([\w-]+) ##")
 cache = caches['l10n']
 
 
+def _replace_variables(match):
+    var_name = match[2]
+    if not var_name:
+        var_name = 'VARIABLE_MISSING'
+
+    return f'{{ ${var_name} }}'
+
+
+def convert_variables(lang_str):
+    return FORMAT_IDENTIFIER_RE.sub(_replace_variables, lang_str)
+
+
 def parse(path, skip_untranslated=True, extract_comments=False):
     """
     Parse a dotlang file and return a dict of translations.
@@ -90,18 +102,9 @@ def mail_error(path, message):
     mail.mail_managers(subject, message)
 
 
-def fix_case(locale):
-    """Convert lowercase locales to uppercase: en-us -> en-US"""
-    parts = locale.split('-')
-    if len(parts) == 1:
-        return locale
-    else:
-        return '%s-%s' % (parts[0], parts[1].upper())
-
-
 def translate(text, files):
     """Search a list of .lang files for a translation"""
-    lang = fix_case(translation.get_language())
+    lang = translation.get_language(True)
 
     # don't attempt to translate the default language.
     if lang == settings.LANGUAGE_CODE:
@@ -117,7 +120,7 @@ def translate(text, files):
         if trans is None:
             path = os.path.join(settings.ROOT, rel_path)
             trans = parse(path)
-            cache.set(key, trans, settings.DOTLANG_CACHE)
+            cache.set(key, trans)
 
         if tweaked_text in trans:
             original = FORMAT_IDENTIFIER_RE.findall(text)
@@ -200,25 +203,6 @@ _ = gettext
 _lazy = gettext_lazy
 
 
-def get_lang_path(path):
-    """Generate the path to a lang file from a django path.
-    /apps/foo/templates/foo/bar.html -> foo/bar
-    /templates/foo.html -> foo
-    /foo/bar.html -> foo/bar"""
-
-    p = path.split('/')
-
-    try:
-        i = p.index('templates')
-        p = p[i + 1:]
-    except ValueError:
-        pass
-
-    path = '/'.join(p)
-    base, ext = os.path.splitext(path)
-    return base
-
-
 def lang_file_is_active(path, lang=None):
     """
     If the lang file for a locale exists and has the correct comment returns
@@ -240,7 +224,7 @@ def lang_file_tag_set(path, lang=None):
     if settings.DEV or lang == settings.LANGUAGE_CODE:
         return ALL_THE_THINGS
 
-    lang = lang or fix_case(translation.get_language())
+    lang = lang or translation.get_language(True)
     rel_path = os.path.join('locale', lang, '%s.lang' % path)
     cache_key = 'tag:%s' % rel_path
     tag_set = cache.get(cache_key)
@@ -261,7 +245,7 @@ def lang_file_tag_set(path, lang=None):
         except IOError:
             pass
 
-        cache.set(cache_key, tag_set, settings.DOTLANG_CACHE)
+        cache.set(cache_key, tag_set)
 
     return tag_set
 
@@ -286,7 +270,7 @@ def get_translations_for_langfile(langfile):
     """
     Return the list of available translations for the langfile.
 
-    :param langfile: the path to a lang file, retrieved with get_lang_path()
+    :param langfile: the path to a lang file, retrieved with get_l10n_path()
     :return: list, like ['en-US', 'fr']
     """
 
@@ -298,12 +282,11 @@ def get_translations_for_langfile(langfile):
 
     translations = []
     for lang in settings.PROD_LANGUAGES:
-        if (lang in product_details.languages and
-                (lang == settings.LANGUAGE_CODE or
-                 lang_file_is_active(langfile, lang))):
+        if (lang in product_details.languages and (
+                lang == settings.LANGUAGE_CODE or lang_file_is_active(langfile, lang))):
             translations.append(lang)
 
-    cache.set(cache_key, translations, settings.DOTLANG_CACHE)
+    cache.set(cache_key, translations)
     return translations
 
 

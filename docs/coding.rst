@@ -306,8 +306,8 @@ Coding Style Guides
 * `Mozilla CSS Style Guide <http://mozweb.readthedocs.org/en/latest/reference/css-style.html>`_
 
 Use the ``.open-sans``, ``.open-sans-light`` and ``.open-sans-extrabold`` mixins
-to specify font families to allow using international fonts. See the :ref:
-`CSS<l10n>` section in the l10n doc for details.
+to specify font families to allow using international fonts. See the :ref:`CSS <l10n>`
+section in the l10n doc for details.
 
 Use the ``.font-size()`` mixin to generate root-relative font sizes. You can
 declare a font size in pixels and the mixin will convert it to an equivalent

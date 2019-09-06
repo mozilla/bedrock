@@ -25,11 +25,23 @@ def deactivate():
         del _active.value
 
 
-def get_language():
+def _fix_case(locale):
+    """Convert lowercase locales to uppercase: en-us -> en-US"""
+    parts = locale.split('-')
+    if len(parts) == 1:
+        return locale
+    else:
+        return '%s-%s' % (parts[0], parts[1].upper())
+
+
+def get_language(fix_case=False):
     """Returns the currently selected language."""
     lang = getattr(_active, "value", None)
     if lang is None:
         return settings.LANGUAGE_CODE
+
+    if fix_case:
+        lang = _fix_case(lang)
 
     return lang
 
