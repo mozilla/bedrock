@@ -557,22 +557,8 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
         match = re.match(r'\d{1,2}', version)
         ctx['version'] = version
         ctx['num_version'] = int(match.group(0)) if match else ''
-        if ctx['num_version'] == 64:
-            ctx['active_locales'] = [
-                'de',
-                'en-CA',
-                'en-GB',
-                'en-US',
-                'es-ES',
-                'fr',
-                'id',
-                'pl',
-                'pt-BR',
-                'ru',
-                'zh-TW',
-            ]
 
-        if ctx['num_version'] in [65, 66, 67, 68]:
+        if ctx['num_version'] in [67, 68]:
             ctx['show_newsletter'] = locale in [
                 'en-US',
                 'en-GB',
