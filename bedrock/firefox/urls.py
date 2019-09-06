@@ -129,4 +129,7 @@ urlpatterns = (
 
     page('firefox/features/safebrowser', 'firefox/features/safebrowser.html'),
     page('firefox/best-browser', 'firefox/best-browser.html'),
+
+    # Lockwise
+    page('firefox/lockwise', 'firefox/lockwise/lockwise.html'),
 )

@@ -505,6 +505,12 @@
     },
     {
       "files": [
+        "css/firefox/lockwise/lockwise.scss"
+      ],
+      "name": "lockwise"
+    },
+    {
+      "files": [
         "css/firefox/whatsnew/whatsnew-63.scss"
       ],
       "name": "firefox_whatsnew_63"
@@ -1073,6 +1079,13 @@
         "js/firefox/whatsnew/whatsnew-69.js"
       ],
       "name": "firefox_whatsnew_69"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/firefox/lockwise/lockwise.js"
+      ],
+      "name": "lockwise"
     },
     {
       "files": [

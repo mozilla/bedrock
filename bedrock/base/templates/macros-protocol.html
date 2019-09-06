@@ -27,11 +27,14 @@
 {%- endmacro %}
 
 {# Hero: https://protocol.mozilla.org/patterns/organisms/hero.html #}
-{% macro hero(title, desc=None, class=None, include_cta=False, heading_level=2, image_url=None, include_highres_image=False, image_alt='') -%}
+{% macro hero(title, subheading, desc=None, class=None, include_cta=False, heading_level=2, subheading_level=3, image_url=None, include_highres_image=False, image_alt='') -%}
 <section class="mzp-c-hero{% if class %} {{ class }}{% endif %}{%if image_url%} mzp-has-image{% endif %}">
   <div class="mzp-l-content">
     <div class="mzp-c-hero-body">
       <h{{ heading_level }} class="mzp-c-hero-title">{{ title }}</h{{ heading_level }}>
+      {% if subheading %}
+      <h{{ subheading_level }} class="hero-subheading">{{ subheading }}</h{{ subheading_level }}>
+      {% endif %}
       {% if desc %}
       <div class="mzp-c-hero-desc">
         <p>{{ desc }}</p>
