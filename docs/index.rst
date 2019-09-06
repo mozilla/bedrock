@@ -24,6 +24,7 @@ Contents
 
    install
    l10n
+   fluent-conversion
    coding
    contribute
    pipeline

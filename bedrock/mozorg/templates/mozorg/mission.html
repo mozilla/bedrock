@@ -4,7 +4,7 @@
 
 {% extends "mozorg/about-base.html" %}
 
-{% block page_title %}{{ _('We’re building a better Internet') }}{% endblock %}
+{% block page_title %}{{ ftl('mission-were-building-a-better-internet') }}{% endblock %}
 {% set body_id = "about-mission" %}
 
 {% block page_css %}
@@ -13,17 +13,13 @@
 
 {% block article %}
 <article>
-  <h1 class="mzp-c-article-title">{{ _('We’re building a better Internet') }}</h1>
-  {% if l10n_has_tag('bug_1251061_copy_update') %}
-    <p class="lede">{{ _('Our mission is to ensure the Internet is a global public resource, open and accessible to all. An Internet that truly puts people first, where individuals can shape their own experience and are empowered, safe and independent.') }}</p>
-  {% else %}
-    <p class="lede">{{ _('Our mission is to promote openness, innovation & opportunity on the Web.') }}</p>
-  {% endif %}
+  <h1 class="mzp-c-article-title">{{ ftl('mission-were-building-a-better-internet') }}</h1>
+  <p class="lede">{{ ftl('mission-our-mission-is-to-ensure-the-internet', fallback='mission-our-mission-is-to-promote-openness') }}</p>
   <p>
-    {{ _('At Mozilla, we’re a global community of technologists, thinkers and builders working together to keep the Internet alive and accessible, so people worldwide can be informed contributors and creators of the Web.') }}
-    {{ _('We believe this act of human collaboration across an open platform is essential to individual growth and our collective future.') }}
+    {{ ftl('mission-at-mozilla-were-a-global-community') }}
+    {{ ftl('mission-we-believe-this-act-of-human-collaboration') }}
   </p>
-  <p>{{ _('Read the <a href="%(url)s">Mozilla Manifesto</a> to learn even more about the values and principles that guide the pursuit of our mission.') | format(url=url('mozorg.about.manifesto')) }}</p>
+  <p>{{ ftl('mission-read-the-mozilla-manifesto-to-learn', url=url('mozorg.about.manifesto')) }}</p>
 
   <figure>
     {{ video('Mozilla_2011_Story.webm',
@@ -31,25 +27,25 @@
       'Mozilla_2011_Story.mp4',
       prefix='//videos.cdn.mozilla.net/brand/',
       poster=static('img/mission/poster-mission.jpg')) }}
-    <figcaption>{{ _('Watch the video above to learn more about who we are, where we came from and how we’re making the Web better for you.') }}</figcaption>
+    <figcaption>{{ ftl('mission-watch-the-video-above-to-learn-more') }}</figcaption>
   </figure>
 
   <ul>
     <li>
-      <h4><a href="{{ url('mozorg.contribute.index') }}">{{ _('Get involved') }}</a></h4>
-      <p>{{ _('Volunteer opportunities in a number of different areas') }}</p>
+      <h4><a href="{{ url('mozorg.contribute.index') }}">{{ ftl('mission-get-involved') }}</a></h4>
+      <p>{{ ftl('mission-volunteer-opportunities-in-a-number') }}</p>
     </li>
     <li>
-      <h4><a href="{{ url('mozorg.about.history') }}">{{ _('History') }}</a></h4>
-      <p>{{ _('Where we come from and how we got to where we are') }}</p>
+      <h4><a href="{{ url('mozorg.about.history') }}">{{ ftl('mission-history') }}</a></h4>
+      <p>{{ ftl('mission-where-we-come-from-and-how-we-got') }}</p>
     </li>
     <li>
-      <h4><a href="{{ url('mozorg.about.forums.forums') }}">{{ _('Forums') }}</a></h4>
-      <p>{{ _('Topics include support, products, and technologies') }}</p>
+      <h4><a href="{{ url('mozorg.about.forums.forums') }}">{{ ftl('mission-forums') }}</a></h4>
+      <p>{{ ftl('mission-topics-include-support-products') }}</p>
     </li>
     <li>
-      <h4><a href="{{ url('mozorg.about.governance.governance') }}">{{ _('Governance') }}</a></h4>
-      <p>{{ _('Our structure, organization, and the broader Mozilla community') }}</p>
+      <h4><a href="{{ url('mozorg.about.governance.governance') }}">{{ ftl('mission-governance') }}</a></h4>
+      <p>{{ ftl('mission-our-structure-organization-and-the') }}</p>
     </li>
   </ul>
 
@@ -57,7 +53,6 @@
 {% endblock %}
 
 {% block email_form %}
-
 
   <div class="mzp-l-content">
     <aside class="mzp-c-newsletter t-love">

@@ -16,8 +16,8 @@ from django.template.loader import get_template
 from jinja2 import Environment
 
 from .dotlang import (
-    parse as parse_lang, get_lang_path, get_translations_for_langfile, lang_file_tag_set)
-from lib.l10n_utils.utils import ContainsEverything
+    parse as parse_lang, get_translations_for_langfile, lang_file_tag_set)
+from lib.l10n_utils.utils import ContainsEverything, get_l10n_path
 
 
 ALL_THE_THINGS = ContainsEverything()
@@ -82,7 +82,7 @@ def po_msgs(domain):
 
 def translated_strings(file_):
     path = join(settings.ROOT, 'locale', 'templates', file_)
-    trans = list(parse_lang(path).keys())
+    trans = list(parse_lang(path, skip_untranslated=False).keys())
     return trans
 
 
@@ -175,13 +175,13 @@ def parse_template(path):
                 # remove empties
                 lang_files = [lf for lf in lang_files if lf]
                 if lang_files:
-                    cache.set(cache_key, lang_files, settings.DOTLANG_CACHE)
+                    cache.set(cache_key, lang_files)
                     return lang_files
     return []
 
 
 def _get_template_tag_set(lang, path):
-    lang_files = [get_lang_path(path)]
+    lang_files = [get_l10n_path(path)]
     template = get_template(path)
     lang_files.extend(parse_template(template.template.filename))
     tag_set = set()
@@ -206,7 +206,7 @@ def template_tag_set(path, lang):
     tag_set = cache.get(cache_key)
     if tag_set is None:
         tag_set = _get_template_tag_set(lang, path)
-        cache.set(cache_key, tag_set, settings.DOTLANG_CACHE)
+        cache.set(cache_key, tag_set)
 
     return tag_set
 
@@ -245,7 +245,7 @@ def translations_for_template(template_name):
     :param template_name: name of the template passed to render.
     :return: list, like ['en-US', 'fr']
     """
-    lang_files = [get_lang_path(template_name)]
+    lang_files = [get_l10n_path(template_name)]
     template = get_template(template_name)
     lang_files.extend(parse_template(template.template.filename))
     active_translations = []
@@ -270,7 +270,7 @@ def langfiles_for_path(path):
         lang_files = parse_template(join(settings.ROOT, path))
         # Otherwise, normalize the path name to a lang file
         if not lang_files:
-            lang_files = [get_lang_path(path)]
+            lang_files = [get_l10n_path(path)]
     elif is_python(path):
         # If the python file explicitly specifies lang files, use those
         lang_files = parse_python(join(settings.ROOT, path))

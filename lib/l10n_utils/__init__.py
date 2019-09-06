@@ -14,8 +14,10 @@ from django.views.generic import TemplateView
 
 from bedrock.base.urlresolvers import split_path
 
-from .dotlang import get_lang_path, get_translations_native_names
+from .dotlang import get_translations_native_names
+from .fluent import fluent_l10n
 from .gettext import translations_for_template
+from .utils import get_l10n_path
 
 
 def template_source_url(template):
@@ -31,7 +33,7 @@ def template_source_url(template):
     return '%s/tree/master/%s' % (settings.GITHUB_REPO, relative_path)
 
 
-def render(request, template, context=None, **kwargs):
+def render(request, template, context=None, ftl_files=None, **kwargs):
     """
     Same as django's render() shortcut, but with l10n template support.
     If used like this::
@@ -47,15 +49,26 @@ def render(request, template, context=None, **kwargs):
     # use copy() here to avoid modifying the dict in a view that will then
     # be different on the next call to the view.
     context = context.copy() if context else {}
+    l10n = None
+    ftl_files = ftl_files or context.get('ftl_files')
 
     # Make sure we have a single template
     if isinstance(template, list):
         template = template[0]
 
+    if ftl_files:
+        locale = get_locale(request)
+        if isinstance(ftl_files, str):
+            ftl_files = [ftl_files]
+
+        ftl_files.extend(settings.FLUENT_DEFAULT_FILES)
+
+        context['fluent_l10n'] = l10n = fluent_l10n([locale, 'en'], ftl_files)
+
     # Every template gets its own .lang file, so figure out what it is
     # and pass it in the context
     context['template'] = template
-    context['langfile'] = get_lang_path(template)
+    context['langfile'] = get_l10n_path(template)
     context['template_source_url'] = template_source_url(template)
 
     # if `locales` is given use it as the full list of active translations
@@ -63,7 +76,11 @@ def render(request, template, context=None, **kwargs):
         translations = context['active_locales']
         del context['active_locales']
     else:
-        translations = translations_for_template(template)
+        if l10n:
+            translations = l10n.active_locales
+        else:
+            translations = translations_for_template(template)
+
         # if `add_active_locales` is given then add it to the translations for the template
         if 'add_active_locales' in context:
             translations.extend(context['add_active_locales'])
@@ -163,6 +180,7 @@ class LangFilesMixin:
     """Generic views mixin that uses l10n_utils to render responses."""
     active_locales = None
     add_active_locales = None
+    ftl_files = None
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -175,7 +193,7 @@ class LangFilesMixin:
 
     def render_to_response(self, context, **response_kwargs):
         return render(self.request, self.get_template_names(),
-                      context, **response_kwargs)
+                      context, ftl_files=self.ftl_files, **response_kwargs)
 
 
 class L10nTemplateView(LangFilesMixin, TemplateView):
