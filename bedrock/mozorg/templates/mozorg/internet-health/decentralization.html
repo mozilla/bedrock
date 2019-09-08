@@ -419,10 +419,17 @@
             <li>
               <h4>{{ _('Start making') }}</h4>
               <p>
-              {% trans glitch='https://glitch.com/' %}
-                Try your hand at creating Web content you care about, in your language.
-                <a href="{{ glitch }}">Glitch</a> is a great way to start.
-              {% endtrans %}
+              {% if l10n_has_tag('glitch_feb2019') %}
+                {% trans glitch='https://glitch.com/' %}
+                  Try your hand at creating Web content you care about, in your language.
+                  <a href="{{ glitch }}">Glitch</a> is a great way to start.
+                {% endtrans %}
+              {% else %}
+                {% trans thimble='https://thimble.mozilla.org/' %}
+                  Try your hand at creating Web content you care about, in your language.
+                  <a href="{{ thimble }}">Thimble</a> is a great way to start.
+                {% endtrans %}
+              {% endif %}
               </p>
             </li>
           </ul>
