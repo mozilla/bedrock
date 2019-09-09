@@ -42,13 +42,16 @@ $image-path: '/media/protocol/img';
 // Primary CTA (page top)
 
 .c-primary-cta {
+    background-color: $color-white;
+    min-height: 359px;
     position: relative;
     text-align: center;
-    z-index: 2;
+    z-index: 2; // so it hides the sticky CTA
 }
 
 .c-primary-cta-wrapper {
     position: relative;
+    padding-top: $layout-sm;
 
     p {
         margin-bottom: 0;
@@ -56,17 +59,12 @@ $image-path: '/media/protocol/img';
 }
 
 .c-primary-cta-logo {
-    @include text-display-xs;
-    background: url('/media/img/logos/firefox/logo-quantum.png') top center no-repeat; //image is 189x189, no need for retina mq when displaying at 40px
-    @include background-size(40px 40px);
-    line-height: 40px;
-    margin-bottom: $spacing-sm;
-    padding-top: $spacing-2xl;
+    margin: 0 auto $spacing-lg auto;
 }
 
 .c-primary-cta-title {
-    @include text-display-xl;
-    margin-bottom: $spacing-sm;
+    @include text-display-lg;
+    margin-bottom: 0;
 }
 
 h3,
@@ -79,93 +77,39 @@ h4 {
     }
 }
 
+.c-primary-cta-desc {
+    @include text-body-lg;
+}
+
 .c-primary-cta-button {
-    margin-top: $spacing-lg;
+    margin-top: $layout-sm;
 }
 
-// Primary CTA - Download Firefox
-.download-firefox-primary-cta {
-    background-color: #bddefd;
-}
-
-// Primary CTA - Firefox Account
-.fxaccount-primary-cta {
-    background-color: $color-white;
-
-    .c-primary-cta-title {
-        @include text-display-lg;
-        margin-bottom: $spacing-xl;
-    }
-
-    .c-primary-cta-title-sub {
-        @include text-display-xs;
-        margin-bottom: $spacing-xl;
-    }
+.mzp-c-button-download-container {
+    margin-bottom: 0;
 }
 
 @media #{$mq-md} {
     .c-primary-cta-wrapper {
-        padding-bottom: 40px;
+        padding-bottom: $layout-sm;
     }
 
     .c-primary-cta-logo {
-        background-position: top left;
-        margin-bottom: $spacing-2xl;
-        padding-left: $spacing-2xl;
-        padding-top: 0;
-        text-align: left;
-        line-height: 40px;
-    }
-
-    .download-firefox-primary-cta .mzp-l-content {
-        @include at2x('/media/img/home/2018/banner-fffy.png', 720px, 350px);
-        background-position: center bottom 30px;
-        padding-bottom: 350px;
-    }
-
-    .fxaccount-primary-cta .mzp-l-content {
-        @include at2x('/media/img/firefox/accounts/fxa-hero-img.png', 584px, 389px);
-        padding-bottom: 390px;
-    }
-}
-
-@media #{$mq-sm} {
-    .download-firefox-primary-cta {
-        background: #bddefd;
-
-        .mzp-l-content {
-            background: url('/media/img/home/2018/banner-fffy.png') center bottom 10px no-repeat;
-            @include background-size(360px 175px);
-            padding-bottom: 180px;
-
-            .c-primary-cta-title-sub {
-                text-align: left;
-            }
-        }
-    }
-
-    .fxaccount-primary-cta {
-        background: $color-white;
-
-        .mzp-l-content {
-            background: url('/media/img/firefox/accounts/fxa-hero-img.png') center bottom no-repeat;
-            @include background-size(360px 240px);
-            padding-bottom: 250px;
-        }
+        margin-bottom: $spacing-xl;
     }
 }
 
 @media #{$mq-lg} {
     .c-primary-cta {
         @include bidi(((text-align, left, right),));
-        border-top: 100px solid #fff;
+        border-top: 100px solid $color-white; // to hide sticky CTA
         margin-bottom: -100px;
         position: relative;
         top: -100px;
 
         .c-primary-cta-wrapper {
             @include border-box;
-            max-width: 520px;
+            max-width: 50%;
         }
 
         .c-primary-cta-title-sub {
@@ -173,28 +117,27 @@ h4 {
         }
     }
 
-    .download-firefox-primary-cta .mzp-l-content {
-        @include at2x('/media/img/home/2018/banner-fffy.png', 720px, 350px);
-        background-position: 580px center;
-        padding-bottom: $spacing-lg;
+    .download-firefox-primary-cta {
+        background-image: url('/media/img/home/2018/browser.png'), url('/media/img/home/2018/bg-primary.svg');
+        background-size: 400px 278px, auto;
+        background-position: calc(50vw + 34px) 60px, calc(50vw - 41px) -78px;
+        background-repeat: no-repeat;
+
+        @media #{$mq-high-res} {
+            background-image: url('/media/img/home/2018/browser-high-res.png'), url('/media/img/home/2018/bg-primary.svg');
+        }
     }
 
-    .fxaccount-primary-cta .mzp-l-content {
-        @include at2x('/media/img/firefox/accounts/fxa-hero-img.png', 584px, 389px);
-        background-position: 560px bottom;
-        padding-bottom: $spacing-lg;
+    .fxaccount-primary-cta {
+        @include at2x('/media/img/home/2018/home.jpg', 815px, 362px);
+        background-position: 50vw 0;
+        background-repeat: no-repeat;
     }
 
     .mzp-c-navigation + #outer-wrapper .c-primary-cta {
-        border-top: 94px solid #fff;
+        border-top: 94px solid $color-white;
         top: -94px;
         margin-bottom: -94px;
-    }
-}
-
-@media #{$mq-xl} {
-    .fxaccount-primary-cta .mzp-l-content {
-        background-position: 680px bottom;
     }
 }
 
@@ -203,12 +146,14 @@ h4 {
 // Sticky CTA
 
 .c-sticky-cta {
+    background-color: $color-off-black;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    color: $color-white;
     position: fixed;
     text-align: center;
     top: 0;
     width: 100%;
     z-index: 1;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
 
     .no-js & {
         // no javascript, no sticky
@@ -230,22 +175,20 @@ h4 {
 }
 
 .c-sticky-cta-title {
-    @include text-display-sm;
-    background: url('/media/img/logos/firefox/logo-quantum.png') top center no-repeat; //image is 189x189, no need for retina mq when displaying at 40px
-    @include background-size(40px 40px);
+    @include text-body-md;
+    @include at2x('/media/img/logos/firefox/master-sm.png', 40px, 40px);
+    background-position: top center;
+    background-repeat: no-repeat;
     height: 0;
     left: -6px;
     margin-bottom: 0;
     overflow: hidden;
     position: absolute;
     top: -4px;
-    width: 40px;
-}
 
-
-.c-sticky-cta-title-sub,
-.c-sticky-cta-desc-sub {
-    display: none; // Hidden on mobile
+    .download-firefox-sticky-cta & {
+        @include at2x('/media/img/logos/firefox/logo-quantum.png', 40px, 40px);
+    }
 }
 
 .sticky-dismiss {
@@ -263,7 +206,7 @@ h4 {
 
     &:after {
         @include text-body-lg;
-        background: transparent url('#{$image-path}/icons/ui/close-black.svg') center center no-repeat;
+        background: transparent url('#{$image-path}/icons/ui/close-white.svg') center center no-repeat;
         @include background-size(16px 16px);
         content: '';
         display: block;
@@ -286,45 +229,14 @@ h4 {
     }
 }
 
-// Sticky CTA - Download Firefox
-.download-firefox-sticky-cta {
-    background-color: #bddefd;
-
-    .download-button,
-    .download-list {
-        margin-bottom: 0;
-    }
-
-    .fx-privacy-link {
-        display: none;
-    }
-}
-
-// Sticky CTA - Firefox Account
-.fxaccount-sticky-cta {
-    background-color: $color-white;
-}
-
 @media #{$mq-md} {
     .c-sticky-cta-title {
         background-position: top left;
         float: left;
-        height: 40px;
-        line-height: 40px;
-        padding-left: $spacing-2xl;
+        height: 44px;
+        line-height: 44px;
+        padding-left: $layout-xl;
         position: static;
-        text-align: left;
-        width: 0;
-    }
-
-    .c-sticky-cta-title-sub {
-        @include font-base;
-        @include text-body-lg;
-        display: block;
-        float: left;
-        line-height: 40px;
-        margin-bottom: 0;
-        padding-right: $spacing-sm;
         text-align: left;
     }
 
@@ -340,7 +252,7 @@ h4 {
         right: -60px;
 
         &:after {
-            line-height: 40px;
+            line-height: 44px;
             text-align: center;
         }
     }
@@ -353,6 +265,20 @@ h4 {
         line-height: 40px;
     }
 }
+
+// Sticky CTA - Download Firefox
+.download-firefox-sticky-cta {
+
+    .download-button,
+    .download-list {
+        margin-bottom: 0;
+    }
+
+    .fx-privacy-link {
+        display: none;
+    }
+}
+
 
 
 //* -------------------------------------------------------------------------- */
@@ -439,9 +365,11 @@ h4 {
 
 
 //* -------------------------------------------------------------------------- */
-// Secondary CTA (page bottom)
+// Secondary Download CTA (page bottom)
 
 .c-secondary-cta {
+    background-color: $color-off-black;
+    color: #fff;
     overflow: hidden;
     position: relative;
     text-align: center;
@@ -453,75 +381,60 @@ h4 {
 }
 
 .c-secondary-cta-title {
+    @include at2x('/media/img/logos/firefox/logo-quantum.png', 40px, 40px);
     @include text-display-md;
+    background-position: center 35px;
+    background-repeat: no-repeat;
+    margin-bottom: $spacing-sm;
+    padding-top: 90px;
 }
 
 .c-secondary-cta-button {
     margin-bottom: $spacing-lg;
-    margin-top: $spacing-lg;
+    margin-top: $spacing-xl;
 }
 
-// Secondary CTA - Download Firefox
-.download-firefox-secondary-cta {
-    background-color: $color-gray-20;
-
-    .c-secondary-cta-title {
-        background: url('/media/img/logos/firefox/logo-quantum.png') center 35px no-repeat; //image is 189x189, no need for retina mq when displaying at 80px
-        @include background-size(80px 80px);
-        margin-bottom: $spacing-lg;
-        padding-top: 155px;
-    }
-}
-
-// Secondary CTA - Firefox Account
-.fxaccount-secondary-cta.mzp-t-dark {
-    background-color: #2a0140;
-}
-
-@media #{$mq-md} {
+@media #{$mq-lg} {
     .c-secondary-cta {
         @include bidi(((text-align, left, right),));
+        background-image: url('/media/img/home/2018/shield.svg'), url('/media/img/home/2018/bg-secondary.svg');
+        background-position: calc(50vw + 100px) 120px, 50vw 0;
+        background-repeat: no-repeat;
+        padding: $layout-xs 0 $layout-sm 0;
     }
 
-    .c-secondary-cta-button {
-        margin-top: $spacing-md;
+    .c-secondary-cta-content {
+        max-width: 48%;
     }
-
-    .download-firefox-secondary-cta {
-        min-height: 460px;
-
-        .c-secondary-cta-content {
-            width: 410px;
-        }
-
-        .c-secondary-cta-title {
-            background-position: left 43px;
-            margin-bottom: $spacing-sm;
-        }
-
-        &:before {
-            background: url('/media/img/home/2018/browser.png') top left / contain no-repeat;
-            content: '';
-            display: block;
-            height: 596px;
-            width: 970px;
-            position: absolute;
-            top: 55px;
-            left: 495px;
-
-            @media #{$mq-high-res} {
-                background-image: url('/media/img/home/2018/browser-high-res.png');
-            }
-        }
+    .c-secondary-cta-title {
+        background-position: left 35px;
     }
 }
 
 @media #{$mq-xl} {
-    .download-firefox-secondary-cta:before {
-        left: calc(50% - 160px);
+    .c-secondary-cta {
+        background-position: calc(50vw + 30px) 120px, 45vw 0;
     }
 }
 
+
+
+//* -------------------------------------------------------------------------- */
+// Secondary FxA CTA (page bottom)
+
+
+.fxaccount-secondary-cta.mzp-t-dark {
+    background-color: $color-off-black;
+}
+
+.fxaccount-secondary-cta.mzp-t-product-firefox {
+    .mzp-c-call-out-content {
+        @include at2x('/media/img/logos/firefox/master-md.png', 64px, 64px);
+    }
+    .mzp-c-call-out-title {
+        margin-bottom: $spacing-md;
+    }
+}
 
 //* -------------------------------------------------------------------------- */
 // YouTube iframe responsive in modal.

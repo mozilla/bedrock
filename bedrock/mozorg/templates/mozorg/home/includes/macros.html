@@ -2,11 +2,11 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% macro download_banner(logo_title, title, sub_title, desc) -%}
+{% macro download_banner(title, sub_title, desc) -%}
 <section id="download-firefox-primary-cta" class="c-primary-cta download-firefox-primary-cta mzp-t-firefox">
   <div class="mzp-l-content">
     <div class="c-primary-cta-wrapper">
-      <h2 class="c-primary-cta-logo">{{ logo_title }}</h2>
+      {{ high_res_img('logos/firefox/browser-wordmark-horizontal.png', {'alt': 'Firefox Browser', 'width': '210', 'height': '40', 'class': 'c-primary-cta-logo'}) }}
       <h3 class="c-primary-cta-title">{{ title }}</h3>
       <h3 class="c-primary-cta-title-sub">{{ sub_title }}</h3>
       <p class="c-primary-cta-desc-sub">{{ desc }}</p>
@@ -18,15 +18,14 @@
 </section>
 {%- endmacro %}
 
-{% macro download_banner_sticky(title, sub_title, desc) -%}
-<section id="download-firefox-sticky-cta" class="c-sticky-cta download-firefox-sticky-cta mzp-t-firefox is-js-dependent">
+{% macro download_banner_sticky(title, desc) -%}
+<section id="download-firefox-sticky-cta" class="c-sticky-cta download-firefox-sticky-cta mzp-t-firefox mzp-t-dark is-js-dependent">
   <div class="mzp-l-content">
     <div class="c-sticky-cta-wrapper">
       <h2 class="c-sticky-cta-title">{{ title }}</h2>
-      {%- if sub_title -%}
-      <h3 class="c-sticky-cta-title-sub">{{ sub_title }}</h3>
-      {%- endif -%}
+      {%- if desc -%}
       <p class="c-sticky-cta-desc-sub">{{ desc }}</p>
+      {%- endif -%}
       <div class="c-sticky-cta-button">
         {{ caller() }}
       </div>
@@ -36,7 +35,7 @@
 {%- endmacro %}
 
 {% macro download_banner_secondary(title, sub_title) -%}
-<div id="download-firefox-secondary-cta" class="c-secondary-cta download-firefox-secondary-cta mzp-t-firefox">
+<div id="download-firefox-secondary-cta" class="c-secondary-cta download-firefox-secondary-cta mzp-t-firefox mzp-t-dark">
   <div class="mzp-l-content">
     <div class="c-secondary-cta-content">
       <h2 class="c-secondary-cta-title">{{ title }}</h2>
@@ -49,17 +48,20 @@
 </div>
 {%- endmacro %}
 
-{% macro fxa_banner(logo_title, title, sub_title, link_cta) -%}
+{% macro fxa_banner(title, sub_title, desc, link_cta) -%}
 <section id="fxaccount-primary-cta" class="c-primary-cta fxaccount-primary-cta mzp-t-firefox is-js-dependent">
   <div class="mzp-l-content">
     <div class="c-primary-cta-wrapper">
-      <h2 class="c-primary-cta-logo">{{ logo_title }}</h2>
+      <h2 class="c-primary-cta-logo"><img alt="Firefox" src="{{ static('img/logos/firefox/logo-master-wordmark-dark.svg') }}" height="40" width="125"></h2>
       <h3 class="c-primary-cta-title">{{ title }}</h3>
       {%- if sub_title -%}
       <h4 class="c-primary-cta-title-sub">{{ sub_title }}</h4>
       {%- endif -%}
+      {%- if desc -%}
+      <p class="c-primary-cta-desc">{{ desc }}</p>
+      {%- endif -%}
       <p class="c-primary-cta-button">
-        <a data-link-name="{{ link_cta }}" data-link-type="button" data-cta-position="primary cta" href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-secondary" id="fxa-learn-primary">{{ link_cta }}</a>
+        <a data-link-name="{{ link_cta }}" data-link-type="button" data-cta-position="primary cta" href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-product" id="fxa-learn-primary">{{ link_cta }}</a>
       </p>
     </div>
   </div>
@@ -67,12 +69,12 @@
 {%- endmacro %}
 
 {% macro fxa_banner_sticky(title, sub_title, link_cta) -%}
-<section id="fxaccount-sticky-cta" class="c-sticky-cta fxaccount-sticky-cta mzp-t-firefox is-js-dependent">
+<section id="fxaccount-sticky-cta" class="c-sticky-cta fxaccount-sticky-cta mzp-t-firefox mzp-t-dark is-js-dependent">
   <div class="mzp-l-content">
     <div class="c-sticky-cta-wrapper">
       <h2 class="c-sticky-cta-title">{{ title }}</h2>
-      <h3 class="c-sticky-cta-title-sub">{{ sub_title }}</h3>
-      <p class="c-sticky-cta-button"><a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-small" id="fxa-learn-sticky">{{ link_cta }}</a></p>
+      <p class="c-sticky-cta-desc-sub"></p>
+      <p class="c-sticky-cta-button"><a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-small mzp-t-product" id="fxa-learn-sticky">{{ link_cta }}</a></p>
     </div>
   </div>
 </section>
