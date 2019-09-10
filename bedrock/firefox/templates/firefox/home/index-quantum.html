@@ -18,11 +18,10 @@
 {% block page_desc %}{{ _('Responsive engine, less memory usage and packed with features. Download for desktop now.') }}{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('firefox-home') }}
+  {{ css_bundle('firefox-quantum') }}
 {% endblock %}
 
 {% block body_id %}firefox-home{% endblock %}
-{% block body_attrs %}{% if variation %}data-variant="{{ variation }}"{% endif %}{% endblock %}
 
 {% block content %}
 {% with current='desktop' %}
@@ -43,7 +42,7 @@
       {{ download_firefox(dom_id='download-intro', alt_copy=_('Download now'), download_location='primary cta') }}
       </div>
       <div class="header-image">
-        {{ high_res_img('firefox/home/hero-laptop.png', {'alt': '', 'width': '903', 'height': '509'}) }}
+        {{ high_res_img('firefox/home/quantum/hero-laptop.png', {'alt': '', 'width': '903', 'height': '509'}) }}
       </div>
     </div>
   </header>
@@ -86,8 +85,8 @@
       </ul>
 
       <div class="privacy-section-media">
-        {{ lazy_img(image_url='firefox/home/private-browsing.png', placeholder_url='firefox/home/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '502', 'height': '325'}) }}
-        {{ lazy_img(image_url='firefox/home/tracking-protection.png', placeholder_url='firefox/home/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '503', 'height': '305'}) }}
+        {{ lazy_img(image_url='firefox/home/quantum/private-browsing.png', placeholder_url='firefox/home/quantum/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '502', 'height': '325'}) }}
+        {{ lazy_img(image_url='firefox/home/quantum/tracking-protection.png', placeholder_url='firefox/home/quantum/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '503', 'height': '305'}) }}
       </div>
     </div>
   </section>
@@ -113,7 +112,7 @@
       </div>
 
       <div class="sync-section-image">
-        {{ lazy_img(image_url='firefox/home/sync.png', placeholder_url='firefox/home/spacer.gif', include_highres_image=True, optional_attributes={'alt': _('Image of Gif shared from desktop to mobile using the Send Tab feature.'), 'width': '788', 'height': '571'}) }}
+        {{ lazy_img(image_url='firefox/home/quantum/sync.png', placeholder_url='firefox/home/quantum/spacer.gif', include_highres_image=True, optional_attributes={'alt': _('Image of Gif shared from desktop to mobile using the Send Tab feature.'), 'width': '788', 'height': '571'}) }}
       </div>
     </div>
   </section>
@@ -179,12 +178,12 @@
           {% endif %}
           </div>
           <div class="key-feature-media video">
-            <video preload="none" controls playsinline poster="{{ static('img/firefox/home/quantum-vs-chrome-poster.png') }}" data-ga-label="Quantum vs Chrome Video">
+            <video preload="none" controls playsinline poster="{{ static('img/firefox/home/quantum/quantum-vs-chrome-poster.png') }}" data-ga-label="Quantum vs Chrome Video">
               <source src="https://assets.mozilla.net/video/firefox-home/quantum-vs-chrome.webm" type="video/webm">
               <source src="https://assets.mozilla.net/video/firefox-home/quantum-vs-chrome.ogv" type="video/ogg; codecs='theora, vorbis'">
               <source src="https://assets.mozilla.net/video/firefox-home/quantum-vs-chrome.mp4" type="video/mp4">
               <a href="https://www.youtube.com/watch?v=YIywpvHewc0">
-                <img src="{{ static('img/firefox/home/quantum-vs-chrome-poster.png') }}" alt="">
+                <img src="{{ static('img/firefox/home/quantum/quantum-vs-chrome-poster.png') }}" alt="">
               </a>
             </video>
           </div>{#-- /.key-feature-media --#}
@@ -205,7 +204,7 @@
             </p>
           </div>
           <div class="key-feature-media image">
-            {{ lazy_img(image_url='firefox/home/less-memory.png', placeholder_url='firefox/home/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '645', 'height': '400'}) }}
+            {{ lazy_img(image_url='firefox/home/quantum/less-memory.png', placeholder_url='firefox/home/quantum/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '645', 'height': '400'}) }}
           </div>
         </div>
       </div>
@@ -228,7 +227,7 @@
       </div>
       <div class="section-media">
         <a href="{{ url('firefox.switch') }}">
-          {{ lazy_img(image_url='firefox/home/switch-to-firefox.png', placeholder_url='firefox/home/spacer.gif', include_highres_image=True, optional_attributes={'width': '643', 'height': '377'}) }}
+          {{ lazy_img(image_url='firefox/home/quantum/switch-to-firefox.png', placeholder_url='firefox/home/quantum/spacer.gif', include_highres_image=True, optional_attributes={'width': '643', 'height': '377'}) }}
         </a>
       </div>
     </div>
@@ -251,5 +250,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox-home') }}
+  {{ js_bundle('firefox-quantum') }}
 {% endblock %}

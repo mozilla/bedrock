@@ -981,7 +981,7 @@ class TestFirefoxHome(TestCase):
         req = RequestFactory().get('/firefox/')
         req.locale = 'en-US'
         views.firefox_home(req)
-        render_mock.assert_called_once_with(req, 'firefox/home/index.html')
+        render_mock.assert_called_once_with(req, 'firefox/home/index-quantum.html')
 
 
 class TestAccountsPage(TestCase):

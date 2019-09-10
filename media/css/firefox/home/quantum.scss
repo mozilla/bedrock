@@ -221,7 +221,7 @@ html[dir="rtl"] .main-header-section {
     .key-feature-media {
 
         &.video {
-            background: #000 url('/media/img/firefox/home/quantum-vs-chrome-poster.png') top left no-repeat;
+            background: #000 url('/media/img/firefox/home/quantum/quantum-vs-chrome-poster.png') top left no-repeat;
             @include background-size(cover);
             box-shadow: 2px 3px 8px 0 rgba(0, 0, 0, .2);
             margin: 0 auto;
@@ -533,7 +533,7 @@ html[dir="rtl"] .switch-section {
         padding: 0 0 20px;
 
         h3 {
-            background: url('/media/img/firefox/home/icon-sprite.svg') no-repeat;
+            background: url('/media/img/firefox/home/quantum/icon-sprite.svg') no-repeat;
         }
 
         &.private-browsing h3 {
@@ -743,8 +743,8 @@ html[dir="rtl"] .privacy-section {
         position: relative;
 
         &:before {
-            background: #ffe900 url('/media/img/firefox/home/icon-sprite.svg') center 0 no-repeat;
-            background: url('/media/img/firefox/home/icon-sprite.svg') center 0 no-repeat,
+            background: #ffe900 url('/media/img/firefox/home/quantum/icon-sprite.svg') center 0 no-repeat;
+            background: url('/media/img/firefox/home/quantum/icon-sprite.svg') center 0 no-repeat,
                         linear-gradient(to bottom, #ffe900 0%, #ff9400 100%) top left;
             border-radius: 100%;
             content: '';
@@ -880,7 +880,7 @@ html[dir="rtl"] .sync-section {
     position: relative;
 
     &:before {
-        background: transparent url('/media/img/firefox/home/wave.svg') top center no-repeat;
+        background: transparent url('/media/img/firefox/home/quantum/wave.svg') top center no-repeat;
         @include background-size(3000px 151px);
         content: '';
         display: block;
