@@ -87,7 +87,9 @@
 <section class="c-accounts-products">
   <div class="mzp-l-content">
     <h2 class="c-section-title">
-      {% if has_signed_in_copy %}
+      {% if l10n_has_tag('accounts-family-10092019') %}
+        {{ _('Meet our family of privacy-first products.') }}
+      {% elif has_signed_in_copy %}
         {{ _('Firefox is technology that fights for you.') }}
       {% else %}
         {{ _('Get technology that fights for you.') }}
