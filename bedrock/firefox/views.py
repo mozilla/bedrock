@@ -886,7 +886,7 @@ class FeaturesPrivateBrowsingView(BlogPostsView):
 
 
 def firefox_home(request):
-    return l10n_utils.render(request, 'firefox/home/index.html')
+    return l10n_utils.render(request, 'firefox/home/index-quantum.html')
 
 
 def firefox_concerts(request):

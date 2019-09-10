@@ -662,10 +662,10 @@
     },
     {
       "files": [
-        "css/firefox/home/home.scss",
+        "css/firefox/home/quantum.scss",
         "css/base/mozilla-lazy-image.scss"
       ],
-      "name": "firefox-home"
+      "name": "firefox-quantum"
     },
     {
       "files": [
@@ -1279,9 +1279,9 @@
         "js/libs/jquery.waypoints-sticky.min.js",
         "js/hubs/sub-nav.js",
         "js/base/mozilla-lazy-load.js",
-        "js/firefox/home/main.js"
+        "js/firefox/home/quantum.js"
       ],
-      "name": "firefox-home"
+      "name": "firefox-quantum"
     },
     {
       "files": [
