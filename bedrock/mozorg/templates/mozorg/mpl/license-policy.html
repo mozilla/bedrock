@@ -1,21 +1,15 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "mozorg/base-resp.html" %}
+{% extends "mozorg/base.html" %}
 
 {% block page_title %}{{ _('Mozilla Foundation License Policy') }}{% endblock %}
 
 {% block page_desc %}{{ _('Mozilla Foundation License Policy') }}{% endblock %}
 
-{% block page_css %}
-  {{ css_bundle('mpl') }}
-{% endblock %}
-
-{% block content %}
-
-<div id="main-content">
-  <h1>Mozilla Source Code License Policy</h1>
+{% block article %}
+  <h1 class="mzp-c-article-title">Mozilla Source Code License Policy</h1>
   <p class="version"><em>Version 4.0</em></p>
 
   <section>
@@ -23,11 +17,11 @@
     <p><em>Overview: <a href='{{ static("img/mozorg/mpl/license-policy-flowchart.png") }}'>this flowchart</a> provides a summary of the policy that can help you decide which license to use.</em></p>
     <p>This policy determines which license to use for source files stored in Mozilla-controlled code repositories, whether hosted at Mozilla or elsewhere - "Mozilla Repositories". Committers to Mozilla Repositories must comply with this policy, as they agreed to do in the <a href="https://static.mozilla.com/foundation/documents/commit-access/committers-agreement.pdf">Committer's Agreement</a>.
     The following is a brief summary:</p>
-    
-    <ul>
-        <li>New files in, or modifications to, an existing, consistently-licensed area of code should be under the same license as the existing code.</li>
-        <li>New projects should be under the <a href="{{ url('mozorg.mpl.2.0.index') }}">MPL 2.0</a> or <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0</a> - see below for guidance on choosing which.</li>
-        <li>You must consult <a href='#Filing_Bugs'>the licensing team</a> before importing third-party code which is not under the MPL or Apache 2.0.</li>
+
+    <ul class="mzp-u-list-styled">
+      <li>New files in, or modifications to, an existing, consistently-licensed area of code should be under the same license as the existing code.</li>
+      <li>New projects should be under the <a href="{{ url('mozorg.mpl.2.0.index') }}">MPL 2.0</a> or <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0</a> - see below for guidance on choosing which.</li>
+      <li>You must consult <a href='#Filing_Bugs'>the licensing team</a> before importing third-party code which is not under the MPL or Apache 2.0.</li>
     </ul>
   </section>
 
@@ -43,12 +37,12 @@
     <p>New files in, modifications to, or code designed to integrate with or build on an existing, consistently-licensed area of Mozilla Code should be under the same license as the existing code. This means that modifications to Product Code will be MPL 2.</p>
     <p>New projects which are Mozilla Code may choose either the MPL 2.0 or the Apache License 2.0. No other license is acceptable, because Mozilla is committed to using modern open source licenses with patent grant clauses. The licensing team recommends MPL 2.0 for client-side code; please consult the team before going against this recommendation.</p>
     <p>Trivial bits of Mozilla Code, such as testcases or snippets of code used in documentation, should be put in the public domain in order to facilitate re-use. To do that, apply the <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication</a> by using the following boilerplate: </p>
-    <blockquote>
+    <p>
 <pre>
 Any copyright is dedicated to the Public Domain.
 http://creativecommons.org/publicdomain/zero/1.0/
 </pre>
-    </blockquote>
+</p>
     <p>Note that, for historical reasons, some trivial support code, such as <a href="https://developer.mozilla.org/Project:Copyrights">old code samples in developer.mozilla.org</a>, may be under the MIT license.</p> <p><b>PD Test Code</b> is Test Code (1) that is Mozilla Code, (2) that does not carry an explicit license header, and (3) that was either committed to a Mozilla Repository on or after 23rd September 2014, or was committed before that date but for which all contributors up to that date were Mozilla employees, contractors or interns. PD Test Code is placed in the public domain pursuant to the <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons Public Domain Dedication</a>. Test Code which has not been demonstrated to be PD Test Code should be considered to be under the MPL 2.</p>
   </section>
 
@@ -56,7 +50,7 @@ http://creativecommons.org/publicdomain/zero/1.0/
     <h2 id="Licensing_of_Third_Party_Code">Licensing of Third Party Code</h2>
     <p>When modifying or adding to Third Party Code that has already been checked into a Mozilla Repository, you should use the license pertaining to that code. The only exception is if you are adding Mozilla-specific files that have no reason to go upstream, such as build system files. In that case, you should use the MPL.</p>
     <p>If you are planning to import new Third Party Code into a Mozilla Repository, always consult <a href='#Filing_Bugs'>the licensing team</a> first. They can check whether the license is compatible - even simple-looking licenses can have twists in them - and make sure our requirements are met. After such consultation, a developer checking in Third Party Code should make sure that:</p>
-    <ul>
+    <ul class="mzp-u-list-styled">
       <li>The checkin comment contains information (or references to information) sufficient to identify the author of the Code, including at minimum an email address, and ideally the URL of a public source repository where the code was obtained from.</li>
       <li><code>about:license</code> is updated to refer to the new code (and new license, if any). Please <a href='#Filing_Bugs'>file a Licensing bug</a>.</li>
     </ul>
@@ -71,18 +65,18 @@ http://creativecommons.org/publicdomain/zero/1.0/
     <p>To apply the MPL to new source files, please don't copy boilerplate from existing files - instead, use the appropriate <a href="{{ url('mozorg.mpl.headers.index') }}">boilerplate license notice</a>.</p>
     <h3 id="Licenses_Compatible_with_the_MPL">Licenses Compatible with the MPL</h3>
     <p>The following waivers and licenses are compatible with the Mozilla Public License, version 2.0, in the sense that code under them can be included in the same binary:</p>
-    <ul>
-        <li>Creative Commons Zero</li>
-        <li>Other Public Domain dedications</li>
-        <li>MIT, New BSD, and similar permissive licenses</li>
-        <li>Apache 2.0</li>
-        <li>GPL and MPL dual license</li>
+    <ul class="mzp-u-list-styled">
+      <li>Creative Commons Zero</li>
+      <li>Other Public Domain dedications</li>
+      <li>MIT, New BSD, and similar permissive licenses</li>
+      <li>Apache 2.0</li>
+      <li>GPL and MPL dual license</li>
     </ul>
     <p>In addition, it may be permissible to import Third Party Code under the LGPL (version 2.0 upwards) to be Product Code if it's a clearly-demarcated library and will be dynamically linked into the product.</p>
     <p>The following licenses are not compatible with the Mozilla Public License, version 2.0:</p>
-    <ul>
-        <li>CC-BY, CC-BY-*</li>
-        <li>GPL</li>
+    <ul class="mzp-u-list-styled">
+      <li>CC-BY, CC-BY-*</li>
+      <li>GPL</li>
     </ul>
     <p>Remember, always consult <a href='#Filing_Bugs'>the licensing team</a> before importing Third Party Code.</p>
     <h3 id="Copying_Code">Copying Code</h3>
@@ -90,5 +84,4 @@ http://creativecommons.org/publicdomain/zero/1.0/
     <h3 id="Reporting_Incompatible_Code">Reporting Incompatible Code</h3>
     <p>If you happen to find a file in the Mozilla source tree which does not conform to our licensing policy, please report it to <a href='#Filing_Bugs'>the licensing team</a>.</p>
   </section>
-</div>
 {% endblock %}

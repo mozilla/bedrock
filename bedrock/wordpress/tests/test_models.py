@@ -5,7 +5,7 @@ from bedrock.wordpress import models
 
 import pytest
 import responses
-from pathlib2 import Path
+from pathlib import Path
 
 
 TEST_DATA = Path(__file__).with_name('test_data')

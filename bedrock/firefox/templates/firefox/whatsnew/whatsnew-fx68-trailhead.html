@@ -1,0 +1,39 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/whatsnew_67.0.5" %}
+
+{% extends "firefox/whatsnew/whatsnew-fx67.0.5.html" %}
+
+{% block experiments %}
+  {% if switch('experiment_whatsnew_68', ['en-US','en-CA','en-GB','fr','de']) %}
+    {% if LANG == 'en-US' %}
+      {{ js_bundle('experiment-whatsnew-68-enUS') }}
+    {% elif LANG == 'en-CA' %}
+      {{ js_bundle('experiment-whatsnew-68-enCA') }}
+    {% elif LANG == 'en-GB' %}
+      {{ js_bundle('experiment-whatsnew-68-enGB') }}
+    {% elif LANG == 'fr' %}
+      {{ js_bundle('experiment-whatsnew-68-fr') }}
+    {% elif LANG == 'de' %}
+      {{ js_bundle('experiment-whatsnew-68-de') }}
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
+{% block fxa_form %}
+  {{ fxa_email_form(
+      entrypoint='mozilla.org-whatsnew68',
+      button_class='mzp-c-button mzp-t-product mzp-t-small',
+      style='trailhead',
+      utm_campaign='whatsnew68')
+  }}
+{% endblock %}
+
+{% block monitor_button %}
+  {{ monitor_button(
+    entrypoint='mozilla.org-whatsnew68',
+    utm_campaign='wnp-monitor-cta')
+  }}
+{% endblock %}

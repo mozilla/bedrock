@@ -10,7 +10,7 @@ services:
       context: .
       target: assets
     image: mozorg/bedrock_assets:${GIT_COMMIT:-latest}
-    command: gulp watch
+    command: gulp
     ports:
       - "8000-8010:8000-8010"
     volumes:
@@ -36,6 +36,7 @@ services:
       - ./docker/:/app/docker:delegated
       - ./etc/:/app/etc:delegated
       - ./lib/:/app/lib:delegated
+      - ./docs/:/app/docs:delegated
       - ./media/:/app/media:delegated
       - ./root_files/:/app/root_files:delegated
       - ./scripts/:/app/scripts:delegated
@@ -55,7 +56,7 @@ services:
       - ./media/:/app/media:delegated
       - ./root_files/:/app/root_files:delegated
       - ./scripts/:/app/scripts:delegated
-      - ./test/:/app/test:delegated
+      - ./tests/:/app/tests:delegated
       - ./vendor-local/:/app/vendor-local:delegated
       - ./wsgi/:/app/wsgi:delegated
 

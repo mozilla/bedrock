@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "mozorg/about-base.html" %}
+{% extends "base-pebbles.html" %}
 
 {% block page_title %}{{ _('Transparency') }}{% endblock %}
 {% set body_id = "about-transparency" %}
@@ -13,9 +13,6 @@
 {% endblock %}
 
 {% block js %}
-  <!--[if IE 9]>
-  {{ js_bundle('matchmedia_addlistener') }}
-  <![endif]-->
   {{ js_bundle('about-transparency') }}
 {% endblock %}
 
@@ -55,15 +52,11 @@
             <h3 data-accordion-role="tab">{{ _('What is the scope of the Transparency Report?') }}</h3>
             <div data-accordion-role="tabpanel">
               <p>
-                {# NOTE: Remember to update these links when publishing a new report. #}
-                  {% set link_userdata=url('mozorg.about.policy.transparency.jul-dec-2017') + '#government-user-data' %}
-                  {% set link_removal=url('mozorg.about.policy.transparency.jul-dec-2017') + '#government-content-removal' %}
-                  {% set link_copytrade=url('mozorg.about.policy.transparency.jul-dec-2017') + '#copyright-trademark' %}
-                  {% set link_supplement=url('mozorg.about.policy.transparency.jul-dec-2017') + '#supplement' %}
                 {% trans %}
-                  We report on <a href="{{ link_userdata }}">Government Demands for User Data</a>, <a href="{{ link_removal }}">Government Requests for Content Removal</a>, and <a href="{{ link_copytrade }}">Copyright and Trademark Requests</a>. We also include a <a href="{{ link_supplement }}">Supplement</a>, which provides additional information.
+                   The purpose is to provide public insight into the types of government demands we receive for our user data or to remove content; and requests from individuals or companies to remove content based on copyright or trademark claims.  Each report also includes a supplement describing our efforts to reform laws on privacy, surveillance, cybersecurity, and intellectual property for a healthier internet.
                 {% endtrans %}
-                {{ _('With each additional report that we publish, we’ll continue to re­evaluate how we can be more transparent.') }}
+
+                {{ _('With each additional report that we publish, we’ll continue to re­evaluate how we can be more transparent. To this end, starting in H2 2018, we started reporting on the number of requests we receive from individuals inquiring about their personal data.') }}
               </p>
             </div>
           </section>
@@ -178,8 +171,18 @@
               </p>
             </div>
           </section>
-        </div>
 
+          <section>
+            <h3 data-accordion-role="tab">{{ _('What do you mean by Personal Data Requests?') }}</h3>
+            <div data-accordion-role="tabpanel">
+              <p>
+                {{ _('We believe that everyone should have control over their personal data, understand how it’s obtained and used, and be able to access, modify, or delete it.  We extend these principles to all of our users regardless of when they submit a <a href="%s">Personal Data Request</a>, where they are located, or whether a data protection law (such as the GDPR) grants them express privacy rights. ')|format('#dfn-personal-data-request') }}
+                
+              </p>
+            </div>
+          </section>
+
+        </div>
       </div>
     </section>
 
@@ -230,6 +233,9 @@
 
           <dt id="dfn-pen-register-order">{{ _('Pen Register Order') }}</dt>
           <dd><p>{{ _('A Pen Register and Trap and Trace Order is a type of U.S. <a href="%s">Court Order</a> compelling a company to disclose data about a user’s real­time communications (excluding the content of the communications themselves) to law enforcement on an ongoing basis, usually for a period of 60 days.')|format('#dfn-court-order') }}</p></dd>
+
+          <dt id="dfn-personal-data-request">{{ _('Personal Data Request') }}</dt>
+          <dd><p>{{ _('A user-generated request about personal data such as how to delete, port, modify or access it.  For the purpose of our Transparency  Report, we count the number of requests received by email, post, or to our portal for Data Subject Access Requests.  We don’t count (or have metrics for) the number of such requests that our users process themselves through in-product features.') }}</p></dd>
 
           <dt id="dfn-search-warrant">{{ _('Search Warrant') }}</dt>
           <dd><p>{{ _('A document authorizing law enforcement to obtain user data issued by a neutral and detached magistrate on the basis of finding that “probable cause” exists to believe that the items being sought will be found in the place to be searched.') }}</p></dd>

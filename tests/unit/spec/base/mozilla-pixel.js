@@ -3,8 +3,6 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect */
-
 describe('mozilla-pixel.js', function() {
 
     'use strict';

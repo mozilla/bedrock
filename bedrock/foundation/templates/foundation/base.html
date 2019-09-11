@@ -1,0 +1,57 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% set_lang_files "foundation/index" %}
+{% extends "base-article.html" %}
+
+{% block page_title_suffix %}{% endblock %}
+
+{% block body_class %}mzp-t-mozilla{% endblock %}
+
+{% set navigation_bar = [
+    ('https://foundation.mozilla.org/', 'index', _('The Mozilla Foundation')),
+    ('https://foundation.mozilla.org/about/', 'about', _('About the Foundation')),
+    ('https://mzl.la/foundation-strategy', 'strategy', _('2016-2018 Strategy')),
+    (url('foundation.licensing'), 'licensing', _('Licensing & Trademarks')),
+    ('https://foundation.mozilla.org/about/public-records/', 'documents', _('Public Documents')),
+    ('https://careers.mozilla.org/', 'careers', _('Careers')),
+] %}
+
+{% set programs = [
+  ('https://foundation.mozilla.org/initiatives/', 'issues', _('Key Internet Issues')),
+  ('https://foundation.mozilla.org/', 'advocacy', _('Advocacy')),
+  ('https://foundation.mozilla.org/', 'leadership-network', _('Leadership Network'))
+] %}
+
+{% block side_nav %}
+  {{ sidemenu_lists([navigation_bar, programs], body_id) }}
+{% endblock %}
+
+{% block article %}
+  <header>
+    <h1 class="mzp-c-article-title">{{ _('The Mozilla Foundation') }}</h1>
+    {% block article_header %}
+      <h2>{{ self.article_title() }}</h2>
+    {% endblock %}
+  </header>
+  {% block article_content %}{% endblock %}
+{% endblock %}
+
+{% block email_form %}
+  <div class="mzp-l-content">
+    <aside class="mzp-c-newsletter t-love">
+      <div class="mzp-c-newsletter-image">
+        <img src="{{ static('img/newsletter/love-news.svg') }}" alt="" height="172" width="200">
+      </div>
+
+      <div class="newsletter-content">
+        {% if LANG.startswith('en-') %}
+          {{ email_newsletter_form(protocol_component=true, newsletters='mozilla-foundation', title=_('Sign up. Read up.<br> Make a difference.'), subtitle=_('Get the Mozilla newsletter and help us keep the Web free and open.'), button_class='button-red') }}
+        {% else %}
+          {{ email_newsletter_form(protocol_component=true, button_class='button-red') }}
+        {% endif %}
+      </div>
+    </aside>
+  </div>
+{% endblock %}

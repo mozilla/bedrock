@@ -12,7 +12,7 @@ jobs:
 
   test_js:
     docker:
-      - image: "circleci/node:6.11.4-browsers"
+      - image: "circleci/node:10.15.3-browsers"
     steps:
       - checkout
       - restore_cache:
@@ -23,7 +23,6 @@ jobs:
           name: JS Tests
           command: |
             yarn install --pure-lockfile
-            npm install gulp-cli
             node_modules/.bin/gulp css:lint
             node_modules/.bin/gulp js:lint
             node_modules/.bin/gulp js:test

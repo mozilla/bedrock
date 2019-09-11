@@ -5,10 +5,9 @@
 @import '../pebbles/includes/lib';
 @import '../pebbles/components/newsletter';
 @import '../pebbles/components/modal';
-@import '../hubs/masthead';
 @import '../hubs/sections';
 @import '../hubs/sub-nav';
-@import '../hubs/nav-download-button-remove';
+@import '../hubs/sub-nav-download-button-remove';
 @import '../quantum/common';
 @import '../quantum/features-scroller';
 
@@ -872,38 +871,42 @@ html[dir="rtl"] {
 }
 
 // very basic styling for no-JS visitors
-#mobile-download-buttons-wrapper {
-    background: #111;
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-}
-
-.mobile-download-buttons {
-    margin: 1em 0;
-
-    @media #{$mq-phone-wide} {
-        @supports (display: flex) {
-            align-items: center;
-            display: flex;
-            justify-content: space-between;
-            margin: 1em auto;
-            width: 340px;
-
-            &.hidden {
-                display: none;
-            }
-
-            li {
-                margin: 0 auto; // so that a single item is centred
-            }
-        }
+.no-js {
+    .header-product-ctas {
+        display: none;
     }
 
-    .android-apk a {
-        display: inline-block;
-        margin: 10px 0;
-        @include font-size-level5;
+    .mobile-download-buttons-wrapper {
+        display: block;
+        text-align: center;
+    }
+
+    .mobile-download-buttons {
+        margin: 1em 0;
+
+        @media #{$mq-phone-wide} {
+            @supports (display: flex) {
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+                margin: 1em auto;
+                width: 340px;
+
+                &.hidden {
+                    display: none;
+                }
+
+                li {
+                    margin: 0 auto; // so that a single item is centred
+                }
+            }
+        }
+
+        .android-apk a {
+            display: inline-block;
+            margin: 10px 0;
+            @include font-size-level5;
+        }
     }
 }
 
@@ -984,7 +987,7 @@ body[data-modal-product='focus'] #modal .window .inner {
     }
 }
 
-#send-to-device {
+.send-to-device {
     background: transparent;
     color: #fff;
 
@@ -1020,7 +1023,7 @@ body[data-modal-product='focus'] #modal .window .inner {
         width: 100%;
     }
 
-    .input {
+    .send-to-device-form-fields {
         button[type="submit"] {
             background-color: transparent;
             display: block;
@@ -1037,8 +1040,8 @@ body[data-modal-product='focus'] #modal .window .inner {
             margin-bottom: 0;
         }
 
-        #id-input {
-            border-radius: 100px;
+        .send-to-device-input {
+            border-radius: 2px;
             height: auto;
             padding: 0.75em 20px;
             max-width: 400px;
@@ -1066,26 +1069,26 @@ body[data-modal-product='focus'] #modal .window .inner {
     }
 }
 
-// hide app store badges in modal by default
-#modal-mobile-download-buttons-wrapper {
+// hide app store badges by default
+.mobile-download-buttons-wrapper {
     display: none;
     margin-top: 60px;
-
-    @media #{$mq-desktop} {
-        margin-top: 100px;
-    }
 }
 
 // for android/iOS, hide widget/QR code in favor of app store badges
 .android,
 .ios {
-    #modal-mobile-download-buttons-wrapper {
+    .mobile-download-buttons-wrapper {
         display: block;
     }
 
     .qr-code-wrapper,
     #modal-wrapper .desktop-download,
     #send-to-device {
+        display: none;
+    }
+
+    .header-product-ctas {
         display: none;
     }
 }
@@ -1100,10 +1103,3 @@ body[data-modal-product='focus'] #modal .window .inner {
     display: none;
 }
 
-// hide page-level app store badge wrapper if JS is available
-// (badges get moved into modal)
-.js {
-    #mobile-download-buttons-wrapper {
-        display: none;
-    }
-}

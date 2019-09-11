@@ -1,0 +1,184 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/components/picto-card';
+@import '../../../protocol/css/templates/card-layout';
+
+//* ====================================================================== */
+//  Main content background
+
+.main-content {
+    background: #003eaa;
+    background: url('/media/img/firefox/quantum/fox-tail-header.png') top -200px center no-repeat,
+                linear-gradient(to bottom, #003eaa 40%, #004ec2 60%, #0060df 80%, #0080ff 90%, #00c7ff 100%);
+    color: $color-white;
+    position: relative;
+    z-index: 0;
+
+    &:after {
+        background: transparent url('/media/img/firefox/quantum/wave.svg') top center no-repeat;
+        @include background-size(5223px 186px);
+        bottom: 0;
+        content: '';
+        display: block;
+        height: 168px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+    }
+
+    .mzp-c-button-download-container {
+        .unsupported-download,
+        .unsupported-download-osx,
+        .linux-arm-download {
+            a:link,
+            a:visited {
+                color: $color-white;
+                font-weight: bold;
+                text-decoration: none;
+
+                &:hover,
+                &:active,
+                &:focus {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+//* ====================================================================== */
+//  Top logos
+
+.header-logos {
+    text-align: center;
+
+    .logo-mozilla,
+    .logo-firefox {
+        @include text-body-lg;
+        margin-bottom: 0;
+    }
+
+    .logo-mozilla {
+        display: none;
+    }
+
+    @media #{$mq-md} {
+        @include clearfix;
+
+        .logo-firefox {
+            @include bidi(((float, left, right),));
+        }
+
+        .logo-mozilla {
+            @include bidi(((float, right, left),));
+            display: block;
+        }
+    }
+}
+
+//* ====================================================================== */
+//  Main hero
+
+.mzp-c-hero.mzp-t-dark {
+    background-color: transparent;
+    overflow: hidden;
+    z-index: -1;
+
+    .mzp-c-hero-title {
+        font-weight: normal;
+        margin: $spacing-lg 0 .25em;
+
+        strong {
+            font-weight: bold;
+        }
+    }
+
+    .mzp-c-hero-desc {
+        @include font-firefox;
+        @include text-display-md;
+    }
+
+    .mzp-c-button {
+        background-color: #16da00;
+
+        &:hover,
+        &:focus {
+            background-color: #13c100;
+        }
+    }
+
+    .mzp-c-hero-body {
+        margin-bottom: -60px;
+    }
+
+    .mzp-c-hero-image {
+        bottom: -60px;
+        min-width: $content-xs - ($spacing-lg * 2);
+        top: auto;
+
+        img {
+            box-shadow: 20px 40px 60px 0 #14163f;
+            margin-top: 20px;
+        }
+    }
+
+    @media #{$mq-md} {
+        min-height: 465px;
+
+        .mzp-c-hero-body {
+            margin-bottom: 0;
+        }
+
+        .mzp-c-hero-image {
+            bottom: 0;
+        }
+
+        &> .mzp-l-content {
+            padding-bottom: 100px;
+        }
+    }
+
+    @media #{$mq-lg} {
+        &> .mzp-l-content {
+            padding-bottom: 120px;
+        }
+    }
+}
+
+//* ====================================================================== */
+//  Picto cards
+
+.mzp-c-card-picto .mzp-c-card-picto-content {
+
+    &:before {
+        @include background-size(56px 56px);
+        background-color: transparent;
+        background-position: top left;
+        background-repeat: no-repeat;
+    }
+
+    @media #{$mq-lg} {
+        .mzp-c-card-picto-title {
+            @include font-size(24px);
+        }
+    }
+}
+
+.faster .mzp-c-card-picto-content::before {
+    background-image: url('/media/img/firefox/quantum/icon-faster.svg');
+}
+
+.lighter .mzp-c-card-picto-content::before {
+    background-image: url('/media/img/firefox/quantum/icon-lighter.svg');
+}
+
+.private .mzp-c-card-picto-content::before {
+    background-image: url('/media/img/firefox/quantum/icon-private.svg');
+}

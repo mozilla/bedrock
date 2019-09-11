@@ -4,8 +4,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from __future__ import with_statement
-
 import codecs
 import os
 import re
@@ -17,8 +15,8 @@ from django.core.cache import caches
 from django.template.loader import get_template
 from jinja2 import Environment
 
-from dotlang import (parse as parse_lang, get_lang_path,
-                     get_translations_for_langfile, lang_file_tag_set)
+from .dotlang import (
+    parse as parse_lang, get_lang_path, get_translations_for_langfile, lang_file_tag_set)
 from lib.l10n_utils.utils import ContainsEverything
 
 
@@ -57,7 +55,11 @@ def parse_po(path):
                 if matches:
                     msgpath = matches.group(1)
             elif line.startswith('#.'):
-                msgcomment = line.lstrip('#.').strip()
+                commentline = line.lstrip('#.').strip()
+                if msgcomment:
+                    msgcomment += ' ' + commentline
+                else:
+                    msgcomment = commentline
             elif line.startswith('msgid'):
                 msgid = extract_content(line)
             elif line.startswith('msgstr') and msgid and msgpath:
@@ -80,7 +82,7 @@ def po_msgs(domain):
 
 def translated_strings(file_):
     path = join(settings.ROOT, 'locale', 'templates', file_)
-    trans = parse_lang(path).keys()
+    trans = list(parse_lang(path).keys())
     return trans
 
 
@@ -131,7 +133,7 @@ def parse_python(path):
 
     if result:
         new_lang_files = eval(untokenize(result))
-        if isinstance(new_lang_files, basestring):
+        if isinstance(new_lang_files, str):
             new_lang_files = [new_lang_files]
         # remove empties
         return [lf for lf in new_lang_files if lf]
@@ -152,7 +154,7 @@ def parse_template(path):
     lang_files = []
 
     def ignore_whitespace(tokens):
-        token = tokens.next()
+        token = next(tokens)
         if token[1] == 'whitespace':
             return ignore_whitespace(tokens)
         return token
@@ -336,7 +338,7 @@ def find_lang_files(lang):
 
 def merge_lang_files(langs):
     for lang in langs:
-        print 'Merging into %s...' % lang
+        print('Merging into %s...' % lang)
 
         for f in find_lang_files('templates'):
             # Make sure the directory exists (might be a subdirectory)
@@ -365,7 +367,7 @@ def _append_to_lang_file(dest, new_msgs):
 
     with codecs.open(dest, 'a', 'utf-8') as out:
         for msg in new_msgs:
-            if isinstance(msg, basestring):
+            if isinstance(msg, str):
                 msg = [None, msg]
             out_str = u'\n\n'
             if msg[0]:

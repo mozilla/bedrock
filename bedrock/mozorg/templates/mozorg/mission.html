@@ -2,86 +2,77 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "mozorg/base-resp.html" %}
+{% extends "mozorg/about-base.html" %}
 
 {% block page_title %}{{ _('We’re building a better Internet') }}{% endblock %}
-{% block body_id %}mission{% endblock %}
-{% block body_class %}sand{% endblock %}
-{% block body_attrs %}{{ super() }} data-global-nav-current-link="about-us"{% endblock %}
+{% set body_id = "about-mission" %}
 
 {% block page_css %}
   {{ css_bundle('mission') }}
 {% endblock %}
 
-{% block js %}
-  {{ js_bundle('about_video') }}
-{% endblock %}
+{% block article %}
+<article>
+  <h1 class="mzp-c-article-title">{{ _('We’re building a better Internet') }}</h1>
+  {% if l10n_has_tag('bug_1251061_copy_update') %}
+    <p class="lede">{{ _('Our mission is to ensure the Internet is a global public resource, open and accessible to all. An Internet that truly puts people first, where individuals can shape their own experience and are empowered, safe and independent.') }}</p>
+  {% else %}
+    <p class="lede">{{ _('Our mission is to promote openness, innovation & opportunity on the Web.') }}</p>
+  {% endif %}
+  <p>
+    {{ _('At Mozilla, we’re a global community of technologists, thinkers and builders working together to keep the Internet alive and accessible, so people worldwide can be informed contributors and creators of the Web.') }}
+    {{ _('We believe this act of human collaboration across an open platform is essential to individual growth and our collective future.') }}
+  </p>
+  <p>{{ _('Read the <a href="%(url)s">Mozilla Manifesto</a> to learn even more about the values and principles that guide the pursuit of our mission.') | format(url=url('mozorg.about.manifesto')) }}</p>
 
-{% block content %}
-<main>
-  <header class="page-header">
-    <h1><span class="content">{{ _('We’re building a better Internet') }}</span></h1>
-  </header>
+  <figure>
+    {{ video('Mozilla_2011_Story.webm',
+      'Mozilla_2011_Story.ogv',
+      'Mozilla_2011_Story.mp4',
+      prefix='//videos.cdn.mozilla.net/brand/',
+      poster=static('img/mission/poster-mission.jpg')) }}
+    <figcaption>{{ _('Watch the video above to learn more about who we are, where we came from and how we’re making the Web better for you.') }}</figcaption>
+  </figure>
 
-  <div class="section">
-    <div class="content content-main">
+  <ul>
+    <li>
+      <h4><a href="{{ url('mozorg.contribute.index') }}">{{ _('Get involved') }}</a></h4>
+      <p>{{ _('Volunteer opportunities in a number of different areas') }}</p>
+    </li>
+    <li>
+      <h4><a href="{{ url('mozorg.about.history') }}">{{ _('History') }}</a></h4>
+      <p>{{ _('Where we come from and how we got to where we are') }}</p>
+    </li>
+    <li>
+      <h4><a href="{{ url('mozorg.about.forums.forums') }}">{{ _('Forums') }}</a></h4>
+      <p>{{ _('Topics include support, products, and technologies') }}</p>
+    </li>
+    <li>
+      <h4><a href="{{ url('mozorg.about.governance.governance') }}">{{ _('Governance') }}</a></h4>
+      <p>{{ _('Our structure, organization, and the broader Mozilla community') }}</p>
+    </li>
+  </ul>
 
-      <div class="main">
-        {% if l10n_has_tag('bug_1251061_copy_update') %}
-        <p class="lede">{{ _('Our mission is to ensure the Internet is a global public resource, open and accessible to all. An Internet that truly puts people first, where individuals can shape their own experience and are empowered, safe and independent.') }}</p>
-        {% else %}
-        <p class="lede">{{ _('Our mission is to promote openness, innovation & opportunity on the Web.') }}</p>
-        {% endif %}
-        <p>{{ _('At Mozilla, we’re a global community of technologists, thinkers and builders working together to keep the Internet alive and accessible, so people worldwide can be informed contributors and creators of the Web.') }}
-        {{ _('We believe this act of human collaboration across an open platform is essential to individual growth and our collective future.') }}</p>
-        <p>{{ _('Read the <a href="%(url)s">Mozilla Manifesto</a> to learn even more about the values and principles that guide the pursuit of our mission.') | format(url=url('mozorg.about.manifesto')) }}</p>
-      </div>
-
-      <div class="video">
-        <div class="moz-video-container">
-          <button class="moz-video-button" type="button" aria-controls="htmlPlayer">{{ _('Play video') }}</button>
-          {{ video('Mozilla_2011_Story.webm',
-                   'Mozilla_2011_Story.ogv',
-                   'Mozilla_2011_Story.mp4',
-                   h=259, w=460,
-                   prefix='//videos.cdn.mozilla.net/brand/',
-                   poster=static('img/mission/poster-mission.jpg')) }}
-        </div>
-        <p class="caption">{{ _('Watch the video above to learn more about who we are, where we came from and how we’re making the Web better for you.') }}</p>
-      </div>
-
-      <ul class="links">
-        <li>
-          <h4><a href="{{ url('mozorg.contribute.index') }}">{{ _('Get involved') }}</a></h4>
-          <p>{{ _('Volunteer opportunities in a number of different areas') }}</p>
-        </li>
-        <li>
-          <h4><a href="{{ url('mozorg.about.history') }}">{{ _('History') }}</a></h4>
-          <p>{{ _('Where we come from and how we got to where we are') }}</p>
-        </li>
-        <li>
-          <h4><a href="{{ url('mozorg.about.forums.forums') }}">{{ _('Forums') }}</a></h4>
-          <p>{{ _('Topics include support, products, and technologies') }}</p>
-        </li>
-        <li>
-          <h4><a href="{{ url('mozorg.about.governance.governance') }}">{{ _('Governance') }}</a></h4>
-          <p>{{ _('Our structure, organization, and the broader Mozilla community') }}</p>
-        </li>
-      </ul>
-
-    </div>
-  </div>
-</main>
+</article>
 {% endblock %}
 
 {% block email_form %}
-  <aside id="newsletter-subscribe">
-    <div class="content container">
-    {% if LANG.startswith('en-') %}
-      {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Sign up. Read up.<br> Make a difference.'), subtitle=_('Get the Mozilla newsletter and help us keep the Web free and open.'), button_class='button-red') }}
-    {% else %}
-      {{ email_newsletter_form(button_class='button-red') }}
-    {% endif %}
-    </div>
-  </aside>
+
+
+  <div class="mzp-l-content">
+    <aside class="mzp-c-newsletter t-love">
+      <div class="mzp-c-newsletter-image">
+        <img src="{{ static('img/newsletter/love-news.svg') }}" alt="" height="172" width="200">
+      </div>
+
+      <div class="newsletter-content">
+        {% if LANG.startswith('en-') %}
+          {{ email_newsletter_form(protocol_component=true, newsletters='mozilla-foundation', title=_('Sign up. Read up.<br> Make a difference.'), subtitle=_('Get the Mozilla newsletter and help us keep the Web free and open.')) }}
+        {% else %}
+          {{ email_newsletter_form(protocol_component=true) }}
+        {% endif %}
+      </div>
+    </aside>
+  </div>
+
 {% endblock %}

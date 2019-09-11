@@ -4,7 +4,7 @@
 
 @import "../sandstone/lib.less";
 
-#send-to-device {
+.send-to-device {
     width: 100%;
     margin: 0 auto;
     background: #f2f2f2;
@@ -37,62 +37,6 @@
         }
     }
 
-    footer {
-        margin-top: @baseLine;
-        padding: (@baseLine / 2) 0;
-        background: #e1e2e2;
-        border-top: 1px solid #d3d4d4;
-        .clearfix();
-
-        ul {
-            position: relative;
-
-            li {
-                float: left;
-                width: 50%;
-
-                a {
-                    padding: (@baseLine / 2) (@baseLine * 2);
-                    .font-size(@largeFontSize);
-                    line-height: 4;
-                }
-
-                &.app-store {
-                    text-align: right;
-                }
-
-                &.google-play {
-                    text-align: left;
-                }
-
-                &:nth-child(2) a {
-                    border-left: 1px dotted #56565a;
-                }
-            }
-
-            &.ios .google-play {
-                display: none;
-            }
-
-            &.android .app-store {
-                display: none;
-            }
-
-            &.ios,
-            &.android {
-                li {
-                    float: none;
-                    width: 100%;
-                    text-align: center;
-
-                    &:nth-child(2) a {
-                        border-left: none;
-                    }
-                }
-            }
-        }
-    }
-
     a {
         color: @mozIDBlue;
         .transition(color .1s ease-in-out);
@@ -103,46 +47,13 @@
             color: darken(@mozIDBlue, 5%);
         }
     }
-
-    &.logo {
-        margin-top: 80px;
-        border-radius: 10px;
-
-        .form-container {
-            padding-top: 40px;
-
-            &:before {
-                position: absolute;
-                top: -56px;
-                left: 50%;
-                width: 114px;
-                height: 118px;
-                margin-left: -57px;
-                content: '';
-                .at2x('/media/img/send-to-device/logo.png', 114px, 118px);
-            }
-        }
-
-        &.no-title .form-container {
-            padding-top: 80px;
-        }
-
-        &.title h2 {
-            padding: (@baseLine * 2) @baseLine;
-        }
-
-        footer {
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-        }
-    }
 }
 
-#send-to-device-form {
+.send-to-device-form {
     position: relative;
     padding: 0 @gridGutterWidth;
 
-    .input {
+    .send-to-device-form-fields {
         margin: 0 auto @baseLine;
 
         label {
@@ -169,7 +80,7 @@
             }
         }
 
-        #id-input {
+        .send-to-device-input {
             width: 440px;
             height: 32px;
             padding: 5px 10px;
@@ -299,51 +210,11 @@
             .font-size(@largeFontSize);
         }
     }
-
-    &.dropdown .input {
-        position: relative;
-        width: 780px;
-
-        .platform-container {
-            float: left;
-            width: 220px;
-            text-align: left;
-
-            select {
-                width: 100%;
-                margin-bottom: @baseLine;
-                .font-size(@largeFontSize);
-                .open-sans-light;
-            }
-        }
-
-        .inline-field {
-            float: right;
-            width: 540px;
-
-            .form-input {
-                width: 380px;
-            }
-
-            .form-submit {
-                float: right;
-                width: 140px;
-            }
-        }
-
-        #id-input {
-            width: 360px;
-        }
-
-        .legal {
-            padding-top: @baseLine;
-        }
-    }
 }
 
-html[dir="rtl"] #send-to-device-form {
+html[dir="rtl"] .send-to-device-form {
 
-    .input  {
+    .send-to-device-form-fields  {
         label {
             text-align: right;
         }
@@ -360,26 +231,10 @@ html[dir="rtl"] #send-to-device-form {
     .error-list {
         text-align: right;
     }
-
-    &.dropdown .input {
-
-        .platform-container {
-            float: right;
-            text-align: right;
-        }
-
-        .inline-field {
-            float: left;
-
-            .form-submit {
-                float: left;
-            }
-        }
-    }
 }
 
 @media only screen and (max-width: @breakDesktop) {
-    #send-to-device {
+    .send-to-device {
         h2 {
             max-width: 12em;
         }
@@ -389,9 +244,9 @@ html[dir="rtl"] #send-to-device-form {
         }
     }
 
-    #send-to-device-form {
+    .send-to-device-form {
 
-        .input {
+        .send-to-device-form-fields {
             .inline-field {
                 width: 640px;
 
@@ -408,45 +263,9 @@ html[dir="rtl"] #send-to-device-form {
         .error-list li {
             width: 620px;
         }
-
-        &.dropdown .input {
-            width: auto;
-
-            .platform-container {
-                float: none;
-                width: auto;
-                text-align: center;
-
-                label {
-                    text-align: center;
-                }
-
-                select {
-                    width: auto;
-                    min-width: 220px;
-                }
-            }
-
-            .inline-field {
-                float: none;
-                width: 640px;
-
-                .form-input {
-                    width: 460px;
-                }
-
-                .form-submit {
-                    width: 160px;
-                }
-            }
-
-            #id-input {
-                width: 440px;
-            }
-        }
     }
 
-    html[dir="rtl"] #send-to-device-form.dropdown .input {
+    html[dir="rtl"] .send-to-device-form.dropdown .send-to-device-form-fields {
 
         .platform-container {
             float: none;
@@ -469,7 +288,7 @@ html[dir="rtl"] #send-to-device-form {
 }
 
 @media only screen and (max-width: @breakTablet) {
-    #send-to-device {
+    .send-to-device {
 
         h2 {
             max-width: none;
@@ -479,42 +298,11 @@ html[dir="rtl"] #send-to-device-form {
         .form-container {
             width: @widthMobileLandscape - @gridGutterWidth;
         }
-
-        footer {
-            padding: 0 (@baseLine / 2);
-
-            ul {
-                li {
-                    float: none;
-                    width: 100%;
-
-                    &.app-store,
-                    &.google-play {
-                        text-align: center;
-                    }
-
-                    a {
-                        display: block;
-                        padding: @baseLine;
-                        line-height: 1.5;
-                    }
-
-                    &:nth-child(2) a {
-                        border-left: none;
-                        border-top: 1px dotted #56565a;
-                    }
-                }
-
-                &.android li:nth-child(2) a {
-                    border-top: none;
-                }
-            }
-        }
     }
 
-    #send-to-device-form {
+    .send-to-device-form {
 
-        .input {
+        .send-to-device-form-fields {
 
             label {
                 text-align: center;
@@ -534,7 +322,7 @@ html[dir="rtl"] #send-to-device-form {
                 }
             }
 
-            #id-input {
+            .send-to-device-input {
                 float: none;
                 .border-box();
                 display: block;
@@ -552,29 +340,10 @@ html[dir="rtl"] #send-to-device-form {
         .error-list li {
             width: auto;
         }
-
-        &.dropdown .input {
-
-            .inline-field {
-                width: auto;
-
-                .form-input {
-                    width: 100%;
-                }
-
-                .form-submit {
-                    width: 100%;
-                }
-            }
-
-            #id-input {
-                width: 100%;
-            }
-        }
     }
 
-    html[dir="rtl"] #send-to-device-form {
-        .input  {
+    html[dir="rtl"] .send-to-device-form {
+        .send-to-device-form-fields  {
             label {
                 text-align: center;
             }
@@ -589,7 +358,7 @@ html[dir="rtl"] #send-to-device-form {
 }
 
 @media only screen and (max-width: @breakMobileLandscape) {
-    #send-to-device {
+    .send-to-device {
 
         h2 {
             .font-size(28px);

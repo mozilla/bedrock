@@ -42,14 +42,14 @@ list them on the command line:
 
 .. code-block:: console
 
-    $ ./manage.py l10n_extract apps/mozorg/templates/mozorg/contribute.html
+    $ ./manage.py l10n_extract bedrock/mozorg/templates/mozorg/contribute.html
 
 Command line glob matching will work as well if you want all of the HTML files
 in a directory, for example:
 
 .. code-block:: console
 
-    $ ./manage.py l10n_extract apps/mozorg/templates/mozorg/*.html
+    $ ./manage.py l10n_extract bedrock/mozorg/templates/mozorg/*.html
 
 That will use gettext to get all the needed localizations from Python
 and HTML files, and will convert the result into a series of .lang
@@ -58,6 +58,11 @@ files inside ``locale/templates``. This directory represents the
 modify or split up .lang files here as needed (just make sure they are
 being referenced correctly, from the code, see
 :ref:`Which .lang file should it use? <which-lang>`).
+
+Once you have extracted .lang files locally, they can then be added via
+pull request to the `mozilla.org l10n repository`_ for translation.
+You can read the `full documentation`_ for more information on the
+extraction workflow.
 
 .. _using-lang:
 
@@ -178,7 +183,7 @@ value should be either a string, or a list of strings, similar to the
     sometext = _('Foo about bar.')
 
 This file's strings would be extracted to `foo.lang`, and the lang files
-`foo.lang`, `bar.lang`, `main.lang` and `download_button.lang`would be
+`foo.lang`, `bar.lang`, `main.lang` and `download_button.lang` would be
 searched for matches in that order.
 
 l10n blocks
@@ -316,16 +321,14 @@ CSS
 If a localized page needs some locale-specific style tweaks, you can add the
 style rules to the page's stylesheet like this:
 
-    html[lang="it"] {
-      #features li {
-        font-size: 20px;
-      }
+.. code-block:: css
+
+    html[lang="it"] #features li {
+      font-size: 20px;
     }
 
-    html[dir="rtl"] {
-      #features {
-        float: right;
-      }
+    html[dir="rtl"] #features {
+      float: right;
     }
 
 If a locale needs site-wide style tweaks, font settings in particular, you can
@@ -346,6 +349,8 @@ custom font families as below:
   The font weight is 800 only
 
 Here's an example of ``intl.css``:
+
+.. code-block:: css
 
     @font-face {
       font-family: X-LocaleSpecific-Light;
@@ -527,3 +532,6 @@ To test l10n locally you can set ``DEV=False`` in your ``.env`` file.
 
 If you are running your local server you will need to restart it after altering
 your ``.env`` file.
+
+.. _mozilla.org l10n repository: https://github.com/mozilla-l10n/www.mozilla.org/
+.. _full documentation: https://mozilla-l10n.github.io/documentation/products/mozilla_org/

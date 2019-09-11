@@ -226,6 +226,7 @@ textarea:focus {
 // @Header
 .page-head {
     padding: 11.714em 0 20px; /* 185px */
+    position: relative;
     margin-top: 0;
     background: #fff;
 
@@ -1007,6 +1008,10 @@ textarea:focus {
     border-collapse: collapse;
     width: 100%;
     margin: 0 auto 40px;
+
+    address {
+        font-style: normal;
+    }
 
     td,
     th {
@@ -1827,4 +1832,36 @@ textarea:focus {
         background-image: url('/media/img/contribute/bg-stories-600.jpg');
     }
 
+}
+
+#survey-message {
+    .border-box;
+    background: #ffea80;
+    min-height: 30px;
+    overflow: hidden;
+    padding: 10px 20px;
+    text-align: center;
+    width: 100%;
+
+    .survey-button {
+        background-color: #0095dd;
+        border-radius: 2px;
+        color: #fff;
+        height: 20px;
+        margin-left: 10px;
+        padding: 2px 5px;
+
+        &:hover,
+        &:focus {
+            background-color: #33aae4;
+            text-decoration: none;
+        }
+    }
+
+    @media only screen and (min-width: @breakTablet) {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 90;
+    }
 }

@@ -1,0 +1,139 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../../protocol/css/includes/lib';
+
+//* -------------------------------------------------------------------------- */
+// Up-to-date page header
+
+.c-page-header {
+    background-color: $color-white;
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    position: relative;
+    text-align: center;
+
+    .c-page-header-up-to-date {
+        @include text-display-xs;
+        display: none;
+        font-weight: normal;
+        margin: 0;
+        min-height: 30px;
+        width: 100%;
+
+        &:before {
+            background-image: url('/media/img/firefox/whatsnew/icon-green-check.svg');
+            background-position: center left;
+            background-repeat: no-repeat;
+            background-size: 25px 25px;
+            content: '';
+            display: inline-block;
+            height: 25px;
+            margin-right: 10px;
+            vertical-align: middle;
+            width: 25px;
+        }
+    }
+
+    .c-page-header-logo-moz {
+        display: none;
+    }
+
+    &.show-up-to-date-message .c-page-header-up-to-date {
+        display: block;
+    }
+
+    @media #{$mq-md} {
+        .c-page-header-inner {
+            min-height: 30px;
+            position: relative;
+        }
+
+        .c-page-header-logo-moz {
+            display: block;
+            left: 0;
+            position: absolute;
+            top: 2px;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Page content
+
+.lite-container {
+    display: flex;
+    align-items: center;
+
+    @media #{$mq-lg} {
+        margin-left: 80px;
+    }
+
+    img {
+        margin-right: $spacing-md;
+    }
+}
+
+.lite-body {
+    background: url('/media/img/firefox/whatsnew/lite/background-swoosh.png') no-repeat bottom, linear-gradient(#00e4ff, #3aa1ff, #0484ff);
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+    padding-top: 10%;
+}
+
+.lite-text {
+    @include text-display-md;
+    font-weight: bold;
+    margin: 0 auto $spacing-lg;
+    max-width: 20em;
+    padding: $spacing-sm 0;
+}
+
+.lite-content {
+    .lite-woman {
+        display: none;
+    }
+
+    .lite-copy {
+        text-align: center;
+        z-index: 1;
+    }
+
+    @media #{$mq-sm} {
+        .lite-copy {
+            max-width: $content-sm;
+            margin: 0 auto;
+        }
+    }
+
+    @media #{$mq-lg} {
+        display: grid;
+        grid-template-columns: 1fr 2fr 0.5fr;
+
+        .lite-woman {
+            display: block;
+            position: relative;
+            min-width: 300px;
+
+            img {
+                position: relative;
+                top: -110px;
+                max-width: 130%;
+            }
+        }
+
+        .lite-copy {
+            margin: 100px 0 0;
+            max-height: $content-sm;
+            text-align: left;
+            max-width: $content-md;
+        }
+
+        .lite-woman,
+        .lite-code {
+            min-height: 700px;
+        }
+    }
+}

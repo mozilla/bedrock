@@ -5,6 +5,7 @@
 @import '../pebbles/includes/lib';
 @import '../hubs/sections';
 
+.mzp-c-navigation + #outer-wrapper,
 .moz-global-nav-drawer + #outer-wrapper {
     padding-top: 40px;
 }

@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "firefox/base-resp.html" %}
+{% extends "firefox/base/base-resp.html" %}
 
 {% add_lang_files "firefox/channel/index" %}
 
@@ -17,29 +17,11 @@
 
 {% block body_class %}{% endblock %}
 
-{% block site_header %}
-<header id="masthead">
-  <div class="container">
-    <div class="logo">
-      <a href="{{ url('mozorg.home') }}" data-link-type="nav" data-link-name="Mozilla">Mozilla</a>
-    </div>
-    <nav id="nav-main">
-      <span class="toggle" role="button" aria-controls="nav-main-menu" aria-expanded="false" tabindex="0">{{ _('Menu') }}</span>
-      <ul id="nav-main-menu">
-        <li class="first products-item">
-          <a href="{{ url('firefox') }}" data-link-type="nav" data-link-name="Firefox">{{ _('Firefox') }}</a>
-        </li>
-        <li class="add-on-item">
-          <a rel="external" href="https://addons.mozilla.org/" data-link-type="nav" data-link-name="Add-ons">{{ _('Add-ons') }}</a>
-        </li>
-        <li class="support-item">
-          <a rel="external" href="https://support.mozilla.org/" data-link-type="nav" data-link-name="Support">{{ _('Support') }}</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</header>
+{% block global_nav %}
+  {% include 'includes/protocol/navigation/index.html' %}
 {% endblock %}
+
+{% block site_header %}{% endblock %}
 
 {% block content %}
 <main role="main">
@@ -74,14 +56,6 @@
           <li><a rel="external" class="more" href="https://developer.mozilla.org/docs/Mozilla/QA/Bug_writing_guidelines">{{ _('Tips for filing a bug') }}</a>
         </ul>
       </section>
-      {% block test_pilot %}
-      <section class="test-pilot">
-        <h3>{{ _('Take our latest experimental features for a spin and shape the future of Firefox.') }}</h3>
-        <ul>
-          <li><a rel="external" class="more" href="https://testpilot.firefox.com/">{{ _('Learn more about Test Pilot') }}</a></li>
-        </ul>
-      </section>
-      {% endblock %}
     </div>
   </div>
   <aside id="newsletter-subscribe">

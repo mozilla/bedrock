@@ -2,7 +2,9 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "base-protocol.html" %}
+{% from "macros-protocol.html" import call_out_compact, picto_card with context %}
+
+{% extends "firefox/base/base-protocol.html" %}
 
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
@@ -18,13 +20,13 @@
 
 {% block content %}
 <main role="main">
-  <section class="mzp-c-hero mzp-t-firefox mzp-t-product-firefox mzp-u-no-shape">
+  <section class="mzp-c-hero mzp-t-firefox mzp-t-product-firefox">
     <div class="mzp-l-content">
       <div class="mzp-c-hero-body">
         <h1 class="mzp-c-hero-title">{{ _('Fast. Private. Fearless. <br>Firefox fights for you.') }}</h1>
 
-        <div class="mzp-c-hero-cta mzp-c-button-download">
-          {{ download_firefox(alt_copy=_('Download Firefox'), download_location='primary cta', button_color='mzp-c-button mzp-t-download') }}
+        <div class="mzp-c-hero-cta">
+          {{ download_firefox(dom_id='download-primary', alt_copy=_('Download Firefox'), download_location='primary cta') }}
         </div>
 
         <div class="mzp-c-hero-desc">
@@ -37,34 +39,11 @@
     </div>
   </section>
 
-  <div class="mzp-l-card-third mzp-l-content mzp-t-firefox">
-    <ul>
-      <li class="faster">
-        <section class="mzp-c-card-picto">
-          <div class="mzp-c-card-picto-content">
-            <h2 class="mzp-c-card-picto-title">{{_('2x Faster') }}</h2>
-            <p class="mzp-c-card-picto-desc">{{_('The best Firefox ever') }}</p>
-          </div>
-        </section>
-      </li>
-      <li class="lighter">
-        <section class="mzp-c-card-picto">
-          <div class="mzp-c-card-picto-content">
-            <h2 class="mzp-c-card-picto-title">{{_('Lightweight') }}</h2>
-            <p class="mzp-c-card-picto-desc">{{_('Rebuilt to use less memory') }}</p>
-          </div>
-        </section>
-      </li>
-      <li class="private">
-        <section class="mzp-c-card-picto">
-          <div class="mzp-c-card-picto-content">
-            <h2 class="mzp-c-card-picto-title">{{_('Powerfully private') }}</h2>
-            <p class="mzp-c-card-picto-desc">{{_('Truly Private Browsing with Tracking Protection') }}</p>
-          </div>
-        </section>
-      </li>
-    </ul>
-  </div>
+  <ul class="mzp-l-card-third mzp-l-content">
+    {{ picto_card(title=_('2x Faster'), desc=_('The best Firefox ever'), class='faster') }}
+    {{ picto_card(title=_('Lightweight'), desc=_('Rebuilt to use less memory'), class='lighter') }}
+    {{ picto_card(title=_('Powerfully private'), desc=_('Private Browsing with Tracking Protection'), class='private') }}
+  </ul>
 
   <aside class="c-aside">
     <div class="mzp-l-content">
@@ -72,21 +51,12 @@
     </div>
   </aside>
 
-  <section class="secondary-cta mzp-c-call-out-compact mzp-t-firefox mzp-t-product-firefox">
-    <div class="mzp-l-content">
-      <div class="mzp-c-call-out-content">
-        <div class="mzp-c-call-out-container">
-        <h2 class="mzp-c-call-out-title">{{ _('Take control of your browser.') }}</h2>
-        </div>
-      </div>
-      <div class="mzp-c-call-out-cta">
-        <div class="mzp-c-call-out-cta-container">
-          <div class="mzp-c-button-download">
-            {{ download_firefox(alt_copy=_('Download Firefox'), download_location='secondary cta', button_color='mzp-c-button mzp-t-download') }}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  {% call call_out_compact(
+    title=_('Take control of your browser.'),
+    class='secondary-cta mzp-t-product-firefox mzp-t-firefox'
+  ) %}
+    {{ download_firefox(dom_id='download-secondary', alt_copy=_('Download Firefox'), download_location='secondary cta') }}
+  {% endcall %}
+
 </main>
 {% endblock %}

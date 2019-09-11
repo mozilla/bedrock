@@ -4,79 +4,6 @@
 
 @import '../../../protocol/css/includes/lib';
 
-// Download button color
-$color-button-green: #16da00;
-
-// The basis for all buttons on mozilla.org
-%base-button {
-    @include text-body-md;
-    @include open-sans;
-    background: none;
-    border-radius: 100px;
-    border-style: solid;
-    border-width: 2px;
-    cursor: pointer;
-    display: inline-block;
-    font-weight: bold;
-    padding: .9em 40px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    text-shadow: none;
-    transition: background-color .1s ease-in-out, border-color .1s ease-in-out;
-
-    &:active {
-        position: relative;
-        top: 1px;
-    }
-
-    &:hover,
-    &:focus {
-        text-decoration: none;
-    }
-}
-
-// Standard solid buttons, especially those not in a form context such as CTA and download buttons
-.button,
-button.button,
-a.button:link,
-a.button:visited {
-    @extend %base-button;
-
-    &.button-green {
-        background-color: $color-button-green;
-        border-color: $color-button-green;
-        color: #fff;
-
-        &:hover,
-        &:focus {
-            background-color: saturate(darken($color-button-green, 5%), 10%);
-            border-color: saturate(darken($color-button-green, 5%), 10%);
-        }
-    }
-}
-
-// privacy policy link that accompany most download buttons
-.fx-privacy-link {
-    @include text-body-xs;
-    @include open-sans;
-    display: block;
-    text-align: center;
-    margin-bottom: 20px;
-
-    a:link,
-    a:visited {
-        color: inherit;
-        text-decoration: none;
-    }
-
-    a:hover,
-    a:active,
-    a:focus {
-        text-decoration: underline;
-    }
-}
-
 // download button and related containers
 ul.download-list {
     list-style-type: none;
@@ -115,7 +42,6 @@ ul.download-list {
 
 .download-other {
     @include text-body-xs;
-    @include open-sans;
     color: #666;
 
     a:link,
@@ -148,6 +74,7 @@ ul.download-list {
 
 // OS detection
 .download-button .os_win64,
+.download-button .os_win64-msi,
 .download-button .os_linux,
 .download-button .os_linux64,
 // Uncomment this to enable the win64 download buttons:
@@ -157,6 +84,7 @@ ul.download-list {
 .linux.arm .download-button .os_linux,
 .linux.x86.x64 .download-list .os_linux,
 .download-button .os_win,
+.download-button .os_win-msi,
 .download-button .os_osx,
 .download-button .os_android,
 .download-button .os_ios,

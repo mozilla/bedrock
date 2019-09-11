@@ -7,6 +7,7 @@
 @import '../../hubs/sections';
 @import '../../quantum/newsletter';
 @import 'other-platforms';
+@import 'firefox-account';
 
 /* -------------------------------------------------------------------------- */
 // Conditional messaging shown to specific Firefox versions
@@ -164,7 +165,6 @@ html.linux.arm {
 }
 
 .main-content {
-
     .download-button {
         margin: 0 auto 20px;
     }
@@ -200,70 +200,13 @@ html[dir="rtl"] .main-content {
     }
 }
 
-/* -------------------------------------------------------------------------- */
-// Refresh Firefox CTA shown for up-to-date Firefox users on release channel
-
-#refresh-firefox-wrapper {
-    display: none;
-}
-
-html.show-refresh {
-
-    #refresh-firefox-wrapper {
-        display: block;
-        text-align: center;
-
-        small {
-            display: block;
-        }
-
-        a:link,
-        a:visited {
-            @include font-size-extra-small;
-            color: #fff;
-            text-decoration: none;
-        }
-
-        a:hover,
-        a:active,
-        a:focus {
-            color: #fff;
-            text-decoration: underline;
-        }
-    }
-
-    #refresh-firefox {
-        display: block;
-        margin: 0 auto 10px;
-    }
-
-    @media #{$mq-tablet} {
-        #refresh-firefox-wrapper {
-            float: left;
-        }
-
-        #refresh-firefox {
-            margin: 0 0 10px;
-        }
-    }
-}
-
-html[dir="rtl"].show-refresh {
-    @media #{$mq-tablet} {
-        #refresh-firefox-wrapper {
-            float: right;
-        }
-    }
-}
 
 /* -------------------------------------------------------------------------- */
 // Newsletter
 
 .newsletter-container {
     background: #fff;
-}
 
-#newsletter-subscribe {
     display: none;
 
     @media #{$mq-tablet} {
@@ -273,6 +216,10 @@ html[dir="rtl"].show-refresh {
 
 html.firefox-latest,
 html.firefox-pre-release {
+
+    .newsletter-container {
+        display: block;
+    }
 
     #newsletter-subscribe {
         display: block;

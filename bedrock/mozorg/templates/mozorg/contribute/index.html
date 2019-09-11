@@ -14,6 +14,20 @@
 
 {% block contrib_page_title %}{{ _('Volunteer with Mozilla!') }}{% endblock %}
 
+{% block survey %}
+  {% set localized_surveys = {'en-US': 'GHJYW6D'} %}
+  {% if LANG in localized_surveys and switch('contribute-survey') %}
+    <div id="survey-message">
+      <span class="survey-invite">
+        We would love to get your opinion on your experience with our site with a short survey.
+      </span>
+      <a class="survey-button" href="https://www.surveymonkey.com/r/{{ localized_surveys[LANG] }}">
+        Take Survey.
+      </a>
+    </div>
+  {% endif %}
+{% endblock %}
+
 {% block contrib_content %}
   <section id="landing-intro" class="section landing-intro">
     <div id="slideshow" class="cycle-slideshow" data-cycle-speed="1000" data-cycle-timeout="6000" data-cycle-slides="> .slide" data-cycle-fx="fade" data-cycle-pause-on-hover="false" data-cycle-log="false">
@@ -37,7 +51,7 @@
         </div>
       </div>
 
-      <p class="cta"><a href="{{ url('mozorg.contribute.signup') }}" class="button" data-link-type="button" data-link-name="Get Involved" data-cta-position="Primary">{{ _('Get Involved') }}</a></p>
+      <p class="cta"><a href="https://activate.mozilla.community/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=contribute&amp;utm_content=contribute-page" class="button" data-link-type="button" data-link-name="Get Involved" data-cta-position="Primary">{{ _('Get Involved') }}</a></p>
 
       <div class="cycle-pager"></div>
     </div>
@@ -110,10 +124,10 @@
         <li class="step2">{{ _('Stand by for an email that will connect you to the Mozilla community') }}</li>
         <li class="step3">{{ _('Create your Mozillians account and share your contributions with the world') }}</li>
       </ol>
-      <p class="cta"><a href="{{ url('mozorg.contribute.signup') }}" class="button" data-link-type="button" data-link-name="Get started" data-cta-position="Secondary">{{ _('Get started') }}</a></p>
+      <p class="cta"><a href="https://activate.mozilla.community/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=contribute&amp;utm_content=contribute-page" class="button" data-link-type="button" data-link-name="Get started" data-cta-position="Secondary">{{ _('Get started') }}</a></p>
       #}
       <h2 class="section-title">{{ _('Join a global community of game-changers.') }}</h2>
-      <p class="cta"><a href="{{ url('mozorg.contribute.signup') }}" class="button" data-link-type="button" data-link-name="Get Involved" data-cta-position="Secondary">{{ _('Get Involved') }}</a></p>
+      <p class="cta"><a href="https://activate.mozilla.community/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=contribute&amp;utm_content=contribute-page" class="button" data-link-type="button" data-link-name="Get Involved" data-cta-position="Secondary">{{ _('Get Involved') }}</a></p>
     </div>
   </section>
 

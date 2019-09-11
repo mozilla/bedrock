@@ -4,7 +4,13 @@ set -exo pipefail
 
 source docker/bin/set_git_env_vars.sh
 
-if [[ "$BRANCH_NAME" != "prod" ]]; then
+if [[ "$BRANCH_NAME" == "prod" ]]; then
+    BUCKETS=(prod)
+elif [[ "$BRANCH_NAME" == "stage" ]]; then
+    BUCKETS=(stage)
+elif [[ "$BRANCH_NAME" == "master" ]]; then
+    BUCKETS=(dev)
+else
     # nothing to do if not prod deployment
     exit 0
 fi
@@ -24,7 +30,7 @@ docker rm -f "$CONTAINER_NAME"
 # separate the hashed files into another directory
 bin/move_hashed_staticfiles.py "${TMP_DIR}" "${TMP_DIR_HASHED}"
 
-for BUCKET in stage prod; do
+for BUCKET in "${BUCKETS[@]}"; do
     # hashed filenames
     aws s3 sync \
         --acl public-read \

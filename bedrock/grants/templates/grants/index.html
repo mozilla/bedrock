@@ -9,7 +9,7 @@
 
 {% block article %}
 
-<h1>Mozilla Grants</h1>
+<h1 class="mzp-c-article-title">Mozilla Grants</h1>
 
 <p>We want the Web to be even better. We want more people using it for more things. We want it to continue to drive creativity, education and economic growth. And we want to empower people to help shape the Web as they move more of their lives online.</p>
 <p>This is why we develop software, launch learning programs, champion privacy and drive standards in the pursuit of our mission to keep the Web open. It's also why we invest in people, organizations, schools and community efforts that share our values, ambitions and love of the Web.</p>
@@ -18,7 +18,7 @@
 <h3>What We Fund</h3>
 
 <p>We make grants to people and organizations we know, who are either working with us or in a closely related field. Our work revolves around five areas:</p>
-<ul>
+<ul class="mzp-u-list-styled">
     <li><strong>Learning &amp; Webmaking:</strong> Tools, curricula and communities that teach kids, journalists, filmmakers — everyone — how to help make the Web.</li>
     <li><strong>Open Source Technology:</strong> Research, software and standards that extend the capacity, celebrate the values and protect the health of the Open Web. We do this primarily through the <a href="{{ url('mozorg.moss.index') }}">MOSS program</a>.</li>
     <li><strong>User Sovereignty:</strong> Projects, campaigns and organizations that fight to keep the Web open and prioritize the interests of individual users.</li>
@@ -31,8 +31,8 @@
 <h3>Our Grants</h3>
 <div class="filters">
     <h4>Filter by</h4>
-    <ul>
-        {% for key, label in grant_labels.iteritems() %}
+    <ul class="mzp-u-list-styled">
+        {% for key, label in grant_labels.items() %}
             {% if key == filter %}
                 <li>{{ label }}</li>
             {% else %}
@@ -42,7 +42,7 @@
     </ul>
 </div>
 <div class="peep-hole">
-    <table id="grants_table">
+    <table class="mzp-u-data-table" id="grants_table">
         <thead>
             <tr>
                 <th scope="col">Grantee</th>
@@ -78,8 +78,8 @@
 
 <p>If we're not intimately familiar with your project and already consider it to be tied to the Mozilla mission, we are unlikely to make a grant, however worthy the cause. If you're working on something closely related to our focus areas and want to discuss a grant, you should raise the topic with the Mozilla contributors closest to you. If you don't know anyone, then one key criteria for Mozilla grants has yet to be met: To get to know Mozilla.</p>
 <p>Each grant made needs a champion inside Mozilla, someone known to our community. How can you find a Mozillian to champion your project?</p>
-<ol>
-    <li><strong>Get involved.</strong> Join our weekly <a href="https://wiki.mozilla.org/Webmakers/Community_Calls">webmaker calls</a>, become a <a href="{{ url('mozorg.contribute.index') }}">Contributor</a>, or reach out to your local <a href="{{ url('mozorg.contribute.index') }}#location">Mozilla community</a>. Introduce yourself and explore how to work together. We've created multiple ways to discover what's going on.</li>
+<ol class="mzp-u-list-styled">
+    <li><strong>Get involved.</strong> Join our weekly <a href="https://wiki.mozilla.org/Webmakers/Community_Calls">webmaker calls</a>, become a <a href="{{ url('mozorg.contribute.index') }}">Contributor</a>, or reach out to your local <a href="{{ url('mozorg.contact.communities.communities-landing') }}">Mozilla community</a>. Introduce yourself and explore how to work together. We've created multiple ways to discover what's going on.</li>
     <li><strong>Contribute to the mission.</strong> Run an event, fix bugs or fork a code base. Build something amazing. Blog about an open project. Connect new partners. Add value to the web.</li>
     <li><strong>Become indispensable.</strong> Slowly make it so we all can't live without you.</li>
     <li><strong>Then we'll sit down for a chat.</strong> We'll explore how additional resources, including funding, can make what you're doing even more awesome.</li>

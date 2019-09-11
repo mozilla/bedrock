@@ -191,41 +191,6 @@ you can also read the `pytest markers`_ documentation for more options.
         assert not page.text_format_selected
         assert not page.privacy_policy_accepted
 
-.. _smoke-functional-tests:
-
-Smoke tests
-~~~~~~~~~~~
-
-Smoke tests are run on every commit to master as part of bedrocks deployment pipeline.
-These should be considered as critical baseline functional tests. (Note: we only run the
-full suite of cross-browser functional tests on tagged commits. See :ref:`tagged-commit`).
-If your test should be considered a smoke test you will need to apply a ``smoke`` marker
-to it.
-
-.. code-block:: python
-
-    import pytest
-
-    @pytest.mark.smoke
-    @pytest.mark.nondestructive
-    def test_newsletter_default_values(base_url, selenium):
-        page = NewsletterPage(base_url, selenium).open()
-        assert '' == page.email
-        assert 'United States' == page.country
-        assert 'English' == page.language
-        assert page.html_format_selected
-        assert not page.text_format_selected
-        assert not page.privacy_policy_accepted
-
-You can run smoke tests only by adding ``-m smoke`` when running the test suite on the
-command line.
-
-.. Note::
-
-  Tests that rely on long-running timeouts, cron jobs, or that test for locale specific
-  interactions should not be marked as a smoke test. We should try and ensure that the
-  suite of smoke tests are quick to run, and they should not have a dependency on
-  checking out and building the full site.
 
 Sanity tests
 ~~~~~~~~~~~~
@@ -342,7 +307,7 @@ and also do not depend on a crawler to find them.
 .. _expected conditions: http://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.expected_conditions.html
 .. _Web QA style guide: https://wiki.mozilla.org/QA/Execution/Web_Testing/Docs/Automation/StyleGuide
 .. _LinkChecker: http://wummel.github.io/linkchecker/
-.. _Jenkins instance: https://ci.us-west.moz.works/
+.. _Jenkins instance: https://ci.vpn1.moz.works/
 .. _download: https://github.com/mozilla/bedrock/blob/master/tests/functional/test_download.py
 .. _localized download: https://github.com/mozilla/bedrock/blob/master/tests/functional/test_download_l10n.py
 .. _Basket: https://github.com/mozilla/basket

@@ -11,7 +11,7 @@ from bedrock.redirects.util import redirect
 
 urlpatterns = (
     url(r'^$', views.home_view, name='mozorg.home'),
-    url(r'about/$', views.about_view, name='mozorg.about'),
+    page('about', 'mozorg/about.html'),
     page('about/manifesto', 'mozorg/about/manifesto.html'),
     page('about/manifesto/details', 'mozorg/about/manifesto-details.html'),
     page('about/leadership', 'mozorg/about/leadership.html'),
@@ -29,13 +29,10 @@ urlpatterns = (
     page('developer/browsertest', 'mozorg/browser-test.html'),
     page('about/partnerships/distribution', 'mozorg/partnerships-distribution.html'),
     page('about/history', 'mozorg/about/history.html'),
-    page('about/history/details', 'mozorg/about/history-details.html'),
-    page('about/mozilla-based', 'mozorg/projects/mozilla-based.html'),
     # Bug 981063, catch all for old calendar urls.
     # must be here to avoid overriding the above
     redirect(r'^projects/calendar/', 'https://www.thunderbird.net/calendar/', locale_prefix=False),
     page('mission', 'mozorg/mission.html'),
-    page('ITU', 'mozorg/itu.html'),
     url('^about/forums/$', views.forums_view, name='mozorg.about.forums.forums'),
     page('about/forums/etiquette', 'mozorg/about/forums/etiquette.html'),
     page('about/forums/cancellation', 'mozorg/about/forums/cancellation.html'),
@@ -62,11 +59,12 @@ urlpatterns = (
     page('about/governance/organizations', 'mozorg/about/governance/organizations.html'),
     page('about/governance/policies/participation',
          'mozorg/about/governance/policies/participation.html'),
+    page('about/governance/policies/participation/reporting',
+         'mozorg/about/governance/policies/reporting.html'),
     page('about/governance/policies/module-ownership',
          'mozorg/about/governance/policies/module-ownership.html'),
     page('about/governance/policies/regressions',
          'mozorg/about/governance/policies/regressions.html'),
-    page('about/governance/policies/reviewers', 'mozorg/about/governance/policies/reviewers.html'),
 
     page('about/policy/transparency', 'mozorg/about/policy/transparency/index.html'),
     page('about/policy/transparency/jan-dec-2015',
@@ -79,7 +77,12 @@ urlpatterns = (
          'mozorg/about/policy/transparency/jan-jun-2017.html'),
     page('about/policy/transparency/jul-dec-2017',
          'mozorg/about/policy/transparency/jul-dec-2017.html'),
-
+    page('about/policy/transparency/jan-jun-2018',
+         'mozorg/about/policy/transparency/jan-jun-2018.html'),
+    page('about/policy/transparency/jul-dec-2018',
+         'mozorg/about/policy/transparency/jul-dec-2018.html'),
+    page('about/policy/transparency/jan-jun-2019',
+         'mozorg/about/policy/transparency/jan-jun-2019.html'),
 
     page('contact', 'mozorg/contact/contact-landing.html'),
     page('contact/spaces', 'mozorg/contact/spaces/spaces-landing.html'),
@@ -270,22 +273,11 @@ urlpatterns = (
     url('^contribute/embed/$', views.contribute_embed,
         name='mozorg.contribute_embed'),
     page('contribute/events', 'mozorg/contribute/events.html'),
-    url('^contribute/friends/$', views.contribute_friends, name='mozorg.contribute.friends'),
-    page('contribute/signup', 'mozorg/contribute/signup.html'),
     page('contribute/stories', 'mozorg/contribute/stories.html'),
     page('contribute/stories/faye', 'mozorg/contribute/story-faye.html'),
     page('contribute/stories/michael', 'mozorg/contribute/story-michael.html'),
     page('contribute/stories/ruben', 'mozorg/contribute/story-ruben.html'),
     page('contribute/stories/shreyas', 'mozorg/contribute/story-shreyas.html'),
-    url('^contribute/studentambassadors/$',
-        views.contribute_studentambassadors_landing,
-        name='mozorg.contribute.studentambassadors.landing'),
-    page('contribute/task/devtools-challenger', 'mozorg/contribute/tasks/devtools-challenger.html'),
-    page('contribute/task/firefox-mobile', 'mozorg/contribute/tasks/firefox-mobile.html'),
-    page('contribute/task/encryption', 'mozorg/contribute/tasks/encryption.html'),
-    page('contribute/task/follow-mozilla', 'mozorg/contribute/tasks/follow-mozilla.html'),
-    page('contribute/task/joy-of-coding', 'mozorg/contribute/tasks/joy-of-coding.html'),
-    page('contribute/task/stumbler', 'mozorg/contribute/tasks/stumbler.html'),
     url(r'^contributor-data/(?P<source_name>[a-z]{2,20})\.json$', views.mozid_data_view,
         name='mozorg.contributor-data'),
     url('^internet-health/$', views.IHView.as_view(), name='mozorg.internet-health'),
@@ -301,9 +293,16 @@ urlpatterns = (
     page('moss/mission-partners-india', 'mozorg/moss/mission-partners-india.html'),
     page('moss/secure-open-source', 'mozorg/moss/secure-open-source.html'),
 
+    url(r'^oauth/fxa/$', views.oauth_fxa, name='mozorg.oauth.fxa'),
+    url(r'^oauth/fxa/error/$', views.oauth_fxa_error, name='mozorg.oauth.fxa-error'),
+
     page('plugincheck', 'mozorg/plugincheck.html'),
-    url(r'^robots.txt$', views.Robots.as_view(), name='robots.txt'),
+    url(r'^robots\.txt$', views.Robots.as_view(), name='robots.txt'),
     url('^technology/$', views.TechnologyView.as_view(), name='mozorg.technology'),
+    page('technology/what-is-a-browser', 'mozorg/what-is-a-browser.html'),
+    page('technology/update-your-browser', 'mozorg/update-browser.html'),
+    page('technology/incognito-browser', 'mozorg/incognito-browser.html'),
+    page('technology/browser-history', 'mozorg/browser-history.html'),
 
     url('^developer/$', views.DeveloperView.as_view(), name='mozorg.developer'),
     page('developer/css-grid', 'mozorg/developer/css-grid-demo.html'),
@@ -317,4 +316,6 @@ urlpatterns = (
     url(r'^microsummaries/0\.1$', views.namespaces, {'namespace': 'microsummaries'}),
     url(r'^projects/xforms/2005/type$', views.namespaces, {'namespace': 'xforms-type'}),
     url(r'^xbl$', views.namespaces, {'namespace': 'xbl'}),
+
+    page('locales', 'mozorg/locales.html'),
 )

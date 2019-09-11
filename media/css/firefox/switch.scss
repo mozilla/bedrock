@@ -2,202 +2,175 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../pebbles/includes/lib';
-@import '../hubs/sections';
-@import '../hubs/masthead';
-@import '../hubs/sub-nav';
-@import '../quantum/common';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/hero';
 
-/* -------------------------------------------------------------------------- */
-// Common elements & variables
+@import '../hubs/sub-nav-protocol';
+@import '../hubs/sub-nav-download-button-remove-protocol';
 
-main {
-    background: #003eaa;
-    background: url('/media/img/firefox/quantum/fox-tail-header.png') top -200px center no-repeat,
-                linear-gradient(to bottom, #003eaa 40%, #004ec2 60%, #0060df 80%, #0080ff 90%, #00c7ff 100%);
-    color: #fff;
-    overflow: hidden;
-    padding-top: 20px;
-    position: relative;
 
-    a:link,
-    a:visited {
-        color: #fff;
-        text-decoration: underline;
+.t-switch.mzp-c-hero {
 
-        &:hover,
-        &:active,
-        &:focus {
-            color: darken(#fff, 10%);
-        }
+    &.mzp-t-product-firefox .mzp-c-hero-title {
+        @include at2x('/media/img/logos/firefox/logo-quantum-full-wordmark.png', auto, 48px);
+        padding-top: $layout-md + 48px;
     }
 
-    h1 {
-        @include font-size-level2;
-        color: #fff;
-        margin-bottom: 40px;
-    }
-
-    .tagline {
-        @include font-size-level4;
-        margin-bottom: 20px;
-    }
-
-    header {
-        padding: 20px 0;
-    }
-
-    ol {
-        @include font-size-level5;
-        list-style: decimal;
-        margin: 0 0 40px 30px;
-
-        li {
-            margin-bottom: 20px;
-            position: relative;
-        }
-    }
-
-    footer {
-        @include font-size-small;
-        margin-top: 40px;
-
-        p {
-            margin-bottom: 20px;
-        }
-
-        ul {
-            margin-bottom: 10px;
-
-            li {
-                margin-bottom: 20px;
-            }
-        }
-    }
-
-    .share-options li a {
-        display: inline-block;
-        padding-left: 25px;
-        position: relative;
-
+    @media #{$mq-md} {
         &:before {
-            background-image: url('/media/img/logos/social/social-icon-sprite.svg');
+            background-image: url('/media/img/firefox/switch/switch.png'), url('/media/img/firefox/switch/bg.svg');
+            background-position: 14px center, top left;
+            background-size: 592px 302px, auto 100%;
+            background-repeat: no-repeat;
+            bottom: 0;
             content: '';
-            height: 20px;
-            left: 0;
+            display: block;
+            left: 50%;
             position: absolute;
             top: 0;
-            width: 20px;
-        }
+            width: 50%;
 
-        &.twitter:before {
-            background-position: 0 0;
-            height: 15px;
-            width: 18px;
-        }
+            html[dir=rtl] & {
+                background-image: url('/media/img/firefox/switch/switch-rtl.png'), url('/media/img/firefox/switch/bg-rtl.svg');
+                background-position: right center, top right;
+                right: 50%;
+                left: auto;
+            }
 
-        &.facebook:before {
-            background-position: 0 -77px;
-            height: 19px;
-            width: 10px;
-        }
+            @media #{$mq-high-res} {
+                background-image: url('/media/img/firefox/switch/switch-high-res.png'), url('/media/img/firefox/switch/bg.svg');
 
-        &.email:before {
-            @include font-size(18px);
-            background-image: none;
-            content: '@';
-            font-weight: bold;
-            line-height: 1;
+                html[dir=rtl] & {
+                    background-image: url('/media/img/firefox/switch/switch-rtl-high-res.png'), url('/media/img/firefox/switch/bg-rtl.svg');
+                }
+            }
         }
     }
 
-    @media #{$mq-tablet} {
-
-        @supports (display: grid) {
-
-            ol {
-                display: grid;
-                grid-gap: 20px;
-                grid-template-columns: repeat(3, 1fr);
-                grid-template-rows: auto;
-                list-style-type: none;
-                margin: 0 0 30px;
-
-                li {
-                    counter-increment: switch-steps;
-                    padding-top: 2em;
-
-                    &:before {
-                        @include font-size-level4;
-                        content: counter(switch-steps);
-                        font-weight: bold;
-                        height: 1em;
-                        left: 0;
-                        position: absolute;
-                        top: -.25em;
-                        width: 1em;
-                    }
-                }
-            }
-
-            .share-options {
-                display: grid;
-                grid-gap: 20px;
-                grid-template-columns: repeat(3, 1fr);
-                grid-template-rows: auto;
-            }
-        }
-
-        .inner-container {
-            width: 60%;
-        }
-    }
-
-    @media #{$mq-desktop} {
-        @supports (display: grid) {
-
-            ol li {
-                padding-top: 0;
-                padding-left: 40px;
-
-                &:before {
-                    @include font-size(30px);
-                    float: left;
-                    margin-left: -30px;
-                    margin-top: -.15em;
-                    position: static;
-                }
-            }
+    @media #{$mq-lg} {
+        .mzp-l-content {
+            padding-top: 0;
         }
     }
 }
 
-html[dir="rtl"] main {
+/* -------------------------------------------------------------------------- */
+// Steps
 
-    ol {
-        margin: 0 30px 40px 0;
+.c-steps {
+    text-align: center;
+}
+
+.c-steps-list {
+    counter-reset: step-counter;
+}
+
+.c-steps-item {
+    @include font-size(18px);
+    font-weight: bold;
+    display: inline-block;
+    width: 214px;
+    vertical-align: top;
+    margin: 0 $layout-sm $layout-sm;
+
+    &:before {
+        @include font-size(42px);
+        align-items: center;
+        background-color: $color-violet-50;
+        background-image: url('/media/img/firefox/switch/one.svg');
+        background-size: 1.8em auto;
+        background-position: center center;
+        background-repeat: no-repeat;
+        border-radius: 100%;
+        color: #fff;
+        content: counter(step-counter);
+        counter-increment: step-counter;
+        display: flex;
+        font-weight: bold;
+        height: 1.7em;
+        justify-content: center;
+        margin: 0 auto $spacing-md auto;
+        width: 1.7em;
     }
 
-    .share-options li a {
-        padding-left: 0;
-        padding-right: 25px;
+    &:nth-child(2):before {
+        background-image: url('/media/img/firefox/switch/two.svg');
+    }
 
+    &:nth-child(3):before {
+        background-image: url('/media/img/firefox/switch/three.svg');
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Social Share
+
+.c-share-title {
+    @include text-body-lg;
+    @include font-firefox;
+}
+
+.c-share {
+    margin-top: $layout-md;
+    padding-top: $layout-sm;
+    background-color: $color-gray-20;
+}
+
+.c-share-options li a {
+    @include bidi(((padding-left, 24px + $spacing-sm, padding-right, 0),));
+    display: inline-block;
+    position: relative;
+
+    &:before {
+        @include bidi(((left, 0, right, auto),));
+        background-image: url('/media/img/logos/social/social-icon-sprite-dark.svg');
+        background-size: 24px auto;
+        background-repeat: no-repeat;
+        content: '';
+        display: inline-block;
+        height: 22px;
+        width: 24px;
+        vertical-align: bottom;
+        position: absolute;
+        bottom: 0;
+    }
+
+    &.twitter:before {
+        background-position: 0 3px;
+    }
+
+    &.facebook {
         &:before {
-            left: auto;
-            right: 0;
+            background-position: 4px -81px;
+        }
+
+        @media #{$mq-md} {
+            @include bidi(((padding-left, 18px + $spacing-sm, padding-right, 0),));
+
+            &:before {
+                background-position: 0 -81px;
+                width: 18px;
+            }
+
         }
     }
 
-    @media #{$mq-tablet} {
-        @supports (display: grid) {
-            ol {
-                margin: 40px 0 20px 0;
+    &.email:before {
+        background-position: 0 -109px;
+    }
+}
 
-                li:before {
-                    left: auto;
-                    right: 0;
-                }
-            }
+@media #{$mq-md} {
+
+    @supports (display: grid) {
+        .c-share-options {
+            margin: $layout-sm 0;
+            display: grid;
+            grid-gap: $layout-lg;
+            grid-template-columns: repeat(3, max-content);
+            grid-template-rows: auto;
         }
     }
 }

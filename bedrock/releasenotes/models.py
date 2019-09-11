@@ -22,7 +22,11 @@ from bedrock.releasenotes.utils import memoize
 LONG_RN_CACHE_TIMEOUT = 7200  # 2 hours
 cache = caches['release-notes']
 markdowner = markdown.Markdown(extensions=[
-    'tables', 'codehilite', 'fenced_code', 'toc', 'nl2br'
+    'markdown.extensions.tables',
+    'markdown.extensions.codehilite',
+    'markdown.extensions.fenced_code',
+    'markdown.extensions.toc',
+    'markdown.extensions.nl2br',
 ])
 
 
@@ -55,7 +59,7 @@ FIELD_PROCESSORS = {
 }
 
 
-class RNModel(object):
+class RNModel:
     def __init__(self, data):
         for key, value in data.items():
             if not hasattr(self, key):
@@ -171,7 +175,7 @@ class ProductRelease(models.Model):
     class Meta:
         ordering = ['-release_date']
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     @cached_property
@@ -180,11 +184,15 @@ class ProductRelease(models.Model):
 
     @cached_property
     def major_version_int(self):
-        return self.version_obj.major
+        return self.version_obj.major or 0
 
     @cached_property
     def version_obj(self):
         return Version(self.version)
+
+    @property
+    def is_latest(self):
+        return self == get_latest_release(self.product, self.channel)
 
     def get_absolute_url(self):
         if self.product == 'Firefox for Android':

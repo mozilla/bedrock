@@ -9,7 +9,6 @@ from django.test.client import RequestFactory
 
 import basket
 from mock import ANY, DEFAULT, patch
-from nose.tools import eq_
 from pyquery import PyQuery as pq
 
 from bedrock.base.urlresolvers import reverse
@@ -25,28 +24,13 @@ from bedrock.newsletter.views import (
 )
 
 
-def assert_redirect(response, url):
-    """
-    Assert that the response indicates a redirect to the url.
-    """
-    # This is like Django TestCase's assertRedirect, only we're not
-    # using Django TestCase due to our lack of a database, so we
-    # need to fake our own.
-
-    # Django seems to stick this into the Location header
-    url = "http://testserver" + url
-    assert url == response['Location'],\
-        "Response did not redirect to %s; Location=%s" % \
-        (url, response['Location'])
-
-
 class TestViews(TestCase):
     def setUp(self):
         self.rf = RequestFactory()
 
     @patch('bedrock.newsletter.views.l10n_utils.render')
     def test_updated_allows_good_tokens(self, mock_render):
-        token = unicode(uuid.uuid4())
+        token = str(uuid.uuid4())
         req = self.rf.get('/', {'token': token, 'unsub': 1})
         updated(req)
         self.assertEqual(mock_render.call_args[0][2]['token'], token)
@@ -56,12 +40,12 @@ class TestViews(TestCase):
         token = 'the-dude'
         req = self.rf.get('/', {'token': token, 'unsub': 1})
         updated(req)
-        eq_(mock_render.call_args[0][2]['token'], None)
+        assert mock_render.call_args[0][2]['token'] is None
 
         token = '\'>"><img src=x onerror=alert(1)>'
         req = self.rf.get('/', {'token': token, 'unsub': 1})
         updated(req)
-        eq_(mock_render.call_args[0][2]['token'], None)
+        assert mock_render.call_args[0][2]['token'] is None
 
 
 # Always mock basket.request to be sure we never actually call basket
@@ -69,7 +53,7 @@ class TestViews(TestCase):
 @patch('basket.base.request')
 class TestExistingNewsletterView(TestCase):
     def setUp(self):
-        self.token = unicode(uuid.uuid4())
+        self.token = str(uuid.uuid4())
         self.user = {
             'newsletters': [u'mozilla-and-you'],
             'token': self.token,
@@ -91,13 +75,13 @@ class TestExistingNewsletterView(TestCase):
             u'format': self.user['format'],
             u'privacy': u'on',
             u'form-0-newsletter': u'mozilla-and-you',
-            u'form-0-subscribed_radio': u'True',
+            u'form-0-subscribed_radio': u'true',
             u'form-1-newsletter': u'mobile',
-            u'form-1-subscribed_radio': u'False',
+            u'form-1-subscribed_radio': u'false',
             u'form-2-newsletter': u'firefox-tips',
-            u'form-2-subscribed_check': u'False',
+            u'form-2-subscribed_check': u'false',
             u'form-3-newsletter': u'join-mozilla',
-            u'form-3-subscribed_check': u'False',
+            u'form-3-subscribed_check': u'false',
             u'submit': u'Save Preferences',
         }
         super(TestExistingNewsletterView, self).setUp()
@@ -110,9 +94,9 @@ class TestExistingNewsletterView(TestCase):
         url = "%s?confirm=1" % reverse('newsletter.existing.token', args=(self.token,))
         # noinspection PyUnresolvedReferences
         with patch.multiple('basket',
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render') as render:
-                basket_patches['user'].return_value = self.user
+                basket_patches['request'].return_value = self.user
                 render.return_value = HttpResponse('')
                 self.client.get(url)
         request, template_name, context = render.call_args[0]
@@ -129,9 +113,9 @@ class TestExistingNewsletterView(TestCase):
                             update_user=DEFAULT,
                             subscribe=DEFAULT,
                             unsubscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render') as render:
-                basket_patches['user'].return_value = self.user
+                basket_patches['request'].return_value = self.user
                 render.return_value = HttpResponse('')
                 self.client.get(url)
         request, template_name, context = render.call_args[0]
@@ -145,7 +129,7 @@ class TestExistingNewsletterView(TestCase):
         # or they are marked 'show' and 'active' in the settings
         get_newsletters.return_value = newsletters
         # Find a newsletter without 'show' and subscribe the user to it
-        for newsletter, data in newsletters.iteritems():
+        for newsletter, data in newsletters.items():
             if not data.get('show', False):
                 self.user['newsletters'] = [newsletter]
                 break
@@ -154,9 +138,9 @@ class TestExistingNewsletterView(TestCase):
                             update_user=DEFAULT,
                             subscribe=DEFAULT,
                             unsubscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render') as render:
-                basket_patches['user'].return_value = self.user
+                basket_patches['request'].return_value = self.user
                 render.return_value = HttpResponse('')
                 self.client.get(url)
         request, template_name, context = render.call_args[0]
@@ -164,10 +148,10 @@ class TestExistingNewsletterView(TestCase):
 
         shown = set([form.initial['newsletter'] for form in forms])
         inactive = set([newsletter for newsletter, data
-                       in newsletters.iteritems()
+                       in newsletters.items()
                        if not data.get('active', False)])
         to_show = set([newsletter for newsletter, data
-                       in newsletters.iteritems()
+                       in newsletters.items()
                        if data.get('show', False)]) - inactive
         subscribed = set(self.user['newsletters'])
 
@@ -187,14 +171,14 @@ class TestExistingNewsletterView(TestCase):
 
     def test_get_user_not_found(self, mock_basket_request):
         # Token in URL but not a valid token - should redirect to recovery
-        rand_token = unicode(uuid.uuid4())
+        rand_token = str(uuid.uuid4())
         url = reverse('newsletter.existing.token', args=(rand_token,))
         with patch.multiple('basket',
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render') as render:
                 render.return_value = HttpResponse('')
                 with patch('django.contrib.messages.add_message') as add_msg:
-                    basket_patches['user'].side_effect = basket.BasketException
+                    basket_patches['request'].side_effect = basket.BasketException
                     rsp = self.client.get(url)
         # Should have given a message
         self.assertEqual(1, add_msg.call_count,
@@ -208,10 +192,10 @@ class TestExistingNewsletterView(TestCase):
         # recovery *without* calling Exact Target
         token = "not a token"
         url = reverse('newsletter.existing.token', args=(token,))
-        with patch.multiple('basket', user=DEFAULT) as basket_patches:
+        with patch.multiple('basket', request=DEFAULT) as basket_patches:
             with patch('django.contrib.messages.add_message') as add_msg:
                 rsp = self.client.get(url, follow=False)
-        self.assertEqual(0, basket_patches['user'].call_count)
+        self.assertEqual(0, basket_patches['request'].call_count)
         self.assertEqual(1, add_msg.call_count)
         self.assertEqual(302, rsp.status_code)
         self.assertTrue(rsp['Location'].endswith(reverse('newsletter.recovery')))
@@ -219,17 +203,17 @@ class TestExistingNewsletterView(TestCase):
     def test_post_user_not_found(self, mock_basket_request):
         # User submits form and passed token, but no user was found
         # Should issue message and redirect to recovery
-        rand_token = unicode(uuid.uuid4())
+        rand_token = str(uuid.uuid4())
         url = reverse('newsletter.existing.token', args=(rand_token,))
         with patch.multiple('basket',
                             update_user=DEFAULT,
                             subscribe=DEFAULT,
                             unsubscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render') as render:
                 render.return_value = HttpResponse('')
                 with patch('django.contrib.messages.add_message') as add_msg:
-                    basket_patches['user'].side_effect = basket.BasketException
+                    basket_patches['request'].side_effect = basket.BasketException
                     rsp = self.client.post(url, self.data)
         # Shouldn't call basket except for the attempt to find the user
         self.assertEqual(0, basket_patches['update_user'].call_count)
@@ -246,7 +230,7 @@ class TestExistingNewsletterView(TestCase):
     def test_subscribing(self, get_newsletters, mock_basket_request):
         get_newsletters.return_value = newsletters
         # They subscribe to firefox-tips
-        self.data['form-2-subscribed_check'] = u'True'
+        self.data['form-2-subscribed_check'] = u'true'
         # in English - and that's their language too
         self.user['lang'] = u'en'
         self.data['lang'] = u'en'
@@ -255,10 +239,10 @@ class TestExistingNewsletterView(TestCase):
                             update_user=DEFAULT,
                             subscribe=DEFAULT,
                             unsubscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('django.contrib.messages.add_message') as add_msg:
                 with patch('lib.l10n_utils.render'):
-                    basket_patches['user'].return_value = self.user
+                    basket_patches['request'].return_value = self.user
                     rsp = self.client.post(url, self.data)
         # Should have given no messages
         self.assertEqual(0, add_msg.call_count,
@@ -266,17 +250,16 @@ class TestExistingNewsletterView(TestCase):
         # Should have called update_user with subscription list
         self.assertEqual(1, basket_patches['update_user'].call_count)
         kwargs = basket_patches['update_user'].call_args[1]
-        self.assertEqual(
-            {'newsletters': u'mozilla-and-you,firefox-tips', 'lang': u'en'},
-            kwargs
-        )
+        self.assertEqual(set(kwargs), set(['newsletters', 'lang']))
+        self.assertEqual(kwargs['lang'], 'en')
+        self.assertEqual(set(kwargs['newsletters'].split(',')), set(['mozilla-and-you', 'firefox-tips']))
         # Should not have called unsubscribe
         self.assertEqual(0, basket_patches['unsubscribe'].call_count)
         # Should not have called subscribe
         self.assertEqual(0, basket_patches['subscribe'].call_count)
         # Should redirect to the 'updated' view
         url = reverse('newsletter.updated')
-        assert_redirect(rsp, url)
+        assert rsp['Location'] == url
 
     @patch('bedrock.newsletter.utils.get_newsletters')
     def test_unsubscribing(self, get_newsletters, mock_basket_request):
@@ -288,9 +271,9 @@ class TestExistingNewsletterView(TestCase):
                             update_user=DEFAULT,
                             subscribe=DEFAULT,
                             unsubscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render'):
-                basket_patches['user'].return_value = self.user
+                basket_patches['request'].return_value = self.user
                 rsp = self.client.post(url, self.data)
         # Should have called update_user with list of newsletters
         self.assertEqual(1, basket_patches['update_user'].call_count)
@@ -305,7 +288,7 @@ class TestExistingNewsletterView(TestCase):
         self.assertEqual(0, basket_patches['unsubscribe'].call_count)
         # Should redirect to the 'updated' view
         url = reverse('newsletter.updated')
-        assert_redirect(rsp, url)
+        assert rsp['Location'] == url
 
     @patch('bedrock.newsletter.utils.get_newsletters')
     def test_remove_all(self, get_newsletters, mock_basket_request):
@@ -317,9 +300,9 @@ class TestExistingNewsletterView(TestCase):
                             update_user=DEFAULT,
                             subscribe=DEFAULT,
                             unsubscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render'):
-                basket_patches['user'].return_value = self.user
+                basket_patches['request'].return_value = self.user
                 rsp = self.client.post(url, self.data)
         # Should not have updated user details at all
         self.assertEqual(0, basket_patches['update_user'].call_count)
@@ -332,7 +315,7 @@ class TestExistingNewsletterView(TestCase):
         # Should redirect to the 'updated' view with unsub=1 and token
         url = reverse('newsletter.updated') + "?unsub=1"
         url += "&token=%s" % self.token
-        assert_redirect(rsp, url)
+        assert rsp['Location'] == url
 
     @patch('bedrock.newsletter.utils.get_newsletters')
     def test_change_lang_country(self, get_newsletters, mock_basket_request):
@@ -346,10 +329,10 @@ class TestExistingNewsletterView(TestCase):
         with patch.multiple('basket',
                             update_user=DEFAULT,
                             subscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render'):
                 with patch('django.contrib.messages.add_message') as add_msg:
-                    basket_patches['user'].return_value = self.user
+                    basket_patches['request'].return_value = self.user
                     rsp = self.client.post(url, self.data)
 
         # We have an existing user with a change to their email data,
@@ -371,7 +354,7 @@ class TestExistingNewsletterView(TestCase):
                          msg=repr(add_msg.call_args_list))
         # Should redirect to the 'updated' view
         url = reverse('newsletter.updated')
-        assert_redirect(rsp, url)
+        assert rsp['Location'] == url
 
     @patch('bedrock.newsletter.utils.get_newsletters')
     def test_newsletter_ordering(self, get_newsletters, mock_basket_request):
@@ -385,9 +368,9 @@ class TestExistingNewsletterView(TestCase):
                             update_user=DEFAULT,
                             subscribe=DEFAULT,
                             unsubscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render') as render:
-                basket_patches['user'].return_value = self.user
+                basket_patches['request'].return_value = self.user
                 render.return_value = HttpResponse('')
                 self.client.get(url)
         request, template_name, context = render.call_args[0]
@@ -414,9 +397,9 @@ class TestExistingNewsletterView(TestCase):
                             update_user=DEFAULT,
                             subscribe=DEFAULT,
                             unsubscribe=DEFAULT,
-                            user=DEFAULT) as basket_patches:
+                            request=DEFAULT) as basket_patches:
             with patch('lib.l10n_utils.render') as render:
-                basket_patches['user'].return_value = self.user
+                basket_patches['request'].return_value = self.user
                 render.return_value = HttpResponse('')
                 self.client.get(url)
         request, template_name, context = render.call_args[0]
@@ -429,7 +412,7 @@ class TestExistingNewsletterView(TestCase):
 
 class TestConfirmView(TestCase):
     def setUp(self):
-        self.token = unicode(uuid.uuid4())
+        self.token = str(uuid.uuid4())
         self.url = reverse('newsletter.confirm', kwargs={'token': self.token})
 
     def test_normal(self):
@@ -485,7 +468,7 @@ class TestConfirmView(TestCase):
 
 class TestSetCountryView(TestCase):
     def setUp(self):
-        self.token = unicode(uuid.uuid4())
+        self.token = str(uuid.uuid4())
         self.url = reverse('newsletter.country', kwargs={'token': self.token})
 
     def test_normal_submit(self):
@@ -496,7 +479,7 @@ class TestSetCountryView(TestCase):
 
         self.assertEqual(302, rsp.status_code)
         basket_mock.assert_called_with('post', 'user-meta', data={'country': 'gb'}, token=self.token)
-        assert_redirect(rsp, reverse('newsletter.country_success'))
+        assert rsp['Location'] == reverse('newsletter.country_success')
 
     @patch('basket.request')
     @patch('bedrock.newsletter.views.messages')
@@ -525,8 +508,8 @@ class TestRecoveryView(TestCase):
     def test_unknown_email(self, mock_basket):
         """Unknown email addresses give helpful error message"""
         data = {'email': 'unknown@example.com'}
-        mock_basket.side_effect = basket.BasketException(status_code=404,
-                                                  code=basket.errors.BASKET_UNKNOWN_EMAIL)
+        mock_basket.side_effect = basket.BasketException(
+            status_code=404, code=basket.errors.BASKET_UNKNOWN_EMAIL)
         rsp = self.client.post(self.url, data)
         self.assertTrue(mock_basket.called)
         self.assertEqual(200, rsp.status_code)
@@ -668,7 +651,7 @@ class TestNewsletterSubscribe(TestCase):
         resp = self.ajax_request(data)
         resp_data = json.loads(resp.content)
         self.assertFalse(resp_data['success'])
-        self.assertEqual(resp_data['errors'][0], unicode(invalid_email_address))
+        self.assertEqual(resp_data['errors'][0], str(invalid_email_address))
 
     @patch.object(basket, 'subscribe')
     def test_returns_ajax_basket_error(self, subscribe_mock):
@@ -684,7 +667,7 @@ class TestNewsletterSubscribe(TestCase):
         resp = self.ajax_request(data)
         resp_data = json.loads(resp.content)
         self.assertFalse(resp_data['success'])
-        self.assertEqual(resp_data['errors'][0], unicode(general_error))
+        self.assertEqual(resp_data['errors'][0], str(general_error))
 
     def test_shows_normal_form(self):
         """A normal GET should show the form."""

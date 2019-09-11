@@ -15,7 +15,6 @@
     a:link,
     a:visited {
         color: #000;
-        font-weight: bold;
         text-decoration: none;
     }
 
@@ -187,6 +186,8 @@
 // Near-total copy pasta from global-nav.html. TODO: DRY this up
 
 #sub-nav-download-firefox {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
     margin: 7px 0 0;
     opacity: 0;
     transform: translateY(-100px);
@@ -205,9 +206,9 @@
     .download-link:visited {
         @include font-size-small;
         background-color: #fff;
-        border-radius: 100px;
-        border: 2px solid $color-button-green;
-        color: $color-button-green;
+        border-radius: 2px;
+        border: 2px solid $color-button-blue;
+        color: $color-button-blue;
         display: inline-block;
         font-weight: bold;
         padding: .5em 20px;
@@ -221,7 +222,7 @@
         &:hover,
         &:focus,
         &:active {
-            background-color: $color-button-green;
+            background-color: $color-button-blue;
             color: #fff;
             transition: color .1s ease-in-out, background-color .1s ease-in-out;
         }

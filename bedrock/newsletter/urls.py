@@ -56,4 +56,5 @@ urlpatterns = (
     page('newsletter/firefox', 'newsletter/firefox.html'),
     page('newsletter/developer', 'newsletter/developer.html'),
     page('newsletter/country/success', 'newsletter/country_success.html'),
+    page('newsletter/fxa-error', 'newsletter/fxa-error.html'),
 )

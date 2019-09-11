@@ -6,11 +6,13 @@
  * Initialize Protocol language switcher.
  */
 (function() {
-    if (typeof Mozilla === 'undefined' || typeof Mozilla.LangSwitcher === 'undefined') {
+    'use strict';
+
+    if (typeof Mzp === 'undefined' || typeof Mzp.LangSwitcher === 'undefined') {
         return;
     }
 
-    Mozilla.LangSwitcher.init(function(previousLanguage, newLanguage) {
+    Mzp.LangSwitcher.init(function(previousLanguage, newLanguage) {
         window.dataLayer.push({
             'event': 'change-language',
             'languageSelected': newLanguage,

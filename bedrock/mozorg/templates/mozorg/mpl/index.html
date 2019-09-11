@@ -1,45 +1,38 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "mozorg/base-resp.html" %}
+{% extends "mozorg/base.html" %}
 
 {% block page_title %}{{ _('Mozilla Public Licence') }}{% endblock %}
 
 {% block page_desc %}{{ _('About the Licence') }}{% endblock %}
 
-{% block page_css %}
-    {{ css_bundle('mpl') }}
-{% endblock %}
+{% block article %}
+  <h1 class="mzp-c-article-title">Mozilla Public License</h1>
 
-{% block content %}
+  <section>
+    <h2>About the License</h2>
+    <p>Mozilla is the custodian of the <a href="{{ url('mozorg.mpl.2.0.index') }}">Mozilla Public License</a> ("MPL"), an <a href="http://www.opensource.org/licenses/MPL-2.0">open source</a>/<a href="http://www.gnu.org/licenses/license-list.html#MPL-2.0">free software</a> license.</p>
+    <p>The current version of the license is MPL 2.0 (<a href="{{ url('mozorg.mpl.2.0.index') }}">html</a> | <a href="{{ static('MPL/2.0/index.txt') }}">plain text</a>). If you want to use or distribute code licensed under the MPL 2.0 and have questions about it, you may want to read the <a href="{{ url('mozorg.mpl.2.0.faq') }}">FAQ</a>.</p>
+    <h3>MPL 2.0 Revision Process</h3>
+    <p>The release of MPL 2.0 was the result of a two year process that revised <a href="{{ url('mozorg.mpl.1.1.index') }}">MPL 1.1</a>. A <a href="{{ url('mozorg.mpl.2.0.revision-faq') }}">Revision FAQ</a> documents this process, and explains the most significant changes made.</a></p>
+    <h3>Historical Documents</h3>
+    <p>Various <a href="{{ url('mozorg.mpl.historical') }}">historical documents</a> relating to the Mozilla and Netscape Public Licenses are available, including deprecated versions of the license such as MPL 1.1.</p>
+  </section>
 
-<div id="main-content">
-    <h1>Mozilla Public License</h1>
+  <section>
+    <h2>Mozilla Licensing Information</h2>
+    <p>The Mozilla Project is only one of many users of the MPL, but because many people come to this page looking for information about Mozilla's open source licensing policies and practices, we've provided the information below as a reference.
+    <h3>Correctly Licensing New Source Code</h3>
+    <p>Any new code checked into Mozilla's source repositories needs to comply with Mozilla's source code <a href="{{ url('mozorg.mpl.license-policy') }}">licensing policy</a>. Please use the <a href="{{ url('mozorg.mpl.headers.index') }}">appropriate header text</a> at the top of each file.</p>
+    <h3>Licenses For Existing Source Code</h3>
+    <p>Most Mozilla software projects use the MPL, but some have different terms. Detailed information on the licensing of existing code can be found by inspecting its license headers, or by visiting the license information page in the relevant Mozilla software.</p>
+    <p>For information on how other things are licensed, including Mozilla's trademarks and websites, see our <a href="{{ url('foundation.licensing') }}">general licensing information page</a>.</p>
+  </section>
 
-    <section>
-        <h2>About the License</h2>
-        <p>Mozilla is the custodian of the <a href="{{ url('mozorg.mpl.2.0.index') }}">Mozilla Public License</a> ("MPL"), an <a href="http://www.opensource.org/licenses/MPL-2.0">open source</a>/<a href="http://www.gnu.org/licenses/license-list.html#MPL-2.0">free software</a> license.</p>
-        <p>The current version of the license is MPL 2.0 (<a href="{{ url('mozorg.mpl.2.0.index') }}">html</a> | <a href="{{ static('MPL/2.0/index.txt') }}">plain text</a>). If you want to use or distribute code licensed under the MPL 2.0 and have questions about it, you may want to read the <a href="{{ url('mozorg.mpl.2.0.faq') }}">FAQ</a>.</p>
-        <h3>MPL 2.0 Revision Process</h3>
-        <p>The release of MPL 2.0 was the result of a two year process that revised <a href="{{ url('mozorg.mpl.1.1.index') }}">MPL 1.1</a>. A <a href="{{ url('mozorg.mpl.2.0.revision-faq') }}">Revision FAQ</a> documents this process, and explains the most significant changes made.</a></p>
-        <h3>Historical Documents</h3>
-        <p>Various <a href="{{ url('mozorg.mpl.historical') }}">historical documents</a> relating to the Mozilla and Netscape Public Licenses are available, including deprecated versions of the license such as MPL 1.1.</p>
-    </section>
-
-    <section>
-        <h2>Mozilla Licensing Information</h2>
-        <p>The Mozilla Project is only one of many users of the MPL, but because many people come to this page looking for information about Mozilla's open source licensing policies and practices, we've provided the information below as a reference.
-        <h3>Correctly Licensing New Source Code</h3>
-        <p>Any new code checked into Mozilla's source repositories needs to comply with Mozilla's source code <a href="{{ url('mozorg.mpl.license-policy') }}">licensing policy</a>. Please use the <a href="{{ url('mozorg.mpl.headers.index') }}">appropriate header text</a> at the top of each file.</p>
-        <h3>Licenses For Existing Source Code</h3>
-        <p>Most Mozilla software projects use the MPL, but some have different terms. Detailed information on the licensing of existing code can be found by inspecting its license headers, or by visiting the license information page in the relevant Mozilla software.</p>
-        <p>For information on how other things are licensed, including Mozilla's trademarks and websites, see our <a href="{{ url('foundation.licensing') }}">general licensing information page</a>.</p>
-    </section>
-
-    <section>
-        <h2>Questions?</h2>
-        <p>If, after reading all the above carefully (particularly the <a href="{{ url('mozorg.mpl.2.0.faq') }}">FAQ</a>) you have a further question about the MPL or the licensing terms of Mozilla project code, please send it to <a href="mailto:licensing@mozilla.org">licensing@mozilla.org</a>.
-    </section>
-</div>
+  <section>
+    <h2>Questions?</h2>
+    <p>If, after reading all the above carefully (particularly the <a href="{{ url('mozorg.mpl.2.0.faq') }}">FAQ</a>) you have a further question about the MPL or the licensing terms of Mozilla project code, please send it to <a href="mailto:licensing@mozilla.org">licensing@mozilla.org</a>.
+  </section>
 {% endblock %}

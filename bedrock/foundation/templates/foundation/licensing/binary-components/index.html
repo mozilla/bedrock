@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "foundation/base-resp.html" %}
+{% extends "foundation/base.html" %}
 
 {% block page_title %}{{ _('Mozilla Licensing Policies - Binary Components') }}{% endblock %}
 
@@ -11,7 +11,7 @@
   <p>{{ _('Binary Components') }}</p>
 {% endblock %}
 
-{% block article %}
+{% block article_content %}
   <p>{% trans %}Mozilla is and remains irrevocably committed to making
       free and open source software. We see this as the best way to advance
       our mission of preserving and promoting the open web. However, we also
@@ -42,7 +42,7 @@
   <p>{% trans %}Some of the key factors in making such a decision include:
   {% endtrans %}</p>
 
-  <ul>
+  <ul class="mzp-u-list-styled">
     <li>{% trans %}Whether the code provides OS level functionality that would
         normally be in the OS or which we have reason to believe will be
         there in the future;
@@ -82,4 +82,4 @@
       free to contact <a href="{{ email }}">licensing@mozilla.org</a>.
     {% endtrans %}
   </p>
-{% endblock article %}
+{% endblock %}

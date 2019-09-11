@@ -1,0 +1,242 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+
+{# Billboard: https://protocol.mozilla.org/patterns/organisms/billboard.html #}
+{% macro billboard(title, ga_title, desc, link_cta, link_url, image_url, include_highres_image=False, reverse=False, heading_level=2) -%}
+<section class="mzp-c-billboard {% if reverse %}mzp-l-billboard-left{% else %}mzp-l-billboard-right{% endif %}">
+  <div class="mzp-c-billboard-image-container">
+    {% set image = image_url if include_highres_image else 'img/' + image_url %}
+    {% if include_highres_image %}
+      {{ high_res_img(image, {'alt': '', 'class': 'mzp-c-billboard-image', 'width': '346', 'height': '346'}) }}
+    {% else %}
+      <img src="{{ static(image) }}" class="mzp-c-billboard-image" width="346" height="346" alt="">
+    {% endif %}
+  </div>
+  <div class="mzp-c-billboard-content">
+    <div class="mzp-c-billboard-content-container">
+      <div class="mzp-c-billboard-content-inner">
+        <h{{ heading_level }} class="mzp-c-billboard-title">{{ title }}</h{{ heading_level }}>
+        <p class="mzp-c-billboard-desc">{{ desc }}</p>
+        <a class="mzp-c-cta-link" href="{{ link_url }}" data-link-name="{{ ga_title }}" data-link-type="link">{{ link_cta }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+{%- endmacro %}
+
+{# Hero: https://protocol.mozilla.org/patterns/organisms/hero.html #}
+{% macro hero(title, desc=None, class=None, include_cta=False, heading_level=2, image_url=None, include_highres_image=False, image_alt='') -%}
+<section class="mzp-c-hero{% if class %} {{ class }}{% endif %}{%if image_url%} mzp-has-image{% endif %}">
+  <div class="mzp-l-content">
+    <div class="mzp-c-hero-body">
+      <h{{ heading_level }} class="mzp-c-hero-title">{{ title }}</h{{ heading_level }}>
+      {% if desc %}
+      <div class="mzp-c-hero-desc">
+        <p>{{ desc }}</p>
+      </div>
+      {% endif %}
+      {% if include_cta %}
+        {{ caller() }}
+      {% endif %}
+    </div>
+  </div>
+  {% if image_url %}
+  <div class="mzp-c-hero-image">
+    {% set image = image_url if include_highres_image else 'img/' + image_url %}
+    {% if include_highres_image %}
+      {{ high_res_img(image, {'alt': image_alt}) }}
+    {% else %}
+      <img src="{{ static(image) }}" alt="">
+    {% endif %}
+  </div>
+  {% endif %}
+</section>
+{%- endmacro %}
+
+
+{# Call Out: https://protocol.mozilla.org/patterns/organisms/call-out.html#call-out #}
+{% macro call_out(title, desc=None, class=None, include_cta=False, heading_level=2) -%}
+<section class="mzp-c-call-out {% if class %}{{ class }}{% endif %}">
+  <div class="mzp-l-content">
+    <h{{ heading_level }} class="mzp-c-call-out-title">{{ title }}</h{{ heading_level }}>
+    {% if desc %}
+    <p class="mzp-c-call-out-desc">{{ desc }}</p>
+    {% endif %}
+    {% if include_cta %}
+      {{ caller() }}
+    {% endif %}
+  </div>
+</section>
+{%- endmacro %}
+
+
+{# Call Out (compact): https://protocol.mozilla.org/patterns/organisms/call-out.html#call-out-compact #}
+{% macro call_out_compact(title, desc=None, class=None, heading_level=2) -%}
+<section class="mzp-c-call-out-compact {% if class %}{{ class }}{% endif %}">
+  <div class="mzp-l-content">
+    <div class="mzp-c-call-out-content">
+      <div class="mzp-c-call-out-container">
+        <h{{ heading_level }} class="mzp-c-call-out-title">{{ title }}</h{{ heading_level }}>
+        {% if desc %}
+        <p class="mzp-c-call-out-desc">{{ desc }}</p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="mzp-c-call-out-cta">
+      <div class="mzp-c-call-out-cta-container">
+        {{ caller() }}
+      </div>
+    </div>
+  </div>
+</section>
+{%- endmacro %}
+
+
+{# Card: https://protocol.mozilla.org/patterns/molecules/card.html #}
+{% macro card(title, ga_title, image_url, link_url, desc=None, meta=None, cta=None, tag_label=None, media_icon=None, class=None, heading_level=2, aspect_ratio='mzp-has-aspect-3-2', include_highres_image=False, highres_image_url=None, youtube_id=None) -%}
+<section class="mzp-c-card {% if class %}{{ class }}{% endif %} {% if aspect_ratio %}{{ aspect_ratio }}{% endif %} {% if media_icon %}{{ media_icon }}{% endif %} {% if youtube_id %}has-video-embed{% endif %}">
+  <a class="mzp-c-card-block-link" href="{{ link_url }}" data-link-name="{{ ga_title }}" data-link-type="link" data-link-group="card" {% if tag_label %}data-card-tag="{{ tag_label }}"{% endif %}>
+    <div class="mzp-c-card-media-wrapper">
+      {# The highres_image_url parameter is for passing in a full URL to a highres image. #}
+      {# While the include_highres_image is for allowing the lazy_img helper to figure out the name of the highres version. #}
+      {% if highres_image_url %}
+        {{ lazy_img(image_url=image_url, highres_image_url=highres_image_url, placeholder_url='placeholder.png', optional_attributes={'class': 'mzp-c-card-image'}) }}
+      {% else %}
+        {{ lazy_img(image_url=image_url, include_highres_image=include_highres_image, placeholder_url='placeholder.png', optional_attributes={'class': 'mzp-c-card-image'}) }}
+      {% endif %}
+    </div>
+    <div class="mzp-c-card-content">
+    {% if tag_label %}
+      <div class="mzp-c-card-tag">{{ tag_label }}</div>
+    {% endif %}
+      <h{{ heading_level }} class="mzp-c-card-title"><span>{{ title }}</span></h{{ heading_level }}>
+    {% if desc %}
+      <p class="mzp-c-card-desc">{{ desc }}</p>
+    {% endif %}
+    {% if meta %}
+      <p class="mzp-c-card-meta">{{ meta }}</p>
+    {% endif %}
+    {% if cta %}
+      <p class="mzp-c-card-cta"><span class="mzp-c-card-cta-text">{{ cta }}</span></p>
+    {% endif %}
+    </div>
+  </a>
+  {% if youtube_id %}
+  <div class="mzp-c-card-video-wrapper hidden">
+    <figure class="mzp-c-card-video-content">
+      <div class="ytcontainer-video">
+        <div class="video-container">
+          <div class="video-play" data-id="{{ youtube_id }}"></div>
+        </div>
+      </div>
+      <figcaption>
+        <p>{% if desc %}{{ desc }}{% endif %} <a href="{{ link_url }}">{{ _('Learn more') }}</a></p>
+      </figcaption>
+    </figure>
+  </div>
+  {% endif %}
+</section>
+{%- endmacro %}
+
+{# Content Card: A card built from data in the database #}
+{% macro content_card(name, content_cards=None) -%}
+  {% set card_data = get_content_card(content_cards or page_content_cards, name) -%}
+  {% if card_data -%}
+    {{ card(**card_data) }}
+  {% endif %}
+{%- endmacro %}
+
+{# Feature Card: https://protocol.mozilla.org/patterns/organisms/billboard.html #}
+{% macro feature_card(title, ga_title, image_url, class=None, link_url=None, link_cta=None, include_highres_image=False, aspect_ratio=None, heading_level=2) -%}
+<section class="mzp-c-card-feature {% if aspect_ratio %}{{ aspect_ratio }}{% endif %} {% if class %}{{ class }}{% endif %}">
+  <div class="mzp-c-card-feature-media-wrapper">
+    <div class="mzp-c-card-feature-media">
+      {% set image = image_url if include_highres_image else 'img/' + image_url %}
+      {% if include_highres_image %}
+        {{ high_res_img(image, {'alt': ''}) }}
+      {% else %}
+        <img src="{{ static(image) }}" alt="">
+      {% endif %}
+    </div>
+  </div>
+  <div class="mzp-c-card-feature-content">
+    <div class="mzp-c-card-feature-content-container">
+      <h{{ heading_level }} class="mzp-c-card-feature-title">{{ title }}</h{{ heading_level }}>
+      <div class="mzp-c-card-feature-desc">
+        {{ caller() }}
+      </div>
+      {% if link_url and link_cta %}
+      <a class="mzp-c-cta-link" href="{{ link_url }}" data-link-name="{{ ga_title }}" data-link-type="link">{{ link_cta }}</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{%- endmacro %}
+
+
+{# Picto Card: https://protocol.mozilla.org/patterns/molecules/picto-card.html #}
+{% macro picto_card(title=None, desc=None, class=None, heading_level=2, base_el='li', custom_desc=False) -%}
+<{{ base_el }} class="mzp-c-card-picto {% if class %}{{ class }}{% endif %}">
+  <div class="mzp-c-card-picto-content">
+    {% if title %}<h{{ heading_level }} class="mzp-c-card-picto-title">{{ title }}</h{{ heading_level }}>{% endif %}
+    {% if custom_desc %}
+      <div class="mzp-c-card-picto-desc">{{ caller() }}</div>
+    {% elif desc %}
+      <p class="mzp-c-card-picto-desc">{{ desc }}</p>
+    {% endif %}
+  </div>
+</{{ base_el }}>
+{%- endmacro %}
+
+{# sidemenu_lists() takes an array of lists and makes nav menus
+  The list has the link, a body_id, and a the text to display
+  {% set navigation_bar_client_bounty = [
+      (url('security.client-bug-bounty'),'client-bug-bounty', 'Client Bug Bounty'),
+      (url('security.bug-bounty.faq'), 'faq', 'Frequently Asked Questions'),
+  ] %}
+
+  {% set navigation_bar_web_bounty = [
+      (url('security.web-bug-bounty'), 'web-bug-bounty', 'Web Bug Bounty'),
+      (url('security.bug-bounty.web-eligible-sites'), 'web-eligible-sites', 'Eligible Websites'),
+  ] %}
+
+  {{ sidemenu_lists([navigation_bar_client_bounty, navigation_bar_web_bounty]) }}
+#}
+
+{% macro sidemenu_lists(arr, body_id='') -%}
+  <nav class="mzp-c-sidemenu">
+    <section class="mzp-c-sidemenu-summary mzp-js-toggle" aria-controls="sidebar-menu">
+      <h3 class="mzp-c-sidemenu-label">{{ _('Menu') }}</h3>
+      <ul>
+        <li>{{ arr[0][0][2]|e }}</li>
+        {% for menu in arr %}
+          {% for href, id, caption in menu %}
+            {% if id == body_id and body_id != '' %}
+              <li class="mzp-is-current">{{ caption|e }}</li>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      </ul>
+    </section>
+    <section class="mzp-c-sidemenu-main">
+      {% for menu in arr %}
+
+        <h4 class="mzp-c-sidemenu-title {% if menu[0][1] == body_id and body_id != '' %}mzp-is-current{% endif %}">
+          <a href="{{ menu[0][0]|e }}">{{ menu[0][2]|e }}</a>
+        </h4>
+
+        <ul>
+        {% for href, id, caption in menu %}
+          {% if loop.index > 1 %}
+          <li {% if id == body_id and body_id != '' %}class="mzp-is-current"{% endif %}>
+            <a href="{{ href|e }}">{{ caption|e }}</a>
+          </li>
+          {% endif %}
+        {% endfor %}
+        </ul>
+      {% endfor %}
+    </section>
+  </nav>
+{%- endmacro %}

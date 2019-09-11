@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends 'foundation/base-resp.html' %}
+{% extends 'foundation/base.html' %}
 
 {% block page_title %}{{ _('Mozilla 2006 Financial FAQ') }}{% endblock %}
 
@@ -10,7 +10,7 @@
   {{ _('Mozilla 2006 Financial FAQ') }}
 {% endblock %}
 
-{% block article %}
+{% block article_content %}
   <p>
    {% trans form990='https://static.mozilla.com/foundation/documents/mf-2006-irs-form-990.pdf',
      statement='https://static.mozilla.com/foundation/documents/mf-2006-audited-financial-statement.pdf'
@@ -22,7 +22,7 @@
      Corporation</a>.{% endtrans %}
   </p>
 
-  <dl class="faq">
+  <dl class="mzp-u-list-styled">
     <dt>{% trans %}Your contract with Google ends in November 2008. What happens
     then?{% endtrans %}</dt>
     <dd>

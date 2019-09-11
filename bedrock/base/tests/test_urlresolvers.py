@@ -1,52 +1,43 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls import patterns, url
+from django.urls import re_path
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
+import pytest
 from bedrock.base.urlresolvers import find_supported, reverse, split_path, Prefixer
 from mock import patch, Mock
-from nose.tools import eq_
 
 
-# split_path tests use a test generator, which cannot be used inside of a
-# TestCase class
-def test_split_path():
-    testcases = [
-        # Basic
-        ('en-US/some/action', ('en-US', 'some/action')),
-        # First slash doesn't matter
-        ('/en-US/some/action', ('en-US', 'some/action')),
-        # Nor does capitalization
-        ('En-uS/some/action', ('en-US', 'some/action')),
-        # Unsupported languages return a blank language
-        ('unsupported/some/action', ('', 'unsupported/some/action')),
-    ]
-
-    for tc in testcases:
-        yield check_split_path, tc[0], tc[1]
-
-
-def check_split_path(path, result):
+@pytest.mark.parametrize('path, result', [
+    # Basic
+    ('en-US/some/action', ('en-US', 'some/action')),
+    # First slash doesn't matter
+    ('/en-US/some/action', ('en-US', 'some/action')),
+    # Nor does capitalization
+    ('En-uS/some/action', ('en-US', 'some/action')),
+    # Unsupported languages return a blank language
+    ('unsupported/some/action', ('', 'unsupported/some/action')),
+])
+def test_split_path(path, result):
     res = split_path(path)
-    eq_(res, result)
+    assert res == result
 
 
 # Test urlpatterns
-urlpatterns = patterns('',
-    url(r'^test/$', lambda r: None, name='test.view')
-)
+urlpatterns = [
+    re_path(r'^test/$', lambda r: None, name='test.view')
+]
 
 
-class FakePrefixer(object):
+class FakePrefixer:
     def __init__(self, fix):
         self.fix = fix
 
 
 @patch('bedrock.base.urlresolvers.get_url_prefix')
+@override_settings(ROOT_URLCONF='bedrock.base.tests.test_urlresolvers')
 class TestReverse(TestCase):
-    urls = 'bedrock.base.tests.test_urlresolvers'
-
     def test_unicode_url(self, get_url_prefix):
         # If the prefixer returns a unicode URL it should be escaped and cast
         # as a str object.
@@ -72,7 +63,7 @@ class TestPrefixer(TestCase):
         self.assertFalse('lang' in request.GET)
         self.assertFalse(request.META.get('HTTP_ACCEPT_LANGUAGE'))
         prefixer = Prefixer(request)
-        eq_(prefixer.get_language(), 'en-US')
+        assert prefixer.get_language() == 'en-US'
 
     def test_get_language_returns_best(self):
         """
@@ -83,7 +74,7 @@ class TestPrefixer(TestCase):
         request.META['HTTP_ACCEPT_LANGUAGE'] = 'de, es'
         prefixer = Prefixer(request)
         prefixer.get_best_language = Mock(return_value='de')
-        eq_(prefixer.get_language(), 'de')
+        assert prefixer.get_language() == 'de'
         prefixer.get_best_language.assert_called_once_with('de, es')
 
     @override_settings(LANGUAGE_CODE='en-US')
@@ -96,7 +87,7 @@ class TestPrefixer(TestCase):
         request.META['HTTP_ACCEPT_LANGUAGE'] = 'de, es'
         prefixer = Prefixer(request)
         prefixer.get_best_language = Mock(return_value=None)
-        eq_(prefixer.get_language(), 'en-US')
+        assert prefixer.get_language() == 'en-US'
         prefixer.get_best_language.assert_called_once_with('de, es')
 
     @override_settings(LANGUAGE_URL_MAP={'en-us': 'en-US', 'de': 'de'})
@@ -106,7 +97,7 @@ class TestPrefixer(TestCase):
         """
         request = self.factory.get('/')
         prefixer = Prefixer(request)
-        eq_(prefixer.get_best_language('de, es'), 'de')
+        assert prefixer.get_best_language('de, es') == 'de'
 
     @override_settings(LANGUAGE_URL_MAP={'en-gb': 'en-GB', 'en-us': 'en-US', 'es-ar': 'es-AR'},
                        CANONICAL_LOCALES={'es': 'es-ES', 'en': 'en-US'})
@@ -118,14 +109,14 @@ class TestPrefixer(TestCase):
         """
         request = self.factory.get('/')
         prefixer = Prefixer(request)
-        eq_(prefixer.get_best_language('en'), 'en-US')
-        eq_(prefixer.get_best_language('en-CA'), 'en-US')
-        eq_(prefixer.get_best_language('en-GB'), 'en-GB')
-        eq_(prefixer.get_best_language('en-US'), 'en-US')
-        eq_(prefixer.get_best_language('es'), 'es-ES')
-        eq_(prefixer.get_best_language('es-AR'), 'es-AR')
-        eq_(prefixer.get_best_language('es-CL'), 'es-ES')
-        eq_(prefixer.get_best_language('es-MX'), 'es-ES')
+        assert prefixer.get_best_language('en') == 'en-US'
+        assert prefixer.get_best_language('en-CA') == 'en-US'
+        assert prefixer.get_best_language('en-GB') == 'en-GB'
+        assert prefixer.get_best_language('en-US') == 'en-US'
+        assert prefixer.get_best_language('es') == 'es-ES'
+        assert prefixer.get_best_language('es-AR') == 'es-AR'
+        assert prefixer.get_best_language('es-CL') == 'es-ES'
+        assert prefixer.get_best_language('es-MX') == 'es-ES'
 
     @override_settings(LANGUAGE_URL_MAP={'en-us': 'en-US'})
     def test_get_best_language_no_match(self):
@@ -135,17 +126,7 @@ class TestPrefixer(TestCase):
         """
         request = self.factory.get('/')
         prefixer = Prefixer(request)
-        eq_(prefixer.get_best_language('de'), None)
-
-    @override_settings(LANGUAGE_URL_MAP={'en-us': 'en-US'})
-    def test_get_best_language_handles_parse_accept_lang_header_error(self):
-        """
-        Should return None despite error raised by bug described in
-        https://code.djangoproject.com/ticket/21078
-        """
-        request = self.factory.get('/')
-        prefixer = Prefixer(request)
-        eq_(prefixer.get_best_language('en; q=1,'), None)
+        assert prefixer.get_best_language('de') is None
 
     @override_settings(LANGUAGE_URL_MAP={'en-ar': 'en-AR', 'en-gb': 'en-GB', 'en-us': 'en-US'},
                        CANONICAL_LOCALES={'en': 'en-US'})

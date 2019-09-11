@@ -6,12 +6,14 @@
 
 {% block page_title %}{{ _('The State of Mozilla Annual Report - Opportunities') }}{% endblock %}
 
+{% set body_id = 'opportunities' %}
+
 {% block article_header %}
   <h2>{{ _('The State of Mozilla Annual Report, 2010') }}</h2>
   <p>{{ _('Opportunities and Challenges') }}</p>
 {% endblock %}
 
-{% block article %}
+{% block article_content %}
   <div class="content-block">
 
     <div class="img-right">
@@ -101,7 +103,7 @@
 
   <p class="return-to-top"><a href="#">{{ _('Return to top') }}</a></p>
 
-  <ul class="nav-paging bottom">
+  <ul class="mzp-u-list-styled">
     <li class="prev"><a href="{{ url('foundation.annualreport.2010.index') }}">{{ _('Welcome') }}</a></li>
     <li class="next"><a href="{{ url('foundation.annualreport.2010.people') }}">{{ _('People') }}</a></li>
   </ul>

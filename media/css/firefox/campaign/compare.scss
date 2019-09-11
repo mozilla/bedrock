@@ -1,0 +1,267 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/call-out';
+@import '../../../protocol/css/components/hero';
+
+.section-title {
+    @include text-display-sm;
+}
+
+.section-intro {
+    text-align: center;
+
+    @media #{$mq-md} {
+        padding: $layout-sm 0;
+    }
+
+    .mzp-l-content {
+        max-width: $content-md;
+    }
+}
+
+.section-outro {
+    @include text-body-lg;
+    text-align: center;
+    padding: $spacing-lg 0;
+
+    .mzp-l-content {
+        max-width: $content-lg;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    @media #{$mq-md} {
+        padding: $layout-lg 0;
+    }
+
+    @media #{$mq-lg} {
+        padding: $layout-xl 0;
+    }
+}
+
+.secondary-cta {
+    @media #{$mq-md} {
+        .mzp-c-call-out-cta-container {
+            padding-top: $spacing-xl;
+        }
+    }
+
+    @media #{$mq-lg} {
+        padding: $layout-sm 0;
+    }
+}
+
+.compare {
+    .mzp-c-hero.mzp-t-firefox:after {
+        display: none;
+    }
+
+    .section-title {
+        text-align: center;
+    }
+
+    .footnote {
+        color: $color-gray-50;
+        text-align: center;
+    }
+}
+
+//* ====================================================================== */
+//  Tables
+
+$image-width: 21px;
+$image-top-height: 19px;
+$image-bottom-height: 28px;
+
+.c-compare-table {
+    width: 100%;
+    max-width: 516px;
+    margin: ($layout-md - $image-top-height) auto ($layout-xl - $image-bottom-height) auto;
+
+    th {
+        font-weight: normal;
+        text-align: left;
+    }
+
+    th,
+    td {
+        padding: $spacing-sm;
+    }
+
+    td {
+        text-align: center;
+    }
+
+    thead th {
+        text-align: center;
+    }
+
+    tbody {
+        tr {
+            background-color: #fff;
+
+            &:nth-child(odd) {
+                background-color: #f7f7f7;
+            }
+        }
+
+        td {
+            width: 80px;
+
+            span {
+                display: block;
+            }
+        }
+    }
+}
+
+
+@media (max-width: $screen-sm - 1px) {
+    @supports (display: grid) {
+        .c-compare-table {
+            thead tr,
+            tbody tr {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            thead td {
+                display: none;
+            }
+
+            tbody {
+                th {
+                    grid-column-start: 1;
+                    grid-column-end: 3;
+                    text-align: center;
+                    font-weight: bold;
+                }
+
+                td {
+                    width: auto;
+                }
+            }
+        }
+    }
+}
+
+
+
+@media #{$mq-sm} {
+    .c-compare-table {
+        th,
+        td {
+            padding: $spacing-sm $spacing-lg;
+        }
+    }
+
+    .c-compare-highlight {
+        position: relative;
+
+        &:before,
+        &:after {
+            background-image: url('/media/img/firefox/new/compare/table/highlight-white-left.png');
+            content: '';
+            display: block;
+            position: absolute;
+            right: 100%;
+            top: 0;
+            bottom: 0;
+            width: $image-width;
+            background-size: $image-width;
+        }
+
+        &:after {
+            background-image: url('/media/img/firefox/new/compare/table/highlight-white-right.png');
+            right: auto;
+            left: 100%;
+        }
+
+        tbody tr:nth-child(odd) &:before {
+            background-image: url('/media/img/firefox/new/compare/table/highlight-grey-left.png');
+        }
+
+        tbody tr:nth-child(odd) &:after {
+            background-image: url('/media/img/firefox/new/compare/table/highlight-grey-right.png');
+        }
+    }
+
+    .c-compare-first {
+        th,
+        td {
+            padding-top: $image-top-height + $spacing-md;
+        }
+
+        .c-compare-highlight {
+            background: url('/media/img/firefox/new/compare/table/highlight-top.png') top left / 3px $image-width repeat-x;
+
+            &:before {
+                background: url('/media/img/firefox/new/compare/table/highlight-top-left.png') top left / $image-width no-repeat,
+                            url('/media/img/firefox/new/compare/table/highlight-white-left.png') top left / $image-width repeat-y;
+            }
+
+            &:after {
+                background: url('/media/img/firefox/new/compare/table/highlight-top-right.png') top right / $image-width no-repeat,
+                            url('/media/img/firefox/new/compare/table/highlight-white-right.png') top right / $image-width repeat-y;
+            }
+        }
+    }
+
+    .c-compare-last {
+        th,
+        td {
+            padding-bottom: $image-bottom-height + $spacing-md;
+        }
+
+        .c-compare-highlight {
+            background: url('/media/img/firefox/new/compare/table/highlight-bottom.png') bottom left / 3px $image-bottom-height repeat-x;
+
+            &:before {
+                background: url('/media/img/firefox/new/compare/table/highlight-bottom-left.png') bottom left / $image-width no-repeat,
+                            url('/media/img/firefox/new/compare/table/highlight-white-left.png') bottom left / $image-width repeat-y;
+            }
+
+            &:after {
+                background: url('/media/img/firefox/new/compare/table/highlight-bottom-right.png') bottom right / $image-width no-repeat,
+                            url('/media/img/firefox/new/compare/table/highlight-white-right.png') bottom right / $image-width repeat-y;
+            }
+        }
+    }
+
+    tbody tr:nth-child(odd).c-compare-last {
+        background-image: linear-gradient(#fff, #fff);
+        background-repeat: repeat-x;
+        background-size: $image-bottom-height $image-bottom-height;
+        background-position: bottom left;
+
+        .c-compare-highlight {
+            background-image: url('/media/img/firefox/new/compare/table/highlight-bottom.png');
+
+            &:before {
+                background-image: url('/media/img/firefox/new/compare/table/highlight-bottom-left.png'),
+                                  url('/media/img/firefox/new/compare/table/highlight-grey-left.png');
+            }
+
+            &:after {
+                background-image: url('/media/img/firefox/new/compare/table/highlight-bottom-right.png'),
+                                  url('/media/img/firefox/new/compare/table/highlight-grey-right.png');
+            }
+        }
+    }
+}
+
+@media #{$mq-md} {
+    .c-compare-table {
+        tbody td {
+            width: 104px;
+        }
+    }
+}

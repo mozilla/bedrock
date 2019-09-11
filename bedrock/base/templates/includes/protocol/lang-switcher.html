@@ -3,15 +3,16 @@
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
  {% if translations|length > 1 %}
- <form id="lang_form" class="mzp-c-language-switcher" method="get" action="#">
-   <label for="mzp-c-language-switcher-select">{{ _('Language') }}</label>
-   <select id="mzp-c-language-switcher-select" class="mzp-c-language-switcher-select" name="lang" dir="ltr">
-     {% for code, label in translations|dictsort -%}
-       {# Don't escape the label as it may include entity references
-        # like "Português (do&nbsp;Brasil)" (Bug 861149) #}
-       <option lang="{{ code }}" value="{{ code }}"{{ code|ifeq(LANG, " selected") }}>{{ label|safe|replace('English (US)', 'English') }}</option>
-     {% endfor %}
-   </select>
-   <button type="submit">{{ _('Go') }}</button>
+ <form id="lang_form" class="mzp-c-language-switcher mzp-t-dark" method="get" action="#">
+  <a class="mzp-c-language-switcher-link" href="{{ url('mozorg.locales') }}">{{ _('Language') }}</a>
+  <label for="page-language-select">{{ _('Language') }}</label>
+  <select id="page-language-select" class="mzp-js-language-switcher-select" name="lang" dir="ltr">
+    {% for code, label in translations|dictsort -%}
+      {# Don't escape the label as it may include entity references
+       # like "Português (do&nbsp;Brasil)" (Bug 861149) #}
+      <option lang="{{ code }}" value="{{ code }}"{{ code|ifeq(LANG, " selected") }}>{{ label|safe|replace('English (US)', 'English') }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit">{{ _('Go') }}</button>
  </form>
  {% endif %}

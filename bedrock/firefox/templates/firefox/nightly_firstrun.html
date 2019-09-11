@@ -4,7 +4,9 @@
 
 {# firstrun for nightlies #}
 
-{% extends "/firefox/base-resp.html" %}
+{% from "macros-protocol.html" import hero, picto_card with context %}
+
+{% extends "/firefox/base/base-protocol.html" %}
 
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
@@ -25,56 +27,59 @@
 
 {% block body_id %}firefox-firstrun{% endblock %}
 
-{% block site_header_nav %}{% endblock %}
-{% block site_header_logo %}{% endblock %}
+{% block site_header %}{% endblock %}
+{% block global_nav %}{% endblock %}
 
 {% block content %}
-
 <main role="main">
-  <header id="firstrun-header">
-    <h1>{{ _('Thank you for using Firefox Nightly') }}</h1>
-    <h2>{{ _('Choose an area to get involved below and help make Firefox better for users everywhere') }}</h2>
-  </header>
-  <div id="nightly-box">
-    <section class="blue-box test">
-      <header class="title">
-        <h4>{{ _('Test') }}</h4>
-      </header>
-      <div class="content">
-        <p class="description">
-          {{ _('Find and file bugs and generally make sure things work as they should.') }}
-        </p>
-        <a rel="external" data-element-type="button" href="{{ _('https://quality.mozilla.org/get-involved/') }}" class="button">{{ _('Start testing') }}</a>
-      </div>
-    </section>
-    <section class="blue-box code">
-      <header class="title">
-        <h4>{{ _('Code') }}</h4>
-      </header>
-      <div class="content">
-        <p class="description">
-          {{ _('File bugs and work on the building blocks of the Firefox browser.') }}
-        </p>
-        <a rel="external" data-element-type="button" href="{{ _('https://developer.mozilla.org/docs/Introduction') }}" class="button">{{ _('Start coding') }}</a>
-      </div>
-    </section>
-    <section class="blue-box localize">
-      <header class="title">
-        <h4>{{ _('Localize') }}</h4>
-      </header>
-      <div class="content">
-        <p class="description">
-          {{ _('Make Firefox available (and better) in more languages around the world.') }}
-        </p>
-        <a rel="external" data-element-type="button" href="{{ _('https://wiki.mozilla.org/L10n:Contribute') }}" class="button">{{ _('Start localizing') }}</a>
-      </div>
-    </section>
-  </div>
+  {{ hero(
+    title=_('Thank you for using Firefox Nightly'),
+    class='mzp-t-dark mzp-t-product-nightly main-header',
+    heading_level=1
+  )}}
+
+  <section class="contribute">
+    <div class="mzp-l-content">
+      <h2 class="contribute-title">{{ _('Choose an area to get involved below and help make Firefox better for users everywhere') }}</h2>
+      <ul class="mzp-l-card-third mzp-t-dark">
+        {% call picto_card(
+          title=_('Test'),
+          class='test',
+          heading_level=3,
+          custom_desc=True
+        ) %}
+          <p>{{ _('Find and file bugs and generally make sure things work as they should.') }}</p>
+          <a href="https://quality.mozilla.org/get-involved/" class="mzp-c-button mzp-t-product mzp-t-dark" data-cta-type="button" data-cta-text="Start testing">{{ _('Start testing') }}</a>
+        {% endcall %}
+
+        {% call picto_card(
+          title=_('Code'),
+          class='code',
+          heading_level=3,
+          custom_desc=True
+        ) %}
+          <p>{{ _('File bugs and work on the building blocks of the Firefox browser.') }}</p>
+          <a href="https://developer.mozilla.org/docs/Introduction" class="mzp-c-button mzp-t-product mzp-t-dark" data-cta-type="button" data-cta-text="Start coding">{{ _('Start coding') }}</a>
+        {% endcall %}
+
+        {% call picto_card(
+          title=_('Localize'),
+          class='localize',
+          heading_level=3,
+          custom_desc=True
+        ) %}
+          <p>{{ _('Make Firefox available (and better) in more languages around the world.') }}</p>
+          <a href="{{ _('https://wiki.mozilla.org/L10n:Contribute') }}" class="mzp-c-button mzp-t-product mzp-t-dark" data-cta-type="button" data-cta-text="Start localizing">{{ _('Start localizing') }}</a>
+        {% endcall %}
+      </ul>
+    </div>
+  </section>
 
   {% if not request.locale.startswith('en') %}
     {% if l10n_has_tag('promo_locale') %}
     {# The following block is entirely defined by locales, and the placeholder in en-US here will never be exposed to production #}
-      <div class="blue-box l10n">
+    <div class="mzp-l-content">
+      <div class="locale-specific">
         {% l10n promo_locale 20150101 %}
           <h3>Learn more about your local Mozilla community</h3>
           <ul class="unstyled">
@@ -82,6 +87,7 @@
           </ul>
         {% endl10n %}
       </div>
+    </div>
     {% endif %}
   {% endif %}
 </main>

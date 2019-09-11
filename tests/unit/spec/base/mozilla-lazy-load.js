@@ -3,7 +3,7 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect, sinon */
+/* global sinon */
 
 describe('mozilla-lazy-load.js', function() {
 
@@ -96,7 +96,7 @@ describe('mozilla-lazy-load.js', function() {
                         src: '/foo/image1.png',
                         srcset: '/foo/image1.png 2x'
                     },
-                    onload: function() {}
+                    onload: function() {} // eslint-disable-line no-empty-function
                 }
             },
             {
@@ -107,7 +107,7 @@ describe('mozilla-lazy-load.js', function() {
                         src: '/foo/image2.png',
                         srcset: '/foo/image2.png 2x'
                     },
-                    onload: function() {}
+                    onload: function() {} // eslint-disable-line no-empty-function
                 }
             },
             {
@@ -118,12 +118,14 @@ describe('mozilla-lazy-load.js', function() {
                         src: '/foo/image3.png',
                         srcset: '/foo/image3.png 2x'
                     },
-                    onload: function() {}
+                    onload: function() {} // eslint-disable-line no-empty-function
                 }
             }
         ];
 
-        var observer = { unobserve: function() {} };
+        var observer = {
+            unobserve: function() {} // eslint-disable-line no-empty-function
+        };
 
         it('should lazy load images only when they intersect', function() {
             spyOn(observer, 'unobserve');

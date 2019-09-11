@@ -31,9 +31,14 @@ Contents
    redirects
    javascript-libs
    newsletters
+   content-cards
    tabzilla
    uitour
    send-to-device
    firefox-accounts
+   funnelcake
    abtest
    analytics
+   stub-attribution
+   architectural-decisions
+   browser-support

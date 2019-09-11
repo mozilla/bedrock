@@ -1,0 +1,158 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "legal/docs-base.html" %}
+
+{% block page_title %}{{ _('Firefox Private Network Terms of Service') }}{% endblock %}
+
+{% block article %}
+  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+    <div itemprop="articleBody" class="article-body">
+      <h1>{{ _('Firefox Private Network Terms of Service') }}</h1>
+      <p><time>{{ _('Version 1.0, effective September 10, 2019') }}</time></p>
+
+      <p>
+      {% trans %}
+        Firefox Private Network (“Service”) is an experimental free offering, currently limited to the United States.
+        Please read these Terms of Service carefully because they explain important information about your use of
+        the Service.
+      {% endtrans %}
+      </p>
+
+      <p>
+      {% trans %}
+        If you activate this Service, Firefox will encrypt the web addresses you visit and the data you send to most
+        websites. It sends this encrypted information and your IP address to our trusted partner Cloudflare, keeping
+        the data private from others like your Internet Service Provider, including public wifi. Cloudflare will also
+        replace your actual IP address with a Cloudflare IP address to keep your personal IP address private from
+        others, such as the websites you visit and your Internet Service Provider.
+      {% endtrans %}
+      </p>
+
+      <h2>{{ _('You Must Be Eligible to Use the Service') }}</h2>
+
+      <p>{{ _('You must be in the United States to download the software necessary to use the Service.') }}</p>
+
+      <p>
+      {% trans terms=url('legal.terms.services'), privacy=url('privacy.notices.firefox') %}
+        A Firefox Account is required to use the Service. To create a Firefox Account, you will also need to agree
+        to the <a href="{{ terms }}">Terms of Service</a> and <a href="{{ privacy }}">Privacy Notice</a> for your
+        Firefox Account.
+      {% endtrans %}
+      </p>
+
+      <h2>{{ _('Your Privacy') }}</h2>
+
+      <p>
+      {% trans privacy=url('privacy.notices.firefox-private-network') %}
+        Your Privacy. The Firefox Private Network <a href="{{ privacy }}">Privacy Notice</a> explains what information
+        is sent when you use the Service and how we handle and share that information. You agree to give Mozilla and
+        Cloudflare the right to process your data in accordance with this Privacy Notice.
+      {% endtrans %}
+      </p>
+
+      <h2>{{ _('Permissions Necessary to Provide the Service') }}</h2>
+
+      <p>
+      {% trans condition=url('legal.terms.acceptable-use') %}
+        <strong>Your Use of the Service.</strong> You give Mozilla and Cloudflare all rights to operate the Service.
+        You also agree that  your use of the Service will comply with Mozilla’s
+        <a href="{{ conditions }}">Conditions of Use</a>. You are solely responsible for the Content you transmit
+        and the consequences. To learn more about how the Service works, you can see Mozilla’s source code here.
+      {% endtrans %}
+      </p>
+
+      <p>
+      {% trans %}
+        <strong>Your Feedback and Suggestions.</strong> If you give Mozilla any ideas, suggestions, or feedback
+        about Firefox Accounts or the services you use through your account, you give Mozilla permission to use
+        them for free and without any additional obligations.
+      {% endtrans %}
+      </p>
+
+      <p>
+      {% trans %}
+        <strong>Mozilla’s Intellectual Property:</strong> Neither Mozilla nor its licensors grant you any
+        intellectual property rights in the Service that are not specifically stated in these Terms. For example,
+        these Terms do not provide the right to use any copyrights, trademarks, or other distinctive brand
+        features of Mozilla or its licensors. The Mozilla software is distributed under and subject to the current
+        version of the Mozilla Public License, or other similarly permissive licenses.
+      {% endtrans %}
+      </p>
+
+      <h2>{{ _('You Are Responsible For the Consequences of Your Use of the Service') }}</h2>
+
+      <p>
+      {% trans %}
+        You assure Mozilla that the content you access or upload with the Service will not infringe anyone’s rights.
+      {% endtrans %}
+      </p>
+
+      <p>
+      {% trans %}
+        You agree that Mozilla will not be liable in any way for any inability to use the Service, for any limitations
+        of the service, or for any claim arising out of these terms. Mozilla specifically disclaims the following:
+        Indirect, special, incidental, consequential, or exemplary damages Direct or indirect damages for loss of
+        goodwill, work stoppage, lost profits, loss of data, or computer malfunction. Any liability for Mozilla under
+        this agreement is limited to $500.
+      {% endtrans %}
+      </p>
+
+      <p>
+      {% trans %}
+        You agree to indemnify and hold Mozilla harmless for any liability or claim that comes results from your
+        participation in Firefox Accounts.
+      {% endtrans %}
+      </p>
+
+      <p>
+      {% trans %}
+        Mozilla provides the service “as is.” Mozilla specifically disclaims any legal guarantees or warranties
+        such as “merchantability,” “fitness for a particular purpose,” “non-infringement,” and warranties arising
+        out of a course of dealing, usage, or trade.
+      {% endtrans %}
+      </p>
+
+      <h2>{{ _('These Terms Can be Updated or Ended Under California Law') }}</h2>
+
+      <p>
+      {% trans %}
+        <strong>Mozilla Can Update These Terms.</strong> Every once in a while, Mozilla may decide to update these
+        Terms. We will post the updated Terms online. We will take your continued use of the Service as acceptance
+        of such changes. We will post an effective date at the top of this page to make it clear when we made out
+        most recent update.
+      {% endtrans %}
+      </p>
+
+      <p>
+      {% trans %}
+        <strong>Termination.</strong> These Terms apply until either you or Mozilla decide to end them. You can
+        choose to end them at any time for any reason by stopping your use of the Service.Mozilla can suspend or
+        end anyone’s access to the Service at any time for any reason. If we decide to suspend or end your access,
+        we will try to notify you at the email address associated with your account or the next time you attempt
+        to access your Account.
+      {% endtrans %}
+      </p>
+
+      <p>
+      {% trans %}
+        <strong>Choice of Law.</strong> California law applies to this contract, except for California’s conflict
+        of law. If there is any conflict between this English version of the contract and a translation, this
+        English version applies.
+      {% endtrans %}
+      </p>
+
+      <h3>{{ _('Contact Mozilla:') }}</h3>
+
+      <address>
+        Mozilla Corporation</br>
+        Attn: Mozilla – Legal Notices</br>
+        331 E. Evelyn Ave.,</br>
+        Mountain View, CA 94041
+      </address>
+
+      <p><a href="mailto:legal-notices@mozilla.com">legal-notices@mozilla.com</a></p>
+    </div>
+  </article>
+{% endblock %}

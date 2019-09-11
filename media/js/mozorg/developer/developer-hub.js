@@ -7,6 +7,8 @@
 
 // YouTube API hook has to be in global scope
 function onYouTubeIframeAPIReady() {
+    'use strict';
+
     Mozilla.firstRunOnYouTubeIframeAPIReady();
 }
 

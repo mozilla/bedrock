@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros.html" import fxa_link_fragment, fxa_email_form with context %}
+
 {% add_lang_files "firefox/new/quantum" %}
 
 {% extends "firefox/new/base.html" %}
@@ -12,15 +14,7 @@
   {{ css_bundle('firefox_new_scene1') }}
 {% endblock %}
 
-{% block experiments %}
-  {% if switch('experiment_firefox_new_scene1_fx', ['en-US']) %}
-    {% if v != 'y' %}
-      {{ js_bundle('firefox_new_scene1_fx_experiment') }}
-    {% elif v == 'y' %}
-      {{ js_bundle('firefox_new_scene1_fx_experiment_y') }}
-    {% endif %}
-  {% endif %}
-{% endblock %}
+{% block experiments %}{% endblock %}
 
 {% block body_id %}firefox-new-scene1{% endblock %}
 
@@ -36,14 +30,17 @@
 </div>
 {% endblock %}
 
-{% block main_content %}
+{% block main_title %}
 <header>
   <h1>{{ _('The new <strong>Firefox</strong>') }}</h1>
   <h2>{{ _('Fast for good.') }}</h2>
 </header>
+{% endblock %}
 
-<div class="main-download">
+{% block main_content %}
+<div class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
   <div class="main-cta-wrapper">
+  {% block main_cta %}
     <div class="download-button-wrapper">
       {# **WARNING**
 
@@ -56,13 +53,7 @@
       #}
       {{ download_firefox(alt_copy=_('Download Now'), locale_in_transition=True, download_location='primary cta') }}
     </div>
-
-    <div id="refresh-firefox-wrapper">
-      <div class="refresh-inner-wrapper">
-        <button class="button button-hollow button-light" type="button" id="refresh-firefox" data-interaction="Refresh Firefox" data-element-action="Firefox Desktop" data-button-name="Refresh Firefox" data-cta-position="Primary">{{ _('Refresh Firefox') }}</button>
-        <small><a rel="external" href="https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=learn-more-link">{{ _('Learn more') }}</a></small>
-      </div>
-    </div>
+  {% endblock %}
   </div>
 
   <p class="linux-arm-download-instructions">
@@ -70,8 +61,12 @@
   </p>
 
   <ul id="other-platforms-languages-wrapper" class="small-links desktop hidden">
+    {% block small_link %}{% endblock %}
     <li><button id="other-platforms-modal-link" type="button">{{_('Advanced install options & other platforms') }}</button></li>
     <li><a href="{{ url('firefox.all') }}">{{_('Download in another language') }}</a></li>
+  {% if l10n_has_tag('fxnew_account_032019') %}
+    <li><a href="https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fix-problem-link">{{ _('Fix a problem') }}</a></li>
+  {% endif %}
     <li><a rel="external" href="https://support.mozilla.org/products/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
   </ul>
 
@@ -86,19 +81,46 @@
 </div>
 {% endblock %}
 
-{% block additional_content %}
-<aside class="newsletter-container">
+{% block features_content %}
+<div class="features">
   <div class="content">
-    <div id="newsletter-subscribe">
-      <div class="newsletter-title">
-          <h3>{{ _('Keep up with<br> all things Firefox.') }}</h3>
-      </div>
-      <div class="newsletter-form-content">
-        {{ email_newsletter_form(include_title=False, button_class='button button-hollow', spinner_color='#fff') }}
+    <ul>
+      <li class="faster">
+        <h3>{{_('2x Faster') }}</h3>
+        <p>{{_('The best Firefox ever') }}</p>
+      </li>
+      <li class="lighter">
+        <h3>{{_('Lightweight') }}</h3>
+        <p>{{_('Uses 30% less memory than Chrome') }}</p>
+      </li>
+      <li class="private">
+        <h3>{{_('Powerfully private') }}</h3>
+        {% if l10n_has_tag('truly_removal_2019') %}
+          <p>{{_('Private Browsing with Tracking Protection') }}</p>
+        {% else %}
+          <p>{{_('Truly Private Browsing with Tracking Protection') }}</p>
+        {% endif %}
+      </li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
+
+{% block additional_content %}
+{% block newsletter_embed %}
+  <aside class="newsletter-container">
+    <div class="content">
+      <div id="newsletter-subscribe">
+        <div class="newsletter-title">
+            <h3>{{ _('Keep up with<br> all things Firefox.') }}</h3>
+        </div>
+        <div class="newsletter-form-content">
+          {{ email_newsletter_form(include_title=False, button_class='button button-hollow', spinner_color='#fff') }}
+        </div>
       </div>
     </div>
-  </div>
-</aside>
+  </aside>
+{% endblock %}
 
 <div id="other-platforms">
   <div class="content">
@@ -129,9 +151,36 @@
     </section>
   </div>
 </div>
-{% include 'firefox/includes/schemaorg-app.html' %}
+
+{% if l10n_has_tag('fxnew_account_032019') %}
+<div id="firefox-account">
+  {# L10n: The phrase “Now get everything else Firefox” is in specific reference to a Firefox account, which unlocks access to all our new products and services. #}
+  <h4 class="fxa-title">{{ _('You’ve already got the Firefox browser. Now get everything else Firefox.') }}</h4>
+  <p class="fxa-intro">{{ _('Sync bookmarks, send tabs, save to Pocket and more with a Firefox Account.') }} <a href="{{ url('firefox.accounts') }}">{{ _('Learn more') }}</a></p>
+
+  {{ fxa_email_form(
+    entrypoint='mozilla.org-firefox-new',
+    button_text=_('Get a Firefox Account'),
+    utm_term='existing-users')
+  }}
+
+  <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint='mozilla.org-firefox-new', utm_campaign='fxa-embedded-form') }} class="js-fxa-cta-link" data-cta-type="FxA-Sync">{{ _('Sign In') }}</a></p>
+  {{ download_firefox(dom_id='download-fxa-modal', alt_copy=_('Download Anyway'), button_color='button-hollow button-blue', locale_in_transition=True, download_location='other') }}
+</div>
+{% endif %}
+
+{% block newsletter_modal %}{% endblock %}
+
 {% endblock %}
 
 {% block js %}
   {{ js_bundle('firefox_new_scene1') }}
+
+  {% if l10n_has_tag('fxnew_account_032019') %}
+    {{ js_bundle('firefox_new_scene1_fxa_modal') }}
+  {% endif %}
+
+  {% if switch('stub-attribution-macos') %}
+    {{ js_bundle('stub-attribution-macos') }}
+  {% endif %}
 {% endblock %}

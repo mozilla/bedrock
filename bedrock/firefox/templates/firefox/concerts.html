@@ -1,0 +1,185 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import hero with context %}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block page_title_prefix %}Firefox Concert Series - {% endblock %}
+{% block page_title %}Watch free live concerts in Firefox{% endblock %}
+{% block page_desc %}Here’s to you. Here’s to live music. Here’s to watching free, from all kinds of artists, right from Firefox. Thanks for being part of our community. Firefox fights for you.{% endblock %}
+{% block page_image %}{{ static('img/firefox/concerts/page-image.jpg') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_concert_series') }}
+{% endblock %}
+
+{% block body_class %}firefox-concerts{% endblock %}
+
+{% block content %}
+<main role="main">
+  <div class="concert-content">
+    {% call hero(
+      title=_('Here’s to you.<br> Here’s to live music.')|safe,
+      desc=_('Here’s to watching it free, from all kinds of artists, right from Firefox.'),
+      class='mzp-t-firefox mzp-t-product-firefox mzp-t-dark',
+      include_cta=False,
+      heading_level=1,
+      image_url=None,
+      include_highres_image=False,
+      image_alt=''
+    ) %}
+    {% endcall %}
+
+    <div class="artist-featured mzp-l-content l-content-narrow">
+      <section class="artist-card mzp-c-card-feature mzp-has-aspect-16-9 mzp-t-firefox mzp-t-dark">
+        <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            <a class="video-play js-video-play" href="https://youtu.be/xD2rHkqLHuw" data-id="xD2rHkqLHuw" title="Play the video">
+              <img src="{{ static('img/firefox/concerts/concert-phosphorescent.jpg') }}" alt="Phosphorescent (Matthew Houck) and his six-piece band perform on stage before a crowd at the 9:30 Club on December 11, 2018. The lights are tinted purple and gold and the band is backed by a large, illuminated sign reading ‘C’est La Vie’, the title of their recent album.">
+            </a>
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <p class="mzp-c-card-tag ended">Dec. 11, 2018</p>
+            <h2 class="mzp-c-card-feature-title">Phosphorescent</h2>
+            <p class="mzp-c-card-feature-desc">On December 11 the Firefox Concert Series livestreamed one of the last shows on Phosphorescent’s <cite lang="fr">C’est La Vie</cite> tour from DC’s 9:30 Club. Enjoy this exclusive clip.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="artist-next mzp-l-content l-content-narrow">
+      <section class="artist-card mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-right-half mzp-t-firefox mzp-t-dark">
+        <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            <img src="{{ static('img/firefox/concerts/concert.jpg') }}" alt="">
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <p class="mzp-c-card-tag countdown">Coming soon</p>
+            <h2 class="mzp-c-card-feature-title">Next concert: To be announced</h2>
+            <p class="mzp-c-card-feature-desc">The first concert is over, but we have more music in the queue. Check back here to find out who’s playing next in the Firefox Concert Series! Sign up below to be the first to know when the next show is announced.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="fxa-cta mzp-l-content">
+      <section class="mzp-c-card-feature mzp-has-aspect-16-9 mzp-l-card-feature-right-half mzp-t-firefox mzp-t-dark">
+        <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            {{ high_res_img('firefox/concerts/illo-fxaccount.png', {'alt': '', 'width': '568', 'height': '277'}) }}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+
+            <div class="conditional-content form-content">
+              <div id="fxa-form-wrapper" class="fxa-form" data-fxa-metrics-endpoint="{{ settings.FXA_ENDPOINT }}metrics-flow" data-fxa-oauth-api-endpoint="{{ settings.FXA_OAUTH_API_ENDPOINT }}">
+                <h2 class="mzp-c-card-feature-title">Get concert reminders.</h2>
+                <p class="mzp-c-card-feature-desc">Find out when the next show starts – and grab the keys to your online life – with a Firefox Account.</p>
+
+                <p class="agreement">
+                {% trans url1='https://accounts.firefox.com/legal/terms', url2='https://accounts.firefox.com/legal/privacy' %}
+                  By proceeding, you agree to the <a href="{{ url1 }}">Terms of Service</a> and <a href="{{ url2 }}">Privacy Notice</a>.
+                {% endtrans %}
+                </p>
+
+                <form action="{{ settings.FXA_OAUTH_ENDPOINT }}">
+                  <input type="hidden" name="client_id" value="{{ settings.FXA_OAUTH_CLIENT_ID }}">
+                  <input type="hidden" name="scope" value="profile">
+                  <input type="hidden" name="state" id="state" value="">
+                  <input type="hidden" name="flow_id" id="flow_id" value="">
+                  <input type="hidden" name="flow_begin_time" id="flow_begin_time" value="">
+                  <input type="hidden" name="device_id" id="device_id" value="">
+                  <input type="hidden" name="action" value="email">
+                  <input type="hidden" name="utm_source" id="utm_source" value="mozilla.org">
+                  <input type="hidden" name="utm_medium" id="utm_medium" value="concerts-landing-page">
+                  <input type="hidden" name="utm_campaign" id="utm_campaign" value="firefox-concert">
+                  <input type="hidden" name="utm_content" id="utm_content" value="">
+
+                  <p>
+                    <label for="name">Your email address</label>
+                    <input type="email" name="email" required placeholder="yourname@example.com">
+                  </p>
+                  <p>
+                    <button type="submit" class="mzp-c-button mzp-t-product" id="fxa-email-form-submit" data-cta-type="FxA-Sync" data-cta-position="Primary">Create an Account</button>
+                  </p>
+                </form>
+
+                <p class="signin">Already have a Firefox Account? <a id="fxa-sign-in" href="{{ settings.FXA_OAUTH_ENDPOINT }}/signup?client_id={{ settings.FXA_OAUTH_CLIENT_ID }}&scope=profile&action=email" data-cta-type="FxA-Sync" data-cta-position="Primary" rel="external">Sign in</a></p>
+              </div>
+            </div>{#-- /.form-content --#}
+
+            <div class="conditional-content verified-content">
+              <h2 class="mzp-c-card-feature-title">You’re signed in!</h2>
+              <p class="mzp-c-card-feature-desc">We’ll send you a reminder before the show starts.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </div>{#-- .concert-content --#}
+
+  <section class="excluded-content">
+    {% call hero(
+      title=_('Our apologies.'),
+      desc=_('We are not able to stream these concerts outside the US.'),
+      class='mzp-t-firefox mzp-t-product-firefox mzp-t-dark',
+      include_cta=False,
+      heading_level=1,
+      image_url=None,
+      include_highres_image=False,
+      image_alt=''
+    ) %}
+    {% endcall %}
+
+    <div class="mzp-l-content l-content-narrow">
+      <p>But sign up for our newsletter to learn about Firefox happenings in your area.</p>
+
+      <div class="mzp-c-newsletter">
+      {{ email_newsletter_form(
+          protocol_component=True,
+          include_title=False,
+          button_class='mzp-t-dark',
+          email_label=_('Enter your email address'),
+          details='<a href="%s" class="email-privacy-link">%s</a>'|format(url('privacy.email'), _('How will Mozilla use my email?'))|safe
+      )}}
+      </div>
+
+      <aside class="email-privacy mzp-u-modal-content">
+        <h3>{{ _('How will Mozilla use my email?') }}</h3>
+
+        <p>
+        {% trans
+              manifesto=url('mozorg.about.manifesto'),
+              principles=url('privacy.principles')
+        %}
+          Mozilla doesn’t just value your email privacy and security – it’s part of our <a href="{{ manifesto }}">Manifesto</a>: “Individuals’ security and privacy on the internet are fundamental and must not be treated as optional.” <a href="{{ principles }}">You can learn about our Data Privacy Principles here</a>.
+        {% endtrans %}
+        </p>
+
+        <p><strong>{{ _('What we want you to know:') }}</strong></p>
+
+        <ul class="prose mzp-u-list-styled">
+          <li>{{ _('You don’t need to give us your email to download and use Firefox.') }}</li>
+          <li>{{ _('We asked for your email because our research shows that people who receive an introductory experience do more and better with Firefox.') }}</li>
+          <li>{{ _('You can expect emails designed to help you optimize Firefox to work best for you, learn more about privacy & security and find out how to make the best of your time on the web.') }}</li>
+          <li>{{ _('You can unsubscribe anytime, for any reason.') }}</li>
+          <li>{{ _('We will not share, sell or use your email for any other purposes.') }}</li>
+        </ul>
+      </aside>
+    </div>
+  </section>{#-- /.excluded-content --#}
+
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_concert_series') }}
+{% endblock %}

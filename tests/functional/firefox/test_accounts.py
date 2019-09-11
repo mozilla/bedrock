@@ -3,21 +3,23 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
+from urllib.parse import unquote
 
 from pages.firefox.accounts import FirefoxAccountsPage
 
 
-@pytest.mark.skip_if_firefox(reason='Download button is displayed only to non-Firefox users')
 @pytest.mark.nondestructive
-def test_download_button_displayed(base_url, selenium):
-    page = FirefoxAccountsPage(selenium, base_url).open()
-    assert not page.is_accounts_form_displayed
-    assert page.download_button.is_displayed
+def test_account_form(base_url, selenium):
+    page = FirefoxAccountsPage(selenium, base_url, params='').open()
+    page.join_firefox_form.type_email('success@example.com')
+    page.join_firefox_form.click_continue()
+    url = unquote(selenium.current_url)
+    assert 'email=success@example.com' in url, 'Email address is not in URL'
 
 
-@pytest.mark.skip_if_not_firefox(reason='Accounts iFrame is only displayed to Firefox users')
 @pytest.mark.nondestructive
-def test_accounts_form_displayed(base_url, selenium):
-    page = FirefoxAccountsPage(selenium, base_url).open()
-    assert not page.download_button.is_displayed
-    assert page.is_accounts_form_displayed
+@pytest.mark.skip_if_not_firefox(reason='Signed-in state is shown only to Firefox users.')
+def test_signed_in_call_to_action(base_url, selenium):
+    page = FirefoxAccountsPage(selenium, base_url, params='?signed-in=true').open()
+    assert not page.join_firefox_form.is_displayed
+    assert page.is_firefox_monitor_button_displayed

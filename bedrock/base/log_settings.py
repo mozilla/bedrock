@@ -91,7 +91,7 @@ for key, value in settings.LOGGING.items():
         cfg[key] = value
 
 # Set the level and handlers for all loggers.
-for logger in cfg['loggers'].values() + [cfg['root']]:
+for logger in list(cfg['loggers'].values()) + [cfg['root']]:
     if 'handlers' not in logger:
         logger['handlers'] = ['syslog' if use_syslog else 'console']
     if 'level' not in logger:

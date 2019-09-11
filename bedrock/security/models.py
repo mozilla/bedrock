@@ -22,7 +22,7 @@ class Product(models.Model):
     class Meta:
         ordering = ('slug',)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     @property
@@ -81,7 +81,7 @@ class SecurityAdvisory(models.Model):
         ordering = ('-year', '-order')
         get_latest_by = 'last_modified'
 
-    def __unicode__(self):
+    def __str__(self):
         return u'MFSA {0}'.format(self.id)
 
     def get_absolute_url(self):
@@ -149,7 +149,7 @@ class MitreCVE(models.Model):
     class Meta:
         ordering = ('-year', '-order')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.id
 
     def product_versions(self):
@@ -166,7 +166,7 @@ class MitreCVE(models.Model):
 
     def get_description(self):
         versions = []
-        for prod_name, prod_versions in self.product_versions().iteritems():
+        for prod_name, prod_versions in self.product_versions().items():
             versions.extend('%s < %s' % (prod_name, v) for v in prod_versions)
 
         description = self.description.strip()
@@ -190,7 +190,7 @@ class MitreCVE(models.Model):
 
     def get_product_data(self):
         product_data = []
-        for prod_name, versions in self.product_versions().iteritems():
+        for prod_name, versions in self.product_versions().items():
             product_data.append({
                 'product_name': prod_name,
                 'version': {

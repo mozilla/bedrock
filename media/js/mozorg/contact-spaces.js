@@ -20,9 +20,9 @@
 
     // Create select form inputs for primary mobile navigation
     function initMobileNav() {
-        var $label = $('<label for="nav-category-select">' + utils.trans('navLabel') + '</label>');
+        var $label = $('<label for="nav-category-select">' + utils.trans('nav-label') + '</label>');
         var $select = $('<select id="nav-category-select" class="nav-category-select">');
-        var $default = $('<option value="" disabled selected>-- ' + utils.trans('navLabel') + ' --</option>');
+        var $default = $('<option value="" disabled selected>-- ' + utils.trans('nav-label') + ' --</option>');
 
         $default.prependTo($select);
 

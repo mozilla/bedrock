@@ -1,0 +1,207 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../../pebbles/includes/lib";
+
+/* -------------------------------------------------------------------------- */
+// Custom key features section
+
+.features {
+  text-align: center;
+  background: #fff;
+
+  .features-title {
+      color: #000;
+      margin-bottom: 60px;
+  }
+
+  h3 {
+    @include font-size-level4;
+    color: $color-quantum-blue;
+    font-weight: normal;
+    line-height: 1.3;
+    margin: 20px 0 20px 0;
+  }
+
+  ul {
+    margin: 0;
+
+    li {
+      background-position: 50% 20%, 50% 5%;
+      background-repeat: no-repeat;
+      padding-top: 180px;
+
+      &.private {
+        background-image: url("/media/img/firefox/new/icon-mask.svg"), url("/media/img/firefox/new/blob.svg");
+      }
+
+      &.faster {
+        background-image: url("/media/img/firefox/new/icon-clock.svg"), url("/media/img/firefox/new/blob2.svg");
+      }
+
+      &.tracking {
+        background-image: url("/media/img/firefox/new/icon-protection.svg"), url("/media/img/firefox/new/blob3.svg");
+      }
+
+      &.password {
+        background-image: url("/media/img/firefox/new/icon-password.svg"), url("/media/img/firefox/new/blob2.svg");
+      }
+
+      &.sync {
+        background-image: url("/media/img/firefox/new/icon-sync.svg"), url("/media/img/firefox/new/blob.svg");
+      }
+
+      &.switch {
+        background-image: url("/media/img/firefox/new/icon-switch.svg"), url("/media/img/firefox/new/blob3.svg");
+      }
+
+      &:last-child p {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  p {
+    @include font-size-level5;
+    margin: 0 auto 40px;
+    max-width: 16em;
+  }
+
+  @media #{$mq-tablet} {
+    padding-top: 40px;
+
+    ul {
+      @include flexbox;
+      @include flex-wrap;
+
+      li {
+        width: 30%;
+        margin: 0 auto;
+      }
+    }
+
+    h3 {
+      margin: 20px 0 20px 0;
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+// Compact Call Out component
+
+.c-call-out-compact {
+    background: #003eaa url('/media/img/firefox/quantum/fox-tail-header.png') top -700px center no-repeat;
+    color: #fff;
+    overflow: hidden;
+
+    &.t-dark {
+        color: #fff;
+    }
+
+    .c-call-out-title {
+        @include font-size(21px);
+        line-height: 1.143;
+
+        @media #{$mq-tablet} {
+            @include font-size(24px);
+            line-height: 1.166;
+        }
+    }
+
+    .c-call-out-cta {
+        margin: 8px 0 0;
+    }
+
+    .c-button-download-container {
+        display: inline-block;
+        margin-bottom: 0;
+    }
+
+    &.t-product-firefox {
+        .c-call-out-content {
+            @include border-box;
+            @include background-size(64px 64px);
+            background-position: left top;
+            background-repeat: no-repeat;
+            padding: (64px + 24px) 0 0 0;
+        }
+    }
+
+    &.t-product-firefox .c-call-out-content {
+        @include at2x('/media/protocol/img/logos/firefox/firefox.png', 64px, 64px);
+    }
+
+    @media #{$mq-tablet} {
+        @include clearfix;
+
+        .content {
+            margin: 0 auto;
+            max-width: 1056px;
+            padding-bottom: 48px;
+            padding-top: 48px;
+        }
+
+        &.t-product-firefox,
+        &.t-product-beta,
+        &.t-product-developer,
+        &.t-product-nightly,
+        &.t-product-focus {
+            .c-call-out-content {
+                background-position: left center;
+                min-height: 64px + (32px * 2);
+                padding: 0 0 0 (64px + 32px);
+            }
+        }
+
+        .c-call-out-title {
+            margin-bottom: 0;
+        }
+
+        .c-call-out-content {
+            float: left;
+            max-width: 624px;
+            width: calc(66.6% - 24px);
+        }
+
+        .c-call-out-cta {
+            float: right;
+            margin: 0;
+            position: relative;
+            width: calc(33.3% - 24px);
+        }
+
+        .c-button-download-container {
+            float: left;
+        }
+    }
+
+    @supports(display: grid) {
+        @media #{$mq-tablet} {
+
+            .content {
+                column-gap: 32px;
+                display: grid;
+                grid-column-gap: 32px;
+                grid-template-columns: 2fr 1fr;
+            }
+
+            .c-call-out-content {
+                width: auto;
+                align-items: center;
+                display: flex;
+            }
+
+            .c-call-out-cta {
+                align-items: center;
+                display: flex;
+                justify-content: flex-end;
+                width: auto;
+            }
+        }
+    }
+}
+
+#newsletter-subscribe {
+    border-top: none;
+}

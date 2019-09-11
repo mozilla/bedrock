@@ -3,7 +3,6 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from mock import patch
-from nose.tools import eq_, ok_
 
 from bedrock.mozorg.hierarchy import PageNode, PageRoot
 from bedrock.mozorg.tests import TestCase
@@ -18,7 +17,7 @@ class TestPageNode(TestCase):
         children = [PageNode('test'), PageNode('test2')]
         parent = PageRoot('parent', children=children)
         for child in children:
-            eq_(child.parent, parent)
+            assert child.parent == parent
 
     def test_full_path(self):
         """
@@ -27,9 +26,9 @@ class TestPageNode(TestCase):
         """
         child = PageNode('test', path='asdf')
         PageRoot('test', path='blah', children=[
-                 PageNode('test', path='whoo', children=[child])
+            PageNode('test', path='whoo', children=[child])
         ])
-        eq_(child.full_path, 'blah/whoo/asdf')
+        assert child.full_path == 'blah/whoo/asdf'
 
     def test_full_path_empty(self):
         """
@@ -38,7 +37,7 @@ class TestPageNode(TestCase):
         """
         child = PageNode('test', path='asdf')
         PageRoot('', path='blah', children=[PageNode('', children=[child])])
-        eq_(child.full_path, 'blah/asdf')
+        assert child.full_path == 'blah/asdf'
 
     @patch('bedrock.mozorg.hierarchy.page')
     def test_page(self, page):
@@ -47,11 +46,11 @@ class TestPageNode(TestCase):
         inclusion in a urlconf.
         """
         page.return_value = 'testreturn'
-        eq_(PageNode('test').page, None)
+        assert PageNode('test').page is None
 
         node = PageNode('test', path='blah', template='test.html')
         parent = PageRoot('testparent', path='yo', children=[node])
-        eq_(node.page, 'testreturn')
+        assert node.page == 'testreturn'
         page.assert_called_with('yo/blah', 'test.html', node_root=parent,
                                 node=node)
 
@@ -63,7 +62,7 @@ class TestPageNode(TestCase):
         child1 = PageNode('test')
         child2 = PageNode('test', children=[child1])
         root = PageRoot('test', children=[child2, PageNode('test')])
-        eq_(list(child1.path_to_root), [child1, child2, root])
+        assert list(child1.path_to_root) == [child1, child2, root]
 
     def test_breadcrumbs(self):
         """
@@ -73,14 +72,14 @@ class TestPageNode(TestCase):
         child1 = PageNode('test')
         child2 = PageNode('test', children=[child1])
         root = PageRoot('test', children=[child2, PageNode('test')])
-        eq_(list(child1.breadcrumbs), [root, child2, child1])
+        assert list(child1.breadcrumbs) == [root, child2, child1]
 
     def test_root(self):
         """root should return the root of the page tree."""
         child1 = PageNode('test')
         child2 = PageNode('test', children=[child1])
         root = PageRoot('test', children=[child2, PageNode('test')])
-        eq_(child1.root, root)
+        assert child1.root == root
 
     def test_no_root(self):
         """If the root of a tree is not a PageRoot, raise a ValueError."""
@@ -97,8 +96,8 @@ class TestPageNode(TestCase):
         child1 = PageNode('', template='test1.html')
         child2 = PageNode('', template='test2.html')
         PageRoot('', children=[child1, child2])
-        eq_(child2.previous, child1)
-        eq_(child1.previous, None)
+        assert child2.previous == child1
+        assert child1.previous is None
 
     def test_previous_cross(self):
         """
@@ -126,11 +125,11 @@ class TestPageNode(TestCase):
                 PageNode('', children=[child4, PageNode('')])
             ])
         ])
-        eq_(root.previous, None)
-        eq_(child1.previous, root)
-        eq_(child2.previous, child1)
-        eq_(child3.previous, child2)
-        eq_(child4.previous, child3)
+        assert root.previous is None
+        assert child1.previous == root
+        assert child2.previous == child1
+        assert child3.previous == child2
+        assert child4.previous == child3
 
     def test_next(self):
         """
@@ -139,8 +138,8 @@ class TestPageNode(TestCase):
         child1 = PageNode('', template='test1.html')
         child2 = PageNode('', template='test1.html')
         PageRoot('', children=[child1, child2])
-        eq_(child1.next, child2)
-        eq_(child2.next, None)
+        assert child1.next == child2
+        assert child2.next is None
 
     def test_next_cross(self):
         """
@@ -168,18 +167,18 @@ class TestPageNode(TestCase):
                 PageNode('', children=[child4, PageNode('')])
             ])
         ])
-        eq_(root.next, child1)
-        eq_(child1.next, child2)
-        eq_(child2.next, child3)
-        eq_(child3.next, child4)
-        eq_(child4.next, None)
+        assert root.next == child1
+        assert child1.next == child2
+        assert child2.next == child3
+        assert child3.next == child4
+        assert child4.next is None
 
     @patch('bedrock.mozorg.hierarchy.reverse')
     def test_url(self, reverse):
         """If a node has a page, url should return the url for that page."""
         node = PageRoot('test', path='asdf/qwer', template='fake.html')
         reverse.return_value = 'asdf'
-        eq_(node.url, 'asdf')
+        assert node.url == 'asdf'
         reverse.assert_called_with('fake')
 
     @patch('bedrock.mozorg.hierarchy.reverse')
@@ -193,19 +192,18 @@ class TestPageNode(TestCase):
         parent = PageRoot('', children=[child1, child2])
 
         reverse.return_value = 'asdf'
-        eq_(parent.url, 'asdf')
+        assert parent.url == 'asdf'
         reverse.assert_called_with('fake')
 
     def test_url_none(self):
         """If a node doesn't have a page or children, url should return None."""
         node = PageNode('')
-        eq_(node.url, None)
+        assert node.url is None
 
 
 class TestPageRoot(TestCase):
-    @patch('bedrock.mozorg.hierarchy.patterns')
     @patch.object(PageNode, 'page')
-    def test_as_urlpatterns(self, page, patterns):
+    def test_as_urlpatterns(self, page):
         """
         as_urlpatterns should return a urlconf with the pages for all the nodes
         included in the tree.
@@ -216,15 +214,7 @@ class TestPageRoot(TestCase):
         root = PageRoot('root', path='badsbi', template='fake3.html',
                         children=[parent])
 
-        patterns.return_value = 'asdf'
         # Mocking properties
         page.__get__ = lambda mock, self, cls: self.display_name
 
-        eq_(root.as_urlpatterns(), 'asdf')
-
-        args = patterns.call_args[0]
-        eq_(args[0], '')
-        ok_('child1' in args)
-        ok_('child2' in args)
-        ok_('root' in args)
-        ok_('parent' not in args)
+        assert root.as_urlpatterns() == ['root', 'child1', 'child2']

@@ -80,16 +80,15 @@ If you make a change to ``media/static-bundles.json``, you'll need to restart Do
 Local Installation
 ------------------
 
-These instructions assume you have Python, pip, and NodeJS installed. If you don't have `pip` installed
+These instructions assume you have Python 3.6+, pip, and NodeJS installed. If you don't have `pip` installed
 (you probably do) you can install it with the instructions in `the pip docs <https://pip.pypa.io/en/stable/installing/>`_.
 
-You need to create a virtual environment for Python libraries. Skip the first instruction if you already have virtualenv installed::
+You need to create a virtual environment for Python libraries::
 
-    $ pip install virtualenv                       # installs virtualenv, skip if already have it
-    $ virtualenv -p python2.7 venv                 # create a virtual env in the folder `venv`
+    $ python3 -m venv venv                         # create a virtual env in the folder `venv`
     $ source venv/bin/activate                     # activate the virtual env. On Windows, run: venv\Scripts\activate.bat
-    $ pip install -U pip                           # securely upgrade pip
-    $ pip install -r requirements/dev.txt         # installs dependencies
+    $ pip install --upgrade pip                    # securely upgrade pip
+    $ pip install -r requirements/dev.txt          # installs dependencies
 
 If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting the arch flags and try again::
 
@@ -98,7 +97,7 @@ If you are on OSX and some of the compiled dependencies fails to compile, try ex
 
 If you are on Linux, you will need at least the following packages or their equivalent for your distro::
 
-    $ python-dev libxslt-dev
+    $ python3-dev libxslt-dev
 
 Sync the database and all of the external data locally. This gets product-details, security-advisories,
 credits, release notes, localizations, legal-docs etc::
@@ -209,11 +208,20 @@ can be disabled in the browsersync options in the ``gulpfile.js`` by setting ``n
 Legal Docs
 ==========
 
-Legal docs (for example: the privacy policy) are generated from markdown files in the [legal-docs](https://github.com/mozilla/legal-docs) repo.
+Legal docs (for example: the privacy policy) are generated from markdown files in the
+`legal-docs repo <https://github.com/mozilla/legal-docs>`_.
 
 To view them or update to a more recent version update the submodule::
 
     $ git submodule update --init --recursive
+
+To add a new commit of the git submodule to bedrock:
+
+    $ cd vendor-local/src/legal-docs
+    $ git checkout master
+    $ git pull
+    $ cd .. (back to project root)
+    $ git commit -am "Update legal-docs git submodule"
 
 Localization
 ============
@@ -224,7 +232,7 @@ after changing settings you can run the following command::
 
     $ ./manage.py l10n_update
 
-You can read more details about how to localize content :ref:`here<l10n>`.
+You can read more details about how to localize content :ref:`here <l10n>`.
 
 Feature Flipping (aka Switches)
 ===============================
@@ -239,7 +247,7 @@ environment variable ``SWITCH_THE_DUDE``. If the value of that variable is any o
 You can also supply a list of locale codes that will be the only ones for which the switch is active.
 If the page is viewed in any other locale the switch will always return ``False``, even in ``DEV``
 mode. This list can also include a "Locale Group", which is all locales with a common prefix
-(e.g. "en-US, en-GB, en-ZA" or "zh-CN, zh-TW"). You specify these with just the prefix. So if you
+(e.g. "en-US, en-GB" or "zh-CN, zh-TW"). You specify these with just the prefix. So if you
 used ``switch('the-dude', ['en', 'de'])`` in a template, the switch would be active for German and
 any English locale the site supports.
 
@@ -253,21 +261,21 @@ For example::
         ...
 
 Testing
-~~~~~~~
+-------
 
 If the environment variable ``DEV`` is set to a "true" value, then all switches will be considered "on" unless they are
 explicitly "off" in the environment. ``DEV`` defaults to "true" in local development and demo servers.
 
 To test switches locally:
 
-1. Set ``DEV=False`` in your ``.env`` file.
-1. Enable the switch in your ``.env`` file.
-1. Restart your web server.
+#. Set ``DEV=False`` in your ``.env`` file.
+#. Enable the switch in your ``.env`` file.
+#. Restart your web server.
 
 To configure switches for a demo branch. Follow the `configuration instructions here <http://bedrock.readthedocs.io/en/latest/pipeline.html#configuration>`_.
 
 Traffic Cop
-~~~~~~~~~~~
+-----------
 
 Currently, these switches are used to enable/disable `Traffic Cop <https://github.com/mozilla/trafficcop/>`_ experiments
 on many pages of the site. We only add the Traffic Cop JavaScript snippet to a page when there is an active test. You
@@ -286,5 +294,5 @@ Notes
 
 A shortcut for activating virtual envs in zsh or bash is `. venv/bin/activate`. The dot is the same as `source`.
 
-There's a project called `virtualenvwrapper <http://www.doughellmann.com/docs/virtualenvwrapper/>`_ that provides a better interface for managing/activating virtual envs, so you can use that if you want.
+There's a project called `pew <https://pypi.org/project/pew/>`_ that provides a better interface for managing/activating virtual envs, so you can use that if you want.
 Also if you need help managing various versions of Python on your system, the `pyenv <https://github.com/pyenv/pyenv>`_ project can help.

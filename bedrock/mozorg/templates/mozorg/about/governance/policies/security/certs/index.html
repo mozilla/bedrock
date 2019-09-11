@@ -7,13 +7,13 @@
 {% block page_title %}{{ _('Mozilla CA Certificate Store') }}{% endblock %}
 
 {% block article %}
-  <h1><span class="highlight">{{ _('Mozilla CA Certificate Store') }}</span></h1>
+  <h1 class="mzp-c-article-title">{{ _('Mozilla CA Certificate Store') }}</h1>
 
   <p>{{ _('Mozillaʼs CA Certificate Program governs inclusion of root certificates in <a href="%s">Network Security Services (NSS)</a>, a set of open source libraries designed to support cross-platform development of security-enabled client and server applications. The NSS root certificate store is used in Mozilla products such as the Firefox browser, and is also used by other companies in a variety of products.')|format('https://developer.mozilla.org/en-US/docs/NSS') }}</p>
 
   <p>{{ _('This page links to information about the X.509 v3 root certificate store which is part of <a href="%s">NSS</a>, and therefore part of Mozilla projects that use X.509 certificates.')|format('https://developer.mozilla.org/en-US/docs/NSS') }}</p>
 
-  <ul class="prose">
+  <ul class="mzp-u-list-styled">
     <li><a href="{{ url('mozorg.about.governance.policies.security.certs.policy') }}">{{ _('Mozilla CA Certificate Policy') }}</a>
     <li><a href="https://wiki.mozilla.org/CA:Overview">{{ _('Mozilla CA Certificate Program Overview') }}</a>
     <li><a href="https://wiki.mozilla.org/CA:PendingCAs">{{ _('List of pending inclusion requests') }}</a> {{ _('— Certification Authorities (CAs) who have applied for inclusion of their certificates into Mozillaʼs CA Certificate Program, and whose applications are pending.') }}</li>

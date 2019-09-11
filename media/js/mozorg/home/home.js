@@ -2,125 +2,24 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
- /* global YT */
- /* eslint no-unused-vars: [2, { "varsIgnorePattern": "onYouTubeIframeAPIReady" }] */
-
-// YouTube API hook has to be in global scope
-function onYouTubeIframeAPIReady() {
-    'use strict';
-}
-
 (function($, Waypoint) {
     'use strict';
-
-    var tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    function getNextEl(el) {
-        el = el.nextSibling;
-        while (el) {
-            if (el.nodeType === 1) {
-                return el;
-            }
-            el = el.nextSibling;
-        }
-        return null;
-    }
-
-    function initVideoEvents() {
-        var videoCards = document.querySelectorAll('.mzp-c-card.has-video-embed .mzp-c-card-block-link');
-
-        function playVideo(event) {
-            var card = event.currentTarget;
-            var title = card.querySelector('.mzp-c-card-title').innerText;
-            var sibling = getNextEl(event.currentTarget);
-            var content = sibling.querySelector('.mzp-c-card-video-content');
-
-            var videoLink = content.querySelector('.video-play');
-            var videoId = videoLink.getAttribute('data-id');
-
-            var player = new YT.Player(videoLink, {
-                width: 640,
-                height: 360,
-                videoId: videoId,
-                playerVars: {
-                    modestbranding: 1, // hide YouTube logo.
-                    rel: 0, // do not show related videos on end.
-                },
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-
-            function onPlayerReady(event) {
-                event.target.playVideo();
-            }
-
-            function onPlayerStateChange(event) {
-                var state;
-
-                switch(event.data) {
-                case YT.PlayerState.PLAYING:
-                    state = 'video play';
-                    break;
-                case YT.PlayerState.PAUSED:
-                    state = 'video paused';
-                    break;
-                case YT.PlayerState.ENDED:
-                    state = 'video complete';
-                    break;
-                }
-
-                if (state) {
-                    window.dataLayer.push({
-                        'event': 'video-interaction',
-                        'videoTitle': title,
-                        'interaction': state
-                    });
-                }
-            }
-
-            if (content) {
-                event.preventDefault();
-
-                Mozilla.Modal.createModal(this, content, {
-                    title: title,
-                    className: 'mzp-has-media',
-                    onDestroy: function() {
-                        player.destroy();
-                    }
-                });
-            }
-        }
-
-    // open and play videos in a modal on click.
-        for (var i = 0; i < videoCards.length; i++) {
-            videoCards[i].addEventListener('click', playVideo, false);
-        }
-    }
 
     // Lazyload images
     Mozilla.LazyLoad.init();
 
-    // Video card interactions.
-    initVideoEvents();
-
     /*
     * Sticky CTA
     */
-
-    var $stickyCTA = $(document.getElementById('download-firefox-sticky-cta'));
+    var $stickyCTA = $(document.querySelectorAll('.c-sticky-cta'));
     var hasCookies = typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled();
     $stickyCTA.attr('aria-hidden', 'true');
 
     // init dismiss button
     function initStickyCTA() {
-    // add and remove aria-hidden
+        // add and remove aria-hidden
         var primaryTop = new Waypoint({
-            element: document.getElementById('download-firefox-primary-cta'),
+            element: document.querySelectorAll('.c-primary-cta'),
             handler: function(direction) {
                 if(direction === 'down') {
                 // becomes percivable as the user scrolls down
@@ -132,21 +31,42 @@ function onYouTubeIframeAPIReady() {
             }
         });
 
+        // hide sticky at top to prevent revealing through overscroll
+        var $stickyWrapper = $stickyCTA.find('.c-sticky-cta-wrapper');
+        $stickyWrapper.hide();
+        var mozContent = new Waypoint({
+            element: document.querySelectorAll('.mozilla-content'),
+            handler: function(direction) {
+                if(direction === 'down') {
+                    // reveal sticky
+                    $stickyWrapper.show();
+                } else {
+                    // hide sticky
+                    $stickyWrapper.hide();
+                }
+            },
+            offset: 100
+        });
+
         // add button
-        var $dismissButton = $('<button>').addClass('sticky-dismiss').text('Dismiss download prompt.');
-        var $stickyWrapper = $stickyCTA.find('.primary-wrapper');
+        var $dismissButton = $('<button type="button" class="sticky-dismiss">').text('Dismiss this prompt.');
         $dismissButton.appendTo($stickyWrapper);
-        // listen for click
-        $dismissButton.one('click', function(){
-        // dismiss
-            dismissStickyCTA(primaryTop);
+
+        // find all the buttons
+        var dismissButtons = $('.sticky-dismiss');
+        // listen for the click
+        dismissButtons.on('click', function() {
+            // destroy waypoints
+            primaryTop.destroy();
+            mozContent.destroy();
+
+            // dismiss the sticky banner
+            dismissStickyCTA();
         });
     }
 
     // handle dismiss
-    function dismissStickyCTA(stickyWayPoint) {
-        // destroy waypoint
-        stickyWayPoint.destroy();
+    function dismissStickyCTA() {
         // remove element
         $stickyCTA.remove();
         // set cookie, if cookies are supported

@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import print_function, unicode_literals
-
 from django.db import models
 from django.db.utils import DatabaseError
 
@@ -32,6 +30,11 @@ class PocketArticleManager(models.Manager):
         article_ids = []
         articles_to_update = []
         for article in articles:
+            # apparently it's possible for an article to be
+            # in the feed multiple times ¯\_(ツ)_/¯
+            if article['id'] in article_ids:
+                continue
+
             article_ids.append(article['id'])
 
             try:
@@ -39,6 +42,10 @@ class PocketArticleManager(models.Manager):
                 obj = self.get(pocket_id=article['id'])
             except PocketArticle.DoesNotExist:
                 # this article from Pocket will be added to the db
+                articles_to_update.append((None, article))
+            except PocketArticle.MultipleObjectsReturned:
+                # multiple articles with the same ID snuck in. Fix that here.
+                self.filter(pocket_id=article['id']).delete()
                 articles_to_update.append((None, article))
             else:
                 # this existing 'obj' will be updated in the db with
@@ -53,7 +60,7 @@ class PocketArticleManager(models.Manager):
             try:
                 if obj:
                     if obj.time_shared != article['time_shared']:
-                        for key, value in article.iteritems():
+                        for key, value in article.items():
                             setattr(obj, key, value)
                         obj.save()
                         update_count += 1
@@ -88,7 +95,7 @@ class PocketArticle(models.Model):
         get_latest_by = 'time_shared'
         ordering = ['-time_shared']
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     @property

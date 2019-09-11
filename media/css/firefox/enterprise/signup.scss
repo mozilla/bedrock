@@ -1,0 +1,123 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import "../../../protocol/css/includes/lib";
+@import '../../../protocol/css/components/article';
+
+.enterprise-head {
+    @include clearfix;
+    @include text-display-xs;
+    background-color: $color-off-black;
+    color: #fff;
+}
+
+.enterprise-logo {
+    float: left;
+    margin-right: 10px;
+    vertical-align: text-bottom;
+
+    @media #{$mq-md} {
+        float: none;
+    }
+}
+
+.enterprise-form {
+    @include font-firefox;
+    margin-bottom: 60px;
+
+    h1 {
+        @include text-display-md;
+        margin-bottom: 20px;
+    }
+
+    label {
+        @include font-firefox;
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        width: 100%;
+    }
+
+    input[type=text],
+    input[type=email],
+    input[type=tel],
+    textarea,
+    select {
+        @include text-body-md;
+        margin-bottom: 40px;
+        max-width: 100%;
+        width: 430px;
+        padding: 0.25em 8px;
+    }
+
+    input[type=text],
+    input[type=email],
+    input[type=tel],
+    textarea {
+        border: 1px solid $color-gray-40;
+    }
+
+    input[type=tel] {
+        width: auto;
+    }
+}
+
+.enterprise-compare-list {
+    @include text-body-sm;
+    @include clearfix;
+    column-width: 300px;
+
+    > li {
+        padding: 0 10px;
+        display: inline-block;
+
+        li {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 5px;
+        }
+    }
+}
+
+.enterprise-check {
+    margin-bottom: 20px;
+
+    label {
+        display: inline;
+        padding-left: 10px;
+        font-weight: normal;
+    }
+}
+
+@media #{$mq-md} {
+    .enterprise-form {
+        h1 {
+            margin-bottom: 40px;
+        }
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+// Thank you page
+
+#enterprise-signup,
+#enterprise-thanks {
+    .mzp-c-article {
+        padding-top: $layout-md;
+        min-height: 55vh;
+    }
+}
+
+h1.thanks-head {
+    @include text-display-md;
+    margin-bottom: 60px;
+}
+
+h2.thanks-subhead {
+    @include text-display-sm;
+}

@@ -7,7 +7,7 @@ from pypom import Region
 from pages.base import BasePage
 
 
-class ScrollElementIntoView(object):
+class ScrollElementIntoView:
 
     def scroll_element_into_view(self, strategy, locator):
         # scroll elements so they are not beneath the header

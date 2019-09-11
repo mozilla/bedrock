@@ -7,8 +7,8 @@ import pytest
 from pages.contribute.contribute import ContributePage
 
 
-@pytest.mark.smoke
 @pytest.mark.nondestructive
+@pytest.mark.skip(reason='https://github.com/mozilla/bedrock/issues/7314')
 def test_play_video(base_url, selenium):
     page = ContributePage(selenium, base_url).open()
     video = page.play_video()

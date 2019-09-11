@@ -1,0 +1,257 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+
+// *** WARNING ***
+// The fonts used here are not approved for use on any other pages.
+// Don't copy this implementation. Global brand fonts will be
+// managed upstream in Protocol.
+
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/modal';
+@import '../../protocol/css/components/call-out';
+@import '../../protocol/css/components/feature-card';
+@import '../../protocol/css/components/hero';
+
+
+$fffy-purple: #2A0140; // do not update to match new colour tokens without updating background image assets
+
+.fffy-c-hero {
+    background-color: $fffy-purple;
+    background-image: url('/media/img/firefox/fights-for-you/noodle.svg'), url('/media/img/firefox/fights-for-you/chevron.svg');
+    background-position: top 200px left -60px, top -80px right calc(30% - 220px);
+    background-repeat: no-repeat;
+    background-size: 400px;
+    color: #fff;
+    padding-bottom: $layout-md;
+
+    @media #{$mq-sm} {
+        background-position: top 200px right calc(60% + 110px), top -80px right calc(30% - 220px);
+    }
+
+    @media #{$mq-md} {
+        background-position: top 90px left calc(44% - 400px), top right calc(30% - 220px);
+        background-size: auto;
+        padding-bottom: $layout-lg;
+    }
+
+    @media (min-width: 1440px) {
+        background-position: top 200px left -80px, top right calc(22% - 220px);
+    }
+
+    .mzp-c-hero.mzp-t-dark {
+        background: transparent;
+        padding-bottom: 0;
+
+        .mzp-l-content {
+            padding-bottom: 0;
+        }
+    }
+
+    .mzp-c-hero-title {
+        color: $color-red-50;
+        @include text-display-lg;
+    }
+
+    @media #{$mq-md} {
+        .mzp-has-image .mzp-c-hero-body {
+            width: 50%;
+            margin-right: 50%;
+        }
+    }
+
+    .mzp-c-call-out.mzp-t-dark {
+        background: transparent;
+
+        .mzp-l-content {
+            background: url('/media/img/firefox/fights-for-you/callout-left.png'), url('/media/img/firefox/fights-for-you/callout-right.png');
+            background-position: bottom left, top 30px right;
+            background-repeat: no-repeat;
+            background-size: 228px, 108px;
+            min-height: 330px;
+            padding-top: 0;
+
+            // max-width instead of min-width because I want it to do site defaults above this
+            // and I don't want to have to re-define all of them
+            @media (max-width: 767px) {
+                max-width: 480px;
+            }
+        }
+    }
+
+    .mzp-c-call-out-title {
+        color: $color-pink-50;
+        @include text-display-lg;
+    }
+}
+
+.fffy-c-product {
+    margin: 0 auto;
+    max-width: 480px;
+    padding-top: 0;
+    text-align: center;
+
+    @media #{$mq-md} {
+        width: 840px;
+        max-width: 100%;
+    }
+
+    @media #{$mq-xl} {
+        width: 100%;
+    }
+}
+
+
+.fffy-c-features {
+    position: relative;
+
+    .mzp-c-card-feature {
+        img {
+            border-radius: 4px;
+        }
+    }
+
+    .mzp-c-card-feature-title {
+        color: $fffy-purple;
+    }
+
+    .mzp-c-card-feature-title:before {
+        content: url('/media/img/firefox/fights-for-you/icon-monitor.svg');
+        display: block;
+        width: 40px;
+        height: 40px;
+        padding-top: $spacing-sm;
+        padding-bottom: $spacing-md;
+
+
+        @media #{$mq-md} {
+            padding-top: 0;
+            padding-bottom: $spacing-lg;
+        }
+    }
+
+    .fffy-t-focus .mzp-c-card-feature-title:before {
+        content: url('/media/img/firefox/fights-for-you/icon-focus.svg');
+    }
+
+    .fffy-t-privacy .mzp-c-card-feature-title:before {
+        content: url('/media/img/firefox/fights-for-you/icon-privacy.svg');
+    }
+}
+
+.fffy-t-focus .u-mobile-content {
+    display: none;
+
+    .ios & {
+        display: block;
+
+        .badge-android {
+            display: none;
+        }
+    }
+
+    .android & {
+        display: block;
+
+        .badge-ios {
+            display: none;
+        }
+    }
+}
+
+.ios,
+.android {
+    .fffy-t-focus .mzp-c-cta-link {
+        display: none;
+    }
+}
+
+.mzp-c-call-out-compact.fffy-c-footer-callout {
+    background: $fffy-purple;
+
+    .mzp-c-call-out-title {
+        color: $color-pink-50;
+
+        span {
+            display: inline-block;
+
+            &:last-child {
+                color: $color-red-50;
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        .mzp-c-call-out-title {
+            @include font-size(40px);
+        }
+    }
+
+    @media #{$mq-lg} {
+
+        .mzp-l-content {
+            max-width: $content-max;
+        }
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+// YouTube iframe responsive in modal.
+
+.mzp-u-modal-content {
+    display: none;
+}
+
+.ytcontainer-video {
+    max-width: 100%;
+
+    .video-container {
+        height: 0;
+        margin-bottom: $spacing-lg;
+        overflow: hidden;
+        padding-bottom: 56.25%;
+        position: relative;
+        width: 100%;
+    }
+
+    iframe {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top:0;
+        width: 100%;
+    }
+}
+
+// Compact modal for QR codes
+.mzp-c-modal.l-compact {
+    .c-modal-title {
+        display: none;
+    }
+
+    .mzp-c-modal-inner {
+        @media #{$mq-md} {
+            max-width: $content-sm;
+            margin: 0 auto;
+        }
+
+        .mzp-c-modal-overlay-contents {
+            padding: $spacing-lg;
+            text-align: center;
+
+            .qr-code-wrapper {
+                margin: 0 auto $spacing-lg;
+            }
+
+            .mobile-store-buttons li {
+                display: inline-block;
+            }
+        }
+    }
+}

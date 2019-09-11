@@ -9,14 +9,9 @@ import requests
 
 PAGE_PATHS = (
     '/firefox/all/',
-    '/firefox/beta/all/',
-    '/firefox/developer/all/',
-    '/firefox/nightly/all/',
-    '/firefox/organizations/all/',
-    '/firefox/android/all/',
-    '/firefox/android/beta/all/',
-    '/firefox/android/nightly/all/',
 )
+
+TIMEOUT = 60
 
 
 @pytest.mark.download
@@ -30,16 +25,14 @@ def test_localized_download_links(path, base_url):
 
     full_url = base_url + '/en-US' + path
     try:
-        r = requests.get(full_url)
+        r = requests.get(full_url, timeout=TIMEOUT)
     except requests.RequestException:
         # retry
-        r = requests.get(full_url)
+        r = requests.get(full_url, timeout=TIMEOUT)
     soup = BeautifulSoup(r.content, 'html.parser')
-    table = soup.find('table', class_='build-table')
-    urls = [a['href'] for a in table.find_all('a')]
-    # Bug 1321262 skip broken feccec link for 'be' until bug is resolved
-    urls = [url for url in urls if 'product=fennec-latest&os=android&lang=be' not in url]
+    lists = soup.find('div', class_='c-all-downloads')
+    urls = [a['href'] for a in lists.find_all(attrs={'data-link-type': 'download'})]
     assert urls
     for url in urls:
-        r = requests.head(url, allow_redirects=True)
+        r = requests.head(url, allow_redirects=True, timeout=TIMEOUT)
         assert requests.codes.ok == r.status_code

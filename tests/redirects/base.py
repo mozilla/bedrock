@@ -1,5 +1,5 @@
 import re
-from urlparse import urlparse, parse_qs
+from urllib.parse import urlparse, parse_qs
 
 from braceexpand import braceexpand
 import requests
@@ -20,7 +20,7 @@ def get_abs_url(url, base_url):
 def url_test(url, location=None, status_code=requests.codes.moved_permanently,
              req_headers=None, req_kwargs=None, resp_headers=None, query=None,
              follow_redirects=False, final_status_code=requests.codes.ok):
-    """
+    r"""
     Function for producing a config dict for the redirect test.
 
     You can use simple bash style brace expansion in the `url` and `location`
@@ -125,10 +125,13 @@ def assert_valid_url(url, location=None, status_code=requests.codes.moved_perman
     else:
         assert resp.status_code == status_code
     if location and not follow_redirects:
+        if not query and '?' in location:
+            query = parse_qs(urlparse(location).query)
+            location = location.split('?')[0]
         if query:
             # all query values must be lists
             for k, v in query.items():
-                if isinstance(v, basestring):
+                if isinstance(v, str):
                     query[k] = [v]
             # parse the QS from resp location header and compare to query arg
             # since order doesn't matter.
@@ -137,16 +140,15 @@ def assert_valid_url(url, location=None, status_code=requests.codes.moved_perman
             # strip off query for further comparison
             resp_location = resp_location.split('?')[0]
 
-        abs_location = get_abs_url(location, base_url)
-        try:
+        if hasattr(location, 'match'):
             # location is a compiled regular expression pattern
-            assert abs_location.match(resp_location) is not None
-        except AttributeError:
-            assert abs_location == resp_location
+            assert location.match(resp_location) is not None
+        else:
+            assert location == resp_location
 
     if resp_headers and not follow_redirects:
         for name, value in resp_headers.items():
-            print name, value
+            print(name, value)
             assert name in resp.headers
             assert resp.headers[name].lower() == value.lower()
 

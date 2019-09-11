@@ -1,0 +1,27 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/new" %}
+
+{% extends "base-resp.html" %}
+
+{% block body_class %}sky{% endblock %}
+
+{% block page_title_prefix %}{{_('Mozilla Firefox Web Browser')}} — {% endblock %}
+
+{% block page_image %}{{ static('img/firefox/template/page-image-firefox.jpg') }}{% endblock %}
+{% block page_favicon %}{{ static('img/firefox/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/firefox/favicon-196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/firefox/ios-icon-180.png') }}{% endblock %}
+
+{% block facebook_id %}14696440021{# facebook.com/Firefox #}{% endblock %}
+{% block twitter_id %}firefox{% endblock %}
+
+{% block site_header %}
+  <header id="masthead">
+  {% block site_header_logo %}
+    <h2><a href="{{ url('firefox') }}">{{ high_res_img('logos/firefox/logo-quantum-wordmark-large.png', {'alt': 'Firefox', 'width': '210', 'height': '69'}) }}</a></h2>
+  {% endblock %}
+  </header>
+{% endblock %}

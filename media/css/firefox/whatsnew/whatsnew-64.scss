@@ -1,0 +1,219 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/call-out';
+@import '../../../protocol/css/components/feature-card';
+@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/components/modal';
+
+@import '../../protocol/components/state-fxa';
+
+//* -------------------------------------------------------------------------- */
+// Up-to-date page header
+
+.c-page-header {
+    background-color: $color-white;
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    position: relative;
+    text-align: center;
+
+    .c-page-header-up-to-date {
+        @include font-base;
+        @include text-body-lg;
+        display: none;
+        font-weight: normal;
+        margin: 1em 0;
+        padding: 0 $spacing-md;
+        width: calc(100% - 45px);
+
+        &:before {
+            @include bidi((
+                (background-position, center left, center right),
+                (margin, 0 10px 0 0, 0 0 0 10px),
+            ));
+            background-image: url('/media/img/firefox/whatsnew/icon-green-check.svg');
+            background-repeat: no-repeat;
+            background-size: 25px 25px;
+            content: '';
+            display: inline-block;
+            height: 25px;
+            vertical-align: middle;
+            width: 25px;
+        }
+    }
+
+    .c-page-header-logo-moz {
+        display: none;
+    }
+
+    &.is-up-to-date .c-page-header-up-to-date {
+        display: block;
+    }
+
+    @media #{$mq-md} {
+        .c-page-header-logo-fx {
+            @include bidi(((float, left, right),));
+        }
+
+        .c-page-header-logo-moz {
+            @include bidi(((float, right, left),));
+            display: block;
+            margin: $spacing-md 0;
+        }
+
+        &.is-up-to-date .c-page-header-inner {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+
+            .c-page-header-logo-fx,
+            .c-page-header-logo-moz {
+                float: none;
+                margin: 0;
+            }
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Intro section
+
+.mzp-c-hero.t-wn64 {
+    background-color: $color-gray-10;
+    padding-top: $layout-sm;
+
+    .mzp-c-hero-image {
+        max-height: 720px;
+        display: none;
+
+        @media #{$mq-md} {
+            display: block;
+        }
+    }
+}
+
+.wn64-signin {
+    @include text-body-sm;
+}
+
+//* -------------------------------------------------------------------------- */
+// Benefits section
+
+.wn64-benefit {
+    @include border-box;
+    margin-bottom: $layout-md;
+    text-align: center;
+
+    &:nth-child(odd) {
+        clear: both;
+    }
+
+    @media #{$mq-md} {
+        @include bidi(((float, left, right),));
+        margin-top: $layout-md;
+        padding: 0 $layout-sm;
+        width: 50%;
+    }
+
+    @media #{$mq-lg} {
+        padding: 0 $layout-md;
+    }
+
+    h3 {
+        @include text-display-sm;
+        text-align: left;
+    }
+
+    p {
+        text-align: left;
+    }
+
+    img {
+        margin: 0 auto;
+
+        @media #{$mq-sm} {
+            max-width: 320px;
+        }
+
+        @media #{$mq-md} {
+            max-width: 100%;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// callout container
+
+.t-wn64 {
+
+    &.mzp-c-call-out-compact {
+        background: $color-gray-10;
+    }
+
+    .mzp-c-call-out-cta-container {
+        @media #{$mq-md} {
+            text-align: center;
+        }
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+// Modal, custom styles
+
+.mobile-notes,
+.mobile-lockwise,
+.mobile-pocket {
+    display: none;
+}
+
+.app-notes .mobile-notes {
+    display: block;
+}
+
+.app-lockwise .mobile-lockwise {
+    display: block;
+}
+
+.app-pocket .mobile-pocket {
+    display: block;
+}
+
+.mobile-download-buttons {
+    li {
+        display: inline-block;
+    }
+}
+
+.mobile-qr {
+     box-shadow: 0 3px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+     margin: $layout-xs;
+     max-height: 300px;
+ }
+
+.mzp-c-modal-inner {
+
+    @media #{$mq-md} {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    header h2 {
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    .mzp-c-modal-overlay-contents {
+        background: #fff;
+        color: #000;
+        padding: .5em;
+        text-align: center;
+    }
+}

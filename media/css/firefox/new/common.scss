@@ -33,6 +33,11 @@ body {
 
     h1 {
         @include font-size-level3;
+        span {
+            @include font-size-level4;
+            display: block;
+            margin-top: .5em;
+        }
     }
 
     h2 {
@@ -240,6 +245,18 @@ html.ios .header-content {
 
             &.private {
                 background-image: url('/media/img/firefox/new/icon-private.svg');
+            }
+
+            &.open-source {
+                background-image: url('/media/img/firefox/new/icon-opensource.svg');
+            }
+
+            &.seamless {
+                background-image: url('/media/img/firefox/new/icon-seamless.svg');
+            }
+
+            &.blocker {
+                background-image: url('/media/img/firefox/new/icon-blocker.svg');
             }
 
             &:last-child p {

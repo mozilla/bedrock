@@ -1,0 +1,38 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/tracking-protection-tour" %}
+
+{% extends "firefox/content-blocking-tour/index.html" %}
+
+{% block string_data %}
+data-panel1-title="{{ _('New in Firefox: Content Blocking') }}"
+data-panel1-text="{{ _('The privacy benefits of Tracking Protection are now just one part of content blocking. When you see the shield, content blocking is on.') }}"
+data-panel1-step="{{ _('1 of 3') }}"
+data-panel1-button="{{ _('Next') }}"
+data-panel3-title="{{ _('Turn off blocking for trusted sites') }}"
+
+{% if l10n_has_tag('content_blocking_65_1511420') %}
+data-panel3-text="{{ _('If content blocking prevents you from using a site you trust, select “Turn off Blocking Temporarily.”')|forceescape }}"
+{% else %}
+data-panel3-text="{{ _('If content blocking prevents you from using a site you trust, you can select “Disable Blocking Temporarily“ in this panel.')|forceescape }}"
+{% endif %}
+
+{% if l10n_has_tag('content_blocking_65_1511420') %}
+data-panel3-text-new-tab="{{ _('If content blocking prevents you from using a site you trust, select “Turn off Blocking for This Site.”')|forceescape }}"
+{% else %}
+data-panel3-text-new-tab="{{ _('If content blocking prevents you from using a site you trust, you can select “Disable Blocking For This Site“ in this panel.')|forceescape }}"
+{% endif %}
+
+data-panel3-title-alt="{{ _('Want to make changes?') }}"
+
+{% if l10n_has_tag('content_blocking_65_1511420') %}
+data-panel3-text-alt="{{ _('To restore content blocking for a site, select “Turn on Blocking for This Site.“')|forceescape }}"
+{% else %}
+data-panel3-text-alt="{{ _('To restore content blocking for a site, select “Enable Blocking For This Site“ in the Control Center panel.')|forceescape }}"
+{% endif %}
+
+data-panel3-step="{{ _('3 of 3') }}"
+data-panel3-button="{{ _('Got it!') }}"
+{% endblock %}

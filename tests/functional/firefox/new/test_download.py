@@ -7,7 +7,6 @@ import pytest
 from pages.firefox.new.download import DownloadPage
 
 
-@pytest.mark.smoke
 @pytest.mark.sanity
 @pytest.mark.nondestructive
 def test_download_button_displayed(base_url, selenium):
@@ -29,5 +28,14 @@ def test_click_download_button(base_url, selenium):
 def test_other_platforms_modal(base_url, selenium):
     page = DownloadPage(selenium, base_url, params='').open()
     modal = page.open_other_platforms_modal()
+    assert modal.is_displayed
+    modal.close()
+
+
+@pytest.mark.nondestructive
+@pytest.mark.skip_if_not_firefox(reason='Join Firefox form is only displayed to Firefox users')
+def test_firefox_account_modal(base_url, selenium):
+    page = DownloadPage(selenium, base_url, params='').open()
+    modal = page.open_join_firefox_modal()
     assert modal.is_displayed
     modal.close()

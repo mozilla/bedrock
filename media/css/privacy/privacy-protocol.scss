@@ -2,107 +2,108 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+$image-path: '/media/protocol/img';
+
 @import '../../protocol/css/includes/lib';
-@import '../../protocol/css/components/button';
-@import "../../protocol/css/components/article";
+@import '../../protocol/css/includes/mixins/details';
+@import '../../protocol/css/components/sidebar-menu';
+@import '../../protocol/css/templates/main-with-sidebar';
 
+@import '../protocol/basic-article';
 
-/* -------------------------------------------------------------------------- */
-// Layout
+$border: 2px solid $color-gray-20;
 
-.l-narrow {
-    margin: 0 auto;
-    max-width: $content-md;
-    padding: 0 $spacing-lg;
+.mzp-c-sidemenu .mzp-c-sidemenu-title  {
+    @include font-base;
+}
+
+@media #{$mq-md} {
+    .mzp-l-sidebar {
+        padding-top: 156px; // height of privacy-title
+    }
+
+    .mzp-c-sidemenu-main {
+        margin-left: -16px; // flush with left side of container
+    }
+}
+
+@media #{$mq-lg} {
+    .mzp-l-main {
+        > header,
+        > main,
+        > footer {
+            max-width: 640px; // narrow max-width for readability
+        }
+    }
 }
 
 /* -------------------------------------------------------------------------- */
 // Policy header
 
-.privacy-head {
-    background-color: $color-gray-20;
-    padding: $spacing-lg 0;
+.privacy-logo {
+    height: 40px;
+    margin-bottom: $spacing-sm;
+    width: auto;
+
+    @media #{$mq-sm} {
+        @include bidi((
+            (float, left, right),
+            (margin-right, $spacing-sm, margin-left, 0),
+        ));
+    }
 
     @media #{$mq-md} {
-        padding: $spacing-xl $spacing-lg;
+        @include bidi((
+            (left, $layout-lg, right, auto),
+        ));
+        position: absolute;
     }
 
     @media #{$mq-lg} {
-        padding: $spacing-2xl $spacing-lg;
+        @include bidi((
+            (left, $layout-xl, right, auto),
+        ));
     }
 }
 
-.policy-title {
-    @include background-size(40px 40px);
-    @include bidi((
-        (background-position, left top, right top),
-        (padding-left, 40px + $spacing-sm, padding-right, 0),
-    ));
-    @include border-box;
-    background-repeat: no-repeat;
+.privacy-title {
+    @include font-firefox;
     margin-bottom: $spacing-lg;
 
+    @media #{$mq-sm} {
+        margin-top: $layout-sm;
+        margin-bottom: $layout-md;
+    }
+
+    @media #{$mq-md} {
+        min-height: 56px; // keep consistant height of element even if time element is not present
+        margin-top: $layout-sm;
+        margin-bottom: $layout-lg;
+    }
+
     h1 {
-        @include text-display-md;
-        font-weight: normal;
+        @include text-display-xs;
+        font-weight: bold;
     }
 
     a {
         color: inherit;
         text-decoration: none;
     }
-
-    @media #{$mq-md} {
-        @include background-size(60px 60px);
-        @include bidi((
-            (background-position, left top, right top),
-            (padding-left, 60px + $spacing-md, padding-right, 0),
-        ));
-        min-height: 60px;
-    }
-
-    @media #{$mq-lg} {
-        @include background-size(90px 90px);
-        @include bidi((
-            (background-position, left top, right top),
-            (padding-left, 90px + $spacing-lg, padding-right, 0),
-        ));
-        margin-bottom: $spacing-xl;
-        min-height: 90px;
-    }
 }
 
-.product-firefox .policy-title {
-    background-image: url('/media/img/logos/firefox/logo-quantum.png');
-
-    @media #{$mq-high-res} {
-        background-image: url('/media/img/logos/firefox/logo-quantum-high-res.png');
-    }
-}
-
-.product-firefox-rocket .policy-title {
-    background-image: url('/media/img/logos/firefox/logo-rocket.png');
-
-    @media #{$mq-high-res} {
-        background-image: url('/media/img/logos/firefox/logo-rocket-high-res.png');
-    }
-}
 
 /* -------------------------------------------------------------------------- */
 // Policy header intro
 
 .privacy-lead-in {
+    border-bottom: $border;
+    clear: both;
+    margin-bottom: $layout-sm;
+    padding-bottom: $layout-xs;
+
     h2 {
         @include text-display-lg;
-        font-weight: normal;
-    }
-
-    header {
-        margin-bottom: $spacing-xl;
-
-        @media #{$mq-md} {
-            margin-bottom: $spacing-2xl;
-        }
     }
 }
 
@@ -110,45 +111,39 @@
 // Main policy content
 
 .privacy-body {
-    section > header {
-        margin: $spacing-xl 0 $spacing-2xl;
-    }
 
-    section > section {
-        border-bottom: 1px solid $color-gray-40;
-        padding-bottom: $layout-md;
-
-        header {
-            margin-bottom: $spacing-xl;
-        }
-    }
-
-    section:last-child {
-
-        section:last-child {
-            border-bottom: none;
-        }
+    > div > section > section {
+        border-bottom: $border;
     }
 
     h2 {
-        @include text-display-md;
-        font-weight: normal;
+        @include font-size(32px);
+        margin-bottom: $layout-md;
     }
 
     h3 {
-        @include text-display-sm;
-        font-weight: normal;
+        @include text-display-xs;
+        margin: $layout-sm 0;
+    }
+
+    h4 {
+        @include text-body-md;
+        margin: $layout-sm 0;
     }
 
     hr {
         display: none;
     }
+}
 
-    @media #{$mq-md} {
-        section > section {
-            padding-bottom: $layout-lg;
-        }
+.format-none {
+    .privacy-body h2 {
+        margin-top: $layout-md;
     }
+}
+
+#optional-features {
+    margin-top: $spacing-xl;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -156,13 +151,15 @@
 
 .data-choices {
     @include clearfix;
+    background-color: $color-gray-20;
+    border-radius: 8px;
+    margin-top: $spacing-xl;
+    padding: $spacing-sm;
     position: relative;
-    background-color: $color-gray-10;
-    margin-bottom: $spacing-sm;
-    padding: $spacing-md;
     text-align: center;
 
     p {
+        @include text-body-md;
         display: inline-block;
         margin: 0;
         padding: $spacing-sm 0;
@@ -171,7 +168,6 @@
     .mzp-c-button {
         display: block;
         margin: $spacing-md auto 0;
-        padding: $padding-sm $padding-md;
     }
 
     @media #{$mq-md} {
@@ -191,11 +187,90 @@
 // Policy footer
 
 .privacy-footnote {
-    background-color: $color-gray-20;
-    margin-top: $spacing-xl;
-    padding: $spacing-lg 0;
+    @include text-body-md;
+    padding: $spacing-2xl 0;
+
+    h3 {
+        @include visually-hidden;
+    }
 }
 
-.back {
-    margin-bottom: 0;
+/* -------------------------------------------------------------------------- */
+// Summary and details widget
+
+.format-headings .privacy-body {
+    @include details;
+
+    .is-summary {
+        button {
+            @include summary;
+            @include bidi(((padding-left, 0, padding-right, 0),));
+        }
+
+        button[aria-expanded=true]:before {
+            @include summary-open;
+        }
+
+        + div {
+            margin-top: $spacing-sm * -1;
+            margin-bottom: $spacing-xl;
+        }
+    }
+}
+
+.format-paragraphs .privacy-body {
+    @include details;
+
+    .is-summary {
+        button {
+            padding: 0;
+
+            &:after {
+                color: $color-link;
+                content: attr(data-open);
+                margin-left: 0.5ex;
+                text-decoration: underline;
+            }
+        }
+
+        button[aria-expanded=true]:after {
+            content: attr(data-close);
+        }
+
+        + div {
+            margin-top: $spacing-sm * -1;
+            margin-bottom: $spacing-xl;
+        }
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+// Privacy Principles page
+
+#privacy-principles,
+#privacy-faq {
+    .mzp-l-sidebar {
+        padding-top: 0;
+    }
+}
+
+#privacy-principles {
+
+    ol {
+        @include text-display-md;
+        @include font-mozilla;
+        font-weight: bold;
+        margin-left: 1.15em;
+
+        h2 {
+            margin-bottom: $spacing-xs;
+        }
+
+        p {
+            @include font-base;
+            @include text-body-md;
+            font-weight: normal;
+        }
+    }
 }

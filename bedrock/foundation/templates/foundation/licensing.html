@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "foundation/base-resp.html" %}
+{% extends "foundation/base.html" %}
 
 {% block page_title %}{{ _('Mozilla Licensing Policies') }}{% endblock %}
 
@@ -12,7 +12,7 @@
   {{ _('Licensing & Trademarks') }}
 {% endblock %}
 
-{% block article %}
+{% block article_content %}
   <h2>{{ _('Source Code') }}</h2>
   <p>
     {% trans
@@ -45,21 +45,15 @@
     {% endtrans %}
   </p>
   <p>
-    {% trans trademarks=url('foundation.trademarks.policy'), email="mailto:trademark-permissions@mozilla.org"%}
-    For more detail on our trademark licensing, see our <a href="{{ trademarks }}">Mozilla Trademark Guidelines</a>. If you still have questions after reading the policy, please contact <a href="{{ email }}">trademark-permissions@mozilla.org</a>.
+    {% trans trademarks=url('foundation.trademarks.policy'), email="mailto:trademark-permissions@mozilla.com"%}
+    For more detail on our trademark licensing, see our <a href="{{ trademarks }}">Mozilla Trademark Guidelines</a>. If you still have questions after reading the policy, please contact <a href="{{ email }}">trademark-permissions@mozilla.com</a>.
     {% endtrans %}
   </p>
 
   <h2>{{ _('Website Content') }}</h2>
   <p>
     {% trans %}
-      Mozilla website content (i.e. text and pictures, not look and feel) is
-      generally licensed under Creative Commons Attribution Share-Alike
-      (CC-SA) licenses. User-generated content, such as comments on our
-      blog posts, are also generally made available under CC-SA, but
-      different Mozilla websites (such as addons.mozilla.org) may allow
-      users to choose other licenses for content that they upload to
-      our sites.
+      The text of Mozilla websites is generally licensed under a Creative Commons Attribution (CC BY) or Attribution-ShareAlike (CC BY-SA) license, as indicated. Also, certain Mozilla websites (such as addons.mozilla.org) may allow users to choose Creative Commons licenses for content that they upload to our sites.
     {% endtrans %}
   </p>
 

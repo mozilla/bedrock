@@ -1,0 +1,162 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+ {% from "macros-protocol.html" import call_out_compact with context %}
+
+ {% add_lang_files "firefox/best-browser" %}
+
+ {% extends "firefox/base/base-protocol.html" %}
+
+ {% block page_title %}{{ _('Find your best browser for speed, privacy and security.') }}{% endblock %}
+
+ {% block page_desc %}
+ {{ _('So many browser options, but there’s only one that works best for your needs. The best browser for you should offer both speed and privacy protection.') }}
+ {% endblock %}
+
+ {% block page_css %}
+ {{ css_bundle('bestbrowser') }}
+ {% endblock %}
+
+ {% block content %}
+ <div class="seo-hero">
+   <div class="hero-content mzp-l-content">
+     <img src="{{ static('img/logos/firefox/logo-quantum.png') }}" width="50" height="50" alt="">
+     <p>{{ _('Privacy, speed, and security.') }}</p>
+     <h1>{{ _('How to choose the best browser for you.') }}</h1>
+     <div class="download-firefox">
+       {{ download_firefox(dom_id='safebrowser-hero-download', download_location='primary cta') }}
+     </div>
+   </div>
+ </div>
+ <div class="mzp-l-content">
+   <article class="mzp-c-article">
+     <p class="mzp-c-article-intro">
+       {% trans %}
+       The internet has become as essential as electricity and running water, so choosing the best browser for you is more important than ever. The internet is a second office, a teacher and sometimes a medical advisor, even if your actual doctor would prefer you didn’t look up your symptoms online.
+       {% endtrans %}
+     </p>
+     <hr>
+     <p>
+       {% trans %}
+       In the mid-nineties, Netscape, Internet Explorer and AOL dominated the landscape. It was a simpler time when the sweet melody of dial-up internet rang across the land. You learned the meaning of patience waiting for web pages to load. Back then, all that mattered was browser speed.
+       {% endtrans %}
+     </p>
+     <p>
+       {% trans %}
+       Today is a different story. Ads, privacy hacks, security breaches, and fake news might have you looking at other qualities in a browser. How does the browser protect your privacy? Does it allow trackers to follow you across the web? Does it built to multitask and handle many computer and internet operations at once?
+       {% endtrans %}
+     </p>
+
+     <blockquote aria-hidden="true" role="presentation">
+      <p>
+      {% trans %}
+      When you use a browser for everything, it needs to be fast.  But for the same reason, it needs to be private. A browser has access to everything you do online, so it can put you at real risk if it doesn’t have strong privacy features.
+      {% endtrans %}
+      <footer><cite>{{ _('Marshall Erwin, Senior Director of Trust and Security at Mozilla') }}</cite></footer>
+      </p>
+     </blockquote>
+
+     <p>
+       {% trans %}
+       If you’re wondering what it means to have a private or fast browser, here’s a breakdown of three things a browser should have.
+       {% endtrans %}
+     </p>
+
+     <section class="article-section">
+       <h2>{{ _('A browser built for speed.') }}</h2>
+       <p>
+         {% trans %}
+         A browser is still a tool, so it makes sense that you’ll want to pick the best one for the job. If you’re a human who needs to work to survive, you’ll need a fast internet browser. One thing to keep in mind is a browser that runs third-party trackers is more likely to be slower than a browser that doesn’t. Third-party trackers are cookies, and while you can’t see them, they are running in the background of the site, taking up precious time. The more third-party trackers a browser blocks, the faster it can run.
+         {% endtrans %}
+       </p>
+       <p>
+         {% trans %}
+         This is one of the many reasons to choose the Firefox browser: Firefox blocks third-party trackers by default. We have other reasons and we’ll get into those later.
+         {% endtrans %}
+       </p>
+     </section>
+
+     <section class="article-section">
+       <h2>{{ _('A browser that puts safety first.') }}</h2>
+       <p>
+         {% trans %}
+         Remember the last massive data breach? If not, it’s probably because it happens so often. Companies hold on to customer data, like their personal or financial information, and hackers steal it. If you’re making safety a priority, then a secure internet browser is the best browser for you.
+         {% endtrans %}
+       </p>
+       <p>
+         {% trans %}
+         There are a few ways a browser can help its users stay secure. A browser that is up to date with the latest security tech can help protect your computer and websites from unwanted visitors, such as malware or computer viruses.
+         {% endtrans %}
+       </p>
+       <p>
+         {% trans data=url('privacy.notices.firefox'), privacy=url('privacy.notices.firefox') %}
+         The second is not storing too much user data. Hackers can’t steal what’s not there, which is why Firefox keeps a minimum amount of information about its users. <a href="{{ data }}">Firefox knows</a> if you use the browser and your general location <a href="{{ privacy }}">but not the name of your childhood pet or your favorite color.</a>
+         {% endtrans %}
+       </p>
+       <p>
+         {% trans %}
+         Last but not least, a safe browser should offer tools to help you keep an eye on your accounts. Think of alerts that go straight to your email if any of your accounts get breached or icons that tell you whether a website is encrypted, (i.e., if it’s a good idea to enter your credit number on a shopping site).
+         {% endtrans %}
+       </p>
+       <p>
+         {% trans monitor='https://monitor.firefox.com/' %}
+         Firefox is offering something new to keep you safe: <a href="{{ monitor }}">Firefox Monitor</a>. It’s a free service that will alert you if there are any public hacks on your accounts and let you know if your accounts got hacked in the past. Another neat feature is the Green Lock. It looks like a small green icon at the top left side of the browser window. If you’re on Firefox and see the green lock, it means the website is encrypted and secure. If the lock is grey, you might want to think twice about entering any sensitive information.
+         {% endtrans %}
+       </p>
+       <blockquote aria-hidden="true" role="presentation">
+        <p>
+          {% trans %}
+          We visit hundreds or even thousands of websites each day, and you can’t expect users to make security and privacy decisions for each of these sites. That is why a browser that gives you more control is so important - because it offers real, meaningful protection.
+          {% endtrans %}
+        </p>
+        <footer><cite>{{ _('Marshall Erwin, Senior Director of Trust and Security at Mozilla') }}</cite></footer>
+       </blockquote>
+     </section>
+
+     <section class="article-section">
+      <h2>{{ _('A browser that minds its business.') }}</h2>
+      <p>
+        {% trans %}
+        Privacy on the web is a hot button issue. If privacy is number one on your list of priorities, you want to look for a browser that takes that seriously. When choosing the best private browser for you, look at the tracking policy and how a browser handles your data. These seem like technical questions, but they’re the reason some browsers are more private than others.
+        {% endtrans %}
+      </p>
+      <p>
+        {% trans %}
+        Trackers are all those annoying “cookies” messages you get on airline sites. These third-party trackers know where you click and can be used to analyze your behavior. A private browser should give users the option to turn off third-party trackers, but ideally, turn them off by default.
+        {% endtrans %}
+      </p>
+      <p>
+        {% trans %}
+        Another way to stop trackers from tracking is using private mode to browse. Any browser that claims to be private should offer browsing in private mode.
+        {% endtrans %}
+      </p>
+      <p>
+        {% trans privacy=url('privacy.notices.firefox') %}
+        One easy way to check is to visit a browser’s content setting page and privacy policy. The privacy webpage should outline if your data is shared and why. It’s why the <a href="{{ privacy }}">Firefox privacy notice</a> is easy to read and easy to find.
+        {% endtrans %}
+      </p>
+      <p>
+        {% trans %}
+        Choosing the best browser for you is a lot like choosing a home. You want to explore your options, do some research and make a decision based on what’s important to you.
+        {% endtrans %}
+      </p>
+      <p>
+        {% trans firefox=url('firefox.new') %}
+        At <a href="{{ firefox }}">Firefox</a>, we’ve worked hard to build a browser that is twice as fast as before and gives users more control over their online life.
+        {% endtrans %}
+      </p>
+    </section>
+   </article>
+ </div>
+
+ {% call call_out_compact(
+   title=_('Take control of your browser.'),
+   class='mzp-t-product-firefox mzp-t-firefox mzp-t-dark'
+ ) %}
+ <div class="download-firefox">
+   {{ download_firefox(dom_id='safebrowser-bottom-download', download_location='secondary cta') }}
+ </div>
+ {% endcall %}
+
+ {% endblock %}

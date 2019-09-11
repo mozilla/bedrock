@@ -4,7 +4,7 @@
 from django.conf.urls import url
 from bedrock.mozorg.util import page
 
-import views
+from bedrock.etc import views
 
 
 urlpatterns = (

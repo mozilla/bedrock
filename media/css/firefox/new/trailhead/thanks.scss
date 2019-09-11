@@ -1,0 +1,194 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../../protocol/css/components/call-out';
+@import '../../../../protocol/css/components/picto-card';
+@import '../../../../protocol/css/includes/lib';
+@import '../../../../protocol/css/templates/card-layout';
+
+// keep the button technically visible to grab correct download link for
+// backup download link
+.js #download-button-wrapper-desktop {
+    height: 1px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+
+    #primary-download-button {
+        margin: 1px 0 0 1px;
+    }
+}
+
+/**
+ * Notification bar.
+ * This should probably be a Protocol component.
+ * https://github.com/mozilla/protocol/issues/383
+ */
+.c-notification {
+    @include text-body-sm;
+    border-radius: 4px;
+    box-shadow: 0 2px 24px 0 rgba(32, 18, 58, .2);
+    color: $color-off-black;
+    margin: 0 auto $spacing-lg;
+    max-width: calc(600px - #{$spacing-md * 2});
+    padding: $spacing-sm $spacing-md;
+    text-align: center;
+
+    &.t-warning {
+        background-color: #fce98f;
+    }
+
+    &.t-success {
+        background-color: #3fe1b0;
+    }
+
+    a:link,
+    a:visited {
+        color: inherit;
+        font-weight: bold;
+    }
+
+    &.unsupported {
+        display: none;
+    }
+
+    .windows.xpvista & {
+        &.unsupported {
+            display: block;
+        }
+    }
+}
+
+main {
+    @include at2x('/media/img/firefox/new/trailhead/thanks-bg.png', 492px, 433px);
+    @include bidi(((background-position, top left -400px, top right -400px),));
+    background-repeat: no-repeat;
+
+    @media #{$mq-md} {
+        @include bidi(((background-position, top left -300px, top right -300px),));
+    }
+
+    @media #{$mq-lg} {
+        @include bidi(((background-position, top left -200px, top right -200px),));
+    }
+
+    @media #{$mq-xl} {
+        @include bidi(((background-position, top left, top right),));
+    }
+
+    html[dir="rtl"] & {
+        @include at2x('/media/img/firefox/new/trailhead/thanks-bg-rtl.png', 492px, 433px);
+    }
+}
+
+.mzp-c-call-out {
+    background: transparent;
+
+    .mzp-c-call-out-title {
+        @include text-display-xl;
+        max-width: 610px;
+        margin: 0 auto;
+    }
+}
+
+/**
+ * Picto card custom icon sizes.
+ * These should be standardized into a `large` icon size.
+ * https://github.com/mozilla/protocol/issues/382
+ */
+.mzp-c-card-picto .mzp-c-card-picto-content {
+    padding-top: 140px;
+
+    &:before {
+        background-color: transparent;
+        background-position: top left;
+        background-repeat: no-repeat;
+    }
+
+    .mzp-c-card-picto-desc {
+        @include text-body-lg;
+    }
+}
+
+.devices .mzp-c-card-picto-content::before {
+    height: 90px;
+    width: 140px;
+    margin-left: -70px;
+    background-image: url('/media/img/firefox/new/trailhead/icon-devices.svg');
+}
+
+.products .mzp-c-card-picto-content::before {
+    height: 113px;
+    width: 149px;
+    margin-left: -75px;
+    background-image: url('/media/img/firefox/new/trailhead/icon-products.svg');
+}
+
+.safety .mzp-c-card-picto-content::before {
+    height: 102px;
+    width: 120px;
+    margin-left: -60px;
+    background-image: url('/media/img/firefox/new/trailhead/icon-safety.svg');
+}
+
+.community .mzp-c-card-picto-content::before {
+    height: 109px;
+    width: 128px;
+    margin-left: -64px;
+    background-image: url('/media/img/firefox/new/trailhead/icon-community.svg');
+}
+
+/**
+ * Picto card 4 column layout
+ * Can be removed once Protocol is updated.
+ * https://github.com/mozilla/protocol/issues/382
+ */
+.mzp-l-card-quarter {
+    @media #{$mq-sm} {
+        @include clearfix;
+
+        .mzp-c-card-picto {
+            @include bidi((
+                (float, left, right),
+                (margin-left, 0, $spacing-xl),
+                (margin-right, $spacing-xl, 0),
+            ));
+            width: calc(50% - (#{$spacing-xl} / 2));
+
+            &:nth-child(even) {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+    }
+
+    @media #{$mq-lg} {
+        .mzp-c-card-picto {
+            @include bidi((
+                (margin-left, 0, $spacing-xl),
+                (margin-right, $spacing-xl, 0),
+            ));
+            width: calc(25% - (#{$spacing-xl} - (#{$spacing-xl} / 4)));
+
+            &:nth-child(even) {
+                @include bidi((
+                    (margin-left, 0, $spacing-xl),
+                    (margin-right, $spacing-xl, 0),
+                ));
+            }
+
+            &:nth-child(4n) {
+                @include bidi(((margin-right, 0, margin-left, 0),));
+            }
+
+            &:nth-child(4n+1) {
+                @include bidi(((clear, left, right),));
+            }
+        }
+    }
+}

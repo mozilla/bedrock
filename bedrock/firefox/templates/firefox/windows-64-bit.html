@@ -1,0 +1,76 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+ {% from "macros-protocol.html" import call_out_compact, hero with context %}
+
+ {% extends "firefox/base/base-protocol.html" %}
+
+ {% block page_title %}{{ _('Firefox for Windows 64-bit') }}{% endblock %}
+
+ {% block page_desc %}
+   {{ _('Users on 64-bit Windows who download Firefox can get our 64-bit version by default. That means you get a more secure version of Firefox.') }}
+ {% endblock %}
+
+ {% block page_css %}
+   {{ css_bundle('windows-64-bit') }}
+ {% endblock %}
+
+ {% block content %}
+   <div class="mzp-c-hero">
+     <div class="hero-content">
+       <img src="{{ static('protocol/img/logos/firefox/firefox.png') }}" width="50" height="50" alt="">
+       <p>{{ _('64-bit') }}</p>
+       <h1>{{ _('A more secure Firefox.') }}</h1>
+       <div class="download-firefox">
+         {{ download_firefox(dom_id='win64-hero-download', download_location='primary cta') }}
+       </div>
+     </div>
+   </div>
+   <div class="mzp-l-content">
+   <article class="mzp-c-article">
+    <p class="mzp-c-article-intro">
+      {% trans crashes='https://blog.mozilla.org/firefox/defeat-browser-crashes/' %}
+      Users on 64-bit Windows who download Firefox can get our 64-bit version by default. That means you get a more secure version of Firefox, one that also <a href="{{ crashes }}">crashes a whole lot less</a>. How much less? In our tests so far, 64-bit Firefox reduced crashes by 39% on machines with 4GB of RAM or more.
+      {% endtrans %}
+    </p>
+
+    <hr>
+    <section class="article-section">
+      <h2>{{ _('What’s the difference between 32-bit and 64-bit?') }}</h2>
+      <p>
+        {% trans ASLR='https://en.wikipedia.org/wiki/Address_space_layout_randomization' %}
+        Here’s the key thing to know: 64-bit applications can access more memory and are less likely to crash than 32-bit applications. Also, with the jump from 32 to 64 bits, a security feature called <a href={{ ASLR }}>Address Space Layout Randomization (ASLR)</a> works better to protect you from attackers. Linux and macOS users, fret not, you already enjoy a Firefox that’s optimized for 64-bit.
+        {% endtrans %}
+      </p>
+    </section>
+
+    <section class="article-section">
+      <h2>{{ _('How do you get 64-bit Firefox?') }}</h2>
+      <p>
+      {% trans version='https://support.microsoft.com/help/13443/windows-which-operating-system', check='https://support.mozilla.org/kb/update-firefox-latest-version' %}
+       If you’re running 64-bit Windows (<a href="{{ version }}">here’s how to check</a>), your Firefox may already be 64-bit. <a href="{{ check }}">Check your Firefox version</a> (in the “About Firefox” window) and look for “(32-bit)” or “(64-bit)” after the version number:
+      {% endtrans %}
+       <ul class="mzp-u-list-styled">
+         <li>{{ _('If you see “(32-bit)” and you are running Firefox 56.0 or older, updating to the latest Firefox version should automatically upgrade you to 64-bit.') }}</li>
+         <li>{{ _('If you see “(32-bit)” and are running Firefox 56.0.1 or newer, then your computer may not meet the minimum memory requirement for 64-bit (3 GB RAM or more). You can still manually install 64-bit Firefox, if you choose.') }}</li>
+       </ul>
+       {% trans all=url('firefox.all') %}
+       If you need to run 32-bit Firefox or manually install 64-bit Firefox, you can simply download and re-run the Windows (32-bit or 64-bit) Firefox installer from the <a href="{{ all }}">Firefox platforms and languages download page.</a>
+       {% endtrans %}
+      </p>
+    </section>
+
+   </article>
+ </div>
+
+ {% call call_out_compact(
+  title=_('Take control of your browser.'),
+  class='mzp-t-product-firefox mzp-t-firefox mzp-t-dark'
+) %}
+  <div class="download-firefox">
+    {{ download_firefox(dom_id='win64-bottom-download', download_location='secondary cta') }}
+  </div>
+{% endcall %}
+
+{% endblock %}

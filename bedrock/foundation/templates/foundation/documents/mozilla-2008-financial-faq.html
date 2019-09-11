@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends 'foundation/base-resp.html' %}
+{% extends 'foundation/base.html' %}
 
 {% block page_title %}{{ _('Mozilla 2008 Financial FAQ') }}{% endblock %}
 
@@ -10,7 +10,7 @@
   {{ _('Mozilla 2008 Financial FAQ') }}
 {% endblock %}
 
-{% block article %}
+{% block article_content %}
   <p>
     {% trans
       form990='https://static.mozilla.com/foundation/documents/mf-2008-irs-form-990.pdf',
@@ -23,7 +23,7 @@
     {% endtrans %}
   </p>
 
-  <dl class="faq">
+  <dl class="mzp-u-list-styled">
     <dt>{% trans %}What was Mozilla's total revenue for 2008?{% endtrans %}</dt>
     <dd>
     <p>{% trans %}Mozilla's consolidated reported revenues (Mozilla Foundation and all Subsidiaries) for 2008 were $79 million, up approximately

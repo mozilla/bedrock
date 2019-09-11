@@ -36,29 +36,6 @@
         }
     }
 
-    // Init video poster helper and bind video interaction events for JS tracking.
-    function initFasterVideo() {
-        var videoPoster = new Mozilla.VideoPosterHelper('.key-features-section .key-feature-media.video');
-        videoPoster.init();
-
-        // Auto pause the video when scrolled out of view.
-        new Waypoint({
-            element: document.getElementById('faster-video'),
-            handler: function(direction) {
-                if (direction === 'down') {
-                    try {
-                        if (!this.element.paused) {
-                            this.element.pause();
-                        }
-                    } catch(e) {
-                        // Fail silently.
-                    }
-                }
-            },
-            offset: '-50%'
-        });
-    }
-
     // Bind one time scroll tracking events for main page sections.
     function initScrollTracking() {
         var sections = document.querySelectorAll('[data-scroll-tracking]');
@@ -82,9 +59,10 @@
     }
 
     if (supportsBaselineJS()) {
-        initFasterVideo();
         initScrollTracking();
         initVideoInteractionTracking();
     }
+
+    Mozilla.LazyLoad.init();
 
 })(window.Mozilla, window.Waypoint);

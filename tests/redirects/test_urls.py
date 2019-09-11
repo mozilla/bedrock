@@ -1,6 +1,4 @@
 """Test redirects from the global.conf file."""
-from __future__ import absolute_import
-
 import pytest
 import requests
 
@@ -8,7 +6,6 @@ from .base import assert_valid_url
 from .map_410 import URLS_410
 
 
-@pytest.mark.smoke
 @pytest.mark.headless
 @pytest.mark.nondestructive
 @pytest.mark.django_db
@@ -17,7 +14,6 @@ def test_410_url(url, base_url):
     assert_valid_url(url, base_url=base_url, status_code=requests.codes.gone)
 
 
-@pytest.mark.smoke
 @pytest.mark.headless
 @pytest.mark.nondestructive
 @pytest.mark.django_db
@@ -28,12 +24,11 @@ def test_404_url(base_url):
         base_url=base_url)
 
 
-@pytest.mark.smoke
 @pytest.mark.headless
 @pytest.mark.nondestructive
 @pytest.mark.django_db
 def test_x_robots_tag(base_url):
-    assert_valid_url(base_url, resp_headers={'x-robots-tag': 'noodp'})
+    assert_valid_url('/en-US/', status_code=200, resp_headers={'x-robots-tag': 'noodp'}, base_url=base_url)
 
 
 @pytest.mark.headless
@@ -56,7 +51,6 @@ def test_x_robots_tag(base_url):
     '/firefox/mobile/',
     '/firefox/new/',
     '/firefox/nightly/firstrun/',
-    '/firefox/organizations/',
     '/firefox/os/',
     '/firefox/os/notes/1.1/',
     '/firefox/partners/',

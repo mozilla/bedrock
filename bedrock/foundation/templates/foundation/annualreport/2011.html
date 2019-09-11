@@ -16,26 +16,13 @@
 {% endblock %}
 
 {% block js %}
-  <!--[if IE 9]>
-    {{ js_bundle('matchmedia_addlistener') }}
-  <![endif]-->
   {{ js_bundle('annual_2011') }}
 {% endblock %}
 
 
 {% block site_header %}
   <header id="masthead">
-    <div id="tabzilla">
-      <a href="{{ url('mozorg.home') }}">{{ _('Mozilla') }}</a>
-    </div>
-
-    {% block site_header_nav %}{% endblock %}
-
-    {% block site_header_logo %}
     <h1>{{ _('The State of Mozilla') }}</h1>
-    {% endblock %}
-
-    {% block breadcrumbs %}{% endblock %}
   </header>
 
   <nav id="page-nav">

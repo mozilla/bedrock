@@ -11,13 +11,11 @@ from django.test.utils import override_settings
 
 from django_jinja.backend import Jinja2
 from mock import call, Mock, patch
-from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox import views as fx_views
-from bedrock.firefox.firefox_details import FirefoxDesktop, FirefoxAndroid, FirefoxIOS
-from bedrock.firefox.utils import product_details
+from bedrock.firefox.firefox_details import FirefoxDesktop, FirefoxAndroid
 from bedrock.mozorg.tests import TestCase
 
 
@@ -25,10 +23,6 @@ TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), 'test_data')
 PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, 'product_details_json')
 GOOD_PLATS = {'Windows': {}, 'OS X': {}, 'Linux': {}}
 jinja_env = Jinja2.get_default().env
-
-firefox_desktop = FirefoxDesktop(json_dir=PROD_DETAILS_DIR)
-firefox_android = FirefoxAndroid(json_dir=PROD_DETAILS_DIR)
-firefox_ios = FirefoxIOS(json_dir=PROD_DETAILS_DIR)
 
 
 class TestInstallerHelp(TestCase):
@@ -95,12 +89,19 @@ class TestInstallerHelp(TestCase):
                                                  locale=None)
 
 
-@patch.object(fx_views, 'firefox_desktop', firefox_desktop)
 class TestFirefoxAll(TestCase):
     pd_cache = caches['product-details']
 
     def setUp(self):
         self.pd_cache.clear()
+        self.firefox_desktop = FirefoxDesktop(json_dir=PROD_DETAILS_DIR)
+        self.firefox_android = FirefoxAndroid(json_dir=PROD_DETAILS_DIR)
+        self.patcher = patch.object(
+            fx_views, 'firefox_desktop', self.firefox_desktop)
+        self.patcher.start()
+
+    def tearDown(self):
+        self.patcher.stop()
 
     def _get_url(self, platform='desktop', channel='release'):
         with self.activate('en-US'):
@@ -113,6 +114,48 @@ class TestFirefoxAll(TestCase):
 
             return reverse('firefox.all', kwargs=kwargs)
 
+    @patch.object(fx_views, 'lang_file_is_active', lambda *x: True)
+    def test_all_builds_results(self):
+        """
+        The unified page should display builds for all products
+        """
+        resp = self.client.get(self._get_url())
+        doc = pq(resp.content)
+        assert len(doc('.c-all-downloads-build')) == 8
+
+        desktop_release_builds = len(self.firefox_desktop.get_filtered_full_builds('release'))
+        assert len(doc('.c-locale-list[data-product="desktop_release"] > li')) == desktop_release_builds
+        assert len(doc('.c-locale-list[data-product="desktop_release"] > li[data-language="en-US"] > ul > li > a')) == 7
+
+        desktop_beta_builds = len(self.firefox_desktop.get_filtered_full_builds('beta'))
+        assert len(doc('.c-locale-list[data-product="desktop_beta"] > li')) == desktop_beta_builds
+        assert len(doc('.c-locale-list[data-product="desktop_beta"] > li[data-language="en-US"] > ul > li > a')) == 7
+
+        desktop_developer_builds = len(self.firefox_desktop.get_filtered_full_builds('alpha'))
+        assert len(doc('.c-locale-list[data-product="desktop_developer"] > li')) == desktop_developer_builds
+        assert len(doc('.c-locale-list[data-product="desktop_developer"] > li[data-language="en-US"] > ul > li > a')) == 7
+
+        desktop_nightly_builds = len(self.firefox_desktop.get_filtered_full_builds('nightly'))
+        assert len(doc('.c-locale-list[data-product="desktop_nightly"] > li')) == desktop_nightly_builds
+        assert len(doc('.c-locale-list[data-product="desktop_nightly"] > li[data-language="en-US"] > ul > li > a')) == 7
+
+        desktop_esr_builds = len(self.firefox_desktop.get_filtered_full_builds('esr'))
+        assert len(doc('.c-locale-list[data-product="desktop_esr"] > li')) == desktop_esr_builds
+        assert len(doc('.c-locale-list[data-product="desktop_esr"] > li[data-language="en-US"] > ul > li > a')) == 5
+
+        android_release_builds = len(self.firefox_android.get_filtered_full_builds('release'))
+        assert len(doc('.c-locale-list[data-product="android_release"] > li')) == android_release_builds
+        assert len(doc('.c-locale-list[data-product="android_release"] > li[data-language="multi"] > ul > li > a')) == 2
+
+        android_beta_builds = len(self.firefox_android.get_filtered_full_builds('beta'))
+        assert len(doc('.c-locale-list[data-product="android_beta"] > li')) == android_beta_builds
+        assert len(doc('.c-locale-list[data-product="android_beta"] > li[data-language="multi"] > ul > li > a')) == 2
+
+        android_nightly_builds = len(self.firefox_android.get_filtered_full_builds('nightly'))
+        assert len(doc('.c-locale-list[data-product="android_nightly"] > li')) == android_nightly_builds
+        assert len(doc('.c-locale-list[data-product="android_nightly"] > li[data-language="multi"] > ul > li > a')) == 2
+
+    @patch.object(fx_views, 'lang_file_is_active', lambda *x: False)
     def test_no_search_results(self):
         """
         Tables should be gone and not-found message should be shown when there
@@ -120,22 +163,25 @@ class TestFirefoxAll(TestCase):
         """
         resp = self.client.get(self._get_url() + '?q=DOES_NOT_EXIST')
         doc = pq(resp.content)
-        ok_(not doc('table.build-table'))
-        ok_(not doc('.not-found.hide'))
+        assert not doc('table.build-table')
+        assert not doc('.not-found.hide')
 
+    @patch.object(fx_views, 'lang_file_is_active', lambda *x: False)
     def test_no_search_query(self):
         """
         When not searching all builds should show.
         """
         resp = self.client.get(self._get_url())
         doc = pq(resp.content)
-        eq_(len(doc('.build-table')), 1)
-        eq_(len(doc('.not-found.hide')), 1)
+        assert len(doc('.build-table')) == 1
+        assert len(doc('.not-found.hide')) == 1
 
-        num_builds = len(firefox_desktop.get_filtered_full_builds('release'))
-        num_builds += len(firefox_desktop.get_filtered_test_builds('release'))
-        eq_(len(doc('tr[data-search]')), num_builds)
-        eq_(len(doc('tr#en-US a')), 5)
+        num_builds = len(
+            self.firefox_desktop.get_filtered_full_builds('release'))
+        num_builds += len(
+            self.firefox_desktop.get_filtered_test_builds('release'))
+        assert len(doc('tr[data-search]')) == num_builds
+        assert len(doc('tr#en-US a')) == 7
 
     def test_no_locale_details(self):
         """
@@ -143,10 +189,10 @@ class TestFirefoxAll(TestCase):
         locale details are not updated yet, the filtered build list should not
         include the localized build.
         """
-        builds = firefox_desktop.get_filtered_full_builds('release')
-        ok_('uz' in firefox_desktop.firefox_primary_builds)
-        ok_('uz' not in firefox_desktop.languages)
-        eq_(len([build for build in builds if build['locale'] == 'uz']), 0)
+        builds = self.firefox_desktop.get_filtered_full_builds('release')
+        assert 'uz' in self.firefox_desktop.firefox_primary_builds
+        assert 'uz' not in self.firefox_desktop.languages
+        assert len([build for build in builds if build['locale'] == 'uz']) == 0
 
     def test_android(self):
         """
@@ -155,10 +201,10 @@ class TestFirefoxAll(TestCase):
         """
         resp = self.client.get(self._get_url('android'))
         doc = pq(resp.content)
-        eq_(len(doc('tbody tr')), 1)
-        eq_(len(doc('tbody tr#multi a')), 2)
-        eq_(len(doc('tbody tr#multi .android')), 1)
-        eq_(len(doc('tbody tr#multi .android-x86')), 1)
+        assert len(doc('tbody tr')) == 1
+        assert len(doc('tbody tr#multi a')) == 2
+        assert len(doc('tbody tr#multi .android')) == 1
+        assert len(doc('tbody tr#multi .android-x86')) == 1
 
     def test_404(self):
         """
@@ -174,8 +220,8 @@ class TestFirefoxAll(TestCase):
     def test_301(self):
         """Android Aurora download page should be redirected to Nightly"""
         resp = self.client.get(self._get_url('android', 'aurora'))
-        eq_(resp.status_code, 301)
-        ok_(resp['Location'].endswith('/firefox/android/nightly/all/'))
+        assert resp.status_code == 301
+        assert resp['Location'].endswith('/firefox/android/nightly/all/')
 
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
@@ -184,13 +230,117 @@ class TestWhatsNew(TestCase):
         self.view = fx_views.WhatsnewView.as_view()
         self.rf = RequestFactory(HTTP_USER_AGENT='Firefox')
 
+    # begin nightly whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_nightly_68_0_a1_whatsnew(self, render_mock):
+        """Should show nightly whatsnew template"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='68.0a1')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/nightly_whatsnew.html']
+
+    # end nightly whatsnew tests
+
+    # begin beta whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_beta_whatsnew(self, render_mock):
+        """Should show beta whatsnew template"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='67.0beta')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/index.html']
+
+    @override_settings(DEV=True)
+    @patch.dict(os.environ, SWITCH_BETA_WHATSNEW_68_TRAILHEAD='True')
+    def test_fx_beta_68_0_trailhead_whatsnew_on(self, render_mock):
+        """Should show beta 68 trailhead template"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='68.0beta')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/beta/whatsnew-fx68-trailhead.html']
+
+    @override_settings(DEV=True)
+    @patch.dict(os.environ, SWITCH_BETA_WHATSNEW_68_TRAILHEAD='False')
+    def test_fx_beta_68_0_trailhead_whatsnew_off(self, render_mock):
+        """Should show beta 68 trailhead template"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='68.0beta')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/beta/whatsnew-fx68.html']
+
+    @override_settings(DEV=True)
+    @patch.dict(os.environ, SWITCH_BETA_WHATSNEW_68_TRAILHEAD='True')
+    def test_fx_beta_68_0_trailhead_non_locales(self, render_mock):
+        """Should show beta 68 whatsnew template"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'es-ES'
+        self.view(req, version='68.0beta')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/beta/whatsnew-fx68.html']
+
+    # end beta whatsnew tests
+
+    # begin dev edition whatsnew tests
+
     @override_settings(DEV=True)
     def test_fx_dev_browser_35_0_a2_whatsnew(self, render_mock):
-        """Should show dev browser whatsnew template"""
+        """Should show default whatsnew template"""
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, version='35.0a2')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/dev-whatsnew.html'])
+        assert template == ['firefox/whatsnew/index.html']
+
+    @override_settings(DEV=True)
+    def test_fx_dev_browser_57_0_a2_whatsnew(self, render_mock):
+        """Should show dev browser 57 whatsnew template"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='57.0a2')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/developer/whatsnew.html']
+
+    @override_settings(DEV=True)
+    @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68='True')
+    @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68_TRAILHEAD='True')
+    def test_fx_dev_browser_68_0_a2_trailhead_on(self, render_mock):
+        """Should show dev browser 68 trailhead template"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='68.0a2')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/developer/whatsnew-fx68-trailhead.html']
+
+    @override_settings(DEV=True)
+    @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68='True')
+    @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68_TRAILHEAD='False')
+    def test_fx_dev_browser_68_0_a2_trailhead_off(self, render_mock):
+        """Should show dev browser 68 trailhead template"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='68.0a2')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/developer/whatsnew-fx68.html']
+
+    @override_settings(DEV=True)
+    @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68='True')
+    @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68_TRAILHEAD='True')
+    def test_fx_dev_browser_68_0_a2_trailhead_non_locales(self, render_mock):
+        """Should show dev browser 68 whatsnew template"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'es-ES'
+        self.view(req, version='68.0a2')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/developer/whatsnew-fx68.html']
+
+    @override_settings(DEV=True)
+    @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68='False')
+    def test_fx_dev_browser_68_0_a2_whatsnew_off(self, render_mock):
+        """Should show regular dev browser whatsnew template"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='68.0a2')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/developer/whatsnew.html']
+
+    # end dev edition whatsnew tests
 
     @override_settings(DEV=True)
     def test_rv_prefix(self, render_mock):
@@ -198,231 +348,28 @@ class TestWhatsNew(TestCase):
         req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=rv:10.0')
         self.view(req, version='54.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.html'])
+        assert template == ['firefox/whatsnew/index.html']
 
     @override_settings(DEV=True)
     def test_fx_default_whatsnew(self, render_mock):
-        """Should use standard template for 54.0"""
+        """Should use standard template for 62.0"""
         req = self.rf.get('/en-US/firefox/whatsnew/')
-        self.view(req, version='54.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.html'])
-
-    # begin 57.0 whatsnew tests
-
-    @override_settings(DEV=True)
-    def test_fx_57_0_EN(self, render_mock):
-        """Should use English CEO letter template for 57.0 in English"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'en-US'
-        self.view(req, version='57.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/fx57/whatsnew-57.en-US.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_57_0_locale(self, render_mock):
-        """Should use regular template for 57.0 in locales without the letter"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'nl'
-        self.view(req, version='57.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/fx57/whatsnew-57.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_dev_57_0(self, render_mock):
-        """Should use developer whatsnew page for 57.0 dev edition"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'en-US'
-        self.view(req, version='57.0a2')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/developer/whatsnew.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_57_0_old_version(self, render_mock):
-        """Should use Quantum template when updating from older major version"""
-        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=56.0')
-        self.view(req, version='57.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/fx57/whatsnew-57.en-US.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_57_0_old_minor_version(self, render_mock):
-        """Should use mobile promo template when updating from older minor version"""
-        req = self.rf.get('/en-US/firefox/whatsnew/?oldversion=57.0.1')
-        self.view(req, version='57.0.2')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.html'])
-
-    # end 57.0 whatsnew tests
-
-    # begin 59.0 whatsnew tests
-
-    @override_settings(DEV=True)
-    def test_fx_59_0(self, render_mock):
-        """Should use Firefox Accounts template for 59.0"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'en-US'
-        self.view(req, version='59.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/whatsnew-fxa.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_59_0_old_major_version(self, render_mock):
-        """Should use Firefox Accounts template when updating from older major version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=58.0')
-        req.locale = 'en-US'
-        self.view(req, version='59.0.1')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/whatsnew-fxa.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_59_0_old_minor_version(self, render_mock):
-        """Should use regular whatsnew template when updating from older minor version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=59.0')
-        req.locale = 'en-US'
-        self.view(req, version='59.0.1')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_59_0_id_locale_template(self, render_mock):
-        """Should use id locale specific template when updating from older major version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=58.0')
-        req.locale = 'id'
-        self.view(req, version='59.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.id.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_59_0_zh_TW_locale_template(self, render_mock):
-        """Should use zh-TW locale specific template when updating from older major version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=58.0')
-        req.locale = 'zh-TW'
-        self.view(req, version='59.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.zh-TW.html'])
-
-    # end 59.0 whatsnew tests
-
-    # begin 60.0 whatsnew tests
-
-    @override_settings(DEV=True)
-    def test_fx_60_0(self, render_mock):
-        """Should use FxA/Fx mobile/Focus template for 60.0"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'en-US'
-        self.view(req, version='60.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/whatsnew-fx60.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_60_0_old_major_version(self, render_mock):
-        """Should use FxA/Fx mobile/Focus template when updating from older major version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=59.0')
-        req.locale = 'en-US'
-        self.view(req, version='60.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/whatsnew-fx60.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_60_0_id_locale_template(self, render_mock):
-        """Should use id locale specific template when updating from older major version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=59.0')
-        req.locale = 'id'
-        self.view(req, version='60.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.id.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_60_0_zh_TW_locale_template(self, render_mock):
-        """Should use zh-TW locale specific template when updating from older major version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=59.0')
-        req.locale = 'zh-TW'
-        self.view(req, version='60.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.zh-TW.html'])
-
-    # end 60.0 whatsnew tests
-
-    # begin 61.0 whatsnew tests
-
-    @override_settings(DEV=True)
-    def test_fx_61_0(self, render_mock):
-        """Should use FxA/Fx mobile/Focus template for 61.0"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'en-US'
-        self.view(req, version='61.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/whatsnew-fx61.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_61_0_old_major_version(self, render_mock):
-        """Should use FxA/Fx mobile/Focus template when updating from older major version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=60.0')
-        req.locale = 'en-US'
-        self.view(req, version='61.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/whatsnew-fx61.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_61_0_id_locale_template(self, render_mock):
-        """Should use id locale specific template when updating from older major version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=60.0')
-        req.locale = 'id'
-        self.view(req, version='61.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.id.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_61_0_zh_TW_locale_template(self, render_mock):
-        """Should use zh-TW locale specific template when updating from older major version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=60.0')
-        req.locale = 'zh-TW'
-        self.view(req, version='61.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.zh-TW.html'])
-
-    # end 61.0 whatsnew tests
-
-    # begin 62.0 whatsnew tests
-
-    @override_settings(DEV=True)
-    def test_fx_62_0(self, render_mock):
-        """Should use Pocket/FxA/Fx mobile/Focus template for 62.0"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'en-US'
         self.view(req, version='62.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/whatsnew-fx62.html'])
+        assert template == ['firefox/whatsnew/index.html']
+
+    # begin id locale-specific tests
 
     @override_settings(DEV=True)
-    def test_fx_62_0_old_major_version(self, render_mock):
-        """Should use Pocket/FxA/Fx mobile/Focus template when updating from older major version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=61.0')
-        req.locale = 'en-US'
-        self.view(req, version='62.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/whatsnew-fx62.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_62_0_id_locale_template(self, render_mock):
-        """Should use id locale specific template when updating from older major version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=61.0')
+    def test_id_locale_template_lite(self, render_mock):
+        """Should use id locale specific template for Firefox Lite"""
+        req = self.rf.get('/firefox/whatsnew/')
         req.locale = 'id'
-        self.view(req, version='62.0')
+        self.view(req, version='63.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.id.html'])
+        assert template == ['firefox/whatsnew/index-lite.id.html']
 
-    @override_settings(DEV=True)
-    def test_fx_62_0_zh_TW_locale_template(self, render_mock):
-        """Should use zh-TW locale specific template when updating from older major version"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=61.0')
-        req.locale = 'zh-TW'
-        self.view(req, version='62.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.zh-TW.html'])
-
-    # end 62.0 whatsnew tests
+    # end id locale-specific tests
 
     # begin 63.0 whatsnew tests
 
@@ -432,27 +379,197 @@ class TestWhatsNew(TestCase):
         req.locale = 'en-US'
         self.view(req, version='63.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/whatsnew-fx63.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_63_0_id_locale_template(self, render_mock):
-        """Should use id locale specific template"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'id'
-        self.view(req, version='63.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.id.html'])
-
-    @override_settings(DEV=True)
-    def test_fx_63_0_zh_TW_locale_template(self, render_mock):
-        """Should use zh-TW locale specific template"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'zh-TW'
-        self.view(req, version='63.0')
-        template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/whatsnew/index.zh-TW.html'])
+        assert template == ['firefox/whatsnew/whatsnew-fx63.html']
 
     # end 63.0 whatsnew tests
+
+    # begin 64.0 whatsnew tests
+
+    def test_fx_64_0(self, render_mock):
+        """Should use standard template for 64.0 and add locales"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='64.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/fx64/whatsnew-fx64.html']
+        context = render_mock.call_args[0][2]
+        assert 'active_locales' in context
+        assert 'pt-BR' in context['active_locales']
+
+    # end 64.0 whatsnew tests
+
+    # begin 65.0 whatsnew tests
+
+    def test_fx_65_0(self, render_mock):
+        """Should use standard template for 65.0"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='65.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx65.html']
+        context = render_mock.call_args[0][2]
+        assert 'show_newsletter' in context
+        assert context['show_newsletter']
+
+    def test_fx_65_0_no_newsletter(self, render_mock):
+        """Should not include newsletter for non-translated locales"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'el'
+        self.view(req, version='65.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx65.html']
+        context = render_mock.call_args[0][2]
+        assert 'show_newsletter' in context
+        assert not context['show_newsletter']
+
+    # end 65.0 whatsnew tests
+
+    # begin 66.0 whatsnew tests
+
+    def test_fx_66_0(self, render_mock):
+        """Should use standard template for 66.0"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='66.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx66.html']
+        context = render_mock.call_args[0][2]
+        assert 'show_newsletter' in context
+        assert context['show_newsletter']
+
+    def test_fx_66_0_no_newsletter(self, render_mock):
+        """Should not include newsletter for non-translated locales"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'el'
+        self.view(req, version='66.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx66.html']
+        context = render_mock.call_args[0][2]
+        assert 'show_newsletter' in context
+        assert not context['show_newsletter']
+
+    # end 66.0 whatsnew tests
+
+    # begin 67.0 whatsnew tests
+
+    def test_fx_67_0(self, render_mock):
+        """Should use standard template for 67.0"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='67.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx67.html']
+        context = render_mock.call_args[0][2]
+        assert context['show_newsletter']
+
+    def test_fx_67_0_no_newsletter(self, render_mock):
+        """Should not include newsletter for non-translated locales"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'el'
+        self.view(req, version='67.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx67.html']
+        context = render_mock.call_args[0][2]
+        assert 'show_newsletter' in context
+        assert not context['show_newsletter']
+
+    # end 67.0 whatsnew tests
+
+    # begin 67.0.5 whatsnew tests
+
+    def test_fx_67_0_1(self, render_mock):
+        """Should use trailhead template for 67.0.1"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='67.0.1')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx67.0.5.html']
+
+    def test_fx_67_0_1_locales(self, render_mock):
+        """Should use standard template for 67.0.1 for other locales"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'es-ES'
+        self.view(req, version='67.0.1')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx67.html']
+
+    # end 67.0.5 whatsnew tests
+
+    # begin 68.0 whatsnew tests
+
+    def test_fx_68_0(self, render_mock):
+        """Should use trailhead template for 68.0"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='68.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx68-trailhead.html']
+
+    def test_fx_68_0_locales(self, render_mock):
+        """Should use standard template for 68.0 for other locales"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'es-ES'
+        self.view(req, version='68.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx68.html']
+
+    # end 68.0 whatsnew tests
+
+    # end 68.0 whatsnew experiment tests
+
+    def test_whatsnew68_va_control(self, render_mock):
+        """Should use trailhead template for variant A"""
+        req = self.rf.get('/firefox/whatsnew/?v=a')
+        req.locale = 'en-US'
+        self.view(req, version='68.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx68-trailhead.html']
+
+    def test_whatsnew68_vb_light(self, render_mock):
+        """Should use template B for variant B"""
+        req = self.rf.get('/firefox/whatsnew/?v=b')
+        req.locale = 'en-US'
+        self.view(req, version='68.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx68-b.html']
+
+    def test_whatsnew68_vc_dark(self, render_mock):
+        """Should use template C for variant C"""
+        req = self.rf.get('/firefox/whatsnew/?v=c')
+        req.locale = 'en-US'
+        self.view(req, version='68.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx68-c.html']
+
+    def test_whatsnew68_vd_icon(self, render_mock):
+        """Should use template D for variant D"""
+        req = self.rf.get('/firefox/whatsnew/?v=d')
+        req.locale = 'en-US'
+        self.view(req, version='68.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx68-d.html']
+
+    def test_whatsnew68_ve_monitor(self, render_mock):
+        """Should use template E for variant E"""
+        req = self.rf.get('/firefox/whatsnew/?v=e')
+        req.locale = 'en-US'
+        self.view(req, version='68.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx68-e.html']
+
+    # end 68.0 whatsnew experiment tests
+
+    # begin 69.0 whatsnew tests
+
+    def test_fx_69_0(self, render_mock):
+        """Should use whatsnew-69 template for 69.0"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='69.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx69.html']
+
+    # end 69.0 whatsnew tests
 
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
@@ -467,15 +584,15 @@ class TestFirstRun(TestCase):
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='40.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/index.html'])
+        assert template == ['firefox/firstrun/firstrun.html']
 
     @override_settings(DEV=True)
     def test_fx_firstrun_56_0(self, render_mock):
-        """Should use the default dev edition firstrun template"""
+        """Should use the default firstrun template"""
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='56.0a2')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/dev-firstrun.html'])
+        assert template == ['firefox/firstrun/firstrun.html']
 
     @override_settings(DEV=True)
     def test_fxdev_firstrun_57_0(self, render_mock):
@@ -483,7 +600,7 @@ class TestFirstRun(TestCase):
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='57.0a2')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/developer/firstrun.html'])
+        assert template == ['firefox/developer/firstrun.html']
 
     @override_settings(DEV=True)
     def test_fx_firstrun_57_0(self, render_mock):
@@ -491,7 +608,7 @@ class TestFirstRun(TestCase):
         req = self.rf.get('/en-US/firefox/firstrun/')
         self.view(req, version='57.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/firstrun/firstrun-quantum.html'])
+        assert template == ['firefox/firstrun/firstrun.html']
 
     # test redirect to /firefox/new/ for legacy /firstrun URLs - Bug 1343823
 
@@ -511,95 +628,6 @@ class TestFirstRun(TestCase):
         assert resp['location'].endswith('/firefox/new/')
 
 
-@patch.object(fx_views, 'firefox_desktop', firefox_desktop)
-class FxVersionRedirectsMixin(object):
-    @override_settings(DEV=True)  # avoid https redirects
-    def assert_ua_redirects_to(self, ua, url_name, status_code=301):
-        response = self.client.get(self.url, HTTP_USER_AGENT=ua)
-        eq_(response.status_code, status_code)
-        eq_(response['Cache-Control'], 'max-age=0')
-        eq_(response['Location'],
-            'http://testserver%s' % reverse(url_name))
-
-        # An additional redirect test with a query string
-        query = '?ref=getfirefox'
-        response = self.client.get(self.url + query, HTTP_USER_AGENT=ua)
-        eq_(response.status_code, status_code)
-        eq_(response['Cache-Control'], 'max-age=0')
-        eq_(response['Location'],
-            'http://testserver%s' % reverse(url_name) + query)
-
-    def test_non_firefox(self):
-        """
-        Any non-Firefox user agents should be permanently redirected to
-        /firefox/new/.
-        """
-        user_agent = 'random'
-        self.assert_ua_redirects_to(user_agent, 'firefox.new')
-
-    @override_settings(DEV=True)
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='13.0.5')
-    @patch('bedrock.firefox.firefox_details.firefox_desktop.latest_builds',
-           return_value=('13.0.5', GOOD_PLATS))
-    def test_current_minor_version_firefox(self, latest_mock):
-        """
-        Should show current even if behind by a patch version
-        """
-        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:13.0) '
-                      'Gecko/20100101 Firefox/13.0')
-        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        eq_(response.status_code, 200)
-        eq_(response['Cache-Control'], 'max-age=0')
-
-    @override_settings(DEV=True)
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='25.0',
-                FIREFOX_ESR='24.1')
-    @patch('bedrock.firefox.firefox_details.firefox_desktop.latest_builds',
-           return_value=('25.0', GOOD_PLATS))
-    def test_esr_firefox(self, latest_mock):
-        """
-        Currently released ESR firefoxen should not redirect. At present
-        that is 24.0.x.
-        """
-        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:24.0) '
-                      'Gecko/20100101 Firefox/24.0')
-        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        eq_(response.status_code, 200)
-        eq_(response['Cache-Control'], 'max-age=0')
-
-    @override_settings(DEV=True)
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='16.0')
-    @patch('bedrock.firefox.firefox_details.firefox_desktop.latest_builds',
-           return_value=('16.0', GOOD_PLATS))
-    def test_current_firefox(self, latest_mock):
-        """
-        Currently released firefoxen should not redirect.
-        """
-        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:16.0) '
-                      'Gecko/20100101 Firefox/16.0')
-        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        eq_(response.status_code, 200)
-        eq_(response['Cache-Control'], 'max-age=0')
-
-    @override_settings(DEV=True)
-    @patch.dict(product_details.firefox_versions,
-                LATEST_FIREFOX_VERSION='16.0')
-    @patch('bedrock.firefox.firefox_details.firefox_desktop.latest_builds',
-           return_value=('16.0', GOOD_PLATS))
-    def test_future_firefox(self, latest_mock):
-        """
-        Pre-release firefoxen should not redirect.
-        """
-        user_agent = ('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7; rv:18.0) '
-                      'Gecko/20100101 Firefox/18.0')
-        response = self.client.get(self.url, HTTP_USER_AGENT=user_agent)
-        eq_(response.status_code, 200)
-        eq_(response['Cache-Control'], 'max-age=0')
-
-
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestTrackingProtectionTour(TestCase):
     def setUp(self):
@@ -612,7 +640,7 @@ class TestTrackingProtectionTour(TestCase):
         req = self.rf.get('/en-US/firefox/tracking-protection/start/')
         self.view(req, version='62.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/tracking-protection-tour/index.html'])
+        assert template == ['firefox/tracking-protection-tour/index.html']
 
     @override_settings(DEV=True)
     def test_fx_tracking_protection_63_0_v0(self, render_mock):
@@ -620,7 +648,7 @@ class TestTrackingProtectionTour(TestCase):
         req = self.rf.get('/en-US/firefox/tracking-protection/start/?variation=0')
         self.view(req, version='62.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/tracking-protection-tour/variation-0.html'])
+        assert template == ['firefox/tracking-protection-tour/variation-0.html']
 
     @override_settings(DEV=True)
     def test_fx_tracking_protection_63_0_v1(self, render_mock):
@@ -628,7 +656,7 @@ class TestTrackingProtectionTour(TestCase):
         req = self.rf.get('/en-US/firefox/tracking-protection/start/?variation=1')
         self.view(req, version='62.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/tracking-protection-tour/variation-1.html'])
+        assert template == ['firefox/tracking-protection-tour/variation-1.html']
 
     @override_settings(DEV=True)
     def test_fx_tracking_protection_63_0_v2(self, render_mock):
@@ -636,4 +664,27 @@ class TestTrackingProtectionTour(TestCase):
         req = self.rf.get('/en-US/firefox/tracking-protection/start/?variation=2')
         self.view(req, version='62.0')
         template = render_mock.call_args[0][1]
-        eq_(template, ['firefox/tracking-protection-tour/variation-2.html'])
+        assert template == ['firefox/tracking-protection-tour/variation-2.html']
+
+
+@patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
+class TestContentBlockingTour(TestCase):
+    def setUp(self):
+        self.view = fx_views.ContentBlockingTourView.as_view()
+        self.rf = RequestFactory()
+
+    @override_settings(DEV=True)
+    def test_fx_content_blocking_65_0(self, render_mock):
+        """Should use default content blocking tour template"""
+        req = self.rf.get('/en-US/firefox/content-blocking/start/')
+        self.view(req, version='65.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/content-blocking-tour/index.html']
+
+    @override_settings(DEV=True)
+    def test_fx_content_blocking_65_0_v2(self, render_mock):
+        """Should use variation 2 template"""
+        req = self.rf.get('/en-US/firefox/content-blocking/start/?variation=2')
+        self.view(req, version='65.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/content-blocking-tour/variation-2.html']

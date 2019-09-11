@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "/firefox/base-pebbles.html" %}
+{% extends "/firefox/base/base-pebbles.html" %}
 {% add_lang_files "firstrun" "mobile" %}
 
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
@@ -71,12 +71,6 @@
               Do you experience crashes? Unexpected behavior? Web compatibility regressions? We’d love to get them
               filed in <a href="%(bugzilla)s">Bugzilla</a> to make sure they don’t make it to the final release (extra
               karma if you add the <em>nightly-community</em> keyword to your bug reports)!
-            {% endtrans %}
-          </p>
-          <p>
-            {% trans triagebot='https://triagebot.mozilla.org/' %}
-              Would you be willing to help us triage unconfirmed bugs in Bugzilla? Then maybe
-              <a href="%(triagebot)s">TriageBot</a> could be of interest to you.
             {% endtrans %}
           </p>
           <p>

@@ -16,10 +16,12 @@ jinja_env = Jinja2.get_default()
 
 
 @patch.object(jinja_env.env.loader, 'searchpath', TEMPLATE_DIRS)
-@override_settings(ROOT=ROOT)
-@override_settings(DEV=False)
+@override_settings(
+    ROOT=ROOT,
+    DEV=False,
+    ROOT_URLCONF='lib.l10n_utils.tests.test_files.urls',
+)
 class TestRender(TestCase):
-    urls = 'lib.l10n_utils.tests.test_files.urls'
 
     def _test(self, path, template, locale, accept_lang, status, destination=None,
               active_locales=None, add_active_locales=None):

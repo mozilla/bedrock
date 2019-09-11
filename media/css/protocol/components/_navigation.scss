@@ -1,0 +1,85 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../../protocol/css/includes/lib';
+
+.mzp-c-navigation {
+    .mzp-c-navigation-download .download-list {
+        margin-bottom: 0;
+    }
+
+    .mzp-c-card {
+        .mzp-c-card-image {
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+
+        .mzp-c-card-image[data-src] {
+            opacity: 0;
+        }
+    }
+}
+
+// Global FxA CTA
+.mzp-c-navigation {
+    .c-navigation-fxa-cta-container {
+        display: none;
+    }
+
+    .c-navigation-fxa-cta-small-link {
+        margin-bottom: $spacing-xs;
+        text-align: center;
+
+        a:link,
+        a:visited {
+            @include text-body-xs;
+            color: $color-black;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            color: inherit;
+            text-decoration: underline;
+        }
+    }
+
+    @media #{$mq-md} {
+        .c-navigation-fxa-cta-small-link {
+            text-align: right;
+        }
+    }
+
+    &.fxa-signed-in .c-navigation-fxa-cta-small-link {
+        display: none;
+    }
+}
+
+// Show FxA button to Firefoxes...
+html.is-firefox .mzp-c-navigation {
+    .mzp-c-button-download-container {
+        display: none;
+    }
+
+    .mzp-c-navigation-download {
+        margin-bottom: 0;
+    }
+
+    .c-navigation-fxa-cta-container {
+        display: block;
+    }
+}
+
+// ... but not on mobile platforms
+html.is-firefox.ios .mzp-c-navigation,
+html.is-firefox.android .mzp-c-navigation {
+    .mzp-c-button-download-container {
+        display: block;
+    }
+
+    .c-navigation-fxa-cta-container {
+        display: none;
+    }
+}

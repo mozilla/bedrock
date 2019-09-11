@@ -1,21 +1,18 @@
 # flake8: noqa
-import os
-
-from bedrock.base.config_manager import config
-
-
+# newrelic import & initialization must come first
+# https://docs.newrelic.com/docs/agents/python-agent/installation/python-agent-advanced-integration#manual-integration
 try:
     import newrelic.agent
 except ImportError:
     newrelic = False
+else:
+    newrelic.agent.initialize('newrelic.ini')
 
 
-if newrelic:
-    newrelic_ini = config('NEWRELIC_PYTHON_INI_FILE', default='')
-    if newrelic_ini:
-        newrelic.agent.initialize(newrelic_ini)
-    else:
-        newrelic = False
+import os
+
+from bedrock.base.config_manager import config
+
 
 IS_HTTPS = os.environ.get('HTTPS', '').strip() == 'on'
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bedrock.settings')

@@ -3,9 +3,10 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect */
+/* global sinon */
 
 describe('core-datalayer.js', function() {
+    'use strict';
 
     describe('pageHasDownload', function() {
 
@@ -70,17 +71,52 @@ describe('core-datalayer.js', function() {
     describe('getLatestFxVersion', function() {
 
         afterEach(function() {
-            $('html').removeData('latest-firefox');
+            document.getElementsByTagName('html')[0].removeAttribute('data-latest-firefox');
         });
 
         it('will return the Firefox version from the data-latest-firefox attribute from the html element if present', function() {
-            $('html').data('latest-firefox', '48.0');
+            document.getElementsByTagName('html')[0].setAttribute('data-latest-firefox', '48.0');
 
             expect(Mozilla.Analytics.getLatestFxVersion()).toBe('48.0');
         });
 
-        it('will return undefined if no data-latest-firefox attribute is present on the html element', function() {
-            expect(Mozilla.Analytics.getLatestFxVersion()).toBeUndefined();
+        it('will return null if no data-latest-firefox attribute is present on the html element', function() {
+            expect(Mozilla.Analytics.getLatestFxVersion()).toBe(null);
+        });
+    });
+
+    describe('isWin10S', function() {
+
+        var edgeUA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14931';
+        var chromeUA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36';
+
+        beforeEach(function () {
+            window.external = sinon.stub();
+            window.external.getHostEnvironmentValue = sinon.stub();
+        });
+
+        it('should return true if Windows 10 has S mode enabled', function() {
+            spyOn(window.external, 'getHostEnvironmentValue').and.returnValue('{"os-mode": "2"}');
+            var result = Mozilla.Analytics.isWin10S(edgeUA);
+            expect(window.external.getHostEnvironmentValue).toHaveBeenCalledWith('os-mode');
+            expect(result).toBeTruthy();
+        });
+
+        it('should return false if Windows 10 is unlocked', function() {
+            spyOn(window.external, 'getHostEnvironmentValue').and.returnValue('{"os-mode": "0"}');
+            var result = Mozilla.Analytics.isWin10S(edgeUA);
+            expect(result).toBeFalsy();
+        });
+
+        it('should return false if API is not supported in Edge', function() {
+            spyOn(window.external, 'getHostEnvironmentValue').and.returnValue(new TypeError('window.external.getHostEnvironmentValue is not a function'));
+            var result = Mozilla.Analytics.isWin10S(edgeUA);
+            expect(result).toBeFalsy();
+        });
+
+        it('should return false for other browsers', function() {
+            var result = Mozilla.Analytics.isWin10S(chromeUA);
+            expect(result).toBeFalsy();
         });
     });
 

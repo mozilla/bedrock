@@ -20,14 +20,6 @@
   {{ css_bundle('technology') }}
 {% endblock %}
 
-{% block site_header %}
-  {% if LANG.startswith('en-') %}
-    {% include 'includes/global-nav.html' %}
-  {% else %}
-    {% include 'mozorg/home/includes/nav.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block content %}
 {% include 'mozorg/developer/includes/sub-nav.html' %}
 
@@ -149,10 +141,22 @@
 
   <aside id="newsletter-subscribe">
     <div class="content">
-      {{ email_newsletter_form(newsletters='mozilla-foundation',
-         title=_('What’s next?'),
-         subtitle=_('Get the Mozilla newsletter for our latest tech news and more.'), button_class='button-light')
-      }}
+      {% if LANG.startswith('en-') %}
+        {{ email_newsletter_form(
+          newsletters='mozilla-technology',
+          title=_('What’s next?'),
+          subtitle=_('Get the Mozilla Labs newsletter for updates on our latest tech and product innovations.'),
+          button_class='button-light',
+          include_language=False)
+        }}
+      {% else %}
+        {{ email_newsletter_form(
+          newsletters='mozilla-foundation',
+          title=_('What’s next?'),
+          subtitle=_('Get the Mozilla newsletter for our latest tech news and more.'),
+          button_class='button-light')
+        }}
+      {% endif %}
     </div>
   </aside>
 

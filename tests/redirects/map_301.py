@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-
 from .base import flatten, url_test
 
 
@@ -1002,8 +1000,6 @@ URLS = flatten((
     url_test('/docs/how-to-document.html', '/contribute/writing/how-to'),
     url_test('/docs/hybrid-cd.html', 'http://developer.mozilla.org/en/Creating_a_hybrid_CD'),
     url_test('/docs/jargon.html', 'http://developer.mozilla.org/en/Glossary'),
-    url_test('/docs/lxr-comments.html',
-             '/contribute/writing/lxr-comments'),
     url_test('/docs/mdp/', '/contribute/writing/'),
     url_test('/docs/modunote.htm', 'http://developer.mozilla.org/en/Modularization_Techniques'),
     url_test('/docs/mozilla-faq.html', 'http://developer.mozilla.org/en/Mozilla_Release_FAQ'),
@@ -1071,7 +1067,7 @@ URLS = flatten((
     url_test('/firebird', 'http://www.firefox.com'),
     url_test('/foundation/privacy-policy.html', '/privacy/websites/'),
     url_test('/get-involved.html', '/contribute/'),
-    url_test('/glimpsesearch.html', 'http://lxr.mozilla.org/'),
+    url_test('/glimpsesearch.html', 'https://dxr.mozilla.org/'),
     url_test('/hacking/bonsai.html', 'http://developer.mozilla.org/en/Hacking_with_Bonsai'),
     url_test('/hacking/code-review-faq.html', 'http://developer.mozilla.org/en/Code_Review_FAQ'),
     url_test('/hacking/coding-introduction.html',
@@ -1770,7 +1766,7 @@ URLS = flatten((
     url_test('/products/thunderbird/sysreq.html', '/thunderbird/system-requirements/'),
     url_test('/profilemanager/isp-rdf-info.txt', 'https://developer.mozilla.org/docs/Isp_Data'),
     url_test('/projects.html', 'https://www.mozilla.org/projects/'),
-    url_test('/projects/browsers.html', 'https://www.mozilla.org'),
+    url_test('/projects/browsers.html', '/firefox/new/'),
     url_test('/projects/bugzilla', 'https://www.bugzilla.org'),
     url_test('/projects/deerpark/', '/firefox/channel/desktop/'),
     url_test('/projects/distros.html', '/projects/mozilla-based.html'),
@@ -1964,13 +1960,13 @@ URLS = flatten((
     url_test('/projects/ui/accessibility/span-checkbox.html',
              '/access/samples/span-checkbox.html'),
     url_test('/projects/ui/accessibility/ISimpleDOMNode.idl',
-             'http://lxr.mozilla.org/seamonkey/source/'
+             'https://dxr.mozilla.org/seamonkey/source/'
              'accessible/public/msaa/ISimpleDOMNode.idl?raw=1'),
     url_test('/projects/ui/accessibility/ISimpleDOMText.idl',
-             'http://lxr.mozilla.org/seamonkey/source/'
+             'https://dxr.mozilla.org/seamonkey/source/'
              'accessible/public/msaa/ISimpleDOMText.idl?raw=1'),
     url_test('/projects/ui/accessibility/ISimpleDOMDocument.idl',
-             'http://lxr.mozilla.org/seamonkey/source/'
+             'https://dxr.mozilla.org/seamonkey/source/'
              'accessible/public/msaa/ISimpleDOMDocument.idl?raw=1'),
     url_test('/projects/ui/accessibility/accesskey.html',
              '/access/keyboard/accesskey'),
@@ -2089,6 +2085,7 @@ URLS = flatten((
              'http://developer.mozilla.org/en/Debugging_Mozilla_on_Linux_FAQ'),
     url_test('/unix/solaris-build.html',
              'http://developer.mozilla.org/en/Mozilla_Build_FAQ#Unix-specific_questions'),
+    url_test('/unix/customizing.html', 'https://www-archive.mozilla.org/unix/customizing.html'),
     url_test('/webtools', 'https://developer.mozilla.org/en/Mozilla_Development_Tools'),
     url_test('/xmlextras/', 'http://developer.mozilla.org/en/XML_Extras'),
     url_test('/xmlextras/xmldataislands/example1.html',

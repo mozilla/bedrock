@@ -8,9 +8,7 @@
     var Yandex = {
         RUSSIA_COUNTRY_CODE: 'ru',
         COOKIE_ID: 'firefox-yandex',
-        COOKIE_YANDEX_COHORT: 'firefox-yandex-cohort',
-        COOKIE_EXPIRATION_DAYS: 3,
-        YANDEX_SAMPLE_RATE: 0.9
+        COOKIE_EXPIRATION_DAYS: 3
     };
 
     var _client = Mozilla.Client;
@@ -112,14 +110,14 @@
     };
 
     Yandex.shouldShowYandex = function() {
-        // Is user in Russia and within Yandex cohort?
-        return Yandex.verifyLocation(Yandex.getCookie(Yandex.COOKIE_ID)) && Yandex.getCookie(Yandex.COOKIE_YANDEX_COHORT) === 'yes';
+        // Is user in Russia?
+        return Yandex.verifyLocation(Yandex.getCookie(Yandex.COOKIE_ID));
     };
 
     Yandex.showYandexMessaging = function() {
         // Update page title and description.
-        document.title = Mozilla.Utils.trans('pageTitle');
-        document.querySelector('meta[name="description"]').setAttribute('content', Mozilla.Utils.trans('pageDesc'));
+        document.title = Mozilla.Utils.trans('page-title');
+        document.querySelector('meta[name="description"]').setAttribute('content', Mozilla.Utils.trans('page-desc'));
 
         // Add styling hook for Yandex specific CSS.
         document.body.classList.add('yandex');
@@ -128,22 +126,28 @@
         var button = document.querySelectorAll('.main-download .download-list .download-link[data-download-os="Desktop"]');
 
         for (var i = 0; i < button.length; i++) {
-            button[i].href = Mozilla.Utils.trans('buttonLink');
+            button[i].href = Mozilla.Utils.trans('button-link');
             button[i].removeAttribute('data-direct-link');
-            button[i].querySelector('.download-title').innerHTML = Mozilla.Utils.trans('buttonText');
+            button[i].querySelector('.download-title').innerHTML = Mozilla.Utils.trans('button-text');
             button[i].setAttribute('data-link-name', 'Yandex redirect');
             button[i].setAttribute('data-link-type', 'Download Firefox (RU)');
             button[i].setAttribute('data-link-position', 'primary cta');
         }
 
         // Update privacy policy text for Yandex.
-        document.querySelector('.main-download .download-button .fx-privacy-link').innerHTML = Mozilla.Utils.trans('privacyNotice');
+        document.querySelector('.main-download .download-button .fx-privacy-link').innerHTML = Mozilla.Utils.trans('privacy-notice');
 
         // Update any elements with alt text translations.
         var elems = document.querySelectorAll('[data-yandex-alt]');
 
         for (var j = 0; j < elems.length; j++) {
             elems[j].innerText = elems[j].getAttribute('data-yandex-alt');
+        }
+
+        var secondaryButton = document.querySelectorAll('.call-out-compact .download-list .download-link[data-download-os="Desktop"]');
+
+        for (var k = 0; k < button.length; k++) {
+            secondaryButton[k].querySelector('.download-title').innerHTML = Mozilla.Utils.trans('secondary-button-text');
         }
     };
 
@@ -185,9 +189,7 @@
     };
 
     Yandex.setCookie = function(country) {
-        var cohort = Yandex.isWithinSampleRate() ? 'yes' : 'no';
         Mozilla.Cookies.setItem(Yandex.COOKIE_ID, country, Yandex.cookieExpiresDate());
-        Mozilla.Cookies.setItem(Yandex.COOKIE_YANDEX_COHORT, cohort, Yandex.cookieExpiresDate());
     };
 
     Yandex.getCookie = function(id) {
@@ -195,11 +197,7 @@
     };
 
     Yandex.hasCookie = function() {
-        return Mozilla.Cookies.hasItem(Yandex.COOKIE_ID) && Mozilla.Cookies.hasItem(Yandex.COOKIE_YANDEX_COHORT);
-    };
-
-    Yandex.isWithinSampleRate = function() {
-        return (Math.random() < Yandex.YANDEX_SAMPLE_RATE) ? true : false;
+        return Mozilla.Cookies.hasItem(Yandex.COOKIE_ID);
     };
 
     Yandex.init = function() {

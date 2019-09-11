@@ -1,0 +1,66 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import call_out, picto_card with context %}
+
+{% add_lang_files "firefox/new/trailhead" %}
+
+{% extends "firefox/new/trailhead/base.html" %}
+
+{# "scene2" page should not be indexed to avoid it appearing in search results: issue 7024 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block extrahead %}
+  {{ super() }}
+  {{ css_bundle('firefox_new_thanks') }}
+{% endblock %}
+
+{% block string_data %}
+  data-pixels="{% for pixel in settings.TRACKING_PIXELS %}{{ pixel }}{% if not loop.last %}::{% endif %}{% endfor %}"
+{% endblock %}
+
+{% block content %}
+<main role="main">
+  <div class="mzp-l-content">
+    <p class="c-notification t-warning unsupported">
+    {% trans url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista' %}
+      You’re using an insecure, outdated operating system <a href="{{ url }}">no longer supported by Firefox</a>.
+    {% endtrans %}
+    </p>
+    <p class="c-notification t-success auto-download">
+      {# fallback_url is replaced by the platform download link via JS, but if
+         something fails the user should still get a link to a working download path. #}
+
+      {% trans id='direct-download-link', fallback_url=url('firefox.all') %}
+        Your download should begin automatically. Didn’t work? <a id="{{ id }}" href="{{ fallback_url }}">Try downloading again</a>.
+      {% endtrans %}
+    </p>
+  </div>
+
+  {% call call_out(
+    title=_('Firefox is more than a browser.'),
+    class='mzp-t-product-firefox',
+    heading_level=1,
+    include_cta=True
+  ) %}
+    <div id="download-button-wrapper-desktop">
+      {{ download_firefox(force_direct=true, dom_id='primary-download-button') }}
+    </div>
+  {% endcall %}
+
+  <ul class="mzp-l-card-quarter mzp-l-content">
+    {{ picto_card(desc=_('It’s <strong>privacy and peace of mind</strong> on mobile, too.'), class='devices') }}
+    {{ picto_card(desc=_('It’s a <strong>family of products</strong> that treat your personal data with respect.'), class='products') }}
+    {{ picto_card(desc=_('It’s everything you need to know about <strong>staying safe online</strong>. '), class='safety') }}
+    {{ picto_card(desc=_('It’s <strong>a community</strong> that believes tech can do better. '), class='community') }}
+  </ul>
+</main>
+{% endblock %}
+
+{% block js %}
+  {% if switch('tracking-pixel') %}
+    {{ js_bundle('firefox_new_pixel') }}
+  {% endif %}
+  {{ js_bundle('firefox_new_thanks') }}
+{% endblock %}

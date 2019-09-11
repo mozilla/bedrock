@@ -43,82 +43,6 @@
   {{ 'https://www.twitter.com/intent/tweet?url=%s&text=%s'|format(url|urlencode, tweet_text|urlencode)|e }}
 {%- endmacro %}
 
-{% macro twitter_follow_button(account_name, account_id, show_account_id=True) -%}
-  {%- if show_account_id -%}
-    {% set label = _('Follow @%s')|format(account_id) %}
-  {%- else -%}
-    {% set label = _('Follow') %}
-  {%- endif -%}
-  <a href="https://twitter.com/{{ account_id }}" title="{{ _('Follow %s on Twitter')|format(account_name) }}" class="twitter-follow-button" data-social-network="twitter-only" data-social-action="Follow">{{ label }}</a>
-{%- endmacro %}
-
-{% macro twitter_timeline_widget(title='', heading_level=3, max_length=0) -%}
-  {% if tweets -%}
-    <section id="twitter-timeline-widget" itemscope itemtype="http://schema.org/Blog">
-      <header>
-        <h{{ heading_level }} itemprop="name">
-          {%- if title -%}
-            {{ title }}
-          {%- else -%}
-            {{ _('Twitter Timeline of %s')|format(tweets[0].user.name) }}
-          {%- endif -%}
-        </h{{ heading_level }}>
-        <p>{{ twitter_follow_button(tweets[0].user.name, tweets[0].user.screen_name, False) }}</p>
-      </header>
-      <div class="tweets">
-      {% for _tweet in tweets %}
-        {%- if _tweet.retweeted_status -%}
-          {% set retweet = true %}
-          {% set tweet = _tweet.retweeted_status %}
-        {%- else -%}
-          {% set retweet = false %}
-          {% set tweet = _tweet %}
-        {%- endif -%}
-        <article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          <header>
-            <h{{ heading_level + 1 }} class="timestamp">
-              <a href="https://twitter.com/{{ tweet.user.screen_name }}/status/{{ tweet.id }}" class="post" data-social-network="twitter-only" data-social-action="Post Link Exit">
-                {{ format_tweet_timestamp(tweet)|safe }}
-              </a>
-            </h{{ heading_level + 1 }}>
-            <div itemprop="author" itemscope itemtype="http://schema.org/Person">
-              <a href="https://twitter.com/{{ tweet.user.screen_name }}" class="author" data-social-network="twitter-only" data-social-action="Author Link Exit">
-                <img src="{{ tweet.user.profile_image_url_https }}" alt="" itemprop="image">
-                <span itemprop="name">{{ tweet.user.name }}</span>
-                <span itemprop="alternateName">@{{ tweet.user.screen_name }}</span>
-              </a>
-            </div>
-          </header>
-          <div>
-            <p itemprop="articleBody">{{ format_tweet_body(tweet)|safe }}</p>
-            {% if retweet -%}
-              <p class="retweet-credit">{{ _('Retweeted by %s')|format('<a href="%s" class="credit" data-social-network="twitter-only" data-social-action="Retweet Credit Link Exit">%s</a>'|format('https://twitter.com/'+_tweet.user.screen_name, _tweet.user.name)|safe) }}</p>
-            {% endif -%}
-            {% if tweet.entities.media -%}
-              {% for medium in tweet.entities.media -%}
-                {% if medium.type == 'photo' -%}
-                  <p class="media"><a href="{{ medium.expanded_url }}" class="image" data-social-network="twitter-only" data-social-action="Preview Image Exit"><img src="{{ medium.media_url_https }}" alt="" itemprop="image"></a></p>
-                {% endif -%}
-              {% endfor -%}
-            {% endif -%}
-          </div>
-          <footer>
-            <ul class="actions">
-              <li><a class="reply" href="https://twitter.com/intent/tweet?in_reply_to={{ tweet.id }}" data-social-network="twitter-only" data-social-action="Reply">{{ _('Reply') }}</a></li>
-              <li><a class="retweet" href="https://twitter.com/intent/retweet?tweet_id={{ tweet.id }}" data-social-network="twitter-only" data-social-action="Retweet">{{ _('Retweet') }}</a></li>
-              <li><a class="favorite" href="https://twitter.com/intent/favorite?tweet_id={{ tweet.id }}" data-social-network="twitter-only" data-social-action="Favorite">{{ _('Favorite') }}</a></li>
-            </ul>
-          </footer>
-        </article>
-        {% if max_length > 0 and loop.index == max_length -%}
-          {% break %}
-        {% endif -%}
-      {% endfor %}
-      </div>
-    {% endif -%}
-  </section>
-{%- endmacro %}
-
 {% macro share_cta(cta_text, share_urls, share_text, id, class) %}
 <aside class="mozilla-share-cta{% if class %} {{ class }}{% endif %}" tabindex="0"{% if id %} id="{{ id }}"{% endif -%}>
   <h3>{{ cta_text }}</h3>
@@ -130,7 +54,7 @@
 </aside>
 {%- endmacro %}
 
-{% macro google_play_button(class_name='', extra_data_attributes={}, extra_img_attributes={}, href=settings.GOOGLE_PLAY_FIREFOX_LINK, id='', product='Firefox', target='') -%}
+{% macro google_play_button(class_name='', extra_data_attributes={}, extra_img_attributes={}, href=settings.GOOGLE_PLAY_FIREFOX_LINK_UTMS, id='', product='Firefox', target='') -%}
 {% set optional_img_attributes = {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True} %}
 {% do optional_img_attributes.update(extra_img_attributes) %}
 <a{% if class_name %} class="{{ class_name }}"{% endif %}{% if id %} id="{{ id }}"{% endif %}{% if target %} target="{{ target }}" rel="external noopener noreferrer"{% else %} rel="external"{% endif %} href="{{ href }}"{% if product in ['Firefox', 'Focus'] %} data-link-type="download" data-download-os="Android"{% endif %}{% if product == 'Firefox' %} data-mozillaonline-link="{{ settings.GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE }}"{% endif %}{% for attr, val in extra_data_attributes.items() %} data-{{ attr }}="{{ val }}"{% endfor %}>
@@ -139,15 +63,9 @@
 {%- endmacro %}
 
 
-{# send_to_device macro is being deprecated in favor of the send_yourself macro below. #}
-{% macro send_to_device(platform, include_title=True, title_text='', include_logo=False, ios_link='', spinner_color='', message_set='default') %}
-  {# If no App Store link is specified, use base with default "ct" param value #}
-  {# See https://bugzilla.mozilla.org/show_bug.cgi?id=1196310#c23 #}
-  {% if ios_link == '' %}
-    {% set ios_link = firefox_ios_url('mozorg') %}
-  {% endif %}
-  {% set android_link = settings.GOOGLE_PLAY_FIREFOX_LINK %}
-  <section id="send-to-device" class="{% if include_logo %}logo {% endif %}{% if include_title %}title{% else %}no-title{% endif %}" data-countries="{{ send_to_device_sms_countries(message_set) }}"{% if spinner_color %} data-spinner-color="{{ spinner_color }}"{% endif %}>
+{# Docs: https://bedrock.readthedocs.io/en/latest/send-to-device.html #}
+{% macro send_to_device(platform='all', product='firefox', message_set='default', id='send-to-device', include_title=True, title_text=None, input_label=None, legal_note_email=None, legal_note_sms=None, spinner_color='#000') %}
+  <section id="{{ id }}" class="send-to-device" data-countries="{{ send_to_device_sms_countries(message_set) }}" data-spinner-color="{{ spinner_color }}">
     <div class="form-container">
       {% if include_title %}
         <h2 class="form-heading">
@@ -159,7 +77,7 @@
         </h2>
       {% endif %}
       <h2 class="thank-you hidden">{{ _('Your download link was sent.') }}</h2>
-      <form id="send-to-device-form" action="{{ url('firefox.send-to-device-post') }}" method="post"{% if platform == 'select' %} class="dropdown"{% endif %}>
+      <form class="send-to-device-form" action="{{ url('firefox.send-to-device-post') }}" method="post">
         <ul class="error-list hidden">
           <li class="sms">
           {% if l10n_has_tag('sendto_updates_bug1395342') %}
@@ -169,48 +87,50 @@
           {% endif %}
           </li>
           <li class="email">{{ _('Please enter an email address.') }}</li>
-          <li class="platform">{{ _('Please make a selection before proceeding.') }}</li>
           <li class="system">{{ _('An error occurred in our system. Please try again later.') }}</li>
         </ul>
-        <div class="input">
+        <div class="send-to-device-form-fields">
           <div class="platform-container">
-            {% if platform == 'select' %}
-            {# User selects OS they would like to receive link for. #}
-              <label for="id-platform">
-                {{ _('Select iOS or Android') }}
-              </label>
-              <select id="id-platform" name="platform" autocomplete="off" required>
-                <option value="" selected>{{ _('Choose OS') }}</option>
-                <option value="ios">iOS</option>
-                <option value="android">Android</option>
-              </select>
-            {% else %}
-              <input type="hidden" id="id-platform" name="platform" value="{{ platform }}">
-            {% endif %}
+            <input type="hidden" name="platform" value="{{ platform }}">
             <input type="hidden" name="source-url" value="{{ request.build_absolute_uri(request.path) }}">
             <input type="hidden" name="message-set" value="{{ message_set }}">
+            <input type="hidden" name="product" value="{{ product }}">
           </div>
           <div class="inline-field">
-            <label id="form-input-label" for="id-input" data-alt="{% if l10n_has_tag('sendto_updates_bug1395342') %}{{ _('Enter your email or phone number') }}{% else %}{{ _('Enter your email or 10-digit phone number') }}{% endif %}">{{ _('Enter your email') }}</label>
+            <label class="form-input-label" for="{{ id }}-input" data-alt="{% if l10n_has_tag('sendto_updates_bug1395342') %}{{ _('Enter your email or phone number') }}{% else %}{{ _('Enter your email or 10-digit phone number') }}{% endif %}">
+              {% if input_label %}
+                {{ input_label }}
+              {% else %}
+                {{ _('Enter your email') }}
+              {% endif %}
+            </label>
             <div class="form-input">
-              <input id="id-input" name="phone-or-email" type="text" required>
+              <input id="{{ id }}-input" class="send-to-device-input" name="phone-or-email" type="text" required>
             </div>
             <div class="form-submit">
-              <button type="submit" class="button"
-              {% if platform == 'android' %} data-download-os="Android"
-              {% elif platform == 'ios' %} data-download-os="iOS" {% endif %}>{{ _('Send') }}</button>
+              <button type="submit" class="button mzp-c-button mzp-t-product">{{ _('Send') }}</button>
             </div>
           </div>
           <p class="legal sms">
-          {% if l10n_has_tag('sendto_updates_bug1395342') %}
-            {{ _('SMS service available in select countries only. SMS &amp; data rates may apply.') }}
-          {% else %}
-            {{ _('SMS service available to U.S. phone numbers only. SMS &amp; data rates may apply.') }}
-          {% endif %}
-            {{ _('The intended recipient of the email or SMS must have consented.')}} <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ _('Learn more')}}</a>
+            {% if legal_note_sms %}
+              {{ legal_note_sms }}
+            {% else %}
+              {% if l10n_has_tag('sendto_updates_bug1395342') %}
+                {{ _('SMS service available in select countries only. SMS &amp; data rates may apply.') }}
+              {% else %}
+                {{ _('SMS service available to U.S. phone numbers only. SMS &amp; data rates may apply.') }}
+              {% endif %}
+                {{ _('The intended recipient of the email or SMS must have consented.')}}
+            {% endif %}
+            <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ _('Learn more')}}</a>
           </p>
           <p class="legal email">
-            {{ _('The intended recipient of the email must have consented.')}} <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ _('Learn more')}}</a>
+            {% if legal_note_email %}
+              {{ legal_note_email }}
+            {% else %}
+              {{ _('The intended recipient of the email must have consented.') }}
+            {% endif %}
+            <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ _('Learn more')}}</a>
           </p>
         </div>
         <div class="thank-you hidden">
@@ -221,207 +141,122 @@
         <div class="loading-spinner"></div>
       </form>
     </div>
-    <footer>
-      <ul class="{{ platform }}">
-        {% if platform == 'android' %}
-          <li class="android-all">
-            <a href="{{ firefox_url('android', 'all') }}">{{_('Systems &amp; Languages')}}</a>
-          </li>
-        {% endif %}
-        <li class="app-store">
-          <a class="more" href="{{ ios_link }}" data-link-type="download" data-download-os="iOS">{{ _('Go to the App Store')}}</a>
-        </li>
-        <li class="google-play">
-          <a class="more" href="{{ android_link }}" data-link-type="download" data-download-os="Android">{{ _('Go to Google Play')}}</a>
-        </li>
-      </ul>
-    </footer>
   </section>
 {%- endmacro %}
 
-{# The send_yourself macro refactors and replaces the send_to_device macro above.
-   This version better supports multiple products and avoids duplicate IDs so more than one widget can be embedded in a page. #}
-{% macro send_yourself(include_title=True, title_text='', spinner_color='', message_set='default', id='send-yourself', product='firefox') %}
-  <section id="{{ id }}" class="mzp-c-sendyourself {% if include_title %}mzp-has-title{% endif %}" data-countries="{{ send_to_device_sms_countries(message_set) }}"{% if spinner_color %} data-spinner-color="{{ spinner_color }}"{% endif %}>
-    <div class="mzp-c-sendyourself-container">
-      {% if include_title %}
-        <h3 class="mzp-c-sendyourself-title">
-        {% if title_text %}
-          {{ title_text }}
-        {% else %}
-          {{ _('Send Firefox to your smartphone or tablet') }}
-        {% endif %}
-        </h3>
-      {% endif %}
-      <form id="{{ id }}-form" class="mzp-c-sendyourself-form" action="{{ url('firefox.send-to-device-post') }}" method="post">
-        <ul class="mzp-c-form-errors mzp-u-hidden">
-          <li class="mzp-js-error-sms">{{ _('Sorry, we can’t send SMS messages to this phone number.') }}</li>
-          <li class="mzp-js-error-email">{{ _('Please enter an email address.') }}</li>
-          <li class="mzp-js-error-system">{{ _('An error occurred in our system. Please try again later.') }}</li>
-        </ul>
-        <div class="mzp-u-hidden">
-          <input type="hidden" name="product" value="{{ product }}">
-          <input type="hidden" name="source-url" value="{{ request.build_absolute_uri(request.path) }}">
-          <input type="hidden" name="message-set" value="{{ message_set }}">
-        </div>
-        <div class="mzp-c-sendyourself-formfields">
-          <p class="mzp-c-sendyourself-field">
-            <label for="{{ id }}-input" class="mzp-js-input-label" data-alt="{{ _('Enter your email or phone number') }}">{{ _('Enter your email') }}</label>
-            <input id="{{ id }}-input" class="mzp-c-sendyourself-input" name="phone-or-email" type="text" required>
-            <button type="submit" class="mzp-c-button">{{ _('Send') }}</button>
-          </p>
-          <p class="mzp-c-sendyourself-note mzp-is-sms">
-            {{ _('SMS service available in select countries only. SMS &amp; data rates may apply.') }}
-            {{ _('The intended recipient of the email or SMS must have consented.') }} <a href="{{ url('privacy.notices.websites') }}#campaigns">{{ _('Learn more') }}</a>
-          </p>
-          <p class="mzp-c-sendyourself-note mzp-is-email">
-            {{ _('The intended recipient of the email must have consented.') }} <a href="{{ url('privacy.notices.websites') }}#campaigns">{{ _('Learn more') }}</a>
-          </p>
-        </div>
-        <div class="mzp-c-sendyourself-thanks mzp-u-hidden">
-          <h3>{{ _('Your download link was sent.') }}</h3>
-          <p class="mzp-is-sms">{{ _('Check your device for the email or text message!') }}</p>
-          <p class="mzp-is-email">{{ _('Check your device for the email!') }}</p>
-          <button class="button button-hollow button-light mzp-js-send-another" type="button">{{ _('Send to another device') }}</button>
-        </div>
-        <div class="mzp-js-loading-spinner mzp-u-hidden"></div>
-      </form>
-    </div>
-  </section>
-{%- endmacro %}
+{# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#linking-to-accountsfirefoxcom #}
+{% macro fxa_link_fragment(entrypoint, service_type='sync', action='signin', utm_campaign=None, utm_content=None, utm_term=None) -%}
+  {% set fxa_path = '' %}
+  {% set fxa_queries = [
+    'entrypoint=' ~ entrypoint,
+    'context=fx_desktop_v3',
+    'utm_source=' ~ entrypoint,
+    'utm_medium=referral'
+  ] %}
 
-{% macro fxa_create_account_button(button_location, id_prefix, campaign, entrypoint, button_text = '', button_class = '', content = '', source = '') %}
-  {# - creates the "create account" button which links to accounts.firefox.com
-       and fallback states including:
-       - already logged in, not firefox, legacy firefox, Android Firefox, iOS Firefox
-       - use with media/js/base/mozilla-fxa.js and media/css/pebbles/components/_fxa.scss
-     - button_location and id_prefix are required
-       - button_location is for `data-download-location` which is for analytics
-          - examples: 'primary cta', 'footer cta'
-       - id_prefix is combined with some sufixes to create unique IDs for all buttons and links
-         - example: 'features-header'
-     - button_text is the text label that appears on the button. Defaults to "Create account" if blank.
-     - button_class is a class name(s) appended after the 'button' class, for styling or other purposes. Defaults to 'button-hollow' if blank.
-     - campaign is for utm_campaign on the Fxa and fallback links
-     - entrypoint is for the fxa team, it indicates where the user came from
-       - the prefix `mozilla.org:` will be appended to it
-       - example: 'fxa.features'
-       - when in doubt ask the fxa team to recommend a value
-     - content is for utm_content param
-       - content will default to the path to the page, minus the locale
-  #}
-  {# Parameters for accounts.firefox.com link #}
-  {% set service = 'sync' %}
-  {% set context = 'fx_desktop_v3' %}
-  {% set entrypoint = 'mozilla.org-' + entrypoint %}
-  {% if not button_text %}
-    {% set button_text = _('Create account') %}
-  {% endif %}
-  {% if not button_class %}
-    {% set button_class = 'button-hollow' %}
-  {% endif %}
-  {% if content %}
-    {% set utm_content = content.replace('/', '%2F') %}
+  {% if action == 'signup' %}
+    {% set fxa_path = 'signup' %}
+  {% elif action == 'signin' %}
+    {% set fxa_path = 'signin' %}
   {% else %}
-    {% set utm_content = request.path_info.replace('/', '%2F') %}
+    {% do fxa_queries.insert(0, 'action=email') %}
   {% endif %}
 
-  {# Create accounts.firefox.com link #}
-  {% set accounts_url = ['https://accounts.firefox.com/signup?service=', service,
-                          '&context=', context,
-                          '&entrypoint=', entrypoint,
-                          '&utm_content=', utm_content,
-                          '&utm_campaign=', campaign
-                        ]|join %}
-
-  {% if source %}
-    {% set accounts_url = accounts_url + '&utm_source=' + source %}
+  {# utm_campaign is optional #}
+  {% if utm_campaign %}
+    {% do fxa_queries.append('utm_campaign=' ~ utm_campaign) %}
   {% endif %}
 
-  {# Create ids for buttons and links #}
-  {% set download_id = '{}-download'.format(id_prefix) %}
-  {% set account_id = '{}-account'.format(id_prefix) %}
-  {% set android_id = '{}-android'.format(id_prefix) %}
-  {% set ios_id = '{}-ios'.format(id_prefix) %}
-  {% set update_id = '{}-update'.format(id_prefix) %}
-  {% set link_id = '{}-link'.format(id_prefix) %}
+  {# utm_content is optional #}
+  {% if utm_content %}
+    {% do fxa_queries.append('utm_content=' ~ utm_content) %}
+  {% endif %}
 
-  {# campaign for iOS app store link #}
-  {% set app_store_campaign = campaign + '-appstore-button' %}
+  {# utm_term is optional #}
+  {% if utm_term %}
+    {% do fxa_queries.append('utm_term=' ~ utm_term) %}
+  {% endif %}
 
-  <div class="show-fxa-not-fx show-fxa-default">
-    {{ download_firefox(dom_id=download_id, download_location=button_location) }}
-  </div>
-  <div class="show-fxa-supported-signed-out">
-    <a href="{{ accounts_url }}" class="button {{ button_class }}" data-button-name="Create account" data-link-type="button" data-cta-position="{{ button_location }}" id="{{ account_id }}">
-      {{ button_text }}
-    </a>
-  </div>
-  <div class="show-fxa-supported-signed-in fxa-app-buttons">
-    <p>{{ _('Get the app') }}</p>
-    <ul>
-      <li>
-        {{ google_play_button(id=android_id, extra_data_attributes={'download-location': button_location}) }}
-      </li>
-      <li>
-        <a href="{{ firefox_ios_url(app_store_campaign) }}" data-link-type="download" data-download-os="iOS" data-download-location="{{ button_location }}" id="{{ ios_id }}">
-          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div class="show-fxa-unsupported">
-    <a href="https://support.mozilla.org/kb/update-firefox-latest-version/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign={{ campaign }}" class="button {{ button_class }}" data-link-type="link" data-link-name="Update your Firefox" id="{{ update_id }}">
-      {{ _('Update your Firefox') }}
-    </a>
-  </div>
-  <div class="show-fxa-android">
-    <a href="https://support.mozilla.org/kb/sync-bookmarks-tabs-history-and-passwords-android/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign={{ campaign }}" class="button {{ button_class }}" data-link-type="link" data-link-name="Learn more" id="{{ link_id }}">{{ _('Learn more') }}</a>
-  </div>
-  <div class="show-fxa-ios">
-    <a href="https://support.mozilla.org/kb/sync-firefox-bookmarks-and-browsing-history-iOS/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign={{ campaign }}" class="button {{ button_class }}" data-link-type="link" data-link-name="Learn more" id="{{ link_id }}">{{ _('Learn more') }}</a>
-  </div>
+  href="{{ settings.FXA_ENDPOINT }}{{ fxa_path }}?service={{ service_type }}&{{ fxa_queries|join('&') }}" data-mozillaonline-link="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}{{ fxa_path }}?service={{ service_type }}&{{ fxa_queries|join('&') }}"
+
 {%- endmacro %}
 
-{#
-  This macro is intended to be shown only to users on Firefox 48 and up.
+{# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#linking-to-accountsfirefoxcom #}
+{% macro fxa_cta_link(entrypoint, button_text, service_type='sync', action='signin', account_id=None, button_class=None, utm_campaign=None, utm_content=None, utm_term=None) %}
+  <a {{ fxa_link_fragment(entrypoint=entrypoint, service_type=service_type, action=action, utm_campaign=utm_campaign, utm_content=utm_content, utm_term=utm_term) }} class="js-fxa-cta-link{% if button_class %} {{ button_class }}{% endif %}" data-cta-text="Create account" data-cta-type="FxA-Sync" data-cta-position="{{ button_location }}" {%if account_id %}id="{{ account_id }}"{% endif %}>
+    {{ button_text }}
+  </a>
+{%- endmacro %}
 
-  entrypoint: used to tag a given "page type" and remains the same across all
-    pages of the class, e.g., no matter URL of the firstrun page, entrypoint is
-    always `firstrun`. must validate against [\w.:-]+
-    REQUIRED
-  utm_source: used for analytics
-    REQUIRED
-  class_name: applies a class to the form. default: 'fxa-email-form'
-  utm_params: dictionary of utm_* params to include. 'utm_' will automatically
-    be prepended to all keys. example:
+{# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#linking-to-monitorfirefoxcom #}
+{% macro monitor_button(entrypoint, form_type='button', utm_campaign=None, utm_content=None, utm_term=None, button_text=None, button_class='mzp-c-button mzp-t-product', button_id='fxa-monitor-submit') -%}
+  {% set fxa_queries = [
+    'form_type=' ~ form_type,
+    'entrypoint=' ~ entrypoint,
+    'utm_source=' ~ entrypoint,
+    'utm_campaign=' ~ utm_campaign,
+    'utm_medium=referral'
+  ] %}
 
-    {
-      'content': 'accounts-page',
-      'medium': 'referral',
-      'campaign': 'accounts-page',
-      'term': 'someterm',
-    }
+  {# utm_content is optional #}
+  {% if utm_content %}
+    {% do fxa_queries.append('utm_content=' ~ utm_content) %}
+  {% endif %}
 
-    all values must validate against /^[\w\/.%-]+/
+  {# utm_term is optional #}
+  {% if utm_term %}
+    {% do fxa_queries.append('utm_term=' ~ utm_term) %}
+  {% endif %}
 
-    DO NOT include utm_source in this dictionary! (It's already a required param.)
-#}
-{% macro fxa_email_form(entrypoint, utm_source, class_name='fxa-email-form', utm_params={}, intro_text='', button_text='', button_class='button button-blue') -%}
+  <a data-action="{{ settings.FXA_ENDPOINT }}" href="https://monitor.firefox.com/oauth/init?{{ fxa_queries|join('&') }}" {% if button_class %}class="{{ button_class }}"{% endif %} id="{{ button_id }}" data-cta-text="Sign In to Monitor" data-cta-type="FxA-Monitor">
+    {% if button_text %}
+      {{ button_text }}
+    {% else %}
+      {{ _('Sign In to Monitor') }}
+    {% endif %}
+  </a>
+{%- endmacro %}
+
+{# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#signup-form #}
+{% macro fxa_email_form(entrypoint, utm_campaign=None, utm_content=None, utm_term=None, style=None, class_name='fxa-email-form', form_title=None, intro_text=none, button_text=None, button_class='button button-blue') -%}
+  {% set service  = 'sync' %}
   <form action="{{ settings.FXA_ENDPOINT }}" data-mozillaonline-action="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}" id="fxa-email-form" class="{{ class_name }}">
     <input type="hidden" name="action" value="email" />
     <input type="hidden" name="context" value="fx_desktop_v3" />
-    <input type="hidden" name="service" value="sync" />
+    <input type="hidden" name="service" value="{{ service }}" />
     <input type="hidden" name="entrypoint" value="{{ entrypoint }}" id="fxa-email-form-entrypoint" />
-    {# flow_id and flow_begin_time will be populated via JS on page load #}
+    <input type="hidden" name="form_type" value="email" />
+    {# device_id, flow_id and flow_begin_time will be populated via JS on page load #}
     <input type="hidden" name="flow_id" value="" />
     <input type="hidden" name="flow_begin_time" value="" />
+    <input type="hidden" name="device_id" value="" />
+    <input type="hidden" name="utm_source" value={{ entrypoint }} id="fxa-email-form-utm-source" />
+    <input type="hidden" name="utm_medium" value="referral" id="fxa-email-form-utm-medium" />
 
-    {# utm_source is required, other utm_ params are optional #}
-    <input type="hidden" name="utm_source" value={{ utm_source }} id="fxa-email-form-utm-source" />
-  {% for attr, val in utm_params.items() %}
-    <input type="hidden" name="utm_{{ attr }}" value="{{ val }}" id="fxa-email-form-utm-{{ attr }}" />
-  {% endfor %}
+    {# utm_campaign is used to identify specific marketing campaigns. (For example: trailhead or skyline) If there is one, the campaign name is prepended to the default value of `fxa-embedded-form`. #}
+    {% if utm_campaign %}
+      <input type="hidden" name="utm_campaign" value="{{ utm_campaign }}-fxa-embedded-form" id="fxa-email-form-utm-campaign" />
+    {% else %}
+      <input type="hidden" name="utm_campaign" value="fxa-embedded-form" id="fxa-email-form-utm-campaign" />
+    {% endif %}
+
+    {# utm_content is optional. It should only be declared when there is new messaging associated with the form. (For example: `get-the-rest-of-firefox`) #}
+    {% if utm_content %}
+      <input type="hidden" name="utm_content" value="{{ utm_content }}" id="fxa-email-form-utm-content" />
+    {% endif %}
+
+    {# utm_term is optional. It is used for paid search keywords. This should be provided if needed. #}
+    {% if utm_term %}
+      <input type="hidden" name="utm_term" value="{{ utm_term }}" id="fxa-email-form-utm-term" />
+    {% endif %}
+
+    {% if style %}
+      <input type="hidden" name="style" value="{{ style }}" />
+    {% endif %}
+
+    {% if form_title %}
+      <h2 class="fxa-email-form-title">{{ form_title }}</h2>
+    {% endif %}
 
     <p class="fxa-email-form-intro">
     {% if intro_text %}
@@ -431,20 +266,27 @@
     {% endif %}
     </p>
 
-    <p class="agreement">
-    {% trans url1='https://accounts.firefox.com/legal/terms', url2='https://accounts.firefox.com/legal/privacy' %}
-      By proceeding, you agree to the <a href="{{ url1 }}">Terms of Service</a> and
-      <a href="{{ url2 }}">Privacy Notice</a>.
-    {% endtrans %}
-    </p>
-
     <div class="fxa-email-field-container">
       <p class="field">
         <label for="fxa-email-field">{{ _('Email address') }}</label>
         <input type="email" name="email" id="fxa-email-field" class="fxa-email-field" placeholder="user@example.com" required>
       </p>
 
-      <button type="submit" class="{{ button_class }}" id="fxa-email-form-submit">
+      <p class="agreement">
+        {% trans url1='https://accounts.firefox.com/legal/terms', url2='https://accounts.firefox.com/legal/privacy' %}
+          By proceeding, you agree to the <a href="{{ url1 }}">Terms of Service</a> and
+          <a href="{{ url2 }}">Privacy Notice</a>.
+        {% endtrans %}
+      </p>
+
+      <button
+        type="submit"
+        class="{{ button_class }}"
+        id="fxa-email-form-submit"
+        data-cta-type="FxA-Sync"
+        data-cta-text="Register"
+        data-cta-position="Primary"
+      >
       {% if button_text %}
         {{ button_text }}
       {% else %}

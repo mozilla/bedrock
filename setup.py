@@ -1,9 +1,6 @@
-import os
-
 from setuptools import setup, find_packages
 
-
-setup(name='project',
+setup(name='bedrock',
       version='1.0',
       description='Django application.',
       long_description='',
@@ -12,6 +9,6 @@ setup(name='project',
       license='',
       url='',
       include_package_data=True,
-      classifiers = [],
+      classifiers=[],
       packages=find_packages(exclude=['tests']),
       install_requires=[])

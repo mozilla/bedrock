@@ -9,33 +9,32 @@ from pages.home import HomePage
 
 @pytest.mark.nondestructive
 def test_navigation(base_url, selenium):
-    locale = 'de'
-    page = HomePage(selenium, base_url, locale).open()
-    firefox_page = page.navigation.open_firefox(locale)
-    assert firefox_page.seed_url in selenium.current_url
+    page = HomePage(selenium, base_url).open()
+    firefox_desktop_page = page.navigation.open_firefox_desktop_page()
+    assert firefox_desktop_page.seed_url in selenium.current_url
 
     page.open()
-    internet_health_page = page.navigation.open_internet_health(locale)
-    assert internet_health_page.seed_url in selenium.current_url
+    developer_edition_page = page.navigation.open_developer_edition_page()
+    assert developer_edition_page.seed_url in selenium.current_url
 
     page.open()
-    technology_page = page.navigation.open_technology(locale)
-    assert technology_page.seed_url in selenium.current_url
+    about_page = page.navigation.open_about_page()
+    assert about_page.seed_url in selenium.current_url
 
 
 @pytest.mark.nondestructive
-@pytest.mark.viewport('mobile')
-def test_mobile_navigation(base_url, selenium):
-    locale = 'de'
-    page = HomePage(selenium, base_url, locale).open()
+def test_mobile_navigation(base_url, selenium_mobile):
+    page = HomePage(selenium_mobile, base_url).open()
     page.navigation.show()
-    firefox_page = page.navigation.open_firefox(locale)
-    assert firefox_page.seed_url in selenium.current_url
+    firefox_desktop_page = page.navigation.open_firefox_desktop_page()
+    assert firefox_desktop_page.seed_url in selenium_mobile.current_url
 
-    page.open().navigation.show()
-    internet_health_page = page.navigation.open_internet_health(locale)
-    assert internet_health_page.seed_url in selenium.current_url
+    page.open()
+    page.navigation.show()
+    developer_edition_page = page.navigation.open_developer_edition_page()
+    assert developer_edition_page.seed_url in selenium_mobile.current_url
 
-    page.open().navigation.show()
-    technology_page = page.navigation.open_technology(locale)
-    assert technology_page.seed_url in selenium.current_url
+    page.open()
+    page.navigation.show()
+    about_page = page.navigation.open_about_page()
+    assert about_page.seed_url in selenium_mobile.current_url

@@ -2,29 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "base-resp.html" %}
+{% extends "privacy/notices/base-notice.html" %}
 
-{% block page_title %}{{ doc.h1.string }}{% endblock %}
-
-{% block page_css %}
-  {{ css_bundle('fb_privacy') }}
-{% endblock %}
-
-{% block body_id %}fb-privacy{% endblock %}
-
-{% block site_header %}
-  <header id="masthead">
-    <a href="{{ url('mozorg.home') }}" id="tabzilla">{{ _('Mozilla') }}</a>
-    {% block site_header_nav %}{% endblock %}
-  </header>
-{% endblock %}
-
-{% block content %}
-  <article id="main-content" role="main">
-    {{ doc.section.contents|join|safe }}
-  </article>
-{% endblock %}
-
-{% block email_form %}{% endblock %}
-{% block site_footer %}{% endblock %}
-{% block site_js %}{% endblock %}
+{% set body_id = "privacy-facebook" %}
+{% block body_class %}mzp-t-mozilla format-none{% endblock%}

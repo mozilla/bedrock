@@ -23,7 +23,7 @@ RUN gulp build --production
 ########
 # Python dependencies builder
 #
-FROM python:2-stretch AS python-builder
+FROM python:3-slim AS python-builder
 
 WORKDIR /app
 ENV LANG=C.UTF-8
@@ -34,6 +34,7 @@ ENV PATH="/venv/bin:$PATH"
 COPY docker/bin/apt-install /usr/local/bin/
 RUN apt-install gettext build-essential libxml2-dev libxslt1-dev libxslt1.1
 
+RUN pip install virtualenv
 RUN virtualenv /venv
 
 COPY requirements/base.txt requirements/prod.txt ./requirements/
@@ -45,7 +46,7 @@ RUN pip install --no-cache-dir -r requirements/prod.txt
 ########
 # django app container
 #
-FROM python:2-slim-stretch AS app-base
+FROM python:3-slim AS app-base
 
 # Extra python env
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -89,13 +90,24 @@ FROM app-base AS devapp
 
 CMD ["./bin/run-tests.sh"]
 
-COPY requirements/base.txt requirements/dev.txt ./requirements/
+RUN apt-install make
+COPY requirements/base.txt requirements/dev.txt requirements/docs.txt ./requirements/
 RUN pip install --no-cache-dir -r requirements/dev.txt
+RUN pip install --no-cache-dir -r requirements/docs.txt
 COPY ./setup.cfg ./
 COPY ./tests ./tests
 
+# build args
+ARG GIT_SHA=latest
+ARG BRANCH_NAME=master
+ENV GIT_SHA=${GIT_SHA}
+ENV BRANCH_NAME=${BRANCH_NAME}
+
 # get fresh database
 RUN ./bin/run-db-download.py --force
+
+# rely on build args
+RUN bin/run-sync-all.sh
 
 # get fresh l10n files
 RUN ./manage.py l10n_update

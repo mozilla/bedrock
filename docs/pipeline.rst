@@ -32,29 +32,34 @@ Pull request
 ~~~~~~~~~~~~
 
 Once a pull request is submitted, `CircleCI`_ will run both the Python and  JavaScript
-unit tests, as well as the smoke suite of redirect headless HTTP(s) response checks.
+unit tests, as well as the suite of redirect headless HTTP(s) response checks.
 
 Push to master branch
 ~~~~~~~~~~~~~~~~~~~~~
 
-Whenever a change is pushed to the master branch, the smoke suite of
-headless (see :ref:`testing-redirects`) and UI tests (see :ref:`smoke-functional-tests`)
-are run against Firefox on Linux. If successful, the change is pushed to the dev environment,
-and the full suite of headless and UI tests are then run against
+Whenever a change is pushed to the master branch, a new image is built and deployed to the
+dev environment, and the full suite of headless and UI tests are then run against
 Firefox on Windows 10 using `Sauce Labs`_. This is handled by the pipeline, and is subject
 to change according to the settings in the `master.yml file`_ in the repository.
+
+Push to stage branch
+~~~~~~~~~~~~~~~~~~~~~
+
+Whenever a change is pushed to the stage branch, a production docker image is built, published to
+`Docker Hub`_, and deployed to a `public staging environment`_. Once the new image is deployed, the
+full suite of UI tests is run against it with Firefox, Chrome, and Internet Explorer on
+Windows 10, and the sanity suite is run with IE9.
 
 .. _tagged-commit:
 
 Push to prod branch (tagged)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-When a tagged commit is pushed to the prod branch, everything that happens during a
-untagged push is still run. In addition, the full suite of UI tests is run against
-Chrome and Internet Explorer on Windows 10, and the sanity suite is run against older
-versions of Internet Explorer (currently IE6 & IE7). If successful, the change is
-pushed to staging, tested, and then to production and the same tests are then run against
-production. As with untagged pushes, this is all handled by the pipeline, and is subject
+When a tagged commit is pushed to the prod branch, a production docker image is built and published
+to `Docker Hub`_ if needed (usually this will have already happened as a result of a push to the stage branch),
+and deployed to each `production`_ deployment. After each deployment is complete, the full suite of UI tests is
+run against Firefox, Chrome and Internet Explorer on Windows 10, and the sanity suite is run against IE9.
+As with untagged pushes, this is all handled by the pipeline, and is subject
 to change according to the settings in the `prod.yml file`_ in the repository.
 
 **Push to prod cheat sheet**
@@ -62,8 +67,7 @@ to change according to the settings in the `prod.yml file`_ in the repository.
 #. Check out the ``master`` branch
 #. Make sure the ``master`` branch is up to date with ``mozilla/bedrock master``
 #. Check that dev deployment is green:
-    #. View `deployment pipeline <https://ci.us-west.moz.works/blue/organizations/jenkins/bedrock_multibranch_pipeline/branches/>`_
-       and look at ``master`` branch
+    #. View `deployment pipeline`_ and look at ``master`` branch
 #. Tag and push the deployment by running ``bin/tag-release.sh --push``
 
 .. note::
@@ -112,19 +116,17 @@ to set how it should be built by jenkins. Take the following example:
 .. code-block:: yaml
 
     # jenkins/branches/change-all-the-things.yml
-    smoke_tests: true
     apps:
       - bedrock-probably-broken
 
 This configuration would cause commits pushed to a branch named ``change-all-the-things`` to have docker
-images built for them, have the smoke and unit tests run, and deploy to a deis app named ``bedrock-probably-broken``
+images built for them, have the unit tests run, and deploy to a deis app named ``bedrock-probably-broken``
 in our us-west deis cluster. If you'd like it to create the deis app and pre-fill a local database for your app,
 you can set ``demo: true`` in the file. Note that if the app already exists it must have the ``jenkins`` user added via the
 ``deis perms:create jenkins -a <your app name>`` command.
 
 The available branch configuration options are as follows:
 
-* ``smoke_tests``: boolean. Set to ``true`` to cause the unit and smoke test suites run against the docker images.
 * ``push_public_registry``: boolean. Set to ``true`` to cause the built images to be pushed to the public docker hub.
 * ``require_tag``: boolean. Set to ``true`` to require that the commit being built have a git tag in the format YYYY-MM-DD.X.
 * ``regions``: list. A list of strings indicating the deployment regions for the set of apps. The valid values are in the ``regions`` area of
@@ -135,6 +137,9 @@ The available branch configuration options are as follows:
 * ``integration_tests``: list. A list of strings indicating the types of integration tests to run. If omitted no tests will run.
 
 .. _configure-demo-servers:
+
+Configure Demo Servers
+~~~~~~~~~~~~~~~~~~~~~~
 
 You can also set app configuration environment variables via deployment as well for demos. The default environment variables
 are set in `jenkins/branches/demo/default.env`. To modify your app's settings you can create an env file named after your branch
@@ -205,18 +210,21 @@ Jenkins to become unresponsive. To make such changes it can be necessary to firs
 restart Jenkins, as this issue only appears some time after Jenkins has been started.
 A `bug for the IRC plugin`_ has been raised.
 
-.. _Deployment Pipeline: https://ci.us-west.moz.works/view/Bedrock%20Pipeline/
+.. _Deployment Pipeline: https://ci.vpn1.moz.works/blue/organizations/jenkins/bedrock_multibranch_pipeline/branches/
 .. _CircleCI: https://circleci.com/
 .. _Sauce Labs: https://saucelabs.com/
 .. _Jenkinsfile: https://github.com/mozilla/bedrock/tree/master/Jenkinsfile
 .. _branch-specific YAML files: https://github.com/mozilla/bedrock/tree/master/jenkins/branches/
 .. _master.yml file: https://github.com/mozilla/bedrock/tree/master/jenkins/branches/master.yml
 .. _prod.yml file: https://github.com/mozilla/bedrock/tree/master/jenkins/branches/prod.yml
-.. _bedrock_integration_tests_runner: https://ci.us-west.moz.works/view/Bedrock/job/bedrock_integration_tests_runner/
-.. _configured in Jenkins: https://ci.us-west.moz.works/configure
+.. _bedrock_integration_tests_runner: https://ci.vpn1.moz.works/view/Bedrock/job/bedrock_integration_tests_runner/
+.. _configured in Jenkins: https://ci.vpn1.moz.works/configure
 .. _become unresponsive: https://issues.jenkins-ci.org/browse/JENKINS-28175
 .. _test dependencies: https://github.com/mozilla/bedrock/blob/master/requirements/dev.txt
 .. _Selenium Docker versions: https://hub.docker.com/r/selenium/hub/tags/
 .. _Sauce Labs platform configurator: https://wiki.saucelabs.com/display/DOCS/Platform+Configurator/
 .. _enhancement request: https://issues.jenkins-ci.org/browse/JENKINS-26210
 .. _bug for the IRC plugin: https://issues.jenkins-ci.org/browse/JENKINS-28175
+.. _public staging environment: https://www.allizom.org
+.. _Docker Hub: https://hub.docker.com/r/mozorg/bedrock/tags
+.. _production: https://www.mozilla.org

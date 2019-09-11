@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from selenium.webdriver.common.by import By
 
 from pages.base import BasePage
 
@@ -9,3 +10,9 @@ from pages.base import BasePage
 class AboutPage(BasePage):
 
     URL_TEMPLATE = '/{locale}/about/'
+
+    _read_mission_button_locator = (By.ID, 'read-mission-button')
+
+    @property
+    def is_read_mission_button_displayed(self):
+        return self.is_element_displayed(*self._read_mission_button_locator)

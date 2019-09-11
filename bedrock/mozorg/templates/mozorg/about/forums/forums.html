@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block article %}
-<h1><span class="highlight">{{ self.page_title() }}</span></h1>
+<h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
 
 <section class="lead-content">
 
@@ -36,21 +36,19 @@
   {{ _('Mozilla newsgroups are sponsored by <a href="%s">Giganews Newsgroups</a>, to whom we are very grateful.')|format('https://www.giganews.com/') }}
   <a href="https://www.giganews.com/"><img src="{{ static('img/mozorg/about/giganews.png') }}" alt="" height="25" width="89" /></a>
   </p>
-
+  <a href="https://www.google.com/" ><img src="{{ static('img/logos/google/logo_google.svg') }}" width="75" height="25" alt="Google" /></a>
   <form method="get" action="https://groups.google.com/groups">
-  <a href="https://www.google.com/"><img
-       src="https://www.google.com/logos/Logo_25wht.gif"
-       width="75" height="32" alt="Google" /></a>
-     <input type="text" name="as_q" maxlength="256" value="" placeholder="{{ _('Search Forums') }}" />
-       <input type="hidden" name="hl" value="en" />
-       <input type="hidden" name="lr" value="" />
-       <input type="hidden" name="as_ugroup" value="mozilla.*" />
-       <input type="submit" name="btnG" value="{{ _('Search') }}" class="form-button" />
+    <label for="query">{{ _('Search Forums') }}</label>
+    <input type="text" id="as_q" name="as_q" maxlength="256" value="" id="query" />
+      <input type="hidden" name="hl" value="en" />
+      <input type="hidden" name="lr" value="" />
+      <input type="hidden" name="as_ugroup" value="mozilla.*" />
+      <input type="submit" name="btnG" value="{{ _('Search') }}" class="form-button" />
   </form>
 
   <nav class="toc">
     <h3>{{ _('Categories:') }}</h3>
-    <ul class="prose">
+    <ul class="mzp-u-list-styled">
       {% for title in forums.ordered.keys() %}
         <li><a href="#{{ title|slugify }}">{{ title }}</a></li>
       {% endfor %}
@@ -62,7 +60,7 @@
 
 <!--BEGIN_LIST-->
 
-{% for title, forums_list in forums.ordered.iteritems() %}
+{% for title, forums_list in forums.ordered.items() %}
 
   <section id="{{ title|slugify }}" class="forum-group">
     <a href="#" class="top">{{ _('Back to top') }}</a>
@@ -86,7 +84,7 @@
           </div>
           <ul class="subscribe">
             {% if forum.id in mdn_forums %}
-              <li>{{ _('Follow:') }} <a href="https://discourse.mozilla-community.org/c/mdn">{{ _('MDN category on Discourse') }}</a></li>
+              <li>{{ _('Follow:') }} <a href="https://discourse.mozilla.org/c/mdn">{{ _('MDN category on Discourse') }}</a></li>
               <li>{{ _('Email-in:') }} <a href="mailto:mdn@mozilla-community.org">mdn@mozilla-community.org</a></li>
               <li>{{ _('Archives, up to June 2017:') }} <a href="https://groups.google.com/group/{{ forum.id }}/topics">{{ _('%s Google Group')|format(forum.id) }}</a></li>
             {% elif forum.id.startswith('mozilla.') %}

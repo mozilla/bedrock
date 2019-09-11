@@ -12,7 +12,7 @@ from django.utils.functional import lazy
 
 import dj_database_url
 from everett.manager import ListOf
-from pathlib2 import Path
+from pathlib import Path
 
 from bedrock.base.config_manager import config
 
@@ -91,10 +91,6 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-US'
 
-# Use Ship It as the source for product_details
-PROD_DETAILS_URL = config('PROD_DETAILS_URL',
-                          default='https://product-details.mozilla.org/1.0/')
-
 # Tells the product_details module where to find our local JSON files.
 # This ultimately controls how LANGUAGES are constructed.
 PROD_DETAILS_CACHE_NAME = 'product-details'
@@ -105,24 +101,22 @@ PROD_DETAILS_STORAGE = config('PROD_DETAILS_STORAGE',
 PROD_DETAILS_JSON_REPO_PATH = config('PROD_DETAILS_JSON_REPO_PATH',
                                      default=path('product_details_json'))
 PROD_DETAILS_JSON_REPO_URI = config('PROD_DETAILS_JSON_REPO_URI',
-                                    default='https://github.com/mozilla/product-details-json.git')
+                                    default='https://github.com/mozilla-releng/product-details.git')
+PROD_DETAILS_JSON_REPO_BRANCH = config('PROD_DETAILS_JSON_REPO_BRANCH', default='production')
 # path to updated p-d data for testing before loading into DB
-PROD_DETAILS_TEST_DIR = str(Path(PROD_DETAILS_JSON_REPO_PATH).joinpath('product-details'))
-# if the repo is cloned it will be most up-to-date
-if Path(PROD_DETAILS_TEST_DIR).is_dir():
-    PROD_DETAILS_DIR = PROD_DETAILS_TEST_DIR
+PROD_DETAILS_TEST_DIR = str(Path(PROD_DETAILS_JSON_REPO_PATH).joinpath('public', '1.0'))
 
 # Accepted locales
-PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'as', 'ast', 'az', 'azz', 'be', 'bg',
-                  'bn-BD', 'bn-IN', 'br', 'bs', 'ca', 'cak', 'cs',
+PROD_LANGUAGES = ('ach', 'af', 'an', 'ar', 'ast', 'az', 'azz', 'be', 'bg',
+                  'bn', 'br', 'bs', 'ca', 'cak', 'cs',
                   'cy', 'da', 'de', 'dsb', 'el', 'en-CA', 'en-GB', 'en-US',
-                  'en-ZA', 'eo', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'et',
+                  'eo', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'et',
                   'eu', 'fa', 'ff', 'fi', 'fr', 'fy-NL', 'ga-IE', 'gd',
                   'gl', 'gn', 'gu-IN', 'he', 'hi-IN', 'hr', 'hsb',
                   'hu', 'hy-AM', 'ia', 'id', 'is', 'it', 'ja', 'ja-JP-mac',
                   'ka', 'kab', 'kk', 'km', 'kn', 'ko', 'lij', 'lt', 'ltg', 'lv',
-                  'mai', 'mk', 'ml', 'mr', 'ms', 'my', 'nb-NO', 'ne-NP', 'nl',
-                  'nn-NO', 'oc', 'or', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
+                  'mk', 'ml', 'mr', 'ms', 'my', 'nb-NO', 'ne-NP', 'nl',
+                  'nn-NO', 'oc', 'pa-IN', 'pl', 'pt-BR', 'pt-PT',
                   'rm', 'ro', 'ru', 'si', 'sk', 'sl', 'son', 'sq',
                   'sr', 'sv-SE', 'ta', 'te', 'th', 'tl', 'tr', 'trs', 'uk', 'ur',
                   'uz', 'vi', 'xh', 'zh-CN', 'zh-TW', 'zu')
@@ -142,6 +136,7 @@ EXCLUDE_EDIT_TEMPLATES = [
     'firefox/releases/beta-notes.html',
     'firefox/releases/aurora-notes.html',
     'firefox/releases/release-notes.html',
+    'firefox/releases/notes.html',
     'firefox/releases/system_requirements.html',
     'mozorg/credits.html',
     'mozorg/about/forums.html',
@@ -202,12 +197,12 @@ def lazy_lang_group():
             groups.setdefault(prefix, []).append(lang)
 
     # add any group prefix to the group list if it is also a supported lang
-    for groupid in groups.keys():
+    for groupid in groups:
         if groupid in langs:
             groups[groupid].append(groupid)
 
     # exclude groups with a single member
-    return {gid: glist for gid, glist in groups.iteritems() if len(glist) > 1}
+    return {gid: glist for gid, glist in groups.items() if len(glist) > 1}
 
 
 def lazy_lang_url_map():
@@ -234,7 +229,7 @@ LANGUAGES = lazy(lazy_langs, dict)()
 FEED_CACHE = 3900
 DOTLANG_CACHE = 600
 
-DOTLANG_FILES = ['main', 'download_button']
+DOTLANG_FILES = ['navigation', 'download_button', 'main']
 
 # Paths that don't require a locale code in the URL.
 # matches the first url component (e.g. mozilla.org/gameon/)
@@ -263,6 +258,7 @@ SUPPORTED_NONLOCALES = [
     'csp-violation-capture',
     'country-code.json',
     'revision.txt',
+    'locales',
 ]
 
 # Pages that we don't want to be indexed by search engines.
@@ -277,12 +273,18 @@ NOINDEX_URLS = [
     r'^firefox/send-to-device-post',
     r'^firefox/feedback',
     r'^firefox/stub_attribution_code/',
+    r'^firefox/dedicated-profiles/',
+    r'^firefox/installer-help/',
+    r'^firefox/this-browser-comes-highly-recommended/',
     r'^firefox.*/all/$',
+    r'^firefox/content-blocking/start/$',
+    r'^firefox/enterprise/signup/',
     r'^.+/tracking-protection/start/$',
     r'^.+/(firstrun|whatsnew)/$',
-    r'^l10n_example/',
     r'^m/',
-    r'^newsletter/(confirm|existing|hacks\.mozilla\.org|recovery|updated)/',
+    r'^newsletter/(confirm|existing|hacks\.mozilla\.org|recovery|updated|fxa-error)/',
+    r'^newsletter/opt-out-confirmation/',
+    r'^newsletter/country/success/',
     r'/system-requirements/$',
     r'.*/(firstrun|thanks)/$',
     r'^readiness/$',
@@ -333,6 +335,8 @@ STATICFILES_FINDERS = (
 STATICFILES_DIRS = (
     path('static_final'),
 )
+if DEBUG:
+    STATICFILES_DIRS += (path('media'),)
 
 
 def set_whitenoise_headers(headers, path, url):
@@ -393,18 +397,19 @@ ENABLE_VARY_NOCACHE_MIDDLEWARE = config('ENABLE_VARY_NOCACHE_MIDDLEWARE',
 # e.g. BASIC_AUTH_CREDS="thedude:thewalrus"
 BASIC_AUTH_CREDS = config('BASIC_AUTH_CREDS', default='')
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'allow_cidr.middleware.AllowCIDRMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'bedrock.mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
+    'django.middleware.http.ConditionalGetMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'bedrock.mozorg.middleware.VaryNoCacheMiddleware',
     'bedrock.base.middleware.BasicAuthMiddleware',
     # must come before LocaleURLMiddleware
     'bedrock.redirects.middleware.RedirectsMiddleware',
     'bedrock.base.middleware.LocaleURLMiddleware',
-    'commonware.middleware.RobotsTagHeader',
+    'bedrock.base.middleware.RobotsTagHeader',
     'bedrock.mozorg.middleware.ClacksOverheadMiddleware',
     'bedrock.mozorg.middleware.HostnameMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -414,11 +419,9 @@ MIDDLEWARE_CLASSES = [
 
 ENABLE_CSP_MIDDLEWARE = config('ENABLE_CSP_MIDDLEWARE', default='true', parser=bool)
 if ENABLE_CSP_MIDDLEWARE:
-    MIDDLEWARE_CLASSES.append('csp.middleware.CSPMiddleware')
+    MIDDLEWARE.append('csp.middleware.CSPMiddleware')
 
 INSTALLED_APPS = (
-    'cronjobs',  # for ./manage.py cron * cmd line tasks
-
     # Django contrib apps
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -456,6 +459,7 @@ INSTALLED_APPS = (
     'bedrock.security',
     'bedrock.events',
     'bedrock.releasenotes',
+    'bedrock.contentcards',
     'bedrock.shapeoftheweb',
     'bedrock.utils',
     'bedrock.wordpress',
@@ -690,15 +694,14 @@ FACEBOOK_LIKE_LOCALES = ['af_ZA', 'ar_AR', 'az_AZ', 'be_BY', 'bg_BG',
 # e.g. '//mozorg.cdn.mozilla.net'
 CDN_BASE_URL = config('CDN_BASE_URL', default='')
 
-# Used on the newsletter preference center, included in the "interests" section.
-OTHER_NEWSLETTERS = [
-    'firefox-desktop',
-    'mobile',
-    'os',
-    'firefox-ios',
-    'mozilla-general',
-    'firefox-os',
+# newsletters that always show for FxA holders
+FXA_NEWSLETTERS = [
+    'firefox-accounts-journey',
+    'test-pilot',
+    'take-action-for-the-internet',
+    'knowledge-is-power',
 ]
+FXA_NEWSLETTERS_LOCALES = ['en', 'de', 'fr']
 
 # Regional press blogs map to locales
 PRESS_BLOG_ROOT = 'https://blog.mozilla.org/'
@@ -706,13 +709,14 @@ PRESS_BLOGS = {
     'de': 'press-de/',
     'en-GB': 'press-uk/',
     'en-US': 'press/',
-    'es-AR': 'press-latam/',
-    'es-CL': 'press-latam/',
+    'es-AR': 'press-es/',
+    'es-CL': 'press-es/',
     'es-ES': 'press-es/',
-    'es-MX': 'press-latam/',
+    'es-MX': 'press-es/',
     'fr': 'press-fr/',
     'it': 'press-it/',
     'pl': 'press-pl/',
+    'pt-BR': 'press-br/',
 }
 
 DONATE_LINK = ('https://donate.mozilla.org/{locale}/'
@@ -751,11 +755,17 @@ DONATE_PARAMS = {
         'presets': '34,17,8,5',
         'default': '17'
     },
+    'bn': {
+        'currency': 'bdt',
+        'symbol': u'৳',
+        'presets': '1700,840,420,250',
+        'default': '840'
+    },
     'bn-BD': {
         'currency': 'bdt',
         'symbol': u'৳',
-        'presets': '1600,800,400,240',
-        'default': '800'
+        'presets': '1700,840,420,250',
+        'default': '840'
     },
     'bn-IN': {
         'currency': 'inr',
@@ -817,6 +827,12 @@ DONATE_PARAMS = {
         'presets': '50,30,20,10',
         'default': '30'
     },
+    'en-CA': {
+        'currency': 'cad',
+        'symbol': u'$',
+        'presets': '65,30,15,4',
+        'default': '30'
+    },
     'en-GB': {
         'currency': 'gbp',
         'symbol': u'£',
@@ -826,14 +842,14 @@ DONATE_PARAMS = {
     'es-AR': {
         'currency': 'ars',
         'symbol': '$',
-        'presets': '1600,800,400,200',
-        'default': '800'
+        'presets': '730,370,200,110',
+        'default': '370'
     },
     'es-CL': {
         'currency': 'clp',
         'symbol': '$',
-        'presets': '68000,34000,17000,10200',
-        'default': '34000'
+        'presets': '13000,6500,3250,2000',
+        'default': '6500'
     },
     'es-ES': {
         'currency': 'eur',
@@ -844,8 +860,8 @@ DONATE_PARAMS = {
     'es-MX': {
         'currency': 'mxn',
         'symbol': '$',
-        'presets': '240,120,60,35',
-        'default': '120'
+        'presets': '400,200,100,60',
+        'default': '200'
     },
     'eo': {
         'currency': 'eur',
@@ -934,14 +950,14 @@ DONATE_PARAMS = {
     'hu': {
         'currency': 'huf',
         'symbol': 'Ft',
-        'presets': '4000,2000,1000,600',
-        'default': '2000'
+        'presets': '5600,2800,1400,850',
+        'default': '2800'
     },
     'id': {
         'currency': 'idr',
         'symbol': 'Rp',
-        'presets': '270000,140000,70000,40000',
-        'default': '140000'
+        'presets': '300000,150000,75000,45000',
+        'default': '150000'
     },
     'it': {
         'currency': 'eur',
@@ -964,8 +980,8 @@ DONATE_PARAMS = {
     'kab': {
         'currency': 'dzd',
         'symbol': u'د.ج.‏',
-        'presets': '2180,1000,550,330',
-        'default': '1000'
+        'presets': '2400,1200,600,350',
+        'default': '1200'
     },
     'ko': {
         'currency': 'krw',
@@ -1054,8 +1070,8 @@ DONATE_PARAMS = {
     'pt-BR': {
         'currency': 'brl',
         'symbol': 'R$',
-        'presets': '150,100,50,30',
-        'default': '100'
+        'presets': '80,40,20,10',
+        'default': '40'
     },
     'pt-PT': {
         'currency': 'eur',
@@ -1072,8 +1088,8 @@ DONATE_PARAMS = {
     'ru': {
         'currency': 'rub',
         'symbol': u'₽',
-        'presets': '1000,500,250,140',
-        'default': '500'
+        'presets': '1300,800,500,200',
+        'default': '800'
     },
     'sat': {
         'currency': 'inr',
@@ -1108,8 +1124,8 @@ DONATE_PARAMS = {
     'sv-SE': {
         'currency': 'sek',
         'symbol': 'kr',
-        'presets': '160,80,40,20',
-        'default': '80'
+        'presets': '180,90,45,30',
+        'default': '90'
     },
     'ta': {
         'currency': 'inr',
@@ -1164,29 +1180,47 @@ FIREFOX_TWITTER_ACCOUNTS = {
     'pt-BR': 'https://twitter.com/firefoxbrasil',
 }
 
-# Fx Accounts iframe source
-FXA_IFRAME_SRC = config('FXA_IFRAME_SRC',
-                        default='https://accounts.firefox.com/')
-
-# Bug 1264843: embed FxA server in China within Fx China repack
-FXA_IFRAME_SRC_MOZILLAONLINE = config('FXA_IFRAME_SRC_MOZILLAONLINE',
-                                      default='https://accounts.firefox.com.cn/')
-
 # Fx Accounts iframe-less form & JS endpoint
+# ***This URL *MUST* end in a traling slash!***
+
+# other acceptable values below are:
+#   - https://accounts.stage.mozaws.net/ (stage)
+#   - https://stable.dev.lcip.org/ (demo/local)
 FXA_ENDPOINT = config('FXA_ENDPOINT',
                        default='https://accounts.firefox.com/')
 
 FXA_ENDPOINT_MOZILLAONLINE = config('FXA_ENDPOINT_MOZILLAONLINE',
-                                      default='https://accounts.firefox.com.cn/')
+                                    default='https://accounts.firefox.com.cn/')
+
+# Fx Accounts OAuth relier flow URLs
+FXA_OAUTH_ENDPOINT = FXA_ENDPOINT + 'oauth'
+
+# other acceptable values below are:
+#   - https://oauth-stable.dev.lcip.org/v1 (demo/local)
+#   - https://oauth.stage.mozaws.net/v1 (staging)
+FXA_OAUTH_API_ENDPOINT = config('FXA_OAUTH_API_ENDPOINT',
+                                default='https://oauth-accounts.firefox.com/v1')
+
+# configure the PyFxA library
+FXA_OAUTH_CLIENT_ID = config('FXA_OAUTH_CLIENT_ID', default='')
+FXA_OAUTH_CLIENT_SECRET = config('FXA_OAUTH_CLIENT_SECRET', default='')
+# other acceptable values below are 'stable' (for demo/local) and 'stage'
+FXA_OAUTH_SERVER_ENV = config('FXA_OAUTH_SERVER_ENV', default='production')
 
 # Google Play and Apple App Store settings
-from .appstores import (GOOGLE_PLAY_FIREFOX_LINK,  # noqa
+from .appstores import (GOOGLE_PLAY_FIREFOX_LINK, GOOGLE_PLAY_FIREFOX_LINK_UTMS,  # noqa
                         GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE,  # noqa
                         APPLE_APPSTORE_FIREFOX_LINK, APPLE_APPSTORE_COUNTRY_MAP,
-                        APPLE_APPSTORE_FIREFOX_FOCUS_LINK, GOOGLE_PLAY_FIREFOX_FOCUS_LINK)
+                        APPLE_APPSTORE_FOCUS_LINK, GOOGLE_PLAY_FOCUS_LINK,
+                        APPLE_APPSTORE_KLAR_LINK, GOOGLE_PLAY_KLAR_LINK,
+                        APPLE_APPSTORE_POCKET_LINK, GOOGLE_PLAY_POCKET_LINK,
+                        APPLE_APPSTORE_LOCKWISE_LINK, GOOGLE_PLAY_LOCKWISE_LINK,
+                        ADJUST_FIREFOX_URL, ADJUST_FOCUS_URL,
+                        ADJUST_KLAR_URL, ADJUST_POCKET_URL,
+                        ADJUST_LOCKWISE_URL)
 
 # Locales that should display the 'Send to Device' widget
-SEND_TO_DEVICE_LOCALES = ['de', 'en-GB', 'en-US', 'en-ZA',
+SEND_TO_DEVICE_LOCALES = ['de', 'en-GB', 'en-US',
                           'es-AR', 'es-CL', 'es-ES', 'es-MX',
                           'fr', 'id', 'pl', 'pt-BR', 'ru', 'zh-TW']
 
@@ -1226,7 +1260,7 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
             'all': 'download-firefox-mobile-reco',
         }
     },
-    'fx-50-whatsnew': {
+    'fx-whatsnew': {
         'sms_countries': config('STD_SMS_COUNTRIES_WHATSNEW50', default='US', parser=ListOf(str)),
         'sms': {
             'all': 'whatsnewfifty',
@@ -1252,8 +1286,23 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
         'email': {
             'all': 'download-klar-mobile-whatsnew',
         }
+    },
+    'download-firefox-rocket': {
+        'email': {
+            'all': 'download-firefox-rocket',
+        }
     }
 }
+
+if DEV:
+    content_cards_default_branch = 'dev-processed'
+else:
+    content_cards_default_branch = 'prod-processed'
+
+CONTENT_CARDS_PATH = config('CONTENT_CARDS_PATH', default=path('content_cards'))
+CONTENT_CARDS_REPO = config('CONTENT_CARDS_REPO', default='https://github.com/mozmeao/www-admin.git')
+CONTENT_CARDS_BRANCH = config('CONTENT_CARDS_BRANCH', default=content_cards_default_branch)
+CONTENT_CARDS_URL = config('CONTENT_CARDS_URL', default=STATIC_URL)
 
 RELEASE_NOTES_PATH = config('RELEASE_NOTES_PATH', default=path('release_notes'))
 RELEASE_NOTES_REPO = config('RELEASE_NOTES_REPO', default='https://github.com/mozilla/release-notes.git')
@@ -1332,13 +1381,12 @@ RAVEN_CONFIG = {
 }
 
 # Django-CSP
-CSP_DEFAULT_SRC = (
-    "'self'",
-    '*.mozilla.net',
-    '*.mozilla.org',
-    '*.mozilla.com',
-)
-CSP_IMG_SRC = CSP_DEFAULT_SRC + (
+CSP_DEFAULT_SRC = ["'self'", '*.mozilla.net', '*.mozilla.org', '*.mozilla.com']
+EXTRA_CSP_DEFAULT_SRC = config('CSP_DEFAULT_SRC', parser=ListOf(str), default='')
+if EXTRA_CSP_DEFAULT_SRC:
+    CSP_DEFAULT_SRC += EXTRA_CSP_DEFAULT_SRC
+
+CSP_IMG_SRC = CSP_DEFAULT_SRC + [
     'data:',
     'mozilla.org',
     'www.googletagmanager.com',
@@ -1347,8 +1395,8 @@ CSP_IMG_SRC = CSP_DEFAULT_SRC + (
     'adservice.google.de',
     'adservice.google.dk',
     'creativecommons.org',
-)
-CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + (
+]
+CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + [
     # TODO fix things so that we don't need this
     "'unsafe-inline'",
     # TODO snap.svg.js passes a string to Function() which is
@@ -1359,13 +1407,12 @@ CSP_SCRIPT_SRC = CSP_DEFAULT_SRC + (
     'tagmanager.google.com',
     'www.youtube.com',
     's.ytimg.com',
-)
-CSP_STYLE_SRC = CSP_DEFAULT_SRC + (
+]
+CSP_STYLE_SRC = CSP_DEFAULT_SRC + [
     # TODO fix things so that we don't need this
     "'unsafe-inline'",
-    'fast.fonts.net',  # used for /new/?xv=portland campaign page (bug 1444000)
-)
-CSP_CHILD_SRC = (
+]
+CSP_CHILD_SRC = [
     'www.googletagmanager.com',
     'www.google-analytics.com',
     'www.youtube-nocookie.com',
@@ -1374,13 +1421,13 @@ CSP_CHILD_SRC = (
     'accounts.firefox.com',
     'accounts.firefox.com.cn',
     'www.youtube.com',
-)
-CSP_CONNECT_SRC = CSP_DEFAULT_SRC + (
+]
+CSP_CONNECT_SRC = CSP_DEFAULT_SRC + [
     'www.googletagmanager.com',
     'www.google-analytics.com',
     FXA_ENDPOINT,
     FXA_ENDPOINT_MOZILLAONLINE,
-)
+]
 CSP_REPORT_ONLY = config('CSP_REPORT_ONLY', default='false', parser=bool)
 CSP_REPORT_ENABLE = config('CSP_REPORT_ENABLE', default='false', parser=bool)
 if CSP_REPORT_ENABLE:

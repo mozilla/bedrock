@@ -2,17 +2,15 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "foundation/base-resp.html" %}
+{% extends "foundation/base.html" %}
 
 {% block page_title %}{{ _('List of Mozilla Trademarks') }}{% endblock %}
-
-{% block body_class %}trademarks sand{% endblock %}
 
 {% block article_title %}
   {{ _('Mozilla Trademarks List') }}
 {% endblock %}
 
-{% block article %}
+{% block article_content %}
   <p>{% trans %}To the extent a name or logo does not appear on the list below, this does not constitute
 a waiver of any and all intellectual property rights that Mozilla or its subsidiaries has
 established in any of its products, features, service names, or logos.{% endtrans %}</p>
@@ -21,7 +19,7 @@ established in any of its products, features, service names, or logos.{% endtran
 
   <h2>{{ _('Wordmarks') }}</h2>
 
-  <ul class="marks">
+  <ul class="mzp-u-list-styled">
     <li>{{ _('Mozilla') }}</li>
     <li>{{ _('Firefox') }}</li>
     <li>{{ _('Firefox Focus') }}</li>
@@ -54,7 +52,7 @@ established in any of its products, features, service names, or logos.{% endtran
   </ul>
 
   <h2>{{ _('Logos') }}</h2>
-  <table class="logos">
+  <table class="mzp-u-data-table">
     <tr>
       <td><img width="100" height="100" alt="{{ _('Mozilla logo') }}™" src="{{ static('img/trademarks/mozilla-logo-tm.svg') }}" /></td>
       <th>{{ _('Mozilla logo') }}</th>
@@ -100,7 +98,7 @@ established in any of its products, features, service names, or logos.{% endtran
       <th>{{ _('Creative Collective') }}</th>
     </tr>
     <tr>
-      <td><img width="100" height="100" alt="{{ _('Firefox Developer Edition logo') }}™" src="{{ static('img/trademarks/logo-developer-quantum.png') }}" /></td>
+      <td><img width="100" height="100" alt="{{ _('Firefox Developer Edition logo') }}™" src="{{ static('img/logos/firefox/developer.png') }}" /></td>
       <th>{{ _('Firefox Developer Edition') }}</th>
     </tr>
     <tr>
@@ -108,7 +106,7 @@ established in any of its products, features, service names, or logos.{% endtran
       <th>{{ _('Firefox Friends') }}</th>
     </tr>
     <tr>
-      <td><img width="100" height="100" alt="{{ _('Nightly logo') }}™" src="{{ static('img/trademarks/nightly-logo.png') }}" /></td>
+      <td><img width="100" height="100" alt="{{ _('Nightly logo') }}™" src="{{ static('img/logos/firefox/nightly.png') }}" /></td>
       <th>{{ _('Firefox Nightly') }}</th>
     </tr>
     <tr>
@@ -185,7 +183,7 @@ established in any of its products, features, service names, or logos.{% endtran
 
   <h3>{{ _('Wordmarks') }}</h3>
 
-  <ul class="marks">
+  <ul class="mzp-u-list-styled">
     <li>Pocket</li>
     <li>Read It Later</li>
   </ul>
@@ -196,7 +194,7 @@ established in any of its products, features, service names, or logos.{% endtran
 
   <p>{% trans %}Website Logo and Wordmark{% endtrans %}</p>
   <p>{% trans %}Pocket logos:{% endtrans %}</p>
-  <table class="logos">
+  <table class="mzp-u-data-table">
     <tr>
       <td>
         <p>{{ _('Mac') }}</p>
@@ -222,33 +220,33 @@ established in any of its products, features, service names, or logos.{% endtran
   <h2>{{ _('Sample Attribution Notices') }}</h2>
 
   <p>{{ _('For all of the above Mozilla trademarks, sample attribution notices are as follows.') }}</p>
-  <ul>
+  <ul class="mzp-u-list-styled">
     <li>
       <p>{{ _('For example, if using the Firefox wordmark:') }}</p>
-      <blockquote><p>{{ _('“Firefox is a trademark of the Mozilla Foundation in the U.S. and other countries.”') }}</p></blockquote>
+      <p>{{ _('“Firefox is a trademark of the Mozilla Foundation in the U.S. and other countries.”') }}</p>
     </li>
     <li>
       <p>{{ _('If using the Firefox logo:') }}</p>
-      <blockquote><p>{{ _('"The Firefox logo is a trademark of the Mozilla Foundation in the U.S. and other
-  countries.”') }}</p></blockquote>
+      <p>{{ _('"The Firefox logo is a trademark of the Mozilla Foundation in the U.S. and other
+  countries.”') }}</p>
     </li>
     <li>
       <p>{{ _('If using the Mozilla and Firefox wordmarks and the Firefox logo:') }}</p>
-      <blockquote><p>{{ _('“Mozilla, Firefox and the Firefox logo are trademarks of the Mozilla Foundation in the
-  U.S. and other countries.”') }}</p></blockquote>
+      <p>{{ _('“Mozilla, Firefox and the Firefox logo are trademarks of the Mozilla Foundation in the
+  U.S. and other countries.”') }}</p>
     </li>
   </ul>
 
   <p>{{ _('For all of the above Pocket trademarks, sample attribution are as follows.') }}</p>
-  <ul>
+  <ul class="mzp-u-list-styled">
     <li>
       <p>{{ _('If using the Pocket wordmark:') }}</p>
-      <blockquote><p>{{ _('“Pocket is a trademark of Read It Later, Inc. in the U.S. and other countries.”') }}</p></blockquote>
+      <p>{{ _('“Pocket is a trademark of Read It Later, Inc. in the U.S. and other countries.”') }}</p>
     </li>
     <li>
       <p>{{ _('If using the Pocket logo:') }}</p>
-      <blockquote><p>{{ _('“The Pocket logo is a trademark of Read It Later, Inc. in the U.S. and other countries.”') }}</p></blockquote>
+      <p>{{ _('“The Pocket logo is a trademark of Read It Later, Inc. in the U.S. and other countries.”') }}</p>
     </li>
   </ul>
 
-{% endblock article %}
+{% endblock %}

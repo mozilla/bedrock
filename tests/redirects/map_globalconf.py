@@ -1,8 +1,4 @@
 # -*- coding: utf-8 -*-
-# flake8: noqa
-
-from __future__ import absolute_import
-import re
 
 import requests
 
@@ -143,8 +139,9 @@ URLS = flatten((
     # bug 925551
     url_test('/plugincheck/more_info.html', '/plugincheck/'),
 
-    # bug 854561
-    url_test('/projects/mozilla-based{.html,/}', '/about/mozilla-based/'),
+    # bug 854561, Issue 7448
+    url_test('/projects/mozilla-based{.html,/}', 'https://developer.mozilla.org/docs/Archive/List_of_Mozilla-Based_Applications'),
+    url_test('/about/mozilla-based/', 'https://developer.mozilla.org/docs/Archive/List_of_Mozilla-Based_Applications'),
 
     # bug 957664
     url_test('/press/awards{/,.html}', 'https://blog.mozilla.org/press/awards/'),
@@ -210,7 +207,7 @@ URLS = flatten((
     url_test('/firefox/organizations/all.html', '/firefox/organizations/all/'),
 
     # bug 729329
-    url_test('/mobile/sync/is/da/best/', '/firefox/features/sync/'),
+    url_test('/mobile/sync/is/da/best/', '/firefox/accounts/'),
 
     # bug 882845
     url_test('/firefox/toolkit/download-to-your-devices/because-i-say-so/', '/firefox/new/'),
@@ -305,7 +302,7 @@ URLS = flatten((
 
     # Bug 1110927
     url_test('/firefox/start/central.html', '/firefox/new/'),
-    url_test('/firefox/sync/firstrun.html', '/firefox/features/sync/'),
+    url_test('/firefox/sync/firstrun.html', '/firefox/accounts/'),
 
     # bug 876810
     url_test('/hacking/commit-access-policy/',
@@ -395,7 +392,8 @@ URLS = flatten((
     url_test('/press/mozilla-2004-08-18.html',
              'https://blog.mozilla.org/press/2004/08/mozilla-affiliate-in-japan-kicks-off/'),
     url_test('/press/mozilla-2004-09-14-01.html',
-             'https://blog.mozilla.org/press/2004/09/mozilla-foundation-announces-first-payments-of-security-bug-bounty-program-further-strengthens-browser-security/'),
+             'https://blog.mozilla.org/press/2004/09/mozilla-foundation-announces-first-payments-of-security'
+             '-bug-bounty-program-further-strengthens-browser-security/'),
     url_test('/press/mozilla-2004-09-14-02.html',
              'https://blog.mozilla.org/press/2004/09/firefox-preview-release-and-thunderbird-0-8-released/'),
     url_test('/press/mozilla-2004-09-20.html',
@@ -429,7 +427,8 @@ URLS = flatten((
     url_test('/press/mozilla-2005-07-28.html',
              'https://blog.mozilla.org/press/2005/07/mozilla-headlines-two-key-open-source-development-conferences-in-august/'),
     url_test('/press/mozilla-2005-08-03.html',
-             'https://blog.mozilla.org/press/2005/08/mozilla-foundation-forms-new-organization-to-further-the-creation-of-free-open-source-internet-software-including-the-award-winning-mozilla-firefox-browser/'),
+             'https://blog.mozilla.org/press/2005/08/mozilla-foundation-forms-new-organization-to-further-the-creation-of-free'
+             '-open-source-internet-software-including-the-award-winning-mozilla-firefox-browser/'),
     url_test('/press/mozilla-2005-10-03.html',
              'https://blog.mozilla.org/press/2005/10/mozilla-launches-beta-of-comprehensive-online-developer-center/'),
     url_test('/press/mozilla-2005-10-19.html',
@@ -451,7 +450,8 @@ URLS = flatten((
     url_test('/press/mozilla-2006-01-25.html',
              'https://blog.mozilla.org/press/2006/01/indie-film-all-stars-foin-firefox-flicks-crew/'),
     url_test('/press/mozilla-2006-02-03.html',
-             'https://blog.mozilla.org/press/2006/02/mozilla-releases-preview-of-application-framework-for-development-of-cross-platform-internet-client-applications/'),
+             'https://blog.mozilla.org/press/2006/02/mozilla-releases-preview-of-application-framework-for'
+             '-development-of-cross-platform-internet-client-applications/'),
     url_test('/press/mozilla-2006-03-02.html',
              'https://blog.mozilla.org/press/2006/03/mozilla-announces-winners-of-extend-firefox-competition/'),
     url_test('/press/mozilla-2006-04-12.html',
@@ -463,7 +463,8 @@ URLS = flatten((
     url_test('/press/mozilla-2006-06-14.html',
              'https://blog.mozilla.org/press/2006/06/mozilla-feeds-soccer-fans-passion-with-new-firefox-add-on/'),
     url_test('/press/mozilla-2006-10-11.html',
-             'https://blog.mozilla.org/press/2006/10/qualcomm-launches-project-in-collaboration-with-mozilla-foundation-to-develop-open-source-version-of-eudora-email-program/'),
+             'https://blog.mozilla.org/press/2006/10/qualcomm-launches-project-in-collaboration-with-mozilla'
+             '-foundation-to-develop-open-source-version-of-eudora-email-program/'),
     url_test('/press/mozilla-2006-10-24-02.html',
              'https://blog.mozilla.org/press/2006/10/firefox-moving-the-internet-forward/'),
     url_test('/press/mozilla-2006-10-24.html',
@@ -479,7 +480,8 @@ URLS = flatten((
     url_test('/press/mozilla-2007-03-27.html',
              'https://blog.mozilla.org/press/2007/03/mozilla-launches-new-firefox-add-ons-web-site/'),
     url_test('/press/mozilla-2007-03-28.html',
-             'https://blog.mozilla.org/press/2007/03/mozilla-and-ebay-working-together-to-make-the-auction-experience-easier-for-firefox-users-in-france-germany-and-the-uk/'),
+             'https://blog.mozilla.org/press/2007/03/mozilla-and-ebay-working-together-to-make-the-auction-experience'
+             '-easier-for-firefox-users-in-france-germany-and-the-uk/'),
     url_test('/press/mozilla-2007-04-19.html',
              'https://blog.mozilla.org/press/2007/04/mozilla-thunderbird-2-soars-to-new-heights/'),
     url_test('/press/mozilla-2007-05-16.html',
@@ -525,7 +527,8 @@ URLS = flatten((
     url_test('/press/mozilla1.0.html',
              'https://blog.mozilla.org/press/2002/06/mozilla-org-launches-mozilla-1-0/'),
     url_test('/press/open-source-security.html',
-             'https://blog.mozilla.org/press/2000/01/open-source-development-of-security-products-possible-worldwide-enhancing-security-and-privacy-for-e-commerce-and-communication/'),
+             'https://blog.mozilla.org/press/2000/01/open-source-development-of-security-products-possible'
+             '-worldwide-enhancing-security-and-privacy-for-e-commerce-and-communication/'),
 
     # Bug 608370, 957664
     url_test('/press/kit{.html,s/}', 'https://blog.mozilla.org/press/kits/'),
@@ -988,7 +991,7 @@ URLS = flatten((
     url_test('/firefox/tiles/',
              'https://support.mozilla.org/kb/about-tiles-new-tab'),
     # Bug 1252332
-    url_test('/sync/', '/firefox/features/sync/'),
+    url_test('/sync/', '/firefox/accounts/'),
 
     url_test('/projects/bonecho/', '/firefox/channel/desktop/'),
     url_test('/projects/bonsai/', 'https://wiki.mozilla.org/Bonsai'),
@@ -1082,7 +1085,8 @@ URLS = flatten((
     url_test('/firefox/{49.0,49.0.1,50.0a1,51.0a2}/firstrun/learnmore',
              '/firefox/features/?utm_campaign=redirect&utm_medium=firefox-browser&utm_source=firefox-browser&utm_content=learnmore-tab'),
     url_test('/firefox/windows-10/welcome',
-             'https://support.mozilla.org/kb/how-change-your-default-browser-windows-10?utm_campaign=redirect&utm_medium=firefox-browser&utm_source=firefox-browser&utm_content=windows10-welcome-tab'),
+             'https://support.mozilla.org/kb/how-change-your-default-browser-windows-10?utm_campaign=redirect'
+             '&utm_medium=firefox-browser&utm_source=firefox-browser&utm_content=windows10-welcome-tab'),
 
     # bug 1319207
     url_test('/de/privacy/firefox-focus/', '/de/privacy/firefox-klar/'),
@@ -1129,10 +1133,9 @@ URLS = flatten((
     url_test('/styleguide/identity/firefoxos/{,subpages/}', '/styleguide/'),
 
     # Bug 1324504
-    url_test('/contribute/studentambassadors/join/', 'https://campus.mozilla.community/'),
-    url_test('/contribute/studentambassadors/thanks/', 'https://campus.mozilla.community/'),
+    url_test('/contribute/studentambassadors/{,join/,thanks/}', 'https://campus.mozilla.community/'),
 
-     # Bug 1340600
+    # Bug 1340600
     url_test('/css-grid', '/developer/css-grid/', query={
         'utm_source': 'redirect',
         'utm_medium': 'collateral',
@@ -1149,7 +1152,7 @@ URLS = flatten((
     url_test('{/en-US,}/Firefox', '{/en-US,}/firefox/'),
 
     # Bug 1370587
-    url_test('/firefox/sync/', '/firefox/features/sync/'),
+    url_test('/firefox/sync/', '/firefox/accounts/'),
 
     # Bug 1380845
     url_test('/persona/privacy-policy/', '/privacy/archive/persona/2017-07/'),
@@ -1196,8 +1199,8 @@ URLS = flatten((
     # bug 1416708
     url_test('/firefox/quantum/', '/firefox/'),
 
-    # bug 1421584
-    url_test('/firefox/organizations/faq/', '/firefox/organizations/'),
+    # bug 1421584, issue 7491
+    url_test('/firefox/organizations/faq/', '/firefox/enterprise/'),
 
     # bug 1425865
     url_test('/firefox/fire-tv/', 'https://support.mozilla.org/products/firefox-fire-tv/', status_code=302),
@@ -1246,4 +1249,32 @@ URLS = flatten((
 
     # Issue 6209
     url_test('/pocket/', '/firefox/pocket/'),
+
+    # Issue 6476
+    url_test('/foundation/', 'https://foundation.mozilla.org/'),
+    url_test('/foundation/about/', 'https://foundation.mozilla.org/about/'),
+    url_test('/foundation/documents/', 'https://foundation.mozilla.org/about/public-records/'),
+    url_test('/foundation/issues/', 'https://foundation.mozilla.org/initiatives/'),
+    url_test('/foundation/leadership-network/', 'https://foundation.mozilla.org/'),
+    url_test('/foundation/advocacy/', 'https://foundation.mozilla.org/'),
+
+    # Issue 6979
+    url_test('/firefoxfightsforyou/', '/firefox/fights-for-you/'),
+
+    # Issue 6994
+    url_test('/contribute/signup/', 'https://activate.mozilla.community/'),
+    url_test('/contribute/task/{,devtools-challenger/, firefox-mobile/}', 'https://activate.mozilla.community/'),
+    url_test('/contribute/friends/', '/contribute/'),
+
+    # Issue 7287
+    url_test('/accounts/', '/firefox/accounts/'),
+
+    # Issue 7435
+    url_test('/about/history/details/', '/about/history/'),
+
+    # Issue 7436
+    url_test('/firefox/feedback/', 'https://support.mozilla.org/questions/new/desktop'),
+
+    # Issue 7491
+    url_test('/firefox/organizations/', '/firefox/enterprise/'),
 ))

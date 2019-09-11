@@ -19,7 +19,7 @@
 
 <p>We would like to thank our contributors, whose efforts over many years have made this software what it is.</p>
 
-{% for letter, names in credits.ordered.iteritems() %}
+{% for letter, names in credits.ordered.items() %}
 <h2><a name="{{ letter }}">{{ letter }}</a></h2>
 <p>
 {{ ',\n'.join(names) }}

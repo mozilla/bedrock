@@ -1,0 +1,15 @@
+# see the following for documentation of these options
+# http://bedrock.readthedocs.io/en/latest/pipeline.html#configuration
+push_public_registry: true
+regions:
+  - iowa-a
+apps:
+  - bedrock-stage
+integration_tests:
+  iowa-a:
+    - chrome
+    - download
+    - firefox
+    - headless
+    - ie
+    - ie9

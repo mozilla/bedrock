@@ -184,6 +184,13 @@
             h.className += ' x64';
         }
 
+        // Add class to reflect if user agent is Firefox. Cherry-picked from mozilla-client.js.
+        var isFirefox = /\s(Firefox|FxiOS)/.test(navigator.userAgent) && !/Iceweasel|IceCat|SeaMonkey|Camino|like\ Firefox/i.test(navigator.userAgent);
+
+        if (isFirefox) {
+            h.className += ' is-firefox';
+        }
+
         // Add class to reflect javascript availability for CSS
         h.className = h.className.replace(/\bno-js\b/, 'js');
     })();

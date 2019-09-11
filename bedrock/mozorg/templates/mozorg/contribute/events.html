@@ -27,7 +27,7 @@
             <tr itemscope itemtype="http://schema.org/Event">
               <td class="event-date"><time itemprop="startDate endDate" datetime="{{ event.start_time.isoformat() }}">{{ event.start_time|l10n_format_date }}</time></td>
               <td itemprop="name" class="event-name" scope="row">{% if event.url %}<a itemprop="url" href="{{ event.url }}">{% endif %}{{ event.title|safe }}{% if event.url %}</a>{% endif %}</td>
-              <td itemprop="location">{{ event.location|safe }}</td>
+              <td itemprop="location" itemscope itemtype="https://schema.org/Place"><address itemprop="https://schema.org/address">{{ event.location|safe }}</address></td>
             </tr>
           {% endfor %}
         </tbody>

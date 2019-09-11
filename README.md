@@ -22,8 +22,8 @@ general technical documentation. In addition, there are project-specific
 Contributing
 ------------
 
-Patches are welcome! Feel free to fork and contribute to this project on
-[GitHub][gh-bedrock]. If you find a problem and wish to report it, please [file
+Patches are welcome! Feel free to fork and contribute to [this project][gh-bedrock] on
+GitHub. If you find a problem and wish to report it, please [file
 a bug][bugzilla].
 
 Looking for a good first bug to work on? Take a look at the [wiki page][wiki] for a
@@ -36,20 +36,20 @@ list of mentored bugs.
 Code of Conduct
 ---------------
 
-This repository is governed by Mozilla's code of conduct and etiquette guidelines.
-For more details, please see the [Mozilla Community Participation Guidelines][participation]
+This repository is governed by Mozilla's [Community Participation Guidelines][participation]
 and [Developer Etiquette Guidelines][etiquette].
 
-[participation]: https://www.mozilla.org/about/governance/policies/participation/
+[participation]: https://github.com/mozilla/bedrock/blob/master/CODE_OF_CONDUCT.md
 [etiquette]: https://bugzilla.mozilla.org/page.cgi?id=etiquette.html
 
 License
 -------
 
 This software is licensed under the [MPL version 2.0][MPL]. For more
-information, read the file ``LICENSE``.
+information, read this repository's [LICENSE][LICENSE].
 
 [MPL]: https://www.mozilla.org/MPL/
+[LICENSE]: https://github.com/mozilla/bedrock/blob/master/LICENSE
 
 ![](http://i.imgur.com/ElotJSI.jpg)
 

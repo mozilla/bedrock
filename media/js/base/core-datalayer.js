@@ -6,19 +6,25 @@
 * Utility class for core dataLayer object to track contextual user and page data
 */
 
-if (typeof Mozilla.Analytics == 'undefined') {
-    Mozilla.Analytics = {};
+if (typeof window.Mozilla.Analytics === 'undefined') {
+    window.Mozilla.Analytics = {};
 }
 
 (function() {
+    'use strict';
+
     var analytics = Mozilla.Analytics;
+    var isModernBrowser = 'querySelector' in document && 'querySelectorAll' in document;
 
     /** Returns whether page has download button.
     * @param {String} path - URL path name fallback if page ID does not exist.
     * @return {String} string.
     */
     analytics.pageHasDownload = function() {
-        return $('[data-download-os]').length ? 'true' : 'false';
+        if (!isModernBrowser) {
+            return 'false';
+        }
+        return document.querySelector('[data-download-os]') !== null ? 'true' : 'false';
     };
 
     /** Returns whether page has video.
@@ -26,7 +32,10 @@ if (typeof Mozilla.Analytics == 'undefined') {
     * @return {String} string.
     */
     analytics.pageHasVideo = function() {
-        return ($('video').length || $('iframe[src^="https://www.youtube"]').length) ? 'true' : 'false';
+        if (!isModernBrowser) {
+            return 'false';
+        }
+        return (document.querySelector('video') !== null || document.querySelector('iframe[src^="https://www.youtube"]') !== null) ? 'true' : 'false';
     };
 
     /** Returns page version.
@@ -44,7 +53,31 @@ if (typeof Mozilla.Analytics == 'undefined') {
     * @return {String} latest Fx version.
     */
     analytics.getLatestFxVersion = function() {
-        return $('html').data('latest-firefox');
+        return document.getElementsByTagName('html')[0].getAttribute('data-latest-firefox');
+    };
+
+    /** Returns true if user is running Windows 10 in S mode.
+    * @param {String} ua - User Agent string.
+    * @return {Boolean}.
+    */
+    analytics.isWin10S = function(ua) {
+        ua = ua || navigator.userAgent;
+
+        var isEdge = ua.indexOf('Edge') > -1;
+
+        if (!isEdge) {
+            return false;
+        }
+
+        try {
+            var mode = JSON.parse(window.external.getHostEnvironmentValue('os-mode'));
+            if (mode && mode['os-mode'] === '2') {
+                return true;
+            }
+            return false;
+        } catch(e) {
+            return false;
+        }
     };
 
     /** Returns an object containing GA-formatted FxA details
@@ -64,7 +97,7 @@ if (typeof Mozilla.Analytics == 'undefined') {
 
         if (FxaDetails.firefox === true) {
             // only add FxA account details if this is Fx, otherwise their segment is just 'Not Firefox'
-            if(FxaDetails.mobile) {
+            if (FxaDetails.mobile) {
                 // Firefox Mobile
                 formatted.FxASegment = 'Firefox Mobile';
             } else {
@@ -75,7 +108,7 @@ if (typeof Mozilla.Analytics == 'undefined') {
                     // set FxASegment with default value, to be refined
                     formatted.FxASegment = 'Logged in';
                     // Change FxASegment to Legacy if this is an old browser
-                    if(FxaDetails.legacy === true) {
+                    if (FxaDetails.legacy === true) {
                         formatted.FxASegment = 'Legacy Firefox';
                     }
 
@@ -118,7 +151,7 @@ if (typeof Mozilla.Analytics == 'undefined') {
 
                 } else {
                     // Not logged into FxA
-                    if(FxaDetails.legacy === true) {
+                    if (FxaDetails.legacy === true) {
                         // too old to support UITour or FxA, or pre FxASegment and logged out
                         formatted.FxASegment = 'Legacy Firefox';
                         formatted.FxALogin = 'unknown';

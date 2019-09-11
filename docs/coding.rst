@@ -15,11 +15,15 @@ URL patterns should be as strict as possible. It should begin with a
 `^` and end with `/$` to make sure it only matches what you specifiy.
 It also forces a trailing slash. You should also give the URL a name
 so that other pages can reference it instead of hardcoding the URL.
-Example::
+Example:
+
+.. code-block:: python
 
     url(r'^channel/$', channel, name='mozorg.channel')
 
-Bedrock comes with a handy shortcut to automate all of this::
+Bedrock comes with a handy shortcut to automate all of this:
+
+.. code-block:: python
 
     from bedrock.mozorg.util import page
     page('channel', 'mozorg/channel.html')
@@ -28,10 +32,34 @@ You don't even need to create a view. It will serve up the specified
 template at the given URL (the first parameter). You can also pass
 template data as keyword arguments:
 
+.. code-block:: python
+
     page('channel', 'mozorg/channel.html',
          latest_version=product_details.firefox_versions['LATEST_FIREFOX_VERSION'])
 
 The variable `latest_version` will be available in the template.
+
+Optimizing images
+-----------------
+
+Images can take a long time to load and eat up a lot of bandwidth. Always take care
+to optimize images before uploading them to the site.
+
+The script `img.sh` can be used to optimize images locally on the command line:
+
+# Before you run it for the first time you will need to run `yarn` to install dependencies
+# Add the image files to git's staging area `git add *`
+# Run the script `./bin/img.sh`
+# The optimized files will not automatically be staged, so be sure to add them before commiting
+
+The script will:
+
+- optimize JPG and PNG files using `tinypng <https://tinypng.com/>`_ (
+    - this step is optional since running compression on the same images over and over degrades them)
+    - you will be prompted to add a `TinyPNG API key <https://tinypng.com/developers>`_
+- optimize SVG images locally with svgo
+- check that SVGs have a viewbox (needed for IE support)
+- check that images that end in `-high-res` have low res versions as well
 
 Embedding images
 ----------------
@@ -40,23 +68,31 @@ Images should be included on pages using helper functions.
 
 static()
 ^^^^^^^^
-For a simple image, the `static()` function is used to generate the image URL. For example::
+For a simple image, the `static()` function is used to generate the image URL. For example:
+
+.. code-block:: html
 
     <img src="{{ static('img/firefox/new/firefox-logo.png') }}" alt="Firefox" />
 
-will output an image::
+will output an image:
+
+.. code-block:: html
 
     <img src="/media/img/firefox/new/firefox-logo.png" alt="Firefox">
 
 high_res_img()
 ^^^^^^^^^^^^^^
-For images that include a high-resolution alternative for displays with a high pixel density, use the `high_res_img()` function::
+For images that include a high-resolution alternative for displays with a high pixel density, use the `high_res_img()` function:
+
+.. code-block:: python
 
     high_res_img('firefox/new/firefox-logo.png', {'alt': 'Firefox', 'width': '200', 'height': '100'})
 
 The `high_res_img()` function will automatically look for the image in the URL parameter suffixed with `'-high-res'`, e.g. `firefox/new/firefox-logo-high-res.png` and switch to it if the display has high pixel density.
 
-`high_res_img()` supports localized images by setting the `'l10n'` parameter to `True`::
+`high_res_img()` supports localized images by setting the `'l10n'` parameter to `True`:
+
+.. code-block:: python
 
     high_res_img('firefox/new/firefox-logo.png', {'l10n': True, 'alt': 'Firefox', 'width': '200', 'height': '100'})
 
@@ -64,7 +100,9 @@ When using localization, `high_res_img()` will look for images in the appropriat
 
 l10n_img()
 ^^^^^^^^^^
-Images that have translatable text can be handled with `l10n_img()`::
+Images that have translatable text can be handled with `l10n_img()`:
+
+.. code-block:: html
 
     <img src="{{ l10n_img('firefox/os/have-it-all/messages.jpg') }}" />
 
@@ -72,13 +110,17 @@ The images referenced by `l10n_img()` must exist in `media/img/l10n/`, so for ab
 
 platform_img()
 ^^^^^^^^^^^^^^
-Finally, for outputting an image that differs depending on the platform being used, the `platform_img()` function will automatically display the image for the user's browser::
+Finally, for outputting an image that differs depending on the platform being used, the `platform_img()` function will automatically display the image for the user's browser:
+
+.. code-block:: python
 
     platform_img('firefox/new/browser.png', {'alt': 'Firefox screenshot'})
 
 `platform_img()` will automatically look for the images `browser-mac.png`, `browser-win.png`, `browser-linux.png`, etc. Platform image also supports hi-res images by adding `'high-res': True` to the list of optional attributes.
 
-`platform_img()` supports localized images by setting the `'l10n'` parameter to `True`::
+`platform_img()` supports localized images by setting the `'l10n'` parameter to `True`:
+
+.. code-block:: python
 
     platform_img('firefox/new/firefox-logo.png', {'l10n': True, 'alt': 'Firefox screenshot'})
 
@@ -88,35 +130,57 @@ Writing Views
 -------------
 
 You should rarely need to write a view for mozilla.org. Most pages are
-static and you should use the `page` expression documented above.
+static and you should use the `page` function documented above.
 
-If you need to write a view and the page has a newsletter signup form
-in the footer (most do), make sure to handle this in your view.
-Bedrock comes with a function for doing this automatically::
+If you need to write a view and the page is translated or translatable
+then it should use the `l10n_utils.render()` function to render the
+template.
 
-    from bedrock.mozorg.util import handle_newsletter
-    from django.views.decorators.csrf import csrf_exempt
+.. code-block:: python
 
-    @csrf_exempt
-    def view(request):
-        ctx = handle_newsletter(request)
+    from lib import l10n_utils
+
+    def my_view(request):
+        # do your fancy things
+        ctx = {'template_variable': 'awesome data'}
         return l10n_utils.render(request, 'app/template.html', ctx)
-
-You'll notice a few other things in there. You should use the
-`l10n_utils.render` function to render templates because it handles
-special l10n work for us. Since we're handling the newsletter form
-post, you also need the `csrf_exempt` decorator.
 
 Make sure to namespace your templates by putting them in a directory
 named after your app, so instead of templates/template.html they would
 be in templates/blog/template.html if `blog` was the name of your app.
+
+
+If you prefer to use Django's Generic View classes we have a convenient
+helper for that. You can use it either to create a custom view class of
+your own, or use it directly in a `urls.py` file.
+
+.. code-block:: python
+
+    # app/views.py
+    from lib.l10n_utils import L10nTemplateView
+
+    class FirefoxRoxView(L10nTemplateView):
+        template_name = 'app/firefox-rox.html'
+
+    # app/urls.py
+    urlpatterns = [
+        # from views.py
+        path('firefox/rox/', FirefoxRoxView.as_view()),
+        # directly
+        path('firefox/sox/', L10nTemplateView.as_view(template_name='app/firefox-sox.html')),
+    ]
+
+The `L10nTemplateView` functionality is mostly in a template mixin called `LangFilesMixin` which
+you can use with other generic Django view classes if you need one other than `TemplateView`.
 
 Variation Views
 ^^^^^^^^^^^^^^^
 
 We have a generic view that allows you to easily create and use a/b testing
 templates. If you'd like to have either separate templates or just a template
-context variable for switching, this will help you out. For example::
+context variable for switching, this will help you out. For example.
+
+.. code-block:: python
 
     # urls.py
 
@@ -135,12 +199,16 @@ This will give you a context variable called `variation` that will either be an 
 string if no param is set, or `a` if `?v=a` is in the URL, or `b` if `?v=b` is in the
 URL. No other options will be valid for the `v` query parameter and `variation` will
 be empty if any other value is passed in for `v` via the URL. So in your template code
-you'd simply do the following::
+you'd simply do the following:
+
+.. code-block:: jinja
 
     {% if variation == 'b' %}<p>This is the B variation of our test. Enjoy!</p>{% endif %}
 
 If you'd rather have a fully separate template for your test, you can use the
-`template_name_variations` argument to the view instead of `template_context_variations`::
+`template_name_variations` argument to the view instead of `template_context_variations`.
+
+.. code-block:: python
 
     # urls.py
 
@@ -169,7 +237,9 @@ You can also limit your variations to certain locales. By default the variations
 for any localization of the page, but if you supply a list of locales to the `variation_locales`
 argument to the view then it will only set the variation context variable or alter the template
 name (depending on the options explained above) when requested at one of said locales. For example,
-the template name example above could be modified to only work for English or German like so::
+the template name example above could be modified to only work for English or German like so
+
+.. code-block:: python
 
     # urls.py
 
@@ -193,6 +263,39 @@ valid variation were given in the URL.
     If you'd like to add this functionality to an existing Class-Based View, there is
     a mixin that implements this pattern that should work with most views:
     `bedrock.utils.views.VariationMixin`.
+
+
+Geo Redirect View
+^^^^^^^^^^^^^^^^^
+
+We sometimes need to have a special page variation for people visiting from certain
+countries. To make this easier we have a redirect view class that will allow you to
+define URLs per country as well as a default for everyone else. This redirector URL
+must only be a redirector since it must be uncachable by our CDN so that all visitors
+will hit the server and see the correct page for their location.
+
+.. code-block:: python
+
+    from bedrock.base.views import GeoRedirectView
+
+    class CanadaIsSpecialView(GeoRedirectView):
+        geo_urls = {
+            'CA': 'app.canada-is-special',
+        }
+        default_url = 'app.everyone-else'
+
+In this example people in Canada would go to the URL that Django returns using `reverse()`
+(i.e. the name of the URL) and everyone else would go to the `app.everyone-else` URL. You
+may also use full URLs instead of URL names if you want to. It will look for strings that
+start with "http(s)://" and use it as is. The
+`country code <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements>`_
+must be 2 characters and upper case. If the patterns for the redirect and the destination(s) have
+URL parameters they will be passed to the reverse call for the URL pattern name. So for example
+if you're doing this for a Firefox page with a version number in the URL, as long as the view
+and destination URLs use the same URL parameter names it will be preserved in the resulting destination URL.
+So `/firefox/70.0beta/whatsnew/` would redirect to `/firefox/70.0beta/whatsnew/canada/` for example.
+The redirector will also preserve query parameters by default. You can turn that off by
+setting the `query_string = False` class variable.
 
 Coding Style Guides
 -------------------

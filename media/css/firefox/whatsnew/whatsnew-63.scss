@@ -6,7 +6,6 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/button';
 @import '../../../protocol/css/components/call-out';
 @import '../../../protocol/css/components/hero';
 @import '../../../protocol/css/components/feature-card';
@@ -23,7 +22,8 @@ $image-path: '/media/protocol/img';
     text-align: center;
 
     .c-page-header-up-to-date {
-        @include text-display-xs;
+        @include font-base;
+        @include text-body-lg;
         display: none;
         font-weight: normal;
         margin: 1em 0;
@@ -113,6 +113,7 @@ $image-path: '/media/protocol/img';
     }
 
     .fxa-email-field-container {
+        display: block;
         .field {
             label {
                 @include visually-hidden;
@@ -121,7 +122,7 @@ $image-path: '/media/protocol/img';
             input[type="email"] {
                 border: none;
                 box-shadow: none;
-                padding: 16px 24px;
+                padding: 18px 24px;
                 width: 100%;
             }
         }
@@ -134,7 +135,7 @@ $image-path: '/media/protocol/img';
     @media #{$mq-sm} {
         .fxa-email-field-container {
             @include grid-column-gap($spacing-md);
-            display: grid;
+            display: block;
             grid-template-columns: 2fr 1fr;
 
             .field {
@@ -186,7 +187,7 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Intro section
 
-#intro {
+.intro {
     background-color: $color-gray-10;
     min-height: 350px;
     padding-top: $layout-sm;
@@ -205,7 +206,7 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // What's new
 
-#whats-new {
+.whats-new {
     background-color: transparent;
 
     @media #{$mq-lg} {
@@ -216,7 +217,7 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Tracking Controls section
 
-#tracking-controls {
+.tracking-controls {
     .mzp-c-card-feature-title {
         @include text-display-md;
     }
@@ -225,7 +226,7 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Content Blocking section
 
-#content-blocking {
+.content-blocking.mzp-c-hero.mzp-t-dark {
     background-color: $color-blue-50;
 
     .mzp-c-hero-title {
@@ -254,7 +255,7 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Sync section
 
-#sync {
+.sync {
     .mzp-c-card-feature-title {
         @include text-display-md;
     }

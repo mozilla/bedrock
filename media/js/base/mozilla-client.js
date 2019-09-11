@@ -3,8 +3,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // Create namespace
-if (typeof Mozilla === 'undefined') {
-    var Mozilla = {};
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
 }
 
 (function() {
@@ -357,7 +357,7 @@ if (typeof Mozilla === 'undefined') {
             return;
         }
         // set up the object with default values of false
-        var details = Client.FxaDetails = {
+        var details = {
             'firefox': false,
             'legacy': false,
             'mobile': false,
@@ -402,9 +402,9 @@ if (typeof Mozilla === 'undefined') {
 
                     // device counts
                     // device counts are only available in Fx50+, fallback 'unknown' if not detectable
-                    details.setup = event.detail.data.hasOwnProperty('setup') ? event.detail.data.setup : 'unknown';
-                    details.desktopDevices =  event.detail.data.hasOwnProperty('desktopDevices') ? event.detail.data.desktopDevices : 'unknown';
-                    details.mobileDevices =  event.detail.data.hasOwnProperty('mobileDevices') ? event.detail.data.mobileDevices : 'unknown';
+                    details.setup = Object.prototype.hasOwnProperty.call(event.detail.data, 'setup') ? event.detail.data.setup : 'unknown';
+                    details.desktopDevices = Object.prototype.hasOwnProperty.call(event.detail.data, 'desktopDevices') ? event.detail.data.desktopDevices : 'unknown';
+                    details.mobileDevices = Object.prototype.hasOwnProperty.call(event.detail.data, 'mobileDevices') ? event.detail.data.mobileDevices : 'unknown';
 
                     returnFxaDetails();
                 };
@@ -423,6 +423,7 @@ if (typeof Mozilla === 'undefined') {
 
         function returnFxaDetails() {
             window.clearTimeout(timer);
+            Client.FxaDetails = details;
             callback(details);
         }
 

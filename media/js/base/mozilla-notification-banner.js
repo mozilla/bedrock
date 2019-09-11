@@ -3,8 +3,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // Create namespace
-if (typeof Mozilla === 'undefined') {
-    var Mozilla = {};
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
 }
 
 (function() {
@@ -325,7 +325,7 @@ if (typeof Mozilla === 'undefined') {
         if (NotificationBanner.cutsTheMustard() && typeof options === 'object') {
 
             for (var i in options) {
-                if (options.hasOwnProperty(i)) {
+                if (Object.prototype.hasOwnProperty.call(options, i)) {
                     _options[i] = options[i];
                 }
             }

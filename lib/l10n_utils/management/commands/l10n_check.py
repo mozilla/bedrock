@@ -10,7 +10,7 @@ import os
 from os import path
 import codecs
 from contextlib import closing
-from StringIO import StringIO
+from io import StringIO
 
 from django.core.management.base import BaseCommand
 from django.conf import settings
@@ -46,7 +46,7 @@ def update_templates(langs):
 
     for tmpl in list_templates():
         template = L10nTemplate(tmpl)
-        print "%s..." % template.rel_path
+        print("%s..." % template.rel_path)
         template.process(langs)
 
 
@@ -79,7 +79,7 @@ def write_block(block, dest, force_was=False):
     dest.write('\n\n')
 
 
-class L10nTemplate(object):
+class L10nTemplate:
 
     def __init__(self, template=None, source=None):
         """
@@ -151,7 +151,7 @@ class L10nTemplate(object):
             for block in blocks:
                 write_block(block, dest)
 
-        print '%s: %s' % (lang, self.rel_path)
+        print('%s: %s' % (lang, self.rel_path))
 
     def _get_ref_block(self, name, blocks=None):
         """Return the reference block"""
@@ -225,12 +225,12 @@ class L10nTemplate(object):
             with codecs.open(dest_tmpl, 'w', 'utf-8') as dest:
                 dest.write(buffer.getvalue())
 
-        print '%s: %s' % (lang, self.rel_path)
+        print('%s: %s' % (lang, self.rel_path))
 
 
-class L10nParser():
+class L10nParser:
 
-    file_version_re = re.compile('\W*Version: (\d+)\W*')
+    file_version_re = re.compile(r'\W*Version: (\d+)\W*')
 
     def __init__(self):
         self.tmpl = None
@@ -286,7 +286,7 @@ class L10nParser():
 
             if name == 'comment_begin':
                 # Check comments for the version string
-                comment = self.tokens.next()[2]
+                comment = next(self.tokens)[2]
 
                 matches = self.file_version_re.match(comment)
                 if matches:
@@ -307,8 +307,8 @@ class L10nParser():
                     yield ('content', comment)
 
             elif name == 'block_begin':
-                space = self.tokens.next()
-                block = self.tokens.next()
+                space = next(self.tokens)
+                block = next(self.tokens)
 
                 if block[1] == 'name':
                     type = block[2]
@@ -331,8 +331,8 @@ class L10nParser():
                         # that means the template has been customized
                         # and we shouldn't touch it
 
-                        ident_space = self.tokens.next()
-                        ident = self.tokens.next()
+                        ident_space = next(self.tokens)
+                        ident = next(self.tokens)
 
                         if ident[2] == 'content':
                             # This is the content block, stop parsing
@@ -420,8 +420,8 @@ class L10nParser():
             buffer = was_content if in_was else main_content
 
             if token[1] == 'block_begin':
-                space = self.tokens.next()[2]
-                name = self.tokens.next()[2]
+                space = next(self.tokens)[2]
+                name = next(self.tokens)[2]
 
                 if name == 'endl10n':
                     self.scan_until('block_end')
@@ -456,7 +456,7 @@ class L10nParser():
                 break
 
     def scan_next(self, name):
-        token = self.tokens.next()
+        token = next(self.tokens)
         if token and token[1] == name:
             return token[2]
         # Put it back on the list
@@ -465,15 +465,17 @@ class L10nParser():
 
 
 class Command(BaseCommand):
-    args = ''
     help = 'Checks which content needs to be localized.'
+
+    def add_arguments(self, parser):
+        # Positional arguments
+        parser.add_argument('langs', nargs='*')
 
     def handle(self, *args, **options):
         # Look through languages passed in, or all of them
-        if args:
-            langs = args
-        else:
+        langs = options['langs']
+        if not langs:
             langs = os.listdir(l10n_file())
-            langs = filter(lambda x: x[0] != '.', langs)
+            langs = [x for x in langs if x[0] != '.']
 
         update_templates(langs)

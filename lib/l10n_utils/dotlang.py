@@ -150,7 +150,7 @@ def _get_extra_lang_files():
         finally:
             del frame
         if new_lang_files:
-            if isinstance(new_lang_files, basestring):
+            if isinstance(new_lang_files, str):
                 new_lang_files = [new_lang_files]
     return [lf for lf in new_lang_files if lf not in settings.DOTLANG_FILES]
 
@@ -185,7 +185,7 @@ def gettext(text, *args, **kwargs):
     return text
 
 
-_lazy_proxy = lazy(gettext, unicode)
+_lazy_proxy = lazy(gettext, str)
 
 
 def gettext_lazy(*args, **kwargs):

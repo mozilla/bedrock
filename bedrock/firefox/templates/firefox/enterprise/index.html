@@ -2,98 +2,282 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "firefox/base-pebbles.html" %}
+{% extends "firefox/base/base-protocol.html" %}
 
-{% block page_title_prefix %}{% endblock %}
-{% block page_title %}{{_('Firefox Quantum for Enterprise Web Browser | Firefox')}}{% endblock %}
-{% block page_desc %}{{_('A managed version of the super-fast new Firefox.')}}{% endblock %}
+{% from "macros-protocol.html" import call_out_compact, feature_card, picto_card, hero with context %}
+
+{% block page_title_full %}{{_('Get Firefox for your enterprise — ESR, RR and premium support')}}{% endblock %}
+{% block page_desc %}{{_('Get unmatched data protection on the release cadence that suits you with Firefox for enterprise. Download ESR, RR and get premium support.')}}{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('firefox_enterprise') }}
+  {{ css_bundle('firefox-enterprise') }}
 {% endblock %}
 
 {% block body_id %}firefox{% endblock %}
-{% block body_class %}{% endblock %}
 
-{% block site_header %}{% endblock %}
+{% block site_header %}
+  {% with hide_nav_download_button=True %}
+    {% include 'includes/protocol/navigation/index.html' %}
+  {% endwith %}
+{% endblock %}
 
 {% block content %}
 <main role="main">
-  <section class="intro content-section">
-    <div class="content">
-      <div class="copy">
-        {{ high_res_img('logos/firefox/logo-quantum.png', {'alt': 'Firefox', 'width': '100', 'height': '100', 'class': 'logo'}) }}
-          <h1>{{ _('Firefox Quantum for Enterprise') }}</h1>
-          <p>{{ _('Speed up your business by giving employees a managed version of the super-fast new Firefox. <em>Now with Windows Group Policy support.</em>') }}</p>
-          <div class="copy-cta">
-            <a href="{{ url('firefox.enterprise.signup') }}" class="button button-green qa-sign-up">{{ _('Find Out More') }}</a>
-          </div>
+  <nav class="c-sub-navigation">
+    <div class="mzp-l-content">
+      <div class="c-sub-navigation-content">
+        <h2 class="c-sub-navigation-title">{{ _('Enterprise') }}</h2>
+        <ul class="c-sub-navigation-list">
+          <li class="c-sub-navigation-item"><a href="#overview">{{ _('Overview') }}</a></li>
+          <li class="c-sub-navigation-item"><a href="#features">{{ _('Features') }}</a></li>
+          <li class="c-sub-navigation-item"><a href="#plans">{{ _('Compare Plans') }}</a></li>
+          <li class="c-sub-navigation-item"><a href="#download">{{ _('Downloads') }}</a></li>
+          <li class="c-sub-navigation-item"><a href="#resources">{{ _('Resources') }}</a></li>
+        </ul>
       </div>
     </div>
-  </section>
+  </nav>
+  {% call hero(
+    title=_('Get Firefox for your enterprise'),
+    class='mzp-t-product-firefox mzp-has-image mzp-t-dark t-enterprise',
+    image_url='firefox/enterprise/fx-browser-img.svg',
+    include_cta=True,
+    heading_level=1
+  ) %}
+    <p class="mzp-c-hero-desc">
+      {{ _('Get the <a href="%s">Firefox Extended Support Release or Rapid Release</a> browser for comprehensive data security and data protection.')|format('https://support.mozilla.org/kb/choosing-firefox-update-channel') }}
+    </p>
+    <div class="cta-container">
+      <div class="mzp-c-button-download-container">
+        <a id="primary-download-button" href="#download" class="mzp-c-button mzp-t-product">{{ _('Download') }}</a>
+        <a href="{{ url('privacy.notices.firefox') }}" class="mzp-c-button-download-privacy-link">{{ _('Firefox Privacy Notice') }}</a>
+      </div>
+    </div>
+  {% endcall %}
 
-  <section class="details content-section">
-    <div class="content">
-      <ul>
-        <li>
-          <h3>{{ _('Easy administration') }}</h3>
-          <p>
-          {% trans %}
-            Set up policies (e.g. proxy, restrict features) with Group Policy on Windows and a JSON file on Mac and Linux.
-          {% endtrans %}
-          </p>
-        </li>
-        <li>
-          <h3>{{ _('Fast and lightweight') }}</h3>
-          <p>
-          {% trans %}
-            Powered by a cutting-edge engine, Firefox is now 2X faster than it was and uses 30% less RAM than Chrome.
-          {% endtrans %}
-          </p>
-        </li>
-        <li>
-          <h3>{{ _('Proven and private') }}</h3>
-          <p>
-          {% trans %}
-            Firefox is open source and is trusted by thousands of businesses to protect user and organizational privacy.
-          {% endtrans %}
-          </p>
-        </li>
+  <div class="mzp-l-content">
+    <section id="overview" class="enterprise-section">
+      <h2 class="enterprise-section-title">{{ _('Unmatched data protection — on the release cadence that suits you') }}</h2>
+
+      <ul class="mzp-l-card-third">
+        {% if LANG == 'en-US' %}
+          {% set _desc = _('The Firefox browser is open source, provides Enhanced Tracking Protection and soon will support DNS over HTTPS — all part of our longstanding commitment to data protection.') %}
+        {% else %}
+          {% set _desc = _('The Firefox browser is open source and provides Enhanced Tracking Protection — all part of our longstanding commitment to data protection.') %}
+        {% endif %}
+
+        {{ picto_card(title=_('Your data stays your business'), desc=_desc, class='privacy') }}
+        {{ picto_card(title=_('Deploy when and how you want'), desc=_('With install packages and a wide expansion of group policies and features, deployment is faster and more flexible than ever — and a breeze in Windows and MacOS environments.'), class='deploy') }}
+        {{ picto_card(title=_('Choose your release cadence'), desc=_('Get rapid releases to make sure you get the latest features faster, or go extended to ensure a super stable experience.'), class='release') }}
+      </ul>
+    </section>
+
+    <section id="features" class="enterprise-section">
+      <h2 class="enterprise-section-title">{{ _('Get Firefox premium support for your enterprise ') }}</h2>
+
+      {% call feature_card(
+        title='Fast and dedicated support',
+        image_url='',
+        class='mzp-l-card-feature-left-half',
+        aspect_ratio='mzp-has-aspect-3-2',
+        image_url='firefox/enterprise/enterprise-support.svg',
+        heading_level=3
+      ) %}
+        <p>{{ _('Firefox premium support provides:') }}</p>
+
+        <ul class="mzp-u-list-styled">
+          <li>{{ _('Private help for customization, deployment and management of Firefox') }}</li>
+          <li>{{ _('SLAs on critical security bug fixing') }}</li>
+          <li>{{ _('Access to the enterprise critical issues distribution list') }}</li>
+          <li>{{ _('A private customer portal') }}</li>
+          <li>{{ _('The ability to contribute to Firefox and our roadmap') }}</li>
+        </ul>
+      {% endcall %}
+    </section>
+
+    <section id="plans" class="enterprise-section enterprise-section-plans">
+      <h2 class="enterprise-section-title">{{ _('Firefox premium support for enterprise — starting at $10 per supported installation') }}</h2>
+
+      <div class="c-pager">
+        <div class="c-pager-tab">
+          <button id="pager-tab-button-basic" type="button" class="c-pager-tab-button" aria-controls="pager-page-basic">{{ _('Basic') }}</button>
+          <button id="pager-tab-button-premium" type="button" class="c-pager-tab-button" aria-controls="pager-page-premium">{{ _('Premium') }}</button>
+        </div>
+
+        <div class="c-pager-container comparison">
+          <section id="pager-page-basic" class="c-pager-page">
+            <h3 class="comparison-title-tier c-pager-hide-when-active">{{ _('Basic') }}</h3>
+            <h4 class="comparison-title-price">{{ _('Free') }}</h4>
+
+            <div class="comparison-cta cta-container mzp-c-button-download-container">
+              <a href="#download" class="mzp-c-button mzp-t-secondary mzp-t-product">{{ _('Download Firefox Browser') }}</a>
+              <a id="comparison-download-button" href="{{ url('privacy.notices.firefox') }}" class="mzp-c-button-download-privacy-link">{{ _('Firefox Privacy Notice') }}</a>
+            </div>
+
+            <ul class="comparison-list">
+              <li>{{ _('Public bug submission') }}</li>
+              <li>{{ _('Self-service <a href="%s">knowledge base</a>')|format('https://support.mozilla.org/products/firefox-enterprise') }}</li>
+              <li>{{ _('Community support') }}</li>
+            </ul>
+          </section>
+
+          <section id="pager-page-premium" class="c-pager-page">
+            <h3 class="comparison-title-tier c-pager-hide-when-active">{{ _('Premium') }}</h3>
+            <h4 class="comparison-title-price">{{ _('Starting at $10 <span>per supported installation</span>') }}</h4>
+
+            <a id="comparison-sales-button" href="{{ url('firefox.enterprise.signup') }}" class="mzp-c-button mzp-t-product comparison-cta" data-cta-type="Enterprise-Sales" data-cta-position="Primary">{{ _('Contact Sales') }}</a>
+
+            <ul class="comparison-list">
+              <li>{{ _('Private bug submission') }}</li>
+              <li>{{ _('Critical security bug fixes with SLA') }}</li>
+              <li>{{ _('Concierge bug entry with guaranteed response time') }}</li>
+              <li>{{ _('Enterprise customer portal') }}</li>
+              <li>{{ _('Contribute to Firefox and our roadmap') }}</li>
+              <li>{{ _('Proactive notification on critical Firefox events') }}</li>
+              <li>{{ _('SLA management tool') }}</li>
+            </ul>
+          </section>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  {% call call_out_compact(
+    title=_('Get more info about Firefox premium support for your enterprise'),
+    desc=_('Contact our sales team for pricing and other details related to Firefox premium support.'),
+    class='mzp-t-product-firefox mzp-t-dark enterprise-section enterprise-callout'
+  ) %}
+    <a href="{{ url('firefox.enterprise.signup') }}" class="mzp-c-button mzp-t-product" data-cta-type="Enterprise-Sales" data-cta-position="Secondary">{{ _('Contact Sales') }}</a>
+  {% endcall %}
+
+  <div class="mzp-l-content">
+    <section id="download" class="enterprise-section enterprise-download">
+      <h2 class="enterprise-section-title">{{ _('Enterprise package downloads') }}</h2>
+
+      <ul class="mzp-l-card-third enterprise-download-lists">
+        {% call picto_card(
+          title=_('Windows 64-bit'),
+          class='enteprise-download-package win64',
+          heading_level=3,
+          custom_desc=True
+        ) %}
+          <ul class="mzp-u-list-styled">
+            <li>{{ _('The latest Firefox browser') }}</li>
+            <li>{{ _('The latest <a href="%s">Firefox Extended Support Release (ESR)</a>')|format('https://support.mozilla.org/kb/firefox-esr-release-cycle') }}</li>
+            <li><a href="https://support.mozilla.org/kb/deploy-firefox-msi-installers">{{ _('MSI Installer') }}</a></li>
+            <li>{{ _('<a href="%s">Legacy browser</a> support')|format('https://support.mozilla.org/kb/legacy-browser-support-extension-windows') }}</li>
+            <li><a href="https://support.mozilla.org/kb/customizing-firefox-using-group-policy-windows">{{ _('ADMX templates') }}</a></li>
+            <li>{{ _('Deployment guide') }}</li>
+            <li>{{ _('Policy documentation') }}</li>
+          </ul>
+
+          <div class="cta-container">
+            <div class="mzp-c-button-download-container">
+              <a id="package-win64-download-button" href="https://mozilla.box.com/s/5uvc1hjsimtx3wvs9qdpbda47h2tix5c" class="mzp-c-button mzp-t-product" data-cta-type="Enterprise-Package" data-cta-text="Windows64" data-cta-position="Primary">
+                {{ _('Download') }}
+              </a>
+              <a href="{{ url('privacy.notices.firefox') }}" class="mzp-c-button-download-privacy-link">{{ _('Firefox Privacy Notice') }}</a>
+            </div>
+          </div>
+
+        {% endcall %}
+
+        {% call picto_card(
+          title=_('Mac'),
+          class='enteprise-download-package mac',
+          heading_level=3,
+          custom_desc=True
+        ) %}
+          <ul class="mzp-u-list-styled">
+            <li>{{ _('The latest Firefox browser') }}</li>
+            <li>{{ _('The latest Firefox ESR') }}</li>
+            <li>{{ _('Sample plist for configuration profile') }}</li>
+            <li>{{ _('PKG installer') }}</li>
+            <li>{{ _('Deployment guide') }}</li>
+            <li>{{ _('Policy documentation') }}</li>
+          </ul>
+
+          <div class="cta-container">
+            <div class="mzp-c-button-download-container">
+              <a id="package-mac-download-button" href="https://mozilla.box.com/s/qd58fn88r0zxg3pw132ul489egxqvi6k" class="mzp-c-button mzp-t-product" data-cta-type="Enterprise-Package" data-cta-text="Mac" data-cta-position="Primary">
+                {{ _('Download') }}
+              </a>
+              <a href="{{ url('privacy.notices.firefox') }}" class="mzp-c-button-download-privacy-link">{{ _('Firefox Privacy Notice') }}</a>
+            </div>
+          </div>
+
+        {% endcall %}
+
+        {% call picto_card(
+          title=_('Windows 32-bit'),
+          class='enteprise-download-package win32',
+          heading_level=3,
+          custom_desc=True
+        ) %}
+          <ul class="mzp-u-list-styled">
+            <li>{{ _('The latest Firefox browser') }}</li>
+            <li>{{ _('The latest Firefox ESR') }}</li>
+            <li>{{ _('MSI Installer') }}</li>
+            <li>{{ _('Legacy browser support') }}</li>
+            <li>{{ _('ADMX templates') }}</li>
+            <li>{{ _('Deployment guide') }}</li>
+            <li>{{ _('Policy documentation') }}</li>
+          </ul>
+
+          <div class="cta-container">
+            <div class="mzp-c-button-download-container">
+              <a id="package-win32-download-button" href="https://mozilla.box.com/s/yjerfy3sgre39mve7n5jjtcy9p10vf3k" class="mzp-c-button mzp-t-product" data-cta-type="Enterprise-Package" data-cta-text="Windows32" data-cta-position="Primary">
+                {{ _('Download') }}
+              </a>
+              <a href="{{ url('privacy.notices.firefox') }}" class="mzp-c-button-download-privacy-link">{{ _('Firefox Privacy Notice') }}</a>
+            </div>
+          </div>
+        {% endcall %}
       </ul>
 
-      <table class="download-table">
-        <caption><h3>{{ _('Firefox Enterprise Downloads') }}</h3></caption>
-        <tbody>
-          <tr>
-            <th>{{ _('Firefox Rapid Release') }}</th>
-            <td><a class="qa-download-release" href="{{ firefox_url('desktop', 'all') }}">{{ _('Download Firefox') }}</a></td>
-          </tr>
-          <tr>
-            <th>{{ _('Firefox Extended Support Release (ESR)') }}</th>
-            <td><a class="qa-download-esr" href="{{ firefox_url('desktop', 'all', 'esr') }}">{{ _('Download ESR') }}</a></td>
-          </tr>
-        </tbody>
-      </table>
+      <p class="enterprise-languages">
+        <a class="mzp-c-cta-link" href="{{ url('firefox.all') }}">{{ _('Download Firefox ESR or Rapid Release for another language or platform.') }}</a>
+      </p>
+    </section>
 
-      <table class="download-table">
-        <caption><h3>{{ _('Resources') }}</h3></caption>
-        <tbody>
-          <tr>
-            <th>{{ _('Support & Documentation') }}</th>
-            <td><a href="https://support.mozilla.org/products/firefox-enterprise/">{{ _('Learn More') }}</a></td>
-          </tr>
-          <tr>
-            <th>{{ _('Windows Group Policy ADMX Templates') }}</th>
-            <td><a href="https://github.com/mozilla/policy-templates/releases/">{{ _('Get Templates') }}</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+    <section id="resources" class="enterprise-section enterprise-resources">
+      <h2 class="enterprise-section-title">{{ _('Enterprise resources') }}</h2>
+
+      <ul class="mzp-l-card-half">
+        {% call picto_card(
+          title=None,
+          class='docs',
+          custom_desc=True
+        ) %}
+          <h3 class="mzp-c-card-picto-title">
+            <a class="mzp-c-cta-link" href="https://support.mozilla.org/products/firefox-enterprise/?utm_source=www.mozilla.org-enterprise&utm_campaign=enterprise&utm_medium=referral">
+              {{ _('Documentation and Community Support') }}
+            </a>
+          </h3>
+        {% endcall %}
+
+        {% call picto_card(
+          title=None,
+          class='notes',
+          custom_desc=True
+        ) %}
+          <h3 class="mzp-c-card-picto-title">
+            <a class="mzp-c-cta-link" href="https://support.mozilla.org/kb/where-find-release-notes-firefox-enterprise/?utm_source=www.mozilla.org-enterprise&utm_campaign=enterprise&utm_medium=referral">
+              {{ _('Release Notes') }}
+            </a>
+          </h3>
+        {% endcall %}
+      </ul>
+    </section>
+  </div>
+
 </main>
 {% endblock %}
 
-{% block email_form %}{% endblock %}
+{% block js %}
+  {{ js_bundle('firefox-enterprise') }}
+{% endblock %}
 
 {# Bug 1381776 #}
 {% block update_notification %}{% endblock %}

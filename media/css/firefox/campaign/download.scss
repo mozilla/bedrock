@@ -1,0 +1,100 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/components/modal';
+@import '../../../protocol/css/components/picto-card';
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/templates/card-layout';
+
+
+.mzp-c-hero.mzp-t-dark {
+    @include background-size(auto 100%);
+    background-color: $color-off-black;
+
+    .mzp-c-hero-title {
+        @include at2x('/media/img/logos/firefox/logo-quantum-wordmark-white.png', 147px, 48px);
+        background-position: top center;
+        background-repeat: no-repeat;
+        padding-top: $layout-xl;
+    }
+
+    .mzp-c-hero-image img {
+        top: 48px;
+        bottom: auto;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
+    }
+
+    @media #{$mq-md} {
+        @include bidi((
+            (background-image, url('/media/img/firefox/new/trailhead/hero-bg.svg'), url('/media/img/firefox/new/trailhead/hero-bg-rtl.svg')),
+            (background-position, top right -600px, top left -600px),
+        ));
+        background-repeat: no-repeat;
+
+        .mzp-c-hero-title {
+            @include bidi(((background-position, top left, top right),));
+            max-width: 9em;
+        }
+
+        .mzp-c-hero-desc {
+            max-width: 21em;
+        }
+    }
+
+    @media #{$mq-lg} {
+        @include bidi(((background-position, top right -480px, top left -480px),));
+    }
+
+    @media #{$mq-xl} {
+        @include bidi(((background-position, top right -260px, top left -260px),));
+    }
+}
+
+
+/**
+ * Picto card custom icon sizes.
+ * These should be standardized into a `large` icon size.
+ * https://github.com/mozilla/protocol/issues/382
+ */
+.mzp-c-card-picto .mzp-c-card-picto-content {
+    padding-top: 140px;
+
+    &:before {
+        background-color: transparent;
+        background-position: top left;
+        background-repeat: no-repeat;
+    }
+
+    @media #{$mq-lg} {
+        .mzp-c-card-picto-title {
+            @include text-display-sm;
+            margin-bottom: $spacing-xl;
+        }
+    }
+}
+
+.join .mzp-c-card-picto-content::before {
+    height: 104px;
+    width: 104px;
+    margin-left: -52px;
+    background-image: url('/media/img/firefox/new/trailhead/icon-join.svg');
+}
+
+.lockwise .mzp-c-card-picto-content::before {
+    height: 96px;
+    width: 152px;
+    margin-left: -76px;
+    background-image: url('/media/img/firefox/new/trailhead/icon-lockwise.svg');
+}
+
+.private .mzp-c-card-picto-content::before {
+    height: 83px;
+    width: 113px;
+    margin-left: -56px;
+    background-image: url('/media/img/firefox/new/trailhead/icon-private.svg');
+}

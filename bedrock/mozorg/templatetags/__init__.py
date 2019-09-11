@@ -1,3 +1,2 @@
 # flake8: noqa
-import misc
-import social_widgets
+from bedrock.mozorg.templatetags import misc, social_widgets

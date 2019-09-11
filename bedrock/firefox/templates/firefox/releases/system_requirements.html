@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "firefox/base-resp.html" %}
+{% extends "firefox/base/base-protocol.html" %}
 
 {% block gtm_page_id %}data-gtm-page-id="/firefox/system-requirements/"{% endblock %}
 
@@ -12,21 +12,26 @@
 {% block page_title %}{{ _('{product} {channel} {version} System Requirements')|f(product=release.product, channel=channel_name, version=version) }}{% endblock %}
 
 {% block body_id %}notes{% endblock %}
-{% block body_class %}fxos-notes sky{% endblock %}
+{% block body_class %}mzp-t-firefox mzp-t-{{ channel_name|lower }}{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('firefox_releasenotes') }}
+  {{ css_bundle('firefox_system_requirements') }}
 {% endblock %}
 
 {% block content %}
-  <header id="main-feature">
-    <h1>{{ _('{product} {channel} {version} System Requirements')|f(product=release.product, channel=channel_name, version=version) }}</h1>
-  </header>
+  <div class="mzp-l-content">
+    <header class="l-narrow">
+      <div class="c-page-section">
+        <h1>Firefox System Requirements</h1>
+      </div>
+      <h2>{{ _('{product} {channel} {version}')|f(product=release.product, channel=channel_name, version=version) }}</h2>
+    </header>
 
-  <div id="main-content">
-    <article class="main-column">
-        {{ release.system_requirements|safe }}
-    </article>
+    <main class="l-narrow">
+      <div class="mzp-c-article">
+          {{ release.system_requirements|safe }}
+      </div>
+    </main>
   </div>
   {% block sidebar %}{% endblock %}
 {% endblock %}

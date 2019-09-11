@@ -1,33 +1,32 @@
 # taken and modified from tower tests
 
-from cStringIO import StringIO
+import io
 
 from babel.messages.catalog import Catalog
 from babel.messages.extract import extract
 from babel.messages.pofile import write_po
-from nose.tools import eq_
 from puente.commands import generate_options_map
 from puente.settings import get_setting
 
 
 def test_extract_python():
-    fileobj = StringIO(TEST_PO_INPUT)
+    fileobj = io.BytesIO(TEST_PO_INPUT)
     method = 'lib.l10n_utils.extract.extract_python'
     output = fake_extract_command(filename="filename", fileobj=fileobj,
                                   method=method)
 
     # god help you if these are ever unequal
-    eq_(TEST_PO_OUTPUT, output)
+    assert TEST_PO_OUTPUT == output
 
 
 def test_extract_jinja2():
-    fileobj = StringIO(TEST_TEMPLATE_INPUT)
+    fileobj = io.BytesIO(TEST_TEMPLATE_INPUT)
     method = 'lib.l10n_utils.extract.extract_jinja2'
     output = fake_extract_command(filename="filename", fileobj=fileobj,
                                   method=method)
 
     # god help you if these are ever unequal
-    eq_(TEST_TEMPLATE_OUTPUT, output)
+    assert TEST_TEMPLATE_OUTPUT == output
 
 
 def fake_extract_command(filename, fileobj, method,
@@ -40,9 +39,9 @@ def fake_extract_command(filename, fileobj, method,
         catalog.add(msg, None, [(filename, lineno)], auto_comments=cmts,
                     context=ctxt)
 
-    po_out = StringIO()
+    po_out = io.BytesIO()
     write_po(po_out, catalog, width=80, omit_header=True)
-    return unicode(po_out.getvalue())
+    return po_out.getvalue()
 
 
 def fake_extract_from_dir(filename, fileobj, method, options, keywords, comment_tags):
@@ -55,7 +54,7 @@ def fake_extract_from_dir(filename, fileobj, method, options, keywords, comment_
         yield filename, lineno, message, comments, context
 
 
-TEST_PO_INPUT = """
+TEST_PO_INPUT = b"""
 _('fligtar')
 # Make sure several uses collapses to one
 ngettext('a fligtar', 'many fligtars', 1)
@@ -71,7 +70,7 @@ ngettext('fligtar', 'many fligtars', 5)
 _lazy('a lazy string')
 """
 
-TEST_PO_OUTPUT = """\
+TEST_PO_OUTPUT = b"""\
 #. l10n: Turn down the volume
 #: filename:2 filename:12
 msgid "fligtar"
@@ -96,7 +95,7 @@ msgstr ""
 
 """
 
-TEST_TEMPLATE_INPUT = """
+TEST_TEMPLATE_INPUT = b"""
   {{ _('sunshine') }}
   {# Regular comment, regular gettext #}
   {% trans %}
@@ -117,7 +116,7 @@ TEST_TEMPLATE_INPUT = """
   {% endtrans %}
 """
 
-TEST_TEMPLATE_OUTPUT = """\
+TEST_TEMPLATE_OUTPUT = b"""\
 #: filename:2
 msgid "sunshine"
 msgstr ""

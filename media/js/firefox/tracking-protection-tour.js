@@ -3,8 +3,8 @@
 * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // create namespace
-if (typeof Mozilla === 'undefined') {
-    var Mozilla = {};
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
 }
 
 (function($) {
@@ -57,7 +57,7 @@ if (typeof Mozilla === 'undefined') {
 
     TPTour.step2 = function() {
         _$step2Panel.removeClass('hidden');
-        _$step2Panel.find('header').focus();
+        _$step2Panel.find('header').trigger('focus');
         _$tracker.addClass('fade-out');
         TPTour.replaceURLState('2');
         TPTour.state = 'step2';
@@ -199,8 +199,9 @@ if (typeof Mozilla === 'undefined') {
     };
 
     TPTour.handleVisibilityChange = function() {
+        var hidden = typeof TPTour.documentHidden === 'boolean' ? TPTour.documentHidden : document.hidden;
         clearTimeout(_highlightTimeout);
-        if (TPTour.documentHidden || document.hidden) {
+        if (hidden) {
             TPTour.hidePanels();
         } else {
             _highlightTimeout = setTimeout(TPTour.showTourStep, 300);

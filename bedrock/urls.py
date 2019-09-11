@@ -5,6 +5,9 @@
 from django.conf import settings
 from django.conf.urls import handler404, include, url
 
+from django.utils.module_loading import import_string
+
+from bedrock.base import views as base_views
 from watchman import views as watchman_views
 
 # The default django 500 handler doesn't run the ContextProcessors, which breaks
@@ -18,7 +21,7 @@ urlpatterns = (
     url(r'^grants/', include('bedrock.grants.urls')),
     url(r'^about/legal/', include('bedrock.legal.urls')),
     url(r'^press/', include('bedrock.press.urls')),
-    url(r'^privacy', include('bedrock.privacy.urls')),
+    url(r'^privacy/', include('bedrock.privacy.urls')),
     url(r'^styleguide/', include('bedrock.styleguide.urls')),
     url(r'^security/', include('bedrock.security.urls')),
     url(r'^shapeoftheweb/', include('bedrock.shapeoftheweb.urls')),
@@ -27,19 +30,21 @@ urlpatterns = (
     url(r'', include('bedrock.newsletter.urls')),
     url(r'^etc/', include('bedrock.etc.urls')),
 
-    # L10n example.
-    url(r'^l10n_example/',
-        include('bedrock.l10n_example.urls')),
-
     url(r'^healthz/$', watchman_views.ping, name="watchman.ping"),
     url(r'^readiness/$', watchman_views.status, name="watchman.status"),
-    url(r'^healthz-cron/$', 'bedrock.base.views.cron_health_check'),
-    url(r'^csp-violation-capture$', 'bedrock.base.views.csp_violation_capture',
+    url(r'^healthz-cron/$', base_views.cron_health_check),
+    url(r'^csp-violation-capture$', base_views.csp_violation_capture,
         name='csp-violation-capture'),
-    url(r'^country-code\.json$', 'bedrock.base.views.geolocate',
+    url(r'^country-code\.json$', base_views.geolocate,
         name='geolocate')
 )
 
 if settings.DEBUG:
-    urlpatterns += (url(r'^404/$', handler404),
-                    url(r'^500/$', handler500))
+
+    def show404(request):
+        return import_string(handler404)(request, '')
+
+    urlpatterns += (
+        url(r'^404/$', show404),
+        url(r'^500/$', import_string(handler500)),
+    )

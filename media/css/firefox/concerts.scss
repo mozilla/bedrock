@@ -1,0 +1,281 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import "../../protocol/css/includes/lib";
+@import "../../protocol/css/components/feature-card";
+@import "../../protocol/css/components/hero";
+@import '../../protocol/css/components/modal';
+@import '../../protocol/css/components/newsletter-form';
+
+
+//* -------------------------------------------------------------------------- */
+// General page styles
+
+.mzp-l-content.l-content-narrow {
+    max-width: $content-lg;
+}
+
+.firefox-concerts {
+    #outer-wrapper {
+        background-color: #41085e;
+        background-image: linear-gradient(to bottom, $color-off-black 0%, $color-purple-90 400px, $color-purple-80 60%);
+        color: $color-white;
+    }
+
+    .mzp-c-hero.mzp-t-dark {
+        background-color: transparent;
+    }
+
+    .mzp-c-hero-title {
+        color: $color-red-50;
+    }
+
+    .mzp-c-hero {
+        padding-bottom: 0;
+    }
+
+    .mzp-c-hero-desc {
+        margin-bottom: 0;
+    }
+
+    .tagline {
+        @include text-body-lg;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Artist cards
+
+.artist-card {
+    color: $color-white;
+
+    .date {
+        @include text-display-xs;
+        font-weight: bold;
+        margin-bottom: $spacing-sm;
+    }
+
+    .mzp-c-card-feature-title {
+        @include text-display-md;
+    }
+
+    .mzp-c-card-feature-desc {
+        color: $color-white;
+    }
+
+    .mzp-c-card-tag {
+        @include background-size(22px 22px);
+        @include bidi(((padding-left, $spacing-xl, 0),(padding-right, 0, $spacing-xl)));
+        background-position: left top;
+        background-repeat: no-repeat;
+        font-weight: bold;
+        margin-bottom: $spacing-lg;
+
+        &.countdown {
+            background-image: url('/media/img/firefox/concerts/icon-alarm.svg');
+            display: none;
+
+            .js & {
+                display: block; // we need JS for the timer
+            }
+        }
+
+        &.live {
+            background-image: url('/media/img/firefox/concerts/icon-live.svg');
+        }
+
+        &.ended {
+            background-image: url('/media/img/firefox/concerts/icon-ended.svg');
+        }
+    }
+
+    .stream-link {
+        margin-top: $spacing-lg;
+    }
+}
+
+.artist-featured {
+    .mzp-c-card-feature {
+        margin-bottom: $layout-xl;
+    }
+}
+
+.artist-next {
+    .mzp-c-card-feature.mzp-l-card-feature-right-half .mzp-c-card-feature-content {
+        align-items: start;
+    }
+}
+
+
+// Video
+.mzp-c-card-feature-media {
+    @include aspect-ratio(16, 9);
+
+    iframe {
+        height: 100%;
+        width: 100%;
+    }
+
+    .video-play {
+        display: block;
+
+        &:after {
+            background: url('/media/img/icons/video-play.svg') top left no-repeat;
+            content: '';
+            height: 100px;
+            left: 50%;
+            margin: -50px 0 0 -50px;
+            opacity: 0.7;
+            position: absolute;
+            top: 50%;
+            transition: opacity .2s ease-in-out, transform .2s ease-in-out;
+            width: 100px;
+            z-index: 2;
+        }
+
+        &:hover:after,
+        &:focus:after {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Firefox Accounts CTA
+
+.fxa-cta {
+    display: none;
+
+    .mzp-t-dark {
+        @include light-links;
+        color: $color-white;
+    }
+
+    .js & {
+        display: block; // We need JS for FxA
+    }
+
+    .mzp-c-card-feature-title {
+        @include text-display-md;
+    }
+
+    .mzp-c-card-feature-desc {
+        @include text-body-lg;
+        color: $color-white;
+        margin-bottom: $spacing-xl;
+    }
+
+    .agreement {
+        @include text-body-xs;
+    }
+
+    .signin {
+        @include text-body-sm;
+        text-align: center;
+    }
+
+    label {
+        @include visually-hidden;
+    }
+
+    input[type='email'] {
+        @include border-box;
+        @include text-body-md;
+        border-radius: 2px;
+        padding: ($spacing-md - 2px) ($spacing-xl - 2px); //2px extra padding removed to compensate for 2px border.
+        width: 100%;
+    }
+
+    .mzp-c-button {
+        width: 100%;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// For those outside the US
+
+.state-not-us {
+    .concert-content {
+        display: none;
+    }
+
+    .excluded-content {
+        display: block;
+    }
+}
+
+.excluded-content {
+    display: none;
+    margin-bottom: $layout-2xl;
+    text-align: center;
+
+    h2 {
+        @include text-display-md;
+    }
+
+    .excluded-intro {
+        @include text-body-lg;
+    }
+}
+
+// Newsletter form
+.mzp-c-newsletter {
+    @include bidi(((text-align, left, right),));
+    @include light-links;
+    display: block;
+    padding: 0;
+    max-width: $content-sm;
+
+    .mzp-c-newsletter-form {
+        padding: 0;
+    }
+
+    .mzp-c-newsletter-thanks {
+        padding: 0;
+
+        h3 {
+            @include text-display-sm;
+        }
+    }
+
+    input[type='email'] {
+        @include border-box;
+        @include text-body-md;
+        border-radius: 2px;
+        padding: ($spacing-md - 2px) ($spacing-xl - 2px); //2px extra padding removed to compensate for 2px border.
+        width: 100%;
+    }
+}
+
+.email-privacy {
+    display: none;
+
+    .mzp-c-modal-window & {
+        h3 {
+            display: none;
+        }
+    }
+}
+
+
+.conditional-content {
+    display: none;
+}
+
+// Show the form if signed out
+.not-verified .conditional-content.form-content {
+    display: block;
+}
+
+// Show the message if signed in
+.is-verified .conditional-content.verified-content {
+    display: block;
+}

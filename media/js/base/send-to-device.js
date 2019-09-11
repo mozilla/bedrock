@@ -5,23 +5,25 @@
 /* globals Spinner */
 
 // create namespace
-if (typeof Mozilla === 'undefined') {
-    var Mozilla = {};
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
 }
 
 (function($) {
     'use strict';
 
-    var SendToDevice = function() {
+    var SendToDevice = function(id) {
+
+        this.formId = typeof id !== 'undefined' ? '#' + id : '#send-to-device';
 
         this.formLoaded = false;
         this.formTimeout = null;
         this.smsEnabled = false;
 
-        this.$widget = $('#send-to-device');
-        this.$form = this.$widget.find('#send-to-device-form');
-        this.$formFields = this.$form.find('.input');
-        this.$input = this.$formFields.find('#id-input');
+        this.$widget = $(this.formId);
+        this.$form = this.$widget.find('.send-to-device-form');
+        this.$formFields = this.$form.find('.send-to-device-form-fields');
+        this.$input = this.$formFields.find('.send-to-device-input');
         this.$thankyou = this.$widget.find('.thank-you');
         this.$errorList = this.$form.find('.error-list');
         this.$spinnerTarget = this.$form.find('.loading-spinner');
@@ -132,7 +134,7 @@ if (typeof Mozilla === 'undefined') {
      * Updates the form fields to include SMS messaging
      */
     SendToDevice.prototype.showSMS = function() {
-        var $label = this.$formFields.find('#form-input-label');
+        var $label = this.$formFields.find('.form-input-label');
         this.$form.addClass('sms-country');
         $label.html($label.data('alt'));
         this.$input.attr('placeholder', this.$input.data('alt'));
@@ -256,7 +258,7 @@ if (typeof Mozilla === 'undefined') {
         this.$errorList.removeClass('hidden');
 
         if ($.inArray('platform', errors) !== -1) {
-            errorClass = '.platform';
+            errorClass = '.system';
         } else if (this.smsEnabled && $.inArray('number', errors) !== -1) {
             errorClass = '.sms';
         } else {

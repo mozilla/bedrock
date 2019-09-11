@@ -4,7 +4,7 @@
 
 {% from "macros.html" import google_play_button with context %}
 
-{% extends "firefox/base-pebbles.html" %}
+{% extends "firefox/base/base-pebbles.html" %}
 
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{_('Facebook Container for Firefox | Prevent Facebook from seeing what websites you visit.')}}{% endblock %}
@@ -25,7 +25,7 @@
     <div class="content">
 
       <div class="copy">
-        {{ high_res_img('logos/firefox/logo-quantum-wordmark-white.png', {'alt': '', 'width': '200', 'height': '75', 'class': 'firefox-logo'}) }}
+        {{ high_res_img('logos/firefox/logo-quantum-wordmark-white.png', {'alt': '', 'width': '225', 'height': '75', 'class': 'firefox-logo'}) }}
         <header>
           <h1 class="title" id="main-heading">
             {{ _('Facebook. Well contained. Keep the rest of your life to yourself.') }}
@@ -49,10 +49,10 @@
 
             <ul class="mobile-download-buttons">
               <li class="android">
-                {{ google_play_button(href=settings.GOOGLE_PLAY_FIREFOX_FOCUS_LINK, id='playStoreLink', product='Focus') }}
+                {{ google_play_button(href=focus_adjust_url('android', 'fb-container-page'), id='playStoreLink', product='Focus') }}
               </li>
               <li class="ios">
-                <a id="appStoreLink" href="{{ settings.APPLE_APPSTORE_FIREFOX_FOCUS_LINK }}" data-link-type="download" data-download-os="iOS">
+                <a id="appStoreLink" href="{{ focus_adjust_url('ios', 'fb-container-page') }}" data-link-type="download" data-download-os="iOS">
                   <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
                 </a>
               </li>

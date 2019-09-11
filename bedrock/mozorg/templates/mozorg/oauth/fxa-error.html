@@ -1,0 +1,17 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import fxa_email_form with context %}
+
+{% extends "base-pebbles.html" %}
+
+{% block page_title %}FxA OAuth Error Page{% endblock %}
+
+{% block content %}
+<main role="main">
+  <div class="content">
+    An error occurred!
+  </div>
+</main>
+{% endblock %}

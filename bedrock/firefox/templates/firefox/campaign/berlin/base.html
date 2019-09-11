@@ -1,0 +1,122 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/campaign" %}
+
+{% extends "firefox/base/base-pebbles.html" %}
+
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block page_title_prefix %}{% endblock %}
+{% block page_title %}{{_('Firefox – Dein Browser für Desktop, Smartphone und Tablet')}}{% endblock %}
+{% block page_desc %}{{_('Besser digital leben mit Firefox: Superschnell surfen, Top-Privatsphäre-Schutz und gut für das Netz. Weil Mozilla dahinter steht. Das Non-Profit für ein freies und offenes Internet — für alle Menschen.')}}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_campaign_berlin') }}
+{% endblock %}
+
+{% block body_id %}firefox{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main role="main">
+  <section class="intro content-section">
+    <div class="content">
+      <div class="copy">
+        <img class="logo" src="{{ static('img/firefox/new/berlin/firefox-logo-wordmark.png') }}" width="408" height="103" alt="Besser digital leben — mit Firefox" />
+        {% block head_content %}
+          <h1 id="main-heading">Zeit für <br />den Browser <br/>mit Herz.</h1>
+        {% endblock %}
+        <div class="secondary-content">
+          {% block secondary_content %}{% endblock %}
+          {% block primary_download_button %}{% endblock %}
+        </div>
+      </div>
+      {% block media %}{% endblock %}
+    </div>
+  </section>
+
+  {% block video %}
+  <section class="video content-section">
+    <div class="content">
+      <h2>Firefox. Aus Gründen.</h2>
+
+      <figure class="video-container">
+        <div class="video-placeholder">
+          <a class="video-play" href="https://youtu.be/ZazlpgSOGfM" data-id="ZazlpgSOGfM">
+            <img src="{{ static('img/firefox/new/berlin/video-placeholder.jpg') }}" width="1250" height="703" alt="Sehen Sie sich das Video an" />
+          </a>
+        </div>
+        <figcaption>
+          <p>
+            Wenn wir so viel darüber nachdenken, was gut für uns und die Welt
+            um uns herum ist, wieso machen wir uns dann nie Gedanken darüber,
+            wie wir online gehen? Entdecke jetzt den Browser mit Herz.
+            Gemeinsam mit uns.
+          </p>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+  {% endblock %}
+
+  {% block details %}
+  <section class="details content-section">
+    <div class="content">
+      <ul>
+        <li>
+          <h3>Gut für Dich</h3>
+          <p>
+            Offline achtest Du auf Dich, Deine Ernährung, die Umwelt … Doch online
+            lassen wir uns von Werbung verfolgen, geben leichtfertig unsere
+            Privatsphäre auf oder sind sogar Produkt. Passt das für Dich nicht so
+            richtig zusammen? Dann bring doch Dein Online- und Offline-Leben wieder
+            in Einklang – mit Firefox.
+          </p>
+        </li>
+        <li>
+          <h3>Gut für Deine Daten</h3>
+          <p>
+            Wir finden: Deine Daten gehören Dir. Daher ist der Privatsphäre-Schutz
+            von Firefox so viel stärker als bei anderen Browsern. Surfen in
+            Top-Geschwindigkeit natürlich inklusive. Übrigens: Browser wechseln
+            geht ebenfalls super einfach.
+          </p>
+        </li>
+        <li>
+          <h3>Gut für das Internet</h3>
+          <p>
+            Internet für Menschen statt für Profit: Firefox ist unabhängig und
+            Teil von Mozilla. Als Non-Profit kämpfen wir für ein freies Netz.
+            Von dem alle Menschen profitieren. Und nicht nur ein paar Tech-Riesen.
+            Dafür machen wir uns stark. Seit es uns gibt.
+          </p>
+        </li>
+      </ul>
+    </div>
+  </section>
+  {% endblock %}
+
+  {% block secondary_download %}
+  <section class="secondary-download content-section">
+    <div class="content">
+      <div class="download-contain">
+        <h2>Besser digital leben – mit Firefox.</h2>
+        <div class="download-button-wrapper">
+          {{ download_firefox(alt_copy='Jetzt herunterladen', locale_in_transition=true, dom_id="download-firefox-today", button_color='button-green') }}
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock %}
+</main>
+{% endblock %}
+
+{% block email_form %}{% endblock %}
+
+{# Bug 1381776 #}
+{% block update_notification %}{% endblock %}

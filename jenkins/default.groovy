@@ -22,26 +22,6 @@ stage ('Build Images') {
     }
 }
 
-if ( config.smoke_tests ) {
-    milestone()
-    stage ('Test Images') {
-        try {
-            parallel([
-                smoke_tests: utils.integrationTestJob('smoke'),
-                unit_tests: {
-                    node {
-                        unstash 'workspace'
-                        sh 'make test-ci'
-                    }
-                },
-            ])
-        } catch(err) {
-            utils.slackNotification([stage: 'Unit Test', status: 'failure'])
-            throw err
-        }
-    }
-}
-
 // test this way to default to true for undefined
 if ( config.push_public_registry != false ) {
     milestone()

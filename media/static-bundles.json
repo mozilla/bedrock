@@ -8,38 +8,21 @@
     },
     {
       "files": [
-        "css/mozorg/projects/mozilla-based.less"
-      ],
-      "name": "projects_mozilla_based"
-    },
-    {
-      "files": [
-        "css/base/mozilla-fxa-state.scss",
-        "css/firefox/accounts-features.scss"
-      ],
-      "name": "firefox_accounts_features"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-nightly.scss"
       ],
       "name": "nightly_whatsnew"
     },
     {
       "files": [
-        "css/base/mozilla-video-poster.less",
-        "css/newsletter/moznewsletter-subscribe.less",
-        "css/mozorg/mission.less"
+        "css/mozorg/locales.scss"
       ],
-      "name": "mission"
+      "name": "locales"
     },
     {
       "files": [
-        "css/base/notification-banner.less",
-        "css/firefox/firstrun/firstrun.less",
-        "css/base/mozilla-fxa-iframe.less"
+        "css/mozorg/mission.scss"
       ],
-      "name": "firefox_firstrun"
+      "name": "mission"
     },
     {
       "files": [
@@ -49,7 +32,8 @@
     },
     {
       "files": [
-        "css/sandstone/oldIE.less"
+        "css/sandstone/oldIE.less",
+        "css/sandstone/old-ie.scss"
       ],
       "name": "oldIE"
     },
@@ -68,17 +52,12 @@
     {
       "files": [
         "css/sandstone/sandstone-resp.less",
-        "css/base/global-nav.less",
         "css/base/notification-banner.less",
-        "css/tabzilla/tabzilla-static.less"
+        "css/tabzilla/tabzilla-static.less",
+        "css/sandstone/protocol-nav.scss",
+        "css/sandstone/protocol-footer.scss"
       ],
       "name": "responsive"
-    },
-    {
-      "files": [
-        "css/mozorg/itu.less"
-      ],
-      "name": "itu"
     },
     {
       "files": [
@@ -108,25 +87,16 @@
     },
     {
       "files": [
-        "css/base/menu-resp.less",
-        "css/firefox/releasenotes.less"
+        "css/firefox/system-requirements.scss"
       ],
-      "name": "firefox_releasenotes"
+      "name": "firefox_system_requirements"
     },
     {
       "files": [
-        "css/base/menu-resp.less",
         "css/base/mozilla-modal.less",
         "css/firefox/installer-help.less"
       ],
       "name": "installer_help"
-    },
-    {
-      "files": [
-        "css/firefox/developer/developer.scss",
-        "css/firefox/developer/firstrun.scss"
-      ],
-      "name": "firefox_developer_quantum_firstrun"
     },
     {
       "files": [
@@ -136,16 +106,15 @@
     },
     {
       "files": [
-        "css/base/social-widgets.less",
-        "css/mozorg/contribute/studentambassadors/landing.less"
+        "css/mozorg/participation-reporting.scss"
       ],
-      "name": "contribute-studentambassadors-landing"
+      "name": "participation-reporting"
     },
     {
       "files": [
-        "css/firefox/new/berlin-variation.scss"
+        "css/firefox/campaign/berlin-variation.scss"
       ],
-      "name": "firefox_new_berlin_variation"
+      "name": "firefox_campaign_berlin_variation"
     },
     {
       "files": [
@@ -155,16 +124,9 @@
     },
     {
       "files": [
-        "css/base/menu-resp.less",
-        "css/firefox/releases-index.less"
+        "css/firefox/releases-index.scss"
       ],
       "name": "firefox_releases_index"
-    },
-    {
-      "files": [
-        "css/mozorg/mpl.less"
-      ],
-      "name": "mpl"
     },
     {
       "files": [
@@ -172,20 +134,6 @@
         "css/foundation/annual2012.less"
       ],
       "name": "annual_2012"
-    },
-    {
-      "files": [
-        "css/base/mozilla-share-cta.less",
-        "css/firefox/feedback.less"
-      ],
-      "name": "firefox_feedback"
-    },
-    {
-      "files": [
-        "css/base/mozilla-fxa-state.scss",
-        "css/firefox/features/sync.scss"
-      ],
-      "name": "firefox-features-sync"
     },
     {
       "files": [
@@ -213,7 +161,7 @@
     },
     {
       "files": [
-        "css/grants/grants.less"
+        "css/grants/grants.scss"
       ],
       "name": "grants"
     },
@@ -226,37 +174,60 @@
     },
     {
       "files": [
+        "css/firefox/new/trailhead/download.scss"
+      ],
+      "name": "firefox_new_download"
+    },
+    {
+      "files": [
+        "css/firefox/new/trailhead/thanks.scss"
+      ],
+      "name": "firefox_new_thanks"
+    },
+    {
+      "files": [
+        "css/base/mozilla-fxa-form.scss",
         "css/firefox/new/scene1.scss"
       ],
       "name": "firefox_new_scene1"
     },
     {
       "files": [
-        "css/base/mozilla-fxa-state.scss",
-        "css/base/mozilla-fxa-form.scss",
         "css/firefox/new/scene1.scss",
-        "css/firefox/new/scene1-fx.scss"
+        "css/firefox/new/yandex-scene1.scss"
       ],
-      "name": "firefox_new_fx_scene1"
-    },
-    {
-        "files": [
-          "css/firefox/new/scene1.scss",
-          "css/firefox/new/yandex-scene1.scss"
-        ],
-        "name": "firefox_new_scene1_yandex"
+      "name": "firefox_new_scene1_yandex"
     },
     {
       "files": [
-        "css/firefox/new/compare.scss"
+        "css/firefox/new/scene1.scss",
+        "css/firefox/new/scene1_gb_de.scss"
       ],
-      "name": "firefox_new_compare"
+      "name": "firefox_new_scene1_gb_de"
+    },
+    {
+      "files": [
+        "css/firefox/campaign/compare.scss"
+      ],
+      "name": "firefox_campaign_compare"
     },
     {
       "files": [
         "css/firefox/recommended.scss"
       ],
       "name": "firefox_recommended"
+    },
+    {
+      "files": [
+        "css/firefox/campaign/campaign.scss"
+      ],
+      "name": "firefox_campaign"
+    },
+    {
+      "files": [
+        "css/firefox/campaign/download.scss"
+      ],
+      "name": "firefox_campaign_trailhead"
     },
     {
       "files": [
@@ -269,12 +240,6 @@
         "css/firefox/testflight.less"
       ],
       "name": "firefox_ios_testflight"
-    },
-    {
-      "files": [
-        "css/firefox/new/reggie-watts.scss"
-      ],
-      "name": "firefox_new_reggie_watts"
     },
     {
       "files": [
@@ -330,7 +295,9 @@
     },
     {
       "files": [
-        "css/pebbles/global.scss"
+        "css/pebbles/global.scss",
+        "css/pebbles/protocol-nav.scss",
+        "css/pebbles/protocol-footer.scss"
       ],
       "name": "pebbles"
     },
@@ -342,14 +309,8 @@
     },
     {
       "files": [
-        "css/newsletter/moznewsletter-subscribe.less",
-        "css/mozorg/contribute/taskview.less"
-      ],
-      "name": "contribute-taskview"
-    },
-    {
-      "files": [
-        "css/mozorg/home/home-2018.scss"
+        "css/mozorg/home/home-2018.scss",
+        "css/mozorg/home/fundraiser.scss"
       ],
       "name": "home-2018"
     },
@@ -382,7 +343,8 @@
     {
       "files": [
         "css/base/mozilla-modal.less",
-        "css/base/notification-modal.less"
+        "css/base/notification-modal.less",
+        "css/base/notification-banner.less"
       ],
       "name": "firefox-update-notification-firstrun-whatsnew"
     },
@@ -408,6 +370,12 @@
     },
     {
       "files": [
+        "css/foundation/annual2017.scss"
+      ],
+      "name": "annual_2017"
+    },
+    {
+      "files": [
         "css/base/mozilla-accordion.less"
       ],
       "name": "mozilla_accordion"
@@ -421,16 +389,21 @@
     },
     {
       "files": [
-        "css/newsletter/moznewsletter-subscribe.less",
-        "css/foundation/foundation.less"
+        "css/foundation/feed-icon-guidelines.scss"
       ],
-      "name": "foundation"
+      "name": "foundation-feed-icon-guidelines"
     },
     {
       "files": [
         "css/pebbles/basic.scss"
       ],
       "name": "pebbles-basic"
+    },
+    {
+      "files": [
+        "css/protocol/basic-article.scss"
+      ],
+      "name": "basic-article"
     },
     {
       "files": [
@@ -441,13 +414,8 @@
     },
     {
       "files": [
-        "css/firefox/firstrun/firstrun-facebook-container.scss"
-      ],
-      "name": "firefox_firstrun_facebook_container"
-    },
-    {
-      "files": [
-        "css/firefox/election.scss"
+        "css/firefox/election.scss",
+        "css/base/mozilla-lazy-image.scss"
       ],
       "name": "firefox_election"
     },
@@ -465,19 +433,6 @@
     },
     {
       "files": [
-        "css/mozorg/contribute/signup.less"
-      ],
-      "name": "contribute-signup"
-    },
-    {
-      "files": [
-        "css/firefox/developer/developer.scss",
-        "css/firefox/developer/whatsnew.scss"
-      ],
-      "name": "firefox_developer_quantum_whatsnew"
-    },
-    {
-      "files": [
         "css/mozorg/about-patents.scss",
         "css/base/mozilla-accordion.less"
       ],
@@ -485,23 +440,16 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-rocket.scss"
+        "css/protocol/components/send-to-device.scss",
+        "css/firefox/whatsnew/whatsnew-lite.scss"
       ],
-      "name": "firefox-whatsnew-rocket"
+      "name": "firefox-whatsnew-lite"
     },
     {
       "files": [
-        "css/base/mozilla-video-poster.less",
-        "css/newsletter/moznewsletter-subscribe.less",
-        "css/mozorg/about.less"
+        "css/mozorg/about.scss"
       ],
       "name": "about"
-    },
-    {
-      "files": [
-        "css/mozorg/about-en.scss"
-      ],
-      "name": "about-en"
     },
     {
       "files": [
@@ -523,19 +471,13 @@
     },
     {
       "files": [
-        "css/mozorg/contribute/friends.less"
-      ],
-      "name": "contribute-friends"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew.scss"
       ],
       "name": "firefox_whatsnew"
     },
     {
       "files": [
-        "css/firefox/nightly_firstrun.less"
+        "css/firefox/nightly-firstrun.scss"
       ],
       "name": "nightly_firstrun"
     },
@@ -553,63 +495,51 @@
     },
     {
       "files": [
-        "css/firefox/home-fbvideochat-funnelcake.scss"
-      ],
-      "name": "firefox-home-fbvideochat-funnelcake"
-    },
-    {
-      "files": [
-        "css/mozorg/history-slides.less"
-      ],
-      "name": "history-slides"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-60.scss"
-      ],
-      "name": "firefox_whatsnew_60"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-61.scss"
-      ],
-      "name": "firefox_whatsnew_61"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-62.scss"
-      ],
-      "name": "firefox_whatsnew_62"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-63.scss"
       ],
       "name": "firefox_whatsnew_63"
     },
     {
       "files": [
-        "css/mozorg/commit-access-policy.less"
+        "css/firefox/whatsnew/whatsnew-64.scss"
       ],
-      "name": "commit-access-policy"
+      "name": "firefox_whatsnew_64"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-65.scss"
+      ],
+      "name": "firefox_whatsnew_65"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-66.scss"
+      ],
+      "name": "firefox_whatsnew_66"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-67.scss"
+      ],
+      "name": "firefox_whatsnew_67"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-67.0.5.scss"
+      ],
+      "name": "firefox_whatsnew_67.0.5"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-69.scss"
+      ],
+      "name": "firefox_whatsnew_69"
     },
     {
       "files": [
         "css/mozorg/contribute/contribute-embed.less"
       ],
       "name": "contribute-embed"
-    },
-    {
-      "files": [
-        "css/mozorg/about-base.less"
-      ],
-      "name": "about-base-resp"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-57.scss"
-      ],
-      "name": "firefox-whatsnew-57"
     },
     {
       "files": [
@@ -624,16 +554,10 @@
       "name": "privacy_email"
     },
     {
-        "files": [
-          "css/firefox/new/better-browser.scss"
-        ],
-        "name": "firefox_new_better_browser"
-    },
-    {
       "files": [
-        "css/firefox/new/wait-face.scss"
+        "css/firefox/campaign/better-browser.scss"
       ],
-      "name": "firefox_new_wait_face"
+      "name": "firefox_campaign_better_browser"
     },
     {
       "files": [
@@ -661,15 +585,8 @@
     },
     {
       "files": [
-        "css/base/mozilla-fxa-iframe.scss",
-        "css/firefox/whatsnew/whatsnew-fxa.scss"
-      ],
-      "name": "firefox_whatsnew_fxa"
-    },
-    {
-      "files": [
-        "css/firefox/firstrun/firstrun-quantum.scss",
-        "css/base/mozilla-fxa-iframe.scss"
+        "css/base/mozilla-fxa-form.scss",
+        "css/firefox/firstrun/firstrun.scss"
       ],
       "name": "firefox_firstrun_quantum"
     },
@@ -682,11 +599,22 @@
     {
       "files": [
         "css/base/mozilla-share-cta.less",
-        "css/base/menu-resp.less",
         "css/newsletter/fxnewsletter-subscribe.less",
-        "css/firefox/all.less"
+        "css/firefox/all/all.less"
       ],
       "name": "firefox_all"
+    },
+    {
+      "files": [
+        "css/firefox/all/all-unified.scss"
+      ],
+      "name": "firefox_all_unified"
+    },
+    {
+      "files": [
+        "css/firefox/all/all-unified-old-ie.scss"
+      ],
+      "name": "firefox_all_unified_old_ie"
     },
     {
       "files": [
@@ -696,10 +624,10 @@
     },
     {
       "files": [
-        "css/firefox/new/berlin.scss",
-        "css/firefox/new/berlin-aus-gruenden.scss"
+        "css/firefox/campaign/berlin.scss",
+        "css/firefox/campaign/berlin-aus-gruenden.scss"
       ],
-      "name": "firefox_new_berlin_aus_gruenden"
+      "name": "firefox_campaign_berlin_aus_gruenden"
     },
     {
       "files": [
@@ -709,8 +637,7 @@
     },
     {
       "files": [
-        "css/base/menu-resp.less",
-        "css/firefox/unsupported-systems.less"
+        "css/firefox/unsupported-systems.scss"
       ],
       "name": "firefox_unsupported_systems"
     },
@@ -735,21 +662,10 @@
     },
     {
       "files": [
-        "css/firefox/home.scss"
+        "css/firefox/home/home.scss",
+        "css/base/mozilla-lazy-image.scss"
       ],
       "name": "firefox-home"
-    },
-    {
-      "files": [
-        "css/firefox/home-pre-download.scss"
-      ],
-      "name": "firefox-home-pre-download"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-57-letter.scss"
-      ],
-      "name": "firefox-whatsnew-57-letter"
     },
     {
       "files": [
@@ -759,27 +675,33 @@
     },
     {
       "files": [
-        "css/firefox/enterprise.scss"
+        "css/firefox/enterprise/landing.scss"
       ],
-      "name": "firefox_enterprise"
+      "name": "firefox-enterprise"
     },
     {
       "files": [
-        "css/firefox/releasenotes-firefox.less"
+        "css/firefox/enterprise/signup.scss"
       ],
-      "name": "firefox_releasenotes_firefox"
+      "name": "firefox-enterprise-signup"
     },
     {
       "files": [
-        "css/firefox/new/berlin.scss"
+        "css/firefox/enterprise/sla.scss"
       ],
-      "name": "firefox_new_berlin"
+      "name": "firefox-enterprise-sla"
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-zh-tw.scss"
+        "css/firefox/releasenotes.scss"
       ],
-      "name": "firefox_whatsnew_zh_tw"
+      "name": "firefox_releasenotes"
+    },
+    {
+      "files": [
+        "css/firefox/campaign/berlin.scss"
+      ],
+      "name": "firefox_campaign_berlin"
     },
     {
       "files": [
@@ -829,16 +751,24 @@
     {
       "files": [
         "css/base/mozilla-fxa-state.scss",
-        "css/base/mozilla-fxa-form.scss",
         "css/firefox/accounts.scss"
       ],
       "name": "firefox_accounts"
     },
     {
       "files": [
-        "css/privacy/fb-privacy.less"
+        "css/base/mozilla-fxa-state.scss",
+        "css/base/mozilla-fxa-form.scss",
+        "css/firefox/accounts-2019.scss"
       ],
-      "name": "fb_privacy"
+      "name": "firefox_accounts_2019"
+    },
+    {
+      "files": [
+        "css/base/mozilla-fxa-state.scss",
+        "css/firefox/concerts.scss"
+      ],
+      "name": "firefox_concert_series"
     },
     {
       "files": [
@@ -854,28 +784,9 @@
     },
     {
       "files": [
-        "css/mozorg/internet-health.scss"
+        "css/firefox/fights-for-you.scss"
       ],
-      "name": "internet-health"
-    },
-    {
-      "files": [
-        "css/firefox/organizations.less"
-      ],
-      "name": "firefox_organizations"
-    },
-    {
-      "files": [
-        "css/base/mozilla-modal.less",
-        "css/firefox/dev-firstrun.less"
-      ],
-      "name": "firefox_developer_firstrun"
-    },
-    {
-      "files": [
-        "css/firefox/new/portland.scss"
-      ],
-      "name": "firefox_new_portland"
+      "name": "fights-for-you"
     },
     {
       "files": [
@@ -886,7 +797,7 @@
     },
     {
       "files": [
-        "css/mozorg/commit-access-requirements.less"
+        "css/mozorg/commit-access-requirements.scss"
       ],
       "name": "commit-access-requirements"
     },
@@ -898,17 +809,51 @@
     },
     {
       "files": [
-        "css/base/mozilla-fxa-state.scss",
-        "css/base/mozilla-fxa-form.scss",
-        "css/firefox/profile-per-install.scss"
-      ],
-      "name": "profile_per_install"
-    },
-    {
-      "files": [
         "css/firefox/features/adblocker.scss"
       ],
       "name": "adblocker"
+    },
+    {
+      "files": [
+        "css/mozorg/what-is-a-browser.scss"
+      ],
+      "name": "what-is-a-browser"
+    },
+    {
+      "files": [
+        "css/mozorg/update-browser.scss"
+      ],
+      "name": "update-browser"
+    },
+    {
+      "files": [
+        "css/mozorg/incognito-browser.scss"
+      ],
+      "name": "incognito-browser"
+    },
+    {
+      "files": [
+        "css/mozorg/browser-history.scss"
+      ],
+      "name": "browser-history"
+    },
+    {
+      "files": [
+        "css/firefox/windows-64-bit.scss"
+      ],
+      "name": "windows-64-bit"
+    },
+    {
+      "files": [
+        "css/firefox/features/safebrowser.scss"
+      ],
+      "name": "safebrowser"
+    },
+    {
+      "files": [
+        "css/firefox/bestbrowser.scss"
+      ],
+      "name": "bestbrowser"
     }
   ],
   "js": [
@@ -921,9 +866,9 @@
     {
       "files": [
         "js/firefox/new/variation-scene1.js",
-        "js/firefox/new/berlin-scene1-variation.js"
+        "js/firefox/campaign/berlin-scene1-variation.js"
       ],
-      "name": "firefox_new_scene1_berlin_variation"
+      "name": "firefox_campaign_scene1_berlin_variation"
     },
     {
       "files": [
@@ -934,24 +879,17 @@
     },
     {
       "files": [
+        "protocol/js/protocol-modal.js",
+        "js/firefox/fights-for-you.js"
+      ],
+      "name": "fights-for-you"
+    },
+    {
+      "files": [
         "js/base/mozilla-notification-banner.js",
         "js/base/mozilla-notification-banner-init.js"
       ],
       "name": "firefox-update-notification"
-    },
-    {
-      "files": [
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js"
-      ],
-      "name": "firefox_accounts-features"
-    },
-    {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/accounts-features-experiment.js"
-      ],
-      "name": "firefox_accounts_features_experiment"
     },
     {
       "files": [
@@ -973,43 +911,9 @@
     },
     {
       "files": [
-        "js/base/mozilla-fxa-iframe.js",
-        "js/firefox/firstrun/firstrun.js"
-      ],
-      "name": "firefox_firstrun"
-    },
-    {
-      "files": [
         "js/firefox/new/variation-scene1.js"
       ],
       "name": "firefox_new_scene1_variation"
-    },
-    {
-      "files": [
-        "js/base/mozilla-fxa-iframe.js",
-        "js/base/send-to-device.js",
-        "js/firefox/whatsnew/whatsnew-60.js"
-      ],
-      "name": "firefox_whatsnew_60"
-    },
-    {
-      "files": [
-        "js/base/mozilla-fxa-iframe.js",
-        "js/base/send-yourself.js",
-        "js/firefox/whatsnew/whatsnew-61.js",
-        "js/firefox/whatsnew/whatsnew-61-init.js"
-      ],
-      "name": "firefox_whatsnew_61"
-    },
-    {
-      "files": [
-        "js/base/mozilla-fxa-iframe.js",
-        "js/libs/spin.min.js",
-        "js/base/send-yourself.js",
-        "js/firefox/whatsnew/whatsnew-62.js",
-        "js/firefox/whatsnew/whatsnew-62-init.js"
-      ],
-      "name": "firefox_whatsnew_62"
     },
     {
       "files": [
@@ -1017,9 +921,161 @@
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-form-init.js",
         "js/firefox/whatsnew/whatsnew-63.js"
       ],
       "name": "firefox_whatsnew_63"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "protocol/js/protocol-modal.js",
+        "js/firefox/whatsnew/whatsnew-64.js"
+      ],
+      "name": "firefox_whatsnew_64"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-form-init.js",
+        "js/firefox/whatsnew/whatsnew-65.js"
+      ],
+      "name": "firefox_whatsnew_65"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-newsletter.js",
+        "js/newsletter/form-protocol.js"
+      ],
+      "name": "firefox_whatsnew_65_newsletter"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-form-init.js",
+        "protocol/js/protocol-modal.js",
+        "js/firefox/whatsnew/whatsnew-66.js"
+      ],
+      "name": "firefox_whatsnew_66"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-form-init.js",
+        "protocol/js/protocol-modal.js",
+        "js/firefox/whatsnew/whatsnew-67.js"
+      ],
+      "name": "firefox_whatsnew_67"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-monitor-button.js",
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/firefox/whatsnew/account-conditional-ctas.js"
+      ],
+      "name": "firefox_whatsnew_67.0.5"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-monitor-button.js",
+        "js/base/mozilla-monitor-button-init.js",
+        "js/firefox/whatsnew/up-to-date.js"
+      ],
+      "name": "firefox_whatsnew_68E_monitor"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/base/mozilla-client.js",
+        "js/firefox/whatsnew/experiment-whatsnew-68-enUS.js"
+      ],
+      "name": "experiment-whatsnew-68-enUS"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/base/mozilla-client.js",
+        "js/firefox/whatsnew/experiment-whatsnew-68-enCA.js"
+      ],
+      "name": "experiment-whatsnew-68-enCA"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/base/mozilla-client.js",
+        "js/firefox/whatsnew/experiment-whatsnew-68-enGB.js"
+      ],
+      "name": "experiment-whatsnew-68-enGB"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/base/mozilla-client.js",
+        "js/firefox/whatsnew/experiment-whatsnew-68-fr.js"
+      ],
+      "name": "experiment-whatsnew-68-fr"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/base/mozilla-client.js",
+        "js/firefox/whatsnew/experiment-whatsnew-68-de.js"
+      ],
+      "name": "experiment-whatsnew-68-de"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/experiment-variation-whatsnew-68.js"
+      ],
+      "name": "experiment-variation-whatsnew-68"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-monitor-button.js",
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/firefox/whatsnew/whatsnew-69.js"
+      ],
+      "name": "firefox_whatsnew_69"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-modal.js",
+        "js/firefox/new/trailhead/download.js"
+      ],
+      "name": "firefox_new_download"
+    },
+    {
+      "files": [
+        "js/firefox/new/trailhead/join-modal.js"
+      ],
+      "name": "firefox_new_download_join_modal"
+    },
+    {
+      "files": [
+        "js/firefox/new/scene2.js"
+      ],
+      "name": "firefox_new_thanks"
     },
     {
       "files": [
@@ -1030,42 +1086,19 @@
     },
     {
       "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/base/mozilla-client.js",
-        "js/firefox/new/scene1-fx-experiment.js"
+        "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-form-init.js",
+        "js/firefox/new/scene1_fxa_modal.js"
       ],
-      "name": "firefox_new_scene1_fx_experiment"
-    },
-    {
-      "files": [
-        "js/firefox/new/scene1-fx-experiment-y.js"
-      ],
-      "name": "firefox_new_scene1_fx_experiment_y"
-    },
-    {
-      "files": [
-        "js/firefox/new/scene1-fx-experiment-x.js"
-      ],
-      "name": "firefox_new_scene1_fx_experiment_x"
+      "name": "firefox_new_scene1_fxa_modal"
     },
     {
       "files": [
         "js/base/mozilla-modal.js",
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-form.js",
-        "js/firefox/new/scene1.js",
-        "js/firefox/new/variation-scene1.js"
+        "js/firefox/new/yandex/scene1.js",
+        "js/firefox/new/yandex/scene1-init.js"
       ],
-      "name": "firefox_new_fx_scene1"
-    },
-    {
-        "files": [
-          "js/base/mozilla-modal.js",
-          "js/firefox/new/yandex/scene1.js",
-          "js/firefox/new/yandex/scene1-init.js"
-        ],
-        "name": "firefox_new_scene1_yandex"
+      "name": "firefox_new_scene1_yandex"
     },
     {
       "files": [
@@ -1097,20 +1130,35 @@
     },
     {
       "files": [
+        "js/base/stub-attribution.js",
+        "js/base/stub-attribution-custom.js"
+      ],
+      "name": "stub-attribution-custom"
+    },
+    {
+      "files": [
+        "js/base/stub-attribution-macos.js",
+        "js/base/stub-attribution-macos-init.js"
+      ],
+      "name": "stub-attribution-macos"
+    },
+    {
+      "files": [
         "protocol/js/protocol-modal.js",
         "protocol/js/protocol-newsletter.js",
         "js/base/mozilla-lazy-load.js",
         "js/libs/jquery.waypoints.min.js",
         "js/newsletter/form-protocol.js",
+        "js/mozorg/home/youtube.js",
         "js/mozorg/home/home.js"
       ],
       "name": "home"
     },
     {
       "files": [
-        "js/libs/matchMedia.addListener.js"
+        "js/mozorg/home/fundraiser.js"
       ],
-      "name": "matchmedia_addlistener"
+      "name": "home-fundraiser"
     },
     {
       "files": [
@@ -1124,7 +1172,7 @@
     },
     {
       "files": [
-        "js/libs/jquery-3.2.1.min.js",
+        "js/libs/jquery-3.4.1.min.js",
         "js/base/uitour-lib.js",
         "js/firefox/tracking-protection-tour.js",
         "js/firefox/tracking-protection-tour-init.js"
@@ -1139,12 +1187,6 @@
     },
     {
       "files": [
-        "js/firefox/facebook-container-funnelcake.js"
-      ],
-      "name": "firefox_facebook_container_funnelcake"
-    },
-    {
-      "files": [
         "js/libs/jquery.waypoints.min.js",
         "js/libs/jquery.waypoints-sticky.min.js",
         "js/hubs/sub-nav.js",
@@ -1156,25 +1198,20 @@
     },
     {
       "files": [
-        "js/privacy/privacy-quantum.js"
+        "protocol/js/protocol-sidemenu.js",
+        "js/base/mozilla-article.js",
+        "js/privacy/privacy-protocol.js"
       ],
-      "name": "privacy_quantum"
+      "name": "privacy_protocol"
     },
     {
       "files": [
         "protocol/js/protocol-newsletter.js",
         "js/newsletter/form-protocol.js",
         "js/base/mozilla-lazy-load.js",
-        "js/mozorg/about-en.js"
+        "js/mozorg/about.js"
       ],
-      "name": "about-en"
-    },
-    {
-      "files": [
-        "js/base/mozilla-video-poster.js",
-        "js/mozorg/about-video.js"
-      ],
-      "name": "about_video"
+      "name": "about"
     },
     {
       "files": [
@@ -1184,13 +1221,6 @@
         "js/mozorg/contribute/contribute-landing.js"
       ],
       "name": "contribute-landing"
-    },
-    {
-      "files": [
-        "js/base/mozilla-svg-image-fallback.js",
-        "js/mozorg/contribute/friends.js"
-      ],
-      "name": "contribute-friends"
     },
     {
       "files": [
@@ -1214,40 +1244,10 @@
     },
     {
       "files": [
-        "js/libs/jquery.waypoints.min.js",
-        "js/libs/jquery.waypoints-sticky.min.js",
-        "js/firefox/releasenotes.js"
-      ],
-      "name": "releasenotes"
-    },
-    {
-      "files": [
-        "js/firefox/new/variation-scene1.js",
-        "js/firefox/new/portland-scene1.js"
-      ],
-      "name": "firefox_new_scene1_portland"
-    },
-    {
-      "files": [
-        "js/libs/jquery.sequence.js",
-        "js/mozorg/history-slides.js"
-      ],
-      "name": "history-slides"
-    },
-    {
-      "files": [
         "js/base/uitour-lib.js",
         "js/privacy/privacy-firefox.js"
       ],
       "name": "privacy_firefox"
-    },
-    {
-      "files": [
-        "js/base/uitour-lib.js",
-        "js/base/mozilla-fxa-iframe.js",
-        "js/firefox/whatsnew/whatsnew-fxa.js"
-      ],
-      "name": "firefox_whatsnew_fxa"
     },
     {
       "files": [
@@ -1256,34 +1256,6 @@
         "js/mozorg/about-transparency.js"
       ],
       "name": "about-transparency"
-    },
-    {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/new/compare-edge-experiment.js"
-      ],
-      "name": "firefox_new_compare_edge_experiment"
-    },
-    {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/new/compare-safari-experiment.js"
-      ],
-      "name": "firefox_new_compare_safari_experiment"
-    },
-    {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/new/compare-chrome-experiment.js"
-      ],
-      "name": "firefox_new_compare_chrome_experiment"
-    },
-    {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/new/compare-opera-experiment.js"
-      ],
-      "name": "firefox_new_compare_opera_experiment"
     },
     {
       "files": [
@@ -1306,32 +1278,10 @@
         "js/libs/jquery.waypoints.min.js",
         "js/libs/jquery.waypoints-sticky.min.js",
         "js/hubs/sub-nav.js",
-        "js/base/mozilla-smoothscroll.js",
-        "js/base/mozilla-video-poster.js",
-        "js/firefox/home/features-scroller.js",
+        "js/base/mozilla-lazy-load.js",
         "js/firefox/home/main.js"
       ],
       "name": "firefox-home"
-    },
-    {
-      "files": [
-         "js/firefox/home/pre-download-a-ga.js"
-      ],
-      "name": "firefox-home-pre-download-a-ga"
-    },
-    {
-      "files": [
-        "js/base/mozilla-modal.js",
-        "js/firefox/home/pre-download-newsletter.js"
-      ],
-      "name": "firefox-home-pre-download-newsletter"
-    },
-    {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/home/experiment-pre-download.js"
-      ],
-      "name": "experiment-firefox-home-pre-download"
     },
     {
       "files": [
@@ -1377,13 +1327,6 @@
     },
     {
       "files": [
-        "js/libs/jquery.validate.js",
-        "js/legal/fraud-report.js"
-      ],
-      "name": "legal_fraud_report"
-    },
-    {
-      "files": [
         "js/libs/jquery.waypoints.min.js",
         "js/libs/jquery.waypoints-sticky.min.js",
         "js/hubs/sub-nav.js",
@@ -1391,19 +1334,6 @@
         "js/mozorg/internet-health/health-subpage.js"
       ],
       "name": "internet-health-subpage"
-    },
-    {
-      "files": [
-        "js/base/mozilla-modal.js",
-        "js/firefox/dev-whatsnew.js"
-      ],
-      "name": "firefox_developer_whatsnew"
-    },
-    {
-      "files": [
-        "js/firefox/home/fbvideochat-funnelcake.js"
-      ],
-      "name": "firefox-home-fbvideochat-funnelcake"
     },
     {
       "files": [
@@ -1417,32 +1347,6 @@
         "js/mozorg/about-leadership.js"
       ],
       "name": "about-leadership"
-    },
-    {
-      "files": [
-        "js/base/mozilla-share-cta.js"
-      ],
-      "name": "firefox_feedback"
-    },
-    {
-      "files": [
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js"
-      ],
-      "name": "firefox-features-sync"
-    },
-    {
-      "files": [
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js"
-      ],
-      "name": "firefox_accounts_features"
-    },
-    {
-      "files": [
-        "js/mozorg/contribute/signup.js"
-      ],
-      "name": "contribute-signup"
     },
     {
       "files": [
@@ -1465,31 +1369,46 @@
     },
     {
       "files": [
-        "js/libs/jquery.waypoints.min.js",
-        "js/libs/jquery.waypoints-sticky.min.js",
-        "js/hubs/sub-nav.js"
+        "protocol/js/protocol-newsletter.js",
+        "js/newsletter/form-protocol.js"
       ],
       "name": "firefox_developer"
     },
     {
       "files": [
+        "protocol/js/protocol-modal.js",
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-form.js"
+        "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-form-init.js",
+        "js/firefox/accounts.js"
       ],
       "name": "firefox_accounts"
     },
     {
       "files": [
-        "js/mozorg/contribute/taskview.js"
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-monitor-button.js",
+        "js/firefox/accounts-2019.js"
       ],
-      "name": "contribute-taskview"
+      "name": "firefox_accounts_2019"
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
-        "js/base/mozilla-fxa-iframe.js",
-        "js/firefox/firstrun/firstrun_quantum.js"
+        "protocol/js/protocol-modal.js",
+        "protocol/js/protocol-newsletter.js",
+        "js/newsletter/form-protocol.js",
+        "js/firefox/concerts.js",
+        "js/firefox/concerts-init.js"
+      ],
+      "name": "firefox_concert_series"
+    },
+    {
+      "files": [
+        "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-form-init.js"
       ],
       "name": "firefox_firstrun_quantum"
     },
@@ -1504,17 +1423,26 @@
     {
       "files": [
         "js/firefox/new/variation-scene1.js",
-        "js/firefox/new/berlin-scene1.js"
+        "js/firefox/campaign/berlin-scene1.js"
       ],
-      "name": "firefox_new_scene1_berlin"
+      "name": "firefox_campaign_scene1_berlin"
     },
     {
       "files": [
         "js/base/mozilla-share-cta.js",
         "js/base/mozilla-pager.js",
-        "js/firefox/all-downloads.js"
+        "js/firefox/all/all-downloads.js"
       ],
       "name": "firefox_all"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-modal.js",
+        "protocol/js/protocol-sidemenu.js",
+        "js/firefox/all/all-downloads-unified.js",
+        "js/firefox/all/all-downloads-unified-init.js"
+      ],
+      "name": "firefox_all_unified"
     },
     {
       "files": [
@@ -1546,6 +1474,15 @@
     },
     {
       "files": [
+        "js/base/send-to-device.js",
+        "js/libs/spin.min.js",
+        "js/base/uitour-lib.js",
+        "js/firefox/whatsnew/whatsnew-id.js"
+      ],
+      "name": "whatsnew_lite"
+    },
+    {
+      "files": [
         "js/privacy/privacy.js"
       ],
       "name": "privacy"
@@ -1560,47 +1497,61 @@
     },
     {
       "files": [
-        "js/base/mozilla-modal.js",
-        "js/firefox/dev-firstrun.js"
-      ],
-      "name": "firefox_developer_firstrun"
-    },
-    {
-      "files": [
-        "js/libs/jquery-3.2.1.min.js",
+        "js/libs/jquery-3.4.1.min.js",
         "js/libs/spin.min.js",
         "js/base/mozilla-utils.js",
         "js/newsletter/form.js",
         "js/base/mozilla-client.js",
-        "js/base/mozilla-image-helper.js",
-        "js/base/nav-main-resp.js",
         "js/base/class-list-polyfill.js",
-        "js/base/mozilla-global-nav.js",
+        "protocol/js/protocol-supports.js",
+        "protocol/js/protocol-utils.js",
+        "protocol/js/protocol-menu.js",
+        "protocol/js/protocol-navigation.js",
+        "js/base/protocol/init-navigation.js",
+        "protocol/js/protocol-lang-switcher.js",
+        "js/base/protocol/init-lang-switcher.js",
+        "protocol/js/protocol-details.js",
+        "protocol/js/protocol-footer.js",
         "js/base/base-page-init.js",
         "js/base/core-datalayer.js",
         "js/base/core-datalayer-init.js",
-        "js/base/search-params.js"
+        "js/base/search-params.js",
+        "js/base/fxa-utm-referral.js"
       ],
       "name": "common"
     },
     {
-        "files": [
-            "js/libs/jquery-3.2.1.min.js",
-            "protocol/js/protocol-lang-switcher.js",
-            "js/base/protocol/init-lang-switcher.js",
-            "js/base/mozilla-utils.js",
-            "js/base/mozilla-client.js",
-            "js/base/mozilla-image-helper.js",
-            "js/base/nav-main-resp.js",
-            "js/base/class-list-polyfill.js",
-            "js/base/mozilla-global-nav.js",
-            "js/base/base-page-init.js",
-            "js/base/core-datalayer.js",
-            "js/base/core-datalayer-init.js",
-            "js/base/search-params.js"
-        ],
-        "name": "common-protocol"
-      },
+      "files": [
+        "js/libs/jquery-3.4.1.min.js",
+        "js/base/mozilla-utils.js",
+        "js/base/mozilla-client.js",
+        "js/base/class-list-polyfill.js",
+        "protocol/js/protocol-supports.js",
+        "protocol/js/protocol-utils.js",
+        "protocol/js/protocol-menu.js",
+        "protocol/js/protocol-navigation.js",
+        "js/base/protocol/init-navigation.js",
+        "protocol/js/protocol-lang-switcher.js",
+        "js/base/protocol/init-lang-switcher.js",
+        "protocol/js/protocol-details.js",
+        "protocol/js/protocol-footer.js",
+        "js/base/base-page-init.js",
+        "js/base/core-datalayer.js",
+        "js/base/core-datalayer-init.js",
+        "js/base/search-params.js",
+        "js/base/fxa-utm-referral.js"
+      ],
+      "name": "common-protocol"
+    },
+    {
+      "files": [
+        "js/base/mozilla-article.js",
+        "js/newsletter/form-protocol.js",
+        "protocol/js/protocol-newsletter.js",
+        "protocol/js/protocol-sidemenu.js"
+      ],
+      "name": "basic-article"
+    },
     {
       "files": [
         "js/libs/matchMedia.js",
@@ -1610,7 +1561,6 @@
     },
     {
       "files": [
-        "js/libs/jquery.validate.js",
         "js/libs/modernizr.custom.inputtypes.js",
         "js/press/speaker-request.js"
       ],
@@ -1622,13 +1572,6 @@
         "js/foundation/annual2013.js"
       ],
       "name": "annual_2013"
-    },
-    {
-      "files": [
-        "js/base/mozilla-traffic-cop.js",
-        "js/firefox/firstrun/experiment-firstrun-copy.js"
-      ],
-      "name": "experiment_firstrun_copy"
     },
     {
       "files": [
@@ -1645,23 +1588,23 @@
     },
     {
       "files": [
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-form.js",
-        "js/base/mozilla-fxa-init.js"
-      ],
-      "name": "profile_per_install"
-    },
-    {
-      "files": [
+        "js/base/mozilla-lazy-load.js",
+        "protocol/js/protocol-modal.js",
         "js/firefox/election.js"
       ],
       "name": "firefox_election"
     },
     {
       "files": [
-        "js/firefox/election-build.js"
+        "js/firefox/enterprise/landing.js"
       ],
-      "name": "firefox_election_build"
+      "name": "firefox-enterprise"
+    },
+    {
+      "files": [
+        "js/firefox/enterprise/sla.js"
+      ],
+      "name": "firefox-enterprise-sla"
     }
   ]
 }

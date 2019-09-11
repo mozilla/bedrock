@@ -5,21 +5,25 @@
 from selenium.webdriver.common.by import By
 
 from pages.firefox.base import FirefoxBasePage
-from pages.regions.download_button import DownloadButton
+from pages.regions.join_firefox_form import JoinFirefoxForm
 
 
 class FirefoxAccountsPage(FirefoxBasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/accounts/'
+    URL_TEMPLATE = '/{locale}/firefox/accounts/{params}'
 
-    _download_button_locator = (By.ID, 'download-button-desktop-release')
-    _accounts_form_locator = (By.ID, 'fxa-email-form')
+    _firefox_monitor_button_locator = (By.ID, 'fxa-monitor-submit')
+
+    def wait_for_page_to_load(self):
+        self.wait.until(lambda s: self.seed_url in s.current_url)
+        el = self.find_element(By.TAG_NAME, 'body')
+        self.wait.until(lambda s: 'state-fxa-default' not in el.get_attribute('class'))
+        return self
 
     @property
-    def download_button(self):
-        el = self.find_element(*self._download_button_locator)
-        return DownloadButton(self, root=el)
+    def join_firefox_form(self):
+        return JoinFirefoxForm(self)
 
     @property
-    def is_accounts_form_displayed(self):
-        return self.is_element_displayed(*self._accounts_form_locator)
+    def is_firefox_monitor_button_displayed(self):
+        return self.is_element_displayed(*self._firefox_monitor_button_locator)

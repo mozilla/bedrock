@@ -6,7 +6,7 @@
 
 {% add_lang_files "firefox/new/quantum" %}
 
-{% extends "firefox/base-pebbles.html" %}
+{% extends "firefox/base/base-pebbles.html" %}
 
 {% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
 
@@ -36,7 +36,8 @@
 {% block string_data %}
   data-page-title="Firefox с Яндексом"
   data-page-desc="Версия браузера Firefox с сервисами Яндекса на русском языке доступна для пользователей в России. Сейчас в браузер встроены Дзен, Советник и Визуальные закладки. Основная версия браузера Firefox на русском языке доступна для пользователей по всему миру."
-  data-button-text="Firefox с Яндексом"
+  data-button-text="Скачать Firefox с Яндексом"
+  data-secondary-button-text="Скачать Firefox без яндекса"
   data-button-link="https://yandex.ru/firefox/mozilla/"
   data-privacy-notice="Для обеспечения работы этих сервисов Яндекс собирает сведения о действиях при просмотре веб-страниц и некоторые дополнительные данные. Для получения дополнительной информации обратитесь к Политике конфиденциальности Яндекса."
 {% endblock %}
@@ -49,7 +50,7 @@
     {% block messages %}{% endblock %}
     <div class="content">
       <div class="header-logos">
-        <h2><a class="firefox" href="{{ url('firefox') }}" title="Firefox">{{ high_res_img('logos/firefox/logo-quantum-wordmark-white.png', {'alt': 'Friefox', 'width': '133', 'height': '50'}) }}</a></h2>
+        <h2><a class="firefox" href="{{ url('firefox') }}" title="Firefox">{{ high_res_img('logos/firefox/logo-quantum-wordmark-white.png', {'alt': 'Friefox', 'width': '150', 'height': '50'}) }}</a></h2>
         <h2><a class="mozilla" href="{{ url('mozorg.home') }}" title="Mozilla"><img src="{{ static('img/logos/mozilla/wordmark-dark.svg')}}" alt="Mozilla" width="101" height="34"></a></h2>
       </div>
       <div class="header-container">
@@ -87,7 +88,13 @@
         </li>
         <li class="private">
           <h3 data-yandex-alt="Визуальные закладки">{{_('Powerfully private') }}</h3>
-          <p data-yandex-alt="Браузерное расширение, которое преобразует сохраненные закладки в графическое панно на стартовой странице браузера.">{{_('Truly Private Browsing with Tracking Protection') }}</p>
+          <p data-yandex-alt="Браузерное расширение, которое преобразует сохраненные закладки в графическое панно на стартовой странице браузера.">
+            {% if l10n_has_tag('truly_removal_2019') %}
+              {{_('Private Browsing with Tracking Protection') }}
+            {% else %}
+              {{_('Truly Private Browsing with Tracking Protection') }}
+            {% endif %}
+          </p>
         </li>
       </ul>
     </div>

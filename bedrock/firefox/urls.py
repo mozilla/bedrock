@@ -3,55 +3,44 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 from django.conf.urls import url
 
-from bedrock.mozorg.util import page
-
-import views
 import bedrock.releasenotes.views
+from bedrock.mozorg.util import page
 from bedrock.releasenotes import version_re
-from bedrock.utils.views import VariationTemplateView
 
+from bedrock.firefox import views
 
 latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
 tracking_protection_re = latest_re % (version_re, 'tracking-protection/start')
+content_blocking_re = latest_re % (version_re, 'content-blocking/start')
 platform_re = '(?P<platform>android|ios)'
 channel_re = '(?P<channel>beta|aurora|developer|nightly|organizations)'
 releasenotes_re = latest_re % (version_re, r'(aurora|release)notes')
-android_releasenotes_re = releasenotes_re.replace('firefox', 'firefox/android')
-ios_releasenotes_re = releasenotes_re.replace('firefox', 'firefox/ios')
+android_releasenotes_re = releasenotes_re.replace(r'firefox', 'firefox/android')
+ios_releasenotes_re = releasenotes_re.replace(r'firefox', 'firefox/ios')
 sysreq_re = latest_re % (version_re, 'system-requirements')
-android_sysreq_re = sysreq_re.replace('firefox', 'firefox/android')
-ios_sysreq_re = sysreq_re.replace('firefox', 'firefox/ios')
+android_sysreq_re = sysreq_re.replace(r'firefox', 'firefox/android')
+ios_sysreq_re = sysreq_re.replace(r'firefox', 'firefox/ios')
 
 
 urlpatterns = (
-    # Issue 5944 pre-download newsletter test.
-    # When removing this experiment, please remember to unskip the
-    # functional test in /test/functional/firefox/test_home.py
-    url(r'^firefox/$',
-        VariationTemplateView.as_view(template_name='firefox/home.html',
-                                      template_context_variations=['a', 'b', 'c'],
-                                      template_name_variations=['a', 'b', 'c'],
-                                      variation_locales=['en-US']),
-        name='firefox'),
+    url(r'^firefox/$', views.firefox_home, name='firefox'),
     url(r'^firefox/(?:%s/)?(?:%s/)?all/$' % (platform_re, channel_re),
-        views.all_downloads, name='firefox.all'),
-    page('firefox/accounts', 'firefox/accounts.html'),
-    url('^firefox/accounts/features/$',
-        VariationTemplateView.as_view(
-            template_name='firefox/accounts-features.html',
-            template_context_variations=['a', 'b']),
-            name='firefox.accounts-features'),
+        views.firefox_all, name='firefox.all'),
+    url(r'^firefox/accounts/', views.firefox_accounts, name='firefox.accounts'),
+    url(r'^firefox/campaign/$', views.campaign, name='firefox.campaign'),
     page('firefox/channel/desktop', 'firefox/channel/desktop.html'),
     page('firefox/channel/android', 'firefox/channel/android.html'),
     page('firefox/channel/ios', 'firefox/channel/ios.html'),
+    url(r'^firefox/concerts/', views.firefox_concerts, name='firefox.concerts'),
     page('firefox/developer', 'firefox/developer/index.html'),
-    page('firefox/election', 'firefox/election/index.html'),
+    url('firefox/election', views.election_with_cards, name='firefox.election'),
     page('firefox/enterprise', 'firefox/enterprise/index.html'),
     page('firefox/enterprise/signup', 'firefox/enterprise/signup.html'),
     page('firefox/enterprise/signup/thanks', 'firefox/enterprise/signup-thanks.html'),
     page('firefox/facebookcontainer', 'firefox/facebookcontainer/index.html'),
+    page('firefox/fights-for-you', 'firefox/fights-for-you.html', active_locales=['en-US', 'de', 'fr']),
     page('firefox/features', 'firefox/features/index.html'),
     url('^firefox/features/bookmarks/$',
         views.FeaturesBookmarksView.as_view(),
@@ -71,8 +60,6 @@ urlpatterns = (
     url('^firefox/features/private-browsing/$',
         views.FeaturesPrivateBrowsingView.as_view(),
         name='firefox.features.private-browsing'),
-    page('firefox/features/send-tabs', 'firefox/features/send-tabs.html'),
-    page('firefox/features/sync', 'firefox/features/sync.html'),
     url(r'^firefox/ios/testflight/$', views.ios_testflight, name='firefox.ios.testflight'),
     page('firefox/mobile', 'firefox/mobile.html'),
     url('^firefox/send-to-device-post/$', views.send_to_device_ajax,
@@ -80,7 +67,6 @@ urlpatterns = (
     page('firefox/unsupported-systems', 'firefox/unsupported-systems.html'),
     url(r'^firefox/new/$', views.new, name='firefox.new'),
     url(r'^firefox/download/thanks/$', views.download_thanks, name='firefox.download.thanks'),
-    page('firefox/organizations', 'firefox/organizations/organizations.html'),
     page('firefox/nightly/firstrun', 'firefox/nightly_firstrun.html'),
     url(r'^firefox/installer-help/$', views.installer_help,
         name='firefox.installer-help'),
@@ -88,8 +74,11 @@ urlpatterns = (
     url(whatsnew_re, views.WhatsnewView.as_view(), name='firefox.whatsnew'),
     url(tracking_protection_re, views.TrackingProtectionTourView.as_view(),
         name='firefox.tracking-protection-tour.start'),
+    url(content_blocking_re, views.ContentBlockingTourView.as_view(),
+        name='firefox.content-blocking-tour.start'),
 
     page('firefox/features/adblocker', 'firefox/features/adblocker.html'),
+    page('firefox/concerts', 'firefox/concerts.html'),
 
     # Release notes
     url('^firefox/(?:%s/)?(?:%s/)?notes/$' % (platform_re, channel_re),
@@ -115,19 +104,26 @@ urlpatterns = (
     url('^firefox/releases/$', bedrock.releasenotes.views.releases_index,
         {'product': 'Firefox'}, name='firefox.releases.index'),
 
-    # Bug 1108828. Different templates for different URL params.
-    url('firefox/feedback/$', views.FeedbackView.as_view(), name='firefox.feedback'),
-
     url('^firefox/stub_attribution_code/$', views.stub_attribution_code,
         name='firefox.stub_attribution_code'),
 
     page('firefox/switch', 'firefox/switch.html'),
     page('firefox/pocket', 'firefox/pocket.html'),
 
-    # Bug 1474285
-    page('firefox/profile-migrate', 'firefox/profile/profile-migrate.html'),
-    page('firefox/profile-downgrade', 'firefox/profile/profile-downgrade.html'),
+    # Bug 1519084
+    page('firefox/dedicated-profiles', 'firefox/dedicated-profiles.html'),
 
     # Issue 6178
     page('firefox/this-browser-comes-highly-recommended', 'firefox/recommended.html'),
+
+    # Issue 6604, SEO firefox/new pages
+    page('firefox/windows', 'firefox/new/scene1_windows.html'),
+    page('firefox/mac', 'firefox/new/scene1_mac.html'),
+    page('firefox/linux', 'firefox/new/scene1_linux.html'),
+
+    page('firefox/windows-64-bit', 'firefox/windows-64-bit.html'),
+    page('firefox/enterprise/sla', 'firefox/enterprise/sla.html'),
+
+    page('firefox/features/safebrowser', 'firefox/features/safebrowser.html'),
+    page('firefox/best-browser', 'firefox/best-browser.html'),
 )

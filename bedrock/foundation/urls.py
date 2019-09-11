@@ -7,14 +7,9 @@ from bedrock.redirects.util import redirect
 
 
 urlpatterns = (
-    page('', 'foundation/index.html'),
-    page('about', 'foundation/about.html'),
-    page('issues', 'foundation/issues.html'),
-    page('advocacy', 'foundation/advocacy.html'),
-    page('leadership-network', 'foundation/leadership-network.html'),
 
-    # Bug 1419120  /foundation/annualreport/2016/
-    redirect(r'^annualreport/$', 'foundation.annualreport.2016.index',
+    # Issue 6478 /foundation/annualreport/2017/
+    redirect(r'^annualreport/$', 'foundation.annualreport.2017.index',
              name='foundation.annualreport', locale_prefix=False),
 
     # Older annual report financial faqs - these are linked from blog posts
@@ -66,6 +61,8 @@ urlpatterns = (
 
     page('annualreport/2016', 'foundation/annualreport/2016/index.html'),
 
+    page('annualreport/2017', 'foundation/annualreport/2017/index.html'),
+
     page('feed-icon-guidelines', 'foundation/feed-icon-guidelines/index.html'),
     page('feed-icon-guidelines/faq', 'foundation/feed-icon-guidelines/faq.html'),
 
@@ -81,13 +78,7 @@ urlpatterns = (
 
     page('trademarks/policy', 'foundation/trademarks/policy.html'),
     page('trademarks/list', 'foundation/trademarks/list.html'),
-    page('trademarks/faq', 'foundation/trademarks/faq.html'),
-    page('trademarks/l10n-website-policy', 'foundation/trademarks/l10n-website-policy.html'),
     page('trademarks/distribution-policy', 'foundation/trademarks/distribution-policy.html'),
     page('trademarks/community-edition-permitted-changes', 'foundation/trademarks/community-edition-permitted-changes.html'),
     page('trademarks/community-edition-policy', 'foundation/trademarks/community-edition-policy.html'),
-    page('trademarks/poweredby/faq', 'foundation/trademarks/poweredby/faq.html'),
-
-    # documents
-    page('documents', 'foundation/documents/index.html'),
 )

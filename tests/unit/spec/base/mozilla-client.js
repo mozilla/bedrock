@@ -3,8 +3,6 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect */
-
 describe('mozilla-client.js', function() {
 
     'use strict';
@@ -528,19 +526,16 @@ describe('mozilla-client.js', function() {
 
         it('should fire the callback function with a FxA details object', function() {
             var callback1 = jasmine.createSpy('callback1');
-            var result = {
-                'firefox': true,
-                'legacy': false,
-                'mobile': false,
-                'setup': false,
-                'desktopDevices': false,
-                'mobileDevices': false
-            };
 
             window.Mozilla.Client.getFxaDetails(callback1);
             jasmine.clock().tick(500);
-            expect(callback1).toHaveBeenCalledWith(result);
-            expect(window.Mozilla.Client.FxaDetails).toEqual(result);
+            expect(callback1).toHaveBeenCalled();
+            expect(typeof window.Mozilla.Client.FxaDetails.firefox).toEqual('boolean');
+            expect(typeof window.Mozilla.Client.FxaDetails.legacy).toEqual('boolean');
+            expect(typeof window.Mozilla.Client.FxaDetails.mobile).toEqual('boolean');
+            expect(typeof window.Mozilla.Client.FxaDetails.setup).toEqual('boolean');
+            expect(typeof window.Mozilla.Client.FxaDetails.desktopDevices).toEqual('boolean');
+            expect(typeof window.Mozilla.Client.FxaDetails.mobileDevices).toEqual('boolean');
         });
 
     });

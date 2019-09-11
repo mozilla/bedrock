@@ -25,8 +25,8 @@
 
   <p class="moss-copy">{{ _('MOSS awards are available in multiple tracks:') }}</p>
 
-  <ul class="moss-list moss-list-thirds">
-    <li>
+  <ul class="moss-list moss-list-thirds" id="moss-focus-list">
+    <li id="foundational-technology">
       <h3 class="moss-subhead">{{ _('Track I: Foundational Technology') }}</h3>
       <p class="moss-copy">{{ _('The Foundational Technology track supports open source projects that Mozilla relies on, either as an embedded part of our products or as part of our everyday work.') }}</p>
       <div class="moss-ctas">
@@ -35,19 +35,19 @@
       </div>
     </li>
 
-    <li>
-      <h3 class="moss-subhead">{{ _('Track II: Mission Partners') }}</h3>
+    <li id="mission-partners">
+      <h3 class="moss-subhead">{{ _('Tracks II & IV: Global Mission Partners') }}</h3>
       <p class="moss-copy">{{ _('The Mission Partners track supports open source projects that significantly advance Mozilla’s mission.') }}</p>
       <div class="moss-ctas">
         <p>
-          <a href="{{ url('mozorg.moss.mission-partners') }}" class="moss-copy">{{ _('Learn More: Worldwide') }}</a><br>
-          <a href="{{ url('mozorg.moss.mission-partners-india') }}" class="moss-copy">{{ _('Learn More: India') }}</a>
+          <a href="{{ url('mozorg.moss.mission-partners') }}" class="moss-copy">{{ _('Learn More: Track II - Worldwide') }}</a><br>
+          <a href="{{ url('mozorg.moss.mission-partners-india') }}" class="moss-copy">{{ _('Learn More: Track IV - India') }}</a>
         </p>
         <p><a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="button">{{ _('Apply Now') }}</a></p>
       </div>
     </li>
 
-    <li>
+    <li id="secure-open-source">
       <h3 class="moss-subhead">{{ _('Track III: Secure Open Source Fund') }}</h3>
       <p class="moss-copy">{{ _('The Secure Open Source (“SOS”) track supports security audits for widely used open source software projects as well as the remedial work needed to rectify the problems found.') }}</p>
       <div class="moss-ctas">
@@ -256,7 +256,7 @@
     <dd>
       <p>
       {% trans fsf='https://www.fsf.org/', osi='https://opensource.org/' %}
-        The MOSS committee will only consider projects which are released publicly under a license that is both a free software license according to the <a href="{{ fsf }}">FSF</a> or an open source license according to the <a href="{{ osi }}">OSI</a>. Projects which are not licensed for use under an open source license are not eligible for MOSS funding.
+        The MOSS committee will only consider projects which are released publicly under a license that is either a free software license according to the <a href="{{ fsf }}">FSF</a> or an open source license according to the <a href="{{ osi }}">OSI</a>. Projects which are not licensed for use under an open source license are not eligible for MOSS funding.
       {% endtrans %}
       </p>
     </dd>
@@ -322,6 +322,20 @@
       {% trans %}
         For Track II (Mission Partners) projects, your application should include an endorsement from someone who can vouch for the impact of your project on the larger open source ecosystem.
       {% endtrans %}
+      </p>
+    </dd>
+
+    <dt>{{ _('What about taxes?') }}</dt>
+    <dd>
+      <p>
+        Recipients are responsible for determining the tax implications of receiving an award, based on their respective countries’ tax laws and compliance requirements. Amounts applied for should be sized such that any tax or other liability that will be incurred is accounted for. Mozilla reserves the right to use different payment mechanisms or tax characterizations for different awards in the MOSS program based on a number of factors specific to each award.
+      </p>
+    </dd>
+
+    <dt>{{ _('Can you share an example Schedule of Work (SoW) for a past MOSS project?') }}</dt>
+    <dd>
+      <p>
+        Schedule of Work samples can be found <a href="https://wiki.mozilla.org/images/3/3c/Kea-sow.pdf">here</a> and <a href="https://wiki.mozilla.org/images/7/73/Tor-sow.odt">here</a> that might help you shape the outcomes section of your MOSS application.
       </p>
     </dd>
 

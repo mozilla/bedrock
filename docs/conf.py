@@ -31,7 +31,7 @@ extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest', 'sphinx.ext.intersphin
 templates_path = ['_templates']
 
 # The suffix of source filenames.
-source_suffix = '.rst'
+# source_suffix = '.rst'
 
 # The encoding of source files.
 #source_encoding = 'utf-8-sig'
@@ -91,7 +91,9 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+import sphinx_rtd_theme
+html_theme = "sphinx_rtd_theme"
+html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -218,3 +220,14 @@ man_pages = [
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'http://docs.python.org/': None}
+
+# Markdown support
+
+from recommonmark.parser import CommonMarkParser
+
+# The suffix of source filenames.
+source_suffix = ['.rst', '.md']
+
+source_parsers = {
+	'.md': CommonMarkParser,
+}

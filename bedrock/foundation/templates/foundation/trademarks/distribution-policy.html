@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "foundation/base-resp.html" %}
+{% extends "foundation/base.html" %}
 
 {% block page_title %}{{ _('Distribution of Firefox with Mozilla Trademarks') }}{% endblock %}
 
@@ -10,10 +10,7 @@
   {{ _('Distribution of Firefox with Mozilla Trademarks') }}
 {% endblock %}
 
-{% block article %}
-
-  <h2>{{ _('Distribution of Firefox with Mozilla Trademarks') }}</h2>
-
+{% block article_content %}
   <p>
     {% trans license=url('mozorg.mpl.index') %}
       What you can and cannot do with our Firefox software products and code – independent of our trademarks – is governed by a separate document, the <a href="{{ license }}">Mozilla Public License</a>. In turn, the Mozilla Public License does not contain any rules on our trademarks, as is expressly mentioned in its section 2.1. "Grants":
@@ -37,7 +34,7 @@
     You may distribute unaltered copies of Mozilla Firefox from <a href="{{ mozorg }}">Mozilla.org</a> without express permission from Mozilla as long as you comply with the following rules:
     {% endtrans %}
   </p>
-  <ul>
+  <ul class="mzp-u-list-styled">
     <li>{{_('You may not charge for Firefox. That means:') }}
       <ul>
         <li>{{ _('Distribution may not be subject to any fee.') }}</li>
@@ -80,7 +77,7 @@
     {% endtrans %}
   </p>
 
-  <ul>
+  <ul class="mzp-u-list-styled">
     <li>{{ _('Changes requiring Mozilla’s prior written permission include (but are not limited to):') }}
       <ul>
         <li>{{ _('Changing the default home page or adding bookmarks,') }}</li>
@@ -95,8 +92,8 @@
 
   <p>
     {% trans permissions="mailto:trademark-permissions@mozilla.com" %}
-    If you wish to distribute a modified version of Firefox with Mozilla trademarks please contact us with your request at <a href="{{ trademarks }}">trademark-permissions@mozilla.com</a>.
+    If you wish to distribute a modified version of Firefox with Mozilla trademarks please contact us with your request at <a href="{{ permissions }}">trademark-permissions@mozilla.com</a>.
     {% endtrans %}
   </p>
 
-{% endblock article %}
+{% endblock %}

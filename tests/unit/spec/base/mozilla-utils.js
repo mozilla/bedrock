@@ -1,39 +1,32 @@
 /* For reference read the Jasmine and Sinon docs
- * Jasmine docs: http://pivotal.github.io/jasmine/
+ * Jasmine docs: https://jasmine.github.io/2.4/introduction
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect, spyOn */
-
 describe('mozilla-utils.js', function() {
-
     'use strict';
 
-    describe('switchPathLanguage', function () {
-        var location = {};
+    describe('trans', function () {
+        var stringDiv;
 
-        it('should return the same URL with a different language prefix', function () {
-            location.pathname = '/en-US/firefox/new/';
-            location.search = '';
-            expect(Mozilla.Utils.switchPathLanguage(location, 'de')).toEqual('/de/firefox/new/');
+        beforeEach(function () {
+            stringDiv = '<div id="strings" data-global-close="Close" ' +
+            'data-global-next="Next" ' +
+            'data-global-previous="Previous"> ' +
+            '</div>';
 
-            location.pathname = '/fr/firefox/';
-            expect(Mozilla.Utils.switchPathLanguage(location, 'zh-TW')).toEqual('/zh-TW/firefox/');
-
-            location.pathname = '/de/';
-            expect(Mozilla.Utils.switchPathLanguage(location, 'fr')).toEqual('/fr/');
+            var container = document.createElement('div');
+            container.innerHTML = stringDiv;
+            $(container).appendTo('body');
         });
 
-        it('should return the same URL with a different language prefix and include the query string', function () {
-            location.pathname = '/en-US/firefox/new/';
-            location.search = '?dude=abide';
-            expect(Mozilla.Utils.switchPathLanguage(location, 'de')).toEqual('/de/firefox/new/?dude=abide');
+        afterEach(function() {
+            $(stringDiv).remove();
+        });
 
-            location.pathname = '/fr/firefox/';
-            expect(Mozilla.Utils.switchPathLanguage(location, 'zh-TW')).toEqual('/zh-TW/firefox/?dude=abide');
-
-            location.pathname = '/de/';
-            expect(Mozilla.Utils.switchPathLanguage(location, 'fr')).toEqual('/fr/?dude=abide');
+        it('should correctly return translation value', function () {
+            var translation = Mozilla.Utils.trans('global-next');
+            expect(translation === 'Next');
         });
     });
 
@@ -58,8 +51,7 @@ describe('mozilla-utils.js', function() {
 
         var $link;
         var defaultHref = 'https://test.example.com/?id=org.mozilla.firefox';
-        var partnerAHref = defaultHref.replace('org.mozilla.firefox',
-                                               'com.partnera.firefox');
+        var partnerAHref = defaultHref.replace('org.mozilla.firefox', 'com.partnera.firefox');
 
         beforeEach(function () {
             $link = $([

@@ -2,7 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "privacy/notices/firefox.html" %}
+{% extends "privacy/notices/base-notice-paragraphs.html" %}
 
-{% block body_class %}{{ super() }} product-firefox-fire-tv{% endblock %}
+{% set body_id = "privacy-fire-tv" %}
+
 {% block article_header_logo %}{{ static('img/logos/firefox/logo-quantum.png') }}{% endblock %}

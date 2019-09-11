@@ -25,8 +25,7 @@ def check_if_correct_parse(ics_file):
 
 def run(*args):
     calendars_dir = os.path.join('media', 'caldata')
-    ics_files = map(lambda x: os.path.join(calendars_dir, x),
-                    filter(get_ics, os.listdir(calendars_dir)))
+    ics_files = [os.path.join(calendars_dir, x) for x in list(filter(get_ics, os.listdir(calendars_dir)))]
 
     format_str = "Failed to parse the icalendar file: {}. {}"
     check_failed = False
@@ -35,7 +34,7 @@ def run(*args):
             check_if_correct_parse(f)
         except ValueError as ve:
             check_failed = True
-            print format_str.format(f, ve.message)
+            print(format_str.format(f, ve.message))
 
     if check_failed:
         sys.exit(1)

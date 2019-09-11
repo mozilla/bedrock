@@ -11,7 +11,9 @@ help:
 	@echo "run           - docker-compose up the entire system for dev"
 	@echo ""
 	@echo "pull          - pull the latest production images from Docker Hub"
-	@echo "shell         - start the Django Python shell (bpython and shell_plus)"
+	@echo "shell         - open a bash shell in the running app"
+	@echo "djshell       - start the Django Python shell in the running app"
+	@echo "fresh-data    - pull the latest database and update all external data"
 	@echo "clean         - remove all build, test, coverage and Python artifacts"
 	@echo "rebuild       - force a rebuild of all of the docker images"
 	@echo "submodules    - resync and fetch the latest git submodules"
@@ -51,8 +53,14 @@ submodules:
 	git submodule sync
 	git submodule update -f --init --recursive
 
-shell: .docker-build-pull
-	${DC} run app python manage.py shell_plus
+fresh-data:
+	${DC} exec app bin/sync-all.sh
+
+shell:
+	${DC} exec app bash
+
+djshell:
+	${DC} exec app python manage.py shell_plus
 
 clean:
 #	python related things
@@ -67,9 +75,11 @@ clean:
 	-rm -rf static_build/
 #	state files
 	-rm -f .docker-build*
+# clean untracked files
+	git clean -f
 
 lint: .docker-build-pull
-	${DC} run test flake8 bedrock lib tests
+	${DC} run test flake8
 	${DC} run assets gulp js:lint css:lint
 
 test: .docker-build-pull
@@ -79,8 +89,7 @@ test-image: .docker-build
 	${DC} run test-image
 
 docs: .docker-build-pull
-	${DC} run app $(MAKE) -C docs/ clean
-	${DC} run app $(MAKE) -C docs/ html
+	${DC} run app make -C docs/ clean html
 
 ###############
 # For use in CI
@@ -97,4 +106,4 @@ build-ci: .docker-build-pull
 test-ci: .docker-build-ci
 	${DC_CI} run test-image
 
-.PHONY: default clean build pull submodules docs lint run shell test test-image rebuild build-ci test-ci
+.PHONY: default clean build pull submodules docs lint run shell test test-image rebuild build-ci test-ci fresh-data djshell

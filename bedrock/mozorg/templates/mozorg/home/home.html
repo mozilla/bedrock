@@ -43,14 +43,7 @@
 
 {% block site_header %}
   {% include 'mozorg/home/includes/home-icons-sprite.svg' %}
-  {% if LANG.startswith('en-') %}
-    {% include 'includes/global-nav.html' %}
-  {% else %}
-    {% with is_home = True %}
-      {% set logo_src = static('img/pebbles/moz-wordmark-dark-reverse.svg') %}
-      {% include 'mozorg/home/includes/nav.html' %}
-    {% endwith %}
-  {% endif %}
+  {% include 'includes/protocol/navigation/index.html' %}
 {% endblock %}
 
 {% block content %}
@@ -203,10 +196,6 @@
         {% if l10n_has_tag('home-update-20171116') %}
           <li id="common-voice">
             <a rel="external" href="https://voice.mozilla.org/"><svg class="icon"><use xlink:href="#icon-common-voice"></use></svg>{{ _('Common Voice') }}</a>
-          </li>
-        {% else %}
-          <li id="gaming">
-            <a rel="external" href="https://games.mozilla.org/"><svg class="icon"><use xlink:href="#icon-gaming"></use></svg>{{ _('Gaming on the Web') }}</a>
           </li>
         {% endif %}
           <li id="vr">

@@ -1,0 +1,33 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/whatsnew_66" %}
+
+{% extends "firefox/whatsnew/whatsnew-fx66.html" %}
+
+{% block fxa_form %}
+{{ fxa_email_form(
+    entrypoint='mozilla.org-whatsnew68beta',
+    button_class='mzp-c-button')
+}}
+{% endblock %}
+
+{% block fxa_cta %}
+<p class="show-fxa-supported-signed-out show-fxa-default">
+  <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew68beta', action='signup', utm_campaign='wnp68beta', utm_content='accounts-page-top-cta') }} class="js-fxa-cta-link mzp-c-button mzp-t-product" data-link-name="Create account" data-link-type="FxA-Sync">
+    {{ _('Create a Firefox Account') }}
+  </a><br>
+
+  {% if l10n_has_tag('wnp66_log_in') %}
+  {% set link = fxa_link_fragment(entrypoint='mozilla.org-whatsnew68beta', action='login', utm_campaign='wnp68beta', utm_content='accounts-page-top-cta') %}
+  <span class="wn64-signin">
+    {{ _('Have an account? <a %s >Log in</a>')|format(link) }}
+  </span>
+  {% else %}
+  <span class="wn64-signin">
+    <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew68beta', action='login', utm_campaign='wnp68beta', utm_content='accounts-page-top-cta') }} class="js-fxa-cta-link">{{ _('Already have an account?') }}</a>
+  </span>
+  {% endif %}
+</p>
+{% endblock %}

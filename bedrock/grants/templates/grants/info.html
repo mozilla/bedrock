@@ -10,18 +10,18 @@
 {% block article %}
 
 <header>
-    <h1>{{ grant.title }}</h1>
+    <h1 class="mzp-c-article-title">{{ grant.title }}</h1>
     <p>{{ grant.summary }}</p>
 </header>
 
-<ul class="grant_info">
-    <li><h2>Grantee</h2> {{ grant.grantee }}</li>
+<ul class="c-grants-info">
+    <li><h2 class="c-grants-info-title">Grantee</h2> {{ grant.grantee }}</li>
     {% if grant.location %}
-        <li><h2>Location</h2> {{ grant.location }}</li>
+        <li><h2 class="c-grants-info-title">Location</h2> {{ grant.location }}</li>
     {% endif %}
     {% if grant.break_down %}
         <li>
-            <h2>Support break-down</h2>
+            <h2 class="c-grants-info-title">Support break-down</h2>
             <ol class='detailed_info'>
             {% for year, phases in grant.break_down.items()|sort %}
                 <li class="year">
@@ -34,24 +34,26 @@
                 </li>
             {% endfor %}
             </ol>
-            <h3>Total support</h3> {{ grant.total_support }}
+            <h3 class="c-grants-info-title">Total support</h3> {{ grant.total_support }}
         </li>
     {% else %}
-        <li><h2>Total support</h2> {{ grant.total_support }}</li>
-        <li><h2>Year</h2> {{ grant.year }}</li>
+        <li><h2 class="c-grants-info-title">Total support</h2> {{ grant.total_support }}</li>
+        <li><h2 class="c-grants-info-title">Year</h2> {{ grant.year }}</li>
     {% endif %}
-    <li><h2>Focus Area</h2> {{ grant_labels[grant.type] }}</li>
+    <li><h2 class="c-grants-info-title">Focus Area</h2> {{ grant_labels[grant.type] }}</li>
 </ul>
 
 {{ grant.description|safe }}
 
 {% if grant.urls %}
-    <h2 class="meta">Read more at:</h2>
-    <ul>
-        {% for url in grant.urls %}
-            <li><a href="{{ url }}">{{ url }}</a></li>
-        {% endfor %}
-    </ul>
+<aside class="c-grants-info">
+  <h2 class="c-grants-info-title">Read more at:</h2>
+  <ul class="mzp-u-list-styled">
+      {% for url in grant.urls %}
+          <li><a href="{{ url }}">{{ url }}</a></li>
+      {% endfor %}
+  </ul>
+</aside>
 {% endif %}
 
 <a href="{{ url('grants') }}#grants-data">Back to all grants</a>

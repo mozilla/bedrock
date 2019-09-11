@@ -8,10 +8,9 @@ from django.test import RequestFactory, override_settings
 from django_jinja.backend import Jinja2
 from jinja2.nodes import Block
 from mock import patch, ANY, Mock
-from nose.plugins.skip import SkipTest
-from nose.tools import eq_, ok_
-from pathlib2 import Path
+from pathlib import Path
 from pyquery import PyQuery as pq
+import pytest
 
 from lib.l10n_utils import render
 from bedrock.mozorg.tests import TestCase
@@ -38,9 +37,11 @@ class TestL10nBlocks(TestCase):
 
 
 @patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
-@override_settings(ROOT=ROOT)
+@override_settings(
+    ROOT=ROOT,
+    ROOT_URLCONF='lib.l10n_utils.tests.test_files.urls',
+)
 class TestTransBlocks(TestCase):
-    urls = 'lib.l10n_utils.tests.test_files.urls'
 
     def test_trans_block_works(self):
         """ Sanity check to make sure translations work at all. """
@@ -48,8 +49,8 @@ class TestTransBlocks(TestCase):
         doc = pq(response.content)
         gettext_call = doc('h1')
         trans_block = doc('p')
-        eq_(gettext_call.text(), 'Die Lage von Mozilla')
-        ok_(trans_block.text().startswith('Mozillas Vision des Internets ist'))
+        assert gettext_call.text() == 'Die Lage von Mozilla'
+        assert trans_block.text().startswith('Mozillas Vision des Internets ist')
 
     def test_trans_block_works_reload(self):
         """
@@ -62,9 +63,11 @@ class TestTransBlocks(TestCase):
 
 
 @patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
-@override_settings(ROOT=ROOT)
+@override_settings(
+    ROOT=ROOT,
+    ROOT_URLCONF='lib.l10n_utils.tests.test_files.urls',
+)
 class TestTemplateLangFiles(TestCase):
-    urls = 'lib.l10n_utils.tests.test_files.urls'
 
     def test_added_lang_files(self):
         """
@@ -74,24 +77,25 @@ class TestTemplateLangFiles(TestCase):
         # make a dummy object capable of having arbitrary attrs assigned
         request = type('request', (), {})()
         template.render({'request': request})
-        eq_(request.langfiles, ['dude', 'walter',
-                                'main', 'download_button'])
+        assert request.langfiles == [
+            'dude', 'walter', 'navigation', 'download_button', 'main']
 
+    @pytest.mark.skip(
+        reason='does not pick up the files from the parent. captured in '
+        'bug 797984.')
     def test_added_lang_files_inheritance(self):
         """
         Lang files specified in the template should be added to the defaults
         and any specified in parent templates.
         """
-        raise SkipTest
         # TODO fix this. it is broken. hence the skip.
-        #      does not pick up the files from the parent.
-        #      captured in bug 797984.
         template = jinja_env.get_template('even_more_lang_files.html')
         # make a dummy object capable of having arbitrary attrs assigned
         request = type('request', (), {})()
         template.render(request=request)
-        eq_(request.langfiles, ['donnie', 'smokey', 'jesus', 'dude', 'walter',
-                                'main', 'download_button'])
+        assert request.langfiles == [
+            'donnie', 'smokey', 'jesus', 'dude', 'walter', 'main',
+            'download_button']
 
     @patch('lib.l10n_utils.settings.DEV', True)
     @patch('lib.l10n_utils.templatetags.helpers.translate')
@@ -102,7 +106,7 @@ class TestTemplateLangFiles(TestCase):
         """
         self.client.get('/de/some-lang-files/')
         translate.assert_called_with(ANY, ['dude', 'walter', 'some_lang_files',
-                                           'main', 'download_button'])
+                                           'navigation', 'download_button', 'main'])
 
     @patch('lib.l10n_utils.settings.DEV', True)
     @patch('lib.l10n_utils.templatetags.helpers.translate')
@@ -112,7 +116,7 @@ class TestTemplateLangFiles(TestCase):
         """
         self.client.get('/de/active-de-lang-file/')
         translate.assert_called_with(ANY, ['inactive_de_lang_file', 'active_de_lang_file',
-                                           'main', 'download_button'])
+                                           'navigation', 'download_button', 'main'])
 
 
 class TestNoLocale(TestCase):
@@ -139,7 +143,7 @@ class TestLocaleTemplates(TestCase):
         en-US requests without l10n or locale template should render the
         originally requested template.
         """
-        django_render.side_effect = [TemplateDoesNotExist, TemplateDoesNotExist, True]
+        django_render.side_effect = [TemplateDoesNotExist(''), TemplateDoesNotExist(''), True]
         request = self.rf.get('/')
         request.locale = 'en-US'
         render(request, 'firefox/new.html', {'active_locales': ['en-US']})
@@ -150,7 +154,7 @@ class TestLocaleTemplates(TestCase):
         en-US requests with a locale-specific template should render the
         locale-specific template.
         """
-        django_render.side_effect = [TemplateDoesNotExist, True]
+        django_render.side_effect = [TemplateDoesNotExist(''), True]
         request = self.rf.get('/')
         request.locale = 'en-US'
         render(request, 'firefox/new.html', {'active_locales': ['en-US']})
@@ -170,7 +174,7 @@ class TestLocaleTemplates(TestCase):
         Non en-US requests without l10n or locale template should render the
         originally requested template.
         """
-        django_render.side_effect = [TemplateDoesNotExist, TemplateDoesNotExist, True]
+        django_render.side_effect = [TemplateDoesNotExist(''), TemplateDoesNotExist(''), True]
         request = self.rf.get('/')
         request.locale = 'de'
         render(request, 'firefox/new.html', {'active_locales': ['de']})
@@ -181,7 +185,7 @@ class TestLocaleTemplates(TestCase):
         Non en-US requests with a locale-specific template should render the
         locale-specific template.
         """
-        django_render.side_effect = [TemplateDoesNotExist, True]
+        django_render.side_effect = [TemplateDoesNotExist(''), True]
         request = self.rf.get('/')
         request.locale = 'es-ES'
         render(request, 'firefox/new.html', {'active_locales': ['es-ES']})

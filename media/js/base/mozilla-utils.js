@@ -3,8 +3,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // Create namespace
-if (typeof Mozilla === 'undefined') {
-    var Mozilla = {};
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
 }
 
 (function() {
@@ -15,10 +15,13 @@ if (typeof Mozilla === 'undefined') {
     // Replace Google Play links on Android devices to let them open the marketplace app
     Utils.initMobileDownloadLinks = function() {
         if (site.platform === 'android') {
-            $('a[href^="https://play.google.com/store/apps/"]').each(function() {
-                $(this).attr('href', $(this).attr('href')
-                    .replace('https://play.google.com/store/apps/', 'market://'));
-            });
+            var playLinks = document.querySelectorAll('a[href^="https://play.google.com/store/apps/"]');
+            for (var i = 0; i < playLinks.length; ++i) {
+                var playLink = playLinks[i];
+                var oldHref = playLink.getAttribute('href');
+                var newHref = oldHref.replace('https://play.google.com/store/apps/', 'market://');
+                playLink.setAttribute('href', newHref);
+            }
         }
     };
 
@@ -29,33 +32,16 @@ if (typeof Mozilla === 'undefined') {
         }
 
         var distribution = client.distribution.toLowerCase();
-        $('a[data-' + distribution + '-link]').each(function() {
-            $(this).attr('href', $(this).data(distribution + 'Link'));
-        });
-        $('img[data-' + distribution + '-link]').each(function() {
-            $(this).attr('src', $(this).data(distribution + 'Link'));
-        });
-    };
-
-    Utils.switchPathLanguage = function(location, newLang) {
-        // get path without locale
-        var urlpath = location.pathname.slice(1).split('/').slice(1).join('/');
-        return '/' + newLang + '/' + urlpath + location.search;
-    };
-
-    // language switcher
-    Utils.initLangSwitcher = function() {
-        var $language = $('#page-language-select');
-        var previousLanguage = $language.val();
-        $language.on('change', function() {
-            var newLanguage = $language.val();
-            window.dataLayer.push({
-                'event': 'change-language',
-                'languageSelected': newLanguage,
-                'previousLanguage': previousLanguage
-            });
-            Utils.doRedirect(Utils.switchPathLanguage(window.location, newLanguage));
-        });
+        var links = document.querySelectorAll('a[data-' + distribution + '-link]');
+        var images = document.querySelectorAll('img[data-' + distribution + '-link]');
+        for (var i = 0; i < links.length; i++) {
+            var distributionLink = links[i].getAttribute('data-' + distribution + '-link');
+            links[i].setAttribute('href', distributionLink);
+        }
+        for (var j = 0; j < images.length; j++) {
+            var distributionSrc = images[j].getAttribute('data-' + distribution + '-link');
+            images[j].setAttribute('src', distributionSrc);
+        }
     };
 
     // client-side redirects (handy for testing)
@@ -70,10 +56,14 @@ if (typeof Mozilla === 'undefined') {
     // In order to use it, you need a block string_data bit inside your template,
     // then, each key name needs to be preceded by data- as this uses data attributes
     // to work. After this, you can access all strings defined inside the
-    // string_data block in JS using Mozilla.Utils.trans('keyofstring'); Thank @mkelly
-    var _$strings = $('#strings');
+    // string_data block in JS using Mozilla.Utils.trans('key-of-string'); Thank @mkelly
+    var _strings = document.getElementById('strings');
     Utils.trans = function(stringId) {
-        return _$strings.data(stringId);
+        if (_strings) {
+            return _strings.getAttribute('data-' + stringId);
+        } else {
+            return undefined;
+        }
     };
 
     window.Mozilla.Utils = Utils;

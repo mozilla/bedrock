@@ -3,12 +3,25 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect, sinon */
+/* global sinon */
 /* eslint camelcase: [2, {properties: "never"}] */
 /* eslint new-cap: [2, {"capIsNewExceptions": ["Deferred"]}] */
 
 describe('yandex-scene1.js', function() {
     'use strict';
+
+    beforeEach(function() {
+        // stub out Mozilla.Cookie lib
+        window.Mozilla.Cookies = sinon.stub();
+        window.Mozilla.Cookies.enabled = sinon.stub().returns(true);
+        window.Mozilla.Cookies.setItem = sinon.stub();
+        window.Mozilla.Cookies.getItem = sinon.stub();
+        window.Mozilla.Cookies.hasItem = sinon.stub();
+
+        // stub out google tag manager
+        window.dataLayer = sinon.stub();
+        window.dataLayer.push = sinon.stub();
+    });
 
     describe('getLocation', function() {
 
@@ -79,16 +92,14 @@ describe('yandex-scene1.js', function() {
             spyOn(Mozilla.Yandex, 'setCookie');
         });
 
-        it('should update page content on first call and set a cookie', function() {
+        it('should update page content on first call only and set a cookie', function() {
             Mozilla.Yandex.onRequestComplete(country);
             expect(Mozilla.Yandex.updatePageContent).toHaveBeenCalled();
             expect(Mozilla.Yandex.setCookie).toHaveBeenCalledWith(country);
-        });
 
-        it('should not update page content on second call', function() {
             Mozilla.Yandex.onRequestComplete(country);
-            expect(Mozilla.Yandex.updatePageContent).not.toHaveBeenCalled();
-            expect(Mozilla.Yandex.setCookie).not.toHaveBeenCalled();
+            expect(Mozilla.Yandex.updatePageContent).toHaveBeenCalledTimes(1);
+            expect(Mozilla.Yandex.setCookie).toHaveBeenCalledTimes(1);
         });
     });
 
@@ -143,10 +154,8 @@ describe('yandex-scene1.js', function() {
 
         it('should return true if criteria is met', function() {
             spyOn(Mozilla.Yandex, 'verifyLocation').and.returnValue(true);
-            spyOn(Mozilla.Yandex, 'getCookie').and.returnValue('yes');
 
             expect(Mozilla.Yandex.shouldShowYandex()).toBeTruthy();
-            expect(Mozilla.Yandex.getCookie).toHaveBeenCalledWith(Mozilla.Yandex.COOKIE_YANDEX_COHORT);
         });
 
         it('should return false if one or more of the criteria is not met', function() {
@@ -215,14 +224,10 @@ describe('yandex-scene1.js', function() {
         it('should set session cookies as expected', function() {
             var country = 'ru';
             spyOn(Mozilla.Cookies, 'setItem');
-            spyOn(Mozilla.Yandex, 'isWithinSampleRate').and.returnValue(true);
 
             Mozilla.Yandex.setCookie(country);
 
-            expect(Mozilla.Yandex.isWithinSampleRate).toHaveBeenCalled();
-            expect(Mozilla.Cookies.setItem.calls.count()).toEqual(2);
             expect(Mozilla.Cookies.setItem).toHaveBeenCalledWith(Mozilla.Yandex.COOKIE_ID, country, jasmine.any(String));
-            expect(Mozilla.Cookies.setItem).toHaveBeenCalledWith(Mozilla.Yandex.COOKIE_YANDEX_COHORT, 'yes', jasmine.any(String));
         });
     });
 
@@ -231,41 +236,22 @@ describe('yandex-scene1.js', function() {
         it('should return an value as expected', function() {
             spyOn(Mozilla.Cookies, 'getItem');
             Mozilla.Yandex.getCookie(Mozilla.Yandex.COOKIE_ID);
-            expect(Mozilla.Cookies.getItem).toHaveBeenCalledWith(Mozilla.Yandex.COOKIE_ID);
         });
     });
 
     describe('hasCookie', function() {
 
-        it('should return true if both session cookies exists', function() {
+        it('should return true if session cookie exists', function() {
             spyOn(Mozilla.Cookies, 'hasItem').and.returnValue(true);
             var result = Mozilla.Yandex.hasCookie();
-            expect(Mozilla.Cookies.hasItem.calls.count()).toEqual(2);
             expect(Mozilla.Cookies.hasItem).toHaveBeenCalledWith(Mozilla.Yandex.COOKIE_ID);
-            expect(Mozilla.Cookies.hasItem).toHaveBeenCalledWith(Mozilla.Yandex.COOKIE_YANDEX_COHORT);
             expect(result).toBeTruthy();
         });
 
-        it('should return false if one or more session cookies do not exist', function() {
-            spyOn(Mozilla.Cookies, 'hasItem').and.callFake(function(id) {
-                return id === Mozilla.Yandex.COOKIE_ID ? true : false;
-            });
+        it('should return false if session cookie does not exist', function() {
+            spyOn(Mozilla.Cookies, 'hasItem').and.returnValue(false);
             var result = Mozilla.Yandex.hasCookie();
-            expect(Mozilla.Cookies.hasItem.calls.count()).toEqual(2);
             expect(result).toBeFalsy();
-        });
-    });
-
-    describe('isWithinSampleRate', function() {
-
-        it('should return true if within sample rate', function() {
-            spyOn(window.Math, 'random').and.returnValue(0.8);
-            expect(Mozilla.Yandex.isWithinSampleRate()).toBeTruthy();
-        });
-
-        it('should return false if exceeds sample rate', function() {
-            spyOn(window.Math, 'random').and.returnValue(1);
-            expect(Mozilla.Yandex.isWithinSampleRate()).toBeFalsy();
         });
     });
 

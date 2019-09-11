@@ -1,22 +1,18 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
-from __future__ import print_function, unicode_literals
-
 import os
 from datetime import datetime
 from hashlib import sha256
 from shutil import rmtree
 from subprocess import check_output, CalledProcessError, STDOUT
-try:
-    from cStringIO import StringIO
-except ImportError:
-    from StringIO import StringIO
+from io import StringIO
 
 from django.conf import settings
+from django.utils.encoding import force_str
 
 import timeago
-from pathlib2 import Path
+from pathlib import Path
 
 from bedrock.utils.models import GitRepoState
 
@@ -24,15 +20,14 @@ from bedrock.utils.models import GitRepoState
 GIT = getattr(settings, 'GIT_BIN', 'git')
 
 
-class GitRepo(object):
+class GitRepo:
     def __init__(self, path, remote_url=None, branch_name='master', name=None):
         self.path = Path(path)
         self.path_str = str(self.path)
         self.remote_url = remote_url
         self.branch_name = branch_name
-        db_latest_key = '%s:%s:%s' % (self.path_str, remote_url or '',
-                                         branch_name)
-        self.db_latest_key = sha256(db_latest_key).hexdigest()
+        db_latest_key = '%s:%s:%s' % (self.path_str, remote_url or '', branch_name)
+        self.db_latest_key = sha256(db_latest_key.encode()).hexdigest()
         self.repo_name = name or self.path.name
 
     def git(self, *args):
@@ -44,7 +39,7 @@ class GitRepo(object):
         finally:
             os.chdir(curdir)
 
-        return output.strip()
+        return force_str(output.strip())
 
     @property
     def current_hash(self):

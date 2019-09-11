@@ -4,6 +4,8 @@
 
 // init core dataLayer object and push into dataLayer
 $(function() {
+    'use strict';
+
     var analytics = Mozilla.Analytics;
     var client = Mozilla.Client;
     var dataLayer = window.dataLayer = window.dataLayer || [];
@@ -18,7 +20,8 @@ $(function() {
             'pageVersion': analytics.getPageVersion(),
             // white listed for www.mozill.org, will always return false on other domains
             'testPilotUser': 'testpilotAddon' in navigator ? 'true' : 'false',
-            'releaseWindowVersion': analytics.getLatestFxVersion()
+            'releaseWindowVersion': analytics.getLatestFxVersion(),
+            'win10SUser': analytics.isWin10S()
         };
 
         dataLayer.push(dataLayerCore);

@@ -3,12 +3,21 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect, sinon, spyOn */
+/* global sinon, */
 /* eslint camelcase: [2, {properties: "never"}] */
 /* eslint new-cap: [2, {"capIsNewExceptions": ["Deferred"]}] */
 
 describe('mozilla-traffic-cop-funnelcake-geo.js', function() {
     'use strict';
+
+    beforeEach(function() {
+        // stub out Mozilla.Cookie lib
+        window.Mozilla.Cookies = sinon.stub();
+        window.Mozilla.Cookies.enabled = sinon.stub().returns(true);
+        window.Mozilla.Cookies.setItem = sinon.stub();
+        window.Mozilla.Cookies.getItem = sinon.stub();
+        window.Mozilla.Cookies.hasItem = sinon.stub();
+    });
 
     describe('checkInCohort', function() {
         it('should return true if user has the provided cookie', function() {

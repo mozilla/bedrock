@@ -26,35 +26,6 @@ def process_legal_doc(content):
     """
     soup = BeautifulSoup(content)
 
-    # Manipulate the markup
-    for section in soup.find_all('section'):
-        level = 0
-        header = soup.new_tag('header')
-        div = soup.new_tag('div')
-
-        section.insert(0, header)
-        section.insert(1, div)
-
-        # Append elements to <header> or <div>
-        for tag in section.children:
-            if not tag.name:
-                continue
-            match = HN_PATTERN.match(tag.name)
-            if match:
-                header.append(tag)
-                level = int(match.group(1))
-            if tag.name == 'p':
-                (header if level == 1 else div).append(tag)
-            if tag.name in ['ul', 'hr']:
-                div.append(tag)
-
-        if level > 3:
-            section.parent.div.append(section)
-
-        # Remove empty <div>s
-        if len(div.contents) == 0:
-            div.extract()
-
     # Convert the site's full URLs to absolute paths
     for link in soup.find_all(href=HREF_PATTERN):
         link['href'] = HREF_PATTERN.sub('', link['href'])
@@ -71,7 +42,7 @@ class PrivacyDocView(LegalDocView):
 
 
 class FirefoxPrivacyDocView(PrivacyDocView):
-    template_name = 'privacy/notices/firefox.html'
+    template_name = 'privacy/notices/base-notice-paragraphs.html'
 
     def get_legal_doc(self):
         doc = super(FirefoxPrivacyDocView, self).get_legal_doc()
@@ -103,9 +74,9 @@ firefox_focus_notices = PrivacyDocView.as_view(
     template_name='privacy/notices/firefox-focus.html',
     legal_doc_name='focus_privacy_notice')
 
-firefox_rocket_notices = PrivacyDocView.as_view(
-    template_name='privacy/notices/firefox-rocket.html',
-    legal_doc_name='rocket_privacy_notice')
+firefox_lite_notices = PrivacyDocView.as_view(
+    template_name='privacy/notices/firefox-lite.html',
+    legal_doc_name='firefox_lite_privacy_notice')
 
 firefox_reality_notices = PrivacyDocView.as_view(
     template_name='privacy/notices/firefox-reality.html',

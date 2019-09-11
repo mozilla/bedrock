@@ -9,9 +9,12 @@ git clone --depth=1 -b ${CONFIG_BRANCH:=master} ${CONFIG_REPO} config_checkout
 cd config_checkout
 
 set -u
-sed -i -e "s|image: .*|image: ${DEPLOYMENT_DOCKER_IMAGE}|" all-clusters/${NAMESPACE}/${DEPLOYMENT_YAML:=deploy.yaml}
-cp {all-clusters,${CLUSTER_NAME}}/${NAMESPACE}/${DEPLOYMENT_YAML}
-git add {all-clusters,${CLUSTER_NAME}}/${NAMESPACE}/${DEPLOYMENT_YAML}
+sed -i -e "s|image: .*|image: ${DEPLOYMENT_DOCKER_IMAGE}|" ${CLUSTER_NAME}/${NAMESPACE}/${DEPLOYMENT_YAML:=deploy.yaml}
+git add ${CLUSTER_NAME}/${NAMESPACE}/${DEPLOYMENT_YAML}
+if [[ -f "${CLUSTER_NAME}/${NAMESPACE}/clock-${DEPLOYMENT_YAML}" ]]; then
+    sed -i -e "s|image: .*|image: ${DEPLOYMENT_DOCKER_IMAGE}|" ${CLUSTER_NAME}/${NAMESPACE}/clock-${DEPLOYMENT_YAML}
+    git add ${CLUSTER_NAME}/${NAMESPACE}/clock-${DEPLOYMENT_YAML}
+fi
 git commit -m "set image to ${DEPLOYMENT_DOCKER_IMAGE} in ${CLUSTER_NAME}" || echo "nothing new to commit"
 git push
 DEPLOYMENT_VERSION=$(git rev-parse --short HEAD)
@@ -19,7 +22,7 @@ DEPLOYMENT_VERSION=$(git rev-parse --short HEAD)
 DEPLOYMENT_NAME=$(python3 -c "import yaml; print(yaml.load(open(\"$CLUSTER_NAME/$NAMESPACE/$DEPLOYMENT_YAML\"))['metadata']['name'])")
 CHECK_URL=$DEPLOYMENT_LOG_BASE_URL/$NAMESPACE/$DEPLOYMENT_NAME/$DEPLOYMENT_VERSION
 attempt_counter=0
-max_attempts=120
+max_attempts=180
 set +x
 until curl -sf $CHECK_URL; do
     if [ ${attempt_counter} -eq ${max_attempts} ]; then

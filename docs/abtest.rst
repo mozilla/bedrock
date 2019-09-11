@@ -34,8 +34,8 @@ for the a/b test.
 
 The view can handle the url redirect in one of two ways:
 
-1. the same page, with some different content based on the `variation` variable
-1. a totally different page
+#. the same page, with some different content based on the `variation` variable
+#. a totally different page
 
 Content variation
 ~~~~~~~~~~~~~~~~~
@@ -54,9 +54,10 @@ different.
 Create the variant page like you would a new page. Make sure it is ``noindex``
 and does not have a ``canonical`` url.
 
-```
-{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
-```
+.. code-block:: jinja
+
+    {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
 
 Configure as explained on the `variation view <http://bedrock.readthedocs.io/en/latest/coding.html#variation-views>`_
 page.
@@ -68,13 +69,13 @@ Create a .js file where you initialize Traffic Cop and include that in the
 experiments block in the template that will be doing the redirection. Wrap the
 extra js include in a `switch <http://bedrock.readthedocs.io/en/latest/install.html#feature-flipping-aka-switches>`_.
 
-```
-{% block experiments %}
-  {% if switch('experiment-berlin-video', ['de']) %}
-    {{ js_bundle('firefox_new_berlin_experiment') }}
-  {% endif %}
-{% endblock %}
-```
+.. code-block:: jinja
+
+    {% block experiments %}
+      {% if switch('experiment-berlin-video', ['de']) %}
+        {{ js_bundle('firefox_new_berlin_experiment') }}
+      {% endif %}
+    {% endblock %}
 
 Switches
 ~~~~~~~~
@@ -84,23 +85,27 @@ See the traffic cop section of the `switch docs <http://bedrock.readthedocs.io/e
 Recording the data
 ------------------
 
+.. Note::
+
+    If you are measuring installs as part of your experiment be sure to configure `custom stub attribution <https://bedrock.readthedocs.io/en/latest/stub-attribution.html#measuring-campaigns-and-experiments>`_ as well.
+
 Including the ``data-ex-variant`` and ``data-ex-name`` in the analytics
 reporting will add the test to an auto generated report in GA. The variable
 values may be provided by the analytics team.
 
-```
-if(href.indexOf('v=a') !== -1) {
-    window.dataLayer.push({
-        'data-ex-variant': 'de-page',
-        'data-ex-name': 'Berlin-Campaign-Landing-Page'
-    });
-} else if (href.indexOf('v=b') !== -1) {
-    window.dataLayer.push({
-        'data-ex-variant': 'campaign-page',
-        'data-ex-name': 'Berlin-Campaign-Landing-Page'
-    });
-}
-```
+.. code-block:: javascript
+
+    if(href.indexOf('v=a') !== -1) {
+        window.dataLayer.push({
+            'data-ex-variant': 'de-page',
+            'data-ex-name': 'Berlin-Campaign-Landing-Page'
+        });
+    } else if (href.indexOf('v=b') !== -1) {
+        window.dataLayer.push({
+            'data-ex-variant': 'campaign-page',
+            'data-ex-name': 'Berlin-Campaign-Landing-Page'
+        });
+    }
 
 Make sure any buttons and interaction which are being compared as part of the
 test and will report into GA.
@@ -118,10 +123,11 @@ Some things to consider checking:
 - Locales excluded from the test call the correct (default) template.
 
 A/B Test PRs that might have useful code to reuse
----
-https://github.com/mozilla/bedrock/pull/5736/files
-https://github.com/mozilla/bedrock/pull/4645/files
-https://github.com/mozilla/bedrock/pull/5925/files
-https://github.com/mozilla/bedrock/pull/5443/files
-https://github.com/mozilla/bedrock/pull/5492/files
-https://github.com/mozilla/bedrock/pull/5499/files
+-------------------------------------------------
+
+- https://github.com/mozilla/bedrock/pull/5736/files
+- https://github.com/mozilla/bedrock/pull/4645/files
+- https://github.com/mozilla/bedrock/pull/5925/files
+- https://github.com/mozilla/bedrock/pull/5443/files
+- https://github.com/mozilla/bedrock/pull/5492/files
+- https://github.com/mozilla/bedrock/pull/5499/files

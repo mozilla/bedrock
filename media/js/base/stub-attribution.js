@@ -3,8 +3,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // Create namespace
-if (typeof Mozilla === 'undefined') {
-    var Mozilla = {};
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
 }
 
 (function() {
@@ -113,7 +113,7 @@ if (typeof Mozilla === 'undefined') {
     /**
      * Appends stub attribution data as URL parameters.
      * Note: data is already URI encoded when returned via the service.
-     * @param {String url - URL to append data to.
+     * @param {String} url - URL to append data to.
      * @param {Object} data - attribution_code, attribution_sig.
      * @return {String} url + additional parameters.
      */

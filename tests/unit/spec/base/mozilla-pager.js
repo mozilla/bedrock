@@ -3,7 +3,6 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global describe, beforeEach, afterEach, it, expect */
 /* eslint no-unused-vars: [2, { "varsIgnorePattern": "pager" }] */
 
 describe('mozilla-pager.js', function () {
@@ -236,6 +235,7 @@ describe('mozilla-pager.js', function () {
     describe('Mozilla.Pager history', function () {
 
         beforeEach(function () {
+            Mozilla.Pager.monitoringHash = false;
             $('<div id="pager" class="pager pager-with-tabs"><ol class="pager-tabs"><li><a href="#page1">Page 1</a></li><li><a href="#page2">Page 2</a></li></ol><div class="pager-content"><div class="pager-page"><p>Page 1</p></div><div class="pager-page"><p>Page 2</p></div></div></div>').appendTo('body');
         });
 
@@ -246,7 +246,7 @@ describe('mozilla-pager.js', function () {
         });
 
         it('should monitor hash changes', function () {
-            spyOn(Mozilla.Pager, 'initHashMonitor');
+            spyOn(Mozilla.Pager, 'initHashMonitor').and.callThrough();
             Mozilla.Pager.createPagers();
             expect(Mozilla.Pager.initHashMonitor).toHaveBeenCalled();
             expect(Mozilla.Pager.monitoringHash).toBeTruthy();

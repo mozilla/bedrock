@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "foundation/base-resp.html" %}
+{% extends "foundation/base.html" %}
 
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
@@ -13,7 +13,7 @@
   {{ _('Thank you for supporting the Mozilla Open Web Fund') }}
 {% endblock %}
 
-{% block article %}
+{% block article_content %}
   <p>
   {% trans %}
     Your donation will help Mozilla support projects and people who are
@@ -22,10 +22,10 @@
   {% endtrans %}
   </p>
 
-  <ul>
+  <ul class="mzp-u-list-styled">
     <li>{% trans join="http://www.drumbeat.org/people" %}<a href="{{ join }}">Join</a> Mozilla Drumbeat and start making the web more open and awesome right now{% endtrans %}</li>
     <li>{% trans getinvolved=url('mozorg.contribute.index') %}<a href="{{ getinvolved }}">Get involved</a> with Mozilla{% endtrans %}</li>
     <li>{% trans firefox=url('firefox.new') %}Introduce someone to <a href="{{ firefox }}">Mozilla Firefox</a>{% endtrans %}</li>
   </ul>
 
-{% endblock article %}
+{% endblock %}

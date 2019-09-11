@@ -1,0 +1,60 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% from "macros-protocol.html" import hero, content_card with context %}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block page_title %}Dein Europa. Deine Wahl. Deine Tools.{% endblock %}
+{% block page_desc %}Europa, du hast die Wahl: Firefox hilft dir, dich online besser zu schützen. Deine Tools gegen Targeting, Desinformation und Manipulation.{% endblock %}
+{% block page_image %}{{ static('img/firefox/election/share.png') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_election') }}
+{% endblock %}
+
+{% block body_id %}election{% endblock %}
+
+{% block body_class %}election{% endblock %}
+
+{% block site_header %}
+  {% include 'includes/protocol/navigation/index.html' %}
+{% endblock %}
+
+{% block content %}
+<main class="mzp-t-firefox">
+
+  {% call hero(
+    title=_('Dein Europa.<br> Deine Wahl.<br> Deine Tools.')|safe,
+    class='mzp-has-image mzp-u-no-shape mzp-t-firefox',
+    heading_level=1,
+    desc="Online-News, Social Media, Werbung – das Internet hat die Wahlen verändert. Bereite dich jetzt auf die EU-Wahl vor – mit Tools, die dir dabei helfen, dich online zu schützen und rundum informiert deine Stimme abzugeben."
+  ) %}
+  {% endcall %}
+
+  <div class="mzp-l-content">
+    <div class="mzp-l-card-hero">
+      {{ content_card('card_1') }}
+      {{ content_card('card_2') }}
+      {{ content_card('card_3') }}
+      {{ content_card('card_4') }}
+      {{ content_card('card_5') }}
+    </div>
+
+    <div class="mzp-l-card-half">
+      {{ content_card('card_6') }}
+      {{ content_card('card_7') }}
+    </div>
+    <div class="mzp-l-card-half">
+      {{ content_card('card_8') }}
+      {{ content_card('card_9') }}
+    </div>
+  </div>
+
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_election') }}
+{% endblock %}

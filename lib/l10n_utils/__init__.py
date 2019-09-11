@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render as django_render
 from django.template import TemplateDoesNotExist, loader
 from django.utils.translation.trans_real import parse_accept_lang_header
+from django.views.generic import TemplateView
 
 from bedrock.base.urlresolvers import split_path
 
@@ -113,10 +114,7 @@ def get_accept_languages(request):
     languages = []
     pattern = re.compile(r'^([A-Za-z]{2,3})(?:-([A-Za-z]{2})(?:-[A-Za-z0-9]+)?)?$')
 
-    try:
-        parsed = parse_accept_lang_header(request.META.get('HTTP_ACCEPT_LANGUAGE', ''))
-    except ValueError:  # see https://code.djangoproject.com/ticket/21078
-        return languages
+    parsed = parse_accept_lang_header(request.META.get('HTTP_ACCEPT_LANGUAGE', ''))
 
     for lang, priority in parsed:
         m = pattern.match(lang)
@@ -161,13 +159,13 @@ def get_best_translation(translations, accept_languages):
     return translations[0]
 
 
-class LangFilesMixin(object):
+class LangFilesMixin:
     """Generic views mixin that uses l10n_utils to render responses."""
     active_locales = None
     add_active_locales = None
 
     def get_context_data(self, **kwargs):
-        ctx = super(LangFilesMixin, self).get_context_data(**kwargs)
+        ctx = super().get_context_data(**kwargs)
         if self.active_locales:
             ctx['active_locales'] = self.active_locales
         if self.add_active_locales:
@@ -178,3 +176,7 @@ class LangFilesMixin(object):
     def render_to_response(self, context, **response_kwargs):
         return render(self.request, self.get_template_names(),
                       context, **response_kwargs)
+
+
+class L10nTemplateView(LangFilesMixin, TemplateView):
+    pass

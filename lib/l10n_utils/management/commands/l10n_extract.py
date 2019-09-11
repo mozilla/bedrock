@@ -29,7 +29,7 @@ def gettext_extract():
 
 def extract_callback(filename, method, options):
     if method != 'ignore':
-        print "  %s" % filename
+        print("  %s" % filename)
 
 
 def extract_from_files(filenames,
@@ -116,7 +116,7 @@ def extract_from_files(filenames,
                 matched = True
                 filepath = os.path.join(settings.ROOT, filename)
                 if not os.path.exists(filepath):
-                    print '! %s does not exist!' % filename
+                    print('! %s does not exist!' % filename)
                     break
                 options = {}
                 for opattern, odict in options_map.items():
@@ -133,18 +133,22 @@ def extract_from_files(filenames,
                     yield filename, lineno, message, comments, context
                 break
         if not matched:
-            print '! %s does not match any domain methods!' % filename
+            print('! %s does not match any domain methods!' % filename)
 
 
 class Command(BaseCommand):
-    args = '<filename filename ...>'
     help = dedent("""
         Extracts a .lang file with new translations from all source files.
         If <filename>s are provided only extract from those files.
     """).strip()
 
+    def add_arguments(self, parser):
+        # Positional arguments
+        parser.add_argument('filenames', nargs='*')
+
     def handle(self, *args, **options):
-        if args:
+        filenames = options['filenames']
+        if filenames:
             # mimics puente.management.commands.extract for a list of files
             outputdir = os.path.join(settings.ROOT, 'locale', 'templates',
                                      'LC_MESSAGES')
@@ -159,7 +163,7 @@ class Command(BaseCommand):
                 charset='utf-8',
             )
 
-            for filename, lineno, msg, cmts, ctxt in extract_from_files(args):
+            for filename, lineno, msg, cmts, ctxt in extract_from_files(filenames):
                 catalog.add(msg, None, [(filename, lineno)], auto_comments=cmts,
                             context=ctxt)
 

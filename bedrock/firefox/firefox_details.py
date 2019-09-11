@@ -3,7 +3,7 @@
 import re
 from collections import OrderedDict
 from operator import itemgetter
-from urllib import urlencode
+from urllib.parse import urlencode
 
 from django.conf import settings
 
@@ -30,7 +30,9 @@ class FirefoxDesktop(_ProductDetails):
     # Human-readable platform names
     platform_labels = OrderedDict([
         ('win64', 'Windows 64-bit'),
+        ('win64-msi', 'Windows 64-bit MSI'),
         ('win', 'Windows 32-bit'),
+        ('win-msi', 'Windows 32-bit MSI'),
         ('osx', 'macOS'),
         ('linux64', 'Linux 64-bit'),
         ('linux', 'Linux 32-bit'),
@@ -38,8 +40,8 @@ class FirefoxDesktop(_ProductDetails):
 
     # Recommended/modern vs traditional/legacy platforms
     platform_classification = OrderedDict([
-        ('recommended', ('win64', 'osx', 'linux64')),
-        ('traditional', ('win', 'linux')),
+        ('recommended', ('win64', 'win64-msi', 'osx', 'linux64')),
+        ('traditional', ('linux', 'win', 'win-msi')),
     ])
 
     # Human-readable channel names
@@ -75,13 +77,18 @@ class FirefoxDesktop(_ProductDetails):
         """
         if classified:
             platforms = OrderedDict()
-            for k, v in self.platform_classification.iteritems():
+            for k, v in self.platform_classification.items():
                 for platform in v:
                     platforms[platform] = self.platform_labels[platform]
         else:
             platforms = self.platform_labels.copy()
 
-        return platforms.items()
+        # Msi installers are not yet available for ESR builds.
+        if channel == 'esr' or channel == 'esr-next':
+            del platforms['win64-msi']
+            del platforms['win-msi']
+
+        return list(platforms.items())
 
     def latest_version(self, channel='release'):
         version = self.version_map.get(channel, 'LATEST_FIREFOX_VERSION')
@@ -160,7 +167,7 @@ class FirefoxDesktop(_ProductDetails):
         version = version or self.latest_version(channel)
 
         f_builds = []
-        for locale, build in builds.iteritems():
+        for locale, build in builds.items():
             if locale not in self.languages or not build.get(version):
                 continue
 
@@ -175,7 +182,7 @@ class FirefoxDesktop(_ProductDetails):
             if query is not None and not self._matches_query(build_info, query):
                 continue
 
-            for platform, label in self.platform_labels.iteritems():
+            for platform, label in self.platform_labels.items():
                 build_info['platforms'][platform] = {
                     'download_url': self.get_download_url(channel, version,
                                                           platform, locale,
@@ -228,13 +235,21 @@ class FirefoxDesktop(_ProductDetails):
         :param locale_in_transition: Include the locale in the transition URL
         :return: string url
         """
-        _version = version
+        # no longer used, but still passed in. leaving here for now
+        # as it will likely be used in future.
+        # _version = version
         _locale = 'ja-JP-mac' if platform == 'osx' and locale == 'ja' else locale
         channel = 'devedition' if channel == 'alpha' else channel
         force_direct = True if channel != 'release' else force_direct
         stub_platforms = ['win', 'win64']
         esr_channels = ['esr', 'esr_next']
         include_funnelcake_param = False
+
+        # support optional MSI installer downloads
+        # bug 1493205
+        is_msi = platform.endswith('-msi')
+        if is_msi:
+            platform = platform[:-4]
 
         # Bug 1345467 - Only allow specifically configured funnelcake builds
         if funnelcake_id:
@@ -259,15 +274,15 @@ class FirefoxDesktop(_ProductDetails):
         # otherwise build a full download URL
         prod_name = 'firefox' if channel == 'release' else 'firefox-%s' % channel
         suffix = 'latest-ssl'
+        if is_msi:
+            suffix = 'msi-' + suffix
+
         if channel in esr_channels:
             # nothing special about ESR other than there is no stub.
             # included in this contitional to avoid the following elif.
             if channel == 'esr_next':
-                # no firefox-esr-next-latest-ssl alias just yet
-                # could come in future in bug 1408868
-                prod_name = 'firefox'
-                suffix = '%s-SSL' % _version
-        elif platform in stub_platforms and not force_full_installer:
+                prod_name = 'firefox-esr-next'
+        elif platform in stub_platforms and not is_msi and not force_full_installer:
             # Use the stub installer for approved platforms
             # append funnelcake id to version if we have one
             if include_funnelcake_param:
@@ -278,6 +293,8 @@ class FirefoxDesktop(_ProductDetails):
             # Nightly uses a different product name for localized builds,
             # and is the only one ಠ_ಠ
             suffix = 'latest-l10n-ssl'
+            if is_msi:
+                suffix = 'msi-' + suffix
 
         product = '%s-%s' % (prod_name, suffix)
 
@@ -329,11 +346,12 @@ class FirefoxAndroid(_ProductDetails):
 
     # Product names defined in bouncer
     product_map = {
+        'nightly': 'fennec-nightly-latest',
         'beta': 'fennec-beta-latest',
         'release': 'fennec-latest',
     }
 
-    store_url = settings.GOOGLE_PLAY_FIREFOX_LINK
+    store_url = settings.GOOGLE_PLAY_FIREFOX_LINK_UTMS
     # Product IDs defined on Google Play
     # Nightly reuses the Aurora ID to migrate the user base
     store_product_ids = {
@@ -366,10 +384,10 @@ class FirefoxAndroid(_ProductDetails):
         min_version = '4.0.3' if version_int < 56 else '4.1'
 
         # key is a bouncer platform name, value is the human-readable label
-        for arch, platform in self.platform_map.iteritems():
+        for arch, platform in self.platform_map.items():
             platforms[platform] = self.platform_labels[arch] % min_version
 
-        return platforms.items()
+        return list(platforms.items())
 
     def latest_version(self, channel):
         version = self.version_map.get(channel, 'version')
@@ -424,7 +442,7 @@ class FirefoxAndroid(_ProductDetails):
             if query is not None and not self._matches_query(build_info, query):
                 continue
 
-            for arch, platform in self.platform_map.iteritems():
+            for arch, platform in self.platform_map.items():
                 # x86 builds are not localized yet
                 if arch == 'x86' and locale not in ['multi', 'en-US']:
                     continue
@@ -465,20 +483,7 @@ class FirefoxAndroid(_ProductDetails):
         :return: string url
         """
         if force_direct:
-            # Use a direct archive link for Nightly
-            if channel == 'nightly':
-                if arch == 'x86':
-                    api_version = 'x86'
-                elif self.latest_major_version(channel) < 56:
-                    api_version = 'api-15'
-                else:
-                    api_version = 'api-16'
-
-                return self.archive_urls[arch] % (self.archive_repo[channel],
-                                                  api_version,
-                                                  self.latest_version(channel))
-
-            # Use a bouncer link for Beta/Release
+            # Use a bouncer link
             return '?'.join([self.bouncer_url, urlencode([
                 ('product', self.product_map.get(channel, 'fennec-latest')),
                 ('os', self.platform_map[arch]),

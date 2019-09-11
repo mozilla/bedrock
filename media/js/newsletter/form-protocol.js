@@ -10,6 +10,10 @@
 
     var newsletterForm = document.getElementById('newsletter-form');
 
+    if(!newsletterForm) {
+        return;
+    }
+
     // handle errors
     var errorArray = [];
     var newsletterErrors = document.getElementById('newsletter-errors');
@@ -69,6 +73,20 @@
         thanks.style.display = 'block';
     }
 
+    // trigger success event
+    function newsletterSuccess() {
+        if (typeof document.CustomEvent === 'function') {
+            document.dispatchEvent(new CustomEvent('newsletterSuccess', {
+                bubbles: true,
+                cancelable: true
+            }));
+        } else if (typeof document.createEvent === 'function') {
+            var event = document.createEvent('Event');
+            event.initEvent('newsletterSuccess', true, true);
+            document.dispatchEvent(event);
+        }
+    }
+
     // XHR subscribe; handle errors; display thanks message on success.
     function newsletterSubscribe(evt) {
         var skipXHR = newsletterForm.getAttribute('data-skip-xhr');
@@ -119,6 +137,8 @@
                     newsletterForm.style.display = 'none';
                     newsletterThanks();
                     enableFormFields();
+                    newsletterSuccess();
+
 
                     if (window.dataLayer) {
                         window.dataLayer.push({

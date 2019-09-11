@@ -4,7 +4,6 @@
     var strings;
     var topicHeaders;
     var initialTopic;
-    var initialTopicContent;
 
     /**
      * Check for feature support
@@ -32,7 +31,7 @@
         button.textContent = strings.dataset.choicesButton;
         button.setAttribute('id', 'choose');
         button.setAttribute('type', 'button');
-        button.className = 'mzp-c-button';
+        button.className = 'mzp-c-button mzp-t-primary mzp-t-download mzp-t-small';
 
         container.appendChild(copyContainer);
         container.appendChild(button);
@@ -53,14 +52,17 @@
     // Don't execute if features aren't supported and client isn't desktop Firefox
     if (supportsBaselineJS() && Mozilla.Client.isFirefoxDesktop) {
         strings = document.getElementById('strings');
-        topicHeaders = document.querySelectorAll('.privacy-body .l-narrow > section');
-        initialTopic = topicHeaders[0].querySelector('section');
-        initialTopicContent = initialTopic.querySelector('div');
+        topicHeaders = document.querySelectorAll('.privacy-body > div > section');
+        initialTopic = topicHeaders[0].querySelector('section > *:last-child');
 
-        // and that the UITour works (requires base/uitour-lib.js)
-        Mozilla.UITour.ping(function() {
-            addDataChoicesWidget(initialTopicContent);
-        });
+        // check that the UITour works (requires base/uitour-lib.js)
+        if (Mozilla.UITour === undefined) {
+            return;
+        } else {
+            Mozilla.UITour.ping(function() {
+                addDataChoicesWidget(initialTopic);
+            });
+        }
     }
 
 })();

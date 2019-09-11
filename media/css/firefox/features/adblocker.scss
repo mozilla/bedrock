@@ -6,37 +6,23 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import "../../../protocol/css/includes/lib";
-@import "../../../protocol/css/components/billboard";
-@import "../../../protocol/css/components/button";
-@import "../../../protocol/css/components/download-button";
-@import "../../../protocol/css/components/card";
-@import "../../../protocol/css/components/feature-card";
 @import "../../../protocol/css/components/hero";
+@import "../../../protocol/css/components/billboard";
 @import "../../../protocol/css/templates/card-layout";
 @import "../../../protocol/css/components/call-out";
 
 /* -------------------------------------------------------------------------- */
 // Custom layout
 
-h1, h2, h3, blockquote {
-    font-family: 'Open Sans';
-}
-
 ul li span {
     font-weight: bold;
 }
 
-blockquote {
-    @include text-display-sm;
-    margin: 30px 0;
-    text-align: left;
-
-}
-
 .mzp-c-call-out-compact.mzp-t-product-firefox.mzp-t-firefox {
-    background-color: #d7d7db;
-    .download-firefox {
-        margin: 0 0 -40px;
+    background-color: $color-gray-20;
+
+    .fx-privacy-link {
+        margin-bottom: 0;
     }
 }
 
@@ -67,59 +53,16 @@ blockquote {
     }
 }
 
-.mzp-c-card-feature-media-wrapper {
-    margin-bottom: 50px;
-
-    @media #{$mq-lg} {
-        width: 100%;
-    }
-}
-
-.mzp-c-card-feature {
-    margin-bottom: 0;
-}
-
 section.mzp-c-hero {
     padding: 0;
-}
-
-.mzp-c-billboard-image {
-    width: 100%;
+    .mzp-c-hero-subtitle {
+        @include text-display-sm;
+    }
 }
 
 .section-title {
-    @include text-display-lg;
+    @include text-display-sm;
     text-align: center;
-}
-
-/* -------------------------------------------------------------------------- */
-// Blue download button
-
-.download-firefox {
-    a.download-link.button {
-        background-color: $color-blue-60;
-        background-image: none;
-        border-radius: 3px;
-        border: none;
-        box-shadow: none;
-        color: $color-white;
-        line-height: 1.125;
-        padding: ($padding-md + 2px) ($padding-lg + 2px); //2px extra padding to compensate for no border.
-
-        &:hover,
-        &:focus {
-            background-color: $color-blue-70;
-            background-image: none;
-            box-shadow: 4px 4px 0 0 $color-black;
-            color: $color-white;
-            transition: box-shadow 100ms;
-        }
-
-        &:active {
-            box-shadow: 2px 2px 0 0 $color-black;
-            transition: box-shadow 0ms;
-        }
-    }
 }
 
 /* -------------------------------------------------------------------------- */

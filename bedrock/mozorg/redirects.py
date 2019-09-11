@@ -39,7 +39,7 @@ redirectpatterns = (
              'https://wiki.mozilla.org/Websites/Directory', locale_prefix=False),
 
     # bug 885856
-    redirect(r'^projects/index\.(de|fr|hr|sq).html$', '/{}/firefox/',
+    redirect(r'^projects/index\.(de|fr|hr|sq)\.html$', '/{}/firefox/',
              locale_prefix=False),
 
     # bug 856075
@@ -99,16 +99,15 @@ redirectpatterns = (
     redirect(r'^firefox/backtoschool/firstrun/?$', 'firefox.firstrun'),
 
     # bug 824126, 837942
-    redirect(r'^ports/qtmozilla(?:/|/index.html)?$', 'https://wiki.mozilla.org/Qt'),
+    redirect(r'^ports/qtmozilla(?:/|/index\.html)?$', 'https://wiki.mozilla.org/Qt'),
     redirect(r'^ports/os2/?$', 'https://wiki.mozilla.org/Ports/os2'),
     redirect(r'^ports(?P<path>.*)', 'http://www-archive.mozilla.org/ports{path}'),
 
     redirect(r'^b2g', 'https://support.mozilla.org/products/firefox-os'),
 
     # Bug 781914
-    redirect(r'^contribute/areas.html$', 'mozorg.contribute.index'),
-    redirect(r'^contribute/universityambassadors',
-             'mozorg.contribute.studentambassadors.landing'),
+    redirect(r'^contribute/areas\.html$', 'mozorg.contribute.index'),
+    redirect(r'^contribute/universityambassadors', 'https://campus.mozilla.community/'),
 
     # Bug 1144949
     redirect(r'^contribute/page/?$',
@@ -133,7 +132,7 @@ redirectpatterns = (
              'https://marketplace.firefox.com/developers/'),
 
     # Bug 815527 /m/privacy.html -> /privacy/firefox/
-    redirect(r'^m/privacy.html$', 'privacy.notices.firefox'),
+    redirect(r'^m/privacy\.html$', 'privacy.notices.firefox'),
 
     # Bug 1109318 /privacy/you -> privacy/tips/
     # Bug 1238687 /privacy/tips -> teach/smarton/
@@ -144,7 +143,7 @@ redirectpatterns = (
              'mozorg.internet-health.privacy-security'),
 
     # Bug 821047 /about/mission.html -> /mission/
-    redirect(r'^about/mission.html$', '/mission/'),
+    redirect(r'^about/mission\.html$', '/mission/'),
 
     # Bug 784411 /about/mission/ -> /mission/
     redirect(r'^about/mission/?$', '/mission/'),
@@ -164,9 +163,9 @@ redirectpatterns = (
     # https://wiki.mozilla.org/Telemetry/FAQ
     redirect(r'telemetry/?$', 'https://wiki.mozilla.org/Telemetry/FAQ'),
 
-    # Bug 854561 - move /projects/mozilla-based/ to
-    # /about/mozilla-based/
-    redirect(r'^projects/mozilla-based/?$', '/about/mozilla-based/'),
+    # Bug 854561, Issue 7448
+    redirect(r'^projects/mozilla-based(\.html|/)?', 'https://developer.mozilla.org/docs/Archive/List_of_Mozilla-Based_Applications'),
+    redirect(r'^about/mozilla-based/?$', 'https://developer.mozilla.org/docs/Archive/List_of_Mozilla-Based_Applications'),
 
     # Bug 867773, 1238851 - Redirect the Persona URLs to MDN
     redirect(r'^persona(?:/(?:about|developer-faq))?/?$',
@@ -202,7 +201,7 @@ redirectpatterns = (
     redirect(r'^dnt/?$', 'https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature'),
 
     # bug 1205632
-    redirect(r'^js/language(?:/|/index.html)?$',
+    redirect(r'^js/language(?:/|/index\.html)?$',
              'https://developer.mozilla.org/docs/Web/JavaScript/Language_Resources',
              locale_prefix=False),
     redirect(r'^js/language/js20(/.*)?$', 'http://www.ecmascript-lang.org',
@@ -226,9 +225,6 @@ redirectpatterns = (
     # bug 925551
     redirect(r'^plugincheck/more_info\.html$', 'mozorg.plugincheck'),
 
-    # bug 854561
-    redirect(r'^projects/mozilla-based(\.html|/)?', 'mozorg.projects.mozilla-based'),
-
     # issue 851727
     redirect(r'^projects/powered-by(\.html|/)?', 'mozorg.home'),
     redirect(r'^about/powered-by/?', 'mozorg.home'),
@@ -239,12 +235,12 @@ redirectpatterns = (
     # bug 876810
     redirect(r'^hacking/commit-access-policy/?$',
              'mozorg.about.governance.policies.commit.access-policy'),
-    redirect(r'^hacking/committer(/|/faq.html)?$', 'mozorg.about.governance.policies.commit'),
+    redirect(r'^hacking/committer(/|/faq\.html)?$', 'mozorg.about.governance.policies.commit'),
     redirect(r'^hacking/notification/?$', 'mozorg.about.governance.policies.commit'),
     redirect(r'^hacking/committer/committers-agreement\.(?P<ext>odt|pdf|txt)$',
              'https://static.mozilla.com/foundation/documents/'
              'commit-access/committers-agreement.{ext}'),
-    redirect(r'^hacking/notification/acceptance-email.txt$',
+    redirect(r'^hacking/notification/acceptance-email\.txt$',
              'https://static.mozilla.com/foundation/documents/commit-access/acceptance-email.txt'),
 
     # bug 1165344
@@ -276,33 +272,33 @@ redirectpatterns = (
     redirect(r'^opportunities(?:/|/index\.html)?$', 'https://careers.mozilla.org/'),
 
     # bug 818321
-    redirect(r'^projects/security/tld-idn-policy-list.html$',
+    redirect(r'^projects/security/tld-idn-policy-list\.html$',
              '/about/governance/policies/security-group/tld-idn/'),
-    redirect(r'^projects/security/membership-policy.html$',
+    redirect(r'^projects/security/membership-policy\.html$',
              '/about/governance/policies/security-group/membership/'),
-    redirect(r'^projects/security/secgrouplist.html$',
+    redirect(r'^projects/security/secgrouplist\.html$',
              '/about/governance/policies/security-group/'),
-    redirect(r'^projects/security/security-bugs-policy.html$',
+    redirect(r'^projects/security/security-bugs-policy\.html$',
              '/about/governance/policies/security-group/bugs/'),
 
     # bug 818316, 1128579
-    redirect(r'^projects/security/certs(?:/(?:index.html)?)?$',
+    redirect(r'^projects/security/certs(?:/(?:index\.html)?)?$',
              '/about/governance/policies/security-group/certs/'),
-    redirect(r'^projects/security/certs/included(?:/(?:index.html)?)?$',
+    redirect(r'^projects/security/certs/included(?:/(?:index\.html)?)?$',
              'https://wiki.mozilla.org/CA:IncludedCAs'),
-    redirect(r'^projects/security/certs/pending(?:/(?:index.html)?)?$',
+    redirect(r'^projects/security/certs/pending(?:/(?:index\.html)?)?$',
              'https://wiki.mozilla.org/CA:PendingCAs'),
-    redirect(r'^projects/security/certs/policy(?:/(?:index.html)?)?$',
+    redirect(r'^projects/security/certs/policy(?:/(?:index\.html)?)?$',
              '/about/governance/policies/security-group/certs/policy/'),
-    redirect(r'^projects/security/certs/policy/EnforcementPolicy.html$',
+    redirect(r'^projects/security/certs/policy/EnforcementPolicy\.html$',
              '/about/governance/policies/security-group/certs/policy/enforcement/'),
-    redirect(r'^projects/security/certs/policy/MaintenancePolicy.html$',
+    redirect(r'^projects/security/certs/policy/MaintenancePolicy\.html$',
              '/about/governance/policies/security-group/certs/policy/maintenance/'),
-    redirect(r'^projects/security/certs/policy/InclusionPolicy.html$',
+    redirect(r'^projects/security/certs/policy/InclusionPolicy\.html$',
              '/about/governance/policies/security-group/certs/policy/inclusion/'),
-    redirect(r'^about/governance/policies/security-group/certs/included(?:/(?:index.html)?)?$',
+    redirect(r'^about/governance/policies/security-group/certs/included(?:/(?:index\.html)?)?$',
              'https://wiki.mozilla.org/CA:IncludedCAs'),
-    redirect(r'^about/governance/policies/security-group/certs/pending(?:/(?:index.html)?)?$',
+    redirect(r'^about/governance/policies/security-group/certs/pending(?:/(?:index\.html)?)?$',
              'https://wiki.mozilla.org/CA:PendingCAs'),
 
     # bug 1068931
@@ -310,11 +306,11 @@ redirectpatterns = (
 
     # bug 887426
     redirect(r'^about/policies/?$', '/about/governance/policies/'),
-    redirect(r'^about/policies/participation.html$', '/about/governance/policies/participation/'),
-    redirect(r'^about/policies/policies.html$', '/about/governance/policies/'),
+    redirect(r'^about/policies/participation\.html$', '/about/governance/policies/participation/'),
+    redirect(r'^about/policies/policies\.html$', '/about/governance/policies/'),
 
     # bug 882923
-    redirect(r'^opt-out.html$', '/privacy/websites/#user-choices'),
+    redirect(r'^opt-out\.html$', '/privacy/websites/#user-choices'),
 
     # bug 878039
     redirect(r'^access/?$', 'https://developer.mozilla.org/docs/Web/Accessibility'),
@@ -364,7 +360,7 @@ redirectpatterns = (
              'https://developer.mozilla.org/docs/Web/Accessibility/Implementing_MSAA_server'),
     redirect(r'^access/windows/zoomtext\.html$',
              'https://developer.mozilla.org/docs/Mozilla/Accessibility/ZoomText'),
-    redirect('^access/donate(\.html|/)?$', 'https://donate.mozilla.org/'),
+    redirect(r'^access/donate(\.html|/)?$', 'https://donate.mozilla.org/'),
 
     # bug 1148187
     redirect(r'^access/(?P<page>.+)$',
@@ -386,7 +382,7 @@ redirectpatterns = (
     redirect(r'^MPL/boilerplate-1\.1/(.*)$',
              'http://website-archive.mozilla.org/www.mozilla.org/mpl/MPL/boilerplate-1.1/{}',
              locale_prefix=False),
-    redirect(r'^MPL/missing.html$',
+    redirect(r'^MPL/missing\.html$',
              'http://website-archive.mozilla.org/www.mozilla.org/mpl/MPL/missing.html',
              locale_prefix=False),
 
@@ -402,9 +398,9 @@ redirectpatterns = (
     # bug 724682
     redirect(r'^projects/mathml/demo/texvsmml\.html$',
              'https://developer.mozilla.org/docs/Mozilla_MathML_Project/MathML_Torture_Test'),
-    redirect(r'^projects/mathml/fonts(?:/(?:index.html)?)?$',
+    redirect(r'^projects/mathml/fonts(?:/(?:index\.html)?)?$',
              'https://developer.mozilla.org/Mozilla_MathML_Project/Fonts'),
-    redirect(r'^projects/mathml/screenshots(?:/(?:index.html)?)?$',
+    redirect(r'^projects/mathml/screenshots(?:/(?:index\.html)?)?$',
              'https://developer.mozilla.org/Mozilla_MathML_Project/Screenshots'),
     redirect(r'^projects/mathml/authoring\.html$',
              'https://developer.mozilla.org/en/Mozilla_MathML_Project/Authoring'),
@@ -459,7 +455,7 @@ redirectpatterns = (
              'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino/Download_Rhino'),
     redirect(r'^rhino/doc\.html$',
              'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino/Documentation'),
-    redirect('^rhino/shell\.html$',
+    redirect(r'^rhino/shell\.html$',
              'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino/Shell'),
     redirect(r'^rhino/?', 'https://developer.mozilla.org/docs/Mozilla/Projects/Rhino'),
 
@@ -488,9 +484,9 @@ redirectpatterns = (
     # (The links within the foundation pages have been updated, but there are
     # probably many links to them from other pages and sites that need to keep
     # working.)
-    redirect(r'^foundation/documents/(?P<pdf>[^/]+).pdf$',
+    redirect(r'^foundation/documents/(?P<pdf>[^/]+)\.pdf$',
              'https://static.mozilla.com/foundation/documents/{pdf}.pdf', re_flags='i'),
-    redirect(r'^foundation/donate_form.pdf$',
+    redirect(r'^foundation/donate_form\.pdf$',
              'https://static.mozilla.com/foundation/documents/donate_form.pdf', re_flags='i'),
 
     # openwebfund/ and openwebfund/index.html redirect to another site.  Careful because
@@ -503,14 +499,14 @@ redirectpatterns = (
 
     # FIXUPs for changing foo/bar.html to foo/bar/
     # Redirect foundation/foo.html to foundation/foo/, with a redirect for the nice search engines
-    redirect(r'^foundation/(?P<page>about|careers|licensing|moco|mocosc).html$',
+    redirect(r'^foundation/(?P<page>about|careers|licensing|moco|mocosc)\.html$',
              '/foundation/{page}/', re_flags='i'),
     # Redirect foundation/anything/foo.html to foundation/anything/foo/,
     # with a redirect for the nice search engines
     redirect(r'^foundation/documents/(?P<page>index|mozilla-200.-financial-faq)\.html$',
              '/foundation/{page}/', re_flags='i'),
     redirect(r'^foundation/(?P<page>(?:annualreport|documents|feed-icon-guidelines|'
-             r'licensing|openwebfund|trademarks)/.*).html$', '/foundation/{page}/', re_flags='i'),
+             r'licensing|openwebfund|trademarks)/.*)\.html$', '/foundation/{page}/', re_flags='i'),
 
     # bug 442671
     redirect(r'^foundation/trademarks/l10n-policy/?$', '/foundation/trademarks/', re_flags='i'),
@@ -569,7 +565,7 @@ redirectpatterns = (
     redirect(r'^about/patents/?$', 'mozorg.about.policy.patents.index'),
     redirect(r'^about/patents/guide/?$', 'mozorg.about.policy.patents.guide'),
     redirect(r'^about/patents/license/?$', 'mozorg.about.policy.patents.license'),
-    redirect(r'^about/patents/license/1.0/?$', 'mozorg.about.policy.patents.license-1.0'),
+    redirect(r'^about/patents/license/1\.0/?$', 'mozorg.about.policy.patents.license-1.0'),
 
     redirect(r'^projects/marketing(/.*)?$', 'https://wiki.mozilla.org/MarketingGuide'),
 
@@ -612,9 +608,8 @@ redirectpatterns = (
     # Bug 1335040
     redirect(r'^gigabit(/.*)?', 'https://learning.mozilla.org/gigabit/'),
 
-    # Bug 1324504
-    redirect(r'^/contribute/studentambassadors/join/?$', 'https://campus.mozilla.community/'),
-    redirect(r'^/contribute/studentambassadors/thanks/?$', 'https://campus.mozilla.community/'),
+    # Bug 1324504, issue 6994
+    redirect(r'^/contribute/studentambassadors(/.*)?', 'https://campus.mozilla.community/'),
 
     # Bug 1340600 - vanity URL
     redirect(r'^css-?grid/?$', 'mozorg.developer.css-grid-demo', query={
@@ -653,4 +648,21 @@ redirectpatterns = (
     redirect(r'^teach/?$', 'mozorg.internet-health'),
     redirect(r'^teach/smarton/?$', 'mozorg.internet-health'),
     redirect(r'^teach/smarton/(?:tracking|security|surveillance)/?$', 'mozorg.internet-health.privacy-security'),
+
+    # issue 6266
+    redirect(r'^about/policy/leandata/?$', 'mozorg.about.policy.lean-data.index'),
+
+    # issue 6756 - vanity URL
+    redirect(r'^decentralization/?$', 'mozorg.internet-health.decentralization'),
+
+    # issue 6971
+    redirect(r'^gear/?$', 'https://mozillagear.corpmerchandise.com/'),
+
+    # issue 6994
+    redirect(r'^contribute/signup/?$', 'https://activate.mozilla.community/'),
+    redirect(r'^/contribute/task(/.*)?', 'https://activate.mozilla.community/'),
+    redirect(r'^contribute/friends/?$', 'mozorg.contribute.index'),
+
+    # issue 7435
+    redirect(r'^about/history/details/?$', 'mozorg.about.history'),
 )

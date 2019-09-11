@@ -23,6 +23,7 @@
 {% block site_header_logo %}{% endblock %}
 
 {% block content %}
+{% block survey %}{% endblock %}
 <main role="main">
 {% block contrib_head %}
   <header class="page-head">
@@ -44,7 +45,7 @@
               {{ _('Meet<br> Mozillians') }}
             </a></li>
             {% block contrib_nav_cta %}
-            <li class="nav-cta"><a href="{{ url('mozorg.contribute.signup') }}" data-link-type="nav" data-link-name="Get involved" data-cta-position="Nav">{{ _('Get involved') }}</a></li>
+            <li class="nav-cta"><a href="https://activate.mozilla.community/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=contribute&amp;utm_content=contribute-page" data-link-type="nav" data-link-name="Get involved" data-cta-position="Nav">{{ _('Get involved') }}</a></li>
             {% endblock contrib_nav_cta %}
           </ul>
         </nav>
@@ -112,7 +113,7 @@
       <div class="extra-newsletter">
         <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
         <h3>{{ _('Get community updates') }} {% if not LANG.startswith('en') %}{{ _('(English)') }}{% endif %}</h3>
-        {{ email_newsletter_form(newsletters='mozilla-foundation', include_title=False, include_language=False) }}
+        {{ email_newsletter_form(newsletters='about-mozilla', include_title=False, include_language=False) }}
       </div>
     {% endblock %}
 
@@ -120,6 +121,9 @@
   </section>
   {% endblock contrib_footer %}
 </main>
+
+{% block cta %}{% endblock %}
+
 {% endblock content %}
 
 {% block email_form %}{% endblock %}

@@ -13,19 +13,6 @@
     font-style: normal;
 }
 
-
-#masthead {
-    background: $color-mozred;
-    color: #fff;
-
-    @media #{$mq-tablet} {
-        a {
-            color: #fff;
-        }
-    }
-}
-
-
 // Header
 .snapshot-header {
     display: none;

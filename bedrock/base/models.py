@@ -8,7 +8,7 @@ class ConfigValue(models.Model):
     class Meta:
         app_label = 'base'
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s=%s' % (self.name, self.value)
 
 

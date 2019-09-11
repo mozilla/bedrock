@@ -7,31 +7,34 @@ import hashlib
 import hmac
 import re
 from collections import OrderedDict
-from urlparse import urlparse
-
-from django.conf import settings
-from django.http import Http404, HttpResponsePermanentRedirect
-from django.utils.cache import patch_response_headers
-from django.utils.encoding import force_text
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST, require_GET
-from django.views.generic.base import TemplateView
+from urllib.parse import urlparse
 
 import basket
 import querystringsafe_base64
-from product_details.version_compare import Version
-
+from django.conf import settings
+from django.http import (
+    Http404,
+    HttpResponsePermanentRedirect,
+    HttpResponseRedirect,
+    JsonResponse,
+)
+from django.utils.cache import patch_response_headers
+from django.utils.encoding import force_text
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_GET, require_POST
+from django.views.generic.base import TemplateView
 from lib import l10n_utils
 from lib.l10n_utils.dotlang import lang_file_is_active
+from product_details.version_compare import Version
+
 from bedrock.base.urlresolvers import reverse
 from bedrock.base.waffle import switch
-from bedrock.firefox.firefox_details import firefox_desktop, firefox_android
+from bedrock.contentcards.models import get_page_content_cards
+from bedrock.firefox.firefox_details import firefox_android, firefox_desktop
 from bedrock.firefox.forms import SendToDeviceWidgetForm
-from bedrock.mozorg.util import HttpResponseJSON
 from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.releasenotes import version_re
 from bedrock.wordpress.views import BlogPostsView
-
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
 
@@ -56,10 +59,7 @@ STUB_VALUE_RE = re.compile(r'^[a-z0-9-.%():_]+$', flags=re.IGNORECASE)
 def installer_help(request):
     installer_lang = request.GET.get('installer_lang', None)
     installer_channel = request.GET.get('channel', None)
-    context = {
-        'installer_lang': None,
-        'installer_channel': None,
-    }
+    context = {'installer_lang': None, 'installer_channel': None}
 
     if installer_lang and installer_lang in firefox_desktop.languages:
         context['installer_lang'] = installer_lang
@@ -74,14 +74,14 @@ def installer_help(request):
 def stub_attribution_code(request):
     """Return a JSON response containing the HMAC signed stub attribution value"""
     if not request.is_ajax():
-        return HttpResponseJSON({'error': 'Resource only available via XHR'}, status=400)
+        return JsonResponse({'error': 'Resource only available via XHR'}, status=400)
 
     response = None
     if not settings.STUB_ATTRIBUTION_RATE:
         # return as though it was rate limited, since it was
-        response = HttpResponseJSON({'error': 'rate limited'}, status=429)
+        response = JsonResponse({'error': 'rate limited'}, status=429)
     elif not settings.STUB_ATTRIBUTION_HMAC_KEY:
-        response = HttpResponseJSON({'error': 'service not configured'}, status=403)
+        response = JsonResponse({'error': 'service not configured'}, status=403)
 
     if response:
         patch_response_headers(response, 300)  # 5 min
@@ -117,9 +117,9 @@ def stub_attribution_code(request):
 
     code_data = sign_attribution_codes(codes)
     if code_data:
-        response = HttpResponseJSON(code_data)
+        response = JsonResponse(code_data)
     else:
-        response = HttpResponseJSON({'error': 'Invalid code'}, status=400)
+        response = JsonResponse({'error': 'Invalid code'}, status=400)
 
     patch_response_headers(response, 300)  # 5 min
     return response
@@ -149,12 +149,9 @@ def sign_attribution_codes(codes):
     if len(code) > settings.STUB_ATTRIBUTION_MAX_LEN:
         return None
 
-    code = querystringsafe_base64.encode(code)
-    sig = hmac.new(key, code, hashlib.sha256).hexdigest()
-    return {
-        'attribution_code': code,
-        'attribution_sig': sig,
-    }
+    code = querystringsafe_base64.encode(code.encode())
+    sig = hmac.new(key.encode(), code, hashlib.sha256).hexdigest()
+    return {'attribution_code': code.decode(), 'attribution_sig': sig}
 
 
 @require_POST
@@ -165,15 +162,13 @@ def send_to_device_ajax(request):
 
     # ensure a value was entered in phone or email field
     if not phone_or_email:
-        return HttpResponseJSON({'success': False, 'errors': ['phone-or-email']})
+        return JsonResponse({'success': False, 'errors': ['phone-or-email']})
 
     # pull message set from POST (not part of form, so wont be in cleaned_data)
     message_set = request.POST.get('message-set', 'default')
 
     # begin collecting data to pass to form constructor
-    data = {
-        'platform': request.POST.get('platform'),
-    }
+    data = {'platform': request.POST.get('platform')}
 
     # determine if email or phone number was submitted
     data_type = 'email' if '@' in phone_or_email else 'number'
@@ -213,32 +208,170 @@ def send_to_device_ajax(request):
                     basket.request('post', 'subscribe_sms', data=data)
                 except basket.BasketException as e:
                     if e.desc == 'mobile_number is invalid':
-                        return HttpResponseJSON({'success': False, 'errors': ['number']})
+                        return JsonResponse({'success': False, 'errors': ['number']})
                     else:
-                        return HttpResponseJSON({'success': False, 'errors': ['system']},
-                                                status=400)
+                        return JsonResponse(
+                            {'success': False, 'errors': ['system']}, status=400
+                        )
             else:
-                return HttpResponseJSON({'success': False, 'errors': ['platform']})
+                return JsonResponse({'success': False, 'errors': ['platform']})
         else:  # email
             if platform in MESSAGES['email']:
                 try:
-                    basket.subscribe(phone_or_email, MESSAGES['email'][platform],
-                                     source_url=request.POST.get('source-url'),
-                                     lang=locale)
+                    basket.subscribe(
+                        phone_or_email,
+                        MESSAGES['email'][platform],
+                        source_url=request.POST.get('source-url'),
+                        lang=locale,
+                    )
                 except basket.BasketException:
-                    return HttpResponseJSON({'success': False, 'errors': ['system']},
-                                            status=400)
+                    return JsonResponse(
+                        {'success': False, 'errors': ['system']}, status=400
+                    )
             else:
-                return HttpResponseJSON({'success': False, 'errors': ['platform']})
+                return JsonResponse({'success': False, 'errors': ['platform']})
 
         resp_data = {'success': True}
     else:
-        resp_data = {
-            'success': False,
-            'errors': form.errors.keys(),
-        }
+        resp_data = {'success': False, 'errors': list(form.errors)}
 
-    return HttpResponseJSON(resp_data)
+    return JsonResponse(resp_data)
+
+
+def firefox_all(request, platform, channel):
+    locale = l10n_utils.get_locale(request)
+
+    # Only show the new template at /firefox/all/ until enough locales have it translated.
+    # Once we no longer need the old template we can redirect the old URLs to the unified page.
+    if (
+        platform is None
+        and channel is None
+        and lang_file_is_active('firefox/all-unified', locale)
+    ):
+        return all_downloads_unified(request)
+
+    return all_downloads(request, platform, channel)
+
+
+def all_downloads_unified(request):
+    product_android = firefox_android
+    product_desktop = firefox_desktop
+
+    # Human-readable product labels
+    products = OrderedDict(
+        [
+            ('desktop_release', 'Firefox'),
+            ('desktop_beta', 'Firefox Beta'),
+            ('desktop_developer', 'Firefox Developer Edition'),
+            ('desktop_nightly', 'Firefox Nightly'),
+            ('desktop_esr', 'Firefox Extended Support Release'),
+            ('android_release', 'Firefox Android'),
+            ('android_beta', 'Firefox Android Beta'),
+            ('android_nightly', 'Firefox Android Nightly'),
+        ]
+    )
+
+    channel_release = 'release'
+    channel_beta = 'beta'
+    channel_dev = 'devedition'
+    channel_nightly = 'nightly'
+    channel_esr = 'esr'
+    channel_esr_next = 'esr_next'
+
+    latest_release_version_desktop = product_desktop.latest_version(channel_release)
+    latest_beta_version_desktop = product_desktop.latest_version(channel_beta)
+    latest_developer_version_desktop = product_desktop.latest_version(channel_dev)
+    latest_nightly_version_desktop = product_desktop.latest_version(channel_nightly)
+    latest_esr_version_desktop = product_desktop.latest_version(channel_esr)
+    latest_esr_next_version_desktop = product_desktop.latest_version(channel_esr_next)
+
+    latest_release_version_android = product_android.latest_version(channel_release)
+    latest_beta_version_android = product_android.latest_version(channel_beta)
+    latest_nightly_version_android = product_android.latest_version(channel_nightly)
+
+    context = {
+        'products': products.items(),
+        'desktop_release_platforms': product_desktop.platforms(channel_release),
+        'desktop_release_full_builds': product_desktop.get_filtered_full_builds(
+            channel_release, latest_release_version_desktop
+        ),
+        'desktop_release_channel_label': product_desktop.channel_labels.get(
+            channel_release, 'Firefox'
+        ),
+        'desktop_release_latest_version': latest_release_version_desktop,
+        'desktop_beta_platforms': product_desktop.platforms(channel_beta),
+        'desktop_beta_full_builds': product_desktop.get_filtered_full_builds(
+            channel_beta, latest_beta_version_desktop
+        ),
+        'desktop_beta_channel_label': product_desktop.channel_labels.get(
+            channel_beta, 'Firefox'
+        ),
+        'desktop_beta_latest_version': latest_beta_version_desktop,
+        'desktop_developer_platforms': product_desktop.platforms(channel_dev),
+        'desktop_developer_full_builds': product_desktop.get_filtered_full_builds(
+            channel_dev, latest_developer_version_desktop
+        ),
+        'desktop_developer_channel_label': product_desktop.channel_labels.get(
+            channel_dev, 'Firefox'
+        ),
+        'desktop_developer_latest_version': latest_developer_version_desktop,
+        'desktop_nightly_platforms': product_desktop.platforms(channel_nightly),
+        'desktop_nightly_full_builds': product_desktop.get_filtered_full_builds(
+            channel_nightly, latest_nightly_version_desktop
+        ),
+        'desktop_nightly_channel_label': product_desktop.channel_labels.get(
+            channel_nightly, 'Firefox'
+        ),
+        'desktop_nightly_latest_version': latest_nightly_version_desktop,
+        'desktop_esr_platforms': product_desktop.platforms(channel_esr),
+        'desktop_esr_full_builds': product_desktop.get_filtered_full_builds(
+            channel_esr, latest_esr_version_desktop
+        ),
+        'desktop_esr_channel_label': product_desktop.channel_labels.get(
+            channel_esr, 'Firefox'
+        ),
+        'desktop_esr_latest_version': latest_esr_version_desktop,
+        'android_release_platforms': product_android.platforms(channel_release),
+        'android_release_full_builds': product_android.get_filtered_full_builds(
+            channel_release, latest_release_version_android
+        ),
+        'android_release_channel_label': product_android.channel_labels.get(
+            channel_release, 'Firefox'
+        ),
+        'android_release_latest_version': latest_release_version_android,
+        'android_beta_platforms': product_android.platforms(channel_beta),
+        'android_beta_full_builds': product_android.get_filtered_full_builds(
+            channel_beta, latest_beta_version_android
+        ),
+        'android_beta_channel_label': product_android.channel_labels.get(
+            channel_beta, 'Firefox'
+        ),
+        'android_beta_latest_version': latest_beta_version_android,
+        'android_nightly_platforms': product_android.platforms(channel_nightly),
+        'android_nightly_full_builds': product_android.get_filtered_full_builds(
+            channel_nightly, latest_nightly_version_android
+        ),
+        'android_nightly_channel_label': product_android.channel_labels.get(
+            channel_nightly, 'Firefox'
+        ),
+        'android_nightly_latest_version': latest_nightly_version_android,
+    }
+
+    if latest_esr_next_version_desktop:
+        context['desktop_esr_platforms_next'] = product_desktop.platforms(
+            channel_esr_next, True
+        )
+        context[
+            'desktop_esr_full_builds_next'
+        ] = product_desktop.get_filtered_full_builds(
+            channel_esr_next, latest_esr_next_version_desktop
+        )
+        context['desktop_esr_channel_label_next'] = (
+            product_desktop.channel_labels.get(channel_esr_next, 'Firefox'),
+        )
+        context['desktop_esr_next_version'] = latest_esr_next_version_desktop
+
+    return l10n_utils.render(request, 'firefox/all-unified.html', context)
 
 
 def all_downloads(request, platform, channel):
@@ -267,7 +400,8 @@ def all_downloads(request, platform, channel):
     # Redirect /firefox/android/aurora/all/ to /firefox/android/nightly/all/
     if platform == 'android' and channel == 'alpha':
         return HttpResponsePermanentRedirect(
-            reverse('firefox.all', kwargs={'platform': 'android', 'channel': 'nightly'}))
+            reverse('firefox.all', kwargs={'platform': 'android', 'channel': 'nightly'})
+        )
 
     version = product.latest_version(channel)
     query = request.GET.get('q')
@@ -288,10 +422,12 @@ def all_downloads(request, platform, channel):
         next_version = firefox_desktop.latest_version('esr_next')
         if next_version:
             context['full_builds_next_version'] = next_version.split('.', 1)[0]
-            context['full_builds_next'] = firefox_desktop.get_filtered_full_builds('esr_next',
-                                                                                   next_version, query)
-            context['test_builds_next'] = firefox_desktop.get_filtered_test_builds('esr_next',
-                                                                                   next_version, query)
+            context['full_builds_next'] = firefox_desktop.get_filtered_full_builds(
+                'esr_next', next_version, query
+            )
+            context['test_builds_next'] = firefox_desktop.get_filtered_test_builds(
+                'esr_next', next_version, query
+            )
     return l10n_utils.render(request, 'firefox/all.html', context)
 
 
@@ -304,6 +440,8 @@ def detect_channel(version):
                 return 'nightly'
             if version.endswith('a2'):
                 return 'alpha'
+            if version.endswith('beta'):
+                return 'beta'
 
     return 'unknown'
 
@@ -325,79 +463,6 @@ def show_57_dev_whatsnew(version):
         return False
 
     return version >= Version('57.0')
-
-
-def show_57_whatsnew(version, oldversion):
-    try:
-        version = Version(version)
-        if oldversion:
-            oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    v57 = Version('57.0')
-    v58 = Version('58.0')
-
-    if oldversion:
-        return version >= v57 and version < v58 and oldversion < v57
-    else:
-        return version == v57
-
-
-def show_59_whatsnew(version, oldversion):
-    try:
-        version = Version(version)
-        if oldversion:
-            oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    v59 = Version('59.0')
-    v60 = Version('60.0')
-
-    if oldversion:
-        return version >= v59 and version < v60 and oldversion < v59
-    else:
-        return version >= v59 and version < v60
-
-
-def show_60_whatsnew(version, oldversion):
-    try:
-        version = Version(version)
-        if oldversion:
-            oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    v60 = Version('60.0')
-
-    return version >= v60 and (oldversion < v60 if oldversion else True)
-
-
-def show_61_whatsnew(version, oldversion):
-    try:
-        version = Version(version)
-        if oldversion:
-            oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    v61 = Version('61.0')
-
-    return version >= v61 and (oldversion < v61 if oldversion else True)
-
-
-def show_62_whatsnew(version, oldversion):
-    try:
-        version = Version(version)
-        if oldversion:
-            oldversion = Version(oldversion)
-    except ValueError:
-        return False
-
-    v62 = Version('62.0')
-
-    return version >= v62 and (oldversion < v62 if oldversion else True)
 
 
 def show_62_firstrun(version):
@@ -457,30 +522,14 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
 
     def get_template_names(self):
         version = self.kwargs.get('version') or ''
-        experience = self.request.GET.get('xv', None)
-        locale = l10n_utils.get_locale(self.request)
-
-        # for copy test
-        # https://bugzilla.mozilla.org/show_bug.cgi?id=1451051
-        variation = self.request.GET.get('v', None)
 
         if detect_channel(version) == 'alpha':
             if show_57_dev_firstrun(version):
                 template = 'firefox/developer/firstrun.html'
             else:
-                template = 'firefox/dev-firstrun.html'
-        elif show_62_firstrun(version):
-            if locale == 'en-US' and experience == 'firefox-election':
-                template = 'firefox/firstrun/firstrun-election.html'
-            else:
-                template = 'firefox/firstrun/firstrun-quantum.html'
-        elif show_57_firstrun(version):
-            if locale == 'en-US' and variation in ['a', 'b', 'c', 'd']:
-                template = 'firefox/firstrun/firstrun-quantum-{}.html'.format(variation)
-            else:
-                template = 'firefox/firstrun/firstrun-quantum.html'
+                template = 'firefox/firstrun/firstrun.html'
         else:
-            template = 'firefox/firstrun/index.html'
+            template = 'firefox/firstrun/firstrun.html'
 
         # return a list to conform with original intention
         return [template]
@@ -489,17 +538,51 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
 class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super(WhatsnewView, self).get_context_data(**kwargs)
+        locale = l10n_utils.get_locale(self.request)
 
         # add version to context for use in templates
         version = self.kwargs.get('version') or ''
         match = re.match(r'\d{1,2}', version)
         ctx['version'] = version
         ctx['num_version'] = int(match.group(0)) if match else ''
+        if ctx['num_version'] == 64:
+            ctx['active_locales'] = [
+                'de',
+                'en-CA',
+                'en-GB',
+                'en-US',
+                'es-ES',
+                'fr',
+                'id',
+                'pl',
+                'pt-BR',
+                'ru',
+                'zh-TW',
+            ]
+
+        if ctx['num_version'] in [65, 66, 67, 68]:
+            ctx['show_newsletter'] = locale in [
+                'en-US',
+                'en-GB',
+                'en-CA',
+                'es-ES',
+                'es-AR',
+                'es-CL',
+                'es-MX',
+                'id',
+                'pt-BR',
+                'fr',
+                'ru',
+                'de',
+                'pl',
+            ]
 
         return ctx
 
     def get_template_names(self):
         locale = l10n_utils.get_locale(self.request)
+        trailhead_locales = ['en-US', 'en-CA', 'en-GB', 'de', 'fr']
+        variant = self.request.GET.get('v', None)
 
         version = self.kwargs.get('version') or ''
         oldversion = self.request.GET.get('oldversion', '')
@@ -508,56 +591,53 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
             oldversion = oldversion[3:]
 
         channel = detect_channel(version)
-        if channel == 'alpha':
-            if show_57_dev_whatsnew(version):
+
+        if channel == 'nightly':
+            template = 'firefox/nightly_whatsnew.html'
+        elif channel == 'alpha':
+            if version.startswith('68.') and switch('dev_whatsnew_68'):
+                if locale in trailhead_locales and switch('dev_whatsnew_68_trailhead'):
+                    template = 'firefox/developer/whatsnew-fx68-trailhead.html'
+                else:
+                    template = 'firefox/developer/whatsnew-fx68.html'
+            elif show_57_dev_whatsnew(version):
                 template = 'firefox/developer/whatsnew.html'
             else:
-                template = 'firefox/dev-whatsnew.html'
-        elif channel == 'nightly':
-            template = 'firefox/nightly_whatsnew.html'
+                template = 'firefox/whatsnew/index.html'
+        elif channel == 'beta':
+            if version.startswith('68.'):
+                if locale in trailhead_locales and switch('beta_whatsnew_68_trailhead'):
+                    template = 'firefox/whatsnew/beta/whatsnew-fx68-trailhead.html'
+                else:
+                    template = 'firefox/whatsnew/beta/whatsnew-fx68.html'
+            else:
+                template = 'firefox/whatsnew/index.html'
+        elif locale == 'id':
+            template = 'firefox/whatsnew/index-lite.id.html'
+        elif version.startswith('69.'):
+            template = 'firefox/whatsnew/whatsnew-fx69.html'
+        elif version.startswith('68.'):
+            if locale in trailhead_locales:
+                if variant in ['b', 'c', 'd', 'e']:
+                    template = 'firefox/whatsnew/whatsnew-fx68-{}.html'.format(
+                        variant
+                    )
+                else:
+                    template = 'firefox/whatsnew/whatsnew-fx68-trailhead.html'
+            else:
+                template = 'firefox/whatsnew/whatsnew-fx68.html'
+        elif version.startswith('67.0.') and locale in trailhead_locales:
+            template = 'firefox/whatsnew/whatsnew-fx67.0.5.html'
+        elif version.startswith('67.'):
+            template = 'firefox/whatsnew/whatsnew-fx67.html'
+        elif version.startswith('66.'):
+            template = 'firefox/whatsnew/whatsnew-fx66.html'
+        elif version.startswith('65.'):
+            template = 'firefox/whatsnew/whatsnew-fx65.html'
+        elif version.startswith('64.'):
+            template = 'firefox/whatsnew/fx64/whatsnew-fx64.html'
         elif version.startswith('63.'):
-            if locale == 'id':
-                template = 'firefox/whatsnew/index.id.html'
-            elif locale == 'zh-TW':
-                template = 'firefox/whatsnew/index.zh-TW.html'
-            else:
-                template = 'firefox/whatsnew/whatsnew-fx63.html'
-        elif show_62_whatsnew(version, oldversion):
-            if locale == 'id':
-                template = 'firefox/whatsnew/index.id.html'
-            elif locale == 'zh-TW':
-                template = 'firefox/whatsnew/index.zh-TW.html'
-            else:
-                template = 'firefox/whatsnew/whatsnew-fx62.html'
-        elif show_61_whatsnew(version, oldversion):
-            if locale == 'id':
-                template = 'firefox/whatsnew/index.id.html'
-            elif locale == 'zh-TW':
-                template = 'firefox/whatsnew/index.zh-TW.html'
-            else:
-                template = 'firefox/whatsnew/whatsnew-fx61.html'
-        elif show_60_whatsnew(version, oldversion):
-            if locale == 'id':
-                template = 'firefox/whatsnew/index.id.html'
-            elif locale == 'zh-TW':
-                template = 'firefox/whatsnew/index.zh-TW.html'
-            else:
-                template = 'firefox/whatsnew/whatsnew-fx60.html'
-        elif show_59_whatsnew(version, oldversion):
-            if locale == 'id':
-                template = 'firefox/whatsnew/index.id.html'
-            elif locale == 'zh-TW':
-                template = 'firefox/whatsnew/index.zh-TW.html'
-            else:
-                template = 'firefox/whatsnew/whatsnew-fxa.html'
-        elif show_57_whatsnew(version, oldversion):
-            # locale-specific templates don't seem to work for the default locale
-            if locale == 'en-US':
-                template = 'firefox/whatsnew/fx57/whatsnew-57.en-US.html'
-            # locale-specific templates for de, en-GB, es-AR, es-CL, es-ES, es-MX,
-            # fr, id, pl, pt-BR, ru, zh-CN, and zh-TW
-            else:
-                template = 'firefox/whatsnew/fx57/whatsnew-57.html'
+            template = 'firefox/whatsnew/whatsnew-fx63.html'
         else:
             template = 'firefox/whatsnew/index.html'
 
@@ -565,43 +645,30 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
         return [template]
 
 
-class FeedbackView(TemplateView):
-
-    donate_url = ('https://donate.mozilla.org/'
-       '?utm_source=Heartbeat_survey&utm_medium=referral'
-       '&utm_content=Heartbeat_{0}stars')
-
-    def get_score(self):
-        return self.request.GET.get('score', 0)
-
-    def get_template_names(self):
-        score = self.get_score()
-        if score > '3':
-            template = 'firefox/feedback/happy.html'
-        else:
-            template = 'firefox/feedback/unhappy.html'
-
-        return [template]
-
-    def get_context_data(self, **kwargs):
-        context = super(FeedbackView, self).get_context_data(**kwargs)
-        score = self.get_score()
-
-        if score in ['3', '4', '5']:
-            context['donate_stars_url'] = self.donate_url.format(score)
-
-        return context
-
-
 class TrackingProtectionTourView(l10n_utils.LangFilesMixin, TemplateView):
-
     def get_template_names(self):
         variation = self.request.GET.get('variation', None)
 
         if variation in ['0', '1', '2']:
-            template = 'firefox/tracking-protection-tour/variation-{}.html'.format(variation)
+            template = 'firefox/tracking-protection-tour/variation-{}.html'.format(
+                variation
+            )
         else:
             template = 'firefox/tracking-protection-tour/index.html'
+
+        return [template]
+
+
+class ContentBlockingTourView(l10n_utils.LangFilesMixin, TemplateView):
+    def get_template_names(self):
+        variation = self.request.GET.get('variation', None)
+
+        if variation in ['2']:
+            template = 'firefox/content-blocking-tour/variation-{}.html'.format(
+                variation
+            )
+        else:
+            template = 'firefox/content-blocking-tour/index.html'
 
         return [template]
 
@@ -610,48 +677,52 @@ def download_thanks(request):
     experience = request.GET.get('xv', None)
     locale = l10n_utils.get_locale(request)
     variant = request.GET.get('v', None)
-    show_newsletter = locale in ['en-US', 'en-GB', 'en-CA', 'en-ZA', 'es-ES', 'es-AR', 'es-CL', 'es-MX', 'pt-BR', 'fr', 'ru', 'id', 'de', 'pl']
+    newsletter = request.GET.get('n', None)
+    show_newsletter = locale in [
+        'en-US',
+        'en-GB',
+        'en-CA',
+        'es-ES',
+        'es-AR',
+        'es-CL',
+        'es-MX',
+        'pt-BR',
+        'fr',
+        'ru',
+        'id',
+        'de',
+        'pl',
+    ]
 
     # ensure variant matches pre-defined value
-    if variant not in ['a', 'x', 'y']:  # place expected ?v= values in this list
+    if variant not in ['b']:  # place expected ?v= values in this list
         variant = None
 
-    if variant == 'a' and locale == 'en-US':
-        show_newsletter = False  # Prevent showing the newsletter for pre-download experiment Issue #5944
-    if variant == 'x' and locale == 'en-US':
-        show_newsletter = False  # Prevent showing the newsletter for FxA account experiment mozilla/bedrock#5974
+    # check to see if a URL explicitly asks to hide the newsletter
+    if newsletter == 'f':
+        show_newsletter = False
 
-    # `wait-face`, `reggiewatts` variations are currently localized for both en-US and de locales.
-    if lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':
-        template = 'firefox/new/wait-face/scene2.html'
-    elif lang_file_is_active('firefox/new/reggiewatts', locale) and experience == 'reggiewatts':
-        template = 'firefox/new/reggie-watts/scene2.html'
-    elif locale == 'de':
+    if locale == 'de':
         if experience == 'berlin':
-            template = 'firefox/new/berlin/scene2.html'
+            template = 'firefox/campaign/berlin/scene2.html'
         elif experience == 'aus-gruenden':
-            template = 'firefox/new/berlin/scene2-aus-gruenden.html'
+            template = 'firefox/campaign/berlin/scene2-aus-gruenden.html'
         elif experience == 'herz':
-            template = 'firefox/new/berlin/scene2-herz.html'
+            template = 'firefox/campaign/berlin/scene2-herz.html'
         elif experience == 'geschwindigkeit':
-            template = 'firefox/new/berlin/scene2-gesch.html'
+            template = 'firefox/campaign/berlin/scene2-gesch.html'
         elif experience == 'privatsphare':
-            template = 'firefox/new/berlin/scene2-privat.html'
+            template = 'firefox/campaign/berlin/scene2-privat.html'
         elif experience == 'auf-deiner-seite':
-            template = 'firefox/new/berlin/scene2-auf-deiner-seite.html'
+            template = 'firefox/campaign/berlin/scene2-auf-deiner-seite.html'
+        elif lang_file_is_active('firefox/new/trailhead', locale):
+            template = 'firefox/new/trailhead/thanks.html'
         else:
             template = 'firefox/new/scene2.html'
-    elif locale == 'en-US':
-        if experience in ['portland', 'forgood']:
-            template = 'firefox/new/portland/scene2.html'
-        elif experience in ['portland-fast', 'fast']:
-            template = 'firefox/new/portland/scene2-fast.html'
-        elif experience in ['portland-safe', 'safe']:
-            template = 'firefox/new/portland/scene2-safe.html'
-        elif experience == 'betterbrowser':
-            template = 'firefox/new/better-browser/scene2.html'
-        else:
-            template = 'firefox/new/scene2.html'
+    elif locale == 'en-US' and experience == 'betterbrowser':
+        template = 'firefox/campaign/better-browser/scene2.html'
+    elif lang_file_is_active('firefox/new/trailhead', locale):
+        template = 'firefox/new/trailhead/thanks.html'
     else:
         template = 'firefox/new/scene2.html'
 
@@ -664,12 +735,16 @@ def new(request):
         return HttpResponsePermanentRedirect(reverse('firefox.new'))
 
     scene = request.GET.get('scene', None)
+
+    # note: v and xv params only allow a-z, A-Z, 0-9, -, and _ characters
     experience = request.GET.get('xv', None)
     variant = request.GET.get('v', None)
+
     locale = l10n_utils.get_locale(request)
 
     # ensure variant matches pre-defined value
-    if variant not in ['a', '1', '2', 'x', 'y']:  # place expected ?v= values in this list
+
+    if variant not in ['a', 'b']:  # place expected ?v= values in this list
         variant = None
 
     if scene == '2':
@@ -677,87 +752,85 @@ def new(request):
         thanks_url = reverse('firefox.download.thanks')
         query_string = request.META.get('QUERY_STRING', '')
         if query_string:
-            thanks_url = '?'.join([thanks_url, force_text(query_string, errors='ignore')])
+            thanks_url = '?'.join(
+                [thanks_url, force_text(query_string, errors='ignore')]
+            )
         return HttpResponsePermanentRedirect(thanks_url)
     # if no/incorrect scene specified, show scene 1
     else:
-        if lang_file_is_active('firefox/new/wait-face', locale) and experience == 'waitface':
-            template = 'firefox/new/wait-face/scene1.html'
-        elif lang_file_is_active('firefox/new/reggiewatts', locale) and experience == 'reggiewatts':
-            template = 'firefox/new/reggie-watts/scene1.html'
-        elif locale == 'de':
-            if experience == 'berlin':
-                template = 'firefox/new/berlin/scene1.html'
-            elif experience == 'aus-gruenden':
-                template = 'firefox/new/berlin/scene1-aus-gruenden.html'
-            elif experience == 'herz':
-                template = 'firefox/new/berlin/scene1-herz.html'
-            elif experience == 'geschwindigkeit':
-                template = 'firefox/new/berlin/scene1-gesch.html'
-            elif experience == 'privatsphare':
-                template = 'firefox/new/berlin/scene1-privat.html'
-            elif experience == 'auf-deiner-seite':
-                template = 'firefox/new/berlin/scene1-auf-deiner-seite.html'
-            else:
-                template = 'firefox/new/scene1.html'
-        elif switch('firefox-yandex') and locale == 'ru':
+        if locale == 'ru' and switch('firefox-yandex'):
             template = 'firefox/new/yandex/scene1.html'
-        elif locale == 'en-US':
-            if variant == 'x':
-                template = 'firefox/new/fx/scene1.html'
-            elif experience in ['portland', 'forgood']:
-                template = 'firefox/new/portland/scene1.html'
-            elif experience in ['portland-fast', 'fast']:
-                template = 'firefox/new/portland/scene1-fast.html'
-            elif experience in ['portland-safe', 'safe']:
-                template = 'firefox/new/portland/scene1-safe.html'
-            elif experience == 'betterbrowser':
-                template = 'firefox/new/better-browser/scene1.html'
-            elif experience == 'safari':
-                if variant == 'a':
-                    template = 'firefox/new/scene1.html'
-                elif variant == '2':
-                    template = 'firefox/new/compare/scene1-safari-2.html'
-                else:
-                    template = 'firefox/new/compare/scene1-safari-1.html'
-            elif experience == 'chrome':
-                if variant == 'a':
-                    template = 'firefox/new/scene1.html'
-                elif variant == '2':
-                    template = 'firefox/new/compare/scene1-chrome-2.html'
-                else:
-                    template = 'firefox/new/compare/scene1-chrome-1.html'
-            elif experience == 'edge':
-                if variant == 'a':
-                    template = 'firefox/new/scene1.html'
-                elif variant == '2':
-                    template = 'firefox/new/compare/scene1-edge-2.html'
-                else:
-                    template = 'firefox/new/compare/scene1-edge-1.html'
-            elif experience == 'opera':
-                if variant == 'a':
-                    template = 'firefox/new/scene1.html'
-                elif variant == '2':
-                    template = 'firefox/new/compare/scene1-opera-2.html'
-                else:
-                    template = 'firefox/new/compare/scene1-opera-1.html'
-            else:
-                template = 'firefox/new/scene1.html'
+        elif lang_file_is_active('firefox/new/trailhead', locale):
+            template = 'firefox/new/trailhead/download.html'
         else:
             template = 'firefox/new/scene1.html'
 
     # no harm done by passing 'v' to template, even when no experiment is running
     # (also makes tests easier to maintain by always sending a context)
-    return l10n_utils.render(request, template, {'experience': experience, 'v': variant})
+    return l10n_utils.render(
+        request, template, {'experience': experience, 'v': variant}
+    )
+
+
+def campaign(request):
+
+    # note: v and xv params only allow a-z, A-Z, 0-9, -, and _ characters
+    experience = request.GET.get('xv', None)
+    variant = request.GET.get('v', None)
+
+    locale = l10n_utils.get_locale(request)
+
+    # ensure variant matches pre-defined value
+
+    if variant not in []:  # place expected ?v= values in this list
+        variant = None
+
+    if locale == 'de':
+        if experience == 'berlin':
+            template = 'firefox/campaign/berlin/scene1.html'
+        elif experience == 'aus-gruenden':
+            template = 'firefox/campaign/berlin/scene1-aus-gruenden.html'
+        elif experience == 'herz':
+            template = 'firefox/campaign/berlin/scene1-herz.html'
+        elif experience == 'geschwindigkeit':
+            template = 'firefox/campaign/berlin/scene1-gesch.html'
+        elif experience == 'privatsphare':
+            template = 'firefox/campaign/berlin/scene1-privat.html'
+        elif experience == 'auf-deiner-seite':
+            template = 'firefox/campaign/berlin/scene1-auf-deiner-seite.html'
+        else:
+            if lang_file_is_active('firefox/campaign-trailhead', locale):
+                template = 'firefox/campaign/index-trailhead.html'
+            else:
+                template = 'firefox/campaign/index.html'
+    elif locale == 'en-US':
+        if experience == 'betterbrowser':
+            template = 'firefox/campaign/better-browser/scene1.html'
+        elif experience == 'safari':
+            template = 'firefox/campaign/compare/scene1-safari.html'
+        elif experience == 'edge':
+            template = 'firefox/campaign/compare/scene1-edge.html'
+        else:
+            template = 'firefox/campaign/index-trailhead.html'
+    elif lang_file_is_active('firefox/campaign-trailhead', locale):
+        template = 'firefox/campaign/index-trailhead.html'
+    else:
+        template = 'firefox/campaign/index.html'
+
+    # no harm done by passing 'v' to template, even when no experiment is running
+    # (also makes tests easier to maintain by always sending a context)
+    return l10n_utils.render(
+        request, template, {'experience': experience, 'v': variant}
+    )
 
 
 def ios_testflight(request):
     # no country field, so no need to send locale
     newsletter_form = NewsletterFooterForm('ios-beta-test-flight', '')
 
-    return l10n_utils.render(request,
-                             'firefox/testflight.html',
-                             {'newsletter_form': newsletter_form})
+    return l10n_utils.render(
+        request, 'firefox/testflight.html', {'newsletter_form': newsletter_form}
+    )
 
 
 def ad_blocker(request):
@@ -810,3 +883,61 @@ class FeaturesPrivateBrowsingView(BlogPostsView):
     blog_slugs = 'firefox'
     blog_tags = ['privacy', 'security', 'featured']
     template_name = 'firefox/features/private-browsing.html'
+
+
+def firefox_home(request):
+    return l10n_utils.render(request, 'firefox/home/index.html')
+
+
+def firefox_concerts(request):
+    if switch('firefox_concert_series'):
+        return l10n_utils.render(request, 'firefox/concerts.html')
+    else:
+        return HttpResponseRedirect(reverse('firefox'))
+
+
+PROMISE_BLOG_URLS = {
+    'de': 'https://blog.mozilla.org/firefox/de/firefox-versprechen-fuer-deine-persoenlichen-daten/',
+    'fr': 'https://blog.mozilla.org/firefox/fr/engagements-concernant-les-donnees-personnelles-de-firefox/',
+    'en-US': 'https://blog.mozilla.org/firefox/firefox-data-privacy-promise/',
+}
+
+
+def firefox_accounts(request):
+    locale = l10n_utils.get_locale(request)
+
+    # get localized blog post URL for 2019 page
+    promise_query = (
+        '?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=accounts-trailhead'
+        '&amp;utm_content=accounts-value&amp;utm_term=respect-you-deserve'
+    )
+    promise_url = PROMISE_BLOG_URLS.get(locale, PROMISE_BLOG_URLS['en-US'])
+
+    context = {'promise_url': promise_url + promise_query}
+
+    if lang_file_is_active('firefox/accounts-2019', locale):
+        template_name = 'firefox/accounts-2019.html'
+    else:
+        template_name = 'firefox/accounts.html'
+
+    return l10n_utils.render(request, template_name, context)
+
+
+def election_with_cards(request):
+    locale = l10n_utils.get_locale(request)
+    ctx = {
+        'page_content_cards': get_page_content_cards('election-en', locale),
+        'active_locales': ['de', 'fr', 'en-US'],
+    }
+
+    if locale == 'de':
+        template_name = 'firefox/election/index-de.html'
+        ctx['page_content_cards'] = get_page_content_cards('election-de', 'de')
+    elif locale == 'fr':
+        template_name = 'firefox/election/index-fr.html'
+        ctx['page_content_cards'] = get_page_content_cards('election-fr', 'fr')
+    else:
+        template_name = 'firefox/election/index.html'
+        ctx['page_content_cards'] = get_page_content_cards('election-en', 'en-US')
+
+    return l10n_utils.render(request, template_name, ctx)

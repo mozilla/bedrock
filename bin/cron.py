@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-from __future__ import print_function, unicode_literals
-
 import datetime
 import platform
 import sys
@@ -10,7 +8,7 @@ from time import time
 
 import babis
 from apscheduler.schedulers.blocking import BlockingScheduler
-from pathlib2 import Path
+from pathlib import Path
 
 
 # ROOT path of the project. A pathlib.Path object.
@@ -51,7 +49,7 @@ def call_command(command):
     check_call('python {0} {1}'.format(MANAGE, command), shell=True)
 
 
-class scheduled_job(object):
+class scheduled_job:
     """Decorator for scheduled jobs. Takes same args as apscheduler.schedule_job."""
 
     def __init__(self, *args, **kwargs):
@@ -102,7 +100,7 @@ def schedule_database_jobs():
     @babis.decorator(ping_after=DEAD_MANS_SNITCH_URL)
     def update_upload_database():
         fn_name = 'update_upload_database'
-        command = 'bin/run-db-update.sh'
+        command = 'bin/run-db-update.sh --auth'
         time_since = get_time_since(fn_name)
         if time_since > 21600:  # 6 hours
             command += ' --all'

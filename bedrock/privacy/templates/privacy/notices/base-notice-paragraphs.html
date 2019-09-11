@@ -1,0 +1,41 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "privacy/base-protocol.html" %}
+
+{% block string_data %}
+  data-details-open-text="{{ _('Learn More') }}"
+  data-details-close-text="{{ _('Show Less') }}"
+{% endblock %}
+
+{% do doc.select('body > section > section > p')|htmlattr(class='summary') %}
+{% do doc.select('body > section > section ul')|htmlattr(class="mzp-u-list-styled") %}
+{% do doc.select('body > section > section ol')|htmlattr(class="mzp-u-list-styled") %}
+
+{% block page_title %}{{ doc.h1.string|join|safe }}{% endblock %}
+
+{% block body_id %}firefox-notice{% endblock %}
+{% block body_class %}{{ super() }} format-paragraphs{% endblock %}
+
+{% block title %}{{ doc.h1.string|join|safe }}{% endblock%}
+{% block time %}
+  {% if doc.select('[datetime]') %}
+  <time datetime="{{ doc.select('[datetime]')[0]['datetime'] }}" itemprop="dateModified">{{ doc.select('[datetime]')[0].string }}</time>
+  {% endif %}
+{% endblock %}
+{% block lead_in %}
+  {% if doc.select('[datetime]') %}
+    {{ doc.select('body > section > [datetime] ~ p')|join|safe }}
+  {% else %}
+    {{ doc.select('body > section > p')|join|safe }}
+  {% endif %}
+{% endblock %}
+{% block sections %}
+  {{ doc.select('body > section > section:nth-of-type(1)')|join|safe }}
+  {{ doc.select('body > section > section:nth-of-type(1) ~ *')|join|safe }}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('privacy_protocol') }}
+{% endblock %}

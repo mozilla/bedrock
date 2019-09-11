@@ -1,8 +1,5 @@
 {% from "product-all-macros.html" import build_search_box, build_table, build_row, build_link with context %}
-{% extends "firefox/base-resp.html" %}
-
-{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
-{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+{% extends "firefox/base/base-resp.html" %}
 
 {% block page_title %}
   {%- if platform == 'android' -%}
@@ -30,7 +27,7 @@
   {%- elif channel == 'esr' and l10n_has_tag('esr_page_desc_bug1421584') -%}
     {{ _('Firefox ESR is intended for system administrators who deploy and maintain the desktop environment in organizations such as schools, governments and businesses.') }}
   {%- elif channel == 'esr' -%}
-    {{ _('Firefox ESR is intended for groups who deploy and maintain the desktop environment in large organizations. <a href="%s">Learn more.</a>')|format(url('firefox.organizations.organizations')) }}
+    {{ _('Firefox ESR is intended for groups who deploy and maintain the desktop environment in large organizations. <a href="%s">Learn more.</a>')|format(url('firefox.enterprise.index')) }}
   {%- else -%}
     {{ _('Firefox is made in large part by volunteers around the world. That’s why we offer it in 90 languages (and why there’s heart and soul in every piece of code).') }}
   {%- endif -%}
@@ -62,7 +59,7 @@
   {%- elif channel == 'nightly' -%}
     {{ static('img/firefox/nightly/page-image.png') }}
   {%- else -%}
-    {{ static('img/firefox/all/page-image.png') }}
+    {{ static('img/firefox/template/page-image-firefox.jpg') }}
   {%- endif -%}
 {% endblock %}
 
@@ -77,9 +74,9 @@
 
 {% block site_header_logo %}
   {% if platform == 'desktop' and channel == 'alpha' %}
-    <h2><a href="{{ url('firefox.developer.index') }}">{{ high_res_img('logos/firefox/logo-dev-edition-quantum-wordmark.png', {'alt': _('Firefox Developer Edition'), 'width': '220', 'height': '84'}) }}</a></h2>
+    <h2><a href="{{ url('firefox.developer.index') }}">{{ high_res_img('logos/firefox/developer-wordmark-dark.png', {'alt': _('Firefox Developer Edition'), 'width': '260', 'height': '48'}) }}</a></h2>
   {% elif channel == 'nightly' %}
-    <h2>{{ high_res_img('firefox/template/header-logo-nightly.png', {'alt': _('Firefox Nightly'), 'width': '305', 'height': '70'}) }}</h2>
+    <h2>{{ high_res_img('logos/firefox/nightly-wordmark-dark.png', {'alt': _('Firefox Nightly'), 'width': '305', 'height': '56'}) }}</h2>
   {% else %}
     {{ super() }}
   {% endif %}
@@ -95,7 +92,7 @@
 
 {% block learn_more_url %}
   {%- if channel == 'esr' and l10n_has_tag('esr_page_desc_bug1421584') -%}
-    {{ url('firefox.organizations.organizations') }}
+    {{ url('firefox.enterprise.index') }}
   {%- endif -%}
 {% endblock %}
 

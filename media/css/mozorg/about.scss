@@ -1,0 +1,226 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/billboard';
+@import '../../protocol/css/components/feature-card';
+@import '../../protocol/css/components/hero';
+@import '../../protocol/css/components/newsletter-form';
+@import '../../protocol/css/templates/card-layout';
+
+
+/* -------------------------------------------------------------------------- */
+// Hero image
+
+.mzp-c-hero.t-mission {
+    @include at2x('/media/img/mozorg/about/about-hero-xxs.jpg', auto, 400px);
+    @include border-box;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    height: 400px;
+
+    @media #{$mq-xs} {
+        @include at2x('/media/img/mozorg/about/about-hero-xs.jpg', auto, 400px);
+    }
+    @media #{$mq-sm} {
+        @include at2x('/media/img/mozorg/about/about-hero-sm.jpg', auto, 400px);
+    }
+    @media #{$mq-md} {
+        @include at2x('/media/img/mozorg/about/about-hero.jpg', auto, 400px);
+    }
+
+    .mzp-l-content {
+        @include border-box;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
+        padding-bottom: 0;
+    }
+}
+
+.mzp-c-hero-desc {
+    font-weight: bold;
+}
+
+.mzp-c-hero-body,
+.mzp-c-hero-title {
+    max-width: 830px;
+}
+
+
+/* -------------------------------------------------------------------------- */
+// Intro section
+
+.t-shade {
+    background: $color-gray-20;
+    background: $color-gray-20 linear-gradient($color-gray-20, #fff 350px);
+
+    @media #{$mq-lg}{
+        margin-bottom: $layout-xl;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Page title
+
+.c-page-title {
+    @include text-display-sm;
+    margin-top: $spacing-xs;
+    margin-bottom: $spacing-md;
+
+    @media #{$mq-lg} {
+        margin-top: $spacing-2xl - $spacing-lg;
+        margin-bottom: $spacing-xl;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Foundation
+
+@media #{$mq-lg}{
+    .mzp-c-card-feature.t-foundation {
+        margin-bottom: $layout-xl * 2;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Cities
+
+.mzp-c-hero.t-global {
+    padding: 0;
+}
+
+$city-image-size: 106px;
+
+.c-cities {
+    @include clearfix;
+    margin-bottom: 100px;
+
+    @media #{$mq-md} {
+        margin-bottom: 70px;
+    }
+
+    @media #{$mq-lg} {
+        margin-bottom: 32px;
+    }
+}
+
+.c-city {
+    @include text-body-sm;
+    display: block;
+    margin: $spacing-2xl;
+    position: relative;
+    text-align: center;
+
+    &:before {
+        content: '';
+        display: block;
+        height: $city-image-size;
+        width: $city-image-size;
+        background-size: $city-image-size;
+        margin: 0 auto $spacing-md;
+    }
+
+    &.c-city-sf:before {
+        background-image: url('/media/img/mozorg/about/city-sf.png');
+    }
+
+    &.c-city-berlin:before {
+        background-image: url('/media/img/mozorg/about/city-berlin.png');
+    }
+
+    &.c-city-taipei:before {
+        background-image: url('/media/img/mozorg/about/city-taipei.png');
+    }
+
+    &.c-city-toronto:before {
+        background-image: url('/media/img/mozorg/about/city-toronto.png');
+    }
+
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+        color: $color-black;
+        text-decoration: none;
+
+        .c-city-title {
+            color: $color-link;
+        }
+    }
+}
+
+.c-city-title {
+    @include text-body-sm;
+    border-bottom: 2px solid $color-link;
+    padding-bottom: $spacing-sm;
+    margin: 0 auto $spacing-sm;
+    max-width: 200px;
+
+    .c-city:hover &,
+    .c-city:focus &,
+    .c-city:active {
+        @include transition(border-bottom-color 100ms ease-in-out);
+        border-color: transparent;
+    }
+}
+
+.c-city-desc {
+    margin: 0 auto;
+    max-width: 200px;
+
+    strong {
+        @include font-size(50px);
+        @include font-mozilla;
+        display: block;
+        font-weight: bold;
+        margin-bottom: $spacing-sm;
+    }
+}
+
+@media screen and (min-width: 480px) and (max-width: 767px) {
+    .c-city {
+        margin: $spacing-2xl auto;
+        max-width: remify(250px); //rems to account for larger fonts
+        padding-left: $city-image-size + ($spacing-xl * 2);
+
+        &:before {
+            position: absolute;
+            top: 50%;
+            left: $spacing-xl;
+            margin-top: ($city-image-size / 2 * -1) - 3px; // minus half to vertically centre and then -3px to account for the little bits that stick up past the circle part
+        }
+    }
+
+    .c-city-title {
+        border-image: linear-gradient(to top, $color-white 1px, $color-white 1px) 2;
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+
+    .c-city-desc {
+        strong {
+            line-height: 1;
+        }
+    }
+}
+
+@media #{$mq-md} {
+    .c-city {
+        @include grid-half;
+        @include bidi(((float, left, right),));
+        padding: 0 ($spacing-xl / 2);
+        margin: $spacing-xl 0;
+    }
+}
+
+@media #{$mq-lg} {
+    .c-city {
+        @include grid-quarter;
+    }
+}

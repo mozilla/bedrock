@@ -4,7 +4,7 @@
 
 /* A simple HTML5 Video poster image helper.
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1040213
- * CSS Styles: 'media/css/base/mozilla-video-poster.less' */
+ * CSS Styles: 'media/css/pebbles/_video-poster.scss' */
 
 /* HTML markup:
 <div class="moz-video-container">
@@ -14,8 +14,8 @@
 */
 
 // create namespace
-if (typeof Mozilla === 'undefined') {
-    var Mozilla = {};
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
 }
 
 /*

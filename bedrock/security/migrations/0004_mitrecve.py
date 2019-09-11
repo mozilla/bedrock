@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.db import migrations, models
 import django_extensions.db.fields.json
 
@@ -22,8 +20,8 @@ class Migration(migrations.Migration):
                 ('impact', models.CharField(max_length=100, blank=True)),
                 ('reporter', models.CharField(max_length=100, blank=True)),
                 ('description', models.TextField()),
-                ('products', django_extensions.db.fields.json.JSONField(default=b'[]')),
-                ('bugs', django_extensions.db.fields.json.JSONField(default=b'[]')),
+                ('products', django_extensions.db.fields.json.JSONField(default='[]')),
+                ('bugs', django_extensions.db.fields.json.JSONField(default='[]')),
             ],
             options={
                 'ordering': ('-year', '-order'),

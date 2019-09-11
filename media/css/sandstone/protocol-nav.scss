@@ -1,0 +1,105 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: "/media/fonts";
+$image-path: "/media/protocol/img";
+
+// Protocol components for navigation.
+@import "../../protocol/css/components/card";
+@import "../../protocol/css/components/menu";
+@import "../../protocol/css/components/menu-item";
+@import "../../protocol/css/components/navigation";
+@import "../../protocol/css/base/includes/animations";
+
+// Bedrock specific navigation overrides.
+@import "../protocol/components/navigation";
+
+/**
+ * Sandstone specific overrides for download button in main navigation.
+ */
+.mzp-c-navigation-download {
+    .download-button {
+        .download-link {
+            background-color: transparent;
+            background-image: none;
+            border-radius: 2px;
+            border: 2px solid #0060df;
+            box-shadow: none;
+            color: #0060df;
+            padding: $spacing-sm $spacing-md;
+
+            &:hover,
+            &:focus {
+                background-color: #0060df;
+                border-color: #0060df;
+                color: $color-white;
+            }
+        }
+
+        .fx-privacy-link {
+            display: none;
+        }
+    }
+}
+
+/**
+ * Sandstone specific overrides for Protocol Navigation and Menu components.
+ */
+.mzp-c-menu-category-list,
+.mzp-c-menu-panel-content {
+    li {
+        margin: 0;
+        list-style-type: none;
+    }
+}
+
+.mzp-c-menu-item .mzp-c-menu-item-title,
+.mzp-c-menu-panel-card .mzp-c-card .mzp-c-card-title {
+    font-weight: bold;
+    text-shadow: none;
+    letter-spacing: normal;
+}
+
+// Global FxA CTA experiment: issue #6629
+.mzp-c-navigation {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+
+    .c-navigation-fxa-cta {
+        @include font-size(16px);
+        background-color: transparent;
+        background-image: none;
+        border-radius: 2px;
+        border: 2px solid #0060df;
+        box-shadow: none;
+        color: #0060df;
+        display: inline-block;
+        font-weight: 700;
+        padding: $spacing-sm $spacing-md;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            background-color: #0060df;
+            border-color: #0060df;
+            color: $color-white;
+        }
+    }
+
+    .c-navigation-fxa-cta-small-link {
+        a:link,
+        a:visited {
+            @include font-size(12px);
+            color: #000;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            color: inherit;
+            text-decoration: underline;
+        }
+    }
+}

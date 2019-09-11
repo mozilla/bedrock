@@ -6,9 +6,13 @@
  * General DOM ready handler applied to all pages in base template.
  */
 $(document).ready(function() {
-    var utilsie8 = Mozilla.UtilsIE8;
+    'use strict';
 
-    utilsie8.initDownloadLinks();
+    // Initialize download buttons.
+    Mozilla.UtilsIE8.initDownloadLinks();
+
+    // Initialize navigation.
+    Mozilla.UtilsIE8.initNavigation();
 
     $(window).on('load', function() {
         $('html').addClass('loaded');

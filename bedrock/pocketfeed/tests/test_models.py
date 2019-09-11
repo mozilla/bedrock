@@ -6,7 +6,7 @@ from bedrock.pocketfeed.models import PocketArticle
 import json
 import pytest
 import responses
-from pathlib2 import Path
+from pathlib import Path
 
 
 TEST_DATA = Path(__file__).with_name('test_data')
@@ -28,9 +28,9 @@ def setup_responses():
 def test_get_articles_data():
     setup_responses()
     articles = api.get_articles_data()
-    assert len(articles['recommendations']) == 3
+    assert len(articles['recommendations']) == 4
     assert articles['recommendations'][0]['id'] == 2262198874
-    assert articles['recommendations'][1]['id'] == 2248108002
+    assert articles['recommendations'][2]['id'] == 2248108002
 
 
 @responses.activate
@@ -57,3 +57,23 @@ def test_refresh_articles():
     # this article has an empty image_src, so should be None
     article = articles.get(pocket_id=2262115700)
     assert article.image_src is None
+
+
+@responses.activate
+@pytest.mark.django_db
+@override_settings(POCKET_API_URL='http://www.test.com')
+def test_refresh_articles_with_dupes():
+    setup_responses()
+    updated, deleted = PocketArticle.objects.refresh()
+    assert updated == 3
+    assert deleted == 0
+
+    # add dupes
+    articles = api.get_articles_data()['recommendations']
+    api.complete_articles_data((None, a) for a in articles)
+    for article in articles:
+        PocketArticle.objects.create(**article)
+
+    assert PocketArticle.objects.count() == 7
+    PocketArticle.objects.refresh()
+    assert PocketArticle.objects.count() == 3

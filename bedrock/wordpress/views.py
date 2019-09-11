@@ -6,7 +6,7 @@ from lib.l10n_utils import LangFilesMixin
 from raven.contrib.django.raven_compat.models import client as sentry_client
 
 
-class BlogPostsMixin(object):
+class BlogPostsMixin:
     blog_tags = None
     blog_slugs = None
     blog_posts_limit = 4
@@ -16,7 +16,7 @@ class BlogPostsMixin(object):
         ctx = super(BlogPostsMixin, self).get_context_data(**kwargs)
         blog = BlogPost.objects.all()
         if self.blog_slugs:
-            if isinstance(self.blog_slugs, basestring):
+            if isinstance(self.blog_slugs, str):
                 blog_slugs = [self.blog_slugs]
             else:
                 blog_slugs = self.blog_slugs
