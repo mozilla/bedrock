@@ -171,7 +171,9 @@
 
 {% block newsletter_modal %}{% endblock %}
 
-{% include 'firefox/includes/schemaorg-app.html' %}
+{% if LANG == 'en-US' %}
+{% include 'firefox/includes/schemaorg-breadcrump-new-en-us.html' %}
+{% endif %}
 {% endblock %}
 
 {% block js %}
