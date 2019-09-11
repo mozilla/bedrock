@@ -1,0 +1,19 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% if not hide_nav_cta %}
+    <div class="mzp-c-navigation-download">
+    {% if not hide_nav_download_button %}
+    {{ download_firefox(alt_copy=_('Download Firefox'), dom_id='protocol-nav-download-firefox', button_color='mzp-t-secondary mzp-t-small', download_location='nav') }}
+    {% endif %}
+    {% if not hide_nav_get_account_button %}
+    <div class="c-navigation-fxa-cta-container">
+        <a class="c-navigation-fxa-cta mzp-c-button mzp-t-secondary mzp-t-small mzp-t-product js-fxa-cta-link" {{ fxa_link_fragment(entrypoint='mozilla.org-globalnav', action='signup', utm_campaign='globalnav', utm_content='get-firefox-account') }} data-cta-text="Get a Firefox Account" data-cta-type="FxA-Sync" data-cta-position="Navigation" data-alt-href="{{ url('firefox.accounts') }}">
+        {{ _('Get a Firefox Account') }}
+        </a>
+        <p class="c-navigation-fxa-cta-small-link"><a data-link-type="nav" data-link-name="Check out the Benefits" href="{{ url('firefox.accounts') }}">{{ _('Check out the Benefits') }}</a></p>
+    </div>
+    {% endif %}
+    </div>
+{% endif %}
