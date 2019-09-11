@@ -1,0 +1,49 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import fxa_link_fragment with context %}
+{% set referral="?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=nav&amp;utm_content=firefox" %}
+
+<li class="mzp-c-menu-category mzp-has-drop-down mzp-js-expandable">
+  <a class="mzp-c-menu-title" href="{{ url('firefox.accounts') }}" aria-haspopup="true" aria-controls="mzp-c-menu-panel-join">{{ _('Join') }}</a>
+  <div class="mzp-c-menu-panel mzp-has-card" id="mzp-c-menu-panel-join">
+    <div class="mzp-c-menu-panel-container">
+      <button class="mzp-c-menu-button-close" type="button" aria-controls="mzp-c-menu-panel-join">{{ _('Close Join menu') }}</button>
+      <div class="mzp-c-menu-panel-content">
+        <ul>
+          <li>
+            <section class="mzp-c-menu-item mzp-has-icon">
+              <a class="mzp-c-menu-item-link" href="https://blog.mozilla.org/firefox/{{ referral|safe }}" data-link-name="Join Firefox" data-link-type="nav" data-link-position="topnav" data-link-group="join">
+                <img class="mzp-c-menu-item-icon" src="{{ static('img/logos/firefox/logo-master.svg') }}" class="mzp-c-menu-item-icon" alt="" width="24" height="24">
+                <h4 class="mzp-c-menu-item-title">{{ _('Join Firefox') }}</h4>
+                <p class="mzp-c-menu-item-desc">{{ _('Access all of Firefox with a single login — and get more from every product when you do.') }}</p>
+              </a>
+              <ul class="mzp-c-menu-item-list">
+                <li><a {{ fxa_link_fragment(entrypoint='mozilla.org-firefoxnav', action='signin', utm_campaign='nav', utm_content='join-sign-in') }} class="js-fxa-cta-link" rel="external noopener" data-link-name="Accounts Sign In" data-link-type="nav" data-link-position="subnav" data-link-group="browsers">{{ _('Sign In') }}</a></li>
+                <li><a {{ fxa_link_fragment(entrypoint='mozilla.org-firefoxnav', action='signup', utm_campaign='nav', utm_content='join-sign-up') }} class="js-fxa-cta-link" rel="external noopener" data-link-name="Accounts Sign Up" data-link-type="nav" data-link-position="subnav" data-link-group="browsers">{{ _('Sign Up') }}</a></li>
+                <li><a href="{{ url('firefox.accounts') }}" data-link-name="Benefits" data-link-type="nav" data-link-position="subnav" data-link-group="browsers">{{ _('Benefits') }}</a></li>
+              </ul>
+            </section>
+          </li>
+        </ul>
+      </div>
+      <div class="mzp-c-menu-panel-card">
+        <section class="mzp-c-card mzp-c-card-extra-small mzp-has-aspect-16-9">
+          <a class="mzp-c-card-block-link" href="#TKTK" data-link-name="Firefox Family" data-link-type="nav" data-link-position="card" data-link-group="join">
+            <div class="mzp-c-card-media-wrapper">
+              <img class="mzp-c-card-image" src="{{ static('img/placeholder.png') }}" data-src="{{ static('img/nav/cards/master.jpg') }}" data-srcset="{{ static('img/nav/cards/master-high-res.jpg') }}" alt="">
+              <noscript>
+                <img class="mzp-c-card-image" src="{{ static('img/nav/cards/master.jpg') }}" alt="">
+              </noscript>
+            </div>
+            <div class="mzp-c-card-content">
+            <h2 class="mzp-c-card-title">{{ _('Meet the Firefox Family') }}</h2>
+            <p class="mzp-c-card-desc">{{ _('Protect your life online with a whole family of privacy-first products.') }}</p>
+            </div>
+          </a>
+        </section>
+      </div>
+    </div><!-- close .mzp-c-menu-panel-container -->
+  </div><!-- close .mzp-c-menu-panel -->
+</li><!-- close join -->

@@ -22,12 +22,11 @@
 
 {% block site_header %}
   {% with hide_nav_download_button=True %}
-    {% include 'includes/protocol/navigation/menu-mozilla/index.html' %}
+    {% include 'includes/protocol/navigation/menu-firefox/nav-switch.html' %}
   {% endwith %}
 {% endblock %}
 
 {% block content %}
-{% include 'firefox/includes/hub/sub-nav.html' %}
 <main role="main">
   <section class="t-intro">
     <div class="mzp-l-content">

@@ -21,6 +21,21 @@
     }
 }
 
+// override for navigation menu logo in Firefox section
+.mzp-c-navigation-logo.mzp-t-firefox a {
+    background-image: url('/media/img/logos/firefox/logo-master-wordmark-dark.svg');
+    height: 36px;
+
+    @media #{$mq-md} {
+        margin-top: 7px;
+    }
+
+    @media #{$mq-lg} {
+        margin-top: 1px;
+    }
+
+}
+
 // Global FxA CTA
 .mzp-c-navigation {
     .c-navigation-fxa-cta-container {

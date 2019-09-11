@@ -19,15 +19,11 @@
 
 {% block site_header %}
   {% with hide_nav_download_button=True %}
-    {% include 'includes/protocol/navigation/menu-mozilla/index.html' %}
+    {% include 'includes/protocol/navigation/menu-firefox/nav-switch.html' %}
   {% endwith %}
 {% endblock %}
 
 {% block content %}
-  {% with current='mobile' %}
-    {% include 'firefox/includes/hub/sub-nav.html' %}
-  {% endwith %}
-
   <main role="main">
     <header class="main-header">
       <div class="content">

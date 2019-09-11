@@ -45,3 +45,11 @@ $image-path: '/media/protocol/img';
 .mzp-c-footer-links-social li a {
     background-repeat: no-repeat;
 }
+
+.mzp-c-footer.mzp-t-firefox {
+    background-color: $color-off-black;
+
+    .mzp-c-footer-sections {
+        padding-top: 0;
+    }
+}
