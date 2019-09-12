@@ -6,8 +6,8 @@
 
 {% from "macros-protocol.html" import call_out_compact, feature_card, picto_card, hero with context %}
 
-{% block page_title_full %}{{_('Get Firefox for your enterprise — ESR, RR and premium support')}}{% endblock %}
-{% block page_desc %}{{_('Get unmatched data protection on the release cadence that suits you with Firefox for enterprise. Download ESR, RR and get premium support.')}}{% endblock %}
+{% block page_title_full %}{{_('Get Firefox for your enterprise with ESR and Rapid Release')}}{% endblock %}
+{% block page_desc %}{{_('Get unmatched data protection on the release cadence that suits you with Firefox for enterprise. Download ESR and Rapid Release.')}}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('firefox-enterprise') }}
@@ -29,8 +29,6 @@
         <h2 class="c-sub-navigation-title">{{ _('Enterprise') }}</h2>
         <ul class="c-sub-navigation-list">
           <li class="c-sub-navigation-item"><a href="#overview">{{ _('Overview') }}</a></li>
-          <li class="c-sub-navigation-item"><a href="#features">{{ _('Features') }}</a></li>
-          <li class="c-sub-navigation-item"><a href="#plans">{{ _('Compare Plans') }}</a></li>
           <li class="c-sub-navigation-item"><a href="#download">{{ _('Downloads') }}</a></li>
           <li class="c-sub-navigation-item"><a href="#resources">{{ _('Resources') }}</a></li>
         </ul>
@@ -71,85 +69,6 @@
         {{ picto_card(title=_('Choose your release cadence'), desc=_('Get rapid releases to make sure you get the latest features faster, or go extended to ensure a super stable experience.'), class='release') }}
       </ul>
     </section>
-
-    <section id="features" class="enterprise-section">
-      <h2 class="enterprise-section-title">{{ _('Get Firefox premium support for your enterprise ') }}</h2>
-
-      {% call feature_card(
-        title='Fast and dedicated support',
-        image_url='',
-        class='mzp-l-card-feature-left-half',
-        aspect_ratio='mzp-has-aspect-3-2',
-        image_url='firefox/enterprise/enterprise-support.svg',
-        heading_level=3
-      ) %}
-        <p>{{ _('Firefox premium support provides:') }}</p>
-
-        <ul class="mzp-u-list-styled">
-          <li>{{ _('Private help for customization, deployment and management of Firefox') }}</li>
-          <li>{{ _('SLAs on critical security bug fixing') }}</li>
-          <li>{{ _('Access to the enterprise critical issues distribution list') }}</li>
-          <li>{{ _('A private customer portal') }}</li>
-          <li>{{ _('The ability to contribute to Firefox and our roadmap') }}</li>
-        </ul>
-      {% endcall %}
-    </section>
-
-    <section id="plans" class="enterprise-section enterprise-section-plans">
-      <h2 class="enterprise-section-title">{{ _('Firefox premium support for enterprise — starting at $10 per supported installation') }}</h2>
-
-      <div class="c-pager">
-        <div class="c-pager-tab">
-          <button id="pager-tab-button-basic" type="button" class="c-pager-tab-button" aria-controls="pager-page-basic">{{ _('Basic') }}</button>
-          <button id="pager-tab-button-premium" type="button" class="c-pager-tab-button" aria-controls="pager-page-premium">{{ _('Premium') }}</button>
-        </div>
-
-        <div class="c-pager-container comparison">
-          <section id="pager-page-basic" class="c-pager-page">
-            <h3 class="comparison-title-tier c-pager-hide-when-active">{{ _('Basic') }}</h3>
-            <h4 class="comparison-title-price">{{ _('Free') }}</h4>
-
-            <div class="comparison-cta cta-container mzp-c-button-download-container">
-              <a href="#download" class="mzp-c-button mzp-t-secondary mzp-t-product">{{ _('Download Firefox Browser') }}</a>
-              <a id="comparison-download-button" href="{{ url('privacy.notices.firefox') }}" class="mzp-c-button-download-privacy-link">{{ _('Firefox Privacy Notice') }}</a>
-            </div>
-
-            <ul class="comparison-list">
-              <li>{{ _('Public bug submission') }}</li>
-              <li>{{ _('Self-service <a href="%s">knowledge base</a>')|format('https://support.mozilla.org/products/firefox-enterprise') }}</li>
-              <li>{{ _('Community support') }}</li>
-            </ul>
-          </section>
-
-          <section id="pager-page-premium" class="c-pager-page">
-            <h3 class="comparison-title-tier c-pager-hide-when-active">{{ _('Premium') }}</h3>
-            <h4 class="comparison-title-price">{{ _('Starting at $10 <span>per supported installation</span>') }}</h4>
-
-            <a id="comparison-sales-button" href="{{ url('firefox.enterprise.signup') }}" class="mzp-c-button mzp-t-product comparison-cta" data-cta-type="Enterprise-Sales" data-cta-position="Primary">{{ _('Contact Sales') }}</a>
-
-            <ul class="comparison-list">
-              <li>{{ _('Private bug submission') }}</li>
-              <li>{{ _('Critical security bug fixes with SLA') }}</li>
-              <li>{{ _('Concierge bug entry with guaranteed response time') }}</li>
-              <li>{{ _('Enterprise customer portal') }}</li>
-              <li>{{ _('Contribute to Firefox and our roadmap') }}</li>
-              <li>{{ _('Proactive notification on critical Firefox events') }}</li>
-              <li>{{ _('SLA management tool') }}</li>
-            </ul>
-          </section>
-        </div>
-
-      </div>
-    </section>
-  </div>
-
-  {% call call_out_compact(
-    title=_('Get more info about Firefox premium support for your enterprise'),
-    desc=_('Contact our sales team for pricing and other details related to Firefox premium support.'),
-    class='mzp-t-product-firefox mzp-t-dark enterprise-section enterprise-callout'
-  ) %}
-    <a href="{{ url('firefox.enterprise.signup') }}" class="mzp-c-button mzp-t-product" data-cta-type="Enterprise-Sales" data-cta-position="Secondary">{{ _('Contact Sales') }}</a>
-  {% endcall %}
 
   <div class="mzp-l-content">
     <section id="download" class="enterprise-section enterprise-download">
