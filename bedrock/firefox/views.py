@@ -35,6 +35,7 @@ from bedrock.firefox.forms import SendToDeviceWidgetForm
 from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.releasenotes import version_re
 from bedrock.wordpress.views import BlogPostsView
+from bedrock.base.views import GeoRedirectView
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
 
@@ -533,6 +534,17 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
 
         # return a list to conform with original intention
         return [template]
+
+
+class WhatsNewRedirectorView(GeoRedirectView):
+    geo_urls = {}
+    default_url = 'firefox.whatsnew.all'
+
+    def get_redirect_url(self, *args, **kwargs):
+        if 'version' in kwargs and kwargs['version'] is None:
+            del kwargs['version']
+
+        return super().get_redirect_url(*args, **kwargs)
 
 
 class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):

@@ -12,6 +12,7 @@ from bedrock.firefox import views
 latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
+whatsnew_re_all = latest_re % (version_re, 'whatsnew/all')
 tracking_protection_re = latest_re % (version_re, 'tracking-protection/start')
 content_blocking_re = latest_re % (version_re, 'content-blocking/start')
 platform_re = '(?P<platform>android|ios)'
@@ -71,7 +72,8 @@ urlpatterns = (
     url(r'^firefox/installer-help/$', views.installer_help,
         name='firefox.installer-help'),
     url(firstrun_re, views.FirstrunView.as_view(), name='firefox.firstrun'),
-    url(whatsnew_re, views.WhatsnewView.as_view(), name='firefox.whatsnew'),
+    url(whatsnew_re, views.WhatsNewRedirectorView.as_view(), name='firefox.whatsnew'),
+    url(whatsnew_re_all, views.WhatsnewView.as_view(), name='firefox.whatsnew.all'),
     url(tracking_protection_re, views.TrackingProtectionTourView.as_view(),
         name='firefox.tracking-protection-tour.start'),
     url(content_blocking_re, views.ContentBlockingTourView.as_view(),
