@@ -137,14 +137,12 @@
         <h2 class="c-sticky-signup-title">{{ _('Get the latest news from Mozilla and Firefox right in your inbox.') }}</h2>
         <button type="button" class="sticky-dismiss" data-parent="newsletter-sticky-form">{{ _('Close') }}</button>
       </div>
-      <div class="mzp-c-newsletter">
-        {{ email_newsletter_form(
-          protocol_component=True,
-          include_title=False,
-          spinner_color='#fff',
-          button_class='mzp-c-button mzp-t-product mzp-t-small')
-        }}
-      </div>
+      {{ email_newsletter_form(
+        protocol_component=True,
+        include_title=False,
+        spinner_color='#fff',
+        button_class='mzp-c-button mzp-t-product mzp-t-small')
+      }}
     </div>
     {% endif %}
   </section>

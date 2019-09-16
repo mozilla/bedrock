@@ -383,13 +383,6 @@ main {
         }
     }
 
-    .mzp-c-newsletter {
-        @include bidi(((text-align, left, right),));
-        display: block;
-        padding: 0;
-        margin: 0 auto;
-    }
-
     .mzp-c-newsletter-form {
         padding-top: 0;
     }
@@ -431,10 +424,6 @@ main {
     }
 
     @media #{$mq-md} {
-        .mzp-c-newsletter {
-            margin: 0;
-        }
-
         .mzp-c-newsletter-content {
             @include bidi(((padding-right, 40%, padding-left, 0),));
             position: relative;

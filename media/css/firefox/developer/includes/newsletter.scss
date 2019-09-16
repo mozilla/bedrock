@@ -18,11 +18,9 @@
         max-width: $content-sm;
     }
 
-    .mzp-c-newsletter {
-        display: block;
-        margin-bottom: 0;
-        padding: 0;
-        text-align: center;
+    .mzp-c-newsletter-form {
+        padding-top: 0;
+        @include font-size(14px);
 
         input[type=email] {
             border: 2px solid $color-gray-30;
@@ -37,11 +35,6 @@
         legend {
             @include font-size(14px);
         }
-    }
-
-    .mzp-c-newsletter-form {
-        padding-top: 0;
-        @include font-size(14px);
     }
 
     .mzp-c-newsletter-title {
@@ -86,10 +79,6 @@
 
         .mzp-l-content {
             max-width: $content-xl;
-        }
-
-        .mzp-c-newsletter {
-            text-align: left;
         }
 
         .mzp-c-newsletter-form {
