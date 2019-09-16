@@ -7,6 +7,21 @@ describe('fxa-utm-referral.js', function() {
 
     'use strict';
 
+    describe('getHostName', function() {
+
+        it('should return a hostname as expected', function() {
+            var url1 = 'https://monitor.firefox.com/oauth/init?form_type=button&entrypoint=mozilla.org-firefox-accounts';
+            var url2 = 'https://accounts.firefox.com/?utm_campaign=campaign-one&utm_source=source-one&utm_content=content-one';
+            expect(Mozilla.UtmUrl.getHostName(url1)).toEqual('https://monitor.firefox.com/');
+            expect(Mozilla.UtmUrl.getHostName(url2)).toEqual('https://accounts.firefox.com/');
+        });
+
+        it('should return null if no match is found', function() {
+            var url = 'thedude';
+            expect(Mozilla.UtmUrl.getHostName(url)).toBeNull();
+        });
+    });
+
     describe('getAttributionData', function () {
 
         it('should return a valid object unchanged', function () {
@@ -189,7 +204,7 @@ describe('fxa-utm-referral.js', function() {
 
     });
 
-    describe('getAttributionData.init', function () {
+    describe('init', function () {
 
         beforeEach(function () {
             // link to change
@@ -197,7 +212,7 @@ describe('fxa-utm-referral.js', function() {
                 '<div id="test-links">' +
                 '<a id="test-expected" class="js-fxa-cta-link" href="https://accounts.firefox.com/?service=sync&amp;action=email&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-accounts_page&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page" data-mozillaonline-link="https://accounts.firefox.com.cn/?service=sync&amp;action=email&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-accounts_page&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page">Create a Firefox Account</a>' +
                 '<a id="test-not-accounts" class="js-fxa-cta-link" href="https://www.mozilla.org/?service=sync&amp;action=email&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-accounts_page&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page" data-mozillaonline-link="https://accounts.firefox.com.cn/?service=sync&amp;action=email&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-accounts_page&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page">Create a Firefox Account</a>' +
-                '<a id="test-second-expected" class="js-fxa-cta-link" href="https://accounts.firefox.com/signup?service=sync&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-globalnav&amp;utm_content=get-firefox-account&amp;utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=globalnav" data-mozillaonline-link="https://accounts.firefox.com.cn/signup?service=sync&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-globalnav&amp;utm_content=get-firefox-account&amp;utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=globalnav">Create a Firefox Account</a>' +
+                '<a id="test-second-expected" class="js-fxa-cta-link" href="https://monitor.firefox.com/oauth/init?form_type=button&amp;entrypoint=mozilla.org-firefox-accounts&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page" data-mozillaonline-link="https://accounts.firefox.com.cn/?service=sync&amp;action=email&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-accounts_page&amp;utm_content=accounts-page-top-cta&amp;utm_source=mozilla.org-accounts_page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page">Sign In to Firefox Monitor</a>' +
                 '</div>';
 
             $(links).appendTo('body');
@@ -216,7 +231,7 @@ describe('fxa-utm-referral.js', function() {
                 'utm_campaign': 'campaign-two'
             };
 
-            Mozilla.UtmUrl.getAttributionData.init(data);
+            Mozilla.UtmUrl.init(data);
 
             var expected = document.getElementById('test-expected');
             var expectedHref = expected.getAttribute('href');
@@ -224,7 +239,7 @@ describe('fxa-utm-referral.js', function() {
             var secondExpectedHref = secondExpected.getAttribute('href');
 
             expect(expectedHref).toEqual('https://accounts.firefox.com/?service=sync&action=email&context=fx_desktop_v3&entrypoint=mozilla.org-accounts_page&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two');
-            expect(secondExpectedHref).toEqual('https://accounts.firefox.com/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org-globalnav&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two');
+            expect(secondExpectedHref).toEqual('https://monitor.firefox.com/oauth/init?form_type=button&entrypoint=mozilla.org-firefox-accounts&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two');
         });
 
         it('updates the data-mozilla-online attribute of links with class js-fxa-cta-link', function () {
@@ -236,21 +251,18 @@ describe('fxa-utm-referral.js', function() {
                 'utm_campaign': 'campaign-two'
             };
 
-            Mozilla.UtmUrl.getAttributionData.init(data);
+            Mozilla.UtmUrl.init(data);
 
             var expected = document.getElementById('test-expected');
             var expectedOnline = expected.getAttribute('data-mozillaonline-link');
-            var secondExpected = document.getElementById('test-second-expected');
-            var secondExpectedOnline = secondExpected.getAttribute('data-mozillaonline-link');
 
             expect(expectedOnline).toEqual('https://accounts.firefox.com.cn/?service=sync&action=email&context=fx_desktop_v3&entrypoint=mozilla.org-accounts_page&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two');
-            expect(secondExpectedOnline).toEqual('https://accounts.firefox.com.cn/signup?service=sync&context=fx_desktop_v3&entrypoint=mozilla.org-globalnav&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two');
         });
 
         it('does not make change if there are no UTM params', function () {
             var data = {};
 
-            Mozilla.UtmUrl.getAttributionData.init(data);
+            Mozilla.UtmUrl.init(data);
 
             var expected = document.getElementById('test-expected');
             var expectedHref = expected.getAttribute('href');
@@ -260,7 +272,7 @@ describe('fxa-utm-referral.js', function() {
             expect(expectedOnline).toEqual('https://accounts.firefox.com.cn/?service=sync&action=email&context=fx_desktop_v3&entrypoint=mozilla.org-accounts_page&utm_content=accounts-page-top-cta&utm_source=accounts-page&utm_medium=referral&utm_campaign=fxa-benefits-page');
         });
 
-        it('does not make changes if the link is not a link to accounts.firefox.com', function () {
+        it('does not make changes if the link is not in the FxA referral whitelist', function () {
             var data = {
                 'utm_source': 'source-two',
                 'utm_content': 'content-two',
@@ -269,7 +281,7 @@ describe('fxa-utm-referral.js', function() {
                 'utm_campaign': 'campaign-two'
             };
 
-            Mozilla.UtmUrl.getAttributionData.init(data);
+            Mozilla.UtmUrl.init(data);
 
             var unexpected = document.getElementById('test-not-accounts');
             var unexpectedHref = unexpected.getAttribute('href');
@@ -278,7 +290,5 @@ describe('fxa-utm-referral.js', function() {
             expect(unexpectedHref).toEqual('https://www.mozilla.org/?service=sync&action=email&context=fx_desktop_v3&entrypoint=mozilla.org-accounts_page&utm_content=accounts-page-top-cta&utm_source=accounts-page&utm_medium=referral&utm_campaign=fxa-benefits-page');
             expect(unexpectedOnline).toEqual('https://accounts.firefox.com.cn/?service=sync&action=email&context=fx_desktop_v3&entrypoint=mozilla.org-accounts_page&utm_content=accounts-page-top-cta&utm_source=accounts-page&utm_medium=referral&utm_campaign=fxa-benefits-page');
         });
-
-
     });
 });
