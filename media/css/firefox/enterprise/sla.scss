@@ -11,12 +11,6 @@ $font-path: '/media/fonts';
 
 $border: 2px solid $color-gray-20;
 
-.l-narrow {
-    margin: 0 auto;
-    max-width: 640px;
-    padding: 0 $spacing-lg;
-}
-
 .mzp-l-sidebar {
     position: -webkit-sticky;
     position: sticky;

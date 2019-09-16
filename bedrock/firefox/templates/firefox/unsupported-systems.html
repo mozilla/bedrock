@@ -12,38 +12,36 @@
 {% endblock %}
 
 {% block content %}
-<main class="mzp-l-content">
-  <header class="l-narrow">
+<main class="mzp-l-content mzp-t-narrow">
+  <header class="">
       <a href="{{ url('firefox') }}">{{ high_res_img('logos/firefox/logo-quantum-wordmark-large.png', {'alt': 'Firefox', 'width': '210', 'height': '69'}) }}</a>
     <h1 class="c-header-main">{{ _('Thanks for choosing Firefox!') }}</h1>
     <p class="c-header-subhead">{{_('We’re sorry to report this, but your computer does not meet the minimum system requirements to run this version.')}}</p>
   </header>
 
-  <div class="l-narrow">
-    <section class="c-help-block">
-      <h2 class="c-help-block-title">{{ _('Need <span>Help?</span>') }}</h2>
-      <p>{{ _('Our Support page has plenty of answers, including full instructions for downloading and installing Firefox and a live chat feature to guide you through any tricky spots.') }}</p>
-      <a href="https://support.mozilla.org/products/firefox">{{ _('Visit Firefox Support') }}</a>
-    </section>
+  <section class="c-help-block">
+    <h2 class="c-help-block-title">{{ _('Need <span>Help?</span>') }}</h2>
+    <p>{{ _('Our Support page has plenty of answers, including full instructions for downloading and installing Firefox and a live chat feature to guide you through any tricky spots.') }}</p>
+    <a href="https://support.mozilla.org/products/firefox">{{ _('Visit Firefox Support') }}</a>
+  </section>
 
-    <section class="c-help-block">
-      <h2 class="c-help-block-title">{{ _('For more information on supported systems') }}</h2>
-      <a href="{{ url('firefox.sysreq') }}">{{ _('View System Requirements') }}</a>
-    </section>
+  <section class="c-help-block">
+    <h2 class="c-help-block-title">{{ _('For more information on supported systems') }}</h2>
+    <a href="{{ url('firefox.sysreq') }}">{{ _('View System Requirements') }}</a>
+  </section>
 
-    <div class="c-help-block">
-      <p>
-      {% trans %}
-        To make your computer more secure, we recommend upgrading your operating system to a newer version
-        as soon as possible (plus, you’ll be able to use Firefox!). But, if you can’t do so, here are some
-        alternate browsers that should be compatible with your current system:
-      {% endtrans %}
-      </p>
-      <ul class="mzp-u-list-styled">
-        <li>{{ _('<a href="%s">Opera</a> for Windows 95 and above and Mac OS 10.3 and above')|format('https://www.opera.com/') }}</li>
-        <li>{{ _('<a href="%s">iCab</a> for Mac OS 10.3 and above')|format('http://www.icab.de/') }}</li>
-      </ul>
-    </div>
+  <div class="c-help-block">
+    <p>
+    {% trans %}
+      To make your computer more secure, we recommend upgrading your operating system to a newer version
+      as soon as possible (plus, you’ll be able to use Firefox!). But, if you can’t do so, here are some
+      alternate browsers that should be compatible with your current system:
+    {% endtrans %}
+    </p>
+    <ul class="mzp-u-list-styled">
+      <li>{{ _('<a href="%s">Opera</a> for Windows 95 and above and Mac OS 10.3 and above')|format('https://www.opera.com/') }}</li>
+      <li>{{ _('<a href="%s">iCab</a> for Mac OS 10.3 and above')|format('http://www.icab.de/') }}</li>
+    </ul>
   </div>
 </main>
 {% endblock %}
