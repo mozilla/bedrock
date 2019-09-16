@@ -26,12 +26,11 @@ ul li span {
     }
 }
 
-.mzp-l-content.l-content-narrow {
-    max-width: $content-md;
-        p {
-            text-align: left;
-        }
+.mzp-l-content.mzp-t-narrow {
+    p {
+        text-align: left;
     }
+}
 
 .l-content-image {
     max-width: $content-lg;

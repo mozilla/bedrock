@@ -7,15 +7,6 @@ $image-path: '/media/protocol/img';
 
 @import '../../protocol/css/includes/lib';
 
-.l-narrow {
-    margin: 0 auto;
-    max-width: 640px;
-
-    @media #{$mq-md} {
-        padding: 0 $spacing-lg;
-    }
-}
-
 .c-header-logo {
     @media #{$mq-sm} {
         margin-top: $layout-sm;
