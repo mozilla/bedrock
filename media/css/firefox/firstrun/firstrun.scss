@@ -7,6 +7,7 @@ $image-path: '/media/protocol/img';
 $break-large: 1305px;
 
 @import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/emphasis-box';
 
 
 //* -------------------------------------------------------------------------- */
@@ -82,18 +83,8 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
     text-align: center;
 }
 
-/* -------------------------------------------------------------------------- */
-// Emphasis Box style, this should go away when Protocal PR #441 is landed. Issue #385
-
-.c-box-emphasis {
-    background: $color-white;
-    border-radius: 6px;
-    box-shadow: 0 0 10px 0 $color-gray-30;
+.mzp-c-box-emphasis {
     text-align: center;
-
-    .c-box-emphasis-content {
-        padding: $spacing-xl;
-    }
 }
 
 @media #{$mq-sm} {

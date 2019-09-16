@@ -68,14 +68,12 @@
               {{_('Sign in to your account and we’ll sync the bookmarks, passwords and other great things you’ve saved to Firefox on other devices.')}}
             {% endif %}</p>
           </div>
-          <aside class="c-box-emphasis" >
-            <div class="c-box-emphasis-content" id="fxaccounts-wrapper">
-              {{ fxa_email_form(
-                entrypoint=_entrypoint,
-                button_class='mzp-c-button mzp-t-product')
-              }}
-              <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint=_entrypoint, utm_campaign='fxa-embedded-form') }} class="js-fxa-cta-link">{{ _('Sign In') }}</a></p>
-            </div>
+          <aside class="mzp-c-box-emphasis" id="fxaccounts-wrapper">
+            {{ fxa_email_form(
+              entrypoint=_entrypoint,
+              button_class='mzp-c-button mzp-t-product')
+            }}
+            <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint=_entrypoint, utm_campaign='fxa-embedded-form') }} class="js-fxa-cta-link">{{ _('Sign In') }}</a></p>
           </aside>
         </div>
       </div>
