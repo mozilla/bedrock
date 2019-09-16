@@ -11,7 +11,22 @@ if (typeof window.Mozilla === 'undefined') {
     'use strict';
 
     var UtmUrl = {};
-    var urlParams = new window._SearchParams().utmParams();
+
+    var whitelist = [
+        'https://accounts.firefox.com/',
+        'https://monitor.firefox.com/',
+        'https://latest.dev.lcip.org/'
+    ];
+
+    /**
+     * Returns the hostname for a given URL.
+     * @param {String} url.
+     * @returns {String} hostname.
+     */
+    UtmUrl.getHostName = function(url) {
+        var matches = url.match(/^https?:\/\/(?:[^/?#]+)(?:[/?#]|$)/i);
+        return matches && matches[0];
+    };
 
     /**
      * Fetch and validate utm params from the page URL for FxA referral.
@@ -77,7 +92,7 @@ if (typeof window.Mozilla === 'undefined') {
      * If there are valid utm params on the page URL, query the
      * DOM and update Firefox Account links with the new utm data
      */
-    UtmUrl.getAttributionData.init = function (urlParams) {
+    UtmUrl.init = function (urlParams) {
         var params = UtmUrl.getAttributionData(urlParams);
         var ctaLinks = document.getElementsByClassName('js-fxa-cta-link');
 
@@ -94,9 +109,11 @@ if (typeof window.Mozilla === 'undefined') {
         for (var i = 0; i < ctaLinks.length; i++) {
             // get the link off the element
             var oldAccountsLink =  ctaLinks[i].hasAttribute('href') ? ctaLinks[i].href : null ;
-            // verify this is a link to accounts.firefox.com or dev server, otherwise we shouldn't touch it
+
             if (oldAccountsLink) {
-                if (oldAccountsLink.indexOf('https://accounts.firefox.com') === 0 || oldAccountsLink.indexOf('https://latest.dev.lcip.org') === 0) {
+                var hostName = UtmUrl.getHostName(oldAccountsLink);
+                // check if link is in the FxA referral whitelist.
+                if (hostName && whitelist.indexOf(hostName) !== -1) {
                     // get the China repack link, so that can be updated too
                     var oldMozillaOnlineLink = ctaLinks[i].getAttribute('data-mozillaonline-link');
 
@@ -115,8 +132,6 @@ if (typeof window.Mozilla === 'undefined') {
             }
         }
     };
-
-    UtmUrl.getAttributionData.init(urlParams);
 
     window.Mozilla.UtmUrl = UtmUrl;
 })();

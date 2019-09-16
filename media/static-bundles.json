@@ -1560,7 +1560,8 @@
         "js/base/core-datalayer.js",
         "js/base/core-datalayer-init.js",
         "js/base/search-params.js",
-        "js/base/fxa-utm-referral.js"
+        "js/base/fxa-utm-referral.js",
+        "js/base/fxa-utm-referral-init.js"
       ],
       "name": "common"
     },
@@ -1583,7 +1584,8 @@
         "js/base/core-datalayer.js",
         "js/base/core-datalayer-init.js",
         "js/base/search-params.js",
-        "js/base/fxa-utm-referral.js"
+        "js/base/fxa-utm-referral.js",
+        "js/base/fxa-utm-referral-init.js"
       ],
       "name": "common-protocol"
     },
