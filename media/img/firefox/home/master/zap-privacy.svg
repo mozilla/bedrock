@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="400px" height="16px" viewBox="0 0 400 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <title>Path 14</title>
+  <desc>Created with Sketch.</desc>
+  <defs>
+    <linearGradient x1="0.08717282295227051" y1="0.5050263214111328" x2="0.9429228210449219" y2="0.5038051223754882" id="linearGradient-1">
+      <stop stop-color="#FF9100" offset="0"/>
+      <stop stop-color="#F10366" offset="0.5"/>
+      <stop stop-color="#6173FF" offset="1"/>
+    </linearGradient>
+  </defs>
+  <g id="/firefox-hmpg" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+    <g id="fx-homepage-1312" transform="matrix(2.382749, 0, 0, 1, -2003.478394, -3902)" stroke="url(#linearGradient-1)" stroke-width="3" style="">
+      <path vector-effect="non-scaling-stroke" d="M843,3908.07495 C856.256028,3908.5548 869.179627,3912.62057 882.407471,3913.60886 C920.258964,3916.43683 898.10711,3909.30547 940.932129,3907.85217 C970.578159,3906.84612 980.291771,3913.15438 1005.44507,3904" id="Path-14" transform="translate(924.222534, 3909.132814) rotate(2.000000) translate(-924.222534, -3909.132814) " style="stroke-miterlimit: 3;"/>
+    </g>
+  </g>
+</svg>

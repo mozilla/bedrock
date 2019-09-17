@@ -58,3 +58,13 @@ label {
 .mzp-c-newsletter-thanks {
     display: none;
 }
+
+// make sure dark components have correct background and text color
+.mzp-t-dark {
+    background: $color-off-black;
+    color: #fff;
+
+    h1, h2, h3, h4, h5, h6 {
+        color: #fff;
+    }
+}

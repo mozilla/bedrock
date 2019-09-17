@@ -1,0 +1,328 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/modal';
+@import '../../../protocol/css/components/call-out';
+@import '../../../protocol/css/components/feature-card';
+@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/components/menu-list';
+
+
+// https://github.com/mozilla/protocol/issues/490
+.firefox-home .mzp-c-cta-link,
+.firefox-home .mzp-t-dark .mzp-c-cta-link {
+    border-bottom: 0;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+}
+
+.js-fx-only {
+    display: none;
+
+    .is-firefox & {
+        display: block;
+    }
+}
+
+// ------------------------------------------------------------------------------
+// component over rides (menu list, hero, feature card, and content)
+
+.firefox-home {
+
+    // content
+    .mzp-l-content {
+        padding-top: $layout-md;
+        padding-bottom: $layout-md;
+    }
+
+    // menu list
+    .mzp-c-menu-list {
+        margin-bottom: $spacing-lg;
+    }
+
+    // hero
+    .mzp-c-hero {
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+
+    .mzp-c-hero-image {
+        display: none;
+    }
+
+    .mzp-c-hero-body {
+        @include flexbox;
+        align-items: center;
+        margin-bottom: 0;
+    }
+
+    .mzp-c-hero-title {
+        @include text-display-xxl;
+        margin-bottom: 0;
+    }
+
+    // feature cards
+    .mzp-c-card-feature {
+        margin-bottom: 0;
+        max-width: $content-sm;
+    }
+
+    .mzp-c-card-feature-content {
+        margin-top: 0;
+    }
+
+    .mzp-c-card-feature-media-wrapper {
+        margin-top: $layout-md;
+    }
+
+    .mzp-c-card-feature-media img {
+        max-width: $content-xs;
+    }
+
+    @media #{$mq-md} {
+
+        // content
+        .mzp-l-content {
+            padding-top: $layout-lg;
+            padding-bottom: $layout-lg;
+        }
+
+        // hero
+        .mzp-c-hero {
+            margin-top: $layout-md;
+        }
+
+        .mzp-c-hero-image {
+            display: block;
+            height: 100%;
+            top: 0;
+            bottom: $layout-sm * -1;
+        }
+
+        .mzp-c-hero-body {
+            padding: $layout-md 0;
+        }
+
+        // feature cards
+        .mzp-c-card-feature {
+            max-width: 100%;
+        }
+
+        .mzp-c-card-feature-media img {
+            max-width: 100%;
+            width: auto;
+        }
+    }
+}
+
+.mzp-c-card-feature-title {
+    @include text-display-md;
+    background-repeat: no-repeat;
+    background-size: auto 40px;
+    margin-bottom: $spacing-xl;
+    padding-top: $layout-lg;
+
+    .t-browsers & {
+        @include at2x('/media/img/logos/firefox/quantum/logo-word-hor-sm.png', auto, 40px);
+    }
+
+    .t-monitor & {
+            background-image: url('/media/protocol/img/logos/firefox/monitor/logo-word-hor.svg');
+    }
+
+    .t-send & {
+            background-image: url('/media/protocol/img/logos/firefox/send/logo-word-hor.svg');
+    }
+
+    .t-lockwise & {
+            background-image: url('/media/protocol/img/logos/firefox/lockwise/logo-word-hor.svg');
+    }
+
+    .t-pocket & {
+        background-image: url('/media/img/logos/pocket/pocket-wordmark.svg');
+    }
+
+    .t-promise & {
+        padding-top: 0;
+    }
+}
+
+// ------------------------------------------------------------------------------
+// showcase
+
+.c-showcase {
+    text-align: center;
+}
+
+.c-showcase-title {
+    @include text-display-sm;
+    margin-bottom: $spacing-lg;
+}
+
+.c-showcase-list {
+    @include flexbox;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: ($layout-md * -1); // offset the magin on the individual icons
+
+    li {
+        margin: 0 $layout-sm $layout-md;
+
+        .t-small & {
+            display: inline-block;
+            height: 40px;
+            width: 40px;
+            overflow: hidden;
+            margin: 0 $spacing-md $layout-md;
+        }
+    }
+}
+
+@media #{$mq-md} {
+    .c-showcase-list {
+        margin-bottom: ($layout-lg * -1); // offset the magin on the individual icons
+
+        li {
+            margin: 0 $layout-sm $layout-lg;
+
+            .t-small & {
+                margin: 0 $spacing-md $layout-lg;
+            }
+        }
+    }
+}
+
+
+// ------------------------------------------------------------------------------
+// promise background colour and image
+
+.t-promise {
+    padding: 0 $layout-sm;
+
+    .mzp-l-content {
+        background-image: linear-gradient(90deg,  $color-violet-80, $color-violet-90);
+        border-radius: 8px;
+        color: #fff;
+        margin: $layout-md auto;
+        max-width: $content-sm;
+        min-width: 0;
+        box-shadow: 0 4px 16px 0 transparentize($color-off-black, .24);
+    }
+
+    .mzp-c-card-feature {
+        margin-bottom: 0;
+
+        .mzp-c-card-feature-desc {
+            color: #fff;
+        }
+    }
+
+    .mzp-c-card-feature-title {
+        strong {
+            position: relative;
+
+            &:after {
+                content: '';
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                display: block;
+                position: absolute;
+                top: calc(100% - 3px);
+                left: -2px;
+                height: 0.3em;
+                width: calc(100% + 4px);
+                background-image: url('/media/img/firefox/home/master/zap-respect.svg');
+            }
+        }
+    }
+
+    .mzp-c-card-feature-media-wrapper {
+        display: none;
+    }
+
+    @media #{$mq-md} {
+        margin: $layout-lg 0;
+        padding: 0 $layout-md;
+
+        .mzp-l-content {
+            background-image: url('/media/img/firefox/home/master/respect.png'), linear-gradient(90deg, $color-violet-60, $color-violet-90);
+            background-position: left -30px center, top left;
+            background-repeat: no-repeat;
+            background-size: 50%, auto;
+            max-width: $content-max;
+
+            @media #{$mq-high-res} {
+                background-image: url('/media/img/firefox/home/master/respect-high-res.png'), linear-gradient(90deg, $color-violet-60, $color-violet-90);
+            }
+        }
+
+        .mzp-c-card-feature-content {
+            @include flexbox;
+            justify-content: center;
+            min-height: 310px;
+        }
+    }
+
+    @media #{$mq-lg} {
+        padding: 0 $layout-lg;
+
+        .mzp-l-content {
+            background-position: left center, top left;
+            background-size: 547px auto, auto;
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------
+// bottom of the page cta
+
+.c-end {
+    background: linear-gradient(90deg, $color-violet-90, $color-off-black);
+    color: #fff;
+    text-align: center;
+
+    .mzp-l-content {
+        max-width: $content-lg;
+        padding-bottom: $layout-xl;
+        padding-top: $layout-xl;
+    }
+}
+
+.c-end-title {
+    @include text-display-md;
+    color: #fff;
+    margin-bottom: $spacing-2xl;
+    margin-top: $layout-md;
+
+    strong {
+        position: relative;
+
+        &:after {
+            content: '';
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            display: block;
+            position: absolute;
+            top: calc(100% - 3px);
+            left: -2px;
+            height: 0.3em;
+            width: calc(100% + 4px);
+            background-image: url('/media/img/firefox/home/master/zap-privacy.svg');
+        }
+    }
+}
+
+@media #{$mq-md} {
+    .c-end {
+        margin-top: $layout-lg;
+    }
+}

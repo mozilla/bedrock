@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="159px" height="9px" viewBox="0 0 159 9" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <title>Path 15</title>
+  <desc>Created with Sketch.</desc>
+  <defs>
+    <filter x="-4.4%" y="-10.1%" width="108.7%" height="120.1%" filterUnits="objectBoundingBox" id="filter-1">
+      <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur stdDeviation="8" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+      <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.0705882353   0 0 0 0 0.22745098  0 0 0 0.24 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"/>
+      <feMerge>
+        <feMergeNode in="shadowMatrixOuter1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient x1="1" y1="0.5" x2="0" y2="0.5025497055053711" id="linearGradient-2">
+      <stop stop-color="#FF9100" offset="0"/>
+      <stop stop-color="#F10366" offset="0.5"/>
+      <stop stop-color="#6173FF" offset="1"/>
+    </linearGradient>
+  </defs>
+  <g id="/firefox-hmpg" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" transform="matrix(1.034302, 0, 0, 0.798912, -14.502771, -11.717253)" style="">
+    <g id="fx-homepage-1056" transform="translate(-674.000000, -2240.000000)" stroke="url(#linearGradient-2)" stroke-width="3">
+      <path vector-effect="non-scaling-stroke" d="M 688.657 2264.211 C 695.899 2263.034 703.135 2259.535 710.382 2260.679 C 713.094 2261.108 713.702 2266.273 721.413 2264.711 C 737.752 2261.402 728.178 2265.465 744.419 2261.696 C 760.659 2257.928 756.776 2266.648 764.774 2265.15 C 778.771 2262.528 772.447 2262.386 786.429 2259.687 C 801.389 2256.798 814.334 2253.974 814.977 2261.394 C 815.036 2262.07 815.908 2262.61 816.583 2262.637 C 823.74 2262.914 834.41 2258.106 839.657 2256.325" id="Path-15"/>
+      <g id="PDP" filter="url(#filter-1)" transform="translate(33.000000, 2107.000000)"/>
+    </g>
+  </g>
+</svg>
