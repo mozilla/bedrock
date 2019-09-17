@@ -68,7 +68,7 @@ class TestContentCardModel(TestCase):
                 'aspect_ratio': 'mzp-has-aspect-16-9',
                 'desc': u'You have the right to your own life \u2014 and your own data. '
                         u'Everything we make and do fights for you.',
-                'link_url': '/de/firefox/fights-for-you/',
+                'link_url': '/de/firefox/',
                 'tag_label': 'Video',
             }
         )

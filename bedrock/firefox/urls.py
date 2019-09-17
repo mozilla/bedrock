@@ -41,7 +41,6 @@ urlpatterns = (
     page('firefox/enterprise/signup', 'firefox/enterprise/signup.html'),
     page('firefox/enterprise/signup/thanks', 'firefox/enterprise/signup-thanks.html'),
     page('firefox/facebookcontainer', 'firefox/facebookcontainer/index.html'),
-    page('firefox/fights-for-you', 'firefox/fights-for-you.html', active_locales=['en-US', 'de', 'fr']),
     page('firefox/features', 'firefox/features/index.html'),
     url('^firefox/features/bookmarks/$',
         views.FeaturesBookmarksView.as_view(),

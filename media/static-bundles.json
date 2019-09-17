@@ -790,12 +790,6 @@
     },
     {
       "files": [
-        "css/firefox/fights-for-you.scss"
-      ],
-      "name": "fights-for-you"
-    },
-    {
-      "files": [
         "css/newsletter/fxnewsletter-subscribe.less",
         "css/firefox/channel.less"
       ],
@@ -882,13 +876,6 @@
         "js/firefox/facebook-container-video.js"
       ],
       "name": "firefox_facebook_container_video"
-    },
-    {
-      "files": [
-        "protocol/js/protocol-modal.js",
-        "js/firefox/fights-for-you.js"
-      ],
-      "name": "fights-for-you"
     },
     {
       "files": [
