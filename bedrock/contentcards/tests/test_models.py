@@ -46,33 +46,6 @@ class TestContentCardModel(TestCase):
         with self.assertRaises(models.ContentCard.DoesNotExist):
             models.ContentCard.objects.get_card('home', 'card_10')
 
-    def test_card_data(self):
-        card1 = models.ContentCard.objects.get_card('home', 'card_1')
-        self.assertEqual(card1.id, 'home-en-US-card_1')
-        self.assertEqual(card1.page_name, 'home')
-        self.assertEqual(card1.card_name, 'card_1')
-        self.assertEqual(card1.locale, 'en-US')
-        with self.activate('de'):
-            card_data = card1.card_data
-
-        self.assertDictEqual(
-            card_data,
-            {
-                'title': 'We keep your data safe, never sold.',
-                'ga_title': 'We keep your data safe, never sold.',
-                'highres_image_url': '/media/contentcards/img/home/ffyr-high-res.191bff93b820.png',
-                'media_icon': 'mzp-has-video',
-                'class': 'mzp-c-card-large',
-                'image_url': '/media/contentcards/img/home/ffyr.75c74c6ba409.png',
-                'youtube_id': 'rZAQ6vgt8nE',
-                'aspect_ratio': 'mzp-has-aspect-16-9',
-                'desc': u'You have the right to your own life \u2014 and your own data. '
-                        u'Everything we make and do fights for you.',
-                'link_url': '/de/firefox/fights-for-you/',
-                'tag_label': 'Video',
-            }
-        )
-
     def test_get_page_cards(self):
         cards = models.ContentCard.objects.get_page_cards('home')
         self.assertTrue(all(name in cards for name in
