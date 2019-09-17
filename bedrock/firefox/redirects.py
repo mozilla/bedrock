@@ -604,7 +604,7 @@ redirectpatterns = (
     redirect(r'^firefox/firefox\.html$', 'firefox.new'),
 
     # issue 6979
-    redirect(r'^firefoxfightsforyou/?', 'https://www.mozilla.org/firefox/'),
+    redirect(r'^firefoxfightsforyou/?', 'firefox'),
 
     # issue 7210
     redirect(r'^firefox/account/?$', 'firefox.accounts'),
@@ -617,4 +617,7 @@ redirectpatterns = (
 
     # issue 7491
     redirect(r'^firefox/organizations/?$', 'firefox.enterprise.index'),
+
+    # issue 7670
+    redirect(r'^/firefox/fights-for-you/?', 'firefox'),
 )
