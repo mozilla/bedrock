@@ -45,6 +45,7 @@ class TestContentCardModel(TestCase):
     def test_get_card_missing(self):
         with self.assertRaises(models.ContentCard.DoesNotExist):
             models.ContentCard.objects.get_card('home', 'card_10')
+
     def test_card_data(self):
         card1 = models.ContentCard.objects.get_card('home', 'card_1')
         self.assertEqual(card1.id, 'home-en-US-card_1')
