@@ -460,7 +460,6 @@ INSTALLED_APPS = (
     'bedrock.events',
     'bedrock.releasenotes',
     'bedrock.contentcards',
-    'bedrock.shapeoftheweb',
     'bedrock.utils',
     'bedrock.wordpress',
     'bedrock.sitemaps',
@@ -1320,7 +1319,7 @@ MOFO_SECURITY_ADVISORIES_REPO = config('MOFO_SECURITY_ADVISORIES_REPO',
 MOFO_SECURITY_ADVISORIES_BRANCH = config('MOFO_SECURITY_ADVISORIES_BRANCH', default='master')
 
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_URLS_REGEX = r'^/([a-zA-Z-]+/)?(shapeoftheweb|newsletter)/'
+CORS_URLS_REGEX = r'^/([a-zA-Z-]+/)?(newsletter)/'
 
 LOGGING = {
     'version': 1,
