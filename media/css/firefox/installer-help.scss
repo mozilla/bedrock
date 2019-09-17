@@ -1,0 +1,39 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import "../../protocol/css/includes/lib";
+@import '../../protocol/css/templates/main-with-sidebar';
+@import '../../protocol/css/components/emphasis-box';
+
+.installer-help-title {
+    @include text-display-md;
+}
+
+.installer-help-subtitle {
+    @include text-display-xs;
+    font-weight: normal;
+}
+
+.mzp-c-box-emphasis {
+    display: inline-block;
+    margin: $spacing-xl 0;
+}
+
+.installer-help-emphasis-title {
+    @include text-display-xs;
+}
+
+.installer-help-emphasis-tagline {
+    margin-bottom: 0;
+}
+
+
+.installer-help-channels {
+    @media #{$mq-md} {
+        @include bidi(((text-align, right, left),));
+    }
+}

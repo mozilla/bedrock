@@ -93,8 +93,7 @@
     },
     {
       "files": [
-        "css/base/mozilla-modal.less",
-        "css/firefox/installer-help.less"
+        "css/firefox/installer-help.scss"
       ],
       "name": "installer_help"
     },
@@ -1227,13 +1226,6 @@
         "js/mozorg/contribute/contribute-landing.js"
       ],
       "name": "contribute-landing"
-    },
-    {
-      "files": [
-        "js/base/mozilla-modal.js",
-        "js/firefox/installer-help.js"
-      ],
-      "name": "installer_help"
     },
     {
       "files": [
