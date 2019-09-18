@@ -20,32 +20,27 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
   </header>
 
   {% call download_banner(
-    logo_title='Firefox',
-    title='Votre vie privée ne regarde que vous',
-    desc='Firefox se bat pour vous.',
+    title='Nous ne mettons pas le nez dans vos données.',
+    desc='Le respect de votre vie privée est notre priorité. Notre modèle financier ne dépendra jamais de la vente et de l’utilisation de vos données personnelles.',
     ) %}
     {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
   {% endcall %}
 
   {% call download_banner_sticky(
-    title='Firefox',
-    sub_title='Votre vie privée ne regarde que vous',
-    desc='Firefox se bat pour vous.'
+    title='Votre vie privée ne regarde que vous.'
     ) %}
     {{ download_firefox(dom_id='download-sticky', download_location='sticky cta', button_color='mzp-t-small') }}
   {% endcall %}
 
   {{ fxa_banner(
-    logo_title='Firefox',
-    title='Votre vie,<br> vos données.'|safe,
-    sub_title='Emportez vos données personnelles et vos marque-pages partout avec vous avec un compte Firefox.',
+    title='Des technologies résolument à vos côtés.',
+    desc='Bien plus qu’un navigateur, Firefox c’est toute une gamme de produits qui respectent vraiment votre vie privée.',
     link_cta='En savoir plus',
   )}}
 
   {{ fxa_banner_sticky(
-    title='Firefox',
-    sub_title='Votre vie, vos données.',
-    link_cta='En savoir plus',
+    title='Des technologies qui vous respectent.',
+    link_cta='Découvrir nos produits',
   )}}
 
   <div class="mozilla-content">
@@ -102,7 +97,7 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
         <div class="newsletter-content">
           {{ email_newsletter_form(
             title=_('Vous adorez Internet ?'),
-            subtitle=_('Abonnez-vous à la newsletter Firefox et soutenez notre vision d’un Internet libre et sécurisé. '),
+            subtitle=_('Abonnez-vous à la newsletter Firefox et soutenez notre vision d’un Internet libre et sécurisé.'),
             button_class='button-dark',
             submit_text=_('S’abonner'),
             protocol_component=True
@@ -113,8 +108,8 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
   </div>{#-- /.mozilla-content --#}
 
   {% call download_banner_secondary(
-    title='Un clic suffit pour soutenir un Internet plus sain.',
-    sub_title='Commencez par surfer le Web avec Firefox de Mozilla.'
+    title='Retrouvez le respect que vous méritez.',
+    sub_title='Parcourir Internet avec Firefox, c’est adopter des technologies conçues pour protéger vos données personnelles.'
   ) %}
     {{ download_firefox(dom_id='download-secondary', download_location='secondary cta') }}
   {% endcall %}
@@ -125,7 +120,7 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
       class='fxaccount-secondary-cta mzp-t-product-firefox mzp-t-firefox mzp-t-dark',
       heading_level=2
     ) %}
-    <a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-secondary mzp-t-dark" id="fxa-learn-secondary">En savoir plus</a>
+    <a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-product mzp-t-dark" id="fxa-learn-secondary">En savoir plus</a>
   {% endcall %}
 
 </main>

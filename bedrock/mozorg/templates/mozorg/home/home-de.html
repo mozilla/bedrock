@@ -20,30 +20,26 @@
   </header>
 
   {% call download_banner(
-    logo_title=_('Firefox'),
-    title=_('Dein Leben.<br> Deine Daten.')|safe,
-    desc=_('Hol dir echte Privatsphäre auf jedes deiner Geräte.'),
+    title=_('Echte Privatsphäre statt leerer Versprechen'),
+    desc=_('Hol dir die Kontrolle über deine Privatsphäre auf jedes Gerät.'),
     ) %}
     {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
   {% endcall %}
 
   {% call download_banner_sticky(
-    title=_('<strong>Firefox</strong> fights for you.'),
-    sub_title=_('Dein Leben. Deine Daten.')
+    title=_('Echte Privatsphäre statt<br> leerer Versprechen.')
     ) %}
     {{ download_firefox(dom_id='download-sticky', download_location='sticky cta', button_color='mzp-t-small') }}
   {% endcall %}
 
   {{ fxa_banner(
-    logo_title=_('Firefox'),
     title=_('Tech mit R.E.S.P.E.K.T.'),
-    sub_title=_('Firefox kann mehr als nur einen richtig guten Browser.'),
+    desc=_('Firefox respektiert deine Privatsphäre mit jedem einzelnen Produkt.'),
     link_cta=_('Weitere Infos'),
   )}}
 
   {{ fxa_banner_sticky(
-    title=_('Firefox'),
-    sub_title=_('Tech mit R.E.S.P.E.K.T.'),
+    title=_('Tech mit R.E.S.P.E.K.T.'),
     link_cta=_('Weitere Infos'),
   )}}
 
@@ -113,8 +109,8 @@
   </div>{#-- /.mozilla-content --#}
 
   {% call download_banner_secondary(
-    title=_('Unterstütze ein gesundes Internet, das nicht nur von einigen wenigen bestimmt wird.'),
-    sub_title=_('Wenn du mit Mozillas Firefox durchs Web surfst, ist der erste Schritt schon getan.')
+    title=_('Bestimme selbst, was du teilst und mit wem.'),
+    sub_title=_('Hol dir den Browser, der Tracker automatisch blockiert.')
   ) %}
     {{ download_firefox(dom_id='download-secondary', download_location='secondary cta') }}
   {% endcall %}
@@ -125,7 +121,7 @@
       class='fxaccount-secondary-cta mzp-t-product-firefox mzp-t-firefox mzp-t-dark',
       heading_level=2
     ) %}
-    <a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-secondary mzp-t-dark" id="fxa-learn-secondary">{{ _('Learn More') }}</a>
+    <a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-product mzp-t-dark" id="fxa-learn-secondary">{{ _('Learn More') }}</a>
   {% endcall %}
 
 </main>
