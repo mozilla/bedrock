@@ -1258,7 +1258,7 @@ URLS = flatten((
     url_test('/foundation/leadership-network/', 'https://foundation.mozilla.org/'),
     url_test('/foundation/advocacy/', 'https://foundation.mozilla.org/'),
     # Issue 6979
-    url_test('/firefoxfightsforyou/', 'firefox'),
+    url_test('/firefoxfightsforyou/', '/firefox/'),
     # Issue 6994
     url_test('/contribute/signup/', 'https://activate.mozilla.community/'),
     url_test('/contribute/task/{,devtools-challenger/, firefox-mobile/}', 'https://activate.mozilla.community/'),
