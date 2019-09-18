@@ -521,6 +521,249 @@ This is useful in situations where we would have needed the l10n team to create 
 an active tag in it because we have a locale-specific-template with text in the language hard-coded into
 the template and therefore do not otherwise need a .lang file.
 
+[ public ] - l10n String Extraction docs
+Extracting strings for l10n quick-start.
+Official docs
+
+Overview of process
+
+
+You will need to fork & clone:
+
+Bedrock
+Mozilla-l10n
+Langchecker
+
+
+1. Extract strings from Bedrock template.
+
+
+Run bin/bootstrap.sh to create the locale folder.
+
+
+- Assuming the template you want to extract strings from is bedrock/mozorg/templates/mozorg/about/history.html
+
+
+In your local bedrock directory:
+
+$ source venv/bin/activate
+
+(venv) $ ./manage.py l10n_extract bedrock/mozorg/templates/mozorg/about/history.html
+
+Does the above give you errors?
+
+$ pip install -r requirements/dev.txt
+
+
+A .lang file will be created inside /locale/templates in bedrock directory.
+
+Suggestion: remove the templates folder before doing an extraction to start fresh.
+
+
+
+
+2. Create a pull request in Mozilla-l10n repo for l10n string review.
+
+
+Copy your newly created .lang file to your local mozilla-l10n/www.mozilla.org directory in the en-US directory.
+
+
+In the case of history.lang the folder would be en-US/mozorg/about/history.lang
+
+
+Notes to include in .lang files:
+
+## NOTE: demo page available at https://www-dev.allizom.org/about/history/
+
+## URL: https://www-dev.allizom.org/%LOCALE%/about/history/
+
+
+# HTML page title
+# HTML page description
+
+Example
+
+Entries should be 2 spaces apart.
+
+Open pull request for the en-US file which will be reviewed by a member of the localization team.
+
+
+❗REMEMBER❗: if there are copy change requests you will need to update not only the .lang file but the template you extracted from. They must match exactly for translations to be populated.
+
+
+
+
+3. Create pull request in Langchecker
+
+
+Install langchecker tool.
+
+
+Paths will need to be updated in this file:
+
+settings.inc.php.ini
+
+/*
+
+   By default all repositories will be stored in this path.
+
+   Important: path must end with slash.
+
+*/
+
+$local_storage = '/localpath/to/repositories/';
+
+
+...
+
+   It is possible to override local paths for specific repositories
+
+   by creating an array called $override_local with the following structure.
+
+   Repository IDs can be found in sources.inc.php
+
+
+   $override_local = [
+
+       'www.mozilla.org' => '/full/path/to/your/clone',
+
+   ];
+
+ 
+
+$local_storage should be the path to the parent directory containing l10n project directories.
+
+$override_local is a more specific way of routing directly to your local path of mozillal-10n/www.mozilla.org directory.
+
+
+For the pull request update this file:
+
+app/config/sources.inc.php
+
+$mozillaorg_lang = [
+
+   ...
+
+   'mozorg/about/history.lang' => [
+
+       'flags' => [
+
+           'opt-in' => ['all'],
+
+       ],
+
+       'priority'          => 2,
+
+       'supported_locales' => [
+
+           'af', 'am', 'ar', 'azz', 'bg', 'bn', 'bs', 'ca', 'cak', 'crh',
+
+           'cs', 'cy', 'de', 'dsb', 'el', 'en-CA', 'en-GB', 'es-AR', 'es-CL',
+
+           'es-ES', 'es-MX', 'eu', 'fa', 'fr', 'fy-NL', 'gl', 'hi-IN', 'hr',
+
+           'hsb', 'ia', 'id', 'it', 'ja', 'kab', 'km', 'ko', 'lt', 'ms', 'nl',
+
+           'nn-NO', 'nv', 'pa-IN', 'pai', 'pl', 'pt-BR', 'pt-PT', 'ro', 'ru',
+
+           'sk', 'sl', 'son', 'sq', 'sr', 'sv-SE', 'sw', 'ta', 'tr', 'uk',
+
+           'uz', 'zam', 'zh-CN', 'zh-TW',
+
+       ],
+
+   ],
+
+
+
+Flags: a multidimensional array. For each key (tag) there’s an array of locales for which that key is valid. You can use ‘all’ to indicate it applies to all other supported locales.
+priority: priorities are numeric values assigned to files. 1 is the highest priority, 5 is the lowest.
+support_locales: locales that this template should be translated in. Mozorg has a variable you can use if you don’t need to be specific: $mozillaorg.
+deadline: if the translations need to happen by a certain date you can pass a deadline value. Ex: 'deadline'              => '2019-05-03'
+
+Create langchecker pull request with your changes in app/config/sources.inc.php and link to that pull request in your previous mozilla-l10n/www.mozilla.org pull request.
+
+Langchecker PR example
+
+mozilla-l10n/www.mozilla.org PR example
+
+
+
+4. Populate all other locales.
+
+Once your en-US .lang pull request from step 2 is approved, it’s time to populate the other locales.
+
+
+In the langchecker directory run:
+
+
+$ ./app/scripts/lang_update
+
+$ ./app/scripts/lang_update firefox/adblocker.lang 0 all
+
+
+Move over to your bedrock-l10n/www.mozilla.org directory and you should see a lot of new .lang files created in all declared locales.
+
+
+Push this change to your pull request in bedrock-l10n/www.mozilla.org
+
+Once both pull requests have been approved and merged it’s time for the final step!
+
+
+5. Push to prod!
+
+(Bedrock-l10n repo: the localization production repository.)
+
+On the branch with your .lang changes
+
+$ git log --oneline
+
+On the line with your commit (the very top) copy the hash.
+
+Looks something like: 12f44da672
+
+(Make sure all your changes are a single commit, if they are multiple you can do this by squashing.)
+
+
+It is time to do some git foundation before we can push to the production repo.
+
+
+In your local bedrock-l10n/www.mozilla.org project folder create a new branch:
+
+$ git checkout master
+
+$ git checkout -b upstream
+
+
+Add a new remote and set this new branch to track the master branch on the l10n production repo. `$ git remote -v` to verify new remote.
+
+$ git remote add production https://github.com/mozilla-l10n/bedrock-l10n.git
+
+$ git branch -u production/master
+
+Branch 'upstream' set up to track remote branch 'master' from 'production'.
+
+$ git pull
+
+Your new branch ‘upstream’ should now be up to date with the remote branch of master on the l10n production repo, which we gave the remote name of ‘production’
+
+
+Let’s say 12f44da672 was your commit hash.
+
+$ git cherry-pick 12f44da672
+
+The cherry-pick command added that commit to your new ‘upstream’ branch, so you should now be one change ahead of the production repo.
+
+
+To verify we can run `git log --oneline` and see that your new commit adding a .lang file is at the very top, the second commit being the most recent commit on github.
+
+
+PUSHING TO PROD
+
+$ git push production upstream:master
+
+This command pushes the local branch of `upstream` to the `master` branch of the `production` remote.
+
 Development
 -----------
 
