@@ -46,13 +46,14 @@
     <h3 class="c-picto-block-title">{{ _('Stay ahead of hackers') }}</h3>
     <div class="c-picto-block-body">
       <p>
-      {% trans security_tips='https://monitor.firefox.com/security-tips/?utm_source=mozilla.org-firefox-lifecycle-resources&utm_medium=referral&utm_campaign=LifecycleP1&entrypoint=mozilla.org-firefox-lifecycle-resources' %}
+      {% trans security_tips=breach_tips_url|safe %}
         Find ways to protect your info with <a href="{{ security_tips }}">Monitor Security Tips</a>.
       {% endtrans %}
       </p>
     </div>
   </div>
 
+  {% if LANG.startswith('en-') %}
   <div class="c-picto-block t-adjacent-image">
     <div class="c-picto-block-image">
       <img src="{{ static('img/icons/warning.svg') }}" alt="">
@@ -68,6 +69,7 @@
       </p>
     </div>
   </div>
+  {% endif %}
 {% endblock %}
 
 {% block content_utility %}
