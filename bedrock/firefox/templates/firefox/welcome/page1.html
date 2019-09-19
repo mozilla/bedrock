@@ -27,13 +27,14 @@
     {# L10n: "Firefox Monitor" is a product name and shouldn't be translated. #}
     <p>{{ _('Firefox Monitor shows you if your information has been leaked in a known data breach, and alerts you in case it happens in the future.') }}</p>
 
-    <p class="primary-cta">{{ monitor_button(
-      button_id='monitor-button-signed-out',
-      entrypoint='mozilla.org-firefox-lifecycle-resources',
-      utm_campaign='welcome',
-      button_text=_('Check Your Breach Report'),
-      cta_type="Lifecycle-Monitor"
-    ) }}</p>
+    <p class="primary-cta">
+      {{ monitor_button(
+        entrypoint='mozilla.org-firefox-lifecycle-resources',
+        utm_campaign='LifecycleP1',
+        button_text=_('Check Your Breach Report'),
+        cta_type="Lifecycle-Monitor",
+      ) }}
+    </p>
   </div>
 {% endblock %}
 
