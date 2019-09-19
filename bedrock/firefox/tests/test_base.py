@@ -301,37 +301,6 @@ class TestWhatsNew(TestCase):
         assert template == ['firefox/developer/whatsnew.html']
 
     @override_settings(DEV=True)
-    @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68='True')
-    @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68_TRAILHEAD='True')
-    def test_fx_dev_browser_68_0_a2_trailhead_on(self, render_mock):
-        """Should show dev browser 68 trailhead template"""
-        req = self.rf.get('/en-US/firefox/whatsnew/')
-        self.view(req, version='68.0a2')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/developer/whatsnew-fx68-trailhead.html']
-
-    @override_settings(DEV=True)
-    @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68='True')
-    @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68_TRAILHEAD='False')
-    def test_fx_dev_browser_68_0_a2_trailhead_off(self, render_mock):
-        """Should show dev browser 68 trailhead template"""
-        req = self.rf.get('/en-US/firefox/whatsnew/')
-        self.view(req, version='68.0a2')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/developer/whatsnew-fx68.html']
-
-    @override_settings(DEV=True)
-    @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68='True')
-    @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68_TRAILHEAD='True')
-    def test_fx_dev_browser_68_0_a2_trailhead_non_locales(self, render_mock):
-        """Should show dev browser 68 whatsnew template"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'es-ES'
-        self.view(req, version='68.0a2')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/developer/whatsnew-fx68.html']
-
-    @override_settings(DEV=True)
     @patch.dict(os.environ, SWITCH_DEV_WHATSNEW_68='False')
     def test_fx_dev_browser_68_0_a2_whatsnew_off(self, render_mock):
         """Should show regular dev browser whatsnew template"""
