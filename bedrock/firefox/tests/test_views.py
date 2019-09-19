@@ -999,3 +999,12 @@ class TestAccountsPage(TestCase):
         req.locale = 'fr'
         views.firefox_accounts(req)
         render_mock.assert_called_once_with(req, 'firefox/accounts.html', ANY)
+
+
+class TestFirefoxWelcomePage1(TestCase):
+    @patch('bedrock.firefox.views.l10n_utils.render')
+    def test_firefox_welcome_page1(self, render_mock):
+        req = RequestFactory().get('/firefox/welcome/1/')
+        req.locale = 'en-US'
+        views.firefox_welcome_page1(req)
+        render_mock.assert_called_once_with(req, 'firefox/welcome/page1.html', ANY)
