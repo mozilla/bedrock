@@ -1,0 +1,161 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../protocol/css/includes/lib';
+
+
+//* -------------------------------------------------------------------------- */
+// Page header
+
+.c-page-header {
+    background: $color-white;
+}
+
+.c-header-logo {
+    display: block;
+    margin: 0 auto;
+
+    @media #{$mq-md} {
+        display: inline;
+        margin: 0;
+    }
+}
+
+.c-shoulder-cta {
+    margin: $spacing-md 0 0;
+    text-align: center;
+
+    @media #{$mq-md} {
+        @include bidi((
+            (float, right, left),
+            (text-align, left, right),
+        ));
+        margin: 0;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Page intro
+
+.page-intro {
+    padding: $layout-xs 0;
+    text-align: center;
+
+    @media #{$mq-tall} {
+        padding: $layout-lg 0;
+    }
+}
+
+.c-page-title {
+    @include text-display-lg;
+    margin-bottom: $layout-sm;
+}
+
+.c-page-tagline {
+    @include text-body-lg;
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Primary content
+
+.body-primary {
+    @include text-body-lg;
+    text-align: center;
+    margin: $layout-md auto $layout-xl;
+
+    .primary-cta {
+        margin: $layout-md auto 0;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Secondary content
+// To be replaced by revamped picto card. See https://github.com/mozilla/protocol/issues/382
+
+.c-picto-block {
+    @include border-box;
+    margin: 0 auto $spacing-2xl;
+    max-width: $content-md - ($layout-md * 2);
+    padding: 0 $layout-md;
+
+    .c-picto-block-title {
+        @include text-display-xs;
+    }
+
+    .c-picto-block-image {
+        align-items: center;
+        display: flex;
+        margin-bottom: $spacing-md;
+        min-height: $layout-md;
+    }
+
+    &.t-adjacent-image {
+        @include bidi((
+            (padding-left, $layout-xl, 0),
+            (padding-right, 0, $layout-xl)
+        ));
+        position: relative;
+
+        & + & {
+            padding-top: $layout-md;
+            border-top: 1px solid $color-gray-30;
+        }
+
+        .c-picto-block-image {
+            @include bidi((
+                (left, 0, auto),
+                (right, auto, 0)
+            ));
+            display: block;
+            margin: 0;
+            position: absolute;
+            min-height: 0;
+            max-width: $layout-lg;
+        }
+    }
+}
+
+.c-utilities {
+    @include text-body-sm;
+    max-width: $content-md;
+    text-align: center;
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Dark theme
+
+.page-intro.mzp-t-dark {
+    background-color: $color-gray-90;
+    color: $color-white;
+
+    :link {
+        color: $color-white;
+
+        &:hover,
+        &:focus {
+            color: $color-pink-5;
+        }
+
+        &:active,
+        &:focus {
+            background-color: transparentize($color-white, .95);
+        }
+    }
+
+    :visited {
+        color: $color-pink-10;
+
+        &:hover,
+        &:focus {
+            color: $color-white;
+        }
+    }
+
+    .welcome-stage1 & {
+        background-color: $color-off-black;
+    }
+}

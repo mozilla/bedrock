@@ -953,3 +953,29 @@ def election_with_cards(request):
         ctx['page_content_cards'] = get_page_content_cards('election-en', 'en-US')
 
     return l10n_utils.render(request, template_name, ctx)
+
+
+BREACH_TIPS_URLS = {
+    'de': 'https://blog.mozilla.org/firefox/de/was-macht-man-nach-einem-datenleck/',
+    'fr': 'https://blog.mozilla.org/firefox/fr/que-faire-en-cas-de-fuite-de-donnees/',
+    'en-CA': 'https://blog.mozilla.org/firefox/what-to-do-after-a-data-breach/',
+    'en-GB': 'https://blog.mozilla.org/firefox/what-to-do-after-a-data-breach/',
+    'en-US': 'https://blog.mozilla.org/firefox/what-to-do-after-a-data-breach/',
+}
+
+
+def firefox_welcome_page1(request):
+    locale = l10n_utils.get_locale(request)
+
+    # get localized blog post URL for 2019 page
+    breach_tips_query = (
+        '?utm_source=mozilla.org-firefox-lifecycle-resources&amp;utm_medium=referral'
+        '&amp;utm_campaign=LifecycleP1&ampentrypoint=mozilla.org-firefox-lifecycle-resources'
+    )
+    breach_tips_url = BREACH_TIPS_URLS.get(locale, BREACH_TIPS_URLS['en-US'])
+
+    context = {'breach_tips_url': breach_tips_url + breach_tips_query}
+
+    template_name = 'firefox/welcome/page1.html'
+
+    return l10n_utils.render(request, template_name, context)
