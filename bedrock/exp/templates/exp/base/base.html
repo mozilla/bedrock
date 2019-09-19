@@ -11,6 +11,8 @@
     {# Pre-fetch the DNS lookup prior to loading the convert script #}
     <link rel="dns-prefetch" href="https://cdn-3.convertexperiments.com/">
     {{ js_bundle('convert') }}
+  {% else %}
+    {{ js_bundle('jquery') }}
   {% endif %}
 {% endblock %}
 
