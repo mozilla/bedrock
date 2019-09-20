@@ -632,6 +632,19 @@ Opens about:newtab in the same tab.
 
     This function is only available in Firefox 51 onward.
 
+showProtectionReport();
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Opens about:protections in the same tab.
+
+.. code-block:: javascript
+
+    Mozilla.UITour.showProtectionReport();
+
+.. Important::
+
+    This function is only available in Firefox 70 onward.
+
 .. _Mozilla Central: http://dxr.mozilla.org/mozilla-central/source/browser/components/uitour/UITour-lib.js
 .. _Telemetry: https://wiki.mozilla.org/Telemetry
 .. _FHR: https://support.mozilla.org/en-US/kb/firefox-health-report-understand-your-browser-perf
