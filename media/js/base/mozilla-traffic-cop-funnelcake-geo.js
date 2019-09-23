@@ -74,7 +74,7 @@ Expectations (expressed in logic below) of these kinds of tests:
         var isIELT9 = /MSIE\s[1-8]\./.test(ua);
 
         // swiped from mozilla-client.js
-        var isLikeFirefox = /Iceweasel|IceCat|SeaMonkey|Camino|like\ Firefox/i.test(ua);
+        var isLikeFirefox = /Iceweasel|IceCat|SeaMonkey|Camino|like Firefox/i.test(ua);
         var isFirefox = /\s(Firefox|FxiOS)/.test(ua) && !isLikeFirefox;
 
         // check if user is on windows
