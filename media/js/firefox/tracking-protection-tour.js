@@ -276,7 +276,7 @@ if (typeof window.Mozilla === 'undefined') {
      * @returns value for the given parameter or 'none'.
      */
     TPTour.getParameterByName = function(name, paramString) {
-        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        name = name.replace(/[[]/, '[').replace(/[]]/, ']');
         var params = paramString || location.search;
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
         var results = regex.exec(params);
