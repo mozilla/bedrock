@@ -172,6 +172,14 @@ if (typeof window.Mozilla === 'undefined') {
         _sendEvent('showNewTab');
     };
 
+    /**
+    * Loads about:protections in the tour tab.
+    * @since 70
+    */
+    Mozilla.UITour.showProtectionReport = function() {
+        _sendEvent('showProtectionReport');
+    };
+
     Mozilla.UITour.getConfiguration = function(configName, callback) {
         _sendEvent('getConfiguration', {
             callbackID: _waitForCallback(callback),
