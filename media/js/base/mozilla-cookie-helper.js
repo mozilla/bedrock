@@ -35,11 +35,11 @@ Mozilla.Cookies = {
     getItem: function (sKey) {
         'use strict';
         if (!sKey) { return null; }
-        return decodeURIComponent(document.cookie.replace(new RegExp('(?:(?:^|.*;)\\s*' + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=\\s*([^;]*).*$)|^.*$'), '$1')) || null;
+        return decodeURIComponent(document.cookie.replace(new RegExp('(?:(?:^|.*;)s*' + encodeURIComponent(sKey).replace(/[-.+*]/g, '$&') + 's*=s*([^;]*).*$)|^.*$'), '$1')) || null;
     },
     setItem: function (sKey, sValue, vEnd, sPath, sDomain, bSecure) {
         'use strict';
-        if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) { return false; }
+        if (!sKey || /^(?:expires|max-age|path|domain|secure)$/i.test(sKey)) { return false; }
         var sExpires = '';
         if (vEnd) {
             switch (vEnd.constructor) {
@@ -66,11 +66,11 @@ Mozilla.Cookies = {
     hasItem: function (sKey) {
         'use strict';
         if (!sKey) { return false; }
-        return (new RegExp('(?:^|;\\s*)' + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\=')).test(document.cookie);
+        return (new RegExp('(?:^|;s*)' + encodeURIComponent(sKey).replace(/[-.+*]/g, '$&') + 's*=')).test(document.cookie);
     },
     keys: function () {
         'use strict';
-        var aKeys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, '').split(/\s*(?:\=[^;]*)?;\s*/);
+        var aKeys = document.cookie.replace(/((?:^|s*;)[^=]+)(?=;|$)|^s*|s*(?:=[^;]*)?(?:1|$)/g, '').split(/s*(?:=[^;]*)?;s*/);
         for (var nLen = aKeys.length, nIdx = 0; nIdx < nLen; nIdx++) { aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]); }
         return aKeys;
     },
