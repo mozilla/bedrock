@@ -565,7 +565,7 @@
         </figure>
 
         <div class="person-info">
-          <p class="title" itemprop="jobTitle">{{ _('VP of Global Policy, Trust and Security') }}</p>
+          <p class="title" itemprop="jobTitle">{{ _('VP, Global Policy, Trust and Security') }}</p>
 
           <ul class="utility">
             <li><a class="link" href="{{ url('mozorg.about.leadership') }}#alan-davidson">{{ _('Link to this bio') }}</a></li>
@@ -574,15 +574,9 @@
 
         <div class="person-bio">
           <p>
-          {% if l10n_has_tag('davidson_bio_2019') %}
           {% trans %}
             Alan Davidson is Vice President of Global Policy, Trust and Security for Mozilla. He is responsible for leading Mozilla’s public policy work promoting an open Internet and a healthy web around the world. He also supervises a trust and security team promoting innovative privacy and security features that put people in control of their online lives.
           {% endtrans %}
-          {% else %}
-          {% trans %}
-            As Vice President of Global Policy, Trust and Security, Alan is responsible for leading Mozilla’s public policy work promoting an open Internet and a healthy web around the world. He will also supervise a trust and security team focused on promoting innovative privacy and security features that put people in control of their online lives.
-          {% endtrans %}
-          {% endif %}
           </p>
 
           <p>
@@ -600,41 +594,6 @@
           <p>
           {% trans %}
             Alan holds a Bachelor’s degree in mathematics and computer science and a Master’s degree in technology and policy from the Massachusetts Institute of Technology (MIT). He is a graduate of the Yale Law School and a member of the D.C. Bar.
-          {% endtrans %}
-          </p>
-        </div>
-      </article>
-
-      <article id="shani-higgins" data-id="shani-higgins" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
-        <figure class="headshot">
-          {{ high_res_img('mozorg/about/leadership/shani-higgins.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
-          <figcaption><h4 class="fn" itemprop="name">Shani Higgins</h4></figcaption>
-        </figure>
-
-        <div class="person-info">
-          <p class="title" itemprop="jobTitle">{{ _('VP, Business Operations and Revenue') }}</p>
-
-          <ul class="utility">
-            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#shani-higgins">{{ _('Link to this bio') }}</a></li>
-          </ul>
-        </div>
-
-        <div class="person-bio">
-          <p>
-          {% trans %}
-            As Vice President of Business Operations and Revenue, Shani is responsible for the strategy and implementation of data-driven improvements to customer success and driving resiliency and competitive differentiation in our product and business strategy.
-          {% endtrans %}
-          </p>
-
-          <p>
-          {% trans %}
-            Shani joins Mozilla from Technorati, a leading advertising technology company, where she served as CEO and led its sale to Synacor. During her time at Technorati she was instrumental in pivoting the company from a blog search engine into an advertising platform for publishers and offering the first agnostic header bidding management technology. During her tenure she held the role of General Manager, overseeing marketing, sales and operations and successfully grew the company’s revenues to over $25 million. Prior to her time at Technorati, Shani served in various lead business development and strategic sales roles at TACIT Software, which was acquired by Oracle, ZDnet which was acquired by CNET, and Infoseek which was acquired by Disney.
-          {% endtrans %}
-          </p>
-
-          <p>
-          {% trans %}
-            Shani holds a B.A. in Communications and Art History with a minor in Economics from Rutgers University.
           {% endtrans %}
           </p>
         </div>
@@ -681,6 +640,53 @@
         </div>
       </article>
 
+      <article id="matt-koidin" data-id="matt-koidin" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+        <figure class="headshot">
+          {{ high_res_img('mozorg/about/leadership/matt-koidin.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+          <figcaption><h4 class="fn" itemprop="name">Matt Koidin</h4></figcaption>
+        </figure>
+
+        <div class="person-info">
+          <p class="title" itemprop="jobTitle">{{ _('VP and General Manager, Pocket') }}</p>
+
+          <ul class="utility">
+            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#matt-koidin">{{ _('Link to this bio') }}</a></li>
+          </ul>
+        </div>
+
+        <div class="person-bio">
+          <p>
+          {% trans %}
+            As the VP and General Manager of Pocket, Matt Koidin is responsible for the Pocket platform.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Pocket is a platform that lets people discover, capture, and spend time with the stories that fascinate and fuel them. Pocket recommends best-of-web content across its properties, including the recommendations on Firefox New Tab. Within the Pocket app, users have a home to absorb stories they’ve saved without the distractions of the web. Pocket is used by millions of people around the world, has won ten Webby Awards and is consistently featured in Google Play and the App Store as an editor’s choice, top-rated app experience.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Matt was a member of the founding team of Pocket, joining in 2011 as CTO and Head of Operations. He has been an integral part of the team and leader through every step of Pocket’s journey. Mozilla acquired Pocket in 2017.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Matt joined the entrepreneur ranks while still an undergraduate at Stanford University, founding a company called Justarrive, one of the first e-ticket companies focused on sports. That experience hooked Matt on being an entrepreneur and since then his journey has included stints at four startups, Microsoft, an MBA from the Fuqua School of Business (Duke University) and strategy consulting with Deloitte.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Matt is a recipient of the Fuqua Alumni Impact Award for his role as co-chair of the Duke Global Entrepreneurship Network and recently completed a six year term as chair of the board for the Presidio Knolls School. Matt lives in San Francisco with his wife, Christine, and two daughters, Maile and Lauren.
+          {% endtrans %}
+          </p>
+        </div>
+      </article>
+
       <article id="stan-leong" data-id="stan-leong" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('mozorg/about/leadership/stan-leong.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
@@ -688,7 +694,7 @@
         </figure>
 
         <div class="person-info">
-          <p class="title" itemprop="jobTitle">{{ _('VP and General Manager of Emerging Markets ') }}</p>
+          <p class="title" itemprop="jobTitle">{{ _('VP and General Manager, Emerging Markets ') }}</p>
 
           <ul class="utility">
             <li><a class="link" href="{{ url('mozorg.about.leadership') }}#stan-leong">{{ _('Link to this bio') }}</a></li>
@@ -883,7 +889,7 @@
         </figure>
 
         <div class="person-info">
-          <p class="title" itemprop="jobTitle">{{ _('VP of Product') }}</p>
+          <p class="title" itemprop="jobTitle">{{ _('VP, Product') }}</p>
 
           <ul class="utility">
             <li><a class="link" href="{{ url('mozorg.about.leadership') }}#reese-wood">{{ _('Link to this bio') }}</a></li>
