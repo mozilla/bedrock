@@ -83,13 +83,13 @@
     {{ fxa_cta_link(entrypoint='mozilla.org-whatsnew66', action='signup', button_text=_('Create a Firefox Account'), button_class='mzp-c-button mzp-t-product', utm_campaign='wnp66', utm_content='accounts-page-top-cta') }}<br>
 
     {% if l10n_has_tag('wnp66_log_in') %}
-    {% set link = fxa_link_fragment(entrypoint='mozilla.org-whatsnew66', action='login', utm_campaign='wnp66', utm_content='accounts-page-top-cta') %}
+    {% set link = fxa_link_fragment(entrypoint='mozilla.org-whatsnew66', action='signin', utm_campaign='wnp66', utm_content='accounts-page-top-cta') %}
     <span class="wn64-signin">
       {{ _('Have an account? <a %s >Log in</a>')|format(link) }}
     </span>
     {% else %}
     <span class="wn64-signin">
-      <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew66', action='login', utm_campaign='wnp66', utm_content='accounts-page-top-cta') }} class="js-fxa-cta-link">{{ _('Already have an account?') }}</a>
+      <a {{ fxa_link_fragment(entrypoint='mozilla.org-whatsnew66', utm_campaign='wnp66', utm_content='accounts-page-top-cta') }} class="js-fxa-cta-link">{{ _('Already have an account?') }}</a>
     </span>
     {% endif %}
   </p>
