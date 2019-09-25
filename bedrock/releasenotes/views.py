@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import re
+from copy import copy
 from operator import attrgetter
 
 from django.conf import settings
@@ -34,8 +35,7 @@ def release_notes_template(channel, product, version=None):
 
 
 def equivalent_release_url(release):
-    equivalent_release = (release.equivalent_android_release() or
-                          release.equivalent_desktop_release())
+    equivalent_release = (release.equivalent_android_release() or release.equivalent_desktop_release())
     if equivalent_release:
         return equivalent_release.get_absolute_url()
 
@@ -89,6 +89,20 @@ def release_notes(request, version, product='Firefox'):
         release = get_release_or_404(version + 'beta', product, include_drafts)
         return HttpResponseRedirect(release.get_absolute_url())
 
+    # add MDN link to all non-iOS releases. bug 1553566
+    # avoid adding duplicate notes
+    release_notes = copy(release.notes)
+    if release.product != 'Firefox for iOS':
+        release_notes.insert(0, {
+            'id': 'mdn',
+            'is_public': True,
+            'tag': 'Developer',
+            'sort_num': 1,
+            'note': f'<a class="mdn-icon" rel="external" '
+                    f'href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/'
+                    f'{ release.major_version }">Developer Information</a>',
+        })
+
     return l10n_utils.render(
         request, release_notes_template(release.channel, product,
                                         int(release.major_version)), {
@@ -97,6 +111,7 @@ def release_notes(request, version, product='Firefox'):
             'support_url': SUPPORT_URLS.get(product, 'https://support.mozilla.org/'),
             'check_url': check_url(product, version),
             'release': release,
+            'release_notes': release_notes,
             'equivalent_release_url': equivalent_release_url(release),
         })
 
@@ -143,8 +158,7 @@ def releases_index(request, product):
     # Firefox 59 wasn't ESR. Firefox 60 became the next ESR instead, and since
     # then ESR is offered every 8 major releases.
     esr_major_versions = (
-        list(range(10, 59, 7)) +
-        list(range(60, int(firefox_desktop.latest_version().split('.')[0]), 8)))
+        list(range(10, 59, 7)) + list(range(60, int(firefox_desktop.latest_version().split('.')[0]), 8)))
 
     if product == 'Firefox':
         major_releases = firefox_desktop.firefox_history_major_releases

@@ -171,8 +171,8 @@
   {% endblock %}
 
     <section class="c-release-notes">
-    {% if release.is_public and release.notes %}
-      {% for note in release.notes if note.tag == "New" %}
+    {% if release.is_public and release_notes %}
+      {% for note in release_notes if note.tag == "New" %}
         {% if loop.first %}
           <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
             <div class="mzp-l-sidebar"><h3>{{ note.tag }}</h3></div>
@@ -187,7 +187,7 @@
         {% endif %}
       {% endfor %}
 
-      {% for note in release.notes if note.tag == "Fixed" %}
+      {% for note in release_notes if note.tag == "Fixed" %}
         {% if loop.first %}
           <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
             <div class="mzp-l-sidebar"><h3>{{ note.tag }}</h3></div>
@@ -202,7 +202,7 @@
         {% endif %}
       {% endfor %}
 
-      {% for note in release.notes if note.tag == "Changed" %}
+      {% for note in release_notes if note.tag == "Changed" %}
         {% if loop.first %}
           <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
             <div class="mzp-l-sidebar"><h3>{{ note.tag }}</h3></div>
@@ -217,7 +217,7 @@
         {% endif %}
       {% endfor %}
 
-      {% for note in release.notes if note.tag == "Enterprise" %}
+      {% for note in release_notes if note.tag == "Enterprise" %}
         {% if loop.first %}
           <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
             <div class="mzp-l-sidebar"><h3>{{ note.tag }}</h3></div>
@@ -233,25 +233,22 @@
       {% endfor %}
 
       {# The Developer section is always visible with a MDN link #}
-      <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="developer">
-        <div class="mzp-l-sidebar"><h3>{{ _('Developer') }}</h3></div>
-        <div class="mzp-l-main mzp-l-article">
-          <div class="developer-more">
-            <a class="mdn-icon" rel="external" href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/{{ release.major_version }}">{{ _('Developer Information') }}</a>
-          </div>
-          {% for note in release.notes if note.tag == "Developer" %}
-            {% if loop.first %}
+      {% for note in release_notes if note.tag == "Developer" %}
+        {% if loop.first %}
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="developer">
+            <div class="mzp-l-sidebar"><h3>{{ _('Developer') }}</h3></div>
+            <div class="mzp-l-main mzp-l-article">
               <ul>
-            {% endif %}
-            {{ note_entry(note) }}
-            {% if loop.last %}
+        {% endif %}
+        {{ note_entry(note) }}
+        {% if loop.last %}
               </ul>
-            {% endif %}
-          {% endfor %}
-        </div>
-      </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
 
-      {% for note in release.notes if note.tag == "HTML5" %}
+      {% for note in release_notes if note.tag == "HTML5" %}
         {% if loop.first %}
           <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="web-platform">
             <div class="mzp-l-sidebar"><h3>{{ _('Web Platform') }}</h3></div>
@@ -266,7 +263,7 @@
         {% endif %}
       {% endfor %}
 
-      {% for note in release.notes if note.tag == "Resolved" %}
+      {% for note in release_notes if note.tag == "Resolved" %}
         {% if loop.first %}
           <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
             <div class="mzp-l-sidebar"><h3>{{ note.tag }}</h3></div>
@@ -281,7 +278,7 @@
         {% endif %}
       {% endfor %}
 
-      {% for note in release.notes if not note.tag %}
+      {% for note in release_notes if not note.tag %}
         {% if loop.first %}
           <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-right">
             <div class="mzp-l-main mzp-l-article">
@@ -295,7 +292,7 @@
         {% endif %}
       {% endfor %}
 
-      {% for note in release.notes if note.tag == "Known" %}
+      {% for note in release_notes if note.tag == "Known" %}
         {% if loop.first %}
           <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="known">
             <div class="mzp-l-sidebar"><h3>{{ _('unresolved') }}</h3></div>
