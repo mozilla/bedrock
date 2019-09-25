@@ -52,7 +52,7 @@
     // Don't execute if features aren't supported and client isn't desktop Firefox
     if (supportsBaselineJS() && Mozilla.Client.isFirefoxDesktop) {
         strings = document.getElementById('strings');
-        topicHeaders = document.querySelectorAll('.privacy-body > div > section');
+        topicHeaders = document.querySelectorAll('.privacy-body > section');
         initialTopic = topicHeaders[0].querySelector('section > *:last-child');
 
         // check that the UITour works (requires base/uitour-lib.js)
