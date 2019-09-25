@@ -94,6 +94,7 @@
     </p>
 
     <p>
+    {% if l10n_has_tag('pr7777_ncsa_typofix') %}
     {% trans netscape='https://en.wikipedia.org/wiki/Netscape_(web_browser)' %}
       NCSA Mosaic ran on Windows computers, was easy to use, and gave anyone with a PC access
       to early web pages, chat rooms, and image libraries. The next year (1994), Andreessen
@@ -101,6 +102,16 @@
       public. It was wildly successful, and the first browser for the people. It was also the
       first move in a new kind of war for internet users.
     {% endtrans %}
+    {% else %}
+    {% trans netscape='https://en.wikipedia.org/wiki/Netscape_(web_browser)' %}
+      NSCA Mosaic ran on Windows computers, was easy to use, and gave anyone with a PC access
+      to early web pages, chat rooms, and image libraries. The next year (1994), Andreessen
+      founded <a href="{{ netscape }}">Netscape</a> and released Netscape Navigator to the
+      public. It was wildly successful, and the first browser for the people. It was also the
+      first move in a new kind of war for internet users.
+    {% endtrans %}
+    {% endif %}
+
     </p>
 
     <h2 class="c-section-title">{{ _('The Browser Wars') }}</h2>
