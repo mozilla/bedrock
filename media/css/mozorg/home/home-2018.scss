@@ -206,8 +206,8 @@ h4 {
 
     &:after {
         @include text-body-lg;
-        background: transparent url('#{$image-path}/icons/ui/close-white.svg') center center no-repeat;
-        @include background-size(16px 16px);
+        background: transparent url('#{$image-path}/icons/close-white.svg') center center no-repeat;
+        @include background-size(20px 20px);
         content: '';
         display: block;
         height: 32px;

@@ -19,7 +19,7 @@
 {% block content %}
 <div class="mzp-c-hero">
   <div class="hero-content">
-    <img src="{{ static('protocol/img/logos/firefox/firefox.png') }}" width="50" height="50" alt="">
+    {{ high_res_img('logos/firefox/quantum/logo-sm.png', {'alt': 'Firefox', 'width': '50', 'height': '50'}) }}
     <p>{{ _('Internet Security') }}</p>
     <h1>{{ _('Take the stress out of finding a safe browser.') }}</h1>
     <div class="download-firefox">

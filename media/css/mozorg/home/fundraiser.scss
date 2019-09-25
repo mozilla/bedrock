@@ -121,10 +121,10 @@ $image-path: '/media/protocol/img';
 
 // Close button
 .c-fundraiser-close {
-    @include background-size(16px 16px);
+    @include background-size(20px 20px);
     @include bidi(((right, $spacing-sm, auto), (left, auto, $spacing-sm)));
     @include image-replaced;
-    background: transparent url('#{$image-path}/icons/ui/close-white.svg') center center no-repeat;
+    background: transparent url('#{$image-path}/icons/close-white.svg') center center no-repeat;
     border: none;
     display: none;
     height: 42px;
