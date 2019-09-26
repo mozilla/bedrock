@@ -17,6 +17,15 @@ Bedrock pages are often used to promote the creation of `Firefox Accounts`_ as a
     All query string parameters passed to the macros below need to pass the `query parameters validation
     <https://mozilla.github.io/application-services/docs/accounts/metrics.html#descriptions-of-metrics-related-query-parameters>`_ applied by the Firefox Accounts server.
 
+Conventions
+-----------
+
+When choosing URL parameter values, the following conventions help support uniformity in code and predictability in retroactive analysis.
+
+* Use lower case characters in parameter values.
+* Separate words in parameter values with hyphens.
+* Follow parameter naming patterns established in previous iterations of a page.
+
 Signup Form
 -----------
 

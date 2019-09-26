@@ -29,8 +29,8 @@
 
     <p class="primary-cta">
       {{ monitor_button(
-        entrypoint='mozilla.org-firefox-lifecycle-resources',
-        utm_campaign='LifecycleP1',
+        entrypoint='mozilla.org-firefox-welcome-1',
+        utm_campaign='welcome-1-monitor',
         button_text=_('Check Your Breach Report'),
         cta_type="Lifecycle-Monitor",
       ) }}
@@ -64,7 +64,7 @@
     <div class="c-picto-block-body">
       <p>
       {# L10n: "Evite" is a proper name and shouldn't be translated. #}
-      {% trans evite_breach='https://blog.mozilla.org/firefox/evite-data-breach/?utm_source=mozilla.org-firefox-lifecycle-resources&utm_medium=referral&utm_campaign=LifecycleP1&entrypoint=mozilla.org-firefox-lifecycle-resources' %}
+      {% trans evite_breach='https://blog.mozilla.org/firefox/evite-data-breach/?utm_source=mozilla.org-firefox-welcome-1&utm_medium=referral&utm_campaign=welcome-1-monitor&entrypoint=mozilla.org-firefox-welcome-1' %}
         Were you one of 100,985,047 invited to the <a href="{{ evite_breach }}">Evite data breach “party”</a>?
       {% endtrans %}
       </p>
@@ -74,7 +74,7 @@
 {% endblock %}
 
 {% block content_utility %}
-  <p><strong><a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source=mozilla.org-firefox-lifecycle-resources&utm_medium=referral&utm_campaign=LifecycleP1&entrypoint=mozilla.org-firefox-lifecycle-resources">{{ _('Why am I seeing this?') }}</a></strong></p>
+  <p><strong><a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source=mozilla.org-firefox-welcome-1&utm_medium=referral&utm_campaign=welcome-1-monitor&entrypoint=mozilla.org-firefox-welcome-1">{{ _('Why am I seeing this?') }}</a></strong></p>
 {% endblock %}
 
 {% block js %}
