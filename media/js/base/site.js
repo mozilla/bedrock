@@ -52,7 +52,8 @@
             }
             if (pf.indexOf('iPhone') !== -1 ||
                     pf.indexOf('iPad') !== -1 ||
-                    pf.indexOf('iPod') !== -1 ) {
+                    pf.indexOf('iPod') !== -1 ||
+                    pf.indexOf('MacIntel') !== -1 && 'standalone' in navigator) {
                 return 'ios';
             }
             if (ua.indexOf('Mac OS X') !== -1) {
