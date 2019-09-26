@@ -51,8 +51,9 @@ $border: 2px solid $color-gray-20;
     padding: $layout-xl 0 $spacing-lg;
 
     &:before {
-        background: url('/media/img/logos/firefox/logo-quantum.png') center top no-repeat;
-        @include background-size(48px 48px);
+        @include at2x('/media/img/logos/firefox/quantum/logo-sm.png', 48px, 48px);
+        background-position: center top;
+        background-repeat: no-repeat;
         content: '';
         display: block;
         height: 48px;
