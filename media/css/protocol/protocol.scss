@@ -23,7 +23,7 @@ body { // bump specificity
         @include at2x('/media/img/logos/firefox/quantum/logo-sm.png', 64px, 64px);
     }
 
-    .mzp-t-product-firefox .mzp-c-hero-title{
+    .mzp-t-product-firefox .mzp-c-hero-title {
         @include at2x('/media/img/logos/firefox/quantum/logo-lg.png', 80px, 80px);
     }
 }
