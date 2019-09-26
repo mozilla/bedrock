@@ -969,8 +969,8 @@ def firefox_welcome_page1(request):
 
     # get localized blog post URL for 2019 page
     breach_tips_query = (
-        '?utm_source=mozilla.org-firefox-lifecycle-resources&amp;utm_medium=referral'
-        '&amp;utm_campaign=LifecycleP1&ampentrypoint=mozilla.org-firefox-lifecycle-resources'
+        '?utm_source=mozilla.org-firefox-welcome-1&amp;utm_medium=referral'
+        '&amp;utm_campaign=welcome-1-monitor&ampentrypoint=mozilla.org-firefox-welcome-1'
     )
     breach_tips_url = BREACH_TIPS_URLS.get(locale, BREACH_TIPS_URLS['en-US'])
 
