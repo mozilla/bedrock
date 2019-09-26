@@ -3,6 +3,8 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
+/* global sinon */
+
 describe('site.js', function () {
 
     'use strict';
@@ -52,6 +54,11 @@ describe('site.js', function () {
             expect(window.site.getPlatform('foo', 'iPad')).toBe('ios');
             expect(window.site.getPlatform('foo', 'iPod')).toBe('ios');
             expect(window.site.getPlatform('foo', 'iPhone Simulator')).toBe('ios');
+        });
+
+        it('should identify iPadOS', function () {
+            window.navigator.standalone = sinon.stub();
+            expect(window.site.getPlatform('foo', 'MacIntel')).toBe('ios');
         });
 
         it('should identify OSX', function () {
