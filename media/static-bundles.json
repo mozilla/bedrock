@@ -368,8 +368,7 @@
     },
     {
       "files": [
-        "css/sandstone/sandstone-resp.less",
-        "css/csrf-failure.less"
+        "css/csrf-failure.scss"
       ],
       "name": "csrf-failure"
     },
