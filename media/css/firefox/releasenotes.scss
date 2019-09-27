@@ -32,11 +32,61 @@ $image-path: '/media/protocol/img';
     background: linear-gradient(#000000, #001e44);
 }
 
-/* pre-quantum logos
+
+
+/* old logos
   - cannot use at2x mixin here because it will over-ride the background-size,
     which we don't want to have to reset here because it's different for
     mobile and desktop
 */
+
+.t-quantum {
+    /* firefox release */
+    .mzp-c-call-out.mzp-t-product-firefox .mzp-c-call-out-title {
+        background-image: url('/media/img/firefox/releasenotes/release-quantum.png');
+
+        @media #{$mq-high-res} {
+            background-image: url('/media/img/firefox/releasenotes/release-quantum-high-res.png');
+        }
+    }
+
+    /*  firefox beta */
+    .mzp-c-call-out.mzp-t-product-beta .mzp-c-call-out-title {
+        background-image: url('/media/img/firefox/releasenotes/beta-quantum.png');
+
+        @media #{$mq-high-res} {
+            background-image: url('/media/img/firefox/releasenotes/beta-quantum-high-res.png');
+        }
+    }
+
+    /* firefox nightly */
+    .mzp-c-call-out.mzp-t-product-nightly .mzp-c-call-out-title {
+        background-image: url('/media/img/firefox/releasenotes/nightly-quantum.png');
+
+        @media #{$mq-high-res} {
+            background-image: url('/media/img/firefox/releasenotes/nightly-quantum-high-res.png');
+        }
+    }
+
+    /*  firefox developer edition */
+    .mzp-c-call-out.mzp-t-product-developer .mzp-c-call-out-title {
+        background-image: url('/media/img/firefox/releasenotes/developer-quantum.png');
+
+        @media #{$mq-high-res} {
+            background-image: url('/media/img/firefox/releasenotes/developer-quantum-high-res.png');
+        }
+    }
+
+    /*  pre-dev edition firefox aurora */
+    .mzp-c-call-out.mzp-t-product-developer.t-aurora .mzp-c-call-out-title {
+        background-image: url('/media/img/firefox/releasenotes/aurora.png');
+
+        @media #{$mq-high-res} {
+            background-image: url('/media/img/firefox/releasenotes/aurora-high-res.png');
+        }
+    }
+}
+
 .t-pre-quantum {
     /* firefox release */
     .mzp-c-call-out.mzp-t-product-firefox .mzp-c-call-out-title {
