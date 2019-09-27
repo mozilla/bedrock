@@ -2,29 +2,27 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "mozorg/base-resp.html" %}
+{% extends "base-protocol-mozilla.html" %}
 
-{% block page_title %}Invalid Request{% endblock %}
-{% block body_id %}csrf-failure{% endblock %}
+{% block page_title %}{{ _('Invalid Request') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('csrf-failure') }}
 {% endblock %}
 
+{% block body_id %}csrf-failure{% endblock %}
+
 {% block content %}
 
-<article id="main-content">
-  <h1 class="title-shadow-box hinge">{{ _("Invalid Request") }}</h1>
+<main role="main">
+  <div class="mzp-l-content">
+    <h1>{{ _('Invalid Request') }}</h1>
 
-  <div class="container">
-    <p class="lede">
+    <p>
     {% trans %}
       We could not process your request.
     {% endtrans %}
     </p>
   </div>
-</article>
-
+</main>
 {% endblock %}
-
-{% block email_form %}{% endblock %}
