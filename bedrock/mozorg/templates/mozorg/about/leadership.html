@@ -67,6 +67,14 @@
 
     <h3 class="group-title" id="mgmt-corp"><a href="{{ url('foundation.moco') }}">{{ _('Mozilla Corporation') }}</a></h3>
 
+    {#
+       Explaining the order of listing:
+       - The Chair (Mitchell) is listed first
+       - Followed by the CEO
+       - Followed by the other Chief Officers, in alphabetical order by surname
+       - Followed by everyone else, in alphabetical order by surname
+    #}
+
     <div class="gallery mgmt-corp">
       <article id="mitchell-baker" data-id="mitchell-baker" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
@@ -76,6 +84,7 @@
 
         <div class="person-info">
           <p class="title" itemprop="jobTitle">{{ _('Chairwoman') }}</p>
+          <p class="note">{{ _('Steering Committee') }}</p>
 
           <ul class="elsewhere">
             <li><a class="url twitter" itemprop="url" rel="external" href="https://twitter.com/MitchellBaker">@MitchellBaker</a></li>
@@ -125,6 +134,7 @@
 
         <div class="person-info">
           <p class="title" itemprop="jobTitle">{{ _('Chief Executive Officer') }}</p>
+          <p class="note">{{ _('Steering Committee') }}</p>
 
           <ul class="elsewhere">
             <li><a class="url twitter" itemprop="url" rel="external" href="https://twitter.com/cbeard">@cbeard</a></li>
@@ -223,6 +233,7 @@
 
         <div class="person-info">
           <p class="title" itemprop="jobTitle">{{ _('Chief People Officer') }}</p>
+          <p class="note">{{ _('Steering Committee') }}</p>
 
           <ul class="elsewhere">
             <li><a class="url link" itemprop="url" rel="external" href="https://www.linkedin.com/in/michaeldeangelo/">LinkedIn</a></li>
@@ -256,6 +267,7 @@
 
         <div class="person-info">
           <p class="title" itemprop="jobTitle">{{ _('Chief Legal Officer') }}</p>
+          <p class="note">{{ _('Steering Committee') }}</p>
 
           <ul class="utility">
             <li><a class="link" href="{{ url('mozorg.about.leadership') }}#amy-keating">{{ _('Link to this bio') }}</a></li>
@@ -343,6 +355,7 @@
 
         <div class="person-info">
           <p class="title" itemprop="jobTitle">{{ _('Chief R&amp;D Officer') }}</p>
+          <p class="note">{{ _('Steering Committee') }}</p>
 
           <ul class="elsewhere">
             <li><a class="url twitter" itemprop="url" rel="external" href="https://twitter.com/seanwhite">@seanwhite</a></li>
@@ -389,6 +402,7 @@
 
         <div class="person-info">
           <p class="title" itemprop="jobTitle">{{ _('Chief Financial Officer') }}</p>
+          <p class="note">{{ _('Steering Committee') }}</p>
 
           <ul class="utility">
             <li><a class="link" href="{{ url('mozorg.about.leadership') }}#roxi-wen">{{ _('Link to this bio') }}</a></li>
@@ -464,6 +478,7 @@
 
         <div class="person-info">
           <p class="title" itemprop="jobTitle">{{ _('SVP, Firefox') }}</p>
+          <p class="note">{{ _('Steering Committee') }}</p>
 
           <ul class="elsewhere">
             <li><a class="url book" itemprop="url" rel="external" href="https://mozillians.org/u/dcamp/">{{ _('Mozillians profile') }}</a></li>
@@ -803,6 +818,7 @@
         </figure>
 
         <div class="person-info">
+          {# Note: Though Eric Rescorla is CTO of Firefox, he's currently a VP and not a chief officer of MoCo so he's not listed with the other C-level execs. #}
           <p class="title" itemprop="jobTitle">{{ _('CTO, Firefox') }}</p>
 
           <ul class="elsewhere">
