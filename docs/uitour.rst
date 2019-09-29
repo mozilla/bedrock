@@ -97,6 +97,7 @@ Target types:
 * ``'search'``
 * ``'searchIcon'`` (Firefox 34 and above)
 * ``'urlbar'``
+* ``'logins'``
 * ``'loop'``
 * ``'forget'``
 * ``'privateWindow'``
