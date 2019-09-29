@@ -415,8 +415,8 @@ Staging Copy Changes
 The need will often arise to push a copy change to production before the new
 copy has been translated for all locales. To prevent locales not yet translated
 from displaying English text, you can use the ``l10n_has_tag`` template
-function. For example, if the string "Firefox features" needs to be changed to
-"Firefox benefits":
+function. For example, if the string "Firefox benefits" needs to be changed to
+"Firefox features":
 
 .. code-block:: jinja
 
