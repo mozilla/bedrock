@@ -21,7 +21,7 @@
   <h2 class="moss-section-heading">{{ _('About') }}</h2>
 
   <p class="moss-copy">
-  {% trans url1=url('mission-partners.html') %}
+  {% trans url1=url('mozorg.moss.mission-partners') %}
     <strong>The Global Mission Partners: India track is now closed.</strong> All applications which would previously have been submitted to the Global Mission Partners: India track will now be considered under the Mission Partners track. Please see the <a href="{{ url1 }}">Mission Partners page</a> for more information.
   {% endtrans %}
   </p>
@@ -29,7 +29,7 @@
   <div class="moss-ctas">
     <p class="moss-copy">{{ _('Ready to go?') }}</p>
 
-    <a href="mission-partners.html" rel="external" class="button">{{ _('Apply Now') }}</a>
+    <a href="{{ url('mozorg.moss.mission-partners') }}" rel="external" class="button">{{ _('Apply Now') }}</a>
   </div>
 </section>
 
@@ -200,8 +200,8 @@
   <h2 class="moss-section-heading">{{ _('How to apply') }}</h2>
 
   <p class="moss-copy">
-  {% trans %}
-    Please see the <a href="mission-partners.html">Mission Partners page</a> for more information on how to apply.
+  {% trans partners=url('mozorg.moss.mission-partners') %}
+    Please see the <a href="{{ partners }}">Mission Partners page</a> for more information on how to apply.
   {% endtrans %}
   </p>
 
@@ -210,7 +210,7 @@
       {{ _('I’m ready!') }}
     </p>
 
-    <a href="mission-partners.html" rel="external" class="button">{{ _('Apply Now') }}</a>
+    <a href="{{ url('mozorg.moss.mission-partners') }}" rel="external" class="button">{{ _('Apply Now') }}</a>
   </div>
 </section>
 
