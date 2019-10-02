@@ -998,7 +998,7 @@ class TestAccountsPage(TestCase):
         req = RequestFactory().get('/firefox/accounts/')
         req.locale = 'fr'
         views.firefox_accounts(req)
-        render_mock.assert_called_once_with(req, 'firefox/accounts.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/accounts-2019.html', ANY)
 
 
 class TestFirefoxWelcomePage1(TestCase):
