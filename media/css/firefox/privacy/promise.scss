@@ -1,0 +1,130 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+
+
+/* -------------------------------------------------------------------------- */
+// Main Hero
+
+.privacy-promise-hero.mzp-c-hero.mzp-t-dark {
+    background-color: $color-off-black;
+    overflow: hidden;
+    padding-bottom: 0;
+    text-align: left;
+
+    .mzp-c-hero-body {
+        max-width: none;
+    }
+
+    .privacy-promise-hero-desc {
+        @include text-body-lg;
+        margin-bottom: 0;
+    }
+
+    .mzp-c-hero-image {
+        display: none;
+    }
+
+    @media #{$mq-md} {
+        .mzp-c-hero-title {
+            @include font-size(32px);
+        }
+
+        .privacy-promise-hero-desc {
+            margin-bottom: $spacing-lg;
+        }
+
+        .mzp-c-hero-image {
+            display: block;
+            height: 100%;
+            margin: 0;
+
+            img {
+                @include bidi(((left, $spacing-xl, right, auto),));
+            }
+        }
+    }
+
+    @media #{$mq-lg} {
+        padding-bottom: $spacing-lg;
+
+        .mzp-c-hero-title {
+            @include font-size(48px);
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Data Promise Call Out
+
+.call-out-data-promise {
+    background: $color-white;
+
+    .mzp-c-call-out-title {
+        @include text-display-sm;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Privacy Promise Feature Cards
+
+.privacy-promise-feature {
+    margin-bottom: $layout-xl;
+
+    .mzp-c-card-feature-title {
+        color: $color-violet-70;
+    }
+
+    .privacy-promise-sub-title {
+        @include text-display-xs;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Picto Cards
+
+.privacy-promise-learn-more {
+    background-color: $color-gray-10;
+
+    .mzp-c-card-picto-content {
+        max-width: 500px;
+    }
+
+    // Custom Overrides pending https://github.com/mozilla/protocol/issues/382
+    .mzp-c-card-picto {
+
+        .mzp-c-card-picto-content {
+            padding-top: 113px + $spacing-lg;
+
+            &:before {
+                background-color: transparent;
+                background-repeat: no-repeat;
+            }
+        }
+
+        &.trust .mzp-c-card-picto-content:before {
+            background-image: url('/media/img/firefox/privacy/promise/icon-mountain.svg');
+            height: 113px;
+            margin-left: -76px;
+            width: 153px;
+        }
+
+        &.privacy .mzp-c-card-picto-content:before {
+            background-image: url('/media/img/firefox/privacy/promise/icon-privacy.svg');
+            height: 113px;
+            margin-left: -73px;
+            width: 146px;
+        }
+    }
+}
+
+

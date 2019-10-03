@@ -1,0 +1,299 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/emphasis-box';
+@import '../../protocol/components/fxa-form';
+
+.t-medium .mzp-l-content {
+    max-width: $content-xl;
+}
+
+/* -------------------------------------------------------------------------- */
+// Top Page Call Out
+
+.privacy-products-call-out-main {
+    background-color: $color-white;
+
+    .mzp-c-call-out-title {
+        @include text-display-lg;
+        margin: $spacing-md 0;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Main Hero
+
+.privacy-products-hero.mzp-c-hero.mzp-t-dark {
+    @include bidi(((text-align, left, right),));
+    background-color: $color-off-black;
+    padding-bottom: 0;
+
+    .mzp-c-hero-body {
+        max-width: none;
+    }
+
+    .mzp-c-hero-title {
+        @include at2x('/media/img/logos/firefox/quantum/logo-word-hor-white-sm.png', auto, 40px);
+        @include bidi(((background-position, top left, top right),));
+        @include image-replaced;
+        background-repeat: no-repeat;
+        margin-bottom: $spacing-md;
+        min-height: 40px;
+    }
+
+    .privacy-products-hero-sub-title {
+        @include text-display-md;
+    }
+
+    .privacy-products-hero-tagline {
+        font-weight: bold;
+        margin-top: $spacing-2xl;
+    }
+
+    .mzp-c-hero-image {
+        display: none;
+    }
+
+    &.mzp-t-dark .mzp-c-cta-link {
+        color: $color-blue-30;
+    }
+
+    @media #{$mq-md} {
+        padding-bottom: $spacing-lg;
+
+        .mzp-c-hero-title {
+            @include bidi(((background-position, top left, top right),));
+        }
+
+        .mzp-c-hero-image {
+            display: block;
+
+            img {
+                bottom: auto;
+                top: 70px;
+            }
+        }
+    }
+
+    @media #{$mq-lg} {
+        .mzp-c-hero-image img {
+            top: 100px;
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Picto Cards
+
+.privacy-products-etp {
+    background-color: $color-off-black;
+
+    & > .mzp-l-content {
+        padding-top: 0;
+    }
+
+    // Custom Overrides pending https://github.com/mozilla/protocol/issues/382
+    .mzp-c-card-picto {
+        @include bidi(((text-align, left, right),));
+
+        .mzp-c-card-picto-content {
+            padding-top: 80px + $spacing-lg;
+
+            &:before {
+                @include bidi(((left, 0, right, 0),));
+                background-color: transparent;
+                background-repeat: no-repeat;
+                margin: 0;
+            }
+        }
+
+        &.invisible .mzp-c-card-picto-content:before {
+            @include background-size(103px 80px);
+            background-image: url('/media/img/firefox/privacy/products/icon-invisible.svg');
+            height: 80px;
+            width: 103px;
+        }
+
+        &.control .mzp-c-card-picto-content:before {
+            @include background-size(62px 80px);
+            background-image: url('/media/img/firefox/privacy/products/icon-control.svg');
+            height: 80px;
+            width: 62px;
+        }
+
+        &.protection .mzp-c-card-picto-content:before {
+            @include background-size(94px 80px);
+            background-image: url('/media/img/firefox/privacy/products/icon-protection.svg');
+            height: 80px;
+            width: 94px;
+        }
+
+        @media #{$mq-md} {
+            .mzp-c-card-picto-content:before {
+                @include bidi(((left, $spacing-lg, right, 0),));
+            }
+        }
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Tracker Counter Call Out
+
+.privacy-products-tracker-counter.mzp-t-dark {
+    background-color: $color-violet-80;
+
+    .mzp-c-call-out-title {
+        margin: 0 auto $spacing-lg;
+        max-width: 24em;
+
+        @media #{$mq-md} {
+            @include font-size(32px);
+        }
+
+        @media #{$mq-lg} {
+            @include font-size(40px);
+        }
+    }
+
+    .mzp-c-cta-link {
+        color: $color-blue-30;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Product List Feature Cards
+
+.privacy-products-list {
+    margin: $layout-md auto;
+
+    .mzp-c-card-feature {
+        margin-bottom: $layout-xl;
+
+        &.has-logo {
+            .mzp-c-card-feature-title {
+                @include bidi(((background-position, top left, top right),));
+                @include image-replaced;
+                background-repeat: no-repeat;
+                margin-bottom: $spacing-lg;
+                min-height: 40px;
+            }
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .mzp-c-card-feature-desc {
+        margin-bottom: $spacing-xl;
+    }
+
+    .mzp-c-card-feature-media img {
+        max-width: 320px;
+    }
+
+    @media #{$mq-lg} {
+        margin: $layout-xl auto;
+
+        .mzp-c-card-feature-media img {
+            max-width: 410px;
+        }
+    }
+}
+
+.privacy-products-monitor .mzp-c-card-feature-title {
+    @include at2x('/media/protocol/img/logos/firefox/monitor/logo-word-hor-sm.png', auto, 40px);
+}
+
+.privacy-products-lockwise .mzp-c-card-feature-title {
+    @include at2x('/media/protocol/img/logos/firefox/lockwise/logo-word-hor-sm.png', auto, 40px);
+}
+
+.privacy-products-send .mzp-c-card-feature-title {
+    @include at2x('/media/protocol/img/logos/firefox/send/logo-word-hor-sm.png', auto, 40px);
+}
+
+.privacy-products-pocket .mzp-c-card-feature-title {
+    background-image: url('/media/protocol/img/logos/pocket/logo-word-horz.svg');
+}
+
+.privacy-products-accounts .mzp-c-box-emphasis {
+    padding: $spacing-lg;
+
+    @media #{$mq-lg} {
+        margin: $spacing-md auto;
+        max-width: 320px;
+        padding: $spacing-xl;
+    }
+}
+
+.call-out-privacy {
+    background-color: $color-gray-10;
+}
+
+/* -------------------------------------------------------------------------- */
+// Conditional CTA Hooks
+
+.is-js-dependent {
+    display: none;
+}
+
+.state-firefox-desktop-70 {
+
+    .show-firefox-desktop-70 {
+        display: block;
+    }
+
+    .show-default {
+        display: none;
+    }
+
+    .privacy-products-etp .mzp-c-card-picto-title {
+
+        &:hover,
+        &:active,
+        &:focus {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
+}
+
+.state-firefox-desktop-old {
+
+    .show-firefox-desktop-old {
+        display: block;
+    }
+
+    .show-default {
+        display: none;
+
+        &.show-firefox-desktop-old {
+            display: block;
+        }
+    }
+}
+
+.android,
+.ios {
+    .show-mobile {
+        display: block;
+    }
+
+    .show-default {
+        display: none;
+    }
+}
+
+.android .show-android {
+    display: block;
+}
+
+.ios .show-ios {
+    display: block;
+}

@@ -571,6 +571,24 @@
     },
     {
       "files": [
+        "css/firefox/privacy/common.scss"
+      ],
+      "name": "firefox-privacy-common"
+    },
+    {
+      "files": [
+        "css/firefox/privacy/promise.scss"
+      ],
+      "name": "firefox-privacy-promise"
+    },
+    {
+      "files": [
+        "css/firefox/privacy/products.scss"
+      ],
+      "name": "firefox-privacy-products"
+    },
+    {
+      "files": [
         "css/privacy/privacy-email.scss"
       ],
       "name": "privacy_email"
@@ -1537,6 +1555,15 @@
         "js/privacy/privacy.js"
       ],
       "name": "privacy"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-form-init.js",
+        "js/firefox/privacy/products.js"
+      ],
+      "name": "firefox-privacy-products"
     },
     {
       "files": [

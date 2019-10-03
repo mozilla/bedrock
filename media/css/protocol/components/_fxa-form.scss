@@ -5,7 +5,7 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../protocol/css/includes/lib';
+@import '../../../protocol/css/includes/lib';
 
 .fxa-email-form {
     border: none;
@@ -25,14 +25,27 @@ $image-path: '/media/protocol/img';
         width: 100%;
     }
 
-    strong {
-        @include text-body-lg;
+    button[type='submit'] {
         display: block;
-        font-weight: normal;
-        margin-bottom: $spacing-sm;
+        width: 100%;
+        margin-bottom: $spacing-lg;
     }
 
     .agreement {
         @include text-body-sm;
     }
+}
+
+.fxa-email-form-intro {
+    strong {
+        font-weight: normal;
+    }
+}
+
+.fxa-email-form-title {
+    @include text-body-lg;
+}
+
+.fxa-sign-in {
+    @include text-body-sm;
 }

@@ -1,0 +1,29 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/privacy-hub" %}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
+{% block page_favicon %}{{ static('img/logos/master/favicon-64.png') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/logos/master/favicon-196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/logos/master/favicon-180.png') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox-privacy-common') }}
+{% endblock %}
+
+{% block content %}
+<main role="main">
+  {% block sub_nav %}{% endblock %}
+
+  {% block hub_content %}{% endblock %}
+
+  {{ call_out(
+    title=_('Read the <a href="%s">Privacy Notice</a> for our products')|format(url('privacy.notices.firefox')),
+    class='call-out-privacy')
+  }}
+</main>
+{% endblock %}

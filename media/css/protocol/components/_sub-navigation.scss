@@ -1,0 +1,100 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+
+/* -------------------------------------------------------------------------- */
+// Should be replaced by https://github.com/mozilla/protocol/issues/471
+
+.c-sub-navigation {
+    background: $color-gray-10;
+    box-shadow: inset 0 10px 10px -10px rgba(32,18,58,0.24);
+
+    .mzp-l-content {
+        padding-top: 0;
+    }
+
+    .c-sub-navigation-content {
+        padding-top: $spacing-lg;
+    }
+
+    .c-sub-navigation-title {
+        @include font-base;
+        @include font-size(20px);
+    }
+
+    .c-sub-navigation-list {
+        margin: 0;
+    }
+
+    .c-sub-navigation-item {
+        font-weight: bold;
+        padding: $spacing-sm 0;
+
+        a:link,
+        a:visited {
+            @include font-base;
+            @include text-body-md;
+            color: $color-black;
+            font-weight: normal;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            text-decoration: underline;
+        }
+    }
+
+    @media #{$mq-md} {
+        @include clearfix;
+
+        .c-sub-navigation-title {
+            @include bidi((
+                (float, left, right),
+                (margin-right, $spacing-sm * 2, margin-left, 0),
+            ));
+            margin-bottom: 0;
+        }
+
+        .c-sub-navigation-list {
+            @include bidi((
+                (float, left, right),
+                (margin-left, -$spacing-sm, margin-right, 0),
+            ));
+        }
+
+        .c-sub-navigation-item {
+            display: inline-block;
+            padding: 0 $spacing-sm;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .c-sub-navigation-list {
+            @include bidi(((margin-left, -$spacing-md, margin-right, 0),));
+        }
+        .c-sub-navigation-title {
+            @include bidi(((margin-right, $spacing-md * 2, margin-left, 0),));
+        }
+
+        .c-sub-navigation-item {
+            padding: 0 $spacing-md;
+        }
+    }
+
+    @media #{$mq-xl} {
+        .c-sub-navigation-list {
+            @include bidi(((margin-left, -$spacing-lg, margin-right, 0),));
+        }
+
+        .c-sub-navigation-title {
+            @include bidi(((margin-right, $spacing-lg * 2, margin-left, 0),));
+        }
+
+        .c-sub-navigation-item {
+            padding: 0 $spacing-lg;
+        }
+    }
+}

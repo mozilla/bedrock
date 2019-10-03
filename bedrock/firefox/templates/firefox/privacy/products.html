@@ -1,0 +1,193 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/privacy-hub" %}
+
+{% from "macros.html" import fxa_email_form, fxa_link_fragment with context %}
+{% from "macros-protocol.html" import call_out, feature_card, picto_card, hero with context %}
+
+{% extends "firefox/privacy/base.html" %}
+
+{% block page_title_full %}{{_('Firefox privacy, by the product')}}{% endblock %}
+{% block page_desc %}{{_('Firefox protects your privacy in every product.')}}{% endblock %}
+
+{% block page_css %}
+  {{ super() }}
+  {{ css_bundle('firefox-privacy-products') }}
+{% endblock %}
+
+{% block body_class %}privacy-products{% endblock %}
+
+{% set _entrypoint = 'mozilla.org-privacy-products' %}
+{% set _utm_campaign = 'privacy-products' %}
+
+{% block sub_nav %}
+  {% with active='products' %}
+    {% include 'firefox/privacy/includes/subnav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block hub_content %}
+
+  {{ call_out(
+    title=_('Firefox <strong>protects</strong> your privacy in every product')|safe,
+    class='privacy-products-call-out-main',
+    heading_level=1)
+  }}
+
+  {% call hero(
+    title='Firefox Browser',
+    class='privacy-products-hero mzp-has-image mzp-t-dark t-medium',
+    image_url='firefox/privacy/products/report.svg',
+    include_cta=True,
+    heading_level=2
+  ) %}
+    <h3 class="privacy-products-hero-sub-title">{{ _('2,000+ trackers blocked — automatically') }}</h3>
+
+    <p>
+    {% trans %}
+      Tracking has become an epidemic online: companies follow every move,
+      click and purchase, collecting data to predict and influence what
+      you’ll do next. We think that’s a gross invasion of your privacy.
+      That’s why Firefox mobile and desktop browsers have Enhanced Tracking
+      Protection on by default.
+    {% endtrans %}
+    </p>
+
+    <p class="show-mobile is-js-dependent">
+      <strong>{{ _('If you want to see what Firefox is blocking for you, visit this page on your Firefox desktop browser.') }}</strong>
+    </p>
+
+    <p class="show-firefox-desktop-70 is-js-dependent">
+      <a class="mzp-c-cta-link js-open-about-protections" href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
+        {{ _('See what Firefox has blocked for you') }}
+      </a>
+    </p>
+
+    {# L10n: "Enhanced Tracking Protection" is a feature name; it should be capitalized. #}
+    <p class="privacy-products-hero-tagline show-default show-firefox-desktop-old">{{ _('Get Enhanced Tracking Protection') }}</p>
+
+    <div class="show-default">
+      {{ download_firefox(dom_id='download-button-primary-non-firefox', alt_copy=_('Download the Firefox browser'), download_location='primary cta') }}
+    </div>
+
+    <p class="show-firefox-desktop-old is-js-dependent">
+      <a class="mzp-c-cta-link" href="https://support.mozilla.org/kb/update-firefox-latest-release/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
+        {{_ ('Update your Firefox browser') }}
+      </a>
+    </p>
+  {% endcall %}
+
+  <div class="privacy-products-etp">
+    <ul class="mzp-l-content mzp-l-card-third mzp-t-dark">
+      {{ picto_card(title=_('Invisible to the top trackers'), desc=_('Meet four of the most common categories of trackers — who won’t meet you.'), class='invisible', heading_level=3) }}
+      {{ picto_card(title=_('Always in your control'), desc=_('Want to customize what gets blocked? Your settings are only one click away.'), class='control', heading_level=3) }}
+      {{ picto_card(title=_('Protection beyond tracking'), desc=_('If you have a Firefox account, you can also see how we’re helping you protect your personal info and passwords.'), class='protection', heading_level=3) }}
+    </ul>
+  </div>
+
+  {# L10n: %s will automatically be replaced by a formatted number e.g. "More than 100,000,000 trackers blocked each day" #}
+  {% set trackers_title=_('More than %s trackers blocked each day for Firefox users worldwide')|format(100000000|l10n_format_number) %}
+  {% call call_out(
+    title=trackers_title,
+    class='privacy-products-tracker-counter mzp-t-dark',
+    include_cta=True
+  ) %}
+    <p class="show-firefox-desktop-70 is-js-dependent">
+      <a class="mzp-c-cta-link js-open-about-protections" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
+        {{ _('See what Firefox has blocked for you') }}
+      </a>
+    </p>
+
+    <div class="show-default">
+      {{ download_firefox(dom_id='download-button-secondary-non-firefox', alt_copy=_('Download the Firefox browser'), download_location='secondary cta') }}
+    </div>
+
+    <p class="show-firefox-desktop-old is-js-dependent">
+      <a class="mzp-c-cta-link" href="https://support.mozilla.org/kb/update-firefox-latest-release/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">{{_ ('Update your Firefox browser') }}</a>
+    </p>
+  {% endcall %}
+
+  <div class="privacy-products-list t-medium">
+    <div class="mzp-l-content">
+      {% call feature_card(
+        title='Firefox Monitor',
+        image_url='firefox/privacy/products/monitor.svg',
+        class='privacy-products-monitor has-logo mzp-l-card-feature-left-half',
+        media_after=True
+      ) %}
+        <p>{{ _('When you enter your email address in Firefox Monitor, we forget it immediately after we’ve checked for a match in known data breaches — unless you authorize us to continue monitoring new breaches for your personal information.') }}</p>
+        <p><a class="mzp-c-cta-link" href="https://monitor.firefox.com/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-cta-type="fxa-monitor" data-cta-position="secondary">{{ _('Check for breaches') }}</a></p>
+      {% endcall %}
+
+      {% call feature_card(
+        title='Firefox Lockwise',
+        image_url='firefox/privacy/products/lockwise.svg',
+        class='privacy-products-lockwise has-logo mzp-l-card-feature-right-half',
+        media_after=True
+      ) %}
+        <p>{{ _('The passwords and credentials you save in Firefox Lockwise are encrypted on all your devices, so not even we can see them.') }}</p>
+        {# L10n: "Lockwise" is a proper name; it should be capitalized and should not be translated. #}
+        <p><a class="mzp-c-cta-link" href="https://lockwise.firefox.com/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-cta-type="fxa-lockwise" data-cta-position="secondary">{{ _('Learn more about Lockwise') }}</a></p>
+      {% endcall %}
+
+      {% call feature_card(
+        title='Firefox Send',
+        image_url='firefox/privacy/products/send.svg',
+        class='privacy-products-send has-logo mzp-l-card-feature-left-half',
+        media_after=True
+      ) %}
+        <p>{{ _('We can’t see the names or content of the large files you share through Firefox Send because they’re encrypted end-to-end — you choose who sees what you send, and you can even set an expiration date and password.') }}</p>
+        <p><a class="mzp-c-cta-link" href="https://send.firefox.com/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-cta-type="fxa-send" data-cta-position="secondary">{{ _('Send a file') }}</a></p>
+      {% endcall %}
+
+      {% call feature_card(
+        title='Pocket',
+        image_url='firefox/privacy/products/pocket.png',
+        include_highres_image=True,
+        class='privacy-products-pocket has-logo mzp-l-card-feature-right-half',
+        media_after=True
+      ) %}
+        <p>{{ _('Pocket recommends high-quality, human-curated articles without collecting your browsing history or sharing your personal information with advertisers.') }}</p>
+        <p><a class="mzp-c-cta-link" href="https://getpocket.com/firefox_learnmore/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-cta-type="pocket" data-cta-position="secondary">{{ _('Get Pocket') }}</a></p>
+      {% endcall %}
+
+      <section class="privacy-products-accounts mzp-c-card-feature mzp-l-card-feature-left-half">
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            <h2 class="mzp-c-card-feature-title">{{ _('Your Firefox account') }}</h2>
+            <div class="mzp-c-card-feature-desc">
+              {{ _('All the information synced through your Firefox account — from browser history to passwords — is encrypted. And your account password is the only key.') }}
+            </div>
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
+            <div class="mzp-c-box-emphasis">
+              {{ fxa_email_form(
+                entrypoint=_entrypoint,
+                form_title=_('Take your privacy and bookmarks everywhere with a Firefox account.'),
+                button_class='mzp-c-button mzp-t-primary mzp-t-product',
+                style='trailhead',
+                utm_campaign=_utm_campaign)
+              }}
+
+              <p class="fxa-sign-in">
+              {% trans sign_in=fxa_link_fragment(entrypoint=_entrypoint, action='signin', utm_campaign=_utm_campaign),
+                        class_name='js-fxa-cta-link',
+                        learn_more=url('firefox.accounts') %}
+                Already have an account? <a {{ sign_in }} class="{{ class_name }}">Sign In</a> or <a href="{{ learn_more }}">learn more</a> about joining Firefox.
+              {% endtrans %}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox-privacy-products') }}
+{% endblock %}

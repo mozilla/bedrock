@@ -1,0 +1,141 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/privacy-hub" %}
+
+{% from "macros.html" import fxa_email_form, fxa_link_fragment with context %}
+{% from "macros-protocol.html" import call_out, feature_card, hero, picto_card, hero with context %}
+
+{% extends "firefox/privacy/base.html" %}
+
+{% block page_title_full %}{{_('Firefox Privacy Promise')}}{% endblock %}
+{% block page_desc %}{{_('Firefox takes less data, keeps it safe, and with no secrets.')}}{% endblock %}
+
+{% block page_css %}
+  {{ super() }}
+  {{ css_bundle('firefox-privacy-promise') }}
+{% endblock %}
+
+{% block body_class %}privacy-promise{% endblock %}
+
+{% set _entrypoint = 'mozilla.org-privacy' %}
+{% set _utm_campaign = 'privacy' %}
+
+{% block sub_nav %}
+  {% with active='promise' %}
+    {% include 'firefox/privacy/includes/subnav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block hub_content %}
+
+  {% call hero(
+    title=_('Firefox products are designed to protect your <strong>privacy</strong>')|safe,
+    class='privacy-promise-hero mzp-has-image mzp-t-dark',
+    image_url='firefox/privacy/promise/privacy-hero.png',
+    include_highres_image=True,
+    include_cta=True,
+    heading_level=1
+  ) %}
+    <p class="privacy-promise-hero-desc">
+      {{ _('You should be able to decide who sees your personal info. Not just among your friends, but with every advertiser and company on the internet — including us.') }}
+    </p>
+  {% endcall %}
+
+  {{ call_out(
+    title=_('That’s why everything we make and do honors our Personal Data Promise'),
+    class='call-out-data-promise')
+  }}
+
+  <div class="mzp-l-content">
+    {% call feature_card(
+      title=_('Take Less'),
+      image_url='firefox/privacy/promise/less.jpg',
+      include_highres_image=True,
+      aspect_ratio='mzp-has-aspect-3-2',
+      class='privacy-promise-feature mzp-l-card-feature-right-half'
+    ) %}
+      <h3 class="privacy-promise-sub-title">{{ _('We make a point of knowing less about you') }}</h3>
+      <p>
+      {% trans %}
+        All tech companies collect data to improve their products. But it doesn’t need to include
+        so much of your personal info. The only data we want is the data that serves you in the end.
+        We ask ourselves: do we actually need this? What do we need it for? And when can we delete it?
+      {% endtrans %}
+      </p>
+    {% endcall %}
+
+    {% call feature_card(
+      title=_('Keep it safe'),
+      image_url='firefox/privacy/promise/safe.jpg',
+      include_highres_image=True,
+      aspect_ratio='mzp-has-aspect-3-2',
+      class='privacy-promise-feature mzp-l-card-feature-left-half'
+    ) %}
+      <h3 class="privacy-promise-sub-title">{{ _('We do the hard work to protect your personal info') }}</h3>
+      <p>
+        {# Our lean-data page is en-US only, so only link to it for English locales. #}
+        {% if LANG.startswith('en') %}
+          Data security is complicated — or at least it should be. Which is why we take the extra steps
+          to classify the data we have, maintain rules for how we store and protect each type, and never
+          stop iterating on our processes. We prioritize your privacy. We invest in it. We’re committed
+          to it. We even <a href="{{ url('mozorg.about.policy.lean-data.index') }}">teach other companies how to do it</a>.
+        {% else %}
+          {% trans %}
+            Data security is complicated — or at least it should be. Which is why we take the extra steps
+            to classify the data we have, maintain rules for how we store and protect each type, and never
+            stop iterating on our processes. We prioritize your privacy. We invest in it. We’re committed
+            to it. We even teach other companies how to do it.
+          {% endtrans %}
+        {% endif %}
+      </p>
+    {% endcall %}
+
+    {% call feature_card(
+      title=_('No secrets'),
+      image_url='firefox/privacy/promise/secrets.jpg',
+      include_highres_image=True,
+      aspect_ratio='mzp-has-aspect-3-2',
+      class='privacy-promise-feature mzp-l-card-feature-right-half'
+    ) %}
+      <h3 class="privacy-promise-sub-title">{{ _('You’ll always know where you stand with us') }}</h3>
+      <p>
+      {% trans privacy=url('privacy.notices.firefox'), meetings='https://wiki.mozilla.org/WeeklyUpdates?utm_source=' ~ _entrypoint ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign ~ '&entrypoint=' ~ _entrypoint %}
+        There’s no hidden agenda here. Our business doesn’t depend on secretly abusing your trust.
+        Our <a href="{{ privacy }}">Privacy Notice</a> is actually readable. Anyone in the world can attend
+        our <a href="{{ meetings }}">weekly company meetings</a>. If you want to dig into every datapoint
+        we collect, our code is open. And so are we.
+      {% endtrans %}
+      </p>
+    {% endcall %}
+  </div>
+
+  <div class="privacy-promise-learn-more">
+    <ul class="mzp-l-content mzp-l-card-half">
+      {% call picto_card(
+        title=_('Why trust Firefox?'),
+        class='trust',
+        custom_desc=True
+      ) %}
+        <p>
+        {% trans foundation='https://foundation.mozilla.org/?utm_source=' ~ _entrypoint ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign ~ '&entrypoint=' ~ _entrypoint %}
+          Because we put people first. In fact, we’re backed by a <a href="{{ foundation }}">non-profit</a>.
+          From day one, it’s been our mission to protect the internet and everyone on it
+        {% endtrans %}
+        </p>
+        <p><a href="{{ url('mozorg.mission') }}">{{ _('Learn more about our mission') }}</a></p>
+      {% endcall %}
+
+      {% call picto_card(
+        title=_('Your privacy, by the product'),
+        class='privacy',
+        custom_desc=True
+      ) %}
+        <p>{{ _('Firefox products work differently — because they’re designed to protect your privacy first.') }}</p>
+        <p><a href="{{ url('firefox.privacy.products') }}">{{ _('Learn about our products') }}</a></p>
+      {% endcall %}
+    </ul>
+  </div>
+
+{% endblock %}
