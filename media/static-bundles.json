@@ -767,13 +767,6 @@
     {
       "files": [
         "css/base/mozilla-fxa-state.scss",
-        "css/firefox/accounts.scss"
-      ],
-      "name": "firefox_accounts"
-    },
-    {
-      "files": [
-        "css/base/mozilla-fxa-state.scss",
         "css/base/mozilla-fxa-form.scss",
         "css/firefox/accounts-2019.scss"
       ],

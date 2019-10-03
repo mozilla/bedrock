@@ -144,7 +144,7 @@
   </section>
 {%- endmacro %}
 
-{# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts-2019.html#linking-to-accountsfirefoxcom #}
+{# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#linking-to-accountsfirefoxcom #}
 {% macro fxa_link_fragment(entrypoint, service_type='sync', action='signin', utm_campaign=None, utm_content=None, utm_term=None) -%}
   {% set fxa_path = '' %}
   {% set fxa_queries = [
@@ -181,14 +181,14 @@
 
 {%- endmacro %}
 
-{# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts-2019.html#linking-to-accountsfirefoxcom #}
+{# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#linking-to-accountsfirefoxcom #}
 {% macro fxa_cta_link(entrypoint, button_text, service_type='sync', action='signin', account_id=None, button_class=None, utm_campaign=None, utm_content=None, utm_term=None) %}
   <a {{ fxa_link_fragment(entrypoint=entrypoint, service_type=service_type, action=action, utm_campaign=utm_campaign, utm_content=utm_content, utm_term=utm_term) }} class="js-fxa-cta-link{% if button_class %} {{ button_class }}{% endif %}" data-cta-text="Create account" data-cta-type="FxA-Sync" data-cta-position="{{ button_location }}" {%if account_id %}id="{{ account_id }}"{% endif %}>
     {{ button_text }}
   </a>
 {%- endmacro %}
 
-{# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts-2019.html#linking-to-monitorfirefoxcom #}
+{# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#linking-to-monitorfirefoxcom #}
 {% macro monitor_button(entrypoint, form_type='button', utm_campaign=None, utm_content=None, utm_term=None, button_text=None, button_class='mzp-c-button mzp-t-product', button_id='fxa-monitor-submit', cta_type=None, cta_position=None) -%}
   {% set fxa_queries = [
     'form_type=' ~ form_type,
@@ -217,7 +217,7 @@
   </a>
 {%- endmacro %}
 
-{# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts-2019.html#signup-form #}
+{# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#signup-form #}
 {% macro fxa_email_form(entrypoint, utm_campaign=None, utm_content=None, utm_term=None, style=None, class_name='fxa-email-form', form_title=None, intro_text=none, button_text=None, button_class='button button-blue') -%}
   {% set service  = 'sync' %}
   <form action="{{ settings.FXA_ENDPOINT }}" data-mozillaonline-action="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}" id="fxa-email-form" class="{{ class_name }}">

@@ -927,10 +927,7 @@ def firefox_accounts(request):
 
     context = {'promise_url': promise_url + promise_query}
 
-    if lang_file_is_active('firefox/accounts-2019', locale):
-        template_name = 'firefox/accounts-2019.html'
-    else:
-        template_name = 'firefox/accounts-2019.html'
+    template_name = 'firefox/accounts-2019.html'
 
     return l10n_utils.render(request, template_name, context)
 

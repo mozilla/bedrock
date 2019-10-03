@@ -992,13 +992,6 @@ class TestAccountsPage(TestCase):
         views.firefox_accounts(req)
         render_mock.assert_called_once_with(req, 'firefox/accounts-2019.html', ANY)
 
-    @patch('bedrock.firefox.views.l10n_utils.render')
-    @patch.object(views, 'lang_file_is_active', lambda *x: False)
-    def test_accounts_page_legacy(self, render_mock):
-        req = RequestFactory().get('/firefox/accounts/')
-        req.locale = 'fr'
-        views.firefox_accounts(req)
-        render_mock.assert_called_once_with(req, 'firefox/accounts-2019.html', ANY)
 
 
 class TestFirefoxWelcomePage1(TestCase):
