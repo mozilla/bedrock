@@ -4,6 +4,14 @@
 
 {% set referral="?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=nav&amp;utm_content=firefox" %}
 
+{% if LANG == 'de' %}
+  {% set blog_url = 'https://blog.mozilla.org/firefox/de/' %}
+{% elif LANG == 'fr' %}
+  {% set blog_url = 'https://blog.mozilla.org/firefox/fr/' %}
+{% else %}
+  {% set blog_url = 'https://blog.mozilla.org/firefox/' %}
+{% endif %}
+
 <li class="mzp-c-menu-category mzp-has-drop-down mzp-js-expandable">
   <a class="mzp-c-menu-title" href="{{ url('mozorg.about') }}" aria-haspopup="true" aria-controls="mzp-c-menu-panel-about">{{ _('About') }}</a>
   <div class="mzp-c-menu-panel mzp-has-card" id="mzp-c-menu-panel-about">
@@ -13,7 +21,7 @@
         <ul>
           <li>
             <section class="mzp-c-menu-item mzp-has-icon">
-              <a class="mzp-c-menu-item-link" href="https://blog.mozilla.org/firefox/{{ referral|safe }}" data-link-name="Firefox Blog" data-link-type="nav" data-link-position="topnav" data-link-group="about">
+              <a class="mzp-c-menu-item-link" href="{{ blog_url }}{{ referral|safe }}" data-link-name="Firefox Blog" data-link-type="nav" data-link-position="topnav" data-link-group="about">
                 <svg class="mzp-c-menu-item-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="24" viewBox="0 0 22 24"><g fill="none" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-linejoin="round" transform="translate(1 1.879)"><path stroke-width="2" d="M9,1.12132031 L2,1.12132031 C0.8954305,1.12132031 5.32907052e-15,2.01675081 5.32907052e-15,3.12132031 L5.32907052e-15,15.1213203 C5.32907052e-15,16.2258898 0.8954305,17.1213203 2,17.1213203 L11,17.1213203 L13,21.1213203 L15,17.1213203 L17,17.1213203 C18.1045695,17.1213203 19,16.2258898 19,15.1213203 L19,9.12132031"/><path stroke-width="2" d="M15.5,0.621320312 C16.3284271,-0.207106783 17.6715729,-0.207106769 18.5,0.621320344 C19.3284271,1.44974746 19.3284271,2.79289318 18.5,3.62132031 L11,11.1213203 L7,12.1213203 L8,8.12132031 L15.5,0.621320312 Z"/></g></svg>
                 <h4 class="mzp-c-menu-item-title">{{ _('Firefox Blog') }}</h4>
                 <p class="mzp-c-menu-item-desc">{{ _('Read about new Firefox features, and get tips for staying safer online.') }}</p>

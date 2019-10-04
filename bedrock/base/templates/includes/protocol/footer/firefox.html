@@ -2,7 +2,7 @@
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
- {% if LANG.startswith('en-') %}
+ {% if LANG.startswith('en-') or LANG in ['de'] %}
    {% include 'includes/protocol/footer/firefox-new.html' %}
  {% else %}
    {% include 'includes/protocol/footer/mozilla.html' %}
