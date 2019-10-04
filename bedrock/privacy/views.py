@@ -24,7 +24,7 @@ def process_legal_doc(content):
 
     :param content: HTML Content of the legal doc.
     """
-    soup = BeautifulSoup(content, 'html.parser')
+    soup = BeautifulSoup(content, "lxml")
 
     # Convert the site's full URLs to absolute paths
     for link in soup.find_all(href=HREF_PATTERN):
