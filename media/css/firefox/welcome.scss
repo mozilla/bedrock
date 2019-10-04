@@ -66,6 +66,10 @@
     text-align: center;
     margin: $layout-md auto $layout-xl;
 
+    .primary-image {
+        margin: $layout-sm auto 0;
+    }
+
     .primary-cta {
         margin: $layout-md auto 0;
     }
@@ -134,7 +138,7 @@
 // Dark theme
 
 .page-intro.mzp-t-dark {
-    background-color: $color-gray-90;
+    background-color: $color-off-black;
     color: $color-white;
 
     :link {
@@ -158,9 +162,5 @@
         &:focus {
             color: $color-white;
         }
-    }
-
-    .welcome-stage1 & {
-        background-color: $color-off-black;
     }
 }

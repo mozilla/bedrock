@@ -945,6 +945,13 @@
     },
     {
       "files": [
+        "js/firefox/welcome-page2.js",
+        "js/firefox/welcome-page2-init.js"
+      ],
+      "name": "firefox_welcome_page2"
+    },
+    {
+      "files": [
         "js/base/uitour-lib.js",
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",

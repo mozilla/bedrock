@@ -109,6 +109,7 @@ urlpatterns = (
         name='firefox.stub_attribution_code'),
 
     url(r'^firefox/welcome/1/$', views.firefox_welcome_page1, name='firefox.welcome.page1'),
+    page('firefox/welcome/2', 'firefox/welcome/page2.html'),
 
     page('firefox/switch', 'firefox/switch.html'),
     page('firefox/pocket', 'firefox/pocket.html'),
