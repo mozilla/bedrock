@@ -75,9 +75,9 @@
             ua = ua || navigator.userAgent;
 
             // On OS X, Safari and Chrome have underscores instead of dots
-            var match = ua.match(/Windows\ NT\ (\d+\.\d+)/) ||
-                        ua.match(/Mac\ OS\ X\ (\d+[\._]\d+)/) ||
-                        ua.match(/Android\ (\d+\.\d+)/);
+            var match = ua.match(/Windows NT (d+.d+)/) ||
+                        ua.match(/Mac OS X (d+[._]d+)/) ||
+                        ua.match(/Android (d+.d+)/);
 
             return match ? match[1].replace('_', '.') : undefined;
         },
@@ -185,7 +185,7 @@
         }
 
         // Add class to reflect if user agent is Firefox. Cherry-picked from mozilla-client.js.
-        var isFirefox = /\s(Firefox|FxiOS)/.test(navigator.userAgent) && !/Iceweasel|IceCat|SeaMonkey|Camino|like\ Firefox/i.test(navigator.userAgent);
+        var isFirefox = /s(Firefox|FxiOS)/.test(navigator.userAgent) && !/Iceweasel|IceCat|SeaMonkey|Camino|like Firefox/i.test(navigator.userAgent);
 
         if (isFirefox) {
             h.className += ' is-firefox';
