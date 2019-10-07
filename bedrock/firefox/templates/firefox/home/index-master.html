@@ -3,7 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
 {% extends "firefox/base/base-protocol.html" %}
-{% from "macros-protocol.html" import call_out, call_out_compact, hero, feature_card with context %}
+{% from "macros-protocol.html" import call_out, call_out_compact, feature_card with context %}
 
 {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
 {% if LANG == 'en-CA' %}
@@ -31,56 +31,52 @@
 {% endblock %}
 
 {% block body_id %}firefox-master{% endblock %}
-{% block body_class %}{{ super() }} firefox-home{% endblock %}
 
 {% set referrals = '?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=firefox-home' %}
 
-{% if not is_translation %}
-  {% set page_title = _('The browser is just the beginning') %}
-  {% set family_title = _('Meet our family of products') %}
-  {% set browsers_trackers = _('Get 2,000+ trackers off your trail — including Facebook') %}
-  {% set monitor_title = _('Know when hackers strike — and stay a step ahead') %}
-  {% set monitor_cta = _('Start getting breach reports') %}
-  {% set lockwise_title = _('Keep your passwords safe on every device') %}
-  {% set lockwise_cta = _('Learn more about Lockwise') %}
-  {# L10n: the strong tags around "respect" add a special underline, the underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language #}
-  {% set promise_title = _('Get the <strong>respect</strong> you deserve') %}
-  {% set promise_desc = _('Every single Firefox product honors our Personal Data Promise: <strong>Take less. Keep it safe. No secrets.</strong>')|safe %}
-  {% set send_title = _('Share large files without prying eyes') %}
-  {% set send_cta  = _('Start sending files safely') %}
-  {% set pocket_title = _('Trade clickbait for quality content') %}
-  {% set pocket_cta = _('Learn more about Pocket') %}
-  {% set footer_title = _('One login. All your devices. A family of products that respect your <strong>privacy</strong>.') %}
-  {% set join_firefox = _('Join Firefox') %}
-  {% set join_learn_more = _('Learn more about joining Firefox') %}
-  {% set learn_more  = _('Learn more') %}
-  {% set get_extension  = _('Get the browser extension') %}
-  {% set get_facebook_container  = _('Get the Facebook Container extension') %}
-  {% set get_browser = _('Download the browser') %}
-  {% set get_app = _('Download the app') %}
-  {% set get_desktop = _('Desktop') %}
-  {% set get_android = 'Android' %}
-  {% set get_ios = 'iOS' %}
-  {% set get_mac = 'Mac' %}
-  {% set get_amazon = 'Amazon' %}
-  {% set product_browsers = _('Browsers') %}
-  {% set product_monitor = 'Monitor' %}
-  {% set product_send = 'Send' %}
-  {% set product_lockwise = 'Lockwise' %}
-  {% set product_pocket = 'Pocket' %}
-{% endif %}
+{# Setting all the strings here make it easy to use this page as a base template if we need to hard code the translation in bedrock #}
+{% set page_title = _('The browser is just the beginning') %}
+{% set family_title = _('Meet our family of products') %}
+{% set browsers_trackers = _('Get 2,000+ trackers off your trail — including Facebook') %}
+{% set monitor_title = _('Know when hackers strike — and stay a step ahead') %}
+{% set monitor_cta = _('Start getting breach reports') %}
+{% set lockwise_title = _('Keep your passwords safe on every device') %}
+{% set lockwise_cta = _('Learn more about Lockwise') %}
+{# L10n: the strong tags around "respect" add a special underline, the underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language #}
+{% set promise_title = _('Get the <strong>respect</strong> you deserve') %}
+{% set promise_desc = _('Every single Firefox product honors our Personal Data Promise: <strong>Take less. Keep it safe. No secrets.</strong>')|safe %}
+{% set send_title = _('Share large files without prying eyes') %}
+{% set send_cta  = _('Start sending files safely') %}
+{% set pocket_title = _('Trade clickbait for quality content') %}
+{% set pocket_cta = _('Learn more about Pocket') %}
+{% set footer_title = _('One login. All your devices. A family of products that respect your <strong>privacy</strong>.') %}
+{% set join_firefox = _('Join Firefox') %}
+{% set join_learn_more = _('Learn more about joining Firefox') %}
+{% set learn_more  = _('Learn more') %}
+{% set get_extension  = _('Get the browser extension') %}
+{% set get_facebook_container  = _('Get the Facebook Container extension') %}
+{% set get_browser = _('Download the browser') %}
+{% set get_app = _('Download the app') %}
+{% set get_desktop = _('Desktop') %}
+{% set get_android = 'Android' %}
+{% set get_ios = 'iOS' %}
+{% set get_mac = 'Mac' %}
+{% set get_amazon = 'Amazon' %}
+{% set product_browsers = _('Browsers') %}
+{% set product_monitor = 'Monitor' %}
+{% set product_send = 'Send' %}
+{% set product_lockwise = 'Lockwise' %}
+{% set product_pocket = 'Pocket' %}
+
 
 {% block content %}
-<main role="main">
+<main role="main" class="firefox-home">
 
-    {% call hero(
-      title=page_title,
-      class='mzp-has-image',
-      heading_level=1,
-      image_url='firefox/home/master/hero.jpg',
-      include_highres_image=true
-    ) %}
-    {% endcall %}
+    <div class="c-lead">
+      <div class="mzp-l-content">
+        <h1 class="c-lead-title">{{ page_title }}</h1>
+      </div>
+    </div>
 
     <div class="c-showcase">
       <div class="mzp-l-content">
@@ -122,52 +118,54 @@
 
     <div class="mzp-l-content">
       {% call feature_card(
-        title=browsers_trackers,
+        title='Firefox Browser',
         heading_level=3,
         image_url='firefox/home/master/browser.png',
-        include_highres_image=true,
+        include_highres_image=True,
         class='mzp-l-card-feature-left-half t-browsers',
         ga_title='Trackers',
-        media_after=true
+        media_after=True
       ) %}
-
+        <h4>{{ browsers_trackers }}</h4>
         <div class="mzp-c-menu-list mzp-t-cta mzp-t-download">
-          <h4 class="mzp-c-menu-list-title">{{ get_browser }}</h4>
+          <h5 class="mzp-c-menu-list-title">{{ get_browser }}</h5>
           <ul class="mzp-c-menu-list-list" id="menu-browsers">
             <li class="mzp-c-menu-list-item"><a href="{{ url('firefox.download.thanks') }}">{{ get_desktop }}</a></li>
             <li class="mzp-c-menu-list-item"><a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK_UTMS }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Browser for Android"> {{ get_android }}</a></li>
             <li class="mzp-c-menu-list-item"><a href="{{ firefox_ios_url('mozorg-firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Browser for iOS">{{ get_ios }}</a></li>
           </ul>
         </div>
-        <p class="js-fx-only"><a class="mzp-c-cta-link" href="https://addons.mozilla.org/en-US/firefox/addon/facebook-container/{{ referrals }}">{{ get_extension }}</a></p>
+        <p class="js-fx-only"><a class="mzp-c-cta-link" href="https://addons.mozilla.org/firefox/addon/facebook-container/{{ referrals }}">{{ get_facebook_container }}</a></p>
       {% endcall %}
     </div>
 
     <div class="mzp-l-content">
         {% call feature_card(
-          title=monitor_title,
+          title='Firefox Monitor',
           heading_level=3,
           image_url='firefox/home/master/monitor.svg',
           class='mzp-l-card-feature-right-half t-monitor',
           link_url='https://monitor.firefox.com/' + referrals,
           link_cta=monitor_cta,
           ga_title='Monitor',
-          media_after=true
+          media_after=True
         ) %}
+        <h4>{{ monitor_title }}</h4>
         {% endcall %}
     </div>
 
     <div class="mzp-l-content">
       {% call feature_card(
-        title=lockwise_title,
+        title='Firefox Lockwise',
         heading_level=3,
         image_url='firefox/home/master/lockwise.svg',
         class='mzp-l-card-feature-left-half t-lockwise',
         ga_title='Lockwise',
-        media_after=true
+        media_after=True
       ) %}
+      <h4>{{ lockwise_title }}</h4>
         <div class="mzp-c-menu-list mzp-t-cta mzp-t-download">
-          <h4 class="mzp-c-menu-list-title">{{ get_app }}</h4>
+          <h5 class="mzp-c-menu-list-title">{{ get_app }}</h5>
           <ul class="mzp-c-menu-list-list" id="menu-lockwise">
             <li class="mzp-c-menu-list-item"><a href="{{ lockwise_adjust_url('android', 'firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Lockwise for Android"> {{ get_android }}</a></li>
             <li class="mzp-c-menu-list-item"><a href="{{ lockwise_adjust_url('ios', 'firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Lockwise for iOS">{{ get_ios }}</a></li>
@@ -187,7 +185,7 @@
             link_url=url('privacy.notices.firefox'),
             link_cta=learn_more,
             ga_title='Promise',
-            media_after=true
+            media_after=True
           ) %}
             <p>{{ promise_desc }}</p>
           {% endcall %}
@@ -196,30 +194,32 @@
 
     <div class="mzp-l-content">
         {% call feature_card(
-          title=send_title,
+          title='Firefox Send',
           heading_level=3,
           image_url='firefox/home/master/send.svg',
           class='mzp-l-card-feature-right-half t-send',
           link_url='https://send.firefox.com/' + referrals,
           link_cta=send_cta,
           ga_title='Monitor',
-          media_after=true
+          media_after=True
         ) %}
+        <h4>{{ send_title }}</h4>
         {% endcall %}
     </div>
 
     <div class="mzp-l-content">
         {% call feature_card(
-        title=pocket_title,
+        title='Pocket',
         heading_level=3,
         image_url='firefox/home/master/pocket.png',
-        include_highres_image=true,
+        include_highres_image=True,
         class='mzp-l-card-feature-left-half t-pocket',
         ga_title='Pocket',
-        media_after=true
+        media_after=True
       ) %}
+      <h4>{{ pocket_title }}</h4>
         <div class="mzp-c-menu-list mzp-t-cta mzp-t-download">
-          <h4 class="mzp-c-menu-list-title">{{ get_app }}</h4>
+          <h5 class="mzp-c-menu-list-title">{{ get_app }}</h5>
           <ul class="mzp-c-menu-list-list" id="menu-pocket">
             <li class="mzp-c-menu-list-item"><a href="{{ pocket_adjust_url('android', 'firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket for Android"> {{ get_android }}</a></li>
             <li class="mzp-c-menu-list-item"><a href="{{ pocket_adjust_url('ios', 'firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket for iOS">{{ get_ios }}</a></li>

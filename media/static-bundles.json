@@ -1326,8 +1326,6 @@
     {
       "files": [
         "js/libs/jquery.waypoints.min.js",
-        "js/libs/jquery.waypoints-sticky.min.js",
-        "js/hubs/sub-nav.js",
         "js/base/mozilla-lazy-load.js",
         "js/firefox/home/quantum.js"
       ],
