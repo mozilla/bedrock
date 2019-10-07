@@ -30,7 +30,7 @@ function onYouTubeIframeAPIReady() {
         ['source', 'medium', 'campaign', 'content'].forEach(function(p) {
             var param = 'utm_' + p;
             if (params.indexOf(param) >= 0) {
-                var regex = RegExp(param + '=([^\#\&\?]+).*$');
+                var regex = RegExp(param + '=([^#&?]+).*$');
                 if (regex.test(params)) {
                     var value = params.match(regex)[1];
                     document.getElementById(param).value = value;
