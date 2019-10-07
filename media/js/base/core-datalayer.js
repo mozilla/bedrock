@@ -185,8 +185,8 @@ if (typeof window.Mozilla.Analytics === 'undefined') {
 
                     if (element.hostname === hostname) {
                         // remove host and locale from internal links
-                        var path = href.replace(/^(?:https?\:\/\/)(?:[^\/])*/, '');
-                        var locale = path.match(/^(\/\w{2}\-\w{2}\/|\/\w{2,3}\/)/);
+                        var path = href.replace(/^(?:https?:\/\/)(?:[^/])*/, '');
+                        var locale = path.match(/^(\/\w{2}-\w{2}\/|\/\w{2,3}\/)/);
 
                         path = locale ? path.replace(locale[0], '/') : path;
                         arguments[i].newClickHref = path;
