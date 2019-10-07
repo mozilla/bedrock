@@ -1,0 +1,164 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../../protocol/css/includes/lib';
+
+
+//* -------------------------------------------------------------------------- */
+// Page header
+
+.c-page-header {
+    background: $color-white;
+}
+
+.c-header-logo {
+    display: block;
+    margin: 0 auto;
+
+    @media #{$mq-md} {
+        display: inline;
+        margin: 0;
+    }
+}
+
+.c-shoulder-cta {
+    margin: $spacing-md 0 0;
+    text-align: center;
+
+    @media #{$mq-md} {
+        @include bidi((
+            (float, right, left),
+            (text-align, left, right),
+        ));
+        margin: 0;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Page hero
+
+.mzp-c-hero-body {
+    @include border-box;
+    margin: 0 auto;
+    max-width: $content-md;
+    padding: $layout-xs 0;
+    text-align: center;
+
+    @media #{$mq-md} {
+        padding: $layout-md $layout-xl;
+    }
+
+    .primary-cta {
+        margin: 0 auto;
+    }
+}
+
+.mzp-c-hero-title {
+    @include text-display-lg;
+    margin-bottom: $layout-sm;
+}
+
+.mzp-c-hero-desc {
+    @include text-body-lg;
+    margin-bottom: $layout-sm;
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Primary content
+
+.body-primary {
+    @include text-body-lg;
+    margin: $layout-md auto $layout-lg;
+    text-align: center;
+
+    .primary-image {
+        margin: $layout-sm auto 0;
+    }
+
+    .primary-cta {
+        margin: $layout-md auto 0;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Secondary content
+// To be replaced by revamped picto card. See https://github.com/mozilla/protocol/issues/382
+
+.c-picto-block {
+    @include border-box;
+    margin: 0 auto $spacing-2xl;
+    max-width: $content-md - ($layout-md * 2);
+    padding: 0 $layout-md;
+
+    .c-picto-block-title {
+        @include text-display-xs;
+    }
+
+    .c-picto-block-image {
+        align-items: center;
+        display: flex;
+        margin-bottom: $spacing-md;
+        min-height: $layout-md;
+    }
+
+    &.t-adjacent-image {
+        @include bidi((
+            (padding-left, $layout-xl, 0),
+            (padding-right, 0, $layout-xl)
+        ));
+        position: relative;
+
+        & + & {
+            border-top: 1px solid $color-gray-30;
+            padding-top: $layout-md;
+        }
+
+        .c-picto-block-image {
+            @include bidi((
+                (left, 0, auto),
+                (right, auto, 0)
+            ));
+            display: block;
+            margin: 0;
+            max-width: $layout-lg;
+            min-height: 0;
+            position: absolute;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Secondary CTA
+
+.secondary-cta {
+    @include text-body-lg;
+    margin: $layout-lg auto $layout-sm;
+    text-align: center;
+
+    p {
+        margin: 0 auto;
+    }
+}
+
+.c-utilities {
+    @include text-body-sm;
+    max-width: $content-md;
+    text-align: center;
+
+    .c-survey-link {
+        font-weight: bold;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Dark theme
+
+.mzp-c-hero.mzp-t-dark {
+    @include light-links;
+    background-color: $color-off-black;
+    color: $color-white;
+}
