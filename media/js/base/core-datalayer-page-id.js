@@ -21,7 +21,7 @@ if (typeof window.Mozilla === 'undefined') {
         var pageId = document.getElementsByTagName('html')[0].getAttribute('data-gtm-page-id');
         var pathName = path ? path : document.location.pathname;
 
-        return pageId ? pageId : pathName.replace(/^(\/\w{2}\-\w{2}\/|\/\w{2,3}\/)/, '/');
+        return pageId ? pageId : pathName.replace(/^(\/\w{2}-\w{2}\/|\/\w{2,3}\/)/, '/');
     };
 
     Analytics.getTrafficCopReferrer = function() {
