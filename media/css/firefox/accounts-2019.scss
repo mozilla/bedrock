@@ -26,7 +26,7 @@
 
     .c-accounts-hero-title {
         @include text-display-lg;
-        background: transparent url('/media/img/logos/firefox/logo-master-wordmark-dark.svg') center top no-repeat;
+        background: transparent url('/media/protocol/img/logos/firefox/logo-word-hor.svg') center top no-repeat;
         @include background-size(150px, 48px);
         margin-bottom: $spacing-xl;
         padding-top: (60px + $spacing-2xl);
@@ -193,39 +193,10 @@
 }
 
 .c-product-list-title {
-    @include background-size(50px, 50px);
-    @include bidi((
-        (background-position, left top, right top),
-        (padding-left, $layout-lg, 0),
-        (padding-right, 0, $layout-lg),
-        (text-align, left, right),
-    ));
     @include text-display-sm;
-    background-repeat: no-repeat;
     margin: 0 auto $spacing-lg;
     min-height: 50px;
-    width: 100px;
-
-    span {
-        display: block;
-        font-weight: normal;
-    }
-
-    .t-product-firefox & {
-        background-image: url('/media/img/logos/firefox/logo-quantum.png');
-    }
-
-    .t-product-lockwise & {
-        background-image: url('/media/img/logos/firefox/logo-lockwise.svg');
-    }
-
-    .t-product-monitor & {
-        background-image: url('/media/img/logos/firefox/logo-monitor.svg');
-    }
-
-    .t-product-send & {
-        background-image: url('/media/img/logos/firefox/logo-send.svg');
-    }
+    width: 180px;
 
     @media #{$mq-sm} {
         margin: 0 0 $spacing-lg;

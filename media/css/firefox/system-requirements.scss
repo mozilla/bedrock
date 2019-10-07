@@ -83,10 +83,10 @@ $image-path: '/media/protocol/img';
 }
 
 .c-page-section:before {
-    background-image: url('/media/img/logos/firefox/logo-quantum.png');
+    background-image: url('/media/img/logos/firefox/quantum/logo-lg.png');
 
     @media #{$mq-high-res} {
-        background-image: url('/media/img/logos/firefox/logo-quantum-high-res.png');
+        background-image: url('/media/img/logos/firefox/quantum/logo-lg-high-res.png');
     }
 }
 

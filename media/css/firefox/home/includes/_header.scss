@@ -10,7 +10,7 @@
 .main-header-section {
 
     h1 {
-        @include at2x('/media/img/logos/firefox/logo-quantum.png', 90px, 90px);
+        @include at2x('/media/img/logos/firefox/quantum/logo-md.png', 90px, 90px);
         @include font-size-level2;
         background-position: top center;
         background-repeat: no-repeat;
