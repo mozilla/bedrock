@@ -4,7 +4,7 @@
 
 from django.conf import settings
 from django.conf.urls import handler404
-from django.urls import include, re_path
+from django.urls import include, path
 
 from django.utils.module_loading import import_string
 
@@ -18,25 +18,25 @@ handler500 = 'bedrock.base.views.server_error_view'
 
 urlpatterns = (
     # Main pages
-    re_path(r'^foundation/', include('bedrock.foundation.urls')),
-    re_path(r'^grants/', include('bedrock.grants.urls')),
-    re_path(r'^about/legal/', include('bedrock.legal.urls')),
-    re_path(r'^press/', include('bedrock.press.urls')),
-    re_path(r'^privacy/', include('bedrock.privacy.urls')),
-    re_path(r'^styleguide/', include('bedrock.styleguide.urls')),
-    re_path(r'^security/', include('bedrock.security.urls')),
-    re_path(r'', include('bedrock.firefox.urls')),
-    re_path(r'', include('bedrock.mozorg.urls')),
-    re_path(r'', include('bedrock.newsletter.urls')),
-    re_path(r'^etc/', include('bedrock.etc.urls')),
-    re_path(r'^exp/', include('bedrock.exp.urls')),
+    path('foundation/', include('bedrock.foundation.urls')),
+    path('grants/', include('bedrock.grants.urls')),
+    path('about/legal/', include('bedrock.legal.urls')),
+    path('press/', include('bedrock.press.urls')),
+    path('privacy/', include('bedrock.privacy.urls')),
+    path('styleguide/', include('bedrock.styleguide.urls')),
+    path('security/', include('bedrock.security.urls')),
+    path('', include('bedrock.firefox.urls')),
+    path('', include('bedrock.mozorg.urls')),
+    path('', include('bedrock.newsletter.urls')),
+    path('etc/', include('bedrock.etc.urls')),
+    path('exp/', include('bedrock.exp.urls')),
 
-    re_path(r'^healthz/$', watchman_views.ping, name="watchman.ping"),
-    re_path(r'^readiness/$', watchman_views.status, name="watchman.status"),
-    re_path(r'^healthz-cron/$', base_views.cron_health_check),
-    re_path(r'^csp-violation-capture$', base_views.csp_violation_capture,
+    path('healthz/', watchman_views.ping, name="watchman.ping"),
+    path('readiness/', watchman_views.status, name="watchman.status"),
+    path('healthz-cron/', base_views.cron_health_check),
+    path('csp-violation-capture', base_views.csp_violation_capture,
         name='csp-violation-capture'),
-    re_path(r'^country-code\.json$', base_views.geolocate,
+    path('country-code\.json', base_views.geolocate,
         name='geolocate')
 )
 
@@ -46,6 +46,6 @@ if settings.DEBUG:
         return import_string(handler404)(request, '')
 
     urlpatterns += (
-        re_path(r'^404/$', show404),
-        re_path(r'^500/$', import_string(handler500)),
+        path('404/', show404),
+        path('500/', import_string(handler500)),
     )
