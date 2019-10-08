@@ -76,7 +76,7 @@
 }
 
 .lite-body {
-    background: url('/media/img/firefox/whatsnew/lite/background-swoosh.png') no-repeat bottom, linear-gradient(#00e4ff, #3aa1ff, #0484ff);
+    background: url('/media/img/firefox/whatsnew/lite/background.png') no-repeat bottom;
     color: #fff;
     overflow: hidden;
     position: relative;
@@ -92,7 +92,7 @@
 }
 
 .lite-content {
-    .lite-woman {
+    .lite-KV {
         display: none;
     }
 
@@ -112,7 +112,7 @@
         display: grid;
         grid-template-columns: 1fr 2fr 0.5fr;
 
-        .lite-woman {
+        .lite-KV {
             display: block;
             position: relative;
             min-width: 300px;
@@ -131,7 +131,7 @@
             max-width: $content-md;
         }
 
-        .lite-woman,
+        .lite-KV,
         .lite-code {
             min-height: 700px;
         }
