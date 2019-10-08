@@ -197,22 +197,22 @@
     background-position: center top;
     background-repeat: no-repeat;
     margin: 0 auto $spacing-lg;
-    height: 64px;
+    height: 50px;
 
     .t-product-firefox & {
-        @include at2x('/media/img/logos/firefox/quantum/logo-word-hor-stack-md.png', 184px, 64px);
+        @include at2x('/media/img/logos/firefox/quantum/logo-word-hor-stack-md.png', 144px, 50px);
     }
 
     .t-product-lockwise & {
-        @include at2x('/media/protocol/img/logos/firefox/lockwise/logo-word-hor-stack-md.png', 197px, 64px);
+        @include at2x('/media/protocol/img/logos/firefox/lockwise/logo-word-hor-stack-md.png', 154px, 50px);
     }
 
     .t-product-monitor & {
-        @include at2x('/media/protocol/img/logos/firefox/monitor/logo-word-hor-stack-md.png', 176px, 64px);
+        @include at2x('/media/protocol/img/logos/firefox/monitor/logo-word-hor-stack-md.png', 138px, 50px);
     }
 
     .t-product-send & {
-        @include at2x('/media/protocol/img/logos/firefox/send/logo-word-hor-stack-md.png', 167px, 64px);
+        @include at2x('/media/protocol/img/logos/firefox/send/logo-word-hor-stack-md.png', 130px, 50px);
     }
 
     @media #{$mq-sm} {
