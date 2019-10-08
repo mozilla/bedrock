@@ -219,6 +219,26 @@
         @include bidi(((background-position, left top, right top),));
         margin: 0 0 $spacing-lg;
     }
+
+    @media #{$mq-md} {
+        height: 64px;
+
+        .t-product-firefox & {
+            @include background-size(184px,  64px);
+        }
+
+        .t-product-lockwise & {
+            @include background-size(197px, 64px);
+        }
+
+        .t-product-monitor & {
+            @include background-size(176px, 64px);
+        }
+
+        .t-product-send & {
+            @include background-size(167px, 64px);
+        }
+    }
 }
 
 .c-product-list-desc {
