@@ -993,7 +993,6 @@ class TestAccountsPage(TestCase):
         render_mock.assert_called_once_with(req, 'firefox/accounts-2019.html', ANY)
 
 
-
 class TestFirefoxWelcomePage1(TestCase):
     @patch('bedrock.firefox.views.l10n_utils.render')
     def test_firefox_welcome_page1(self, render_mock):
