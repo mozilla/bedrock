@@ -20,6 +20,12 @@
   data-pixels="{% for pixel in settings.TRACKING_PIXELS %}{{ pixel }}{% if not loop.last %}::{% endif %}{% endfor %}"
 {% endblock %}
 
+{% block site_header %}
+  {% with hide_nav_download_button=True %}
+    {% include 'includes/protocol/navigation/menu-firefox/nav-switch.html' %}
+  {% endwith %}
+{% endblock %}
+
 {% block content %}
 <main role="main">
   <div class="mzp-l-content">

@@ -11,6 +11,7 @@ $image-path: '/media/protocol/img';
 // Bedrock specific component tweaks.
 @import 'components/navigation';
 @import 'components/download-button';
+@import 'components/footer';
 
 // override firefox browser logos until Oct 22
 // https://github.com/mozilla/bedrock/issues/7656
@@ -27,3 +28,4 @@ body { // bump specificity
         @include at2x('/media/img/logos/firefox/quantum/logo-lg.png', 80px, 80px);
     }
 }
+

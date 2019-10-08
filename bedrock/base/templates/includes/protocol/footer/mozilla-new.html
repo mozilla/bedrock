@@ -59,8 +59,10 @@
       </ul>
       <div class="mzp-c-footer-legal">
         <p class="mzp-c-footer-license">
-          {% trans url='https://foundation.mozilla.org', link_type='footer', link_name='Mozilla Foundation' %}
-            Visit Mozilla Corporation’s not-for-profit parent, the <a href="{{ url }}" data-link-type="{{ link_type }}" data-link-name="{{ link_name }}">Mozilla Foundation</a>.
+          {% set moco_link = 'href="%s" data-link-type="footer" data-link-name="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}
+          {% set mofo_link = 'href="https://foundation.mozilla.org" rel="external noopener" data-link-type="footer" data-link-name="Mozilla Foundation"'|safe %}
+          {% trans %}
+            Visit <a {{ moco_link }}>Mozilla Corporation’s</a> not-for-profit parent, the <a {{ mofo_link }}>Mozilla Foundation</a>.
           {% endtrans %}<br>
           {%- trans url=url('foundation.licensing.website-content') -%}
               Portions of this content are ©1998–{{ current_year }} by individual mozilla.org
