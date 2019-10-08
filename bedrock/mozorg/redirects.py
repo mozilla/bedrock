@@ -667,5 +667,5 @@ redirectpatterns = (
     redirect(r'^about/history/details/?$', 'mozorg.about.history'),
 
     # issue 7842
-    redirect(r'^enterprise/?$','/firefox/enterprise/'),
+    redirect(r'^enterprise/?$', '/firefox/enterprise/'),
 )
