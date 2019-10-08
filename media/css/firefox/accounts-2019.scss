@@ -2,7 +2,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-
 @import '../../protocol/css/includes/lib';
 
 .c-section-title {
@@ -193,12 +192,31 @@
 }
 
 .c-product-list-title {
+    @include image-replaced;
     @include text-display-sm;
+    background-position: center top;
+    background-repeat: no-repeat;
     margin: 0 auto $spacing-lg;
-    min-height: 50px;
-    width: 180px;
+    height: 64px;
+
+    .t-product-firefox & {
+        @include at2x('/media/img/logos/firefox/quantum/logo-word-hor-stack-md.png', 184px, 64px);
+    }
+
+    .t-product-lockwise & {
+        @include at2x('/media/protocol/img/logos/firefox/lockwise/logo-word-hor-stack-md.png', 197px, 64px);
+    }
+
+    .t-product-monitor & {
+        @include at2x('/media/protocol/img/logos/firefox/monitor/logo-word-hor-stack-md.png', 176px, 64px);
+    }
+
+    .t-product-send & {
+        @include at2x('/media/protocol/img/logos/firefox/send/logo-word-hor-stack-md.png', 167px, 64px);
+    }
 
     @media #{$mq-sm} {
+        @include bidi(((background-position, left top, right top),));
         margin: 0 0 $spacing-lg;
     }
 }
