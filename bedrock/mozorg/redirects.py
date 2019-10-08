@@ -665,4 +665,5 @@ redirectpatterns = (
 
     # issue 7435
     redirect(r'^about/history/details/?$', 'mozorg.about.history'),
+    redirect(r'^enterprise/?$','https://www.mozilla.org/en-US/firefox/enterprise/'),
 )
