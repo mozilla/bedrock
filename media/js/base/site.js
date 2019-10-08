@@ -135,6 +135,11 @@
             return 32;
         },
 
+        // Universal feature detect to deliver graded browser support (targets IE 11 and above).
+        cutsTheMustard: function () {
+            return 'classList' in document.createElement('div') && 'MutationObserver' in window;
+        },
+
         platform: 'other',
         platformVersion: undefined,
         archType: 'x64',
@@ -190,6 +195,13 @@
 
         if (isFirefox) {
             h.className += ' is-firefox';
+        }
+
+        // Add class to reflect browsers that get 1st class JS & CSS support.
+        var isModernBrowser = window.site.isModernBrowser = window.site.cutsTheMustard();
+
+        if (isModernBrowser) {
+            h.className += ' is-modern-browser';
         }
 
         // Add class to reflect javascript availability for CSS
