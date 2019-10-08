@@ -3,7 +3,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
-from django.urls import handler404, include, re_path
+from django.conf.urls import handler404
+from django.urls import include, re_path
 
 from django.utils.module_loading import import_string
 
