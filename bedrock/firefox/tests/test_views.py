@@ -975,7 +975,7 @@ class TestFirefoxConcerts(TestCase):
         render_mock.assert_called_once_with(req, 'firefox/concerts.html')
 
 
-class TestFirefoxHomeEnglish(TestCase):
+class TestFirefoxHome(TestCase):
     @patch('bedrock.firefox.views.l10n_utils.render')
     def test_firefox_home(self, render_mock):
         req = RequestFactory().get('/firefox/')
@@ -983,12 +983,11 @@ class TestFirefoxHomeEnglish(TestCase):
         views.firefox_home(req)
         render_mock.assert_called_once_with(req, 'firefox/home/index-master.html')
 
-
-class TestFirefoxHomeLocale(TestCase):
     @patch('bedrock.firefox.views.l10n_utils.render')
-    def test_firefox_home(self, render_mock):
+    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    def test_firefox_home_legacy(self, render_mock):
         req = RequestFactory().get('/firefox/')
-        req.locale = 'es'
+        req.locale = 'fr'
         views.firefox_home(req)
         render_mock.assert_called_once_with(req, 'firefox/home/index-quantum.html')
 
