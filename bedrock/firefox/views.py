@@ -909,7 +909,7 @@ class FeaturesPrivateBrowsingView(BlogPostsView):
 def firefox_home(request):
     locale = l10n_utils.get_locale(request)
 
-    if locale.startswith('en'):
+    if lang_file_is_active('firefox/home-master', locale):
         template_name = 'firefox/home/index-master.html'
     else:
         template_name = 'firefox/home/index-quantum.html'

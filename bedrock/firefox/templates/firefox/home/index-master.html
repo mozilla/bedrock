@@ -2,7 +2,10 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
+{% add_lang_files "firefox/home-master" %}
+
 {% extends "firefox/base/base-protocol.html" %}
+{% from "macros.html" import fxa_cta_link with context %}
 {% from "macros-protocol.html" import call_out, call_out_compact, feature_card with context %}
 
 {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
@@ -107,7 +110,7 @@
               </a>
             </li>
           <li>
-            <a class="mzp-c-cta-link" href="https://getpocket.com{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Pocket">
+            <a class="mzp-c-cta-link" href="https://getpocket.com/firefox_learnmore/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Pocket">
               <img alt="" src="{{ static('img/logos/pocket/logo.svg') }}" height="40" width="40"><br>
               {{ product_pocket }}
             </a>
@@ -130,9 +133,14 @@
         <div class="mzp-c-menu-list mzp-t-cta mzp-t-download">
           <h5 class="mzp-c-menu-list-title">{{ get_browser }}</h5>
           <ul class="mzp-c-menu-list-list" id="menu-browsers">
-            <li class="mzp-c-menu-list-item"><a href="{{ url('firefox.download.thanks') }}">{{ get_desktop }}</a></li>
-            <li class="mzp-c-menu-list-item"><a href="{{ settings.GOOGLE_PLAY_FIREFOX_LINK_UTMS }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Browser for Android"> {{ get_android }}</a></li>
-            <li class="mzp-c-menu-list-item"><a href="{{ firefox_ios_url('mozorg-firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Browser for iOS">{{ get_ios }}</a></li>
+            <!--[if IE 9]>
+              <li class="mzp-c-menu-list-item"><a href="{{ url('firefox.new') }}">{{ get_desktop }}</a></li>
+            <![endif]-->
+            <!--[if gte IE 9]><!-->
+              <li class="mzp-c-menu-list-item"><a href="{{ url('firefox.download.thanks') }}" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard">{{ get_desktop }}</a></li>
+            <!--<![endif]-->
+            <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('android', 'firefox_home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Browser for Android"> {{ get_android }}</a></li>
+            <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('ios', 'firefox_home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Browser for iOS">{{ get_ios }}</a></li>
           </ul>
         </div>
         <p class="js-fx-only"><a class="mzp-c-cta-link" href="https://addons.mozilla.org/firefox/addon/facebook-container/{{ referrals }}">{{ get_facebook_container }}</a></p>
@@ -171,7 +179,7 @@
             <li class="mzp-c-menu-list-item"><a href="{{ lockwise_adjust_url('ios', 'firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Lockwise for iOS">{{ get_ios }}</a></li>
           </ul>
         </div>
-        <p class="js-fx-only"><a class="mzp-c-cta-link" href="https://lockwise.firefox.com/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise Learn More">{{ lockwise_cta }}</a></p>
+        <p><a class="mzp-c-cta-link" href="https://lockwise.firefox.com/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise Learn More">{{ lockwise_cta }}</a></p>
       {% endcall %}
     </div>
 
@@ -267,7 +275,7 @@
         </div>
         <h2 class="c-end-title">{{ footer_title }}</h2>
         <div class="mzp-c-button-download-container">
-          <a class="mzp-c-button mzp-t-product mzp-t-small" href="https://accounts.firefox.com/signup/{{ referrals }}">{{ join_firefox }}</a>
+          {{ fxa_cta_link(entrypoint='mozilla.org-firefox_home', action='signup', button_text=join_firefox, button_class='mzp-c-button mzp-t-product mzp-t-small', utm_campaign='firefox-home', utm_content='secondary-join-firefox') }}
           <small class="mzp-c-button-download-privacy-link">
             <a href="{{ url('firefox.accounts') }}">{{ join_learn_more }}</a>
           </small>
