@@ -77,7 +77,7 @@
     {
       "@type": "Product",
       "@id": "https://www.mozilla.org/#firefoxlockwise",
-      "url": "https://lockwise.firefox.com",
+      "url": "https://www.mozilla.org/firefox/lockwise",
       "logo": "{% filter absolute_url %}{{ static('img/logos/firefox/logo-lockwise.svg') }}{% endfilter %}",
       "name": "Firefox Lockwise",
       "sameAs": [
