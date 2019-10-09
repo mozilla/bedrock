@@ -96,7 +96,7 @@ if (typeof window.Mozilla === 'undefined') {
     Client._isLikeFirefox = function (ua) {
         ua = ua || navigator.userAgent;
 
-        return /Iceweasel|IceCat|SeaMonkey|Camino|like\ Firefox/i.test(ua);
+        return /Iceweasel|IceCat|SeaMonkey|Camino|like Firefox/i.test(ua);
     };
 
     /**
