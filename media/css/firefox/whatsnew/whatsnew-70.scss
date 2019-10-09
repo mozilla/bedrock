@@ -1,0 +1,213 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../protocol/components/state-fxa';
+@import '../../../protocol/css/components/emphasis-box';
+@import '../../../protocol/css/components/notification-bar';
+
+.content-main {
+    padding: 0;
+    @media #{$mq-md} {
+        padding-top: $spacing-2xl;
+    }
+}
+
+.c-section-title-secondary {
+    @include text-display-xxs;
+    margin: 0 auto $layout-md;
+    max-width: $content-md - ($layout-md * 2);
+}
+
+.c-utilities {
+    @include text-body-sm;
+    max-width: $content-md;
+    text-align: center;
+}
+
+.mzp-c-cta-link:link {
+    border-bottom: 1px solid;
+    font-weight: normal;
+    text-decoration: none;
+
+    &:hover,
+    &:active,
+    &:focus {
+        @include transition(border-bottom-color 100ms ease-in-out);
+        border-bottom-color: transparent;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Up-to-date page header
+
+.c-page-header {
+    background: transparent;
+}
+
+.mzp-c-notification-bar {
+    color: $color-off-black;
+    display: none;
+    margin: $layout-xs;
+
+    .is-up-to-date {
+        display: block;
+    }
+}
+
+.c-page-header-inner {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.c-page-header-up-to-date {
+    margin: 0 $layout-sm;
+}
+
+.c-page-header-logo-fx {
+    min-width: 216px;
+}
+
+@media #{$mq-md} {
+    .c-page-header-inner {
+        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr max-content 1fr;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Emphasis box
+
+.mzp-c-box-emphasis {
+    @include border-box;
+    color: $color-off-black;
+    margin: 0 auto $layout-sm;
+    max-width: $content-md - ($layout-md * 2);
+    padding: $spacing-xl;
+    text-align: center;
+
+    :link {
+        color: $color-off-black;
+    }
+
+    .c-emphasis-box-logo {
+        display: block;
+        margin: 0 auto $spacing-lg;
+        width: 50px;
+    }
+
+    .c-emphasis-box-title {
+        @include text-display-sm;
+    }
+
+
+    @media #{$mq-md} {
+        padding: $spacing-xl $layout-md;
+
+        .c-emphasis-box-title br {
+            display: block;
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Extra content
+// To be replaced by revamped picto card. See https://github.com/mozilla/protocol/issues/382
+
+.c-picto-block {
+    @include border-box;
+    margin: 0 auto $spacing-2xl;
+    max-width: $content-md - ($layout-md * 2);
+    padding: 0 $layout-md;
+
+    .c-picto-block-title {
+        @include text-display-xs;
+    }
+
+    .c-picto-block-image {
+        align-items: center;
+        display: flex;
+        margin-bottom: $spacing-md;
+        width: $layout-md;
+    }
+}
+
+@media #{$mq-md} {
+    .l-columns-two {
+        display: flex;
+        margin: 0 auto;
+        max-width: $content-md - ($layout-md * 2);
+        padding: 0 $layout-md;
+        flex-wrap: wrap;
+
+        .c-picto-block {
+            flex: 1 1 50%;
+            padding: 0 ($spacing-md + 4);
+        }
+    }
+}
+
+.content-wrapper {
+    background: $color-off-black url('/media/img/firefox/whatsnew_70/whatsnew_background.svg') no-repeat;
+    @include background-size(100%);
+    color: $color-white;
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Conditional Content
+
+body.state-fxa-supported-signed-in {
+    span.show-fxa-supported-signed-in {
+        display: inline;
+    }
+}
+
+.show-firefox-desktop-70 {
+    display: none;
+
+    &.mzp-c-button {
+        display: none;
+    }
+}
+
+.show-firefox-desktop-old {
+    display: none;
+}
+
+.state-firefox-desktop-70 {
+    .show-firefox-desktop-70 {
+        display: inline;
+
+        &.mzp-c-button {
+            display: inline-block;
+        }
+    }
+
+    .show-firefox-desktop-old {
+        display: none;
+    }
+}
+
+.state-firefox-desktop-old {
+    .show-firefox-desktop-old {
+        display: inline;
+
+        &.mzp-c-button {
+            display: inline-block;
+        }
+    }
+
+    .show-firefox-desktop-70 {
+        display: none;
+    }
+}

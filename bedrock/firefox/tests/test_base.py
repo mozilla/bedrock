@@ -571,6 +571,42 @@ class TestWhatsNew(TestCase):
 
     # end 69.0 whatsnew tests
 
+    # begin 70.0 whatsnew tests
+
+    def test_fx_70_0_en(self, render_mock):
+        """Should use whatsnew-70-en template for 70.0 for en- locales"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='70.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx70-en.html']
+
+    def test_fx_70_0_de(self, render_mock):
+        """Should use whatsnew-70-de template for 70.0 in de locale"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'de'
+        self.view(req, version='70.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx70-de.html']
+
+    def test_fx_70_0_fr(self, render_mock):
+        """Should use whatsnew-70-fr template for 70.0 in fr locale"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'fr'
+        self.view(req, version='70.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx70-fr.html']
+
+    def test_fx_70_0(self, render_mock):
+        """Should use default whatsnew-70 template for 70.0 for other locales"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'es-ES'
+        self.view(req, version='70.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx70.html']
+
+    # end 70.0 whatsnew tests
+
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestFirstRun(TestCase):
