@@ -1,0 +1,26 @@
+{
+  "name": "Mozilla Bedrock Demos",
+  "description": "Demo deployments for changes to Mozilla Bedrock.",
+  "website": "https://www.mozilla.org",
+  "repository": "https://github.com/mozilla/bedrock",
+  "logo": "https://www.mozilla.org/media/img/mozorg/mozilla-256.jpg",
+  "success_url": "/healthz-cron/",
+  "stack": "container",
+  "env": {
+    "ALLOWED_HOSTS": "*",
+    "CONTENT_CARDS_URL": "https://www-dev.allizom.org/media/",
+    "CSP_DEFAULT_SRC": "*.allizom.org",
+    "CSP_EXTRA_FRAME_SRC": "*.mozaws.net",
+    "DB_DOWNLOAD_IGNORE_GIT": "True",
+    "DEBUG": "False",
+    "DEV": "True",
+    "GTM_CONTAINER_ID": "GTM-MW3R8V",
+    "LOG_LEVEL": "INFO",
+    "PROD_DETAILS_STORAGE": "product_details.storage.PDDatabaseStorage",
+    "RUN_SUPERVISOR": "True",
+    "SECRET_KEY": {
+      "description": "A secret key for verifying the integrity of signed cookies, though we don't use them.",
+      "generator": "secret"
+    }
+  }
+}
