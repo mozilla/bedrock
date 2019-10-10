@@ -1,0 +1,110 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import monitor_button with context %}
+
+{% add_lang_files "firefox/whatsnew_70" %}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block page_title %}{{ _('What’s new with Firefox - More privacy, more protections.') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_70') }}
+{% endblock %}
+
+{% block body_class %}state-fxa-default{% endblock %}
+
+{% set _entrypoint = 'mozilla.org-whatsnew70' %}
+{% set _utm_campaign = 'whatsnew70' %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main class="content-wrapper mzp-t-firefox">
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
+      {{ high_res_img('logos/firefox/quantum/logo-word-hor-white-sm.png', {'alt': 'Firefox', 'width': '216', 'height': '40', 'class': 'c-page-header-logo-fx'}) }}
+      <div class="mzp-c-notification-bar mzp-t-success show-firefox-desktop-70">
+        <p>{{ _('Congrats! You’re using the latest version of Firefox.') }}</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="content-main">
+    <div class="mzp-l-content">
+      <div class="mzp-c-box-emphasis">
+        <img class="c-emphasis-box-logo" src="{{ static('img/firefox/glyphs/tracking-protection.svg') }}" alt="">
+        <h2 class="c-emphasis-box-title">
+          {{ _('Now you can see how we’re protecting your privacy.') }}
+        </h2>
+        <p>{{ _('We made Enhanced Tracking Protection because no one should be able to follow you online without your permission. And now you can see just how many data-collecting trackers Firefox has blocked for you — along with other ways our products protect your privacy.') }}</p>
+
+        <a class="mzp-c-button mzp-t-product show-firefox-desktop-70 js-open-about-protections" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-link-type="link" data-link-name="See what Firefox has blocked for you">{{ _('See what Firefox has blocked for you') }}</a>
+
+        <a class="mzp-c-button mzp-t-product show-firefox-desktop-old" href="https://support.mozilla.org/kb/update-firefox-latest-release/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-link-type="link" data-link-name="Update your Firefox browser">{{ _('Update your Firefox browser') }}</a>
+
+        <div class="show-fxa-not-fx show-fxa-unsupported">
+          {{ download_firefox(alt_copy=_('Download the Firefox browser'), download_location='primary cta', button_color='mzp-c-button mzp-t-primary mzp-t-product') }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-extra mzp-t-dark">
+    <div class="mzp-l-content">
+      <h3 class="c-section-title-secondary">{{ _('Also view personalized protection updates from these services:') }}</h3>
+      <div class="l-columns-two">
+
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            <img src="{{ static('img/logos/firefox/logo-monitor.svg') }}" alt="">
+          </div>
+
+          <h3 class="c-picto-block-title">{{ _('Firefox Monitor') }}</h3>
+          <div class="c-picto-block-body">
+            <p>{{ _('See if you were a part of another company’s data breach, and sign up for future alerts.') }}</p>
+
+            {{ monitor_button(
+              entrypoint=_entrypoint,
+              cta_type='FxA-Monitor',
+              cta_position='Primary',
+              utm_campaign=_utm_campaign,
+              button_class='mzp-c-cta-link',
+              button_text=_('Go to Monitor')
+            ) }}
+
+          </div>
+        </div>
+
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            <img src="{{ static('img/logos/firefox/logo-lockwise.svg') }}" alt="">
+          </div>
+
+          <h3 class="c-picto-block-title">{{ _('Firefox Lockwise') }}</h3>
+          <div class="c-picto-block-body">
+            <p>{{ _('Safely store and manage your passwords with Lockwise, and get alerted when you need to change them.') }}</p>
+            <a class="mzp-c-cta-link js-open-lockwise" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">{{ _('Go to Lockwise') }}</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <aside class="mzp-l-content c-utilities mzp-t-dark">
+    <p>
+    {% trans notes=url('firefox.notes') %}
+      Read the <a href="{{ notes }}">Release Notes</a> to know more about what’s new in your Firefox Browser.
+    {% endtrans %}
+    </p>
+  </aside>
+
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_70') }}
+{% endblock %}
