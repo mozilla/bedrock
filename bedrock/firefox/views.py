@@ -537,7 +537,9 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
 
 
 class WhatsNewRedirectorView(GeoRedirectView):
-    geo_urls = {}
+    geo_urls = {
+        'IN': 'firefox.whatsnew.india'
+    }
     default_url = 'firefox.whatsnew.all'
 
     def get_redirect_url(self, *args, **kwargs):
@@ -546,6 +548,47 @@ class WhatsNewRedirectorView(GeoRedirectView):
 
         return super().get_redirect_url(*args, **kwargs)
 
+class WhatsNewIndiaView(l10n_utils.LangFilesMixin, TemplateView):
+    def get_context_data(self, **kwargs):
+        ctx = super(WhatsNewIndiaView, self).get_context_data(**kwargs)
+
+        # add version to context for use in templates
+        version = self.kwargs.get('version') or ''
+        match = re.match(r'\d{1,2}', version)
+        ctx['version'] = version
+        ctx['num_version'] = int(match.group(0)) if match else ''
+
+        return ctx
+
+    def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
+        trailhead_locales = ['en-US', 'en-CA', 'en-GB', 'de', 'fr']
+
+        version = self.kwargs.get('version') or ''
+
+        channel = detect_channel(version)
+
+        if channel == 'nightly':
+            template = 'firefox/nightly_whatsnew.html'
+        elif channel == 'alpha':
+            if show_57_dev_whatsnew(version):
+                template = 'firefox/developer/whatsnew.html'
+            else:
+                template = 'firefox/whatsnew/index.html'
+        elif locale.startswith('en-'):
+            template = 'firefox/whatsnew/index-lite.in.html'
+        elif version.startswith('70.'):
+            if locale == 'de':
+                template = 'firefox/whatsnew/whatsnew-fx70-de.html'
+            elif locale == 'fr':
+                template = 'firefox/whatsnew/whatsnew-fx70-fr.html'
+            else:
+                template = 'firefox/whatsnew/whatsnew-fx70.html'
+        else:
+            template = 'firefox/whatsnew/index.html'
+
+        # return a list to conform with original intention
+        return [template]
 
 class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
     def get_context_data(self, **kwargs):
