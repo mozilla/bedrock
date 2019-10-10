@@ -129,7 +129,7 @@
       ) %}
         <p>{{ _('The passwords and credentials you save in Firefox Lockwise are encrypted on all your devices, so not even we can see them.') }}</p>
         {# L10n: "Lockwise" is a proper name; it should be capitalized and should not be translated. #}
-        <p><a class="mzp-c-cta-link" href="https://lockwise.firefox.com/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-cta-type="fxa-lockwise" data-cta-position="secondary">{{ _('Learn more about Lockwise') }}</a></p>
+        <p><a class="mzp-c-cta-link" href="{{ url('firefox.lockwise.lockwise' )}}" data-cta-type="fxa-lockwise" data-cta-position="secondary">{{ _('Learn more about Lockwise') }}</a></p>
       {% endcall %}
 
       {% call feature_card(
