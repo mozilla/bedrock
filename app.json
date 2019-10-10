@@ -21,6 +21,9 @@
     "SECRET_KEY": {
       "description": "A secret key for verifying the integrity of signed cookies, though we don't use them.",
       "generator": "secret"
+    },
+    "SENTRY_DSN": {
+      "description": "Configure error reporting to Sentry"
     }
   }
 }
