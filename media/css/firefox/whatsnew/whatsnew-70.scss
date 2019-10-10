@@ -182,6 +182,10 @@ body.state-fxa-supported-signed-in {
 .state-firefox-desktop-70 {
     .show-firefox-desktop-70 {
         display: inline-block;
+
+        &.mzp-c-cta-link {
+            display: inline;
+        }
     }
 
     .show-firefox-desktop-old {
@@ -192,6 +196,10 @@ body.state-fxa-supported-signed-in {
 .state-firefox-desktop-old {
     .show-firefox-desktop-old {
         display: inline-block;
+
+        &.mzp-c-cta-link {
+            display: inline;
+        }
     }
 
     .show-firefox-desktop-70 {
