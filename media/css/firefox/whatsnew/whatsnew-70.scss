@@ -172,25 +172,16 @@ body.state-fxa-supported-signed-in {
     }
 }
 
-.show-firefox-desktop-70 {
+.show-firefox-desktop-70, .show-firefox-desktop-old {
     display: none;
-
     &.mzp-c-button {
         display: none;
     }
 }
 
-.show-firefox-desktop-old {
-    display: none;
-}
-
 .state-firefox-desktop-70 {
     .show-firefox-desktop-70 {
-        display: inline;
-
-        &.mzp-c-button {
-            display: inline-block;
-        }
+        display: inline-block;
     }
 
     .show-firefox-desktop-old {
@@ -200,11 +191,7 @@ body.state-fxa-supported-signed-in {
 
 .state-firefox-desktop-old {
     .show-firefox-desktop-old {
-        display: inline;
-
-        &.mzp-c-button {
-            display: inline-block;
-        }
+        display: inline-block;
     }
 
     .show-firefox-desktop-70 {
