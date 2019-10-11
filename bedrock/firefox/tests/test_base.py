@@ -280,6 +280,22 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/beta/whatsnew-fx68.html']
 
+    @override_settings(DEV=True)
+    def test_fx_beta_70_0_whatsnew(self, render_mock):
+        """Should show beta 70 English template"""
+        req = self.rf.get('/en-US/firefox/whatsnew/')
+        self.view(req, version='70.0beta')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/beta/whatsnew-fx70-en.html']
+
+    @override_settings(DEV=True)
+    def test_fx_beta_70_0_whatsnew_non_locales(self, render_mock):
+        """Should show beta 70 fallback template"""
+        req = self.rf.get('/ru/firefox/whatsnew/')
+        self.view(req, version='70.0beta')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/beta/whatsnew-fx70.html']
+
     # end beta whatsnew tests
 
     # begin dev edition whatsnew tests

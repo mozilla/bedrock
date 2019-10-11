@@ -622,6 +622,15 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
                     template = 'firefox/whatsnew/beta/whatsnew-fx68-trailhead.html'
                 else:
                     template = 'firefox/whatsnew/beta/whatsnew-fx68.html'
+            elif version.startswith('70.'):
+                if locale in ['en-US', 'en-CA', 'en-GB']:
+                    template = 'firefox/whatsnew/beta/whatsnew-fx70-en.html'
+                elif locale == 'de':
+                    template = 'firefox/whatsnew/beta/whatsnew-fx70-de.html'
+                elif locale == 'fr':
+                    template = 'firefox/whatsnew/beta/whatsnew-fx70-fr.html'
+                else:
+                    template = 'firefox/whatsnew/beta/whatsnew-fx70.html'
             else:
                 template = 'firefox/whatsnew/index.html'
         elif locale == 'id':
