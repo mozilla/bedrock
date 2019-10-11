@@ -104,7 +104,7 @@
             </a>
           </li>
           <li>
-              <a class="mzp-c-cta-link" href="https://lockwise.firefox.com/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise">
+              <a class="mzp-c-cta-link" href="{{ url('firefox.lockwise.lockwise') }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise">
                 <img alt="" src="{{ static('protocol/img/logos/firefox/lockwise/logo-md.png') }}" height="40" width="40"><br>
                 {{ product_lockwise }}
               </a>
@@ -133,10 +133,10 @@
         <div class="mzp-c-menu-list mzp-t-cta mzp-t-download">
           <h5 class="mzp-c-menu-list-title">{{ get_browser }}</h5>
           <ul class="mzp-c-menu-list-list" id="menu-browsers">
-            <!--[if IE 9]>
+            <!--[if IE]>
               <li class="mzp-c-menu-list-item"><a href="{{ url('firefox.new') }}">{{ get_desktop }}</a></li>
             <![endif]-->
-            <!--[if gte IE 9]><!-->
+            <!--[if !IE]><!-->
               <li class="mzp-c-menu-list-item"><a href="{{ url('firefox.download.thanks') }}" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard">{{ get_desktop }}</a></li>
             <!--<![endif]-->
             <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('android', 'firefox_home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Browser for Android"> {{ get_android }}</a></li>
@@ -179,7 +179,7 @@
             <li class="mzp-c-menu-list-item"><a href="{{ lockwise_adjust_url('ios', 'firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Lockwise for iOS">{{ get_ios }}</a></li>
           </ul>
         </div>
-        <p><a class="mzp-c-cta-link" href="https://lockwise.firefox.com/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise Learn More">{{ lockwise_cta }}</a></p>
+        <p><a class="mzp-c-cta-link" href="{{ url('firefox.lockwise.lockwise') }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise Learn More">{{ lockwise_cta }}</a></p>
       {% endcall %}
     </div>
 
@@ -260,7 +260,7 @@
                 </a>
               </li>
               <li>
-                <a class="mzp-c-cta-link" href="https://lockwise.firefox.com/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise">
+                <a class="mzp-c-cta-link" href="{{ url('firefox.lockwise.lockwise') }}{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise">
                   <img alt="" src="{{ static('protocol/img/logos/firefox/lockwise/logo-md.png') }}" height="40" width="40"><br>
                   {{ product_lockwise }}
                 </a>
