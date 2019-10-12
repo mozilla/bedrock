@@ -4,9 +4,6 @@ module.exports = {
         'jasmine': true
     },
     extends: '@mozilla-protocol/eslint-config',
-    rules: {
-        'no-useless-escape': 1,
-    },
     /**
      * Provide a set of overrides for `gulpfile.js` in the root directory.
      * Ideally we want to extend @mozilla-protocol/eslint-config/index-node,
