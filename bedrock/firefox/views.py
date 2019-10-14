@@ -907,7 +907,13 @@ class FeaturesPrivateBrowsingView(BlogPostsView):
 
 
 def firefox_home(request):
-    return l10n_utils.render(request, 'firefox/home/index-quantum.html')
+    locale = l10n_utils.get_locale(request)
+
+    if lang_file_is_active('firefox/home-master', locale):
+        template_name = 'firefox/home/index-master.html'
+    else:
+        template_name = 'firefox/home/index-quantum.html'
+    return l10n_utils.render(request, template_name)
 
 
 def firefox_concerts(request):

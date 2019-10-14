@@ -151,19 +151,28 @@
   {% endif %}
 {%- endmacro %}
 
-{# Feature Card: https://protocol.mozilla.org/patterns/organisms/billboard.html #}
-{% macro feature_card(title, ga_title, image_url, class=None, link_url=None, link_cta=None, include_highres_image=False, aspect_ratio=None, heading_level=2) -%}
-<section class="mzp-c-card-feature {% if aspect_ratio %}{{ aspect_ratio }}{% endif %} {% if class %}{{ class }}{% endif %}">
-  <div class="mzp-c-card-feature-media-wrapper">
-    <div class="mzp-c-card-feature-media">
-      {% set image = image_url if include_highres_image else 'img/' + image_url %}
-      {% if include_highres_image %}
-        {{ high_res_img(image, {'alt': ''}) }}
-      {% else %}
-        <img src="{{ static(image) }}" alt="">
-      {% endif %}
-    </div>
+
+{# Feature Card: https://protocol.mozilla.org/patterns/molecules/feature-card.html #}
+{% macro feature_card_media(image_url, include_highres_image=False) %}
+<div class="mzp-c-card-feature-media-wrapper">
+  <div class="mzp-c-card-feature-media">
+    {% set image = image_url if include_highres_image else 'img/' + image_url %}
+    {% if include_highres_image %}
+      {{ high_res_img(image, {'alt': ''}) }}
+    {% else %}
+      <img src="{{ static(image) }}" alt="">
+    {% endif %}
   </div>
+</div>
+{% endmacro %}
+
+
+{# Feature Card: https://protocol.mozilla.org/patterns/molecules/feature-card.html #}
+{% macro feature_card(title, ga_title, image_url, class=None, link_url=None, link_cta=None, include_highres_image=False, aspect_ratio=None, heading_level=2, media_after=False) -%}
+<section class="mzp-c-card-feature {% if aspect_ratio %}{{ aspect_ratio }}{% endif %} {% if class %}{{ class }}{% endif %}">
+  {% if not media_after %}
+    {{ feature_card_media(image_url, include_highres_image) }}
+  {% endif %}
   <div class="mzp-c-card-feature-content">
     <div class="mzp-c-card-feature-content-container">
       <h{{ heading_level }} class="mzp-c-card-feature-title">{{ title }}</h{{ heading_level }}>
@@ -175,6 +184,9 @@
       {% endif %}
     </div>
   </div>
+  {% if media_after %}
+    {{ feature_card_media(image_url, include_highres_image) }}
+  {% endif %}
 </section>
 {%- endmacro %}
 

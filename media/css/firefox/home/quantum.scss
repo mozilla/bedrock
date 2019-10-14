@@ -2,827 +2,240 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../pebbles/includes/lib';
-@import 'includes/header';
-@import '../../pebbles/components/video-poster';
-@import '../../hubs/sections';
-@import '../../hubs/sub-nav';
-@import '../../quantum/common';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
 
-/* -------------------------------------------------------------------------- */
-// Common elements & variables
+@import '../../hubs/sub-nav-protocol';
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/feature-card';
+@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/components/call-out';
+@import '../../../protocol/css/components/modal';
 
-body {
-    overflow-x: hidden;
-}
 
-.section-cta {
-    a:link,
-    a:visited {
-        color: #000;
-        display: inline-block;
-        font-weight: bold;
-        margin: 0 0 20px;
-        text-decoration: underline;
-    }
+//* -------------------------------------------------------------------------- */
+// Page specific variables and over-rides
 
-    a:hover,
-    a:active,
-    a:focus {
-        text-decoration: none;
+main .mzp-l-content {
+    max-width: 400px;
+
+    @media #{$mq-md} {
+        max-width: $content-max;
     }
 }
 
-.page-section {
-    padding: 40px 0;
+//* -------------------------------------------------------------------------- */
+// Hero
+
+.mzp-c-hero {
     text-align: center;
+}
+
+.mzp-c-hero-desc {
+    @include text-display-xxl;
+    @include font-firefox;
+    font-weight: bold;
+    margin-bottom: $layout-md;
+
+    p {
+        margin-bottom: $spacing-lg;
+    }
+}
+
+.mzp-c-button-download-container {
+    margin-bottom: 0;
+}
+
+@media #{$mq-md} {
+    .mzp-c-hero.mzp-has-image {
+        align-items: center;
+        background-image: url('/media/img/firefox/home/quantum/product.svg'), url('/media/img/firefox/home/quantum/product-bg.svg');
+        background-position: left calc(50% + 348px) top 72px, top -110px left 48vw;
+        background-repeat: no-repeat;
+        background-size: 593px auto, 1055px auto;
+        display: flex;
+        min-height: 610px;
+        text-align: left;
+        box-sizing: border-box;
+    }
+
+    .mzp-l-content {
+        width: 100%;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Feature cards
+
+.mzp-c-card-feature {
+    .mzp-c-card-feature-media-wrapper,
+    .mzp-c-card-feature-content {
+        min-width: 0; // because of https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
+    }
+
+    @media #{$mq-lg} {
+        .mzp-c-card-feature-title {
+            @include text-display-lg;
+        }
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+// Trio
+
+.c-trio {
 
     h2 {
-        @include font-size-level3;
-        line-height: 1.5;
-
-        &.section-title {
-            padding-top: 30px;
-            position: relative;
-
-            &:before {
-                background: #000;
-                border-radius: 5px;
-                content: '';
-                height: 5px;
-                left: 50%;
-                margin-left: -32px;
-                position: absolute;
-                top: 0;
-                width: 64px;
-            }
-        }
+        @include text-display-lg;
+        margin-top: $layout-lg;
+        text-align: center;
     }
 
     h3 {
-        @include font-size-level4;
-    }
-
-    p {
-        line-height: 1.8;
-    }
-
-    @media #{$mq-tablet} {
-        padding: 60px 0;
-    }
-
-    @media #{$mq-desktop} {
-        padding: 80px 0;
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-// Key features section
-
-.key-features-section {
-
-    h2 {
-        margin-bottom: 20px;
-    }
-
-    p {
-        margin: 0 auto 40px;
-        max-width: 30em;
-    }
-
-    a:link,
-    a:visited {
-        color: #000;
-        font-weight: bold;
-        text-decoration: underline;
-    }
-
-    a:hover,
-    a:active,
-    a:focus {
-        text-decoration: none;
-    }
-
-    .key-feature {
-        margin: 40px 0 0;
-
-        &:first-child {
-            margin-top: 0;
-        }
-
-        .content {
-            padding: 0;
-        }
-
-        .key-feature-container {
-            background-color: #10fcb2;
-            background-image: linear-gradient(to right, #00feff 0%, #10fcb2 67%, #24f954 100%);
-            padding: 40px 20px;
-        }
-    }
-
-    .key-feature-media {
-
-        &.video {
-            background: #000 url('/media/img/firefox/home/quantum/quantum-vs-chrome-poster.png') top left no-repeat;
-            @include background-size(cover);
-            box-shadow: 2px 3px 8px 0 rgba(0, 0, 0, .2);
-            margin: 0 auto;
-            max-width: 645px;
-
-            video {
-                display: block;
-            }
-        }
-
-        &.image img {
-            box-shadow: 2px 3px 8px 0 rgba(0, 0, 0, .2);
-        }
-    }
-
-    @media #{$mq-desktop} {
-        text-align: left;
-
-        h2.section-title:before {
-            left: 0;
-            margin-left: 0;
-        }
-
-        p {
-            margin-bottom: 0;
-        }
-
-        .key-feature {
-            margin: 80px 0;
-
-            .content {
-                padding: 0 85px;
-            }
-
-            .key-feature-container {
-                @include clearfix;
-                padding: 60px 70px;
-            }
-
-            .key-feature-content {
-                width: 38%;
-            }
-
-            .key-feature-media {
-                width: 55%;
-            }
-
-            &:nth-child(odd) {
-                background-image: linear-gradient(to right, transparent 0%, transparent 50%, #24f954 50%, #24f954 100%);
-
-                .key-feature-container {
-                    background-image: linear-gradient(to right, #00feff 0%, #10fcb2 67%, #24f954 100%);
-                }
-
-                .key-feature-content {
-                    float: left;
-                }
-
-                .key-feature-media {
-                    float: right;
-                }
-            }
-
-            &:nth-child(even) {
-                background-image: linear-gradient(to left, transparent 0%, transparent 50%, #24f954 50%, #24f954 100%);
-
-                .key-feature-container {
-                    background-image: linear-gradient(to left, #00feff 0%, #10fcb2 67%, #24f954 100%);
-                }
-
-                .key-feature-content {
-                    float: right;
-                }
-
-                .key-feature-media {
-                    float: left;
-                }
-            }
-
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-    }
-
-    @media #{$mq-desktop-wide} {
-
-        .key-feature {
-            margin: 140px 0 240px;
-
-            .key-feature-media {
-                height: 400px;
-                margin: -100px 0;
-                width: 645px;
-
-                &:nth-child(odd) {
-                    margin-right: -20px;
-                }
-
-                &:nth-child(even) {
-                    margin-left: -20px;
-                }
-
-                &.video {
-                    height: 364px;
-                    margin: -40px 0;
-                }
-
-                .moz-video-container {
-                    width: 100%;
-                    height: 100%;
-                    position: relative;
-
-                    .video-container {
-                        position: absolute;
-                        left: 0;
-                        bottom: 0;
-                    }
-                }
-            }
-        }
-    }
-}
-
-html[dir="rtl"] .key-features-section {
-
-    @media #{$mq-desktop} {
-        text-align: right;
-
-        h2.section-title:before {
-            left: auto;
-            right: 0;
-        }
-
-        .key-feature {
-
-            &:nth-child(odd) {
-
-                .key-feature-content {
-                    float: right;
-                }
-
-                .key-feature-media {
-                    float: left;
-                }
-            }
-
-            &:nth-child(even) {
-
-                .key-feature-content {
-                    float: left;
-                }
-
-                .key-feature-media {
-                    float: right;
-                }
-            }
-        }
-    }
-
-    @media #{$mq-desktop-wide} {
-        .key-feature .key-feature-media {
-            &:nth-child(odd) {
-                margin-right: 0;
-                margin-left: -20px;
-            }
-
-            &:nth-child(even) {
-                margin-left: 0;
-                margin-right: -20px;
-            }
-        }
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-// Switch from Chrome to Firefox section
-
-.switch-section {
-    margin-top: -40px;
-
-    h2 {
-        margin-bottom: 20px;
-
-        a:link,
-        a:visited {
-            color: inherit;
-            text-decoration: none;
-        }
-    }
-
-    p {
-        margin: 0 auto 40px;
-        max-width: 30em;
-    }
-
-    a:link,
-    a:visited {
-        color: #000;
-        display: block;
-        font-weight: bold;
-        margin: 20px 0;
-        text-decoration: underline;
-    }
-
-    a:hover,
-    a:active,
-    a:focus {
-        text-decoration: none;
-    }
-
-    .section-content {
-        margin-bottom: 40px;
-    }
-
-    .section-media a {
-        display: block;
-        margin: 0 auto;
-        max-width: 500px;
-    }
-
-    @media #{$mq-desktop} {
-        margin-top: 0;
-        text-align: left;
-
-        h2.section-title:before {
-            left: 0;
-            margin-left: 0;
-        }
-
-        p {
-            margin-bottom: 0;
-        }
-
-        .section-content {
-            float: right;
-            width: 38%;
-        }
-
-        .section-media {
-            float: left;
-            width: 55%;
-
-            a {
-                margin: 0;
-                max-width: none;
-            }
-        }
-    }
-}
-
-html[dir="rtl"] .switch-section {
-    @media #{$mq-desktop} {
-        text-align: right;
-
-        h2.section-title:before {
-            left: auto;
-            right: 0;
-        }
-
-        .section-content {
-            float: left;
-        }
-
-        .section-media {
-            float: right;
-        }
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-// privacy section
-
-.privacy-section {
-    background-color: #c42482;
-    background-image: linear-gradient(222deg, #ff272d 0%, #c42482 33%, #ab217f 47%, #671878 84%, #4a1475 100%);
-    color: #fff;
-
-    h2 {
-        margin-bottom: 20px;
-
-        &.section-title:before {
-            background: #fff;
-        }
-    }
-
-    h3 {
-        font-weight: bold;
-        margin-bottom: 20px;
-
-        a:link {
-            text-decoration: none;
-        }
-    }
-
-    header {
-        margin-bottom: 60px;
-    }
-
-    .tagline {
-        @include font-size-level4;
-        margin-bottom: 40px;
-    }
-
-    ul li {
-        border-bottom: 1px solid #fff;
-        margin: 0 auto 40px;
-        max-width: 30em;
-        padding: 0 0 20px;
-
-        h3 {
-            background: url('/media/img/firefox/home/quantum/icon-sprite.svg') no-repeat;
-        }
-
-        &.private-browsing h3 {
-            background-position: center top -752px;
-            min-height: 19px;
-            padding-top: 40px;
-        }
-
-        &.tracking-protection h3 {
-            background-position: center top -1300px;
-            min-height: 32px;
-            padding-top: 50px;
-        }
-
-        &.faster-loading h3 {
-            background-position: center top -871px;
-            min-height: 42px;
-            padding-top: 60px;
-        }
-
-        &:last-child {
-            border-bottom: none;
-        }
-
-        p {
-            max-width: 20em;
-            margin: 0  auto 1.25em;
-        }
-    }
-
-    a:link,
-    a:visited {
-        color: #fff;
-        font-weight: bold;
-        text-decoration: underline;
-    }
-
-    a:hover,
-    a:active,
-    a:focus {
-        text-decoration: none;
-    }
-
-    img {
-        box-shadow: 2px 4px 8px 0 rgba(0, 0, 0, .1);
-        margin-bottom: 20px;
-    }
-
-    @media #{$mq-desktop} {
-        margin-bottom: 200px;
-        position: relative;
-        text-align: left;
-
-        h2.section-title:before {
-            left: 0;
-            margin-left: 0;
-        }
-
-        ul {
-            float: left;
-            width: 45%;
-
-            li {
-                margin: 0 0 40px;
-                max-width: none;
-                padding: 0 0 20px 60px;
-
-                h3 {
-                    margin-left: -60px;
-                }
-
-                &.private-browsing h3,
-                &.tracking-protection h3,
-                &.faster-loading h3 {
-                    padding: 0 0 0 60px;
-                }
-
-                &.private-browsing h3 {
-                    background-position: left -20px top -752px;
-                }
-
-                &.tracking-protection h3 {
-                    background-position: left -20px top -1300px;
-                }
-
-                &.faster-loading h3 {
-                    background-position: left -20px top -871px;
-                }
-
-                p {
-                    margin: 0  0 1.25em;
-                }
-            }
-        }
-
-        .privacy-section-media {
-            float: right;
-            width: 50%;
-        }
-    }
-
-    @media #{$mq-desktop-wide} {
-        .privacy-section-media img {
-            margin: 0 0 40px 60px;
-
-            &:nth-child(2) {
-                margin-left: 120px;
-            }
-        }
-    }
-}
-
-html[dir="rtl"] .privacy-section {
-
-    @media #{$mq-desktop} {
-        text-align: right;
-
-        h2.section-title:before {
-            left: auto;
-            right: 0;
-        }
-
-        ul {
-            float: right;
-
-            li {
-                padding: 0 60px 20px 0;
-
-                h3 {
-                    margin-left: 0;
-                    margin-right: -60px;
-                }
-
-                &.private-browsing h3,
-                &.tracking-protection h3,
-                &.faster-loading h3 {
-                    padding: 0 60px 0;
-                }
-
-                &.private-browsing h3 {
-                    background-position: right -20px top -752px;
-                }
-
-                &.tracking-protection h3 {
-                    background-position: right -20px top -1300px;
-                }
-
-                &.faster-loading h3 {
-                    background-position: right -20px top -871px;
-                }
-            }
-        }
-
-        .privacy-section-media {
-            float: left;
-        }
-    }
-
-    @media #{$mq-desktop-wide} {
-        .privacy-section-media img {
-            margin: 0 60px 40px 0;
-
-            &:nth-child(2) {
-                margin-left: 0;
-                margin-right: 120px;
-            }
-        }
-    }
-}
-
-
-/* -------------------------------------------------------------------------- */
-// Customization section
-
-.customization-section {
-
-    h2 {
-        margin-bottom: 40px;
-    }
-
-    h3 {
-        font-weight: bold;
-        margin-bottom: 10px;
-
-        a:link,
-        a:visited {
-            color: inherit;
-            text-decoration: none;
-        }
+        @include text-display-sm;
     }
 
     ul {
-        margin-bottom: 0;
+        @include clearfix();
+        margin-top: $layout-md;
+        margin-bottom: $layout-lg;
 
-        li:last-child {
-            margin-bottom: 0;
-
-            p {
-                margin-bottom: 0;
-            }
+        @media #{$mq-md} {
+            margin-top: $layout-xl;
+            margin-bottom: $layout-xl;
         }
     }
 
-    ul li {
-        margin: 40px 0;
-        padding-top: 120px;
-        position: relative;
+    li {
+        background: top left no-repeat;
+        margin-bottom: $layout-sm;
+        padding-top: $layout-md;
 
-        &:before {
-            background: #ffe900 url('/media/img/firefox/home/quantum/icon-sprite.svg') center 0 no-repeat;
-            background: url('/media/img/firefox/home/quantum/icon-sprite.svg') center 0 no-repeat,
-                        linear-gradient(to bottom, #ffe900 0%, #ff9400 100%) top left;
-            border-radius: 100%;
-            content: '';
-            height: 100px;
-            left: 50%;
-            margin-left: -50px;
-            position: absolute;
-            top: 0;
-            width: 100px;
+        &.t-private {
+            background-image: url('/media/img/firefox/home/quantum/icon-private.svg');
         }
-
-        &.extensions:before {
-            background-position: center top -284px;
-            background-position: center top -284px, top left;
+        &.t-tracking {
+            background-image: url('/media/img/firefox/home/quantum/icon-tracking.svg');
         }
-
-        &.themes:before {
-            background-position: center top -984px;
-            background-position: center top -984px, top left;
+        &.t-faster {
+            background-image: url('/media/img/firefox/home/quantum/icon-faster.svg');
         }
-
-        &.toolbar:before {
-            background-position: center top -1128px;
-            background-position: center top -1128px, top left;
+        &.t-extensions {
+            background-image: url('/media/img/firefox/home/quantum/icon-extensions.svg');
         }
-    }
-
-    @media #{$mq-tablet} {
-        ul {
-            display: flex;
-            flex-wrap: wrap;
-
-            li {
-                margin: 40px auto 0 auto;
-                padding-top: 160px;
-                width: 30%;
-
-                p {
-                    margin-bottom: 0;
-                }
-            }
+        &.t-themes {
+            background-image: url('/media/img/firefox/home/quantum/icon-theme.svg');
         }
-    }
-}
-
-.customization-section {
-    margin-top: 100px;
-
-    @supports (display: grid) {
-        @media #{$mq-desktop} {
-            ul {
-                display: grid;
-                grid-gap: 100px;
-                grid-template-columns: repeat(3, 1fr);
-
-                li {
-                    margin: 40px 0 0 0;
-                    width: auto;
-                }
-            }
-        }
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-// Sync section
-
-.sync-section {
-    background: #ededf0;
-    padding-bottom: 0;
-
-    h2 {
-        margin-bottom: 40px;
-    }
-
-    @media #{$mq-desktop} {
-        position: relative;
-
-        h2.section-title:before {
-            left: 0;
-            margin-left: 0;
-        }
-
-        .sync-section-content {
-            float: right;
-            text-align: left;
-            width: 50%;
-        }
-
-        .sync-section-image {
-            float: left;
-            width: 50%;
-
-            img {
-                height: 571px;
-                margin: -140px 0 -140px -420px;
-                max-width: none;
-                width: 788px;
-            }
-        }
-    }
-
-    @media #{$mq-desktop-wide} {
-        .sync-section-image img {
-            margin-left:  -300px;
-        }
-    }
-}
-
-html[dir="rtl"] .sync-section {
-
-    @media #{$mq-desktop} {
-
-        h2.section-title:before {
-            left: auto;
-            right: 0;
-        }
-
-        .sync-section-content {
-            text-align: right;
-        }
-    }
-}
-
-
-/* -------------------------------------------------------------------------- */
-// Secondary download section
-
-.secondary-download-section {
-    background-color: #0060df;
-    background-image: linear-gradient(to bottom, #0060df 0%, #009cff 50%, #00abff 100%);
-    color: #fff;
-    position: relative;
-
-    &:before {
-        background: transparent url('/media/img/firefox/home/quantum/wave.svg') top center no-repeat;
-        @include background-size(3000px 151px);
-        content: '';
-        display: block;
-        height: 151px;
-        left: 0;
-        position: absolute;
-        top: -5px;
-        width: 100%;
-    }
-
-    .content {
-        margin-top: -70px;
-    }
-
-    h2 {
-        @include at2x('/media/img/logos/firefox/quantum/logo-xl.png', 200px, 200px);
-        @include font-size-level2;
-        background-position: top center;
-        background-repeat: no-repeat;
-        padding-top: 220px;
-
-        a:link,
-        a:visited {
-            color: inherit;
-            text-decoration: none;
+        &.t-toolbar {
+            background-image: url('/media/img/firefox/home/quantum/icon-toolbar.svg');
         }
     }
 
     p {
         margin-bottom: 0;
     }
+}
 
-    .download-button {
-        margin-top: 40px;
+.t-privacy {
+    background-color: $color-purple-90;
+    color: #fff;
+    margin-bottom: $layout-xl;
+
+    h2 {
+        color: $color-pink-50;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    @media #{$mq-desktop} {
-        .content {
-            margin-top: -110px;
+    h3 {
+        color: #fff;
+    }
+}
+
+.t-custom {
+    h2 {
+        margin-top: $layout-sm;
+    }
+}
+
+@media #{$mq-md} {
+    .c-trio li {
+        @include bidi(((float, left, right),));
+        @include bidi(((margin-left, $layout-lg, margin-right, 0),));
+        padding-top: $layout-lg;
+        margin-bottom: 0;
+        width: calc(#{100% / 3} - (#{$layout-lg} - (#{$layout-lg} / 3)));
+
+        &:first-child {
+            @include bidi(((margin-left, 0, margin-right, 0),));
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Comparison feature cards
+
+.t-compare {
+    background-color: $color-gray-20;
+    padding-top: $layout-md;
+
+    video {
+        max-width: 480px;
+    }
+}
+
+.t-sync img {
+    max-width: 462px;
+}
+.t-smooth img {
+    max-width: 468px;
+}
+.t-switch img {
+    max-width: 553px;
+}
+
+@media #{$mq-md} {
+    .t-compare {
+        padding-top: $layout-lg;
+    }
+}
+
+@media #{$mq-lg} {
+    .t-compare {
+        padding-top: $layout-xl;
+    }
+}
+
+
+//* -------------------------------------------------------------------------- */
+//
+
+.mzp-c-call-out-compact.t-you {
+    background-color: $color-purple-90;
+
+    .mzp-c-call-out-title {
+        color: $color-orange-50;
+        margin-bottom: 0;
+    }
+
+    @media #{$mq-lg} {
+        background: $color-off-black;
+        padding-top: $layout-sm;
+
+        .mzp-l-content {
+            max-width: $content-max;
+        }
+
+        .mzp-c-call-out-container {
+            &:before {
+                margin-bottom: $layout-sm;
+            }
+        }
+
+        .mzp-c-call-out-cta {
+            justify-content: flex-start;
         }
     }
 }

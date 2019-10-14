@@ -1,10 +1,11 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
- # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
 {% add_lang_files "firefox/hub/home-quantum" "firefox/shared" %}
 
-{% extends "firefox/base/base-pebbles.html" %}
+{% from "macros-protocol.html" import feature_card, hero, call_out_compact with context %}
+{% extends "firefox/base/base-protocol.html" %}
 
 {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
 {% if LANG == 'en-CA' %}
@@ -14,6 +15,7 @@
 {% else %}
   {% set title_suffix = 'Firefox' %}
 {% endif %}
+
 {% block page_title %}{{ _('The new, fast browser for Mac, PC and Linux') }} | {{ title_suffix }}{% endblock %}
 {% block page_desc %}{{ _('Responsive engine, less memory usage and packed with features. Download for desktop now.') }}{% endblock %}
 
@@ -22,165 +24,121 @@
 {% endblock %}
 
 {% block extrahead %}
-  <!--[if IE 9]><!-->
+  <!--[if IE 9]>
     {{ css_bundle('firefox-home-ie9') }}
-  <!--<![endif]-->
+  <![endif]-->
 {% endblock %}
 
 {% block body_id %}firefox-home{% endblock %}
+{% block body_class %}{{ super() }} mzp-t-firefox{% endblock %}
 
 {% block content %}
 <main role="main">
-  <header class="page-section main-header-section">
-    <div class="content">
-      <div class="header-content">
-      {% if LANG.startswith('en') %}
-        <h1>The new <strong>Firefox</strong></h1>
-      {% else %}
-        <h1>{{ _('The New Firefox') }}</h1>
-      {% endif %}
-        <h2>{{ _('Meet Firefox Quantum.') }}</h2>
-        <h3>{{ _('Fast for good.') }}</h3>
-
-      {{ download_firefox(dom_id='download-intro', alt_copy=_('Download now'), download_location='primary cta') }}
-      </div>
-      <div class="header-image">
-        {{ high_res_img('firefox/home/quantum/hero-laptop.png', {'alt': '', 'width': '903', 'height': '509'}) }}
+  <header class="mzp-c-hero mzp-t-firefox mzp-has-image">
+    <div class="mzp-l-content">
+      <div class="mzp-c-hero-body">
+        <h1 class="mzp-c-hero-title">{{ high_res_img('logos/firefox/quantum/logo-word-hor-sm.png', {'alt': 'Firefox', 'width': '216', 'height': '41'}) }}</h1>
+        <div class="mzp-c-hero-desc">
+          <p>{{ _('Fast for good.') }}</p>
+        </div>
+        <div class="mzp-c-hero-cta">
+          {{ download_firefox(dom_id='download-intro', alt_copy=_('Download now'), download_location='primary cta') }}
+        </div>
       </div>
     </div>
   </header>
-
-  <section class="page-section privacy-section" data-scroll-tracking="Seriously Private Browsing">
-    <div class="content">
-      <header>
-        <h2 class="section-title">{{ _('Seriously Private Browsing') }}</h2>
-        <p class="tagline">{{ _('The most powerful private browsing mode with added tracking protection.') }}</p>
-      </header>
-
+  <section class="mzp-t-dark c-trio t-privacy" data-scroll-tracking="Seriously Private Browsing">
+    <div class="mzp-l-content">
+      <h2>{{ _('Seriously Private Browsing') }}</h2>
       <ul>
-        <li class="private-browsing">
+        <li class="t-private">
           <h3><a href="{{ url('firefox.features.private-browsing') }}">{{ _('Private Browsing') }}</a></h3>
           <p>
-          {% trans %}
-            Firefox blocks online trackers while you browse and won’t remember
-            your history after you’re done.
-          {% endtrans %}
+            {% trans %}
+              Firefox blocks online trackers while you browse and won’t remember
+              your history after you’re done.
+            {% endtrans %}
           </p>
         </li>
-        <li class="tracking-protection">
+        <li class="t-tracking">
           <h3><a href="{{ url('firefox.features.adblocker') }}">{{ _('Tracking Protection') }}</a></h3>
           <p>
-          {% trans %}
-            Some ads have hidden trackers that follow you online. Rude. We know.
-            That’s why our powerful tool stops them cold.
-          {% endtrans %}
+            {% trans %}
+              Some ads have hidden trackers that follow you online. Rude. We know.
+              That’s why our powerful tool stops them cold.
+            {% endtrans %}
           </p>
         </li>
-        <li class="faster-loading">
+        <li class="t-faster">
           <h3>{{ _('Faster Page Loading') }}</h3>
           <p>
-          {% trans url='https://blog.mozilla.org/firefox/de/die-studie-zum-schutz-vor-aktivitatsverfolgung/' if LANG == 'de' else 'https://blog.mozilla.org/firefox/tracking-protection-study/' %}
-            By blocking some ads and scripts that bog down browsing,
-            <a href="{{ url }}">pages load up to 44% faster</a>. Now that’s a win-win.
-          {% endtrans %}
+            {% trans url='https://blog.mozilla.org/firefox/de/die-studie-zum-schutz-vor-aktivitatsverfolgung/' if LANG == 'de' else 'https://blog.mozilla.org/firefox/tracking-protection-study/' %}
+              By blocking some ads and scripts that bog down browsing,
+              <a href="{{ url }}">pages load up to 44% faster</a>. Now that’s a win-win.
+            {% endtrans %}
           </p>
         </li>
       </ul>
-
-      <div class="privacy-section-media is-js-dependent">
-        {{ lazy_img(image_url='firefox/home/quantum/private-browsing.png', placeholder_url='firefox/home/quantum/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '502', 'height': '325'}) }}
-        {{ lazy_img(image_url='firefox/home/quantum/tracking-protection.png', placeholder_url='firefox/home/quantum/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '503', 'height': '305'}) }}
-      </div>
     </div>
   </section>
-
-  <section class="page-section sync-section" data-scroll-tracking="Sync your devices">
-    <div class="content">
-      <div class="sync-section-content">
-        {% if l10n_has_tag('firefox_sync_dec2018') %}
-          <h2 class="section-title">{{ _('Sync all your devices with a Firefox Account') }}</h2>
+  <section>
+    {% if l10n_has_tag('firefox_sync_dec2018') %}
+    <div class="mzp-l-content">
+      <div data-scroll-tracking="Sync your devices">
+        {% call feature_card(
+          title=_('Sync all your devices with a Firefox Account'),
+          image_url='firefox/home/quantum/desktop-account.svg',
+          aspect_ratio='mzp-has-aspect-1-1',
+          class='mzp-l-card-feature-right-half mzp-t-firefox t-sync',
+          link_url=url('firefox.accounts'),
+          link_cta=_('Learn more about Firefox Accounts')
+          ) %}
           <p>{{ _('Take your privacy, passwords, and bookmarks with you wherever you go.') }}</p>
-          <div class="section-cta">
-            <a href="{{ url('firefox.accounts') }}">{{ _('Learn more about Firefox Accounts') }}</a>
-          </div>
-        {% else %}
-          <h2 class="section-title"><a href="{{ url('firefox.accounts') }}">{{ _('Sync your devices') }}</a></h2>
-          <p>
-          {% trans %}
-            Seamlessly access passwords, bookmarks and more. Plus, use our Send Tabs feature
-            to instantly share open tabs between desktop, mobile and tablet.
-          {% endtrans %}
-          </p>
-        {% endif %}
+        {% endcall %}
       </div>
-
-      <div class="sync-section-image is-js-dependent">
-        {{ lazy_img(image_url='firefox/home/quantum/sync.png', placeholder_url='firefox/home/quantum/spacer.gif', include_highres_image=True, optional_attributes={'alt': _('Image of Gif shared from desktop to mobile using the Send Tab feature.'), 'width': '788', 'height': '571'}) }}
+    </div>
+    {% endif %}
+    <div class="mzp-l-content">
+      <div class="c-trio t-custom" data-scroll-tracking="Customization Features">
+        <h2>{{ _('Customization Features') }}</h2>
+        <ul>
+          <li class="t-extensions">
+            <h3><a href="https://addons.mozilla.org/firefox/extensions/">{{ _('Extensions') }}</a></h3>
+            <p>
+              {# L10n: Locales can substitute their most popular extensions OR they can use "Personalize Firefox with thousands of extensions like password managers, ad blockers and more." #}
+              {% trans %}
+                Customize Firefox with thousands of extensions like LastPass,
+                uBlock Origin, Evernote and more.
+              {% endtrans %}
+            </p>
+          </li>
+          <li class="t-themes">
+            <h3><a href="https://addons.mozilla.org/firefox/themes/">{{ _('Themes') }}</a></h3>
+            <p>
+              {% trans %}
+                Make over Firefox to suit your mood! Choose a new look from
+                our theme categories or create your own.
+              {% endtrans %}
+            </p>
+          </li>
+          <li class="t-toolbar">
+            <h3><a href="https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars">{{ _('Toolbar') }}</a></h3>
+            <p>
+              {% trans %}
+                Set up Firefox your way. Drag and drop features in and out
+                of your toolbar for easy access.
+              {% endtrans %}
+            </p>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
-
-  <section class="page-section customization-section" data-scroll-tracking="Customization Features">
-    <div class="content">
-      <h2 class="section-title">{{ _('Customization Features') }}</h2>
-
-      <ul>
-        <li class="extensions">
-          <h3><a href="https://addons.mozilla.org/firefox/extensions/">{{ _('Extensions') }}</a></h3>
-          <p>
-          {# L10n: Locales can substitute their most popular extensions OR they can use "Personalize Firefox with thousands of extensions like password managers, ad blockers and more." #}
-          {% trans %}
-            Customize Firefox with thousands of extensions like LastPass,
-            uBlock Origin, Evernote and more.
-          {% endtrans %}
-          </p>
-        </li>
-        <li class="themes">
-          <h3><a href="https://addons.mozilla.org/firefox/themes/">{{ _('Themes') }}</a></h3>
-          <p>
-          {% trans %}
-            Make over Firefox to suit your mood! Choose a new look from
-            our theme categories or create your own.
-          {% endtrans %}
-          </p>
-        </li>
-        <li class="toolbar">
-          <h3><a href="https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars">{{ _('Toolbar') }}</a></h3>
-          <p>
-          {% trans %}
-            Set up Firefox your way. Drag and drop features in and out
-            of your toolbar for easy access.
-          {% endtrans %}
-          </p>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="page-section key-features-section">
-    <div class="key-feature" data-scroll-tracking="2x Faster">
-      <div class="content">
-        <div class="key-feature-container">
-          <div class="key-feature-content">
-          {% if l10n_has_tag('update_faster_copy') %}
-            <h2 class="section-title">{{ _('Now 2x faster') }}</h2>
-            <p>
-            {% trans url='https://blog.mozilla.org/firefox/de/firefox-quantum-superschnell-und-schont-den-speicher/' if LANG == 'de' else 'https://blog.mozilla.org/firefox/quantum-performance-test/' %}
-              Crazy <a href="{{ url }}">powerful browser engine</a>? Check. Less time waiting around for pages to load?
-              Also, check. Firefox Quantum is twice as fast as Firefox was before.
-            {% endtrans %}
-            </p>
-          {% else %}
-            <h2 class="section-title">{{ _('2x Faster') }}</h2>
-            <p>
-            {% trans url='https://blog.mozilla.org/firefox/de/firefox-quantum-superschnell-und-schont-den-speicher/' if LANG == 'de' else 'https://blog.mozilla.org/firefox/quantum-performance-test/' %}
-              Crazy <a href="{{ url }}">powerful browser engine</a>? Check. Less time waiting around for pages to load?
-              Also, check. Get the best Firefox yet.
-            {% endtrans %}
-            </p>
-          {% endif %}
-          </div>
-          <div class="key-feature-media video">
+  <section class="t-compare">
+    <div class="mzp-l-content">
+      <section data-scroll-tracking="2x Faster" class="mzp-c-card-feature mzp-l-card-feature-left-half mzp-t-firefox">
+        <div class="mzp-c-card-feature-media-wrapper">
+          <div class="mzp-c-card-feature-media">
             <video preload="none" controls playsinline poster="{{ static('img/firefox/home/quantum/quantum-vs-chrome-poster.png') }}" data-ga-label="Quantum vs Chrome Video">
               <source src="https://assets.mozilla.net/video/firefox-home/quantum-vs-chrome.webm" type="video/webm">
               <source src="https://assets.mozilla.net/video/firefox-home/quantum-vs-chrome.ogv" type="video/ogg; codecs='theora, vorbis'">
@@ -189,66 +147,83 @@
                 <img src="{{ static('img/firefox/home/quantum/quantum-vs-chrome-poster.png') }}" alt="">
               </a>
             </video>
-          </div>{#-- /.key-feature-media --#}
-        </div>{#-- /.key-feature-content --#}
-      </div>{#-- /.content --#}
-    </div>
-
-    <div class="key-feature" data-scroll-tracking="30% lighter than chrome">
-      <div class="content">
-        <div class="key-feature-container">
-          <div class="key-feature-content">
-            <h2 class="section-title">{{ _('30% lighter than Chrome') }}</h2>
-            <p>
-            {% trans url='https://blog.mozilla.org/firefox/de/firefox-quantum-superschnell-und-schont-den-speicher/' if LANG == 'de' else 'https://blog.mozilla.org/firefox/quantum-performance-test/' %}
-              <a href="{{ url }}">Less memory usage</a> means more space for your computer to keep running smoothly.
-              Your other programs will thank you.
-            {% endtrans %}
+          </div>
+        </div>
+        <div class="mzp-c-card-feature-content">
+          <div class="mzp-c-card-feature-content-container">
+            {% if l10n_has_tag('update_faster_copy') %}
+            <h2 class="mzp-c-card-feature-title">{{ _('Now 2x faster') }}</h2>
+            <p class="mzp-c-card-feature-desc">
+              {% trans url='https://blog.mozilla.org/firefox/de/firefox-quantum-superschnell-und-schont-den-speicher/' if LANG == 'de' else 'https://blog.mozilla.org/firefox/quantum-performance-test/' %}
+                Crazy <a href="{{ url }}">powerful browser engine</a>? Check. Less time waiting around for pages to load?
+                Also, check. Firefox Quantum is twice as fast as Firefox was before.
+              {% endtrans %}
             </p>
-          </div>
-          <div class="key-feature-media image is-js-dependent">
-            {{ lazy_img(image_url='firefox/home/quantum/less-memory.png', placeholder_url='firefox/home/quantum/spacer.gif', include_highres_image=True, optional_attributes={'alt': '', 'width': '645', 'height': '400'}) }}
+            {% else %}
+            <h2 class="mzp-c-card-feature-title">{{ _('2x Faster') }}</h2>
+            <p class="mzp-c-card-feature-desc">
+              {% trans url='https://blog.mozilla.org/firefox/de/firefox-quantum-superschnell-und-schont-den-speicher/' if LANG == 'de' else 'https://blog.mozilla.org/firefox/quantum-performance-test/' %}
+                Crazy <a href="{{ url }}">powerful browser engine</a>? Check. Less time waiting around for pages to load?
+                Also, check. Get the best Firefox yet.
+              {% endtrans %}
+            </p>
+            {% endif %}
           </div>
         </div>
+      </section>
+    </div>
+    <div class="mzp-l-content">
+      <div data-scroll-tracking="30% lighter than chrome">
+        {% call feature_card(
+          title= _('30% lighter than Chrome'),
+          image_url='firefox/home/quantum/desktop-smooth.svg',
+          aspect_ratio='mzp-has-aspect-1-1',
+          class='mzp-l-card-feature-right-half mzp-t-firefox t-smooth',
+          link_url='https://blog.mozilla.org/firefox/quantum-performance-test/',
+          link_cta=_('Learn More')
+        ) %}
+        <p>
+          {% trans url='https://blog.mozilla.org/firefox/de/firefox-quantum-superschnell-und-schont-den-speicher/' if LANG == 'de' else 'https://blog.mozilla.org/firefox/quantum-performance-test/' %}
+            <a href="{{ url }}">Less memory usage</a> means more space for your computer to keep running smoothly.
+            Your other programs will thank you.
+          {% endtrans %}
+        </p>
+        {% endcall %}
+      </div>
+    </div>
+    <div class="mzp-l-content">
+      <div data-scroll-tracking="Switch from Chrome to Firefox in just a few minutes">
+        {% if l10n_has_tag('switch_cta_021218') %}
+          {% set switch_title = _('Switch from Chrome to Firefox in just a few minutes') %}
+          {% set switch_desc =_('Switching to Firefox is fast, easy and risk-free. Firefox imports your bookmarks, autofills, passwords and preferences from Chrome.') %}
+        {% else %}
+          {% set switch_title = _('Moving browsers? We got you.') %}
+          {% set switch_desc =_('Instantly import your online info and favorites from any other browser.') %}
+        {% endif %}
+        {% call feature_card(
+          title=switch_title,
+          image_url='firefox/home/quantum/desktop-change.png',
+          include_highres_image=True,
+          aspect_ratio='mzp-has-aspect-1-1',
+          class='mzp-l-card-feature-left-half mzp-t-firefox t-switch',
+          link_url=url('firefox.switch'),
+          link_cta=_('Learn More')
+          ) %}
+          <p>{{ switch_desc }}</p>
+        {% endcall %}
       </div>
     </div>
   </section>
-
-  <section class="page-section switch-section" data-scroll-tracking="Switch from Chrome to Firefox in just a few minutes">
-    <div class="content">
-      <div class="section-content">
-      {% if l10n_has_tag('switch_cta_021218') %}
-        <h2 class="section-title"><a href="{{ url('firefox.switch') }}">{{ _('Switch from Chrome to Firefox in just a few minutes') }}</a></h2>
-        <p>{{ _('Switching to Firefox is fast, easy and risk-free. Firefox imports your bookmarks, autofills, passwords and preferences from Chrome.') }}</p>
-      {% else %}
-        <h2 class="section-title"><a href="{{ url('firefox.switch') }}">{{ _('Moving browsers? We got you.') }}</a></h2>
-        <p>{{ _('Instantly import your online info and favorites from any other browser.') }}</p>
-      {% endif %}
-        <div class="section-cta">
-          <a href="{{ url('firefox.switch') }}">{{ _('Learn more') }}</a>
-        </div>
+  <div data-scroll-tracking="Footer download CTA">
+    {% call call_out_compact(
+      title=_('Fast for good.'),
+      class='mzp-t-firefox mzp-t-product-firefox mzp-t-dark t-you'
+      ) %}
+      <div class="download-firefox">
+        {{ download_firefox(dom_id='footer-download', alt_copy=_('Download now'), download_location='other') }}
       </div>
-      <div class="section-media is-js-dependent">
-        <a href="{{ url('firefox.switch') }}">
-          {{ lazy_img(image_url='firefox/home/quantum/switch-to-firefox.png', placeholder_url='firefox/home/quantum/spacer.gif', include_highres_image=True, optional_attributes={'width': '643', 'height': '377'}) }}
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="page-section secondary-download-section" data-scroll-tracking="Footer download CTA">
-    <div class="content">
-    {% if LANG.startswith('en') %}
-      <h2><a href="{{ url('firefox.new') }}">The new <strong>Firefox</strong></a></h2>
-    {% else %}
-      <h2><a href="{{ url('firefox.new') }}">{{ _('The New Firefox') }}</a></h2>
-    {% endif %}
-      <p>{{ _('Meet Firefox Quantum.') }}</p>
-      <p>{{ _('Fast for good.') }}</p>
-      {{ download_firefox(dom_id='footer-download', alt_copy=_('Download now'), download_location='other') }}
-    </div>
-  </section>
-
+    {% endcall %}
+  </div>
 </main>
 {% endblock %}
 

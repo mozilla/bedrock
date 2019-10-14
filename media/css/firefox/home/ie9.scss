@@ -2,6 +2,45 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../pebbles/includes/lib';
-@import 'includes/header';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
 
+@import '../../../protocol/css/includes/lib';
+
+.js-fx-only {
+    display: none;
+}
+
+.firefox-home .mzp-c-hero {
+    display: none;
+}
+
+.mzp-c-hero {
+    background: url("/media/img/firefox/home/quantum/product.svg") top right no-repeat;
+    background-size: contain;
+}
+
+.c-showcase {
+    display: table;
+    margin-bottom: $layout-md;
+    width: 100%;
+
+    .mzp-l-content {
+        width: 100%;
+        display: table;
+    }
+}
+
+.c-showcase-title {
+    display: table-caption;
+    text-align: center;
+}
+
+.c-showcase-list {
+    display: table-row;
+
+    li {
+        display: table-cell;
+        text-align: center;
+    }
+}

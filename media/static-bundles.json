@@ -697,6 +697,13 @@
     },
     {
       "files": [
+        "css/firefox/home/master.scss",
+        "css/base/mozilla-lazy-image.scss"
+      ],
+      "name": "firefox-master"
+    },
+    {
+      "files": [
         "css/mozorg/book.scss"
       ],
       "name": "book"
@@ -1319,12 +1326,17 @@
     {
       "files": [
         "js/libs/jquery.waypoints.min.js",
-        "js/libs/jquery.waypoints-sticky.min.js",
-        "js/hubs/sub-nav.js",
         "js/base/mozilla-lazy-load.js",
         "js/firefox/home/quantum.js"
       ],
       "name": "firefox-quantum"
+    },
+    {
+      "files": [
+        "js/base/mozilla-lazy-load.js",
+        "js/firefox/home/master.js"
+      ],
+      "name": "firefox-master"
     },
     {
       "files": [
