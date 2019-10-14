@@ -1459,6 +1459,7 @@
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-sign-in-link.js",
         "js/base/mozilla-monitor-button.js",
         "js/firefox/accounts-2019.js"
       ],
@@ -1561,6 +1562,7 @@
         "js/base/uitour-lib.js",
         "js/base/mozilla-fxa-form.js",
         "js/base/mozilla-fxa-form-init.js",
+        "js/base/mozilla-fxa-sign-in-link.js",
         "js/firefox/privacy/products.js"
       ],
       "name": "firefox-privacy-products"
