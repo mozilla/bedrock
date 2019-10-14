@@ -1,0 +1,159 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+html.noscroll body {
+    overflow: hidden;
+}
+
+#modal {
+    background: #000;
+    background: rgba(0, 0, 0, 0.85);
+    width: 100%;
+    height: 101%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9999999;
+    overflow: auto;
+    .animation(sand-fade-in 0.3s ease-in 0s 1 normal both);
+
+    .window {
+        padding: 20px;
+        color: #333;
+
+        .inner {
+            position: relative;
+
+            &> header {
+                display: block;
+                height: auto;
+                .font-size(48px);
+                line-height: 1.3;
+                padding: 0 (@gridGutterWidth * 3);
+                text-align: center;
+                color: #fff;
+                .open-sans-light;
+            }
+
+            #modal-close {
+                z-index: 99;
+                position: absolute;
+                top: -20px;
+                right: 9px;
+                cursor: pointer;
+
+                a {
+                    // TODO: remove <a> element from mozilla-modal.js with mozID rollout
+                    display: none;
+                }
+
+                .button {
+                    background-color: transparent;
+                    // png fallback for IE8
+                    background-image: url("/media/img/mozid/modal-close.png");
+                    // svg for good browsers
+                    background-image: none, url("/media/img/mozid/modal-close.svg");
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-size: 22px 22px;
+                    padding: 0;
+                    min-width: 0;
+                    width: 42px;
+                    height: 42px;
+                    .image-replaced();
+                    border-radius: 50%;
+                    border: 2px solid #fff;
+                    .transition(transform 0.15s ease);
+
+                    &:hover,
+                    &:focus {
+                        .transform(scale(1.1));
+                        box-shadow: none;
+                    }
+                }
+            }
+
+            .overlay-contents {
+                background: transparent;
+                padding-top: @baseLine;
+                margin: 0 auto;
+                img, iframe {
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+}
+
+/* Tweaks for RTL locales */
+html[dir="rtl"] {
+    #modal .window .inner #modal-close {
+        right: auto;
+        left: 9px;
+        text-align: left;
+    }
+}
+
+@media only screen and (min-width: @breakDesktop) {
+    #modal .inner {
+        width: @widthDesktop - (@gridGutterWidth * 2);
+        margin: @baseLine auto (@baseLine * 3);
+        .footer {
+            .clearfix();
+            padding-left: 30px;
+            padding-right: 30px;
+            div {
+                padding: 0;
+                .span(4);
+                &:first-child {
+                    margin-left: 0;
+                }
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: @breakTablet) and (max-width: @breakDesktop) {
+    #modal .inner {
+        .span_narrow(12);
+        float: none;
+        margin: @baseLine auto (@baseLine * 3);
+    }
+}
+
+@media only screen and (max-width: @breakTablet) {
+    html.noscroll {
+        overflow: hidden;
+        height: 100%;
+        body {
+            height: 100%;
+            overflow: hidden;
+        }
+        #modal {
+            position: absolute;
+        }
+    }
+
+    #modal .window {
+        margin: 0 auto;
+
+        .inner {
+            margin-top: 20px;
+
+            &> header {
+                // remove left/right padding so the .image-replaced works as expected
+                padding: 10px 0;
+                .image-replaced();
+                height: 0;
+            }
+        }
+    }
+}

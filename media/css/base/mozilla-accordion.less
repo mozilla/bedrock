@@ -1,0 +1,84 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import "../sandstone/lib.less";
+
+.accordion {
+  [data-accordion-role="tab"] {
+    overflow: hidden;
+    margin: 0;
+    outline: 0;
+    padding: 20px;
+    text-shadow: 1px 1px 0 rgba(255,255,255,.75);
+  }
+
+  [data-accordion-role="tabpanel"] {
+    overflow: hidden;
+    padding: 0 20px;
+  }
+
+  &.accordion-initialized {
+    [data-accordion-role="tab"] {
+      padding: 15px 15px 15px 45px;
+      cursor: pointer;
+
+      &:hover,
+      &[aria-selected="true"] {
+        color: darken(@linkBlue, 10%);
+      }
+
+      &:before {
+        float: left;
+        overflow: hidden;
+        margin-left: -30px;
+        width: 16px;
+        height: 1em;
+        background-image: url("data:image/ping;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAQAgMAAADbiZG6AAAACVBMVEUAc6pISEj///+X8T7aAAAAA3RSTlP//wDXyg1BAAAAH0lEQVR4AWNYtTJrFRis0AJTdBIIhQIGKMAQGCCHAQBHA49nS35W6gAAAABJRU5ErkJggg==");
+        background-repeat: no-repeat;
+        content: '';
+      }
+
+      &[aria-expanded="false"]:before {
+        background-position: 0 center;
+      }
+
+      &[aria-expanded="false"]:hover:before,
+      &[aria-expanded="false"][aria-selected="true"]:before {
+        background-position: -32px center;
+      }
+
+      &[aria-expanded="true"]:before {
+        background-position: -16px center;
+      }
+
+      &[aria-expanded="true"]:hover:before,
+      &[aria-expanded="true"][aria-selected="true"]:before {
+        background-position: -48px center;
+      }
+
+      [role="presentation"] {
+        margin: 0 .5em;
+        .font-size(.7em);
+        vertical-align: top;
+      }
+    }
+
+    [data-accordion-role="tabpanel"] {
+      padding: 0 15px 15px 45px;
+
+      &[aria-hidden="true"] {
+        display: none;
+      }
+
+      & > :last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &.zebra > :nth-of-type(even) {
+    background: rgb(250,250,250);
+    background: rgba(255,255,255,.9);
+  }
+}
