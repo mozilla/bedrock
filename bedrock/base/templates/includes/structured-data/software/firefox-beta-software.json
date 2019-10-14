@@ -1,0 +1,45 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "SoftwareApplication",
+  "@id": "https://www.mozilla.org/#firefoxbeta",
+  "url": "https://www.mozilla.org/en-US/firefox/channel/desktop/",
+  "name": "Firefox Browser Beta",
+  "image": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/beta/logo-lg-high-res.png') }}",
+  "alternateName": [
+    "Firefox Beta",
+    "Firefox Beta Browser"
+  ],
+  "sameAs": [
+    "https://play.google.com/store/apps/details?id=org.mozilla.firefox_beta"
+  ],
+  "offers":
+  {
+    "@type": "Offer",
+    "url": "https://www.mozilla.org/en-US/firefox/channel/desktop/",
+    "priceCurrency": "USD",
+    "price": "0",
+    "availability": "https://schema.org/InStock"
+  },
+  "OperatingSystem": [
+    "MacOS",
+    "Windows",
+    "Linux",
+    "iOS",
+    "Android"
+  ],
+  "applicationCategory": "Browser",
+  "applicationSuite": "Firefox",
+  "author":
+  {
+    "@type": "Organization",
+    "@id": "https://www.mozilla.org/#organization",
+    "name": "Mozilla Corporation"
+  },
+  "releaseNotes": "https://www.mozilla.org/en-US/firefox/beta/notes/",
+  "isPartOf":
+  {
+    "@id": "https://www.mozilla.org/#firefoxbrowser",
+    "url": "https://www.mozilla.org/firefox/new/",
+    "name": "Firefox Browser"
+  }
+}

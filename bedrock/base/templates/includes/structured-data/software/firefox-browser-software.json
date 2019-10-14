@@ -1,0 +1,100 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "SoftwareApplication",
+  "@id": "https://www.mozilla.org/#firefoxbrowser",
+  "url": "https://www.mozilla.org/firefox/new/",
+  "name": "Firefox Browser",
+  "image": "{{ settings.CANONICAL_URL + static('img/logos/firefox/quantum/logo-lg-high-res.png') }}",
+  "alternateName": [
+    "Firefox Desktop",
+    "Firefox Browser for Desktop",
+    "Mozilla Firefox"
+  ],
+  "sameAs": [
+    "https://www.wikidata.org/wiki/Q698",
+    "https://en.wikipedia.org/wiki/Firefox"
+  ],
+  "offers":
+  {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "OperatingSystem": [
+    "MacOS",
+    "Windows",
+    "Linux",
+    "iOS",
+    "Android"
+  ],
+  "applicationCategory": "Browser",
+  "applicationSuite": "Firefox",
+  "author":
+  {
+    "@type": "Organization",
+    "@id": "https://www.mozilla.org/#organization",
+    "name": "Mozilla Corporation"
+  },
+  "softwareHelp":
+  {
+    "@type": "Webpage",
+    "url": "https://support.mozilla.org/de/products/firefox"
+  },
+  "releaseNotes": "https://www.mozilla.org/en-US/firefox/notes/",
+  "hasPart": [
+  {
+    "@id": "https://www.mozilla.org/#firefoxandroid",
+    "url": "https://www.mozilla.org/firefox/mobile/",
+    "name": "Firefox Browser Android"
+  },
+  {
+    "@id": "https://www.mozilla.org/#firefoxios",
+    "url": "https://www.mozilla.org/firefox/mobile/",
+    "name": "Firefox Browser iOS"
+  },
+  {
+    "@id": "https://www.mozilla.org/#firefoxbeta",
+    "url": "https://www.mozilla.org/en-US/firefox/channel/desktop/",
+    "name": "Firefox Browser Beta"
+  },
+  {
+    "@id": "https://www.mozilla.org/#firefoxdeveloper",
+    "url": "https://www.mozilla.org/en-US/firefox/developer/",
+    "name": "Firefox Browser Developer Edition "
+  },
+  {
+    "@id": "https://www.mozilla.org/#firefoxenterprise",
+    "url": "https://www.mozilla.org/en-US/firefox/enterprise/",
+    "name": "Firefox Browser Enterprise"
+  },
+  {
+    "@id": "https://www.mozilla.org/#firefoxfiretv",
+    "url": "https://support.mozilla.org/en-US/kb/firefox-fire-tv",
+    "name": "Firefox Browser Fire TV"
+  },
+  {
+    "@id": "https://www.mozilla.org/#firefoxlite",
+    "url": "https://support.mozilla.org/en-US/kb/get-started-firefox-lite",
+    "name": "Firefox Lite"
+  },
+  {
+    "@id": "https://www.mozilla.org/#firefoxnightly",
+    "url": "https://www.mozilla.org/en-US/firefox/channel/desktop/",
+    "name": "Firefox Browser Nightly"
+  },
+  {
+    "@id": "https://www.mozilla.org/#firefoxmac",
+    "url": "https://www.mozilla.org/en-US/firefox/mac/",
+    "name": "Firefox Browser Mac"
+  },
+  {
+    "@id": "https://www.mozilla.org/#firefoxlinux",
+    "url": "https://www.mozilla.org/en-US/firefox/linux/",
+    "name": "Firefox Browser Linux"
+  },
+  {
+    "@id": "https://www.mozilla.org/#firefoxwindows",
+    "url": "https://www.mozilla.org/en-US/firefox/windows/",
+    "name": "Firefox Browser Windows"
+  }]
+}

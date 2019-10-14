@@ -1,0 +1,40 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "SoftwareApplication",
+  "@id": "https://www.mozilla.org/#firefoxdeveloper",
+  "url": "https://www.mozilla.org/en-US/firefox/developer/",
+  "name": "Firefox Browser Developer Edition ",
+  "image": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/developer/logo-lg-high-res.png') }}",
+  "alternateName": [
+    "Firefox Developer Edition",
+    "Firefox Developer Edition Browser"
+  ],
+  "offers":
+  {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "OperatingSystem": [
+    "MacOS",
+    "Windows",
+    "Linux",
+    "iOS",
+    "Android"
+  ],
+  "applicationCategory": "Browser",
+  "applicationSuite": "Firefox",
+  "author":
+  {
+    "@type": "Organization",
+    "@id": "https://www.mozilla.org/#organization",
+    "name": "Mozilla Corporation"
+  },
+  "releaseNotes": "https://www.mozilla.org/en-US/firefox/developer/notes/",
+  "isPartOf":
+  {
+    "@id": "https://www.mozilla.org/#firefoxbrowser",
+    "url": "https://www.mozilla.org/firefox/new/",
+    "name": "Firefox Browser"
+  }
+}

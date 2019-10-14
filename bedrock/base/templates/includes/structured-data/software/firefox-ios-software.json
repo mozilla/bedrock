@@ -1,0 +1,44 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "MobileApplication",
+  "@id": "https://www.mozilla.org/#firefoxios",
+  "url": "https://www.mozilla.org/firefox/mobile/",
+  "image": "{{ settings.CANONICAL_URL + static('img/logos/firefox/quantum/logo-lg-high-res.png') }}",
+  "name": "Firefox Browser iOS",
+  "alternateName": [
+    "Firefox iOS",
+    "Firefox for iOS",
+    "Firefox Browser for iOS"
+  ],
+  "sameAs": [
+    "https://www.wikidata.org/wiki/Q698",
+    "https://en.wikipedia.org/wiki/Firefox"
+  ],
+  "offers":
+  {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "OperatingSystem": "iOS",
+  "applicationCategory": "Browser",
+  "applicationSuite": "Firefox",
+  "author":
+  {
+    "@type": "Organization",
+    "@id": "https://www.mozilla.org/#organization",
+    "name": "Mozilla Corporation"
+  },
+  "softwareHelp":
+  {
+    "@type": "Webpage",
+    "url": "https://support.mozilla.org/en-US/products/ios"
+  },
+  "releaseNotes": "https://www.mozilla.org/en-US/firefox/ios/notes/",
+  "isPartOf":
+  {
+    "@id": "https://www.mozilla.org/#firefoxbrowser",
+    "url": "https://www.mozilla.org/firefox/new/",
+    "name": "Firefox Browser"
+  }
+}

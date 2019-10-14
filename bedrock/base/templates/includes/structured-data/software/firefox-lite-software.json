@@ -1,0 +1,37 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "MobileApplication",
+  "@id": "https://www.mozilla.org/#firefoxlite",
+  "url": "https://support.mozilla.org/en-US/kb/get-started-firefox-lite",
+  "name": "Firefox Lite",
+  "image": "{{ settings.CANONICAL_URL + static('img/logos/firefox/quantum/logo-lg-high-res.png') }}",
+  "sameAs": [
+    "https://play.google.com/store/apps/details?id=org.mozilla.rocket"
+  ],
+  "offers":
+  {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "OperatingSystem": "Android",
+  "applicationCategory": "Browser",
+  "applicationSuite": "Firefox",
+  "author":
+  {
+    "@type": "Organization",
+    "@id": "https://www.mozilla.org/#organization",
+    "name": "Mozilla Corporation"
+  },
+  "softwareHelp":
+  {
+    "@type": "Webpage",
+    "url": "https://support.mozilla.org/en-US/products/firefox-lite"
+  },
+  "isPartOf":
+  {
+    "@id": "https://www.mozilla.org/#firefoxbrowser",
+    "url": "https://www.mozilla.org/firefox/new/",
+    "name": "Firefox Browser"
+  }
+}

@@ -20,6 +20,7 @@ const del = require('del');
 const karma = require('karma');
 const eslint = require('gulp-eslint');
 const gulpStylelint = require('gulp-stylelint');
+const gulpJsonLint = require('gulp-jsonlint');
 const argv = require('yargs').argv;
 const browserSync = require('browser-sync').create();
 const merge = require('merge-stream');
@@ -43,6 +44,10 @@ const lintPathsCSS = [
     'media/css/**/*.less',
     'media/css/**/*.css',
     '!media/css/libs/*'
+];
+
+const lintPathsJSON = [
+    'bedrock/base/templates/includes/structured-data/**/*.json'
 ];
 
 const cachedOpts = {
@@ -350,6 +355,17 @@ function cssLint() {
         }));
 }
 gulp.task('css:lint', cssLint);
+
+/**
+ * Run JSON lint on JSON files
+ */
+
+function jsonLint() {
+    return gulp.src(lintPathsJSON)
+        .pipe(gulpJsonLint())
+        .pipe(gulpJsonLint.reporter());
+}
+gulp.task('json:lint', jsonLint);
 
 /**
  * Watch for changes in the `media` directory and copy changed files to

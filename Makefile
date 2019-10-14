@@ -80,7 +80,7 @@ clean:
 
 lint: .docker-build-pull
 	${DC} run test flake8
-	${DC} run assets gulp js:lint css:lint
+	${DC} run assets gulp js:lint css:lint json:lint
 
 test: .docker-build-pull
 	${DC} run test

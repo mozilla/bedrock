@@ -1,0 +1,47 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "MobileApplication",
+  "@id": "https://www.mozilla.org/#firefoxandroid",
+  "url": "https://www.mozilla.org/firefox/mobile/",
+  "name": "Firefox Browser Android",
+  "image": "{{ settings.CANONICAL_URL + static('img/logos/firefox/quantum/logo-lg-high-res.png') }}",
+  "alternateName": [
+    "Firefox Android",
+    "Firefox Browser for Android",
+    "Firefox for Android"
+  ],
+  "sameAs": [
+    "https://www.wikidata.org/wiki/Q550315",
+    "https://en.wikipedia.org/wiki/Firefox_for_Android",
+    "https://play.google.com/store/apps/details?id=org.mozilla.firefox"
+  ],
+  "offers":
+  {
+    "@type": "Offer",
+    "url": "https://play.google.com/store/apps/details?id=org.mozilla.firefox",
+    "priceCurrency": "USD",
+    "price": "0",
+    "availability": "https://schema.org/InStock"
+  },
+  "OperatingSystem": "Android",
+  "applicationCategory": "Mobile Browser",
+  "applicationSuite": "Firefox",
+  "author":
+  {
+    "@type": "Organization",
+    "@id": "https://www.mozilla.org/#organization",
+    "name": "Mozilla Corporation"
+  },
+  "softwareHelp":
+  {
+    "@type": "Webpage",
+    "url": "https://support.mozilla.org/en-US/products/mobile"
+  },
+  "releaseNotes": "https://www.mozilla.org/en-US/firefox/android/notes/",
+  "isPartOf":
+  {
+    "@id": "https://www.mozilla.org/#firefoxbrowser",
+    "url": "https://www.mozilla.org/firefox/new/",
+    "name": "Firefox Browser"
+  }
+}

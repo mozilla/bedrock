@@ -1,0 +1,45 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "SoftwareApplication",
+  "@id": "https://www.mozilla.org/#firefoxenterprise",
+  "url": "https://www.mozilla.org/en-US/firefox/enterprise/",
+  "name": "Firefox Browser Enterprise",
+  "image": "{{ settings.CANONICAL_URL + static('img/logos/firefox/quantum/logo-lg-high-res.png') }}",
+  "alternateName": [
+    "Firefox for Enterprise",
+    "Firefox Browser for Enterprise"
+  ],
+  "sameAs": [
+    "https://www.youtube.com/watch?v=pnQUOFgj3oA"
+  ],
+  "offers":
+  {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "OperatingSystem": [
+    "MacOS",
+    "Windows",
+    "Linux"
+  ],
+  "applicationCategory": "Browser",
+  "applicationSuite": "Firefox",
+  "author":
+  {
+    "@type": "Organization",
+    "@id": "https://www.mozilla.org/#organization",
+    "name": "Mozilla Corporation"
+  },
+  "softwareHelp":
+  {
+    "@type": "Webpage",
+    "url": "https://support.mozilla.org/en-US/products/firefox-enterprise"
+  },
+  "isPartOf":
+  {
+    "@id": "https://www.mozilla.org/#firefoxbrowser",
+    "url": "https://www.mozilla.org/firefox/new/",
+    "name": "Firefox Browser"
+  }
+}

@@ -184,3 +184,7 @@
     {{ js_bundle('stub-attribution-macos') }}
   {% endif %}
 {% endblock %}
+
+{% block structured_data %}
+  {% include 'includes/structured-data/software/firefox-browser-software.json' %}
+{% endblock %}

@@ -197,3 +197,7 @@
 
 {# Bug 1381776 #}
 {% block update_notification %}{% endblock %}
+
+{% block structured_data %}
+  {% include 'includes/structured-data/software/firefox-enterprise-software.json' %}
+{% endblock %}

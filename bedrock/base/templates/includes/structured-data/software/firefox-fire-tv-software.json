@@ -1,0 +1,43 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "SoftwareApplication",
+  "@id": "https://www.mozilla.org/#firefoxfiretv",
+  "url": "https://support.mozilla.org/en-US/kb/firefox-fire-tv",
+  "name": "Firefox Browser Fire TV",
+  "image": "{{ settings.CANONICAL_URL + static('img/logos/firefox/quantum/logo-lg-high-res.png') }}",
+  "alternateName": [
+    "Firefox for Fire TV",
+    "Firefox Browser for Fire TV"
+  ],
+  "sameAs": [
+    "https://www.amazon.com/Mozilla-Firefox-for-Fire-TV/dp/B078B5YMPD"
+  ],
+  "offers":
+  {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "OperatingSystem": [
+    "Amazon Fire TV"
+  ],
+  "applicationCategory": "Browser",
+  "applicationSuite": "Firefox",
+  "author":
+  {
+    "@type": "Organization",
+    "@id": "https://www.mozilla.org/#organization",
+    "name": "Mozilla Corporation"
+  },
+  "softwareHelp":
+  {
+    "@type": "Webpage",
+    "url": "https://support.mozilla.org/en-US/products/firefox-amazon-devices/firefox-fire-tv"
+  },
+  "isPartOf":
+  {
+    "@id": "https://www.mozilla.org/#firefoxbrowser",
+    "url": "https://www.mozilla.org/firefox/new/",
+    "name": "Firefox Browser"
+  }
+}

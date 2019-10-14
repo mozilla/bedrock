@@ -26,6 +26,7 @@ jobs:
             node_modules/.bin/gulp css:lint
             node_modules/.bin/gulp js:lint
             node_modules/.bin/gulp js:test
+            node_modules/.bin/gulp json:lint
       - save_cache:
           key: v1-node-{{ checksum "yarn.lock" }}
           paths:
