@@ -1,0 +1,161 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% from "macros-protocol.html" import feature_card with context %}
+{% from "macros.html" import fxa_email_form, fxa_link_fragment, monitor_button with context %}
+
+{% extends "exp/base/base-firefox.html" %}
+
+{% block canonical_urls %}
+  {# Experimental pages should set canonical to the original page URL. #}
+  <link rel="canonical" href="{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/accounts/">
+{% endblock %}
+
+{% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/accounts/{% endblock %}
+
+{% set _entrypoint = 'mozilla.org-firefox-accounts' %}
+{% set _utm_source = 'mozilla.org-firefox-accounts' %}
+{% set _utm_campaign = 'trailhead' %}
+
+{%- block page_title -%}There is a way to protect your privacy. Join Firefox.{%- endblock -%}
+
+{%- block page_desc -%}Take your stand against an industry that’s selling your data to third parties. Stay smart and safe online with technology that fights for you.{%- endblock -%}
+
+{% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
+
+{% block page_css %}
+ {{ css_bundle('exp_firefox_accounts_2019') }}
+{% endblock %}
+
+{% block body_class %}firefox-accounts mzp-t-firefox state-fxa-default {% endblock %}
+
+{% block site_header %}
+  {% with hide_nav_get_account_button=True %}
+    {% include 'includes/protocol/navigation/menu-firefox/nav-switch.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block content %}
+
+<section class="c-accounts-hero">
+  <div class="mzp-l-content">
+    <div class="c-accounts-hero-body c-accounts-hero-body-default">
+      <h1 class="c-accounts-hero-title">There is a way to protect your privacy. <span>Join Firefox.</span></h1>
+
+      <p class="c-accounts-hero-desc">Take your stand against an industry that’s making you the product.</p>
+    </div>
+
+    <div class="c-accounts-hero-body c-accounts-hero-body-signed-in is-js-dependent">
+      <h2 class="c-accounts-hero-title">You’re signed <br>in to Firefox. <br><span>Now try Firefox Monitor.</span></h2>
+
+      <p class="c-accounts-hero-desc">See if you’ve been involved in an online data breach.</p>
+
+      {{ monitor_button(
+        entrypoint=_entrypoint,
+        utm_campaign=_utm_campaign
+      ) }}
+    </div>
+
+    <div class="c-accounts-form">
+      {{ fxa_email_form(
+        entrypoint=_entrypoint,
+        form_title='Join Firefox',
+        intro_text='Enter your email address to get started.',
+        button_class='mzp-c-button mzp-t-primary mzp-t-product',
+        style='trailhead',
+        utm_campaign=_utm_campaign)
+      }}
+
+      <p class="fxa-signin">Already have an account? <a {{ fxa_link_fragment(entrypoint=_entrypoint, action='signin', utm_campaign=_utm_campaign, utm_content='form-upper') }} class="js-fxa-cta-link">Sign In</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="c-accounts-products">
+  <div class="mzp-l-content">
+    <h2 class="c-section-title">Meet our family of privacy-first products.</h2>
+
+    <ul class="c-product-list">
+      <li class="c-product-list-item t-product-firefox">
+        <a href="{{ url('firefox') }}">
+          <h3 class="c-product-list-title">Firefox Browser</h3>
+          <p class="c-product-list-desc">Travel the internet with protection, on every device.</p>
+        </a>
+      </li>
+      <li class="c-product-list-item t-product-lockwise">
+        <a href="{{ url('firefox.lockwise.lockwise') }}" data-cta-text="Firefox Lockwise" data-cta-type="fxa-lockwise">
+          <h3 class="c-product-list-title">Firefox Lockwise</h3>
+          <p class="c-product-list-desc">Keep your passwords protected and portable.</p>
+        </a>
+      </li>
+      <li class="c-product-list-item t-product-monitor">
+        <a href="https://monitor.firefox.com?utm_source={{ _utm_source }}&amp;utm_medium=referral&amp;utm_campaign={{ _utm_campaign }}&amp;utm_content=product-list-item&amp;entrypoint={{ _entrypoint }}" data-cta-text="Firefox Monitor" data-cta-type="FxA-Monitor">
+          <h3 class="c-product-list-title">Firefox Monitor</h3>
+          <p class="c-product-list-desc">Get a lookout for data breaches.</p>
+        </a>
+      </li>
+      <li class="c-product-list-item t-product-send">
+        <a href="https://send.firefox.com?utm_source={{ _utm_source }}&amp;utm_medium=referral&amp;utm_campaign={{ _utm_campaign }}&amp;utm_content=product-list-item&amp;entrypoint={{ _entrypoint }}" data-cta-text="Firefox Send" data-cta-type="FxA-Sync">
+          <h3 class="c-product-list-title">Firefox Send</h3>
+          <p class="c-product-list-desc">Share large files without prying eyes.</p>
+        </a>
+      </li>
+    </ul>
+
+    <p class="c-accounts-products-tagline">Get it all on every device, without feeling trapped in a single operating system.</p>
+  </div>
+</section>
+
+
+<section class="c-accounts-value t-value-respect l-media-left">
+  <div class="c-accounts-value-container">
+    <div class="c-accounts-value-media">
+      {{ high_res_img('firefox/accounts/trailhead/value-respect.jpg', {'alt': '', 'width': '800', 'height': '600'}) }}
+    </div>
+
+    <div class="c-accounts-value-content">
+      <h3 class="c-accounts-value-title">Get the respect you deserve.</h3>
+
+      <p>You’ll always get the truth from us. Everything we make and do honors our <a href="{{ promise_url }}">Personal Data Promise</a>:</p>
+
+      <p><strong>Take less.<br> Keep it safe.<br> No secrets.</strong></p>
+    </div>
+  </div>
+</section>
+
+<section class="c-accounts-value t-value-knowledge l-media-right">
+  <div class="c-accounts-value-container">
+    <div class="c-accounts-value-media">
+      {{ high_res_img('firefox/accounts/trailhead/value-knowledge.jpg', {'alt': '', 'width': '800', 'height': '600'}) }}
+    </div>
+
+    <div class="c-accounts-value-content">
+      <h3 class="c-accounts-value-title">Get the knowledge to keep you safe.</h3>
+      <p class="c-accounts-value-desc">Learn everything you need to know (but don’t yet) about staying smart and safe online, from some of the world’s foremost experts.</p>
+    </div>
+  </div>
+</section>
+
+<section class="c-accounts-movement">
+  <div class="mzp-l-content">
+    <h2 class="c-section-title">And be part of protecting the internet for future generations.</h2>
+
+    <div class="c-accounts-movement-container">
+      <div class="c-accounts-movement-item t-movement-build">
+        <h3 class="c-accounts-movement-title">Help us build a better Firefox for all.</h3>
+        <p class="c-accounts-movement-desc">Get into the open source spirit by test-driving upcoming products.</p>
+      </div>
+
+      <div class="c-accounts-movement-item t-movement-bigtech">
+        <h3 class="c-accounts-movement-title">Help us keep Big Tech in check.</h3>
+        <p class="c-accounts-movement-desc">We support communities all over the world standing up for a healthier internet. Add your voice to the fight.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('exp_firefox_accounts_2019') }}
+{% endblock %}

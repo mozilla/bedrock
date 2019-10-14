@@ -812,6 +812,14 @@
     {
       "files": [
         "css/base/mozilla-fxa-state.scss",
+        "css/base/mozilla-fxa-form.scss",
+        "css/exp/firefox/accounts-2019.scss"
+      ],
+      "name": "exp_firefox_accounts_2019"
+    },
+    {
+      "files": [
+        "css/base/mozilla-fxa-state.scss",
         "css/firefox/concerts.scss"
       ],
       "name": "firefox_concert_series"
@@ -1464,6 +1472,17 @@
         "js/firefox/accounts-2019.js"
       ],
       "name": "firefox_accounts_2019"
+    },
+    {
+      "files": [
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-sign-in-link.js",
+        "js/base/mozilla-monitor-button.js",
+        "js/exp/firefox/accounts-2019.js"
+      ],
+      "name": "exp_firefox_accounts_2019"
     },
     {
       "files": [
