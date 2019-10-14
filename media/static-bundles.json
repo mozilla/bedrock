@@ -73,7 +73,7 @@
     },
     {
       "files": [
-        "css/base/mozilla-modal.less",
+        "css/base/mozilla-modal.scss",
         "css/mozorg/developer/index.scss"
       ],
       "name": "developer-hub"
@@ -129,7 +129,7 @@
     },
     {
       "files": [
-        "css/base/mozilla-modal.less",
+        "css/base/mozilla-modal.scss",
         "css/foundation/annual2012.less"
       ],
       "name": "annual_2012"
@@ -254,7 +254,7 @@
     },
     {
       "files": [
-        "css/base/mozilla-modal.less",
+        "css/base/mozilla-modal.scss",
         "css/mozorg/contribute/contribute-base.less"
       ],
       "name": "contribute-base"
@@ -353,7 +353,7 @@
     },
     {
       "files": [
-        "css/base/mozilla-modal.less",
+        "css/base/mozilla-modal.scss",
         "css/base/notification-modal.less",
         "css/base/notification-banner.less"
       ],
@@ -361,7 +361,7 @@
     },
     {
       "files": [
-        "css/base/mozilla-modal.less",
+        "css/base/mozilla-modal.scss",
         "css/foundation/annual2013.less"
       ],
       "name": "annual_2013"
@@ -665,7 +665,7 @@
     },
     {
       "files": [
-        "css/base/mozilla-modal.less",
+        "css/base/mozilla-modal.scss",
         "css/mozorg/technology.scss"
       ],
       "name": "technology"

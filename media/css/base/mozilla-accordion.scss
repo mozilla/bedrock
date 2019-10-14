@@ -25,7 +25,7 @@
 
       &:hover,
       &[aria-selected="true"] {
-        color: darken(@linkBlue, 10%);
+        color: darken($linkBlue, 10%);
       }
 
       &:before {
@@ -58,8 +58,8 @@
       }
 
       [role="presentation"] {
-        margin: 0 .5em;
-        .font-size(.7em);
+        margin: 0 @include 5em;
+        @include font-size(.7em);
         vertical-align: top;
       }
     }
@@ -82,3 +82,4 @@
     background: rgba(255,255,255,.9);
   }
 }
+
