@@ -1278,8 +1278,8 @@ URLS = flatten((
 
     # Issue 7670
     url_test('/firefox/fights-for-you/', '/firefox/'),
-    
-    #Issue 7842
+
+    # Issue 7842
     url_test('/enterprise/', '/firefox/enterprise/')
 
 ))
