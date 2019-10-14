@@ -664,7 +664,7 @@ redirectpatterns = (
     redirect(r'^contribute/friends/?$', 'mozorg.contribute.index'),
 
     # issue 7435
-    redirect(r'^about/history/details/?$', 'mozorg.about.history'),    
+    redirect(r'^about/history/details/?$', 'mozorg.about.history'),
 
     # issue 7842
     redirect(r'^enterprise/?$', 'firefox.enterprise.index'),
