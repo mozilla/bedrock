@@ -76,7 +76,7 @@
           class='wn67-lockwise'
         ) %}
           <p>{{ _('Securely access passwords you save to your Firefox Account from any device, everywhere you go – now available for both Android and iOS.') }}</p>
-          <p><a class="mzp-c-cta-link wn67-benefit-link" data-app="lockwise" href="https://lockwise.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp67&utm_content=get-lockwise&entrypoint=mozilla.org-whatsnew67" data-link-name="Get the Lockwise App" data-link-type="link">{{ _('Get the Lockwise App') }}</a></p>
+          <p><a class="mzp-c-cta-link wn67-benefit-link" data-app="lockwise" href="{{ url('firefox.lockwise.lockwise') }}" data-link-name="Get the Lockwise App" data-link-type="link">{{ _('Get the Lockwise App') }}</a></p>
         {% endcall %}
       {% else %}
         {% call feature_card(
@@ -87,7 +87,7 @@
           class='wn67-lockwise'
         ) %}
           <p>{{ _('Securely access passwords you save to your Firefox Account from any device, everywhere you go – now available for both Android and iOS.') }}</p>
-          <p><a class="mzp-c-cta-link wn67-benefit-link" data-app="lockwise" href="https://lockwise.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp67&utm_content=get-lockwise&entrypoint=mozilla.org-whatsnew67" data-link-name="Get the Lockwise App" data-link-type="link">{{ _('Get the Lockbox App') }}</a></p>
+          <p><a class="mzp-c-cta-link wn67-benefit-link" data-app="lockwise" href="{{ url('firefox.lockwise.lockwise') }}" data-link-name="Get the Lockwise App" data-link-type="link">{{ _('Get the Lockbox App') }}</a></p>
         {% endcall %}
       {% endif %}
 
