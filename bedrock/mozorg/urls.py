@@ -272,7 +272,6 @@ urlpatterns = (
     page('contribute', 'mozorg/contribute/index.html'),
     url('^contribute/embed/$', views.contribute_embed,
         name='mozorg.contribute_embed'),
-    page('contribute/events', 'mozorg/contribute/events.html'),
     page('contribute/stories', 'mozorg/contribute/stories.html'),
     page('contribute/stories/faye', 'mozorg/contribute/story-faye.html'),
     page('contribute/stories/michael', 'mozorg/contribute/story-michael.html'),
