@@ -18,9 +18,10 @@
 {% add_lang_files "firstrun" "mobile" %}
 
 {% block page_title_prefix %}{% endblock %}
-{% block page_favicon %}{{ static('img/firefox/nightly/favicon.png') }}{% endblock %}
-{% block page_favicon_large %}{{ static('img/firefox/nightly/favicon-192.png') }}{% endblock %}
-{% block page_image %}{{ static('img/firefox/nightly/page-image.png') }}{% endblock %}
+{% block page_image %}{{ static('protocol/img/logos/firefox/browser/nightly/og.png') }}{% endblock %}
+{% block page_favicon %}{{ static('img/favicons/firefox/browser/nightly/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/favicons/firefox/browser/nightly/favicon-196x196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/favicons/firefox/browser/nightly/apple-touch-icon.png') }}{% endblock %}
 {% block page_title %}{{ _('Firefox Nightly First Run Page') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 {% block page_og_url %}{{ url('firefox.all', channel='nightly') }}{% endblock %}
