@@ -35,9 +35,11 @@
 
 {% block page_favicon %}
   {%- if platform == 'desktop' and channel == 'alpha' -%}
-    {{ static('img/firefox/developer/favicon.png') }}
+    {{ static('img/favicons/firefox/browser/developer/favicon.ico') }}
+  {%- elif platform == 'desktop' and channel == 'beta' -%}
+    {{ static('img/favicons/firefox/browser/beta/favicon.ico') }}
   {%- elif channel == 'nightly' -%}
-    {{ static('img/firefox/nightly/favicon.png') }}
+    {{ static('img/favicons/firefox/browser/nightly/favicon.ico') }}
   {%- else -%}
     {{ super() }}
   {%- endif -%}
@@ -45,9 +47,23 @@
 
 {% block page_favicon_large %}
   {%- if platform == 'desktop' and channel == 'alpha' -%}
-    {{ static('img/firefox/developer/favicon-196.png') }}
+    {{ static('img/favicons/firefox/browser/developer/favicon-196x196.png') }}
+  {%- elif platform == 'desktop' and channel == 'beta' -%}
+    {{ static('img/favicons/firefox/browser/beta/favicon-196x196.png') }}
   {%- elif channel == 'nightly' -%}
-    {{ static('img/firefox/nightly/favicon-192.png') }}
+    {{ static('img/favicons/firefox/browser/nightly/favicon-196x196.png') }}
+  {%- else -%}
+    {{ super() }}
+  {%- endif -%}
+{% endblock %}
+
+{% block page_ios_icon %}
+  {%- if platform == 'desktop' and channel == 'alpha' -%}
+    {{ static('img/favicons/firefox/browser/developer/apple-touch-icon.png') }}
+  {%- elif platform == 'desktop' and channel == 'beta' -%}
+    {{ static('img/favicons/firefox/browser/beta/apple-touch-icon.png') }}
+  {%- elif channel == 'nightly' -%}
+    {{ static('img/favicons/firefox/browser/nightly/apple-touch-icon.png') }}
   {%- else -%}
     {{ super() }}
   {%- endif -%}
@@ -55,9 +71,11 @@
 
 {% block page_image %}
   {%- if platform == 'desktop' and channel == 'alpha' -%}
-    {{ static('img/firefox/developer/page-image.png') }}
+    {{ static('protocol/img/logos/firefox/browser/developer/og.png') }}
+  {%- elif platform == 'desktop' and channel == 'beta' -%}
+    {{ static('protocol/img/logos/firefox/browser/beta/og.png') }}
   {%- elif channel == 'nightly' -%}
-    {{ static('img/firefox/nightly/page-image.png') }}
+    {{ static('protocol/img/logos/firefox/browser/nightly/og.png') }}
   {%- else -%}
     {{ static('img/logos/firefox/quantum/og.png') }}
   {%- endif -%}
@@ -75,6 +93,8 @@
 {% block site_header_logo %}
   {% if platform == 'desktop' and channel == 'alpha' %}
     <h2><a href="{{ url('firefox.developer.index') }}">{{ high_res_img('img/logos/firefox/developer-wordmark-dark.png', {'alt': _('Firefox Developer Edition'), 'width': '260', 'height': '48'}) }}</a></h2>
+  {% elif platform == 'desktop' and channel == 'beta' %}
+    <h2>{{ high_res_img('/protocol/img/logos/firefox/browser/beta/logo-word-hor-md.png', {'alt': 'Firefox Beta', 'width': '260', 'height': '48'}) }}</h2>
   {% elif channel == 'nightly' %}
     <h2>{{ high_res_img('img/logos/firefox/nightly-wordmark-dark.png', {'alt': _('Firefox Nightly'), 'width': '305', 'height': '56'}) }}</h2>
   {% else %}

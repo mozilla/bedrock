@@ -12,8 +12,10 @@
 <link rel="alternate" type="application/atom+xml" title="{{ _('Firefox Nightly News Feed') }}" href="{{ blog_feed }}">
 {% endblock %}
 
-{% block page_favicon %}{{ static('img/firefox/nightly/favicon.png') }}{% endblock %}
-{% block page_favicon_large %}{{ static('img/firefox/nightly/favicon-192.png') }}{% endblock %}
+{% block page_image %}{{ static('protocol/img/logos/firefox/browser/nightly/og.png') }}{% endblock %}
+{% block page_favicon %}{{ static('img/favicons/firefox/browser/nightly/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/favicons/firefox/browser/nightly/favicon-196x196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/favicons/firefox/browser/nightly/apple-touch-icon.png') }}{% endblock %}
 
 {% set product_class = 'mzp-t-dark mzp-t-product-nightly' %}
 {% set page_id = 'data-gtm-page-id="/firefox/nightly/releasenotes"' %}
