@@ -9,7 +9,10 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% block page_favicon %}{{ static('img/firefox/lockwise/favicon.ico') }}{% endblock %}
+{% block page_image %}{{ static('/protocol/img/logos/firefox/lockwise/og.png') }}{% endblock %}
+{% block page_favicon %}{{ static('img/favicons/firefox/lockwise/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/favicons/firefox/lockwise/favicon-196x196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/favicons/firefox/lockwise/apple-touch-icon.png') }}{% endblock %}
 
 {% block page_title %}{{_('Firefox Lockwise — password manager —  take your passwords everywhere')}}{% endblock %}
 
