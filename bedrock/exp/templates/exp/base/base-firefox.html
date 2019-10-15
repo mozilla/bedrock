@@ -2,17 +2,17 @@
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
- {% extends "exp/base/base.html" %}
+{% extends "exp/base/base.html" %}
 
- {% block page_title_prefix %}{% endblock %}
- {% block page_title_suffix %}{% endblock %}
+{% block page_title_prefix %}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
 
- {% block page_image %}{{ static('img/logos/firefox/quantum/og.png') }}{% endblock %}
- {% block page_favicon %}{{ static('img/firefox/favicon.ico') }}{% endblock %}
- {% block page_favicon_large %}{{ static('img/firefox/favicon-196.png') }}{% endblock %}
- {% block page_ios_icon %}{{ static('img/firefox/ios-icon-180.png') }}{% endblock %}
+{% block page_image %}{{ static('img/logos/firefox/quantum/og.png') }}{% endblock %}
+{% block page_favicon %}{{ static('img/favicons/firefox/browser/quantum/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/favicons/firefox/browser/quantum/favicon-196x196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/favicons/firefox/browser/quantum/apple-touch-icon.png') }}{% endblock %}
 
- {% block facebook_id %}14696440021{# facebook.com/Firefox #}{% endblock %}
- {% block twitter_id %}firefox{% endblock %}
+{% block facebook_id %}14696440021{# facebook.com/Firefox #}{% endblock %}
+{% block twitter_id %}firefox{% endblock %}
 
- {% block body_class %}mzp-t-firefox{% endblock %}
+{% block body_class %}mzp-t-firefox{% endblock %}
