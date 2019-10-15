@@ -8,6 +8,9 @@
 
 {% block page_title %}{{ _('Pocket | Discover, Capture and Savor Content That Fascinates You') }}{% endblock %}
 {% block page_desc %}{{ _('Pocket is the place to save, read and get fueled by content that fascinates you. (Like a bookmark and a content recommendation engine, but better.)') }}{% endblock %}
+{% block page_favicon %}{{ static('img/favicons/pocket/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/favicons/pocket/favicon-196x196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/favicons/pocket/apple-touch-icon.png') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('product_pocket') }}
