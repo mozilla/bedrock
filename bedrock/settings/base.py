@@ -5,6 +5,8 @@
 
 import json
 import platform
+import socket
+import struct
 import sys
 from os.path import abspath
 
@@ -385,7 +387,7 @@ def get_app_name(hostname):
         app_mode = hostname.split('-')[1]
         return 'bedrock-' + app_mode
 
-    return None
+    return 'bedrock'
 
 
 HOSTNAME = platform.node()
@@ -1365,10 +1367,26 @@ STUB_ATTRIBUTION_HMAC_KEY = config('STUB_ATTRIBUTION_HMAC_KEY', default='')
 STUB_ATTRIBUTION_RATE = config('STUB_ATTRIBUTION_RATE', default=str(1 if DEV else 0), parser=float)
 STUB_ATTRIBUTION_MAX_LEN = config('STUB_ATTRIBUTION_MAX_LEN', default='200', parser=int)
 
-STATSD_CLIENT = config('STATSD_CLIENT', default='django_statsd.clients.normal')
-STATSD_HOST = config('STATSD_HOST', default='127.0.0.1')
+
+# via http://stackoverflow.com/a/6556951/107114
+def get_default_gateway_linux():
+    """Read the default gateway directly from /proc."""
+    try:
+        with open("/proc/net/route") as fh:
+            for line in fh:
+                fields = line.strip().split()
+                if fields[1] != '00000000' or not int(fields[3], 16) & 2:
+                    continue
+
+                return socket.inet_ntoa(struct.pack("<L", int(fields[2], 16)))
+    except IOError:
+        return 'localhost'
+
+
+STATSD_CLIENT = config('STATSD_CLIENT', default='django_statsd.clients.null')
+STATSD_HOST = config('STATSD_HOST', default=get_default_gateway_linux())
 STATSD_PORT = config('STATSD_PORT', parser=int, default='8125')
-STATSD_PREFIX = config('STATSD_PREFIX', default='bedrock')
+STATSD_PREFIX = config('STATSD_PREFIX', default=APP_NAME)
 
 FIREFOX_MOBILE_SYSREQ_URL = 'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'
 
