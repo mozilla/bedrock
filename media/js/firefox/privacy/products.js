@@ -29,8 +29,6 @@
                 var pictoCardTitles = document.querySelectorAll('.privacy-products-etp .mzp-c-card-picto-title');
 
                 for (var i = 0; i < protectionReportLinks.length; i++) {
-                    // Hide the fallback SUMO linke.
-                    protectionReportLinks[i].href = 'about:protections';
                     protectionReportLinks[i].addEventListener('click', handleOpenProtectionReport, false);
                 }
 
