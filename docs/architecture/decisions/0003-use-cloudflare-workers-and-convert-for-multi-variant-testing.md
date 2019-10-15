@@ -14,7 +14,7 @@ We would like to make our end-to-end experimentation process faster, with increa
 
 ## Decision
 
-We will use [Cloudflare Workers](https://www.cloudflare.com/en-gb/products/cloudflare-workers/) to redirect a small percentage of traffic to standalone, experimental versions of our download pages. The worker code will live in the [www-workers](https://github.com/mozmeao/www-workers) repository. We will implement a (vetted and approved) third-party experimentation tool called [Convert](https://www.convert.com/) for use on those experimental pages.
+We will use [Cloudflare Workers](https://www.cloudflare.com/en-gb/products/cloudflare-workers/) to redirect a small percentage of traffic to standalone, experimental versions of our download pages. The worker code will live in the [www-workers](https://github.com/mozmeao/www-workers) repository. We will implement a ([vetted and approved](https://bugzilla.mozilla.org/show_bug.cgi?id=1565012)) third-party experimentation tool called [Convert](https://www.convert.com/) for use on those experimental pages.
 
 ## Consequences
 
