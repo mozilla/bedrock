@@ -42,7 +42,6 @@
                 // For UI Tour CTAs, we will treat these more as an action rather than a page navigation.
                 for (var i = 0; i < protectionReportLinks.length; i++) {
                     // Hide fallback links.
-                    protectionReportLinks[i].href = 'about:protections';
                     protectionReportLinks[i].addEventListener('click', handleOpenProtectionReport, false);
                 }
 
