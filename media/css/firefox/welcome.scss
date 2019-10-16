@@ -122,6 +122,11 @@
     @include text-body-sm;
     max-width: $content-md;
     text-align: center;
+
+    .c-survey-link {
+        font-weight: bold;
+        margin-left: $spacing-lg;
+    }
 }
 
 
