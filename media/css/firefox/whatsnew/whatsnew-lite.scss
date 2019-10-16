@@ -64,34 +64,69 @@
 
 .lite-container {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
 
     @media #{$mq-lg} {
-        margin-left: 80px;
+        min-height: 200px;
+        max-width: 500px;
+        h1 {
+            margin-bottom: 20px;
+        }
+    }
+
+    @media #{$mq-xl} {
+        max-width: none;
+        h1 {
+            margin-bottom: 40px;
+        }
     }
 
     img {
         margin-right: $spacing-md;
     }
+
 }
 
 .lite-body {
-    background: url('/media/img/firefox/whatsnew/lite/background.png') no-repeat bottom;
-    color: #fff;
+    background: #42d3ec radial-gradient(50% 50% at 50% 50%, #9CF1D7 0%, rgba(255, 255, 255, 0) 100%) no-repeat top center;
+    color: $color-gray-80;
     overflow: hidden;
     position: relative;
-    padding-top: 10%;
+    @media #{$mq-lg} {
+        background-image: url('/media/img/firefox/whatsnew/lite/background.jpg');
+        background-size: 2000px auto;
+    }
+    @media #{$mq-xl} {
+        background-size: 2400px auto;
+    }
 }
 
 .lite-text {
-    @include text-display-md;
+    font-size: 1.5rem;
     font-weight: bold;
     margin: 0 auto $spacing-lg;
-    max-width: 20em;
-    padding: $spacing-sm 0;
+    padding: 60px 0 $spacing-lg;
+    line-height: 1.2;
+    @media #{$mq-lg} {
+        font-size: 1.75rem;
+        padding-top: 80px;
+    }
+    @media #{$mq-xl} {
+        font-size: 2.25rem;
+    }
+}
+
+@media #{$mq-lg} {
+    .send-to-device-wrapper {
+        margin-right: 60px;
+    }
 }
 
 .lite-content {
+    max-width: 1200px;
+    padding-left: $spacing-2xl;
+    padding-right: $spacing-2xl;
+
     .lite-KV {
         display: none;
     }
@@ -99,6 +134,7 @@
     .lite-copy {
         text-align: center;
         z-index: 1;
+        @include text-body-lg;
     }
 
     @media #{$mq-sm} {
@@ -110,7 +146,8 @@
 
     @media #{$mq-lg} {
         display: grid;
-        grid-template-columns: 1fr 2fr 0.5fr;
+        grid-template-columns: 45% 55%;
+        margin-bottom: 100px;
 
         .lite-KV {
             display: block;
@@ -118,22 +155,29 @@
             min-width: 300px;
 
             img {
-                position: relative;
-                top: -110px;
-                max-width: 130%;
+                position: absolute;
+                top: 180px;
+                right: -20px;
+                max-width: 500px;
             }
         }
 
         .lite-copy {
-            margin: 100px 0 0;
-            max-height: $content-sm;
+            margin: 20px 0 0;
             text-align: left;
             max-width: $content-md;
         }
-
-        .lite-KV,
-        .lite-code {
-            min-height: 700px;
+    }
+    @media #{$mq-xl} {
+        grid-template-columns: 40% 60%;
+        .lite-KV {
+            img {
+                top: 230px;
+                max-width: 650px;
+            }
+        }
+        .lite-copy {
+            margin-top: 80px;
         }
     }
 }

@@ -1,0 +1,66 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+    # License, v. 2.0. If a copy of the MPL was not distributed with this
+    # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+   {% add_lang_files "firefox/whatsnew" "firefox/sendto"%}
+
+   {% from "macros.html" import send_to_device with context %}
+
+   {% extends "firefox/base/base-protocol.html" %}
+
+   {% block page_title %}Firefox Lite{% endblock %}
+
+   {% block body_id %}firefox-whatsnew-rocket{% endblock %}
+   {% block body_class %}{% endblock %}
+
+   {% block site_header %}{% endblock %}
+
+   {% block page_css %}
+     {{ css_bundle('firefox-whatsnew-lite') }}
+   {% endblock %}
+
+   {% block content %}
+   <main role="main">
+     <header class="c-page-header main-header">
+       <div class="mzp-l-content">
+         <div class="c-page-header-inner">
+           <img src="{{ static('img/logos/mozilla/wordmark-dark.svg') }}" alt="Mozilla" width="90" class="c-page-header-logo-moz">
+           <h1 class="c-page-header-up-to-date">{{ _('Your Firefox is up to date.') }}</h1>
+         </div>
+       </div>
+     </header>
+     <div class="lite-body">
+       <div class="lite-content mzp-l-content">
+         <div class="lite-woman">
+           <img src="{{ static('img/firefox/whatsnew/lite/woman.png') }}" width="513" alt="">
+         </div>
+         <div class="lite-copy">
+           <div class="lite-container">
+             <img src="{{ static('img/logos/firefox/logo-lite.png') }}" width="100" alt="">
+             <h1>This is the India Page></h1>
+           </div>
+           {# Rough translation: A fast and lightweight Android browser designed for you! #}
+           <p class="lite-text">Peramban Android yang cepat dan ringan yang didesain untuk kamu!</p>
+           {# Rough translation:
+             input_label: "Enter your e-mail address and send Firefox Lite to your mobile."
+             legal_note_email: "Email recipients must agree in advance." #}
+           <div class="send-to-device-wrapper">
+             {{ send_to_device(
+               include_title=False,
+               product='download-firefox-rocket',
+               id='download-firefox-rocket',
+               message_set='download-firefox-rocket',
+               spinner_color='#fff',
+               input_label='Masukkan alamat surel dan kirimkan Firefox Lite ke ponselmu.',
+               legal_note_email='Penerima email harus menyetujui sebelumnya.')
+             }}
+           </div>
+         </div>
+       </div>
+     </div>
+   </main>
+   {% endblock %}
+
+   {% block js %}
+     {{ js_bundle('whatsnew_lite') }}
+   {% endblock %}
