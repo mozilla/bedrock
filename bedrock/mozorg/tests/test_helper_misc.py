@@ -56,9 +56,7 @@ def render(s, context=None):
 
 def test_convert_to_high_res():
     assert misc.convert_to_high_res('/media/img/the.dude.png') == '/media/img/the.dude-high-res.png'
-    assert (
-        misc.convert_to_high_res('/media/thats-a-bummer-man.jpg') ==
-        '/media/thats-a-bummer-man-high-res.jpg')
+    assert misc.convert_to_high_res('/media/thats-a-bummer-man.jpg') == '/media/thats-a-bummer-man-high-res.jpg'
 
 
 @patch('bedrock.mozorg.templatetags.misc._l10n_media_exists')
@@ -75,66 +73,44 @@ class TestImgL10n(TestCase):
     def test_works_for_default_lang(self, media_exists_mock):
         """Should output correct path for default lang always."""
         media_exists_mock.return_value = True
-        assert (
-            self._render('en-US', 'dino/head.png') ==
-            static('img/l10n/en-US/dino/head.png'))
-        assert (
-            self._render('en-US', 'img/dino/head.png') ==
-            static('img/l10n/en-US/dino/head.png'))
+        assert self._render('en-US', 'dino/head.png') == static('img/l10n/en-US/dino/head.png')
+        assert self._render('en-US', 'img/dino/head.png') == static('img/l10n/en-US/dino/head.png')
 
-        assert (
-            self._render('en-US', 'dino/does-not-exist.png') ==
-            static('img/l10n/en-US/dino/does-not-exist.png'))
+        assert self._render('en-US', 'dino/does-not-exist.png') == static('img/l10n/en-US/dino/does-not-exist.png')
 
     def test_works_for_other_lang(self, media_exists_mock):
         """Should use the request lang if file exists."""
         media_exists_mock.return_value = True
-        assert (
-            self._render('de', 'dino/head.png') ==
-            static('img/l10n/de/dino/head.png'))
-        assert (
-            self._render('de', 'img/dino/head.png') ==
-            static('img/l10n/de/dino/head.png'))
+        assert self._render('de', 'dino/head.png') == static('img/l10n/de/dino/head.png')
+        assert self._render('de', 'img/dino/head.png') == static('img/l10n/de/dino/head.png')
 
     def test_defaults_when_lang_file_missing(self, media_exists_mock):
         """Should use default lang when file doesn't exist for lang."""
         media_exists_mock.return_value = False
-        assert (
-            self._render('is', 'dino/head.png') ==
-            static('img/l10n/en-US/dino/head.png'))
+        assert self._render('is', 'dino/head.png') == static('img/l10n/en-US/dino/head.png')
 
     def test_latam_spanishes_fallback_to_european_spanish(self, media_exists_mock):
         """Should use es-ES image when file doesn't exist for lang."""
         media_exists_mock.side_effect = [False, True]
-        assert (
-            self._render('es-AR', 'dino/head.png') ==
-            static('img/l10n/es-ES/dino/head.png'))
+        assert self._render('es-AR', 'dino/head.png') == static('img/l10n/es-ES/dino/head.png')
 
         media_exists_mock.reset_mock()
         media_exists_mock.side_effect = [False, True]
-        assert (
-            self._render('es-CL', 'dino/head.png') ==
-            static('img/l10n/es-ES/dino/head.png'))
+        assert self._render('es-CL', 'dino/head.png') == static('img/l10n/es-ES/dino/head.png')
 
         media_exists_mock.reset_mock()
         media_exists_mock.side_effect = [False, True]
-        assert (
-            self._render('es-MX', 'dino/head.png') ==
-            static('img/l10n/es-ES/dino/head.png'))
+        assert self._render('es-MX', 'dino/head.png') == static('img/l10n/es-ES/dino/head.png')
 
         media_exists_mock.reset_mock()
         media_exists_mock.side_effect = [False, True]
-        assert (
-            self._render('es', 'dino/head.png') ==
-            static('img/l10n/es-ES/dino/head.png'))
+        assert self._render('es', 'dino/head.png') == static('img/l10n/es-ES/dino/head.png')
 
     def test_file_not_checked_for_default_lang(self, media_exists_mock):
         """
         Should not check filesystem for default lang, but should for others.
         """
-        assert (
-            self._render('en-US', 'dino/does-not-exist.png') ==
-            static('img/l10n/en-US/dino/does-not-exist.png'))
+        assert self._render('en-US', 'dino/does-not-exist.png') == static('img/l10n/en-US/dino/does-not-exist.png')
         assert not media_exists_mock.called
 
         self._render('is', 'dino/does-not-exist.png')
@@ -258,8 +234,8 @@ class TestPlatformImg(TestCase):
     def test_platform_img_no_optional_attributes(self, find_static):
         """Should return expected markup without optional attributes"""
         markup = self._render('test.png')
-        self.assertIn(u'data-src-windows="/media/img/test-windows.png"', markup)
-        self.assertIn(u'data-src-mac="/media/img/test-mac.png"', markup)
+        self.assertIn(u'data-src-windows="/media/test-windows.png"', markup)
+        self.assertIn(u'data-src-mac="/media/test-mac.png"', markup)
         markup = self._render('img/test.png')
         self.assertIn(u'data-src-windows="/media/img/test-windows.png"', markup)
         self.assertIn(u'data-src-mac="/media/img/test-mac.png"', markup)
@@ -272,8 +248,8 @@ class TestPlatformImg(TestCase):
     def test_platform_img_with_high_res(self, find_static):
         """Should return expected markup with high resolution image attrs"""
         markup = self._render('test.png', {'high-res': True})
-        self.assertIn(u'data-src-windows-high-res="/media/img/test-windows-high-res.png"', markup)
-        self.assertIn(u'data-src-mac-high-res="/media/img/test-mac-high-res.png"', markup)
+        self.assertIn(u'data-src-windows-high-res="/media/test-windows-high-res.png"', markup)
+        self.assertIn(u'data-src-mac-high-res="/media/test-mac-high-res.png"', markup)
         self.assertIn(u'data-high-res="true"', markup)
         markup = self._render('img/test.png', {'high-res': True})
         self.assertIn(u'data-src-windows-high-res="/media/img/test-windows-high-res.png"', markup)
@@ -374,8 +350,7 @@ class TestDonateUrl(TestCase):
 
     def test_donate_url_no_locale(self):
         """No locale, fallback to default page"""
-        assert (
-            self._render('', 'mozillaorg_footer') ==
+        assert self._render('', 'mozillaorg_footer') == (
             'https://donate.mozilla.org//'
             '?presets=100,50,25,15&amp;amount=50'
             '&amp;utm_source=mozilla.org&amp;utm_medium=referral'
@@ -383,8 +358,7 @@ class TestDonateUrl(TestCase):
 
     def test_donate_url_english(self):
         """en-US locale, default page"""
-        assert (
-            self._render('en-US', 'mozillaorg_footer') ==
+        assert self._render('en-US', 'mozillaorg_footer') == (
             'https://donate.mozilla.org/en-US/'
             '?presets=100,50,25,15&amp;amount=50'
             '&amp;utm_source=mozilla.org&amp;utm_medium=referral'
@@ -392,8 +366,7 @@ class TestDonateUrl(TestCase):
 
     def test_donate_url_spanish(self):
         """es-MX locale, a localized page"""
-        assert (
-            self._render('es-MX', 'mozillaorg_footer') ==
+        assert self._render('es-MX', 'mozillaorg_footer') == (
             'https://donate.mozilla.org/es-MX/'
             '?presets=100,50,25,15&amp;amount=15'
             '&amp;utm_source=mozilla.org&amp;utm_medium=referral'
@@ -401,8 +374,7 @@ class TestDonateUrl(TestCase):
 
     def test_donate_url_other_locale(self):
         """No page for locale, fallback to default page"""
-        assert (
-            self._render('pt-PT', 'mozillaorg_footer') ==
+        assert self._render('pt-PT', 'mozillaorg_footer') == (
             'https://donate.mozilla.org/pt-PT/'
             '?presets=100,50,25,15&amp;amount=50'
             '&amp;utm_source=mozilla.org&amp;utm_medium=referral'
@@ -463,16 +435,12 @@ class TestHighResImg(TestCase):
         expected = (
             u'<img class="" src="/media/img/test.png" '
             u'srcset="/media/img/test-high-res.png 1.5x">')
-        markup = self._render('test.png')
-        self.assertEqual(markup, expected)
         markup = self._render('img/test.png')
-        self.assertEqual(markup, expected)
-        markup = self._render('/img/test.png')
         self.assertEqual(markup, expected)
 
     def test_high_res_img_with_optional_attributes(self):
         """Should return expected markup with optional attributes"""
-        markup = self._render('test.png', {'data-test-attr': 'test', 'class': 'logo'})
+        markup = self._render('img/test.png', {'data-test-attr': 'test', 'class': 'logo'})
         expected = (
             u'<img class="logo" src="/media/img/test.png" '
             u'srcset="/media/img/test-high-res.png 1.5x" '
@@ -569,8 +537,8 @@ class TestAbsoluteURLFilter(TestCase):
     static_url_full = 'https://mozorg.cdn.mozilla.net/static/'
     image_path = 'img/mozorg/mozilla-256.jpg'
     inline_template = "{{ static('%s')|absolute_url }}" % image_path
-    block_template = ("{% filter absolute_url %}{% block page_image %}" +
-                      "{{ static('%s') }}" % image_path + "{% endblock %}{% endfilter %}")
+    block_template = "{% filter absolute_url %}{% block page_image %}" + \
+                     "{{ static('%s') }}" % image_path + "{% endblock %}{% endfilter %}"
 
     def _render(self, template):
         return render(template, {'request': self.rf.get('/')})
@@ -640,16 +608,13 @@ class TestFirefoxIOSURL(TestCase):
 
     def test_firefox_ios_url_param(self):
         """should return default or localized URL with ct param"""
-        assert (
-            self._render('', 'mozorg') ==
+        assert self._render('', 'mozorg') == (
             'https://itunes.apple.com'
             '/app/firefox-private-safe-browser/id989804926?ct=mozorg')
-        assert (
-            self._render('en-US', 'mozorg') ==
+        assert self._render('en-US', 'mozorg') == (
             'https://itunes.apple.com/us'
             '/app/firefox-private-safe-browser/id989804926?ct=mozorg')
-        assert (
-            self._render('es-ES', 'mozorg') ==
+        assert self._render('es-ES', 'mozorg') == (
             'https://itunes.apple.com/es'
             '/app/firefox-private-safe-browser/id989804926?ct=mozorg')
 

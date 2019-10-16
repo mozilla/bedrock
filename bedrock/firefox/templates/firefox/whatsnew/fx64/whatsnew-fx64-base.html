@@ -47,12 +47,12 @@
 <main class="mzp-t-firefox">
   <header class="c-page-header">
     <div class="mzp-l-content c-page-header-inner">
-      {{ high_res_img('logos/firefox/quantum/logo-word-hor-sm.png', {'alt': 'Firefox', 'width': '298', 'height': '55', 'class': 'c-page-header-logo-fx'}) }}
+      {{ high_res_img('img/logos/firefox/quantum/logo-word-hor-sm.png', {'alt': 'Firefox', 'width': '298', 'height': '55', 'class': 'c-page-header-logo-fx'}) }}
       <h1 class="c-page-header-up-to-date">{{ latest }}</h1>
       <img src="{{ static('img/logos/mozilla/wordmark-dark.svg') }}" alt="Mozilla" width="112" height="32" class="c-page-header-logo-moz">
     </div>
   </header>
-  {% set content_blocking_image='firefox/whatsnew_64/hero.png' if DIR == 'ltr' else 'firefox/whatsnew_64/hero-rtl.png' %}
+  {% set content_blocking_image='img/firefox/whatsnew_64/hero.png' if DIR == 'ltr' else 'img/firefox/whatsnew_64/hero-rtl.png' %}
   {% call hero(
    title=hero_title_out,
    desc=hero_desc,
@@ -76,28 +76,28 @@
 
   <div class="mzp-l-content">
     <div class="wn64-benefit wn64-notes">
-      {{ high_res_img('firefox/whatsnew_64/fxa-notes.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      {{ high_res_img('img/firefox/whatsnew_64/fxa-notes.png', {'alt': '', 'width': '590', 'height': '590'}) }}
       <h3>{{ notes_head }}</h3>
       <p>{{ notes_desc }}</p>
       <p><a class="mzp-c-button wn64-benefit-link" data-app="notes" href="https://play.google.com/store/apps/details?id=org.mozilla.testpilot.notes">{{ notes_link }}</a></p>
     </div>
 
     <div class="wn64-benefit wn64-lockwise">
-      {{ high_res_img('firefox/whatsnew_64/fxa-lockwise.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      {{ high_res_img('img/firefox/whatsnew_64/fxa-lockwise.png', {'alt': '', 'width': '590', 'height': '590'}) }}
       <h3>{{ lockwise_head }}</h3>
       <p>{{ lockwise_desc }}</p>
       <p><a class="mzp-c-button wn64-benefit-link" data-app="lockwise" href="https://app.adjust.com/orzhlh0">{{ lockwise_link }}</a></p>
     </div>
 
     <div class="wn64-benefit wn64-pocket">
-      {{ high_res_img('firefox/whatsnew_64/fxa-pocket.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      {{ high_res_img('img/firefox/whatsnew_64/fxa-pocket.png', {'alt': '', 'width': '590', 'height': '590'}) }}
       <h3>{{ pocket_head }}</h3>
       <p>{{ pocket_desc }}</p>
       <p><a class="mzp-c-button wn64-benefit-link" data-app="pocket" href="https://getpocket.com/">{{ pocket_link }}</a></p>
     </div>
 
     <div class="wn64-benefit wn64-sync">
-      {{ high_res_img('firefox/whatsnew_64/fxa-sync.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      {{ high_res_img('img/firefox/whatsnew_64/fxa-sync.png', {'alt': '', 'width': '590', 'height': '590'}) }}
       <h3>{{ sync_head }}</h3>
       <p>{{ sync_desc }}</p>
     </div>

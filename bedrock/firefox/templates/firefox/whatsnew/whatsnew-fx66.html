@@ -25,7 +25,7 @@
 <main class="mzp-t-firefox">
   <header class="c-page-header">
     <div class="mzp-l-content c-page-header-inner">
-      {{ high_res_img('logos/firefox/quantum/logo-word-hor-sm.png', {'alt': 'Firefox', 'width': '298', 'height': '55', 'class': 'c-page-header-logo-fx'}) }}
+      {{ high_res_img('img/logos/firefox/quantum/logo-word-hor-sm.png', {'alt': 'Firefox', 'width': '298', 'height': '55', 'class': 'c-page-header-logo-fx'}) }}
       <h1 class="c-page-header-up-to-date">{{ _('Congrats! You’re using the latest version of Firefox.') }}</h1>
       <img src="{{ static('img/logos/mozilla/wordmark-dark.svg') }}" alt="Mozilla" width="112" height="32" class="c-page-header-logo-moz">
     </div>
@@ -69,7 +69,7 @@
     </section>
     {% endif %}
 
-  {% set content_blocking_image='firefox/whatsnew_64/hero.png' if DIR == 'ltr' else 'firefox/whatsnew_64/hero-rtl.png' %}
+  {% set content_blocking_image='img/firefox/whatsnew_64/hero.png' if DIR == 'ltr' else 'img/firefox/whatsnew_64/hero-rtl.png' %}
   {% call hero(
     title=_('One log-in. Power and security everywhere.'),
     class='mzp-has-image mzp-l-reverse show-fxa-default show-fxa-supported-signed-out',
@@ -107,14 +107,14 @@
 
   <div class="mzp-l-content">
     <div class="wn66-benefit wn66-send">
-      {{ high_res_img('firefox/whatsnew_66/fxa-send.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      {{ high_res_img('img/firefox/whatsnew_66/fxa-send.png', {'alt': '', 'width': '590', 'height': '590'}) }}
       <h3>{{_('Take total control of the files you share ')}}</h3>
       <p>{{_('Feel like a secret agent when you send files online, with a private, encrypted link that ‘self-destructs.’')}}</p>
       <p><a class="mzp-c-cta-link" data-app="send" href="https://send.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp66&utm_content=try-send&entrypoint=mozilla.org-whatsnew66">{{_('Try Firefox Send')}}</a></p>
     </div>
 
     <div class="wn66-benefit wn66-lockwise">
-      {{ high_res_img('firefox/whatsnew_64/fxa-lockwise.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      {{ high_res_img('img/firefox/whatsnew_64/fxa-lockwise.png', {'alt': '', 'width': '590', 'height': '590'}) }}
       {% if l10n_has_tag('lockwise_update_201906') %}
         <h3>{{_('Remember your passwords in Lockwise')}}</h3>
         <p>{{_('No more getting locked out of apps and websites. Lockwise secures all the passwords you’ve saved in Firefox and gives you easy access across all your iOS devices.')}}</p>
@@ -128,14 +128,14 @@
     </div>
 
     <div class="wn66-benefit wn66-pocket">
-      {{ high_res_img('firefox/whatsnew_64/fxa-pocket.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      {{ high_res_img('img/firefox/whatsnew_64/fxa-pocket.png', {'alt': '', 'width': '590', 'height': '590'}) }}
       <h3>{{_('Put quality content in your Pocket')}}</h3>
       <p>{{_('Discover the web’s best content, and absorb it anytime – even offline – on any device. Pocket’s listen feature will even read any article aloud to you. Get it all from the Firefox toolbar or the Pocket app.')}}</p>
       <p><button class="mzp-c-button wn66-benefit-link" data-app="pocket">{{_('Get the Pocket App')}}</button></p>
     </div>
 
     <div class="wn66-benefit wn66-notes">
-      {{ high_res_img('firefox/whatsnew_64/fxa-sync.png', {'alt': '', 'width': '590', 'height': '590'}) }}
+      {{ high_res_img('img/firefox/whatsnew_64/fxa-sync.png', {'alt': '', 'width': '590', 'height': '590'}) }}
       <h3>{{_('Pick up where you left off with Notes')}}</h3>
       {% if l10n_has_tag('wnp66_2019') %}
       <p>{{_('Your ideas and inspiration are secure and encrypted with Notes – and when you’re signed in to your Account, they sync from your desktop to your Android devices.')}}</p>
