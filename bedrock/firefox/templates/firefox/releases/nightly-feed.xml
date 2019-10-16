@@ -14,7 +14,7 @@
   <link rel="alternate" type="text/html" href="{{ url('firefox.notes', channel='nightly')|absolute_url }}"/>
   <icon>{{ static('img/favicons/firefox/browser/nightly/apple-touch-icon.png')|absolute_url }}</icon>
   <updated>{{ notes[0].modified.isoformat() }}</updated>
-  <webfeeds:cover image="{{ static('img/firefox/nightly/page-image.png')|absolute_url }}" />
+  <webfeeds:cover image="{{ static('protocol/img/logos/firefox/browser/nightly/og.png')|absolute_url }}" />
   <webfeeds:icon>{{ static('img/favicons/firefox/browser/nightly/favicon-196x196.png')|absolute_url }}</webfeeds:icon>
   {% for note in notes %}
   <entry>
