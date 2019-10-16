@@ -22,7 +22,7 @@
 <main class="mzp-t-firefox">
   <header class="c-page-header">
     <div class="mzp-l-content c-page-header-inner">
-      {{ high_res_img('logos/firefox/quantum/logo-word-hor-sm.png', {'alt': 'Firefox', 'width': '298', 'height': '55', 'class': 'c-page-header-logo-fx'}) }}
+      {{ high_res_img('img/logos/firefox/quantum/logo-word-hor-sm.png', {'alt': 'Firefox', 'width': '298', 'height': '55', 'class': 'c-page-header-logo-fx'}) }}
       <h1 class="c-page-header-up-to-date">{{ _('Congrats! You’re using the latest version of Firefox.') }}</h1>
       <img src="{{ static('img/logos/mozilla/wordmark-dark.svg') }}" alt="Mozilla" width="112" height="32" class="c-page-header-logo-moz">
     </div>
@@ -52,7 +52,7 @@
     </div>
 
     <div class="mzp-c-hero-image">
-      {{ high_res_img('firefox/whatsnew_63/wnp63-hero.png', {'alt': ''}) }}
+      {{ high_res_img('img/firefox/whatsnew_63/wnp63-hero.png', {'alt': ''}) }}
     </div>
   </section>
 
@@ -67,7 +67,7 @@
       {% call feature_card(
         title=_('Built-In Tracking Controls'),
         ga_title='Built-In Tracking Controls',
-        image_url='firefox/whatsnew_63/wnp63-tracking-controls.png',
+        image_url='img/firefox/whatsnew_63/wnp63-tracking-controls.png',
         include_highres_image=True,
         aspect_ratio='mzp-has-aspect-3-2',
         class='mzp-l-card-feature-left-third tracking-controls',
@@ -107,7 +107,7 @@
       {% call feature_card(
         title=_('Secure Syncing Across Devices'),
         ga_title='Secure Syncing Across Devices',
-        image_url='firefox/whatsnew_63/wnp63-secure-sync-devices.png',
+        image_url='img/firefox/whatsnew_63/wnp63-secure-sync-devices.png',
         include_highres_image=True,
         class='mzp-l-card-feature-left-third sync',
         link_url=url('firefox.accounts'),

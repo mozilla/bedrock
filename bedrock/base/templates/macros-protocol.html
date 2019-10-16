@@ -7,11 +7,10 @@
 {% macro billboard(title, ga_title, desc, link_cta, link_url, image_url, include_highres_image=False, reverse=False, heading_level=2) -%}
 <section class="mzp-c-billboard {% if reverse %}mzp-l-billboard-left{% else %}mzp-l-billboard-right{% endif %}">
   <div class="mzp-c-billboard-image-container">
-    {% set image = image_url if include_highres_image else 'img/' + image_url %}
     {% if include_highres_image %}
-      {{ high_res_img(image, {'alt': '', 'class': 'mzp-c-billboard-image', 'width': '346', 'height': '346'}) }}
+      {{ high_res_img(image_url, {'alt': '', 'class': 'mzp-c-billboard-image', 'width': '346', 'height': '346'}) }}
     {% else %}
-      <img src="{{ static(image) }}" class="mzp-c-billboard-image" width="346" height="346" alt="">
+      <img src="{{ static(image_url) }}" class="mzp-c-billboard-image" width="346" height="346" alt="">
     {% endif %}
   </div>
   <div class="mzp-c-billboard-content">
@@ -47,11 +46,10 @@
   </div>
   {% if image_url %}
   <div class="mzp-c-hero-image">
-    {% set image = image_url if include_highres_image else 'img/' + image_url %}
     {% if include_highres_image %}
-      {{ high_res_img(image, {'alt': image_alt}) }}
+      {{ high_res_img(image_url, {'alt': image_alt}) }}
     {% else %}
-      <img src="{{ static(image) }}" alt="">
+      <img src="{{ static(image_url) }}" alt="">
     {% endif %}
   </div>
   {% endif %}
@@ -156,11 +154,10 @@
 {% macro feature_card_media(image_url, include_highres_image=False) %}
 <div class="mzp-c-card-feature-media-wrapper">
   <div class="mzp-c-card-feature-media">
-    {% set image = image_url if include_highres_image else 'img/' + image_url %}
     {% if include_highres_image %}
-      {{ high_res_img(image, {'alt': ''}) }}
+      {{ high_res_img(image_url, {'alt': ''}) }}
     {% else %}
-      <img src="{{ static(image) }}" alt="">
+      <img src="{{ static(image_url) }}" alt="">
     {% endif %}
   </div>
 </div>

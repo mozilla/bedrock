@@ -28,17 +28,17 @@
 {% block content %}
   <main role="main">
     {% if LANG.startswith('en-') %}
-      {% set _img = 'firefox/lockwise/en.png'%}
+      {% set _img = 'img/firefox/lockwise/en.png'%}
     {% elif LANG == 'de' %}
-      {% set _img = 'firefox/lockwise/de.png'%}
+      {% set _img = 'img/firefox/lockwise/de.png'%}
     {% elif LANG == 'fr' %}
-      {% set _img = 'firefox/lockwise/fr.png'%}
+      {% set _img = 'img/firefox/lockwise/fr.png'%}
     {% elif LANG == 'it' %}
-      {% set _img = 'firefox/lockwise/it.png'%}
+      {% set _img = 'img/firefox/lockwise/it.png'%}
     {% elif LANG.startswith('es-') %}
-      {% set _img = 'firefox/lockwise/es.png'%}
+      {% set _img = 'img/firefox/lockwise/es.png'%}
     {% else %}
-      {% set _img = 'firefox/lockwise/en.png'%}
+      {% set _img = 'img/firefox/lockwise/en.png'%}
     {% endif %}
     {% call hero(
       title='Firefox Lockwise',

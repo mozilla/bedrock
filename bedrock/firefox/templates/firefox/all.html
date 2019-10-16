@@ -74,9 +74,9 @@
 
 {% block site_header_logo %}
   {% if platform == 'desktop' and channel == 'alpha' %}
-    <h2><a href="{{ url('firefox.developer.index') }}">{{ high_res_img('logos/firefox/developer-wordmark-dark.png', {'alt': _('Firefox Developer Edition'), 'width': '260', 'height': '48'}) }}</a></h2>
+    <h2><a href="{{ url('firefox.developer.index') }}">{{ high_res_img('img/logos/firefox/developer-wordmark-dark.png', {'alt': _('Firefox Developer Edition'), 'width': '260', 'height': '48'}) }}</a></h2>
   {% elif channel == 'nightly' %}
-    <h2>{{ high_res_img('logos/firefox/nightly-wordmark-dark.png', {'alt': _('Firefox Nightly'), 'width': '305', 'height': '56'}) }}</h2>
+    <h2>{{ high_res_img('img/logos/firefox/nightly-wordmark-dark.png', {'alt': _('Firefox Nightly'), 'width': '305', 'height': '56'}) }}</h2>
   {% else %}
     {{ super() }}
   {% endif %}
