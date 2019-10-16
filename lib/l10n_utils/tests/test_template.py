@@ -78,7 +78,7 @@ class TestTemplateLangFiles(TestCase):
         request = type('request', (), {})()
         template.render({'request': request})
         assert request.langfiles == [
-            'dude', 'walter', 'navigation', 'download_button', 'main']
+            'dude', 'walter', 'navigation', 'download_button', 'main', 'footer']
 
     @pytest.mark.skip(
         reason='does not pick up the files from the parent. captured in '
@@ -106,7 +106,7 @@ class TestTemplateLangFiles(TestCase):
         """
         self.client.get('/de/some-lang-files/')
         translate.assert_called_with(ANY, ['dude', 'walter', 'some_lang_files',
-                                           'navigation', 'download_button', 'main'])
+                                           'navigation', 'download_button', 'main', 'footer'])
 
     @patch('lib.l10n_utils.settings.DEV', True)
     @patch('lib.l10n_utils.templatetags.helpers.translate')
@@ -116,7 +116,7 @@ class TestTemplateLangFiles(TestCase):
         """
         self.client.get('/de/active-de-lang-file/')
         translate.assert_called_with(ANY, ['inactive_de_lang_file', 'active_de_lang_file',
-                                           'navigation', 'download_button', 'main'])
+                                           'navigation', 'download_button', 'main', 'footer'])
 
 
 class TestNoLocale(TestCase):
