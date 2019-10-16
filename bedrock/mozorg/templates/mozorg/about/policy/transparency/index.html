@@ -2,260 +2,272 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "base-pebbles.html" %}
+{% extends "base-protocol.html" %}
 
 {% block page_title %}{{ _('Transparency') }}{% endblock %}
-{% set body_id = "about-transparency" %}
-{% block body_class %}about-transparency{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('about-transparency') }}
+{{ css_bundle('about-transparency') }}
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('about-transparency') }}
+{{ js_bundle('about-transparency') }}
 {% endblock %}
 
 {% block content %}
-  <main role="main">
-    <header class="title-bar">
-      <div class="content">
-        <h1>{{ _('Transparency') }}</h1>
-      </div>
-    </header>
+<main role="main">
+  <header class="c-page-header">
+    <div class="mzp-l-content l-content-narrow">
+      <h1>{{ _('Transparency') }}</h1>
+    </div>
+  </header>
 
-    <section class="section" id="introduction">
-      <div class="content">
+  <div class="mzp-l-content l-content-narrow">
+    <p>
+      {{ _('Transparency is a key part of how Mozilla approaches user trust.') }}
+      {{ _('As an open source project that relies on open development, we build transparency into the way we write our code.') }}
+      {{ _('Additionally, our product documentation and notices describe how our products work and how we handle user data.') }}
+    </p>
+    <p>
+      {{ _('With this transparency in mind, we intend to publish bi­-annual transparency reports that help provide additional transparency to government disclosures and takedown requests.') }}
+    </p>
+  </div>
+
+  <aside>
+    {% include 'mozorg/about/policy/transparency/includes/reports-nav.html' %}
+    {% include 'mozorg/about/policy/transparency/includes/past-reports.html' %}
+  </aside>
+
+  <div id="faq" class="mzp-l-content">
+    <h2>{{ _('Frequently Asked Questions') }}</h2>
+
+    <section class="mzp-c-details">
+      <h3>{{ _('What is the scope of the Transparency Report?') }}</h3>
+      <p>
+        {% trans %}
+        The purpose is to provide public insight into the types of government demands we receive for our user data or to
+        remove content; and requests from individuals or companies to remove content based on copyright or trademark
+        claims. Each report also includes a supplement describing our efforts to reform laws on privacy, surveillance,
+        cybersecurity, and intellectual property for a healthier internet.
+        {% endtrans %}
+      </p>
+      <p>
+        {{ _('With each additional report that we publish, we’ll continue to re­evaluate how we can be more transparent. To this end, starting in H2 2018, we started reporting on the number of requests we receive from individuals inquiring about their personal data.') }}
+      </p>
+    </section>
+
+    <section class="mzp-c-details">
+      <h3>{{ ('How does Mozilla handle Government Demands for User Data?') }}</h3>
+      <p>
+        {{ _('As explained in our <a href="%s">Privacy Policy</a>, we will comply with a request for user data when the law requires it.')|format(url('privacy')) }}
+      </p>
+      <p>
+        {{ _('Mozilla requires valid <a href="%s">Legal Process</a> to compel the disclosure of Specific User data to the government; such as a legitimate and properly scoped court order, or a search warrant supported by probable cause and issued by an appropriate law enforcement authority.')|format(url('mozorg.about.policy.transparency.index') + '#dfn-legal-process') }}
+        {{ _('We interpret requests narrowly, and we will oppose unlawful or overbroad requests for specific user data.') }}
+      </p>
+      <p>
+        {{ _('Recipients of <a href="%s">National Security Requests</a> can only publish reporting bands instead of specific figures.')|format(url('mozorg.about.policy.transparency.index') + '#dfn-natl-security-request') }}
+        {{ _('If we receive such a request, we may challenge these reporting bands, in addition to opposing any unlawful or overbroad requests.') }}
+      </p>
+    </section>
+
+    <section class="mzp-c-details">
+      <h3>{{ ('How does Mozilla handle Gag Orders?') }}</h3>
+      <p>
+        {{ _('We don’t believe it is appropriate for the government to indefinitely delay a company from providing user notice.  We will take steps to enforce this belief for gag orders that meet any of the following criteria:') }}
+      </p>
+
+      <p>
+        {{ _('<strong>Unreasonable Duration</strong> - Any gag order with an unspecified duration or with a duration longer than one year.  This time period may be changed if specific facts in the case lead us to believe that a longer time period is reasonable.  We support policy proposals to codify into a federal statute shorter durations of one year or less, consistent with Section 9-13.700 of the DOJ U.S. Attorneys’ Manual.') }}
+      </p>
+      <p>
+        {{ _('<strong>Unreasonable Scope</strong> - Any gag order that would prevent us from disclosing the existence of legal process in our transparency report.') }}
+      </p>
+      <p>
+        {{ _('<strong>Unreasonable Number of Impacted Users</strong> - Any gag order that appears to affect more than 50 users, or where specific facts suggest that the order affects users we can reasonably determine are unrelated to the activity under investigation, such as users of a shared computer or IP address.') }}
+      </p>
+      <p>
+        {{ _('<strong>Unreasonable Impact on Free Expression</strong> - Specific facts of the case raise free expression issues (such as cases involving journalists or the press). ') }}
+      </p>
+    </section>
+
+    <section class="mzp-c-details">
+      <h3>{{ _('How does Mozilla handle voluntary disclosures and Emergency Requests?') }}</h3>
+      <p>
+        {{ _('The law authorizes us to disclose information to governmental entities in emergencies and we may do so if we have a good faith belief that it is reasonably necessary to protect the rights, property or safety of people.') }}
+      </p>
+      <p>
+        {{ _('If we receive an <a href="%s">Emergency Request</a>, we require it to be certified in writing by a government officer describing the nature of the emergency and how the information requested might prevent the harm. Additionally, we may attempt to verify information before responding.')|format('#dfn-emergency-request') }}
+      </p>
+    </section>
+
+    <section class="mzp-c-details">
+      <h3>{{ _('How does Mozilla handle copyright removal requests?') }}</h3>
+      <div>
         <p>
-          {{ _('Transparency is a key part of how Mozilla approaches user trust.') }}
-          {{ _('As an open source project that relies on open development, we build transparency into the way we write our code.') }}
-          {{ _('Additionally, our product documentation and notices describe how our products work and how we handle user data.') }}
+          {{ _('See <a href="%s">here</a> to read our process for handling reports of copyright infringement.')|format(url('legal.report-infringement')) }}
         </p>
+      </div>
+    </section>
 
+    <section class="mzp-c-details">
+      <h3>{{ _('How does Mozilla handle trademark removal requests?') }}</h3>
+      <p>
+        {{ _('See <a href="%s">here</a> to read our process for handling reports of trademark infringement.')|format(url('legal.report-infringement')) }}
+      </p>
+    </section>
+
+    <section class="mzp-c-details">
+      <h3>{{ _('When does Mozilla notify users about a Specific User disclosure?') }}</h3>
+
+      <p>
+        {{ _('As described in our <a href="%s">Privacy Policy</a>, we will notify impacted users when we receive a Specific User request unless we are legally prohibited from doing so.')|format(url('privacy')) }}
+        {{ _('Sometimes companies are legally required to delay user notification, but we will notify impacted users after the required delay expires.') }}
+        {{ _('We don’t believe it is appropriate for the government to indefinitely delay a company from providing user notice and we will take steps to enforce this belief.') }}
+      </p>
+
+      <p>
+        {{ _('In some cases when we make a voluntary disclosure, we may choose to skip or delay notification if we have a good faith belief that it is reasonably necessary to protect the rights, property or safety of people.') }}
+      </p>
+
+      <p>
+        {{ _('If a legal request draws attention to a user’s ongoing violation of our terms of use, we may choose to take action to prevent further abuse, such as account termination, which may notify the user that we are aware of misconduct.') }}
+      </p>
+    </section>
+
+    <section class="mzp-c-details">
+      <h3>{{ _('When does Mozilla notify users about a copyright or trademark request?') }}</h3>
+      <p>
+        {{ _('Users are notified if we receive a <a href="%s">Takedown Notice</a> related to their submission on a Mozilla service.')|format('#dfn-takedown-notice') }}
+        {{ _('We also try to publicly post copies of the Takedown Notices (with personal data redacted) to sites such as <a href="%s">MozWiki</a> and <a href="%s">Lumen Database</a> (formerly known as the Chilling Effects project).')|format('https://wiki.mozilla.org/Legal/Infringement_Notices','https://lumendatabase.org/') }}
+      </p>
+    </section>
+
+    <section class="mzp-c-details">
+      <h3>{{ _('What does the Supplement cover?') }}</h3>
+      <p>
+        {{ _('This section of our report covers situations that don’t fit into our reporting categories.') }}
+        {{ _('For example, to the extent we are legally permitted, we may include voluntary disclosures as well as legal and policy activities that we engaged in during the reporting period to further government transparency.') }}
+      </p>
+    </section>
+
+    <section class="mzp-c-details">
+      <h3>{{ _('What do you mean by Personal Data Requests?') }}</h3>
+      <p>
+        {{ _('We believe that everyone should have control over their personal data, understand how it’s obtained and used, and be able to access, modify, or delete it.  We extend these principles to all of our users regardless of when they submit a <a href="%s">Personal Data Request</a>, where they are located, or whether a data protection law (such as the GDPR) grants them express privacy rights. ')|format('#dfn-personal-data-request') }}
+      </p>
+    </section>
+  </div>
+
+  <div id="definitions" class="mzp-l-content">
+    <h2>{{ _('Definitions') }}</h2>
+
+    <dl>
+      <dt id="dfn-counter-notice">{{ _('Counter Notice') }}</dt>
+      <dd>
         <p>
-          {{ _('With this transparency in mind, we intend to publish bi­-annual transparency reports that help provide additional transparency to government disclosures and takedown requests.') }}
+          {{ _('Documentation that meets the counter notification requirements <a href="%s">set forth here</a> in response to a <a href="%s">Takedown Notice</a>.')|format(url('legal.report-infringement'), url('mozorg.about.policy.transparency.index') + '#dfn-takedown-notice') }}
         </p>
-      </div>
-    </section>
+      </dd>
 
-    <aside class="section nav-block">
-      {% include 'mozorg/about/policy/transparency/includes/reports-nav.html' %}
-      {% include 'mozorg/about/policy/transparency/includes/past-reports.html' %}
-    </aside>
+      <dt id="dfn-court-order">{{ _('Court Order') }}</dt>
+      <dd>
+        <p>
+          {{ _('An order issued by a judge or magistrate compelling a company to engage or refrain from certain action.') }}
+        </p>
+      </dd>
 
-    <section class="section section-extra section-faq" id="faq">
-      <div class="content">
-        <h2 class="section-title">{{ _('Frequently Asked Questions') }}</h2>
+      <dt id="dfn-threat-indicator">{{ _('Cybersecurity Threat Indicator') }}</dt>
+      <dd>
+        <p>
+          {{ _('Pieces of information about a threat to a computer network or system, such as a vulnerability, piece of malicious code, or the IP address of an attacker. This definition is based on the Cybersecurity Information Sharing Act of 2015 (CISA); the full definition is at <a href="%s">6 U.S.C. § 1501(6)</a>.')|format('http://uscode.house.gov/view.xhtml?req=%28title:6%20section:1501%20edition:prelim%29%20OR%20%28granuleid:USC-prelim-title6-section1501%29&f=treesort&edition=prelim&num=0&jumpTo=true') }}
+        </p>
+      </dd>
 
-        <div class="accordion accordion-auto-init">
-          <section>
-            <h3 data-accordion-role="tab">{{ _('What is the scope of the Transparency Report?') }}</h3>
-            <div data-accordion-role="tabpanel">
-              <p>
-                {% trans %}
-                   The purpose is to provide public insight into the types of government demands we receive for our user data or to remove content; and requests from individuals or companies to remove content based on copyright or trademark claims.  Each report also includes a supplement describing our efforts to reform laws on privacy, surveillance, cybersecurity, and intellectual property for a healthier internet.
-                {% endtrans %}
+      <dt id="dfn-emergency-request">{{ _('Emergency Request') }}</dt>
+      <dd>
+        <p>
+          {{ _('A request from a government agency seeking information on an expedited basis in connection with an emergency, typically involving death or serious injury.') }}
+        </p>
+      </dd>
 
-                {{ _('With each additional report that we publish, we’ll continue to re­evaluate how we can be more transparent. To this end, starting in H2 2018, we started reporting on the number of requests we receive from individuals inquiring about their personal data.') }}
-              </p>
-            </div>
-          </section>
+      <dt id="dfn-legal-process">{{ _('Legal Process') }}</dt>
+      <dd>
+        <p>
+          {% trans
+                link_emergency_req='#dfn-emergency-request',
+                link_court_order='#dfn-court-order',
+                link_natl_security='#dfn-natl-security-request',
+                link_pen_register='#dfn-pen-register-order',
+                link_search_warrant='#dfn-search-warrant',
+                link_subpoena='#dfn-subpoena',
+                link_wiretap='#dfn-wiretap-order'
+              %}
+          Examples of legal processes include: <a href="{{ link_emergency_req }}">Emergency Request</a>, <a
+            href="{{ link_court_order }}">Court Order</a>, <a href="{{ link_natl_security }}">National Security
+            Request</a>, <a href="{{ link_pen_register }}">Pen Register Order</a>, <a
+            href="{{ link_search_warrant }}">Search Warrant</a>, <a href="{{ link_subpoena }}">Subpoena</a> and <a
+            href="{{ link_wiretap }}">Wiretap Order</a>.
+          {% endtrans %}
+        </p>
+      </dd>
 
-          <section>
-            <h3 data-accordion-role="tab">{{ ('How does Mozilla handle Government Demands for User Data?') }}</h3>
-            <div data-accordion-role="tabpanel">
-              <p>
-                {{ _('As explained in our <a href="%s">Privacy Policy</a>, we will comply with a request for user data when the law requires it.')|format(url('privacy')) }}
-              </p>
+      <dt id="dfn-natl-security-request">{{ _('National Security Request') }}</dt>
+      <dd>
+        <p>
+          {{ _('A National Security Letter issued under 18 U.S.C.§2709, a Court Order issued under the Foreign Intelligence Surveillance Act or any other classified request for user information issued in the U.S.') }}
+        </p>
+      </dd>
 
-              <p>
-                {{ _('Mozilla requires valid <a href="%s">Legal Process</a> to compel the disclosure of Specific User data to the government; such as a legitimate and properly scoped court order, or a search warrant supported by probable cause and issued by an appropriate law enforcement authority.')|format(url('mozorg.about.policy.transparency.index') + '#dfn-legal-process') }}
-                {{ _('We interpret requests narrowly, and we will oppose unlawful or overbroad requests for specific user data.') }}
-              </p>
+      <dt id="dfn-pen-register-order">{{ _('Pen Register Order') }}</dt>
+      <dd>
+        <p>
+          {{ _('A Pen Register and Trap and Trace Order is a type of U.S. <a href="%s">Court Order</a> compelling a company to disclose data about a user’s real­time communications (excluding the content of the communications themselves) to law enforcement on an ongoing basis, usually for a period of 60 days.')|format('#dfn-court-order') }}
+        </p>
+      </dd>
 
-              <p>
-                {{ _('Recipients of <a href="%s">National Security Requests</a> can only publish reporting bands instead of specific figures.')|format(url('mozorg.about.policy.transparency.index') + '#dfn-natl-security-request') }}
-                {{ _('If we receive such a request, we may challenge these reporting bands, in addition to opposing any unlawful or overbroad requests.') }}
-              </p>
-            </div>
-          </section>
+      <dt id="dfn-personal-data-request">{{ _('Personal Data Request') }}</dt>
+      <dd>
+        <p>
+          {{ _('A user-generated request about personal data such as how to delete, port, modify or access it.  For the purpose of our Transparency  Report, we count the number of requests received by email, post, or to our portal for Data Subject Access Requests.  We don’t count (or have metrics for) the number of such requests that our users process themselves through in-product features.') }}
+        </p>
+      </dd>
 
-          <section>
-            <h3 data-accordion-role="tab">{{ ('How does Mozilla handle Gag Orders?') }}</h3>
-            <div data-accordion-role="tabpanel">
-              <p>
-                {{ _('We don’t believe it is appropriate for the government to indefinitely delay a company from providing user notice.  We will take steps to enforce this belief for gag orders that meet any of the following criteria:') }}
-              </p>
+      <dt id="dfn-search-warrant">{{ _('Search Warrant') }}</dt>
+      <dd>
+        <p>
+          {{ _('A document authorizing law enforcement to obtain user data issued by a neutral and detached magistrate on the basis of finding that “probable cause” exists to believe that the items being sought will be found in the place to be searched.') }}
+        </p>
+      </dd>
 
-              <p>
-                {{ _('<strong>Unreasonable Duration</strong> - Any gag order with an unspecified duration or with a duration longer than one year.  This time period may be changed if specific facts in the case lead us to believe that a longer time period is reasonable.  We support policy proposals to codify into a federal statute shorter durations of one year or less, consistent with Section 9-13.700 of the DOJ U.S. Attorneys’ Manual.') }}
-              </p>
-              <p>
-                {{ _('<strong>Unreasonable Scope</strong> - Any gag order that would prevent us from disclosing the existence of legal process in our transparency report.') }}
-              </p>
-              <p>
-                {{ _('<strong>Unreasonable Number of Impacted Users</strong> - Any gag order that appears to affect more than 50 users, or where specific facts suggest that the order affects users we can reasonably determine are unrelated to the activity under investigation, such as users of a shared computer or IP address.') }}
-              </p>
-              <p>
-                {{ _('<strong>Unreasonable Impact on Free Expression</strong> - Specific facts of the case raise free expression issues (such as cases involving journalists or the press). ') }}
-              </p>
+      <dt id="dfn-specific-user">{{ _('Specific User') }}</dt>
+      <dd>
+        <p>{{ _('An identifiable user of Mozilla’s products and services.') }}</p>
+      </dd>
 
-            </div>
-          </section>
+      <dt id="dfn-subpoena">{{ _('Subpoena') }}</dt>
+      <dd>
+        <p>
+          {{ _('A formal request for the production of evidence or testimony that can be issued by a government agency or court. Judicial review is not necessarily required.') }}
+        </p>
+      </dd>
 
-          <section>
-            <h3 data-accordion-role="tab">{{ _('How does Mozilla handle voluntary disclosures and Emergency Requests?') }}</h3>
-            <div data-accordion-role="tabpanel">
-              <p>
-                {{ _('The law authorizes us to disclose information to governmental entities in emergencies and we may do so if we have a good faith belief that it is reasonably necessary to protect the rights, property or safety of people.') }}
-              </p>
+      <dt id="dfn-takedown-notice">{{ _('Takedown Notice') }}</dt>
+      <dd>
+        <p>
+          {{ _('Documentation that meets the requirements set forth in our <a href="%s">reporting copyright or trademark infringement page</a>.')|format(url('legal.report-infringement')) }}
+        </p>
+      </dd>
 
-              <p>
-                {{ _('If we receive an <a href="%s">Emergency Request</a>, we require it to be certified in writing by a government officer describing the nature of the emergency and how the information requested might prevent the harm. Additionally, we may attempt to verify information before responding.')|format('#dfn-emergency-request') }}
-              </p>
-            </div>
-          </section>
-
-          <section>
-            <h3 data-accordion-role="tab">{{ _('How does Mozilla handle copyright removal requests?') }}</h3>
-            <div data-accordion-role="tabpanel">
-              <p>
-                {{ _('See <a href="%s">here</a> to read our process for handling reports of copyright infringement.')|format(url('legal.report-infringement')) }}
-              </p>
-            </div>
-          </section>
-
-          <section>
-            <h3 data-accordion-role="tab">{{ _('How does Mozilla handle trademark removal requests?') }}</h3>
-            <div data-accordion-role="tabpanel">
-              <p>
-                {{ _('See <a href="%s">here</a> to read our process for handling reports of trademark infringement.')|format(url('legal.report-infringement')) }}
-              </p>
-            </div>
-          </section>
-
-          <section>
-            <h3 data-accordion-role="tab">{{ _('When does Mozilla notify users about a Specific User disclosure?') }}</h3>
-            <div data-accordion-role="tabpanel">
-              <p>
-                {{ _('As described in our <a href="%s">Privacy Policy</a>, we will notify impacted users when we receive a Specific User request unless we are legally prohibited from doing so.')|format(url('privacy')) }}
-                {{ _('Sometimes companies are legally required to delay user notification, but we will notify impacted users after the required delay expires.') }}
-                {{ _('We don’t believe it is appropriate for the government to indefinitely delay a company from providing user notice and we will take steps to enforce this belief.') }}
-              </p>
-
-              <p>
-                {{ _('In some cases when we make a voluntary disclosure, we may choose to skip or delay notification if we have a good faith belief that it is reasonably necessary to protect the rights, property or safety of people.') }}
-              </p>
-
-              <p>
-                {{ _('If a legal request draws attention to a user’s ongoing violation of our terms of use, we may choose to take action to prevent further abuse, such as account termination, which may notify the user that we are aware of misconduct.') }}
-              </p>
-            </div>
-          </section>
-
-          <section>
-            <h3 data-accordion-role="tab">{{ _('When does Mozilla notify users about a copyright or trademark request?') }}</h3>
-            <div data-accordion-role="tabpanel">
-              <p>
-                {{ _('Users are notified if we receive a <a href="%s">Takedown Notice</a> related to their submission on a Mozilla service.')|format('#dfn-takedown-notice') }}
-                {{ _('We also try to publicly post copies of the Takedown Notices (with personal data redacted) to sites such as <a href="%s">MozWiki</a> and <a href="%s">Lumen Database</a> (formerly known as the Chilling Effects project).')|format('https://wiki.mozilla.org/Legal/Infringement_Notices','https://lumendatabase.org/') }}
-            </div>
-          </section>
-
-          <section>
-            <h3 data-accordion-role="tab">{{ _('What does the Supplement cover?') }}</h3>
-            <div data-accordion-role="tabpanel">
-              <p>
-                {{ _('This section of our report covers situations that don’t fit into our reporting categories.') }}
-                {{ _('For example, to the extent we are legally permitted, we may include voluntary disclosures as well as legal and policy activities that we engaged in during the reporting period to further government transparency.') }}
-              </p>
-            </div>
-          </section>
-
-          <section>
-            <h3 data-accordion-role="tab">{{ _('What do you mean by Personal Data Requests?') }}</h3>
-            <div data-accordion-role="tabpanel">
-              <p>
-                {{ _('We believe that everyone should have control over their personal data, understand how it’s obtained and used, and be able to access, modify, or delete it.  We extend these principles to all of our users regardless of when they submit a <a href="%s">Personal Data Request</a>, where they are located, or whether a data protection law (such as the GDPR) grants them express privacy rights. ')|format('#dfn-personal-data-request') }}
-                
-              </p>
-            </div>
-          </section>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-extra section-defs" id="definitions">
-      <div class="content">
-        <h2 class="section-title">{{ _('Definitions') }}</h2>
-
-        <dl class="prose">
-          <dt id="dfn-counter-notice">{{ _('Counter Notice') }}</dt>
-          <dd>
-            <p>{{ _('Documentation that meets the counter notification requirements <a href="%s">set forth here</a> in response to a <a href="%s">Takedown Notice</a>.')|format(url('legal.report-infringement'), url('mozorg.about.policy.transparency.index') + '#dfn-takedown-notice') }}</p>
-          </dd>
-
-          <dt id="dfn-court-order">{{ _('Court Order') }}</dt>
-          <dd>
-            <p>{{ _('An order issued by a judge or magistrate compelling a company to engage or refrain from certain action.') }}</p>
-          </dd>
-
-          <dt id="dfn-threat-indicator">{{ _('Cybersecurity Threat Indicator') }}</dt>
-          <dd>
-            <p>{{ _('Pieces of information about a threat to a computer network or system, such as a vulnerability, piece of malicious code, or the IP address of an attacker. This definition is based on the Cybersecurity Information Sharing Act of 2015 (CISA); the full definition is at <a href="%s">6 U.S.C. § 1501(6)</a>.')|format('http://uscode.house.gov/view.xhtml?req=%28title:6%20section:1501%20edition:prelim%29%20OR%20%28granuleid:USC-prelim-title6-section1501%29&f=treesort&edition=prelim&num=0&jumpTo=true') }}</p>
-          </dd>
-
-          <dt id="dfn-emergency-request">{{ _('Emergency Request') }}</dt>
-          <dd>
-            <p>{{ _('A request from a government agency seeking information on an expedited basis in connection with an emergency, typically involving death or serious injury.') }}</p>
-          </dd>
-
-          <dt id="dfn-legal-process">{{ _('Legal Process') }}</dt>
-          <dd>
-            <p>
-            {% trans
-              link_emergency_req='#dfn-emergency-request',
-              link_court_order='#dfn-court-order',
-              link_natl_security='#dfn-natl-security-request',
-              link_pen_register='#dfn-pen-register-order',
-              link_search_warrant='#dfn-search-warrant',
-              link_subpoena='#dfn-subpoena',
-              link_wiretap='#dfn-wiretap-order'
-            %}
-            Examples of legal processes include: <a href="{{ link_emergency_req }}">Emergency Request</a>, <a href="{{ link_court_order }}">Court Order</a>, <a href="{{ link_natl_security }}">National Security Request</a>, <a href="{{ link_pen_register }}">Pen Register Order</a>, <a href="{{ link_search_warrant }}">Search Warrant</a>, <a href="{{ link_subpoena }}">Subpoena</a> and <a href="{{ link_wiretap }}">Wiretap Order</a>.
-            {% endtrans %}
-            </p>
-          </dd>
-
-          <dt id="dfn-natl-security-request">{{ _('National Security Request') }}</dt>
-          <dd><p>{{ _('A National Security Letter issued under 18 U.S.C.§2709, a Court Order issued under the Foreign Intelligence Surveillance Act or any other classified request for user information issued in the U.S.') }}</p></dd>
-
-          <dt id="dfn-pen-register-order">{{ _('Pen Register Order') }}</dt>
-          <dd><p>{{ _('A Pen Register and Trap and Trace Order is a type of U.S. <a href="%s">Court Order</a> compelling a company to disclose data about a user’s real­time communications (excluding the content of the communications themselves) to law enforcement on an ongoing basis, usually for a period of 60 days.')|format('#dfn-court-order') }}</p></dd>
-
-          <dt id="dfn-personal-data-request">{{ _('Personal Data Request') }}</dt>
-          <dd><p>{{ _('A user-generated request about personal data such as how to delete, port, modify or access it.  For the purpose of our Transparency  Report, we count the number of requests received by email, post, or to our portal for Data Subject Access Requests.  We don’t count (or have metrics for) the number of such requests that our users process themselves through in-product features.') }}</p></dd>
-
-          <dt id="dfn-search-warrant">{{ _('Search Warrant') }}</dt>
-          <dd><p>{{ _('A document authorizing law enforcement to obtain user data issued by a neutral and detached magistrate on the basis of finding that “probable cause” exists to believe that the items being sought will be found in the place to be searched.') }}</p></dd>
-
-          <dt id="dfn-specific-user">{{ _('Specific User') }}</dt>
-          <dd><p>{{ _('An identifiable user of Mozilla’s products and services.') }}</p></dd>
-
-          <dt id="dfn-subpoena">{{ _('Subpoena') }}</dt>
-          <dd><p>{{ _('A formal request for the production of evidence or testimony that can be issued by a government agency or court. Judicial review is not necessarily required.') }}</p></dd>
-
-          <dt id="dfn-takedown-notice">{{ _('Takedown Notice') }}</dt>
-          <dd><p>{{ _('Documentation that meets the requirements set forth in our <a href="%s">reporting copyright or trademark infringement page</a>.')|format(url('legal.report-infringement')) }}</p></dd>
-
-          <dt id="dfn-wiretap-order">{{ _('Wiretap Order') }}</dt>
-          <dd><p>{{ _('A type of U.S. Court Order compelling a company to disclose the metadata and content of a user’s real­time communications to law enforcement on an ongoing basis, usually for a period of 30 days.') }}</p></dd>
-        </dl>
-      </div>
-    </section>
-
-  </main>
+      <dt id="dfn-wiretap-order">{{ _('Wiretap Order') }}</dt>
+      <dd>
+        <p>
+          {{ _('A type of U.S. Court Order compelling a company to disclose the metadata and content of a user’s real­time communications to law enforcement on an ongoing basis, usually for a period of 30 days.') }}
+        </p>
+      </dd>
+    </dl>
+  </div>
+</main>
 {% endblock %}
 
 {% block email_form %}{% endblock %}
