@@ -140,8 +140,8 @@
             <!--[if !IE]><!-->
               <li class="mzp-c-menu-list-item"><a href="{{ url('firefox.download.thanks') }}" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard">{{ get_desktop }}</a></li>
             <!--<![endif]-->
-            <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('android', 'firefox_home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Browser for Android"> {{ get_android }}</a></li>
-            <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('ios', 'firefox_home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Browser for iOS">{{ get_ios }}</a></li>
+            <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('android', 'firefox_home') }}" rel="external noopener" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android"> {{ get_android }}</a></li>
+            <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('ios', 'firefox_home') }}" rel="external noopener" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">{{ get_ios }}</a></li>
           </ul>
         </div>
         <p class="js-fx-only"><a class="mzp-c-cta-link" href="https://addons.mozilla.org/firefox/addon/facebook-container/{{ referrals }}">{{ get_facebook_container }}</a></p>
