@@ -1,0 +1,103 @@
+variables:
+  CLUSTER_NAME: iowa-b
+  CONFIG_REPO: https://github.com/mozilla/www-config
+  CONFIG_BRANCH: gitlab-ci
+
+stages:
+  - build
+  - update-config
+
+build-demo:
+  stage: build
+  only:
+    - gitlab-demo
+  tags:
+    - meao
+  script:
+    - make clean build-ci
+    - FROM_DOCKER_REPOSITORY=mozorg/bedrock docker/bin/push2dockerhub.sh
+
+build:
+  stage: build
+  only:
+    - gitlab-dev
+  tags:
+    - meao
+  script:
+    - make clean build-ci
+    - FROM_DOCKER_REPOSITORY=mozorg/bedrock_test docker/bin/push2dockerhub.sh
+    - FROM_DOCKER_REPOSITORY=mozorg/bedrock_assets docker/bin/push2dockerhub.sh
+    - FROM_DOCKER_REPOSITORY=mozorg/bedrock_code docker/bin/push2dockerhub.sh
+    - FROM_DOCKER_REPOSITORY=mozorg/bedrock_build docker/bin/push2dockerhub.sh
+    - FROM_DOCKER_REPOSITORY=mozorg/bedrock docker/bin/push2dockerhub.sh
+    - bin/upload-staticfiles.sh
+
+.update-config:
+  stage: update-config
+  tags:
+    - meao
+  script:
+    - bin/update-config.sh
+
+demo1:
+  extends: .update-config
+  only:
+    - gitlab-demo1
+  variables:
+    NAMESPACE: bedrock-demo
+    DEPLOYMENT_YAML: demo1-deploy.yaml
+
+demo2:
+  extends: .update-config
+  only:
+    - gitlab-demo2
+  variables:
+    NAMESPACE: bedrock-dev
+    DEPLOYMENT_YAML: demo2-deploy.yaml
+
+demo3:
+  extends: .update-config
+  only:
+    - gitlab-demo3
+  variables:
+    NAMESPACE: bedrock-demo
+    DEPLOYMENT_YAML: demo3-deploy.yaml
+
+demo4:
+  extends: .update-config
+  only:
+    - gitlab-demo4
+  variables:
+    NAMESPACE: bedrock-demo
+    DEPLOYMENT_YAML: demo4-deploy.yaml
+
+demo5:
+  extends: .update-config
+  only:
+    - gitlab-demo5
+  variables:
+    NAMESPACE: bedrock-demo
+    DEPLOYMENT_YAML: demo5-deploy.yaml
+
+dev:
+  extends: .update-config
+  only:
+    - gitlab-dev
+  variables:
+    NAMESPACE: bedrock-dev
+
+stage:
+  extends: .update-config
+  only:
+    - gitlab-stage
+  variables:
+    CLUSTERS: frankfurt iowa-a
+    NAMESPACE: bedrock-stage
+
+prod:
+  extends: .update-config
+  only:
+    - gitlab-prod
+  variables:
+    CLUSTERS: frankfurt iowa-a
+    NAMESPACE: bedrock-prod
