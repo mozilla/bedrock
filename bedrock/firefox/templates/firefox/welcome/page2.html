@@ -2,20 +2,34 @@
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros-protocol.html" import hero with context %}
+
 {% add_lang_files "firefox/welcome/page2" %}
 
 {% extends "firefox/welcome/base.html" %}
 
+{# L10n: "Pocket" is a product name and shouldn't be translated. #}
 {% block page_title %}{{ _('Pocket - Save news, videos, stories and more') }}{% endblock %}
 
-{% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
+{% block page_image %}{{ static('img/logos/pocket/og.png') }}{% endblock %}
 
-{% block body_class %}welcome-page2{% endblock %}
+{% block body_class %}{{ super() }} welcome-page2{% endblock %}
+
+{% set _entrypoint = 'mozilla.org-firefox-welcome-2' %}
+{% set _utm_campaign = 'welcome-2-pocket' %}
 
 {% block content_intro %}
-  <h1 class="c-page-title">{{ _('Your time online is worth protecting') }}</h1>
-  {# L10n: "Pocket" is a product name and shouldn't be translated. #}
-  <p class="c-page-tagline">{{ _('Discover and save stories in Pocket — and come back to them when you’re free.') }}</p>
+  {% call hero(
+    title=_('Your time online is worth protecting'),
+    desc=_('Discover and save stories in Pocket — and come back to them when you’re free.'),
+    class='mzp-t-firefox mzp-t-dark',
+    include_cta=False,
+    heading_level=1,
+    image_url=None,
+    include_highres_image=False,
+    image_alt=''
+  ) %}
+  {% endcall %}
 {% endblock %}
 
 {% block content_primary %}
@@ -27,7 +41,7 @@
     <img class="primary-image" src="{{ static('img/firefox/welcome/pocket-hero.svg') }}" width="700" height="" alt="">
 
     <p class="primary-cta">
-      <a id="pocket-cta" class="mzp-c-button mzp-t-product" href="https://getpocket.com/ff_signup?s=ffwelcome2&form_type=button&entrypoint=mozilla.org-firefox-welcome-2&utm_source=mozilla.org-firefox-welcome-2&utm_campaign=welcome-2-pocket&utm_medium=referral" data-action="{{ settings.FXA_ENDPOINT }}" data-cta-text="Activate Pocket" data-cta-type="FxA-Pocket" data-cta-position="Primary" rel="external noopener">{{ _('Activate Pocket') }}</a>
+      <a id="pocket-cta" class="mzp-c-button mzp-t-product" href="https://getpocket.com/ff_signup?s=ffwelcome2&form_type=button&entrypoint={{ _entrypoint }}&utm_source={{ _entrypoint }}&utm_campaign={{ _utm_campaign }}&utm_medium=referral" data-action="{{ settings.FXA_ENDPOINT }}" data-cta-text="Activate Pocket" data-cta-type="FxA-Pocket" data-cta-position="Primary" rel="external noopener">{{ _('Activate Pocket') }}</a>
     </p>
   </div>
 {% endblock %}
@@ -57,7 +71,7 @@
 {% endblock %}
 
 {% block content_utility %}
-  <p><strong><a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source=mozilla.org-firefox-welcome-2&utm_medium=referral&utm_campaign=welcome-2-pocket&entrypoint=mozilla.org-firefox-welcome-2">{{ _('Why am I seeing this?') }}</a></strong></p>
+  <p><strong><a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">{{ _('Why am I seeing this?') }}</a></strong></p>
 {% endblock %}
 
 {% block js %}

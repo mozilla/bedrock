@@ -37,23 +37,26 @@
 
 
 //* -------------------------------------------------------------------------- */
-// Page intro
+// Page hero
 
-.page-intro {
+.mzp-c-hero-body {
+    @include border-box;
+    margin: 0 auto;
+    max-width: $content-md;
     padding: $layout-xs 0;
     text-align: center;
 
-    @media #{$mq-tall} {
-        padding: $layout-lg 0;
+    @media #{$mq-md} {
+        padding: $layout-lg $layout-xl;
     }
 }
 
-.c-page-title {
+.mzp-c-hero-title {
     @include text-display-lg;
     margin-bottom: $layout-sm;
 }
 
-.c-page-tagline {
+.mzp-c-hero-desc {
     @include text-body-lg;
 }
 
@@ -137,7 +140,7 @@
 //* -------------------------------------------------------------------------- */
 // Dark theme
 
-.page-intro.mzp-t-dark {
+.mzp-c-hero.mzp-t-dark {
     background-color: $color-off-black;
     color: $color-white;
 
