@@ -73,8 +73,8 @@ class BasePage(Page):
         def open_firefox_desktop_page(self):
             self.open_navigation_menu(self._firefox_menu_locator)
             self.find_element(*self._firefox_desktop_page_locator).click()
-            from .firefox.home import FirefoxHomePage
-            return FirefoxHomePage(self.selenium, self.page.base_url).wait_for_page_to_load()
+            from .firefox.new.download import DownloadPage
+            return DownloadPage(self.selenium, self.page.base_url, params='').wait_for_page_to_load()
 
         def open_developer_edition_page(self):
             self.open_navigation_menu(self._developers_menu_locator)
