@@ -518,12 +518,6 @@
     },
     {
       "files": [
-        "css/privacy/privacy.less"
-      ],
-      "name": "privacy"
-    },
-    {
-      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
