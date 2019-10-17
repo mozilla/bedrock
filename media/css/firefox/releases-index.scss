@@ -33,7 +33,7 @@ $image-path: '/media/protocol/img';
     }
 
     &:before {
-        @include at2x('/media/img/logos/firefox/quantum/logo-sm.png', 40px, 40px);
+        @include at2x('/media/protocol/img/logos/firefox/browser/logo-sm.png', 40px, 40px);
         background-repeat: no-repeat;
         content: '';
         display: block;

@@ -116,7 +116,7 @@ $image-path: '/media/protocol/img';
     margin-bottom: $layout-md;
 
     .c-intro-heading {
-        @include at2x('/media/img/logos/firefox/quantum/logo-sm.png', 64px, 64px);
+        @include at2x('/media/protocol/img/logos/firefox/browser/logo-sm.png', 64px, 64px);
         @include bidi(((background-position, top left, top right),));
         @include text-display-lg;
         background-repeat: no-repeat;

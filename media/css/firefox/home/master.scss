@@ -113,7 +113,7 @@ $image-path: '/media/protocol/img';
 
 .mzp-c-card-feature-title {
     .t-browsers & {
-        @include at2x('/media/img/logos/firefox/quantum/logo-word-hor-sm.png', auto, 40px);
+        @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-sm.png', auto, 40px);
     }
 
     .t-monitor & {
