@@ -2,6 +2,7 @@
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% from "macros-protocol.html" import hero with context %}
 {% from "macros.html" import monitor_button with context %}
 
 {% add_lang_files "firefox/welcome/page1" %}
@@ -13,11 +14,23 @@
 
 {% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
 
-{% block body_class %}welcome-page1{% endblock %}
+{% block body_class %}{{ super() }} welcome-page1{% endblock %}
+
+{% set _entrypoint = 'mozilla.org-firefox-welcome-1' %}
+{% set _utm_campaign = 'welcome-1-monitor' %}
 
 {% block content_intro %}
-  <h1 class="c-page-title">{{ _('You’re on track to stay protected') }}</h1>
-  <p class="c-page-tagline">{{ _('You’ve got the web browser that protects your privacy — now it’s time to get a lookout for hackers.') }}</p>
+  {% call hero(
+    title=_('You’re on track to stay protected'),
+    desc=_('You’ve got the web browser that protects your privacy — now it’s time to get a lookout for hackers.'),
+    class='mzp-t-firefox mzp-t-dark',
+    include_cta=False,
+    heading_level=1,
+    image_url=None,
+    include_highres_image=False,
+    image_alt=''
+  ) %}
+  {% endcall %}
 {% endblock %}
 
 {% block content_primary %}
@@ -29,8 +42,8 @@
 
     <p class="primary-cta">
       {{ monitor_button(
-        entrypoint='mozilla.org-firefox-welcome-1',
-        utm_campaign='welcome-1-monitor',
+        entrypoint=_entrypoint,
+        utm_campaign=_utm_campaign,
         button_text=_('Check Your Breach Report'),
         cta_type="Lifecycle-Monitor",
       ) }}

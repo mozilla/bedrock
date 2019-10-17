@@ -37,23 +37,26 @@
 
 
 //* -------------------------------------------------------------------------- */
-// Page intro
+// Page hero
 
-.page-intro {
+.mzp-c-hero-body {
+    @include border-box;
+    margin: 0 auto;
+    max-width: $content-md;
     padding: $layout-xs 0;
     text-align: center;
 
-    @media #{$mq-tall} {
-        padding: $layout-lg 0;
+    @media #{$mq-md} {
+        padding: $layout-lg $layout-xl;
     }
 }
 
-.c-page-title {
+.mzp-c-hero-title {
     @include text-display-lg;
     margin-bottom: $layout-sm;
 }
 
-.c-page-tagline {
+.mzp-c-hero-desc {
     @include text-body-lg;
 }
 
@@ -65,6 +68,10 @@
     @include text-body-lg;
     text-align: center;
     margin: $layout-md auto $layout-xl;
+
+    .primary-image {
+        margin: $layout-sm auto 0;
+    }
 
     .primary-cta {
         margin: $layout-md auto 0;
@@ -133,8 +140,8 @@
 //* -------------------------------------------------------------------------- */
 // Dark theme
 
-.page-intro.mzp-t-dark {
-    background-color: $color-gray-90;
+.mzp-c-hero.mzp-t-dark {
+    background-color: $color-off-black;
     color: $color-white;
 
     :link {
@@ -158,9 +165,5 @@
         &:focus {
             color: $color-white;
         }
-    }
-
-    .welcome-stage1 & {
-        background-color: $color-off-black;
     }
 }
