@@ -4,6 +4,5 @@
 
 (function() {
     'use strict';
-
-    Mozilla.PocketButton.init(['primary-cta-button', 'secondary-cta-button']);
+    Mozilla.MonitorButton.init(['primary-cta-button', 'secondary-cta-button']);
 })();

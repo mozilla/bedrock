@@ -225,6 +225,10 @@ The templates's respective JavaScript bundle should also include the following d
 
 This script will automatically handle things like tracking metrics flow (in the same way we do for https://accounts.firefox.com).
 
+.. note::
+    The ``MonitorButton`` object in ``mozilla-monitor-button.js`` can be initialized with no parameters, one string (a button ID), or an array of strings (button IDs). If initialized with an array, the first button ID in the array will behave as a template for the others. Additional buttons will take the URL and parameters (including fetched parameters) from the first button.
+
+
 Configuration
 ~~~~~~~~~~~~~
 

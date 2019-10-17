@@ -12,22 +12,39 @@ if (typeof window.Mozilla === 'undefined') {
 
     var PocketButton = {};
 
-    PocketButton.init = function(){
+    PocketButton.init = function(b){
 
-        var pocketButton = document.getElementById('pocket-cta');
+        var buttons = [];
 
-        // fetch request
-        var supportsFetch = 'fetch' in window;
+        // check for custom buttonId, used in case of multiple buttons.
+        if(!b){
+            buttons[0] = document.getElementById('pocket-cta');
+        }
+        else if(!Array.isArray(b)) {
+            buttons[0] = document.getElementById(b);
+        }
+        else {
+            for (var i=0;i<b.length;i++) {
+                buttons[i] = document.getElementById(b[i]);
+            }
+        }
 
-        if (!supportsFetch || !pocketButton) {
+        // Exit if no valid button in DOM
+        if (!buttons[0]) {
             return;
         }
 
-        var buttonURL = pocketButton.getAttribute('href');
+        // Exit if no fetch support
+        var supportsFetch = 'fetch' in window;
+        if (!supportsFetch) {
+            return;
+        }
+
+        var buttonURL = buttons[0].getAttribute('href');
         // strip url to everything after `?`
         var buttonURLParams = buttonURL.match(/\?(.*)/)[1];
 
-        var destURL = pocketButton.getAttribute('data-action') + 'metrics-flow';
+        var destURL = buttons[0].getAttribute('data-action') + 'metrics-flow';
 
         // collect values from pocket button
         var params = window._SearchParams.queryStringToObject(buttonURLParams);
@@ -57,7 +74,9 @@ if (typeof window.Mozilla === 'undefined') {
             buttonURL += '&deviceId=' + r.deviceId;
             buttonURL += '&flowBeginTime=' + r.flowBeginTime;
             buttonURL += '&flowId=' + r.flowId;
-            pocketButton.setAttribute('href', buttonURL);
+            for (var i=0;i<buttons.length;i++) {
+                buttons[i].setAttribute('href', buttonURL);
+            }
         }).catch(function() {
             // silently fail: deviceId, flowBeginTime, flowId are not added to url.
         });
