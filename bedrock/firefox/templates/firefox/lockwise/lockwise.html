@@ -52,7 +52,7 @@
     ) %}
 
       <div class="mobile-download-buttons">
-        <a href="{{ lockwise_adjust_url('ios', 'lockwise-page') }}" data-link-type="download" data-download-os="iOS" class="ios-button"  data-cta-text="apple-app-store" data-cta-type="lockwise-app-store" data-cta-position="primary">
+        <a href="{{ lockwise_adjust_url('ios', 'lockwise-page') }}" class="ios-button"  data-cta-text="apple-app-store" data-cta-type="lockwise-app-store" data-cta-position="primary">
           <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
         </a>
         {{ google_play_button(href=lockwise_adjust_url('android', 'lockwise-page'), extra_data_attributes={'download-location': button_location, 'cta-type': 'lockwise-app-store', 'cta-text': 'google-play-store', 'cta-position': 'primary' } ) }}
