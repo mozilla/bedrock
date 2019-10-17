@@ -46,12 +46,12 @@ $image-path: '/media/protocol/img';
         @include text-body-sm;
     }
 
-    .more {
-        color: inherit;
-    }
-
     .email {
         display: block;
+    }
+
+    .more {
+        color: inherit;
     }
 
     .sms-country {
@@ -69,6 +69,10 @@ $image-path: '/media/protocol/img';
             display: block;
         }
     }
+}
+
+// horizontal layout -- this is the default
+.horizontal {
 
     @media #{$mq-lg} {
         max-width: none;
@@ -85,6 +89,48 @@ $image-path: '/media/protocol/img';
             .form-submit {
                 @include bidi(((float, right, left),));
                 width: 25%;
+            }
+        }
+    }
+}
+
+// vertical layout option
+.vertical {
+
+    footer {
+        @include clearfix;
+
+        li {
+            float: left;
+            width: 50%;
+
+            a {
+                padding: $spacing-sm;
+            }
+
+            &.app-store {
+                text-align: right;
+            }
+
+            &.google-play {
+                text-align: left;
+            }
+        }
+
+        &.ios .google-play {
+            display: none;
+        }
+
+        &.android .app-store {
+            display: none;
+        }
+
+        &.ios,
+        &.android {
+            li {
+                float: none;
+                width: 100%;
+                text-align: center;
             }
         }
     }

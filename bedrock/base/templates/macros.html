@@ -64,8 +64,8 @@
 
 
 {# Docs: https://bedrock.readthedocs.io/en/latest/send-to-device.html #}
-{% macro send_to_device(platform='all', product='firefox', message_set='default', id='send-to-device', include_title=True, title_text=None, input_label=None, legal_note_email=None, legal_note_sms=None, spinner_color='#000') %}
-  <section id="{{ id }}" class="send-to-device" data-countries="{{ send_to_device_sms_countries(message_set) }}" data-spinner-color="{{ spinner_color }}">
+{% macro send_to_device(platform='all', product='firefox', message_set='default', id='send-to-device', class='horizontal', include_title=True, title_text=None, input_label=None, legal_note_email=None, legal_note_sms=None, spinner_color='#000') %}
+  <section id="{{ id }}" class="send-to-device {{ class }}" data-countries="{{ send_to_device_sms_countries(message_set) }}" data-spinner-color="{{ spinner_color }}">
     <div class="form-container">
       {% if include_title %}
         <h2 class="form-heading">
