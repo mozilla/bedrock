@@ -18,12 +18,20 @@
 {# product_class may be over-ridden where the default firefox release theme is not apprpriate #}
 {% set product_class = product_class|default('mzp-t-product-firefox') %}
 
-{% if release.product != 'Firefox for iOS' and release.major_version_int < 57 %}
-  {% set pre_quantum = true %}
-{% elif release.product == 'Firefox for iOS' and release.major_version_int < 10 %}
-  {% set pre_quantum = true %}
-{% else %}
-  {% set pre_quantum = false %}
+{% set theme_class = '' %}
+{% set ver = release.major_version_int %}
+{% if release.product != 'Firefox for iOS' %}
+  {% if (ver < 70) and (ver > 57) %}
+    {% set theme_class = 't-quantum' %}
+  {% elif ver < 57 %}
+    {% set theme_class = 't-pre-quantum' %}
+  {% endif %}
+{% elif release.product == 'Firefox for iOS' %}
+  {% if (ver < 20) and (ver > 10) %}
+    {% set theme_class = 't-quantum' %}
+  {% elif ver < 10 %}
+    {% set theme_class = 't-pre-quantum' %}
+  {% endif %}
 {% endif %}
 
 {% block page_title_prefix %}{% endblock %}
@@ -32,7 +40,7 @@
 {% block gtm_page_id %}{{ page_id }}{% endblock %}
 
 {% block body_id %}notes{% endblock %}
-{% block body_class %}mzp-t-firefox {% if pre_quantum %}t-pre-quantum {% endif %}{% endblock %}
+{% block body_class %}mzp-t-firefox {{ theme_class }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('firefox_releasenotes') }}
