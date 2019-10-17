@@ -84,9 +84,9 @@
     "url": "https://www.mozilla.org/en-US/firefox/channel/desktop/",
     "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/beta/logo-lg-high-res.png') }}",
     "image": [
-      "https://blog.mozilla.org/futurereleases/files/2018/06/Logo.png",
-      "https://lh3.googleusercontent.com/CA7nhLfxDcKFhnItz4xdobl1LJQmwb9qLd9HjD7JdTRI0x_JwgPUCSYqhGDbhzx3MA=w3360-h1704",
-      "{{ settings.CANONICAL_URL + static('img/firefox/home/quantum/hero-laptop-high-res.png') }}"
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-beta-1.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-beta-2.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-beta-3.png') }}"
     ],
     "name": "Firefox Browser Beta",
     "alternateName": [
@@ -115,9 +115,9 @@
     "url": "https://www.mozilla.org/firefox/new/",
     "logo": "{{ settings.CANONICAL_URL + static('img/logos/firefox/quantum/logo-lg-high-res.png') }}",
     "image": [
-      "{{ settings.CANONICAL_URL + static('img/firefox/home/quantum/sync-high-res.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-1.png') }}",
       "{{ settings.CANONICAL_URL + static('img/firefox/new/trailhead/browser-window.svg') }}",
-      "{{ settings.CANONICAL_URL + static('img/firefox/home/quantum/hero-laptop-high-res.png') }}"
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-3.png') }}"
     ],
     "name": "Firefox Browser",
     "alternateName": [
@@ -149,7 +149,7 @@
     "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/developer/logo-lg-high-res.png') }}",
     "image": [
       "{{ settings.CANONICAL_URL + static('img/firefox/developer/hero-screenshot-high-res.png') }}",
-      "https://discourse-paas-production-content.s3.dualstack.us-east-1.amazonaws.com/original/3X/5/0/5067538cf05a9cecf3abd7158ae30a74254baaf7.png",
+      "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/developer/og.png') }}",
       "{{ settings.CANONICAL_URL + static('img/firefox/developer/hero-debugger-ani.gif') }}"
     ],
     "name": "Firefox Browser Developer Edition ",
@@ -180,8 +180,8 @@
     "logo": "{{ settings.CANONICAL_URL + static('img/logos/firefox/quantum/logo-lg-high-res.png') }}",
     "image": [
       "{{ settings.CANONICAL_URL + static('img/firefox/enterprise/fx-browser-img.svg') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-enterprise-1.jpg') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-enterprise-2.jpg') }}"
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-enterprise-1.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-enterprise-2.png') }}"
     ],
     "name": "Firefox Browser Enterprise",
     "alternateName": [
@@ -209,9 +209,9 @@
     "url": "https://support.mozilla.org/en-US/kb/firefox-fire-tv",
     "logo": "{{ settings.CANONICAL_URL + static('img/logos/firefox/quantum/logo-lg-high-res.png') }}",
     "image": [
-      "https://images-eu.ssl-images-amazon.com/images/I/81%2BdskARsDL.png",
-      "https://images-eu.ssl-images-amazon.com/images/I/A1xQtSxR11L.png",
-      "https://images-eu.ssl-images-amazon.com/images/I/A1bPa93w2LL.png"
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-tv-1.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-tv-2.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-tv-3.png') }}"
     ],
     "name": "Firefox Browser Fire TV",
     "alternateName": [
@@ -275,8 +275,8 @@
     "logo": "{{ settings.CANONICAL_URL + static('img/logos/firefox/quantum/logo-lg-high-res.png') }}",
     "image": [
       "{{ settings.CANONICAL_URL + static('img/firefox/new/browser-high-res.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/firefox/home/quantum/hero-laptop-high-res.png') }}",
-      "https://ffp4g1ylyit3jdyti1hqcvtb-wpengine.netdna-ssl.com/press-uk/files/2017/11/fox1.png"
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-linux-2.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-linux-3.png') }}"
     ],
     "name": "Firefox Browser Linux",
     "alternateName": [
@@ -302,9 +302,9 @@
     "url": "https://support.mozilla.org/en-US/kb/get-started-firefox-lite",
     "logo": "{{ settings.CANONICAL_URL + static('img/logos/firefox/logo-lite-high-res.png') }}",
     "image": [
-      "https://lh3.googleusercontent.com/j_OAW-oYnMuRB6FJnAQX9jHTzBy5afe8vyW7BKpXFbu2Gsck-b8W-3KoRTM0_cDkUuU=w1440-h620",
-      "https://lh3.googleusercontent.com/ks-aF3UN4CJahyHt2apAlRtU-O-By9GHKQ-O4SPjpLvejoSkkwi-1Ws1uj_M-A1f4tI=w1440-h620",
-      "https://lh3.googleusercontent.com/mWlOP2E22njyJMkK6gM20qWNe39rqr5nL_U5xt8lzk-Yv4xhMncENoRjNf37hcLbBhU=w1440-h620"
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-lite-1.jpg') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-lite-2.jpg') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-lite-3.jpg') }}"
     ],
     "name": "Firefox Lite",
     "brand":
@@ -360,8 +360,8 @@
     "logo": "{{ settings.CANONICAL_URL + static('img/logos/firefox/quantum/logo-lg-high-res.png') }}",
     "image": [
       "{{ settings.CANONICAL_URL + static('img/firefox/new/browser-high-res.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/firefox/home/quantum/private-browsing-high-res.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/firefox/home/quantum/switch-to-firefox-high-res.png') }}"
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-mac-2.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-mac-3.png') }}"
     ],
     "name": "Firefox Browser Mac",
     "alternateName": [
@@ -416,9 +416,9 @@
     "url": "https://www.mozilla.org/en-US/firefox/channel/desktop/",
     "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/nightly/logo-lg-high-res.png') }}",
     "image": [
-      "https://blog.nightly.mozilla.org/files/2019/01/pasted-image-0.png",
-      "https://3sgkpvh31s44756j71xlti9b-wpengine.netdna-ssl.com/files/2019/08/Screenshot-2019-07-30-at-09.32.15.png",
-      "https://3sgkpvh31s44756j71xlti9b-wpengine.netdna-ssl.com/files/2019/04/print-simulation.gif"
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-nightly-1.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-nightly-2.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-nightly-3.gif') }}"
     ],
     "name": "Firefox Browser Nightly",
     "alternateName": [
@@ -451,9 +451,9 @@
     "url": "https://send.firefox.com",
     "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/send/logo-lg-high-res.png') }}",
     "image": [
-      "https://ffp4g1ylyit3jdyti1hqcvtb-wpengine.netdna-ssl.com/wp-content/uploads/2019/03/Firefox-Send-Blog-Post-TWO-1.png",
-      "https://blog.mozilla.org/firefox/files/2019/03/FX_Blog_Send1.png",
-      "https://blog.mozilla.org/press/files/2019/03/FX_Blog_Send.png"
+      "{{ settings.CANONICAL_URL + static('img/structured-data/send-1.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/send-2.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/send-3.png') }}"
     ],
     "name": "Firefox Send",
     "brand":
@@ -483,7 +483,7 @@
     "image": [
       "{{ settings.CANONICAL_URL + static('img/firefox/new/browser-high-res.png') }}",
       "{{ settings.CANONICAL_URL + static('img/firefox/new/trailhead/browser-window.svg') }}",
-      "https://blog.mozilla.org/wp-content/uploads/2015/08/w10-en.jpg"
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-win-3.png') }}"
     ],
     "name": "Firefox Browser Windows",
     "alternateName": [
