@@ -9,7 +9,7 @@
     "Firefox Mac",
     "Firefox Browser for Mac"
   ],
-  "OperatingSystem": "MacOS",
+  "OperatingSystem": "macOS",
   "offers":
   {
     "@type": "Offer",

@@ -21,7 +21,7 @@
     "availability": "https://schema.org/InStock"
   },
   "OperatingSystem": [
-    "MacOS",
+    "macOS",
     "Windows",
     "Linux",
     "iOS",

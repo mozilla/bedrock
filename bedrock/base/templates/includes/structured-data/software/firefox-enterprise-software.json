@@ -19,7 +19,7 @@
     "priceCurrency": "USD"
   },
   "OperatingSystem": [
-    "MacOS",
+    "macOS",
     "Windows",
     "Linux"
   ],

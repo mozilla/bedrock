@@ -347,7 +347,7 @@
     "offers":
     {
       "@type": "Offer",
-      "url": "https://lockwise.firefox.com",
+      "url": "https://www.mozilla.org/en-US/firefox/lockwise/",
       "priceCurrency": "USD",
       "price": "0",
       "availability": "https://schema.org/InStock"
