@@ -113,6 +113,9 @@ def urlencode(txt):
 
 @library.global_function
 def static(path):
+    if settings.DEBUG and path.startswith('/'):
+        raise ValueError('Static paths must not begin with a slash')
+
     return staticfiles_storage.url(path)
 
 
