@@ -103,9 +103,9 @@
       {# The highres_image_url parameter is for passing in a full URL to a highres image. #}
       {# While the include_highres_image is for allowing the lazy_img helper to figure out the name of the highres version. #}
       {% if highres_image_url %}
-        {{ lazy_img(image_url=image_url, highres_image_url=highres_image_url, placeholder_url='placeholder.png', optional_attributes={'class': 'mzp-c-card-image'}) }}
+        {{ lazy_img(image_url=image_url, highres_image_url=highres_image_url, placeholder_url='img/placeholder.png', optional_attributes={'class': 'mzp-c-card-image'}) }}
       {% else %}
-        {{ lazy_img(image_url=image_url, include_highres_image=include_highres_image, placeholder_url='placeholder.png', optional_attributes={'class': 'mzp-c-card-image'}) }}
+        {{ lazy_img(image_url=image_url, include_highres_image=include_highres_image, placeholder_url='img/placeholder.png', optional_attributes={'class': 'mzp-c-card-image'}) }}
       {% endif %}
     </div>
     <div class="mzp-c-card-content">
