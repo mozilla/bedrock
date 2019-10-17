@@ -232,26 +232,22 @@ def high_res_img(ctx, url, optional_attributes=None):
 @jinja2.contextfunction
 def lazy_img(ctx, image_url, placeholder_url, include_highres_image=False,
              optional_attributes=None, highres_image_url=None):
-    placeholder_url = _strip_img_prefix(placeholder_url)
-    placeholder = static(path.join('img', placeholder_url))
+    placeholder = static(placeholder_url)
 
     external_img = re.match(r'^https?://', image_url, flags=re.I)
 
-    # image could be external
-    if not external_img:
-        image_url = _strip_img_prefix(image_url)
-        image = static(path.join('img', image_url))
-    else:
-        image = image_url
-
     if include_highres_image and not external_img:
-        image_high_res = static(path.join('img', convert_to_high_res(image_url)))
-        srcset = 'data-srcset="{image_high_res} 2x"'.format(image_high_res=image_high_res)
+        image_high_res = static(convert_to_high_res(image_url))
+        srcset = f'data-srcset="{image_high_res} 2x"'
     else:
         srcset = ''
 
+    # image could be external
+    if not external_img:
+        image_url = static(image_url)
+
     if highres_image_url:
-        srcset = 'data-srcset="{image_high_res} 2x"'.format(image_high_res=highres_image_url)
+        srcset = f'data-srcset="{highres_image_url} 2x"'
 
     if optional_attributes:
         class_name = optional_attributes.pop('class', 'lazy-image')
@@ -263,12 +259,12 @@ def lazy_img(ctx, image_url, placeholder_url, include_highres_image=False,
         alt_text = ''
         attrs = ''
 
-    markup = ('<div class="lazy-image-container">'
-              '<img class="{class_name}" src="{placeholder}" data-src="{image}" {srcset} alt="{alt_text}" {attrs}>'
-              '<noscript>'
-              '<img class="{class_name}" src="{image}" {srcset} alt="{alt_text}" {attrs}>'
-              '</noscript>'
-              '</div>').format(image=image, placeholder=placeholder, srcset=srcset, class_name=class_name, alt_text=alt_text, attrs=attrs)
+    markup = (f'<div class="lazy-image-container">'
+              f'<img class="{class_name}" src="{placeholder}" data-src="{image_url}" {srcset} alt="{alt_text}" {attrs}>'
+              f'<noscript>'
+              f'<img class="{class_name}" src="{image_url}" {srcset} alt="{alt_text}" {attrs}>'
+              f'</noscript>'
+              f'</div>')
 
     return jinja2.Markup(markup)
 

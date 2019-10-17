@@ -488,7 +488,7 @@ class TestLazyImg(TestCase):
 
     def test_lazy_img(self):
         """Should return expected markup"""
-        markup = self._render(image_url='test.png', placeholder_url='placeholder.png',
+        markup = self._render(image_url='img/test.png', placeholder_url='img/placeholder.png',
                               include_highres_image=True, optional_attributes={'class': 'the-dude', 'alt': 'abides', 'width': '300'})
         expected = (
             u'<div class="lazy-image-container">'
@@ -501,20 +501,20 @@ class TestLazyImg(TestCase):
 
     def test_lazy_img_no_highres_image(self):
         """Should return no highres image"""
-        markup = self._render(image_url='test.png', placeholder_url='placeholder.png')
+        markup = self._render(image_url='img/test.png', placeholder_url='img/placeholder.png')
         self.assertIn(u'src="/media/img/placeholder.png"', markup)
         self.assertIn(u'data-src="/media/img/test.png"', markup)
         self.assertNotIn(u'data-srcset="/media/img/test-high-res.png 2x"', markup)
 
     def test_lazy_img_no_optional_attributes(self):
         """Should return default class and alt values if no optional attributes are provided"""
-        markup = self._render(image_url='test.png', placeholder_url='placeholder.png')
+        markup = self._render(image_url='img/test.png', placeholder_url='img/placeholder.png')
         self.assertIn(u'class="lazy-image"', markup)
         self.assertIn(u'alt=""', markup)
 
     def test_lazy_img_optional_attributes(self):
         """Should return expected optional attributes"""
-        markup = self._render(image_url='test.png', placeholder_url='placeholder.png',
+        markup = self._render(image_url='img/test.png', placeholder_url='img/placeholder.png',
                               optional_attributes={'class': 'the-dude', 'alt': 'abides', 'width': '300'})
         self.assertNotIn(u'class="lazy-image"', markup)
         self.assertIn(u'class="the-dude"', markup)
@@ -523,7 +523,7 @@ class TestLazyImg(TestCase):
 
     def test_lazy_img_external(self):
         """Should allow an external image and ignore include_highres_image"""
-        markup = self._render(image_url='https://www.test.com/test.png', placeholder_url='placeholder.png',
+        markup = self._render(image_url='https://www.test.com/test.png', placeholder_url='img/placeholder.png',
                               include_highres_image=True)
         self.assertIn(u'src="/media/img/placeholder.png"', markup)
         self.assertIn(u'data-src="https://www.test.com/test.png"', markup)
