@@ -10,40 +10,13 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 indent_style = space
 
-[*.py]
+[*.{py,js,css,less,scss,sh,groovy}]
 indent_size = 4
 
-[*.js]
-indent_size = 4
-
-[*.json]
-indent_size = 2
-
-[*.css]
-indent_size = 4
-
-[*.less]
-indent_size = 4
-
-[*.scss]
-indent_size = 4
-
-[*.sh]
-indent_size = 4
-
-[*.html]
-indent_size = 2
-
-[*.svg]
-indent_size = 2
-
-[*.yml]
+[*.{json,html,svg,yml}]
 indent_size = 2
 
 [Jenkinsfile]
-indent_size = 4
-
-[*.groovy]
 indent_size = 4
 
 [package.json]
