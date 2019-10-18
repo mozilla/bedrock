@@ -127,7 +127,7 @@
     padding-left: $spacing-2xl;
     padding-right: $spacing-2xl;
 
-    .lite-KV {
+    .lite-kv {
         display: none;
     }
 
@@ -149,7 +149,7 @@
         grid-template-columns: 45% 55%;
         margin-bottom: 100px;
 
-        .lite-KV {
+        .lite-kv {
             display: block;
             position: relative;
             min-width: 300px;
@@ -170,7 +170,7 @@
     }
     @media #{$mq-xl} {
         grid-template-columns: 40% 60%;
-        .lite-KV {
+        .lite-kv {
             img {
                 top: 230px;
                 max-width: 650px;
