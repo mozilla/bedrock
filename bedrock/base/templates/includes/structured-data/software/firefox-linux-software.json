@@ -4,7 +4,7 @@
   "@id": "https://www.mozilla.org/#firefoxlinux",
   "url": "https://www.mozilla.org/en-US/firefox/linux/",
   "name": "Firefox Browser Linux",
-  "image": "{{ settings.CANONICAL_URL + static('img/logos/firefox/quantum/logo-lg-high-res.png') }}",
+  "image": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
   "alternateName": [
     "Firefox Linux",
     "Firefox Browser for Linux"
