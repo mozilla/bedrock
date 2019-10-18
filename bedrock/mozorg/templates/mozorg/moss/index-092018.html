@@ -61,20 +61,9 @@
   <h2 class="moss-section-heading">{{ _('Award Selection') }}</h2>
 
   <p class="moss-copy">
-  {% trans %}
-    MOSS applications are accepted on a rolling basis and are reviewed monthly by an expert selection panel. Reviewers include current Mozilla staff, senior Mozilla alumni, and other respected open source experts.
+  {% trans directory='https://github.com/mozilla/MOSS-Directory' %}
+    MOSS applications are accepted on a rolling basis and are reviewed monthly by an expert selection panel. Reviewers include current Mozilla staff, senior Mozilla alumni, and other respected open source experts. For a full listing of all current committee members, please see the <a href="{{ directory }}">MOSS directory</a> on GitHub.
   {% endtrans %}
-  </p>
-
-  <p class="moss-copy">
-    {{ _('The Tracks I & II Committee members are') }}
-    <a href="https://mozillians.org/u/lthomson/">Laura Thomson</a>,
-    <a href="https://ritter.vg/">Tom Ritter</a>,
-    <a href="http://stormyscorner.com/">Stormy Peters</a>,
-    <a href="https://mozillians.org/u/rbarnes/">Richard Barnes</a>,
-    <a href="http://www.cmu.edu/iii/innovators/faculty-staff/wasserman.html">Tony Wasserman</a>
-    {{ _('and') }}
-    <a href="https://www.justindorfman.com/">Justin Dorfman</a>.
   </p>
 </section>
 
@@ -82,8 +71,8 @@
   <h2 class="moss-section-heading">{{ _('Past Recipients') }}</h2>
 
   <p class="moss-copy">
-  {% trans %}
-    Past MOSS awardees include the projects listed below. For more information on past MOSS awards, please see the <a href="https://github.com/mozilla/MOSS-Awards-Directory">MOSS awards directory</a> on GitHub.
+  {% trans directory='https://github.com/mozilla/MOSS-Directory' %}
+    Past MOSS awardees include the projects listed below. For more information on past MOSS awards, please see the <a href="{{ directory }}">MOSS directory</a> on GitHub.
   {% endtrans %}
   </p>
 
@@ -217,8 +206,8 @@
     <dt>{{ _('How mature does a project need to be in order to apply for a MOSS award?') }}</dt>
     <dd>
       <p>
-      {% trans %}
-        Historically, the MOSS Committee has chosen to fund projects which are important in their ecosystems and can demonstrate some success and momentum with regard to acquiring users and building an active community of contributors. Unfortunately, the MOSS Committee does not consider applications from brand new projects, projects which are not open source, projects which have yet to be built or projects which have yet to build a community of users and contributors. If you are unsure if your project qualifies for MOSS funding, please <a href="mailto:moss@mozilla.com">email the MOSS team</a>.
+      {% trans moss_email='mailto:MOSS@mozilla.com' %}
+        Historically, the MOSS Committee has chosen to fund projects which are important in their ecosystems and can demonstrate some success and momentum with regard to acquiring users and building an active community of contributors. Unfortunately, the MOSS Committee does not consider applications from brand new projects, projects which are not open source, projects which have yet to be built or projects which have yet to build a community of users and contributors. If you are unsure if your project qualifies for MOSS funding, please <a href="{{ moss_email }}">email the MOSS team</a>.
       {% endtrans %}
       </p>
     </dd>
