@@ -70,14 +70,14 @@
         min-height: 200px;
         max-width: 500px;
         h1 {
-            margin-bottom: 20px;
+            margin-bottom: $spacing-lg;
         }
     }
 
     @media #{$mq-xl} {
         max-width: none;
         h1 {
-            margin-bottom: 40px;
+            margin-bottom: $spacing-2xl;
         }
     }
 
@@ -102,17 +102,13 @@
 }
 
 .lite-text {
-    font-size: 1.5rem;
+    @include text-display-sm;
     font-weight: bold;
     margin: 0 auto $spacing-lg;
     padding: 60px 0 $spacing-lg;
     line-height: 1.2;
     @media #{$mq-lg} {
-        font-size: 1.75rem;
         padding-top: 80px;
-    }
-    @media #{$mq-xl} {
-        font-size: 2.25rem;
     }
 }
 
