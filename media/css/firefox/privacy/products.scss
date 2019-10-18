@@ -38,7 +38,7 @@ $image-path: '/media/protocol/img';
     }
 
     .mzp-c-hero-title {
-        @include at2x('/media/img/logos/firefox/quantum/logo-word-hor-white-sm.png', auto, 40px);
+        @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', auto, 40px);
         @include bidi(((background-position, top left, top right),));
         @include image-replaced;
         background-repeat: no-repeat;
