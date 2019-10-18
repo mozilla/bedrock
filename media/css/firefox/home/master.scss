@@ -285,14 +285,14 @@ $image-path: '/media/protocol/img';
         padding: 0 $layout-md;
 
         .mzp-l-content {
-            background-image: url('/media/img/firefox/home/master/respect.png'), linear-gradient(90deg, $color-violet-60, $color-violet-90);
+            background-image: url('/media/img/firefox/home/master/respect.jpg'), linear-gradient(90deg, #5731AB 50%, $color-violet-90);
             background-position: left -30px center, top left;
             background-repeat: no-repeat;
             background-size: 50%, auto;
             max-width: $content-xl;
 
             @media #{$mq-high-res} {
-                background-image: url('/media/img/firefox/home/master/respect-high-res.png'), linear-gradient(90deg, $color-violet-60, $color-violet-90);
+                background-image: url('/media/img/firefox/home/master/respect-high-res.jpg'), linear-gradient(90deg, #5731AB 50%, $color-violet-90);
             }
         }
 
