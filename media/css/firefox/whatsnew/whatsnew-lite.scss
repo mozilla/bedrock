@@ -64,25 +64,39 @@
 
 .lite-container {
     display: flex;
-    align-items: flex-end;
-
-    @media #{$mq-lg} {
-        min-height: 200px;
-        max-width: 500px;
-        h1 {
-            margin-bottom: $spacing-lg;
-        }
+    justify-content: flex-end;
+    flex-direction: column;
+    margin-top: $spacing-md;
+    @media #{$mq-md} {
+        min-height: 180px;
     }
+}
 
-    @media #{$mq-xl} {
-        max-width: none;
-        h1 {
-            margin-bottom: $spacing-2xl;
+.lite-heading {
+    display: flex;
+
+    align-items: center;
+    h1 {
+        @include font-firefox;
+        @include text-display-lg;
+        font-weight: normal;
+        text-align: start;
+        margin-bottom: 0;
+        strong {
+            white-space: nowrap;
         }
     }
 
     img {
         margin-right: $spacing-md;
+        width: 60px;
+        flex-shrink: 0;
+        @media #{$mq-sm} {
+            width: 100px;
+        }
+        @media #{$mq-xl} {
+            width: 155px;
+        }
     }
 
 }
@@ -120,8 +134,8 @@
 
 .lite-content {
     max-width: 1200px;
-    padding-left: $spacing-2xl;
-    padding-right: $spacing-2xl;
+    padding-left: $spacing-lg;
+    padding-right: $spacing-lg;
 
     .lite-kv {
         display: none;
@@ -134,6 +148,8 @@
     }
 
     @media #{$mq-sm} {
+        padding-left: $spacing-2xl;
+        padding-right: $spacing-2xl;
         .lite-copy {
             max-width: $content-sm;
             margin: 0 auto;
