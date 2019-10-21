@@ -182,7 +182,7 @@ a.button.button-focus {
             width: $header-product-logo-width;
 
             @at-root #header-firefox#{&} { // we can update this syntax when we update to Sass 3.3.0
-                @include at2x('/media/img/logos/firefox/quantum/logo-lg.png', $header-product-logo-width, $header-product-logo-width);
+                @include at2x('/media/protocol/img/logos/firefox/browser/logo-lg.png', $header-product-logo-width, $header-product-logo-width);
             }
 
             @at-root #header-focus#{&} {

@@ -17,7 +17,7 @@ $image-path: '/media/protocol/img';
     background-color: $color-off-black;
 
     .mzp-c-hero-title {
-        @include at2x('/media/img/logos/firefox/quantum/logo-word-hor-white-sm.png', 260px, 48px);
+        @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', 260px, 48px);
         background-position: top center;
         background-repeat: no-repeat;
         padding-top: $layout-xl;

@@ -142,7 +142,7 @@ main {
     margin-bottom: 1em;
 
     &:before {
-        @include at2x('/media/img/logos/firefox/quantum/logo-lg.png', 100px, 100px);
+        @include at2x('/media/protocol/img/logos/firefox/browser/logo-lg.png', 100px, 100px);
         background-repeat: no-repeat;
         content: '';
         display: block;

@@ -46,7 +46,7 @@
       "@type": "SoftwareApplication",
       "@id": "https://www.mozilla.org/#firefoxbrowser",
       "url": "https://www.mozilla.org/firefox/",
-      "image": "{% filter absolute_url %}{{ static('img/logos/firefox/quantum/logo-xl-high-res.png') }}{% endfilter %}",
+      "image": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-xl-high-res.png') }}{% endfilter %}",
       "name": "Firefox Browser",
       "OperatingSystem": [
         "MacOS",

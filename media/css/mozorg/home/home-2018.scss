@@ -187,7 +187,7 @@ h4 {
     top: -4px;
 
     .download-firefox-sticky-cta & {
-        @include at2x('/media/img/logos/firefox/quantum/logo-sm.png', 40px, 40px);
+        @include at2x('/media/protocol/img/logos/firefox/browser/logo-sm.png', 40px, 40px);
     }
 }
 
@@ -381,7 +381,7 @@ h4 {
 }
 
 .c-secondary-cta-title {
-    @include at2x('/media/img/logos/firefox/quantum/logo-sm.png', 40px, 40px);
+    @include at2x('/media/protocol/img/logos/firefox/browser/logo-sm.png', 40px, 40px);
     @include text-display-md;
     background-position: center 35px;
     background-repeat: no-repeat;

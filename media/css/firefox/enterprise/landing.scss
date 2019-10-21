@@ -90,7 +90,7 @@ html {
     }
 
    &.mzp-t-product-firefox .mzp-c-hero-title {
-       @include at2x('/media/img/logos/firefox/quantum/logo-word-hor-white-sm.png', auto, 48px);
+       @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', auto, 48px);
        @include text-display-xl;
        padding-top: $layout-lg + 48px;
    }
