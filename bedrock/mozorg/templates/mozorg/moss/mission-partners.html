@@ -206,14 +206,13 @@
     To get started with your application, simply follow the link below.
   {% endtrans %}
 
-  {% trans url1='https://wiki.mozilla.org/MOSS#Application_Deadlines' %}
-    For deadline information, please check
-    <a href="{{ url1 }}">the MOSS wiki</a>.
+  {% trans %}
+    MOSS applications are considered by the committee on a rolling basis each month; typically, you can expect to hear back from us within two months of submitting your application.
   {% endtrans %}
 
-  {% trans url1='https://wiki.mozilla.org/MOSS/Mentors' %}
-    If you need help completing your application, see the
-    <a href="{{ url1 }}">list of mentors</a>.
+  {% trans moss_email='mailto:MOSS@mozilla.com' %}
+    If you have any questions regarding your application, please 
+    <a href="{{ moss_email }}">email the MOSS team</a>.
   {% endtrans %}
   </p>
 
@@ -230,33 +229,6 @@
   <h2 class="moss-section-heading">{{ _('FAQs') }}</h2>
 
   <dl class="moss-dl">
-    <dt class="moss-copy">
-      {{ _('What is an “endorser”?') }}
-    </dt>
-
-    <dd class="moss-copy">
-    {% trans %}
-      We are keen to enable applications from groups not currently connected
-      with Mozilla, and from communities outside the English-speaking free
-      software world.
-    {% endtrans %}
-
-    {% trans %}
-      Therefore, applications for Mission Partners do not require a Mozillian to
-      support them, as applications for Foundational Technology do.
-    {% endtrans %}
-
-    {% trans %}
-      Instead, they must be endorsed by a well-known and respected figure from a
-      wider software community of which the project is a part, who is not
-      directly connected with your project.
-    {% endtrans %}
-
-    {% trans %}
-      This could be a language community, or a national community - it does not
-      have to be the international open source community.
-    {% endtrans %}
-    </dd>
 
     <dt class="moss-copy">
       {{ _('What about tax?') }}

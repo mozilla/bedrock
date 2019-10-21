@@ -17,7 +17,7 @@
     Mozilla was born out of and remains part of the open source and free software
     movement. Through the Mozilla Open Source Support (MOSS) awards program, we
     recognize, celebrate, and support open source projects that contribute to
-    Mozilla’s work and to the health of the Internet.
+    Mozilla’s work and to the health of the Internet. MOSS broadens access, increases security, and empowers users by providing catalytic funding to open source technologists.
   {% endtrans %}
   </p>
 
@@ -36,12 +36,11 @@
     </li>
 
     <li id="mission-partners">
-      <h3 class="moss-subhead">{{ _('Tracks II & IV: Global Mission Partners') }}</h3>
+      <h3 class="moss-subhead">{{ _('Track II: Mission Partners') }}</h3>
       <p class="moss-copy">{{ _('The Mission Partners track supports open source projects that significantly advance Mozilla’s mission.') }}</p>
       <div class="moss-ctas">
         <p>
-          <a href="{{ url('mozorg.moss.mission-partners') }}" class="moss-copy">{{ _('Learn More: Track II - Worldwide') }}</a><br>
-          <a href="{{ url('mozorg.moss.mission-partners-india') }}" class="moss-copy">{{ _('Learn More: Track IV - India') }}</a>
+          <a href="{{ url('mozorg.moss.mission-partners') }}" class="moss-copy">{{ _('Learn More') }}</a><br>
         </p>
         <p><a href="https://mozilla.fluxx.io/apply/MOSS" rel="external" class="button">{{ _('Apply Now') }}</a></p>
       </div>
@@ -62,30 +61,9 @@
   <h2 class="moss-section-heading">{{ _('Award Selection') }}</h2>
 
   <p class="moss-copy">
-  {% trans %}
-    MOSS applications are accepted on a rolling basis and are reviewed monthly by an expert selection panel. Reviewers include current Mozilla staff, senior Mozilla alumni, and other respected open source experts.
+  {% trans directory='https://github.com/mozilla/MOSS-Directory' %}
+    MOSS applications are accepted on a rolling basis and are reviewed monthly by an expert selection panel. Reviewers include current Mozilla staff, senior Mozilla alumni, and other respected open source experts. For a full listing of all current committee members, please see the <a href="{{ directory }}">MOSS directory</a> on GitHub.
   {% endtrans %}
-  </p>
-
-  <p class="moss-copy">
-    {{ _('The Tracks I & II Committee members are') }}
-    <a href="https://mozillians.org/u/lthomson/">Laura Thomson</a>,
-    <a href="https://ritter.vg/">Tom Ritter</a>,
-    <a href="http://stormyscorner.com/">Stormy Peters</a>,
-    <a href="https://mozillians.org/u/rbarnes/">Richard Barnes</a>,
-    <a href="http://www.cmu.edu/iii/innovators/faculty-staff/wasserman.html">Tony Wasserman</a>
-    {{ _('and') }}
-    <a href="https://www.justindorfman.com/">Justin Dorfman</a>.
-  </p>
-
-  <p class="moss-copy">
-    {{ _('The Track IV Global Mission Partners: India Committee members are') }}
-    <a href="https://twitter.com/MishiChoudhary">Mishi Choudhary</a>,
-    <a href="https://www.linkedin.com/in/sushantomitra/">Sushanto Mitra</a>,
-    <a href="https://wikipedia.org/wiki/Nagarjuna_G.">Nagarjuna Gadiraju</a>,
-    <a href="http://alolitasharma.com/">Alolita Sharma</a>
-    {{ _('and') }}
-    <a href="http://www.cmu.edu/iii/innovators/faculty-staff/wasserman.html">Tony Wasserman</a>.
   </p>
 </section>
 
@@ -93,8 +71,8 @@
   <h2 class="moss-section-heading">{{ _('Past Recipients') }}</h2>
 
   <p class="moss-copy">
-  {% trans %}
-    Past MOSS awardees include:
+  {% trans directory='https://github.com/mozilla/MOSS-Directory' %}
+    Past MOSS awardees include the projects listed below. For more information on past MOSS awards, please see the <a href="{{ directory }}">MOSS directory</a> on GitHub.
   {% endtrans %}
   </p>
 
@@ -220,7 +198,7 @@
     <dd>
       <p>
       {% trans %}
-        While there is no set range, historically, the MOSS Committee has mostly chosen to award between $5,000 and $150,000 USD per project. The larger the award, the more questions the committee will have regarding how the money will be used. All projects should include a statement of work that helps the committee understand how the amount of funding requested was determined and how that funding maps to specific tasks.
+        While there is no set range, historically, the MOSS Committee has mostly chosen to award between $5,000 and $150,000 USD per project. Awards of $150,000 and greater have historically been approved mostly for return awardees who have already successfully completed a smaller MOSS project. In general, the larger the award, the more scrutiny the application will receive and the more questions the committee will have regarding how the money will be used. All projects should include a statement of work that helps the committee understand how the amount of funding requested was determined and how that funding maps to specific tasks.
       {% endtrans %}
       </p>
     </dd>
@@ -228,8 +206,8 @@
     <dt>{{ _('How mature does a project need to be in order to apply for a MOSS award?') }}</dt>
     <dd>
       <p>
-      {% trans %}
-        Historically, the MOSS Committee has mostly chosen to fund projects which can demonstrate some success and momentum with regard to acquiring users and building an active community of contributors. If you are a new project that is just starting out or if you don’t yet have reliable information on how many users/contributors you have, we encourage you to clearly articulate your plans for growing your user base and contributor community.
+      {% trans moss_email='mailto:MOSS@mozilla.com' %}
+        Historically, the MOSS Committee has chosen to fund projects which are important in their ecosystems and can demonstrate some success and momentum with regard to acquiring users and building an active community of contributors. Unfortunately, the MOSS Committee does not consider applications from brand new projects, projects which are not open source, projects which have yet to be built or projects which have yet to build a community of users and contributors. If you are unsure if your project qualifies for MOSS funding, please <a href="{{ moss_email }}">email the MOSS team</a>.
       {% endtrans %}
       </p>
     </dd>
@@ -310,17 +288,11 @@
       </p>
     </dd>
 
-    <dt>{{ _('For Tracks I,II, and IV, what are you looking for in the reference letter? (Open Source Champion/Mozilla Champion)') }}</dt>
+    <dt>{{ _('For Track I, what are you looking for in the reference letter from a Mozilla Champion?') }}</dt>
     <dd>
       <p>
       {% trans %}
         For Track I (Foundational Technologies) projects, your application should include an endorsement from a Mozilla Champion who can describe how your project is used by Mozilla and why it is an important dependency for our work.
-      {% endtrans %}
-      </p>
-
-      <p>
-      {% trans %}
-        For Track II (Mission Partners) projects, your application should include an endorsement from someone who can vouch for the impact of your project on the larger open source ecosystem.
       {% endtrans %}
       </p>
     </dd>
@@ -335,7 +307,7 @@
     <dt>{{ _('Can you share an example Schedule of Work (SoW) for a past MOSS project?') }}</dt>
     <dd>
       <p>
-        Schedule of Work samples can be found <a href="https://wiki.mozilla.org/images/3/3c/Kea-sow.pdf">here</a> and <a href="https://wiki.mozilla.org/images/7/73/Tor-sow.odt">here</a> that might help you shape the outcomes section of your MOSS application.
+        A Schedule of Work sample can be found <a href="https://wiki.mozilla.org/images/3/3c/Kea-sow.pdf">here</a>.
       </p>
     </dd>
 
