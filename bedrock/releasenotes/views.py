@@ -7,6 +7,7 @@ from operator import attrgetter
 
 from django.conf import settings
 from django.http import Http404, HttpResponseRedirect
+from django.urls import NoReverseMatch
 
 from lib import l10n_utils
 
@@ -190,7 +191,10 @@ def nightly_feed(request):
     releases = get_releases_or_404('firefox', 'nightly', 5)
 
     for release in releases:
-        link = reverse('firefox.desktop.releasenotes', args=(release.version, 'release'))
+        try:
+            link = reverse('firefox.desktop.releasenotes', args=(release.version, 'release'))
+        except NoReverseMatch:
+            continue
 
         for note in release.notes:
             if note.id in notes:
