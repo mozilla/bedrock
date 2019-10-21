@@ -992,15 +992,6 @@ class TestFirefoxHome(TestCase):
         render_mock.assert_called_once_with(req, 'firefox/home/index-quantum.html')
 
 
-class TestAccountsPage(TestCase):
-    @patch('bedrock.firefox.views.l10n_utils.render')
-    def test_accounts_page_2019(self, render_mock):
-        req = RequestFactory().get('/firefox/accounts/')
-        req.locale = 'en-US'
-        views.firefox_accounts(req)
-        render_mock.assert_called_once_with(req, 'firefox/accounts-2019.html', ANY)
-
-
 class TestFirefoxWelcomePage1(TestCase):
     @patch('bedrock.firefox.views.l10n_utils.render')
     def test_firefox_welcome_page1(self, render_mock):
