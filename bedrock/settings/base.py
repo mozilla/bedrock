@@ -279,6 +279,7 @@ NOINDEX_URLS = [
     r'^firefox/dedicated-profiles/',
     r'^firefox/installer-help/',
     r'^firefox/this-browser-comes-highly-recommended/',
+    r'^firefox/nightly/notes/feed/$',
     r'^firefox.*/all/$',
     r'^firefox/content-blocking/start/$',
     r'^firefox/enterprise/signup/',
