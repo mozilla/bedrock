@@ -11,6 +11,7 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/feature-card';
 @import '../../../protocol/css/components/call-out';
 @import '../../../protocol/css/templates/card-layout';
+@import '../../protocol/components/sub-navigation';
 
 /* -------------------------------------------------------------------------- */
 // Smooth Scroll
@@ -65,101 +66,6 @@ html {
 
     .mzp-c-call-out-desc {
         color: $color-white;
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-// Sub Navigation
-// Should be replaced by https://github.com/mozilla/protocol/issues/471
-
-.c-sub-navigation {
-    background: $color-white;
-
-    .mzp-l-content {
-        padding-top: 0;
-    }
-
-    .c-sub-navigation-content {
-        border-top: 1px solid $color-gray-30;
-        padding-top: $spacing-lg;
-    }
-
-    .c-sub-navigation-title {
-        @include font-base;
-        @include text-body-md;
-    }
-
-    .c-sub-navigation-list {
-        margin: 0;
-    }
-
-    .c-sub-navigation-item {
-        padding: $spacing-sm 0;
-
-        a:link,
-        a:visited {
-            @include font-base;
-            @include text-body-md;
-            color: $color-black;
-            text-decoration: none;
-        }
-
-        a:hover,
-        a:active,
-        a:focus {
-            text-decoration: underline;
-        }
-    }
-
-    @media #{$mq-md} {
-        @include clearfix;
-
-        .c-sub-navigation-title {
-            @include bidi((
-                (float, left, right),
-                (margin-right, $spacing-sm * 2, margin-left, 0),
-            ));
-            margin-bottom: 0;
-        }
-
-        .c-sub-navigation-list {
-            @include bidi((
-                (float, left, right),
-                (margin-left, -$spacing-sm, margin-right, 0),
-            ));
-        }
-
-        .c-sub-navigation-item {
-            display: inline-block;
-            padding: 0 $spacing-sm;
-        }
-    }
-
-    @media #{$mq-lg} {
-        .c-sub-navigation-list {
-            @include bidi(((margin-left, -$spacing-md, margin-right, 0),));
-        }
-        .c-sub-navigation-title {
-            @include bidi(((margin-right, $spacing-md * 2, margin-left, 0),));
-        }
-
-        .c-sub-navigation-item {
-            padding: 0 $spacing-md;
-        }
-    }
-
-    @media #{$mq-xl} {
-        .c-sub-navigation-list {
-            @include bidi(((margin-left, -$spacing-lg, margin-right, 0),));
-        }
-
-        .c-sub-navigation-title {
-            @include bidi(((margin-right, $spacing-lg * 2, margin-left, 0),));
-        }
-
-        .c-sub-navigation-item {
-            padding: 0 $spacing-lg;
-        }
     }
 }
 

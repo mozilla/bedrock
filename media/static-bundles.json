@@ -571,6 +571,24 @@
     },
     {
       "files": [
+        "css/firefox/privacy/common.scss"
+      ],
+      "name": "firefox-privacy-common"
+    },
+    {
+      "files": [
+        "css/firefox/privacy/promise.scss"
+      ],
+      "name": "firefox-privacy-promise"
+    },
+    {
+      "files": [
+        "css/firefox/privacy/products.scss"
+      ],
+      "name": "firefox-privacy-products"
+    },
+    {
+      "files": [
         "css/privacy/privacy-email.scss"
       ],
       "name": "privacy_email"
@@ -1441,6 +1459,7 @@
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-sign-in-link.js",
         "js/base/mozilla-monitor-button.js",
         "js/firefox/accounts-2019.js"
       ],
@@ -1537,6 +1556,16 @@
         "js/privacy/privacy.js"
       ],
       "name": "privacy"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-form-init.js",
+        "js/base/mozilla-fxa-sign-in-link.js",
+        "js/firefox/privacy/products.js"
+      ],
+      "name": "firefox-privacy-products"
     },
     {
       "files": [
