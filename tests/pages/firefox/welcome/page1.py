@@ -11,7 +11,7 @@ class FirefoxWelcomePage1(FirefoxBasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/welcome/1/'
 
-    _monitor_button_locator = (By.ID, 'fxa-monitor-submit')
+    _monitor_button_locator = (By.CLASS_NAME, 'js-monitor-button')
 
     @property
     def is_monitor_button_displayed(self):

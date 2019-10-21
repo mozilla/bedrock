@@ -13,23 +13,29 @@ if (typeof window.Mozilla === 'undefined') {
     var PocketButton = {};
 
     PocketButton.init = function(){
+        var buttons;
 
-        var pocketButton = document.getElementById('pocket-cta');
+        // Collect all monitor buttons
+        buttons = document.getElementsByClassName('js-pocket-button');
 
-        // fetch request
-        var supportsFetch = 'fetch' in window;
-
-        if (!supportsFetch || !pocketButton) {
+        // Exit if no valid button in DOM
+        if (buttons[0] === undefined) {
             return;
         }
 
-        var buttonURL = pocketButton.getAttribute('href');
+        // Exit if no fetch support
+        var supportsFetch = 'fetch' in window;
+        if (!supportsFetch) {
+            return;
+        }
+
+        var buttonURL = buttons[0].getAttribute('href');
         // strip url to everything after `?`
         var buttonURLParams = buttonURL.match(/\?(.*)/)[1];
 
-        var destURL = pocketButton.getAttribute('data-action') + 'metrics-flow';
+        var destURL = buttons[0].getAttribute('data-action') + 'metrics-flow';
 
-        // collect values from pocket button
+        // collect values from monitor button
         var params = window._SearchParams.queryStringToObject(buttonURLParams);
 
         // add required params to the token fetch request
@@ -57,7 +63,10 @@ if (typeof window.Mozilla === 'undefined') {
             buttonURL += '&deviceId=' + r.deviceId;
             buttonURL += '&flowBeginTime=' + r.flowBeginTime;
             buttonURL += '&flowId=' + r.flowId;
-            pocketButton.setAttribute('href', buttonURL);
+            // applies url to all buttons and adds cta position
+            for (var i=0;i<buttons.length;i++) {
+                buttons[i].setAttribute('href', buttonURL);
+            }
         }).catch(function() {
             // silently fail: deviceId, flowBeginTime, flowId are not added to url.
         });

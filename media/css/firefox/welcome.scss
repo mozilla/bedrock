@@ -47,7 +47,11 @@
     text-align: center;
 
     @media #{$mq-md} {
-        padding: $layout-lg $layout-xl;
+        padding: $layout-md $layout-xl;
+    }
+
+    .primary-cta {
+        margin: 0 auto;
     }
 }
 
@@ -58,6 +62,7 @@
 
 .mzp-c-hero-desc {
     @include text-body-lg;
+    margin-bottom: $layout-sm;
 }
 
 
@@ -66,8 +71,8 @@
 
 .body-primary {
     @include text-body-lg;
+    margin: $layout-md auto $layout-lg;
     text-align: center;
-    margin: $layout-md auto $layout-xl;
 
     .primary-image {
         margin: $layout-sm auto 0;
@@ -107,8 +112,8 @@
         position: relative;
 
         & + & {
-            padding-top: $layout-md;
             border-top: 1px solid $color-gray-30;
+            padding-top: $layout-md;
         }
 
         .c-picto-block-image {
@@ -118,10 +123,23 @@
             ));
             display: block;
             margin: 0;
-            position: absolute;
-            min-height: 0;
             max-width: $layout-lg;
+            min-height: 0;
+            position: absolute;
         }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Secondary CTA
+
+.secondary-cta {
+    @include text-body-lg;
+    margin: $layout-lg auto $layout-sm;
+    text-align: center;
+
+    p {
+        margin: 0 auto;
     }
 }
 
@@ -141,29 +159,7 @@
 // Dark theme
 
 .mzp-c-hero.mzp-t-dark {
+    @include light-links;
     background-color: $color-off-black;
     color: $color-white;
-
-    :link {
-        color: $color-white;
-
-        &:hover,
-        &:focus {
-            color: $color-pink-5;
-        }
-
-        &:active,
-        &:focus {
-            background-color: transparentize($color-white, .95);
-        }
-    }
-
-    :visited {
-        color: $color-pink-10;
-
-        &:hover,
-        &:focus {
-            color: $color-white;
-        }
-    }
 }

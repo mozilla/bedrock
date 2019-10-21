@@ -18,18 +18,30 @@
 
 {% set _entrypoint = 'mozilla.org-firefox-welcome-1' %}
 {% set _utm_campaign = 'welcome-1-monitor' %}
+{% set _cta_type = 'lifecycle-monitor' %}
 
 {% block content_intro %}
   {% call hero(
     title=_('You’re on track to stay protected'),
     desc=_('You’ve got the web browser that protects your privacy — now it’s time to get a lookout for hackers.'),
     class='mzp-t-firefox mzp-t-dark',
-    include_cta=False,
+    include_cta=True,
     heading_level=1,
     image_url=None,
     include_highres_image=False,
     image_alt=''
   ) %}
+
+  <p class="primary-cta">
+      {{ monitor_button(
+        entrypoint=_entrypoint,
+        utm_campaign=_utm_campaign,
+        button_text=_('Check Your Breach Report'),
+        cta_type=_cta_type,
+        utm_content='primary'
+      ) }}
+  </p>
+
   {% endcall %}
 {% endblock %}
 
@@ -39,15 +51,6 @@
   <div class="body-primary-body">
     {# L10n: "Firefox Monitor" is a product name and shouldn't be translated. #}
     <p>{{ _('Firefox Monitor shows you if your information has been leaked in a known data breach, and alerts you in case it happens in the future.') }}</p>
-
-    <p class="primary-cta">
-      {{ monitor_button(
-        entrypoint=_entrypoint,
-        utm_campaign=_utm_campaign,
-        button_text=_('Check Your Breach Report'),
-        cta_type="Lifecycle-Monitor",
-      ) }}
-    </p>
   </div>
 {% endblock %}
 
@@ -84,6 +87,18 @@
     </div>
   </div>
   {% endif %}
+{% endblock %}
+
+{% block secondary_cta %}
+  <p>
+      {{ monitor_button(
+        entrypoint=_entrypoint,
+        utm_campaign=_utm_campaign,
+        button_text=_('Check Your Breach Report'),
+        cta_type=_cta_type,
+        cta_position='secondary'
+      ) }}
+  </p>
 {% endblock %}
 
 {% block content_utility %}
