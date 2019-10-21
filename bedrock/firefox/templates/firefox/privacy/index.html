@@ -17,7 +17,7 @@
   {{ css_bundle('firefox-privacy-promise') }}
 {% endblock %}
 
-{% block body_class %}privacy-promise{% endblock %}
+{% block body_class %}{{ super() }}privacy-promise{% endblock %}
 
 {% set _entrypoint = 'mozilla.org-privacy' %}
 {% set _utm_campaign = 'privacy' %}
