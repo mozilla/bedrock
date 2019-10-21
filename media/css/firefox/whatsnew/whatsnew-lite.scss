@@ -65,20 +65,23 @@
 .lite-container {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     flex-direction: column;
     margin-top: $spacing-md;
     @media #{$mq-md} {
         min-height: 180px;
     }
+    @media #{$mq-lg} {
+        align-items: flex-start;
+    }
 }
 
 .lite-heading {
     display: flex;
-
     align-items: center;
     h1 {
         @include font-firefox;
-        @include text-display-lg;
+        @include text-display-md;
         font-weight: normal;
         text-align: start;
         margin-bottom: 0;
@@ -90,12 +93,11 @@
     img {
         margin-right: $spacing-md;
         width: 60px;
-        flex-shrink: 0;
-        @media #{$mq-sm} {
+        @media #{$mq-md} {
             width: 100px;
         }
         @media #{$mq-xl} {
-            width: 155px;
+            width: 120px;
         }
     }
 
@@ -118,11 +120,20 @@
 .lite-text {
     @include text-display-sm;
     font-weight: bold;
-    margin: 0 auto $spacing-lg;
-    padding: 60px 0 $spacing-lg;
+    margin: 0 auto $spacing-lg auto;
+    padding: $spacing-xl 0 $spacing-lg;
     line-height: 1.2;
+    max-width: $content-sm;
+
     @media #{$mq-lg} {
         padding-top: 80px;
+        min-height: 150px;
+        max-width: 550px;
+        margin-left: 0;
+    }
+    @media #{$mq-xl} {
+        max-width: 650px;
+        min-height: 120px;
     }
 }
 
@@ -130,6 +141,11 @@
     .send-to-device-wrapper {
         margin-right: 60px;
     }
+}
+
+.send-to-device {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .lite-content {
@@ -151,7 +167,7 @@
         padding-left: $spacing-2xl;
         padding-right: $spacing-2xl;
         .lite-copy {
-            max-width: $content-sm;
+            max-width: $content-md;
             margin: 0 auto;
         }
     }
