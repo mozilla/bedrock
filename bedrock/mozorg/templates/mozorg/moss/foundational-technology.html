@@ -4,11 +4,7 @@
 
 {% extends "mozorg/moss/base.html" %}
 
-{% block page_title %}
-  {{ _('Foundational Technology') }}
-  &mdash;
-  {{ super() }}
-{% endblock %}
+{% block page_title %}{{ _('Foundational Technology') }} — {{ super() }}{% endblock %}
 
 {% block body_id %}moss-foundational-technology{% endblock %}
 
@@ -300,7 +296,7 @@
   {% endtrans %}
 
   {% trans %}
-    If you have any questions regarding your application, please 
+    If you have any questions regarding your application, please
     <a href="mailto:moss@mozilla.com">email the MOSS team</a>.
   {% endtrans %}
   </p>

@@ -13,7 +13,6 @@ from django.views.decorators.cache import cache_page, never_cache
 from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
 from lib import l10n_utils
-from lib.l10n_utils.dotlang import lang_file_is_active
 
 from bedrock.base.waffle import switch
 from bedrock.contentcards.models import get_page_content_cards
@@ -200,17 +199,6 @@ def home_view(request):
         template_name = 'mozorg/home/home.html'
 
     return l10n_utils.render(request, template_name, ctx)
-
-
-def moss_view(request):
-    locale = l10n_utils.get_locale(request)
-
-    if lang_file_is_active('mozorg/moss/index-092018', locale):
-        template_name = 'mozorg/moss/index-092018.html'
-    else:
-        template_name = 'mozorg/moss/index.html'
-
-    return l10n_utils.render(request, template_name)
 
 
 @never_cache

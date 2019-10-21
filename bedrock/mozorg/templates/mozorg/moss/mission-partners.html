@@ -4,11 +4,7 @@
 
 {% extends "mozorg/moss/base.html" %}
 
-{% block page_title %}
-  {{ _('Mission Partners') }}
-  &mdash;
-  {{ super() }}
-{% endblock %}
+{% block page_title %}{{ _('Mission Partners') }} — {{ super() }}{% endblock %}
 
 {% block body_id %}moss-mission-partners{% endblock %}
 
@@ -211,7 +207,7 @@
   {% endtrans %}
 
   {% trans moss_email='mailto:MOSS@mozilla.com' %}
-    If you have any questions regarding your application, please 
+    If you have any questions regarding your application, please
     <a href="{{ moss_email }}">email the MOSS team</a>.
   {% endtrans %}
   </p>

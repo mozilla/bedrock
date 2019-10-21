@@ -4,11 +4,7 @@
 
 {% extends "mozorg/moss/base.html" %}
 
-{% block page_title %}
-  {{ _('Secure Open Source') }}
-  &mdash;
-  {{ super() }}
-{% endblock %}
+{% block page_title %}{{ _('Secure Open Source') }} — {{ super() }}{% endblock %}
 
 {% block body_id %}moss-secure-open-source{% endblock %}
 
