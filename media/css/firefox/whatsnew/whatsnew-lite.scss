@@ -16,6 +16,7 @@
 
     .c-page-header-up-to-date {
         @include text-display-xs;
+
         display: none;
         font-weight: normal;
         margin: 0;
@@ -68,9 +69,11 @@
     align-items: center;
     flex-direction: column;
     margin-top: $spacing-md;
+
     @media #{$mq-md} {
         min-height: 180px;
     }
+
     @media #{$mq-lg} {
         align-items: flex-start;
     }
@@ -79,9 +82,12 @@
 .lite-heading {
     display: flex;
     align-items: center;
+
     h1 {
         @include font-firefox;
+
         @include text-display-md;
+
         font-weight: normal;
         text-align: start;
         margin-bottom: 0;
@@ -93,9 +99,11 @@
     img {
         margin-right: $spacing-md;
         width: 60px;
+
         @media #{$mq-md} {
             width: 100px;
         }
+
         @media #{$mq-xl} {
             width: 120px;
         }
@@ -108,10 +116,12 @@
     color: $color-gray-80;
     overflow: hidden;
     position: relative;
+
     @media #{$mq-lg} {
         background-image: url('/media/img/firefox/whatsnew/lite/background.jpg');
         background-size: 2000px auto;
     }
+
     @media #{$mq-xl} {
         background-size: 2400px auto;
     }
@@ -119,6 +129,7 @@
 
 .lite-text {
     @include text-display-sm;
+
     font-weight: bold;
     margin: 0 auto $spacing-lg auto;
     padding: $spacing-xl 0 $spacing-lg;
@@ -131,6 +142,7 @@
         max-width: 550px;
         margin-left: 0;
     }
+
     @media #{$mq-xl} {
         max-width: 650px;
         min-height: 120px;
@@ -196,6 +208,7 @@
             max-width: $content-md;
         }
     }
+
     @media #{$mq-xl} {
         grid-template-columns: 40% 60%;
         .lite-kv {
