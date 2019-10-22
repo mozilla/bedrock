@@ -691,10 +691,23 @@
     },
     {
       "files": [
+        "css/exp/firefox/index-ie9.scss"
+      ],
+      "name": "exp-firefox-home-ie9"
+    },
+    {
+      "files": [
         "css/firefox/home/master.scss",
         "css/base/mozilla-lazy-image.scss"
       ],
       "name": "firefox-master"
+    },
+    {
+      "files": [
+        "css/exp/firefox/index.scss",
+        "css/base/mozilla-lazy-image.scss"
+      ],
+      "name": "exp-firefox-index"
     },
     {
       "files": [
@@ -1245,6 +1258,13 @@
         "js/firefox/home/master.js"
       ],
       "name": "firefox-master"
+    },
+    {
+      "files": [
+        "js/base/mozilla-lazy-load.js",
+        "js/exp/firefox/index.js"
+      ],
+      "name": "exp-firefox-index"
     },
     {
       "files": [
