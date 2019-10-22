@@ -6,6 +6,7 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/emphasis-box';
 
 .c-header-logo {
     @media #{$mq-sm} {
