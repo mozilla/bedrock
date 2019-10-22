@@ -16,6 +16,7 @@
 
     .c-page-header-up-to-date {
         @include text-display-xs;
+
         display: none;
         font-weight: normal;
         margin: 0;
@@ -64,76 +65,160 @@
 
 .lite-container {
     display: flex;
+    justify-content: flex-end;
     align-items: center;
+    flex-direction: column;
+    margin-top: $spacing-md;
+
+    @media #{$mq-md} {
+        min-height: 180px;
+    }
 
     @media #{$mq-lg} {
-        margin-left: 80px;
+        align-items: flex-start;
+    }
+}
+
+.lite-heading {
+    display: flex;
+    align-items: center;
+
+    h1 {
+        @include font-firefox;
+
+        @include text-display-md;
+
+        font-weight: normal;
+        text-align: start;
+        margin-bottom: 0;
+        strong {
+            white-space: nowrap;
+        }
     }
 
     img {
         margin-right: $spacing-md;
+        width: 60px;
+
+        @media #{$mq-md} {
+            width: 100px;
+        }
+
+        @media #{$mq-xl} {
+            width: 120px;
+        }
     }
+
 }
 
 .lite-body {
-    background: url('/media/img/firefox/whatsnew/lite/background-swoosh.png') no-repeat bottom, linear-gradient(#00e4ff, #3aa1ff, #0484ff);
-    color: #fff;
+    background: #42d3ec radial-gradient(50% 50% at 50% 50%, #9CF1D7 0%, rgba(255, 255, 255, 0) 100%) no-repeat top center;
+    color: $color-gray-80;
     overflow: hidden;
     position: relative;
-    padding-top: 10%;
+
+    @media #{$mq-lg} {
+        background-image: url('/media/img/firefox/whatsnew/lite/background.jpg');
+        background-size: 2000px auto;
+    }
+
+    @media #{$mq-xl} {
+        background-size: 2400px auto;
+    }
 }
 
 .lite-text {
-    @include text-display-md;
+    @include text-display-sm;
+
     font-weight: bold;
-    margin: 0 auto $spacing-lg;
-    max-width: 20em;
-    padding: $spacing-sm 0;
+    margin: 0 auto $spacing-lg auto;
+    padding: $spacing-xl 0 $spacing-lg;
+    line-height: 1.2;
+    max-width: $content-sm;
+
+    @media #{$mq-lg} {
+        padding-top: 80px;
+        min-height: 150px;
+        max-width: 550px;
+        margin-left: 0;
+    }
+
+    @media #{$mq-xl} {
+        max-width: 650px;
+        min-height: 120px;
+    }
+}
+
+@media #{$mq-lg} {
+    .send-to-device-wrapper {
+        margin-right: 60px;
+    }
+}
+
+.send-to-device {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .lite-content {
-    .lite-woman {
+    max-width: 1200px;
+    padding-left: $spacing-lg;
+    padding-right: $spacing-lg;
+
+    .lite-kv {
         display: none;
     }
 
     .lite-copy {
         text-align: center;
         z-index: 1;
+        @include text-body-lg;
     }
 
     @media #{$mq-sm} {
+        padding-left: $spacing-2xl;
+        padding-right: $spacing-2xl;
         .lite-copy {
-            max-width: $content-sm;
+            max-width: $content-md;
             margin: 0 auto;
         }
     }
 
     @media #{$mq-lg} {
         display: grid;
-        grid-template-columns: 1fr 2fr 0.5fr;
+        grid-template-columns: 45% 55%;
+        margin-bottom: 100px;
 
-        .lite-woman {
+        .lite-kv {
             display: block;
             position: relative;
             min-width: 300px;
 
             img {
-                position: relative;
-                top: -110px;
-                max-width: 130%;
+                position: absolute;
+                top: 180px;
+                right: -20px;
+                max-width: 500px;
             }
         }
 
         .lite-copy {
-            margin: 100px 0 0;
-            max-height: $content-sm;
+            margin: 20px 0 0;
             text-align: left;
             max-width: $content-md;
         }
+    }
 
-        .lite-woman,
-        .lite-code {
-            min-height: 700px;
+    @media #{$mq-xl} {
+        grid-template-columns: 40% 60%;
+        .lite-kv {
+            img {
+                top: 230px;
+                max-width: 650px;
+            }
+        }
+        .lite-copy {
+            margin-top: 80px;
         }
     }
 }
