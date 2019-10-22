@@ -11,8 +11,13 @@ class FirefoxWelcomePage2(FirefoxBasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/welcome/2/'
 
-    _pocket_button_locator = (By.ID, 'pocket-cta')
+    _pocket_primary_button_locator = (By.CSS_SELECTOR, '.primary-cta .js-pocket-button')
+    _pocket_secondary_button_locator = (By.CSS_SELECTOR, '.secondary-cta .js-pocket-button')
 
     @property
-    def is_pocket_button_displayed(self):
-        return self.is_element_displayed(*self._pocket_button_locator)
+    def is_primary_pocket_button_displayed(self):
+        return self.is_element_displayed(*self._pocket_primary_button_locator)
+
+    @property
+    def is_secondary_pocket_button_displayed(self):
+        return self.is_element_displayed(*self._pocket_secondary_button_locator)
