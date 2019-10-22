@@ -246,39 +246,11 @@ class TestWhatsNew(TestCase):
 
     @override_settings(DEV=True)
     def test_fx_beta_whatsnew(self, render_mock):
-        """Should show beta whatsnew template"""
+        """Should show default whatsnew template"""
         req = self.rf.get('/en-US/firefox/whatsnew/')
-        self.view(req, version='67.0beta')
+        self.view(req, version='71.0beta')
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/index.html']
-
-    @override_settings(DEV=True)
-    @patch.dict(os.environ, SWITCH_BETA_WHATSNEW_68_TRAILHEAD='True')
-    def test_fx_beta_68_0_trailhead_whatsnew_on(self, render_mock):
-        """Should show beta 68 trailhead template"""
-        req = self.rf.get('/en-US/firefox/whatsnew/')
-        self.view(req, version='68.0beta')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/beta/whatsnew-fx68-trailhead.html']
-
-    @override_settings(DEV=True)
-    @patch.dict(os.environ, SWITCH_BETA_WHATSNEW_68_TRAILHEAD='False')
-    def test_fx_beta_68_0_trailhead_whatsnew_off(self, render_mock):
-        """Should show beta 68 trailhead template"""
-        req = self.rf.get('/en-US/firefox/whatsnew/')
-        self.view(req, version='68.0beta')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/beta/whatsnew-fx68.html']
-
-    @override_settings(DEV=True)
-    @patch.dict(os.environ, SWITCH_BETA_WHATSNEW_68_TRAILHEAD='True')
-    def test_fx_beta_68_0_trailhead_non_locales(self, render_mock):
-        """Should show beta 68 whatsnew template"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'es-ES'
-        self.view(req, version='68.0beta')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/beta/whatsnew-fx68.html']
 
     # end beta whatsnew tests
 
