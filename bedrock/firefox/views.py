@@ -977,4 +977,3 @@ def firefox_welcome_page1(request):
     template_name = 'firefox/welcome/page1.html'
 
     return l10n_utils.render(request, template_name, context)
-    
