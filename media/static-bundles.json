@@ -511,6 +511,12 @@
     },
     {
       "files": [
+        "css/exp/firefox/lockwise.scss"
+      ],
+      "name": "exp-lockwise"
+    },
+    {
+      "files": [
         "css/firefox/whatsnew/whatsnew-67.scss"
       ],
       "name": "firefox_whatsnew_67"
@@ -1035,6 +1041,13 @@
         "js/firefox/lockwise/lockwise.js"
       ],
       "name": "lockwise"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/exp/firefox/lockwise.js"
+      ],
+      "name": "exp-lockwise"
     },
     {
       "files": [

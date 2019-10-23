@@ -1,0 +1,90 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button with context %}
+{% from "macros-protocol.html" import hero, picto_card with context %}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block canonical_urls %}
+  {# Experimental pages should set canonical to the original page URL. #}
+  <link rel="canonical" href="{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/lockwise/">
+{% endblock %}
+
+{% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/lockwise/{% endblock %}
+
+{% block page_image %}{{ static('protocol/img/logos/firefox/lockwise/og.png') }}{% endblock %}
+{% block page_favicon %}{{ static('img/favicons/firefox/lockwise/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/favicons/firefox/lockwise/favicon-196x196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/favicons/firefox/lockwise/apple-touch-icon.png') }}{% endblock %}
+
+{% block page_title %}Firefox Lockwise – Passwortmanager — Hab deine Passwörter überall parat.{% endblock %}
+
+{% block page_desc %}Mit Firefox Lockwise hast du Passwörter, die du in Firefox speicherst auch überall außerhalb des Browsers parat — mit 256-Bit-Verschlüsselung und Face/Touch-ID.{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('exp-lockwise') }}
+{% endblock %}
+
+{% block body_id %}firefox-lockwise{% endblock %}
+{% block body_class %}firefox-lockwise{% endblock %}
+
+{% block content %}
+  <main role="main">
+    {% call hero(
+      title='Firefox Lockwise',
+      subheading='Hab deine Passwörter immer parat',
+      desc='Greife von überall aus sicher auf deine in Firefox gespeicherten Passwörter zu – auch außerhalb des Browsers.',
+      class='mzp-c-hero mzp-has-image lockwise-hero',
+      image_url='img/firefox/lockwise/de.png',
+      include_cta=True,
+      heading_level=1,
+      subheading_level=2,
+    ) %}
+
+      <div class="mobile-download-buttons">
+        <a href="{{ lockwise_adjust_url('ios', 'lockwise-page') }}" data-link-type="download" data-download-os="iOS" class="ios-button" data-cta-text="apple-app-store" data-cta-type="lockwise-app-store" data-cta-position="primary">
+          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="Im App Store downloaden" width="152" height="45">
+        </a>
+        {{ google_play_button(href=lockwise_adjust_url('android', 'lockwise-page'), extra_data_attributes={'download-location': button_location, 'cta-type': 'lockwise-app-store', 'cta-text': 'google-play-store', 'cta-position': 'primary' } ) }}
+      </div>
+      <div class="mzp-c-hero-cta add-on-download for-firefox-69-and-below hidden">
+        <div class="mzp-c-button-download-container">
+          <p>Jetzt Lockwise ausprobieren</p>
+          <a href="https://github.com/mozilla-lockwise/lockwise-addon/releases/download/2.2.5-alpha/lockwise-signed.xpi" class="mzp-c-button mzp-t-product" data-cta-type="lockwise-install" data-cta-position="primary">Für Firefox installieren</a>
+        </div>
+      </div>
+      <div class="mzp-c-hero-cta add-on-download for-firefox-70-and-above hidden">
+        <div class="mzp-c-button-download-container">
+          <p>Jetzt Lockwise ausprobieren</p>
+          <button class="mzp-c-button mzp-t-product" id="lockwise-button" data-cta-type="lockwise-open-in-fx" data-cta-position="primary">Open in Firefox</button>
+        </div>
+      </div>
+      <div class="mzp-c-hero-cta add-on-download for-non-firefox-users hidden">
+        <div class="mzp-c-button-download-container">
+          <p>Nur im Firefox Browser</p>
+          {{ download_firefox(alt_copy='Hol dir Firefox', download_location='primary cta') }}
+        </div>
+      </div>
+
+    {% endcall %}
+
+    <div class="mzp-t-dark">
+      <section class="mzp-l-card-third mzp-l-content">
+        {{ picto_card(title='Schutz beim Synchronisieren durch 256-Bit-Verschlüsselung', class='encryption') }}
+        {{ picto_card(title='Sicherer Zugang zu deinen Passwörtern mit Face- oder Touch-ID', class='touch') }}
+        {{ picto_card(title='Deine Privatsphäre geht vor. Wir schützen deine Daten und verkaufen sie niemals.', class='privacy') }}
+      </section>
+      <section class="mzp-l-content">
+        <section class="links">
+          <a href='https://support.mozilla.org/products/firefox-lockwise?utm_source=www.mozilla.org-lockwise&amp;utm_campaign=Lockwise&amp;utm_medium=referral'>Hilfe</a>
+          <a href='https://support.mozilla.org/kb/firefox-lockwise-and-privacy'>Deine Privatsphäre</a>
+          <a href='https://github.com/mozilla-lockwise'>GitHub</a>
+        </section>
+      </section>
+    </div>
+  </main>
+{% endblock %}
+
+{% block js %}{{ js_bundle('exp-lockwise') }}{% endblock %}
