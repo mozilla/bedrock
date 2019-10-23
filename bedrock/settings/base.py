@@ -1293,6 +1293,7 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
         }
     },
     'download-firefox-rocket': {
+        'sms_countries': '',
         'email': {
             'all': 'download-firefox-rocket',
         }
