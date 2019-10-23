@@ -563,7 +563,6 @@ class WhatsNewIndiaView(l10n_utils.LangFilesMixin, TemplateView):
 
     def get_template_names(self):
         locale = l10n_utils.get_locale(self.request)
-        trailhead_locales = ['en-US', 'en-CA', 'en-GB', 'de', 'fr']
 
         version = self.kwargs.get('version') or ''
 
@@ -978,4 +977,3 @@ def firefox_welcome_page1(request):
     template_name = 'firefox/welcome/page1.html'
 
     return l10n_utils.render(request, template_name, context)
-
