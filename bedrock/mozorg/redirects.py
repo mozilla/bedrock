@@ -668,4 +668,7 @@ redirectpatterns = (
 
     # issue 7842
     redirect(r'^enterprise/?$', 'firefox.enterprise.index'),
+
+    # Issue 7970
+    redirect(r'^moss/mission-partners-india/?$', 'mozorg.moss.mission-partners'),
 )

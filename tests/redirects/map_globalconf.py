@@ -1282,4 +1282,6 @@ URLS = flatten((
     # Issue 7842
     url_test('/enterprise/', '/firefox/enterprise/'),
 
+    # Issue 7970
+    url_test('/moss/mission-partners-india/', '/moss/mission-partners/'),
 ))
