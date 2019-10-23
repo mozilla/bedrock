@@ -83,11 +83,6 @@ class FirefoxDesktop(_ProductDetails):
         else:
             platforms = self.platform_labels.copy()
 
-        # Msi installers are not yet available for ESR builds.
-        if channel == 'esr' or channel == 'esr-next':
-            del platforms['win64-msi']
-            del platforms['win-msi']
-
         return list(platforms.items())
 
     def latest_version(self, channel='release'):
