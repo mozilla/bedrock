@@ -141,7 +141,7 @@ class TestFirefoxAll(TestCase):
 
         desktop_esr_builds = len(self.firefox_desktop.get_filtered_full_builds('esr'))
         assert len(doc('.c-locale-list[data-product="desktop_esr"] > li')) == desktop_esr_builds
-        assert len(doc('.c-locale-list[data-product="desktop_esr"] > li[data-language="en-US"] > ul > li > a')) == 5
+        assert len(doc('.c-locale-list[data-product="desktop_esr"] > li[data-language="en-US"] > ul > li > a')) == 7
 
         android_release_builds = len(self.firefox_android.get_filtered_full_builds('release'))
         assert len(doc('.c-locale-list[data-product="android_release"] > li')) == android_release_builds
