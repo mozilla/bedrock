@@ -407,8 +407,12 @@ html[lang^="en"] {
 }
 
 #developer header {
-    .at2x('/media/img/logos/firefox/developer.png', 180px, 180px);
-    .background-size(180px 180px);
+    background-image: url('/media/protocol/img/logos/firefox/browser/developer/logo-2xl.png');
+    background-size: 180px 180px;
+
+    @media @highdpi {
+        background-image: url('/media/protocol/img/logos/firefox/browser/developer/logo-2xl-high-res.png');
+    }
 
     @media only screen and (max-width: @breakDesktop) {
         .background-size(150px 150px);
