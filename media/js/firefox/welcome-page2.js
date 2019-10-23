@@ -15,6 +15,12 @@ if (typeof window.Mozilla === 'undefined') {
     PocketButton.init = function() {
         var buttons;
 
+        // Exit if no fetch support
+        var supportsFetch = 'fetch' in window;
+        if (!supportsFetch) {
+            return;
+        }
+
         // Collect all monitor buttons
         buttons = document.getElementsByClassName('js-pocket-button');
 
@@ -23,11 +29,6 @@ if (typeof window.Mozilla === 'undefined') {
             return;
         }
 
-        // Exit if no fetch support
-        var supportsFetch = 'fetch' in window;
-        if (!supportsFetch) {
-            return;
-        }
 
         var buttonURL = buttons[0].getAttribute('href');
         // strip url to everything after `?`

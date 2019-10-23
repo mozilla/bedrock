@@ -15,17 +15,17 @@ if (typeof window.Mozilla === 'undefined') {
     MonitorButton.init = function() {
         var buttons;
 
+        // Exit if no fetch support
+        var supportsFetch = 'fetch' in window;
+        if (!supportsFetch) {
+            return;
+        }
+
         // Collect all monitor buttons
         buttons = document.getElementsByClassName('js-monitor-button');
 
         // Exit if no valid button in DOM
         if (buttons.length === 0) {
-            return;
-        }
-
-        // Exit if no fetch support
-        var supportsFetch = 'fetch' in window;
-        if (!supportsFetch) {
             return;
         }
 
