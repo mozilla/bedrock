@@ -548,6 +548,7 @@ class WhatsNewRedirectorView(GeoRedirectView):
 
         return super().get_redirect_url(*args, **kwargs)
 
+
 class WhatsNewIndiaView(l10n_utils.LangFilesMixin, TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super(WhatsNewIndiaView, self).get_context_data(**kwargs)
@@ -589,6 +590,7 @@ class WhatsNewIndiaView(l10n_utils.LangFilesMixin, TemplateView):
 
         # return a list to conform with original intention
         return [template]
+
 
 class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
     def get_context_data(self, **kwargs):
