@@ -59,13 +59,13 @@ Since GTM listeners pass the interacted element object to the dataLayer, the use
 For all generic CTA links and <button> elements, add these data attributes (* indicates a required attribute):
 
 +--------------------------+---------------------------------------------------------------------+
-|    Data Attribute        |        Expected Value                                               |
+|    Data Attribute        |        Expected Value (lowercase)                                   |
 +==========================+=====================================================================+
-|    data-cta-type *       | Link type (e.g. 'Navigation', 'Footer', or 'Button')                |
+|    data-cta-type *       | Link type (e.g. 'navigation', 'footer', or 'button')                |
 +--------------------------+---------------------------------------------------------------------+
 |    data-cta-text         | name or text of the link                                            |
 +--------------------------+---------------------------------------------------------------------+
-|    data-cta-position     | Location of CTA on the page (e.g. 'Primary', 'Secondary', 'Header') |
+|    data-cta-position     | Location of CTA on the page (e.g. 'primary', 'secondary', 'header') |
 +--------------------------+---------------------------------------------------------------------+
 
 For all download buttons, add these data attributes:

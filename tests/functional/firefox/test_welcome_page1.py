@@ -10,4 +10,5 @@ from pages.firefox.welcome.page1 import FirefoxWelcomePage1
 @pytest.mark.nondestructive
 def test_monitor_button_displayed(base_url, selenium):
     page = FirefoxWelcomePage1(selenium, base_url).open()
-    assert page.is_monitor_button_displayed
+    assert page.is_primary_monitor_button_displayed
+    assert page.is_secondary_monitor_button_displayed

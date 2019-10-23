@@ -941,7 +941,7 @@
     {
       "files": [
         "js/base/mozilla-monitor-button.js",
-        "js/base/mozilla-monitor-button-init.js"
+        "js/firefox/welcome-page1-init.js"
       ],
       "name": "firefox_welcome_page1"
     },

@@ -12,27 +12,28 @@ if (typeof window.Mozilla === 'undefined') {
 
     var MonitorButton = {};
 
-    MonitorButton.init = function(buttonId){
+    MonitorButton.init = function() {
+        var buttons;
 
-        // check for custom buttonId, used in case of multiple buttons.
-        if(!buttonId){
-            buttonId = 'fxa-monitor-submit';
-        }
-
-        var monitorButton = document.getElementById(buttonId);
-
-        // fetch request
+        // Exit if no fetch support
         var supportsFetch = 'fetch' in window;
-
-        if (!supportsFetch || !monitorButton) {
+        if (!supportsFetch) {
             return;
         }
 
-        var buttonURL = monitorButton.getAttribute('href');
+        // Collect all monitor buttons
+        buttons = document.getElementsByClassName('js-monitor-button');
+
+        // Exit if no valid button in DOM
+        if (buttons.length === 0) {
+            return;
+        }
+
+        var buttonURL = buttons[0].getAttribute('href');
         // strip url to everything after `?`
         var buttonURLParams = buttonURL.match(/\?(.*)/)[1];
 
-        var destURL = monitorButton.getAttribute('data-action') + 'metrics-flow';
+        var destURL = buttons[0].getAttribute('data-action') + 'metrics-flow';
 
         // collect values from monitor button
         var params = window._SearchParams.queryStringToObject(buttonURLParams);
@@ -58,11 +59,15 @@ if (typeof window.Mozilla === 'undefined') {
         fetch(destURL).then(function(resp) {
             return resp.json();
         }).then(function(r) {
+            var flowParams;
             // add retrieved deviceID, flowBeginTime and flowId values to cta url
-            buttonURL += '&deviceId=' + r.deviceId;
-            buttonURL += '&flowBeginTime=' + r.flowBeginTime;
-            buttonURL += '&flowId=' + r.flowId;
-            monitorButton.setAttribute('href', buttonURL);
+            flowParams += '&deviceId=' + r.deviceId;
+            flowParams += '&flowBeginTime=' + r.flowBeginTime;
+            flowParams += '&flowId=' + r.flowId;
+            // applies url to all buttons and adds cta position
+            for (var i=0; i<buttons.length; i++) {
+                buttons[i].href += flowParams;
+            }
         }).catch(function() {
             // silently fail: deviceId, flowBeginTime, flowId are not added to url.
         });
