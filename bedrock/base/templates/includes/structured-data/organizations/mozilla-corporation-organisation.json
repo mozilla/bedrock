@@ -1,0 +1,518 @@
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.mozilla.org/#organization",
+  "name": "Mozilla",
+  "alternateName": "MoCo",
+  "legalName": "Mozilla Corporation",
+  "description": "Mozilla makes browsers, apps, code and tools that put people before profit. Our mission: Keep the internet open and accessible to all.",
+  "url": "https://www.mozilla.org",
+  "logo": "{{ settings.CANONICAL_URL + static('img/mozorg/mozilla-256.jpg') }}",
+  "diversityPolicy": "https://blog.mozilla.org/inclusion/mozilla-workplace-transition-policy-guidelines/",
+  "ethicsPolicy": "https://www.mozilla.org/about/manifesto/",
+  "foundingDate": "2005-08-03",
+  "founder": "Mitchell Baker",
+  "sameAs": [
+    "https://www.wikidata.org/wiki/Q169925",
+    "https://twitter.com/mozilla",
+    "https://www.facebook.com/mozilla",
+    "https://github.com/mozilla",
+    "https://www.instagram.com/mozilla/",
+    "https://www.youtube.com/user/Mozilla",
+    "https://en.wikipedia.org/wiki/Mozilla_Corporation",
+    "https://www.linkedin.com/company/mozilla-corporation"
+  ],
+  "brand": [
+  {
+    "@type": "brand",
+    "@id": "https://www.mozilla.org/#mozilla",
+    "url": "https://www.mozilla.org",
+    "logo": "{{ settings.CANONICAL_URL + static('img/mozorg/mozilla-256.jpg') }}",
+    "name": "Mozilla",
+    "sameAs": ["https://en.wikipedia.org/wiki/Mozilla", "https://www.wikidata.org/wiki/Q9661"]
+  },
+  {
+    "@type": "brand",
+    "@id": "https://www.mozilla.org/#firefoxbrand",
+    "url": "https://www.mozilla.org/firefox/",
+    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/logo-lg-high-res.png') }}",
+    "name": "Firefox",
+    "sameAs": [
+      "https://twitter.com/firefox",
+      "https://www.instagram.com/firefox/",
+      "https://www.youtube.com/firefox"
+    ]
+  }],
+  "owns": [
+  {
+    "@type": "Product",
+    "@id": "https://www.mozilla.org/#firefoxandroid",
+    "url": "https://www.mozilla.org/firefox/mobile/",
+    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+    "image": [
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-android-1.jpg') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-android-2.jpg') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-android-3.jpg') }}"
+    ],
+    "name": "Firefox Browser Android",
+    "alternateName": [
+      "Firefox Android",
+      "Firefox Browser for Android",
+      "Firefox for Android"
+    ],
+    "brand":
+    {
+      "@id": "https://www.mozilla.org/#firefoxbrand"
+    },
+    "sameAs": [
+      "https://www.wikidata.org/wiki/Q550315",
+      "https://en.wikipedia.org/wiki/Firefox_for_Android",
+      "https://play.google.com/store/apps/details?id=org.mozilla.firefox"
+    ],
+    "offers":
+    {
+      "@type": "Offer",
+      "url": "https://play.google.com/store/apps/details?id=org.mozilla.firefox",
+      "priceCurrency": "USD",
+      "price": "0",
+      "availability": "https://schema.org/InStock"
+    }
+  },
+  {
+    "@type": "Product",
+    "@id": "https://www.mozilla.org/#firefoxbeta",
+    "url": "https://www.mozilla.org/en-US/firefox/channel/desktop/",
+    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/beta/logo-lg-high-res.png') }}",
+    "image": [
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-beta-1.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-beta-2.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-beta-3.png') }}"
+    ],
+    "name": "Firefox Browser Beta",
+    "alternateName": [
+      "Firefox Beta",
+      "Firefox Beta Browser"
+    ],
+    "brand":
+    {
+      "@id": "https://www.mozilla.org/#firefoxbrand"
+    },
+    "sameAs": [
+      "https://play.google.com/store/apps/details?id=org.mozilla.firefox_beta"
+    ],
+    "offers":
+    {
+      "@type": "Offer",
+      "url": "https://www.mozilla.org/en-US/firefox/channel/desktop/",
+      "priceCurrency": "USD",
+      "price": "0",
+      "availability": "https://schema.org/InStock"
+    }
+  },
+  {
+    "@type": "Product",
+    "@id": "https://www.mozilla.org/#firefoxbrowser",
+    "url": "https://www.mozilla.org/firefox/new/",
+    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+    "image": [
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-1.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/firefox/new/trailhead/browser-window.svg') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-3.png') }}"
+    ],
+    "name": "Firefox Browser",
+    "alternateName": [
+      "Firefox Desktop",
+      "Firefox Browser for Desktop",
+      "Mozilla Firefox"
+    ],
+    "brand":
+    {
+      "@id": "https://www.mozilla.org/#firefoxbrand"
+    },
+    "sameAs": [
+      "https://www.wikidata.org/wiki/Q698",
+      "https://en.wikipedia.org/wiki/Firefox"
+    ],
+    "offers":
+    {
+      "@type": "Offer",
+      "url": "https://www.mozilla.org/firefox/new/",
+      "priceCurrency": "USD",
+      "price": "0",
+      "availability": "https://schema.org/InStock"
+    }
+  },
+  {
+    "@type": "Product",
+    "@id": "https://www.mozilla.org/#firefoxdeveloper",
+    "url": "https://www.mozilla.org/en-US/firefox/developer/",
+    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/developer/logo-lg-high-res.png') }}",
+    "image": [
+      "{{ settings.CANONICAL_URL + static('img/firefox/developer/hero-screenshot-high-res.png') }}",
+      "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/developer/og.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/firefox/developer/hero-debugger-ani.gif') }}"
+    ],
+    "name": "Firefox Browser Developer Edition ",
+    "alternateName": [
+      "Firefox Developer Edition",
+      "Firefox Developer Edition Browser"
+    ],
+    "brand":
+    {
+      "@id": "https://www.mozilla.org/#firefoxbrand"
+    },
+    "sameAs": [
+      "https://en.wikipedia.org/wiki/Firefox_Developer_Edition"
+    ],
+    "offers":
+    {
+      "@type": "Offer",
+      "url": "https://www.mozilla.org/en-US/firefox/developer/",
+      "priceCurrency": "USD",
+      "price": "0",
+      "availability": "https://schema.org/InStock"
+    }
+  },
+  {
+    "@type": "Product",
+    "@id": "https://www.mozilla.org/#firefoxenterprise",
+    "url": "https://www.mozilla.org/en-US/firefox/enterprise/",
+    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+    "image": [
+      "{{ settings.CANONICAL_URL + static('img/firefox/enterprise/fx-browser-img.svg') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-enterprise-1.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-enterprise-2.png') }}"
+    ],
+    "name": "Firefox Browser Enterprise",
+    "alternateName": [
+      "Firefox for Enterprise",
+      "Firefox Browser for Enterprise"
+    ],
+    "brand":
+    {
+      "@id": "https://www.mozilla.org/#firefoxbrand"
+    },
+    "sameAs": [
+      "https://www.youtube.com/watch?v=pnQUOFgj3oA"
+    ],
+    "offers":
+    {
+      "@type": "Offer",
+      "priceCurrency": "USD",
+      "price": "0",
+      "availability": "https://schema.org/InStock"
+    }
+  },
+  {
+    "@type": "Product",
+    "@id": "https://www.mozilla.org/#firefoxfiretv",
+    "url": "https://support.mozilla.org/en-US/kb/firefox-fire-tv",
+    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+    "image": [
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-tv-1.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-tv-2.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-tv-3.png') }}"
+    ],
+    "name": "Firefox Browser Fire TV",
+    "alternateName": [
+      "Firefox for Fire TV",
+      "Firefox Browser for Fire TV"
+    ],
+    "brand":
+    {
+      "@id": "https://www.mozilla.org/#firefoxbrand"
+    },
+    "sameAs": [
+      "https://www.amazon.com/Mozilla-Firefox-for-Fire-TV/dp/B078B5YMPD"
+    ],
+    "offers":
+    {
+      "@type": "Offer",
+      "url": "https://www.amazon.com/Mozilla-Firefox-for-Fire-TV/dp/B078B5YMPD",
+      "priceCurrency": "USD",
+      "price": "0",
+      "availability": "https://schema.org/InStock"
+    }
+  },
+  {
+    "@type": "Product",
+    "@id": "https://www.mozilla.org/#firefoxios",
+    "url": "https://www.mozilla.org/firefox/mobile/",
+    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+    "image": [
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-ios-1.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-ios-2.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-ios-3.png') }}"
+    ],
+    "name": "Firefox Browser iOS",
+    "alternateName": [
+      "Firefox iOS",
+      "Firefox for iOS",
+      "Firefox Browser for iOS"
+    ],
+    "brand":
+    {
+      "@id": "https://www.mozilla.org/#firefoxbrand"
+    },
+    "sameAs": [
+      "https://www.wikidata.org/wiki/Q20820972",
+      "https://en.wikipedia.org/wiki/Firefox_for_iOS",
+      "https://apps.apple.com/us/app/firefox-private-safe-browser/id989804926"
+    ],
+    "offers":
+    {
+      "@type": "Offer",
+      "url": "https://apps.apple.com/us/app/firefox-private-safe-browser/id989804926",
+      "priceCurrency": "USD",
+      "price": "0",
+      "availability": "https://schema.org/InStock"
+    }
+  },
+  {
+    "@type": "Product",
+    "@id": "https://www.mozilla.org/#firefoxlinux",
+    "url": "https://www.mozilla.org/en-US/firefox/linux/",
+    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+    "image": [
+      "{{ settings.CANONICAL_URL + static('img/firefox/new/browser-high-res.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-linux-2.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-linux-3.png') }}"
+    ],
+    "name": "Firefox Browser Linux",
+    "alternateName": [
+      "Firefox Linux",
+      "Firefox Browser for Linux"
+    ],
+    "brand":
+    {
+      "@id": "https://www.mozilla.org/#firefoxbrand"
+    },
+    "offers":
+    {
+      "@type": "Offer",
+      "url": "https://www.mozilla.org/en-US/firefox/linux/",
+      "priceCurrency": "USD",
+      "price": "0",
+      "availability": "https://schema.org/InStock"
+    }
+  },
+  {
+    "@type": "Product",
+    "@id": "https://www.mozilla.org/#firefoxlite",
+    "url": "https://support.mozilla.org/en-US/kb/get-started-firefox-lite",
+    "logo": "{{ settings.CANONICAL_URL + static('img/logos/firefox/logo-lite-high-res.png') }}",
+    "image": [
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-lite-1.jpg') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-lite-2.jpg') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-lite-3.jpg') }}"
+    ],
+    "name": "Firefox Lite",
+    "brand":
+    {
+      "@id": "https://www.mozilla.org/#firefoxbrand"
+    },
+    "sameAs": [
+      "https://play.google.com/store/apps/details?id=org.mozilla.rocket"
+    ],
+    "offers":
+    {
+      "@type": "Offer",
+      "url": "https://play.google.com/store/apps/details?id=org.mozilla.rocket",
+      "priceCurrency": "USD",
+      "price": "0",
+      "availability": "https://schema.org/InStock"
+    }
+  },
+  {
+    "@type": "Product",
+    "@id": "https://www.mozilla.org/#firefoxlockwise",
+    "url": "https://www.mozilla.org/en-US/firefox/lockwise/",
+    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/lockwise/logo-lg-high-res.png') }}",
+    "image": [
+      "{{ settings.CANONICAL_URL + static('img/structured-data/lockwise.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/lockwise-onboarding.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/lockwise-autofill.png') }}"
+    ],
+    "name": "Firefox Lockwise",
+    "brand":
+    {
+      "@id": "https://www.mozilla.org/#firefoxbrand"
+    },
+    "sameAs": [
+      "https://en.wikipedia.org/wiki/Firefox_Lockwise",
+      "https://www.wikidata.org/wiki/Q64829394",
+      "https://play.google.com/store/apps/details?id=mozilla.lockbox",
+      "https://apps.apple.com/us/app/firefox-lockbox/id1314000270"
+    ],
+    "offers":
+    {
+      "@type": "Offer",
+      "url": "https://www.mozilla.org/en-US/firefox/lockwise/",
+      "priceCurrency": "USD",
+      "price": "0",
+      "availability": "https://schema.org/InStock"
+    }
+  },
+  {
+    "@type": "Product",
+    "@id": "https://www.mozilla.org/#firefoxmac",
+    "url": "https://www.mozilla.org/en-US/firefox/mac/",
+    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+    "image": [
+      "{{ settings.CANONICAL_URL + static('img/firefox/new/browser-high-res.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-mac-2.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-mac-3.png') }}"
+    ],
+    "name": "Firefox Browser Mac",
+    "alternateName": [
+      "Firefox Mac",
+      "Firefox Browser for Mac"
+    ],
+    "brand":
+    {
+      "@id": "https://www.mozilla.org/#firefoxbrand"
+    },
+    "offers":
+    {
+      "@type": "Offer",
+      "url": "https://www.mozilla.org/en-US/firefox/mac/",
+      "priceCurrency": "USD",
+      "price": "0",
+      "availability": "https://schema.org/InStock"
+    }
+  },
+  {
+    "@type": "Product",
+    "@id": "https://www.mozilla.org/#firefoxmonitor",
+    "url": "https://monitor.firefox.com",
+    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/monitor/logo-lg-high-res.png') }}",
+    "image": [
+      "{{ settings.CANONICAL_URL + static('img/structured-data/monitor.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/firefox/accounts/trailhead/value-respect-high-res.jpg') }}",
+      "{{ settings.CANONICAL_URL + static('img/firefox/accounts/trailhead/value-knowledge-high-res.jpg') }}"
+    ],
+    "name": "Firefox Monitor",
+    "brand":
+    {
+      "@id": "https://www.mozilla.org/#firefoxbrand"
+    },
+    "sameAs": [
+      "https://www.wikidata.org/wiki/Q64828890",
+      "https://monitor.firefox.com",
+      "https://en.wikipedia.org/wiki/Firefox_Monitor"
+    ],
+    "offers":
+    {
+      "@type": "Offer",
+      "@id": "https://www.mozilla.org/#firefoxmonitor",
+      "priceCurrency": "USD",
+      "price": "0",
+      "availability": "https://schema.org/InStock"
+    }
+  },
+  {
+    "@type": "Product",
+    "@id": "https://www.mozilla.org/#firefoxnightly",
+    "url": "https://www.mozilla.org/en-US/firefox/channel/desktop/",
+    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/nightly/logo-lg-high-res.png') }}",
+    "image": [
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-nightly-1.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-nightly-2.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-nightly-3.gif') }}"
+    ],
+    "name": "Firefox Browser Nightly",
+    "alternateName": [
+      "Firefox Nightly",
+      "Firefox Nightly Browser"
+    ],
+    "brand":
+    {
+      "@id": "https://www.mozilla.org/#firefoxbrand"
+    },
+    "sameAs": [
+      "https://www.wikidata.org/wiki/Q56316099",
+      "https://es.wikipedia.org/wiki/Firefox_Nightly",
+      "https://play.google.com/store/apps/details?id=org.mozilla.fennec_aurora",
+      "https://blog.nightly.mozilla.org/",
+      "https://twitter.com/FirefoxNightly"
+    ],
+    "offers":
+    {
+      "@type": "Offer",
+      "url": "https://www.mozilla.org/en-US/firefox/channel/desktop/",
+      "priceCurrency": "USD",
+      "price": "0",
+      "availability": "https://schema.org/InStock"
+    }
+  },
+  {
+    "@type": "Product",
+    "@id": "https://www.mozilla.org/#firefoxsend",
+    "url": "https://send.firefox.com",
+    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/send/logo-lg-high-res.png') }}",
+    "image": [
+      "{{ settings.CANONICAL_URL + static('img/structured-data/send-1.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/send-2.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/send-3.png') }}"
+    ],
+    "name": "Firefox Send",
+    "brand":
+    {
+      "@id": "https://www.mozilla.org/#firefoxbrand"
+    },
+    "sameAs": [
+      "https://en.wikipedia.org/wiki/Firefox_Send",
+      "https://send.firefox.com",
+      "https://www.wikidata.org/wiki/Q62394165",
+      "https://play.google.com/store/apps/details?id=org.mozilla.firefoxsend"
+    ],
+    "offers":
+    {
+      "@type": "Offer",
+      "url": "https://send.firefox.com",
+      "priceCurrency": "USD",
+      "price": "0",
+      "availability": "https://schema.org/InStock"
+    }
+  },
+  {
+    "@type": "Product",
+    "@id": "https://www.mozilla.org/#firefoxwindows",
+    "url": "https://www.mozilla.org/en-US/firefox/windows/",
+    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+    "image": [
+      "{{ settings.CANONICAL_URL + static('img/firefox/new/browser-high-res.png') }}",
+      "{{ settings.CANONICAL_URL + static('img/firefox/new/trailhead/browser-window.svg') }}",
+      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-win-3.png') }}"
+    ],
+    "name": "Firefox Browser Windows",
+    "alternateName": [
+      "Firefox Windows",
+      "Firefox Browser for Windows"
+    ],
+    "brand":
+    {
+      "@id": "https://www.mozilla.org/#firefoxbrand"
+    },
+    "offers":
+    {
+      "@type": "Offer",
+      "url": "https://www.mozilla.org/en-US/firefox/windows/",
+      "priceCurrency": "USD",
+      "price": "0",
+      "availability": "https://schema.org/InStock"
+    }
+  }],
+  "parentOrganization":
+  {
+    "@type": "NGO",
+    "@id": "https://foundation.mozilla.org/#organisation",
+    "name": "Mozilla Foundation",
+    "url": "https://foundation.mozilla.org",
+    "sameAs": [
+      "https://www.wikidata.org/wiki/Q55672",
+      "https://foundation.mozilla.org",
+      "https://en.wikipedia.org/wiki/Mozilla_Foundation"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "WebApplication",
+  "@id": "https://www.mozilla.org/#firefoxmonitor",
+  "url": "https://monitor.firefox.com",
+  "image": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/monitor/logo-lg-high-res.png') }}",
+  "name": "Firefox Monitor",
+  "sameAs": [
+    "https://www.wikidata.org/wiki/Q64828890",
+    "https://monitor.firefox.com",
+    "https://en.wikipedia.org/wiki/Firefox_Monitor"
+  ],
+  "offers":
+  {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "applicationCategory": "SecurityApplication",
+  "applicationSuite": "Firefox",
+  "author":
+  {
+    "@type": "Organization",
+    "@id": "https://www.mozilla.org/#organization",
+    "name": "Mozilla Corporation"
+  },
+  "softwareHelp":
+  {
+    "@type": "Webpage",
+    "url": "https://support.mozilla.org/en-US/kb/firefox-monitor"
+  }
+}

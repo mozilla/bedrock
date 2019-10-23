@@ -419,3 +419,15 @@
 {% block js %}
   {{ js_bundle('firefox-mobile') }}
 {% endblock %}
+
+
+{% block structured_data %}
+  {
+    "@context": "https://schema.org/",
+    "@graph": [
+      {% include 'includes/structured-data/software/firefox-android-software.json' %}
+      ,
+      {% include 'includes/structured-data/software/firefox-ios-software.json' %}
+    ]
+  }
+{% endblock %}

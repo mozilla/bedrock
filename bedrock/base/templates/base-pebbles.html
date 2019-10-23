@@ -125,12 +125,14 @@
     <!--[if !IE]><!-->
     {% block js %}{% endblock %}
 
-    {% if self.structured_data()|trim|length %}
-      <script type="application/ld+json">
-    {% endif %}
-    {% block structured_data %}{% endblock %}
-    {% if self.structured_data()|trim|length %}
-      </script>
+    {% if LANG == 'en-US' %}
+      {% if self.structured_data()|trim|length %}
+        <script type="application/ld+json">
+      {% endif %}
+      {% block structured_data %}{% endblock %}
+      {% if self.structured_data()|trim|length %}
+        </script>
+      {% endif %}
     {% endif %}
 
     {# Bug 1381776 #}

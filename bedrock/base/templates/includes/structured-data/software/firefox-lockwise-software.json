@@ -1,0 +1,38 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "SoftwareApplication",
+  "@id": "https://www.mozilla.org/#firefoxlockwise",
+  "url": "https://www.mozilla.org/en-US/firefox/lockwise",
+  "image": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/lockwise/logo-lg-high-res.png') }}",
+  "name": "Firefox Lockwise",
+  "sameAs": [
+    "https://en.wikipedia.org/wiki/Firefox_Lockwise",
+    "https://www.wikidata.org/wiki/Q64829394",
+    "https://play.google.com/store/apps/details?id=mozilla.lockbox",
+    "https://apps.apple.com/us/app/firefox-lockbox/id1314000270"
+  ],
+  "offers":
+  {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "OperatingSystem": [
+    "Browser",
+    "iOS",
+    "Android"
+  ],
+  "applicationCategory": "SecurityApplication",
+  "applicationSuite": "Firefox",
+  "author":
+  {
+    "@type": "Organization",
+    "@id": "https://www.mozilla.org/#organization",
+    "name": "Mozilla Corporation"
+  },
+  "softwareHelp":
+  {
+    "@type": "Webpage",
+    "url": "https://support.mozilla.org/en-US/products/firefox-lockwise"
+  }
+}
