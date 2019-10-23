@@ -966,6 +966,13 @@
     },
     {
       "files": [
+        "protocol/js/protocol-newsletter.js",
+        "js/newsletter/form-protocol.js"
+      ],
+      "name": "firefox_whatsnew_67_newsletter"
+    },
+    {
+      "files": [
         "js/base/uitour-lib.js",
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
