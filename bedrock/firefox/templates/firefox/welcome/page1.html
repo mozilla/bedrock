@@ -102,12 +102,10 @@
 {% endblock %}
 
 {% block content_utility %}
-  <p>
-    <strong><a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source=mozilla.org-firefox-welcome-1&utm_medium=referral&utm_campaign=welcome-1-monitor&entrypoint=mozilla.org-firefox-welcome-1">{{ _('Why am I seeing this?') }}</a></strong>
+  <p><strong><a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source=mozilla.org-firefox-welcome-1&utm_medium=referral&utm_campaign=welcome-1-monitor&entrypoint=mozilla.org-firefox-welcome-1">{{ _('Why am I seeing this?') }}</a></strong></p>
   {% if switch('lifecycle_page1_survey', ['en-US']) %}
-    <a class="c-survey-link"href="https://qsurvey.mozilla.com/s3/Firefox-Page" rel="external noopener">Feedback</a>
+  <p><a class="c-survey-link"href="https://qsurvey.mozilla.com/s3/Firefox-Page" rel="external noopener">Share feedback about this page</a></p>
   {% endif %}
-  </p>
 {% endblock %}
 
 {% block js %}
