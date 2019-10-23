@@ -52,16 +52,6 @@ $image-path: '/media/protocol/img';
             ));
         }
 
-        @media #{$mq-md} {
-            @include background-size(48px 48px);
-            @include bidi((
-                (margin-right, $spacing-md, (-48px - $spacing-md)),
-                (margin-left, (-48px - $spacing-md), $spacing-md),
-            ));
-            height: 48px;
-            width: 48px;
-        }
-
         @media #{$mq-lg} {
             @include bidi((
                 (left, $layout-xl, right, auto),
@@ -83,18 +73,18 @@ $image-path: '/media/protocol/img';
 }
 
 .c-page-section:before {
-    background-image: url('/media/protocol/img/logos/firefox/browser/logo-lg.png');
+    background-image: url('/media/protocol/img/logos/firefox/browser/logo-sm.png');
 
     @media #{$mq-high-res} {
-        background-image: url('/media/protocol/img/logos/firefox/browser/logo-lg-high-res.png');
+        background-image: url('/media/protocol/img/logos/firefox/browser/logo-sm-high-res.png');
     }
 }
 
 .mzp-t-beta .c-page-section:before {
-    background-image: url('/media/img/logos/firefox/beta.png');
+    background-image: url('/media/protocol/img/logos/firefox/browser/beta/logo-sm.png');
 
     @media #{$mq-high-res} {
-        background-image: url('/media/img/logos/firefox/beta-high-res.png');
+        background-image: url('/media/protocol/img/logos/firefox/browser/beta/logo-sm-high-res.png');
     }
 }
 
