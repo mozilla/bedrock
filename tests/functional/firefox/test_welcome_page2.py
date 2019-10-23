@@ -10,4 +10,5 @@ from pages.firefox.welcome.page2 import FirefoxWelcomePage2
 @pytest.mark.nondestructive
 def test_pocket_button_displayed(base_url, selenium):
     page = FirefoxWelcomePage2(selenium, base_url).open()
-    assert page.is_pocket_button_displayed
+    assert page.is_primary_pocket_button_displayed
+    assert page.is_secondary_pocket_button_displayed
