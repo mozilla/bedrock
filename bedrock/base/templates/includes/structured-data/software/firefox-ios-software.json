@@ -3,7 +3,7 @@
   "@type": "MobileApplication",
   "@id": "https://www.mozilla.org/#firefoxios",
   "url": "https://www.mozilla.org/firefox/mobile/",
-  "image": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+  "image": "{% filter trim|absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
   "name": "Firefox Browser iOS",
   "alternateName": [
     "Firefox iOS",

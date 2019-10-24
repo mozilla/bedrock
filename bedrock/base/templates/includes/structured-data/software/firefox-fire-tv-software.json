@@ -4,7 +4,7 @@
   "@id": "https://www.mozilla.org/#firefoxfiretv",
   "url": "https://support.mozilla.org/en-US/kb/firefox-fire-tv",
   "name": "Firefox Browser Fire TV",
-  "image": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+  "image": "{% filter trim|absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
   "alternateName": [
     "Firefox for Fire TV",
     "Firefox Browser for Fire TV"
