@@ -59,9 +59,8 @@ if (typeof window.Mozilla === 'undefined') {
         fetch(destURL).then(function(resp) {
             return resp.json();
         }).then(function(r) {
-            var flowParams;
             // add retrieved deviceID, flowBeginTime and flowId values to cta url
-            flowParams += '&deviceId=' + r.deviceId;
+            var flowParams = '&deviceId=' + r.deviceId;
             flowParams += '&flowBeginTime=' + r.flowBeginTime;
             flowParams += '&flowId=' + r.flowId;
             // applies url to all buttons and adds cta position
