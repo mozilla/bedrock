@@ -60,7 +60,7 @@ if (typeof window.Mozilla === 'undefined') {
             return resp.json();
         }).then(function(r) {
             // add retrieved deviceID, flowBeginTime and flowId values to cta url
-            var flowParams += '&deviceId=' + r.deviceId;
+            var flowParams = '&deviceId=' + r.deviceId;
             flowParams += '&flowBeginTime=' + r.flowBeginTime;
             flowParams += '&flowId=' + r.flowId;
             // applies url to all buttons and adds cta position
