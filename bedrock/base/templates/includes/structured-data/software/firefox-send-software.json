@@ -3,7 +3,7 @@
   "@type": "SoftwareApplication",
   "@id": "https://www.mozilla.org/#firefoxbrowser",
   "url": "https://send.firefox.com",
-  "image": "{{ static('protocol/img/logos/firefox/send/logo-lg-high-res.png') }}",
+  "image": "{% filter trim|absolute_url %}{{ static('protocol/img/logos/firefox/send/logo-lg-high-res.png') }}{% endfilter %}",
   "name": "Firefox Send",
   "sameAs": [
     "https://en.wikipedia.org/wiki/Firefox_Send",
