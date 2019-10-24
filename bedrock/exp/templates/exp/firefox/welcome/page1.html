@@ -1,0 +1,103 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import hero with context %}
+{% from "macros.html" import monitor_button with context %}
+
+{% extends "exp/firefox/welcome/base.html" %}
+
+{% block page_title %}More than a browser - Firefox Monitor is your lookout for hackers{% endblock %}
+{% block page_desc %}Take the next step to protect your privacy online with the Firefox family of products.{% endblock %}
+
+{% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/welcome/1/{% endblock %}
+
+{% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
+
+{% block body_class %}{{ super() }} welcome-page1{% endblock %}
+
+{% set _entrypoint = 'mozilla.org-firefox-welcome-1' %}
+{% set _utm_campaign = 'welcome-1-monitor' %}
+{% set _cta_type = 'lifecycle-monitor' %}
+
+{% block content_intro %}
+  {% call hero(
+    title='You’re on track to stay protected',
+    desc='You’ve got the web browser that protects your privacy — now it’s time to get a lookout for hackers.',
+    class='mzp-t-firefox mzp-t-dark',
+    include_cta=True,
+    heading_level=1,
+    image_url=None,
+    include_highres_image=False,
+    image_alt=''
+  ) %}
+
+  <p class="primary-cta">
+    {{ monitor_button(
+      entrypoint=_entrypoint,
+      utm_campaign=_utm_campaign,
+      button_text='Check Your Breach Report',
+      cta_type=_cta_type,
+      cta_position='primary'
+    ) }}
+  </p>
+
+  {% endcall %}
+{% endblock %}
+
+{% block content_primary %}
+  <h2 class="body-primary-title"><img src="{{ static('img/logos/monitor/monitor-wordmark.svg') }}" width="256" height="" alt="Firefox Monitor"></h2>
+
+  <div class="body-primary-body">
+    <p>Firefox Monitor shows you if your information has been leaked in a known data breach, and alerts you in case it happens in the future.</p>
+  </div>
+{% endblock %}
+
+{% block content_secondary %}
+  <div class="c-picto-block t-adjacent-image">
+    <div class="c-picto-block-image">
+      <img src="{{ static('img/icons/private-browsing.svg') }}" alt="">
+    </div>
+
+    <h3 class="c-picto-block-title">Stay ahead of hackers</h3>
+    <div class="c-picto-block-body">
+      <p>Find ways to protect your info with <a href="https://blog.mozilla.org/firefox/what-to-do-after-a-data-breach/?utm_source=mozilla.org-firefox-welcome-1&utm_medium=referral&utm_campaign=welcome-1-monitor&entrypoint=mozilla.org-firefox-welcome-1">Monitor Security Tips</a>.</p>
+    </div>
+  </div>
+
+  <div class="c-picto-block t-adjacent-image">
+    <div class="c-picto-block-image">
+      <img src="{{ static('img/icons/warning.svg') }}" alt="">
+    </div>
+
+    <h3 class="c-picto-block-title">Stay in the know</h3>
+    <div class="c-picto-block-body">
+      <p>
+        Were you one of 100,985,047 invited to the <a href="https://blog.mozilla.org/firefox/evite-data-breach/?utm_source=mozilla.org-firefox-welcome-1&utm_medium=referral&utm_campaign=welcome-1-monitor&entrypoint=mozilla.org-firefox-welcome-1">Evite data breach “party”</a>?
+      </p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block secondary_cta %}
+  <p>
+    {{ monitor_button(
+      entrypoint=_entrypoint,
+      utm_campaign=_utm_campaign,
+      button_text='Check Your Breach Report',
+      cta_type=_cta_type,
+      cta_position='secondary'
+    ) }}
+  </p>
+{% endblock %}
+
+{% block content_utility %}
+  <p><strong><a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source=mozilla.org-firefox-welcome-1&utm_medium=referral&utm_campaign=welcome-1-monitor&entrypoint=mozilla.org-firefox-welcome-1">{{ _('Why am I seeing this?') }}</a></strong></p>
+  {% if switch('lifecycle_page1_survey', ['en-US']) %}
+  <p><a class="c-survey-link"href="https://qsurvey.mozilla.com/s3/Firefox-Page" rel="external noopener">Share feedback about this page</a></p>
+  {% endif %}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('exp_firefox_welcome_page1') }}
+{% endblock %}

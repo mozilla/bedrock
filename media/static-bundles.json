@@ -903,6 +903,12 @@
         "css/firefox/welcome.scss"
       ],
       "name": "firefox_welcome"
+    },
+    {
+      "files": [
+        "css/exp/firefox/welcome.scss"
+      ],
+      "name": "exp_firefox_welcome"
     }
   ],
   "js": [
@@ -963,6 +969,13 @@
         "js/firefox/welcome-page1-init.js"
       ],
       "name": "firefox_welcome_page1"
+    },
+    {
+      "files": [
+        "js/base/mozilla-monitor-button.js",
+        "js/exp/firefox/welcome-page1-init.js"
+      ],
+      "name": "exp_firefox_welcome_page1"
     },
     {
       "files": [

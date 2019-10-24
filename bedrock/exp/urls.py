@@ -11,4 +11,6 @@ urlpatterns = (
     page('firefox/new', 'exp/firefox/new/download.html', active_locales=['en-US', 'en-GB', 'en-CA', 'de']),
     page('firefox/accounts', 'exp/firefox/accounts-2019.html'),
     page('firefox/lockwise', 'exp/firefox/lockwise.html', active_locales=['en-US', 'en-GB', 'en-CA', 'de']),
+    page('firefox', 'exp/firefox/index.html', active_locales=['en-US', 'en-GB', 'en-CA', 'de']),
+    page('firefox/welcome/1', 'exp/firefox/welcome/page1.html'),
 )
