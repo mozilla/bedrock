@@ -3,7 +3,7 @@
   "@type": "WebApplication",
   "@id": "https://www.mozilla.org/#firefoxmonitor",
   "url": "https://monitor.firefox.com",
-  "image": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/monitor/logo-lg-high-res.png') }}",
+  "image": "{{ static('protocol/img/logos/firefox/monitor/logo-lg-high-res.png') }}",
   "name": "Firefox Monitor",
   "sameAs": [
     "https://www.wikidata.org/wiki/Q64828890",

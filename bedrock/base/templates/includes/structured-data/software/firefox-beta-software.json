@@ -4,7 +4,7 @@
   "@id": "https://www.mozilla.org/#firefoxbeta",
   "url": "https://www.mozilla.org/en-US/firefox/channel/desktop/",
   "name": "Firefox Browser Beta",
-  "image": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/beta/logo-lg-high-res.png') }}",
+  "image": "{{ static('protocol/img/logos/firefox/browser/beta/logo-lg-high-res.png') }}",
   "alternateName": [
     "Firefox Beta",
     "Firefox Beta Browser"

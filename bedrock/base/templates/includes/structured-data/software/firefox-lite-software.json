@@ -4,7 +4,7 @@
   "@id": "https://www.mozilla.org/#firefoxlite",
   "url": "https://support.mozilla.org/en-US/kb/get-started-firefox-lite",
   "name": "Firefox Lite",
-  "image": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+  "image": "{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
   "sameAs": [
     "https://play.google.com/store/apps/details?id=org.mozilla.rocket"
   ],

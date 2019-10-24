@@ -4,7 +4,7 @@
   "@id": "https://www.mozilla.org/#firefoxandroid",
   "url": "https://www.mozilla.org/firefox/mobile/",
   "name": "Firefox Browser Android",
-  "image": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+  "image": "{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
   "alternateName": [
     "Firefox Android",
     "Firefox Browser for Android",

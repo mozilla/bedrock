@@ -4,7 +4,7 @@
   "@id": "https://www.mozilla.org/#firefoxdeveloper",
   "url": "https://www.mozilla.org/en-US/firefox/developer/",
   "name": "Firefox Browser Developer Edition ",
-  "image": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/developer/logo-lg-high-res.png') }}",
+  "image": "{{ static('protocol/img/logos/firefox/browser/developer/logo-lg-high-res.png') }}",
   "alternateName": [
     "Firefox Developer Edition",
     "Firefox Developer Edition Browser"

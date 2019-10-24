@@ -4,7 +4,7 @@
   "@id": "https://www.mozilla.org/#firefoxenterprise",
   "url": "https://www.mozilla.org/en-US/firefox/enterprise/",
   "name": "Firefox Browser Enterprise",
-  "image": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+  "image": "{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
   "alternateName": [
     "Firefox for Enterprise",
     "Firefox Browser for Enterprise"

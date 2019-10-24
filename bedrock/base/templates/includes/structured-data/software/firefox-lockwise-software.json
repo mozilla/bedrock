@@ -3,7 +3,7 @@
   "@type": "SoftwareApplication",
   "@id": "https://www.mozilla.org/#firefoxlockwise",
   "url": "https://www.mozilla.org/en-US/firefox/lockwise",
-  "image": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/lockwise/logo-lg-high-res.png') }}",
+  "image": "{{ static('protocol/img/logos/firefox/lockwise/logo-lg-high-res.png') }}",
   "name": "Firefox Lockwise",
   "sameAs": [
     "https://en.wikipedia.org/wiki/Firefox_Lockwise",

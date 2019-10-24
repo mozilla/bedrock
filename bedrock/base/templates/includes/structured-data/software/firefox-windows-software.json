@@ -4,7 +4,7 @@
   "@id": "https://www.mozilla.org/#firefoxwindows",
   "url": "https://www.mozilla.org/en-US/firefox/windows/",
   "name": "Firefox Browser Windows",
-  "image": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+  "image": "{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
   "alternateName": [
     "Firefox Windows",
     "Firefox Browser for Windows"

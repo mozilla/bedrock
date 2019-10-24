@@ -7,7 +7,7 @@
   "legalName": "Mozilla Corporation",
   "description": "Mozilla makes browsers, apps, code and tools that put people before profit. Our mission: Keep the internet open and accessible to all.",
   "url": "https://www.mozilla.org",
-  "logo": "{{ settings.CANONICAL_URL + static('img/mozorg/mozilla-256.jpg') }}",
+  "logo": "{{ static('img/mozorg/mozilla-256.jpg') }}",
   "diversityPolicy": "https://blog.mozilla.org/inclusion/mozilla-workplace-transition-policy-guidelines/",
   "ethicsPolicy": "https://www.mozilla.org/about/manifesto/",
   "foundingDate": "2005-08-03",
@@ -27,7 +27,7 @@
     "@type": "brand",
     "@id": "https://www.mozilla.org/#mozilla",
     "url": "https://www.mozilla.org",
-    "logo": "{{ settings.CANONICAL_URL + static('img/mozorg/mozilla-256.jpg') }}",
+    "logo": "{{ static('img/mozorg/mozilla-256.jpg') }}",
     "name": "Mozilla",
     "sameAs": ["https://en.wikipedia.org/wiki/Mozilla", "https://www.wikidata.org/wiki/Q9661"]
   },
@@ -35,7 +35,7 @@
     "@type": "brand",
     "@id": "https://www.mozilla.org/#firefoxbrand",
     "url": "https://www.mozilla.org/firefox/",
-    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/logo-lg-high-res.png') }}",
+    "logo": "{{ static('protocol/img/logos/firefox/logo-lg-high-res.png') }}",
     "name": "Firefox",
     "sameAs": [
       "https://twitter.com/firefox",
@@ -48,11 +48,11 @@
     "@type": "Product",
     "@id": "https://www.mozilla.org/#firefoxandroid",
     "url": "https://www.mozilla.org/firefox/mobile/",
-    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+    "logo": "{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
     "image": [
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-android-1.jpg') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-android-2.jpg') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-android-3.jpg') }}"
+      "{{ static('img/structured-data/browser-android-1.jpg') }}",
+      "{{ static('img/structured-data/browser-android-2.jpg') }}",
+      "{{ static('img/structured-data/browser-android-3.jpg') }}"
     ],
     "name": "Firefox Browser Android",
     "alternateName": [
@@ -82,11 +82,11 @@
     "@type": "Product",
     "@id": "https://www.mozilla.org/#firefoxbeta",
     "url": "https://www.mozilla.org/en-US/firefox/channel/desktop/",
-    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/beta/logo-lg-high-res.png') }}",
+    "logo": "{{ static('protocol/img/logos/firefox/browser/beta/logo-lg-high-res.png') }}",
     "image": [
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-beta-1.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-beta-2.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-beta-3.png') }}"
+      "{{ static('img/structured-data/browser-beta-1.png') }}",
+      "{{ static('img/structured-data/browser-beta-2.png') }}",
+      "{{ static('img/structured-data/browser-beta-3.png') }}"
     ],
     "name": "Firefox Browser Beta",
     "alternateName": [
@@ -113,11 +113,11 @@
     "@type": "Product",
     "@id": "https://www.mozilla.org/#firefoxbrowser",
     "url": "https://www.mozilla.org/firefox/new/",
-    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+    "logo": "{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
     "image": [
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-1.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/firefox/new/trailhead/browser-window.svg') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-3.png') }}"
+      "{{ static('img/structured-data/browser-1.png') }}",
+      "{{ static('img/firefox/new/trailhead/browser-window.svg') }}",
+      "{{ static('img/structured-data/browser-3.png') }}"
     ],
     "name": "Firefox Browser",
     "alternateName": [
@@ -146,11 +146,11 @@
     "@type": "Product",
     "@id": "https://www.mozilla.org/#firefoxdeveloper",
     "url": "https://www.mozilla.org/en-US/firefox/developer/",
-    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/developer/logo-lg-high-res.png') }}",
+    "logo": "{{ static('protocol/img/logos/firefox/browser/developer/logo-lg-high-res.png') }}",
     "image": [
-      "{{ settings.CANONICAL_URL + static('img/firefox/developer/hero-screenshot-high-res.png') }}",
-      "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/developer/og.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/firefox/developer/hero-debugger-ani.gif') }}"
+      "{{ static('img/firefox/developer/hero-screenshot-high-res.png') }}",
+      "{{ static('protocol/img/logos/firefox/browser/developer/og.png') }}",
+      "{{ static('img/firefox/developer/hero-debugger-ani.gif') }}"
     ],
     "name": "Firefox Browser Developer Edition ",
     "alternateName": [
@@ -177,11 +177,11 @@
     "@type": "Product",
     "@id": "https://www.mozilla.org/#firefoxenterprise",
     "url": "https://www.mozilla.org/en-US/firefox/enterprise/",
-    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+    "logo": "{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
     "image": [
-      "{{ settings.CANONICAL_URL + static('img/firefox/enterprise/fx-browser-img.svg') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-enterprise-1.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-enterprise-2.png') }}"
+      "{{ static('img/firefox/enterprise/fx-browser-img.svg') }}",
+      "{{ static('img/structured-data/browser-enterprise-1.png') }}",
+      "{{ static('img/structured-data/browser-enterprise-2.png') }}"
     ],
     "name": "Firefox Browser Enterprise",
     "alternateName": [
@@ -207,11 +207,11 @@
     "@type": "Product",
     "@id": "https://www.mozilla.org/#firefoxfiretv",
     "url": "https://support.mozilla.org/en-US/kb/firefox-fire-tv",
-    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+    "logo": "{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
     "image": [
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-tv-1.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-tv-2.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-tv-3.png') }}"
+      "{{ static('img/structured-data/browser-tv-1.png') }}",
+      "{{ static('img/structured-data/browser-tv-2.png') }}",
+      "{{ static('img/structured-data/browser-tv-3.png') }}"
     ],
     "name": "Firefox Browser Fire TV",
     "alternateName": [
@@ -238,11 +238,11 @@
     "@type": "Product",
     "@id": "https://www.mozilla.org/#firefoxios",
     "url": "https://www.mozilla.org/firefox/mobile/",
-    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+    "logo": "{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
     "image": [
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-ios-1.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-ios-2.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-ios-3.png') }}"
+      "{{ static('img/structured-data/browser-ios-1.png') }}",
+      "{{ static('img/structured-data/browser-ios-2.png') }}",
+      "{{ static('img/structured-data/browser-ios-3.png') }}"
     ],
     "name": "Firefox Browser iOS",
     "alternateName": [
@@ -272,11 +272,11 @@
     "@type": "Product",
     "@id": "https://www.mozilla.org/#firefoxlinux",
     "url": "https://www.mozilla.org/en-US/firefox/linux/",
-    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+    "logo": "{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
     "image": [
-      "{{ settings.CANONICAL_URL + static('img/firefox/new/browser-high-res.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-linux-2.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-linux-3.png') }}"
+      "{{ static('img/firefox/new/browser-high-res.png') }}",
+      "{{ static('img/structured-data/browser-linux-2.png') }}",
+      "{{ static('img/structured-data/browser-linux-3.png') }}"
     ],
     "name": "Firefox Browser Linux",
     "alternateName": [
@@ -300,11 +300,11 @@
     "@type": "Product",
     "@id": "https://www.mozilla.org/#firefoxlite",
     "url": "https://support.mozilla.org/en-US/kb/get-started-firefox-lite",
-    "logo": "{{ settings.CANONICAL_URL + static('img/logos/firefox/logo-lite-high-res.png') }}",
+    "logo": "{{ static('img/logos/firefox/logo-lite-high-res.png') }}",
     "image": [
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-lite-1.jpg') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-lite-2.jpg') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-lite-3.jpg') }}"
+      "{{ static('img/structured-data/browser-lite-1.jpg') }}",
+      "{{ static('img/structured-data/browser-lite-2.jpg') }}",
+      "{{ static('img/structured-data/browser-lite-3.jpg') }}"
     ],
     "name": "Firefox Lite",
     "brand":
@@ -327,11 +327,11 @@
     "@type": "Product",
     "@id": "https://www.mozilla.org/#firefoxlockwise",
     "url": "https://www.mozilla.org/en-US/firefox/lockwise/",
-    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/lockwise/logo-lg-high-res.png') }}",
+    "logo": "{{ static('protocol/img/logos/firefox/lockwise/logo-lg-high-res.png') }}",
     "image": [
-      "{{ settings.CANONICAL_URL + static('img/structured-data/lockwise.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/lockwise-onboarding.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/lockwise-autofill.png') }}"
+      "{{ static('img/structured-data/lockwise.png') }}",
+      "{{ static('img/structured-data/lockwise-onboarding.png') }}",
+      "{{ static('img/structured-data/lockwise-autofill.png') }}"
     ],
     "name": "Firefox Lockwise",
     "brand":
@@ -357,11 +357,11 @@
     "@type": "Product",
     "@id": "https://www.mozilla.org/#firefoxmac",
     "url": "https://www.mozilla.org/en-US/firefox/mac/",
-    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+    "logo": "{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
     "image": [
-      "{{ settings.CANONICAL_URL + static('img/firefox/new/browser-high-res.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-mac-2.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-mac-3.png') }}"
+      "{{ static('img/firefox/new/browser-high-res.png') }}",
+      "{{ static('img/structured-data/browser-mac-2.png') }}",
+      "{{ static('img/structured-data/browser-mac-3.png') }}"
     ],
     "name": "Firefox Browser Mac",
     "alternateName": [
@@ -385,11 +385,11 @@
     "@type": "Product",
     "@id": "https://www.mozilla.org/#firefoxmonitor",
     "url": "https://monitor.firefox.com",
-    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/monitor/logo-lg-high-res.png') }}",
+    "logo": "{{ static('protocol/img/logos/firefox/monitor/logo-lg-high-res.png') }}",
     "image": [
-      "{{ settings.CANONICAL_URL + static('img/structured-data/monitor.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/firefox/accounts/trailhead/value-respect-high-res.jpg') }}",
-      "{{ settings.CANONICAL_URL + static('img/firefox/accounts/trailhead/value-knowledge-high-res.jpg') }}"
+      "{{ static('img/structured-data/monitor.png') }}",
+      "{{ static('img/firefox/accounts/trailhead/value-respect-high-res.jpg') }}",
+      "{{ static('img/firefox/accounts/trailhead/value-knowledge-high-res.jpg') }}"
     ],
     "name": "Firefox Monitor",
     "brand":
@@ -414,11 +414,11 @@
     "@type": "Product",
     "@id": "https://www.mozilla.org/#firefoxnightly",
     "url": "https://www.mozilla.org/en-US/firefox/channel/desktop/",
-    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/nightly/logo-lg-high-res.png') }}",
+    "logo": "{{ static('protocol/img/logos/firefox/browser/nightly/logo-lg-high-res.png') }}",
     "image": [
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-nightly-1.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-nightly-2.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-nightly-3.gif') }}"
+      "{{ static('img/structured-data/browser-nightly-1.png') }}",
+      "{{ static('img/structured-data/browser-nightly-2.png') }}",
+      "{{ static('img/structured-data/browser-nightly-3.gif') }}"
     ],
     "name": "Firefox Browser Nightly",
     "alternateName": [
@@ -449,11 +449,11 @@
     "@type": "Product",
     "@id": "https://www.mozilla.org/#firefoxsend",
     "url": "https://send.firefox.com",
-    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/send/logo-lg-high-res.png') }}",
+    "logo": "{{ static('protocol/img/logos/firefox/send/logo-lg-high-res.png') }}",
     "image": [
-      "{{ settings.CANONICAL_URL + static('img/structured-data/send-1.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/send-2.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/send-3.png') }}"
+      "{{ static('img/structured-data/send-1.png') }}",
+      "{{ static('img/structured-data/send-2.png') }}",
+      "{{ static('img/structured-data/send-3.png') }}"
     ],
     "name": "Firefox Send",
     "brand":
@@ -479,11 +479,11 @@
     "@type": "Product",
     "@id": "https://www.mozilla.org/#firefoxwindows",
     "url": "https://www.mozilla.org/en-US/firefox/windows/",
-    "logo": "{{ settings.CANONICAL_URL + static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
+    "logo": "{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}",
     "image": [
-      "{{ settings.CANONICAL_URL + static('img/firefox/new/browser-high-res.png') }}",
-      "{{ settings.CANONICAL_URL + static('img/firefox/new/trailhead/browser-window.svg') }}",
-      "{{ settings.CANONICAL_URL + static('img/structured-data/browser-win-3.png') }}"
+      "{{ static('img/firefox/new/browser-high-res.png') }}",
+      "{{ static('img/firefox/new/trailhead/browser-window.svg') }}",
+      "{{ static('img/structured-data/browser-win-3.png') }}"
     ],
     "name": "Firefox Browser Windows",
     "alternateName": [
