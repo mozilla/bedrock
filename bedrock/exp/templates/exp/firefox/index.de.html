@@ -1,0 +1,255 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% from "macros.html" import fxa_cta_link with context %}
+{% from "macros-protocol.html" import call_out, call_out_compact, feature_card with context %}
+
+{% extends "exp/base/base-firefox.html" %}
+
+{% block canonical_urls %}
+  {# Experimental pages should set canonical to the original page URL. #}
+  <link rel="canonical" href="{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/">
+{% endblock %}
+
+{% block page_og_url %}{{ settings.CANONICAL_URL }}/{{ LANG }}/firefox/{% endblock %}
+
+{%- block page_title -%}Alle Firefox-Produkte schützen zuallererst deine Privatsphäre online{%- endblock -%}
+{%- block page_desc -%}Der Browser ist erst der Anfang. Alle Firefox-Produkte behandeln deine Daten mit Respekt und wurden so entwickelt, dass sie deine Privatsphäre schützen.{%- endblock -%}
+
+{% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
+{% block page_favicon %}{{ static('img/favicons/firefox/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/favicons/firefox/favicon-196x196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/favicons/firefox/apple-touch-icon.png') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('exp-firefox-index') }}
+{% endblock %}
+
+{% block extrahead %}
+  <!--[if IE 9]>
+    {{ css_bundle('exp-firefox-home-ie9') }}
+  <![endif]-->
+{% endblock %}
+
+{% block body_id %}firefox-master{% endblock %}
+
+{% set referrals = '?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=firefox-home' %}
+
+{% block content %}
+<main role="main" class="firefox-home">
+
+    <div class="c-lead">
+      <div class="mzp-l-content">
+        <h1 class="c-lead-title">Der Browser ist erst der Anfang</h1>
+      </div>
+    </div>
+
+    <div class="c-showcase">
+      <div class="mzp-l-content">
+        <h2 class="c-showcase-title">Das sind die Produkte der Firefox-Familie</h2>
+        <ul class="c-showcase-list">
+          <li>
+            <a class="mzp-c-cta-link" href="{{ url('firefox.new') }}" data-cta-type="link" data-cta-text="Browsers">
+              <img alt="" src="{{ static('protocol/img/logos/firefox/browser/logo-md.png') }}" height="40" width="40"><br>
+              Browser
+            </a>
+          </li>
+          <li>
+            <a class="mzp-c-cta-link" href="https://monitor.firefox.com{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Monitor">
+              <img alt="" src="{{ static('protocol/img/logos/firefox/monitor/logo-md.png') }}" height="40" width="40"><br>
+              Monitor
+            </a>
+          </li>
+          <li>
+            <a class="mzp-c-cta-link" href="https://send.firefox.com/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Send">
+              <img alt="" src="{{ static('protocol/img/logos/firefox/send/logo-md.png') }}" height="40" width="40"><br>
+              Send
+            </a>
+          </li>
+          <li>
+              <a class="mzp-c-cta-link" href="{{ url('firefox.lockwise.lockwise') }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise">
+                <img alt="" src="{{ static('protocol/img/logos/firefox/lockwise/logo-md.png') }}" height="40" width="40"><br>
+                Lockwise
+              </a>
+            </li>
+          <li>
+            <a class="mzp-c-cta-link" href="https://getpocket.com/firefox_learnmore/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Pocket">
+              <img alt="" src="{{ static('img/logos/pocket/logo.svg') }}" height="40" width="40"><br>
+              Pocket
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mzp-l-content">
+      {% call feature_card(
+        title='Firefox Browser',
+        heading_level=3,
+        image_url='img/firefox/home/master/browsers.jpg',
+        include_highres_image=True,
+        class='mzp-l-card-feature-left-half t-browsers',
+        ga_title='Trackers',
+        media_after=True
+      ) %}
+        <h4>Blocke über 2000 Tracker – auch die von Facebook</h4>
+        <div class="mzp-c-menu-list mzp-t-cta mzp-t-download">
+          <h5 class="mzp-c-menu-list-title">Browser downloaden</h5>
+          <ul class="mzp-c-menu-list-list" id="menu-browsers">
+            <!--[if IE]>
+              <li class="mzp-c-menu-list-item"><a href="{{ url('firefox.new') }}">Browser downloaden</a></li>
+            <![endif]-->
+            <!--[if !IE]><!-->
+              <li class="mzp-c-menu-list-item"><a href="/firefox/download/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard">Desktop</a></li>
+            <!--<![endif]-->
+            <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('android', 'firefox_home') }}" rel="external noopener" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android"> Android</a></li>
+            <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('ios', 'firefox_home') }}" rel="external noopener" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">iOS</a></li>
+          </ul>
+        </div>
+        <p class="js-fx-only"><a class="mzp-c-cta-link" href="https://addons.mozilla.org/firefox/addon/facebook-container/{{ referrals }}">Hol dir die Facebook-Container-Erweiterung</a></p>
+      {% endcall %}
+    </div>
+
+    <div class="mzp-l-content">
+        {% call feature_card(
+          title='Firefox Monitor',
+          heading_level=3,
+          image_url='img/firefox/home/master/monitor.svg',
+          class='mzp-l-card-feature-right-half t-monitor',
+          link_url='https://monitor.firefox.com/' + referrals,
+          link_cta='Melde dich für Datenleak-Berichte an',
+          ga_title='Monitor',
+          media_after=True
+        ) %}
+        <h4>Sei Hackern einen Schritt voraus und bleib informiert</h4>
+        {% endcall %}
+    </div>
+
+    <div class="mzp-l-content">
+      {% call feature_card(
+        title='Firefox Lockwise',
+        heading_level=3,
+        image_url='img/firefox/home/master/lockwise.svg',
+        class='mzp-l-card-feature-left-half t-lockwise',
+        ga_title='Lockwise',
+        media_after=True
+      ) %}
+      <h4>Bewahre deine Passwörter sicher auf – auf allen Geräten</h4>
+        <div class="mzp-c-menu-list mzp-t-cta mzp-t-download">
+          <h5 class="mzp-c-menu-list-title">App downloaden</h5>
+          <ul class="mzp-c-menu-list-list" id="menu-lockwise">
+            <li class="mzp-c-menu-list-item"><a href="{{ lockwise_adjust_url('android', 'firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Lockwise for Android">Android</a></li>
+            <li class="mzp-c-menu-list-item"><a href="{{ lockwise_adjust_url('ios', 'firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Lockwise for iOS">iOS</a></li>
+          </ul>
+        </div>
+        <p><a class="mzp-c-cta-link" href="{{ url('firefox.lockwise.lockwise') }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise Learn More">Weitere Infos zu Lockwise</a></p>
+      {% endcall %}
+    </div>
+
+    <div class="t-promise mzp-t-dark">
+      <div class="mzp-l-content">
+          {% call feature_card(
+            title='Bekomme den <strong>Respekt</strong>, den du verdienst'|safe,
+            heading_level=3,
+            image_url='img/firefox/home/master/spacer.gif',
+            class='mzp-l-card-feature-right-half',
+            link_url=url('firefox.privacy.index'),
+            link_cta='Learn more',
+            ga_title='Promise',
+            media_after=True
+          ) %}
+            <p>Hinter jedem einzelnen Firefox-Produkt steht unser Versprechen für deine persönlichen Daten: <strong>Wenig sammeln. Sicher aufbewahren. Ehrlich sein.</strong></p>
+          {% endcall %}
+      </div>
+    </div>
+
+    <div class="mzp-l-content">
+        {% call feature_card(
+          title='Firefox Send',
+          heading_level=3,
+          image_url='img/firefox/home/master/send.svg',
+          class='mzp-l-card-feature-right-half t-send',
+          link_url='https://send.firefox.com/' + referrals,
+          link_cta='Jetzt Dateien sicher senden',
+          ga_title='Send',
+          media_after=True
+        ) %}
+        <h4>Teile auch große Dateien gut geschützt</h4>
+        {% endcall %}
+    </div>
+
+    <div class="mzp-l-content">
+        {% call feature_card(
+        title='Pocket',
+        heading_level=3,
+        image_url='img/firefox/home/master/pocket.svg',
+        class='mzp-l-card-feature-left-half t-pocket',
+        ga_title='Pocket',
+        media_after=True
+      ) %}
+      <h4>Qualtität statt Clickbait</h4>
+        <div class="mzp-c-menu-list mzp-t-cta mzp-t-download">
+          <h5 class="mzp-c-menu-list-title">App downloaden</h5>
+          <ul class="mzp-c-menu-list-list" id="menu-pocket">
+            <li class="mzp-c-menu-list-item"><a href="{{ pocket_adjust_url('android', 'firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket for Android"> Android</a></li>
+            <li class="mzp-c-menu-list-item"><a href="{{ pocket_adjust_url('ios', 'firefox-home') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket for iOS">iOS</a></li>
+          </ul>
+        </div>
+        <p><a class="mzp-c-cta-link" href="https://getpocket.com/signup/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Download for iOS">Weitere Infos zu Pocket</a></p>
+      {% endcall %}
+    </div>
+
+    <div class="c-end mzp-t-dark">
+      <div class="mzp-l-content">
+        <div class="c-showcase t-small">
+            <ul class="c-showcase-list">
+              <li>
+                <a class="mzp-c-cta-link" href="{{ url('firefox.new') }}" data-cta-type="link" data-cta-text="Browsers">
+                  <img alt="" src="{{ static('protocol/img/logos/firefox/browser/logo-md.png') }}" height="40" width="40"><br>
+                  Browser
+                </a>
+              </li>
+              <li>
+                <a class="mzp-c-cta-link" href="https://monitor.firefox.com{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Monitor">
+                  <img alt="" src="{{ static('protocol/img/logos/firefox/monitor/logo-md.png') }}" height="40" width="40"><br>
+                  Monitor
+                </a>
+              </li>
+              <li>
+                <a class="mzp-c-cta-link" href="https://send.firefox.com/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Send">
+                  <img alt="" src="{{ static('protocol/img/logos/firefox/send/logo-md.png') }}" height="40" width="40"><br>
+                  Send
+                </a>
+              </li>
+              <li>
+                <a class="mzp-c-cta-link" href="{{ url('firefox.lockwise.lockwise') }}{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise">
+                  <img alt="" src="{{ static('protocol/img/logos/firefox/lockwise/logo-md.png') }}" height="40" width="40"><br>
+                  Lockwise
+                </a>
+              </li>
+              <li>
+                <a class="mzp-c-cta-link" href="https://getpocket.com{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Pocket">
+                  <img alt="" src="{{ static('img/logos/pocket/logo.svg') }}" height="40" width="40"><br>
+                  Pocket
+                </a>
+              </li>
+            </ul>
+        </div>
+        <h2 class="c-end-title">Ein Login. Auf all deinen Geräten. Eine ganze Reihe an Produkten, die deine <strong>Privatsphäre</strong> respektieren.</h2>
+        <div class="mzp-c-button-download-container">
+          {{ fxa_cta_link(entrypoint='mozilla.org-firefox_home', action='signup', button_text='Join Firefox', button_class='mzp-c-button mzp-t-product mzp-t-small', utm_campaign='firefox-home', utm_content='secondary-join-firefox') }}
+          <small class="mzp-c-button-download-privacy-link">
+            <a href="{{ url('firefox.accounts') }}">Was es bedeutet, Firefox zu nutzen</a>
+          </small>
+        </div>
+
+      </div>
+    </div>
+
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('exp-firefox-index') }}
+{% endblock %}
