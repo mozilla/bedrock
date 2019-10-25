@@ -638,9 +638,9 @@ class WhatsNewIndiaView(WhatsnewView):
 
         if locale.startswith('en-') and channel not in ['nightly', 'alpha', 'beta']:
             # return a list to conform with original intention
-            return ['firefox/whatsnew/index-lite.html']
-
-        template = super().get_template_names()
+            template = ['firefox/whatsnew/index-lite.html']
+        else:
+            template = super().get_template_names()
 
         return template
 
