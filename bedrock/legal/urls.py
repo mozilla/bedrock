@@ -28,6 +28,12 @@ urlpatterns = (
     url(r'^terms/firefox/$', LegalDocView.as_view(template_name='legal/terms/firefox.html', legal_doc_name='firefox_about_rights'),
         name='legal.terms.firefox'),
 
+    url(r'^terms/firefox-lite/$', LegalDocView.as_view(template_name='legal/terms/firefox-lite.html',
+        legal_doc_name='firefox_lite_contentservices_ToS'), name='legal.terms.firefox-lite'),
+
+    url(r'^terms/firefox-lite/reward/$', LegalDocView.as_view(template_name='legal/terms/firefox-lite-reward.html',
+        legal_doc_name='firefox_lite_contentservices_reward'), name='legal.terms.firefox-lite-reward'),
+
     url(r'^terms/firefox-reality/$', LegalDocView.as_view(template_name='legal/terms/firefox-reality.html',
         legal_doc_name='firefox_reality_about_rights'), name='legal.terms.firefox-reality'),
 
