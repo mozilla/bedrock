@@ -15,6 +15,7 @@ if (typeof window.Mozilla === 'undefined') {
     var whitelist = [
         'https://accounts.firefox.com/',
         'https://monitor.firefox.com/',
+        'https://getpocket.com/',
         'https://latest.dev.lcip.org/'
     ];
 
@@ -95,6 +96,7 @@ if (typeof window.Mozilla === 'undefined') {
     UtmUrl.init = function (urlParams) {
         var params = UtmUrl.getAttributionData(urlParams);
         var ctaLinks = document.getElementsByClassName('js-fxa-cta-link');
+        console.log(ctaLinks);
 
         // If there are no utm params on the page, do nothing.
         if (!params) {

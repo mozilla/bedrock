@@ -12,8 +12,11 @@ describe('fxa-utm-referral.js', function() {
         it('should return a hostname as expected', function() {
             var url1 = 'https://monitor.firefox.com/oauth/init?form_type=button&entrypoint=mozilla.org-firefox-accounts';
             var url2 = 'https://accounts.firefox.com/?utm_campaign=campaign-one&utm_source=source-one&utm_content=content-one';
+            var url3 = 'https://getpocket.com/ff_signup?s=ffwelcome2&form_type=button&entrypoint=mozilla.org-firefox-welcome-2&utm_source=source-one&utm_campaign=campaign-one';
+
             expect(Mozilla.UtmUrl.getHostName(url1)).toEqual('https://monitor.firefox.com/');
             expect(Mozilla.UtmUrl.getHostName(url2)).toEqual('https://accounts.firefox.com/');
+            expect(Mozilla.UtmUrl.getHostName(url3)).toEqual('https://getpocket.com/');
         });
 
         it('should return null if no match is found', function() {
@@ -213,6 +216,7 @@ describe('fxa-utm-referral.js', function() {
                 '<a id="test-expected" class="js-fxa-cta-link" href="https://accounts.firefox.com/?service=sync&amp;action=email&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-accounts_page&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page" data-mozillaonline-link="https://accounts.firefox.com.cn/?service=sync&amp;action=email&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-accounts_page&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page">Create a Firefox Account</a>' +
                 '<a id="test-not-accounts" class="js-fxa-cta-link" href="https://www.mozilla.org/?service=sync&amp;action=email&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-accounts_page&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page" data-mozillaonline-link="https://accounts.firefox.com.cn/?service=sync&amp;action=email&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-accounts_page&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page">Create a Firefox Account</a>' +
                 '<a id="test-second-expected" class="js-fxa-cta-link" href="https://monitor.firefox.com/oauth/init?form_type=button&amp;entrypoint=mozilla.org-firefox-accounts&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page" data-mozillaonline-link="https://accounts.firefox.com.cn/?service=sync&amp;action=email&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-accounts_page&amp;utm_content=accounts-page-top-cta&amp;utm_source=mozilla.org-accounts_page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page">Sign In to Firefox Monitor</a>' +
+                '<a id="test-third-expected" class="js-fxa-cta-link" href="https://getpocket.com/ff_signup?s=ffwelcome2&form_type=button&entrypoint=mozilla.org-firefox-welcome-2&utm_source=mozilla.org-firefox-welcome-2&utm_campaign=welcome-2-pocket&utm_medium=referral">Activate Pocket</a>' +
                 '</div>';
 
             $(links).appendTo('body');
@@ -237,9 +241,12 @@ describe('fxa-utm-referral.js', function() {
             var expectedHref = expected.getAttribute('href');
             var secondExpected = document.getElementById('test-second-expected');
             var secondExpectedHref = secondExpected.getAttribute('href');
+            var thirdExpected = document.getElementById('test-third-expected');
+            var thirdExpectedHref = thirdExpected.getAttribute('href');
 
             expect(expectedHref).toEqual('https://accounts.firefox.com/?service=sync&action=email&context=fx_desktop_v3&entrypoint=mozilla.org-accounts_page&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two');
             expect(secondExpectedHref).toEqual('https://monitor.firefox.com/oauth/init?form_type=button&entrypoint=mozilla.org-firefox-accounts&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two');
+            expect(thirdExpectedHref).toEqual('https://getpocket.com/ff_signup?s=ffwelcome2&form_type=button&entrypoint=mozilla.org-firefox-welcome-2&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two');
         });
 
         it('updates the data-mozilla-online attribute of links with class js-fxa-cta-link', function () {
