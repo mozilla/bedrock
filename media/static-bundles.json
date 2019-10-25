@@ -541,6 +541,12 @@
     },
     {
       "files": [
+        "css/exp/firefox/whatsnew/whatsnew-70.scss"
+      ],
+      "name": "exp_firefox_whatsnew_70"
+    },
+    {
+      "files": [
         "css/mozorg/contribute/contribute-embed.less"
       ],
       "name": "contribute-embed"
@@ -1047,6 +1053,18 @@
         "js/firefox/whatsnew/whatsnew-70.js"
       ],
       "name": "firefox_whatsnew_70_variants"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-monitor-button.js",
+        "js/base/mozilla-monitor-button-init.js",
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/exp/firefox/whatsnew/whatsnew-70.js"
+      ],
+      "name": "exp_firefox_whatsnew_70_variants"
     },
     {
       "files": [
