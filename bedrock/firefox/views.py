@@ -641,7 +641,7 @@ class WhatsNewIndiaView(WhatsnewView):
             return ['firefox/whatsnew/index-lite.html']
 
         template = super().get_template_names()
-        
+
         return template
 
 
