@@ -1,0 +1,153 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% add_lang_files "firefox/browsers" %}
+
+{% extends "firefox/base/base-protocol.html" %}
+{% from "macros.html" import google_play_button, fxa_email_form, fxa_link_fragment with context %}
+{% from "macros-protocol.html" import hero, feature_card with context %}
+
+{% block page_title %}{{ _('Get the browsers that put your privacy first — and always have') }}{% endblock %}
+{% block page_desc %}{{ _('Get the privacy you deserve. Enhanced Tracking Protection is automatic in every Firefox browser.') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox-browsers-products') }}
+{% endblock %}
+
+{% set android_url = firefox_adjust_url('android', 'browsers-page') %}
+{% set ios_url = firefox_adjust_url('ios', 'browsers-page') %}
+{% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-browsers' %}
+{% set _entrypoint = 'mozilla.org-firefox-browsers' %}
+
+{% block content %}
+<main role="main">
+
+  <div class="c-block has-media-hide">
+    <div class="c-block-container">
+      <div class="c-block-body l-v-center">
+        {# L10n: The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language #}
+        <h1 class="mzp-has-zap-11">{{ _('Get the <strong>browsers</strong> that put your privacy first — and always have') }}</h1>
+        <p>Get the privacy you deserve. Enhanced Tracking Protection is automatic in every Firefox browser.</p>
+      </div>
+      <div class="c-block-media l-fit-flush l-constrain-height">
+        {{ high_res_img('img/firefox/browsers/hero.jpg', {'alt': '', 'class': 'c-block-media-img'}) }}
+      </div>
+    </div>
+  </div>
+
+  <div class="mzp-l-content c-landing-grid">
+    <div class="c-landing-grid-item">
+      {{ high_res_img('img/firefox/browsers/desktop.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '327', 'height': '223'}) }}
+      <h2 class="c-landing-grid-title"><a href="{{ url('firefox.new') }}" data-cta-type="link" data-cta-text="Desktop">{{ _('Desktop') }}</a></h2>
+      <p>{{ _('Seriously private browsing. Firefox automatically blocks 2000+ online trackers from collecting information about what you do online.') }}</p>
+
+      <p id="desktop-download">
+        {# Old IE users need to click a download button, the JS on the thank you page doesn't get them the right download if we send them there directly #}
+        <!--[if IE]>
+          <a href="{{ url('firefox.new') }}" data-cta-type="link" data-cta-text="Firefox Desktop">{{ _('Download for Desktop') }}</a>
+        <![endif]-->
+        <!--[if !IE]><!-->
+          {# Download link should be locale neutral see issue 7982 #}
+          <a id="qa-desktop-download" class="mzp-c-cta-link cta-download" href="/firefox/download/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard">{{ _('Download for Desktop') }}</a></li>
+        <!--<![endif]-->
+      </p>
+
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.new') }}" data-cta-type="link" data-cta-text="Desktop Learn More">{{ _('Learn more') }}</a></p>
+    </div>
+    <div class="c-landing-grid-item">
+      {{ high_res_img('img/firefox/browsers/mobile.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '327', 'height': '223'}) }}
+      <h2 class="c-landing-grid-title "><a class="mzp-c-cta-link" href="{{ url('firefox.mobile.index') }}" data-cta-type="link" data-cta-text="Mobile">{{ _('Mobile') }}</a></h2>
+      <p>{{ _('Take the same level of privacy — plus your passwords, search history, open tabs and more — with you wherever you go.') }}</p>
+
+      <div class="appstore-android">
+        {{ google_play_button(href=android_url, id='playStoreLink') }}
+      </div>
+      <div class="appstore-ios">
+        <a id="appStoreLink" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+        </a>
+      </div>
+      <div id="menu-mobile-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
+        <h3 class="mzp-c-menu-list-title">{{ _('Download for Mobile') }}</h3>
+        <ul class="mzp-c-menu-list-list" id="menu-mobile">
+          <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('android', 'firefox_browsers') }}" rel="external noopener" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android">Android</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('ios', 'firefox_browsers') }}" rel="external noopener" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">iOS</a></li>
+          <li class="mzp-c-menu-list-item t-getapp"><a href="{{ url('firefox.mobile.get-app') }}" data-cta-type="link" data-cta-text="Get App Mobile">Send me a link</a></li>
+        </ul>
+      </div>
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.mobile.index') }}" data-cta-type="link" data-cta-text="Moblie Learn More">{{ _('Learn more') }}</a></p>
+    </div>
+    <div class="c-landing-grid-item">
+      {{ high_res_img('img/firefox/browsers/enterprise.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '327', 'height': '223'}) }}
+      <h2 class="c-landing-grid-title"><a href="{{ url('firefox.enterprise.index') }}" data-cta-type="link" data-cta-text="Enterprise">{{ _('Enterprise') }}</a></h2>
+      <p>{{ _('Get unmatched data protection with support cycles tailored to suit your company’s needs.') }}</p>
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.enterprise.index') }}#download" data-cta-type="link" data-cta-text="Enterprise packages">{{ _('Enterprise packages') }}</a></p>
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.enterprise.index') }}" data-cta-type="link" data-cta-text="Enterprise Learn More">{{ _('Learn more') }}</a></p>
+    </div>
+    <div class="c-landing-grid-item">
+      {{ high_res_img('img/firefox/browsers/reality.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '327', 'height': '223'}) }}
+      <h2 class="c-landing-grid-title"><a href="https://mixedreality.mozilla.org/firefox-reality{{ referrals }}" data-cta-type="link" data-cta-text="Reality">{{ _('Reality') }}</a></h2>
+      <p>{{ _('Go beyond two dimensions and enjoy the best immersive content from around the web.') }}</p>
+      <p><a class="mzp-c-cta-link" href="https://mixedreality.mozilla.org/firefox-reality{{ referrals }}" data-cta-type="link" data-cta-text="Reality Learn More">{{ _('Learn more') }}</a></p>
+    </div>
+    <div class="c-landing-grid-item c-landing-grid-wide">
+      <div class="t-dev">
+        {% call feature_card(
+          title='Developer Edition',
+          heading_level=2,
+          image_url='img/firefox/browsers/dev.png',
+          include_highres_image=True,
+          class='mzp-l-card-feature-left-half',
+          link_url=url('firefox.developer.index'),
+          link_cta=learn_more,
+          ga_title='Developer'
+        ) %}
+        <p class="c-dev-title mzp-has-zap-16">{{ _('Build sites and refine your code with Firefox <strong>DevTools</strong>') }}</p>
+        <p><a class="mzp-c-cta-link" href="{{ url('firefox.developer.index') }}" data-cta-type="link" data-cta-text="Developer Learn More">{{ _('Learn more about DevTools') }}</a></p>
+        {% endcall %}
+      </div>
+    </div>
+  </div>
+
+  <div class="mzp-l-content is-js-dependent">
+    <div class="mzp-c-emphasis-box mzp-t-dark t-account">
+      <div class="fxa-form-cta">
+        {{ fxa_email_form(
+          entrypoint=_entrypoint,
+          form_title=_('Join Firefox and get the most out of every product — across every device.'),
+          button_class='mzp-c-button mzp-t-product mzp-t-small'
+          )
+        }}
+        <p class="fxa-signin account-signin">
+          {% set fxa_link = fxa_link_fragment(entrypoint=_entrypoint, action='signin', utm_campaign='browsers_footer') %}
+          {% set fxa_attr = 'href="{{ fxa_link }}" class="js-fxa-cta-link" data-cta-type="link" data-cta-text="FxA Learn More"'|safe %}
+          {% set accounts_link = url('firefox.accounts') %}
+          {% set accounts_attr = 'href="{{ accounts_link }}"'|safe %}
+          {% trans %}
+            Already have an account? <a {{ fxa_attr }}>Sign In</a> or <a {{ accounts_attr }}>learn more</a> about Joining Firefox</p>
+          {% endtrans %}
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox-browsers-products') }}
+{% endblock %}
+
+{% block structured_data %}
+  {
+    "@context": "https://schema.org/",
+    "@graph": [
+      {% include 'includes/structured-data/software/firefox-browser-software.json' %}
+      ,
+      {% include 'includes/structured-data/software/firefox-beta-software.json' %}
+      ,
+      {% include 'includes/structured-data/software/firefox-developer-software.json' %}
+      ,
+      {% include 'includes/structured-data/software/firefox-enterprise-software.json' %}
+    ]
+  }
+{% endblock %}

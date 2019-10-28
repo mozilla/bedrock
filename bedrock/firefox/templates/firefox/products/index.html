@@ -1,0 +1,152 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% add_lang_files "firefox/products" %}
+
+{% extends "firefox/base/base-protocol.html" %}
+{% from "macros.html" import google_play_button, fxa_email_form, fxa_link_fragment with context %}
+{% from "macros-protocol.html" import hero, feature_card with context %}
+
+{% block page_title %}{{ _('Firefox is more than a browser') }}{% endblock %}
+{% block page_desc %}{{ _('It’s a whole family of products designed to keep you safer and smarter online.') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox-browsers-products') }}
+{% endblock %}
+
+{% set android_url = firefox_adjust_url('android', 'products-page') %}
+{% set ios_url = firefox_adjust_url('ios', 'products-page') %}
+{% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-products' %}
+{% set _entrypoint = 'mozilla.org-firefox-products' %}
+
+{% block content %}
+<main role="main">
+
+  <div class="c-block has-media-hide t-products">
+    <div class="c-block-container">
+      <div class="c-block-body l-v-center">
+        {# L10n: The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language #}
+        <h1 class="mzp-has-zap-14">{{ _('Firefox is <strong>more</strong> than a browser') }}</h1>
+        <p>{{ _('It’s a whole family of products designed to keep you safer and smarter online.') }}</p>
+      </div>
+      <div class="c-block-media l-fit-flush-top l-constrain-width">
+        {{ high_res_img('img/firefox/products/hero.jpg', {'alt': '', 'class': 'c-block-media-img', 'width': '670', 'height': '464'}) }}
+      </div>
+    </div>
+  </div>
+
+  <div class="mzp-l-content c-landing-grid">
+    <div class="c-landing-grid-item">
+      <img src="{{ static('img/firefox/products/monitor.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
+      <h2 class="c-landing-grid-title"><a href="https://monitor.firefox.com{{ referrals }}" data-cta-type="link" data-cta-text="Firefox Monitor">Firefox Monitor</a></h2>
+      <p>{{ _('See if your personal information has been compromised in a corporate data breach, and sign up for future alerts.') }}</p>
+      <p><a class="mzp-c-cta-link" href="https://monitor.firefox.com/{{ referrals }}" data-cta-type="link" data-cta-text="Check for breaches">{{ _('Check for breaches') }}</a></p>
+      <p id="qa-monitor-button-wrapper">{{ monitor_fxa_button(
+        entrypoint='mozilla.org-firefox-products',
+        button_text=_('Sign up for breach alerts'),
+        class_name='mzp-c-cta-link',
+        is_button_class=False,
+        optional_parameters={'utm_campaign': 'firefox-products'},
+        optional_attributes={'data-cta-text': 'Sign up for breach alerts', 'data-cta-type': 'fxa-monitor', 'data-cta-position': 'card'}
+      ) }}</p>
+    </div>
+    <div class="c-landing-grid-item">
+      {{ high_res_img('img/firefox/products/browsers.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '316', 'height': '223'}) }}
+      <h2 class="c-landing-grid-title "><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.index') }}" data-cta-type="link" data-cta-text="Firefox browsers">{{ _('Firefox browsers') }}</a></h2>
+      <p>{{ _('Get the browsers that block 2000+ data trackers automatically. Enhanced Tracking Protection comes standard in every Firefox browser.') }}</p>
+      <div id="menu-browsers-wrapper" class="mzp-c-menu-list mzp-t-cta mzp-t-download">
+        <h3 class="mzp-c-menu-list-title">{{ _('Download') }}</h3>
+        <ul class="mzp-c-menu-list-list" id="menu-browsers">
+          {# Old IE users need to click a download button, the JS on the thank you page doesn't get them the right download if we send them there directly #}
+          <!--[if IE]>
+            <li class="mzp-c-menu-list-item menu-desktop"><a href="{{ url('firefox.new') }}" data-cta-type="link" data-cta-text="Firefox Desktop">{{ _('Desktop') }}</a></li>
+          <![endif]-->
+          <!--[if !IE]><!-->
+            {# Download link should be locale neutral see issue 7982 #}
+            <li class="mzp-c-menu-list-item menu-desktop"><a href="/firefox/download/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard">{{ _('Desktop') }}</a></li>
+          <!--<![endif]-->
+          <li class="mzp-c-menu-list-item menu-android"><a href="{{ firefox_adjust_url('android', 'firefox_home') }}" rel="external noopener" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android">Android</a></li>
+          <li class="mzp-c-menu-list-item menu-ios"><a href="{{ firefox_adjust_url('ios', 'firefox_home') }}" rel="external noopener" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">iOS</a></li>
+        </ul>
+      </div>
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.index') }}" data-cta-type="link" data-cta-text="See all browsers">{{ _('See all browsers') }}</a></p>
+    </div>
+    <div class="c-landing-grid-item">
+      <img src="{{ static('img/firefox/products/lockwise.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
+      <h2 class="c-landing-grid-title"><a href="{{ url('firefox.lockwise.lockwise') }}" data-cta-type="link" data-cta-text="Firefox Lockwise">Firefox Lockwise</a></h2>
+      <p>{{ _('Keep your passwords safe, and access them across all your synced devices.') }}</p>
+      <div id="menu-lockwise-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
+        <h3 class="mzp-c-menu-list-title">{{ _('Download Lockwise') }}</h3>
+        <ul class="mzp-c-menu-list-list" id="menu-lockwise">
+          <li class="mzp-c-menu-list-item hidden" id="js-lockwise-desktop"><button class="c-menu-list-link" id="lockwise-button" data-cta-type="lockwise-open-in-fx" data-cta-position="card" type="button">Open in Firefox</button></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ lockwise_adjust_url('android', 'firefox_products') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Lockwise Android">Android</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ lockwise_adjust_url('ios', 'firefox_products') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Lockwise iOS">iOS</a></li>
+        </ul>
+      </div>
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.lockwise.lockwise') }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise Learn More">{{ _('Learn more about Lockwise') }}</a></p>
+    </div>
+    <div class="c-landing-grid-item">
+      <img src="{{ static('img/firefox/products/send.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
+      <h2 class="c-landing-grid-title"><a href="https://send.firefox.com{{ referrals }}">Firefox Send</a></h2>
+      <p>{{ _('Send your large files and sensitive documents safely, up to 2.5G.') }}</p>
+      <p><a class="mzp-c-cta-link" href="https://send.firefox.com{{ referrals }}" data-cta-type="link" data-cta-text="Send a file">{{ _('Send a file') }}</a></p>
+    </div>
+    <div class="c-landing-grid-item">
+      <img src="{{ static('img/firefox/products/pocket.svg') }}" class="c-landing-grid-img" alt="" width="316" height="223">
+      <h2 class="c-landing-grid-title"><a href="https://send.firefox.com{{ referrals }}">Pocket</a></h2>
+      <p>{{ _('Discover the best content on the web — and consume it wherever and whenever you want.') }}</p>
+      <div id="menu-pocket-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
+        <h3 class="mzp-c-menu-list-title">{{ _('Get Pocket') }}</h3>
+        <ul class="mzp-c-menu-list-list" id="menu-pocket">
+          <li class="mzp-c-menu-list-item t-web"><a href="https://getpocket.com/firefox_learnmore/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Pocket for Desktop">{{ _('Desktop') }}</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ pocket_adjust_url('android', 'firefox_products') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket Android">Android</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ pocket_adjust_url('ios', 'firefox_products') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket iOS">iOS</a></li>
+        </ul>
+      </div>
+
+      <p><a class="mzp-c-cta-link" href="https://getpocket.com/firefox_learnmore/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Pocket">{{ _('Learn more about Pocket') }}</a></p>
+    </div>
+  </div>
+
+  <div class="mzp-l-content is-js-dependent">
+    <div class="mzp-c-emphasis-box t-account">
+      <div class="fxa-form-cta">
+        {{ fxa_email_form(
+          entrypoint=_entrypoint,
+          form_title=_('Join Firefox and get the most out of every product — across every device.'),
+          button_class='mzp-c-button mzp-t-product mzp-t-small'
+          )
+        }}
+        <p class="fxa-signin account-signin">
+          {% set fxa_link = fxa_link_fragment(entrypoint=_entrypoint, action='signin', utm_campaign='browsers_footer') %}
+          {% set fxa_attr = 'href="{{ fxa_link }}" class="js-fxa-cta-link" data-cta-type="link" data-cta-text="FxA Learn More"'|safe %}
+          {% set accounts_link = url('firefox.accounts') %}
+          {% set accounts_attr = 'href="{{ accounts_link }}"'|safe %}
+          {% trans %}
+            Already have an account? <a {{ fxa_attr }}>Sign In</a> or <a {{ accounts_attr }}>learn more</a> about Joining Firefox</p>
+          {% endtrans %}
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox-browsers-products') }}
+{% endblock %}
+
+{% block structured_data %}
+  {
+    "@context": "https://schema.org/",
+    "@graph": [
+      {% include 'includes/structured-data/software/firefox-browser-software.json' %}
+      ,
+      {% include 'includes/structured-data/software/firefox-beta-software.json' %}
+      ,
+      {% include 'includes/structured-data/software/firefox-developer-software.json' %}
+      ,
+      {% include 'includes/structured-data/software/firefox-enterprise-software.json' %}
+    ]
+  }
+{% endblock %}

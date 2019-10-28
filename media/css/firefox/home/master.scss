@@ -10,11 +10,24 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/menu-list';
 
 
+// conditional content
 .js-fx-only {
     display: none;
 
     .is-firefox & {
         display: block;
+    }
+}
+
+#menu-browsers {
+    .ios & .menu-desktop,
+    .ios & .menu-android,
+    .android & .menu-desktop,
+    .android & .menu-ios {
+        a {
+            pointer-events: none;
+            color: $color-gray-50;
+        }
     }
 }
 
@@ -240,6 +253,7 @@ $image-path: '/media/protocol/img';
         }
     }
 
+    // https://github.com/mozilla/protocol/issues/511
     .mzp-c-card-feature-title {
         strong {
             @include zap('/media/protocol/img/zaps/zap-08.svg');
@@ -313,6 +327,7 @@ $image-path: '/media/protocol/img';
     margin-bottom: $spacing-2xl;
     margin-top: $layout-md;
 
+    // https://github.com/mozilla/protocol/issues/511
     strong {
         @include zap('/media/protocol/img/zaps/zap-08.svg');
     }

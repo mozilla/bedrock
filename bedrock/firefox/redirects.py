@@ -532,9 +532,6 @@ redirectpatterns = (
         'utm_content': 'windows10-welcome-tab',
     }),
 
-    # Bug 1361181, 1386112
-    redirect(r'^firefox/products/?', 'firefox'),
-
     # bug 1369732
     redirect(r'^Firefox/?$', 'firefox'),
 

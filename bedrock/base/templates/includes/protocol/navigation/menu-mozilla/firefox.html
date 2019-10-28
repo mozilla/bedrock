@@ -13,11 +13,7 @@
             <section class="mzp-c-menu-item mzp-has-icon">
               <a class="mzp-c-menu-item-link" href="{{ url('firefox.new') }}" data-link-name="Firefox Quantum Desktop Browser" data-link-type="nav" data-link-position="topnav" data-link-group="firefox">
                 <img src="{{ static('protocol/img/logos/firefox/browser/logo-sm.png') }}" class="mzp-c-menu-item-icon" width="24" height="24" alt="">
-                {% if LANG.startswith('en-') %}
                   <h4 class="mzp-c-menu-item-title">{{ _('Firefox Desktop Browser') }}</h4>
-                {% else %}
-                  <h4 class="mzp-c-menu-item-title">{{ _('Firefox Quantum Desktop Browser') }}</h4>
-                {% endif %}
                 <p class="mzp-c-menu-item-desc">{{ _('Get the browser that gives more power to you on Windows, macOS or Linux.') }}</p>
               </a>
               <ul class="mzp-c-menu-item-list">
