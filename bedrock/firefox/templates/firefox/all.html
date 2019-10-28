@@ -96,7 +96,7 @@
   {% elif platform == 'desktop' and channel == 'beta' %}
     <h2><img src="{{ static('protocol/img/logos/firefox/browser/beta/logo-word-hor.svg') }}" alt="Firefox Beta" width="260" height="48"></h2>
   {% elif channel == 'nightly' %}
-    <h2>{{ high_res_img('img/logos/firefox/nightly-wordmark-dark.png', {'alt': _('Firefox Nightly'), 'width': '305', 'height': '56'}) }}</h2>
+    <h2><img src="{{ static('protocol/img/logos/firefox/browser/nightly/logo-word-hor-white.svg') }}" alt="Firefox Nightly" width="260" height="48"></h2>
   {% else %}
     {{ super() }}
   {% endif %}

@@ -97,10 +97,10 @@ $image-path: '/media/protocol/img';
 }
 
 .mzp-t-nightly .c-page-section:before {
-    background-image: url('/media/img/logos/firefox/nightly.png');
+    background-image: url('#{$image-path}/logos/firefox/browser/nightly/logo-lg.png');
 
     @media #{$mq-high-res} {
-        background-image: url('/media/img/logos/firefox/nightly-high-res.png');
+        background-image: url('#{$image-path}/logos/firefox/browser/nightly/logo-lg-high-res.png');
     }
 }
 

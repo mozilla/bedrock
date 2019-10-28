@@ -424,8 +424,12 @@ html[lang^="en"] {
 }
 
 #nightly header {
-    .at2x('/media/img/logos/firefox/nightly.png', 180px, 180px);
-    .background-size(180px 180px);
+    background-image: url('#{$image-path}/logos/firefox/browser/nightly/logo-2xl.png');
+    background-size: 180px 180px;
+
+    @media @highdpi {
+        background-image: url('#{$image-path}/logos/firefox/browser/nightly/logo-2xl-high-res.png');
+    }
 
     @media only screen and (max-width: @breakDesktop) {
         .background-size(150px 150px);
