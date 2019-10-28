@@ -241,8 +241,7 @@
     },
     {
       "files": [
-        "css/security/hall-of-fame.scss",
-        "css/base/mozilla-accordion.less"
+        "css/security/hall-of-fame.scss"
       ],
       "name": "security-bug-bounty-hall-of-fame"
     },
@@ -358,12 +357,6 @@
     },
     {
       "files": [
-        "css/base/mozilla-accordion.less"
-      ],
-      "name": "mozilla_accordion"
-    },
-    {
-      "files": [
         "css/foundation/feed-icon-guidelines.scss"
       ],
       "name": "foundation-feed-icon-guidelines"
@@ -408,8 +401,7 @@
     },
     {
       "files": [
-        "css/mozorg/about-patents.scss",
-        "css/base/mozilla-accordion.less"
+        "css/mozorg/about-patents.scss"
       ],
       "name": "about-patents"
     },
@@ -1418,13 +1410,6 @@
         "js/plugincheck/plugincheck.js"
       ],
       "name": "plugincheck"
-    },
-    {
-      "files": [
-        "js/base/mozilla-accordion.js",
-        "js/base/mozilla-accordion-gatrack.js"
-      ],
-      "name": "accordion"
     },
     {
       "files": [
