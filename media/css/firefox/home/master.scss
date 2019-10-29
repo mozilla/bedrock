@@ -211,6 +211,7 @@ $image-path: '/media/protocol/img';
 
         .t-small & {
             display: inline-block;
+            flex-basis: auto;
             height: 40px;
             width: 40px;
             overflow: hidden;
