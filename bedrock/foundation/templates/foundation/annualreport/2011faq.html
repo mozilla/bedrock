@@ -2,54 +2,35 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "base-resp.html" %}
+{% extends "base-article.html" %}
 
 {% add_lang_files "foundation/annualreport/2011" %}
 
 {% block page_title %}{{ _('The State of Mozilla: 2011 Annual Report') }} | {{ _('Frequently Asked Questions') }}{% endblock %}
-{% block body_id %}annual-2011-faq{% endblock %}
-{% block body_class %}sand{% endblock %}
+{% block body_id %}annual-2011{% endblock %}
+{% block body_class %}mzp-t-mozilla{% endblock %}
 
-{% block page_css %}
-  {{ css_bundle('annual_2011') }}
-  <link rel="stylesheet" media="print" href="{{ static('css/foundation/annual2011print.css') }}">
+{% set navigation_bar = [
+  ('#welcome', 'welcome', _('Welcome')),
+  ('#mobilized', 'mobilized', _('Mobilized') ),
+  ('#action', 'action', _('Action')),
+  ('#community', 'community', _('Community')),
+  ('#sustainability', 'sustainability', _('Sustainability')),
+  (url('foundation.annualreport.2011faq'), 'faq', _('FAQ')),
+] %}
+
+{% block side_nav %}
+  {{ sidemenu_lists([navigation_bar], body_id) }}
 {% endblock %}
 
-{% block js %}
-  {{ js_bundle('annual_2011') }}
-{% endblock %}
-
-
-{% block site_header %}
-  <header id="masthead">
-    {% block site_header_nav %}{% endblock %}
-
-    {% block site_header_logo %}
-    <h1>{{ _('The State of Mozilla') }}</h1>
-    {% endblock %}
-
-    {% block breadcrumbs %}{% endblock %}
-  </header>
-
-  <nav id="page-nav" class="faq">
-    <ul>
-      <li id="nav-welcome"><a href="{{ url('foundation.annualreport.2011') }}">{{ _('Welcome') }}</a></li>
-      <li id="nav-mobilized"><a href="{{ url('foundation.annualreport.2011') }}#mobilized">{{ _('Mobilized') }}</a></li>
-      <li id="nav-action"><a href="{{ url('foundation.annualreport.2011') }}#action">{{ _('Action') }}</a></li>
-      <li id="nav-community"><a href="{{ url('foundation.annualreport.2011') }}#community">{{ _('Community') }}</a></li>
-      <li id="nav-sustainability"><a href="{{ url('foundation.annualreport.2011') }}#sustainability">{{ _('Sustainability') }}</a></li>
-      {# L10N: 'FAQ' is an acronym for 'Frequently Asked Questions'. #}
-      <li id="nav-faq" class="current"><a href="{{ url('foundation.annualreport.2011faq') }}"><abbr title="{{ _('Frequently Asked Questions') }}">{{ _('FAQ') }}</abbr></a></li>
-    </ul>
-  </nav>
-
-{% endblock %}
-
-{% block content %}
+{% block article %}
   <article id="main-content">
+    <header>
+      <h1 class="mzp-c-article-title">{{ _('The State of Mozilla') }}</h1>
+    </header>
     <h2>{{ _('Frequently Asked Questions') }}</h2>
 
-    <dl class="faq">
+    <dl class="mzp-u-list-styled">
       <dt>
       {% trans %}
         What are the key projects for Mozilla in the next year?

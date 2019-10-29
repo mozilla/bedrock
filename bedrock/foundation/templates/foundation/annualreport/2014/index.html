@@ -2,27 +2,25 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "base-resp.html" %}
+{% extends "base-protocol-mozilla.html" %}
 
 {% block page_title %}{{ _('The State of Mozilla: 2014 Annual Report') }}{% endblock %}
 {% block body_id %}annual-2014{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('annual_2014') }}
-{% endblock %}
-
-{% block site_header %}
-  {% include 'foundation/annualreport/2014/includes/header.html' %}
+  {{ css_bundle('annual_report') }}
 {% endblock %}
 
 {% block content %}
-  <main role="main">
-    <section class="content content-section">
-      <div class="copy-wrapper">
+<main role="main">
+  {% include 'foundation/annualreport/2014/includes/header.html' %}
+  <div class="mzp-l-content">
+    <section class="c-content-section">
+      <div class="c-copy-wrapper">
         <header>
           <h2>{{ _('Keeping the Web Open for All') }}</h2>
         </header>
-        <div class="copy">
+        <div class="c-copy">
           <p><em>
           {% trans %}
             This is the Mozilla annual report for 2014. It highlights activities for that calendar year and is accompanied by detailed financials and our non-profit tax filing.
@@ -35,7 +33,7 @@
           </p>
           <p>
           {% trans %}
-           The Mozilla project is devoted to keeping the Web extraordinary. We believe the Web should be open, inclusive and accessible, a platform that uplifts people around the globe and is not controlled by a small handful of corporations and governments. To keep the Web open, Mozilla builds products, organizes communities, helps people learn about the Web, and runs advocacy campaigns to mobilize people to stand up for the Web.
+            The Mozilla project is devoted to keeping the Web extraordinary. We believe the Web should be open, inclusive and accessible, a platform that uplifts people around the globe and is not controlled by a small handful of corporations and governments. To keep the Web open, Mozilla builds products, organizes communities, helps people learn about the Web, and runs advocacy campaigns to mobilize people to stand up for the Web.
           {% endtrans %}
           </p>
           <p>
@@ -52,12 +50,12 @@
       </div>
     </section>
 
-    <section class="content content-section content-section-alt">
-      <div class="copy-wrapper">
+    <section class="c-content-section">
+      <div class="c-copy-wrapper">
         <header>
           <h2>{{ _('Powered By Mozillians') }}</h2>
         </header>
-        <div class="copy">
+        <div class="c-copy">
           <p>
           {% trans %}
             Much of Mozilla’s work is made possible by Mozillians, passionate volunteers who span seven continents and speak more than 80 languages. Our community is diverse, but our mission is singular: to ensure the Internet is a global public resource open and accessible to all. Mozillians are teachers, coders, designers, writers, and activists with a profound respect for the open Web. They play a central role in building and fuelling a broader movement for a free and open Internet.
@@ -67,12 +65,12 @@
       </div>
     </section>
 
-    <section class="content content-section">
-      <div class="copy-wrapper">
+    <section class="c-content-section">
+      <div class="c-copy-wrapper">
         <header>
           <h2>{{ _('Sustainability') }}</h2>
         </header>
-        <div class="copy">
+        <div class="c-copy">
           <p>
           {% trans %}
             This annual report details Mozilla’s audited financial statement for 2014. The majority of Mozilla’s revenue stems from Firefox browser search partnerships with companies like Yahoo, Bing, Yandex, Baidu, Amazon, eBay, and others.
@@ -86,7 +84,8 @@
         </div>
       </div>
     </section>
-  </main>
+  </div>
+</main>
 {% endblock %}
 
 {% block email_form %}{% endblock %}
@@ -96,8 +95,4 @@
     {% include 'foundation/annualreport/2014/includes/footer.html' %}
   {% endwith %}
   {{ super() }}
-{% endblock %}
-
-{% block js %}
-  {{ js_bundle('annual_2013') }}
 {% endblock %}
