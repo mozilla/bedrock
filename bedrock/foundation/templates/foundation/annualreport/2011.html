@@ -292,14 +292,18 @@
         </div>
       </section>
 
-      <aside class="sub-section">
-        <h3>{{ _('Webmaker: Video') }}</h3>
-        <figure class="media">
-          <a class="video-play" href="https://webmaker.org/videos/" data-video-source="https://videos.cdn.mozilla.net/serv/webmademovies/webmakers-instructors" title="{{ _('Click to view this video') }}">
-            <img src="{{ static('img/foundation/annualreport/2011/vid-webmaker.jpg') }}" alt="{{ _('Watch this video about teaching the next generation of Webmakers') }}">
-          </a>
-        </figure>
-      </aside>
+      <div class="sub-section">
+        <section class="c-media">
+          <h3>{{ _('Webmaker: Video') }}</h3>
+
+          {{ video(
+              'webmakers-instructors.mp4',
+              id='webmaker',
+              preload='none',
+              poster=static('img/foundation/annualreport/2011/vid-webmaker.jpg'),
+              prefix='https://videos.cdn.mozilla.net/serv/webmademovies/') }}
+        </section>
+      </div>
 
       <section class="sub-section">
         <h3>{{ _('Advocating for Web standards') }}</h3>
