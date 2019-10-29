@@ -46,7 +46,7 @@
             {{ _('Join') }}
           </h5>
           <ul class="mzp-c-footer-list">
-            <li><a {{ fxa_link_fragment(entrypoint='mozilla.org-firefoxfooter', action='signin', utm_campaign='footer', utm_content='join-sign-in') }} class="js-fxa-cta-link" rel="external noopener"  data-link-type="footer" data-link-name="Sign Up">{{ _('Sign Up') }}</a></li>
+            <li><a {{ fxa_link_fragment(entrypoint='mozilla.org-firefoxfooter', action='signup', utm_campaign='footer', utm_content='join-sign-up') }} class="js-fxa-cta-link" rel="external noopener"  data-link-type="footer" data-link-name="Sign Up">{{ _('Sign Up') }}</a></li>
             <li><a {{ fxa_link_fragment(entrypoint='mozilla.org-firefoxfooter', action='signin', utm_campaign='footer', utm_content='join-sign-in') }} class="js-fxa-cta-link" rel="external noopener"  data-link-type="footer" data-link-name="Sign In">{{ _('Sign In') }}</a></li>
             <li><a href="{{ url('firefox.accounts') }}" data-link-type="footer" data-link-name="Benefits">{{ _('Benefits') }}</a></li>
           </ul>
