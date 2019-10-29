@@ -42,8 +42,7 @@ services:
       - ./scripts/:/app/scripts:delegated
       - ./vendor-local/:/app/vendor-local:delegated
       - ./wsgi/:/app/wsgi:delegated
-      # temporarily disabling mount due to mozilla/bedrock#8051
-      #- ./locale/:/app/locale:delegated
+      - ./locale/:/app/locale:delegated
       - ./l10n/:/app/l10n:delegated
       - ./git-repos/:/app/git-repos:delegated
 
