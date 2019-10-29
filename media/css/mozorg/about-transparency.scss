@@ -35,6 +35,7 @@ dd {
         margin: $spacing-sm;
 
         a {
+            display: block;
             min-width: ($content-md / 3);
         }
 
