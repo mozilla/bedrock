@@ -62,7 +62,6 @@ services:
       - ./tests/:/app/tests:delegated
       - ./vendor-local/:/app/vendor-local:delegated
       - ./wsgi/:/app/wsgi:delegated
-      - ./locale/:/app/locale:delegated
       - ./l10n/:/app/l10n:delegated
       - ./git-repos/:/app/git-repos:delegated
 
