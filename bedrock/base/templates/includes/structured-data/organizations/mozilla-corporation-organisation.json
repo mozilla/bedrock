@@ -300,7 +300,7 @@
     "@type": "Product",
     "@id": "https://www.mozilla.org/#firefoxlite",
     "url": "https://support.mozilla.org/en-US/kb/get-started-firefox-lite",
-    "logo": "{% filter trim|absolute_url %}{{ static('img/logos/firefox/logo-lite-high-res.png') }}{% endfilter %}",
+    "logo": "{% filter trim|absolute_url %}{{ static('img/logos/firefox/logo-lite.png') }}{% endfilter %}",
     "image": [
       "{% filter trim|absolute_url %}{{ static('img/structured-data/browser-lite-1.jpg') }}{% endfilter %}",
       "{% filter trim|absolute_url %}{{ static('img/structured-data/browser-lite-2.jpg') }}{% endfilter %}",
