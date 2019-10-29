@@ -176,7 +176,7 @@ h4 {
 
 .c-sticky-cta-title {
     @include text-body-md;
-    @include at2x('/media/img/logos/firefox/master-sm.png', 40px, 40px);
+    @include at2x('#{$image-path}/logos/firefox/logo-sm.png', 40px, 40px);
     background-position: top center;
     background-repeat: no-repeat;
     height: 0;
@@ -381,7 +381,7 @@ h4 {
 }
 
 .c-secondary-cta-title {
-    @include at2x('/media/protocol/img/logos/firefox/browser/logo-sm.png', 40px, 40px);
+    @include at2x('#{$image-path}/logos/firefox/browser/logo-sm.png', 40px, 40px);
     @include text-display-md;
     background-position: center 35px;
     background-repeat: no-repeat;
@@ -429,7 +429,7 @@ h4 {
 
 .fxaccount-secondary-cta.mzp-t-product-firefox {
     .mzp-c-call-out-content {
-        @include at2x('/media/img/logos/firefox/master-md.png', 64px, 64px);
+        @include at2x('#{$image-path}/logos/firefox/logo-md.png', 64px, 64px);
     }
     .mzp-c-call-out-title {
         margin-bottom: $spacing-md;
