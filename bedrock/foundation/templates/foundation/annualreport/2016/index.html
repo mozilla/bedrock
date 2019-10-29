@@ -1,31 +1,31 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
-  # License, v. 2.0. If a copy of the MPL was not distributed with this
-  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "base-pebbles.html" %}
+{% extends "base-protocol-mozilla.html" %}
 
 {% block page_title %}{{ _('The State of Mozilla: 2016 Annual Report') }}{% endblock %}
 {% block body_id %}annual-2016{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('annual_2016') }}
+  {{ css_bundle('annual_report') }}
 {% endblock %}
 
 {% block content %}
   <main role="main">
-    <header class="banner">
-      <div class="content">
-        <div class="banner-content">
-          <div class="header-container">
+    <header class="c-banner">
+      <div class="mzp-l-content">
+        <div class="c-banner-content">
+          <div class="c-header-container">
             <h1><span>{{ _('State of Mozilla 2016') }}</span></h1>
           </div>
-        </div>{#--/.banner-container--#}
-      </div>{#--/.content--#}
+        </div>{#--/.c-banner-content--#}
+      </div>{#--/.mzp-l-content--#}
     </header>
 
-    <div class="content">
-      <div class="intro-section">
-        <div class="copy-wrapper">
+    <div class="mzp-l-content">
+      <div class="c-intro-section">
+        <div class="c-copy-wrapper">
             <p>
             {% trans %}
               The State of Mozilla 2016 is our annual report. This report highlights
@@ -37,12 +37,12 @@
         </div>{#--/.copy-wrapper--#}
       </div>{#--/.content-section--#}
 
-      <section class="content-section">
-        <div class="copy-wrapper">
+      <section class="c-content-section">
+        <div class="c-copy-wrapper">
           <header>
             <h2>{{ _('Harnessing the Power of the Internet for Public Good') }}</h2>
           </header>
-          <div class="copy">
+          <div class="c-copy">
             <p>
             {% trans %}
               Billions of people depend on an open and accessible internet for knowledge,
@@ -74,12 +74,12 @@
         </div>{#--/.copy-wrapper--#}
       </section>{#--/.content-section--#}
 
-      <section class="content-section">
-        <div class="copy-wrapper">
+      <section class="c-content-section">
+        <div class="c-copy-wrapper">
           <header>
             <h2>{{ _('How Mozilla Operates') }}</h2>
           </header>
-          <div class="copy">
+          <div class="c-copy">
             <p>
             {% trans %}
               Mozilla is not your average organization. Founded as a community open source
@@ -144,12 +144,12 @@
         </div>{#--/.copy-wrapper--#}
       </section>{#--/.content-section--#}
 
-      <section class="content-section">
-        <div class="copy-wrapper">
+      <section class="c-content-section">
+        <div class="c-copy-wrapper">
           <header>
             <h2>{{ _('Mozilla Corporation: Products & Emerging Technologies') }}</h2>
           </header>
-          <div class="copy">
+          <div class="c-copy">
             <p>
             {% trans %}
               Mozilla products are built to contribute to a healthy internet and deliver an amazing
@@ -230,12 +230,12 @@
         </div>{#--/.copy-wrapper--#}
       </section>{#--/.content-section--#}
 
-      <section class="content-section">
-        <div class="copy-wrapper">
+      <section class="c-content-section">
+        <div class="c-copy-wrapper">
           <header>
             <h2>{{ _('Mozilla Foundation: Investing in Leaders and Mobilizing Citizens') }}</h2>
           </header>
-          <div class="copy">
+          <div class="c-copy">
             <p>
             {% trans %}
               As a complement to Mozilla's work in the market, Mozilla Foundation leads a
@@ -290,12 +290,12 @@
         </div>{#--/.copy-wrapper--#}
       </section>{#--/.content-section--#}
 
-      <section class="content-section">
-        <div class="copy-wrapper">
+      <section class="c-content-section">
+        <div class="c-copy-wrapper">
           <header>
             <h2>{{ _('Mozilla Corporation and Mozilla Foundation: Maintaining Sustainability') }}</h2>
           </header>
-          <div class="copy">
+          <div class="c-copy">
             <p>
             {% trans %}
               This annual report includes links to the detailed audited 2016 financial statements
@@ -317,97 +317,99 @@
             </p>
           </div>{#--/.copy--#}
 
-          <div class="financial-table">
-            <table>
-              <caption>
-                <h3>{{ _('Mozilla Foundation and Subsidiary') }}</h3>
-                <p>{{ _('Consolidating Statement of Activities and Change in Net Assets, <br>Year ended December 31, 2016.') }}</p>
-              </caption>
-              <thead>
-                <tr>
-                  <th scope="col"><strong>{{ _('Unrestricted Net Assets') }}</strong></th>
-                  <th scope="col">{{ _('Mozilla Foundation') }}</th>
-                  <th scope="col">{{ _('Mozilla Corporation') }}</th>
-                  <th scope="col">{{ _('Eliminations') }}</th>
-                  <th scope="col">{{ _('Consolidated') }}</th>
-                </tr>
-              </thead>
-              <tbody class="revenue">
-                <tr>
-                  <th scope="col">{{ _('Revenue and other support:') }}</th>
-                </tr>
-                <tr>
-                  <th scope="row">{{ _('Royalties') }}</th>
-                  <td>$8,349</td>
-                  <td>$504,145</td>
-                  <td>($8,817)</td>
-                  <td>$503,677</td>
-                </tr>
-                <tr>
-                  <th scope="row">{{ _('Interest and dividend income') }}</th>
-                  <td>$353</td>
-                  <td>$2,665</td>
-                  <td></td>
-                  <td>$3,018</td>
-                </tr>
-                <tr>
-                  <th scope="row">{{ _('Net realized and unrelealized gain from investments') }}</th>
-                  <td>$778</td>
-                  <td>$72</td>
-                  <td>$226</td>
-                  <td>$1,076</td>
-                </tr>
-                <tr>
-                  <th scope="row">{{ _('Contributions') }}</th>
-                  <td>$5,440</td>
-                  <td></td>
-                  <td></td>
-                  <td>$5,440</td>
-                </tr>
-                <tr>
-                  <th scope="row">{{ _('Other') }}</th>
-                  <td>$191</td>
-                  <td></td>
-                  <td></td>
-                  <td>$191</td>
-                </tr>
-                <tr>
-                  <th scope="row">{{ _('Foreign currency exchange gain (loss)') }}</th>
-                  <td>$48</td>
-                  <td>($488)</td>
-                  <td>($801)</td>
-                  <td>($1,241)</td>
-                </tr>
-                <tr>
-                  <th scope="row">{{ _('Loss of sale assets') }}</th>
-                  <td></td>
-                  <td>($124)</td>
-                  <td></td>
-                  <td>($124)</td>
-                </tr>
-              </tbody>
-              <tbody>
-                <tr>
-                  <th scope="row">{{ _('Net assets released from restrictions') }}</th>
-                  <td>$8,336</td>
-                  <td></td>
-                  <td></td>
-                  <td>$8,336</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th scope="row"><strong>{{ _('Total unrestricted revenue and support') }}</strong></th>
-                  <td>$23,495</td>
-                  <td>$506,270</td>
-                  <td>($9,392)</td>
-                  <td>$520,373</td>
-                </tr>
-              </tfoot>
-            </table>
+          <div class="c-copy">
+            <div class="financial-table">
+              <table class="mzp-u-data-table">
+                <caption>
+                  <h3>{{ _('Mozilla Foundation and Subsidiary') }}</h3>
+                  <p>{{ _('Consolidating Statement of Activities and Change in Net Assets, <br>Year ended December 31, 2016.') }}</p>
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col"><strong>{{ _('Unrestricted Net Assets') }}</strong></th>
+                    <th scope="col">{{ _('Mozilla Foundation') }}</th>
+                    <th scope="col">{{ _('Mozilla Corporation') }}</th>
+                    <th scope="col">{{ _('Eliminations') }}</th>
+                    <th scope="col">{{ _('Consolidated') }}</th>
+                  </tr>
+                </thead>
+                <tbody class="revenue">
+                  <tr>
+                    <th scope="col">{{ _('Revenue and other support:') }}</th>
+                  </tr>
+                  <tr>
+                    <th scope="row">{{ _('Royalties') }}</th>
+                    <td>$8,349</td>
+                    <td>$504,145</td>
+                    <td>($8,817)</td>
+                    <td>$503,677</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">{{ _('Interest and dividend income') }}</th>
+                    <td>$353</td>
+                    <td>$2,665</td>
+                    <td></td>
+                    <td>$3,018</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">{{ _('Net realized and unrelealized gain from investments') }}</th>
+                    <td>$778</td>
+                    <td>$72</td>
+                    <td>$226</td>
+                    <td>$1,076</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">{{ _('Contributions') }}</th>
+                    <td>$5,440</td>
+                    <td></td>
+                    <td></td>
+                    <td>$5,440</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">{{ _('Other') }}</th>
+                    <td>$191</td>
+                    <td></td>
+                    <td></td>
+                    <td>$191</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">{{ _('Foreign currency exchange gain (loss)') }}</th>
+                    <td>$48</td>
+                    <td>($488)</td>
+                    <td>($801)</td>
+                    <td>($1,241)</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">{{ _('Loss of sale assets') }}</th>
+                    <td></td>
+                    <td>($124)</td>
+                    <td></td>
+                    <td>($124)</td>
+                  </tr>
+                </tbody>
+                <tbody>
+                  <tr>
+                    <th scope="row">{{ _('Net assets released from restrictions') }}</th>
+                    <td>$8,336</td>
+                    <td></td>
+                    <td></td>
+                    <td>$8,336</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th scope="row"><strong>{{ _('Total unrestricted revenue and support') }}</strong></th>
+                    <td>$23,495</td>
+                    <td>$506,270</td>
+                    <td>($9,392)</td>
+                    <td>$520,373</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
           </div>
 
-          <div class="copy">
+          <div class="c-copy">
 
             <p>
             {% trans cliqz='https://blog.mozilla.org/press-uk/2016/08/23/mozilla-makes-strategic-investment-in-cliqz-to-enable-privacy-focused-search-innovation/',
@@ -451,12 +453,12 @@
         </div>{#--/.copy-wrapper--#}
       </section>{#--/.content-section--#}
 
-      <section class="content-section">
-        <div class="copy-wrapper">
+      <section class="c-content-section">
+        <div class="c-copy-wrapper">
           <header>
             <h2>{{ _('Join Mozilla') }}</h2>
           </header>
-          <div class="copy">
+          <div class="c-copy">
             <p>
             {% trans download=url('firefox.new'),
                      volunteer=url('mozorg.contribute.index'),
@@ -480,26 +482,26 @@
   </main>
 {% endblock %}
 
- {% block email_form %}{% endblock %}
+{% block email_form %}{% endblock %}
 
- {% block site_footer %}
-  <div class="site-footer">
-      <div class="content">
-        <ul>
-          <li>
-            <a href="https://assets.mozilla.net/annualreport/2016/2016_Mozilla_Audited_Financial_Statement.pdf">
-              {{ _('2016 Audited financial statement') }}
-              <small>{{ _('Download PDF') }}</small>
-            </a>
-          </li>
-          <li>
-            <a href="https://assets.mozilla.net/annualreport/2016/2016_Mozilla_Foundation_Forms_990_Public_Disclosure.pdf">
-              {{ _('2016 Form 990') }}
-              <small>{{ _('Download PDF') }}</small>
-            </a>
-          </li>
-        </ul>
-      </div>
+{% block site_footer %}
+<div class="c-site-footer">
+    <div class="mzp-l-content">
+      <ul>
+        <li>
+          <a href="https://assets.mozilla.net/annualreport/2016/2016_Mozilla_Audited_Financial_Statement.pdf">
+            {{ _('2016 Audited financial statement') }}
+            <small>{{ _('Download PDF') }}</small>
+          </a>
+        </li>
+        <li>
+          <a href="https://assets.mozilla.net/annualreport/2016/2016_Mozilla_Foundation_Forms_990_Public_Disclosure.pdf">
+            {{ _('2016 Form 990') }}
+            <small>{{ _('Download PDF') }}</small>
+          </a>
+        </li>
+      </ul>
     </div>
-   {{ super() }}
- {% endblock %}
+  </div>
+  {{ super() }}
+{% endblock %}

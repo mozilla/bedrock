@@ -129,13 +129,6 @@
     },
     {
       "files": [
-        "css/base/mozilla-modal.less",
-        "css/foundation/annual2012.less"
-      ],
-      "name": "annual_2012"
-    },
-    {
-      "files": [
         "css/press/press.less"
       ],
       "name": "press"
@@ -154,22 +147,9 @@
     },
     {
       "files": [
-        "css/foundation/annual2011.less"
-      ],
-      "name": "annual_2011"
-    },
-    {
-      "files": [
         "css/grants/grants.scss"
       ],
       "name": "grants"
-    },
-    {
-      "files": [
-        "css/foundation/annual2013.less",
-        "css/foundation/annual2014.less"
-      ],
-      "name": "annual_2014"
     },
     {
       "files": [
@@ -361,41 +341,27 @@
     },
     {
       "files": [
-        "css/base/mozilla-modal.less",
-        "css/foundation/annual2013.less"
-      ],
-      "name": "annual_2013"
-    },
-    {
-      "files": [
         "css/csrf-failure.scss"
       ],
       "name": "csrf-failure"
     },
     {
       "files": [
-        "css/foundation/annual2016.scss"
+        "css/foundation/annual-report.scss"
       ],
-      "name": "annual_2016"
+      "name": "annual_report"
     },
     {
       "files": [
-        "css/foundation/annual2017.scss"
+        "css/foundation/annual-report-2011.scss"
       ],
-      "name": "annual_2017"
+      "name": "annual_report_2011"
     },
     {
       "files": [
         "css/base/mozilla-accordion.less"
       ],
       "name": "mozilla_accordion"
-    },
-    {
-      "files": [
-        "css/foundation/annual2013.less",
-        "css/foundation/annual2015.less"
-      ],
-      "name": "annual_2015"
     },
     {
       "files": [
@@ -1312,15 +1278,6 @@
     },
     {
       "files": [
-        "js/libs/jquery.hoverIntent.min.js",
-        "js/libs/jquery.waypoints.min.js",
-        "js/libs/jquery.jcarousel.min.js",
-        "js/foundation/annual2011.js"
-      ],
-      "name": "annual_2011"
-    },
-    {
-      "files": [
         "js/libs/konami-code.js",
         "js/mozorg/internet-health/privacy-day-egg.js"
       ],
@@ -1374,13 +1331,6 @@
         "js/mozorg/about-leadership.js"
       ],
       "name": "about-leadership"
-    },
-    {
-      "files": [
-        "js/base/mozilla-modal.js",
-        "js/foundation/annual2012.js"
-      ],
-      "name": "annual_2012"
     },
     {
       "files": [
@@ -1633,13 +1583,6 @@
         "js/press/speaker-request.js"
       ],
       "name": "press_speaker_request"
-    },
-    {
-      "files": [
-        "js/base/mozilla-modal.js",
-        "js/foundation/annual2013.js"
-      ],
-      "name": "annual_2013"
     },
     {
       "files": [
