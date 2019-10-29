@@ -31,21 +31,17 @@ dd {
     margin: 0 auto;
     text-align: center;
 
-    a {
-        width: $content-xs;
+    li {
         margin: $spacing-sm;
-    }
 
-    @media #{$mq-md} {
-        li {
+        a {
+            min-width: ($content-md / 3);
+        }
+
+        @media #{$mq-md} {
             display: inline-block;
-
-            a {
-                min-width: ($content-md / 3);
-            }
         }
     }
-
 }
 
 .prev-reports-nav {
