@@ -41,7 +41,11 @@
 {# Setting all the strings here make it easy to use this page as a base template if we need to hard code the translation in bedrock #}
 {% set page_title = _('The browser is just the beginning') %}
 {% set family_title = _('Meet our family of products') %}
-{% set browsers_trackers = _('Get 2,000+ trackers off your trail — including Facebook') %}
+{% if LANG.startswith('en') %}
+  {% set browsers_trackers = 'Get 2000+ trackers off your trail — including Facebook' %}
+{% else %}
+  {% set browsers_trackers = _('Get 2,000+ trackers off your trail — including Facebook') %}
+{% endif %}
 {% set monitor_title = _('Know when hackers strike — and stay a step ahead') %}
 {% set monitor_cta = _('Start getting breach reports') %}
 {% set lockwise_title = _('Keep your passwords safe on every device') %}
