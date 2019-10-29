@@ -10,7 +10,11 @@ stages:
 build-demo:
   stage: build
   only:
-    - gitlab-demo
+    - gitlab-demo1
+    - gitlab-demo2
+    - gitlab-demo3
+    - gitlab-demo4
+    - gitlab-demo5
   tags:
     - meao
   script:
@@ -21,6 +25,8 @@ build:
   stage: build
   only:
     - gitlab-dev
+    - gitlab-stage
+    - gitlab-prod
   tags:
     - meao
   script:
@@ -39,45 +45,40 @@ build:
   script:
     - bin/update-config.sh
 
-demo1:
+demo-1:
   extends: .update-config
   only:
     - gitlab-demo1
   variables:
-    NAMESPACE: bedrock-demo
-    DEPLOYMENT_YAML: demo1-deploy.yaml
+    NAMESPACE: bedrock-demo-1
 
-demo2:
+demo-2:
   extends: .update-config
   only:
     - gitlab-demo2
   variables:
-    NAMESPACE: bedrock-dev
-    DEPLOYMENT_YAML: demo2-deploy.yaml
+    NAMESPACE: bedrock-demo-2
 
-demo3:
+demo-3:
   extends: .update-config
   only:
     - gitlab-demo3
   variables:
-    NAMESPACE: bedrock-demo
-    DEPLOYMENT_YAML: demo3-deploy.yaml
+    NAMESPACE: bedrock-demo-3
 
-demo4:
+demo-4:
   extends: .update-config
   only:
     - gitlab-demo4
   variables:
-    NAMESPACE: bedrock-demo
-    DEPLOYMENT_YAML: demo4-deploy.yaml
+    NAMESPACE: bedrock-demo-4
 
-demo5:
+demo-5:
   extends: .update-config
   only:
     - gitlab-demo5
   variables:
-    NAMESPACE: bedrock-demo
-    DEPLOYMENT_YAML: demo5-deploy.yaml
+    NAMESPACE: bedrock-demo-5
 
 dev:
   extends: .update-config
