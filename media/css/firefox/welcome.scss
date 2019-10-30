@@ -58,6 +58,10 @@
 .mzp-c-hero-title {
     @include text-display-lg;
     margin-bottom: $layout-sm;
+
+    .welcome-page1 & {
+        @include text-display-md;
+    }
 }
 
 .mzp-c-hero-desc {

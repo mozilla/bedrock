@@ -20,9 +20,18 @@
 {% set _utm_campaign = 'welcome-1-monitor' %}
 {% set _cta_type = 'lifecycle-monitor' %}
 
+{% if l10n_has_tag('monitor_title_30102019') %}
+  {# L10n: "Firefox Monitor" is a product name and shouldn't be translated. #}
+  {% set hero_title = _('Stay ahead of hackers. Check for data breaches with Firefox Monitor.') %}
+  {% set _utm_content = 'stay-ahead-hackers' %}
+{% else %}
+  {% set hero_title = _('You’re on track to stay protected') %}
+  {% set _utm_content = 'on-track-protected' %}
+{% endif %}
+
 {% block content_intro %}
   {% call hero(
-    title=_('You’re on track to stay protected'),
+    title=hero_title,
     desc=_('You’ve got the web browser that protects your privacy — now it’s time to get a lookout for hackers.'),
     class='mzp-t-firefox mzp-t-dark',
     include_cta=True,
@@ -36,6 +45,7 @@
     {{ monitor_button(
       entrypoint=_entrypoint,
       utm_campaign=_utm_campaign,
+      utm_content=_utm_content,
       button_text=_('Check Your Breach Report'),
       cta_type=_cta_type,
       cta_position='primary'
@@ -80,7 +90,7 @@
     <div class="c-picto-block-body">
       <p>
       {# L10n: "Evite" is a proper name and shouldn't be translated. #}
-      {% trans evite_breach='https://blog.mozilla.org/firefox/evite-data-breach/?utm_source=mozilla.org-firefox-welcome-1&utm_medium=referral&utm_campaign=welcome-1-monitor&entrypoint=mozilla.org-firefox-welcome-1' %}
+      {% trans evite_breach='https://blog.mozilla.org/firefox/evite-data-breach/?utm_source=mozilla.org-firefox-welcome-1&utm_medium=referral&utm_campaign=welcome-1-monitor&utm_content=stay-ahead-hackers&entrypoint=mozilla.org-firefox-welcome-1' %}
         Were you one of 100,985,047 invited to the <a href="{{ evite_breach }}">Evite data breach “party”</a>?
       {% endtrans %}
       </p>
@@ -94,6 +104,7 @@
     {{ monitor_button(
       entrypoint=_entrypoint,
       utm_campaign=_utm_campaign,
+      utm_content=_utm_content,
       button_text=_('Check Your Breach Report'),
       cta_type=_cta_type,
       cta_position='secondary'
@@ -102,7 +113,7 @@
 {% endblock %}
 
 {% block content_utility %}
-  <p><strong><a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source=mozilla.org-firefox-welcome-1&utm_medium=referral&utm_campaign=welcome-1-monitor&entrypoint=mozilla.org-firefox-welcome-1">{{ _('Why am I seeing this?') }}</a></strong></p>
+  <p><strong><a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source=mozilla.org-firefox-welcome-1&utm_medium=referral&utm_campaign=welcome-1-monitor&utm_content=stay-ahead-hackers&entrypoint=mozilla.org-firefox-welcome-1">{{ _('Why am I seeing this?') }}</a></strong></p>
   {% if switch('lifecycle_page1_survey', ['en-US']) %}
   <p><a class="c-survey-link"href="https://qsurvey.mozilla.com/s3/Firefox-Page" rel="external noopener">Share feedback about this page</a></p>
   {% endif %}
