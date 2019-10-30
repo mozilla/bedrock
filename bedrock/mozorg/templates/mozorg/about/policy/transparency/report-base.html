@@ -2,41 +2,38 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "base-pebbles.html" %}
+{% extends "base-protocol.html" %}
 
 {% block page_title %}{{ _('Transparency Report') }}{% endblock %}
-{% block body_class %}sand about-transparency{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('about-transparency') }}
+{{ css_bundle('about-transparency') }}
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('about-transparency') }}
+{{ js_bundle('about-transparency') }}
 {% endblock %}
 
 {% block content %}
-  <main role="main">
-    <header class="title-bar">
-      <div class="content">
+<main role="main">
+  <header class="c-page-header">
+    <div class="mzp-l-content l-content-narrow">
       {% block report_title %}{% endblock %}
-      </div>
-    </header>
-
-  <div class="content">
-    <div id="report-sections" class="report accordion">
-    {% block report_body %}{% endblock %}
     </div>
+  </header>
+
+  <div class="mzp-l-content l-content-narrow">
+    {% block report_body %}{% endblock %}
   </div>
 
   {% block report_nav %}
-  <aside class="section nav-block">
+  <aside>
     {% include 'mozorg/about/policy/transparency/includes/reports-nav.html' %}
     {% include 'mozorg/about/policy/transparency/includes/past-reports.html' %}
   </aside>
   {% endblock %}
 
-  </main>
+</main>
 {% endblock %}
 
 {% block email_form %}{% endblock %}

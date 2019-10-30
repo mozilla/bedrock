@@ -326,7 +326,6 @@
     },
     {
       "files": [
-        "css/base/mozilla-accordion.less",
         "css/mozorg/about-transparency.scss"
       ],
       "name": "about-transparency"
@@ -1232,8 +1231,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-accordion.js",
-        "js/base/mozilla-accordion-gatrack.js",
         "js/mozorg/about-transparency.js"
       ],
       "name": "about-transparency"

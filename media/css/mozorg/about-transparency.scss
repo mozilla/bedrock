@@ -2,189 +2,128 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../pebbles/includes/lib';
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/article';
+@import '../../protocol/css/includes/mixins/details';
 
-.section {
-    @include clearfix;
-    padding: $gutter-width 0;
+//* -------------------------------------------------------------------------- */
+// Index
 
-    @media #{$mq-tablet} {
-        padding: ($gutter-width * 2) 0;
-    }
+dt {
+    @include font-mozilla;
+    @include text-display-xs;
+    font-weight: bold;
+    margin-top: $spacing-sm;
 }
 
-.content {
-    @include border-box;
+dd {
+    padding: $spacing-sm;
+}
+
+//* -------------------------------------------------------------------------- */
+// Base Template
+
+.l-content-narrow {
+    max-width: $content-lg;
+}
+
+.reports-nav {
     margin: 0 auto;
-    overflow: visible;
-    padding: 0 $gutter-width;
-    max-width: $width-desktop;
-}
+    text-align: center;
 
-.section-extra h3 {
-    @include font-size(20px);
-}
+    li {
+        margin: $spacing-sm;
 
-.section#introduction {
-    p:last-child {
-        margin-bottom: 0;
-    }
-}
-
-.title-bar {
-    background: #000;
-    padding: $gutter-width 0;
-
-    h1 {
-        color: #fff;
-        margin: 0;
-
-        span {
-            @include font-size-level4;
+        a {
             display: block;
-            margin: .5em 0 0;
-        }
-    }
-
-    @media #{$mq-tablet} {
-        padding: ($gutter-width * 2) 0;
-    }
-}
-
-.accordion .section-title {
-    margin-bottom: .5em;
-}
-
-.accordion-initialized .section-title {
-    margin-bottom: 0;
-}
-
-#report-sections.accordion-initialized [data-accordion-role='tab'] {
-    @include border-box;
-    overflow: visible;
-    padding: 0 20px 0 40px;
-}
-
-#report-sections.accordion-initialized [data-accordion-role='tabpanel'] {
-    @include border-box;
-    margin-top: 1em;
-    padding: 0 20px 0 40px;
-}
-
-.section-extra .section-title {
-    @include font-size(32px);
-    margin-bottom: 1em;
-}
-
-.section-defs dt {
-    position: relative;
-}
-.section-defs dt:target:before {
-    content: '\25B8'; // right solid triangle
-    color: #000;
-    position: absolute;
-    left: -20px;
-}
-
-.footnotes {
-    @include font-size(14px);
-}
-
-.nav-report {
-    ul {
-        @include font-size(20px);
-        list-style: none;
-        margin: 0;
-        text-align: center;
-    }
-
-    li {
-        display: inline-block;
-        margin: 0 10px;
-    }
-
-    &.two-up li,
-    &.three-up li {
-        display: block;
-        margin: 0 0 10px;
-    }
-
-    a.button {
-        @include border-box;
-        width: 100%;
-        display: block;
-        text-align: center;
-    }
-
-    span {
-        display: block;
-    }
-
-    @media #{$mq-tablet} {
-        ul {
-            @include flexbox;
-            margin: 0 -10px;
+            min-width: ($content-md / 3);
         }
 
-        a.button {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        &.two-up li {
-            margin: 0 10px;
-            width: 50%;
-        }
-
-        &.three-up li {
-            margin: 0 10px;
-            width: 33.3%;
+        @media #{$mq-md} {
+            display: inline-block;
         }
     }
 }
 
-.nav-previous {
-    @include border-box;
-    padding: $gutter-width $gutter-width 0;
-    margin: $gutter-width 10px 0;
+.prev-reports-nav {
+    margin: 0 auto $layout-md;
+    text-align: center;
 
-    ul {
-        list-style: none;
-        margin: 0;
-    }
-
-    li {
-        display: block;
-        margin: 0 0 .5em;
-
-        &:first-child {
-            margin-left: 0;
-        }
-    }
-
-    @media #{$mq-tablet} {
-        margin: $gutter-width auto -40px;
-        padding: $gutter-width;
+    @media #{$mq-md} {
+        width: $content-md;
 
         li {
             display: inline-block;
-            margin: 0 10px .5em;
             position: relative;
 
-            &:after {
-                content: '•';
-                position: absolute;
-                right: -22px;
-                text-align: center;
-                top: 0;
-                width: 20px;
+            a {
+                margin: $spacing-sm;
             }
 
-            &:last-child:after {
-                content: '';
+            &:not(:last-child):after {
+                content: '•';
+                position: absolute;
             }
         }
     }
 }
+
+//* -------------------------------------------------------------------------- */
+// Report Template
+
+.c-page-header {
+    @include font-mozilla;
+    @include text-display-xs;
+    background: $color-black;
+    color: $color-white;
+
+    span {
+        @include text-display-xs;
+        display: block;
+        margin-top: $spacing-md;
+    }
+}
+
+.mzp-c-article {
+    margin: 0 auto $layout-lg;
+}
+
+h2 {
+    @include font-mozilla;
+    @include text-display-md;
+    margin-top: $spacing-2xl;
+}
+
+h3 {
+    @include font-mozilla;
+    @include text-display-sm;
+    margin-top: $spacing-2xl;
+}
+
+.footnotes {
+    @include text-body-sm;
+}
+
+//* -------------------------------------------------------------------------- */
+// Collapsible Sections
+
+  .c-collapsible-section button {
+    @include font-mozilla;
+    @include summary;
+    @include text-display-md;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    padding-right: 48px;
+    text-align: inherit;
+    width: 100%;
+  }
+
+  .c-collapsible-section button[aria-expanded=true]:before {
+      @include summary-open;
+  }
+
+  .c-collapsible-section .is-closed[aria-hidden=true] {
+      display: none;
+  }
