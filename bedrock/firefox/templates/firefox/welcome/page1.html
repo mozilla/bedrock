@@ -20,9 +20,16 @@
 {% set _utm_campaign = 'welcome-1-monitor' %}
 {% set _cta_type = 'lifecycle-monitor' %}
 
+{% if l10n_has_tag('monitor_title_30102019') %}
+  {# L10n: "Firefox Monitor" is a product name and shouldn't be translated. #}
+  {% set hero_title = _('Stay ahead of hackers. Check for data breaches with Firefox Monitor.') %}
+{% else %}
+  {% set hero_title = _('You’re on track to stay protected') %}
+{% endif %}
+
 {% block content_intro %}
   {% call hero(
-    title=_('You’re on track to stay protected'),
+    title=hero_title,
     desc=_('You’ve got the web browser that protects your privacy — now it’s time to get a lookout for hackers.'),
     class='mzp-t-firefox mzp-t-dark',
     include_cta=True,
