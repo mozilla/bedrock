@@ -18,14 +18,15 @@
 
 {% set _entrypoint = 'mozilla.org-firefox-welcome-1' %}
 {% set _utm_campaign = 'welcome-1-monitor' %}
-{% set _utm_content = 'stay-ahead-hackers' %}
 {% set _cta_type = 'lifecycle-monitor' %}
 
 {% if l10n_has_tag('monitor_title_30102019') %}
   {# L10n: "Firefox Monitor" is a product name and shouldn't be translated. #}
   {% set hero_title = _('Stay ahead of hackers. Check for data breaches with Firefox Monitor.') %}
+  {% set _utm_content = 'stay-ahead-hackers' %}
 {% else %}
   {% set hero_title = _('You’re on track to stay protected') %}
+  {% set _utm_content = 'on-track-protected' %}
 {% endif %}
 
 {% block content_intro %}
