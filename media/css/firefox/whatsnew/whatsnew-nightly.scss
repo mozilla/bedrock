@@ -2,6 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+$image-path: '/media/protocol/img';
+
 @import '../../pebbles/includes/lib';
 @import '../../hubs/sections';
 @import 'header';
@@ -44,7 +46,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     header {
-        @include at2x('/media/img/logos/firefox/nightly.png', 124px, 124px);
+        @include at2x('#{$image-path}/logos/firefox/browser/nightly/logo-lg.png', 124px, 124px);
         background-position: top center;
         background-repeat: no-repeat;
         padding-top: 160px;
