@@ -90,6 +90,14 @@ $border: 2px solid $color-gray-20;
         color: inherit;
         text-decoration: none;
     }
+
+    .archived {
+        background: $color-red-70;
+        color: $color-white;
+        display: inline-block;
+        margin-top: $spacing-sm;
+        padding: $spacing-sm;
+    }
 }
 
 
