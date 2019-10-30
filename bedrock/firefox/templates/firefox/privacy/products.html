@@ -43,7 +43,13 @@
     include_cta=True,
     heading_level=2
   ) %}
-    <h3 class="privacy-products-hero-sub-title">{{ _('2,000+ trackers blocked — automatically') }}</h3>
+    <h3 class="privacy-products-hero-sub-title">
+      {% if LANG.startswith('en') %}
+        2000+ trackers blocked — automatically
+      {% else %}
+        {{ _('2,000+ trackers blocked — automatically') }}
+      {% endif %}
+    </h3>
 
     <p>
     {% trans %}
