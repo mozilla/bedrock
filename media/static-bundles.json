@@ -1452,12 +1452,6 @@
     },
     {
       "files": [
-        "js/privacy/privacy.js"
-      ],
-      "name": "privacy"
-    },
-    {
-      "files": [
         "js/base/uitour-lib.js",
         "js/base/mozilla-fxa-form.js",
         "js/base/mozilla-fxa-form-init.js",
