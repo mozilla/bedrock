@@ -10,11 +10,16 @@ from pages.about import AboutPage
 from pages.contribute.contribute import ContributePage
 from pages.mission import MissionPage
 from pages.firefox.features.landing import FeaturesLandingPage
+from pages.firefox.whatsnew.whatsnew_developer_70 import FirefoxWhatsNewDeveloper70Page
 from pages.plugincheck import PluginCheckPage
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('page_class', [HomePage, AboutPage, MissionPage])
+@pytest.mark.parametrize('page_class', [
+    HomePage,
+    AboutPage,
+    MissionPage,
+    pytest.mark.skip_if_not_firefox(FirefoxWhatsNewDeveloper70Page)])
 def test_newsletter_default_values(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
     page.newsletter.expand_form()
@@ -25,7 +30,11 @@ def test_newsletter_default_values(page_class, base_url, selenium):
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('page_class', [HomePage, AboutPage, MissionPage])
+@pytest.mark.parametrize('page_class', [
+    HomePage,
+    AboutPage,
+    MissionPage,
+    pytest.mark.skip_if_not_firefox(FirefoxWhatsNewDeveloper70Page)])
 def test_newsletter_successful_sign_up(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
     page.newsletter.expand_form()
@@ -38,7 +47,11 @@ def test_newsletter_successful_sign_up(page_class, base_url, selenium):
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('page_class', [HomePage, AboutPage, MissionPage])
+@pytest.mark.parametrize('page_class', [
+    HomePage,
+    AboutPage,
+    MissionPage,
+    pytest.mark.skip_if_not_firefox(FirefoxWhatsNewDeveloper70Page)])
 def test_newsletter_sign_up_fails_when_missing_required_fields(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
     page.newsletter.expand_form()

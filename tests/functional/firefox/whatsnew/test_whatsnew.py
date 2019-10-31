@@ -5,7 +5,7 @@
 import pytest
 
 from selenium.common.exceptions import TimeoutException
-from pages.firefox.whatsnew import FirefoxWhatsNewPage
+from pages.firefox.whatsnew.whatsnew import FirefoxWhatsNewPage
 
 
 @pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
