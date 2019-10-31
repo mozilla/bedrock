@@ -13,11 +13,6 @@ Mozilla Pager
 
 :ref:`mozilla-pager.js<mozillapager>`
 
-Mozilla Accordion
------------------
-
-:ref:`mozilla-accordion.js<mozillaaccordion>`
-
 Mozilla Image Lazy Loader
 -------------------------
 
