@@ -2,21 +2,59 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../pebbles/includes/lib';
-@import '../../hubs/sections';
-@import 'header';
-@import 'send-to-device';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../protocol/css/includes/lib';
+@import '../../protocol/components/state-fxa';
+@import '../../../protocol/css/components/notification-bar';
 
 
-//* -------------------------------------------------------------------------- */
-// Common elements
-
-body {
-    @include open-sans;
+.t-content-lg {
+    max-width: $content-lg;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-weight: normal;
+//* -------------------------------------------------------------------------- */
+// Up-to-date page header
+
+.c-page-header {
+    background: transparent;
+}
+
+.mzp-c-notification-bar {
+    color: $color-off-black;
+    display: none;
+    margin: 0;
+
+    .show-up-to-date-message & {
+        display: block;
+    }
+}
+
+.c-page-header-inner {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.mzp-c-notification-bar {
+    margin: $spacing-md 0 0;
+
+    @media #{$mq-md} {
+        margin: 0;
+    }
+}
+
+.c-page-header-logo-moz {
+    min-width: 78px;
+}
+
+@media #{$mq-md} {
+    .c-page-header-inner {
+        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr max-content 1fr;
+    }
 }
 
 
@@ -24,95 +62,55 @@ h1, h2, h3, h4, h5, h6 {
 // Main content section
 
 .main-content {
-    background: #003eaa;
-    background: url('/media/img/firefox/whatsnew/fox-tail-small.png') top right -420px no-repeat,
-                linear-gradient(87deg, #6A11CB 0%, #2575FC 100%);
-    color: #fff;
+    background: $color-off-black url('/media/img/firefox/whatsnew/whatsnew_background.svg') no-repeat;
+    @include background-size(100%);
+    color: $color-white;
     text-align: center;
 
-    h2,
-    h3 {
-        color: #fff;
-    }
-
-    h2 {
-        @include font-size-level4;
-        margin-bottom: 20px;
-    }
-
-    h3 {
-        @include font-size-level2;
-        font-weight: bold;
-        margin: 0 auto 40px;
-        max-width: 14em;
-
+    .main-title {
+        @include text-display-md;
 
         br {
             display: none;
         }
     }
 
+    .main-tagline {
+        @include text-display-sm;
+    }
+
     header {
-        @include at2x('/media/protocol/img/logos/firefox/browser/logo-lg.png', 100px, 100px);
+        @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', 174px, 32px);
         background-position: top center;
         background-repeat: no-repeat;
-        padding-top: 120px;
+        padding-top: 48px;
+        margin-bottom: 48px;
     }
 
     &.show-send-to-device {
-        text-align: left;
-
-        h3 {
-            margin: 0 0 20px;
-            max-width: none;
-        }
+        @include bidi(((text-align, left, right),));
 
         header {
-            background-position: top left;
+            @include bidi(((background-position, left top, right top),));
         }
     }
 
-    @media #{$mq-phone-wide} {
-        h3 br {
+    @media #{$mq-sm} {
+        .main-title br {
             display: inline;
         }
     }
 
-    @media #{$mq-tablet} {
-        background: url('/media/img/firefox/whatsnew/fox-tail.png') top center no-repeat,
-                    linear-gradient(87deg, #6A11CB 0%, #2575FC 100%);
+    @media #{$mq-md} {
         padding: 10vh 0;
 
-        .inner-container {
-            padding: 0 10%;
-        }
-    }
-
-    @media #{$mq-desktop} {
-        .inner-container {
-            padding: 0 15%;
-        }
-
         header {
-            background-size: 140px 140px;
-            padding-top: 170px;
-        }
-    }
-
-    @media #{$mq-desktop-wide} {
-        .inner-container {
-            padding: 0 22%;
+            background-size: 260px 48px;
+            padding-top: $layout-lg;
         }
     }
 }
 
-html[dir="rtl"] .main-content {
-
-    &.show-send-to-device {
-        text-align: right;
-
-        header {
-            background-position: top right;
-        }
-    }
+.send-to-device-form .inline-field {
+    margin-bottom: $spacing-md;
 }
