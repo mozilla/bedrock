@@ -988,16 +988,6 @@
         "js/base/uitour-lib.js",
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/firefox/whatsnew/whatsnew-70.js"
-      ],
-      "name": "firefox_whatsnew_70"
-    },
-    {
-      "files": [
-        "js/base/uitour-lib.js",
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-monitor-button.js",
         "js/base/mozilla-monitor-button-init.js",
         "js/firefox/whatsnew/up-to-date.js",
