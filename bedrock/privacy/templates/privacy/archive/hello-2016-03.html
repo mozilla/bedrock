@@ -6,181 +6,181 @@
 
 {% block page_title %}Firefox Hello Privacy Policy — Archived, March 16, 2016{% endblock %}
 
+{% block body_class %}{{ super() }} format-paragraphs{% endblock %}
+
 {% block body_id %}hello-archived{% endblock %}
 
-{% block article %}
-<article class="section-content" itemscope itemtype="http://schema.org/Article">
-  <header>
-    <img class="logo" src="{{ static('img/privacy/logo-firefox-hello.png') }}" alt="Firefox Hello">
-    <h1 itemprop="name">Firefox Hello Privacy Notice</h1>
-    <p class="meta">
-      <time datetime="2016-03-16" itemprop="dateModified">Archived, March 16, 2016</time>
-    </p>
-    <p>
-      We care about your privacy. When Hello sends information to Mozilla
-      (that's us) our Mozilla Privacy Policy describes how we use that
-      information.
-    </p>
-  </header>
-  <div itemprop="articleBody">
-    <section class="highlight accordion" id="things-you-should-know">
-      <header><h2>Things you should know:</h2></header>
-      <div>
-        <p role="tab">
-          When you make calls, the data below is sent to Mozilla in order to
-          connect the call. Once connected, your communications are encrypted.
-        </p>
+{% block article_header_logo %}{{ static('img/privacy/logo-firefox-hello.png') }}{% endblock %}
 
-        <ul role="tabpanel">
-          <li>
-            <p>
-              <strong>Firefox Accounts</strong>: Accounts are optional to use
-              with Firefox Hello. If you sign-in with a Firefox Account, your
-              Firefox browser sends Mozilla your account name in order to
-              direct calls to you. To learn more about how data is used by
-              Firefox Accounts, click
-              <a href="{{ url('privacy.notices.firefox') }}">here</a>.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Contact Information</strong>: You can import or add new
-              contacts to create an address book with email addresses, profile
-              pictures, and names of people you may call. This contact
-              information is stored locally on your device. When you use the
-              Service, your Firefox browser encrypts your contact's
-              information and sends it to us to connect calls.  If your call
-              is through a conversation URL that you generate, we delete the
-              contact information after 30 days but you can delete it sooner
-              by revoking the conversation URL. Otherwise, for direct calls,
-              we delete this information once the call is finished.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Feedback &amp; Support</strong>: Sending feedback to
-              Mozilla is optional. You can provide us with information if you
-              submit a crash report or a report on our support forum.
-            </p>
-          </li>
-        </ul>
+{% block title %}Firefox Hello Privacy Notice{% endblock %}
 
-        <hr/>
+{% block time %}<span class="archived">Archived, March 16, 2016</span>{% endblock %}
 
-        <p role="tab">
-          We automatically receive certain metrics from use of the Service.
-        </p>
+{% block lead_in %}
+  <p>
+    We care about your privacy. When Hello sends information to Mozilla
+    (that's us) our Mozilla Privacy Policy describes how we use that
+    information.
+  </p>
+{% endblock %}
 
-        <ul role="tabpanel">
-          <li>
-            <p>
-              <strong>Performance metrics</strong>: We automatically receive
-              performance and responsiveness data about calls and attempted
-              calls in order to detect issues, diagnose them, and improve
-              Firefox Hello. For example, the data we receive includes quality
-              for audio and video streams, whether calls failed or were
-              disconnected, duration of the call, obfuscated IP addresses,
-              obfuscated network and hardware data (e.g. if you are on a wifi
-              or cellular network) and timestamps.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Usage metrics</strong>: We receive data on how many
-              people use the Service, types of operating systems and browsers,
-              and countries in which the Service is used.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Reports</strong>: We share aggregate information on
-              performance and usage metrics.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Analytics</strong>: If you use the web-based Hello
-              client to join a conversation by following a link to
-              https://hello.firefox.com, we may also use cookies and third
-              party services to help us understand in the aggregate how users
-              engage with Hello. We use:
-            </p>
+{% block sections %}
+  <section id="things-you-should-know">
+    <header><h2>Things you should know:</h2></header>
+    <div>
+      <p class="summary">
+        When you make calls, the data below is sent to Mozilla in order to
+        connect the call. Once connected, your communications are encrypted.
+      </p>
 
-            <ul>
-              <li>
-                <p>
-                  Google Analytics, which places a cookie on your device, to
-                  obtain metrics on how users engage with Hello. This helps us
-                  to improve the Hello service.
-                </p>
-              </li>
-              <li>
-                <p>
-                  Optimizely, which places a cookie on your device, to help us
-                  test variations of Hello. This helps us offer better
-                  experiences to Hello users.
-                </p>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <p>
-              <strong>Tiles</strong>: Tiles are a feature of Hello which may
-              be displayed during a conversation or while a user is waiting
-              for a conversation to begin. In order to provide the tiles
-              feature, Hello sends to Mozilla data relating to the tiles such
-              as number of clicks, impressions, your IP address, and locale
-              information.
-            </p>
-          </li>
-        </ul>
+      <ul class="mzp-u-list-styled">
+        <li>
+          <p>
+            <strong>Firefox Accounts</strong>: Accounts are optional to use
+            with Firefox Hello. If you sign-in with a Firefox Account, your
+            Firefox browser sends Mozilla your account name in order to
+            direct calls to you. To learn more about how data is used by
+            Firefox Accounts, click
+            <a href="{{ url('privacy.notices.firefox') }}">here</a>.
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong>Contact Information</strong>: You can import or add new
+            contacts to create an address book with email addresses, profile
+            pictures, and names of people you may call. This contact
+            information is stored locally on your device. When you use the
+            Service, your Firefox browser encrypts your contact's
+            information and sends it to us to connect calls.  If your call
+            is through a conversation URL that you generate, we delete the
+            contact information after 30 days but you can delete it sooner
+            by revoking the conversation URL. Otherwise, for direct calls,
+            we delete this information once the call is finished.
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong>Feedback &amp; Support</strong>: Sending feedback to
+            Mozilla is optional. You can provide us with information if you
+            submit a crash report or a report on our support forum.
+          </p>
+        </li>
+      </ul>
 
-        <hr/>
+      <hr/>
 
-        <p role="tab">
-          You can control individual cookie preferences and opt-out of web
-          analytics and optimization tools.
-        </p>
+      <p class="summary">
+        We automatically receive certain metrics from use of the Service.
+      </p>
 
-        <ul role="tabpanel">
-          <li>
-            <p>
-              <strong>Cookie History</strong>: You can accept or decline
-              individual cookies in the preferences in the appropriate
-              settings within your web browser. For Firefox, this can be found
-              in the Tools/Options/Privacy history section. Note that certain
-              features of Hello may not function properly without the aid of
-              cookies.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Analytics &amp; Optimization</strong>: If you do not
-              want data about your interaction with Hello to be collected by
-              Google Analytics, you can install the
-              <a href="https://tools.google.com/dlpage/gaoptout">Google
-              Analytics Opt-out Browser Add-on</a>. The add-on keeps your
-              visits anonymous and prohibits data transmission to Google
-              Analytics. If you do not want data about your interaction with
-              Hello to be collected by Optimizely, you can opt-out by visiting
-              <a href="https://www.optimizely.com/opt_out">Optimizely's
-              opt-out website</a> for more information.
-            </p>
-          </li>
-        </ul>
+      <ul class="mzp-u-list-styled">
+        <li>
+          <p>
+            <strong>Performance metrics</strong>: We automatically receive
+            performance and responsiveness data about calls and attempted
+            calls in order to detect issues, diagnose them, and improve
+            Firefox Hello. For example, the data we receive includes quality
+            for audio and video streams, whether calls failed or were
+            disconnected, duration of the call, obfuscated IP addresses,
+            obfuscated network and hardware data (e.g. if you are on a wifi
+            or cellular network) and timestamps.
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong>Usage metrics</strong>: We receive data on how many
+            people use the Service, types of operating systems and browsers,
+            and countries in which the Service is used.
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong>Reports</strong>: We share aggregate information on
+            performance and usage metrics.
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong>Analytics</strong>: If you use the web-based Hello
+            client to join a conversation by following a link to
+            https://hello.firefox.com, we may also use cookies and third
+            party services to help us understand in the aggregate how users
+            engage with Hello. We use:
+          </p>
 
-        <hr/>
+          <ul>
+            <li>
+              <p>
+                Google Analytics, which places a cookie on your device, to
+                obtain metrics on how users engage with Hello. This helps us
+                to improve the Hello service.
+              </p>
+            </li>
+            <li>
+              <p>
+                Optimizely, which places a cookie on your device, to help us
+                test variations of Hello. This helps us offer better
+                experiences to Hello users.
+              </p>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <p>
+            <strong>Tiles</strong>: Tiles are a feature of Hello which may
+            be displayed during a conversation or while a user is waiting
+            for a conversation to begin. In order to provide the tiles
+            feature, Hello sends to Mozilla data relating to the tiles such
+            as number of clicks, impressions, your IP address, and locale
+            information.
+          </p>
+        </li>
+      </ul>
 
-        <p role="tab">
-          Firefox Hello is provided to you in collaboration with TokBox, Inc.
-          ("TokBox") and sends data to TokBox as a part of the function of the
-          service. This notice only describes how Mozilla handles information
-          we receive from you. For more information on TokBox’s handling of
-          data, you should read their
-          <a href="https://tokbox.com/support/privacy-policy">Privacy Policy</a>
-        </p>
-      </div>
-    </section>
-  </div>
-</article>
+      <hr/>
+
+      <p class="summary">
+        You can control individual cookie preferences and opt-out of web
+        analytics and optimization tools.
+      </p>
+
+      <ul class="mzp-u-list-styled">
+        <li>
+          <p>
+            <strong>Cookie History</strong>: You can accept or decline
+            individual cookies in the preferences in the appropriate
+            settings within your web browser. For Firefox, this can be found
+            in the Tools/Options/Privacy history section. Note that certain
+            features of Hello may not function properly without the aid of
+            cookies.
+          </p>
+        </li>
+        <li>
+          <p>
+            <strong>Analytics &amp; Optimization</strong>: If you do not
+            want data about your interaction with Hello to be collected by
+            Google Analytics, you can install the
+            <a href="https://tools.google.com/dlpage/gaoptout">Google
+            Analytics Opt-out Browser Add-on</a>. The add-on keeps your
+            visits anonymous and prohibits data transmission to Google
+            Analytics. If you do not want data about your interaction with
+            Hello to be collected by Optimizely, you can opt-out by visiting
+            <a href="https://www.optimizely.com/opt_out">Optimizely's
+            opt-out website</a> for more information.
+          </p>
+        </li>
+      </ul>
+
+      <hr/>
+
+      <p>
+        Firefox Hello is provided to you in collaboration with TokBox, Inc.
+        ("TokBox") and sends data to TokBox as a part of the function of the
+        service. This notice only describes how Mozilla handles information
+        we receive from you. For more information on TokBox’s handling of
+        data, you should read their
+        <a href="https://tokbox.com/support/privacy-policy">Privacy Policy</a>
+      </p>
+    </div>
+  </section>
 {% endblock %}
