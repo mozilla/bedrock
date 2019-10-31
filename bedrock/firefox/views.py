@@ -608,7 +608,7 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
             elif locale == 'fr':
                 template = 'firefox/whatsnew/whatsnew-fx70-fr.html'
             else:
-                template = 'firefox/whatsnew/whatsnew-fx70.html'
+                template = 'firefox/whatsnew/index.html'
         elif version.startswith('69.'):
             template = 'firefox/whatsnew/whatsnew-fx69.html'
         elif version.startswith('68.'):
