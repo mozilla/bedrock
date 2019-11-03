@@ -17,6 +17,11 @@ $image-path: "/media/protocol/img";
     margin-bottom: $spacing-xl;
 }
 
+.compare-hero .mzp-c-hero-image img {
+    bottom: auto;
+    top: $layout-xl;
+}
+
 .compare-hero-subtitle {
     font-weight: bold;
     color: #a64ec4;
