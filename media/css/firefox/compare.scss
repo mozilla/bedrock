@@ -50,6 +50,7 @@ $image-path: "/media/protocol/img";
     justify-content: space-between;
     margin-bottom: $spacing-xl;
     align-items: center;
+    @include font-firefox;
     p {
         margin-bottom: $spacing-2xl;
         @include text-display-xs;
