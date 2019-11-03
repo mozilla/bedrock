@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="532px" height="403px" viewBox="0 0 532 403" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M7.1646589,2.84217094e-13 L374.295765,2.84217094e-13 C378.252697,3.15120371e-13 381.460424,3.20772705 381.460424,7.1646589 L381.460424,260.08335 C381.460424,262.556432 379.455594,264.561262 376.982512,264.561262 L4.47791181,264.561262 C2.00482941,264.561262 -1.20584343e-12,262.556432 -1.1937118e-12,260.08335 L-1.1937118e-12,7.1646589 C-1.19419638e-12,3.20772705 3.20772705,2.93825755e-13 7.1646589,2.84217094e-13 Z" id="path-1"></path>
+        <filter x="-1.6%" y="-2.3%" width="103.1%" height="104.5%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.0705882353   0 0 0 0 0.22745098  0 0 0 0.24 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M7.1646589,2.84217094e-13 L374.295765,2.84217094e-13 C378.252697,3.15120371e-13 381.460424,3.20772705 381.460424,7.1646589 L381.460424,260.08335 C381.460424,262.556432 379.455594,264.561262 376.982512,264.561262 L4.47791181,264.561262 C2.00482941,264.561262 -1.20584343e-12,262.556432 -1.1937118e-12,260.08335 L-1.1937118e-12,7.1646589 C-1.19419638e-12,3.20772705 3.20772705,2.93825755e-13 7.1646589,2.84217094e-13 Z" id="path-4"></path>
+        <filter x="-1.6%" y="-2.3%" width="103.1%" height="104.5%" filterUnits="objectBoundingBox" id="filter-6">
+            <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.0705882353   0 0 0 0 0.22745098  0 0 0 0.24 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M7.1646589,0 L374.295765,0 C378.252697,3.09032767e-14 381.460424,3.20772705 381.460424,7.1646589 L381.460424,260.08335 C381.460424,262.556432 379.455594,264.561262 376.982512,264.561262 L4.47791181,264.561262 C2.00482941,264.561262 -1.21316326e-14,262.556432 0,260.08335 L0,7.1646589 C-4.84584392e-16,3.20772705 3.20772705,9.60866079e-15 7.1646589,0 Z" id="path-7"></path>
+        <filter x="-6.8%" y="-8.3%" width="113.6%" height="119.7%" filterUnits="objectBoundingBox" id="filter-8">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="8" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.125490196   0 0 0 0 0.0705882353   0 0 0 0 0.22745098  0 0 0 0.24 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M67.008592,19.0730212 L356.904685,19.0730212 C357.893918,19.0730212 358.69585,19.874953 358.69585,20.8641859 L358.69585,28.9717727 C358.69585,29.9610056 357.893918,30.7629374 356.904685,30.7629374 L67.008592,30.7629374 C66.0193591,30.7629374 65.2174273,29.9610056 65.2174273,28.9717727 L65.2174273,20.8641859 C65.2174273,19.874953 66.0193591,19.0730212 67.008592,19.0730212 Z" id="path-9"></path>
+    </defs>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Browser-Chrome-Bg-1" transform="translate(7.000000, 7.000000)">
+            <g id="Rectangle-6" transform="translate(0.997440, 0.790684)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Mask">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-1"></use>
+                    <use fill="#F2F2F2" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <path d="M4.47791181,0 L376.982512,0 C379.455594,-1.34247629e-15 381.460424,2.00482941 381.460424,4.47791181 L381.460424,28 L381.460424,28 L-1.1937118e-12,28 L-1.1937118e-12,4.47791181 C-1.19401466e-12,2.00482941 2.00482941,1.34247629e-15 4.47791181,0 Z" fill="#FFFFFF" fill-rule="nonzero" mask="url(#mask-2)"></path>
+            </g>
+            <path d="M0.99744038,253.103739 L32.3671875,253.103739 L382.457864,253.103739 L382.457864,260.874034 C382.457864,263.347117 380.453035,265.351946 377.979952,265.351946 L5.47535219,265.351946 C3.00226979,265.351946 0.99744038,263.347117 0.99744038,260.874034 L0.99744038,253.103739 L0.99744038,253.103739 Z" id="Rectangle-6-Copy" fill="#FFFFFF" fill-rule="nonzero"></path>
+            <rect id="Rectangle" fill="#E1E1E2" fill-rule="nonzero" x="17.7649315" y="11.6126355" width="7.18606764" height="7.34892393" rx="3.59303382"></rect>
+            <rect id="Rectangle" fill="#E1E1E2" fill-rule="nonzero" x="29.7417109" y="11.6126355" width="7.18606764" height="7.34892393" rx="3.59303382"></rect>
+            <rect id="Rectangle" fill="#E1E1E2" fill-rule="nonzero" x="42.3173293" y="11.6126355" width="7.18606764" height="7.34892393" rx="3.59303382"></rect>
+        </g>
+        <g id="Browser-Chrome-Bg-2" transform="translate(142.782007, 130.588439)">
+            <g id="Rectangle-6" transform="translate(0.997440, 0.790684)">
+                <mask id="mask-5" fill="white">
+                    <use xlink:href="#path-4"></use>
+                </mask>
+                <g id="Mask">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-6)" xlink:href="#path-4"></use>
+                    <use fill="#F2F2F2" fill-rule="evenodd" xlink:href="#path-4"></use>
+                </g>
+                <path d="M4.47791181,0 L376.982512,0 C379.455594,-1.34247629e-15 381.460424,2.00482941 381.460424,4.47791181 L381.460424,28 L381.460424,28 L-1.1937118e-12,28 L-1.1937118e-12,4.47791181 C-1.19401466e-12,2.00482941 2.00482941,1.34247629e-15 4.47791181,0 Z" fill="#FFFFFF" fill-rule="nonzero" mask="url(#mask-5)"></path>
+            </g>
+            <path d="M0.99744038,253.103739 L382.457864,253.103739 L382.457864,260.874034 C382.457864,263.347117 380.453035,265.351946 377.979952,265.351946 L5.47535219,265.351946 C3.00226979,265.351946 0.99744038,263.347117 0.99744038,260.874034 L0.99744038,253.103739 L0.99744038,253.103739 Z" id="Rectangle-6-Copy" fill="#FFFFFF" fill-rule="nonzero"></path>
+            <rect id="Rectangle" fill="#F2F2F2" fill-rule="nonzero" x="17.7649315" y="11.6126355" width="7.18606764" height="7.34892393" rx="3.59303382"></rect>
+            <rect id="Rectangle" fill="#F2F2F2" fill-rule="nonzero" x="29.7417109" y="11.6126355" width="7.18606764" height="7.34892393" rx="3.59303382"></rect>
+            <rect id="Rectangle" fill="#F2F2F2" fill-rule="nonzero" x="42.3173293" y="11.6126355" width="7.18606764" height="7.34892393" rx="3.59303382"></rect>
+        </g>
+        <g id="Browser-Chrome-Main" transform="translate(73.782007, 71.091696)">
+            <g id="Browser-Chrome-Copy" transform="translate(0.997440, 0.790684)">
+                <g id="Rectangle">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-8)" xlink:href="#path-7"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-7"></use>
+                </g>
+                <path d="M4.47791181,0 L376.982512,0 C379.455594,-4.54297868e-16 381.460424,2.00482941 381.460424,4.47791181 L381.460424,14.6978479 L381.460424,14.6978479 L0,14.6978479 L0,4.47791181 C-3.02865245e-16,2.00482941 2.00482941,4.54297868e-16 4.47791181,0 Z" id="Rectangle-6" fill="#2C2831" fill-rule="nonzero"></path>
+                <path d="M0,252.313055 L381.460424,252.313055 L381.460424,260.08335 C381.460424,262.556432 379.455594,264.561262 376.982512,264.561262 L4.47791181,264.561262 C2.00482941,264.561262 -1.12434542e-14,262.556432 0,260.08335 L0,252.313055 L0,252.313055 Z" id="Rectangle-6-Copy" fill="#BBBBBB" fill-rule="nonzero"></path>
+                <path d="M98.209591,4 L98.209,14.697 L381.460424,14.6978479 L381.460424,34.2949784 L0,34.2949784 L0,14.6978479 L22.755,14.697 L22.7558809,4 L98.209591,4 Z" id="Combined-Shape" fill="#E1E1E2" fill-rule="nonzero"></path>
+                <mask id="mask-10" fill="white">
+                    <use xlink:href="#path-9"></use>
+                </mask>
+                <use id="Toolbar---Field" fill="#FFFFFF" xlink:href="#path-9"></use>
+                <rect id="Rectangle-Copy-2" fill="#BBBBBB" fill-rule="nonzero" x="73.6571933" y="23.2744409" width="94.0177183" height="3.67446197" rx="0.895582363"></rect>
+                <rect id="Rectangle" fill="#BBBBBB" fill-rule="nonzero" x="16.7674912" y="20.8219511" width="7.18606764" height="7.34892393" rx="3.59303382"></rect>
+                <rect id="Rectangle" fill="#BBBBBB" fill-rule="nonzero" x="28.7442706" y="20.8219511" width="7.18606764" height="7.34892393" rx="3.59303382"></rect>
+                <rect id="Rectangle" fill="#BBBBBB" fill-rule="nonzero" x="41.3198889" y="20.8219511" width="7.18606764" height="7.34892393" rx="3.59303382"></rect>
+                <polygon id="Separator" points="10 50 381.439796 50 381.439796 50.75 10 50.75"></polygon>
+            </g>
+        </g>
+        <g id="Row-3" transform="translate(250.889124, 252.088439)" stroke-linecap="round" stroke-width="5">
+            <g id="X-3" transform="translate(58.909679, 0.000000)" stroke="#DF7CF1">
+                <line x1="0.973812663" y1="19.3825227" x2="30.2872047" y2="11.5280229" id="Line-2" transform="translate(15.630509, 15.455273) rotate(-210.000000) translate(-15.630509, -15.455273) "></line>
+                <line x1="26.3599549" y1="26.184719" x2="4.90106253" y2="4.72582662" id="Line-2"></line>
+            </g>
+            <g id="Checkmark-6" transform="translate(127.642883, 6.000000)" stroke="#3FE1B0" stroke-linejoin="round">
+                <polyline id="line" points="27.601867 0 8.62558345 18.3923979 -7.88702437e-13 10.0322171"></polyline>
+            </g>
+            <g id="Checkmark-5" transform="translate(0.000000, 6.000000)" stroke="#3FE1B0" stroke-linejoin="round">
+                <polyline id="line" points="27.601867 0 8.62558345 18.3923979 -7.88702437e-13 10.0322171"></polyline>
+            </g>
+        </g>
+        <g id="Row-2" transform="translate(250.914198, 198.733213)" stroke-linecap="round" stroke-width="5">
+            <g id="X-2" transform="translate(123.884605, 0.000000)" stroke="#DF7CF1">
+                <line x1="0.973812663" y1="19.3825227" x2="30.2872047" y2="11.5280229" id="Line-2" transform="translate(15.630509, 15.455273) rotate(-210.000000) translate(-15.630509, -15.455273) "></line>
+                <line x1="26.3599549" y1="26.184719" x2="4.90106253" y2="4.72582662" id="Line-2"></line>
+            </g>
+            <g id="Checkmark-3" transform="translate(0.000000, 6.000000)" stroke="#3FE1B0" stroke-linejoin="round">
+                <polyline id="line" points="27.601867 0 8.62558345 18.3923979 -7.88702437e-13 10.0322171"></polyline>
+            </g>
+            <g id="Checkmark-4" transform="translate(62.884605, 6.000000)" stroke="#3FE1B0" stroke-linejoin="round">
+                <polyline id="line" points="27.601867 0 8.62558345 18.3923979 -7.88702437e-13 10.0322171"></polyline>
+            </g>
+        </g>
+        <g id="Row-1" transform="translate(250.914198, 144.144774)" stroke-linecap="round" stroke-width="5">
+            <g id="X-1" transform="translate(123.884605, 0.000000)" stroke="#DF7CF1">
+                <line x1="0.973812663" y1="19.3825227" x2="30.2872047" y2="11.5280229" id="Line-2" transform="translate(15.630509, 15.455273) rotate(-210.000000) translate(-15.630509, -15.455273) "></line>
+                <line x1="26.3599549" y1="26.184719" x2="4.90106253" y2="4.72582662" id="Line-2"></line>
+            </g>
+            <g id="Checkmark-1" transform="translate(0.000000, 4.943666)" stroke="#3FE1B0" stroke-linejoin="round">
+                <polyline id="line" points="27.601867 -3.55271368e-15 8.62558345 18.3923979 -7.94031507e-13 10.0322171"></polyline>
+            </g>
+            <g id="Checkmark-2" transform="translate(62.892169, 4.943666)" stroke="#3FE1B0" stroke-linejoin="round">
+                <polyline id="line" points="27.601867 0 8.62558345 18.3923979 -7.88702437e-13 10.0322171"></polyline>
+            </g>
+        </g>
+        <rect id="Rectangle-Copy-2" fill="#CDCDD4" x="124.032007" y="153.977271" width="59.2751678" height="10" rx="2"></rect>
+        <rect id="Rectangle-Copy-7" fill="#CDCDD4" x="124.032007" y="209.41777" width="76.885906" height="10" rx="2"></rect>
+        <rect id="Rectangle-Copy-8" fill="#CDCDD4" x="124.032007" y="262.858269" width="51.9731544" height="10" rx="2"></rect>
+    </g>
+</svg>

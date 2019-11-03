@@ -869,6 +869,12 @@
     },
     {
       "files": [
+        "css/firefox/compare.scss"
+      ],
+      "name": "compare"
+    },
+    {
+      "files": [
         "css/protocol/components/send-to-device.scss",
         "css/firefox/welcome.scss"
       ],

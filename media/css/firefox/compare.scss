@@ -1,0 +1,90 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: "/media/fonts";
+$image-path: "/media/protocol/img";
+
+@import "../../protocol/css/includes/lib";
+@import "../../protocol/css/components/call-out";
+@import "../../protocol/css/components/hero";
+
+
+/* -------------------------------------------------------------------------- */
+// Hero
+
+.compare-hero-wordmark {
+    margin-bottom: $spacing-xl;
+}
+
+.compare-hero-subtitle {
+    font-weight: bold;
+    color: #a64ec4;
+}
+
+.mzp-c-article-intro {
+    @include text-body-lg;
+}
+
+.compare-section-summary {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    @media #{$mq-md} {
+        text-align: start;
+    }
+    @media #{$mq-lg} {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+.compare-section-summary-intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: $spacing-xl;
+    align-items: center;
+    p {
+        margin-bottom: $spacing-2xl;
+        @include text-display-xs;
+        @media #{$mq-md} {
+            width: 50%;
+            margin-right: $layout-sm;
+        }
+        @media #{$mq-lg} {
+            width: auto;
+            margin-right: auto;
+        }
+    }
+    .compare-section-summary-image {
+        @media #{$mq-md} {
+            width: 50%;
+
+        }
+        @media #{$mq-lg} {
+            width: auto;
+
+        }
+    }
+    @media #{$mq-md} {
+        flex-direction: row;
+    }
+    @media #{$mq-lg} {
+        flex-direction: column;
+        width: 50%;
+        max-width: $content-sm;
+        margin-right: $layout-md;
+    }
+}
+
+.compare-section-summary-contents {
+    p {
+        margin-bottom: $spacing-xl;
+    }
+    @media #{$mq-lg} {
+        width: 50%;
+        max-width: $content-sm;
+        margin-left: $layout-md;
+    }
+}

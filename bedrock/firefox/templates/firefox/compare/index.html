@@ -1,0 +1,69 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import hero, call_out_compact with context %}
+
+{% add_lang_files "firefox/best-browser" %}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block page_title %}{{ _('Find your best browser for speed, privacy and security.') }}{% endblock %}
+
+{% block page_desc %}
+{{ _('So many browser options, but there’s only one that works best for your needs. The best browser for you should offer both speed and privacy protection.') }}
+{% endblock %}
+
+{% block page_css %}
+{{ css_bundle('compare') }}
+{% endblock %}
+
+{% block content %}
+<section class="mzp-c-hero mzp-has-image compare-hero">
+  <div class="mzp-l-content">
+    <div class="mzp-c-hero-body">
+      <img src="{{ static('protocol/img/logos/firefox/browser/logo-word-hor-sm.png') }}" width="260" height="48" alt="{{ _('Firefox') }}" class="compare-hero-wordmark">
+      <p class="compare-hero-subtitle">{{ _('PRIVACY. UTILITY. PORTABILITY.') }}</p>
+      <h1 class="mzp-c-hero-title">{{ _('Six of the best browsers in direct comparison') }}</h1>
+      <div class="mzp-c-hero-desc">
+        <p>{{ _('The direct comparison to Chrome, Edge, Safari, Opera and Internet Explorer shows you why Firefox might be the best browser for you.') }}</p>
+      </div>
+      {{ download_firefox(dom_id='compare-hero-download', download_location='primary cta') }}
+    </div>
+  </div>
+  <div class="mzp-c-hero-image">
+      <img src="{{ static('img/firefox/compare/compare-hero.svg') }}" alt="">
+  </div>
+</section>
+
+<div class="mzp-l-content">
+  <article class="mzp-c-article">
+    <section class="compare-section-summary">
+
+      <div class="compare-section-summary-intro">
+        <p>
+          <strong>{{ _('Tell me what you’re browsing with and I’ll tell you who you are.') }}</strong>
+          {{ _('Well, it’s not that dramatic, but the browser you use does say a lot about how you move around the web.') }}
+        </p>
+        <div class="compare-section-summary-image">
+          <img src="{{ static('img/firefox/compare/compare-browser-windows.svg') }}" alt="" height="312" width="466">
+        </div>
+      </div>
+
+      <div class="compare-section-summary-contents">
+        <p>
+          {% trans %}
+          Your browser is your gateway to the Internet. Speed, security, privacy and utility are important to most people. For a long time, one browser in particular was ahead. But at a time when online ads seem to know us better than we know ourselves, fake news gets around faster than a cold in an open-plan office, and data breaches are constantly making into the nightly news, most people simply expect more from a browser. And rightly so.
+          {% endtrans %}
+        </p>
+        <p>
+          {% trans %}
+          Especially when it comes to privacy and security, most people no longer want to fall victim to a business model based on collecting and selling vast amounts of their data. So they say: Compare browsers and find out where Google Chrome and Firefox, Safari and Opera, Microsoft Internet Explorer and Edge actually differ from each other. Is there one, best browser ever? It helps to take a closer look at three areas: Privacy, utility and portability.
+          {% endtrans %}
+        </p>
+      </div>
+
+    </section>
+  </article>
+</div>
+{% endblock %}
