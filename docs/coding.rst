@@ -47,10 +47,10 @@ to optimize images before uploading them to the site.
 
 The script `img.sh` can be used to optimize images locally on the command line:
 
-# Before you run it for the first time you will need to run `yarn` to install dependencies
-# Add the image files to git's staging area `git add *`
-# Run the script `./bin/img.sh`
-# The optimized files will not automatically be staged, so be sure to add them before commiting
+#. Before you run it for the first time you will need to run `yarn` to install dependencies
+#. Add the image files to git's staging area `git add *`
+#. Run the script `./bin/img.sh`
+#. The optimized files will not automatically be staged, so be sure to add them before commiting
 
 The script will:
 
