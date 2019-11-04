@@ -1,6 +1,5 @@
 environment:
-  SELENIUM_VERSION: 3.5.0
-  DOCKER_SELENIUM_VERSION: 3.5.3-astatine
+  SELENIUM_VERSION: 3.141.0
 
 regions:
   frankfurt:

@@ -8,11 +8,12 @@ MARK_EXPRESSION="not headless and not download"
 case $1 in
   chrome)
     BROWSER_NAME=chrome
+    BROWSER_VERSION=latest
     PLATFORM="Windows 10"
     ;;
   firefox)
     BROWSER_NAME=firefox
-    BROWSER_VERSION="57.0"
+    BROWSER_VERSION=latest
     PLATFORM="Windows 10"
     ;;
   ie)
