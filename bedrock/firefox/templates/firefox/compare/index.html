@@ -21,16 +21,21 @@
   <div class="mzp-l-content">
     <div class="mzp-c-hero-body">
       <img src="{{ static('protocol/img/logos/firefox/browser/logo-word-hor-sm.png') }}" width="260" height="48" alt="{{ _('Firefox') }}" class="compare-hero-wordmark">
+
       <p class="compare-hero-subtitle">{{ _('PRIVACY. UTILITY. PORTABILITY.') }}</p>
+
       <h1 class="mzp-c-hero-title">{{ _('Six of the best browsers in direct comparison') }}</h1>
+
       <div class="mzp-c-hero-desc">
         <p>{{ _('The direct comparison to Chrome, Edge, Safari, Opera and Internet Explorer shows you why Firefox might be the best browser for you.') }}</p>
       </div>
+
       {{ download_firefox(dom_id='compare-hero-download', download_location='primary cta') }}
+
     </div>
   </div>
   <div class="mzp-c-hero-image">
-      <img src="{{ static('img/firefox/compare/compare-hero.svg') }}" alt="">
+      <img src="{{ static('img/firefox/compare/compare-hero.svg') }}" alt="" height="403" width="532">
   </div>
 </section>
 
@@ -43,6 +48,7 @@
           <strong>{{ _('Tell me what you’re browsing with and I’ll tell you who you are.') }}</strong>
           {{ _('Well, it’s not that dramatic, but the browser you use does say a lot about how you move around the web.') }}
         </p>
+
         <div class="compare-section-summary-image">
           <img src="{{ static('img/firefox/compare/compare-browser-windows.svg') }}" alt="" height="312" width="466">
         </div>
@@ -54,12 +60,135 @@
           Your browser is your gateway to the Internet. Speed, security, privacy and utility are important to most people. For a long time, one browser in particular was ahead. But at a time when online ads seem to know us better than we know ourselves, fake news gets around faster than a cold in an open-plan office, and data breaches are constantly making into the nightly news, most people simply expect more from a browser. And rightly so.
           {% endtrans %}
         </p>
+
         <p>
           {% trans %}
           Especially when it comes to privacy and security, most people no longer want to fall victim to a business model based on collecting and selling vast amounts of their data. So they say: Compare browsers and find out where Google Chrome and Firefox, Safari and Opera, Microsoft Internet Explorer and Edge actually differ from each other. Is there one, best browser ever? It helps to take a closer look at three areas: Privacy, utility and portability.
           {% endtrans %}
         </p>
       </div>
+    </section>
+
+    <section class="compare-section-privacy">
+      <header class="compare-section-privacy-header">
+        <h2>{{ _('Privacy first') }}</h2>
+
+        <p>{{ _('Which browser is the safest way for you to get through the web?') }}</p>
+      </header>
+
+      <table class="mzp-u-data-table compare-privacy-table">
+          <thead>
+            <tr>
+              <th>{{ _('Privacy') }}</th>
+              <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"</th>
+              <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Chrome') }}"</th>
+              <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Microsoft Edge') }}"</th>
+              <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Safari') }}"</th>
+              <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Opera') }}"</th>
+              <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Internet Explorer') }}"</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ _('Ad filtering') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Private browsing') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Blocks scripts') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Blocks cross-site tracking') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Autoplay blocking') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Tracking Cookie Blocking') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+            </tr>
+          </tbody>
+        </table>
+
+      <p>
+        {% trans %}
+        Do you expect a browser—or the company behind it—to respect your privacy? And a little more control over what you share with others wouldn't be bad either? Understandable.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans %}
+        We simply expect a minimum level of data protection and privacy from the products we regularly use online. From a browser that we use to browse the web almost every day, the one we use to do our shopping, online banking, social media activities, and lots more, even more so.
+        {% endtrans %}
+      </p>
+
+      <p class="compare-section-privacy-pullquote">
+        {% trans %}
+        What you do online is your business, not anyone else's.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans %}
+        Therefore, a browser should offer at least a private mode that automatically deletes our history and search history so that other users on the same computer cannot access it. In this regard most browsers and all six of the browsers compared here can score points.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans %}
+        But what should be made equally easy for users is to prevent websites and companies from sticking their noses in our data, even in normal browsing mode. Third party tracking cookies are blocked by Firefox and Safari by default and simply put curious advertising trackers outside the door. So here you can decide for yourself what you want to share with others.
+        {% endtrans %}
+      </p>
+
+      <img src="{{ static('img/firefox/compare/compare-privacy.svg') }}" alt="" height="224" width="420" class="compare-privacy-image">
+
+      <p>
+        {% trans %}
+        While all six browsers offer a private mode, an ad filter that blocks certains types of intrusive ads, pop-ups or videos with sound that autoplay is only offered by Firefox, Chrome and Opera. When it comes to cross-site tracking, scripts and blocking autoplay, there are clear differences between the browser features offered.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans %}
+        And that՚s not just important for privacy: a browser that blocks third-party trackers usually runs much faster too. Trackers run in the background on a number of websites. You can’t see them, but you can feel them slowing down your browser. So it’s worth comparing which browser blocks what. Since the update to version 67, fingerprinting and crypto-mining can also be blocked in Firefox. Especially secret crypto mining can often lead to your computer suddenly being running kinda hot or the battery giving up unusually fast.
+        {% endtrans %}
+      </p>
 
     </section>
   </article>

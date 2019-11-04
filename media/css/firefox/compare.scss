@@ -94,3 +94,44 @@ $image-path: "/media/protocol/img";
         margin-left: $layout-md;
     }
 }
+
+.compare-privacy-image {
+    display: block;
+    margin: $spacing-2xl auto $spacing-2xl;
+}
+
+.mzp-u-data-table.compare-privacy-table {
+    width: 100%;
+    thead {
+        th {
+            padding-top: 0.5rem;
+            font-weight: bold;
+            @include text-display-xs;
+            border-top: 3px solid $color-gray-20;
+            border-bottom: 3px solid $color-gray-20;
+        }
+    }
+    th,
+    td {
+        text-align: center;
+        border-top: 1px solid $color-gray-20;
+        border-left: 1px solid $color-gray-20;
+        @include text-body-sm;
+        font-weight: normal;
+        &:first-child {
+            text-align: start;
+            border-left: none;
+        }
+    }
+    tbody {
+        tr:nth-child(2n - 1) {
+            background-color: $color-gray-10;
+        }
+        tr:last-child {
+            th,
+            td {
+                border-bottom: 1px solid $color-gray-20;
+            }
+        }
+    }
+}
