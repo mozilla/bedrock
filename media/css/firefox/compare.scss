@@ -100,6 +100,17 @@ $image-path: "/media/protocol/img";
     margin: $spacing-2xl auto $spacing-2xl;
 }
 
+.compare-section-privacy-header {
+    text-align: center;
+    h2 {
+        @include text-display-md;
+    }
+    p {
+        @include text-display-sm;
+        font-weight: bold;
+    }
+}
+
 .mzp-u-data-table.compare-privacy-table {
     width: 100%;
     thead {
