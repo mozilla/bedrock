@@ -25,6 +25,7 @@ $image-path: "/media/protocol/img";
 .compare-hero-subtitle {
     font-weight: bold;
     color: #a64ec4;
+    text-transform: uppercase;
 }
 
 .mzp-c-article-intro {
@@ -100,7 +101,7 @@ $image-path: "/media/protocol/img";
     margin: $spacing-2xl auto $spacing-2xl;
 }
 
-.compare-section-privacy-header {
+.compare-section-header {
     text-align: center;
     h2 {
         @include text-display-md;
@@ -111,7 +112,7 @@ $image-path: "/media/protocol/img";
     }
 }
 
-.mzp-u-data-table.compare-privacy-table {
+.mzp-u-data-table.compare-table {
     width: 100%;
     thead {
         th {
