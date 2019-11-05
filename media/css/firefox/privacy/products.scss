@@ -239,7 +239,9 @@ $image-path: '/media/protocol/img';
 /* -------------------------------------------------------------------------- */
 // Conditional CTA Hooks
 
-.is-js-dependent {
+.show-firefox-desktop-70,
+.show-firefox-desktop-old,
+.show-mobile {
     display: none;
 }
 
@@ -288,12 +290,4 @@ $image-path: '/media/protocol/img';
     .show-default {
         display: none;
     }
-}
-
-.android .show-android {
-    display: block;
-}
-
-.ios .show-ios {
-    display: block;
 }

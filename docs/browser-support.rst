@@ -26,7 +26,7 @@ Some website experiences may require us to deviate from these principles -- imag
 marketing campaign page built under timeline pressure to deliver novel functionality to a
 particular locale for a short while* -- but those will be exceptions and rare.
 
-Browser Support Matrix (Updated 2019-08-10)
+Browser Support Matrix (Updated 2019-05-11)
 -------------------------------------------
 
 We deliver enhanced CSS & JS to browsers in our browser support matrix (below).
@@ -50,10 +50,18 @@ consists of no page-specific CSS or JS. Instead, we deliver well formed semantic
 universal CSS stylesheet that gets applied to all pages, and a universal JS bundle that
 only handles downloading Firefox (click a button, get a file), and Google Analytics.
 
-On other legacy browsers, developers should rely on `feature detection`_ where appropriate.
+To hide non-relevant content from legacy IE users who see the universal stylesheet, a
+``hide-from-legacy-ie`` class name can be applied directly to HTML:
 
-CSS
-~~~
+.. code-block:: html
+
+    <p class="hide-from-legacy-ie">See what Firefox has blocked for you</p>
+
+On other legacy browsers where conditional comments are not supported, developers should
+instead rely on `feature detection`_ where appropriate.
+
+Feature detection using CSS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For CSS, enhanced experiences can be delivered using `feature queries`_, whilst allowing
 older browsers to degrade gracefully using simpler layouts when needed.
@@ -71,8 +79,8 @@ a site-wide JS feature detection snippet:
 .. _feature detection: https://developer.mozilla.org/docs/Learn/Tools_and_testing/Cross_browser_testing/Feature_detection
 .. _feature queries: https://developer.mozilla.org/docs/Web/CSS/@supports
 
-JavaScript
-~~~~~~~~~~
+Feature detection JavaScript
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For JS, enhanced support can be delivered using a helper that leverages the same
 feature detection snippet:
@@ -97,7 +105,7 @@ The ``site.isModernBrowser`` global property can also be used within conditional
         // Code that will only be run on browsers that get enhanced support.
     }
 
-Exceptions (Updated 2019-08-10)
+Exceptions (Updated 2019-05-11)
 -------------------------------
 
 Some pages of the website provide critical functionality to older browsers. In particular,
