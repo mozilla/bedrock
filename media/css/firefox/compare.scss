@@ -174,3 +174,53 @@ $image-path: "/media/protocol/img";
     padding: 1rem 1.5rem;
     box-sizing: border-box;
 }
+
+.compare-mission-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #EDEDF0;
+    padding: 3rem 1rem;
+    box-shadow: 0 2px 4px 0 #00000050;
+    border-radius: 4px;
+    margin: 100px auto;
+
+    .compare-mission-title {
+        @include text-display-md;
+
+        .compare-mission-cta {
+            display: none;
+            margin-top: $spacing-xl;
+        }
+    }
+
+    .compare-mission-content {
+        @include text-body-lg;
+    }
+
+    @media #{$mq-md} {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        text-align: left;
+        padding:80px 104px;
+
+        .compare-mission-title {
+            width: 50%;
+
+            .compare-mission-cta {
+                display: inline-block;
+            }
+        }
+
+        .compare-mission-content {
+            width: 50%;
+
+            .compare-mission-cta {
+                display: none;
+            }
+        }
+    }
+}

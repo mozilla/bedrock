@@ -386,17 +386,28 @@
       </p>
     </section>
 
-    <section>
-      <h1>{{ _('Firefox is a project of the not-for-profit organization Mozilla.') }}</h1>
+    <section class="compare-mission-section">
+      <div class="compare-mission-title">
+        <h1 class="">{{ _('Firefox is a project of the not-for-profit organization Mozilla.') }}</h1>
 
-      {{ download_firefox(dom_id='compare-hero-download', download_location='primary cta') }}
+        <div class="compare-mission-cta">
+            {{ download_firefox(dom_id='compare-hero-download', download_location='primary cta') }}
+        </div>
+      </div>
 
-      <p>
+      <div class="compare-mission-content">
+        <p>
           {% trans %}
           Firefox puts privacy before everything else – with the browser as well as all other Firefox Products – because we think it is the right thing to do. Because we believe, you have the right to control online with whom you share your personal information. Firefox does not follow every step you take, collects little data and never sells it. The little data we do collect is only used to make products and features better. No secrets. But a lot of transparency and real privacy.
           {% endtrans %}
         </p>
+
+        <div class="compare-mission-cta">
+            {{ download_firefox(dom_id='compare-hero-download', download_location='primary cta') }}
+        </div>
+      </div>
     </section>
+
   </article>
 </div>
 {% endblock %}
