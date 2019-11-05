@@ -86,7 +86,7 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Emphasis box
 
-.mzp-c-box-emphasis {
+.mzp-c-emphasis-box {
     @include border-box;
     color: $color-off-black;
     margin: 0 auto $layout-sm;
