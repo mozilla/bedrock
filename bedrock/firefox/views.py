@@ -537,7 +537,9 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
 
 
 class WhatsNewRedirectorView(GeoRedirectView):
-    geo_urls = {}
+    geo_urls = {
+        'IN': 'firefox.whatsnew.india'
+    }
     default_url = 'firefox.whatsnew.all'
 
     def get_redirect_url(self, *args, **kwargs):
@@ -626,6 +628,21 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
 
         # return a list to conform with original intention
         return [template]
+
+
+class WhatsNewIndiaView(WhatsnewView):
+    def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
+        version = self.kwargs.get('version') or ''
+        channel = detect_channel(version)
+
+        if locale.startswith('en-') and channel not in ['nightly', 'alpha', 'beta']:
+            # return a list to conform with original intention
+            template = ['firefox/whatsnew/index-lite.html']
+        else:
+            template = super().get_template_names()
+
+        return template
 
 
 class TrackingProtectionTourView(l10n_utils.LangFilesMixin, TemplateView):

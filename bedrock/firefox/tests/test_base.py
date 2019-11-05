@@ -402,6 +402,21 @@ class TestWhatsNew(TestCase):
 
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
+class TestWhatsNewIndia(TestCase):
+    def setUp(self):
+        self.view = fx_views.WhatsNewIndiaView.as_view()
+        self.rf = RequestFactory(HTTP_USER_AGENT='Firefox')
+
+    def test_fx_india(self, render_mock):
+        """Should use whatsnew-india template for india for en-* locales"""
+        req = self.rf.get('/firefox/whatsnew/india/')
+        req.locale = 'en-GB'
+        self.view(req, version='70.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/index-lite.html']
+
+
+@patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestFirstRun(TestCase):
     def setUp(self):
         self.view = fx_views.FirstrunView.as_view()

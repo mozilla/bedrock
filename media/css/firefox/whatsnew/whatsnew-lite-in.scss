@@ -1,0 +1,210 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+@import '../../../protocol/css/includes/lib';
+
+//* -------------------------------------------------------------------------- */
+// Up-to-date page header
+
+.c-page-header {
+    background-color: $color-white;
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    position: relative;
+    text-align: center;
+
+    .c-page-header-up-to-date {
+        @include text-display-xs;
+
+        display: none;
+        font-weight: normal;
+        margin: 0;
+        min-height: 30px;
+        width: 100%;
+
+        &:before {
+            background-image: url('/media/img/firefox/whatsnew/icon-green-check.svg');
+            background-position: center left;
+            background-repeat: no-repeat;
+            background-size: 25px 25px;
+            content: '';
+            display: inline-block;
+            height: 25px;
+            margin-right: 10px;
+            vertical-align: middle;
+            width: 25px;
+        }
+    }
+
+    .c-page-header-logo-moz {
+        display: none;
+    }
+
+    &.show-up-to-date-message .c-page-header-up-to-date {
+        display: block;
+    }
+
+    @media #{$mq-md} {
+        .c-page-header-inner {
+            min-height: 30px;
+            position: relative;
+        }
+
+        .c-page-header-logo-moz {
+            display: block;
+            left: 0;
+            position: absolute;
+            top: 2px;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Page content
+
+.lite-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    margin-top: $spacing-md;
+
+    @media #{$mq-lg} {
+        margin-bottom: $spacing-md;
+    }
+}
+
+.lite-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media #{$mq-md} {
+        min-width: 500px;
+    }
+
+    h1 {
+        @include font-firefox;
+        @include text-display-lg;
+
+        font-weight: normal;
+        text-align: start;
+        margin-bottom: 0;
+
+        span {
+            white-space: nowrap;
+        }
+    }
+
+    img {
+        margin-right: $spacing-md;
+        width: 60px;
+        min-width: 60px;
+
+        @media #{$mq-md} {
+            width: 130px;
+        }
+    }
+}
+
+.lite-body {
+    background: #42d3ec radial-gradient(50% 50% at 50% 50%, #9CF1D7 0%, rgba(255, 255, 255, 0) 100%) no-repeat top center;
+    color: $color-gray-80;
+    overflow: hidden;
+    position: relative;
+
+    @media #{$mq-lg} {
+        background-image: url('/media/img/firefox/whatsnew/lite/background.jpg');
+        background-size: 2000px auto;
+        background-position: top;
+    }
+}
+
+.lite-text {
+    @include text-display-sm;
+
+    font-weight: bold;
+    margin: $spacing-2xl auto $spacing-lg;
+    padding: $spacing-lg 0;
+    line-height: 1.2;
+    border-top: 2px solid $color-gray-80;
+    border-bottom: 2px solid $color-gray-80;
+
+    @media #{$mq-lg} {
+        max-width: 460px;
+        margin: $spacing-md auto;
+    }
+
+}
+
+@media #{$mq-lg} {
+    .send-to-device-wrapper {
+        margin-right: 60px;
+    }
+}
+
+.lite-content {
+    max-width: 1200px;
+    padding-left: $spacing-lg;
+    padding-right: $spacing-lg;
+
+    .lite-kv {
+        display: none;
+    }
+
+    .lite-copy {
+        text-align: center;
+        z-index: 1;
+        @include text-body-md;
+    }
+
+    @media #{$mq-sm} {
+        .lite-copy {
+            max-width: $content-sm;
+            margin: 0 auto;
+        }
+    }
+
+    @media #{$mq-lg} {
+        display: grid;
+        grid-template-columns: 35% 65%;
+
+        .lite-kv {
+            display: block;
+            position: relative;
+            min-width: 300px;
+
+            img {
+                position: absolute;
+                top: 120px;
+                right: -140px;
+                max-width: 650px;
+            }
+        }
+
+        .lite-copy {
+            margin: 20px 0 0;
+            text-align: center;
+            max-width: $content-md;
+        }
+    }
+}
+
+.lite-qrcode-container {
+    @include text-display-xxs;
+
+    margin: $spacing-xl auto 0;
+    max-width: 250px;
+    text-align: center;
+
+    p {
+        margin-top: $spacing-sm;
+    }
+
+    img {
+        border: $spacing-md solid $color-white;
+        border-radius: 10px;
+        box-sizing: border-box;
+    }
+}
