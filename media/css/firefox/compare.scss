@@ -121,6 +121,13 @@ $image-path: "/media/protocol/img";
             @include text-display-xs;
             border-top: 3px solid $color-gray-20;
             border-bottom: 3px solid $color-gray-20;
+
+            img {
+                width: 100%;
+                height: auto;
+                max-width: 36px;
+                max-height: 36px;
+            }
         }
     }
     th,
