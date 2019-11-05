@@ -103,9 +103,14 @@ $image-path: "/media/protocol/img";
 
 .compare-section-header {
     text-align: center;
+    max-width: 680px;
+    margin: 120px auto 80px;
+
     h2 {
         @include text-display-md;
+        margin-bottom: 36px;
     }
+
     p {
         @include text-display-sm;
         font-weight: bold;
@@ -114,6 +119,8 @@ $image-path: "/media/protocol/img";
 
 .mzp-u-data-table.compare-table {
     width: 100%;
+    margin-bottom: 80px;
+
     thead {
         th {
             padding-top: 0.5rem;
@@ -153,4 +160,17 @@ $image-path: "/media/protocol/img";
             }
         }
     }
+}
+
+.compare-content{
+    max-width: 680px;
+    margin: 0 auto $spacing-xl;
+}
+
+.compare-section-privacy-pullquote {
+    @include text-display-xs;
+
+    border-left: 6px solid #FF0496;
+    padding: 1rem 1.5rem;
+    box-sizing: border-box;
 }
