@@ -138,10 +138,10 @@
     normalize-path "^2.0.1"
     through2 "^2.0.3"
 
-"@mozilla-protocol/core@9.0.0":
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/@mozilla-protocol/core/-/core-9.0.0.tgz#fba35491b8966cec6ddf54907e38e442e3bb1487"
-  integrity sha512-X5URYXZry1oDQ5BfVASNdDumVcrGHXfre4SfN1+KYJxLlTC78N41yTHqo+u+5Er52whP6LLqZnEWyskCn/H+ZA==
+"@mozilla-protocol/core@10.0.0":
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/@mozilla-protocol/core/-/core-10.0.0.tgz#567ae071c41134b15c56d068f6234c5755c158b8"
+  integrity sha512-qC/0pks8+fa8nFDfL0REaFej0zXr5VGdmKn8pkyPL3DQNH+XAXNEvcTQZKdU8l2SbRCwwLbDOPFyWqn+CmsipA==
 
 "@mozilla-protocol/eslint-config@^1.1.0":
   version "1.1.0"
@@ -378,7 +378,7 @@ amdefine@>=0.0.4:
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
   integrity sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=
 
-ansi-colors@4.1.1:
+ansi-colors@4.1.1, ansi-colors@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-4.1.1.tgz#cbb9ae256bf750af1eab344f229aa27fe94ba348"
   integrity sha512-JoX0apGbHaUJBNl6yF+p6JAFYZ666/hhCGKN5t9QFjbJQKUU/g8MNbFDbvfrgKXvI1QpZplPOnwIo99lX/AAmA==
@@ -389,11 +389,6 @@ ansi-colors@^1.0.1:
   integrity sha512-SFKX67auSNoVR38N3L+nvsPjOE0bybKTYbkf5tRvushrAPQ9V75huw0ZxBkKVeRU9kqH3d6HA4xTckbwZ4ixmA==
   dependencies:
     ansi-wrap "^0.1.0"
-
-ansi-colors@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/ansi-colors/-/ansi-colors-4.1.1.tgz#cbb9ae256bf750af1eab344f229aa27fe94ba348"
-  integrity sha512-JoX0apGbHaUJBNl6yF+p6JAFYZ666/hhCGKN5t9QFjbJQKUU/g8MNbFDbvfrgKXvI1QpZplPOnwIo99lX/AAmA==
 
 ansi-cyan@^0.1.1:
   version "0.1.1"
