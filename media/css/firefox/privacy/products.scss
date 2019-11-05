@@ -22,6 +22,10 @@ $image-path: '/media/protocol/img';
     .mzp-c-call-out-title {
         @include text-display-lg;
         margin: $spacing-md 0;
+
+        strong {
+            @include zap('/media/protocol/img/zaps/zap-09.svg');
+        }
     }
 }
 

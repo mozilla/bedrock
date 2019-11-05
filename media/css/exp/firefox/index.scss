@@ -259,20 +259,7 @@ $image-path: '/media/protocol/img';
 
     .mzp-c-card-feature-title {
         strong {
-            position: relative;
-
-            &:after {
-                background-image: url('/media/img/firefox/home/master/zap-respect.svg');
-                background-repeat: no-repeat;
-                background-size: 100% 100%;
-                content: '';
-                display: block;
-                height: 0.3em;
-                left: -2px;
-                position: absolute;
-                top: calc(100% - 3px);
-                width: calc(100% + 4px);
-            }
+            @include zap('/media/protocol/img/zaps/zap-08.svg');
         }
     }
 
@@ -335,20 +322,7 @@ $image-path: '/media/protocol/img';
     margin-top: $layout-md;
 
     strong {
-        position: relative;
-
-        &:after {
-            background-image: url('/media/img/firefox/home/master/zap-privacy.svg');
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
-            content: '';
-            display: block;
-            height: 0.3em;
-            left: -2px;
-            position: absolute;
-            top: calc(100% - 3px);
-            width: calc(100% + 4px);
-        }
+        @include zap('/media/protocol/img/zaps/zap-13.svg');
     }
 }
 
