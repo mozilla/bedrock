@@ -10,25 +10,6 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/menu-list';
 
 
-// https://github.com/mozilla/protocol/issues/490
-.firefox-home .mzp-c-cta-link,
-.firefox-home .mzp-t-dark .mzp-c-cta-link {
-    border-bottom: 0;
-    text-decoration: underline;
-
-    &:hover,
-    &:focus {
-        text-decoration: none;
-    }
-}
-
-// https://github.com/mozilla/protocol/issues/503
-.mzp-c-menu-list-title {
-    .mzp-t-firefox .mzp-t-cta & {
-        @include font-firefox;
-    }
-}
-
 .js-fx-only {
     display: none;
 
