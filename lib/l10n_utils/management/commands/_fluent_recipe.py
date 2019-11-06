@@ -10,13 +10,14 @@ from django.conf import settings
 from django.utils.html import strip_tags
 from django.utils.text import slugify
 
+from ._fluent import (
+    migration_name,
+    ADD_LANG_RE,
+    GETTEXT_RE,
+    TRANS_BLOCK_RE,
+)
 
-ADD_LANG_RE = re.compile(r'{% add_lang_files (.*?) %}')
-GETTEXT_RE = re.compile(r'\b_\([\'"](?P<string>.+?)[\'"]\)'
-                        r'(\s*\|\s*format\((?P<args>\w.+?)\))?', re.S)
-TRANS_BLOCK_RE = re.compile(r'{%-?\s+trans\s+((?P<args>\w.+?)\s+)?-?%\}\s*'
-                            r'(?P<string>.+?)'
-                            r'\s*{%-?\s+endtrans\s+-?%\}', re.S)
+
 STR_VARIABLE_RE = re.compile(r'%(?P<var>\(\w+\))?s')
 RECIPE_INTRO = '''\
 from __future__ import absolute_import
@@ -201,11 +202,7 @@ class Recipe:
         )
 
     def write_recipe_for(self, template, recipe):
-        # Find templates dir to get relative path
-        for parent in template.parents:
-            if parent.name == 'templates':
-                break
-        relpath = template.relative_to(parent).with_suffix('.py')
+        relpath = migration_name(template).with_suffix('.py')
         mod = relpath.parent
         (settings.FLUENT_MIGRATIONS_PATH / mod).mkdir(parents=True, exist_ok=True)
         for mod in relpath.parents:
