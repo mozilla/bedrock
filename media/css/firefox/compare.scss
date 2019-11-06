@@ -110,6 +110,7 @@ $image-path: "/media/protocol/img";
 
     p {
         @include text-display-sm;
+        @include font-firefox;
         font-weight: bold;
     }
 }
@@ -123,8 +124,9 @@ $image-path: "/media/protocol/img";
 
     thead {
         th {
-            font-weight: bold;
             @include text-display-xs;
+            @include font-firefox;
+            font-weight: bold;
             border-top: 3px solid $color-gray-20;
             border-bottom: 3px solid $color-gray-20;
 
