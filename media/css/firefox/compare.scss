@@ -116,11 +116,13 @@ $image-path: "/media/protocol/img";
 
 .mzp-u-data-table.compare-table {
     width: 100%;
+    max-width: $content-lg;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 80px;
 
     thead {
         th {
-            padding-top: 0.5rem;
             font-weight: bold;
             @include text-display-xs;
             border-top: 3px solid $color-gray-20;
@@ -129,6 +131,7 @@ $image-path: "/media/protocol/img";
             img {
                 width: 100%;
                 height: auto;
+                min-width: 1rem;
                 max-width: 36px;
                 max-height: 36px;
             }
@@ -139,11 +142,15 @@ $image-path: "/media/protocol/img";
         text-align: center;
         border-top: 1px solid $color-gray-20;
         border-left: 1px solid $color-gray-20;
+        padding: 0.25rem;
         @include text-body-sm;
         font-weight: normal;
         &:first-child {
             text-align: start;
             border-left: none;
+        }
+        @media #{$mq-sm} {
+            padding: 0.5rem;
         }
     }
     tbody {
