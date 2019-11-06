@@ -8,7 +8,12 @@
 Browser Support
 ===============
 
-We seek to provide usable experiences of our most important web content to all user agents. But newer browsers are far more capable than older browsers, and the capabilities they provide are valuable to developers and site visitors. We **will** take advantage of modern browser capabilities. Older browsers **will** have a different experience of the website than newer browsers. We will strike this balance by generally adhering to the core principles of `Progressive Enhancement <https://en.wikipedia.org/wiki/Progressive_enhancement>`_::
+We seek to provide usable experiences of our most important web content to all user agents.
+But newer browsers are far more capable than older browsers, and the capabilities they
+provide are valuable to developers and site visitors. We **will** take advantage of modern
+browser capabilities. Older browsers **will** have a different experience of the website than
+newer browsers. We will strike this balance by generally adhering to the core principles of
+`Progressive Enhancement <https://en.wikipedia.org/wiki/Progressive_enhancement>`_:
 
     * Basic content should be accessible to all web browsers
     * Basic functionality should be accessible to all web browsers
@@ -17,42 +22,117 @@ We seek to provide usable experiences of our most important web content to all u
     * Enhanced behavior is provided by unobtrusive, externally linked JavaScript
     * End-user web browser preferences are respected
 
-Some website experiences may require us to deviate from these principles -- imagine *a marketing campaign page built under timeline pressure to deliver novel functionality to a particular locale for a short while* -- but those will be exceptions and rare.
+Some website experiences may require us to deviate from these principles -- imagine *a
+marketing campaign page built under timeline pressure to deliver novel functionality to a
+particular locale for a short while* -- but those will be exceptions and rare.
 
-Technical details
------------------
+Browser Support Matrix (Updated 2019-06-11)
+-------------------------------------------
 
-We deliver enhanced CSS & JS to browsers in our browser support matrix (below). We deliver basic support to all other user agents.
-
-Basic support consists of no page-specific CSS or JS. Instead, we deliver basic semantic HTML, a universal CSS stylesheet that gets applied to all pages, and a universal JS bundle that only handles downloading Firefox (click a button, get a file), and Google Analytics.
-
-Browser Support Matrix (Updated 20190409)
------------------------------------------
+We deliver enhanced CSS & JS to browsers in our browser support matrix (below).
+We deliver degraded support to all other user agents, except legacy IE browsers,
+which get basic support.
 
 **The following browsers have enhanced support:**
 
   * All evergreen browsers (Firefox, Chrome, Safari, Edge, Opera, etc.)
-  * IE10 and above.
+  * IE11 and above.
+
+**The following browsers have degraded support:**
+
+  * Outdated evergreen browser versions.
+  * IE10.
 
 **The following browsers have basic support:**
 
-  * All other IE browsers.
+  * IE9 and below.
 
-Exceptions (Updated 20190409)
------------------------------
+Delivering basic support
+------------------------
 
-Some pages of the website provide critical functionality to older browsers. In particular, the Firefox desktop download funnel enables users on older browsers to get a modern browser. To the extent possible, we try to deliver enhanced experiences to all user agents on these pages.
+On IE browsers that support `conditional comments`_ (IE9 and below), basic support
+consists of no page-specific CSS or JS. Instead, we deliver well formed semantic HTML, a
+universal CSS stylesheet that gets applied to all pages, and a universal JS bundle that
+only handles downloading Firefox (click a button, get a file), and Google Analytics.
 
-**The following pages get enhanced support for a longer list of user agents:**
+To hide non-relevant content from legacy IE users who see the universal stylesheet, a
+``hide-from-legacy-ie`` class name can be applied directly to HTML:
 
-  * www.mozilla.org/firefox/new/
-  * www.mozilla.org/firefox/download/thanks/
+.. code-block:: html
+
+    <p class="hide-from-legacy-ie">See what Firefox has blocked for you</p>
+
+.. _conditional comments: https://wikipedia.org/wiki/Conditional_comment
+
+Delivering degraded support
+---------------------------
+
+On other legacy browsers where conditional comments are not supported, developers should
+instead rely on `feature detection`_ to deliver a degraded experience where appropriate.
+
+.. _feature detection: https://developer.mozilla.org/docs/Learn/Tools_and_testing/Cross_browser_testing/Feature_detection
+
+Feature detection using CSS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For CSS, enhanced experiences can be delivered using `feature queries`_, whilst allowing
+older browsers to degrade gracefully using simpler layouts when needed.
+
+Additionally, there is also a universal CSS class hook available that gets delivered via
+a site-wide JS feature detection snippet:
+
+.. code-block:: css
+
+    .is-modern-browser {
+        /* Styles will only be applied to browsers that get enhanced support. */
+    }
+
+.. _feature queries: https://developer.mozilla.org/docs/Web/CSS/@supports
+
+Feature detection using JavaScript
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+For JS, enhanced support can be delivered using a helper that leverages the same
+feature detection snippet:
+
+.. code-block:: javascript
+
+    (function() {
+        'use strict';
+
+        function onLoad() {
+            // Code that will only be run on browsers that get enhanced support.
+        }
+
+        window.Mozilla.run(onLoad);
+    })();
+
+The ``site.isModernBrowser`` global property can also be used within conditionals like so:
+
+.. code-block:: javascript
+
+    if (window.site.isModernBrowser) {
+        // Code that will only be run on browsers that get enhanced support.
+    }
+
+Exceptions (Updated 2019-06-11)
+-------------------------------
+
+Some pages of the website provide critical functionality to older browsers. In particular,
+the Firefox desktop download funnel enables users on older browsers to get a modern browser.
+To the extent possible, we try to deliver enhanced experiences to all user agents on these
+pages.
+
+**The following pages get enhanced experiences for a longer list of user agents:**
+
+  * /firefox/
+  * /firefox/new/
+  * /firefox/download/thanks/
 
 .. Note::
 
-    An enhanced experience can be defined as a step above basic support. This can be achieved by delivering extra page-specific CSS or JS to legacy browsers. It does not mean continuing to deliver 1st class support.
+    An enhanced experience can be defined as a step above basic support. This can be achieved
+    by delivering extra page-specific CSS or JS to legacy browsers, or allowing them to degrade
+    gracefully. It does not mean everything needs to `look the same in every browser`_.
 
-Future Support (Updated 20190409)
----------------------------------
-
-Since IE10 does not support conditional comments (the mechanism currently used to deliver basic support to old IE browsers), in the future bedrock will adopt a universal JS feature detection snippet. This snippet will be used to limit the execution of JS on older browsers, delivering a better degraded experience.
+.. _look the same in every browser: http://dowebsitesneedtolookexactlythesameineverybrowser.com/

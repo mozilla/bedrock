@@ -448,16 +448,6 @@
     };
 
     /**
-     * Basic feature detect for minimum browser support.
-     */
-    FirefoxDownloader.isSupported = function() {
-        return 'querySelector' in document &&
-               'querySelectorAll' in document &&
-               'addEventListener' in window &&
-               'classList' in document.createElement('div');
-    };
-
-    /**
      * Initialize the form and show the default selection.
      */
     FirefoxDownloader.init = function() {

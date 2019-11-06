@@ -61,11 +61,11 @@
     {% endtrans %}
     </p>
 
-    <p class="show-mobile is-js-dependent">
+    <p class="show-mobile hide-from-legacy-ie">
       <strong>{{ _('If you want to see what Firefox is blocking for you, visit this page on your Firefox desktop browser.') }}</strong>
     </p>
 
-    <p class="show-firefox-desktop-70 is-js-dependent">
+    <p class="show-firefox-desktop-70 hide-from-legacy-ie">
       <a class="mzp-c-cta-link js-open-about-protections" href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
         {{ _('See what Firefox has blocked for you') }}
       </a>
@@ -78,7 +78,7 @@
       {{ download_firefox(dom_id='download-button-primary-non-firefox', alt_copy=_('Download the Firefox browser'), download_location='primary cta') }}
     </div>
 
-    <p class="show-firefox-desktop-old is-js-dependent">
+    <p class="show-firefox-desktop-old hide-from-legacy-ie">
       <a class="mzp-c-cta-link" href="https://support.mozilla.org/kb/update-firefox-latest-release/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
         {{_ ('Update your Firefox browser') }}
       </a>
@@ -100,7 +100,7 @@
     class='privacy-products-tracker-counter mzp-t-dark',
     include_cta=True
   ) %}
-    <p class="show-firefox-desktop-70 is-js-dependent">
+    <p class="show-firefox-desktop-70 hide-from-legacy-ie">
       <a class="mzp-c-cta-link js-open-about-protections" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
         {{ _('See what Firefox has blocked for you') }}
       </a>
@@ -110,7 +110,7 @@
       {{ download_firefox(dom_id='download-button-secondary-non-firefox', alt_copy=_('Download the Firefox browser'), download_location='secondary cta') }}
     </div>
 
-    <p class="show-firefox-desktop-old is-js-dependent">
+    <p class="show-firefox-desktop-old hide-from-legacy-ie">
       <a class="mzp-c-cta-link" href="https://support.mozilla.org/kb/update-firefox-latest-release/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">{{_ ('Update your Firefox browser') }}</a>
     </p>
   {% endcall %}

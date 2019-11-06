@@ -45,7 +45,7 @@ label {
     @include hidden;
 }
 
-.is-js-dependent {
+.hide-from-legacy-ie {
     display: none;
 }
 

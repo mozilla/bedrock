@@ -104,12 +104,6 @@ $image-path: '/media/protocol/img';
             display: block;
         }
     }
-
-    @media #{$mq-lg} {
-        .is-supported & {
-            min-height: 700px;
-        }
-    }
 }
 
 .c-intro {
@@ -130,7 +124,6 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-md} {
         @include bidi(((float, left, right),));
-        margin-bottom: $layout-xl;
         width: calc(50% - #{$spacing-lg});
     }
 
@@ -182,11 +175,6 @@ $image-path: '/media/protocol/img';
     .c-selection-options {
         display: none;
     }
-
-    // only show the form if JS is supported.
-    .is-supported & {
-        display: block;
-    }
 }
 
 .c-download {
@@ -230,15 +218,6 @@ $image-path: '/media/protocol/img';
 
     .mzp-c-sidemenu {
         background: $color-white;
-    }
-}
-
-.js .c-all-downloads {
-    display: none;
-
-    // still allow the list to be shown as a fallback.
-    &.is-fallback {
-        display: block;
     }
 }
 
@@ -342,5 +321,27 @@ $image-path: '/media/protocol/img';
 
     .c-help-desc {
         @include text-body-sm;
+    }
+}
+
+// Modern browsers get the form, legacy browsers the download list.
+.is-modern-browser {
+    .c-all-downloads {
+        display: none;
+
+        // still allow the list to be shown as a fallback.
+        &.is-fallback {
+            display: block;
+        }
+    }
+
+    .c-selection-form {
+        display: block;
+    }
+
+    .c-product-select-form {
+        @media #{$mq-lg} {
+            min-height: 700px;
+        }
     }
 }
