@@ -255,7 +255,8 @@ FLUENT_PATHS = [
     # remote FTL files from l10n team
     FLUENT_REPO_PATH,
 ]
-FLUENT_MIGRATIONS_PATH = ROOT_PATH / 'l10n' / 'bedrock_migrations'
+FLUENT_MIGRATIONS = 'lib.fluent_migrations'
+FLUENT_MIGRATIONS_PATH = ROOT_PATH / 'lib' / 'fluent_migrations'
 
 # Paths that don't require a locale code in the URL.
 # matches the first url component (e.g. mozilla.org/gameon/)
