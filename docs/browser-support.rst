@@ -26,21 +26,26 @@ Some website experiences may require us to deviate from these principles -- imag
 marketing campaign page built under timeline pressure to deliver novel functionality to a
 particular locale for a short while* -- but those will be exceptions and rare.
 
-Browser Support Matrix (Updated 2019-05-11)
+Browser Support Matrix (Updated 2019-06-11)
 -------------------------------------------
 
 We deliver enhanced CSS & JS to browsers in our browser support matrix (below).
-We deliver basic support to all other user agents.
+We deliver degraded support to all other user agents, except legacy IE browsers,
+which get basic support.
 
 **The following browsers have enhanced support:**
 
   * All evergreen browsers (Firefox, Chrome, Safari, Edge, Opera, etc.)
   * IE11 and above.
 
-**The following browsers have basic support:**
+**The following browsers have degraded support:**
 
   * Outdated evergreen browser versions.
-  * IE10 and below.
+  * IE10.
+
+**The following browsers have basic support:**
+
+  * IE9 and below.
 
 Delivering basic support
 ------------------------
@@ -57,8 +62,15 @@ To hide non-relevant content from legacy IE users who see the universal styleshe
 
     <p class="hide-from-legacy-ie">See what Firefox has blocked for you</p>
 
+.. _conditional comments: https://wikipedia.org/wiki/Conditional_comment
+
+Delivering degraded support
+---------------------------
+
 On other legacy browsers where conditional comments are not supported, developers should
-instead rely on `feature detection`_ where appropriate.
+instead rely on `feature detection`_ to deliver a degraded experience where appropriate.
+
+.. _feature detection: https://developer.mozilla.org/docs/Learn/Tools_and_testing/Cross_browser_testing/Feature_detection
 
 Feature detection using CSS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -75,12 +87,10 @@ a site-wide JS feature detection snippet:
         /* Styles will only be applied to browsers that get enhanced support. */
     }
 
-.. _conditional comments: https://wikipedia.org/wiki/Conditional_comment
-.. _feature detection: https://developer.mozilla.org/docs/Learn/Tools_and_testing/Cross_browser_testing/Feature_detection
 .. _feature queries: https://developer.mozilla.org/docs/Web/CSS/@supports
 
-Feature detection JavaScript
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Feature detection using JavaScript
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For JS, enhanced support can be delivered using a helper that leverages the same
 feature detection snippet:
@@ -105,7 +115,7 @@ The ``site.isModernBrowser`` global property can also be used within conditional
         // Code that will only be run on browsers that get enhanced support.
     }
 
-Exceptions (Updated 2019-05-11)
+Exceptions (Updated 2019-06-11)
 -------------------------------
 
 Some pages of the website provide critical functionality to older browsers. In particular,
@@ -113,7 +123,7 @@ the Firefox desktop download funnel enables users on older browsers to get a mod
 To the extent possible, we try to deliver enhanced experiences to all user agents on these
 pages.
 
-**The following pages get enhanced support for a longer list of user agents:**
+**The following pages get enhanced experiences for a longer list of user agents:**
 
   * /firefox/
   * /firefox/new/
@@ -122,5 +132,7 @@ pages.
 .. Note::
 
     An enhanced experience can be defined as a step above basic support. This can be achieved
-    by delivering extra page-specific CSS or JS to legacy browsers. It does not mean continuing
-    to deliver 1st class support.
+    by delivering extra page-specific CSS or JS to legacy browsers, or allowing them to degrade
+    gracefully. It does not mean everything needs to `look the same in every browser`_.
+
+.. _look the same in every browser: http://dowebsitesneedtolookexactlythesameineverybrowser.com/
