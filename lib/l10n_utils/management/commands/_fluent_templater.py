@@ -2,14 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from importlib import import_module
-
-from django.conf import settings
-
-from fluent.migrate.context import MergeContext
-
 from ._fluent import (
-    migration_name,
+    get_migration_context,
     GETTEXT_RE,
 )
 
@@ -29,12 +23,7 @@ class Templater:
             tfp.write(template_str)
 
     def get_dependencies(self, template):
-        pkg_name = '.'.join(('',) + migration_name(template).parts)
-        migration = import_module(pkg_name, 'l10n.bedrock_migrations')
-        context = MergeContext(
-            settings.LANGUAGE_CODE, None, settings.LOCALES_PATH / settings.LANGUAGE_CODE
-        )
-        migration.migrate(context)
+        context = get_migration_context(template)
         deps = {}
         for (fluent_file, fluent_id), lang_set in context.dependencies.items():
             for _, lang_string in lang_set:
