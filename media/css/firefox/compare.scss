@@ -129,6 +129,12 @@ $image-path: "/media/protocol/img";
             font-weight: bold;
             border-top: 3px solid $color-gray-20;
             border-bottom: 3px solid $color-gray-20;
+            background-color: $color-white;
+            position: sticky;
+            top: 0;
+            @media #{$mq-sm} {
+                position: static;
+            }
 
             img {
                 width: 100%;
