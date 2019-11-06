@@ -22,6 +22,10 @@ $image-path: '/media/protocol/img';
     .mzp-c-call-out-title {
         @include text-display-lg;
         margin: $spacing-md 0;
+
+        strong {
+            @include zap('/media/protocol/img/zaps/zap-09.svg');
+        }
     }
 }
 
@@ -222,7 +226,7 @@ $image-path: '/media/protocol/img';
     background-image: url('/media/protocol/img/logos/pocket/logo-word-horz.svg');
 }
 
-.privacy-products-accounts .mzp-c-box-emphasis {
+.privacy-products-accounts .mzp-c-emphasis-box {
     padding: $spacing-lg;
 
     @media #{$mq-lg} {

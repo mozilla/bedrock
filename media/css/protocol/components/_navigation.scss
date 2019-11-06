@@ -21,34 +21,6 @@
     }
 }
 
-// override for navigation menu logo in Firefox section
-// https://github.com/mozilla/protocol/issues/483
-.mzp-c-navigation-logo.mzp-t-firefox {
-    &.mzp-t-firefox {
-        a {
-            @include background-size(81px, 27px);
-            background-image: url('#{$image-path}/logos/firefox/logo-word-hor-sm.png');
-            height: 27px;
-            width: 81px;
-        }
-
-        @media #{$mq-md} {
-            a {
-                margin-top: 7px;
-            }
-        }
-
-        @media #{$mq-lg} {
-            a {
-                @include at2x('#{$image-path}/logos/firefox/logo-word-hor-sm.png', 109px, 36px);
-                height: 36px;
-                margin-top: 1px;
-                width: 109px;
-            }
-        }
-    }
-}
-
 // Global FxA CTA
 .mzp-c-navigation {
     .c-navigation-fxa-cta-container {

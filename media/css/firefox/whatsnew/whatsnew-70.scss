@@ -29,20 +29,6 @@ $image-path: '/media/protocol/img';
     text-align: center;
 }
 
-.mzp-c-cta-link:link {
-    border-bottom: 1px solid;
-    font-weight: normal;
-    text-decoration: none;
-
-    &:hover,
-    &:active,
-    &:focus {
-        @include transition(border-bottom-color 100ms ease-in-out);
-        border-bottom-color: transparent;
-    }
-}
-
-
 //* -------------------------------------------------------------------------- */
 // Up-to-date page header
 
@@ -86,7 +72,7 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Emphasis box
 
-.mzp-c-box-emphasis {
+.mzp-c-emphasis-box {
     @include border-box;
     color: $color-off-black;
     margin: 0 auto $layout-sm;

@@ -157,16 +157,16 @@ $city-image-size: 106px;
 
 .c-city-title {
     @include text-body-sm;
-    border-bottom: 2px solid $color-link;
+    border-bottom: 2px solid #000;
     padding-bottom: $spacing-sm;
     margin: 0 auto $spacing-sm;
     max-width: 200px;
+    text-decoration: none;
 
     .c-city:hover &,
     .c-city:focus &,
-    .c-city:active {
-        @include transition(border-bottom-color 100ms ease-in-out);
-        border-color: transparent;
+    .c-city:active & {
+        text-decoration: underline;
     }
 }
 
