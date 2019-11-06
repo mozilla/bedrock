@@ -21,12 +21,19 @@ class Command(BaseCommand):
             description='Create migration recipe from template'
         )
         recipe_parser.add_argument('template', type=Path)
+        template_parser = subparsers.add_parser(
+            'template',
+            description='Create template and Fluent file with recipe'
+        )
+        template_parser.add_argument('template', type=Path)
 
     def handle(self, subcommand, **kwargs):
         if subcommand in (None, 'help'):
             return self.handle_help(**kwargs)
         if subcommand == 'recipe':
             return self.create_recipe(**kwargs)
+        if subcommand == 'template':
+            return self.create_template(**kwargs)
 
     def handle_help(self, **kwargs):
         self.stdout.write('''\
@@ -36,6 +43,8 @@ To migrate a template from .lang to Fluent, use the subcommands like so
 
 # edit IDs in lib/fluent_migrations/app/some.py
 
+./manage.py fluent template bedrock/app/templates/app/some.html
+
 More documentation on https://bedrock.readthedocs.io/en/latest/fluent-conversion.html.
         ''')
 
@@ -43,3 +52,8 @@ More documentation on https://bedrock.readthedocs.io/en/latest/fluent-conversion
         from ._fluent_recipe import Recipe
         recipe = Recipe(self)
         recipe.handle(template)
+
+    def create_template(self, template, **kwargs):
+        from ._fluent_templater import Templater
+        templater = Templater(self)
+        templater.handle(template)
