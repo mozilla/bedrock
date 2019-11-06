@@ -160,15 +160,14 @@ $image-path: "/media/protocol/img";
     }
 }
 
-.compare-content{
+.compare-content {
     max-width: 680px;
     margin: 0 auto $spacing-xl;
 }
 
 .compare-section-privacy-pullquote {
     @include text-display-xs;
-
-    border-left: 6px solid #FF0496;
+    border-left: 6px solid #ff0496;
     padding: 1rem 1.5rem;
     box-sizing: border-box;
 }
