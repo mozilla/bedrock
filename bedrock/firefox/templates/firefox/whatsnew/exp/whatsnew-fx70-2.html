@@ -11,15 +11,14 @@
 {% block page_title %}{{ _('What’s new with Firefox - More privacy, more protections.') }}{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('firefox_whatsnew_70') }}
+  {{ css_bundle('firefox_whatsnew_70_experiment') }}
 {% endblock %}
 
 {% block body_class %}state-fxa-default{% endblock %}
 
 {% set _entrypoint = 'mozilla.org-whatsnew70' %}
 {% set _utm_campaign = 'whatsnew70' %}
-{% set _utm_content = 'stay-ahead-hackers' %}
-{% set _entrypoint_variation = '0' %}
+{% set _entrypoint_variation = '1' %}
 
 {% block site_header %}{% endblock %}
 
@@ -38,11 +37,8 @@
     <div class="mzp-l-content">
       <div class="mzp-c-emphasis-box">
         <img class="c-emphasis-box-logo" src="{{ static('img/logos/firefox/logo-monitor.svg') }}" alt="">
-        <h2 class="c-emphasis-box-title">
-          {{ _('Stay ahead of hackers. Check for data breaches with Firefox Monitor.') }}
-          <span class="show-fxa-supported-signed-in">{{ _('It’s included with your Firefox account.') }}</span>
-        </h2>
-        <p>{{ _('Use Firefox Monitor to see if your info was compromised in another company’s data breach — and automatically get alerts when your info might be at risk.') }}</p>
+        <h2 class="c-emphasis-box-title">{{ _('You have nothing to hide. And so much to protect.') }}</h2>
+        <p>{{ _('Like usernames, passwords, your SSN… all the stuff that can get into the wrong hands during a data breach. Let Firefox Monitor keep an eye out for your info, so you can stay ahead of hackers.') }}</p>
 
         <div class="show-fxa-supported-signed-out show-fxa-default show-fxa-not-fx">
           {{ monitor_button(
@@ -52,7 +48,6 @@
             cta_type='FxA-Monitor',
             cta_position='Primary',
             utm_campaign=_utm_campaign,
-            utm_content=_utm_content,
             button_text=_('Sign Up for Monitor')
           ) }}
         </div>
@@ -65,7 +60,6 @@
             cta_type='FxA-Monitor',
             cta_position='Primary',
             utm_campaign=_utm_campaign,
-            utm_content=_utm_content,
             button_text=_('Sign In')
           ) }}
         </div>

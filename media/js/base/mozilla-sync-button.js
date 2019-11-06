@@ -10,9 +10,9 @@ if (typeof window.Mozilla === 'undefined') {
 (function() {
     'use strict';
 
-    var MonitorButton = {};
+    var SyncButton = {};
 
-    MonitorButton.init = function() {
+    SyncButton.init = function() {
         var buttons;
 
         // Exit if no fetch support
@@ -21,8 +21,8 @@ if (typeof window.Mozilla === 'undefined') {
             return;
         }
 
-        // Collect all monitor buttons
-        buttons = document.getElementsByClassName('js-monitor-button');
+        // Collect all the buttons
+        buttons = document.getElementsByClassName('js-fxa-cta-link');
 
         // Exit if no valid button in DOM
         if (buttons.length === 0) {
@@ -35,7 +35,7 @@ if (typeof window.Mozilla === 'undefined') {
 
         var destURL = buttons[0].getAttribute('data-action') + 'metrics-flow';
 
-        // collect values from monitor button
+        // collect values from the button
         var params = window._SearchParams.queryStringToObject(buttonURLParams);
 
         // add required params to the token fetch request
@@ -75,11 +75,12 @@ if (typeof window.Mozilla === 'undefined') {
             for (var i=0; i<buttons.length; i++) {
                 buttons[i].href += flowParams;
             }
+            console.log(flowParams);
         }).catch(function() {
             // silently fail: deviceId, flowBeginTime, flowId are not added to url.
         });
     };
 
-    window.Mozilla.MonitorButton = MonitorButton;
+    window.Mozilla.SyncButton = SyncButton;
 })();
 
