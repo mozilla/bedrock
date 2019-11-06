@@ -53,6 +53,7 @@ $image-path: "/media/protocol/img";
     p {
         margin-bottom: $spacing-2xl;
         @include text-display-xs;
+        line-height: 1.3;
         @media #{$mq-md} {
             width: 50%;
             margin-right: $layout-sm;
@@ -65,11 +66,9 @@ $image-path: "/media/protocol/img";
     .compare-section-summary-image {
         @media #{$mq-md} {
             width: 50%;
-
         }
         @media #{$mq-lg} {
             width: auto;
-
         }
     }
     @media #{$mq-md} {
