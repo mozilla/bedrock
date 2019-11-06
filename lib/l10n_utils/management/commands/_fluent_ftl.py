@@ -13,9 +13,9 @@ class FTLCreator:
     def __init__(self, cmd):
         self.stdout = cmd.stdout
 
-    def handle(self, template, locale):
+    def handle(self, recipe_or_template, locale):
         no_reference = locale == 'en'
-        context = get_migration_context(template, locale=locale)
+        context = get_migration_context(recipe_or_template, locale=locale)
         if no_reference:
             context.create_references_from_transforms()
             base = settings.FLUENT_LOCAL_PATH

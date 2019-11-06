@@ -18,10 +18,14 @@ def migration_name(template):
     return template.relative_to(parent).with_suffix('')
 
 
-def get_migration_context(template, locale='en'):
-    'Create the merge context associated with the template'
-    pkg_name = '.'.join(('',) + migration_name(template).parts)
-    migration = import_module(pkg_name, 'l10n.bedrock_migrations')
+def get_migration_context(recipe_or_template, locale='en'):
+    'Create the merge context associated with the template or recipe'
+    if recipe_or_template.suffix == '.py':
+        name = recipe_or_template.resolve().relative_to(settings.FLUENT_MIGRATIONS_PATH).with_suffix('')
+    else:
+        name = migration_name(recipe_or_template)
+    pkg_name = '.'.join(('',) + name.parts)
+    migration = import_module(pkg_name, settings.FLUENT_MIGRATIONS)
     no_reference = locale == 'en'
     if no_reference:
         ref_dir = None
