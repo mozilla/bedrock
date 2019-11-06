@@ -89,6 +89,7 @@ $image-path: '/media/protocol/img';
         background-repeat: no-repeat;
         margin-bottom: $spacing-lg;
         min-height: 40px;
+        text-indent: -120%; // image-replacement Safari bug see issue #8084
     }
 }
 
