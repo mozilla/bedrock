@@ -2,8 +2,6 @@
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import hero with context %}
-
 {% extends "firefox/base/base-protocol.html" %}
 
 {% block page_title %}{{ _('Six of the best browsers in direct comparison') }}{% endblock %}
@@ -39,7 +37,7 @@
   </div>
 </section>
 
-<div class="mzp-l-content">
+<div class="mzp-l-content l-compare-content">
   <article class="mzp-c-article">
     <section class="compare-section-summary">
 
@@ -388,27 +386,18 @@
     </section>
 
     <section class="compare-mission-section">
-      <div class="compare-mission-title">
-        <h1 class="">{{ _('Firefox is a project of the not-for-profit organization Mozilla.') }}</h1>
+      <h3>{{ _('Firefox is a project of the not-for-profit organization Mozilla.') }}</h3>
 
-        <div class="compare-mission-cta">
-            {{ download_firefox(dom_id='compare-hero-download', download_location='primary cta') }}
-        </div>
-      </div>
+      <p>
+        {% trans %}
+        Firefox puts privacy before everything else – with the browser as well as all other Firefox Products – because we think it is the right thing to do. Because we believe, you have the right to control online with whom you share your personal information. Firefox does not follow every step you take, collects little data and never sells it. The little data we do collect is only used to make products and features better. No secrets. But a lot of transparency and real privacy.
+        {% endtrans %}
+      </p>
 
-      <div class="compare-mission-content">
-        <p>
-          {% trans %}
-          Firefox puts privacy before everything else – with the browser as well as all other Firefox Products – because we think it is the right thing to do. Because we believe, you have the right to control online with whom you share your personal information. Firefox does not follow every step you take, collects little data and never sells it. The little data we do collect is only used to make products and features better. No secrets. But a lot of transparency and real privacy.
-          {% endtrans %}
-        </p>
-
-        <div class="compare-mission-cta">
-            {{ download_firefox(dom_id='compare-hero-download', download_location='primary cta') }}
-        </div>
+      <div class="compare-mission-cta">
+          {{ download_firefox(dom_id='compare-hero-download', download_location='primary cta') }}
       </div>
     </section>
-
   </article>
 </div>
 {% endblock %}
