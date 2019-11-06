@@ -4,7 +4,7 @@
 
 from pathlib import Path
 
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
@@ -27,7 +27,10 @@ class Command(BaseCommand):
             'ftl',
             description='Create Fluent file with existing recipe'
         )
-        ftl_parser.add_argument('template', type=Path)
+        ftl_parser.add_argument(
+            'recipe_or_template', type=Path,
+            help='Path to the recipe or the template from which the recipe was generated'
+        )
         ftl_parser.add_argument(
             'locales', nargs='*', default=['en'], metavar='ab-CD',
             help='Locale codes to create ftl files for'
@@ -73,8 +76,8 @@ More documentation on https://bedrock.readthedocs.io/en/latest/fluent-conversion
         templater = Templater(self)
         templater.handle(template)
 
-    def create_ftl(self, template, locales, **kwargs):
+    def create_ftl(self, recipe_or_template, locales, **kwargs):
         from ._fluent_ftl import FTLCreator
         ftl_creator = FTLCreator(self)
         for locale in locales:
-            ftl_creator.handle(template, locale)
+            ftl_creator.handle(recipe_or_template, locale)
