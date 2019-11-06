@@ -16,14 +16,26 @@ class Command(BaseCommand):
             title='subcommand', dest='subcommand'
         )
         subparsers.add_parser('help')
+
         recipe_parser = subparsers.add_parser(
             'recipe',
             description='Create migration recipe from template'
         )
         recipe_parser.add_argument('template', type=Path)
+
+        ftl_parser = subparsers.add_parser(
+            'ftl',
+            description='Create Fluent file with existing recipe'
+        )
+        ftl_parser.add_argument('template', type=Path)
+        ftl_parser.add_argument(
+            'locales', nargs='*', default=['en'], metavar='ab-CD',
+            help='Locale codes to create ftl files for'
+        )
+
         template_parser = subparsers.add_parser(
             'template',
-            description='Create template and Fluent file with recipe'
+            description='Create template_ftl.html file with existing recipe'
         )
         template_parser.add_argument('template', type=Path)
 
@@ -32,6 +44,8 @@ class Command(BaseCommand):
             return self.handle_help(**kwargs)
         if subcommand == 'recipe':
             return self.create_recipe(**kwargs)
+        if subcommand == 'ftl':
+            return self.create_ftl(**kwargs)
         if subcommand == 'template':
             return self.create_template(**kwargs)
 
@@ -44,6 +58,7 @@ To migrate a template from .lang to Fluent, use the subcommands like so
 # edit IDs in lib/fluent_migrations/app/some.py
 
 ./manage.py fluent template bedrock/app/templates/app/some.html
+./manage.py fluent ftl bedrock/app/templates/app/some.html
 
 More documentation on https://bedrock.readthedocs.io/en/latest/fluent-conversion.html.
         ''')
@@ -57,3 +72,9 @@ More documentation on https://bedrock.readthedocs.io/en/latest/fluent-conversion
         from ._fluent_templater import Templater
         templater = Templater(self)
         templater.handle(template)
+
+    def create_ftl(self, template, locales, **kwargs):
+        from ._fluent_ftl import FTLCreator
+        ftl_creator = FTLCreator(self)
+        for locale in locales:
+            ftl_creator.handle(template, locale)
