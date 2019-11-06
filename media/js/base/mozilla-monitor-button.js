@@ -17,6 +17,7 @@ if (typeof window.Mozilla === 'undefined') {
 
         // Exit if no fetch support
         var supportsFetch = 'fetch' in window;
+
         if (!supportsFetch) {
             return;
         }
@@ -30,6 +31,7 @@ if (typeof window.Mozilla === 'undefined') {
         }
 
         var buttonURL = buttons[0].getAttribute('href');
+
         // strip url to everything after `?`
         var buttonURLParams = buttonURL.match(/\?(.*)/)[1];
 
@@ -64,15 +66,16 @@ if (typeof window.Mozilla === 'undefined') {
             destURL += '&entrypoint_variation' + params.entrypoint_variation;
         }
 
-        fetch(destURL).then(function(resp) {
+        return fetch(destURL).then(function(resp) {
             return resp.json();
         }).then(function(r) {
             // add retrieved deviceID, flowBeginTime and flowId values to cta url
             var flowParams = '&deviceId=' + r.deviceId;
             flowParams += '&flowBeginTime=' + r.flowBeginTime;
             flowParams += '&flowId=' + r.flowId;
+
             // applies url to all buttons and adds cta position
-            for (var i=0; i<buttons.length; i++) {
+            for (var i = 0; i < buttons.length; i++) {
                 buttons[i].href += flowParams;
             }
         }).catch(function() {
