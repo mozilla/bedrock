@@ -51,6 +51,8 @@ if (typeof window.Mozilla === 'undefined') {
 
             var destURL = fxaForm.getAttribute('action') + 'metrics-flow';
             var entrypoint = document.getElementById('fxa-email-form-entrypoint');
+            var entrypointExp = document.getElementById('fxa-email-form-entrypoint-experiment');
+            var entrypointVar = document.getElementById('fxa-email-form-entrypoint-variation');
             var utmSource = document.getElementById('fxa-email-form-utm-source');
             var utmCampaign = document.getElementById('fxa-email-form-utm-campaign');
             var utmContent = document.getElementById('fxa-email-form-utm-content');
@@ -72,6 +74,14 @@ if (typeof window.Mozilla === 'undefined') {
 
             if (utmTerm) {
                 destURL += '&utm_term=' + utmTerm.value;
+            }
+
+            if (entrypointExp) {
+                destURL += '&entrypoint_experiment=' + entrypointExp.value;
+            }
+
+            if (entrypointVar) {
+                destURL += '&entrypoint_variation=' + entrypointVar.value;
             }
 
             fetch(destURL).then(function(resp) {

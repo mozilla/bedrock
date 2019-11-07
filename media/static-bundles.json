@@ -505,6 +505,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-70-experiment.scss"
+      ],
+      "name": "firefox_whatsnew_70_experiment"
+    },
+    {
+      "files": [
         "css/exp/firefox/whatsnew/whatsnew-70.scss"
       ],
       "name": "exp_firefox_whatsnew_70"
@@ -1013,6 +1019,34 @@
         "js/exp/firefox/whatsnew/whatsnew-70.js"
       ],
       "name": "exp_firefox_whatsnew_70_variants"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-form-init.js",
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/firefox/whatsnew/whatsnew-70.js"
+      ],
+      "name": "firefox_whatsnew_70_experiment_fxaform"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-monitor-button.js",
+        "js/base/mozilla-monitor-button-init.js",
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/firefox/whatsnew/whatsnew-70.js"
+      ],
+      "name": "firefox_whatsnew_70_experiment_syncbutton"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/base/mozilla-client.js",
+        "js/firefox/whatsnew/experiment-whatsnew-70.js"
+      ],
+      "name": "experiment_firefox_whatsnew_70"
     },
     {
       "files": [

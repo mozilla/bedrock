@@ -2,7 +2,7 @@
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import monitor_button, fxa_cta_link with context %}
+{% from "macros.html" import fxa_email_form, fxa_cta_link with context %}
 
 {% add_lang_files "firefox/whatsnew_70" %}
 
@@ -10,21 +10,15 @@
 
 {% block page_title %}{{ _('What’s new with Firefox - More privacy, more protections.') }}{% endblock %}
 
-{% block experiments %}
-  {% if switch('experiment_firefox_whatsnew_70', ['en-US']) %}
-    {{ js_bundle('experiment_firefox_whatsnew_70') }}
-  {% endif %}
-{% endblock %}
-
 {% block page_css %}
-  {{ css_bundle('firefox_whatsnew_70') }}
+  {{ css_bundle('firefox_whatsnew_70_experiment') }}
 {% endblock %}
 
 {% block body_class %}state-fxa-default{% endblock %}
 
 {% set _entrypoint = 'mozilla.org-whatsnew70' %}
 {% set _utm_campaign = 'whatsnew70' %}
-{% set _entrypoint_experiment = None %}
+{% set _entrypoint_variation = '4' %}
 
 {% block site_header %}{% endblock %}
 
@@ -41,36 +35,22 @@
 
   <section class="content-main">
     <div class="mzp-l-content">
-      <div class="mzp-c-emphasis-box">
-        <img class="c-emphasis-box-logo" src="{{ static('img/logos/firefox/logo-monitor.svg') }}" alt="">
+      <div class="mzp-c-emphasis-box has-fxa-form">
         <h2 class="c-emphasis-box-title">
-          {{ _('Stay ahead of hackers. Check for data breaches with Firefox Monitor.') }}
-          <span class="show-fxa-supported-signed-in">{{ _('It’s included with your Firefox account.') }}</span>
+          {{ _('Wallet. Keys. Phone. Firefox.') }}
         </h2>
-        <p>{{ _('Use Firefox Monitor to see if your info was compromised in another company’s data breach — and automatically get alerts when your info might be at risk.') }}</p>
+        <p>{{ _('Let’s be real: the internet is life. So keep yours private — and take it with you. Don’t walk out the door without your bookmarks, tabs, notes and passwords. (And leave the trackers behind.)') }}</p>
 
-        <div class="show-fxa-supported-signed-out show-fxa-default show-fxa-not-fx">
-          {{ monitor_button(
+        <div class="fxa-form-cta">
+        {{ fxa_email_form(
             entrypoint=_entrypoint,
-            entrypoint_experiment=_entrypoint_experiment,
+            entrypoint_experiment=_utm_campaign,
             entrypoint_variation=_entrypoint_variation,
-            cta_type='FxA-Monitor',
-            cta_position='Primary',
-            utm_campaign=_utm_campaign,
-            button_text=_('Sign Up for Monitor')
-          ) }}
-        </div>
-
-        <div class="show-fxa-supported-signed-in">
-          {{ monitor_button(
-            entrypoint=_entrypoint,
-            entrypoint_experiment=_entrypoint_experiment,
-            entrypoint_variation=_entrypoint_variation,
-            cta_type='FxA-Monitor',
-            cta_position='Primary',
-            utm_campaign=_utm_campaign,
-            button_text=_('Sign In')
-          ) }}
+            button_class='mzp-c-button mzp-t-product mzp-t-small',
+            button_text=_('Start Syncing'),
+            style='trailhead',
+            utm_campaign=_utm_campaign)
+        }}
         </div>
       </div>
     </div>
@@ -123,5 +103,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox_whatsnew_70_variants') }}
+  {{ js_bundle('firefox_whatsnew_70_experiment_fxaform') }}
 {% endblock %}

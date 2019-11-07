@@ -56,6 +56,14 @@ if (typeof window.Mozilla === 'undefined') {
             destURL += '&utm_term=' + params.utm_term;
         }
 
+        if (params.entrypoint_experiment) {
+            destURL += '&entrypoint_experiment' + params.entrypoint_experiment;
+        }
+
+        if (params.entrypoint_variation) {
+            destURL += '&entrypoint_variation' + params.entrypoint_variation;
+        }
+
         fetch(destURL).then(function(resp) {
             return resp.json();
         }).then(function(r) {
