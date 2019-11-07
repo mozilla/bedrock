@@ -96,6 +96,10 @@ $image-path: '/media/protocol/img';
         color: $color-off-black;
     }
 
+    abbr {
+        text-decoration: none;
+    }
+
     .c-emphasis-box-logo {
         display: block;
         margin: 0 auto $spacing-lg;
