@@ -25,7 +25,7 @@
                 'v=3': 5,  // Sync, standard
                 'v=4': 5,  // Sync, emotive
                 'v=5': 5,  // Account, ETP
-                'v=6': 5,  // Account, what's actually new
+                //'v=6': 5,  // Account, what's actually new (skipped)
                 'v=7': 5,  // Account, privacy
             }
         });

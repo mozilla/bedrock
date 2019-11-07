@@ -147,6 +147,10 @@ $image-path: '/media/protocol/img';
         display: flex;
         margin-bottom: $spacing-md;
         width: $layout-md;
+
+        img {
+            margin: 0 auto;
+        }
     }
 
     &.t-adjacent {
@@ -157,11 +161,11 @@ $image-path: '/media/protocol/img';
         position: relative;
 
         .c-picto-block-image {
-            position: absolute;
             @include bidi((
                 (left, 0, auto),
                 (right, auto, 0),
             ));
+            position: absolute;
         }
 
         .c-picto-block-title,

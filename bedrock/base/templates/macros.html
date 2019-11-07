@@ -145,7 +145,7 @@
 {%- endmacro %}
 
 {# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#linking-to-accountsfirefoxcom #}
-{% macro fxa_link_fragment(entrypoint, entrypoint_experiment, entrypoint_variation, service_type='sync', action='signin', form_type='button', utm_campaign=None, utm_content=None, utm_term=None) -%}
+{% macro fxa_link_fragment(entrypoint, entrypoint_experiment=None, entrypoint_variation=None, service_type='sync', action='signin', form_type='button', utm_campaign=None, utm_content=None, utm_term=None) -%}
   {% set fxa_path = '' %}
   {% set fxa_queries = [
     'form_type=' ~ form_type,
