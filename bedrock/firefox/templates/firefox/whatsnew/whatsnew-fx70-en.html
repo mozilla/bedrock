@@ -10,6 +10,12 @@
 
 {% block page_title %}{{ _('What’s new with Firefox - More privacy, more protections.') }}{% endblock %}
 
+{% block experiments %}
+  {% if switch('experiment_firefox_whatsnew_70', ['en-US']) %}
+    {{ js_bundle('experiment_firefox_whatsnew_70') }}
+  {% endif %}
+{% endblock %}
+
 {% block page_css %}
   {{ css_bundle('firefox_whatsnew_70') }}
 {% endblock %}

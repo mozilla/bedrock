@@ -1042,6 +1042,14 @@
     },
     {
       "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/base/mozilla-client.js",
+        "js/firefox/whatsnew/experiment-whatsnew-70.js"
+      ],
+      "name": "experiment_firefox_whatsnew_70"
+    },
+    {
+      "files": [
         "js/base/uitour-lib.js",
         "js/firefox/lockwise/lockwise.js"
       ],
