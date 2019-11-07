@@ -145,9 +145,10 @@
 {%- endmacro %}
 
 {# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#linking-to-accountsfirefoxcom #}
-{% macro fxa_link_fragment(entrypoint, entrypoint_experiment, entrypoint_variation, service_type='sync', action='signin', utm_campaign=None, utm_content=None, utm_term=None) -%}
+{% macro fxa_link_fragment(entrypoint, entrypoint_experiment, entrypoint_variation, service_type='sync', action='signin', form_type='button', utm_campaign=None, utm_content=None, utm_term=None) -%}
   {% set fxa_path = '' %}
   {% set fxa_queries = [
+    'form_type=' ~ form_type,
     'entrypoint=' ~ entrypoint,
     'context=fx_desktop_v3',
     'utm_source=' ~ entrypoint,
@@ -192,8 +193,8 @@
 {%- endmacro %}
 
 {# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#linking-to-accountsfirefoxcom #}
-{% macro fxa_cta_link(entrypoint, entrypoint_experiment, entrypoint_variation, button_text, service_type='sync', action='signin', account_id=None, button_class=None, utm_campaign=None, utm_content=None, utm_term=None) %}
-  <a {{ fxa_link_fragment(entrypoint=entrypoint, entrypoint_experiment=entrypoint_experiment, entrypoint_variation=entrypoint_variation, service_type=service_type, action=action, utm_campaign=utm_campaign, utm_content=utm_content, utm_term=utm_term) }} class="js-fxa-cta-link{% if button_class %} {{ button_class }}{% endif %}" data-cta-text="Create account" data-cta-type="fxa-sync" data-cta-position="{{ button_location }}" {%if account_id %}id="{{ account_id }}"{% endif %}>
+{% macro fxa_cta_link(entrypoint, entrypoint_experiment, entrypoint_variation, button_text, form_type='button', service_type='sync', action='signin', account_id=None, button_class=None, utm_campaign=None, utm_content=None, utm_term=None) %}
+  <a {{ fxa_link_fragment(entrypoint=entrypoint, entrypoint_experiment=entrypoint_experiment, entrypoint_variation=entrypoint_variation, form_type=form_type, service_type=service_type, action=action, utm_campaign=utm_campaign, utm_content=utm_content, utm_term=utm_term) }} class="js-fxa-cta-link{% if button_class %} {{ button_class }}{% endif %}" data-cta-text="Create account" data-cta-type="fxa-sync" data-cta-position="{{ button_location }}" {%if account_id %}id="{{ account_id }}"{% endif %}>
     {{ button_text }}
   </a>
 {%- endmacro %}
