@@ -4,7 +4,7 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% from "macros-protocol.html" import call_out_compact, feature_card, picto_card, hero with context %}
+{% from "macros-protocol.html" import call_out, feature_card, picto_card, hero with context %}
 
 {% block page_title_full %}{{_('Get Firefox for your enterprise with ESR and Rapid Release')}}{% endblock %}
 {% block page_desc %}{{_('Get unmatched data protection on the release cadence that suits you with Firefox for enterprise. Download ESR and Rapid Release.')}}{% endblock %}
@@ -191,6 +191,14 @@
       </ul>
     </section>
   </div>
+
+  {% call call_out(
+    title=_('Request more information'),
+    class='enterprise-section enterprise-callout',
+    include_cta=true
+  ) %}
+    <a href="{{ url('firefox.enterprise.signup') }}" class="mzp-c-button mzp-t-product" data-cta-type="Enterprise-Sales" data-cta-position="Secondary">{{ _('Contact Sales') }}</a>
+  {% endcall %}
 
 </main>
 {% endblock %}
