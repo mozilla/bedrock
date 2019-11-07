@@ -30,9 +30,13 @@ $image-path: "/media/protocol/img";
     @include text-body-lg;
 }
 
+
 .l-compare-content {
     @include text-body-lg;
 }
+
+/* -------------------------------------------------------------------------- */
+// Summary section
 
 .compare-section-summary {
     text-align: center;
@@ -119,6 +123,24 @@ $image-path: "/media/protocol/img";
     }
 }
 
+/* -------------------------------------------------------------------------- */
+// Heading zaps ⚡️
+
+.compare-section-privacy .compare-section-header h2 strong {
+    @include zap('/media/protocol/img/zaps/zap-09.svg');
+}
+
+.compare-section-utility .compare-section-header h2 strong {
+    @include zap('/media/protocol/img/zaps/zap-07.svg');
+}
+
+.compare-section-portability .compare-section-header h2 strong {
+    @include zap('/media/protocol/img/zaps/zap-12.svg');
+}
+
+/* -------------------------------------------------------------------------- */
+// Comparison tables
+
 .mzp-u-data-table.compare-table {
     width: 100%;
     max-width: $content-lg;
@@ -189,6 +211,10 @@ $image-path: "/media/protocol/img";
     padding: 1rem 2rem;
     box-sizing: border-box;
 }
+
+/* -------------------------------------------------------------------------- */
+// Bottom mission box
+
 
 .compare-mission-section {
     text-align: center;
