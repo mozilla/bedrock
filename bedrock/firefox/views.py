@@ -605,7 +605,7 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
             template = 'firefox/whatsnew/index-lite.id.html'
         elif version.startswith('70.'):
             if locale in ['en-US', 'en-CA', 'en-GB']:
-                if variant in ['1', '2', '3', '4', '5', '6', '7']:
+                if variant in ['0', '1', '2', '3', '4', '5', '6', '7']:
                     template = 'firefox/whatsnew/exp/whatsnew-fx70-{}.html'.format(
                         variant
                     )

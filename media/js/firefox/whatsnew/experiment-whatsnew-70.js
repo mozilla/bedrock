@@ -19,7 +19,7 @@
         var wallander = new Mozilla.TrafficCop({
             id: 'experiment_firefox_whatsnew_70',
             variations: {
-                'v=0': 65, // control
+                'v=0': 5,  // control
                 'v=1': 5,  // Monitor, standard
                 'v=2': 5,  // Monitor, emotive
                 'v=3': 5,  // Sync, standard

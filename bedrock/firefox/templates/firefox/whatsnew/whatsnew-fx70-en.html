@@ -24,7 +24,6 @@
 
 {% set _entrypoint = 'mozilla.org-whatsnew70' %}
 {% set _utm_campaign = 'whatsnew70' %}
-{% set _entrypoint_variation = '0' %}
 
 {% block site_header %}{% endblock %}
 
@@ -52,7 +51,7 @@
         <div class="show-fxa-supported-signed-out show-fxa-default show-fxa-not-fx">
           {{ monitor_button(
             entrypoint=_entrypoint,
-            entrypoint_experiment=_utm_campaign,
+            entrypoint_experiment=_entrypoint_experiment,
             entrypoint_variation=_entrypoint_variation,
             cta_type='FxA-Monitor',
             cta_position='Primary',
@@ -64,7 +63,7 @@
         <div class="show-fxa-supported-signed-in">
           {{ monitor_button(
             entrypoint=_entrypoint,
-            entrypoint_experiment=_utm_campaign,
+            entrypoint_experiment=_entrypoint_experiment,
             entrypoint_variation=_entrypoint_variation,
             cta_type='FxA-Monitor',
             cta_position='Primary',
