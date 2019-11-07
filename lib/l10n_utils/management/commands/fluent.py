@@ -3,6 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from pathlib import Path
+import textwrap
 
 from django.core.management.base import BaseCommand
 
@@ -43,28 +44,27 @@ class Command(BaseCommand):
         template_parser.add_argument('template', type=Path)
 
     def handle(self, subcommand, **kwargs):
-        if subcommand in (None, 'help'):
-            return self.handle_help(**kwargs)
         if subcommand == 'recipe':
             return self.create_recipe(**kwargs)
         if subcommand == 'ftl':
             return self.create_ftl(**kwargs)
         if subcommand == 'template':
             return self.create_template(**kwargs)
+        return self.handle_help(**kwargs)
 
     def handle_help(self, **kwargs):
-        self.stdout.write('''\
-To migrate a template from .lang to Fluent, use the subcommands like so
+        self.stdout.write(textwrap.dedent('''\
+            To migrate a template from .lang to Fluent, use the subcommands like so
 
-./manage.py fluent recipe bedrock/app/templates/app/some.html
+            ./manage.py fluent recipe bedrock/app/templates/app/some.html
 
-# edit IDs in lib/fluent_migrations/app/some.py
+            # edit IDs in lib/fluent_migrations/app/some.py
 
-./manage.py fluent template bedrock/app/templates/app/some.html
-./manage.py fluent ftl bedrock/app/templates/app/some.html
+            ./manage.py fluent template bedrock/app/templates/app/some.html
+            ./manage.py fluent ftl bedrock/app/templates/app/some.html
 
-More documentation on https://bedrock.readthedocs.io/en/latest/fluent-conversion.html.
-        ''')
+            More documentation on https://bedrock.readthedocs.io/en/latest/fluent-conversion.html.
+        '''))
 
     def create_recipe(self, template, **kwargs):
         from ._fluent_recipe import Recipe
