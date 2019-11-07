@@ -103,7 +103,7 @@ Server architecture
   bedrock repo that matches a specific naming convention (the branch name must start with
   ``demo/``). Jenkins will then automate spinning up a demo instance based on that
   branch. For example, pushing a branch named ``demo/feature`` would create a demo
-  instance with the following URL: ``https://bedrock-demo-feature.us-west.moz.works/``
+  instance with the following URL: ``https://bedrock-demo-feature.oregon-b.moz.works/``
 - *Bedrock locales:* dev repo
 - *Bedrock Git branch:* any branch named starting with ``demo/``
 
