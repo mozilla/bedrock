@@ -150,9 +150,6 @@ $image-path: '/media/protocol/img';
     }
 
     &.t-adjacent {
-        // display: grid;
-        // grid-gap: 0 $spacing-lg;
-        // grid-template-columns: $layout-lg 1fr;
         @include bidi((
             (padding-left, $layout-xl, 0),
             (padding-right, 0, $layout-xl),
