@@ -494,6 +494,15 @@ def show_57_dev_firstrun(version):
     return version >= Version('57.0')
 
 
+def show_70_0_2_whatsnew(oldversion):
+    try:
+        oldversion = Version(oldversion)
+    except ValueError:
+        return False
+
+    return oldversion >= Version('70.0')
+
+
 def redirect_old_firstrun(version):
     try:
         version = Version(version)
@@ -603,6 +612,8 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
             template = 'firefox/whatsnew/index.html'
         elif locale == 'id':
             template = 'firefox/whatsnew/index-lite.id.html'
+        elif version == '70.0.2' and show_70_0_2_whatsnew(oldversion):
+            template = 'firefox/whatsnew/index.html'
         elif version.startswith('70.'):
             if locale in ['en-US', 'en-CA', 'en-GB']:
                 if variant in ['0', '1', '2', '3', '4', '5', '6', '7']:
