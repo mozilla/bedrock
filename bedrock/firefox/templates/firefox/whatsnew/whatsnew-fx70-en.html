@@ -24,7 +24,6 @@
 
 {% set _entrypoint = 'mozilla.org-whatsnew70' %}
 {% set _utm_campaign = 'whatsnew70' %}
-{% set _entrypoint_experiment = None %}
 
 {% block site_header %}{% endblock %}
 
@@ -49,11 +48,10 @@
         </h2>
         <p>{{ _('Use Firefox Monitor to see if your info was compromised in another company’s data breach — and automatically get alerts when your info might be at risk.') }}</p>
 
+      {% block monitor_cta %}
         <div class="show-fxa-supported-signed-out show-fxa-default show-fxa-not-fx">
           {{ monitor_button(
             entrypoint=_entrypoint,
-            entrypoint_experiment=_entrypoint_experiment,
-            entrypoint_variation=_entrypoint_variation,
             cta_type='FxA-Monitor',
             cta_position='Primary',
             utm_campaign=_utm_campaign,
@@ -64,14 +62,13 @@
         <div class="show-fxa-supported-signed-in">
           {{ monitor_button(
             entrypoint=_entrypoint,
-            entrypoint_experiment=_entrypoint_experiment,
-            entrypoint_variation=_entrypoint_variation,
             cta_type='FxA-Monitor',
             cta_position='Primary',
             utm_campaign=_utm_campaign,
             button_text=_('Sign In')
           ) }}
         </div>
+      {% endblock %}
       </div>
     </div>
   </section>
