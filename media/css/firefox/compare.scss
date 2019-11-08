@@ -15,12 +15,24 @@ $image-path: "/media/protocol/img";
     margin-bottom: $spacing-xl;
 }
 
-.compare-hero .mzp-c-hero-image img {
-    bottom: auto;
-    top: $layout-xl;
+.compare-hero {
+    .mzp-c-hero-title {
+        @include text-display-md;
+    }
+
+    .mzp-c-hero-image img {
+        bottom: auto;
+        top: $layout-xl;
+        max-width: 395px;
+        @media #{$mq-lg} {
+            max-width: 490px;
+        }
+    }
 }
 
 .compare-hero-subtitle {
+    @include font-firefox;
+    @include text-body-lg;
     font-weight: bold;
     color: #a64ec4;
     text-transform: uppercase;
@@ -30,16 +42,15 @@ $image-path: "/media/protocol/img";
     @include text-body-lg;
 }
 
-
 .l-compare-content {
     @include text-body-lg;
+    padding-top: $layout-lg;
 }
 
 /* -------------------------------------------------------------------------- */
 // Summary section
 
 .compare-section-summary {
-    text-align: center;
     display: flex;
     flex-direction: column;
     @media #{$mq-md} {
@@ -60,7 +71,7 @@ $image-path: "/media/protocol/img";
     @include font-firefox;
     p {
         margin-bottom: $spacing-2xl;
-        @include text-display-xs;
+        @include font-size(24px);
         line-height: 1.3;
         @media #{$mq-md} {
             width: 50%;
@@ -127,15 +138,15 @@ $image-path: "/media/protocol/img";
 // Heading zaps ⚡️
 
 .compare-section-privacy .compare-section-header h2 strong {
-    @include zap('/media/protocol/img/zaps/zap-09.svg');
+    @include zap("/media/protocol/img/zaps/zap-09.svg");
 }
 
 .compare-section-utility .compare-section-header h2 strong {
-    @include zap('/media/protocol/img/zaps/zap-07.svg');
+    @include zap("/media/protocol/img/zaps/zap-07.svg");
 }
 
 .compare-section-portability .compare-section-header h2 strong {
-    @include zap('/media/protocol/img/zaps/zap-12.svg');
+    @include zap("/media/protocol/img/zaps/zap-12.svg");
 }
 
 /* -------------------------------------------------------------------------- */
@@ -214,7 +225,6 @@ $image-path: "/media/protocol/img";
 
 /* -------------------------------------------------------------------------- */
 // Bottom mission box
-
 
 .compare-mission-section {
     text-align: center;
