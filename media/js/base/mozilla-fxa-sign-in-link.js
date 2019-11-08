@@ -5,9 +5,6 @@
 (function() {
     'use strict';
 
-    var fxaSigninLink = document.querySelector('.fxa-signin a');
-    var fxaSigninURI = fxaSigninLink.href;
-
     // Remove a given paramater from a URL query string
     // Taken from https://stackoverflow.com/questions/16941104/remove-a-parameter-to-the-url-with-javascript
     function removeParam(key, sourceURL) {
@@ -31,14 +28,23 @@
 
     // Sync is Firefox only so remove the Sync params for non-Firefoxes
     if (!Mozilla.Client.isFirefox) {
-        // First remove the context param
-        var revisedFxaSigninURI = removeParam('context', fxaSigninURI);
+        var fxaSigninLink = document.querySelectorAll('.fxa-signin > a');
+        var fxaSigninURI;
+        var revisedFxaSigninURI;
+        var finalFxaSigninURI;
 
-        // Then remove the service param
-        var finalFxaSigninURI = removeParam('service', revisedFxaSigninURI);
+        for (var i = 0; i < fxaSigninLink.length; i++) {
+            fxaSigninURI = fxaSigninLink[i].href;
 
-        // Set the link
-        fxaSigninLink.href = finalFxaSigninURI;
+            // First remove the context param
+            revisedFxaSigninURI = removeParam('context', fxaSigninURI);
+
+            // Then remove the service param
+            finalFxaSigninURI = removeParam('service', revisedFxaSigninURI);
+
+            // Set the link
+            fxaSigninLink[i].href = finalFxaSigninURI;
+        }
     }
 })();
 
