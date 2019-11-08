@@ -76,17 +76,18 @@ $image-path: '/media/protocol/img';
 
         .mzp-c-hero-image {
             display: block;
+            margin-top: 65px;
 
             img {
+                top: 0;
                 bottom: auto;
-                top: 70px;
             }
         }
     }
 
     @media #{$mq-lg} {
-        .mzp-c-hero-image img {
-            top: 100px;
+        .mzp-c-hero-image {
+            margin-top: 90px;
         }
     }
 }
