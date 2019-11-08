@@ -32,7 +32,7 @@ $image-path: "/media/protocol/img";
 
 .compare-hero-subtitle {
     @include font-firefox;
-    @include text-body-lg;
+    @include text-body-sm;
     font-weight: bold;
     color: #a64ec4;
     text-transform: uppercase;
@@ -114,7 +114,9 @@ $image-path: "/media/protocol/img";
 
 .compare-privacy-image {
     display: block;
-    margin: $spacing-2xl auto $spacing-2xl;
+    margin: $spacing-2xl auto;
+    max-width: 336px;
+
 }
 
 .compare-section-header {
@@ -123,12 +125,12 @@ $image-path: "/media/protocol/img";
     margin: 120px auto 80px;
 
     h2 {
-        @include text-display-md;
+        @include text-display-sm;
         margin-bottom: 36px;
     }
 
     p {
-        @include text-display-sm;
+        @include text-display-xs;
         @include font-firefox;
         font-weight: bold;
     }
@@ -232,6 +234,10 @@ $image-path: "/media/protocol/img";
     padding: $layout-lg $layout-sm;
     border-radius: 0.5rem;
     margin: $layout-lg auto;
+
+    h3 {
+        @include text-display-sm;
+    }
 
     h3,
     p {
