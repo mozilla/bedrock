@@ -17,7 +17,10 @@ $image-path: "/media/protocol/img";
 
 .compare-hero {
     .mzp-c-hero-title {
-        @include text-display-md;
+        @include font-size(40px);
+        @media #{$mq-lg} {
+            @include font-size(48px);
+        }
     }
 
     .mzp-c-hero-image img {
@@ -36,7 +39,7 @@ $image-path: "/media/protocol/img";
     font-weight: bold;
     color: #a64ec4;
     text-transform: uppercase;
-    @media #{$mq-md} {
+    @media #{$mq-lg} {
         @include text-body-lg;
     }
 }
@@ -127,13 +130,19 @@ $image-path: "/media/protocol/img";
     margin: 120px auto 80px;
 
     h2 {
-        @include text-display-sm;
+        @include font-size(32px);
+        @media #{$mq-lg} {
+            @include font-size(40px);
+        }
         margin-bottom: 36px;
     }
 
     p {
         @include text-display-xs;
-        @include font-firefox;
+        @include font-size(24px);
+        @media #{$mq-lg} {
+            @include font-size(32px);
+        }
         font-weight: bold;
     }
 }
@@ -248,6 +257,10 @@ $image-path: "/media/protocol/img";
 
     h3 {
         @include text-display-sm;
+        @include font-size(32px);
+        @media #{$mq-lg} {
+            @include font-size(40px);
+        }
     }
 
     h3,
