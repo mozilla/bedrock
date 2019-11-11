@@ -11,10 +11,6 @@ $image-path: "/media/protocol/img";
 /* -------------------------------------------------------------------------- */
 // Hero
 
-.compare-hero-wordmark {
-    margin-bottom: $spacing-xl;
-}
-
 .compare-hero {
     .mzp-c-hero-title {
         @include font-size(40px);
