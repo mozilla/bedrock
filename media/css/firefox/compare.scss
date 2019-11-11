@@ -21,12 +21,9 @@ $image-path: "/media/protocol/img";
 
     .mzp-c-hero-image img {
         bottom: auto;
-        top: $layout-xl;
-        width: 395px;
+        top: $layout-sm;
+        width: 550px;
         max-width: 100%;
-        @media #{$mq-lg} {
-            max-width: 490px;
-        }
     }
 }
 
@@ -48,6 +45,9 @@ $image-path: "/media/protocol/img";
 .l-compare-content {
     @include text-body-lg;
     padding-top: $layout-lg;
+    @media #{$mq-lg} {
+        padding-top: $layout-xs;
+    }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -92,6 +92,12 @@ $image-path: "/media/protocol/img";
         @media #{$mq-lg} {
             width: auto;
         }
+        img {
+            display: block;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
     @media #{$mq-md} {
         flex-direction: row;
@@ -118,7 +124,10 @@ $image-path: "/media/protocol/img";
 .compare-privacy-image {
     display: block;
     margin: $spacing-2xl auto;
-    width: 336px;
+    width: 350px;
+    @media #{$mq-md} {
+        width: 400px;
+    }
 }
 
 .compare-section-header {
@@ -236,7 +245,7 @@ $image-path: "/media/protocol/img";
 }
 
 .compare-section-privacy-pullquote {
-    @include text-display-xs;
+    @include font-size(24px);
     border-left-color: $color-pink-50;
     padding: 1rem 2rem;
     box-sizing: border-box;
