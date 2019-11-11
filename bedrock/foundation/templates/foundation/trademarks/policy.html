@@ -31,7 +31,7 @@
 
     <li>{{ _('Describe a Firefox Add-on in accordance with the <a href="#firefox-add-on">Firefox Add-on Guidelines</a>.') }}</li>
 
-    <li>{{ _('Use Mozilla wordmarks to explain disclose that your software is based on Mozilla’s open source code, or is compatible with Mozilla’s software, in accordance with the <a href="#open-source-guidelines">Open Source Project Guidelines</a> below.') }}
+    <li>{{ _('Use Mozilla wordmarks to explain that your software is based on Mozilla’s open source code, or is compatible with Mozilla’s software, in accordance with the <a href="#open-source-guidelines">Open Source Project Guidelines</a> below.') }}
 
     <li>{{ _('Describe a social media account, page, or community in accordance with the <a href="#social-media">Social Media Guidelines</a>.') }}</li>
 
@@ -98,7 +98,7 @@
 
   <h4 id="logo-guidelines">{{ _('Mozilla Logo and Firefox Logo Guidelines') }}</h4>
 
-  <p>{{ _('If your use of a logo is permitted under the General Guidelines above, hen please refer to the Mozilla Style Guide for detailed information on proper usage.') }}</p>
+  <p>{{ _('If your use of a logo is permitted under the General Guidelines above, then please refer to the Mozilla Style Guide for detailed information on proper usage.') }}</p>
 
   <p>{{ _('Mozilla Logo:') }} <a href="https://mozilla.design/mozilla/logo-usage/">https://mozilla.design/mozilla/logo-usage/</a></p>
 
@@ -128,11 +128,10 @@
 
   <h4 id="open-source-guidelines">{{ _('Open Source Project Guidelines') }}</h4>
 
-  <p>{% trans %}The specific license for each of Mozilla’s software products and code says what you can and cannot do with the code itself but does not give permission to use Mozilla’s trademarks. If you choose to build on or modify Mozilla’s open source code for your own project.{% endtrans %}</p>
-  
+  <p>{% trans %}The specific license for each of Mozilla’s software products and code says what you can and cannot do with the code itself but does not give permission to use Mozilla’s trademarks. If you choose to build on or modify Mozilla’s open source code for your own project,{% endtrans %}</p>
   <h4>{{ _('You Must:') }}</h4>
 
-  <ul>
+  <ul class="mzp-u-list-styled">
   
     <li>{{ _('Follow the terms of the Open Source License(s) for Mozilla software products and code.') }}</li>
 
@@ -144,12 +143,13 @@
 
   <h4>{{ _('You Must NOT:') }}</h4>
 
-  <ul>
+  <ul class="mzp-u-list-styled">
 
     <li>{{ _('Use any Mozilla trademark in connection with the user-facing name or branding of your project.') }}</li>
 
     <li>{{ _('Use any Mozilla trademark or any part of any Mozilla trademark to incorrectly suggest or give the impression your software is actually published by, affiliated with, or endorsed by Mozilla.') }}
-
+      <br>
+      <br>
       <p>{{ _('For example, please do not name your project, [Something]-fox, Moz-[Something], or [Something]-zilla. ') }}</p>
 
     </li>
@@ -158,30 +158,24 @@
 
   <h4>{{ _('You May:') }}</h4>
 
-  <ul>
+  <ul class="mzp-u-list-styled">
 
     <li>{{ _('State in words (not using logos or images) that your product “works with” or “is compatible” with certain Mozilla software products, if that is true. ') }}</li>
 
     <li>{{ _('State in words (not using logos or images) that your project is based on Mozilla open source technology, if that is true, as long as you also include a statement that your project is not officially associated with Mozilla or its products. ') }}
-
-      <p>{{ _('For instance, you may state that your project:') }}</p>
-
+      <br>
+      <br>
+      <p class="no-line-spaceing">{{ _('For instance, you may state that your project:') }}</p>
       <ul>
-
         <li>{{ _('“is proudly built from Mozilla’s open source GeckoView software”') }}</li>
-
         <li>{{ _('“adapted from Mozilla’s open source Boot2Gecko”') }}</li>
-
       </ul>
 
-      <p>{{ _('as long as you also include the statement equally prominently: ') }}</p>
-
+      <br>
+      <p class="no-line-spaceing">{{ _('as long as you also include the statement equally prominently: ') }}</p>
       <ul>
-
         <li>{{ _('“[Brand Name] and [Product Name] are not officially associated with Mozilla or its products.”') }}</li>
-
       </ul>
-
     </li>
 
   </ul>
@@ -192,9 +186,9 @@
 
   <p>{{ _('You may state in words (not using logos or images) that your product or service features or provides access to unaltered Mozilla software, if this is true.') }}
 
-  <p>{{ _('For example: ') }}</p>
+  <p class="no-line-spaceing" >{{ _('For example: ') }}</p>
 
-  <p>{{ _('Acceptable: [Your Product Name] featuring Mozilla’s Firefox browser') }}</p>
+  <p class="no-line-spaceing" >{{ _('Acceptable: [Your Product Name] featuring Mozilla’s Firefox browser') }}</p>
 
   <p>{{ _('Incorrect: Firefox [Your Product Name]') }}</p>
 
