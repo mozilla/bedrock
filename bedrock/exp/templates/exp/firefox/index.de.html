@@ -101,6 +101,7 @@
               <li class="mzp-c-menu-list-item"><a href="{{ url('firefox.new') }}">Browser downloaden</a></li>
             <![endif]-->
             <!--[if !IE]><!-->
+              {# Download link should be locale neutral see issue 7982 #}
               <li class="mzp-c-menu-list-item"><a href="/firefox/download/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard">Desktop</a></li>
             <!--<![endif]-->
             <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('android', 'firefox_home') }}" rel="external noopener" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android"> Android</a></li>
