@@ -10,9 +10,9 @@ if (typeof window.Mozilla === 'undefined') {
 (function() {
     'use strict';
 
-    var MonitorButton = {};
+    var FxaProductButton = {};
 
-    MonitorButton.init = function() {
+    FxaProductButton.init = function() {
         var buttons;
 
         // Exit if no fetch support
@@ -22,8 +22,8 @@ if (typeof window.Mozilla === 'undefined') {
             return;
         }
 
-        // Collect all monitor buttons
-        buttons = document.getElementsByClassName('js-monitor-button');
+        // Collect all Fxa product buttons
+        buttons = document.getElementsByClassName('js-fxa-product-button');
 
         // Exit if no valid button in DOM
         if (buttons.length === 0) {
@@ -83,6 +83,6 @@ if (typeof window.Mozilla === 'undefined') {
         });
     };
 
-    window.Mozilla.MonitorButton = MonitorButton;
+    window.Mozilla.FxaProductButton = FxaProductButton;
 })();
 

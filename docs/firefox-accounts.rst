@@ -228,8 +228,8 @@ The templates's respective JavaScript bundle should also include the following d
 
 .. code-block:: text
 
-    js/base/mozilla-monitor-button.js
-    js/base/mozilla-monitor-button-init.js
+    js/base/mozilla-fxa-product-button.js
+    js/base/mozilla-fxa-product-button-init.js
 
 This script will automatically handle things like tracking metrics flow (in the same way we do for https://accounts.firefox.com).
 
@@ -275,7 +275,7 @@ Invoking the macro will automatically include a set of default UTM parameters as
 Tracking Sign-ups / Sign-ins
 ----------------------------
 
-For both Firefox Accounts form submissions and Firefox Monitor referrals, we also pass ``device_id``, ``flow_id`` and ``flow_begin_time`` parameters to track top-of-funnel metrics. These are values fetched from a metrics flow API endpoint, and are instered back into the form / link along with the other standard referral parameters. This functionality is handled by ``mozilla-fxa-form.js`` and ``mozilla-monitor-button.js`` respectively.
+For both Firefox Accounts form submissions and Firefox Monitor referrals, we also pass ``device_id``, ``flow_id`` and ``flow_begin_time`` parameters to track top-of-funnel metrics. These are values fetched from a metrics flow API endpoint, and are instered back into the form / link along with the other standard referral parameters. This functionality is handled by ``mozilla-fxa-form.js`` and ``mozilla-fxa-product-button.js`` respectively.
 
 .. Important::
 
