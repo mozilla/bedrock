@@ -1597,6 +1597,8 @@
     {
       "files": [
         "js/base/mozilla-lazy-load.js",
+        "js/base/mozilla-fxa-product-button.js",
+        "js/base/mozilla-fxa-product-button-init.js",
         "js/firefox/pocket.js"
       ],
       "name": "product_pocket"

@@ -718,3 +718,43 @@ def lockwise_adjust_url(ctx, redirect, adgroup, creative=None):
     locale = getattr(ctx['request'], 'locale', 'en-US')
 
     return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, adgroup, creative)
+
+
+def _fxa_product_button(product_url, entrypoint, button_text, class_name=None, optional_parameters=None, optional_attributes=None):
+    href = f'{product_url}?entrypoint={entrypoint}&form_type=button&utm_source={entrypoint}&utm_medium=refferal'
+    css_class = 'js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product'
+    attrs = ''
+
+    if optional_parameters:
+        params = '&'.join('%s=%s' % (param, val) for param, val in optional_parameters.items())
+        href += f'&{params}'
+
+    if optional_attributes:
+        attrs += ' '.join('%s="%s"' % (attr, val) for attr, val in optional_attributes.items())
+
+    if class_name:
+        css_class += f' {class_name}'
+
+    markup = (f'<a href="{href}" data-action="{settings.FXA_ENDPOINT}" class="{css_class}" {attrs}>'
+              f'{button_text}'
+              f'</a>')
+
+    return jinja2.Markup(markup)
+
+
+@library.global_function
+@jinja2.contextfunction
+def pocket_fxa_button(ctx, entrypoint, button_text, class_name=None, optional_parameters=None, optional_attributes=None):
+    """
+    Render a getpocket.com link with required params for FxA authentication.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ pocket_fxa_button(entrypoint='mozilla.org-firefox-pocket', button_text='Try Pocket Now') }}
+    """
+    product_url = 'https://getpocket.com/ff_signup'
+    return _fxa_product_button(product_url, entrypoint, button_text, class_name, optional_parameters, optional_attributes)

@@ -1,6 +1,6 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
-  # License, v. 2.0. If a copy of the MPL was not distributed with this
-  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros-protocol.html" import hero with context %}
 
@@ -15,6 +15,7 @@
 
 {% block body_class %}{{ super() }} welcome-page2{% endblock %}
 
+{% set _source = 'ffwelcome2' %}
 {% set _entrypoint = 'mozilla.org-firefox-welcome-2' %}
 {% set _utm_campaign = 'welcome-2-pocket' %}
 
@@ -28,7 +29,7 @@
   ) %}
 
     <p class="primary-cta">
-      <a class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product" href="https://getpocket.com/ff_signup?s=ffwelcome2&form_type=button&entrypoint={{ _entrypoint }}&utm_source={{ _entrypoint }}&utm_campaign={{ _utm_campaign }}&utm_medium=referral" data-action="{{ settings.FXA_ENDPOINT }}" data-cta-text="activate pocket" data-cta-type="fxa-pocket" data-cta-position="primary" rel="external noopener">{{ _('Activate Pocket') }}</a>
+      {{ pocket_fxa_button(entrypoint=_entrypoint, button_text=_('Activate Pocket'), optional_parameters={'s': _source, 'utm_campaign': _utm_campaign}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}
     </p>
   {% endcall %}
 {% endblock %}
@@ -73,7 +74,7 @@
 
 {% block secondary_cta %}
   <p class="secondary-cta">
-    <a class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product" href="https://getpocket.com/ff_signup?s=ffwelcome2&form_type=button&entrypoint={{ _entrypoint }}&utm_source={{ _entrypoint }}&utm_campaign={{ _utm_campaign }}&utm_medium=referral" data-action="{{ settings.FXA_ENDPOINT }}" data-cta-text="activate pocket" data-cta-type="fxa-pocket" data-cta-position="secondary" rel="external noopener">{{ _('Activate Pocket') }}</a>
+    {{ pocket_fxa_button(entrypoint=_entrypoint, button_text=_('Activate Pocket'), optional_parameters={'s': _source, 'utm_campaign': _utm_campaign}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'secondary'}) }}
   </p>
 {% endblock %}
 
