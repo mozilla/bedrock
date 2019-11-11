@@ -61,8 +61,6 @@ $image-path: '/media/protocol/img';
 // Main content section
 
 .main-content {
-    background: $color-off-black url('/media/img/firefox/whatsnew/whatsnew_background.svg') no-repeat;
-    @include background-size(100%);
     color: $color-white;
     text-align: center;
 
@@ -108,6 +106,11 @@ $image-path: '/media/protocol/img';
             padding-top: $layout-lg;
         }
     }
+}
+
+.content-wrapper {
+    background: $color-off-black url('/media/img/firefox/whatsnew/whatsnew_background.svg') no-repeat;
+    @include background-size(100%);
 }
 
 .send-to-device-form .inline-field {
