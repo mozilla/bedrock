@@ -61,7 +61,6 @@ $image-path: '/media/protocol/img';
 // Main content section
 
 .main-content {
-    @include background-size(100%);
     color: $color-white;
     text-align: center;
 
