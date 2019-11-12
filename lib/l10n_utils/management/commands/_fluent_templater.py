@@ -4,7 +4,10 @@
 
 from ._fluent import (
     get_migration_context,
+    strip_whitespace,
+    trans_to_lang,
     GETTEXT_RE,
+    TRANS_BLOCK_RE,
 )
 
 
@@ -17,7 +20,8 @@ class Templater:
         self.dependencies.update(self.get_dependencies(template))
         with template.open('r') as tfp:
             template_str = tfp.read()
-        template_str = GETTEXT_RE.sub(self.to_fluent, template_str)
+        template_str = GETTEXT_RE.sub(self.gettext_to_fluent, template_str)
+        template_str = TRANS_BLOCK_RE.sub(self.trans_to_fluent, template_str)
         outname = template.stem + '_ftl.html'
         with template.with_name(outname).open('w') as tfp:
             tfp.write(template_str)
@@ -30,7 +34,20 @@ class Templater:
                 deps[lang_string] = fluent_id
         return deps
 
-    def to_fluent(self, m):
-        if not m.group('string') in self.dependencies:
+    def gettext_to_fluent(self, m):
+        lang_id = strip_whitespace(m['string'])
+        if not lang_id in self.dependencies:
             return m.group()
-        return f"ftl('{self.dependencies[m.group('string')]}')"
+        args = ''
+        if m['args']:
+            args = ', ' + m['args']
+        return f"ftl('{self.dependencies[lang_id]}'{args})"
+
+    def trans_to_fluent(self, m):
+        lang_id = trans_to_lang(m['string'])
+        if not lang_id in self.dependencies:
+            return m.group()
+        args = ''
+        if m['args']:
+            args = ', ' + m['args']
+        return f"{{ ftl('{self.dependencies[lang_id]}'{args}) }}"
