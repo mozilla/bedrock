@@ -54,5 +54,5 @@ if ( config.apps ) {
 }
 if ( tested_apps ) {
     // huge success \o/
-    utils.slackNotification([message: "All tests passed: ${tested_apps.join(', ')}", status: 'success'])
+    utils.slackNotification([stage: "All tests passed: ${tested_apps.join(', ')}", status: 'success'])
 }
