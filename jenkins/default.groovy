@@ -81,7 +81,7 @@ if ( config.apps ) {
                     } else if (region.config_repo){
                         utils.deploy(region, config, appname, stageName, namespace)
                     }
-                    utils.slackNotification([message: appURL, status: 'shipped'])
+                    utils.slackNotification([stage: appURL, status: 'shipped'])
                 }
                 if ( config.integration_tests ) {
                     // queue up test closures
@@ -111,6 +111,6 @@ if ( config.apps ) {
     }
     if ( tested_apps ) {
         // huge success \o/
-        utils.slackNotification([message: "All tests passed: ${tested_apps.join(', ')}", status: 'success'])
+        utils.slackNotification([stage: "All tests passed: ${tested_apps.join(', ')}", status: 'success'])
     }
 }
