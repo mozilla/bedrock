@@ -252,6 +252,9 @@ $image-path: "/media/protocol/img";
     border-left-color: $color-pink-50;
     padding: 1rem 2rem;
     box-sizing: border-box;
+    p {
+        max-width: 19.5em;
+    }
 }
 
 /* -------------------------------------------------------------------------- */
