@@ -36,7 +36,7 @@ class Templater:
 
     def gettext_to_fluent(self, m):
         lang_id = strip_whitespace(m['string'])
-        if not lang_id in self.dependencies:
+        if lang_id not in self.dependencies:
             return m.group()
         args = ''
         if m['args']:
@@ -45,7 +45,7 @@ class Templater:
 
     def trans_to_fluent(self, m):
         lang_id = trans_to_lang(m['string'])
-        if not lang_id in self.dependencies:
+        if lang_id not in self.dependencies:
             return m.group()
         args = ''
         if m['args']:
