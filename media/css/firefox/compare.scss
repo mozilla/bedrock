@@ -68,7 +68,6 @@ $image-path: "/media/protocol/img";
 .compare-section-summary-intro {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     margin-bottom: $spacing-xl;
     align-items: center;
     @include font-firefox;
