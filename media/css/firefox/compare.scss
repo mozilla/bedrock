@@ -93,9 +93,13 @@ $image-path: "/media/protocol/img";
         }
         img {
             display: block;
-            width: 90%;
+            width: 350px;
+            max-width: 100%;
             margin-left: auto;
             margin-right: auto;
+            @media #{$mq-md} {
+                width: 90%;
+            }
         }
     }
     @media #{$mq-md} {
