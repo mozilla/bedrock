@@ -12,10 +12,12 @@ from django.utils.text import slugify
 
 from ._fluent import (
     migration_name,
+    trans_to_lang,
     ADD_LANG_RE,
     GETTEXT_RE,
     TRANS_BLOCK_RE,
 )
+from lib.l10n_utils.utils import strip_whitespace
 
 
 STR_VARIABLE_RE = re.compile(r'%(?P<var>\(\w+\))?s')
@@ -105,14 +107,19 @@ class Recipe:
         )
 
     def get_lang_ids(self, template_str):
-        normalize = re.compile('\n *')
         found = []
-        found.extend(GETTEXT_RE.finditer(template_str))
-        found.extend(TRANS_BLOCK_RE.finditer(template_str))
-        found.sort(key=lambda m: m.start())
+        found.extend(
+            (m.start(), strip_whitespace(m['string']), m['args'])
+            for m in GETTEXT_RE.finditer(template_str)
+        )
+        found.extend(
+            (m.start(), trans_to_lang(m['string']), m['args'])
+            for m in TRANS_BLOCK_RE.finditer(template_str)
+        )
+        found.sort(key=lambda t: t[0])
         return {
-            normalize.sub(' ', m.group('string')): m.groupdict()
-            for m in found
+            string: args
+            for pos, string, args in found
         }
 
     def get_ids_for_file(self, lang_ids, lang_files):

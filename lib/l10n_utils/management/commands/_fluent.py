@@ -7,6 +7,7 @@ import re
 
 from django.conf import settings
 
+from lib.l10n_utils.utils import strip_whitespace
 from fluent.migrate.context import MergeContext
 
 
@@ -40,9 +41,18 @@ def get_migration_context(recipe_or_template, locale='en'):
     return context
 
 
-ADD_LANG_RE = re.compile(r'{% add_lang_files (.*?) %}')
+def trans_to_lang(string):
+    string = strip_whitespace(string)
+    return TRANS_PLACEABLE_RE.sub(
+        lambda m: '%({})s'.format(m.group('var')),
+        string
+    )
+
+
+ADD_LANG_RE = re.compile(r'{% (?:add|set)_lang_files (.*?) %}')
 GETTEXT_RE = re.compile(r'\b_\([\'"](?P<string>.+?)[\'"]\)'
                         r'(\s*\|\s*format\((?P<args>\w.+?)\))?', re.S)
 TRANS_BLOCK_RE = re.compile(r'{%-?\s+trans\s+((?P<args>\w.+?)\s+)?-?%\}\s*'
                             r'(?P<string>.+?)'
                             r'\s*{%-?\s+endtrans\s+-?%\}', re.S)
+TRANS_PLACEABLE_RE = re.compile(r'{{\s*(?P<var>\w+)\s*}}')
