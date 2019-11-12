@@ -17,7 +17,6 @@ class FTLCreator:
         no_reference = locale == 'en'
         context = get_migration_context(recipe_or_template, locale=locale)
         if no_reference:
-            context.create_references_from_transforms()
             base = settings.FLUENT_LOCAL_PATH
         else:
             base = settings.FLUENT_REPO_PATH
