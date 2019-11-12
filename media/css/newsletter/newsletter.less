@@ -168,6 +168,10 @@ body {
                 text-align: center;
             }
 
+            .subscription td {
+                min-width: 75px;
+            }
+
             .indented {
                 th {
                     padding-left: 24px;
@@ -400,7 +404,6 @@ body {
     }
 
     #existing-newsletter-form {
-        display: inline-block;
 
         #basic-settings,
         #default-newsletters,
@@ -415,6 +418,15 @@ body {
             .table thead th {
                 display: none;
             }
+        }
+    }
+
+    #default-newsletters .table tbody .subscription td {
+        display: block;
+        min-width: 0;
+
+        &:last-child {
+            border-top: none;
         }
     }
 
