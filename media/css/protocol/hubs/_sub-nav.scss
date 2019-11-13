@@ -5,7 +5,7 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../protocol/css/includes/lib';
+@import '../../../protocol/css/includes/lib';
 
 .moz-sub-nav {
     @include clearfix();
