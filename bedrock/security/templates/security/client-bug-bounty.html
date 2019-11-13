@@ -8,13 +8,13 @@
     <h1 class="mzp-c-article-title">Client Bug Bounty Program</h1>
   </header>
 
-  <h2>Introduction</h2>
+  <h2 id="intro">Introduction</h2>
 
   <p>The Mozilla Client Security Bug Bounty Program is designed to encourage security research in Mozilla software and to reward those who help us create the safest Internet software in existence.</p>
 
-  <p><strong>Guidelines:</strong> In addition to our <a href="{{ url('security.bug-bounty') }}">general eligibility requirements</a>, a security bug must be a remote exploit, the cause of a privilege escalation, or an information leak.</p>
+  <p><strong>Guidelines:</strong> In addition to our <a href="{{ url('security.bug-bounty') }}">general eligibility requirements</a>, submissions must be either a <a href="#static-analysis-bounty">static analysis submission</a> or a <a href="#security-vulnerability-bounty">security bug</a> demonstrating the ability to perform an unauthorized action or obtain access to otherwise-restricted information.</p>
 
-  <h2>Reward Guidelines</h2>
+  <h2 id="security-vulnerability-bounty">Security Vulnerability Bounty</h2>
 
   <p>Mozilla will pay a bounty for client and security bugs as detailed below. All security bugs must follow the following general criteria to be eligible:</p>
 
@@ -22,9 +22,10 @@
     <li>Eligible security bugs may be present in any of the current main development or released versions of Firefox or Firefox for Android as released by Mozilla Corporation (e.g. Nightly mozilla-central or Beta test versions, as well as the final release product versions).</li>
     <li>The security rating given by the Bounty Committee for a bug must be rated a "sec-critical" or a "sec-high" in order for it to be eligible for a bounty. Some "sec-moderate" bugs may be eligible for the bounty as well. (See <a href="https://wiki.mozilla.org/Security_Severity_Ratings">Security Ratings</a> for details of the rating qualifications.)</li>
     <li>All bounties paid will be at the discretion of the Mozilla Bounty Committee. The committee will evaluate the severity of reported issues with the help of engineers who work on the affected code. Security researchers are invited to participate in the assignment of ratings, but final decisions on the rating are at the discretion of the Bounty Committee.</li>
+    <li>Submissions should be made following <a href="#claiming-a-bounty">our instructions below</a>.</li>
   </ul>
 
-  <h2>Rewards Amount</h2>
+  <h4 id="security-vulnerability-amounts">Rewards Amount</h4>
 
   <p>The bounty for valid potentially exploitable critical and high security rated client security vulnerabilities will be between $3000 and $7500 (USD) cash reward. The bounty program encourages the earliest possible reporting of these potentially exploitable bugs.  A bounty may be paid for some moderate rated client security bugs at the discretion of the Bug Bounty Committee. If a bounty is paid for a moderate rated security issue, the amount will be between $500 and $2000 (US), depending on the severity of impact for the issue as determined by Bug Bounty Committee.</p>
 
@@ -43,7 +44,7 @@
       <th>Novel vulnerability and exploit, new form of exploitation or an exceptional vulnerability</th>
       <th>High quality bug report with clearly exploitable critical vulnerability<sub>1</sub></th>
       <th>High quality bug report of a critical or high vulnerability<sub>2</sub></th>
-      <th>Minimum for a high or critical vulnerability<sub>3</sub></th>
+      <th>Typical minimum for a high or critical vulnerability<sub>3</sub></th>
       <th>Medium vulnerability</th>
     </tr>
   </thead>
@@ -63,16 +64,44 @@
 
   <p><sup>3</sup> This is a bug that includes a fuzzer report or a crash dump. </p>
 
-  <h2>Claiming a Bug Bounty</h2>
+  <h2 id="static-analysis-bounty">Static Analysis Bounty</h2>
+
+  <p>In coordination with the GitHub Security Lab, we have launched a new program that rewards the submission of static analysis tools that identify present or historical security vulnerabilities in Firefox.  We will accept static analysis queries written in CodeQL or as clang-based checkers (clang analyzer, clang plugin using the AST API or clang-tidy). Submissions should be made following <a href="#claiming-a-bounty">our instructions below</a>.</p>
+
+  <p>We will issue a bounty for the query itself, dependent upon the quality of the submission. Because this is an experiment, we are not committing to an exact amount or range for the bounty, but we expect this will typically be in the $2500-$7500 range.</p>
+
+  <p>Additionally, if your query matches presently unknown security vulnerabilities, each vulnerability it matches will be considered for a bounty independently. The amount awarded is dependent on the submission quality, as per normal bounty policy. For example purposes, we’ll assume a high or critical vulnerability (which is the most common case for memory corruption.) A report that only shows the output of the tool would be at the minimum end ($3000), and may be less if you submit multiple false positives we need to spend time validating. However a report that includes documentation explaining and validating that the issue is in fact a vulnerability would be eligible for an increased payout. A submission that includes documentation and a test case (which we acknowledge may be difficult for bugs found via this method) would be eligible for the maximum end ($5000).</p>
+
+  <p>The quality of the static analysis submission will be judged on:</p>
+  <ul class="mzp-u-list-styled">
+    <li>Complexity of the query. Is the query identifying a simplistic or syntactical issue with tight locality? Or is it identifying a semantic problem across complicated data flows?</li>
+    <li>Documentation of the query. How does it work, and how did you develop it. What things did you try that didn’t work, and how did you refine it. Crucially: when trying to find the bad pattern, what edge cases does your query miss?</li>
+    <li>Test vectors. Can you supply simple C++ programs that illustrate the vulnerable code patterns that the query matches. Can you supply programs that are edge cases the query misses?
+    <ul class="mzp-u-list-styled">
+      <li>While it may seem unusual to highlight shortcomings of your submission, from our perspective this makes the submission stronger - it gives us confidence you tested it in multiple scenarios, and shows us how we may be able to improve it.</li>
+    </ul></li>
+    <li>What Firefox issues does it identify, either currently unknown, or previously known and fixed? This is your opportunity to argue the usefulness of your query: we’re not going to run your query on historical versions of the codebase, so you should and demonstrate the bugs the query identifies. The more you can identify, the stronger your case is. As a rule of thumb, a query that identifies less than three distinct issues will need an exceptionally strong argument for its future usefulness.</li>
+    <li>The false positive rate of the query. As a rule of thumb, a query should have fewer false positives than true positives. Which means if it matches 1 valid historical issue and 3 current, false positives - you should seek to identify additional historical issues it matches or refine the query.</li>
+    <li>Uniqueness of the query. If we receive multiple query submissions that do the same thing, we will consider the first reported. This is similar to our existing policy that the issue must be previously unreported. However, if your submission improves upon a prior submitted query, we will consider a (smaller) bounty for your improvement upon the prior query.</li>
+  </ul>
+
+  <p><b>More about "Complexity of the query":</b> Consider a function that returns -1 for error, 0 for failure, and 1 for success. Miscasting this return value into a boolean is a common mistake, and we surely have some historical instances of this in our code base. If you identify a function that still has this (bad) API, such a simplistic syntactical query is still valuable to us. If the API is ours, we should fix the API and if the API isn’t ours, we should use static analysis to prevent such a flaw from occurring. But it’s not a very sophisticated query.  On the flip side, a query that does data flow analysis between a user-controlled source and attacker-controlled sink, accounting for complex transitions along the way (like IPC or JS/C++ boundaries) - that is a very sophisticated query.</p>
+
+  <p><b>Examples of Quality of Submission:</b> As mentioned, the bounty amount we grant for the query will be determined based on the quality of the submission, and an estimation of the number of issues we think it may identify in a one to three-year timespan. On the low end, if you submit a query that identifies a single historical issue of a syntactical misuse of an API we are unlikely to use in future code, we may not issue a bounty, and if we did it would be below the $2500 range. And on the high end, if you submit a query that matches 3 unknown issues today, in code written in the last year - we can expect it will identify a significant number of issues in the future and would be looking above the $7500 range. (Plus you’d be eligible for separate bounties on those 3 issues.)</p>
+
+  <p><b>Compatibility with Github’s Bounty:</b> Github’s bounty policy is <i>compatible</i> with Mozilla’s. This means that if you follow both Mozilla’s and Github’s policies, you are eligible to earn a bounty from both. Note that this includes <i>not</i> providing unfixed vulnerabilities <i>or queries that identify unfixed vulnerabilities</i> in Mozilla products to third parties (i.e. Github). Once we’ve resolved the issues, they have a CVE issued, and our MFSA has become public, then you can submit to Github. Please, please <a href="mailto:security@mozilla.org">talk to us</a> if you have questions about this before sharing potentially confidential information.</p>
+
+  <h2 id="claiming-a-bounty">Claiming a Bug Bounty</h2>
 
   <p>To claim a bounty:</p>
   <ul class="mzp-u-list-styled">
     <li>Make sure you have a Bugzilla account.</li>
     <li>Use the <a href="https://bugzilla.mozilla.org/form.client.bounty">bugzilla client bug bounty form</a> to file the issue and automatically mark it for bug bounty consideration.</li>
-    <li>In the "Description" field, please clearly describe the security issue.</li>
-    <li>If one is available, attach a "proof of concept" testcase with the "Attachment" option, or point to explicit code that identifies the vulnerability or exploit. While not required, such a testcase will help us judge submissions more quickly and accurately.</li>
-    <li>If you have debug output or output from a tool demonstrating the issue, please include it in the bug. If it is very long, please attach it to the bug as an attached file and do not add it to the description.</li>
-    <li>If you have filed the bug directly in Bugzilla without using the <a href="https://bugzilla.mozilla.org/form.client.bounty">Bugzilla client bug bounty form</a>, notify the Mozilla Security Group by email to <a href="mailto:security@mozilla.org">security@mozilla.org</a> and include the number of the bug you filed and a mention that you are submitting it for bounty consideration. <strong>Do not send the actual vulnerability via email.</strong></li>
+    <li>In the "Description" field, please clearly describe one security issue or static analysis submission. Please do not include extremely verbose output in the description field, and instead attach it as described below.</li>
+    <li>If you have multiple bugs to file (for example, multiple findings from a single tool), file each one via this form individually, and we will link them as appropriate during review.</li>
+    <li>If submitting a static analysis submission, use the "Attachment" option to attach the source code of the query or plugin.</li>
+    <li>Attach any supporting documents, such as "proofs of concept", reproduction cases, debug output or output from a tool. Again, use the "Attachment" option. While not required, such supporting documents will improve the quality of the submission and help us judge it more quickly and accurately. If you have multiple files to attach, it is better to attach one, submit the form, and then attach the remainder to the newly-created bug rather than attaching a zip file. (The exception is for a bundle of related files, like several log files, or test vector programs.)</li>
+    <li>If you have filed the bug directly in Bugzilla without using the <a href="https://bugzilla.mozilla.org/form.client.bounty">Bugzilla client bug bounty form</a>, please immediately notify the Mozilla Security Group by email to <a href="mailto:security@mozilla.org">security@mozilla.org</a> and include the number of the bug you filed and a mention that you are submitting it for bounty consideration. <strong>Do not send the actual vulnerability via email.</strong></li>
   </ul>
 
   <p>We ask that you be available to follow along and provide further information on the bug as needed, and invite you to work together with Mozilla engineers in reproducing, diagnosing, and fixing the bug. As part of this process we will provide you full access to participate in our internal discussions about the bug; for more information read our policy for handling security bugs.</p>
