@@ -23,7 +23,7 @@ __all__ = [
     'has_messages',
     'translate',
 ]
-cache = caches['l10n']
+cache = caches['fluent']
 REQUIRED_RE = re.compile(r'^required\b', re.MULTILINE | re.IGNORECASE)
 
 

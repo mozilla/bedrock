@@ -37,6 +37,17 @@ CACHES['l10n'] = {
     }
 }
 
+# cache for Fluent files
+CACHES['fluent'] = {
+    'BACKEND': 'bedrock.base.cache.SimpleDictCache',
+    'LOCATION': 'fluent',
+    'TIMEOUT': FLUENT_CACHE_TIMEOUT,
+    'OPTIONS': {
+        'MAX_ENTRIES': 5000,
+        'CULL_FREQUENCY': 4,  # 1/4 entries deleted if max reached
+    }
+}
+
 # cache for product details
 CACHES['product-details'] = {
     'BACKEND': 'bedrock.base.cache.SimpleDictCache',

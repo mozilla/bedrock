@@ -234,7 +234,8 @@ LANGUAGE_URL_MAP = lazy(lazy_lang_url_map, dict)()
 LANGUAGES = lazy(lazy_langs, dict)()
 
 FEED_CACHE = 3900
-DOTLANG_CACHE = config('L10N_CACHE_TIMEOUT', default='10' if DEBUG else '600', parser=int)
+# 30 min during dev and 10 min in prod
+DOTLANG_CACHE = config('DOTLANG_CACHE', default='1800' if DEBUG else '600', parser=int)
 
 DOTLANG_FILES = ['navigation', 'download_button', 'main', 'footer']
 
@@ -245,6 +246,8 @@ FLUENT_REPO_PATH = GIT_REPOS_PATH / 'www-l10n'
 FLUENT_LOCAL_PATH = ROOT_PATH / 'l10n'
 FLUENT_L10N_TEAM_REPO = config('FLUENT_REPO', default='https://github.com/mozmeao/www-l10n')
 FLUENT_L10N_TEAM_REPO_PATH = GIT_REPOS_PATH / 'l10n-team'
+# 10 seconds during dev and 10 min in prod
+FLUENT_CACHE_TIMEOUT = config('FLUENT_CACHE_TIMEOUT', default='10' if DEBUG else '600', parser=int)
 # order matters. first sting found wins.
 FLUENT_PATHS = [
     # local FTL files
