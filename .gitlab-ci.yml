@@ -1,6 +1,6 @@
 variables:
   CLUSTER_NAME: iowa-a
-  CONFIG_REPO: git@github.com:mozilla/www-config
+  CONFIG_REPO: git@github.com:mozmeao/www-config
   CONFIG_BRANCH: master
 
 stages:
