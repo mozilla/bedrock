@@ -10,7 +10,7 @@ cd config_checkout
 
 set -u
 for CLUSTER in ${CLUSTERS:=iowa-a}; do
-    for DEPLOYMENT in {clock-,}deploy.yaml $DEPLOYMENT_YAML; do
+    for DEPLOYMENT in {clock-,}deploy.yaml; do
         DEPLOYMENT_FILE=${CLUSTER}/${NAMESPACE:=bedrock-dev}/${DEPLOYMENT}
         if [[ -f ${DEPLOYMENT_FILE} ]]; then
             sed -i -e "s|image: .*|image: ${DOCKER_IMAGE_TAG}|" ${DEPLOYMENT_FILE}
