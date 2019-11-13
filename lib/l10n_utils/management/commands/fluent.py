@@ -43,6 +43,15 @@ class Command(BaseCommand):
         )
         template_parser.add_argument('template', type=Path)
 
+        activation_parser = subparsers.add_parser(
+            'activation',
+            description='Port activation data from .lang for a recipe/template'
+        )
+        activation_parser.add_argument(
+            'recipe_or_template', type=Path,
+            help='Path to the recipe or the template from which the recipe was generated'
+        )
+
     def handle(self, subcommand, **kwargs):
         if subcommand == 'recipe':
             return self.create_recipe(**kwargs)
@@ -50,6 +59,8 @@ class Command(BaseCommand):
             return self.create_ftl(**kwargs)
         if subcommand == 'template':
             return self.create_template(**kwargs)
+        if subcommand == 'activation':
+            return self.activation(**kwargs)
         return self.handle_help(**kwargs)
 
     def handle_help(self, **kwargs):
@@ -81,3 +92,8 @@ class Command(BaseCommand):
         ftl_creator = FTLCreator(self)
         for locale in locales:
             ftl_creator.handle(recipe_or_template, locale)
+
+    def activation(self, recipe_or_template, **kwargs):
+        from ._fluent_activation import Activation
+        activation = Activation(self)
+        activation.handle(recipe_or_template)
