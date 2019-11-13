@@ -9,7 +9,7 @@
     if (Mozilla.Client.isFirefoxDesktop) {
         Mozilla.Client.getFxaDetails(function(details) {
             if (details.setup) {
-                Mozilla.MonitorButton.init();
+                Mozilla.FxaProductButton.init();
             } else {
                 Mozilla.FxaForm.init();
             }

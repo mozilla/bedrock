@@ -942,21 +942,21 @@
     },
     {
       "files": [
-        "js/base/mozilla-monitor-button.js",
+        "js/base/mozilla-fxa-product-button.js",
         "js/firefox/welcome-page1-init.js"
       ],
       "name": "firefox_welcome_page1"
     },
     {
       "files": [
-        "js/base/mozilla-monitor-button.js",
+        "js/base/mozilla-fxa-product-button.js",
         "js/exp/firefox/welcome-page1-init.js"
       ],
       "name": "exp_firefox_welcome_page1"
     },
     {
       "files": [
-        "js/firefox/welcome-page2.js",
+        "js/base/mozilla-fxa-product-button.js",
         "js/firefox/welcome-page2-init.js"
       ],
       "name": "firefox_welcome_page2"
@@ -986,7 +986,7 @@
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
-        "js/base/mozilla-monitor-button.js",
+        "js/base/mozilla-fxa-product-button.js",
         "js/firefox/whatsnew/up-to-date.js",
         "js/firefox/whatsnew/account-conditional-ctas.js"
       ],
@@ -997,7 +997,7 @@
         "js/base/uitour-lib.js",
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-monitor-button.js",
+        "js/base/mozilla-fxa-product-button.js",
         "js/firefox/whatsnew/up-to-date.js",
         "js/firefox/whatsnew/whatsnew-69.js"
       ],
@@ -1008,8 +1008,8 @@
         "js/base/uitour-lib.js",
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-monitor-button.js",
-        "js/base/mozilla-monitor-button-init.js",
+        "js/base/mozilla-fxa-product-button.js",
+        "js/base/mozilla-fxa-product-button-init.js",
         "js/firefox/whatsnew/up-to-date.js",
         "js/firefox/whatsnew/whatsnew-70.js"
       ],
@@ -1020,8 +1020,8 @@
         "js/base/uitour-lib.js",
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-monitor-button.js",
-        "js/base/mozilla-monitor-button-init.js",
+        "js/base/mozilla-fxa-product-button.js",
+        "js/base/mozilla-fxa-product-button-init.js",
         "js/firefox/whatsnew/up-to-date.js",
         "js/exp/firefox/whatsnew/whatsnew-70.js"
       ],
@@ -1040,8 +1040,8 @@
     {
       "files": [
         "js/base/uitour-lib.js",
-        "js/base/mozilla-monitor-button.js",
-        "js/base/mozilla-monitor-button-init.js",
+        "js/base/mozilla-fxa-product-button.js",
+        "js/base/mozilla-fxa-product-button-init.js",
         "js/firefox/whatsnew/up-to-date.js",
         "js/firefox/whatsnew/whatsnew-70.js"
       ],
@@ -1390,7 +1390,7 @@
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
         "js/base/mozilla-fxa-sign-in-link.js",
-        "js/base/mozilla-monitor-button.js",
+        "js/base/mozilla-fxa-product-button.js",
         "js/firefox/accounts-2019.js"
       ],
       "name": "firefox_accounts_2019"
@@ -1401,7 +1401,7 @@
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
         "js/base/mozilla-fxa-sign-in-link.js",
-        "js/base/mozilla-monitor-button.js",
+        "js/base/mozilla-fxa-product-button.js",
         "js/exp/firefox/accounts-2019.js"
       ],
       "name": "exp_firefox_accounts_2019"

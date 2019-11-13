@@ -5,5 +5,5 @@
 (function() {
     'use strict';
 
-    Mozilla.MonitorButton.init();
+    Mozilla.FxaProductButton.init();
 })();

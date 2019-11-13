@@ -30,13 +30,13 @@
     if (Mozilla.Client.isFirefoxDesktop) {
         Mozilla.Client.getFxaDetails(function(details) {
             if (details.setup) {
-                Mozilla.MonitorButton.init('monitor-button-signed-in');
+                Mozilla.FxaProductButton.init('monitor-button-signed-in');
             } else {
-                Mozilla.MonitorButton.init('monitor-button-signed-out');
+                Mozilla.FxaProductButton.init('monitor-button-signed-out');
             }
         });
     } else {
-        Mozilla.MonitorButton.init('monitor-button-signed-out');
+        Mozilla.FxaProductButton.init('monitor-button-signed-out');
     }
 
     pingUITour();

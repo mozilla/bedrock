@@ -5,5 +5,5 @@
 (function() {
     'use strict';
 
-    Mozilla.PocketButton.init();
+    Mozilla.FxaProductButton.init();
 })();
