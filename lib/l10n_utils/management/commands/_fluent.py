@@ -21,6 +21,13 @@ def migration_name(template):
     return template.relative_to(parent).with_suffix('')
 
 
+def template_name(recipe):
+    'Find template for a migration recipe path'
+    name = recipe.resolve().relative_to(settings.FLUENT_MIGRATIONS_PATH).with_suffix('.html')
+    candidates = list(Path('bedrock').glob(f'*/templates/{name}'))
+    return candidates[0]
+
+
 def get_migration_context(recipe_or_template, locale='en'):
     'Create the merge context associated with the template or recipe'
     if recipe_or_template.suffix == '.py':
