@@ -3,8 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import re
-from collections import defaultdict, OrderedDict
-from pathlib import Path
+from collections import defaultdict
 
 from django.conf import settings
 from django.utils.html import strip_tags
@@ -12,8 +11,8 @@ from django.utils.text import slugify
 
 from ._fluent import (
     migration_name,
+    get_lang_files,
     trans_to_lang,
-    ADD_LANG_RE,
     GETTEXT_RE,
     TRANS_BLOCK_RE,
 )
@@ -77,7 +76,7 @@ class Recipe:
     def handle(self, template):
         with template.open('r') as tfp:
             template_str = tfp.read()
-        lang_files = self.get_lang_files(template, template_str)
+        lang_files = get_lang_files(template, template_str)
         lang_ids = self.get_lang_ids(template_str)
         ids_for_file = self.get_ids_for_file(lang_ids, lang_files)
         recipe = RECIPE_INTRO
@@ -92,19 +91,6 @@ class Recipe:
                 transforms=transforms
             )
         self.write_recipe_for(template, recipe)
-
-    def get_lang_files(self, template, template_str):
-        lang_files = []
-        for add_lang in ADD_LANG_RE.finditer(template_str):
-            for p in re.findall(r'"(.*?)"', add_lang.group(1)):
-                f = Path(p).with_suffix('.lang')
-                lang_files.append(f)
-        if not lang_files:
-            lang_files.append(Path(str(template).split('/templates/')[1]).with_suffix('.lang'))
-        return OrderedDict(
-            (f, f.stem.replace('-', '_'))
-            for f in lang_files
-        )
 
     def get_lang_ids(self, template_str):
         found = []
