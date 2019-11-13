@@ -135,7 +135,7 @@
         media_after=True
       ) %}
         <h4>{{ browsers_trackers }}</h4>
-        <div class="mzp-c-menu-list mzp-t-cta mzp-t-download">
+        <div id="test-menu-browsers-wrapper" class="mzp-c-menu-list mzp-t-cta mzp-t-download">
           <h5 class="mzp-c-menu-list-title">{{ get_browser }}</h5>
           <ul class="mzp-c-menu-list-list" id="menu-browsers">
             <!--[if IE]>
@@ -149,7 +149,7 @@
             <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('ios', 'firefox_home') }}" rel="external noopener" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">{{ get_ios }}</a></li>
           </ul>
         </div>
-        <p class="js-fx-only"><a class="mzp-c-cta-link" href="https://addons.mozilla.org/firefox/addon/facebook-container/{{ referrals }}">{{ get_facebook_container }}</a></p>
+        <p id="test-fbc" class="js-fx-only"><a class="mzp-c-cta-link" href="https://addons.mozilla.org/firefox/addon/facebook-container/{{ referrals }}">{{ get_facebook_container }}</a></p>
       {% endcall %}
     </div>
 
