@@ -147,6 +147,7 @@ $image-path: "/media/protocol/img";
     }
 
     p {
+        @include font-firefox;
         @include text-display-xs;
         @include font-size(24px);
         @media #{$mq-lg} {
