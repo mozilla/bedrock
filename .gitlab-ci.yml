@@ -1,0 +1,39 @@
+variables:
+  CLUSTER_NAME: iowa-a
+  CONFIG_REPO: git@github.com:mozmeao/www-config
+  CONFIG_BRANCH: master
+
+stages:
+  - build
+  - update-config
+
+build:
+  stage: build
+  only:
+    - gitlab-ci-dev
+    - master
+  tags:
+    - oregon-b-shell
+  script:
+    - make clean build-ci
+    - FROM_DOCKER_REPOSITORY=mozorg/bedrock_test docker/bin/push2dockerhub.sh
+    - FROM_DOCKER_REPOSITORY=mozorg/bedrock_assets docker/bin/push2dockerhub.sh
+    - FROM_DOCKER_REPOSITORY=mozorg/bedrock_code docker/bin/push2dockerhub.sh
+    - FROM_DOCKER_REPOSITORY=mozorg/bedrock_build docker/bin/push2dockerhub.sh
+    - FROM_DOCKER_REPOSITORY=mozorg/bedrock docker/bin/push2dockerhub.sh
+    - bin/upload-staticfiles.sh
+
+.update-config:
+  stage: update-config
+  tags:
+    - oregon-b-shell
+  script:
+    - bin/update_config.sh
+
+dev:
+  extends: .update-config
+  only:
+    - gitlab-ci-dev
+    - master
+  variables:
+    NAMESPACE: bedrock-dev
