@@ -8,7 +8,7 @@ import re
 from django.conf import settings
 
 from lib.l10n_utils.utils import strip_whitespace
-from fluent.migrate.context import MergeContext
+from fluent.migrate.context import MigrationContext
 
 
 def migration_name(template):
@@ -34,7 +34,7 @@ def get_migration_context(recipe_or_template, locale='en'):
         locale = settings.LANGUAGE_CODE
     else:
         ref_dir = settings.FLUENT_LOCAL_PATH / 'en'
-    context = MergeContext(
+    context = MigrationContext(
         locale, ref_dir, settings.LOCALES_PATH / locale
     )
     migration.migrate(context)
