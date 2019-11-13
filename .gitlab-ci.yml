@@ -28,7 +28,7 @@ build:
   tags:
     - meao
   script:
-    - bin/update-config.sh
+    - bin/update_config.sh
 
 dev:
   extends: .update-config
