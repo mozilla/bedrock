@@ -2,7 +2,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from collections import OrderedDict
 from importlib import import_module
+from pathlib import Path
 import re
 
 from django.conf import settings
@@ -41,6 +43,22 @@ def get_migration_context(recipe_or_template, locale='en'):
     return context
 
 
+def get_lang_files(template, template_str):
+    lang_files = [
+        Path(str(template).split('/templates/')[1]).with_suffix('.lang')
+    ]
+    for add_lang in ADD_LANG_RE.finditer(template_str):
+        if add_lang['cmd'] == 'set':
+            lang_files = []
+        for p in re.findall(r'"(.*?)"', add_lang['files']):
+            f = Path(p).with_suffix('.lang')
+            lang_files.append(f)
+    return OrderedDict(
+        (f, f.stem.replace('-', '_'))
+        for f in lang_files
+    )
+
+
 def trans_to_lang(string):
     string = strip_whitespace(string)
     return TRANS_PLACEABLE_RE.sub(
@@ -49,7 +67,7 @@ def trans_to_lang(string):
     )
 
 
-ADD_LANG_RE = re.compile(r'{% (?:add|set)_lang_files (.*?) %}')
+ADD_LANG_RE = re.compile(r'{% (?P<cmd>add|set)_lang_files (?P<files>.*?) %}')
 GETTEXT_RE = re.compile(r'\b_\([\'"](?P<string>.+?)[\'"]\)'
                         r'(\s*\|\s*format\((?P<args>\w.+?)\))?', re.S)
 TRANS_BLOCK_RE = re.compile(r'{%-?\s+trans\s+((?P<args>\w.+?)\s+)?-?%\}\s*'
