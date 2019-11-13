@@ -251,6 +251,8 @@ $image-path: "/media/protocol/img";
     @include font-size(24px);
     border-left-color: $color-pink-50;
     padding: 1rem 2rem;
+    margin-top: $spacing-2xl;
+    margin-bottom: $spacing-2xl;
     box-sizing: border-box;
     p {
         max-width: 19.5em;
