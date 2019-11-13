@@ -13,7 +13,7 @@ for CLUSTER in ${CLUSTERS:=iowa-a}; do
     for DEPLOYMENT in {clock-,}deploy.yaml; do
         DEPLOYMENT_FILE=${CLUSTER}/${NAMESPACE:=bedrock-dev}/${DEPLOYMENT}
         if [[ -f ${DEPLOYMENT_FILE} ]]; then
-            sed -i -e "s|image: .*|image: ${DOCKER_IMAGE_TAG}|" ${DEPLOYMENT_FILE}
+            sed -i -e "s|image: .*|image: ${DEPLOYMENT_DOCKER_IMAGE}|" ${DEPLOYMENT_FILE}
             git add ${DEPLOYMENT_FILE}
         fi
     done
