@@ -1,6 +1,6 @@
 variables:
   CLUSTER_NAME: iowa-a
-  CONFIG_REPO: https://github.com/mozilla/www-config
+  CONFIG_REPO: git@github.com:mozilla/www-config
   CONFIG_BRANCH: master
 
 stages:
@@ -13,7 +13,7 @@ build:
     - gitlab-ci-dev
     - master
   tags:
-    - meao
+    - oregon-b-shell
   script:
     - make clean build-ci
     - FROM_DOCKER_REPOSITORY=mozorg/bedrock_test docker/bin/push2dockerhub.sh
@@ -26,7 +26,7 @@ build:
 .update-config:
   stage: update-config
   tags:
-    - meao
+    - oregon-b-shell
   script:
     - bin/update_config.sh
 
