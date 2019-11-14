@@ -20,7 +20,8 @@ redirectpatterns = (
 
     # mozilla/bedrock/#5745 - archive cliqz policy
     redirect(r'^privacy/firefox-cliqz/?$', 'privacy.archive.firefox-cliqz-2018-06'),
-    
+
     # mozilla/bedrock/#7983
     redirect(r'^/privacy/products/','firefox.privacy.products'),
+
 )
