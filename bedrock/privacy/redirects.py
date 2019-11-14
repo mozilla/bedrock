@@ -22,6 +22,6 @@ redirectpatterns = (
     redirect(r'^privacy/firefox-cliqz/?$', 'privacy.archive.firefox-cliqz-2018-06'),
 
     # mozilla/bedrock/#7983
-    redirect(r'^/privacy/products/','firefox.privacy.products'),
+    redirect(r'^/privacy/products/', 'firefox.privacy.products'),
 
 )
