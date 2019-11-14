@@ -309,7 +309,7 @@ $image-path: "/media/protocol/img";
 .compare-version-disclaimer {
     font-style: italic;
     @include text-body-sm;
-    border-top: 1px solid $color-gray-10;
-    margin-top: $spacing-2xl;
+    border-top: 1px solid $color-gray-20;
+    margin-top: $layout-lg;
     padding-top: $spacing-lg;
 }
