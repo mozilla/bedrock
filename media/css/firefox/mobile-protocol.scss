@@ -36,7 +36,7 @@ main .mzp-l-content {
 //* -------------------------------------------------------------------------- */
 //  Download buttons
 
-li {
+.mobile-download-buttons li {
     padding-top: $spacing-sm;
     display: inline-block;
 }
@@ -143,18 +143,17 @@ li {
 //  Wordmark
 
 .c-wordmark {
-
     @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-sm.png', auto, 100%);
+    @include bidi(((padding-right, $spacing-sm, padding-left, 0),));
     @include image-replaced;
-    @include bidi((
-        (background-position, top left, top right),
-        (padding-right, $spacing-sm, padding-left, 0),
-    ));
-
+    background-position: top center;
     background-repeat: no-repeat;
     content: '';
     display: block;
-    @include image-replaced;
+
+    @media #{$mq-md} {
+        @include bidi(((background-position, top left, top right),));
+    }
 }
 
 .end-hero .c-wordmark {
@@ -175,13 +174,6 @@ li {
 
     .mzp-c-hero-desc {
         @include text-display-sm;
-
-        p:first-child {
-            @include text-display-lg;
-            font-weight: bold;
-            margin-bottom: $spacing-md;
-            color: $fx-purple;
-        }
 
         p {
             margin-bottom: $spacing-lg;
@@ -218,11 +210,6 @@ li {
     }
 
     @media #{$mq-lg} {
-        .mzp-c-hero-desc {
-            p:first-child {
-                @include text-display-xl;
-            }
-        }
         .end-hero .c-wordmark {
             background-position: center;
         }
@@ -434,12 +421,6 @@ li {
         &.mzp-t-firefox::after {
             display: none;
         }
-    }
-
-    .mzp-c-hero-desc {
-        @include text-display-lg;
-        color: $fx-purple;
-        font-weight: bold;
     }
 
     .mzp-l-content {
