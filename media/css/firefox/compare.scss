@@ -305,3 +305,11 @@ $image-path: "/media/protocol/img";
         grid-column-gap: $spacing-2xl;
     }
 }
+
+.compare-version-disclaimer {
+    font-style: italic;
+    @include text-body-sm;
+    border-top: 1px solid $color-gray-10;
+    margin-top: $spacing-2xl;
+    padding-top: $spacing-lg;
+}
