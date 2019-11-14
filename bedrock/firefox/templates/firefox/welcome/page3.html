@@ -1,0 +1,106 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import hero with context %}
+{% from "macros.html" import fxa_cta_link with context %}
+
+{% add_lang_files "firefox/welcome/page3" %}
+
+{% extends "firefox/welcome/base.html" %}
+
+{% block page_title %}{{ _('Get the free account that protects your privacy. Join Firefox.') }}{% endblock %}
+
+{% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
+
+{% block body_class %}{{ super() }} welcome-page3{% endblock %}
+
+{% set _entrypoint = 'mozilla.org-firefox-welcome-3' %}
+{% set _utm_campaign = 'welcome-3-sync' %}
+
+{% block content_intro %}
+  {% call hero(
+    title=_('No account required. But you might want one.'),
+    desc=_('The Firefox browser collects so little data about you, we don’t even require your email address. But when you use it to create a Firefox account, we can protect your privacy across more of your online life.'),
+    class='mzp-t-firefox mzp-t-dark',
+    include_cta=True,
+    heading_level=1,
+    image_url=None,
+    include_highres_image=False,
+    image_alt=''
+  ) %}
+
+    <p class="primary-cta">
+      {{ fxa_cta_link(entrypoint=_entrypoint, action='signup', button_text='Sign In', button_class='mzp-c-button mzp-t-product js-fxa-product-button', utm_campaign=_utm_campaign, utm_content='top-cta') }}
+    </p>
+  {% endcall %}
+{% endblock %}
+
+{% block content_primary %}
+  <div class="body-primary">
+    <div class="c-picto-block t-adjacent-image">
+      <div class="c-picto-block-image">
+        <img src="{{ static('img/logos/firefox/logo-monitor.svg') }}" alt="">
+      </div>
+
+      <h3 class="c-picto-block-title">Firefox Monitor</h3>
+      <div class="c-picto-block-body">
+        <p>{{ _('Have at least one company looking out for your data, instead of leaking it.') }}</p>
+      </div>
+    </div>
+
+    <div class="c-picto-block t-adjacent-image">
+      <div class="c-picto-block-image">
+        <img src="{{ static('img/logos/firefox/logo-lockwise.svg') }}" alt="">
+      </div>
+      <h3 class="c-picto-block-title">Firefox Lockwise</h3>
+      <div class="c-picto-block-body">
+        <p>{{ _('Never forget, reset or travel without your passwords again.') }}</p>
+      </div>
+    </div>
+
+    <div class="c-picto-block t-adjacent-image">
+      <div class="c-picto-block-image">
+        <img src="{{ static('img/logos/fbcontainer/logo-fbcontainer.svg') }}" alt="">
+      </div>
+      <h3 class="c-picto-block-title">Facebook Container</h3>
+      <div class="c-picto-block-body">
+        <p>{{ _('Get a container to keep Facebook out of your business.') }}</p>
+      </div>
+    </div>
+
+    <div class="c-picto-block t-adjacent-image">
+      <div class="c-picto-block-image">
+        <img src="{{ static('img/icons/pocket-outline-red.svg') }}" alt="" width="64">
+      </div>
+      <h3 class="c-picto-block-title">Pocket</h3>
+      <div class="c-picto-block-body">
+        <p>{{ _('Trade clickbait and fake news for quality content.') }}</p>
+      </div>
+    </div>
+
+    <div class="c-picto-block t-adjacent-image">
+      <div class="c-picto-block-image">
+        <img src="{{ static('img/logos/firefox/logo-send.svg') }}" alt="">
+      </div>
+      <h3 class="c-picto-block-title">Firefox Send</h3>
+      <div class="c-picto-block-body">
+        <p>{{ _('Send huge files to anyone you want, with self-destructing links.') }}</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block secondary_cta %}
+  <p class="secondary-cta">
+    {{ fxa_cta_link(entrypoint=_entrypoint, action='signup', button_text='Sign In', button_class='mzp-c-button mzp-t-product js-fxa-product-button', utm_campaign=_utm_campaign, utm_content='bottom-cta') }}
+  </p>
+{% endblock %}
+
+{% block content_utility %}
+  <p><strong><a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">{{ _('Why am I seeing this?') }}</a></strong></p>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_welcome_page') }}
+{% endblock %}

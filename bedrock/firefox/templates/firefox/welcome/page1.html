@@ -56,15 +56,18 @@
 {% endblock %}
 
 {% block content_primary %}
+<div class="body-primary">
   <h2 class="body-primary-title"><img src="{{ static('img/logos/monitor/monitor-wordmark.svg') }}" width="256" height="" alt="Firefox Monitor"></h2>
 
   <div class="body-primary-body">
     {# L10n: "Firefox Monitor" is a product name and shouldn't be translated. #}
     <p>{{ _('Firefox Monitor shows you if your information has been leaked in a known data breach, and alerts you in case it happens in the future.') }}</p>
   </div>
+</div>
 {% endblock %}
 
 {% block content_secondary %}
+<div class="body-secondary">
   <div class="c-picto-block t-adjacent-image">
     <div class="c-picto-block-image">
       <img src="{{ static('img/icons/private-browsing.svg') }}" alt="">
@@ -97,10 +100,11 @@
     </div>
   </div>
   {% endif %}
+</div>
 {% endblock %}
 
 {% block secondary_cta %}
-  <p>
+  <p class="secondary-cta">
     {{ monitor_button(
       entrypoint=_entrypoint,
       utm_campaign=_utm_campaign,
@@ -120,5 +124,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox_welcome_page1') }}
+  {{ js_bundle('firefox_welcome_page') }}
 {% endblock %}
