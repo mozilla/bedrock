@@ -19,7 +19,15 @@ def firefox_channel(*args, **kwargs):
 redirectpatterns = (
     # overrides
 
-    redirect(r'^firefox/aurora/all/?$', 'firefox.all', to_kwargs={'channel': 'developer'}),
+    # issue 8096
+    redirect(r'^firefox/beta/all/?$', 'firefox.all', anchor='product-desktop-beta'),
+    redirect(r'^firefox/developer/all/?$', 'firefox.all', anchor='product-desktop-developer'),
+    redirect(r'^firefox/aurora/all/?$', 'firefox.all', anchor='product-desktop-developer'),
+    redirect(r'^firefox/nightly/all/?$', 'firefox.all', anchor='product-desktop-nightly'),
+    redirect(r'^firefox/organizations/all/?$', 'firefox.all', anchor='product-desktop-esr'),
+    redirect(r'^firefox/android/all/?$', 'firefox.all', anchor='product-android-release'),
+    redirect(r'^firefox/android/beta/all/?$', 'firefox.all', anchor='product-android-beta'),
+    redirect(r'^firefox/android/nightly/all/?$', 'firefox.all', anchor='product-android-nightly'),
 
     # bug 831810 & 1142583 & 1239960, 1329931
     redirect(r'^mwc/?$', 'https://support.mozilla.org/products/firefox-os', re_flags='i'),
@@ -87,15 +95,15 @@ redirectpatterns = (
     # bug 727561
     redirect(r'^firefox/search(?:\.html)?$', 'firefox.new'),
 
-    # bug 860865, 1101220
+    # bug 860865, 1101220, issue 8096
     redirect(r'^firefox/all-(?:beta|rc)(?:/|\.html)?$', 'firefox.all',
-             to_kwargs={'channel': 'beta'}),
+             anchor='product-desktop-beta'),
     redirect(r'^firefox/all-aurora(?:/|\.html)?$', 'firefox.all',
-             to_kwargs={'channel': 'developer'}),
+             anchor='product-desktop-developer'),
     redirect(r'^firefox/aurora/(?P<page>all|notes|system-requirements)/?$',
              '/firefox/developer/{page}/'),
     redirect(r'^firefox/organizations/all\.html$', 'firefox.all',
-             to_kwargs={'channel': 'organizations'}),
+             anchor='product-desktop-esr'),
 
     # bug 729329
     redirect(r'^mobile/sync', 'firefox.accounts'),

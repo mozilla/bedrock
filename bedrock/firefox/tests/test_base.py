@@ -103,23 +103,11 @@ class TestFirefoxAll(TestCase):
     def tearDown(self):
         self.patcher.stop()
 
-    def _get_url(self, platform='desktop', channel='release'):
-        with self.activate('en-US'):
-            kwargs = {}
-
-            if platform != 'desktop':
-                kwargs['platform'] = platform
-            if channel != 'release':
-                kwargs['channel'] = channel
-
-            return reverse('firefox.all', kwargs=kwargs)
-
-    @patch.object(fx_views, 'lang_file_is_active', lambda *x: True)
     def test_all_builds_results(self):
         """
         The unified page should display builds for all products
         """
-        resp = self.client.get(self._get_url())
+        resp = self.client.get(reverse('firefox.all'))
         doc = pq(resp.content)
         assert len(doc('.c-all-downloads-build')) == 8
 
@@ -155,34 +143,6 @@ class TestFirefoxAll(TestCase):
         assert len(doc('.c-locale-list[data-product="android_nightly"] > li')) == android_nightly_builds
         assert len(doc('.c-locale-list[data-product="android_nightly"] > li[data-language="multi"] > ul > li > a')) == 2
 
-    @patch.object(fx_views, 'lang_file_is_active', lambda *x: False)
-    def test_no_search_results(self):
-        """
-        Tables should be gone and not-found message should be shown when there
-        are no search results.
-        """
-        resp = self.client.get(self._get_url() + '?q=DOES_NOT_EXIST')
-        doc = pq(resp.content)
-        assert not doc('table.build-table')
-        assert not doc('.not-found.hide')
-
-    @patch.object(fx_views, 'lang_file_is_active', lambda *x: False)
-    def test_no_search_query(self):
-        """
-        When not searching all builds should show.
-        """
-        resp = self.client.get(self._get_url())
-        doc = pq(resp.content)
-        assert len(doc('.build-table')) == 1
-        assert len(doc('.not-found.hide')) == 1
-
-        num_builds = len(
-            self.firefox_desktop.get_filtered_full_builds('release'))
-        num_builds += len(
-            self.firefox_desktop.get_filtered_test_builds('release'))
-        assert len(doc('tr[data-search]')) == num_builds
-        assert len(doc('tr#en-US a')) == 7
-
     def test_no_locale_details(self):
         """
         When a localized build has been added to the Firefox details while the
@@ -193,35 +153,6 @@ class TestFirefoxAll(TestCase):
         assert 'uz' in self.firefox_desktop.firefox_primary_builds
         assert 'uz' not in self.firefox_desktop.languages
         assert len([build for build in builds if build['locale'] == 'uz']) == 0
-
-    def test_android(self):
-        """
-        The Firefox for Android download table should only show the multi-locale
-        builds for ARM and x86.
-        """
-        resp = self.client.get(self._get_url('android'))
-        doc = pq(resp.content)
-        assert len(doc('tbody tr')) == 1
-        assert len(doc('tbody tr#multi a')) == 2
-        assert len(doc('tbody tr#multi .android')) == 1
-        assert len(doc('tbody tr#multi .android-x86')) == 1
-
-    def test_404(self):
-        """
-        Firefox for iOS doesn't have the /all/ page. Also, Firefox for Android
-        doesn't have the ESR channel.
-        """
-        resp = self.client.get(self._get_url('ios'))
-        self.assertEqual(resp.status_code, 404)
-
-        resp = self.client.get(self._get_url('android', 'organizations'))
-        self.assertEqual(resp.status_code, 404)
-
-    def test_301(self):
-        """Android Aurora download page should be redirected to Nightly"""
-        resp = self.client.get(self._get_url('android', 'aurora'))
-        assert resp.status_code == 301
-        assert resp['Location'].endswith('/firefox/android/nightly/all/')
 
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())

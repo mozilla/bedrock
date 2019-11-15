@@ -412,15 +412,19 @@ class TestFirefoxURL(TestCase):
         return render(tmpl, {'request': req})
 
     def test_firefox_all(self):
-        """Should return a reversed path for the Firefox download page"""
-        assert self._render('desktop', 'all').endswith('/firefox/all/')
-        assert self._render('desktop', 'all', 'release').endswith('/firefox/all/')
-        assert self._render('desktop', 'all', 'beta').endswith('/firefox/beta/all/')
-        assert self._render('desktop', 'all', 'alpha').endswith('/firefox/developer/all/')
-        assert self._render('desktop', 'all', 'esr').endswith('/firefox/organizations/all/')
-        assert (
-            self._render('desktop', 'all', 'organizations')
-            .endswith('/firefox/organizations/all/'))
+        """Should return a reversed path for the Firefox all downloads page"""
+        assert self._render('desktop', 'all').endswith('/firefox/all/#product-desktop-release')
+        assert self._render('desktop', 'all', 'release').endswith('/firefox/all/#product-desktop-release')
+        assert self._render('desktop', 'all', 'beta').endswith('/firefox/all/#product-desktop-beta')
+        assert self._render('desktop', 'all', 'alpha').endswith('/firefox/all/#product-desktop-developer')
+        assert self._render('desktop', 'all', 'developer').endswith('/firefox/all/#product-desktop-developer')
+        assert self._render('desktop', 'all', 'nightly').endswith('/firefox/all/#product-desktop-nightly')
+        assert self._render('desktop', 'all', 'esr').endswith('/firefox/all/#product-desktop-esr')
+        assert self._render('desktop', 'all', 'organizations').endswith('/firefox/all/#product-desktop-esr')
+        assert self._render('android', 'all').endswith('/firefox/all/#product-android-release')
+        assert self._render('android', 'all', 'release').endswith('/firefox/all/#product-android-release')
+        assert self._render('android', 'all', 'beta').endswith('/firefox/all/#product-android-beta')
+        assert self._render('android', 'all', 'nightly').endswith('/firefox/all/#product-android-nightly')
 
     def test_firefox_sysreq(self):
         """Should return a reversed path for the Firefox sysreq page"""

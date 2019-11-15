@@ -42,12 +42,12 @@
 
   <ul id="other-platforms-languages-wrapper" class="small-links desktop hidden">
     <li><button id="other-platforms-modal-link" type="button">{{_('Advanced install options & other platforms') }}</button></li>
-    <li><a href="{{ url('firefox.all') }}">{{_('Download in another language') }}</a></li>
+    <li><a href="{{ firefox_url('desktop', 'all') }}">{{_('Download in another language') }}</a></li>
     <li><a rel="external" href="https://support.mozilla.org/products/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
   </ul>
 
   <ul class="small-links android">
-    <li><a href="{{ url('firefox.all', channel='android') }}">{{_('Download in another language') }}</a></li>
+    <li><a href="{{ firefox_url('android', 'all') }}">{{_('Download in another language') }}</a></li>
     <li><a rel="external" href="https://support.mozilla.org/products/mobile/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
   </ul>
 

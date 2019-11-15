@@ -146,7 +146,16 @@ URLS = flatten((
     # bug 957664
     url_test('/press/awards{/,.html}', 'https://blog.mozilla.org/press/awards/'),
 
-    url_test('/firefox/aurora/all/', '/firefox/developer/all/'),
+    # issue 8096
+    url_test('/firefox/beta/all/', '/firefox/all/#product-desktop-beta'),
+    url_test('/firefox/developer/all/', '/firefox/all/#product-desktop-developer'),
+    url_test('/firefox/aurora/all/', '/firefox/all/#product-desktop-developer'),
+    url_test('/firefox/nightly/all/', '/firefox/all/#product-desktop-nightly'),
+    url_test('/firefox/organizations/all/', '/firefox/all/#product-desktop-esr'),
+    url_test('/firefox/android/all/', '/firefox/all/#product-android-release'),
+    url_test('/firefox/android/beta/all/', '/firefox/all/#product-android-beta'),
+    url_test('/firefox/android/nightly/all/', '/firefox/all/#product-android-nightly'),
+
     url_test('/projects/firefox/3.6.10/whatsnew/bunny-lebowski/',
              '/firefox/3.6.10/whatsnew/bunny-lebowski/'),
     url_test('/projects/firefox/4.0/firstrun/', '/firefox/4.0/firstrun/'),
@@ -199,12 +208,12 @@ URLS = flatten((
     # bug 727561
     url_test('/firefox/search{,.html}', '/firefox/new/'),
 
-    # bug 860865, 1101220
-    url_test('/firefox/all-{beta,rc}{/,.html}', '/firefox/beta/all/'),
-    url_test('/firefox/all-aurora{/,.html}', '/firefox/developer/all/'),
-    url_test('/firefox/aurora/{all,notes,system-requirements}/',
-             '/firefox/developer/{all,notes,system-requirements}/'),
-    url_test('/firefox/organizations/all.html', '/firefox/organizations/all/'),
+    # bug 860865, 1101220, issue 8096
+    url_test('/firefox/all-{beta,rc}{/,.html}', '/firefox/all/#product-desktop-beta'),
+    url_test('/firefox/all-aurora{/,.html}', '/firefox/all/#product-desktop-developer'),
+    url_test('/firefox/aurora/{notes,system-requirements}/',
+             '/firefox/developer/{notes,system-requirements}/'),
+    url_test('/firefox/organizations/all.html', '/firefox/all/#product-desktop-esr'),
 
     # bug 729329
     url_test('/mobile/sync/is/da/best/', '/firefox/accounts/'),

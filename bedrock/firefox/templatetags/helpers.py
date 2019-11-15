@@ -241,6 +241,7 @@ def firefox_url(platform, page, channel=None):
     """
 
     kwargs = {}
+    anchor = None
 
     # Tweak the channel name for the naming URL pattern in urls.py
     if channel == 'release':
@@ -253,13 +254,37 @@ def firefox_url(platform, page, channel=None):
     if channel == 'esr':
         channel = 'organizations'
 
-    if channel:
-        kwargs['channel'] = channel
-    if platform != 'desktop':
-        kwargs['platform'] = platform
+    # There is now only one /all page URL - issue 8096
+    if page == 'all':
+        if platform == 'desktop':
+            if channel == 'beta':
+                anchor = 'product-desktop-beta'
+            elif channel == 'developer':
+                anchor = 'product-desktop-developer'
+            elif channel == 'nightly':
+                anchor = 'product-desktop-nightly'
+            elif channel == 'organizations':
+                anchor = 'product-desktop-esr'
+            else:
+                anchor = 'product-desktop-release'
+        elif platform == 'android':
+            if channel == 'beta':
+                anchor = 'product-android-beta'
+            elif channel == 'nightly':
+                anchor = 'product-android-nightly'
+            else:
+                anchor = 'product-android-release'
+    else:
+        if channel:
+            kwargs['channel'] = channel
+        if platform != 'desktop':
+            kwargs['platform'] = platform
 
     # Firefox for Android and iOS have the system requirements page on SUMO
     if platform in ['android', 'ios'] and page == 'sysreq':
         return settings.FIREFOX_MOBILE_SYSREQ_URL
+
+    if anchor:
+        return reverse('firefox.%s' % page, kwargs=kwargs) + '#' + anchor
 
     return reverse('firefox.%s' % page, kwargs=kwargs)
