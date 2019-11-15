@@ -271,11 +271,45 @@ Invoking the macro will automatically include a set of default UTM parameters as
 - ``utm_source`` is automatically assigned the value of the ``entrypoint`` parameter.
 - ``utm_medium`` is automatically set as the value of ``referral``.
 
+Linking to getpocket.com
+------------------------
+
+Use the ``pocket_fxa_button`` helper to link to https://getpocket.com/ via a Firefox Accounts auth flow.
+
+.. code-block:: jinja
+
+    {{ pocket_fxa_button(entrypoint='mozilla.org-firefox-pocket', button_text='Try Pocket Now', optional_parameters={'s': 'ffpocket'}) }}
+
+The templates's respective JavaScript bundle should also include the following dependencies:
+
+.. code-block:: text
+
+    js/base/mozilla-fxa-product-button.js
+    js/base/mozilla-fxa-product-button-init.js
+
+FxA button helper configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The ``pocket_fxa_button`` helper supports the following parameters:
+
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    Parameter name          |                                                       Definition                                                       |                          Format                          |                                                Example                                                 |
++============================+========================================================================================================================+==========================================================+========================================================================================================+
+|    entrypoint*             | Unambiguous identifier for which page of the site is the referrer.                                                     | 'mozilla.org-firefox-pocket'                             | 'mozilla.org-firefox-pocket'                                                                           |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    button_text*            | The button copy to be used in the call to action.  Default to a well localized string.                                 | Localizable string                                       | _('Try Pocket Now')                                                                                    |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    class_name              | A class name to be applied to the link (typically for styling with CSS).                                               | String of one or more class names                        | 'pocket-main-cta-button'                                                                               |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    optional_parameters     | An dictionary of key value pairs containing additional parameters to append the the href.                              | Dictionary                                               | {'s': 'ffpocket'}                                                                                      |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    optiona_attributes      | An dictionary of key value pairs containing additional data attributes to include in the button.                       | Dictionary                                               | {'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'activate pocket','data-cta-position': 'primary'} |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 
 Tracking Sign-ups / Sign-ins
 ----------------------------
 
-For both Firefox Accounts form submissions and Firefox Monitor referrals, we also pass ``device_id``, ``flow_id`` and ``flow_begin_time`` parameters to track top-of-funnel metrics. These are values fetched from a metrics flow API endpoint, and are instered back into the form / link along with the other standard referral parameters. This functionality is handled by ``mozilla-fxa-form.js`` and ``mozilla-fxa-product-button.js`` respectively.
+For Firefox Accounts product referrals we also pass ``device_id``, ``flow_id`` and ``flow_begin_time`` parameters to track top-of-funnel metrics. These are values fetched from a metrics flow API endpoint, and are instered back into the form / link along with the other standard referral parameters. This functionality is handled by ``mozilla-fxa-form.js`` and ``mozilla-fxa-product-button.js`` respectively.
 
 .. Important::
 
@@ -294,7 +328,7 @@ The behavior is as follows:
 
 .. Important::
 
-    Links generated by the ``fxa_email_form`` and ``fxa_cta_link`` will automatically be covered by this script. For links generated using the ``fxa_link_fragment`` macro, you will need to manually add a CSS class of ``js-fxa-cta-link`` to trigger the function. This script does not yet cover the monitor button or signup form macro.
+    Links generated by the FxA button macros and helpers will automatically be covered by this script. For links generated using the ``fxa_link_fragment`` macro, you will need to manually add a CSS class of ``js-fxa-cta-link`` to trigger the function. This script does not yet cover the signup form macro.
 
 
 Google Analytics Guidelines

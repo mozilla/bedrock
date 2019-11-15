@@ -45,6 +45,9 @@ TEST_FIREFOX_TWITTER_ACCOUNTS = {
     'es-ES': 'https://twitter.com/firefox_es',
     'pt-BR': 'https://twitter.com/firefoxbrasil',
 }
+
+TEST_FXA_ENDPOINT = 'https://accounts.firefox.com/'
+
 jinja_env = Jinja2.get_default()
 
 
@@ -865,3 +868,29 @@ class TestPocketAdjustUrl(TestCase):
         assert (
             self._render('en-US', None, 'test-page') == 'https://app.adjust.com/m54twk?'
             'campaign=www.mozilla.org&amp;adgroup=test-page')
+
+
+@override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)
+class TestPocketFxAButton(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, entrypoint, button_text, class_name=None, optional_parameters=None,
+                optional_attributes=None):
+        req = self.rf.get('/')
+        req.locale = 'en-US'
+        return render("{{{{ pocket_fxa_button('{0}', '{1}', '{2}', {3}, {4}) }}}}".format(
+                      entrypoint, button_text, class_name, optional_parameters, optional_attributes),
+                      {'request': req})
+
+    def test_pocket_fxa_button(self):
+        """Should return expected markup"""
+        markup = self._render(entrypoint='mozilla.org-firefox-pocket', button_text='Try Pocket Now',
+                              class_name='pocket-main-cta-button', optional_parameters={'s': 'ffpocket', 'foo': 'bar'},
+                              optional_attributes={'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'activate pocket',
+                                                   'data-cta-position': 'primary'})
+        expected = (
+            u'<a href="https://getpocket.com/ff_signup?entrypoint=mozilla.org-firefox-pocket&form_type=button'
+            u'&utm_source=mozilla.org-firefox-pocket&utm_medium=refferal&s=ffpocket&foo=bar" data-action="https://accounts.firefox.com/" '
+            u'class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product pocket-main-cta-button" '
+            u'data-cta-text="Try Pocket Now" data-cta-type="activate pocket" data-cta-position="primary">Try Pocket Now</a>')
+        self.assertEqual(markup, expected)
