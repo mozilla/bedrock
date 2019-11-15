@@ -8,11 +8,6 @@
 JavaScript Libraries
 ====================
 
-Mozilla Pager
--------------
-
-:ref:`mozilla-pager.js<mozillapager>`
-
 Mozilla Image Lazy Loader
 -------------------------
 

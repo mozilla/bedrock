@@ -39,8 +39,6 @@ def test_x_robots_tag(base_url):
     '/firefox/all/',
     '/firefox/android/',
     '/firefox/android/faq/',
-    '/firefox/aurora/all/',
-    '/firefox/beta/all/',
     '/firefox/brand/',
     '/firefox/channel/',
     '/firefox/desktop/',

@@ -28,12 +28,12 @@
 
     <ul class="small-links desktop">
       <li><button class="platform-modal-button js-platform-modal-button hidden" type="button">{{_('Advanced install options & other platforms') }}</button></li>
-      <li><a href="{{ url('firefox.all') }}">{{_('Download in another language') }}</a></li>
+      <li><a href="{{ firefox_url('desktop', 'all') }}">{{_('Download in another language') }}</a></li>
       <li><a href="https://support.mozilla.org/kb/refresh-firefox-reset-add-ons-and-settings?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=fix-problem-link">{{ _('Fix a problem') }}</a></li>
     </ul>
 
     <ul class="small-links android">
-      <li><a href="{{ url('firefox.all', channel='android') }}">{{_('Download in another language') }}</a></li>
+      <li><a href="{{ firefox_url('android', 'all') }}">{{_('Download in another language') }}</a></li>
       <li><a rel="external" href="https://support.mozilla.org/products/mobile/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
     </ul>
 

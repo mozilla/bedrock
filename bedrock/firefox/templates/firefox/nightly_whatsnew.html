@@ -19,7 +19,7 @@
 {% block page_ios_icon %}{{ static('img/favicons/firefox/browser/nightly/apple-touch-icon.png') }}{% endblock %}
 {% block page_title %}{{ _('You’ve just been upgraded to Firefox Nightly %(version)s!')|format(version=num_version) }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
-{% block page_og_url %}{{ url('firefox.all', channel='nightly') }}{% endblock %}
+{% block page_og_url %}{{ firefox_url('desktop', 'all', 'nightly') }}{% endblock %}
 
 {% block body_id %}nightly-whatsnew{% endblock %}
 {% block body_class %}{% endblock %}

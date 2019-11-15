@@ -13,7 +13,6 @@ import basket
 import querystringsafe_base64
 from django.conf import settings
 from django.http import (
-    Http404,
     HttpResponsePermanentRedirect,
     HttpResponseRedirect,
     JsonResponse,
@@ -244,22 +243,7 @@ def send_to_device_ajax(request):
     return JsonResponse(resp_data)
 
 
-def firefox_all(request, platform, channel):
-    locale = l10n_utils.get_locale(request)
-
-    # Only show the new template at /firefox/all/ until enough locales have it translated.
-    # Once we no longer need the old template we can redirect the old URLs to the unified page.
-    if (
-        platform is None
-        and channel is None
-        and lang_file_is_active('firefox/all-unified', locale)
-    ):
-        return all_downloads_unified(request)
-
-    return all_downloads(request, platform, channel)
-
-
-def all_downloads_unified(request):
+def firefox_all(request):
     product_android = firefox_android
     product_desktop = firefox_desktop
 
@@ -378,63 +362,6 @@ def all_downloads_unified(request):
         context['desktop_esr_next_version'] = latest_esr_next_version_desktop
 
     return l10n_utils.render(request, 'firefox/all-unified.html', context)
-
-
-def all_downloads(request, platform, channel):
-    if platform is None:
-        platform = 'desktop'
-    if platform == 'desktop':
-        product = firefox_desktop
-    if platform == 'android':
-        product = firefox_android
-
-    if channel is None:
-        channel = 'release'
-    if channel in ['developer', 'aurora']:
-        channel = 'alpha'
-    if channel == 'organizations':
-        channel = 'esr'
-
-    # Since the regex in urls.py matches various URL patterns, we have to handle
-    # nonexistent pages here as 404 Not Found
-    if platform == 'ios':
-        raise Http404
-    if platform == 'android' and channel == 'esr':
-        raise Http404
-
-    # Aurora for Android is gone; the population has been migrated to Nightly.
-    # Redirect /firefox/android/aurora/all/ to /firefox/android/nightly/all/
-    if platform == 'android' and channel == 'alpha':
-        return HttpResponsePermanentRedirect(
-            reverse('firefox.all', kwargs={'platform': 'android', 'channel': 'nightly'})
-        )
-
-    version = product.latest_version(channel)
-    query = request.GET.get('q')
-
-    context = {
-        'platform': platform,
-        'platforms': product.platforms(channel, True),
-        'platform_cls': product.platform_classification,
-        'full_builds_version': version.split('.', 1)[0],
-        'full_builds': product.get_filtered_full_builds(channel, version, query),
-        'test_builds': product.get_filtered_test_builds(channel, version, query),
-        'query': query,
-        'channel': channel,
-        'channel_label': product.channel_labels.get(channel, 'Firefox'),
-    }
-
-    if platform == 'desktop' and channel == 'esr':
-        next_version = firefox_desktop.latest_version('esr_next')
-        if next_version:
-            context['full_builds_next_version'] = next_version.split('.', 1)[0]
-            context['full_builds_next'] = firefox_desktop.get_filtered_full_builds(
-                'esr_next', next_version, query
-            )
-            context['test_builds_next'] = firefox_desktop.get_filtered_test_builds(
-                'esr_next', next_version, query
-            )
-    return l10n_utils.render(request, 'firefox/all.html', context)
 
 
 def detect_channel(version):
