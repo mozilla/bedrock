@@ -52,12 +52,21 @@
 
     .primary-cta {
         margin: 0 auto;
+
+        .mzp-c-button {
+            min-width: 180px;
+        }
     }
 }
 
 .mzp-c-hero-title {
     @include text-display-lg;
     margin-bottom: $layout-sm;
+
+    .welcome-page1 &,
+    .welcome-page3 & {
+        @include text-display-md;
+    }
 }
 
 .mzp-c-hero-desc {
@@ -107,7 +116,8 @@
     &.t-adjacent-image {
         @include bidi((
             (padding-left, $layout-xl, 0),
-            (padding-right, 0, $layout-xl)
+            (padding-right, 0, $layout-xl),
+            (text-align, left, right),
         ));
         position: relative;
 
@@ -123,7 +133,7 @@
             ));
             display: block;
             margin: 0;
-            max-width: $layout-lg;
+            max-width: $layout-md;
             min-height: 0;
             position: absolute;
         }
@@ -140,6 +150,10 @@
 
     p {
         margin: 0 auto;
+    }
+
+    .mzp-c-button {
+        min-width: 180px;
     }
 }
 

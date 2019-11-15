@@ -28,17 +28,11 @@
 
   <section class="page-body">
     <div class="mzp-l-content mzp-t-narrow">
-      <div class="body-primary">
-        {% block content_primary %}{% endblock %}
-      </div>
+      {% block content_primary %}{% endblock %}
 
-      <div class="body-secondary">
-        {% block content_secondary %}{% endblock %}
-      </div>
+      {% block content_secondary %}{% endblock %}
 
-      <div class="secondary-cta">
-        {% block secondary_cta %}{% endblock %}
-      </div>
+      {% block secondary_cta %}{% endblock %}
     </div>
   </section>
 
