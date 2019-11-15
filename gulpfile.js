@@ -26,7 +26,6 @@ const browserSync = require('browser-sync').create();
 const merge = require('merge-stream');
 const staticBundles = require('./media/static-bundles.json');
 const babel = require('gulp-babel');
-const plumber = require('gulp-plumber');
 
 // directory for building LESS, SASS, and bundles
 const buildDir = 'static_build';
@@ -146,6 +145,8 @@ function assetsCopy() {
     ]);
 }
 
+
+
 /**
  * Find all SASS files from bundles in the static_build directory and compile them.
  */
@@ -259,6 +260,23 @@ function cssWatch(cb) {
     });
 
     cb();
+}
+
+/**
+ * Transpile ES6 JavaScript files.
+ */
+function transpileJs() {
+    gulp.task('scripts', function() {
+        return gulp.src(
+          [
+          'node_modules/babel-polyfill/dist/polyfill.js',
+          'js/*.es6.js'
+          ])
+          .pipe(babel({presets: ['es2015']}))
+          .pipe(gulp.dest('compiled'))
+          
+    });
+    log.info(`Transpiling JavaScript`);
 }
 
 /**
@@ -463,6 +481,7 @@ function devWatch(cb) {
 const buildTask = gulp.series(
     clean,
     assetsCopy,
+    transpileJs,
     gulp.parallel(sassCompileAllFiles, lessCompileAllFiles),
     gulp.parallel(jsCompileBundles, cssCompileBundles),
     gulp.parallel(jsMinify, cssMinify)
@@ -472,6 +491,7 @@ gulp.task('build', buildTask);
 const defaultTask = gulp.series(
     clean,
     assetsCopy,
+    transpileJs,
     gulp.parallel(sassCompileAllFiles, lessCompileAllFiles),
     gulp.parallel(jsCompileBundles, cssCompileBundles),
     assetsWatch,
