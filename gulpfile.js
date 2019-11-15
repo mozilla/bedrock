@@ -25,6 +25,8 @@ const argv = require('yargs').argv;
 const browserSync = require('browser-sync').create();
 const merge = require('merge-stream');
 const staticBundles = require('./media/static-bundles.json');
+const babel = require('gulp-babel');
+const plumber = require('gulp-plumber');
 
 // directory for building LESS, SASS, and bundles
 const buildDir = 'static_build';
