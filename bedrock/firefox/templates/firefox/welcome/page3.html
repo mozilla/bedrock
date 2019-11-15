@@ -24,14 +24,11 @@
     desc=_('The Firefox browser collects so little data about you, we don’t even require your email address. But when you use it to create a Firefox account, we can protect your privacy across more of your online life.'),
     class='mzp-t-firefox mzp-t-dark',
     include_cta=True,
-    heading_level=1,
-    image_url=None,
-    include_highres_image=False,
-    image_alt=''
+    heading_level=1
   ) %}
 
     <p class="primary-cta">
-      {{ fxa_cta_link(entrypoint=_entrypoint, action='signup', button_text='Sign In', button_class='mzp-c-button mzp-t-product js-fxa-product-button', utm_campaign=_utm_campaign, utm_content='top-cta') }}
+      {{ fxa_cta_link(entrypoint=_entrypoint, action='signup', button_text=_('Sign In'), button_class='mzp-c-button mzp-t-product js-fxa-product-button', utm_campaign=_utm_campaign, utm_content='top-cta') }}
     </p>
   {% endcall %}
 {% endblock %}
@@ -93,7 +90,7 @@
 
 {% block secondary_cta %}
   <p class="secondary-cta">
-    {{ fxa_cta_link(entrypoint=_entrypoint, action='signup', button_text='Sign In', button_class='mzp-c-button mzp-t-product js-fxa-product-button', utm_campaign=_utm_campaign, utm_content='bottom-cta') }}
+    {{ fxa_cta_link(entrypoint=_entrypoint, action='signup', button_text=_('Sign In'), button_class='mzp-c-button mzp-t-product js-fxa-product-button', utm_campaign=_utm_campaign, utm_content='bottom-cta') }}
   </p>
 {% endblock %}
 
