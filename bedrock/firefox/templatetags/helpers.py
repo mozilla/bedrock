@@ -284,7 +284,5 @@ def firefox_url(platform, page, channel=None):
     if platform in ['android', 'ios'] and page == 'sysreq':
         return settings.FIREFOX_MOBILE_SYSREQ_URL
 
-    if anchor:
-        return reverse('firefox.%s' % page, kwargs=kwargs) + '#' + anchor
-
-    return reverse('firefox.%s' % page, kwargs=kwargs)
+    anchor = '#' + anchor if anchor else ''
+    return reverse(f'firefox.{page}', kwargs=kwargs) + anchor
