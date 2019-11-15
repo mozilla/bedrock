@@ -41,6 +41,15 @@ $image-path: '/media/protocol/img';
     }
 }
 
+blockquote.t-small {
+    font-weight: normal;
+    @include text-body-lg;
+}
+
+.lead-in {
+    margin-bottom: 0;
+}
+
 .side-reference-title {
     @include font-base;
     @include text-body-lg;
