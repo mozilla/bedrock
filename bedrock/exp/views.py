@@ -8,4 +8,4 @@ from lib import l10n_utils
 
 class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
     def get_template_names(self):
-        return ['exp/firefox/whatsnew/whatsnew-fx70.html']
+        return ['exp/firefox/whatsnew/whatsnew-fx71.html']

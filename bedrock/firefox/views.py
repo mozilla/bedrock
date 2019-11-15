@@ -553,8 +553,8 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
                 template = 'firefox/whatsnew/index.html'
         elif locale == 'id':
             template = 'firefox/whatsnew/index-lite.id.html'
-        elif version == '70.0.2' and show_70_0_2_whatsnew(oldversion):
-            template = 'firefox/whatsnew/index.html'
+        elif version.startswith('71.') and lang_file_is_active('firefox/whatsnew_71', locale):
+            template = 'firefox/whatsnew/whatsnew-fx71.html'
         elif version.startswith('70.'):
             if locale in ['en-US', 'en-CA', 'en-GB']:
                 template = 'firefox/whatsnew/whatsnew-fx70-en.html'
