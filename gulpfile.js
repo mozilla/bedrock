@@ -26,6 +26,7 @@ const browserSync = require('browser-sync').create();
 const merge = require('merge-stream');
 const staticBundles = require('./media/static-bundles.json');
 const babel = require('gulp-babel');
+const debug = require('gulp-debug');
 
 // directory for building LESS, SASS, and bundles
 const buildDir = 'static_build';
@@ -266,17 +267,9 @@ function cssWatch(cb) {
  * Transpile ES6 JavaScript files.
  */
 function transpileJs() {
-    gulp.task('scripts', function() {
-        return gulp.src(
-          [
-          'node_modules/babel-polyfill/dist/polyfill.js',
-          'js/*.es6.js'
-          ])
-          .pipe(babel({presets: ['es2015']}))
-          .pipe(gulp.dest('compiled'))
-          
-    });
-    log.info(`Transpiling JavaScript`);
+    return gulp.src('media/js/components/*.es6.js')
+        .pipe(babel({presets: ['@babel/preset-env']}))
+        .pipe(gulp.dest('media/js/compiled'))
 }
 
 /**
@@ -293,7 +286,6 @@ function jsCompileBundles() {
  */
 function jsWatch(cb) {
     const jsWatcher = gulp.watch(finalDir + '/js/**/*.js');
-
     jsWatcher.on('change', function(path) {
         let modBundles = staticBundles.js.filter(bundle => {
             let contains = false;
@@ -463,6 +455,7 @@ function devWatch(cb) {
     // watch:js
     // --------------------------
     gulp.watch('media/js/**/*.js', jsLint);
+    // gulp.watch('js/components/**/*.es6.js', transpileJs)
 
     // --------------------------
     // watch:html
@@ -481,7 +474,7 @@ function devWatch(cb) {
 const buildTask = gulp.series(
     clean,
     assetsCopy,
-    transpileJs,
+    // transpileJs,
     gulp.parallel(sassCompileAllFiles, lessCompileAllFiles),
     gulp.parallel(jsCompileBundles, cssCompileBundles),
     gulp.parallel(jsMinify, cssMinify)
@@ -491,9 +484,8 @@ gulp.task('build', buildTask);
 const defaultTask = gulp.series(
     clean,
     assetsCopy,
-    transpileJs,
     gulp.parallel(sassCompileAllFiles, lessCompileAllFiles),
-    gulp.parallel(jsCompileBundles, cssCompileBundles),
+    gulp.parallel(jsCompileBundles, cssCompileBundles, transpileJs),
     assetsWatch,
     browserSyncTask,
     gulp.parallel(sassWatch, lessWatch, cssWatch, jsWatch),
