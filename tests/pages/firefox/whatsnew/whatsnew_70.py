@@ -11,8 +11,8 @@ class FirefoxWhatsNew70Page(FirefoxBasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/70.0/whatsnew/all/{params}'
 
-    _signed_out_monitor_button_locator = (By.CSS_SELECTOR, '.show-fxa-supported-signed-out .js-monitor-button')
-    _signed_in_monitor_button_locator = (By.CSS_SELECTOR, '.show-fxa-supported-signed-in .js-monitor-button')
+    _signed_out_monitor_button_locator = (By.CSS_SELECTOR, '.show-fxa-supported-signed-out .js-fxa-product-button')
+    _signed_in_monitor_button_locator = (By.CSS_SELECTOR, '.show-fxa-supported-signed-in .js-fxa-product-button')
 
     def wait_for_page_to_load(self):
         self.wait.until(lambda s: self.seed_url in s.current_url)

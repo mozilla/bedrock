@@ -12,7 +12,7 @@ class FirefoxWhatsNew6705Page(FirefoxBasePage):
     URL_TEMPLATE = '/{locale}/firefox/67.0.5/whatsnew/all/{params}'
 
     _firefox_accounts_form_locator = (By.ID, 'fxa-email-form')
-    _monitor_button_locator = (By.CLASS_NAME, 'js-monitor-button')
+    _monitor_button_locator = (By.CLASS_NAME, 'js-fxa-product-button')
 
     def wait_for_page_to_load(self):
         self.wait.until(lambda s: self.seed_url in s.current_url)
