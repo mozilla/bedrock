@@ -15,11 +15,11 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Page specific variables and over-rides
 
-$color-gray-80;
-$color-blue-40;
-$color-pink-50;
-$color-off-black;
-$color-yellow-10;
+$color-gray-80
+$color-blue-40
+$color-pink-50
+$color-off-black
+$color-yellow-10
 
 // not yet recognized as valid by style lint, so we abstract it
 $mq-reduced-motion: 'screen and (prefers-reduced-motion: reduce)';
