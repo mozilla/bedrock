@@ -65,30 +65,40 @@
             <li><a href="{{ url('firefox.channel.android') + '#nightly' }}" data-link-type="footer" data-link-name="Nightly for Android">{{ _('Nightly for Android') }}</a></li>
           </ul>
         </section>
+        <section class="mzp-c-footer-section mzp-c-has-lang">
+          <div class="mzp-c-footer-language">
+            {% include 'includes/protocol/lang-switcher.html' %}
+          </div>
+          <ul class="mzp-c-footer-links-social">
+            <li><a class="twitter" href="https://twitter.com/firefox" data-link-type="footer" data-link-name="Twitter (@firefox)">{{ _('Twitter') }}<span> (@firefox)</span></a></li>
+            <li><a class="instagram" href="https://www.instagram.com/firefox/" data-link-type="footer" data-link-name="Instagram (@firefox)">{{ _('Instagram') }}<span> (@firefox)</span></a></li>
+            <li><a class="youtube" href="https://www.youtube.com/user/firefoxchannel" data-link-type="footer" data-link-name="YouTube (@firefoxchannel)">{{ _('YouTube') }}<span> (@firefoxchannel)</span></a></li>
+          </ul>
+        </section>
       </div>
     </nav>
     <nav class="mzp-c-footer-secondary">
-      <div class="mzp-c-footer-language">
-        {% include 'includes/protocol/lang-switcher.html' %}
+      <div class="mzp-c-footer-primary-logo">
+        <a href="{{ url('mozorg.home') }}" data-link-type="footer" data-link-name="Mozilla">{{ _('Mozilla') }}</a>
       </div>
-      <ul class="mzp-c-footer-links-social">
-        <li><a class="twitter" href="https://twitter.com/firefox" data-link-type="footer" data-link-name="Twitter (@firefox)">{{ _('Twitter') }}<span> (@firefox)</span></a></li>
-        <li><a class="instagram" href="https://www.instagram.com/firefox/" data-link-type="footer" data-link-name="Instagram (@firefox)">{{ _('Instagram') }}<span> (@firefox)</span></a></li>
-        <li><a class="youtube" href="https://www.youtube.com/user/firefoxchannel" data-link-type="footer" data-link-name="YouTube (@firefoxchannel)">{{ _('YouTube') }}<span> (@firefoxchannel)</span></a></li>
-      </ul>
       <div class="mzp-c-footer-legal">
-        <p class="mzp-c-footer-license">
+        <div class="mzp-c-footer-license">
           {% set moco_link = 'href="%s" data-link-type="footer" data-link-name="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}
           {% set mofo_link = 'href="https://foundation.mozilla.org" rel="external noopener" data-link-type="footer" data-link-name="Mozilla Foundation"'|safe %}
+          <p>
           {% trans %}
             Visit <a {{ moco_link }}>Mozilla Corporation’s</a> not-for-profit parent, the <a {{ mofo_link }}>Mozilla Foundation</a>.
-          {% endtrans %}<br>
+          {% endtrans %}
+          </p>
+          <p>
           {%- trans url=url('foundation.licensing.website-content') -%}
               Portions of this content are ©1998–{{ current_year }} by individual mozilla.org
               contributors. Content available under a <a rel="license" href="{{ url }}">Creative Commons license</a>.
           {%- endtrans -%}
-        </p>
+          </p>
+        </div>
         <ul class="mzp-c-footer-terms">
+          <li><a href="{{ url('mozorg.home') }}" data-link-type="footer" data-link-name="mozilla.org">mozilla.org</a></li>
           <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy">{{ _('Privacy') }}</a></li>
           <li><a href="{{ url('privacy.notices.websites') }}" data-link-type="footer" data-link-name="Privacy">{{ _('Website Privacy Notice') }}</a></li>
           <li><a href="{{ url('privacy.notices.websites') }}#cookies" data-link-type="footer" data-link-name="Cookies">{{ _('Cookies') }}</a></li>
