@@ -1,0 +1,132 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import send_to_device with context %}
+{% from "macros-protocol.html" import hero with context %}
+
+{% add_lang_files "firefox/sendto" "firefox/welcome/page4" %}
+
+{% extends "firefox/welcome/base.html" %}
+
+{# L10n: HTML page title #}
+{% block page_title %}{{ _('Download the Firefox Browser on your Mobile for iOS and Android') }}{% endblock %}
+
+{% block body_class %}{{ super() }} welcome-page4{% endblock %}
+
+{% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
+
+{% set _entrypoint = 'mozilla.org-firefox-welcome-4' %}
+{% set _utm_campaign = 'welcome-4-mobile' %}
+
+{# L10n: the strong tag here is to underline Firefox. #}
+{% block content_intro %}
+{% call hero(
+    title=_('Wallet. Keys. Phone. <strong>Firefox.</strong>'),
+    desc=_('Take privacy with you on every device — and leave the data trackers behind.'),
+    class='mzp-t-firefox mzp-t-dark',
+    include_cta=True,
+    heading_level=1
+  ) %}
+
+  <p class="primary-cta">
+    <button class="js-modal-link mzp-c-button mzp-t-product" data-cta-position="primary" data-cta-type="button" data-cta-text="Get the Firefox App">
+      {{ _('Get the Firefox App') }}
+    </button>
+  </p>
+
+  {% endcall %}
+
+  <div id="modal" class="mzp-u-modal-content mzp-l-content">
+    <h2 class="modal-logo">Firefox</h2>
+    <h3>{{ _('Get Firefox on your Phone') }}</h3>
+
+    {% if show_send_to_device %}
+      <p>{{ _('Send the download link right to your phone or email.') }}</p>
+      {{ send_to_device(include_title=False, class='vertical') }}
+    {% else %}
+      {# L10n: This string is reused from firefox/whatsnew #}
+      <p>{{ _('Download Firefox for your smartphone and tablet.') }}</p>
+      <div class="qr-code-wrapper">
+        <img src="{{ static('img/firefox/welcome/welcome-qr-firefox.png') }}" id="firefox-qr"
+          alt="QR code to scan for the Firefox mobile app.">
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block content_primary %}
+<div class="body-primary">
+  <img class="primary-image" src="{{ static('img/firefox/welcome/mobile-hero.png') }}" width="700" height="" alt="">
+  <p class="primary-image-desc">{{ _('“Firefox: Private, Safe Browser” on iOS or Android.') }}</p>
+</div>
+
+{% endblock %}
+
+{% block content_secondary %}
+<div class="c-picto-block t-adjacent-image">
+  <div class="c-picto-block-image">
+    <img src="{{ static('img/icons/gradient-shield.svg') }}" alt="">
+  </div>
+
+  {# L10n: "off your trail" is an expression for not being followed around. #}
+  <h3 class="c-picto-block-title">{{ _('Get data trackers off your trail') }}</h3>
+  <div class="c-picto-block-body">
+    <p>
+      {% set frende = ['en-US', 'en-GB', 'en-CA', 'de', 'fr', 'es-ES'] %}
+      {% set privacy = 'https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop' %}
+
+      {% if LANG in frende %}
+        {% set privacy = 'https://www.mozilla.org/firefox/privacy/products/' %}
+      {% endif %}
+
+      {% trans %}
+      Enhanced Tracking Protection <a href="{{ privacy }}">blocks 2000+ trackers</a> from chasing you around the web.
+      {% endtrans %}
+    </p>
+  </div>
+</div>
+
+<div class="c-picto-block t-adjacent-image">
+  <div class="c-picto-block-image">
+    <img src="{{ static('img/icons/eraser.svg') }}" alt="">
+  </div>
+
+  {# L10n: "Leave no trace" is an expression for leaving nothing behind. #}
+  <h3 class="c-picto-block-title">{{ _('Leave no trace') }}</h3>
+  <div class="c-picto-block-body">
+    <p>{{ _('Automatically clear your history and cookies with Private Browsing mode.') }}</p>
+  </div>
+</div>
+
+<div class="c-picto-block t-adjacent-image">
+  <div class="c-picto-block-image">
+    <img src="{{ static('img/icons/arrows.svg') }}" alt="">
+  </div>
+
+  <h3 class="c-picto-block-title">{{ _('Take it all with you') }}</h3>
+  <div class="c-picto-block-body">
+    <p>{{ _('Don’t walk out the door without your bookmarks, tabs, notes, and passwords.') }}</p>
+  </div>
+</div>
+{% endblock %}
+
+{% block secondary_cta %}
+<p class="secondary-cta">
+  <button class="js-modal-link mzp-c-button mzp-t-product" data-cta-position="secondary" data-cta-type="button" data-cta-text="Get the Firefox App">
+    {{ _('Get the Firefox App') }}
+  </button>
+</p>
+{% endblock %}
+
+{% block content_utility %}
+<p>
+  <strong>
+    <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">{{ _('Why am I seeing this?') }}</a>
+  </strong>
+</p>
+{% endblock %}
+
+{% block js %}
+{{ js_bundle('firefox_welcome_page4') }}
+{% endblock %}

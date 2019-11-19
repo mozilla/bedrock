@@ -877,6 +877,7 @@
     },
     {
       "files": [
+        "css/protocol/components/send-to-device.scss",
         "css/firefox/welcome.scss"
       ],
       "name": "firefox_welcome"
@@ -953,6 +954,14 @@
         "js/base/mozilla-fxa-product-button-init.js"
       ],
       "name": "exp_firefox_welcome_page"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-modal.js",
+        "js/base/send-to-device.js",
+        "js/firefox/welcome4.js"
+      ],
+      "name": "firefox_welcome_page4"
     },
     {
       "files": [
