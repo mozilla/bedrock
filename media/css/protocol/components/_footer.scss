@@ -6,8 +6,128 @@
 
 .mzp-c-footer.mzp-t-firefox {
     background-color: $color-off-black;
+}
 
+.mzp-c-footer.mzp-t-firefox {
     .mzp-c-footer-sections {
         padding-top: 0;
+    }
+}
+
+.mzp-c-footer-section.mzp-c-has-lang {
+    position: relative;
+}
+
+.mzp-c-footer-section {
+    .mzp-c-footer-language {
+        padding-top: $layout-md;
+    }
+
+    .mzp-c-footer-links-social {
+        margin-bottom: $layout-lg;
+        max-width: 100%;
+    }
+}
+
+
+@media #{$mq-sm} {
+    .mzp-c-footer-section {
+        .mzp-c-footer-language {
+            @include bidi(((text-align, left, right),));
+            float: none;
+            padding-top: $spacing-md;
+        }
+
+        .mzp-c-language-switcher-link {
+            display: block;
+        }
+
+        .mzp-c-footer-links-social {
+            @include bidi(((text-align, left, right),));
+            margin-bottom: 0;
+            position: static;
+
+            > :first-child {
+                @include bidi(((padding-left, 0, padding-right, 0),));
+            }
+        }
+    }
+}
+
+
+@media #{$mq-md} {
+    .mzp-c-footer.mzp-t-firefox {
+
+        .mzp-c-footer-primary-logo {
+            @include bidi(((float, left, right),));
+            margin-bottom: $spacing-md;
+        }
+
+        .mzp-c-footer-license {
+            @include bidi(((float, right, left),));
+            width: calc(50% - #{$spacing-lg});
+        }
+
+        .mzp-c-footer-terms {
+            @include bidi(((clear, left, right),));
+        }
+    }
+
+    .mzp-c-footer-section {
+        .mzp-c-footer-language {
+            padding-top: $spacing-sm;
+        }
+    }
+}
+
+@media #{$mq-lg} {
+    // Needs a lot of specificity to over-ride original rules
+    // https://github.com/mozilla/protocol/issues/524
+    .mzp-c-footer.mzp-t-firefox .mzp-c-footer-section[class] {
+        clear: none;
+
+        &:nth-child(3n+1) {
+            @include bidi(((clear, left, right),));
+            @include bidi(((padding, 0 ($layout-md / 2) 0 0, 0 0 0 ($layout-md / 2)),));
+            width: calc(33.33% - #{$layout-md - ($layout-md / 3)});
+        }
+
+        &:nth-child(3n+2) {
+            padding: 0 ($layout-md / 2);
+            width: calc(33.33% - #{$layout-md - ($layout-md / 3)});
+        }
+
+        &:nth-child(3n+3) {
+            @include bidi(((padding, 0 0 0 ($layout-md / 2), 0 ($layout-md / 2) 0 0),));
+            width: calc(33.33% - #{$layout-md - ($layout-md / 3)});
+        }
+
+    }
+}
+
+@media #{$mq-xl} {
+    // Needs a lot of specificity to over-ride original rules
+    .mzp-c-footer.mzp-t-firefox .mzp-c-footer-section[class] {
+
+        &:nth-child(n) {
+            @include bidi((
+                (clear, none, none),
+                (padding, 0 ($layout-md / 2) 0, 0 ($layout-md / 2) 0),
+            ));
+            width: calc(15% - #{$layout-md - ($layout-md / 6)});
+        }
+
+        &:nth-child(6n+1) {
+            @include bidi(((padding, 0 ($layout-md / 2) 0 0, 0 0 0 ($layout-md / 2)),));
+        }
+
+        &:nth-child(6n+5) {
+            width: calc(20% - #{$layout-md - ($layout-md / 6)});
+        }
+
+        &:nth-child(6n+6) {
+            @include bidi(((padding, 0 0 0 ($layout-md / 2), 0 ($layout-md / 2) 0 0),));
+            width: calc(20% - #{$layout-md - ($layout-md / 6)});
+        }
     }
 }
