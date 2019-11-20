@@ -1,6 +1,6 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
-  # License, v. 2.0. If a copy of the MPL was not distributed with this
-  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% extends "base-protocol-mozilla.html" %}
 
@@ -202,7 +202,9 @@
             {% endtrans %}
           </p>
           <p>
-            {% trans etp="https://blog.mozilla.org/blog/2019/09/03/todays-firefox-blocks-third-party-tracking-cookies-and-cryptomining-by-default/" %}
+            {% trans
+            etp="https://blog.mozilla.org/blog/2019/09/03/todays-firefox-blocks-third-party-tracking-cookies-and-cryptomining-by-default/"
+            %}
             We backed up our commitment to making sure Firefox users are afforded privacy and control online by adding
             <a href="{{ etp }}">Enhanced Tracking Protection (ETP) to the browser on desktop and Android as a default
               feature in 2019.</a>
@@ -238,28 +240,29 @@
             {% trans mr="https://mixedreality.mozilla.org/firefox-reality/" %}
             We’re bringing the ETP functionality to the development of future products and new technologies as well. In
             2019, we began testing ETP in Firefox Preview, the beta version of our soon-to-be released Android browser,
-            which is powered by the Mozilla-built GeckoView engine. Our AR/VR and mixed reality browser, <a
-              href="{{ mr }}">Firefox Reality</a>,
-            was also built from the ground up with the same private-by-default approach.
+            which is powered by the Mozilla-built GeckoView engine. Our AR/VR and mixed reality browser, <a href="{{ mr
+              }}">Firefox Reality</a>, was also built from the ground up with the same private-by-default approach.
             {% endtrans %}
           </p>
           <p>
             {% trans app="https://blog.mozilla.org/blog/2018/09/18/firefox-reality-now-available/",
-            htc="https://blog.mozilla.org/blog/2019/01/08/mozilla-announces-deal-to-bring-firefox-reality-to-htc-vive-devices/" %}
+            htc="https://blog.mozilla.org/blog/2019/01/08/mozilla-announces-deal-to-bring-firefox-reality-to-htc-vive-devices/"
+            %}
             In 2018, Firefox Reality became <a href="{{ app }}">available in the Viveport, Oculus, and Daydream app
-              stores</a> and in 2019 we
-            announced a partnership with <a href="{{ htc }}">HTC VIVE</a> to power immersive web experiences through the
+              stores</a> and in 2019 we announced a partnership with <a href="{{ htc }}">HTC VIVE</a> to power immersive
+            web experiences through the
             Firefox Reality browser across Vive’s portfolio of devices. As we enter this emerging technology space, we
-            do it with the core
-            values and user-first commitment that have always been our hallmark.
+            do it with the core values and user-first commitment that have always been our hallmark.
             {% endtrans %}
           </p>
           <p>
-            {% trans nascent="https://foundation.mozilla.org/blog/mozillas-approach-to-trustworthy-artificial-intelligence-ai/" %}
+            {% trans
+            nascent="https://foundation.mozilla.org/blog/mozillas-approach-to-trustworthy-artificial-intelligence-ai/"
+            %}
             This year, Mozilla Foundation began exploring the ways in which Artificial Intelligence is understood by
             internet users around the world and how the <a href="{{ nascent }}">nascent technology’s development should
-              be shaped</a>
-            by human agency and ethics with a focus on the privacy and security and enriching people’s lives.
+              be shaped</a> by human agency and ethics with a focus on the privacy and security and enriching people’s
+            lives.
             {% endtrans %}
           </p>
           <p>
@@ -267,10 +270,8 @@
             fellows="https://foundation.mozilla.org/blog/introducing-our-29-newest-mozilla-fellows/" %}
             Mozilla is helping developers build more trustworthy AI, including work with Omidyar Network and others to
             put $3.5 million behind <a href="{{ ethics }}">professors integrating ethics into computer science
-              curriculum.</a> We also encourage
-            governments to promote trustworthy AI, including through work by <a href="fellows">Mozilla Fellows</a> to
-            map out a policy and
-            litigation agenda that taps into current momentum in Europe.
+              curriculum.</a> We also encourage governments to promote trustworthy AI, including through work by <a href="fellows">Mozilla Fellows</a> to
+            map out a policy and litigation agenda that taps into current momentum in Europe.
             {% endtrans %}
           </p>
           <p>
@@ -291,11 +292,12 @@
             {% endtrans %}
           </p>
           <p>
-            {% trans security="https://foundation.mozilla.org/privacynotincluded/about/meets-minimum-security-standards" %}
+            {% trans security="https://foundation.mozilla.org/privacynotincluded/about/meets-minimum-security-standards"
+            %}
             Instead of offering “Do and Don’t” buying recommendations, we leveraged our technical expertise to create
             the <a href="{{ security }}">Minimum Security Standards</a> we think all products should meet in order to be
-            sold in stores. We used
-            these standards to rate the products in the Guide. They include using encryption, automatic security
+            sold in stores. We used these standards to rate the products in the Guide. They include using encryption,
+            automatic security
             updates, requiring strong passwords, having a system to manage vulnerabilities, and having an accessible
             privacy policy.
             {% endtrans %}
@@ -303,10 +305,9 @@
           <p>
             {% trans venmo="https://foundation.mozilla.org/blog/venmo-are-you-listening-make-user-privacy-default/" %}
             Mozilla Foundation also pushed companies like <a href="{{ venmo }}">Venmo to adopt private-by-default
-              positions</a> on transactions.
-            Advocating for consumers with other companies and arming them consumers with vital information at-a-glance
-            was one way to empower people in their digital lives, helping them make better informed decisions about how
-            and with whom they spend their time and money online.
+              positions</a> on transactions. Advocating for consumers with other companies and arming them consumers with
+            vital information at-a-glance was one way to empower people in their digital lives, helping them make better
+            informed decisions about how and with whom they spend their time and money online.
             {% endtrans %}
           </p>
 
@@ -338,49 +339,47 @@
             {% endtrans %}
           </p>
           <p>
-            {% trans letter="https://blog.mozilla.org/wp-content/uploads/2019/01/Mozilla-letter-to-EU-Commission-on-Facebook-transparency-31-01-19.pdf",
-            organize="https://blog.mozilla.org/blog/2019/03/27/facebook-and-google-this-is-what-an-effective-ad-archive-api-looks-like/" %}
+            {% trans
+            letter="https://blog.mozilla.org/wp-content/uploads/2019/01/Mozilla-letter-to-EU-Commission-on-Facebook-transparency-31-01-19.pdf",
+            organize="https://blog.mozilla.org/blog/2019/03/27/facebook-and-google-this-is-what-an-effective-ad-archive-api-looks-like/"
+            %}
             Beginning with a <a href="{{ letter }}">letter</a> to the European Commission, Mozilla highlighted the lack
-            of publicly-available data
-            about political advertising on major platforms and the impact that would ultimately have on EU residents and
-            the election. This led us to <a href="{{ organize }}">organize researchers</a> to push the tech sector to
-            adopt fully functional, open
-            APIs that enable their research into political ads targeted to EU residents.
+            of publicly-available data about political advertising on major platforms and the impact that would
+            ultimately have on EU residents and the election. This led us to <a href="{{ organize }}">organize researchers</a>
+            to push the tech sector to adopt fully functional, open APIs that enable their research into political ads targeted
+            to EU residents.
             {% endtrans %}
           </p>
           <p>
             {% trans dashboard="https://adtransparency.mozilla.org/eu/" %}
             And when it became clear that was unlikely to happen by the platforms themselves before voting day, our own
             team went to work in creating an <a href="{{ dashboard }}">analysis dashboard</a> that gathered data on the
-            political ads running on
-            various platforms and provide a concise “behind the scenes” look at how these ads were shared and targeted
-            for researchers and journalists monitoring the elections.
+            political ads running on various platforms and provide a concise “behind the scenes” look at how these ads
+            were shared and targeted for researchers and journalists monitoring the elections.
             {% endtrans %}
           </p>
           <p>
-            {% trans doc="https://adtransparency.mozilla.org/eu/log/", tips="https://adtransparency.mozilla.org/eu/methods/",
+            {% trans doc="https://adtransparency.mozilla.org/eu/log/",
+            tips="https://adtransparency.mozilla.org/eu/methods/",
             coverage="https://www.nytimes.com/2019/07/25/technology/facebook-ad-library.html" %}
             While our contribution to this effort ended up looking very different than what we had first set out to do,
             our work <a href="{{ doc }}">documented</a> every time the API failed and every roadblock encountered,
-            creating a series of
-            <a href="{{ tips }}">tips and tricks</a> to help others use the API. It also led to <a
-              href="{{ coverage }}">national coverage</a>
-            of Facebook’s broken promise to create a tool to fight track political advertising and disinformation. The
-            Foundation continues to apply pressure
-            and galvanize people around the world to force big tech to the table to increase transparency and fight
-            misinformation.
+            creating a series of <a href="{{ tips }}">tips and tricks</a> to help others use the API. It also led to
+            <a href="{{ coverage }}">national coverage</a> of Facebook’s broken promise to create a tool to fight track
+            political advertising and disinformation. The Foundation continues to apply pressure and galvanize people
+            around the world to force big tech to the table to increase transparency and fight misinformation.
             {% endtrans %}
           </p>
           <p>
-            {% trans fb="https://foundation.mozilla.org/blog/facebook-still-failing-ad-transparency-no-matter-what-they-claim/",
+            {% trans
+            fb="https://foundation.mozilla.org/blog/facebook-still-failing-ad-transparency-no-matter-what-they-claim/",
             ad="https://foundation.mozilla.org/en/blog/statement-disallowing-microtargeting-political-ads/" %}
             In the run-up to the U.S. presidential elections next year Mozilla has taken a number of steps, led by
             Mozilla Foundation, to challenge its peers to support free and open discourse online. One step was
             <a href="{{ fb }}">calling on Facebook to live up to its promises</a> to commit to truly transparent
             political advertising,
             and if it can’t, stop its practice of running political ads altogether. Citing the ways in which
-            microtargeting keeps
-            ideas from being debated in the open, enabling fiction to parade as fact, Mozilla Foundation also called on
+            microtargeting keeps ideas from being debated in the open, enabling fiction to parade as fact, Mozilla Foundation also called on
             Google and Facebook to ban the <a href="{{ ad }}">practice of micro-targeting in political advertising.</a>
             {% endtrans %}
           </p>
@@ -393,35 +392,38 @@
             {% endtrans %}
           </p>
           <p>
-            {% trans misinfo="https://blog.mozilla.org/internetcitizen/2018/10/04/misinfo-nation-misinformation-democracy-internet/" %}
+            {% trans
+            misinfo="https://blog.mozilla.org/internetcitizen/2018/10/04/misinfo-nation-misinformation-democracy-internet/"
+            %}
             To unpack the full spectrum of the problem and outline solutions, Mozilla’s popular podcast, IRL, created an
             original documentary short film, <a href="{{ misinfo }}">Misinfo Nation: Misinformation, Democracy, and the
-              Internet.</a> Featuring
-            Scott Shane of The New York Times, Emily Thorson, of Syracuse University, and An Xiao Mina of the
+              Internet.</a> Featuring Scott Shane of The New York Times, Emily Thorson, of Syracuse University, and An
+            Xiao Mina of the
             Credibility Coalition, the film prompts us to fact check and challenge our own beliefs.
             {% endtrans %}
           </p>
           <p>
-            {% trans ad="https://blog.mozilla.org/netpolicy/2018/10/18/getting-serious-about-political-ad-transparency-with-ad-analysis-for-facebook/" %}
+            {% trans
+            ad="https://blog.mozilla.org/netpolicy/2018/10/18/getting-serious-about-political-ad-transparency-with-ad-analysis-for-facebook/"
+            %}
             Mozilla also released <a href="{{ ad }}">Ad Analysis for Facebook</a> for the 2018 U.S. midterm elections,
-            part of our solution to
-            the lack of transparency around political advertising on the web. The tool was an important resource for
+            part of our solution to the lack of transparency around political advertising on the web. The tool was an
+            important resource for
             users and researchers to learn how they were micro-targeted. Facebook changed its settings, breaking the
             tool, but Mozilla is pursuing solutions to shine a light on political ad targeting.
             {% endtrans %}
           </p>
           <p>
-            {% trans dozens="https://blog.mozilla.org/blog/2018/08/21/mozilla-announces-25-new-fellows-in-openness-science-and-tech-policy/",
+            {% trans
+            dozens="https://blog.mozilla.org/blog/2018/08/21/mozilla-announces-25-new-fellows-in-openness-science-and-tech-policy/",
             camille="https://time.com/collection/time-100-next-2019/5718889/camille-francois/",
             renee="https://www.mozillapulse.org/profile/410" %}
             The Mozilla Foundation welcomed <a href="{{ dozens }}">dozens of new fellows</a>, including two
-            internationally known for their work to
-            thwart dis/misinformation. <a href="{{ camille }}">Camille Fancois</a> works on mitigating online targeted
-            threats and disinformation
-            campaigns, exposing their impact on civil society and vulnerable users globally. <a href="{{ renee }}">Renee
-              DiResta</a> is working
-            closely with platforms, researchers, and the Mozilla Open Innovation team to explore how we can address dis-
-            and misinformation online.
+            internationally known for their work to thwart dis/misinformation. <a href="{{ camille }}">Camille Fancois</a>
+            works on mitigating online targeted threats and disinformation campaigns, exposing their impact on civil
+            society and vulnerable users globally. <a href="{{ renee }}">Renee DiResta</a> is working closely with
+            platforms, researchers, and the Mozilla Open Innovation team to explore how we can address dis- and
+            misinformation online.
             {% endtrans %}
           </p>
         </div>{#--/.c-copy--#}
@@ -449,19 +451,19 @@
             value being exchanged for access to products and services, we’re exploring paid and subscription service
             offerings as a complement to the free services we already provide. In both cases, we are maintaining our
             <a href="{{ privacy }}">unwavering commitment</a> to ensuring transparency with easily accessible and
-            digestible terms of service and
-            explicit consent to take in only the information needed to provide products and services.
+            digestible terms of service and explicit consent to take in only the information needed to provide products
+            and services.
             {% endtrans %}
           </p>
           <p>
-            {% trans vpn="https://www.engadget.com/2018/10/23/mozilla-firefox-protonvpn-test/", lockwise="https://testpilot.firefox.com/experiments/firefox-lockbox/",
+            {% trans vpn="https://www.engadget.com/2018/10/23/mozilla-firefox-protonvpn-test/",
+            lockwise="https://testpilot.firefox.com/experiments/firefox-lockbox/",
             launched="https://blog.mozilla.org/blog/2018/09/25/introducing-firefox-monitor-helping-people-take-control-after-a-data-breach/",
             monitor="https://monitor.firefox.com/" %}
             In 2018, we began testing a new paid virtual private network (<a href="{{ vpn }}">VPN</a>) service in
-            Firefox. as well as a password
-            manager called <a href="{{ lockwise }}">Lockwise</a>, which is currently being offered for free. We also <a
-              href="{{ launched }}">launched</a>
-            <a href="{{ monitor }}">Firefox Monitor,</a> another free service, which allows people to check whether
+            Firefox. as well as a password manager called <a href="{{ lockwise }}">Lockwise</a>, which is currently
+            being offered for free. We also <a href="{{ launched }}">launched</a> <a href="{{ monitor }}">Firefox
+              Monitor,</a> another free service, which allows people to check whether
             their email address has been a part of a
             recent security breach.
             {% endtrans %}
@@ -483,10 +485,9 @@
           </p>
           <p>
             {% trans lite="https://support.mozilla.org/kb/get-started-firefox-lite" %}
-            In 2019, Mozilla Corporation expanded our product presence in Asia with the launch of <a
-              href="{{ lite }}">Firefox Lite 2.0</a> in
-            Taiwan, India and Indonesia. Firefox Lite is specifically designed to meet the unique needs of users in
-            these geographies. Previously in market as Firefox Rocket, Firefox Lite 2.0 puts the focus on lightning-fast
+            In 2019, Mozilla Corporation expanded our product presence in Asia with the launch of <a href="{{ lite }}">Firefox
+              Lite 2.0</a> in Taiwan, India and Indonesia. Firefox Lite is specifically designed to meet the unique
+            needs of users in these geographies. Previously in market as Firefox Rocket, Firefox Lite 2.0 puts the focus on lightning-fast
             browsing and privacy, blocking ads and trackers by default, and working fast with decreased bandwidth. A
             search bar for comparison shopping, full-page screenshots and access to games on the home screen and a
             bare-bones news page are several of the features that set Firefox Lite apart.
@@ -516,7 +517,8 @@
             data, and we push for protocols, policies and legislation that make the internet more private and secure.
           </p>
           <p>
-            {% trans fcc="https://blog.mozilla.org/blog/2019/10/04/breaking-down-this-weeks-net-neutrality-court-decision/",
+            {% trans
+            fcc="https://blog.mozilla.org/blog/2019/10/04/breaking-down-this-weeks-net-neutrality-court-decision/",
             states="https://www.theverge.com/2018/9/30/17913712/california-net-neutrality-bill-signed-law-jerry-brown",
             congress="https://blog.mozilla.org/netpolicy/2019/04/10/us-house-votes-to-save-the-internet/" %}
             In 2019 Mozilla continued its fight for Net Neutrality in the U.S. as the named plaintiff in the federal
@@ -574,8 +576,12 @@
             {% endtrans %}
           </p>
           <p>
-            {% trans apple="https://foundation.mozilla.org/blog/what-half-of-iphone-users-dont-know-about-their-privacy-new-poll/" %}
-            To that end, in 2019 Mozilla Foundation launched a petition <a href="{{ apple }}">urging Apple to automatically reset iPhone users’ unique Identifier for Advertisers (IDFAs) every month.</a> The IDFA is a random device identifier
+            {% trans
+            apple="https://foundation.mozilla.org/blog/what-half-of-iphone-users-dont-know-about-their-privacy-new-poll/"
+            %}
+            To that end, in 2019 Mozilla Foundation launched a petition <a href="{{ apple }}">urging Apple to
+              automatically reset iPhone users’ unique Identifier for Advertisers (IDFAs) every month.</a> The IDFA is a
+            random device identifier
             assigned by Apple to a user’s device. Advertisers use this to track data so they can deliver customized
             advertising. The IDFA is used for tracking and identifying a user (without revealing personal information),
             allowing advertisers to access aggregated data. While iPhone users can currently disable the IDFA manually,
@@ -586,45 +592,49 @@
             {% trans youtube="https://foundation.mozilla.org/blog/our-recommendation-youtube/",
             regret="https://foundation.mozilla.org/en/blog/28-reasons-why-youtube-must-change/" %}
             Mozilla Foundation also urged <a href="{{ youtube }}">YouTube to rethink its algorithmic recommendation
-              system</a> by encouraging
-            YouTube users to share their stories about misdirection to unintended and unwanted content through a <a href="{{ regret }}">YouTube
+              system</a> by encouraging YouTube users to share their stories about misdirection to unintended and
+            unwanted content through a <a href="{{ regret }}">YouTube
               Regrets campaign.</a>
             {% endtrans %}
           </p>
           <p>
             {% trans cali="https://twitter.com/firefox/status/1166823017877577733",
             kenya="https://blog.mozilla.org/netpolicy/2019/11/12/mozilla-plays-role-in-kenyas-adoption-of-crucial-data-protection-law/",
-            blueprint="https://blog.mozilla.org/netpolicy/2019/04/04/a-path-forward-rights-and-rules-to-protect-privacy-in-the-united-states/" %}
+            blueprint="https://blog.mozilla.org/netpolicy/2019/04/04/a-path-forward-rights-and-rules-to-protect-privacy-in-the-united-states/"
+            %}
             Mozilla continued its work to bring privacy protections to people across the globe through advocacy and
             policy work with the passage of data protection laws in both <a href="{{ cali }}">California</a> and
-            <a href="{{ kenya }}">Kenya</a> and a published <a href="{{ blueprint }}">blueprint</a> for strong federal privacy legislation in the United
+            <a href="{{ kenya }}">Kenya</a> and a published <a href="{{ blueprint }}">blueprint</a> for strong federal
+            privacy legislation in the United
             States.
             {% endtrans %}
           </p>
           <p>
-            {% trans nd="https://indianexpress.com/article/technology/tech-news-technology/why-mozilla-is-advocating-for-lean-data-practices-in-india-5510327/",
+            {% trans
+            nd="https://indianexpress.com/article/technology/tech-news-technology/why-mozilla-is-advocating-for-lean-data-practices-in-india-5510327/",
             bangalore="https://www.youtube.com/watch?v=A_dZVbYJtsk",
-            nairobi="https://africabusinesscommunities.com/tech/tech-news/kenya-business-and-government-leaders-urged-to-adopt-lead-data-practices/" %}
+            nairobi="https://africabusinesscommunities.com/tech/tech-news/kenya-business-and-government-leaders-urged-to-adopt-lead-data-practices/"
+            %}
             While Mozilla believes government must play a role in protecting its citizens, regulation is not the only
             way to promote privacy online. Mozilla also brought our Lean Data Practice workshop to <a
               href="{{ nd }}">New Delhi</a> and
             <a href="{{ bangalore }}">Bangalore</a> India, and <a href="{{ nairobi }}">Nairobi, Kenya</a>. The workshops
-            educate companies that implementing best practices for
-            data privacy, protection, and management is not only good for their users, but also good for business by
+            educate companies that implementing best practices for data privacy, protection, and management is not only
+            good for their users, but also good for business by
             creating less risk and increasing trust with users.
             {% endtrans %}
           </p>
           <p>
-            {% trans detour="https://www.warner.senate.gov/public/index.cfm/2019/4/senators-introduce-bipartisan-legislation-to-ban-manipulative-dark-patterns",
+            {% trans
+            detour="https://www.warner.senate.gov/public/index.cfm/2019/4/senators-introduce-bipartisan-legislation-to-ban-manipulative-dark-patterns",
             aa="https://www.wsj.com/articles/bill-would-let-consumers-move-data-among-social-media-11571756143",
             framework="https://blog.mozilla.org/netpolicy/files/2019/09/Mozilla-Competition-Working-Paper.pdf" %}
             Mozilla also supported two pieces of legislation aimed at putting rules in place to create a better future
             online. Mozilla’s support for the <a href="{{ detour }}">Deceptive Experiences To Online Users Reduction</a>
-            (DETOUR) Act hopes to make
-            the internet a more transparent place by banning the use of deceptive practices that trick users into
-            handing over their personal data. The second, the <a href="{{ aa }}">Access Act</a>, will encourage
-            competition by requiring the
-            largest companies to make user data portable and their services interoperable with other platforms, a key
+            (DETOUR) Act hopes to make the internet a more transparent place by banning the use of deceptive practices
+            that trick users into handing over their personal data. The second, the <a href="{{ aa }}">Access Act</a>,
+            will encourage competition by requiring the largest companies to make user data portable and their services
+            interoperable with other platforms, a key
             piece of Mozilla’s own <a href="{{ framework }}">framework</a> for tech competition policy.
             {% endtrans %}
           </p>
@@ -645,8 +655,11 @@
             progress="https://www.fastcompany.com/90373504/fighting-for-online-freedom",
             stands="https://blog.mozilla.org/careers/partnering-with-law-firms-committed-to-diversity-and-inclusion/" %}
             Building and fostering a <a href="{{ diverse }}">diverse and inclusive organization</a> is core to who we
-            are at Mozilla. Mozilla also believes that attracting diverse talent that is motivated, creative and passionate is crucial to our success. In our ongoing efforts to make inroads in creating a more visibly diverse workforce, we continue to <a href="{{ measure }}">measure</a> and <a href="{{ report }}">report</a> on our <a href="{{ progress }}">progress</a>,
-            evolve our policies and practices, and take <a href="{{ stands }}">public stands</a> that foster and make clear our commitment to building a more inclusive environment.
+            are at Mozilla. Mozilla also believes that attracting diverse talent that is motivated, creative and
+            passionate is crucial to our success. In our ongoing efforts to make inroads in creating a more visibly
+            diverse workforce, we continue to <a href="{{ measure }}">measure</a> and <a href="{{ report }}">report</a>
+            on our <a href="{{ progress }}">progress</a>, evolve our policies and practices, and take <a href="{{ stands
+              }}">public stands</a> that foster and make clear our commitment to building a more inclusive environment.
             {% endtrans %}
           </p>
           <p>
@@ -734,8 +747,12 @@
           <p>
             {% trans search="https://wiki.mozilla.org/Global_Search_Strategy_Status",
             google="https://blog.mozilla.org/blog/2017/11/14/firefox-features-google-as-default-search-provider-in-the-u-s-canada-hong-kong-and-taiwan/",
-            yahoo="https://blog.mozilla.org/blog/2017/12/05/mozilla-files-cross-complaint-against-yahoo-holdings-and-oath/" %}
-            Today, the majority of Mozilla Corporation revenue is generated from <a href="{{ search }}">global browser search partnerships</a>, including the <a href="{{ google }}">deal negotiated with Google in 2017</a> following Mozilla’s termination of its <a href="{{ yahoo }}">search agreement with Yahoo/Oath</a> (which was the subject of litigation the parties resolved in 2019.)
+            yahoo="https://blog.mozilla.org/blog/2017/12/05/mozilla-files-cross-complaint-against-yahoo-holdings-and-oath/"
+            %}
+            Today, the majority of Mozilla Corporation revenue is generated from <a href="{{ search }}">global browser
+              search partnerships</a>, including the <a href="{{ google }}">deal negotiated with Google in 2017</a>
+            following Mozilla’s termination of its <a href="{{ yahoo }}">search agreement with Yahoo/Oath</a> (which was
+            the subject of litigation the parties resolved in 2019.)
             {% endtrans %}
           </p>
           <p>
@@ -769,7 +786,9 @@
             mozorg=url('mozorg.home') %}
             Our mission is to ensure the internet is a global public resource, open and accessible to all. This mission
             is as important now as it has ever been. We urge everyone who is interested to find a way to contribute to
-            protecting the internet. We invite you to <a href="{{ firefox }}">download Firefox</a> or <a href="{{ volunteer }}">volunteer</a> to be part of Mozilla or donate to support the work of internet health leaders around the world. Learn more at <a href="{{ mozorg }}">mozilla.org.</a>
+            protecting the internet. We invite you to <a href="{{ firefox }}">download Firefox</a> or <a href="{{
+              volunteer }}">volunteer</a> to be part of Mozilla or donate to support the work of internet health leaders
+            around the world. Learn more at <a href="{{ mozorg }}">mozilla.org.</a>
             {% endtrans %}
           </p>
         </div>{#--/.c-copy--#}
