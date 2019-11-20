@@ -49,7 +49,7 @@
       <p>{{ _('Download Firefox for your smartphone and tablet.') }}</p>
       <div class="qr-code-wrapper">
         <img src="{{ static('img/firefox/welcome/welcome-qr-firefox.png') }}" id="firefox-qr"
-          alt="QR code to scan for the Firefox mobile app.">
+          alt="">
       </div>
     {% endif %}
   </div>
@@ -57,7 +57,7 @@
 
 {% block content_primary %}
 <div class="body-primary">
-  <img class="primary-image" src="{{ static('img/firefox/welcome/mobile-hero.png') }}" width="700" height="" alt="">
+  <img class="primary-image" src="{{ static('img/firefox/welcome/mobile-hero.png') }}" width="700" height="" alt="{{ _('Download Firefox for your smartphone and tablet.') }}">
   <p class="primary-image-desc">{{ _('“Firefox: Private, Safe Browser” on iOS or Android.') }}</p>
 </div>
 
@@ -74,10 +74,10 @@
   <div class="c-picto-block-body">
     <p>
       {% set frende = ['en-US', 'en-GB', 'en-CA', 'de', 'fr', 'es-ES'] %}
-      {% set privacy = 'https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop' %}
+      {% set privacy = 'https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop' %}
 
       {% if LANG in frende %}
-        {% set privacy = 'https://www.mozilla.org/firefox/privacy/products/' %}
+        {% set privacy = url('firefox.privacy.products') %}
       {% endif %}
 
       {% trans %}

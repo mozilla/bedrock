@@ -5,7 +5,7 @@
 from selenium.webdriver.common.by import By
 
 from pages.firefox.base import FirefoxBasePage
-from pages.regions.modal import Modal
+from pages.regions.modal import ModalProtocol
 from pages.regions.send_to_device import SendToDevice
 
 
@@ -34,7 +34,7 @@ class FirefoxWelcomePage4(FirefoxBasePage):
         return self.is_element_displayed(*self._modal_secondary_button_locator)
 
     def open_modal(self, locator):
-        modal = Modal(self)
+        modal = ModalProtocol(self)
         self.find_element(*locator).click()
         self.wait.until(lambda s: modal.is_displayed)
         return modal
