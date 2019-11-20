@@ -959,6 +959,7 @@
       "files": [
         "protocol/js/protocol-modal.js",
         "js/base/send-to-device.js",
+        "js/libs/spin.min.js",
         "js/firefox/welcome4.js"
       ],
       "name": "firefox_welcome_page4"
