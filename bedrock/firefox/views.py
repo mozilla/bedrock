@@ -523,7 +523,6 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
     def get_template_names(self):
         locale = l10n_utils.get_locale(self.request)
         trailhead_locales = ['en-US', 'en-CA', 'en-GB', 'de', 'fr']
-        variant = self.request.GET.get('v', None)
 
         version = self.kwargs.get('version') or ''
         oldversion = self.request.GET.get('oldversion', '')
@@ -558,12 +557,7 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
             template = 'firefox/whatsnew/index.html'
         elif version.startswith('70.'):
             if locale in ['en-US', 'en-CA', 'en-GB']:
-                if variant in ['0', '1', '2', '3', '4', '5', '6', '7']:
-                    template = 'firefox/whatsnew/exp/whatsnew-fx70-{}.html'.format(
-                        variant
-                    )
-                else:
-                    template = 'firefox/whatsnew/whatsnew-fx70-en.html'
+                template = 'firefox/whatsnew/whatsnew-fx70-en.html'
             elif locale == 'de':
                 template = 'firefox/whatsnew/whatsnew-fx70-de.html'
             elif locale == 'fr':
