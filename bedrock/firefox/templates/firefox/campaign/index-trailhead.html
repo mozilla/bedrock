@@ -49,9 +49,6 @@
 
 {% block site_header %}{% endblock %}
 
-{# Bug 1381776 #}
-{% block update_notification %}{% endblock %}
-
 {% block content %}
 <main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
   {% if l10n_has_tag('firefox-new-skyline') %}

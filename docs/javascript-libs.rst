@@ -12,8 +12,3 @@ Mozilla Image Lazy Loader
 -------------------------
 
 :ref:`mozilla-lazy-load.js<mozillalazyload>`
-
-Mozilla Notification Banner
----------------------------
-
-:ref:`mozilla-notification-banner.js<mozillanotificationbanner>`
