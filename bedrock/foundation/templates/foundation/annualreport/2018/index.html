@@ -269,9 +269,7 @@
             {% trans ethics="https://foundation.mozilla.org/initiatives/responsible-cs/",
             fellows="https://foundation.mozilla.org/blog/introducing-our-29-newest-mozilla-fellows/" %}
             Mozilla is helping developers build more trustworthy AI, including work with Omidyar Network and others to
-            put $3.5 million behind <a href="{{ ethics }}">professors integrating ethics into computer science
-              curriculum.</a> We also encourage governments to promote trustworthy AI, including through work by <a href="fellows">Mozilla Fellows</a> to
-            map out a policy and litigation agenda that taps into current momentum in Europe.
+            put $3.5 million behind <a href="{{ ethics }}">professors integrating ethics into computer science curriculum.</a> We also encourage governments to promote trustworthy AI, including through work by <a href="{{ fellows }}">Mozilla Fellows</a> to map out a policy and litigation agenda that taps into current momentum in Europe.
             {% endtrans %}
           </p>
           <p>
@@ -457,11 +455,11 @@
           </p>
           <p>
             {% trans vpn="https://www.engadget.com/2018/10/23/mozilla-firefox-protonvpn-test/",
-            lockwise="https://testpilot.firefox.com/experiments/firefox-lockbox/",
+            lockwise=url('firefox.lockwise.lockwise'),
             launched="https://blog.mozilla.org/blog/2018/09/25/introducing-firefox-monitor-helping-people-take-control-after-a-data-breach/",
             monitor="https://monitor.firefox.com/" %}
             In 2018, we began testing a new paid virtual private network (<a href="{{ vpn }}">VPN</a>) service in
-            Firefox. as well as a password manager called <a href="{{ lockwise }}">Lockwise</a>, which is currently
+            Firefox as well as a password manager called <a href="{{ lockwise }}">Lockwise</a>, which is currently
             being offered for free. We also <a href="{{ launched }}">launched</a> <a href="{{ monitor }}">Firefox
               Monitor,</a> another free service, which allows people to check whether
             their email address has been a part of a
@@ -472,7 +470,7 @@
             {% trans %}
             This year, we took these product explorations further, deepening our engagement with Firefox users by making
             added service benefits like being able to check multiple email addresses with Firefox Monitor and password
-            generation throughFirefox Lockwise, accessible through the Firefox browser with a free Firefox account.
+            generation through Firefox Lockwise, accessible through the Firefox browser with a free Firefox account.
             {% endtrans %}
           </p>
           <p>
@@ -649,7 +647,7 @@
         </header>
         <div class="c-copy">
           <p>
-            {% trans diverse="https://blog.mozilla.org/inclusion/2018/04/19/diversity-and-inclusion-at-mozilla/",
+            {% trans diverse="https://blog.mozilla.org/careers/diversity-and-inclusion-at-mozilla/",
             measure="https://blog.mozilla.org/careers/mozilla-corporation-takes-part-in-hrcs-2019-lgbtq-workplace-equality-index/",
             report="https://blog.mozilla.org/careers/mozilla-diversity-inclusion-2018-results/",
             progress="https://www.fastcompany.com/90373504/fighting-for-online-freedom",
