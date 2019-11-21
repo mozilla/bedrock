@@ -7,7 +7,6 @@ import pytest
 from pages.firefox.whatsnew.whatsnew_70 import FirefoxWhatsNew70Page
 
 
-@pytest.mark.skip(reason='https://github.com/mozilla/bedrock/issues/8033')
 @pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
 @pytest.mark.nondestructive
 def test_signed_out_monitor_button_displayed(base_url, selenium):
@@ -15,7 +14,6 @@ def test_signed_out_monitor_button_displayed(base_url, selenium):
     assert page.is_signed_out_monitor_button_displayed
 
 
-@pytest.mark.skip(reason='https://github.com/mozilla/bedrock/issues/8033')
 @pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
 @pytest.mark.nondestructive
 def test_signed_in_monitor_button_displayed(base_url, selenium):
