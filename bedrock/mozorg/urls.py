@@ -26,7 +26,6 @@ urlpatterns = (
     page('book', 'mozorg/book.html'),
     url('^credits/$', views.credits_view, name='mozorg.credits'),
     page('credits/faq', 'mozorg/credits-faq.html'),
-    page('developer/browsertest', 'mozorg/browser-test.html'),
     page('about/partnerships/distribution', 'mozorg/partnerships-distribution.html'),
     page('about/history', 'mozorg/about/history.html'),
     # Bug 981063, catch all for old calendar urls.
@@ -302,9 +301,6 @@ urlpatterns = (
     page('technology/update-your-browser', 'mozorg/update-browser.html'),
     page('technology/incognito-browser', 'mozorg/incognito-browser.html'),
     page('technology/browser-history', 'mozorg/browser-history.html'),
-
-    url('^developer/$', views.DeveloperView.as_view(), name='mozorg.developer'),
-    page('developer/css-grid', 'mozorg/developer/css-grid-demo.html'),
 
     # namespaces
     url(r'^2004/em-rdf$', views.namespaces, {'namespace': 'em-rdf'}),

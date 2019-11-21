@@ -166,13 +166,6 @@ class IHView(BlogPostsView):
     blog_slugs = 'internetcitizen'
 
 
-class DeveloperView(BlogPostsView):
-    template_name = 'mozorg/developer/index.html'
-    blog_slugs = 'hacks'
-    blog_posts_limit = 3
-    blog_posts_template_variable = 'articles'
-
-
 def home_view(request):
     locale = l10n_utils.get_locale(request)
     donate_params = settings.DONATE_PARAMS.get(

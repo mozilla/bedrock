@@ -39,12 +39,6 @@
     },
     {
       "files": [
-        "css/mozorg/browser-test.scss"
-      ],
-      "name": "browser-test"
-    },
-    {
-      "files": [
         "css/firefox/new/scene2.scss"
       ],
       "name": "firefox_new_scene2"
@@ -69,13 +63,6 @@
         "css/mozorg/about-forums.scss"
       ],
       "name": "about-forums"
-    },
-    {
-      "files": [
-        "css/base/mozilla-modal.less",
-        "css/mozorg/developer/index.scss"
-      ],
-      "name": "developer-hub"
     },
     {
       "files": [
@@ -438,12 +425,6 @@
         "css/mozorg/internet-health/index.scss"
       ],
       "name": "internet-health-hub"
-    },
-    {
-      "files": [
-        "css/mozorg/developer/css-grid-demo.scss"
-      ],
-      "name": "css-grid-demo"
     },
     {
       "files": [
@@ -887,15 +868,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-smoothscroll.js",
-        "js/libs/jquery.waypoints.min.js",
-        "js/libs/jquery.waypoints-sticky.min.js",
-        "js/mozorg/developer/css-grid-demo.js"
-      ],
-      "name": "css-grid-demo"
-    },
-    {
-      "files": [
         "js/base/site.js",
         "js/base/dnt-helper.js",
         "js/base/mozilla-cookie-helper.js",
@@ -1141,17 +1113,6 @@
         "js/mozorg/contribute/contribute-stories.js"
       ],
       "name": "contribute-stories"
-    },
-    {
-      "files": [
-        "js/libs/jquery.waypoints.min.js",
-        "js/libs/jquery.waypoints-sticky.min.js",
-        "js/hubs/sub-nav.js",
-        "js/base/mozilla-modal.js",
-        "js/base/mozilla-lazy-load.js",
-        "js/mozorg/developer/developer-hub.js"
-      ],
-      "name": "developer-hub"
     },
     {
       "files": [
