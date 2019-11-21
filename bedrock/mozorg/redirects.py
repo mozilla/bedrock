@@ -611,8 +611,8 @@ redirectpatterns = (
     # Bug 1324504, issue 6994
     redirect(r'^/contribute/studentambassadors(/.*)?', 'https://campus.mozilla.community/'),
 
-    # Bug 1340600 - vanity URL
-    redirect(r'^css-?grid/?$', 'mozorg.developer.css-grid-demo', query={
+    # Bug 1340600, Issue 7840 - vanity URL
+    redirect(r'^css-?grid/?$', 'https://developer.mozilla.org/docs/Learn/CSS/CSS_layout/Grids', query={
         'utm_source': 'redirect',
         'utm_medium': 'collateral',
         'utm_campaign': 'css-grid',
@@ -621,8 +621,8 @@ redirectpatterns = (
     # Bug 1361194
     redirect(r'^internethealth/?$', 'mozorg.internet-health'),
 
-    # Bug 1384370
-    redirect(r'^developers/?$', 'mozorg.developer'),
+    # Bug 1384370, Issue 7840
+    redirect(r'^developers/?$', 'https://developer.mozilla.com/'),
 
     # Bug 1438464
     redirect(r'^collusion/?$', 'https://addons.mozilla.org/firefox/addon/lightbeam/'),
@@ -671,4 +671,10 @@ redirectpatterns = (
 
     # Issue 7970
     redirect(r'^moss/mission-partners-india/?$', 'mozorg.moss.mission-partners'),
+
+    # Issue 7840
+    redirect(r'^developer/?$', 'https://developer.mozilla.com/'),
+    redirect(r'^developer/browsertest/?$', 'https://developer.mozilla.org/docs/Learn/Tools_and_testing/Cross_browser_testing/Automated_testing'),
+    redirect(r'^developer/css-grid/?$', 'https://developer.mozilla.org/docs/Learn/CSS/CSS_layout/Grids'),
+
 )

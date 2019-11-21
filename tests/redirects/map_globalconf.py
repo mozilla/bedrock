@@ -1144,8 +1144,8 @@ URLS = flatten((
     # Bug 1324504
     url_test('/contribute/studentambassadors/{,join/,thanks/}', 'https://campus.mozilla.community/'),
 
-    # Bug 1340600
-    url_test('/css-grid', '/developer/css-grid/', query={
+    # Bug 1340600, Issue 7840
+    url_test('/css-grid', 'https://developer.mozilla.org/docs/Learn/CSS/CSS_layout/Grids', query={
         'utm_source': 'redirect',
         'utm_medium': 'collateral',
         'utm_campaign': 'css-grid',
@@ -1155,7 +1155,7 @@ URLS = flatten((
     url_test('/internethealth', '/internet-health/'),
 
     # Bug 1384370
-    url_test('/developers', '/developer/'),
+    url_test('/developers', 'https://developer.mozilla.com/'),
 
     # Bug 1369732
     url_test('{/en-US,}/Firefox', '{/en-US,}/firefox/'),
@@ -1301,4 +1301,8 @@ URLS = flatten((
     url_test('/firefox/{69.0/,69.0.1/,69.0a2/,69.0.1a1/,}tracking-protection/start/', 'https://support.mozilla.org/kb/tracking-protection'),
     url_test('/firefox/{69.0/,69.0.1/,69.0a2/,69.0.1a1/,}content-blocking/start/', 'https://support.mozilla.org/kb/content-blocking'),
 
+    # Issue 7840
+    url_test('/developer/', 'https://developer.mozilla.com/'),
+    url_test('/developer/browsertest/', 'https://developer.mozilla.org/docs/Learn/Tools_and_testing/Cross_browser_testing/Automated_testing'),
+    url_test('/developer/css-grid/', 'https://developer.mozilla.org/docs/Learn/CSS/CSS_layout/Grids'),
 ))
