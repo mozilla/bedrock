@@ -90,16 +90,7 @@
           </thead>
           <tbody>
             <tr>
-              <th scope="row">{{ _('Ad filtering') }}</th>
-              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
-            </tr>
-            <tr>
-              <th scope="row">{{ _('Private browsing') }}</th>
+              <th scope="row">{{ _('Private Browsing mode') }}</th>
               <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
@@ -108,34 +99,25 @@
               <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
-              <th scope="row">{{ _('Blocks scripts') }}</th>
+              <th scope="row">{{ _('Blocks third-party tracking cookies') }}</th>
               <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
-            </tr>
-            <tr>
-              <th scope="row">{{ _('Blocks cross-site tracking') }}</th>
-              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-            </tr>
-            <tr>
-              <th scope="row">{{ _('Autoplay blocking') }}</th>
-              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
-              <th scope="row">{{ _('Tracking Cookie Blocking') }}</th>
+              <th scope="row">{{ _('Blocks cryptomining scripts') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Blocks social trackers') }}</th>
               <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
               <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
@@ -215,6 +197,15 @@
             </tr>
           </thead>
           <tbody>
+            <tr>
+                <th scope="row">{{ _('Autoplay blocking') }}</th>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+                <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+                <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              </tr>
             <tr>
               <th scope="row">{{ _('Tab browsing') }}</th>
               <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
