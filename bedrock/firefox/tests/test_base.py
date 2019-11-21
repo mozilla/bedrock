@@ -181,7 +181,7 @@ class TestWhatsNew(TestCase):
         req = self.rf.get('/en-US/firefox/whatsnew/')
         self.view(req, version='72.0beta')
         template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/beta/whatsnew-fx72.html']
+        assert template == ['firefox/whatsnew/beta/whatsnew-fx72-en.html']
 
     @override_settings(DEV=True)
     def test_fx_oldbeta_whatsnew(self, render_mock):
