@@ -629,4 +629,11 @@ redirectpatterns = (
 
     # issue 7670
     redirect(r'^/firefox/fights-for-you/?', 'firefox'),
+
+    # issue 7670
+    redirect(r'^/firefox/content-blocking/start/', 'https://support.mozilla.org/'),
+
+    # issue 7670
+    redirect(r'^/firefox/tracking-protection/start/', 'https://support.mozilla.org/'),
+
 )

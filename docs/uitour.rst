@@ -47,18 +47,6 @@ Note that ``browser.uitour.testingOrigins`` can be a comma separated list of dom
     must also exclude the domain protocol e.g. ``https://``. A browser restart is also required
     after adding a whitelisted domain.
 
-Tracking Protection UITour
---------------------------
-
-In order to test the Tracking Protection tour on a local server or domain other
-than www.mozilla.org, you must first set an additional preference in ``about:config``
-in addition to white listing UITour for the domain.
-
-* ``privacy.trackingprotection.introURL`` value e.g. ``http://127.0.0.1:8000/%LOCALE%/firefox/%VERSION%/tracking-protection/start/``
-
-Once this preference has been set, the tour can be accessed by opening a new Private Window
-and then by clicking the "See how this works" CTA button.
-
 JavaScript API
 --------------
 
