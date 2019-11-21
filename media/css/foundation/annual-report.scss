@@ -58,6 +58,16 @@
     padding-top: 0;
 }
 
+#annual-2018 {
+    .c-banner .c-banner-content {
+        @include at2x('/media/img/foundation/annualreport/2018/som-2018-small.jpg', 760px, 394px);
+
+        @media #{$mq-md} {
+            @include at2x('/media/img/foundation/annualreport/2018/som-2018-large.jpg', 1250px, 394px);
+        }
+    }
+}
+
 
 #annual-2017 {
     .c-banner .c-banner-content {
