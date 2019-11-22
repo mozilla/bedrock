@@ -337,15 +337,29 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/index.html']
 
-    def test_fx_70_0_2(self, render_mock):
-        """Should use default whatsnew template for 70.0.2 when updating from 70.0"""
-        req = self.rf.get('/firefox/whatsnew/?oldversion=70.0')
+    # end 70.0 whatsnew tests
+
+    # begin 71.0 whatsnew tests
+
+    @patch.object(fx_views, 'lang_file_is_active', lambda *x: True)
+    def test_fx_71_0_0(self, render_mock):
+        """Should use whatsnew-fx71 template for 71.0"""
+        req = self.rf.get('/firefox/whatsnew/')
         req.locale = 'en-US'
-        self.view(req, version='70.0.2')
+        self.view(req, version='71.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx71.html']
+
+    @patch.object(fx_views, 'lang_file_is_active', lambda *x: False)
+    def test_fx_71_0_0_fallback(self, render_mock):
+        """Should use default template for 71.0 as fallback"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'es-ES'
+        self.view(req, version='71.0')
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/index.html']
 
-    # end 70.0 whatsnew tests
+    # end 71.0 whatsnew tests
 
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())

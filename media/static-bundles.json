@@ -505,9 +505,15 @@
     },
     {
       "files": [
-        "css/exp/firefox/whatsnew/whatsnew-70.scss"
+        "css/firefox/whatsnew/whatsnew-71.scss"
       ],
-      "name": "exp_firefox_whatsnew_70"
+      "name": "firefox_whatsnew_71"
+    },
+    {
+      "files": [
+        "css/exp/firefox/whatsnew/whatsnew-71.scss"
+      ],
+      "name": "exp_firefox_whatsnew_71"
     },
     {
       "files": [
@@ -1007,14 +1013,20 @@
     {
       "files": [
         "js/base/uitour-lib.js",
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-product-button.js",
-        "js/base/mozilla-fxa-product-button-init.js",
         "js/firefox/whatsnew/up-to-date.js",
-        "js/exp/firefox/whatsnew/whatsnew-70.js"
+        "js/base/mozilla-fxa-product-button.js",
+        "js/base/mozilla-fxa-product-button-init.js"
       ],
-      "name": "exp_firefox_whatsnew_70_variants"
+      "name": "firefox_whatsnew_71"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/base/mozilla-fxa-product-button.js",
+        "js/base/mozilla-fxa-product-button-init.js"
+      ],
+      "name": "exp_firefox_whatsnew_71"
     },
     {
       "files": [
