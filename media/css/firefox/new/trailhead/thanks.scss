@@ -195,10 +195,6 @@ main {
 
 .download-another-language-link {
     @include text-body-sm;
-    padding: $layout-md 0;
+    padding: $layout-sm 0;
     text-align: center;
-
-    @media #{$mq-lg} {
-        padding-bottom: $layout-lg 0;
-    }
 }
