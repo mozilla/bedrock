@@ -37,7 +37,7 @@ if (typeof window.Mozilla === 'undefined') {
 
         var destURL = buttons[0].getAttribute('data-action') + 'metrics-flow';
 
-        // collect values from monitor button
+        // collect values from Fxa product button
         var params = window._SearchParams.queryStringToObject(buttonURLParams);
 
         // add required params to the token fetch request

@@ -12,7 +12,7 @@ if (typeof window.Mozilla === 'undefined') {
 
     var FxaForm = {};
 
-    FxaForm.init= function(){
+    FxaForm.init = function() {
         var fxaForm = document.getElementById('fxa-email-form');
         var fxaSubmitButton = document.getElementById('fxa-email-form-submit');
         var fxaFormContextField = fxaForm.querySelector('[name="context"]');
@@ -33,7 +33,6 @@ if (typeof window.Mozilla === 'undefined') {
                     if (data.accurate && data.distribution && data.distribution.toLowerCase() === 'mozillaonline') {
                         fxaForm.action = mozillaonlineAction;
                     }
-
                     fetchTokens();
                 });
             } else {
@@ -49,14 +48,37 @@ if (typeof window.Mozilla === 'undefined') {
 
             fxaSubmitButton.disabled = false;
 
-            var destURL = fxaForm.getAttribute('action') + 'metrics-flow';
+            // track external UTM referrals
+            var urlParams = new window._SearchParams().utmParams();
+            var attributionData = Mozilla.UtmUrl.getAttributionData(urlParams);
+
+            if (attributionData) {
+                var utms = ['utm_source', 'utm_campaign', 'utm_content', 'utm_term', 'utm_medium'];
+                for (var i = 0; i < utms.length; i++) {
+                    if (Object.prototype.hasOwnProperty.call(attributionData, utms[i])) {
+                        // check if input is available
+                        if (fxaForm.querySelector('[name="' + utms[i] + '"]')) {
+                            fxaForm.querySelector('[name="' + utms[i] + '"]').value = attributionData[utms[i]];
+                        } else {
+                            // create input if one is not present
+                            var input = document.createElement('input');
+                            input.type = 'hidden';
+                            input.name = utms[i];
+                            input.value = attributionData[utms[i]];
+                            fxaForm.appendChild(input);
+                        }
+                    } else {
+                        // do not update form params.
+                    }
+                }
+            }
+
             var entrypoint = document.getElementById('fxa-email-form-entrypoint');
             var entrypointExp = document.getElementById('fxa-email-form-entrypoint-experiment');
             var entrypointVar = document.getElementById('fxa-email-form-entrypoint-variation');
             var utmSource = document.getElementById('fxa-email-form-utm-source');
-            var utmCampaign = document.getElementById('fxa-email-form-utm-campaign');
-            var utmContent = document.getElementById('fxa-email-form-utm-content');
-            var utmTerm = document.getElementById('fxa-email-form-utm-term');
+
+            var destURL = fxaForm.getAttribute('action') + 'metrics-flow';
 
             // add required params to the token fetch request
             destURL += '?form_type=email';
@@ -64,12 +86,17 @@ if (typeof window.Mozilla === 'undefined') {
             destURL += '&utm_source=' + utmSource.value;
 
             // add optional utm params to the token fetch request
-            if (utmCampaign) {
-                destURL += '&utm_campaign=' + utmCampaign.value;
-            }
+
+            var utmTerm = document.getElementById('fxa-email-form-utm-term');
+            var utmCampaign = document.getElementById('fxa-email-form-utm-campaign');
+            var utmContent = document.getElementById('fxa-email-form-utm-content');
 
             if (utmContent) {
                 destURL += '&utm_content=' + utmContent.value;
+            }
+
+            if (utmCampaign) {
+                destURL += '&utm_campaign=' + utmCampaign.value;
             }
 
             if (utmTerm) {
