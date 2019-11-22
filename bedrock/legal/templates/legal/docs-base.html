@@ -2,18 +2,25 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "legal/base-resp.html" %}
+{% add_lang_files "legal/index" %}
+{% extends "base-article.html" %}
 
-{% block body_class %}
-  {{ super() }} legal-docs
-{% endblock%}
+{% block page_css %}
+ {{ css_bundle('legal') }}
+{% endblock %}
 
 {% block article %}
-
-  <article class="section-content" itemscope itemtype="http://schema.org/Article">
+  <section itemscope itemtype="http://schema.org/Article">
     <div itemprop="articleBody" class="article-body">
       {{ doc|safe }}
     </div>
-  </article>
+  </section>
+{% endblock %}
 
+{% block side_nav %}
+<nav class="mzp-c-sidemenu mzp-c-sidemenu-main">
+  <ul>
+    <li><a href="{{ url('legal.index') }}">{{ _('Back to Legal') }}</a></li>
+  </ul>
+</nav>
 {% endblock %}

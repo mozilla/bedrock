@@ -1,0 +1,60 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/components/newsletter-form';
+@import '../../protocol/css/components/emphasis-box';
+@import '../../protocol/css/components/notification-bar';
+
+/* -------------------------------------------------------------------------- */
+// Article
+
+.mzp-c-article {
+    h2 {
+        @include text-display-sm;
+        margin-top: $spacing-lg;
+    }
+
+    h3 {
+        @include text-display-xs;
+    }
+}
+
+.mzp-c-emphasis-box {
+    margin-top: $spacing-2xl;
+}
+
+.mzp-c-newsletter {
+    margin: $spacing-sm;
+}
+
+/* -------------------------------------------------------------------------- */
+// Sidebar
+
+.mzp-l-sidebar {
+    h3 {
+        margin-top: $spacing-md;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Form
+
+.mzp-c-notification-bar {
+    margin-bottom: $spacing-md;
+}
+
+.super-priority-field {
+    display: none;
+}
+
+.mzp-l-form-field {
+    margin: $spacing-lg 0;
+}
+
+input, select {
+    max-width: 100%;
+}
