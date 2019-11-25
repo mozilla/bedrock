@@ -1296,4 +1296,15 @@ URLS = flatten((
 
     # Issue 7983
     url_test('/privacy/products/', '/firefox/privacy/products/'),
+
+    # Issue #8206
+    url_test('/firefox/69.0/tracking-protection/start/', 'https://support.mozilla.org/kb/tracking-protection'),
+    url_test('/firefox/69.0.1/tracking-protection/start/', 'https://support.mozilla.org/kb/tracking-protection'),
+    url_test('/firefox/69.0a2/tracking-protection/start/', 'https://support.mozilla.org/kb/tracking-protection'),
+    url_test('/firefox/69.0a1/tracking-protection/start/', 'https://support.mozilla.org/kb/tracking-protection'),
+    url_test('/firefox/69.0/content-blocking/start/', 'https://support.mozilla.org/kb/content-blocking'),
+    url_test('/firefox/69.0.1/content-blocking/start/', 'https://support.mozilla.org/kb/content-blocking'),
+    url_test('/firefox/69.0a2/content-blocking/start/', 'https://support.mozilla.org/kb/content-blocking'),
+    url_test('/firefox/69.0a1/content-blocking/start/', 'https://support.mozilla.org/kb/content-blocking'),
+    
 ))
