@@ -389,12 +389,6 @@
     },
     {
       "files": [
-        "css/firefox/tracking-protection-tour.less"
-      ],
-      "name": "tracking-protection-tour"
-    },
-    {
-      "files": [
         "css/mozorg/credits.scss"
       ],
       "name": "credits"
