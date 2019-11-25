@@ -417,5 +417,3 @@ class TestFirstRun(TestCase):
         resp = self.view(req, version='39.0a2')
         assert resp.status_code == 301
         assert resp['location'].endswith('/firefox/new/')
-
-
