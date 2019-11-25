@@ -1,0 +1,66 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import monitor_button, fxa_cta_link with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
+
+{#- Override <meta property="og:url"> for social share -#}
+{% block page_og_url %}{{ url('firefox.accounts') }}{% endblock %}
+
+{% block body_id %}firefox-whatsnew-account{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_account') }}
+{% endblock %}
+
+{% set _entrypoint = 'mozilla.org-whatsnew' %}
+{% set _utm_campaign = 'whatsnew' %}
+
+{% block content %}
+<main role="main" class="content-wrapper mzp-t-firefox mzp-t-dark">
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
+      {{ high_res_img('protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', {'alt': 'Firefox', 'width': '216', 'height': '40', 'class': 'c-page-header-logo-fx'}) }}
+      <div class="mzp-c-notification-bar mzp-t-success up-to-date">
+        <p>{{ ftl('whatsnew-up-to-date-notification') }}</p>
+      </div>
+      <div class="mzp-c-notification-bar out-of-date">
+        <p>{{ ftl('whatsnew-out-of-date-notification') }}</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="content-main">
+    <div class="mzp-l-content">
+      <div class="mzp-c-emphasis-box">
+        <img class="c-emphasis-box-logo" src="{{ static('protocol/img/logos/firefox/logo-md.png') }}" alt="">
+        <h2 class="c-emphasis-box-title">
+          {{ ftl('whatsnew-account-main-headline') }}
+        </h2>
+        <p>{{ ftl('whatsnew-account-main-lead-in') }}</p>
+
+        <p class="cta">{{ fxa_cta_link(entrypoint=_entrypoint, action='signup', button_text=ftl('whatsnew-account-main-button'), button_class='mzp-c-button mzp-t-product mzp-t-small js-fxa-product-button', utm_campaign=_utm_campaign) }}</p>
+      </div>
+    </div>
+  </section>
+
+  <aside class="mzp-l-content c-utilities">
+    {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
+    <p>{{ ftl('whatsnew-release-notes', url=releasenotes_url) }}</p>
+  </aside>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_account') }}
+{% endblock %}

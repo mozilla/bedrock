@@ -415,6 +415,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-account.scss"
+      ],
+      "name": "firefox_whatsnew_account"
+    },
+    {
+      "files": [
         "css/firefox/nightly-firstrun.scss"
       ],
       "name": "nightly_firstrun"
@@ -1394,6 +1400,15 @@
         "js/firefox/whatsnew/whatsnew.js"
       ],
       "name": "firefox_whatsnew"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/base/mozilla-fxa-product-button.js",
+        "js/base/mozilla-fxa-product-button-init.js"
+      ],
+      "name": "firefox_whatsnew_account"
     },
     {
       "files": [

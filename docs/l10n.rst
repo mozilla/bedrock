@@ -80,11 +80,11 @@ bottom of a file, or also have a "not required" group comment. Here's an example
     ### File for example.html
 
     ## Required
-    example_page_title = The Page Title
-    example_page_desc = This page is a test.
+    example-page-title = The Page Title
+    example-page-desc = This page is a test.
 
-    ## Not required
-    example_footer = This string isn't as important
+    ##
+    example-footer = This string isn't as important
 
 
 Any group comment (a comment that starts with "##") that starts with "Required" (case does not
@@ -166,7 +166,7 @@ always call it in the view itself:
 
     def about_view(request):
         hello_string = ftl('about-hello')
-        render(request, 'about.html', {'hello': hello_string}, ftl_files='about')
+        render(request, 'about.html', {'hello': hello_string}, ftl_files='mozorg/about')
 
 If you need to use this string in a view, but define it outside of the view itself, you can use the
 ``ftl_lazy`` variant which will delay evaluation until render time. This is mostly useful for defining
@@ -211,7 +211,7 @@ same way but is meant to be used in the view Python code.
             hello_string = ftl('about-hello')
             title_string = ftl('about-title')
 
-        render(request, 'about.html', {'hello': hello_string, 'title': title_string}, ftl_files='about')
+        render(request, 'about.html', {'hello': hello_string, 'title': title_string}, ftl_files='mozorg/about')
 
 .. _fluent variables: https://projectfluent.org/fluent/guide/variables.html
 
@@ -243,8 +243,8 @@ to use:
 .. code-block:: python
 
     urlpatterns = [
-        page('about', 'about.html', ftl_files='about'),
-        page('about/contact', 'about/contact.html', ftl_files=['about/contact', 'about']),
+        page('about', 'about.html', ftl_files='mozorg/about'),
+        page('about/contact', 'about/contact.html', ftl_files=['mozorg/about/contact', 'mozorg/about']),
     ]
 
 The system uses the first (or only) file in the list to determine which locales are active for that
@@ -265,7 +265,7 @@ than just render the page, then you can use this:
 
     class AboutView(L10nTemplateView):
         template_name = 'about.html'
-        ftl_files = 'about'
+        ftl_files = 'mozorg/about'
 
 Using that CBV will do the right things for l10n, and then you can override other useful methods
 (e.g. ``get_context_data``) to do what you need. Also, if you do need to do anything fancy with
@@ -281,7 +281,7 @@ so by setting ``ftl_files`` in the context instead of the class attribute.
 
         def get_context_data(self, **kwargs):
             ctx = super().get_context_data(**kwargs)
-            ftl_files = ['about']
+            ftl_files = ['mozorg/about']
             if request.GET.get('fancy'):
                 ftl_files.append('fancy')
 
@@ -327,7 +327,7 @@ the template with the context. You can use the ``ftl_files`` argument with this 
     from lib.l10n_utils import render
 
     def about_view(request):
-        render(request, 'about.html', {'name': 'Duder'}, ftl_files='about')
+        render(request, 'about.html', {'name': 'Duder'}, ftl_files='mozorg/about')
 
 Fluent File Activation
 ----------------------
@@ -403,7 +403,7 @@ For example:
             'about_new.html': ['about_new', 'about']
         }
         def get_template_names(self):
-            if ftl_file_is_active('about_new'):
+            if ftl_file_is_active('mozorg/about_new'):
                 template_name = 'about_new.html'
             else:
                 template_name = 'about.html'
@@ -412,12 +412,12 @@ For example:
 
     # function view example
     def about_view(request):
-        if ftl_file_is_active('about_new'):
-            template = 'about_new.html'
-            ftl_files = ['about_new', 'about']
+        if ftl_file_is_active('mozorg/about_new'):
+            template = 'mozorg/about_new.html'
+            ftl_files = ['mozorg/about_new', 'mozorg/about']
         else:
             template = 'about.html'
-            ftl_files = ['about']
+            ftl_files = ['mozorg/about']
 
         render(request, template, ftl_files=ftl_files)
 

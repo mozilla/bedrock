@@ -8,11 +8,13 @@
     var client = Mozilla.Client;
 
     function checkUpToDate() {
-        // bug 1419573 - only show "Your Firefox is up to date" if it's the latest version.
+        // bug 1419573 - only show "Congrats! You’re using the latest version of Firefox." if it's the latest version.
         if (client.isFirefoxDesktop) {
             client.getFirefoxDetails(function(data) {
                 if (data.isUpToDate) {
                     document.querySelector('.c-page-header').classList.add('is-up-to-date');
+                } else {
+                    document.querySelector('.c-page-header').classList.add('is-out-of-date');
                 }
             });
         }
