@@ -23,7 +23,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
 from django.views.generic.base import TemplateView
 from lib import l10n_utils
+from lib.l10n_utils import L10nTemplateView
 from lib.l10n_utils.dotlang import lang_file_is_active
+from lib.l10n_utils.fluent import ftl_file_is_active
 from product_details.version_compare import Version
 
 from bedrock.base.urlresolvers import reverse
@@ -444,6 +446,15 @@ def redirect_old_firstrun(version):
     return version < Version('40.0')
 
 
+def show_default_account_whatsnew(version):
+    try:
+        version = Version(version)
+    except ValueError:
+        return False
+
+    return version >= Version('60.0')
+
+
 class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
     def get(self, *args, **kwargs):
         version = self.kwargs.get('version') or ''
@@ -490,7 +501,12 @@ class WhatsNewRedirectorView(GeoRedirectView):
         return super().get_redirect_url(*args, **kwargs)
 
 
-class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
+class WhatsnewView(L10nTemplateView):
+
+    ftl_files_map = {
+        'firefox/whatsnew/index-account.html': ['firefox/whatsnew/whatsnew-account', 'firefox/whatsnew/whatsnew']
+    }
+
     def get_context_data(self, **kwargs):
         ctx = super(WhatsnewView, self).get_context_data(**kwargs)
         locale = l10n_utils.get_locale(self.request)
@@ -577,7 +593,10 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
             else:
                 template = 'firefox/whatsnew/whatsnew-fx67.html'
         else:
-            template = 'firefox/whatsnew/index.html'
+            if show_default_account_whatsnew(version) and ftl_file_is_active('firefox/whatsnew/whatsnew-account'):
+                template = 'firefox/whatsnew/index-account.html'
+            else:
+                template = 'firefox/whatsnew/index.html'
 
         # return a list to conform with original intention
         return [template]

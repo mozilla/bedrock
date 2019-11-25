@@ -5,9 +5,9 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../../../protocol/css/includes/lib';
-@import '../../../../protocol/css/components/emphasis-box';
-@import '../../../../protocol/css/components/notification-bar';
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/emphasis-box';
+@import '../../../protocol/css/components/notification-bar';
 
 .content-main {
     padding: 0;
@@ -51,10 +51,11 @@ $image-path: '/media/protocol/img';
     color: $color-off-black;
     display: none;
     margin: $layout-xs;
+}
 
-    .is-up-to-date & {
-        display: block;
-    }
+.is-up-to-date .mzp-c-notification-bar.up-to-date,
+.is-out-of-date .mzp-c-notification-bar.out-of-date {
+    display: block;
 }
 
 .c-page-header-inner {
@@ -122,94 +123,6 @@ $image-path: '/media/protocol/img';
 
         .c-emphasis-box-title br {
             display: block;
-        }
-    }
-}
-
-
-//* -------------------------------------------------------------------------- */
-// Extra content
-// To be replaced by revamped picto card. See https://github.com/mozilla/protocol/issues/382
-
-.c-picto-block {
-    @include border-box;
-    margin: 0 auto $spacing-2xl;
-    max-width: $content-md - ($layout-md * 2);
-    padding: 0 $layout-md;
-
-    .c-picto-block-title {
-        @include text-display-xs;
-    }
-
-    .c-picto-block-image {
-        align-items: center;
-        display: flex;
-        margin-bottom: $spacing-md;
-        width: $layout-md;
-
-        img {
-            margin: 0 auto;
-        }
-    }
-
-    &.t-adjacent {
-        @include bidi((
-            (padding-left, $layout-xl, 0),
-            (padding-right, 0, $layout-xl),
-        ));
-        position: relative;
-
-        .c-picto-block-image {
-            @include bidi((
-                (left, 0, auto),
-                (right, auto, 0),
-            ));
-            position: absolute;
-        }
-
-        .c-picto-block-title,
-        .c-picto-block-body {
-            grid-column: 2;
-        }
-
-        p:last-child {
-            margin-bottom: 0;
-        }
-
-        @media #{$mq-md} {
-            grid-gap: 0 $layout-lg;
-        }
-    }
-}
-
-.c-picto-list {
-    .c-picto-block {
-        padding-bottom: $spacing-xl;
-        margin-bottom: $spacing-xl;
-        border-bottom: 2px solid #342f6d; // ink 10
-
-        &:last-child {
-            border-bottom: 0;
-        }
-    }
-
-    .c-picto-block-body.t-big {
-        @include text-display-xs;
-        min-height: 60px;
-    }
-}
-
-@media #{$mq-md} {
-    .l-columns-two {
-        display: flex;
-        margin: 0 auto;
-        max-width: $content-md - ($layout-md * 2);
-        padding: 0 $layout-md;
-        flex-wrap: wrap;
-
-        .c-picto-block {
-            flex: 1 1 50%;
-            padding: 0 ($spacing-md + 4);
         }
     }
 }
