@@ -23,10 +23,12 @@
     "gulp-sourcemaps": "^2.6.4",
     "gulp-stylelint": "9.0.0",
     "gulp-uglify": "^3.0.0",
+    "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "merge-stream": "2.0.0",
     "sass-loader": "^8.0.0",
     "stylelint": "^10.1.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "yargs": "14.0.0"
