@@ -10,8 +10,9 @@ stages:
 build:
   stage: build
   only:
-    - gitlab-ci-dev
     - master
+    - stage
+    - prod
   tags:
     - oregon-b-shell
   script:
@@ -33,7 +34,22 @@ build:
 dev:
   extends: .update-config
   only:
-    - gitlab-ci-dev
     - master
   variables:
     NAMESPACE: bedrock-dev
+
+stage:
+  extends: .update-config
+  only:
+    - stage
+  variables:
+    CLUSTERS: iowa-a
+    NAMESPACE: bedrock-stage
+
+prod:
+  extends: .update-config
+  only:
+    - prod
+  variables:
+    CLUSTERS: frankfurt iowa-a
+    NAMESPACE: bedrock-prod
