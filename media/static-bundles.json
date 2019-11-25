@@ -1172,15 +1172,6 @@
     },
     {
       "files": [
-        "js/libs/jquery-3.4.1.min.js",
-        "js/base/uitour-lib.js",
-        "js/firefox/tracking-protection-tour.js",
-        "js/firefox/tracking-protection-tour-init.js"
-      ],
-      "name": "tracking-protection-tour"
-    },
-    {
-      "files": [
         "js/mozorg/contribute/contribute-stories.js"
       ],
       "name": "contribute-stories"
