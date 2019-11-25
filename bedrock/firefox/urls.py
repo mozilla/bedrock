@@ -74,10 +74,6 @@ urlpatterns = (
     url(whatsnew_re, views.WhatsNewRedirectorView.as_view(), name='firefox.whatsnew'),
     url(whatsnew_re_india, views.WhatsNewIndiaView.as_view(), name='firefox.whatsnew.india'),
     url(whatsnew_re_all, views.WhatsnewView.as_view(), name='firefox.whatsnew.all'),
-    url(tracking_protection_re, views.TrackingProtectionTourView.as_view(),
-        name='firefox.tracking-protection-tour.start'),
-    url(content_blocking_re, views.ContentBlockingTourView.as_view(),
-        name='firefox.content-blocking-tour.start'),
 
     page('firefox/features/adblocker', 'firefox/features/adblocker.html'),
     page('firefox/concerts', 'firefox/concerts.html'),
