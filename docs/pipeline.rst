@@ -40,7 +40,7 @@ Push to master branch
 Whenever a change is pushed to the master branch, a new image is built and deployed to the
 dev environment, and the full suite of headless and UI tests are then run against
 Firefox on Windows 10 using `Sauce Labs`_. This is handled by the pipeline, and is subject
-to change according to the settings in the `master.yml file`_ in the repository.
+to change according to the settings in the `.gitlab-ci.yml file in the www-config repository`_.
 
 Push to stage branch
 ~~~~~~~~~~~~~~~~~~~~~
@@ -60,7 +60,7 @@ to `Docker Hub`_ if needed (usually this will have already happened as a result 
 and deployed to each `production`_ deployment. After each deployment is complete, the full suite of UI tests is
 run against Firefox, Chrome and Internet Explorer on Windows 10, and the sanity suite is run against IE9.
 As with untagged pushes, this is all handled by the pipeline, and is subject
-to change according to the settings in the `prod.yml file`_ in the repository.
+to change according to the settings in the `.gitlab-ci.yml file in the www-config repository`_.
 
 **Push to prod cheat sheet**
 
@@ -173,23 +173,30 @@ default can be set and then can be overridden in the individual job configuratio
 Adding test runs
 ~~~~~~~~~~~~~~~~
 
-Test runs can be added by creating a new properties section in the
-`integration tests script <https://github.com/mozilla/bedrock/blob/master/docker/bin/run_integration_tests.sh>`_
-with the parameters of the new test run. This is simply a bash script and you can duplicate a clause of the case staement.
+Test runs can be added by creating a new job in the `.gitlab-ci.yml file in the www-config repository`_
+with the desired variables
 For example, if you wanted to run tests in Firefox on both Windows 10 and
-OS X, you could create the following clauses:
+OS X, against our dev environment, you could create the following clauses:
 
-.. code-block:: bash
+.. code-block:: yaml
 
-    case $1 in
-      osx-firefox)
-        BROWSER_NAME=firefox
-        PLATFORM="OS X 10.11"
-        ;;
-      win10-firefox)
-        BROWSER_NAME=firefox
-        PLATFORM="Windows 10"
-        ;;
+dev-test-firefox-osx:
+  extends:
+    - .dev
+    - .test
+  variables:
+    BROWSER_NAME: firefox
+    BROWSER_VERSION: latest
+    PLATFORM: OS X 10.11
+
+dev-test-firefox-win10:
+  extends:
+    - .dev
+    - .test
+  variables:
+    BROWSER_NAME: firefox
+    BROWSER_VERSION: latest
+    PLATFORM: Windows 10
 
 You can use `Sauce Labs platform configurator`_ to help with the parameter values.
 
@@ -199,23 +206,13 @@ app will be deployed and all of the integration tests defined in the ``jenkins.y
 file for that branch will be run. Please announce in our IRC channel (#www on irc.mozilla.org)
 that you'll be doing this so that we don't get conflicts.
 
-Known issues in Jenkins
------------------------
-
-Jenkins stalls after global configuration changes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-When using the IRC plugin for notifications, global configuration changes can cause
-Jenkins to become unresponsive. To make such changes it can be necessary to first
-restart Jenkins, as this issue only appears some time after Jenkins has been started.
-A `bug for the IRC plugin`_ has been raised.
 
 .. _Deployment Pipeline: https://ci.vpn1.moz.works/blue/organizations/jenkins/bedrock_multibranch_pipeline/branches/
 .. _CircleCI: https://circleci.com/
 .. _Sauce Labs: https://saucelabs.com/
 .. _Jenkinsfile: https://github.com/mozilla/bedrock/tree/master/Jenkinsfile
 .. _branch-specific YAML files: https://github.com/mozilla/bedrock/tree/master/jenkins/branches/
-.. _master.yml file: https://github.com/mozilla/bedrock/tree/master/jenkins/branches/master.yml
+.. _.gitlab-ci.yml file in the www-config repository: https://github.com/mozmeao/www-config/tree/master/.gitlab-ci.yml
 .. _prod.yml file: https://github.com/mozilla/bedrock/tree/master/jenkins/branches/prod.yml
 .. _bedrock_integration_tests_runner: https://ci.vpn1.moz.works/view/Bedrock/job/bedrock_integration_tests_runner/
 .. _configured in Jenkins: https://ci.vpn1.moz.works/configure
