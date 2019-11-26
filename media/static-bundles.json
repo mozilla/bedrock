@@ -389,12 +389,6 @@
     },
     {
       "files": [
-        "css/firefox/tracking-protection-tour.less"
-      ],
-      "name": "tracking-protection-tour"
-    },
-    {
-      "files": [
         "css/mozorg/credits.scss"
       ],
       "name": "credits"
@@ -1153,15 +1147,6 @@
         "js/mozorg/technology.js"
       ],
       "name": "technology"
-    },
-    {
-      "files": [
-        "js/libs/jquery-3.4.1.min.js",
-        "js/base/uitour-lib.js",
-        "js/firefox/tracking-protection-tour.js",
-        "js/firefox/tracking-protection-tour-init.js"
-      ],
-      "name": "tracking-protection-tour"
     },
     {
       "files": [

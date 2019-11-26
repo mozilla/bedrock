@@ -629,4 +629,11 @@ redirectpatterns = (
 
     # issue 7670
     redirect(r'^/firefox/fights-for-you/?', 'firefox'),
+
+    # issue #7424
+    redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/content-blocking/start/?$', 'https://support.mozilla.org/kb/content-blocking'),
+
+    # issue #7424
+    redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/tracking-protection/start/?$', 'https://support.mozilla.org/kb/tracking-protection'),
+
 )
