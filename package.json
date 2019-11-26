@@ -26,6 +26,8 @@
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "merge-stream": "2.0.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.13.0",
     "sass-loader": "^8.0.0",
     "stylelint": "^10.1.0",
     "uglifyjs-webpack-plugin": "^2.2.0",

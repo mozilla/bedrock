@@ -1,56 +1,68 @@
 const path = require('path');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin  = require('mini-css-extract-plugin')
+
+function resolveBundles(fileList){
+  return fileList.map((f) => path.resolve(__dirname, "media", f));
+}
 
 module.exports = {
   mode: 'development',
   entry: {
-    'es6-test': [
-      path.resolve(__dirname,'media/js/components/test.es6.js'),
-      path.resolve(__dirname,'media/js/components/test2.es6.js'),
-      // path.resolve(__dirname,''),
-    ],
-    'firefox-mobile': [
-      path.resolve(__dirname,"media/js/base/mozilla-modal.js"),
-      path.resolve(__dirname,"media/js/base/send-to-device.js"),
-      path.resolve(__dirname,"media/js/base/mozilla-smoothscroll.js"),
-      path.resolve(__dirname,"media/js/libs/jquery.waypoints.min.js"),
-      path.resolve(__dirname,"media/js/libs/jquery.waypoints-sticky.min.js"),
-      path.resolve(__dirname,"media/js/hubs/sub-nav.js"),
-      path.resolve(__dirname,"media/js/firefox/mobile/features-scroller.js"),
-      path.resolve(__dirname,"media/js/firefox/mobile/mobile.js"),
-    ]
+    'firefox/mobile': resolveBundles([
+      "js/base/mozilla-modal.js",
+      "js/base/send-to-device.js",
+      "js/base/mozilla-smoothscroll.js",
+      "js/libs/jquery.waypoints.min.js",
+      "js/libs/jquery.waypoints-sticky.min.js",
+      "js/hubs/sub-nav.js",
+      "js/firefox/mobile/features-scroller.js",
+      "js/firefox/mobile/mobile.js",
+      "css/base/send-to-device.less",
+      "css/firefox/mobile.scss",
+    ])
   },
 
   output: {
-    'filename': '[name].js',
+    'filename': 'js/[name].js',
     'path': path.resolve(__dirname, "static_final/webpacked"),
   },
 
   plugins: [
     new UglifyJSPlugin(),
+    new MiniCssExtractPlugin({'filename': 'css/[name].css'}),
   ],
 
-  // module: {
-  //   rules: [
-  //     {
-  //       test: /\.scss$/,
-  //       use: [
-  //         MiniCssExtractPlugin.loader,
-  //         "css-loader",
-  //         "sass-loader"
-  //       ]
-  //     },
-  //     {
-  //       test: /\.less$/,
-  //       loader: 'less-loader',
-  //     },
-  //     {
-  //       test: /\.css$/,
-  //       use: [
-  //         MiniCssExtractPlugin.loader,
-  //         "css-loader"
-  //       ]
-  //     },
-  //   ]
-  // }
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "sass-loader"
+        ]
+      },
+      {
+        test: /\.less$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          {
+            'loader': 'less-loader',
+            'options': {
+              javascriptEnabled: true,
+            }
+          },
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader"
+        ]
+      },
+    ]
+  }
 }
