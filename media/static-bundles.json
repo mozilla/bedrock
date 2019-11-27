@@ -129,7 +129,7 @@
     },
     {
       "files": [
-        "css/press/press.less"
+        "css/press/press.scss"
       ],
       "name": "press"
     },

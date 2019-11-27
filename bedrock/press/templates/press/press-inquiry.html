@@ -1,106 +1,88 @@
-{% extends "base-resp.html" %}
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "base-article.html" %}
 
 {% block page_title %}{{_('Press Inquiry Form')}}{% endblock %}
-{% block body_class %}sand{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('press') }}
+{{ css_bundle('press') }}
 {% endblock %}
 
-{% block content %}
+{% block side_nav %}
+  {% include 'press/includes/resources.html' %}
+{% endblock %}
 
-<main role="main" id="main-content">
-  <header class="main-header">
-    <h1 class="title-shadow-box">{{_('Press Inquiry')}}</h1>
-  </header>
+{% block article %}
+<header>
+  <h1 class="mzp-c-article-title">{{_('Press Inquiry')}}</h1>
+</header>
+{% if not form_success %}
+{% if form.errors %}
+<aside class="mzp-c-notification-bar mzp-t-error">
+  <p>
+    <strong>{{ _('An error has occurred with your submission. Please review your information below and try again.') }}</strong>
+  </p>
+</aside>
+{% endif %}
 
-  <section class="container">
+{% if not form_success %}
+  <h2>{{ _('Please complete and submit the form below with your press inquiry.') }}</h2>
+{% endif %}
 
-    {% if not form_success %}
-      <h2 class="secondary-title">{{ _('Please complete and submit the form below with your press inquiry.') }}</h2>
+<form name="mozilla-contact-us" id="press_inquiry" class="press-inquiry" action="{{ url('press.press-inquiry') }}" method="post">
+  {{ csrf() }}
+  <fieldset>
+    <label for="id_jobtitle">{{ _('Job Title') }}</label>
+    {% if form.jobtitle.errors %}
+    <strong class="error-msg">{{_('Please enter your job title.')}}</strong>
     {% endif %}
+    {{ form.jobtitle }}
 
-    <div class="main-column">
-    {% if not form_success %}
-
-      {% if form.errors %}
-        <div class="tooltip">
-          {{ _('An error has occurred with your submission. Please review your information below and try again.') }}
-        </div>
-      {% endif %}
-
-      <form name="mozilla-contact-us" id="press_inquiry" class="press-inquiry" action="{{ url('press.press-inquiry') }}" method="post">
-
-        {{ csrf() }}
-
-        <fieldset>
-          <div class="field required">
-            <label for="id_jobtitle">{{ _('Job Title') }}</label>
-            {% if form.jobtitle.errors %}
-              <p class="error-msg">{{_('Please enter your job title.')}}</p>
-            {% endif %}
-            {{ form.jobtitle }}
-          </div>
-
-          <div class="field required">
-            <label for="id_name">{{ _('Name') }}</label>
-            {% if form.name.errors %}
-              <p class="error-msg">{{_('Please enter your name.')}}</p>
-            {% endif %}
-            {{ form.name }}
-          </div>
-
-          <div class="field required">
-            <label for="id_user_email">{{ _('Email Address') }}</label>
-            {% if form.user_email.errors %}
-              <p class="error-msg">{{_('Please enter a valid email address.')}}</p>
-            {% endif %}
-            {{ form.user_email }}
-          </div>
-
-          <div class="field required">
-            <label for="id_media_org">{{ _('Media Organization') }}</label>
-            {% if form.media_org.errors %}
-              <p class="error-msg">{{_('Please enter the name of your media organization.')}}</p>
-            {% endif %}
-            {{ form.media_org }}
-          </div>
-
-          <div class="field required">
-            <label for="id_inquiry">{{ _('Inquiry') }}</label>
-            {% if form.inquiry.errors %}
-              <p class="error-msg">{{_('Please enter the subject of your inquiry.')}}</p>
-            {% endif %}
-            {{ form.inquiry }}
-          </div>
-
-          <div class="field required">
-            <label for="id_deadline">{{ _('Deadline') }}</label>
-            {% if form.deadline.errors %}
-              <p class="error-msg">{{_('Please enter your deadline.')}}</p>
-            {% endif %}
-            {{ form.deadline }}
-            <div class="field-note">{{ _('2015-03-14 or March 14, 2015') }}</div>
-          </div>
-
-          {{ form.office_fax }}
-
-        </fieldset>
-
-        <div class="form-submit">
-          <input type="submit" class="button" id="form-submit" value="{{_('Submit')}}">
-        </div>
-      </form>
-    {% else %}
-      <h2>{{ _('Your request has been sent.') }}</h2>
-      <p>{{ _('Thank you for your inquiry.') }}</p>
+    <label for="id_name">{{ _('Name') }}</label>
+    {% if form.name.errors %}
+    <strong class="error-msg">{{_('Please enter your name.')}}</strong>
     {% endif %}
-    </div>
+    {{ form.name }}
 
-    {% include 'press/includes/resources.html' %}
+    <label for="id_user_email">{{ _('Email Address') }}</label>
+    {% if form.user_email.errors %}
+    <strong class="error-msg">{{_('Please enter a valid email address.')}}</strong>
+    {% endif %}
+    {{ form.user_email }}
 
-  </section>
-</main>
+    <label for="id_media_org">{{ _('Media Organization') }}</label>
+    {% if form.media_org.errors %}
+    <strong class="error-msg">{{_('Please enter the name of your media organization.')}}</strong>
+    {% endif %}
+    {{ form.media_org }}
+
+    <label for="id_inquiry">{{ _('Inquiry') }}</label>
+    {% if form.inquiry.errors %}
+    <strong class="error-msg">{{_('Please enter the subject of your inquiry.')}}</strong>
+    {% endif %}
+    {{ form.inquiry }}
+
+    <label for="id_deadline">{{ _('Deadline') }}</label>
+    {% if form.deadline.errors %}
+    <strong class="error-msg">{{_('Please enter your deadline.')}}</strong>
+    {% endif %}
+    {{ form.deadline }}
+
+    {{ form.office_fax }}
+  </fieldset>
+  <button type="submit" id="form-submit" class="mzp-c-button mzp-t-primary">{{_('Submit')}}</button>
+</form>
+{% else %}
+<aside class="mzp-c-notification-bar mzp-t-success">
+  <p>
+    <strong>{{ _('Your request has been sent.') }}</strong>
+    {{ _('Thank you for your inquiry.') }}
+  </p>
+</aside>
+{% endif %}
+
 {% endblock %}
 
 {% block email_form %}{% endblock %}
