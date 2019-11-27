@@ -1,66 +1,66 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
 {% extends "legal/docs-base.html" %}
 
 {% block page_title %}Impressum{% endblock %}
 
 {% block article %}
-  <article class="section-content" itemscope itemtype="http://schema.org/Article">
-    <div itemprop="articleBody" class="article-body">
-      <h1>Impressum</h1>
-      <section itemscope itemtype="http://schema.org/Organization" class="org">
-        <h2>Diensteanbieter:</h2>
-        <p>
-          <span itemprop="legalName">Mozilla Corporation</span> (Gesellschaft nach US-amerikanischem Recht) Corporate Number 2759208
-        </p>
+<h1 class="mzp-c-article-title" itemprop="name">Impressum</h1>
+<section itemscope itemtype="http://schema.org/Organization">
+  <h2>Diensteanbieter:</h2>
+  <p>
+    <span itemprop="legalName">Mozilla Corporation</span> (Gesellschaft nach US-amerikanischem Recht) Corporate Number 2759208
+  </p>
 
-        <h2>Sitz der Gesellschaft:</h2>
-        <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-          <span itemprop="streetAddress">331 E. Evelyn Avenue</span>
-          <span itemprop="addressLocality">Mountain View</span>,
-          <abbr itemprop="addressRegion" title="California">CA</abbr>
-          <span itemprop="postalCode">94041</span>
-          <span itemprop="addressCountry">USA</span>
-        </p>
+  <h2>Sitz der Gesellschaft:</h2>
+  <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+    <span itemprop="streetAddress">331 E. Evelyn Avenue</span>
+    <span itemprop="addressLocality">Mountain View</span>,
+    <abbr itemprop="addressRegion" title="California">CA</abbr>
+    <span itemprop="postalCode">94041</span>
+    <span itemprop="addressCountry">USA</span>
+  </p>
 
-        <h2>Vertretungsberechtigte Personen:</h2>
-        <ul class="unstyled">
-          <li itemscope itemtype="http://schema.org/Person">
-            <span itemprop="name">Chris Beard</a>
-          </li>
-          <li itemscope itemtype="http://schema.org/Person">
-            <span itemprop="name">Michael DeAngelo</a>
-          </li>
-          <li itemscope itemtype="http://schema.org/Person">
-            <span itemprop="name">Roxi Wen</a>
-          </li>
-          <li itemscope itemtype="http://schema.org/Person">
-            <span itemprop="name">Amy Keating</a>
-          </li>
-        </ul>
+  <h2>Vertretungsberechtigte Personen:</h2>
+  <ul class="mzp-u-list-styled">
+    <li itemscope itemtype="http://schema.org/Person">
+      <span itemprop="name">Chris Beard</a>
+    </li>
+    <li itemscope itemtype="http://schema.org/Person">
+      <span itemprop="name">Michael DeAngelo</a>
+    </li>
+    <li itemscope itemtype="http://schema.org/Person">
+      <span itemprop="name">Roxi Wen</a>
+    </li>
+    <li itemscope itemtype="http://schema.org/Person">
+      <span itemprop="name">Amy Keating</a>
+    </li>
+  </ul>
 
-        <h2>Kontaktinformation:</h2>
+  <h2>Kontaktinformation:</h2>
+  <ul class="mzp-u-list-styled" itemscope itemtype="http://schema.org/ContactPoint">
+    <li itemprop="email">Email: <a href="mailto:legal-notices@mozilla.com">legal-notices@mozilla.com</a></li>
+    <li itemprop="telephone">Telefon: +1 650-903-0800</li>
+    <li itemprop="faxNumber">Telefax: +1 650-903-0875</li>
+  </ul>
 
-        <ul class="unstyled" itemscope itemtype="http://schema.org/ContactPoint">
-          <li itemprop="email">Email: <a href="mailto:legal-notices@mozilla.com">legal-notices@mozilla.com</a></li>
-          <li itmeprop="telephone">Telefon: +1 650-903-0800</li>
-          <li itemprop="faxNumber">Telefax: +1 650-903-0875</li>
-        </p>
-
-        <h2>Online-Streitbeilegung:</h2>
-
-        <p>
-          Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung unter
-          <a href="http://ec.europa.eu/consumers/odr">http://ec.europa.eu/consumers/odr</a> bereit.
-          Die Mozilla Corporation nimmt in Deutschland nicht an Streitbeilegungsverfahren vor einer
-          Verbraucherschlichtungsstelle teil.
-        </p>
-      </section>
-    </div>
-  </article>
+  <h2>Online-Streitbeilegung:</h2>
+  <p>
+    Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung unter
+    <a href="http://ec.europa.eu/consumers/odr">http://ec.europa.eu/consumers/odr</a> bereit.
+    Die Mozilla Corporation nimmt in Deutschland nicht an Streitbeilegungsverfahren vor einer
+    Verbraucherschlichtungsstelle teil.
+  </p>
+</section>
 {% endblock %}
 
 {% block side_extra %}
-  <section>
-    <p>Beratung zu unserer Software finden Sie auf unserer Support-Website unter <a href="https://support.mozilla.org/de/">https://support.mozilla.org/de/</a>.</p>
-    <p>Haben Sie Feedback zu Mozilla Software? Wir freuen uns, von Ihnen zu hören, unter <a href="https://input.mozilla.org/de/feedback">https://input.mozilla.org/de/feedback</a>.</p>
-  </section>
+<section class="mzp-c-sidemenu-main" id="sidebar-menu">
+  <ul>
+    <li><a href="https://support.mozilla.org/de/">https://support.mozilla.org/de/</a></li>
+    <li><a href="https://input.mozilla.org/de/feedback">https://input.mozilla.org/de/feedback</a></li>
+  </ul>
+</section>
 {% endblock %}

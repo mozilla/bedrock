@@ -11,11 +11,21 @@
 {% endblock %}
 
 {% block side_nav %}
-<nav class="mzp-c-sidemenu mzp-c-sidemenu-main">
-  <ul>
-    <li><a href="{{ url('legal.index') }}">{{ _('Back to Legal') }}</a></li>
-    <li><a href="{{ url('legal.eula') }}">{{ _('Mozilla Foundation End-User Licensing Agreements') }}</a></li>
-  </ul>
+<nav class="mzp-c-sidemenu">
+  <section class="mzp-c-sidemenu-summary mzp-js-toggle" aria-controls="sidebar-menu">
+    <h3 class="mzp-c-sidemenu-label">{{ self.page_title() }}</h3>
+    <ul>
+      <li class="mzp-is-current">{{ self.page_title() }}</li>
+    </ul>
+  </section>
+
+  <section class="mzp-c-sidemenu-main" id="sidebar-menu">
+    <ul>
+      <li class="mzp-is-current"><a href="#">{{ self.page_title() }}</a></li>
+      <li><a href="{{ url('legal.eula') }}">{{ _('Mozilla Foundation End-User Licensing Agreements') }}</a></li>
+      <li><a href="{{ url('legal.index') }}">{{ _('Back to Legal') }}</a></li>
+    </ul>
+  </section>
 </nav>
 {% endblock %}
 
@@ -29,7 +39,7 @@
 <p>The accompanying executable code version of Mozilla Thunderbird and related documentation (the "Product") is made available to you under the terms of this MOZILLA THUNDERBIRD END-USER SOFTWARE LICENSE AGREEMENT (THE "AGREEMENT").  BY CLICKING THE "ACCEPT" BUTTON, OR BY INSTALLING OR USING THE MOZILLA THUNDERBIRD E-MAIL CLIENT, YOU ARE CONSENTING TO BE BOUND BY THE AGREEMENT.  IF YOU DO NOT AGREE TO THE TERMS AND CONDITIONS OF THIS AGREEMENT, DO NOT CLICK THE "ACCEPT" BUTTON, AND DO NOT INSTALL OR USE ANY PART OF THE MOZILLA THUNDERBIRD E-MAIL CLIENT.</p>
 <p>DURING THE MOZILLA THUNDERBIRD INSTALLATION PROCESS, AND AT LATER TIMES, YOU MAY BE GIVEN THE OPTION OF INSTALLING ADDITIONAL COMPONENTS FROM THIRD-PARTY SOFTWARE PROVIDERS.  THE INSTALLATION AND USE OF THOSE THIRD-PARTY COMPONENTS MAY BE GOVERNED BY ADDITIONAL LICENSE AGREEMENTS.</p>
 
-<ol>
+<ol class="mzp-u-list-styled">
   <li>LICENSE GRANT. The Mozilla Foundation grants you a non-exclusive license to use the executable code version of the Product.  This Agreement will also govern any software upgrades provided by Mozilla that replace and/or supplement the original Product, unless such upgrades are accompanied by a separate license, in which case the terms of that license will govern.</li>
   <li>TERMINATION.  If you breach this Agreement your right to use the Product will terminate immediately and without notice, but all provisions of this Agreement except the License Grant (Paragraph 1) will survive termination and continue in effect.  Upon termination, you must destroy all copies of the Product.</li>
   <li>PROPRIETARY RIGHTS.  Portions of the Product are available in source code form under the terms of the Mozilla Public License and other open source licenses (collectively, "Open Source Licenses") at <a href="{{ url('mozorg.home') }}">http://www.mozilla.org</a>.  Nothing in this Agreement will be construed to limit any rights granted under the Open Source Licenses.  Subject to the foregoing, Mozilla, for itself and on behalf of its licensors, hereby reserves all intellectual property rights in the Product, except for the rights expressly granted in this Agreement.  You may not remove or alter any trademark, logo, copyright or other proprietary notice in or on the Product.  This license does not grant you any right to use the trademarks, service marks or logos of Mozilla or its licensors.</li>

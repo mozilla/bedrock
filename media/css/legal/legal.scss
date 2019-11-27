@@ -31,12 +31,32 @@ $image-path: '/media/protocol/img';
     margin: $spacing-sm;
 }
 
+
+// manual styling for markdown content.
+.article-body {
+    blockquote {
+        @include text-body-lg;
+    }
+
+    ul {
+        list-style: disc;
+    }
+
+    ol {
+        list-style: decimal;
+    }
+
+    li {
+        margin: $spacing-sm $spacing-lg;
+    }
+}
+
 /* -------------------------------------------------------------------------- */
 // Sidebar
 
 .mzp-l-sidebar {
-    h3 {
-        margin-top: $spacing-md;
+    .mzp-l-menu-note {
+        @include text-body-sm;
     }
 }
 

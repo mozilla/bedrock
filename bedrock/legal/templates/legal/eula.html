@@ -7,7 +7,25 @@
 {% block page_title %}{{_('Mozilla Foundation End-User Licensing Agreements')}}{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('legal') }}
+{{ css_bundle('legal') }}
+{% endblock %}
+
+{% block side_nav %}
+<nav class="mzp-c-sidemenu">
+  <section class="mzp-c-sidemenu-summary mzp-js-toggle" aria-controls="sidebar-menu">
+    <h3 class="mzp-c-sidemenu-label">{{ self.page_title() }}</h3>
+    <ul>
+      <li class="mzp-is-current">{{ self.page_title() }}</li>
+    </ul>
+  </section>
+
+  <section class="mzp-c-sidemenu-main" id="sidebar-menu">
+    <ul>
+      <li class="mzp-is-current"><a href="#">{{ self.page_title() }}</a></li>
+      <li><a href="{{ url('legal.index') }}">{{ _('Back to Legal') }}</a></li>
+    </ul>
+  </section>
+</nav>
 {% endblock %}
 
 {% block article %}
@@ -31,7 +49,7 @@
 <h2>Outdated policies</h2>
 <h3>Mozilla End-user Software License Agreements</h3>
 
-<ul>
+<ul class="mzp-u-list-styled">
   <li><a href="{{ url('legal.eula.firefox-2-eula') }}">{{ _('Firefox 2.0') }}</a></li>
   <li><a href="{{ url('legal.eula.firefox-3-eula') }}">{{ _('Firefox 3.0') }}</a></li>
   <li><a href="{{ url('legal.eula.thunderbird-1.5-eula') }}">{{ _('Thunderbird 1.5') }}</a></li>
@@ -40,10 +58,3 @@
 
 {% endblock %}
 
-{% block side_nav %}
-<nav class="mzp-c-sidemenu mzp-c-sidemenu-main">
-  <ul>
-    <li><a href="{{ url('legal.index') }}">{{ _('Back to Legal') }}</a></li>
-  </ul>
-</nav>
-{% endblock %}

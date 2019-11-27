@@ -11,38 +11,43 @@
 {% endblock %}
 
 {% block side_nav %}
-<nav class="mzp-c-sidemenu-main">
-  <h3 class="mzp-c-sidemenu-title">{{ _('Get involved') }}</h3>
-  <p>{{ _('Special thanks to all of you who help report abuses of Mozilla marks, participate in governance forums, give feedback on our localizations & legal terms, and contribute your skills to the success of the Mozilla project.') }}</p>
+<nav class="mzp-c-sidemenu">
+  <section class="mzp-c-sidemenu-summary mzp-js-toggle" aria-controls="sidebar-menu">
+    <h3 class="mzp-c-sidemenu-label">{{ self.page_title() }}</h3>
+    <ul>
+      <li class="mzp-is-current">{{ self.page_title() }}</li>
+    </ul>
+  </section>
 
-  <ul>
-    <li><a href="{{ url('mozorg.contribute.index') }}">{{ _('Get involved!') }}</a></li>
-    <li>
-      <h3 class="mzp-c-sidemenu-title">{{ _('Protect the Fox') }}</h3>
-      <a href="{{ url('legal.fraud-report') }} ">{{ _('Help us protect our users by reporting abuse of Mozilla Trademarks.') }}</a>
-    </li>
-    <li>
-      <h3 class="mzp-c-sidemenu-title">{{ _('Takedown requests') }}</h3>
-      <a href="{{ url('legal.report-infringement') }}">
-          {%- if l10n_has_tag('legal_update_201601') -%}
-          {{ _('Report infringement of your copyrights or trademarks.') }}
-          {%- else -%}
-          {{ _('Report abuse of your copyrights and trademarks.') }}
-          {%- endif -%}
-        </a>
+  <section class="mzp-c-sidemenu-main" id="sidebar-menu">
+    <ul>
+      <li class="mzp-is-current"><a href="{{ url('legal.index') }}">{{ self.page_title() }}</a></li>
+      <li>
+        <a href="{{ url('mozorg.contribute.index') }}">{{ _('Get involved') }}</a>
+      </li>
+      <li>
+        <a href="{{ url('legal.fraud-report') }} ">{{ _('Protect the Fox') }}</a>
+      </li>
+      <li>
+        <a href="{{ url('legal.report-infringement') }}">{{ _('Takedown requests') }}</a>
+      </li>
       {% if LANG == 'de' %}
-      <a href="{{ url('legal.impressum') }}">{{ _('Impressum') }}</a>
-    </li>
-  </ul>
+      <li>
+        <a href="{{ url('legal.impressum') }}">{{ _('Impressum') }}</a>
+      </li>
+      {% endif %}
+    </ul>
+  </section>
 </nav>
-{% endif %}
 {% endblock %}
 
 {% block article %}
 <h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
+<p>{{ _('Special thanks to all of you who help report abuses of Mozilla marks, participate in governance forums, give feedback on our localizations & legal terms, and contribute your skills to the success of the Mozilla project.') }}</p>
+
 <h2>{{ _('Terms') }}</h2>
 
-<ul>
+<ul class="mzp-u-list-styled">
   <li>
     <a href="{{ url('legal.terms.mozilla') }}">{{ _('Our Websites') }}</a>
   </li>
@@ -55,7 +60,7 @@
 </ul>
 
 <h2>{{ _('Privacy & trademarks') }}</h2>
-<ul>
+<ul class="mzp-u-list-styled">
   <li>
     <a href="{{ url('privacy') }}">{{ _('Privacy Notices and Policy') }}</a>
   </li>
@@ -65,7 +70,7 @@
 </ul>
 
 <h2>{{ _('Downloadable software notices') }}</h2>
-<ul>
+<ul class="mzp-u-list-styled">
   <li>
     <a href="{{ url('legal.terms.firefox') }}">{{ _('Firefox') }}</a>
   </li>
@@ -76,19 +81,21 @@
 {% endblock %}
 
 {% block email_form %}
-<aside class="mzp-c-newsletter">
-  <div class="mzp-c-newsletter-image">
-    {{ high_res_img('img/home/2018/newsletter-graphic.png', {'alt': ''}) }}
-  </div>
-  <div class="newsletter-content">
-    {% if LANG.startswith('en-') %}
-    {{ email_newsletter_form(
-          protocol_component=True,
-          title=_('Love the Web?'),
-          subtitle=_('Get the Mozilla newsletter and help us keep it open and free.')) }}
-    {% else %}
-    {{ email_newsletter_form() }}
-    {% endif %}
+<aside class="mzp-l-content">
+  <div class="mzp-c-newsletter">
+    <div class="mzp-c-newsletter-image">
+      {{ high_res_img('img/home/2018/newsletter-graphic.png', {'alt': ''}) }}
+    </div>
+    <div class="newsletter-content">
+      {% if LANG.startswith('en-') %}
+      {{ email_newsletter_form(
+            protocol_component=True,
+            title=_('Love the Web?'),
+            subtitle=_('Get the Mozilla newsletter and help us keep it open and free.')) }}
+      {% else %}
+      {{ email_newsletter_form() }}
+      {% endif %}
+    </div>
   </div>
 </aside>
 {% endblock %}

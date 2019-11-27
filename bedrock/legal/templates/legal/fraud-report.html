@@ -11,13 +11,22 @@
 {% endblock %}
 
 {% block side_nav %}
-<nav class="mzp-c-sidemenu mzp-c-sidemenu-main">
-  <ul>
-    <li><a href="{{ url('legal.index') }}">{{ _('Back to Legal') }}</a></li>
-  </ul>
+<nav class="mzp-c-sidemenu">
+  <section class="mzp-c-sidemenu-summary mzp-js-toggle" aria-controls="sidebar-menu">
+    <h3 class="mzp-c-sidemenu-label">{{ self.page_title() }}</h3>
+    <ul>
+      <li class="mzp-is-current">{{ self.page_title() }}</li>
+    </ul>
+  </section>
+
+  <section class="mzp-c-sidemenu-main" id="sidebar-menu">
+    <ul>
+      <li class="mzp-is-current"><a href="#">{{ self.page_title() }}</a></li>
+      <li><a href="{{ url('legal.index') }}">{{ _('Back to Legal') }}</a></li>
+    </ul>
+  </section>
 </nav>
 {% endblock %}
-
 
 {% block article %}
 {# L10n: The line break below is for visual formatting only #}
@@ -80,7 +89,7 @@
   <p><strong>{{ _('Thank you for your help!') }}</strong></p>
 </section>
 
-<section class="mzp-l-content">
+<section>
   <h2>{{ _('Fraud Report') }}</h2>
 
   {% if not form_submitted or (form_submitted and form_error) %}
