@@ -279,12 +279,6 @@
     },
     {
       "files": [
-        "css/legal/eula.less"
-      ],
-      "name": "legal-eula"
-    },
-    {
-      "files": [
         "css/pebbles/global.scss",
         "css/pebbles/protocol-nav.scss",
         "css/pebbles/protocol-footer.scss"
@@ -318,8 +312,7 @@
     },
     {
       "files": [
-        "css/legal/legal.less",
-        "css/newsletter/moznewsletter-subscribe.less"
+        "css/legal/legal.scss"
       ],
       "name": "legal"
     },
@@ -556,12 +549,6 @@
         "css/firefox/new/common.scss"
       ],
       "name": "firefox_new_common"
-    },
-    {
-      "files": [
-        "css/legal/fraud-report.less"
-      ],
-      "name": "legal_fraud_report"
     },
     {
       "files": [
@@ -1021,6 +1008,12 @@
         "js/base/mozilla-fxa-product-button-init.js"
       ],
       "name": "exp_firefox_whatsnew_71"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-newsletter.js"
+      ],
+      "name": "legal"
     },
     {
       "files": [
