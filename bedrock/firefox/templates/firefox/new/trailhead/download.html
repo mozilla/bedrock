@@ -16,9 +16,15 @@
 
 {% block content %}
 <main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
+  {% if l10n_has_tag('firefox-new-skyline') %}
+    {% set tagline = _('Automatic privacy is here. Download Firefox to block over 2000 trackers.') %}
+  {% else %}
+    {% set tagline = _('And start getting the respect you deserve with our family of privacy-first products.') %}
+  {% endif %}
+
   {% call hero(
     title=_('Get the latest Firefox browser.'),
-    desc=_('And start getting the respect you deserve with our family of privacy-first products.'),
+    desc=tagline,
     class='mzp-has-image mzp-t-dark',
     include_cta=True,
     image_url='img/firefox/new/trailhead/browser-window.svg',
@@ -43,9 +49,15 @@
   {% endcall %}
   <section class="features">
     <ul class="mzp-l-card-third mzp-l-content">
-      {{ picto_card(title=_('Join Firefox'), desc=_('Connect to a whole family of respectful products, plus all the knowledge you need to protect yourself online.'), class='join') }}
-      {{ picto_card(title=_('Passwords made portable'), desc=_('<strong>Firefox Lockwise</strong> makes the passwords you save in Firefox available on all your devices.'), class='lockwise') }}
-      {{ picto_card(title=_('Protect your privacy'), desc=_('<strong>Private Browsing</strong> clears your history to keep it secret from anyone who uses your computer.'), class='private') }}
+      {% if l10n_has_tag('firefox-new-skyline') %}
+        {{ picto_card(title=_('See what’s being blocked'), desc=_('Firefox shows you how many data-collecting trackers are blocked with <strong>Enhanced Tracking Protection</strong>.'), class='skyline-etp') }}
+        {{ picto_card(title=_('Make your passwords portable'), desc=_('<strong>Firefox Lockwise</strong> makes the passwords you save in Firefox secure and available on all your devices.'), class='skyline-lockwise') }}
+        {{ picto_card(title=_('Watch for data breaches'), desc=_('<strong>Firefox Monitor</strong> alerts you if we know your information is a part of another company’s data breach. '), class='skyline-monitor') }}
+      {% else %}
+        {{ picto_card(title=_('Join Firefox'), desc=_('Connect to a whole family of respectful products, plus all the knowledge you need to protect yourself online.'), class='join') }}
+        {{ picto_card(title=_('Passwords made portable'), desc=_('<strong>Firefox Lockwise</strong> makes the passwords you save in Firefox available on all your devices.'), class='lockwise') }}
+        {{ picto_card(title=_('Protect your privacy'), desc=_('<strong>Private Browsing</strong> clears your history to keep it secret from anyone who uses your computer.'), class='private') }}
+      {% endif %}
     </ul>
   </section>
 </main>
