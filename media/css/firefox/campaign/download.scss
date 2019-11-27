@@ -64,6 +64,10 @@ $image-path: '/media/protocol/img';
 .mzp-c-card-picto .mzp-c-card-picto-content {
     padding-top: 140px;
 
+    .mzp-c-card-picto-title {
+        margin-bottom: $spacing-lg;
+    }
+
     &:before {
         background-color: transparent;
         background-position: top left;
@@ -72,7 +76,6 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-lg} {
         .mzp-c-card-picto-title {
-            @include text-display-sm;
             margin-bottom: $spacing-xl;
         }
     }
@@ -97,4 +100,37 @@ $image-path: '/media/protocol/img';
     width: 113px;
     margin-left: -56px;
     background-image: url('/media/img/firefox/new/trailhead/icon-private.svg');
+}
+
+/* Skyline picto card updates */
+.skyline-etp.mzp-c-card-picto,
+.skyline-lockwise.mzp-c-card-picto,
+.skyline-monitor.mzp-c-card-picto {
+    .mzp-c-card-picto-content {
+        padding-top: 120px;
+    }
+}
+
+.skyline-etp .mzp-c-card-picto-content::before {
+    @include background-size(80px 96px);
+    background-image: url('/media/img/icons/gradient-shield.svg');
+    height: 96px;
+    margin-left: -40px;
+    width: 80px;
+}
+
+.skyline-lockwise .mzp-c-card-picto-content::before {
+    @include background-size(96px 96px);
+    background-image: url('/media/protocol/img/logos/firefox/lockwise/logo.svg');
+    height: 96px;
+    margin-left: -48px;
+    width: 96px;
+}
+
+.skyline-monitor .mzp-c-card-picto-content::before {
+    @include background-size(96px 96px);
+    background-image: url('/media/protocol/img/logos/firefox/monitor/logo.svg');
+    height: 96px;
+    margin-left: -48px;
+    width: 96px;
 }
