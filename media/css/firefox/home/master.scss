@@ -132,10 +132,10 @@ $image-path: '/media/protocol/img';
 
 @media #{$mq-md} {
     .c-lead {
+        @include bidi (((background-position, center left 50vw, center right 50vw),));
         background-image: url('/media/img/firefox/home/master/hero.jpg');
         background-size: auto 300px;
         background-repeat: no-repeat;
-        background-position: center left 50vw;
     }
 
     .c-lead-title {
@@ -263,6 +263,15 @@ $image-path: '/media/protocol/img';
 
             @media #{$mq-high-res} {
                 background-image: url('/media/img/firefox/home/master/respect-high-res.jpg'), linear-gradient(90deg, #5731AB 50%, $color-violet-90);
+            }
+
+            [dir="rtl"] & {
+                background-image: url('/media/img/firefox/home/master/respect-rtl.jpg'), linear-gradient(-90deg, #5731AB 50%, $color-violet-90);
+                background-position: right -30px center, top right;
+
+                @media #{$mq-high-res} {
+                    background-image: url('/media/img/firefox/home/master/respect-rtl-high-res.jpg'), linear-gradient(-90deg, #5731AB 50%, $color-violet-90);
+                }
             }
         }
 
