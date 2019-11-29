@@ -840,6 +840,12 @@
     },
     {
       "files": [
+        "css/firefox/compare-details.scss"
+      ],
+      "name": "compare-details"
+    },
+    {
+      "files": [
         "css/protocol/components/send-to-device.scss",
         "css/firefox/welcome.scss"
       ],
