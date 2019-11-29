@@ -10,13 +10,12 @@
 {% block page_title %}{{ _('Newsletter email recovery') }}{% endblock page_title %}
 
 {% block content %}
-  {% block main_feature %}
-    <div id="main-feature">
-      <h1>{{ _('Manage your <span>Newsletter Subscriptions</span>') }}</h1>
-    </div>
-  {% endblock %}
-
   {% if form %}
+    {% block main_feature %}
+      <div id="main-feature">
+        <h1>{{ _('Manage your <span>Newsletter Subscriptions</span>') }}</h1>
+      </div>
+    {% endblock %}
     <form method="post" action="{{ url('newsletter.recovery') }}" id="newsletter-recovery-form" class="container billboard">
       {% if form.non_field_errors() %}
         <div class="errorlist">
