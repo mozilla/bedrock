@@ -63,7 +63,9 @@ class PressInquiryForm(forms.Form):
             attrs={
                 'class': 'required',
                 'required': 'required',
-                'aria-required': 'true'
+                'aria-required': 'true',
+                'rows': '',
+                'cols': ''
             }
         )
     )
@@ -235,32 +237,62 @@ class SpeakerRequestForm(forms.Form):
     sr_event_audience_demographics = forms.CharField(
         max_length=500,
         required=False,
-        widget=forms.Textarea(),
+        widget=forms.Textarea(
+            attrs={
+                'rows': '',
+                'cols': '',
+            }
+        ),
     )
     sr_event_speakers_confirmed = forms.CharField(
         max_length=500,
         required=False,
-        widget=forms.Textarea(),
+        widget=forms.Textarea(
+            attrs={
+                'rows': '',
+                'cols': '',
+            }
+        ),
     )
     sr_event_speakers_invited = forms.CharField(
         max_length=500,
         required=False,
-        widget=forms.Textarea(),
+        widget=forms.Textarea(
+            attrs={
+                'rows': '',
+                'cols': '',
+            }
+        ),
     )
     sr_event_speakers_past = forms.CharField(
         max_length=1000,
         required=False,
-        widget=forms.Textarea(),
+        widget=forms.Textarea(
+            attrs={
+                'rows': '',
+                'cols': '',
+            }
+        ),
     )
     sr_event_media_coverage = forms.CharField(
         max_length=500,
         required=False,
-        widget=forms.Textarea(),
+        widget=forms.Textarea(
+            attrs={
+                'rows': '',
+                'cols': '',
+            }
+        ),
     )
     sr_event_sponsors = forms.CharField(
         max_length=500,
         required=False,
-        widget=forms.Textarea(),
+        widget=forms.Textarea(
+            attrs={
+                'rows': '',
+                'cols': '',
+            }
+        ),
     )
     sr_event_confirmation_deadline = forms.DateField(
         required=False,

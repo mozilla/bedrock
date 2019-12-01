@@ -31,6 +31,17 @@ fieldset {
     label {
         margin: $spacing-sm 0;
     }
+
+    textarea {
+        min-height: 200px;
+        width: 100%;
+    }
+
+    @media #{$mq-md} {
+        textarea {
+            width: $content-sm;
+        }
+    }
 }
 
 .mzp-c-button {
@@ -52,5 +63,4 @@ fieldset {
 .mzp-c-notification-bar {
     margin: $spacing-lg 0;
 }
-
 
