@@ -13,89 +13,143 @@
 
 {% block article_header_logo %}{{ static('protocol/img/logos/firefox/browser/logo-md.png') }}{% endblock %}
 
-{% block title %}{{ _('Firefox Private Network Privacy Notice') }}{% endblock %}
-{% block time %}{{ _('Version 1.0, dated September 10, 2019') }}{% endblock %}
+{% block title %}{{ _('Firefox Private Network (Beta) Privacy Notice') }}{% endblock %}
+{% block time %}{{ _('Version 2.0, dated December 3, 2019') }}{% endblock %}
 
 {% block lead_in %}
-  <h2>{{ _('At Mozilla, we design products with your privacy in mind.') }}</h2>
-  <p>{{ _('This privacy notice explains what data is needed to offer Firefox Private Network (“Service”) and why.') }}</p>
-  <p>
+<h2>{{ _('At Mozilla, we design products with your privacy in mind.') }}</h2>
+<p>{{ _('This privacy notice explains what data is needed to offer Firefox Private Network (“Service”) and why.') }}</p>
+<p>
   {% trans policy=url('privacy') %}
-    To learn more about how we receive and handle information, and how you can engage with your data, read the
-    <a href="{{ policy }}">Mozilla Privacy Policy</a>.
+  To learn more about how we receive and handle information, and how you can engage with your data, read the
+  <a href="{{ policy }}">Mozilla Privacy Policy</a>.
   {% endtrans %}
-  </p>
+</p>
 {% endblock %}
 
 {% block sections %}
+<section>
+  <h2>{{ _('Things you should know:') }}</h2>
   <section>
-    <h2>{{ _('Things you should know:') }}</h2>
-    <section>
-      <h3>
-      {% trans %}
-        Enabling this Service keeps your Firefox web browsing activity private from your internet service provider,
-        and most websites you visit, by encrypting and routing it through our partner Cloudflare’s network instead.
-      {% endtrans %}
-      </h3>
-      <div>
-        <ul>
-          <li>
-            <p>
-            {% trans cloudflare='https://www.cloudflare.com/mozilla/firefox-private-network-privacy-notice/' %}
-              <strong>Cloudflare receives your web browsing data to provide the Service:</strong> As you browse,
-              Firefox will encrypt the data you send to websites and send it to Cloudflare. Cloudflare will also
-              receive your computer’s IP address, the IP address of the site you are browsing to, the timestamp,
-              and a unique identifier. Cloudflare does not share this data with others and deletes this after
-              24 hours unless necessary for its security or legal obligations. Learn more at
-              <a href="{{ cloudflare }}">Cloudflare's Privacy Policy for Firefox Private Network</a>.
-            {% endtrans %}
-            </p>
-          </li>
-          <li>
-            <p>
-            {% trans service='https://support.mozilla.org/kb/video-calls-fpn' %}
-              <strong>This Service protects most—but not all—of your web browsing:</strong> The Service only works
-              in Firefox and for websites that communicate with your computer using TCP (Transmission Control Protocol).
-              For example, it does not work for data exchanged on certain video conferencing services (such as Google
-              Hangouts, Facebook Messenger, GoToMeeting) or on applications outside of Firefox (such as other apps on
-              your device). <a href="{{ service }}">Learn more here</a>.
-            {% endtrans %}
-            </p>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <section>
-      <h3>{{ _('Mozilla receives data to understand service performance, interaction with Firefox, and how we can improve this feature.') }}</h3>
-      <div>
+    <h3>
+      {{ _('Firefox Private Network Requires a Firefox Account.') }}
+    </h3>
+    <div>
+      <p>
+        {% trans data=url('privacy.notices.firefox')+ '#firefox-accounts-join-firefox' %}
+        This service requires a Firefox Account, which sends Mozilla your email address, locale, and IP address. Learn
+        more about <a href="{{ data }}">Firefox Account data practices.</a>
+        {% endtrans %}
+      </p>
+    </div>
+    <h3>
+      {{ _('There are two options for Firefox Private Network.' )}}
+    </h3>
+    <div>
+      <ol class="mzp-u-list-styled">
+        <li>{{ _('FPN Browser Protection, which protects your web browsing within Firefox, and' ) }}</li>
+        <li>{{ _('FPN Full-Device Protection, which protects all your device’s internet connections.') }}</li>
+      </ol>
+      <p>
+        {{ _('Our partner for FPN Browser Protection is Cloudflare. Our partner for FPN Full-device Protection is Mullvad.') }}
+      </p>
+    </div>
+    <h3>
+      {{ _('Both FPN Browser Protection and FPN Full-Device Protection Receive Location, Technical, and Interaction data.') }}
+    </h3>
+    <div>
       <ul>
         <li>
           <p>
-          {% trans %}
-            <strong>Technical data.</strong> Firefox sends Mozilla data about your device, operating system,
-            version, and a unique identifier that Mozilla connects to your Firefox Account.
-          {% endtrans %}
+            {% trans protection='https://github.com/mozilla/secure-proxy/blob/master/docs/metrics.md' %}
+            Firefox sends Mozilla data about your device, operating system, version, and a unique identifier that
+            Mozilla connects to your Firefox Account and receives data about when you install Firefox Private Network,
+            when you use the service, and engage with our surveys and Firefox. Read the telemetry documentation for <a
+              href="{{ protection }}">FPN Browser Protection.</a>
+            {% endtrans %}
           </p>
         </li>
         <li>
           <p>
-          {% trans %}
-            <strong>Interaction data.</strong> Mozilla receives data about when you install Firefox Private Network,
-            when you use the service, and engagement with our surveys and Firefox.
-          {% endtrans %}
+            {% trans %}
+            Because FPN is currently limited to the US, we store the IP addresses used to access your Firefox Account in
+            order to approximate your country.
+            {% endtrans %}
           </p>
-        </li>
-        <li>
-          <p>
-          {% trans privacy=url('legal.terms.services') %}
-            <strong>Registration data.</strong> This service requires a Firefox Account, which sends Mozilla your email
-            address, locale, and IP address. Learn more about <a href="{{ privacy }}">Firefox Account data practices</a>.
-          {% endtrans %}
-          </p>
-          <p>{{ _('Read the <a href="%s">telemetry documentation</a>.')|format('https://github.com/mozilla/secure-proxy/blob/master/docs/metrics.md') }}</p>
         </li>
       </ul>
     </div>
-    </section>
+    <h3>
+      {% trans %}
+      Enabling this Service keeps your Firefox web browsing activity private from your internet service provider, and
+      most of your web traffic, by encrypting and routing it through our partners’ networks instead.
+      {% endtrans %}
+    </h3>
+    <div>
+      <h4>{{ _('FPN Browser Protection') }}</h4>
+      <ul>
+        <li>
+          <p>
+            {% trans cloudflare='https://www.cloudflare.com/mozilla/firefox-private-network-privacy-notice/' %}
+            <strong>Cloudflare receives your web browsing data to provide the Service.</strong> As you browse, Firefox
+            will encrypt the data you send to websites and send it to Cloudflare. Cloudflare will also receive your
+            computer’s IP address, the IP address of the site you are browsing to, the timestamp, and a unique
+            identifier. Cloudflare does not share this data with others and deletes this after 24 hours unless necessary
+            for its security or legal obligations. Learn more at <a href="{{ cloudflare }}">Cloudflare’s Privacy Notice
+              for Firefox Private Network.</a>
+            {% endtrans %}
+          </p>
+        </li>
+        <li>
+          <p>
+            {% trans support='https://support.mozilla.org/kb/video-calls-fpn' %}
+            <strong>This Service protects most—but not all—of your web browsing.</strong> The Service only works in
+            Firefox and for websites that communicate with your computer using TCP (Transmission Control Protocol). For
+            example, it does not work for data exchanged on certain video conferencing services (such as Google
+            Hangouts, Facebook Messenger, GoToMeeting) or on applications outside of Firefox (such as other apps on your
+            device). <a href="{{ support }}">Learn more here.</a>
+            {% endtrans %}
+          </p>
+        </li>
+        <li>
+          <p>
+            {% trans %}
+            <strong>Mozilla receives information about how many passes you’ve used.</strong> When you sign up for FPN
+            Browser Protection, you get 4 passes per month. Mozilla receives information about how many of your passes
+            you’ve used and associates that information with your Firefox Account.
+            {% endtrans %}
+          </p>
+        </li>
+      </ul>
+      <h4>{{ _('FPN Full-Device Protection') }}</h4>
+      <ul>
+        <li>
+          <p>
+            {% trans %}
+            <strong>Subscription Information.</strong> Mozilla receives a record of your subscription and information
+            about the status of your account’s subscription and payment, but Mozilla does not receive your payment card
+            details.
+            {% endtrans %}
+          </p>
+          <p>
+            {% trans policy='https://mullvad.net/help/no-logging-data-policy/' %}
+            <strong>Mullvad receives your internet traffic to provide the Service.</strong> When you activate FPN
+            Full-Device Protection, FPN will encrypt your internet traffic and send it to Mullvad. Mullvad has committed
+            not to log any of the data it receives. Learn more at <a href="{{ policy }}">Mullvad’s Privacy Policy.</a>
+            {% endtrans %}
+          </p>
+        </li>
+        <li>
+          <p>
+            {% trans stripe='https://stripe.com/privacy' %}
+            <strong>Mozilla uses Stripe to Process Payments.</strong> Mozilla uses a third party, Stripe, to process
+            payment information. You can learn more about Stripe’s data practices by reading their <a
+              href="{{ stripe }}">Global Privacy Policy.</a>
+            {% endtrans %}
+          </p>
+        </li>
+      </ul>
+    </div>
   </section>
+</section>
 {% endblock %}

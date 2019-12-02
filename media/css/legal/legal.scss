@@ -13,6 +13,10 @@ $image-path: '/media/protocol/img';
 // Article
 
 .mzp-c-article {
+    h1 {
+        @include text-display-xl;
+    }
+
     h2 {
         @include text-display-sm;
         margin-top: $spacing-lg;
