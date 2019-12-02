@@ -219,7 +219,7 @@ class NewsletterForm(forms.Form):
         required=False,  # they have to answer, but answer can be False
     )
     subscribed_check = forms.BooleanField(
-        widget=TableCheckboxInput,
+        widget=widgets.CheckboxInput,
         required=False,  # they have to answer, but answer can be False
     )
     newsletter = forms.CharField(widget=forms.HiddenInput)

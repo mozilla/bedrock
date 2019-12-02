@@ -79,6 +79,7 @@ body {
             line-height: 30px;
         }
 
+        .field-checkboxes input[type="checkbox"],
         .field-radios input[type="radio"] {
             vertical-align: text-top;
         }
@@ -86,6 +87,14 @@ body {
         .errorlist {
             .span(3);
         }
+    }
+    .submit-form {
+        background-color: #0060df;
+        border-color: #0060df;
+    }
+
+    a {
+        color: #0060df;
     }
 
     h2 {
@@ -170,6 +179,11 @@ body {
 
             .subscription td {
                 min-width: 75px;
+                label {
+                    font-size: 12px;
+                    color: #666;
+                    display: none;
+                }
             }
 
             .indented {
