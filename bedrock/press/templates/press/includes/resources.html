@@ -1,12 +1,10 @@
-<aside class="sidebar">
-  <h2>{{ _('Resources') }}</h2>
-  <ul>
-    <li><a href="https://blog.mozilla.org/press/ataglance/">{{ _('Mozilla at a Glance') }}</a></li>
-    <li><a href="https://blog.mozilla.org/press/media-library/">{{ _('Media Library') }}</a></li>
-    <li><a href="https://blog.mozilla.org/press/awards/">{{ _('Awards') }}</a></li>
-    <li><a href="https://blog.mozilla.org/press/kits/">{{ _('Firefox Press Kits') }}</a></li>
-    <li><a href="https://blog.mozilla.org/press/bios/">{{ _('Speaker Bios') }}</a></li>
-    <li><a href="{{ url('press.press-inquiry') }}">{{ _('Press Inquiry') }}</a></li>
-    <li><a href="{{ url('press.speaker-request') }}">{{ _('Speaker Request Form') }}</a></li>
-  </ul>
-</aside>
+{% set navigation_bar = [
+  ('https://blog.mozilla.org/press/', 'resources', _('Resources')),
+  ('https://blog.mozilla.org/press/ataglance/', 'at-a-glance', _('Mozilla at a Glance')),
+  ('https://blog.mozilla.org/press/awards/', 'awards', _('Awards')),
+  ('https://blog.mozilla.org/press/kits/', 'press-kits', _('Firefox Press Kits')),
+  (url('press.press-inquiry'), 'press-inquiry', _('Press Inquiry')),
+  (url('press.speaker-request'), 'speaker-request', _('Speaker Request Form')),
+] -%}
+
+{{ sidemenu_lists([navigation_bar], body_id) }}
