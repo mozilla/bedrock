@@ -156,9 +156,9 @@
   ] %}
 
   {% if action == 'signup' %}
-    {% set fxa_path = 'signup' %}
+    {% set fxa_path = 'signup?' %}
   {% elif action == 'signin' %}
-    {% set fxa_path = 'signin' %}
+    {% set fxa_path = 'signin?' %}
   {% else %}
     {% do fxa_queries.insert(0, 'action=email') %}
   {% endif %}
@@ -188,7 +188,12 @@
     {% do fxa_queries.append('entrypoint_variation=' ~ entrypoint_variation) %}
   {% endif %}
 
-  href="{{ settings.FXA_ENDPOINT }}{{ fxa_path }}?service={{ service_type }}&{{ fxa_queries|join('&') }}" data-mozillaonline-link="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}{{ fxa_path }}?service={{ service_type }}&{{ fxa_queries|join('&') }}"
+  {# service_type is option for Firefox 71+ (issue #8198) #}
+  {% if service_type %}
+    {% do fxa_queries.insert(0, 'service=' ~ service_type) %}
+  {% endif %}
+
+  href="{{ settings.FXA_ENDPOINT }}{{ fxa_path }}{{ fxa_queries|join('&') }}" data-mozillaonline-link="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}{{ fxa_path }}{{ fxa_queries|join('&') }}"
 
 {%- endmacro %}
 
