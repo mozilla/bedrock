@@ -263,7 +263,10 @@ class NewsletterFooterForm(forms.Form):
             lang, country = lang.split('-', 1)
         else:
             country = ''
-            regions.insert(0, ('', _lazy('Select country')))
+            if locale.startswith('en'):
+                regions.insert(0, ('', _lazy('Select country or region')))
+            else:
+                regions.insert(0, ('', _lazy('Select country')))
         lang_choices = get_lang_choices(newsletters)
         languages = [x[0] for x in lang_choices]
         if lang not in languages:

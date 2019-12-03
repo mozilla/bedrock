@@ -72,7 +72,11 @@
 
         {% set country = form['country'] %}
         <div class="field country-field {% if country.errors %}field-error{% endif %}">
+        {% if l10n_has_tag('country_region_122019') %}
+          {{ form.country.label_tag(_('Country or region:')) }}
+        {% else %}
           {{ form.country.label_tag(_('Country:')) }}
+        {% endif %}
           <div class="field-contents">
             {{ country }}
           </div>
