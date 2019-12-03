@@ -295,7 +295,6 @@ $image-path: "/media/protocol/img";
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto 1fr;
         grid-column-gap: $spacing-xl;
-        grid-row-gap: $spacing-xl;
 
         p {
             grid-area: 1 / 2 / 3 / 3;
@@ -315,5 +314,6 @@ $image-path: "/media/protocol/img";
     @include text-body-sm;
     border-top: 1px solid $color-gray-20;
     margin-top: $layout-lg;
+    margin-bottom: $layout-2xl;
     padding-top: $spacing-lg;
 }
