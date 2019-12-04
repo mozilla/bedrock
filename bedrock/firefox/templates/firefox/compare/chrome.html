@@ -16,30 +16,22 @@
 
 {% block content %}
 <section class="mzp-c-hero compare-details-hero compare-details-hero--chrome">
-  <div class="mzp-l-content">
+  <div class="mzp-l-content l-compare-details-content">
     <div class="mzp-c-hero-body">
       <h1 class="mzp-c-hero-title">{{ _('Compare Firefox Browser with Google Chrome') }}</h1>
     </div>
   </div>
 </section>
 
-<div class="mzp-l-content l-compare-content">
+<div class="mzp-l-content l-compare-details-content">
   <article class="mzp-c-article">
-    <section class="compare-section-summary">
-
-      <div class="compare-section-summary-intro">
-        <p>
+    <section class="compare-details-section-summary">
+        <p class="compare-details-section-intro">
           {% trans %}
           In 2008, Google introduced Chrome and its impact as an innovation in browser technology was immediately apparent. It was faster for loading sites, took up minimal screen space and offered an undeniably sleek user interface.
           {% endtrans %}
         </p>
 
-        <div class="compare-section-summary-image">
-            <img src="{{ static('img/firefox/compare/compare-hero.svg') }}" alt="" height="403" width="532">
-        </div>
-      </div>
-
-      <div class="compare-section-summary-contents">
         <p>
           {% trans %}
           Fast-forward to today, the competitive landscape for browsers has changed with many people beginning to question just what is happening to their online data such as browsing history, passwords, and other sensitive information.  A lot has changed since 2008 when Chrome came onto the scene. Firefox has been heads down, working to redesign their interface, provide a growing number of privacy and performance enhancements and handy browser tools.
@@ -51,7 +43,8 @@
           And so here we are, the browser-wars are escalating once again and it’s time to reevaluate and compare the Firefox Browser vs Google Chrome.
           {% endtrans %}
         </p>
-      </div>
+
+        <img src="{{ static('img/firefox/compare/compare-browser-chrome.png') }}" alt="" height="424" width="541" class="compare-details-image">
     </section>
 
     <section class="compare-section-privacy">
@@ -62,7 +55,7 @@
         </h2>
       </header>
 
-      <table class="mzp-u-data-table compare-table">
+      <table class="mzp-u-data-table compare-table compare-table--details">
           <thead>
             <tr>
               <th>{{ _('Privacy') }}</th>
@@ -112,7 +105,7 @@
         {% endtrans %}
       </p>
 
-      <img src="{{ static('img/firefox/compare/compare-privacy.svg') }}" alt="" height="224" width="420" class="compare-privacy-image">
+      <img src="{{ static('img/firefox/compare/compare-privacy-lock.svg') }}" alt="" height="217" width="320" class="compare-details-image">
 
       <p class="compare-content">
         {% trans %}
@@ -140,7 +133,7 @@
         <h2>{{ _('<strong>Utility</strong>') }}</h2>
       </header>
 
-      <table class="mzp-u-data-table compare-table">
+      <table class="mzp-u-data-table compare-table compare-table--details">
           <thead>
             <tr>
               <th>{{ _('Utility') }}</th>
@@ -245,7 +238,7 @@
         <h2>{{ _('<strong>Portability</strong>') }}</h2>
       </header>
 
-      <table class="mzp-u-data-table compare-table">
+      <table class="mzp-u-data-table compare-table compare-table--details">
           <thead>
             <tr>
               <th>{{ _('Portability') }}</th>
@@ -296,7 +289,7 @@
 
     </section>
 
-    <section class="compare-section-portability">
+    <section class="compare-section-overall">
       <header class="compare-section-header">
         <h2>{{ _('Overall Assessment') }}</h2>
       </header>

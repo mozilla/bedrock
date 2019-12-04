@@ -840,6 +840,7 @@
     },
     {
       "files": [
+        "css/firefox/compare.scss",
         "css/firefox/compare-details.scss"
       ],
       "name": "compare-details"

@@ -12,6 +12,9 @@ $image-path: "/media/protocol/img";
 // Hero
 
 .compare-details-hero {
+    .mzp-c-hero-body {
+        max-width: none;
+    }
     .mzp-c-hero-title {
         @include font-size(40px);
         @media #{$mq-lg} {
@@ -22,8 +25,42 @@ $image-path: "/media/protocol/img";
         padding-top: 170px;
     }
 }
+
 .compare-details-hero--chrome {
     .mzp-c-hero-title {
-        @include at2x('/media/img/firefox/compare/compare-header-chrome.png', 350px, 130px);
+        background-image: url('/media/img/firefox/compare/compare-header-chrome.svg');
+        background-repeat: no-repeat;
+        background-position: top center;
+        background-size: 350px 130px;
+        padding-left: $spacing-sm;
+        padding-right: $spacing-sm;
+    }
+}
+
+.compare-details-section-intro {
+    @include font-firefox;
+    @include font-size(24px);
+    line-height: 1.3;
+}
+
+.l-compare-details-content {
+    @include text-body-lg;
+    max-width: 808px;
+}
+
+.compare-details-image {
+    display: block;
+    margin: $layout-lg auto;
+}
+
+.mzp-u-data-table.compare-table--details {
+    max-width: 480px;
+}
+
+.compare-section-overall {
+    margin-bottom: $layout-xl;
+
+    .compare-section-header {
+        margin-bottom: 64px;
     }
 }
