@@ -4,9 +4,10 @@
 
 {% from "macros.html" import monitor_button, fxa_cta_link with context %}
 
-{% add_lang_files "firefox/whatsnew_71" %}
+{% extends "exp/base/base-firefox.html" %}
 
-{% extends "firefox/base/base-protocol.html" %}
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
 {% block page_title %}What’s new with Firefox - More privacy, more protections.{% endblock %}
 
