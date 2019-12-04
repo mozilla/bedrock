@@ -17,23 +17,20 @@ $image-path: "/media/protocol/img";
     }
     .mzp-c-hero-title {
         @include font-size(40px);
+        margin-bottom: 0;
+        padding-top: 170px;
+        background-repeat: no-repeat;
+        background-position: top center;
+        background-size: 350px 130px;
         @media #{$mq-lg} {
             @include font-size(48px);
         }
-        background-position: 50% 0;
-        background-repeat: no-repeat;
-        padding-top: 170px;
     }
 }
 
 .compare-details-hero--chrome {
     .mzp-c-hero-title {
         background-image: url('/media/img/firefox/compare/compare-header-chrome.svg');
-        background-repeat: no-repeat;
-        background-position: top center;
-        background-size: 350px 130px;
-        padding-left: $spacing-sm;
-        padding-right: $spacing-sm;
     }
 }
 
@@ -46,6 +43,9 @@ $image-path: "/media/protocol/img";
 .l-compare-details-content {
     @include text-body-lg;
     max-width: 808px;
+    @media #{$mq-md} {
+        padding: $layout-xs $layout-lg;
+    }
 }
 
 .compare-details-image {
