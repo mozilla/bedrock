@@ -9,7 +9,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import widgets
 from django.utils.safestring import mark_safe
-from lib.l10n_utils.dotlang import _, _lazy
+from lib.l10n_utils.dotlang import _, _lazy, lang_file_has_tag
 from product_details import product_details
 
 from bedrock.mozorg.forms import (FORMATS, EmailInput, PrivacyWidget,
@@ -263,7 +263,10 @@ class NewsletterFooterForm(forms.Form):
             lang, country = lang.split('-', 1)
         else:
             country = ''
-            regions.insert(0, ('', _lazy('Select country')))
+            if lang_file_has_tag('mozorg/newsletters', locale, 'country_region_122019'):
+                regions.insert(0, ('', _lazy('Select country or region')))
+            else:
+                regions.insert(0, ('', _lazy('Select country')))
         lang_choices = get_lang_choices(newsletters)
         languages = [x[0] for x in lang_choices]
         if lang not in languages:
