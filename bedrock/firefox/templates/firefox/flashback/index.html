@@ -1,0 +1,46 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block page_image %}{{ static('protocol/img/logos/firefox/browser/og.png') }}{% endblock %}
+{% block page_favicon %}{{ static('img/favicons/firefox/browser/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/favicons/firefox/browser/favicon-196x196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/favicons/firefox/browser/apple-touch-icon.png') }}{% endblock %}
+
+{% block page_title %}{{_('2019 Firefox Flashback')}}{% endblock %}
+
+{% block page_desc %}{{ _('Take a look back at your year online. What you find might surprise you.') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('flashback') }}
+{% endblock %}
+
+{% block body_id %}firefox-flackback{% endblock %}
+{% block body_class %}firefox-flackback mzp-t-firefox{% endblock %}
+
+{% block content %}
+  <main role="main">
+    <div class="c-pannel t-welcome">
+      <div class="mzp-l-content">
+        {{ high_res_img('protocol/img/logos/firefox/browser/logo-lg.png', {'alt': 'Firefox', 'width': '100', 'height': '100', 'class': 'c-welcome-logo'}) }}
+        <h1>We actually have no idea what you did online this year, and it's gonna stay that way.</h1>
+        <p>It's kind of our whole thing.</p>
+      </div>
+    </div>
+    <div class="c-pannel t-private">
+      <div class="mzp-l-content mzp-t-narrow">
+        <p>There’s a picture of a red panda below, though, if you want to scroll down for it.</p>
+        <p class="mzp-has-zap-11">In the meantime, this seems like an opportunity to mention that we’ve made a privacy promise: Take less. Keep it safe. No Secrets. Learn more about <a href="https://blog.mozilla.org/firefox/firefox-data-privacy-promise/">what privacy means to us</a>.</p>
+      </div>
+    </div>
+    <div class="c-pannel t-panda">
+      <div class="mzp-l-content">
+        <h3>Thanks for sticking with us.</h3>
+        <!-- thank you Mathias Appel https://www.flickr.com/photos/mathiasappel/21694230388/ -->
+        {{ high_res_img('img/firefox/flashback/panda.jpg', {'alt': 'Happy looking red panda walking up a tree branch.', 'width': '1024', 'height': '679'}) }}
+      </div>
+    </div>
+  </main>
+{% endblock %}
