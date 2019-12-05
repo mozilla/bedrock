@@ -22,15 +22,13 @@ $image-path: "/media/protocol/img";
         background-position: top center;
         background-size: 272px auto;
         min-width: 272px;
-            @include font-size(32px);
+        @include font-size(32px);
         @media #{$mq-sm} {
             @include font-size(40px);
         }
         @media #{$mq-md} {
             padding-top: 170px;
             background-size: 350px auto;
-        }
-        @media #{$mq-lg} {
             @include font-size(48px);
         }
     }
@@ -56,11 +54,6 @@ $image-path: "/media/protocol/img";
     }
 }
 
-.compare-details-image {
-    display: block;
-    margin: $layout-lg auto;
-}
-
 .mzp-u-data-table.compare-table--details {
     max-width: 480px;
 }
@@ -70,5 +63,19 @@ $image-path: "/media/protocol/img";
 
     .compare-section-header {
         margin-bottom: 64px;
+    }
+}
+
+.compare-details-image {
+    display: block;
+    margin: $layout-lg auto;
+}
+
+.compare-section-privacy {
+    .compare-details-image {
+        width: 280px;
+        @media #{$mq-lg} {
+            width: 320px;
+        }
     }
 }
