@@ -1,0 +1,180 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/hero';
+@import '../../protocol/css/components/picto-card';
+@import '../protocol/components/sub-navigation';
+@import '../../protocol/css/components/newsletter-form';
+@import '../../protocol/css/components/call-out';
+@import '../../protocol/css/components/emphasis-box';
+
+//* -------------------------------------------------------------------------- */
+// Global
+
+.mzp-l-narrow {
+    max-width: $content-lg;
+}
+
+//* -------------------------------------------------------------------------- */
+// Hero
+.mzp-c-hero {
+    background-color: $color-gray-20;
+
+    .mzp-c-hero-desc {
+        margin: 0;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Picto Card
+
+.bugzilla .mzp-c-card-picto-content {
+    max-width: none;
+
+    &:before {
+        background: transparent url('/media/img/icons/warning.svg') no-repeat center;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Call-outs
+
+.mzp-c-call-out-compact {
+    background: transparent;
+
+    @media #{$mq-md} {
+        &.mzp-t-product-firefox,
+        &.mzp-t-product-beta,
+        &.mzp-t-product-developer,
+        &.mzp-t-product-nightly,
+        &.mzp-t-product-focus {
+            .mzp-c-call-out-content {
+                background-size: $layout-xl $layout-xl;
+                padding: 0 0 0 $layout-2xl;
+            }
+        }
+    }
+
+}
+
+.l-notes {
+    @include text-body-sm;
+    max-width: $screen-lg;
+
+    ul li {
+        @include text-body-md;
+    }
+}
+
+.learn-more {
+    @include text-body-md;
+    display: block;
+    margin-top: $spacing-md;
+    text-align: center;
+}
+
+//*------------------------------------------------------------------*/
+// Newsletter
+// styles from developer/includes/newsletter.scss
+
+.t-newsletter {
+    .mzp-l-content {
+        max-width: $content-sm;
+        min-width: 0;
+        padding-bottom: $layout-md;
+        padding-top: $layout-md;
+    }
+
+    .mzp-c-newsletter-form {
+        padding-top: 0;
+        @include font-size(14px);
+
+        input[type=email] {
+            border: 2px solid $color-gray-30;
+            border-radius: 2px;
+            padding-top: 10px; // to make input match button height
+            padding-bottom: 10px; // to make input match button height
+        }
+        label[for=id_email]{
+            @include visually-hidden;
+        }
+
+        legend {
+            @include font-size(14px);
+        }
+    }
+
+    .mzp-c-newsletter-title {
+        @include font-size(24px);
+        margin-bottom: $layout-2xs;
+    }
+
+    .mzp-c-newsletter-tagline {
+        margin-bottom: $layout-sm;
+
+        br {
+            display: none;
+        }
+    }
+
+    .mzp-c-newsletter-details {
+        text-align: left;
+    }
+
+    .mzp-c-form-submit {
+        margin-bottom: 0;
+    }
+
+    .mzp-c-fieldnote {
+        display: none;
+    }
+
+    .mzp-c-newsletter-thanks {
+        padding-top: 0;
+
+        h3 {
+            @include font-size(24px);
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+    }
+
+    @media #{$mq-md} {
+        padding: $layout-md $layout-md;
+
+        .mzp-l-content {
+            max-width: $content-xl;
+        }
+
+        .mzp-c-newsletter-form {
+            display: grid;
+            grid-column-gap: $layout-md;
+            grid-template-columns: auto 285px;
+        }
+
+        .mzp-c-newsletter-tagline,
+        .mzp-c-button {
+            margin-bottom: 0;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .mzp-l-content {
+            padding-right: $layout-md;
+            padding-left: $layout-md;
+        }
+
+        .mzp-c-newsletter-form {
+            grid-column-gap: $layout-lg;
+            padding-left: 84px + $layout-md; // width of icon
+            background: url('/media/img/firefox/developer/mail.svg') top left no-repeat;
+        }
+    }
+}
