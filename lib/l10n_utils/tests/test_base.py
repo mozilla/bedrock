@@ -5,7 +5,7 @@ from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
 from django_jinja.backend import Jinja2
-from mock import patch
+from mock import ANY, patch
 
 from lib import l10n_utils
 
@@ -120,3 +120,26 @@ class TestGetAcceptLanguages(TestCase):
         self._test('', [])
         self._test('en_us,en*;q=0.5', [])
         self._test('Chinese,zh-cn;q=0.5', ['zh-CN'])
+
+
+@patch.object(l10n_utils, 'render')
+class TestL10nTemplateView(TestCase):
+    def setUp(self):
+        self.req = RequestFactory().get('/')
+
+    def test_ftl_files(self, render_mock):
+        view = l10n_utils.L10nTemplateView.as_view(template_name='dude.html',
+                                                   ftl_files='dude')
+        view(self.req)
+        render_mock.assert_called_with(self.req, ['dude.html'], ANY, ftl_files='dude')
+
+    def test_ftl_files_map(self, render_mock):
+        view = l10n_utils.L10nTemplateView.as_view(template_name='dude.html',
+                                                   ftl_files_map={'dude.html': 'dude'})
+        view(self.req)
+        render_mock.assert_called_with(self.req, ['dude.html'], ANY, ftl_files='dude')
+        # no match means no FTL files
+        view = l10n_utils.L10nTemplateView.as_view(template_name='dude.html',
+                                                   ftl_files_map={'donny.html': 'donny'})
+        view(self.req)
+        render_mock.assert_called_with(self.req, ['dude.html'], ANY, ftl_files=None)

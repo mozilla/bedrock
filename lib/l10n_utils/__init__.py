@@ -180,7 +180,10 @@ class LangFilesMixin:
     """Generic views mixin that uses l10n_utils to render responses."""
     active_locales = None
     add_active_locales = None
+    # a list of ftl files to use or a single ftl filename
     ftl_files = None
+    # a dict of template names to ftl files
+    ftl_files_map = None
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -191,9 +194,19 @@ class LangFilesMixin:
 
         return ctx
 
+    def get_ftl_files(self, template_names):
+        if self.ftl_files:
+            return self.ftl_files
+
+        if self.ftl_files_map:
+            return self.ftl_files_map.get(template_names[0])
+
+        return None
+
     def render_to_response(self, context, **response_kwargs):
-        return render(self.request, self.get_template_names(),
-                      context, ftl_files=self.ftl_files, **response_kwargs)
+        template_names = self.get_template_names()
+        return render(self.request, template_names, context,
+                      ftl_files=self.get_ftl_files(template_names), **response_kwargs)
 
 
 class L10nTemplateView(LangFilesMixin, TemplateView):
