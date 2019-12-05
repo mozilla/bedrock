@@ -265,7 +265,7 @@ than just render the page, then you can use this:
 
     class AboutView(L10nTemplateView):
         template_name = 'about.html'
-        ftl_files = ['about']
+        ftl_files = 'about'
 
 Using that CBV will do the right things for l10n, and then you can override other useful methods
 (e.g. ``get_context_data``) to do what you need. Also, if you do need to do anything fancy with
@@ -287,6 +287,34 @@ so by setting ``ftl_files`` in the context instead of the class attribute.
 
             ctx['ftl_files'] = ftl_files
             return ctx
+
+A common case is needing to use FTL files when one template is used, but not with another. In this case
+you would have some logic to decide which template to use in the ``get_template_names()`` method. You can
+set the ``ftl_files_map`` class variable to a dict containing a map of template names to the list of
+FTL files for that template (or a single file name if that's all you need).
+
+.. code-block:: python
+
+    # views.py
+    from lib.l10n_utils import L10nTemplateView
+
+    # class-based view example
+    class AboutView(L10nTemplateView):
+        ftl_files_map = {
+            'about_es.html': ['about_es']
+            'about_new.html': ['about']
+        }
+
+        def get_template_names(self):
+            if self.request.locale.startswith('en'):
+                template_name = 'about_new.html'
+            elif self.request.locale.startswith('es'):
+                template_name = 'about_es.html'
+            else:
+                # FTL system not used
+                template_name = 'about.html'
+
+            return [template_name]
 
 Using in a view function
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -370,13 +398,15 @@ For example:
 
     # class-based view example
     class AboutView(L10nTemplateView):
+        ftl_files_map = {
+            'about.html': ['about']
+            'about_new.html': ['about_new', 'about']
+        }
         def get_template_names(self):
             if ftl_file_is_active('about_new'):
                 template_name = 'about_new.html'
-                self.ftl_files = ['about_new', 'about']
             else:
                 template_name = 'about.html'
-                self.ftl_files = ['about']
 
             return [template_name]
 
