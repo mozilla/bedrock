@@ -52,7 +52,6 @@
     {
       "files": [
         "css/sandstone/sandstone-resp.less",
-        "css/base/notification-banner.less",
         "css/tabzilla/tabzilla-static.less",
         "css/sandstone/protocol-nav.scss",
         "css/sandstone/protocol-footer.scss"
@@ -321,14 +320,6 @@
         "css/mozorg/about-transparency.scss"
       ],
       "name": "about-transparency"
-    },
-    {
-      "files": [
-        "css/base/mozilla-modal.less",
-        "css/base/notification-modal.less",
-        "css/base/notification-banner.less"
-      ],
-      "name": "firefox-update-notification-firstrun-whatsnew"
     },
     {
       "files": [
@@ -885,13 +876,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-notification-banner.js",
-        "js/base/mozilla-notification-banner-init.js"
-      ],
-      "name": "firefox-update-notification"
-    },
-    {
-      "files": [
         "js/base/mozilla-smoothscroll.js",
         "js/libs/jquery.waypoints.min.js",
         "js/libs/jquery.waypoints-sticky.min.js",
@@ -1229,14 +1213,6 @@
         "js/hubs/sub-nav.js"
       ],
       "name": "firefox-switch"
-    },
-    {
-      "files": [
-        "js/base/mozilla-modal.js",
-        "js/base/mozilla-notification-banner.js",
-        "js/base/mozilla-notification-banner-firstrun-whatsnew-init.js"
-      ],
-      "name": "firefox-update-notification-firstrun-whatsnew"
     },
     {
       "files": [
