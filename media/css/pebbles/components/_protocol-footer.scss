@@ -6,8 +6,8 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 // Protocol components for footer.
-@import '../../../protocol/css/components/footer';
-@import '../../../protocol/css/components/language-switcher';
+@import '../../~@mozilla-protocol/core/protocol/css/components/footer';
+@import '../../~@mozilla-protocol/core/protocol/css/components/language-switcher';
 
 /**
  * Pebbles specific overrides for Protocol Footer component.

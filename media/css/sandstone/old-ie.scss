@@ -7,7 +7,7 @@ $image-path: '/media/protocol/img';
 
 @import '../protocol/components/navigation-ie';
 @import '../protocol/components/navigation';
-@import '../../protocol/css/base/elements/sections';
+@import '../~@mozilla-protocol/core/protocol/css/base/elements/sections';
 
 /**
  * Sandstone specific overrides for download button in main navigation.

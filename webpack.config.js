@@ -3,7 +3,12 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin  = require('mini-css-extract-plugin')
 
 function resolveBundles(fileList){
-  return fileList.map((f) => path.resolve(__dirname, "media", f));
+  return fileList.map((f) => {
+    if (f.match(/^protocol\//)) {
+      return `@mozilla-protocol/core/${f}`;
+    }
+    return path.resolve(__dirname, "media", f);
+  });
 }
 
 const entry = {
@@ -93,7 +98,7 @@ const entry = {
     "js/base/search-params.js",
     "js/ie/base-page-init-ie.js",
     "js/ie/mozilla-utils-ie.js",
-    "js/libs/jquery-1.11.3.min.js"
+    // "js/libs/jquery-1.11.3.min.js"
   ]),
   "common-protocol": resolveBundles([
     "js/base/base-page-init.js",

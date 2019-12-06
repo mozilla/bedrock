@@ -11,7 +11,7 @@
 @import '../components/buttons-download';
 @import '../../protocol/components/navigation-ie';
 @import '../../protocol/components/navigation';
-@import '../../../protocol/css/base/elements/sections';
+@import '../../~@mozilla-protocol/core/protocol/css/base/elements/sections';
 
 .content {
     @include border-box;

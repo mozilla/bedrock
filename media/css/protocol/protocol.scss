@@ -5,8 +5,8 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../protocol/css/protocol.scss';
-@import '../../protocol/css/components/button';
+@import '../~@mozilla-protocol/core/protocol/css/protocol.scss';
+@import '../~@mozilla-protocol/core/protocol/css/components/button';
 
 // Bedrock specific component tweaks.
 @import 'components/navigation';
