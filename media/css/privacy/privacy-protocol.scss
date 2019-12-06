@@ -76,7 +76,7 @@ $border: 2px solid $color-gray-20;
     }
 
     @media #{$mq-md} {
-        min-height: 56px; // keep consistant height of element even if time element is not present
+        min-height: 56px; // keep consistent height of element even if time element is not present
         margin-top: $layout-sm;
         margin-bottom: $layout-lg;
     }

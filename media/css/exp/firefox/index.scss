@@ -179,7 +179,7 @@ $image-path: '/media/protocol/img';
     @include flexbox;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 0 auto ($layout-md * -1) auto; // offset the bottom magin on the individual icons
+    margin: 0 auto ($layout-md * -1) auto; // offset the bottom margin on the individual icons
     max-width: $content-md;
 
     .t-small & {
@@ -202,7 +202,7 @@ $image-path: '/media/protocol/img';
 
 @media #{$mq-md} {
     .c-showcase-list {
-        margin-bottom: ($layout-lg * -1); // offset the magin on the individual icons
+        margin-bottom: ($layout-lg * -1); // offset the margin on the individual icons
 
         li {
             margin: 0 $layout-sm $layout-lg;
