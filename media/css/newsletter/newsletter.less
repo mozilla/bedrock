@@ -179,10 +179,8 @@ body {
 
             .subscription td {
                 min-width: 75px;
-                label {//this should not be displayed BUT if some one uses an addon or accessibility feature to display labels this will make sure they don't look weird on the page.
-                    font-size: 12px;
-                    color: #666;
-                    display: none;
+                label {
+                    .visually-hidden();
                 }
             }
 
