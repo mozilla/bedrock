@@ -112,7 +112,7 @@
       </div><!-- close #basic-settings -->
 
       <div class="field" id="default-newsletters">
-        <div class="field-radios">
+        <div class="field-checkboxes">
         <table class="table">
           <thead>
           <tr>
@@ -135,7 +135,10 @@
                   {{ formpart.initial['description'] }}
                 </p>
               </th>
-              {{ formpart.subscribed_radio }}
+              <td>
+                {{ formpart.subscribed_check.label_tag(_('Subscribe')) }}
+                {{ formpart.subscribed_check }}
+              </td>
             </tr>
           {% endfor %}
           </tbody>
@@ -149,7 +152,7 @@
       </div>
 
       <div class="field submit-field">
-        <input type="submit" value="{{ _('Save Preferences') }}" class="button">
+        <input type="submit" value="{{ _('Save Preferences') }}" class="button submit-form">
       </div><!-- close .submit-field -->
 
     </form>
