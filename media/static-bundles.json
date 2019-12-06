@@ -780,8 +780,7 @@
     },
     {
       "files": [
-        "css/newsletter/fxnewsletter-subscribe.less",
-        "css/firefox/channel.less"
+        "css/firefox/channel.scss"
       ],
       "name": "firefox_channel"
     },
@@ -865,6 +864,12 @@
         "js/mozorg/contribute/contribute-nav.js"
       ],
       "name": "contribute-base"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-newsletter.js"
+      ],
+      "name": "firefox_channel"
     },
     {
       "files": [

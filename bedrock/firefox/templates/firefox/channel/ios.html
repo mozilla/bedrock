@@ -6,7 +6,6 @@
 
 {% add_lang_files "firefox/channel/index" %}
 
-{% block page_title_suffix %}{% endblock %}
 {% block page_title %}
 {% if l10n_has_tag('firefox_title_meta_bug1345338') %}
   {{ _('Try New Features in a Pre-Release iOS Browser | Firefox') }}
@@ -23,27 +22,20 @@
 {% endif %}
 {% endblock %}
 
-{#- This will appear as <meta property="og:description"> which can be used for social share -#}
 {% block page_og_desc %}{{ self.page_desc() }}{% endblock %}
 
-{% block body_id %}platform-ios{% endblock %}
-
 {% block channels %}
-<section id="testflight" class="channel">
-  <div class="container">
-    <header>
-      <h2>{{_('TestFlight')}}</h2>
-      <p>{{_('Test beta versions of Firefox for iOS via Apple’s TestFlight program.')}}</p>
-    </header>
-    <a href="{{ url('firefox.ios.testflight') }}" class="button testflight-cta">{{_('Sign up now')}}</a>
-  </div>
-  <footer>
-    <div class="container">
-      <ul>
-        <li><a href="{{ url('firefox.mobile') }}">{{_('Learn more')}}</a></li>
-      </ul>
-    </div>
-  </footer>
+<section id="testflight">
+  {% call call_out_compact(
+    title=_('TestFlight'),
+    desc=_('Test beta versions of Firefox for iOS via Apple’s TestFlight program.'),
+    class='mzp-t-product-beta mzp-t-firefox') %}
+
+    <a href="{{ url('firefox.ios.testflight') }}" class="mzp-c-button mzp-t-product testflight-cta">{{_('Sign up now')}}</a>
+    <small class="learn-more">
+      <a href="{{ url('firefox.mobile') }}">{{_('Learn more')}}</a>
+    </small>
+  {% endcall %}
 </section>
 {% endblock %}
 
