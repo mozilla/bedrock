@@ -74,7 +74,7 @@ $image-path: "/media/protocol/img";
 .compare-section-privacy {
     .compare-details-image {
         width: 280px;
-        @media #{$mq-lg} {
+        @media #{$mq-md} {
             width: 320px;
         }
     }
