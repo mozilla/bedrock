@@ -6,11 +6,11 @@ $font-path: "/media/fonts";
 $image-path: "/media/protocol/img";
 
 // Protocol components for navigation.
-@import "../../protocol/css/components/card";
-@import "../../protocol/css/components/menu";
-@import "../../protocol/css/components/menu-item";
-@import "../../protocol/css/components/navigation";
-@import "../../protocol/css/base/includes/animations";
+@import "../~@mozilla-protocol/core/protocol/css/components/card";
+@import "../~@mozilla-protocol/core/protocol/css/components/menu";
+@import "../~@mozilla-protocol/core/protocol/css/components/menu-item";
+@import "../~@mozilla-protocol/core/protocol/css/components/navigation";
+@import "../~@mozilla-protocol/core/protocol/css/base/includes/animations";
 
 // Bedrock specific navigation overrides.
 @import "../protocol/components/navigation";

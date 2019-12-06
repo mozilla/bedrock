@@ -52,6 +52,7 @@
     "browser-sync": "2.26.7",
     "concurrently": "4.1.2",
     "gulp": "^4.0.2",
+    "gulp-babel": "8.0.0",
     "gulp-debug": "^4.0.0",
     "jasmine-core": "3.4.0",
     "karma": "4.3.0",
@@ -67,6 +68,7 @@
   },
   "scripts": {
     "start": "concurrently --kill-others \"python manage.py runserver 0.0.0.0:8080\" \"gulp\"",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "watch": "webpack --watch"
   }
 }

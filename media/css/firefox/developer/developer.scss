@@ -5,8 +5,8 @@
 @import '../../protocol/hubs/sub-nav';
 @import '../../protocol/hubs/sub-nav-download-button-remove';
 
-@import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/templates/card-layout';
+@import '../../~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '../../~@mozilla-protocol/core/protocol/css/templates/card-layout';
 @import 'includes/engage';
 @import 'includes/features';
 @import 'includes/gallery-grid';
