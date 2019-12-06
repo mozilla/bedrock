@@ -14,7 +14,7 @@ $image-path: "/media/protocol/img";
 .compare-hero {
     .mzp-c-hero-title {
         @include font-size(40px);
-        @media #{$mq-lg} {
+        @media #{$mq-md} {
             @include font-size(48px);
         }
     }
@@ -45,7 +45,7 @@ $image-path: "/media/protocol/img";
 .l-compare-content {
     @include text-body-lg;
     padding-top: $layout-lg;
-    @media #{$mq-lg} {
+    @media #{$mq-md} {
         padding-top: $layout-xs;
     }
 }
@@ -129,7 +129,7 @@ $image-path: "/media/protocol/img";
     margin: $spacing-2xl auto;
     width: 350px;
     @media #{$mq-md} {
-        width: 400px;
+        width: 380px;
     }
 }
 
@@ -140,7 +140,7 @@ $image-path: "/media/protocol/img";
 
     h2 {
         @include font-size(32px);
-        @media #{$mq-lg} {
+        @media #{$mq-md} {
             @include font-size(40px);
         }
         margin-bottom: 36px;
@@ -150,7 +150,7 @@ $image-path: "/media/protocol/img";
         @include font-firefox;
         @include text-display-xs;
         @include font-size(24px);
-        @media #{$mq-lg} {
+        @media #{$mq-md} {
             @include font-size(32px);
         }
         font-weight: bold;
