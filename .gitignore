@@ -50,7 +50,6 @@ root_files/sitemap.json
 node_modules
 package-lock.json
 .vscode/
-static_build
-static_final
 static
+assets
 npm-debug.log
