@@ -12,7 +12,7 @@ $image-path: '/media/protocol/img';
     content: svg-url($downarrow);
 }
 
-.c-pannel {
+.c-panel {
     @include text-body-lg;
     @include border-box;
     display: flex;
