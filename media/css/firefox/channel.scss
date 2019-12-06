@@ -54,8 +54,8 @@ $image-path: '/media/protocol/img';
         &.mzp-t-product-nightly,
         &.mzp-t-product-focus {
             .mzp-c-call-out-content {
-                background-size: $layout-xl $layout-xl;
-                padding: 0 0 0 $layout-2xl;
+                @include background-size($layout-xl $layout-xl);
+                @include bidi(((padding, 0 0 0 $layout-2xl, 0 $layout-2xl 0 0),));
             }
         }
     }
