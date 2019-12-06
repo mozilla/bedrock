@@ -1,0 +1,13 @@
+# Entrypoint for community localization.
+# Edits to add content for l10n should be made in configs/pontoon.toml
+
+basepath = "."
+
+[[includes]]
+    path = "configs/pontoon.toml"
+
+[[excludes]]
+    path = "configs/vendor.toml"
+
+[[excludes]]
+    path = "configs/special-templates.toml"

@@ -1,0 +1,10 @@
+# Entrypoint for vendor and staff localization.
+# Edits to add content for l10n should be made in configs/vendor.toml
+
+basepath = "."
+
+[[includes]]
+    path = "configs/vendor.toml"
+
+[[excludes]]
+    path = "configs/special-templates.toml"
