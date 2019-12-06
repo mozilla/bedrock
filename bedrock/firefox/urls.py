@@ -29,6 +29,7 @@ urlpatterns = (
     url(r'^firefox/all/$', views.firefox_all, name='firefox.all'),
     url(r'^firefox/accounts/$', views.firefox_accounts, name='firefox.accounts'),
     url(r'^firefox/campaign/$', views.campaign, name='firefox.campaign'),
+    page('firefox/flashback', 'firefox/flashback/index.html'),
     page('firefox/channel/desktop', 'firefox/channel/desktop.html'),
     page('firefox/channel/android', 'firefox/channel/android.html'),
     page('firefox/channel/ios', 'firefox/channel/ios.html'),

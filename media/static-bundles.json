@@ -453,6 +453,12 @@
     },
     {
       "files": [
+        "css/firefox/flashback/flashback.scss"
+      ],
+      "name": "flashback"
+    },
+    {
+      "files": [
         "css/exp/firefox/lockwise.scss"
       ],
       "name": "exp-lockwise"
