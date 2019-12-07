@@ -51,8 +51,21 @@ $image-path: '/media/protocol/img';
     }
 }
 
+// bug fixes
+.mzp-c-footer-language {
+    float: none;
+}
 
-// bug fix, remove after backported to Protocol
-.mzp-c-footer-links-social li a {
-    background-repeat: no-repeat;
+.mzp-c-footer-links-social {
+    @include bidi(((text-align, left, right),));
+    max-width: none;
+    position: static;
+
+    li {
+        padding: 0 24px 16px 0;
+    }
+
+    li a {
+        background-repeat: no-repeat;
+    }
 }
