@@ -406,9 +406,8 @@
     <li>
       <p>the documentation is available from the CA’s official website;</p>
     </li>
-    <li>
-      <p>CPs and CPSes are made available to Mozilla under one
-        of the following Creative Commons licenses (or later versions):</p>
+    <li>CPs and CPSes are made available to Mozilla under one
+        of the following Creative Commons licenses (or later versions):
       <ul>
         <li>Attribution (<a href="https://creativecommons.org/licenses/by/4.0/">CC-BY</a>) 4.0</li>
         <li>Attribution-ShareAlike (<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA</a>) 4.0</li>
@@ -427,16 +426,15 @@
         happened by incrementing the version number and adding a dated changelog entry,
         even if no other changes are made to the document.</p>
     </li>
-    <li>
-      <p>Effective for versions dated April 1, 2020 or later, CPs and CPSes MUST be
-        structured according to RFC 3647 and MUST:</p>
-    </li>
-    <li>Include at least every section and subsection defined in RFC 3647; and,</li>
-    <li>Only use the words "No Stipulation" to mean that the particular document
-      imposes no requirements related to that section; and,
-    </li>
-    <li>
-      <p>Contain no sections that are blank and have no subsections.</p>
+    <li>Effective for versions dated April 1, 2020 or later, CPs and CPSes MUST be
+        structured according to RFC 3647 and MUST:
+      <ul>
+        <li>Include at least every section and subsection defined in RFC 3647; and,</li>
+        <li>Only use the words "No Stipulation" to mean that the particular document
+          imposes no requirements related to that section; and,
+        </li>
+        <li>Contain no sections that are blank and have no subsections.</li>
+      </ul>
     </li>
     <li>
       <p>CAs must provide a way to clearly determine which CP and CPS
@@ -499,55 +497,68 @@
     parameter, as specified by <a href="https://tools.ietf.org/html/rfc8017#appendix-A.1">RFC 8017, Appendix A.1</a>
     and <a href="https://tools.ietf.org/html/rfc3279#section-2.3.1">RFC 3279, Section 2.3.1</a>.
     The encoded AlgorithmIdentifier for an RSA key MUST match the
-    following hex-encoded bytes:
-    <code>300d06092a864886f70d0101010500</code>.</p>
+    following hex-encoded bytes: <code>300d06092a864886f70d0101010500</code>.</p>
   <p>CAs MUST NOT use the id-RSASSA-PSS OID (1.2.840.113549.1.1.10) within a
     SubjectPublicKeyInfo to represent a RSA key.</p>
   <p>When a root or intermediate certificate's RSA key is used to produce a
     signature, only the following algorithms may be used, and with the following
     encoding requirements:</p>
   <ul class="mzp-u-list-styled">
-    <li>RSASSA-PKCS1-v1_5 with SHA-1.</li>
+    <li>
+      <p>RSASSA-PKCS1-v1_5 with SHA-1.</p>
+      <p>The encoded AlgorithmIdentifier MUST match the following hex-encoded bytes:<br>
+        <code>300d06092a864886f70d0101050500</code>.</p>
+    </li>
   </ul>
-  <p>The encoded AlgorithmIdentifier MUST match the following hex-encoded bytes:
-    <code>300d06092a864886f70d0101050500</code>.</p>
   <p>See section 5.1.3 for further restrictions on the use of SHA-1.</p>
   <ul class="mzp-u-list-styled">
-    <li>RSASSA-PKCS1-v1_5 with SHA-256.</li>
+    <li>
+      <p>RSASSA-PKCS1-v1_5 with SHA-256.</p>
+      <p>The encoded AlgorithmIdentifier MUST match the following hex-encoded bytes:<br>
+        <code>300d06092a864886f70d01010b0500</code>.</p>
+    </li>
   </ul>
-  <p>The encoded AlgorithmIdentifier MUST match the following hex-encoded bytes:
-    <code>300d06092a864886f70d01010b0500</code>.</p>
   <ul class="mzp-u-list-styled">
-    <li>RSASSA-PKCS1-v1_5 with SHA-384.</li>
+    <li>
+      <p>RSASSA-PKCS1-v1_5 with SHA-384.</p>
+      <p>The encoded AlgorithmIdentifier MUST match the following hex-encoded bytes:<br>
+        <code>300d06092a864886f70d01010c0500</code>.</p>
+    </li>
   </ul>
-  <p>The encoded AlgorithmIdentifier MUST match the following hex-encoded bytes:
-    <code>300d06092a864886f70d01010c0500</code>.</p>
   <ul class="mzp-u-list-styled">
-    <li>RSASSA-PKCS1-v1_5 with SHA-512.</li>
+    <li>
+      <p>RSASSA-PKCS1-v1_5 with SHA-512.</p>
+      <p>The encoded AlgorithmIdentifier MUST match the following hex-encoded bytes:<br>
+        <code>300d06092a864886f70d01010d0500</code>.</p>
+    </li>
   </ul>
-  <p>The encoded AlgorithmIdentifier MUST match the following hex-encoded bytes:
-    <code>300d06092a864886f70d01010d0500</code>.</p>
   <ul class="mzp-u-list-styled">
-    <li>RSASSA-PSS with SHA-256, MGF-1 with SHA-256, and a salt length of 32 bytes.</li>
+    <li>
+      <p>RSASSA-PSS with SHA-256, MGF-1 with SHA-256, and a salt length of 32 bytes.</p>
+      <p>The encoded AlgorithmIdentifier MUST match the following hex-encoded bytes:</p>
+      <p><code>304106092a864886f70d01010a3034a00f300d0609608648016503040201<br>
+        0500a11c301a06092a864886f70d010108300d0609608648016503040201<br>
+        0500a203020120</code></p>
+    </li>
   </ul>
-  <p>The encoded AlgorithmIdentifier MUST match the following hex-encoded bytes:</p>
-  <p><code>304106092a864886f70d01010a3034a00f300d0609608648016503040201
-    0500a11c301a06092a864886f70d010108300d0609608648016503040201
-    0500a203020120</code></p>
   <ul class="mzp-u-list-styled">
-    <li>RSASSA-PSS with SHA-384, MGF-1 with SHA-384, and a salt length of 48 bytes.</li>
+    <li>
+      <p>RSASSA-PSS with SHA-384, MGF-1 with SHA-384, and a salt length of 48 bytes.</p>
+      <p>The encoded AlgorithmIdentifier MUST match the following hex-encoded bytes:</p>
+      <p><code>304106092a864886f70d01010a3034a00f300d0609608648016503040202<br>
+        0500a11c301a06092a864886f70d010108300d0609608648016503040202<br>
+        0500a203020130</code></p>
+    </li>
   </ul>
-  <p>The encoded AlgorithmIdentifier MUST match the following hex-encoded bytes:</p>
-  <p><code>304106092a864886f70d01010a3034a00f300d0609608648016503040202
-    0500a11c301a06092a864886f70d010108300d0609608648016503040202
-    0500a203020130</code></p>
   <ul class="mzp-u-list-styled">
-    <li>RSASSA-PSS with SHA-512, MGF-1 with SHA-512, and a salt length of 64 bytes.</li>
+    <li>
+      <p>RSASSA-PSS with SHA-512, MGF-1 with SHA-512, and a salt length of 64 bytes.</p>
+      <p>The encoded AlgorithmIdentifier MUST match the following hex-encoded bytes:</p>
+      <p><code>304106092a864886f70d01010a3034a00f300d0609608648016503040203<br>
+        0500a11c301a06092a864886f70d010108300d0609608648016503040203<br>
+        0500a203020140</code></p>
+    </li>
   </ul>
-  <p>The encoded AlgorithmIdentifier MUST match the following hex-encoded bytes:</p>
-  <p><code>304106092a864886f70d01010a3034a00f300d0609608648016503040203
-    0500a11c301a06092a864886f70d010108300d0609608648016503040203
-    0500a203020140</code></p>
   <p>The above RSASSA-PKCS1-v1_5 encodings consist of the corresponding OID,
     e.g. sha256WithRSAEncryption (1.2.840.113549.1.1.11), with an explicit NULL
     parameter, as specified in <a href="https://tools.ietf.org/html/rfc3279#section-2.2.1">RFC 3279, Section 2.2.1</a>.
@@ -602,26 +613,21 @@
   <p>CAs MAY sign SHA-1 hashes over end-entity certificates which chain
     up to roots in Mozilla's program only if all the following are true:</p>
   <ol class="mzp-u-list-styled">
-    <li>
-      <p>The end-entity certificate:</p>
+    <li>The end-entity certificate:
+      <ul>
+        <li>is not within the scope of the Baseline Requirements;</li>
+        <li>contains an EKU extension which does not contain either of the
+          id-kp-serverAuth or anyExtendedKeyUsage key purposes;</li>
+        <li>has at least 64 bits of entropy from a CSPRNG in the serial number.</li>
+      </ul>
     </li>
-    <li>
-      <p>is not within the scope of the Baseline Requirements;</p>
+    <li>The issuing certificate:
+      <ul>
+        <li>contains an EKU extension which does not contain either of the
+            id-kp-serverAuth or anyExtendedKeyUsage key purposes;</li>
+        <li>has a pathlen:0 constraint.</li>
+      </ul>
     </li>
-    <li>contains an EKU extension which does not contain either of the
-      id-kp-serverAuth or anyExtendedKeyUsage key purposes;
-    </li>
-    <li>
-      <p>has at least 64 bits of entropy from a CSPRNG in the serial number.</p>
-    </li>
-    <li>
-      <p>The issuing certificate:</p>
-    </li>
-    <li>
-      <p>contains an EKU extension which does not contain either of the
-        id-kp-serverAuth or anyExtendedKeyUsage key purposes;</p>
-    </li>
-    <li>has a pathlen:0 constraint.</li>
   </ol>
   <p>Point 2 does not apply if the certificate is an OCSP signing certificate
     manually issued directly from a root.</p>
