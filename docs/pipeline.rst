@@ -83,77 +83,13 @@ to change according to the settings in the `.gitlab-ci.yml file in the www-confi
     And if you'd like to just tag and not push the tag anywhere, you may omit the ``--push``
     parameter.
 
-Pipeline integration
---------------------
-
-Our `Jenkinsfile`_ will run the integration tests based on information in our `branch-specific YAML files`_.
-These files specify various test names per branch that will cause it to use different
-parameters, allowing it to be called in many different ways to cover the testing
-needs. The job executes `this script <https://github.com/mozilla/bedrock/blob/master/docker/bin/run_integration_tests.sh>`_,
-which then runs `this Docker image <https://github.com/mozilla/bedrock/blob/master/docker/dockerfiles/bedrock_test>`_,
-and ultimately runs `another script <https://github.com/mozilla/bedrock/blob/master/bin/run-integration-tests.sh>`_.
-The two scripts can also be executed locally to replicate the way Jenkins operates.
-
-During the **Test Images** stage, the Test Runner job is called without a ``BASE_URL``. This means
-that a local instance of the application will be started, and the URL of this instance
-will be used for testing. The ``DRIVER`` parameter is set to ``Remote``, which causes a
-local instance of Selenium Grid to be started in Docker and used for the browser-based
-functional UI tests.
-
-The test scripts above will be run once for each properties name specified in the `branch-specific YAML files`_
-for the branch being built and tested. Pushes to `master` will run different tests than pushes to `prod`
-for example.
-
-Configuration
-~~~~~~~~~~~~~
-
-Many of the options are configured via environment variables passed from the initial
-script to the Docker image and onto the final script. Many of these options can be
-set in the `branch-specific YAML files`_ in the repository. In the `branch-specific YAML files`_
-folder you can copy any file there to match the name of your branch and modify it
-to set how it should be built by jenkins. Take the following example:
-
-.. code-block:: yaml
-
-    # jenkins/branches/change-all-the-things.yml
-    apps:
-      - bedrock-probably-broken
-
-This configuration would cause commits pushed to a branch named ``change-all-the-things`` to have docker
-images built for them, have the unit tests run, and deploy to a deis app named ``bedrock-probably-broken``
-in our us-west deis cluster. If you'd like it to create the deis app and pre-fill a local database for your app,
-you can set ``demo: true`` in the file. Note that if the app already exists it must have the ``jenkins`` user added via the
-``deis perms:create jenkins -a <your app name>`` command.
-
-The available branch configuration options are as follows:
-
-* ``push_public_registry``: boolean. Set to ``true`` to cause the built images to be pushed to the public docker hub.
-* ``require_tag``: boolean. Set to ``true`` to require that the commit being built have a git tag in the format YYYY-MM-DD.X.
-* ``regions``: list. A list of strings indicating the deployment regions for the set of apps. The valid values are in the ``regions`` area of
-  the ``jenkins/global.yml`` file. If omitted a deployment to only ``oregon-b`` is assumed.
-* ``apps``: list. A list of strings indicating the deis app name(s) to which to deploy. If omitted no deployments will occur.
-* ``demo``: boolean. Set to ``true`` to have the deployed app in demo mode, which means it will have a pre-filled local
-  database and the deis app will be created and configured for you if it doesn't already exist.
-* ``integration_tests``: list. A list of strings indicating the types of integration tests to run. If omitted no tests will run.
-
-.. _configure-demo-servers:
-
-Configure Demo Servers
-~~~~~~~~~~~~~~~~~~~~~~
-
-You can also set app configuration environment variables via deployment as well for demos. The default environment variables
-are set in `jenkins/branches/demo/default.env`. To modify your app's settings you can create an env file named after your branch
-(e.g `jenkins/branches/demo/pmac-l10n.env` for the branch `demo/pmac-l10n.env`). The combination
-of values from `demo/default.env`, your branch specific env file, and a region specific env file (e.g. `jenkins/regions/virginia.env`)
-will be used to configure the app. So you only need to add the variables that differ from the default files to your file,
-and you can override any values from the default files as well.
 
 Instance Configuration & Switches
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Beyond setting environment variables in demo instances as described above, we have a `separate repo <https://github.com/mozmeao/www-config>`_
-for configuring our primary instances (dev, stage, and prod). The `docs for updating configurations <https://mozmeao.github.io/www-config/>`_
-in that repo are on their own page, but there is a way to tell what version of the configuration is in use on any particular instance of bedrock.
+We have a `separate repo <https://github.com/mozmeao/www-config>`_ for configuring our primary instances (dev, stage, and prod).
+The `docs for updating configurations <https://mozmeao.github.io/www-config/>`_ in that repo are on their own page,
+but there is a way to tell what version of the configuration is in use on any particular instance of bedrock.
 You can go to the ``/healthz-cron/`` URL on an instance (`see prod <https://www.mozilla.org/healthz-cron/>`_ for example) to see the current
 commit of all of the external Git repos in use by the site and how long ago they were updated. The info on that page also includes the latest
 version of the database in use, the git revision of the bedrock code, and how long ago the database was updated. If you recently made
