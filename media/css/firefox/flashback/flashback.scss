@@ -49,6 +49,25 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.t-welcome-de {
+    background-color: $color-off-black;
+    color: $color-yellow-30;
+    padding-bottom: $layout-2xl;
+
+    h1 {
+        @include text-display-xl;
+    }
+
+    p {
+        @include font-firefox;
+        @include text-display-lg;
+        color: #fff;
+        font-weight: bold;
+        line-height: $text-display-line-height;
+        margin: $layout-lg auto;
+    }
+}
+
 .c-welcome-logo {
     margin-bottom: $layout-lg;
 }
