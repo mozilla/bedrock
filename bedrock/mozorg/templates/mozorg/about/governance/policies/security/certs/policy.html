@@ -613,26 +613,21 @@
   <p>CAs MAY sign SHA-1 hashes over end-entity certificates which chain
     up to roots in Mozilla's program only if all the following are true:</p>
   <ol class="mzp-u-list-styled">
-    <li>
-      <p>The end-entity certificate:</p>
+    <li>The end-entity certificate:
+      <ul>
+        <li>is not within the scope of the Baseline Requirements;</li>
+        <li>contains an EKU extension which does not contain either of the
+          id-kp-serverAuth or anyExtendedKeyUsage key purposes;</li>
+        <li>has at least 64 bits of entropy from a CSPRNG in the serial number.</li>
+      </ul>
     </li>
-    <li>
-      <p>is not within the scope of the Baseline Requirements;</p>
+    <li>The issuing certificate:
+      <ul>
+        <li>contains an EKU extension which does not contain either of the
+            id-kp-serverAuth or anyExtendedKeyUsage key purposes;</li>
+        <li>has a pathlen:0 constraint.</li>
+      </ul>
     </li>
-    <li>contains an EKU extension which does not contain either of the
-      id-kp-serverAuth or anyExtendedKeyUsage key purposes;
-    </li>
-    <li>
-      <p>has at least 64 bits of entropy from a CSPRNG in the serial number.</p>
-    </li>
-    <li>
-      <p>The issuing certificate:</p>
-    </li>
-    <li>
-      <p>contains an EKU extension which does not contain either of the
-        id-kp-serverAuth or anyExtendedKeyUsage key purposes;</p>
-    </li>
-    <li>has a pathlen:0 constraint.</li>
   </ol>
   <p>Point 2 does not apply if the certificate is an OCSP signing certificate
     manually issued directly from a root.</p>
