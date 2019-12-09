@@ -38,10 +38,13 @@
         <header>
           <h2>{{ self.page_title() }}</h2>
           <p class="tagline">
-          {% trans %}
-            Every 4 to 5 weeks, a new major version of Firefox is released and as a result, the Nightly version
-            increases as well.
-          {% endtrans %}
+            {% if l10n_has_tag('four_weeks_train_2019') %}
+                {{ _('Every 4 to 5 weeks, a new major version of Firefox is released and as a result, the Nightly version
+                increases as well.') }}
+            {% else %}
+              {{ _('Every 6 to 8 weeks, a new major version of Firefox is released and as a result, the Nightly version
+                increases as well.') }}
+            {% endif %}
           </p>
         </header>
 
