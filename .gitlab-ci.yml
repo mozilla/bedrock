@@ -24,6 +24,16 @@ build:
     - FROM_DOCKER_REPOSITORY=mozorg/bedrock docker/bin/push2dockerhub.sh
     - bin/upload-staticfiles.sh
 
+build-test:
+  stage: build
+  only:
+    - build-test
+  tags:
+    - oregon-b-shell
+  script:
+    - make clean build-ci
+    - FROM_DOCKER_REPOSITORY=mozorg/bedrock_test docker/bin/push2dockerhub.sh
+
 .update-config:
   stage: update-config
   tags:
