@@ -24,6 +24,17 @@ build:
     - FROM_DOCKER_REPOSITORY=mozorg/bedrock docker/bin/push2dockerhub.sh
     - bin/upload-staticfiles.sh
 
+build-test:
+  stage: build
+  only:
+    - run-integration-tests
+  tags:
+    - oregon-b-shell
+  script:
+    - make clean build-ci
+    - FROM_DOCKER_REPOSITORY=mozorg/bedrock_test docker/bin/push2dockerhub.sh
+    - FROM_DOCKER_REPOSITORY=mozorg/bedrock docker/bin/push2dockerhub.sh
+
 .update-config:
   stage: update-config
   tags:
@@ -45,6 +56,14 @@ stage:
   variables:
     CLUSTERS: iowa-a
     NAMESPACE: bedrock-stage
+
+test:
+  extends: .update-config
+  only:
+    - run-integration-tests
+  variables:
+    CLUSTERS: oregon-b
+    NAMESPACE: bedrock-test
 
 prod:
   extends: .update-config
