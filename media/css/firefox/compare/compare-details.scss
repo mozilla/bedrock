@@ -29,13 +29,13 @@ $image-path: "/media/protocol/img";
 
 @keyframes compare-details-hero-image-float {
     0% {
-        transform: translatey(0);
+        transform: translateY(0);
     }
     50% {
-        transform: translatey(-12px);
+        transform: translateY(-12px);
     }
     100% {
-        transform: translatey(0px);
+        transform: translateY(0);
     }
 }
 
