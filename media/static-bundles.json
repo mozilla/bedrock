@@ -214,7 +214,7 @@
     },
     {
       "files": [
-        "css/firefox/testflight.less"
+        "css/firefox/testflight.scss"
       ],
       "name": "firefox_ios_testflight"
     },
@@ -1536,6 +1536,13 @@
         "js/firefox/enterprise/sla.js"
       ],
       "name": "firefox-enterprise-sla"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-newsletter.js",
+        "js/newsletter/form-protocol.js"
+      ],
+      "name": "firefox_ios_testflight"
     }
   ]
 }
