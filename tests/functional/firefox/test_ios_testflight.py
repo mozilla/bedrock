@@ -11,6 +11,7 @@ from pages.firefox.ios_testflight import iOSTestFlightPage
 @pytest.mark.nondestructive
 def test_signup_default_values(base_url, selenium):
     page = iOSTestFlightPage(selenium, base_url).open()
+    page.expand_form()
     assert '' == page.email
     assert page.html_format_selected
     assert not page.text_format_selected
@@ -23,6 +24,7 @@ def test_signup_default_values(base_url, selenium):
 @pytest.mark.nondestructive
 def test_successful_sign_up(base_url, selenium):
     page = iOSTestFlightPage(selenium, base_url).open()
+    page.expand_form()
     page.type_email('success@example.com')
     page.select_text_format()
     page.accept_privacy_policy()
@@ -34,5 +36,6 @@ def test_successful_sign_up(base_url, selenium):
 @pytest.mark.nondestructive
 def test_sign_up_fails_when_missing_required_fields(base_url, selenium):
     page = iOSTestFlightPage(selenium, base_url).open()
+    page.expand_form()
     with pytest.raises(TimeoutException):
         page.click_sign_me_up()

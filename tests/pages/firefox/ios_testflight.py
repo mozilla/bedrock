@@ -13,14 +13,15 @@ class iOSTestFlightPage(FirefoxBasePage):
     URL_TEMPLATE = '/{locale}/firefox/ios/testflight/'
 
     _email_locator = (By.ID, 'id_email')
-    _html_format_locator = (By.ID, 'id_fmt_0')
+    _html_format_locator = (By.ID, 'format-html')
     _privacy_policy_checkbox_locator = (By.ID, 'id_privacy')
-    _privacy_policy_link_locator = (By.CSS_SELECTOR, 'label[for="id_privacy"] span a')
-    _submit_button_locator = (By.ID, 'footer_email_submit')
+    _privacy_policy_link_locator = (By.CSS_SELECTOR, 'label[for="id_privacy"] a')
+    _submit_button_locator = (By.ID, 'newsletter-submit')
     _terms_checkbox_locator = (By.ID, 'id_terms')
-    _terms_link_locator = (By.CSS_SELECTOR, 'label[for="id_terms"] span a')
-    _text_format_locator = (By.ID, 'id_fmt_1')
-    _thank_you_locator = (By.CSS_SELECTOR, '#newsletter-form-thankyou h2')
+    _terms_link_locator = (By.CSS_SELECTOR, 'label[for="id_terms"] a')
+    _text_format_locator = (By.ID, 'format-text')
+    _thank_you_locator = (By.ID, 'newsletter-thanks')
+    _form_details_locator = (By.ID, 'newsletter-details')
 
     @property
     def email(self):
@@ -77,3 +78,19 @@ class iOSTestFlightPage(FirefoxBasePage):
 
     def type_email(self, value):
         self.find_element(*self._email_locator).send_keys(value)
+
+    def expand_form(self):
+        # scroll newsletter into view before expanding the form
+        self.scroll_element_into_view(*self._email_locator)
+        assert not self.is_form_detail_displayed, 'Form detail is already displayed'
+        # Click the submit button to expand the form when not visible.
+        # Ideally here we would focus on the email field, but Selenium has issues
+        # dealing with focus events when the window is not active.
+        # See bug https://bugzilla.mozilla.org/show_bug.cgi?id=704583
+        self.find_element(*self._submit_button_locator).click()
+        self.wait.until(expected.visibility_of_element_located(
+            self._privacy_policy_checkbox_locator))
+
+    @property
+    def is_form_detail_displayed(self):
+        return self.is_element_displayed(*self._form_details_locator)
