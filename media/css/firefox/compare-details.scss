@@ -16,19 +16,19 @@ $image-path: "/media/protocol/img";
         max-width: none;
     }
     .mzp-c-hero-title {
-        margin-bottom: 0;
-        padding-top: 140px;
-        background-repeat: no-repeat;
-        background-position: top center;
-        background-size: 272px auto;
-        min-width: 272px;
         @include font-size(32px);
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-size: 272px auto;
+        margin-bottom: 0;
+        min-width: 272px;
+        padding-top: 140px;
         @media #{$mq-sm} {
             @include font-size(40px);
         }
         @media #{$mq-md} {
-            padding-top: 170px;
             background-size: 350px auto;
+            padding-top: 170px;
             @include font-size(48px);
         }
     }
