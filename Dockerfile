@@ -11,13 +11,13 @@ COPY package.json yarn.lock ./
 
 # install dependencies
 RUN yarn install --pure-lockfile
-RUN yarn global add gulp-cli@2.0.1
+RUN yarn build
 
 # copy supporting files and media
-COPY .eslintrc.js .stylelintrc gulpfile.js ./
+COPY .eslintrc.js .stylelintrc ./
 COPY ./media ./media
 
-RUN gulp build --production
+RUN yarn build --production
 
 
 ########

@@ -98,7 +98,7 @@ const entry = {
     "js/base/search-params.js",
     "js/ie/base-page-init-ie.js",
     "js/ie/mozilla-utils-ie.js",
-    // "js/libs/jquery-1.11.3.min.js"
+    "js/libs/jquery-1.11.3.min.js"
   ]),
   "common-protocol": resolveBundles([
     "js/base/base-page-init.js",
@@ -179,10 +179,9 @@ const entry = {
     "css/csrf-failure.scss"
   ]),
   "css-grid-demo": resolveBundles([
-    "css/mozorg/developer/css-grid-demo.scss",
     "js/base/mozilla-smoothscroll.js",
-    "js/libs/jquery.waypoints-sticky.min.js",
     "js/libs/jquery.waypoints.min.js",
+    "js/libs/jquery.waypoints-sticky.min.js",
     "js/mozorg/developer/css-grid-demo.js"
   ]),
   "developer-hub": resolveBundles([
@@ -230,16 +229,6 @@ const entry = {
   "exp-opt-out": resolveBundles([
     "css/exp/opt-out.scss"
   ]),
-  "exp_firefox_accounts_2019": resolveBundles([
-    "css/base/mozilla-fxa-form.scss",
-    "css/base/mozilla-fxa-state.scss",
-    "css/exp/firefox/accounts-2019.scss",
-    "js/base/mozilla-fxa-form.js",
-    "js/base/mozilla-fxa-init.js",
-    "js/base/mozilla-fxa-product-button.js",
-    "js/base/mozilla-fxa.js",
-    "js/exp/firefox/accounts-2019.js"
-  ]),
   "exp_firefox_welcome": resolveBundles([
     "css/exp/firefox/welcome.scss"
   ]),
@@ -247,22 +236,11 @@ const entry = {
     "js/base/mozilla-fxa-product-button-init.js",
     "js/base/mozilla-fxa-product-button.js"
   ]),
-  "exp_firefox_whatsnew_70": resolveBundles([
-    "css/exp/firefox/whatsnew/whatsnew-70.scss"
+  "firefox_whatsnew_71": resolveBundles([
+    "css/firefox/whatsnew/whatsnew-71.scss"
   ]),
-  "exp_firefox_whatsnew_70_variants": resolveBundles([
-    "js/base/mozilla-fxa-init.js",
-    "js/base/mozilla-fxa-product-button-init.js",
-    "js/base/mozilla-fxa-product-button.js",
-    "js/base/mozilla-fxa.js",
-    "js/base/uitour-lib.js",
-    "js/exp/firefox/whatsnew/whatsnew-70.js",
-    "js/firefox/whatsnew/up-to-date.js"
-  ]),
-  "experiment_firefox_whatsnew_70": resolveBundles([
-    "js/base/mozilla-client.js",
-    "js/firefox/whatsnew/experiment-whatsnew-70.js",
-    "js/libs/mozilla-traffic-cop.js"
+  "exp_firefox_whatsnew_71": resolveBundles([
+    "css/exp/firefox/whatsnew/whatsnew-71.scss"
   ]),
   "firefox-enterprise": resolveBundles([
     "css/firefox/enterprise/landing.scss",
@@ -578,9 +556,6 @@ const entry = {
   "firefox_whatsnew_70": resolveBundles([
     "css/firefox/whatsnew/whatsnew-70.scss"
   ]),
-  "firefox_whatsnew_70_experiment": resolveBundles([
-    "css/firefox/whatsnew/whatsnew-70-experiment.scss"
-  ]),
   "firefox_whatsnew_70_experiment_fxaform": resolveBundles([
     "js/base/mozilla-fxa-form-init.js",
     "js/base/mozilla-fxa-form.js",
@@ -660,14 +635,8 @@ const entry = {
     "css/mozorg/lean-data.scss"
   ]),
   "legal": resolveBundles([
-    "css/legal/legal.less",
-    "css/newsletter/moznewsletter-subscribe.less"
-  ]),
-  "legal-eula": resolveBundles([
-    "css/legal/eula.less"
-  ]),
-  "legal_fraud_report": resolveBundles([
-    "css/legal/fraud-report.less"
+    "css/legal/legal.scss",
+    "protocol/js/protocol-newsletter.js"
   ]),
   "locales": resolveBundles([
     "css/mozorg/locales.scss"
@@ -757,7 +726,7 @@ const entry = {
     "js/plugincheck/plugincheck.js"
   ]),
   "press": resolveBundles([
-    "css/press/press.less"
+    "css/press/press.scss"
   ]),
   "press_speaker_request": resolveBundles([
     "js/libs/modernizr.custom.inputtypes.js",
@@ -840,13 +809,6 @@ const entry = {
     "js/libs/jquery.waypoints.min.js",
     "js/mozorg/technology.js"
   ]),
-  "tracking-protection-tour": resolveBundles([
-    "css/firefox/tracking-protection-tour.less",
-    "js/base/uitour-lib.js",
-    "js/firefox/tracking-protection-tour-init.js",
-    "js/firefox/tracking-protection-tour.js",
-    "js/libs/jquery-3.4.1.min.js"
-  ]),
   "update-browser": resolveBundles([
     "css/mozorg/update-browser.scss"
   ]),
@@ -866,6 +828,7 @@ const entry = {
 
 module.exports = {
   entry: entry,
+  watch: true,
 
   output: {
     'filename': 'js/[name].js',
@@ -877,11 +840,18 @@ module.exports = {
     new MiniCssExtractPlugin({'filename': 'css/[name].css'}),
   ],
 
+  watchOptions: {
+  // this is in milliseconds, causes the rebuild of assets to wait this amount of time to collect changes 
+  // before kicking off any recompiling of assets.
+    aggregateTimeout: 600, 
+    ignored: /node_modules/
+  },
+
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /\.min.js$/, /libs/],
         use: 'babel-loader',
       },
       {
@@ -906,6 +876,20 @@ module.exports = {
             }
           },
         ]
+      },
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        exclude: [/node_modules/, /\.min.js$/, /libs/],
+        loader: 'eslint-loader',
+        options: {
+          emitError: true,
+          emitWarning: true,
+          configFile: ".eslintrc.js",
+          failOnError: false, // if this is on builds will fail until lint errors are handled
+          cache: true, //caches last eslint issues to make building faster.
+          fix: false, // if true it will change files to fix issues it possible.
+        }
       },
     ]
   }
