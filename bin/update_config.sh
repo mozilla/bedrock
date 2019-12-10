@@ -21,6 +21,7 @@ done
 
 TEST_IMAGE=mozorg/bedrock_test:${GIT_COMMIT}
 sed -i -e "s|TEST_IMAGE: .*|TEST_IMAGE: ${TEST_IMAGE}|;s|image: mozorg/bedrock_test.*|image: ${TEST_IMAGE}|" .gitlab-ci.yml
+git add .gitlab-ci.yml
 
 git commit -m "set image to ${DEPLOYMENT_DOCKER_IMAGE} in ${CLUSTERS}" || echo "nothing new to commit"
 git push
