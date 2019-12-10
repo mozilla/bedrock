@@ -1,0 +1,81 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: "/media/fonts";
+$image-path: "/media/protocol/img";
+
+@import "../../../protocol/css/includes/lib";
+@import "../../../protocol/css/components/hero";
+
+/* -------------------------------------------------------------------------- */
+// Hero
+
+.compare-details-hero {
+    .mzp-c-hero-body {
+        max-width: none;
+    }
+    .mzp-c-hero-title {
+        @include font-size(32px);
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-size: 272px auto;
+        margin-bottom: 0;
+        min-width: 272px;
+        padding-top: 140px;
+        @media #{$mq-sm} {
+            @include font-size(40px);
+        }
+        @media #{$mq-md} {
+            background-size: 350px auto;
+            padding-top: 170px;
+            @include font-size(48px);
+        }
+    }
+}
+
+.compare-details-hero--chrome {
+    .mzp-c-hero-title {
+        background-image: url('/media/img/firefox/compare/compare-header-chrome.svg');
+    }
+}
+
+.compare-details-section-intro {
+    @include font-firefox;
+    @include font-size(24px);
+    line-height: 1.3;
+}
+
+.l-compare-details-content {
+    @include text-body-lg;
+    max-width: 808px;
+    @media #{$mq-md} {
+        padding: $layout-xs $layout-lg;
+    }
+}
+
+.mzp-u-data-table.compare-table--details {
+    max-width: 480px;
+}
+
+.compare-section-overall {
+    margin-bottom: $layout-xl;
+
+    .compare-section-header {
+        margin-bottom: 64px;
+    }
+}
+
+.compare-details-image {
+    display: block;
+    margin: $layout-lg auto;
+}
+
+.compare-section-privacy {
+    .compare-details-image {
+        width: 280px;
+        @media #{$mq-md} {
+            width: 320px;
+        }
+    }
+}
