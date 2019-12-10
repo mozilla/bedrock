@@ -34,20 +34,6 @@ main .mzp-l-content {
     display: inline-block;
 }
 
-// mzp-c-cta-link didn't seem to be adding all the normal styles but I didn't see anything obviously overriding them so I have manually styled it here.
-.modal-button {
-    color: $color-link;
-    text-decoration-line: underline;
-    cursor: pointer;
-    @include text-body-lg;
-    text-align: left;
-
-    &:hover {
-        color: $color-link-hover;
-        text-decoration-line: none;
-    }
-}
-
 .modal-logo {
     @include at2x('/media/protocol/img/logos/firefox/browser/logo-lg.png', auto, 100%);
     @include image-replaced;
@@ -55,10 +41,8 @@ main .mzp-l-content {
     background-position: center;
 }
 
-.get-firefox-icon {
-    max-height: 20px;
-    vertical-align: text-bottom;
-    padding-left: 10px;
+.header-product-ctas {
+    margin-bottom: $spacing-2xl;
 }
 
 // for android/iOS, hide widget/QR code in favor of app store badges
