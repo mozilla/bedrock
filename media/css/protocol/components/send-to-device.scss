@@ -11,7 +11,7 @@ $image-path: '/media/protocol/img';
     max-width: 500px;
 
     h2.thank-you {
-        @include text-display-sm;
+        @include text-display-xs;
     }
 
     .thank-you p {

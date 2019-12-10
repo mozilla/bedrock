@@ -713,16 +713,23 @@
     {
       "files": [
         "css/base/send-to-device.less",
-        "css/firefox/mobile.scss"
+        "css/firefox/mobile/mobile.scss"
       ],
       "name": "firefox-mobile"
     },
     {
       "files": [
         "css/protocol/components/send-to-device.scss",
-        "css/firefox/mobile-protocol.scss"
+        "css/firefox/mobile/mobile-protocol.scss"
       ],
       "name": "firefox-mobile-protocol"
+    },
+    {
+      "files": [
+        "css/protocol/components/send-to-device.scss",
+        "css/firefox/mobile/get-app.scss"
+      ],
+      "name": "firefox-mobile-get-app"
     },
     {
       "files": [
@@ -1164,6 +1171,14 @@
         "js/firefox/mobile/mobile-protocol.js"
       ],
       "name": "firefox-mobile-protocol"
+    },
+    {
+      "files": [
+        "js/libs/spin.min.js",
+        "js/base/send-to-device.js",
+        "js/firefox/mobile/get-app.js"
+      ],
+      "name": "firefox-mobile-get-app"
     },
     {
       "files": [

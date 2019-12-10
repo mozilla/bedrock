@@ -881,8 +881,8 @@ def firefox_mobile(request):
     locale = l10n_utils.get_locale(request)
 
     if lang_file_is_active('firefox/mobile-2019', locale):
-        template_name = 'firefox/mobile-2019.html'
+        template_name = 'firefox/mobile/mobile-2019.html'
     else:
-        template_name = 'firefox/mobile.html'
+        template_name = 'firefox/mobile/mobile.html'
 
     return l10n_utils.render(request, template_name)
