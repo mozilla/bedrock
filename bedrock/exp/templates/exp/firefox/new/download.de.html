@@ -23,7 +23,7 @@
 <main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
   {% call hero(
     title='Hol dir den neuesten Firefox Browser.',
-    desc='Und damit eines der Firefox Produkte, für die deine Privatsphäre an erster Stelle steht.',
+    desc='Hier gibt es automatische Privatsphäre. Lade Firefox herunter, um über 2 000 Tracker zu blockieren.',
     class='mzp-has-image mzp-t-dark',
     include_cta=True,
     image_url='img/firefox/new/trailhead/browser-window.svg',
@@ -34,9 +34,9 @@
 
   <section class="features">
     <ul class="mzp-l-card-third mzp-l-content">
-      {{ picto_card(title='Komm zu Firefox', desc='Verbinde alle deine Firefox Produkte miteinander und bleib in Sachen Online-Sicherheit immer auf dem neuesten Stand.', class='join') }}
-      {{ picto_card(title='Passwörter immer dabei', desc='<strong>Firefox Lockwise</strong> hat deine gespeicherten Passwörter immer und auf allen deinen Geräten für dich parat.'|safe, class='lockwise') }}
-      {{ picto_card(title='Schütze deine Privatsphäre', desc='Im <strong>Privaten Modus</strong> wird dein Browserverlauf automatisch gelöscht, sodass andere Benutzer deines Computers ihn nicht sehen können.'|safe, class='private') }}
+      {{ picto_card(title='Schau dir an, was blockiert wird', desc='Firefox zeigt an, wie viele Datenerfassungs-Tracker durch den <strong>verbesserten Schutz vor Aktivitätenverfolgung</strong> blockiert werden.'|safe, class='skyline-etp') }}
+      {{ picto_card(title='Nimm deine Passwörter mit', desc='<strong>Firefox Lockwise</strong> hat deine gespeicherten Passwörter immer und auf allen deinen Geräten für dich parat und schützt sie.'|safe, class='skyline-lockwise') }}
+      {{ picto_card(title='Datenlecks im Blick', desc='<strong>Firefox Monitor</strong> warnt dich, wenn wir wissen, dass deine Daten vom Datenleck eines anderen Unternehmens betroffen sind.'|safe, class='skyline-monitor') }}
     </ul>
   </section>
 </main>
