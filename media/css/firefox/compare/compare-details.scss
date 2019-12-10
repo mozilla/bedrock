@@ -17,26 +17,65 @@ $image-path: "/media/protocol/img";
     }
     .mzp-c-hero-title {
         @include font-size(32px);
-        background-position: top center;
-        background-repeat: no-repeat;
-        background-size: 272px auto;
         margin-bottom: 0;
-        min-width: 272px;
-        padding-top: 140px;
         @media #{$mq-sm} {
             @include font-size(40px);
         }
         @media #{$mq-md} {
-            background-size: 350px auto;
-            padding-top: 170px;
             @include font-size(48px);
         }
     }
 }
 
-.compare-details-hero--chrome {
-    .mzp-c-hero-title {
-        background-image: url('/media/img/firefox/compare/compare-header-chrome.svg');
+@keyframes compare-details-hero-image-float {
+    0% {
+        transform: translatey(0);
+    }
+    50% {
+        transform: translatey(-12px);
+    }
+    100% {
+        transform: translatey(0px);
+    }
+}
+
+.compare-details-hero-image {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 300px;
+    margin: 0 auto $layout-md;
+    img {
+        height: 76px;
+        width: 76px;
+        order: 1;
+        animation: compare-details-hero-image-float 5s ease-in-out infinite;
+        &:last-child {
+            order: 3;
+        }
+    }
+    &::before {
+        content: " ";
+        display: table;
+        height: 100px;
+        width: 10px;
+        order: 2;
+        background: $color-gray-20;
+        border-radius: 10px;
+
+        top: 0;
+        left: 50%;
+    }
+    @media #{$mq-md} {
+        max-width: 350px;
+        &::before {
+            height: 120px;
+        }
+        img {
+            height: 92px;
+            width: 92px;
+        }
     }
 }
 
