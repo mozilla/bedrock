@@ -5,11 +5,11 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../protocol/css/includes/lib';
-@import '../../protocol/css/components/feature-card';
-@import '../../protocol/css/components/hero';
-@import '../../protocol/css/components/call-out';
-@import '../../protocol/css/components/modal';
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/feature-card';
+@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/components/call-out';
+@import '../../../protocol/css/components/modal';
 
 
 //* -------------------------------------------------------------------------- */
