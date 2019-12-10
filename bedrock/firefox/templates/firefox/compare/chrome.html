@@ -88,14 +88,14 @@
         </table>
 
       <p class="compare-content">
-        {% trans url='https://monitor.firefox.com/' %}
-        Firefox has a huge number of dedicated users who appreciate the browser’s steadfast dedication to online privacy. For example, the latest version of Firefox includes a feature called Enhanced Tracking Protection (ETP) which is turned on by default. ETP automatically blocks over 2,000 trackers, including social trackers from companies like Facebook, Twitter, and LinkedIn. It also has an integrated feature called <a href="{{ url }}">Firefox Monitor</a> that automatically notifies you if your password has been breached or needs to be updated. In addition to these protections the browser's Private Browsing mode can block all website tracking, so you can have a far more private online experience than you would ordinarily.
+        {% trans attrs='href="https://monitor.firefox.com?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=compare-chrome" rel="external noopener" data-cta-text="Firefox Monitor" data-cta-type="link"'|safe %}
+        Firefox has a huge number of dedicated users who appreciate the browser’s steadfast dedication to online privacy. For example, the latest version of Firefox includes a feature called Enhanced Tracking Protection (ETP) which is turned on by default. ETP automatically blocks over 2,000 trackers, including social trackers from companies like Facebook, Twitter, and LinkedIn. It also has an integrated feature called <a {{ attrs }}>Firefox Monitor</a> that automatically notifies you if your password has been breached or needs to be updated. In addition to these protections the browser's Private Browsing mode can block all website tracking, so you can have a far more private online experience than you would ordinarily.
         {% endtrans %}
       </p>
 
       <p class="compare-content">
-        {% trans url=url('privacy.notices.firefox') %}
-        Firefox, has also recently restated their commitment to privacy and transparency with user data in their most recent <a href="{{ url }}">Privacy Notice</a> that states “At Mozilla, we believe that privacy is fundamental to a healthy internet.”
+        {% trans attrs = 'href="%s" data-cta-type="link" data-cta-name="Privacy Notice"'|safe|format(url('privacy.notices.firefox')) %}
+        Firefox, has also recently restated their commitment to privacy and transparency with user data in their most recent <a {{ attrs }}>Privacy Notice</a> that states “At Mozilla, we believe that privacy is fundamental to a healthy internet.”
         {% endtrans %}
       </p>
 
