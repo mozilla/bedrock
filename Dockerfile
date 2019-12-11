@@ -11,13 +11,12 @@ COPY package.json yarn.lock ./
 
 # install dependencies
 RUN yarn install --pure-lockfile
-RUN yarn build
 
 # copy supporting files and media
-COPY .eslintrc.js .stylelintrc ./
+COPY webpack.config.js .eslintrc.js .stylelintrc ./
 COPY ./media ./media
 
-RUN yarn build --production
+RUN yarn build
 
 
 ########

@@ -828,11 +828,10 @@ const entry = {
 
 module.exports = {
   entry: entry,
-  watch: true,
-
   output: {
     'filename': 'js/[name].js',
     'path': path.resolve(__dirname, "assets/"),
+    'publicPath': '/assets/',
   },
 
   plugins: [
@@ -876,6 +875,14 @@ module.exports = {
             }
           },
         ]
+      },
+      {
+        test: /\.(ico|jpe?g|png|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/i,
+        loader: 'file-loader',
+      },
+      {
+        test: /\.(png|svg)$/i,
+        loader: 'file-loader',
       },
       {
         enforce: 'pre',

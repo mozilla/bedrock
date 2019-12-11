@@ -6,7 +6,7 @@
 // Old versions get this minimal style while IE9 and up recieve more advanced styling.
 
 $font-path: '/media/fonts';
-$image-path: '/media/protocol/img';
+$image-path: '~@mozilla-protocol/core/protocol/img';
 
 @import '../~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '../~@mozilla-protocol/core/protocol/css/base/elements';

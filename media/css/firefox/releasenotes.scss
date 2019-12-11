@@ -11,7 +11,7 @@
 }
 
 $font-path: '/media/fonts';
-$image-path: '/media/protocol/img';
+$image-path: '~@mozilla-protocol/core/protocol/img';
 @import '../~@mozilla-protocol/core/protocol/css/includes/lib';
 
 @import '../~@mozilla-protocol/core/protocol/css/templates/main-with-sidebar';

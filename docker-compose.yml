@@ -10,11 +10,12 @@ services:
       context: .
       target: assets
     image: mozorg/bedrock_assets:${GIT_COMMIT:-latest}
-    command: gulp
+    command: yarn watch
     ports:
       - "8000-8010:8000-8010"
     volumes:
       - ./media/:/app/media:delegated
+      - ./assets/:/app/assets:delegated
       - ./bedrock/:/app/bedrock:delegated
     environment:
       BS_PROXY_URL: "app:8080"
@@ -38,6 +39,7 @@ services:
       - ./lib/:/app/lib:delegated
       - ./docs/:/app/docs:delegated
       - ./media/:/app/media:delegated
+      - ./assets/:/app/assets:delegated
       - ./root_files/:/app/root_files:delegated
       - ./scripts/:/app/scripts:delegated
       - ./vendor-local/:/app/vendor-local:delegated

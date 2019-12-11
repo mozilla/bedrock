@@ -53,3 +53,4 @@ package-lock.json
 static
 assets
 npm-debug.log
+yarn-error.log
