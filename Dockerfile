@@ -121,6 +121,7 @@ USER webdev
 #
 FROM app-base AS release
 
+COPY --from=assets /app/static /app/static
 RUN honcho run --env docker/envfiles/prod.env docker/bin/build_staticfiles.sh
 
 # build args
