@@ -38,10 +38,13 @@
         <header>
           <h2>{{ self.page_title() }}</h2>
           <p class="tagline">
-          {% trans %}
-            Every 6 to 8 weeks, a new major version of Firefox is released and as a result, the Nightly version
-            increases as well.
-          {% endtrans %}
+            {% if l10n_has_tag('four_weeks_train_2019') %}
+                {{ _('Every 4 to 5 weeks, a new major version of Firefox is released and as a result, the Nightly version
+                increases as well.') }}
+            {% else %}
+              {{ _('Every 6 to 8 weeks, a new major version of Firefox is released and as a result, the Nightly version
+                increases as well.') }}
+            {% endif %}
           </p>
         </header>
 
@@ -72,12 +75,6 @@
               Do you experience crashes? Unexpected behavior? Web compatibility regressions? We’d love to get them
               filed in <a href="%(bugzilla)s">Bugzilla</a> to make sure they don’t make it to the final release (extra
               karma if you add the <em>nightly-community</em> keyword to your bug reports)!
-            {% endtrans %}
-          </p>
-          <p>
-            {% trans irc='ircs://irc.mozilla.org/nightly' %}
-              You can also interact with the Nightly community on IRC in the <a href="%(irc)s">#nightly</a> channel.
-              Feel free to ask questions and talk about features, regressions or crashes you may be experiencing.
             {% endtrans %}
           </p>
           <p>{{ _('Go community!') }}</p>
