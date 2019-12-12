@@ -43,7 +43,7 @@
 
     {% if show_send_to_device %}
       <p>{{ _('Send the download link right to your phone or email.') }}</p>
-      {{ send_to_device(include_title=False, class='vertical') }}
+      {{ send_to_device(include_title=False, class='vertical', message_set='firefox-mobile-welcome') }}
     {% else %}
       {# L10n: This string is reused from firefox/whatsnew #}
       <p>{{ _('Download Firefox for your smartphone and tablet.') }}</p>
