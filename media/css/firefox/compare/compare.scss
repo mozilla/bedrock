@@ -1,0 +1,319 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: "/media/fonts";
+$image-path: "/media/protocol/img";
+
+@import "../../../protocol/css/includes/lib";
+@import "../../../protocol/css/components/hero";
+
+/* -------------------------------------------------------------------------- */
+// Hero
+
+.compare-hero {
+    .mzp-c-hero-title {
+        @include font-size(40px);
+        @media #{$mq-md} {
+            @include font-size(48px);
+        }
+    }
+
+    .mzp-c-hero-image img {
+        bottom: auto;
+        top: $layout-xs;
+        width: 550px;
+        max-width: 100%;
+    }
+}
+
+.compare-hero-subtitle {
+    @include font-firefox;
+    @include text-body-sm;
+    font-weight: bold;
+    color: #a64ec4;
+    text-transform: uppercase;
+    @media #{$mq-lg} {
+        @include text-body-lg;
+    }
+}
+
+.mzp-c-article-intro {
+    @include text-body-lg;
+}
+
+.l-compare-content {
+    @include text-body-lg;
+    padding-top: $layout-lg;
+    @media #{$mq-md} {
+        padding-top: $layout-xs;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Summary section
+
+.compare-section-summary {
+    display: flex;
+    flex-direction: column;
+    @media #{$mq-md} {
+        text-align: start;
+    }
+    @media #{$mq-lg} {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+.compare-section-summary-intro {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: $spacing-xl;
+    align-items: center;
+    @include font-firefox;
+    p {
+        margin-bottom: $spacing-2xl;
+        @include font-size(24px);
+        line-height: 1.3;
+        @media #{$mq-md} {
+            width: 50%;
+            margin-right: $layout-sm;
+        }
+        @media #{$mq-lg} {
+            width: auto;
+            margin-right: auto;
+        }
+    }
+    .compare-section-summary-image {
+        @media #{$mq-md} {
+            width: 50%;
+        }
+        @media #{$mq-lg} {
+            width: auto;
+        }
+        img {
+            display: block;
+            width: 350px;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            @media #{$mq-md} {
+                width: 90%;
+            }
+        }
+    }
+    @media #{$mq-md} {
+        flex-direction: row;
+    }
+    @media #{$mq-lg} {
+        flex-direction: column;
+        width: 50%;
+        max-width: $content-sm;
+        margin-right: $layout-md;
+    }
+}
+
+.compare-section-summary-contents {
+    p {
+        margin-bottom: $spacing-xl;
+    }
+    @media #{$mq-lg} {
+        width: 50%;
+        max-width: $content-sm;
+        margin-left: $layout-md;
+    }
+}
+
+.compare-privacy-image {
+    display: block;
+    margin: $spacing-2xl auto;
+    width: 350px;
+    @media #{$mq-md} {
+        width: 380px;
+    }
+}
+
+.compare-section-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 120px auto 80px;
+
+    h2 {
+        @include font-size(32px);
+        @media #{$mq-md} {
+            @include font-size(40px);
+        }
+        margin-bottom: 36px;
+    }
+
+    p {
+        @include font-firefox;
+        @include text-display-xs;
+        @include font-size(24px);
+        @media #{$mq-md} {
+            @include font-size(32px);
+        }
+        font-weight: bold;
+    }
+}
+
+.compare-section-conclusion .compare-section-header h2 {
+    margin-bottom: .45em;
+}
+
+/* -------------------------------------------------------------------------- */
+// Heading zaps ⚡️
+
+.compare-section-privacy .compare-section-header h2 strong {
+    @include zap("/media/protocol/img/zaps/zap-09.svg");
+    &::after {
+        top: 100%;
+    }
+}
+
+.compare-section-utility .compare-section-header h2 strong {
+    @include zap("/media/protocol/img/zaps/zap-07.svg");
+    &::after {
+        top: 100%;
+    }
+}
+
+.compare-section-portability .compare-section-header h2 strong {
+    @include zap("/media/protocol/img/zaps/zap-08.svg");
+    &::after {
+        top: 100%;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Comparison tables
+
+.mzp-u-data-table.compare-table {
+    width: 100%;
+    max-width: $content-lg;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 80px;
+
+    thead {
+        th {
+            @include text-display-xs;
+            @include font-firefox;
+            font-weight: bold;
+            border-top: 3px solid $color-gray-20;
+            border-bottom: 3px solid $color-gray-20;
+            background-color: $color-white;
+            position: sticky;
+            top: 0;
+            @media #{$mq-sm} {
+                position: static;
+            }
+
+            img {
+                width: 100%;
+                height: auto;
+                min-width: 1rem;
+                max-width: 36px;
+                max-height: 36px;
+            }
+        }
+    }
+    th,
+    td {
+        text-align: center;
+        border-top: 1px solid $color-gray-20;
+        border-left: 1px solid $color-gray-20;
+        padding: 0.25rem;
+        @include text-body-sm;
+        font-weight: normal;
+        &:first-child {
+            text-align: start;
+            border-left: none;
+        }
+        @media #{$mq-sm} {
+            padding: 0.5rem;
+        }
+    }
+    tbody {
+        tr:nth-child(2n - 1) {
+            background-color: $color-gray-10;
+        }
+        tr:last-child {
+            th,
+            td {
+                border-bottom: 1px solid $color-gray-20;
+            }
+        }
+    }
+}
+
+.compare-content {
+    max-width: 680px;
+    margin: 0 auto $spacing-xl;
+}
+
+.compare-section-privacy-pullquote {
+    @include font-size(24px);
+    border-left-color: $color-pink-50;
+    padding: 1rem 2rem;
+    margin-top: $spacing-2xl;
+    margin-bottom: $spacing-2xl;
+    box-sizing: border-box;
+    p {
+        max-width: 19.5em;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Bottom mission box
+
+.compare-mission-section {
+    text-align: center;
+    background-color: $color-gray-20;
+    padding: $layout-lg $layout-sm;
+    border-radius: 0.5rem;
+    margin: $layout-lg auto;
+
+    h3 {
+        @include text-display-sm;
+        @include font-size(32px);
+        @media #{$mq-lg} {
+            @include font-size(40px);
+        }
+    }
+
+    h3,
+    p {
+        margin-bottom: 2rem;
+    }
+
+    @media #{$mq-md} {
+        padding-left: $layout-lg;
+        padding-right: $layout-lg;
+        text-align: start;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr;
+        grid-column-gap: $spacing-xl;
+
+        p {
+            grid-area: 1 / 2 / 3 / 3;
+            margin-bottom: auto;
+        }
+    }
+
+    @media #{$mq-lg} {
+        padding-left: $layout-xl;
+        padding-right: $layout-xl;
+        grid-column-gap: $spacing-2xl;
+    }
+}
+
+.compare-version-disclaimer {
+    font-style: italic;
+    @include text-body-sm;
+    border-top: 1px solid $color-gray-20;
+    margin-top: $layout-lg;
+    margin-bottom: $layout-2xl;
+    padding-top: $spacing-lg;
+}
