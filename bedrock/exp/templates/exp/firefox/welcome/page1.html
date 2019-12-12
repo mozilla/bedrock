@@ -3,7 +3,6 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros-protocol.html" import hero with context %}
-{% from "macros.html" import monitor_button with context %}
 
 {% extends "exp/firefox/welcome/base.html" %}
 
@@ -33,13 +32,12 @@
   ) %}
 
   <p class="primary-cta">
-    {{ monitor_button(
+    {{ monitor_fxa_button(
       entrypoint=_entrypoint,
-      utm_campaign=_utm_campaign,
       button_text='Check Your Breach Report',
-      cta_type=_cta_type,
-      cta_position='primary'
-    ) }}
+      optional_parameters={'utm_campaign': _utm_campaign},
+      optional_attributes={'data-cta-text': 'Check Your Breach Report', 'data-cta-type': _cta_type, 'data-cta-position': 'primary'})
+    }}
   </p>
 
   {% endcall %}
@@ -85,13 +83,12 @@
 
 {% block secondary_cta %}
   <p class="secondary-cta">
-    {{ monitor_button(
+    {{ monitor_fxa_button(
       entrypoint=_entrypoint,
-      utm_campaign=_utm_campaign,
       button_text='Check Your Breach Report',
-      cta_type=_cta_type,
-      cta_position='secondary'
-    ) }}
+      optional_parameters={'utm_campaign': _utm_campaign},
+      optional_attributes={'data-cta-text': 'Check Your Breach Report', 'data-cta-type': _cta_type, 'data-cta-position': 'secondary'})
+    }}
   </p>
 {% endblock %}
 

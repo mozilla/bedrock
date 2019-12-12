@@ -207,22 +207,14 @@ Invoking the macro will automatically include a set of default UTM parameters as
 Linking to monitor.firefox.com
 -------------------------------
 
-The ``monitor_button`` macro is designed to help create a valid *call to action* (CTA) link to https://monitor.firefox.com.
+Use the ``monitor_button`` helper to link to https://monitor.firefox.com/ via a Firefox Accounts auth flow.
 
 Usage
 ~~~~~
 
-To use the button in a Jinja template, first import the `monitor_button` macro:
-
 .. code-block:: jinja
 
-    {% from "macros.html" import monitor_button with context %}
-
-A button can then be invoked using:
-
-.. code-block:: jinja
-
-    {{ monitor_button(entrypoint='mozilla.org-firefox-accounts')}}
+    {{ monitor_fxa_button(entrypoint=_entrypoint, button_text='Sign Up for Monitor') }}
 
 The templates's respective JavaScript bundle should also include the following dependencies:
 
@@ -233,48 +225,13 @@ The templates's respective JavaScript bundle should also include the following d
 
 This script will automatically handle things like tracking metrics flow (in the same way we do for https://accounts.firefox.com).
 
-Configuration
-~~~~~~~~~~~~~
-
-The macro provides parameters as follows (* indicates a required parameter)
-
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    Parameter name          |                                                       Definition                                                       |                          Format                          |                    Example                      |
-+============================+========================================================================================================================+==========================================================+=================================================+
-|    entrypoint*             | Unambiguous identifier for which page of the site is the referrer.                                                     | 'mozilla.org-directory-page'                             | 'mozilla.org-firefox-accounts'                  |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    entrypoint_experiment   | Used to identify experiments.                                                                                          | Experiment ID                                            | 'whatsnew-headlines'                            |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    entrypoint_variation    | Used to track page variations in multivariate tests. Usually just a number or letter but could be a short keyword.     | Variant identifier                                       | 'b'                                             |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    form_type               | The type of form to display. Defaults to: 'button'.                                                                    | String                                                   | 'email'                                         |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    button_text             | The button copy to be used in the call to action.  Default to a well localized string.                                 | Localizable string                                       | _('Sign In to Monitor')                         |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    button_class            | A class name to be applied to the link (typically for styling with CSS).                                               | String of one or more class names                        | 'mzp-c-button mzp-t-primary mzp-t-product'      |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    button_id               | A unique ID to apply to the link, for cases where multiple buttons appear on the same page.                            | String                                                   | 'fxa-monitor-submit'                            |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    cta_type                | Used to indicate the type of button. Defaults to ``fxa-monitor``                                                       | Brief keyword                                            | 'lifecycle-monitor'                             |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    cta_position            | Used to differentiate buttons in the event of multiples. Defaults to ``primary``                                       | Brief keyword                                            | 'secondary'                                     |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    utm_campaign*           | Used to identify specific marketing campaigns. Should have default value which is descriptive of the page component.   | Campaign name appended to default value                  | 'accounts-page-hero'                            |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    utm_term                | Used for paid search keywords.                                                                                         | Brief keyword                                            | 'existing-users'                                |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    utm_content             | It should only be declared when there is more than one piece of content on a page linking to the same place.           | Description of content, or name of experiment treatment  | 'get-the-rest-of-firefox'                       |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-
-Invoking the macro will automatically include a set of default UTM parameters as query string values:
-
-- ``utm_source`` is automatically assigned the value of the ``entrypoint`` parameter.
-- ``utm_medium`` is automatically set as the value of ``referral``.
-
 Linking to getpocket.com
 ------------------------
 
 Use the ``pocket_fxa_button`` helper to link to https://getpocket.com/ via a Firefox Accounts auth flow.
+
+Usage
+~~~~~
 
 .. code-block:: jinja
 
@@ -288,14 +245,14 @@ The templates's respective JavaScript bundle should also include the following d
     js/base/mozilla-fxa-product-button-init.js
 
 FxA button helper configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
 
-The ``pocket_fxa_button`` helper supports the following parameters:
+Both the ``pocket_fxa_button`` and ``monitor_fxa_button`` helpers support the following parameters:
 
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 |    Parameter name          |                                                       Definition                                                       |                          Format                          |                                                Example                                                 |
 +============================+========================================================================================================================+==========================================================+========================================================================================================+
-|    entrypoint*             | Unambiguous identifier for which page of the site is the referrer.                                                     | 'mozilla.org-firefox-pocket'                             | 'mozilla.org-firefox-pocket'                                                                           |
+|    entrypoint*             | Unambiguous identifier for which page of the site is the referrer. This also serves as a value for 'utm_source'.       | 'mozilla.org-firefox-pocket'                             | 'mozilla.org-firefox-pocket'                                                                           |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
 |    button_text*            | The button copy to be used in the call to action.  Default to a well localized string.                                 | Localizable string                                       | _('Try Pocket Now')                                                                                    |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+

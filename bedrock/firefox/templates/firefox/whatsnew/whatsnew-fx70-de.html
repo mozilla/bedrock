@@ -2,7 +2,7 @@
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import monitor_button, fxa_cta_link with context %}
+{% from "macros.html" import fxa_cta_link with context %}
 
 {% add_lang_files "firefox/whatsnew_70" %}
 
@@ -44,25 +44,21 @@
         <p>{{ _('Überprüfe mit Firefox Monitor, ob deine persönlichen Informationen bei Datenlecks anderer Unternehmen gefährdet wurden – und lass dich automatisch warnen, wenn deine Daten betroffen sind.') }}</p>
 
         <div class="show-fxa-supported-signed-out show-fxa-default show-fxa-not-fx">
-          {{ monitor_button(
+          {{ monitor_fxa_button(
             entrypoint=_entrypoint,
-            cta_type='FxA-Monitor',
-            cta_position='Primary',
-            utm_campaign=_utm_campaign,
-            utm_content=_utm_content,
-            button_text=_('Für Monitor anmelden')
-          ) }}
+            button_text=_('Für Monitor anmelden'),
+            optional_parameters={'utm_campaign': _utm_campaign, 'utm_content': _utm_content},
+            optional_attributes={'data-cta-text': 'Sign Up for Monitor', 'data-cta-type': 'fxa-monitor', 'data-cta-position': 'primary'})
+          }}
         </div>
 
         <div class="show-fxa-supported-signed-in">
-          {{ monitor_button(
+          {{ monitor_fxa_button(
             entrypoint=_entrypoint,
-            cta_type='FxA-Monitor',
-            cta_position='Primary',
-            utm_campaign=_utm_campaign,
-            utm_content=_utm_content,
-            button_text=_('Einloggen')
-          ) }}
+            button_text=_('Einloggen'),
+            optional_parameters={'utm_campaign': _utm_campaign, 'utm_content': _utm_content},
+            optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type': 'fxa-monitor', 'data-cta-position': 'primary'})
+          }}
         </div>
       </div>
     </div>
