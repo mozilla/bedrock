@@ -1320,6 +1320,7 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
         }
     },
     'firefox-mobile-welcome': {
+        'sms_countries': '',
         'email': {
             'all': 'firefox-mobile-welcome',
         }
