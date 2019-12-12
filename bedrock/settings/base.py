@@ -1318,6 +1318,11 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
         'email': {
             'all': 'download-firefox-rocket',
         }
+    },
+    'firefox-mobile-welcome': {
+        'email': {
+            'all': 'firefox-mobile-welcome',
+        }
     }
 }
 
