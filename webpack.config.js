@@ -859,6 +859,7 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           "css-loader",
+          "resolve-url-loader",
           "sass-loader"
         ]
       },
@@ -879,10 +880,9 @@ module.exports = {
       {
         test: /\.(ico|jpe?g|png|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/i,
         loader: 'file-loader',
-      },
-      {
-        test: /\.(png|svg)$/i,
-        loader: 'file-loader',
+        options: {
+          name: 'img/[name].[ext]',
+        },
       },
       {
         enforce: 'pre',

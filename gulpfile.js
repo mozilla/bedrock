@@ -146,8 +146,6 @@ function assetsCopy() {
     ]);
 }
 
-
-
 /**
  * Find all SASS files from bundles in the static_build directory and compile them.
  */

@@ -81,6 +81,7 @@ COPY ./vendor-local ./vendor-local
 COPY ./bedrock ./bedrock
 COPY ./l10n ./l10n
 COPY ./media ./media
+COPY ./assets ./assets
 
 
 ########
@@ -121,7 +122,7 @@ USER webdev
 #
 FROM app-base AS release
 
-COPY --from=assets /app/static /app/static
+COPY --from=assets /app/assets /app/assets
 RUN honcho run --env docker/envfiles/prod.env docker/bin/build_staticfiles.sh
 
 # build args
