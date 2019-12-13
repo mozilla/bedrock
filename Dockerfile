@@ -81,7 +81,6 @@ COPY ./vendor-local ./vendor-local
 COPY ./bedrock ./bedrock
 COPY ./l10n ./l10n
 COPY ./media ./media
-COPY ./assets ./assets
 
 
 ########

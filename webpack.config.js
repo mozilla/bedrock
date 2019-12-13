@@ -832,18 +832,12 @@ module.exports = {
   output: {
     'filename': 'js/[name].js',
     'path': path.resolve(__dirname, "assets/"),
-    'publicPath': '/assets/',
+    'publicPath': '/media/',
   },
 
   plugins: [
     new UglifyJSPlugin(),
     new MiniCssExtractPlugin({'filename': 'css/[name].css'}),
-    new CopyPlugin([
-      {
-        from: 'media/img/',
-        to: 'img/',
-      },
-    ]),
   ],
 
   watchOptions: {
@@ -852,7 +846,11 @@ module.exports = {
     aggregateTimeout: 600, 
     ignored: /node_modules/
   },
-
+  resolve: {
+    alias: {
+      media: path.resolve(__dirname, "media/"),
+    },
+  },
   module: {
     rules: [
       {

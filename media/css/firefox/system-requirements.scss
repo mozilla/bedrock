@@ -4,7 +4,7 @@
 
 $font-path: '/media/fonts';
 $image-path: '~@mozilla-protocol/core/protocol/img';
-@import '../~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 .l-narrow {
     margin: 0 auto;
@@ -73,26 +73,26 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
 }
 
 .c-page-section:before {
-    background-image: url('/media/protocol/img/logos/firefox/browser/logo-sm.png');
+    background-image: url('#{$image-path}/logos/firefox/browser/logo-sm.png');
 
     @media #{$mq-high-res} {
-        background-image: url('/media/protocol/img/logos/firefox/browser/logo-sm-high-res.png');
+        background-image: url('#{$image-path}/logos/firefox/browser/logo-sm-high-res.png');
     }
 }
 
 .mzp-t-beta .c-page-section:before {
-    background-image: url('/media/protocol/img/logos/firefox/browser/beta/logo-sm.png');
+    background-image: url('#{$image-path}/logos/firefox/browser/beta/logo-sm.png');
 
     @media #{$mq-high-res} {
-        background-image: url('/media/protocol/img/logos/firefox/browser/beta/logo-sm-high-res.png');
+        background-image: url('#{$image-path}/logos/firefox/browser/beta/logo-sm-high-res.png');
     }
 }
 
 .mzp-t-aurora .c-page-section:before {
-    background-image: url('/media/img/firefox/releasenotes/aurora.png');
+    background-image: url('~media/img/firefox/releasenotes/aurora.png');
 
     @media #{$mq-high-res} {
-        background-image: url('/media/img/firefox/releasenotes/aurora-high-res.png');
+        background-image: url('~media/img/firefox/releasenotes/aurora-high-res.png');
     }
 }
 
