@@ -1320,7 +1320,7 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
         }
     },
     'firefox-mobile-welcome': {
-        'sms_countries': config('STD_SMS_COUNTRIES_DEFAULT', default='US', parser=ListOf(str)),
+        'sms_countries': config('STD_SMS_COUNTRIES_MOBILE_WELCOME', default='US,DE,FR', parser=ListOf(str)),
         'sms': {
             'all': 'firefox-mobile-welcome',
         },
