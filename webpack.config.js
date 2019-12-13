@@ -1,6 +1,7 @@
 const path = require('path');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin  = require('mini-css-extract-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 function resolveBundles(fileList){
   return fileList.map((f) => {
@@ -837,6 +838,12 @@ module.exports = {
   plugins: [
     new UglifyJSPlugin(),
     new MiniCssExtractPlugin({'filename': 'css/[name].css'}),
+    new CopyPlugin([
+      {
+        from: 'media/img/',
+        to: 'img/',
+      },
+    ]),
   ],
 
   watchOptions: {
@@ -859,7 +866,6 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           "css-loader",
-          "resolve-url-loader",
           "sass-loader"
         ]
       },
@@ -881,7 +887,7 @@ module.exports = {
         test: /\.(ico|jpe?g|png|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/i,
         loader: 'file-loader',
         options: {
-          name: 'img/[name].[ext]',
+          name: 'img/[path][name].[ext]',
         },
       },
       {
