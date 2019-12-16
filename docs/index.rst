@@ -33,7 +33,6 @@ Contents
    javascript-libs
    newsletters
    content-cards
-   tabzilla
    uitour
    send-to-device
    firefox-accounts

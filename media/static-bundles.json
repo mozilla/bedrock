@@ -46,7 +46,6 @@
     {
       "files": [
         "css/sandstone/sandstone-resp.less",
-        "css/tabzilla/tabzilla-static.less",
         "css/sandstone/protocol-nav.scss",
         "css/sandstone/protocol-footer.scss"
       ],
