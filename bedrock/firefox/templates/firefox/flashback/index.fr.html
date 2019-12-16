@@ -1,0 +1,38 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block page_image %}{{ static('img/firefox/flashback/og-fr.jpg') }}{% endblock %}
+{% block page_favicon %}{{ static('img/favicons/firefox/browser/favicon.ico') }}{% endblock %}
+{% block page_favicon_large %}{{ static('img/favicons/firefox/browser/favicon-196x196.png') }}{% endblock %}
+{% block page_ios_icon %}{{ static('img/favicons/firefox/browser/apple-touch-icon.png') }}{% endblock %}
+
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block page_title %}Firefox Flashback 2019{% endblock %}
+
+{% block page_desc %}Un an sur la toile : découvrez ce que vous avez fait en ligne en 2019.{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('flashback') }}
+{% endblock %}
+
+{% block body_id %}firefox-flackback{% endblock %}
+{% block body_class %}firefox-flackback mzp-t-firefox{% endblock %}
+
+{% block content %}
+  <main role="main">
+    <div class="c-panel t-welcome-de">
+      <div class="mzp-l-content">
+        {{ high_res_img('protocol/img/logos/firefox/browser/logo-lg.png', {'alt': 'Firefox', 'width': '100', 'height': '100', 'class': 'c-welcome-logo'}) }}
+        <h1>On n’a aucune idée ce que vous faisiez en ligne l’année dernière.</h1>
+        <p>Et ça nous intéresse pas.</p>
+        <p>On est pour la vie privée. C’est tout.</p>
+        <div><a class="mzp-c-button mzp-t-product" data-cta-type="link" data-cta-text="Pourquoi" href="https://blog.mozilla.org/firefox/fr/engagements-concernant-les-donnees-personnelles-de-firefox/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=flashback">Pourquoi ?</a></div>
+      </div>
+    </div>
+  </main>
+{% endblock %}
