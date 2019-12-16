@@ -109,6 +109,7 @@ urlpatterns = (
     page('firefox/welcome/2', 'firefox/welcome/page2.html'),
     page('firefox/welcome/3', 'firefox/welcome/page3.html'),
     page('firefox/welcome/4', 'firefox/welcome/page4.html'),
+    page('firefox/welcome/5', 'firefox/welcome/page5.html'),
 
     page('firefox/switch', 'firefox/switch.html'),
     page('firefox/pocket', 'firefox/pocket.html'),

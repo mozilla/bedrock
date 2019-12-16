@@ -76,7 +76,8 @@ $image-path: '/media/protocol/img';
     margin-bottom: $layout-sm;
 
     .welcome-page1 &,
-    .welcome-page3 & {
+    .welcome-page3 &,
+    .welcome-page5 & {
         @include text-display-md;
     }
 
@@ -205,7 +206,7 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 //  Modal
 
-.no-js .welcome-page4 {
+.no-js {
     .js-modal-link {
         display: none;
     }
@@ -213,22 +214,38 @@ $image-path: '/media/protocol/img';
     .mzp-u-modal-content {
         margin: 0 auto;
         text-align: center;
+    }
 
-        h3 {
-            @include text-display-sm;
-        }
-
-        .modal-logo {
-            margin-top: $spacing-xl;
-        }
+    .modal-title {
+        @include text-display-sm;
+        margin-top: $spacing-xl;
     }
 }
 
-.modal-logo {
-    @include at2x('/media/protocol/img/logos/firefox/browser/logo-lg.png', auto, 100%);
-    @include image-replaced;
-    background-repeat: no-repeat;
-    background-position: center;
+.modal-title {
+    padding-top: $layout-xl;
+    position: relative;
+
+    &::before {
+        @include image-replaced;
+        background-position: center;
+        background-repeat: no-repeat;
+        content: '';
+        height: $layout-lg;
+        left: 50%;
+        margin-left: -($layout-lg/2);
+        position: absolute;
+        top: 0;
+        width: $layout-lg;
+
+        .welcome-page4 & {
+            @include at2x('/media/protocol/img/logos/firefox/browser/logo-lg.png', auto, 100%);
+        }
+
+        .welcome-page5 & {
+            @include at2x('/media/protocol/img/logos/firefox/lockwise/logo-lg.png', auto, 100%);
+        }
+    }
 }
 
 .mzp-c-modal-window {
@@ -239,7 +256,7 @@ $image-path: '/media/protocol/img';
     background-color: transparent;
     padding: 0;
 
-    h3 {
+    .modal-title {
         @include text-display-md;
         color: $color-off-black;
         margin-bottom: 0;
@@ -264,6 +281,16 @@ $image-path: '/media/protocol/img';
 .qr-code-wrapper {
     margin: 0 auto;
     width: $content-xs;
+}
+
+.c-store-badges {
+    text-align: center;
+    margin-top: $layout-sm;
+
+    li {
+        display: inline-block;
+        margin: 0 $spacing-sm $spacing-lg;
+    }
 }
 
 @media #{$mq-sm} {

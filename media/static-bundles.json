@@ -923,6 +923,15 @@
     },
     {
       "files": [
+        "protocol/js/protocol-modal.js",
+        "js/base/send-to-device.js",
+        "js/libs/spin.min.js",
+        "js/firefox/welcome5.js"
+      ],
+      "name": "firefox_welcome_page5"
+    },
+    {
+      "files": [
         "js/base/uitour-lib.js",
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",

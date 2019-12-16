@@ -1332,6 +1332,15 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
         'email': {
             'all': 'firefox-mobile-welcome',
         }
+    },
+    'lockwise-welcome-download': {
+        'sms_countries': config('STD_SMS_COUNTRIES_MOBILE_WELCOME', default='US,DE,FR', parser=ListOf(str)),
+        'sms': {
+            'all': 'lockwise-welcome-download',
+        },
+        'email': {
+            'all': 'lockwise-welcome-download',
+        }
     }
 }
 
