@@ -2,10 +2,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import send_to_device with context %}
+{% from "macros.html" import google_play_button, send_to_device with context %}
 {% from "macros-protocol.html" import hero with context %}
 
-{% add_lang_files "firefox/sendto" "firefox/welcome/page4" %}
+{% add_lang_files "firefox/welcome/page4" "firefox/sendto" %}
 
 {% extends "firefox/welcome/base.html" %}
 
@@ -15,6 +15,8 @@
 {% block body_class %}{{ super() }} welcome-page4{% endblock %}
 
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
+{% set android_url = firefox_adjust_url('android', 'welcome-4') %}
+{% set ios_url = firefox_adjust_url('ios', 'welcome-4') %}
 
 {% set _entrypoint = 'mozilla.org-firefox-welcome-4' %}
 {% set _utm_campaign = 'welcome-4-mobile' %}
@@ -38,8 +40,7 @@
   {% endcall %}
 
   <div id="modal" class="mzp-u-modal-content mzp-l-content">
-    <h2 class="modal-logo">Firefox</h2>
-    <h3>{{ _('Get Firefox on your Phone') }}</h3>
+    <h2 class="modal-title">{{ _('Get Firefox on your Phone') }}</h2>
 
     {% if show_send_to_device %}
       <p>{{ _('Send the download link right to your phone or email.') }}</p>
@@ -52,6 +53,17 @@
           alt="">
       </div>
     {% endif %}
+
+    <ul class="c-store-badges">
+      <li class="c-store-badge-google">
+        {{ google_play_button(href=android_url, id='playStoreLink') }}
+      </li>
+      <li class="c-store-badge-apple">
+        <a id="appStoreLink" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+        </a>
+      </li>
+    </ul>
   </div>
 {% endblock %}
 
