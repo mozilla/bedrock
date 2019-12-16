@@ -186,7 +186,7 @@ main .mzp-l-content {
 
     @media #{$mq-md} {
         &.mzp-c-hero.mzp-has-image {
-            background-image: url('/media/img/firefox/mobile/img-browser-mobile.svg'), url('/media/img/firefox/mobile/img-mobile-noodles.svg');
+            background-image: url('~media/img/firefox/mobile/img-browser-mobile.svg'), url('~media/img/firefox/mobile/img-mobile-noodles.svg');
             align-items: center;
             text-align: left;
             background-repeat: no-repeat;
@@ -368,7 +368,7 @@ main .mzp-l-content {
     img {
         animation: custom 6s infinite step-end;
         background-color: $fx-yellow;
-        background-image: url('/media/img/firefox/mobile/protocol/extend-key.svg'), url('/media/img/firefox/mobile/protocol/extend-eye.svg'), url('/media/img/firefox/mobile/protocol/extend-star.svg');
+        background-image: url('~media/img/firefox/mobile/protocol/extend-key.svg'), url('~media/img/firefox/mobile/protocol/extend-eye.svg'), url('~media/img/firefox/mobile/protocol/extend-star.svg');
         background-position: 50% 75%, 500px 500px, 500px 500px;
         background-repeat: no-repeat;
         max-width: 245px;
@@ -388,7 +388,7 @@ main .mzp-l-content {
     }
 
      img {
-         background-image: url('/media/img/firefox/mobile/protocol/theme-yellow.svg'), url('/media/img/firefox/mobile/protocol/theme-pink.svg'), url('/media/img/firefox/mobile/protocol/theme-violet.svg');
+         background-image: url('~media/img/firefox/mobile/protocol/theme-yellow.svg'), url('~media/img/firefox/mobile/protocol/theme-pink.svg'), url('~media/img/firefox/mobile/protocol/theme-violet.svg');
      }
 }
 

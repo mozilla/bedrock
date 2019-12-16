@@ -75,7 +75,7 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-md} {
         @include bidi((
-            (background-image, url('/media/img/firefox/new/trailhead/hero-bg.svg'), url('/media/img/firefox/new/trailhead/hero-bg-rtl.svg')),
+            (background-image, url('~media/img/firefox/new/trailhead/hero-bg.svg'), url('~media/img/firefox/new/trailhead/hero-bg-rtl.svg')),
             (background-position, top right -600px, top left -600px),
         ));
         background-repeat: no-repeat;
@@ -150,21 +150,21 @@ html.ios .mzp-c-hero {
     height: 104px;
     width: 104px;
     margin-left: -52px;
-    background-image: url('/media/img/firefox/new/trailhead/icon-join.svg');
+    background-image: url('~media/img/firefox/new/trailhead/icon-join.svg');
 }
 
 .lockwise .mzp-c-card-picto-content::before {
     height: 96px;
     width: 152px;
     margin-left: -76px;
-    background-image: url('/media/img/firefox/new/trailhead/icon-lockwise.svg');
+    background-image: url('~media/img/firefox/new/trailhead/icon-lockwise.svg');
 }
 
 .private .mzp-c-card-picto-content::before {
     height: 83px;
     width: 113px;
     margin-left: -56px;
-    background-image: url('/media/img/firefox/new/trailhead/icon-private.svg');
+    background-image: url('~media/img/firefox/new/trailhead/icon-private.svg');
 }
 
 /* Skyline picto card updates */
@@ -178,7 +178,7 @@ html.ios .mzp-c-hero {
 
 .skyline-etp .mzp-c-card-picto-content::before {
     @include background-size(80px 96px);
-    background-image: url('/media/img/icons/gradient-shield.svg');
+    background-image: url('~media/img/icons/gradient-shield.svg');
     height: 96px;
     margin-left: -40px;
     width: 80px;
@@ -186,7 +186,7 @@ html.ios .mzp-c-hero {
 
 .skyline-lockwise .mzp-c-card-picto-content::before {
     @include background-size(96px 96px);
-    background-image: url('/media/protocol/img/logos/firefox/lockwise/logo.svg');
+    background-image: url('#{$image-path}/logos/firefox/lockwise/logo.svg');
     height: 96px;
     margin-left: -48px;
     width: 96px;
@@ -194,7 +194,7 @@ html.ios .mzp-c-hero {
 
 .skyline-monitor .mzp-c-card-picto-content::before {
     @include background-size(96px 96px);
-    background-image: url('/media/protocol/img/logos/firefox/monitor/logo.svg');
+    background-image: url('#{$image-path}/logos/firefox/monitor/logo.svg');
     height: 96px;
     margin-left: -48px;
     width: 96px;
@@ -257,7 +257,7 @@ html.ios .mzp-c-hero {
         a:link,
         a:visited {
             @include text-body-md;
-            background: url('/media/img/firefox/new/down-arrow-blue.svg') left center no-repeat;
+            background: url('~media/img/firefox/new/down-arrow-blue.svg') left center no-repeat;
             @include background-size(20px 16px);
             color: $color-blue-50;
             display: inline-block;

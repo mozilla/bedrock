@@ -10,7 +10,7 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
 @import '../../protocol/components/state-fxa';
 
 body {
-    background: $color-white url('/media/img/firefox/whatsnew_67/noodles.png') no-repeat;
+    background: $color-white url('~media/img/firefox/whatsnew_67/noodles.png') no-repeat;
     background-size: 850px;
     background-position-x: -350px;
     background-position-y: $layout-md;

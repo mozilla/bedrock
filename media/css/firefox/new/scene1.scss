@@ -43,7 +43,7 @@
         display: none;
 
         &:before {
-            background: url('/media/img/firefox/new/icon-check.svg') center center no-repeat;
+            background: url('~media/img/firefox/new/icon-check.svg') center center no-repeat;
             content: '';
             display: inline-block;
             height: 22px;
@@ -77,7 +77,7 @@ html.firefox-pre-release {
         display: inline-block;
 
         &:before {
-            background-image: url('/media/img/firefox/new/icon-info.svg');
+            background-image: url('~media/img/firefox/new/icon-info.svg');
         }
     }
 }
@@ -91,7 +91,7 @@ html.firefox-old {
         display: inline-block;
 
         &:before {
-            background-image: url('/media/img/firefox/new/icon-alert.svg');
+            background-image: url('~media/img/firefox/new/icon-alert.svg');
         }
     }
 }
@@ -105,7 +105,7 @@ html.android.firefox-old {
         display: inline-block;
 
         &:before {
-            background-image: url('/media/img/firefox/new/icon-alert.svg');
+            background-image: url('~media/img/firefox/new/icon-alert.svg');
         }
     }
 }
@@ -119,7 +119,7 @@ html.windows.xpvista {
         display: inline-block;
 
         &:before {
-            background-image: url('/media/img/firefox/new/icon-alert.svg');
+            background-image: url('~media/img/firefox/new/icon-alert.svg');
         }
     }
 }

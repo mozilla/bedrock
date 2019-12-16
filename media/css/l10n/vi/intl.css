@@ -4,8 +4,8 @@
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-    src: url('/media/fonts/opensans-regular.woff2') format('woff2'),
-         url('/media/fonts/opensans-regular.woff') format('woff');
+    src: url('~media/fonts/opensans-regular.woff2') format('woff2'),
+         url('~media/fonts/opensans-regular.woff') format('woff');
 }
 
 @font-face {
@@ -13,8 +13,8 @@
     font-weight: bold;
     font-style: normal;
     font-display: swap;
-    src: url('/media/fonts/opensans-bold.woff2') format('woff2'),
-         url('/media/fonts/opensans-bold.woff') format('woff');
+    src: url('~media/fonts/opensans-bold.woff2') format('woff2'),
+         url('~media/fonts/opensans-bold.woff') format('woff');
 }
 
 @font-face {
@@ -22,8 +22,8 @@
     font-weight: normal;
     font-style: italic;
     font-display: swap;
-    src: url('/media/fonts/opensans-italic.woff2') format('woff2'),
-         url('/media/fonts/opensans-italic.woff') format('woff');
+    src: url('~media/fonts/opensans-italic.woff2') format('woff2'),
+         url('~media/fonts/opensans-italic.woff') format('woff');
 }
 
 @font-face {
@@ -31,8 +31,8 @@
     font-weight: bold;
     font-style: italic;
     font-display: swap;
-    src: url('/media/fonts/opensans-bolditalic.woff2') format('woff2'),
-         url('/media/fonts/opensans-bolditalic.woff') format('woff');
+    src: url('~media/fonts/opensans-bolditalic.woff2') format('woff2'),
+         url('~media/fonts/opensans-bolditalic.woff') format('woff');
 }
 */
 

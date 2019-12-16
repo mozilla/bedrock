@@ -39,7 +39,7 @@ main {
 #quantum {
     @include open-sans;
     background: #0060df;
-    background: url('/media/img/firefox/quantum/fox-tail-header.png') center center no-repeat,
+    background: url('~media/img/firefox/quantum/fox-tail-header.png') center center no-repeat,
                 linear-gradient(to bottom, #0060df 7%, #0095ff 100%);
     color: #fff;
     padding: 40px 0;
@@ -174,7 +174,7 @@ main {
 
 #mozilla {
     background-color: #D7D9F2;
-    background-image: url('/media/img/home/colon-slash-slash.svg');
+    background-image: url('~media/img/home/colon-slash-slash.svg');
     background-position: center top 20px;
     background-repeat: no-repeat;
     background-size: 300px;
@@ -422,7 +422,7 @@ html[dir="rtl"] {
 
         &:after {
             @include transition(right 150ms cubic-bezier(.3, -0.5, .6, 1.5));
-            background: url('/media/img/hubs/cta-arrow-black.svg') 0 0 no-repeat;
+            background: url('~media/img/hubs/cta-arrow-black.svg') 0 0 no-repeat;
             @include background-size(14px);
             bottom: calc(50% - 6px);
             content: '';

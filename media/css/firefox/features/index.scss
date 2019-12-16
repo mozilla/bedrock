@@ -13,7 +13,7 @@
     }
 
     &:after {
-        background: transparent url('/media/img/firefox/features/quantum/wave.png') center center no-repeat;
+        background: transparent url('~media/img/firefox/features/quantum/wave.png') center center no-repeat;
         @include background-size(5223px 186px);
         bottom: -30px;
         content: '';
@@ -156,47 +156,47 @@
         }
 
         &.extensions h3:before {
-            background-image: url('/media/img/firefox/features/quantum/icons/extensions-blue.svg');
+            background-image: url('~media/img/firefox/features/quantum/icons/extensions-blue.svg');
         }
 
         &.customize h3:before {
-            background-image: url('/media/img/firefox/features/quantum/icons/customize-blue.svg');
+            background-image: url('~media/img/firefox/features/quantum/icons/customize-blue.svg');
         }
 
         &.sync h3:before {
-            background-image: url('/media/img/firefox/features/quantum/icons/sync-blue.svg');
+            background-image: url('~media/img/firefox/features/quantum/icons/sync-blue.svg');
         }
 
         &.test-pilot h3:before {
-            background-image: url('/media/img/firefox/features/quantum/icons/test-pilot-blue.svg');
+            background-image: url('~media/img/firefox/features/quantum/icons/test-pilot-blue.svg');
         }
 
         &.send-tabs h3:before {
-            background-image: url('/media/img/firefox/features/quantum/icons/send-tabs-blue.svg');
+            background-image: url('~media/img/firefox/features/quantum/icons/send-tabs-blue.svg');
         }
 
         &.bookmarks h3:before {
-            background-image: url('/media/img/firefox/features/quantum/icons/bookmarks-blue.svg');
+            background-image: url('~media/img/firefox/features/quantum/icons/bookmarks-blue.svg');
         }
 
         &.private h3:before {
-            background-image: url('/media/img/firefox/features/quantum/icons/private-blue.svg');
+            background-image: url('~media/img/firefox/features/quantum/icons/private-blue.svg');
         }
 
         &.ad-blocking h3:before {
-            background-image: url('/media/img/firefox/features/quantum/icons/ad-blocking-blue.svg');
+            background-image: url('~media/img/firefox/features/quantum/icons/ad-blocking-blue.svg');
         }
 
         &.password-manager h3:before {
-            background-image: url('/media/img/firefox/features/quantum/icons/password-manager-blue.svg');
+            background-image: url('~media/img/firefox/features/quantum/icons/password-manager-blue.svg');
         }
 
         &.memory h3:before {
-            background-image: url('/media/img/firefox/features/quantum/icons/memory-blue.svg');
+            background-image: url('~media/img/firefox/features/quantum/icons/memory-blue.svg');
         }
 
         &.fast h3:before {
-            background-image: url('/media/img/firefox/features/quantum/icons/fast-blue.svg');
+            background-image: url('~media/img/firefox/features/quantum/icons/fast-blue.svg');
         }
     }
 
@@ -248,7 +248,7 @@
 
 .fx-product-benefits-section .benefits-heading {
     background: #0060df;
-    background: url('/media/img/firefox/quantum/fox-tail-fresh-from-our-blog.png') bottom -300px center no-repeat,
+    background: url('~media/img/firefox/quantum/fox-tail-fresh-from-our-blog.png') bottom -300px center no-repeat,
                 linear-gradient(148deg, #0080ff 7%, #00edff 100%);
     color: #fff;
     display: block;
@@ -305,24 +305,24 @@
         }
 
         &.open-source h3:before {
-            background-image: url('/media/img/firefox/features/quantum/icons/open-source-black.svg');
+            background-image: url('~media/img/firefox/features/quantum/icons/open-source-black.svg');
         }
 
         &.mozilla h3:before {
-            background-image: url('/media/img/favicons/mozilla/favicon-196x196.png');
+            background-image: url('~media/img/favicons/mozilla/favicon-196x196.png');
             background-size: 35px;
         }
 
         &.independent h3:before {
-            background-image: url('/media/img/firefox/features/quantum/icons/independent-black.svg');
+            background-image: url('~media/img/firefox/features/quantum/icons/independent-black.svg');
         }
 
         &.limited-data-collection h3:before {
-            background-image: url('/media/img/firefox/features/quantum/icons/limited-data-collection-black.svg');
+            background-image: url('~media/img/firefox/features/quantum/icons/limited-data-collection-black.svg');
         }
 
         &.privacy h3:before {
-            background-image: url('/media/img/firefox/features/quantum/icons/privacy-black.svg');
+            background-image: url('~media/img/firefox/features/quantum/icons/privacy-black.svg');
         }
     }
 

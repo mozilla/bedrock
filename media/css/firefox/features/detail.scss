@@ -6,6 +6,7 @@
 @import '../../hubs/news-feed';
 @import '../../hubs/cards-block';
 @import '../../quantum/key-features';
+$image-path: '~@mozilla-protocol/core/protocol/img';
 
 
 .main-header h1:before {
@@ -19,37 +20,37 @@
 }
 
 #firefox-features-bookmarks .main-header h1:before {
-    background-image: url('/media/img/firefox/features/quantum/icons/bookmarks-white.svg');
+    background-image: url('~media/img/firefox/features/quantum/icons/bookmarks-white.svg');
 }
 
 #firefox-features-fast .main-header h1:before {
-    background-image: url('/media/img/firefox/features/quantum/icons/fast-white.svg');
+    background-image: url('~media/img/firefox/features/quantum/icons/fast-white.svg');
 }
 
 #firefox-features-independent .main-header h1:before {
-    background-image: url('/media/protocol/img/logos/firefox/browser/logo-md.png');
+    background-image: url('#{$image-path}/logos/firefox/browser/logo-md.png');
     background-size: 70px 70px;
 }
 
 #firefox-features-memory .main-header h1:before {
-    background-image: url('/media/img/firefox/features/quantum/icons/memory-white.svg');
+    background-image: url('~media/img/firefox/features/quantum/icons/memory-white.svg');
 }
 
 #firefox-features-password-manager .main-header h1:before {
-    background-image: url('/media/img/firefox/features/quantum/icons/password-manager-white.svg');
+    background-image: url('~media/img/firefox/features/quantum/icons/password-manager-white.svg');
     width: 124px;
 }
 
 #firefox-features-private .main-header h1:before {
-    background-image: url('/media/img/firefox/features/quantum/icons/private-white.svg');
+    background-image: url('~media/img/firefox/features/quantum/icons/private-white.svg');
 }
 
 #firefox-features-send-tabs .main-header h1:before {
-    background-image: url('/media/img/firefox/features/quantum/icons/send-tabs-white.svg');
+    background-image: url('~media/img/firefox/features/quantum/icons/send-tabs-white.svg');
 }
 
 #firefox-features-sync .main-header h1:before {
-    background-image: url('/media/img/firefox/features/quantum/icons/sync-white.svg');
+    background-image: url('~media/img/firefox/features/quantum/icons/sync-white.svg');
 }
 
 /* -------------------------------------------------------------------------- */
@@ -60,99 +61,99 @@
     padding-top: 290px;
 
     &.bookmarks-feature-1 {
-        background-image: url('/media/img/firefox/features/thumbnails/bookmarks.png');
+        background-image: url('~media/img/firefox/features/thumbnails/bookmarks.png');
     }
 
     &.bookmarks-feature-2 {
-        background-image: url('/media/img/firefox/features/thumbnails/bookmarks/bookmarks-sync.png');
+        background-image: url('~media/img/firefox/features/thumbnails/bookmarks/bookmarks-sync.png');
     }
 
     &.bookmarks-feature-3 {
-        background-image: url('/media/img/firefox/features/thumbnails/bookmarks/bookmarks-addons.png');
+        background-image: url('~media/img/firefox/features/thumbnails/bookmarks/bookmarks-addons.png');
     }
 
     &.fast-feature-1 {
-        background-image: url('/media/img/firefox/features/thumbnails/fast/low-memory.jpg');
+        background-image: url('~media/img/firefox/features/thumbnails/fast/low-memory.jpg');
     }
 
     &.fast-feature-2 {
-        background-image: url('/media/img/firefox/features/thumbnails/fast/multi-tabs.jpg');
+        background-image: url('~media/img/firefox/features/thumbnails/fast/multi-tabs.jpg');
     }
 
     &.fast-feature-3 {
-        background-image: url('/media/img/firefox/features/thumbnails/fast/gaming.jpg');
+        background-image: url('~media/img/firefox/features/thumbnails/fast/gaming.jpg');
     }
 
     &.independent-feature-1 {
-        background-image: url('/media/img/firefox/features/thumbnails/independent/no-strings.jpg');
+        background-image: url('~media/img/firefox/features/thumbnails/independent/no-strings.jpg');
     }
 
     &.independent-feature-2 {
-        background-image: url('/media/img/firefox/features/thumbnails/independent/what-you-see.jpg');
+        background-image: url('~media/img/firefox/features/thumbnails/independent/what-you-see.jpg');
     }
 
     &.independent-feature-3 {
-        background-image: url('/media/img/firefox/features/thumbnails/independent/mission.jpg');
+        background-image: url('~media/img/firefox/features/thumbnails/independent/mission.jpg');
     }
 
     &.memory-feature-1 {
-        background-image: url('/media/img/firefox/features/thumbnails/memory/fast.png');
+        background-image: url('~media/img/firefox/features/thumbnails/memory/fast.png');
     }
 
     &.memory-feature-2 {
-        background-image: url('/media/img/firefox/features/thumbnails/memory.png');
+        background-image: url('~media/img/firefox/features/thumbnails/memory.png');
     }
 
     &.memory-feature-3 {
-        background-image: url('/media/img/firefox/features/thumbnails/private-browsing.jpg');
+        background-image: url('~media/img/firefox/features/thumbnails/private-browsing.jpg');
     }
 
     &.password-manager-feature-1 {
-        background-image: url('/media/img/firefox/features/thumbnails/password-manager.png');
+        background-image: url('~media/img/firefox/features/thumbnails/password-manager.png');
     }
 
     &.password-manager-feature-2 {
-        background-image: url('/media/img/firefox/features/thumbnails/password-manager/firefox-account.png');
+        background-image: url('~media/img/firefox/features/thumbnails/password-manager/firefox-account.png');
     }
 
     &.password-manager-feature-3 {
-        background-image: url('/media/img/firefox/features/thumbnails/password-manager/addons.png');
+        background-image: url('~media/img/firefox/features/thumbnails/password-manager/addons.png');
     }
 
     &.private-browsing-feature-1 {
-        background-image: url('/media/img/firefox/features/thumbnails/private/no-trace.jpg');
+        background-image: url('~media/img/firefox/features/thumbnails/private/no-trace.jpg');
     }
 
     &.private-browsing-feature-2 {
-        background-image: url('/media/img/firefox/features/thumbnails/private/zero-chill.jpg');
+        background-image: url('~media/img/firefox/features/thumbnails/private/zero-chill.jpg');
     }
 
     &.private-browsing-feature-3 {
-        background-image: url('/media/img/firefox/features/thumbnails/private/baggage.jpg');
+        background-image: url('~media/img/firefox/features/thumbnails/private/baggage.jpg');
     }
 
     &.send-tabs-feature-1 {
-        background-image: url('/media/img/firefox/features/thumbnails/send-tabs/free-up-your-inbox.jpg');
+        background-image: url('~media/img/firefox/features/thumbnails/send-tabs/free-up-your-inbox.jpg');
     }
 
     &.send-tabs-feature-2 {
-        background-image: url('/media/img/firefox/features/thumbnails/send-tabs/device-hop-like-a-pro.jpg');
+        background-image: url('~media/img/firefox/features/thumbnails/send-tabs/device-hop-like-a-pro.jpg');
     }
 
     &.send-tabs-feature-3 {
-        background-image: url('/media/img/firefox/features/thumbnails/send-tabs/share-without-a-care.jpg');
+        background-image: url('~media/img/firefox/features/thumbnails/send-tabs/share-without-a-care.jpg');
     }
 
     &.sync-feature-1 {
-        background-image: url('/media/img/firefox/features/thumbnails/sync/personal.jpg');
+        background-image: url('~media/img/firefox/features/thumbnails/sync/personal.jpg');
     }
 
     &.sync-feature-2 {
-        background-image: url('/media/img/firefox/features/thumbnails/sync/secure.jpg');
+        background-image: url('~media/img/firefox/features/thumbnails/sync/secure.jpg');
     }
 
     &.sync-feature-3 {
-        background-image: url('/media/img/firefox/features/thumbnails/sync/accessible.jpg');
+        background-image: url('~media/img/firefox/features/thumbnails/sync/accessible.jpg');
     }
 
     @media #{$mq-tablet} {
@@ -194,7 +195,7 @@
     .section-title-full-width {
         @include font-size-level3;
         background: #0060df;
-        background: url('/media/img/firefox/quantum/fox-tail-fresh-from-our-blog.png') bottom -300px center no-repeat,
+        background: url('~media/img/firefox/quantum/fox-tail-fresh-from-our-blog.png') bottom -300px center no-repeat,
                     linear-gradient(148deg, #0080ff 7%, #00edff 100%);
         color: #fff;
         display: block;
@@ -239,7 +240,7 @@
             width: auto;
 
             &:before {
-                background: url('/media/img/firefox/quantum/right-arrow-blue.svg');
+                background: url('~media/img/firefox/quantum/right-arrow-blue.svg');
                 background-repeat: no-repeat;
                 content: '';
                 height: 19px;
@@ -304,7 +305,7 @@ html[dir='rtl'] {
         padding-right: 0;
 
         &:before {
-            background: url('/media/img/firefox/quantum/left-arrow-blue.svg');
+            background: url('~media/img/firefox/quantum/left-arrow-blue.svg');
             left: 0;
             right: auto;
         }

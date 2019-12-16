@@ -32,7 +32,7 @@ main {
 .main-heading-container {
     @include background-size(cover);
     background-color: #ffdbc9;
-    background-image: url('/media/img/mozorg/technology/vr-header.svg');
+    background-image: url('~media/img/mozorg/technology/vr-header.svg');
     background-position: top center;
     background-repeat: no-repeat;
     margin-bottom: 40px;
@@ -53,7 +53,7 @@ main {
         // Chrome
         -webkit-clip-path: polygon(0 10%, 90% 0, 100% 94%, 10% 100%);
         // Firefox
-        clip-path: url('/media/img/mozorg/technology/shapes.svg#skewed');
+        clip-path: url('~media/img/mozorg/technology/shapes.svg#skewed');
         // Safari
         clip-path: polygon(0 10%, 90% 0, 100% 94%, 10% 100%);
     }
@@ -127,7 +127,7 @@ main {
 /*--------------------------------------------------------------------------*/
 // Rust video header
 .hero-rust-video {
-    background: #000 url('/media/img/mozorg/technology/icon-rust-hero.svg') -25% 30px no-repeat;
+    background: #000 url('~media/img/mozorg/technology/icon-rust-hero.svg') -25% 30px no-repeat;
     @include background-size(500px 500px);
     color: #fff;
     margin-bottom: 40px;
@@ -177,7 +177,7 @@ main {
 
         &:after {
             @include transition(background-size 150ms ease-in-out);
-            background: url('/media/img/mozorg/technology/icon-video-play.svg') center center no-repeat;
+            background: url('~media/img/mozorg/technology/icon-video-play.svg') center center no-repeat;
             @include background-size(70px 70px);
             top: 110px;
             content: '';
@@ -431,7 +431,7 @@ html[dir="rtl"] #technologies > section {
 #quantum {
     .content {
         @include background-size(220px 156px);
-        background-image: url('/media/img/mozorg/technology/quantum.svg');
+        background-image: url('~media/img/mozorg/technology/quantum.svg');
         background-position: center top 40px;
         background-repeat: no-repeat;
         padding-top: 200px;
@@ -484,8 +484,8 @@ html[dir="rtl"] #technologies > section {
 
     &:after {
         background-color: #a3f3fe;
-        background-image: url('/media/img/mozorg/technology/gaming-yeti.svg'),
-                          url('/media/img/mozorg/technology/gaming-background.svg');
+        background-image: url('~media/img/mozorg/technology/gaming-yeti.svg'),
+                          url('~media/img/mozorg/technology/gaming-background.svg');
         background-position: bottom -60px right -30px, bottom right;
         background-repeat: no-repeat, no-repeat;
         -webkit-background-size: contain, cover;
@@ -531,7 +531,7 @@ html[dir="rtl"] #technologies > section {
 
     &:before {
         @include background-size(300px 236px);
-        background-image: url('/media/img/mozorg/technology/iot.svg');
+        background-image: url('~media/img/mozorg/technology/iot.svg');
         background-position: top left;
         background-repeat: no-repeat;
         content: '';
@@ -587,7 +587,7 @@ html[dir="rtl"] #technologies > section {
     &:after {
         @include background-size(240px 193px);
         background-color: #fa7100;
-        background-image: url('/media/img/mozorg/technology/context-graph.svg');
+        background-image: url('~media/img/mozorg/technology/context-graph.svg');
         background-position: top 20px center;
         background-repeat: no-repeat;
         content: '';
@@ -644,7 +644,7 @@ html[dir="rtl"] #technologies > section {
 
     .content {
         @include background-size(200px 200px);
-        background-image: url('/media/img/mozorg/technology/rust.svg');
+        background-image: url('~media/img/mozorg/technology/rust.svg');
         background-position: top 20px center;
         background-repeat: no-repeat;
         padding-top: 200px;

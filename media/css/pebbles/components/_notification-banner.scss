@@ -10,7 +10,7 @@
 .notification-banner {
     @include gradient-horizontal($start-color: #dad9d8, $end-color: #f4f2f2);
     background-color: #dad9d8;
-    background-image: url('/media/img/notification/background.png');
+    background-image: url('~media/img/notification/background.png');
     background-position: top center;
     background-repeat: no-repeat;
     overflow: hidden;
@@ -51,7 +51,7 @@
     .notification-banner-close {
         @include image-replaced;
         @include transition(opacity .2s ease-in-out);
-        background: #000 url('/media/img/notification/close.svg') center center no-repeat;
+        background: #000 url('~media/img/notification/close.svg') center center no-repeat;
         @include background-size(12px 12px);
         border-radius: 100%;
         border: none;

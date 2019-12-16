@@ -62,11 +62,11 @@ $color-theme-decentralization-accent: $color-brand-yellow;
     .main-header {
         @include background-size(568px 719px);
         background-color: #9899cc;
-        background-image: url('/media/img/mozorg/internet-health/privacy/privacy-header-bg.png');
+        background-image: url('~media/img/mozorg/internet-health/privacy/privacy-header-bg.png');
     }
 
     .head-pagenav a:before {
-        background-image: url('/media/img/mozorg/internet-health/privacy/privacy-nav-sprite.png');
+        background-image: url('~media/img/mozorg/internet-health/privacy/privacy-nav-sprite.png');
     }
 }
 
@@ -74,11 +74,11 @@ $color-theme-decentralization-accent: $color-brand-yellow;
 // Extra custom bits for inclusion page
 .theme-inclusion {
     .main-header {
-        background-image: url('/media/img/mozorg/internet-health/inclusion/inclusion-header-bg.png');
+        background-image: url('~media/img/mozorg/internet-health/inclusion/inclusion-header-bg.png');
     }
 
     .head-pagenav a:before {
-        background-image: url('/media/img/mozorg/internet-health/inclusion/inclusion-nav-sprite.png');
+        background-image: url('~media/img/mozorg/internet-health/inclusion/inclusion-nav-sprite.png');
     }
 }
 
@@ -87,11 +87,11 @@ $color-theme-decentralization-accent: $color-brand-yellow;
 .theme-innovation {
     .main-header {
         @include background-size(620px 913px);
-        background-image: url('/media/img/mozorg/internet-health/innovation/header-background.png');
+        background-image: url('~media/img/mozorg/internet-health/innovation/header-background.png');
     }
 
     .head-pagenav a:before {
-        background-image: url('/media/img/mozorg/internet-health/innovation/nav-sprite.png');
+        background-image: url('~media/img/mozorg/internet-health/innovation/nav-sprite.png');
     }
 }
 
@@ -99,12 +99,12 @@ $color-theme-decentralization-accent: $color-brand-yellow;
 .theme-literacy {
     .main-header {
         @include background-size(515px 758px);
-        background-image: url('/media/img/mozorg/internet-health/web-literacy/literacy-header-background.png');
+        background-image: url('~media/img/mozorg/internet-health/web-literacy/literacy-header-background.png');
         background-repeat: repeat-x;
     }
 
     .head-pagenav a:before {
-        background-image: url('/media/img/mozorg/internet-health/web-literacy/literacy-nav-sprite.png');
+        background-image: url('~media/img/mozorg/internet-health/web-literacy/literacy-nav-sprite.png');
     }
 }
 
@@ -112,13 +112,13 @@ $color-theme-decentralization-accent: $color-brand-yellow;
 .theme-decentralization {
     .main-header {
         @include background-size(515px 758px);
-        background-image: url('/media/img/mozorg/internet-health/decentralization/decentralization-header-background.png');
+        background-image: url('~media/img/mozorg/internet-health/decentralization/decentralization-header-background.png');
         background-repeat: repeat-x;
     }
 
     .head-pagenav a:before {
         @include background-size(50px 200px);
-        background-image: url('/media/img/mozorg/internet-health/decentralization/decentralization-nav-sprite.png');
+        background-image: url('~media/img/mozorg/internet-health/decentralization/decentralization-nav-sprite.png');
     }
 
     @media #{$mq-tablet} {

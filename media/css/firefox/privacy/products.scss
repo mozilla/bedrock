@@ -119,21 +119,21 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
 
         &.invisible .mzp-c-card-picto-content:before {
             @include background-size(103px 80px);
-            background-image: url('/media/img/firefox/privacy/products/icon-invisible.svg');
+            background-image: url('~media/img/firefox/privacy/products/icon-invisible.svg');
             height: 80px;
             width: 103px;
         }
 
         &.control .mzp-c-card-picto-content:before {
             @include background-size(62px 80px);
-            background-image: url('/media/img/firefox/privacy/products/icon-control.svg');
+            background-image: url('~media/img/firefox/privacy/products/icon-control.svg');
             height: 80px;
             width: 62px;
         }
 
         &.protection .mzp-c-card-picto-content:before {
             @include background-size(94px 80px);
-            background-image: url('/media/img/firefox/privacy/products/icon-protection.svg');
+            background-image: url('~media/img/firefox/privacy/products/icon-protection.svg');
             height: 80px;
             width: 94px;
         }
@@ -225,7 +225,7 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
 }
 
 .privacy-products-pocket .mzp-c-card-feature-title {
-    background-image: url('/media/protocol/img/logos/pocket/logo-word-horz.svg');
+    background-image: url('#{$image-path}/logos/pocket/logo-word-horz.svg');
 }
 
 .privacy-products-accounts .mzp-c-emphasis-box {

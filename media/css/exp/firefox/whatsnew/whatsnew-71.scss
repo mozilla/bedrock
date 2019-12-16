@@ -215,7 +215,7 @@ $image-path: '/media/protocol/img';
 }
 
 .content-wrapper {
-    background: $color-off-black url('/media/img/firefox/whatsnew_70/whatsnew_background.svg') no-repeat;
+    background: $color-off-black url('~media/img/firefox/whatsnew_70/whatsnew_background.svg') no-repeat;
     @include background-size(100%);
     color: $color-white;
 }

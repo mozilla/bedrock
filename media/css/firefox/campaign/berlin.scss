@@ -10,8 +10,8 @@
     font-family: 'Fira Sans Heavy';
     font-style: normal;
     font-weight: normal;
-    src: url('/media/fonts/FiraSans-Heavy.woff2') format('woff2'),
-         url('/media/fonts/FiraSans-Heavy.woff') format('woff');
+    src: url('~media/fonts/FiraSans-Heavy.woff2') format('woff2'),
+         url('~media/fonts/FiraSans-Heavy.woff') format('woff');
 }
 
 /* -------------------------------------------------------------------------- */
@@ -43,10 +43,10 @@ body {
 // Top hero section
 
 .intro {
-    background: #23003d url('/media/img/firefox/new/berlin/hero-image-mobile.jpg') top center no-repeat;
-    background: url('/media/img/firefox/new/berlin/hearts-left.png') bottom 20px left -40px no-repeat,
-                url('/media/img/firefox/new/berlin/hearts-right.png') top 20px right -30px no-repeat,
-                url('/media/img/firefox/new/berlin/hero-image-mobile.jpg') top center no-repeat
+    background: #23003d url('~media/img/firefox/new/berlin/hero-image-mobile.jpg') top center no-repeat;
+    background: url('~media/img/firefox/new/berlin/hearts-left.png') bottom 20px left -40px no-repeat,
+                url('~media/img/firefox/new/berlin/hearts-right.png') top 20px right -30px no-repeat,
+                url('~media/img/firefox/new/berlin/hero-image-mobile.jpg') top center no-repeat
                 #23003d;
     background-size: auto, auto, cover, auto;
     padding: 0 0 20px;
@@ -99,7 +99,7 @@ body {
     }
 
     @media #{$mq-desktop} {
-        background: #23003d url('/media/img/firefox/new/berlin/hero-image.jpg') top center no-repeat;
+        background: #23003d url('~media/img/firefox/new/berlin/hero-image.jpg') top center no-repeat;
 
         &.content-section {
             padding: 0;
@@ -162,7 +162,7 @@ body {
         display: block;
 
         &:after {
-            background: url('/media/img/icons/video-play.svg') top left no-repeat;
+            background: url('~media/img/icons/video-play.svg') top left no-repeat;
             content: '';
             height: 100px;
             left: 50%;

@@ -12,7 +12,7 @@
 
 .main-header {
     background: #0060df;
-    background: url('/media/img/firefox/quantum/fox-tail-header.png') center center no-repeat,
+    background: url('~media/img/firefox/quantum/fox-tail-header.png') center center no-repeat,
                 linear-gradient(to bottom, #0060df 7%, #0095ff 100%);
     color: #fff;
     padding: 30px 0;
@@ -90,7 +90,7 @@ html[dir="rtl"] .main-header {
 
 .newsletter-container {
     background: #0060df;
-    background: url('/media/img/firefox/quantum/fox-tail-newsletter.png') bottom -200px center no-repeat,
+    background: url('~media/img/firefox/quantum/fox-tail-newsletter.png') bottom -200px center no-repeat,
                 linear-gradient(148deg, #c7216a 7%, #fda41e 100%);
     margin-top: 40px;
 }
@@ -107,6 +107,6 @@ html[dir="rtl"] .main-header {
     }
 
     .newsletter-title {
-        background-image: url('/media/img/firefox/features/quantum/icons/newsletter-white.svg');
+        background-image: url('~media/img/firefox/features/quantum/icons/newsletter-white.svg');
     }
 }

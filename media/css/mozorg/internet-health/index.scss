@@ -30,7 +30,7 @@ main .content {
 .data-detox-kit {
     .card-content-wrapper {
         background-color: #d7d9f2;
-        background-image: url('/media/img/mozorg/internet-health/hub/data-detox-kit.png');
+        background-image: url('~media/img/mozorg/internet-health/hub/data-detox-kit.png');
         background-position: top -30px center;
         @include background-size(100%, auto);
     }
@@ -57,7 +57,7 @@ main .content {
 
 .net-neutrality {
     .card-content-wrapper {
-        background-image: url('/media/img/mozorg/internet-health/hub/net-neutrality-large.png');
+        background-image: url('~media/img/mozorg/internet-health/hub/net-neutrality-large.png');
         @include background-size(100%, auto);
     }
 }
@@ -70,7 +70,7 @@ main .content {
 
 .podcast {
     .card-content-wrapper {
-        background-image: url('/media/img/mozorg/internet-health/hub/podcast.jpg');
+        background-image: url('~media/img/mozorg/internet-health/hub/podcast.jpg');
         @include background-size(100%, auto);
     }
 
@@ -89,7 +89,7 @@ main .content {
 
 .report {
     .card-content-wrapper {
-        background-image: url('/media/img/mozorg/internet-health/hub/health-report.png');
+        background-image: url('~media/img/mozorg/internet-health/hub/health-report.png');
         @include background-size(100%, auto);
     }
 

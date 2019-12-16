@@ -87,7 +87,7 @@ main {
         font-weight: normal;
 
         &:after {
-            background: url('/media/img/etc/firefox/retention/icons-sprite.svg') center top no-repeat;
+            background: url('~media/img/etc/firefox/retention/icons-sprite.svg') center top no-repeat;
             background-size: 25px 175px;
             content: '';
             display: inline-block;
@@ -154,7 +154,7 @@ main {
     }
 
     a:before {
-        background: url('/media/img/etc/firefox/retention/icons-sprite.svg') center top no-repeat;
+        background: url('~media/img/etc/firefox/retention/icons-sprite.svg') center top no-repeat;
         background-size: 25px 175px;
         content: '';
         display: inline-block;

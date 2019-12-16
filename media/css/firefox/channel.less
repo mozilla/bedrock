@@ -28,7 +28,7 @@
 
 .main-header {
     background: #0060df;
-    background: url('/media/img/firefox/channel/header-bg-tail.png') top -220px center no-repeat,
+    background: url('~media/img/firefox/channel/header-bg-tail.png') top -220px center no-repeat,
                 linear-gradient(148deg, #0060df 7%, #0479f4 20%, #0681fc 27%, #02bdf1 60%, #01d3f0 67%, #05f0e6 100%);
     text-align: center;
 
@@ -407,11 +407,11 @@ html[lang^="en"] {
 }
 
 #developer header {
-    background-image: url('/media/protocol/img/logos/firefox/browser/developer/logo-2xl.png');
+    background-image: url('#{$image-path}/logos/firefox/browser/developer/logo-2xl.png');
     background-size: 180px 180px;
 
     @media @highdpi {
-        background-image: url('/media/protocol/img/logos/firefox/browser/developer/logo-2xl-high-res.png');
+        background-image: url('#{$image-path}/logos/firefox/browser/developer/logo-2xl-high-res.png');
     }
 
     @media only screen and (max-width: @breakDesktop) {
@@ -424,11 +424,11 @@ html[lang^="en"] {
 }
 
 #nightly header {
-    background-image: url('/media/protocol/img/logos/firefox/browser/nightly/logo-2xl.png');
+    background-image: url('#{$image-path}/logos/firefox/browser/nightly/logo-2xl.png');
     background-size: 180px 180px;
 
     @media @highdpi {
-        background-image: url('/media/protocol/img/logos/firefox/browser/nightly/logo-2xl-high-res.png');
+        background-image: url('#{$image-path}/logos/firefox/browser/nightly/logo-2xl-high-res.png');
     }
 
     @media only screen and (max-width: @breakDesktop) {

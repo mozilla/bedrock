@@ -36,7 +36,7 @@
 
         &:after {
             @include transition(opacity .3s);
-            background: url('/media/img/icons/video-play.svg') top left no-repeat;
+            background: url('~media/img/icons/video-play.svg') top left no-repeat;
             content: '';
             height: 100px;
             left: 50%;

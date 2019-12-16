@@ -60,13 +60,13 @@ main {
     }
 
     .test .mzp-c-card-picto-content::before {
-        background-image: url('/media/img/firefox/firstrun/test.png');
+        background-image: url('~media/img/firefox/firstrun/test.png');
     }
     .code .mzp-c-card-picto-content::before {
-        background-image: url('/media/img/firefox/firstrun/code.png');
+        background-image: url('~media/img/firefox/firstrun/code.png');
     }
     .localize .mzp-c-card-picto-content::before {
-        background-image: url('/media/img/firefox/firstrun/localize.png');
+        background-image: url('~media/img/firefox/firstrun/localize.png');
     }
 }
 

@@ -84,7 +84,7 @@ html.noscroll {
 
             .button {
                 @include image-replaced;
-                background: transparent url('/media/img/mozid/modal-close.svg') center center no-repeat;
+                background: transparent url('~media/img/mozid/modal-close.svg') center center no-repeat;
                 @include background-size(22px, 22px);
                 border-radius: 50%;
                 border: 2px solid #fff;

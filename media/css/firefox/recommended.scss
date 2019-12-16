@@ -37,15 +37,15 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
 }
 
 .faster .mzp-c-card-picto-content::before {
-    background-image: url('/media/img/firefox/recommended/icon-faster.svg');
+    background-image: url('~media/img/firefox/recommended/icon-faster.svg');
 }
 
 .lighter .mzp-c-card-picto-content::before {
-    background-image: url('/media/img/firefox/recommended/icon-lighter.svg');
+    background-image: url('~media/img/firefox/recommended/icon-lighter.svg');
 }
 
 .private .mzp-c-card-picto-content::before {
-    background-image: url('/media/img/firefox/recommended/icon-private.svg');
+    background-image: url('~media/img/firefox/recommended/icon-private.svg');
 }
 
 //* ====================================================================== */

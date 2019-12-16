@@ -35,7 +35,7 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
 
         a {
             @include image-replaced;
-            background-image: url('/media/img/nav/logo-black.png');
+            background-image: url('~media/img/nav/logo-black.png');
             background-repeat: no-repeat;
             display: block;
             height: 32px;
@@ -77,7 +77,7 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
     .mzp-c-navigation-menu-button {
         @include image-replaced;
         background-color: transparent;
-        background-image: url('/media/img/nav/menu.png');
+        background-image: url('~media/img/nav/menu.png');
         background-position-x: center;
         background-position-y: center;
         background-repeat: no-repeat;

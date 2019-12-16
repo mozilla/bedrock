@@ -112,8 +112,8 @@ a.button:visited {
 
     @media #{$mq-desktop} {
         background-color: #ff9600; // fallback
-        background-image: url('/media/img/firefox/new/better-browser/laptop.png');
-        background-image: url('/media/img/firefox/new/better-browser/laptop.png'),
+        background-image: url('~media/img/firefox/new/better-browser/laptop.png');
+        background-image: url('~media/img/firefox/new/better-browser/laptop.png'),
                           linear-gradient(to bottom, $color-gradient-start 0%, $color-gradient-end 100%);
         background-position: top 50% right -300px;
         background-position: top 50% right -300px, top left;
@@ -121,7 +121,7 @@ a.button:visited {
         background-repeat: no-repeat, repeat;
 
         @media #{$mq-high-res} {
-            background-image: url('/media/img/firefox/new/better-browser/laptop-high-res.png'),
+            background-image: url('~media/img/firefox/new/better-browser/laptop-high-res.png'),
                               linear-gradient(to bottom, $color-gradient-start 0%, $color-gradient-end 100%);
             background-size: 800px 435px, 100%;
         }

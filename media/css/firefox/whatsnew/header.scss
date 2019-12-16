@@ -22,7 +22,7 @@
         width: calc(100% - 45px);
 
         &:before {
-            background: url('/media/img/firefox/whatsnew/icon-green-check.svg') center left no-repeat;
+            background: url('~media/img/firefox/whatsnew/icon-green-check.svg') center left no-repeat;
             background-size: 25px 25px;
             content: '';
             display: inline-block;
@@ -41,7 +41,7 @@
 
         a {
             @include image-replaced;
-            background: url('/media/img/favicons/mozilla/favicon-196x196.png') top left no-repeat;
+            background: url('~media/img/favicons/mozilla/favicon-196x196.png') top left no-repeat;
             background-size: 25px 25px;
             display: block;
             height: 25px;
@@ -74,7 +74,7 @@
         }
 
         .mozilla-logo a {
-            background-image: url('/media/img/pebbles/moz-wordmark-dark-reverse.svg');
+            background-image: url('~media/img/pebbles/moz-wordmark-dark-reverse.svg');
             background-size: auto auto;
             float: none;
             left: 0;

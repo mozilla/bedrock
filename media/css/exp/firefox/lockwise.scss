@@ -42,17 +42,17 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
 }
 
 .encryption .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/lockwise/arrows.svg') no-repeat;
+    background: url('~media/img/firefox/lockwise/arrows.svg') no-repeat;
     background-position: center;
 }
 
 .touch .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/lockwise/fingerprinters.svg') no-repeat;
+    background: url('~media/img/firefox/lockwise/fingerprinters.svg') no-repeat;
     background-position: center;
 }
 
 .privacy .mzp-c-card-picto-content::before {
-    background: url('/media/img/firefox/lockwise/mask.svg') no-repeat;
+    background: url('~media/img/firefox/lockwise/mask.svg') no-repeat;
     background-position: center;
 }
 

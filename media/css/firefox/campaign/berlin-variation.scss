@@ -10,8 +10,8 @@
     font-family: 'Fira Sans Heavy';
     font-style: normal;
     font-weight: normal;
-    src: url('/media/fonts/FiraSans-Heavy.woff2') format('woff2'),
-         url('/media/fonts/FiraSans-Heavy.woff') format('woff');
+    src: url('~media/fonts/FiraSans-Heavy.woff2') format('woff2'),
+         url('~media/fonts/FiraSans-Heavy.woff') format('woff');
 }
 
 /* -------------------------------------------------------------------------- */
@@ -52,7 +52,7 @@ a.button:visited.button-green:focus {
 // Top hero section
 
 .intro {
-    background: #23033d url('/media/img/firefox/new/berlin/mit-herz-mobile.png') top -40px center no-repeat;
+    background: #23033d url('~media/img/firefox/new/berlin/mit-herz-mobile.png') top -40px center no-repeat;
 
 
     .gesch & {
@@ -145,9 +145,9 @@ a.button:visited.button-green:focus {
     }
 
     @media #{$mq-desktop} {
-        background: #23033d url('/media/img/firefox/new/berlin/mit-herz.png') top center no-repeat;
-        background: url('/media/img/firefox/new/berlin/purple-wave.png') bottom left no-repeat,
-                    url('/media/img/firefox/new/berlin/mit-herz.png') top center no-repeat,
+        background: #23033d url('~media/img/firefox/new/berlin/mit-herz.png') top center no-repeat;
+        background: url('~media/img/firefox/new/berlin/purple-wave.png') bottom left no-repeat,
+                    url('~media/img/firefox/new/berlin/mit-herz.png') top center no-repeat,
                     #23033d;
 
         .gesch & {

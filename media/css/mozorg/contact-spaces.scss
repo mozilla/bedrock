@@ -12,8 +12,8 @@
     font-family: FA-Icons-Contact;
     font-style: normal;
     font-weight: normal;
-    src: url('/media/fonts/icons-contact.woff2') format('woff2'),
-         url('/media/fonts/icons-contact.woff') format('woff');
+    src: url('~media/fonts/icons-contact.woff2') format('woff2'),
+         url('~media/fonts/icons-contact.woff') format('woff');
 }
 
 $lightGray: lighten(#e7e5e2, 6%);
@@ -182,7 +182,7 @@ html[dir="rtl"] {
             margin: 0;
 
             a {
-                background: url('/media/img/firefox/pager-tabs.png') 0 -60px no-repeat;
+                background: url('~media/img/firefox/pager-tabs.png') 0 -60px no-repeat;
                 padding: 0;
             }
         }

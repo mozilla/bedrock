@@ -7,8 +7,8 @@
 
 @font-face {
     font-family: FA-Icons-Contact;
-    src: url('/media/fonts/icons-contact.woff2?20-12-2016') format('woff2'),
-         url('/media/fonts/icons-contact.woff?20-12-2016') format('woff');
+    src: url('~media/fonts/icons-contact.woff2?20-12-2016') format('woff2'),
+         url('~media/fonts/icons-contact.woff?20-12-2016') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -16,7 +16,7 @@
 // Header
 .snapshot-header {
     display: none;
-    background: #e9dbac url('/media/img/sandstone/grain.png');
+    background: #e9dbac url('~media/img/sandstone/grain.png');
     width: 100%;
     overflow: hidden;
     position: relative;
@@ -214,7 +214,7 @@
             transform: rotate(-23deg);
 
             span {
-                background-image: url('/media/img/mozorg/about/leadership/header/snap-jkaykaswolff.jpg');
+                background-image: url('~media/img/mozorg/about/leadership/header/snap-jkaykaswolff.jpg');
             }
         }
 
@@ -224,7 +224,7 @@
             transform: rotate(15deg);
 
             span {
-                background-image: url('/media/img/mozorg/about/leadership/header/snap-lshepard.jpg');
+                background-image: url('~media/img/mozorg/about/leadership/header/snap-lshepard.jpg');
             }
         }
 
@@ -234,7 +234,7 @@
             transform: rotate(23deg);
 
             span {
-                background-image: url('/media/img/mozorg/about/leadership/header/snap-mmuckerman.jpg');
+                background-image: url('~media/img/mozorg/about/leadership/header/snap-mmuckerman.jpg');
             }
         }
 
@@ -244,7 +244,7 @@
             transform: rotate(17deg);
 
             span {
-                background-image: url('/media/img/mozorg/about/leadership/header/snap-rwen.jpg');
+                background-image: url('~media/img/mozorg/about/leadership/header/snap-rwen.jpg');
             }
         }
 
@@ -254,7 +254,7 @@
             transform: rotate(-11deg);
 
             span {
-                background-image: url('/media/img/mozorg/about/leadership/header/snap-nweiner.jpg');
+                background-image: url('~media/img/mozorg/about/leadership/header/snap-nweiner.jpg');
             }
         }
 
@@ -264,7 +264,7 @@
             transform: rotate(31deg);
 
             span {
-                background-image: url('/media/img/mozorg/about/leadership/header/snap-ekr.jpg');
+                background-image: url('~media/img/mozorg/about/leadership/header/snap-ekr.jpg');
             }
         }
 
@@ -274,7 +274,7 @@
             transform: rotate(-30deg);
 
             span {
-                background-image: url('/media/img/mozorg/about/leadership/header/snap-kborchert.jpg');
+                background-image: url('~media/img/mozorg/about/leadership/header/snap-kborchert.jpg');
             }
         }
 
@@ -284,7 +284,7 @@
             transform: rotate(40deg);
 
             span {
-                background-image: url('/media/img/mozorg/about/leadership/header/snap-schen.jpg');
+                background-image: url('~media/img/mozorg/about/leadership/header/snap-schen.jpg');
             }
         }
 
@@ -294,7 +294,7 @@
             transform: rotate(-45deg);
 
             span {
-                background-image: url('/media/img/mozorg/about/leadership/header/snap-swhite.jpg');
+                background-image: url('~media/img/mozorg/about/leadership/header/snap-swhite.jpg');
             }
         }
 
@@ -304,7 +304,7 @@
             transform: rotate(39deg);
 
             span {
-                background-image: url('/media/img/mozorg/about/leadership/header/snap-community.jpg');
+                background-image: url('~media/img/mozorg/about/leadership/header/snap-community.jpg');
             }
         }
     }
@@ -358,43 +358,43 @@
 
     @media #{$mq-high-res} {
         .shot-four span {
-            background-image: url('/media/img/mozorg/about/leadership/header/snap-jkaykaswolff-high-res.jpg');
+            background-image: url('~media/img/mozorg/about/leadership/header/snap-jkaykaswolff-high-res.jpg');
         }
 
         .shot-five span {
-            background-image: url('/media/img/mozorg/about/leadership/header/snap-lshepard-high-res.jpg');
+            background-image: url('~media/img/mozorg/about/leadership/header/snap-lshepard-high-res.jpg');
         }
 
         .shot-six span {
-            background-image: url('/media/img/mozorg/about/leadership/header/snap-mmuckerman-high-res.jpg');
+            background-image: url('~media/img/mozorg/about/leadership/header/snap-mmuckerman-high-res.jpg');
         }
 
         .shot-seven span {
-            background-image: url('/media/img/mozorg/about/leadership/header/snap-rwen-high-res.jpg');
+            background-image: url('~media/img/mozorg/about/leadership/header/snap-rwen-high-res.jpg');
         }
 
         .shot-eight span {
-            background-image: url('/media/img/mozorg/about/leadership/header/snap-nweiner-high-res.jpg');
+            background-image: url('~media/img/mozorg/about/leadership/header/snap-nweiner-high-res.jpg');
         }
 
         .shot-nine span {
-            background-image: url('/media/img/mozorg/about/leadership/header/snap-ekr-high-res.jpg');
+            background-image: url('~media/img/mozorg/about/leadership/header/snap-ekr-high-res.jpg');
         }
 
         .shot-ten span {
-            background-image: url('/media/img/mozorg/about/leadership/header/snap-kborchert-high-res.jpg');
+            background-image: url('~media/img/mozorg/about/leadership/header/snap-kborchert-high-res.jpg');
         }
 
         .shot-eleven span {
-            background-image: url('/media/img/mozorg/about/leadership/header/snap-schen-high-res.jpg');
+            background-image: url('~media/img/mozorg/about/leadership/header/snap-schen-high-res.jpg');
         }
 
         .shot-twelve span {
-            background-image: url('/media/img/mozorg/about/leadership/header/snap-swhite-high-res.jpg');
+            background-image: url('~media/img/mozorg/about/leadership/header/snap-swhite-high-res.jpg');
         }
 
         .shot-thirteen span {
-            background-image: url('/media/img/mozorg/about/leadership/header/snap-community-high-res.jpg');
+            background-image: url('~media/img/mozorg/about/leadership/header/snap-community-high-res.jpg');
         }
 
     }
@@ -900,12 +900,12 @@
 
     .next {
         right: -40px;
-        background: transparent url('/media/img/mozid/modal-right.svg') left center no-repeat;
+        background: transparent url('~media/img/mozid/modal-right.svg') left center no-repeat;
     }
 
     .prev {
         left: -40px;
-        background: transparent url('/media/img/mozid/modal-left.svg') right center no-repeat;
+        background: transparent url('~media/img/mozid/modal-left.svg') right center no-repeat;
     }
 
 }

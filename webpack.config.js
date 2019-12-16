@@ -1,7 +1,8 @@
 const path = require('path');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const MiniCssExtractPlugin  = require('mini-css-extract-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin  = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const process = require('process');
 
 function resolveBundles(fileList){
   return fileList.map((f) => {
@@ -827,6 +828,13 @@ const entry = {
   ]),
 };
 
+const plugins = [
+  new MiniCssExtractPlugin({'filename': 'css/[name].css'}),
+];
+if(process.env.NODE_ENV === "production"){
+  plugins.push(new UglifyJSPlugin())
+}
+
 module.exports = {
   entry: entry,
   output: {
@@ -835,10 +843,7 @@ module.exports = {
     'publicPath': '/media/',
   },
 
-  plugins: [
-    new UglifyJSPlugin(),
-    new MiniCssExtractPlugin({'filename': 'css/[name].css'}),
-  ],
+  plugins: plugins,
 
   watchOptions: {
   // this is in milliseconds, causes the rebuild of assets to wait this amount of time to collect changes 
@@ -882,10 +887,10 @@ module.exports = {
         ]
       },
       {
-        test: /\.(ico|jpe?g|png|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/i,
+        test: /\.(ico|jpe?g|gif|png|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/i,
         loader: 'file-loader',
         options: {
-          name: 'img/[path][name].[ext]',
+          name: '[path][name].[ext]',
         },
       },
       {

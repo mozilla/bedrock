@@ -11,8 +11,8 @@
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-    src: url('/media/fonts/ZillaSlabHighlight-Regular.woff2') format('woff2'),
-         url('/media/fonts/ZillaSlabHighlight-Regular.woff') format('woff');
+    src: url('~media/fonts/ZillaSlabHighlight-Regular.woff2') format('woff2'),
+         url('~media/fonts/ZillaSlabHighlight-Regular.woff') format('woff');
 }
 
 @font-face {
@@ -20,6 +20,6 @@
     font-weight: bold;
     font-style: normal;
     font-display: swap;
-    src: url('/media/fonts/ZillaSlabHighlight-Bold.woff2') format('woff2'),
-         url('/media/fonts/ZillaSlabHighlight-Bold.woff') format('woff');
+    src: url('~media/fonts/ZillaSlabHighlight-Bold.woff2') format('woff2'),
+         url('~media/fonts/ZillaSlabHighlight-Bold.woff') format('woff');
 }

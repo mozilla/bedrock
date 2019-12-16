@@ -49,7 +49,7 @@ main .mzp-l-content {
 @media #{$mq-md} {
     .mzp-c-hero.mzp-has-image {
         align-items: center;
-        background-image: url('/media/img/firefox/home/quantum/product.svg'), url('/media/img/firefox/home/quantum/product-bg.svg');
+        background-image: url('~media/img/firefox/home/quantum/product.svg'), url('~media/img/firefox/home/quantum/product-bg.svg');
         background-position: left calc(50% + 348px) top 72px, top -110px left 48vw;
         background-repeat: no-repeat;
         background-size: 593px auto, 1055px auto;
@@ -113,22 +113,22 @@ main .mzp-l-content {
         padding-top: $layout-md;
 
         &.t-private {
-            background-image: url('/media/img/firefox/home/quantum/icon-private.svg');
+            background-image: url('~media/img/firefox/home/quantum/icon-private.svg');
         }
         &.t-tracking {
-            background-image: url('/media/img/firefox/home/quantum/icon-tracking.svg');
+            background-image: url('~media/img/firefox/home/quantum/icon-tracking.svg');
         }
         &.t-faster {
-            background-image: url('/media/img/firefox/home/quantum/icon-faster.svg');
+            background-image: url('~media/img/firefox/home/quantum/icon-faster.svg');
         }
         &.t-extensions {
-            background-image: url('/media/img/firefox/home/quantum/icon-extensions.svg');
+            background-image: url('~media/img/firefox/home/quantum/icon-extensions.svg');
         }
         &.t-themes {
-            background-image: url('/media/img/firefox/home/quantum/icon-theme.svg');
+            background-image: url('~media/img/firefox/home/quantum/icon-theme.svg');
         }
         &.t-toolbar {
-            background-image: url('/media/img/firefox/home/quantum/icon-toolbar.svg');
+            background-image: url('~media/img/firefox/home/quantum/icon-toolbar.svg');
         }
     }
 

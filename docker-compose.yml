@@ -21,10 +21,10 @@ services:
       context: .
       target: devapp
     image: mozorg/bedrock_test:${GIT_COMMIT:-latest}
-    command: python manage.py runserver 0.0.0.0:8080
+    command: python manage.py runserver 0.0.0.0:8000
     env_file: .env
     ports:
-      - "8080:8080"
+      - "8000:8000"
     volumes:
       - ./bedrock/:/app/bedrock:delegated
       - ./bin/:/app/bin:delegated

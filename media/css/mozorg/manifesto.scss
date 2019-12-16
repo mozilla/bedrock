@@ -56,7 +56,7 @@ Manifesto
 
     &:after {
         @include background-size(cover);
-        background-image: url('/media/img/mozorg/about/manifesto/cta-arrow.svg');
+        background-image: url('~media/img/mozorg/about/manifesto/cta-arrow.svg');
         background-position: 0 0;
         content: '';
         display: inline-block;
@@ -244,7 +244,7 @@ a.button.button-manifesto {
     }
 
     &:before {
-        background-image: url('/media/img/logos/social/social-icon-sprite.svg');
+        background-image: url('~media/img/logos/social/social-icon-sprite.svg');
         background-position: 0 0;
         background-size: cover;
         content: '';

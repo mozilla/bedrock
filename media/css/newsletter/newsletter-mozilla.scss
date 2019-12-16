@@ -5,7 +5,7 @@
 @import '../pebbles/includes/lib';
 
 .section-intro {
-    background: #373737 url('/media/img/newsletter/intro-mozsummit-600.jpg') center center no-repeat;
+    background: #373737 url('~media/img/newsletter/intro-mozsummit-600.jpg') center center no-repeat;
     @include background-size(cover);
     border-bottom: 1px solid rgba(0, 0, 0, .2);
     color: #fff;
@@ -41,7 +41,7 @@
     }
 
     @media #{$mq-tablet} {
-        background-image: url('/media/img/newsletter/intro-mozsummit-1000.jpg');
+        background-image: url('~media/img/newsletter/intro-mozsummit-1000.jpg');
 
         .page-title {
             @include font-size(48px);
@@ -49,7 +49,7 @@
     }
 
     @media #{$mq-desktop} {
-        background-image: url('/media/img/newsletter/intro-mozsummit-2000.jpg');
+        background-image: url('~media/img/newsletter/intro-mozsummit-2000.jpg');
 
         .page-title {
             @include font-size(72px);
@@ -57,7 +57,7 @@
     }
 
     @media #{$mq-desktop-wide} {
-        background-image: url('/media/img/newsletter/intro-mozsummit-3000.jpg');
+        background-image: url('~media/img/newsletter/intro-mozsummit-3000.jpg');
     }
 }
 

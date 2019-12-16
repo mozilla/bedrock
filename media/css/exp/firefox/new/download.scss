@@ -31,7 +31,7 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-md} {
         @include bidi((
-            (background-image, url('/media/img/exp/firefox/new/hero-bg.svg'), url('/media/img/exp/firefox/new/hero-bg-rtl.svg')),
+            (background-image, url('~media/img/exp/firefox/new/hero-bg.svg'), url('~media/img/exp/firefox/new/hero-bg-rtl.svg')),
             (background-position, top right -600px, top left -600px),
         ));
         background-repeat: no-repeat;
@@ -82,19 +82,19 @@ $image-path: '/media/protocol/img';
     height: 104px;
     width: 104px;
     margin-left: -52px;
-    background-image: url('/media/img/exp/firefox/new/icon-join.svg');
+    background-image: url('~media/img/exp/firefox/new/icon-join.svg');
 }
 
 .lockwise .mzp-c-card-picto-content::before {
     height: 96px;
     width: 152px;
     margin-left: -76px;
-    background-image: url('/media/img/exp/firefox/new/icon-lockwise.svg');
+    background-image: url('~media/img/exp/firefox/new/icon-lockwise.svg');
 }
 
 .private .mzp-c-card-picto-content::before {
     height: 83px;
     width: 113px;
     margin-left: -56px;
-    background-image: url('/media/img/exp/firefox/new/icon-private.svg');
+    background-image: url('~media/img/exp/firefox/new/icon-private.svg');
 }

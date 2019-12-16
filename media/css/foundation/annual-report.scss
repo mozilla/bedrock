@@ -106,7 +106,7 @@
 
 #annual-2014 {
     .c-banner .c-banner-content {
-        background-image: url('/media/img/foundation/annualreport/2014/bg-banner-mobile.jpg');
+        background-image: url('~media/img/foundation/annualreport/2014/bg-banner-mobile.jpg');
         @include background-size(auto, 100%);
 
         @media #{$mq-sm} {
@@ -114,18 +114,18 @@
         }
 
         @media #{$mq-md} {
-            background-image: url('/media/img/foundation/annualreport/2014/bg-banner-tablet.jpg');
+            background-image: url('~media/img/foundation/annualreport/2014/bg-banner-tablet.jpg');
         }
 
         @media #{$mq-lg} {
-            background-image: url('/media/img/foundation/annualreport/2014/bg-banner-desktop.jpg');
+            background-image: url('~media/img/foundation/annualreport/2014/bg-banner-desktop.jpg');
         }
     }
 }
 
 #annual-2013 {
     .c-banner .c-banner-content {
-        background-image: url('/media/img/foundation/annualreport/2013/bg-banner-mobile.jpg');
+        background-image: url('~media/img/foundation/annualreport/2013/bg-banner-mobile.jpg');
         @include background-size(auto, 100%);
 
         @media #{$mq-sm} {
@@ -133,11 +133,11 @@
         }
 
         @media #{$mq-md} {
-            background-image: url('/media/img/foundation/annualreport/2013/bg-banner-tablet.jpg');
+            background-image: url('~media/img/foundation/annualreport/2013/bg-banner-tablet.jpg');
         }
 
         @media #{$mq-lg} {
-            background-image: url('/media/img/foundation/annualreport/2013/bg-banner-desktop.jpg');
+            background-image: url('~media/img/foundation/annualreport/2013/bg-banner-desktop.jpg');
         }
     }
 }
@@ -145,7 +145,7 @@
 #annual-2012 {
     .c-banner .c-banner-content {
         @include background-size(auto, 100%);
-        background-image: url('/media/img/foundation/annualreport/2012/bg-banner-mobile.jpg');
+        background-image: url('~media/img/foundation/annualreport/2012/bg-banner-mobile.jpg');
 
         .c-header-container h1 {
             width: 50%;
@@ -153,21 +153,21 @@
 
         @media #{$mq-sm} {
             @include background-size(auto, 300px);
-            background-image: url('/media/img/foundation/annualreport/2012/bg-banner-tablet.jpg');
+            background-image: url('~media/img/foundation/annualreport/2012/bg-banner-tablet.jpg');
             background-position: top -30px right 0;
             height: 300px;
         }
 
         @media #{$mq-md} {
             @include background-size(auto, 400px);
-            background-image: url('/media/img/foundation/annualreport/2012/bg-banner-desktop.jpg');
+            background-image: url('~media/img/foundation/annualreport/2012/bg-banner-desktop.jpg');
             background-position: top -90px right -160px;
             height: 400px;
         }
 
         @media #{$mq-lg} {
             @include background-size(auto, 400px);
-            background-image: url('/media/img/foundation/annualreport/2012/bg-banner-desktop.jpg');
+            background-image: url('~media/img/foundation/annualreport/2012/bg-banner-desktop.jpg');
             background-position: top -90px right -30px;
             height: 400px;
         }

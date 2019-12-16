@@ -106,7 +106,7 @@ aside {
             a {
                 display: block;
                 @include image-replaced;
-                background-image: url('/media/img/logos/social/social-icon-sprite-dark.svg');
+                background-image: url('~media/img/logos/social/social-icon-sprite-dark.svg');
 
                 &.twitter {
                     background-position: 0 0;

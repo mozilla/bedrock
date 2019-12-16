@@ -15,8 +15,8 @@ $color-light-green: lighten(desaturate($color-green, 25%), 30%);
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-    src: url('/media/fonts/TheanoDidot-regular.woff2') format('woff2'),
-         url('/media/fonts/TheanoDidot-regular.woff') format('woff');
+    src: url('~media/fonts/TheanoDidot-regular.woff2') format('woff2'),
+         url('~media/fonts/TheanoDidot-regular.woff') format('woff');
 }
 
 
@@ -99,7 +99,7 @@ a:visited {
 
     .page-title {
         @include image-replaced;
-        background: url('/media/img/mozorg/developer/css-grid/grid-logo.svg') center top no-repeat;
+        background: url('~media/img/mozorg/developer/css-grid/grid-logo.svg') center top no-repeat;
         @include background-size(224px 224px);
         height: 224px;
         margin: 0 auto 1em;
@@ -342,7 +342,7 @@ a:visited {
         position: relative;
 
         &:before {
-            background-image: url('/media/img/mozorg/developer/css-grid/icon-sprite.png');
+            background-image: url('~media/img/mozorg/developer/css-grid/icon-sprite.png');
             @include background-size(65px 382px);
             background-repeat: no-repeat;
             content: '';
@@ -949,7 +949,7 @@ a:visited {
             padding-top: 90px;
 
             &:before {
-                background: url('/media/img/mozorg/developer/css-grid/icon-sprite.png') center -230px no-repeat;
+                background: url('~media/img/mozorg/developer/css-grid/icon-sprite.png') center -230px no-repeat;
                 @include background-size(65px 382px);
                 content: '';
                 display: block;
@@ -1142,7 +1142,7 @@ a:visited {
             margin: 0 0 .5em;
 
             &:before {
-                background: url('/media/img/mozorg/developer/css-grid/icon-sprite.png') center -306px no-repeat;
+                background: url('~media/img/mozorg/developer/css-grid/icon-sprite.png') center -306px no-repeat;
                 @include background-size(65px 382px);
                 content: '';
                 display: block;
@@ -1254,7 +1254,7 @@ a:visited {
 // Download Firefox
 
 #download-firefox {
-    background: $color-purple url('/media/img/mozorg/developer/css-grid/download-pattern.svg') center center repeat;
+    background: $color-purple url('~media/img/mozorg/developer/css-grid/download-pattern.svg') center center repeat;
     @include background-size(260px 161px);
     color: #fff;
 

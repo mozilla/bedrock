@@ -304,7 +304,7 @@ main .content {
 .resource-mdn {
     .card-content-wrapper {
         @include background-size(260px, 266px);
-        background-image: url('/media/img/mozorg/developer/hub/resource-mdn-hero.png');
+        background-image: url('~media/img/mozorg/developer/hub/resource-mdn-hero.png');
         background-repeat: repeat;
     }
 }

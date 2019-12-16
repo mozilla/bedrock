@@ -17,7 +17,7 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
 
     @media #{$mq-md} {
         &:before {
-            background-image: url('/media/img/firefox/switch/switch.png'), url('/media/img/firefox/switch/bg.svg');
+            background-image: url('~media/img/firefox/switch/switch.png'), url('~media/img/firefox/switch/bg.svg');
             background-position: 14px center, top left;
             background-size: 592px 302px, auto 100%;
             background-repeat: no-repeat;
@@ -30,17 +30,17 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
             width: 50%;
 
             html[dir=rtl] & {
-                background-image: url('/media/img/firefox/switch/switch-rtl.png'), url('/media/img/firefox/switch/bg-rtl.svg');
+                background-image: url('~media/img/firefox/switch/switch-rtl.png'), url('~media/img/firefox/switch/bg-rtl.svg');
                 background-position: right center, top right;
                 right: 50%;
                 left: auto;
             }
 
             @media #{$mq-high-res} {
-                background-image: url('/media/img/firefox/switch/switch-high-res.png'), url('/media/img/firefox/switch/bg.svg');
+                background-image: url('~media/img/firefox/switch/switch-high-res.png'), url('~media/img/firefox/switch/bg.svg');
 
                 html[dir=rtl] & {
-                    background-image: url('/media/img/firefox/switch/switch-rtl-high-res.png'), url('/media/img/firefox/switch/bg-rtl.svg');
+                    background-image: url('~media/img/firefox/switch/switch-rtl-high-res.png'), url('~media/img/firefox/switch/bg-rtl.svg');
                 }
             }
         }
@@ -76,7 +76,7 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
         @include font-size(42px);
         align-items: center;
         background-color: $color-violet-50;
-        background-image: url('/media/img/firefox/switch/one.svg');
+        background-image: url('~media/img/firefox/switch/one.svg');
         background-size: 1.8em auto;
         background-position: center center;
         background-repeat: no-repeat;
@@ -93,11 +93,11 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
     }
 
     &:nth-child(2):before {
-        background-image: url('/media/img/firefox/switch/two.svg');
+        background-image: url('~media/img/firefox/switch/two.svg');
     }
 
     &:nth-child(3):before {
-        background-image: url('/media/img/firefox/switch/three.svg');
+        background-image: url('~media/img/firefox/switch/three.svg');
     }
 }
 
@@ -122,7 +122,7 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
 
     &:before {
         @include bidi(((left, 0, right, auto),));
-        background-image: url('/media/img/logos/social/social-icon-sprite-dark.svg');
+        background-image: url('~media/img/logos/social/social-icon-sprite-dark.svg');
         background-size: 24px auto;
         background-repeat: no-repeat;
         content: '';

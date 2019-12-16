@@ -1,7 +1,7 @@
 ########
 # assets builder and dev server
 #
-FROM  node:10-buster-slim AS assets
+FROM  node:12-buster-slim AS assets
 
 ENV PATH=/app/node_modules/.bin:$PATH
 WORKDIR /app

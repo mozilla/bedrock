@@ -12,8 +12,8 @@ $color-fox-purple: #3a304b;
 
     .content {
         @include background-size(141px 157px, 153px 115px);
-        background-image: url('/media/img/newsletter/firefox/mailbox.svg'),
-                          url('/media/img/newsletter/firefox/fox-tail.svg');
+        background-image: url('~media/img/newsletter/firefox/mailbox.svg'),
+                          url('~media/img/newsletter/firefox/fox-tail.svg');
         background-position: bottom -40px left 10px, bottom -45px right -10px;
         background-repeat: no-repeat, no-repeat;
         height: 167px;

@@ -63,7 +63,7 @@ $header-product-tablet-padding: 50px;
 }
 
 @mixin icon-sprite() {
-    background: url('/media/img/firefox/mobile/icon-sprite.svg') left top no-repeat;
+    background: url('~media/img/firefox/mobile/icon-sprite.svg') left top no-repeat;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -85,7 +85,7 @@ a.button.button-focus {
 
 .main-header {
     background: #003eaa;
-    background: url('/media/img/firefox/quantum/fox-tail-header.png') bottom center no-repeat,
+    background: url('~media/img/firefox/quantum/fox-tail-header.png') bottom center no-repeat,
                 linear-gradient(170deg, #003eaa 7%, #0095ff 100%);
     color: #fff;
     padding: 30px 0 0;
@@ -966,13 +966,13 @@ html[dir="rtl"] {
 
 body[data-modal-product='firefox'] #modal .window .inner {
     background: #003eaa;
-    background: url('/media/img/firefox/mobile/tail-firefox.svg') center center no-repeat,
+    background: url('~media/img/firefox/mobile/tail-firefox.svg') center center no-repeat,
     linear-gradient(to bottom, #003eaa 30%, #0080ff 85%, #00c7ff 100%);
 }
 
 body[data-modal-product='focus'] #modal .window .inner {
     background: #ce2473;
-    background: url('/media/img/firefox/mobile/tail-focus.svg') center center no-repeat,
+    background: url('~media/img/firefox/mobile/tail-focus.svg') center center no-repeat,
     linear-gradient(to bottom, #ce2473 10%, #701979 100%);
 
     a {

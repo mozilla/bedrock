@@ -24,7 +24,7 @@
         width: 100%;
 
         &:before {
-            background-image: url('/media/img/firefox/whatsnew/icon-green-check.svg');
+            background-image: url('~media/img/firefox/whatsnew/icon-green-check.svg');
             background-position: center left;
             background-repeat: no-repeat;
             background-size: 25px 25px;
@@ -115,7 +115,7 @@
     position: relative;
 
     @media #{$mq-lg} {
-        background-image: url('/media/img/firefox/whatsnew/lite/background.jpg');
+        background-image: url('~media/img/firefox/whatsnew/lite/background.jpg');
         background-size: 2000px auto;
         background-position: top;
     }

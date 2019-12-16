@@ -64,7 +64,7 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
 
 .main {
     background: #003eaa;
-    background: url('/media/img/firefox/quantum/fox-tail-header.png') top -200px center no-repeat,
+    background: url('~media/img/firefox/quantum/fox-tail-header.png') top -200px center no-repeat,
                 linear-gradient(to bottom, #003eaa 40%, #004ec2 60%, #0060df 80%, #0080ff 90%, #00c7ff 100%);
     color: #fff;
 }

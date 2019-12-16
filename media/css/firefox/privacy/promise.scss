@@ -112,14 +112,14 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
         }
 
         &.trust .mzp-c-card-picto-content:before {
-            background-image: url('/media/img/firefox/privacy/promise/icon-mountain.svg');
+            background-image: url('~media/img/firefox/privacy/promise/icon-mountain.svg');
             height: 113px;
             margin-left: -76px;
             width: 153px;
         }
 
         &.privacy .mzp-c-card-picto-content:before {
-            background-image: url('/media/img/firefox/privacy/promise/icon-privacy.svg');
+            background-image: url('~media/img/firefox/privacy/promise/icon-privacy.svg');
             height: 113px;
             margin-left: -73px;
             width: 146px;

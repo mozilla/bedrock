@@ -93,7 +93,7 @@ html[dir="rtl"] #other-platforms-modal-link {
         a:link,
         a:visited {
             @include font-size-small;
-            background: url('/media/img/firefox/new/down-arrow-blue.svg') left center no-repeat;
+            background: url('~media/img/firefox/new/down-arrow-blue.svg') left center no-repeat;
             @include background-size(20px 16px);
             color: $color-quantum-blue;
             display: inline-block;

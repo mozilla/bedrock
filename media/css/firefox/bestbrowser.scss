@@ -10,7 +10,7 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
 @import "../~@mozilla-protocol/core/protocol/css/components/call-out";
 
 .seo-hero {
-    background: $color-purple-90 url('/media/img/firefox/best-browser/hero-pattern.png') 55% 60% no-repeat;
+    background: $color-purple-90 url('~media/img/firefox/best-browser/hero-pattern.png') 55% 60% no-repeat;
     @include background-size(2500px);
     color: #fff;
     text-align: center;

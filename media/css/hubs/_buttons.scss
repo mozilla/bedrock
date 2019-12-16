@@ -60,7 +60,7 @@ a.button:visited {
 
         strong:before {
             @include background-size(12px 28px);
-            background-image: url('/media/img/hubs/down-arrow-light-sprite.png');
+            background-image: url('~media/img/hubs/down-arrow-light-sprite.png');
             background-position: left top;
             content: '';
             display: block;

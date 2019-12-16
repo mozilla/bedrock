@@ -28,7 +28,7 @@
 }
 
 .kz {
-    background: url('/media/img/mozorg/internet-health/privacy/kz/03-blue.gif') center center no-repeat;
+    background: url('~media/img/mozorg/internet-health/privacy/kz/03-blue.gif') center center no-repeat;
     @include background-size(cover);
     height: 119px;
     position: absolute;
@@ -38,7 +38,7 @@
 
 // The Golden Kazoo
 .au {
-    background-image: url('/media/img/mozorg/internet-health/privacy/kz/05-gold.gif');
+    background-image: url('~media/img/mozorg/internet-health/privacy/kz/05-gold.gif');
     height: 130px;
     width: 221px;
 
@@ -71,13 +71,13 @@
 // It's a kavalcade of kazoos!
 @media #{$mq-tablet} {
     .gr {
-        background-image: url('/media/img/mozorg/internet-health/privacy/kz/01-green.gif');
+        background-image: url('~media/img/mozorg/internet-health/privacy/kz/01-green.gif');
         height: 275px;
         width: 155px;
     }
 
     .rd {
-        background-image: url('/media/img/mozorg/internet-health/privacy/kz/02-red.gif');
+        background-image: url('~media/img/mozorg/internet-health/privacy/kz/02-red.gif');
         height: 300px;
         width: 240px;
     }
@@ -88,7 +88,7 @@
     }
 
     .pr {
-        background-image: url('/media/img/mozorg/internet-health/privacy/kz/04-purple.gif');
+        background-image: url('~media/img/mozorg/internet-health/privacy/kz/04-purple.gif');
         height: 355px;
         width: 170px;
     }
@@ -296,7 +296,7 @@ body.easter {
 // The toaster flies every ten minutes. Cruel.
 #toast1 {
     @include animation(600s linear 600s infinite toaster-flight);
-    background: url('/media/img/mozorg/internet-health/privacy/kz/toast.gif') center center no-repeat;
+    background: url('~media/img/mozorg/internet-health/privacy/kz/toast.gif') center center no-repeat;
     height: 100px;
     left: 110%;
     position: absolute;

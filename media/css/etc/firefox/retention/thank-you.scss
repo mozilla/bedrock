@@ -18,8 +18,8 @@ html {
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-    src: url('/media/fonts/fx-lifestyle/antonio-regular-webfont.woff2') format('woff2'),
-         url('/media/fonts/fx-lifestyle/antonio-regular-webfont.woff') format('woff');
+    src: url('~media/fonts/fx-lifestyle/antonio-regular-webfont.woff2') format('woff2'),
+         url('~media/fonts/fx-lifestyle/antonio-regular-webfont.woff') format('woff');
 }
 
 @font-face {
@@ -27,8 +27,8 @@ html {
     font-weight: 700;
     font-style: normal;
     font-display: swap;
-    src: url('/media/fonts/fx-lifestyle/antonio-bold-webfont.woff2') format('woff2'),
-         url('/media/fonts/fx-lifestyle/antonio-bold-webfont.woff') format('woff');
+    src: url('~media/fonts/fx-lifestyle/antonio-bold-webfont.woff2') format('woff2'),
+         url('~media/fonts/fx-lifestyle/antonio-bold-webfont.woff') format('woff');
 
 }
 
@@ -37,8 +37,8 @@ html {
     font-weight: 600;
     font-style: normal;
     font-display: swap;
-    src: url('/media/fonts/opensans-semibold.woff2') format('woff2'),
-         url('/media/fonts/opensans-semibold.woff') format('woff');
+    src: url('~media/fonts/opensans-semibold.woff2') format('woff2'),
+         url('~media/fonts/opensans-semibold.woff') format('woff');
 }
 
 #newsletter-subscribe {

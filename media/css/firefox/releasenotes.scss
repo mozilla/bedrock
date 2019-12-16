@@ -4,8 +4,8 @@
 
 @font-face {
     font-family: 'Font Awesome';
-    src: url('/media/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
-         url('/media/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff');
+    src: url('~media/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
+         url('~media/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -43,46 +43,46 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
 .t-quantum {
     /* firefox release */
     .mzp-c-call-out.mzp-t-product-firefox .mzp-c-call-out-title {
-        background-image: url('/media/img/firefox/releasenotes/release-quantum.png');
+        background-image: url('~media/img/firefox/releasenotes/release-quantum.png');
 
         @media #{$mq-high-res} {
-            background-image: url('/media/img/firefox/releasenotes/release-quantum-high-res.png');
+            background-image: url('~media/img/firefox/releasenotes/release-quantum-high-res.png');
         }
     }
 
     /*  firefox beta */
     .mzp-c-call-out.mzp-t-product-beta .mzp-c-call-out-title {
-        background-image: url('/media/img/firefox/releasenotes/beta-quantum.png');
+        background-image: url('~media/img/firefox/releasenotes/beta-quantum.png');
 
         @media #{$mq-high-res} {
-            background-image: url('/media/img/firefox/releasenotes/beta-quantum-high-res.png');
+            background-image: url('~media/img/firefox/releasenotes/beta-quantum-high-res.png');
         }
     }
 
     /* firefox nightly */
     .mzp-c-call-out.mzp-t-product-nightly .mzp-c-call-out-title {
-        background-image: url('/media/img/firefox/releasenotes/nightly-quantum.png');
+        background-image: url('~media/img/firefox/releasenotes/nightly-quantum.png');
 
         @media #{$mq-high-res} {
-            background-image: url('/media/img/firefox/releasenotes/nightly-quantum-high-res.png');
+            background-image: url('~media/img/firefox/releasenotes/nightly-quantum-high-res.png');
         }
     }
 
     /*  firefox developer edition */
     .mzp-c-call-out.mzp-t-product-developer .mzp-c-call-out-title {
-        background-image: url('/media/img/firefox/releasenotes/developer-quantum.png');
+        background-image: url('~media/img/firefox/releasenotes/developer-quantum.png');
 
         @media #{$mq-high-res} {
-            background-image: url('/media/img/firefox/releasenotes/developer-quantum-high-res.png');
+            background-image: url('~media/img/firefox/releasenotes/developer-quantum-high-res.png');
         }
     }
 
     /*  pre-dev edition firefox aurora */
     .mzp-c-call-out.mzp-t-product-developer.t-aurora .mzp-c-call-out-title {
-        background-image: url('/media/img/firefox/releasenotes/aurora.png');
+        background-image: url('~media/img/firefox/releasenotes/aurora.png');
 
         @media #{$mq-high-res} {
-            background-image: url('/media/img/firefox/releasenotes/aurora-high-res.png');
+            background-image: url('~media/img/firefox/releasenotes/aurora-high-res.png');
         }
     }
 }
@@ -90,46 +90,46 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
 .t-pre-quantum {
     /* firefox release */
     .mzp-c-call-out.mzp-t-product-firefox .mzp-c-call-out-title {
-        background-image: url('/media/img/firefox/releasenotes/firefox-old.png');
+        background-image: url('~media/img/firefox/releasenotes/firefox-old.png');
 
         @media #{$mq-high-res} {
-            background-image: url('/media/img/firefox/releasenotes/firefox-old-high-res.png');
+            background-image: url('~media/img/firefox/releasenotes/firefox-old-high-res.png');
         }
     }
 
     /*  firefox beta */
     .mzp-c-call-out.mzp-t-product-beta .mzp-c-call-out-title {
-        background-image: url('/media/img/firefox/releasenotes/beta-old.png');
+        background-image: url('~media/img/firefox/releasenotes/beta-old.png');
 
         @media #{$mq-high-res} {
-            background-image: url('/media/img/firefox/releasenotes/beta-old-high-res.png');
+            background-image: url('~media/img/firefox/releasenotes/beta-old-high-res.png');
         }
     }
 
     /* firefox nightly */
     .mzp-c-call-out.mzp-t-product-nightly .mzp-c-call-out-title {
-        background-image: url('/media/img/firefox/releasenotes/nightly-old.png');
+        background-image: url('~media/img/firefox/releasenotes/nightly-old.png');
 
         @media #{$mq-high-res} {
-            background-image: url('/media/img/firefox/releasenotes/nightly-old-high-res.png');
+            background-image: url('~media/img/firefox/releasenotes/nightly-old-high-res.png');
         }
     }
 
     /*  firefox developer edition */
     .mzp-c-call-out.mzp-t-product-developer .mzp-c-call-out-title {
-        background-image: url('/media/img/firefox/releasenotes/developer-old.png');
+        background-image: url('~media/img/firefox/releasenotes/developer-old.png');
 
         @media #{$mq-high-res} {
-            background-image: url('/media/img/firefox/releasenotes/developer-old-high-res.png');
+            background-image: url('~media/img/firefox/releasenotes/developer-old-high-res.png');
         }
     }
 
     /*  pre-dev edition firefox aurora */
     .mzp-c-call-out.mzp-t-product-developer.t-aurora .mzp-c-call-out-title {
-        background-image: url('/media/img/firefox/releasenotes/aurora.png');
+        background-image: url('~media/img/firefox/releasenotes/aurora.png');
 
         @media #{$mq-high-res} {
-            background-image: url('/media/img/firefox/releasenotes/aurora-high-res.png');
+            background-image: url('~media/img/firefox/releasenotes/aurora-high-res.png');
         }
     }
 }
@@ -380,7 +380,7 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
 
     &:before {
         content: ' ';
-        background-image: url('/media/img/firefox/releasenotes/mdn-icon.png');
+        background-image: url('~media/img/firefox/releasenotes/mdn-icon.png');
         background-repeat: no-repeat;
         background-size: 100%;
         display: inline-block;

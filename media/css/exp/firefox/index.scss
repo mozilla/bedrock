@@ -111,7 +111,7 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
     }
 
     .t-pocket & {
-        background-image: url('/media/img/logos/pocket/pocket-wordmark.svg');
+        background-image: url('~media/img/logos/pocket/pocket-wordmark.svg');
     }
 }
 
@@ -132,7 +132,7 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
 
 @media #{$mq-md} {
     .c-lead {
-        background-image: url('/media/img/firefox/home/master/hero.jpg');
+        background-image: url('~media/img/firefox/home/master/hero.jpg');
         background-size: auto 300px;
         background-repeat: no-repeat;
         background-position: center left 50vw;
@@ -254,14 +254,14 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
         padding: 0 $layout-md;
 
         .mzp-l-content {
-            background-image: url('/media/img/firefox/home/master/respect.jpg'), linear-gradient(90deg, #5731AB 50%, $color-violet-90);
+            background-image: url('~media/img/firefox/home/master/respect.jpg'), linear-gradient(90deg, #5731AB 50%, $color-violet-90);
             background-position: left -30px center, top left;
             background-repeat: no-repeat;
             background-size: 50%, auto;
             max-width: $content-xl;
 
             @media #{$mq-high-res} {
-                background-image: url('/media/img/firefox/home/master/respect-high-res.jpg'), linear-gradient(90deg, #5731AB 50%, $color-violet-90);
+                background-image: url('~media/img/firefox/home/master/respect-high-res.jpg'), linear-gradient(90deg, #5731AB 50%, $color-violet-90);
             }
         }
 

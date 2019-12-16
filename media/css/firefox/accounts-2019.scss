@@ -48,12 +48,12 @@
     }
 
     @media #{$mq-md} {
-        background: transparent url('/media/img/firefox/accounts/trailhead/accounts-hero-logged-out.svg') right -720px top no-repeat;
+        background: transparent url('~media/img/firefox/accounts/trailhead/accounts-hero-logged-out.svg') right -720px top no-repeat;
         @include background-size(1660px 275px);
 
         .state-fxa-supported-signed-in & {
             @include background-size(2188px 275px);
-            background-image: url('/media/img/firefox/accounts/trailhead/accounts-hero-logged-in.svg');
+            background-image: url('~media/img/firefox/accounts/trailhead/accounts-hero-logged-in.svg');
             background-position: right -960px top -40px;
         }
     }
@@ -464,11 +464,11 @@
     text-align: center;
 
     &.t-movement-build {
-        background-image: url('/media/img/firefox/accounts/trailhead/icon-experiments.svg');
+        background-image: url('~media/img/firefox/accounts/trailhead/icon-experiments.svg');
     }
 
     &.t-movement-bigtech {
-        background-image: url('/media/img/firefox/accounts/trailhead/icon-inbox.svg');
+        background-image: url('~media/img/firefox/accounts/trailhead/icon-inbox.svg');
     }
 
     @media #{$mq-md} {
@@ -513,7 +513,7 @@
         @media #{$mq-md} {
             &:after {
                 @include background-size(1660px 275px);
-                background-image: url('/media/img/firefox/accounts/trailhead/accounts-hero-logged-out.svg');
+                background-image: url('~media/img/firefox/accounts/trailhead/accounts-hero-logged-out.svg');
                 background-position: center top;
                 background-repeat: no-repeat;
                 content: '';
@@ -543,7 +543,7 @@
     @media #{$mq-md} {
         .state-fxa-supported-signed-in .c-accounts-hero:after {
             @include background-size(2188px 275px);
-            background-image: url('/media/img/firefox/accounts/trailhead/accounts-hero-logged-in.svg');
+            background-image: url('~media/img/firefox/accounts/trailhead/accounts-hero-logged-in.svg');
             height: 275px;
             margin-left: -1094px;
             width: 2188px;

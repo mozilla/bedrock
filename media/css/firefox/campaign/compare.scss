@@ -168,7 +168,7 @@ $image-bottom-height: 28px;
 
         &:before,
         &:after {
-            background-image: url('/media/img/firefox/new/compare/table/highlight-white-left.png');
+            background-image: url('~media/img/firefox/new/compare/table/highlight-white-left.png');
             content: '';
             display: block;
             position: absolute;
@@ -180,17 +180,17 @@ $image-bottom-height: 28px;
         }
 
         &:after {
-            background-image: url('/media/img/firefox/new/compare/table/highlight-white-right.png');
+            background-image: url('~media/img/firefox/new/compare/table/highlight-white-right.png');
             right: auto;
             left: 100%;
         }
 
         tbody tr:nth-child(odd) &:before {
-            background-image: url('/media/img/firefox/new/compare/table/highlight-grey-left.png');
+            background-image: url('~media/img/firefox/new/compare/table/highlight-grey-left.png');
         }
 
         tbody tr:nth-child(odd) &:after {
-            background-image: url('/media/img/firefox/new/compare/table/highlight-grey-right.png');
+            background-image: url('~media/img/firefox/new/compare/table/highlight-grey-right.png');
         }
     }
 
@@ -201,16 +201,16 @@ $image-bottom-height: 28px;
         }
 
         .c-compare-highlight {
-            background: url('/media/img/firefox/new/compare/table/highlight-top.png') top left / 3px $image-width repeat-x;
+            background: url('~media/img/firefox/new/compare/table/highlight-top.png') top left / 3px $image-width repeat-x;
 
             &:before {
-                background: url('/media/img/firefox/new/compare/table/highlight-top-left.png') top left / $image-width no-repeat,
-                            url('/media/img/firefox/new/compare/table/highlight-white-left.png') top left / $image-width repeat-y;
+                background: url('~media/img/firefox/new/compare/table/highlight-top-left.png') top left / $image-width no-repeat,
+                            url('~media/img/firefox/new/compare/table/highlight-white-left.png') top left / $image-width repeat-y;
             }
 
             &:after {
-                background: url('/media/img/firefox/new/compare/table/highlight-top-right.png') top right / $image-width no-repeat,
-                            url('/media/img/firefox/new/compare/table/highlight-white-right.png') top right / $image-width repeat-y;
+                background: url('~media/img/firefox/new/compare/table/highlight-top-right.png') top right / $image-width no-repeat,
+                            url('~media/img/firefox/new/compare/table/highlight-white-right.png') top right / $image-width repeat-y;
             }
         }
     }
@@ -222,16 +222,16 @@ $image-bottom-height: 28px;
         }
 
         .c-compare-highlight {
-            background: url('/media/img/firefox/new/compare/table/highlight-bottom.png') bottom left / 3px $image-bottom-height repeat-x;
+            background: url('~media/img/firefox/new/compare/table/highlight-bottom.png') bottom left / 3px $image-bottom-height repeat-x;
 
             &:before {
-                background: url('/media/img/firefox/new/compare/table/highlight-bottom-left.png') bottom left / $image-width no-repeat,
-                            url('/media/img/firefox/new/compare/table/highlight-white-left.png') bottom left / $image-width repeat-y;
+                background: url('~media/img/firefox/new/compare/table/highlight-bottom-left.png') bottom left / $image-width no-repeat,
+                            url('~media/img/firefox/new/compare/table/highlight-white-left.png') bottom left / $image-width repeat-y;
             }
 
             &:after {
-                background: url('/media/img/firefox/new/compare/table/highlight-bottom-right.png') bottom right / $image-width no-repeat,
-                            url('/media/img/firefox/new/compare/table/highlight-white-right.png') bottom right / $image-width repeat-y;
+                background: url('~media/img/firefox/new/compare/table/highlight-bottom-right.png') bottom right / $image-width no-repeat,
+                            url('~media/img/firefox/new/compare/table/highlight-white-right.png') bottom right / $image-width repeat-y;
             }
         }
     }
@@ -243,16 +243,16 @@ $image-bottom-height: 28px;
         background-position: bottom left;
 
         .c-compare-highlight {
-            background-image: url('/media/img/firefox/new/compare/table/highlight-bottom.png');
+            background-image: url('~media/img/firefox/new/compare/table/highlight-bottom.png');
 
             &:before {
-                background-image: url('/media/img/firefox/new/compare/table/highlight-bottom-left.png'),
-                                  url('/media/img/firefox/new/compare/table/highlight-grey-left.png');
+                background-image: url('~media/img/firefox/new/compare/table/highlight-bottom-left.png'),
+                                  url('~media/img/firefox/new/compare/table/highlight-grey-left.png');
             }
 
             &:after {
-                background-image: url('/media/img/firefox/new/compare/table/highlight-bottom-right.png'),
-                                  url('/media/img/firefox/new/compare/table/highlight-grey-right.png');
+                background-image: url('~media/img/firefox/new/compare/table/highlight-bottom-right.png'),
+                                  url('~media/img/firefox/new/compare/table/highlight-grey-right.png');
             }
         }
     }

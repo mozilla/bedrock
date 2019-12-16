@@ -118,13 +118,13 @@ h4 {
     }
 
     .download-firefox-primary-cta {
-        background-image: url('/media/img/home/2018/browser.png'), url('/media/img/home/2018/bg-primary.svg');
+        background-image: url('~media/img/home/2018/browser.png'), url('~media/img/home/2018/bg-primary.svg');
         background-size: 400px 278px, auto;
         background-position: calc(50vw + 34px) 60px, calc(50vw - 41px) -78px;
         background-repeat: no-repeat;
 
         @media #{$mq-high-res} {
-            background-image: url('/media/img/home/2018/browser-high-res.png'), url('/media/img/home/2018/bg-primary.svg');
+            background-image: url('~media/img/home/2018/browser-high-res.png'), url('~media/img/home/2018/bg-primary.svg');
         }
     }
 
@@ -397,7 +397,7 @@ h4 {
 @media #{$mq-lg} {
     .c-secondary-cta {
         @include bidi(((text-align, left, right),));
-        background-image: url('/media/img/home/2018/shield.svg'), url('/media/img/home/2018/bg-secondary.svg');
+        background-image: url('~media/img/home/2018/shield.svg'), url('~media/img/home/2018/bg-secondary.svg');
         background-position: calc(50vw + 100px) 120px, 50vw 0;
         background-repeat: no-repeat;
         padding: $layout-xs 0 $layout-sm 0;

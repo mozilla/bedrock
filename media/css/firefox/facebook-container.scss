@@ -213,7 +213,7 @@ $color-photon-blue: #0099db;
     }
 
     .moz-video-button {
-        background: url('/media/img/firefox/facebook-container/video-poster.png') center left no-repeat;
+        background: url('~media/img/firefox/facebook-container/video-poster.png') center left no-repeat;
         @include background-size(cover);
     }
 

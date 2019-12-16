@@ -9,8 +9,8 @@
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-    src: url('/media/fonts/opensans-light.woff2') format('woff2'),
-         url('/media/fonts/opensans-light.woff') format('woff');
+    src: url('~media/fonts/opensans-light.woff2') format('woff2'),
+         url('~media/fonts/opensans-light.woff') format('woff');
 }
 
 $font-open-sans-light: 'Open Sans Light', X-LocaleSpecific, sans-serif;

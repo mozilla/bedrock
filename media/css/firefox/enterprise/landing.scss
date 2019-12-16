@@ -75,7 +75,7 @@ html {
 .mzp-c-hero.t-enterprise {
     // dark colour fallback incase svg image doesn't load/display
     background: $color-off-black;
-    background-image: url('/media/img/firefox/enterprise/ent-noodles.svg'),
+    background-image: url('~media/img/firefox/enterprise/ent-noodles.svg'),
                       linear-gradient(transparent 550px, #fff 550px, #fff 1000px);
     background-position: bottom left, top center;
     background-repeat: no-repeat, repeat-x;
@@ -113,7 +113,7 @@ html {
     }
 
     @media #{$mq-md} {
-        background-image: url('/media/img/firefox/enterprise/ent-noodles-wide.svg'),
+        background-image: url('~media/img/firefox/enterprise/ent-noodles-wide.svg'),
                           linear-gradient(transparent 680px, #fff 680px, #fff 1200px);
         background-position: top center, top center;
         background-repeat: no-repeat, repeat-x, repeat-x;
@@ -159,55 +159,55 @@ html {
     }
 
     &.privacy .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/firefox/enterprise/icon-data-privacy.svg');
+        background-image: url('~media/img/firefox/enterprise/icon-data-privacy.svg');
         height: 53px;
         width: 44px;
     }
 
     &.deploy .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/firefox/enterprise/icon-deploy.svg');
+        background-image: url('~media/img/firefox/enterprise/icon-deploy.svg');
         height: 53px;
         width: 53px;
     }
 
     &.release .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/firefox/enterprise/icon-release.svg');
+        background-image: url('~media/img/firefox/enterprise/icon-release.svg');
         height: 53px;
         width: 49px;
     }
 
     &.win64 .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/firefox/enterprise/icon-win64.svg');
+        background-image: url('~media/img/firefox/enterprise/icon-win64.svg');
         height: 58px;
         width: 56px;
     }
 
     &.mac .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/firefox/enterprise/icon-mac.svg');
+        background-image: url('~media/img/firefox/enterprise/icon-mac.svg');
         height: 57px;
         width: 46px;
     }
 
     &.win32 .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/firefox/enterprise/icon-win32.svg');
+        background-image: url('~media/img/firefox/enterprise/icon-win32.svg');
         height: 58px;
         width: 56px;
     }
 
     &.docs .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/firefox/enterprise/icon-documentation.svg');
+        background-image: url('~media/img/firefox/enterprise/icon-documentation.svg');
         height: 52px;
         width: 52px;
     }
 
     &.notes .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/firefox/enterprise/icon-notes.svg');
+        background-image: url('~media/img/firefox/enterprise/icon-notes.svg');
         height: 52px;
         width: 45px;
     }
 
     &.faq .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/firefox/enterprise/icon-faq.svg');
+        background-image: url('~media/img/firefox/enterprise/icon-faq.svg');
         height: 51px;
         width: 52px;
     }

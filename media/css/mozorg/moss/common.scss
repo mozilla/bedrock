@@ -415,17 +415,17 @@ main {
 
     &#foundational-technology:before {
         @include background-size(240px 240px);
-        background-image: url('/media/img/mozorg/moss/foundational-technology.svg');
+        background-image: url('~media/img/mozorg/moss/foundational-technology.svg');
     }
 
     &#mission-partners:before {
         @include background-size(240px 231px);
-        background-image: url('/media/img/mozorg/moss/mission-partners.svg');
+        background-image: url('~media/img/mozorg/moss/mission-partners.svg');
     }
 
     &#secure-open-source:before {
         @include background-size(240px 206px);
-        background-image: url('/media/img/mozorg/moss/secure-open-source.svg');
+        background-image: url('~media/img/mozorg/moss/secure-open-source.svg');
     }
 }
 
@@ -454,15 +454,15 @@ main {
 
 // foundational technology
 #moss-foundational-technology #header-image {
-    background-image: url('/media/img/mozorg/moss/header-foundational-technology.svg');
+    background-image: url('~media/img/mozorg/moss/header-foundational-technology.svg');
 }
 
 // mission partners
 #moss-mission-partners #header-image {
-    background-image: url('/media/img/mozorg/moss/header-mission-partners.svg');
+    background-image: url('~media/img/mozorg/moss/header-mission-partners.svg');
 }
 
 // secure open source
 #moss-secure-open-source #header-image {
-    background-image: url('/media/img/mozorg/moss/header-secure-open-source.svg');
+    background-image: url('~media/img/mozorg/moss/header-secure-open-source.svg');
 }

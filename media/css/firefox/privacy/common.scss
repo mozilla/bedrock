@@ -22,7 +22,7 @@ $image-path: '~@mozilla-protocol/core/protocol/img';
 
     .mzp-c-call-out-title {
         @include text-display-xs;
-        background: url('/media/img/firefox/privacy/icon-privacy.svg') top center no-repeat;
+        background: url('~media/img/firefox/privacy/icon-privacy.svg') top center no-repeat;
         padding-top: 70px + $spacing-lg;
     }
 }

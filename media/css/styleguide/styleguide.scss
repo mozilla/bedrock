@@ -4,6 +4,7 @@
 
 @import '../pebbles/includes/lib';
 @import '../hubs/sections';
+$image-path: '~@mozilla-protocol/core/protocol/img';
 
 
 main {
@@ -51,11 +52,11 @@ main {
             padding-top: 100px;
 
             &.mozilla {
-                background-image: url('/media/img/logos/mozilla/wordmark-dark.svg');
+                background-image: url('~media/img/logos/mozilla/wordmark-dark.svg');
             }
 
             &.firefox {
-                background-image: url('/media/protocol/img/logos/firefox/logo-word-hor.svg');
+                background-image: url('#{$image-path}/logos/firefox/logo-word-hor.svg');
             }
         }
     }
