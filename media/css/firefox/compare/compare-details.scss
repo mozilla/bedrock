@@ -1,0 +1,119 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: "/media/fonts";
+$image-path: "/media/protocol/img";
+
+@import "../../../protocol/css/includes/lib";
+@import "../../../protocol/css/components/hero";
+
+/* -------------------------------------------------------------------------- */
+// Hero
+
+.compare-details-hero {
+    .mzp-c-hero-body {
+        max-width: none;
+    }
+    .mzp-c-hero-title {
+        @include font-size(32px);
+        margin-bottom: 0;
+        @media #{$mq-sm} {
+            @include font-size(40px);
+        }
+        @media #{$mq-md} {
+            @include font-size(48px);
+        }
+    }
+}
+
+@keyframes compare-details-hero-image-float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.compare-details-hero-image {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto $layout-md;
+    max-width: 300px;
+    position: relative;
+    @media #{$mq-md} {
+        max-width: 350px;
+        &::before {
+            height: 120px;
+        }
+        img {
+            height: 92px;
+            width: 92px;
+        }
+    }
+    img {
+        animation: compare-details-hero-image-float 5s ease-in-out infinite;
+        height: 76px;
+        order: 1;
+        width: 76px;
+        &:last-child {
+            order: 3;
+        }
+    }
+    &::before {
+        background: $color-gray-20;
+        border-radius: 10px;
+        content: " ";
+        display: table;
+        height: 100px;
+        left: 50%;
+        order: 2;
+        top: 0;
+        width: 10px;
+    }
+}
+
+.compare-details-section-intro {
+    @include font-firefox;
+    @include font-size(24px);
+    line-height: 1.3;
+}
+
+.l-compare-details-content {
+    @include text-body-lg;
+    max-width: 808px;
+    @media #{$mq-md} {
+        padding: $layout-xs $layout-lg;
+    }
+}
+
+.mzp-u-data-table.compare-table--details {
+    max-width: 480px;
+}
+
+.compare-section-overall {
+    margin-bottom: $layout-xl;
+
+    .compare-section-header {
+        margin-bottom: 64px;
+    }
+}
+
+.compare-details-image {
+    display: block;
+    margin: $layout-lg auto;
+}
+
+.compare-section-privacy {
+    .compare-details-image {
+        width: 280px;
+        @media #{$mq-md} {
+            width: 320px;
+        }
+    }
+}

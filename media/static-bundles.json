@@ -839,6 +839,13 @@
     },
     {
       "files": [
+        "css/firefox/compare/compare.scss",
+        "css/firefox/compare/compare-details.scss"
+      ],
+      "name": "compare-details"
+    },
+    {
+      "files": [
         "css/protocol/components/send-to-device.scss",
         "css/firefox/welcome.scss"
       ],
