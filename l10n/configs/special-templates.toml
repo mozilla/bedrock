@@ -1,0 +1,16 @@
+# For locales with dedicated templates that don't go through
+# the Fluent localization process by either vendor or pontoon,
+# list the ftl file and the locales handled by the templates
+# in [[paths]] sections here.
+
+basepath = ".."
+
+## Example:
+
+# [[paths]]
+#     reference = "en/firefox/home.ftl"
+#     l10n = "{locale}/firefox/home.ftl"
+#     locales = [
+#         "de",
+#         "fr",
+#     ]
