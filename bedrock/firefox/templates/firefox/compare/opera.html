@@ -1,0 +1,289 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% add_lang_files "firefox/compare/opera" %}
+
+{% block page_title %}{{ _('Firefox vs. Opera: Which is the better browser for you?') }}{% endblock %}
+
+{% block page_desc %}
+{{ _('Compare Opera to the Firefox Browser to find out which is the best browser for you.') }}
+{% endblock %}
+
+{% block page_css %}
+{{ css_bundle('compare-details') }}
+{% endblock %}
+
+{% block content %}
+<section class="mzp-c-hero compare-details-hero compare-details-hero--opera">
+  <div class="mzp-l-content l-compare-details-content">
+    <div class="mzp-c-hero-body">
+      <div class="compare-details-hero-image">
+          <img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox logo') }}">
+          <img src="{{ static('img/logos/opera/logo-opera.png') }}" height="36" width="36" alt="{{ _('Opera logo') }}">
+      </div>
+      <h1 class="mzp-c-hero-title">{{ _('Comparing Firefox Browser with Opera') }}</h1>
+    </div>
+  </div>
+</section>
+
+<div class="mzp-l-content l-compare-details-content">
+  <article class="mzp-c-article">
+    <section class="compare-details-section-summary">
+        <p class="compare-details-section-intro">
+          {% trans %}
+          The Firefox Browser and Opera are two of the oldest browsers still releasing frequent updates. While Opera has never enjoyed a period of massive user adoption,  it’s maintained a relatively stable and loyal base over a sustained period of time. In this review, we’ll compare the Opera browser with our Firefox browser in terms of security and privacy, utility, and portability to help you choose which browser might be the best fit for you.
+          {% endtrans %}
+        </p>
+
+        {{ high_res_img('img/firefox/compare/compare-browser-opera.png', {'alt': '', 'width': '543', 'height': '424', 'class': 'compare-details-image'}) }}
+    </section>
+
+    <section class="compare-section-privacy">
+      <header class="compare-section-header">
+        <h2>
+          {# L10n: The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language #}
+          {{ _('Security and <strong>Privacy</strong>') }}
+        </h2>
+      </header>
+
+      <table class="mzp-u-data-table compare-table compare-table--details">
+          <thead>
+            <tr>
+              <th>{{ _('Privacy') }}</th>
+              <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
+              <th scope="col"><img src="{{ static('img/logos/opera/logo-opera.png') }}" height="36" width="36" alt="{{ _('Opera') }}"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ _('Private Browsing mode') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Blocks third-party tracking cookies') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Blocks cryptomining scripts') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Blocks social trackers') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+            </tr>
+          </tbody>
+        </table>
+
+      <p class="compare-content">
+        {% trans %}
+        Over the last few years, Opera has been dealing with some concerns about privacy and transparency. In 2016, Opera was sold to an investment conglomerate in China — and a lot has changed. Opera has a custom layer of programming it runs over an open source layer of Google Chromium. Because this custom layer is closed source, it’s difficult to tell what’s happening behind the scenes in regards to how the browser actually operates. Opera’s privacy policy is vague in its explanation of how it collects user data, which it says includes names of account holders, IP addresses and search terms. It also states that the collected data may be shared with third-party applications and partners.
+        {% endtrans %}
+      </p>
+
+      <p class="compare-content">
+        {% trans attrs = 'href="%s" data-cta-type="link" data-cta-name="privacy policy"'|safe|format(url('privacy.notices.firefox')) %}
+        Our <a {{ attrs }}>privacy policy</a>, is very transparent in describing what personal information we collect with the only end goal being to give you greater control over the information you share online.
+        {% endtrans %}
+      </p>
+
+      <p class="compare-content">
+        {% trans %}
+        As far as actual privacy protections in the Opera browser, it does offer a robust Private mode that allows you to surf the web without the browser tracking your activity. Also in normal browsing mode, you can also turn off some data collection features by digging into the settings to enable the ad blocker and adjust other security features.
+        {% endtrans %}
+      </p>
+
+      <img src="{{ static('img/firefox/compare/compare-privacy-eye.svg') }}" alt="" height="217" width="320" class="compare-details-image">
+
+      <p class="compare-content">
+        {% trans attrs='href="https://blog.mozilla.org/blog/2019/09/03/todays-firefox-blocks-third-party-tracking-cookies-and-cryptomining-by-default/" rel="external noopener" data-cta-text="Enhanced Tracking Protection" data-cta-type="link"'|safe %}
+        With the latest version of Firefox, <a {{ attrs }}>Enhanced Tracking Protection</a> is turned on by default, in normal browsing mode, so you don’t have to mess around with the settings just to protect yourself from trackers. With Enhanced Tracking Protection Firefox actively blocks thousands of third-party trackers that try to follow you around the web. We also provide users with a Personalized Protection Report that tells you how often Firefox blocked third-party cookies, social media trackers, fingerprinting tools and cryptominers.
+        {% endtrans %}
+      </p>
+
+      <p class="compare-content">
+        {% trans %}
+        We make Firefox for people like us, who care deeply about personal privacy and security. That’s why we collect so little info about users and are transparent about how we use that info. It’s hard to know who Opera is made for anymore. Particularly since it’s owned and operated in a country that ranks near the bottom in terms of the personal privacy of its citizens.
+        {% endtrans %}
+      </p>
+
+    </section>
+
+    <section class="compare-section-utility">
+      <header class="compare-section-header">
+        {# L10n: The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language #}
+        <h2>{{ _('<strong>Utility</strong>') }}</h2>
+      </header>
+
+      <table class="mzp-u-data-table compare-table compare-table--details">
+          <thead>
+            <tr>
+              <th>{{ _('Utility') }}</th>
+              <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
+              <th scope="col"><img src="{{ static('img/logos/opera/logo-opera.png') }}" height="36" width="36" alt="{{ _('Opera') }}"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <th scope="row">{{ _('Autoplay blocking') }}</th>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              </tr>
+            <tr>
+              <th scope="row">{{ _('Tab browsing') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Bookmark manager') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Automatically fills out forms') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Search engine options') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Text to speech') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Reader mode') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+                <th scope="row">{{ _('Spell checking') }}</th>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              </tr>
+              <tr>
+                <th scope="row">{{ _('Web extensions/Add-ons') }}</th>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              </tr>
+              <tr>
+                <th scope="row">{{ _('In-browser screenshot tool') }}</th>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              </tr>
+          </tbody>
+        </table>
+
+      <p class="compare-content">
+        {% trans attrs='href="https://addons.mozilla.org" rel="external noopener" data-cta-text="extension library to browse" data-cta-type="link"'|safe %}
+        There’s no debate that Opera is a feature-packed browser with a clean user interface and strong customization options. Because Opera is built on Chromium, it can take advantage of most of Google Chrome’s vast extension library. Firefox also features a large <a {{ attrs }}>extension library to browse</a>, but not quite as large as Chrome’s.
+        {% endtrans %}
+      </p>
+
+      <p class="compare-content">
+        {% trans %}
+        Like Firefox, Opera delivers a scrolling tab experience, which means that when you open more tabs than will fit on screen, it scrolls them off screen instead of just continuously shrinking them down. Also both Firefox and Opera have a screenshot tool that lets you capture a snapshot of your screen or part of the page. However, the Opera tool doesn’t give you the ability to create one huge capture of the whole webpage, only the visible portion.
+        {% endtrans %}
+      </p>
+
+      <p class="compare-content">
+        {% trans attrs='href="https://www.mozilla.org/firefox/pocket/" rel="external noopener" data-cta-text="Pocket" data-cta-type="link"'|safe %}
+        Opera provides a lot of hidden utility within its simple and manageable interface. For example there’s built-in support for messaging apps, like Facebook Messenger.  There’s also a news reader that aggregates articles from your choice of sites and news outlets. The parallel feature to this on Firefox is called <a {{ attrs }}>Pocket</a>. Pocket is a free service for Firefox account holders that makes it easy to find and save interesting articles and videos from all  around the web.
+        {% endtrans %}
+      </p>
+
+      <p class="compare-content">
+        {% trans %}
+        In terms of head to head utility, Opera and Firefox are close competitors. Opera may have an advantage in one aspect with its compatibility with and access to Chrome’s huge extension library. But one significant factor to consider is the fact that Opera, because it’s built on Chromium, is a processor-hungry browser with its RAM consumption comparable to Chrome, which is known for its high CPU usage.
+        {% endtrans %}
+      </p>
+
+    </section>
+
+    <section class="compare-section-portability">
+      <header class="compare-section-header">
+        {# L10n: The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language #}
+        <h2>{{ _('<strong>Portability</strong>') }}</h2>
+      </header>
+
+      <table class="mzp-u-data-table compare-table compare-table--details">
+          <thead>
+            <tr>
+              <th>{{ _('Portability') }}</th>
+              <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
+              <th scope="col"><img src="{{ static('img/logos/opera/logo-opera.png') }}" height="36" width="36" alt="{{ _('Opera') }}"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ _('OS availability') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Mobile OS availability') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Syncs with mobile') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Password management') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Master Password') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+          </tbody>
+        </table>
+
+      <p class="compare-content">
+        {% trans %}
+        Both Firefox and Opera are compatible across every major device including Windows, Mac, Linux, Android and iOS. Firefox account holders can easily sync their bookmarks, passwords, open tabs, and browsing history across all their signed into devices. The same is true for Opera users with an account. However, many sites, especially old sites that haven’t been updated in years block the latest version of Opera entirely. So if visiting places like your Ex’s old blog is important, take heed, you may not be able to access some of the dustier corners of the internet if you use Opera.
+        {% endtrans %}
+      </p>
+
+      <p class="compare-content">
+        {% trans  attrs='href="https://play.google.com/store/apps/details?id=org.mozilla.fenix" rel="external noopener" data-cta-text="Firefox Preview" data-cta-type="link"'|safe %}
+        In addition to the regular mobile app, Opera has two other mobile versions of its browser: Touch and Mini. Touch is light on features but it’s designed to use on the go with only one hand. The Mini version aims at lowering data usage and increased speeds on slow connections by downgrading images and stripping away content. We also offer an additional, albeit experimental version of our Firefox mobile app, <a {{ attrs }}>Firefox Preview</a>, which focuses on speed and security.
+        {% endtrans %}
+      </p>
+
+      <p class="compare-content">
+        {% trans %}
+        Most major browsers these days, with the exception of Safari, work seamlessly across platforms and browsers. Opera and Firefox are no exception with both browsers providing excellent portability across every device.
+        {% endtrans %}
+      </p>
+
+    </section>
+
+    <section class="compare-section-overall">
+      <header class="compare-section-header">
+        <h2>{{ _('Overall Assessment') }}</h2>
+      </header>
+
+      <p class="compare-content">
+        {% trans %}
+        Overall, Opera is a solid browser, with a clean interface and a lot useful features available. There are, however, some serious privacy concerns as well as an issue with it using a lot of processing power.  Although Opera has some really terrific ease of use features, we still believe Firefox remains a superior browser based on performance and with a transparent user-privacy stance and strict privacy protections.
+        {% endtrans %}
+      </p>
+
+    </section>
+  </article>
+</div>
+{% endblock %}
