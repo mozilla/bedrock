@@ -4,7 +4,7 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% add_lang_files "firefox/compare/chrome" %}
+{% add_lang_files "firefox/compare/edge" %}
 
 {% block page_title %}{{ _('Firefox vs. Microsoft Edge: Which is better?') }}{% endblock %}
 
@@ -108,8 +108,8 @@
       </p>
 
       <p class="compare-content">
-        {% trans %}
-        Your <a href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop#w_how-to-tell-when-firefox-is-protecting-you">Privacy Protections</a> shows you the trackers and cookies that pages have attempted to leave, and how many Firefox has blocked for you.
+        {% trans attrs='href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop#w_how-to-tell-when-firefox-is-protecting-you" rel="external noopener" data-cta-text="Privacy Protections" data-cta-type="link"'|safe %}
+        Your <a {{ attrs }}>Privacy Protections</a> shows you the trackers and cookies that pages have attempted to leave, and how many Firefox has blocked for you.
         {% endtrans %}
       </p>
 
@@ -214,8 +214,8 @@
       </p>
 
       <p class="compare-content">
-        {% trans %}
-        Firefox features a scrolling tab interface, which keeps tab information viewable and scrolls them horizontally instead of shrinking them down to just favicon size.  Also whenever you open a new tab, our <a href="https://www.mozilla.org/firefox/pocket/">Pocket feature</a> suggests relevant articles and content for you. Plus with Pocket, you can also save articles, videos, and other content with one click, for reading at a later time.
+        {% trans attrs = 'href="%s" data-cta-type="link" data-cta-name="Pocket feature"'|safe|format(url('firefox.pocket')) %}
+        Firefox features a scrolling tab interface, which keeps tab information viewable and scrolls them horizontally instead of shrinking them down to just favicon size.  Also whenever you open a new tab, our <a {{ attrs }}>Pocket feature</a> suggests relevant articles and content for you. Plus with Pocket, you can also save articles, videos, and other content with one click, for reading at a later time.
         {% endtrans %}
       </p>
 
@@ -226,8 +226,8 @@
       </p>
 
       <p class="compare-content">
-        {% trans %}
-        Firefox also includes lots of handy built-in features by default like <a href="https://support.mozilla.org/kb/content-blocking">Content Blocking</a>, a built-in screenshot tool, large file sending and more.
+        {% trans attrs='href="https://support.mozilla.org/kb/content-blocking" rel="external noopener" data-cta-text="Content Blocking" data-cta-type="link"'|safe%}
+        Firefox also includes lots of handy built-in features by default like <a {{ attrs }}>Content Blocking</a>, a built-in screenshot tool, large file sending and more.
         {% endtrans %}
       </p>
 
@@ -295,8 +295,8 @@
       </p>
 
       <p class="compare-content">
-        {% trans %}
-        We also offer a version of our Firefox mobile browser called Firefox Focus for <a href="https://play.google.com/store/apps/details?id=org.mozilla.focus&amp;hl">Android</a> and <a href="https://apps.apple.com/app/firefox-focus-privacy-browser/id1055677337">iOS</a>. Take private browsing to the next level. Firefox Focus gives you a dedicated privacy browser with tracking protection and content blocking.
+        {% trans android='href="https://play.google.com/store/apps/details?id=org.mozilla.focus&amp;hl" rel="external noopener" data-cta-text="Android" data-cta-type="link"'|safe, ios='href="https://apps.apple.com/app/firefox-focus-privacy-browser/id1055677337" rel="external noopener" data-cta-text="iOS" data-cta-type="link"'|safe %}
+        We also offer a version of our Firefox mobile browser called Firefox Focus for <a {{ android }}>Android</a> and <a {{ ios }}>iOS</a>. Take private browsing to the next level. Firefox Focus gives you a dedicated privacy browser with tracking protection and content blocking.
         {% endtrans %}
       </p>
 
