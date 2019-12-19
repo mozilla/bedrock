@@ -1,0 +1,313 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% add_lang_files "firefox/compare/safari" %}
+
+{% block page_title %}{{ _('Firefox vs. Safari: Which is the better browser for you?') }}{% endblock %}
+
+{% block page_desc %}
+{{ _('Safari is the pre-installed browser on Mac and iPhone. Compare Safari to the Firefox Browser to find out which is the better browser for you.') }}
+{% endblock %}
+
+{% block page_css %}
+{{ css_bundle('compare-details') }}
+{% endblock %}
+
+{% block content %}
+<section class="mzp-c-hero compare-details-hero compare-details-hero--safari">
+  <div class="mzp-l-content l-compare-details-content">
+    <div class="mzp-c-hero-body">
+      <div class="compare-details-hero-image">
+          <img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox logo') }}">
+          <img src="{{ static('img/logos/safari/logo-safari.png') }}" height="36" width="36" alt="{{ _('Safari logo') }}">
+      </div>
+      <h1 class="mzp-c-hero-title">{{ _('Comparing Firefox Browser with Apple Safari') }}</h1>
+    </div>
+  </div>
+</section>
+
+<div class="mzp-l-content l-compare-details-content">
+  <article class="mzp-c-article">
+    <section class="compare-details-section-summary">
+        <p class="compare-details-section-intro">
+          {% trans %}
+          If you use a Mac or have an iPhone, chances are you’re familiar with the Safari web browser. The fact that it’s pre-installed as the default browser for Apple product users definitely gives it an early advantage, but Firefox has its own set of useful features that make it an attractive alternative. Here we’ll explore the main differences between our browser and Safari in terms of privacy, utility, and portability between devices.
+          {% endtrans %}
+        </p>
+
+        {{ high_res_img('img/firefox/compare/compare-browser-safari.png', {'alt': '', 'width': '544', 'height': '424', 'class': 'compare-details-image'}) }}
+    </section>
+
+    <section class="compare-section-privacy">
+      <header class="compare-section-header">
+        <h2>
+          {# L10n: The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language #}
+          {{ _('Security and <strong>Privacy</strong>') }}
+        </h2>
+      </header>
+
+      <table class="mzp-u-data-table compare-table compare-table--details">
+          <thead>
+            <tr>
+              <th>{{ _('Privacy') }}</th>
+              <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
+              <th scope="col"><img src="{{ static('img/logos/safari/logo-safari.png') }}" height="36" width="36" alt="{{ _('Safari') }}"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ _('Private Browsing mode') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Blocks third-party tracking cookies') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Blocks cryptomining scripts') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Blocks social trackers') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+          </tbody>
+        </table>
+
+      <p class="compare-content">
+        {% trans %}
+        Privacy has become a white hot topic for tech companies as they realize more and more people are feeling vulnerable to things like data breaches, ad trackers and hackers. But when it comes down to the real tools people use to navigate the actual interwebs, is it all talk or are they actually taking action to keep your data secure?
+        {% endtrans %}
+      </p>
+
+      <p class="compare-content">
+        {% trans %}
+        As alluded to before, Apple is one of those companies that recently decided to step up their privacy game. Not long ago, Apple implemented cross-site tracking prevention in Safari, which prevents ads from following you around the internet. Safari also offers a strong password suggestion when you sign up for a new account on any website. And if you’re invested in the iCloud ecosystem, it syncs that password securely with your other devices,so you never actually have to remember it.
+        {% endtrans %}
+      </p>
+
+      <p class="compare-content">
+        {% trans %}
+        Like Safari, we at Firefox have made a point of focusing on privacy and security. But unlike Safari, we’ve been standing on the privacy soap box for a long time. In fact, Mozilla (our parent company) was one of the first voices in the tech community to sound the alarm for online privacy.
+        {% endtrans %}
+      </p>
+
+      <img src="{{ static('img/firefox/compare/compare-privacy-mask.svg') }}" alt="" height="217" width="320" class="compare-details-image">
+
+      <p class="compare-content">
+        {% trans attrs='href="https://addons.mozilla.org/firefox/addon/facebook-container/" rel="external noopener" data-cta-text="Facebook Container" data-cta-type="link"'|safe %}
+        Our Private Browsing mode blocks trackers and erases your passwords, cookies and history every time you close it. But you can also experience our advanced privacy features even in regular browsing mode. With the latest edition of Firefox, enhanced tracking prevention is turned on by default. This prevents things like cross-site trackers from following you as you jump around the web. Also, with Facebook being caught out almost daily for privacy problems, our <a {{ attrs }}>Facebook Container</a> extension makes a lot of sense. It makes it harder for Facebook to track you around the web — similar to what Safari does to prevent cross-site tracking —but Firefox actually isolates your Facebook session into a separate container blocking Facebook from tracking what you do on other websites. Why do they need to know what you look up on WebMD anyway?
+        {% endtrans %}
+      </p>
+
+      <p class="compare-content">
+        {% trans lockwise='href="%s" data-cta-type="link" data-cta-name="Lockwise"'|safe|format(url('firefox.lockwise.lockwise')), monitor='href="https://monitor.firefox.com/" rel="external noopener" data-cta-text="Monitor" data-cta-type="link"'|safe %}
+        As far as security goes, Firefox is solid there as well. Any time you’re in Firefox, you can right-click in the password field to securely generate a strong password using the Fill Password option. When you save your new password, we will prompt you to save to its built-in password manager, <a {{ lockwise }}>Lockwise</a>. We also serve up users and account holders with another free and useful product called <a {{ monitor }}>Monitor</a> that automatically alerts you if your data is included in a known data breach.
+        {% endtrans %}
+      </p>
+
+      <p class="compare-content">
+        {% trans %}
+        If you choose to use Safari, you’re in safe hands. But with all our extra privacy and security features, we think Firefox gets the nod here.
+        {% endtrans %}
+      </p>
+
+    </section>
+
+    <section class="compare-section-utility">
+      <header class="compare-section-header">
+        {# L10n: The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language #}
+        <h2>{{ _('<strong>Utility</strong>') }}</h2>
+      </header>
+
+      <table class="mzp-u-data-table compare-table compare-table--details">
+          <thead>
+            <tr>
+              <th>{{ _('Utility') }}</th>
+              <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
+              <th scope="col"><img src="{{ static('img/logos/safari/logo-safari.png') }}" height="36" width="36" alt="{{ _('Safari') }}"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <th scope="row">{{ _('Autoplay blocking') }}</th>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              </tr>
+            <tr>
+              <th scope="row">{{ _('Tab browsing') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Bookmark manager') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Automatically fills out forms') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Search engine options') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Text to speech') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Reader mode') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+                <th scope="row">{{ _('Spell checking') }}</th>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              </tr>
+              <tr>
+                <th scope="row">{{ _('Web extensions/Add-ons') }}</th>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              </tr>
+              <tr>
+                <th scope="row">{{ _('In-browser screenshot tool') }}</th>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+                <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              </tr>
+          </tbody>
+        </table>
+
+      <p class="compare-content">
+        {% trans %}
+        Apple is widely known for its closed ecosystem as it relates to creating software for its products. But inside the App Store, it does offer a section to developers to create plugins and add-ons to make the browser more robust. These extensions are also browsable through the App Store and easily added to Safari.
+        {% endtrans %}
+      </p>
+
+      <p class="compare-content">
+        {% trans %}
+        In addition to the regular set of features you’d expect in a browser, such as tabbed browsing and private browsing, Safari has some unexpected features as well. For instance, if a user were to right-click a word anywhere on a page inside Safari, then click Look Up, they’d get a dictionary definition plus entries from the thesaurus, App Store, movies and more. Safari’s Parental Controls are easy to customize, allowing the adults to breathe a little easier when the kids begin to get curious about the internet.
+        {% endtrans %}
+      </p>
+
+      <p class="compare-content">
+        {% trans attrs='href="https:/addons.mozilla.org" rel="external noopener" data-cta-text="add-ons and extensions" data-cta-type="link"'|safe %}
+        Like Safari, Firefox encourages its enthusiastic developer community to create <a {{ attrs }}>add-ons and extensions</a> to the browser. And since our platform is open-source, there’s a vast selection adding a wealth of functionality.
+        {% endtrans %}
+      </p>
+
+      <p class="compare-content">
+        {% trans pocket='href="https://getpocket.com/" rel="external noopener" data-cta-text="Pocket" data-cta-type="link"'|safe, send='href="https://send.firefox.com/" rel="external noopener" data-cta-text="Send" data-cta-type="link"'|safe %}
+        Also, when you sign up for a Firefox account you get access to some unique services like <a {{ pocket }}>Pocket</a> and <a {{ send }}>Send</a> that integrate directly into the browser. The Pocket for Firefox button lets you save web pages and videos to Pocket in just one click, so you can read a clean, distraction-free version whenever and wherever you want — even offline. With Send you can share large files with end-to-end encryption and a variety of security controls, such as the ability to set an expiration time for a file link to expire, the number of downloads, and whether to add an optional password for an extra layer of security.
+        {% endtrans %}
+      </p>
+
+      <p class="compare-content">
+        {% trans %}
+        Both browsers have a lot of crossover features, as well as some unique functions. If you’re just looking for a fast, private browser for surfing and shopping, then you may want to give Firefox a try — especially if you’ve just been exclusively using Safari because it was the default, pre-loaded browser. Eventually, you’ll discover which one is more suited to your needs.
+        {% endtrans %}
+      </p>
+
+    </section>
+
+    <section class="compare-section-portability">
+      <header class="compare-section-header">
+        {# L10n: The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language #}
+        <h2>{{ _('<strong>Portability</strong>') }}</h2>
+      </header>
+
+      <table class="mzp-u-data-table compare-table compare-table--details">
+          <thead>
+            <tr>
+              <th>{{ _('Portability') }}</th>
+              <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
+              <th scope="col"><img src="{{ static('img/logos/safari/logo-safari.png') }}" height="36" width="36" alt="{{ _('Safari') }}"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ _('OS availability') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Mobile OS availability') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Syncs with mobile') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Password management') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Master Password') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+            </tr>
+          </tbody>
+        </table>
+
+      <p class="compare-content">
+        {% trans %}
+        Firefox and Safari both provide a seamless experience when moving from desktop to mobile browsing or vice versa. For Safari, one of its main strengths is its continuity features. It syncs your bookmarks, tabs, history and more to iCloud so they’re available on all your devices. That means you can open a tab on your iPhone and have it also appear on your Mac laptop with just a click.
+        {% endtrans %}
+      </p>
+
+      <p class="compare-content">
+        {% trans attrs = 'href="%s" data-cta-type="link" data-cta-name="Firefox Account"'|safe|format(url('firefox.accounts')) %}
+        Firefox also offers a similar sync feature when you sign up for a free <a {{ attrs }}>Firefox Account</a>, that enables users to easily synchronize their bookmarks, browsing history, preferences, passwords, filled forms, add-ons, and the last 25 opened tabs across multiple computers, on any platform iOS, Android, Windows or macOS.
+        {% endtrans %}
+      </p>
+
+      <p class="compare-content">
+        {% trans ios='href="https://apps.apple.com/app/firefox-private-safe-browser/id989804926" rel="external noopener" data-cta-text="iOS" data-cta-type="link"'|safe, android='href="https://play.google.com/store/apps/details?id=org.mozilla.firefox" rel="external noopener" data-cta-text="Android" data-cta-type="link"'|safe %}
+        The Firefox app for <a {{ ios }}>iOS</a> and <a {{ android }}>Android</a> is one of the fastest browsers available and also has solid security and anti-tracking features — a huge plus if you’re constantly bouncing between a laptop and mobile devices.
+        {% endtrans %}
+      </p>
+
+      <p class="compare-content">
+        {% trans %}
+        Since Safari is Apple’s proprietary web browser, its iCloud syncing works exclusively with Apple products. This can be somewhat limiting if, for example, you’re both an Android user and an iPhone user or if you have a Windows based PC for work but use an iPhone as your personal device.
+        {% endtrans %}
+      </p>
+
+    </section>
+
+    <section class="compare-section-overall">
+      <header class="compare-section-header">
+        <h2>{{ _('Overall Assessment') }}</h2>
+      </header>
+
+      <p class="compare-content">
+        {% trans attrs='href="https://blog.mozilla.org/blog/2019/06/04/firefox-now-available-with-enhanced-tracking-protection-by-default/" rel="external noopener" data-cta-text="Enhanced Tracking Protection (ETP)" data-cta-type="link"'|safe %}
+        Safari does a great job of making the browsing experience simple, fast, and seamless if you’re an Apple user with multiple products. Like Safari, Firefox is a fast and utilitarian browser, but privacy is our defining feature. Firefox updates around every six weeks with new features and functionality. For example, one recent browser switched on our <a {{ attrs }}>Enhanced Tracking Protection (ETP)</a> by default for new users, which effectively blocks cookies and cross-site trackers.
+        {% endtrans %}
+      </p>
+
+      <p class="compare-content">
+        {% trans %}
+        In the end, it just boils down to what you value in your browser. If you’re integrated with the Apple ecosystem, Safari is still a great choice. But if you value having the latest and greatest privacy protections and being able to work across multiple operating systems, we think Firefox is your best bet. Firefox is also a solid option as a secondary browser for those Apple-exclusive users who may want to switch into a different browser for those online moments that call for extra layers of privacy protection.
+        {% endtrans %}
+      </p>
+
+    </section>
+  </article>
+</div>
+{% endblock %}
