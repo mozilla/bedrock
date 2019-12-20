@@ -329,6 +329,52 @@ the template with the context. You can use the ``ftl_files`` argument with this 
     def about_view(request):
         render(request, 'about.html', {'name': 'Duder'}, ftl_files='mozorg/about')
 
+Fluent File Configuration
+-------------------------
+
+In order for a Fluent file to be extracted through automation and sent out for localization,
+it must first be configured to go through one or more distinct pipelines. This is controlled
+via a set of configuration files:
+
+- `Vendor`_, locales translated by an agency, and paid for by Marketing (locales covered by staff are also included in this group).
+- `Pontoon`_, locales translated by Mozilla contributors.
+- `Special templates`_, for locales with dedicated templates that don't go through the localization process (not currently used).
+
+Each configuration file consists of a pre-defined set of locales for which each group is
+responsible for translating. The locales defined in each file should not be changed without
+first consulting the with L10n team, and such changes should not be a regular occurence.
+
+To establish a localization strategy for a Fluent file, it needs to be included as a path
+in one or more configuration files. For example:
+
+.. code-block:: text
+
+    [[paths]]
+        reference = "en/mozorg/mission.ftl"
+        l10n = "{locale}/mozorg/mission.ftl"
+
+You can read more about configuration files in the `L10n Project Configuration`_ docs.
+
+Using a combination of vendor and pontoon configuration offers a flexible but specific set of
+options to choose from when it comes to defining an l10n strategy for a page. The available
+choices are:
+
+#. Staff locales.
+#. Staff + select vendor locales.
+#. Staff + all vendor locales.
+#. Staff + vendor + pontoon.
+#. All pontoon locales (for non-marketing content only).
+
+When choosing an option, it's important to consider that vendor locales have a cost associated
+with them, and pontoon leans on the goodwill of our volunteer community. Typically, only
+non-marketing content should go through Pontoon for all locales. Everything that is marketing
+related should feature one of the staff/vendor/pontoon configurations.
+
+.. _Vendor: https://github.com/mozilla/bedrock/blob/master/l10n/configs/vendor.toml
+.. _Pontoon: https://github.com/mozilla/bedrock/blob/master/l10n/configs/pontoon.toml
+.. _Special templates: https://github.com/mozilla/bedrock/blob/master/l10n/configs/special-templates.toml
+.. _L10n Project Configuration: https://moz-l10n-config.readthedocs.io/
+
 Fluent File Activation
 ----------------------
 
