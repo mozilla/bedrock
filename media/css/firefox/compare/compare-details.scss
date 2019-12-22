@@ -7,6 +7,8 @@ $image-path: "/media/protocol/img";
 
 @import "../../../protocol/css/includes/lib";
 @import "../../../protocol/css/components/hero";
+@import '../../../protocol/css/components/menu-list';
+
 
 /* -------------------------------------------------------------------------- */
 // Hero
@@ -15,6 +17,7 @@ $image-path: "/media/protocol/img";
     .mzp-c-hero-body {
         max-width: none;
     }
+
     .mzp-c-hero-title {
         @include font-size(32px);
         margin-bottom: 0;
@@ -46,25 +49,18 @@ $image-path: "/media/protocol/img";
     margin: 0 auto $layout-md;
     max-width: 300px;
     position: relative;
-    @media #{$mq-md} {
-        max-width: 350px;
-        &::before {
-            height: 120px;
-        }
-        img {
-            height: 92px;
-            width: 92px;
-        }
-    }
+
     img {
         animation: compare-details-hero-image-float 5s ease-in-out infinite;
         height: 76px;
         order: 1;
         width: 76px;
+
         &:last-child {
             order: 3;
         }
     }
+
     &::before {
         background: $color-gray-20;
         border-radius: 10px;
@@ -75,6 +71,19 @@ $image-path: "/media/protocol/img";
         order: 2;
         top: 0;
         width: 10px;
+    }
+
+    @media #{$mq-md} {
+        max-width: 350px;
+
+        &::before {
+            height: 120px;
+        }
+
+        img {
+            height: 92px;
+            width: 92px;
+        }
     }
 }
 
@@ -87,6 +96,11 @@ $image-path: "/media/protocol/img";
 .l-compare-details-content {
     @include text-body-lg;
     max-width: 808px;
+
+    p {
+        margin-bottom: 1.777em; // = 32px at 18px font-size
+    }
+
     @media #{$mq-md} {
         padding: $layout-xs $layout-lg;
     }
@@ -112,8 +126,23 @@ $image-path: "/media/protocol/img";
 .compare-section-privacy {
     .compare-details-image {
         width: 280px;
+
         @media #{$mq-md} {
             width: 320px;
         }
+    }
+}
+
+// menu list
+.mzp-t-firefox .mzp-t-cta .mzp-c-menu-list-title {
+    font-weight: normal;
+}
+
+.bottom-download-cta {
+    margin-top: $layout-lg;
+
+    .download-button {
+        display: block;
+        margin: 0 auto;
     }
 }

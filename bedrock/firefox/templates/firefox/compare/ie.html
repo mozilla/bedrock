@@ -4,12 +4,12 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% add_lang_files "firefox/compare/chrome" %}
+{% add_lang_files "firefox/compare/ie" %}
 
-{% block page_title %}{{ _('Firefox vs. Chrome: Which is better?') }}{% endblock %}
+{% block page_title %}{{ _('Firefox vs. Internet Explorer: Which is the better browser for you?') }}{% endblock %}
 
 {% block page_desc %}
-{{ _('We compare Mozilla Firefox with Google Chrome in terms of privacy, utility and portability') }}
+{{ _('Compare Internet Explorer to the Firefox Browser to find out which is the better browser for you.') }}
 {% endblock %}
 
 {% block page_css %}
@@ -17,14 +17,14 @@
 {% endblock %}
 
 {% block content %}
-<section class="mzp-c-hero compare-details-hero compare-details-hero--chrome">
+<section class="mzp-c-hero compare-details-hero compare-details-hero--ie">
   <div class="mzp-l-content l-compare-details-content">
     <div class="mzp-c-hero-body">
       <div class="compare-details-hero-image">
           <img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox logo') }}">
-          <img src="{{ static('img/logos/chrome/logo-chrome.png') }}" height="36" width="36" alt="{{ _('Chrome logo') }}">
+          <img src="{{ static('img/logos/ie/logo-ie.png') }}" height="36" width="36" alt="{{ _('Internet Explorer logo') }}">
       </div>
-      <h1 class="mzp-c-hero-title">{{ _('Comparing Firefox Browser with Google Chrome') }}</h1>
+      <h1 class="mzp-c-hero-title">{{ _('Comparing Firefox Browser with Microsoft Internet Explorer') }}</h1>
     </div>
   </div>
 </section>
@@ -34,23 +34,23 @@
     <section class="compare-details-section-summary">
         <p class="compare-details-section-intro">
           {% trans %}
-          In 2008, Google introduced Chrome, and its impact as an innovation in browser technology was immediate. It was faster for loading sites, took up minimal screen space and offered an undeniably simple user interface.
+          While Microsoft’s Internet Explorer still comes pre-installed on most Windows-based PCs, clearly Microsoft would prefer you to use their Edge browser, which is set as the default when you purchase.
           {% endtrans %}
         </p>
 
         <p>
           {% trans %}
-          Fast-forward to today, the competitive landscape for browsers has changed with many people beginning to question just what is happening to their online data such as browsing history, passwords, and other sensitive information. A lot has changed since 2008 when Chrome came onto the scene. At Firefox, we’ve been heads down, working to redesign our interface and provide users with an ever growing number of privacy and performance enhancements as well as plenty of handy browser tools.
+          Microsoft discontinued its Internet Explorer brand several years ago, in favor of its updated Edge browser for Windows 10. However, slow adoption for Edge created room for Internet Explorer to live on, mainly for business compatibility reasons.
           {% endtrans %}
         </p>
 
         <p>
           {% trans %}
-          And so here we are, the browser-wars are escalating once again and it’s time to reevaluate and compare Firefox Browser vs Google Chrome.
+          Here we’ll compare our Firefox Browser with Internet Explorer in terms of security, utility, and portability. We’ll help you understand the differences between how a modern browser like Firefox that adheres to web standards compares with the browser you may be using for business purposes or out of old habits that die hard.
           {% endtrans %}
         </p>
 
-        {{ high_res_img('img/firefox/compare/compare-browser-chrome.png', {'alt': '', 'width': '541', 'height': '424', 'class': 'compare-details-image'}) }}
+        {{ high_res_img('img/firefox/compare/compare-browser-ie.png', {'alt': '', 'width': '543', 'height': '424', 'class': 'compare-details-image'}) }}
     </section>
 
     <section class="compare-section-privacy">
@@ -66,7 +66,7 @@
             <tr>
               <th>{{ _('Security and Privacy') }}</th>
               <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
-              <th scope="col"><img src="{{ static('img/logos/chrome/logo-chrome.png') }}" height="36" width="36" alt="{{ _('Chrome') }}"></th>
+              <th scope="col"><img src="{{ static('img/logos/ie/logo-ie.png') }}" height="36" width="36" alt="{{ _('Internet Explorer') }}"></th>
             </tr>
           </thead>
           <tbody>
@@ -94,40 +94,23 @@
         </table>
 
       <p>
-        {% trans attrs='href="https://monitor.firefox.com?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=compare-chrome" rel="external noopener" data-cta-text="Firefox Monitor" data-cta-type="link"'|safe %}
-        At Firefox, we have a huge number of dedicated users who appreciate our steadfast dedication to online privacy. For example, the latest version of Firefox includes a feature called Enhanced Tracking Protection (ETP) which is turned on by default for all users worldwide. ETP blocks over 2,000 trackers, including social trackers from companies like Facebook, Twitter, and LinkedIn. It also has an integrated feature called <a {{ attrs }}>Firefox Monitor</a> that automatically notifies you if your password has been breached or needs to be updated. In addition to these protections, Firefox's Private Browsing mode automatically deletes your browsing information such as history and cookies, leaving no trace after you finish your session.
-        {% endtrans %}
-      </p>
-
-      <p>
-        {% trans attrs = 'href="%s" data-cta-type="link" data-cta-name="Privacy Notice"'|safe|format(url('privacy.notices.firefox')) %}
-        We’ve also recently restated our commitment to privacy and transparency regarding user data in our most recent <a {{ attrs }}>Privacy Notice</a> that states, “At Mozilla, we believe that privacy is fundamental to a healthy internet.”
+        {% trans attrs='href="https://www.telegraph.co.uk/technology/2019/02/08/stop-using-internet-explorer-warns-microsofts-security-chief/" rel="external noopener" data-cta-type="link" data-cta-name="Microsoft security chief warned"'|safe %}
+        If you haven’t moved on from using Internet Explorer, the security risk factor alone should be enough to convince you. <a {{ attrs }}>Microsoft’s own security chief has warned</a> millions of people who continue to use Internet Explorer as their main web browser that they are placing themselves in “peril.”
         {% endtrans %}
       </p>
 
       <p>
         {% trans %}
-        Google Chrome is by all accounts a secure browser, with features like Google Safe Browsing, which helps protect users by displaying an impossible-to-miss warning when they attempt to navigate to dangerous sites or download dangerous files.
+        Microsoft is no longer supporting new development for Internet Explorer, which means security concerns are rampant. Microsoft openly acknowledges the fact that vulnerabilities exist within basically every version of Internet Explorer.
         {% endtrans %}
       </p>
 
-      <img src="{{ static('img/firefox/compare/compare-privacy-lock.svg') }}" alt="" height="217" width="320" class="compare-details-image">
+      <img src="{{ static('img/firefox/compare/compare-privacy-locks.svg') }}" alt="" height="217" width="320" class="compare-details-image">
 
       <p>
-        {% trans %}
-        In fact, both Chrome and Firefox have rigorous security in place. Both include a thing called “sandboxing” which separates the processes of the browser so something like a harmful website doesn’t infect other parts of your laptop or other device.
-        {% endtrans %}
-      </p>
-
-      <p>
-        {% trans %}
-        While Chrome proves to be a safe web browser, its privacy record is questionable. Google actually collects a disturbingly large amount of data from its users including location, search history and site visits. Google makes its case for data collection saying it’s doing it to improve its services—like helping you find a sweater or a coffee shop like the one you previously bought or visited. However, others might disagree, making the point that Google is actually gathering an unprecedented amount of data for its own marketing purposes. They tout that they're keeping your information private from hackers, but that's beside the point. Google itself runs the world's largest advertising network, thanks in large part to data they harvest from their users.
-        {% endtrans %}
-      </p>
-
-      <p>
-        {% trans %}
-        Ultimately, it’s up to you to decide whether or not or when to draw the line in the sand with sharing things like your search history and shopping history. But if you’re anything like most people, you’ve probably searched for some things on the internet that you would rather keep private.
+        {% trans lockwise='href="%s" data-cta-type="link" data-cta-name="Lockwise"'|safe|format(url('firefox.lockwise.lockwise')),
+                 privacy='href="%s" data-cta-type="link" data-cta-name="privacy policy"'|safe|format(url('privacy.notices.firefox')) %}
+        So what’s the solution if your company is running outdated apps that only work on Internet Explorer? Our best advice for you personally is, don’t mix business with pleasure. The simple thing to do is download and use a more secure browser like Firefox. Then, if you need to do things like check your personal email or shop online, you can just switch over to the more secure browser. The bottom line is, if Microsoft is warning people not to use Internet Explorer, don’t use it. Your online privacy and security are not worth risking because you (or your company) have a hard time breaking an old habit. We make Firefox with security and privacy features like <a {{ lockwise }}>Lockwise</a>, our password manager, private browsing and lots of other add-ons that help us make the web safer for you. Also, our <a {{ privacy }}>Privacy Policy</a> is straightforward: we tell you what we know about you, and why we collect that information. All of these things obviously go beyond what Internet Explorer offers, and even what other modern browsers like Google Chrome and Microsoft Edge offer.
         {% endtrans %}
       </p>
 
@@ -146,14 +129,14 @@
             <tr>
               <th>{{ _('Utility') }}</th>
               <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
-              <th scope="col"><img src="{{ static('img/logos/chrome/logo-chrome.png') }}" height="36" width="36" alt="{{ _('Chrome') }}"></th>
+              <th scope="col"><img src="{{ static('img/logos/ie/logo-ie.png') }}" height="36" width="36" alt="{{ _('Internet Explorer') }}"></th>
             </tr>
           </thead>
           <tbody>
             <tr>
                 <th scope="row">{{ _('Autoplay blocking') }}</th>
                 <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+                <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
               </tr>
             <tr>
               <th scope="row">{{ _('Tab browsing') }}</th>
@@ -205,38 +188,20 @@
 
       <p>
         {% trans %}
-        In terms of features, both Firefox and Chrome offer a large library of extensions and plug-ins, with Chrome’s catalog vastly outnumbering any other browser while nicely integrating with other Google services, like Gmail and Google Docs.
+        Alarmingly, 4 to 5% of all desktop web traffic comes through Internet Explorer. That might not seem like a lot, but in reality it means millions of people are being served a poor internet experience with slow loading and rendering times, pages that won’t display properly — all on top of the security issues already discussed.
         {% endtrans %}
       </p>
 
       <p>
         {% trans %}
-        Although not as extensive as Chrome’s add-on library, Firefox, as open-source software with a huge number of active contributors, also features an incredible number of useful extensions.
+        Really the only reasons to use Internet Explorer are for developers to test what their sites look like on an older browser or if a company has business-critical apps that only work with the Internet Explorer browser.
         {% endtrans %}
       </p>
 
       <p>
-        {% trans %}
-        Firefox also has a sync feature to see your open and recent tabs, browsing history, and bookmarks across all your devices.
-        {% endtrans %}
-      </p>
-
-      <p>
-        {# L10n: "gets the nod" here means Chrome is the winner. It's an idiom that indicates making a selection, like someone nodding their head in approval. #}
-        {% trans %}
-        While Chrome gets the nod with add-ons and extensions, Firefox has a nicely curated set of built-in features, such as the incredibly handy screen capture tool, and reading mode feature which strips away everything from the page except the text from the article you’re reading.
-        {% endtrans %}
-      </p>
-
-      <p>
-        {% trans %}
-        If having tons of open tabs is your thing, then it really comes down to your UI preference. Firefox features a horizontal scroll on all your open tabs rather than shrinking them smaller and smaller with each new one. Google Chrome prefers to shrink them down so just the favicon is visible. The only problem with this is when you have multiple tabs open from the same website, so you see the same favicon across your tabs.
-        {% endtrans %}
-      </p>
-
-      <p>
-        {% trans %}
-        As for customization, our fans will tell you one of the things they love most about our browser is its ability to allow you to move and arrange a majority of the UI elements to best suit your needs. Chrome allows you to hide certain UI elements but there’s not much allowance, if any, for moving things around based on your preferences. However, it should be noted that both Chrome and Firefox make it pretty easy to change your browser’s appearance and theme.
+        {% trans pocket='href="%s" data-cta-type="link" data-cta-name="Pocket"'|safe|format(url('firefox.pocket')),
+                 products='href="%s" data-cta-type="link" data-cta-name="our other Firefox products"'|safe|format(url('firefox')) %}
+        On the other end of the spectrum, Firefox is one of the most frequently updated browsers, and comes loaded with lots of useful and interesting features, like <a {{ pocket }}>Pocket</a> that suggests interesting content every time you open a new tab. Our unified search and web address bar, or <em>Awesome Bar</em> as we call it, also gives you suggestions based on your existing bookmarks and tags, history, open tabs and popular searches. And with a free Firefox account you also get access to all your settings and <a {{ products }}>our other Firefox products</a> on any device simply by signing in. Plus the peace of mind of knowing your browser is proactively working to protect your personal data.
         {% endtrans %}
       </p>
 
@@ -255,24 +220,24 @@
             <tr>
               <th>{{ _('Portability') }}</th>
               <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
-              <th scope="col"><img src="{{ static('img/logos/chrome/logo-chrome.png') }}" height="36" width="36" alt="{{ _('Chrome') }}"></th>
+              <th scope="col"><img src="{{ static('img/logos/ie/logo-ie.png') }}" height="36" width="36" alt="{{ _('Internet Explorer') }}"></th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th scope="row">{{ _('OS availability') }}</th>
               <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
               <th scope="row">{{ _('Mobile OS availability') }}</th>
               <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
               <th scope="row">{{ _('Syncs with mobile') }}</th>
               <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
               <th scope="row">{{ _('Password management') }}</th>
@@ -282,20 +247,20 @@
             <tr>
               <th scope="row">{{ _('Master Password') }}</th>
               <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
             </tr>
           </tbody>
         </table>
 
       <p>
         {% trans %}
-        Almost needless to say, versions of both Firefox and Chrome are available for the most popular desktop and mobile operating systems (Windows, macOS, Linux, Android, iOS).
+        As Microsoft has made the move to sunset the Internet Explorer browser, it no longer supports any version for iOS, and has never been available for Android. Which means unless you’re running a Windows-based laptop or desktop, you won’t have access to your bookmarks, browsing history, saved passwords, and other information that modern browsers sync across devices.
         {% endtrans %}
       </p>
 
       <p>
         {% trans %}
-        Both Chrome and Firefox also allow you to sync things like passwords, bookmarks, and open tabs across all your devices. If you have a Firefox account, you can manually send an open tab on your desktop to your mobile device or vice versa. With Chrome, it’s done automatically if you’ve chosen that setting in your preferences. Not having to manually send the tab from one device to the other is convenient when you want to do something like continue reading an article you didn’t finish earlier. But there could be times where automatic syncing might not be ideal if there’s a chance multiple users are browsing while signed in to your Google account.
+        Firefox works on any platform, including Windows, Mac, Linux, Android and iOS. Which also means  you can sync all your information across platforms. So if you’re browsing on a Windows-based laptop, you can pick up where you left off when you move to browsing on your iPhone or Android device. This convenience should come standard with any modern web browser, and is sorely lacking with Internet Explorer.
         {% endtrans %}
       </p>
 
@@ -310,19 +275,21 @@
 
       <p>
         {% trans %}
-        We think it’s fair to say Firefox and Chrome are really neck and neck in terms of portability and utility, with Chrome having a slight edge in utility because of its huge library of extensions and add-on features. But in terms of Privacy, Firefox wins the day with our commitment to preserving our users’ online data and providing free baked-in services like password managers that also alert you if there happens to be a data breach involving your credentials.
+        There was a time not so long ago where Internet Explorer was the most popular and widely used browser in the world. Times have changed and so has technology, but unfortunately Internet Explorer has pretty much stayed the same. Microsoft itself openly implores users to stop using Internet Explorer and instead switch to their newer Chromium-based Edge browser.
         {% endtrans %}
       </p>
 
       <p>
-        {% trans %}
-        For practical purposes, there’s obviously really nothing preventing you from using both browsers—Firefox for those moments in life when privacy really matters, and Chrome if you’re still invested in the Google ecosystem. Yet with the growing number of incursions into our personal data, Firefox may prove to be the right choice in the long run for those of us who value protecting our personal privacy online.
+        {# Download link should be locale neutral. See issue #7982 #}
+        {# L10n: "Nana" is a common nickname for a grandmother in many English-speaking countries. Use a similar name for your language or culture. #}
+        {% trans attrs='href="/firefox/download/thanks/" data-cta-type="link" data-cta-name="download Firefox"'|safe %}
+        Our opinion is just to go with a trusted, private browser with a track record of delivering a great experience across devices. In a head-to-head comparison, it’s really no contest at all. Firefox is hands down the winner across all assessment categories. If you do find yourself at Nana’s house firing up Internet Explorer, maybe you want to do Nana a favor and <a {{ attrs }}>download Firefox</a> for her.
         {% endtrans %}
       </p>
 
       <p class="compare-version-disclaimer">
         {% trans %}
-        The comparisons made here were done so across browser release versions as follows:<br> Firefox (70) | Chrome (74)
+        The comparisons made here were done so across browser release versions as follows:<br> Firefox (70) | Internet Explorer (11)
         {% endtrans %}
       </p>
 
@@ -338,4 +305,3 @@
 {% block js %}
   {{ js_bundle('firefox_compare_details') }}
 {% endblock %}
-
