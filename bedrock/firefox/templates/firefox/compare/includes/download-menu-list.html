@@ -1,0 +1,21 @@
+{% set get_browser = _('Download Firefox Browser') %}
+{% set get_app = _('Download the app') %}
+{% set get_desktop = _('Desktop') %}
+{% set get_android = 'Android' %}
+{% set get_ios = 'iOS' %}
+{% set get_mac = 'Mac' %}
+
+<div class="mzp-c-menu-list mzp-t-cta mzp-t-download">
+  <h5 class="mzp-c-menu-list-title">{{ get_browser }}</h5>
+  <ul class="mzp-c-menu-list-list" id="menu-browsers">
+  <!--[if IE]>
+    <li class="mzp-c-menu-list-item"><a href="{{ url('firefox.new') }}">{{ get_desktop }}</a></li>
+  <![endif]-->
+  <!--[if !IE]><!-->
+    {# Download link should be locale neutral see issue 7982 #}
+    <li class="mzp-c-menu-list-item"><a href="/firefox/download/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard">{{ get_desktop }}</a></li>
+  <!--<![endif]-->
+    <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('android', 'firefox_home') }}" rel="external noopener" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android"> {{ get_android }}</a></li>
+    <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('ios', 'firefox_home') }}" rel="external noopener" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">{{ get_ios }}</a></li>
+  </ul>
+</div>

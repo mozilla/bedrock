@@ -4,12 +4,12 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% add_lang_files "firefox/compare/chrome" %}
+{% add_lang_files "firefox/compare/opera" %}
 
-{% block page_title %}{{ _('Firefox vs. Chrome: Which is better?') }}{% endblock %}
+{% block page_title %}{{ _('Firefox vs. Opera: Which is the better browser for you?') }}{% endblock %}
 
 {% block page_desc %}
-{{ _('We compare Mozilla Firefox with Google Chrome in terms of privacy, utility and portability') }}
+{{ _('Compare Opera to the Firefox Browser to find out which is the best browser for you.') }}
 {% endblock %}
 
 {% block page_css %}
@@ -17,14 +17,14 @@
 {% endblock %}
 
 {% block content %}
-<section class="mzp-c-hero compare-details-hero compare-details-hero--chrome">
+<section class="mzp-c-hero compare-details-hero compare-details-hero--opera">
   <div class="mzp-l-content l-compare-details-content">
     <div class="mzp-c-hero-body">
       <div class="compare-details-hero-image">
           <img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox logo') }}">
-          <img src="{{ static('img/logos/chrome/logo-chrome.png') }}" height="36" width="36" alt="{{ _('Chrome logo') }}">
+          <img src="{{ static('img/logos/opera/logo-opera.png') }}" height="36" width="36" alt="{{ _('Opera logo') }}">
       </div>
-      <h1 class="mzp-c-hero-title">{{ _('Comparing Firefox Browser with Google Chrome') }}</h1>
+      <h1 class="mzp-c-hero-title">{{ _('Comparing Firefox Browser with Opera') }}</h1>
     </div>
   </div>
 </section>
@@ -34,23 +34,11 @@
     <section class="compare-details-section-summary">
         <p class="compare-details-section-intro">
           {% trans %}
-          In 2008, Google introduced Chrome, and its impact as an innovation in browser technology was immediate. It was faster for loading sites, took up minimal screen space and offered an undeniably simple user interface.
+          The Firefox Browser and Opera are two of the earliest browsers on the scene still releasing frequent updates. While Opera has not reached the same level of user adoption as Firefox or Google Chrome, it’s maintained a relatively stable and loyal base over a sustained period of time. In this review, we’ll compare the Opera browser with our Firefox browser in terms of security and privacy, utility, and portability to help you choose which browser might be the best fit for you.
           {% endtrans %}
         </p>
 
-        <p>
-          {% trans %}
-          Fast-forward to today, the competitive landscape for browsers has changed with many people beginning to question just what is happening to their online data such as browsing history, passwords, and other sensitive information. A lot has changed since 2008 when Chrome came onto the scene. At Firefox, we’ve been heads down, working to redesign our interface and provide users with an ever growing number of privacy and performance enhancements as well as plenty of handy browser tools.
-          {% endtrans %}
-        </p>
-
-        <p>
-          {% trans %}
-          And so here we are, the browser-wars are escalating once again and it’s time to reevaluate and compare Firefox Browser vs Google Chrome.
-          {% endtrans %}
-        </p>
-
-        {{ high_res_img('img/firefox/compare/compare-browser-chrome.png', {'alt': '', 'width': '541', 'height': '424', 'class': 'compare-details-image'}) }}
+        {{ high_res_img('img/firefox/compare/compare-browser-opera.png', {'alt': '', 'width': '543', 'height': '424', 'class': 'compare-details-image'}) }}
     </section>
 
     <section class="compare-section-privacy">
@@ -66,7 +54,7 @@
             <tr>
               <th>{{ _('Security and Privacy') }}</th>
               <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
-              <th scope="col"><img src="{{ static('img/logos/chrome/logo-chrome.png') }}" height="36" width="36" alt="{{ _('Chrome') }}"></th>
+              <th scope="col"><img src="{{ static('img/logos/opera/logo-opera.png') }}" height="36" width="36" alt="{{ _('Opera') }}"></th>
             </tr>
           </thead>
           <tbody>
@@ -78,7 +66,7 @@
             <tr>
               <th scope="row">{{ _('Blocks third-party tracking cookies') }}</th>
               <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
               <th scope="row">{{ _('Blocks cryptomining scripts') }}</th>
@@ -94,40 +82,34 @@
         </table>
 
       <p>
-        {% trans attrs='href="https://monitor.firefox.com?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=compare-chrome" rel="external noopener" data-cta-text="Firefox Monitor" data-cta-type="link"'|safe %}
-        At Firefox, we have a huge number of dedicated users who appreciate our steadfast dedication to online privacy. For example, the latest version of Firefox includes a feature called Enhanced Tracking Protection (ETP) which is turned on by default for all users worldwide. ETP blocks over 2,000 trackers, including social trackers from companies like Facebook, Twitter, and LinkedIn. It also has an integrated feature called <a {{ attrs }}>Firefox Monitor</a> that automatically notifies you if your password has been breached or needs to be updated. In addition to these protections, Firefox's Private Browsing mode automatically deletes your browsing information such as history and cookies, leaving no trace after you finish your session.
+        {% trans %}
+        Opera’s privacy policy lacks some specificity in its explanation of which types of information it collects and how, in certain sections, it says they collect names of account holders, IP addresses and search terms. What seems confusing and troubling is the section about International data transfers; when, how often and why they need to transfer your data internationally is not explained.
         {% endtrans %}
       </p>
 
       <p>
-        {% trans attrs = 'href="%s" data-cta-type="link" data-cta-name="Privacy Notice"'|safe|format(url('privacy.notices.firefox')) %}
-        We’ve also recently restated our commitment to privacy and transparency regarding user data in our most recent <a {{ attrs }}>Privacy Notice</a> that states, “At Mozilla, we believe that privacy is fundamental to a healthy internet.”
+        {% trans attrs = 'href="%s" data-cta-type="link" data-cta-name="privacy policy"'|safe|format(url('privacy.notices.firefox')) %}
+        Firefox’s <a {{ attrs }}>privacy policy</a> is very transparent in describing what personal information we collect with the only end goal being to give you greater control over the information you share online.
         {% endtrans %}
       </p>
 
       <p>
         {% trans %}
-        Google Chrome is by all accounts a secure browser, with features like Google Safe Browsing, which helps protect users by displaying an impossible-to-miss warning when they attempt to navigate to dangerous sites or download dangerous files.
+        As far as actual privacy protections in the Opera browser, it does offer a robust Private mode that allows you to surf the web without the browser tracking your activity. Also in normal browsing mode, you can also turn off some data collection features by digging into the settings to enable the ad blocker and adjust other security features.
         {% endtrans %}
       </p>
 
-      <img src="{{ static('img/firefox/compare/compare-privacy-lock.svg') }}" alt="" height="217" width="320" class="compare-details-image">
+      <img src="{{ static('img/firefox/compare/compare-privacy-eye.svg') }}" alt="" height="217" width="320" class="compare-details-image">
 
       <p>
-        {% trans %}
-        In fact, both Chrome and Firefox have rigorous security in place. Both include a thing called “sandboxing” which separates the processes of the browser so something like a harmful website doesn’t infect other parts of your laptop or other device.
-        {% endtrans %}
-      </p>
-
-      <p>
-        {% trans %}
-        While Chrome proves to be a safe web browser, its privacy record is questionable. Google actually collects a disturbingly large amount of data from its users including location, search history and site visits. Google makes its case for data collection saying it’s doing it to improve its services—like helping you find a sweater or a coffee shop like the one you previously bought or visited. However, others might disagree, making the point that Google is actually gathering an unprecedented amount of data for its own marketing purposes. They tout that they're keeping your information private from hackers, but that's beside the point. Google itself runs the world's largest advertising network, thanks in large part to data they harvest from their users.
+        {% trans attrs='href="https://blog.mozilla.org/blog/2019/09/03/todays-firefox-blocks-third-party-tracking-cookies-and-cryptomining-by-default/" rel="external noopener" data-cta-text="Enhanced Tracking Protection" data-cta-type="link"'|safe %}
+        With the latest version of Firefox, <a {{ attrs }}>Enhanced Tracking Protection</a> is turned on by default in normal browsing mode, so you don’t have to mess around with the settings just to protect yourself from trackers. With Enhanced Tracking Protection, Firefox actively blocks thousands of third-party trackers that try to follow you around the web. You are provided with a personalized protection report that shows how often Firefox blocked third-party cookies, social media trackers, fingerprinting tools and cryptominers as you browse the web.
         {% endtrans %}
       </p>
 
       <p>
         {% trans %}
-        Ultimately, it’s up to you to decide whether or not or when to draw the line in the sand with sharing things like your search history and shopping history. But if you’re anything like most people, you’ve probably searched for some things on the internet that you would rather keep private.
+        We make Firefox for people like you, who care deeply about personal privacy and security. That's why we collect so little info about users and are transparent about how we use that info. It's hard to know how Opera is operating from a privacy perspective. While there are robust privacy features, how they themselves collect and share your data is murky. Firefox remains consistent in what we say and what we do in protecting your privacy.
         {% endtrans %}
       </p>
 
@@ -146,7 +128,7 @@
             <tr>
               <th>{{ _('Utility') }}</th>
               <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
-              <th scope="col"><img src="{{ static('img/logos/chrome/logo-chrome.png') }}" height="36" width="36" alt="{{ _('Chrome') }}"></th>
+              <th scope="col"><img src="{{ static('img/logos/opera/logo-opera.png') }}" height="36" width="36" alt="{{ _('Opera') }}"></th>
             </tr>
           </thead>
           <tbody>
@@ -183,7 +165,7 @@
             <tr>
               <th scope="row">{{ _('Reader mode') }}</th>
               <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
                 <th scope="row">{{ _('Spell checking') }}</th>
@@ -198,45 +180,32 @@
               <tr>
                 <th scope="row">{{ _('In-browser screenshot tool') }}</th>
                 <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-                <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               </tr>
           </tbody>
         </table>
 
       <p>
-        {% trans %}
-        In terms of features, both Firefox and Chrome offer a large library of extensions and plug-ins, with Chrome’s catalog vastly outnumbering any other browser while nicely integrating with other Google services, like Gmail and Google Docs.
+        {% trans attrs='href="https://addons.mozilla.org" rel="external noopener" data-cta-text="extension library to browse" data-cta-type="link"'|safe %}
+        There’s no debate that Opera is a feature-packed browser with a clean user interface and strong customization options. Because Opera is built on Chromium, it can take advantage of most of Google Chrome’s vast extension library. Firefox also features a large <a {{ attrs }}>extension library to browse</a>, but not quite as large as Chrome’s.
         {% endtrans %}
       </p>
 
       <p>
         {% trans %}
-        Although not as extensive as Chrome’s add-on library, Firefox, as open-source software with a huge number of active contributors, also features an incredible number of useful extensions.
+        Like Firefox, Opera delivers a scrolling tab experience, which means that when you open more tabs than will fit on screen, it scrolls them off screen instead of just continuously shrinking them down. Also both Firefox and Opera have a screenshot tool that lets you capture a snapshot of your screen or part of the page. However, the Opera tool doesn’t give you the ability to create one huge capture of the whole webpage, only the visible portion.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans attrs='href="%s" rel="external noopener" data-cta-text="Pocket" data-cta-type="link"'|safe|format(url('firefox.pocket')) %}
+        Opera provides a lot of hidden utility within its simple and manageable interface. For example there’s built-in support for messaging apps, like Facebook Messenger.  There’s also a news reader that aggregates articles from your choice of sites and news outlets. The parallel feature to this on Firefox is called <a {{ attrs }}>Pocket</a>. Pocket is a free service for Firefox account holders that makes it easy to find and save interesting articles and videos from all  around the web. In addition, it recommends a variety of articles that expand your knowledge base curated by real, thoughtful humans.
         {% endtrans %}
       </p>
 
       <p>
         {% trans %}
-        Firefox also has a sync feature to see your open and recent tabs, browsing history, and bookmarks across all your devices.
-        {% endtrans %}
-      </p>
-
-      <p>
-        {# L10n: "gets the nod" here means Chrome is the winner. It's an idiom that indicates making a selection, like someone nodding their head in approval. #}
-        {% trans %}
-        While Chrome gets the nod with add-ons and extensions, Firefox has a nicely curated set of built-in features, such as the incredibly handy screen capture tool, and reading mode feature which strips away everything from the page except the text from the article you’re reading.
-        {% endtrans %}
-      </p>
-
-      <p>
-        {% trans %}
-        If having tons of open tabs is your thing, then it really comes down to your UI preference. Firefox features a horizontal scroll on all your open tabs rather than shrinking them smaller and smaller with each new one. Google Chrome prefers to shrink them down so just the favicon is visible. The only problem with this is when you have multiple tabs open from the same website, so you see the same favicon across your tabs.
-        {% endtrans %}
-      </p>
-
-      <p>
-        {% trans %}
-        As for customization, our fans will tell you one of the things they love most about our browser is its ability to allow you to move and arrange a majority of the UI elements to best suit your needs. Chrome allows you to hide certain UI elements but there’s not much allowance, if any, for moving things around based on your preferences. However, it should be noted that both Chrome and Firefox make it pretty easy to change your browser’s appearance and theme.
+        In terms of head to head utility, Opera and Firefox are close competitors. Opera may have an advantage in one aspect with its compatibility with and access to Chrome’s huge extension library. But one significant factor to consider is the fact that Opera, because it’s built on Chromium, is a processor-hungry browser with its RAM consumption comparable to Chrome, which is known for its high CPU usage.
         {% endtrans %}
       </p>
 
@@ -255,7 +224,7 @@
             <tr>
               <th>{{ _('Portability') }}</th>
               <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
-              <th scope="col"><img src="{{ static('img/logos/chrome/logo-chrome.png') }}" height="36" width="36" alt="{{ _('Chrome') }}"></th>
+              <th scope="col"><img src="{{ static('img/logos/opera/logo-opera.png') }}" height="36" width="36" alt="{{ _('Opera') }}"></th>
             </tr>
           </thead>
           <tbody>
@@ -288,14 +257,26 @@
         </table>
 
       <p>
+        {# L10n: "Ex" is a former partner or spouse, as in "ex-boyfriend" or "ex-wife." #}
         {% trans %}
-        Almost needless to say, versions of both Firefox and Chrome are available for the most popular desktop and mobile operating systems (Windows, macOS, Linux, Android, iOS).
+        Both Firefox and Opera are compatible across every major device including Windows, Mac, Linux, Android and iOS. Firefox account holders can easily sync their bookmarks, passwords, open tabs, and browsing history across all their signed into devices. The same is true for Opera users with an account. However, many sites, especially old sites that haven’t been updated in years, block the latest version of Opera entirely. So if visiting places like your Ex’s old blog is important, take heed, you may not be able to access some of the dustier corners of the internet if you use Opera.
         {% endtrans %}
       </p>
 
       <p>
         {% trans %}
-        Both Chrome and Firefox also allow you to sync things like passwords, bookmarks, and open tabs across all your devices. If you have a Firefox account, you can manually send an open tab on your desktop to your mobile device or vice versa. With Chrome, it’s done automatically if you’ve chosen that setting in your preferences. Not having to manually send the tab from one device to the other is convenient when you want to do something like continue reading an article you didn’t finish earlier. But there could be times where automatic syncing might not be ideal if there’s a chance multiple users are browsing while signed in to your Google account.
+        In addition to the regular mobile app, Opera has two other mobile versions of its browser: Touch and Mini. Touch is light on features but it’s designed to use on the go with only one hand. The Mini version aims at lowering data usage and increased speeds on slow connections by downgrading images and stripping away content.
+        {% endtrans %}
+
+        {# NOTE: This sentence will become out of date when Fenix graduates to the main release version. #}
+        {% trans  attrs='href="https://play.google.com/store/apps/details?id=org.mozilla.fenix" rel="external noopener" data-cta-text="Firefox Preview" data-cta-type="link"'|safe %}
+        We also offer an additional, albeit experimental version of our Firefox mobile app, <a {{ attrs }}>Firefox Preview</a>, which focuses on speed and security.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans %}
+        Most major browsers these days, with the exception of Safari, work seamlessly across platforms and browsers. Opera and Firefox are no exception with both browsers providing excellent portability across every device.
         {% endtrans %}
       </p>
 
@@ -310,19 +291,13 @@
 
       <p>
         {% trans %}
-        We think it’s fair to say Firefox and Chrome are really neck and neck in terms of portability and utility, with Chrome having a slight edge in utility because of its huge library of extensions and add-on features. But in terms of Privacy, Firefox wins the day with our commitment to preserving our users’ online data and providing free baked-in services like password managers that also alert you if there happens to be a data breach involving your credentials.
-        {% endtrans %}
-      </p>
-
-      <p>
-        {% trans %}
-        For practical purposes, there’s obviously really nothing preventing you from using both browsers—Firefox for those moments in life when privacy really matters, and Chrome if you’re still invested in the Google ecosystem. Yet with the growing number of incursions into our personal data, Firefox may prove to be the right choice in the long run for those of us who value protecting our personal privacy online.
+        Overall, Opera is a solid browser, with a clean interface and a lot of useful features available. There are, however, some serious privacy concerns as well as an issue with it using a lot of processing power.  Although Opera has some really terrific ease of use features, we still believe Firefox remains a superior browser based on performance and with a transparent user-privacy stance and strict privacy protections.
         {% endtrans %}
       </p>
 
       <p class="compare-version-disclaimer">
         {% trans %}
-        The comparisons made here were done so across browser release versions as follows:<br> Firefox (70) | Chrome (74)
+        The comparisons made here were done so across browser release versions as follows:<br> Firefox (70) | Opera (60)
         {% endtrans %}
       </p>
 

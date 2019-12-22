@@ -4,12 +4,12 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% add_lang_files "firefox/compare/chrome" %}
+{% add_lang_files "firefox/compare/edge" %}
 
-{% block page_title %}{{ _('Firefox vs. Chrome: Which is better?') }}{% endblock %}
+{% block page_title %}{{ _('Firefox vs. Microsoft Edge: Which is the better browser for you?') }}{% endblock %}
 
 {% block page_desc %}
-{{ _('We compare Mozilla Firefox with Google Chrome in terms of privacy, utility and portability') }}
+{{ _('Compare Microsoft Edge to the Firefox Browser to find out which is the better browser for you.') }}
 {% endblock %}
 
 {% block page_css %}
@@ -17,14 +17,14 @@
 {% endblock %}
 
 {% block content %}
-<section class="mzp-c-hero compare-details-hero compare-details-hero--chrome">
+<section class="mzp-c-hero compare-details-hero compare-details-hero--edge">
   <div class="mzp-l-content l-compare-details-content">
     <div class="mzp-c-hero-body">
       <div class="compare-details-hero-image">
           <img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox logo') }}">
-          <img src="{{ static('img/logos/chrome/logo-chrome.png') }}" height="36" width="36" alt="{{ _('Chrome logo') }}">
+          <img src="{{ static('img/logos/edge/logo-edge.png') }}" height="36" width="36" alt="{{ _('Microsoft Edge logo') }}">
       </div>
-      <h1 class="mzp-c-hero-title">{{ _('Comparing Firefox Browser with Google Chrome') }}</h1>
+      <h1 class="mzp-c-hero-title">{{ _('Comparing Firefox Browser with Microsoft Edge') }}</h1>
     </div>
   </div>
 </section>
@@ -34,23 +34,17 @@
     <section class="compare-details-section-summary">
         <p class="compare-details-section-intro">
           {% trans %}
-          In 2008, Google introduced Chrome, and its impact as an innovation in browser technology was immediate. It was faster for loading sites, took up minimal screen space and offered an undeniably simple user interface.
+          With Windows 10, Microsoft introduced its Edge browser to compete with Firefox and Chrome making it the default browser pre-installed on millions of PCs sold. Even so, users were slow to adopt it and Microsoft eventually announced plans to relaunch Edge as a Chromium-based browser (Chromium of course being Google’s Open Source browser project).
           {% endtrans %}
         </p>
 
         <p>
           {% trans %}
-          Fast-forward to today, the competitive landscape for browsers has changed with many people beginning to question just what is happening to their online data such as browsing history, passwords, and other sensitive information. A lot has changed since 2008 when Chrome came onto the scene. At Firefox, we’ve been heads down, working to redesign our interface and provide users with an ever growing number of privacy and performance enhancements as well as plenty of handy browser tools.
+          Here we’ll compare our Firefox Browser to the Chromium-based Microsoft Edge in terms of privacy, utility, and portability, to help you have a better understanding of which browser better suits your needs and preferences.
           {% endtrans %}
         </p>
 
-        <p>
-          {% trans %}
-          And so here we are, the browser-wars are escalating once again and it’s time to reevaluate and compare Firefox Browser vs Google Chrome.
-          {% endtrans %}
-        </p>
-
-        {{ high_res_img('img/firefox/compare/compare-browser-chrome.png', {'alt': '', 'width': '541', 'height': '424', 'class': 'compare-details-image'}) }}
+        {{ high_res_img('img/firefox/compare/compare-browser-edge.png', {'alt': '', 'width': '545', 'height': '424', 'class': 'compare-details-image'}) }}
     </section>
 
     <section class="compare-section-privacy">
@@ -66,7 +60,7 @@
             <tr>
               <th>{{ _('Security and Privacy') }}</th>
               <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
-              <th scope="col"><img src="{{ static('img/logos/chrome/logo-chrome.png') }}" height="36" width="36" alt="{{ _('Chrome') }}"></th>
+              <th scope="col"><img src="{{ static('img/logos/edge/logo-edge.png') }}" height="36" width="36" alt="{{ _('Microsoft Edge') }}"></th>
             </tr>
           </thead>
           <tbody>
@@ -94,40 +88,40 @@
         </table>
 
       <p>
-        {% trans attrs='href="https://monitor.firefox.com?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=compare-chrome" rel="external noopener" data-cta-text="Firefox Monitor" data-cta-type="link"'|safe %}
-        At Firefox, we have a huge number of dedicated users who appreciate our steadfast dedication to online privacy. For example, the latest version of Firefox includes a feature called Enhanced Tracking Protection (ETP) which is turned on by default for all users worldwide. ETP blocks over 2,000 trackers, including social trackers from companies like Facebook, Twitter, and LinkedIn. It also has an integrated feature called <a {{ attrs }}>Firefox Monitor</a> that automatically notifies you if your password has been breached or needs to be updated. In addition to these protections, Firefox's Private Browsing mode automatically deletes your browsing information such as history and cookies, leaving no trace after you finish your session.
-        {% endtrans %}
-      </p>
-
-      <p>
-        {% trans attrs = 'href="%s" data-cta-type="link" data-cta-name="Privacy Notice"'|safe|format(url('privacy.notices.firefox')) %}
-        We’ve also recently restated our commitment to privacy and transparency regarding user data in our most recent <a {{ attrs }}>Privacy Notice</a> that states, “At Mozilla, we believe that privacy is fundamental to a healthy internet.”
+        {% trans %}
+        Edge is integrated into the Windows 10 platform and runs in a sandbox environment, meaning it isolates programs and prevents malicious programs from spying on your computer. It has a built-in SmartScreen that scans the reputation of sites you visit and blocks suspicious sites. To enhance privacy, Edge allows you to use biometrics or a PIN with Windows Hello  instead of passwords for online authentication.
         {% endtrans %}
       </p>
 
       <p>
         {% trans %}
-        Google Chrome is by all accounts a secure browser, with features like Google Safe Browsing, which helps protect users by displaying an impossible-to-miss warning when they attempt to navigate to dangerous sites or download dangerous files.
-        {% endtrans %}
-      </p>
-
-      <img src="{{ static('img/firefox/compare/compare-privacy-lock.svg') }}" alt="" height="217" width="320" class="compare-details-image">
-
-      <p>
-        {% trans %}
-        In fact, both Chrome and Firefox have rigorous security in place. Both include a thing called “sandboxing” which separates the processes of the browser so something like a harmful website doesn’t infect other parts of your laptop or other device.
+        However, Edge saves some of your private data and sends it back to Microsoft with Windows updates. At 45 cryptically worded pages long, the privacy policy for Edge is unlikely to be read or understood by the average user.
         {% endtrans %}
       </p>
 
       <p>
-        {% trans %}
-        While Chrome proves to be a safe web browser, its privacy record is questionable. Google actually collects a disturbingly large amount of data from its users including location, search history and site visits. Google makes its case for data collection saying it’s doing it to improve its services—like helping you find a sweater or a coffee shop like the one you previously bought or visited. However, others might disagree, making the point that Google is actually gathering an unprecedented amount of data for its own marketing purposes. They tout that they're keeping your information private from hackers, but that's beside the point. Google itself runs the world's largest advertising network, thanks in large part to data they harvest from their users.
+        {% trans attrs='href="%s" data-cta-type="link" data-cta-name="privacy policy"'|safe|format(url('privacy.notices.firefox')) %}
+        At Firefox, our <a {{ attrs }}>privacy policy</a> is transparent and in plain language. We actually put a lot of work into making sure it was straightforward and easy to read. We pride ourselves in protecting our users security and privacy. With Enhanced Tracking Protection now on by default, we block 2000+ trackers automatically. Trackers are those little pieces of code that try to piece together what you're doing across multiple internet sites to build a composite and detailed picture of who you are, compromising your privacy all just to target better ads.
+        {% endtrans %}
+      </p>
+
+      <img src="{{ static('img/firefox/compare/compare-privacy-eyes.svg') }}" alt="" height="217" width="320" class="compare-details-image">
+
+      <p>
+        {% trans attrs='href="%s" data-cta-text="Privacy Protections" data-cta-type="link"'|safe|format(url('firefox.privacy.products')) %}
+        Your <a {{ attrs }}>Privacy Protections</a> shows you the trackers and cookies that pages have attempted to leave, and how many Firefox has blocked for you.
         {% endtrans %}
       </p>
 
       <p>
         {% trans %}
-        Ultimately, it’s up to you to decide whether or not or when to draw the line in the sand with sharing things like your search history and shopping history. But if you’re anything like most people, you’ve probably searched for some things on the internet that you would rather keep private.
+        In Firefox, Private Browsing mode automatically erases your browsing information like passwords, cookies, and history, leaving no trace after you close out the session. Edge on the other hand, actually records browsing history in their private mode (called “InPrivate”) and it’s a relatively easy task for someone to reconstruct your full browsing history, regardless of whether your browsing was done in regular or InPrivate mode.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans %}
+        Both browsers are relatively equal in terms of data encryption. However, if online privacy and transparency are important to you, then Firefox is clearly a better choice here.
         {% endtrans %}
       </p>
 
@@ -146,14 +140,14 @@
             <tr>
               <th>{{ _('Utility') }}</th>
               <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
-              <th scope="col"><img src="{{ static('img/logos/chrome/logo-chrome.png') }}" height="36" width="36" alt="{{ _('Chrome') }}"></th>
+              <th scope="col"><img src="{{ static('img/logos/edge/logo-edge.png') }}" height="36" width="36" alt="{{ _('Microsoft Edge') }}"></th>
             </tr>
           </thead>
           <tbody>
             <tr>
                 <th scope="row">{{ _('Autoplay blocking') }}</th>
                 <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+                <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
               </tr>
             <tr>
               <th scope="row">{{ _('Tab browsing') }}</th>
@@ -198,45 +192,50 @@
               <tr>
                 <th scope="row">{{ _('In-browser screenshot tool') }}</th>
                 <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-                <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+                <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
               </tr>
           </tbody>
         </table>
 
       <p>
         {% trans %}
-        In terms of features, both Firefox and Chrome offer a large library of extensions and plug-ins, with Chrome’s catalog vastly outnumbering any other browser while nicely integrating with other Google services, like Gmail and Google Docs.
+        Firefox is a fast and open source browser, which means users can customize their browsing experience in every way possible. Firefox also allows the casual user several different ways to customize the UI with applying different themes and toolbar configurations. Since our browser has always been open source we have a large following of devoted developers who have created an extensive library of add-ons and browser extensions.
         {% endtrans %}
       </p>
 
       <p>
         {% trans %}
-        Although not as extensive as Chrome’s add-on library, Firefox, as open-source software with a huge number of active contributors, also features an incredible number of useful extensions.
+        Since Edge has moved to the processor intensive Chromium platform, you can expect it to run a little slower, especially if you have multiple programs running at once. However, with Chromium platform comes a massive library of extensions as well as a decent level of UI customization that Edge did not have before it’s move to Chromium.
         {% endtrans %}
       </p>
 
       <p>
         {% trans %}
-        Firefox also has a sync feature to see your open and recent tabs, browsing history, and bookmarks across all your devices.
+        Edge has some nice UI features, like their tab previews which can make it easy to find the right open tabs if you’ve got a lot of them open. Another helpful tab-related feature lets you set aside any active tabs that you aren’t using but don’t want to close down.
         {% endtrans %}
       </p>
 
       <p>
-        {# L10n: "gets the nod" here means Chrome is the winner. It's an idiom that indicates making a selection, like someone nodding their head in approval. #}
-        {% trans %}
-        While Chrome gets the nod with add-ons and extensions, Firefox has a nicely curated set of built-in features, such as the incredibly handy screen capture tool, and reading mode feature which strips away everything from the page except the text from the article you’re reading.
-        {% endtrans %}
-      </p>
-
-      <p>
-        {% trans %}
-        If having tons of open tabs is your thing, then it really comes down to your UI preference. Firefox features a horizontal scroll on all your open tabs rather than shrinking them smaller and smaller with each new one. Google Chrome prefers to shrink them down so just the favicon is visible. The only problem with this is when you have multiple tabs open from the same website, so you see the same favicon across your tabs.
+        {% trans attrs='href="%s" data-cta-type="link" data-cta-name="Pocket feature"'|safe|format(url('firefox.pocket')) %}
+        Firefox features a scrolling tab interface, which keeps tab information viewable and scrolls them horizontally instead of shrinking them down to just favicon size.  Also whenever you open a new tab, our <a {{ attrs }}>Pocket feature</a> suggests relevant articles and content for you. Plus with Pocket, you can also save articles, videos, and other content with one click, for reading at a later time.
         {% endtrans %}
       </p>
 
       <p>
         {% trans %}
-        As for customization, our fans will tell you one of the things they love most about our browser is its ability to allow you to move and arrange a majority of the UI elements to best suit your needs. Chrome allows you to hide certain UI elements but there’s not much allowance, if any, for moving things around based on your preferences. However, it should be noted that both Chrome and Firefox make it pretty easy to change your browser’s appearance and theme.
+        Firefox and Edge both offer excellent reading modes. With Firefox you just tap on the small icon in the search bar and the browser strips down all unnecessary elements and presents you a clean looking article. In Edge you just tap on the small book icon and browser to get a clean easy-to-read UI.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans attrs='href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop" rel="external noopener" data-cta-text="Enhanced Tracking Protection" data-cta-type="link"'|safe %}
+        Firefox also includes lots of handy built-in features by default like <a {{ attrs }}>Enhanced Tracking Protection</a>, a built-in screenshot tool, large file sending and more.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans %}
+        Out of the gate, Firefox has more features and integrations built into the browser and readily available on download. And while both browsers have a tremendous number of add-ons and extensions available, Edge’s compatibility with Google’s Chromium platform gives it the advantage in terms of sheer numbers.
         {% endtrans %}
       </p>
 
@@ -255,14 +254,14 @@
             <tr>
               <th>{{ _('Portability') }}</th>
               <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
-              <th scope="col"><img src="{{ static('img/logos/chrome/logo-chrome.png') }}" height="36" width="36" alt="{{ _('Chrome') }}"></th>
+              <th scope="col"><img src="{{ static('img/logos/edge/logo-edge.png') }}" height="36" width="36" alt="{{ _('Microsoft Edge') }}"></th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th scope="row">{{ _('OS availability') }}</th>
               <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
-              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
             </tr>
             <tr>
               <th scope="row">{{ _('Mobile OS availability') }}</th>
@@ -289,18 +288,23 @@
 
       <p>
         {% trans %}
-        Almost needless to say, versions of both Firefox and Chrome are available for the most popular desktop and mobile operating systems (Windows, macOS, Linux, Android, iOS).
+        With Internet Explorer, Microsoft learned from its lack of availability across platforms and made Edge available for macOS and Android. The software is now readily available on iOS, Android, and Windows and Mac.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans attrs='href="%s" data-cta-type="link" data-cta-name="free account"'|safe|format(url('firefox.accounts')) %}
+        Firefox has been available on iOS, Android, Windows, macOS, and Linux for years. And as you would expect with any modern browser, Firefox lets you log in with a <a {{ attrs }}>free account</a> and sync data such as passwords, browsing history, bookmarks, and open tabs between your computer, tablet. and phone. It also allows you to sync across platforms as well.
         {% endtrans %}
       </p>
 
       <p>
         {% trans %}
-        Both Chrome and Firefox also allow you to sync things like passwords, bookmarks, and open tabs across all your devices. If you have a Firefox account, you can manually send an open tab on your desktop to your mobile device or vice versa. With Chrome, it’s done automatically if you’ve chosen that setting in your preferences. Not having to manually send the tab from one device to the other is convenient when you want to do something like continue reading an article you didn’t finish earlier. But there could be times where automatic syncing might not be ideal if there’s a chance multiple users are browsing while signed in to your Google account.
+        Edge also allows you to connect your associated Microsoft account and sign in to sync your favorites, history, passwords, and more between your computer and iOS or Android devices, although some Android tablets are not currently supported.
         {% endtrans %}
       </p>
 
       {% include '/firefox/compare/includes/download-menu-list.html' %}
-
     </section>
 
     <section class="compare-section-overall">
@@ -309,20 +313,20 @@
       </header>
 
       <p>
-        {% trans %}
-        We think it’s fair to say Firefox and Chrome are really neck and neck in terms of portability and utility, with Chrome having a slight edge in utility because of its huge library of extensions and add-on features. But in terms of Privacy, Firefox wins the day with our commitment to preserving our users’ online data and providing free baked-in services like password managers that also alert you if there happens to be a data breach involving your credentials.
+        {% trans attrs='href="%s" data-cta-type="link" data-cta-name="Mozilla"'|safe|format(url('mozorg.home')) %}
+        Aside from sucking up a lot of computing power, Edge running on Chromium has answered a lot of users’ needs for functionality and features. But there’s still a lot to account for in terms of the browser’s privacy protections. It’s our assessment that Firefox is still a better choice for most people to use in their daily lives, based not only on functionality but more importantly on our transparency in how we collect user data, what exactly we collect, and what we do with it. Because our parent company is <a {{ attrs }}>Mozilla</a>, a non-profit organization dedicated to internet privacy and freedom, we simply have a different set of priorities when it comes to users’ data.
         {% endtrans %}
       </p>
 
       <p>
         {% trans %}
-        For practical purposes, there’s obviously really nothing preventing you from using both browsers—Firefox for those moments in life when privacy really matters, and Chrome if you’re still invested in the Google ecosystem. Yet with the growing number of incursions into our personal data, Firefox may prove to be the right choice in the long run for those of us who value protecting our personal privacy online.
+        The bottom line is that while we suggest using Firefox, the best browser for you ultimately will be the one that fits your individual needs with extension support, browsing tools  customization, speed, privacy and security.
         {% endtrans %}
       </p>
 
       <p class="compare-version-disclaimer">
         {% trans %}
-        The comparisons made here were done so across browser release versions as follows:<br> Firefox (70) | Chrome (74)
+        The comparisons made here were done so across browser release versions as follows:<br> Firefox (70) | Edge (44)
         {% endtrans %}
       </p>
 
