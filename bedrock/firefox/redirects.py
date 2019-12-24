@@ -563,7 +563,7 @@ redirectpatterns = (
     redirect(r'^firefox/stats/', '/firefox/'),
 
     # bug 1416706
-    redirect(r'^firefox/desktop/?', 'firefox'),
+    redirect(r'^firefox/desktop/?', '/firefox/new/'),
 
     # bug 1418500
     redirect(r'^firefox/android/?$', 'firefox.mobile'),

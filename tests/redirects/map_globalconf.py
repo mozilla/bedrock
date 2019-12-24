@@ -1203,7 +1203,7 @@ URLS = flatten((
     url_test('/styleguide/identity/firefox/color/', '/styleguide/'),
 
     # bug 1416706
-    url_test('/firefox/desktop/', '/firefox/'),
+    url_test('/firefox/desktop/', '/firefox/new/'),
 
     # bug 1416708
     url_test('/firefox/quantum/', '/firefox/'),
