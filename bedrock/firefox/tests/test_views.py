@@ -48,6 +48,8 @@ class TestStubAttributionCode(TestCase):
             'medium': '(none)',
             'campaign': '(not set)',
             'content': '(not set)',
+            'experiment': '(not set)',
+            'variation': '(not set)',
         }
         req = self._get_request({'dude': 'abides'})
         resp = views.stub_attribution_code(req)
@@ -63,16 +65,18 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data['attribution_sig'],
-            '1cdbee664f4e9ea32f14510995b41729a80eddc94cf26dc3c74894c6264c723c',
+            '5560dd96b10040c7c386ae8080233b43b8661c44f249101ecbab8370847962c1',
         )
 
     def test_no_valid_param_data(self):
-        params = {'utm_source': 'br@ndt', 'utm_medium': 'ae<t>her'}
+        params = {'utm_source': 'br@ndt', 'utm_medium': 'ae<t>her', 'experiment': 'dfb</p>s', 'variation': 'ef&bvcv'}
         final_params = {
             'source': 'www.mozilla.org',
             'medium': '(none)',
             'campaign': '(not set)',
             'content': '(not set)',
+            'experiment': '(not set)',
+            'variation': '(not set)',
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -88,7 +92,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data['attribution_sig'],
-            '1cdbee664f4e9ea32f14510995b41729a80eddc94cf26dc3c74894c6264c723c',
+            '5560dd96b10040c7c386ae8080233b43b8661c44f249101ecbab8370847962c1',
         )
 
     def test_some_valid_param_data(self):
@@ -98,6 +102,8 @@ class TestStubAttributionCode(TestCase):
             'medium': '(direct)',
             'campaign': '(not set)',
             'content': '(not set)',
+            'experiment': '(not set)',
+            'variation': '(not set)',
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -113,7 +119,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data['attribution_sig'],
-            '37946edae923b50f31f9dc10013dc0d23bed7dc6272611e12af46ff7a8d9d7dc',
+            '4e03561fc04c080caf0f9f6b4d8cb24c707a4dc5a8929af65881e166d2cca826',
         )
 
     def test_campaign_data_too_long(self):
@@ -124,13 +130,17 @@ class TestStubAttributionCode(TestCase):
             'utm_content': 'A144_A000_0000000',
             'utm_campaign': 'The%7cDude%7cabides%7cI%7cdont%7cknow%7cabout%7cyou%7c'
             'but%7cI%7ctake%7ccomfort%7cin%7cthat' * 2,
+            'experiment': '(not set)',
+            'variation': '(not set)',
         }
         final_params = {
             'source': 'brandt',
             'medium': 'aether',
             'campaign': 'The|Dude|abides|I|dont|know|about|you|but|I|take|comfort|in|'
-            'thatThe|Dude|abides|I|dont|know|about_',
+            'thatThe%7_',
             'content': 'A144_A000_0000000',
+            'experiment': '(not set)',
+            'variation': '(not set)',
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -146,7 +156,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data['attribution_sig'],
-            '5f4f928ad022b15ce10d6dc962e21e12bbfba924d73a2605f3085760d3f93923',
+            'dee21b516c44e021d3c50dfa23d207e3adad7ca419c6f27d507d4a83eff548db',
         )
 
     def test_other_data_too_long_not_campaign(self):
@@ -167,12 +177,14 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(data, final_params)
 
     def test_returns_valid_data(self):
-        params = {'utm_source': 'brandt', 'utm_medium': 'aether'}
+        params = {'utm_source': 'brandt', 'utm_medium': 'aether', 'experiment': 'firefox-new', 'variation': '1'}
         final_params = {
             'source': 'brandt',
             'medium': 'aether',
             'campaign': '(not set)',
             'content': '(not set)',
+            'experiment': 'firefox-new',
+            'variation': '1',
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -188,7 +200,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data['attribution_sig'],
-            'abcbb028f97d08b7f85d194e6d51b8a2d96823208fdd167ff5977786b562af66',
+            '33b626262f3520b2fea479a0c922e766918a320bda32c710cb638f02b656c5db',
         )
 
     def test_handles_referrer(self):
@@ -198,6 +210,8 @@ class TestStubAttributionCode(TestCase):
             'medium': '(direct)',
             'campaign': '(not set)',
             'content': '(not set)',
+            'experiment': '(not set)',
+            'variation': '(not set)',
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -213,7 +227,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data['attribution_sig'],
-            '37946edae923b50f31f9dc10013dc0d23bed7dc6272611e12af46ff7a8d9d7dc',
+            '4e03561fc04c080caf0f9f6b4d8cb24c707a4dc5a8929af65881e166d2cca826',
         )
 
     def test_handles_referrer_no_source(self):
@@ -226,6 +240,8 @@ class TestStubAttributionCode(TestCase):
             'medium': 'referral',
             'campaign': '(not set)',
             'content': '(not set)',
+            'experiment': '(not set)',
+            'variation': '(not set)',
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -241,7 +257,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data['attribution_sig'],
-            '70e177b822f24fa9f8bc8e1caa382204632b3b2548db19bb32b97042c0ef0d47',
+            '6bd49cd7e1d88f47f2beca56d2216e7c49cb76aee193ff5c5aca34b5318781e8',
         )
 
     def test_handles_referrer_utf8(self):
@@ -257,6 +273,8 @@ class TestStubAttributionCode(TestCase):
             'medium': '(none)',
             'campaign': '(not set)',
             'content': '(not set)',
+            'experiment': '(not set)',
+            'variation': '(not set)',
         }
         req = self._get_request(params)
         resp = views.stub_attribution_code(req)
@@ -272,7 +290,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data['attribution_sig'],
-            '1cdbee664f4e9ea32f14510995b41729a80eddc94cf26dc3c74894c6264c723c',
+            '5560dd96b10040c7c386ae8080233b43b8661c44f249101ecbab8370847962c1',
         )
 
     @override_settings(STUB_ATTRIBUTION_RATE=0.2)
