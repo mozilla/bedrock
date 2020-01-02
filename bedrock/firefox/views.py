@@ -54,6 +54,8 @@ STUB_VALUE_NAMES = [
     ('utm_medium', '(direct)'),
     ('utm_campaign', '(not set)'),
     ('utm_content', '(not set)'),
+    ('experiment', '(not set)'),
+    ('variation', '(not set)'),
 ]
 STUB_VALUE_RE = re.compile(r'^[a-z0-9-.%():_]+$', flags=re.IGNORECASE)
 
@@ -95,7 +97,9 @@ def stub_attribution_code(request):
     for name, default_value in STUB_VALUE_NAMES:
         val = data.get(name, '')
         # remove utm_
-        name = name[4:]
+        if name.startswith('utm_'):
+            name = name[4:]
+
         if val and STUB_VALUE_RE.match(val):
             codes[name] = val
             has_value = True

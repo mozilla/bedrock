@@ -161,18 +161,25 @@ if (typeof window.Mozilla === 'undefined') {
      * @return {Object} - Stub attribution data object.
      */
     StubAttribution.getAttributionData = function(ref) {
-        var params = new window._SearchParams().utmParams();
+        var params = new window._SearchParams();
+        var utms = params.utmParams();
+        var experiment = params.get('experiment');
+        var variation = params.get('variation');
         var referrer = typeof ref !== 'undefined' ? ref : document.referrer;
 
         /* eslint-disable camelcase */
-        return {
-            utm_source: params.utm_source,
-            utm_medium: params.utm_medium,
-            utm_campaign: params.utm_campaign,
-            utm_content: params.utm_content,
-            referrer: referrer
+        var data = {
+            utm_source: utms.utm_source,
+            utm_medium: utms.utm_medium,
+            utm_campaign: utms.utm_campaign,
+            utm_content: utms.utm_content,
+            referrer: referrer,
+            experiment: experiment,
+            variation: variation
         };
         /* eslint-enable camelcase */
+
+        return data;
     };
 
     /**

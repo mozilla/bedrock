@@ -141,48 +141,121 @@ describe('stub-attribution.js', function() {
     describe('getAttributionData', function() {
 
         it('should return attribution data if utm params are present', function() {
+            var referrer = '';
+
             /* eslint-disable camelcase */
-            var data = {
-                utm_source: 'foo',
-                utm_medium: 'bar',
-                utm_campaign: 'fizz',
-                utm_content: 'buzz',
-                referrer: ''
+            var utms = {
+                utm_source: 'desktop-snippet',
+                utm_medium: 'referral',
+                utm_campaign: 'F100_4242_otherstuff_in_here',
+                utm_content: 'rel-esr',
             };
             /* eslint-enable camelcase */
 
-            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(data);
-            var result = Mozilla.StubAttribution.getAttributionData('');
+            /* eslint-disable camelcase */
+            var data = {
+                utm_source: 'desktop-snippet',
+                utm_medium: 'referral',
+                utm_campaign: 'F100_4242_otherstuff_in_here',
+                utm_content: 'rel-esr',
+                referrer: '',
+                experiment: undefined,
+                variation: undefined
+            };
+            /* eslint-enable camelcase */
+
+            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(utms);
+            var result = Mozilla.StubAttribution.getAttributionData(referrer);
             expect(result).toEqual(data);
         });
 
         it('should return attribution data if referrer is present', function() {
+            var referrer = 'https://www.mozilla.org/en-US/';
+
+            /* eslint-disable camelcase */
+            var utms = {
+                utm_source: undefined,
+                utm_medium: undefined,
+                utm_campaign: undefined,
+                utm_content: undefined
+            };
+            /* eslint-enable camelcase */
+
             /* eslint-disable camelcase */
             var data = {
                 utm_source: undefined,
                 utm_medium: undefined,
                 utm_campaign: undefined,
                 utm_content: undefined,
-                referrer: 'https://www.mozilla.org/en-US/'
+                referrer: 'https://www.mozilla.org/en-US/',
+                experiment: undefined,
+                variation: undefined
             };
             /* eslint-enable camelcase */
-            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue({});
-            var result = Mozilla.StubAttribution.getAttributionData('https://www.mozilla.org/en-US/');
+
+            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(utms);
+            var result = Mozilla.StubAttribution.getAttributionData(referrer);
             expect(result).toEqual(data);
         });
 
         it('should return empty data if neither utm params and referrer are present', function() {
+            var referrer = '';
+
+            /* eslint-disable camelcase */
+            var utms = {
+                utm_source: undefined,
+                utm_medium: undefined,
+                utm_campaign: undefined,
+                utm_content: undefined,
+            };
+            /* eslint-enable camelcase */
+
             /* eslint-disable camelcase */
             var data = {
                 utm_source: undefined,
                 utm_medium: undefined,
                 utm_campaign: undefined,
                 utm_content: undefined,
-                referrer: ''
+                referrer: '',
+                experiment: undefined,
+                variation: undefined
             };
             /* eslint-enable camelcase */
-            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue({});
-            var result = Mozilla.StubAttribution.getAttributionData('');
+
+            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(utms);
+            var result = Mozilla.StubAttribution.getAttributionData(referrer);
+            expect(result).toEqual(data);
+        });
+
+        it('should return optional experimental parameters if present', function() {
+            var referrer = '';
+
+            /* eslint-disable camelcase */
+            var utms = {
+                utm_source: undefined,
+                utm_medium: undefined,
+                utm_campaign: undefined,
+                utm_content: undefined,
+            };
+            /* eslint-enable camelcase */
+
+            /* eslint-disable camelcase */
+            var data = {
+                utm_source: undefined,
+                utm_medium: undefined,
+                utm_campaign: undefined,
+                utm_content: undefined,
+                referrer: '',
+                experiment: 'firefox-new',
+                variation: 1
+            };
+            /* eslint-enable camelcase */
+
+            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(utms);
+            spyOn(window._SearchParams.prototype, 'get').and.callFake(function(key) {
+                return key === 'experiment' ? 'firefox-new' : 1;
+            });
+            var result = Mozilla.StubAttribution.getAttributionData(referrer);
             expect(result).toEqual(data);
         });
     });
