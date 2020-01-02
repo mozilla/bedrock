@@ -972,3 +972,69 @@ your ``.env`` file.
 
 .. _mozilla.org l10n repository: https://github.com/mozilla-l10n/www.mozilla.org/
 .. _full documentation: https://mozilla-l10n.github.io/documentation/products/mozilla_org/
+
+l10n String Extraction docs
+---------------------------
+
+`Officiial docs <https://mozilla-l10n.github.io/documentation/products/mozilla_org/working_bedrock.html>`_
+
+`Overview of process
+<https://mozilla-l10n.github.io/documentation/products/mozilla_org/extract_strings.html#this-is-a-brief-overview-of-the-process>`_
+
+You will need to fork & clone:
+
+- `Bedrock <https://github.com/mozilla>`_
+
+- `Mozilla-|10n <https://github.com/mozilla-l10n/www.mozilla.org>`_
+
+- `Langchecker <https://github.com/mozilla-l10n/langchecker/>`_
+
+1. Extract strings from `Bedrock <https://github.com/mozilla>`_ template.
+
+Run bin/bootstrap.sh to create the locale folder.
+
+- Assuming the template you want to extract strings from is bedrock/mozorg/templates/mozorg/about/history.html
+
+In your local bedrock directory:
+
+.. code-block:: console
+
+    $ source venv/bin/activate
+    (venv) $ ./manage.py l10n_extract bedrock/mozorg/templates/mozorg/about/history.html
+
+Does the above give you errors?
+
+.. code-block:: console
+
+    $ pip install -r requirements/dev.txt
+
+**A .lang file will be created inside /locale/templates in bedrock directory.**
+
+Suggestion: remove the templates folder before doing an extraction to start fresh.
+
+2. Create a pull request in `Mozilla-l10n repo <https://github.com/mozilla-l10n/www.mozilla.org>`_ for l10n string review.
+
+Copy your newly created .lang file to your local mozilla-l10n/www.mozilla.org directory in the en-US directory.
+
+In the case of history.lang the folder would be en-US/mozorg/about/history.lang
+
+Notes to include in .lang files:
+
+.. NOTE::
+
+    ## NOTE: demo page available at https://www-dev.allizom.org/about/history/
+
+    ## URL: https://www-dev.allizom.org/%LOCALE%/about/history/
+
+    # HTML page title
+
+    # HTML page description
+
+`Example <https://github.com/mozilla-l10n/www.mozilla.org/pull/296/files>`_
+
+- Entries should be 2 spaces apart.
+
+Open pull request for the en-US file which will be reviewed by a member of the localization team.
+
+❗REMEMBER❗: if there are copy change requests you will need to update not only the .lang file but
+the template you extracted from. They must match exactly for translations to be populated.
