@@ -772,7 +772,7 @@ def monitor_fxa_button(ctx, entrypoint, button_text, class_name=None, optional_p
     In Template
     -----------
 
-        {{ monitor_fxa_button(entrypoint='mozilla.org-firefox-pocket', button_text='Try Pocket Now') }}
+        {{ monitor_fxa_button(entrypoint='mozilla.org-firefox-accounts', button_text='Sign In to Monitor') }}
     """
     product_url = 'https://monitor.firefox.com/oauth/init'
     return _fxa_product_button(product_url, entrypoint, button_text, class_name, optional_parameters, optional_attributes)

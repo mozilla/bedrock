@@ -17,6 +17,7 @@
 
 {% set _entrypoint = 'mozilla.org-firefox-welcome-1' %}
 {% set _utm_campaign = 'welcome-1-monitor' %}
+{% set _utm_content = 'on-track-protected' %}
 {% set _cta_type = 'lifecycle-monitor' %}
 
 {% block content_intro %}
@@ -35,7 +36,7 @@
     {{ monitor_fxa_button(
       entrypoint=_entrypoint,
       button_text='Check Your Breach Report',
-      optional_parameters={'utm_campaign': _utm_campaign},
+      optional_parameters={'utm_campaign': _utm_campaign, 'utm_content': _utm_content},
       optional_attributes={'data-cta-text': 'Check Your Breach Report', 'data-cta-type': _cta_type, 'data-cta-position': 'primary'})
     }}
   </p>
@@ -86,7 +87,7 @@
     {{ monitor_fxa_button(
       entrypoint=_entrypoint,
       button_text='Check Your Breach Report',
-      optional_parameters={'utm_campaign': _utm_campaign},
+      optional_parameters={'utm_campaign': _utm_campaign, 'utm_content': _utm_content},
       optional_attributes={'data-cta-text': 'Check Your Breach Report', 'data-cta-type': _cta_type, 'data-cta-position': 'secondary'})
     }}
   </p>

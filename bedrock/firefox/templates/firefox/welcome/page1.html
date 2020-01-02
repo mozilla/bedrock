@@ -40,8 +40,8 @@
   <p class="primary-cta">
     {{ monitor_fxa_button(
       entrypoint=_entrypoint,
-      button_text='Check Your Breach Report',
-      optional_parameters={'utm_campaign': _utm_campaign},
+      button_text=_('Check Your Breach Report'),
+      optional_parameters={'utm_campaign': _utm_campaign, 'utm_content': _utm_content},
       optional_attributes={'data-cta-text': 'Check Your Breach Report', 'data-cta-type': _cta_type, 'data-cta-position': 'primary'})
     }}
   </p>
@@ -101,8 +101,8 @@
   <p class="secondary-cta">
     {{ monitor_fxa_button(
       entrypoint=_entrypoint,
-      button_text='Check Your Breach Report',
-      optional_parameters={'utm_campaign': _utm_campaign},
+      button_text=_('Check Your Breach Report'),
+      optional_parameters={'utm_campaign': _utm_campaign, 'utm_content': _utm_content},
       optional_attributes={'data-cta-text': 'Check Your Breach Report', 'data-cta-type': _cta_type, 'data-cta-position': 'secondary'})
     }}
   </p>
