@@ -9,6 +9,8 @@
 
 {% block body_id %}{{ body_id }}{% endblock %}
 
+{% block body_class %}{{ body_class }}{% endblock %}
+
 {% block content %}
   {% block main_feature %}{% endblock %}
   <div id="main-content" class="mzp-l-content{% if self.side_nav()|trim|length or self.side_extra()|trim|length %} mzp-has-sidebar mzp-l-sidebar-left{% endif %}">
