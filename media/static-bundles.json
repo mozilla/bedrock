@@ -717,17 +717,10 @@
     },
     {
       "files": [
-        "css/base/send-to-device.less",
+        "css/protocol/components/send-to-device.scss",
         "css/firefox/mobile/mobile.scss"
       ],
       "name": "firefox-mobile"
-    },
-    {
-      "files": [
-        "css/protocol/components/send-to-device.scss",
-        "css/firefox/mobile/mobile-protocol.scss"
-      ],
-      "name": "firefox-mobile-protocol"
     },
     {
       "files": [
@@ -1167,28 +1160,15 @@
     },
     {
       "files": [
-        "js/base/mozilla-modal.js",
-        "js/base/send-to-device.js",
-        "js/base/mozilla-smoothscroll.js",
-        "js/libs/jquery.waypoints.min.js",
-        "js/libs/jquery.waypoints-sticky.min.js",
-        "js/hubs/sub-nav.js",
-        "js/firefox/mobile/features-scroller.js",
-        "js/firefox/mobile/mobile.js"
-      ],
-      "name": "firefox-mobile"
-    },
-    {
-      "files": [
         "protocol/js/protocol-modal.js",
         "js/libs/spin.min.js",
         "js/base/send-to-device.js",
         "js/libs/jquery.waypoints.min.js",
         "js/libs/jquery.waypoints-sticky.min.js",
         "js/hubs/sub-nav.js",
-        "js/firefox/mobile/mobile-protocol.js"
+        "js/firefox/mobile/mobile.js"
       ],
-      "name": "firefox-mobile-protocol"
+      "name": "firefox-mobile"
     },
     {
       "files": [

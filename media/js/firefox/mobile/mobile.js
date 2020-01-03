@@ -2,48 +2,27 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function(Mozilla, $) {
+(function() {
     'use strict';
 
-    var $body = $('body');
-    var $modalContents = $('#modal-wrapper');
+    var modal = document.getElementById('modal');
+    var mobileButtons = document.querySelectorAll('.js-mobile');
+    var mobileContent = document.getElementById('modal-download-firefox');
 
-    function openModal(e) {
-        e.preventDefault();
-
-        var product = $(this).data('product');
-
-        var selectorToHide = (product === 'firefox') ? '.focus' : '.firefox';
-        var selectorToShow = (product === 'firefox') ? '.firefox' : '.focus';
-
-        // control styling of modal: blue for firefox, purple for focus
-        $body.attr('data-modal-product', product);
-
-        $modalContents.find(selectorToHide).addClass('hidden');
-        $modalContents.find(selectorToShow).removeClass('hidden');
-
-        Mozilla.Modal.createModal(this, $modalContents);
-    }
-
-    // clicking any download-looking button opens the modal
-    $('.get-firefox, .get-focus').attr('role', 'button').on('click', openModal);
-
-    // add class to widget button here to avoid messing with macro markup
-    $('#send-to-device button[type="submit"]').addClass('button-hollow button-light');
-
-    // anchor 'See more' links should smooth scroll
-    $('.see-more').on('click', function(e) {
-        e.preventDefault();
-
-        var offset = $(e.target.getAttribute('href')).offset().top;
-
-        Mozilla.smoothScroll({
-            top: offset
+    for(var i = 0; i < mobileButtons.length; i++) {
+        mobileButtons[i].addEventListener('click', function() {
+            mobileContent.style.display = 'block';
+            Mzp.Modal.createModal(this, modal, {
+                closeText: window.Mozilla.Utils.trans('global-close'),
+                onDestroy: function() {
+                    mobileContent.style.display = 'none';
+                }
+            });
         });
-    });
+    }
 
     // initialize send to device widget
     var form = new Mozilla.SendToDevice();
-
     form.init();
-})(window.Mozilla, window.jQuery);
+
+})();
