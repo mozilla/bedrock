@@ -1430,8 +1430,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-modal.js",
-        "js/base/mozilla-share-cta.js",
         "js/mozorg/manifesto.js"
       ],
       "name": "manifesto"
