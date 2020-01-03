@@ -43,17 +43,6 @@
   {{ 'https://www.twitter.com/intent/tweet?url=%s&text=%s'|format(url|urlencode, tweet_text|urlencode)|e }}
 {%- endmacro %}
 
-{% macro share_cta(cta_text, share_urls, share_text, id, class) %}
-<aside class="mozilla-share-cta{% if class %} {{ class }}{% endif %}" tabindex="0"{% if id %} id="{{ id }}"{% endif -%}>
-  <h3>{{ cta_text }}</h3>
-  <ul>
-    <li><a class="twitter" href="{{ 'https://www.twitter.com/intent/tweet?url=%s&text=%s'|format(share_urls.get('twitter')|urlencode, share_text|urlencode)|e }}" title="Twitter" data-link-type="social share" data-link-name="Twitter">Twitter</a></li>
-    <li><a class="facebook" href="{{ 'https://www.facebook.com/sharer/sharer.php?u=%s'|format(share_urls.get('facebook')|urlencode)|e }}" title="Facebook" data-link-type="social share" data-link-name="Facebook">Facebook</a></li>
-    <li><a class="g-plus" href="{{ 'https://plus.google.com/share?url=%s&hl=%s'|format(share_urls.get('googleplus')|urlencode, LANG)|e }}" title="Google+" data-link-type="social share" data-link-name="Google+">Google+</a></li>
-  </ul>
-</aside>
-{%- endmacro %}
-
 {% macro google_play_button(class_name='', extra_data_attributes={}, extra_img_attributes={}, href=settings.GOOGLE_PLAY_FIREFOX_LINK_UTMS, id='', product='Firefox', target='') -%}
 {% set optional_img_attributes = {'alt': _('Get it on Google Play'), 'width': '152', 'height': '45', 'l10n': True} %}
 {% do optional_img_attributes.update(extra_img_attributes) %}
