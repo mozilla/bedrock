@@ -83,11 +83,17 @@ $image-path: '/media/protocol/img';
 // styles from developer/includes/newsletter.scss
 
 .t-newsletter {
+    background: #08204e url("/media/img/firefox/developer/newsletter-bg.5cb53dbe3960.svg") center bottom no-repeat;
+    background-size: cover;
+    padding: $layout-md $layout-xs;
     .mzp-l-content {
-        max-width: $content-sm;
-        min-width: 0;
-        padding-bottom: $layout-md;
+        background: $color-white;
+        border-radius: 6px;
+        box-shadow: 0 4px 16px 0 $color-gray-60;
         padding-top: $layout-md;
+        padding-bottom: $layout-md;
+        min-width: 0;
+        max-width: $content-sm;
     }
 
     .mzp-c-newsletter-form {
