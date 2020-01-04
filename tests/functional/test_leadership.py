@@ -15,11 +15,6 @@ def test_open_corporation_biography(base_url, selenium):
     modal = page.open_biography(leader)
     assert modal.is_displayed
     assert page.is_biography_displayed(leader)
-    next_leader = page.get_next_leader(leader, page.corporation)
-    page.click_next()
-    assert page.is_biography_displayed(next_leader)
-    page.click_previous()
-    assert page.is_biography_displayed(leader)
     modal.close()
 
 
@@ -29,10 +24,5 @@ def test_open_foundation_biography(base_url, selenium):
     leader = random.choice(page.foundation)
     modal = page.open_biography(leader)
     assert modal.is_displayed
-    assert page.is_biography_displayed(leader)
-    next_leader = page.get_next_leader(leader, page.foundation)
-    page.click_next()
-    assert page.is_biography_displayed(next_leader)
-    page.click_previous()
     assert page.is_biography_displayed(leader)
     modal.close()

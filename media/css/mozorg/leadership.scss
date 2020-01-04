@@ -2,84 +2,43 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../pebbles/components/modal';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
 
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/modal';
 
 @font-face {
     font-family: FA-Icons-Contact;
-    src: url('/media/fonts/icons-contact.woff2?20-12-2016') format('woff2'),
-         url('/media/fonts/icons-contact.woff?20-12-2016') format('woff');
+    src: url('#{$font-path}/icons-contact.woff2?20-12-2016') format('woff2'),
+         url('#{$font-path}/icons-contact.woff?20-12-2016') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 
-// Page header/intro
-.page-header {
-    background: $color-mozgray;
-    color: #fff;
-    padding: 20px 0;
-}
-
-
 // Navigation
 #page-nav {
-    background: #eee;
-    margin: 20px auto -20px;
+    margin: $spacing-md auto;
 
     ul {
         margin: 0;
     }
 
-    li {
-        border-bottom: 2px solid $color-mozgray;
-
-        &:last-child {
-            border: 0;
-        }
-    }
-
-    @media #{$mq-tablet} {
-        float: left;
-
+    @media #{$mq-md} {
         li {
             display: inline-block;
             border-bottom: 0;
-            border-right: 2px solid $color-mozgray;
-        }
-    }
-
-    a {
-        display: block;
-        padding: .5em 20px;
-        text-decoration: none;
-        color: $color-text-primary;
-
-        &:hover,
-        &:focus {
-            text-decoration: underline;
-            color: $color-link;
+            padding-right: $layout-sm;
         }
     }
 }
 
 
 // Headings
-.page-title {
-    @include font-size(38px);
-
-    @media #{$mq-tablet} {
-        @include font-size(50px);
-    }
-}
-
 .section-title {
-    @include font-size(28px);
+    @include text-display-md;
     margin: .5em 0;
-
-    @media #{$mq-tablet} {
-        @include font-size(38px);
-    }
 }
 
 .section-intro {
@@ -88,14 +47,14 @@
 }
 
 .group-title {
-    @include font-size(22px);
-    margin: 0 0 1em;
+    @include text-display-sm;
+    margin: 1em 0;
     padding-top: .75em;
-    border-top: 1px solid $color-mozred;
+    border-top: 2px solid $color-gray-30;
 
     a {
         text-decoration: none;
-        color: $color-text-secondary;
+        color: $color-black;
 
         &:hover,
         &:focus {
@@ -103,34 +62,22 @@
             color: $color-link;
         }
     }
-
-    @media #{$mq-tablet} {
-        @include font-size(28px);
-    }
 }
 
-
-// Page sections for each major group (may contain sub-groups)
 .section-group {
-    background: #ddd;
-    border-bottom: 1px solid #ccc;
-
-    &:nth-child(odd) {
-        background: #eee;
-    }
+    margin-bottom: $layout-lg;
 }
-
 
 // Headshot galleries
 .gallery {
     @include clearfix;
     margin: 0 auto;
 
-    @media #{$mq-phone-wide} {
-        width: $width-phone-wide;
+    @media #{$mq-sm} {
+        width: $content-sm;
     }
 
-    @media #{$mq-tablet} {
+    @media #{$mq-md} {
         margin: 0 -10px;
         width: auto;
     }
@@ -143,15 +90,16 @@
     position: relative;
 
     .headshot {
-        display: block;
-        padding: 20px 20px 10px;
-        background: #fff;
-        margin: 0 -20px 10px;
-        box-shadow: 2px 3px 3px rgba(0, 0, 0, .1);
-        color: $color-text-primary;
-        text-decoration: none;
-        text-align: center;
         @include transition(transform 200ms ease, box-shadow 200ms ease);
+        background: #fff;
+        box-shadow: 2px 3px 3px rgba(0, 0, 0, .1);
+        border: 2px solid $color-gray-20;
+        color: $color-black;
+        display: block;
+        margin: 0 -20px 10px;
+        padding: 20px 20px 10px;
+        text-align: center;
+        text-decoration: none;
     }
 
     &:focus {
@@ -159,8 +107,8 @@
     }
 
     .fn {
+        @include text-display-xxs;
         font-weight: bold;
-        @include font-size(15px);
     }
 
     .photo {
@@ -175,7 +123,7 @@
     .note,
     .elsewhere,
     .utility {
-        @include font-size(12px);
+        @include text-body-sm;
     }
 
     .title {
@@ -184,7 +132,7 @@
     }
 
     .note {
-        color: $color-mozred;
+        color: $color-gray-90;
     }
 
     .elsewhere,
@@ -224,7 +172,7 @@
     }
 
     a {
-        color: $color-text-primary;
+        color: $color-black;
         text-decoration: none;
 
         &:hover .fn,
@@ -258,7 +206,7 @@
         }
     }
 
-    @media #{$mq-phone-wide} {
+    @media #{$mq-sm} {
         float: left;
         margin: 0 10px 20px;
 
@@ -267,7 +215,7 @@
         }
     }
 
-    @media #{$mq-tablet} {
+    @media #{$mq-md} {
         &:nth-child(odd) {
             clear: none;
         }
@@ -277,7 +225,7 @@
         }
     }
 
-    @media #{$mq-desktop} {
+    @media #{$mq-lg} {
         &:nth-child(odd),
         &:nth-child(3n+1) {
             clear: none;
@@ -288,14 +236,14 @@
         }
     }
 
-    @media #{$mq-desktop-wide} {
+    @media #{$mq-xl} {
         &:nth-child(odd),
         &:nth-child(3n+1),
         &:nth-child(4n+1) {
             clear: none;
         }
 
-        &:nth-child(6n+1) {
+        &:nth-child(5n+1) {
             clear: left;
         }
     }
@@ -305,7 +253,7 @@
 // Show the bios when JS fails.
 // Not every person has a bio, so these get some special treatment.
 .no-js .vcard.has-bio {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid $color-gray-60;
     cursor: auto;
     float: none;
     margin: 0 0 40px;
@@ -320,10 +268,11 @@
 
     .headshot {
         background: transparent;
+        border: 0;
         box-shadow: none;
-        padding: 0;
-        margin: 0;
         cursor: auto;
+        margin: 0;
+        padding: 0;
     }
 
     &:hover .headshot {
@@ -349,12 +298,12 @@
     }
 
     .fn {
-        @include font-size(24px);
+        @include text-display-md;
         text-align: left;
     }
 
     .title {
-        @include font-size(16px);
+        @include text-display-sm;
     }
 
     .person-bio {
@@ -371,34 +320,17 @@
     }
 }
 
-#modal {
-    .window {
-        margin: 0 auto;
-        max-width: $width-desktop;
-        min-width: $width-phone - 60px;
-        padding: 20px 40px;
-
-        .inner > header {
-            min-height: 40px;
-            padding: 10px 40px 10px 20px;
-
-            h1 {
-                @include font-size(20px);
-                line-height: 1.3;
-                margin: 0;
-
-                @media #{$mq-tablet} {
-                    @include font-size(32px);
-                }
-            }
-        }
-    }
+.mzp-c-modal .mzp-c-modal-overlay-contents {
+    padding: 0;
 
     .vcard {
+        background: $color-white;
+        color: $color-black;
         cursor: auto;
         float: none;
         min-height: 250px;
         padding: 0;
+        padding: $spacing-md;
         width: auto;
 
         &:hover,
@@ -425,38 +357,48 @@
             }
         }
 
-        @media #{$mq-tablet} {
-            padding: 0 20px;
+        @media #{$mq-md} {
+            padding: $spacing-xl;
         }
     }
 
     .headshot {
+        background: transparent;
+        border: 0;
         box-shadow: none;
-        padding: 0;
         margin: 0;
+        padding: 0;
+
+        :hover &,
+        :focus & {
+            box-shadow: none;
+        }
 
         .photo {
             box-shadow: 2px 3px 3px rgba(0, 0, 0, .1);
             float: none;
             height: 160px;
-            margin: 0 auto 20px;
+            margin: 0 auto $spacing-lg;
             width: 160px;
 
-            @media #{$mq-phone-wide} {
+            @media #{$mq-sm} {
                 float: right;
-                margin: 0 0 2em 40px;
+                margin: 0 0 2em $layout-md;
             }
 
-            @media #{$mq-tablet} {
+            @media #{$mq-md} {
                 float: right;
                 height: 250px;
-                margin: 0 0 2em 40px;
+                margin: 0 0 2em $layout-md;
                 width: 250px;
             }
         }
 
         .fn {
-            display: none;
+            @include bidi(((text-align, left, right),));
+            @include text-display-md;
+            color: $color-black;
+            text-decoration: none;
         }
     }
 
@@ -465,18 +407,12 @@
     }
 
     .title {
-        @include font-size(18px);
+        @include text-display-xs;
         font-weight: bold;
     }
 
     .note {
-        color: $color-mozred;
-    }
-
-    .callout {
-        padding: 20px 20px 5px;
-        background: #efefef;
-        font-style: italic;
+        color: $color-gray-90;
     }
 
     .elsewhere,
@@ -484,40 +420,4 @@
     .person-bio {
         display: block;
     }
-
-    .person-bio p {
-        margin: 0 0 1em;
-    }
-
-    .next,
-    .prev {
-        @include image-replaced;
-        @include transition(background-position 150ms ease);
-        border: 0;
-        cursor: pointer;
-        display: block;
-        height: 40px;
-        position: absolute;
-        top: 250px;
-        width: 30px;
-        -webkit-appearance: none;
-           -moz-appearance: none;
-                appearance: none;
-
-        &:hover,
-        &:focus {
-            background-position: center center;
-        }
-    }
-
-    .next {
-        right: -40px;
-        background: transparent url('/media/img/mozid/modal-right.svg') left center no-repeat;
-    }
-
-    .prev {
-        left: -40px;
-        background: transparent url('/media/img/mozid/modal-left.svg') right center no-repeat;
-    }
-
 }
