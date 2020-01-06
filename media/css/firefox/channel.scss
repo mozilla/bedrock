@@ -83,11 +83,15 @@ $image-path: '/media/protocol/img';
 // styles from developer/includes/newsletter.scss
 
 .t-newsletter {
+    padding: $layout-md $layout-xs;
     .mzp-l-content {
         max-width: $content-sm;
         min-width: 0;
         padding-bottom: $layout-md;
         padding-top: $layout-md;
+        background: $color-white;
+        border-radius: 6px;
+        box-shadow: 0 4px 16px 0 $color-gray-60;
     }
 
     .mzp-c-newsletter-form {
