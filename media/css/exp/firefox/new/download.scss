@@ -62,7 +62,7 @@ $image-path: '/media/protocol/img';
  * https://github.com/mozilla/protocol/issues/382
  */
 .mzp-c-card-picto .mzp-c-card-picto-content {
-    padding-top: 140px;
+    padding-top: 120px;
 
     &:before {
         background-color: transparent;
@@ -72,29 +72,31 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-lg} {
         .mzp-c-card-picto-title {
-            @include text-display-sm;
             margin-bottom: $spacing-xl;
         }
     }
 }
 
-.join .mzp-c-card-picto-content::before {
-    height: 104px;
-    width: 104px;
-    margin-left: -52px;
-    background-image: url('/media/img/exp/firefox/new/icon-join.svg');
-}
-
-.lockwise .mzp-c-card-picto-content::before {
+.skyline-etp .mzp-c-card-picto-content::before {
+    @include background-size(80px 96px);
+    background-image: url('/media/img/icons/gradient-shield.svg');
     height: 96px;
-    width: 152px;
-    margin-left: -76px;
-    background-image: url('/media/img/exp/firefox/new/icon-lockwise.svg');
+    margin-left: -40px;
+    width: 80px;
 }
 
-.private .mzp-c-card-picto-content::before {
-    height: 83px;
-    width: 113px;
-    margin-left: -56px;
-    background-image: url('/media/img/exp/firefox/new/icon-private.svg');
+.skyline-lockwise .mzp-c-card-picto-content::before {
+    @include background-size(96px 96px);
+    background-image: url('/media/protocol/img/logos/firefox/lockwise/logo.svg');
+    height: 96px;
+    margin-left: -48px;
+    width: 96px;
+}
+
+.skyline-monitor .mzp-c-card-picto-content::before {
+    @include background-size(96px 96px);
+    background-image: url('/media/protocol/img/logos/firefox/monitor/logo.svg');
+    height: 96px;
+    margin-left: -48px;
+    width: 96px;
 }

@@ -31,7 +31,7 @@
 <main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
   {% call hero(
     title='Get the latest Firefox browser.',
-    desc='And start getting the respect you deserve with our family of privacy-first products.',
+    desc='Automatic privacy is here. Download Firefox to block over 2000 trackers.',
     class='mzp-has-image mzp-t-dark',
     include_cta=True,
     image_url='img/firefox/new/trailhead/browser-window.svg',
@@ -42,9 +42,9 @@
 
   <section class="features">
     <ul class="mzp-l-card-third mzp-l-content">
-      {{ picto_card(title='Join Firefox', desc='Connect to a whole family of respectful products, plus all the knowledge you need to protect yourself online.', class='join') }}
-      {{ picto_card(title='Passwords made portable', desc='<strong>Firefox Lockwise</strong> makes the passwords you save in Firefox available on all your devices.'|safe, class='lockwise') }}
-      {{ picto_card(title='Protect your privacy', desc='<strong>Private Browsing</strong> clears your history to keep it secret from anyone who uses your computer.'|safe, class='private') }}
+      {{ picto_card(title='See what’s being blocked', desc='Firefox shows you how many data-collecting trackers are blocked with <strong>Enhanced Tracking Protection</strong>.'|safe, class='skyline-etp') }}
+      {{ picto_card(title='Make your passwords portable', desc='<strong>Firefox Lockwise</strong> makes the passwords you save in Firefox secure and available on all your devices.'|safe, class='skyline-lockwise') }}
+      {{ picto_card(title='Watch for data breaches', desc='<strong>Firefox Monitor</strong> alerts you if we know your information is a part of another company’s data breach.'|safe, class='skyline-monitor') }}
     </ul>
   </section>
 </main>
