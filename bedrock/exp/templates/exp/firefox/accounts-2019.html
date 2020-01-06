@@ -3,7 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
 {% from "macros-protocol.html" import feature_card with context %}
-{% from "macros.html" import fxa_email_form, fxa_link_fragment, monitor_button with context %}
+{% from "macros.html" import fxa_email_form, fxa_link_fragment with context %}
 
 {% extends "exp/base/base-firefox.html" %}
 
@@ -51,10 +51,12 @@
 
       <p class="c-accounts-hero-desc">See if you’ve been involved in an online data breach.</p>
 
-      {{ monitor_button(
+      {{ monitor_fxa_button(
         entrypoint=_entrypoint,
-        utm_campaign=_utm_campaign
-      ) }}
+        button_text='Sign In to Monitor',
+        optional_parameters={'utm_campaign': _utm_campaign},
+        optional_attributes={'data-cta-text': 'Sign In to Monitor', 'data-cta-type': 'fxa-monitor', 'data-cta-position': 'primary'})
+      }}
     </div>
 
     <div class="c-accounts-form">

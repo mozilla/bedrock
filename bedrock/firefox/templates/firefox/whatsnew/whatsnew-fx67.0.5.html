@@ -2,7 +2,7 @@
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import fxa_email_form, monitor_button with context %}
+{% from "macros.html" import fxa_email_form with context %}
 
 {% add_lang_files "firefox/whatsnew_67.0.5" %}
 
@@ -58,10 +58,12 @@
           <h2>{{ _('Including Firefox Monitor, your watchful eye for data breaches') }}</h2>
           <p>{{ _('See if your info was compromised in another company’s data breach, and get automatically signed up for future alerts.') }}</p>
           {% block monitor_button %}
-            {{ monitor_button(
+            {{ monitor_fxa_button(
               entrypoint='mozilla.org-whatsnew6705',
-              utm_campaign='whatsnew6705'
-            ) }}
+              button_text=_('Sign In to Monitor'),
+              optional_parameters={'utm_campaign': 'whatsnew6705'},
+              optional_attributes={'data-cta-text': 'Sign In to Monitor', 'data-cta-type': 'fxa-monitor', 'data-cta-position': 'primary'})
+            }}
           {% endblock %}
         </div>
       {% endblock %}

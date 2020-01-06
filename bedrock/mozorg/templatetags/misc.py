@@ -758,3 +758,21 @@ def pocket_fxa_button(ctx, entrypoint, button_text, class_name=None, optional_pa
     """
     product_url = 'https://getpocket.com/ff_signup'
     return _fxa_product_button(product_url, entrypoint, button_text, class_name, optional_parameters, optional_attributes)
+
+
+@library.global_function
+@jinja2.contextfunction
+def monitor_fxa_button(ctx, entrypoint, button_text, class_name=None, optional_parameters=None, optional_attributes=None):
+    """
+    Render a monitor.firefox.com link with required params for FxA authentication.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ monitor_fxa_button(entrypoint='mozilla.org-firefox-accounts', button_text='Sign In to Monitor') }}
+    """
+    product_url = 'https://monitor.firefox.com/oauth/init'
+    return _fxa_product_button(product_url, entrypoint, button_text, class_name, optional_parameters, optional_attributes)

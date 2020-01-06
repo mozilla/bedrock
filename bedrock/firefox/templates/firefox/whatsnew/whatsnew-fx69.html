@@ -2,8 +2,6 @@
   # License, v. 2.0. If a copy of the MPL was not distributed with this
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import monitor_button with context %}
-
 {% add_lang_files "firefox/whatsnew_69" %}
 
 {% extends "firefox/whatsnew/base.html" %}
@@ -41,12 +39,12 @@
         </h2>
         <p>{{ _('Sign up to see if your info was compromised in another company’s data breach, and automatically get alerts when your info might be at risk.') }}</p>
 
-        {{ monitor_button(
+        {{ monitor_fxa_button(
           entrypoint='mozilla.org-firefox-whatsnew69',
-          utm_campaign='whatsnew69',
-          utm_content='whatsnew69-signed-out',
-          button_text=_('Sign Up for Monitor')
-        ) }}
+          button_text=_('Sign Up for Monitor'),
+          optional_parameters={'utm_campaign': 'whatsnew69', 'utm_content': 'whatsnew69-signed-out'},
+          optional_attributes={'data-cta-text': 'Sign Up for Monitor', 'data-cta-type': 'fxa-monitor', 'data-cta-position': 'primary'})
+        }}
       </div>
 
       <div class="c-emphasis-box show-fxa-supported-signed-in">
@@ -54,12 +52,12 @@
         <h2 class="c-emphasis-box-title">{{ _('Have you checked out Firefox Monitor? It’s included with your Firefox account.') }}</h2>
         <p>{{ _('Use Firefox Monitor to see if your info was compromised in another company’s data breach — and get automatically signed up for future alerts.') }}</p>
 
-        {{ monitor_button(
+        {{ monitor_fxa_button(
           entrypoint='mozilla.org-firefox-whatsnew69',
-          utm_campaign='whatsnew69',
-          utm_content='whatsnew69-signed-in',
-          button_text=_('Sign In')
-        ) }}
+          button_text=_('Sign In'),
+          optional_parameters={'utm_campaign': 'whatsnew69', 'utm_content': 'whatsnew69-signed-in'},
+          optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type': 'fxa-monitor', 'data-cta-position': 'primary'})
+        }}
       </div>
     </div>
   </section>

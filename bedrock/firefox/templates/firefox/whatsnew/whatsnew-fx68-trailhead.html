@@ -16,8 +16,10 @@
 {% endblock %}
 
 {% block monitor_button %}
-  {{ monitor_button(
+  {{ monitor_fxa_button(
     entrypoint='mozilla.org-whatsnew68',
-    utm_campaign='wnp-monitor-cta')
+    button_text=_('Sign In to Monitor'),
+    optional_parameters={'utm_campaign': 'wnp-monitor-cta'},
+    optional_attributes={'data-cta-text': 'Sign In to Monitor', 'data-cta-type': 'fxa-monitor', 'data-cta-position': 'primary'})
   }}
 {% endblock %}
