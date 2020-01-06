@@ -207,7 +207,7 @@ Invoking the macro will automatically include a set of default UTM parameters as
 Linking to monitor.firefox.com
 -------------------------------
 
-Use the ``monitor_button`` helper to link to https://monitor.firefox.com/ via a Firefox Accounts auth flow.
+Use the ``monitor_fxa_button`` helper to link to https://monitor.firefox.com/ via a Firefox Accounts auth flow.
 
 Usage
 ~~~~~
