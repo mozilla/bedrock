@@ -4,7 +4,7 @@
 
 {% from "macros.html" import google_play_button, send_to_device with context %}
 
-{% add_lang_files "firefox/sendto" %}
+{% add_lang_files "firefox/mobile-2019" "firefox/sendto" %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -37,7 +37,7 @@
     {% else %}
       <p>{{ _('Scan the QR code to get started') }}</p>
       <div class="qr-code-wrapper">
-        <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}" id="firefox-qr" data-mozillaonline-link="{{ static('img/firefox/mobile/qr-firefox-mozillaonline.png') }}" alt="{{ _('QR code to scan for Firefox') }}">
+        <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}" id="firefox-qr" data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}" alt="{{ _('QR code to scan for Firefox') }}">
       </div>
     {% endif %}
   </section>
