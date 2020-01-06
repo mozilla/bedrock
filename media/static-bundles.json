@@ -704,7 +704,6 @@
     },
     {
       "files": [
-        "css/newsletter/moznewsletter-subscribe.less",
         "css/mozorg/leadership.scss"
       ],
       "name": "about-leadership"
