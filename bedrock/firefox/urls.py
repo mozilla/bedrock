@@ -60,7 +60,7 @@ urlpatterns = (
         views.FeaturesPrivateBrowsingView.as_view(),
         name='firefox.features.private-browsing'),
     url(r'^firefox/ios/testflight/$', views.ios_testflight, name='firefox.ios.testflight'),
-    url(r'^firefox/mobile/$', views.firefox_mobile, name='firefox.mobile'),
+    page('firefox/mobile', 'firefox/mobile/index.html'),
     page('firefox/mobile/get-app', 'firefox/mobile/get-app.html'),
     url('^firefox/send-to-device-post/$', views.send_to_device_ajax,
         name='firefox.send-to-device-post'),

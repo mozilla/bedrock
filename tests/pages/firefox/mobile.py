@@ -14,7 +14,6 @@ class FirefoxMobilePage(FirefoxBasePage):
     URL_TEMPLATE = '/{locale}/firefox/mobile/'
 
     _get_firefox_header_button_locator = (By.ID, 'get-firefox')
-    _get_firefox_features_button_locator = (By.ID, 'features-get-firefox')
     _get_firefox_qr_code_locator = (By.ID, 'firefox-qr')
 
     @property
@@ -34,7 +33,3 @@ class FirefoxMobilePage(FirefoxBasePage):
     def click_get_firefox_button(self):
         self.scroll_element_into_view(*self._get_firefox_header_button_locator)
         return self.open_modal(self._get_firefox_header_button_locator)
-
-    def click_get_firefox_features_button(self):
-        self.scroll_element_into_view(*self._get_firefox_features_button_locator)
-        return self.open_modal(self._get_firefox_features_button_locator)

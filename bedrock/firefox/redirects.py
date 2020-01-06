@@ -122,7 +122,7 @@ redirectpatterns = (
     }),
 
     # Bug 868182, 986174
-    redirect(r'^(m|(firefox/)?mobile)/features/?$', 'firefox.mobile'),
+    redirect(r'^(m|(firefox/)?mobile)/features/?$', 'firefox.mobile.index'),
     redirect(r'^(m|(firefox/)?mobile)/faq/?$', firefox_mobile_faq, query=False),
 
     # bug 884933
@@ -313,7 +313,7 @@ redirectpatterns = (
     # Bug 424204
     redirect(r'^firefox/help/?$', 'https://support.mozilla.org/'),
 
-    redirect(r'^fxandroid/?$', 'firefox.mobile'),
+    redirect(r'^fxandroid/?$', 'firefox.mobile.index'),
 
     # Bug 1255882
     redirect(r'^firefox/personal', 'firefox.new'),
@@ -504,7 +504,7 @@ redirectpatterns = (
 
     # bug 1288552 - redirect /secondrun/ traffic from funnelcake test
     redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/secondrun(?:/.*)?',
-             'firefox.mobile', query=False),
+             'firefox.mobile.index', query=False),
 
     # bug 1293539
     redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/tour/?$',
@@ -566,9 +566,9 @@ redirectpatterns = (
     redirect(r'^firefox/desktop/?', 'firefox.new'),
 
     # bug 1418500
-    redirect(r'^firefox/android/?$', 'firefox.mobile'),
-    redirect(r'^firefox/focus/?$', 'firefox.mobile'),
-    redirect(r'^firefox/ios/?$', 'firefox.mobile'),
+    redirect(r'^firefox/android/?$', 'firefox.mobile.index'),
+    redirect(r'^firefox/focus/?$', 'firefox.mobile.index'),
+    redirect(r'^firefox/ios/?$', 'firefox.mobile.index'),
 
     # bug 1416708
     redirect(r'^firefox/quantum/?', 'firefox'),
@@ -587,7 +587,7 @@ redirectpatterns = (
     redirect(r'^firefox/interest-dashboard/?', 'https://support.mozilla.org/kb/firefox-add-technology-modernizing'),
 
     # bug 1419244
-    redirect(r'^firefox/mobile-download(/.*)?', 'firefox.mobile'),
+    redirect(r'^firefox/mobile-download(/.*)?', 'firefox.mobile.index'),
 
     # bug 960651, 1436973
     redirect(r'(firefox|mobile)/([^/]+)/details(/|/.+\.html)?$', 'firefox.unsupported-systems',
