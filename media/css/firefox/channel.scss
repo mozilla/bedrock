@@ -83,8 +83,6 @@ $image-path: '/media/protocol/img';
 // styles from developer/includes/newsletter.scss
 
 .t-newsletter {
-    background: #08204e url("/media/img/firefox/developer/newsletter-bg.5cb53dbe3960.svg") center bottom no-repeat;
-    background-size: cover;
     padding: $layout-md $layout-xs;
     .mzp-l-content {
         max-width: $content-sm;
