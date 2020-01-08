@@ -874,18 +874,18 @@ class TestPocketAdjustUrl(TestCase):
 class TestPocketFxAButton(TestCase):
     rf = RequestFactory()
 
-    def _render(self, entrypoint, button_text, class_name=None, optional_parameters=None,
+    def _render(self, entrypoint, button_text, class_name=None, is_button_class=True, optional_parameters=None,
                 optional_attributes=None):
         req = self.rf.get('/')
         req.locale = 'en-US'
-        return render("{{{{ pocket_fxa_button('{0}', '{1}', '{2}', {3}, {4}) }}}}".format(
-                      entrypoint, button_text, class_name, optional_parameters, optional_attributes),
+        return render("{{{{ pocket_fxa_button('{0}', '{1}', '{2}', {3}, {4}, {5}) }}}}".format(
+                      entrypoint, button_text, class_name, is_button_class, optional_parameters, optional_attributes),
                       {'request': req})
 
     def test_pocket_fxa_button(self):
         """Should return expected markup"""
         markup = self._render(entrypoint='mozilla.org-firefox-pocket', button_text='Try Pocket Now',
-                              class_name='pocket-main-cta-button', optional_parameters={'s': 'ffpocket', 'foo': 'bar'},
+                              class_name='pocket-main-cta-button', is_button_class=True, optional_parameters={'s': 'ffpocket', 'foo': 'bar'},
                               optional_attributes={'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'activate pocket',
                                                    'data-cta-position': 'primary'})
         expected = (
@@ -900,24 +900,24 @@ class TestPocketFxAButton(TestCase):
 class TestMonitorFxAButton(TestCase):
     rf = RequestFactory()
 
-    def _render(self, entrypoint, button_text, class_name=None, optional_parameters=None,
+    def _render(self, entrypoint, button_text, class_name=None, is_button_class=False, optional_parameters=None,
                 optional_attributes=None):
         req = self.rf.get('/')
         req.locale = 'en-US'
-        return render("{{{{ monitor_fxa_button('{0}', '{1}', '{2}', {3}, {4}) }}}}".format(
-                      entrypoint, button_text, class_name, optional_parameters, optional_attributes),
+        return render("{{{{ monitor_fxa_button('{0}', '{1}', '{2}', {3}, {4}, {5}) }}}}".format(
+                      entrypoint, button_text, class_name, is_button_class, optional_parameters, optional_attributes),
                       {'request': req})
 
     def test_monitor_fxa_button(self):
         """Should return expected markup"""
         markup = self._render(entrypoint='mozilla.org-firefox-accounts', button_text='Sign In to Monitor',
-                              class_name='monitor-main-cta-button', optional_parameters={'utm_campaign': 'skyline'},
+                              class_name='monitor-main-cta-button', is_button_class=False, optional_parameters={'utm_campaign': 'skyline'},
                               optional_attributes={'data-cta-text': 'Sign In to Monitor', 'data-cta-type':
                                                    'fxa-monitor', 'data-cta-position': 'primary'})
         expected = (
             u'<a href="https://monitor.firefox.com/oauth/init?entrypoint=mozilla.org-firefox-accounts&form_type=button'
             u'&utm_source=mozilla.org-firefox-accounts&utm_medium=refferal&utm_campaign=skyline" '
-            u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button '
-            u'mzp-t-product monitor-main-cta-button" data-cta-text="Sign In to Monitor" data-cta-type="fxa-monitor" '
+            u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button '
+            u'monitor-main-cta-button" data-cta-text="Sign In to Monitor" data-cta-type="fxa-monitor" '
             u'data-cta-position="primary">Sign In to Monitor</a>')
         self.assertEqual(markup, expected)
