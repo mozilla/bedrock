@@ -1,3 +1,7 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
 {% extends 'newsletter/base.html' %}
 
 {% set_lang_files "mozorg/newsletters" %}
@@ -5,37 +9,44 @@
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
-{% block body_id %}newsletter-recovery{% endblock body_id %}
-
 {% block page_title %}{{ _('Newsletter email recovery') }}{% endblock page_title %}
 
 {% block content %}
-  {% if form %}
-    {% block main_feature %}
-      <div id="main-feature">
-        <h1>{{ _('Manage your <span>Newsletter Subscriptions</span>') }}</h1>
-      </div>
-    {% endblock %}
-    <form method="post" action="{{ url('newsletter.recovery') }}" id="newsletter-recovery-form" class="container billboard">
-      {% if form.non_field_errors() %}
-        <div class="errorlist">
-          {{ form.non_field_errors() }}
-        </div>
+  <main role="main" class="mzp-l-content mzp-t-narrow">
+    {% block messages %}
+    <h1>{{ _('Manage your <span>Newsletter Subscriptions</span>') }}</h1>
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
       {% endif %}
+    {% endblock messages %}
 
-      <div class="form-fields">
-        <p class="intro">{{ _('Enter your email address and we’ll send you a link to your email preference center.') }}</p>
+    {% if form %}
+      <form method="post" action="{{ url('newsletter.recovery') }}" id="newsletter-recovery-form" class="mzp-c-newsletter-form">
+        <header class="mzp-c-newsletter-header">
+          <p class="mzp-c-newsletter-tagline">{{ _('Enter your email address and we’ll send you a link to your email preference center.') }}</p>
+        </header>
 
-        <div class="field email-field">
-          <div class="field-contents">
+        {% if form.non_field_errors() %}
+          <div class="mzp-c-form-errors" id="newsletter-errors">
+            {{ form.non_field_errors()|safe }}
+          </div>
+        {% endif %}
+
+        <div class="mzp-c-newsletter-content">
+          <p>
             <label for="id_email">{{ _('Your email address:') }}</label>
             {{ form.email }}
             {{ form.email.errors }}
-          </div>
-          <button class="button" type="submit">{{ _('Send me a link') }}</button>
+          </p>
+          <p class="mzp-c-form-submit">
+            <button class="mzp-c-button" id="newsletter-submit" type="submit">{{ _('Send me a link') }}</button>
+          </p>
         </div>
-      </div>
-
-    </form>
-  {% endif %}
+      </form>
+    {% endif %}
+  </main>
 {% endblock %}
