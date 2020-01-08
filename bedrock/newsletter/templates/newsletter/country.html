@@ -1,3 +1,7 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
 {% extends 'newsletter/base.html' %}
 
 {% block gtm_page_id %}data-gtm-page-id="/newsletter/country/"{% endblock %}
@@ -5,35 +9,30 @@
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
-{% block body_id %}newsletter-country{% endblock body_id %}
-
 {% block page_title %}Newsletter Country or Region{% endblock page_title %}
 
 {% block content %}
-  {% if switch('newsletter-maintenance-mode') %}
-    <div id="main-feature">
-      <p class="billboard">
-        This page is in maintenance mode and is temporarily unavailable.<br>
-        To update your email preferences, please check back in a little while. Thanks!
-      </p>
+<main role="main">
+  <div class="mzp-l-content mzp-t-narrow">
+    {% if switch('newsletter-maintenance-mode') %}
+    <div class="mzp-c-emphasis-box">
+      <p>This page is in maintenance mode and is temporarily unavailable.</p>
+      <p>To update your email preferences, please check back in a little while. Thanks!</p>
     </div>
-  {% else %}
-    <div id="main-feature">
-      <h1>Thanks for updating your info with us!</h1>
-      <p>
-        Simply select your country or region from the list below and hit "submit."<br>
-        We've pre-filled what we think is correct, but make sure to check that it's right
-        before clicking the button. Thanks!
-      </p>
-    </div>
+    {% else %}
+    <h1>Thanks for updating your info with us!</h1>
+    <p>Simply select your country or region from the list below and hit "submit."</p>
+    <p>We've pre-filled what we think is correct, but make sure to check that it's right
+      before clicking the button. Thanks!</p>
+    </p>
     {# using uri builder instead of named URL to easily maintain user newsletter token #}
-    <form method="post" action="{{ request.build_absolute_uri(request.path) }}" id="country-newsletter-form" class="container billboard">
-      {{ form.as_p() }}
-      <div class="field submit-field">
-        <input type="submit" value="Submit" class="button">
-      </div>
+    <form method="post" action="{{ request.build_absolute_uri(request.path) }}" id="country-newsletter-form">
+    {{ form.as_p() }}
+    <input type="submit" value="Submit" class="mzp-c-button">
     </form>
-  {% endif %}
+    {% endif %}
+  </div>
+</main>
 {% endblock %}
 
 {% block site_footer %}{% endblock %}

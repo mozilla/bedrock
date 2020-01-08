@@ -1,3 +1,7 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
 {% extends 'newsletter/base.html' %}
 
 {% set_lang_files "mozorg/newsletters" %}
@@ -12,152 +16,151 @@
 {% block body_id %}newsletter-existing{% endblock body_id %}
 
 {% block content %}
-  <!-- Begin content -->
-
-  {% block main_feature %}
-    <div id="main-feature">
-    {% if did_confirm %}
+<main role="main">
+  <div class="mzp-l-content">
+    <header>
+      {% if did_confirm %}
       <h1>{{ _('Thanks for Subscribing!') }}</h1>
 
-        <p>
-          {{ _('You’re awesome!') }}
-          {{ _('And we’re not just saying that because you trusted us with your email address.') }}
-          {{ _('Please be sure to add mozilla@e.mozilla.org to your address book to ensure we always reach your inbox.') }}
-        </p>
+      <p>
+        {{ _('You’re awesome!') }}
+        {{ _('And we’re not just saying that because you trusted us with your email address.') }}
+        {{ _('Please be sure to add mozilla@e.mozilla.org to your address book to ensure we always reach your inbox.')
+        }}
+      </p>
 
-        <p>
-          {{ _('Mozilla touches on a variety of important issues.') }}
-          {{ _('Open your inbox (and your heart) even more — take a look at other topics we cover.') }}
-        </p>
-    {% else %}
+      <p>
+        {{ _('Mozilla touches on a variety of important issues.') }}
+        {{ _('Open your inbox (and your heart) even more — take a look at other topics we cover.') }}
+      </p>
+      {% else %}
       <h1>{{ _('Manage your Email Preferences') }}</h1>
 
       {% if switch('newsletter-maintenance-mode') %}
-        <p class="billboard">
-          {{ _('This page is in maintenance mode and is temporarily unavailable.') }}<br>
-          {{ _('To update your email preferences, please check back in a little while. Thanks!') }}
-        </p>
-      {% else %}
-        <p>
-          {{ _('We love sharing updates about all the awesome things happening at Mozilla.') }}<br>
-          {{ _('Set your preferences below to make sure you always receive the news you want.') }}
-        </p>
-      {% endif %}
-    {% endif %}
-    </div>
-  {% endblock %}
-
-  {% if formset and not switch('newsletter-maintenance-mode') %}
-    {# using uri builder instead of named URL to easily maintain user newsletter token #}
-    <form method="post" action="{{ request.build_absolute_uri(request.path) }}" id="existing-newsletter-form" class="container billboard"
-        data-initial-newsletters='{{ newsletters_subscribed }}'>
-      {{ formset.management_form }}
-
-      <div id="basic-settings">
-
-        {% block intro %}{% endblock %}
-
-        {% if form.non_field_errors() %}
-          <div class="errorlist">
-            {{ form.non_field_errors() }}
-          </div>
-        {% endif %}
-
-        <div class="field email-field">
-          <label>{{ _('Your email address:') }}</label>
-          <div class="field-contents">
-            {{ email }}
-          </div>
-        </div>
-
-        {% set country = form['country'] %}
-        <div class="field country-field {% if country.errors %}field-error{% endif %}">
-        {% if l10n_has_tag('country_region_122019') %}
-          {{ form.country.label_tag(_('Country or region:')) }}
-        {% else %}
-          {{ form.country.label_tag(_('Country:')) }}
-        {% endif %}
-          <div class="field-contents">
-            {{ country }}
-          </div>
-          {{ country.errors }}
-        </div>
-
-        {% set lang = form['lang'] %}
-        <div class="field lang-field {% if lang.errors %}field-error{% endif %}">
-          {{ form.lang.label_tag(_('Language:')) }}
-          <div class="field-contents">
-            {{ lang }}
-          </div>
-          {{ lang.errors }}
-          <p class="disclaimer">{{ _('Not all subscriptions are supported in all the languages listed. Almost all are offered in English, German and French.') }}</p>
-        </div>
-
-        <div class="field format-field">
-          {{ form.format.label_tag(_('Format:')) }}
-          <div class="field-contents field-radios">
-            {{ form['format'] }}
-          </div>
-          {{ form['format'].errors }}
-          <p class="disclaimer">{{ _('Text subscribers will receive an email twice a year to confirm continuation of the subscription. Those emails may include HTML.') }}</p>
-        </div>
-
-        <div class="explanatory">
-          <p>{{ _('Many of our communications are related to an account you’ve signed up for, such as Firefox Accounts, MDN Web Docs, or Add-on Developer. To manage one of your accounts or see a list of all the accounts visit our <a href="%s">account management support page</a>.')|format('https://support.mozilla.org/kb/managing-account-data') }}
-
-          <p>{{ _('To get access to the whole world of Firefox products, knowledge and services in one account, join us! Learn more about the benefits <a href="%s">here</a>.')|format(url('firefox.accounts')) }}</p>
-
-          <p>{{ _('There are many ways to engage with Mozilla and Firefox. If you didn’t find what you were looking for here, check out our <a href="%s">community pages</a>.')|format(url('mozorg.about.forums.forums')) }}</p>
-        </div>
-      </div><!-- close #basic-settings -->
-
-      <div class="field" id="default-newsletters">
-        <div class="field-checkboxes">
-        <table class="table">
-          <thead>
-          <tr>
-            <th></th>
-            <th colspan="2">{{ _('Subscribe') }}</th>
-          </tr>
-          </thead>
-          <tbody>
-          {% for formpart in formset %}  {# each newsletter is a formset #}
-            <tr class="subscription {% if formpart.initial['indented'] %}indented{% endif %}">
-              <th>
-                <h4 class="title">
-                  {{ formpart.initial['title'] }}
-                </h4>
-                {# hidden field: #}
-                {{ formpart.newsletter }}
-                <p class="description">
-                  {# Note: the newsletter description is translated in the code, so
-                     does not need to be translated again here. #}
-                  {{ formpart.initial['description'] }}
-                </p>
-              </th>
-              <td>
-                {{ formpart.subscribed_check.label_tag(_('Subscribe')) }}
-                {{ formpart.subscribed_check }}
-              </td>
-            </tr>
-          {% endfor %}
-          </tbody>
-        </table>
-        </div>
-      </div><!-- close #default-newsletters -->
-
-      <div class="field{% if did_confirm %} hidden{% endif %}" id="remove-all-section">
-        {{ form['remove_all'] }}
-        {{ form.remove_all.label_tag(_('Remove me from all the subscriptions on this page')) }}
+      <div class="mzp-c-emphasis-box">
+        <p>{{ _('This page is in maintenance mode and is temporarily unavailable.') }}</p>
+        <p>{{ _('To update your email preferences, please check back in a little while. Thanks!') }}</p>
       </div>
+      {% else %}
+      <p>{{ _('We love sharing updates about all the awesome things happening at Mozilla.') }}</p>
+      <p>{{ _('Set your preferences below to make sure you always receive the news you want.') }}</p>
+      {% endif %}
+      {% endif %}
+    </header>
 
-      <div class="field submit-field">
-        <input type="submit" value="{{ _('Save Preferences') }}" class="button submit-form">
-      </div><!-- close .submit-field -->
+    <section>
+      {% if formset and not switch('newsletter-maintenance-mode') %}
+      {# using uri builder instead of named URL to easily maintain user newsletter token #}
+      <form method="post" action="{{ request.build_absolute_uri(request.path) }}" id="existing-newsletter-form"
+        data-initial-newsletters='{{ newsletters_subscribed }}'>
+        {{ formset.management_form }}
 
-    </form>
-  {% endif %}
-  <!-- End content -->
+        <div class="c-column">
+          <div class="c-column-content" id="basic-settings">
+            {% block intro %}{% endblock %}
+
+            {% if form.non_field_errors() %}
+            <div class="errorlist">
+              {{ form.non_field_errors() }}
+            </div>
+            {% endif %}
+
+            <label>{{ _('Your email address:') }}</label>
+            {{ email }}
+
+            {% set country = form['country'] %}
+            <div class="{% if country.errors %}error-msg{% endif %}">
+              {% if l10n_has_tag('country_region_122019') %}
+              {{ form.country.label_tag(_('Country or region:')) }}
+              {% else %}
+              {{ form.country.label_tag(_('Country:')) }}
+              {% endif %}
+              {{ country }}
+              {{ country.errors }}
+            </div>
+
+            {% set lang = form['lang'] %}
+            <div class="{% if lang.errors %}error-msg{% endif %}">
+              {{ form.lang.label_tag(_('Language:')) }}
+              {{ lang }}
+              {{ lang.errors }}
+              <small>{{ _('Not all subscriptions are supported in all the languages listed. Almost all are
+                offered in English, German and French.') }}</small>
+            </div>
+
+            <div>
+              {{ form.format.label_tag(_('Format:')) }}
+              {{ form['format'] }}
+              {{ form['format'].errors }}
+              <small>{{ _('Text subscribers will receive an email twice a year to confirm continuation of
+                the subscription. Those emails may include HTML.') }}</small>
+            </div>
+
+            <aside>
+              <p>{{ _('Many of our communications are related to an account you’ve signed up for, such as Firefox
+                Accounts, MDN Web Docs, or Add-on Developer. To manage one of your accounts or see a list of all the
+                accounts visit our <a href="%s">account management support page</a>.')|format('https://support.mozilla.org/kb/managing-account-data')
+                }}</p>
+
+              <p>{{ _('To get access to the whole world of Firefox products, knowledge and services in one account,
+                join
+                us! Learn more about the benefits <a href="%s">here</a>.')|format(url('firefox.accounts')) }}</p>
+
+              <p>{{ _('There are many ways to engage with Mozilla and Firefox. If you didn’t find what you were
+                looking
+                for here, check out our <a href="%s">community pages</a>.')|format(url('mozorg.about.forums.forums'))
+                }}</p>
+            </aside>
+          </div> <!-- close #basic-settings -->
+        </div>
+
+        <div class="c-column">
+          <div class="c-column-content">
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th colspan="2">{{ _('Subscribe') }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for formpart in formset %} {# each newsletter is a formset #}
+                <tr>
+                  <th>
+                    <h4>{{ formpart.initial['title'] }}</h4>
+                    {# hidden field: #}
+                    {{ formpart.newsletter }}
+                    <p>
+                      {# Note: the newsletter description is translated in the code, so
+                      does not need to be translated again here. #}
+                      {{ formpart.initial['description'] }}
+                    </p>
+                  </th>
+                  <td>
+                    {{ formpart.subscribed_check.label_tag(_('Subscribe')) }}
+                    {{ formpart.subscribed_check }}
+                  </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                  <th>
+                    {{ form.remove_all.label_tag(_('Remove me from all the subscriptions on this page')) }}
+                  </th>
+                  <td>
+                    {{ form['remove_all'] }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <input type="submit" value="{{ _('Save Preferences') }}" class="mzp-c-button">
+          </div>
+        </div>
+      </form>
+      {% endif %}
+    </section>
+  </div>
+</main>
 {% endblock %}
 
-{% block site_footer %}{% endblock %}
+  {% block site_footer %}{% endblock %}

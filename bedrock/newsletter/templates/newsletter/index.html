@@ -1,22 +1,21 @@
-{% extends 'newsletter/one_newsletter_signup.html' %}
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends 'newsletter/base.html' %}
 
 {% set_lang_files "mozorg/newsletters" %}
 
-{% set newsletter_title = _('Mozilla Newsletter') %}
-{% set newsletter_id = 'mozilla-foundation' %}
-
 {% block page_title %}{{ _('Mozilla Newsletter') }}{% endblock %}
 
-{% block newsletter_content %}
-  <div id="main-feature">
-    {# Remove the span tags from the headline next time it changes: #}
-    <h1 class="large">{{ _('Read all about it in our <span>newsletter</span>') }}</h1>
-    <p>
-      {% if l10n_has_tag('mozilla_newsletter_2017') %}
-        {{ _('Subscribe to updates and keep current with Mozilla news. It’s the perfect way for us to keep in touch!') }}
-      {% else %}
-        {{ _('Subscribe to monthly updates and keep current with Mozilla news, including the latest tips and tricks for getting the most out of your Firefox browser. It’s the perfect way for us to keep in touch!') }}
-      {% endif %}
-    </p>
+{% block content %}
+<main role="main">
+  <div class="mzp-l-content mzp-t-narrow">
+    {{ email_newsletter_form(
+      protocol_component=true,
+      title=_('Read all about it in our <span>newsletter</span>'),
+      subtitle=_('Subscribe to updates and keep current with Mozilla news. It’s the perfect way for us to keep in touch!'),
+      newsletters='mozilla-foundation') }}
   </div>
+</main>
 {% endblock %}

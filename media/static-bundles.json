@@ -258,7 +258,7 @@
     },
     {
       "files": [
-        "css/newsletter/newsletter.less"
+        "css/newsletter/newsletter.scss"
       ],
       "name": "newsletter"
     },
@@ -1561,7 +1561,7 @@
         "protocol/js/protocol-newsletter.js",
         "js/newsletter/form-protocol.js"
       ],
-      "name": "firefox_ios_testflight"
+      "name": "newsletter"
     }
   ]
 }

@@ -687,9 +687,9 @@ class TestNewsletterSubscribe(TestCase):
         }
         resp = self.request(data)
         doc = pq(resp.content)
-        self.assertFalse(doc('#footer_email_submit'))
+        self.assertFalse(doc('#newsletter-submit'))
         self.assertFalse(doc('input[value="mozilla-and-you"]'))
-        self.assertTrue(doc('#email-form').hasClass('thank'))
+        self.assertTrue(doc('#newsletter-thanks'))
         basket_mock.subscribe.assert_called_with('fred@example.com', 'flintstones',
                                                  format='H')
 
@@ -706,7 +706,6 @@ class TestNewsletterSubscribe(TestCase):
         self.assertTrue(doc('#newsletter-form'))
         self.assertFalse(doc('input[value="mozilla-and-you"]'))
         self.assertTrue(doc('input[value="flintstones"]'))
-        self.assertFalse(doc('#email-form').hasClass('thank'))
-        self.assertTrue(doc('.field-privacy').hasClass('form-field-error'))
-        self.assertIn('privacy', doc('#footer-email-errors .errorlist li').eq(0).text())
+        self.assertFalse(doc('#email-form'))
+        self.assertIn('privacy', doc('#newsletter-errors .mzp-u-list-styled li').eq(0).text())
         self.assertFalse(basket_mock.subscribe.called)

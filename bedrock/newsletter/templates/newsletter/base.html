@@ -1,15 +1,21 @@
-{% extends 'base-resp.html' %}
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends 'base-protocol.html' %}
 
 {# Base template for newsletter pages #}
 {% set_lang_files "mozorg/newsletters" %}
 
 {% block page_title %}{{ _('Newsletter Subscriptions') }}{% endblock page_title %}
 
-{% block body_class %}sand{% endblock %}
-
 {% block site_css %}
   {{ super() }}
   {{ css_bundle('newsletter') }}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('newsletter') }}
 {% endblock %}
 
 {# Don't display an email signup form in the footer of this page, #}
