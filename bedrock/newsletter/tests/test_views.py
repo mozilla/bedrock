@@ -689,7 +689,7 @@ class TestNewsletterSubscribe(TestCase):
         doc = pq(resp.content)
         self.assertFalse(doc('#newsletter-submit'))
         self.assertFalse(doc('input[value="mozilla-and-you"]'))
-        self.assertTrue(doc('#email-form'))
+        self.assertTrue(doc('#newsletter-thanks'))
         basket_mock.subscribe.assert_called_with('fred@example.com', 'flintstones',
                                                  format='H')
 
