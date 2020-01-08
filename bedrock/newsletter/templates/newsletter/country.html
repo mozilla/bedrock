@@ -21,17 +21,14 @@
     </div>
     {% else %}
     <h1>Thanks for updating your info with us!</h1>
-    <p>
-      Simply select your country or region from the list below and hit "submit."<br>
-      We've pre-filled what we think is correct, but make sure to check that it's right
-      before clicking the button. Thanks!
+    <p>Simply select your country or region from the list below and hit "submit."</p>
+    <p>We've pre-filled what we think is correct, but make sure to check that it's right
+      before clicking the button. Thanks!</p>
     </p>
     {# using uri builder instead of named URL to easily maintain user newsletter token #}
-    <form method="post" action="{{ request.build_absolute_uri(request.path) }}" id="country-newsletter-form" class="container billboard">
+    <form method="post" action="{{ request.build_absolute_uri(request.path) }}" id="country-newsletter-form">
     {{ form.as_p() }}
-      <div class="field submit-field">
-        <input type="submit" value="Submit" class="mzp-c-button">
-      </div>
+    <input type="submit" value="Submit" class="mzp-c-button">
     </form>
     {% endif %}
   </div>

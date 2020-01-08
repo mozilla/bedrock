@@ -48,12 +48,11 @@ main {
 
 .c-column {
     box-sizing: border-box;
-    display: block;
     padding: $spacing-xl 0;
 
     @media #{$mq-lg} {
         float: left;
-        padding: 0 $spacing-2xl;
+        padding: 0 $spacing-xl;
         width: 50%;
 
         &:first-child {
@@ -62,7 +61,6 @@ main {
     }
 
     .c-column-content {
-        margin: 0 auto;
         text-align: left;
 
         h2 {
@@ -75,6 +73,10 @@ main {
     header {
         text-align: center;
         padding-bottom: $spacing-xl;
+    }
+
+    .mzp-l-content {
+        margin-bottom: $spacing-xl;
     }
 
     form {
@@ -107,8 +109,6 @@ main {
 }
 
 #basic-settings {
-    max-width: $content-xs;
-
     select {
         width: 100%;
     }
@@ -167,3 +167,12 @@ main {
     }
 }
 
+/* -------------------------------------------------------------------------- */
+// newsletter/country/ custom styles.
+
+
+#country-newsletter-form {
+    select {
+        width: 100%;
+    }
+}
