@@ -56,7 +56,7 @@
         title=_('Keep an eye on data breaches with Monitor'),
         ga_title='Check Out Monitor',
         link_cta=_('Check Out Monitor'),
-        link_url='https://monitor.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp67&utm_content=try-send&entrypoint=mozilla.org-whatsnew67',
+        link_url='https://monitor.firefox.com/?' ~ utm_params  ~ '&utm_content=check-out-monitor',
         image_url='img/firefox/whatsnew_67/monitor.svg',
         include_highres_image=False,
         aspect_ratio='mzp-l-card-feature-left-66',
@@ -99,7 +99,7 @@
         class='wn67-lockwise'
       ) %}
         <p>{{ _('Read the articles you care about anytime, anywhere (even offline). And try Pocket’s listen feature so you can absorb great content on the go.') }}</p>
-        <p><a class="mzp-c-cta-link wn67-benefit-link" data-app="pocket" href="https://getpocket.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp67&utm_content=get-pocket&entrypoint=mozilla.org-whatsnew67" data-link-name="Get the Pocket App" data-link-type="link">{{ _('Get the Pocket App') }}</a></p>
+        <p><a class="mzp-c-cta-link wn67-benefit-link" data-app="pocket" href="https://getpocket.com/?{{ utm_params }}&utm_content=get-pocket" data-link-name="Get the Pocket App" data-link-type="link">{{ _('Get the Pocket App') }}</a></p>
       {% endcall %}
 
       {# L10n: "Send" is a proper name; it should be capitalized and should not be translated. #}
@@ -112,7 +112,7 @@
         class='wn67-lockwise'
       ) %}
       <p>{{ _('Use an encrypted link to safely share large files – up to 2.5GB with a Firefox Account. And you can set when your link expires, so your info doesn’t live in the cloud forever.') }}</p>
-      <p><a class="mzp-c-cta-link" href="https://send.firefox.com/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp67&utm_content=try-send&entrypoint=mozilla.org-whatsnew67" data-link-name="Try Firefox Send" data-link-type="link">{{ _('Try Firefox Send') }}</a></p>
+      <p><a class="mzp-c-cta-link" href="https://send.firefox.com/?{{ utm_params }}&utm_content=try-send" data-link-name="Try Firefox Send" data-link-type="link">{{ _('Try Firefox Send') }}</a></p>
       {% endcall %}
   </div>
   {% endblock %}
@@ -125,7 +125,7 @@
       </div>
       {% block fxa_form %}
       {{ fxa_email_form(
-          entrypoint='mozilla.org-whatsnew67',
+          entrypoint=entrypoint,
           button_class='mzp-c-button mzp-t-product mzp-t-small',
           utm_content='unlock-benefits')
       }}

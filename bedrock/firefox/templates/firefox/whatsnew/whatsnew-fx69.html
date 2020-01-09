@@ -17,6 +17,9 @@
 
 {% block site_header %}{% endblock %}
 
+{% set _utm_content_signed_out = 'whatsnew' ~ analytics_version ~ '-signed-out' %}
+{% set _utm_content_signed_in = 'whatsnew' ~ analytics_version ~ '-signed-in' %}
+
 {% block content %}
 <main class="content-wrapper mzp-t-firefox mzp-t-dark">
   <header class="c-page-header">
@@ -40,9 +43,9 @@
         <p>{{ _('Sign up to see if your info was compromised in another company’s data breach, and automatically get alerts when your info might be at risk.') }}</p>
 
         {{ monitor_fxa_button(
-          entrypoint='mozilla.org-firefox-whatsnew69',
+          entrypoint=entrypoint,
           button_text=_('Sign Up for Monitor'),
-          optional_parameters={'utm_campaign': 'whatsnew69', 'utm_content': 'whatsnew69-signed-out'},
+          optional_parameters={'utm_campaign': campaign, 'utm_content': _utm_content_signed_out},
           optional_attributes={'data-cta-text': 'Sign Up for Monitor', 'data-cta-type': 'fxa-monitor', 'data-cta-position': 'primary'})
         }}
       </div>
@@ -53,9 +56,9 @@
         <p>{{ _('Use Firefox Monitor to see if your info was compromised in another company’s data breach — and get automatically signed up for future alerts.') }}</p>
 
         {{ monitor_fxa_button(
-          entrypoint='mozilla.org-firefox-whatsnew69',
+          entrypoint=entrypoint,
           button_text=_('Sign In'),
-          optional_parameters={'utm_campaign': 'whatsnew69', 'utm_content': 'whatsnew69-signed-in'},
+          optional_parameters={'utm_campaign': campaign, 'utm_content': _utm_content_signed_in},
           optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type': 'fxa-monitor', 'data-cta-position': 'primary'})
         }}
       </div>
@@ -98,7 +101,7 @@
             <h3 class="c-picto-block-title">{{ _('Put quality content in your Pocket') }}</h3>
             <div class="c-picto-block-body">
               <p>{{ _('Discover the web’s best content, and absorb it anytime — even offline — on any device. Pocket’s listen feature will even read any article aloud to you. Get it all from the Firefox toolbar or the Pocket app.') }}</p>
-              <p><a href="https://getpocket.com/firefox_learnmore/?utm_source=mozilla.org-firefox-whatsnew69&utm_medium=referral&utm_campaign=wnp69&utm_content=get-pocket&entrypoint=mozilla.org-firefox-whatsnew69">{{ _('Get the Pocket App') }}</a></p>
+              <p><a href="https://getpocket.com/firefox_learnmore/?{{ utm_params }}&utm_content=get-pocket">{{ _('Get the Pocket App') }}</a></p>
             </div>
           </div>
         </div>

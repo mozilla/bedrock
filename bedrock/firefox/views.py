@@ -378,7 +378,7 @@ def detect_channel(version):
             if version.endswith('a1'):
                 return 'nightly'
             if version.endswith('a2'):
-                return 'alpha'
+                return 'developer'
             if version.endswith('beta'):
                 return 'beta'
 
@@ -480,7 +480,7 @@ class FirstrunView(l10n_utils.LangFilesMixin, TemplateView):
     def get_template_names(self):
         version = self.kwargs.get('version') or ''
 
-        if detect_channel(version) == 'alpha':
+        if detect_channel(version) == 'developer':
             if show_57_dev_firstrun(version):
                 template = 'firefox/developer/firstrun.html'
             else:
@@ -518,8 +518,23 @@ class WhatsnewView(L10nTemplateView):
         # add version to context for use in templates
         version = self.kwargs.get('version') or ''
         match = re.match(r'\d{1,2}', version)
+        num_version = int(match.group(0)) if match else ''
         ctx['version'] = version
-        ctx['num_version'] = int(match.group(0)) if match else ''
+        ctx['num_version'] = num_version
+
+        # add analytics parameters to context for use in templates
+        channel = detect_channel(version)
+        if channel not in ['nightly', 'developer', 'beta']:
+            channel = ''
+
+        analytics_version = str(num_version) + channel
+        entrypoint = 'mozilla.org-whatsnew' + analytics_version
+        campaign = 'whatsnew' + analytics_version
+        ctx['analytics_version'] = analytics_version
+        ctx['entrypoint'] = entrypoint
+        ctx['campaign'] = campaign
+        ctx['utm_params'] = 'utm_source={0}&utm_medium=referral&utm_campaign={1}&entrypoint={2}'.format(
+                             entrypoint, campaign, entrypoint)
 
         if ctx['num_version'] in [67, 68]:
             ctx['show_newsletter'] = locale in [
@@ -554,7 +569,7 @@ class WhatsnewView(L10nTemplateView):
 
         if channel == 'nightly':
             template = 'firefox/nightly_whatsnew.html'
-        elif channel == 'alpha':
+        elif channel == 'developer':
             if show_57_dev_whatsnew(version):
                 template = 'firefox/developer/whatsnew.html'
             else:
@@ -562,11 +577,11 @@ class WhatsnewView(L10nTemplateView):
         elif channel == 'beta':
             if version.startswith('72.'):
                 if locale in ['en-US', 'en-CA', 'en-GB']:
-                    template = 'firefox/whatsnew/beta/whatsnew-fx72-en.html'
+                    template = 'firefox/whatsnew/whatsnew-fx70-en.html'
                 elif locale == 'de':
-                    template = 'firefox/whatsnew/beta/whatsnew-fx72-de.html'
+                    template = 'firefox/whatsnew/whatsnew-fx70-de.html'
                 elif locale == 'fr':
-                    template = 'firefox/whatsnew/beta/whatsnew-fx72-fr.html'
+                    template = 'firefox/whatsnew/whatsnew-fx70-fr.html'
                 else:
                     template = 'firefox/whatsnew/index.html'
             else:
@@ -574,7 +589,7 @@ class WhatsnewView(L10nTemplateView):
         elif locale == 'id':
             template = 'firefox/whatsnew/index-lite.id.html'
         elif version.startswith('72.') and lang_file_is_active('firefox/whatsnew_71', locale):
-            template = 'firefox/whatsnew/whatsnew-fx72.html'
+            template = 'firefox/whatsnew/whatsnew-fx71.html'
         elif version.startswith('71.') and lang_file_is_active('firefox/whatsnew_71', locale):
             template = 'firefox/whatsnew/whatsnew-fx71.html'
         elif version.startswith('70.'):

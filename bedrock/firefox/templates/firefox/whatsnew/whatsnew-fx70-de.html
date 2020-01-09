@@ -16,8 +16,6 @@
 
 {% block body_class %}state-fxa-default{% endblock %}
 
-{% set _entrypoint = 'mozilla.org-whatsnew70' %}
-{% set _utm_campaign = 'whatsnew70' %}
 {% set _utm_content = 'stay-ahead-hackers' %}
 
 {% block site_header %}{% endblock %}
@@ -45,18 +43,18 @@
 
         <div class="show-fxa-supported-signed-out show-fxa-default show-fxa-not-fx">
           {{ monitor_fxa_button(
-            entrypoint=_entrypoint,
+            entrypoint=entrypoint,
             button_text=_('Für Monitor anmelden'),
-            optional_parameters={'utm_campaign': _utm_campaign, 'utm_content': _utm_content},
+            optional_parameters={'utm_campaign': campaign, 'utm_content': _utm_content},
             optional_attributes={'data-cta-text': 'Sign Up for Monitor', 'data-cta-type': 'fxa-monitor', 'data-cta-position': 'primary'})
           }}
         </div>
 
         <div class="show-fxa-supported-signed-in">
           {{ monitor_fxa_button(
-            entrypoint=_entrypoint,
+            entrypoint=entrypoint,
             button_text=_('Einloggen'),
-            optional_parameters={'utm_campaign': _utm_campaign, 'utm_content': _utm_content},
+            optional_parameters={'utm_campaign': campaign, 'utm_content': _utm_content},
             optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type': 'fxa-monitor', 'data-cta-position': 'primary'})
           }}
         </div>
@@ -75,9 +73,9 @@
           <h3 class="c-picto-block-title">{{ _('Wir blocken über 2.000 Tracker – automatisch') }}</h3>
           <div class="c-picto-block-body">
             <p>{{ _('Alle Firefox Browser für Desktop und Mobile kommen mit standardmäßig eingestelltem verbesserten Tracking-Schutz.') }}</p>
-            <a class="mzp-c-cta-link show-firefox-desktop-70 js-open-about-protections" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-link-type="link" data-link-name="See what Firefox has blocked for you">{{ _('Sieh, was Firefox für dich geblockt hat') }}</a>
+            <a class="mzp-c-cta-link show-firefox-desktop-70 js-open-about-protections" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?{{ utm_params }}" data-link-type="link" data-link-name="See what Firefox has blocked for you">{{ _('Sieh, was Firefox für dich geblockt hat') }}</a>
 
-            <a class="mzp-c-cta-link show-firefox-desktop-old" href="https://support.mozilla.org/kb/update-firefox-latest-release/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-link-type="link" data-link-name="Update your Firefox browser">{{ _('Firefox Browser updaten') }}</a>
+            <a class="mzp-c-cta-link show-firefox-desktop-old" href="https://support.mozilla.org/kb/update-firefox-latest-release/?{{ utm_params }}" data-link-type="link" data-link-name="Update your Firefox browser">{{ _('Firefox Browser updaten') }}</a>
 
             <div class="show-fxa-not-fx show-fxa-unsupported">
               {{ download_firefox(alt_copy=_('Lad dir den Firefox Browser herunter'), download_location='secondary cta', button_color='mzp-c-button mzp-t-primary mzp-t-product') }}
