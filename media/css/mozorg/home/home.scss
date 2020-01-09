@@ -86,8 +86,7 @@ $image-path: '/media/protocol/img';
     }
 
     .c-column-content {
-        max-width: $content-sm;
-
+        @include bidi(((text-align, left, right),));
         h2 {
             margin-bottom: $spacing-xl;
         }
