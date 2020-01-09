@@ -134,12 +134,11 @@
 {%- endmacro %}
 
 {# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#linking-to-accountsfirefoxcom #}
-{% macro fxa_link_fragment(entrypoint, entrypoint_experiment=None, entrypoint_variation=None, service_type='sync', action='signin', form_type='button', utm_campaign=None, utm_content=None, utm_term=None) -%}
+{% macro fxa_link_fragment(entrypoint, entrypoint_experiment=None, entrypoint_variation=None, action='signin', form_type='button', utm_campaign=None, utm_content=None, utm_term=None) -%}
   {% set fxa_path = '' %}
   {% set fxa_queries = [
     'form_type=' ~ form_type,
     'entrypoint=' ~ entrypoint,
-    'context=fx_desktop_v3',
     'utm_source=' ~ entrypoint,
     'utm_medium=referral'
   ] %}
@@ -177,29 +176,21 @@
     {% do fxa_queries.append('entrypoint_variation=' ~ entrypoint_variation) %}
   {% endif %}
 
-  {# service_type is option for Firefox 71+ (issue #8198) #}
-  {% if service_type %}
-    {% do fxa_queries.insert(0, 'service=' ~ service_type) %}
-  {% endif %}
-
   href="{{ settings.FXA_ENDPOINT }}{{ fxa_path }}{{ fxa_queries|join('&') }}" data-mozillaonline-link="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}{{ fxa_path }}{{ fxa_queries|join('&') }}"
 
 {%- endmacro %}
 
 {# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#linking-to-accountsfirefoxcom #}
-{% macro fxa_cta_link(entrypoint, button_text, entrypoint_experiment=None, entrypoint_variation=None, form_type='button', service_type='sync', action='signin', account_id=None, button_class=None, utm_campaign=None, utm_content=None, utm_term=None) %}
-  <a data-action="{{ settings.FXA_ENDPOINT }}" {{ fxa_link_fragment(entrypoint=entrypoint, entrypoint_experiment=entrypoint_experiment, entrypoint_variation=entrypoint_variation, form_type=form_type, service_type=service_type, action=action, utm_campaign=utm_campaign, utm_content=utm_content, utm_term=utm_term) }} class="js-fxa-cta-link{% if button_class %} {{ button_class }}{% endif %}" data-cta-text="Create account" data-cta-type="fxa-sync" data-cta-position="{{ button_location }}" {%if account_id %}id="{{ account_id }}"{% endif %}>
+{% macro fxa_cta_link(entrypoint, button_text, entrypoint_experiment=None, entrypoint_variation=None, form_type='button', action='signin', account_id=None, button_class=None, utm_campaign=None, utm_content=None, utm_term=None) %}
+  <a data-action="{{ settings.FXA_ENDPOINT }}" {{ fxa_link_fragment(entrypoint=entrypoint, entrypoint_experiment=entrypoint_experiment, entrypoint_variation=entrypoint_variation, form_type=form_type, action=action, utm_campaign=utm_campaign, utm_content=utm_content, utm_term=utm_term) }} class="js-fxa-cta-link{% if button_class %} {{ button_class }}{% endif %}" data-cta-text="Create account" data-cta-type="fxa-sync" data-cta-position="{{ button_location }}" {%if account_id %}id="{{ account_id }}"{% endif %}>
     {{ button_text }}
   </a>
 {%- endmacro %}
 
 {# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#signup-form #}
-{% macro fxa_email_form(entrypoint, entrypoint_experiment, entrypoint_variation, utm_campaign=None, utm_content=None, utm_term=None, style=None, class_name='fxa-email-form', form_title=None, intro_text=none, button_text=None, button_class='button button-blue') -%}
-  {% set service  = 'sync' %}
+{% macro fxa_email_form(entrypoint, entrypoint_experiment, entrypoint_variation, context=None, utm_campaign=None, utm_content=None, utm_term=None, style=None, class_name='fxa-email-form', form_title=None, intro_text=none, button_text=None, button_class='button button-blue') -%}
   <form action="{{ settings.FXA_ENDPOINT }}" data-mozillaonline-action="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}" id="fxa-email-form" class="{{ class_name }}">
     <input type="hidden" name="action" value="email" />
-    <input type="hidden" name="context" value="fx_desktop_v3" />
-    <input type="hidden" name="service" value="{{ service }}" />
     <input type="hidden" name="entrypoint" value="{{ entrypoint }}" id="fxa-email-form-entrypoint" />
     <input type="hidden" name="form_type" value="email" />
     {# device_id, flow_id and flow_begin_time will be populated via JS on page load #}
@@ -210,11 +201,11 @@
     <input type="hidden" name="utm_medium" value="referral" id="fxa-email-form-utm-medium" />
 
     {% if entrypoint_experiment %}
-    <input type="hidden" name="entrypoint_experiment" value="{{ entrypoint_experiment }}" id="fxa-email-form-entrypoint-experiment" />
+      <input type="hidden" name="entrypoint_experiment" value="{{ entrypoint_experiment }}" id="fxa-email-form-entrypoint-experiment" />
     {% endif %}
 
     {% if entrypoint_variation %}
-    <input type="hidden" name="entrypoint_variation" value="{{ entrypoint_variation }}" id="fxa-email-form-entrypoint-variation" />
+      <input type="hidden" name="entrypoint_variation" value="{{ entrypoint_variation }}" id="fxa-email-form-entrypoint-variation" />
     {% endif %}
 
     {# utm_campaign is used to identify specific marketing campaigns. (For example: trailhead or skyline) If there is one, the campaign name is prepended to the default value of `fxa-embedded-form`. #}

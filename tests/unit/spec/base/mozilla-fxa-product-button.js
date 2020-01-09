@@ -3,8 +3,6 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
-/* global sinon */
-
 describe('mozilla-fxa-product-button.js', function() {
 
     'use strict';
@@ -15,7 +13,7 @@ describe('mozilla-fxa-product-button.js', function() {
 
         var data = {
             'deviceId': '848377ff6e3e4fc982307a316f4ca3d6',
-            'flowBeginTime': 1573052386673,
+            'flowBeginTime': '1573052386673',
             'flowId': '75f9a48a0f66c2f5919a0989605d5fa5dd04625ea5a2ee59b2d5d54637c566d1'
         };
 
@@ -27,19 +25,16 @@ describe('mozilla-fxa-product-button.js', function() {
         });
 
         document.body.insertAdjacentHTML('beforeend', button);
-        window.fetch = sinon.stub().returns(window.Promise.resolve(mockResponse));
+        spyOn(window, 'fetch').and.returnValue(window.Promise.resolve(mockResponse));
     });
 
     afterEach(function() {
-        sinon.restore();
         document.querySelectorAll('.js-fxa-product-button').forEach(function(e)  {
             e.parentNode.removeChild(e);
         });
     });
 
     it('should make a single metrics flow request', function() {
-        spyOn(window, 'fetch').and.callThrough();
-
         return Mozilla.FxaProductButton.init().then(function() {
             expect(window.fetch).toHaveBeenCalledTimes(1);
             expect(window.fetch).toHaveBeenCalledWith('https://accounts.firefox.com/metrics-flow?entrypoint=mozilla.org-firefox-accounts&form_type=button&utm_source=mozilla.org-firefox-accounts&utm_campaign=trailhead');

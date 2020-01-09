@@ -12,14 +12,15 @@ if (typeof window.Mozilla === 'undefined') {
 
     var FxaProductButton = {};
 
+    FxaProductButton.isSupported = function() {
+        return 'fetch' in window;
+    };
+
     FxaProductButton.init = function() {
         var buttons;
 
-        // Exit if no fetch support
-        var supportsFetch = 'fetch' in window;
-
-        if (!supportsFetch) {
-            return;
+        if (!FxaProductButton.isSupported()) {
+            return false;
         }
 
         // Collect all Fxa product buttons

@@ -163,6 +163,13 @@ A link can then be invoked using:
         button_text=_('Create a Firefox Account')
     }}
 
+The following scripts, included in the base bundle for every page, are responsible for configuring Sync for Firefox desktop browsers.
+
+.. code-block:: text
+
+    js/base/mozilla-fxa-link.js
+    js/base/mozilla-fxa-link-init.js
+
 Configuration
 ~~~~~~~~~~~~~
 
@@ -177,22 +184,20 @@ The macro provides parameters as follows (* indicates a required parameter)
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
 |    entrypoint_variation    | Used to track page variations in multivariate tests. Usually just a number or letter but could be a short keyword.     | Variant identifier                                       | 'b'                                             |
 +----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    service_type      | The type of service the referral will initiate. Defaults to: 'sync'.  None is an acceptable value for Firefox 71+.           | String                                                   | 'sync'                                          |
-+----------------------+------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    action            | The type of action the link will perform. Defaults to 'signin'.                                                              | String                                                   | 'signup'                                        |
-+----------------------+------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    button_text*      | The button copy to be used in the call to action.                                                                            | Localizable string                                       | _('Create a Firefox Account')                   |
-+----------------------+------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    account_id        | An HTML 'id' to be added to the link.                                                                                        | String                                                   | 'account-hero-button'                           |
-+----------------------+------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    button_class      | A CSS class names to be applied to the link.                                                                                 | String of one or more CSS class names                    | 'mzp-c-button mzp-t-primary mzp-t-product'      |
-+----------------------+------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    utm_campaign*     | Used to identify specific marketing campaigns. Should have default value which is descriptive of the page element.           | Campaign name appended to default value                  | 'accounts-page-hero'                            |
-+----------------------+------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    utm_term          | Used for paid search keywords.                                                                                               | Brief keyword                                            | 'existing-users'                                |
-+----------------------+------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    utm_content       | It should only be declared when there is more than one piece of content on a page linking to the same place.                 | Description of content, or name of experiment treatment  | 'get-the-rest-of-firefox'                       |
-+----------------------+------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
+|    action                  | The type of action the link will perform. Defaults to 'signin'.                                                        | String                                                   | 'signup'                                        |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
+|    button_text*            | The button copy to be used in the call to action.                                                                      | Localizable string                                       | _('Create a Firefox Account')                   |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
+|    account_id              | An HTML 'id' to be added to the link.                                                                                  | String                                                   | 'account-hero-button'                           |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
+|    button_class            | A CSS class names to be applied to the link.                                                                           | String of one or more CSS class names                    | 'mzp-c-button mzp-t-primary mzp-t-product'      |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
+|    utm_campaign*           | Used to identify specific marketing campaigns. Should have default value which is descriptive of the page element.     | Campaign name appended to default value                  | 'accounts-page-hero'                            |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
+|    utm_term                | Used for paid search keywords.                                                                                         | Brief keyword                                            | 'existing-users'                                |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
+|    utm_content             | It should only be declared when there is more than one piece of content on a page linking to the same place.           | Description of content, or name of experiment treatment  | 'get-the-rest-of-firefox'                       |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
 
 Invoking the macro will automatically include a set of default UTM parameters as query string values:
 
@@ -201,7 +206,7 @@ Invoking the macro will automatically include a set of default UTM parameters as
 
 .. Note::
 
-    There is also a ``fxa_link_fragment`` macro which will construct only valid ``href`` and ``data-mozillaonline-link`` properties. This is useful when constructing an inline link inside a paragraph, for example. The ``fxa_link_fragment`` will accept the same ``entrypoint``, ``service_type``, ``action`` and ``utm_*`` values as the ``fxa_cta_link`` macro.
+    There is also a ``fxa_link_fragment`` macro which will construct only valid ``href`` and ``data-mozillaonline-link`` properties. This is useful when constructing an inline link inside a paragraph, for example. The ``fxa_link_fragment`` will accept the same ``entrypoint``, ``action`` and ``utm_*`` values as the ``fxa_cta_link`` macro.
 
 
 Linking to monitor.firefox.com
