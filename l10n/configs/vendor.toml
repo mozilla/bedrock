@@ -41,6 +41,9 @@ locales = [
 #     ]
 
 [[paths]]
+    reference = "en/brands.ftl"
+    l10n = "{locale}/brands.ftl"
+[[paths]]
     reference = "en/mozorg/mission.ftl"
     l10n = "{locale}/mozorg/mission.ftl"
 [[paths]]
