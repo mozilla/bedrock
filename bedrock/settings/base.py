@@ -372,6 +372,9 @@ def set_whitenoise_headers(headers, path, url):
         cache_control = 'public, max-age={}'.format(604800)  # one week
         headers['Cache-Control'] = cache_control
 
+    if url.startswith('/.well-known/matrix/'):
+        headers['Content-Type'] = 'application/json'
+
 
 WHITENOISE_ADD_HEADERS_FUNCTION = set_whitenoise_headers
 WHITENOISE_ROOT = config('WHITENOISE_ROOT', default=path('root_files'))
