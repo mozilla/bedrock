@@ -251,7 +251,7 @@
     },
     {
       "files": [
-        "css/newsletter/moznewsletter-subscribe.less",
+        "css/newsletter/newsletter.scss",
         "css/mozorg/home/home.scss"
       ],
       "name": "home"
