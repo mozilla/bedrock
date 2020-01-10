@@ -830,6 +830,9 @@ const entry = {
 
 const plugins = [
   new MiniCssExtractPlugin({'filename': 'css/[name].css'}),
+  new CopyPlugin([
+    { from: 'node_modules/@mozilla-protocol/core/protocol/img', to: 'node_modules/@mozilla-protocol/core/protocol/img' },
+  ]),
 ];
 if(process.env.NODE_ENV === "production"){
   plugins.push(new UglifyJSPlugin())
