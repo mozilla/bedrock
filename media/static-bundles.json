@@ -591,7 +591,6 @@
     },
     {
       "files": [
-        "css/base/mozilla-modal.less",
         "css/mozorg/technology.scss"
       ],
       "name": "technology"
@@ -1129,7 +1128,7 @@
         "js/libs/jquery.waypoints.min.js",
         "js/libs/jquery.waypoints-sticky.min.js",
         "js/hubs/sub-nav.js",
-        "js/base/mozilla-modal.js",
+        "protocol/js/protocol-modal.js",
         "js/mozorg/technology.js"
       ],
       "name": "technology"

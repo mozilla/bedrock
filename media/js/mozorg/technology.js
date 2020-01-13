@@ -68,7 +68,7 @@ function onYouTubeIframeAPIReady() {
                 }
             }
 
-            Mozilla.Modal.createModal(this, $videoContainer, {
+            Mzp.Modal.createModal(this, $videoContainer[0], {
                 onDestroy: function() {
                     player.destroy();
                 }

@@ -2,9 +2,14 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
 @import '../pebbles/includes/lib';
 @import '../pebbles/components/newsletter';
 @import '../hubs/sub-nav';
+
+@import '../../protocol/css/components/modal';
 
 body {
     border-top: none;
@@ -681,17 +686,11 @@ html[dir="rtl"] #technologies > section {
     display: none;
 }
 
-#modal .window .inner #video-container.overlay-contents {
-    background: #000;
+.mzp-c-modal .mzp-c-modal-window .mzp-c-modal-inner #video-container.mzp-c-modal-overlay-contents {
     display: block;
     height: 0;
     padding-bottom: 56.25%;
     position: relative;
-    top: 20px;
-
-    @media #{$mq-tablet} {
-        top: 40px;
-    }
 
     iframe {
         height: 100%;
