@@ -5,8 +5,6 @@
 (function() {
     'use strict';
 
-    var videoPoster = new Mozilla.VideoPosterHelper('.fbcontainer-video');
-
     function trackVideoInteraction(title, state) {
         window.dataLayer.push({
             'event': 'video-interaction',
@@ -28,8 +26,13 @@
         }, false);
     }
 
-    videoPoster.init();
-    initVideoInteractionTracking();
+    function onLoad() {
+        var videoPoster = new Mozilla.VideoPosterHelper('.fbcontainer-video');
+        videoPoster.init();
+        initVideoInteractionTracking();
+    }
+
+    window.Mozilla.run(onLoad);
 
 })();
 

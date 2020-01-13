@@ -25,7 +25,7 @@ if (typeof window.Mozilla === 'undefined') {
 Mozilla.VideoPosterHelper = function (selector) {
     'use strict';
 
-    this.$container = $(selector);
+    this.container = document.querySelector(selector);
 };
 
 /*
@@ -35,7 +35,7 @@ Mozilla.VideoPosterHelper = function (selector) {
 Mozilla.VideoPosterHelper.prototype.init = function () {
     'use strict';
 
-    if (this.$container.length && this.supportsVideo()) {
+    if (this.container && this.supportsVideo()) {
         this.showPoster();
         this.bindEvents();
     }
@@ -56,7 +56,31 @@ Mozilla.VideoPosterHelper.prototype.supportsVideo = function () {
 Mozilla.VideoPosterHelper.prototype.showPoster = function () {
     'use strict';
 
-    this.$container.addClass('supports-video');
+    this.container.classList.add('supports-video');
+};
+
+/*
+ * Hide the poster image, play the video.
+ */
+Mozilla.VideoPosterHelper.prototype.play = function (e) {
+    'use strict';
+
+    var poster = e.target;
+    var video = this.container.querySelector('video');
+    video.setAttribute('style', 'visibility: visible;');
+
+    try {
+        if (video && video.readyState && video.readyState > 0) {
+            video.play();
+        } else {
+            video.load();
+            video.play();
+        }
+    } catch(e) {
+        // fail silently.
+    }
+
+    poster.setAttribute('style', 'display: none;');
 };
 
 /*
@@ -65,25 +89,9 @@ Mozilla.VideoPosterHelper.prototype.showPoster = function () {
 Mozilla.VideoPosterHelper.prototype.bindEvents = function () {
     'use strict';
 
-    this.$container.on('click.moz-video', '.moz-video-button', function () {
-        var $poster = $(this);
-        var $video = $poster.closest('.moz-video-container').find('video');
-        $video.css('visibility', 'visible');
-        var videoMedia = $video[0];
-
-        try {
-            if (videoMedia && videoMedia.readyState && videoMedia.readyState > 0) {
-                videoMedia.play();
-            } else {
-                videoMedia.load();
-                videoMedia.play();
-            }
-        } catch(e) {
-            // fail silently.
-        }
-
-        $poster.hide();
-    });
+    this.button = this.container.querySelector('.moz-video-button');
+    this.onPlayHandler = Mozilla.VideoPosterHelper.prototype.play.bind(this);
+    this.button.addEventListener('click', this.onPlayHandler, false);
 };
 
 /*
@@ -92,6 +100,6 @@ Mozilla.VideoPosterHelper.prototype.bindEvents = function () {
 Mozilla.VideoPosterHelper.prototype.destroy = function () {
     'use strict';
 
-    this.$container.off('click.moz-video');
-    this.$container.removeClass('supports-video');
+    this.button.removeEventListener('click', this.onPlayHandler, false);
+    this.container.classList.remove('supports-video');
 };
