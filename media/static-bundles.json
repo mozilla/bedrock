@@ -487,12 +487,6 @@
     },
     {
       "files": [
-        "css/mozorg/contribute/contribute-embed.less"
-      ],
-      "name": "contribute-embed"
-    },
-    {
-      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
