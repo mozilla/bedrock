@@ -23,9 +23,6 @@
   {{ css_bundle('firefox_whatsnew_account') }}
 {% endblock %}
 
-{% set _entrypoint = 'mozilla.org-whatsnew' %}
-{% set _utm_campaign = 'whatsnew' %}
-
 {% block content %}
 <main role="main" class="content-wrapper mzp-t-firefox mzp-t-dark">
   <header class="c-page-header">
@@ -49,7 +46,7 @@
         </h2>
         <p>{{ ftl('whatsnew-account-main-lead-in') }}</p>
 
-        <p class="cta">{{ fxa_cta_link(entrypoint=_entrypoint, action='signup', button_text=ftl('whatsnew-account-main-button'), button_class='mzp-c-button mzp-t-product mzp-t-small js-fxa-product-button', utm_campaign=_utm_campaign) }}</p>
+        <p class="cta">{{ fxa_cta_link(entrypoint=entrypoint, action='signup', button_text=ftl('whatsnew-account-main-button'), button_class='mzp-c-button mzp-t-product mzp-t-small js-fxa-product-button', utm_campaign=campaign) }}</p>
       </div>
     </div>
   </section>
