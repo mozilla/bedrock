@@ -9,13 +9,14 @@
 {% block page_title %}{{_('Mozillian Stories')}}{% endblock %}
 
 {% block story_content %}
-  <h2 class="story-title">
-    {# L10n: These <b>s are for formatting so we can style the name and country. #}
-    {{ _('Hi, I’m <b class="name">Rubén</b>, a Mozillian in <b class="country">Spain</b>') }}
-  </h2>
+  <div class="mzp-l-content mzp-t-narrow">
+    <img class="contribute-photo" src="{{ static('img/contribute/person-ruben.jpg') }}" alt="">
 
-  <div class="story-intro">
-    <img class="photo" src="{{ static('img/contribute/person-ruben.jpg') }}" alt="">
+    <h2 class="contribute-section-heading">
+      {# L10n: These <b>s are for formatting so we can style the name and country. #}
+      {{ _('Hi, I’m <b class="name">Rubén</b>, a Mozillian in <b class="country">Spain</b>') }}
+    </h2>
+
     <p>
     {% trans %}
       I’ve been collaborating with the Mozilla community since 2004, helping
@@ -24,40 +25,55 @@
       Mozilla Hispano community.
     {% endtrans %}
     </p>
-  </div>
 
-  <div class="story-areas">
     <h3>{{ _('I’m currently helping with:') }}</h3>
-    <ul>
+    <ul class="mzp-u-list-styled">
       <li>{{ _('Mozilla.org localization') }}</li>
       <li>{{ _('Mozilla Hispano mentorship program') }}</li>
       <li>{{ _('Community events') }}</li>
     </ul>
-  </div>
 
-  <ul class="story-links">
-    <li><a href="https://twitter.com/nukeador" class="twitter" rel="external" data-link-type="button" data-link-name="Twitter - Ruben">@nukeador</a></li>
-    <li><a href="https://github.com/nukeador" class="github" rel="external" data-link-type="button" data-link-name="Github - Ruben">Github</a></li>
-    <li><a href="http://www.nukeador.com/" class="website" rel="external" data-link-type="button" data-link-name="Website - Ruben">nukeador.com</a></li>
-  </ul>
+    <ul class="mzp-u-list-styled">
+      <li><a href="https://twitter.com/nukeador" class="twitter" rel="external" data-link-type="button" data-link-name="Twitter - Ruben">@nukeador</a></li>
+      <li><a href="https://github.com/nukeador" class="github" rel="external" data-link-type="button" data-link-name="Github - Ruben">Github</a></li>
+      <li><a href="http://www.nukeador.com/" class="website" rel="external" data-link-type="button" data-link-name="Website - Ruben">nukeador.com</a></li>
+    </ul>
+  </div>
 {% endblock %}
 
 {% block stories_list %}
-  <ul class="stories">
-    <li class="person hcard">
-      <h3 class="fn given-name">Shreyas</h3>
-      <p class="meta">{{ _('India &middot; Teaching') }}</p>
-      <a href="{{ url('mozorg.contribute.story-shreyas') }}" class="url" data-link-type="button" data-link-name="Read his story - Shreyas">{{ _('Read his story') }} <img src="{{ static('img/contribute/person-shreyas.jpg') }}" alt=""></a>
+  <ul class="contribute-mozillian-list">
+    <li class="contribute-mozillian-item">
+      <a href="{{ url('mozorg.contribute.story-shreyas') }}" data-link-type="button" data-link-name="Read his story - Shreyas">
+        <img class="contribute-photo" src="{{ static('img/contribute/person-shreyas.jpg') }}" alt="">
+      </a>
+      <h3>Shreyas</h3>
+      <p>{{ _('India &middot; Teaching') }}</p>
+      <a href="{{ url('mozorg.contribute.story-shreyas') }}" class="mzp-c-button mzp-t-secondary" data-link-type="button" data-link-name="Read his story - Shreyas">
+        {{ _('Read his story') }}
+      </a>
     </li>
-    <li class="person hcard">
-      <h3 class="fn given-name">Faye</h3>
-      <p class="meta">{{ _('Philippines &middot; Activism') }}</p>
-      <a href="{{ url('mozorg.contribute.story-faye') }}" class="url" data-link-type="button" data-link-name="Read her story - Faye">{{ _('Read her story') }} <img src="{{ static('img/contribute/person-faye.jpg') }}" alt=""></a>
+
+    <li class="contribute-mozillian-item">
+      <a href="{{ url('mozorg.contribute.story-faye') }}" data-link-type="button" data-link-name="Read her story - Faye">
+        <img class="contribute-photo" src="{{ static('img/contribute/person-faye.jpg') }}" alt="">
+      </a>
+      <h3>Faye</h3>
+      <p>{{ _('Philippines &middot; Activism') }}</p>
+      <a href="{{ url('mozorg.contribute.story-faye') }}" class="mzp-c-button mzp-t-secondary" data-link-type="button" data-link-name="Read her story - Faye">
+        {{ _('Read her story') }}
+      </a>
     </li>
-    <li class="person hcard">
-      <h3 class="fn given-name">Michael</h3>
-      <p class="meta">{{ _('Switzerland &middot; Coding') }}</p>
-      <a href="{{ url('mozorg.contribute.story-michael') }}" class="url" data-link-type="button" data-link-name="Read his story - Michael">{{ _('Read his story') }} <img src="{{ static('img/contribute/person-michael.jpg') }}" alt=""></a>
+
+    <li class="contribute-mozillian-item">
+      <a href="{{ url('mozorg.contribute.story-michael') }}" data-link-type="button" data-link-name="Read his story - Michael">
+        <img class="contribute-photo" src="{{ static('img/contribute/person-michael.jpg') }}" alt="">
+      </a>
+      <h3>Michael</h3>
+      <p>{{ _('Switzerland &middot; Coding') }}</p>
+      <a href="{{ url('mozorg.contribute.story-michael') }}" class="mzp-c-button mzp-t-secondary" data-link-type="button" data-link-name="Read his story - Michael">
+        {{ _('Read his story') }}
+      </a>
     </li>
   </ul>
 {% endblock %}

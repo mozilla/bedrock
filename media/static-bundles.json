@@ -219,8 +219,7 @@
     },
     {
       "files": [
-        "css/base/mozilla-modal.less",
-        "css/mozorg/contribute/contribute-base.less"
+        "css/mozorg/contribute/contribute.scss"
       ],
       "name": "contribute-base"
     },
@@ -484,12 +483,6 @@
         "css/exp/firefox/whatsnew/whatsnew-71.scss"
       ],
       "name": "exp_firefox_whatsnew_71"
-    },
-    {
-      "files": [
-        "css/mozorg/contribute/contribute-embed.less"
-      ],
-      "name": "contribute-embed"
     },
     {
       "files": [
@@ -858,12 +851,6 @@
   "js": [
     {
       "files": [
-        "js/mozorg/contribute/contribute-nav.js"
-      ],
-      "name": "contribute-base"
-    },
-    {
-      "files": [
         "protocol/js/protocol-newsletter.js"
       ],
       "name": "firefox_channel"
@@ -1135,12 +1122,6 @@
     },
     {
       "files": [
-        "js/mozorg/contribute/contribute-stories.js"
-      ],
-      "name": "contribute-stories"
-    },
-    {
-      "files": [
         "protocol/js/protocol-sidemenu.js",
         "js/base/mozilla-article.js",
         "js/privacy/privacy-protocol.js"
@@ -1158,9 +1139,9 @@
     },
     {
       "files": [
-        "js/libs/jquery.waypoints.min.js",
-        "js/libs/jquery.cycle2.min.js",
-        "js/base/mozilla-modal.js",
+        "protocol/js/protocol-modal.js",
+        "protocol/js/protocol-newsletter.js",
+        "js/newsletter/form-protocol.js",
         "js/mozorg/contribute/contribute-landing.js"
       ],
       "name": "contribute-landing"

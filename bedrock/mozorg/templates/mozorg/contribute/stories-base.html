@@ -12,41 +12,22 @@
 
 {% block contrib_page_title %}{{ _('Volunteer with Mozilla!') }}{% endblock %}
 
-{% block string_data %}
-  {# L10n: Used as a toggle to display more content. #}
-  data-more='{{_('More')}}'
-  {# L10n: Used as a toggle to display less content. #}
-  data-less='{{_('Less')}}'
-{% endblock %}
-
 {% block contrib_content %}
-  <section class="section stories-intro">
-    <div class="container">
-      <h2 class="section-title">#IAmAMozillian</h2>
-      <p class="section-tagline">{{ _('Meet Mozillians from all around the world. Learn about the projects they’ve worked on and see what they’re currently helping with.') }}</p>
-    </div>
-  </section>
+  {{ call_out(
+    title='#IAmAMozillian',
+    class='mzp-t-dark',
+    desc=_('Meet Mozillians from all around the world. Learn about the projects they’ve worked on and see what they’re currently helping with.')
+  )}}
 
-  <section class="section story-main">
-    <div class="container">
-    {% block story_content %}{% endblock %}
-    </div>
-  </section>
+  {% block story_content %}{% endblock %}
 
-  <section class="section stories-other">
-    <div class="container">
-      <h2 class="section-title">{{ _('Meet a few more Mozillians') }}</h2>
-      <p class="section-tagline">
-      {% trans link_hashtag='https://twitter.com/search?q=%23IAmAMozillian' %}
-        Read their stories here and discover even more on Twitter with <a href="{{ link_hashtag }}">#IAmAMozillian</a>
-      {% endtrans %}
-      </p>
-      {% block stories_list %}{% endblock %}
-    </div>
+  <section class="mzp-l-content">
+    <h2 class="contribute-section-heading">{{ _('Meet a few more Mozillians') }}</h2>
+    <p class="contribute-section-lead-in">
+    {% trans link_hashtag='https://twitter.com/search?q=%23IAmAMozillian' %}
+      Read their stories here and discover even more on Twitter with <a href="{{ link_hashtag }}">#IAmAMozillian</a>
+    {% endtrans %}
+    </p>
+    {% block stories_list %}{% endblock %}
   </section>
 {% endblock contrib_content %}
-
-{% block js %}
-  {{ super() }}
-  {{ js_bundle('contribute-stories') }}
-{% endblock %}

@@ -62,12 +62,6 @@ def mozid_data_view(request, source_name):
     return response
 
 
-@xframe_allow
-def contribute_embed(request):
-    return l10n_utils.render(request,
-                             'mozorg/contribute/contribute-embed.html')
-
-
 @require_safe
 def credits_view(request):
     """Display the names of our contributors."""
