@@ -31,6 +31,10 @@ $image-path: '/media/protocol/img';
     margin-top: $spacing-xl;
 }
 
+.contribute-section-subheading {
+    @include text-display-xs;
+}
+
 .contribute-section-lead-in {
     text-align: center;
 }
@@ -169,5 +173,14 @@ $image-path: '/media/protocol/img';
                 (float, left, right),
             ));
         }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Events table
+
+.event-date {
+    @media #{$mq-lg} {
+        min-width: 20ch;
     }
 }
