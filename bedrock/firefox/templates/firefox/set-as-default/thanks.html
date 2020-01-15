@@ -1,0 +1,104 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
+
+{% from "macros-protocol.html" import hero with context %}
+
+{% add_lang_files "firefox/set-default-thanks" %}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block page_title %}{{ _('Thanks for choosing Firefox') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox-default-thanks') }}
+{% endblock %}
+
+{% set utms = '?utm_source=mozilla.org-default-thanks&utm_medium=referral&utm_campaign=default-thanks&entrypoint=mozilla.org-default-thanks' %}
+
+{% block content %}
+<main role="main">
+  <div class="mzp-l-content">
+    <div class="mzp-c-notification-bar mzp-t-success thanks-state-is-default hide-from-legacy-ie">
+      <p>{{ _('Success! Your default browser is set to Firefox.') }}</p>
+    </div>
+  </div>
+
+  {% call hero(
+    title=_('Thanks for choosing Firefox'),
+    class='mzp-t-product-firefox thanks-hero',
+    include_cta=True,
+    heading_level=1
+  ) %}
+    <div class="thanks-state-not-firefox">
+      <p class="mzp-c-hero-desc">
+        {{ _('Looks like you’re using a different browser right now. Make sure you have Firefox downloaded on your device.') }}
+      </p>
+      {{ download_firefox(alt_copy=_('Download Firefox'), download_location='primary cta') }}
+    </div>
+    <div class="mzp-c-hero-desc thanks-state-not-default-desktop hide-from-legacy-ie">
+      {# L10n: When a visitor sees this message a system dialog will also open on screen. #}
+      <p>{{ _('You’re almost done. Just change your default browser to Firefox in the settings panel on your screen.') }}</p>
+
+      <p class="thanks-help-text">
+        <a href="https://support.mozilla.org/kb/make-firefox-your-default-browser{{ utms }}">
+          {{ _('Having trouble setting your default browser?') }}
+        </a>
+      </p>
+    </div>
+    <p class="mzp-c-hero-desc thanks-state-not-default-android hide-from-legacy-ie"">
+    {% trans android = 'https://support.mozilla.org/kb/make-firefox-default-browser-android' ~ utms %}
+      Here’s everything you need to know about setting your default browser on <a href="{{ android }}">Android devices</a>.
+    {% endtrans %}
+    </p>
+    <p class="mzp-c-hero-desc thanks-state-not-default-ios hide-from-legacy-ie"">
+    {% trans ios = 'https://support.mozilla.org/en-US/kb/unable-set-firefox-default-browser-ios' ~ utms %}
+      Here’s everything you need to know about setting your default browser on <a href="{{ ios }}">iOS devices</a>.
+    {% endtrans %}
+    </p>
+    <p class="mzp-c-hero-desc thanks-state-is-default hide-from-legacy-ie">
+      {{ _('You’re all set.') }}
+    </p>
+  {% endcall %}
+
+  <aside class="thanks-extra-links">
+    <div class="mzp-l-content">
+      <section class="thanks-extra-links-item mobile">
+        <h2 class="thanks-extra-links-heading">
+          {{ _('Get Firefox for mobile') }}
+        </h2>
+        <p>{{ _('Travel the internet with protection on all your devices.') }}</p>
+        <a href="{{ url('firefox.mobile.index') }}">{{ _('Download the app') }}</a>
+      </section>
+
+      <section class="thanks-extra-links-item join">
+        <h2 class="thanks-extra-links-heading">
+          {{ _('Join Firefox') }}
+        </h2>
+        <p>{{ _('Sign up for a free account and sync all your passwords, browsing history, and preferences across your devices.') }}</p>
+        <a href="{{ url('firefox.accounts') }}">{{ _('Get an Account') }}</a>
+      </section>
+
+      <section class="thanks-extra-links-item help">
+        <h2 class="thanks-extra-links-heading">
+          {{ _('Having trouble?') }}
+        </h2>
+        <p>
+        {% trans android = 'https://support.mozilla.org/kb/make-firefox-default-browser-android' ~ utms,
+                 desktop = 'https://support.mozilla.org/kb/make-firefox-your-default-browser' ~ utms %}
+          Here’s everything you need to know about setting your default browser on
+          <a href="{{ android }}">Android devices</a> or <a href="{{ desktop }}">desktop computers</a>.
+        {% endtrans %}
+        </p>
+      </section>
+    </div>
+  </aside>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox-default-thanks') }}
+{% endblock %}

@@ -516,6 +516,12 @@
     },
     {
       "files": [
+        "css/firefox/set-as-default/thanks.scss"
+      ],
+      "name": "firefox-default-thanks"
+    },
+    {
+      "files": [
         "css/firefox/switch.scss"
       ],
       "name": "firefox-switch"
@@ -1178,6 +1184,13 @@
         "js/mozorg/about-transparency.js"
       ],
       "name": "about-transparency"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/firefox/set-as-default/thanks.js"
+      ],
+      "name": "firefox-default-thanks"
     },
     {
       "files": [

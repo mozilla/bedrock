@@ -296,6 +296,7 @@ NOINDEX_URLS = [
     r'^firefox/welcome/',
     r'^contribute/(embed|event)/',
     r'^csp-violation-capture',
+    r'^firefox/set-as-default/thanks/',
     r'^firefox/sms/sent/',
     r'^firefox/unsupported/',
     r'^firefox/send-to-device-post',
