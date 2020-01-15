@@ -34,6 +34,7 @@ def test_newsletter_default_values(page_class, base_url, selenium):
     HomePage,
     AboutPage,
     MissionPage,
+    ContributePage,
     pytest.mark.skip_if_not_firefox(FirefoxWhatsNewDeveloper70Page)])
 def test_newsletter_successful_sign_up(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
@@ -51,6 +52,7 @@ def test_newsletter_successful_sign_up(page_class, base_url, selenium):
     HomePage,
     AboutPage,
     MissionPage,
+    ContributePage,
     pytest.mark.skip_if_not_firefox(FirefoxWhatsNewDeveloper70Page)])
 def test_newsletter_sign_up_fails_when_missing_required_fields(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
@@ -61,7 +63,6 @@ def test_newsletter_sign_up_fails_when_missing_required_fields(page_class, base_
 
 @pytest.mark.nondestructive
 @pytest.mark.parametrize(('page_class', 'url_kwargs'), [
-    (ContributePage, None),
     (FeaturesLandingPage, None),
     (PluginCheckPage, None)])
 def test_legacy_newsletter_default_values(page_class, url_kwargs, base_url, selenium):
@@ -75,7 +76,7 @@ def test_legacy_newsletter_default_values(page_class, url_kwargs, base_url, sele
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('page_class', [ContributePage])
+@pytest.mark.parametrize('page_class', [FeaturesLandingPage])
 def test_legacy_newsletter_successful_sign_up(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
     page.legacy_newsletter.expand_form()
@@ -88,7 +89,7 @@ def test_legacy_newsletter_successful_sign_up(page_class, base_url, selenium):
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize('page_class', [ContributePage])
+@pytest.mark.parametrize('page_class', [FeaturesLandingPage])
 def test_legacy_newsletter_sign_up_fails_when_missing_required_fields(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
     page.legacy_newsletter.expand_form()

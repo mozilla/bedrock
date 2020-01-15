@@ -269,8 +269,6 @@ urlpatterns = (
     page('MPL/2.0/permissive-code-into-mpl', 'mozorg/mpl/2.0/permissive-code-into-mpl.html'),
 
     page('contribute', 'mozorg/contribute/index.html'),
-    url('^contribute/embed/$', views.contribute_embed,
-        name='mozorg.contribute_embed'),
     page('contribute/events', 'mozorg/contribute/events.html'),
     page('contribute/stories', 'mozorg/contribute/stories.html'),
     page('contribute/stories/faye', 'mozorg/contribute/story-faye.html'),

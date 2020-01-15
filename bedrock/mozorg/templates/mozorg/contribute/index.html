@@ -14,157 +14,117 @@
 
 {% block contrib_page_title %}{{ _('Volunteer with Mozilla!') }}{% endblock %}
 
-{% block survey %}
-  {% set localized_surveys = {'en-US': 'GHJYW6D'} %}
-  {% if LANG in localized_surveys and switch('contribute-survey') %}
-    <div id="survey-message">
-      <span class="survey-invite">
-        We would love to get your opinion on your experience with our site with a short survey.
-      </span>
-      <a class="survey-button" href="https://www.surveymonkey.com/r/{{ localized_surveys[LANG] }}">
-        Take Survey.
-      </a>
-    </div>
-  {% endif %}
-{% endblock %}
-
 {% block contrib_content %}
-  <section id="landing-intro" class="section landing-intro">
-    <div id="slideshow" class="cycle-slideshow" data-cycle-speed="1000" data-cycle-timeout="6000" data-cycle-slides="> .slide" data-cycle-fx="fade" data-cycle-pause-on-hover="false" data-cycle-log="false">
-      <div class="slide slide-one">
-        <div class="container">
-          <p class="section-title">{{ _('Join a global community of game-changers.') }}</p>
-        </div>
-      </div>
+  {% call hero(
+    title=_('Join a global community of game-changers.'),
+    class='mzp-t-dark contribute-hero',
+    include_cta=True,
+    heading_level=2
+  ) %}
 
-      <div class="slide slide-two">
-        <div class="container">
-          {# L10n: this br is for formatting, omit or reposition as needed #}
-          <p class="section-title">{{ _('Volunteer as much as you like. Or as little.<br> It’s totally up to you.') }}</p>
-        </div>
-      </div>
+    <a href="https://activate.mozilla.community/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=contribute&amp;utm_content=contribute-page" class="mzp-c-button mzp-t-dark" data-link-type="button" data-link-name="Get Involved" data-cta-position="Primary">{{ _('Get Involved') }}</a>
+  {% endcall %}
 
-      <div class="slide slide-three">
-        <div class="container">
-          {# L10n: this br is for formatting, omit or reposition as needed #}
-          <p class="section-title">{{ _('Share your skills and pick up<br> a few new ones along the way.') }}</p>
-        </div>
-      </div>
-
-      <p class="cta"><a href="https://activate.mozilla.community/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=contribute&amp;utm_content=contribute-page" class="button" data-link-type="button" data-link-name="Get Involved" data-cta-position="Primary">{{ _('Get Involved') }}</a></p>
-
-      <div class="cycle-pager"></div>
-    </div>
-  </section>
-
-  <section id="landing-mission" class="section landing-mission">
-    <div class="container">
-      <div class="mission-content">
-        <h2>{{ _('Volunteering with Mozilla&hellip;') }}</h2>
-        <p>
-        {# L10n: This paragraph follows the headline, "Volunteering with Mozilla...", so the first sentence continues from that fragment. #}
-        {% trans %}
-          is about more than lending a hand. It’s about learning, collaborating
-          and sharing your skills with a global community of Mozillians — coders,
-          organizers, activists and more — who help shape the Web every day.
-        {% endtrans %}
-        </p>
-        <p class="mission-cta">
-          <a class="video-play" href="//videos.cdn.mozilla.net/uploads/mozillaorg/Mozilla_2014_i_am.webm" data-element-id="video-iamamozillian" data-linktype="Video text link">
-            {{ _('See our community in action') }}
-          </a>
-        </p>
-      </div>
-
-      <div class="mission-video">
-        <a class="video-play" href="//videos.cdn.mozilla.net/uploads/mozillaorg/Mozilla_2014_i_am.webm" data-element-id="video-iamamozillian" data-linktype="Video play button">
-          <img src="{{ static('img/contribute/video-image.png') }}" alt="">
+  <div class="mzp-l-content">
+    {% call feature_card(
+      title=_('Volunteering with Mozilla&hellip;'),
+      image_url='img/contribute/video-image.png',
+      aspect_ratio='mzp-has-aspect-16-9',
+      class='mzp-l-card-feature-left-half'
+    ) %}
+      {# L10n: This paragraph follows the headline, "Volunteering with Mozilla...", so the first sentence continues from that fragment. #}
+      {% trans %}
+        is about more than lending a hand. It’s about learning, collaborating
+        and sharing your skills with a global community of Mozillians — coders,
+        organizers, activists and more — who help shape the Web every day.
+      {% endtrans %}
+      </p>
+      <p class="mission-cta">
+        <a class="mzp-c-cta-link js-contribute-video" href="https://videos.cdn.mozilla.net/uploads/mozillaorg/Mozilla_2014_i_am.webm">
+          {{ _('See our community in action') }}
         </a>
+      </p>
 
-        <div id="video-iamamozillian" class="video">
-          {{ video('Mozilla_2014_i_am.webm',
-               'Mozilla_2014_i_am.ogv',
-               'Mozilla_2014_i_am.mp4',
-               prefix='//videos.cdn.mozilla.net/uploads/mozillaorg/',
-               poster=static('img/mozorg/about/poster-i-am.jpg')) }}
-        </div>
+      <div class="contribute-video">
+        {{ video('Mozilla_2014_i_am.webm',
+            'Mozilla_2014_i_am.ogv',
+            'Mozilla_2014_i_am.mp4',
+            prefix='https://videos.cdn.mozilla.net/uploads/mozillaorg/',
+            poster=static('img/mozorg/about/poster-i-am.jpg')) }}
       </div>
-    </div>
-  </section>
+    {% endcall %}
 
-  <section id="landing-stories" class="section landing-stories">
-    <div class="container">
-      <h2 class="section-title">{{ _('How Mozillians help every day') }}</h2>
-      <ul class="stories">
-        <li class="person hcard">
-          <h3 class="fn given-name">Rubén</h3>
-          <p class="meta">{{ _('Spain &middot; Activism') }}</p>
-          <a href="{{ url('mozorg.contribute.story-ruben') }}" class="url" data-link-type="button" data-link-name="Read his story - Ruben">{{ _('Read his story') }} <img src="{{ static('img/contribute/person-ruben.jpg') }}" alt=""></a>
+    <section>
+      <h2 class="contribute-section-heading">{{ _('How Mozillians help every day') }}</h2>
+
+      <ul class="contribute-mozillian-list">
+        <li class="contribute-mozillian-item">
+          <a href="{{ url('mozorg.contribute.story-ruben') }}" data-link-type="button" data-link-name="Read his story - Ruben">
+            <img class="contribute-photo" src="{{ static('img/contribute/person-ruben.jpg') }}" alt="">
+          </a>
+          <h3>Rubén</h3>
+          <p>{{ _('Spain &middot; Activism') }}</p>
+          <a href="{{ url('mozorg.contribute.story-ruben') }}" class="mzp-c-button mzp-t-secondary" data-link-type="button" data-link-name="Read his story - Ruben">
+            {{ _('Read his story') }}
+          </a>
         </li>
-        <li class="person hcard">
-          <h3 class="fn given-name">Faye</h3>
-          <p class="meta">{{ _('Philippines &middot; Activism') }}</p>
-          <a href="{{ url('mozorg.contribute.story-faye') }}" class="url" data-link-type="button" data-link-name="Read her story - Faye">{{ _('Read her story') }} <img src="{{ static('img/contribute/person-faye.jpg') }}" alt=""></a>
+
+        <li class="contribute-mozillian-item">
+          <a href="{{ url('mozorg.contribute.story-faye') }}" data-link-type="button" data-link-name="Read her story - Faye">
+            <img class="contribute-photo" src="{{ static('img/contribute/person-faye.jpg') }}" alt="">
+          </a>
+          <h3>Faye</h3>
+          <p>{{ _('Philippines &middot; Activism') }}</p>
+          <a href="{{ url('mozorg.contribute.story-faye') }}" class="mzp-c-button mzp-t-secondary" data-link-type="button" data-link-name="Read her story - Faye">
+            {{ _('Read her story') }}
+          </a>
         </li>
-        <li class="person hcard">
-          <h3 class="fn given-name">Michael</h3>
-          <p class="meta">{{ _('Switzerland &middot; Coding') }}</p>
-          <a href="{{ url('mozorg.contribute.story-michael') }}" class="url" data-link-type="button" data-link-name="Read his story - Michael">{{ _('Read his story') }} <img src="{{ static('img/contribute/person-michael.jpg') }}" alt=""></a>
+
+        <li class="contribute-mozillian-item">
+          <a href="{{ url('mozorg.contribute.story-michael') }}" data-link-type="button" data-link-name="Read his story - Michael">
+            <img class="contribute-photo" src="{{ static('img/contribute/person-michael.jpg') }}" alt="">
+          </a>
+          <h3>Michael</h3>
+          <p>{{ _('Switzerland &middot; Coding') }}</p>
+          <a href="{{ url('mozorg.contribute.story-michael') }}" class="mzp-c-button mzp-t-secondary" data-link-type="button" data-link-name="Read his story - Michael">
+            {{ _('Read his story') }}
+          </a>
         </li>
       </ul>
-    </div>
-  </section>
+    </section>
+  </div>
 
-  <section id="landing-howto" class="section landing-howto">
-    <div class="container">
-      {# Hiding steps until we re-instate email signups
-      <h2 class="section-title">{{ _('Want to get involved? Here’s how.') }}</h2>
-      <ol class="steps">
-        <li class="step1">{{ _('Choose what interests you and tell us how you’d like to help') }}</li>
-        <li class="step2">{{ _('Stand by for an email that will connect you to the Mozilla community') }}</li>
-        <li class="step3">{{ _('Create your Mozillians account and share your contributions with the world') }}</li>
-      </ol>
-      <p class="cta"><a href="https://activate.mozilla.community/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=contribute&amp;utm_content=contribute-page" class="button" data-link-type="button" data-link-name="Get started" data-cta-position="Secondary">{{ _('Get started') }}</a></p>
-      #}
-      <h2 class="section-title">{{ _('Join a global community of game-changers.') }}</h2>
-      <p class="cta"><a href="https://activate.mozilla.community/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=contribute&amp;utm_content=contribute-page" class="button" data-link-type="button" data-link-name="Get Involved" data-cta-position="Secondary">{{ _('Get Involved') }}</a></p>
-    </div>
-  </section>
+  {% call call_out(
+    title=_('Join a global community of game-changers.'),
+    heading_level=2,
+    include_cta=True
+  ) %}
+  <a href="https://activate.mozilla.community/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=contribute&amp;utm_content=contribute-page" class="mzp-c-button" data-link-type="button" data-link-name="Get Involved" data-cta-position="Secondary">
+    {{ _('Get Involved') }}
+  </a>
+  {% endcall %}
 
-  <section id="landing-notready" class="section landing-notready">
-    <div class="container">
-      <h2 class="section-title">{{ _('Not ready to dive in just yet?') }}</h2>
-      <p class="section-tagline">{{ _('Here are a few other ways you can support Mozilla right now.') }}</p>
-      <ul class="other-actions">
-        <li>
-          <a href="{{ donate_url('contribute') }}" class="other-donate" data-link-type="button" data-link-name="Donate to Mozilla">{{ _('Donate to Mozilla') }}</a>
-        </li>
-        <li>
-          <a href="{{ url('firefox.new') }}" class="other-download" data-link-type="button" data-link-name="Download Firefox">{{ _('Download Firefox') }}</a>
-        </li>
-        {# Hide this link for now
-        <li>
-          <a href="{{ url('mozorg.about.manifesto') }}" class="other-read" data-link-type="button" data-link-name="Read our Manifesto">{{ _('Read our Manifesto') }}</a>
-        </li>
-        #}
-        {# Hide this link for now
-        <li>
-          <a href="https://gear.mozilla.org" class="other-shop" data-link-type="button" data-link-name="Buy a Mozilla t-shirt">{{ _('Buy a Mozilla t-shirt') }}</a>
-        </li>
-        #}
-        <li>
-          <a href="https://www.facebook.com/mozilla" class="other-facebook" data-link-type="button" data-link-name="Like us on Facebook">{{ _('Like us on Facebook') }}</a>
-        </li>
-        <li>
-          <a href="https://twitter.com/mozilla" class="other-twitter" data-link-type="button" data-link-name="Follow us on Twitter">{{ _('Follow us on Twitter') }}</a>
-        </li>
-      </ul>
-    </div>
-  </section>
+  <section class="mzp-l-content mzp-t-narrow">
+    <h2 class="contribute-section-heading">{{ _('Not ready to dive in just yet?') }}</h2>
 
+    <p class="contribute-section-lead-in">{{ _('Here are a few other ways you can support Mozilla right now.') }}</p>
+    <ul class="contribute-dive-in-list">
+      <li class="contribute-dive-in-item">
+        <a href="{{ donate_url('contribute') }}" class="mzp-c-button mzp-t-secondary" data-link-type="button" data-link-name="Donate to Mozilla">{{ _('Donate to Mozilla') }}</a>
+      </li>
+      <li class="contribute-dive-in-item">
+        <a href="{{ url('firefox.new') }}" class="mzp-c-button mzp-t-secondary" data-link-type="button" data-link-name="Download Firefox">{{ _('Download Firefox') }}</a>
+      </li>
+      <li class="contribute-dive-in-item">
+        <a href="https://www.facebook.com/mozilla" class="mzp-c-button mzp-t-secondary" data-link-type="button" data-link-name="Like us on Facebook">{{ _('Like us on Facebook') }}</a>
+      </li>
+      <li class="contribute-dive-in-item">
+        <a href="https://twitter.com/mozilla" class="mzp-c-button mzp-t-secondary" data-link-type="button" data-link-name="Follow us on Twitter">{{ _('Follow us on Twitter') }}</a>
+      </li>
+    </ul>
+  </section>
 {% endblock contrib_content %}
 
 {% block js %}
-  {{ js_bundle('contribute-base') }}
   {{ js_bundle('contribute-landing') }}
 {% endblock %}

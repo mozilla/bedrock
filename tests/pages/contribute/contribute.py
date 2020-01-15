@@ -5,17 +5,17 @@
 from selenium.webdriver.common.by import By
 
 from pages.contribute.base import ContributeBasePage
-from pages.regions.modal import Modal
+from pages.regions.modal import ModalProtocol
 
 
 class ContributePage(ContributeBasePage):
 
     URL_TEMPLATE = '/{locale}/contribute/'
 
-    _video_play_locator = (By.CSS_SELECTOR, '.video-play')
+    _video_play_locator = (By.CSS_SELECTOR, '.js-contribute-video')
 
     def play_video(self):
-        modal = Modal(self)
+        modal = ModalProtocol(self)
         self.find_element(*self._video_play_locator).click()
         self.wait.until(lambda s: modal.is_displayed)
         return modal

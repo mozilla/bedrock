@@ -2,66 +2,47 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function($) {
+(function(){
     'use strict';
 
-    // Play videos in a modal
-    $('a.video-play').attr('role', 'button').on('click', function(e) {
+    function onVideoEnd() {
+        window.dataLayer.push({
+            event: 'contribute-video-ended'
+        });
+    }
+
+    function playVideo(e) {
         e.preventDefault();
 
-        var $this = $(this);
-        var videoelem = $('#' + $this.attr('data-element-id'));
+        var link = e.target;
+        var video = document.getElementById('htmlPlayer');
 
-        Mozilla.Modal.createModal(this, videoelem, {
+        Mzp.Modal.createModal(link, video, {
             title: '',
             onCreate: function() {
-                playVideo();
+                video.play();
+
+                window.dataLayer.push({
+                    'event': 'contribute-landing-interactions',
+                    'browserAction': 'Video Interactions',
+                    'location': 'Video text link'
+                });
             },
             onDestroy: function() {
-                pauseVideo();
+                video.pause();
+                video.removeEventListener('ended', onVideoEnd, false);
             }
         });
 
-        // Track video plays
-        var linktype = $this.data('linktype');
-        window.dataLayer.push({
-            'event': 'contribute-landing-interactions',
-            'browserAction': 'Video Interactions',
-            'location': linktype
-        });
-    });
+        // Track when the video ends
+        video.addEventListener('ended', onVideoEnd, false);
+    }
 
-    // Give the modal a chance to open before playing
-    var playVideo = function() {
-        var $video = $('#modal video:first');
-        if ($video.length > 0) {
-            setTimeout(function() {
-                $video[0].play();
-            }, 400);
-            // Track when the video ends
-            $video.on('ended', function() {
-                window.dataLayer.push({
-                    event: 'contribute-video-ended'
-                });
-            });
-        }
-    };
+    function onLoad() {
+        // Play videos in a modal
+        document.querySelector('.js-contribute-video').addEventListener('click', playVideo, false);
+    }
 
-    // Pause the video when the modal is closed (Bug 1341242)
-    var pauseVideo = function() {
-        document.getElementById('htmlPlayer').pause();
-    };
+    Mozilla.run(onLoad);
 
-    // Track user scrolling through each section on the landing page
-    $('#landing .section').waypoint(function(direction) {
-        if (direction === 'down') {
-            var sectionclass = $(this).prop('class');
-
-            window.dataLayer.push({
-                'event': 'scroll-section',
-                'section': sectionclass
-            });
-        }
-    }, { offset: '100%' });
-
-})(window.jQuery);
+})();

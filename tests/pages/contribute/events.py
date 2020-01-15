@@ -11,7 +11,7 @@ class ContributeEventsPage(ContributeBasePage):
 
     URL_TEMPLATE = '/{locale}/contribute/events/'
 
-    _events_table_locator = (By.CSS_SELECTOR, '.events-table > tbody > tr')
+    _events_table_locator = (By.CSS_SELECTOR, '.mzp-u-data-table > tbody > tr')
 
     @property
     def events_table_is_displayed(self):
