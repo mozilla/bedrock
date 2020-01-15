@@ -1,0 +1,48 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% set_lang_files "mozorg/404" %}
+
+{% extends "base-pebbles.html" %}
+
+{% block gtm_page_id %}data-gtm-page-id="404"{% endblock %}
+
+{% block page_title %}{{ _('404: Page Not Found') }}{% endblock %}
+
+{# 404 pages must not include canonical and hreflang x-default: https://github.com/mozilla/bedrock/issues/5895 #}
+{% block canonical_urls %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('page_not_found') }}
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="content">
+    <header>
+      <h1><span>{{ _('Whoops!') }}</span></h1>
+      <p>{{ _('Did you make a left at that last URL instead of a right? No problem. Here are some tips to get you back on your way:') }}</p>
+    </header>
+    <div class="error-content">
+      <ul class="prose">
+        <li>{{ _('If you typed in the address, check your spelling. Could just be a typo.') }}</li>
+        <li>
+        {% trans bugzilla='https://bugzilla.mozilla.org/enter_bug.cgi?product=www.mozilla.org' %}
+          If you’ve found an issue with one of our websites, we’d appreciate it if you could report the problem in Bugzilla, our <a href="{{ bugzilla }}">bug tracker</a>. One of our developers will take a look at it as soon as possible.
+        {% endtrans %}
+        </li>
+        <li>{{ _('If you followed a link, it’s probably broken.') }}</li>
+        <li>
+        {% trans  url=url('mozorg.home') %}
+          If you’re not sure what you’re looking for, start at <a href="{{ url }}">mozilla.org</a>.
+        {% endtrans %}
+        </li>
+      </ul>
+    </div>
+    <aside class="download-firefox">
+      {{ download_firefox() }}
+    </aside>
+  </div>
+</main>
+{% endblock %}

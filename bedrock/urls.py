@@ -42,7 +42,7 @@ urlpatterns = (
 if settings.DEBUG:
 
     def show404(request):
-        return import_string(handler404)(request, '')
+        return handler404(request, '')
 
     urlpatterns += (
         url(r'^404/$', show404),
