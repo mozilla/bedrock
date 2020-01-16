@@ -11,7 +11,6 @@ const log = require('fancy-log');
 const colors = require('ansi-colors');
 const gulpif = require('gulp-if');
 const sass = require('gulp-sass');
-const less = require('gulp-less');
 const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
@@ -41,7 +40,6 @@ const lintPathsJS = [
 
 const lintPathsCSS = [
     'media/css/**/*.scss',
-    'media/css/**/*.less',
     'media/css/**/*.css',
     '!media/css/libs/*'
 ];
@@ -84,7 +82,7 @@ const bundleCssFiles = bundle => {
     }
     let cssFiles = bundle.files.map(fileName => {
         if (!fileName.endsWith('.css')) {
-            return fileName.replace(/\.(less|scss)$/i, '.css');
+            return fileName.replace(/\.scss$/i, '.css');
         }
         return fileName;
     });
@@ -127,7 +125,7 @@ function assetsCopy() {
     return merge([
         // SASS and LESS go to build dir
         gulp.src([
-            'media/**/*.{scss,less}',
+            'media/**/*.scss',
             'node_modules/@mozilla-protocol/core/**/*',
             '!node_modules/@mozilla-protocol/core/*'])
             .pipe(gulpif(global.watching, cached('all', cachedOpts)))
@@ -135,7 +133,7 @@ function assetsCopy() {
         // Everything else goes to final dir
         gulp.src([
             'media/**/*',
-            '!media/**/*.{scss,less}',
+            '!media/**/*.scss',
             'node_modules/@mozilla-protocol/core/**/*',
             '!node_modules/@mozilla-protocol/core/**/*.scss',
             '!node_modules/@mozilla-protocol/core/*'])
@@ -187,42 +185,6 @@ function sassWatch(cb) {
 }
 
 /**
- * Find all LESS files from bundles in the static_build directory and compile them.
- */
-function lessCompileAllFiles() {
-    return gulp.src(allBundleFiles('css', '.less'), {base: buildDir, cwd: buildDir})
-        //filter out unchanged less files, only works when watching
-        .pipe(gulpif(global.watching, cached('less', cachedOpts)))
-        .pipe(gulpif(!production, sourcemaps.init()))
-        .pipe(less({javascriptEnabled: true, ieCompat: true}).on('error', handleError('LESS')))
-        // we don't serve the source files
-        // so include scss content inside the sourcemaps
-        .pipe(gulpif(!production, sourcemaps.write({
-            'includeContent': true
-        })))
-        .pipe(gulp.dest(finalDir));
-}
-
-/**
- * Watch all LESS files from bundles in the static_build directory and compile them.
- */
-function lessWatch(cb) {
-    const lessWatcher = gulp.watch(buildDir + '/css/**/*.less', {base: buildDir});
-
-    lessWatcher.on('change', function(path) {
-        return gulp.src(path, {base: buildDir})
-            .pipe(sourcemaps.init())
-            .pipe(less({javascriptEnabled: true, ieCompat: true}).on('error', handleError('LESS')))
-            .pipe(sourcemaps.write({
-                'includeContent': true
-            }))
-            .pipe(gulp.dest(finalDir));
-    });
-
-    cb();
-}
-
-/**
  * Combine the CSS files after SASS/LESS compilation into bundles
  * based on definitions in the `media/static-bundles.json` file.
  */
@@ -241,7 +203,7 @@ function cssWatch(cb) {
         let modBundles = staticBundles.css.filter(bundle => {
             let contains = false;
             bundle.files.every(filename => {
-                let cssfn = filename.replace(/\.(less|scss)$/i, '.css');
+                let cssfn = filename.replace(/\.scss$/i, '.css');
                 if (path.endsWith(cssfn)) {
                     contains = true;
                     return false;
@@ -372,15 +334,15 @@ gulp.task('json:lint', jsonLint);
  * either `static_build` or `static_final` depending on the file type.
  */
 function assetsWatch(cb) {
-    const assetsWatcher = gulp.watch(['media/**/*', '!media/**/*.{scss,less}'], {base: 'media'});
-    const cssWatcher = gulp.watch('media/**/*.{scss,less}', {base: 'media'});
-    // send everything but scss and less to the final dir
+    const assetsWatcher = gulp.watch(['media/**/*', '!media/**/*.scss'], {base: 'media'});
+    const cssWatcher = gulp.watch('media/**/*.scss', {base: 'media'});
+    // send everything but scss to the final dir
     assetsWatcher.on('change', function(path) {
         return gulp.src(path, {base: 'media'})
             .pipe(cached('all', cachedOpts))
             .pipe(gulp.dest(finalDir));
     });
-    // send scss and less to the build dir
+    // send scss to the build dir
     cssWatcher.on('change', function(path) {
         return gulp.src(path, {base: 'media'})
             .pipe(cached('all', cachedOpts))
@@ -461,7 +423,7 @@ function devWatch(cb) {
 const buildTask = gulp.series(
     clean,
     assetsCopy,
-    gulp.parallel(sassCompileAllFiles, lessCompileAllFiles),
+    sassCompileAllFiles,
     gulp.parallel(jsCompileBundles, cssCompileBundles),
     gulp.parallel(jsMinify, cssMinify)
 );
@@ -470,11 +432,11 @@ gulp.task('build', buildTask);
 const defaultTask = gulp.series(
     clean,
     assetsCopy,
-    gulp.parallel(sassCompileAllFiles, lessCompileAllFiles),
+    sassCompileAllFiles,
     gulp.parallel(jsCompileBundles, cssCompileBundles),
     assetsWatch,
     browserSyncTask,
-    gulp.parallel(sassWatch, lessWatch, cssWatch, jsWatch),
+    gulp.parallel(sassWatch, cssWatch, jsWatch),
     devWatch
 );
 gulp.task('default', defaultTask);

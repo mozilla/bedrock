@@ -19,7 +19,6 @@ build
 tmp/*
 *~
 .#*
-*.less.css
 db.sql
 /locale
 /results
