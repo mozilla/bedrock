@@ -10,10 +10,10 @@
 
 {% block article %}
 <h1 class="mzp-c-article-title">{{ _('Mozilla Community Participation Guidelines') }}</h1>
-{% if l10n_has_tag('participation_nov2018') %}
-  <h4>{{ _('Version 3.0 – Updated November 28, 2018') }}</h4>
+{% if l10n_has_tag('participation_jan2020') %}
+  <h4>{{ _('Version 3.1 – Updated January 16, 2020') }}</h4>
 {% else %}
-  <h4>{{ _('Version 2.3 – Updated May 16, 2017') }}</h4>
+  <h4>{{ _('Version 3.0 – Updated November 28, 2018') }}</h4>
 {% endif %}
 
 <section id="introduction">
@@ -50,6 +50,9 @@
     <li>{{ _('Age') }}</li>
     <li>{{ _('Ability') }}</li>
     <li>{{ _('Race and/or ethnicity') }}</li>
+  {% if l10n_has_tag('participation_jan2020') %}
+    <li>{{ _('Caste') }}</li>
+  {% endif %}
     <li>{{ _('National origin') }}</li>
     <li>{{ _('Socioeconomic status') }}</li>
     <li>{{ _('Religion') }}</li>
@@ -99,7 +102,6 @@
   {% endtrans %}
   </p>
 
-{% if l10n_has_tag('participation_nov2018') %}
   <p>
   {% trans %}
     While these guidelines / code of conduct are specifically aimed at Mozilla’s
@@ -112,24 +114,6 @@
     among our communities about appropriate boundaries.
   {% endtrans %}
   </p>
-{% else %}
-  <p>
-  {% trans mailto_inclusion='mailto:inclusion@mozilla.com' %}
-    If you experience behavior outside of Mozilla communities, in person
-    or online, that makes participation in Mozilla not a safe and positive
-    community experience for all, please contact us at
-    <a href="{{ mailto_inclusion }}">inclusion@mozilla.com</a>. While these
-    guidelines / code of conduct are specifically aimed at Mozilla’s work and
-    community, we recognize that it is possible for actions taken outside of
-    Mozilla’s online or inperson spaces to have a deep impact on community
-    health. (For example, in the past, we publicly identified an anonymous
-    posting aimed at a Mozilla employee in a non-Mozilla forum as clear grounds
-    for removal from the Mozilla community.) This is an active topic in the
-    diversity and inclusion realm. We anticipate wide-ranging discussions
-    among our communities about appropriate boundaries.
-  {% endtrans %}
-  </p>
-{% endif %}
 </section>
 
 <section id="expected-behavior">
@@ -142,6 +126,21 @@
   </p>
 
   <h3>{{ _('Be Respectful') }}</h3>
+{% if l10n_has_tag('participation_jan2020') %}
+  <p>
+  {% trans %}
+    Value each other’s ideas, styles and viewpoints. We may not always agree,
+    but disagreement is no excuse for poor manners. Be open to different
+    possibilities and to being wrong. Be respectful in all interactions and
+    communications, especially when debating the merits of different options.
+    Be aware of your impact and how intense interactions may be affecting
+    people. Be direct, constructive and positive. Take responsibility for
+    your impact and your mistakes – if someone says they have been harmed
+    through your words or actions, listen carefully, apologize sincerely,
+    and correct the behavior going forward.
+  {% endtrans %}
+  </p>
+{% else %}
   <p>
   {% trans %}
     Value each other’s ideas, styles and viewpoints. We may not always agree,
@@ -155,6 +154,7 @@
     and correct the behavior going forward.
   {% endtrans %}
   </p>
+{% endif %}
 
   <h3>{{ _('Be Direct but Professional') }}</h3>
   <p>
@@ -298,6 +298,9 @@
     <li>{{ _('Age') }}</li>
     <li>{{ _('Ability') }}</li>
     <li>{{ _('Race and/or ethnicity') }}</li>
+  {% if l10n_has_tag('participation_jan2020') %}
+    <li>{{ _('Caste') }}</li>
+  {% endif %}
     <li>{{ _('National origin') }}</li>
     <li>{{ _('Socioeconomic status') }}</li>
     <li>{{ _('Religion') }}</li>
@@ -419,9 +422,8 @@
 <section id="reporting">
   <h2>{{ _('Reporting') }}</h2>
 
-{% if l10n_has_tag('participation_nov2018') %}
   <p>
-  {% trans hotline='https://communityparticipationhotline.splashthat.com/' %}
+  {% trans hotline=url('mozorg.about.governance.policies.community-hotline') %}
     If you believe you’re experiencing unacceptable behavior that will
     not be tolerated as outlined above, <a href="{{ hotline }}">please use our hotline to report</a>.
     Reports go directly to Mozilla’s Employment Counsel and HR People
@@ -443,28 +445,12 @@
 
   <ul class="mzp-u-list-styled">
     <li>{{ _('Additional Resources: <a href="%s">How to Report</a>')|format(url('mozorg.about.governance.policies.reporting')) }}</li>
+  {% if l10n_has_tag('participation_jan2020') %}
+    <li>{{ _('Questions: <a href="%s">cpg-questions@mozilla.com</a>')|format('mailto:cpg-questions@mozilla.com') }}</li>
+  {% else %}
     <li>{{ _('Questions: <a href="%s">inclusion@mozilla.com</a>')|format('mailto:inclusion@mozilla.com') }}</li>
+  {% endif %}
   </ul>
-{% else %}
-  <p>
-  {% trans mailto_inclusion='mailto:inclusion@mozilla.com',
-      di_leader='Larissa Shapiro',
-      dir_orgdev='Tyler Haugen' %}
-    If you believe you’re experiencing unacceptable behavior that will
-    not be tolerated as outlined above, please contact
-    <a href="{{ mailto_inclusion }}">inclusion@mozilla.com</a> and
-    the designated person for your event, activity or Mozilla space.
-    Inclusion@ reaches our Diversity &amp; Inclusion Leader, {{ di_leader }},
-    and our Director of Organizational Development, {{ dir_orgdev }}.
-    After receiving a concise description of your situation, they will
-    review and determine next steps.  In addition to conducting any
-    investigation, they can provide a range of resources, from a
-    private consultation to other community resources. They will involve
-    other colleagues, including legal counsel, only as needed to
-    appropriately address each situation.
-  {% endtrans %}
-  </p>
-{% endif %}
 
   <p>
   {% trans %}
@@ -500,6 +486,16 @@
   {% endtrans %}
   </p>
 
+{% if l10n_has_tag('participation_jan2020') %}
+  <p>
+  {% trans mailto_questions='mailto:cpg-questions@mozilla.com' %}
+    Reports will receive an email notice of receipt. Once an incident
+    has been investigated and a decision has been communicated to the
+    relevant parties, all have the opportunity to appeal this decision
+    by sending an email to <a href="{{ mailto_questions }}">cpg-questions@mozilla.com</a>.
+  {% endtrans %}
+  </p>
+{% else %}
   <p>
   {% trans mailto_inclusion='mailto:inclusion@mozilla.com' %}
     Reports will receive an email notice of receipt. Once an incident
@@ -508,10 +504,25 @@
     by sending an email to <a href="{{ mailto_inclusion }}">inclusion@mozilla.com</a>.
   {% endtrans %}
   </p>
+{% endif %}
 </section>
 
 <section id="questions">
   <h2>{{ _('Ask questions') }}</h2>
+{% if l10n_has_tag('participation_jan2020') %}
+  <p>
+  {% trans mailto_questions='mailto:cpg-questions@mozilla.com',
+           changelog='https://github.com/mozilla/cpg/blob/master/CHANGELOG.md' %}
+    Everyone is encouraged to ask questions about these guidelines.
+    If you are organizing an event or activity, reach out for tips
+    building inclusion for your event, activity or space. Your input
+    is welcome and you will always get a response within 24 hours
+    (or on the next weekday, if it is the weekend) if you reach out to
+    <a href="{{ mailto_questions }}">cpg-questions@mozilla.com</a>.
+    Please <a href="{{ changelog }}">review this change log</a> for updates to this document.
+  {% endtrans %}
+  </p>
+{% else %}
   <p>
   {% trans mailto_inclusion='mailto:inclusion@mozilla.com' %}
     Everyone is encouraged to ask questions about these guidelines.
@@ -524,6 +535,7 @@
     us a line and we will add you to the updates notification list.
   {% endtrans %}
   </p>
+{% endif %}
 </section>
 
 <section id="license">
@@ -559,6 +571,18 @@
 
 <section id="modifications">
   <h2>{{ _('Modifications to these guidelines') }}</h2>
+
+{% if l10n_has_tag('participation_jan2020') %}
+  <p>
+  {% trans guidelines=url('mozorg.about.governance.policies.participation') %}
+    Mozilla may amend the guidelines from time to time and may also
+    vary the procedures it sets out where appropriate in a particular
+    case. Your agreement to comply with the guidelines will be deemed
+    agreement to any changes to it. This policy does not form part of any
+    Mozilla employee’s contract of employment or otherwise have contractual effect.
+  {% endtrans %}
+  </p>
+{% else %}
   <p>
   {% trans guidelines=url('mozorg.about.governance.policies.participation'),
       group='https://groups.google.com/d/forum/mozilla-cpg' %}
@@ -574,6 +598,7 @@
     of employment or otherwise have contractual effect.
   {% endtrans %}
   </p>
+{% endif %}
 </section>
 
 <footer>

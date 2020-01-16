@@ -57,7 +57,7 @@
   </p>
 
   <p>
-  {% trans community_hotline='https://events.mozilla.org/communityparticipationhotline' %}
+  {% trans community_hotline=url('mozorg.about.governance.policies.community-hotline') %}
     If you have a report <strong>by <em>and</em> about</strong> a contributor (for example, the report is made <strong>by</strong> one contributor <strong>about</strong> another contributor), then you should make your report at the <a href="{{ community_hotline }}">Community Participation Guidelines hotline</a>.
   {% endtrans %}
   </p>
@@ -99,17 +99,17 @@
         <tr>
           <th scope="row">{{ _('Contributor') }}</th>
           <td><a href="https://app.convercent.com/en-us/LandingPage/4a6ee0c0-5bc1-e611-80d5-000d3ab1117e">{{ _('Employee Hotline') }}</a></td>
-          <td><a href="https://events.mozilla.org/communityparticipationhotline">{{ _('Community Hotline') }}</a></td>
+          <td><a href="{{ url('mozorg.about.governance.policies.community-hotline') }}">{{ _('Community Hotline') }}</a></td>
         </tr>
         <tr>
           <th scope="row">{{ _('Contractor') }}</th>
           <td><a href="https://app.convercent.com/en-us/LandingPage/4a6ee0c0-5bc1-e611-80d5-000d3ab1117e">{{ _('Employee Hotline') }}</a></td>
-          <td><a href="https://events.mozilla.org/communityparticipationhotline">{{ _('Community Hotline') }}</a></td>
+          <td><a href="{{ url('mozorg.about.governance.policies.community-hotline') }}">{{ _('Community Hotline') }}</a></td>
         </tr>
         <tr>
           <th scope="row">{{ _('Vendor') }}</th>
           <td><a href="https://app.convercent.com/en-us/LandingPage/4a6ee0c0-5bc1-e611-80d5-000d3ab1117e">{{ _('Employee Hotline') }}</a></td>
-          <td><a href="https://events.mozilla.org/communityparticipationhotline">{{ _('Community Hotline') }}</a></td>
+          <td><a href="{{ url('mozorg.about.governance.policies.community-hotline') }}">{{ _('Community Hotline') }}</a></td>
         </tr>
       </tbody>
     </table>
