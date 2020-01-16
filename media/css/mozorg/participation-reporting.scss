@@ -27,3 +27,9 @@ $image-path: '/media/protocol/img';
         padding-top: .5em;
     }
 }
+
+.mzp-c-article blockquote {
+    @include text-display-xs;
+    line-height: 1.5;
+    font-weight: normal;
+}
