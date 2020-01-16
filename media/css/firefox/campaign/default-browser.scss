@@ -4,3 +4,56 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/hero';
 @import '../../../protocol/css/components/picto-card';
 @import '../../../protocol/css/templates/card-layout';
+
+.mzp-c-hero.mzp-t-dark {
+    @include background-size(auto 100%);
+    background-color: $color-off-black;
+
+    .mzp-c-hero-title {
+        @include at2x('/media/protocol/img/logos/firefox/logo-2xl.png', 48px, 48px);
+        background-position: top center;
+        background-repeat: no-repeat;
+        padding-top: $layout-xl;
+    }
+
+    .mzp-c-hero-image img {
+        top: 48px;
+        bottom: auto;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
+    }
+}
+
+.mzp-c-card-picto {
+    @include bidi(((text-align, left, right),));
+    padding-top: 0;
+
+    .mzp-c-card-picto-content:before {
+        @include bidi(((left, 0, right, 0),));
+        background-color: transparent;
+        margin-left: 0;
+    }
+
+    @media #{$mq-md} {
+        .mzp-c-card-picto-content:before {
+            @include bidi(((left, $spacing-lg, right, 0),));
+        }
+    }
+
+    &.privacy .mzp-c-card-picto-content:before {
+        background-image: url('/media/img/firefox/enterprise/icon-data-privacy.svg');
+        height: 53px;
+        width: 44px;
+    }
+
+    &.device .mzp-c-card-picto-content:before {
+        background-image: url('/media/img/firefox/enterprise/icon-notes.svg');
+        height: 53px;
+        width: 44px;
+    }
+
+    &.independence .mzp-c-card-picto-content:before {
+        background-image: url('/media/img/firefox/enterprise/icon-win64.svg');
+        height: 55px;
+        width: 52px;
+    }
+}

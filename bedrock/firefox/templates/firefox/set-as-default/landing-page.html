@@ -15,17 +15,25 @@
 
 {% block content %}
   <main role="main">
+
     {% call hero(
       title="Make sure you're protected, every time you get online",
       desc='When you choose Firefox, you support a better web for you and everyone else. Now take the next step to protect yourself.',
       class='mzp-c-hero',
+      include_cta=True,
       heading_level=1,
-    ) %} {% endcall %}
-    <section class="features">
+    ) %} 
+    <div class="cta-container">
+      <div class="mzp-c-button-download-container">
+        <a id="set-as-default-button" href="#" class="mzp-c-button mzp-t-product">{{ _('Make Firefox your default browser ') }}</a>
+      </div>
+    </div>
+    {% endcall %}
+    <section>
       <ul class="mzp-l-card-third mzp-l-content">
-      {{ picto_card(title='Choose automatic privacy', desc='The internet keeps finding new ways to poach your personal data. Firefox is the only browser with a mission of finding new ways to protect you.') }}
-      {{ picto_card(title='Choose freedom on every device', desc='Firefox is fast and safe on Windows, iOS, Android, Linux...and across them all. We have no interest in locking you in, resetting your preferences[“resetting your preferences” link to: TBD blog article about MSFT], or restricting your access to any part of the web.') }}
-      {{ picto_card(title='Choose corporate independence', desc='Tell the internet you don’t support monopolies. Firefox is the only major independent browser. Chrome, Edge and Brave are all built with code from Google, the world’s largest ad network. ') }}
+      {{ picto_card(title='Choose automatic privacy', desc='The internet keeps finding new ways to poach your personal data. Firefox is the only browser with a mission of finding new ways to protect you.', class='privacy') }}
+      {{ picto_card(title='Choose freedom on every device', desc='Firefox is fast and safe on Windows, iOS, Android, Linux...and across them all. We have no interest in locking you in, resetting your preferences, or restricting your access to any part of the web.', class='device') }}
+      {{ picto_card(title='Choose corporate independence', desc='Tell the internet you don’t support monopolies. Firefox is the only major independent browser. Chrome, Edge and Brave are all built with code from Google, the world’s largest ad network.', class='independence') }}
       </ul>
     </section>
   </main>
