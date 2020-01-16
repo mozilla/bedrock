@@ -5,12 +5,9 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/picto-card';
 @import '../../../protocol/css/templates/card-layout';
 
-.mzp-c-hero.mzp-t-dark {
-    @include background-size(auto 100%);
-    background-color: $color-off-black;
-
+.mzp-c-hero {
     .mzp-c-hero-title {
-        @include at2x('/media/protocol/img/logos/firefox/logo-2xl.png', 48px, 48px);
+        @include at2x('/media/protocol/img/logos/firefox/browser/logo-2xl.png', 64px, 64px);
         background-position: top center;
         background-repeat: no-repeat;
         padding-top: $layout-xl;
