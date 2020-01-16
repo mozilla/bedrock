@@ -1,0 +1,32 @@
+
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/campaign/default-browser/landing-page" %}
+
+{% extends "firefox/base/base-protocol.html" %}
+{% from "macros-protocol.html" import hero, picto_card with context %}
+
+{% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
+{% block page_css %}
+  {{ css_bundle('firefox-default-browser') }}
+{% endblock %}
+
+{% block content %}
+  <main role="main">
+    {% call hero(
+      title="Make sure you're protected, every time you get online",
+      desc='When you choose Firefox, you support a better web for you and everyone else. Now take the next step to protect yourself.',
+      class='mzp-c-hero',
+      heading_level=1,
+    ) %} {% endcall %}
+    <section class="features">
+      <ul class="mzp-l-card-third mzp-l-content">
+      {{ picto_card(title='Choose automatic privacy', desc='The internet keeps finding new ways to poach your personal data. Firefox is the only browser with a mission of finding new ways to protect you.') }}
+      {{ picto_card(title='Choose freedom on every device', desc='Firefox is fast and safe on Windows, iOS, Android, Linux...and across them all. We have no interest in locking you in, resetting your preferences[“resetting your preferences” link to: TBD blog article about MSFT], or restricting your access to any part of the web.') }}
+      {{ picto_card(title='Choose corporate independence', desc='Tell the internet you don’t support monopolies. Firefox is the only major independent browser. Chrome, Edge and Brave are all built with code from Google, the world’s largest ad network. ') }}
+      </ul>
+    </section>
+  </main>
+{% endblock %}
