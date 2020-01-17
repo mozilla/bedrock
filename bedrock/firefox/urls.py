@@ -140,4 +140,7 @@ urlpatterns = (
     # Issue 7765, 7709
     page('firefox/privacy', 'firefox/privacy/index.html'),
     page('firefox/privacy/products', 'firefox/privacy/products.html'),
+
+    # Issue 8432
+    page('firefox/set-as-default/thanks', 'firefox/set-as-default/thanks.html')
 )
