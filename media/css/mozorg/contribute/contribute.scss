@@ -175,12 +175,3 @@ $image-path: '/media/protocol/img';
         }
     }
 }
-
-//* -------------------------------------------------------------------------- */
-// Events table
-
-.event-date {
-    @media #{$mq-lg} {
-        min-width: 20ch;
-    }
-}
