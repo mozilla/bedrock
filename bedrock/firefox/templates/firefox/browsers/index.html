@@ -28,7 +28,7 @@
       <div class="c-block-body l-v-center">
         {# L10n: The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language #}
         <h1 class="mzp-has-zap-11">{{ _('Get the <strong>browsers</strong> that put your privacy first — and always have') }}</h1>
-        <p>Get the privacy you deserve. Enhanced Tracking Protection is automatic in every Firefox browser.</p>
+        <p>{{ _('Get the privacy you deserve. Enhanced Tracking Protection is automatic in every Firefox browser.') }}</p>
       </div>
       <div class="c-block-media l-fit-flush l-constrain-height">
         {{ high_res_img('img/firefox/browsers/hero.jpg', {'alt': '', 'class': 'c-block-media-img'}) }}
@@ -73,7 +73,7 @@
         <ul class="mzp-c-menu-list-list" id="menu-mobile">
           <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('android', 'firefox_browsers') }}" rel="external noopener" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android">Android</a></li>
           <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('ios', 'firefox_browsers') }}" rel="external noopener" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">iOS</a></li>
-          <li class="mzp-c-menu-list-item t-getapp"><a href="{{ url('firefox.mobile.get-app') }}" data-cta-type="link" data-cta-text="Get App Mobile">Send me a link</a></li>
+          <li class="mzp-c-menu-list-item t-getapp"><a href="{{ url('firefox.mobile.get-app') }}" data-cta-type="link" data-cta-text="Get App Mobile">{{ _('Send me a link') }}</a></li>
         </ul>
       </div>
       <p><a class="mzp-c-cta-link" href="{{ url('firefox.mobile.index') }}" data-cta-type="link" data-cta-text="Moblie Learn More">{{ _('Learn more') }}</a></p>
