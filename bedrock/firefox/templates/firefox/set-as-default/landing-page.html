@@ -10,30 +10,30 @@
 
 {% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
 {% block page_css %}
-  {{ css_bundle('firefox-default-browser') }}
+  {{ css_bundle('firefox-default-landing') }}
 {% endblock %}
 
 {% block content %}
   <main role="main">
 
     {% call hero(
-      title="Make sure you're protected, every time you get online",
-      desc='When you choose Firefox, you support a better web for you and everyone else. Now take the next step to protect yourself.',
+      title=_('Make sure you’re protected, every time you get online'),
+      desc=_('Thanks for using the latest Firefox browser. When you choose Firefox, you support a better web for you and everyone else. Now take the next step to protect yourself.'),
       class='mzp-c-hero',
       include_cta=True,
       heading_level=1,
     ) %} 
     <div class="cta-container">
       <div class="mzp-c-button-download-container">
-        <a id="set-as-default-button" href="#" class="mzp-c-button mzp-t-product">{{ _('Make Firefox your default browser ') }}</a>
+        <a id="set-as-default-button" href="{{ url('firefox.set-as-default.thanks') }}" class="mzp-c-button mzp-t-product">{{ _('Make Firefox your default browser') }}</a>
       </div>
     </div>
     {% endcall %}
-    <section>
+    <section class="card-set">
       <ul class="mzp-l-card-third mzp-l-content">
-      {{ picto_card(title='Choose automatic privacy', desc='The internet keeps finding new ways to poach your personal data. Firefox is the only browser with a mission of finding new ways to protect you.', class='privacy') }}
-      {{ picto_card(title='Choose freedom on every device', desc='Firefox is fast and safe on Windows, iOS, Android, Linux...and across them all. We have no interest in locking you in, resetting your preferences, or restricting your access to any part of the web.', class='device') }}
-      {{ picto_card(title='Choose corporate independence', desc='Tell the internet you don’t support monopolies. Firefox is the only major independent browser. Chrome, Edge and Brave are all built with code from Google, the world’s largest ad network.', class='independence') }}
+      {{ picto_card(title=_('Choose automatic privacy'), desc=_('The internet keeps finding new ways to poach your personal data. Firefox is the only browser with a mission of finding new ways to protect you.'), class='privacy') }}
+      {{ picto_card(title=_('Choose freedom on every device'), desc=_('Firefox is fast and safe on Windows, iOS, Android, Linux...and across them all. We have no interest in locking you in or resetting your preferences.'), class='freedom') }}
+      {{ picto_card(title=_('Choose corporate independence'), desc=_('Firefox is the only major independent browser. Chrome, Edge and Brave are all built with code from Google, the world’s largest ad network.'), class='independence') }}
       </ul>
     </section>
   </main>

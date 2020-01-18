@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="51px" height="33px" viewBox="0 0 51 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>Group 7</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="20.6059027%" y1="85.3665778%" x2="88.2268696%" y2="30.0101281%" id="linearGradient-1">
+            <stop stop-color="#591DCE" offset="0%"></stop>
+            <stop stop-color="#C785FF" offset="100%"></stop>
+            <stop stop-color="#C785FF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-42.6590831%" y1="110.867548%" x2="100%" y2="-19.4976547%" id="linearGradient-2">
+            <stop stop-color="#591DCE" offset="0%"></stop>
+            <stop stop-color="#C785FF" offset="100%"></stop>
+            <stop stop-color="#C785FF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-102.134804%" y1="163.293793%" x2="129.449225%" y2="-56.1894959%" id="linearGradient-3">
+            <stop stop-color="#591DCE" offset="0%"></stop>
+            <stop stop-color="#C785FF" offset="100%"></stop>
+            <stop stop-color="#C785FF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="/firefox/whatsnew73" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="WNP-73" transform="translate(-161.000000, -713.000000)">
+            <g id="Group-7" transform="translate(162.000000, 714.500000)">
+                <path d="M46.4585739,12.2949565 C47.9424,13.6963478 47.9424,16.0566957 46.4585739,17.458087 C42.4119652,21.2824348 33.8961391,28.0066087 24.0457043,28.0066087 C14.196313,28.0066087 5.68153043,21.2824348 1.63387826,17.458087 C0.151095652,16.0566957 0.151095652,13.6963478 1.63387826,12.2949565 C5.68153043,8.4706087 14.196313,1.74747826 24.0457043,1.74747826 C33.8961391,1.74747826 42.4119652,8.4706087 46.4585739,12.2949565 Z" id="Stroke-1" stroke="url(#linearGradient-1)" stroke-width="3"></path>
+                <line x1="38.0893565" y1="0.521530435" x2="9.36970435" y2="29.2411826" id="Stroke-3" stroke="url(#linearGradient-2)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></line>
+                <path d="M31.389287,14.8771478 C31.389287,18.9321043 28.1023304,22.2190609 24.0463304,22.2190609 C19.9913739,22.2190609 16.7044174,18.9321043 16.7044174,14.8771478 C16.7044174,10.8211478 19.9913739,7.5341913 24.0463304,7.5341913 C28.1023304,7.5341913 31.389287,10.8211478 31.389287,14.8771478 Z" id="Stroke-5" stroke="url(#linearGradient-3)" stroke-width="2.557"></path>
+            </g>
+        </g>
+    </g>
+</svg>

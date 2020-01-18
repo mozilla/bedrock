@@ -654,9 +654,9 @@
     },
     {
       "files": [
-        "css/firefox/campaign/default-browser.scss"
+        "css/firefox/set-as-default/landing.scss"
       ],
-      "name": "firefox-default-browser"
+      "name": "firefox-default-landing"
     },
     {
       "files": [

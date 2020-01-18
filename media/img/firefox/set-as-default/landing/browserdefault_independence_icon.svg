@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="46px" height="46px" viewBox="0 0 46 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>Group 15</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="84.9297244%" x2="46.9094236%" y2="17.5673108%" id="linearGradient-1">
+            <stop stop-color="#1D8BF0" offset="0%"></stop>
+            <stop stop-color="#4084F4" offset="42.0884546%"></stop>
+            <stop stop-color="#AB71FF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-86.257214%" y1="206.26087%" x2="68.8248275%" y2="25.0318167%" id="linearGradient-2">
+            <stop stop-color="#1D8BF0" offset="0%"></stop>
+            <stop stop-color="#4084F4" offset="30.2051753%"></stop>
+            <stop stop-color="#AB71FF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="-157.222189%" y1="146.444549%" x2="-63.5324714%" y2="59.706224%" id="linearGradient-3">
+            <stop stop-color="#1D8BF0" offset="0%"></stop>
+            <stop stop-color="#4084F4" offset="44.2993399%"></stop>
+            <stop stop-color="#AB71FF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="/firefox/whatsnew73" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="/firefox/set-as-default---landing-copy" transform="translate(-848.000000, -832.000000)" stroke-width="3.09399984">
+            <g id="Group-15" transform="translate(849.912175, 833.313843)">
+                <path d="M19.9394449,8.59346075 L0.303553513,41.0764605 C-0.199245259,41.9078777 0.419257206,42.954209 1.41285955,42.954209 L21.0487509,42.954209 L40.6848922,42.954209 C41.6784945,42.954209 42.2967471,41.9078777 41.7941982,41.0764605 L22.1583069,8.59346075 C21.6615057,7.77153969 20.4362461,7.77153969 19.9394449,8.59346075 Z" id="Stroke-9" stroke="url(#linearGradient-1)"></path>
+                <path d="M27.3202909,17.1327682 L22.1583568,8.59343576 C21.6613058,7.7715147 20.4360461,7.7715147 19.939245,8.59343576 L14.7775608,17.1327682 L14.3174949,17.8937136 L17.000671,21.5772394 C17.1998413,21.85063 17.6076781,21.85063 17.8070983,21.5772394 L21.0440528,17.1327682 L24.2812572,21.5772394 C24.4804275,21.8508799 24.8885142,21.8508799 25.0874346,21.5772394 L27.7758586,17.8867164 L27.3202909,17.1327682 Z" id="Stroke-11" stroke="url(#linearGradient-2)" stroke-linejoin="round"></path>
+                <path d="M21.0488727,0.796056404 L21.0488727,7.7460249 C21.0483761,8.04790409 21.293528,8.29280642 21.595657,8.29255617 L34.3915359,8.29280642 C34.6121976,8.29305597 34.8116178,8.15985928 34.8963339,7.95544109 C34.9812999,7.7517726 34.9345686,7.51636682 34.778631,7.35967953 L31.695365,4.2711656 L34.7783811,1.18290158 C34.9345686,1.02646419 34.9815498,0.791058405 34.8968337,0.586890116 C34.8683451,0.51966702 34.8281112,0.459691024 34.7781312,0.409960926 C34.6776714,0.309501132 34.5392268,0.249771844 34.3915359,0.250024936 L21.5954071,0.249771844 C21.4502152,0.249275236 21.3115208,0.307501932 21.2090618,0.409960926 C21.1063529,0.512419921 21.0483761,0.651364313 21.0488727,0.796056404 Z" id="Stroke-13" stroke="url(#linearGradient-3)" stroke-linejoin="round"></path>
+            </g>
+        </g>
+    </g>
+</svg>
