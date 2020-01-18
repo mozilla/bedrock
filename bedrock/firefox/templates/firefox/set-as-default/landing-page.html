@@ -8,7 +8,11 @@
 {% extends "firefox/base/base-protocol.html" %}
 {% from "macros-protocol.html" import hero, picto_card with context %}
 
-{% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
+{% block page_title_prefix %}{{_('Make Firefox your default browser')}} — {% endblock %}
+{% block page_desc %}{{ _('Choose the browser that protects your privacy. Set Firefox as your default browser.') }}{% endblock %}
+
+{% set utms = '' %} 
+
 {% block page_css %}
   {{ css_bundle('firefox-default-landing') }}
 {% endblock %}
