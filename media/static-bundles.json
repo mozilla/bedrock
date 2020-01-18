@@ -1215,7 +1215,8 @@
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
         "js/base/mozilla-fxa-form-init.js",
-        "js/base/mozilla-fxa-sign-in-link.js",
+        "js/base/mozilla-fxa-link.js",
+        "js/base/mozilla-fxa-link-init.js",
         "js/base/uitour-lib.js",
         "js/firefox/browsers-products.js"
       ],
