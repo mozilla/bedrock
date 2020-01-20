@@ -22,7 +22,7 @@ from bedrock.mozorg.tests import TestCase
 @override_settings(
     STUB_ATTRIBUTION_HMAC_KEY='achievers',
     STUB_ATTRIBUTION_RATE=1,
-    STUB_ATTRIBUTION_MAX_LEN=200,
+    STUB_ATTRIBUTION_MAX_LEN=600,
 )
 class TestStubAttributionCode(TestCase):
     def _get_request(self, params):
@@ -129,15 +129,18 @@ class TestStubAttributionCode(TestCase):
             'utm_medium': 'aether',
             'utm_content': 'A144_A000_0000000',
             'utm_campaign': 'The%7cDude%7cabides%7cI%7cdont%7cknow%7cabout%7cyou%7c'
-            'but%7cI%7ctake%7ccomfort%7cin%7cthat' * 2,
+            'but%7cI%7ctake%7ccomfort%7cin%7cthat' * 6,
             'experiment': '(not set)',
             'variation': '(not set)',
         }
         final_params = {
             'source': 'brandt',
             'medium': 'aether',
-            'campaign': 'The|Dude|abides|I|dont|know|about|you|but|I|take|comfort|in|'
-            'thatThe%7_',
+            'campaign': 'The|Dude|abides|I|dont|know|about|you|but|I|take|comfort|in'
+            '|thatThe|Dude|abides|I|dont|know|about|you|but|I|take|comfort|in|thatThe'
+            '|Dude|abides|I|dont|know|about|you|but|I|take|comfort|in|thatThe|Dude|abides'
+            '|I|dont|know|about|you|but|I|take|comfort|in|thatThe|Dude|abides|I|dont|know'
+            '|about|you|but|I|take|comfort|in|thatThe|Dude|abides|I|dont|know|about_',
             'content': 'A144_A000_0000000',
             'experiment': '(not set)',
             'variation': '(not set)',
@@ -149,14 +152,14 @@ class TestStubAttributionCode(TestCase):
         data = json.loads(resp.content)
         # will it blend?
         code = querystringsafe_base64.decode(data['attribution_code'].encode()).decode()
-        assert len(code) <= 200
+        assert len(code) <= 600
         attrs = parse_qs(code)
         # parse_qs returns a dict with lists for values
         attrs = {k: v[0] for k, v in attrs.items()}
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data['attribution_sig'],
-            'dee21b516c44e021d3c50dfa23d207e3adad7ca419c6f27d507d4a83eff548db',
+            '1818f48f6f2ab260cec86e41b660040144d020dce6a33ff0d0ec84090695a89f',
         )
 
     def test_other_data_too_long_not_campaign(self):
@@ -166,7 +169,7 @@ class TestStubAttributionCode(TestCase):
             'utm_campaign': 'dude',
             'utm_content': 'A144_A000_0000000',
             'utm_medium': 'The%7cDude%7cabides%7cI%7cdont%7cknow%7cabout%7cyou%7c'
-            'but%7cI%7ctake%7ccomfort%7cin%7cthat' * 2,
+            'but%7cI%7ctake%7ccomfort%7cin%7cthat' * 6,
         }
         final_params = {'error': 'Invalid code'}
         req = self._get_request(params)
