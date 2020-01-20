@@ -1412,7 +1412,7 @@ GTM_CONTAINER_ID = config('GTM_CONTAINER_ID', default='')
 GMAP_API_KEY = config('GMAP_API_KEY', default='')
 STUB_ATTRIBUTION_HMAC_KEY = config('STUB_ATTRIBUTION_HMAC_KEY', default='')
 STUB_ATTRIBUTION_RATE = config('STUB_ATTRIBUTION_RATE', default=str(1 if DEV else 0), parser=float)
-STUB_ATTRIBUTION_MAX_LEN = config('STUB_ATTRIBUTION_MAX_LEN', default='200', parser=int)
+STUB_ATTRIBUTION_MAX_LEN = config('STUB_ATTRIBUTION_MAX_LEN', default='600', parser=int)
 
 
 # via http://stackoverflow.com/a/6556951/107114
