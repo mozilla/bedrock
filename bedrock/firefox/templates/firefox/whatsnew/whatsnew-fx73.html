@@ -16,6 +16,8 @@
 
 {% block site_header %}{% endblock %}
 
+{% set android_url = firefox_adjust_url('android', campaign) %}
+{% set ios_url = firefox_adjust_url('ios', campaign) %}
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
 
 {% block content %}
@@ -36,17 +38,15 @@
         <h3>{{ _('Get Firefox on your Phone') }}</h3>
 
         {% if show_send_to_device %}
-
-        {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop', class='vertical') }}
-
+          {{ send_to_device(include_title=False, message_set='fx-whatsnew', class='vertical') }}
         {% else %}
-        <p>{{ _('Scan the QR code to get started') }}</p>
-        <div class="qr-code-wrapper">
-          <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
-               id="firefox-qr"
-               data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
-               alt="{{ _('QR code to scan for Firefox') }}">
-        </div>
+          <p>{{ _('Scan the QR code to get started') }}</p>
+          <div class="qr-code-wrapper">
+            <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
+                id="firefox-qr"
+                data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
+                alt="{{ _('QR code to scan for Firefox') }}">
+          </div>
         {% endif %}
 
         <ul class="mobile-download-buttons" id="mobile-download-buttons-firefox">
@@ -69,7 +69,7 @@
         <p>{{ _('Thanks for using the latest Firefox browser. When you choose Firefox, you support a better web for you and everyone else. Now take the next step to protect yourself.') }}</p>
 
         <div class="state-not-default">
-          <a href="{{ url('firefox.set-as-default.thanks') }}" class="mzp-c-button mzp-t-product mzp-t-small" data-link-name="Make Firefox your default browser" data-link-type="button">{{ _('Make Firefox your default browser') }}</a>
+          <a id="set-as-default-button" href="{{ url('firefox.set-as-default.thanks') }}" class="mzp-c-button mzp-t-product mzp-t-small" data-link-name="Make Firefox your default browser" data-link-type="button">{{ _('Make Firefox your default browser') }}</a>
         </div>
 
         <div class="state-is-default">
