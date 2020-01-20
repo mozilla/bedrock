@@ -8,10 +8,8 @@
 {% extends "firefox/base/base-protocol.html" %}
 {% from "macros-protocol.html" import hero, picto_card with context %}
 
-{% block page_title_prefix %}{{_('Make Firefox your default browser')}} — {% endblock %}
+{% block page_title %}{{_('Make Firefox your default browser')}}{% endblock %}
 {% block page_desc %}{{ _('Choose the browser that protects your privacy. Set Firefox as your default browser.') }}{% endblock %}
-
-{% set utms = '' %} 
 
 {% block page_css %}
   {{ css_bundle('firefox-default-landing') }}
@@ -26,7 +24,7 @@
       class='mzp-c-hero',
       include_cta=True,
       heading_level=1,
-    ) %} 
+    ) %}
     <div class="cta-container">
       <div class="mzp-c-button-download-container">
         <a id="set-as-default-button" href="{{ url('firefox.set-as-default.thanks') }}" class="mzp-c-button mzp-t-product">{{ _('Make Firefox your default browser') }}</a>
