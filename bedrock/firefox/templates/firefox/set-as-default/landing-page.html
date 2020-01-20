@@ -27,7 +27,9 @@
     ) %}
     <div class="cta-container">
       <div class="mzp-c-button-download-container">
-        <a id="set-as-default-button" href="{{ url('firefox.set-as-default.thanks') }}" class="mzp-c-button mzp-t-product">{{ _('Make Firefox your default browser') }}</a>
+        <a id="set-as-default-button" href="{{ url('firefox.set-as-default.thanks') }}" class="mzp-c-button mzp-t-product" data-link-name="Make Firefox your default browser" data-link-type="button">
+          {{ _('Make Firefox your default browser') }}
+        </a>
       </div>
     </div>
     {% endcall %}
