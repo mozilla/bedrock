@@ -1305,4 +1305,7 @@ URLS = flatten((
     url_test('/developer/', 'https://developer.mozilla.com/'),
     url_test('/developer/browsertest/', 'https://developer.mozilla.org/docs/Learn/Tools_and_testing/Cross_browser_testing/Automated_testing'),
     url_test('/developer/css-grid/', 'https://developer.mozilla.org/docs/Learn/CSS/CSS_layout/Grids'),
+
+    # Issue 6461
+    url_test('/contribute/events/', 'https://community.mozilla.org/events/'),
 ))

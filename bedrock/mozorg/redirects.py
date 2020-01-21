@@ -663,6 +663,9 @@ redirectpatterns = (
     redirect(r'^/contribute/task(/.*)?', 'https://activate.mozilla.community/'),
     redirect(r'^contribute/friends/?$', 'mozorg.contribute.index'),
 
+    # Issue 6461
+    redirect(r'^contribute/events/?$', 'https://community.mozilla.org/events/'),
+
     # issue 7435
     redirect(r'^about/history/details/?$', 'mozorg.about.history'),
 

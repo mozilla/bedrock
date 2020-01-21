@@ -268,7 +268,6 @@ urlpatterns = (
     page('MPL/2.0/permissive-code-into-mpl', 'mozorg/mpl/2.0/permissive-code-into-mpl.html'),
 
     page('contribute', 'mozorg/contribute/index.html'),
-    page('contribute/events', 'mozorg/contribute/events.html'),
     page('contribute/stories', 'mozorg/contribute/stories.html'),
     page('contribute/stories/faye', 'mozorg/contribute/story-faye.html'),
     page('contribute/stories/michael', 'mozorg/contribute/story-michael.html'),
