@@ -1,0 +1,135 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button, send_to_device with context %}
+
+{% add_lang_files "firefox/whatsnew_73" %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ _('What’s new with Firefox - Make Firefox your default browser') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_73') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% set android_url = firefox_adjust_url('android', campaign) %}
+{% set ios_url = firefox_adjust_url('ios', campaign) %}
+{% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
+
+{% block content %}
+<main class="content-wrapper mzp-t-firefox mzp-t-dark">
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
+      {{ high_res_img('protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', {'alt': 'Firefox', 'width': '216', 'height': '40', 'class': 'c-page-header-logo-fx'}) }}
+      <div class="mzp-c-notification-bar mzp-t-success">
+        <p>{{ _('Congrats! You’re using the latest version of Firefox.') }}</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="content-main">
+    <div class="mzp-l-content">
+      <aside id="modal" class="mzp-u-modal-content mzp-l-content">
+        <h2 class="modal-logo">Firefox</h2>
+        <h3>{{ _('Get Firefox on your Phone') }}</h3>
+
+        {% if show_send_to_device %}
+          {{ send_to_device(include_title=False, message_set='fx-whatsnew', class='vertical') }}
+        {% else %}
+          <p>{{ _('Scan the QR code to get started') }}</p>
+          <div class="qr-code-wrapper">
+            <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
+                id="firefox-qr"
+                data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
+                alt="{{ _('QR code to scan for Firefox') }}">
+          </div>
+        {% endif %}
+
+        <ul class="mobile-download-buttons" id="mobile-download-buttons-firefox">
+          <li>
+            {{ google_play_button(href=android_url, id='playStoreLink') }}
+          </li>
+          <li>
+            <a id="appStoreLink" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+            </a>
+          </li>
+        </ul>
+      </aside>
+
+      <div class="mzp-c-emphasis-box">
+        <img class="c-emphasis-box-logo" src="{{ static('protocol/img/logos/firefox/logo-md.png') }}" alt="">
+        <h2 class="c-emphasis-box-title">
+          {{ _('Make sure you’re protected, every time you get online') }}
+        </h2>
+        <p>{{ _('Thanks for using the latest Firefox browser. When you choose Firefox, you support a better web for you and everyone else. Now take the next step to protect yourself.') }}</p>
+
+        <div class="state-not-default">
+          <a id="set-as-default-button" href="{{ url('firefox.set-as-default.thanks') }}" class="mzp-c-button mzp-t-product mzp-t-small" data-link-name="Make Firefox your default browser" data-link-type="button">{{ _('Make Firefox your default browser') }}</a>
+        </div>
+
+        <div class="state-is-default">
+          <button class="mzp-c-button mzp-t-product mzp-t-small js-modal-link">{{ _('Get the Firefox App') }}</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="content-extra">
+    <div class="mzp-l-content">
+      <div class="l-columns-three">
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            <img src="{{ static('img/icons/privacy.svg') }}" alt="">
+          </div>
+          <h3 class="c-picto-block-title">{{ _('Choose automatic privacy') }}</h3>
+          <div class="c-picto-block-body">
+            <p>{{ _('The internet keeps finding new ways to poach your personal data. Firefox is the only browser with a mission of finding new ways to protect you.') }}</p>
+          </div>
+        </div>
+
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            <img src="{{ static('img/icons/mobile-desktop.svg') }}" alt="">
+          </div>
+
+          <h3 class="c-picto-block-title">{{ _('Choose freedom on every device') }}</h3>
+          <div class="c-picto-block-body">
+            <p>
+              {{ _('Firefox is fast and safe on Windows, iOS, Android, Linux...and across them all. We have no interest in locking you in or resetting your preferences.') }}
+            </p>
+          </div>
+        </div>
+
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            <img src="{{ static('img/icons/mountain.svg') }}" alt="">
+          </div>
+
+          <h3 class="c-picto-block-title">{{ _('Choose corporate independence') }}</h3>
+          <div class="c-picto-block-body">
+            <p>{{ _('Firefox is the only major independent browser. Chrome, Edge and Brave are all built with code from Google, the world’s largest ad network.') }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="mzp-l-content c-utilities">
+    <p>
+    {% trans notes=url('firefox.notes') %}
+      Read the <a href="{{ notes }}">Release Notes</a> to know more about what’s new in your Firefox Browser.
+    {% endtrans %}
+    </p>
+  </aside>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_73') }}
+{% endblock %}
