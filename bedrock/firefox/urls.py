@@ -142,5 +142,7 @@ urlpatterns = (
     page('firefox/privacy/products', 'firefox/privacy/products.html'),
 
     # Issue 8432
-    page('firefox/set-as-default/thanks', 'firefox/set-as-default/thanks.html')
+    page('firefox/set-as-default/thanks', 'firefox/set-as-default/thanks.html'),
+    # Default browser campaign
+    page('firefox/set-as-default', 'firefox/set-as-default/landing-page.html')
 )

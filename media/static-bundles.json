@@ -654,6 +654,12 @@
     },
     {
       "files": [
+        "css/firefox/set-as-default/landing.scss"
+      ],
+      "name": "firefox-default-landing"
+    },
+    {
+      "files": [
         "css/firefox/enterprise/landing.scss"
       ],
       "name": "firefox-enterprise"
