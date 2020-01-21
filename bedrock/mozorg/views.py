@@ -2,27 +2,16 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-import re
-
 from commonware.decorators import xframe_allow
 from django.conf import settings
-from django.http import HttpResponseRedirect
 from django.shortcuts import render as django_render
-from django.urls import reverse
-from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
 from lib import l10n_utils
 
-from bedrock.base.waffle import switch
 from bedrock.contentcards.models import get_page_content_cards
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forums import ForumsFile
-from bedrock.mozorg.util import (
-    fxa_concert_rsvp,
-    get_fxa_oauth_token,
-    get_fxa_profile_email
-)
 from bedrock.pocketfeed.models import PocketArticle
 from bedrock.wordpress.views import BlogPostsView
 
@@ -168,75 +157,3 @@ def home_view(request):
         template_name = 'mozorg/home/home.html'
 
     return l10n_utils.render(request, template_name, ctx)
-
-
-@never_cache
-def oauth_fxa(request):
-    """
-    Acts as an OAuth relier for Firefox Accounts. Currently specifically tuned to handle
-    the OAuth flow for the Firefox Concert Series (Q4 2018).
-
-    If additional OAuth flows are required in the future, please refactor this method.
-    """
-    if not switch('firefox_concert_series'):
-        return HttpResponseRedirect(reverse('mozorg.home'))
-
-    # expected state should be in user's cookies
-    stateExpected = request.COOKIES.get('fxaOauthState', None)
-
-    # provided state passed back from FxA - these state values should match
-    stateProvided = request.GET.get('state', None)
-
-    # code must be present - is in redirect querystring from FxA
-    code = request.GET.get('code', None)
-
-    error = False
-    cookie_age = 86400  # 1 day
-
-    # ensure all the data we need is present and valid
-    if not (stateExpected and stateProvided and code):
-        error = True
-    elif stateExpected != stateProvided:
-        error = True
-    else:
-        token = get_fxa_oauth_token(code)
-
-        if not token:
-            error = True
-        else:
-            email = get_fxa_profile_email(token)
-
-            if not email:
-                error = True
-            else:
-                # add email to mailing list
-
-                # check for Firefox
-                include_re = re.compile(r'\bFirefox\b', flags=re.I)
-                exclude_re = re.compile(r'\b(Camino|Iceweasel|SeaMonkey)\b', flags=re.I)
-
-                value = request.META.get('HTTP_USER_AGENT', '')
-                isFx = bool(include_re.search(value) and not exclude_re.search(value))
-
-                # add user to mailing list for future concert updates
-                rsvp_ok = fxa_concert_rsvp(email, isFx)
-
-                if not rsvp_ok:
-                    error = True
-
-    if error:
-        # send user to a custom error page
-        response = HttpResponseRedirect(reverse('mozorg.oauth.fxa-error'))
-    else:
-        # send user back to the concerts page
-        response = HttpResponseRedirect(reverse('firefox.concerts'))
-        response.set_cookie('fxaOauthVerified', True, max_age=cookie_age, httponly=False)
-
-    return response
-
-
-def oauth_fxa_error(request):
-    if switch('firefox_concert_series'):
-        return l10n_utils.render(request, 'mozorg/oauth/fxa-error.html')
-    else:
-        return HttpResponseRedirect(reverse('mozorg.home'))
