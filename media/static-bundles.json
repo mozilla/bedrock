@@ -648,6 +648,13 @@
     },
     {
       "files": [
+        "css/base/mozilla-lazy-image.scss",
+        "css/firefox/browsers-products.scss"
+      ],
+      "name": "firefox-browsers-products"
+    },
+    {
+      "files": [
         "css/mozorg/book.scss"
       ],
       "name": "book"
@@ -1238,6 +1245,19 @@
         "js/firefox/home/master.js"
       ],
       "name": "firefox-master"
+    },
+    {
+      "files": [
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-fxa-form.js",
+        "js/base/mozilla-fxa-form-init.js",
+        "js/base/mozilla-fxa-link.js",
+        "js/base/mozilla-fxa-link-init.js",
+        "js/base/uitour-lib.js",
+        "js/firefox/browsers-products.js"
+      ],
+      "name": "firefox-browsers-products"
     },
     {
       "files": [

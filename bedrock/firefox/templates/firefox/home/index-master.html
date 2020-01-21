@@ -76,6 +76,11 @@
 {% set product_lockwise = 'Lockwise' %}
 {% set product_pocket = 'Pocket' %}
 
+{% if LANG.startswith('en') %}
+  {% set browsers_url = url('firefox.browsers.index') %}
+{% else %}
+  {% set browsers_url = url('firefox.new') %}
+{% endif %}
 
 {% block content %}
 <main role="main" class="firefox-home">
@@ -91,7 +96,7 @@
         <h2 class="c-showcase-title">{{ family_title }}</h2>
         <ul class="c-showcase-list">
           <li>
-            <a class="mzp-c-cta-link" href="{{ url('firefox.new') }}" data-cta-type="link" data-cta-text="Browsers">
+            <a class="mzp-c-cta-link" href="{{ browsers_url }}" data-cta-type="link" data-cta-text="Browsers">
               <img alt="" src="{{ static('protocol/img/logos/firefox/browser/logo-md.png') }}" height="40" width="40"><br>
               {{ product_browsers }}
             </a>
@@ -139,15 +144,16 @@
         <div id="test-menu-browsers-wrapper" class="mzp-c-menu-list mzp-t-cta mzp-t-download">
           <h5 class="mzp-c-menu-list-title">{{ get_browser }}</h5>
           <ul class="mzp-c-menu-list-list" id="menu-browsers">
+            {# Old IE users need to click a download button, the JS on the thank you page doesn't get them the right download if we send them there directly #}
             <!--[if IE]>
-              <li class="mzp-c-menu-list-item"><a href="{{ url('firefox.new') }}">{{ get_desktop }}</a></li>
+              <li class="mzp-c-menu-list-item menu-desktop"><a href="{{ url('firefox.new') }}" data-cta-type="link" data-cta-text="Firefox Desktop">{{ get_desktop }}</a></li>
             <![endif]-->
             <!--[if !IE]><!-->
               {# Download link should be locale neutral see issue 7982 #}
-              <li class="mzp-c-menu-list-item"><a href="/firefox/download/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard">{{ get_desktop }}</a></li>
+              <li class="mzp-c-menu-list-item menu-desktop"><a href="/firefox/download/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard">{{ get_desktop }}</a></li>
             <!--<![endif]-->
-            <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('android', 'firefox_home') }}" rel="external noopener" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android"> {{ get_android }}</a></li>
-            <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('ios', 'firefox_home') }}" rel="external noopener" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">{{ get_ios }}</a></li>
+            <li class="mzp-c-menu-list-item menu-android"><a href="{{ firefox_adjust_url('android', 'firefox_home') }}" rel="external noopener" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android"> {{ get_android }}</a></li>
+            <li class="mzp-c-menu-list-item menu-ios"><a href="{{ firefox_adjust_url('ios', 'firefox_home') }}" rel="external noopener" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">{{ get_ios }}</a></li>
           </ul>
         </div>
         <p id="test-fbc" class="js-fx-only"><a class="mzp-c-cta-link" href="https://addons.mozilla.org/firefox/addon/facebook-container/{{ referrals }}">{{ get_facebook_container }}</a></p>
@@ -248,7 +254,7 @@
         <div class="c-showcase t-small">
             <ul class="c-showcase-list">
               <li>
-                <a class="mzp-c-cta-link" href="{{ url('firefox.new') }}" data-cta-type="link" data-cta-text="Browsers">
+                <a class="mzp-c-cta-link" href="{{ browsers_url }}" data-cta-type="link" data-cta-text="Browsers">
                   <img alt="" src="{{ static('protocol/img/logos/firefox/browser/logo-md.png') }}" height="40" width="40"><br>
                   {{ product_browsers }}
                 </a>

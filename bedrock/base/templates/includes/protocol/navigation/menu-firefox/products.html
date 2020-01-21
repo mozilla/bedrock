@@ -67,10 +67,10 @@
           </li>
         </ul>
       </div>
-      <!-- waiting for product page to be ready
+      {% if LANG.startswith('en-') %}
       <div class="mzp-c-menu-panel-card">
         <section class="mzp-c-card mzp-c-card-extra-small mzp-has-aspect-3-2">
-          <a class="mzp-c-card-block-link" href="#TKTK" data-link-name="All Products" data-link-type="nav" data-link-position="card" data-link-group="products">
+          <a class="mzp-c-card-block-link" href="{{ url('firefox.products.index') }}" data-link-name="All Products" data-link-type="nav" data-link-position="card" data-link-group="products">
             <div class="mzp-c-card-media-wrapper">
               <img class="mzp-c-card-image" src="{{ static('img/placeholder.png') }}" data-src="{{ static('img/nav/cards/products.jpg') }}" data-srcset="{{ static('img/nav/cards/products-high-res.jpg') }}" alt="">
               <noscript>
@@ -84,7 +84,7 @@
           </a>
         </section>
       </div>
-      -->
+      {% endif %}
     </div><!-- close .mzp-c-menu-panel-container -->
   </div><!-- close .mzp-c-menu-panel -->
 </li><!-- close products -->

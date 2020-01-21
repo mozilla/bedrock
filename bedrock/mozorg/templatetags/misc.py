@@ -720,9 +720,10 @@ def lockwise_adjust_url(ctx, redirect, adgroup, creative=None):
     return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, adgroup, creative)
 
 
-def _fxa_product_button(product_url, entrypoint, button_text, class_name=None, optional_parameters=None, optional_attributes=None):
+def _fxa_product_button(product_url, entrypoint, button_text, class_name=None, is_button_class=True,
+                        optional_parameters=None, optional_attributes=None):
     href = f'{product_url}?entrypoint={entrypoint}&form_type=button&utm_source={entrypoint}&utm_medium=refferal'
-    css_class = 'js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product'
+    css_class = 'js-fxa-cta-link js-fxa-product-button'
     attrs = ''
 
     if optional_parameters:
@@ -731,6 +732,9 @@ def _fxa_product_button(product_url, entrypoint, button_text, class_name=None, o
 
     if optional_attributes:
         attrs += ' '.join('%s="%s"' % (attr, val) for attr, val in optional_attributes.items())
+
+    if is_button_class:
+        css_class += ' mzp-c-button mzp-t-product'
 
     if class_name:
         css_class += f' {class_name}'
@@ -744,7 +748,7 @@ def _fxa_product_button(product_url, entrypoint, button_text, class_name=None, o
 
 @library.global_function
 @jinja2.contextfunction
-def pocket_fxa_button(ctx, entrypoint, button_text, class_name=None, optional_parameters=None, optional_attributes=None):
+def pocket_fxa_button(ctx, entrypoint, button_text, class_name=None, is_button_class=True, optional_parameters=None, optional_attributes=None):
     """
     Render a getpocket.com link with required params for FxA authentication.
 
@@ -757,12 +761,12 @@ def pocket_fxa_button(ctx, entrypoint, button_text, class_name=None, optional_pa
         {{ pocket_fxa_button(entrypoint='mozilla.org-firefox-pocket', button_text='Try Pocket Now') }}
     """
     product_url = 'https://getpocket.com/ff_signup'
-    return _fxa_product_button(product_url, entrypoint, button_text, class_name, optional_parameters, optional_attributes)
+    return _fxa_product_button(product_url, entrypoint, button_text, class_name, is_button_class, optional_parameters, optional_attributes)
 
 
 @library.global_function
 @jinja2.contextfunction
-def monitor_fxa_button(ctx, entrypoint, button_text, class_name=None, optional_parameters=None, optional_attributes=None):
+def monitor_fxa_button(ctx, entrypoint, button_text, class_name=None, is_button_class=True, optional_parameters=None, optional_attributes=None):
     """
     Render a monitor.firefox.com link with required params for FxA authentication.
 
@@ -775,4 +779,4 @@ def monitor_fxa_button(ctx, entrypoint, button_text, class_name=None, optional_p
         {{ monitor_fxa_button(entrypoint='mozilla.org-firefox-accounts', button_text='Sign In to Monitor') }}
     """
     product_url = 'https://monitor.firefox.com/oauth/init'
-    return _fxa_product_button(product_url, entrypoint, button_text, class_name, optional_parameters, optional_attributes)
+    return _fxa_product_button(product_url, entrypoint, button_text, class_name, is_button_class, optional_parameters, optional_attributes)

@@ -5,7 +5,7 @@
 {% set referral="?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=nav&amp;utm_content=firefox" %}
 
 <li class="mzp-c-menu-category mzp-has-drop-down mzp-js-expandable">
-  <a class="mzp-c-menu-title" href="{{ url('firefox.new') }}" aria-haspopup="true" aria-controls="mzp-c-menu-panel-browsers">{{ _('Browsers') }}</a>
+  <a class="mzp-c-menu-title" href="{{ url('firefox.browsers.index') }}" aria-haspopup="true" aria-controls="mzp-c-menu-panel-browsers">{{ _('Browsers') }}</a>
   <div class="mzp-c-menu-panel mzp-has-card" id="mzp-c-menu-panel-browsers">
     <div class="mzp-c-menu-panel-container">
       <button class="mzp-c-menu-button-close" type="button" aria-controls="mzp-c-menu-panel-browsers">{{ _('Close Browsers menu') }}</button>
@@ -83,10 +83,10 @@
           </li>
         </ul>
       </div>
-      <!-- waiting for browsers page to be ready
+      {% if LANG.startswith('en-') %}
       <div class="mzp-c-menu-panel-card">
         <section class="mzp-c-card mzp-c-card-extra-small mzp-has-aspect-3-2">
-          <a class="mzp-c-card-block-link" href="#TKTK" data-link-name="All Browsers" data-link-type="nav" data-link-position="card" data-link-group="browsers">
+          <a class="mzp-c-card-block-link" href="{{ url('firefox.browsers.index') }}" data-link-name="All Browsers" data-link-type="nav" data-link-position="card" data-link-group="browsers">
             <div class="mzp-c-card-media-wrapper">
               <img class="mzp-c-card-image" src="{{ static('img/placeholder.png') }}" data-src="{{ static('img/nav/cards/browsers.jpg') }}" data-srcset="{{ static('img/nav/cards/browsers-high-res.jpg') }}" alt="">
               <noscript>
@@ -100,7 +100,7 @@
           </a>
         </section>
       </div>
-      -->
+      {% endif %}
     </div><!-- close .mzp-c-menu-panel-container -->
   </div><!-- close .mzp-c-menu-panel -->
 </li><!-- close about -->

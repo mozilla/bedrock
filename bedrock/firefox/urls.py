@@ -28,6 +28,8 @@ urlpatterns = (
     url(r'^firefox/$', views.firefox_home, name='firefox'),
     url(r'^firefox/all/$', views.firefox_all, name='firefox.all'),
     url(r'^firefox/accounts/$', views.firefox_accounts, name='firefox.accounts'),
+    page('firefox/browsers', 'firefox/browsers/index.html'),
+    page('firefox/products', 'firefox/products/index.html'),
     url(r'^firefox/campaign/$', views.campaign, name='firefox.campaign'),
     page('firefox/flashback', 'firefox/flashback/index.html', active_locales=['en-US', 'de', 'fr']),
     page('firefox/channel/desktop', 'firefox/channel/desktop.html'),
