@@ -64,12 +64,18 @@
 // Page content
 
 .lite-body {
-    background-color: #ade7e2;
+    background-color: #89eae3;
     background-image: url('/media/img/firefox/whatsnew/lite/background.jpg');
-    background-position: top;
+    background-position: top right;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
     color: $color-gray-80;
     position: relative;
     @include font-firefox;
+    @media #{$mq-md} {
+        background-size: 150% auto;
+        background-position: top left;
+    }
 }
 
 .lite-content {
