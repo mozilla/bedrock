@@ -63,24 +63,50 @@
 //* -------------------------------------------------------------------------- */
 // Page content
 
+.lite-body {
+    background-color: #ade7e2;
+    background-image: url('/media/img/firefox/whatsnew/lite/background-in.jpg');
+    background-position: top;
+    color: $color-gray-80;
+    position: relative;
+    @include font-firefox;
+}
+
+.lite-content {
+    max-width: 1600px;
+    padding-left: $spacing-lg;
+    padding-right: $spacing-lg;
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: 42%;
+    @media #{$mq-md} {
+        background-image: url('/media/img/firefox/whatsnew/lite/photo-in.webp');
+        padding-bottom: $layout-xl;
+    }
+}
+
+.lite-copy {
+    @include text-body-md;
+    @media #{$mq-md} {
+        width: 58%;
+    }
+}
+
+
 .lite-heading {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: $spacing-xl;
     margin-bottom: $spacing-xl;
 
     h1 {
-        @include font-firefox;
-        font-size: 2rem;
         font-weight: normal;
-        text-align: start;
+        font-size: 2rem;
         margin-bottom: 0;
+        text-align: start;
 
         @media #{$mq-sm} {
-            font-size: 2.5rem;
-        }
-
-        @media #{$mq-md} {
             font-size: 3rem;
         }
 
@@ -99,11 +125,7 @@
         min-width: 60px;
 
         @media #{$mq-sm} {
-            width: 80px;
-        }
-
-        @media #{$mq-md} {
-            width: 100px;
+            width: 90px;
         }
 
         @media #{$mq-lg} {
@@ -116,18 +138,6 @@
     }
 }
 
-.lite-body {
-    background-color: #ade7e2;
-    background-image: url('/media/img/firefox/whatsnew/lite/background-in.jpg');
-    background-position: top;
-    color: $color-gray-80;
-    position: relative;
-    @include font-firefox;
-
-    @media #{$mq-lg} {
-    }
-}
-
 .lite-text {
     font-size: 1.25rem;
     margin: 0 auto $spacing-lg;
@@ -136,11 +146,11 @@
     border-top: 2px solid $color-gray-80;
     border-bottom: 2px solid $color-gray-80;
     max-width: 430px;
+    text-align: center;
     box-sizing: border-box;
 
     @media #{$mq-md} {
         font-size: 1.5rem;
-
     }
 
     @media #{$mq-lg} {
@@ -148,43 +158,11 @@
         padding-left: $spacing-md;
         padding-right: $spacing-md;
         max-width: 546px;
-        margin: $spacing-md auto;
     }
 
     @media #{$mq-xl} {
         font-size: 2.5rem;
     }
-
-}
-
-@media #{$mq-lg} {
-    .send-to-device-wrapper {
-        margin-right: 60px;
-    }
-}
-
-.lite-content {
-    max-width: 1600px;
-    padding-left: $spacing-lg;
-    padding-right: $spacing-lg;
-    position: relative;
-    background-repeat: no-repeat;
-    background-position: top right;
-    background-size: 42%;
-    @media #{$mq-md} {
-        background-image: url('/media/img/firefox/whatsnew/lite/photo-in.webp');
-        padding-bottom: $layout-xl;
-    }
-
-    .lite-copy {
-        text-align: center;
-        z-index: 1;
-        @include text-body-md;
-        @media #{$mq-md} {
-            width: 58%;
-        }
-    }
-
 }
 
 .lite-qrcode-container {
@@ -205,9 +183,11 @@
         width: 380px;
         top: 0;
         left: -40px;
+
         @media #{$mq-md} {
             display: block;
         }
+
         @media #{$mq-lg} {
             left: -70px;
             height: 440px;
@@ -215,11 +195,7 @@
         }
     }
 
-    @media #{$mq-lg} {
-    }
-
     p {
-        margin-top: $spacing-sm;
         position: relative;
         z-index: 2;
     }
@@ -231,6 +207,7 @@
         border-radius: 10px;
         box-sizing: border-box;
         max-width: 250px;
+        margin-bottom: $spacing-sm;
         @media #{$mq-lg} {
             max-width: 100%;
         }
