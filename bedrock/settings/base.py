@@ -624,12 +624,6 @@ WP_BLOGS = {
     },
 }
 
-EVENTS_ICAL_FEEDS = (
-    'https://reps.mozilla.org/events/period/future/ical/',
-    'https://www.google.com/calendar/ical/mozilla.com_l9g7ie050ngr3g4qv6bgiinoig'
-    '%40group.calendar.google.com/public/basic.ics',
-)
-
 # used to connect to @MozillaHQ Pocket account
 POCKET_API_URL = config('POCKET_API_URL', default='https://getpocket.com/v3/firefox/profile-recs')
 POCKET_CONSUMER_KEY = config('POCKET_CONSUMER_KEY', default='')
