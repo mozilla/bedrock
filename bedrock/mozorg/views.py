@@ -6,10 +6,10 @@ import re
 
 from commonware.decorators import xframe_allow
 from django.conf import settings
-from django.http import Http404, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render as django_render
 from django.urls import reverse
-from django.views.decorators.cache import cache_page, never_cache
+from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
 from lib import l10n_utils
@@ -18,7 +18,6 @@ from bedrock.base.waffle import switch
 from bedrock.contentcards.models import get_page_content_cards
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forums import ForumsFile
-from bedrock.mozorg.models import ContributorActivity
 from bedrock.mozorg.util import (
     fxa_concert_rsvp,
     get_fxa_oauth_token,
@@ -43,23 +42,6 @@ def csrf_failure(request, reason=''):
 def hacks_newsletter(request):
     return l10n_utils.render(request,
                              'mozorg/newsletter/hacks.mozilla.org.html')
-
-
-@cache_page(60 * 60 * 24 * 7)  # one week
-def mozid_data_view(request, source_name):
-    try:
-        qs = ContributorActivity.objects.group_by_date_and_source(source_name)
-    except ContributorActivity.DoesNotExist:
-        # not a valid source_name
-        raise Http404
-
-    data = [{'wkcommencing': activity['date'].isoformat(),
-             'totalactive': activity['total__sum'],
-             'new': activity['new__sum']} for activity in qs]
-
-    response = JsonResponse(data, safe=False)
-    response['Access-Control-Allow-Origin'] = '*'
-    return response
 
 
 @require_safe

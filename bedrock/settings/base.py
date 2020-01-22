@@ -1402,9 +1402,6 @@ LOGGING = {
 }
 
 PASSWORD_HASHERS = ['django.contrib.auth.hashers.PBKDF2PasswordHasher']
-
-TABLEAU_DB_URL = config('TABLEAU_DB_URL', default='')
-
 ADMINS = MANAGERS = config('ADMINS', parser=json.loads,
                            default='[]')
 
