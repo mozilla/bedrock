@@ -273,8 +273,6 @@ urlpatterns = (
     page('contribute/stories/michael', 'mozorg/contribute/story-michael.html'),
     page('contribute/stories/ruben', 'mozorg/contribute/story-ruben.html'),
     page('contribute/stories/shreyas', 'mozorg/contribute/story-shreyas.html'),
-    url(r'^contributor-data/(?P<source_name>[a-z]{2,20})\.json$', views.mozid_data_view,
-        name='mozorg.contributor-data'),
     url('^internet-health/$', views.IHView.as_view(), name='mozorg.internet-health'),
     page('internet-health/privacy-security', 'mozorg/internet-health/privacy-security.html'),
     page('internet-health/digital-inclusion', 'mozorg/internet-health/digital-inclusion.html'),

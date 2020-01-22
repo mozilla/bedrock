@@ -3,11 +3,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import os
-from datetime import date
-import json
 
-from django.core.cache import cache
-from django.http.response import Http404
 from django.test import override_settings
 from django.test.client import RequestFactory
 
@@ -16,7 +12,6 @@ from mock import ANY, patch
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.mozorg import views
-from scripts import update_tableau_data
 
 
 class TestViews(TestCase):
@@ -57,52 +52,6 @@ class TestRobots(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertFalse(response.context_data['disallow_all'])
         self.assertEqual(response.get('Content-Type'), 'text/plain')
-
-
-class TestMozIDDataView(TestCase):
-    def setUp(self):
-        with patch.object(update_tableau_data, 'get_external_data') as ged:
-            ged.return_value = (
-                (date(2015, 2, 2), 'Firefox', 'bugzilla', 100, 10),
-                (date(2015, 2, 2), 'Firefox OS', 'bugzilla', 100, 10),
-                (date(2015, 2, 9), 'Sumo', 'sumo', 100, 10),
-                (date(2015, 2, 9), 'Firefox OS', 'sumo', 100, 10),
-                (date(2015, 2, 9), 'QA', 'reps', 100, 10),
-            )
-            update_tableau_data.run()
-
-    def _get_json(self, source):
-        cache.clear()
-        req = RequestFactory().get('/')
-        resp = views.mozid_data_view(req, source)
-        assert resp['content-type'] == 'application/json'
-        assert resp['access-control-allow-origin'] == '*'
-        return json.loads(resp.content)
-
-    def test_all(self):
-        assert self._get_json('all') == [
-            {'wkcommencing': '2015-02-09', 'totalactive': 300, 'new': 30},
-            {'wkcommencing': '2015-02-02', 'totalactive': 200, 'new': 20},
-        ]
-
-    def test_team(self):
-        """When acting on a team, should just return sums for that team."""
-        assert self._get_json('firefoxos') == [
-            {'wkcommencing': '2015-02-09', 'totalactive': 100, 'new': 10},
-            {'wkcommencing': '2015-02-02', 'totalactive': 100, 'new': 10},
-        ]
-
-    def test_source(self):
-        """When acting on a source, should just return sums for that source."""
-        assert self._get_json('sumo') == [
-            {'wkcommencing': '2015-02-09', 'totalactive': 100, 'new': 10},
-        ]
-
-    @patch('bedrock.mozorg.models.CONTRIBUTOR_SOURCE_NAMES', {})
-    def test_unknown(self):
-        """An unknown source should raise a 404."""
-        with self.assertRaises(Http404):
-            self._get_json('does-not-exist')
 
 
 @patch('bedrock.mozorg.views.l10n_utils.render')
