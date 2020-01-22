@@ -33,9 +33,3 @@ if [[ "$AUTH" == true ]]; then
     # jobs that require some auth. don't run these during build.
     python manage.py update_pocketfeed --quiet
 fi
-
-if [[ "$ALL" == true ]]; then
-    # less frequent. these will modify the DB every time.
-    # TODO fix this
-    python manage.py update_ical_feeds
-fi
