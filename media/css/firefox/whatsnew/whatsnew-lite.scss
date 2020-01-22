@@ -71,7 +71,6 @@
     background-repeat: no-repeat;
     color: $color-gray-80;
     position: relative;
-    @include font-firefox;
     @media #{$mq-md} {
         background-size: 150% auto;
         background-position: top left;
@@ -109,21 +108,15 @@
     margin-bottom: $spacing-xl;
 
     h2 {
+        @include text-display-lg;
+        @include font-firefox;
         font-weight: normal;
         font-size: 2rem;
         margin-bottom: 0;
         text-align: start;
 
-        @media #{$mq-sm} {
-            font-size: 3rem;
-        }
-
-        @media #{$mq-lg} {
-            font-size: 3.5rem;
-        }
-
         @media #{$mq-xl} {
-            font-size: 4.25rem;
+            font-size: 4rem;
         }
     }
 
@@ -147,7 +140,8 @@
 }
 
 .lite-text {
-    font-size: 1.25rem;
+    @include text-display-sm;
+    @include font-firefox;
     margin: 0 auto $spacing-lg;
     padding: $spacing-lg 0;
     line-height: 1.2;
@@ -157,12 +151,7 @@
     text-align: center;
     box-sizing: border-box;
 
-    @media #{$mq-md} {
-        font-size: 1.5rem;
-    }
-
     @media #{$mq-lg} {
-        font-size: 1.75rem;
         padding-left: $spacing-md;
         padding-right: $spacing-md;
         max-width: 546px;
