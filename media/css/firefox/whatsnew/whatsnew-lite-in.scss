@@ -64,29 +64,59 @@
 // Page content
 
 .lite-body {
-    background-color: #ade7e2;
-    background-image: url('/media/img/firefox/whatsnew/lite/background-in.jpg');
+    background-color: #8aebe2;
     background-position: top;
     color: $color-gray-80;
     position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    background-image: url('/media/img/firefox/whatsnew/lite/background-in.jpg');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 150%;
+    &:after {
+        display: none;
+        content: " ";
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        left: 50%;
+        margin-left: -1400px;
+        width: 2800px;
+        height: 100%;
+        max-width: 2800px;
+        background-image: url('/media/img/firefox/whatsnew/lite/photo-in.webp');
+        background-size: 75% auto;
+        background-repeat: no-repeat;
+        background-position: top center;
+
+        @media #{$mq-lg} {
+            display: block;
+        }
+
+        @media #{$mq-xl} {
+            display: block;
+            background-size: 100% auto;
+        }
+    }
+
 }
 
 .lite-content {
     max-width: 1600px;
     padding-left: $spacing-lg;
     padding-right: $spacing-lg;
-    background-repeat: no-repeat;
-    background-position: top right;
-    background-size: 42%;
+    position: relative;
+    z-index: 1;
     @media #{$mq-md} {
-        background-image: url('/media/img/firefox/whatsnew/lite/photo-in.webp');
         padding-bottom: $layout-xl;
     }
 }
 
 .lite-copy {
     @include text-body-md;
-    @media #{$mq-md} {
+    @media #{$mq-lg} {
         width: 58%;
     }
 }
@@ -165,19 +195,13 @@
         z-index: 1;
         display: none;
         background: radial-gradient(100% 100% at 50% 50%, #69e0e3 50%, transparent 50%);
-        height: 380px;
-        width: 380px;
         top: 0;
-        left: -40px;
-
-        @media #{$mq-md} {
-            display: block;
-        }
+        left: -70px;
+        height: 440px;
+        width: 440px;
 
         @media #{$mq-lg} {
-            left: -70px;
-            height: 440px;
-            width: 440px;
+            display: block;
         }
     }
 
