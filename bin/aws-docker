@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -eo pipefail
+docker run --rm \
+           -v "${HOME}/.aws:/home/webdev/.aws:ro" \
+           -v "$(pwd):/app" \
+           mozmeao/aws-cli:latest "$@"

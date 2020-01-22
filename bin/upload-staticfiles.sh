@@ -32,7 +32,7 @@ bin/move_hashed_staticfiles.py "${TMP_DIR}" "${TMP_DIR_HASHED}"
 
 for BUCKET in "${BUCKETS[@]}"; do
     # hashed filenames
-    aws s3 sync \
+    bin/aws-docker s3 sync \
         --acl public-read \
         --cache-control "max-age=315360000, public, immutable" \
         --profile bedrock-media \
@@ -40,7 +40,7 @@ for BUCKET in "${BUCKETS[@]}"; do
     # non-hashed filenames
     # may not need to include non-hashed files
     # TODO look into this if this is slow or makes the bucket too large
-    aws s3 sync \
+    bin/aws-docker s3 sync \
         --acl public-read \
         --cache-control "max-age=21600, public" \
         --profile bedrock-media \
