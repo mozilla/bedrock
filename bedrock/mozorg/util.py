@@ -15,7 +15,6 @@ import fxa.errors
 import fxa.oauth
 import fxa.profile
 
-import tweepy
 import commonware.log
 from lib import l10n_utils
 
@@ -128,48 +127,6 @@ def get_fb_like_locale(request_locale):
             lang = 'en_US'
 
     return lang
-
-
-def TwitterAPI():
-    """
-    Connect to the Twitter REST API using the Tweepy library.
-
-    https://dev.twitter.com/docs/api/1.1
-    http://pythonhosted.org/tweepy/html/
-    """
-    keys = settings.TWITTER_APP_KEYS
-    if keys['consumer_key']:
-        auth = tweepy.OAuthHandler(keys['consumer_key'], keys['consumer_secret'])
-        auth.set_access_token(keys['access_token'], keys['access_token_secret'])
-        return tweepy.API(auth)
-    else:
-        return None
-
-
-def get_tweets(account):
-    """Return a list of twitter status objects for an account.
-
-    :param account: twitter account to retrieve.
-    :returns: list of Status objects or None on error.
-    """
-    # API Docs https://dev.twitter.com/rest/reference/get/statuses/user_timeline
-    api = TwitterAPI()
-    if api is None:
-        return None
-
-    account_opts = {
-        'screen_name': account,
-        'include_rts': True,
-        'exclude_replies': True,
-        # set this high because replies are excluded
-        # after count is retrieved.
-        'count': 100,
-    }
-    account_opts.update(settings.TWITTER_ACCOUNT_OPTS.get(account, {}))
-    try:
-        return api.user_timeline(**account_opts)
-    except Exception:
-        return None
 
 
 def get_fxa_clients():
