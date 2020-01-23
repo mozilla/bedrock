@@ -4,18 +4,18 @@
 
 import pytest
 
-from pages.firefox.whatsnew.whatsnew_beta_72 import FirefoxWhatsNew72betaPage
+from pages.firefox.whatsnew.whatsnew_beta_74 import FirefoxWhatsNew74betaPage
 
 
 @pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
 @pytest.mark.nondestructive
 def test_signed_out_monitor_button_displayed(base_url, selenium):
-    page = FirefoxWhatsNew72betaPage(selenium, base_url, params='').open()
+    page = FirefoxWhatsNew74betaPage(selenium, base_url, params='').open()
     assert page.is_signed_out_monitor_button_displayed
 
 
 @pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
 @pytest.mark.nondestructive
 def test_signed_in_monitor_button_displayed(base_url, selenium):
-    page = FirefoxWhatsNew72betaPage(selenium, base_url, params='?signed-in=true').open()
+    page = FirefoxWhatsNew74betaPage(selenium, base_url, params='?signed-in=true').open()
     assert page.is_signed_in_monitor_button_displayed
