@@ -182,16 +182,16 @@ class TestWhatsNew(TestCase):
     def test_context_variables_whatsnew_beta(self, render_mock):
         """Should pass the correct context variables for beta channel"""
         req = self.rf.get('/en-US/firefox/whatsnew/')
-        self.view(req, version='72.0beta')
+        self.view(req, version='74.0beta')
         template = render_mock.call_args[0][1]
         ctx = render_mock.call_args[0][2]
         assert template == ['firefox/whatsnew/whatsnew-fx70-en.html']
-        assert ctx['version'] == '72.0beta'
-        assert ctx['analytics_version'] == '72beta'
-        assert ctx['entrypoint'] == 'mozilla.org-whatsnew72beta'
-        assert ctx['campaign'] == 'whatsnew72beta'
-        assert ctx['utm_params'] == ('utm_source=mozilla.org-whatsnew72beta&utm_medium=referral'
-                                     '&utm_campaign=whatsnew72beta&entrypoint=mozilla.org-whatsnew72beta')
+        assert ctx['version'] == '74.0beta'
+        assert ctx['analytics_version'] == '74beta'
+        assert ctx['entrypoint'] == 'mozilla.org-whatsnew74beta'
+        assert ctx['campaign'] == 'whatsnew74beta'
+        assert ctx['utm_params'] == ('utm_source=mozilla.org-whatsnew74beta&utm_medium=referral'
+                                     '&utm_campaign=whatsnew74beta&entrypoint=mozilla.org-whatsnew74beta')
 
     @override_settings(DEV=True)
     def test_context_variables_whatsnew_developer(self, render_mock):
@@ -240,10 +240,10 @@ class TestWhatsNew(TestCase):
     # begin beta whatsnew tests
 
     @override_settings(DEV=True)
-    def test_fx_72beta_whatsnew(self, render_mock):
+    def test_fx_74beta_whatsnew(self, render_mock):
         """Should show Fx70 whatsnew template"""
         req = self.rf.get('/en-US/firefox/whatsnew/')
-        self.view(req, version='72.0beta')
+        self.view(req, version='74.0beta')
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/whatsnew-fx70-en.html']
 

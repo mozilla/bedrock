@@ -7,9 +7,9 @@ from selenium.webdriver.common.by import By
 from pages.firefox.base import FirefoxBasePage
 
 
-class FirefoxWhatsNew72betaPage(FirefoxBasePage):
+class FirefoxWhatsNew74betaPage(FirefoxBasePage):
 
-    URL_TEMPLATE = '/{locale}/firefox/72.0beta/whatsnew/all/{params}'
+    URL_TEMPLATE = '/{locale}/firefox/74.0beta/whatsnew/all/{params}'
 
     _signed_out_monitor_button_locator = (By.CSS_SELECTOR, '.show-fxa-supported-signed-out .js-fxa-product-button')
     _signed_in_monitor_button_locator = (By.CSS_SELECTOR, '.show-fxa-supported-signed-in .js-fxa-product-button')
