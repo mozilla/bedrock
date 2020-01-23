@@ -32,24 +32,9 @@
     },
     {
       "files": [
-        "css/sandstone/oldIE.less",
-        "css/sandstone/old-ie.scss"
-      ],
-      "name": "oldIE"
-    },
-    {
-      "files": [
         "css/firefox/new/scene2.scss"
       ],
       "name": "firefox_new_scene2"
-    },
-    {
-      "files": [
-        "css/sandstone/sandstone-resp.less",
-        "css/sandstone/protocol-nav.scss",
-        "css/sandstone/protocol-footer.scss"
-      ],
-      "name": "responsive"
     },
     {
       "files": [

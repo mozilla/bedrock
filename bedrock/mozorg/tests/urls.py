@@ -17,5 +17,5 @@ urlpatterns = [
     url(r'', include('%s.urls' % settings.PROJECT_MODULE)),
 
     # Used by test_helper
-    page('base', 'base-resp.html'),
+    page('base', 'base-protocol.html'),
 ]
