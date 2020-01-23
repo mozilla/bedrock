@@ -100,7 +100,7 @@
 
   <aside class="mzp-l-content c-utilities">
     <p>
-    {% trans notes=url('firefox.notes') %}
+    {% trans notes=url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
       Lies die <a href="{{ notes }}">Versionshinweise</a>, um mehr über die Neuerungen in deinem Firefox Browser zu erfahren.
     {% endtrans %}
     </p>
