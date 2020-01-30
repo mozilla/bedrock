@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 
 from pages.base import BasePage
 
+from regions import modal
 
 class TechnologyPage(BasePage):
 
