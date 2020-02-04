@@ -56,6 +56,7 @@ STUB_VALUE_NAMES = [
     ('utm_content', '(not set)'),
     ('experiment', '(not set)'),
     ('variation', '(not set)'),
+    ('ua', '(not set)'),
 ]
 STUB_VALUE_RE = re.compile(r'^[a-z0-9-.%():_]+$', flags=re.IGNORECASE)
 
