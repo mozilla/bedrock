@@ -130,8 +130,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: $spacing-xl;
-    margin-bottom: $spacing-xl;
+    margin-top: $spacing-sm;
+    margin-bottom: $spacing-md;
+
+    @media #{$mq-sm} {
+        margin-bottom: $spacing-lg;
+    }
 
     h2 {
         @include text-display-lg;
@@ -156,11 +160,11 @@
         }
 
         @media #{$mq-lg} {
-            width: 130px;
+            width: 120px;
         }
 
         @media #{$mq-xl} {
-            width: 145px;
+            width: 135px;
         }
     }
 }
@@ -173,7 +177,7 @@
     line-height: 1.2;
     border-top: 2px solid $color-gray-80;
     border-bottom: 2px solid $color-gray-80;
-    max-width: 430px;
+    max-width: 480px;
     text-align: center;
     box-sizing: border-box;
 
@@ -181,10 +185,11 @@
         padding-left: $spacing-md;
         padding-right: $spacing-md;
         max-width: 546px;
+        margin-bottom: $spacing-xl;
     }
 
     @media #{$mq-xl} {
-        font-size: 2.5rem;
+        margin-bottom: $spacing-2xl;
     }
 }
 
@@ -192,7 +197,7 @@
     @include text-body-lg;
 
     position: relative;
-    margin: $spacing-2xl auto 0;
+    margin: 0 auto;
     max-width: 300px;
     text-align: center;
 
@@ -203,9 +208,9 @@
         display: none;
         background: radial-gradient(100% 100% at 50% 50%, #69e0e3 50%, transparent 50%);
         top: 0;
-        left: -70px;
-        height: 440px;
-        width: 440px;
+        left: -40px;
+        height: 380px;
+        width: 380px;
 
         @media #{$mq-lg} {
             display: block;
@@ -225,8 +230,6 @@
         box-sizing: border-box;
         max-width: 250px;
         margin-bottom: $spacing-sm;
-        @media #{$mq-lg} {
-            max-width: 100%;
-        }
+
     }
 }
