@@ -5,10 +5,10 @@
 (function(Mozilla) {
     'use strict';
 
-    Mozilla.Client.getFxaDetails(function(details){
-        if(details.setup){
+    Mozilla.Client.getFxaDetails(function(details) {
+        if (details.setup) {
             Mozilla.FxaProductButton.init();
-        }else{
+        } else {
             Mozilla.FxaForm.init();
         }
     });

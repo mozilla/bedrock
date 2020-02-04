@@ -534,8 +534,103 @@ describe('mozilla-client.js', function() {
             expect(typeof window.Mozilla.Client.FxaDetails.legacy).toEqual('boolean');
             expect(typeof window.Mozilla.Client.FxaDetails.mobile).toEqual('boolean');
             expect(typeof window.Mozilla.Client.FxaDetails.setup).toEqual('boolean');
-            expect(typeof window.Mozilla.Client.FxaDetails.desktopDevices).toEqual('boolean');
-            expect(typeof window.Mozilla.Client.FxaDetails.mobileDevices).toEqual('boolean');
+            expect(typeof window.Mozilla.Client.FxaDetails.browserServices.sync.desktopDevices).toEqual('boolean');
+            expect(typeof window.Mozilla.Client.FxaDetails.browserServices.sync.mobileDevices).toEqual('boolean');
+            expect(typeof window.Mozilla.Client.FxaDetails.browserServices.sync.totalDevices).toEqual('boolean');
+        });
+
+        it('should identify Firefox for desktop as expected', function() {
+            var callback1 = jasmine.createSpy('callback1');
+            spyOn(Mozilla.Client, '_isFirefoxDesktop').and.returnValue(true);
+
+            window.Mozilla.Client.getFxaDetails(callback1);
+            jasmine.clock().tick(500);
+            expect(callback1).toHaveBeenCalled();
+            expect(typeof window.Mozilla.Client.FxaDetails.firefox).toBeTruthy();
+        });
+
+        it('should identify Firefox for Android as expected', function() {
+            var callback1 = jasmine.createSpy('callback1');
+            spyOn(Mozilla.Client, '_isFirefoxAndroid').and.returnValue(true);
+
+            window.Mozilla.Client.getFxaDetails(callback1);
+            jasmine.clock().tick(500);
+            expect(callback1).toHaveBeenCalled();
+            expect(window.Mozilla.Client.FxaDetails.firefox).toBeTruthy();
+            expect(window.Mozilla.Client.FxaDetails.mobile).toEqual('android');
+        });
+
+        it('should identify Firefox for iOS as expected', function() {
+            var callback1 = jasmine.createSpy('callback1');
+            spyOn(Mozilla.Client, '_isFirefoxiOS').and.returnValue(true);
+
+            window.Mozilla.Client.getFxaDetails(callback1);
+            jasmine.clock().tick(500);
+            expect(callback1).toHaveBeenCalled();
+            expect(window.Mozilla.Client.FxaDetails.firefox).toBeTruthy();
+            expect(window.Mozilla.Client.FxaDetails.mobile).toEqual('ios');
+        });
+
+        it('should identify legacy Firefox browsers as expected', function() {
+            var callback1 = jasmine.createSpy('callback1');
+            spyOn(Mozilla.Client, '_isFirefoxDesktop').and.returnValue(true);
+            spyOn(Mozilla.Client, '_getFirefoxVersion').and.returnValue(Mozilla.Client.FxALastSupported - 1);
+
+            window.Mozilla.Client.getFxaDetails(callback1);
+            jasmine.clock().tick(500);
+            expect(callback1).toHaveBeenCalled();
+            expect(window.Mozilla.Client.FxaDetails.firefox).toBeTruthy();
+            expect(window.Mozilla.Client.FxaDetails.legacy).toBeTruthy();
+        });
+
+    });
+
+    describe('getFxaConnections', function () {
+
+        beforeEach(function () {
+            jasmine.clock().install();
+        });
+
+        afterEach(function () {
+            delete window.Mozilla.Client.FxaConnections;
+            jasmine.clock().uninstall();
+        });
+
+        it('should fire the callback function with a FxaConnections details object', function() {
+            var callback1 = jasmine.createSpy('callback1');
+
+            window.Mozilla.Client.getFxaConnections(callback1);
+            jasmine.clock().tick(2100);
+            expect(callback1).toHaveBeenCalled();
+            expect(typeof window.Mozilla.Client.FxaConnections.firefox).toEqual('boolean');
+            expect(typeof window.Mozilla.Client.FxaConnections.unsupported).toEqual('boolean');
+            expect(typeof window.Mozilla.Client.FxaConnections.setup).toEqual('boolean');
+            expect(typeof window.Mozilla.Client.FxaConnections.numOtherDevices).toEqual('boolean');
+            expect(typeof window.Mozilla.Client.FxaConnections.numDevicesByType).toEqual('object');
+            expect(typeof window.Mozilla.Client.FxaConnections.accountServices).toEqual('object');
+        });
+
+        it('should identify legacy Firefox browsers as expected', function() {
+            var callback1 = jasmine.createSpy('callback1');
+            spyOn(Mozilla.Client, '_isFirefoxDesktop').and.returnValue(true);
+            spyOn(Mozilla.Client, '_getFirefoxVersion').and.returnValue(72);
+
+            window.Mozilla.Client.getFxaConnections(callback1);
+            jasmine.clock().tick(2100);
+            expect(callback1).toHaveBeenCalled();
+            expect(window.Mozilla.Client.FxaConnections.firefox).toBeTruthy();
+            expect(window.Mozilla.Client.FxaConnections.unsupported).toBeTruthy();
+        });
+
+        it('should identify non Firefox browsers as expected', function() {
+            var callback1 = jasmine.createSpy('callback1');
+            spyOn(Mozilla.Client, '_isFirefoxDesktop').and.returnValue(false);
+
+            window.Mozilla.Client.getFxaConnections(callback1);
+            jasmine.clock().tick(2100);
+            expect(callback1).toHaveBeenCalled();
+            expect(window.Mozilla.Client.FxaConnections.firefox).toBeFalsy();
+            expect(window.Mozilla.Client.FxaConnections.unsupported).toBeTruthy();
         });
 
     });
