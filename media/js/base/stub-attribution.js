@@ -156,6 +156,38 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     /**
+     * Returns a browser name based on coarse UA string detection for only major browsers.
+     * Other browsers (or modified UAs) that have strings that look like one of the top default user agent strings are treated as false positives.
+     * @param {String} ua - Optional user agent string to facilitate testing.
+     * @returns {String} - Browser name.
+     */
+    StubAttribution.getUserAgent = function(ua) {
+        ua = typeof ua !== 'undefined' ? ua : navigator.userAgent;
+
+        if (/MSIE|Trident/i.test(ua)) {
+            return 'ie';
+        }
+
+        if (/Edg|Edge/i.test(ua)) {
+            return 'edge';
+        }
+
+        if (/Firefox/.test(ua)) {
+            return 'firefox';
+        }
+
+        if (/Opera/.test(ua)) {
+            return 'opera';
+        }
+
+        if (/Chrome/.test(ua)) {
+            return 'chrome';
+        }
+
+        return 'other';
+    };
+
+    /**
      * Gets utm parameters and referrer information from the web page if they exist.
      * @param {String} ref - Optional referrer to facilitate testing.
      * @return {Object} - Stub attribution data object.
@@ -166,6 +198,7 @@ if (typeof window.Mozilla === 'undefined') {
         var experiment = params.get('experiment');
         var variation = params.get('variation');
         var referrer = typeof ref !== 'undefined' ? ref : document.referrer;
+        var ua = StubAttribution.getUserAgent();
 
         /* eslint-disable camelcase */
         var data = {
@@ -174,6 +207,7 @@ if (typeof window.Mozilla === 'undefined') {
             utm_campaign: utms.utm_campaign,
             utm_content: utms.utm_content,
             referrer: referrer,
+            ua : ua,
             experiment: experiment,
             variation: variation
         };

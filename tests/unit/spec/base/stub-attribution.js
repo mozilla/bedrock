@@ -26,11 +26,12 @@ describe('stub-attribution.js', function() {
         beforeEach(function() {
             /* eslint-disable camelcase */
             data = {
-                utm_source: 'foo',
-                utm_medium: 'bar',
-                utm_campaign: 'fizz',
-                utm_content: 'buzz',
-                referrer: 'https://www.google.com'
+                utm_source: 'desktop-snippet',
+                utm_medium: 'referral',
+                utm_campaign: 'F100_4242_otherstuff_in_here',
+                utm_content: 'rel-esr',
+                referrer: '',
+                ua: 'chrome',
             };
             /* eslint-enable camelcase */
 
@@ -138,6 +139,43 @@ describe('stub-attribution.js', function() {
         });
     });
 
+    describe('getUserAgent', function() {
+
+        var ie8 = 'Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0; GTB7.4; InfoPath.2; SV1; .NET CLR 3.3.69573; WOW64; en-US)';
+        var ie9 = 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; Media Center PC 6.0; InfoPath.3; MS-RTC LM 8; Zune 4.7)';
+        var ie10 = 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 7.0; InfoPath.3; .NET CLR 3.1.40767; Trident/6.0; en-IN)';
+        var ie11 = 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko';
+        var ff = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0';
+        var opera = 'Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16';
+        var chrome = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36';
+        var edgeium = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.74 Safari/537.36 Edg/79.0.309.43';
+        var edge = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14931';
+
+        it('should identify Internet Explorer', function() {
+            expect(Mozilla.StubAttribution.getUserAgent(ie8)).toEqual('ie');
+            expect(Mozilla.StubAttribution.getUserAgent(ie9)).toEqual('ie');
+            expect(Mozilla.StubAttribution.getUserAgent(ie10)).toEqual('ie');
+            expect(Mozilla.StubAttribution.getUserAgent(ie11)).toEqual('ie');
+        });
+
+        it('should identify Edge', function() {
+            expect(Mozilla.StubAttribution.getUserAgent(edge)).toEqual('edge');
+            expect(Mozilla.StubAttribution.getUserAgent(edgeium)).toEqual('edge');
+        });
+
+        it('should identify Firefox', function() {
+            expect(Mozilla.StubAttribution.getUserAgent(ff)).toEqual('firefox');
+        });
+
+        it('should identify Opera', function() {
+            expect(Mozilla.StubAttribution.getUserAgent(opera)).toEqual('opera');
+        });
+
+        it('should identify Chrome', function() {
+            expect(Mozilla.StubAttribution.getUserAgent(chrome)).toEqual('chrome');
+        });
+    });
+
     describe('getAttributionData', function() {
 
         it('should return attribution data if utm params are present', function() {
@@ -159,12 +197,14 @@ describe('stub-attribution.js', function() {
                 utm_campaign: 'F100_4242_otherstuff_in_here',
                 utm_content: 'rel-esr',
                 referrer: '',
+                ua: 'chrome',
                 experiment: undefined,
                 variation: undefined
             };
             /* eslint-enable camelcase */
 
             spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(utms);
+            spyOn(Mozilla.StubAttribution, 'getUserAgent').and.returnValue('chrome');
             var result = Mozilla.StubAttribution.getAttributionData(referrer);
             expect(result).toEqual(data);
         });
@@ -188,12 +228,14 @@ describe('stub-attribution.js', function() {
                 utm_campaign: undefined,
                 utm_content: undefined,
                 referrer: 'https://www.mozilla.org/en-US/',
+                ua: 'chrome',
                 experiment: undefined,
                 variation: undefined
             };
             /* eslint-enable camelcase */
 
             spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(utms);
+            spyOn(Mozilla.StubAttribution, 'getUserAgent').and.returnValue('chrome');
             var result = Mozilla.StubAttribution.getAttributionData(referrer);
             expect(result).toEqual(data);
         });
@@ -217,12 +259,14 @@ describe('stub-attribution.js', function() {
                 utm_campaign: undefined,
                 utm_content: undefined,
                 referrer: '',
+                ua: 'chrome',
                 experiment: undefined,
                 variation: undefined
             };
             /* eslint-enable camelcase */
 
             spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(utms);
+            spyOn(Mozilla.StubAttribution, 'getUserAgent').and.returnValue('chrome');
             var result = Mozilla.StubAttribution.getAttributionData(referrer);
             expect(result).toEqual(data);
         });
@@ -246,6 +290,7 @@ describe('stub-attribution.js', function() {
                 utm_campaign: undefined,
                 utm_content: undefined,
                 referrer: '',
+                ua: 'chrome',
                 experiment: 'firefox-new',
                 variation: 1
             };
@@ -255,6 +300,7 @@ describe('stub-attribution.js', function() {
             spyOn(window._SearchParams.prototype, 'get').and.callFake(function(key) {
                 return key === 'experiment' ? 'firefox-new' : 1;
             });
+            spyOn(Mozilla.StubAttribution, 'getUserAgent').and.returnValue('chrome');
             var result = Mozilla.StubAttribution.getAttributionData(referrer);
             expect(result).toEqual(data);
         });
