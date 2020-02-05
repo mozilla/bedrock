@@ -32,6 +32,8 @@ def test_localized_download_links(path, base_url):
     soup = BeautifulSoup(r.content, 'html.parser')
     lists = soup.find('div', class_='c-all-downloads')
     urls = [a['href'] for a in lists.find_all(attrs={'data-link-type': 'download'})]
+    # Issue #8486
+    urls = [url for url in urls if '?product=fennec-nightly-latest' not in url]
     assert urls
     for url in urls:
         r = requests.head(url, allow_redirects=True, timeout=TIMEOUT)
