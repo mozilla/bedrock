@@ -11,11 +11,3 @@ from pages.firefox.enterprise.landing import EnterprisePage
 def test_primary_download_button_displayed(base_url, selenium):
     page = EnterprisePage(selenium, base_url).open()
     assert page.is_primary_download_button_displayed
-
-
-@pytest.mark.nondestructive
-def test_package_download_buttons_displayed(base_url, selenium):
-    page = EnterprisePage(selenium, base_url).open()
-    assert page.is_package_win64_download_button_displayed
-    assert page.is_package_mac_download_button_displayed
-    assert page.is_package_win32_download_button_displayed

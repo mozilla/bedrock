@@ -73,7 +73,7 @@
 
   <div class="mzp-l-content">
     <section id="download" class="enterprise-section enterprise-download">
-      <h2 class="enterprise-section-title">{{ _('Enterprise package downloads') }}</h2>
+      <h2 class="enterprise-section-title">{{ _('Enterprise downloads') }}</h2>
 
       <ul class="mzp-l-card-third enterprise-download-lists">
         {% call picto_card(
@@ -83,23 +83,14 @@
           custom_desc=True
         ) %}
           <ul class="mzp-u-list-styled">
-            <li>{{ _('The latest Firefox browser') }}</li>
+            <li>{{ _('The latest <a href="%s">Firefox browser</a>')|format('https://download.mozilla.org/?product=firefox-latest-ssl&os=win64') }}</li>
             <li>{{ _('The latest <a href="%s">Firefox Extended Support Release (ESR)</a>')|format('https://support.mozilla.org/kb/firefox-esr-release-cycle') }}</li>
             <li><a href="https://support.mozilla.org/kb/deploy-firefox-msi-installers">{{ _('MSI Installer') }}</a></li>
-            <li>{{ _('<a href="%s">Legacy browser</a> support')|format('https://support.mozilla.org/kb/legacy-browser-support-extension-windows') }}</li>
+            <li><a href="https://support.mozilla.org/kb/legacy-browser-support-extension-windows">{{ _('Legacy browser support') }}</a></li>
             <li><a href="https://support.mozilla.org/kb/customizing-firefox-using-group-policy-windows">{{ _('ADMX templates') }}</a></li>
-            <li>{{ _('Deployment guide') }}</li>
-            <li>{{ _('Policy documentation') }}</li>
+            <li><a href="https://assets.mozilla.net/pdf/Firefox.for.Enterprise.Browser.Deployment.Guide.pdf">{{ _('Deployment guide') }}</a></li>
+            <li><a href="https://github.com/mozilla/policy-templates/blob/master/README.md">{{ _('Policy documentation') }}</a></li>
           </ul>
-
-          <div class="cta-container">
-            <div class="mzp-c-button-download-container">
-              <a id="package-win64-download-button" href="https://mozilla.box.com/s/5uvc1hjsimtx3wvs9qdpbda47h2tix5c" class="mzp-c-button mzp-t-product" data-cta-type="Enterprise-Package" data-cta-text="Windows64" data-cta-position="Primary">
-                {{ _('Download') }}
-              </a>
-              <a href="{{ url('privacy.notices.firefox') }}" class="mzp-c-button-download-privacy-link">{{ _('Firefox Privacy Notice') }}</a>
-            </div>
-          </div>
 
         {% endcall %}
 
@@ -110,22 +101,13 @@
           custom_desc=True
         ) %}
           <ul class="mzp-u-list-styled">
-            <li>{{ _('The latest Firefox browser') }}</li>
-            <li>{{ _('The latest Firefox ESR') }}</li>
-            <li>{{ _('Sample plist for configuration profile') }}</li>
-            <li>{{ _('PKG installer') }}</li>
-            <li>{{ _('Deployment guide') }}</li>
-            <li>{{ _('Policy documentation') }}</li>
+            <li>{{ _('The latest <a href="%s">Firefox browser</a>')|format('https://download.mozilla.org/?product=firefox-latest-ssl&os=win') }}</li>
+            <li>{{ _('The latest <a href="%s">Firefox Extended Support Release (ESR)</a>')|format('https://support.mozilla.org/kb/firefox-esr-release-cycle') }}</li>
+            <li>{{ _('Sample <a href="%s">plist for configuration profile</a>')|format('https://github.com/mozilla/policy-templates/blob/master/mac/org.mozilla.firefox.plist') }}</li>
+            <li><a href="https://support.mozilla.org/kb/deploying-firefox-macos-using-pkg-and-jamf">{{ _('PKG installer') }}</a></li>
+            <li><a href="https://assets.mozilla.net/pdf/Firefox.for.Enterprise.Browser.Deployment.Guide.pdf">{{ _('Deployment guide') }}</a></li>
+            <li><a href="https://github.com/mozilla/policy-templates/blob/master/README.md">{{ _('Policy documentation') }}</a></li>
           </ul>
-
-          <div class="cta-container">
-            <div class="mzp-c-button-download-container">
-              <a id="package-mac-download-button" href="https://mozilla.box.com/s/qd58fn88r0zxg3pw132ul489egxqvi6k" class="mzp-c-button mzp-t-product" data-cta-type="Enterprise-Package" data-cta-text="Mac" data-cta-position="Primary">
-                {{ _('Download') }}
-              </a>
-              <a href="{{ url('privacy.notices.firefox') }}" class="mzp-c-button-download-privacy-link">{{ _('Firefox Privacy Notice') }}</a>
-            </div>
-          </div>
 
         {% endcall %}
 
@@ -136,23 +118,15 @@
           custom_desc=True
         ) %}
           <ul class="mzp-u-list-styled">
-            <li>{{ _('The latest Firefox browser') }}</li>
-            <li>{{ _('The latest Firefox ESR') }}</li>
-            <li>{{ _('MSI Installer') }}</li>
-            <li>{{ _('Legacy browser support') }}</li>
-            <li>{{ _('ADMX templates') }}</li>
-            <li>{{ _('Deployment guide') }}</li>
-            <li>{{ _('Policy documentation') }}</li>
+            <li>{{ _('The latest <a href="%s">Firefox browser</a>')|format('https://download.mozilla.org/?product=firefox-latest-ssl&os=osx') }}</li>
+            <li>{{ _('The latest <a href="%s">Firefox Extended Support Release (ESR)</a>')|format('https://support.mozilla.org/kb/firefox-esr-release-cycle') }}</li>
+            <li><a href="https://support.mozilla.org/kb/deploy-firefox-msi-installers">{{ _('MSI Installer') }}</a></li>
+            <li><a href="https://support.mozilla.org/kb/legacy-browser-support-extension-windows">{{ _('Legacy browser support') }}</a></li>
+            <li><a href="https://support.mozilla.org/kb/customizing-firefox-using-group-policy-windows">{{ _('ADMX templates') }}</a></li>
+            <li><a href="https://assets.mozilla.net/pdf/Firefox.for.Enterprise.Browser.Deployment.Guide.pdf">{{ _('Deployment guide') }}</a></li>
+            <li><a href="https://github.com/mozilla/policy-templates/blob/master/README.md">{{ _('Policy documentation') }}</a></li>
           </ul>
 
-          <div class="cta-container">
-            <div class="mzp-c-button-download-container">
-              <a id="package-win32-download-button" href="https://mozilla.box.com/s/yjerfy3sgre39mve7n5jjtcy9p10vf3k" class="mzp-c-button mzp-t-product" data-cta-type="Enterprise-Package" data-cta-text="Windows32" data-cta-position="Primary">
-                {{ _('Download') }}
-              </a>
-              <a href="{{ url('privacy.notices.firefox') }}" class="mzp-c-button-download-privacy-link">{{ _('Firefox Privacy Notice') }}</a>
-            </div>
-          </div>
         {% endcall %}
       </ul>
 
