@@ -664,12 +664,6 @@
     },
     {
       "files": [
-        "css/firefox/enterprise/sla.scss"
-      ],
-      "name": "firefox-enterprise-sla"
-    },
-    {
-      "files": [
         "css/firefox/releasenotes.scss"
       ],
       "name": "firefox_releasenotes"
@@ -1583,12 +1577,6 @@
         "js/firefox/enterprise/landing.js"
       ],
       "name": "firefox-enterprise"
-    },
-    {
-      "files": [
-        "js/firefox/enterprise/sla.js"
-      ],
-      "name": "firefox-enterprise-sla"
     },
     {
       "files": [
