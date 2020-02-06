@@ -73,7 +73,7 @@
 
   <div class="mzp-l-content">
     <section id="download" class="enterprise-section enterprise-download">
-      <h2 class="enterprise-section-title">{{ _('Enterprise package downloads') }}</h2>
+      <h2 class="enterprise-section-title">{{ _('Enterprise downloads') }}</h2>
 
       <ul class="mzp-l-card-third enterprise-download-lists">
         {% call picto_card(
@@ -92,15 +92,6 @@
             <li>{{ _('Policy documentation') }}</li>
           </ul>
 
-          <div class="cta-container">
-            <div class="mzp-c-button-download-container">
-              <a id="package-win64-download-button" href="https://mozilla.box.com/s/5uvc1hjsimtx3wvs9qdpbda47h2tix5c" class="mzp-c-button mzp-t-product" data-cta-type="Enterprise-Package" data-cta-text="Windows64" data-cta-position="Primary">
-                {{ _('Download') }}
-              </a>
-              <a href="{{ url('privacy.notices.firefox') }}" class="mzp-c-button-download-privacy-link">{{ _('Firefox Privacy Notice') }}</a>
-            </div>
-          </div>
-
         {% endcall %}
 
         {% call picto_card(
@@ -117,15 +108,6 @@
             <li>{{ _('Deployment guide') }}</li>
             <li>{{ _('Policy documentation') }}</li>
           </ul>
-
-          <div class="cta-container">
-            <div class="mzp-c-button-download-container">
-              <a id="package-mac-download-button" href="https://mozilla.box.com/s/qd58fn88r0zxg3pw132ul489egxqvi6k" class="mzp-c-button mzp-t-product" data-cta-type="Enterprise-Package" data-cta-text="Mac" data-cta-position="Primary">
-                {{ _('Download') }}
-              </a>
-              <a href="{{ url('privacy.notices.firefox') }}" class="mzp-c-button-download-privacy-link">{{ _('Firefox Privacy Notice') }}</a>
-            </div>
-          </div>
 
         {% endcall %}
 
@@ -145,14 +127,6 @@
             <li>{{ _('Policy documentation') }}</li>
           </ul>
 
-          <div class="cta-container">
-            <div class="mzp-c-button-download-container">
-              <a id="package-win32-download-button" href="https://mozilla.box.com/s/yjerfy3sgre39mve7n5jjtcy9p10vf3k" class="mzp-c-button mzp-t-product" data-cta-type="Enterprise-Package" data-cta-text="Windows32" data-cta-position="Primary">
-                {{ _('Download') }}
-              </a>
-              <a href="{{ url('privacy.notices.firefox') }}" class="mzp-c-button-download-privacy-link">{{ _('Firefox Privacy Notice') }}</a>
-            </div>
-          </div>
         {% endcall %}
       </ul>
 
