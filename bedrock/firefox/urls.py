@@ -128,7 +128,6 @@ urlpatterns = (
     page('firefox/linux', 'firefox/new/scene1_linux.html'),
 
     page('firefox/windows-64-bit', 'firefox/windows-64-bit.html'),
-    page('firefox/enterprise/sla', 'firefox/enterprise/sla.html'),
 
     page('firefox/features/safebrowser', 'firefox/features/safebrowser.html'),
     page('firefox/best-browser', 'firefox/best-browser.html'),
