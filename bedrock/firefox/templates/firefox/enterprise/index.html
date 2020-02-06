@@ -101,12 +101,12 @@
           custom_desc=True
         ) %}
           <ul class="mzp-u-list-styled">
-            <li>{{ _('The latest Firefox browser') }}</li>
-            <li>{{ _('The latest Firefox ESR') }}</li>
-            <li>{{ _('Sample plist for configuration profile') }}</li>
-            <li>{{ _('PKG installer') }}</li>
-            <li>{{ _('Deployment guide') }}</li>
-            <li>{{ _('Policy documentation') }}</li>
+            <li>{{ _('The latest <a href="%s">Firefox browser</a>')|format('https://download.mozilla.org/?product=firefox-latest-ssl&os=win') }}</li>
+            <li>{{ _('The latest <a href="%s">Firefox Extended Support Release (ESR)</a>')|format('https://support.mozilla.org/kb/firefox-esr-release-cycle') }}</li>
+            <li>{{ _('Sample <a href="%s">plist for configuration profile</a>')|format('https://github.com/mozilla/policy-templates/blob/master/mac/org.mozilla.firefox.plist') }}</li>
+            <li>{{ _('<a href="%s">PKG installer</a>')|format('https://support.mozilla.org/kb/deploying-firefox-macos-using-pkg-and-jamf') }}</li>
+            {# <li>{{ _('Deployment guide') }}</li> -#}
+            <li>{{ _('<a href="%s">Policy documentation</a>'|format('https://github.com/mozilla/policy-templates/blob/master/README.md')) }}</li>
           </ul>
 
         {% endcall %}
