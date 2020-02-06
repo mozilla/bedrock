@@ -58,74 +58,26 @@ that is used to sign the attribution code must be set via an environment variabl
 Measuring campaigns and experiments
 -----------------------------------
 
-.. Note::
-
-    If you are performing an A/B test you will also need to configure traffic cop as outlined on `A/B Testing <https://bedrock.readthedocs.io/en/latest/abtest.html>`_.
-
 Stub Attribution was originally designed for measuring the effectiveness of marketing
 campaigns where the top of the funnel was outside the remit of www.mozilla.org. For
 these types of campaigns, stub attribution requires zero configuration. It just works
 (as configured in  `/media/js/base/stub-attribution.js`) in the background and passes
 along any attribution data that exists.
 
-For campaigns or experiments that originate on www.mozilla.org, Stub Attribution
-requires some extra configuration. We want to avoid using first-party utm parameters
-on mozilla.org pages, since those create new sessions in Google Analytics and can
-confound data. To work around this, there is a custom stub attribution script that can
-be used to pass custom data to the authentication service, avoiding the need for any
-first-party utm parameters.
-
-To use the custom attribution script, override the regular stub attribution block in
-the page template where an experiment exists:
-
-.. code-block:: html
-
-    {% block stub_attribution %}
-      {% if settings.STUB_ATTRIBUTION_RATE %}
-        <!--[if !IE]><!-->
-        {{ js_bundle('stub-attribution-custom') }}
-        {{ js_bundle('my-page-experiment-script') }}
-        <!--<![endif]-->
-      {% endif %}
-    {% endblock %}
-
-The `stub-attribution-custom` bundle contains the code that enables passing custom data
-to the authentication service. You can then use that code in `my-page-experiment-script`,
-or whatever you decide to call the experiment bundle:
+More recently, the ability to measure the effectiveness of experiments was also added
+as a feature. This is achieved by adding optional ``experiment`` and ``variation``
+parameters to a page URL. Additionally, these values can also be set via JavaScript
+using:
 
 .. code-block:: javascript
 
-    var params = {
-        utm_source: 'www.mozilla.org',
-        utm_medium: 'download_button',
-        utm_campaign: 'download_thanks_page',
-        utm_content: 'download_thanks_install_experiment-v1'
-    };
-
-    // an optional callback for tracking when the experiment is seen in GA.
-    function callback() {
-        window.dataLayer.push({
-            'data-ex-name': 'download_thanks_install_experiment',
-            'data-ex-variant': 'v1'
-        });
-    }
-
-    Mozilla.CustomStubAttribution.init(params, callback);
-
-Authenticating custom data this way will override any existing stub attribution cookie
-a visitor may have.
+    Mozilla.StubAttribution.experimentName = 'experiment-name';
+    Mozilla.StubAttribution.experimentVariation = 'v1';
 
 .. Note::
 
-    There are some exceptions in the way that the custom attribution script behaves.
-    Existing utm data will not be overwritten if there is already a `utm_content`
-    parameter in the page URL, or if the `utm_source` is from `addons.mozilla.org`.
-    The custom script will follow the regular attribution flow in this scenario and
-    will not modify anything. If any other utm parameters already exist on the page URL,
-    those will be passed through to the custom attribution script and will take
-    precedence over any custom values. This is to try and preserve as much existing
-    information as possible, whilst still retaining the `utm_content` value that is
-    essential to attributing an experiment.
+    When setting a experiment parameters using JavaScript like in the example above,
+    it must be done prior to calling ``Mozilla.StubAttribution.init()``.
 
 .. _AMO: https://addons.mozilla.org/firefox/
 .. _Return to AMO: https://wiki.mozilla.org/Add-ons/QA/Testplan/Return_to_AMO

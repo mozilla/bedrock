@@ -18,6 +18,12 @@
 
 {% block body_class %}mzp-t-mozilla{% endblock %}
 
+{% block stub_attribution %}
+  {% if settings.STUB_ATTRIBUTION_RATE %}
+    {{ js_bundle('stub-attribution-convert') }}
+  {% endif %}
+{% endblock %}
+
 {% block site_js %}
 <!--[if !IE]><!-->
   {{ js_bundle('common-protocol-no-jquery') }}
