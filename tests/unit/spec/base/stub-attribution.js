@@ -146,7 +146,6 @@ describe('stub-attribution.js', function() {
         var ie10 = 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 7.0; InfoPath.3; .NET CLR 3.1.40767; Trident/6.0; en-IN)';
         var ie11 = 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko';
         var ff = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0';
-        var opera = 'Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16';
         var chrome = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36';
         var edgeium = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.74 Safari/537.36 Edg/79.0.309.43';
         var edge = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14931';
@@ -165,10 +164,6 @@ describe('stub-attribution.js', function() {
 
         it('should identify Firefox', function() {
             expect(Mozilla.StubAttribution.getUserAgent(ff)).toEqual('firefox');
-        });
-
-        it('should identify Opera', function() {
-            expect(Mozilla.StubAttribution.getUserAgent(opera)).toEqual('opera');
         });
 
         it('should identify Chrome', function() {

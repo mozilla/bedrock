@@ -176,10 +176,6 @@ if (typeof window.Mozilla === 'undefined') {
             return 'firefox';
         }
 
-        if (/Opera/.test(ua)) {
-            return 'opera';
-        }
-
         if (/Chrome/.test(ua)) {
             return 'chrome';
         }
