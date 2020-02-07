@@ -9,6 +9,10 @@
 
 {% block page_title %}{{ _('404: Page Not Found') }}{% endblock %}
 
+{% block page_css %}
+  {{ css_bundle('page_not_found') }}
+{% endblock %}
+
 {# 404 pages must not include canonical and hreflang x-default: https://github.com/mozilla/bedrock/issues/5895 #}
 {% block canonical_urls %}{% endblock %}
 
