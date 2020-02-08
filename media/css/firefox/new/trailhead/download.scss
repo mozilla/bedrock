@@ -21,6 +21,10 @@ $image-path: '/media/protocol/img';
         background-position: top center;
         background-repeat: no-repeat;
         padding-top: $layout-xl;
+
+        h1 {
+            font-size: inherit;
+        }
     }
 
     .mzp-c-hero-image img {
@@ -82,7 +86,7 @@ $image-path: '/media/protocol/img';
 
         .mzp-c-hero-title {
             @include bidi(((background-position, top left, top right),));
-            max-width: 9em;
+            // max-width: 9em;
         }
 
         .mzp-c-hero-desc {
@@ -146,25 +150,35 @@ html.ios .mzp-c-hero {
     }
 }
 
-.join .mzp-c-card-picto-content::before {
-    height: 104px;
-    width: 104px;
-    margin-left: -52px;
-    background-image: url('/media/img/firefox/new/trailhead/icon-join.svg');
+.mzp-c-card-picto .mzp-c-card-picto-content::before {
+    @include background-size(96px 96px);
+    height: 96px;
+    margin-left: -48px;
+    width: 96px;
 }
 
-.lockwise .mzp-c-card-picto-content::before {
-    height: 96px;
-    width: 152px;
-    margin-left: -76px;
-    background-image: url('/media/img/firefox/new/trailhead/icon-lockwise.svg');
+.blocker .mzp-c-card-picto-content::before {
+    background-image: url('/media/img/firefox/new/protocol/icon-blocker.svg');
+ }
+
+ .faster .mzp-c-card-picto-content::before {
+    background-image: url('/media/img/firefox/new/protocol/icon-faster.svg');
+}
+
+.lighter .mzp-c-card-picto-content::before {
+    background-image: url('/media/img/firefox/new/protocol/icon-lighter.svg');
+}
+
+.open-source .mzp-c-card-picto-content::before {
+    background-image: url('/media/img/firefox/new/protocol/icon-opensource.svg');
 }
 
 .private .mzp-c-card-picto-content::before {
-    height: 83px;
-    width: 113px;
-    margin-left: -56px;
-    background-image: url('/media/img/firefox/new/trailhead/icon-private.svg');
+    background-image: url('/media/img/firefox/new/protocol/icon-private.svg');
+}
+
+.seamless .mzp-c-card-picto-content::before {
+    background-image: url('/media/img/firefox/new/protocol/icon-seamless.svg');
 }
 
 /* Skyline picto card updates */
@@ -185,19 +199,11 @@ html.ios .mzp-c-hero {
 }
 
 .skyline-lockwise .mzp-c-card-picto-content::before {
-    @include background-size(96px 96px);
     background-image: url('/media/protocol/img/logos/firefox/lockwise/logo.svg');
-    height: 96px;
-    margin-left: -48px;
-    width: 96px;
 }
 
 .skyline-monitor .mzp-c-card-picto-content::before {
-    @include background-size(96px 96px);
     background-image: url('/media/protocol/img/logos/firefox/monitor/logo.svg');
-    height: 96px;
-    margin-left: -48px;
-    width: 96px;
 }
 
 //* ====================================================================== */
@@ -257,7 +263,7 @@ html.ios .mzp-c-hero {
         a:link,
         a:visited {
             @include text-body-md;
-            background: url('/media/img/firefox/new/down-arrow-blue.svg') left center no-repeat;
+            background: url('/media/img/firefox/new/trailhead/down-arrow-blue.svg') left center no-repeat;
             @include background-size(20px 16px);
             color: $color-blue-50;
             display: inline-block;
@@ -402,4 +408,3 @@ html.ios .mzp-c-hero {
         max-width: 580px;
     }
 }
-

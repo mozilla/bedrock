@@ -1,0 +1,72 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros-protocol.html" import call_out, picto_card with context %}
+
+{% add_lang_files "firefox/new/quantum" %}
+
+{% extends "firefox/new/protocol/base.html" %}
+
+{# "thanks" page should not be indexed to avoid it appearing in search results: issue 7024 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block extrahead %}
+  {{ super() }}
+  {{ css_bundle('firefox_new_thanks_protocol') }}
+{% endblock %}
+
+{% block string_data %}
+  data-pixels="{% for pixel in settings.TRACKING_PIXELS %}{{ pixel }}{% if not loop.last %}::{% endif %}{% endfor %}"
+{% endblock %}
+
+{% block site_header %}
+  {% with hide_nav_download_button=True %}
+    {% include 'includes/protocol/navigation/menu-firefox/index.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block content %}
+<main role="main mzp-t-firefox">
+  {% block download_status %}
+  <div class="mzp-l-content">
+    <p class="c-notification t-warning unsupported">
+      {{ _('You’re using an insecure, outdated operating system <a href="%(url)s">no longer supported by Firefox</a>.')|format(url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista') }}
+    </p>
+    <p class="c-notification t-success auto-download">
+      {# fallback_url is replaced by the platform download link via JS, but if
+         something fails the user should still get a link to a working download path. #}
+
+        {% if l10n_has_tag('firefox_new_try_again_link_020818') %}
+         {% trans %}
+           Your download should begin automatically. Didn’t work? <a id="{{ id }}" href="{{ fallback_url }}">Try downloading again</a>.
+         {% endtrans %}
+       {% else %}
+         {% trans %}
+           Your download should begin automatically. If it doesn’t, <a id="{{ id }}" href="{{ fallback_url }}">click here</a>.
+         {% endtrans %}
+       {% endif %}
+    </p>
+  </div>
+  {% endblock %}
+
+  {% block main_content %}
+  {% endblock %}
+
+  {# button needs to be on the page for the JS auto-download to work #}
+  <div id="download-button-wrapper-desktop">
+    {{ download_firefox(force_direct=true, dom_id='primary-download-button') }}
+  </div>
+
+  <p class="mzp-l-content download-another-language-link">
+    <a href="{{ firefox_url('desktop', 'all') }}">{{_('Download in another language') }}</a>
+  </p>
+</main>
+{% endblock %}
+
+{% block js %}
+  {% if switch('tracking-pixel') %}
+    {{ js_bundle('firefox_new_pixel') }}
+  {% endif %}
+  {{ js_bundle('firefox_new_thanks') }}
+{% endblock %}

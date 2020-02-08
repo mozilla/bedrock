@@ -1,0 +1,46 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/new/quantum" %}
+
+{% extends "firefox/new/protocol/base_download.html" %}
+
+{% block experiments %}{% endblock %}
+
+{% if l10n_has_tag('platform_strings_04232019') %}
+
+  {# L10n: /firefox/linux/ HTML page title #}
+  {% block page_title_full %}{{ _('Download Mozilla Firefox for Linux') + ' - ' + _('Free Web Browser') }}{% endblock %}
+
+  {# L10n: /firefox/linux/ HTML page description #}
+  {% set meta_desc = _('Download Mozilla Firefox for Linux, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox for Linux today!') %}
+
+  {# L10n: /firefox/linux/ social sharing title #}
+  {% set og_title = _('Download the fastest Firefox for Linux ever') %}
+
+  {# L10n: /firefox/linux/ social sharing description #}
+  {% set og_desc = _('Faster page loading, less memory usage and packed with features, the new Firefox for Linux is here.') %}
+
+  {# hero #}
+  {# L10n: /firefox/linux/ main page title. #}
+  {% set hero_title = _('Firefox for Linux') %}
+  {% set hero_tagline = _('Own your online life.') %}
+
+  {% set card1_title = _('Privacy - more than a policy') %}
+  {% set card1_desc = _('Your life, your business. Firefox blocks third-party tracking cookies on Linux.') %}
+  {% set card1_class = 'private' %}
+
+  {% set card2_title = _('2x Faster') %}
+  {% set card2_desc = _('Speed, meet security. Firefox is two times faster with 30% less memory than Chrome.') %}
+  {% set card2_class = 'faster' %}
+
+  {% set card3_title = _('Open source') %}
+  {% set card3_desc = _('Look under the hood. Like Linux, Firefox features are open source.') %}
+  {% set card3_class = 'open-source' %}
+
+{% endif %}
+
+{% block structured_data %}
+  {% include 'includes/structured-data/software/firefox-linux-software.json' %}
+{% endblock %}

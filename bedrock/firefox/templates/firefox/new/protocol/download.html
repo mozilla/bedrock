@@ -1,0 +1,19 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% add_lang_files "firefox/new/quantum" %}
+
+{% extends "firefox/new/protocol/base_download.html" %}
+
+{% block experiments %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{# hero #}
+{% set hero_tagline = hero_tagline or _('Fast for good.') %}
+
+{# card3 #}
+{% if l10n_has_tag('truly_removal_2019') %}
+  {% set card3_desc = _('Private Browsing with Tracking Protection') %}
+{% endif %}

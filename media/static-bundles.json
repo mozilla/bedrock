@@ -32,7 +32,7 @@
     },
     {
       "files": [
-        "css/firefox/new/scene2.scss"
+        "css/firefox/new/quantum/scene2.scss"
       ],
       "name": "firefox_new_scene2"
     },
@@ -117,20 +117,20 @@
     },
     {
       "files": [
+        "css/firefox/new/trailhead/thanks.scss",
+        "css/firefox/new/protocol/mobile-sync.scss"
+      ],
+      "name": "firefox_new_thanks_protocol"
+    },
+    {
+      "files": [
         "css/firefox/new/trailhead/thanks.scss"
       ],
       "name": "firefox_new_thanks"
     },
     {
       "files": [
-        "css/base/mozilla-fxa-form.scss",
-        "css/firefox/new/scene1.scss"
-      ],
-      "name": "firefox_new_scene1"
-    },
-    {
-      "files": [
-        "css/firefox/new/yandex-scene1.scss"
+        "css/firefox/new/quantum/yandex-scene1.scss"
       ],
       "name": "firefox_new_scene1_yandex"
     },
@@ -466,12 +466,6 @@
         "css/firefox/switch.scss"
       ],
       "name": "firefox-switch"
-    },
-    {
-      "files": [
-        "css/firefox/new/common.scss"
-      ],
-      "name": "firefox_new_common"
     },
     {
       "files": [
@@ -914,24 +908,9 @@
     },
     {
       "files": [
-        "js/firefox/new/scene2.js"
+        "js/firefox/new/thanks.js"
       ],
       "name": "firefox_new_thanks"
-    },
-    {
-      "files": [
-        "js/base/mozilla-modal.js",
-        "js/firefox/new/scene1.js"
-      ],
-      "name": "firefox_new_scene1"
-    },
-    {
-      "files": [
-        "js/base/mozilla-fxa-form.js",
-        "js/base/mozilla-fxa-form-init.js",
-        "js/firefox/new/scene1_fxa_modal.js"
-      ],
-      "name": "firefox_new_scene1_fxa_modal"
     },
     {
       "files": [
@@ -952,15 +931,6 @@
         "js/firefox/new/scene2.js"
       ],
       "name": "firefox_new_scene2"
-    },
-    {
-      "files": [
-        "protocol/js/protocol-modal.js",
-        "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.js",
-        "js/firefox/new/scene2-email.js"
-      ],
-      "name": "firefox_new_scene2_email"
     },
     {
       "files": [

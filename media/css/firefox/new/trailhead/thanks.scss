@@ -42,6 +42,7 @@ main {
     @include at2x('/media/img/firefox/new/trailhead/thanks-bg.png', 492px, 433px);
     @include bidi(((background-position, top left -400px, top right -400px),));
     background-repeat: no-repeat;
+    min-height: 50vh;
 
     @media #{$mq-md} {
         @include bidi(((background-position, top left -300px, top right -300px),));
@@ -172,3 +173,4 @@ main {
     padding: $layout-sm 0;
     text-align: center;
 }
+
