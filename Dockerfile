@@ -33,9 +33,7 @@ ENV PATH="/venv/bin:$PATH"
 
 COPY docker/bin/apt-install /usr/local/bin/
 RUN apt-install gettext build-essential libxml2-dev libxslt1-dev libxslt1.1
-
-RUN pip install virtualenv
-RUN virtualenv /venv
+RUN python -m venv /venv
 
 COPY requirements/base.txt requirements/prod.txt ./requirements/
 
