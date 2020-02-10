@@ -3,7 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% set_lang_files "mozorg/404-update-2020" %}
-{% extends 'base-error.html' %}
+{% extends "base-error.html" %}
 
 {% block gtm_page_id %}data-gtm-page-id="404"{% endblock %}
 
@@ -18,12 +18,12 @@
 
 {% block content %}
   <main role="main">
-    <section>
+    <section class="mzp-l-content">
       <h2>Sorry, we can't find that page</h2>
       <p>We're all about a healthy internet but sometimes broken URLs happen.</p>
       <a href="javascript:history.back()">Go Back</a>
     </section>
-    <section>
+    <section class="mzp-l-content">
       <ul>
         <li><a href="https://www.mozilla.org/about/">Learn</a> about Mozilla, the non-profit behind Firefox</li>
         <li><a href="http://firefox.com/products">Explore</a> the entire family for Firefox products designed to respect your privacy.</li>

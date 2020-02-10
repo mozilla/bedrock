@@ -2,9 +2,9 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% set_lang_files "mozorg/500" %}
+{% set_lang_files "mozorg/404-update-2020" %}
 
-{% extends "base-pebbles.html" %}
+{% extends "base-error.html" %}
 
 {% block gtm_page_id %}data-gtm-page-id="500"{% endblock %}
 
@@ -15,22 +15,11 @@
 {% endblock %}
 
 {% block content %}
-<main>
-  <div class="content">
-    <header>
-      <h1><span>{{ _('Oh Noes!') }}</span></h1>
-      <h2>{{ _('An error occurred.') }}</h2>
-    </header>
-    <div class="error-content">
-      <p>
-      {% trans bugzilla='https://bugzilla.mozilla.org/enter_bug.cgi?product=www.mozilla.org' %}
-        If you’ve found an issue with one of our websites, we’d appreciate it if you could report the problem in Bugzilla, our <a href="{{ bugzilla }}">bug tracker</a>. One of our developers will take a look at it as soon as possible.
-      {% endtrans %}
-      </p>
-    </div>
-    <aside class="download-firefox">
-      {{ download_firefox() }}
-    </aside>
-  </div>
+<main role="main">
+  <section class="mzp-l-content">
+    <h2>Something went wrong</h2>
+    <p>It’s probably just a server error and we’re working to fix it. You can try refreshing this page or go firefox.com or mozilla.org</p>
+  </section>
+  
 </main>
 {% endblock %}
