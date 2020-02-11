@@ -13,6 +13,7 @@ class FirefoxWhatsNewPage(FirefoxBasePage):
     URL_TEMPLATE = '/{locale}/firefox/whatsnew/all/'
 
     _qr_code_locator = (By.CSS_SELECTOR, '.qr-code img')
+    _firefox_lite_qr_code_locator = (By.CSS_SELECTOR, '.lite-qrcode-container img')
 
     @property
     def send_to_device(self):
@@ -21,3 +22,7 @@ class FirefoxWhatsNewPage(FirefoxBasePage):
     @property
     def is_qr_code_displayed(self):
         return self.is_element_displayed(*self._qr_code_locator)
+
+    @property
+    def is_firefox_lite_qr_code_displayed(self):
+        return self.is_element_displayed(*self._firefox_lite_qr_code_locator)
