@@ -2,173 +2,75 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../pebbles/includes/lib';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/newsletter-form';
 
 .section-intro {
-    background: #373737 url('/media/img/newsletter/intro-mozsummit-600.jpg') center center no-repeat;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .1) 100%),
+                url('/media/img/newsletter/intro-mozsummit-600.jpg') center center no-repeat,
+                $color-off-black;
     @include background-size(cover);
-    border-bottom: 1px solid rgba(0, 0, 0, .2);
     color: #fff;
     text-align: center;
 
-    .content {
+    .mzp-l-content {
         width: 100%;
         padding: 60px 0 40px;
-        background: linear-gradient(to bottom, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .1) 100%);
-        @include transition(padding 200ms ease);
 
-        @media #{$mq-tablet} and #{$mq-tall} {
+
+        @media #{$mq-md} and #{$mq-tall} {
             padding: 100px 0;
         }
 
-        @media #{$mq-tablet} and (min-height: 800px) {
+        @media #{$mq-md} and (min-height: 800px) {
             padding: 150px 0;
         }
     }
 
     .page-title {
-        @include font-size(32px);
         margin: 0;
         text-shadow: 0 0 10px rgba(0, 0, 0, .01),
                      0 0 5px rgba(0, 0, 0, .025),
                      0 1px 1px rgba(0, 0, 0, .5);
     }
 
-    @media #{$mq-tablet} {
-        background-image: url('/media/img/newsletter/intro-mozsummit-1000.jpg');
-
-        .page-title {
-            @include font-size(48px);
-        }
+    @media #{$mq-md} {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .1) 100%),
+                    url('/media/img/newsletter/intro-mozsummit-1000.jpg') center center no-repeat,
+                    $color-off-black;
+        @include background-size(cover);
     }
 
-    @media #{$mq-desktop} {
-        background-image: url('/media/img/newsletter/intro-mozsummit-2000.jpg');
-
-        .page-title {
-            @include font-size(72px);
-        }
+    @media #{$mq-lg} {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .1) 100%),
+                    url('/media/img/newsletter/intro-mozsummit-2000.jpg') center center no-repeat,
+                    $color-off-black;
+        @include background-size(cover);
     }
 
-    @media #{$mq-desktop-wide} {
-        background-image: url('/media/img/newsletter/intro-mozsummit-3000.jpg');
+    @media #{$mq-xl} {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .1) 100%),
+                    url('/media/img/newsletter/intro-mozsummit-3000.jpg') center center no-repeat,
+                    $color-off-black;
+        @include background-size(cover);
     }
 }
 
 .section-subscribe {
     background: #fff;
 
-    .content {
-        max-width: $width-tablet;
-        padding: 40px 20px;
-    }
-
     h2 {
-        @include font-size(18px);
-        color: $color-mozred;
+        @include text-display-xs;
+        color: $color-red-60;
         font-weight: normal;
-        line-height: 1.3;
-        margin: 0 auto 20px;
+        margin: $spacing-lg auto $spacing-xl;
         text-align: center;
-
-        @media #{$mq-phone-wide} {
-            @include font-size(24px);
-        }
-
-        @media screen and #{$mq-tall} {
-            margin: 20px auto 40px;
-        }
-    }
-
-    .errorlist {
-        @include border-box;
-        background: #fff6dc;
-        border-radius: 4px;
-        margin: 0 auto 20px;
-        max-width: $width-phone;
-        padding: 20px;
     }
 }
 
-#newsletter-form {
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    margin: 0 auto;
-    max-width: $width-phone;
-    padding: 0;
-
-    input[type='text'],
-    input[type='email'],
-    select {
-        @include border-box;
-        @include font-size(16px);
-        padding: .75em 20px;
-        width: 100%;
-    }
-
-    input[type='text'],
-    input[type='email'] {
-        border: 2px solid $color-mozred;
-        margin-bottom: 2px;
-
-        &:hover,
-        &:focus {
-            border-color: lighten($color-mozred, 5%);
-        }
-    }
-
-    .field {
-        margin: 0 0 20px;
-    }
-
-    .field-format label {
-        @include open-sans;
-        margin-right: 20px;
-    }
-
-    .privacy-check-label {
-        @include font-size(14px);
-        @include open-sans;
-        display: block;
-        padding-left: 30px;
-        position: relative;
-
-        input {
-            left: 0;
-            position: absolute;
-            top: .2em;
-        }
-    }
-
-    .form-submit {
-        margin-top: 40px;
-        text-align: center;
-
-        small {
-            @include font-size(12px);
-            @include open-sans;
-        }
-    }
-}
-
-#newsletter-form-thankyou {
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    margin: 0 auto;
-    max-width: $width-phone;
-    padding: 20px 0;
+.mzp-c-newsletter-thanks {
     text-align: center;
-
-    h3 {
-        @include font-size(24px);
-        color: $color-mozred;
-        margin: 0 0 20px;
-    }
-}
-
-// form details should always be visible
-.js #form-details {
-    display: block;
 }

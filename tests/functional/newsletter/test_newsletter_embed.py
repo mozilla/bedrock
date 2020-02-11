@@ -12,6 +12,9 @@ from pages.mission import MissionPage
 from pages.firefox.features.landing import FeaturesLandingPage
 from pages.firefox.whatsnew.whatsnew_developer_70 import FirefoxWhatsNewDeveloper70Page
 from pages.plugincheck import PluginCheckPage
+from pages.newsletter.developer import DeveloperNewsletterPage
+from pages.newsletter.firefox import FirefoxNewsletterPage
+from pages.newsletter.mozilla import MozillaNewsletterPage
 
 
 @pytest.mark.nondestructive
@@ -19,7 +22,10 @@ from pages.plugincheck import PluginCheckPage
     HomePage,
     AboutPage,
     MissionPage,
-    pytest.mark.skip_if_not_firefox(FirefoxWhatsNewDeveloper70Page)])
+    pytest.mark.skip_if_not_firefox(FirefoxWhatsNewDeveloper70Page),
+    DeveloperNewsletterPage,
+    FirefoxNewsletterPage,
+    MozillaNewsletterPage])
 def test_newsletter_default_values(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
     page.newsletter.expand_form()
@@ -35,7 +41,10 @@ def test_newsletter_default_values(page_class, base_url, selenium):
     AboutPage,
     MissionPage,
     ContributePage,
-    pytest.mark.skip_if_not_firefox(FirefoxWhatsNewDeveloper70Page)])
+    pytest.mark.skip_if_not_firefox(FirefoxWhatsNewDeveloper70Page),
+    DeveloperNewsletterPage,
+    FirefoxNewsletterPage,
+    MozillaNewsletterPage])
 def test_newsletter_successful_sign_up(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
     page.newsletter.expand_form()
@@ -53,7 +62,10 @@ def test_newsletter_successful_sign_up(page_class, base_url, selenium):
     AboutPage,
     MissionPage,
     ContributePage,
-    pytest.mark.skip_if_not_firefox(FirefoxWhatsNewDeveloper70Page)])
+    pytest.mark.skip_if_not_firefox(FirefoxWhatsNewDeveloper70Page),
+    DeveloperNewsletterPage,
+    FirefoxNewsletterPage,
+    MozillaNewsletterPage])
 def test_newsletter_sign_up_fails_when_missing_required_fields(page_class, base_url, selenium):
     page = page_class(selenium, base_url).open()
     page.newsletter.expand_form()

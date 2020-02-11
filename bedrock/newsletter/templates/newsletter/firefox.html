@@ -2,21 +2,21 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends 'base-pebbles.html' %}
+{% extends 'base-protocol.html' %}
 
 {% set_lang_files "mozorg/newsletters" %}
 
 {% block page_title %}{{ _('Put more fox in your inbox.') }}{% endblock page_title %}
 {% block page_desc %}{{ _('See where the Web can take you with monthly Firefox tips, tricks and Internet intel.') }}{% endblock %}
 
-{% block body_class %}newsletter-mozilla{% endblock %}
+{% block body_class %}{{ super() }} newsletter-mozilla{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('newsletter-firefox') }}
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('newsletter-firefox') }}
+  {{ js_bundle('newsletter') }}
 {% endblock %}
 
 {% block site_header %}{% endblock %}
@@ -24,17 +24,16 @@
 {% block content %}
 <main role="main">
   <div class="section-intro">
-    <div class="content">
-    </div>
+    <div class="mzp-l-content"></div>
   </div>
 
   <section class="section-subscribe">
-    <div class="content">
-      <header class="header-main" role="banner">
-        <h1 class="page-title">{{ self.page_title() }}</h1>
-        <h2 class="section-title">{{ self.page_desc() }}</h2>
-      </header>
-      {{ email_newsletter_form(include_title=False, spinner_color='#3a304b', button_class='button-hollow') }}
+    <header class="mzp-l-content">
+      <h1 class="page-title">{{ self.page_title() }}</h1>
+      <h2 class="section-title">{{ self.page_desc() }}</h2>
+    </header>
+    <div class="mzp-l-content mzp-t-narrow">
+      {{ email_newsletter_form(protocol_component=true, include_title=False, spinner_color='#3a304b') }}
     </div>
   </section>
 </main>

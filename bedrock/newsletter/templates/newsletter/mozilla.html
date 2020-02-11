@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends 'base-pebbles.html' %}
+{% extends 'base-protocol-mozilla.html' %}
 
 {% set_lang_files "mozorg/newsletters" %}
 
@@ -23,14 +23,14 @@
   {% endif %}
 {% endblock %}
 
-{% block body_class %}newsletter-mozilla{% endblock %}
+{% block body_class %}{{ super() }} newsletter-mozilla{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('newsletter-mozilla') }}
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('newsletter-mozilla') }}
+  {{ js_bundle('newsletter') }}
 {% endblock %}
 
 {% block site_header %}{% endblock %}
@@ -38,17 +38,17 @@
 {% block content %}
 <main>
   <header class="section section-intro" id="intro">
-    <div class="content">
+    <div class="mzp-l-content">
       <h1 class="page-title">{{ self.page_title() }}</h1>
     </div>
   </header>
 
   <section class="section section-subscribe" id="subscribe">
-    <div class="content">
+    <div class="mzp-l-content">
       <h2 class="section-title">{{ self.page_desc() }}</h2>
-
-      {{ email_newsletter_form(newsletters='mozilla-foundation', include_title=False, spinner_color='#c13832', button_class='button-red') }}
-
+    </div>
+    <div class="mzp-l-content mzp-t-narrow">
+      {{ email_newsletter_form(protocol_component=true, newsletters='mozilla-foundation', include_title=False, spinner_color='#c13832') }}
     </div>
   </section>
 </main>

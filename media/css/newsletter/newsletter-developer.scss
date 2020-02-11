@@ -2,7 +2,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../pebbles/includes/lib';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/newsletter-form';
 
 .section-intro {
     background: url('/media/img/newsletter/developer/8bit_hearts.svg') top 85px center no-repeat,
@@ -14,29 +18,29 @@
     width: 100%;
 
     h1 {
-        color: #fff;
-        font-weight: 100;
+        color: $color-white;
         margin-top: 110px;
         text-align: center;
     }
 
-    @media #{$mq-phone-wide} {
+    @media #{$mq-sm} {
         @include background-size(96px 64px, auto auto);
         background-position: top 85px center, top center;
         height: 290px;
 
         .page-title {
+            @include text-display-xl;
             margin-top: 150px;
         }
     }
 
-    @media #{$mq-tablet} {
+    @media #{$mq-md} {
         @include background-size(116px 74px, auto auto);
         background-position: top 85px center, top center;
         height: 341px;
     }
 
-    @media #{$mq-tablet} and #{$mq-short} {
+    @media #{$mq-md} and #{$mq-short} {
         @include background-size(116px 74px, auto auto);
         background-position: top 85px center, top center;
         height: 290px;
@@ -44,160 +48,20 @@
 }
 
 .section-subscribe {
-    background: #fff;
-    padding: 20px 0;
-
-    h1 {
-        @include font-size(32px);
-        color: #005189;
-        text-align: center;
-    }
+    background: $color-white;
+    padding: $spacing-lg 0;
 
     h2 {
-        @include font-size(18px);
-        color: #005189;
+        @include text-display-xs;
+        color: $color-blue-70;
         font-weight: normal;
         line-height: 1.3;
-        margin: 20px auto 40px;
+        margin: $spacing-lg auto $spacing-xl;
         max-width: 32em;
         text-align: center;
     }
-
-    .errorlist {
-        @include border-box;
-        background: #fff6dc;
-        border-radius: 4px;
-        margin: 0 auto 20px;
-        max-width: $width-phone;
-        padding: 20px;
-    }
-
-    @media #{$mq-tablet} {
-        h1 {
-            @include font-size(48px);
-        }
-        h2 {
-            @include font-size(20px);
-        }
-    }
-
-    @media #{$mq-desktop} {
-        h1 {
-            @include font-size(72px);
-        }
-        h2 {
-            @include font-size(24px);
-        }
-    }
 }
 
-#newsletter-form {
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    margin: 0 auto;
-    max-width: $width-phone;
-    padding: 0;
-
-    input[type='text'],
-    input[type='email'],
-    select {
-        @include border-box;
-        @include font-size(16px);
-        padding: .75em 20px;
-        width: 100%;
-    }
-
-    input[type='text'],
-    input[type='email'] {
-        border: 2px solid #229ad3;
-        margin-bottom: 2px;
-
-        &:hover,
-        &:focus {
-            border-color: saturate(lighten(#229ad3, 5%), 10%);
-        }
-    }
-
-    .field {
-        margin: 0 0 20px;
-    }
-
-    .field-format label {
-        @include open-sans;
-        margin-right: 20px;
-    }
-
-    .privacy-check-label {
-        @include font-size(14px);
-        @include open-sans;
-        display: block;
-        padding-left: 30px;
-        position: relative;
-
-        input {
-            left: 0;
-            position: absolute;
-            top: .2em;
-        }
-    }
-
-    .form-submit {
-        margin-top: 40px;
-        text-align: center;
-
-        .form-button {
-            border-color: #229ad3;
-            color: #229ad3;
-        }
-
-        small {
-            @include font-size(12px);
-            @include open-sans;
-        }
-    }
-}
-
-#newsletter-form-thankyou {
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    margin: 0 auto;
+.mzp-c-newsletter-thanks {
     text-align: center;
-
-    h3 {
-        @include font-size(32px);
-        color: #005189;
-        margin-bottom: 20px;
-    }
-
-    p {
-        @include font-size(18px);
-        color: #005189;
-    }
-
-    @media #{$mq-tablet} {
-        h3 {
-            @include font-size(42px);
-        }
-
-        p {
-            @include font-size(22px);
-        }
-    }
-
-    @media #{$mq-desktop} {
-        h3 {
-            @include font-size(48px);
-        }
-
-        p {
-            @include font-size(28px);
-        }
-    }
-}
-
-// form details should always be visible
-.js #form-details {
-    display: block;
 }
