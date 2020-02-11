@@ -2,30 +2,28 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends 'base-pebbles.html' %}
+{% extends 'base-protocol-mozilla.html' %}
 
 {% set_lang_files "mozorg/newsletters" %}
 
 {% block page_title %}{{ _('Love the web? So do we!') }}{% endblock page_title %}
 
 {% block page_desc %}
-
-{% if l10n_has_tag('developer_page_desc_082018') %}
-{{ _('Unlock the world of web development with our weekly Mozilla Developer Newsletter. Each edition brings you coding techniques and best practices, MDN updates, info about emerging technologies, developer tools tips, and more.') }}
-{% else %}
-{{ _('Join thousands of developers like you who are learning the best of web development.') }}
-{% endif %}
-
+  {% if l10n_has_tag('developer_page_desc_082018') %}
+    {{ _('Unlock the world of web development with our weekly Mozilla Developer Newsletter. Each edition brings you coding techniques and best practices, MDN updates, info about emerging technologies, developer tools tips, and more.') }}
+  {% else %}
+    {{ _('Join thousands of developers like you who are learning the best of web development.') }}
+  {% endif %}
 {% endblock %}
 
-{% block body_class %}newsletter-developer{% endblock %}
+{% block body_class %}{{ super() }} newsletter-developer{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('newsletter-developer') }}
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('newsletter-developer') }}
+  {{ js_bundle('newsletter') }}
 {% endblock %}
 
 {% block site_header %}{% endblock %}
@@ -33,17 +31,17 @@
 {% block content %}
 <main role="main">
   <div class="section-intro">
-    <div class="content">
+    <div class="mzp-l-content">
       <h1 class="page-title">{{ self.page_title() }}</h1>
     </div>
   </div>
 
   <section class="section-subscribe">
-    <div class="content">
-      <header class="header-main" role="banner">
-        <h2 class="section-title">{{ self.page_desc() }}</h2>
-      </header>
-      {{ email_newsletter_form(newsletters='app-dev', include_language=False, include_title=False, spinner_color='#0c99d5', button_class='button-hollow') }}
+    <header class="mzp-l-content">
+      <h2 class="section-title">{{ self.page_desc() }}</h2>
+    </header>
+    <div class="mzp-l-content mzp-t-narrow">
+      {{ email_newsletter_form(protocol_component=true, newsletters='app-dev', include_language=False, include_title=False, spinner_color='#0c99d5') }}
     </div>
   </section>
 </main>

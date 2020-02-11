@@ -1248,12 +1248,6 @@
     },
     {
       "files": [
-        "js/newsletter/firefox.js"
-      ],
-      "name": "newsletter-firefox"
-    },
-    {
-      "files": [
         "js/base/mozilla-pixel.js",
         "js/base/mozilla-pixel-init.js"
       ],
@@ -1281,12 +1275,6 @@
         "js/mozorg/internet-health/health-subpage.js"
       ],
       "name": "internet-health-subpage"
-    },
-    {
-      "files": [
-        "js/newsletter/developer.js"
-      ],
-      "name": "newsletter-developer"
     },
     {
       "files": [
@@ -1532,12 +1520,6 @@
         "js/press/speaker-request.js"
       ],
       "name": "press_speaker_request"
-    },
-    {
-      "files": [
-        "js/newsletter/mozilla.js"
-      ],
-      "name": "newsletter-mozilla"
     },
     {
       "files": [

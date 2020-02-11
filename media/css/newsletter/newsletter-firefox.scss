@@ -2,45 +2,47 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../pebbles/includes/lib';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
 
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/newsletter-form';
 
-$color-fox-purple: #3a304b;
 
 .section-intro {
-    background-color: $color-fox-purple;
+    background-color: $color-off-black;
 
-    .content {
+    .mzp-l-content {
         @include background-size(141px 157px, 153px 115px);
         background-image: url('/media/img/newsletter/firefox/mailbox.svg'),
                           url('/media/img/newsletter/firefox/fox-tail.svg');
         background-position: bottom -40px left 10px, bottom -45px right -10px;
         background-repeat: no-repeat, no-repeat;
         height: 167px;
-        width: $width-phone;
+        width: $content-xs;
 
-        @media #{$mq-phone-wide} {
+        @media #{$mq-sm} {
             @include background-size(215px 239px, 230px 173px);
             background-position: bottom -60px left, bottom -65px right;
             height: 229px;
-            width: $width-phone-wide;
+            width: $content-sm;
         }
 
-        @media #{$mq-tablet} {
+        @media #{$mq-md} {
             @include background-size(300px 333px, 320px 241px);
             background-position: bottom -90px left 40px, bottom -90px right 40px;
             height: 290px;
-            width: $width-tablet;
+            width: $content-md;
         }
 
-        @media #{$mq-desktop} {
+        @media #{$mq-lg} {
             @include background-size(381px 423px, 428px 322px);
             background-position: bottom -100px left 60px, bottom -120px right 60px;
             height: 370px;
-            width: $width-desktop;
+            width: $content-lg;
         }
 
-        @media #{$mq-desktop} and #{$mq-short} {
+        @media #{$mq-lg} and #{$mq-short} {
             @include background-size(300px 333px, 320px 241px);
             background-position: bottom -90px left 160px, bottom -90px right 140px;
             height: 290px;
@@ -50,155 +52,23 @@ $color-fox-purple: #3a304b;
 
 .section-subscribe {
     background: #fff;
-    padding: 20px 0;
+    padding: $spacing-lg 0;
 
     h1 {
-        @include font-size(32px);
-        color: $color-fox-purple;
+        @include text-display-xl;
         text-align: center;
     }
 
     h2 {
-        @include font-size(18px);
-        color: $color-fox-purple;
+        @include text-display-xs;
+        color: $color-off-black;
         font-weight: normal;
-        line-height: 1.3;
-        margin: 20px auto 40px;
-        max-width: 24em;
+        margin: $spacing-lg auto $spacing-xl;
+        max-width: 30em;
         text-align: center;
-    }
-
-    .errorlist {
-        @include border-box;
-        background: #fff6dc;
-        border-radius: 4px;
-        margin: 0 auto 20px;
-        max-width: $width-phone;
-        padding: 20px;
-    }
-
-    @media #{$mq-tablet} {
-        h1 {
-            @include font-size(48px);
-        }
-        h2 {
-            @include font-size(20px);
-        }
-    }
-
-    @media #{$mq-desktop} {
-        h1 {
-            @include font-size(72px);
-        }
-        h2 {
-            @include font-size(24px);
-            max-width: none;
-        }
     }
 }
 
-#newsletter-form {
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    margin: 0 auto;
-    max-width: $width-phone;
-    padding: 0;
-
-    input[type='text'],
-    input[type='email'],
-    select {
-        @include border-box;
-        @include font-size(16px);
-        padding: .75em 20px;
-        width: 100%;
-    }
-
-    input[type='text'],
-    input[type='email'] {
-        border: 2px solid $color-mozblue;
-        margin-bottom: 2px;
-
-        &:hover,
-        &:focus {
-            border-color: saturate(lighten($color-mozblue, 5%), 10%);
-        }
-    }
-
-    .field {
-        margin: 0 0 20px;
-    }
-
-    .field-format label {
-        @include open-sans;
-        margin-right: 20px;
-    }
-
-    .privacy-check-label {
-        @include font-size(14px);
-        @include open-sans;
-        display: block;
-        padding-left: 30px;
-        position: relative;
-
-        input {
-            left: 0;
-            position: absolute;
-            top: .2em;
-        }
-    }
-
-    .form-submit {
-        margin-top: 40px;
-        text-align: center;
-
-        small {
-            @include font-size(12px);
-            @include open-sans;
-        }
-    }
-}
-
-#newsletter-form-thankyou {
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    margin: 0 auto;
+.mzp-c-newsletter-thanks {
     text-align: center;
-
-    h3 {
-        @include font-size(32px);
-        color: $color-fox-purple;
-        margin-bottom: 20px;
-    }
-
-    p {
-        @include font-size(18px);
-        color: $color-fox-purple;
-    }
-
-    @media #{$mq-tablet} {
-        h3 {
-            @include font-size(42px);
-        }
-
-        p {
-            @include font-size(22px);
-        }
-    }
-
-    @media #{$mq-desktop} {
-        h3 {
-            @include font-size(48px);
-        }
-
-        p {
-            @include font-size(28px);
-        }
-    }
-}
-
-// form details should always be visible
-.js #form-details {
-    display: block;
 }
