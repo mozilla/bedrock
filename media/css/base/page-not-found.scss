@@ -2,9 +2,26 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+@import '../../protocol/css/includes/lib';
+
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-h2 {
-    background-color: red;
+.no-highlight:link, .no-highlight:visited, .no-highlight:hover, .no-highlight:active {
+    color: black;
+}
+
+main {
+    @include text-body-lg;
+    padding-top: $spacing-xl;
+}
+
+svg, img {
+    margin: auto;
+    vertical-align: middle;
+    padding-right: 10px;
+}
+
+li {
+    padding-bottom: 10px;
 }

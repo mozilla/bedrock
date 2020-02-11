@@ -21,13 +21,32 @@
     <section class="mzp-l-content">
       <h2>Sorry, we can't find that page</h2>
       <p>We're all about a healthy internet but sometimes broken URLs happen.</p>
-      <a href="javascript:history.back()">Go Back</a>
+      <div>
+        <a class="back-button" href="javascript:history.back()">Go Back</a>
+      </div>
     </section>
     <section class="mzp-l-content">
       <ul>
-        <li><a href="https://www.mozilla.org/about/">Learn</a> about Mozilla, the non-profit behind Firefox</li>
-        <li><a href="http://firefox.com/products">Explore</a> the entire family for Firefox products designed to respect your privacy.</li>
-        <li><a href="http://firefox.com/new">Download</a> the Firefox browser for your mobile device or desktop</li>
+        <li>
+          <section class="mzp-has-icon">
+            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M6 6.706V6H2v2h2v8H2v2h7v-2H6v-6c.667-1.333 1.5-2 2.5-2s1.833.667 2.5 2v8h5v-2h-3v-6c.667-1.333 1.5-2 2.5-2s1.833.667 2.5 2v8h4v-2h-2v-6c-.667-2.667-2.167-4-4.5-4-1.52 0-2.687.566-3.5 1.699C11.187 6.566 10.02 6 8.5 6c-.98 0-1.814.235-2.5.706zM8.5 4c1.324 0 2.507.327 3.5.97.993-.643 2.176-.97 3.5-.97 3.308 0 5.563 2.004 6.44 5.515l.06.239V14h2v6H0v-6h2v-4H0V4h8c.164.005.331 0 .5 0zM16 14v-3.484a1.845 1.845 0 0 0-.374-.454c-.068-.055-.088-.062-.126-.062-.038 0-.058.007-.126.062-.111.09-.239.239-.374.454V14h1zm-7 0v-3.484a1.845 1.845 0 0 0-.374-.454C8.558 10.007 8.538 10 8.5 10c-.038 0-.058.007-.126.062-.111.09-.239.239-.374.454V14h1z" fill="#000" fill-rule="nonzero"/></svg>
+            {% trans about=url('mozorg.about') %}
+            <a class="no-highlight" href="{{ anout }}">Learn</a> about Mozilla, the non-profit behind Firefox 
+            {% endtrans %}
+          </section>
+        </li>
+        <li>
+          <section>
+            <img alt="" src="{{ static('img/base-error/firefox_logomark_black.svg') }}" width="24" height="24">
+            <a class="no-highlight" href="http://firefox.com/products">Explore</a> the entire family for Firefox products designed to respect your privacy.
+          </section>
+        </li>
+        <li>
+          <section>
+            <img alt="" src="{{ static('img/icons/mobile-desktop.svg') }}" width="24" height="24" color="black">
+            <a class="no-highlight" href="http://firefox.com/new">Download</a> the Firefox browser for your mobile device or desktop
+          </section> 
+        </li> 
       </ul>
     </section>
   </main>
