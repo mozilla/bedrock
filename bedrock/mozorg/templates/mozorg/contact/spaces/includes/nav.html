@@ -2,37 +2,66 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-<nav id="nav-spaces" class="nav-category" role="navigation">
-  <ul>
-    <li {% if current == 'mountain-view' %}class="current"{% endif %} data-id="mountain-view">
-      <a href="{{ url('mozorg.contact.spaces.mountain-view') }}">{{ _('Mountain View') }}</a>
-    </li>
-    <li {% if current == 'beijing' %}class="current"{% endif %} data-id="beijing">
-      <a href="{{ url('mozorg.contact.spaces.beijing') }}">{{ _('Beijing') }}</a>
-    </li>
-    <li {% if current == 'berlin' %}class="current"{% endif %} data-id="berlin">
-      <a href="{{ url('mozorg.contact.spaces.berlin') }}">{{ _('Berlin') }}</a>
-    </li>
-    <li {% if current == 'london' %}class="current"{% endif %} data-id="london">
-      <a href="{{ url('mozorg.contact.spaces.london') }}">{{ _('London') }}</a>
-    </li>
-    <li {% if current == 'paris' %}class="current"{% endif %} data-id="paris">
-      <a href="{{ url('mozorg.contact.spaces.paris') }}">{{ _('Paris') }}</a>
-    </li>
-    <li {% if current == 'portland' %}class="current"{% endif %} data-id="portland">
-      <a href="{{ url('mozorg.contact.spaces.portland') }}">{{ _('Portland') }}</a>
-    </li>
-    <li {% if current == 'san-francisco' %}class="current"{% endif %} data-id="san-francisco">
-      <a href="{{ url('mozorg.contact.spaces.san-francisco') }}">{{ _('San Francisco') }}</a>
-    </li>
-    <li {% if current == 'taipei' %}class="current"{% endif %} data-id="taipei">
-      <a href="{{ url('mozorg.contact.spaces.taipei') }}">{{ _('Taipei') }}</a>
-    </li>
-    <li {% if current == 'toronto' %}class="current"{% endif %} data-id="toronto">
-      <a href="{{ url('mozorg.contact.spaces.toronto') }}">{{ _('Toronto') }}</a>
-    </li>
-    <li {% if current == 'vancouver' %}class="current"{% endif %} data-id="vancouver">
-      <a href="{{ url('mozorg.contact.spaces.vancouver') }}">{{ _('Vancouver') }}</a>
-    </li>
-  </ul>
+ <nav class="mzp-c-sidemenu" role="navigation">
+  <section class="mzp-c-sidemenu-summary mzp-js-toggle" aria-controls="sidebar-menu">
+    <h3 class="mzp-c-sidemenu-label">{{ _('Contact') }}</h3>
+    <ul>
+      <li class="mzp-is-current">{{ _('Spaces') }}</li>
+    </ul>
+  </section>
+
+  <section id="nav-spaces" class="mzp-c-sidemenu-main" id="sidebar-menu">
+    <ul>
+      <li>
+        <h4 class="mzp-c-sidemenu-title {% if current == 'mountain-view' %}mzp-is-current{% endif %}" data-id="mountain-view">
+          <a href="{{ url('mozorg.contact.spaces.mountain-view') }}">{{ _('Mountain View') }}</a>
+        </h4>
+      </li>
+      <li>
+        <h4 class="mzp-c-sidemenu-title {% if current == 'beijing' %}mzp-is-current{% endif %}" data-id="beijing">
+          <a href="{{ url('mozorg.contact.spaces.beijing') }}">{{ _('Beijing') }}</a>
+        </h4>
+      </li>
+      <li>
+        <h4 class="mzp-c-sidemenu-title {% if current == 'berlin' %}mzp-is-current{% endif %}" data-id="berlin">
+          <a href="{{ url('mozorg.contact.spaces.berlin') }}">{{ _('Berlin') }}</a>
+        </h4>
+      </li>
+      <li>
+        <h4 class="mzp-c-sidemenu-title {% if current == 'london' %}mzp-is-current{% endif %}" data-id="london">
+          <a href="{{ url('mozorg.contact.spaces.london') }}">{{ _('London') }}</a>
+        </h4>
+      </li>
+      <li>
+        <h4 class="mzp-c-sidemenu-title {% if current == 'paris' %}mzp-is-current{% endif %}" data-id="paris">
+          <a href="{{ url('mozorg.contact.spaces.paris') }}">{{ _('Paris') }}</a>
+        </h4>
+      </li>
+      <li>
+        <h4 class="mzp-c-sidemenu-title {% if current == 'portland' %}mzp-is-current{% endif %}" data-id="portland">
+          <a href="{{ url('mozorg.contact.spaces.portland') }}">{{ _('Portland') }}</a>
+        </h4>
+      </li>
+      <li>
+        <h4 class="mzp-c-sidemenu-title {% if current == 'san-francisco' %}mzp-is-current{% endif %}" data-id="san-francisco">
+          <a href="{{ url('mozorg.contact.spaces.san-francisco') }}">{{ _('San Francisco') }}</a>
+        </h4>
+      </li>
+      <li>
+        <h4 class="mzp-c-sidemenu-title {% if current == 'taipei' %}mzp-is-current{% endif %}" data-id="taipei">
+          <a href="{{ url('mozorg.contact.spaces.taipei') }}">{{ _('Taipei') }}</a>
+        </h4>
+      </li>
+      <li>
+        <h4 class="mzp-c-sidemenu-title {% if current == 'toronto' %}mzp-is-current{% endif %}" data-id="toronto">
+          <a href="{{ url('mozorg.contact.spaces.toronto') }}">{{ _('Toronto') }}</a>
+        </h4>
+      </li>
+      <li>
+        <h4 class="mzp-c-sidemenu-title {% if current == 'vancouver' %}mzp-is-current{% endif %}" data-id="vancouver">
+          <a href="{{ url('mozorg.contact.spaces.vancouver') }}">{{ _('Vancouver') }}</a>
+        </h4>
+      </li>
+    </ul>
+  </section>
 </nav>

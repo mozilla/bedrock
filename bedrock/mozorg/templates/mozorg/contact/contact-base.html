@@ -4,20 +4,19 @@
 
 {% from "mozorg/contact/includes/macros.html" import map_image with context %}
 
-{% extends "base-pebbles.html" %}
+{% extends "base-protocol-mozilla.html" %}
 
 {% block page_title %}{{ _('Contacts, Spaces and Communities') }}{% endblock %}
 {% block body_id %}contact-spaces{% endblock %}
-{% block body_attrs %}{{ super() }} data-global-nav-current-link="about-us"{% endblock %}
 
-{% block extrahead %}
+{% block page_css %}
   {{ css_bundle('contact-spaces') }}
 {% endblock %}
 
 {% block content %}
 
 <main id="main-content">
-  <div class="content">
+  <div class="mzp-l-content">
     <header class="page-head">
       <h1 class="page-title"><span>{{ _('Where is Mozilla?') }}</span></h1>
       <p class="help">
@@ -41,9 +40,17 @@
         {% include 'mozorg/contact/includes/tab-nav.html' %}
       {% endblock %}
 
-      {% block contact_entry %}{% endblock %}
+      {% block contact_main %}
+        <div class="mzp-has-sidebar mzp-l-sidebar-left">
+          <div class="mzp-l-main">
+            {% block contact_entry %}{% endblock %}
+          </div>
 
-      {% block contact_nav %}{% endblock %}
+          <div class="mzp-l-sidebar">
+            {% block contact_nav %}{% endblock %}
+          </div>
+        </div>
+      {% endblock %}
 
       {% block meta_category %}{% endblock %}
 

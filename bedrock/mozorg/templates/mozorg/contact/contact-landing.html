@@ -18,14 +18,14 @@
   {{ map_image('img/contact/osm/spaces/all-large.jpg', 'img/contact/osm/spaces/all-large-high-res.jpg') }}
 {% endblock %}
 
-{% block contact_entry %}
+{% block contact_main %}
   <div id="entry-container">
     <section class="entry" id="contact" data-tab="contact">
       <header>
         <h2>{{ _('Contacting Mozilla')}}</h2>
       </header>
 
-      <ul class="prose">
+      <ul class="mzp-u-list-styled">
         <li><a href="https://support.mozilla.org/">{{ _('I’m having problems with using Firefox') }}</a></li>
         <li><a href="{{ donate_url('contact_us_page') }}">{{ _('I want to donate to Mozilla') }}</a></li>
         <li><a href="{{ url('foundation.trademarks.policy') }}">{{ _('I have questions about using Mozilla’s trademarks') }}</a></li>
@@ -49,7 +49,7 @@
       <div class="contact-sections">
         <div class="contact-section">
           <h4>{{ _('Find us online') }}</h4>
-          <ul class="prose">
+          <ul class="mzp-u-list-styled">
             <li><a href="https://facebook.com/mozilla" hreflang="en-US" rel="external">{{ _('Facebook') }}</a></li>
             <li><a href="https://twitter.com/mozilla" hreflang="en-US" rel="external">{{ _('Twitter') }}</a></li>
             <li><a href="{{ url('mozorg.about.forums.forums') }}">{{ _('Forums &amp; e-mail lists') }}</a></li>
@@ -59,7 +59,7 @@
 
         <div class="contact-section">
           <h4>{{ _('Join us') }}</h4>
-          <ul class="prose">
+          <ul class="mzp-u-list-styled">
             <li><a href="{{ url('mozorg.contribute.index') }}">{{ _('Get involved') }}</a></li>
             <li><a href="https://careers.mozilla.org">{{ _('Career opportunities') }}</a></li>
             <li><a href="https://mozillians.org">{{ _('Mozillians') }}</a></li>
@@ -68,7 +68,7 @@
 
         <div class="contact-section">
           <h4>{{ _('Questions &amp; feedback') }}</h4>
-          <ul class="prose">
+          <ul class="mzp-u-list-styled">
             <li><a href="https://support.mozilla.org/">{{ _('Get support') }}</a></li>
             <li><a href="{{ url('foundation.licensing') }}">{{ _('Browser distribution &amp; licensing') }}</a></li>
             <li><a href="https://input.mozilla.org/feedback">{{ _('Firefox feedback') }}</a></li>
