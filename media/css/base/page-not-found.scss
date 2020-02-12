@@ -25,3 +25,11 @@ svg, img {
 li {
     padding-bottom: 10px;
 }
+
+.back-button:before {
+    content:"\2190";
+}
+
+.back-button {
+    text-decoration: none;
+}
