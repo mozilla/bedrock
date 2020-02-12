@@ -12,7 +12,7 @@ $image-path: '/media/protocol/img';
 }
 
 main {
-    @include text-body-lg;
+    @include text-body-sm;
     padding-top: $spacing-xl;
 }
 
@@ -32,4 +32,10 @@ li {
 
 .back-button {
     text-decoration: none;
+}
+
+@media #{$mq-md} {
+    main {
+        @include text-body-lg;
+    }
 }
