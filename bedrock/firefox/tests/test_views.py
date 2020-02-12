@@ -7,7 +7,6 @@ import json
 import os
 from urllib.parse import parse_qs
 
-from django.urls import reverse
 from django.test import override_settings
 from django.test.client import RequestFactory
 
@@ -986,23 +985,6 @@ class TestFirefoxCampaign(TestCase):
         render_mock.assert_called_once_with(
             req, 'firefox/campaign/index-trailhead.html', ANY
         )
-
-
-class TestFirefoxConcerts(TestCase):
-    @override_settings(DEV=False)
-    @override_settings(SWITCH_FIREFOX_CONCERT_SERIES=False)
-    def test_switch_off(self):
-        req = RequestFactory().get('/firefox/concerts')
-        res = views.firefox_concerts(req)
-        assert res.status_code == 302
-        self.assertTrue(res['Location'].endswith(reverse('firefox')))
-
-    @override_settings(DEV=True)
-    @patch('bedrock.firefox.views.l10n_utils.render')
-    def test_switch_on(self, render_mock):
-        req = RequestFactory().get('/firefox/concerts')
-        views.firefox_concerts(req)
-        render_mock.assert_called_once_with(req, 'firefox/concerts.html')
 
 
 class TestFirefoxHome(TestCase):

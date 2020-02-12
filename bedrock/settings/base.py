@@ -1201,21 +1201,6 @@ FXA_ENDPOINT = config('FXA_ENDPOINT',
 FXA_ENDPOINT_MOZILLAONLINE = config('FXA_ENDPOINT_MOZILLAONLINE',
                                     default='https://accounts.firefox.com.cn/')
 
-# Fx Accounts OAuth relier flow URLs
-FXA_OAUTH_ENDPOINT = FXA_ENDPOINT + 'oauth'
-
-# other acceptable values below are:
-#   - https://oauth-stable.dev.lcip.org/v1 (demo/local)
-#   - https://oauth.stage.mozaws.net/v1 (staging)
-FXA_OAUTH_API_ENDPOINT = config('FXA_OAUTH_API_ENDPOINT',
-                                default='https://oauth-accounts.firefox.com/v1')
-
-# configure the PyFxA library
-FXA_OAUTH_CLIENT_ID = config('FXA_OAUTH_CLIENT_ID', default='')
-FXA_OAUTH_CLIENT_SECRET = config('FXA_OAUTH_CLIENT_SECRET', default='')
-# other acceptable values below are 'stable' (for demo/local) and 'stage'
-FXA_OAUTH_SERVER_ENV = config('FXA_OAUTH_SERVER_ENV', default='production')
-
 # Google Play and Apple App Store settings
 from .appstores import (GOOGLE_PLAY_FIREFOX_LINK, GOOGLE_PLAY_FIREFOX_LINK_UTMS,  # noqa
                         GOOGLE_PLAY_FIREFOX_LINK_MOZILLAONLINE,  # noqa

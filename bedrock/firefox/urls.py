@@ -35,7 +35,6 @@ urlpatterns = (
     page('firefox/channel/desktop', 'firefox/channel/desktop.html'),
     page('firefox/channel/android', 'firefox/channel/android.html'),
     page('firefox/channel/ios', 'firefox/channel/ios.html'),
-    url(r'^firefox/concerts/$', views.firefox_concerts, name='firefox.concerts'),
     page('firefox/developer', 'firefox/developer/index.html'),
     url('firefox/election/$', views.election_with_cards, name='firefox.election'),
     page('firefox/enterprise', 'firefox/enterprise/index.html'),
@@ -78,7 +77,6 @@ urlpatterns = (
     url(whatsnew_re_all, views.WhatsnewView.as_view(), name='firefox.whatsnew.all'),
 
     page('firefox/features/adblocker', 'firefox/features/adblocker.html'),
-    page('firefox/concerts', 'firefox/concerts.html'),
 
     # Release notes
     url('^firefox/(?:%s/)?(?:%s/)?notes/$' % (platform_re, channel_re),
