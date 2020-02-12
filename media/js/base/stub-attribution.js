@@ -24,6 +24,13 @@ if (typeof window.Mozilla === 'undefined') {
     StubAttribution.COOKIE_SIGNATURE_ID = 'moz-stub-attribution-sig';
 
     /**
+     * Experiment name and variation globals. These values can be set directly by a
+     * page's JS instead of relying on supplied URL query parameters.
+     */
+    StubAttribution.experimentName;
+    StubAttribution.experimentVariation;
+
+    /**
      * Determines if session falls within the predefined stub attribution sample rate.
      * @return {Boolean}.
      */
@@ -191,8 +198,8 @@ if (typeof window.Mozilla === 'undefined') {
     StubAttribution.getAttributionData = function(ref) {
         var params = new window._SearchParams();
         var utms = params.utmParams();
-        var experiment = params.get('experiment');
-        var variation = params.get('variation');
+        var experiment = params.get('experiment') || StubAttribution.experimentName;
+        var variation = params.get('variation') || StubAttribution.experimentVariation;
         var referrer = typeof ref !== 'undefined' ? ref : document.referrer;
         var ua = StubAttribution.getUserAgent();
 

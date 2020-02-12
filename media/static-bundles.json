@@ -1096,10 +1096,11 @@
     },
     {
       "files": [
+        "js/base/mozilla-convert.js",
         "js/base/stub-attribution.js",
-        "js/base/stub-attribution-custom.js"
+        "js/base/stub-attribution-convert.js"
       ],
-      "name": "stub-attribution-custom"
+      "name": "stub-attribution-convert"
     },
     {
       "files": [

@@ -1475,6 +1475,7 @@ CSP_CHILD_SRC = [
 CSP_CONNECT_SRC = CSP_DEFAULT_SRC + [
     'www.googletagmanager.com',
     'www.google-analytics.com',
+    'logs.convertexperiments.com',
     FXA_ENDPOINT,
     FXA_ENDPOINT_MOZILLAONLINE,
 ]
