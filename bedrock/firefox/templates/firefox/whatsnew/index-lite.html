@@ -31,20 +31,15 @@
   </header>
   <div class="lite-body">
     <div class="lite-content mzp-l-content">
-      <div class="lite-kv">
-        <img src="{{ static('img/firefox/whatsnew/lite/phone-in.png') }}" alt="">
-      </div>
       <div class="lite-copy">
-        <div class="lite-container">
-          <div class="lite-heading">
+        <div class="lite-heading">
           <img src="{{ static('img/logos/firefox/logo-lite.png') }}"  alt="" height="146" width="155">
-          {# L10n: the <span>, <strong> below is for visual formatting only - suppressing line breaks within 'Firefox Lite' and bolding the word 'Firefox' #}
-          <h1>{{ _('The new <span><strong>Firefox</strong> Lite</span>') }}</h1>
+          {# L10n: the <strong> below is for visual formatting only - bolding the word 'Firefox' #}
+          <h2>{{ _('<strong>Firefox</strong> Lite') }}</h2>
         </div>
-        </div>
-        <div class="lite-text-container">
-        <p class="lite-text">{{ _('Fast, Lightweight Android Browser With Free Games, Shopping Deals, And More!') }}</p>
-        </div>
+        <p class="lite-text">
+          {{ _('A lightning fast browsing experience with a mini APK size for Android.') }}
+        </p>
         <div class="lite-qrcode-container">
           <img src="{{ static('img/firefox/whatsnew/lite/qrcode-in.png') }}" alt="QR code">
           <p>{{ _('Scan the QR code to get started.') }}</p>

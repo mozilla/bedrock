@@ -63,148 +63,165 @@
 //* -------------------------------------------------------------------------- */
 // Page content
 
-.lite-container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-direction: column;
-    margin-top: $spacing-md;
+.lite-body {
+    background-color: #8aebe2;
+    background-position: top;
+    color: $color-gray-80;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    background-image: url('/media/img/firefox/whatsnew/lite/background-in.jpg');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 150%;
+    &:after {
+        display: none;
+        content: " ";
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        left: 50%;
+        margin-left: -1400px;
+        width: 2800px;
+        height: 100%;
+        max-width: 2800px;
+        background-image: url('/media/img/firefox/whatsnew/lite/photo-in.webp');
+        background-size: 75% auto;
+        background-repeat: no-repeat;
+        background-position: top center;
 
-    @media #{$mq-lg} {
-        margin-bottom: $spacing-md;
+        @media #{$mq-lg} {
+            display: block;
+        }
+
+        @media #{$mq-xl} {
+            display: block;
+            background-size: 100% auto;
+        }
+    }
+
+}
+
+.lite-content {
+    max-width: 1600px;
+    padding-left: $spacing-lg;
+    padding-right: $spacing-lg;
+    position: relative;
+    z-index: 1;
+    @media #{$mq-md} {
+        padding-bottom: $layout-xl;
     }
 }
+
+.lite-copy {
+    @include text-body-md;
+    @media #{$mq-lg} {
+        width: 58%;
+    }
+}
+
 
 .lite-heading {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: $spacing-sm;
+    margin-bottom: $spacing-md;
 
-    @media #{$mq-md} {
-        min-width: 500px;
+    @media #{$mq-sm} {
+        margin-bottom: $spacing-lg;
     }
 
-    h1 {
+    h2 {
         @include font-firefox;
-        @include text-display-lg;
-
         font-weight: normal;
-        text-align: start;
         margin-bottom: 0;
-
-        span {
-            white-space: nowrap;
+        text-align: start;
+        @include text-display-lg;
+        @media #{$mq-xl} {
+            font-size: 4rem;
         }
     }
 
     img {
-        margin-right: $spacing-md;
+        margin-right: $spacing-lg;
         width: 60px;
-        min-width: 60px;
 
-        @media #{$mq-md} {
-            width: 130px;
+        @media #{$mq-sm} {
+            width: 90px;
         }
-    }
-}
 
-.lite-body {
-    background: #42d3ec radial-gradient(50% 50% at 50% 50%, #9CF1D7 0%, rgba(255, 255, 255, 0) 100%) no-repeat top center;
-    color: $color-gray-80;
-    overflow: hidden;
-    position: relative;
+        @media #{$mq-lg} {
+            width: 120px;
+        }
 
-    @media #{$mq-lg} {
-        background-image: url('/media/img/firefox/whatsnew/lite/background.jpg');
-        background-size: 2000px auto;
-        background-position: top;
+        @media #{$mq-xl} {
+            width: 135px;
+        }
     }
 }
 
 .lite-text {
     @include text-display-sm;
-
-    font-weight: bold;
-    margin: $spacing-2xl auto $spacing-lg;
+    @include font-firefox;
+    margin: 0 auto $spacing-lg;
     padding: $spacing-lg 0;
     line-height: 1.2;
     border-top: 2px solid $color-gray-80;
     border-bottom: 2px solid $color-gray-80;
+    max-width: 480px;
+    text-align: center;
+    box-sizing: border-box;
 
     @media #{$mq-lg} {
-        max-width: 460px;
-        margin: $spacing-md auto;
+        padding-left: $spacing-md;
+        padding-right: $spacing-md;
+        max-width: 546px;
+        margin-bottom: $spacing-xl;
     }
 
-}
-
-@media #{$mq-lg} {
-    .send-to-device-wrapper {
-        margin-right: 60px;
-    }
-}
-
-.lite-content {
-    max-width: 1200px;
-    padding-left: $spacing-lg;
-    padding-right: $spacing-lg;
-
-    .lite-kv {
-        display: none;
-    }
-
-    .lite-copy {
-        text-align: center;
-        z-index: 1;
-        @include text-body-md;
-    }
-
-    @media #{$mq-sm} {
-        .lite-copy {
-            max-width: $content-sm;
-            margin: 0 auto;
-        }
-    }
-
-    @media #{$mq-lg} {
-        display: grid;
-        grid-template-columns: 35% 65%;
-
-        .lite-kv {
-            display: block;
-            position: relative;
-            min-width: 300px;
-
-            img {
-                position: absolute;
-                top: 120px;
-                right: -140px;
-                max-width: 650px;
-            }
-        }
-
-        .lite-copy {
-            margin: 20px 0 0;
-            text-align: center;
-            max-width: $content-md;
-        }
+    @media #{$mq-xl} {
+        margin-bottom: $spacing-2xl;
     }
 }
 
 .lite-qrcode-container {
-    @include text-display-xxs;
+    @include text-body-lg;
 
-    margin: $spacing-xl auto 0;
-    max-width: 250px;
+    position: relative;
+    margin: 0 auto;
+    max-width: 300px;
     text-align: center;
 
+    &:before {
+        content: " ";
+        position: absolute;
+        z-index: 1;
+        display: none;
+        background: radial-gradient(100% 100% at 50% 50%, #69e0e3 50%, transparent 50%);
+        top: 0;
+        left: -40px;
+        height: 380px;
+        width: 380px;
+
+        @media #{$mq-lg} {
+            display: block;
+        }
+    }
+
     p {
-        margin-top: $spacing-sm;
+        position: relative;
+        z-index: 2;
     }
 
     img {
+        position: relative;
+        z-index: 2;
         border: $spacing-md solid $color-white;
         border-radius: 10px;
         box-sizing: border-box;
+        max-width: 250px;
+        margin-bottom: $spacing-sm;
     }
 }
