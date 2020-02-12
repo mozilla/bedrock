@@ -27,7 +27,7 @@
 {# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
 {% block extrahead %}
   {{ css_bundle('pebbles') }}
-  {{ css_bundle('firefox_new_common') }}
+  {{ css_bundle('firefox_new_scene1_yandex') }}
 {% endblock %}
 
 {% block body_id %}{% endblock %}
@@ -60,15 +60,15 @@
         <div class="header-image">
           <img src="{{ static('img/placeholder.png')}}"
                srcset="{{ static('img/placeholder.png')}} 1.5x"
-               data-firefox-src="{{ static('img/firefox/new/browser.png')}}"
-               data-firefox-srcset="{{ static('img/firefox/new/browser-high-res.png')}} 1.5x"
-               data-yandex-src="{{ static('img/firefox/new/yandex/browser.jpg')}}"
-               data-yandex-srcset="{{ static('img/firefox/new/yandex/browser-high-res.jpg')}} 1.5x"
+               data-firefox-src="{{ static('img/firefox/new/yandex/browser.png')}}"
+               data-firefox-srcset="{{ static('img/firefox/new/yandex/browser-high-res.png')}} 1.5x"
+               data-yandex-src="{{ static('img/firefox/new/yandex/yandex.jpg')}}"
+               data-yandex-srcset="{{ static('img/firefox/new/yandex/yandex-high-res.jpg')}} 1.5x"
                alt=""
                width="700"
                height="529">
           <noscript>
-            <img src="{{ static('img/firefox/new/browser.png')}}" srcset="{{ static('img/firefox/new/browser-high-res.png')}} 1.5x" alt="" width="700" height="529">
+            <img src="{{ static('img/firefox/new/yandex/browser.png')}}" srcset="{{ static('img/firefox/new/yandex/browser-high-res.png')}} 1.5x" alt="" width="700" height="529">
           </noscript>
         </div>
       </div>

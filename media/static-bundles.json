@@ -142,7 +142,6 @@
     },
     {
       "files": [
-        "css/firefox/new/scene1.scss",
         "css/firefox/new/yandex-scene1.scss"
       ],
       "name": "firefox_new_scene1_yandex"
