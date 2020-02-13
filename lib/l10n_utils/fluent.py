@@ -84,6 +84,9 @@ class FluentL10n(FluentLocalization):
 
     @cached_property
     def percent_translated(self):
+        if not self._message_ids:
+            return 0
+
         return (float(len(self._localized_message_ids)) / float(len(self._message_ids))) * 100
 
     def has_message(self, message_id):
@@ -136,6 +139,15 @@ def get_metadata(ftl_file):
             return json.load(mdf)
     except (IOError, ValueError):
         return {}
+
+
+def write_metadata(ftl_file, data):
+    metadata_path = get_metadata_file_path(ftl_file)
+    if not metadata_path.exists():
+        metadata_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with metadata_path.open('w') as mdf:
+        json.dump(data, mdf, indent=2, sort_keys=True)
 
 
 @memoize
