@@ -1268,7 +1268,7 @@
     },
     {
       "files": [
-        "js/base/mozilla-modal.js",
+        "protocol/js/protocol-modal.js",
         "js/mozorg/about-leadership.js"
       ],
       "name": "about-leadership"

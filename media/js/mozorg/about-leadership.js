@@ -2,99 +2,46 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-(function($, Mozilla) {
+// create namespace
+if (typeof window.Mozilla === 'undefined') {
+    window.Mozilla = {};
+}
+
+(function() {
     'use strict';
 
-    var ltr = document.dir === 'ltr';
-    var utils = Mozilla.Utils;
+    var bios = document.getElementsByClassName('has-bio');
+    var content = document.querySelector('.mzp-u-modal-content');
 
-    // Set up the modal navigation
-    var navModal = function(direction) {
-        var $origin = $('.modal-origin').removeClass('modal-origin');
-        var personId;
+    for (var i = 0; i < bios.length; i++) {
+        var bio = bios[i];
+        bio.setAttribute('aria-role', 'button');
 
-        if (direction === 1) {
-            $origin = $origin.next().length ? $origin.next() : $origin.siblings(':first');
-            personId = $origin.attr('id');
-        } else {
-            $origin = $origin.prev().length ? $origin.prev() : $origin.siblings(':last');
-            personId = $origin.attr('id');
-        }
+        bio.addEventListener('click', function(e) {
+            e.preventDefault();
+            var modalContent = this.cloneNode(true);
+            modalContent.removeAttribute('id');
+            modalContent.setAttribute('aria-role', 'article');
 
-        $('#modal').attr('aria-labelledby', personId).trigger('focus');
-        $('#modal .overlay-contents').replaceWith($origin.clone().attr('tabindex', '0').addClass('overlay-contents'));
-        $('#modal header h1').text($origin.find('.fn').text());
-
-        $origin.addClass('modal-origin');
-    };
-
-    // Set up the modal
-    $('.has-bio').each(function() {
-        var $this = $(this);
-        var modalTitle = '<h1>' + $this.find('.fn').text() + '</h1>';
-
-        $this.attr({
-            'tabindex': '0'
-        }).on('click', function() {
-
-            Mozilla.Modal.createModal(this, $this.clone().removeAttr('id'), {
-                title: modalTitle,
-                'onCreate': function() {
-                    var $nav = $('<nav role="presentation"></nav>').insertBefore('#modal-close');
-
-                    $('<button class="next" aria-controls="modal"></button>')
-                        .text(utils.trans('global-next')).appendTo($nav);
-                    $('<button class="prev" aria-controls="modal">prev</button>')
-                        .text(utils.trans('global-previous')).appendTo($nav);
-
-                    $nav.on('click', 'button', function() {
-                        var $this = $(this);
-
-                        navModal($this.hasClass('prev') ? -1 : 1);
-                    });
+            Mzp.Modal.createModal(e.target, content, {
+                closeText: window.Mozilla.Utils.trans('global-close'),
+                onCreate: function() {
+                    content.appendChild(modalContent);
+                },
+                onDestroy: function() {
+                    modalContent.remove();
                 }
             });
-
-        }).on('keydown', function(event) {
-            if (event.keyCode === 13) { // Enter
-                $this.trigger('click');
-            }
         });
-
-    });
-
-    // Set up keyboard shortcuts for the modal
-    $(document).on('keydown', '#modal', function(event) {
-        var direction = 0;
-
-        switch (event.keyCode) {
-        case 37: // Left arrow
-            direction = ltr ? -1 : 1;
-            break;
-        case 38: // Up arrow
-            direction = -1;
-            break;
-        case 39: // Right arrow
-            direction = ltr ? 1 : -1;
-            break;
-        case 40: // Down arrow
-            direction = 1;
-            break;
-        }
-
-        if (direction) {
-            event.preventDefault();
-            navModal(direction);
-        }
-    });
+    }
 
     // trigger modal on page load if hash is present and matches a person with a bio
     if (window.location.hash) {
-        var $target = $(window.location.hash);
+        var target = document.getElementById(window.location.hash.substr(1));
 
-        if ($target.length && $target.hasClass('vcard has-bio')) {
-            $target.trigger('click');
+        if (target && target.classList.contains('has-bio')) {
+            target.click();
         }
     }
 
-})(window.jQuery, window.Mozilla);
+})(window.Mozilla);
