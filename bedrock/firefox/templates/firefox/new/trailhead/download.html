@@ -25,7 +25,7 @@
   {% call hero(
     title=_('Get the latest Firefox browser.'),
     desc=tagline,
-    class='mzp-has-image mzp-t-dark',
+    class='mzp-has-image mzp-t-dark hero-firefox',
     include_cta=True,
     image_url='img/firefox/new/trailhead/browser-window.svg',
     heading_level=1
@@ -47,7 +47,8 @@
       <li><a rel="external" href="https://support.mozilla.org/products/ios/?utm_source=mozilla.org&amp;utm_medium=referral&amp;utm_campaign=need-help-link">{{_('Need help?')}}</a></li>
     </ul>
   {% endcall %}
-  <section class="features">
+  {% block alt_hero %}{% endblock %}
+  <section class="features firefox">
     <ul class="mzp-l-card-third mzp-l-content">
       {% if l10n_has_tag('firefox-new-skyline') %}
         {{ picto_card(title=_('See what’s being blocked'), desc=_('Firefox shows you how many data-collecting trackers are blocked with <strong>Enhanced Tracking Protection</strong>.'), class='skyline-etp') }}
@@ -60,6 +61,7 @@
       {% endif %}
     </ul>
   </section>
+  {% block alt_features %}{% endblock %}
 </main>
 
 <aside class="mzp-u-modal-content other-platforms-content">

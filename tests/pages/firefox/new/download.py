@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 
 from pages.firefox.base import FirefoxBasePage
 from pages.regions.download_button import DownloadButton
-from pages.regions.modal import Modal, ModalProtocol
+from pages.regions.modal import ModalProtocol
 
 
 class DownloadPage(FirefoxBasePage):
@@ -19,6 +19,7 @@ class DownloadPage(FirefoxBasePage):
     _legacy_platforms_modal_link_locator = (By.ID, 'other-platforms-modal-link')
     _legacy_platforms_modal_content_locator = (By.ID, 'other-platforms')
     _join_firefox_modal_content_locator = (By.CLASS_NAME, 'join-firefox-content')
+    _yandex_download_button_locator = (By.CSS_SELECTOR, '.hero-yandex .mzp-c-button.mzp-t-product')
 
     @property
     def download_button(self):
@@ -36,14 +37,13 @@ class DownloadPage(FirefoxBasePage):
         self.wait.until(lambda s: modal.displays(self._platforms_modal_content_locator))
         return modal
 
-    def open_legacy_other_platforms_modal(self):
-        modal = Modal(self)
-        self.find_element(*self._legacy_platforms_modal_link_locator).click()
-        self.wait.until(lambda s: modal.displays(self._legacy_platforms_modal_content_locator))
-        return modal
-
     def open_join_firefox_modal(self):
         modal = ModalProtocol(self)
         self.download_button.click()
         self.wait.until(lambda s: modal.displays(self._join_firefox_modal_content_locator))
         return modal
+
+    @property
+    def is_yandex_download_button_displayed(self):
+        button = self.find_element(*self._yandex_download_button_locator)
+        return button.is_displayed() and 'https://yandex.ru/firefox/mozilla/' in button.get_attribute('href')

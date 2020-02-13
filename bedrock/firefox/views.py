@@ -726,7 +726,7 @@ def new(request):
     # if no/incorrect scene specified, show scene 1
     else:
         if locale == 'ru' and switch('firefox-yandex'):
-            template = 'firefox/new/yandex/scene1.html'
+            template = 'firefox/new/download-yandex.html'
         elif lang_file_is_active('firefox/new/trailhead', locale):
             template = 'firefox/new/trailhead/download.html'
         else:

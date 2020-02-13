@@ -682,7 +682,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'ru'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/yandex/scene1.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/download-yandex.html', ANY)
 
     @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='False')
     @patch.object(views, 'lang_file_is_active', lambda *x: True)

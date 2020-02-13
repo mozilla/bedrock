@@ -90,8 +90,11 @@
     };
 
     Yandex.showYandexContent = function() {
-        Yandex.showYandexBrowserImage();
-        Yandex.showYandexMessaging();
+        document.body.classList.add('show-yandex');
+
+        // Update page title and description.
+        document.title = Mozilla.Utils.trans('page-title');
+        document.querySelector('meta[name="description"]').setAttribute('content', Mozilla.Utils.trans('page-desc'));
 
         window.dataLayer.push({
             'data-ex-variant': 'yandex-content',
@@ -100,9 +103,6 @@
     };
 
     Yandex.showRegularContent = function() {
-        Yandex.showRegularBrowserImage();
-        Yandex.initOtherPlatformsModal();
-
         window.dataLayer.push({
             'data-ex-variant': 'regular-content',
             'data-ex-name': 'firefox-new-ru-yandex'
@@ -112,74 +112,6 @@
     Yandex.shouldShowYandex = function() {
         // Is user in Russia?
         return Yandex.verifyLocation(Yandex.getCookie(Yandex.COOKIE_ID));
-    };
-
-    Yandex.showYandexMessaging = function() {
-        // Update page title and description.
-        document.title = Mozilla.Utils.trans('page-title');
-        document.querySelector('meta[name="description"]').setAttribute('content', Mozilla.Utils.trans('page-desc'));
-
-        // Add styling hook for Yandex specific CSS.
-        document.body.classList.add('yandex');
-
-        // Update download button CTA and link href.
-        var button = document.querySelectorAll('.main-download .download-list .download-link[data-download-os="Desktop"]');
-
-        for (var i = 0; i < button.length; i++) {
-            button[i].href = Mozilla.Utils.trans('button-link');
-            button[i].removeAttribute('data-direct-link');
-            button[i].querySelector('.download-title').innerHTML = Mozilla.Utils.trans('button-text');
-            button[i].setAttribute('data-link-name', 'Yandex redirect');
-            button[i].setAttribute('data-link-type', 'Download Firefox (RU)');
-            button[i].setAttribute('data-link-position', 'primary cta');
-        }
-
-        // Update privacy policy text for Yandex.
-        document.querySelector('.main-download .download-button .fx-privacy-link').innerHTML = Mozilla.Utils.trans('privacy-notice');
-
-        // Update any elements with alt text translations.
-        var elems = document.querySelectorAll('[data-yandex-alt]');
-
-        for (var j = 0; j < elems.length; j++) {
-            elems[j].innerText = elems[j].getAttribute('data-yandex-alt');
-        }
-
-        var secondaryButton = document.querySelectorAll('.call-out-compact .download-list .download-link[data-download-os="Desktop"]');
-
-        for (var k = 0; k < button.length; k++) {
-            secondaryButton[k].querySelector('.download-title').innerHTML = Mozilla.Utils.trans('secondary-button-text');
-        }
-    };
-
-    Yandex.showYandexBrowserImage = function() {
-        var browser = document.querySelector('.header-image > img');
-        browser.src = browser.getAttribute('data-yandex-src');
-        browser.srcset = browser.getAttribute('data-yandex-srcset');
-    };
-
-    Yandex.showRegularBrowserImage = function() {
-        var browser = document.querySelector('.header-image > img');
-        browser.src = browser.getAttribute('data-firefox-src');
-        browser.srcset = browser.getAttribute('data-firefox-srcset');
-    };
-
-    Yandex.initOtherPlatformsModal = function() {
-        document.getElementById('other-platforms-modal-link').addEventListener('click', function(e) {
-            e.preventDefault();
-
-            Mozilla.Modal.createModal(this, $('#other-platforms'), {
-                title: $(this).text()
-            });
-
-            window.dataLayer.push({
-                'event': 'in-page-interaction',
-                'eAction': 'link click',
-                'eLabel': 'Download Firefox for another platform'
-            });
-        }, false);
-
-        // show the modal cta link
-        document.getElementById('other-platforms-languages-wrapper').classList.remove('hidden');
     };
 
     Yandex.cookieExpiresDate = function(date) {
