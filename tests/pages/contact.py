@@ -4,7 +4,6 @@
 
 from pypom import Region
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.select import Select
 
 from pages.base import BasePage
 
@@ -16,7 +15,7 @@ class ContactPage(BasePage):
     _contact_tab_locator = (By.CSS_SELECTOR, '.category-tabs > li[data-id=contact]')
     _spaces_tab_locator = (By.CSS_SELECTOR, '.category-tabs > li[data-id=spaces]')
     _communities_tab_locator = (By.CSS_SELECTOR, '.category-tabs > li[data-id=communities]')
-    _mobile_nav_locator = (By.ID, 'nav-category-select')
+    _mobile_menu_toggle_locator = (By.CSS_SELECTOR, '.mzp-c-sidemenu-summary.mzp-js-toggle')
 
     @property
     def contact_tab(self):
@@ -33,10 +32,9 @@ class ContactPage(BasePage):
         el = self.find_element(*self._communities_tab_locator)
         return self.Tab(self, root=el)
 
-    def select_mobile_nav_item(self, value, expected):
-        select = Select(self.find_element(*self._mobile_nav_locator))
-        select.select_by_visible_text(value)
-        self.wait.until(lambda s: expected in s.current_url)
+    @property
+    def is_mobile_menu_toggle_displayed(self):
+        return self.is_element_displayed(*self._mobile_menu_toggle_locator)
 
     class Tab(Region):
 
@@ -50,19 +48,19 @@ class SpacesPage(ContactPage):
     URL_TEMPLATE = '/{locale}/contact/spaces/{slug}'
 
     _map_locator = (By.ID, 'map')
-    _desktop_nav_locator = (By.CSS_SELECTOR, '#nav-spaces li')
+    _nav_locator = (By.CSS_SELECTOR, '#nav-spaces li h4')
 
     @property
-    def is_mobile_nav_displayed(self):
-        return self.is_element_displayed(*self._mobile_nav_locator)
-
-    @property
-    def is_desktop_nav_displayed(self):
-        return self.is_element_displayed(*self._desktop_nav_locator)
+    def is_nav_displayed(self):
+        return self.is_element_displayed(*self._nav_locator)
 
     @property
     def spaces(self):
-        return [self.Space(self, root=el) for el in self.find_elements(*self._desktop_nav_locator)]
+        return [self.Space(self, root=el) for el in self.find_elements(*self._nav_locator)]
+
+    def open_spaces_mobile_menu(self):
+        self.find_element(*self._mobile_menu_toggle_locator).click()
+        self.wait.until(lambda s: self.is_nav_displayed)
 
     class Space(Region):
 
@@ -72,26 +70,26 @@ class SpacesPage(ContactPage):
 
         @property
         def is_selected(self):
-            return 'current' in self.root.get_attribute('class')
+            return 'mzp-is-current' in self.root.get_attribute('class')
 
 
 class CommunitiesPage(ContactPage):
 
     URL_TEMPLATE = '/{locale}/contact/communities/{slug}'
 
-    _desktop_nav_locator = (By.CSS_SELECTOR, '#nav-communities .region')
+    _nav_locator = (By.CSS_SELECTOR, '#nav-communities .region')
 
     @property
-    def is_mobile_nav_displayed(self):
-        return self.is_element_displayed(*self._mobile_nav_locator)
-
-    @property
-    def is_desktop_nav_displayed(self):
-        return self.is_element_displayed(*self._desktop_nav_locator)
+    def is_nav_displayed(self):
+        return self.is_element_displayed(*self._nav_locator)
 
     @property
     def regions(self):
-        return [self.Region(self, root=el) for el in self.find_elements(*self._desktop_nav_locator)]
+        return [self.Region(self, root=el) for el in self.find_elements(*self._nav_locator)]
+
+    def open_communities_mobile_menu(self):
+        self.find_element(*self._mobile_menu_toggle_locator).click()
+        self.wait.until(lambda s: self.is_nav_displayed)
 
     class Region(Region):
 
@@ -107,11 +105,7 @@ class CommunitiesPage(ContactPage):
 
         @property
         def is_selected(self):
-            return 'current' in self.root.get_attribute('class')
-
-        @property
-        def is_open(self):
-            return 'open' in self.root.get_attribute('class')
+            return 'mzp-is-current' in self.root.get_attribute('class')
 
         class Community(Region):
 
@@ -127,4 +121,4 @@ class CommunitiesPage(ContactPage):
 
             @property
             def is_selected(self):
-                return 'current' in self.root.get_attribute('class')
+                return 'mzp-is-current' in self.root.get_attribute('class')

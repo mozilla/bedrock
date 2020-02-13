@@ -2,8 +2,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../pebbles/includes/lib';
-@import '../hubs/sections';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/sidebar-menu';
+@import '../../protocol/css/templates/main-with-sidebar';
 
 /* -------------------------------------------------------------------------- */
 // Common elements and variables
@@ -16,77 +20,33 @@
          url('/media/fonts/icons-contact.woff') format('woff');
 }
 
-$lightGray: lighten(#e7e5e2, 6%);
-
-a:link,
-a:visited {
-    color: $color-link;
-}
-
-a:hover,
-a:active,
-a:focus {
-    color: darken($color-link, 10%);
-}
-
-// Add a double-arrow after 'go' links
-.go {
-   @include trailing-arrow;
-}
-
 /* -------------------------------------------------------------------------- */
 // Main page header
 
 .page-head {
-    .page-title {
-        @include font-size-huge;
-        color: #fff;
-        display: inline-block;
-        line-height: 1.3;
-
-        span {
-            @include box-decoration-break(clone);
-            background-color: #000;
-        }
-    }
-
     .help a {
         display: block;
     }
 
-    @media #{$mq-desktop} {
+    @media #{$mq-lg} {
         @include clearfix;
-        padding: 60px 0 20px;
+        padding: $spacing-2xl 0 $spacing-lg;
 
         .page-title {
-            float: left;
+            @include bidi(((float, left, right),));
         }
 
         .help {
-            float: right;
-            text-align: right;
+            @include bidi((
+                (float, right, left),
+                (text-align, right, left),
+            ));
         }
     }
 
-    @media #{$mq-desktop-wide} {
+    @media #{$mq-xl} {
         .help a {
             display: inline;
-        }
-    }
-}
-
-html[dir="rtl"] {
-    .page-head {
-        @media #{$mq-desktop} {
-
-            .page-title {
-                float: right;
-            }
-
-            .help {
-                float: left;
-                text-align: left;
-            }
         }
     }
 }
@@ -95,7 +55,7 @@ html[dir="rtl"] {
 // Large map
 
 .map {
-    background: rgba(149, 211, 241, .5);
+    background: $color-gray-20;
     display: none;
     position: relative;
 
@@ -104,31 +64,20 @@ html[dir="rtl"] {
     }
 
     small {
-        @include font-size-extra-small;
-        position: absolute;
-        bottom: 0;
-        right: 0;
+        @include text-body-xs;
+        @include bidi(((right, 0, left, auto),));
         background: rgba(255, 255, 255, 0.7);
-        padding: 0 2px;
+        bottom: 0;
+        padding: 0 $spacing-xs;
+        position: absolute;
     }
 
-    @media #{$mq-tablet} {
+    @media #{$mq-md} {
         display: block;
 
         img {
             display: block;
         }
-    }
-
-    @media screen and (min-width: $width-max-content) {
-        height: 380px;
-    }
-}
-
-html[dir="rtl"] {
-    .map small {
-        right: auto;
-        left: 0;
     }
 }
 
@@ -136,289 +85,102 @@ html[dir="rtl"] {
 // Tab navigation
 
 .page-content {
+    padding-top: $layout-md;
     position: relative;
+}
+
+.mzp-has-sidebar {
+    @include clearfix;
 }
 
 .category-tabs {
-    @include font-size(14px);
-    @include open-sans;
-    text-align: left;
+    @include bidi(((text-align, left, right),));
+    @include text-body-sm;
 
     li {
+        @include bidi(((margin, 0 $spacing-xs 0 0, 0 0 0 $spacing-xs),));
         display: inline-block;
-        margin: 0 5px 0 0;
         position: relative;
 
-        &.current a {
-            background-position: 100% -60px;
-            color: $color-text-secondary;
-            cursor: default;
-        }
-
         &:last-child {
-            margin: 0;
+            @include bidi(((margin, 0, margin, 0),));
         }
 
         a {
-            background-color: $lightGray;
+            background-color: $color-gray-20;
             display: block;
             height: 40px;
             line-height: 40px;
+            padding: 0 $spacing-sm;
             position: relative;
             text-decoration: none;
             z-index: 10;
-            padding: 0 10px;
-        }
-    }
-
-    @media #{$mq-tablet} {
-        left: 0;
-        position: absolute;
-        text-align: center;
-        top: -40px;
-
-        li {
-            width: 144px;
-            margin: 0;
-
-            a {
-                background: url('/media/img/firefox/pager-tabs.png') 0 -60px no-repeat;
-                padding: 0;
-            }
-        }
-    }
-
-    @media #{$mq-desktop} {
-        @include font-size(16px);
-
-        li {
-            width: 218px;
-
-            a {
-                background-position: 0 0;
-            }
-
-            &.current a {
-                background-position: 100% 0;
-            }
-        }
-    }
-
-    @media #{$mq-desktop-wide} {
-        left: 20px;
-    }
-}
-
-html[dir="rtl"] {
-    .category-tabs {
-        text-align: right;
-
-        li {
-            margin: 0 0 0 5px;
-
-            &:last-child {
-                margin: 0;
-            }
         }
 
-        @media #{$mq-tablet} {
-            left: auto;
-            right: 0;
-            text-align: center;
-        }
-
-        @media #{$mq-desktop-wide} {
-            left: auto;
-            right: 20px;
-        }
-    }
-
-}
-
-/* -------------------------------------------------------------------------- */
-// Side navigation
-
-.nav-category {
-    @include font-size-level6;
-    @include open-sans;
-    padding-top: 40px;
-    width: 220px;
-
-    ul {
-        margin: 0 0 30px;
-    }
-
-    li {
-        border-bottom: 1px solid #d7d7db;
-        line-height: 1;
-        list-style: none;
-        margin: 0;
-        text-transform: uppercase;
-
-        &:last-child {
-            border: 0;
-        }
-    }
-
-    a {
-        display: block;
-        padding: 1em 20px;
-        text-decoration: none;
-
-        &:hover,
-        &:focus,
-        &:active {
-            background-color: $lightGray;
-            color: #000;
-        }
-    }
-
-    .current > a {
-        background-color: $lightGray;
-        color: $color-text-primary;
-        font-weight: bold;
-
-        &:hover {
+        &.current a {
+            color: $color-black;
             cursor: default;
         }
     }
 
-    .submenu {
-        display: none;
-        margin: 0;
+    @media #{$mq-md} {
+        @include bidi((
+            (left, 0, right, auto),
+            (text-align, center, center),
+        ));
+        position: absolute;
+        top: -40px;
 
         li {
-            border-bottom: 0;
-            text-transform: none;
+            width: 120px;
+            margin: 0;
 
             a {
-                @include font-size-small;
-                padding-left: 30px;
+                background-color: rgba(255, 255, 255, 0.8);
+                padding: 0;
 
-                &:hover,
-                &:focus,
                 &:active {
-                    background-color: $lightGray;
-                    color: #000;
+                    background-color: $color-white;
                 }
+            }
+
+            &.current a {
+                background-color: $color-white;
             }
         }
     }
 
-    .region.open .submenu {
-        display: block;
+    @media #{$mq-lg} {
+        @include text-body-md;
+
+        li {
+            width: 218px;
+        }
     }
 
-    .current > a {
-        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAVCAMAAACnruT/AAAADFBMVEX///////8AAAD///8FAGTCAAAAA3RSTlP2MwC/VK6MAAAAOUlEQVR42mXOsQ0AMAgDQRL23znf5F2Y6owQMNc6WE64E2KJJZZYYonht0y/5w3Z33cN/af/G7DhAe6MAeVz0UYBAAAAAElFTkSuQmCC');
-        background-position: right 50%;
-        background-repeat: no-repeat;
-    }
-
-    // down arrow
-    .hasmenu > a {
-        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFBAMAAABlfdtYAAAAHlBMVEXj2dnj2dnj2dnj2dnj2dnj2dnj2dnj2dkAAADj2dkWOMusAAAACXRSTlO9FY0G16cPxQCXNA3IAAAAJUlEQVQIHWPQnDlzpgJD68yZUxsYmitnFjcwdKRMyQCSjYwdDQC1DQvjVlZh+AAAAABJRU5ErkJggg==');
-        background-position: 96% 50%;
-        background-repeat: no-repeat;
-    }
-
-    // up arrow
-    .hasmenu.open > a {
-        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAFBAMAAABlfdtYAAAAHlBMVEXj2dnj2dnj2dnj2dnj2dnj2dnj2dnj2dkAAADj2dkWOMusAAAACXRSTlO9FY0G16cPxQCXNA3IAAAAJklEQVQIHWPqaGTsaGBieDz5AQPTb1FWbgYmJgUGJQamJQwMLAsAgvQHHy1uf2MAAAAASUVORK5CYII=');
-    }
-
-    .hasmenu.current > a {
-        background-color: $lightGray;
-    }
-}
-
-.js .nav-category {
-    display: none;
-
-    @media #{$mq-tablet} {
-        display: block;
-    }
-}
-
-html[dir="rtl"] {
-    .nav-category .submenu li a {
-        padding-left: 0;
-        padding-right: 30px;
+    @media #{$mq-xl} {
+        @include bidi(((left, $spacing-lg, right, auto),));
     }
 }
 
 /* -------------------------------------------------------------------------- */
-// Mobile <select> navigation
-
-label[for="nav-category-select"] {
-    @include font-size(14px);
-    @include open-sans;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.nav-category-select {
-    @include font-size(14px);
-    @include open-sans;
-    display: block;
-    height: auto;
-    margin-bottom: 20px;
-    max-width: 380px;
-    width: 100%;
-}
-
-@media #{$mq-tablet} {
-    label[for="nav-category-select"],
-    .nav-category-select {
-        display: none;
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-// Contact entry main page content (either a space or a community)
-
-#entry-container {
-    position: relative;
-
-    @media #{$mq-tablet} {
-        float: right;
-        width: calc(100% - 220px);
-    }
-}
-
-// contact-us landing page has no side navigation.
-.contact-us #entry-container {
-    @media #{$mq-tablet} {
-        float: none;
-        width: 100%;
-    }
-}
-
-html[dir="rtl"] {
-    #entry-container {
-        @media #{$mq-tablet} {
-            float: left;
-        }
-    }
-
-    .contact-us #entry-container {
-        @media #{$mq-tablet} {
-            float: none;
-        }
-    }
-}
+// Main content
 
 .entry {
-    margin-bottom: 30px;
+    margin-bottom: $spacing-xl;
+
+    h2 {
+        @include text-display-md;
+    }
 
     .card {
-        margin: 0 0 20px;
+        margin: 0 0 $spacing-lg;
         min-height: 250px;
         position: relative;
 
         .logo {
             display: block;
-            margin-bottom: 20px;
+            margin-bottom: $spacing-lg;
             max-width: 150px;
         }
 
@@ -427,15 +189,15 @@ html[dir="rtl"] {
         }
 
         .adr {
+            @include bidi(((padding-left, $spacing-xl, padding-right, 0),));
             margin: 0 0 .5em;
-            padding-left: 30px;
             position: relative;
 
             &:before {
-                color: #b50f10;
+                @include bidi(((left, 0, right, auto),));
+                color: $color-red-60;
                 content: '\e800';
                 font: 105% FA-Icons-Contact;
-                left: 0;
                 position: absolute;
                 top: .125em;
             }
@@ -443,19 +205,14 @@ html[dir="rtl"] {
 
         .extra {
 
-            li {
-                list-style: none;
-                margin: .25em 0 0;
-            }
-
             a {
-                padding-left: 30px;
+                @include bidi(((padding-left, $spacing-xl, padding-right, 0),));
                 position: relative;
 
                 &:before {
-                    color: #b50f10;
+                    @include bidi(((left, 0, right, auto),));
+                    color: $color-red-60;
                     font: 105% FA-Icons-Contact;
-                    left: 0;
                     position: absolute;
                     top: .125em;
                 }
@@ -467,20 +224,16 @@ html[dir="rtl"] {
             display: block;
         }
     }
-
-    @media #{$mq-tablet} {
-        padding: 40px 0 40px 40px;
-    }
 }
 
 .entry-space .card {
 
-    @media #{$mq-desktop-wide} {
-        padding-left: 480px;
+    @media #{$mq-xl} {
+        @include bidi(((padding-left, 480px, padding-right, 0),));
 
         .feature-img {
+            @include bidi(((left, 0, right, auto),));
             height: 250px;
-            left: 0;
             position: absolute;
             top: 0;
             width: 460px;
@@ -490,27 +243,27 @@ html[dir="rtl"] {
 
 .entry-community .card {
 
-    @media #{$mq-desktop} {
-        padding-left: 320px;
+    @media #{$mq-lg} {
+        @include bidi(((padding-left, 320px, padding-right, 0),));
 
         .feature-img {
-            left: 0;
+            @include bidi(((left, 0, right, auto),));
             position: absolute;
             top: 0;
             width: 300px;
         }
     }
 
-    @media #{$mq-desktop-wide} {
-        padding-left: 400px;
+    @media #{$mq-xl} {
+        @include bidi(((padding-left, 400px, padding-right, 0),));
 
         h2 {
             max-width: 70%;
         }
 
         .logo {
+            @include bidi(((right, 0, left, auto),));
             position: absolute;
-            top: 0;
             right: 0;
         }
 
@@ -533,85 +286,17 @@ html[dir="rtl"] {
 .card .extra a.youtube:before { content: '\e80c'; }
 .card .extra a.flickr:before { content: '\e807'; }
 
-html[dir="rtl"] {
-    .entry {
-        .card {
-            .adr {
-                padding-left: 0;
-                padding-right: 30px;
-
-                &:before {
-                    left: auto;
-                    right: 0;
-                }
-            }
-
-            .extra {
-                a {
-                    padding-left: 0;
-                    padding-right: 30px;
-
-                    &:before {
-                        left: auto;
-                        right: 0;
-                    }
-                }
-            }
-        }
-
-        @media #{$mq-tablet} {
-            padding: 40px 40px 40px 0;
-        }
-    }
-
-    .entry-space .card {
-
-        @media #{$mq-desktop-wide} {
-            padding-left: 0;
-            padding-right: 480px;
-
-            .feature-img {
-                left: auto;
-                right: 0;
-            }
-        }
-    }
-
-    .entry-community .card {
-
-        @media #{$mq-desktop} {
-            padding-left: 0;
-            padding-right: 320px;
-
-            .feature-img {
-                left: auto;
-                right: 0;
-            }
-        }
-
-        @media #{$mq-desktop-wide} {
-            padding-left: 0;
-            padding-right: 400px;
-
-            .logo {
-                left: 0;
-                right: auto;
-            }
-        }
-    }
-}
-
-
 /* -------------------------------------------------------------------------- */
 // Image & Video media
 
 // .Gallery - for a gallery of thumbnail images
 // .Media - for large, single images or videos (not a thumbnail gallery)
+
 .gallery,
 .media {
     @include clearfix;
-    margin: 0 0 20px;
-    padding: 20px 0 0;
+    margin: 0 0 $spacing-lg;
+    padding: $spacing-lg 0 0;
 }
 
 .media {
@@ -619,14 +304,16 @@ html[dir="rtl"] {
 }
 
 .gallery-list {
-    margin: 20px 0;
+    margin: $spacing-lg 0;
     position: relative;
 
     li {
-        float: left;
-        margin: 0 20px 20px 0;
+        @include bidi((
+            (float, left, right),
+            (margin, 0 $spacing-lg $spacing-lg 0, 0 0 $spacing-lg $spacing-lg),
+        ));
         max-height: 110px;
-        width: calc(50% - 20px);
+        width: calc(50% - #{$spacing-lg});
 
         a,
         img {
@@ -634,23 +321,9 @@ html[dir="rtl"] {
         }
     }
 
-    a:hover img,
-    a:focus img {
-        border-color: $color-link-blue;
-    }
-
-    @media #{$mq-desktop} {
+    @media #{$mq-lg} {
         li {
-            width: calc(25% - 20px);
-        }
-    }
-}
-
-html[dir="rtl"] {
-    .gallery-list {
-        li {
-            float: right;
-            margin: 0 0 20px 20px;
+            width: calc(25% - #{$spacing-lg});
         }
     }
 }
@@ -658,7 +331,7 @@ html[dir="rtl"] {
 @supports (display: grid) {
     .gallery-list {
         display: grid;
-        grid-gap: 20px;
+        grid-gap: $spacing-lg;
         grid-template-columns: repeat(2, 1fr);
 
         li {
@@ -666,11 +339,11 @@ html[dir="rtl"] {
             width: 100%;
         }
 
-        @media #{$mq-phone-wide} {
+        @media #{$mq-sm} {
             grid-template-columns: repeat(3, 1fr);
         }
 
-        @media #{$mq-desktop} {
+        @media #{$mq-lg} {
             grid-template-columns: repeat(4, 1fr);
 
             li {
@@ -692,78 +365,40 @@ html[dir="rtl"] {
 // Footers for the tab content, one for spaces and one for community.
 
 .meta-category {
-    @include font-size-level6;
-    border-top: 1px solid #d7d7db;
+    border-top: 1px solid $color-gray-30;
     clear: both;
-    padding: 20px 0 0;
-
-    ul {
-        list-style: none;
-    }
+    margin-top: $layout-lg;
+    padding: $spacing-lg 0 0;
 
     li {
         display: block;
     }
 
-    @media #{$mq-desktop} {
+    @media #{$mq-lg} {
         @include clearfix;
 
         ul {
-            float: left;
+            @include bidi(((float, left, right),));
         }
 
         li {
+            @include bidi(((margin-right, $spacing-sm, margin-left, 0),));
             display: inline;
-            margin-right: 10px;
 
             &:last-child {
-                margin-right: 0;
+                @include bidi(((margin-right, 0, margin-left, 0),));
             }
         }
 
         .meta-contact {
-            float: right;
+            @include bidi(((float, right, left),));
         }
     }
 }
 
 .attribution {
-    @include font-size-small;
-    margin: 40px 0;
-
-    @media #{$mq-desktop} {
-        text-align: right;
-    }
-}
-
-html[dir="rtl"] {
-    .meta-category {
-        @media #{$mq-desktop} {
-
-            ul {
-                float: right;
-            }
-
-            li {
-                margin-left: 10px;
-                margin-right: 0;
-
-                &:last-child {
-                    margin-left: 0;
-                }
-            }
-
-            .meta-contact {
-                float: left;
-            }
-        }
-    }
-
-    .attribution {
-        @media #{$mq-desktop} {
-            text-align: left;
-        }
-    }
+    @include text-body-sm;
+    margin: $spacing-2xl 0;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -773,53 +408,37 @@ html[dir="rtl"] {
 
     p {
         max-width: 35em;
-
     }
 
     .contact-sections {
-        margin: 40px 0;
+        margin: $spacing-2xl 0;
     }
 
-    @media #{$mq-desktop} {
+    @media #{$mq-lg} {
         .contact-sections {
             @include clearfix;
             position: relative;
         }
 
         .contact-section {
-            float: left;
-            width: calc(33% - 20px);
-            margin-right: 20px;
+            @include bidi((
+                (float, left, right),
+                (margin-right, $spacing-lg, margin-left, 0),
+            ));
+            width: calc(33% - #{$spacing-lg});
         }
 
         @supports (display: grid) {
             .contact-sections {
                 display: grid;
-                grid-gap: 20px;
+                grid-gap: $spacing-lg;
                 grid-template-columns: repeat(3, 1fr);
             }
 
             .contact-section {
+                @include bidi(((margin-right, 0, margin-left, 0),));
+                margin-right: 0;
                 width: auto;
-                margin-right: 0;
-            }
-        }
-    }
-}
-
-html[dir="rtl"] {
-    #contact {
-        @media #{$mq-desktop} {
-            .contact-section {
-                float: right;
-                margin-right: 0;
-                margin-left: 20px;
-            }
-
-            @supports (display: grid) {
-                .contact-section {
-                    margin-left: 0;
-                }
             }
         }
     }

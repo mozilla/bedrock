@@ -680,7 +680,6 @@
     },
     {
       "files": [
-        "css/libs/magnific-popup.css",
         "css/mozorg/contact-spaces.scss"
       ],
       "name": "contact-spaces"
@@ -1253,8 +1252,7 @@
     },
     {
       "files": [
-        "js/libs/jquery.magnific-popup.min.js",
-        "js/mozorg/contact-spaces.js"
+        "protocol/js/protocol-sidemenu.js"
       ],
       "name": "contact-spaces"
     },
