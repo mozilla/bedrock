@@ -399,10 +399,6 @@ $image-path: '/media/protocol/img';
 .attribution {
     @include text-body-sm;
     margin: $spacing-2xl 0;
-
-    @media #{$mq-lg} {
-        @include bidi(((text-align, right, left),));
-    }
 }
 
 /* -------------------------------------------------------------------------- */
