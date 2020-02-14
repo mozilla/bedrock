@@ -961,6 +961,41 @@
         </div>
       </article>
 
+      <article id="j-bob-alotta" data-id="j-bob-alotta" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
+        <figure class="headshot">
+          {{ high_res_img('img/mozorg/about/leadership/bob-alotta.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+          <figcaption><h4 class="fn" itemprop="name">J. Bob Alotta</h4></figcaption>
+        </figure>
+
+        <div class="person-info">
+          <p class="title" itemprop="jobTitle">{{ _('VP, Global Programs') }}</p>
+
+          <ul class="utility">
+            <li><a class="link" href="{{ url('mozorg.about.leadership') }}#j-bob-alotta">{{ _('Link to this bio') }}</a></li>
+          </ul>
+        </div>
+
+        <div class="person-bio">
+          <p>
+          {% trans %}
+            J. Bob Alotta is a veteran movement builder and nonprofit executive working at the intersection of technology and communities.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            Prior to joining Mozilla, Bob led the Astraea Lesbian Foundation for Justice, a global foundation based in New York City that provides critical resources to LGBTQI+ organizations and individuals around the world. Over eight years, Bob quintupled the global footprint of the organization which makes more grants in the global south and east than any other funder in their sector. She built a funding program aimed specifically at strengthening movements by adding extra support for digital security, data use, and internet freedom to otherwise “non-tech” grants. Bob worked with major funders to bring money into Astraea -- and to influence what else these funders invested in worldwide. And, Bob built bridges between the LGBTQI+ and digital rights worlds.
+          {% endtrans %}
+          </p>
+
+          <p>
+          {% trans %}
+            It was through this last bit of work that Bob met Mozilla: At MozFest and as a Mozilla fellowship host organization. Now serving as Vice President, Global Programs at Mozilla Foundation, Bob brings their experience both building movements, and building bridges across movements. Bob works with allies across the movement to develop clear goals and real momentum on issues like trustworthy AI; helps Mozilla fellows and awardees become stronger community organizers and leaders; and grows the diversity and geographical scope across our programs, with an emphasis on expanding our work outside North America.
+          {% endtrans %}
+          </p>
+        </div>
+      </article>
+
       <article id="ashley-boyd" data-id="ashley-boyd" class="vcard has-bio" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           {{ high_res_img('img/mozorg/about/leadership/ashley-boyd.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
@@ -1212,12 +1247,6 @@
       </li>
       <li class="vcard" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
-          {{ high_res_img('img/mozorg/about/leadership/ronaldo-lemos.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
-          <figcaption><h4 class="fn" itemprop="name">Ronaldo Lemos</h4></figcaption>
-        </figure>
-      </li>
-      <li class="vcard" itemscope itemtype="http://schema.org/Person">
-        <figure class="headshot">
           {{ high_res_img('img/mozorg/about/leadership/mohamed-nanabhay.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image', 'title': _('Photo by Joi Ito')}) }}
           <figcaption><h4 class="fn" itemprop="name">Mohamed Nanabhay</h4></figcaption>
         </figure>
@@ -1238,36 +1267,42 @@
 
     <h3 class="group-title">{{ _('Former Board Members') }}</h3>
 
-    <div class="gallery">
-      <article id="reid-hoffman" class="vcard" itemscope itemtype="http://schema.org/Person">
-        <figure class="headshot">
-          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/reid-hoffman.jpg') }}">
-          <figcaption><h4 class="fn" itemprop="name">Reid Hoffman</h4></figcaption>
-        </figure>
-      </article>
-
-      <article id="joi-ito" class="vcard" itemscope itemtype="http://schema.org/Person">
-        <figure class="headshot">
-          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/joi-ito.jpg') }}">
-          <figcaption><h4 class="fn" itemprop="name">Joi Ito</h4></figcaption>
-        </figure>
-      </article>
-
-      <article id="mitch-kapor" class="vcard" itemscope itemtype="http://schema.org/Person">
-        <figure class="headshot">
-          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/mitch-kapor.jpg') }}">
-          <figcaption><h4 class="fn" itemprop="name">Mitch Kapor</h4></figcaption>
-        </figure>
-      </article>
-
-      <article class="vcard" itemscope itemtype="http://schema.org/Person">
+    <ul class="gallery">
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
         <figure class="headshot">
           <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/cathy-davidson.jpg') }}">
           <figcaption><h4 class="fn" itemprop="name">Cathy Davidson</h4></figcaption>
         </figure>
-      </article>
+      </li>
 
-    </div>
+      <li id="reid-hoffman" class="vcard" itemscope itemtype="http://schema.org/Person">
+        <figure class="headshot">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/reid-hoffman.jpg') }}">
+          <figcaption><h4 class="fn" itemprop="name">Reid Hoffman</h4></figcaption>
+        </figure>
+      </li>
+
+      <li id="joi-ito" class="vcard" itemscope itemtype="http://schema.org/Person">
+        <figure class="headshot">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/joi-ito.jpg') }}">
+          <figcaption><h4 class="fn" itemprop="name">Joi Ito</h4></figcaption>
+        </figure>
+      </li>
+
+      <li id="mitch-kapor" class="vcard" itemscope itemtype="http://schema.org/Person">
+        <figure class="headshot">
+          <img class="photo" itemprop="image" alt="" src="{{ static('img/mozorg/about/leadership/mitch-kapor.jpg') }}">
+          <figcaption><h4 class="fn" itemprop="name">Mitch Kapor</h4></figcaption>
+        </figure>
+      </li>
+
+      <li class="vcard" itemscope itemtype="http://schema.org/Person">
+        <figure class="headshot">
+          {{ high_res_img('img/mozorg/about/leadership/ronaldo-lemos.jpg', {'alt': '', 'width': '160', 'height': '160', 'class': 'photo', 'itemprop': 'image'}) }}
+          <figcaption><h4 class="fn" itemprop="name">Ronaldo Lemos</h4></figcaption>
+        </figure>
+      </li>
+    </ul>
 
     </div>
   </section>
