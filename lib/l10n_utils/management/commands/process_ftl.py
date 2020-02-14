@@ -54,12 +54,19 @@ class Command(BaseCommand):
                                'See above for details.')
 
     def update_l10n_team_files(self):
-        self.l10n_repo.clean()
+        try:
+            # this will fail on first run
+            self.l10n_repo.clean()
+        except FileNotFoundError:
+            pass
         self.l10n_repo.update()
         self.stdout.write('Updated l10n team .ftl files')
 
     def update_fluent_files(self):
-        self.meao_repo.clean()
+        try:
+            self.meao_repo.clean()
+        except FileNotFoundError:
+            pass
         self.meao_repo.update()
         self.stdout.write('Updated .ftl files')
 
