@@ -2,19 +2,20 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../pebbles/includes/lib';
-@import '../hubs/sections';
-@import '../quantum/common';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/css/includes/lib';
 
 /* -------------------------------------------------------------------------- */
 // Common elements
 
 
 main {
-    padding: 20px 0;
+    padding: $spacing-lg 0;
 
-    @media #{$mq-tablet} {
-        padding: 60px 0;
+    @media #{$mq-md} {
+        padding: $spacing-2xl 0;
     }
 }
 
@@ -27,18 +28,16 @@ main {
 
 header {
     h1 {
-        @include zilla-slab;
-        font-weight: bold;
-        margin-bottom: 40px;
+        margin-bottom: $spacing-xl;
     }
 
     .tagline {
         font-weight: bold;
     }
 
-    @media #{$mq-tablet} {
+    @media #{$mq-md} {
         .tagline {
-            @include font-size(24px);
+            @include text-display-md;
         }
     }
 }
@@ -47,7 +46,7 @@ header {
 // Email recovery form
 
 form {
-    margin-bottom: 60px;
+    margin-bottom: $spacing-2xl;
 
     .form-fields {
         max-width: 300px;
@@ -59,10 +58,8 @@ form {
     }
 
     input[type="email"] {
-        border-radius: 4px;
-        line-height: 1.1;
-        margin-bottom: 10px;
-        padding: 0.75em 20px;
+        margin-bottom: $spacing-sm;
+        padding: 0.75em $spacing-lg;
         width: 100%;
     }
 
@@ -72,7 +69,7 @@ form {
 }
 
 .errorlist li {
-    color: $color-mozred;
+    color: $color-red-60;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -80,20 +77,8 @@ form {
 
 aside {
     h2 {
-        @include font-size-level4;
-        font-weight: bold;
+        @include text-display-sm;
         margin-bottom: 40px;
-    }
-
-    a:link,
-    a:visited {
-        color: #000;
-
-        &:hover,
-        &:active,
-        &:focus {
-            color: #555;
-        }
     }
 
     .social-links {

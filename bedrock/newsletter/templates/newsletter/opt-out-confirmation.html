@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends 'base-pebbles.html' %}
+{% extends 'base-protocol-mozilla.html' %}
 
 {% block page_title %}{{ _('Cool. We hear you.') }}{% endblock page_title %}
 {% block page_desc %}{{ _('You’re now opted out of a series of emails about setting up your account.') }}{% endblock %}
@@ -15,7 +15,7 @@
 
 {% block content %}
 <main>
-  <div class="content">
+  <div class="mzp-l-content">
     <div class="inner-content">
       <header>
         <h1>{{ self.page_title() }}</h1>
@@ -52,7 +52,7 @@
                 <label for="id_email">{{ _('Your email address:') }}</label>
                 {{ field_with_attrs(form.email, placeholder=_('yourname@example.com'))|safe }}
               </div>
-              <button class="button button-hollow button-dark" type="submit">{{ _('Manage Preferences') }}</button>
+              <button class="mzp-c-button" type="submit">{{ _('Manage Preferences') }}</button>
             </div>
           </div>
 
@@ -60,7 +60,7 @@
 
         <aside>
           <h2>{{ _('Prefer to get information another way?') }}</h2>
-          <ul>
+          <ul class="mzp-u-list-styled">
             <li><a href="https://blog.mozilla.org/">{{ _('Check out our blogs') }}</a></li>
             <li><a href="https://support.mozilla.org/">{{ _('Get help') }}</a></li>
             <li><a href="{{ url('newsletter.firefox') }}">{{ _('Subscribe to occasional newsletter updates from Firefox') }}</a></li>
