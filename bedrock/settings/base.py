@@ -241,10 +241,11 @@ DOTLANG_FILES = ['navigation', 'download_button', 'main', 'footer']
 
 # TODO create these files by porting from their .lang equivalents
 FLUENT_DEFAULT_FILES = ['brands', 'navigation', 'footer', 'download_button']
+FLUENT_DEFAULT_PERCENT_REQUIRED = config('FLUENT_DEFAULT_PERCENT_REQUIRED', default='80', parser=int)
 FLUENT_REPO = config('FLUENT_REPO', default='https://github.com/mozmeao/www-l10n')
 FLUENT_REPO_PATH = GIT_REPOS_PATH / 'www-l10n'
 FLUENT_LOCAL_PATH = ROOT_PATH / 'l10n'
-FLUENT_L10N_TEAM_REPO = config('FLUENT_REPO', default='https://github.com/mozmeao/www-l10n')
+FLUENT_L10N_TEAM_REPO = config('FLUENT_REPO', default='https://github.com/mozilla-l10n/www-l10n')
 FLUENT_L10N_TEAM_REPO_PATH = GIT_REPOS_PATH / 'l10n-team'
 # 10 seconds during dev and 10 min in prod
 FLUENT_CACHE_TIMEOUT = config('FLUENT_CACHE_TIMEOUT', default='10' if DEBUG else '600', parser=int)

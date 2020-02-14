@@ -68,9 +68,18 @@ class GitRepo:
     def diff(self, start_hash, end_hash):
         """Return a 2 tuple: (modified files, deleted files)"""
         diff_out = StringIO(self.git('diff', '--name-status', start_hash, end_hash))
+        return self._parse_git_status(diff_out)
+
+    def modified_files(self):
+        """Return a list of new or modified files according to git"""
+        self.git('add', '.')
+        status = StringIO(self.git('status', '--porcelain'))
+        return self._parse_git_status(status)
+
+    def _parse_git_status(self, lines):
         modified = set()
         removed = set()
-        for line in diff_out:
+        for line in lines:
             parts = line.split()
             # delete
             if parts[0] == 'D':
@@ -123,6 +132,9 @@ class GitRepo:
 
     def reset(self, new_head):
         self.git('reset', '--hard', new_head)
+
+    def clean(self):
+        self.git('clean', '-fd')
 
     def get_db_latest(self):
         try:
