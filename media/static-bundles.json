@@ -1396,6 +1396,8 @@
     },
     {
       "files": [
+        "protocol/js/protocol-newsletter.js",
+        "js/newsletter/form-protocol.js",
         "js/mozorg/manifesto.js"
       ],
       "name": "manifesto"
