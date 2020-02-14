@@ -136,6 +136,6 @@ class Command(BaseCommand):
 
         if new_activations:
             active_locales.extend(new_activations)
-            metadata['active_locales'] = active_locales
+            metadata['active_locales'] = sorted(active_locales)
             write_metadata(ftl_file, metadata)
             self.stdout.write(f'Activated {len(new_activations)} new locales for {ftl_file}')
