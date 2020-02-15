@@ -16,6 +16,10 @@
   {{ doc.h1.string|join|safe }}
 {% endblock %}
 
+{% block page_desc %}
+  {{ _('Our Privacy Notices describe the data our products and services receive, share, and use, as well as choices available to you.') }}
+{% endblock %}
+
 {% if LANG == 'de' %}
   {# bug 1319207 - As product names are not exposed to L10n, best to specify unique name for de #}
   {% set focus_url = url('privacy.notices.firefox-klar') %}
