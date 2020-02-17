@@ -698,7 +698,7 @@
     },
     {
       "files": [
-        "css/mozorg/moss/common.scss"
+        "css/mozorg/moss.scss"
       ],
       "name": "moss"
     },
@@ -1401,6 +1401,15 @@
         "js/mozorg/manifesto.js"
       ],
       "name": "manifesto"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-newsletter.js",
+        "js/base/mozilla-lazy-load.js",
+        "js/newsletter/form-protocol.js",
+        "js/mozorg/moss.js"
+      ],
+      "name": "moss"
     },
     {
       "files": [
