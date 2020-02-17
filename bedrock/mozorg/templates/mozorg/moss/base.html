@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "base-pebbles.html" %}
+{% extends "base-protocol-mozilla.html" %}
 
 {% add_lang_files "mozorg/moss/index" %}
 
@@ -18,15 +18,13 @@
   {{ css_bundle('moss') }}
 {% endblock %}
 
-{% block body_class %}{% endblock %}
-
 {% block site_header %}
   {% include 'includes/protocol/navigation/menu-mozilla/index.html' %}
-  <header class="section masthead">
-    <div id="header-image">{% block header_image %}{% endblock %}</div>
+  <header class="moss-masthead">
+    <div class="header-image">{% block header_image %}{% endblock %}</div>
 
-    <div class="content" id="page-heading">
-      <h1>{% block page_heading %}{% endblock %}</h1>
+    <div class="mzp-l-content">
+      <h1 class="page-heading">{% block page_heading %}{% endblock %}</h1>
     </div>
   </header>
 {% endblock %}
@@ -35,16 +33,25 @@
 <main>
   {% block page_content %}{% endblock %}
 </main>
-<aside id="newsletter-subscribe">
-  <div class="content">
-    {{ email_newsletter_form(newsletters='mozilla-foundation',
-       title=_('What’s next?'),
-       subtitle=_('Get the Mozilla newsletter for our latest tech news and more.'),
-       button_class='button-light',
-       spinner_color='#fff')
-    }}
-  </div>
-</aside>
+<div class="mzp-l-content">
+  <aside class="mzp-c-newsletter">
+    <div class="mzp-c-newsletter-image">
+      {{ high_res_img('img/home/2018/newsletter-graphic.png', {'alt': ''}) }}
+    </div>
+
+    <div class="newsletter-content">
+      {{ email_newsletter_form(
+        protocol_component=True,
+        newsletters='mozilla-foundation',
+        title=_('What’s next?'),
+        subtitle=_('Get the Mozilla newsletter for our latest tech news and more.'),
+        spinner_color='#fff')
+      }}
+    </div>
+  </aside>
+</div>
 {% endblock %}
 
-{% block js %}{% endblock %}
+{% block js %}
+{{ js_bundle('moss') }}
+{% endblock %}
