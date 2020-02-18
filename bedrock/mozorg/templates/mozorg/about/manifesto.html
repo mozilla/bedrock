@@ -1,12 +1,14 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% if not l10n_has_tag('manifesto_landing') %}
-  {#- Show the old page if the landing page is not localized yet -#}
-  {% include 'mozorg/about/manifesto-details.html' %}
-{% else %}
-  {#- Show the redesigned landing page -#}
+{% from "macros-protocol.html" import call_out with context %}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% set_lang_files "mozorg/about/manifesto" %}
+
+{% from 'macros.html' import twitter_share_url with context %}
 
 {% if l10n_has_tag('addendum_title_042018') %}
   {% set addendum_title_translated = true %}
@@ -20,10 +22,6 @@
   {% set addendum_translated = false %}
 {% endif %}
 
-{% extends 'base-pebbles.html' %}
-
-{% from 'macros.html' import twitter_share_url with context %}
-
 {% block page_title %}{{ _('The Mozilla Manifesto') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
@@ -35,19 +33,10 @@
 {% block page_desc %}{{ page_description }}{% endblock %}
 
 {% block body_id %}manifesto-landing{% endblock %}
-{% block body_attrs %}{{ super() }} data-global-nav-current-link="about-us"{% endblock %}
-
-{% block string_data %}
-  data-principle-read-more='{{ _('See more…') }}'
-  data-principle-nav-prev='{{ _('Previous principle') }}'
-  data-principle-nav-next='{{ _('Next principle') }}'
-{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('manifesto') }}
 {% endblock %}
-
-{% block site_header_logo %}{% endblock %}
 
 {% macro twitter_link(content_id, text) -%}
   {{ twitter_share_url('https://mzl.la/manifesto', text|truncate(102, False, '…')) }}
@@ -104,291 +93,304 @@
 {% block content %}
 <main role="main" itemscope itemtype="http://schema.org/Article">
   <article role="article" itemprop="articleBody">
-  {% if addendum_translated %}
-    <header>
-    {% if addendum_title_translated %}
-      <h1 itemprop="name" class="manifesto-title manifesto-title-addendum">{{ _('The Mozilla Manifesto Addendum') }}</h1>
-    {% else %}
-      <h1 itemprop="name" class="manifesto-title manifesto-title-addendum">{{ self.page_title() }}</h1>
+    {% if addendum_translated %}
+      <section>
+        <div class="mzp-l-content mzp-t-narrow">
+          <header>
+            {% if addendum_title_translated %}
+              <h1 itemprop="name" class="manifesto-title">{{ _('The Mozilla Manifesto Addendum') }}</h1>
+            {% else %}
+              <h1 itemprop="name" class="manifesto-title">{{ self.page_title() }}</h1>
+            {% endif %}
+          </header>
+          <h2 class="addendum-subtitle">{{ _('Pledge for a Healthy Internet') }}</h2>
+          <p>{{ _('The open, global internet is the most powerful communication and collaboration resource we have ever seen. It embodies some of our deepest hopes for human progress. It enables new opportunities for learning, building a sense of shared humanity, and solving the pressing problems facing people everywhere.') }}</p>
+          <p>{{ _('Over the last decade we have seen this promise fulfilled in many ways. We have also seen the power of the internet used to magnify divisiveness, incite violence, promote hatred, and intentionally manipulate fact and reality. We have learned that we should more explicitly set out our aspirations for the human experience of the internet. We do so now.') }}</p>
+        </div>
+        <div class="mzp-l-content">
+          <ol class="addendum-list">
+            <li>{{ _('We are committed to an internet that includes all the peoples of the earth — where a person’s demographic characteristics do not determine their online access, opportunities, or quality of experience.') }}</li>
+            <li>{{ _('We are committed to an internet that promotes civil discourse, human dignity, and individual expression.') }}</li>
+            <li>{{ _('We are committed to an internet that elevates critical thinking, reasoned argument, shared knowledge, and verifiable facts.') }}</li>
+            <li>{{ _('We are committed to an internet that catalyzes collaboration among diverse communities working together for the common good.') }}</li>
+          </ol>
+        </div>
+      </section>
+
+      {% call call_out(
+        title=_('Show Your Support'),
+        desc=_('An internet with these qualities will not come to life on its own. Individuals and organizations must embed these aspirations into internet technology and into the human experience with the internet. The Mozilla Manifesto and Addendum represent Mozilla’s commitment to advancing these aspirations. We aim to work together with people and organizations everywhere who share these goals to make the internet an even better place for everyone.'),
+        class='share-addendum',
+        include_cta=True
+      ) %}
+        <p><a class="mzp-c-button button-manifesto js-manifesto-share" target="_blank" rel="noopener noreferrer" href="{{ twitter_link('custom', _('I support the vision of a better, healthier internet from @mozilla, will you join me?')) }}" data-link-type="social share" data-link-name="Twitter">{{  _('Share on Twitter') }}</a></p>
+      {% endcall %}
+
     {% endif %}
-    </header>
-    <section>
-      <h2 class="addendum-subtitle">{{ _('Pledge for a Healthy Internet') }}</h2>
-      <p class="addendum-paragraph">{{ _('The open, global internet is the most powerful communication and collaboration resource we have ever seen. It embodies some of our deepest hopes for human progress. It enables new opportunities for learning, building a sense of shared humanity, and solving the pressing problems facing people everywhere.') }}</p>
-      <p class="addendum-paragraph">{{ _('Over the last decade we have seen this promise fulfilled in many ways. We have also seen the power of the internet used to magnify divisiveness, incite violence, promote hatred, and intentionally manipulate fact and reality. We have learned that we should more explicitly set out our aspirations for the human experience of the internet. We do so now.') }}</p>
-      <ol class="addendum-list">
-        <li>{{ _('We are committed to an internet that includes all the peoples of the earth — where a person’s demographic characteristics do not determine their online access, opportunities, or quality of experience.') }}</li>
-        <li>{{ _('We are committed to an internet that promotes civil discourse, human dignity, and individual expression.') }}</li>
-        <li>{{ _('We are committed to an internet that elevates critical thinking, reasoned argument, shared knowledge, and verifiable facts. ') }}</li>
-        <li>{{ _('We are committed to an internet that catalyzes collaboration among diverse communities working together for the common good. ') }}</li>
-      </ol>
-      <div class="share-addendum">
-        <h2 class="share-head">{{ _('Show Your Support') }}</h2>
-        <p class="share-paragraph">{{ _('An internet with these qualities will not come to life on its own. Individuals and organizations must embed these aspirations into internet technology and into the human experience with the internet. The Mozilla Manifesto and Addendum represent Mozilla’s commitment to advancing these aspirations. We aim to work together with people and organizations everywhere who share these goals to make the internet an even better place for everyone.') }}</p>
-        <p class="share-button-outter"><a class="button button-manifesto js-manifesto-share" target="_blank" rel="noopener noreferrer" href="{{ twitter_link('custom', _('I support the vision of a better, healthier internet from @mozilla, will you join me?')) }}" data-link-type="social share" data-link-name="Twitter">{{  _('Share on Twitter') }}</a></p>
-      </div>
-    </section>
-  {% endif %}
-    <section id="sec-principles">
-      <header class="content principles-header">
-        {# If the addendum has not been translated, this section is first, so display the page title.
-           If the addendum is translated, a page title displays above it.
-           If the addendum's title has not been translated, the page title displays there, don't repeat it here.
-           If the addendum title is translated, we can label this section with the page title. #}
-        {% if not addendum_translated or (addendum_translated and addendum_title_translated) %}
-          <h1 itemprop="name" class="manifesto-title">{{ self.page_title() }}</h1>
-        {% endif %}
-        <h2 class="principles-head">{{ _('<strong>Our 10</strong> Principles') }}</h2>
-      </header>
-      <div id="principles">
-        <section class="principle" id="principle-01" data-ga-quote-number="1" data-ga-quote="modern life">
-          <header class="principle-header">
-            <h3><span class="principle-number">{{ principle_number_01 }}</span> {{principle_text_01 }}</h3>
-          </header>
-          <section class="principle-more">
-            <h4>{{ _('Learn more') }}</h4>
-            <ul class="resources">
-              <li><a href="http://openbadges.org/">{{ _('Use Open Badges to share your skills and interests') }}</a></li>
-              <li>
-                <a href="http://mozillascience.org/">
-                  {% if addendum_translated %}
-                    {{ _('Explore how the web impacts science') }}
-                  {% else %}
-                    {{ _('Explore how the Web impacts science') }}
-                  {% endif %}
-                </a>
-              </li>
-              <li><a href="https://opennews.org/getinvolved/">{{ _('Learn about open source code in journalism') }}</a></li>
-            </ul>
-          </section>
-        </section>
-        <section class="principle" id="principle-02" data-ga-quote-number="2" data-ga-quote="public resource">
-          <header class="principle-header">
-            <h3><span class="principle-number">{{ principle_number_02 }}</span> {{ principle_text_02 }}</h3>
-          </header>
-          <section class="principle-more">
-            <h4>{{ _('Learn more') }}</h4>
-            <ul class="resources">
-              <li>
-                <a href="https://blog.mozilla.org/netpolicy/">
-                  {% if addendum_translated %}
-                    {{ _('Read about open internet policy initiatives and developments') }}
-                  {% else %}
-                    {{ _('Read about open Internet policy initiatives and developments') }}
-                  {% endif %}
-                </a>
-              </li>
-              <li>
-                <a href="https://teach.mozilla.org/web-literacy/participate/open-practice/">
-                  {% if addendum_translated %}
-                    {{ _('Explore how to help keep the web open') }}
-                  {% else %}
-                    {{ _('Explore how to help keep the Web open') }}
-                  {% endif %}
-                </a>
-              </li>
-            </ul>
-          </section>
-        </section>
-        <section class="principle" id="principle-03" data-ga-quote-number="3" data-ga-quote="enrich lives">
-          <header class="principle-header">
-            <h3><span class="principle-number">{{ principle_number_03 }}</span> {{ principle_text_03 }}</h3>
-          </header>
-          <section class="principle-more">
-            <h4>{{ _('Learn more') }}</h4>
-            <ul class="resources">
-              <li>
-                <a href="https://blog.mozilla.org/blog/2014/04/09/firefox-os-and-medic-mobile-use-the-web-to-connect-the-world-to-healthcare/">
-                  {% if addendum_translated %}
-                    {{ _('See how the web can connect the world to healthcare') }}
-                  {% else %}
-                    {{ _('See how the Web can connect the world to healthcare') }}
-                  {% endif %}
-                </a>
-              </li>
-              <li>
-                <a href="https://teach.mozilla.org/web-literacy/read/navigate/">
-                  {% if addendum_translated %}
-                    {{ _('Explore how the web works') }}
-                  {% else %}
-                    {{ _('Explore how the Web works') }}
-                  {% endif %}
-                </a>
-              </li>
-            </ul>
-          </section>
-        </section>
-        <section class="principle" id="principle-04" data-ga-quote-number="4" data-ga-quote="individual security">
-          <header class="principle-header">
-            <h3><span class="principle-number">{{ principle_number_04 }}</span> {{ principle_text_04 }}</h3>
-          </header>
-          <section class="principle-more">
-            <h4>{{ _('Learn more') }}</h4>
-            <ul class="resources">
-              <li><a href="{{ url('mozorg.internet-health.privacy-security') }}">{{ _('See how Mozilla works to put your privacy first') }}</a></li>
-              <li><a href="https://blog.mozilla.org/netpolicy/">{{ _('Read about developments in privacy and data safety') }}</a></li>
-              <li><a href="https://teach.mozilla.org/web-literacy/participate/protect/">{{ _('Learn more about how to protect yourself online') }}</a></li>
-            </ul>
-          </section>
-        </section>
-        <section class="principle" id="principle-05" data-ga-quote-number="5" data-ga-quote="shape internet">
-          <header class="principle-header">
-            <h3><span class="principle-number">{{ principle_number_05 }}</span> {{ principle_text_05 }}</h3>
-          </header>
-          <section class="principle-more">
-            <h4>{{ _('Learn more') }}</h4>
-            <ul class="resources">
-              <li>
-                <a href="https://teach.mozilla.org/tools/">
-                  {% if addendum_translated %}
-                    {{ _('Use these free tools to teach the web') }}
-                  {% else %}
-                    {{ _('Use these free tools to teach the Web') }}
-                  {% endif %}
-                </a>
-              </li>
-              <li>
-                <a href="https://teach.mozilla.org/web-literacy/write/compose/">
-                  {% if addendum_translated %}
-                    {{ _('Learn about creating and curating content for the web') }}
-                  {% else %}
-                    {{ _('Learn about creating and curating content for the Web') }}
-                  {% endif %}
-                </a>
-              </li>
-            </ul>
-          </section>
-        </section>
-        <section class="principle" id="principle-06" data-ga-quote-number="6" data-ga-quote="internet effectiveness">
-          <header class="principle-header">
-            <h3><span class="principle-number">{{ principle_number_06 }}</span> {{ principle_text_06 }}</h3>
-          </header>
-          <section class="principle-more">
-            <h4>{{ _('Learn more') }}</h4>
-            <ul class="resources">
-              <li><a href="http://ascendproject.org/">{{ _('Add new voices to open source technology') }}</a></li>
-              <li><a href="https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature">{{ _('Set your Do Not Track preference') }}</a></li>
-              <li>
-                <a href="https://teach.mozilla.org/web-literacy/read/navigate/">
-                  {% if addendum_translated %}
-                    {{ _('Understand the web ecosystem') }}
-                  {% else %}
-                    {{ _('Understand the Web ecosystem') }}
-                  {% endif %}
-                </a>
-              </li>
-            </ul>
-          </section>
-        </section>
-        <section class="principle" id="principle-07" data-ga-quote-number="7" data-ga-quote="open source">
-          <header class="principle-header">
-            <h3><span class="principle-number">{{ principle_number_07 }}</span> {{ principle_text_07 }}</h3>
-          </header>
-          <section class="principle-more">
-            <h4>{{ _('Learn more') }}</h4>
-            <ul class="resources">
-              <li>
-                <a href="https://teach.mozilla.org/web-literacy/participate/open-practice/">
-                  {% if addendum_translated %}
-                    {{ _('Explore how open practices keep the web accessible') }}
-                  {% else %}
-                    {{ _('Explore how open practices keep the Web accessible') }}
-                  {% endif %}
-                </a>
-              </li>
-              <li><a href="https://teach.mozilla.org/web-literacy/write/remix/">{{ _('Learn how to remix content to create something new') }}</a></li>
-              <li>
-                <a href="https://teach.mozilla.org/web-literacy/write/code/">
-                  {% if addendum_translated %}
-                    {{ _('Learn how to maximize the interactive potential of the web') }}
-                  {% else %}
-                    {{ _('Learn how to maximize the interactive potential of the Web') }}
-                  {% endif %}
-                </a>
-              </li>
-            </ul>
-          </section>
-        </section>
-        <section class="principle" id="principle-08" data-ga-quote-number="8" data-ga-quote="transparent process">
-          <header class="principle-header">
-            <h3><span class="principle-number">{{ principle_number_08 }}</span> {{ principle_text_08 }}</h3>
-          </header>
-          <section class="principle-more">
-            <h4>{{ _('Learn more') }}</h4>
-            <ul class="resources">
-              <li><a href="https://groups.google.com/forum/#!forum/mozilla.governance">{{ _('Participate in our governance forum') }}</a></li>
-              {% if l10n_has_tag('join-us') %}
-                <li><a href="{{ url('mozorg.contribute.index') }}">{{ _('Join us as a volunteer') }}</a></li>
-              {% endif %}
-              <li><a href="https://teach.mozilla.org/web-literacy/skills/">{{ _('Learn how to collaborate online') }}</a></li>
-            </ul>
-          </section>
-        </section>
-        <section class="principle" id="principle-09" data-ga-quote-number="9" data-ga-quote="commercial involvement">
-          <header class="principle-header">
-            <h3><span class="principle-number">{{ principle_number_09 }}</span> {{ principle_text_09 }}</h3>
-          </header>
-          <section class="principle-more">
-            <h4>{{ _('Learn more') }}</h4>
-            <ul class="resources">
-              <li>
-                <a href="https://addons.mozilla.org/firefox/addon/lightbeam/">
-                  {% if addendum_translated %}
-                    {{ _('Visualize who you interact with on the web with Lightbeam') }}
-                  {% else %}
-                    {{ _('Visualize who you interact with on the Web with Lightbeam') }}
-                  {% endif %}
-                </a>
-              </li>
-              <li>
-                <a href="https://teach.mozilla.org/web-literacy/participate/share/">
-                  {% if addendum_translated %}
-                    {{ _('Learn about creating web resources with others') }}
-                  {% else %}
-                    {{ _('Learn about creating Web resources with others') }}
-                  {% endif %}
-                </a>
-              </li>
-            </ul>
-          </section>
-        </section>
-        <section class="principle" id="principle-10" data-ga-quote-number="10" data-ga-quote="magnify benefit">
-          <header class="principle-header">
-            <h3><span class="principle-number">{{ principle_number_10 }}</span> {{ principle_text_10 }}</h3>
-          </header>
-          <section class="principle-more">
-            <h4>{{ _('Learn more') }}</h4>
-            <ul class="resources">
-              <li><a href="https://teach.mozilla.org/events/">{{ _('Host or join a Maker Party') }}</a></li>
-              <li><a href="https://teach.mozilla.org/web-literacy/skills/">{{ _('Learn how to build online collaboration skills') }}</a></li>
-            </ul>
-          </section>
-        </section>
-      </div>
-      <footer class="content principles-foot">
-        {% if addendum_translated %}
-          <p><a class="button button-manifesto js-manifesto-share" target="_blank" rel="noopener noreferrer" href="{{ twitter_link('custom', _('I support the vision of a better, healthier internet from @mozilla, will you join me?')) }}" data-link-type="social share" data-link-name="Twitter">{{  _('Share on Twitter') }}</a></p>
-        {% endif %}
-        <p><a class="manifesto-details" href="{{ url('mozorg.about.manifesto-details') }}">{{ _('Read the entire manifesto') }}</a></p>
-      </footer>
-    </section>
-    <aside class="section section-newsletter" id="newsletter-subscribe">
-      <div class="content">
-        {% if LANG.startswith('en-') %}
-            {{ email_newsletter_form(newsletters='mozilla-foundation', title=_('Love the web?'), subtitle=_('Get the Mozilla newsletter and help us keep it open and free.'), button_class='button-hollow button-light', spinner_color='#fff') }}
-          {% else %}
-            {{ email_newsletter_form(button_class='button-hollow button-light', spinner_color='#fff') }}
+    <div class="mzp-l-content">
+      <section id="sec-principles">
+        <header class="principles-header">
+          {# If the addendum has not been translated, this section is first, so display the page title.
+             If the addendum is translated, a page title displays above it.
+             If the addendum's title has not been translated, the page title displays there, don't repeat it here.
+             If the addendum title is translated, we can label this section with the page title. #}
+          {% if not addendum_translated or (addendum_translated and addendum_title_translated) %}
+            <h1 itemprop="name" class="manifesto-title">{{ self.page_title() }}</h1>
           {% endif %}
-      </div>
-    </aside>
+          <h2 class="principles-head">{{ _('<strong>Our 10</strong> Principles') }}</h2>
+        </header>
+        <div id="principles">
+          <section class="principle">
+            <header class="principle-header">
+              <h3><span class="principle-number">{{ principle_number_01 }}</span> {{principle_text_01 }}</h3>
+            </header>
+            <section class="principle-more">
+              <h4>{{ _('Learn more') }}</h4>
+              <ul class="mzp-u-list-styled">
+                <li><a href="http://openbadges.org/">{{ _('Use Open Badges to share your skills and interests') }}</a></li>
+                <li>
+                  <a href="http://mozillascience.org/">
+                    {% if addendum_translated %}
+                      {{ _('Explore how the web impacts science') }}
+                    {% else %}
+                      {{ _('Explore how the Web impacts science') }}
+                    {% endif %}
+                  </a>
+                </li>
+                <li><a href="https://opennews.org/getinvolved/">{{ _('Learn about open source code in journalism') }}</a></li>
+              </ul>
+            </section>
+          </section>
+          <section class="principle">
+            <header class="principle-header">
+              <h3><span class="principle-number">{{ principle_number_02 }}</span> {{ principle_text_02 }}</h3>
+            </header>
+            <section class="principle-more">
+              <h4>{{ _('Learn more') }}</h4>
+              <ul class="mzp-u-list-styled">
+                <li>
+                  <a href="https://blog.mozilla.org/netpolicy/">
+                    {% if addendum_translated %}
+                      {{ _('Read about open internet policy initiatives and developments') }}
+                    {% else %}
+                      {{ _('Read about open Internet policy initiatives and developments') }}
+                    {% endif %}
+                  </a>
+                </li>
+                <li>
+                  <a href="https://teach.mozilla.org/web-literacy/participate/open-practice/">
+                    {% if addendum_translated %}
+                      {{ _('Explore how to help keep the web open') }}
+                    {% else %}
+                      {{ _('Explore how to help keep the Web open') }}
+                    {% endif %}
+                  </a>
+                </li>
+              </ul>
+            </section>
+          </section>
+          <section class="principle">
+            <header class="principle-header">
+              <h3><span class="principle-number">{{ principle_number_03 }}</span> {{ principle_text_03 }}</h3>
+            </header>
+            <section class="principle-more">
+              <h4>{{ _('Learn more') }}</h4>
+              <ul class="mzp-u-list-styled">
+                <li>
+                  <a href="https://blog.mozilla.org/blog/2014/04/09/firefox-os-and-medic-mobile-use-the-web-to-connect-the-world-to-healthcare/">
+                    {% if addendum_translated %}
+                      {{ _('See how the web can connect the world to healthcare') }}
+                    {% else %}
+                      {{ _('See how the Web can connect the world to healthcare') }}
+                    {% endif %}
+                  </a>
+                </li>
+                <li>
+                  <a href="https://teach.mozilla.org/web-literacy/read/navigate/">
+                    {% if addendum_translated %}
+                      {{ _('Explore how the web works') }}
+                    {% else %}
+                      {{ _('Explore how the Web works') }}
+                    {% endif %}
+                  </a>
+                </li>
+              </ul>
+            </section>
+          </section>
+          <section class="principle">
+            <header class="principle-header">
+              <h3><span class="principle-number">{{ principle_number_04 }}</span> {{ principle_text_04 }}</h3>
+            </header>
+            <section class="principle-more">
+              <h4>{{ _('Learn more') }}</h4>
+              <ul class="mzp-u-list-styled">
+                <li><a href="{{ url('mozorg.internet-health.privacy-security') }}">{{ _('See how Mozilla works to put your privacy first') }}</a></li>
+                <li><a href="https://blog.mozilla.org/netpolicy/">{{ _('Read about developments in privacy and data safety') }}</a></li>
+                <li><a href="https://teach.mozilla.org/web-literacy/participate/protect/">{{ _('Learn more about how to protect yourself online') }}</a></li>
+              </ul>
+            </section>
+          </section>
+          <section class="principle">
+            <header class="principle-header">
+              <h3><span class="principle-number">{{ principle_number_05 }}</span> {{ principle_text_05 }}</h3>
+            </header>
+            <section class="principle-more">
+              <h4>{{ _('Learn more') }}</h4>
+              <ul class="mzp-u-list-styled">
+                <li>
+                  <a href="https://teach.mozilla.org/tools/">
+                    {% if addendum_translated %}
+                      {{ _('Use these free tools to teach the web') }}
+                    {% else %}
+                      {{ _('Use these free tools to teach the Web') }}
+                    {% endif %}
+                  </a>
+                </li>
+                <li>
+                  <a href="https://teach.mozilla.org/web-literacy/write/compose/">
+                    {% if addendum_translated %}
+                      {{ _('Learn about creating and curating content for the web') }}
+                    {% else %}
+                      {{ _('Learn about creating and curating content for the Web') }}
+                    {% endif %}
+                  </a>
+                </li>
+              </ul>
+            </section>
+          </section>
+          <section class="principle">
+            <header class="principle-header">
+              <h3><span class="principle-number">{{ principle_number_06 }}</span> {{ principle_text_06 }}</h3>
+            </header>
+            <section class="principle-more">
+              <h4>{{ _('Learn more') }}</h4>
+              <ul class="mzp-u-list-styled">
+                <li><a href="http://ascendproject.org/">{{ _('Add new voices to open source technology') }}</a></li>
+                <li><a href="https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature">{{ _('Set your Do Not Track preference') }}</a></li>
+                <li>
+                  <a href="https://teach.mozilla.org/web-literacy/read/navigate/">
+                    {% if addendum_translated %}
+                      {{ _('Understand the web ecosystem') }}
+                    {% else %}
+                      {{ _('Understand the Web ecosystem') }}
+                    {% endif %}
+                  </a>
+                </li>
+              </ul>
+            </section>
+          </section>
+          <section class="principle">
+            <header class="principle-header">
+              <h3><span class="principle-number">{{ principle_number_07 }}</span> {{ principle_text_07 }}</h3>
+            </header>
+            <section class="principle-more">
+              <h4>{{ _('Learn more') }}</h4>
+              <ul class="mzp-u-list-styled">
+                <li>
+                  <a href="https://teach.mozilla.org/web-literacy/participate/open-practice/">
+                    {% if addendum_translated %}
+                      {{ _('Explore how open practices keep the web accessible') }}
+                    {% else %}
+                      {{ _('Explore how open practices keep the Web accessible') }}
+                    {% endif %}
+                  </a>
+                </li>
+                <li><a href="https://teach.mozilla.org/web-literacy/write/remix/">{{ _('Learn how to remix content to create something new') }}</a></li>
+                <li>
+                  <a href="https://teach.mozilla.org/web-literacy/write/code/">
+                    {% if addendum_translated %}
+                      {{ _('Learn how to maximize the interactive potential of the web') }}
+                    {% else %}
+                      {{ _('Learn how to maximize the interactive potential of the Web') }}
+                    {% endif %}
+                  </a>
+                </li>
+              </ul>
+            </section>
+          </section>
+          <section class="principle">
+            <header class="principle-header">
+              <h3><span class="principle-number">{{ principle_number_08 }}</span> {{ principle_text_08 }}</h3>
+            </header>
+            <section class="principle-more">
+              <h4>{{ _('Learn more') }}</h4>
+              <ul class="mzp-u-list-styled">
+                <li><a href="https://groups.google.com/forum/#!forum/mozilla.governance">{{ _('Participate in our governance forum') }}</a></li>
+                {% if l10n_has_tag('join-us') %}
+                  <li><a href="{{ url('mozorg.contribute.index') }}">{{ _('Join us as a volunteer') }}</a></li>
+                {% endif %}
+                <li><a href="https://teach.mozilla.org/web-literacy/skills/">{{ _('Learn how to collaborate online') }}</a></li>
+              </ul>
+            </section>
+          </section>
+          <section class="principle">
+            <header class="principle-header">
+              <h3><span class="principle-number">{{ principle_number_09 }}</span> {{ principle_text_09 }}</h3>
+            </header>
+            <section class="principle-more">
+              <h4>{{ _('Learn more') }}</h4>
+              <ul class="mzp-u-list-styled">
+                <li>
+                  <a href="https://addons.mozilla.org/firefox/addon/lightbeam/">
+                    {% if addendum_translated %}
+                      {{ _('Visualize who you interact with on the web with Lightbeam') }}
+                    {% else %}
+                      {{ _('Visualize who you interact with on the Web with Lightbeam') }}
+                    {% endif %}
+                  </a>
+                </li>
+                <li>
+                  <a href="https://teach.mozilla.org/web-literacy/participate/share/">
+                    {% if addendum_translated %}
+                      {{ _('Learn about creating web resources with others') }}
+                    {% else %}
+                      {{ _('Learn about creating Web resources with others') }}
+                    {% endif %}
+                  </a>
+                </li>
+              </ul>
+            </section>
+          </section>
+          <section class="principle">
+            <header class="principle-header">
+              <h3><span class="principle-number">{{ principle_number_10 }}</span> {{ principle_text_10 }}</h3>
+            </header>
+            <section class="principle-more">
+              <h4>{{ _('Learn more') }}</h4>
+              <ul class="mzp-u-list-styled">
+                <li><a href="https://teach.mozilla.org/events/">{{ _('Host or join a Maker Party') }}</a></li>
+                <li><a href="https://teach.mozilla.org/web-literacy/skills/">{{ _('Learn how to build online collaboration skills') }}</a></li>
+              </ul>
+            </section>
+          </section>
+        </div>
+        <footer class="content principles-foot">
+          {% if addendum_translated %}
+            <p><a class="mzp-c-button button-manifesto js-manifesto-share" target="_blank" rel="noopener noreferrer" href="{{ twitter_link('custom', _('I support the vision of a better, healthier internet from @mozilla, will you join me?')) }}" data-link-type="social share" data-link-name="Twitter">{{  _('Share on Twitter') }}</a></p>
+          {% endif %}
+          <p><a class="mzp-c-cta-link" href="{{ url('mozorg.about.manifesto-details') }}">{{ _('Read the entire manifesto') }}</a></p>
+        </footer>
+      </section>
+    </div>
+    <div class="mzp-l-content">
+      <aside class="mzp-c-newsletter">
+        <div class="mzp-c-newsletter-image">
+          {{ high_res_img('img/home/2018/newsletter-graphic.png', {'alt': ''}) }}
+        </div>
+
+        <div class="newsletter-content">
+          {% if LANG.startswith('en-') %}
+            {{ email_newsletter_form(protocol_component=True, newsletters='mozilla-foundation', title=_('Love the web?'), subtitle=_('Get the Mozilla newsletter and help us keep it open and free.'), spinner_color='#fff') }}
+          {% else %}
+            {{ email_newsletter_form(protocol_component=True, spinner_color='#fff') }}
+          {% endif %}
+        </div>
+      </aside>
+    </div>
   </article>
 </main>
-
 {% endblock %}
 
 {% block js %}
   {{ js_bundle('manifesto') }}
 {% endblock %}
-
-  {#- End the redesigned landing page -#}
-{% endif %}
