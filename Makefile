@@ -112,7 +112,7 @@ build-ci: .docker-build-pull
 	${DC_CI} build app assets builder app-base
 	touch .docker-build-ci
 
-build-demo-ci: .docker-build-pull
+build-demo-ci: clean .docker-build-pull
 	${DC_CI} build release
 
 test-ci: .docker-build-ci
