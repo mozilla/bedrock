@@ -427,24 +427,6 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-67.scss"
-      ],
-      "name": "firefox_whatsnew_67"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-67.0.5.scss"
-      ],
-      "name": "firefox_whatsnew_67.0.5"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-69.scss"
-      ],
-      "name": "firefox_whatsnew_69"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-70.scss"
       ],
       "name": "firefox_whatsnew_70"
@@ -904,48 +886,6 @@
         "js/firefox/welcome5.js"
       ],
       "name": "firefox_welcome_page5"
-    },
-    {
-      "files": [
-        "js/base/uitour-lib.js",
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-form.js",
-        "js/base/mozilla-fxa-form-init.js",
-        "protocol/js/protocol-modal.js",
-        "js/firefox/whatsnew/whatsnew-67.js"
-      ],
-      "name": "firefox_whatsnew_67"
-    },
-    {
-      "files": [
-        "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.js"
-      ],
-      "name": "firefox_whatsnew_67_newsletter"
-    },
-    {
-      "files": [
-        "js/base/uitour-lib.js",
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-form.js",
-        "js/base/mozilla-fxa-product-button.js",
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/firefox/whatsnew/account-conditional-ctas.js"
-      ],
-      "name": "firefox_whatsnew_67.0.5"
-    },
-    {
-      "files": [
-        "js/base/uitour-lib.js",
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-product-button.js",
-        "js/firefox/whatsnew/up-to-date.js",
-        "js/firefox/whatsnew/whatsnew-69.js"
-      ],
-      "name": "firefox_whatsnew_69"
     },
     {
       "files": [

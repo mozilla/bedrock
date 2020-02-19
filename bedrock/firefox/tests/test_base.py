@@ -334,58 +334,6 @@ class TestWhatsNew(TestCase):
 
     # end id locale-specific tests
 
-    # begin 67.0.5 whatsnew tests
-
-    def test_fx_67_0_1(self, render_mock):
-        """Should use trailhead template for 67.0.1"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'en-US'
-        self.view(req, version='67.0.1')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-fx67.0.5.html']
-
-    def test_fx_67_0_1_locales(self, render_mock):
-        """Should use standard template for 67.0.1 for other locales"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'es-ES'
-        self.view(req, version='67.0.1')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-fx67.html']
-
-    # end 67.0.5 whatsnew tests
-
-    # begin 68.0 whatsnew tests
-
-    def test_fx_68_0(self, render_mock):
-        """Should use trailhead template for 68.0"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'en-US'
-        self.view(req, version='68.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-fx68-trailhead.html']
-
-    def test_fx_68_0_locales(self, render_mock):
-        """Should use standard template for 68.0 for other locales"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'es-ES'
-        self.view(req, version='68.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-fx68.html']
-
-    # end 68.0 whatsnew tests
-
-    # begin 69.0 whatsnew tests
-
-    def test_fx_69_0(self, render_mock):
-        """Should use whatsnew-69 template for 69.0"""
-        req = self.rf.get('/firefox/whatsnew/')
-        req.locale = 'en-US'
-        self.view(req, version='69.0')
-        template = render_mock.call_args[0][1]
-        assert template == ['firefox/whatsnew/whatsnew-fx69.html']
-
-    # end 69.0 whatsnew tests
-
     # begin 70.0 whatsnew tests
 
     def test_fx_70_0_en(self, render_mock):
