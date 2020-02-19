@@ -7,55 +7,11 @@ $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
 @import '../../../protocol/css/components/notification-bar';
-
+@import 'includes/header';
 
 .t-content-lg {
     max-width: $content-lg;
 }
-
-//* -------------------------------------------------------------------------- */
-// Up-to-date page header
-
-.c-page-header {
-    background: transparent;
-}
-
-.mzp-c-notification-bar {
-    color: $color-ink-80;
-    display: none;
-    margin: 0;
-
-    .show-up-to-date-message & {
-        display: block;
-    }
-}
-
-.c-page-header-inner {
-    align-items: center;
-    display: grid;
-    grid-template-columns: 1fr;
-}
-
-.mzp-c-notification-bar {
-    margin: $spacing-md 0 0;
-
-    @media #{$mq-md} {
-        margin: 0;
-    }
-}
-
-.c-page-header-logo-moz {
-    min-width: 78px;
-}
-
-@media #{$mq-md} {
-    .c-page-header-inner {
-        align-items: center;
-        display: grid;
-        grid-template-columns: 1fr max-content 1fr;
-    }
-}
-
 
 //* -------------------------------------------------------------------------- */
 // Main content section

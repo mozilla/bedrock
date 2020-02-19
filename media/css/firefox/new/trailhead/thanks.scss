@@ -5,9 +5,10 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../../../protocol/css/components/call-out';
-@import '../../../../protocol/css/components/picto-card';
 @import '../../../../protocol/css/includes/lib';
+@import '../../../../protocol/css/components/call-out';
+@import '../../../../protocol/css/components/notification-bar';
+@import '../../../../protocol/css/components/picto-card';
 @import '../../../../protocol/css/templates/card-layout';
 
 // keep the button technically visible to grab correct download link for
@@ -24,35 +25,8 @@ $image-path: '/media/protocol/img';
     }
 }
 
-/**
- * Notification bar.
- * This should probably be a Protocol component.
- * https://github.com/mozilla/protocol/issues/383
- */
-.c-notification {
-    @include text-body-sm;
-    border-radius: $border-radius-sm;
-    box-shadow: $box-shadow-md;
-    color: $color-ink-80;
-    margin: 0 auto $spacing-lg;
-    max-width: calc(600px - #{$spacing-md * 2});
-    padding: $spacing-sm $spacing-md;
-    text-align: center;
-
-    &.t-warning {
-        background-color: $color-yellow-20;
-    }
-
-    &.t-success {
-        background-color: $color-green-30;
-    }
-
-    a:link,
-    a:visited {
-        color: inherit;
-        font-weight: bold;
-    }
-
+// Notification bar for unsupported systems
+.mzp-c-notification-bar {
     &.unsupported {
         display: none;
     }

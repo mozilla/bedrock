@@ -9,6 +9,7 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/components/state-fxa';
 @import '../../../protocol/css/components/emphasis-box';
 @import '../../../protocol/css/components/notification-bar';
+@import 'includes/header';
 
 .content-main {
     padding: 0;
@@ -28,46 +29,6 @@ $image-path: '/media/protocol/img';
     max-width: $content-md;
     text-align: center;
 }
-
-//* -------------------------------------------------------------------------- */
-// Up-to-date page header
-
-.c-page-header {
-    background: transparent;
-}
-
-.mzp-c-notification-bar {
-    color: $color-ink-80;
-    display: none;
-    margin: $layout-xs;
-
-    .is-up-to-date {
-        display: block;
-    }
-}
-
-.c-page-header-inner {
-    align-items: center;
-    display: grid;
-    grid-template-columns: 1fr;
-}
-
-.c-page-header-up-to-date {
-    margin: 0 $layout-sm;
-}
-
-.c-page-header-logo-fx {
-    min-width: 216px;
-}
-
-@media #{$mq-md} {
-    .c-page-header-inner {
-        align-items: center;
-        display: grid;
-        grid-template-columns: 1fr max-content 1fr;
-    }
-}
-
 
 //* -------------------------------------------------------------------------- */
 // Emphasis box

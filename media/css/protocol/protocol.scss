@@ -12,3 +12,8 @@ $image-path: '/media/protocol/img';
 @import 'components/navigation';
 @import 'components/download-button';
 @import 'components/footer';
+
+// Can be removed once https://github.com/mozilla/protocol/issues/549 is fixed.
+.mzp-c-notification-bar {
+    @include border-box;
+}
