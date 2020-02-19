@@ -6,6 +6,8 @@
 
 {% extends "firefox/base/base-pebbles.html" %}
 
+{% set addon_url = "https://addons.mozilla.org/firefox/addon/facebook-container/?src=external-www.mozilla.org-facebookcontainer&utm_source=www.mozilla.org-facebookcontainer&utm_medium=referral" %}
+
 {% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{_('Facebook Container for Firefox | Prevent Facebook from seeing what websites you visit.')}}{% endblock %}
 {% block page_desc %}{{_('Millions of people around the world trust Firefox Web browsers on Android, iOS and desktop computers. Fast. Private. Download now!')}}{% endblock %}
@@ -37,7 +39,7 @@
           </div>
 
           <div class="extension-cta">
-            <a href="https://addons.mozilla.org/firefox/addon/facebook-container/">{{ _('Get the Facebook Container Extension') }}</a>
+            <a href="{{ addon_url }}">{{ _('Get the Facebook Container Extension') }}</a>
           </div>
 
           <div class="mobile-cta">
@@ -91,7 +93,7 @@
         <li>
           <h3>{{ _('Opt out on your terms') }}</h3>
           <p>
-          {% trans fbcontainer='https://addons.mozilla.org/firefox/addon/facebook-container/' %}
+          {% trans fbcontainer=addon_url %}
             Facebook can track almost all your web activity and tie it to your Facebook identity. If that’s too much for you, the <a href="{{ fbcontainer }}">Facebook Container extension</a> isolates your identity into a separate container tab, making it harder for Facebook to track you on the web outside of Facebook.
           {% endtrans %}
           </p>
@@ -99,7 +101,7 @@
         <li>
           <h3>{{ _('Install and contain') }}</h3>
           <p>
-          {% trans fbcontainer='https://addons.mozilla.org/firefox/addon/facebook-container/' %}
+          {% trans fbcontainer=addon_url %}
             Installing the <a href="{{ fbcontainer }}">extension</a> is easy and, once activated, will open Facebook in a blue tab each time you use it. Use and enjoy Facebook normally. Facebook will still be able to send you advertising and recommendations on their site, but it will be much harder for Facebook to use your activity collected <strong>off Facebook</strong> to send you ads and other targeted messages.
           {% endtrans %}
           </p>
