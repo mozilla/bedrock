@@ -124,32 +124,6 @@ describe('yandex-scene1.js', function() {
         });
     });
 
-    describe('showYandexContent', function() {
-
-        it('should work as expected', function() {
-            spyOn(Mozilla.Yandex, 'showYandexBrowserImage');
-            spyOn(Mozilla.Yandex, 'showYandexMessaging');
-
-            Mozilla.Yandex.showYandexContent();
-
-            expect(Mozilla.Yandex.showYandexBrowserImage).toHaveBeenCalled();
-            expect(Mozilla.Yandex.showYandexMessaging).toHaveBeenCalled();
-        });
-    });
-
-    describe('showRegularContent', function() {
-
-        it('should work as expected', function() {
-            spyOn(Mozilla.Yandex, 'showRegularBrowserImage');
-            spyOn(Mozilla.Yandex, 'initOtherPlatformsModal');
-
-            Mozilla.Yandex.showRegularContent();
-
-            expect(Mozilla.Yandex.showRegularBrowserImage).toHaveBeenCalled();
-            expect(Mozilla.Yandex.initOtherPlatformsModal).toHaveBeenCalled();
-        });
-    });
-
     describe('shouldShowYandex', function() {
 
         it('should return true if criteria is met', function() {
@@ -162,49 +136,6 @@ describe('yandex-scene1.js', function() {
             spyOn(Mozilla.Yandex, 'verifyLocation').and.returnValue(false);
 
             expect(Mozilla.Yandex.shouldShowYandex()).toBeFalsy();
-        });
-    });
-
-    describe('showYandexBrowserImage, showRegularBrowserImage', function() {
-
-        var header;
-
-        beforeEach(function() {
-            var frag = document.createDocumentFragment();
-            var image = document.createElement('img');
-            header = document.createElement('div');
-
-            header.className = 'header-image';
-            image.src = '/img/placeholder.png';
-            image.setAttribute('data-yandex-src', '/img/low-res.png');
-            image.setAttribute('data-yandex-srcset', '/img/high-res.png');
-            image.setAttribute('data-firefox-src', '/img/browser-windows.png');
-            image.setAttribute('data-firefox-srcset', '/img/browser-windows-high-res.png');
-
-            frag.appendChild(header);
-            header.appendChild(image);
-
-            document.body.appendChild(frag);
-        });
-
-        afterEach(function() {
-            document.body.removeChild(header);
-        });
-
-        it('should update image for Yandex', function() {
-            Mozilla.Yandex.showYandexBrowserImage();
-
-            var image = document.querySelector('.header-image > img');
-            expect(image.src).toContain('/img/low-res.png');
-            expect(image.srcset).toContain('/img/high-res.png');
-        });
-
-        it('should update image for regular firefox', function() {
-            Mozilla.Yandex.showRegularBrowserImage();
-
-            var image = document.querySelector('.header-image > img');
-            expect(image.src).toContain('/img/browser-windows.png');
-            expect(image.srcset).toContain('/img/browser-windows-high-res.png');
         });
     });
 
