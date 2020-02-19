@@ -21,6 +21,18 @@
     .c-sub-navigation-title {
         @include font-base;
         @include font-size(20px);
+
+        a:link,
+        a:visited {
+            color: $color-black;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:active,
+        a:focus {
+            text-decoration: underline;
+        }
     }
 
     .c-sub-navigation-list {
