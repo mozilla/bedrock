@@ -1,20 +1,34 @@
-variables:
-  CLUSTER_NAME: iowa-a
-  CONFIG_REPO: git@github.com:mozmeao/www-config
-  CONFIG_BRANCH: master
+---
+# External Pipeline Materials #
+include:
+  - remote: "https://raw.githubusercontent.com/mozmeao/gitlab-library/master/ingress.yml"
 
+# Define the 'stages' of a deploy.
+# (Stages run in sequence, jobs inside a stage run in parallel)
 stages:
   - build
   - update-config
+  - deploy
 
+# Global variables for shared jobs #
+variables:
+  CLUSTER_NAME: iowa-a
+  CONFIG_BRANCH: master
+  CONFIG_REPO: "git@github.com:mozmeao/www-config"
+
+### Start Shared Jobs ###
+.update-config:
+  script:
+    - bin/update_config.sh
+  stage: update-config
+  tags:
+    - oregon-b-shell
 build:
   stage: build
   only:
     - master
     - stage
     - prod
-  tags:
-    - oregon-b-shell
   script:
     - make clean build-ci
     - FROM_DOCKER_REPOSITORY=mozorg/bedrock_test docker/bin/push2dockerhub.sh
@@ -23,24 +37,79 @@ build:
     - FROM_DOCKER_REPOSITORY=mozorg/bedrock_build docker/bin/push2dockerhub.sh
     - FROM_DOCKER_REPOSITORY=mozorg/bedrock docker/bin/push2dockerhub.sh
     - bin/upload-staticfiles.sh
-
-build-test:
-  stage: build
-  only:
-    - run-integration-tests
   tags:
     - oregon-b-shell
+### End Shared Jobs ###
+
+### START DEMO PIPELINE ###
+build-demo-deploy:
+  environment:
+    name: www-$CI_COMMIT_REF_NAME
+    on_stop: stop-demo-app
+  extends: .base_job
+  only:
+    - /demo/.*/
+  script:
+    - export KUBECONFIG=$EUKUBECONFIG
+    - echo $CI_COMMIT_REF_SLUG
+    - make clean build-demo-ci
+    - FROM_DOCKER_REPOSITORY=mozorg/bedrock_demo docker/bin/push2dockerhub.sh
+    - kubectl create namespace $CI_COMMIT_REF_SLUG || true
+    - kubectl get secret bedrock-secrets --namespace=$secret_namespace --export -o yaml | kubectl apply --namespace=$CI_COMMIT_REF_SLUG -f -
+    - helm repo add mozmeao https://mozmeao.github.io/helm/
+    - helm repo update
+    - helm install bedrock mozmeao/bedrock --namespace $CI_COMMIT_REF_SLUG --set shared.image.version=$CI_COMMIT_SHA --set shared.image.dockerrepo=mozorg/bedrock_demo || true
+    - helm upgrade bedrock mozmeao/bedrock --namespace $CI_COMMIT_REF_SLUG --set shared.image.version=$CI_COMMIT_SHA --set shared.image.dockerrepo=mozorg/bedrock_demo
+  stage: deploy
+  variables:
+    secret_namespace: demo-shared-bedrock
+
+build-demo-ingress:
+  extends: .combined-ingress
+  only:
+    - /demo/.*/
+  stage: deploy
+  variables:
+    dns_prefix: "--service_prefix www"
+    domain: mozmar.org
+    port: 80
+    service: bedrock
+    staging: ""
+
+stop-demo-app:
+  extends: .base_job
+  environment:
+    action: stop
+    name: www-$CI_COMMIT_REF_NAME
+  script:
+    - export KUBECONFIG=$EUKUBECONFIG
+    - kubectl delete ns/$CI_COMMIT_REF_SLUG
+  stage: deploy
+  variables:
+    GIT_STRATEGY: none
+  when: manual
+### END DEMO PIPELINE ###
+
+### Start Functional Test Pipeline ###
+build-test:
+  only:
+    - run-integration-tests
   script:
     - make clean build-ci
     - FROM_DOCKER_REPOSITORY=mozorg/bedrock_test docker/bin/push2dockerhub.sh
     - FROM_DOCKER_REPOSITORY=mozorg/bedrock docker/bin/push2dockerhub.sh
-
-.update-config:
-  stage: update-config
+  stage: build
   tags:
     - oregon-b-shell
-  script:
-    - bin/update_config.sh
+
+test:
+  extends: .update-config
+  only:
+    - run-integration-tests
+  variables:
+    CLUSTERS: oregon-b
+    NAMESPACE: bedrock-test
+### End Functional Test Pipeline ###
 
 dev:
   extends: .update-config
@@ -56,14 +125,6 @@ stage:
   variables:
     CLUSTERS: iowa-a
     NAMESPACE: bedrock-stage
-
-test:
-  extends: .update-config
-  only:
-    - run-integration-tests
-  variables:
-    CLUSTERS: oregon-b
-    NAMESPACE: bedrock-test
 
 prod:
   extends: .update-config

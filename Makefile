@@ -112,7 +112,10 @@ build-ci: .docker-build-pull
 	${DC_CI} build app assets builder app-base
 	touch .docker-build-ci
 
+build-demo-ci: .docker-build-pull
+	${DC_CI} build release
+
 test-ci: .docker-build-ci
 	${DC_CI} run test-image
 
-.PHONY: all clean build pull submodules docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell
+.PHONY: all clean build pull submodules docs lint run stop kill run-shell shell test test-image rebuild build-ci build-demo-ci test-ci fresh-data djshell

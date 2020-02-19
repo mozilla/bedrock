@@ -12,6 +12,9 @@ source $BIN_DIR/set_git_env_vars.sh
 
 if [[ "$FROM_DOCKER_REPOSITORY" == "mozorg/bedrock" ]]; then
     DOCKER_TAG="${BRANCH_AND_COMMIT}"
+elif [[ "$FROM_DOCKER_REPOSITORY" == "mozorg/bedrock_demo" ]]; then
+    docker tag "mozorg/bedrock:${BRANCH_AND_COMMIT}" "${FROM_DOCKER_REPOSITORY}:${GIT_COMMIT}"
+    DOCKER_TAG="${GIT_COMMIT}"
 else
     DOCKER_TAG="${GIT_COMMIT}"
 fi

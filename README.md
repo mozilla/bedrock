@@ -19,6 +19,8 @@ general technical documentation. In addition, there are project-specific
 [dj-docs]: https://docs.djangoproject.com/
 [br-docs]: http://bedrock.readthedocs.org/
 
+There are also a few context specific documents here: [pipeline.md](pipeline.md)
+
 Contributing
 ------------
 
