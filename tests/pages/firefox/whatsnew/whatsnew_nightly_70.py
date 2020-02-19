@@ -11,7 +11,7 @@ class FirefoxWhatsNewNightly70Page(FirefoxBasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/70.0a1/whatsnew/all/'
 
-    _upgrade_message_locator = (By.CSS_SELECTOR, '.main-content header > h2')
+    _upgrade_message_locator = (By.CSS_SELECTOR, '.content-wrapper .c-emphasis-box-title')
 
     @property
     def is_upgrade_message_displayed(self):
