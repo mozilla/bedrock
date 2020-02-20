@@ -2,161 +2,87 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+$font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../pebbles/includes/lib';
-@import '../../hubs/sections';
-@import 'header';
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/emphasis-box';
+@import '../../../protocol/css/components/notification-bar';
 
-//* -------------------------------------------------------------------------- */
-// Common elements
-
-body {
-    @include open-sans;
+.content-main {
+    padding: 0;
+    @media #{$mq-md} {
+        padding-top: $spacing-2xl;
+    }
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-weight: normal;
+.content-wrapper {
+    background: $color-off-black url('/media/img/firefox/whatsnew/whatsnew_background.svg') no-repeat;
+    @include background-size(100%);
+    color: $color-white;
 }
 
 //* -------------------------------------------------------------------------- */
-// Main content section
+// Up-to-date page header
 
-.main-content {
-    background: #003eaa;
-    background: linear-gradient(87deg, #271877 0%, #2575FC 100%);
-    color: #fff;
-    text-align: center;
+.c-page-header {
+    background: transparent;
+}
+
+.mzp-c-notification-bar {
+    color: $color-off-black;
+    display: none;
+    margin: $layout-xs;
+
+    .is-up-to-date & {
+        display: block;
+    }
+}
+
+.c-page-header-inner {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.c-page-header-up-to-date {
+    margin: 0 $layout-sm;
+}
+
+.c-page-header-logo-fx {
+    min-width: 216px;
+}
+
+@media #{$mq-md} {
+    .c-page-header-inner {
+        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr max-content 1fr;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+// Emphasis box
+
+.mzp-c-emphasis-box {
+    @include border-box;
+    color: $color-off-black;
+    margin: 0 auto $layout-sm;
+    max-width: $content-md - ($layout-md * 2);
+    padding: $spacing-xl;
 
     a:link,
     a:visited {
-        color: #fff;
-        font-weight: bold;
+        color: $color-off-black;
+    }
+
+    abbr {
         text-decoration: none;
     }
 
-    a:hover,
-    a:active,
-    a:focus {
-        text-decoration: underline;
-    }
-
-    .inner-container {
-        padding: 20px 0;
-    }
-
-    header {
-        @include at2x('#{$image-path}/logos/firefox/browser/nightly/logo-lg.png', 124px, 124px);
-        background-position: top center;
-        background-repeat: no-repeat;
-        padding-top: 160px;
-
-        h2 {
-            margin-bottom: 40px;
-            line-height: 1.2;
-        }
-
-        .tagline {
-            @include font-size(18px);
-            text-align: left;
-        }
-    }
-
-    .body {
-        margin: 20px 0;
-        text-align: left;
-
-        h3 {
-            @include font-size(20px);
-            font-weight: bold;
-        }
-
-        &> * {
-            @include multi-column-avoid-break;
-        }
-    }
-
-    @media #{$mq-tablet} {
-        background: #003eaa;
-        background: url('/media/img/firefox/whatsnew/fox-tail.png') top -80px center no-repeat,
-                    linear-gradient(87deg, #271877 0%, #2575FC 100%);
-
-        .inner-container {
-            padding: 60px 10%;
-        }
-
-        header {
-            background-position: top left;
-            padding: 0 0 0 160px;
-            text-align: left;
-
-            h2 {
-                margin-bottom: 20px;
-            }
-
-            .tagline {
-                @include font-size(24px);
-            }
-        }
-
-        .body {
-            margin: 60px 0;
-        }
-    }
-
-    @media #{$mq-desktop} {
-        .inner-container {
-            padding: 60px 15%;
-        }
-
-        header {
-            @include background-size(145px 145px);
-            padding: 0 0 0 185px;
-            min-height: 145px;
-        }
-
-        .body {
-            @include multi-column(auto, 2, 20px);
-        }
-    }
-
-    @media #{$mq-desktop-wide} {
-        header {
-            @include background-size(185px 185px);
-            padding: 0 0 0 220px;
-            min-height: 185px;
-        }
+    .c-emphasis-box-title {
+        @include text-display-sm;
+        text-align: center;
     }
 }
 
-html[dir="rtl"] .main-content {
-
-    .body {
-        text-align: right;
-    }
-
-    header .tagline {
-        text-align: right;
-    }
-
-    @media #{$mq-tablet} {
-        header {
-            text-align: right;
-        }
-    }
-}
-
-#nightly-profiles .main-content {
-    background: transparent none;
-    color: $color-text-primary;
-
-    a:link,
-    a:visited {
-        color: $color-link;
-
-        &:hover,
-        &:focus {
-            color: $color-link-hover;
-        }
-    }
-}
