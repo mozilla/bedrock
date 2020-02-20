@@ -26,7 +26,6 @@ urlpatterns = (
     page('book', 'mozorg/book.html'),
     url('^credits/$', views.credits_view, name='mozorg.credits'),
     page('credits/faq', 'mozorg/credits-faq.html'),
-    page('about/partnerships/distribution', 'mozorg/partnerships-distribution.html'),
     page('about/history', 'mozorg/about/history.html'),
     # Bug 981063, catch all for old calendar urls.
     # must be here to avoid overriding the above
