@@ -47,6 +47,7 @@ class Command(BaseCommand):
         self.update_l10n_team_files()
         no_errors = self.copy_ftl_files()
         self.set_activation()
+        self.copy_configs()
         if no_errors:
             self.stdout.write('There were no errors found in the .ftl files.')
         else:
@@ -70,21 +71,32 @@ class Command(BaseCommand):
         self.meao_repo.update()
         self.stdout.write('Updated .ftl files')
 
+    def _copy_file(self, filepath):
+        relative_filepath = filepath.relative_to(self.l10n_repo.path)
+        to_filepath = self.meao_repo.path.joinpath(relative_filepath)
+        to_filepath.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(str(filepath), str(to_filepath))
+        self.stdout.write('.', ending='')
+        self.stdout.flush()
+
+    def copy_configs(self):
+        count = 0
+        for filepath in self.l10n_repo.path.rglob('*.toml'):
+            self._copy_file(filepath)
+            count += 1
+
+        self.stdout.write(f'\nCopied {count} .toml files')
+
     def copy_ftl_files(self):
         count = 0
         errors = []
         for filepath in self.l10n_repo.path.rglob('*.ftl'):
-            relative_filepath = filepath.relative_to(self.l10n_repo.path)
             if not self.lint_ftl_file(filepath):
-                errors.append(relative_filepath)
+                errors.append(filepath.relative_to(self.l10n_repo.path))
                 continue
 
-            to_filepath = self.meao_repo.path.joinpath(relative_filepath)
-            to_filepath.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(str(filepath), str(to_filepath))
+            self._copy_file(filepath)
             count += 1
-            self.stdout.write('.', ending='')
-            self.stdout.flush()
 
         self.stdout.write(f'\nCopied {count} .ftl files')
         if errors:
@@ -108,6 +120,9 @@ class Command(BaseCommand):
         updated_ftl = set()
         modified, _ = self.meao_repo.modified_files()
         for fname in modified:
+            if not fname.endswith('.ftl'):
+                continue
+
             locale, ftl_name = fname.split('/', 1)
             updated_ftl.add(ftl_name)
 
