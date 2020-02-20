@@ -11,6 +11,75 @@ $image-path: '/media/protocol/img';
 @import '../../../../protocol/css/includes/lib';
 @import '../../../../protocol/css/templates/card-layout';
 
+//* -------------------------------------------------------------------------- */
+// Download icon experiment.
+
+
+$download-arrow: '<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"><g transform="translate(6.000000, 3.000000)" stroke="#FFFFFF" stroke-width="2"><polyline stroke-linejoin="round" points="0 8 6 14 12 8"></polyline><path d="M6,0 L6,14"></path></g></g></svg>';
+
+$base-link: '<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0,18 L12,18" stroke="#FFFFFF" stroke-width="2"></path></svg>';
+
+$combo: '<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"><g transform="translate(6.000000, 3.000000)" stroke="#FFFFFF" stroke-width="2"><path d="M0,18 L12,18"></path><polyline stroke-linejoin="round" points="0 8 6 14 12 8"></polyline><path d="M6,0 L6,14"></path></g></g></svg>';
+
+$base-svg: svg-url($base-link);
+$arrow-svg: svg-url($download-arrow);
+$download-icon: svg-url($combo);
+
+// Static download icon.
+
+#static {
+    .mzp-c-button {
+        @include bidi((
+                (background-position, calc(100% - 24px) 50%, 24px 50%),
+                (padding-right, 54px, 30px),
+                (padding-left, 30px, 54px),
+            ));
+        background-image: $download-icon;
+        background-repeat: no-repeat;
+        position: relative;
+    }
+}
+
+// Animated icon on hover.
+
+@keyframes bounce {
+	to { transform: translateY(-8px);  }
+}
+
+#animate {
+    .mzp-c-button {
+        @include bidi((
+                (background-position, calc(100% - 20px) 65%, 17% 65%),
+                (padding-right, 54px, 30px),
+                (padding-left, 30px, 54px),
+            ));
+        background-image: $base-svg;
+        background-repeat: no-repeat;
+        position: relative;
+
+        &:before {
+            @include bidi((
+                (left, calc(100% - 50px), auto),
+                (right, auto, calc(100% - 50px)),
+            ));
+            background-image: $arrow-svg;
+            background-repeat: no-repeat;
+            content: '';
+            height: 24px;
+            width: 24px;
+            position: absolute;
+            top: 15px;
+        }
+
+        &:hover {
+            &:before {
+                animation: bounce 0.5s ease-in-out infinite alternate;
+            }
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
 
 .mzp-c-hero.mzp-t-dark {
     @include background-size(auto 100%);
