@@ -69,12 +69,6 @@
     },
     {
       "files": [
-        "css/mozorg/partnerships-distribution.scss"
-      ],
-      "name": "partnerships-distribution"
-    },
-    {
-      "files": [
         "css/mozorg/participation-reporting.scss"
       ],
       "name": "participation-reporting"

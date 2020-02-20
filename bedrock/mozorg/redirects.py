@@ -643,6 +643,7 @@ redirectpatterns = (
     redirect(r'^about/partnerships/?$', 'mozorg.contact.contact-landing'),
     redirect(r'^about/partnerships/contentservices(/.*)?$', 'mozorg.contact.contact-landing'),
     redirect(r'^about/partnerships\.html', 'mozorg.contact.contact-landing'),
+    redirect(r'^about/partnerships/distribution/?$', '/foundation/trademarks/distribution-policy/'),
 
     # Bug 1436740
     redirect(r'^teach/?$', 'mozorg.internet-health'),
