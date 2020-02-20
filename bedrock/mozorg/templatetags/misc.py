@@ -599,6 +599,51 @@ def ifeq(a, b, text):
     return jinja2.Markup(text if a == b else '')
 
 
+@library.global_function
+@jinja2.contextfunction
+def app_store_url(ctx, base_url):
+    """Returns a localised app store URL for a given product"""
+    locale = getattr(ctx['request'], 'locale', 'en-US')
+    countries = settings.APPLE_APPSTORE_COUNTRY_MAP
+    if locale in countries:
+        return base_url.format(country=countries[locale])
+    else:
+        return base_url.replace('/{country}/', '/')
+
+
+@library.global_function
+@jinja2.contextfunction
+def play_store_url(ctx, base_url):
+    """Returns a localised play store URL for a given product"""
+    locale = getattr(ctx['request'], 'locale', 'en-US')
+    return base_url + '&hl=' + locale.split('-')[0]
+
+
+@library.global_function
+@jinja2.contextfunction
+def structured_data_id(ctx, id, domain=None):
+    """
+    Returns an identifier for a structured data object based on
+    a supplied id e.g. https://www.mozilla.org/#firefoxbrowser
+    """
+    canonical = settings.CANONICAL_URL if not domain else domain
+    locale = getattr(ctx['request'], 'locale', 'en-US')
+    suffix = ''
+
+    if locale != 'en-US':
+        suffix = '-' + locale.lower()
+
+    return canonical + '/#' + id + suffix
+
+
+@library.global_function
+@jinja2.contextfunction
+def lang_short(ctx):
+    """Returns a shortened locale code e.g. en."""
+    locale = getattr(ctx['request'], 'locale', 'en-US')
+    return locale.split('-')[0]
+
+
 def _get_adjust_link(adjust_url, app_store_url, google_play_url, redirect, locale, adgroup, creative=None):
     link = adjust_url
     params = 'campaign=www.mozilla.org&adgroup=' + adgroup

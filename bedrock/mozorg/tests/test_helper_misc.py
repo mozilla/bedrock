@@ -688,6 +688,94 @@ def test_csrf():
     assert csrf in s
 
 
+class TestAppStoreURL(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, locale):
+        req = self.rf.get('/')
+        req.locale = locale
+        base_url = settings.APPLE_APPSTORE_LOCKWISE_LINK
+        return render("{{ app_store_url('%s') }}" % base_url,
+                      {'request': req})
+
+    def test_app_store_url_no_locale(self):
+        """No locale, fallback to default URL"""
+        assert (self._render('') == 'https://itunes.apple.com/app/id1314000270?mt=8')
+
+    def test_app_store_url_default(self):
+        """should fallback to default URL"""
+        assert (self._render('ar') == 'https://itunes.apple.com/app/id1314000270?mt=8')
+        assert (self._render('zu') == 'https://itunes.apple.com/app/id1314000270?mt=8')
+
+    def test_app_store_url_localized(self):
+        """should return localized URL"""
+        assert (self._render('en-US') == 'https://itunes.apple.com/us/app/id1314000270?mt=8')
+        assert (self._render('es-ES') == 'https://itunes.apple.com/es/app/id1314000270?mt=8')
+        assert (self._render('de') == 'https://itunes.apple.com/de/app/id1314000270?mt=8')
+
+
+class TestPlayStoreURL(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, locale):
+        req = self.rf.get('/')
+        req.locale = locale
+        base_url = settings.GOOGLE_PLAY_LOCKWISE_LINK
+        return render("{{ play_store_url('%s') }}" % base_url,
+                      {'request': req})
+
+    def test_play_store_url_localized(self):
+        """should return localized URL"""
+        assert (self._render('en-US') == 'https://play.google.com/store/apps/details?id=mozilla.lockbox&amp;hl=en')
+        assert (self._render('es-ES') == 'https://play.google.com/store/apps/details?id=mozilla.lockbox&amp;hl=es')
+        assert (self._render('de') == 'https://play.google.com/store/apps/details?id=mozilla.lockbox&amp;hl=de')
+
+
+class TestStructuredDataID(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, locale, domain=None):
+        req = self.rf.get('/')
+        req.locale = locale
+        sd_id = 'firefoxbrowser'
+
+        if domain:
+            return render("{{{{ structured_data_id('{0}', '{1}') }}}}".format(
+                          sd_id, domain), {'request': req})
+
+        return render("{{ structured_data_id('%s') }}" % sd_id,
+                      {'request': req})
+
+    def test_structured_data_localized_id(self):
+        """should return localized id"""
+        assert (self._render('en-US') == 'https://www.mozilla.org/#firefoxbrowser')
+        assert (self._render('es-ES') == 'https://www.mozilla.org/#firefoxbrowser-es-es')
+        assert (self._render('de') == 'https://www.mozilla.org/#firefoxbrowser-de')
+
+    def test_structured_data_custom_domain_id(self):
+        """should return id for a custom domain"""
+        domain = 'https://foundation.mozilla.org'
+        assert (self._render('en-US', domain) == 'https://foundation.mozilla.org/#firefoxbrowser')
+        assert (self._render('es-ES', domain) == 'https://foundation.mozilla.org/#firefoxbrowser-es-es')
+        assert (self._render('de', domain) == 'https://foundation.mozilla.org/#firefoxbrowser-de')
+
+
+class TestLangShort(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, locale, domain=None):
+        req = self.rf.get('/')
+        req.locale = locale
+
+        return render("{{ lang_short() }}", {'request': req})
+
+    def test_shortened_locales(self):
+        """should return a shortened locale code"""
+        assert (self._render('en-US') == 'en')
+        assert (self._render('es-ES') == 'es')
+        assert (self._render('de') == 'de')
+
+
 class TestFirefoxAdjustUrl(TestCase):
     rf = RequestFactory()
 

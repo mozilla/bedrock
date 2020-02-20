@@ -198,3 +198,7 @@ accessible to all.') }}
 {% block js %}
 {{ js_bundle('newsletter') }}
 {% endblock %}
+
+{% block structured_data %}
+  {% include 'includes/structured-data/organizations/mozilla-corporation-organisation.json' %}
+{% endblock %}

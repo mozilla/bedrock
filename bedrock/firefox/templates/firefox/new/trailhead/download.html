@@ -118,12 +118,12 @@
 {% endblock %}
 
 {% block structured_data %}
-{
-"@context": "https://schema.org/",
-"@graph": [
-{% include 'includes/structured-data/software/firefox-browser-software.json' %}
-,
-{% include 'includes/structured-data/breadcrumb/new.json' %}
-]
-}
+  {
+    "@context": "https://schema.org/",
+    "@graph": [
+      {% include 'includes/structured-data/software/firefox-browser-software.json' %}
+      ,
+      {% include 'includes/structured-data/breadcrumb/new.json' %}
+    ]
+  }
 {% endblock %}

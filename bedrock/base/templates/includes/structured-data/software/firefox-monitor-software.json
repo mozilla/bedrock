@@ -1,14 +1,14 @@
 {
   "@context": "https://schema.org/",
   "@type": "WebApplication",
-  "@id": "https://www.mozilla.org/#firefoxmonitor",
+  "@id": "{{ structured_data_id('firefoxmonitor') }}",
   "url": "https://monitor.firefox.com",
-  "image": "{% filter trim|absolute_url %}{{ static('protocol/img/logos/firefox/monitor/logo-lg-high-res.png') }}{% endfilter %}",
+  "image": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/monitor/logo-lg-high-res.png') }}{% endfilter %}",
   "name": "Firefox Monitor",
   "sameAs": [
     "https://www.wikidata.org/wiki/Q64828890",
     "https://monitor.firefox.com",
-    "https://en.wikipedia.org/wiki/Firefox_Monitor"
+    "https://{{ lang_short() }}.wikipedia.org/wiki/Firefox_Monitor"
   ],
   "offers":
   {
@@ -21,12 +21,12 @@
   "author":
   {
     "@type": "Organization",
-    "@id": "https://www.mozilla.org/#organization",
+    "@id": "{{ structured_data_id('organization') }}",
     "name": "Mozilla Corporation"
   },
   "softwareHelp":
   {
     "@type": "Webpage",
-    "url": "https://support.mozilla.org/en-US/kb/firefox-monitor"
+    "url": "https://support.mozilla.org/{{ LANG }}/kb/firefox-monitor"
   }
 }

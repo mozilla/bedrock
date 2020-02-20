@@ -1,16 +1,16 @@
 {
   "@context": "https://schema.org/",
   "@type": "SoftwareApplication",
-  "@id": "https://www.mozilla.org/#firefoxfiretv",
-  "url": "https://support.mozilla.org/en-US/kb/firefox-fire-tv",
+  "@id": "{{ structured_data_id('firefoxfiretv') }}",
+  "url": "https://support.mozilla.org/{{ LANG }}/kb/firefox-fire-tv",
   "name": "Firefox Browser Fire TV",
-  "image": "{% filter trim|absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
+  "image": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
   "alternateName": [
     "Firefox for Fire TV",
     "Firefox Browser for Fire TV"
   ],
   "sameAs": [
-    "https://www.amazon.com/Mozilla-Firefox-for-Fire-TV/dp/B078B5YMPD"
+    "{{ settings.AMAZON_FIREFOX_FIRE_TV_LINK }}"
   ],
   "offers":
   {
@@ -26,18 +26,18 @@
   "author":
   {
     "@type": "Organization",
-    "@id": "https://www.mozilla.org/#organization",
+    "@id": "{{ structured_data_id('organization') }}",
     "name": "Mozilla Corporation"
   },
   "softwareHelp":
   {
     "@type": "Webpage",
-    "url": "https://support.mozilla.org/en-US/products/firefox-amazon-devices/firefox-fire-tv"
+    "url": "https://support.mozilla.org/{{ LANG }}/products/firefox-amazon-devices/firefox-fire-tv"
   },
   "isPartOf":
   {
-    "@id": "https://www.mozilla.org/#firefoxbrowser",
-    "url": "https://www.mozilla.org/firefox/new/",
+    "@id": "{{ structured_data_id('firefoxbrowser') }}",
+    "url": "{% filter absolute_url %}{{ url('firefox.new') }}{% endfilter %}",
     "name": "Firefox Browser"
   }
 }
