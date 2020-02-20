@@ -513,7 +513,6 @@ class WhatsnewView(L10nTemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(WhatsnewView, self).get_context_data(**kwargs)
-        locale = l10n_utils.get_locale(self.request)
 
         # add version to context for use in templates
         version = self.kwargs.get('version') or ''
@@ -536,28 +535,10 @@ class WhatsnewView(L10nTemplateView):
         ctx['utm_params'] = 'utm_source={0}&utm_medium=referral&utm_campaign={1}&entrypoint={2}'.format(
                              entrypoint, campaign, entrypoint)
 
-        if ctx['num_version'] in [67, 68]:
-            ctx['show_newsletter'] = locale in [
-                'en-US',
-                'en-GB',
-                'en-CA',
-                'es-ES',
-                'es-AR',
-                'es-CL',
-                'es-MX',
-                'id',
-                'pt-BR',
-                'fr',
-                'ru',
-                'de',
-                'pl',
-            ]
-
         return ctx
 
     def get_template_names(self):
         locale = l10n_utils.get_locale(self.request)
-        trailhead_locales = ['en-US', 'en-CA', 'en-GB', 'de', 'fr']
 
         version = self.kwargs.get('version') or ''
         oldversion = self.request.GET.get('oldversion', '')
@@ -603,18 +584,6 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/whatsnew/whatsnew-fx70-fr.html'
             else:
                 template = 'firefox/whatsnew/index.html'
-        elif version.startswith('69.'):
-            template = 'firefox/whatsnew/whatsnew-fx69.html'
-        elif version.startswith('68.'):
-            if locale in trailhead_locales:
-                template = 'firefox/whatsnew/whatsnew-fx68-trailhead.html'
-            else:
-                template = 'firefox/whatsnew/whatsnew-fx68.html'
-        elif version.startswith('67.'):
-            if version.startswith('67.0.') and locale in trailhead_locales:
-                template = 'firefox/whatsnew/whatsnew-fx67.0.5.html'
-            else:
-                template = 'firefox/whatsnew/whatsnew-fx67.html'
         else:
             if show_default_account_whatsnew(version) and ftl_file_is_active('firefox/whatsnew/whatsnew-account'):
                 template = 'firefox/whatsnew/index-account.html'
