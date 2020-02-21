@@ -73,7 +73,7 @@ $download-icon: svg-url($combo);
 
         &:hover {
             &:before {
-                animation: bounce 0.5s ease-in-out infinite alternate;
+                animation: bounce 1s ease-in-out infinite alternate;
             }
         }
     }
