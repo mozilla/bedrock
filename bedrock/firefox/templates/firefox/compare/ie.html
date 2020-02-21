@@ -255,6 +255,7 @@
         </table>
 
       <p>
+        {# L10n: "sunset" here means Microsoft is officially ending production of Internet Explorer. Alternative: "retire" #}
         {% trans %}
         As Microsoft has made the move to sunset the Internet Explorer browser, it no longer supports any version for iOS, and has never been available for Android. Which means unless you’re running a Windows-based laptop or desktop, you won’t have access to your bookmarks, browsing history, saved passwords, and other information that modern browsers sync across devices.
         {% endtrans %}
@@ -262,7 +263,7 @@
 
       <p>
         {% trans %}
-        Firefox works on any platform, including Windows, Mac, Linux, Android and iOS. Which also means  you can sync all your information across platforms. So if you’re browsing on a Windows-based laptop, you can pick up where you left off when you move to browsing on your iPhone or Android device. This convenience should come standard with any modern web browser, and is sorely lacking with Internet Explorer.
+        Firefox works on any platform, including Windows, macOS, Linux, Android and iOS. Which also means  you can sync all your information across platforms. So if you’re browsing on a Windows-based laptop, you can pick up where you left off when you move to browsing on your iPhone or Android device. This convenience should come standard with any modern web browser, and is sorely lacking with Internet Explorer.
         {% endtrans %}
       </p>
 
@@ -283,7 +284,7 @@
 
       <p>
         {# Download link should be locale neutral. See issue #7982 #}
-        {# L10n: "Nana" is a common nickname for a grandmother in many English-speaking countries. Use a similar name for your language or culture. #}
+        {# L10n: "Nana" is a common nickname for a grandmother in many English-speaking countries. Use a similar name for a grandmother in your language or culture. #}
         {% trans attrs='href="/firefox/download/thanks/" data-cta-type="link" data-cta-name="download Firefox"'|safe %}
         Our opinion is just to go with a trusted, private browser with a track record of delivering a great experience across devices. In a head-to-head comparison, it’s really no contest at all. Firefox is hands down the winner across all assessment categories. If you do find yourself at Nana’s house firing up Internet Explorer, maybe you want to do Nana a favor and <a {{ attrs }}>download Firefox</a> for her.
         {% endtrans %}

@@ -236,6 +236,7 @@
       </p>
 
       <p>
+        {# L10n: "Out of the gate" means from the very start. Alternative: "From the start,". Race horses are held behind a gate that is opened to release all the horses at the same time at the start of the race, so a horse that leads the race from the very start is said to lead "right out of the gate." #}
         {% trans %}
         Out of the gate, Firefox has more features and integrations built into the browser and readily available on download. And while both browsers have a tremendous number of add-ons and extensions available, Edge’s compatibility with Google’s Chromium platform gives it the advantage in terms of sheer numbers.
         {% endtrans %}
@@ -290,13 +291,13 @@
 
       <p>
         {% trans %}
-        With Internet Explorer, Microsoft learned from its lack of availability across platforms and made Edge available for macOS and Android. The software is now readily available on iOS, Android, and Windows and Mac.
+        With Internet Explorer, Microsoft learned from its lack of availability across platforms and made Edge available for macOS and Android. The software is now readily available on iOS, Android, Windows and Mac.
         {% endtrans %}
       </p>
 
       <p>
         {% trans attrs='href="%s" data-cta-type="link" data-cta-name="free account"'|safe|format(url('firefox.accounts')) %}
-        Firefox has been available on iOS, Android, Windows, macOS, and Linux for years. And as you would expect with any modern browser, Firefox lets you log in with a <a {{ attrs }}>free account</a> and sync data such as passwords, browsing history, bookmarks, and open tabs between your computer, tablet. and phone. It also allows you to sync across platforms as well.
+        Firefox has been available on iOS, Android, Windows, macOS and Linux for years. And as you would expect with any modern browser, Firefox lets you log in with a <a %(attrs)s>free account</a> and sync data such as passwords, browsing history, bookmarks, and open tabs between your computer, tablet and phone. It also allows you to sync across platforms as well.
         {% endtrans %}
       </p>
 
