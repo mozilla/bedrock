@@ -357,7 +357,8 @@ MEDIA_URL = config('MEDIA_URL', default='/user-media/')
 MEDIA_ROOT = config('MEDIA_ROOT', default=path('media'))
 STATIC_URL = config('STATIC_URL', default='/media/')
 STATIC_ROOT = config('STATIC_ROOT', default=path('static'))
-STATICFILES_STORAGE = ('django.contrib.staticfiles.storage.StaticFilesStorage')
+STATICFILES_STORAGE = ('django.contrib.staticfiles.storage.StaticFilesStorage' if DEBUG else
+                       'django.contrib.staticfiles.storage.ManifestStaticFilesStorage')
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
 )

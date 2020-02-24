@@ -12,30 +12,58 @@ $image-path: '/media/protocol/img';
 }
 
 main {
-    @include text-body-sm;
-    padding-top: $spacing-xl;
+    font-size: 18px;
+}
+
+h2 {
+    font-size: 40px;
 }
 
 svg, img {
-    margin: auto;
-    vertical-align: middle;
-    padding-right: 10px;
+    vertical-align: top;
+    padding-right: $spacing-md;
 }
 
 li {
-    padding-bottom: 10px;
+    padding-bottom: $spacing-md;
 }
 
 .back-button:before {
-    content:"\2190";
+    content:"\2190\0020";
 }
 
 .back-button {
     text-decoration: none;
 }
 
+.message-section {
+    padding-bottom: $spacing-xl;
+}
+
+.list-icon, .list-content {
+    display: inline-block;
+}
+.list-content {
+    max-width: 80%;
+}
+
+.header-image {
+    padding-top: 32px;
+    width: 220px;
+}
+
 @media #{$mq-md} {
     main {
-        @include text-body-lg;
+        font-size: 18px;
+    }
+
+    h2 {
+        font-size: 48px;
+    }
+}
+
+@media #{$mq-lg}{
+    .header-image {
+        width: 290px;
     }
 }

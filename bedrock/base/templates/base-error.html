@@ -10,8 +10,10 @@
 {% block body_class %}{% endblock %}
 
 {% block site_header %}
-    <header class="mzp-l-content header-spacing">
-      <img src="{{ static('img/co-brand/firefox_moz_co-brand_sm.png') }}" >
-    </header>
+  <header class="mzp-l-content header-spacing">
+    <div class="header-image">
+    {{ high_res_img('img/co-brand/firefox_moz_co-brand_sm.png') }}
+    </div>
+  </header>
 {% endblock %}
 {% block site_footer %}{% endblock %}
