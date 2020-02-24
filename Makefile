@@ -107,7 +107,7 @@ docs: .docker-build-pull
 	${MAKE} build-ci
 
 build-ci: .docker-build-pull
-	${DC_CI} build release
+	${DC_CI} build --pull release
 #	tag intermediate images using cache
 	${DC_CI} build app assets builder app-base
 	touch .docker-build-ci

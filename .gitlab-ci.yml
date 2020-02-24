@@ -23,6 +23,7 @@ variables:
   stage: update-config
   tags:
     - oregon-b-shell
+
 build:
   stage: build
   only:
