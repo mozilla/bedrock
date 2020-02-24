@@ -37,7 +37,7 @@ help:
 	${MAKE} pull
 
 build: .docker-build-pull
-	${DC} build app assets
+	${DC} build --pull app assets
 	touch .docker-build
 
 pull: .env submodules
