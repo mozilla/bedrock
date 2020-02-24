@@ -22,7 +22,7 @@
       <h2>{{ _("Sorry, we can't find that page") }}</h2>
       <p>{{_("We're all about a healthy internet but sometimes broken URLs happen.") }}</p>
       <div>
-        <a class="back-button" href="javascript:history.back()">Go Back</a>
+        <a class="back-button" href="javascript:history.back()">{{ _("Go Back") }}</a>
       </div>
     </section>
     <section class="mzp-l-content">
@@ -32,7 +32,7 @@
             <img class="list-icon" alt="" src="{{ static('protocol/img/icons/mozilla.svg') }}" width="30" height="30">
               <p class="list-content">
                 {% trans about=url('mozorg.about') %}
-                <a class="no-highlight" href="{{ about }}">Learn</a> about Mozilla, the non-profit behind Firefox.
+                  <a class="no-highlight" href="{{ about }}">Learn</a> about Mozilla, the non-profit behind Firefox.
                 {% endtrans %}
               </p>
             
@@ -51,11 +51,11 @@
         <li>
           <section class="mzp-has-icon">
             <img class="list-icon" alt="" src="{{ static('protocol/img/icons/desktop.svg') }}" width="30" height="30" color="black">
-            {% trans  download='https://firefox.com/new'%}
             <p class="list-content">
+            {% trans  download='https://firefox.com/new'%}
               <a class="no-highlight" href={{ download }}>Download</a> the Firefox browser for your mobile device or desktop
+            {% endtrans %}  
             </p> 
-            {% endtrans %}
           </section> 
         </li> 
       </ul>
