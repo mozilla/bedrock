@@ -1055,9 +1055,10 @@
     },
     {
       "files": [
-        "js/mozorg/home/fundraiser.js"
+        "js/base/mozilla-banner.js",
+        "js/mozorg/home/banner-init.js"
       ],
-      "name": "home-fundraiser"
+      "name": "fundraising-banner"
     },
     {
       "files": [

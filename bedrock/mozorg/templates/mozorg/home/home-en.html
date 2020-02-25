@@ -41,11 +41,10 @@
   {{ css_bundle('home-2018') }}
 {% endblock %}
 
-{% block site_header %}
+{% block page_banner %}
   {% if switch('home-fundraising-sept2019') %}
-    {% include 'mozorg/home/includes/fundraiser.html' %}
+    {% include 'includes/banners/fundraiser.html' %}
   {% endif %}
-  {% include 'includes/protocol/navigation/menu-mozilla/index.html' %}
 {% endblock %}
 
 {% block content %}
@@ -207,7 +206,7 @@
 {% block js %}
   {{ js_bundle('home') }}
   {% if switch('home-fundraising-sept2019') %}
-    {{ js_bundle('home-fundraiser') }}
+    {{ js_bundle('fundraising-banner') }}
   {% endif %}
 {% endblock %}
 

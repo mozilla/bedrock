@@ -18,6 +18,7 @@ module.exports = function(config) {
             'media/js/base/mozilla-client.js',
             'media/js/base/search-params.js',
             // end common dependencies.
+            'media/js/base/mozilla-banner.js',
             'media/js/base/mozilla-run.js',
             'media/js/base/core-datalayer-page-id.js',
             'media/js/base/core-datalayer.js',
@@ -38,6 +39,7 @@ module.exports = function(config) {
             'media/js/firefox/all/all-downloads-unified.js',
             'media/js/firefox/new/yandex/scene1.js',
             'media/js/ie/mozilla-utils-ie.js',
+            'tests/unit/spec/base/mozilla-banner.js',
             'tests/unit/spec/base/mozilla-run.js',
             'tests/unit/spec/base/core-datalayer-page-id.js',
             'tests/unit/spec/base/core-datalayer.js',

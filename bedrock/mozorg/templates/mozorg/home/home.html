@@ -36,6 +36,12 @@ accessible to all.') }}
 {{ css_bundle('home') }}
 {% endblock %}
 
+{% block page_banner %}
+  {% if switch('home-fundraising-sept2019') %}
+    {% include 'includes/banners/fundraiser.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block content %}
 <main role="main">
   {% call hero(
@@ -196,7 +202,11 @@ accessible to all.') }}
 {% endblock %}
 
 {% block js %}
-{{ js_bundle('newsletter') }}
+  {{ js_bundle('newsletter') }}
+
+  {% if switch('home-fundraising-sept2019') %}
+    {{ js_bundle('fundraising-banner') }}
+  {% endif %}
 {% endblock %}
 
 {% block structured_data %}
