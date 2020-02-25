@@ -427,6 +427,19 @@ class TestWhatsNew(TestCase):
 
     # end 73.0 whatsnew tests
 
+    # begin 74.0 whatsnew tests
+
+    @patch.object(fx_views, 'lang_file_is_active', lambda *x: True)
+    def test_fx_74_0_0(self, render_mock):
+        """Should use whatsnew-fx74 template for 74.0"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'en-US'
+        self.view(req, version='74.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx74.html']
+
+    # end 74.0 whatsnew tests
+
 
 @patch('bedrock.firefox.views.l10n_utils.render', return_value=HttpResponse())
 class TestWhatsNewIndia(TestCase):
