@@ -121,10 +121,9 @@
           )
         }}
         <p class="fxa-signin account-signin">
-          {% set fxa_link = fxa_link_fragment(entrypoint=_entrypoint, action='signin', utm_campaign='browsers_footer') %}
-          {% set fxa_attr = 'href="{{ fxa_link }}" class="js-fxa-cta-link" data-cta-type="link" data-cta-text="FxA Learn More"'|safe %}
-          {% set accounts_link = url('firefox.accounts') %}
-          {% set accounts_attr = 'href="{{ accounts_link }}"'|safe %}
+          {% set fxa_link = fxa_link_fragment(entrypoint=_entrypoint, action='signin', utm_campaign='browsers-footer') %}
+          {% set fxa_attr = fxa_link ~ ' class="js-fxa-cta-link" data-cta-type="link" data-cta-text="FxA Learn More"'|safe %}
+          {% set accounts_attr = 'href="'|safe ~ url('firefox.accounts') ~ '"'|safe %}
           {% trans %}
             Already have an account? <a {{ fxa_attr }}>Sign In</a> or <a {{ accounts_attr }}>learn more</a> about joining Firefox.
           {% endtrans %}
