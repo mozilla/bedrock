@@ -36,6 +36,7 @@ def git_repo_path(*args):
 # Is this a dev instance?
 DEV = config('DEV', parser=bool, default='false')
 PROD = config('PROD', parser=bool, default='false')
+FIREFOX_MODE = config('FIREFOX_MODE', parser=bool, default='false')
 
 DEBUG = config('DEBUG', parser=bool, default='false')
 

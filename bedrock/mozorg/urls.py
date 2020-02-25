@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
 from django.conf.urls import url
 
 from .util import page
@@ -9,8 +10,7 @@ from . import views
 from bedrock.redirects.util import redirect
 
 
-urlpatterns = (
-    url(r'^$', views.home_view, name='mozorg.home'),
+urlpatterns = [
     page('about', 'mozorg/about.html'),
     page('about/manifesto', 'mozorg/about/manifesto.html'),
     page('about/manifesto/details', 'mozorg/about/manifesto-details.html'),
@@ -303,4 +303,7 @@ urlpatterns = (
     url(r'^xbl$', views.namespaces, {'namespace': 'xbl'}),
 
     page('locales', 'mozorg/locales.html'),
-)
+]
+
+if not settings.FIREFOX_MODE:
+    urlpatterns.append(url(r'^$', views.home_view, name='mozorg.home'))

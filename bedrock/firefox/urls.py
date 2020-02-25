@@ -1,6 +1,7 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+from django.conf import settings
 from django.conf.urls import url
 
 import bedrock.releasenotes.views
@@ -24,7 +25,7 @@ android_sysreq_re = sysreq_re.replace(r'firefox', 'firefox/android')
 ios_sysreq_re = sysreq_re.replace(r'firefox', 'firefox/ios')
 
 
-urlpatterns = (
+urlpatterns = [
     url(r'^$', views.firefox_home, name='firefox'),
     url(r'^all/$', views.firefox_all, name='firefox.all'),
     url(r'^accounts/$', views.firefox_accounts, name='firefox.accounts'),
@@ -148,4 +149,7 @@ urlpatterns = (
     page('set-as-default/thanks', 'firefox/set-as-default/thanks.html'),
     # Default browser campaign
     page('set-as-default', 'firefox/set-as-default/landing-page.html')
-)
+]
+
+if settings.FIREFOX_MODE:
+    urlpatterns.append(url(r'^$', views.firefox_home, name='mozorg.home'))
