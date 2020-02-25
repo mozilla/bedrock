@@ -53,10 +53,6 @@ main {
 }
 
 @media #{$mq-md} {
-    main {
-        font-size: 18px;
-    }
-
     .error_header {
         font-size: 48px;
     }

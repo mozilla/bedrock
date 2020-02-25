@@ -32,7 +32,7 @@
             <img class="list-icon" alt="" src="{{ static('protocol/img/icons/mozilla.svg') }}" width="30" height="30">
               <p class="list-content">
                 {% trans about=url('mozorg.about') %}
-                  <a class="no-highlight" href="{{ about }}">Learn</a> about Mozilla, the non-profit behind Firefox.
+                  <a href="{{ about }}">Learn</a> about Mozilla, the non-profit behind Firefox.
                 {% endtrans %}
               </p>
           </section>
@@ -51,8 +51,8 @@
           <section class="has-icon">
             <img class="list-icon" alt="" src="{{ static('protocol/img/icons/desktop.svg') }}" width="30" height="30" color="black">
             <p class="list-content">
-            {% trans  download='https://firefox.com/new'%}
-              <a class="no-highlight" href={{ download }}>Download</a> the Firefox browser for your mobile device or desktop
+            {% trans download=url('firefox.new') %}
+              <a href={{ download }}>Download</a> the Firefox browser for your mobile device or desktop
             {% endtrans %}  
             </p> 
           </section> 
