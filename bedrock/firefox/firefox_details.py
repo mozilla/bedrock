@@ -6,6 +6,7 @@ from operator import itemgetter
 from urllib.parse import urlencode
 
 from django.conf import settings
+from django.urls import reverse_lazy
 
 from everett.manager import ListOf
 from product_details import ProductDetails
@@ -20,12 +21,12 @@ class _ProductDetails(ProductDetails):
 
     def _matches_query(self, info, query):
         words = re.split(r',|,?\s+', query.strip().lower())
-        return all((word in info['name_en'].lower() or
-                    word in info['name_native'].lower()) for word in words)
+        return all((word in info['name_en'].lower() or word in
+                    info['name_native'].lower()) for word in words)
 
 
 class FirefoxDesktop(_ProductDetails):
-    download_base_url_transition = '/firefox/download/thanks/'
+    download_base_url_transition = reverse_lazy('firefox.download.thanks')
 
     # Human-readable platform names
     platform_labels = OrderedDict([
