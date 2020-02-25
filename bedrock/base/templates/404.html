@@ -19,8 +19,8 @@
 {% block content %}
   <main role="main">
     <section class="mzp-l-content message-section">
-      <h2>{{ _("Sorry, we can't find that page") }}</h2>
-      <p>{{_("We're all about a healthy internet but sometimes broken URLs happen.") }}</p>
+      <h1 class="error_header">{{ _('Sorry, we can’t find that page') }}</h2>
+      <p>{{_('We’re all about a healthy internet but sometimes broken URLs happen.') }}</p>
       <div>
         <a class="back-button" href="javascript:history.back()">{{ _("Go Back") }}</a>
       </div>
@@ -35,7 +35,6 @@
                   <a class="no-highlight" href="{{ about }}">Learn</a> about Mozilla, the non-profit behind Firefox.
                 {% endtrans %}
               </p>
-            
           </section>
         </li>
         <li>
@@ -43,7 +42,7 @@
             <img class="list-icon" alt="" src="{{ static('img/base-error/firefox_logomark_black.svg') }}" width="30" height="30">
             <p class="list-content">
             {% trans explore=url('firefox') %}
-              <a class="no-highlight" href={{ explore }}>Explore</a> the entire family for Firefox products designed to respect your privacy.
+              <a href={{ explore }}>Explore</a> the entire family for Firefox products designed to respect your privacy.
             {% endtrans %}
             </p>
           </section>

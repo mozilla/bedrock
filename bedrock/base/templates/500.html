@@ -16,9 +16,9 @@
 
 {% block content %}
 <main role="main">
-  <section class="mzp-l-content 500-content">
-    <h2 class="500-header">{{ _("Something went wrong") }}</h2>  
-    <p class="500-description">{{ _('It’s probably just a server error and we’re working to fix it.') }}<br>
+  <section class="mzp-l-content">
+    <h1 class="error_header">{{ _("Something went wrong") }}</h2>  
+    <p>{{ _('It’s probably just a server error and we’re working to fix it.') }}<br>
     {% trans firefox="https://firefox.com", mozilla="https://mozilla.org" %}
       You can also try refreshing this page or go to <a href={{ firefox }}>firefox.com</a> or <a href={{ mozilla }}>mozilla.org</a>
     {% endtrans %}</p>

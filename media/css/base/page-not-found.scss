@@ -7,7 +7,7 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-.no-highlight:link, .no-highlight:visited, .no-highlight:hover, .no-highlight:active {
+.list-content a:link, .list-content a:visited, .list-content a:hover, .list-content a:active {
     color: black;
 }
 
@@ -15,16 +15,16 @@ main {
     font-size: 18px;
 }
 
-h2 {
+.error_header {
     font-size: 40px;
 }
 
-svg, img {
+.list-icon {
     vertical-align: top;
     padding-right: $spacing-md;
 }
 
-li {
+.mzp-has-icon {
     padding-bottom: $spacing-md;
 }
 
@@ -57,7 +57,7 @@ li {
         font-size: 18px;
     }
 
-    h2 {
+    .error_header {
         font-size: 48px;
     }
 }
