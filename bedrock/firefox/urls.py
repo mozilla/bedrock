@@ -9,7 +9,7 @@ from bedrock.releasenotes import version_re
 
 from bedrock.firefox import views
 
-latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
+latest_re = r'^(?:(?P<version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
 whatsnew_re_india = latest_re % (version_re, 'whatsnew/india')
@@ -25,23 +25,23 @@ ios_sysreq_re = sysreq_re.replace(r'firefox', 'firefox/ios')
 
 
 urlpatterns = (
-    url(r'^firefox/$', views.firefox_home, name='firefox'),
-    url(r'^firefox/all/$', views.firefox_all, name='firefox.all'),
-    url(r'^firefox/accounts/$', views.firefox_accounts, name='firefox.accounts'),
-    page('firefox/browsers', 'firefox/browsers/index.html'),
-    page('firefox/products', 'firefox/products/index.html'),
-    url(r'^firefox/campaign/$', views.campaign, name='firefox.campaign'),
-    page('firefox/flashback', 'firefox/flashback/index.html', active_locales=['en-US', 'de', 'fr']),
-    page('firefox/channel/desktop', 'firefox/channel/desktop.html'),
-    page('firefox/channel/android', 'firefox/channel/android.html'),
-    page('firefox/channel/ios', 'firefox/channel/ios.html'),
-    page('firefox/developer', 'firefox/developer/index.html'),
+    url(r'^$', views.firefox_home, name='firefox'),
+    url(r'^all/$', views.firefox_all, name='firefox.all'),
+    url(r'^accounts/$', views.firefox_accounts, name='firefox.accounts'),
+    page('browsers', 'firefox/browsers/index.html'),
+    page('products', 'firefox/products/index.html'),
+    url(r'^campaign/$', views.campaign, name='firefox.campaign'),
+    page('flashback', 'firefox/flashback/index.html', active_locales=['en-US', 'de', 'fr']),
+    page('channel/desktop', 'firefox/channel/desktop.html'),
+    page('channel/android', 'firefox/channel/android.html'),
+    page('channel/ios', 'firefox/channel/ios.html'),
+    page('developer', 'firefox/developer/index.html'),
     url('firefox/election/$', views.election_with_cards, name='firefox.election'),
-    page('firefox/enterprise', 'firefox/enterprise/index.html'),
-    page('firefox/enterprise/signup', 'firefox/enterprise/signup.html'),
-    page('firefox/enterprise/signup/thanks', 'firefox/enterprise/signup-thanks.html'),
-    page('firefox/facebookcontainer', 'firefox/facebookcontainer/index.html'),
-    page('firefox/features', 'firefox/features/index.html'),
+    page('enterprise', 'firefox/enterprise/index.html'),
+    page('enterprise/signup', 'firefox/enterprise/signup.html'),
+    page('enterprise/signup/thanks', 'firefox/enterprise/signup-thanks.html'),
+    page('facebookcontainer', 'firefox/facebookcontainer/index.html'),
+    page('features', 'firefox/features/index.html'),
     url('^firefox/features/bookmarks/$',
         views.FeaturesBookmarksView.as_view(),
         name='firefox.features.bookmarks'),
@@ -60,23 +60,23 @@ urlpatterns = (
     url('^firefox/features/private-browsing/$',
         views.FeaturesPrivateBrowsingView.as_view(),
         name='firefox.features.private-browsing'),
-    url(r'^firefox/ios/testflight/$', views.ios_testflight, name='firefox.ios.testflight'),
-    page('firefox/mobile', 'firefox/mobile/index.html'),
-    page('firefox/mobile/get-app', 'firefox/mobile/get-app.html'),
+    url(r'^ios/testflight/$', views.ios_testflight, name='firefox.ios.testflight'),
+    page('mobile', 'firefox/mobile/index.html'),
+    page('mobile/get-app', 'firefox/mobile/get-app.html'),
     url('^firefox/send-to-device-post/$', views.send_to_device_ajax,
         name='firefox.send-to-device-post'),
-    page('firefox/unsupported-systems', 'firefox/unsupported-systems.html'),
-    url(r'^firefox/new/$', views.new, name='firefox.new'),
-    url(r'^firefox/download/thanks/$', views.download_thanks, name='firefox.download.thanks'),
-    page('firefox/nightly/firstrun', 'firefox/nightly_firstrun.html'),
-    url(r'^firefox/installer-help/$', views.installer_help,
+    page('unsupported-systems', 'firefox/unsupported-systems.html'),
+    url(r'^new/$', views.new, name='firefox.new'),
+    url(r'^download/thanks/$', views.download_thanks, name='firefox.download.thanks'),
+    page('nightly/firstrun', 'firefox/nightly_firstrun.html'),
+    url(r'^installer-help/$', views.installer_help,
         name='firefox.installer-help'),
     url(firstrun_re, views.FirstrunView.as_view(), name='firefox.firstrun'),
     url(whatsnew_re, views.WhatsNewRedirectorView.as_view(), name='firefox.whatsnew'),
     url(whatsnew_re_india, views.WhatsNewIndiaView.as_view(), name='firefox.whatsnew.india'),
     url(whatsnew_re_all, views.WhatsnewView.as_view(), name='firefox.whatsnew.all'),
 
-    page('firefox/features/adblocker', 'firefox/features/adblocker.html'),
+    page('features/adblocker', 'firefox/features/adblocker.html'),
 
     # Release notes
     url('^firefox/(?:%s/)?(?:%s/)?notes/$' % (platform_re, channel_re),
@@ -105,47 +105,47 @@ urlpatterns = (
     url('^firefox/stub_attribution_code/$', views.stub_attribution_code,
         name='firefox.stub_attribution_code'),
 
-    url(r'^firefox/welcome/1/$', views.firefox_welcome_page1, name='firefox.welcome.page1'),
-    page('firefox/welcome/2', 'firefox/welcome/page2.html'),
-    page('firefox/welcome/3', 'firefox/welcome/page3.html'),
-    page('firefox/welcome/4', 'firefox/welcome/page4.html'),
-    page('firefox/welcome/5', 'firefox/welcome/page5.html'),
+    url(r'^welcome/1/$', views.firefox_welcome_page1, name='firefox.welcome.page1'),
+    page('welcome/2', 'firefox/welcome/page2.html'),
+    page('welcome/3', 'firefox/welcome/page3.html'),
+    page('welcome/4', 'firefox/welcome/page4.html'),
+    page('welcome/5', 'firefox/welcome/page5.html'),
 
-    page('firefox/switch', 'firefox/switch.html'),
-    page('firefox/pocket', 'firefox/pocket.html'),
+    page('switch', 'firefox/switch.html'),
+    page('pocket', 'firefox/pocket.html'),
 
     # Bug 1519084
-    page('firefox/dedicated-profiles', 'firefox/dedicated-profiles.html'),
+    page('dedicated-profiles', 'firefox/dedicated-profiles.html'),
 
     # Issue 6178
-    page('firefox/this-browser-comes-highly-recommended', 'firefox/recommended.html'),
+    page('this-browser-comes-highly-recommended', 'firefox/recommended.html'),
 
     # Issue 6604, SEO firefox/new pages
-    page('firefox/windows', 'firefox/new/scene1_windows.html'),
-    page('firefox/mac', 'firefox/new/scene1_mac.html'),
-    page('firefox/linux', 'firefox/new/scene1_linux.html'),
+    page('windows', 'firefox/new/scene1_windows.html'),
+    page('mac', 'firefox/new/scene1_mac.html'),
+    page('linux', 'firefox/new/scene1_linux.html'),
 
-    page('firefox/windows-64-bit', 'firefox/windows-64-bit.html'),
+    page('windows-64-bit', 'firefox/windows-64-bit.html'),
 
-    page('firefox/features/safebrowser', 'firefox/features/safebrowser.html'),
-    page('firefox/best-browser', 'firefox/best-browser.html'),
+    page('features/safebrowser', 'firefox/features/safebrowser.html'),
+    page('best-browser', 'firefox/best-browser.html'),
 
-    page('firefox/browsers/compare', 'firefox/compare/index.html'),
-    page('firefox/browsers/compare/chrome', 'firefox/compare/chrome.html'),
-    page('firefox/browsers/compare/ie', 'firefox/compare/ie.html'),
-    page('firefox/browsers/compare/opera', 'firefox/compare/opera.html'),
-    page('firefox/browsers/compare/safari', 'firefox/compare/safari.html'),
-    page('firefox/browsers/compare/edge', 'firefox/compare/edge.html'),
+    page('browsers/compare', 'firefox/compare/index.html'),
+    page('browsers/compare/chrome', 'firefox/compare/chrome.html'),
+    page('browsers/compare/ie', 'firefox/compare/ie.html'),
+    page('browsers/compare/opera', 'firefox/compare/opera.html'),
+    page('browsers/compare/safari', 'firefox/compare/safari.html'),
+    page('browsers/compare/edge', 'firefox/compare/edge.html'),
 
     # Lockwise
-    page('firefox/lockwise', 'firefox/lockwise/lockwise.html'),
+    page('lockwise', 'firefox/lockwise/lockwise.html'),
 
     # Issue 7765, 7709
-    page('firefox/privacy', 'firefox/privacy/index.html'),
-    page('firefox/privacy/products', 'firefox/privacy/products.html'),
+    page('privacy', 'firefox/privacy/index.html'),
+    page('privacy/products', 'firefox/privacy/products.html'),
 
     # Issue 8432
-    page('firefox/set-as-default/thanks', 'firefox/set-as-default/thanks.html'),
+    page('set-as-default/thanks', 'firefox/set-as-default/thanks.html'),
     # Default browser campaign
-    page('firefox/set-as-default', 'firefox/set-as-default/landing-page.html')
+    page('set-as-default', 'firefox/set-as-default/landing-page.html')
 )
