@@ -61,18 +61,6 @@ a.button:visited {
         }
     }
 
-    &.button-green {
-        background-color: $color-button-green;
-        border-color: $color-button-green;
-        color: $color-button-light;
-
-        &:hover,
-        &:focus {
-            background-color: saturate(darken($color-button-green, 5%), 10%);
-            border-color: saturate(darken($color-button-green, 5%), 10%);
-        }
-    }
-
     &.button-red {
         background-color: $color-mozred;
         border-color: $color-mozred;
