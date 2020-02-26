@@ -1,15 +1,15 @@
 {
   "@context": "https://schema.org/",
   "@type": "SoftwareApplication",
-  "@id": "https://www.mozilla.org/#firefoxlockwise",
-  "url": "https://www.mozilla.org/en-US/firefox/lockwise",
-  "image": "{% filter trim|absolute_url %}{{ static('protocol/img/logos/firefox/lockwise/logo-lg-high-res.png') }}{% endfilter %}",
+  "@id": "{{ structured_data_id('firefoxlockwise') }}",
+  "url": "{% filter absolute_url %}{{ url('firefox.lockwise.lockwise') }}{% endfilter %}",
+  "image": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/lockwise/logo-lg-high-res.png') }}{% endfilter %}",
   "name": "Firefox Lockwise",
   "sameAs": [
-    "https://en.wikipedia.org/wiki/Firefox_Lockwise",
+    "https://{{ lang_short() }}.wikipedia.org/wiki/Firefox_Lockwise",
     "https://www.wikidata.org/wiki/Q64829394",
-    "https://play.google.com/store/apps/details?id=mozilla.lockbox",
-    "https://apps.apple.com/us/app/firefox-lockbox/id1314000270"
+    "{{ play_store_url('lockwise')|safe }}",
+    "{{ app_store_url('lockwise') }}"
   ],
   "offers":
   {
@@ -27,12 +27,12 @@
   "author":
   {
     "@type": "Organization",
-    "@id": "https://www.mozilla.org/#organization",
+    "@id": "{{ structured_data_id('organization') }}",
     "name": "Mozilla Corporation"
   },
   "softwareHelp":
   {
     "@type": "Webpage",
-    "url": "https://support.mozilla.org/en-US/products/firefox-lockwise"
+    "url": "https://support.mozilla.org/{{ LANG }}/products/firefox-lockwise"
   }
 }

@@ -1,10 +1,10 @@
 {
   "@context": "https://schema.org/",
   "@type": "SoftwareApplication",
-  "@id": "https://www.mozilla.org/#firefoxwindows",
-  "url": "https://www.mozilla.org/en-US/firefox/windows/",
+  "@id": "{{ structured_data_id('firefoxwindows') }}",
+  "url": "{% filter absolute_url %}{{ url('firefox.new.scene1_windows') }}{% endfilter %}",
   "name": "Firefox Browser Windows",
-  "image": "{% filter trim|absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
+  "image": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
   "alternateName": [
     "Firefox Windows",
     "Firefox Browser for Windows"
@@ -21,13 +21,13 @@
   "author":
   {
     "@type": "Organization",
-    "@id": "https://www.mozilla.org/#organization",
+    "@id": "{{ structured_data_id('organization') }}",
     "name": "Mozilla Corporation"
   },
   "isPartOf":
   {
-    "@id": "https://www.mozilla.org/#firefoxbrowser",
-    "url": "https://www.mozilla.org/firefox/new/",
+    "@id": "{{ structured_data_id('firefoxbrowser') }}",
+    "url": "{% filter absolute_url %}{{ url('firefox.new') }}{% endfilter %}",
     "name": "Firefox Browser"
   }
 }

@@ -1,18 +1,18 @@
 {
   "@context": "https://schema.org/",
   "@type": "SoftwareApplication",
-  "@id": "https://www.mozilla.org/#firefoxnightly",
-  "url": "https://www.mozilla.org/en-US/firefox/channel/desktop/",
+  "@id": "{{ structured_data_id('firefoxnightly') }}",
+  "url": "{% filter absolute_url %}{{ url('firefox.channel.desktop') }}{% endfilter %}",
   "name": "Firefox Browser Nightly",
-  "image": "{% filter trim|absolute_url %}{{ static('protocol/img/logos/firefox/browser/nightly/logo-lg-high-res.png') }}{% endfilter %}",
+  "image": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/nightly/logo-lg-high-res.png') }}{% endfilter %}",
   "alternateName": [
     "Firefox Nightly",
     "Firefox Nightly Browser"
   ],
   "sameAs": [
     "https://www.wikidata.org/wiki/Q56316099",
-    "https://es.wikipedia.org/wiki/Firefox_Nightly",
-    "https://play.google.com/store/apps/details?id=org.mozilla.fennec_aurora",
+    "https://{{ lang_short() }}.wikipedia.org/wiki/Firefox_Nightly",
+    "{{ play_store_url('firefox_nightly')|safe }}",
     "https://blog.nightly.mozilla.org/",
     "https://twitter.com/FirefoxNightly"
   ],
@@ -33,14 +33,14 @@
   "author":
   {
     "@type": "Organization",
-    "@id": "https://www.mozilla.org/#organization",
+    "@id": "{{ structured_data_id('organization') }}",
     "name": "Mozilla Corporation"
   },
-  "releaseNotes": "https://www.mozilla.org/en-US/firefox/nightly/notes/",
+  "releaseNotes": "{% filter absolute_url %}{{ url('firefox.notes', channel='nightly') }}{% endfilter %}",
   "isPartOf":
   {
-    "@id": "https://www.mozilla.org/#firefoxbrowser",
-    "url": "https://www.mozilla.org/firefox/new/",
+    "@id": "{{ structured_data_id('firefoxbrowser') }}",
+    "url": "{% filter absolute_url %}{{ url('firefox.new') }}{% endfilter %}",
     "name": "Firefox Browser"
   }
 }

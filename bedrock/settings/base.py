@@ -1210,6 +1210,9 @@ from .appstores import (GOOGLE_PLAY_FIREFOX_LINK, GOOGLE_PLAY_FIREFOX_LINK_UTMS,
                         APPLE_APPSTORE_KLAR_LINK, GOOGLE_PLAY_KLAR_LINK,
                         APPLE_APPSTORE_POCKET_LINK, GOOGLE_PLAY_POCKET_LINK,
                         APPLE_APPSTORE_LOCKWISE_LINK, GOOGLE_PLAY_LOCKWISE_LINK,
+                        GOOGLE_PLAY_FIREFOX_BETA_LINK, GOOGLE_PLAY_FIREFOX_NIGHTLY_LINK,
+                        AMAZON_FIREFOX_FIRE_TV_LINK, GOOGLE_PLAY_FIREFOX_LITE_LINK,
+                        GOOGLE_PLAY_FIREFOX_SEND_LINK,
                         ADJUST_FIREFOX_URL, ADJUST_FOCUS_URL,
                         ADJUST_KLAR_URL, ADJUST_POCKET_URL,
                         ADJUST_LOCKWISE_URL)
@@ -1499,3 +1502,4 @@ if config('SWITCH_TRACKING_PIXEL', default=str(DEV), parser=bool):
 
 # Issue 7508 - Convert.com experiment sandbox
 CONVERT_PROJECT_ID = ('10039-1003350' if DEV else '10039-1003343')
+

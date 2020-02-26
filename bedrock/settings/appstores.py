@@ -108,6 +108,21 @@ APPLE_APPSTORE_LOCKWISE_LINK = 'https://itunes.apple.com/{country}/app/id1314000
 # Link to Lockwise on the Google Play store.
 GOOGLE_PLAY_LOCKWISE_LINK = 'https://play.google.com/store/apps/details?id=mozilla.lockbox'
 
+# Link to Firefox Beta on the Google Play Store.
+GOOGLE_PLAY_FIREFOX_BETA_LINK = 'https://play.google.com/store/apps/details?id=org.mozilla.firefox_beta'
+
+# Link to Firefox Nightly on the Google Play Store.
+GOOGLE_PLAY_FIREFOX_NIGHTLY_LINK = 'https://play.google.com/store/apps/details?id=org.mozilla.fennec_aurora'
+
+# Link to Firefox for Fire TV on Amazon Store.
+AMAZON_FIREFOX_FIRE_TV_LINK = 'https://www.amazon.com/Mozilla-Firefox-for-Fire-TV/dp/B078B5YMPD'
+
+# Link to Firefox Lite on the Google Play Store.
+GOOGLE_PLAY_FIREFOX_LITE_LINK = 'https://play.google.com/store/apps/details?id=org.mozilla.rocket'
+
+# Link to Firefox Send on the Google Play Store.
+GOOGLE_PLAY_FIREFOX_SEND_LINK = 'https://play.google.com/store/apps/details?id=org.mozilla.firefoxsend'
+
 # app.adjust.com links for all of the above products (Issue 7214)
 ADJUST_FIREFOX_URL = 'https://app.adjust.com/2uo1qc'
 ADJUST_FOCUS_URL = 'https://app.adjust.com/b8s7qo'

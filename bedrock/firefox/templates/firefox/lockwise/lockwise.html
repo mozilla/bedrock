@@ -95,4 +95,10 @@
   </main>
 {% endblock %}
 
-{% block js %}{{ js_bundle('lockwise') }}{% endblock %}
+{% block js %}
+  {{ js_bundle('lockwise') }}
+{% endblock %}
+
+{% block structured_data %}
+  {% include 'includes/structured-data/software/firefox-lockwise-software.json' %}
+{% endblock %}
