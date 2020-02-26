@@ -35,6 +35,11 @@ main {
 .back-button {
     text-decoration: none;
     color: $color-link;
+    cursor: pointer;
+}
+
+.hide-back {
+    display: none;
 }
 
 .message-section {
