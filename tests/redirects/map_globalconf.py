@@ -1308,4 +1308,7 @@ URLS = flatten((
 
     # Issue 6461
     url_test('/contribute/events/', 'https://community.mozilla.org/events/'),
+
+    # issue 8596
+    url_test('/firefox/xr/', 'https://support.mozilla.org/kb/webxr-permission-info-page'),
 ))
