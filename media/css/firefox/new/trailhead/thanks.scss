@@ -33,7 +33,7 @@ $image-path: '/media/protocol/img';
     @include text-body-sm;
     border-radius: 4px;
     box-shadow: 0 2px 24px 0 rgba(32, 18, 58, .2);
-    color: $color-off-black;
+    color: $color-ink-80;
     margin: 0 auto $spacing-lg;
     max-width: calc(600px - #{$spacing-md * 2});
     padding: $spacing-sm $spacing-md;

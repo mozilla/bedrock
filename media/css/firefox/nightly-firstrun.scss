@@ -11,12 +11,12 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/templates/card-layout';
 
 main {
-    background-color: $color-off-black;
+    background-color: $color-ink-80;
     color: $color-white;
 }
 
 .mzp-c-hero.main-header {
-    background: linear-gradient($color-black, $color-off-black);
+    background: linear-gradient($color-black, $color-ink-80);
     padding-bottom: 0;
 
     .mzp-c-hero-title {

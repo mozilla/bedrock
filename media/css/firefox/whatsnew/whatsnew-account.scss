@@ -48,7 +48,7 @@ $image-path: '/media/protocol/img';
 }
 
 .mzp-c-notification-bar {
-    color: $color-off-black;
+    color: $color-ink-80;
     display: none;
     margin: $layout-xs;
 }
@@ -86,14 +86,14 @@ $image-path: '/media/protocol/img';
 
 .mzp-c-emphasis-box {
     @include border-box;
-    color: $color-off-black;
+    color: $color-ink-80;
     margin: 0 auto $layout-sm;
     max-width: $content-md - ($layout-md * 2);
     padding: $spacing-xl;
     text-align: center;
 
     :link {
-        color: $color-off-black;
+        color: $color-ink-80;
     }
 
     abbr {
@@ -128,7 +128,7 @@ $image-path: '/media/protocol/img';
 }
 
 .content-wrapper {
-    background: $color-off-black url('/media/img/firefox/whatsnew/whatsnew_background.svg') no-repeat;
+    background: $color-ink-80 url('/media/img/firefox/whatsnew/whatsnew_background.svg') no-repeat;
     @include background-size(100%);
     color: $color-white;
 }

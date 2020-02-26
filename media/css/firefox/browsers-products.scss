@@ -258,7 +258,7 @@ main .mzp-l-content {
     margin-top: $spacing-xl;
 
     a {
-        color: $color-off-black;
+        color: $color-ink-80;
         text-decoration: none;
 
         &:hover,
@@ -507,7 +507,7 @@ $url-download-link-hover: svg-url($download-link-hover);
 // box around form
 .t-account {
     @include light-links;
-    background: linear-gradient($color-violet-50 -100%, $color-off-black);
+    background: linear-gradient($color-violet-50 -100%, $color-ink-80);
     color: $color-white;
     margin: 0 auto $v-grid-xs auto;
     position: relative;

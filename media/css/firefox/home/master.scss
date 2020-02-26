@@ -238,7 +238,7 @@ $image-path: '/media/protocol/img';
     .mzp-l-content {
         background-image: linear-gradient(90deg,  $color-violet-80, $color-violet-90);
         border-radius: 8px;
-        box-shadow: 0 4px 16px 0 transparentize($color-off-black, .24);
+        box-shadow: 0 4px 16px 0 transparentize($color-ink-80, .24);
         color: #fff;
         margin: $layout-md auto;
         max-width: $content-sm;
@@ -310,7 +310,7 @@ $image-path: '/media/protocol/img';
 // bottom of the page cta
 
 .c-end {
-    background: linear-gradient(90deg, $color-violet-90, $color-off-black);
+    background: linear-gradient(90deg, $color-violet-90, $color-ink-80);
     color: #fff;
     text-align: center;
 

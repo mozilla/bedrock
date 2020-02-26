@@ -26,7 +26,7 @@ $image-path: '/media/protocol/img';
 }
 
 .t-welcome {
-    background-color: $color-off-black;
+    background-color: $color-ink-80;
     color: $color-yellow-30;
 
     h1 {
@@ -50,7 +50,7 @@ $image-path: '/media/protocol/img';
 }
 
 .t-welcome-de {
-    background-color: $color-off-black;
+    background-color: $color-ink-80;
     color: $color-yellow-30;
     padding-bottom: $layout-2xl;
 
@@ -74,18 +74,15 @@ $image-path: '/media/protocol/img';
 
 .t-private {
     background-color: $color-yellow-10;
-    color: $color-off-black;
+    color: $color-ink-80;
     @include font-size(24px);
 
-    p {
-
-         + p {
-             margin-top: $layout-lg;
-         }
+    p + p {
+        margin-top: $layout-lg;
     }
 
     &:after {
-        @include down-arrow($color-off-black);
+        @include down-arrow($color-ink-80);
         position: absolute;
         bottom: $layout-sm;
         left: 50%;

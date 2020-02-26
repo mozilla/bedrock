@@ -34,7 +34,7 @@ $image-path: '/media/protocol/img';
 
 .privacy-products-hero.mzp-c-hero.mzp-t-dark {
     @include bidi(((text-align, left, right),));
-    background-color: $color-off-black;
+    background-color: $color-ink-80;
     padding-bottom: 0;
 
     .mzp-c-hero-body {
@@ -96,7 +96,7 @@ $image-path: '/media/protocol/img';
 // Picto Cards
 
 .privacy-products-etp {
-    background-color: $color-off-black;
+    background-color: $color-ink-80;
 
     & > .mzp-l-content {
         padding-top: 0;

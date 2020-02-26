@@ -62,7 +62,7 @@ html {
 // Call Out Theme Color
 
 .mzp-c-call-out-compact.mzp-t-dark.enterprise-callout {
-    background-color: $color-off-black;
+    background-color: $color-ink-80;
 
     .mzp-c-call-out-desc {
         color: $color-white;
@@ -74,7 +74,7 @@ html {
 
 .mzp-c-hero.t-enterprise {
     // dark colour fallback incase svg image doesn't load/display
-    background: $color-off-black;
+    background: $color-ink-80;
     background-image: url('/media/img/firefox/enterprise/ent-noodles.svg'),
                       linear-gradient(transparent 550px, #fff 550px, #fff 1000px);
     background-position: bottom left, top center;
@@ -85,7 +85,7 @@ html {
     padding-top: $layout-sm;
 
     html[dir=rtl] & {
-        background: $color-off-black;
+        background: $color-ink-80;
         min-height: 0;
     }
 
@@ -96,7 +96,7 @@ html {
    }
 
    .mzp-c-hero-body {
-       background-color: $color-off-black;
+       background-color: $color-ink-80;
        border-top-right-radius: 100px;
        margin-bottom: 100px;
    }
@@ -122,7 +122,7 @@ html {
         padding-top: $layout-md;
 
         html[dir=rtl] & {
-            background: $color-off-black;
+            background: $color-ink-80;
             min-height: 0;
         }
 
