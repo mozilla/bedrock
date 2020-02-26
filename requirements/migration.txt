@@ -4,9 +4,9 @@ cl-ext.lang==0.1.0 \
 compare-locales==7.4.0 \
     --hash=sha256:4ae77d39373b06c201c97bf48e40412fecc8e1c4ebb3c8c21948d5168e6eef30 \
     --hash=sha256:27146925202beb995172862eab18314dc442fc10026d30f0c42be58d57dd0b8d
-fluent.migrate==0.7.1 \
-    --hash=sha256:6a1ebb5df97d2590e35b6fb8d665d6d2e20aac3e6962706854baefb7ac0002a0 \
-    --hash=sha256:00e0fc0bbd1b3573dee174134fad6286a9212619c709f5a91cd6e528b4e91f6e
+fluent.migrate==0.8.0 \
+    --hash=sha256:32422ad9c0e99bba526ea64887009f1c57a1a3debe13e6809c998761a2cb0d66 \
+    --hash=sha256:3cc01ec8607455c9760dd59af6dcee2a483ec777fbb2ead1bb3586ac551f8725
 parsimonious==0.8.1 \
     --hash=sha256:3add338892d580e0cb3b1a39e4a1b427ff9f687858fdd61097053742391a9f6b
 pytoml==0.1.21 \
