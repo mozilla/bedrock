@@ -67,12 +67,12 @@
     "sameAs": [
       "https://www.wikidata.org/wiki/Q550315",
       "https://{{ lang_short() }}.wikipedia.org/wiki/Firefox_for_Android",
-      "{{ play_store_url(settings.GOOGLE_PLAY_FIREFOX_LINK)|safe }}"
+      "{{ play_store_url('firefox')|safe }}"
     ],
     "offers":
     {
       "@type": "Offer",
-      "url": "{{ play_store_url(settings.GOOGLE_PLAY_FIREFOX_LINK)|safe }}",
+      "url": "{{ play_store_url('firefox')|safe }}",
       "priceCurrency": "USD",
       "price": "0",
       "availability": "https://schema.org/InStock"
@@ -98,7 +98,7 @@
       "@id": "{{ structured_data_id('firefoxbrand') }}"
     },
     "sameAs": [
-      "{{ play_store_url(settings.GOOGLE_PLAY_FIREFOX_BETA_LINK)|safe }}"
+      "{{ play_store_url('firefox_beta')|safe }}"
     ],
     "offers":
     {
@@ -312,12 +312,12 @@
       "@id": "{{ structured_data_id('firefoxbrand') }}"
     },
     "sameAs": [
-      "{{ play_store_url(settings.GOOGLE_PLAY_FIREFOX_LITE_LINK)|safe }}"
+      "{{ play_store_url('firefox_lite')|safe }}"
     ],
     "offers":
     {
       "@type": "Offer",
-      "url": "{{ play_store_url(settings.GOOGLE_PLAY_FIREFOX_LITE_LINK)|safe }}",
+      "url": "{{ play_store_url('firefox_lite')|safe }}",
       "priceCurrency": "USD",
       "price": "0",
       "availability": "https://schema.org/InStock"
@@ -341,8 +341,8 @@
     "sameAs": [
       "https://{{ lang_short() }}.wikipedia.org/wiki/Firefox_Lockwise",
       "https://www.wikidata.org/wiki/Q64829394",
-      "{{ play_store_url(settings.GOOGLE_PLAY_LOCKWISE_LINK)|safe }}",
-      "{{ app_store_url(settings.APPLE_APPSTORE_LOCKWISE_LINK) }}"
+      "{{ play_store_url('lockwise')|safe }}",
+      "{{ app_store_url('lockwise') }}"
     ],
     "offers":
     {
@@ -432,7 +432,7 @@
     "sameAs": [
       "https://www.wikidata.org/wiki/Q56316099",
       "https://{{ lang_short() }}.wikipedia.org/wiki/Firefox_Nightly",
-      "{{ play_store_url(settings.GOOGLE_PLAY_FIREFOX_NIGHTLY_LINK)|safe }}",
+      "{{ play_store_url('firefox_nightly')|safe }}",
       "https://blog.nightly.mozilla.org/",
       "https://twitter.com/FirefoxNightly"
     ],
@@ -464,7 +464,7 @@
       "https://{{ lang_short() }}.wikipedia.org/wiki/Firefox_Send",
       "https://send.firefox.com",
       "https://www.wikidata.org/wiki/Q62394165",
-      "{{ play_store_url(settings.GOOGLE_PLAY_FIREFOX_SEND_LINK)|safe }}"
+      "{{ play_store_url('firefox_send')|safe }}"
     ],
     "offers":
     {

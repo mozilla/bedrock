@@ -13,12 +13,12 @@
   "sameAs": [
     "https://www.wikidata.org/wiki/Q550315",
     "https://{{ lang_short() }}.wikipedia.org/wiki/Firefox_for_Android",
-    "{{ play_store_url(settings.GOOGLE_PLAY_FIREFOX_LINK)|safe }}"
+    "{{ play_store_url('firefox')|safe }}"
   ],
   "offers":
   {
     "@type": "Offer",
-    "url": "{{ play_store_url(settings.GOOGLE_PLAY_FIREFOX_LINK)|safe }}",
+    "url": "{{ play_store_url('firefox')|safe }}",
     "priceCurrency": "USD",
     "price": "0",
     "availability": "https://schema.org/InStock"

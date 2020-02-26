@@ -10,7 +10,7 @@
     "Firefox Beta Browser"
   ],
   "sameAs": [
-    "{{ play_store_url(settings.GOOGLE_PLAY_FIREFOX_BETA_LINK)|safe }}"
+    "{{ play_store_url('firefox_beta')|safe }}"
   ],
   "offers":
   {

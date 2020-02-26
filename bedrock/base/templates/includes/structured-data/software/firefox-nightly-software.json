@@ -12,7 +12,7 @@
   "sameAs": [
     "https://www.wikidata.org/wiki/Q56316099",
     "https://{{ lang_short() }}.wikipedia.org/wiki/Firefox_Nightly",
-    "{{ play_store_url(settings.GOOGLE_PLAY_FIREFOX_NIGHTLY_LINK)|safe }}",
+    "{{ play_store_url('firefox_nightly')|safe }}",
     "https://blog.nightly.mozilla.org/",
     "https://twitter.com/FirefoxNightly"
   ],

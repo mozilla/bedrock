@@ -694,8 +694,8 @@ class TestAppStoreURL(TestCase):
     def _render(self, locale):
         req = self.rf.get('/')
         req.locale = locale
-        base_url = settings.APPLE_APPSTORE_LOCKWISE_LINK
-        return render("{{ app_store_url('%s') }}" % base_url,
+        product = 'lockwise'
+        return render("{{ app_store_url('%s') }}" % product,
                       {'request': req})
 
     def test_app_store_url_no_locale(self):
@@ -720,8 +720,8 @@ class TestPlayStoreURL(TestCase):
     def _render(self, locale):
         req = self.rf.get('/')
         req.locale = locale
-        base_url = settings.GOOGLE_PLAY_LOCKWISE_LINK
-        return render("{{ play_store_url('%s') }}" % base_url,
+        product = 'lockwise'
+        return render("{{ play_store_url('%s') }}" % product,
                       {'request': req})
 
     def test_play_store_url_localized(self):

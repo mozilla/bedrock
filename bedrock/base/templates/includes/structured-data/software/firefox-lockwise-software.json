@@ -8,8 +8,8 @@
   "sameAs": [
     "https://{{ lang_short() }}.wikipedia.org/wiki/Firefox_Lockwise",
     "https://www.wikidata.org/wiki/Q64829394",
-    "{{ play_store_url(settings.GOOGLE_PLAY_LOCKWISE_LINK)|safe }}",
-    "{{ app_store_url(settings.APPLE_APPSTORE_LOCKWISE_LINK) }}"
+    "{{ play_store_url('lockwise')|safe }}",
+    "{{ app_store_url('lockwise') }}"
   ],
   "offers":
   {

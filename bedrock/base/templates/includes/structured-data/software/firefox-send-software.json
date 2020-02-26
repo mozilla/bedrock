@@ -9,7 +9,7 @@
     "https://en.wikipedia.org/wiki/Firefox_Send",
     "https://send.firefox.com",
     "https://www.wikidata.org/wiki/Q62394165",
-    "{{ play_store_url(settings.GOOGLE_PLAY_FIREFOX_SEND_LINK)|safe }}"
+    "{{ play_store_url('firefox_send')|safe }}"
   ],
   "offers":
   {

@@ -601,8 +601,9 @@ def ifeq(a, b, text):
 
 @library.global_function
 @jinja2.contextfunction
-def app_store_url(ctx, base_url):
+def app_store_url(ctx, product):
     """Returns a localised app store URL for a given product"""
+    base_url = getattr(settings, f'APPLE_APPSTORE_{product.upper()}_LINK')
     locale = getattr(ctx['request'], 'locale', 'en-US')
     countries = settings.APPLE_APPSTORE_COUNTRY_MAP
     if locale in countries:
@@ -613,10 +614,10 @@ def app_store_url(ctx, base_url):
 
 @library.global_function
 @jinja2.contextfunction
-def play_store_url(ctx, base_url):
+def play_store_url(ctx, product):
     """Returns a localised play store URL for a given product"""
-    locale = getattr(ctx['request'], 'locale', 'en-US')
-    return base_url + '&hl=' + locale.split('-')[0]
+    base_url = getattr(settings, f'GOOGLE_PLAY_{product.upper()}_LINK')
+    return f'{base_url}&hl={lang_short(ctx)}'
 
 
 @library.global_function
