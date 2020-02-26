@@ -633,4 +633,6 @@ redirectpatterns = (
     # issue #7424
     redirect(r'^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/tracking-protection/start/?$', 'https://support.mozilla.org/kb/tracking-protection'),
 
+    # issue 8596
+    redirect(r'firefox/xr/$', 'https://support.mozilla.org/kb/webxr-permission-info-page'),
 )
