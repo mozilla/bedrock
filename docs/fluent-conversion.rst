@@ -69,6 +69,14 @@ in the order in which they appear in the template.
 You want to sanitize this Fluent file by adding license headers, file comments
 with staging URLs, as well as comments individual strings or groups of strings.
 
+It's a good idea to add the new Fluent file to a project config, and validate
+it for errors like duplicated IDs.
+
+.. code-block:: bash
+
+   $ moz-l10n-lint l10n/l10n-pontoon.toml
+   $ moz-l10n-lint l10n/l10n-vendor.toml
+
 Convert the template
 ====================
 

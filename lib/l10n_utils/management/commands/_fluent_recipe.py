@@ -114,6 +114,8 @@ class Recipe:
         ids_for_file = defaultdict(list)
         for lf in lang_files.keys():
             f = settings.LOCALES_PATH / 'en-US' / lf
+            if not f.exists():
+                continue
             parser.readFile(str(f))
             mapping = parser.parse()
             for string_id in lang_ids.keys():

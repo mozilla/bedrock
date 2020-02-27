@@ -44,7 +44,8 @@ def get_migration_context(recipe_or_template, locale='en'):
     else:
         ref_dir = settings.FLUENT_LOCAL_PATH / 'en'
     context = MigrationContext(
-        locale, ref_dir, settings.LOCALES_PATH / locale
+        locale, ref_dir, settings.LOCALES_PATH / locale,
+        enforce_translated=no_reference
     )
     migration.migrate(context)
     return context
