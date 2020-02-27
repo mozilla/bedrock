@@ -6,8 +6,8 @@
 
 {% from "macros-protocol.html" import hero, picto_card with context %}
 
-{% block page_title %}{{ _('Switch from Chrome to Firefox in just a few minutes') }}{% endblock %}
-{% block page_desc %}{{ _('Switching to Firefox is fast, easy and risk-free, because Firefox imports your bookmarks, autofills, passwords and preferences from Chrome.') }}{% endblock %}
+{% block page_title %}{{ ftl('switch-switch-from-chrome') }}{% endblock %}
+{% block page_desc %}{{ ftl('switch-switching-to-firefox-is-fast') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('firefox-switch') }}
@@ -18,8 +18,8 @@
 {% block content %}
 <main>
   {% call hero(
-    title=_('Switch from Chrome to Firefox in just a few minutes'),
-    desc=_('Switching to Firefox is fast, easy and risk-free. Firefox imports your bookmarks, autofills, passwords and preferences from Chrome.'),
+    title=ftl('switch-switch-from-chrome'),
+    desc=ftl('switch-switching-to-firefox-page-description'),
     class='mzp-has-image mzp-t-product-firefox t-switch',
     include_cta=False,
     heading_level=1
@@ -28,56 +28,56 @@
 
   <section class="c-steps mzp-l-content">
     <ol class="c-steps-list">
-      <li class="c-steps-item">{{ _('Select what to take from Chrome.') }}</li>
-      <li class="c-steps-item">{{ _('Let Firefox do the rest.') }}</li>
-      <li class="c-steps-item">{{ _('Enjoy the web faster, all set up for you.') }}</li>
+      <li class="c-steps-item">{{ ftl('switch-select-what-to-take') }}</li>
+      <li class="c-steps-item">{{ ftl('switch-let-firefox-do-the-rest') }}</li>
+      <li class="c-steps-item">{{ ftl('switch-enjoy-the-web-faster') }}</li>
     </ol>
     <div class="c-steps-cta">
-    {{ download_firefox(alt_copy=_('Download and switch'), download_location='primary cta') }}
+    {{ download_firefox(alt_copy=ftl('switch-download-and-switch'), download_location='primary cta') }}
     </div>
   </section>
 
   <section class="c-share">
     <div class="mzp-l-content">
 
-      {% if l10n_has_tag('switch_201908') %}
-        <h2 class="c-share-title">{{ _('Spread the word about Firefox and help your favorite people say goodbye to Chrome.') }}</h2>
+      {% if ftl_has_messages('switch-spread-the-word') %}
+        <h2 class="c-share-title">{{ ftl('switch-spread-the-word') }}</h2>
       {% else %}
-        <p>{{ _('You can use Firefox and still have Chrome. Chrome won’t change on your machine one bit.') }} {{ _('Share with your friends how to switch to Firefox') }}</p>
+        <p>{{ ftl('switch-use-firefox-and-still-chrome') }} {{ ftl('switch-share-with-your-friends') }}</p>
       {% endif %}
 
       {% set share_url = settings.CANONICAL_URL + canonical_path %}
       <ul class="c-share-options">
         <li>
           <a class="facebook" data-link-type="social share" data-link-name="Facebook" href="https://www.facebook.com/sharer/sharer.php?s=100&p[url]={{ share_url|urlencode }}">
-            {{ _('Share to Facebook') }}
+            {{ ftl('switch-share-to-facebook') }}
           </a>
         </li>
         <li>
           {# L10n: the string below is for a referral Twitter message. #}
-          {% set tweet_text = _('🔥 Firefox makes switching from Chrome really fast. Try it out!') %}
+          {% set tweet_text = ftl('switch-firefox-makes-switching-fast-tweet') %}
           <a class="twitter" data-link-type="social share" data-link-name="Twitter" href="https://www.twitter.com/intent/tweet?url={{ share_url|urlencode }}&text={{ tweet_text|urlencode }}">
-            {{ _('Send a tweet') }}
+            {{ ftl('switch-send-a-tweet') }}
           </a>
         </li>
         <li>
           {# L10n: the string below is the subject line for an email referral message. #}
-          {% set email_subject = _('Switch to Firefox')|mailtoencode %}
+          {% set email_subject = ftl('switch-switch-to-firefox')|mailtoencode %}
           {# L10n: the string below is the introduction of the email referral message body. #}
-          {% set email_intro = _('Hey,')|mailtoencode %}
+          {% set email_intro = ftl('switch-hey')|mailtoencode %}
           {# L10n: the string below is the first sentance of the email referral message body. #}
-          {% set email_start = _('Firefox makes switching from Chrome really fast. I like it a lot, and you should try it.')|mailtoencode %}
+          {% set email_start = ftl('switch-firefox-makes-switching-fast-email')|mailtoencode %}
           {# L10n: the string below is the second sentance of the email referral message body. At the end of the string after the colon, a URL will be added automatically. #}
-          {% set email_end = _('Check it out and let me know what you think:')|mailtoencode %}
+          {% set email_end = ftl('switch-check-it-out')|mailtoencode %}
 
           {% set email_body = email_intro + '%0D%0A%0D%0A' + email_start + '%0D%0A%0D%0A' + email_end + '%20' + share_url|urlencode %}
           <a class="email" data-link-type="social share" data-link-name="Email" href="{{ 'mailto:?subject=%s&body=%s'|format(email_subject, email_body)|e }}">
-            {{ _('Send an email') }}
+            {{ ftl('switch-send-an-email') }}
           </a>
         </li>
       </ul>
 
-      <p>{{ _('Still not convinced that switching to Firefox is easy?') }} <a href="https://support.mozilla.org/kb/switching-chrome-firefox">{{ _('Learn more') }}</a></p>
+      <p>{{ ftl('switch-still-not-convinced') }} <a href="https://support.mozilla.org/kb/switching-chrome-firefox">{{ _('Learn more') }}</a></p>
     </div>
   </section>
 </main>
