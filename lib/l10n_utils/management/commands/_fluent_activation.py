@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+import json
+from django.test.utils import override_settings
 from ._fluent import (
     get_lang_files,
     template_name,
@@ -23,7 +25,9 @@ class Activation:
             template_str = tfh.read()
         lang_files = get_lang_files(template, template_str)
         for lang_file in lang_files:
-            locales = get_translations_for_langfile(lang_file)
-            # XXX TODO
-            # Where do we go from here
-            print(locales)
+            with override_settings(DEV=False):
+                locales = get_translations_for_langfile(lang_file.with_suffix(''))
+            if len(locales) < 2:
+                # Not the relevant lang file, probably
+                continue
+            print(json.dumps({'active_locales': locales}, indent=2))
