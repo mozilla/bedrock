@@ -111,7 +111,7 @@ urlpatterns = (
     page('firefox/welcome/4', 'firefox/welcome/page4.html'),
     page('firefox/welcome/5', 'firefox/welcome/page5.html'),
 
-    page('firefox/switch', 'firefox/switch.html'),
+    page('firefox/switch', 'firefox/switch.html', ftl_files=['firefox/switch', 'firefox/switch-en']),
     page('firefox/pocket', 'firefox/pocket.html'),
 
     # Bug 1519084

@@ -49,3 +49,6 @@ locales = [
 [[paths]]
     reference = "en/firefox/whatsnew/**/*.ftl"
     l10n = "{locale}/firefox/whatsnew/**/*.ftl"
+[[paths]]
+    reference = "en/firefox/switch.ftl"
+    l10n = "{locale}/firefox/switch.ftl"
