@@ -221,8 +221,8 @@ $image-path: "/media/protocol/img";
             @include font-firefox;
             @include text-display-xs;
             background-color: $color-white;
-            border-bottom: 3px solid $color-gray-20;
-            border-top: 3px solid $color-gray-20;
+            border-bottom: 3px solid $color-marketing-gray-20;
+            border-top: 3px solid $color-marketing-gray-20;
             font-weight: bold;
             position: sticky;
             top: 0;
@@ -244,8 +244,8 @@ $image-path: "/media/protocol/img";
     th,
     td {
         @include text-body-sm;
-        border-left: 1px solid $color-gray-20;
-        border-top: 1px solid $color-gray-20;
+        border-left: 1px solid $color-marketing-gray-20;
+        border-top: 1px solid $color-marketing-gray-20;
         font-weight: normal;
         padding: $spacing-xs;
         text-align: center;
@@ -262,14 +262,14 @@ $image-path: "/media/protocol/img";
 
     tbody {
         tr:nth-child(2n - 1) {
-            background-color: $color-gray-10;
+            background-color: $color-marketing-gray-10;
         }
 
         tr:last-child {
 
             th,
             td {
-                border-bottom: 1px solid $color-gray-20;
+                border-bottom: 1px solid $color-marketing-gray-20;
             }
         }
     }
@@ -298,7 +298,7 @@ $image-path: "/media/protocol/img";
 
 .compare-mission-section {
     text-align: center;
-    background-color: $color-gray-20;
+    background-color: $color-marketing-gray-20;
     padding: $layout-lg $layout-sm;
     border-radius: 8px;
     margin: $layout-lg auto;
@@ -340,7 +340,7 @@ $image-path: "/media/protocol/img";
 
 .compare-version-disclaimer {
     @include text-body-sm;
-    border-top: 1px solid $color-gray-20;
+    border-top: 1px solid $color-marketing-gray-20;
     font-style: italic;
     margin-bottom: $layout-2xl;
     margin-top: $layout-lg;

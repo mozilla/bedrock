@@ -87,7 +87,7 @@ main .mzp-l-content {
 
         &:hover {
             color: $color-link-hover;
-            background-color: $color-gray-20;
+            background-color: $color-marketing-gray-20;
         }
     }
 
@@ -429,7 +429,7 @@ $url-download-link-hover: svg-url($download-link-hover);
     .android & .menu-ios {
         a {
             pointer-events: none;
-            color: $color-gray-50;
+            color: $color-marketing-gray-50;
         }
     }
 }
@@ -438,7 +438,7 @@ $url-download-link-hover: svg-url($download-link-hover);
 // dev tools block
 
 .t-dev {
-    background-color: $color-gray-20;
+    background-color: $color-marketing-gray-20;
     margin-top: $layout-xs + $layout-2xl;
     padding: $layout-xs;
 

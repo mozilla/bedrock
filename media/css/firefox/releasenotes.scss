@@ -149,7 +149,7 @@ $image-path: '/media/protocol/img';
 // secondary navigation
 
 .t-release {
-    background-color: $color-gray-30;
+    background-color: $color-marketing-gray-30;
     text-align: center;
 
     .mzp-c-menu-panel-content {
@@ -221,7 +221,7 @@ $image-path: '/media/protocol/img';
         display: block;
         width: calc(100% - #{ $layout-xs * 2});
         height: 2px;
-        background-color: $color-gray-20;
+        background-color: $color-marketing-gray-20;
         position: absolute;
         top: 0;
         left: $layout-xs;
@@ -240,7 +240,7 @@ $image-path: '/media/protocol/img';
 
 .mzp-l-article {
     > ul > li {
-        border-bottom: 2px solid $color-gray-20;
+        border-bottom: 2px solid $color-marketing-gray-20;
         margin-bottom: $layout-sm;
         padding-bottom: $layout-sm;
 
@@ -361,7 +361,7 @@ $image-path: '/media/protocol/img';
 }
 
 .developer-more {
-    border-bottom: 2px solid $color-gray-20;
+    border-bottom: 2px solid $color-marketing-gray-20;
     margin-bottom: $layout-md;
     padding-bottom: $layout-md;
 
@@ -399,7 +399,7 @@ $image-path: '/media/protocol/img';
 // all-download link
 
 .all-download {
-    background-color: $color-gray-30;
+    background-color: $color-marketing-gray-30;
     font-weight: bold;
     padding: $spacing-sm $layout-2xs;
     @include text-body-md;

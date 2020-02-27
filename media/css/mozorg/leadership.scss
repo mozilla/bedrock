@@ -50,7 +50,7 @@ $image-path: '/media/protocol/img';
     @include text-display-sm;
     margin: 1em 0;
     padding-top: .75em;
-    border-top: 2px solid $color-gray-30;
+    border-top: 2px solid $color-marketing-gray-30;
 
     a {
         text-decoration: none;
@@ -93,7 +93,7 @@ $image-path: '/media/protocol/img';
         @include transition(transform 200ms ease, box-shadow 200ms ease);
         background: #fff;
         box-shadow: 2px 3px 3px rgba(0, 0, 0, .1);
-        border: 2px solid $color-gray-20;
+        border: 2px solid $color-marketing-gray-20;
         color: $color-black;
         display: block;
         margin: 0 -20px 10px;
@@ -132,7 +132,7 @@ $image-path: '/media/protocol/img';
     }
 
     .note {
-        color: $color-gray-90;
+        color: $color-marketing-gray-90;
     }
 
     .elsewhere,
@@ -253,7 +253,7 @@ $image-path: '/media/protocol/img';
 // Show the bios when JS fails.
 // Not every person has a bio, so these get some special treatment.
 .no-js .vcard.has-bio {
-    border-bottom: 1px solid $color-gray-60;
+    border-bottom: 1px solid $color-marketing-gray-60;
     cursor: auto;
     float: none;
     margin: 0 0 40px;
@@ -412,7 +412,7 @@ $image-path: '/media/protocol/img';
     }
 
     .note {
-        color: $color-gray-90;
+        color: $color-marketing-gray-90;
     }
 
     .elsewhere,
