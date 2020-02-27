@@ -81,7 +81,7 @@ $image-path: '/media/protocol/img';
         background-position-x: center;
         background-position-y: center;
         background-repeat: no-repeat;
-        border-radius: 4px;
+        border-radius: $border-radius-sm;
         border: none;
         display: none;
         height: 32px;

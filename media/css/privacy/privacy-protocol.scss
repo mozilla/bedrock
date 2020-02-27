@@ -160,7 +160,7 @@ $border: 2px solid $color-marketing-gray-20;
 .data-choices {
     @include clearfix;
     background-color: $color-marketing-gray-20;
-    border-radius: 8px;
+    border-radius: $border-radius-md;
     margin-top: $spacing-xl;
     padding: $spacing-sm;
     position: relative;

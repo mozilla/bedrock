@@ -23,7 +23,7 @@ $image-path: "/media/protocol/img";
         .download-link {
             background-color: transparent;
             background-image: none;
-            border-radius: 2px;
+            border-radius: $border-radius-xs;
             border: 2px solid #0060df;
             box-shadow: none;
             color: #0060df;
@@ -86,7 +86,7 @@ $image-path: "/media/protocol/img";
         @include font-size(14px);
         background-color: transparent;
         background-image: none;
-        border-radius: 2px;
+        border-radius: $border-radius-xs;
         border: 2px solid #0060df;
         box-shadow: none;
         color: #0060df;

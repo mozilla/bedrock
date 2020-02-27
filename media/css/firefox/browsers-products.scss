@@ -477,7 +477,7 @@ $url-download-link-hover: svg-url($download-link-hover);
 
 @media #{$mq-md} {
     .t-dev {
-        border-radius: 4px;
+        border-radius: $border-radius-sm;
         margin-top: 0;
         max-width: 100%;
         padding: $layout-md;

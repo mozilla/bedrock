@@ -237,7 +237,7 @@ $image-path: '/media/protocol/img';
 
     .mzp-l-content {
         background-image: linear-gradient(90deg,  $color-violet-80, $color-violet-90);
-        border-radius: 8px;
+        border-radius: $border-radius-md;
         box-shadow: 0 4px 16px 0 transparentize($color-ink-80, .24);
         color: #fff;
         margin: $layout-md auto;

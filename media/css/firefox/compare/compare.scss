@@ -300,7 +300,7 @@ $image-path: "/media/protocol/img";
     text-align: center;
     background-color: $color-marketing-gray-20;
     padding: $layout-lg $layout-sm;
-    border-radius: 8px;
+    border-radius: $border-radius-md;
     margin: $layout-lg auto;
 
     h3 {

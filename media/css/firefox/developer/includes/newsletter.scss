@@ -10,7 +10,7 @@
 
     .mzp-l-content {
         background: #fff;
-        border-radius: 6px;
+        border-radius: $border-radius-md;
         box-shadow: 0 4px 16px 0 #20123A;
         padding-top: $layout-md;
         padding-bottom: $layout-md;
@@ -24,7 +24,7 @@
 
         input[type=email] {
             border: 2px solid $color-marketing-gray-30;
-            border-radius: 2px;
+            border-radius: $border-radius-xs;
             padding-top: 10px; // to make input match button height
             padding-bottom: 10px; // to make input match button height
         }
