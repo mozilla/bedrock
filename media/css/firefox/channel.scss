@@ -90,8 +90,8 @@ $image-path: '/media/protocol/img';
         padding-bottom: $layout-md;
         padding-top: $layout-md;
         background: $color-white;
-        border-radius: 6px;
-        box-shadow: 0 4px 16px 0 $color-marketing-gray-60;
+        border-radius: $border-radius-md;
+        box-shadow: $box-shadow-md;
     }
 
     .mzp-c-newsletter-form {

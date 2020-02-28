@@ -32,7 +32,7 @@ $image-path: '/media/protocol/img';
 .c-notification {
     @include text-body-sm;
     border-radius: $border-radius-sm;
-    box-shadow: 0 2px 24px 0 rgba(32, 18, 58, .2);
+    box-shadow: $box-shadow-md;
     color: $color-ink-80;
     margin: 0 auto $spacing-lg;
     max-width: calc(600px - #{$spacing-md * 2});
@@ -40,11 +40,11 @@ $image-path: '/media/protocol/img';
     text-align: center;
 
     &.t-warning {
-        background-color: #fce98f;
+        background-color: $color-yellow-20;
     }
 
     &.t-success {
-        background-color: #3fe1b0;
+        background-color: $color-green-30;
     }
 
     a:link,

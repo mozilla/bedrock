@@ -102,8 +102,8 @@
 
 .c-accounts-form {
     background: $color-white;
-    border-radius: 6px;
-    box-shadow: 0 0 16px 0 rgba(0, 0, 0, .15);
+    border-radius: $border-radius-md;
+    box-shadow: $box-shadow-md;
     margin: $layout-lg auto 0;
     max-width: 330px;
     padding: $spacing-lg;

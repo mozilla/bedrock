@@ -26,7 +26,7 @@ $image-path: '/media/protocol/img';
     .mzp-c-hero-image img {
         top: 48px;
         bottom: auto;
-        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
+        box-shadow: $box-shadow-sm;
     }
 
     .small-links {
