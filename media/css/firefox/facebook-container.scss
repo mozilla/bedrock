@@ -14,7 +14,7 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Components
 .mzp-c-hero.mzp-t-dark {
-    background-color: $color-off-black;
+    background-color: $color-ink-80;
     color: $color-white;
     position: relative;
 }
@@ -36,22 +36,22 @@ $image-path: '/media/protocol/img';
 
 .video-container {
     @include bidi((
-                (margin-right, $spacing-md, 0),
-                (margin-left, 0, $spacing-md)
+        (margin-right, $spacing-md, 0),
+        (margin-left, 0, $spacing-md)
     ));
 }
 
 .fbcontainer-video {
     @media #{$mq-md} {
         @include bidi((
-                (left, 50%, auto),
-                (right, auto, 50%)
-            ));
-            padding: 0;
-            position: absolute;
-            top: $spacing-xl;
-            width: 50%;
-            z-index: 2;
+            (left, 50%, auto),
+            (right, auto, 50%)
+        ));
+        padding: 0;
+        position: absolute;
+        top: $spacing-xl;
+        width: 50%;
+        z-index: 2;
     }
 }
 
