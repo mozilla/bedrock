@@ -3,12 +3,12 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros.html" import google_play_button with context %}
+{% from "macros-protocol.html" import hero, call_out_compact with context %}
 
-{% extends "firefox/base/base-pebbles.html" %}
+{% extends "firefox/base/base-protocol.html" %}
 
 {% set addon_url = "https://addons.mozilla.org/firefox/addon/facebook-container/?src=external-www.mozilla.org-facebookcontainer&utm_source=www.mozilla.org-facebookcontainer&utm_medium=referral" %}
 
-{% block page_title_prefix %}{% endblock %}
 {% block page_title %}{{_('Facebook Container for Firefox | Prevent Facebook from seeing what websites you visit.')}}{% endblock %}
 {% block page_desc %}{{_('Millions of people around the world trust Firefox Web browsers on Android, iOS and desktop computers. Fast. Private. Download now!')}}{% endblock %}
 
@@ -16,129 +16,100 @@
   {{ css_bundle('firefox_facebook_container') }}
 {% endblock %}
 
-{% block body_id %}firefox{% endblock %}
-{% block body_class %}{% endblock %}
-
 {% block content %}
-  <main role="main">
-  <section class="intro content-section">
-    <div class="content">
+<main role="main">
+  {% call hero(
+    title=_('Facebook. Well contained. Keep the rest of your life to yourself.'),
+    class='mzp-t-dark mzp-has-image mzp-t-product-firefox',
+    include_cta=True,
+    heading_level=1) %}
 
-      <div class="copy">
-        {{ high_res_img('protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', {'alt': '', 'width': '347', 'height': '64', 'class': 'firefox-logo'}) }}
-        <header>
-          <h1 class="title" id="main-heading">
-            {{ _('Facebook. Well contained. Keep the rest of your life to yourself.') }}
-          </h1>
-          <p class="tagline tagline-download">{{ _('Download Firefox and get the Facebook Container Extension') }}</p>
-        </header>
+  <div class="mzp-c-hero-desc">
+    <a class="mzp-c-cta-link extension-cta" href="{{ addon_url }}">{{ _('Get the Facebook Container Extension') }}</a>
 
-        <div class="main-cta">
-          <div class="firefox-cta">
-          {{ download_firefox(alt_copy=_('Download Firefox'), locale_in_transition=true, dom_id="download-firefox-cta") }}
-          </div>
-
-          <div class="extension-cta">
-            <a href="{{ addon_url }}">{{ _('Get the Facebook Container Extension') }}</a>
-          </div>
-
-          <div class="mobile-cta">
-            <p>{{ _('The Facebook Container Extension is not available on mobile devices.') }}</p>
-            {# L10n: For German, all instances of the string 'Firefox Focus' must be 'Firefox Klar' (as done on https://www.mozilla.org/de/firefox/focus/) #}
-            <p>{{ _('Try <strong>Firefox Focus</strong>, the privacy browser for Android and iOS.') }}</p>
-
-            <ul class="mobile-download-buttons">
-              <li class="android">
-                {{ google_play_button(href=focus_adjust_url('android', 'fb-container-page'), id='playStoreLink', product='Focus') }}
-              </li>
-              <li class="ios">
-                <a id="appStoreLink" href="{{ focus_adjust_url('ios', 'fb-container-page') }}" data-link-type="download" data-download-os="iOS">
-                  <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="optional-cta">
-        <aside class="fbcontainer-video">
-        {% if LANG == 'de' %}
-          <div class="video-container">
-            <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/7yLoRVwuZlc?rel=0&amp;showinfo=0" frameborder="0" allow="encrypted-media" allowfullscreen>
-              <p><a href="https://www.youtube.com/watch?v=7yLoRVwuZlc">{{ _('Watch the video') }}</a></p>
-            </iframe>
-          </div>
-        {% else %}
-          <div class="moz-video-container">
-            <button class="moz-video-button" type="button" aria-controls="fbcontainer-video">{{ _('Watch the video') }}</button>
-            <div class="video-container">
-              <video id="fbcontainer-video" preload="metadata" controls poster="{{ static('img/firefox/facebook-container/video-poster.png') }}" data-ga-label="Facebook Container Video">
-                <source src="https://assets.mozilla.net/video/facebook-container/facebook-container.webm" type="video/webm">
-                <source src="https://assets.mozilla.net/video/facebook-container/facebook-container.mp4" type="video/mp4">
-              </video>
-            </div>{#-- /.video-container --#}
-          </div>{#-- /.moz-video-container --#}
-        {% endif %}
-        </aside>{#-- /.fbcontainer-video --#}
-      </div>{#-- /.optional-cta --#}
-
+    <div class="firefox-cta">
+      <p>{{ _('Download Firefox and get the Facebook Container Extension') }}</p>
+      {{ download_firefox(alt_copy=_('Download Firefox'), locale_in_transition=true, dom_id="download-firefox-cta") }}
     </div>
-  </section>
 
-  {% block details %}
-  <section class="details content-section">
-    <div class="content">
+    <div class="mobile-cta">
+      <p>{{ _('The Facebook Container Extension is not available on mobile devices.') }}</p>
+      {# L10n: For German, all instances of the string 'Firefox Focus' must be 'Firefox Klar' (as done on https://www.mozilla.org/de/firefox/focus/) #}
+
+      <p>{{ _('Try <strong>Firefox Focus</strong>, the privacy browser for Android and iOS.') }}</p>
+
       <ul>
         <li>
-          <h3>{{ _('Opt out on your terms') }}</h3>
-          <p>
-          {% trans fbcontainer=addon_url %}
-            Facebook can track almost all your web activity and tie it to your Facebook identity. If that’s too much for you, the <a href="{{ fbcontainer }}">Facebook Container extension</a> isolates your identity into a separate container tab, making it harder for Facebook to track you on the web outside of Facebook.
-          {% endtrans %}
-          </p>
+          {{ google_play_button(href=focus_adjust_url('android', 'fb-container-page'), id='playStoreLink', product='Focus') }}
         </li>
         <li>
-          <h3>{{ _('Install and contain') }}</h3>
-          <p>
-          {% trans fbcontainer=addon_url %}
-            Installing the <a href="{{ fbcontainer }}">extension</a> is easy and, once activated, will open Facebook in a blue tab each time you use it. Use and enjoy Facebook normally. Facebook will still be able to send you advertising and recommendations on their site, but it will be much harder for Facebook to use your activity collected <strong>off Facebook</strong> to send you ads and other targeted messages.
-          {% endtrans %}
-          </p>
-        </li>
-        <li>
-          <h3>{{ _('About Firefox and Mozilla') }}</h3>
-          <p>
-          {% trans mozilla=url('mozorg.home') %}
-            We’re backed by <a href="{{ mozilla }}">Mozilla</a>, the not-for-profit organization that puts people over profit to give everyone more power online. We created this extension because we believe that you should have easy-to-use tools that help you manage your privacy and security.
-          {% endtrans %}
-          </p>
+          <a id="appStoreLink" href="{{ focus_adjust_url('ios', 'fb-container-page') }}" data-link-type="download" data-download-os="iOS">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+          </a>
         </li>
       </ul>
     </div>
-  </section>
-  {% endblock %}
+  </div>
 
-  {% block secondary_download %}
-  <section class="secondary-download content-section">
-    <div class="content">
-      <div class="download-contain">
-        <h2>
-        {% block secondary_download_cta %}
-          {{ _('Browse freely with Firefox today.') }}
-        {% endblock %}
-        </h2>
-        <div class="download-button-wrapper">
-          {{ download_firefox(alt_copy=_('Download Now'), locale_in_transition=true, dom_id="download-firefox-today") }}
-        </div>
+  <aside class="fbcontainer-video">
+  {% if LANG == 'de' %}
+    <div class="video-container">
+      <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/7yLoRVwuZlc?rel=0&amp;showinfo=0" frameborder="0" allow="encrypted-media" allowfullscreen>
+        <p><a href="https://www.youtube.com/watch?v=7yLoRVwuZlc">{{ _('Watch the video') }}</a></p>
+      </iframe>
+    </div>
+  {% else %}
+    <div class="moz-video-container">
+      <button class="moz-video-button mzp-c-button" type="button" aria-controls="fbcontainer-video">{{ _('Watch the video') }}</button>
+      <div class="video-container">
+        <video id="fbcontainer-video" preload="metadata" controls poster="{{ static('img/firefox/facebook-container/video-poster.png') }}" data-ga-label="Facebook Container Video">
+          <source src="https://assets.mozilla.net/video/facebook-container/facebook-container.webm" type="video/webm">
+          <source src="https://assets.mozilla.net/video/facebook-container/facebook-container.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
+  {% endif %}
+  </aside>
+  {% endcall %}
+
+  <section class="mzp-l-content mzp-l-card-third">
+    <div class="mzp-c-card">
+      <h3 class="mzp-c-card-title">{{ _('Opt out on your terms') }}</h3>
+      <p>
+      {% trans fbcontainer=addon_url %}
+        Facebook can track almost all your web activity and tie it to your Facebook identity. If that’s too much for you, the <a href="{{ fbcontainer }}">Facebook Container extension</a> isolates your identity into a separate container tab, making it harder for Facebook to track you on the web outside of Facebook.
+      {% endtrans %}
+      </p>
+    </div>
+    <div class="mzp-c-card">
+      <h3 class="mzp-c-card-title">{{ _('Install and contain') }}</h3>
+      <p>
+      {% trans fbcontainer=addon_url %}
+        Installing the <a href="{{ fbcontainer }}">extension</a> is easy and, once activated, will open Facebook in a blue tab each time you use it. Use and enjoy Facebook normally. Facebook will still be able to send you advertising and recommendations on their site, but it will be much harder for Facebook to use your activity collected <strong>off Facebook</strong> to send you ads and other targeted messages.
+      {% endtrans %}
+      </p>
+    </div>
+    <div class="mzp-c-card">
+      <h3 class="mzp-c-card-title">{{ _('About Firefox and Mozilla') }}</h3>
+      <p>
+      {% trans mozilla=url('mozorg.home') %}
+        We’re backed by <a href="{{ mozilla }}">Mozilla</a>, the not-for-profit organization that puts people over profit to give everyone more power online. We created this extension because we believe that you should have easy-to-use tools that help you manage your privacy and security.
+      {% endtrans %}
+      </p>
+    </div>
   </section>
-  {% endblock %}
+
+  <section class="firefox-cta">
+    {% call call_out_compact(
+      title=_('Browse freely with Firefox today.'),
+      class='mzp-t-dark',
+      heading_level=2)
+    %}
+    {{ download_firefox(alt_copy=_('Download Now'), locale_in_transition=true, dom_id="download-firefox-today") }}
+    {% endcall %}
+  </section>
 </main>
 {% endblock %}
-
-{% block email_form %}{% endblock %}
 
 {% block js %}
   {{ js_bundle('firefox_facebook_container_video') }}
