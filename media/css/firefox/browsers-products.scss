@@ -87,7 +87,7 @@ main .mzp-l-content {
 
         &:hover {
             color: $color-link-hover;
-            background-color: $color-gray-20;
+            background-color: $color-marketing-gray-20;
         }
     }
 
@@ -258,7 +258,7 @@ main .mzp-l-content {
     margin-top: $spacing-xl;
 
     a {
-        color: $color-off-black;
+        color: $color-ink-80;
         text-decoration: none;
 
         &:hover,
@@ -429,7 +429,7 @@ $url-download-link-hover: svg-url($download-link-hover);
     .android & .menu-ios {
         a {
             pointer-events: none;
-            color: $color-gray-50;
+            color: $color-marketing-gray-50;
         }
     }
 }
@@ -438,7 +438,7 @@ $url-download-link-hover: svg-url($download-link-hover);
 // dev tools block
 
 .t-dev {
-    background-color: $color-gray-20;
+    background-color: $color-marketing-gray-20;
     margin-top: $layout-xs + $layout-2xl;
     padding: $layout-xs;
 
@@ -477,7 +477,7 @@ $url-download-link-hover: svg-url($download-link-hover);
 
 @media #{$mq-md} {
     .t-dev {
-        border-radius: 4px;
+        border-radius: $border-radius-sm;
         margin-top: 0;
         max-width: 100%;
         padding: $layout-md;
@@ -507,7 +507,7 @@ $url-download-link-hover: svg-url($download-link-hover);
 // box around form
 .t-account {
     @include light-links;
-    background: linear-gradient($color-violet-50 -100%, $color-off-black);
+    background: linear-gradient($color-violet-50 -100%, $color-ink-80);
     color: $color-white;
     margin: 0 auto $v-grid-xs auto;
     position: relative;

@@ -142,7 +142,7 @@ main .mzp-l-content {
 .t-hero-primary {
     &.mzp-c-hero {
         text-align: center;
-        color: $color-off-black;
+        color: $color-ink-80;
 
         &.mzp-t-firefox::after {
             display: none;
@@ -198,7 +198,7 @@ main .mzp-l-content {
 
 .t-private {
     @include light-links;
-    background-color: $color-off-black;
+    background-color: $color-ink-80;
     color: #fff;
 
     h2 {
@@ -286,11 +286,11 @@ main .mzp-l-content {
 
     .mzp-c-card-feature-title {
         @include text-display-lg;
-        color: $color-off-black;
+        color: $color-ink-80;
     }
 
     .mzp-c-card-feature-desc {
-        color: $color-gray-80;
+        color: $color-marketing-gray-80;
     }
 }
 
@@ -299,7 +299,7 @@ main .mzp-l-content {
 
 
 .t-account {
-    background-color: $color-gray-10;
+    background-color: $color-marketing-gray-10;
     padding: $layout-md 0;
 
     .mzp-c-card-feature-content-container {
@@ -324,7 +324,7 @@ main .mzp-l-content {
         padding-top: $layout-xl;
 
         &:after {
-            border-bottom: 1px solid $color-gray-20;
+            border-bottom: 1px solid $color-marketing-gray-20;
             content: '';
             display: block;
             height: 0;
@@ -424,7 +424,7 @@ main .mzp-l-content {
 
     h3 {
         @include text-display-md;
-        color: $color-off-black;
+        color: $color-ink-80;
         margin-bottom: 0;
 
         + p {

@@ -10,7 +10,7 @@
 .c-page-header {
     background-color: $color-white;
     border-bottom: 1px solid rgba(0, 0, 0, .05);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    box-shadow: $box-shadow-md;
     position: relative;
     text-align: center;
 
@@ -66,7 +66,7 @@
 .lite-body {
     background-color: #8aebe2;
     background-position: top;
-    color: $color-gray-80;
+    color: $color-marketing-gray-80;
     position: relative;
     margin-left: auto;
     margin-right: auto;
@@ -168,8 +168,8 @@
     margin: 0 auto $spacing-lg;
     padding: $spacing-lg 0;
     line-height: 1.2;
-    border-top: 2px solid $color-gray-80;
-    border-bottom: 2px solid $color-gray-80;
+    border-top: 2px solid $color-marketing-gray-80;
+    border-bottom: 2px solid $color-marketing-gray-80;
     max-width: 480px;
     text-align: center;
     box-sizing: border-box;

@@ -10,8 +10,8 @@
 
     .mzp-l-content {
         background: #fff;
-        border-radius: 6px;
-        box-shadow: 0 4px 16px 0 #20123A;
+        border-radius: $border-radius-md;
+        box-shadow: $box-shadow-md;
         padding-top: $layout-md;
         padding-bottom: $layout-md;
         min-width: 0;
@@ -23,8 +23,8 @@
         @include font-size(14px);
 
         input[type=email] {
-            border: 2px solid $color-gray-30;
-            border-radius: 2px;
+            border: 2px solid $color-marketing-gray-30;
+            border-radius: $border-radius-xs;
             padding-top: 10px; // to make input match button height
             padding-bottom: 10px; // to make input match button height
         }

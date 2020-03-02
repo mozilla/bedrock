@@ -11,9 +11,9 @@ $image-path: '/media/protocol/img';
 .section-intro {
     background: linear-gradient(to bottom, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .1) 100%),
                 url('/media/img/newsletter/intro-mozsummit-600.jpg') center center no-repeat,
-                $color-off-black;
+                $color-ink-80;
     @include background-size(cover);
-    color: #fff;
+    color: $color-white;
     text-align: center;
 
     .mzp-l-content {
@@ -40,27 +40,27 @@ $image-path: '/media/protocol/img';
     @media #{$mq-md} {
         background: linear-gradient(to bottom, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .1) 100%),
                     url('/media/img/newsletter/intro-mozsummit-1000.jpg') center center no-repeat,
-                    $color-off-black;
+                    $color-ink-80;
         @include background-size(cover);
     }
 
     @media #{$mq-lg} {
         background: linear-gradient(to bottom, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .1) 100%),
                     url('/media/img/newsletter/intro-mozsummit-2000.jpg') center center no-repeat,
-                    $color-off-black;
+                    $color-ink-80;
         @include background-size(cover);
     }
 
     @media #{$mq-xl} {
         background: linear-gradient(to bottom, rgba(0, 0, 0, .6) 0%, rgba(0, 0, 0, .1) 100%),
                     url('/media/img/newsletter/intro-mozsummit-3000.jpg') center center no-repeat,
-                    $color-off-black;
+                    $color-ink-80;
         @include background-size(cover);
     }
 }
 
 .section-subscribe {
-    background: #fff;
+    background: $color-white;
 
     h2 {
         @include text-display-xs;

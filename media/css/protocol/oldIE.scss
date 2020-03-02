@@ -61,10 +61,10 @@ label {
 
 // make sure dark components have correct background and text color
 .mzp-t-dark {
-    background: $color-off-black;
-    color: #fff;
+    background: $color-ink-80;
+    color: $color-white;
 
     h1, h2, h3, h4, h5, h6 {
-        color: #fff;
+        color: $color-white;
     }
 }

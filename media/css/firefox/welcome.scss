@@ -147,7 +147,7 @@ $image-path: '/media/protocol/img';
         position: relative;
 
         & + & {
-            border-top: 1px solid $color-gray-30;
+            border-top: 1px solid $color-marketing-gray-30;
             padding-top: $layout-md;
         }
 
@@ -198,7 +198,7 @@ $image-path: '/media/protocol/img';
 
 .mzp-c-hero.mzp-t-dark {
     @include light-links;
-    background-color: $color-off-black;
+    background-color: $color-ink-80;
     color: $color-white;
 }
 
@@ -258,7 +258,7 @@ $image-path: '/media/protocol/img';
 
     .modal-title {
         @include text-display-md;
-        color: $color-off-black;
+        color: $color-ink-80;
         margin-bottom: 0;
 
         + p {

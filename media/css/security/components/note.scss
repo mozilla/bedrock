@@ -8,9 +8,9 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/includes/lib';
 
 p.note {
-    border-color: $color-gray-20;
+    border-color: $color-marketing-gray-20;
     border-style: solid;
     border-width: 2px 0;
-    background: #f1f1f1;
+    background: $color-marketing-gray-10;
     padding: $layout-sm;
 }

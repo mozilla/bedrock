@@ -9,7 +9,7 @@ $image-path: '/media/protocol/img';
 
 
 .c-forum-search {
-    background-color: $color-gray-20;
+    background-color: $color-marketing-gray-20;
     margin-bottom: $spacing-md;
     padding: $spacing-sm;
 
@@ -24,7 +24,7 @@ $image-path: '/media/protocol/img';
 
 .forum-group .top {
     float: right;
-    color: $color-gray-50;
+    color: $color-marketing-gray-50;
     padding-left: $layout-sm;
     @include text-body-sm;
 }
@@ -38,14 +38,14 @@ $image-path: '/media/protocol/img';
 
     & > li {
         list-style-type: none;
-        border-top: 1px solid $color-gray-30;
+        border-top: 1px solid $color-marketing-gray-30;
         padding: 10px 20px;
         margin: 0 -20px;
         @include clearfix;
     }
 
     & > li:target{
-        background: $color-yellow-5;
+        background: $color-yellow-05;
     }
 
     .summary {
@@ -58,7 +58,7 @@ $image-path: '/media/protocol/img';
     }
 
     .subscribe {
-        color: $color-gray-70;
+        color: $color-marketing-gray-70;
         list-style-type: disc;
 
         @media #{$mq-lg} {
@@ -79,7 +79,7 @@ $image-path: '/media/protocol/img';
             top: 0;
             left: -1em;
             @include text-body-sm;
-            color: $color-gray-30;
+            color: $color-marketing-gray-30;
 
             &:hover,
             &:focus {

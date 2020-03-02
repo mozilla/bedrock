@@ -55,7 +55,7 @@ $image-path: '/media/protocol/img';
 // Large map
 
 .map {
-    background: $color-gray-20;
+    background: $color-marketing-gray-20;
     display: none;
     position: relative;
 
@@ -107,7 +107,7 @@ $image-path: '/media/protocol/img';
         }
 
         a {
-            background-color: $color-gray-20;
+            background-color: $color-marketing-gray-20;
             display: block;
             height: 40px;
             line-height: 40px;
@@ -365,7 +365,7 @@ $image-path: '/media/protocol/img';
 // Footers for the tab content, one for spaces and one for community.
 
 .meta-category {
-    border-top: 1px solid $color-gray-30;
+    border-top: 1px solid $color-marketing-gray-30;
     clear: both;
     margin-top: $layout-lg;
     padding: $spacing-lg 0 0;

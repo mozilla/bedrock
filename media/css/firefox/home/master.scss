@@ -26,7 +26,7 @@ $image-path: '/media/protocol/img';
     .android & .menu-ios {
         a {
             pointer-events: none;
-            color: $color-gray-50;
+            color: $color-marketing-gray-50;
         }
     }
 }
@@ -237,9 +237,9 @@ $image-path: '/media/protocol/img';
 
     .mzp-l-content {
         background-image: linear-gradient(90deg,  $color-violet-80, $color-violet-90);
-        border-radius: 8px;
-        box-shadow: 0 4px 16px 0 transparentize($color-off-black, .24);
-        color: #fff;
+        border-radius: $border-radius-md;
+        box-shadow: $box-shadow-md;
+        color: $color-white;
         margin: $layout-md auto;
         max-width: $content-sm;
         min-width: 0;
@@ -249,7 +249,7 @@ $image-path: '/media/protocol/img';
         margin-bottom: 0;
 
         .mzp-c-card-feature-desc {
-            color: #fff;
+            color: $color-white;
         }
     }
 
@@ -310,7 +310,7 @@ $image-path: '/media/protocol/img';
 // bottom of the page cta
 
 .c-end {
-    background: linear-gradient(90deg, $color-violet-90, $color-off-black);
+    background: linear-gradient(90deg, $color-violet-90, $color-ink-80);
     color: #fff;
     text-align: center;
 

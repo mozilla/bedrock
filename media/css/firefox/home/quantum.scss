@@ -183,7 +183,7 @@ main .mzp-l-content {
 // Comparison feature cards
 
 .t-compare {
-    background-color: $color-gray-20;
+    background-color: $color-marketing-gray-20;
     padding-top: $layout-md;
 
     video {
@@ -226,7 +226,7 @@ main .mzp-l-content {
     }
 
     @media #{$mq-lg} {
-        background: $color-off-black;
+        background: $color-ink-80;
         padding-top: $layout-sm;
 
         .mzp-l-content {

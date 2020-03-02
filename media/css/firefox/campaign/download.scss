@@ -14,7 +14,7 @@ $image-path: '/media/protocol/img';
 
 .mzp-c-hero.mzp-t-dark {
     @include background-size(auto 100%);
-    background-color: $color-off-black;
+    background-color: $color-ink-80;
 
     .mzp-c-hero-title {
         @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', 260px, 48px);
@@ -26,7 +26,7 @@ $image-path: '/media/protocol/img';
     .mzp-c-hero-image img {
         top: 48px;
         bottom: auto;
-        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
+        box-shadow: $box-shadow-sm;
     }
 
     @media #{$mq-md} {

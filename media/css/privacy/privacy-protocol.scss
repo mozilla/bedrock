@@ -11,7 +11,7 @@ $image-path: '/media/protocol/img';
 
 @import '../protocol/basic-article';
 
-$border: 2px solid $color-gray-20;
+$border: 2px solid $color-marketing-gray-20;
 
 .mzp-c-sidemenu .mzp-c-sidemenu-title  {
     @include font-base;
@@ -159,8 +159,8 @@ $border: 2px solid $color-gray-20;
 
 .data-choices {
     @include clearfix;
-    background-color: $color-gray-20;
-    border-radius: 8px;
+    background-color: $color-marketing-gray-20;
+    border-radius: $border-radius-md;
     margin-top: $spacing-xl;
     padding: $spacing-sm;
     position: relative;

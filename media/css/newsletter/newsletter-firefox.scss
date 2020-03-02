@@ -10,7 +10,7 @@ $image-path: '/media/protocol/img';
 
 
 .section-intro {
-    background-color: $color-off-black;
+    background-color: $color-ink-80;
 
     .mzp-l-content {
         @include background-size(141px 157px, 153px 115px);
@@ -61,7 +61,7 @@ $image-path: '/media/protocol/img';
 
     h2 {
         @include text-display-xs;
-        color: $color-off-black;
+        color: $color-ink-80;
         font-weight: normal;
         margin: $spacing-lg auto $spacing-xl;
         max-width: 30em;

@@ -62,7 +62,7 @@ html {
 // Call Out Theme Color
 
 .mzp-c-call-out-compact.mzp-t-dark.enterprise-callout {
-    background-color: $color-off-black;
+    background-color: $color-ink-80;
 
     .mzp-c-call-out-desc {
         color: $color-white;
@@ -74,7 +74,7 @@ html {
 
 .mzp-c-hero.t-enterprise {
     // dark colour fallback incase svg image doesn't load/display
-    background: $color-off-black;
+    background: $color-ink-80;
     background-image: url('/media/img/firefox/enterprise/ent-noodles.svg'),
                       linear-gradient(transparent 550px, #fff 550px, #fff 1000px);
     background-position: bottom left, top center;
@@ -85,7 +85,7 @@ html {
     padding-top: $layout-sm;
 
     html[dir=rtl] & {
-        background: $color-off-black;
+        background: $color-ink-80;
         min-height: 0;
     }
 
@@ -96,7 +96,7 @@ html {
    }
 
    .mzp-c-hero-body {
-       background-color: $color-off-black;
+       background-color: $color-ink-80;
        border-top-right-radius: 100px;
        margin-bottom: 100px;
    }
@@ -122,7 +122,7 @@ html {
         padding-top: $layout-md;
 
         html[dir=rtl] & {
-            background: $color-off-black;
+            background: $color-ink-80;
             min-height: 0;
         }
 
@@ -270,9 +270,9 @@ html {
         @include bidi(((float, left, right),));
         @include border-box;
         background-color: inherit;
-        border-bottom: 2px solid $color-gray-20;
+        border-bottom: 2px solid $color-marketing-gray-20;
         border-left: none;
-        border-right: 1px solid $color-gray-50;
+        border-right: 1px solid $color-marketing-gray-50;
         border-top: none;
         padding: $spacing-md $spacing-xs;
         width: 50%;
@@ -286,7 +286,7 @@ html {
     .c-pager-page {
         @include border-box;
         border-radius: 10px;
-        border: 1px solid $color-gray-50;
+        border: 1px solid $color-marketing-gray-50;
         padding: $spacing-lg;
         text-align: center;
     }
@@ -295,7 +295,7 @@ html {
         .c-pager-tab {
             border-top-left-radius: 10px;
             border-top-right-radius: 10px;
-            border: 1px solid $color-gray-50;
+            border: 1px solid $color-marketing-gray-50;
             border-bottom: none;
             display: block;
         }
@@ -395,7 +395,7 @@ html {
 
         span {
             @include text-body-md;
-            color: $color-gray-70;
+            color: $color-marketing-gray-70;
             display: block;
             font-weight: normal;
             margin-top: $spacing-md;
@@ -403,11 +403,11 @@ html {
     }
 
     .comparison-list {
-        border-top: 1px solid $color-gray-30;
+        border-top: 1px solid $color-marketing-gray-30;
         margin: $spacing-xl 0;
 
         li {
-            border-bottom: 1px solid $color-gray-30;
+            border-bottom: 1px solid $color-marketing-gray-30;
             padding: $spacing-lg 0;
         }
     }

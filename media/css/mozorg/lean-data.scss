@@ -35,7 +35,7 @@ $image-path: '/media/protocol/img';
 }
 
 .mzp-c-hero {
-    background: $color-gray-20;
+    background: $color-marketing-gray-20;
 
     .mzp-c-hero-desc {
         font-weight: bold;
@@ -43,7 +43,7 @@ $image-path: '/media/protocol/img';
 }
 
 .principles-other {
-    background: $color-gray-20;
+    background: $color-marketing-gray-20;
     margin-top: $layout-lg;
     padding: $spacing-lg 0;
 
@@ -53,14 +53,14 @@ $image-path: '/media/protocol/img';
         .mzp-c-card-block-link:hover,
         .mzp-c-card .mzp-c-card-block-link:active,
         .mzp-c-card .mzp-c-card-block-link:focus {
-            box-shadow: 0 0 0 4px $color-gray-30;
+            box-shadow: 0 0 0 4px $color-marketing-gray-30;
         }
     }
 }
 
 .c-highlight {
-    background: $color-gray-20;
-    border-radius: 4px;
+    background: $color-marketing-gray-20;
+    border-radius: $border-radius-sm;
     margin: $layout-md 0 $layout-lg;
     padding: $spacing-md;
 }
@@ -76,7 +76,7 @@ $image-path: '/media/protocol/img';
 }
 
 .mzp-c-call-out-compact.contact {
-    background-color: $color-gray-30;
+    background-color: $color-marketing-gray-30;
 }
 
 @media #{$mq-md} {

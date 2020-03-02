@@ -23,7 +23,7 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Hero
 .mzp-c-hero {
-    background-color: $color-gray-20;
+    background-color: $color-marketing-gray-20;
 
     .mzp-c-hero-desc {
         margin: 0;
@@ -90,8 +90,8 @@ $image-path: '/media/protocol/img';
         padding-bottom: $layout-md;
         padding-top: $layout-md;
         background: $color-white;
-        border-radius: 6px;
-        box-shadow: 0 4px 16px 0 $color-gray-60;
+        border-radius: $border-radius-md;
+        box-shadow: $box-shadow-md;
     }
 
     .mzp-c-newsletter-form {
@@ -99,8 +99,8 @@ $image-path: '/media/protocol/img';
         @include font-size(14px);
 
         input[type=email] {
-            border: 2px solid $color-gray-30;
-            border-radius: 2px;
+            border: 2px solid $color-marketing-gray-30;
+            border-radius: $border-radius-xs;
             padding-top: 10px; // to make input match button height
             padding-bottom: 10px; // to make input match button height
         }

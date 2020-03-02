@@ -11,7 +11,7 @@ $image-path: '/media/protocol/img';
 .enterprise-head {
     @include clearfix;
     @include text-display-xs;
-    background-color: $color-off-black;
+    background-color: $color-ink-80;
     color: #fff;
 }
 
@@ -58,7 +58,7 @@ $image-path: '/media/protocol/img';
     input[type=email],
     input[type=tel],
     textarea {
-        border: 1px solid $color-gray-40;
+        border: 1px solid $color-marketing-gray-40;
     }
 
     input[type=tel] {

@@ -209,7 +209,7 @@ $image-path: '/media/protocol/img';
     .download-link:link,
     .download-link:visited {
         @include font-size(12px);
-        border-radius: 2px;
+        border-radius: $border-radius-xs;
         display: inline-block;
         font-weight: bold;
         padding: .5em 20px;
