@@ -49,6 +49,29 @@ The existing recipe will already have the template name as prefix, though.
 You can also choose to remove strings from the conversion, if you just
 want to convert a subset of the strings.
 
+If you want to handle things such as updating existing translations to use
+brand terms as placeholders, you can update the recipe to replace existing
+string content by using the ``REPLACE()`` helper:
+
+.. code-block:: python
+
+    ctx.add_transforms(
+        "firefox/switch.ftl",
+        "firefox/switch.ftl",
+        [
+            FTL.Message(
+                id=FTL.Identifier("switch-switching-to-firefox-is-fast"),
+                value=REPLACE(
+                    "firefox/switch.lang",
+                    "Switching to Firefox is fast, easy and risk-free, because Firefox imports your bookmarks, autofills, passwords and preferences from Chrome.",
+                    {
+                        "Firefox": TERM_REFERENCE("brand-name-firefox")
+                    }
+                )
+            ),
+        ]
+    )
+
 Once you're happy with the recipe, you can create the Fluent files and the template.
 
 Convert a .lang file to English .ftl
