@@ -12,21 +12,6 @@ def migrate(ctx):
     ctx.add_transforms(
         "firefox/switch.ftl",
         "firefox/switch.ftl",
-        transforms_from("""
-switch-select-what-to-take = {COPY(switch, "Select what to take from Chrome.",)}
-switch-enjoy-the-web-faster = {COPY(switch, "Enjoy the web faster, all set up for you.",)}
-switch-download-and-switch = {COPY(switch, "Download and switch",)}
-switch-share-to-facebook = {COPY(switch, "Share to Facebook",)}
-switch-send-a-tweet = {COPY(switch, "Send a tweet",)}
-switch-hey = {COPY(switch, "Hey,",)}
-switch-check-it-out = {COPY(switch, "Check it out and let me know what you think:",)}
-switch-send-an-email = {COPY(switch, "Send an email",)}
-""", switch=switch)
-        )
-
-    ctx.add_transforms(
-        "firefox/switch.ftl",
-        "firefox/switch.ftl",
         [
             FTL.Message(
                 id=FTL.Identifier("switch-switch-from-chrome"),
@@ -34,7 +19,8 @@ switch-send-an-email = {COPY(switch, "Send an email",)}
                     "firefox/switch.lang",
                     "Switch from Chrome to Firefox in just a few minutes",
                     {
-                        "Firefox": TERM_REFERENCE("brand-name-firefox")
+                        "Firefox": TERM_REFERENCE("brand-name-firefox"),
+                        "Chrome": TERM_REFERENCE("brand-name-chrome")
                     }
                 )
             ),
@@ -44,7 +30,8 @@ switch-send-an-email = {COPY(switch, "Send an email",)}
                     "firefox/switch.lang",
                     "Switching to Firefox is fast, easy and risk-free, because Firefox imports your bookmarks, autofills, passwords and preferences from Chrome.",
                     {
-                        "Firefox": TERM_REFERENCE("brand-name-firefox")
+                        "Firefox": TERM_REFERENCE("brand-name-firefox"),
+                        "Chrome": TERM_REFERENCE("brand-name-chrome")
                     }
                 )
             ),
@@ -54,7 +41,18 @@ switch-send-an-email = {COPY(switch, "Send an email",)}
                     "firefox/switch.lang",
                     "Switching to Firefox is fast, easy and risk-free. Firefox imports your bookmarks, autofills, passwords and preferences from Chrome.",
                     {
-                        "Firefox": TERM_REFERENCE("brand-name-firefox")
+                        "Firefox": TERM_REFERENCE("brand-name-firefox"),
+                        "Chrome": TERM_REFERENCE("brand-name-chrome")
+                    }
+                )
+            ),
+            FTL.Message(
+                id=FTL.Identifier("switch-select-what-to-take"),
+                value=REPLACE(
+                    "firefox/switch.lang",
+                    "Select what to take from Chrome.",
+                    {
+                        "Chrome": TERM_REFERENCE("brand-name-chrome")
                     }
                 )
             ),
@@ -74,7 +72,8 @@ switch-send-an-email = {COPY(switch, "Send an email",)}
                     "firefox/switch.lang",
                     "You can use Firefox and still have Chrome. Chrome won’t change on your machine one bit.",
                     {
-                        "Firefox": TERM_REFERENCE("brand-name-firefox")
+                        "Firefox": TERM_REFERENCE("brand-name-firefox"),
+                        "Chrome": TERM_REFERENCE("brand-name-chrome")
                     }
                 )
             ),
@@ -94,7 +93,8 @@ switch-send-an-email = {COPY(switch, "Send an email",)}
                     "firefox/switch.lang",
                     "🔥 Firefox makes switching from Chrome really fast. Try it out!",
                     {
-                        "Firefox": TERM_REFERENCE("brand-name-firefox")
+                        "Firefox": TERM_REFERENCE("brand-name-firefox"),
+                        "Chrome": TERM_REFERENCE("brand-name-chrome")
                     }
                 )
             ),
@@ -114,7 +114,8 @@ switch-send-an-email = {COPY(switch, "Send an email",)}
                     "firefox/switch.lang",
                     "Firefox makes switching from Chrome really fast. I like it a lot, and you should try it.",
                     {
-                        "Firefox": TERM_REFERENCE("brand-name-firefox")
+                        "Firefox": TERM_REFERENCE("brand-name-firefox"),
+                        "Chrome": TERM_REFERENCE("brand-name-chrome")
                     }
                 )
             ),
@@ -130,3 +131,17 @@ switch-send-an-email = {COPY(switch, "Send an email",)}
             ),
         ]
     )
+
+    ctx.add_transforms(
+        "firefox/switch.ftl",
+        "firefox/switch.ftl",
+        transforms_from("""
+switch-enjoy-the-web-faster = {COPY(switch, "Enjoy the web faster, all set up for you.",)}
+switch-download-and-switch = {COPY(switch, "Download and switch",)}
+switch-share-to-facebook = {COPY(switch, "Share to Facebook",)}
+switch-send-a-tweet = {COPY(switch, "Send a tweet",)}
+switch-hey = {COPY(switch, "Hey,",)}
+switch-check-it-out = {COPY(switch, "Check it out and let me know what you think:",)}
+switch-send-an-email = {COPY(switch, "Send an email",)}
+""", switch=switch)
+        )
