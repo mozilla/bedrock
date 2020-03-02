@@ -65,7 +65,8 @@ string content by using the ``REPLACE()`` helper:
                     "firefox/switch.lang",
                     "Switching to Firefox is fast, easy and risk-free, because Firefox imports your bookmarks, autofills, passwords and preferences from Chrome.",
                     {
-                        "Firefox": TERM_REFERENCE("brand-name-firefox")
+                        "Firefox": TERM_REFERENCE("brand-name-firefox"),
+                        "Chrome": TERM_REFERENCE("brand-name-chrome")
                     }
                 )
             ),
