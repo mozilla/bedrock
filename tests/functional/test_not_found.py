@@ -6,10 +6,12 @@ import pytest
 
 from pages.not_found import NotFoundPage
 
+
 @pytest.mark.nondestructive
 def test_go_back_button_is_not_displayed_without_history(base_url, selenium):
     page = NotFoundPage(selenium, base_url).open()
     assert not page.is_go_back_button_displayed
+
 
 @pytest.mark.nondestructive
 def test_go_back_button_is_displayed_with_history(base_url, selenium):
