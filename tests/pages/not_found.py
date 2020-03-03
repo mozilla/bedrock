@@ -3,18 +3,13 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from selenium.webdriver.common.by import By
-
 from pages.base import BasePage
-from pages.regions.download_button import DownloadButton
-
 
 class NotFoundPage(BasePage):
 
     URL_TEMPLATE = '/{locale}/404/'
-
-    _download_button_locator = (By.ID, 'download-button-desktop-release')
+    _go_back_button_locator = (By.ID, 'go-back')
 
     @property
-    def download_button(self):
-        el = self.find_element(*self._download_button_locator)
-        return DownloadButton(self, root=el)
+    def is_go_back_button_displayed(self):
+        return self.is_element_displayed(*self._go_back_button_locator)

@@ -3,11 +3,17 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import pytest
+import time
 
 from pages.not_found import NotFoundPage
 
+@pytest.mark.nondestructive
+def test_go_back_button_is_not_displayed_without_history(base_url, selenium):
+    page = NotFoundPage(selenium, base_url).open()
+    assert not page.is_go_back_button_displayed
 
 @pytest.mark.nondestructive
-def test_is_download_button_displayed(base_url, selenium):
+def test_go_back_button_is_displayed_with_history(base_url, selenium):
+    selenium.get(base_url)
     page = NotFoundPage(selenium, base_url).open()
-    assert page.download_button.is_displayed
+    assert page.is_go_back_button_displayed
