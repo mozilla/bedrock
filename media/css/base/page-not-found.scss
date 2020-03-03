@@ -12,16 +12,19 @@ $image-path: '/media/protocol/img';
 }
 
 main {
-    font-size: 18px;
+    @include font-size(18px);
 }
 
 .error_header {
-    font-size: 40px;
+    @include font-size(40px);
 }
 
 .list-icon {
+    @include bidi((
+        (padding-left, auto, $spacing-md),
+        (padding-right, $spacing-md, auto),
+    ));
     vertical-align: top;
-    padding-right: $spacing-md;
 }
 
 .has-icon {
@@ -60,7 +63,7 @@ main {
 
 @media #{$mq-md} {
     .error_header {
-        font-size: 48px;
+        @include font-size(48px);
     }
 }
 

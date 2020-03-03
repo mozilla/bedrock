@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% set_lang_files "mozorg/404-update-2020" %}
+{% set_lang_files "mozorg/404" %}
 {% extends "base-error.html" %}
 
 {% block gtm_page_id %}data-gtm-page-id="404"{% endblock %}
@@ -22,7 +22,7 @@
       <h1 class="error_header">{{ _('Sorry, we can’t find that page') }}</h2>
       <p>{{_('We’re all about a healthy internet but sometimes broken URLs happen.') }}</p>
       <div class="hide-back" id="go-back">
-        <a class="back-button" onclick="goBack()">{{ _("Go Back") }}</a>
+        <a class="back-button">{{ _('Go Back') }}</a>
       </div>
     </section>
     <section class="mzp-l-content">
