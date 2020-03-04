@@ -5,7 +5,7 @@
 {% add_lang_files "firefox/home-master" %}
 
 {% extends "firefox/base/base-protocol.html" %}
-{% from "macros.html" import fxa_cta_link with context %}
+
 {% from "macros-protocol.html" import call_out, call_out_compact, feature_card with context %}
 
 {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
@@ -287,7 +287,13 @@
         </div>
         <h2 class="c-end-title">{{ footer_title }}</h2>
         <div class="mzp-c-button-download-container">
-          {{ fxa_cta_link(entrypoint='mozilla.org-firefox_home', action='signup', button_text=join_firefox, button_class='mzp-c-button mzp-t-product mzp-t-small', utm_campaign='firefox-home', utm_content='secondary-join-firefox') }}
+          {{ fxa_button(
+            entrypoint='mozilla.org-firefox_home',
+            button_text=join_firefox,
+            class_name='mzp-t-small',
+            optional_parameters={'utm_campaign': 'firefox-home', 'utm_content': 'secondary-join-firefox'},
+            optional_attributes={'data-cta-text': 'Join Firefox', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'secondary'}
+          ) }}
           <small class="mzp-c-button-download-privacy-link">
             <a href="{{ url('firefox.accounts') }}">{{ join_learn_more }}</a>
           </small>

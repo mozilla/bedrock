@@ -8,12 +8,16 @@
       {{ download_firefox(alt_copy=ftl('download-button-download-firefox'), dom_id='protocol-nav-download-firefox', button_color='mzp-t-secondary mzp-t-small', download_location='nav') }}
     {% endif %}
     {% if not hide_nav_get_account_button %}
-      <div class="c-navigation-fxa-cta-container">
-        <a class="c-navigation-fxa-cta mzp-c-button mzp-t-secondary mzp-t-small mzp-t-product js-fxa-cta-link" {{ fxa_link_fragment(entrypoint='mozilla.org-globalnav', action='signup', utm_campaign='globalnav', utm_content='get-firefox-account') }} data-cta-text="Get a Firefox Account" data-cta-type="FxA-Sync" data-cta-position="Navigation" data-alt-href="{{ url('firefox.accounts') }}">
-          {{ ftl('navigation-get-a-firefox-account') }}
-        </a>
-        <p class="c-navigation-fxa-cta-small-link"><a data-link-type="nav" data-link-name="Check out the Benefits" href="{{ url('firefox.accounts') }}">{{ ftl('navigation-check-out-the-benefits') }}</a></p>
-      </div>
+    <div class="c-navigation-fxa-cta-container">
+      {{ fxa_button(
+        entrypoint='mozilla.org-globalnav',
+        button_text=ftl('navigation-get-a-firefox-account'),
+        class_name='mzp-t-secondary mzp-t-small c-navigation-fxa-cta',
+        optional_parameters={'utm_campaign': 'navigation', 'utm_content': 'get-firefox-account'},
+        optional_attributes={'data-cta-text': 'Get a Firefox Account', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'navigation', 'data-alt-href': url('firefox.accounts')}
+      ) }}
+      <p class="c-navigation-fxa-cta-small-link"><a data-link-type="nav" data-link-name="Check out the Benefits" href="{{ url('firefox.accounts') }}">{{ ftl('navigation-check-out-the-benefits') }}</a></p>
+    </div>
     {% endif %}
   </div>
 {% endif %}

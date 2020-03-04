@@ -4,7 +4,7 @@
 
 {% add_lang_files "firefox/new/quantum" %}
 
-{% from "macros.html" import fxa_email_form, fxa_link_fragment with context %}
+{% from "macros.html" import fxa_email_form with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -59,7 +59,18 @@
               entrypoint=_entrypoint,
               button_class='mzp-c-button mzp-t-product')
             }}
-            <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint=_entrypoint, utm_campaign='fxa-embedded-form') }} class="js-fxa-cta-link">{{ _('Sign In') }}</a></p>
+            <p class="fxa-signin">
+              {{ _('Already have an account?') }}
+
+              {{ fxa_button(
+                entrypoint=_entrypoint,
+                button_text='Sign In',
+                action='signin',
+                is_button_class=False,
+                optional_parameters={'utm_campaign': 'fxa-embedded-form'},
+                optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'primary'}
+              ) }}
+            </p>
           </aside>
         </div>
       </div>

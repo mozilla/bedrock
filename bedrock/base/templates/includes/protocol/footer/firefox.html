@@ -2,8 +2,6 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import fxa_link_fragment with context %}
-
 <footer class="mzp-c-footer mzp-t-firefox" id="colophon">
   <div class="mzp-l-content">
     <nav class="mzp-c-footer-primary">
@@ -46,8 +44,27 @@
             {{ ftl('footer-join') }}
           </h5>
           <ul class="mzp-c-footer-list">
-            <li class="fxa-signin"><a {{ fxa_link_fragment(entrypoint='mozilla.org-firefoxfooter', action='signup', utm_campaign='footer', utm_content='join-sign-up') }} class="js-fxa-cta-link" rel="external noopener"  data-link-type="footer" data-link-name="Sign Up">{{ ftl('footer-sign-up') }}</a></li>
-            <li class="fxa-signin"><a {{ fxa_link_fragment(entrypoint='mozilla.org-firefoxfooter', action='signin', utm_campaign='footer', utm_content='join-sign-in') }} class="js-fxa-cta-link" rel="external noopener"  data-link-type="footer" data-link-name="Sign In">{{ ftl('footer-sign-in') }}</a></li>
+            <li class="fxa-signin">
+              {{ fxa_button(
+                entrypoint='mozilla.org-firefoxfooter',
+                button_text=ftl('footer-sign-up'),
+                is_button_class=False,
+                include_metrics=False,
+                optional_parameters={'utm_campaign': 'footer', 'utm_content': 'join-sign-up'},
+                optional_attributes={'data-cta-text': 'Sign Up', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'footer'}
+              ) }}
+            </li>
+            <li class="fxa-signin">
+              {{ fxa_button(
+                entrypoint='mozilla.org-firefoxfooter',
+                button_text=ftl('footer-sign-in'),
+                action='signin',
+                is_button_class=False,
+                include_metrics=False,
+                optional_parameters={'utm_campaign': 'footer', 'utm_content': 'join-sign-in'},
+                optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'footer'}
+              ) }}
+            </li>
             <li><a href="{{ url('firefox.accounts') }}" data-link-type="footer" data-link-name="Benefits">{{ ftl('footer-benefits') }}</a></li>
           </ul>
         </section>

@@ -133,60 +133,6 @@
   </section>
 {%- endmacro %}
 
-{# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#linking-to-accountsfirefoxcom #}
-{% macro fxa_link_fragment(entrypoint, entrypoint_experiment=None, entrypoint_variation=None, action='signin', form_type='button', utm_campaign=None, utm_content=None, utm_term=None) -%}
-  {% set fxa_path = '' %}
-  {% set fxa_queries = [
-    'form_type=' ~ form_type,
-    'entrypoint=' ~ entrypoint,
-    'utm_source=' ~ entrypoint,
-    'utm_medium=referral'
-  ] %}
-
-  {% if action == 'signup' %}
-    {% set fxa_path = 'signup?' %}
-  {% elif action == 'signin' %}
-    {% set fxa_path = 'signin?' %}
-  {% else %}
-    {% do fxa_queries.insert(0, 'action=email') %}
-  {% endif %}
-
-  {# utm_campaign is optional #}
-  {% if utm_campaign %}
-    {% do fxa_queries.append('utm_campaign=' ~ utm_campaign) %}
-  {% endif %}
-
-  {# utm_content is optional #}
-  {% if utm_content %}
-    {% do fxa_queries.append('utm_content=' ~ utm_content) %}
-  {% endif %}
-
-  {# utm_term is optional #}
-  {% if utm_term %}
-    {% do fxa_queries.append('utm_term=' ~ utm_term) %}
-  {% endif %}
-
-  {# entrypoint_experiment is optional #}
-  {% if entrypoint_experiment %}
-    {% do fxa_queries.append('entrypoint_experiment=' ~ entrypoint_experiment) %}
-  {% endif %}
-
-  {# entrypoint_variation is optional #}
-  {% if entrypoint_variation %}
-    {% do fxa_queries.append('entrypoint_variation=' ~ entrypoint_variation) %}
-  {% endif %}
-
-  href="{{ settings.FXA_ENDPOINT }}{{ fxa_path }}{{ fxa_queries|join('&') }}" data-mozillaonline-link="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}{{ fxa_path }}{{ fxa_queries|join('&') }}"
-
-{%- endmacro %}
-
-{# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#linking-to-accountsfirefoxcom #}
-{% macro fxa_cta_link(entrypoint, button_text, entrypoint_experiment=None, entrypoint_variation=None, form_type='button', action='signin', account_id=None, button_class=None, utm_campaign=None, utm_content=None, utm_term=None) %}
-  <a data-action="{{ settings.FXA_ENDPOINT }}" {{ fxa_link_fragment(entrypoint=entrypoint, entrypoint_experiment=entrypoint_experiment, entrypoint_variation=entrypoint_variation, form_type=form_type, action=action, utm_campaign=utm_campaign, utm_content=utm_content, utm_term=utm_term) }} class="js-fxa-cta-link{% if button_class %} {{ button_class }}{% endif %}" data-cta-text="Create account" data-cta-type="fxa-sync" data-cta-position="{{ button_location }}" {%if account_id %}id="{{ account_id }}"{% endif %}>
-    {{ button_text }}
-  </a>
-{%- endmacro %}
-
 {# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#signup-form #}
 {% macro fxa_email_form(entrypoint, entrypoint_experiment, entrypoint_variation, context=None, utm_campaign=None, utm_content=None, utm_term=None, style=None, class_name='fxa-email-form', form_title=None, intro_text=none, button_text=None, button_class='button button-blue') -%}
   <form action="{{ settings.FXA_ENDPOINT }}" data-mozillaonline-action="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}" id="fxa-email-form" class="{{ class_name }}">

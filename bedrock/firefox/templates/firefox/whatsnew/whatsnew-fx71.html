@@ -2,8 +2,6 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import fxa_cta_link with context %}
-
 {% add_lang_files "firefox/whatsnew_71" %}
 
 {% extends "firefox/whatsnew/base.html" %}
@@ -36,7 +34,15 @@
         </h2>
         <p>{{ _('The Firefox browser collects so little data about you, we don’t even require your email address. But when you use it to create a Firefox account, we can protect your privacy across more of your online life.') }}</p>
 
-        <p class="cta">{{ fxa_cta_link(entrypoint=entrypoint, action='signup', button_text=_('Sign In'), button_class='mzp-c-button mzp-t-product mzp-t-small js-fxa-product-button', utm_campaign=campaign, utm_content='top-cta') }}</p>
+        <p class="cta">
+          {{ fxa_button(
+            entrypoint=entrypoint,
+            button_text=_('Sign In'),
+            class_name='mzp-t-small',
+            optional_parameters={'utm_campaign': campaign, 'utm_content': 'top-cta'},
+            optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'primary'}
+          ) }}
+        </p>
       </div>
     </div>
   </section>
@@ -96,7 +102,15 @@
         </div>
       </div>
 
-      <p class="cta">{{ fxa_cta_link(entrypoint=entrypoint, action='signup', button_text=_('Get a Firefox Account'), button_class='mzp-c-button mzp-t-product mzp-t-small js-fxa-product-button', utm_campaign=campaign, utm_content='bottom-cta') }}</p>
+      <p class="cta">
+        {{ fxa_button(
+          entrypoint=entrypoint,
+          button_text=_('Get a Firefox Account'),
+          class_name='mzp-t-small',
+          optional_parameters={'utm_campaign': campaign, 'utm_content': 'bottom-cta'},
+          optional_attributes={'data-cta-text': 'Get a Firefox Account', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'secondary'}
+        ) }}
+      </p>
     </div>
   </section>
 
