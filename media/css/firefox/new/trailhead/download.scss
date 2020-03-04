@@ -11,6 +11,12 @@ $image-path: '/media/protocol/img';
 @import '../../../../protocol/css/includes/lib';
 @import '../../../../protocol/css/templates/card-layout';
 
+.mobile-buttons {
+    li {
+        display: inline-block;
+        margin: $spacing-sm;
+    }
+}
 
 .mzp-c-hero.mzp-t-dark {
     @include background-size(auto 100%);

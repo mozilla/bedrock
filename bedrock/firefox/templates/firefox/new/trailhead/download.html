@@ -32,6 +32,19 @@
   ) %}
     {{ download_firefox(alt_copy=_('Download Now'), locale_in_transition=True, download_location='primary cta') }}
 
+    {% if v == 'b' %}
+    <ul class="mobile-buttons">
+      <li>
+        {{ google_play_button(href=android_url, id='playStoreLink') }}
+      </li>
+      <li>
+        <a id="appStoreLink" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+        </a>
+      </li>
+    </ul>
+    {% endif %}
+
     <ul class="small-links desktop">
       <li><button class="platform-modal-button js-platform-modal-button hidden" type="button">{{_('Advanced install options & other platforms') }}</button></li>
       <li><a href="{{ firefox_url('desktop', 'all') }}">{{_('Download in another language') }}</a></li>

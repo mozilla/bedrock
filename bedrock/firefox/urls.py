@@ -6,6 +6,7 @@ from django.conf.urls import url
 import bedrock.releasenotes.views
 from bedrock.mozorg.util import page
 from bedrock.releasenotes import version_re
+from bedrock.utils.views import VariationTemplateView
 
 from bedrock.firefox import views
 
@@ -67,7 +68,8 @@ urlpatterns = (
         name='firefox.send-to-device-post'),
     page('firefox/unsupported-systems', 'firefox/unsupported-systems.html'),
     url(r'^firefox/new/$', views.new, name='firefox.new'),
-    url(r'^firefox/download/thanks/$', views.download_thanks, name='firefox.download.thanks'),
+    url(r'^firefox/download/thanks/$', views.download_thanks,
+    VariationTemplateView.as_view(template_name='download.html', template_context_variations=['a', 'b']), name='firefox.download.thanks'),
     page('firefox/nightly/firstrun', 'firefox/nightly_firstrun.html'),
     url(r'^firefox/installer-help/$', views.installer_help,
         name='firefox.installer-help'),
