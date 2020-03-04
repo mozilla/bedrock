@@ -171,6 +171,11 @@ def server_error_view(request, template_name='500.html'):
     return l10n_utils.render(request, template_name, status=500)
 
 
+def page_not_found_view(request, template_name='404.html'):
+    """404 error handler that runs context processors."""
+    return l10n_utils.render(request, template_name, status=404)
+
+
 @csrf_exempt
 @require_POST
 def csp_violation_capture(request):

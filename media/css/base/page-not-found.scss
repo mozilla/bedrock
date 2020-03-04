@@ -15,8 +15,13 @@ main {
     @include font-size(18px);
 }
 
-.error_header {
+.error-header {
     @include font-size(40px);
+}
+
+.error-helper { // Fallback content only
+    @include text-display-xs;
+    padding-top: $spacing-lg;
 }
 
 .list-icon {
@@ -61,8 +66,17 @@ main {
     width: 220px;
 }
 
+.prose { // Fallback content only
+    list-style-type: disc;
+    padding-left: $spacing-xl;
+}
+.fallback-list-content { // Fallback content only
+    @include font-size(16px);
+    padding-bottom: $spacing-md;
+}
+
 @media #{$mq-md} {
-    .error_header {
+    .error-header {
         @include font-size(48px);
     }
 }

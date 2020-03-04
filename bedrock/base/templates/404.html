@@ -18,10 +18,9 @@
 
 {% block content %}
   {% if l10n_has_tag('404_update_2020') %}
-
     <main role="main">
       <section class="mzp-l-content message-section">
-        <h1 class="error_header">{{ _('Sorry, we can’t find that page') }}</h2>
+        <h1 class="error-header">{{ _('Sorry, we can’t find that page') }}</h2>
         <p>{{_('We’re all about a healthy internet but sometimes broken URLs happen.') }}</p>
         <div class="hide-back" id="go-back">
           <a class="back-button">{{ _('Go Back') }}</a>
@@ -66,21 +65,21 @@
   {% else %}
 
     <main>
-      <div class="content">
+      <div class="mzp-l-content message-section">
         <header>
-          <h1><span>{{ _('Whoops!') }}</span></h1>
-          <p>{{ _('Did you make a left at that last URL instead of a right? No problem. Here are some tips to get you back on your way:') }}</p>
+          <h1 class="error-header"><span>{{ _('Whoops!') }}</span></h1>
+          <p class="error-helper">{{ _('Did you make a left at that last URL instead of a right? No problem. Here are some tips to get you back on your way:') }}</p>
         </header>
         <div class="error-content">
           <ul class="prose">
-            <li>{{ _('If you typed in the address, check your spelling. Could just be a typo.') }}</li>
-            <li>
+            <li class="fallback-list-content">{{ _('If you typed in the address, check your spelling. Could just be a typo.') }}</li>
+            <li class="fallback-list-content">
             {% trans bugzilla='https://bugzilla.mozilla.org/enter_bug.cgi?product=www.mozilla.org' %}
               If you’ve found an issue with one of our websites, we’d appreciate it if you could report the problem in Bugzilla, our <a href="{{ bugzilla }}">bug tracker</a>. One of our developers will take a look at it as soon as possible.
             {% endtrans %}
             </li>
-            <li>{{ _('If you followed a link, it’s probably broken.') }}</li>
-            <li>
+            <li class="fallback-list-content">{{ _('If you followed a link, it’s probably broken.') }}</li>
+            <li class="fallback-list-content">
             {% trans  url=url('mozorg.home') %}
               If you’re not sure what you’re looking for, start at <a href="{{ url }}">mozilla.org</a>.
             {% endtrans %}
