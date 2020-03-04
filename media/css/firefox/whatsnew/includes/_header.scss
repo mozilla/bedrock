@@ -1,0 +1,47 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../../../protocol/css/includes/lib';
+
+//* -------------------------------------------------------------------------- */
+// Up-to-date page header
+
+.c-page-header {
+    background: transparent;
+}
+
+.mzp-c-notification-bar {
+    display: none;
+    margin: $layout-xs auto;
+}
+
+.is-up-to-date .mzp-c-notification-bar.up-to-date,
+.is-out-of-date .mzp-c-notification-bar.out-of-date {
+    display: block;
+}
+
+.c-page-header-inner {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.c-page-header-up-to-date {
+    margin: 0 $layout-sm;
+}
+
+.c-page-header-logo-fx {
+    min-width: 216px;
+}
+
+@media #{$mq-lg} {
+    .c-page-header-inner {
+        @include grid-column-gap($spacing-lg);
+        display: grid;
+        grid-template-columns: 1fr max-content 1fr;
+    }
+}

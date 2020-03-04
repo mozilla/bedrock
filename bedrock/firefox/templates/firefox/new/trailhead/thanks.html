@@ -29,19 +29,22 @@
 {% block content %}
 <main role="main">
   <div class="mzp-l-content">
-    <p class="c-notification t-warning unsupported">
-    {% trans url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista' %}
-      You’re using an insecure, outdated operating system <a href="{{ url }}">no longer supported by Firefox</a>.
-    {% endtrans %}
-    </p>
-    <p class="c-notification t-success auto-download">
+    <div class="mzp-c-notification-bar mzp-t-warning unsupported">
+      <p>
+        {% trans url='https://support.mozilla.org/kb/end-support-windows-xp-and-vista' %}
+          You’re using an insecure, outdated operating system <a href="{{ url }}">no longer supported by Firefox</a>.
+        {% endtrans %}
+      </p>
+    </div>
+    <div class="mzp-c-notification-bar mzp-t-success auto-download">
       {# fallback_url is replaced by the platform download link via JS, but if
          something fails the user should still get a link to a working download path. #}
-
-      {% trans id='direct-download-link', fallback_url=url('firefox.all') %}
-        Your download should begin automatically. Didn’t work? <a id="{{ id }}" href="{{ fallback_url }}">Try downloading again</a>.
-      {% endtrans %}
-    </p>
+      <p>
+        {% trans id='direct-download-link', fallback_url=url('firefox.all') %}
+          Your download should begin automatically. Didn’t work? <a id="{{ id }}" href="{{ fallback_url }}">Try downloading again</a>.
+        {% endtrans %}
+      </p>
+      </div>
   </div>
 
   {% call call_out(
