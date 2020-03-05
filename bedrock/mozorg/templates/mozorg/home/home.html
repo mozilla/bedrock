@@ -33,7 +33,17 @@ accessible to all.') }}
 {% endblock %}
 
 {% block page_css %}
-{{ css_bundle('home') }}
+  {{ css_bundle('home') }}
+
+  {% if switch('fundraising-banner') %}
+    {{ css_bundle('fundraising-banner') }}
+  {% endif %}
+{% endblock %}
+
+{% block page_banner %}
+  {% if switch('fundraising-banner') %}
+    {% include 'includes/banners/fundraiser.html' %}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -196,7 +206,11 @@ accessible to all.') }}
 {% endblock %}
 
 {% block js %}
-{{ js_bundle('newsletter') }}
+  {{ js_bundle('newsletter') }}
+
+  {% if switch('fundraising-banner') %}
+    {{ js_bundle('fundraising-banner') }}
+  {% endif %}
 {% endblock %}
 
 {% block structured_data %}
