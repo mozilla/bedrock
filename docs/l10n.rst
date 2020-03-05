@@ -121,7 +121,7 @@ Our convention for string ID creation is the following:
 3. IDs should be prefixed with the name of the template file (e.g. ``firefox-new-skyline`` for ``firefox-new-skyline.html``)
 4. If you need to create a new string for the same place on a page and to transition to it as it is translated, you can
    add a version suffix to the string ID: e.g. ``firefox-new-skyline-main-page-title-v2``.
-4. The ID should be as descriptive as possible to make sense to the developer, but could be anything as long as it adheres
+5. The ID should be as descriptive as possible to make sense to the developer, but could be anything as long as it adheres
    to the rules above.
 
 The ``ftl`` helper function

@@ -6,7 +6,7 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../../protocol/css/includes/lib';
-@import '../../protocol/components/banner';
+@import 'includes/base';
 
 @keyframes swoosh {
     0% {background: $color-blue-40;}

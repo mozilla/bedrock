@@ -33,6 +33,7 @@ Contents
    javascript-libs
    newsletters
    content-cards
+   banners
    uitour
    send-to-device
    firefox-accounts

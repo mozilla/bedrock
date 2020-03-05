@@ -248,10 +248,15 @@
     },
     {
       "files": [
-        "css/mozorg/home/home-2018.scss",
-        "css/mozorg/home/fundraiser.scss"
+        "css/mozorg/home/home-2018.scss"
       ],
       "name": "home-2018"
+    },
+    {
+      "files": [
+        "css/base/banners/fundraiser.scss"
+      ],
+      "name": "fundraising-banner"
     },
     {
       "files": [

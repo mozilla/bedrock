@@ -6,7 +6,7 @@
     'use strict';
 
     function onLoad() {
-        window.Mozilla.Banner.init('fundraiser-sept2019');
+        window.Mozilla.Banner.init('fundraising-banner');
     }
 
     window.Mozilla.run(onLoad);
