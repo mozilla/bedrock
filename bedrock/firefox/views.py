@@ -570,7 +570,8 @@ class WhatsnewView(L10nTemplateView):
         elif locale == 'id':
             template = 'firefox/whatsnew/index-lite.id.html'
         elif version.startswith('74.'):
-            if lang_file_is_active('firefox/whatsnew_74', locale):
+            # Facebook isn't used in China so zh-CN should fall back to more relevant content
+            if locale != 'zh-CN' and lang_file_is_active('firefox/whatsnew_74', locale):
                 template = 'firefox/whatsnew/whatsnew-fx74.html'
             elif lang_file_is_active('firefox/whatsnew_73', locale):
                 template = 'firefox/whatsnew/whatsnew-fx73.html'
