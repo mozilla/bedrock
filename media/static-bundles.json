@@ -908,7 +908,7 @@
     },
     {
       "files": [
-        "js/firefox/new/thanks.js"
+        "js/firefox/new/trailhead/thanks.js"
       ],
       "name": "firefox_new_thanks"
     },

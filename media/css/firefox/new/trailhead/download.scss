@@ -86,7 +86,10 @@ $image-path: '/media/protocol/img';
 
         .mzp-c-hero-title {
             @include bidi(((background-position, top left, top right),));
-            // max-width: 9em;
+        }
+
+        html[lang^='en'] &.t-narrow .mzp-c-hero-title {
+            max-width: 9em;
         }
 
         .mzp-c-hero-desc {

@@ -9,22 +9,22 @@
 {% block experiments %}{% endblock %}
 
 {% block main_content %}
-    <aside class="mzp-l-content mzp-t-narrow">
-      <div class="c-thanks">
-        <h1 class="headline">{{ _('Let’s do this!') }}</h1>
-        <p class="tagline">{{ _('Sync up with Firefox on mobile:') }}</p>
-        <ul>
-          <li>
-            {{ google_play_button(extra_data_attributes={'download-location': 'other'}) }}
-          </li>
-          <li>
-            <a href="{{ firefox_ios_url('mozorg-scene_2-appstore-button') }}" data-link-type="download" data-download-os="iOS" data-download-location="other">
-              <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
-            </a>
-          </li>
-        </ul>
-      </div>
-    </aside>
+  <aside class="mzp-l-content mzp-t-narrow">
+    <div class="c-thanks">
+      <h1 class="headline">{{ _('Let’s do this!') }}</h1>
+      <p class="tagline">{{ _('Sync up with Firefox on mobile:') }}</p>
+      <ul>
+        <li>
+          {{ google_play_button(extra_data_attributes={'download-location': 'other'}) }}
+        </li>
+        <li>
+          <a href="{{ firefox_ios_url('mozorg-scene_2-appstore-button') }}" data-link-type="download" data-download-os="iOS" data-download-location="other">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+          </a>
+        </li>
+      </ul>
+    </div>
+  </aside>
 {% endblock %}
 
 {% block js %}

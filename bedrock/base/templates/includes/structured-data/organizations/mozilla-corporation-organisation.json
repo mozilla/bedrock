@@ -275,7 +275,7 @@
     "url": "{% filter absolute_url %}{{ url('firefox.new.protocol.download_linux') }}{% endfilter %}",
     "logo": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
     "image": [
-      "{% filter absolute_url %}{{ static('img/firefox/new/browser-high-res.png') }}{% endfilter %}",
+      "{% filter absolute_url %}{{ static('img/structured-data/browser-2.png') }}{% endfilter %}",
       "{% filter absolute_url %}{{ static('img/structured-data/browser-linux-2.png') }}{% endfilter %}",
       "{% filter absolute_url %}{{ static('img/structured-data/browser-linux-3.png') }}{% endfilter %}"
     ],
@@ -360,7 +360,7 @@
     "url": "{% filter absolute_url %}{{ url('firefox.new.protocol.download_mac') }}{% endfilter %}",
     "logo": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
     "image": [
-      "{% filter absolute_url %}{{ static('img/firefox/new/browser-high-res.png') }}{% endfilter %}",
+      "{% filter absolute_url %}{{ static('img/structured-data/browser-2.png') }}{% endfilter %}",
       "{% filter absolute_url %}{{ static('img/structured-data/browser-mac-2.png') }}{% endfilter %}",
       "{% filter absolute_url %}{{ static('img/structured-data/browser-mac-3.png') }}{% endfilter %}"
     ],
@@ -482,7 +482,7 @@
     "url": "{% filter absolute_url %}{{ url('firefox.new.protocol.download_windows') }}{% endfilter %}",
     "logo": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/browser/logo-lg-high-res.png') }}{% endfilter %}",
     "image": [
-      "{% filter absolute_url %}{{ static('img/firefox/new/browser-high-res.png') }}{% endfilter %}",
+      "{% filter absolute_url %}{{ static('img/structured-data/browser-2.png') }}{% endfilter %}",
       "{% filter absolute_url %}{{ static('img/firefox/new/trailhead/browser-window.svg') }}{% endfilter %}",
       "{% filter absolute_url %}{{ static('img/structured-data/browser-win-3.png') }}{% endfilter %}"
     ],

@@ -7,15 +7,20 @@
 /* -------------------------------------------------------------------------- */
 // Download thank you page for quantum lang file and trailhead design
 
-.c-thanks h1 {
-    border-bottom: 1px solid $color-gray-30;
-    padding-bottom: $layout-lg;
-}
+.c-thanks {
+    text-align: center;
 
-.c-thanks ul {
-    margin-bottom: $layout-lg;
-}
+    h1 {
+        border-bottom: 1px solid $color-marketing-gray-30;
+        padding-bottom: $layout-lg;
+    }
 
-.c-thanks li {
-    display: inline-block;
+    ul {
+        margin-bottom: $layout-lg;
+    }
+
+    li {
+        display: inline-block;
+    }
+
 }
