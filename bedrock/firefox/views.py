@@ -617,7 +617,6 @@ class WhatsNewIndiaView(WhatsnewView):
 
 
 def download_thanks(request):
-    experience = request.GET.get('xv', None)
     locale = l10n_utils.get_locale(request)
     variant = request.GET.get('v', None)
     newsletter = request.GET.get('n', None)
@@ -645,26 +644,7 @@ def download_thanks(request):
     if newsletter == 'f':
         show_newsletter = False
 
-    if locale == 'de':
-        if experience == 'berlin':
-            template = 'firefox/campaign/berlin/scene2.html'
-        elif experience == 'aus-gruenden':
-            template = 'firefox/campaign/berlin/scene2-aus-gruenden.html'
-        elif experience == 'herz':
-            template = 'firefox/campaign/berlin/scene2-herz.html'
-        elif experience == 'geschwindigkeit':
-            template = 'firefox/campaign/berlin/scene2-gesch.html'
-        elif experience == 'privatsphare':
-            template = 'firefox/campaign/berlin/scene2-privat.html'
-        elif experience == 'auf-deiner-seite':
-            template = 'firefox/campaign/berlin/scene2-auf-deiner-seite.html'
-        elif lang_file_is_active('firefox/new/trailhead', locale):
-            template = 'firefox/new/trailhead/thanks.html'
-        else:
-            template = 'firefox/new/scene2.html'
-    elif locale == 'en-US' and experience == 'betterbrowser':
-        template = 'firefox/campaign/better-browser/scene2.html'
-    elif lang_file_is_active('firefox/new/trailhead', locale):
+    if lang_file_is_active('firefox/new/trailhead', locale):
         template = 'firefox/new/trailhead/thanks.html'
     else:
         template = 'firefox/new/scene2.html'
@@ -716,55 +696,14 @@ def new(request):
 
 
 def campaign(request):
-
-    # note: v and xv params only allow a-z, A-Z, 0-9, -, and _ characters
-    experience = request.GET.get('xv', None)
-    variant = request.GET.get('v', None)
-
     locale = l10n_utils.get_locale(request)
 
-    # ensure variant matches pre-defined value
-
-    if variant not in []:  # place expected ?v= values in this list
-        variant = None
-
-    if locale == 'de':
-        if experience == 'berlin':
-            template = 'firefox/campaign/berlin/scene1.html'
-        elif experience == 'aus-gruenden':
-            template = 'firefox/campaign/berlin/scene1-aus-gruenden.html'
-        elif experience == 'herz':
-            template = 'firefox/campaign/berlin/scene1-herz.html'
-        elif experience == 'geschwindigkeit':
-            template = 'firefox/campaign/berlin/scene1-gesch.html'
-        elif experience == 'privatsphare':
-            template = 'firefox/campaign/berlin/scene1-privat.html'
-        elif experience == 'auf-deiner-seite':
-            template = 'firefox/campaign/berlin/scene1-auf-deiner-seite.html'
-        else:
-            if lang_file_is_active('firefox/campaign-trailhead', locale):
-                template = 'firefox/campaign/index-trailhead.html'
-            else:
-                template = 'firefox/campaign/index.html'
-    elif locale == 'en-US':
-        if experience == 'betterbrowser':
-            template = 'firefox/campaign/better-browser/scene1.html'
-        elif experience == 'safari':
-            template = 'firefox/campaign/compare/scene1-safari.html'
-        elif experience == 'edge':
-            template = 'firefox/campaign/compare/scene1-edge.html'
-        else:
-            template = 'firefox/campaign/index-trailhead.html'
-    elif lang_file_is_active('firefox/campaign-trailhead', locale):
+    if lang_file_is_active('firefox/campaign-trailhead', locale):
         template = 'firefox/campaign/index-trailhead.html'
     else:
         template = 'firefox/campaign/index.html'
 
-    # no harm done by passing 'v' to template, even when no experiment is running
-    # (also makes tests easier to maintain by always sending a context)
-    return l10n_utils.render(
-        request, template, {'experience': experience, 'v': variant}
-    )
+    return l10n_utils.render(request, template)
 
 
 def ios_testflight(request):
