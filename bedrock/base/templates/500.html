@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% set_lang_files "mozorg/404-update-2020" %}
+{% set_lang_files "mozorg/500" %}
 
 {% extends "base-error.html" %}
 
@@ -15,13 +15,34 @@
 {% endblock %}
 
 {% block content %}
-<main role="main">
-  <section class="mzp-l-content">
-    <h1 class="error_header">{{ _('Something went wrong') }}</h2>
-    <p>{{ _('It’s probably just a server error and we’re working to fix it.') }}<br>
-    {% trans firefox="https://firefox.com", mozilla=url('mozorg.home') %}
-      You can also try refreshing this page or go to <a href={{ firefox }}>firefox.com</a> or <a href={{ mozilla }}>mozilla.org</a>
-    {% endtrans %}</p>
-  </section>
-</main>
+  {% if l10n_has_tag('404_update_2020') %}
+    <main role="main">
+      <section class="mzp-l-content">
+        <h1 class="error_header">{{ _('Something went wrong') }}</h2>
+        <p>{{ _('It’s probably just a server error and we’re working to fix it.') }}<br>
+        {% trans firefox="https://firefox.com", mozilla=url('mozorg.home') %}
+          You can also try refreshing this page or go to <a href={{ firefox }}>firefox.com</a> or <a href={{ mozilla }}>mozilla.org</a>
+        {% endtrans %}</p>
+      </section>
+    </main>
+  {% else %}
+    <main>
+      <div class="content">
+        <header>
+          <h1><span>{{ _('Oh Noes!') }}</span></h1>
+          <h2>{{ _('An error occurred.') }}</h2>
+        </header>
+        <div class="error-content">
+          <p>
+          {% trans bugzilla='https://bugzilla.mozilla.org/enter_bug.cgi?product=www.mozilla.org' %}
+            If you’ve found an issue with one of our websites, we’d appreciate it if you could report the problem in Bugzilla, our <a href="{{ bugzilla }}">bug tracker</a>. One of our developers will take a look at it as soon as possible.
+          {% endtrans %}
+          </p>
+        </div>
+        <aside class="download-firefox">
+          {{ download_firefox() }}
+        </aside>
+      </div>
+    </main>
+  {% endif %}
 {% endblock %}

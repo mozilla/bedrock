@@ -9,7 +9,8 @@
     // Hides back button if there is no previous page to go back to.
     if (window.history.length > 1) {
         var div = document.getElementById('go-back');
-        div.classList.remove('hide-back');}
+        div.classList.remove('hide-back');
+    }
 
     document.getElementById('go-back').addEventListener('click', function(){
         window.history.back();
