@@ -75,6 +75,14 @@ main {
     padding-bottom: $spacing-md;
 }
 
+.download-firefox {
+    text-align: center;
+
+    .mzp-c-button-download-container {
+        margin: $spacing-lg 0;
+    }
+}
+
 @media #{$mq-md} {
     .error-header {
         @include font-size(48px);
