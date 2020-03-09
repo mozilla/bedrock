@@ -487,7 +487,6 @@ INSTALLED_APPS = (
     'bedrock.newsletter',
     'bedrock.press',
     'bedrock.privacy',
-    'bedrock.styleguide',
     'bedrock.externalfiles',
     'bedrock.security',
     'bedrock.events',
