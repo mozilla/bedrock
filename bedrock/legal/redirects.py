@@ -8,6 +8,6 @@ redirectpatterns = (
     # bug 1321033
     redirect(r'^about/legal/terms/firefox-hello', 'privacy.archive.hello-2014-11'),
 
-    # issue 5816
-    redirect(r'^about/logo', 'styleguide.index')
+    # issue 5816, Issue 8418
+    redirect(r'^about/logo', 'https://mozilla.design/')
 )

@@ -116,11 +116,11 @@ redirectpatterns = (
     # Bug 763665, 1148127
     redirect(r'^projects/?$', 'firefox'),
 
-    # Bug 792185 Brand Toolkit -> Style Guide
-    redirect(r'^firefox/brand(/.*)?', 'styleguide.index'),
+    # Bug 792185 Brand Toolkit -> Style Guide, Issue 8418
+    redirect(r'^firefox/brand(/.*)?', 'https://mozilla.design/firefox/'),
 
-    # Bug 804810 Identity Guidelines -> Style Guide
-    redirect(r'^foundation/identity-guidelines(/.*)?', 'styleguide.index'),
+    # Bug 804810 Identity Guidelines -> Style Guide, Issue 8418
+    redirect(r'^foundation/identity-guidelines(/.*)?', 'https://mozilla.design/mozilla/'),
 
     # Bug 945474 - delete Marketplace marketing product page
     # and redirect
@@ -681,4 +681,9 @@ redirectpatterns = (
     redirect(r'^developer/browsertest/?$', 'https://developer.mozilla.org/docs/Learn/Tools_and_testing/Cross_browser_testing/Automated_testing'),
     redirect(r'^developer/css-grid/?$', 'https://developer.mozilla.org/docs/Learn/CSS/CSS_layout/Grids'),
 
+    # Issue 8418
+    redirect(r'^styleguide/products/firefox(.+)', 'https://mozilla.design/firefox/'),
+    redirect(r'^styleguide/identity/firefox(.+)', 'https://mozilla.design/firefox/'),
+    redirect(r'^styleguide/identity/mozilla(.+)', 'https://mozilla.design/mozilla/'),
+    redirect(r'^styleguide(/.*)?', 'https://mozilla.design/'),
 )

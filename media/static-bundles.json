@@ -365,12 +365,6 @@
     },
     {
       "files": [
-        "css/styleguide/styleguide.scss"
-      ],
-      "name": "styleguide"
-    },
-    {
-      "files": [
         "css/mozorg/internet-health/health-subpage.scss"
       ],
       "name": "health-subpage"
