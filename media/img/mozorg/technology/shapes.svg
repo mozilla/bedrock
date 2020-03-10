@@ -1,7 +1,0 @@
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="0" height="0" overflow="visible" viewBox="0 0 100% 100%">
-  <defs>
-    <clipPath id="skewed" clipPathUnits="objectBoundingBox">
-      <path d="M0,.1 L.09,1 L1,.94 L.9,0 L0,.1 z" />
-    </clipPath>
-  </defs>
-</svg>

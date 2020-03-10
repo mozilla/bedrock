@@ -530,12 +530,6 @@
     },
     {
       "files": [
-        "css/mozorg/technology.scss"
-      ],
-      "name": "technology"
-    },
-    {
-      "files": [
         "css/protocol/protocol.scss"
       ],
       "name": "protocol-core"
@@ -1014,16 +1008,6 @@
         "js/mozorg/home/banner-init.js"
       ],
       "name": "fundraising-banner"
-    },
-    {
-      "files": [
-        "js/libs/jquery.waypoints.min.js",
-        "js/libs/jquery.waypoints-sticky.min.js",
-        "js/hubs/sub-nav.js",
-        "protocol/js/protocol-modal.js",
-        "js/mozorg/technology.js"
-      ],
-      "name": "technology"
     },
     {
       "files": [
