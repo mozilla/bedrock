@@ -75,12 +75,6 @@
     },
     {
       "files": [
-        "css/firefox/campaign/berlin-variation.scss"
-      ],
-      "name": "firefox_campaign_berlin_variation"
-    },
-    {
-      "files": [
         "css/mozorg/mpl-differences.scss"
       ],
       "name": "mpl-differences"
@@ -139,12 +133,6 @@
         "css/firefox/new/yandex-scene1.scss"
       ],
       "name": "firefox_new_scene1_yandex"
-    },
-    {
-      "files": [
-        "css/firefox/campaign/compare.scss"
-      ],
-      "name": "firefox_campaign_compare"
     },
     {
       "files": [
@@ -475,12 +463,6 @@
     },
     {
       "files": [
-        "css/firefox/campaign/better-browser.scss"
-      ],
-      "name": "firefox_campaign_better_browser"
-    },
-    {
-      "files": [
         "css/firefox/set-as-default/thanks.scss"
       ],
       "name": "firefox-default-thanks"
@@ -533,13 +515,6 @@
         "css/mozorg/lean-data.scss"
       ],
       "name": "lean-data"
-    },
-    {
-      "files": [
-        "css/firefox/campaign/berlin.scss",
-        "css/firefox/campaign/berlin-aus-gruenden.scss"
-      ],
-      "name": "firefox_campaign_berlin_aus_gruenden"
     },
     {
       "files": [
@@ -640,12 +615,6 @@
         "css/firefox/releasenotes.scss"
       ],
       "name": "firefox_releasenotes"
-    },
-    {
-      "files": [
-        "css/firefox/campaign/berlin.scss"
-      ],
-      "name": "firefox_campaign_berlin"
     },
     {
       "files": [
@@ -827,13 +796,6 @@
     },
     {
       "files": [
-        "js/firefox/new/variation-scene1.js",
-        "js/firefox/campaign/berlin-scene1-variation.js"
-      ],
-      "name": "firefox_campaign_scene1_berlin_variation"
-    },
-    {
-      "files": [
         "js/base/mozilla-video-poster.js",
         "js/firefox/facebook-container-video.js"
       ],
@@ -847,12 +809,6 @@
         "js/base/core-datalayer-page-id.js"
       ],
       "name": "site"
-    },
-    {
-      "files": [
-        "js/firefox/new/variation-scene1.js"
-      ],
-      "name": "firefox_new_scene1_variation"
     },
     {
       "files": [
@@ -1272,13 +1228,6 @@
         "js/hubs/sub-nav.js"
       ],
       "name": "internet-health-hub"
-    },
-    {
-      "files": [
-        "js/firefox/new/variation-scene1.js",
-        "js/firefox/campaign/berlin-scene1.js"
-      ],
-      "name": "firefox_campaign_scene1_berlin"
     },
     {
       "files": [
