@@ -686,4 +686,7 @@ redirectpatterns = (
     redirect(r'^styleguide/identity/firefox(.+)', 'https://mozilla.design/firefox/'),
     redirect(r'^styleguide/identity/mozilla(.+)', 'https://mozilla.design/mozilla/'),
     redirect(r'^styleguide(/.*)?', 'https://mozilla.design/'),
+
+    # Issue 8644
+    redirect(r'^builders/?$', 'https://builders.mozilla.community/'),
 )
