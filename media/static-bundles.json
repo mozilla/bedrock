@@ -1452,6 +1452,12 @@
         "js/firefox/compare-details.js"
       ],
       "name": "firefox_compare_details"
+    },
+    {
+      "files": [
+        "js/base/error-pages.js"
+      ],
+      "name": "page_not_found"
     }
   ]
 }

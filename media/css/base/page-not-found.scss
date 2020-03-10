@@ -2,79 +2,95 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../pebbles/includes/lib';
-@import '../hubs/sections';
+@import '../../protocol/css/includes/lib';
 
-.mzp-c-navigation + #outer-wrapper,
-.moz-global-nav-drawer + #outer-wrapper {
-    padding-top: 40px;
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+.list-content a:link, .list-content a:visited, .list-content a:hover, .list-content a:active {
+    color: black;
 }
 
 main {
-    min-height: 450px;
+    @include font-size(18px);
+}
 
-    header {
-        margin-bottom: 40px;
+.error-header {
+    @include font-size(40px);
+}
 
-        h1 {
-            @include font-size-huge;
-            color: #fff;
-            line-height: 1.3;
+.error-helper { // Fallback content only
+    @include text-display-xs;
+    padding-top: $spacing-lg;
+}
 
-            span {
-                @include box-decoration-break(clone);
-                background-color: #000;
-            }
-        }
+.list-icon {
+    @include bidi((
+        (padding-left, auto, $spacing-md),
+        (padding-right, $spacing-md, auto),
+    ));
+    vertical-align: top;
+}
 
-        p {
-            max-width: 35em;
-        }
-    }
+.has-icon {
+    padding-bottom: $spacing-md;
+}
 
-    .error-content {
-        max-width: 35em;
-    }
+.back-button:before {
+    content:"\2190\0020";
+}
 
-    .fx-privacy-link a {
-        @include font-size-extra-small;
+.back-button {
+    text-decoration: none;
+    color: $color-link;
+    cursor: pointer;
+}
 
-        &:link,
-        &:visited {
-            color: $color-link;
-        }
+.hide-back {
+    display: none;
+}
 
-        &:hover,
-        &:active,
-        &:focus {
-            color: darken($color-link, 10%);
-        }
-    }
+.message-section {
+    padding-bottom: $spacing-xl;
+}
 
-    @media #{$mq-desktop} {
-        @include clearfix;
+.list-icon, .list-content {
+    display: inline-block;
+}
+.list-content {
+    max-width: 80%;
+}
 
-        .error-content {
-            float: left;
-            width: 65%;
-        }
+.header-image {
+    padding-top: 32px;
+    width: 220px;
+}
 
-        .download-firefox {
-            float: right;
-            width: 30%;
-        }
+.prose { // Fallback content only
+    list-style-type: disc;
+    padding-left: $spacing-xl;
+}
+.fallback-list-content { // Fallback content only
+    @include font-size(16px);
+    padding-bottom: $spacing-md;
+}
+
+.download-firefox {
+    text-align: center;
+
+    .mzp-c-button-download-container {
+        margin: $spacing-lg 0;
     }
 }
 
-html[dir="rtl"] main {
-    @media #{$mq-desktop} {
+@media #{$mq-md} {
+    .error-header {
+        @include font-size(48px);
+    }
+}
 
-        .error-content {
-            float: right;
-        }
-
-        .download-firefox {
-            float: left;
-        }
+@media #{$mq-lg}{
+    .header-image {
+        width: 290px;
     }
 }

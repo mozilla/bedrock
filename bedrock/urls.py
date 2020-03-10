@@ -3,16 +3,17 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
-from django.conf.urls import handler404, include, url
+from django.conf.urls import include, url
 
 from django.utils.module_loading import import_string
 
 from bedrock.base import views as base_views
 from watchman import views as watchman_views
 
-# The default django 500 handler doesn't run the ContextProcessors, which breaks
-# the base template page. So we replace it with one that does!
+# The default django 404 and 500 handler doesn't run the ContextProcessors,
+# which breaks the base template page. So we replace them with views that do!
 handler500 = 'bedrock.base.views.server_error_view'
+handler404 = 'bedrock.base.views.page_not_found_view'
 
 
 urlpatterns = (
@@ -40,10 +41,7 @@ urlpatterns = (
 
 if settings.DEBUG:
 
-    def show404(request):
-        return import_string(handler404)(request, '')
-
     urlpatterns += (
-        url(r'^404/$', show404),
+        url(r'^404/$', import_string(handler404)),
         url(r'^500/$', import_string(handler500)),
     )
