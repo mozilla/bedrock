@@ -32,12 +32,6 @@
     },
     {
       "files": [
-        "css/firefox/new/quantum/scene2.scss"
-      ],
-      "name": "firefox_new_scene2"
-    },
-    {
-      "files": [
         "css/mozorg/namespaces.scss"
       ],
       "name": "namespaces"
@@ -925,12 +919,6 @@
         "js/etc/firefox/retention/confetti.js"
       ],
       "name": "etc-firefox-retention-thank-you"
-    },
-    {
-      "files": [
-        "js/firefox/new/scene2.js"
-      ],
-      "name": "firefox_new_scene2"
     },
     {
       "files": [
