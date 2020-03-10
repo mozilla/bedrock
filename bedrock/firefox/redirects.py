@@ -638,4 +638,7 @@ redirectpatterns = (
 
     # issue 8419
     redirect(r'firefox/this-browser-comes-highly-recommended/?$', 'firefox.developer.index'),
+
+    # issue 8420
+    redirect(r'firefox/dedicated-profiles/?$', 'https://support.mozilla.org/kb/dedicated-profiles-firefox-installation'),
 )
