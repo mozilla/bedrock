@@ -689,4 +689,7 @@ redirectpatterns = (
 
     # Issue 8644
     redirect(r'^builders/?$', 'https://builders.mozilla.community/'),
+
+    # Issue 6824
+    redirect(r'^technology/?$', 'https://labs.mozilla.org/'),
 )

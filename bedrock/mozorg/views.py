@@ -108,22 +108,6 @@ def namespaces(request, namespace):
     return django_render(request, template, context)
 
 
-class TechnologyView(BlogPostsView):
-    blog_slugs = TECH_BLOG_SLUGS
-    blog_posts_limit = 4
-    blog_posts_template_variable = 'articles'
-
-    def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
-
-        if locale.startswith('en-'):
-            template_name = 'mozorg/technology-en.html'
-        else:
-            template_name = 'mozorg/technology.html'
-
-        return [template_name]
-
-
 class IHView(BlogPostsView):
     template_name = 'mozorg/internet-health/index.html'
     blog_posts_limit = 3

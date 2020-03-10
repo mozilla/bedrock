@@ -1318,4 +1318,7 @@ URLS = flatten((
 
     # Issue 8644
     url_test('/builders{,/}', 'https://builders.mozilla.community/'),
+
+    # Issue 6824
+    url_test('/technology/', 'https://labs.mozilla.org/'),
 ))
