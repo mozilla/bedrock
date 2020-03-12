@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
+{% from "macros-protocol.html" import card with context %}
+
 {% extends 'newsletter/base.html' %}
 
 {% set_lang_files "mozorg/newsletters" %}
@@ -10,72 +12,154 @@
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
 {% block content %}
-<main role="main">
-  <div class="mzp-l-content mzp-t-narrow">
-    {% if unsubscribed_all %}  {# user requested to unsub all #}
-    <section class="c-updated-block">
-      <h1>{{ _('You’ve been unsubscribed.') }}</h1>
-      <h2>{{ _('We’re sorry to see you go.')}}</h2>
-
-      <form action="{{ url('newsletter.updated') }}" method="post" class="c-updated-form">
-        <input type="hidden" name="unsub" value="2" />
-        <input type="hidden" name="token" value="{{ token }}" />
-          <h4>{{_('Would you mind telling us why you’re leaving?') }}</h4>
-          {% for i, reason in reasons %}
-            <label>
-              <input type="checkbox" id="unsub{{ i }}" name="reason{{ i }}">
-              {{ reason }}
-            </label>
+  <main role="main">
+    <div class="mzp-l-content">
+      {% block messages %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="mzp-c-notification-bar mzp-t-success {% if message.tags %}{{ message.tags }}{% endif %}">
+              <p>{{ message }}</p>
+            </div>
           {% endfor %}
-          <input type="checkbox" id="unsub99" name="reason-text-p">
-          <textarea placeholder="{{ _('Other…') }}" cols="35" rows="3" name="reason-text"></textarea>
-          <input type="submit" value="{{_('Submit') }}" class="mzp-c-button" name="feedback" />
-        </form>
-      </section>
+        {% endif %}
+      {% endblock %}
+    </div>
 
-      {% elif reasons_submitted %}
-      <section class="c-updated-block">
-        <h1>{{ _('You’ve been unsubscribed.') }}</h1>
-        <p>{{ _('We’re sorry to see you go.')}}</p>
-        <p>{{ _('Thanks for telling us why you’re leaving.') }}</p>
-      </section>
+    {% if unsubscribed_all %}  {# user requested to unsub all #}
+      <div class="mzp-l-content mzp-t-narrow">
+        <section class="c-updated-block">
+          <header class="c-updated-block-header">
+            <h1>{{ _('You’ve been unsubscribed.') }}</h1>
+            <h2>{{ _('We’re sorry to see you go.')}}</h2>
+          </header>
 
-      {% else %}
-      <section class="c-updated-block">
-        <h3>{{ _('While here, why not check out some more Firefox awesomeness.') }}</h3>
+          <form action="{{ url('newsletter.updated') }}" method="post" class="c-updated-block-content c-updated-form">
+            <input type="hidden" name="unsub" value="2" />
+            <input type="hidden" name="token" value="{{ token }}" />
+            <h4>{{_('Would you mind telling us why you’re leaving?') }}</h4>
+            {% for i, reason in reasons %}
+              <label>
+                <input type="checkbox" id="unsub{{ i }}" name="reason{{ i }}">
+                {{ reason }}
+              </label>
+            {% endfor %}
+            <input type="checkbox" id="unsub99" name="reason-text-p">
+            <textarea placeholder="{{ _('Other…') }}" cols="35" rows="3" name="reason-text"></textarea>
+            <input type="submit" value="{{_('Submit') }}" class="mzp-c-button" name="feedback" />
+          </form>
+        </section>
+      </div>
+    {% elif reasons_submitted %}
+      <div class="mzp-l-content mzp-t-narrow">
+        <section class="c-updated-block">
+          <header class="c-updated-block-header">
+            <h1>{{ _('You’ve been unsubscribed.') }}</h1>
+            <h2>{{ _('We’re sorry to see you go.')}}</h2>
+            <p>{{ _('Thanks for telling us why you’re leaving.') }}</p>
+          </header>
+        </section>
+      </div>
+    {% else %}
+      <div class="mzp-l-content">
+        <section class="c-updated-block">
+          {% if l10n_has_tag('newsletter_confirm_0320') %}
+            <header class="c-updated-block-header">
+              <h1>{{ _('Consider it done') }}</h1>
 
-        <div class="mzp-l-card-third">
-          <section class="mzp-c-card">
-            <h4>{{ _('Get up and go') }}</h4>
-            <p>{{ _('It’s your Web anywhere you go.') }}</p>
-            <a class="mzp-c-cta-link" href="{{ url('firefox.mobile.index') }}" class="link">{{ _('Get Firefox for mobile!') }}</a>
-          </section>
+              <p class="c-updated-back-link">
+                <a href="#" class="back-button">{{ _('Back to email preferences') }}</a>
+              </p>
+            </header>
 
-          <section class="mzp-c-card">
-            <h4>{{ _('Added extras') }}</h4>
-            <p>{{ _('Make Firefox do more with add-ons.') }}</p>
-            <a class="mzp-c-cta-link" href="https://addons.mozilla.org/" class="link">{{ _('Find out how!') }}</a>
-          </section>
 
-          <section class="mzp-c-card">
-            <h4>{{ _('About us') }}</h4>
-            <p>{{ _('What’s Mozilla all about?') }}</p>
-            <a class="mzp-c-cta-link" href="{{ url('mozorg.about') }}" class="link">{{ _('We’re glad you asked!') }}</a>
-          </section>
-        </div>
-      </section>
+
+            <section class="c-updated-block-content">
+              <h2 class="c-updated-block-header">
+                {{ _('Here are a few things to dig into while you’re waiting for your next email.') }}
+              </h2>
+
+              <div class="mzp-l-card-third">
+                {{ card(
+                  title=_('Take your privacy with you'),
+                  ga_title='Take your privacy with you',
+                  desc=_('Travel the internet with protection on all your devices.'),
+                  cta=_('Download the App'),
+                  image_url='img/newsletter/confirm/mobile.png',
+                  aspect_ratio='mzp-has-aspect-16-9',
+                  link_url=url('firefox.mobile.index'),
+                )}}
+
+                {{ card(
+                  title=_('Check for data breaches'),
+                  ga_title='Check for data breaches',
+                  desc=_('Firefox Monitor is a free service that lets you see if you’ve been involved in an online data breach.'),
+                  cta=_('Sign In to Monitor'),
+                  image_url='img/newsletter/confirm/monitor.png',
+                  aspect_ratio='mzp-has-aspect-16-9',
+                  link_url='https://monitor.firefox.com/',
+                )}}
+
+                {{ card(
+                  title=_('Meet our parent brand'),
+                  ga_title='Meet our parent brand',
+                  desc=_('Mozilla, the not-for-profit behind Firefox, puts people over profit in everything we say, build, and do.'),
+                  cta=_('Learn more'),
+                  image_url='img/newsletter/confirm/mozilla.png',
+                  aspect_ratio='mzp-has-aspect-16-9',
+                  link_url=url('mozorg.about'),
+                )}}
+              </div>
+            </section>
+          {% else %}
+            <h2 class="c-updated-block-header">{{ _('While here, why not check out some more Firefox awesomeness.') }}</h2>
+
+            <div class="mzp-l-card-third">
+              <div class="mzp-l-card-third">
+                {{ card(
+                  title=_('Get up and go'),
+                  ga_title='Get up and go',
+                  desc=_('It’s your Web anywhere you go.'),
+                  cta=_('Get Firefox for mobile!'),
+                  image_url='img/newsletter/confirm/mobile.png',
+                  aspect_ratio='mzp-has-aspect-16-9',
+                  link_url=url('firefox.mobile.index'),
+                )}}
+
+                {{ card(
+                  title=_('Added extras'),
+                  ga_title='Added extras',
+                  desc=_('Make Firefox do more with add-ons.'),
+                  cta=_('Find out how!'),
+                  image_url='img/newsletter/confirm/addons.png',
+                  aspect_ratio='mzp-has-aspect-16-9',
+                  link_url='https://addons.mozilla.org/',
+                )}}
+
+                {{ card(
+                  title=_('About us'),
+                  ga_title='About us',
+                  desc=_('What’s Mozilla all about?'),
+                  cta=_('We’re glad you asked!'),
+                  image_url='img/newsletter/confirm/mozilla.png',
+                  aspect_ratio='mzp-has-aspect-16-9',
+                  link_url=url('mozorg.about'),
+                )}}
+              </div>
+            </div>
+          {% endif %}
+        </section>
+      </div>
     {% endif %}
-  </div>
-</main>
+  </main>
 {% endblock %}
-
-{# Don't display an email signup form in the footer of this page, #}
-{# it would be redundant. #}
-{% block email_form %}{% endblock %}
 
 {# Don't display the footer if there is a token present. bug 1247446 #}
 {% block site_footer %}
   {% if not token %}
     {{ super() }}
   {% endif %}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('newsletter-confirm') }}
 {% endblock %}

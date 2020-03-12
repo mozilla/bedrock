@@ -1403,6 +1403,13 @@
     },
     {
       "files": [
+        "js/base/mozilla-lazy-load.js",
+        "js/newsletter/confirm.js"
+      ],
+      "name": "newsletter-confirm"
+    },
+    {
+      "files": [
         "js/firefox/compare-details.js"
       ],
       "name": "firefox_compare_details"

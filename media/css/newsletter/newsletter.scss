@@ -6,10 +6,11 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../protocol/css/includes/lib';
-@import '../../protocol/css/components/newsletter-form';
-@import '../../protocol/css/components/hero';
-@import '../../protocol/css/templates/card-layout';
 @import '../../protocol/css/components/emphasis-box';
+@import '../../protocol/css/components/hero';
+@import '../../protocol/css/components/newsletter-form';
+@import '../../protocol/css/components/notification-bar';
+@import '../../protocol/css/templates/card-layout';
 
 /* -------------------------------------------------------------------------- */
 // Global styles.
@@ -127,14 +128,34 @@ main {
 // newsletter/updated custom styles.
 
 .c-updated-block {
-    box-sizing: border-box;
+    margin-top: $layout-xs;
+
+    .c-updated-block-content {
+        margin-top: $layout-lg;
+
+        @media #{$mq-md} {
+            margin-top: $layout-xl;
+        }
+    }
+
+    .c-updated-block-header {
+        text-align: center;
+    }
+
+    .c-updated-back-link {
+        margin-top: $spacing-lg;
+
+        a:before {
+            content: '\2190\0020';
+        }
+    }
 
     h1 {
         margin-bottom: $spacing-sm;
     }
 
     h2 {
-        margin-bottom: $spacing-xl;
+        margin-bottom: $spacing-2xl;
     }
 
     h3 {
