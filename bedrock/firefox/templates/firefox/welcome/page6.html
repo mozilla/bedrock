@@ -5,14 +5,12 @@
 {% from "macros.html" import google_play_button, send_to_device with context %}
 {% from "macros-protocol.html" import hero with context %}
 
-{% add_lang_files "firefox/welcome/page6" "" %}
+{% add_lang_files "firefox/welcome/page6" %}
 
 {% extends "firefox/welcome/base.html" %}
 
 {# L10n: HTML page title #}
-{% block page_title %}{{ _('') }}{% endblock %}
-
-{#{% block page_image %}{{ static('protocol/img/logos/firefox/lockwise/og.png') }}{% endblock %}#}
+{% block page_title %}{{ _('Make Firefox your default browser') }}{% endblock %}
 
 {% block body_class %}{{ super() }}welcome-page6{% endblock %}
 
@@ -31,10 +29,6 @@
   <p class="primary-cta">
     <div class="state-not-default">
       <a id="set-as-default-button" href="{{ url('firefox.set-as-default.thanks') }}" class="mzp-c-button mzp-t-product mzp-t-small" data-cta-text="Make Firefox your default browser" data-cta-type="button">{{ _('Make Firefox your default browser') }}</a>
-    </div>
-
-    <div class="state-is-default">
-      <button class="mzp-c-button mzp-t-product mzp-t-small js-modal-link">{{ _('Get the Firefox App') }}</button>
     </div>
   </p>
 
@@ -82,8 +76,4 @@
     <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">{{ _('Why am I seeing this?') }}</a>
   </strong>
 </p>
-{% endblock %}
-
-{% block js %}
-  {{ js_bundle('firefox_whatsnew_73') }}
 {% endblock %}
