@@ -51,19 +51,23 @@ def render(request, template, context=None, ftl_files=None, **kwargs):
     context = context.copy() if context else {}
     l10n = None
     ftl_files = ftl_files or context.get('ftl_files')
+    locale = get_locale(request)
 
     # Make sure we have a single template
     if isinstance(template, list):
         template = template[0]
 
     if ftl_files:
-        locale = get_locale(request)
         if isinstance(ftl_files, str):
             ftl_files = [ftl_files]
 
         ftl_files.extend(settings.FLUENT_DEFAULT_FILES)
 
-        context['fluent_l10n'] = l10n = fluent_l10n([locale, 'en'], ftl_files)
+        context['fluent_l10n'] = l10n = fluent_l10n([locale, 'en'],
+                                                    ftl_files)
+    else:
+        context['fluent_l10n'] = fluent_l10n([locale, 'en'],
+                                             settings.FLUENT_DEFAULT_FILES)
 
     # Every template gets its own .lang file, so figure out what it is
     # and pass it in the context

@@ -5,23 +5,23 @@
 {% from "macros.html" import fxa_link_fragment with context %}
 
 <li class="mzp-c-menu-category mzp-has-drop-down mzp-js-expandable">
-  <a class="mzp-c-menu-title" href="{{ url('firefox.accounts') }}" aria-haspopup="true" aria-controls="mzp-c-menu-panel-join">{{ _('Join') }}</a>
+  <a class="mzp-c-menu-title" href="{{ url('firefox.accounts') }}" aria-haspopup="true" aria-controls="mzp-c-menu-panel-join">{{ ftl('navigation-join') }}</a>
   <div class="mzp-c-menu-panel mzp-has-card" id="mzp-c-menu-panel-join">
     <div class="mzp-c-menu-panel-container">
-      <button class="mzp-c-menu-button-close" type="button" aria-controls="mzp-c-menu-panel-join">{{ _('Close Join menu') }}</button>
+      <button class="mzp-c-menu-button-close" type="button" aria-controls="mzp-c-menu-panel-join">{{ ftl('navigation-close-join-menu') }}</button>
       <div class="mzp-c-menu-panel-content">
         <ul>
           <li>
             <section class="mzp-c-menu-item mzp-has-icon">
               <a class="mzp-c-menu-item-link" href="{{ url('firefox.accounts') }}" data-link-name="Join Firefox" data-link-type="nav" data-link-position="topnav" data-link-group="join">
                 <img class="mzp-c-menu-item-icon" src="{{ static('protocol/img/logos/firefox/logo.svg') }}" class="mzp-c-menu-item-icon" alt="" width="24" height="24">
-                <h4 class="mzp-c-menu-item-title">{{ _('Join Firefox') }}</h4>
-                <p class="mzp-c-menu-item-desc">{{ _('Access all of Firefox with a single login — and get more from every product when you do.') }}</p>
+                <h4 class="mzp-c-menu-item-title">{{ ftl('navigation-join-firefox') }}</h4>
+                <p class="mzp-c-menu-item-desc">{{ ftl('navigation-access-all-of-firefox') }}</p>
               </a>
               <ul class="mzp-c-menu-item-list">
-                <li class="fxa-signin"><a {{ fxa_link_fragment(entrypoint='mozilla.org-firefoxnav', action='signin', utm_campaign='nav', utm_content='join-sign-in') }} class="js-fxa-cta-link" rel="external noopener" data-link-name="Accounts Sign In" data-link-type="nav" data-link-position="subnav" data-link-group="browsers">{{ _('Sign In') }}</a></li>
-                <li class="fxa-signin"><a {{ fxa_link_fragment(entrypoint='mozilla.org-firefoxnav', action='signup', utm_campaign='nav', utm_content='join-sign-up') }} class="js-fxa-cta-link" rel="external noopener" data-link-name="Accounts Sign Up" data-link-type="nav" data-link-position="subnav" data-link-group="browsers">{{ _('Sign Up') }}</a></li>
-                <li><a href="{{ url('firefox.accounts') }}" data-link-name="Benefits" data-link-type="nav" data-link-position="subnav" data-link-group="browsers">{{ _('Benefits') }}</a></li>
+                <li class="fxa-signin"><a {{ fxa_link_fragment(entrypoint='mozilla.org-firefoxnav', action='signin', utm_campaign='nav', utm_content='join-sign-in') }} class="js-fxa-cta-link" rel="external noopener" data-link-name="Accounts Sign In" data-link-type="nav" data-link-position="subnav" data-link-group="browsers">{{ ftl('navigation-sign-in') }}</a></li>
+                <li class="fxa-signin"><a {{ fxa_link_fragment(entrypoint='mozilla.org-firefoxnav', action='signup', utm_campaign='nav', utm_content='join-sign-up') }} class="js-fxa-cta-link" rel="external noopener" data-link-name="Accounts Sign Up" data-link-type="nav" data-link-position="subnav" data-link-group="browsers">{{ ftl('navigation-sign-up') }}</a></li>
+                <li><a href="{{ url('firefox.accounts') }}" data-link-name="Benefits" data-link-type="nav" data-link-position="subnav" data-link-group="browsers">{{ ftl('navigation-benefits') }}</a></li>
               </ul>
             </section>
           </li>
@@ -38,8 +38,8 @@
               </noscript>
             </div>
             <div class="mzp-c-card-content">
-            <h2 class="mzp-c-card-title">{{ _('Meet the Firefox Family') }}</h2>
-            <p class="mzp-c-card-desc">{{ _('Protect your life online with a whole family of privacy-first products.') }}</p>
+            <h2 class="mzp-c-card-title">{{ ftl('navigation-meet-the-firefox-family') }}</h2>
+            <p class="mzp-c-card-desc">{{ ftl('navigation-protect-your-life-online') }}</p>
             </div>
           </a>
         </section>
