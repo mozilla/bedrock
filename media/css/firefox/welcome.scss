@@ -323,3 +323,19 @@ $image-path: '/media/protocol/img';
         display: none;
     }
 }
+//* -------------------------------------------------------------------------- */
+//  Set as default conditionals
+
+.state-is-default {
+    display: none;
+}
+
+.is-firefox-default {
+    .state-is-default {
+        display: inline-block;
+    }
+
+    .state-not-default {
+        display: none;
+    }
+}

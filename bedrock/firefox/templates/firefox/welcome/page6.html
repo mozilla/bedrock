@@ -17,8 +17,12 @@
 {% set _entrypoint = 'mozilla.org-firefox-welcome-6' %}
 {% set _utm_campaign = 'welcome-6-default-browser' %}
 
+{% set android_url = firefox_adjust_url('android', 'moments6') %}
+{% set ios_url = firefox_adjust_url('ios', 'moments6') %}
+{% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
+
 {% block content_intro %}
-{% call hero(
+  {% call hero(
     title=_('Make sure you’re protected, every time you get online'),
     desc=_('Thanks for using the latest Firefox browser. When you choose Firefox, you support a better web for you and everyone else. Now take the next step to protect yourself.'),
     class='mzp-t-firefox mzp-t-dark',
@@ -30,9 +34,39 @@
     <div class="state-not-default">
       <a id="set-as-default-button" href="{{ url('firefox.set-as-default.thanks') }}" class="mzp-c-button mzp-t-product mzp-t-small" data-cta-text="Make Firefox your default browser" data-cta-type="button">{{ _('Make Firefox your default browser') }}</a>
     </div>
+    <div class="state-is-default">
+      <button class="mzp-c-button mzp-t-product mzp-t-small js-modal-link">{{ _('Get the Firefox App') }}</button>
+    </div>
   </p>
-
   {% endcall %}
+
+  <aside id="modal" class="mzp-u-modal-content mzp-l-content">
+    <h2 class="modal-logo">Firefox</h2>
+    <h3>{{ _('Get Firefox on your Phone') }}</h3>
+
+    {% if show_send_to_device %}
+      {{ send_to_device(include_title=False, message_set='fx-whatsnew', class='vertical') }}
+    {% else %}
+      <p>{{ _('Scan the QR code to get started') }}</p>
+      <div class="qr-code-wrapper">
+        <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
+            id="firefox-qr"
+            data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
+            alt="{{ _('QR code to scan for Firefox') }}">
+      </div>
+    {% endif %}
+
+    <ul class="mobile-download-buttons" id="mobile-download-buttons-firefox">
+      <li>
+        {{ google_play_button(href=android_url, id='playStoreLink') }}
+      </li>
+      <li>
+        <a id="appStoreLink" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
+          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+        </a>
+      </li>
+    </ul>
+  </aside>
 {% endblock %}
 
 {% block content_secondary %}
@@ -76,4 +110,8 @@
     <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">{{ _('Why am I seeing this?') }}</a>
   </strong>
 </p>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_73') }}
 {% endblock %}
