@@ -12,7 +12,7 @@
 {# L10n: HTML page title #}
 {% block page_title %}{{ _('Make Firefox your default browser') }}{% endblock %}
 
-{% block body_class %}{{ super() }}welcome-page6{% endblock %}
+{% block body_class %}{{ super() }} welcome-page6{% endblock %}
 
 {% set _entrypoint = 'mozilla.org-firefox-welcome-6' %}
 {% set _utm_campaign = 'welcome-6-default-browser' %}
@@ -56,7 +56,7 @@
       </div>
     {% endif %}
 
-    <ul class="mobile-download-buttons" id="mobile-download-buttons-firefox">
+    <ul class="mobile-download-buttons c-store-badges" id="mobile-download-buttons-firefox">
       <li>
         {{ google_play_button(href=android_url, id='playStoreLink') }}
       </li>
@@ -69,8 +69,8 @@
   </aside>
 {% endblock %}
 
-{% block content_secondary %}
-  <div class="body-secondary">
+{% block content_primary %}
+  <div class="body-primary">
     <div class="c-picto-block t-adjacent-image">
       <div class="c-picto-block-image">
         <img src="{{ static('img/icons/privacy.svg') }}" alt="">
