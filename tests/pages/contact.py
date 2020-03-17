@@ -14,7 +14,6 @@ class ContactPage(BasePage):
 
     _contact_tab_locator = (By.CSS_SELECTOR, '.category-tabs > li[data-id=contact]')
     _spaces_tab_locator = (By.CSS_SELECTOR, '.category-tabs > li[data-id=spaces]')
-    _communities_tab_locator = (By.CSS_SELECTOR, '.category-tabs > li[data-id=communities]')
     _mobile_menu_toggle_locator = (By.CSS_SELECTOR, '.mzp-c-sidemenu-summary.mzp-js-toggle')
 
     @property
@@ -25,11 +24,6 @@ class ContactPage(BasePage):
     @property
     def spaces_tab(self):
         el = self.find_element(*self._spaces_tab_locator)
-        return self.Tab(self, root=el)
-
-    @property
-    def communities_tab(self):
-        el = self.find_element(*self._communities_tab_locator)
         return self.Tab(self, root=el)
 
     @property
@@ -71,54 +65,3 @@ class SpacesPage(ContactPage):
         @property
         def is_selected(self):
             return 'mzp-is-current' in self.root.get_attribute('class')
-
-
-class CommunitiesPage(ContactPage):
-
-    URL_TEMPLATE = '/{locale}/contact/communities/{slug}'
-
-    _nav_locator = (By.CSS_SELECTOR, '#nav-communities .region')
-
-    @property
-    def is_nav_displayed(self):
-        return self.is_element_displayed(*self._nav_locator)
-
-    @property
-    def regions(self):
-        return [self.Region(self, root=el) for el in self.find_elements(*self._nav_locator)]
-
-    def open_communities_mobile_menu(self):
-        self.find_element(*self._mobile_menu_toggle_locator).click()
-        self.wait.until(lambda s: self.is_nav_displayed)
-
-    class Region(Region):
-
-        _communities_locator = (By.CSS_SELECTOR, '.submenu li')
-
-        @property
-        def id(self):
-            return self.root.get_attribute('data-id')
-
-        @property
-        def communities(self):
-            return [self.Community(self.page, root=el) for el in self.find_elements(*self._communities_locator)]
-
-        @property
-        def is_selected(self):
-            return 'mzp-is-current' in self.root.get_attribute('class')
-
-        class Community(Region):
-
-            _link_locator = (By.TAG_NAME, 'a')
-
-            @property
-            def id(self):
-                return self.root.get_attribute('data-id')
-
-            @property
-            def is_displayed(self):
-                return self.is_element_displayed(*self._link_locator)
-
-            @property
-            def is_selected(self):
-                return 'mzp-is-current' in self.root.get_attribute('class')
