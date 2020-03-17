@@ -77,7 +77,8 @@ $image-path: '/media/protocol/img';
 
     .welcome-page1 &,
     .welcome-page3 &,
-    .welcome-page5 & {
+    .welcome-page5 &,
+    .welcome-page7 & {
         @include text-display-md;
     }
 
