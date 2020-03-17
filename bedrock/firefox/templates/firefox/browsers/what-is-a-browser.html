@@ -2,6 +2,8 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
+{% add_lang_files "mozorg/what-is-a-browser" %}
+
 {% extends "base-protocol.html" %}
 
 {% block page_title %}
@@ -25,7 +27,7 @@
     <h1 class="mzp-c-article-title">{{ self.page_title() }}</h1>
     <p class="mzp-c-article-intro">{{ _('A web browser takes you anywhere on the internet, letting you see text, images and video from anywhere in the world.') }}</p>
 
-    <img src="{{ static('img/mozorg/technology/illo-browser.png') }}" alt="" class="c-article-image">
+    <img src="{{ static('img/firefox/browsers/what-is-a-browser/illo-browser.png') }}" alt="" class="c-article-image">
 
     <p>
     {% trans %}

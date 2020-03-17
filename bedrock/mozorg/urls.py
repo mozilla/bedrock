@@ -128,10 +128,6 @@ urlpatterns = (
 
     page('plugincheck', 'mozorg/plugincheck.html'),
     url(r'^robots\.txt$', views.Robots.as_view(), name='robots.txt'),
-    page('technology/what-is-a-browser', 'mozorg/what-is-a-browser.html'),
-    page('technology/update-your-browser', 'mozorg/update-browser.html'),
-    page('technology/incognito-browser', 'mozorg/incognito-browser.html'),
-    page('technology/browser-history', 'mozorg/browser-history.html'),
 
     # namespaces
     url(r'^2004/em-rdf$', views.namespaces, {'namespace': 'em-rdf'}),

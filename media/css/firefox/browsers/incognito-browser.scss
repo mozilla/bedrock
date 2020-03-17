@@ -5,9 +5,9 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../protocol/css/includes/lib';
-@import '../../protocol/css/components/article';
-@import "../../protocol/css/components/call-out";
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/article';
+@import "../../../protocol/css/components/call-out";
 
 
 .mzp-c-article {
@@ -15,6 +15,11 @@ $image-path: '/media/protocol/img';
 
     .mzp-c-article-title {
         @include text-display-lg;
+    }
+
+    .c-section-title-large {
+        @include text-display-md;
+        margin-top: $layout-md;
     }
 
     .c-section-title {
@@ -27,5 +32,4 @@ $image-path: '/media/protocol/img';
         margin: $layout-md auto;
     }
 }
-
 

@@ -5,27 +5,25 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import "../../protocol/css/includes/lib";
-@import "../../protocol/css/components/article";
-@import "../../protocol/css/components/call-out";
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/article';
+@import '../../../protocol/css/components/call-out';
 
-.seo-hero {
-    background: $color-purple-90 url('/media/img/firefox/best-browser/hero-pattern.png') 55% 60% no-repeat;
-    @include background-size(2500px);
+.mzp-c-hero {
+    background: $color-purple-90;
     color: #fff;
     text-align: center;
-    min-height: 520px;
+    min-height: 500px;
     margin-bottom: $spacing-xl;
 
     .hero-content {
         padding-top: $layout-xl;
-        padding-bottom: $layout-xl;
-
         h1 {
-            @include font-base;
             @include text-display-lg;
             margin: 0 auto $spacing-2xl;
-            max-width: 580px;
+            @media #{$mq-lg} {
+                width: 400px;
+            }
         }
 
         p {
@@ -42,20 +40,18 @@ $image-path: '/media/protocol/img';
 .mzp-c-article {
     margin: 0 auto $layout-lg;
 
-    hr {
-        border: 0 solid $color-purple-90;
-        border-top-width: 4px;
-        margin: $layout-lg auto $layout-lg;
-        width: 100px;
-    }
-
     .article-section {
         margin-bottom: $layout-lg;
 
         h2 {
-            @include font-base;
             @include text-display-lg;
         }
+    }
+
+    hr {
+        margin: $layout-lg auto $layout-lg;
+        width: 100px;
+        border: 2px solid $color-purple-90;
     }
 }
 

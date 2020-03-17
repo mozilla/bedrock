@@ -8,11 +8,11 @@ from pages.base import BasePage
 from pages.regions.download_button import DownloadButton
 
 
-class BrowserPage(BasePage):
+class BestBrowserPage(BasePage):
 
-    URL_TEMPLATE = '/{locale}/technology/what-is-a-browser/'
+    URL_TEMPLATE = '/{locale}/firefox/browsers/best-browser/'
 
-    _download_button_locator = (By.ID, 'download-button-desktop-release')
+    _download_button_locator = (By.ID, 'safebrowser-hero-download')
 
     @property
     def download_button(self):

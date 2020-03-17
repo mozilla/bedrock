@@ -1330,4 +1330,12 @@ URLS = flatten((
 
     # Issue 8668
     url_test('/contact/communities/{,north-america/,canada/}', 'https://community.mozilla.org/groups/'),
+
+    # Issue 8641
+    url_test('/technology/what-is-a-browser/', '/firefox/browsers/what-is-a-browser/'),
+    url_test('/technology/update-your-browser/', '/firefox/browsers/update-your-browser/'),
+    url_test('/technology/incognito-browser/', '/firefox/browsers/incognito-browser/'),
+    url_test('/technology/browser-history/', '/firefox/browsers/browser-history/'),
+    url_test('/firefox/windows-64-bit/', '/firefox/browsers/windows-64-bit/'),
+    url_test('/firefox/best-browser/', '/firefox/browsers/best-browser/'),
 ))

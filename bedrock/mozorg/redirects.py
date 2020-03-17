@@ -695,4 +695,10 @@ redirectpatterns = (
 
     # Issue 8668
     redirect(r'^contact/communities(/.*)?', 'https://community.mozilla.org/groups/'),
+
+    # Issue 8641
+    redirect('technology/what-is-a-browser', 'firefox.browsers.what-is-a-browser'),
+    redirect('technology/update-your-browser', 'firefox.browsers.update-browser'),
+    redirect('technology/incognito-browser', 'firefox.browsers.incognito-browser'),
+    redirect('technology/browser-history', 'firefox.browsers.browser-history'),
 )
