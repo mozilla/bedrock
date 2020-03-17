@@ -5,7 +5,7 @@
 {% set referral="?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=nav&amp;utm_content=firefox" %}
 
 <li class="mzp-c-menu-category mzp-has-drop-down mzp-js-expandable">
-  <a class="mzp-c-menu-title" href="{{ url('firefox.accounts') }}" aria-haspopup="true" aria-controls="mzp-c-menu-panel-products">{{ ftl('navigation-products') }}</a>
+  <a class="mzp-c-menu-title" href="{{ url('firefox.products.index') }}" aria-haspopup="true" aria-controls="mzp-c-menu-panel-products">{{ ftl('navigation-products') }}</a>
   <div class="mzp-c-menu-panel mzp-has-card" id="mzp-c-menu-panel-products">
     <div class="mzp-c-menu-panel-container">
       <button class="mzp-c-menu-button-close" type="button" aria-controls="mzp-c-menu-panel-products">{{ ftl('navigation-close-products-menu') }}</button>
@@ -67,7 +67,6 @@
           </li>
         </ul>
       </div>
-      {% if LANG.startswith('en-') %}
       <div class="mzp-c-menu-panel-card">
         <section class="mzp-c-card mzp-c-card-extra-small mzp-has-aspect-3-2">
           <a class="mzp-c-card-block-link" href="{{ url('firefox.products.index') }}" data-link-name="All Products" data-link-type="nav" data-link-position="card" data-link-group="products">
@@ -84,7 +83,6 @@
           </a>
         </section>
       </div>
-      {% endif %}
     </div><!-- close .mzp-c-menu-panel-container -->
   </div><!-- close .mzp-c-menu-panel -->
 </li><!-- close products -->
