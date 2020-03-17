@@ -75,12 +75,8 @@
 {% set product_send = 'Send' %}
 {% set product_lockwise = 'Lockwise' %}
 {% set product_pocket = 'Pocket' %}
+{% set browsers_url = url('firefox.browsers.index') %}
 
-{% if LANG.startswith('en') %}
-  {% set browsers_url = url('firefox.browsers.index') %}
-{% else %}
-  {% set browsers_url = url('firefox.new') %}
-{% endif %}
 
 {% block content %}
 <main role="main" class="firefox-home">
