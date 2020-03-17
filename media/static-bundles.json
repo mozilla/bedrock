@@ -142,15 +142,9 @@
     },
     {
       "files": [
-        "css/firefox/campaign/campaign.scss"
-      ],
-      "name": "firefox_campaign"
-    },
-    {
-      "files": [
         "css/firefox/campaign/download.scss"
       ],
-      "name": "firefox_campaign_trailhead"
+      "name": "firefox_campaign"
     },
     {
       "files": [

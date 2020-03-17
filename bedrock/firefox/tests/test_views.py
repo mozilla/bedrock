@@ -716,24 +716,6 @@ class TestFirefoxNewNoIndex(TestCase):
         assert 'noindex' in robots.attr('content')
 
 
-@override_settings(DEV=False)
-@patch('bedrock.firefox.views.l10n_utils.render')
-class TestFirefoxCampaign(TestCase):
-    @patch.object(views, 'lang_file_is_active', lambda *x: True)
-    def test_scene_1_template(self, render_mock):
-        req = RequestFactory().get('/firefox/campaign/')
-        req.locale = 'en-US'
-        views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html')
-
-    @patch.object(views, 'lang_file_is_active', lambda *x: False)
-    def test_scene_1_template_legacy(self, render_mock):
-        req = RequestFactory().get('/firefox/campaign/')
-        req.locale = 'de'
-        views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index.html')
-
-
 class TestFirefoxHome(TestCase):
     @patch('bedrock.firefox.views.l10n_utils.render')
     def test_firefox_home(self, render_mock):
