@@ -696,17 +696,6 @@ def new(request):
     )
 
 
-def campaign(request):
-    locale = l10n_utils.get_locale(request)
-
-    if lang_file_is_active('firefox/campaign-trailhead', locale):
-        template = 'firefox/campaign/index-trailhead.html'
-    else:
-        template = 'firefox/campaign/index.html'
-
-    return l10n_utils.render(request, template)
-
-
 def ios_testflight(request):
     # no country field, so no need to send locale
     newsletter_form = NewsletterFooterForm('ios-beta-test-flight', '')
