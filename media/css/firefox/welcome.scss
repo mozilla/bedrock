@@ -71,7 +71,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.mzp-c-hero-title {
+.mzp-c-hero-title, .hero-subheading {
     @include text-display-lg;
     margin-bottom: $layout-sm;
 
@@ -107,6 +107,10 @@ $image-path: '/media/protocol/img';
         margin: $layout-sm auto 0;
     }
 
+    .fb-img {
+        max-width: 150px;
+    }
+
     .primary-image-desc {
         @include text-display-xxs;
         font-style: italic;
@@ -137,6 +141,10 @@ $image-path: '/media/protocol/img';
         display: flex;
         margin-bottom: $spacing-md;
         min-height: $layout-md;
+    }
+
+    a:link, a:visited, a:hover {
+        color: $color-dark-gray-20;
     }
 
     &.t-adjacent-image {
@@ -297,6 +305,10 @@ $image-path: '/media/protocol/img';
 @media #{$mq-sm} {
     .mzp-c-modal-window {
         padding: $layout-xs;
+    }
+
+    .body-primary .fb-img {
+        max-width: 200px;
     }
 }
 
