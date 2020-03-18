@@ -143,10 +143,6 @@ $image-path: '/media/protocol/img';
         min-height: $layout-md;
     }
 
-    a:link, a:visited, a:hover {
-        color: $color-dark-gray-20;
-    }
-
     &.t-adjacent-image {
         @include bidi((
             (padding-left, $layout-xl, 0),

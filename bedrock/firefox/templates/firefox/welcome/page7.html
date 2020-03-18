@@ -38,13 +38,6 @@
 {% endblock %}
 
 {% block content_primary %}
-<div class="body-primary">
-  <img class="primary-image fb-img" src="{{ static('img/logos/fbcontainer/logo-fbcontainer.svg') }}" width="700" height="" alt="{{ _('Facebook Container') }}">
-</div>
-
-{% endblock %}
-
-{% block content_secondary %}
   <div class="body-primary">
     <div class="c-picto-block t-adjacent-image">
       <div class="c-picto-block-image">
@@ -53,7 +46,7 @@
 
       <h3 class="c-picto-block-title">{{ _('Do it for the ’Gram') }}</h3>
       <div class="c-picto-block-body">
-        <p>{{ _('Facebook Container also works on other Facebook owned sites like Instagram, Facebook Messenger and Workplace. Make them unfollow you') }}</p>
+        <p>{{ _('Facebook Container also works on other Facebook owned sites like Instagram, Facebook Messenger and Workplace.') }}</p>
         <a href="https://addons.mozilla.org/firefox/addon/facebook-container/?src=external-www.mozilla.org-whatsnew74&utm_source=www.mozilla.org-whatsnew74&utm_medium=referral&utm_campaign=feb2020" rel="external"><strong>{{ _('Make them unfollow you') }}</strong></a>
       </div>
     </div>
@@ -90,7 +83,3 @@
   </strong>
 </p>
 {% endblock %}
-
-<!--{% block js %}
-{{ js_bundle('firefox_welcome_page7') }}
-{% endblock %}-->
