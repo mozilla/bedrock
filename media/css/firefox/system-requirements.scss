@@ -4,7 +4,9 @@
 
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
+
 @import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/call-out';
 
 .l-narrow {
     margin: 0 auto;
@@ -161,3 +163,30 @@ $image-path: '/media/protocol/img';
         }
     }
 }
+
+/* -------------------------------------------------------------------------- */
+// Call-out
+
+.mzp-c-call-out-compact, .all-download {
+    display: none;
+}
+
+.is-modern-browser {
+    .mzp-c-call-out-compact {
+        display: block;
+    }
+
+    .all-download {
+        @include text-body-md;
+        background-color: $color-marketing-gray-30;
+        display: block;
+        font-weight: bold;
+        padding: $spacing-sm $layout-2xs;
+
+        @media #{$mq-md} {
+            text-align: center;
+        }
+    }
+}
+
+
