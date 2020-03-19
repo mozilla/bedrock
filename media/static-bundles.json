@@ -877,6 +877,8 @@
       "files": [
         "js/base/uitour-lib.js",
         "js/firefox/whatsnew/up-to-date.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-product-button.js",
         "js/base/mozilla-fxa-product-button-init.js",
         "js/firefox/whatsnew/whatsnew-75.js"

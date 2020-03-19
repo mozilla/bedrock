@@ -21,11 +21,4 @@ if (typeof window.Mozilla === 'undefined') {
         });
     }
 
-    client.getFxaDetails(function(details) {
-        // Query param `signed-in=true` is used for integration testing and demo review only.
-        if (details.setup || window.location.search.indexOf('signed-in=true') !== -1) {
-            document.querySelector('.content-wrapper').classList.add('state-is-signed-in');
-        }
-    });
-
 })(window.Mozilla);

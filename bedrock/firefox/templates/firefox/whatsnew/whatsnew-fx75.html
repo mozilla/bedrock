@@ -12,9 +12,6 @@
   {{ css_bundle('firefox_whatsnew_75') }}
 {% endblock %}
 
-{% set _entrypoint = 'mozilla.org-whatsnew75' %}
-{% set _utm_campaign = 'whatsnew75' %}
-
 {% block site_header %}{% endblock %}
 
 {% block content %}
@@ -38,7 +35,7 @@
 
         <p class="cta">
           {# NOTE: The '/connect_another_device/' landing page is new so this is a kludge that duplicates the fxa_cta_link macro. If we do this again we should make a macro/helper for this button. #}
-          <a href="{{ settings.FXA_ENDPOINT }}connect_another_device/?form_type=button&entrypoint={{ entrypoint }}&utm_source={{ entrypoint }}&utm_medium=referral&utm_campaign={{ campaign }}&utm_content=whatsnew75-sync&context=fx_desktop_v3" data-action="{{ settings.FXA_ENDPOINT }}" data-cta-type="whatsnew-75-sync" data-cta-position="primary" class="mzp-c-button mzp-t-product js-fxa-product-button qa-sync-button" rel="external">{{ _('Sync your phone') }}</a>
+          <a href="{{ settings.FXA_ENDPOINT }}connect_another_device/?form_type=button&entrypoint={{ entrypoint }}&utm_source={{ entrypoint }}&utm_medium=referral&utm_campaign={{ campaign }}&utm_content=whatsnew75-sync&context=fx_desktop_v3" data-action="{{ settings.FXA_ENDPOINT }}" data-mozillaonline-link="{{ settings.FXA_ENDPOINT_MOZILLAONLINE }}connect_another_device/??form_type=button&entrypoint={{ entrypoint }}&utm_source={{ entrypoint }}&utm_medium=referral&utm_campaign={{ campaign }}&utm_content=whatsnew75-sync&context=fx_desktop_v3" data-cta-type="whatsnew-75-sync" data-cta-position="primary" class="mzp-c-button mzp-t-product js-fxa-product-button qa-sync-button" rel="external">{{ _('Sync your phone') }}</a>
         </p>
       </div>
 
