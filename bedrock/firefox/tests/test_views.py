@@ -648,7 +648,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/protocol/download.html', ANY)
 
     @patch.object(views, 'lang_file_is_active', lambda *x: True)
     def test_thanks_template(self, render_mock):
@@ -664,7 +664,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/download/thanks/')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/protocol/thanks.html', ANY)
 
     def test_thanks_redirect(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&dude=abides')
@@ -682,7 +682,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'ru'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/download-yandex.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/download-yandex.html', ANY)
 
     @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='False')
     @patch.object(views, 'lang_file_is_active', lambda *x: True)
