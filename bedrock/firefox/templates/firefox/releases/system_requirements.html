@@ -4,6 +4,8 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
+{% from "macros-protocol.html" import call_out, call_out_compact %}
+
 {% block gtm_page_id %}data-gtm-page-id="/firefox/system-requirements/"{% endblock %}
 
 {% set channel_name = '' if release.channel == 'Release' else release.channel %}
@@ -33,5 +35,17 @@
       </div>
     </main>
   </div>
+
+  {% call call_out_compact(
+    title=_('Get the most recent version'),
+    class='mzp-t-firefox mzp-t-product-firefox'
+  ) %}
+    {{ download_firefox(alt_copy=_('Download Firefox'), download_location='primary cta') }}
+  {% endcall %}
+
+  <section class="all-download">
+    <a href="{{ url('firefox.all') }}">{{ _('All Firefox downloads') }}</a>
+  </section>
+
   {% block sidebar %}{% endblock %}
 {% endblock %}
