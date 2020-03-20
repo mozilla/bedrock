@@ -13,7 +13,6 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 from django.views.generic import TemplateView
 
 from bedrock.base.urlresolvers import split_path
-
 from .dotlang import get_translations_native_names
 from .fluent import fluent_l10n
 from .gettext import translations_for_template
@@ -52,6 +51,10 @@ def render(request, template, context=None, ftl_files=None, **kwargs):
     l10n = None
     ftl_files = ftl_files or context.get('ftl_files')
     locale = get_locale(request)
+
+    # is this a non-locale page?
+    name_prefix = request.path_info.split('/', 2)[1]
+    nonlocale = name_prefix in settings.SUPPORTED_NONLOCALES
 
     # Make sure we have a single template
     if isinstance(template, list):
@@ -93,7 +96,7 @@ def render(request, template, context=None, ftl_files=None, **kwargs):
     context['translations'] = get_translations_native_names(translations)
 
     # Look for localized template
-    if hasattr(request, 'locale'):
+    if not nonlocale and getattr(request, 'locale', None):
         # Redirect to one of the user's accept languages or the site's default
         # language (en-US) if the current locale not active
         if request.locale not in translations:
