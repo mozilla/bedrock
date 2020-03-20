@@ -77,7 +77,8 @@ $image-path: '/media/protocol/img';
 
     .welcome-page1 &,
     .welcome-page3 &,
-    .welcome-page5 & {
+    .welcome-page5 &,
+    .welcome-page6 &{
         @include text-display-md;
     }
 
@@ -245,6 +246,10 @@ $image-path: '/media/protocol/img';
         .welcome-page5 & {
             @include at2x('/media/protocol/img/logos/firefox/lockwise/logo-lg.png', auto, 100%);
         }
+
+        .welcome-page6 & {
+            @include at2x('/media/protocol/img/logos/firefox/browser/logo-lg.png', auto, 100%);
+        }
     }
 }
 
@@ -320,6 +325,23 @@ $image-path: '/media/protocol/img';
     text-align: center;
 
     footer {
+        display: none;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+//  Set as default conditionals
+
+.state-is-default {
+    display: none;
+}
+
+.is-firefox-default {
+    .state-is-default {
+        display: inline-block;
+    }
+
+    .state-not-default {
         display: none;
     }
 }
