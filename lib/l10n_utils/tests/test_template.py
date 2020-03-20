@@ -66,6 +66,7 @@ class TestTransBlocks(TestCase):
 @override_settings(
     ROOT=ROOT,
     ROOT_URLCONF='lib.l10n_utils.tests.test_files.urls',
+    DOTLANG_FILES=['download_button', 'main', 'footer']
 )
 class TestTemplateLangFiles(TestCase):
 
