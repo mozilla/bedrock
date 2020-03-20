@@ -24,7 +24,7 @@
 {% block content_intro %}
   {% call hero(
     title=_('Make sure you’re protected, every time you get online'),
-    desc=_('Thanks for using the latest Firefox browser. When you choose Firefox, you support a better web for you and everyone else. Now take the next step to protect yourself.'),
+    desc=_('When you choose Firefox, you support a better web for you and everyone else. Now take the next step to protect yourself.'),
     class='mzp-t-firefox mzp-t-dark',
     include_cta=True,
     heading_level=1
@@ -32,10 +32,10 @@
 
   <p class="primary-cta">
     <div class="state-not-default">
-      <a id="set-as-default-button" href="{{ url('firefox.set-as-default.thanks') }}" class="mzp-c-button mzp-t-product mzp-t-small" data-cta-text="Make Firefox your default browser" data-cta-type="button">{{ _('Make Firefox your default browser') }}</a>
+      <a id="set-as-default-button" href="{{ url('firefox.set-as-default.thanks') }}" class="mzp-c-button mzp-t-product" data-cta-text="Make Firefox your default browser" data-cta-type="button">{{ _('Make Firefox your default browser') }}</a>
     </div>
     <div class="state-is-default">
-      <button class="mzp-c-button mzp-t-product mzp-t-small js-modal-link">{{ _('Get the Firefox App') }}</button>
+      <button class="mzp-c-button mzp-t-product js-modal-link">{{ _('Get the Firefox App') }}</button>
     </div>
   </p>
   {% endcall %}
