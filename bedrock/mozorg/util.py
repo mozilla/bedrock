@@ -11,6 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
 from lib import l10n_utils
+from lib.l10n_utils.fluent import fluent_l10n
 
 try:
     import newrelic.agent
@@ -68,6 +69,7 @@ def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, **kwargs):
         # skip l10n if path exempt
         name_prefix = request.path_info.split('/', 2)[1]
         if name_prefix in settings.SUPPORTED_NONLOCALES:
+            kwargs.update({'fluent_l10n': fluent_l10n('en', settings.FLUENT_DEFAULT_FILES)})
             return django_render(request, tmpl, kwargs)
 
         return l10n_utils.render(request, tmpl, kwargs, ftl_files=ftl_files)

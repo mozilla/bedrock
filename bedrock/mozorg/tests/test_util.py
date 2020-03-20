@@ -57,7 +57,7 @@ class TestPageUtil(TestCase):
         url.callback(self.rf.get('/dude/abides/'))
         assert not l10n_mock.render.called
         djrender_mock.assert_called_with(ANY, 'dude/abides.html', {'urlname': 'dude.abides',
-                                                                   'donny': 'alive'})
+                                                                   'donny': 'alive', 'fluent_l10n': ANY})
 
     @override_settings(SUPPORTED_NONLOCALES=['dude'])
     def test_locale_redirect_non_exclusion(self, l10n_mock, djrender_mock):
@@ -75,7 +75,7 @@ class TestPageUtil(TestCase):
         url.callback(self.rf.get('/dude/abides/'))
         assert not l10n_mock.render.called
         djrender_mock.assert_called_with(ANY, 'abides.html', {'urlname': 'abides',
-                                                              'donny': 'alive'})
+                                                              'donny': 'alive', 'fluent_l10n': ANY})
 
     @override_settings(SUPPORTED_NONLOCALES=['dude'])
     def test_locale_redirect_works_home_page(self, l10n_mock, djrender_mock):
