@@ -128,6 +128,7 @@ class TestNoLocale(TestCase):
         # (can happen on 500 error path, for example)
         get_l10n_path.return_value = None
         request = Mock(spec=object)
+        request.path_info = '/some/path/'
         # Note: no .locale on request
         # Should not cause an exception
         render(request, '500.html')

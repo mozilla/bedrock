@@ -445,6 +445,7 @@ class TestTranslationList(TestCase):
         from product_details import product_details
         request = HttpRequest()
         request.path = '/' + lang + '/' + view_name + '/'
+        request.path_info = request.path
         request.locale = lang
         template = view_name.replace('-', '_') + '.html'
         with patch('lib.l10n_utils.django_render') as django_render:
