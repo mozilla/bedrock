@@ -66,6 +66,7 @@ class TestTransBlocks(TestCase):
 @override_settings(
     ROOT=ROOT,
     ROOT_URLCONF='lib.l10n_utils.tests.test_files.urls',
+    DOTLANG_FILES=['download_button', 'main', 'footer']
 )
 class TestTemplateLangFiles(TestCase):
 
@@ -78,7 +79,7 @@ class TestTemplateLangFiles(TestCase):
         request = type('request', (), {})()
         template.render({'request': request})
         assert request.langfiles == [
-            'dude', 'walter', 'navigation', 'download_button', 'main', 'footer']
+            'dude', 'walter', 'download_button', 'main', 'footer']
 
     @pytest.mark.skip(
         reason='does not pick up the files from the parent. captured in '
@@ -106,7 +107,7 @@ class TestTemplateLangFiles(TestCase):
         """
         self.client.get('/de/some-lang-files/')
         translate.assert_called_with(ANY, ['dude', 'walter', 'some_lang_files',
-                                           'navigation', 'download_button', 'main', 'footer'])
+                                           'download_button', 'main', 'footer'])
 
     @patch('lib.l10n_utils.settings.DEV', True)
     @patch('lib.l10n_utils.templatetags.helpers.translate')
@@ -116,7 +117,7 @@ class TestTemplateLangFiles(TestCase):
         """
         self.client.get('/de/active-de-lang-file/')
         translate.assert_called_with(ANY, ['inactive_de_lang_file', 'active_de_lang_file',
-                                           'navigation', 'download_button', 'main', 'footer'])
+                                           'download_button', 'main', 'footer'])
 
 
 class TestNoLocale(TestCase):
@@ -127,6 +128,7 @@ class TestNoLocale(TestCase):
         # (can happen on 500 error path, for example)
         get_l10n_path.return_value = None
         request = Mock(spec=object)
+        request.path_info = '/some/path/'
         # Note: no .locale on request
         # Should not cause an exception
         render(request, '500.html')

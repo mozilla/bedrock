@@ -32,12 +32,6 @@
     },
     {
       "files": [
-        "css/firefox/new/scene2.scss"
-      ],
-      "name": "firefox_new_scene2"
-    },
-    {
-      "files": [
         "css/mozorg/namespaces.scss"
       ],
       "name": "namespaces"
@@ -117,20 +111,20 @@
     },
     {
       "files": [
+        "css/firefox/new/trailhead/thanks.scss",
+        "css/firefox/new/protocol/mobile-sync.scss"
+      ],
+      "name": "firefox_new_thanks_protocol"
+    },
+    {
+      "files": [
         "css/firefox/new/trailhead/thanks.scss"
       ],
       "name": "firefox_new_thanks"
     },
     {
       "files": [
-        "css/base/mozilla-fxa-form.scss",
-        "css/firefox/new/scene1.scss"
-      ],
-      "name": "firefox_new_scene1"
-    },
-    {
-      "files": [
-        "css/firefox/new/yandex-scene1.scss"
+        "css/firefox/new/quantum/yandex-scene1.scss"
       ],
       "name": "firefox_new_scene1_yandex"
     },
@@ -142,15 +136,9 @@
     },
     {
       "files": [
-        "css/firefox/campaign/campaign.scss"
-      ],
-      "name": "firefox_campaign"
-    },
-    {
-      "files": [
         "css/firefox/campaign/download.scss"
       ],
-      "name": "firefox_campaign_trailhead"
+      "name": "firefox_campaign"
     },
     {
       "files": [
@@ -439,6 +427,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-75.scss"
+      ],
+      "name": "firefox_whatsnew_75"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -472,12 +466,6 @@
         "css/firefox/switch.scss"
       ],
       "name": "firefox-switch"
-    },
-    {
-      "files": [
-        "css/firefox/new/common.scss"
-      ],
-      "name": "firefox_new_common"
     },
     {
       "files": [
@@ -887,6 +875,18 @@
     },
     {
       "files": [
+        "js/base/uitour-lib.js",
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js",
+        "js/base/mozilla-fxa-product-button.js",
+        "js/base/mozilla-fxa-product-button-init.js",
+        "js/firefox/whatsnew/whatsnew-75.js"
+      ],
+      "name": "firefox_whatsnew_75"
+    },
+    {
+      "files": [
         "protocol/js/protocol-newsletter.js"
       ],
       "name": "legal"
@@ -920,24 +920,9 @@
     },
     {
       "files": [
-        "js/firefox/new/scene2.js"
+        "js/firefox/new/trailhead/thanks.js"
       ],
       "name": "firefox_new_thanks"
-    },
-    {
-      "files": [
-        "js/base/mozilla-modal.js",
-        "js/firefox/new/scene1.js"
-      ],
-      "name": "firefox_new_scene1"
-    },
-    {
-      "files": [
-        "js/base/mozilla-fxa-form.js",
-        "js/base/mozilla-fxa-form-init.js",
-        "js/firefox/new/scene1_fxa_modal.js"
-      ],
-      "name": "firefox_new_scene1_fxa_modal"
     },
     {
       "files": [
@@ -952,21 +937,6 @@
         "js/etc/firefox/retention/confetti.js"
       ],
       "name": "etc-firefox-retention-thank-you"
-    },
-    {
-      "files": [
-        "js/firefox/new/scene2.js"
-      ],
-      "name": "firefox_new_scene2"
-    },
-    {
-      "files": [
-        "protocol/js/protocol-modal.js",
-        "protocol/js/protocol-newsletter.js",
-        "js/newsletter/form-protocol.js",
-        "js/firefox/new/scene2-email.js"
-      ],
-      "name": "firefox_new_scene2_email"
     },
     {
       "files": [

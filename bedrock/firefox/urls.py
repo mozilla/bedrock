@@ -30,7 +30,7 @@ urlpatterns = (
     url(r'^firefox/accounts/$', views.firefox_accounts, name='firefox.accounts'),
     page('firefox/browsers', 'firefox/browsers/index.html'),
     page('firefox/products', 'firefox/products/index.html'),
-    url(r'^firefox/campaign/$', views.campaign, name='firefox.campaign'),
+    page('firefox/campaign', 'firefox/campaign/index.html'),
     page('firefox/flashback', 'firefox/flashback/index.html', active_locales=['en-US', 'de', 'fr']),
     page('firefox/channel/desktop', 'firefox/channel/desktop.html'),
     page('firefox/channel/android', 'firefox/channel/android.html'),
@@ -110,6 +110,7 @@ urlpatterns = (
     page('firefox/welcome/3', 'firefox/welcome/page3.html'),
     page('firefox/welcome/4', 'firefox/welcome/page4.html'),
     page('firefox/welcome/5', 'firefox/welcome/page5.html'),
+    page('firefox/welcome/6', 'firefox/welcome/page6.html'),
     page('firefox/welcome/7', 'firefox/welcome/page7.html'),
 
     page('firefox/switch', 'firefox/switch.html', ftl_files=['firefox/switch', 'firefox/switch-en']),
@@ -122,9 +123,9 @@ urlpatterns = (
     page('firefox/this-browser-comes-highly-recommended', 'firefox/recommended.html'),
 
     # Issue 6604, SEO firefox/new pages
-    page('firefox/windows', 'firefox/new/scene1_windows.html'),
-    page('firefox/mac', 'firefox/new/scene1_mac.html'),
-    page('firefox/linux', 'firefox/new/scene1_linux.html'),
+    page('firefox/windows', 'firefox/new/protocol/download_windows.html'),
+    page('firefox/mac', 'firefox/new/protocol/download_mac.html'),
+    page('firefox/linux', 'firefox/new/protocol/download_linux.html'),
 
     page('firefox/windows-64-bit', 'firefox/windows-64-bit.html'),
 

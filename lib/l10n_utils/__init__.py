@@ -13,7 +13,6 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 from django.views.generic import TemplateView
 
 from bedrock.base.urlresolvers import split_path
-
 from .dotlang import get_translations_native_names
 from .fluent import fluent_l10n
 from .gettext import translations_for_template
@@ -51,19 +50,27 @@ def render(request, template, context=None, ftl_files=None, **kwargs):
     context = context.copy() if context else {}
     l10n = None
     ftl_files = ftl_files or context.get('ftl_files')
+    locale = get_locale(request)
+
+    # is this a non-locale page?
+    name_prefix = request.path_info.split('/', 2)[1]
+    nonlocale = name_prefix in settings.SUPPORTED_NONLOCALES
 
     # Make sure we have a single template
     if isinstance(template, list):
         template = template[0]
 
     if ftl_files:
-        locale = get_locale(request)
         if isinstance(ftl_files, str):
             ftl_files = [ftl_files]
 
         ftl_files.extend(settings.FLUENT_DEFAULT_FILES)
 
-        context['fluent_l10n'] = l10n = fluent_l10n([locale, 'en'], ftl_files)
+        context['fluent_l10n'] = l10n = fluent_l10n([locale, 'en'],
+                                                    ftl_files)
+    else:
+        context['fluent_l10n'] = fluent_l10n([locale, 'en'],
+                                             settings.FLUENT_DEFAULT_FILES)
 
     # Every template gets its own .lang file, so figure out what it is
     # and pass it in the context
@@ -89,7 +96,7 @@ def render(request, template, context=None, ftl_files=None, **kwargs):
     context['translations'] = get_translations_native_names(translations)
 
     # Look for localized template
-    if hasattr(request, 'locale'):
+    if not nonlocale and getattr(request, 'locale', None):
         # Redirect to one of the user's accept languages or the site's default
         # language (en-US) if the current locale not active
         if request.locale not in translations:

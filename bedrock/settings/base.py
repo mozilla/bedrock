@@ -237,10 +237,11 @@ FEED_CACHE = 3900
 # 30 min during dev and 10 min in prod
 DOTLANG_CACHE = config('DOTLANG_CACHE', default='1800' if DEBUG else '600', parser=int)
 
-DOTLANG_FILES = ['navigation', 'download_button', 'main', 'footer']
+# Global L10n files.
+# TODO Port DOTLANG_FILES to FLUENT_DEFAULT_FILES
+DOTLANG_FILES = ['download_button', 'main']
+FLUENT_DEFAULT_FILES = ['brands', 'navigation', 'footer']
 
-# TODO create these files by porting from their .lang equivalents
-FLUENT_DEFAULT_FILES = ['brands', 'navigation', 'footer', 'download_button']
 FLUENT_DEFAULT_PERCENT_REQUIRED = config('FLUENT_DEFAULT_PERCENT_REQUIRED', default='80', parser=int)
 FLUENT_REPO = config('FLUENT_REPO', default='https://github.com/mozmeao/www-l10n')
 FLUENT_REPO_PATH = GIT_REPOS_PATH / 'www-l10n'

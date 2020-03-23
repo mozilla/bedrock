@@ -6,7 +6,6 @@ import os
 
 from django.conf import settings
 from django.conf.urls import url
-from django.shortcuts import render as django_render
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
@@ -63,13 +62,8 @@ def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, **kwargs):
             # Name this in New Relic to differentiate pages
             newrelic.agent.set_transaction_name(
                 'mozorg.util.page:' + url_name.replace('.', '_'))
+
         kwargs.setdefault('urlname', url_name)
-
-        # skip l10n if path exempt
-        name_prefix = request.path_info.split('/', 2)[1]
-        if name_prefix in settings.SUPPORTED_NONLOCALES:
-            return django_render(request, tmpl, kwargs)
-
         return l10n_utils.render(request, tmpl, kwargs, ftl_files=ftl_files)
 
     # This is for graphite so that we can differentiate pages

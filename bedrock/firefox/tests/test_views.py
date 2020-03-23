@@ -648,7 +648,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'de'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene1.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/protocol/download.html', ANY)
 
     @patch.object(views, 'lang_file_is_active', lambda *x: True)
     def test_thanks_template(self, render_mock):
@@ -664,7 +664,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/download/thanks/')
         req.locale = 'de'
         views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/scene2.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/protocol/thanks.html', ANY)
 
     def test_thanks_redirect(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&dude=abides')
@@ -682,7 +682,7 @@ class TestFirefoxNew(TestCase):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'ru'
         views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/download-yandex.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/download-yandex.html', ANY)
 
     @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='False')
     @patch.object(views, 'lang_file_is_active', lambda *x: True)
@@ -714,24 +714,6 @@ class TestFirefoxNewNoIndex(TestCase):
         robots = doc('meta[name="robots"]')
         assert robots.length == 1
         assert 'noindex' in robots.attr('content')
-
-
-@override_settings(DEV=False)
-@patch('bedrock.firefox.views.l10n_utils.render')
-class TestFirefoxCampaign(TestCase):
-    @patch.object(views, 'lang_file_is_active', lambda *x: True)
-    def test_scene_1_template(self, render_mock):
-        req = RequestFactory().get('/firefox/campaign/')
-        req.locale = 'en-US'
-        views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index-trailhead.html')
-
-    @patch.object(views, 'lang_file_is_active', lambda *x: False)
-    def test_scene_1_template_legacy(self, render_mock):
-        req = RequestFactory().get('/firefox/campaign/')
-        req.locale = 'de'
-        views.campaign(req)
-        render_mock.assert_called_once_with(req, 'firefox/campaign/index.html')
 
 
 class TestFirefoxHome(TestCase):
