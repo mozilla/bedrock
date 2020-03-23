@@ -1,130 +1,219 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
- # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% extends "mozorg/contribute/contribute-base.html" %}
+{% extends "base-protocol-mozilla.html" %}
 
-{% block page_title %}
-  {{ _('Volunteer Opportunities at Mozilla') }}
+{% from "macros-protocol.html" import call_out, hero, feature_card, picto_card
+with context %}
+
+{% add_lang_files "mozorg/contribute/index" %}
+
+{% block body_class %}{{ super() }} contribute{% endblock %}
+
+{% block page_css %}
+{{ css_bundle('contribute-base') }}
 {% endblock %}
 
-{% block body_id %}landing{% endblock %}
 
-{% block contrib_nav_cta %}{% endblock %}
+{% block content %}
+<main role="main">
+  <div class="mzp-l-content">
+    <h1 class="contribute-section-heading">{{ _('Your talents are needed for a
+      better internet') }}</h1>
+    <p>{{ _('Mozilla is a non-profit organization working to ensure the internet
+      is open and welcoming to all. And we need your help. By joining our
+      community, you can help drive innovation, enhance accountability and trust
+      and make the internet a better place for everyone.') }}</p>
+  </div>
 
-{% block contrib_page_title %}{{ _('Volunteer with Mozilla!') }}{% endblock %}
+  <section class="contribute-hero">
+    <div class="mzp-l-content">
+      <h2>{{ _('How you can contribute&hellip;') }}</h2>
+    </div>
+    <div class="mzp-l-content mzp-l-card-quarter mzp-m-card-half
+      contribute-card-container">
+      <section class="mzp-c-card contribute-card">
+        <a class="mzp-c-card-block-link" href="#">
+          <div class="mzp-c-card-media-wrapper">
+            <img class="mzp-c-card-image"
+              src="../../../static/img/card/card-image.png" alt="">
+          </div>
+          <div class="mzp-c-card-content contribute-card-content">
+            <div class="mzp-c-card-tag contribute-card-tag-bold">Non Technical</div>
+            <div class="mzp-c-card-tag">Individual and event organization</div>
+            <h2 class="mzp-c-card-title">Translate content</h2>
+            <p class="mzp-c-card-desc">The internet is only global if it’s
+              understood everywhere. Help us translate Mozilla’s products and
+              websites into your local language.</p>
 
-{% block contrib_content %}
-  {% call hero(
-    title=_('Join a global community of game-changers.'),
-    class='mzp-t-dark contribute-hero',
-    include_cta=True,
-    heading_level=2
-  ) %}
+          </div>
+        </a>
+      </section>
+      <section class="mzp-c-card contribute-card">
+        <a class="mzp-c-card-block-link" href="#">
+          <div class="mzp-c-card-media-wrapper">
+            <img class="mzp-c-card-image"
+              src="../../../static/img/card/card-image.png" alt="">
+          </div>
+          <div class="mzp-c-card-content contribute-card-content">
+            <div class="mzp-c-card-tag contribute-card-tag-bold">Technical</div>
+            <div class="mzp-c-card-tag">Individual</div>
+            <h2 class="mzp-c-card-title">Contribute to the Mozilla codebase</h2>
+            <p class="mzp-c-card-desc">Actively improve Mozilla’s products by
+              contributing to a variety of development opportunities.</p>
 
-    <a href="https://activate.mozilla.community/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=contribute&amp;utm_content=contribute-page" class="mzp-c-button mzp-t-dark" data-link-type="button" data-link-name="Get Involved" data-cta-position="Primary">{{ _('Get Involved') }}</a>
-  {% endcall %}
+          </div>
+        </a>
+      </section>
+      <section class="mzp-c-card contribute-card">
+        <a class="mzp-c-card-block-link" href="#">
+          <div class="mzp-c-card-media-wrapper">
+            <img class="mzp-c-card-image"
+              src="../../../static/img/card/card-image.png" alt="">
+          </div>
+          <div class="mzp-c-card-content contribute-card-content">
+            <div class="mzp-c-card-tag contribute-card-tag-bold">Support</div>
+            <div class="mzp-c-card-tag">Individual and event organization</div>
+            <h2 class="mzp-c-card-title">Individual and event organization</h2>
+            <p class="mzp-c-card-desc">Help make Mozilla’s products easy to use.
+              Answer user's "help" questions as part of the Mozilla Support
+              Community forums.</p>
+
+          </div>
+        </a>
+      </section>
+      <section class="mzp-c-card contribute-card">
+        <a class="mzp-c-card-block-link" href="#">
+          <div class="mzp-c-card-media-wrapper">
+            <img class="mzp-c-card-image"
+              src="../../../static/img/card/card-image.png" alt="">
+          </div>
+          <div class="mzp-c-card-content contribute-card-content">
+            <div class="mzp-c-card-tag contribute-card-tag-bold">Technical and
+              Non
+              Technical</div>
+            <h2 class="mzp-c-card-title">Join the community</h2>
+            <p class="mzp-c-card-desc">Want to get more involved in the Mozilla
+              community? Check out all the volunteer opportunities in our
+              Community Portal.</p>
+
+          </div>
+        </a>
+      </section>
+    </div>
+  </section>
+
+  <section>
+    <div class="mzp-l-content">
+      <h2>Our Mission</h2>
+      <p>Our mission is to ensure the internet is a global public resource, open
+        and accessible to all. An internet that truly puts people first, where
+        individuals can shape their own experience and are empowered, safe and
+        independent.</p>
+    </div>
+
+    <div class="mzp-l-content">
+      <div>
+        <div>
+          <h3>Learn about Mozilla</h3>
+          <p>Read our manifesto</p>
+        </div>
+        <div>
+          <h3>Find an event</h3>
+          <p>Meet our passionate volunteers</p>
+        </div>
+        <div>
+          <h3>Donate</h3>
+          <p>Help fund our mission</p>
+        </div>
+        <div>
+          <h3>Follow Mozilla</h3>
+          <p>News and volunteer opportunities</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <div class="mzp-l-content">
     {% call feature_card(
-      title=_('Volunteering with Mozilla&hellip;'),
-      image_url='img/contribute/video-image.png',
-      aspect_ratio='mzp-has-aspect-16-9',
-      class='mzp-l-card-feature-left-half'
+    title=_('Made by passionate people like you'),
+    image_url='img/contribute/video-image.png',
+    aspect_ratio='mzp-has-aspect-16-9',
+    class='mzp-l-card-feature-left-half'
     ) %}
-      {# L10n: This paragraph follows the headline, "Volunteering with Mozilla...", so the first sentence continues from that fragment. #}
-      {% trans %}
-        is about more than lending a hand. It’s about learning, collaborating
-        and sharing your skills with a global community of Mozillians — coders,
-        organizers, activists and more — who help shape the Web every day.
-      {% endtrans %}
-      </p>
-      <p class="mission-cta">
-        <a class="mzp-c-cta-link js-contribute-video" href="https://videos.cdn.mozilla.net/uploads/mozillaorg/Mozilla_2014_i_am.webm">
-          {{ _('See our community in action') }}
-        </a>
-      </p>
-
-      <div class="contribute-video">
-        {{ video('Mozilla_2014_i_am.webm',
-            'Mozilla_2014_i_am.ogv',
-            'Mozilla_2014_i_am.mp4',
-            prefix='https://videos.cdn.mozilla.net/uploads/mozillaorg/',
-            poster=static('img/mozorg/about/poster-i-am.jpg')) }}
-      </div>
-    {% endcall %}
-
-    <section>
-      <h2 class="contribute-section-heading">{{ _('How Mozillians help every day') }}</h2>
-
-      <ul class="contribute-mozillian-list">
-        <li class="contribute-mozillian-item">
-          <a href="{{ url('mozorg.contribute.story-ruben') }}" data-link-type="button" data-link-name="Read his story - Ruben">
-            <img class="contribute-photo" src="{{ static('img/contribute/person-ruben.jpg') }}" alt="">
-          </a>
-          <h3>Rubén</h3>
-          <p>{{ _('Spain &middot; Activism') }}</p>
-          <a href="{{ url('mozorg.contribute.story-ruben') }}" class="mzp-c-button mzp-t-secondary" data-link-type="button" data-link-name="Read his story - Ruben">
-            {{ _('Read his story') }}
-          </a>
-        </li>
-
-        <li class="contribute-mozillian-item">
-          <a href="{{ url('mozorg.contribute.story-faye') }}" data-link-type="button" data-link-name="Read her story - Faye">
-            <img class="contribute-photo" src="{{ static('img/contribute/person-faye.jpg') }}" alt="">
-          </a>
-          <h3>Faye</h3>
-          <p>{{ _('Philippines &middot; Activism') }}</p>
-          <a href="{{ url('mozorg.contribute.story-faye') }}" class="mzp-c-button mzp-t-secondary" data-link-type="button" data-link-name="Read her story - Faye">
-            {{ _('Read her story') }}
-          </a>
-        </li>
-
-        <li class="contribute-mozillian-item">
-          <a href="{{ url('mozorg.contribute.story-michael') }}" data-link-type="button" data-link-name="Read his story - Michael">
-            <img class="contribute-photo" src="{{ static('img/contribute/person-michael.jpg') }}" alt="">
-          </a>
-          <h3>Michael</h3>
-          <p>{{ _('Switzerland &middot; Coding') }}</p>
-          <a href="{{ url('mozorg.contribute.story-michael') }}" class="mzp-c-button mzp-t-secondary" data-link-type="button" data-link-name="Read his story - Michael">
-            {{ _('Read his story') }}
-          </a>
-        </li>
-      </ul>
-    </section>
+    {# L10n: This paragraph follows the headline, "Made by passionate people
+    like you", so the first sentence continues from that fragment. #}
+    {% trans %}
+    <p>When you contribute to Mozilla, you become part of a worldwide community
+      made up of people from around the globe who believe that we all have a
+      role in ensuring that the internet remains a force for good.</p> <p>We
+      believe community collaboration is vital to creating an internet that is
+      diverse, innovative, and accountable to the people who need it most.
+      Whether you have a background in tech, community organizing, or just a
+      computer and some free time, you can help us make the internet a better
+      place.</p>
+    {% endtrans %}
   </div>
-
-  {% call call_out(
-    title=_('Join a global community of game-changers.'),
-    heading_level=2,
-    include_cta=True
-  ) %}
-  <a href="https://activate.mozilla.community/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=contribute&amp;utm_content=contribute-page" class="mzp-c-button" data-link-type="button" data-link-name="Get Involved" data-cta-position="Secondary">
-    {{ _('Get Involved') }}
-  </a>
   {% endcall %}
 
-  <section class="mzp-l-content mzp-t-narrow">
-    <h2 class="contribute-section-heading">{{ _('Not ready to dive in just yet?') }}</h2>
 
-    <p class="contribute-section-lead-in">{{ _('Here are a few other ways you can support Mozilla right now.') }}</p>
-    <ul class="contribute-dive-in-list">
-      <li class="contribute-dive-in-item">
-        <a href="{{ donate_url('contribute') }}" class="mzp-c-button mzp-t-secondary" data-link-type="button" data-link-name="Donate to Mozilla">{{ _('Donate to Mozilla') }}</a>
-      </li>
-      <li class="contribute-dive-in-item">
-        <a href="{{ url('firefox.new') }}" class="mzp-c-button mzp-t-secondary" data-link-type="button" data-link-name="Download Firefox">{{ _('Download Firefox') }}</a>
-      </li>
-      <li class="contribute-dive-in-item">
-        <a href="https://www.facebook.com/mozilla" class="mzp-c-button mzp-t-secondary" data-link-type="button" data-link-name="Like us on Facebook">{{ _('Like us on Facebook') }}</a>
-      </li>
-      <li class="contribute-dive-in-item">
-        <a href="https://twitter.com/mozilla" class="mzp-c-button mzp-t-secondary" data-link-type="button" data-link-name="Follow us on Twitter">{{ _('Follow us on Twitter') }}</a>
-      </li>
-    </ul>
+  <!-- {% block contrib_content %}{% endblock contrib_content %} -->
+
+  {% block contrib_footer %}
+  <section class="mzp-l-content">
+
+    {% block contrib_extra_third %}
+    <aside class="mzp-c-newsletter">
+      <div class="mzp-c-newsletter-image">
+        {{ high_res_img('img/home/2018/newsletter-graphic.png', {'alt': ''}) }}
+      </div>
+
+      <div class="newsletter-content">
+        {% if LANG.startswith('en') %}
+        {% set newsletter_title = _('Not sure yet?') %}
+        {% else %}
+        {% set newsletter_title = _('Not sure yet?') ~ _('(English)') %}
+        {% endif %}
+
+        {{ email_newsletter_form(
+        title=newsletter_title,
+        subheading='Get community and contribution news to your inbox',
+        subtitle='Subscribe to our newsletter, join Mozillians all around the
+        world, and learn about impactful opportunities to support Mozilla’s
+        mission.',
+        details='We will only send you Mozilla-related information.',
+        newsletters='about-mozilla',
+        protocol_component=True,
+        include_language=False
+        )}}
+      </div>
+    </aside>
+    {% endblock %}
   </section>
-{% endblock contrib_content %}
+  {% endblock contrib_footer %}
 
-{% block js %}
-  {{ js_bundle('contribute-landing') }}
-{% endblock %}
+  <div class="mzp-l-content">
+    <h2>Get Help</h2>
+    <p>Mozilla has a dedicated team of volunteers to help with whatever issues
+      you may be experiencing.</p>
+    <a href="#" class="mzp-c-button mzp-t-product">
+      Mozilla Support
+    </a>
+  </div>
+
+  <div class="mzp-l-content">
+    <h2>Problems with a web page?</h2>
+    <p>If your experience of a website differs between browsers then you may
+      have discovered a web compatiblity issue. We would love to know about it!</p>
+    <a href="#" class="mzp-c-button">
+      Report an issue
+    </a>
+  </div>
+
+</main>
+
+
+{% block cta %}{% endblock %}
+
+{% endblock content %}

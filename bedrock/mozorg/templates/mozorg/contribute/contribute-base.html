@@ -1,112 +1,142 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
- # License, v. 2.0. If a copy of the MPL was not distributed with this
- # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% extends "base-protocol-mozilla.html" %}
+{% set_lang_files "mozorg/newsletters" %}
 
-{% from "macros-protocol.html" import call_out, hero, feature_card, picto_card with context %}
+{% from "newsletter/includes/macros.html" import email_form_thankyou with
+context %}
 
-{% add_lang_files "mozorg/contribute/index" %}
+{% if not success %}
+<form id="newsletter-form" class="mzp-c-newsletter-form" action="{{
+  url('newsletter.subscribe') }}" method="post">
+  {{ form.newsletters|safe }}
+  <input type="hidden" name="source_url" value="{{ request.build_absolute_uri()
+    }}">
 
-{% block body_class %}{{ super() }} contribute{% endblock %}
+  {% if include_title %}
+  <header class="mzp-c-newsletter-header">
+    <h3 class="mzp-c-newsletter-title">{{ title|d(_('Get Firefox news'), true)
+      }}</h3>
+    {% if subheading %}
+    <p class="">{{ subheading }}</p>
+    {% endif %}
+    {% if subtitle %}
+    <p class="mzp-c-newsletter-tagline">{{ subtitle }}</p>
+    {% endif %}
+  </header>
+  {% endif %}
 
-{% block page_css %}
-  {{ css_bundle('contribute-base') }}
-{% endblock %}
+  <fieldset class="mzp-c-newsletter-content">
+    {% if form.errors %}
+    <div class="mzp-c-form-errors" id="newsletter-errors">
+      {{ form.non_field_errors()|safe }}
+      <ul class="mzp-u-list-styled">
+        {% if form.email.errors %}
+        <li>{{ _('Please enter a valid email address') }}</li>
+        {% endif %}
 
-{% block content %}
-<main role="main">
-{% block contrib_head %}
-    <nav class="c-sub-navigation">
-      <div class="mzp-l-content">
-        <div class="c-sub-navigation-content">
-          <h2 class="c-sub-navigation-title">{{ _('Get Involved') }}</h2>
-          <ul class="c-sub-navigation-list">
-            <li class="c-sub-navigation-item">
-              <a href="{{ url('mozorg.contribute.index') }}" data-link-type="nav" data-link-name="Why volunteer">
-                {# L10n: this br is for formatting, omit or reposition as needed #}
-                {{ _('Why<br> volunteer') }}
-              </a>
-            </li>
-            <li class="c-sub-navigation-item">
-              <a href="https://community.mozilla.org/events/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=contribute&amp;utm_content=contribute-page" data-link-type="nav" data-link-name="Find an event">
-                {# L10n: this br is for formatting, omit or reposition as needed #}
-                {{ _('Find<br> an event') }}
-              </a>
-            </li>
-            <li class="c-sub-navigation-item">
-              <a href="{{ url('mozorg.contribute.stories') }}" data-link-type="nav" data-link-name="Meet Mozillians">
-                {# L10n: this br is for formatting, omit or reposition as needed #}
-                {{ _('Meet<br> Mozillians') }}
-              </a>
-            </li>
-            <li class="c-sub-navigation-item">
-              <a href="https://activate.mozilla.community/?utm_source=www.mozilla.org&amp;utm_medium=referral&amp;utm_campaign=contribute&amp;utm_content=contribute-page" data-link-type="nav" data-link-name="Get involved" data-cta-position="Nav">
-                {{ _('Get Involved') }}
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+        {% if form.lang.errors %}
+        <li>{{ form.lang.errors }}</li>
+        {% endif %}
 
-    {% block contrib_title %}
-      <div class="mzp-l-content">
-        <h1 class="contribute-section-heading">{% block contrib_page_title %}{% endblock %}</h1>
-      </div>
-    {% endblock contrib_title %}
-  {% endblock contrib_head %}
+        {% if form.privacy.errors %}
+        <li>{{ _('You must agree to the privacy notice') }}</li>
+        {% endif %}
+      </ul>
+    </div>
+    {% endif %}
 
-  {% block contrib_content %}{% endblock contrib_content %}
+    <p>
+      <label for="id_email">
+        {% if email_label %}
+        {{ email_label }}
+        {% else %}
+        {{ _('Your email address') }}
+        {% endif %}
+      </label>
+      {% if email_placeholder %}
+      {% set placeholder = email_placeholder %}
+      {% else %}
+      {% set placeholder = _('yourname@example.com') %}
+      {% endif %}
+      {{ field_with_attrs(form.email, placeholder=placeholder,
+      class='mzp-js-email-field')|safe }}
+    </p>
 
-  {% block contrib_footer %}
-  <section class="mzp-l-content">
-    <div class="contribute-extra-links">
-      <div class="contribute-extra-links-item">
-        <h3>{{ _('Communicate') }}</h3>
-        <ul>
-          <li><a href="{{ url('mozorg.contact.communities.communities-landing') }}">{{ _('Mozilla communities') }}</a></li>
-          <li><a href="{{ url('mozorg.about.forums.forums') }}">{{ _('Mailing lists') }}</a></li>
-        </ul>
-      </div>
+    <div id="newsletter-details" class="mzp-c-newsletter-details">
+      {% if include_country %}
+      <p>{{ form.country|safe }}</p>
+      {% endif %}
 
-      <div class="contribute-extra-links-item">
-        <h3>{{ _('More links') }}</h3>
-        <ul>
-          <li><a href="https://input.mozilla.org/feedback" rel="external">{{ _('Submit Firefox feedback') }}</a></li>
-          <li><a href="https://careers.mozilla.org" rel="external">{{ _('Explore Mozilla careers') }}</a></li>
-          <li><a href="https://support.mozilla.org" rel="external">{{ _('Get help with Firefox') }}</a></li>
-          <li><a href="https://reps.mozilla.org/events/period/future/ical/" rel="external">{{ _('Subscribe to community events') }}</a></li>
-        </ul>
-      </div>
+      {% if include_language %}
+      <p>{{ form.lang|safe }}</p>
+      {% else %}
+      <input type="hidden" name="lang" id="id_lang" value="en">
+      {% endif %}
+
+      <fieldset class="mzp-u-inline">
+        <legend>{{ _('Format') }}</legend>
+        <p>
+          <label for="format-html" class="mzp-u-inline">
+            <input type="radio" id="format-html" name="fmt" value="H" checked>
+            {{ _('HTML') }}
+          </label>
+          <label for="format-text" class="mzp-u-inline">
+            <input type="radio" id="format-text" name="fmt" value="T"> {{
+            _('Text') }}
+          </label>
+        </p>
+      </fieldset>
+
+      <p>
+        <label for="privacy" class="mzp-u-inline">
+          <input type="checkbox" id="privacy" name="privacy" required
+            aria-required="true"> {{ _('I’m okay with Mozilla handling my info
+          as explained
+          in <a href="%s">this Privacy Notice</a>')|format(url('privacy.notices.websites'))
+          }}
+        </label>
+      </p>
     </div>
 
-    {% block contrib_extra_third %}
-      <aside class="mzp-c-newsletter">
-        <div class="mzp-c-newsletter-image">
-          {{ high_res_img('img/home/2018/newsletter-graphic.png', {'alt': ''}) }}
-        </div>
+    <p class="mzp-c-form-submit">
+      <button type="submit" id="newsletter-submit" class="mzp-c-button {{
+        button_class }}" data-cta-type="Newsletter-{{ id }}"
+        data-cta-text="Newsletter Sign Up">
+        {% if submit_text %}
+        {{ submit_text }}
+        {% else %}
+        {{ _('Sign Up Now') }}
+        {% endif %}
+      </button>
 
-        <div class="newsletter-content">
-          {% if LANG.startswith('en') %}
-            {% set newsletter_title = _('Get community updates') %}
-          {% else %}
-            {% set newsletter_title = _('Get community updates') ~ _('(English)') %}
-          {% endif %}
+      {% if details %}
+      <span class="mzp-c-fieldnote">{{ details }}</span>
+      {% else %}
+      <span class="mzp-c-fieldnote">{{ _('We will only send you Mozilla-related
+        information.') }}</span>
+      {% endif %}
+    </p>
+  </fieldset>
+</form>
 
-          {{ email_newsletter_form(
-            title=newsletter_title,
-            newsletters='about-mozilla',
-            protocol_component=True,
-            include_language=False
-          )}}
-        </div>
-      </aside>
-    {% endblock %}
-  </section>
-  {% endblock contrib_footer %}
-</main>
+<div id="newsletter-thanks" class="mzp-c-newsletter-thanks">
+  {% if thankyou_content %}
+  <h3>{{ thankyou_head }}</h3>
+  <p>{{ thankyou_content }}</p>
+  {% else %}
+  {{ email_form_thankyou() }}
+  {% endif %}
+</div>
 
-{% block cta %}{% endblock %}
-
-{% endblock content %}
+{% elif use_thankyou %}
+<div id="newsletter-thanks" class="mzp-c-newsletter-thanks">
+  {% if thankyou_content %}
+  <h3>{{ thankyou_head }}</h3>
+  <p>{{ thankyou_content }}</p>
+  {% else %}
+  {{ email_form_thankyou() }}
+  {% endif %}
+</div>
+{% endif %}
