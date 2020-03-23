@@ -701,4 +701,7 @@ redirectpatterns = (
     redirect('technology/update-your-browser', 'firefox.browsers.update-browser'),
     redirect('technology/incognito-browser', 'firefox.browsers.incognito-browser'),
     redirect('technology/browser-history', 'firefox.browsers.browser-history'),
+
+    # Issue 8536
+    redirect(r'^etc/firefox/retention(/.*)?', 'firefox.retention.thank-you'),
 )

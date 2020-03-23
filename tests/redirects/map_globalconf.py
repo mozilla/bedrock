@@ -1325,7 +1325,7 @@ URLS = flatten((
     # Issue 8419
     url_test('/firefox/this-browser-comes-highly-recommended/', '/firefox/developer/'),
 
-    # issue 8420
+    # Issue 8420
     url_test('/firefox/dedicated-profiles/', 'https://support.mozilla.org/kb/dedicated-profiles-firefox-installation'),
 
     # Issue 8668
@@ -1338,4 +1338,7 @@ URLS = flatten((
     url_test('/technology/browser-history/', '/firefox/browsers/browser-history/'),
     url_test('/firefox/windows-64-bit/', '/firefox/browsers/windows-64-bit/'),
     url_test('/firefox/best-browser/', '/firefox/browsers/best-browser/'),
+
+    # Issue 8536
+    url_test('/etc/firefox/retention/{thank-you-a/,thank-you-b/,thank-you-referral/}', '/firefox/retention/thank-you/'),
 ))
