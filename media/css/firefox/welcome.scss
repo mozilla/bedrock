@@ -108,10 +108,6 @@ $image-path: '/media/protocol/img';
         margin: $layout-sm auto 0;
     }
 
-    .fb-img {
-        max-width: 150px;
-    }
-
     .primary-image-desc {
         @include text-display-xxs;
         font-style: italic;
@@ -308,9 +304,6 @@ $image-path: '/media/protocol/img';
         padding: $layout-xs;
     }
 
-    .body-primary .fb-img {
-        max-width: 200px;
-    }
 }
 
 @media #{$mq-md} {
