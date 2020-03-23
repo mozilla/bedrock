@@ -130,12 +130,6 @@
     },
     {
       "files": [
-        "css/firefox/recommended.scss"
-      ],
-      "name": "firefox_recommended"
-    },
-    {
-      "files": [
         "css/firefox/campaign/download.scss"
       ],
       "name": "firefox_campaign"

@@ -115,12 +115,6 @@ urlpatterns = (
     page('firefox/switch', 'firefox/switch.html', ftl_files=['firefox/switch', 'firefox/switch-en']),
     page('firefox/pocket', 'firefox/pocket.html'),
 
-    # Bug 1519084
-    page('firefox/dedicated-profiles', 'firefox/dedicated-profiles.html'),
-
-    # Issue 6178
-    page('firefox/this-browser-comes-highly-recommended', 'firefox/recommended.html'),
-
     # Issue 6604, SEO firefox/new pages
     page('firefox/windows', 'firefox/new/protocol/download_windows.html'),
     page('firefox/mac', 'firefox/new/protocol/download_mac.html'),
