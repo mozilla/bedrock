@@ -239,8 +239,8 @@ DOTLANG_CACHE = config('DOTLANG_CACHE', default='1800' if DEBUG else '600', pars
 
 # Global L10n files.
 # TODO Port DOTLANG_FILES to FLUENT_DEFAULT_FILES
-DOTLANG_FILES = ['download_button', 'main', 'footer']
-FLUENT_DEFAULT_FILES = ['brands', 'navigation']
+DOTLANG_FILES = ['download_button', 'main']
+FLUENT_DEFAULT_FILES = ['brands', 'navigation', 'footer']
 
 FLUENT_DEFAULT_PERCENT_REQUIRED = config('FLUENT_DEFAULT_PERCENT_REQUIRED', default='80', parser=int)
 FLUENT_REPO = config('FLUENT_REPO', default='https://github.com/mozmeao/www-l10n')
