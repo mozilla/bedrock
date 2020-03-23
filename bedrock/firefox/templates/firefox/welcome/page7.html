@@ -51,17 +51,50 @@
       </div>
     </div>
 
-    <div class="c-picto-block t-adjacent-image">
-      <div class="c-picto-block-image">
-        <img src="{{ static('img/icons/audio-pink.svg') }}" alt="">
+    {% if LANG.startswith('en-') %}
+      <div class="c-picto-block t-adjacent-image">
+        <div class="c-picto-block-image">
+          <img src="{{ static('img/icons/audio-pink.svg') }}" alt="">
+        </div>
+        <h3 class="c-picto-block-title">{{ _('Listen to this') }}</h3>
+        <div class="c-picto-block-body">
+          <p>{{ _(' Why are companies like Google and Facebook doing everything they can to predict your behavior?') }}</p>
+          <a href="https://irlpodcast.org/season4/episode5/?utm_source=www.mozilla.org-whatsnew74&utm_medium=referral&utm_campaign=feb2020" rel="external"><strong>{{ _('Listen to our IRL podcast') }}</strong></a>
+        </div>
       </div>
-      <h3 class="c-picto-block-title">{{ _('Listen to this') }}</h3>
-      <div class="c-picto-block-body">
-        <p>{{ _(' Why are companies like Google and Facebook doing everything they can to predict your behavior?') }}</p>
-        <a href="https://irlpodcast.org/season4/episode5/?utm_source=www.mozilla.org-whatsnew74&utm_medium=referral&utm_campaign=feb2020" rel="external"><strong>{{ _('Listen to our IRL podcast') }}</strong></a>
+    {% elif LANG == 'de' %}
+      <div class="c-picto-block t-adjacent-image">
+        <div class="c-picto-block-image">
+          <img src="{{ static('img/icons/audio-pink.svg') }}" alt="">
+        </div>
+        <h3 class="c-picto-block-title">Hör’s dir rein</h3>
+        <div class="c-picto-block-body">
+          <p>Im Netz der Tracker: Niemand sollte ohne Zustimmung online verfolgt werden dürfen. Warum Online-Tracking problematisch ist und was es für unsere Gesellschaft bedeutet?</p>
+          <a href="https://awebpodcast.org/staffel1/folge7/?utm_source=www.mozilla.org-whatsnew74&utm_medium=referral&utm_campaign=feb2020" rel="external"><strong>Jetzt im aweb Podcast</strong></a>
+        </div>
       </div>
-    </div>
-
+    {% elif LANG == 'fr' %}
+      <div class="c-picto-block t-adjacent-image">
+        <div class="c-picto-block-image">
+          <img src="{{ static('img/icons/audio-pink.svg') }}" alt="">
+        </div>
+        <h3 class="c-picto-block-title">Les traqueurs de réseaux sociaux, c’est quoi exactement ?</h3>
+        <div class="c-picto-block-body">
+          <p>Les platformes de réseaux sociaux déposent des traqueurs sur d'autres sites afin de suivre ce que vous faites en ligne.</p>
+          <a href="https://blog.mozilla.org/firefox/fr/que-sont-les-traqueurs-de-reseaux-sociaux/?utm_source=www.mozilla.org-whatsnew74&utm_medium=referral&utm_campaign=feb2020"><strong>Apprenez à les contourner</strong></a>
+        </div>
+      </div>
+    {% else %}
+      <div class="c-picto-block t-adjacent-image">
+        <div class="c-picto-block-image">
+          <img src="{{ static('img/icons/facebook-button.svg') }}" alt="">
+        </div>
+        <h3 class="c-picto-block-title">{{ _('That sneaky little button') }}</h3>
+        <div class="c-picto-block-body">
+          <p>{{ _('Those innocent-looking F buttons from Facebook track your web activity, even if you don’t have an account. Facebook Container blocks them.') }}</p>
+        </div>
+      </div>
+    {% endif %}
     <div class="c-picto-block t-adjacent-image">
       <div class="c-picto-block-image">
         <img src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" alt="">
