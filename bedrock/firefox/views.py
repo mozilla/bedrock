@@ -43,7 +43,8 @@ INSTALLER_CHANNElS = [
     'release',
     'beta',
     'alpha',
-    # 'nightly',  # soon
+    'nightly',
+    'aurora',  # deprecated name for dev edition
 ]
 SEND_TO_DEVICE_MESSAGE_SETS = settings.SEND_TO_DEVICE_MESSAGE_SETS
 
@@ -69,7 +70,10 @@ def installer_help(request):
         context['installer_lang'] = installer_lang
 
     if installer_channel and installer_channel in INSTALLER_CHANNElS:
-        context['installer_channel'] = installer_channel
+        if installer_channel == 'aurora':
+            context['installer_channel'] = 'alpha'
+        else:
+            context['installer_channel'] = installer_channel
 
     return l10n_utils.render(request, 'firefox/installer-help.html', context)
 
