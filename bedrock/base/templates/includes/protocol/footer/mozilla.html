@@ -6,75 +6,70 @@
   <div class="mzp-l-content">
     <nav class="mzp-c-footer-primary">
       <div class="mzp-c-footer-primary-logo">
-        <a href="{{ url('mozorg.home') }}" data-link-type="footer" data-link-name="Mozilla">{{ _('Mozilla') }}</a>
+        <a href="{{ url('mozorg.home') }}" data-link-type="footer" data-link-name="Mozilla">{{ ftl('footer-mozilla') }}</a>
       </div>
       <div class="mzp-c-footer-sections">
         <section class="mzp-c-footer-section">
           <h5 class="mzp-c-footer-heading">
-            {{ _('Company') }}
+            {{ ftl('footer-company') }}
           </h5>
           <ul class="mzp-c-footer-list">
-            <li><a href="{{ url('mozorg.about') }}" data-link-type="footer" data-link-name="About">{{ _('About') }}</a></li>
-            <li><a href="{{ press_blog_url() }}" data-link-type="footer" data-link-name="Press Center">{{ _('Press Center') }}</a>
-            <li><a href="https://careers.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer&utm_content=company" data-link-type="footer" data-link-name="Careers">{{ _('Careers') }}</a>
+            <li><a href="{{ url('mozorg.about') }}" data-link-type="footer" data-link-name="About">{{ ftl('footer-about') }}</a></li>
+            <li><a href="{{ press_blog_url() }}" data-link-type="footer" data-link-name="Press Center">{{ ftl('footer-press-center') }}</a>
+            <li><a href="https://careers.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer&utm_content=company" data-link-type="footer" data-link-name="Careers">{{ ftl('footer-careers') }}</a>
           </ul>
         </section>
         <section class="mzp-c-footer-section">
           <h5 class="mzp-c-footer-heading">
-            {{ _('Developers') }}
+            {{ ftl('footer-developers') }}
           </h5>
           <ul class="mzp-c-footer-list">
-            <li><a href="{{ url('firefox.channel.desktop') }}" data-link-type="footer" data-link-name="Test New Features">{{ _('Test New Features') }}</a></li>
-            <li><a href="https://developer.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer&utm_content=developers" data-link-type="footer" data-link-name="MDN Web Docs">{{ _('MDN Web Docs') }}</a></li>
-            <li><a href="https://developer.mozilla.org/docs/Tools/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer&utm_content=developers" data-link-type="footer" data-link-name="Tools">{{ _('Tools') }}</a></li>
+            <li><a href="{{ url('firefox.channel.desktop') }}" data-link-type="footer" data-link-name="Test New Features">{{ ftl('footer-test-new-features') }}</a></li>
+            <li><a href="https://developer.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer&utm_content=developers" data-link-type="footer" data-link-name="MDN Web Docs">{{ ftl('footer-mdn-web-docs') }}</a></li>
+            <li><a href="https://developer.mozilla.org/docs/Tools/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer&utm_content=developers" data-link-type="footer" data-link-name="Tools">{{ ftl('footer-tools') }}</a></li>
           </ul>
         </section>
         <section class="mzp-c-footer-section">
           <h5 class="mzp-c-footer-heading">
-            {{ _('Resources') }}
+            {{ ftl('footer-resources') }}
           </h5>
           <ul class="mzp-c-footer-list">
-            <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy">{{ _('Privacy') }}</a></li>
-            <li><a href="{{ url('mozorg.contact.contact-landing') }}" data-link-type="footer" data-link-name="Contact Us">{{ _('Contact') }}</a></li>
+            <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy">{{ ftl('footer-privacy') }}</a></li>
+            <li><a href="{{ url('mozorg.contact.contact-landing') }}" data-link-type="footer" data-link-name="Contact Us">{{ ftl('footer-contact') }}</a></li>
           </ul>
         </section>
         <section class="mzp-c-footer-section">
           <h5 class="mzp-c-footer-heading">
-            {{ _('Product Help') }}
+            {{ ftl('footer-product-help') }}
           </h5>
           <ul class="mzp-c-footer-list">
-            <li><a href="https://support.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer&utm_content=help" data-link-type="footer" data-link-name="Support">{{ _('Support') }}</a></li>
-            <li><a href="https://bugzilla.mozilla.org/" data-link-type="footer" data-link-name="File a Bug">{{ _('File a Bug') }}</a></li>
+            <li><a href="https://support.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer&utm_content=help" data-link-type="footer" data-link-name="Support">{{ ftl('footer-support') }}</a></li>
+            <li><a href="https://bugzilla.mozilla.org/" data-link-type="footer" data-link-name="File a Bug">{{ ftl('footer-file-a-bug') }}</a></li>
           </ul>
         </section>
       </div>
     </nav>
     <nav class="mzp-c-footer-secondary">
       <div class="mzp-c-footer-language">
-        {% include 'includes/protocol/lang-switcher.html' %}
+       {% include 'includes/protocol/lang-switcher.html' %}
       </div>
       <ul class="mzp-c-footer-links-social">
-        <li><a class="twitter" href="https://twitter.com/mozilla" data-link-type="footer" data-link-name="Twitter (@mozilla)">{{ _('Twitter') }}<span> (@mozilla)</span></a></li>
-        <li><a class="instagram" href="https://www.instagram.com/mozilla/" data-link-type="footer" data-link-name="Instagram (@mozilla)">{{ _('Instagram') }}<span> (@mozilla)</span></a></li>
+        <li><a class="twitter" href="https://twitter.com/mozilla" data-link-type="footer" data-link-name="Twitter (@mozilla)">{{ ftl('footer-twitter') }}<span> (@mozilla)</span></a></li>
+        <li><a class="instagram" href="https://www.instagram.com/mozilla/" data-link-type="footer" data-link-name="Instagram (@mozilla)">{{ ftl('footer-instagram') }}<span> (@mozilla)</span></a></li>
       </ul>
       <div class="mzp-c-footer-legal">
         <p class="mzp-c-footer-license">
           {% set moco_link = 'href="%s" data-link-type="footer" data-link-name="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}
           {% set mofo_link = 'href="https://foundation.mozilla.org" rel="external noopener" data-link-type="footer" data-link-name="Mozilla Foundation"'|safe %}
-          {% trans %}
-            Visit <a {{ moco_link }}>Mozilla Corporation’s</a> not-for-profit parent, the <a {{ mofo_link }}>Mozilla Foundation</a>.
-          {% endtrans %}<br>
-          {%- trans url=url('foundation.licensing.website-content') -%}
-              Portions of this content are ©1998–{{ current_year }} by individual mozilla.org
-              contributors. Content available under a <a rel="license" href="{{ url }}">Creative Commons license</a>.
-          {%- endtrans -%}
+          {{ ftl('footer-visit-mozilla-corporations') }}<br>
+          {{ ftl('footer-portions-of-this-content', url=url('foundation.licensing.website-content'), current_year=current_year|string) }}
         </p>
         <ul class="mzp-c-footer-terms">
-          <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy">{{ _('Privacy') }}</a></li>
-          <li><a href="{{ url('privacy.notices.websites') }}" data-link-type="footer" data-link-name="Privacy">{{ _('Website Privacy Notice') }}</a></li>
-          <li><a href="{{ url('privacy.notices.websites') }}#cookies" data-link-type="footer" data-link-name="Cookies">{{ _('Cookies') }}</a></li>
-          <li><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal">{{ _('Legal') }}</a></li>
-          <li><a href="{{ url('mozorg.about.governance.policies.participation') }}" data-link-type="footer" data-link-name="Community Participation Guidelines">{{ _('Community Participation Guidelines') }}</a></li>
+          <li><a href="{{ url('privacy') }}" data-link-type="footer" data-link-name="Privacy">{{ ftl('footer-privacy') }}</a></li>
+          <li><a href="{{ url('privacy.notices.websites') }}" data-link-type="footer" data-link-name="Privacy">{{ ftl('footer-websites-privacy-notice') }}</a></li>
+          <li><a href="{{ url('privacy.notices.websites') }}#cookies" data-link-type="footer" data-link-name="Cookies">{{ ftl('footer-websites-cookies') }}</a></li>
+          <li><a href="{{ url('legal.index') }}" data-link-type="footer" data-link-name="Legal">{{ ftl('footer-websites-legal') }}</a></li>
+          <li><a href="{{ url('mozorg.about.governance.policies.participation') }}" data-link-type="footer" data-link-name="Community Participation Guidelines">{{ ftl('footer-community-participation-guidelines') }}</a></li>
         </ul>
       </div>
     </nav>
