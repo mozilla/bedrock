@@ -7,6 +7,7 @@ from django_jinja import library
 from bedrock.firefox.firefox_details import firefox_desktop, firefox_android, firefox_ios
 from bedrock.base.urlresolvers import reverse
 from lib.l10n_utils import get_locale
+from lib.l10n_utils.fluent import fluent_l10n
 
 
 def desktop_builds(channel, builds=None, locale=None, force_direct=False,
@@ -164,7 +165,8 @@ def download_firefox(ctx, channel='release', platform='all',
         'show_ios': show_ios,
         'alt_copy': alt_copy,
         'button_color': button_color,
-        'download_location': download_location
+        'download_location': download_location,
+        'fluent_l10n': fluent_l10n([locale, 'en'], settings.FLUENT_DEFAULT_FILES)
     }
 
     html = render_to_string('firefox/includes/download-button.html', data,
