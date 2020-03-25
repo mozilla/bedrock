@@ -1,0 +1,119 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button, send_to_device with context %}
+{% from "macros-protocol.html" import hero with context %}
+
+{% add_lang_files "firefox/welcome/page7" %}
+
+{% extends "firefox/welcome/base.html" %}
+
+{# L10n: HTML page title #}
+{% block page_title %}{{ _('Make it harder for Facebook to track you') }}{% endblock %}
+
+{% block body_class %}{{ super() }} welcome-page7{% endblock %}
+
+{% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
+{% set android_url = lockwise_adjust_url('android', 'welcome-7') %}
+{% set ios_url = lockwise_adjust_url('ios', 'welcome-7') %}
+
+{% set _entrypoint = 'mozilla.org-firefox-welcome-7' %}
+{% set _utm_campaign = 'welcome-7-fbcontainer' %}
+
+
+{% block content_intro %}
+{% call hero(
+    title=_('It’s okay to like Facebook'),
+    desc=_('If you still kinda like Facebook but don’t trust them, then try the Facebook Container extension by Firefox and make it harder for them to track you around the web.'),
+    class='mzp-t-firefox mzp-t-dark',
+    include_cta=True,
+    heading_level=1
+  ) %}
+
+  <p class="primary-cta">
+    <a href="https://addons.mozilla.org/firefox/addon/facebook-container/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" class="mzp-c-button mzp-t-product" id="facebook-container-button" rel="external">{{ _('Get Facebook Container') }}</a>
+  </p>
+
+  {% endcall %}
+{% endblock %}
+
+{% block content_primary %}
+  <div class="body-primary">
+    <div class="c-picto-block t-adjacent-image">
+      <div class="c-picto-block-image">
+        <img src="{{ static('img/icons/photo-orange.svg') }}" alt="">
+      </div>
+
+      <h3 class="c-picto-block-title">{{ _('Do it for the ’Gram') }}</h3>
+      <div class="c-picto-block-body">
+        <p>{{ _('Facebook Container also works on other Facebook owned sites like Instagram, Facebook Messenger and Workplace.') }}</p>
+        <a href="https://addons.mozilla.org/firefox/addon/facebook-container/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" rel="external"><strong>{{ _('Make them unfollow you') }}</strong></a>
+      </div>
+    </div>
+
+    {% if LANG.startswith('en-') %}
+      <div class="c-picto-block t-adjacent-image">
+        <div class="c-picto-block-image">
+          <img src="{{ static('img/icons/audio-pink.svg') }}" alt="">
+        </div>
+        <h3 class="c-picto-block-title">{{ _('Listen to this') }}</h3>
+        <div class="c-picto-block-body">
+          <p>{{ _(' Why are companies like Google and Facebook doing everything they can to predict your behavior?') }}</p>
+          <a href="https://irlpodcast.org/season4/episode5/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" rel="external"><strong>{{ _('Listen to our IRL podcast') }}</strong></a>
+        </div>
+      </div>
+    {% elif LANG == 'de' %}
+      <div class="c-picto-block t-adjacent-image">
+        <div class="c-picto-block-image">
+          <img src="{{ static('img/icons/audio-pink.svg') }}" alt="">
+        </div>
+        <h3 class="c-picto-block-title">Hör’s dir rein</h3>
+        <div class="c-picto-block-body">
+          <p>Im Netz der Tracker: Niemand sollte ohne Zustimmung online verfolgt werden dürfen. Warum Online-Tracking problematisch ist und was es für unsere Gesellschaft bedeutet?</p>
+          <a href="https://awebpodcast.org/staffel1/folge7/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" rel="external"><strong>Jetzt im aweb Podcast</strong></a>
+        </div>
+      </div>
+    {% elif LANG == 'fr' %}
+      <div class="c-picto-block t-adjacent-image">
+        <div class="c-picto-block-image">
+          <img src="{{ static('img/icons/audio-pink.svg') }}" alt="">
+        </div>
+        <h3 class="c-picto-block-title">Les traqueurs de réseaux sociaux, c’est quoi exactement ?</h3>
+        <div class="c-picto-block-body">
+          <p>Les platformes de réseaux sociaux déposent des traqueurs sur d'autres sites afin de suivre ce que vous faites en ligne.</p>
+          <a href="https://blog.mozilla.org/firefox/fr/que-sont-les-traqueurs-de-reseaux-sociaux/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}"><strong>Apprenez à les contourner</strong></a>
+        </div>
+      </div>
+    {% else %}
+      <div class="c-picto-block t-adjacent-image">
+        <div class="c-picto-block-image">
+          <img src="{{ static('img/icons/facebook-button.svg') }}" alt="">
+        </div>
+        <h3 class="c-picto-block-title">{{ _('That sneaky little button') }}</h3>
+        <div class="c-picto-block-body">
+          <p>{{ _('Those innocent-looking F buttons from Facebook track your web activity, even if you don’t have an account. Facebook Container blocks them.') }}</p>
+        </div>
+      </div>
+    {% endif %}
+    <div class="c-picto-block t-adjacent-image">
+      <div class="c-picto-block-image">
+        <img src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" alt="">
+      </div>
+      <h3 class="c-picto-block-title">{{ _('Stay ahead of hackers') }}</h3>
+      <div class="c-picto-block-body">
+        <p>{{ _('Firefox Monitor lets you find out what hackers might already know about you and helps you stay a step ahead of them. (And it’s free.)') }}</p>
+        <a href="https://monitor.firefox.com/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}"><strong>{{ _('Get Firefox Monitor') }}</strong></a>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block content_utility %}
+<p>
+  <strong>
+    <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">{{ _('Why am I seeing this?') }}</a>
+  </strong>
+</p>
+{% endblock %}
