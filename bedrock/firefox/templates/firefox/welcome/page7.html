@@ -19,7 +19,8 @@
 {% set ios_url = lockwise_adjust_url('ios', 'welcome-7') %}
 
 {% set _entrypoint = 'mozilla.org-firefox-welcome-7' %}
-{% set _utm_campaign = 'welcome-7-facebook-container' %}
+{% set _utm_campaign = 'welcome-7-fbcontainer' %}
+
 
 {% block content_intro %}
 {% call hero(
@@ -31,7 +32,7 @@
   ) %}
 
   <p class="primary-cta">
-    <a href="https://addons.mozilla.org/firefox/addon/facebook-container/?src=external-www.mozilla.org-whatsnew74&utm_source=www.mozilla.org-whatsnew74&utm_medium=referral&utm_campaign=feb2020" class="mzp-c-button mzp-t-product" id="facebook-container-button" rel="external">{{ _('Get Facebook Container') }}</a>
+    <a href="https://addons.mozilla.org/firefox/addon/facebook-container/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" class="mzp-c-button mzp-t-product" id="facebook-container-button" rel="external">{{ _('Get Facebook Container') }}</a>
   </p>
 
   {% endcall %}
@@ -47,7 +48,7 @@
       <h3 class="c-picto-block-title">{{ _('Do it for the ’Gram') }}</h3>
       <div class="c-picto-block-body">
         <p>{{ _('Facebook Container also works on other Facebook owned sites like Instagram, Facebook Messenger and Workplace.') }}</p>
-        <a href="https://addons.mozilla.org/firefox/addon/facebook-container/?src=external-www.mozilla.org-whatsnew74&utm_source=www.mozilla.org-whatsnew74&utm_medium=referral&utm_campaign=feb2020" rel="external"><strong>{{ _('Make them unfollow you') }}</strong></a>
+        <a href="https://addons.mozilla.org/firefox/addon/facebook-container/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" rel="external"><strong>{{ _('Make them unfollow you') }}</strong></a>
       </div>
     </div>
 
@@ -59,7 +60,7 @@
         <h3 class="c-picto-block-title">{{ _('Listen to this') }}</h3>
         <div class="c-picto-block-body">
           <p>{{ _(' Why are companies like Google and Facebook doing everything they can to predict your behavior?') }}</p>
-          <a href="https://irlpodcast.org/season4/episode5/?utm_source=www.mozilla.org-whatsnew74&utm_medium=referral&utm_campaign=feb2020" rel="external"><strong>{{ _('Listen to our IRL podcast') }}</strong></a>
+          <a href="https://irlpodcast.org/season4/episode5/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" rel="external"><strong>{{ _('Listen to our IRL podcast') }}</strong></a>
         </div>
       </div>
     {% elif LANG == 'de' %}
@@ -70,7 +71,7 @@
         <h3 class="c-picto-block-title">Hör’s dir rein</h3>
         <div class="c-picto-block-body">
           <p>Im Netz der Tracker: Niemand sollte ohne Zustimmung online verfolgt werden dürfen. Warum Online-Tracking problematisch ist und was es für unsere Gesellschaft bedeutet?</p>
-          <a href="https://awebpodcast.org/staffel1/folge7/?utm_source=www.mozilla.org-whatsnew74&utm_medium=referral&utm_campaign=feb2020" rel="external"><strong>Jetzt im aweb Podcast</strong></a>
+          <a href="https://awebpodcast.org/staffel1/folge7/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" rel="external"><strong>Jetzt im aweb Podcast</strong></a>
         </div>
       </div>
     {% elif LANG == 'fr' %}
@@ -81,7 +82,7 @@
         <h3 class="c-picto-block-title">Les traqueurs de réseaux sociaux, c’est quoi exactement ?</h3>
         <div class="c-picto-block-body">
           <p>Les platformes de réseaux sociaux déposent des traqueurs sur d'autres sites afin de suivre ce que vous faites en ligne.</p>
-          <a href="https://blog.mozilla.org/firefox/fr/que-sont-les-traqueurs-de-reseaux-sociaux/?utm_source=www.mozilla.org-whatsnew74&utm_medium=referral&utm_campaign=feb2020"><strong>Apprenez à les contourner</strong></a>
+          <a href="https://blog.mozilla.org/firefox/fr/que-sont-les-traqueurs-de-reseaux-sociaux/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}"><strong>Apprenez à les contourner</strong></a>
         </div>
       </div>
     {% else %}
@@ -102,7 +103,7 @@
       <h3 class="c-picto-block-title">{{ _('Stay ahead of hackers') }}</h3>
       <div class="c-picto-block-body">
         <p>{{ _('Firefox Monitor lets you find out what hackers might already know about you and helps you stay a step ahead of them. (And it’s free.)') }}</p>
-        <a href="https://monitor.firefox.com/?utm_source=www.mozilla.org-whatsnew74&utm_medium=referral&utm_campaign=feb2020"><strong>{{ _('Get Firefox Monitor') }}</strong></a>
+        <a href="https://monitor.firefox.com/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}"><strong>{{ _('Get Firefox Monitor') }}</strong></a>
       </div>
     </div>
   </div>
