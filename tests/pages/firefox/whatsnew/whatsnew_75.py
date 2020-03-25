@@ -11,8 +11,8 @@ class FirefoxWhatsNew75Page(FirefoxBasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/75.0/whatsnew/all/{params}'
 
-    _signed_out_sync_button_locator = (By.CSS_SELECTOR, '.show-signed-out .qa-sync-button')
-    _signed_in_monitor_button_locator = (By.CSS_SELECTOR, '.show-signed-in .qa-monitor-button')
+    _signed_out_sync_button_locator = (By.CSS_SELECTOR, '.show-sync .qa-sync-button')
+    _signed_in_monitor_button_locator = (By.CSS_SELECTOR, '.show-monitor .qa-monitor-button')
 
     def wait_for_page_to_load(self):
         self.wait.until(lambda s: self.seed_url in s.current_url)

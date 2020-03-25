@@ -19,6 +19,15 @@ if (typeof window.Mozilla === 'undefined') {
                 document.querySelector('.c-page-header').classList.add('show-up-to-date-message');
             }
         });
+
+        client.getFxaDetails(function(details) {
+            if (details.setup && details.browserServices.sync.mobileDevices > 0) {
+                document.getElementsByTagName('body')[0].classList.add('state-fxa-has-devices');
+            } else if (window.location.search.indexOf('has-devices=true') !== -1) {
+                // Fake the user state for testing purposes
+                document.getElementsByTagName('body')[0].classList.add('state-fxa-has-devices');
+            }
+        });
     }
 
 })(window.Mozilla);

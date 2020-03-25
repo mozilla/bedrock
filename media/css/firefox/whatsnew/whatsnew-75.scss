@@ -83,16 +83,16 @@ $image-path: '/media/protocol/img';
 //* -------------------------------------------------------------------------- */
 // Conditional content
 
-.show-signed-in {
+.show-monitor {
     display: none;
 }
 
-.state-fxa-supported-signed-in {
-    .show-signed-in {
+.state-fxa-has-devices {
+    .show-monitor {
         display: block;
     }
 
-    .show-signed-out {
+    .show-sync {
         display: none;
     }
 }
