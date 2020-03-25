@@ -71,7 +71,7 @@ $image-path: '/media/protocol/img';
     }
 }
 
-.mzp-c-hero-title, .hero-subheading {
+.mzp-c-hero-title {
     @include text-display-lg;
     margin-bottom: $layout-sm;
 
