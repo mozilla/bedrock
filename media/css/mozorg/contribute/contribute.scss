@@ -2,19 +2,18 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/fonts';
-$image-path: '/media/protocol/img';
+$font-path: "/media/fonts";
+$image-path: "/media/protocol/img";
 
 @import "../../../protocol/css/includes/lib";
-@import '../../../protocol/css/components/call-out';
-@import '../../../protocol/css/components/feature-card';
-@import '../../../protocol/css/components/hero';
-@import '../../../protocol/css/components/modal';
-@import '../../../protocol/css/components/newsletter-form';
-@import '../../../protocol/css/components/picto-card';
-@import '../../../protocol/css/templates/card-layout';
-@import '../../protocol/components/sub-navigation';
-
+@import "../../../protocol/css/components/call-out";
+@import "../../../protocol/css/components/feature-card";
+@import "../../../protocol/css/components/hero";
+@import "../../../protocol/css/components/modal";
+@import "../../../protocol/css/components/newsletter-form";
+@import "../../../protocol/css/components/picto-card";
+@import "../../../protocol/css/templates/card-layout";
+@import "../../protocol/components/sub-navigation";
 
 //* -------------------------------------------------------------------------- */
 // Sub Nav
@@ -63,9 +62,7 @@ $image-path: '/media/protocol/img';
 
         .contribute-stats-item {
             width: 33.3%;
-            @include bidi((
-                (float, left, right),
-            ));
+            // @include bidi(((float, left, right)));
         }
     }
 }
@@ -75,6 +72,9 @@ $image-path: '/media/protocol/img';
 
 .contribute-hero {
     margin-bottom: $layout-md;
+    padding-top: $layout-sm;
+    padding-bottom: $layout-sm;
+    background-color: $color-marketing-gray-20;
 
     @media #{$mq-md} {
         margin-bottom: $layout-lg;
@@ -114,9 +114,7 @@ $image-path: '/media/protocol/img';
 
         .contribute-mozillian-item {
             width: 33.3%;
-            @include bidi((
-                (float, left, right),
-            ));
+            // @include bidi(((float, left, right)));
         }
     }
 }
@@ -169,9 +167,232 @@ $image-path: '/media/protocol/img';
 
         .contribute-extra-links-item {
             width: 50%;
-            @include bidi((
-                (float, left, right),
-            ));
+            // @include bidi(((float, left, right)));
+        }
+    }
+}
+
+.contribute-intro {
+    background-image: url("/media/img/contribute/contribute-hero-composition.jpg");
+    background-repeat: no-repeat;
+    background-position: top right;
+
+    @media #{$mq-lg} {
+        padding-top: $spacing-2xl * 2;
+        padding-bottom: $spacing-2xl * 5;
+    }
+
+    &-content {
+        @media #{$mq-lg} {
+            max-width: 40%;
+        }
+    }
+
+    &-heading {
+        @include text-display-lg;
+        padding-bottom: $spacing-md;
+    }
+}
+
+.contribute-card-container {
+    @media #{$mq-sm} {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .contribute-card {
+        flex: 1 0 45%;
+        display: flex;
+
+        @media #{$mq-lg} {
+            flex: auto;
+        }
+    }
+
+    .contribute-card-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contribute-card-content {
+        flex: 1;
+        padding: $spacing-md;
+    }
+
+    .contribute-card-content-tags {
+        margin-bottom: $spacing-sm;
+        min-height: $layout-md;
+    }
+
+    .contribute-card-tag-bold {
+        font-weight: bold !important;
+    }
+}
+
+.contribute-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 260px;
+    margin-bottom: $layout-lg;
+    position: relative;
+
+    &-content {
+        margin-left: 210px;
+        width: 50%;
+        max-width: 495px;
+    }
+
+    &-cta {
+        margin-left: $layout-2xl;
+    }
+}
+
+.contribute-banner-gethelp {
+    background-image: url("/media/img/contribute/contribute-gethelp-banner-bg.jpg");
+    background-size: cover;
+    color: $color-white;
+
+    &-title {
+        font-family: $font-stack-base;
+        @include font-size(40px);
+        position: relative;
+
+        &:before {
+            content: "";
+            display: block;
+            background-image: url("/media/img/contribute/contribute-banner-gethelp-icon.svg");
+            position: absolute;
+            height: 40px;
+            width: 40px;
+            left: -80px;
+        }
+    }
+}
+
+.contribute-banner-problems {
+    border: 4px solid $color-moz-light-gray;
+    background-image: url("/media/img/contribute/contribute-problems-bulb.svg"),
+        url("/media/img/contribute/contribute-problems-fly.svg");
+    background-size: 86px 241px, 33%;
+    background-position: 10% -45px, 96% 88%;
+    background-repeat: no-repeat;
+
+    &-title {
+        padding-left: $spacing-sm;
+        padding-right: $spacing-sm;
+        background-color: #ffc900;
+        @include font-size(40px);
+        display: inline;
+
+        &-wrapper {
+            margin-bottom: $spacing-md;
+        }
+    }
+}
+
+.newsletter-subheading {
+    font-weight: bold;
+    font-family: "Zilla Slab", Inter, X-LocaleSpecific, sans-serif;
+    @include font-size(24px);
+    line-height: 1.1;
+    margin-bottom: $spacing-md;
+}
+
+.contribute-feature-container {
+    position: relative;
+}
+
+.contribute-feature {
+    margin-bottom: $layout-2xl;
+    max-width: none;
+
+    .contribute-feature-media-wrapper {
+        position: absolute;
+        left: 50%;
+        width: 65%;
+    }
+
+    .contribute-feature-content {
+        width: 40%;
+
+        h2 {
+            @include font-size(48px);
+        }
+    }
+}
+
+.contribute-mission {
+    margin-bottom: $layout-xl;
+
+    .contribute-mission-intro {
+        text-align: center;
+        padding-left: $layout-xl * 2;
+        padding-right: $layout-xl * 2;
+        margin-bottom: $layout-md;
+    }
+
+    .contribute-mission-title {
+        @include font-size(48px);
+        color: $color-white;
+        background-color: $color-black;
+        display: inline-block;
+        padding-left: $spacing-sm;
+        padding-right: $spacing-sm;
+    }
+
+    .contribute-mission-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: $spacing-xl;
+        grid-row-gap: $spacing-xl;
+        padding-left: $layout-lg;
+        padding-right: $layout-lg;
+    }
+
+    .contribute-mission-card {
+        border: 4px solid $color-marketing-gray-20;
+        padding: $spacing-md $spacing-md $spacing-md $spacing-2xl;
+
+        a {
+            color: $color-black;
+            text-decoration: none;
+        }
+
+        h3 {
+            @include font-size(24px);
+            line-height: 1;
+            margin-bottom: $spacing-xs;
+            position: relative;
+
+            &::before {
+                position: absolute;
+                content: "";
+                width: 24px;
+                height: 24px;
+                background-repeat: no-repeat;
+                left: -34px;
+            }
+
+            &.contribute-mission-learn-icon:before {
+                background-image: url("/media/img/contribute/icon/M.svg");
+            }
+
+            &.contribute-mission-event-icon:before {
+                background-image: url("/media/img/contribute/icon/cal.svg");
+            }
+
+            &.contribute-mission-donate-icon:before {
+                background-image: url("/media/img/contribute/icon/heart.svg");
+            }
+
+            &.contribute-mission-follow-icon:before {
+                background-image: url("/media/img/contribute/icon/twitter.svg");
+            }
+        }
+
+        p {
+            margin-bottom: 0;
         }
     }
 }

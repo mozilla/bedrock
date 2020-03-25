@@ -18,13 +18,18 @@ with context %}
 
 {% block content %}
 <main role="main">
-  <div class="mzp-l-content">
-    <h1 class="contribute-section-heading">{{ _('Your talents are needed for a
-      better internet') }}</h1>
-    <p>{{ _('Mozilla is a non-profit organization working to ensure the internet
-      is open and welcoming to all. And we need your help. By joining our
-      community, you can help drive innovation, enhance accountability and trust
-      and make the internet a better place for everyone.') }}</p>
+  <div class="mzp-l-content contribute-intro">
+    <header class="contribute-intro-content">
+      <h1 class="contribute-intro-heading">{{ _('Your talents are needed for
+        a
+        better internet') }}</h1>
+      <p>{{ _('Mozilla is a non-profit organization working to ensure the
+        internet
+        is open and welcoming to all. And we need your help. By joining our
+        community, you can help drive innovation, enhance accountability and
+        trust
+        and make the internet a better place for everyone.') }}</p>
+    </header>
   </div>
 
   <section class="contribute-hero">
@@ -34,67 +39,99 @@ with context %}
     <div class="mzp-l-content mzp-l-card-quarter mzp-m-card-half
       contribute-card-container">
       <section class="mzp-c-card contribute-card">
-        <a class="mzp-c-card-block-link" href="#">
+        <a class="mzp-c-card-block-link contribute-card-wrapper" href="#">
           <div class="mzp-c-card-media-wrapper">
-            <img class="mzp-c-card-image"
-              src="../../../static/img/card/card-image.png" alt="">
+            <picture>
+              <source
+                srcset="/media/img/contribute/contribute-card-translate.jpg"
+                media="(max-width: 480px)">
+              <img class="mzp-c-card-image"
+                srcset="/media/img/contribute/contribute-card-translate-lg.jpg"
+                alt="…">
+            </picture>
           </div>
           <div class="mzp-c-card-content contribute-card-content">
-            <div class="mzp-c-card-tag contribute-card-tag-bold">Non Technical</div>
-            <div class="mzp-c-card-tag">Individual and event organization</div>
+            <div class="contribute-card-content-tags">
+              <div class="mzp-c-card-tag contribute-card-tag-bold">Non Technical</div>
+              <div class="mzp-c-card-tag">Individual and event organization</div>
+            </div>
             <h2 class="mzp-c-card-title">Translate content</h2>
             <p class="mzp-c-card-desc">The internet is only global if it’s
               understood everywhere. Help us translate Mozilla’s products and
               websites into your local language.</p>
-
           </div>
         </a>
       </section>
       <section class="mzp-c-card contribute-card">
-        <a class="mzp-c-card-block-link" href="#">
+        <a class="mzp-c-card-block-link contribute-card-wrapper" href="#">
           <div class="mzp-c-card-media-wrapper">
-            <img class="mzp-c-card-image"
-              src="../../../static/img/card/card-image.png" alt="">
+            <picture>
+              <source
+                srcset="/media/img/contribute/contribute-card-contribute.jpg"
+                media="(max-width: 480px)">
+              <img class="mzp-c-card-image"
+                srcset="/media/img/contribute/contribute-card-contribute-lg.jpg"
+                alt="…">
+            </picture>
           </div>
           <div class="mzp-c-card-content contribute-card-content">
-            <div class="mzp-c-card-tag contribute-card-tag-bold">Technical</div>
-            <div class="mzp-c-card-tag">Individual</div>
+            <div class="contribute-card-content-tags">
+              <div class="mzp-c-card-tag contribute-card-tag-bold">Technical</div>
+              <div class="mzp-c-card-tag">Individual</div>
+            </div>
             <h2 class="mzp-c-card-title">Contribute to the Mozilla codebase</h2>
             <p class="mzp-c-card-desc">Actively improve Mozilla’s products by
               contributing to a variety of development opportunities.</p>
-
           </div>
         </a>
       </section>
       <section class="mzp-c-card contribute-card">
-        <a class="mzp-c-card-block-link" href="#">
+        <a class="mzp-c-card-block-link contribute-card-wrapper" href="#">
           <div class="mzp-c-card-media-wrapper">
-            <img class="mzp-c-card-image"
-              src="../../../static/img/card/card-image.png" alt="">
+            <picture>
+              <source
+                srcset="/media/img/contribute/contribute-card-support.jpg"
+                media="(max-width: 480px)">
+              <img class="mzp-c-card-image"
+                srcset="/media/img/contribute/contribute-card-support-lg.jpg"
+                alt="…">
+            </picture>
           </div>
           <div class="mzp-c-card-content contribute-card-content">
-            <div class="mzp-c-card-tag contribute-card-tag-bold">Support</div>
-            <div class="mzp-c-card-tag">Individual and event organization</div>
+            <div class="contribute-card-content-tags">
+              <div class="mzp-c-card-tag contribute-card-tag-bold">Support</div>
+              <div class="mzp-c-card-tag">Individual and event organization</div>
+            </div>
             <h2 class="mzp-c-card-title">Individual and event organization</h2>
-            <p class="mzp-c-card-desc">Help make Mozilla’s products easy to use.
+            <p class="mzp-c-card-desc">Help make Mozilla’s products easy to
+              use.
               Answer user's "help" questions as part of the Mozilla Support
               Community forums.</p>
-
           </div>
         </a>
       </section>
       <section class="mzp-c-card contribute-card">
-        <a class="mzp-c-card-block-link" href="#">
+        <a class="mzp-c-card-block-link contribute-card-wrapper" href="#">
           <div class="mzp-c-card-media-wrapper">
-            <img class="mzp-c-card-image"
-              src="../../../static/img/card/card-image.png" alt="">
+            <picture>
+              <source
+                srcset="/media/img/contribute/contribute-card-community.jpg"
+                media="(max-width: 480px)">
+              <img class="mzp-c-card-image"
+                srcset="/media/img/contribute/contribute-card-community-lg.jpg"
+                alt="…">
+            </picture>
           </div>
           <div class="mzp-c-card-content contribute-card-content">
-            <div class="mzp-c-card-tag contribute-card-tag-bold">Technical and
-              Non
-              Technical</div>
+            <div class="contribute-card-content-tags">
+              <div class="mzp-c-card-tag contribute-card-tag-bold">Technical and
+                Non
+                Technical</div>
+            </div>
+
             <h2 class="mzp-c-card-title">Join the community</h2>
-            <p class="mzp-c-card-desc">Want to get more involved in the Mozilla
+            <p class="mzp-c-card-desc">Want to get more involved in the
+              Mozilla
               community? Check out all the volunteer opportunities in our
               Community Portal.</p>
 
@@ -104,58 +141,86 @@ with context %}
     </div>
   </section>
 
-  <section>
-    <div class="mzp-l-content">
-      <h2>Our Mission</h2>
-      <p>Our mission is to ensure the internet is a global public resource, open
-        and accessible to all. An internet that truly puts people first, where
-        individuals can shape their own experience and are empowered, safe and
-        independent.</p>
-    </div>
+  <section class="mzp-l-content">
+    <div class="contribute-mission">
+      <div class="contribute-mission-intro">
+        <h2 class="contribute-mission-title">Our Mission</h2>
+        <p>Our mission is to ensure the internet is a global public resource,
+          open
+          and accessible to all. An internet that truly puts people first,
+          where
+          individuals can shape their own experience and are empowered, safe
+          and
+          independent.</p>
+      </div>
 
-    <div class="mzp-l-content">
-      <div>
-        <div>
-          <h3>Learn about Mozilla</h3>
-          <p>Read our manifesto</p>
+      <div class="contribute-mission-cards">
+        <div class="contribute-mission-card">
+          <a href="#">
+            <h3 class="contribute-mission-learn-icon">Learn about Mozilla</h3>
+            <p>Read our manifesto</p>
+          </a>
         </div>
-        <div>
-          <h3>Find an event</h3>
-          <p>Meet our passionate volunteers</p>
+        <div class="contribute-mission-card">
+          <a href="#">
+            <h3 class="contribute-mission-event-icon">Find an event</h3>
+            <p>Meet our passionate volunteers</p>
+          </a>
         </div>
-        <div>
-          <h3>Donate</h3>
-          <p>Help fund our mission</p>
+        <div class="contribute-mission-card">
+          <a href="#">
+            <h3 class="contribute-mission-donate-icon">Donate</h3>
+            <p>Help fund our mission</p>
+          </a>
         </div>
-        <div>
-          <h3>Follow Mozilla</h3>
-          <p>News and volunteer opportunities</p>
+        <div class="contribute-mission-card">
+          <a href="#">
+            <h3 class="contribute-mission-follow-icon">Follow Mozilla</h3>
+            <p>News and volunteer opportunities</p>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="mzp-l-content">
-    {% call feature_card(
-    title=_('Made by passionate people like you'),
-    image_url='img/contribute/video-image.png',
-    aspect_ratio='mzp-has-aspect-16-9',
-    class='mzp-l-card-feature-left-half'
-    ) %}
-    {# L10n: This paragraph follows the headline, "Made by passionate people
-    like you", so the first sentence continues from that fragment. #}
-    {% trans %}
-    <p>When you contribute to Mozilla, you become part of a worldwide community
-      made up of people from around the globe who believe that we all have a
-      role in ensuring that the internet remains a force for good.</p> <p>We
-      believe community collaboration is vital to creating an internet that is
-      diverse, innovative, and accountable to the people who need it most.
-      Whether you have a background in tech, community organizing, or just a
-      computer and some free time, you can help us make the internet a better
-      place.</p>
-    {% endtrans %}
+  <div class="mzp-l-content contribute-feature-container">
+    <section class="contribute-feature">
+
+
+      <div class="mzp-c-card-feature-media
+        contribute-feature-media-wrapper">
+        <div class="contribute-feature-media">
+          <img src="/media/img/contribute/contribute-madeby-feature.jpg"
+            alt="">
+        </div>
+      </div>
+
+
+      <div class="contribute-feature-content">
+        <div class="contribute-feature-content-container">
+          <h2>Made by passionate people like
+            you</h2>
+          <div class="contribute-feature-desc">
+
+
+            <p>When you contribute to Mozilla, you become part of a worldwide
+              community made up of people from around the globe who believe
+              that
+              we all have a role in ensuring that the internet remains a force
+              for good.</p> <p>We believe community collaboration is vital to
+              creating an internet that is diverse, innovative, and
+              accountable
+              to the people who need it most. Whether you have a background in
+              tech, community organizing, or just a computer and some free
+              time,
+              you can help us make the internet a better place.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
   </div>
-  {% endcall %}
 
 
   <!-- {% block contrib_content %}{% endblock contrib_content %} -->
@@ -166,7 +231,8 @@ with context %}
     {% block contrib_extra_third %}
     <aside class="mzp-c-newsletter">
       <div class="mzp-c-newsletter-image">
-        {{ high_res_img('img/home/2018/newsletter-graphic.png', {'alt': ''}) }}
+        {{ high_res_img('img/home/2018/newsletter-graphic.png', {'alt': ''})
+        }}
       </div>
 
       <div class="newsletter-content">
@@ -193,22 +259,35 @@ with context %}
   </section>
   {% endblock contrib_footer %}
 
-  <div class="mzp-l-content">
-    <h2>Get Help</h2>
-    <p>Mozilla has a dedicated team of volunteers to help with whatever issues
-      you may be experiencing.</p>
-    <a href="#" class="mzp-c-button mzp-t-product">
-      Mozilla Support
-    </a>
+  <div class="mzp-l-content contribute-banner contribute-banner-gethelp">
+    <div class="contribute-banner-content">
+      <h2 class="contribute-banner-gethelp-title">Get Help</h2>
+      <p>Mozilla has a dedicated team of volunteers to help with whatever
+        issues
+        you may be experiencing.</p>
+    </div>
+    <div class="contribute-banner-cta">
+      <a href="#" class="mzp-c-button mzp-t-product">
+        Mozilla Support
+      </a>
+    </div>
   </div>
 
-  <div class="mzp-l-content">
-    <h2>Problems with a web page?</h2>
-    <p>If your experience of a website differs between browsers then you may
-      have discovered a web compatiblity issue. We would love to know about it!</p>
-    <a href="#" class="mzp-c-button">
-      Report an issue
-    </a>
+  <div class="mzp-l-content contribute-banner contribute-banner-problems">
+    <div class="contribute-banner-content">
+      <div class="contribute-banner-problems-title-wrapper">
+        <h2 class="contribute-banner-problems-title">Problems with a web
+          page?</h2>
+      </div>
+      <p>If your experience of a website differs between browsers then you may
+        have discovered a web compatibility issue. We would love to know about
+        it!</p>
+    </div>
+    <div class="contribute-banner-cta">
+      <a href="#" class="mzp-c-button">
+        Report an issue
+      </a>
+    </div>
   </div>
 
 </main>
