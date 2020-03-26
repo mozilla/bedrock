@@ -11,6 +11,7 @@ if (typeof window.Mozilla === 'undefined') {
     'use strict';
 
     var client = Mozilla.Client;
+    var body = document.getElementsByTagName('body')[0];
 
     // bug 1419573 - only show "Your Firefox is up to date" if it's the latest version.
     if (client.isFirefoxDesktop) {
@@ -21,11 +22,13 @@ if (typeof window.Mozilla === 'undefined') {
         });
 
         client.getFxaDetails(function(details) {
+            body.classList.remove('state-fxa-default');
+
             if (details.setup && details.browserServices.sync.mobileDevices > 0) {
-                document.getElementsByTagName('body')[0].classList.add('state-fxa-has-devices');
+                body.classList.add('state-fxa-has-devices');
             } else if (window.location.search.indexOf('has-devices=true') !== -1) {
                 // Fake the user state for testing purposes
-                document.getElementsByTagName('body')[0].classList.add('state-fxa-has-devices');
+                body.classList.add('state-fxa-has-devices');
             }
         });
     }
