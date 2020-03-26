@@ -155,6 +155,12 @@ class GitRepo:
 
         return repo_base
 
+    def remote_url_auth(self, auth):
+        url = self.clean_remote_url
+        # remove https://
+        url = url[8:]
+        return f'https://{auth}@{url}'
+
     def set_db_latest(self, latest_ref=None):
         latest_ref = latest_ref or self.current_hash
         rs, created = GitRepoState.objects.get_or_create(
