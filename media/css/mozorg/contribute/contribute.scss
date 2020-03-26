@@ -15,60 +15,45 @@ $image-path: "/media/protocol/img";
 @import "../../../protocol/css/templates/card-layout";
 @import "../../protocol/components/sub-navigation";
 
-//* -------------------------------------------------------------------------- */
-// Sub Nav
-
-.c-sub-navigation-item br {
-    display: none;
-}
-
-//* -------------------------------------------------------------------------- */
-// Section Headings
-
-.contribute-section-heading {
-    text-align: center;
-    margin-top: $spacing-xl;
-}
-
-.contribute-section-subheading {
-    @include text-display-xs;
-}
-
-.contribute-section-lead-in {
-    text-align: center;
-}
-
-//* -------------------------------------------------------------------------- */
-// Contribution Statistics
-
-.contribute-stats-list {
-    margin-top: $layout-lg;
-
-    .contribute-stats-item {
-        @include border-box;
-        @include text-body-lg;
-        margin-bottom: $spacing-lg;
-        padding: 0 $spacing-md;
-        text-align: center;
-
-        strong {
-            @include text-display-md;
-            display: block;
-        }
-    }
+.contribute-intro {
+    padding-bottom: 90%;
+    position: relative;
+    overflow: hidden;
 
     @media #{$mq-md} {
-        @include clearfix;
+        padding-bottom: 80%;
+    }
 
-        .contribute-stats-item {
-            width: 33.3%;
-            // @include bidi(((float, left, right)));
+    @media #{$mq-lg} {
+        padding-bottom: $layout-xl;
+    }
+
+    @media #{$mq-xl} {
+        padding-bottom: $layout-2xl + $layout-md;
+    }
+
+    .contribute-intro-content {
+        @media #{$mq-lg} {
+            margin-top: $layout-xl;
+            max-width: 40%;
+        }
+    }
+
+    .contribute-intro-heading {
+        @include text-display-lg;
+        padding-bottom: $spacing-md;
+    }
+
+    .contribute-intro-media-wrapper {
+        position: absolute;
+        width: 100%;
+        @media #{$mq-lg} {
+            width: 50%;
+            top: 0;
+            right: -25px;
         }
     }
 }
-
-//* -------------------------------------------------------------------------- */
-// Main Hero
 
 .contribute-hero {
     margin-bottom: $layout-md;
@@ -76,126 +61,13 @@ $image-path: "/media/protocol/img";
     padding-bottom: $layout-sm;
     background-color: $color-marketing-gray-20;
 
-    @media #{$mq-md} {
+    @media #{$mq-lg} {
         margin-bottom: $layout-lg;
     }
 }
 
-//* -------------------------------------------------------------------------- */
-// Contribution Video
-
-.is-modern-browser .contribute-video {
-    display: none;
-}
-
-.mzp-c-modal video {
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-}
-
-//* -------------------------------------------------------------------------- */
-// Mozillian Stories Links
-
-.contribute-mozillian-list {
-    margin-top: $layout-lg;
-
-    .contribute-mozillian-item {
-        @include border-box;
-        @include text-body-lg;
-        margin-bottom: $spacing-lg;
-        padding: 0 $spacing-md;
-        position: relative;
-        text-align: center;
-    }
-
-    @media #{$mq-lg} {
-        @include clearfix;
-
-        .contribute-mozillian-item {
-            width: 33.3%;
-            // @include bidi(((float, left, right)));
-        }
-    }
-}
-
-.contribute-photo {
-    border-radius: 100%;
-    display: block;
-    height: 180px;
-    margin: 0 auto $spacing-lg;
-    width: 180px;
-}
-
-//* -------------------------------------------------------------------------- */
-// Dive In
-
-.contribute-dive-in-list {
-    text-align: center;
-    margin-top: $layout-md;
-
-    .contribute-dive-in-item {
-        margin-bottom: $spacing-lg;
-
-        .mzp-c-button {
-            display: block;
-            width: 100%;
-        }
-    }
-
-    @media #{$mq-md} {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-column-gap: $spacing-2xl;
-    }
-}
-
-//* -------------------------------------------------------------------------- */
-// Extra Links
-
-.contribute-extra-links {
-    margin: $layout-lg 0;
-
-    .contribute-extra-links-item {
-        @include border-box;
-        text-align: center;
-        padding: 0 $spacing-md;
-    }
-
-    @media #{$mq-lg} {
-        @include clearfix;
-
-        .contribute-extra-links-item {
-            width: 50%;
-            // @include bidi(((float, left, right)));
-        }
-    }
-}
-
-.contribute-intro {
-    background-image: url("/media/img/contribute/contribute-hero-composition.jpg");
-    background-repeat: no-repeat;
-    background-position: top right;
-
-    @media #{$mq-lg} {
-        padding-top: $spacing-2xl * 2;
-        padding-bottom: $spacing-2xl * 5;
-    }
-
-    &-content {
-        @media #{$mq-lg} {
-            max-width: 40%;
-        }
-    }
-
-    &-heading {
-        @include text-display-lg;
-        padding-bottom: $spacing-md;
-    }
-}
-
 .contribute-card-container {
-    @media #{$mq-sm} {
+    @media #{$mq-lg} {
         display: flex;
         flex-wrap: wrap;
     }
@@ -230,21 +102,32 @@ $image-path: "/media/protocol/img";
 }
 
 .contribute-banner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 260px;
-    margin-bottom: $layout-lg;
-    position: relative;
+    padding-top: $layout-xl;
+    padding-bottom: $layout-md;
 
-    &-content {
-        margin-left: 210px;
-        width: 50%;
-        max-width: 495px;
+    @media #{$mq-lg} {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 260px;
+        margin-bottom: $layout-lg;
+        position: relative;
+        padding-top: 0;
+        padding-bottom: 0;
     }
 
-    &-cta {
-        margin-left: $layout-2xl;
+    .contribute-banner-content {
+        @media #{$mq-lg} {
+            margin-left: 210px;
+            width: 50%;
+            max-width: 495px;
+        }
+    }
+
+    .contribute-banner-cta {
+        @media #{$mq-lg} {
+            margin-left: $layout-2xl;
+        }
     }
 }
 
@@ -254,9 +137,13 @@ $image-path: "/media/protocol/img";
     color: $color-white;
 
     &-title {
-        font-family: $font-stack-base;
-        @include font-size(40px);
+        font-family: "Inter", "X-LocaleSpecific", sans-serif !important;
+        @include font-size(24px);
         position: relative;
+
+        @media #{$mq-lg} {
+            @include font-size(40px);
+        }
 
         &:before {
             content: "";
@@ -265,25 +152,50 @@ $image-path: "/media/protocol/img";
             position: absolute;
             height: 40px;
             width: 40px;
-            left: -80px;
+            left: 0;
+            top: -65px;
+
+            @media #{$mq-lg} {
+                top: auto;
+                left: -80px;
+            }
         }
     }
 }
 
 .contribute-banner-problems {
-    border: 4px solid $color-moz-light-gray;
-    background-image: url("/media/img/contribute/contribute-problems-bulb.svg"),
-        url("/media/img/contribute/contribute-problems-fly.svg");
-    background-size: 86px 241px, 33%;
-    background-position: 10% -45px, 96% 88%;
+    background-image: url("/media/img/contribute/contribute-problems-bulb.svg");
+    background-size: 60px 150px;
+    background-position: 10% top;
     background-repeat: no-repeat;
 
+    @media #{$mq-lg} {
+        border: 4px solid $color-moz-light-gray;
+        background-image: url("/media/img/contribute/contribute-problems-bulb.svg"),
+            url("/media/img/contribute/contribute-problems-fly.svg");
+        background-size: 86px 241px, 33%;
+        background-position: 10% -45px, 96% 88%;
+        background-repeat: no-repeat;
+    }
+
     &-title {
-        padding-left: $spacing-sm;
-        padding-right: $spacing-sm;
-        background-color: #ffc900;
-        @include font-size(40px);
-        display: inline;
+        @include font-size(24px);
+        margin-left: $layout-xl;
+
+        span {
+            display: inline;
+            background-color: #ffc900;
+            box-shadow: 10px 0 0 #ffc900, -10px 0 0 #ffc900;
+            -webkit-box-decoration-break: clone;
+            -ms-box-decoration-break: clone;
+            -o-box-decoration-break: clone;
+            box-decoration-break: clone;
+        }
+
+        @media #{$mq-lg} {
+            margin-left: 0;
+            @include font-size(40px);
+        }
 
         &-wrapper {
             margin-bottom: $spacing-md;
@@ -304,20 +216,46 @@ $image-path: "/media/protocol/img";
 }
 
 .contribute-feature {
-    margin-bottom: $layout-2xl;
-    max-width: none;
+    padding-top: 85%;
+
+    @media #{$mq-lg} {
+        padding-top: 0;
+    }
+
+    @media #{$mq-lg} {
+        margin-bottom: $layout-2xl;
+        max-width: none;
+    }
 
     .contribute-feature-media-wrapper {
         position: absolute;
-        left: 50%;
-        width: 65%;
+        top: 0;
+        width: 100%;
+        left: 0;
+
+        @media #{$mq-lg} {
+            left: 50%;
+            width: 50%;
+        }
+
+        @media #{$mq-xl} {
+            left: 45%;
+            width: 60%;
+        }
     }
 
     .contribute-feature-content {
-        width: 40%;
+        position: relative;
+        z-index: 100;
+        @media #{$mq-lg} {
+            width: 40%;
+        }
 
         h2 {
-            @include font-size(48px);
+            @include font-size(24px);
+            @media #{$mq-lg} {
+                @include font-size(48px);
+            }
         }
     }
 }
@@ -327,27 +265,36 @@ $image-path: "/media/protocol/img";
 
     .contribute-mission-intro {
         text-align: center;
-        padding-left: $layout-xl * 2;
-        padding-right: $layout-xl * 2;
         margin-bottom: $layout-md;
+
+        @media #{$mq-lg} {
+            padding-left: $layout-xl * 2;
+            padding-right: $layout-xl * 2;
+        }
     }
 
     .contribute-mission-title {
-        @include font-size(48px);
         color: $color-white;
         background-color: $color-black;
         display: inline-block;
         padding-left: $spacing-sm;
         padding-right: $spacing-sm;
+
+        @media #{$mq-lg} {
+            @include font-size(48px);
+        }
     }
 
     .contribute-mission-cards {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-column-gap: $spacing-xl;
         grid-row-gap: $spacing-xl;
-        padding-left: $layout-lg;
-        padding-right: $layout-lg;
+
+        @media #{$mq-lg} {
+            padding-left: $layout-lg;
+            padding-right: $layout-lg;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: $spacing-xl;
+        }
     }
 
     .contribute-mission-card {
