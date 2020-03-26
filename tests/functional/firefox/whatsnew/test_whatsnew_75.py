@@ -17,5 +17,5 @@ def test_signed_out_sync_button_displayed(base_url, selenium):
 @pytest.mark.skip_if_not_firefox(reason='Whatsnew pages are shown to Firefox only.')
 @pytest.mark.nondestructive
 def test_signed_in_monitor_button_displayed(base_url, selenium):
-    page = FirefoxWhatsNew75Page(selenium, base_url, params='?signed-in=true').open()
+    page = FirefoxWhatsNew75Page(selenium, base_url, params='?has-devices=true').open()
     assert page.is_signed_in_monitor_button_displayed
