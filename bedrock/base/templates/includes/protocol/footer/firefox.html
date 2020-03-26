@@ -84,7 +84,7 @@
           {% set moco_link = 'href="%s" data-link-type="footer" data-link-name="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}
           {% set mofo_link = 'href="https://foundation.mozilla.org" rel="external noopener" data-link-type="footer" data-link-name="Mozilla Foundation"'|safe %}
           <p>
-          {{ ftl('footer-visit-mozilla-corporations') }}
+          {{ ftl('footer-visit-mozilla-corporations', moco_link=moco_link, mofo_link=mofo_link) }}
           </p>
           <p>
           {{ ftl('footer-portions-of-this-content', url=url('foundation.licensing.website-content'), current_year=current_year|string) }}

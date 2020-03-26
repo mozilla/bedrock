@@ -61,7 +61,7 @@
         <p class="mzp-c-footer-license">
           {% set moco_link = 'href="%s" data-link-type="footer" data-link-name="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}
           {% set mofo_link = 'href="https://foundation.mozilla.org" rel="external noopener" data-link-type="footer" data-link-name="Mozilla Foundation"'|safe %}
-          {{ ftl('footer-visit-mozilla-corporations') }}<br>
+          {{ ftl('footer-visit-mozilla-corporations', moco_link=moco_link, mofo_link=mofo_link) }}<br>
           {{ ftl('footer-portions-of-this-content', url=url('foundation.licensing.website-content'), current_year=current_year|string) }}
         </p>
         <ul class="mzp-c-footer-terms">
