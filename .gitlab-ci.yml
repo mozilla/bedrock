@@ -74,6 +74,7 @@ prod:
     NAMESPACE: bedrock-prod
 
 fluent:
+  stage: build
   only:
     - triggers
   script:
