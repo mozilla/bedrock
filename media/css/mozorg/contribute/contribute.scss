@@ -97,7 +97,7 @@ $image-path: "/media/protocol/img";
     }
 
     .contribute-card-tag-bold {
-        font-weight: bold !important;
+        font-weight: bold;
     }
 }
 
@@ -136,8 +136,8 @@ $image-path: "/media/protocol/img";
     background-size: cover;
     color: $color-white;
 
-    &-title {
-        font-family: "Inter", "X-LocaleSpecific", sans-serif !important;
+    .contribute-banner-gethelp-title {
+        font-family: Inter, X-LocaleSpecific, sans-serif;
         @include font-size(24px);
         position: relative;
 
@@ -178,7 +178,7 @@ $image-path: "/media/protocol/img";
         background-repeat: no-repeat;
     }
 
-    &-title {
+    .contribute-banner-problems-title {
         @include font-size(24px);
         margin-left: $layout-xl;
 
@@ -197,7 +197,7 @@ $image-path: "/media/protocol/img";
             @include font-size(40px);
         }
 
-        &-wrapper {
+        .contribute-banner-problems-wrapper {
             margin-bottom: $spacing-md;
         }
     }
