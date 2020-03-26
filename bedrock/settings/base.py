@@ -245,8 +245,10 @@ FLUENT_DEFAULT_FILES = ['brands', 'navigation', 'footer']
 FLUENT_DEFAULT_PERCENT_REQUIRED = config('FLUENT_DEFAULT_PERCENT_REQUIRED', default='80', parser=int)
 FLUENT_REPO = config('FLUENT_REPO', default='https://github.com/mozmeao/www-l10n')
 FLUENT_REPO_PATH = GIT_REPOS_PATH / 'www-l10n'
+# will be something like "<github username>:<github token>"
+FLUENT_REPO_AUTH = config('FLUENT_REPO_AUTH', default='')
 FLUENT_LOCAL_PATH = ROOT_PATH / 'l10n'
-FLUENT_L10N_TEAM_REPO = config('FLUENT_REPO', default='https://github.com/mozilla-l10n/www-l10n')
+FLUENT_L10N_TEAM_REPO = config('FLUENT_L10N_TEAM_REPO', default='https://github.com/mozilla-l10n/www-l10n')
 FLUENT_L10N_TEAM_REPO_PATH = GIT_REPOS_PATH / 'l10n-team'
 # 10 seconds during dev and 10 min in prod
 FLUENT_CACHE_TIMEOUT = config('FLUENT_CACHE_TIMEOUT', default='10' if DEBUG else '600', parser=int)
@@ -1502,4 +1504,3 @@ if config('SWITCH_TRACKING_PIXEL', default=str(DEV), parser=bool):
 
 # Issue 7508 - Convert.com experiment sandbox
 CONVERT_PROJECT_ID = ('10039-1003350' if DEV else '10039-1003343')
-

@@ -72,3 +72,9 @@ prod:
   variables:
     CLUSTERS: frankfurt iowa-a
     NAMESPACE: bedrock-prod
+
+fluent:
+  only:
+    - triggers
+  script:
+    - bin/process-ftl.sh
