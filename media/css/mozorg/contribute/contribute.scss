@@ -47,7 +47,10 @@ $image-path: "/media/protocol/img";
     .contribute-intro-media-wrapper {
         position: absolute;
         width: 100%;
+        left: -10px;
+
         @media #{$mq-lg} {
+            left: auto;
             width: 50%;
             top: 0;
             right: -25px;
@@ -82,8 +85,17 @@ $image-path: "/media/protocol/img";
     }
 
     .contribute-card-wrapper {
+        background: $color-white;
         display: flex;
         flex-direction: column;
+
+        &:hover,
+        &:focus {
+            transform: translateZ(0) scale(1.02);
+            backface-visibility: hidden;
+            transition: transform 0.1s ease-in-out,
+                -webkit-transform 0.1s ease-in-out;
+        }
     }
 
     .contribute-card-content {
@@ -268,8 +280,8 @@ $image-path: "/media/protocol/img";
         margin-bottom: $layout-md;
 
         @media #{$mq-lg} {
-            padding-left: $layout-xl * 2;
-            padding-right: $layout-xl * 2;
+            padding-left: $layout-xl;
+            padding-right: $layout-xl;
         }
     }
 
@@ -290,20 +302,26 @@ $image-path: "/media/protocol/img";
         grid-row-gap: $spacing-xl;
 
         @media #{$mq-lg} {
-            padding-left: $layout-lg;
-            padding-right: $layout-lg;
+            padding-left: $layout-xl;
+            padding-right: $layout-xl;
             grid-template-columns: 1fr 1fr;
             grid-column-gap: $spacing-xl;
         }
     }
 
     .contribute-mission-card {
-        border: 4px solid $color-marketing-gray-20;
         padding: $spacing-md $spacing-md $spacing-md $spacing-2xl;
+        border: 4px solid transparent;
+        color: $color-black;
+        text-decoration: none;
 
-        a {
-            color: $color-black;
-            text-decoration: none;
+        &:hover,
+        &:focus {
+            border: 4px solid $color-marketing-gray-20;
+
+            & > h3 {
+                text-decoration: underline;
+            }
         }
 
         h3 {

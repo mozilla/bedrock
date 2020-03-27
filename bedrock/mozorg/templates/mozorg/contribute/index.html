@@ -7,6 +7,9 @@
 {% from "macros-protocol.html" import call_out, hero, feature_card, picto_card
 with context %}
 
+{% from "newsletter/includes/macros.html" import email_form_thankyou with
+context %}
+
 {% add_lang_files "mozorg/contribute/index" %}
 
 {% block body_class %}{{ super() }} contribute{% endblock %}
@@ -166,31 +169,26 @@ with context %}
       </div>
 
       <div class="contribute-mission-cards">
-        <div class="contribute-mission-card">
-          <a href="https://www.mozilla.org/en-US/about/">
-            <h3 class="contribute-mission-learn-icon">Learn about Mozilla</h3>
-            <p>Read our manifesto</p>
-          </a>
-        </div>
-        <div class="contribute-mission-card">
-          <a href="https://community.mozilla.org/events/">
-            <h3 class="contribute-mission-event-icon">Find an event</h3>
-            <p>Meet our passionate volunteers</p>
-          </a>
-        </div>
-        <div class="contribute-mission-card">
-          <a
-            href="https://donate.mozilla.org/en-US/?presets=50,30,20,10&amount=30&utm_source=mozilla.org&utm_medium=referral&utm_content=contribute&currency=usd">
-            <h3 class="contribute-mission-donate-icon">Donate</h3>
-            <p>Help fund our mission</p>
-          </a>
-        </div>
-        <div class="contribute-mission-card">
-          <a href="https://twitter.com/mozilla">
-            <h3 class="contribute-mission-follow-icon">Follow Mozilla</h3>
-            <p>News and volunteer opportunities</p>
-          </a>
-        </div>
+        <a href="https://www.mozilla.org/en-US/about/"
+          class="contribute-mission-card">
+          <h3 class="contribute-mission-learn-icon">Learn about Mozilla</h3>
+          <p>Read our manifesto</p>
+        </a>
+        <a href="https://community.mozilla.org/events/"
+          class="contribute-mission-card">
+          <h3 class="contribute-mission-event-icon">Find an event</h3>
+          <p>Meet our passionate volunteers</p>
+        </a>
+        <a
+          href="https://donate.mozilla.org/en-US/?presets=50,30,20,10&amount=30&utm_source=mozilla.org&utm_medium=referral&utm_content=contribute&currency=usd"
+          class="contribute-mission-card">
+          <h3 class="contribute-mission-donate-icon">Donate</h3>
+          <p>Help fund our mission</p>
+        </a>
+        <a href="https://twitter.com/mozilla" class="contribute-mission-card">
+          <h3 class="contribute-mission-follow-icon">Follow Mozilla</h3>
+          <p>News and volunteer opportunities</p>
+        </a>
       </div>
     </div>
   </section>
