@@ -6,14 +6,16 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import "../../../protocol/css/includes/lib";
-@import '../../../protocol/css/components/hero';
-@import '../../../protocol/css/components/picto-card';
-@import '../../../protocol/css/components/feature-card';
 @import '../../../protocol/css/components/call-out';
+@import '../../../protocol/css/components/feature-card';
+@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/components/menu-list';
+@import '../../../protocol/css/components/picto-card';
 @import '../../../protocol/css/templates/card-layout';
 @import '../../protocol/components/sub-navigation';
 
-/* -------------------------------------------------------------------------- */
+
+//* -------------------------------------------------------------------------- */
 // Smooth Scroll
 
 html {
@@ -24,7 +26,7 @@ html {
     }
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Generic Container Styles
 
 .cta-container {
@@ -58,7 +60,7 @@ html {
     text-align: center;
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Call Out Theme Color
 
 .mzp-c-call-out-compact.mzp-t-dark.enterprise-callout {
@@ -69,7 +71,7 @@ html {
     }
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Hero
 
 .mzp-c-hero.t-enterprise {
@@ -138,7 +140,7 @@ html {
     }
 }
 
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
 // Picto Cards
 
 // Custom Overrides pending https://github.com/mozilla/protocol/issues/382
@@ -176,24 +178,6 @@ html {
         width: 49px;
     }
 
-    &.win64 .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/firefox/enterprise/icon-win64.svg');
-        height: 58px;
-        width: 56px;
-    }
-
-    &.mac .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/firefox/enterprise/icon-mac.svg');
-        height: 57px;
-        width: 46px;
-    }
-
-    &.win32 .mzp-c-card-picto-content:before {
-        background-image: url('/media/img/firefox/enterprise/icon-win32.svg');
-        height: 58px;
-        width: 56px;
-    }
-
     &.docs .mzp-c-card-picto-content:before {
         background-image: url('/media/img/firefox/enterprise/icon-documentation.svg');
         height: 52px;
@@ -213,206 +197,96 @@ html {
     }
 }
 
-// Vertically align buttons in package download lists.
-@supports(display: flex) {
+//* -------------------------------------------------------------------------- */
+// Downloads Section
+
+@supports(display: grid) {
     @media #{$mq-md} {
         .enterprise-download-lists {
-            display: flex;
-
-            .mzp-c-card-picto {
-                align-items: stretch;
-                display: flex;
-                flex: 1;
-            }
-
-            .mzp-c-card-picto-content {
-                display: flex;
-                flex-direction: column;
-            }
-
-            .mzp-c-card-picto-title {
-                flex-grow: 1;
-            }
-
-            .mzp-c-card-picto-desc {
-                display: flex;
-                flex-direction: column;
-                flex-grow: 2;
-                justify-content: space-between;
-            }
+            display: grid;
+            grid-gap: 0 $spacing-2xl;
+            grid-template-columns: repeat(3, 1fr);
+            margin-bottom: $spacing-2xl;
         }
     }
 }
 
-// Resource Link Styles
-.enterprise-resources .mzp-c-card-picto-title {
-    @include text-body-md;
+.enterprise-download-header {
+    padding: 0 0 $spacing-xl;
+    margin: 0 0 $spacing-xl;
+    border-bottom: 1px solid $color-marketing-gray-30;
 }
 
-/* -------------------------------------------------------------------------- */
-// Comparison Section
+.enteprise-download-title {
+    @include bidi((
+        (padding-left, $layout-lg, 0),
+        (padding-right, 0, $layout-lg),
+    ));
+    @include text-display-sm;
+    margin-bottom: $spacing-lg;
+    min-height: 48px;
+    position: relative;
 
-.enterprise-section-plans {
-    .enterprise-section-title {
-        max-width: 24em;
+    &:before {
+        @include bidi(((left, 0, right, auto),));
+        background-position: center center;
+        background-repeat: no-repeat;
+        content: '';
+        display: block;
+        height: 48px;
+        position: absolute;
+        top: -8px;
+        width: 48px;
+    }
+
+    &.platform-win64:before {
+        background-image: url('/media/img/firefox/enterprise/icon-win64.svg');
+        background-size: 39px 40px;
+    }
+
+    &.platform-mac:before {
+        background-image: url('/media/img/firefox/enterprise/icon-mac.svg');
+        background-size: 32px 40px;
+    }
+
+    &.platform-win32:before {
+        background-image: url('/media/img/firefox/enterprise/icon-win32.svg');
+        background-size: 39px 40px;
     }
 }
 
-// Prototype Pager Component.
-// Should be replaced by  https://github.com/mozilla/protocol/issues/462
-.c-pager {
-    .c-pager-tab {
-        @include clearfix;
-        display: none;
-    }
+.enteprise-download-subtitle {
+    @include text-display-xxs;
+}
 
-    .c-pager-tab-button {
-        @include bidi(((float, left, right),));
-        @include border-box;
-        background-color: inherit;
-        border-bottom: 2px solid $color-marketing-gray-20;
-        border-left: none;
-        border-right: 1px solid $color-marketing-gray-50;
-        border-top: none;
-        padding: $spacing-md $spacing-xs;
-        width: 50%;
-        word-wrap: break-word;
+.mzp-c-menu-list.is-details {
+    display: block;
 
-        &:last-child {
-            border-right: none;
-        }
-    }
+    .mzp-c-menu-list-title.is-summary {
+        margin: 0;
 
-    .c-pager-page {
-        @include border-box;
-        border-radius: 10px;
-        border: 1px solid $color-marketing-gray-50;
-        padding: $spacing-lg;
-        text-align: center;
-    }
-
-    &.is-active {
-        .c-pager-tab {
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            border: 1px solid $color-marketing-gray-50;
-            border-bottom: none;
-            display: block;
-        }
-
-        .c-pager-page {
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-            border-top: none;
-        }
-
-        .c-pager-tab-button[aria-expanded="true"] {
-            border-bottom: 2px solid $color-blue-50;
-        }
-
-        .c-pager-page[aria-hidden="true"] {
-            display: none;
-        }
-
-        .c-pager-page[aria-hidden="false"] {
-            display: block;
-        }
-
-        .c-pager-hide-when-active {
-            display: none;
-        }
-    }
-
-    @media #{$mq-md} {
-        .c-pager-page {
-            padding: $spacing-xl;
-        }
-
-        .c-pager-container {
-            @include clearfix;
-        }
-
-        .c-pager-page {
+        button {
+            padding: $spacing-sm;
             @include bidi((
-                (float, left, right),
-                (margin-right, $spacing-xl * 2, margin-left, 0),
+                (padding-right, ($spacing-sm + 16px), $spacing-sm),
+                (padding-left, $spacing-sm, ($spacing-sm + 16px)),
             ));
-            width: calc(50% - #{$spacing-xl});
+            border-radius: $border-radius-md;
+            border: 2px solid $color-link;
+            text-decoration: none;
 
-            &:last-child {
-                margin-left: 0;
-                margin-right: 0;
-            }
-        }
-    }
-
-    @media #{$mq-lg} {
-        .c-pager-page {
-            @include bidi(((margin-right, $spacing-2xl * 2, margin-left, 0),));
-            width: calc(50% - #{$spacing-2xl});
-
-            &:last-child {
-                margin-left: 0;
-                margin-right: 0;
-            }
-        }
-    }
-
-    @supports (display: grid) {
-        @media #{$mq-md} {
-            .c-pager-container {
-                display: grid;
-                grid-column-gap: $spacing-2xl;
-                grid-template-columns: repeat(2, 1fr);
+            &:hover,
+            &:focus {
+                text-decoration: underline;
+                border-color: $color-link-hover;
             }
 
-            .c-pager-page {
-                @include bidi(((margin, 0, 0),));
-                width: auto;
-            }
-        }
-
-        @media #{$mq-lg} {
-            .c-pager-container {
-                grid-column-gap: $spacing-2xl * 2;
+            &:after {
+                @include bidi(((right, $spacing-sm, left, auto),));
+                background-position: center center;
             }
         }
     }
 }
 
-.comparison {
-    .comparison-title-tier {
-        @include text-body-lg;
-        font-weight: normal;
 
-        html[lang^='en'] & {
-            text-transform: uppercase;
-        }
-    }
-
-    .comparison-title-price {
-        @include text-display-sm;
-
-        span {
-            @include text-body-md;
-            color: $color-marketing-gray-70;
-            display: block;
-            font-weight: normal;
-            margin-top: $spacing-md;
-        }
-    }
-
-    .comparison-list {
-        border-top: 1px solid $color-marketing-gray-30;
-        margin: $spacing-xl 0;
-
-        li {
-            border-bottom: 1px solid $color-marketing-gray-30;
-            padding: $spacing-lg 0;
-        }
-    }
-
-    .comparison-cta {
-        margin-top: $spacing-lg;
-    }
-}
