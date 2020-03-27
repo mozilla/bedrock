@@ -492,7 +492,6 @@ INSTALLED_APPS = (
     'bedrock.privacy',
     'bedrock.externalfiles',
     'bedrock.security',
-    'bedrock.events',
     'bedrock.releasenotes',
     'bedrock.contentcards',
     'bedrock.utils',
