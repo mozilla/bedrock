@@ -11,6 +11,7 @@
     <div class="c-navigation-fxa-cta-container">
       {{ fxa_button(
         entrypoint='mozilla.org-globalnav',
+        include_metrics=False,
         button_text=ftl('navigation-get-a-firefox-account'),
         class_name='mzp-t-secondary mzp-t-small c-navigation-fxa-cta',
         optional_parameters={'utm_campaign': 'navigation', 'utm_content': 'get-firefox-account'},
