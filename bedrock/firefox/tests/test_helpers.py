@@ -7,6 +7,7 @@ from django_jinja.backend import Jinja2
 from pyquery import PyQuery as pq
 
 from bedrock.mozorg.tests import TestCase
+from lib.l10n_utils.fluent import fluent_l10n
 
 jinja_env = Jinja2.get_default()
 
@@ -21,6 +22,9 @@ class TestDownloadButtons(TestCase):
     def latest_version(self):
         from product_details import product_details
         return product_details.firefox_versions['LATEST_FIREFOX_VERSION']
+
+    def get_l10n(self, locale):
+        return fluent_l10n([locale, 'en'], settings.FLUENT_DEFAULT_FILES)
 
     def check_desktop_links(self, links):
         """Desktop links should have the correct firefox version"""
@@ -60,7 +64,7 @@ class TestDownloadButtons(TestCase):
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
         doc = pq(render("{{ download_firefox(force_direct=true) }}",
-                        {'request': get_request}))
+                        {'request': get_request, 'fluent_l10n': self.get_l10n(get_request.locale)}))
 
         # Check that the first 5 links are direct.
         links = doc('.download-list a')
@@ -81,7 +85,7 @@ class TestDownloadButtons(TestCase):
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
         doc = pq(render("{{ download_firefox(locale_in_transition=true) }}",
-                        {'request': get_request}))
+                        {'request': get_request, 'fluent_l10n': self.get_l10n(get_request.locale)}))
 
         links = doc('.download-list a')
 
@@ -91,7 +95,7 @@ class TestDownloadButtons(TestCase):
             assert href == '/fr/firefox/download/thanks/'
 
         doc = pq(render("{{ download_firefox(locale_in_transition=false) }}",
-                        {'request': get_request}))
+                        {'request': get_request, 'fluent_l10n': self.get_l10n(get_request.locale)}))
 
         links = doc('.download-list a')
 
@@ -108,7 +112,7 @@ class TestDownloadButtons(TestCase):
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
         doc = pq(render("{{ download_firefox(download_location='primary cta') }}",
-                        {'request': get_request}))
+                        {'request': get_request, 'fluent_l10n': self.get_l10n(get_request.locale)}))
 
         links = doc('.download-list a')
 
@@ -116,7 +120,8 @@ class TestDownloadButtons(TestCase):
             link = pq(link)
             assert link.attr('data-download-location') == 'primary cta'
 
-        doc = pq(render("{{ download_firefox() }}", {'request': get_request}))
+        doc = pq(render("{{ download_firefox() }}", {'request': get_request,
+                        'fluent_l10n': self.get_l10n(get_request.locale)}))
 
         links = doc('.download-list a')
 
@@ -133,7 +138,7 @@ class TestDownloadButtons(TestCase):
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
         doc = pq(render("{{ download_firefox() }}",
-                        {'request': get_request}))
+                        {'request': get_request, 'fluent_l10n': self.get_l10n(get_request.locale)}))
 
         # The first 7 links should be for desktop.
         links = doc('.download-list a')
@@ -155,7 +160,7 @@ class TestDownloadButtons(TestCase):
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
         doc = pq(render("{{ download_firefox('nightly', platform='desktop') }}",
-                        {'request': get_request}))
+                        {'request': get_request, 'fluent_l10n': self.get_l10n(get_request.locale)}))
 
         list = doc('.download-list li')
         assert list.length == 6
@@ -175,7 +180,7 @@ class TestDownloadButtons(TestCase):
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
         doc = pq(render("{{ download_firefox('alpha', platform='desktop') }}",
-                        {'request': get_request}))
+                        {'request': get_request, 'fluent_l10n': self.get_l10n(get_request.locale)}))
 
         list = doc('.download-list li')
         assert list.length == 7
@@ -193,7 +198,7 @@ class TestDownloadButtons(TestCase):
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
         doc = pq(render("{{ download_firefox('beta', platform='desktop') }}",
-                        {'request': get_request}))
+                        {'request': get_request, 'fluent_l10n': self.get_l10n(get_request.locale)}))
 
         list = doc('.download-list li')
         assert list.length == 7
@@ -211,7 +216,7 @@ class TestDownloadButtons(TestCase):
         get_request = rf.get('/fake')
         get_request.locale = 'fr'
         doc = pq(render("{{ download_firefox(platform='desktop') }}",
-                        {'request': get_request}))
+                        {'request': get_request, 'fluent_l10n': self.get_l10n(get_request.locale)}))
 
         list = doc('.download-list li')
         assert list.length == 7
@@ -228,7 +233,7 @@ class TestDownloadButtons(TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         doc = pq(render("{{ download_firefox('nightly', platform='android') }}",
-                        {'request': get_request}))
+                        {'request': get_request, 'fluent_l10n': self.get_l10n('fr')}))
 
         list = doc('.download-list li')
         assert list.length == 1
@@ -246,7 +251,7 @@ class TestDownloadButtons(TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         doc = pq(render("{{ download_firefox('beta', platform='android') }}",
-                        {'request': get_request}))
+                        {'request': get_request, 'fluent_l10n': self.get_l10n('fr')}))
 
         list = doc('.download-list li')
         assert list.length == 1
@@ -264,7 +269,7 @@ class TestDownloadButtons(TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         doc = pq(render("{{ download_firefox(platform='android') }}",
-                        {'request': get_request}))
+                        {'request': get_request, 'fluent_l10n': self.get_l10n('fr')}))
 
         list = doc('.download-list li')
         assert list.length == 1
@@ -281,7 +286,7 @@ class TestDownloadButtons(TestCase):
         rf = RequestFactory()
         get_request = rf.get('/fake')
         doc = pq(render("{{ download_firefox(platform='ios') }}",
-                        {'request': get_request}))
+                        {'request': get_request, 'fluent_l10n': self.get_l10n('fr')}))
 
         list = doc('.download-list li')
         assert list.length == 1
