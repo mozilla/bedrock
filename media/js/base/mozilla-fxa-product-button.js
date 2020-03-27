@@ -12,8 +12,25 @@ if (typeof window.Mozilla === 'undefined') {
 
     var FxaProductButton = {};
 
+    var whitelist = [
+        'https://accounts.firefox.com/',
+        'https://monitor.firefox.com/',
+        'https://getpocket.com/',
+        'https://latest.dev.lcip.org/'
+    ];
+
     FxaProductButton.isSupported = function() {
         return 'fetch' in window;
+    };
+
+    /**
+     * Returns the hostname for a given URL.
+     * @param {String} url.
+     * @returns {String} hostname.
+     */
+    FxaProductButton.getHostName = function(url) {
+        var matches = url.match(/^https?:\/\/(?:[^/?#]+)(?:[/?#]|$)/i);
+        return matches && matches[0];
     };
 
     FxaProductButton.init = function() {
@@ -77,7 +94,11 @@ if (typeof window.Mozilla === 'undefined') {
 
             // applies url to all buttons and adds cta position
             for (var i = 0; i < buttons.length; i++) {
-                buttons[i].href += flowParams;
+                var hostName = FxaProductButton.getHostName(buttons[i].href);
+                // check if link is in the FxA referral whitelist.
+                if (hostName && whitelist.indexOf(hostName) !== -1) {
+                    buttons[i].href += flowParams;
+                }
             }
         }).catch(function() {
             // silently fail: deviceId, flowBeginTime, flowId are not added to url.
