@@ -858,7 +858,7 @@ def fxa_link_fragment(ctx, entrypoint, action='signup', optional_parameters=None
 
         {% set signin = fxa_link_fragment(entrypoint='mozilla.org-firefox-accounts') %}
         {% set class_name = 'js-fxa-cta-link js-fxa-product-button' %}
-        <p>Already have an account? <a {{ sign_in }} {{ class_name }}>Sign In</a> to start syncing.</p>
+        <p>Already have an account? <a {{ sign_in }} class="{{ class_name }}">Sign In</a> to start syncing.</p>
     """
 
     if action == 'email':
@@ -898,10 +898,8 @@ def fxa_button(ctx, entrypoint, button_text, action='signup', class_name=None, i
         'data-mozillaonline-link': _fxa_product_url(mozillaonline_product_url, entrypoint, optional_parameters)
     }
 
-    if optional_attributes:
-        optional_attributes.update(mozillaonline_attribute)
-    else:
-        optional_attributes = mozillaonline_attribute
+    optional_attributes = optional_attributes or {}
+    optional_attributes.update(mozillaonline_attribute)
 
     return _fxa_product_button(product_url, entrypoint, button_text, class_name, is_button_class, include_metrics,
                                optional_parameters, optional_attributes)
