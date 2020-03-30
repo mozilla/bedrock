@@ -868,7 +868,8 @@ def fxa_link_fragment(ctx, entrypoint, action='signup', optional_parameters=None
     fxa_url = _fxa_product_url(f'{settings.FXA_ENDPOINT}{action}', entrypoint, optional_parameters)
     mozillaonline_url = _fxa_product_url(f'{settings.FXA_ENDPOINT_MOZILLAONLINE}{action}', entrypoint, optional_parameters)
 
-    markup = (f'href="{fxa_url}" data-mozillaonline-link="{mozillaonline_url}"')
+    markup = (f'href="{fxa_url}" data-mozillaonline-link="{mozillaonline_url}" '
+              f'data-mozillaonline-action="{settings.FXA_ENDPOINT_MOZILLAONLINE}"')
 
     return jinja2.Markup(markup)
 
@@ -896,7 +897,8 @@ def fxa_button(ctx, entrypoint, button_text, action='signup', class_name=None, i
     mozillaonline_product_url = f'{settings.FXA_ENDPOINT_MOZILLAONLINE}{action}'
 
     mozillaonline_attribute = {
-        'data-mozillaonline-link': _fxa_product_url(mozillaonline_product_url, entrypoint, optional_parameters)
+        'data-mozillaonline-link': _fxa_product_url(mozillaonline_product_url, entrypoint, optional_parameters),
+        'data-mozillaonline-action': settings.FXA_ENDPOINT_MOZILLAONLINE
     }
 
     optional_attributes = optional_attributes or {}

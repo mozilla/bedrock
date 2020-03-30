@@ -48,6 +48,7 @@ TEST_FIREFOX_TWITTER_ACCOUNTS = {
 }
 
 TEST_FXA_ENDPOINT = 'https://accounts.firefox.com/'
+TEST_FXA_MOZILLAONLINE_ENDPOINT = 'https://accounts.firefox.com.cn/'
 
 jinja_env = Jinja2.get_default()
 
@@ -1018,6 +1019,7 @@ class TestMonitorFxAButton(TestCase):
 
 
 @override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)
+@override_settings(FXA_ENDPOINT_MOZILLAONLINE=TEST_FXA_MOZILLAONLINE_ENDPOINT)
 class TestFxAButton(TestCase):
     rf = RequestFactory()
 
@@ -1042,7 +1044,8 @@ class TestFxAButton(TestCase):
             u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product '
             u'fxa-main-cta-button" data-cta-text="Sign Up" data-cta-type="fxa-sync" data-cta-position="primary" '
             u'data-mozillaonline-link="https://accounts.firefox.com.cn/signup?entrypoint=mozilla.org-firefox-whatsnew73'
-            u'&form_type=button&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73">Sign Up</a>')
+            u'&form_type=button&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73" '
+            u'data-mozillaonline-action="https://accounts.firefox.com.cn/">Sign Up</a>')
         self.assertEqual(markup, expected)
 
     def test_fxa_button_signin(self):
@@ -1058,7 +1061,8 @@ class TestFxAButton(TestCase):
             u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product '
             u'fxa-main-cta-button" data-cta-text="Sign In" data-cta-type="fxa-sync" data-cta-position="primary" '
             u'data-mozillaonline-link="https://accounts.firefox.com.cn/signin?entrypoint=mozilla.org-firefox-whatsnew73'
-            u'&form_type=button&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73">Sign In</a>')
+            u'&form_type=button&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73" '
+            u'data-mozillaonline-action="https://accounts.firefox.com.cn/">Sign In</a>')
         self.assertEqual(markup, expected)
 
     def test_fxa_button_email(self):
@@ -1074,11 +1078,13 @@ class TestFxAButton(TestCase):
             u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product '
             u'fxa-main-cta-button" data-cta-text="Sign Up" data-cta-type="fxa-sync" data-cta-position="primary" '
             u'data-mozillaonline-link="https://accounts.firefox.com.cn/?action=email&entrypoint=mozilla.org-firefox-whatsnew73'
-            u'&form_type=button&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73">Sign Up</a>')
+            u'&form_type=button&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73" '
+            u'data-mozillaonline-action="https://accounts.firefox.com.cn/">Sign Up</a>')
         self.assertEqual(markup, expected)
 
 
 @override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)
+@override_settings(FXA_ENDPOINT_MOZILLAONLINE=TEST_FXA_MOZILLAONLINE_ENDPOINT)
 class TestFxALinkFragment(TestCase):
     rf = RequestFactory()
 
@@ -1096,5 +1102,6 @@ class TestFxALinkFragment(TestCase):
             u'href="https://accounts.firefox.com/signup?entrypoint=mozilla.org-firefox-whatsnew73&form_type=button'
             u'&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73" '
             u'data-mozillaonline-link="https://accounts.firefox.com.cn/signup?entrypoint=mozilla.org-firefox-whatsnew73'
-            u'&form_type=button&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73"')
+            u'&form_type=button&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73" '
+            u'data-mozillaonline-action="https://accounts.firefox.com.cn/"')
         self.assertEqual(markup, expected)
