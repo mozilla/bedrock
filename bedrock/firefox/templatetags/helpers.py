@@ -164,7 +164,8 @@ def download_firefox(ctx, channel='release', platform='all',
         'show_ios': show_ios,
         'alt_copy': alt_copy,
         'button_color': button_color,
-        'download_location': download_location
+        'download_location': download_location,
+        'fluent_l10n': ctx['fluent_l10n']
     }
 
     html = render_to_string('firefox/includes/download-button.html', data,

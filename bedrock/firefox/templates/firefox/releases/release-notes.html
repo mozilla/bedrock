@@ -10,7 +10,7 @@
   {% set product_name = release.product %}
   {% set download_button %}
     <a rel="external" href="{{ firefox_ios_url('mozorg-releasenotes_page-appstore-button') }}" data-link-type="download" data-download-os="iOS">
-      <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}">
+      <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}">
     </a>
   {% endset %}
 {% elif release.product == 'Firefox for Android' %}

@@ -6,13 +6,13 @@
   <div class="download download-dumb">
     <p role="heading" class="download-heading">
       {% if channel == 'beta' %}
-        {{ _('Firefox Beta') }}
+        {{ ftl('download-button-firefox-beta') }}
       {% elif channel == 'alpha' %}
-        {{ _('<span>Firefox</span> Developer Edition') }}
+        {{ ftl('download-button-firefox-developer-edition') }}
       {% elif channel == 'nightly' %}
-        {{ _('Firefox Nightly') }}
+        {{ ftl('download-button-firefox-nightly') }}
       {% else %}
-        {{ _('Download Firefox') }}
+        {{ ftl('download-button-download-firefox') }}
       {% endif %}  — {{ locale_name|safe }}
     </p>
     <ul>
@@ -45,17 +45,17 @@
   {% if show_desktop %}
     {# unrecognized/unsupported platform #}
     <div class="unrecognized-download">
-      <p>{{ _('Your system may not meet the requirements for Firefox, but you can try one of these versions:') }}</p>
+      <p>{{ ftl('download-button-your-system-may') }}</p>
       {{ alt_buttons(builds) }}
     </div>
     <p class="unsupported-download">
-      {{ _("Your system doesn't meet the <a href=\"%(url)s\">requirements</a> to run Firefox.")|format(url=firefox_url('desktop', 'sysreq', channel)) }}
+      {{ ftl('download-button-your-system-does-not', url=firefox_url('desktop', 'sysreq', channel)) }}
     </p>
     <p class="unsupported-download-osx">
-      {{ _("Your system doesn't meet the <a href=\"%(url)s\">requirements</a> to run Firefox.")|format(url='https://support.mozilla.org/kb/firefox-osx') }}
+      {{ ftl('download-button-your-system-does-not', url='https://support.mozilla.org/kb/firefox-osx') }}
     </p>
     <p class="linux-arm-download">
-      {{ _('Please follow <a href="%(url)s">these instructions</a> to install Firefox.')|format(url='https://support.mozilla.org/kb/install-firefox-linux') }}
+      {{ ftl('download-button-please-follow-these', url='https://support.mozilla.org/kb/install-firefox-linux') }}
     </p>
   {% endif %}
   <ul class="download-list">
@@ -77,25 +77,25 @@
             {% else %}
               {% if plat.os == 'android' %}
                 {% if channel == 'beta' %}
-                  {{ _('<span>Firefox Beta</span> for Android') }}
+                  {{ ftl('download-button-firefox-beta-android') }}
                 {% elif channel == 'alpha' %}
-                  {{ _('<span>Firefox Aurora</span> for Android') }}
+                  {{ ftl('download-button-firefox-aurora-android') }}
                 {% elif channel == 'nightly' %}
-                  {{ _('<span>Firefox Nightly</span> for Android') }}
+                  {{ ftl('download-button-firefox-nightly-android') }}
                 {% else %}
-                  {{ _('<span>Firefox</span> for Android') }}
+                  {{ ftl('download-button-firefox-android') }}
                 {% endif %}
               {% elif plat.os == 'ios' %}
-                {{ _('<span>Firefox</span> for iOS') }}
+                {{ ftl('download-button-firefox-ios') }}
               {% else %}
                 {% if channel == 'beta' %}
-                  {{ _('Firefox Beta') }}
+                  {{ ftl('download-button-firefox-beta') }}
                 {% elif channel == 'alpha' %}
-                  {{ _('<span>Firefox</span> Developer Edition') }}
+                  {{ ftl('download-button-firefox-developer-edition') }}
                 {% elif channel == 'nightly' %}
-                  {{ _('Firefox Nightly') }}
+                  {{ ftl('download-button-firefox-nightly') }}
                 {% else %}
-                  {{ _('Download Firefox') }}
+                  {{ ftl('download-button-download-firefox') }}
                 {% endif %}
               {% endif %}
             {% endif %}
@@ -105,11 +105,8 @@
     {% endfor %}
   </ul>
   <small class="fx-privacy-link mzp-c-button-download-privacy-link">
-    {% if LANG.startswith('en-') %}
-      {% set privacy_text = _('Firefox Privacy Notice') %}
-    {% else %}
-      {% set privacy_text = _('Firefox Privacy') %}
-    {% endif %}
-    <a href="{{ url('privacy.notices.firefox') }}">{{ privacy_text }}</a>
+    <a href="{{ url('privacy.notices.firefox') }}">
+      {{ ftl('download-button-firefox-privacy-notice', fallback='download-button-firefox-privacy') }}
+    </a>
   </small>
 </div>
