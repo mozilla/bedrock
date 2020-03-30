@@ -63,6 +63,12 @@
     },
     {
       "files": [
+        "css/firefox/installer-help-b.scss"
+      ],
+      "name": "installer_help_b"
+    },
+    {
+      "files": [
         "css/mozorg/participation-reporting.scss"
       ],
       "name": "participation-reporting"
@@ -1406,6 +1412,12 @@
         "js/base/error-pages.js"
       ],
       "name": "page_not_found"
+    },
+    {
+      "files": [
+        "js/firefox/installer-help-experiment.js"
+      ],
+      "name": "installer_help_experiment"
     }
   ]
 }
