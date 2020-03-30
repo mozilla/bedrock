@@ -9,7 +9,8 @@ describe('mozilla-fxa-product-button.js', function() {
 
     beforeEach(function() {
         var button = '<a class="js-fxa-product-button" href="https://monitor.firefox.com/oauth/init?form_type=button&amp;entrypoint=mozilla.org-firefox-accounts&amp;utm_source=mozilla.org-firefox-accounts&amp;utm_campaign=trailhead&amp;utm_medium=referral" data-action="https://accounts.firefox.com/" >Sign Up to Monitor</a>' +
-                     '<a class="js-fxa-product-button" href="https://getpocket.com/ff_signup?s=ffwelcome2&amp;form_type=button&amp;entrypoint=mozilla.org-firefox-welcome-2&amp;utm_source=mozilla.org-firefox-welcome-2&amp;utm_campaign=welcome-2-pocket&amp;utm_medium=referral" data-action="https://accounts.firefox.com/" >Activate Pocket</a>';
+                     '<a class="js-fxa-product-button" href="https://getpocket.com/ff_signup?s=ffwelcome2&amp;form_type=button&amp;entrypoint=mozilla.org-firefox-welcome-2&amp;utm_source=mozilla.org-firefox-welcome-2&amp;utm_campaign=welcome-2-pocket&amp;utm_medium=referral" data-action="https://accounts.firefox.com/" >Activate Pocket</a>' +
+                     '<a class="js-fxa-product-button" href="https://www.mozilla.org/en-US/firefox/accounts/">Learn more</a>';
 
         var data = {
             'deviceId': '848377ff6e3e4fc982307a316f4ca3d6',
@@ -46,6 +47,13 @@ describe('mozilla-fxa-product-button.js', function() {
             var buttons = document.querySelectorAll('.js-fxa-product-button');
             expect(buttons[0].href).toEqual('https://monitor.firefox.com/oauth/init?form_type=button&entrypoint=mozilla.org-firefox-accounts&utm_source=mozilla.org-firefox-accounts&utm_campaign=trailhead&utm_medium=referral&deviceId=848377ff6e3e4fc982307a316f4ca3d6&flowBeginTime=1573052386673&flowId=75f9a48a0f66c2f5919a0989605d5fa5dd04625ea5a2ee59b2d5d54637c566d1');
             expect(buttons[1].href).toEqual('https://getpocket.com/ff_signup?s=ffwelcome2&form_type=button&entrypoint=mozilla.org-firefox-welcome-2&utm_source=mozilla.org-firefox-welcome-2&utm_campaign=welcome-2-pocket&utm_medium=referral&deviceId=848377ff6e3e4fc982307a316f4ca3d6&flowBeginTime=1573052386673&flowId=75f9a48a0f66c2f5919a0989605d5fa5dd04625ea5a2ee59b2d5d54637c566d1');
+        });
+    });
+
+    it('should not attach flow parameters to button hrefs in the domain is invalid', function() {
+        return Mozilla.FxaProductButton.init().then(function() {
+            var buttons = document.querySelectorAll('.js-fxa-product-button');
+            expect(buttons[2].href).toEqual('https://www.mozilla.org/en-US/firefox/accounts/');
         });
     });
 });

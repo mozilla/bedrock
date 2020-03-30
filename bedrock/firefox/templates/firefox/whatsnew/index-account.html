@@ -2,8 +2,6 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import fxa_cta_link with context %}
-
 {% extends "firefox/whatsnew/base.html" %}
 
 {% block page_title %}{{ ftl('whatsnew-page-title') }}{% endblock %}
@@ -45,8 +43,15 @@
           {{ ftl('whatsnew-account-main-headline') }}
         </h2>
         <p>{{ ftl('whatsnew-account-main-lead-in') }}</p>
-
-        <p class="cta">{{ fxa_cta_link(entrypoint=entrypoint, action='signup', button_text=ftl('whatsnew-account-main-button'), button_class='mzp-c-button mzp-t-product mzp-t-small js-fxa-product-button', utm_campaign=campaign) }}</p>
+        <p class="cta">
+          {{ fxa_button(
+            entrypoint=entrypoint,
+            button_text=ftl('whatsnew-account-main-button'),
+            class_name='mzp-t-small',
+            optional_parameters={'utm_campaign': campaign},
+            optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'primary'}
+          ) }}
+        </p>
       </div>
     </div>
   </section>

@@ -8,30 +8,40 @@
 Firefox Accounts Referrals
 ==========================
 
-Bedrock pages are often used to promote the creation of `Firefox Accounts`_ as a main *call to action* (CTA). This is typically accomplished using either a signup form, or a prominent link/button. Bedrock templates can take advantage of a series of helper macros, which can help to standardize referrals.
+Marketing pages often promote the creation of a `Firefox Account`_ as a common *call to action* (CTA).
+This is typically accomplished using either a signup form, or a prominent link/button. To accomplish
+this, bedrock templates can take advantage of a series of helpers which can be used to standardize
+referrals.
 
-.. _Firefox Accounts: https://accounts.firefox.com
+.. Note::
 
-.. Important::
+    The helpers below can typically be shown to all browsers, but some also feature logic specific
+    to Firefox, such as signing users into `Sync`_.
 
-    All query string parameters passed to the macros below need to pass the `query parameters validation
-    <https://mozilla.github.io/application-services/docs/accounts/metrics.html#descriptions-of-metrics-related-query-parameters>`_ applied by the Firefox Accounts server.
+.. _Sync: https://support.mozilla.org/kb/how-do-i-set-sync-my-computer
+.. _Firefox Account: https://accounts.firefox.com
 
 Conventions
 -----------
 
-When choosing URL parameter values, the following conventions help support uniformity in code and predictability in retroactive analysis.
+When choosing URL parameter values, the following conventions help to support uniformity in code and
+predictability in retroactive analysis.
 
 * Use lower case characters in parameter values.
 * Separate words in parameter values with hyphens.
 * Follow parameter naming patterns established in previous iterations of a page.
 
+.. Important::
+
+    All query string parameters also need to pass the `validation
+    <https://mozilla.github.io/application-services/docs/accounts/metrics.html#descriptions-of-metrics-related-query-parameters>`_
+    rules applied by the Firefox Accounts server.
+
+
 Signup Form
 -----------
 
-The Firefox Accounts signup form is used as a top of funnel entry point to the account creation flow. This form is shown to all browsers, but it also features some Firefox-specific logic related to signing users into `Sync`_.
-
-.. _Sync: https://support.mozilla.org/kb/how-do-i-set-sync-my-computer
+Use the ``fxa_email_form`` macro to display an account signup form on a page.
 
 Usage
 ~~~~~
@@ -48,7 +58,7 @@ The form can then be invoked using:
 
     {{ fxa_email_form(entrypoint='mozilla.org-firefox-accounts') }}
 
-The templates's respective JavaScript and CSS bundles should also include the following dependencies:
+The template's respective JavaScript and CSS bundles should also include the following dependencies:
 
 **Javascript:**
 
@@ -57,20 +67,20 @@ The templates's respective JavaScript and CSS bundles should also include the fo
     js/base/mozilla-fxa-form.js
     js/base/mozilla-fxa-form-init.js
 
-This script will automatically handle things like tracking metrics flow (see the Tracking Signups section below), as well as configuring Sync and distribution ID (e.g. the China re-pack) for Firefox browsers.
-
 **CSS:**
 
 .. code-block:: text
 
     css/base/mozilla-fxa-form.scss
 
-This Sass file contains some useful default styling for the form.
+The JavaScript files will automatically handle things adding metrics parameters, as well as
+configuring Sync and distribution ID (e.g. the China re-pack) for Firefox browsers. The CSS
+file contains some default styling for the signup form.
 
 Configuration
 ~~~~~~~~~~~~~
 
-The macro provides parameters as follows (* indicates a required parameter)
+The signup form macro accepts the following parameters (* indicates a required parameter)
 
 +----------------------------+----------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
 |    Parameter name          |                                                       Definition                                                           |                          Format                          |                    Example                      |
@@ -106,15 +116,161 @@ Invoking the macro will automatically include a set of default UTM parameters as
 - ``utm_campaign`` is automatically set as the value of ``fxa-embedded-form``. This can be prefixed with a custom value by passing a ``utm_campaign`` value to the macro. For example, ``utm_campaign='trailhead'`` would result in a value of ``trailhead-fxa-embedded-form``.
 - ``utm_medium`` is automatically set as the value of ``referral``.
 
+
+Linking to accounts.firefox.com
+-------------------------------
+
+Use the ``fxa_button`` helper to create a CTA button or link to https://accounts.firefox.com/.
+
+Usage
+~~~~~
+
+.. code-block:: jinja
+
+    {{ fxa_button(entrypoint='mozilla.org-firefox-accounts', button_text='Sign In') }}
+
+.. Note::
+
+    There is also a ``fxa_link_fragment`` helper which will construct only valid ``href``
+    and ``data-mozillaonline-link`` properties. This is useful when constructing an
+    inline link inside a paragraph, for example.
+
+For more information on the available parameters, read the "CTA button parameters"
+section further below.
+
+
+Linking to monitor.firefox.com
+-------------------------------
+
+Use the ``monitor_fxa_button`` helper to link to https://monitor.firefox.com/ via a
+Firefox Accounts auth flow.
+
+Usage
+~~~~~
+
+.. code-block:: jinja
+
+    {{ monitor_fxa_button(entrypoint=_entrypoint, button_text='Sign Up for Monitor') }}
+
+For more information on the available parameters, read the "CTA button parameters"
+section further below.
+
+
+Linking to getpocket.com
+------------------------
+
+Use the ``pocket_fxa_button`` helper to link to https://getpocket.com/ via a
+Firefox Accounts auth flow.
+
+Usage
+~~~~~
+
+.. code-block:: jinja
+
+    {{ pocket_fxa_button(entrypoint='mozilla.org-firefox-pocket', button_text='Try Pocket Now', optional_parameters={'s': 'ffpocket'}) }}
+
+For more information on the available parameters, read the "CTA button parameters"
+section below.
+
+
+CTA button parameters
+---------------------
+
+The ``fxa_button``, ``pocket_fxa_button``, and ``monitor_fxa_button`` helpers
+all support the same standard parameters:
+
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    Parameter name          |                                                       Definition                                                       |                          Format                          |                                                Example                                                 |
++============================+========================================================================================================================+==========================================================+========================================================================================================+
+|    entrypoint*             | Unambiguous identifier for which page of the site is the referrer. This also serves as a value for 'utm_source'.       | 'mozilla.org-firefox-pocket'                             | 'mozilla.org-firefox-pocket'                                                                           |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    button_text*            | The button copy to be used in the call to action.  Default to a well localized string.                                 | Localizable string                                       | _('Try Pocket Now')                                                                                    |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    class_name              | A class name to be applied to the link (typically for styling with CSS).                                               | String of one or more class names                        | 'pocket-main-cta-button'                                                                               |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    is_button_class         | A boolean value that dictates if the CTA should be styled as a button or a link. Defaults to 'True'.                   | Boolean                                                  | True or False                                                                                          |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    include_metrics         | A boolean value that dictates if metrics parameters should be added to the button href. Defaults to 'True'.            | Boolean                                                  | True or False                                                                                          |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    optional_parameters     | An dictionary of key value pairs containing additional parameters to append the the href.                              | Dictionary                                               | {'s': 'ffpocket'}                                                                                      |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+|    optiona_attributes      | An dictionary of key value pairs containing additional data attributes to include in the button.                       | Dictionary                                               | {'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'activate pocket','data-cta-position': 'primary'} |
++----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
+
+.. Note::
+
+    The ``fxa_button`` helper also supports an additional ``action`` parameter,
+    which accepts the values ``signup``, ``signin``, and ``email`` for
+    configuring the type of authentication flow.
+
+
+CTA button dependencies
+-----------------------
+
+When using any of the FxA button helpers, a templates's respective JavaScript
+bundle should also include the following dependencies:
+
+.. code-block:: text
+
+    js/base/mozilla-fxa-product-button.js
+    js/base/mozilla-fxa-product-button-init.js
+
+This script automatically adds metrics parameters to the button ``href``:
+
+- ``deviceId``
+- ``flowId``
+- ``flowBeginTime``
+
+These are values are fetched from an API endpoint, and are instered back into
+the destination link along with the other standard referral parameters.
+
+.. Important::
+
+    Requests to metrics API endpoints should only be made when an associated CTA is
+    visibly displayed on a page. For example, if a page contains both a Firefox Accounts
+    signup form and a Firefox Monitor button, but only one CTA is displayed at any one
+    time, then only the metrics request associated with that CTA should occur. For links
+    generated using the ``fxa_link_fragment`` helper, you will also need to manually
+    add a CSS class of ``js-fxa-product-button`` to trigger the script.
+
+
+Tracking External Referrers
+---------------------------
+
+If the URL of a bedrock page contains existing UTM parameters on page load, bedrock will
+attempt to automatically use those values to replace the inline UTM parameters in
+Firefox Accounts links. This is handled using a client side script in the site common
+bundle which can be found in ``/media/js/base/fxa-utm-referral.js``.
+
+The behavior is as follows:
+
+- UTM paramters will only be replaced if the page URL contains both a valid ``utm_source`` and ``utm_campaign`` parameter. All other UTM parameters are considered optional, but will still be passed as long as the required parameters exist.
+- If the above criteria is satisfied, then UTM parameters on FxA links will be replaced in their entirety with the UTM parameters from the page URL. This is to avoid mixing referral data from different campaigns.
+
+.. Important::
+
+    Links generated by the FxA button helpers will automatically be covered by this
+    script. For links generated using the ``fxa_link_fragment`` helper, you will
+    need to manually add a CSS class of ``js-fxa-cta-link`` to trigger the behavior.
+
+
 Handling Distribution (aka China Repack)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------
 
-The China repack of Firefox points to https://accounts.firefox.com.cn/ by default for accounts signups. To compensate for this on https://www.mozilla.org (so we don't send those visitors to the wrong place), we rely on :ref:`UITour<ui-tour>` to check the distribution ID of the browser. If the distribution ID is ``mozillaonline`` (i.e. China repack), then we replace our accounts endpoints with the alternate domain specified in the ``data-mozillaonline-link`` attribute. The logic to handle this is self contained in the macro, and in ``mozilla-fxa-form.js``.
+The China repack of Firefox points to https://accounts.firefox.com.cn/ by default for
+accounts signups. To compensate for this on https://www.mozilla.org (so we don't send
+those visitors to the wrong place), we rely on :ref:`UITour<ui-tour>` to check the
+distribution ID of the browser. If the distribution ID is ``mozillaonline``
+(i.e. China repack), then we replace our accounts endpoints with the alternate domain
+specified in the ``data-mozillaonline-link`` attribute. The logic to handle this is
+self contained in the associated helper scripts and handled automatically.
 
-Testing The Form
-~~~~~~~~~~~~~~~~
 
-Testing the form signup flow on a non-production environment requires some additional configuration.
+Testing Signup Flows
+--------------------
+
+Testing the Firefox Account signup flows on a non-production environment requires
+some additional configuration.
 
 **Configuring bedrock:**
 
@@ -134,163 +290,10 @@ Follow the `instructions`_ provided by the FxA team. These instructions will lau
 new Firefox instance with the necessary config already set. In the new instance of
 Firefox:
 
-#. Navigate to the page containing the Firefox Accounts form
+#. Navigate to the page containing the Firefox Accounts CTA.
 #. If testing locally, be sure to use ``127.0.0.1`` instead of ``localhost``
 
 .. _instructions: https://github.com/vladikoff/fxa-dev-launcher#basic-usage-example-in-os-x
-
-
-Linking to accounts.firefox.com
--------------------------------
-
-The ``fxa_cta_link`` macro is designed to help create a valid *call to action* (CTA) link to https://accounts.firefox.com, with all the necessary query string parameters. This macro will also generate a valid ``data-mozillaonline-link`` attribute needed for the China repack distribution.
-
-Usage
-~~~~~
-
-To use the link in a Jinja template, first import the `fxa_cta_link` macro:
-
-.. code-block:: jinja
-
-    {% from "macros.html" import fxa_cta_link with context %}
-
-A link can then be invoked using:
-
-.. code-block:: jinja
-
-    {{ fxa_cta_link(
-        entrypoint='mozilla.org-firefox-accounts',
-        button_text=_('Create a Firefox Account')
-    }}
-
-The following scripts, included in the base bundle for every page, are responsible for configuring Sync for Firefox desktop browsers.
-
-.. code-block:: text
-
-    js/base/mozilla-fxa-link.js
-    js/base/mozilla-fxa-link-init.js
-
-Configuration
-~~~~~~~~~~~~~
-
-The macro provides parameters as follows (* indicates a required parameter)
-
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    Parameter name          |                                                       Definition                                                       |                          Format                          |                    Example                      |
-+============================+========================================================================================================================+==========================================================+=================================================+
-|    entrypoint*             | Unambiguous identifier for which page of the site is the referrer.                                                     | 'mozilla.org-directory-page'                             | 'mozilla.org-firefox-accounts'                  |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    entrypoint_experiment   | Used to identify experiments.                                                                                          | Experiment ID                                            | 'whatsnew-headlines'                            |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    entrypoint_variation    | Used to track page variations in multivariate tests. Usually just a number or letter but could be a short keyword.     | Variant identifier                                       | 'b'                                             |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    action                  | The type of action the link will perform. Defaults to 'signin'.                                                        | String                                                   | 'signup'                                        |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    button_text*            | The button copy to be used in the call to action.                                                                      | Localizable string                                       | _('Create a Firefox Account')                   |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    account_id              | An HTML 'id' to be added to the link.                                                                                  | String                                                   | 'account-hero-button'                           |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    button_class            | A CSS class names to be applied to the link.                                                                           | String of one or more CSS class names                    | 'mzp-c-button mzp-t-primary mzp-t-product'      |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    utm_campaign*           | Used to identify specific marketing campaigns. Should have default value which is descriptive of the page element.     | Campaign name appended to default value                  | 'accounts-page-hero'                            |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    utm_term                | Used for paid search keywords.                                                                                         | Brief keyword                                            | 'existing-users'                                |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-|    utm_content             | It should only be declared when there is more than one piece of content on a page linking to the same place.           | Description of content, or name of experiment treatment  | 'get-the-rest-of-firefox'                       |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+-------------------------------------------------+
-
-Invoking the macro will automatically include a set of default UTM parameters as query string values:
-
-- ``utm_source`` is automatically assigned the value of the ``entrypoint`` parameter.
-- ``utm_medium`` is automatically set as the value of ``referral``.
-
-.. Note::
-
-    There is also a ``fxa_link_fragment`` macro which will construct only valid ``href`` and ``data-mozillaonline-link`` properties. This is useful when constructing an inline link inside a paragraph, for example. The ``fxa_link_fragment`` will accept the same ``entrypoint``, ``action`` and ``utm_*`` values as the ``fxa_cta_link`` macro.
-
-
-Linking to monitor.firefox.com
--------------------------------
-
-Use the ``monitor_fxa_button`` helper to link to https://monitor.firefox.com/ via a Firefox Accounts auth flow.
-
-Usage
-~~~~~
-
-.. code-block:: jinja
-
-    {{ monitor_fxa_button(entrypoint=_entrypoint, button_text='Sign Up for Monitor') }}
-
-The templates's respective JavaScript bundle should also include the following dependencies:
-
-.. code-block:: text
-
-    js/base/mozilla-fxa-product-button.js
-    js/base/mozilla-fxa-product-button-init.js
-
-This script will automatically handle things like tracking metrics flow (in the same way we do for https://accounts.firefox.com).
-
-Linking to getpocket.com
-------------------------
-
-Use the ``pocket_fxa_button`` helper to link to https://getpocket.com/ via a Firefox Accounts auth flow.
-
-Usage
-~~~~~
-
-.. code-block:: jinja
-
-    {{ pocket_fxa_button(entrypoint='mozilla.org-firefox-pocket', button_text='Try Pocket Now', optional_parameters={'s': 'ffpocket'}) }}
-
-The templates's respective JavaScript bundle should also include the following dependencies:
-
-.. code-block:: text
-
-    js/base/mozilla-fxa-product-button.js
-    js/base/mozilla-fxa-product-button-init.js
-
-FxA button helper configuration
--------------------------------
-
-Both the ``pocket_fxa_button`` and ``monitor_fxa_button`` helpers support the following parameters:
-
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    Parameter name          |                                                       Definition                                                       |                          Format                          |                                                Example                                                 |
-+============================+========================================================================================================================+==========================================================+========================================================================================================+
-|    entrypoint*             | Unambiguous identifier for which page of the site is the referrer. This also serves as a value for 'utm_source'.       | 'mozilla.org-firefox-pocket'                             | 'mozilla.org-firefox-pocket'                                                                           |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    button_text*            | The button copy to be used in the call to action.  Default to a well localized string.                                 | Localizable string                                       | _('Try Pocket Now')                                                                                    |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    class_name              | A class name to be applied to the link (typically for styling with CSS).                                               | String of one or more class names                        | 'pocket-main-cta-button'                                                                               |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    optional_parameters     | An dictionary of key value pairs containing additional parameters to append the the href.                              | Dictionary                                               | {'s': 'ffpocket'}                                                                                      |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-|    optiona_attributes      | An dictionary of key value pairs containing additional data attributes to include in the button.                       | Dictionary                                               | {'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'activate pocket','data-cta-position': 'primary'} |
-+----------------------------+------------------------------------------------------------------------------------------------------------------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------+
-
-Tracking Sign-ups / Sign-ins
-----------------------------
-
-For Firefox Accounts product referrals we also pass ``device_id``, ``flow_id`` and ``flow_begin_time`` parameters to track top-of-funnel metrics. These are values fetched from a metrics flow API endpoint, and are instered back into the form / link along with the other standard referral parameters. This functionality is handled by ``mozilla-fxa-form.js`` and ``mozilla-fxa-product-button.js`` respectively.
-
-.. Important::
-
-    Requests to metrics API endpoints should only be made when an associated CTA is visibly displayed on a page. For example, if a page contains both a Firefox Accounts signup form and a Firefox Monitor button, but only one CTA is displayed at any one time, then only the metrics request associated with that CTA should occur.
-
-
-Tracking External Referrers
----------------------------
-
-If the URL of a bedrock page contains existing UTM parameters on page load, bedrock will attempt to automatically use those values to replace the inline UTM parameters in Firefox Accounts links. This is handled using a client side script in the site common bundle which can be found in ``/media/js/base/fxa-utm-referral.js``.
-
-The behavior is as follows:
-
-- UTM paramters will only be replaced if the page URL contains both a valid ``utm_source`` and ``utm_campaign`` parameter. All other UTM parameters are considered optional, but will still be passed as long as the required parameters exist.
-- If the above criteria is satisfied, then UTM parameters on FxA links will be replaced in their entirety with the UTM parameters from the page URL. This is to avoid mixing referral data from different campaigns.
-
-.. Important::
-
-    Links generated by the FxA button macros and helpers will automatically be covered by this script. For links generated using the ``fxa_link_fragment`` macro, you will need to manually add a CSS class of ``js-fxa-cta-link`` to trigger the function. This script does not yet cover the signup form macro.
 
 
 Google Analytics Guidelines

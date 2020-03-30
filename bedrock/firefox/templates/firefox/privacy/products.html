@@ -4,7 +4,7 @@
 
 {% add_lang_files "firefox/privacy-hub" %}
 
-{% from "macros.html" import fxa_email_form, fxa_link_fragment with context %}
+{% from "macros.html" import fxa_email_form with context %}
 {% from "macros-protocol.html" import call_out, feature_card, picto_card, hero with context %}
 
 {% extends "firefox/privacy/base.html" %}
@@ -181,9 +181,9 @@
               }}
 
               <p class="fxa-signin">
-              {% trans sign_in=fxa_link_fragment(entrypoint=_entrypoint, action='signin', utm_campaign=_utm_campaign),
-                        class_name='js-fxa-cta-link',
-                        learn_more=url('firefox.accounts') %}
+              {% trans sign_in=fxa_link_fragment(entrypoint=_entrypoint, action='signin', optional_parameters={'utm_campaign': _utm_campaign}),
+                       class_name='js-fxa-cta-link js-fxa-product-button',
+                       learn_more=url('firefox.accounts') %}
                 Already have an account? <a {{ sign_in }} class="{{ class_name }}">Sign In</a> or <a href="{{ learn_more }}">learn more</a> about joining Firefox.
               {% endtrans %}
               </p>

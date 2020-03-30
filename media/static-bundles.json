@@ -1055,6 +1055,8 @@
     },
     {
       "files": [
+        "js/base/mozilla-fxa-product-button.js",
+        "js/base/mozilla-fxa-product-button-init.js",
         "js/base/mozilla-lazy-load.js",
         "js/firefox/home/master.js"
       ],

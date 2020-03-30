@@ -962,23 +962,24 @@ class TestPocketAdjustUrl(TestCase):
 class TestPocketFxAButton(TestCase):
     rf = RequestFactory()
 
-    def _render(self, entrypoint, button_text, class_name=None, is_button_class=True, optional_parameters=None,
-                optional_attributes=None):
+    def _render(self, entrypoint, button_text, class_name=None, is_button_class=True, include_metrics=True,
+                optional_parameters=None, optional_attributes=None):
         req = self.rf.get('/')
         req.locale = 'en-US'
-        return render("{{{{ pocket_fxa_button('{0}', '{1}', '{2}', {3}, {4}, {5}) }}}}".format(
-                      entrypoint, button_text, class_name, is_button_class, optional_parameters, optional_attributes),
-                      {'request': req})
+        return render("{{{{ pocket_fxa_button('{0}', '{1}', '{2}', {3}, {4}, {5}, {6}) }}}}".format(
+                      entrypoint, button_text, class_name, is_button_class, include_metrics,
+                      optional_parameters, optional_attributes), {'request': req})
 
     def test_pocket_fxa_button(self):
         """Should return expected markup"""
         markup = self._render(entrypoint='mozilla.org-firefox-pocket', button_text='Try Pocket Now',
-                              class_name='pocket-main-cta-button', is_button_class=True, optional_parameters={'s': 'ffpocket', 'foo': 'bar'},
+                              class_name='pocket-main-cta-button', is_button_class=True, include_metrics=True,
+                              optional_parameters={'s': 'ffpocket', 'foo': 'bar'},
                               optional_attributes={'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'activate pocket',
                                                    'data-cta-position': 'primary'})
         expected = (
             u'<a href="https://getpocket.com/ff_signup?entrypoint=mozilla.org-firefox-pocket&form_type=button'
-            u'&utm_source=mozilla.org-firefox-pocket&utm_medium=refferal&s=ffpocket&foo=bar" data-action="https://accounts.firefox.com/" '
+            u'&utm_source=mozilla.org-firefox-pocket&utm_medium=referral&s=ffpocket&foo=bar" data-action="https://accounts.firefox.com/" '
             u'class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product pocket-main-cta-button" '
             u'data-cta-text="Try Pocket Now" data-cta-type="activate pocket" data-cta-position="primary">Try Pocket Now</a>')
         self.assertEqual(markup, expected)
@@ -988,24 +989,108 @@ class TestPocketFxAButton(TestCase):
 class TestMonitorFxAButton(TestCase):
     rf = RequestFactory()
 
-    def _render(self, entrypoint, button_text, class_name=None, is_button_class=False, optional_parameters=None,
-                optional_attributes=None):
+    def _render(self, entrypoint, button_text, class_name=None, is_button_class=False, include_metrics=True,
+                optional_parameters=None, optional_attributes=None):
         req = self.rf.get('/')
         req.locale = 'en-US'
-        return render("{{{{ monitor_fxa_button('{0}', '{1}', '{2}', {3}, {4}, {5}) }}}}".format(
-                      entrypoint, button_text, class_name, is_button_class, optional_parameters, optional_attributes),
-                      {'request': req})
+        return render("{{{{ monitor_fxa_button('{0}', '{1}', '{2}', {3}, {4}, {5}, {6}) }}}}".format(
+                      entrypoint, button_text, class_name, is_button_class, include_metrics,
+                      optional_parameters, optional_attributes), {'request': req})
 
     def test_monitor_fxa_button(self):
         """Should return expected markup"""
         markup = self._render(entrypoint='mozilla.org-firefox-accounts', button_text='Sign In to Monitor',
-                              class_name='monitor-main-cta-button', is_button_class=False, optional_parameters={'utm_campaign': 'skyline'},
+                              class_name='monitor-main-cta-button', is_button_class=False, include_metrics=True,
+                              optional_parameters={'utm_campaign': 'skyline'},
                               optional_attributes={'data-cta-text': 'Sign In to Monitor', 'data-cta-type':
                                                    'fxa-monitor', 'data-cta-position': 'primary'})
         expected = (
             u'<a href="https://monitor.firefox.com/oauth/init?entrypoint=mozilla.org-firefox-accounts&form_type=button'
-            u'&utm_source=mozilla.org-firefox-accounts&utm_medium=refferal&utm_campaign=skyline" '
+            u'&utm_source=mozilla.org-firefox-accounts&utm_medium=referral&utm_campaign=skyline" '
             u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button '
             u'monitor-main-cta-button" data-cta-text="Sign In to Monitor" data-cta-type="fxa-monitor" '
             u'data-cta-position="primary">Sign In to Monitor</a>')
+        self.assertEqual(markup, expected)
+
+
+@override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)
+class TestFxAButton(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, entrypoint, button_text, action='signup', class_name=None, is_button_class=True, include_metrics=True,
+                optional_parameters=None, optional_attributes=None):
+        req = self.rf.get('/')
+        req.locale = 'en-US'
+        return render("{{{{ fxa_button('{0}', '{1}', '{2}', '{3}', {4}, {5}, {6}, {7}) }}}}".format(
+                      entrypoint, button_text, action, class_name, is_button_class, include_metrics,
+                      optional_parameters, optional_attributes), {'request': req})
+
+    def test_fxa_button_signup(self):
+        """Should return expected markup"""
+        markup = self._render(entrypoint='mozilla.org-firefox-whatsnew73', button_text='Sign Up', action='signup',
+                              class_name='fxa-main-cta-button', is_button_class=True, include_metrics=True,
+                              optional_parameters={'utm_campaign': 'whatsnew73'},
+                              optional_attributes={'data-cta-text': 'Sign Up', 'data-cta-type':
+                                                   'fxa-sync', 'data-cta-position': 'primary'})
+        expected = (
+            u'<a href="https://accounts.firefox.com/signup?entrypoint=mozilla.org-firefox-whatsnew73&form_type=button'
+            u'&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73" '
+            u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product '
+            u'fxa-main-cta-button" data-cta-text="Sign Up" data-cta-type="fxa-sync" data-cta-position="primary" '
+            u'data-mozillaonline-link="https://accounts.firefox.com.cn/signup?entrypoint=mozilla.org-firefox-whatsnew73'
+            u'&form_type=button&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73">Sign Up</a>')
+        self.assertEqual(markup, expected)
+
+    def test_fxa_button_signin(self):
+        """Should return expected markup"""
+        markup = self._render(entrypoint='mozilla.org-firefox-whatsnew73', button_text='Sign In', action='signin',
+                              class_name='fxa-main-cta-button', is_button_class=True, include_metrics=True,
+                              optional_parameters={'utm_campaign': 'whatsnew73'},
+                              optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type':
+                                                   'fxa-sync', 'data-cta-position': 'primary'})
+        expected = (
+            u'<a href="https://accounts.firefox.com/signin?entrypoint=mozilla.org-firefox-whatsnew73&form_type=button'
+            u'&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73" '
+            u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product '
+            u'fxa-main-cta-button" data-cta-text="Sign In" data-cta-type="fxa-sync" data-cta-position="primary" '
+            u'data-mozillaonline-link="https://accounts.firefox.com.cn/signin?entrypoint=mozilla.org-firefox-whatsnew73'
+            u'&form_type=button&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73">Sign In</a>')
+        self.assertEqual(markup, expected)
+
+    def test_fxa_button_email(self):
+        """Should return expected markup"""
+        markup = self._render(entrypoint='mozilla.org-firefox-whatsnew73', button_text='Sign Up', action='email',
+                              class_name='fxa-main-cta-button', is_button_class=True, include_metrics=True,
+                              optional_parameters={'utm_campaign': 'whatsnew73'},
+                              optional_attributes={'data-cta-text': 'Sign Up', 'data-cta-type':
+                                                   'fxa-sync', 'data-cta-position': 'primary'})
+        expected = (
+            u'<a href="https://accounts.firefox.com/?action=email&entrypoint=mozilla.org-firefox-whatsnew73&form_type=button'
+            u'&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73" '
+            u'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product '
+            u'fxa-main-cta-button" data-cta-text="Sign Up" data-cta-type="fxa-sync" data-cta-position="primary" '
+            u'data-mozillaonline-link="https://accounts.firefox.com.cn/?action=email&entrypoint=mozilla.org-firefox-whatsnew73'
+            u'&form_type=button&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73">Sign Up</a>')
+        self.assertEqual(markup, expected)
+
+
+@override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)
+class TestFxALinkFragment(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, entrypoint, action='signup', optional_parameters=None):
+        req = self.rf.get('/')
+        req.locale = 'en-US'
+        return render("{{{{ fxa_link_fragment('{0}', '{1}', {2}) }}}}".format(
+                      entrypoint, action, optional_parameters), {'request': req})
+
+    def test_fxa_button_signup(self):
+        """Should return expected markup"""
+        markup = self._render(entrypoint='mozilla.org-firefox-whatsnew73', action='signup',
+                              optional_parameters={'utm_campaign': 'whatsnew73'})
+        expected = (
+            u'href="https://accounts.firefox.com/signup?entrypoint=mozilla.org-firefox-whatsnew73&form_type=button'
+            u'&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73" '
+            u'data-mozillaonline-link="https://accounts.firefox.com.cn/signup?entrypoint=mozilla.org-firefox-whatsnew73'
+            u'&form_type=button&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73"')
         self.assertEqual(markup, expected)

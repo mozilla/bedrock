@@ -3,7 +3,6 @@
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros-protocol.html" import hero with context %}
-{% from "macros.html" import fxa_cta_link with context %}
 
 {% add_lang_files "firefox/welcome/page3" %}
 
@@ -28,7 +27,12 @@
   ) %}
 
     <p class="primary-cta">
-      {{ fxa_cta_link(entrypoint=_entrypoint, action='signup', button_text=_('Sign In'), button_class='mzp-c-button mzp-t-product js-fxa-product-button', utm_campaign=_utm_campaign, utm_content='top-cta') }}
+      {{ fxa_button(
+        entrypoint=_entrypoint,
+        button_text=_('Sign In'),
+        optional_parameters={'utm_campaign': _utm_campaign, 'utm_content': 'top-cta'},
+        optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'primary'}
+      ) }}
     </p>
   {% endcall %}
 {% endblock %}
@@ -90,7 +94,12 @@
 
 {% block secondary_cta %}
   <p class="secondary-cta">
-    {{ fxa_cta_link(entrypoint=_entrypoint, action='signup', button_text=_('Sign In'), button_class='mzp-c-button mzp-t-product js-fxa-product-button', utm_campaign=_utm_campaign, utm_content='bottom-cta') }}
+    {{ fxa_button(
+      entrypoint=_entrypoint,
+      button_text=_('Sign In'),
+      optional_parameters={'utm_campaign': _utm_campaign, 'utm_content': 'bottom-cta'},
+      optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'secondary'}
+    ) }}
   </p>
 {% endblock %}
 
