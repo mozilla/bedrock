@@ -138,6 +138,7 @@ $image-path: "/media/protocol/img";
 
     .contribute-banner-cta {
         flex: 1 0 auto;
+
         @media #{$mq-lg} {
             margin-left: $layout-2xl;
         }
@@ -303,10 +304,14 @@ $image-path: "/media/protocol/img";
         display: grid;
         grid-row-gap: $spacing-xl;
 
+        @media #{$mq-md} {
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: $spacing-lg;
+        }
+
         @media #{$mq-lg} {
             padding-left: $layout-xl;
             padding-right: $layout-xl;
-            grid-template-columns: 1fr 1fr;
             grid-column-gap: $spacing-xl;
         }
     }
