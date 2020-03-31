@@ -181,8 +181,13 @@ $image-path: "/media/protocol/img";
 .contribute-banner-problems {
     background-image: url("/media/img/contribute/contribute-problems-bulb.svg");
     background-size: 60px 150px;
-    background-position: 10% top;
+    background-position: 10% -10px;
     background-repeat: no-repeat;
+
+    @media #{$mq-sm} {
+        background-size: 50px 150px;
+        background-position: 8% -10px;
+    }
 
     @media #{$mq-lg} {
         border: 4px solid $color-moz-light-gray;
