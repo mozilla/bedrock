@@ -280,8 +280,8 @@ $image-path: "/media/protocol/img";
         margin-bottom: $layout-md;
 
         @media #{$mq-lg} {
-            padding-left: $layout-xl;
-            padding-right: $layout-xl;
+            padding-left: $layout-2xl;
+            padding-right: $layout-2xl;
         }
     }
 
