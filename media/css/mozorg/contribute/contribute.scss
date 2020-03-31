@@ -70,7 +70,7 @@ $image-path: "/media/protocol/img";
 }
 
 .contribute-card-container {
-    @media #{$mq-lg} {
+    @media #{$mq-sm} {
         display: flex;
         flex-wrap: wrap;
     }
@@ -79,7 +79,7 @@ $image-path: "/media/protocol/img";
         flex: 1 0 45%;
         display: flex;
 
-        @media #{$mq-lg} {
+        @media #{$mq-md} {
             flex: auto;
         }
     }
