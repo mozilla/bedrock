@@ -9,7 +9,7 @@
   <li {% if current == 'spaces' %}class="current"{% endif %} data-id="spaces">
     <a href="{{ url('mozorg.contact.spaces.spaces-landing') }}">{{ _('Spaces') }}</a>
   </li>
-  <li {% if current == 'communities' %}class="current"{% endif %} data-id="communities">
-    <a href="{{ url('mozorg.contact.communities.communities-landing') }}">{{ _('Communities') }}</a>
+  <li data-id="communities">
+    <a href="https://community.mozilla.org/groups/">{{ _('Communities') }}</a>
   </li>
 </ul>
