@@ -114,9 +114,26 @@ $image-path: "/media/protocol/img";
     }
 }
 
+.contribute-banner-wrapper {
+    max-width: 1420px;
+    min-width: 304px;
+    margin: 0 auto;
+    box-sizing: border-box;
+
+    @media #{$mq-md} {
+        padding: 0;
+    }
+
+    @media #{$mq-lg} {
+        padding: $layout-xs $layout-xl;
+    }
+}
+
 .contribute-banner {
     padding-top: $layout-xl;
     padding-bottom: $layout-md;
+    padding-left: $layout-md;
+    padding-right: $layout-md;
 
     @media #{$mq-lg} {
         display: flex;
@@ -125,14 +142,15 @@ $image-path: "/media/protocol/img";
         min-height: 260px;
         margin-bottom: $layout-lg;
         position: relative;
+
         padding-top: 0;
         padding-bottom: 0;
     }
 
     .contribute-banner-content {
         @media #{$mq-lg} {
-            margin-left: 210px;
-            width: 50%;
+            margin-left: 200px;
+            width: 60%;
             max-width: 495px;
         }
     }
@@ -141,7 +159,7 @@ $image-path: "/media/protocol/img";
         flex: 1 0 auto;
 
         @media #{$mq-lg} {
-            margin-left: $layout-2xl;
+            margin-left: $layout-xl;
         }
     }
 }
