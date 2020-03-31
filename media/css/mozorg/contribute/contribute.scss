@@ -137,6 +137,7 @@ $image-path: "/media/protocol/img";
     }
 
     .contribute-banner-cta {
+        flex: 1 0 auto;
         @media #{$mq-lg} {
             margin-left: $layout-2xl;
         }
