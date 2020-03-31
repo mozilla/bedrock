@@ -126,6 +126,8 @@ $image-path: "/media/protocol/img";
 
     @media #{$mq-lg} {
         padding: $layout-xs $layout-xl;
+        padding-bottom: 0;
+        margin-bottom: $layout-xl;
     }
 }
 
@@ -140,9 +142,7 @@ $image-path: "/media/protocol/img";
         align-items: center;
         justify-content: space-between;
         min-height: 260px;
-        margin-bottom: $layout-lg;
         position: relative;
-
         padding-top: 0;
         padding-bottom: 0;
     }
@@ -168,6 +168,10 @@ $image-path: "/media/protocol/img";
     background-image: url("/media/img/contribute/contribute-gethelp-banner-bg.jpg");
     background-size: cover;
     color: $color-white;
+
+    @media #{$mq-lg} {
+        margin-bottom: $layout-lg;
+    }
 
     .contribute-banner-gethelp-title {
         font-family: Inter, X-LocaleSpecific, sans-serif;
@@ -214,7 +218,6 @@ $image-path: "/media/protocol/img";
         background-size: 86px 241px, 33%;
         background-position: 10% -45px, 96% 88%;
         background-repeat: no-repeat;
-        margin-bottom: 140px;
     }
 
     .contribute-banner-problems-title {
