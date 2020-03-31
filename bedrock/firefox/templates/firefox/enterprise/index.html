@@ -13,6 +13,8 @@
   {{ css_bundle('firefox-enterprise') }}
 {% endblock %}
 
+{% set utm_params = '?utm_source=www.mozilla.org-enterprise&utm_campaign=enterprise&utm_medium=referral' %}
+
 {% block body_id %}firefox{% endblock %}
 
 {% block site_header %}
@@ -75,95 +77,95 @@
     <section id="download" class="enterprise-section enterprise-download">
       <h2 class="enterprise-section-title">{{ _('Enterprise downloads') }}</h2>
 
-      <ul class="mzp-l-card-third enterprise-download-lists">
-        {% call picto_card(
-          title=_('Windows 64-bit'),
-          class='enteprise-download-package win64',
-          heading_level=3,
-          custom_desc=True
-        ) %}
+      <div class="enterprise-download-lists">
+
+        <section class="enterprise-download-block">
+          <div class="enterprise-download-header">
+            <h3 class="enteprise-download-title platform-win64">{{ _('Windows 64-bit') }}</h3>
+
+            <div class="mzp-c-menu-list mzp-t-cta mzp-t-download" id="win64-download-list">
+              <h4 class="mzp-c-menu-list-title">{{ _('Select your download') }}</h4>
+              <ul class="mzp-c-menu-list-list">
+                <li class="mzp-c-menu-list-item"><a href="https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang={{ LANG }}">{{ _('Firefox browser') }}</a></li>
+                <li class="mzp-c-menu-list-item"><a href="https://download.mozilla.org/?product=firefox-msi-latest-ssl&os=win64&lang={{ LANG }}">{{ _('Firefox browser - MSI installer') }}</a></l>
+                <li class="mzp-c-menu-list-item"><a href="https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=win64&lang={{ LANG }}">{{ _('Firefox Extended Support Release (ESR)') }}</a></li>
+                <li class="mzp-c-menu-list-item"><a href="https://download.mozilla.org/?product=firefox-esr-msi-latest-ssl&os=win64&lang={{ LANG }}">{{ _('Firefox Extended Support Release (ESR) - MSI installer') }}</a></l>
+              </ul>
+            </div>
+          </div>
+
+          <h4 class="enteprise-download-subtitle">{{ _('Support') }}</h4>
           <ul class="mzp-u-list-styled">
-            <li>{{ _('The latest <a href="%s">Firefox browser</a>')|format('https://download.mozilla.org/?product=firefox-latest-ssl&os=win64') }}</li>
-            <li>{{ _('The latest <a href="%s">Firefox Extended Support Release (ESR)</a>')|format('https://support.mozilla.org/kb/firefox-esr-release-cycle') }}</li>
-            <li><a href="https://support.mozilla.org/kb/deploy-firefox-msi-installers">{{ _('MSI Installer') }}</a></li>
-            <li><a href="https://support.mozilla.org/kb/legacy-browser-support-extension-windows">{{ _('Legacy browser support') }}</a></li>
-            <li><a href="https://support.mozilla.org/kb/customizing-firefox-using-group-policy-windows">{{ _('ADMX templates') }}</a></li>
+            <li><a href="https://support.mozilla.org/kb/deploy-firefox-msi-installers/{{ utm_params }}">{{ _('MSI installers') }}</a></li>
+            <li><a href="https://support.mozilla.org/kb/legacy-browser-support-extension-windows/{{ utm_params }}">{{ _('Legacy browser support') }}</a></li>
+            <li><a href="https://support.mozilla.org/kb/customizing-firefox-using-group-policy-windows/{{ utm_params }}">{{ _('ADMX templates') }}</a></li>
             <li><a href="https://assets.mozilla.net/pdf/Firefox.for.Enterprise.Browser.Deployment.Guide.pdf">{{ _('Deployment guide') }}</a></li>
             <li><a href="https://github.com/mozilla/policy-templates/blob/master/README.md">{{ _('Policy documentation') }}</a></li>
+            <li><a href="https://support.mozilla.org/kb/where-find-release-notes-firefox-enterprise/{{ utm_params }}">{{ _('Release Notes') }}</a></li>
+            <li><a href="https://support.mozilla.org/products/firefox-enterprise/{{ utm_params }}">{{ _('Documentation and Community Support') }}</a></li>
           </ul>
+        </section>
 
-        {% endcall %}
+        <section class="enterprise-download-block">
+          <div class="enterprise-download-header">
+            <h3 class="enteprise-download-title platform-mac">{{ _('macOS') }}</h3>
 
-        {% call picto_card(
-          title=_('Mac'),
-          class='enteprise-download-package mac',
-          heading_level=3,
-          custom_desc=True
-        ) %}
+            <div class="mzp-c-menu-list mzp-t-cta mzp-t-download" id="mac-download-list">
+              <h4 class="mzp-c-menu-list-title">{{ _('Select your download') }}</h4>
+              <ul class="mzp-c-menu-list-list">
+                <li class="mzp-c-menu-list-item"><a href="https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang={{ LANG }}">{{ _('Firefox browser') }}</a></li>
+                <li class="mzp-c-menu-list-item"><a href="https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=osx&lang={{ LANG }}">{{ _('Firefox Extended Support Release (ESR)') }}</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <h4 class="enteprise-download-subtitle">{{ _('Support') }}</h4>
           <ul class="mzp-u-list-styled">
-            <li>{{ _('The latest <a href="%s">Firefox browser</a>')|format('https://download.mozilla.org/?product=firefox-latest-ssl&os=osx') }}</li>
-            <li>{{ _('The latest <a href="%s">Firefox Extended Support Release (ESR)</a>')|format('https://support.mozilla.org/kb/firefox-esr-release-cycle') }}</li>
             <li>{{ _('Sample <a href="%s">plist for configuration profile</a>')|format('https://github.com/mozilla/policy-templates/blob/master/mac/org.mozilla.firefox.plist') }}</li>
-            <li><a href="https://support.mozilla.org/kb/deploying-firefox-macos-using-pkg-and-jamf">{{ _('PKG installer') }}</a></li>
+            <li><a href="https://support.mozilla.org/kb/deploying-firefox-macos-using-pkg-and-jamf/{{ utm_params }}">{{ _('PKG installer') }}</a></li>
             <li><a href="https://assets.mozilla.net/pdf/Firefox.for.Enterprise.Browser.Deployment.Guide.pdf">{{ _('Deployment guide') }}</a></li>
             <li><a href="https://github.com/mozilla/policy-templates/blob/master/README.md">{{ _('Policy documentation') }}</a></li>
+            <li><a href="https://support.mozilla.org/kb/where-find-release-notes-firefox-enterprise/{{ utm_params }}">{{ _('Release Notes') }}</a></li>
+            <li><a href="https://support.mozilla.org/products/firefox-enterprise/{{ utm_params }}">{{ _('Documentation and Community Support') }}</a></li>
           </ul>
+        </section>
 
-        {% endcall %}
+        <section class="enterprise-download-block">
+          <div class="enterprise-download-header">
+            <h3 class="enteprise-download-title platform-win32">{{ _('Windows 32-bit') }}</h3>
 
-        {% call picto_card(
-          title=_('Windows 32-bit'),
-          class='enteprise-download-package win32',
-          heading_level=3,
-          custom_desc=True
-        ) %}
+            <div class="mzp-c-menu-list mzp-t-cta mzp-t-download" id="win32-download-list">
+              <h4 class="mzp-c-menu-list-title">{{ _('Select your download') }}</h4>
+              <ul class="mzp-c-menu-list-list">
+                <li class="mzp-c-menu-list-item"><a href="https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang={{ LANG }}">{{ _('Firefox browser') }}</a></li>
+                <li class="mzp-c-menu-list-item"><a href="https://download.mozilla.org/?product=firefox-msi-latest-ssl&os=win&lang={{ LANG }}">{{ _('Firefox browser - MSI installer') }}</a></l>
+                <li class="mzp-c-menu-list-item"><a href="https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=win&lang={{ LANG }}">{{ _('Firefox Extended Support Release (ESR)') }}</a></li>
+                <li class="mzp-c-menu-list-item"><a href="https://download.mozilla.org/?product=firefox-esr-msi-latest-ssl&os=win&lang={{ LANG }}">{{ _('Firefox Extended Support Release (ESR) - MSI installer') }}</a></l>
+              </ul>
+            </div>
+          </div>
+
+          <h4 class="enteprise-download-subtitle">{{ _('Support') }}</h4>
           <ul class="mzp-u-list-styled">
-            <li>{{ _('The latest <a href="%s">Firefox browser</a>')|format('https://download.mozilla.org/?product=firefox-latest-ssl&os=win') }}</li>
-            <li>{{ _('The latest <a href="%s">Firefox Extended Support Release (ESR)</a>')|format('https://support.mozilla.org/kb/firefox-esr-release-cycle') }}</li>
-            <li><a href="https://support.mozilla.org/kb/deploy-firefox-msi-installers">{{ _('MSI Installer') }}</a></li>
-            <li><a href="https://support.mozilla.org/kb/legacy-browser-support-extension-windows">{{ _('Legacy browser support') }}</a></li>
-            <li><a href="https://support.mozilla.org/kb/customizing-firefox-using-group-policy-windows">{{ _('ADMX templates') }}</a></li>
+            <li><a href="https://support.mozilla.org/kb/deploy-firefox-msi-installers/{{ utm_params }}">{{ _('MSI installers') }}</a></li>
+            <li><a href="https://support.mozilla.org/kb/legacy-browser-support-extension-windows/{{ utm_params }}">{{ _('Legacy browser support') }}</a></li>
+            <li><a href="https://support.mozilla.org/kb/customizing-firefox-using-group-policy-windows/{{ utm_params }}">{{ _('ADMX templates') }}</a></li>
             <li><a href="https://assets.mozilla.net/pdf/Firefox.for.Enterprise.Browser.Deployment.Guide.pdf">{{ _('Deployment guide') }}</a></li>
             <li><a href="https://github.com/mozilla/policy-templates/blob/master/README.md">{{ _('Policy documentation') }}</a></li>
+            <li><a href="https://support.mozilla.org/kb/where-find-release-notes-firefox-enterprise/{{ utm_params }}">{{ _('Release Notes') }}</a></li>
+            <li><a href="https://support.mozilla.org/products/firefox-enterprise/{{ utm_params }}">{{ _('Documentation and Community Support') }}</a></li>
           </ul>
-
-        {% endcall %}
-      </ul>
+        </section>
+      </div>
 
       <p class="enterprise-languages">
-        <a class="mzp-c-cta-link" href="{{ firefox_url('desktop', 'all', 'esr') }}">{{ _('Download Firefox ESR or Rapid Release for another language or platform.') }}</a>
+        {# L10n: line break for visual formatting #}
+        {% trans firefox_all=firefox_url('desktop', 'all', 'esr') %}
+          Download Firefox ESR or Rapid Release for<br> <a href="{{ firefox_all }}">another language or platform.</a>
+        {% endtrans %}
       </p>
     </section>
 
-    <section id="resources" class="enterprise-section enterprise-resources">
-      <h2 class="enterprise-section-title">{{ _('Enterprise resources') }}</h2>
-
-      <ul class="mzp-l-card-half">
-        {% call picto_card(
-          title=None,
-          class='docs',
-          custom_desc=True
-        ) %}
-          <h3 class="mzp-c-card-picto-title">
-            <a class="mzp-c-cta-link" href="https://support.mozilla.org/products/firefox-enterprise/?utm_source=www.mozilla.org-enterprise&utm_campaign=enterprise&utm_medium=referral">
-              {{ _('Documentation and Community Support') }}
-            </a>
-          </h3>
-        {% endcall %}
-
-        {% call picto_card(
-          title=None,
-          class='notes',
-          custom_desc=True
-        ) %}
-          <h3 class="mzp-c-card-picto-title">
-            <a class="mzp-c-cta-link" href="https://support.mozilla.org/kb/where-find-release-notes-firefox-enterprise/?utm_source=www.mozilla.org-enterprise&utm_campaign=enterprise&utm_medium=referral">
-              {{ _('Release Notes') }}
-            </a>
-          </h3>
-        {% endcall %}
-      </ul>
-    </section>
   </div>
 
 </main>
@@ -171,4 +173,8 @@
 
 {% block structured_data %}
   {% include 'includes/structured-data/software/firefox-enterprise-software.json' %}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox-enterprise') }}
 {% endblock %}
