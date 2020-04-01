@@ -34,7 +34,7 @@
 <main class="mzp-l-content">
   <section class="mzp-c-hero">
     <div class="mzp-c-hero-body">
-      <h1 class="mzp-c-hero-title">{{ _('Hmm... your download was interrupted') }}</h1>
+      <h1 class="mzp-c-hero-title">{{ _('Hmm… your download was interrupted') }}</h1>
       <div class="mzp-c-hero-desc">
         <p>
           {{ _('That happens sometimes. Let’s try something different.') }}
@@ -50,7 +50,7 @@
 
   {% if installer_channel %}
     <section class="installer-channel-card mzp-c-card mzp-c-card-extra-small">
-      {{ high_res_img(channel_logo, {'alt': 'Firefox', 'width': '347', 'height': '64'}) }}
+      {{ high_res_img(channel_logo, {'alt': 'Firefox Browser', 'width': '347', 'height': '64'}) }}
       <div class="mzp-c-card-content">
         {{ download_firefox(installer_channel, force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-small', alt_copy=_('Download Now')) }}
       </div>
@@ -58,7 +58,7 @@
   {% else %}
     <div class="mzp-l-card-quarter">
       <section class="mzp-c-card mzp-c-card-extra-small">
-        {{ high_res_img('protocol/img/logos/firefox/browser/logo-word-hor-sm.png', {'alt': 'Firefox', 'width': '347', 'height': '64', 'class': 'mzp-c-card-image'}) }}
+        {{ high_res_img('protocol/img/logos/firefox/browser/logo-word-hor-sm.png', {'alt': 'Firefox Browser', 'width': '347', 'height': '64', 'class': 'mzp-c-card-image'}) }}
         <div class="mzp-c-card-content">
           <p class="mzp-c-card-desc">
             {{ _('Get the latest. Automatic privacy is here. Download Firefox to block over 2000 trackers.') }}
@@ -68,7 +68,7 @@
       </section>
 
       <section class="mzp-c-card mzp-c-card-extra-small">
-        {{ high_res_img('protocol/img/logos/firefox/browser/beta/logo-word-hor-sm.png', {'alt': 'Firefox', 'width': '347', 'height': '64', 'class': 'mzp-c-card-image'}) }}
+        {{ high_res_img('protocol/img/logos/firefox/browser/beta/logo-word-hor-sm.png', {'alt': 'Firefox Beta Browser', 'width': '347', 'height': '64', 'class': 'mzp-c-card-image'}) }}
         <div class="mzp-c-card-content">
           <p class="mzp-c-card-desc">
             {{ _('Test about-to-be released features in the most stable pre-release build.') }}
@@ -78,7 +78,7 @@
       </section>
 
       <section class="mzp-c-card mzp-c-card-extra-small">
-        {{ high_res_img('protocol/img/logos/firefox/browser/developer/logo-word-hor-sm.png', {'alt': 'Firefox', 'class': 'mzp-c-card-image'}) }}
+        {{ high_res_img('protocol/img/logos/firefox/browser/developer/logo-word-hor-sm.png', {'alt': 'Firefox Developer Browser', 'class': 'mzp-c-card-image'}) }}
         <div class="mzp-c-card-content">
           <p class="mzp-c-card-desc">
             {{ _('Build, test, scale and more with the only browser built just for developers.') }}
@@ -88,7 +88,7 @@
       </section>
 
       <section class="mzp-c-card mzp-c-card-extra-small">
-        {{ high_res_img('protocol/img/logos/firefox/browser/nightly/logo-word-hor-sm.png', {'alt': 'Firefox', 'width': '347', 'height': '64', 'class': 'mzp-c-card-image'}) }}
+        {{ high_res_img('protocol/img/logos/firefox/browser/nightly/logo-word-hor-sm.png', {'alt': 'Firefox Nightly Browser', 'width': '347', 'height': '64', 'class': 'mzp-c-card-image'}) }}
         <div class="mzp-c-card-content">
           <p class="mzp-c-card-desc">
             {{ _('Peek at our next generation web browser, and help us make it the best browser it can be.') }}
@@ -102,7 +102,11 @@
   <section class="install-help">
     <div>
       <h2>{{ _('Need help installing?') }}</h2>
-      <p>{{ _('If you still need help installing, <a href="https://support.mozilla.org/kb/install-firefox-windows">read the tutorial in our Support section.</a>') }}</p>
+      <p>
+        {% trans sumoe='https://support.mozilla.org/kb/install-firefox-windows' %}
+          If you still need help installing, <a href="{{ sumo }}">read the tutorial in our Support section.</a>
+        {% endtrans %}
+      </p>
     </div>
   </section>
 

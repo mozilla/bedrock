@@ -1415,6 +1415,7 @@
     },
     {
       "files": [
+        "js/libs/mozilla-traffic-cop.js",
         "js/firefox/installer-help-experiment.js"
       ],
       "name": "installer_help_experiment"
