@@ -36,7 +36,8 @@ context %}
 
     <div class="contribute-intro-media-wrapper">
       <div class="contribute-intro-media">
-        <img src="/media/img/contribute/contribute-hero-composition.jpg"
+        <img src="{{ static('img/contribute/contribute-hero-composition.jpg')
+          }}"
           alt="">
       </div>
     </div>
@@ -54,11 +55,11 @@ context %}
           <div class="mzp-c-card-media-wrapper">
             <picture>
               <source
-                srcset="/media/img/contribute/contribute-card-translate.jpg"
+                srcset="{{ static('img/contribute/contribute-card-translate.jpg') }}"
                 media="(max-width: 480px)">
               <img class="mzp-c-card-image"
-                srcset="/media/img/contribute/contribute-card-translate-lg.jpg"
-                alt="…">
+                srcset="{{ static('img/contribute/contribute-card-translate-lg.jpg') }}"
+                alt=''>
             </picture>
           </div>
           <div class="mzp-c-card-content contribute-card-content">
@@ -79,11 +80,11 @@ context %}
           <div class="mzp-c-card-media-wrapper">
             <picture>
               <source
-                srcset="/media/img/contribute/contribute-card-contribute.jpg"
+                srcset="{{ static('img/contribute/contribute-card-contribute.jpg') }}"
                 media="(max-width: 480px)">
               <img class="mzp-c-card-image"
-                srcset="/media/img/contribute/contribute-card-contribute-lg.jpg"
-                alt="…">
+                srcset="{{ static('img/contribute/contribute-card-contribute-lg.jpg') }}"
+                alt="">
             </picture>
           </div>
           <div class="mzp-c-card-content contribute-card-content">
@@ -103,11 +104,11 @@ context %}
           <div class="mzp-c-card-media-wrapper">
             <picture>
               <source
-                srcset="/media/img/contribute/contribute-card-support.jpg"
+                srcset="{{ static('img/contribute/contribute-card-support.jpg') }}"
                 media="(max-width: 480px)">
               <img class="mzp-c-card-image"
-                srcset="/media/img/contribute/contribute-card-support-lg.jpg"
-                alt="…">
+                srcset="{{ static('img/contribute/contribute-card-support-lg.jpg') }}"
+                alt="">
             </picture>
           </div>
           <div class="mzp-c-card-content contribute-card-content">
@@ -129,11 +130,11 @@ context %}
           <div class="mzp-c-card-media-wrapper">
             <picture>
               <source
-                srcset="/media/img/contribute/contribute-card-community.jpg"
+                srcset="{{ static('img/contribute/contribute-card-community.jpg') }}"
                 media="(max-width: 480px)">
               <img class="mzp-c-card-image"
-                srcset="/media/img/contribute/contribute-card-community-lg.jpg"
-                alt="…">
+                srcset="{{ static('img/contribute/contribute-card-community-lg.jpg') }}"
+                alt="">
             </picture>
           </div>
           <div class="mzp-c-card-content contribute-card-content">
@@ -169,7 +170,7 @@ context %}
       </div>
 
       <div class="contribute-mission-cards">
-        <a href="https://www.mozilla.org/en-US/about/"
+        <a href="{{ url('mozorg.about') }}"
           class="contribute-mission-card">
           <h3 class="contribute-mission-learn-icon">Learn about Mozilla</h3>
           <p>Read our manifesto</p>
@@ -180,7 +181,7 @@ context %}
           <p>Meet our passionate volunteers</p>
         </a>
         <a
-          href="https://donate.mozilla.org/en-US/?presets=50,30,20,10&amount=30&utm_source=mozilla.org&utm_medium=referral&utm_content=contribute&currency=usd"
+          href="https://donate.mozilla.org/?presets=50,30,20,10&amount=30&utm_source=mozilla.org&utm_medium=referral&utm_content=contribute&currency=usd"
           class="contribute-mission-card">
           <h3 class="contribute-mission-donate-icon">Donate</h3>
           <p>Help fund our mission</p>
@@ -200,7 +201,7 @@ context %}
       <div class="mzp-c-card-feature-media
         contribute-feature-media-wrapper">
         <div class="contribute-feature-media">
-          <img src="/media/img/contribute/contribute-madeby-feature.jpg"
+          <img src="{{ static('/img/contribute/contribute-madeby-feature.jpg') }}"
             alt="">
         </div>
       </div>

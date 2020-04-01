@@ -48,13 +48,14 @@ $image-path: "/media/protocol/img";
     .contribute-intro-media-wrapper {
         position: absolute;
         width: 100%;
-        left: -10px;
+        @include bidi(((left, -10px, auto),(right, auto, -10px),));
+
 
         @media #{$mq-lg} {
             left: auto;
             width: 50%;
             top: 0;
-            right: -25px;
+            @include bidi(((right, -25px, auto),(left, auto, -25px),))
         }
     }
 }
@@ -92,7 +93,7 @@ $image-path: "/media/protocol/img";
 
         &:hover,
         &:focus {
-            transform: translateZ(0) scale(1.02);
+            @include transform(translateZ(0) scale(1.02));
             backface-visibility: hidden;
             transition: transform 0.1s ease-in-out,
                 -webkit-transform 0.1s ease-in-out;
@@ -115,8 +116,8 @@ $image-path: "/media/protocol/img";
 }
 
 .contribute-banner-wrapper {
-    max-width: 1420px;
-    min-width: 304px;
+    max-width: $content-max;
+    min-width: $content-xs;
     margin: 0 auto;
     box-sizing: border-box;
 
@@ -132,10 +133,7 @@ $image-path: "/media/protocol/img";
 }
 
 .contribute-banner {
-    padding-top: $layout-xl;
-    padding-bottom: $layout-md;
-    padding-left: $layout-md;
-    padding-right: $layout-md;
+    padding: $layout-xl $layout-md $layout-md;
 
     @media #{$mq-lg} {
         display: flex;
@@ -149,7 +147,7 @@ $image-path: "/media/protocol/img";
 
     .contribute-banner-content {
         @media #{$mq-lg} {
-            margin-left: 200px;
+            @include bidi(((margin-left, 200px, auto),(margin-right, auto, 200px),));
             width: 60%;
             max-width: 495px;
         }
@@ -159,7 +157,7 @@ $image-path: "/media/protocol/img";
         flex: 1 0 auto;
 
         @media #{$mq-lg} {
-            margin-left: $layout-xl;
+            @include bidi(((margin-left, $layout-xl, auto),(margin-right, auto, $layout-xl),));
         }
     }
 }
@@ -189,12 +187,12 @@ $image-path: "/media/protocol/img";
             position: absolute;
             height: 40px;
             width: 40px;
-            left: 0;
+            @include bidi(((left, 0, auto),(right, auto, 0),));
             top: -65px;
 
             @media #{$mq-lg} {
                 top: auto;
-                left: -80px;
+                @include bidi(((left, -80px, auto),(right, auto, -80px),));
             }
         }
     }
@@ -228,10 +226,7 @@ $image-path: "/media/protocol/img";
             display: inline;
             background-color: #ffc900;
             box-shadow: 10px 0 0 #ffc900, -10px 0 0 #ffc900;
-            -webkit-box-decoration-break: clone;
-            -ms-box-decoration-break: clone;
-            -o-box-decoration-break: clone;
-            box-decoration-break: clone;
+            @include box-decoration-break(clone);
         }
 
         @media #{$mq-lg} {
@@ -273,15 +268,15 @@ $image-path: "/media/protocol/img";
         position: absolute;
         top: 0;
         width: 100%;
-        left: 0;
+        @include bidi(((left, 0, auto),(right, auto, 0),));
 
         @media #{$mq-lg} {
-            left: 50%;
+            @include bidi(((left, 50%, auto),(right, auto, 50%),));
             width: 50%;
         }
 
         @media #{$mq-xl} {
-            left: 45%;
+            @include bidi(((left, 40%, auto),(right, auto, 40%),));
             width: 60%;
         }
     }
@@ -370,7 +365,7 @@ $image-path: "/media/protocol/img";
                 width: 24px;
                 height: 24px;
                 background-repeat: no-repeat;
-                left: -34px;
+                @include bidi(((left, -34px, auto),(right, auto, -34px),));
             }
 
             &.contribute-mission-learn-icon:before {
