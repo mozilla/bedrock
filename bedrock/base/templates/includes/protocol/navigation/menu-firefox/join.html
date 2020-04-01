@@ -2,8 +2,6 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import fxa_link_fragment with context %}
-
 <li class="mzp-c-menu-category mzp-has-drop-down mzp-js-expandable">
   <a class="mzp-c-menu-title" href="{{ url('firefox.accounts') }}" aria-haspopup="true" aria-controls="mzp-c-menu-panel-join">{{ ftl('navigation-join') }}</a>
   <div class="mzp-c-menu-panel mzp-has-card" id="mzp-c-menu-panel-join">
@@ -19,8 +17,27 @@
                 <p class="mzp-c-menu-item-desc">{{ ftl('navigation-access-all-of-firefox') }}</p>
               </a>
               <ul class="mzp-c-menu-item-list">
-                <li class="fxa-signin"><a {{ fxa_link_fragment(entrypoint='mozilla.org-firefoxnav', action='signin', utm_campaign='nav', utm_content='join-sign-in') }} class="js-fxa-cta-link" rel="external noopener" data-link-name="Accounts Sign In" data-link-type="nav" data-link-position="subnav" data-link-group="browsers">{{ ftl('navigation-sign-in') }}</a></li>
-                <li class="fxa-signin"><a {{ fxa_link_fragment(entrypoint='mozilla.org-firefoxnav', action='signup', utm_campaign='nav', utm_content='join-sign-up') }} class="js-fxa-cta-link" rel="external noopener" data-link-name="Accounts Sign Up" data-link-type="nav" data-link-position="subnav" data-link-group="browsers">{{ ftl('navigation-sign-up') }}</a></li>
+                <li class="fxa-signin">
+                  {{ fxa_button(
+                    entrypoint='mozilla.org-firefoxnav',
+                    button_text=ftl('navigation-sign-in'),
+                    action='signin',
+                    is_button_class=False,
+                    include_metrics=False,
+                    optional_parameters={'utm_campaign': 'navigation', 'utm_content': 'join-sign-in'},
+                    optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'navigation'}
+                  ) }}
+                </li>
+                <li class="fxa-signin">
+                  {{ fxa_button(
+                    entrypoint='mozilla.org-firefoxnav',
+                    button_text=ftl('navigation-sign-up'),
+                    is_button_class=False,
+                    include_metrics=False,
+                    optional_parameters={'utm_campaign': 'navigation', 'utm_content': 'join-sign-up'},
+                    optional_attributes={'data-cta-text': 'Sign Up', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'navigation'}
+                  ) }}
+                </li>
                 <li><a href="{{ url('firefox.accounts') }}" data-link-name="Benefits" data-link-type="nav" data-link-position="subnav" data-link-group="browsers">{{ ftl('navigation-benefits') }}</a></li>
               </ul>
             </section>

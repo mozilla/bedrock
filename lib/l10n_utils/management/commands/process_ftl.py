@@ -3,6 +3,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 import shutil
 from io import StringIO
+from subprocess import CalledProcessError
 
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
@@ -11,6 +12,10 @@ from fluent.syntax.parser import FluentParser, ParseError
 
 from bedrock.utils.git import GitRepo
 from lib.l10n_utils.fluent import fluent_l10n, get_metadata, write_metadata
+
+
+GIT_COMMIT_EMAIL = 'meao-bots+mozmarrobot@mozilla.com'
+GIT_COMMIT_NAME = 'MozMEAO Bot'
 
 
 class NoisyFluentParser(FluentParser):
@@ -34,7 +39,9 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('-q', '--quiet', action='store_true', dest='quiet', default=False,
-                            help='If no error occurs, swallow all output.'),
+                            help='If no error occurs, swallow all output.')
+        parser.add_argument('--push', action='store_true', dest='push', default=False,
+                            help='Push the changes to the MEAO Fluent files repo.')
 
     def handle(self, *args, **options):
         if options['quiet']:
@@ -48,9 +55,12 @@ class Command(BaseCommand):
         no_errors = self.copy_ftl_files()
         self.set_activation()
         self.copy_configs()
-        if no_errors:
-            self.stdout.write('There were no errors found in the .ftl files.')
-        else:
+        if options['push']:
+            changes = self.commit_changes()
+            if changes:
+                self.push_changes()
+
+        if not no_errors:
             raise CommandError('Some errors were discovered in some .ftl files and they were not updated.'
                                'See above for details.')
 
@@ -70,6 +80,39 @@ class Command(BaseCommand):
             pass
         self.meao_repo.update()
         self.stdout.write('Updated .ftl files')
+
+    def config_fluent_repo(self):
+        """Set user config so that committing will work"""
+        self.meao_repo.git('config', 'user.email', GIT_COMMIT_EMAIL)
+        self.meao_repo.git('config', 'user.name', GIT_COMMIT_NAME)
+
+    def commit_changes(self):
+        self.config_fluent_repo()
+        self.meao_repo.git('add', '.')
+        try:
+            self.meao_repo.git('commit', '-m', 'Update files from l10n repo')
+        except CalledProcessError:
+            self.stdout.write('No changes to commit')
+            return False
+
+        self.stdout.write('Committed changes to local repo')
+        return True
+
+    def push_changes(self):
+        try:
+            self.meao_repo.git('push', self.git_push_url, 'HEAD:master')
+        except CalledProcessError:
+            raise CommandError(f'There was a problem pushing to {self.meao_repo.remote_url}')
+
+        commit = self.meao_repo.git('rev-parse', '--short', 'HEAD')
+        self.stdout.write(f'Pushed {commit} to {self.meao_repo.remote_url}')
+
+    @property
+    def git_push_url(self):
+        if not settings.FLUENT_REPO_AUTH:
+            raise CommandError('Git push authentication not configured')
+
+        return self.meao_repo.remote_url_auth(settings.FLUENT_REPO_AUTH)
 
     def _copy_file(self, filepath):
         relative_filepath = filepath.relative_to(self.l10n_repo.path)

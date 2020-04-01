@@ -13,6 +13,8 @@ build:
     - master
     - stage
     - prod
+  except:
+    - triggers
   tags:
     - oregon-b-shell
   script:
@@ -39,6 +41,8 @@ build-test:
   stage: update-config
   tags:
     - oregon-b-shell
+  except:
+    - triggers
   script:
     - bin/update_config.sh
 
@@ -72,3 +76,12 @@ prod:
   variables:
     CLUSTERS: frankfurt iowa-a
     NAMESPACE: bedrock-prod
+
+fluent:
+  stage: build
+  tags:
+    - oregon-b-shell
+  only:
+    - triggers
+  script:
+    - bin/process-ftl.sh

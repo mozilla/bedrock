@@ -29,7 +29,7 @@
 
     <div class="firefox-cta">
       <p>{{ _('Download Firefox and get the Facebook Container Extension') }}</p>
-      {{ download_firefox(alt_copy=_('Download Firefox'), locale_in_transition=true, dom_id="download-firefox-cta") }}
+      {{ download_firefox(alt_copy=ftl('download-button-download-firefox'), locale_in_transition=true, dom_id="download-firefox-cta") }}
     </div>
 
     <div class="mobile-cta">
@@ -44,7 +44,7 @@
         </li>
         <li>
           <a id="appStoreLink" href="{{ focus_adjust_url('ios', 'fb-container-page') }}" data-link-type="download" data-download-os="iOS">
-            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+            <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
           </a>
         </li>
       </ul>
@@ -105,7 +105,7 @@
       class='mzp-t-dark',
       heading_level=2)
     %}
-    {{ download_firefox(alt_copy=_('Download Now'), locale_in_transition=true, dom_id="download-firefox-today") }}
+    {{ download_firefox(alt_copy=ftl('download-button-download-now'), dom_id="download-firefox-today") }}
     {% endcall %}
   </section>
 </main>

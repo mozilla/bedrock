@@ -54,6 +54,10 @@ class FirefoxPrivacyDocView(PrivacyDocView):
 firefox_notices = FirefoxPrivacyDocView.as_view(
     legal_doc_name='firefox_privacy_notice')
 
+firefox_betterweb_notices = PrivacyDocView.as_view(
+    template_name='privacy/notices/firefox-betterweb.html',
+    legal_doc_name='better_web_privacy')
+
 firefox_os_notices = PrivacyDocView.as_view(
     template_name='privacy/notices/firefox-os.html',
     legal_doc_name='firefox_os_privacy_notice')

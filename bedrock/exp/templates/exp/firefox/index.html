@@ -2,7 +2,6 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% from "macros.html" import fxa_cta_link with context %}
 {% from "macros-protocol.html" import call_out, call_out_compact, feature_card with context %}
 
 {% extends "exp/base/base-firefox.html" %}
@@ -249,7 +248,13 @@
         </div>
         <h2 class="c-end-title">One login. All your devices. A family of products that respect your <strong>privacy</strong>.</h2>
         <div class="mzp-c-button-download-container">
-          {{ fxa_cta_link(entrypoint='mozilla.org-firefox_home', action='signup', button_text='Join Firefox', button_class='mzp-c-button mzp-t-product mzp-t-small', utm_campaign='firefox-home', utm_content='secondary-join-firefox') }}
+          {{ fxa_button(
+            entrypoint='mozilla.org-firefox_home',
+            button_text='Join Firefox',
+            class_name='mzp-t-small',
+            optional_parameters={'utm_campaign': 'firefox-home', 'utm_content': 'secondary-join-firefox'},
+            optional_attributes={'data-cta-text': 'Join Firefox', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'secondary'}
+          ) }}
           <small class="mzp-c-button-download-privacy-link">
             <a href="{{ url('firefox.accounts') }}">Learn more about joining Firefox</a>
           </small>

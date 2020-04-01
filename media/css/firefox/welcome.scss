@@ -78,7 +78,8 @@ $image-path: '/media/protocol/img';
     .welcome-page1 &,
     .welcome-page3 &,
     .welcome-page5 &,
-    .welcome-page6 &{
+    .welcome-page6 &,
+    .welcome-page7 & {
         @include text-display-md;
     }
 
@@ -302,6 +303,7 @@ $image-path: '/media/protocol/img';
     .mzp-c-modal-window {
         padding: $layout-xs;
     }
+
 }
 
 @media #{$mq-md} {

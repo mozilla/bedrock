@@ -5,7 +5,7 @@
 {% add_lang_files "firefox/browsers" %}
 
 {% extends "firefox/base/base-protocol.html" %}
-{% from "macros.html" import google_play_button, fxa_email_form, fxa_link_fragment with context %}
+{% from "macros.html" import google_play_button, fxa_email_form with context %}
 {% from "macros-protocol.html" import hero, feature_card with context %}
 
 {% block page_title %}{{ _('Get the browsers that put your privacy first — and always have') }}{% endblock %}
@@ -65,7 +65,7 @@
       </div>
       <div class="appstore-ios">
         <a id="appStoreLink" href="{{ ios_url }}" data-link-type="download" data-download-os="iOS">
-          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ _('Download on the App Store') }}" width="152" height="45">
+          <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
         </a>
       </div>
       <div id="menu-mobile-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
@@ -121,8 +121,8 @@
           )
         }}
         <p class="fxa-signin account-signin">
-          {% set fxa_link = fxa_link_fragment(entrypoint=_entrypoint, action='signin', utm_campaign='browsers-footer') %}
-          {% set fxa_attr = fxa_link ~ ' class="js-fxa-cta-link" data-cta-type="link" data-cta-text="FxA Learn More"'|safe %}
+          {% set fxa_link = fxa_link_fragment(entrypoint=_entrypoint, action='signin', optional_parameters={'utm_campaign': 'browsers-footer'}) %}
+          {% set fxa_attr = fxa_link ~ ' class="js-fxa-cta-link js-fxa-product-button" data-cta-type="link" data-cta-text="FxA Learn More"'|safe %}
           {% set accounts_attr = 'href="'|safe ~ url('firefox.accounts') ~ '"'|safe %}
           {% trans %}
             Already have an account? <a {{ fxa_attr }}>Sign In</a> or <a {{ accounts_attr }}>learn more</a> about joining Firefox.

@@ -12,7 +12,7 @@ class FirefoxAccountsPage(FirefoxBasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/accounts/{params}'
 
-    _firefox_monitor_button_locator = (By.CLASS_NAME, 'js-fxa-product-button')
+    _firefox_monitor_button_locator = (By.CSS_SELECTOR, '.c-accounts-hero-body-signed-in .js-fxa-product-button')
 
     def wait_for_page_to_load(self):
         self.wait.until(lambda s: self.seed_url in s.current_url)

@@ -3,7 +3,7 @@
   # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
 {% from "macros-protocol.html" import feature_card with context %}
-{% from "macros.html" import fxa_email_form, fxa_link_fragment with context %}
+{% from "macros.html" import fxa_email_form with context %}
 
 {% extends "firefox/base/base-protocol.html" %}
 
@@ -84,7 +84,17 @@
         utm_campaign=_utm_campaign)
       }}
 
-      <p class="fxa-signin">{{ _('Already have an account?') }} <a {{ fxa_link_fragment(entrypoint=_entrypoint, action='signin', utm_campaign=_utm_campaign, utm_content='form-upper') }} class="js-fxa-cta-link">{{ _('Sign In') }}</a></p>
+      <p class="fxa-signin">
+        {{ _('Already have an account?') }}
+
+        {{ fxa_button(
+          entrypoint=_entrypoint,
+          button_text=_('Sign In'),
+          action='signin',
+          is_button_class=False,
+          optional_parameters={'utm_campaign': _utm_campaign, 'utm_content': 'form-upper'},
+          optional_attributes={'data-cta-text': 'Sign In', 'data-cta-type': 'fxa-sync', 'data-cta-position': 'primary'}
+        ) }}
     </div>
   </div>
 </section>

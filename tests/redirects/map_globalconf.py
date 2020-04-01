@@ -1321,4 +1321,13 @@ URLS = flatten((
 
     # Issue 6824
     url_test('/technology/', 'https://labs.mozilla.org/'),
+
+    # Issue 8419
+    url_test('/firefox/this-browser-comes-highly-recommended/', '/firefox/developer/'),
+
+    # issue 8420
+    url_test('/firefox/dedicated-profiles/', 'https://support.mozilla.org/kb/dedicated-profiles-firefox-installation'),
+
+    # Issue 8668
+    url_test('/contact/communities/{,north-america/,canada/}', 'https://community.mozilla.org/groups/'),
 ))

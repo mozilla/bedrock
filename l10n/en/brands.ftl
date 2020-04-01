@@ -43,6 +43,10 @@
 -brand-name-nightly = Nightly
 -brand-name-reality = Reality
 
+## Firefox browsers (legacy)
+
+-brand-name-firefox-aurora = Firefox Aurora
+
 ## Firefox products
 
 -brand-name-facebook-container = Facebook Container
@@ -99,9 +103,12 @@
 -brand-name-linux = Linux
 -brand-name-mac = macOS
 -brand-name-windows = Windows
+-brand-name-xp = XP
+-brand-name-vista = Vista
 
 ## Apple products
 
+-brand-name-app-store = App Store
 -brand-name-ipad = iPad
 -brand-name-iphone = iPhone
 
@@ -115,4 +122,5 @@
 
 ## Google products
 
+-brand-name-google-play = Google Play
 -brand-name-youtube = YouTube

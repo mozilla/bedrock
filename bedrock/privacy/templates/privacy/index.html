@@ -63,6 +63,14 @@
       {% endtrans %}
       </p>
     {% endif %}
+
+    {% if l10n_has_tag('privacy_sumo_032020') %}
+      <p>
+      {% trans sumo='https://support.mozilla.org/' %}
+        For product support requests, please <a href="{{ sumo }}">visit our forums</a>.
+      {% endtrans %}
+      </p>
+    {% endif %}
   </section>
 {% endblock %}
 

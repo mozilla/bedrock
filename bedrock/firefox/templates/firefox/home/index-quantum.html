@@ -46,7 +46,7 @@
           <p>{{ _('Fast for good.') }}</p>
         </div>
         <div class="mzp-c-hero-cta">
-          {{ download_firefox(dom_id='download-intro', alt_copy=_('Download now'), download_location='primary cta') }}
+          {{ download_firefox(dom_id='download-intro', alt_copy=ftl('download-button-download-now'), download_location='primary cta') }}
         </div>
       </div>
     </div>
@@ -224,7 +224,7 @@
       class='mzp-t-firefox mzp-t-product-firefox mzp-t-dark t-you'
       ) %}
       <div class="download-firefox">
-        {{ download_firefox(dom_id='footer-download', alt_copy=_('Download now'), download_location='other') }}
+        {{ download_firefox(dom_id='footer-download', alt_copy=ftl('download-button-download-now'), download_location='other') }}
       </div>
     {% endcall %}
   </div>

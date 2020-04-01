@@ -198,6 +198,10 @@
         &.fast h3:before {
             background-image: url('/media/img/firefox/features/quantum/icons/fast-blue.svg');
         }
+
+         &.compare h3:before {
+             background-image: url('/media/img/firefox/features/quantum/icons/compare-blue.svg');
+         }
     }
 
     @media #{$mq-tablet} {

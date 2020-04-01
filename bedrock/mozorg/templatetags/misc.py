@@ -766,18 +766,28 @@ def lockwise_adjust_url(ctx, redirect, adgroup, creative=None):
     return _get_adjust_link(adjust_url, app_store_url, play_store_url, redirect, locale, adgroup, creative)
 
 
-def _fxa_product_button(product_url, entrypoint, button_text, class_name=None, is_button_class=True,
-                        optional_parameters=None, optional_attributes=None):
-    href = f'{product_url}?entrypoint={entrypoint}&form_type=button&utm_source={entrypoint}&utm_medium=refferal'
-    css_class = 'js-fxa-cta-link js-fxa-product-button'
-    attrs = ''
+def _fxa_product_url(product_url, entrypoint, optional_parameters=None):
+    separator = '&' if '?' in product_url else '?'
+    url = f'{product_url}{separator}entrypoint={entrypoint}&form_type=button&utm_source={entrypoint}&utm_medium=referral'
 
     if optional_parameters:
         params = '&'.join('%s=%s' % (param, val) for param, val in optional_parameters.items())
-        href += f'&{params}'
+        url += f'&{params}'
+
+    return url
+
+
+def _fxa_product_button(product_url, entrypoint, button_text, class_name=None, is_button_class=True,
+                        include_metrics=True, optional_parameters=None, optional_attributes=None):
+    href = _fxa_product_url(product_url, entrypoint, optional_parameters)
+    css_class = 'js-fxa-cta-link'
+    attrs = ''
 
     if optional_attributes:
         attrs += ' '.join('%s="%s"' % (attr, val) for attr, val in optional_attributes.items())
+
+    if include_metrics:
+        css_class += ' js-fxa-product-button'
 
     if is_button_class:
         css_class += ' mzp-c-button mzp-t-product'
@@ -794,7 +804,8 @@ def _fxa_product_button(product_url, entrypoint, button_text, class_name=None, i
 
 @library.global_function
 @jinja2.contextfunction
-def pocket_fxa_button(ctx, entrypoint, button_text, class_name=None, is_button_class=True, optional_parameters=None, optional_attributes=None):
+def pocket_fxa_button(ctx, entrypoint, button_text, class_name=None, is_button_class=True, include_metrics=True,
+                      optional_parameters=None, optional_attributes=None):
     """
     Render a getpocket.com link with required params for FxA authentication.
 
@@ -807,12 +818,14 @@ def pocket_fxa_button(ctx, entrypoint, button_text, class_name=None, is_button_c
         {{ pocket_fxa_button(entrypoint='mozilla.org-firefox-pocket', button_text='Try Pocket Now') }}
     """
     product_url = 'https://getpocket.com/ff_signup'
-    return _fxa_product_button(product_url, entrypoint, button_text, class_name, is_button_class, optional_parameters, optional_attributes)
+    return _fxa_product_button(product_url, entrypoint, button_text, class_name, is_button_class, include_metrics,
+                               optional_parameters, optional_attributes)
 
 
 @library.global_function
 @jinja2.contextfunction
-def monitor_fxa_button(ctx, entrypoint, button_text, class_name=None, is_button_class=True, optional_parameters=None, optional_attributes=None):
+def monitor_fxa_button(ctx, entrypoint, button_text, class_name=None, is_button_class=True, include_metrics=True,
+                       optional_parameters=None, optional_attributes=None):
     """
     Render a monitor.firefox.com link with required params for FxA authentication.
 
@@ -825,4 +838,68 @@ def monitor_fxa_button(ctx, entrypoint, button_text, class_name=None, is_button_
         {{ monitor_fxa_button(entrypoint='mozilla.org-firefox-accounts', button_text='Sign In to Monitor') }}
     """
     product_url = 'https://monitor.firefox.com/oauth/init'
-    return _fxa_product_button(product_url, entrypoint, button_text, class_name, is_button_class, optional_parameters, optional_attributes)
+    return _fxa_product_button(product_url, entrypoint, button_text, class_name, is_button_class, include_metrics,
+                               optional_parameters, optional_attributes)
+
+
+@library.global_function
+@jinja2.contextfunction
+def fxa_link_fragment(ctx, entrypoint, action='signup', optional_parameters=None):
+    """
+    Returns `href` and `data-mozillaonline-link` attributes as a string fragment.
+    This is useful for inline links that appear inside a string of localized copy,
+    such as a paragraph.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {% set signin = fxa_link_fragment(entrypoint='mozilla.org-firefox-accounts') %}
+        {% set class_name = 'js-fxa-cta-link js-fxa-product-button' %}
+        <p>Already have an account? <a {{ sign_in }} class="{{ class_name }}">Sign In</a> to start syncing.</p>
+    """
+
+    if action == 'email':
+        action = '?action=email'
+
+    fxa_url = _fxa_product_url(f'{settings.FXA_ENDPOINT}{action}', entrypoint, optional_parameters)
+    mozillaonline_url = _fxa_product_url(f'{settings.FXA_ENDPOINT_MOZILLAONLINE}{action}', entrypoint, optional_parameters)
+
+    markup = (f'href="{fxa_url}" data-mozillaonline-link="{mozillaonline_url}"')
+
+    return jinja2.Markup(markup)
+
+
+@library.global_function
+@jinja2.contextfunction
+def fxa_button(ctx, entrypoint, button_text, action='signup', class_name=None, is_button_class=True,
+               include_metrics=True, optional_parameters=None, optional_attributes=None):
+    """
+    Render a accounts.firefox.com link with required params for FxA authentication.
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ fxa_button(entrypoint='mozilla.org-firefox-accounts', button_text='Sign In') }}
+    """
+
+    if action == 'email':
+        action = '?action=email'
+
+    product_url = f'{settings.FXA_ENDPOINT}{action}'
+    mozillaonline_product_url = f'{settings.FXA_ENDPOINT_MOZILLAONLINE}{action}'
+
+    mozillaonline_attribute = {
+        'data-mozillaonline-link': _fxa_product_url(mozillaonline_product_url, entrypoint, optional_parameters)
+    }
+
+    optional_attributes = optional_attributes or {}
+    optional_attributes.update(mozillaonline_attribute)
+
+    return _fxa_product_button(product_url, entrypoint, button_text, class_name, is_button_class, include_metrics,
+                               optional_parameters, optional_attributes)
