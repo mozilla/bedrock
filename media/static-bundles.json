@@ -702,31 +702,31 @@
     },
     {
       "files": [
-        "css/mozorg/what-is-a-browser.scss"
+        "css/firefox/browsers/what-is-a-browser.scss"
       ],
       "name": "what-is-a-browser"
     },
     {
       "files": [
-        "css/mozorg/update-browser.scss"
+        "css/firefox/browsers/update-browser.scss"
       ],
       "name": "update-browser"
     },
     {
       "files": [
-        "css/mozorg/incognito-browser.scss"
+        "css/firefox/browsers/incognito-browser.scss"
       ],
       "name": "incognito-browser"
     },
     {
       "files": [
-        "css/mozorg/browser-history.scss"
+        "css/firefox/browsers/browser-history.scss"
       ],
       "name": "browser-history"
     },
     {
       "files": [
-        "css/firefox/windows-64-bit.scss"
+        "css/firefox/browsers/windows-64-bit.scss"
       ],
       "name": "windows-64-bit"
     },
@@ -738,9 +738,9 @@
     },
     {
       "files": [
-        "css/firefox/bestbrowser.scss"
+        "css/firefox/browsers/best-browser.scss"
       ],
-      "name": "bestbrowser"
+      "name": "best-browser"
     },
     {
       "files": [

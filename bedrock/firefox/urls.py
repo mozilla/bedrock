@@ -121,10 +121,7 @@ urlpatterns = (
     page('firefox/mac', 'firefox/new/protocol/download_mac.html'),
     page('firefox/linux', 'firefox/new/protocol/download_linux.html'),
 
-    page('firefox/windows-64-bit', 'firefox/windows-64-bit.html'),
-
     page('firefox/features/safebrowser', 'firefox/features/safebrowser.html'),
-    page('firefox/best-browser', 'firefox/best-browser.html'),
 
     page('firefox/browsers/compare', 'firefox/compare/index.html'),
     page('firefox/browsers/compare/chrome', 'firefox/compare/chrome.html'),
@@ -132,6 +129,14 @@ urlpatterns = (
     page('firefox/browsers/compare/opera', 'firefox/compare/opera.html'),
     page('firefox/browsers/compare/safari', 'firefox/compare/safari.html'),
     page('firefox/browsers/compare/edge', 'firefox/compare/edge.html'),
+
+    # Issue 8641
+    page('firefox/browsers/best-browser', 'firefox/browsers/best-browser.html'),
+    page('firefox/browsers/browser-history', 'firefox/browsers/browser-history.html'),
+    page('firefox/browsers/incognito-browser', 'firefox/browsers/incognito-browser.html'),
+    page('firefox/browsers/update-your-browser', 'firefox/browsers/update-browser.html'),
+    page('firefox/browsers/what-is-a-browser', 'firefox/browsers/what-is-a-browser.html'),
+    page('firefox/browsers/windows-64-bit', 'firefox/browsers/windows-64-bit.html'),
 
     # Lockwise
     page('firefox/lockwise', 'firefox/lockwise/lockwise.html'),

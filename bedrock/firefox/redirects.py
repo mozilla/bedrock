@@ -641,4 +641,8 @@ redirectpatterns = (
 
     # issue 8420
     redirect(r'firefox/dedicated-profiles/?$', 'https://support.mozilla.org/kb/dedicated-profiles-firefox-installation'),
+
+    # issue 8641
+    redirect(r'^/firefox/windows-64-bit/?$', 'firefox.browsers.windows-64-bit'),
+    redirect(r'^/firefox/best-browser/?$', 'firefox.browsers.best-browser'),
 )
