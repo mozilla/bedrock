@@ -21,7 +21,7 @@ from django.shortcuts import redirect
 from django.utils.safestring import mark_safe
 from django.views.decorators.cache import never_cache
 from jinja2 import Markup
-from lib.l10n_utils.dotlang import _, _lazy
+from lib.l10n_utils.dotlang import _, _lazy, lang_file_has_tag
 
 from bedrock.base import waffle
 from bedrock.base.urlresolvers import reverse
@@ -38,6 +38,7 @@ log = commonware.log.getLogger('b.newsletter')
 LANG_FILES = ['mozorg/newsletters']
 general_error = _lazy(u'We are sorry, but there was a problem '
                       u'with our system. Please try again later!')
+thank_you_new = _lazy(u'Your email preferences have been successfully updated.')
 thank_you = _lazy(u'Thanks for updating your email preferences.')
 bad_token = _lazy(u'The supplied link has expired or is not valid. You will '
                   u'receive a new one in the next newsletter, or below you '
@@ -552,7 +553,13 @@ def updated(request):
 
     # Say thank you unless we're saying something more specific
     if not unsub:
-        messages.add_message(request, messages.INFO, thank_you)
+        locale = l10n_utils.get_locale(request)
+
+        if lang_file_has_tag('mozorg/newsletters', locale, 'newsletter_confirm_0320'):
+            success_message = thank_you_new
+        else:
+            success_message = thank_you
+        messages.add_message(request, messages.INFO, success_message)
 
     if request.method == 'POST' and reasons_submitted and token:
         # Tell basket about their reasons
