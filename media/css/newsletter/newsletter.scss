@@ -143,10 +143,16 @@ main {
     }
 
     .c-updated-back-link {
+        display: none;
         margin-top: $spacing-lg;
 
         a:before {
             content: '\2190\0020';
+        }
+
+        /* only show back link for JS enabled clients */
+        .is-modern-browser & {
+            display: block;
         }
     }
 
