@@ -276,8 +276,8 @@ $image-path: "/media/protocol/img";
         }
 
         @media #{$mq-xl} {
-            @include bidi(((left, 40%, auto),(right, auto, 40%),));
-            width: 60%;
+            @include bidi(((left, 45%, auto),(right, auto, 45%),));
+            width: 55%;
         }
     }
 
