@@ -201,12 +201,13 @@ $image-path: "/media/protocol/img";
 .contribute-banner-problems {
     background-image: url("/media/img/contribute/contribute-problems-bulb.svg");
     background-size: 60px 150px;
-    background-position: 10% -10px;
+    @include bidi(((background-position, 15% -10px, 94% -10px),));
     background-repeat: no-repeat;
 
     @media #{$mq-sm} {
         background-size: 50px 150px;
         background-position: 8% -10px;
+        @include bidi(((background-position, 8% -10px, 94% -10px),));
     }
 
     @media #{$mq-lg} {
@@ -214,13 +215,13 @@ $image-path: "/media/protocol/img";
         background-image: url("/media/img/contribute/contribute-problems-bulb.svg"),
             url("/media/img/contribute/contribute-problems-fly.svg");
         background-size: 86px 241px, 33%;
-        background-position: 10% -45px, 96% 88%;
+        @include bidi(((background-position, (10% -45px, 96% 88%), (90% -45px, 13% 88%)),));
         background-repeat: no-repeat;
     }
 
     .contribute-banner-problems-title {
         @include font-size(24px);
-        margin-left: $layout-xl;
+        @include bidi(((margin-left, $layout-xl, auto),(margin-right, auto, $layout-xl),));
 
         span {
             display: inline;
