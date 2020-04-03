@@ -2,8 +2,6 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% set_lang_files "mozorg/newsletters" %}
-
 {% from "newsletter/includes/macros.html" import email_form_thankyou with context %}
 
 {% if not success %}
@@ -13,7 +11,7 @@
 
     {% if include_title %}
     <header class="mzp-c-newsletter-header">
-      <h3 class="mzp-c-newsletter-title">{{ title|d(_('Get Firefox news'), true) }}</h3>
+      <h3 class="mzp-c-newsletter-title">{{ title|d(ftl('newsletter-form-get-firefox-news'), true) }}</h3>
       {% if subtitle %}
       <p class="mzp-c-newsletter-tagline">{{ subtitle }}</p>
       {% endif %}
@@ -26,7 +24,7 @@
         {{ form.non_field_errors()|safe }}
         <ul class="mzp-u-list-styled">
           {% if form.email.errors %}
-            <li>{{ _('Please enter a valid email address') }}</li>
+            <li>{{ ftl('newsletter-form-please-enter-a-valid') }}</li>
           {% endif %}
 
           {% if form.lang.errors %}
@@ -34,7 +32,7 @@
           {% endif %}
 
           {% if form.privacy.errors %}
-            <li>{{ _('You must agree to the privacy notice') }}</li>
+            <li>{{ ftl('newsletter-form-you-must-agree-to') }}</li>
           {% endif %}
         </ul>
       </div>
@@ -45,13 +43,13 @@
         {% if email_label %}
           {{ email_label }}
         {% else %}
-          {{ _('Your email address') }}
+          {{ ftl('newsletter-form-your-email-address') }}
         {% endif %}
         </label>
         {% if email_placeholder %}
           {% set placeholder = email_placeholder %}
         {% else %}
-          {% set placeholder = _('yourname@example.com') %}
+          {% set placeholder = ftl('newsletter-form-yournameexamplecom', fallback='newsletter-form-your-email-here') %}
         {% endif %}
         {{ field_with_attrs(form.email, placeholder=placeholder, class='mzp-js-email-field')|safe }}
       </p>
@@ -68,21 +66,20 @@
         {% endif %}
 
         <fieldset class="mzp-u-inline">
-          <legend>{{ _('Format') }}</legend>
+          <legend>{{ ftl('newsletter-form-format') }}</legend>
           <p>
             <label for="format-html" class="mzp-u-inline">
-              <input type="radio" id="format-html" name="fmt" value="H" checked> {{ _('HTML') }}
+              <input type="radio" id="format-html" name="fmt" value="H" checked> {{ ftl('newsletter-form-html') }}
             </label>
             <label for="format-text" class="mzp-u-inline">
-              <input type="radio" id="format-text" name="fmt" value="T"> {{ _('Text') }}
+              <input type="radio" id="format-text" name="fmt" value="T"> {{ ftl('newsletter-form-text') }}
             </label>
           </p>
         </fieldset>
 
         <p>
           <label for="privacy" class="mzp-u-inline">
-            <input type="checkbox" id="privacy" name="privacy" required aria-required="true"> {{ _('I’m okay with Mozilla handling my info as explained
-            in <a href="%s">this Privacy Notice</a>')|format(url('privacy.notices.websites')) }}
+            <input type="checkbox" id="privacy" name="privacy" required aria-required="true"> {{ ftl('newsletter-form-im-okay-with-mozilla', url=url('privacy.notices.websites')) }}
           </label>
         </p>
       </div>
@@ -92,14 +89,14 @@
           {% if submit_text %}
             {{ submit_text }}
           {% else %}
-            {{ _('Sign Up Now') }}
+            {{ ftl('newsletter-form-sign-up-now', fallback='newsletter-form-sign-me-up') }}
           {% endif %}
         </button>
 
         {% if details %}
           <span class="mzp-c-fieldnote">{{ details }}</span>
         {% else %}
-          <span class="mzp-c-fieldnote">{{ _('We will only send you Mozilla-related information.') }}</span>
+          <span class="mzp-c-fieldnote">{{ ftl('newsletter-form-we-will-only-send') }}</span>
         {% endif %}
       </p>
     </fieldset>
