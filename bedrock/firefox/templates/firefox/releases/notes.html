@@ -198,6 +198,18 @@
         {% endif %}
       {% endfor %}
 
+    {% if variation == 'b' %}
+      <div id="social-proof" class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
+        <div class="mzp-l-main mzp-l-article">
+          <blockquote cite="https://www.fastcompany.com/90333407/these-17-firefox-tips-make-the-case-for-ditching-chrome">
+            <h3>“Firefox isn’t just fast and smooth, it also has lots of features and options that make it more efficient and more private. If you haven’t tried Firefox lately, I suggest giving it a fresh look.”</h3>
+            <cite>Fast Company</cite>
+          </blockquote>
+          {{ download_firefox(alt_copy='Download now', download_location='secondary cta') }}
+        </div>
+      </div>
+    {% endif %}
+
       {% for note in release_notes if note.tag == "Fixed" %}
         {% if loop.first %}
           <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
@@ -392,3 +404,9 @@
     {%- endif %}
   </li>
 {% endmacro %}
+
+{% block experiments %}
+  {% if switch('experiment-social-proof', ['en-US']) %}
+    {{ js_bundle('social_proof_experiment') }}
+  {% endif %}
+{% endblock %}

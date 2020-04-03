@@ -10,6 +10,36 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/article';
 @import '../../protocol/css/components/call-out';
 
+/* -------------------------------------------------------------------------- */
+// Social Proof Block
+
+#social-proof {
+    // Overwrite blockquote styles
+    blockquote {
+        border: none;
+        padding: 0;
+        max-width: 660px;
+        display: inline-block;
+
+        h3 {
+            @include text-display-xs;
+            margin-bottom: $spacing-sm;
+        }
+
+        cite {
+            @include text-body-md;
+        }
+    }
+
+    .download-button {
+        @media #{$mq-md} {
+            float: right;
+        }
+    }
+}
+
+
+
 
 /* -------------------------------------------------------------------------- */
 // Call out / page header
