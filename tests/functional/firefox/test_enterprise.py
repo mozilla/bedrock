@@ -14,8 +14,11 @@ def test_primary_download_button_displayed(base_url, selenium):
 
 
 @pytest.mark.nondestructive
-def test_download_lists_displayed(base_url, selenium):
+def test_download_lists(base_url, selenium):
     page = EnterprisePage(selenium, base_url).open()
-    assert page.is_win64_download_list_displayed
-    assert page.is_win32_download_list_displayed
-    assert page.is_mac_download_list_displayed
+    page.win64_download_list.click()
+    assert page.win64_download_list.list_is_open
+    page.win32_download_list.click()
+    assert page.win32_download_list.list_is_open
+    page.mac_download_list.click()
+    assert page.mac_download_list.list_is_open
