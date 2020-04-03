@@ -103,10 +103,19 @@
         include_highres_image=True
       )}}
 
-      <div class="mzp-l-card-half">
-        {{ content_card('card_6') }}
-        {{ content_card('card_7') }}
-      </div>
+      {% if get_content_card(content_cards or page_content_cards, 'card_17') %}
+        <div class="mzp-l-card-quarter">
+          {{ content_card('card_14') }}
+          {{ content_card('card_15') }}
+          {{ content_card('card_16') }}
+          {{ content_card('card_17') }}
+        </div>
+      {% else %}
+        <div class="mzp-l-card-half">
+          {{ content_card('card_6') }}
+          {{ content_card('card_7') }}
+        </div>
+      {% endif %}
     </div>
 
     {% if switch('show_pocket_feed', ['en']) and pocket_articles %}
