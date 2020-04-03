@@ -22,6 +22,7 @@ from django.utils.safestring import mark_safe
 from django.views.decorators.cache import never_cache
 from jinja2 import Markup
 from lib.l10n_utils.dotlang import _, _lazy, lang_file_has_tag
+from lib.l10n_utils.fluent import ftl
 
 from bedrock.base import waffle
 from bedrock.base.urlresolvers import reverse
@@ -674,9 +675,9 @@ def newsletter_subscribe(request):
 
         else:
             if 'email' in form.errors:
-                errors.append(_('Please enter a valid email address'))
+                errors.append(ftl('newsletter-form-please-enter-a-valid'))
             if 'privacy' in form.errors:
-                errors.append(_('You must agree to the privacy notice'))
+                errors.append(ftl('newsletter-form-you-must-agree-to'))
             for fieldname in ('fmt', 'lang', 'country'):
                 if fieldname in form.errors:
                     errors.extend(form.errors[fieldname])
