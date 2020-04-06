@@ -120,7 +120,12 @@ def memoize(f):
 def l10nize(f):
     """Decorator to create and pass in the l10n object"""
     @wraps(f)
-    def inner(ftl_files, *args, **kwargs):
+    def inner(*args, **kwargs):
+        ftl_files = kwargs.get('ftl_files', [])
+        if not isinstance(ftl_files, (list, tuple)):
+            ftl_files = [ftl_files]
+
+        ftl_files.extend(settings.FLUENT_DEFAULT_FILES)
         locale = kwargs.get('locale') or translation.get_language(True)
         l10n = fluent_l10n([locale, 'en'], ftl_files)
         return f(l10n, *args, **kwargs)

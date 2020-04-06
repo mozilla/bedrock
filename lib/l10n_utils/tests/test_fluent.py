@@ -6,11 +6,12 @@
 
 from pathlib import Path
 
-from django.test import TestCase
+from django.test import TestCase, override_settings
 
 from fluent.runtime import FluentResourceLoader
 
 from lib.l10n_utils import fluent
+from lib.l10n_utils import translation
 
 
 L10N_PATH = Path(__file__).with_name('test_files').joinpath('l10n')
@@ -86,3 +87,26 @@ class TestFluentTranslationUtils(TestCase):
         l10n = get_l10n()
         assert fluent.ftl_has_messages(l10n, 'fluent-title', 'brand-new-string', require_all=False)
         assert not fluent.ftl_has_messages(l10n, 'brand-new-string', require_all=False)
+
+
+@override_settings(FLUENT_PATHS=[L10N_PATH])
+class TestFluentViewTranslationUtils(TestCase):
+    def setUp(self):
+        fluent.cache.clear()
+
+    def test_ftl_view_util(self):
+        assert fluent.ftl('fluent-title',
+                          locale='de',
+                          ftl_files='mozorg/fluent') == 'Title in German'
+
+    @override_settings(FLUENT_DEFAULT_FILES=['mozorg/fluent'])
+    def test_ftl_view_util_default_files(self):
+        """Should use default FTL files"""
+        assert fluent.ftl('fluent-title',
+                          locale='de') == 'Title in German'
+
+    @override_settings(FLUENT_DEFAULT_FILES=['mozorg/fluent'])
+    def test_ftl_view_util_active_locale(self):
+        """Should use activated locale if not provided"""
+        translation.activate('fr')
+        assert fluent.ftl('fluent-title') == 'Title in French'
