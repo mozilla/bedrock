@@ -99,6 +99,21 @@ class TestFluentViewTranslationUtils(TestCase):
                           locale='de',
                           ftl_files='mozorg/fluent') == 'Title in German'
 
+    def test_ftl_view_util_no_mutate_list(self):
+        """Should not mutate the ftl_files list"""
+        ftl_files = ['mozorg/fluent']
+        assert fluent.ftl('fluent-title',
+                          locale='de',
+                          ftl_files=ftl_files) == 'Title in German'
+        assert ftl_files == ['mozorg/fluent']
+
+    def test_ftl_view_util_tuple(self):
+        """Should be able to pass in a tuple of ftl files"""
+        ftl_files = ('mozorg/fluent',)
+        assert fluent.ftl('fluent-title',
+                          locale='de',
+                          ftl_files=ftl_files) == 'Title in German'
+
     @override_settings(FLUENT_DEFAULT_FILES=['mozorg/fluent'])
     def test_ftl_view_util_default_files(self):
         """Should use default FTL files"""
