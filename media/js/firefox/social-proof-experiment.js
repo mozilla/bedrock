@@ -5,9 +5,11 @@
 (function (Mozilla) {
     'use strict';
 
-    var client = Mozilla.Client;
     /* update dataLayer with experiment info */
     var href = window.location.href;
+    var platform = window.site.platform;
+    var isMobile = /^(android|ios|fxos)$/.test(platform);
+    var isFirefox = /\s(Firefox|FxiOS)/.test(navigator.userAgent) && !/Iceweasel|IceCat|SeaMonkey|Camino|like Firefox/i.test(navigator.userAgent);
 
     var initTrafficCop = function () {
         if (href.indexOf('v=') !== -1) {
@@ -35,7 +37,7 @@
         }
     };
 
-    if (client.isDesktop && !client.isFirefoxDesktop) {
+    if (!isMobile && !isFirefox) {
         initTrafficCop();
     }
 
