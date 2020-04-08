@@ -73,7 +73,7 @@ class scheduled_job:
             raise
         else:
             set_updated_time(self.name)
-            self.log('finished successfully')
+            self.log('finished successfully\n')
 
     def log(self, message):
         msg = '[{}] Clock job {}@{}: {}'.format(

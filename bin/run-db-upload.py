@@ -85,10 +85,10 @@ def main(args):
     prev_data = get_prev_db_data()
     new_data = get_db_data()
     if not force and prev_data and prev_data['checksum'] == new_data['checksum']:
-        print('No update necessary\n')
+        print('No update necessary')
         return 0
 
-    print('Attempting a db update\n')
+    print('Attempting a db update')
 
     set_db_data(new_data)
     if '--no-upload' in args:
