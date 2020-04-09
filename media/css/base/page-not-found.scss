@@ -63,7 +63,18 @@ main {
 
 .header-image {
     padding-top: 32px;
-    width: 220px;
+    padding-right: 20px;
+    &:after {
+        content: '';
+        background: grey;
+        display: block;
+        width: 2px;
+        height: 50px;
+        position: absolute;
+        top: 55px;
+        left: 260px;
+    }
+
 }
 
 .prose { // Fallback content only
@@ -82,7 +93,14 @@ main {
         margin: $spacing-lg 0;
     }
 }
-
+.header-spacing{
+    display: flex;
+}
+.Mozilla{
+    padding-left: 30px;
+    padding-top: 39px;
+    height: 35px;
+}
 @media #{$mq-md} {
     .error-header {
         @include font-size(48px);
