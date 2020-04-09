@@ -1426,6 +1426,13 @@
         "js/firefox/installer-help-experiment.js"
       ],
       "name": "installer_help_experiment"
+    },
+    {
+      "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/firefox/social-proof-experiment.js"
+      ],
+      "name": "social_proof_experiment"
     }
   ]
 }
