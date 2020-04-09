@@ -36,7 +36,7 @@
     desc=_('Try the latest Android features, before they get released to the rest of the world.'),
     class='mzp-t-product-beta mzp-t-firefox') %}
 
-    {{ download_firefox('beta', platform='android', alt_copy=_('Download'), dom_id="android-beta-download") }}
+    {{ download_firefox('beta', platform='android', alt_copy=ftl('download-button-download'), dom_id="android-beta-download") }}
   {% endcall %}
 
   <div class="l-notes mzp-l-content">
@@ -78,7 +78,7 @@
     desc=_('Check out new Android features in their earliest stages. Enjoy at your own risk.'),
     class='mzp-t-product-nightly mzp-t-firefox') %}
 
-    {{ download_firefox('nightly', platform='android', alt_copy=_('Download'), dom_id="android-nightly-download") }}
+    {{ download_firefox('nightly', platform='android', alt_copy=ftl('download-button-download'), dom_id="android-nightly-download") }}
   {% endcall %}
 
   <div class="l-notes mzp-l-content">
