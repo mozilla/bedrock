@@ -648,4 +648,7 @@ redirectpatterns = (
     # issue 8641
     redirect(r'^/firefox/windows-64-bit/?$', 'firefox.browsers.windows-64-bit'),
     redirect(r'^/firefox/best-browser/?$', 'firefox.browsers.best-browser'),
+
+    # issue 8765
+    redirect(r'^/firefox/browsers/compare/edge/?$', 'firefox.compare.index', permanent=False),
 )
