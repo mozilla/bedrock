@@ -237,7 +237,10 @@ redirectpatterns = (
              '/{prod}/{vers}/{channel}notes/{page}'),
 
     # bug 767614 superceeded by bug 957711 and 1003718 and 1239960
-    redirect(r'^(mobile|fennec)/?$', 'firefox'),
+    redirect(r'^(fennec)/?$', 'firefox'),
+
+    # issue 8749
+    redirect(r'^(mobile)/?$', '/firefox/mobile/'),
 
     # bug 876668
     redirect(r'^mobile/customize(?:/.*)?$', '/firefox/mobile/'),
