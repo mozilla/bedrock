@@ -753,7 +753,10 @@ URLS = flatten((
     # bug 961010
     url_test('/mobile/credits/credits-people-list.html', '/credits/'),
 
-    url_test('/{mobile,fennec}/', '/firefox/'),
+    url_test('/fennec/', '/firefox/'),
+
+    # issue 8749
+    url_test('/mobile/', '/firefox/mobile/'),
 
     # bug 876668
     url_test('/mobile/customize/', '/firefox/mobile/'),
