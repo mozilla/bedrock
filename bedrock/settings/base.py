@@ -307,6 +307,7 @@ NOINDEX_URLS = [
     r'^firefox/welcome/',
     r'^contribute/(embed|event)/',
     r'^csp-violation-capture',
+    r'^firefox/retention/thank-you/',
     r'^firefox/set-as-default/thanks/',
     r'^firefox/sms/sent/',
     r'^firefox/unsupported/',
@@ -335,7 +336,6 @@ NOINDEX_URLS = [
     r'^teach/$'
     r'^about/legal/impressum/$',
     r'^security/announce/',
-    r'^etc/',
     r'^exp/',
 ]
 
@@ -504,7 +504,6 @@ INSTALLED_APPS = (
     'bedrock.utils',
     'bedrock.wordpress',
     'bedrock.sitemaps',
-    'bedrock.etc',
     'bedrock.pocketfeed',
     'bedrock.exp',
     # last so that redirects here will be last

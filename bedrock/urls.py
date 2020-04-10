@@ -27,7 +27,6 @@ urlpatterns = (
     url(r'', include('bedrock.firefox.urls')),
     url(r'', include('bedrock.mozorg.urls')),
     url(r'', include('bedrock.newsletter.urls')),
-    url(r'^etc/', include('bedrock.etc.urls')),
     url(r'^exp/', include('bedrock.exp.urls')),
 
     url(r'^healthz/$', watchman_views.ping, name="watchman.ping"),

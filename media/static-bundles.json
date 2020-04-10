@@ -44,10 +44,9 @@
     },
     {
       "files": [
-        "css/etc/firefox/retention/thank-you.scss",
-        "css/etc/firefox/retention/thank-you-a.scss"
+        "css/firefox/retention/thank-you.scss"
       ],
-      "name": "etc-firefox-retention-thank-you-a"
+      "name": "firefox-retention-thank-you"
     },
     {
       "files": [
@@ -178,13 +177,6 @@
     },
     {
       "files": [
-        "css/etc/firefox/retention/thank-you.scss",
-        "css/etc/firefox/retention/thank-you-b.scss"
-      ],
-      "name": "etc-firefox-retention-thank-you-b"
-    },
-    {
-      "files": [
         "css/mozorg/manifesto.scss"
       ],
       "name": "manifesto"
@@ -293,13 +285,6 @@
         "css/protocol/basic-article.scss"
       ],
       "name": "basic-article"
-    },
-    {
-      "files": [
-        "css/etc/firefox/retention/thank-you.scss",
-        "css/etc/firefox/retention/thank-you-referral.scss"
-      ],
-      "name": "etc-firefox-retention-thank-you-referral"
     },
     {
       "files": [
@@ -932,9 +917,11 @@
     },
     {
       "files": [
-        "js/etc/firefox/retention/confetti.js"
+        "protocol/js/protocol-newsletter.js",
+        "js/newsletter/form-protocol.js",
+        "js/firefox/retention/confetti.js"
       ],
-      "name": "etc-firefox-retention-thank-you"
+      "name": "firefox-retention-thank-you"
     },
     {
       "files": [
