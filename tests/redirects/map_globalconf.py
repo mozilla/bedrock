@@ -1346,5 +1346,5 @@ URLS = flatten((
     url_test('/etc/firefox/retention/{thank-you-a/,thank-you-b/,thank-you-referral/}', '/firefox/retention/thank-you/'),
 
     # Issue 8765
-    url_test('/firefox/browsers/compare/edge/', '/firefox/browsers/compare/'),
+    url_test('/firefox/browsers/compare/edge/', '/firefox/browsers/compare/', status_code=requests.codes.found),
 ))
