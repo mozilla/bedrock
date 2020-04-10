@@ -1,0 +1,102 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button, send_to_device with context %}
+
+{% add_lang_files "firefox/whatsnew_73" %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{ _('What’s new with Firefox - Make Firefox your default browser') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_75') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% set android_url = firefox_adjust_url('android', campaign) %}
+{% set ios_url = firefox_adjust_url('ios', campaign) %}
+{% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
+
+{% block content %}
+<main class="content-wrapper mzp-t-firefox mzp-t-dark">
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
+      {{ high_res_img('protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', {'alt': 'Firefox', 'width': '216', 'height': '40', 'class': 'c-page-header-logo-fx'}) }}
+      <div class="mzp-c-notification-bar mzp-t-success up-to-date">
+        <p>{{ _('Congrats! You’re using the latest version of Firefox.') }}</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="content-main">
+    <div class="mzp-c-emphasis-box">
+      <img class="c-emphasis-box-logo" src="{{ static('protocol/img/logos/firefox/logo-md.png') }}" alt="">
+      <h2 class="c-emphasis-box-title">
+        {{ _('Passwords and Security. Two fewer things to worry about.') }}
+      </h2>
+      <p>{{ _('Now Firefox creates and stores strong passwords for more of your online accounts — and stops more trackers than ever before.  ') }}</p>
+
+      <div class=>
+        <a class="mzp-c-button mzp-t-product mzp-t-small" data-cta-text="View your protection report" data-cta-type="button">{{ _('View your protection report') }}</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="content-extra">
+    <div class="mzp-l-content">
+      <div class="l-columns-three">
+
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            <img src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" alt="">
+          </div>
+          <h3 class="c-picto-block-title">{{ _('Firefox Monitor') }}</h3>
+          <div class="c-picto-block-body">
+            <p>{{ _('See if you’ve been involved in known online data breaches and take action to resolve them.') }}</p>
+            <a>{{ _('Go to Monitor') }}</a>
+          </div>
+        </div>
+
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            <img src="{{ static('protocol/img/logos/firefox/send/logo.svg') }}" alt="">
+          </div>
+          <h3 class="c-picto-block-title">{{ _('Firefox Send') }}</h3>
+          <div class="c-picto-block-body">
+            <p>{{ _('Share large files with end-to-end encryption, using a link that expires automatically.') }}</p>
+            <a>{{ _('Try Send') }}</a>
+          </div>
+        </div>
+
+        <div class="c-picto-block">
+          <div class="c-picto-block-image">
+            <img src="{{ static('img/logos/fbcontainer/logo-fbcontainer.svg') }}" alt="">
+          </div>
+
+          <h3 class="c-picto-block-title">{{ _('Facebook Container') }}</h3>
+          <div class="c-picto-block-body">
+            <p>{{ _('Stay connected to the people you can’t be with in real life, and stop Facebook from following you online.') }}</p>
+            <a>{{ _('Add Facebook Container') }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="mzp-l-content c-utilities">
+    <p>
+    {% trans notes=url('firefox.notes') %}
+      Read the <a href="{{ notes }}">Release Notes</a> to know more about what’s new in your Firefox Browser.
+    {% endtrans %}
+    </p>
+  </aside>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_73') }}
+{% endblock %}
