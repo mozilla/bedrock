@@ -128,7 +128,6 @@ urlpatterns = (
     page('firefox/browsers/compare/ie', 'firefox/compare/ie.html'),
     page('firefox/browsers/compare/opera', 'firefox/compare/opera.html'),
     page('firefox/browsers/compare/safari', 'firefox/compare/safari.html'),
-    page('firefox/browsers/compare/edge', 'firefox/compare/edge.html'),
 
     # Issue 8641
     page('firefox/browsers/best-browser', 'firefox/browsers/best-browser.html'),
