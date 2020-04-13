@@ -34,12 +34,21 @@
       <div class="key-feature-content">
         <h2>{{ _('No strings attached') }}</h2>
         <p>
+      {% if l10n_has_tag('independent_042020') %}
+        {% trans %}
+          Firefox is built by a non-profit. That means we can do things that others
+          can’t, like build new products and features without a hidden agenda. We
+          champion your right to privacy with tools like Private Browsing with Tracking
+          Protection.
+        {% endtrans %}
+      {% else %}
         {% trans %}
           Firefox is built by a non-profit. That means we can do things that others
           can’t, like build new products and features without a hidden agenda. We
           champion your right to privacy with tools like Private Browsing with Tracking
           Protection, which go beyond what Google Chrome and Microsoft Edge offer.
         {% endtrans %}
+      {% endif %}
         </p>
       </div>
     </section>
