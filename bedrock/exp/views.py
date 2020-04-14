@@ -10,13 +10,12 @@ class WhatsnewView(l10n_utils.LangFilesMixin, TemplateView):
     def get_template_names(self):
         return ['exp/firefox/whatsnew/whatsnew-fx71.html']
 
+
 def new(request):
 
     # note: v and xv params only allow a-z, A-Z, 0-9, -, and _ characters
     experience = request.GET.get('xv', None)
     variant = request.GET.get('v', None)
-
-    locale = l10n_utils.get_locale(request)
 
     # ensure experience matches pre-defined value
     if experience not in ['nv']:  # place expected ?xv= values in this list
