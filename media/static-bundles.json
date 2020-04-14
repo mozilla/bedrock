@@ -228,6 +228,12 @@
     },
     {
       "files": [
+        "css/base/banners/moss-covid.scss"
+      ],
+      "name": "moss-covid-banner"
+    },
+    {
+      "files": [
         "css/pebbles/base/oldIE.scss"
       ],
       "name": "oldIE-pebbles"
@@ -963,6 +969,13 @@
         "js/mozorg/home/banner-init.js"
       ],
       "name": "fundraising-banner"
+    },
+    {
+      "files": [
+        "js/base/mozilla-banner.js",
+        "js/mozorg/moss-covid-banner-init.js"
+      ],
+      "name": "moss-covid-banner"
     },
     {
       "files": [
