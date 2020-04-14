@@ -88,6 +88,8 @@ def main(args):
         print('No update necessary')
         return 0
 
+    print('Attempting a db update')
+
     set_db_data(new_data)
     if '--no-upload' in args:
         return 0
