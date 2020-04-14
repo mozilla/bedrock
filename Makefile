@@ -40,6 +40,9 @@ build: .docker-build-pull
 	${DC} build --pull app assets
 	touch .docker-build
 
+build-prod: .docker-build-pull
+	${DC} build --pull release
+
 pull: .env submodules
 	-GIT_COMMIT= ${DC} pull release app assets builder app-base
 	touch .docker-build-pull
@@ -48,6 +51,9 @@ rebuild: clean build
 
 run: .docker-build-pull
 	${DC} up assets app
+
+run-prod: .docker-build-pull
+	${DC} up release
 
 stop:
 	${DC} stop
@@ -115,4 +121,4 @@ build-ci: .docker-build-pull
 test-ci: .docker-build-ci
 	${DC_CI} run test-image
 
-.PHONY: all clean build pull submodules docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell
+.PHONY: all clean build pull submodules docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod build-prod
