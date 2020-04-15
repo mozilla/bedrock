@@ -10,6 +10,21 @@ if (typeof window.Mozilla === 'undefined') {
 (function() {
     'use strict';
 
+    function handleOpenProtectionReport(e) {
+        e.preventDefault();
+        Mozilla.UITour.showProtectionReport();
+
+        window.dataLayer.push({
+            'event': 'in-page-interaction',
+            'eAction': 'link click',
+            'eLabel': 'View your protection report'
+        });
+    };
+
+    Mozilla.UITour.ping(function() {
+        document.querySelector('.protection-report').addEventListener('click', handleOpenProtectionReport, false);
+    });
+
     var fcShown = document.querySelector('.facebook-container') !== null;
 
     if (fcShown) {
