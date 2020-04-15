@@ -87,6 +87,10 @@ $image-path: '/media/protocol/img';
     display: none;
 }
 
+.show-connect-device {
+    display: none;
+}
+
 .state-fxa-has-devices {
     .show-monitor {
         display: block;
@@ -94,6 +98,16 @@ $image-path: '/media/protocol/img';
 
     .show-sync {
         display: none;
+    }
+}
+
+.state-fxa-has-no-devices {
+    .show-sign-in {
+        display: none;
+    }
+
+    .show-connect-device {
+        display: block;
     }
 }
 
