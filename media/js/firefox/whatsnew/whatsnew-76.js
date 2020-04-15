@@ -19,7 +19,7 @@ if (typeof window.Mozilla === 'undefined') {
             'eAction': 'link click',
             'eLabel': 'View your protection report'
         });
-    };
+    }
 
     Mozilla.UITour.ping(function() {
         document.querySelector('.protection-report').addEventListener('click', handleOpenProtectionReport, false);
