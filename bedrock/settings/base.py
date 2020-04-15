@@ -246,7 +246,8 @@ FLUENT_DEFAULT_FILES = [
     'footer',
     'fxa_form',
     'navigation',
-    'newsletter_form'
+    'newsletter_form',
+    'ui'
 ]
 
 FLUENT_DEFAULT_PERCENT_REQUIRED = config('FLUENT_DEFAULT_PERCENT_REQUIRED', default='80', parser=int)

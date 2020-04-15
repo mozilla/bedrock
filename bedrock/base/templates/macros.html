@@ -111,7 +111,7 @@
               {% endif %}
                 {{ _('The intended recipient of the email or SMS must have consented.')}}
             {% endif %}
-            <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ _('Learn more')}}</a>
+            <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ ftl('ui-learn-more') }}</a>
           </p>
           <p class="legal email">
             {% if legal_note_email %}
@@ -119,7 +119,7 @@
             {% else %}
               {{ _('The intended recipient of the email must have consented.') }}
             {% endif %}
-            <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ _('Learn more')}}</a>
+            <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ ftl('ui-learn-more') }}</a>
           </p>
         </div>
         <div class="thank-you hidden">

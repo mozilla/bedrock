@@ -137,7 +137,7 @@
         </div>
       </div>
       <figcaption>
-        <p>{% if desc %}{{ desc }}{% endif %} <a href="{{ link_url }}">{{ _('Learn more') }}</a></p>
+        <p>{% if desc %}{{ desc }}{% endif %} <a href="{{ link_url }}">{{ ftl('ui-learn-more') }}</a></p>
       </figcaption>
     </figure>
   </div>
@@ -228,7 +228,7 @@
 {% macro sidemenu_lists(arr, body_id='') -%}
   <nav class="mzp-c-sidemenu">
     <section class="mzp-c-sidemenu-summary mzp-js-toggle" aria-controls="sidebar-menu">
-      <h3 class="mzp-c-sidemenu-label">{{ _('Menu') }}</h3>
+      <h3 class="mzp-c-sidemenu-label">{{ ftl('ui-menu') }}</h3>
       <ul>
         <li>{{ arr[0][0][2]|e }}</li>
         {% for menu in arr %}
