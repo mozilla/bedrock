@@ -11,7 +11,7 @@
 {% block page_title %}{{ _('What’s new with Firefox - Make Firefox your default browser') }}{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('firefox_whatsnew_75') }}
+  {{ css_bundle('firefox_whatsnew_76') }}
 {% endblock %}
 
 {% block site_header %}{% endblock %}
@@ -35,7 +35,7 @@
     <div class="mzp-c-emphasis-box">
       <img class="c-emphasis-box-logo" src="{{ static('protocol/img/logos/firefox/logo-md.png') }}" alt="">
       <h2 class="c-emphasis-box-title">
-        {{ _('Passwords and Security. Two fewer things to worry about.') }}
+        {{ _('More time online. More protection.') }}
       </h2>
       <p>{{ _('Now Firefox creates and stores strong passwords for more of your online accounts — and stops more trackers than ever before.  ') }}</p>
 
@@ -48,41 +48,52 @@
 
   <section class="content-extra">
     <div class="mzp-l-content">
-      <div class="l-columns-three">
-
+      <div class="columns">
         <div class="c-picto-block">
           <div class="c-picto-block-image">
-            <img src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" alt="">
+            <img src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" width="48px" alt="">
           </div>
           <h3 class="c-picto-block-title">{{ _('Firefox Monitor') }}</h3>
           <div class="c-picto-block-body">
-            <p>{{ _('See if you’ve been involved in known online data breaches and take action to resolve them.') }}</p>
-            <a>{{ _('Go to Monitor') }}</a>
+            <p>
+              {{ _('See if you’ve been involved in known online data breaches and take action to resolve them.') }}
+            </p>
+            <br>
+            <a href="#" class="picto-link">{{ _('Go to Monitor') }}</a>
           </div>
         </div>
 
         <div class="c-picto-block">
           <div class="c-picto-block-image">
-            <img src="{{ static('protocol/img/logos/firefox/send/logo.svg') }}" alt="">
+            <img src="{{ static('protocol/img/logos/firefox/send/logo.svg') }}" width="48px" alt="">
           </div>
           <h3 class="c-picto-block-title">{{ _('Firefox Send') }}</h3>
           <div class="c-picto-block-body">
-            <p>{{ _('Share large files with end-to-end encryption, using a link that expires automatically.') }}</p>
-            <a>{{ _('Try Send') }}</a>
+            <p>
+              {{ _('Share large files with end-to-end encryption, using a link that expires automatically.') }}
+            </p>
+            <br>
+            <a href="#" class="picto-link">{{ _('Try Send') }}</a>
           </div>
         </div>
 
-        <div class="c-picto-block">
-          <div class="c-picto-block-image">
-            <img src="{{ static('img/logos/fbcontainer/logo-fbcontainer.svg') }}" alt="">
-          </div>
+        {% if LANG != 'zh-TW' %}
+          <div class="c-picto-block facebook-container">
+            <div class="c-picto-block-image">
+              <img src="{{ static('img/logos/fbcontainer/logo-fbcontainer.svg') }}" width="48px" alt="">
+            </div>
 
-          <h3 class="c-picto-block-title">{{ _('Facebook Container') }}</h3>
-          <div class="c-picto-block-body">
-            <p>{{ _('Stay connected to the people you can’t be with in real life, and stop Facebook from following you online.') }}</p>
-            <a>{{ _('Add Facebook Container') }}</a>
+            <h3 class="c-picto-block-title">{{ _('Facebook Container') }}</h3>
+            <div class="c-picto-block-body">
+              <p>
+                {{ _('Stay connected to the people you can’t be with in real life, and stop Facebook from following you online.') }}
+              </p>
+              <br>
+              <a href="#" class="picto-link">{{ _('Add Facebook Container') }}</a>
+            </div>
           </div>
-        </div>
+        {% endif %}
+
       </div>
     </div>
   </section>
@@ -98,5 +109,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox_whatsnew_73') }}
+  {{ js_bundle('firefox_whatsnew_76') }}
 {% endblock %}
