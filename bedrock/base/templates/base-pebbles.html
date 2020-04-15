@@ -81,12 +81,9 @@
 
   <body {% if self.body_id() %}id="{% block body_id %}{% endblock %}" {% endif %}class="html-{{ DIR }} {% block body_class %}{% endblock %}" {% block body_attrs %}{% endblock %}>
     <div id="strings"
-      data-global-close="{{ _('Close') }}"
-      data-global-next="{{ _('Next') }}"
-      data-global-previous="{{ _('Previous') }}"
-      data-global-fx-out-of-date-banner-heading="{{ _('Your Firefox is out-of-date.') }}"
-      data-global-fx-out-of-date-banner-message="{{ _('Get the most recent version to keep browsing securely.') }}"
-      data-global-fx-out-of-date-banner-confirm="{{ _('Update Firefox') }}"
+      data-global-close="{{ ftl('ui-close') }}"
+      data-global-next="{{ ftl('ui-next') }}"
+      data-global-previous="{{ ftl('ui-previous') }}"
       {% block string_data %}{% endblock %}></div>
 
     {% block page_banner %}{% endblock %}

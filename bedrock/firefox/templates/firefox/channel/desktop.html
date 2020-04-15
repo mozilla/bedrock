@@ -55,7 +55,7 @@
         {% endtrans %}
       {% else %}
         {{_('Firefox Beta automatically sends feedback to Mozilla.')}}
-        <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{_('Learn more')}}</a>
+        <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{ ftl('ui-learn-more') }}</a>
       {% endif %}
     </p>
     <p>
@@ -79,7 +79,7 @@
   <div class="l-notes mzp-l-content">
     <ul>
       <li><a href="{{ firefox_url('desktop', 'notes', 'developer') }}">{{_('Release Notes')}}</a></li>
-      <li><a href="{{ url('firefox.developer.index') }}">{{_('Learn more')}}</a></li>
+      <li><a href="{{ url('firefox.developer.index') }}">{{ ftl('ui-learn-more') }}</a></li>
       <li>
         <a href="{{ firefox_url('desktop', 'all', 'developer') }}">
         {% if l10n_has_tag('firefox_channel_bug1387466') %}
@@ -98,7 +98,7 @@
       {%- endtrans -%}
     {% else %}
       {{_('Firefox Developer Edition automatically sends feedback to Mozilla.')}}
-      <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{_('Learn more')}}</a>
+      <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{ ftl('ui-learn-more') }}</a>
     {% endif %}
     </p>
   </div>
@@ -145,7 +145,7 @@
         {% endtrans %}
       {% else %}
         {{_('Firefox Nightly automatically sends feedback to Mozilla.')}}
-        <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{_('Learn more')}}</a>
+        <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{ ftl('ui-learn-more') }}</a>
       {% endif %}
     </p>
   </div>

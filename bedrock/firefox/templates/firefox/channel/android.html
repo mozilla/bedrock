@@ -60,7 +60,7 @@
         {% endtrans %}
       {% else %}
         {{_('Firefox Beta automatically sends feedback to Mozilla.')}}
-        <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{_('Learn more')}}</a>
+        <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{ ftl('ui-learn-more') }}</a>
       {% endif %}
     </p>
     <p>
@@ -94,7 +94,7 @@
       {% endtrans %}
     {% else %}
       {{_('Firefox Nightly automatically sends feedback to Mozilla.')}}
-      <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{_('Learn more')}}</a>
+      <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{ ftl('ui-learn-more') }}</a>
     {% endif %}
   </div>
 </section>
