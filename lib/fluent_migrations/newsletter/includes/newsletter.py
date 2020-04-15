@@ -60,6 +60,46 @@ newsletter-form-text = {COPY(main, "Text",)}
                     }
                 )
             ),
+            FTL.Message(
+                id=FTL.Identifier("newsletter-form-firefox-and-you"),
+                value=REPLACE(
+                    main,
+                    "<span>Firefox</span> + You",
+                    {
+                        "Firefox": TERM_REFERENCE("brand-name-firefox"),
+                    }
+                )
+            ),
+            FTL.Message(
+                id=FTL.Identifier("newsletter-form-get-firefox-tips"),
+                value=REPLACE(
+                    main,
+                    "Get Firefox tips, tricks, news and more",
+                    {
+                        "Firefox": TERM_REFERENCE("brand-name-firefox"),
+                    }
+                )
+            ),
+            FTL.Message(
+                id=FTL.Identifier("newsletter-form-keep-up-with"),
+                value=REPLACE(
+                    main,
+                    "Keep up with<br> all things Firefox.",
+                    {
+                        "Firefox": TERM_REFERENCE("brand-name-firefox"),
+                    }
+                )
+            ),
+            FTL.Message(
+                id=FTL.Identifier("newsletter-form-get-mozilla-updates"),
+                value=REPLACE(
+                    main,
+                    "Get Mozilla updates",
+                    {
+                        "Mozilla": TERM_REFERENCE("brand-name-mozilla"),
+                    }
+                )
+            ),
         ] + transforms_from("""
 newsletter-form-available-languages = {COPY(main, "Available Languages",)}
 newsletter-form-select-country = {COPY(main, "Select country",)}
