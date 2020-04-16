@@ -27,5 +27,3 @@ class FirefoxWhatsNew76Page(FirefoxBasePage):
     @property
     def are_two_columns_displayed(self):
         return  self.is_element_displayed(*self._column_2_locator)
-
-

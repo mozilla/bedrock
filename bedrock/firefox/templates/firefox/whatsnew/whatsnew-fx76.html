@@ -2,13 +2,11 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros.html" import google_play_button, send_to_device with context %}
-
 {% add_lang_files "firefox/whatsnew_76" %}
 
 {% extends "firefox/whatsnew/base.html" %}
 
-{% block page_title %}{{ _('What’s new with Firefox - Make Firefox your default browser') }}{% endblock %}
+{% block page_title %}{{ _('What’s new with Firefox') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('firefox_whatsnew_76') }}
@@ -31,17 +29,19 @@
   </header>
 
   <section class="content-main">
-    <div class="mzp-c-emphasis-box">
-      <img class="c-emphasis-box-logo" src="{{ static('img/firefox/whatsnew/whatsnew76/hero_etp.svg') }}" alt="">
-      <h2 class="c-emphasis-box-title">
-        {{ _('More time online. More protection.') }}
-      </h2>
-      <p>{{ _('Now Firefox creates and stores strong passwords for more of your online accounts — and stops more trackers than ever before.') }}</p>
+    <div class="mzp-l-content">
+      <div class="mzp-c-emphasis-box">
+        <img class="c-emphasis-box-logo" src="{{ static('img/firefox/whatsnew/whatsnew76/hero_etp.svg') }}" alt="">
+        <h2 class="c-emphasis-box-title">
+          {{ _('More time online. More protection.') }}
+        </h2>
+        <p>{{ _('Now Firefox creates and stores strong passwords for more of your online accounts — and stops more trackers than ever before.') }}</p>
 
-      <div class=>
-        <a class="mzp-c-button mzp-t-product mzp-t-small protection-report" href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-cta-text="View your protection report" data-cta-type="button">{{ _('View your protection report') }}</a>
+        <div>
+          <a class="mzp-c-button mzp-t-product mzp-t-small protection-report" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/{{ utm_params }}" data-cta-text="View your protection report" data-cta-type="button">{{ _('View your protection report') }}</a>
+        </div>
+
       </div>
-
     </div>
   </section>
 
@@ -58,7 +58,7 @@
               {{ _('See if you’ve been involved in known online data breaches and take action to resolve them.') }}
             </p>
             <br>
-            <a href="https://monitor.firefox.com/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" class="picto-link">{{ _('Go to Monitor') }}</a>
+            <a href="https://monitor.firefox.com/?{{ utm_params }}" class="picto-link">{{ _('Go to Monitor') }}</a>
           </div>
         </div>
 
@@ -72,7 +72,7 @@
               {{ _('Share large files with end-to-end encryption, using a link that expires automatically.') }}
             </p>
             <br>
-            <a href="https://send.firefox.com/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" class="picto-link">{{ _('Try Send') }}</a>
+            <a href="https://send.firefox.com/?{{ utm_params }}" class="picto-link">{{ _('Try Send') }}</a>
           </div>
         </div>
 
@@ -88,7 +88,7 @@
                 {{ _('Stay connected to the people you can’t be with in real life, and stop Facebook from following you online.') }}
               </p>
               <br>
-              <a href="https://addons.mozilla.org/en-US/firefox/addon/facebook-container/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" class="picto-link">{{ _('Add Facebook Container') }}</a>
+              <a href="https://addons.mozilla.org/en-US/firefox/addon/facebook-container/?{{ utm_params }}" class="picto-link">{{ _('Add Facebook Container') }}</a>
             </div>
           </div>
         {% endif %}
