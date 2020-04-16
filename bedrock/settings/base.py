@@ -238,7 +238,6 @@ FEED_CACHE = 3900
 DOTLANG_CACHE = config('DOTLANG_CACHE', default='1800' if DEBUG else '600', parser=int)
 
 # Global L10n files.
-# TODO Port DOTLANG_FILES to FLUENT_DEFAULT_FILES
 DOTLANG_FILES = ['main']
 FLUENT_DEFAULT_FILES = [
     'brands',
@@ -247,7 +246,8 @@ FLUENT_DEFAULT_FILES = [
     'fxa_form',
     'navigation',
     'newsletter_form',
-    'ui'
+    'send_to_device',
+    'ui',
 ]
 
 FLUENT_DEFAULT_PERCENT_REQUIRED = config('FLUENT_DEFAULT_PERCENT_REQUIRED', default='80', parser=int)
