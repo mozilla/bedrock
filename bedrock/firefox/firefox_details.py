@@ -11,7 +11,6 @@ from everett.manager import ListOf
 from product_details import ProductDetails
 
 from bedrock.base.waffle import config
-from lib.l10n_utils.dotlang import _lazy as _
 
 
 # TODO: port this to django-mozilla-product-details
@@ -46,12 +45,12 @@ class FirefoxDesktop(_ProductDetails):
 
     # Human-readable channel names
     channel_labels = {
-        'nightly': _('Firefox Nightly'),
-        'alpha': _('Developer Edition'),
-        'devedition': _('Developer Edition'),
-        'beta': _('Firefox Beta'),
-        'esr': _('Firefox Extended Support Release'),
-        'release': _('Firefox'),
+        'nightly': 'Firefox Nightly',
+        'alpha': 'Developer Edition',
+        'devedition': 'Developer Edition',
+        'beta': 'Firefox Beta',
+        'esr': 'Firefox Extended Support Release',
+        'release': 'Firefox',
     }
 
     # Version property names in product-details
@@ -305,8 +304,8 @@ class FirefoxDesktop(_ProductDetails):
 class FirefoxAndroid(_ProductDetails):
     # Human-readable architecture names
     platform_labels = OrderedDict([
-        ('arm', _('ARM devices\n(Android %s+)')),
-        ('x86', _('Intel devices\n(Android %s+ x86 CPU)')),
+        ('arm', 'ARM devices\n(Android %s+)'),
+        ('x86', 'Intel devices\n(Android %s+ x86 CPU)'),
     ])
 
     # Recommended/modern vs traditional/legacy platforms
@@ -315,9 +314,9 @@ class FirefoxAndroid(_ProductDetails):
 
     # Human-readable channel names
     channel_labels = {
-        'nightly': _('Firefox Nightly'),
-        'beta': _('Firefox Beta'),
-        'release': _('Firefox'),
+        'nightly': 'Firefox Nightly',
+        'beta': 'Firefox Beta',
+        'release': 'Firefox',
     }
 
     # Version property names in product-details
@@ -418,7 +417,7 @@ class FirefoxAndroid(_ProductDetails):
 
         for locale in locales:
             if locale == 'multi':
-                name_en = _('Multi-locale')
+                name_en = 'Multi-locale'
                 name_native = ''
             elif locale in self.languages:
                 name_en = self.languages[locale]['English']

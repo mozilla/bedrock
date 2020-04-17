@@ -12,7 +12,7 @@
 
 {% macro select_version_list(id, version, disabled=False) %}
   {% set version_select_id = 'select_' ~ id ~ '_version' %}
-  <label for="{{ version_select_id }}" class="c-selection-label">{{ _('Which version would you like?') }}</label>
+  <label for="{{ version_select_id }}" class="c-selection-label">{{ ftl('firefox-all-which-version') }}</label>
   <select id="{{ version_select_id }}" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %}>
     {# ESR can have two versions available. ESR Latest should always come first in the dropdown. #}
     {% if id == 'desktop_esr_next' %}
@@ -42,10 +42,9 @@
 {% endmacro %}
 
 {% macro select_platform_list(id, platforms, disabled=False) %}
-  <label for="{{ id }}" class="c-selection-label">{{ _('Select your preferred installer') }}</label>
-  <a href="#installer-help" class="c-button-help icon-installer-help" title="{{ _('Learn about installers') }}">
-    {# L10n: Used as an accessible label for a help button. The text is replaced with a "?" icon. #}
-    {{ _('Get help') }}
+  <label for="{{ id }}" class="c-selection-label">{{ ftl('firefox-all-select-your-preferred-installer') }}</label>
+  <a href="#installer-help" class="c-button-help icon-installer-help" title="{{ ftl('firefox-all-learn-about-installers')}}">
+    {{ ftl('firefox-all-get-help') }}
   </a>
   <select id="{{ id }}" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %}>
     {% for p_name, p_label in platforms %}
@@ -55,7 +54,7 @@
 {% endmacro %}
 
 {% macro select_language_list(id, builds, disabled=False) %}
-  <label for="{{ id }}" class="c-selection-label">{{ _('Select your preferred language') }}</label>
+  <label for="{{ id }}" class="c-selection-label">{{ ftl('firefox-all-select-your-preferred-language') }}</label>
   <select id="{{ id }}" class="c-selection-input" aria-controls="download-info"{% if disabled %} disabled{% endif %}>
     {% for build in builds %}
       <option value="{{ build.locale }}"{% if build.locale == 'en-US' %} selected{% endif%}>
@@ -91,7 +90,7 @@
 
     <ul class="c-download-list">
     {% for p_name, p_label in platforms %}
-      <li>{{ build_link(build, p_name, p_label, _('Download %(product_label)s for %(platform)s in %(locale)s')|format(product_label=product_label, platform=p_label|replace('\n', ' '), locale=build.name_en)) }}</li>
+      <li>{{ build_link(build, p_name, p_label, ftl('firefox-all-download-product-for', product_label=product_label, platform=p_label|replace('\n', ' '), locale=build.name_en)) }}</li>
     {% endfor %}
     </ul>
   </li>
