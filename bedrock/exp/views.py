@@ -18,11 +18,11 @@ def new(request):
     variant = request.GET.get('v', None)
 
     # ensure experience matches pre-defined value
-    if experience not in ['nv']:  # place expected ?xv= values in this list
-        variant = None
+    if experience not in ['']:  # place expected ?xv= values in this list
+        experience = None
 
     # ensure variant matches pre-defined value
-    if variant not in ['a', 'b']:  # place expected ?v= values in this list
+    if variant not in ['a', 'b', 'c']:  # place expected ?v= values in this list
         variant = None
 
     # no harm done by passing 'v' to template, even when no experiment is running
