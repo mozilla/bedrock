@@ -11,10 +11,10 @@
 
 {% block site_header %}
   <header class="mzp-l-content header-spacing">
-    <div class="header-image" style="width: 145px;">
-    <a href="{{ url('firefox') }}">{{ high_res_img('protocol/img/logos/firefox/logo-word-hor-sm.png', {'alt': 'Firefox, Mozilla','width':'155px'}) }}</a>
+    <div class="header-image">
+    <a href="{{ url('firefox') }}">{{ high_res_img('protocol/img/logos/firefox/logo-word-hor-sm.png', {'alt': 'Firefox', 'width':'155px'}) }}</a>
     </div>
-    <a href="{{ url('mozorg.home') }}"><img src="{{ static('protocol/img/logos/mozilla/black.svg') }}" alt="Firefox" class="Mozilla" /></a>
+    <a href="{{ url('mozorg.home') }}" ><img src="{{ static('protocol/img/logos/mozilla/black.svg') }}" alt="Mozilla" class="Mozilla" /></a>
   </header>
 {% endblock %}
 {% block site_footer %}{% endblock %}
