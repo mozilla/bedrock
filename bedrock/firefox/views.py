@@ -24,7 +24,7 @@ from django.views.generic.base import TemplateView
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView
 from lib.l10n_utils.dotlang import lang_file_is_active
-from lib.l10n_utils.fluent import ftl_file_is_active
+from lib.l10n_utils.fluent import ftl, ftl_file_is_active
 from product_details.version_compare import Version
 
 from bedrock.base.urlresolvers import reverse
@@ -260,20 +260,21 @@ def send_to_device_ajax(request):
 
 
 def firefox_all(request):
+    ftl_files = 'firefox/all'
     product_android = firefox_android
     product_desktop = firefox_desktop
 
     # Human-readable product labels
     products = OrderedDict(
         [
-            ('desktop_release', 'Firefox'),
-            ('desktop_beta', 'Firefox Beta'),
-            ('desktop_developer', 'Firefox Developer Edition'),
-            ('desktop_nightly', 'Firefox Nightly'),
-            ('desktop_esr', 'Firefox Extended Support Release'),
-            ('android_release', 'Firefox Android'),
-            ('android_beta', 'Firefox Android Beta'),
-            ('android_nightly', 'Firefox Android Nightly'),
+            ('desktop_release', ftl('firefox-all-product-firefox', ftl_files=ftl_files)),
+            ('desktop_beta', ftl('firefox-all-product-firefox-beta', ftl_files=ftl_files)),
+            ('desktop_developer', ftl('firefox-all-product-firefox-developer', ftl_files=ftl_files)),
+            ('desktop_nightly', ftl('firefox-all-product-firefox-nightly', ftl_files=ftl_files)),
+            ('desktop_esr', ftl('firefox-all-product-firefox-esr', ftl_files=ftl_files)),
+            ('android_release', ftl('firefox-all-product-firefox-android', ftl_files=ftl_files)),
+            ('android_beta', ftl('firefox-all-product-firefox-android-beta', ftl_files=ftl_files)),
+            ('android_nightly', ftl('firefox-all-product-firefox-android-nightly', ftl_files=ftl_files)),
         ]
     )
 
@@ -377,7 +378,8 @@ def firefox_all(request):
         )
         context['desktop_esr_next_version'] = latest_esr_next_version_desktop
 
-    return l10n_utils.render(request, 'firefox/all-unified.html', context)
+    return l10n_utils.render(request, 'firefox/all-unified.html',
+                             context, ftl_files=ftl_files)
 
 
 def detect_channel(version):

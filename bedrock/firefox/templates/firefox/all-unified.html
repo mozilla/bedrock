@@ -7,13 +7,11 @@
 {% extends "firefox/base/base-protocol.html" %}
 
 {%- block page_title -%}
-  {#- L10n: HTML page title. Replace "English (US)" with your local language. -#}
-  {{ _('Download the Firefox Browser in English (US) and more than 90 other languages') }}
+  {{ ftl('firefox-all-download-the-firefox') }}
 {%- endblock -%}
 
 {%- block page_desc -%}
-  {#- L10n: HTML page description, also used as the introductory text. -#}
-  {{ _('Everyone deserves access to the internet — your language should never be a barrier. That’s why — with the help of dedicated volunteers around the world — we make the Firefox Browser available in more than 90 languages.') }}
+  {{ ftl('firefox-all-everyone-deserves-access') }}
 {%- endblock -%}
 
 {% block page_css %}
@@ -36,64 +34,64 @@
   <div class="mzp-l-content">
     <div id="product-select-form" class="c-product-select-form" data-supported="true">
       <div class="c-intro">
-        <h1 class="c-intro-heading">{{ _('Choose which Firefox Browser to download in your language') }}</h1>
+        <h1 class="c-intro-heading">{{ ftl('firefox-all-choose-which-firefox') }}</h1>
         <p>{{ self.page_desc() }}</p>
         <div class="c-product-links" data-product="desktop_release">
           <ul>
-            <li><a href="{{ firefox_url('desktop', 'sysreq', 'release') }}">{{ _('Check the system requirements') }}</a></li>
-            <li><a href="{{ firefox_url('desktop', 'notes', 'release') }}">{{ _('Release notes') }}</a></li>
-            <li><a href="https://developer.mozilla.org/docs/Mozilla/Developer_guide/Source_Code">{{ _('Source code') }}</a></li>
+            <li><a href="{{ firefox_url('desktop', 'sysreq', 'release') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+            <li><a href="{{ firefox_url('desktop', 'notes', 'release') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
+            <li><a href="https://developer.mozilla.org/docs/Mozilla/Developer_guide/Source_Code">{{ ftl('firefox-all-source-code') }}</a></li>
           </ul>
         </div>
         <div class="c-product-links" data-product="desktop_beta">
           <ul>
-            <li><a href="{{ firefox_url('desktop', 'sysreq', 'beta') }}">{{ _('Check the system requirements') }}</a></li>
-            <li><a href="{{ firefox_url('desktop', 'notes', 'beta') }}">{{ _('Release notes') }}</a></li>
-            <li><a href="https://developer.mozilla.org/docs/Mozilla/Developer_guide/Source_Code">{{ _('Source code') }}</a></li>
+            <li><a href="{{ firefox_url('desktop', 'sysreq', 'beta') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+            <li><a href="{{ firefox_url('desktop', 'notes', 'beta') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
+            <li><a href="https://developer.mozilla.org/docs/Mozilla/Developer_guide/Source_Code">{{ ftl('firefox-all-source-code') }}</a></li>
           </ul>
         </div>
         <div class="c-product-links" data-product="desktop_developer">
           <ul>
-            <li><a href="{{ firefox_url('desktop', 'sysreq', 'alpha') }}">{{ _('Check the system requirements') }}</a></li>
-            <li><a href="{{ firefox_url('desktop', 'notes', 'alpha') }}">{{ _('Release notes') }}</a></li>
-            <li><a href="https://developer.mozilla.org/docs/Mozilla/Developer_guide/Source_Code">{{ _('Source code') }}</a></li>
+            <li><a href="{{ firefox_url('desktop', 'sysreq', 'alpha') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+            <li><a href="{{ firefox_url('desktop', 'notes', 'alpha') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
+            <li><a href="https://developer.mozilla.org/docs/Mozilla/Developer_guide/Source_Code">{{ ftl('firefox-all-source-code') }}</a></li>
           </ul>
         </div>
         <div class="c-product-links" data-product="desktop_nightly">
           <ul>
-            <li><a href="{{ firefox_url('desktop', 'sysreq', 'nightly') }}">{{ _('Check the system requirements') }}</a></li>
-            <li><a href="{{ firefox_url('desktop', 'notes', 'nightly') }}">{{ _('Release notes') }}</a></li>
-            <li><a href="https://developer.mozilla.org/docs/Mozilla/Developer_guide/Source_Code">{{ _('Source code') }}</a></li>
+            <li><a href="{{ firefox_url('desktop', 'sysreq', 'nightly') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+            <li><a href="{{ firefox_url('desktop', 'notes', 'nightly') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
+            <li><a href="https://developer.mozilla.org/docs/Mozilla/Developer_guide/Source_Code">{{ ftl('firefox-all-source-code') }}</a></li>
           </ul>
         </div>
         <div class="c-product-links" data-product="desktop_esr">
           <ul>
-            <li><a href="{{ firefox_url('desktop', 'sysreq', 'organizations') }}">{{ _('Check the system requirements') }}</a></li>
-            <li><a href="{{ firefox_url('desktop', 'notes', 'organizations') }}">{{ _('Release notes') }}</a></li>
-            <li><a href="https://developer.mozilla.org/docs/Mozilla/Developer_guide/Source_Code">{{ _('Source code') }}</a></li>
+            <li><a href="{{ firefox_url('desktop', 'sysreq', 'organizations') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+            <li><a href="{{ firefox_url('desktop', 'notes', 'organizations') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
+            <li><a href="https://developer.mozilla.org/docs/Mozilla/Developer_guide/Source_Code">{{ ftl('firefox-all-source-code') }}</a></li>
           </ul>
         </div>
         <div class="c-product-links" data-product="android_release">
           <ul>
-            <li><a href="{{ firefox_url('android', 'sysreq', 'release') }}">{{ _('Check the system requirements') }}</a></li>
-            <li><a href="{{ firefox_url('android', 'notes', 'release') }}">{{ _('Release notes') }}</a></li>
+            <li><a href="{{ firefox_url('android', 'sysreq', 'release') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+            <li><a href="{{ firefox_url('android', 'notes', 'release') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
           </ul>
         </div>
         <div class="c-product-links" data-product="android_beta">
           <ul>
-            <li><a href="{{ firefox_url('android', 'sysreq', 'beta') }}">{{ _('Check the system requirements') }}</a></li>
-            <li><a href="{{ firefox_url('android', 'notes', 'beta') }}">{{ _('Release notes') }}</a></li>
+            <li><a href="{{ firefox_url('android', 'sysreq', 'beta') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+            <li><a href="{{ firefox_url('android', 'notes', 'beta') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
           </ul>
         </div>
         <div class="c-product-links" data-product="android_nightly">
           <ul>
-            <li><a href="{{ firefox_url('android', 'sysreq', 'nightly') }}">{{ _('Check the system requirements') }}</a></li>
+            <li><a href="{{ firefox_url('android', 'sysreq', 'nightly') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
           </ul>
         </div>
         <div class="c-support-links">
           <ul>
-            <li><a href="{{ url('privacy.notices.firefox') }}">{{ _('Firefox Privacy Notice') }}</a></li>
-            <li><a href="https://support.mozilla.org/products/?utm_source=mozilla.org&utm_medium=referral&utm_campaign=need-help-link">{{ _('Need help?') }}</a></li>
+            <li><a href="{{ url('privacy.notices.firefox') }}">{{ ftl('firefox-all-firefox-privacy-notice') }}</a></li>
+            <li><a href="https://support.mozilla.org/products/?utm_source=mozilla.org&utm_medium=referral&utm_campaign=need-help-link">{{ ftl('firefox-all-need-help') }}</a></li>
           </ul>
         </div>
       </div>
@@ -101,11 +99,10 @@
         <fieldset>
           <p class="c-selection c-selection-product">
             <label for="select-product" class="c-selection-label">
-              {{ _('Which browser would you like to download?') }}
+              {{ ftl('firefox-all-which-browser-would') }}
             </label>
-            <a id="icon-browser-help" href="#browser-help" class="c-button-help" title="{{ _('Learn about Firefox browsers') }}">
-              {# L10n: Used as an accessible label for a help button. The text is replaced with a "?" icon. #}
-              {{ _('Get help') }}
+            <a id="icon-browser-help" href="#browser-help" class="c-button-help" title="{{ ftl('firefox-all-learn-about-firefox') }}">
+              {{ ftl('firefox-all-get-help') }}
             </a>
             {{ select_product_list(products, disabled=True) }}
           </p>
@@ -129,24 +126,21 @@
 
         <div id="download-info" class="c-download hidden" aria-live="polite">
           <p class="c-download-info">
-            {{ _('You are about to download:') }}
+            {{ ftl('firefox-all-you-are-about-to-download') }}
             <br>
             <br>
-            <span class="c-download-info-label">{{ _('Browser:') }}</span>
+            <span class="c-download-info-label">{{ ftl('firefox-all-browser') }}</span>
             <b class="c-download-info-content" id="download-info-product"></b>
             <br>
-            <span class="c-download-info-label">{{ _('Platform:') }}</span>
+            <span class="c-download-info-label">{{ ftl('firefox-all-platform') }}</span>
             <b class="c-download-info-content" id="download-info-platform"></b>
             <br>
-            <span class="c-download-info-label">{{ _('Language:') }}</span>
+            <span class="c-download-info-label">{{ ftl('firefox-all-language') }}</span>
             <b class="c-download-info-content" id="download-info-language"></b>
           </p>
 
           <p class="c-download-error hidden">
-            {% trans %}
-              Sorry, we couldn’t find the download you’re looking for.
-              Please try again, or select a download from the list below.
-            {% endtrans %}
+            { ftl('firefox-all-sorry-we-couldnt-find') }
           </p>
 
           <a href="#all-downloads" id="download-button-primary" class="mzp-c-button mzp-t-product" data-link-type="download" data-download-location="primary cta">
@@ -163,17 +157,16 @@
             <h3 class="mzp-c-sidemenu-label">{{ ftl('ui-menu') }}</h3>
           </section>
           <section class="mzp-c-sidemenu-main" id="sidebar-menu">
-            <h2 class="mzp-c-sidemenu-title">{{ _('Which browser would you like to download?') }}</h2>
+            <h2 class="mzp-c-sidemenu-title">{{ ftl('firefox-all-which-browser-would') }}</h2>
             <ul>
-              <li><a href="#firefox-desktop-release">Firefox</a></li>
-              <li><a href="#firefox-desktop-beta">Firefox <span>Beta</span></a></li>
-              <li><a href="#firefox-desktop-developer">Firefox <span>Developer Edition</span></a></li>
-              <li><a href="#firefox-desktop-nightly">Firefox <span>Nightly</span></a></li>
-              <li><a href="#firefox-desktop-esr">Firefox <span>Extended Support Release</span></a></li>
-              <li><a href="#firefox-android-release">Firefox Android</a></li>
-              <li><a href="#firefox-android-beta">Firefox Android <span>Beta</span></a></li>
-              <li><a href="#firefox-android-nightly">Firefox Android <span>Nightly</span></a></li>
-              <li><a href="#firefox-ios">Firefox iOS</a></li>
+              <li><a href="#firefox-desktop-release">{{ ftl('firefox-all-product-firefox') }}</a></li>
+              <li><a href="#firefox-desktop-beta">{{ ftl('firefox-all-product-firefox-beta') }}</a></li>
+              <li><a href="#firefox-desktop-developer">{{ ftl('firefox-all-product-firefox-developer') }}</a></li>
+              <li><a href="#firefox-desktop-nightly">{{ ftl('firefox-all-product-firefox-nightly') }}</a></li>
+              <li><a href="#firefox-desktop-esr">{{ ftl('firefox-all-product-firefox-esr') }}</a></li>
+              <li><a href="#firefox-android-release">{{ ftl('firefox-all-product-firefox-android') }}</a></li>
+              <li><a href="#firefox-android-beta">{{ ftl('firefox-all-product-firefox-android-beta') }}</a></li>
+              <li><a href="#firefox-android-nightly">{{ ftl('firefox-all-product-firefox-android-nightly') }}</a></li>
             </ul>
           </section>
         </nav>
@@ -181,51 +174,51 @@
 
       <div class="mzp-l-main">
         <section id="firefox-desktop-release" class="c-all-downloads-build">
-          <h2 class="c-product-heading">Firefox</h2>
+          <h2 class="c-product-heading">{{ ftl('firefox-all-product-firefox') }}</h2>
           <ul>
-            <li><a href="{{ firefox_url('desktop', 'sysreq', 'release') }}">{{ _('Check the system requirements') }}</a></li>
-            <li><a href="{{ firefox_url('desktop', 'notes', 'release') }}">{{ _('Release notes') }}</a></li>
-            <li><a href="https://developer.mozilla.org/docs/Mozilla/Developer_guide/Source_Code">{{ _('Source code') }}</a></li>
+            <li><a href="{{ firefox_url('desktop', 'sysreq', 'release') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+            <li><a href="{{ firefox_url('desktop', 'notes', 'release') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
+            <li><a href="https://developer.mozilla.org/docs/Mozilla/Developer_guide/Source_Code">{{ ftl('firefox-all-source-code') }}</a></li>
           </ul>
           {{ build_locale_list('desktop_release', desktop_release_channel_label, desktop_release_platforms, desktop_release_full_builds, 'release') }}
         </section>
 
         <section id="firefox-desktop-beta" class="c-all-downloads-build">
-          <h2 class="c-product-heading">Firefox <span>Beta</span></h2>
+          <h2 class="c-product-heading">{{ ftl('firefox-all-product-firefox-beta') }}</h2>
           <ul>
-            <li><a href="{{ firefox_url('desktop', 'sysreq', 'beta') }}">{{ _('Check the system requirements') }}</a></li>
-            <li><a href="{{ firefox_url('desktop', 'notes', 'beta') }}">{{ _('Release notes') }}</a></li>
-            <li><a href="https://developer.mozilla.org/docs/Mozilla/Developer_guide/Source_Code">{{ _('Source code') }}</a></li>
+            <li><a href="{{ firefox_url('desktop', 'sysreq', 'beta') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+            <li><a href="{{ firefox_url('desktop', 'notes', 'beta') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
+            <li><a href="https://developer.mozilla.org/docs/Mozilla/Developer_guide/Source_Code">{{ ftl('firefox-all-source-code') }}</a></li>
           </ul>
           {{ build_locale_list('desktop_beta', desktop_beta_channel_label, desktop_beta_platforms, desktop_beta_full_builds, 'beta') }}
         </section>
 
         <section id="firefox-desktop-developer" class="c-all-downloads-build">
-          <h2 class="c-product-heading">Firefox <span> Developer Edition</span></h2>
+          <h2 class="c-product-heading">{{ ftl('firefox-all-product-firefox-developer') }}</h2>
           <ul>
-            <li><a href="{{ firefox_url('desktop', 'sysreq', 'alpha') }}">{{ _('Check the system requirements') }}</a></li>
-            <li><a href="{{ firefox_url('desktop', 'notes', 'alpha') }}">{{ _('Release notes') }}</a></li>
-            <li><a href="https://developer.mozilla.org/docs/Mozilla/Developer_guide/Source_Code">{{ _('Source code') }}</a></li>
+            <li><a href="{{ firefox_url('desktop', 'sysreq', 'alpha') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+            <li><a href="{{ firefox_url('desktop', 'notes', 'alpha') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
+            <li><a href="https://developer.mozilla.org/docs/Mozilla/Developer_guide/Source_Code">{{ ftl('firefox-all-source-code') }}</a></li>
           </ul>
           {{ build_locale_list('desktop_developer', desktop_developer_channel_label, desktop_developer_platforms, desktop_developer_full_builds, 'alpha') }}
         </section>
 
         <section id="firefox-desktop-nightly" class="c-all-downloads-build">
-          <h2 class="c-product-heading">Firefox <span>Nightly</span></h2>
+          <h2 class="c-product-heading">{{ ftl('firefox-all-product-firefox-nightly') }}</h2>
           <ul>
-            <li><a href="{{ firefox_url('desktop', 'sysreq', 'nightly') }}">{{ _('Check the system requirements') }}</a></li>
-            <li><a href="{{ firefox_url('desktop', 'notes', 'nightly') }}">{{ _('Release notes') }}</a></li>
-            <li><a href="https://developer.mozilla.org/docs/Mozilla/Developer_guide/Source_Code">{{ _('Source code') }}</a></li>
+            <li><a href="{{ firefox_url('desktop', 'sysreq', 'nightly') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+            <li><a href="{{ firefox_url('desktop', 'notes', 'nightly') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
+            <li><a href="https://developer.mozilla.org/docs/Mozilla/Developer_guide/Source_Code">{{ ftl('firefox-all-source-code') }}</a></li>
           </ul>
           {{ build_locale_list('desktop_nightly', desktop_nightly_channel_label, desktop_nightly_platforms, desktop_nightly_full_builds, 'nightly') }}
         </section>
 
         <section id="firefox-desktop-esr" class="c-all-downloads-build">
-          <h2 class="c-product-heading">Firefox <span>Extended Support Release</span></h2>
+          <h2 class="c-product-heading">{{ ftl('firefox-all-product-firefox-esr') }}</h2>
           <ul>
-            <li><a href="{{ firefox_url('desktop', 'sysreq', 'organizations') }}">{{ _('Check the system requirements') }}</a></li>
-            <li><a href="{{ firefox_url('desktop', 'notes', 'organizations') }}">{{ _('Release notes') }}</a></li>
-            <li><a href="https://developer.mozilla.org/docs/Mozilla/Developer_guide/Source_Code">{{ _('Source code') }}</a></li>
+            <li><a href="{{ firefox_url('desktop', 'sysreq', 'organizations') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+            <li><a href="{{ firefox_url('desktop', 'notes', 'organizations') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
+            <li><a href="https://developer.mozilla.org/docs/Mozilla/Developer_guide/Source_Code">{{ ftl('firefox-all-source-code') }}</a></li>
           </ul>
 
           {% if desktop_esr_next_version %}
@@ -239,28 +232,28 @@
         </section>
 
         <section id="firefox-android-release" class="c-all-downloads-build">
-          <h2 class="c-product-heading">Firefox Android</h2>
+          <h2 class="c-product-heading">{{ ftl('firefox-all-product-firefox-android') }}</h2>
           <ul>
-            <li><a href="{{ firefox_url('android', 'sysreq', 'release') }}">{{ _('Check the system requirements') }}</a></li>
-            <li><a href="{{ firefox_url('android', 'notes', 'release') }}">{{ _('Release notes') }}</a></li>
+            <li><a href="{{ firefox_url('android', 'sysreq', 'release') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+            <li><a href="{{ firefox_url('android', 'notes', 'release') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
           </ul>
           {{ build_locale_list('android_release', android_release_channel_label, android_release_platforms, android_release_full_builds, 'release') }}
         </section>
 
         <section id="firefox-android-beta" class="c-all-downloads-build">
-          <h2 class="c-product-heading">Firefox Android <span>Beta</span></h2>
+          <h2 class="c-product-heading">{{ ftl('firefox-all-product-firefox-android-beta') }}</h2>
           <ul>
-            <li><a href="{{ firefox_url('android', 'sysreq', 'beta') }}">{{ _('Check the system requirements') }}</a></li>
-            <li><a href="{{ firefox_url('android', 'notes', 'beta') }}">{{ _('Release notes') }}</a></li>
+            <li><a href="{{ firefox_url('android', 'sysreq', 'beta') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+            <li><a href="{{ firefox_url('android', 'notes', 'beta') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
           </ul>
           {{ build_locale_list('android_beta', android_beta_channel_label, android_beta_platforms, android_beta_full_builds, 'beta') }}
         </section>
 
         <section id="firefox-android-nightly" class="c-all-downloads-build">
-          <h2 class="c-product-heading">Firefox Android <span>Nightly</span></h2>
+          <h2 class="c-product-heading">{{ ftl('firefox-all-product-firefox-android-nightly') }}</h2>
           <ul>
-            <li><a href="{{ firefox_url('android', 'sysreq', 'nightly') }}">{{ _('Check the system requirements') }}</a></li>
-            <li><a href="{{ firefox_url('android', 'notes', 'nightly') }}">{{ _('Release notes') }}</a></li>
+            <li><a href="{{ firefox_url('android', 'sysreq', 'nightly') }}">{{ ftl('firefox-all-check-the-system-requirements') }}</a></li>
+            <li><a href="{{ firefox_url('android', 'notes', 'nightly') }}">{{ ftl('firefox-all-release-notes') }}</a></li>
           </ul>
           {{ build_locale_list('android_nightly', android_nightly_channel_label, android_nightly_platforms, android_nightly_full_builds, 'nightly') }}
         </section>
@@ -273,23 +266,23 @@
   <ul>
     <li>
       <h2 class="c-help-title"><a href="{{ url('firefox.new') }}">Firefox</a></h2>
-      <p class="c-help-desc">{{ _('The standard Firefox browser — fast and private. If you’re not sure which Firefox to choose, choose this.') }}</p>
+      <p class="c-help-desc">{{ ftl('firefox-all-the-standard-firefox') }}</p>
     </li>
     <li>
       <h2 class="c-help-title"><a href="{{ url('firefox.channel.desktop') }}#beta">Firefox <span>Beta</span></a></h2>
-      <p class="c-help-desc">{{ _('Get a sneak peek at the latest Firefox browser features before they’re released.') }}</p>
+      <p class="c-help-desc">{{ ftl('firefox-all-get-a-sneak-peek-at') }}</p>
     </li>
     <li>
       <h2 class="c-help-title"><a href="{{ url('firefox.developer.index') }}">Firefox <span>Developer Edition</span></a></h2>
-      <p class="c-help-desc">{{ _('Test your sites against soon-to-be-released Firefox browser features with powerful, flexible DevTools that are on by default.') }}</p>
+      <p class="c-help-desc">{{ ftl('firefox-all-test-your-sites-against') }}</p>
     </li>
     <li>
       <h2 class="c-help-title"><a href="{{ url('firefox.channel.desktop') }}#nightly">Firefox <span>Nightly</span></a></h2>
-      <p class="c-help-desc">{{ _('The pre-alpha version for power users who like to hunt crashes and test new features as they’re coded.') }}</p>
+      <p class="c-help-desc">{{ ftl('firefox-all-the-pre-alpha-version') }}</p>
     </li>
     <li>
       <h2 class="c-help-title"><a href="{{ url('firefox.enterprise.index') }}">Firefox <span>Extended Support Release</span></a></h2>
-      <p class="c-help-desc">{{ _('Count on stability and ease of use with this Firefox browser built for enterprise.') }}</p>
+      <p class="c-help-desc">{{ ftl('firefox-all-count-on-stability-and') }}</p>
     </li>
   </ul>
 </div>
@@ -297,30 +290,21 @@
 <div id="installer-help" class="c-help mzp-u-modal-content">
   <ul>
     <li>
-      <h2 class="c-help-title">{{ _('64-bit installers') }}</h2>
+      <h2 class="c-help-title">{{ ftl('firefox-all-64-bit-installers') }}</h2>
       <p class="c-help-desc">
-        {% trans %}
-          Choose a 64-bit installer for computers with 64-bit processors, which allow them to allocate more RAM
-          to individual programs — particularly important for games and other demanding applications.
-        {% endtrans %}
+        {{ ftl('firefox-all-choose-a-64-bit-installer') }}
       </p>
     </li>
     <li>
-      <h2 class="c-help-title">{{ _('32-bit installers') }}</h2>
+      <h2 class="c-help-title">{{ ftl('firefox-all-32-bit-installers') }}</h2>
       <p class="c-help-desc">
-        {% trans url='https://support.mozilla.org/kb/choosing-firefox-cpu-architecture-windows-os' %}
-          Choose a 32-bit installer for computers with 32-bit processors — or for older or less powerful computers.
-          <a href="{{ url }}">If you aren’t sure</a> whether to choose a 64-bit or 32-bit installer, we recommend
-          you go with 32-bit.
-        {% endtrans %}
+        {{ ftl('firefox-all-choose-a-32-bit-installer', url='https://support.mozilla.org/kb/choosing-firefox-cpu-architecture-windows-os') }}
       </p>
     </li>
     <li>
-      <h2 class="c-help-title">{{ _('MSI installers') }}</h2>
+      <h2 class="c-help-title">{{ ftl('firefox-all-msi-installers') }}</h2>
       <p class="c-help-desc">
-        {% trans %}
-          Windows installers for corporate IT that simplify the configuration, deployment and management of the Firefox Browser.
-        {% endtrans %}
+        {{ ftl('firefox-all-windows-installers-for') }}
       </p>
     </li>
   </ul>
