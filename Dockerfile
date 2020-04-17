@@ -102,9 +102,6 @@ ARG BRANCH_NAME=master
 ENV GIT_SHA=${GIT_SHA}
 ENV BRANCH_NAME=${BRANCH_NAME}
 
-# get fresh database
-RUN ./bin/run-db-download.py --force
-
 # rely on build args
 RUN bin/run-sync-all.sh
 
