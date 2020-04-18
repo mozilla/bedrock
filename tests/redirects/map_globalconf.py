@@ -136,8 +136,8 @@ URLS = flatten((
     # bug 927442
     url_test('{/firefox,}/community/', '/contribute/'),
 
-    # bug 925551
-    url_test('/plugincheck/more_info.html', '/plugincheck/'),
+    # bug 925551, issue 8374
+    url_test('/plugincheck/more_info.html', 'https://support.mozilla.org/kb/npapi-plugins/'),
 
     # bug 854561, Issue 7448
     url_test('/projects/mozilla-based{.html,/}', 'https://developer.mozilla.org/docs/Archive/List_of_Mozilla-Based_Applications'),
@@ -1352,4 +1352,7 @@ URLS = flatten((
     url_test('/firefox/browsers/compare/ie/', '/firefox/', status_code=requests.codes.found),
     url_test('/firefox/browsers/compare/opera/', '/firefox/', status_code=requests.codes.found),
     url_test('/firefox/browsers/compare/safari/', '/firefox/', status_code=requests.codes.found),
+
+    # Issue 8374
+    url_test('/plugincheck/', 'https://support.mozilla.org/kb/npapi-plugins/'),
 ))

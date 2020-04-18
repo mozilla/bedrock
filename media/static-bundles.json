@@ -609,12 +609,6 @@
     },
     {
       "files": [
-        "css/plugincheck/plugincheck.scss"
-      ],
-      "name": "plugincheck"
-    },
-    {
-      "files": [
         "css/mozorg/leadership.scss"
       ],
       "name": "about-leadership"
@@ -1191,12 +1185,6 @@
         "js/firefox/all/all-downloads-unified-init.js"
       ],
       "name": "firefox_all_unified"
-    },
-    {
-      "files": [
-        "js/plugincheck/plugincheck.js"
-      ],
-      "name": "plugincheck"
     },
     {
       "files": [

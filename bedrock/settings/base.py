@@ -520,7 +520,6 @@ INSTALLED_APPS = (
 # VaryNoCacheMiddleware is enabled. The home
 # page is exempt by default.
 VARY_NOCACHE_EXEMPT_URL_PREFIXES = (
-    '/plugincheck/',
     '/firefox/',
     '/contribute/',
     '/about/',
