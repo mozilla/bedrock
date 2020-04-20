@@ -129,6 +129,13 @@
     },
     {
       "files": [
+        "css/firefox/new/trailhead/thanks.scss",
+        "css/firefox/new/trailhead/thanks-b.scss"
+      ],
+      "name": "firefox_new_thanks_b"
+    },
+    {
+      "files": [
         "css/firefox/new/quantum/yandex-scene1.scss"
       ],
       "name": "firefox_new_scene1_yandex"
