@@ -14,6 +14,7 @@ class FirefoxWhatsNew76Page(FirefoxBasePage):
     _facebook_container_picto_block_locator = (By.CSS_SELECTOR, '.c-picto-block.facebook-container')
     _column_2_locator = (By.CSS_SELECTOR, '.columns.l-columns-two')
     _column_3_locator = (By.CSS_SELECTOR, '.columns.l-columns-three')
+    _cta_button_locator = (By.CSS_SELECTOR, '.mzp-c-button.mzp-t-product.mzp-t-small.protection-report')
 
     @property
     def is_facebook_container_picto_block_displayed(self):
@@ -26,3 +27,7 @@ class FirefoxWhatsNew76Page(FirefoxBasePage):
     @property
     def are_two_columns_displayed(self):
         return self.is_element_displayed(*self._column_2_locator)
+
+    @property
+    def is_cta_button_displayed(self):
+        return self.is_element_displayed(*self._cta_button_locator)
