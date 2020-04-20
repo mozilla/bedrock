@@ -2,13 +2,11 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% add_lang_files "firefox/new/trailhead" %}
-
 {% extends "firefox/base/base-protocol.html" %}
 
-{% block page_title_prefix %}{{_('Download Firefox')}} — {% endblock %}
+{% block page_title_prefix %}{{ ftl('firefox-new-download-firefox') }} — {% endblock %}
 
-{%- block page_title -%}{{_('Free Web Browser')}}{%- endblock -%}
+{%- block page_title -%}{{ ftl('firefox-new-free-web-browser') }}{%- endblock -%}
 
 {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
 {%- block page_title_suffix -%}
@@ -21,13 +19,13 @@
   {% endif %}
 {%- endblock -%}
 
-{% block page_desc %}{{_('Download Mozilla Firefox, a free Web browser. Firefox is created by a global non-profit dedicated to putting individuals in control online. Get Firefox for Windows, macOS, Linux, Android and iOS today!')}}{% endblock %}
+{% block page_desc %}{{ ftl('firefox-new-download-mozilla-firefox') }}{% endblock %}
 
 {#- This will appear as <meta property="og:title"> which can be used for social share -#}
-{% block page_og_title %}{{_('Download the fastest Firefox ever')}}{% endblock %}
+{% block page_og_title %}{{ ftl('firefox-new-download-the-fastest-firefox') }}{% endblock %}
 
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
-{% block page_og_desc %}{{_('Faster page loading, less memory usage and packed with features, the new Firefox is here.')}}{% endblock %}
+{% block page_og_desc %}{{ ftl('firefox-new-faster-page-loading-less-memory') }}{% endblock %}
 
 {# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
 {% block extrahead %}
