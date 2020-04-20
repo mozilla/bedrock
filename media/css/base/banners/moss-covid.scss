@@ -15,10 +15,10 @@ $image-path: '/media/protocol/img';
 }
 
 .c-banner-title {
-    @include text-display-md;
+    @include text-title-md;
 }
 
 .c-banner-content {
-    @include text-display-xs;
+    @include text-title-xs;
     @include font-mozilla;
 }

@@ -16,7 +16,7 @@ main {
 
     h1 {
         @include at2x('/media/protocol/img/logos/firefox/browser/logo-sm.png', 64px, 64px);
-        @include text-display-md;
+        @include text-title-md;
         background-position: top center;
         background-repeat: no-repeat;
         padding-top: 64px + $spacing-lg;

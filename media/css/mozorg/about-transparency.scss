@@ -11,7 +11,7 @@
 
 dt {
     @include font-mozilla;
-    @include text-display-xs;
+    @include text-title-xs;
     font-weight: bold;
     margin-top: $spacing-sm;
 }
@@ -73,12 +73,12 @@ dd {
 
 .c-page-header {
     @include font-mozilla;
-    @include text-display-xs;
+    @include text-title-xs;
     background: $color-black;
     color: $color-white;
 
     span {
-        @include text-display-xs;
+        @include text-title-xs;
         display: block;
         margin-top: $spacing-md;
     }
@@ -90,13 +90,13 @@ dd {
 
 h2 {
     @include font-mozilla;
-    @include text-display-md;
+    @include text-title-md;
     margin-top: $spacing-2xl;
 }
 
 h3 {
     @include font-mozilla;
-    @include text-display-sm;
+    @include text-title-sm;
     margin-top: $spacing-2xl;
 }
 
@@ -110,7 +110,7 @@ h3 {
   .c-collapsible-section button {
     @include font-mozilla;
     @include summary;
-    @include text-display-md;
+    @include text-title-md;
     background: transparent;
     border: none;
     cursor: pointer;

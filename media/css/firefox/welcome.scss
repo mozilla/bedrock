@@ -72,7 +72,7 @@ $image-path: '/media/protocol/img';
 }
 
 .mzp-c-hero-title {
-    @include text-display-lg;
+    @include text-title-lg;
     margin-bottom: $layout-sm;
 
     .welcome-page1 &,
@@ -80,7 +80,7 @@ $image-path: '/media/protocol/img';
     .welcome-page5 &,
     .welcome-page6 &,
     .welcome-page7 & {
-        @include text-display-md;
+        @include text-title-md;
     }
 
     .welcome-page4 & {
@@ -109,7 +109,7 @@ $image-path: '/media/protocol/img';
     }
 
     .primary-image-desc {
-        @include text-display-xxs;
+        @include text-title-xxs;
         font-style: italic;
         margin: $layout-sm 0 $layout-xl 0;
     }
@@ -130,7 +130,7 @@ $image-path: '/media/protocol/img';
     padding: 0 $layout-md;
 
     .c-picto-block-title {
-        @include text-display-xs;
+        @include text-title-xs;
     }
 
     .c-picto-block-image {
@@ -219,7 +219,7 @@ $image-path: '/media/protocol/img';
     }
 
     .modal-title {
-        @include text-display-sm;
+        @include text-title-sm;
         margin-top: $spacing-xl;
     }
 }
@@ -263,7 +263,7 @@ $image-path: '/media/protocol/img';
     padding: 0;
 
     .modal-title {
-        @include text-display-md;
+        @include text-title-md;
         color: $color-ink-80;
         margin-bottom: 0;
 

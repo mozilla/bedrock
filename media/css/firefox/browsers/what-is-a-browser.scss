@@ -13,11 +13,11 @@ $image-path: '/media/protocol/img';
     margin: 0 auto $layout-lg;
 
     .mzp-c-article-title {
-        @include text-display-lg;
+        @include text-title-lg;
     }
 
     .c-section-title {
-        @include text-display-sm;
+        @include text-title-sm;
         margin-top: $layout-md;
     }
 

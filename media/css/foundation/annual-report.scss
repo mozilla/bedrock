@@ -181,7 +181,7 @@
 
     p {
         @include font-mozilla;
-        @include text-display-sm;
+        @include text-title-sm;
         font-style: italic;
         margin-bottom: 0;
     }
@@ -193,11 +193,11 @@
 
     .c-copy-wrapper {
         h2 {
-            @include text-display-sm;
+            @include text-title-sm;
         }
 
         h3 {
-            @include text-display-xs;
+            @include text-title-xs;
         }
 
         img {

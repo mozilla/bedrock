@@ -41,7 +41,7 @@ html {
     margin-bottom: $layout-md;
 
     .enterprise-section-title {
-        @include text-display-md;
+        @include text-title-md;
         margin: 0 auto $layout-xs;
         max-width: 18em;
         text-align: center;
@@ -93,7 +93,7 @@ html {
 
    &.mzp-t-product-firefox .mzp-c-hero-title {
        @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', auto, 48px);
-       @include text-display-xl;
+       @include text-title-xl;
        padding-top: $layout-lg + 48px;
    }
 
@@ -254,7 +254,7 @@ html {
         (padding-left, $layout-lg, 0),
         (padding-right, 0, $layout-lg),
     ));
-    @include text-display-sm;
+    @include text-title-sm;
     margin-bottom: $spacing-lg;
     min-height: 48px;
     position: relative;
@@ -294,7 +294,7 @@ html {
 }
 
 .enterprise-download-subtitle {
-    @include text-display-xxs;
+    @include text-title-xxs;
 }
 
 

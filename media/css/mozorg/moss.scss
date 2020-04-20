@@ -22,7 +22,7 @@ $image-path: '/media/protocol/img';
 // Sections & headings
 
 .moss-section-heading {
-    @include text-display-md;
+    @include text-title-md;
     margin-bottom: $spacing-xl;
 
     @media #{$mq-md} {
@@ -31,7 +31,7 @@ $image-path: '/media/protocol/img';
 }
 
 .moss-section-subhead {
-    @include text-display-sm;
+    @include text-title-sm;
 
     @media #{$mq-md} {
         text-align: center;
@@ -68,7 +68,7 @@ $image-path: '/media/protocol/img';
     }
 
     .page-heading {
-        @include text-display-md;
+        @include text-title-md;
         text-align: center;
         margin-bottom: 0;
     }

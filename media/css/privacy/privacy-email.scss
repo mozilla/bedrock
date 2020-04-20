@@ -9,7 +9,7 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/article';
 
 .mzp-c-article-title {
-    @include text-display-md;
+    @include text-title-md;
 }
 
 @media #{$mq-md} {

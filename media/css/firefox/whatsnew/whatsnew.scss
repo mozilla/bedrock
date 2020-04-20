@@ -21,7 +21,7 @@ $image-path: '/media/protocol/img';
     text-align: center;
 
     .main-title {
-        @include text-display-md;
+        @include text-title-md;
 
         br {
             display: none;
@@ -29,7 +29,7 @@ $image-path: '/media/protocol/img';
     }
 
     .main-tagline {
-        @include text-display-sm;
+        @include text-title-sm;
     }
 
     header {

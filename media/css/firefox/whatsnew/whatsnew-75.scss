@@ -60,11 +60,11 @@ $image-path: '/media/protocol/img';
     }
 
     .c-emphasis-box-title {
-        @include text-display-sm;
+        @include text-title-sm;
     }
 
     .c-emphasis-box-tagline {
-        @include text-display-xs;
+        @include text-title-xs;
     }
 
     .cta {
@@ -123,7 +123,7 @@ $image-path: '/media/protocol/img';
     padding: 0 $layout-md;
 
     .c-picto-block-title {
-        @include text-display-xs;
+        @include text-title-xs;
     }
 
     .c-picto-block-image {

@@ -73,7 +73,7 @@ main {
         }
 
         p {
-            @include text-display-sm;
+            @include text-title-sm;
             max-width: 800px;
         }
     }
@@ -93,7 +93,7 @@ main {
             width: 100%;
 
             h2 {
-                @include text-display-xs;
+                @include text-title-xs;
                 color: $color-black;
             }
 

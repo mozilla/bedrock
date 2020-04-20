@@ -32,7 +32,7 @@ $image-path: '/media/protocol/img';
 }
 
 .contribute-section-subheading {
-    @include text-display-xs;
+    @include text-title-xs;
 }
 
 .contribute-section-lead-in {
@@ -53,7 +53,7 @@ $image-path: '/media/protocol/img';
         text-align: center;
 
         strong {
-            @include text-display-md;
+            @include text-title-md;
             display: block;
         }
     }

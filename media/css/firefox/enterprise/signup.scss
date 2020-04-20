@@ -10,7 +10,7 @@ $image-path: '/media/protocol/img';
 
 .enterprise-head {
     @include clearfix;
-    @include text-display-xs;
+    @include text-title-xs;
     background-color: $color-ink-80;
     color: #fff;
 }
@@ -30,7 +30,7 @@ $image-path: '/media/protocol/img';
     margin-bottom: 60px;
 
     h1 {
-        @include text-display-md;
+        @include text-title-md;
         margin-bottom: 20px;
     }
 
@@ -114,10 +114,10 @@ $image-path: '/media/protocol/img';
 }
 
 h1.thanks-head {
-    @include text-display-md;
+    @include text-title-md;
     margin-bottom: 60px;
 }
 
 h2.thanks-subhead {
-    @include text-display-sm;
+    @include text-title-sm;
 }

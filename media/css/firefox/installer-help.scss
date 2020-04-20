@@ -10,11 +10,11 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/emphasis-box';
 
 .installer-help-title {
-    @include text-display-md;
+    @include text-title-md;
 }
 
 .installer-help-subtitle {
-    @include text-display-xs;
+    @include text-title-xs;
     font-weight: normal;
 }
 
@@ -24,7 +24,7 @@ $image-path: '/media/protocol/img';
 }
 
 .installer-help-emphasis-title {
-    @include text-display-xs;
+    @include text-title-xs;
 }
 
 .installer-help-emphasis-tagline {
