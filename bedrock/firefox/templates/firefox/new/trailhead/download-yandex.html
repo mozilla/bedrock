@@ -5,8 +5,6 @@
 {% from "macros.html" import google_play_button with context %}
 {% from "macros-protocol.html" import call_out_compact, hero, picto_card with context %}
 
-{% add_lang_files "firefox/new/trailhead" %}
-
 {% extends "firefox/new/trailhead/download.html" %}
 
 {% block extrahead %}
@@ -43,7 +41,7 @@
     </ul>
   </section>
   {% call call_out_compact(
-    title=_('Get the latest Firefox browser.'),
+    title='Загрузите последнюю версию браузера Firefox.',
     class='mzp-t-product-firefox mzp-t-firefox callout-yandex')
   %}
     {{ download_firefox(alt_copy='Скачать Firefox без яндекса', dom_id='download-secondary', locale_in_transition=True, download_location='secondary cta') }}

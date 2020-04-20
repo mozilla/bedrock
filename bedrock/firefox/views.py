@@ -633,83 +633,101 @@ class WhatsNewIndiaView(WhatsnewView):
         return template
 
 
-def download_thanks(request):
-    locale = l10n_utils.get_locale(request)
-    variant = request.GET.get('v', None)
-    newsletter = request.GET.get('n', None)
-    show_newsletter = locale in [
-        'en-US',
-        'en-GB',
-        'en-CA',
-        'es-ES',
-        'es-AR',
-        'es-CL',
-        'es-MX',
-        'pt-BR',
-        'fr',
-        'ru',
-        'id',
-        'de',
-        'pl',
-    ]
+class DownloadThanksView(L10nTemplateView):
+    ftl_files_map = {
+        'firefox/new/trailhead/thanks.html': ['firefox/new/download'],
+        'firefox/new/trailhead/thanks-b.html': ['firefox/new/download'],
+    }
 
-    # ensure variant matches pre-defined value
-    if variant not in ['b']:  # place expected ?v= values in this list
-        variant = None
+    # place expected ?v= values in this list
+    variations = []
 
-    # check to see if a URL explicitly asks to hide the newsletter
-    if newsletter == 'f':
-        show_newsletter = False
+    def get_context_data(self, **kwargs):
+        ctx = super(DownloadThanksView, self).get_context_data(**kwargs)
+        variant = self.request.GET.get('v', None)
 
-    if lang_file_is_active('firefox/new/trailhead', locale):
-        template = 'firefox/new/trailhead/thanks.html'
-    else:
-        template = 'firefox/new/protocol/thanks.html'
+        # ensure variant matches pre-defined value
+        if variant not in self.variations:
+            variant = None
 
-    return l10n_utils.render(request, template, {'show_newsletter': show_newsletter})
+        ctx['variant'] = variant
+
+        return ctx
+
+    def get_template_names(self):
+        variant = self.request.GET.get('v', None)
+
+        # ensure variant matches pre-defined value
+        if variant not in self.variations:
+            variant = None
+
+        if ftl_file_is_active('firefox/new/download'):
+            template = 'firefox/new/trailhead/thanks.html'
+        else:
+            template = 'firefox/new/protocol/thanks.html'
+
+        return [template]
 
 
-def new(request):
-    # Remove legacy query parameters (Bug 1236791)
-    if request.GET.get('product', None) or request.GET.get('os', None):
-        return HttpResponsePermanentRedirect(reverse('firefox.new'))
+class NewView(L10nTemplateView):
+    ftl_files_map = {
+        'firefox/new/trailhead/download.html': ['firefox/new/download'],
+        'firefox/new/trailhead/download-yandex.html': ['firefox/new/download'],
+    }
 
-    scene = request.GET.get('scene', None)
+    # place expected ?v= values in this list
+    variations = ['a', 'b']
 
-    # note: v and xv params only allow a-z, A-Z, 0-9, -, and _ characters
-    experience = request.GET.get('xv', None)
-    variant = request.GET.get('v', None)
+    def get(self, *args, **kwargs):
+        # Remove legacy query parameters (Bug 1236791)
+        if self.request.GET.get('product', None) or self.request.GET.get('os', None):
+            return HttpResponsePermanentRedirect(reverse('firefox.new'))
 
-    locale = l10n_utils.get_locale(request)
+        scene = self.request.GET.get('scene', None)
+        if scene == '2':
+            # send to new permanent scene2 URL (bug 1438302)
+            thanks_url = reverse('firefox.download.thanks')
+            query_string = self.request.META.get('QUERY_STRING', '')
+            if query_string:
+                thanks_url = '?'.join(
+                    [thanks_url, force_text(query_string, errors='ignore')]
+                )
+            return HttpResponsePermanentRedirect(thanks_url)
 
-    # ensure variant matches pre-defined value
+        return super(NewView, self).get(*args, **kwargs)
 
-    if variant not in ['a', 'b']:  # place expected ?v= values in this list
-        variant = None
+    def get_context_data(self, **kwargs):
+        ctx = super(NewView, self).get_context_data(**kwargs)
 
-    if scene == '2':
-        # send to new permanent scene2 URL (bug 1438302)
-        thanks_url = reverse('firefox.download.thanks')
-        query_string = request.META.get('QUERY_STRING', '')
-        if query_string:
-            thanks_url = '?'.join(
-                [thanks_url, force_text(query_string, errors='ignore')]
-            )
-        return HttpResponsePermanentRedirect(thanks_url)
-    # if no/incorrect scene specified, show scene 1
-    else:
+        # note: v and xv params only allow a-z, A-Z, 0-9, -, and _ characters
+        experience = self.request.GET.get('xv', None)
+        variant = self.request.GET.get('v', None)
+
+        # ensure variant matches pre-defined value
+        if variant not in self.variations:
+            variant = None
+
+        ctx['experience'] = experience
+        ctx['variant'] = variant
+
+        return ctx
+
+    def get_template_names(self):
+        locale = l10n_utils.get_locale(self.request)
+        variant = self.request.GET.get('v', None)
+
+        # ensure variant matches pre-defined value
+        if variant not in self.variations:
+            variant = None
+
         if locale == 'ru' and switch('firefox-yandex'):
             template = 'firefox/new/trailhead/download-yandex.html'
-        elif lang_file_is_active('firefox/new/trailhead', locale):
+        elif ftl_file_is_active('firefox/new/download'):
             template = 'firefox/new/trailhead/download.html'
         else:
             template = 'firefox/new/protocol/download.html'
 
-    # no harm done by passing 'v' to template, even when no experiment is running
-    # (also makes tests easier to maintain by always sending a context)
-    return l10n_utils.render(
-        request, template, {'experience': experience, 'v': variant}
-    )
+        return [template]
 
 
 def ios_testflight(request):

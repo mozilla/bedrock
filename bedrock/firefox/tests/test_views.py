@@ -634,42 +634,47 @@ class TestSendToDeviceView(TestCase):
 @override_settings(DEV=False)
 @patch('bedrock.firefox.views.l10n_utils.render')
 class TestFirefoxNew(TestCase):
-    @patch.object(views, 'lang_file_is_active', lambda *x: True)
+    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
     def test_download_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'en-US'
-        views.new(req)
-        render_mock.assert_called_once_with(
-            req, 'firefox/new/trailhead/download.html', ANY
-        )
+        view = views.NewView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/new/trailhead/download.html']
 
-    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    @patch.object(views, 'ftl_file_is_active', lambda *x: False)
     def test_download_old_template(self, render_mock):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'de'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/protocol/download.html', ANY)
+        view = views.NewView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/new/protocol/download.html']
 
-    @patch.object(views, 'lang_file_is_active', lambda *x: True)
+    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
     def test_thanks_template(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/')
         req.locale = 'en-US'
-        views.download_thanks(req)
-        render_mock.assert_called_once_with(
-            req, 'firefox/new/trailhead/thanks.html', ANY
-        )
+        view = views.DownloadThanksView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/new/trailhead/thanks.html']
 
-    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    @patch.object(views, 'ftl_file_is_active', lambda *x: False)
     def test_thanks_old_template(self, render_mock):
         req = RequestFactory().get('/firefox/download/thanks/')
         req.locale = 'de'
-        views.download_thanks(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/protocol/thanks.html', ANY)
+        view = views.DownloadThanksView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/new/protocol/thanks.html']
 
     def test_thanks_redirect(self, render_mock):
         req = RequestFactory().get('/firefox/new/?scene=2&dude=abides')
         req.locale = 'en-US'
-        resp = views.new(req)
+        view = views.NewView.as_view()
+        resp = view(req)
         assert resp.status_code == 301
         assert resp['location'].endswith(
             '/firefox/download/thanks/?scene=2&dude=abides'
@@ -681,18 +686,20 @@ class TestFirefoxNew(TestCase):
     def test_yandex_scene_1(self, render_mock):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'ru'
-        views.new(req)
-        render_mock.assert_called_once_with(req, 'firefox/new/trailhead/download-yandex.html', ANY)
+        view = views.NewView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/new/trailhead/download-yandex.html']
 
     @patch.dict(os.environ, SWITCH_FIREFOX_YANDEX='False')
-    @patch.object(views, 'lang_file_is_active', lambda *x: True)
+    @patch.object(views, 'ftl_file_is_active', lambda *x: True)
     def test_yandex_scene_1_switch_off(self, render_mock):
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'ru'
-        views.new(req)
-        render_mock.assert_called_once_with(
-            req, 'firefox/new/trailhead/download.html', ANY
-        )
+        view = views.NewView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/new/trailhead/download.html']
 
 
 class TestFirefoxNewNoIndex(TestCase):
@@ -700,7 +707,8 @@ class TestFirefoxNewNoIndex(TestCase):
         # Scene 1 of /firefox/new/ should never contain a noindex tag.
         req = RequestFactory().get('/firefox/new/')
         req.locale = 'en-US'
-        response = views.new(req)
+        view = views.NewView.as_view()
+        response = view(req)
         doc = pq(response.content)
         robots = doc('meta[name="robots"]')
         assert robots.length == 0
@@ -709,7 +717,8 @@ class TestFirefoxNewNoIndex(TestCase):
         # Scene 2 /firefox/download/thanks/ should always contain a noindex tag.
         req = RequestFactory().get('/firefox/download/thanks/')
         req.locale = 'en-US'
-        response = views.download_thanks(req)
+        view = views.DownloadThanksView.as_view()
+        response = view(req)
         doc = pq(response.content)
         robots = doc('meta[name="robots"]')
         assert robots.length == 1
