@@ -62,15 +62,10 @@ STUB_VALUE_RE = re.compile(r'^[a-z0-9-.%():_]+$', flags=re.IGNORECASE)
 
 
 def installer_help(request):
+    locale = l10n_utils.get_locale(request)
     installer_lang = request.GET.get('installer_lang', None)
     installer_channel = request.GET.get('channel', None)
     context = {'installer_lang': None, 'installer_channel': None}
-    template = 'firefox/installer-help.html'
-    variant = request.GET.get('v', None)
-
-    # ensure variant matches pre-defined value
-    if variant not in ['a', 'b']:  # place expected ?v= values in this list
-        variant = None
 
     if installer_lang and installer_lang in firefox_desktop.languages:
         context['installer_lang'] = installer_lang
@@ -81,8 +76,10 @@ def installer_help(request):
         else:
             context['installer_channel'] = installer_channel
 
-    if variant == 'b':
-        template = 'firefox/installer-help-b.html'
+    if lang_file_is_active('firefox/installer-help-redesign', locale):
+        template = 'firefox/installer-help-redesign.html'
+    else:
+        template = 'firefox/installer-help.html'
 
     return l10n_utils.render(request, template, context)
 
