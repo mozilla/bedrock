@@ -431,6 +431,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-76.scss"
+      ],
+      "name": "firefox_whatsnew_76"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
@@ -874,6 +880,14 @@
         "js/firefox/whatsnew/whatsnew-75.js"
       ],
       "name": "firefox_whatsnew_75"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/firefox/whatsnew/whatsnew-76.js"
+      ],
+      "name": "firefox_whatsnew_76"
     },
     {
       "files": [
