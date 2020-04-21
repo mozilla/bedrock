@@ -14,9 +14,6 @@
 
 {% block site_header %}{% endblock %}
 
-{% set _entrypoint = 'mozilla.org-whatsnew-76' %}
-{% set _utm_campaign = 'whatsnew-76' %}
-
 {% block content %}
 <main class="content-wrapper mzp-t-firefox mzp-t-dark">
   <header class="c-page-header">
@@ -88,7 +85,7 @@
                 {{ _('Stay connected to the people you can’t be with in real life, and stop Facebook from following you online.') }}
               </p>
               <br>
-              <a href="https://addons.mozilla.org/en-US/firefox/addon/facebook-container/?{{ utm_params }}" class="picto-link">{{ _('Add Facebook Container') }}</a>
+              <a href="https://addons.mozilla.org/firefox/addon/facebook-container/?{{ utm_params }}" class="picto-link">{{ _('Add Facebook Container') }}</a>
             </div>
           </div>
         {% endif %}
