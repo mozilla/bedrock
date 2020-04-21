@@ -160,11 +160,23 @@ html.ios .mzp-c-hero {
     width: 96px;
 }
 
+.trailhead-join .mzp-c-card-picto-content::before {
+    background-image: url('/media/img/firefox/new/trailhead/icon-join.svg');
+}
+
+.trailhead-lockwise .mzp-c-card-picto-content::before {
+    background-image: url('/media/img/firefox/new/trailhead/icon-lockwise.svg');
+}
+
+.trailhead-private .mzp-c-card-picto-content::before {
+    background-image: url('/media/img/firefox/new/trailhead/icon-private.svg');
+}
+
 .blocker .mzp-c-card-picto-content::before {
     background-image: url('/media/img/firefox/new/protocol/icon-blocker.svg');
- }
+}
 
- .faster .mzp-c-card-picto-content::before {
+.faster .mzp-c-card-picto-content::before {
     background-image: url('/media/img/firefox/new/protocol/icon-faster.svg');
 }
 

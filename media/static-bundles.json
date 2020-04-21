@@ -136,9 +136,9 @@
     },
     {
       "files": [
-        "css/firefox/new/quantum/yandex-scene1.scss"
+        "css/firefox/new/trailhead/download-yandex.scss"
       ],
-      "name": "firefox_new_scene1_yandex"
+      "name": "firefox_new_download_yandex"
     },
     {
       "files": [
@@ -934,7 +934,7 @@
         "js/firefox/new/yandex/scene1.js",
         "js/firefox/new/yandex/scene1-init.js"
       ],
-      "name": "firefox_new_scene1_yandex"
+      "name": "firefox_new_download_yandex"
     },
     {
       "files": [
