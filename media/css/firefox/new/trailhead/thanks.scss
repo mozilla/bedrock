@@ -36,6 +36,10 @@ $image-path: '/media/protocol/img';
             display: block;
         }
     }
+
+    @media #{$mq-sm} {
+        margin: $layout-xs auto 0;
+    }
 }
 
 main {
