@@ -2,7 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% from "macros-protocol.html" import call_out, picto_card with context %}
+{% from "macros-protocol.html" import call_out with context %}
 
 {% add_lang_files "firefox/new/trailhead" %}
 
@@ -90,7 +90,7 @@
     <aside class="sumo-section">
       <h3>{{ _('Complete your install and get the automatically private and wildly fast Firefox.') }}</h3>
       <p>
-        {% trans sumo='https://support.mozilla.org/bm/kb/how-download-and-install-firefox-windows' %}
+        {% trans sumo='https://support.mozilla.org/kb/how-download-and-install-firefox-windows' %}
         If you still need help installing, <a href="{{ sumo }}">read the tutorial in our support section.</a>
         {% endtrans %}
       </p>
