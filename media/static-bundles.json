@@ -62,9 +62,9 @@
     },
     {
       "files": [
-        "css/firefox/installer-help-b.scss"
+        "css/firefox/installer-help-redesign.scss"
       ],
-      "name": "installer_help_b"
+      "name": "installer_help_redesign"
     },
     {
       "files": [
@@ -1428,13 +1428,6 @@
         "js/base/error-pages.js"
       ],
       "name": "page_not_found"
-    },
-    {
-      "files": [
-        "js/libs/mozilla-traffic-cop.js",
-        "js/firefox/installer-help-experiment.js"
-      ],
-      "name": "installer_help_experiment"
     },
     {
       "files": [

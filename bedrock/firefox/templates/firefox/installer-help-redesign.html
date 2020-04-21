@@ -7,11 +7,13 @@
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
+{% add_lang_files "firefox/installer-help-redesign" %}
+
 {% block page_title %}{{ _('Your download was interrupted') }}{% endblock %}
 {% block body_id %}installer-help{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('installer_help_b') }}
+  {{ css_bundle('installer_help_redesign') }}
 {% endblock %}
 
 {% block site_header %}
@@ -52,7 +54,7 @@
     <section class="installer-channel-card mzp-c-card mzp-c-card-extra-small">
       {{ high_res_img(channel_logo, {'alt': 'Firefox Browser', 'width': '347', 'height': '64'}) }}
       <div class="mzp-c-card-content">
-        {{ download_firefox(installer_channel, force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-small', alt_copy=_('Download Now')) }}
+        {{ download_firefox(installer_channel, force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-small', alt_copy=ftl('download-button-download-now')) }}
       </div>
     </section>
   {% else %}
@@ -63,7 +65,7 @@
           <p class="mzp-c-card-desc">
             {{ _('Get the latest. Automatic privacy is here. Download Firefox to block over 2000 trackers.') }}
           </p>
-          {{ download_firefox(force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-secondary mzp-t-small', alt_copy=_('Download Now')) }}
+          {{ download_firefox(force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-secondary mzp-t-small', alt_copy=ftl('download-button-download-now')) }}
         </div>
       </section>
 
@@ -73,7 +75,7 @@
           <p class="mzp-c-card-desc">
             {{ _('Test about-to-be released features in the most stable pre-release build.') }}
           </p>
-          {{ download_firefox('beta', force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-secondary mzp-t-small', alt_copy=_('Download Now')) }}
+          {{ download_firefox('beta', force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-secondary mzp-t-small', alt_copy=ftl('download-button-download-now')) }}
         </div>
       </section>
 
@@ -83,7 +85,7 @@
           <p class="mzp-c-card-desc">
             {{ _('Build, test, scale and more with the only browser built just for developers.') }}
           </p>
-          {{ download_firefox('alpha', platform='desktop', force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-secondary mzp-t-small', alt_copy=_('Download Now')) }}
+          {{ download_firefox('alpha', platform='desktop', force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-secondary mzp-t-small', alt_copy=ftl('download-button-download-now')) }}
         </div>
       </section>
 
@@ -93,7 +95,7 @@
           <p class="mzp-c-card-desc">
             {{ _('Peek at our next generation web browser, and help us make it the best browser it can be.') }}
           </p>
-          {{ download_firefox('nightly', platform='desktop', force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-secondary mzp-t-small', alt_copy=_('Download Now')) }}
+          {{ download_firefox('nightly', platform='desktop', force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-secondary mzp-t-small', alt_copy=ftl('download-button-download-now')) }}
         </div>
       </section>
     </div>
@@ -115,8 +117,3 @@
 
 {% block js %}{% endblock %}
 
-{% block experiments %}
-  {% if switch('installer-help-experiment', ['en-US']) %}
-    {{ js_bundle('installer_help_experiment') }}
-  {% endif %}
-{% endblock %}
