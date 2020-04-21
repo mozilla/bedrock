@@ -827,6 +827,13 @@
     {
       "files": [
         "js/base/uitour-lib.js",
+        "js/firefox/privacy/messaging-experiment.js"
+      ],
+      "name": "firefox_welcome_page8"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-product-button.js",
