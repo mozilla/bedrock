@@ -3,7 +3,7 @@
 set -exo pipefail
 
 # look for skip string in the commit message
-if git log -1 --pretty=%B | grep "\[skip l10n\]"; then
+if echo "$CI_COMMIT_MESSAGE" | grep -F "[skip l10n]"; then
     echo "Skipping Fluent repo pull-request"
     exit 0
 fi
