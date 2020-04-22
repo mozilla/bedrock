@@ -30,7 +30,7 @@ $image-path: '/media/protocol/img';
     color: $color-yellow-30;
 
     h1 {
-        @include text-display-xxl;
+        @include text-title-xxl;
     }
 
     p {
@@ -55,15 +55,15 @@ $image-path: '/media/protocol/img';
     padding-bottom: $layout-2xl;
 
     h1 {
-        @include text-display-xl;
+        @include text-title-xl;
     }
 
     p {
         @include font-firefox;
-        @include text-display-lg;
+        @include text-title-lg;
         color: #fff;
         font-weight: bold;
-        line-height: $text-display-line-height;
+        line-height: $text-title-line-height;
         margin: $layout-lg auto;
     }
 }

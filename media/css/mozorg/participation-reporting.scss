@@ -29,7 +29,7 @@ $image-path: '/media/protocol/img';
 }
 
 .mzp-c-article blockquote {
-    @include text-display-xs;
+    @include text-title-xs;
     line-height: 1.5;
     font-weight: normal;
 }

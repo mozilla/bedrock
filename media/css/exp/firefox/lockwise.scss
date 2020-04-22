@@ -78,7 +78,7 @@ h1 {
 }
 
 .hero-subheading {
-    @include text-display-md;
+    @include text-title-md;
 }
 
 @media #{$mq-sm} {

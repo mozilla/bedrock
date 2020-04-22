@@ -10,7 +10,7 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/newsletter-form';
 
 .manifesto-title {
-    @include text-display-sm;
+    @include text-title-sm;
     margin-top: $spacing-2xl;
 }
 
@@ -19,7 +19,7 @@ Addendum
 ====================================================================== */
 
 .addendum-subtitle {
-    @include text-display-xxl;
+    @include text-title-xxl;
 }
 
 .addendum-list {
@@ -27,7 +27,7 @@ Addendum
 
     li {
         @include font-mozilla;
-        @include text-display-sm;
+        @include text-title-sm;
         padding-bottom: $spacing-2xl;
         padding-top: $spacing-xl;
         position: relative;
@@ -95,7 +95,7 @@ Principles
 }
 
 .principle-number {
-    @include text-display-xs;
+    @include text-title-xs;
     display: block;
     font-weight: bold;
     margin-bottom: $spacing-sm;
@@ -103,7 +103,7 @@ Principles
 
 .principle-header {
     h3 {
-        @include text-display-md;
+        @include text-title-md;
         font-weight: normal;
     }
 
@@ -118,7 +118,7 @@ Principles
     margin-top: $spacing-lg;
 
     h4 {
-        @include text-display-xxs;
+        @include text-title-xxs;
     }
 
     @media #{$mq-md} {

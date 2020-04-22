@@ -14,16 +14,16 @@ $image-path: '/media/protocol/img';
 
 .mzp-c-article {
     h1 {
-        @include text-display-xl;
+        @include text-title-xl;
     }
 
     h2 {
-        @include text-display-sm;
+        @include text-title-sm;
         margin-top: $spacing-lg;
     }
 
     h3 {
-        @include text-display-xs;
+        @include text-title-xs;
     }
 }
 

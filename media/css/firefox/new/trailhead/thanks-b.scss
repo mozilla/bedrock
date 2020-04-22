@@ -16,13 +16,13 @@ $image-path: '/media/protocol/img';
     background: transparent;
 
     .mzp-c-call-out-title {
-        @include text-display-xl;
+        @include text-title-xl;
         max-width: 610px;
         margin: 0 auto;
     }
 
     h2 {
-        @include text-display-sm;
+        @include text-title-sm;
         margin-top: $spacing-md;
         text-align: center;
     }
@@ -37,10 +37,10 @@ $image-path: '/media/protocol/img';
     padding: 0 $layout-md;
 
     .c-picto-block-title {
-        @include text-display-xxs;
+        @include text-title-xxs;
 
         &:before {
-            @include text-display-xxs;
+            @include text-title-xxs;
             background: $color-dark-gray-20;
             border-radius: 50%;
             color: $color-white;
@@ -83,7 +83,7 @@ $image-path: '/media/protocol/img';
     text-align: center;
 
     h3 {
-        @include text-display-xs;
+        @include text-title-xs;
         color: $color-ink-60;
         margin: $spacing-md $spacing-2xl;
     }

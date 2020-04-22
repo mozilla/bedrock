@@ -47,7 +47,7 @@ $image-path: '/media/protocol/img';
 
     @media #{$mq-lg} {
         .mzp-c-card-picto-title {
-            @include text-display-sm;
+            @include text-title-sm;
             margin-bottom: $spacing-xl;
         }
     }

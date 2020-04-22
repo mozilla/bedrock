@@ -232,7 +232,7 @@ html.ios .mzp-c-hero {
     text-align: center;
 
     .other-platforms-title {
-        @include text-display-sm;
+        @include text-title-sm;
         margin-bottom: $spacing-2xl;
     }
 
@@ -363,7 +363,7 @@ html.ios .mzp-c-hero {
     text-align: center;
 
     .join-firefox-title {
-        @include text-display-sm;
+        @include text-title-sm;
     }
 
     .join-firefox-button {

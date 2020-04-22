@@ -14,17 +14,17 @@ $image-path: '/media/protocol/img';
 
 .thanks-hero.mzp-t-product-firefox {
     .mzp-c-hero-title {
-        @include text-display-xl;
+        @include text-title-xl;
         @include background-size(60px 60px);
         padding-top: 84px;
     }
 
     .mzp-c-hero-desc {
-        @include text-display-xs;
+        @include text-title-xs;
     }
 
     .thanks-help-text {
-        @include text-display-xxs;
+        @include text-title-xxs;
         margin-top: $layout-lg;
     }
 }
@@ -139,5 +139,5 @@ $image-path: '/media/protocol/img';
 }
 
 .thanks-extra-links-heading {
-    @include text-display-xs;
+    @include text-title-xs;
 }

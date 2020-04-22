@@ -219,7 +219,7 @@ $image-path: "/media/protocol/img";
     thead {
         th {
             @include font-firefox;
-            @include text-display-xs;
+            @include text-title-xs;
             background-color: $color-white;
             border-bottom: 3px solid $color-marketing-gray-20;
             border-top: 3px solid $color-marketing-gray-20;

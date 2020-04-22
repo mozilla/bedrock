@@ -170,7 +170,7 @@ $image-path: '/media/protocol/img';
     margin-bottom: $spacing-xl;
 
     h2 {
-        @include text-display-md;
+        @include text-title-md;
     }
 
     .card {

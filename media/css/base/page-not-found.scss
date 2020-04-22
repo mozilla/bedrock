@@ -20,7 +20,7 @@ main {
 }
 
 .error-helper { // Fallback content only
-    @include text-display-xs;
+    @include text-title-xs;
     padding-top: $spacing-lg;
 }
 

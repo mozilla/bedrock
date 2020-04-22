@@ -32,7 +32,7 @@ main .mzp-l-content {
 }
 
 .mzp-c-hero-desc {
-    @include text-display-xxl;
+    @include text-title-xxl;
     @include font-firefox;
     font-weight: bold;
     margin-bottom: $layout-md;
@@ -80,7 +80,7 @@ main .mzp-l-content {
 
     @media #{$mq-lg} {
         .mzp-c-card-feature-title {
-            @include text-display-lg;
+            @include text-title-lg;
         }
     }
 }
@@ -92,13 +92,13 @@ main .mzp-l-content {
 .c-trio {
 
     h2 {
-        @include text-display-lg;
+        @include text-title-lg;
         margin-top: $layout-lg;
         text-align: center;
     }
 
     h3 {
-        @include text-display-sm;
+        @include text-title-sm;
     }
 
     ul {

@@ -18,13 +18,13 @@ $image-path: '/media/protocol/img';
 }
 
 .c-section-title-secondary {
-    @include text-display-xxs;
+    @include text-title-xxs;
     margin: 0 auto $layout-md;
     max-width: $content-md - ($layout-md * 2);
 }
 
 .c-section-title {
-    @include text-display-sm;
+    @include text-title-sm;
     margin: 0 auto $layout-md;
     max-width: $content-md - ($layout-md * 2);
     text-align: center;
@@ -67,11 +67,11 @@ $image-path: '/media/protocol/img';
     }
 
     .c-emphasis-box-title {
-        @include text-display-sm;
+        @include text-title-sm;
     }
 
     .c-emphasis-box-tagline {
-        @include text-display-xs;
+        @include text-title-xs;
     }
 
     .cta {

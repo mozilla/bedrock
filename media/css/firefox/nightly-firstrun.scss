@@ -37,7 +37,7 @@ main {
     padding-top: 0;
 
     .contribute-title {
-        @include text-display-xs;
+        @include text-title-xs;
         font-weight: normal;
         margin: $spacing-lg auto;
         max-width: 580px;
@@ -80,6 +80,6 @@ main {
     h4,
     h5,
     h6 {
-        @include text-display-sm;
+        @include text-title-sm;
     }
 }
