@@ -1472,6 +1472,8 @@ CSP_CONNECT_SRC = CSP_DEFAULT_SRC + [
     'www.googletagmanager.com',
     'www.google-analytics.com',
     'logs.convertexperiments.com',
+    '1003350.metrics.convertexperiments.com',
+    '1003343.metrics.convertexperiments.com',
     FXA_ENDPOINT,
     FXA_ENDPOINT_MOZILLAONLINE,
 ]
