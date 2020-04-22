@@ -9,5 +9,6 @@ disallow: /*/firstrun/
 disallow: /*/newsletter/existing/
 disallow: /*/whatsnew/
 disallow: /*/etc/
+disallow: /*/messaging-experiment/
 {% endif -%}
 Sitemap: {{ request.scheme }}://{{ request.get_host() }}/sitemap.xml

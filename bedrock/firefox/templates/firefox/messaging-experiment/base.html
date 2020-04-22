@@ -1,0 +1,47 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_welcome') }}
+{% endblock %}
+
+{% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main class="mzp-t-firefox">
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
+      {{ high_res_img('protocol/img/logos/firefox/browser/logo-word-hor-lg.png', {'alt': 'Firefox', 'width': '216', 'height': '40', 'class': 'c-header-logo'}) }}
+      <p class="c-shoulder-cta"><a class="mzp-c-button mzp-t-secondary mzp-t-small mzp-t-product" href="{{ url('firefox.accounts') }}">{{ _('Join Firefox') }}</a></p>
+    </div>
+  </header>
+
+  {% block content_intro %}{% endblock %}
+
+  <section class="page-body">
+    <div class="mzp-l-content mzp-t-narrow">
+
+      {% block content_primary %}{% endblock %}
+
+      {% block content_secondary %}{% endblock %}
+
+      {% block secondary_cta %}{% endblock %}
+
+    </div>
+  </section>
+
+  <aside class="page-footer">
+    <div class="mzp-l-content mzp-t-narrow c-utilities">
+      {% block content_utility %}{% endblock %}
+    </div>
+  </aside>
+</main>
+{% endblock %}
