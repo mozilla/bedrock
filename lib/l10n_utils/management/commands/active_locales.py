@@ -29,7 +29,7 @@ class Command(BaseCommand):
         parser.add_argument('ftl_file')
 
     def print_report(self):
-        active_locales = get_active_locales(self.filename)
+        active_locales = get_active_locales(self.filename, force=True)
         num_locales = len(active_locales)
         if num_locales == 1:
             self.stdout.write(f'There is 1 active locale for {self.filename}:')
