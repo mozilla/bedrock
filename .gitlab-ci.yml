@@ -49,6 +49,8 @@ update-l10n:
   except:
     changes:
       - "lib/fluent_migrations/**/*"
+    refs:
+      - triggers
   script:
     - bin/open-ftl-pr.sh
 

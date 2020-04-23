@@ -8,8 +8,7 @@ if echo "$CI_COMMIT_MESSAGE" | grep -F "[skip l10n]"; then
     exit 0
 fi
 
-BIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source $BIN_DIR/set_git_env_vars.sh
+source docker/bin/set_git_env_vars.sh
 
 docker run --rm \
     -e FLUENT_REPO_AUTH \
