@@ -167,6 +167,20 @@ from ``locale`` and write the generated Fluent files for each locale into the ``
 Commit
 ======
 
-After that it's up to you to commit all of these changes and push them to where they need to be:
-a pull request to bedrock for the template and English .ftl file changes, and a pull request
-to the www-l10n repo for the translated .ftl files and activation metadata.
+Once a migration has been run and looks good locally, the next step is to commit all
+of these changes and push them to where they need to be: a pull request to bedrock for
+the template and English .ftl file changes, and a pull request to the mozilla-l10n/www-l10n
+repo for the translated .ftl files and config changes (don't forget to include the `en`
+.ftl file too).
+
+Becuase migrations involve converting existing .lang files to a new format, it's best that
+they are carefully reviewed by the L10n team. Having the migration reviewed before the
+bedrock PR merges is also often a good idea, because then the recipe can be tweaked and
+run again if needed (fixing typos or missing brand names, adding comments etc).
+
+Because migrations should be run manually, you can opt-out of the regular L10n automation
+that happens in bedrock by including ``[skip l10n]`` in the commit message. This will prevent
+a second pull request being opened, that would contain only the `en` content changes.
+
+Once the translated files have been reviewed and merged in the mozilla-l10n/www-l10n repo,
+you should be able to pull those files back into bedrock by running ``./manage.py l10n_update``.
