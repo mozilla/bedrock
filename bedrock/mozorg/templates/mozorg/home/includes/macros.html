@@ -18,22 +18,6 @@
 </section>
 {%- endmacro %}
 
-{% macro download_banner_sticky(title, desc) -%}
-<section id="download-firefox-sticky-cta" class="c-sticky-cta download-firefox-sticky-cta mzp-t-firefox mzp-t-dark hide-from-legacy-ie">
-  <div class="mzp-l-content">
-    <div class="c-sticky-cta-wrapper">
-      <h2 class="c-sticky-cta-title">{{ title }}</h2>
-      {%- if desc -%}
-      <p class="c-sticky-cta-desc-sub">{{ desc }}</p>
-      {%- endif -%}
-      <div class="c-sticky-cta-button">
-        {{ caller() }}
-      </div>
-    </div>
-  </div>
-</section>
-{%- endmacro %}
-
 {% macro download_banner_secondary(title, sub_title) -%}
 <div id="download-firefox-secondary-cta" class="c-secondary-cta download-firefox-secondary-cta mzp-t-firefox mzp-t-dark">
   <div class="mzp-l-content">
@@ -63,18 +47,6 @@
       <p class="c-primary-cta-button">
         <a data-link-name="{{ link_cta }}" data-link-type="button" data-cta-position="primary cta" href="{{ url('firefox') }}" class="mzp-c-button mzp-t-product" id="fxa-learn-primary">{{ link_cta }}</a>
       </p>
-    </div>
-  </div>
-</section>
-{%- endmacro %}
-
-{% macro fxa_banner_sticky(title, sub_title, link_cta) -%}
-<section id="fxaccount-sticky-cta" class="c-sticky-cta fxaccount-sticky-cta mzp-t-firefox mzp-t-dark hide-from-legacy-ie">
-  <div class="mzp-l-content">
-    <div class="c-sticky-cta-wrapper">
-      <h2 class="c-sticky-cta-title">{{ title }}</h2>
-      <p class="c-sticky-cta-desc-sub"></p>
-      <p class="c-sticky-cta-button"><a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-small mzp-t-product" id="fxa-learn-sticky">{{ link_cta }}</a></p>
     </div>
   </div>
 </section>

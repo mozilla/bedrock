@@ -1006,9 +1006,6 @@
         "protocol/js/protocol-modal.js",
         "js/libs/spin.min.js",
         "js/base/send-to-device.js",
-        "js/libs/jquery.waypoints.min.js",
-        "js/libs/jquery.waypoints-sticky.min.js",
-        "js/hubs/sub-nav.js",
         "js/firefox/mobile/mobile.js"
       ],
       "name": "firefox-mobile"
@@ -1018,9 +1015,6 @@
         "protocol/js/protocol-modal.js",
         "js/libs/spin.min.js",
         "js/base/send-to-device.js",
-        "js/libs/jquery.waypoints.min.js",
-        "js/libs/jquery.waypoints-sticky.min.js",
-        "js/hubs/sub-nav.js",
         "js/exp/mobile.js"
       ],
       "name": "exp-firefox-mobile"
@@ -1052,14 +1046,6 @@
         "js/firefox/set-as-default/thanks.js"
       ],
       "name": "firefox-default-thanks"
-    },
-    {
-      "files": [
-        "js/libs/jquery.waypoints.min.js",
-        "js/libs/jquery.waypoints-sticky.min.js",
-        "js/hubs/sub-nav.js"
-      ],
-      "name": "firefox-switch"
     },
     {
       "files": [
@@ -1124,9 +1110,6 @@
     },
     {
       "files": [
-        "js/libs/jquery.waypoints.min.js",
-        "js/libs/jquery.waypoints-sticky.min.js",
-        "js/hubs/sub-nav.js",
         "js/base/mozilla-smoothscroll.js",
         "js/mozorg/internet-health/health-subpage.js"
       ],
@@ -1177,28 +1160,12 @@
     },
     {
       "files": [
-        "js/libs/jquery.waypoints.min.js",
-        "js/libs/jquery.waypoints-sticky.min.js",
-        "js/hubs/sub-nav.js"
-      ],
-      "name": "internet-health-hub"
-    },
-    {
-      "files": [
         "protocol/js/protocol-modal.js",
         "protocol/js/protocol-sidemenu.js",
         "js/firefox/all/all-downloads-unified.js",
         "js/firefox/all/all-downloads-unified-init.js"
       ],
       "name": "firefox_all_unified"
-    },
-    {
-      "files": [
-        "js/libs/jquery.waypoints.min.js",
-        "js/libs/jquery.waypoints-sticky.min.js",
-        "js/hubs/sub-nav.js"
-      ],
-      "name": "firefox-features-hub"
     },
     {
       "files": [

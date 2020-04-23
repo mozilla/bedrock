@@ -4,10 +4,10 @@
 
 from selenium.webdriver.common.by import By
 
-from pages.firefox.base import FirefoxBasePage
+from pages.base import BasePage
 
 
-class ThankYouPage(FirefoxBasePage):
+class ThankYouPage(BasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/download/thanks/'
 

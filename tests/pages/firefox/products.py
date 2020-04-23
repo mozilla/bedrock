@@ -4,11 +4,11 @@
 
 from selenium.webdriver.common.by import By
 
-from pages.firefox.base import FirefoxBasePage
+from pages.base import BasePage
 from pages.regions.join_firefox_form import JoinFirefoxForm
 
 
-class FirefoxProductsPage(FirefoxBasePage):
+class FirefoxProductsPage(BasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/products/'
 

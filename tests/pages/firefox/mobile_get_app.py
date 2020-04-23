@@ -4,11 +4,11 @@
 
 from selenium.webdriver.common.by import By
 
-from pages.firefox.base import FirefoxBasePage
+from pages.base import BasePage
 from pages.regions.send_to_device import SendToDevice
 
 
-class FirefoxMobileGetAppPage(FirefoxBasePage):
+class FirefoxMobileGetAppPage(BasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/mobile/get-app/'
 

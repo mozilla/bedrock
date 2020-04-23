@@ -4,11 +4,11 @@
 
 from selenium.webdriver.common.by import By
 
-from pages.firefox.base import FirefoxBasePage
+from pages.base import BasePage
 from pages.regions.download_button import DownloadButton
 
 
-class FeaturesLandingPage(FirefoxBasePage):
+class FeaturesLandingPage(BasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/features/'
 

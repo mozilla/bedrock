@@ -4,10 +4,10 @@
 
 from selenium.webdriver.common.by import By
 
-from pages.firefox.base import FirefoxBasePage
+from pages.base import BasePage
 
 
-class DefaultLandingPage(FirefoxBasePage):
+class DefaultLandingPage(BasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/set-as-default/'
 

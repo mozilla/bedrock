@@ -5,10 +5,10 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
-from pages.firefox.base import FirefoxBasePage, FirefoxBaseRegion
+from pages.base import BasePage, BaseRegion
 
 
-class FirefoxAllPage(FirefoxBasePage):
+class FirefoxAllPage(BasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/all/'
 
@@ -62,7 +62,7 @@ class FirefoxAllPage(FirefoxBasePage):
         return option[0]
 
 
-class ProductOptions(FirefoxBaseRegion):
+class ProductOptions(BaseRegion):
 
     _platform_locator = (By.CSS_SELECTOR, '.c-selection-platform select')
     _language_locator = (By.CSS_SELECTOR, '.c-selection-language select')

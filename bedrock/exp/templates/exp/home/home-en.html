@@ -3,7 +3,7 @@
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros-protocol.html" import billboard, card, call_out_compact, content_card with context %}
-{% from "mozorg/home/includes/macros.html" import download_banner, download_banner_sticky, download_banner_secondary, fxa_banner, fxa_banner_sticky %}
+{% from "mozorg/home/includes/macros.html" import download_banner, download_banner_secondary, fxa_banner %}
 
 {% extends "exp/base/base.html" %}
 
@@ -69,21 +69,10 @@
     {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
   {% endcall %}
 
-  {% call download_banner_sticky(
-    title=_('Reclaim your privacy'),
-    ) %}
-    {{ download_firefox(dom_id='download-sticky', download_location='sticky cta', button_color='mzp-t-small') }}
-  {% endcall %}
-
   {{ fxa_banner(
     title=_('Firefox is more<br> than a browser')|safe,
     desc=_('Meet our family of privacy-first products'),
     link_cta=_('Meet the Family'),
-  )}}
-
-  {{ fxa_banner_sticky(
-    title=_('Get privacy beyond the browser'),
-    link_cta=ftl('ui-learn-more'),
   )}}
 
   <div class="mozilla-content">

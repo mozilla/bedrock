@@ -21,6 +21,18 @@
     }
 }
 
+/**
+ * Hide nav download button on unsupported systems to prevent
+ * taking over large amounts of screen real estate.
+ */
+html.other,
+html.oldwin,
+html.oldmac {
+    .mzp-c-navigation .mzp-c-navigation-download {
+        display: none;
+    }
+}
+
 // Global FxA CTA
 .mzp-c-navigation {
     .c-navigation-fxa-cta-container {
@@ -65,6 +77,11 @@ html.is-firefox .mzp-c-navigation {
 
     .mzp-c-navigation-download {
         margin-bottom: 0;
+    }
+
+    // Issue #8620
+    &.fxa-signed-in .mzp-c-navigation-download {
+        margin-bottom: $spacing-lg;
     }
 
     .c-navigation-fxa-cta-container {

@@ -5,10 +5,10 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as expected
 
-from pages.firefox.base import FirefoxBaseRegion
+from pages.base import BaseRegion
 
 
-class SendToDevice(FirefoxBaseRegion):
+class SendToDevice(BaseRegion):
 
     _root_locator = (By.CSS_SELECTOR, '.send-to-device')
     _email_locator = (By.CSS_SELECTOR, '.send-to-device-input')

@@ -4,11 +4,11 @@
 
 from selenium.webdriver.common.by import By
 
-from pages.firefox.base import FirefoxBasePage
+from pages.base import BasePage
 from pages.regions.menu_list import MenuList
 
 
-class EnterprisePage(FirefoxBasePage):
+class EnterprisePage(BasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/enterprise/'
 
