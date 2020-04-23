@@ -14,13 +14,13 @@
         window.dataLayer.push({
             'event': 'in-page-interaction',
             'eAction': 'link click',
-            'eLabel': 'Check out your protections'
+            'eLabel': 'Check Out Your Protections'
         });
     }
 
     if (client.isFirefoxDesktop) {
       if (client._getFirefoxMajorVersion() >= 70) {
-          // show "Check out your protections" links.
+          // show "Check Out Your Protections" links.
           document.querySelector('main').classList.add('state-firefox-desktop-70');
 
           // Intercept link clicks to open about:protections page using UITour.
