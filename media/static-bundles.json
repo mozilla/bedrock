@@ -829,7 +829,7 @@
         "js/base/uitour-lib.js",
         "js/firefox/privacy/messaging-experiment.js"
       ],
-      "name": "firefox_welcome_page8"
+      "name": "default_privacy_messaging"
     },
     {
       "files": [

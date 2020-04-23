@@ -9,7 +9,7 @@
   {# L10n: HTML page title #}
   {% block page_title %}{{ _('With Firefox, you’re protected every time you get online') }}{% endblock %}
   
-  {% block body_class %}{{ super() }} welcome-page9{% endblock %}
+  {% block body_class %}{{ super() }} privacy-default{% endblock %}
 
   {% block content_intro %}
     {% call hero(
@@ -33,7 +33,7 @@
     <div class="body-primary">
       <div class="c-picto-block t-adjacent-image">
         <div class="c-picto-block-image">
-          <img src="{{ static('img/icons/privacy.svg') }}" alt="">
+          <img src="{{ static('img/icons/hide_password-orange.svg') }}" alt="">
         </div>
         <h3 class="c-picto-block-title">Your privacy is our first thought, not an afterthought</h3>
         <div class="c-picto-block-body">
@@ -44,9 +44,8 @@
 
       <div class="c-picto-block t-adjacent-image">
         <div class="c-picto-block-image">
-          <img src="{{ static('img/icons/mobile-desktop.svg') }}" alt="">
+          <img src="{{ static('img/icons/laptop_warning-pink.svg') }}" alt="">
         </div>
-  
         <h3 class="c-picto-block-title">You can worry less about malware</h3>
         <div class="c-picto-block-body">
           <p>{{ _('Firefox automatically stops malware, including some types that can use your system’s computing power, slowing your computer and even raising your energy bills.') }}</p>
@@ -55,7 +54,7 @@
   
       <div class="c-picto-block t-adjacent-image">
         <div class="c-picto-block-image">
-          <img src="{{ static('img/icons/private-browsing.svg') }}" alt="">
+          <img src="{{ static('img/icons/private_browsing-purple.svg') }}" alt="">
         </div>
         <h3 class="c-picto-block-title">Your secrets are safer with Private Browsing</h3>
         <div class="c-picto-block-body">
