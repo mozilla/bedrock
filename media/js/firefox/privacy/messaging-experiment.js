@@ -32,5 +32,5 @@
             // show "Update your Firefox browser" links.
             document.querySelector('main').classList.add('state-firefox-desktop-old');
         }
-  }
+    }
 })(window.Mozilla);
