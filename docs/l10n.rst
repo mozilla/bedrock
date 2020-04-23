@@ -503,14 +503,16 @@ You should run ``./manage.py l10n_update`` as shown above for the most accurate 
 up-to-date results.
 
 String extraction
-=================
+-----------------
 
 The string extraction process for both new .ftl content and updates to existing .ftl
 content is handled through automation. On each commit to master a command is run that
 looks for changes to the ``l10n/`` directory. If a change is detected, it will copy
-those files into a new branch in ``git-repos/l10n-team`` and then a bot will open a
+those files into a new branch in `mozilla-l10n/www-l10n`_ and then a bot will open a
 pull request containing those changes. Once the pull request has been reviewed and
 merged by the L10n team, everything is done.
+
+.. _mozilla-l10n/www-l10n: https://github.com/mozilla-l10n/www-l10n
 
 Legacy
 ======
