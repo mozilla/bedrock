@@ -23,13 +23,19 @@
                     'data-ex-variant': 'social-proof-v1',
                     'data-ex-name': 'CRO-Social-Proof-Experiment'
                 });
+            } else if (href.indexOf('v=c') !== -1) {
+                window.dataLayer.push({
+                    'data-ex-variant': 'social-proof-v2',
+                    'data-ex-name': 'CRO-Social-Proof-Experiment'
+                });
             }
         } else {
             var cop = new Mozilla.TrafficCop({
                 id: 'experiment_social_proof',
                 variations: {
-                    'v=a': 50,
-                    'v=b': 50
+                    'v=a': 34,
+                    'v=b': 33,
+                    'v=c': 33
                 }
             });
 

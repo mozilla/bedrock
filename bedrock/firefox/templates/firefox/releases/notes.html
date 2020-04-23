@@ -210,6 +210,17 @@
       </div>
     {% endif %}
 
+    {% if variation == 'c' %}
+      <div id="social-proof">
+        {% call call_out_compact(
+          title=download_title,
+          class=product_class
+        ) %}
+          {{ download_button }}
+        {% endcall %}
+      </div>
+    {% endif %}
+
       {% for note in release_notes if note.tag == "Fixed" %}
         {% if loop.first %}
           <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
