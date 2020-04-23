@@ -24,11 +24,13 @@ if (typeof window.Mozilla === 'undefined') {
         client.getFxaDetails(function(details) {
             body.classList.remove('state-fxa-default');
 
-            if (details.setup && details.browserServices.sync.mobileDevices > 0) {
+            // if signed in with more than one device, show the Monitor CTA.
+            if ((details.setup && details.browserServices.sync.mobileDevices > 0) || window.location.search.indexOf('has-devices=true') !== -1) {
                 body.classList.add('state-fxa-has-devices');
-            } else if (window.location.search.indexOf('has-devices=true') !== -1) {
-                // Fake the user state for testing purposes
-                body.classList.add('state-fxa-has-devices');
+            }
+            // else if signed in with no other devices, show connect device CTA.
+            else if ((details.setup && details.browserServices.sync.mobileDevices === 0) || window.location.search.indexOf('has-no-devices=true') !== -1) {
+                body.classList.add('state-fxa-has-no-devices');
             }
         });
     }

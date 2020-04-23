@@ -21,7 +21,7 @@ $image-path: '/media/protocol/img';
     text-align: center;
 
     .main-title {
-        @include text-display-md;
+        @include text-title-md;
 
         br {
             display: none;
@@ -29,7 +29,7 @@ $image-path: '/media/protocol/img';
     }
 
     .main-tagline {
-        @include text-display-sm;
+        @include text-title-sm;
     }
 
     header {
@@ -69,6 +69,12 @@ $image-path: '/media/protocol/img';
     @include background-size(100%);
 }
 
-.send-to-device-form .inline-field {
-    margin-bottom: $spacing-md;
+.send-to-device-form {
+    label {
+        color: $color-white;
+    }
+
+    .inline-field {
+        margin-bottom: $spacing-md;
+    }
 }

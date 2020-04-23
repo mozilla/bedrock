@@ -136,8 +136,8 @@ URLS = flatten((
     # bug 927442
     url_test('{/firefox,}/community/', '/contribute/'),
 
-    # bug 925551
-    url_test('/plugincheck/more_info.html', '/plugincheck/'),
+    # bug 925551, issue 8374
+    url_test('/plugincheck/more_info.html', 'https://support.mozilla.org/kb/npapi-plugins/'),
 
     # bug 854561, Issue 7448
     url_test('/projects/mozilla-based{.html,/}', 'https://developer.mozilla.org/docs/Archive/List_of_Mozilla-Based_Applications'),
@@ -753,7 +753,10 @@ URLS = flatten((
     # bug 961010
     url_test('/mobile/credits/credits-people-list.html', '/credits/'),
 
-    url_test('/{mobile,fennec}/', '/firefox/'),
+    url_test('/fennec/', '/firefox/'),
+
+    # issue 8749
+    url_test('/mobile/', '/firefox/mobile/'),
 
     # bug 876668
     url_test('/mobile/customize/', '/firefox/mobile/'),
@@ -1325,9 +1328,31 @@ URLS = flatten((
     # Issue 8419
     url_test('/firefox/this-browser-comes-highly-recommended/', '/firefox/developer/'),
 
-    # issue 8420
+    # Issue 8420
     url_test('/firefox/dedicated-profiles/', 'https://support.mozilla.org/kb/dedicated-profiles-firefox-installation'),
 
     # Issue 8668
     url_test('/contact/communities/{,north-america/,canada/}', 'https://community.mozilla.org/groups/'),
+
+    # Issue 8641
+    url_test('/technology/what-is-a-browser/', '/firefox/browsers/what-is-a-browser/'),
+    url_test('/technology/update-your-browser/', '/firefox/browsers/update-your-browser/'),
+    url_test('/technology/incognito-browser/', '/firefox/browsers/incognito-browser/'),
+    url_test('/technology/browser-history/', '/firefox/browsers/browser-history/'),
+    url_test('/firefox/windows-64-bit/', '/firefox/browsers/windows-64-bit/'),
+    url_test('/firefox/best-browser/', '/firefox/browsers/best-browser/'),
+
+    # Issue 8536
+    url_test('/etc/firefox/retention/{thank-you-a/,thank-you-b/,thank-you-referral/}', '/firefox/retention/thank-you/'),
+
+    # Issue 8765
+    url_test('/firefox/browsers/compare/', '/firefox/', status_code=requests.codes.found),
+    url_test('/firefox/browsers/compare/chrome/', '/firefox/', status_code=requests.codes.found),
+    url_test('/firefox/browsers/compare/edge/', '/firefox/', status_code=requests.codes.found),
+    url_test('/firefox/browsers/compare/ie/', '/firefox/', status_code=requests.codes.found),
+    url_test('/firefox/browsers/compare/opera/', '/firefox/', status_code=requests.codes.found),
+    url_test('/firefox/browsers/compare/safari/', '/firefox/', status_code=requests.codes.found),
+
+    # Issue 8374
+    url_test('/plugincheck/', 'https://support.mozilla.org/kb/npapi-plugins/'),
 ))

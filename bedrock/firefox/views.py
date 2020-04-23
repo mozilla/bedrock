@@ -62,6 +62,7 @@ STUB_VALUE_RE = re.compile(r'^[a-z0-9-.%():_]+$', flags=re.IGNORECASE)
 
 
 def installer_help(request):
+    locale = l10n_utils.get_locale(request)
     installer_lang = request.GET.get('installer_lang', None)
     installer_channel = request.GET.get('channel', None)
     context = {'installer_lang': None, 'installer_channel': None}
@@ -75,7 +76,12 @@ def installer_help(request):
         else:
             context['installer_channel'] = installer_channel
 
-    return l10n_utils.render(request, 'firefox/installer-help.html', context)
+    if lang_file_is_active('firefox/installer-help-redesign', locale):
+        template = 'firefox/installer-help-redesign.html'
+    else:
+        template = 'firefox/installer-help.html'
+
+    return l10n_utils.render(request, template, context)
 
 
 @require_GET
@@ -573,6 +579,8 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/whatsnew/index.html'
         elif locale == 'id':
             template = 'firefox/whatsnew/index-lite.id.html'
+        elif version.startswith('76.') and lang_file_is_active('firefox/whatsnew_76', locale):
+            template = 'firefox/whatsnew/whatsnew-fx76.html'
         elif version.startswith('75.') and lang_file_is_active('firefox/whatsnew_75', locale):
             template = 'firefox/whatsnew/whatsnew-fx75.html'
         elif version.startswith('74.'):
@@ -655,6 +663,9 @@ def download_thanks(request):
         template = 'firefox/new/trailhead/thanks.html'
     else:
         template = 'firefox/new/protocol/thanks.html'
+
+    if variant == 'b':
+        template = 'firefox/new/trailhead/thanks-b.html'
 
     return l10n_utils.render(request, template, {'show_newsletter': show_newsletter})
 

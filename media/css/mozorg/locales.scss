@@ -16,7 +16,7 @@ $image-path: '/media/protocol/img';
     text-align: center;
 
     .c-simple-header-title {
-        @include text-display-md;
+        @include text-title-md;
     }
 
     @media #{$mq-md} {
@@ -28,7 +28,7 @@ $image-path: '/media/protocol/img';
     margin: $layout-md 0;
 
     .c-block-list-title {
-        @include text-display-sm;
+        @include text-title-sm;
         border-bottom: 1px solid $color-marketing-gray-30;
         padding-bottom: $spacing-md;
     }

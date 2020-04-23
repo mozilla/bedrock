@@ -55,12 +55,12 @@
   {% if LANG == 'de' %}
     <div class="video-container">
       <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/7yLoRVwuZlc?rel=0&amp;showinfo=0" frameborder="0" allow="encrypted-media" allowfullscreen>
-        <p><a href="https://www.youtube.com/watch?v=7yLoRVwuZlc">{{ _('Watch the video') }}</a></p>
+        <p><a href="https://www.youtube.com/watch?v=7yLoRVwuZlc">{{ ftl('ui-watch-the-video') }}</a></p>
       </iframe>
     </div>
   {% else %}
     <div class="moz-video-container">
-      <button class="moz-video-button mzp-c-button" type="button" aria-controls="fbcontainer-video">{{ _('Watch the video') }}</button>
+      <button class="moz-video-button mzp-c-button" type="button" aria-controls="fbcontainer-video">{{ ftl('ui-watch-the-video') }}</button>
       <div class="video-container">
         <video id="fbcontainer-video" preload="metadata" controls poster="{{ static('img/firefox/facebook-container/video-poster.png') }}" data-ga-label="Facebook Container Video">
           <source src="https://assets.mozilla.net/video/facebook-container/facebook-container.webm" type="video/webm">

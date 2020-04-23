@@ -6,21 +6,22 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
 @import '../../protocol/css/includes/lib';
-@import '../../protocol/css/components/newsletter-form';
-@import '../../protocol/css/components/hero';
-@import '../../protocol/css/templates/card-layout';
 @import '../../protocol/css/components/emphasis-box';
+@import '../../protocol/css/components/hero';
+@import '../../protocol/css/components/newsletter-form';
+@import '../../protocol/css/components/notification-bar';
+@import '../../protocol/css/templates/card-layout';
 
 /* -------------------------------------------------------------------------- */
 // Global styles.
 
 h1 {
-    @include text-display-md;
+    @include text-title-md;
     margin-bottom: $layout-sm;
 }
 
 h2 {
-    @include text-display-xs;
+    @include text-title-xs;
 }
 
 main {
@@ -36,7 +37,7 @@ main {
 }
 
 .error-msg, .errorlist {
-    @include text-display-xxs;
+    @include text-title-xxs;
     color: $color-red-60;
     display: block;
     font-weight: bold;
@@ -81,7 +82,7 @@ main {
 
     form {
         h4 {
-            @include text-display-xxs;
+            @include text-title-xxs;
         }
 
         p {
@@ -127,23 +128,49 @@ main {
 // newsletter/updated custom styles.
 
 .c-updated-block {
-    box-sizing: border-box;
+    margin-top: $layout-xs;
+
+    .c-updated-block-content {
+        margin-top: $layout-lg;
+
+        @media #{$mq-md} {
+            margin-top: $layout-xl;
+        }
+    }
+
+    .c-updated-block-header {
+        text-align: center;
+    }
+
+    .c-updated-back-link {
+        display: none;
+        margin-top: $spacing-lg;
+
+        a:before {
+            content: '\2190\0020';
+        }
+
+        /* only show back link for JS enabled clients */
+        .is-modern-browser & {
+            display: block;
+        }
+    }
 
     h1 {
         margin-bottom: $spacing-sm;
     }
 
     h2 {
-        margin-bottom: $spacing-xl;
+        margin-bottom: $spacing-2xl;
     }
 
     h3 {
-        @include text-display-md;
+        @include text-title-md;
         margin-bottom: $spacing-2xl;
     }
 
     h4 {
-        @include text-display-xs;
+        @include text-title-xs;
     }
 
     .c-updated-form {

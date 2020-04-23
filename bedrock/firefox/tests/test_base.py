@@ -12,6 +12,7 @@ from django.test.utils import override_settings
 from django_jinja.backend import Jinja2
 from mock import call, Mock, patch
 from pyquery import PyQuery as pq
+from jinja2 import Markup
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox import views as fx_views
@@ -46,9 +47,12 @@ class TestInstallerHelp(TestCase):
             'installer_lang': 'fr'
         })
         self.button_mock.assert_has_calls([
-            call(force_direct=True, force_full_installer=True, locale='fr'),
-            call('beta', force_direct=True, force_full_installer=True, locale='fr'),
-            call('alpha', force_direct=True, force_full_installer=True, locale='fr', platform='desktop'),
+            call(alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+                 force_full_installer=True, locale='fr'),
+            call('beta', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+                 force_full_installer=True, locale='fr'),
+            call('alpha', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+                 force_full_installer=True, locale='fr', platform='desktop'),
         ])
 
     def test_buttons_ignore_non_lang(self):
@@ -59,9 +63,12 @@ class TestInstallerHelp(TestCase):
             'installer_lang': 'not-a-locale'
         })
         self.button_mock.assert_has_calls([
-            call(force_direct=True, force_full_installer=True, locale=None),
-            call('beta', force_direct=True, force_full_installer=True, locale=None),
-            call('alpha', force_direct=True, force_full_installer=True, locale=None, platform='desktop'),
+            call(alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+                 force_full_installer=True, locale=None),
+            call('beta', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+                 force_full_installer=True, locale=None),
+            call('alpha', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+                 force_full_installer=True, locale=None, platform='desktop'),
         ])
 
     def test_invalid_channel_specified(self):
@@ -72,9 +79,12 @@ class TestInstallerHelp(TestCase):
             'channel': 'dude',
         })
         self.button_mock.assert_has_calls([
-            call(force_direct=True, force_full_installer=True, locale=None),
-            call('beta', force_direct=True, force_full_installer=True, locale=None),
-            call('alpha', force_direct=True, force_full_installer=True, locale=None, platform='desktop'),
+            call(alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+                 force_full_installer=True, locale=None),
+            call('beta', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+                 force_full_installer=True, locale=None),
+            call('alpha', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+                 force_full_installer=True, locale=None, platform='desktop'),
         ])
 
     def test_one_button_when_channel_specified(self):
@@ -84,7 +94,9 @@ class TestInstallerHelp(TestCase):
         self.client.get(self.url, {
             'channel': 'beta',
         })
-        self.button_mock.assert_called_once_with('beta', force_direct=True,
+        self.button_mock.assert_called_once_with('beta',
+                                                 alt_copy=Markup('Download Now'), button_color='mzp-t-small',
+                                                 force_direct=True,
                                                  force_full_installer=True,
                                                  locale=None)
 

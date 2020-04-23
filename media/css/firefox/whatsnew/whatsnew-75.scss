@@ -60,11 +60,11 @@ $image-path: '/media/protocol/img';
     }
 
     .c-emphasis-box-title {
-        @include text-display-sm;
+        @include text-title-sm;
     }
 
     .c-emphasis-box-tagline {
-        @include text-display-xs;
+        @include text-title-xs;
     }
 
     .cta {
@@ -87,6 +87,10 @@ $image-path: '/media/protocol/img';
     display: none;
 }
 
+.show-connect-device {
+    display: none;
+}
+
 .state-fxa-has-devices {
     .show-monitor {
         display: block;
@@ -94,6 +98,16 @@ $image-path: '/media/protocol/img';
 
     .show-sync {
         display: none;
+    }
+}
+
+.state-fxa-has-no-devices {
+    .show-sign-in {
+        display: none;
+    }
+
+    .show-connect-device {
+        display: block;
     }
 }
 
@@ -109,7 +123,7 @@ $image-path: '/media/protocol/img';
     padding: 0 $layout-md;
 
     .c-picto-block-title {
-        @include text-display-xs;
+        @include text-title-xs;
     }
 
     .c-picto-block-image {

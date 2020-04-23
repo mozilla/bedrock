@@ -165,17 +165,22 @@ always call it in the view itself:
     from lib.l10n_utils.fluent import ftl
 
     def about_view(request):
-        hello_string = ftl('about-hello')
-        render(request, 'about.html', {'hello': hello_string}, ftl_files='mozorg/about')
+        ftl_files = 'mozorg/about'
+        hello_string = ftl('about-hello', ftl_files=ftl_files)
+        render(request, 'about.html', {'hello': hello_string}, ftl_files=ftl_files)
 
 If you need to use this string in a view, but define it outside of the view itself, you can use the
 ``ftl_lazy`` variant which will delay evaluation until render time. This is mostly useful for defining
 messages shared among several views in constants in a ``views.py`` or ``models.py`` file.
 
+Whether you use this function in a Python view or a Jinja template it will always use the default
+list of Fluent files defined in the ``FLUENT_DEFAULT_FILES`` setting. If you don't specify any additional
+Fluent files via the ``fluent_files`` keyword argument, then only those default files will be used.
+
 The ``ftl_has_messages`` helper function
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Another useful template too is the ``ftl_has_messages()`` function. You pass it any number
+Another useful template tool is the ``ftl_has_messages()`` function. You pass it any number
 of string IDs and it will return ``True`` only if all of those message IDs exist in the current
 translation. This is useful when you want to add a new block of HTML to a page that is already
 translated, but don't want it to appear untranslated on any page.
@@ -204,14 +209,16 @@ same way but is meant to be used in the view Python code.
     from lib.l10n_utils.fluent import ftl, has_messages
 
     def about_view(request):
-        if has_messages('about-hello-v2', 'about-title-v2'):
-            hello_string = ftl('about-hello-v2')
-            title_string = ftl('about-title-v2')
+        ftl_files = 'mozorg/about'
+        if has_messages('about-hello-v2', 'about-title-v2',
+                        ftl_files=ftl_files):
+            hello_string = ftl('about-hello-v2', ftl_files=ftl_files)
+            title_string = ftl('about-title-v2', ftl_files=ftl_files)
         else:
-            hello_string = ftl('about-hello')
-            title_string = ftl('about-title')
+            hello_string = ftl('about-hello', ftl_files=ftl_files)
+            title_string = ftl('about-title', ftl_files=ftl_files)
 
-        render(request, 'about.html', {'hello': hello_string, 'title': title_string}, ftl_files='mozorg/about')
+        render(request, 'about.html', {'hello': hello_string, 'title': title_string}, ftl_files=ftl_files)
 
 .. _fluent variables: https://projectfluent.org/fluent/guide/variables.html
 

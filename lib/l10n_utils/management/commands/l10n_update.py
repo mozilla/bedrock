@@ -29,6 +29,6 @@ class Command(BaseCommand):
         self.stdout.write('Updated .lang files')
 
     def update_fluent_files(self):
-        repo = GitRepo(settings.FLUENT_REPO_PATH, settings.FLUENT_REPO)
+        repo = GitRepo(settings.FLUENT_REPO_PATH, settings.FLUENT_REPO_URL)
         repo.update()
         self.stdout.write('Updated .ftl files')

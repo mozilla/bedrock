@@ -15,7 +15,7 @@
     text-align: center;
 
     .c-page-header-up-to-date {
-        @include text-display-xs;
+        @include text-title-xs;
 
         display: none;
         font-weight: normal;
@@ -138,7 +138,7 @@
         font-weight: normal;
         margin-bottom: 0;
         text-align: start;
-        @include text-display-lg;
+        @include text-title-lg;
         @media #{$mq-xl} {
             font-size: 4rem;
         }
@@ -163,7 +163,7 @@
 }
 
 .lite-text {
-    @include text-display-sm;
+    @include text-title-sm;
     @include font-firefox;
     margin: 0 auto $spacing-lg;
     padding: $spacing-lg 0;

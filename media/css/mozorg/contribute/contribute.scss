@@ -58,6 +58,8 @@ $image-path: "/media/protocol/img";
             @include bidi(((right, -25px, auto),(left, auto, -25px),));
         }
     }
+.contribute-section-subheading {
+    @include text-title-xs;
 }
 
 .contribute-hero {

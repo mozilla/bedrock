@@ -5,12 +5,15 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from pathlib import Path
+from unittest.mock import patch
 
-from django.test import TestCase
+from django.conf import settings
+from django.test import TestCase, override_settings
 
 from fluent.runtime import FluentResourceLoader
 
 from lib.l10n_utils import fluent
+from lib.l10n_utils import translation
 
 
 L10N_PATH = Path(__file__).with_name('test_files').joinpath('l10n')
@@ -86,3 +89,53 @@ class TestFluentTranslationUtils(TestCase):
         l10n = get_l10n()
         assert fluent.ftl_has_messages(l10n, 'fluent-title', 'brand-new-string', require_all=False)
         assert not fluent.ftl_has_messages(l10n, 'brand-new-string', require_all=False)
+
+    @override_settings(DEV=True)
+    @patch.object(fluent, 'get_metadata')
+    def test_get_active_locales(self, meta_mock):
+        assert fluent.get_active_locales('the/dude') == settings.DEV_LANGUAGES
+        meta_mock.assert_not_called()
+
+        meta_mock.return_value = {
+            'active_locales': ['de', 'fr', 'it'],
+            'inactive_locales': ['it', 'sq'],
+        }
+        assert fluent.get_active_locales('the/dude', force=True) == ['de', 'en-US', 'fr']
+
+
+@override_settings(FLUENT_PATHS=[L10N_PATH])
+class TestFluentViewTranslationUtils(TestCase):
+    def setUp(self):
+        fluent.cache.clear()
+
+    def test_ftl_view_util(self):
+        assert fluent.ftl('fluent-title',
+                          locale='de',
+                          ftl_files='mozorg/fluent') == 'Title in German'
+
+    def test_ftl_view_util_no_mutate_list(self):
+        """Should not mutate the ftl_files list"""
+        ftl_files = ['mozorg/fluent']
+        assert fluent.ftl('fluent-title',
+                          locale='de',
+                          ftl_files=ftl_files) == 'Title in German'
+        assert ftl_files == ['mozorg/fluent']
+
+    def test_ftl_view_util_tuple(self):
+        """Should be able to pass in a tuple of ftl files"""
+        ftl_files = ('mozorg/fluent',)
+        assert fluent.ftl('fluent-title',
+                          locale='de',
+                          ftl_files=ftl_files) == 'Title in German'
+
+    @override_settings(FLUENT_DEFAULT_FILES=['mozorg/fluent'])
+    def test_ftl_view_util_default_files(self):
+        """Should use default FTL files"""
+        assert fluent.ftl('fluent-title',
+                          locale='de') == 'Title in German'
+
+    @override_settings(FLUENT_DEFAULT_FILES=['mozorg/fluent'])
+    def test_ftl_view_util_active_locale(self):
+        """Should use activated locale if not provided"""
+        translation.activate('fr')
+        assert fluent.ftl('fluent-title') == 'Title in French'

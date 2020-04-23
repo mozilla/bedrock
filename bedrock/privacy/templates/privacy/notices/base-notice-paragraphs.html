@@ -5,8 +5,8 @@
 {% extends "privacy/base-protocol.html" %}
 
 {% block string_data %}
-  data-details-open-text="{{ _('Learn More') }}"
-  data-details-close-text="{{ _('Show Less') }}"
+  data-details-open-text="{{ ftl('ui-learn-more') }}"
+  data-details-close-text="{{ ftl('ui-show-less') }}"
 {% endblock %}
 
 {% do doc.select('body > section > section > p')|htmlattr(class='summary') %}

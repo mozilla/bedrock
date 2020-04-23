@@ -48,19 +48,19 @@ ul li span {
     }
 
     h3 {
-        @include text-display-sm;
+        @include text-title-sm;
     }
 }
 
 section.mzp-c-hero {
     padding: 0;
     .mzp-c-hero-subtitle {
-        @include text-display-sm;
+        @include text-title-sm;
     }
 }
 
 .section-title {
-    @include text-display-sm;
+    @include text-title-sm;
     text-align: center;
 }
 

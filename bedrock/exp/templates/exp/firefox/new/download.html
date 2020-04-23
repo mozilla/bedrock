@@ -27,6 +27,22 @@
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
 {% block page_og_desc %}Faster page loading, less memory usage and packed with features, the new Firefox is here.{% endblock %}
 
+{% block page_css %}
+  {% if v == 'b' %}
+  <style>
+    .mzp-c-navigation.top-header-navigation {
+      display: none;
+    }
+  </style>
+  {% endif %}
+{% endblock %}
+
+{% block site_header %}
+  {% if v in ['b','c'] %}
+    {% include 'includes/protocol/navigation/menu-firefox/index.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block content %}
 <main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
   {% call hero(

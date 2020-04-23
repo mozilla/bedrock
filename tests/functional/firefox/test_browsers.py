@@ -5,7 +5,7 @@
 import pytest
 from urllib.parse import unquote
 
-from pages.firefox.browsers import FirefoxBrowsersPage
+from pages.firefox.browsers.landing import FirefoxBrowsersPage
 
 
 @pytest.mark.nondestructive

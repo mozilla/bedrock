@@ -80,7 +80,7 @@
 
   {{ fxa_banner_sticky(
     title=_('Get privacy beyond the browser'),
-    link_cta=_('Learn More'),
+    link_cta=ftl('ui-learn-more'),
   )}}
 
   <div class="mozilla-content">
@@ -103,10 +103,19 @@
         include_highres_image=True
       )}}
 
-      <div class="mzp-l-card-half">
-        {{ content_card('card_6') }}
-        {{ content_card('card_7') }}
-      </div>
+      {% if get_content_card(content_cards or page_content_cards, 'card_17') %}
+        <div class="mzp-l-card-quarter">
+          {{ content_card('card_14') }}
+          {{ content_card('card_15') }}
+          {{ content_card('card_16') }}
+          {{ content_card('card_17') }}
+        </div>
+      {% else %}
+        <div class="mzp-l-card-half">
+          {{ content_card('card_6') }}
+          {{ content_card('card_7') }}
+        </div>
+      {% endif %}
     </div>
 
     {% if switch('show_pocket_feed', ['en']) and pocket_articles %}
@@ -200,7 +209,7 @@
     class='fxaccount-secondary-cta mzp-t-product-firefox mzp-t-firefox mzp-t-dark hide-from-legacy-ie',
     heading_level=2
   ) %}
-    <a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-product mzp-t-dark" id="fxa-learn-secondary">{{ _('Learn More') }}</a>
+    <a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-product mzp-t-dark" id="fxa-learn-secondary">{{ ftl('ui-learn-more') }}</a>
   {% endcall %}
 
 </main>

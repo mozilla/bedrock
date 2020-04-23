@@ -85,7 +85,7 @@ $image-path: '/media/protocol/img';
     margin-top: $spacing-xl;
 
     .mzp-c-hero-title {
-        @include text-display-md;
+        @include text-title-md;
         margin-bottom: $layout-md;
     }
 

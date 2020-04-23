@@ -1,17 +1,17 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 import shutil
-from io import StringIO
 from subprocess import CalledProcessError
 
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import CommandError
 from django.conf import settings
 
 from fluent.syntax.parser import FluentParser, ParseError
 
-from bedrock.utils.git import GitRepo
 from lib.l10n_utils.fluent import fluent_l10n, get_metadata, write_metadata
+from ._ftl_repo_base import FTLRepoCommand
 
 
 GIT_COMMIT_EMAIL = 'meao-bots+mozmarrobot@mozilla.com'
@@ -31,25 +31,18 @@ class NoisyFluentParser(FluentParser):
         return entry
 
 
-class Command(BaseCommand):
+class Command(FTLRepoCommand):
     help = 'Processes .ftl files from l10n team for use in bedrock'
-    meao_repo = None
-    l10n_repo = None
     parser = None
 
     def add_arguments(self, parser):
-        parser.add_argument('-q', '--quiet', action='store_true', dest='quiet', default=False,
-                            help='If no error occurs, swallow all output.')
+        super().add_arguments(parser)
         parser.add_argument('--push', action='store_true', dest='push', default=False,
                             help='Push the changes to the MEAO Fluent files repo.')
 
     def handle(self, *args, **options):
-        if options['quiet']:
-            self.stdout._out = StringIO()
-
+        super().handle(*args, **options)
         self.parser = NoisyFluentParser()
-        self.l10n_repo = GitRepo(settings.FLUENT_L10N_TEAM_REPO_PATH, settings.FLUENT_L10N_TEAM_REPO)
-        self.meao_repo = GitRepo(settings.FLUENT_REPO_PATH, settings.FLUENT_REPO)
         self.update_fluent_files()
         self.update_l10n_team_files()
         no_errors = self.copy_ftl_files()
@@ -63,23 +56,6 @@ class Command(BaseCommand):
         if not no_errors:
             raise CommandError('Some errors were discovered in some .ftl files and they were not updated.'
                                'See above for details.')
-
-    def update_l10n_team_files(self):
-        try:
-            # this will fail on first run
-            self.l10n_repo.clean()
-        except FileNotFoundError:
-            pass
-        self.l10n_repo.update()
-        self.stdout.write('Updated l10n team .ftl files')
-
-    def update_fluent_files(self):
-        try:
-            self.meao_repo.clean()
-        except FileNotFoundError:
-            pass
-        self.meao_repo.update()
-        self.stdout.write('Updated .ftl files')
 
     def config_fluent_repo(self):
         """Set user config so that committing will work"""

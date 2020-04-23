@@ -238,17 +238,27 @@ FEED_CACHE = 3900
 DOTLANG_CACHE = config('DOTLANG_CACHE', default='1800' if DEBUG else '600', parser=int)
 
 # Global L10n files.
-# TODO Port DOTLANG_FILES to FLUENT_DEFAULT_FILES
 DOTLANG_FILES = ['main']
-FLUENT_DEFAULT_FILES = ['brands', 'download_button', 'navigation', 'footer']
+FLUENT_DEFAULT_FILES = [
+    'brands',
+    'download_button',
+    'footer',
+    'fxa_form',
+    'navigation',
+    'newsletter_form',
+    'send_to_device',
+    'ui',
+]
 
 FLUENT_DEFAULT_PERCENT_REQUIRED = config('FLUENT_DEFAULT_PERCENT_REQUIRED', default='80', parser=int)
-FLUENT_REPO = config('FLUENT_REPO', default='https://github.com/mozmeao/www-l10n')
+FLUENT_REPO = config('FLUENT_REPO', default='mozmeao/www-l10n')
+FLUENT_REPO_URL = f'https://github.com/{FLUENT_REPO}'
 FLUENT_REPO_PATH = GIT_REPOS_PATH / 'www-l10n'
 # will be something like "<github username>:<github token>"
 FLUENT_REPO_AUTH = config('FLUENT_REPO_AUTH', default='')
 FLUENT_LOCAL_PATH = ROOT_PATH / 'l10n'
-FLUENT_L10N_TEAM_REPO = config('FLUENT_L10N_TEAM_REPO', default='https://github.com/mozilla-l10n/www-l10n')
+FLUENT_L10N_TEAM_REPO = config('FLUENT_L10N_TEAM_REPO', default='mozilla-l10n/www-l10n')
+FLUENT_L10N_TEAM_REPO_URL = f'https://github.com/{FLUENT_L10N_TEAM_REPO}'
 FLUENT_L10N_TEAM_REPO_PATH = GIT_REPOS_PATH / 'l10n-team'
 # 10 seconds during dev and 10 min in prod
 FLUENT_CACHE_TIMEOUT = config('FLUENT_CACHE_TIMEOUT', default='10' if DEBUG else '600', parser=int)
@@ -300,6 +310,7 @@ NOINDEX_URLS = [
     r'^firefox/welcome/',
     r'^contribute/(embed|event)/',
     r'^csp-violation-capture',
+    r'^firefox/retention/thank-you/',
     r'^firefox/set-as-default/thanks/',
     r'^firefox/sms/sent/',
     r'^firefox/unsupported/',
@@ -328,7 +339,6 @@ NOINDEX_URLS = [
     r'^teach/$'
     r'^about/legal/impressum/$',
     r'^security/announce/',
-    r'^etc/',
     r'^exp/',
 ]
 
@@ -492,13 +502,11 @@ INSTALLED_APPS = (
     'bedrock.privacy',
     'bedrock.externalfiles',
     'bedrock.security',
-    'bedrock.events',
     'bedrock.releasenotes',
     'bedrock.contentcards',
     'bedrock.utils',
     'bedrock.wordpress',
     'bedrock.sitemaps',
-    'bedrock.etc',
     'bedrock.pocketfeed',
     'bedrock.exp',
     # last so that redirects here will be last
@@ -514,7 +522,6 @@ INSTALLED_APPS = (
 # VaryNoCacheMiddleware is enabled. The home
 # page is exempt by default.
 VARY_NOCACHE_EXEMPT_URL_PREFIXES = (
-    '/plugincheck/',
     '/firefox/',
     '/contribute/',
     '/about/',
@@ -1467,6 +1474,8 @@ CSP_CONNECT_SRC = CSP_DEFAULT_SRC + [
     'www.googletagmanager.com',
     'www.google-analytics.com',
     'logs.convertexperiments.com',
+    '1003350.metrics.convertexperiments.com',
+    '1003343.metrics.convertexperiments.com',
     FXA_ENDPOINT,
     FXA_ENDPOINT_MOZILLAONLINE,
 ]

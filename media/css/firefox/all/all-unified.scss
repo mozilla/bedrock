@@ -112,7 +112,7 @@ $image-path: '/media/protocol/img';
     .c-intro-heading {
         @include at2x('/media/protocol/img/logos/firefox/browser/logo-sm.png', 64px, 64px);
         @include bidi(((background-position, top left, top right),));
-        @include text-display-lg;
+        @include text-title-lg;
         background-repeat: no-repeat;
         margin-bottom: $spacing-xl;
         padding-top: 64px + $spacing-lg;
@@ -139,6 +139,7 @@ $image-path: '/media/protocol/img';
     background-repeat: no-repeat;
     display: inline-block;
     height: 21px;
+    padding-bottom: $spacing-sm;
     vertical-align: middle;
     width: 21px;
 }
@@ -222,7 +223,7 @@ $image-path: '/media/protocol/img';
 }
 
 .c-product-heading {
-    @include text-display-md;
+    @include text-title-md;
     background: $color-white;
     padding: $spacing-md 0;
     position: -webkit-sticky;
@@ -235,7 +236,7 @@ $image-path: '/media/protocol/img';
 }
 
 .c-product-subheading {
-    @include text-display-sm;
+    @include text-title-sm;
 }
 
 .c-locale-list {
@@ -247,10 +248,10 @@ $image-path: '/media/protocol/img';
     }
 
     .c-locale-label {
-        @include text-display-sm;
+        @include text-title-sm;
 
         span {
-            @include text-display-xs;
+            @include text-title-xs;
             display: block;
             font-weight: normal;
         }
@@ -312,7 +313,7 @@ $image-path: '/media/protocol/img';
     }
 
     .c-help-title {
-        @include text-display-xs;
+        @include text-title-xs;
 
         span {
             font-weight: normal;

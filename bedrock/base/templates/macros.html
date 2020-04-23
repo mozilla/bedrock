@@ -61,22 +61,18 @@
         {% if title_text %}
           {{ title_text }}
         {% else %}
-          {{ _('Send Firefox to your smartphone or tablet') }}
+          {{ ftl('send-to-device-send-firefox') }}
         {% endif %}
         </h2>
       {% endif %}
-      <h2 class="thank-you hidden">{{ _('Your download link was sent.') }}</h2>
+      <h2 class="thank-you hidden">{{ ftl('send-to-device-your-download-link') }}</h2>
       <form class="send-to-device-form" action="{{ url('firefox.send-to-device-post') }}" method="post">
         <ul class="error-list hidden">
           <li class="sms">
-          {% if l10n_has_tag('sendto_updates_bug1395342') %}
-            {{ _('Sorry, we can’t send SMS messages to this phone number.') }}
-          {% else %}
-            {{ _('Sorry. This number isn’t valid. Please enter a U.S. phone number.') }}
-          {% endif %}
+            {{ ftl('send-to-device-sorry-we-cant-send', fallback='send-to-device-sorry-this-number') }}
           </li>
-          <li class="email">{{ _('Please enter an email address.') }}</li>
-          <li class="system">{{ _('An error occurred in our system. Please try again later.') }}</li>
+          <li class="email">{{ ftl('send-to-device-please-enter-an-email') }}</li>
+          <li class="system">{{ ftl('send-to-device-an-error-occured') }}</li>
         </ul>
         <div class="send-to-device-form-fields">
           <div class="platform-container">
@@ -86,46 +82,42 @@
             <input type="hidden" name="product" value="{{ product }}">
           </div>
           <div class="inline-field">
-            <label class="form-input-label" for="{{ id }}-input" data-alt="{% if l10n_has_tag('sendto_updates_bug1395342') %}{{ _('Enter your email or phone number') }}{% else %}{{ _('Enter your email or 10-digit phone number') }}{% endif %}">
+            <label class="form-input-label" for="{{ id }}-input" data-alt="{{ ftl('send-to-device-enter-your-email-or-phone', fallback='send-to-device-enter-your-email-or-phone-10-digit') }}">
               {% if input_label %}
                 {{ input_label }}
               {% else %}
-                {{ _('Enter your email') }}
+                {{ ftl('send-to-device-enter-your-email') }}
               {% endif %}
             </label>
             <div class="form-input">
               <input id="{{ id }}-input" class="send-to-device-input" name="phone-or-email" type="text" required>
             </div>
             <div class="form-submit">
-              <button type="submit" class="button mzp-c-button mzp-t-product">{{ _('Send') }}</button>
+              <button type="submit" class="button mzp-c-button mzp-t-product">{{ ftl('send-to-device-send') }}</button>
             </div>
           </div>
           <p class="legal sms">
             {% if legal_note_sms %}
               {{ legal_note_sms }}
             {% else %}
-              {% if l10n_has_tag('sendto_updates_bug1395342') %}
-                {{ _('SMS service available in select countries only. SMS &amp; data rates may apply.') }}
-              {% else %}
-                {{ _('SMS service available to U.S. phone numbers only. SMS &amp; data rates may apply.') }}
-              {% endif %}
-                {{ _('The intended recipient of the email or SMS must have consented.')}}
+                {{ ftl('send-to-device-sms-service-available-in-select', fallback='send-to-device-sms-service-available-to-us') }}
+                {{ ftl('send-to-device-intended-recipient-email-sms') }}
             {% endif %}
-            <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ _('Learn more')}}</a>
+            <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ ftl('ui-learn-more') }}</a>
           </p>
           <p class="legal email">
             {% if legal_note_email %}
               {{ legal_note_email }}
             {% else %}
-              {{ _('The intended recipient of the email must have consented.') }}
+              {{ ftl('send-to-device-intended-recipient-email') }}
             {% endif %}
-            <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ _('Learn more')}}</a>
+            <a href="{{ url('privacy.notices.websites') }}#campaigns" class="more">{{ ftl('ui-learn-more') }}</a>
           </p>
         </div>
         <div class="thank-you hidden">
-          <p class="sms">{{ _('Check your device for the email or text message!') }}</p>
-          <p class="email">{{ _('Check your device for the email!') }}</p>
-          <a href="#" role="button" class="more send-another">{{ _('Send to another device') }}</a>
+          <p class="sms">{{ ftl('send-to-device-check-your-device-email-sms') }}</p>
+          <p class="email">{{ ftl('send-to-device-check-your-device-email') }}</p>
+          <a href="#" role="button" class="more send-another">{{ ftl('send-to-device-send-to-another') }}</a>
         </div>
         <div class="loading-spinner"></div>
       </form>
@@ -183,21 +175,18 @@
     {% if intro_text %}
       {{ intro_text }}
     {% else %}
-      {{ _('<strong>Enter your email</strong> to access Firefox Accounts.') }}
+      {{ ftl('fxa-form-enter-your-email') }}
     {% endif %}
     </p>
 
     <div class="fxa-email-field-container">
       <p class="field">
-        <label for="fxa-email-field">{{ _('Email address') }}</label>
+        <label for="fxa-email-field">{{ ftl('fxa-form-email-address') }}</label>
         <input type="email" name="email" id="fxa-email-field" class="fxa-email-field" placeholder="user@example.com" required>
       </p>
 
       <p class="agreement">
-        {% trans url1='https://accounts.firefox.com/legal/terms', url2='https://accounts.firefox.com/legal/privacy' %}
-          By proceeding, you agree to the <a href="{{ url1 }}">Terms of Service</a> and
-          <a href="{{ url2 }}">Privacy Notice</a>.
-        {% endtrans %}
+        {{ ftl('fxa-form-by-proceeding', url1='https://accounts.firefox.com/legal/terms', url2='https://accounts.firefox.com/legal/privacy') }}
       </p>
 
       <button
@@ -211,7 +200,7 @@
       {% if button_text %}
         {{ button_text }}
       {% else %}
-        {{ _('Continue') }}
+        {{ ftl('fxa-form-continue') }}
       {% endif %}
       </button>
     </div>

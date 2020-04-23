@@ -182,8 +182,11 @@
     {% if release.is_public and release_notes %}
       {% for note in release_notes if note.tag == "New" %}
         {% if loop.first %}
-          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
-            <div class="mzp-l-sidebar"><h3>{{ note.tag }}</h3></div>
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
+            <div class="mzp-l-sidebar">
+              <img class="sidebar-icon" alt="" src="{{ static('protocol/img/icons/highlight.svg') }}" width="30" height="30">
+              <h3>{{ note.tag }}</h3>
+            </div>
             <div class="mzp-l-main mzp-l-article">
               <ul>
         {% endif %}
@@ -195,10 +198,25 @@
         {% endif %}
       {% endfor %}
 
+    {% if variation == 'b' %}
+      <div id="social-proof" class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
+        <div class="mzp-l-main mzp-l-article">
+          <blockquote cite="https://www.fastcompany.com/90333407/these-17-firefox-tips-make-the-case-for-ditching-chrome">
+            <h3>“Firefox isn’t just fast and smooth, it also has lots of features and options that make it more efficient and more private. If you haven’t tried Firefox lately, I suggest giving it a fresh look.”</h3>
+            <cite>Fast Company</cite>
+          </blockquote>
+          {{ download_firefox(alt_copy='Download now', download_location='secondary cta') }}
+        </div>
+      </div>
+    {% endif %}
+
       {% for note in release_notes if note.tag == "Fixed" %}
         {% if loop.first %}
-          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
-            <div class="mzp-l-sidebar"><h3>{{ note.tag }}</h3></div>
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
+            <div class="mzp-l-sidebar">
+              <img class="sidebar-icon" alt="" src="{{ static('protocol/img/icons/check.svg') }}" width="30" height="30">
+              <h3>{{ note.tag }}</h3>
+            </div>
             <div class="mzp-l-main mzp-l-article">
               <ul>
         {% endif %}
@@ -212,8 +230,11 @@
 
       {% for note in release_notes if note.tag == "Changed" %}
         {% if loop.first %}
-          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
-            <div class="mzp-l-sidebar"><h3>{{ note.tag }}</h3></div>
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
+            <div class="mzp-l-sidebar">
+              <img class="sidebar-icon" alt="" src="{{ static('protocol/img/icons/features.svg') }}" width="30" height="30">
+              <h3>{{ note.tag }}</h3>
+            </div>
             <div class="mzp-l-main mzp-l-article">
               <ul>
         {% endif %}
@@ -227,8 +248,11 @@
 
       {% for note in release_notes if note.tag == "Enterprise" %}
         {% if loop.first %}
-          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
-            <div class="mzp-l-sidebar"><h3>{{ note.tag }}</h3></div>
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
+            <div class="mzp-l-sidebar">
+              <img class="sidebar-icon" alt="" src="{{ static('protocol/img/icons/enterprise.svg') }}" width="30" height="30">
+              <h3>{{ note.tag }}</h3>
+            </div>
             <div class="mzp-l-main mzp-l-article">
               <ul>
         {% endif %}
@@ -243,8 +267,11 @@
       {# The Developer section is always visible with a MDN link #}
       {% for note in release_notes if note.tag == "Developer" %}
         {% if loop.first %}
-          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="developer">
-            <div class="mzp-l-sidebar"><h3>{{ _('Developer') }}</h3></div>
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
+            <div class="mzp-l-sidebar">
+              <img class="sidebar-icon" alt="" src="{{ static('protocol/img/icons/developer.svg') }}" width="30" height="30">
+              <h3>{{ _('Developer') }}</h3>
+            </div>
             <div class="mzp-l-main mzp-l-article">
               <ul>
         {% endif %}
@@ -258,8 +285,11 @@
 
       {% for note in release_notes if note.tag == "HTML5" %}
         {% if loop.first %}
-          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="web-platform">
-            <div class="mzp-l-sidebar"><h3>{{ _('Web Platform') }}</h3></div>
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
+            <div class="mzp-l-sidebar">
+              <img class="sidebar-icon" alt="" src="{{ static('protocol/img/icons/globe.svg') }}" width="30" height="30">
+              <h3>{{ _('Web Platform') }}</h3>
+            </div>
             <div class="mzp-l-main mzp-l-article">
               <ul>
         {% endif %}
@@ -274,7 +304,10 @@
       {% for note in release_notes if note.tag == "Resolved" %}
         {% if loop.first %}
           <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
-            <div class="mzp-l-sidebar"><h3>{{ note.tag }}</h3></div>
+            <div class="mzp-l-sidebar">
+              <img class="sidebar-icon" alt="" src="{{ static('protocol/img/icons/check.svg') }}" width="30" height="30">
+              <h3>{{ note.tag }}</h3>
+            </div>
             <div class="mzp-l-main mzp-l-article">
               <ul>
         {% endif %}
@@ -303,6 +336,7 @@
       {% for note in release_notes if note.tag == "Known" %}
         {% if loop.first %}
           <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="known">
+            <img class="sidebar-icon" alt="" src="{{ static('protocol/img/icons/stop.svg') }}" width="30" height="30">
             <div class="mzp-l-sidebar"><h3>{{ _('unresolved') }}</h3></div>
             <div class="mzp-l-main mzp-l-article">
               <ul>
@@ -370,3 +404,9 @@
     {%- endif %}
   </li>
 {% endmacro %}
+
+{% block experiments %}
+  {% if switch('experiment-social-proof', ['en-US']) %}
+    {{ js_bundle('social_proof_experiment') }}
+  {% endif %}
+{% endblock %}

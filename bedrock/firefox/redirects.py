@@ -237,7 +237,10 @@ redirectpatterns = (
              '/{prod}/{vers}/{channel}notes/{page}'),
 
     # bug 767614 superceeded by bug 957711 and 1003718 and 1239960
-    redirect(r'^(mobile|fennec)/?$', 'firefox'),
+    redirect(r'^(fennec)/?$', 'firefox'),
+
+    # issue 8749
+    redirect(r'^(mobile)/?$', '/firefox/mobile/'),
 
     # bug 876668
     redirect(r'^mobile/customize(?:/.*)?$', '/firefox/mobile/'),
@@ -641,4 +644,16 @@ redirectpatterns = (
 
     # issue 8420
     redirect(r'firefox/dedicated-profiles/?$', 'https://support.mozilla.org/kb/dedicated-profiles-firefox-installation'),
+
+    # issue 8641
+    redirect(r'^/firefox/windows-64-bit/?$', 'firefox.browsers.windows-64-bit'),
+    redirect(r'^/firefox/best-browser/?$', 'firefox.browsers.best-browser'),
+
+    # issue 8765 - temporarily disable browser comparison pages
+    redirect(r'^/firefox/browsers/compare/?$', 'firefox', permanent=False),
+    redirect(r'^/firefox/browsers/compare/chrome/?$', 'firefox', permanent=False),
+    redirect(r'^/firefox/browsers/compare/edge/?$', 'firefox', permanent=False),
+    redirect(r'^/firefox/browsers/compare/ie/?$', 'firefox', permanent=False),
+    redirect(r'^/firefox/browsers/compare/opera/?$', 'firefox', permanent=False),
+    redirect(r'^/firefox/browsers/compare/safari/?$', 'firefox', permanent=False),
 )

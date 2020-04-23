@@ -21,7 +21,7 @@ $image-path: '/media/protocol/img';
 // Newsletter Form
 
 h4 {
-    @include text-display-sm;
+    @include text-title-sm;
 }
 
 .mzp-c-newsletter-form {

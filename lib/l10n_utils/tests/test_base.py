@@ -95,6 +95,15 @@ class TestRender(TestCase):
         self._test(path, template, 'es-CL', 'es-CL,es;q=0.7,en;q=0.3',
                    302, '/es-ES/firefox/new/', add_active_locales=locales)
 
+    def test_ftl_files_unmodified(self):
+        """A list passed to the ftl_files parameter should not be modified in place"""
+        ftl_files = ['dude', 'walter']
+        path = '/firefox/new/'
+        template = 'firefox/new.html'
+        req = RequestFactory().get(path)
+        l10n_utils.render(req, template, ftl_files=ftl_files)
+        assert ftl_files == ['dude', 'walter']
+
 
 class TestGetAcceptLanguages(TestCase):
     def _test(self, accept_lang, list):

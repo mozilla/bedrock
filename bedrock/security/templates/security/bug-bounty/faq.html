@@ -11,8 +11,7 @@
   <p>This FAQ attempts to answer various questions about the Mozilla
     security bug bounty program sponsored by the Mozilla Foundation. For
     more information see the
-    <a href="https://blog.mozilla.org/press/2004/08/mozilla-foundation-announces-security-bug-bounty-program/">original announcement</a>
-    and the <a href="{{ url('security.bug-bounty') }}">official guidelines</a>
+    <a href="{{ url('security.bug-bounty') }}">official guidelines</a>
     governing the program.</p>
 
   <h3>General questions</h3>
@@ -26,25 +25,23 @@
   <h3>Eligible software</h3>
 
   <ul class="mzp-u-list-styled">
-    <li><a href="#other-products">Can I get the bug bounty reward if I
-      discover a bug in Camino, Galeon, K-Meleon, Netscape 7, or other
-      products based on Mozilla code?</a></li>
+    <li><a href="#other-products">What applications are in scope?</a></li>
     <li><a href="#bugzilla-etc">Does the bug bounty cover bugs found in
-      Bugzilla, Tinderbox, Bonsai, and other software created and distributed
+      Bugzilla, Rust, Rhino, and other software created and distributed
       as part of the Mozilla project?</a></li>
-    <li><a href="#most-recent">What do you mean by the "most recent
-      version" of Firefox, and/or Firefox for Android?</a></li>
+    <li><a href="#most-recent">What do you mean by the "most recent version"
+      of Firefox, and/or Firefox for Android?</a></li>
     <li><a href="#older-releases">Can I get the bug bounty reward if I
       discover a bug in an older release of Firefox, and/or Firefox for Android?
       </a></li>
-    <li><a href="#development-releases">Can I get the bug bounty reward if I
-      discover a bug in a pre-release version of Firefox, and/or Firefox for Android?</a></li>
     <li><a href="#third-party-releases">Can I get the bug bounty reward
       if I discover a bug that occurs in a third-party release of Firefox, and/or
       Firefox for Android,(e.g., a localized build, optimized
       build, or third-party Firefox, or Firefox for Android distribution)?</a></li>
     <li><a href="#platform-specific">Can I get the bug bounty reward if I
       discover a bug that occurs only on a particular operating system?</a></li>
+    <li><a href="#nondefault-pref">Can I get the bug bounty reward for a
+      vulnerability that is only triggerable with non-default preferences?</a></li>
   </ul>
 
   <h3>Eligible bugs</h3>
@@ -61,6 +58,8 @@
     <li><a href="#already-published">I've already published information
       about the bug, and didn't go through the Mozilla bug process; can I
       still get a reward?</a></li>
+    <li><a href="#someone-elses-bug">Can I receive a bounty for a vulnerability
+      I didn't find?</a></li>
     <li><a href="#nondisclosure">If I report the bug directly to you, do
       I have to keep the bug confidential and not publish information about
       it in order to receive a reward?</a></li>
@@ -76,47 +75,55 @@
     <dd>
       <p>Because we want to encourage more people to find and report
         security bugs in our products, so that we can make our products even
-        more secure than they already are. It's as simple as that.</p>
+        more secure than they already are. It's as simple as that. For a historical note,
+        you can see the
+        <a href="https://blog.mozilla.org/press/2004/08/mozilla-foundation-announces-security-bug-bounty-program/">original announcement</a> from 2004.</p>
     </dd>
 
     <dt id="eligibility">Are Mozilla developers eligible for the bug bounty reward?</dt>
     <dd class="answer">
-      <p>Yes. Anyone is eligible to receive a reward except for employees of
-        the Mozilla Foundation and its subsidiaries and the creators and
-        reviewers of the code in which the bug was found. However, as noted in
-        the policy, if you found this bug as part of your job (in other words,
-        while being paid to work on Mozilla) then we'd appreciate it if you
-        would not apply for the bounty, in order to preserve our limited funds
-        for rewarding volunteer contributors.</p>
+      <p>If you don't work for Mozilla Foundation or its subsidiaries, and
+        are not among the creators or reviewers of the code in which the bug
+        was found - Yes. However, if you found this bug as part of your job (in
+        other words, while being paid to work on Mozilla software) then we'd
+        appreciate it if you would not apply for the bounty in order to preserve our
+        limited funds for rewarding volunteer contributors.</p>
     </dd>
   </dl>
 
   <h2>Eligible software</h2>
 
   <dl class="mzp-u-list-styled">
-    <dt id="other-products">Can I get the bug bounty reward if I discover a bug in Camino,
-      Galeon, K-Meleon, Netscape 7, Mozilla Suite, SeaMonkey, or other products based on Mozilla code?</dt>
+    <dt id="other-products">What applications are in scope?</dt>
     <dd>
-      <p>Only if we can reproduce the problem in the most recent version
-        of Firefox and/or Firefox for Android.</p>
+      <p>The primary applications we offer bounties for are the most recent
+        version of Firefox or Firefox ESR; Firefox for Android, and Firefox
+        for iOS. Bounties may be awarded for Firefox Private Network VPN,
+        Lockwise, Firefox Reality, or other non-Beta end-user products offered
+        by Mozilla; however, whether a bounty is awarded and the amount will
+        be subject to the committee.</p>
     </dd>
 
     <dt id="bugzilla-etc">Does the bug bounty cover
-      bugs found in Bugzilla, Tinderbox, Bonsai, and other software created
+      bugs found in Bugzilla, Rust, Rhino, and other software created
       and distributed as part of the Mozilla project?</dt>
     <dd>
       <p>No. We have decided to use our limited resources to focus on our
         end-user products, as opposed to the other software produced and used
-        by the Mozilla project.</p>
+        by the Mozilla project. However, we do offer a
+        <a href="https://www.mozilla.org/en-US/security/web-bug-bounty/">Web
+        Bug Bounty</a> for the Mozilla web sites and services we run for
+        Firefox for our users.</p>
     </dd>
 
-    <dt id="most-recent">What do you mean by the
-      "most recent version" of Firefox, and/or Firefox for Android?</dt>
+    <dt id="most-recent">What do you mean by the "most recent version" of
+      Firefox, and/or Firefox for Android?</dt>
     <dd>
-      <p>In general we mean the releases available for download on the <a
-        href="{{ url('firefox.new') }}">mozilla.org download pages</a> at the time the
-        bug was reported. However we will also consider paying rewards for
-        security bugs as discussed in the questions and answers below.</p>
+      <p>In general we mean the nightly release available for download on
+        the <a href="https://ftp.mozilla.org/pub/firefox/nightly/">Mozilla
+        ftp site</a> at the time the bug was reported. However we will also
+        consider paying rewards for security bugs as discussed in the questions
+        and answers below.</p>
     </dd>
 
     <dt id="older-releases">Can I get the bug
@@ -127,25 +134,14 @@
         reward only if we can reproduce the problem using the most recent
         version.</p>
 
-      <p>However as a special exception we will also consider paying
-        rewards for bugs found in the most recent releases from designated
-        stable branches (e.g., from the Mozilla 17 Extended Support Release branch while
-        supported) if the bugs are not present in the most recent version but
-        were never recognized and fixed as security bugs. (For example, the bug
-        might be in code associated with a feature that was removed and/or
-        heavily modified in the most recent version, and might have been
-        "fixed" solely as a byproduct of other unrelated changes.)</p>
-    </dd>
-
-    <dt id="development-releases">Can I get the bug bounty
-      reward if I discover a bug in a pre-release version of Firefox and/or
-      Firefox for Android?</dt>
-    <dd>
-      <p>Yes, as long as the bug otherwise meets the published bug bounty
-        program guidelines. Bugs found in Nightly and Beta releases of Firefox and
-        Firefox for Android are eligible as
-        long the bug is reproducible in the latest nightly mozilla-central build and has
-        not been previously reported.</p>
+      <p>However as an exception we will typically also pay a reward for
+        bugs found in the latest versions of our other channels (Release,
+        Beta, and Extended Support Release channels) if the bugs are not
+        present in their most recent version but were never recognized
+        and fixed as security bugs. (For example, the bug might be in
+        code associated with a feature that was removed and/or heavily
+        modified in the most recent version, and might have been "fixed"
+        solely as a byproduct of other unrelated changes.)</p>
     </dd>
 
     <dt id="third-party-releases">Can I get the bug
@@ -166,7 +162,20 @@
         a list of supported operating systems and hardware configurations see
         the system requirements for <a href="{{ url('firefox.sysreq') }}">Firefox</a> or
         <a href="{{ firefox_url('android', 'sysreq') }}">
-        Firefox for Android</a></p>
+        Firefox for Android</a>)</p>
+    </dd>
+
+    <dt id="nondefault-pref">Can I get the bug bounty reward for a vulnerability
+      that is only triggerable with non-default preferences?</dt>
+    <dd>
+      <p>Ultimately, the reward is determinate on the sec rating assigned
+        (sec-high or sec-moderate/low.) If the preference is exposed via our
+        Preferences Page; we consider that to be a supported configuration for
+        Firefox.  If the preference must be configured via about:config or
+        requires other non-standard Operating System configuration, that is
+        typically not considered a supported configuration. Those
+        vulnerabilities will typically not be rated sec-high, and will be
+        evaluated accordingly for a bounty.</p>
     </dd>
   </dl>
 
@@ -176,15 +185,16 @@
     <dt id="eligible-bugs">What types of security bugs are eligible?</dt>
     <dd>
       <p>Reproducible security bugs that are determined to be rated
-        <a href="https://wiki.mozilla.org/Security_Severity_Ratings">sec-critical or
-          sec-high</a> are eligible. In general we consider critical security bugs to be
-        those that allow execution of arbitrary code on users' systems, while high
-        severity security bugs allow access to users' confidential information. In the
-        latter case we consider bugs to be sec-high only if they potentially expose
-        high-value personal information (e.g., passwords, credit card numbers, and the
-        like); in the context of the bug bounty program we do not consider bugs to be
-        sec-high if they potentially expose only lower-value information (e.g., browsing
-        history) or information that would be useful primarily for other exploits
+        <a href="https://wiki.mozilla.org/Security_Severity_Ratings/Client">
+        sec-high</a> or above are eligible. In general we consider high
+        severity security bugs to be those that allow execution of arbitrary
+        code on users' systems or allow access to users' confidential
+        information. In the latter case we consider bugs to be sec-high only
+        if they potentially expose high-value personal information (e.g.,
+        passwords, credit card numbers, and the like); in the context of the
+        bug bounty program we do not consider bugs to be sec-high if they
+        potentially expose only lower-value information (e.g., browsing history)
+        or information that would be useful primarily for other exploits
         (e.g., the names of files or directories on the user's system).</p>
 
       <p>Finally, in general we do not consider bugs that permit only denial of
@@ -210,16 +220,24 @@
     <dt id="already-published">I've already published information about the bug,
       and didn't go through the Mozilla bug process; can I still get a reward?</dt>
     <dd>
-      <p>Yes, as long as the bug report occurred after the official
-        announcement of the bug bounty program on August 2, 2004, and otherwise
-        meets the published bug bounty program guidelines (e.g., the bug has
-        not been reported previously and is reproducible in the most recent
-        version of the affected product).</p>
+      <p>Depending on the manner in which it was published, and the details that
+        were disclosed, it may be possible; however typically we do not pay
+        bounties in situations where developers need to drop existing work to
+        respond to an urgent fix needed due to a public disclosure.</p>
 
-      <p>However we do encourage people to <a
-        href="mailto:security@mozilla.org?subject=Security%20exploit%20submission">
+      <p>We encourage people to <a
+        href="https://bugzilla.mozilla.org/form.client.bounty">
         report bugs directly</a> to the Mozilla project, in order to ensure that the
         bug is made known as soon as possible to the people who can fix it.</p>
+    </dd>
+
+    <dt id="someone-elses-bug">Can I receive a bounty for a vulnerability I didn't
+      find?</dt>
+    <dd>
+      <p>Sometimes, yes. For example, if you find a Firefox exploit in the wild
+        that uses a previously unknown vulnerability and report it, you can be
+        eligible for a bounty for that vulnerability even though you didn't
+        discover the vulnerability itself.</p>
     </dd>
 
     <dt id="nondisclosure">If I report the bug
@@ -243,10 +261,10 @@
       desire to work with you further in investigating and fixing the bug;
       can I still get a bug bounty reward?</dt>
     <dd>
-      <p>Yes. Again, we're rewarding you for finding a bug, not trying to
-        buy your cooperation. However we do invite you to work together with
-        us, and we hope that you'll accept that offer in the spirit in which it
-        was intended. In return you'll get the opportunity to work as a full
+      <p>Yes. Again, we're rewarding you for finding a vulnerability, not
+        trying to buy your cooperation. However we invite you to work together
+        with us to resolve the issue; and doing so can increase the reward that
+        is ultimately paid. You'll also get the opportunity to work as a full
         member of the team fixing your bug and see "from the inside" exactly
         how Mozilla security bugs get resolved.</p>
     </dd>

@@ -41,7 +41,7 @@ html {
     margin-bottom: $layout-md;
 
     .enterprise-section-title {
-        @include text-display-md;
+        @include text-title-md;
         margin: 0 auto $layout-xs;
         max-width: 18em;
         text-align: center;
@@ -93,7 +93,7 @@ html {
 
    &.mzp-t-product-firefox .mzp-c-hero-title {
        @include at2x('/media/protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', auto, 48px);
-       @include text-display-xl;
+       @include text-title-xl;
        padding-top: $layout-lg + 48px;
    }
 
@@ -186,25 +186,75 @@ html {
     @media #{$mq-md} {
         .enterprise-download-lists {
             display: grid;
-            grid-gap: 0 $spacing-2xl;
+            grid-column-gap: $layout-md;
             grid-template-columns: repeat(3, 1fr);
-            margin-bottom: $spacing-2xl;
+            grid-template-areas:
+                'title-col1    title-col2    title-col3'
+                'list-col1     list-col2     list-col3'
+                'support-col1  support-col2  support-col3';
+            margin-bottom: $layout-md;
         }
+
+        .enterprise-download-block {
+            display: contents;
+            margin-bottom: 0;
+        }
+
+        .platform-win64 {
+            .enterprise-download-title {
+                grid-area: title-col1;
+            }
+
+            .mzp-c-menu-list {
+                grid-area: list-col1;
+            }
+
+            .enterprise-download-support {
+                grid-area: support-col1;
+            }
+        }
+
+        .platfom-mac {
+            .enterprise-download-title {
+                grid-area: title-col2;
+            }
+
+            .mzp-c-menu-list {
+                grid-area: list-col2;
+            }
+
+            .enterprise-download-support {
+                grid-area: support-col2;
+            }
+        }
+
+        .platform-win32 {
+            .enterprise-download-title {
+                grid-area: title-col3;
+            }
+
+            .mzp-c-menu-list {
+                grid-area: list-col3;
+            }
+
+            .enterprise-download-support {
+                grid-area: support-col3;
+            }
+        }
+
     }
 }
 
-.enterprise-download-header {
-    padding: 0 0 $spacing-xl;
-    margin: 0 0 $spacing-xl;
-    border-bottom: 1px solid $color-marketing-gray-30;
+.enterprise-download-block {
+    margin-bottom: $layout-lg;
 }
 
-.enteprise-download-title {
+.enterprise-download-title {
     @include bidi((
         (padding-left, $layout-lg, 0),
         (padding-right, 0, $layout-lg),
     ));
-    @include text-display-sm;
+    @include text-title-sm;
     margin-bottom: $spacing-lg;
     min-height: 48px;
     position: relative;
@@ -221,24 +271,30 @@ html {
         width: 48px;
     }
 
-    &.platform-win64:before {
+    .platform-win64 &:before {
         background-image: url('/media/img/firefox/enterprise/icon-win64.svg');
         background-size: 39px 40px;
     }
 
-    &.platform-mac:before {
+    .platform-mac &:before {
         background-image: url('/media/img/firefox/enterprise/icon-mac.svg');
         background-size: 32px 40px;
     }
 
-    &.platform-win32:before {
+    .platform-win32 &:before {
         background-image: url('/media/img/firefox/enterprise/icon-win32.svg');
         background-size: 39px 40px;
     }
 }
 
-.enteprise-download-subtitle {
-    @include text-display-xxs;
+.enterprise-download-support {
+    padding-top: $spacing-xl;
+    margin-top: $spacing-xl;
+    border-top: 1px solid $color-marketing-gray-30;
+}
+
+.enterprise-download-subtitle {
+    @include text-title-xxs;
 }
 
 

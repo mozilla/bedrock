@@ -29,7 +29,7 @@ $image-path: '/media/protocol/img';
         height: 290px;
 
         .page-title {
-            @include text-display-xl;
+            @include text-title-xl;
             margin-top: 150px;
         }
     }
@@ -52,7 +52,7 @@ $image-path: '/media/protocol/img';
     padding: $spacing-lg 0;
 
     h2 {
-        @include text-display-xs;
+        @include text-title-xs;
         color: $color-blue-70;
         font-weight: normal;
         line-height: 1.3;

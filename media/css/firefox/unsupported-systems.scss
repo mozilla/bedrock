@@ -15,7 +15,7 @@ $image-path: '/media/protocol/img';
 }
 
 .c-header-main {
-    @include text-display-md;
+    @include text-title-md;
     margin-top: $spacing-lg;
 }
 
@@ -28,5 +28,5 @@ $image-path: '/media/protocol/img';
 }
 
 .c-help-block-title {
-    @include text-display-xs;
+    @include text-title-xs;
 }

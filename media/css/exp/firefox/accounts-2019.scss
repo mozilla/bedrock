@@ -5,7 +5,7 @@
 @import '../../../protocol/css/includes/lib';
 
 .c-section-title {
-    @include text-display-md;
+    @include text-title-md;
     max-width: $content-sm;
     margin: 0 auto $layout-xl;
     text-align: center;
@@ -24,7 +24,7 @@
     }
 
     .c-accounts-hero-title {
-        @include text-display-lg;
+        @include text-title-lg;
         margin-bottom: $spacing-xl;
         padding-top: (60px + $spacing-2xl);
 
@@ -110,7 +110,7 @@
     text-align: center;
 
     .fxa-email-form-title {
-        @include text-display-sm;
+        @include text-title-sm;
     }
 
     .state-fxa-supported-signed-in & {
@@ -191,7 +191,7 @@
 
 .c-product-list-title {
     @include image-replaced;
-    @include text-display-sm;
+    @include text-title-sm;
     background-position: center top;
     background-repeat: no-repeat;
     margin: 0 auto $spacing-lg;
@@ -424,7 +424,7 @@
 }
 
 .c-accounts-value-title {
-    @include text-display-md;
+    @include text-title-md;
 }
 
 
@@ -488,7 +488,7 @@
 }
 
 .c-accounts-movement-title {
-    @include text-display-md;
+    @include text-title-md;
 }
 
 .c-accounts-movement-desc {
