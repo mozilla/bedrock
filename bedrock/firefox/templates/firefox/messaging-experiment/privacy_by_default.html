@@ -4,10 +4,13 @@
   
   {% from "macros-protocol.html" import hero with context %}
   
-  {% extends "firefox/welcome/base.html" %}
+  {% extends "firefox/messaging-experiment/base.html" %}
   
   {# L10n: HTML page title #}
   {% block page_title %}{{ _('Firefox: Private By Default') }}{% endblock %}
+
+  {% set _entrypoint = 'mozilla.org-privacy-messaging-experiment' %}
+  {% set _utm_campaign = 'privacy-by-default' %}
   
   {% block body_class %}{{ super() }} privacy-default{% endblock %}
   
@@ -22,7 +25,7 @@
   
     <p class="primary-cta">
       <div>
-        <a class="mzp-c-button mzp-t-product js-open-about-protections" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop" data-cta-text="Go to your Protections Report" data-cta-type="button">{{ _('Check out your protections') }}</a>
+        <a class="mzp-c-button mzp-t-product js-open-about-protections" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop" data-cta-text="Check out your protections" data-cta-type="button">{{ _('Check out your protections') }}</a>
       </div>
     </p>
     {% endcall %}

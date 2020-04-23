@@ -14,15 +14,23 @@
         window.dataLayer.push({
             'event': 'in-page-interaction',
             'eAction': 'link click',
-            'eLabel': 'See what Firefox has blocked for you'
+            'eLabel': 'Check out your protections'
         });
     }
 
-    if (client.isFirefoxDesktop && client._getFirefoxMajorVersion() >= 70) {
-        // Intercept link clicks to open about:protections page using UITour.
-        Mozilla.UITour.ping(function() {
-            var protectionReportLink = document.querySelector('.js-open-about-protections');
-            protectionReportLink.addEventListener('click', handleOpenProtectionReport, false);
-        });
-    }
+    if (client.isFirefoxDesktop) {
+      if (client._getFirefoxMajorVersion() >= 70) {
+          // show "Check out your protections" links.
+          document.querySelector('main').classList.add('state-firefox-desktop-70');
+
+          // Intercept link clicks to open about:protections page using UITour.
+          Mozilla.UITour.ping(function() {
+              var protectionReportLink = document.querySelector('.js-open-about-protections');
+              protectionReportLink.addEventListener('click', handleOpenProtectionReport, false);
+          });
+      } else {
+          // show "Update your Firefox browser" links.
+          document.querySelector('main').classList.add('state-firefox-desktop-old');
+      }
+  }
 })(window.Mozilla);
