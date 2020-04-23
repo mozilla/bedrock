@@ -19,18 +19,18 @@
     }
 
     if (client.isFirefoxDesktop) {
-      if (client._getFirefoxMajorVersion() >= 70) {
-          // show "Check Out Your Protections" links.
-          document.querySelector('main').classList.add('state-firefox-desktop-70');
+        if (client._getFirefoxMajorVersion() >= 70) {
+            // show "Check Out Your Protections" links.
+            document.querySelector('main').classList.add('state-firefox-desktop-70');
 
-          // Intercept link clicks to open about:protections page using UITour.
-          Mozilla.UITour.ping(function() {
-              var protectionReportLink = document.querySelector('.js-open-about-protections');
-              protectionReportLink.addEventListener('click', handleOpenProtectionReport, false);
-          });
-      } else {
-          // show "Update your Firefox browser" links.
-          document.querySelector('main').classList.add('state-firefox-desktop-old');
-      }
+            // Intercept link clicks to open about:protections page using UITour.
+            Mozilla.UITour.ping(function() {
+                var protectionReportLink = document.querySelector('.js-open-about-protections');
+                protectionReportLink.addEventListener('click', handleOpenProtectionReport, false);
+            });
+        } else {
+            // show "Update your Firefox browser" links.
+            document.querySelector('main').classList.add('state-firefox-desktop-old');
+        }
   }
 })(window.Mozilla);
