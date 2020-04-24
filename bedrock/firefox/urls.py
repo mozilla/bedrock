@@ -113,7 +113,7 @@ urlpatterns = (
     page('firefox/welcome/6', 'firefox/welcome/page6.html'),
     page('firefox/welcome/7', 'firefox/welcome/page7.html'),
 
-    page('firefox/switch', 'firefox/switch.html', ftl_files=['firefox/switch', 'firefox/switch-en']),
+    page('firefox/switch', 'firefox/switch.html', ftl_files=['firefox/switch']),
     page('firefox/pocket', 'firefox/pocket.html'),
 
     # Issue 6604, SEO firefox/new pages
