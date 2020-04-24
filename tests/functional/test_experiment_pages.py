@@ -19,11 +19,7 @@ def pytest_generate_tests(metafunc):
             'line or in a configuration file.')
     paths = (
         '/exp/firefox/',
-        '/exp/firefox/accounts/',
-        '/exp/firefox/new/',
-        '/exp/firefox/welcome/1/',
-        '/exp/firefox/lockwise/',
-        '/exp/firefox/71.0/whatsnew/all/'
+        '/exp/firefox/new/'
     )
     metafunc.parametrize('url', [base_url + path for path in paths])
 
