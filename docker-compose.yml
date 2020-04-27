@@ -79,6 +79,22 @@ services:
         GIT_SHA: ${GIT_COMMIT:-latest}
         BRANCH_NAME: ${BRANCH_NAME:-latest}
     image: mozorg/bedrock:${BRANCH_AND_COMMIT:-latest}
+    env_file: .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./bedrock/:/app/bedrock:delegated
+      - ./bin/:/app/bin:delegated
+      - ./docker/:/app/docker:delegated
+      - ./etc/:/app/etc:delegated
+      - ./lib/:/app/lib:delegated
+      - ./root_files/:/app/root_files:delegated
+      - ./scripts/:/app/scripts:delegated
+      - ./vendor-local/:/app/vendor-local:delegated
+      - ./wsgi/:/app/wsgi:delegated
+      - ./locale/:/app/locale:delegated
+      - ./l10n/:/app/l10n:delegated
+      - ./git-repos/:/app/git-repos:delegated
 
   builder:
     build:
