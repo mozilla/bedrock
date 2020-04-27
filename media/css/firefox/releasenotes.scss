@@ -31,10 +31,15 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    .download-button {
+    blockquote + .download-button {
         @media #{$mq-md} {
             float: right;
         }
+    }
+
+    .mzp-c-call-out-compact {
+        background-color: $color-white;
+        margin-top: 0;
     }
 }
 

@@ -85,7 +85,7 @@ def release_notes(request, version, product='Firefox'):
         raise Http404
 
     # ensure variant matches pre-defined value
-    if variant not in ['a', 'b']:  # place expected ?v= values in this list
+    if variant not in ['a', 'b', 'c']:  # place expected ?v= values in this list
         variant = None
 
     # Show a "coming soon" page for any unpublished Firefox releases
