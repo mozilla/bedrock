@@ -17,7 +17,7 @@
   {% block content_intro %}
     {% call hero(
       title=_('Firefox: Private By Default'),
-      desc=_("Privacy is more than a mission. It's built right into our products. Our default privacy and security settings block malware, stop trackers, and keep companies from following you around the web."),
+      desc=_("Firefox automatically protects your privacy without sacrificing performance. So go ahead and browse with confidence, knowing Firefox is protecting what you do online."),
       class='mzp-t-firefox mzp-t-dark',
       include_cta=True,
       heading_level=1
@@ -25,7 +25,7 @@
   
     <p class="primary-cta">
       <div>
-        <a class="mzp-c-button mzp-t-product js-open-about-protections" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-cta-text="Check Out Your Protections" data-cta-type="button">{{ _('Check Out Your Protections') }}</a>
+        <a href="{{ url('firefox.privacy.index') }}" class="mzp-c-button mzp-t-product" data-cta-text="Learn About Firefox Privacy" data-cta-type="button">{{ _('Learn About Firefox Privacy') }}</a>
       </div>
     </p>
     {% endcall %}
@@ -36,34 +36,36 @@
     <div class="body-primary">
       <div class="c-picto-block t-adjacent-image">
         <div class="c-picto-block-image">
-          <img src="{{ static('img/icons/tracking_protection-purple.svg') }}" alt="">
+          <img src="{{ static('img/icons/hide_password-orange.svg') }}" alt="">
         </div>
-        <h3 class="c-picto-block-title">2000+ trackers blocked — automatically</h3>
+        <h3 class="c-picto-block-title">Your privacy is our first thought, not an afterthought</h3>
         <div class="c-picto-block-body">
-          <p>{{ _('Tracking has become an epidemic online: companies follow every move, click and purchase, collecting data to predict and influence what you’ll do next. That’s why Firefox mobile and desktop browsers have Enhanced Tracking Protection on by default.') }}</p>
+          <p>{{ _('
+            Tracking has become an epidemic online: companies follow every move, click and purchase, collecting data to predict and influence what you’ll do next. That’s why Firefox mobile and desktop browsers have Enhanced Tracking Protection on by default.') }}</p>
         </div>
       </div>
 
       <div class="c-picto-block t-adjacent-image">
         <div class="c-picto-block-image">
-          <img src="{{ static('img/icons/cryptomining-pink.svg') }}" alt="">
+          <img src="{{ static('img/icons/laptop_warning-pink.svg') }}" alt="">
         </div>
-  
-        <h3 class="c-picto-block-title">Cryptominers stopped in their tracks</h3>
+        <h3 class="c-picto-block-title">You can worry less about malware</h3>
         <div class="c-picto-block-body">
-          <p>{{ _('Cryptominers are a type of malware that use your system’s computing power to mine digital money. Whether you keep Firefox Standard settings or increase your protection to Strict, cryptominers are being blocked.') }}</p>
+          <p>{{ _('Firefox automatically stops malware, including some types that can use your system’s computing power, slowing your computer and even raising your energy bills.') }}</p>
         </div>
       </div>
-  
+
       <div class="c-picto-block t-adjacent-image">
         <div class="c-picto-block-image">
-          <img src="{{ static('img/icons/report-orange.svg') }}" alt="">
+          <img src="{{ static('img/icons/cryptomining-purple.svg') }}" alt="">
         </div>
-        <h3 class="c-picto-block-title">Protection at a glance</h3>
+
+        <h3 class="c-picto-block-title">Cryptominers stopped in their tracks</h3>
         <div class="c-picto-block-body">
-          <p>{{ _('Firefox Privacy Protections dashboard gives you more insight into the types of trackers your browser has blocked on your behalf, and provides actionable suggestions for keeping your identity safe online.') }}</p>
+          <p>{{ _('Cryptominers are a type of malware that use your system’s computing power to mine digital money. Cryptominers are blocked by default with Firefox’s Standard settings.') }}</p>
         </div>
       </div>
+    </div>
   {% endblock %}
   
   {% block js %}

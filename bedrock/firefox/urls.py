@@ -114,7 +114,7 @@ urlpatterns = (
     page('firefox/welcome/7', 'firefox/welcome/page7.html'),
 
     page('firefox/privacy-by-default', 'firefox/messaging-experiment/privacy_by_default.html'),
-    page('firefox/privacy-promise', 'firefox/messaging-experiment/privacy_promise.html'),
+    page('firefox/privacy-tools', 'firefox/messaging-experiment/privacy_tools.html'),
     page('firefox/mobile-promo', 'firefox/messaging-experiment/control.html'),
 
     page('firefox/switch', 'firefox/switch.html', ftl_files=['firefox/switch', 'firefox/switch-en']),
