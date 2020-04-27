@@ -15,11 +15,6 @@ whatsnew_re_all = latest_re % (version_re, 'whatsnew/all')
 urlpatterns = (
     page('opt-out', 'exp/opt-out.html'),
     page('firefox', 'exp/firefox/index.html', active_locales=['en-US', 'en-GB', 'en-CA', 'de']),
-    page('firefox/new', 'exp/firefox/new/download.html', active_locales=['en-US', 'en-GB', 'en-CA', 'de']),
-    page('firefox/new/nav', 'exp/firefox/new/download-nav.html'),
-    page('firefox/accounts', 'exp/firefox/accounts-2019.html'),
-    page('firefox/lockwise', 'exp/firefox/lockwise.html', active_locales=['en-US', 'en-GB', 'en-CA', 'de']),
+    url(r'^firefox/new/$', views.new, name='exp.firefox.new'),
     page('firefox', 'exp/firefox/index.html', active_locales=['en-US', 'en-GB', 'en-CA', 'de']),
-    page('firefox/welcome/1', 'exp/firefox/welcome/page1.html'),
-    url(whatsnew_re_all, views.WhatsnewView.as_view(), name='exp.firefox.whatsnew.all'),
 )

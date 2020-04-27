@@ -37,6 +37,23 @@ build-test:
     - FROM_DOCKER_REPOSITORY=mozorg/bedrock_test docker/bin/push2dockerhub.sh
     - FROM_DOCKER_REPOSITORY=mozorg/bedrock docker/bin/push2dockerhub.sh
 
+update-l10n:
+  stage: update-config
+  tags:
+    - oregon-b-shell
+  only:
+    changes:
+      - "l10n/**/*"
+    refs:
+      - master
+  except:
+    changes:
+      - "lib/fluent_migrations/**/*"
+    refs:
+      - triggers
+  script:
+    - bin/open-ftl-pr.sh
+
 .update-config:
   stage: update-config
   tags:

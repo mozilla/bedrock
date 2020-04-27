@@ -150,7 +150,7 @@ main .mzp-l-content {
     }
 
     .mzp-c-hero-desc {
-        @include text-display-sm;
+        @include text-title-sm;
 
         p {
             margin-bottom: $spacing-lg;
@@ -202,7 +202,7 @@ main .mzp-l-content {
     color: #fff;
 
     h2 {
-        @include text-display-lg;
+        @include text-title-lg;
         color: $color-pink-50;
         margin-top: $spacing-md;
     }
@@ -230,7 +230,7 @@ main .mzp-l-content {
 
     h3 {
         @include bidi(((text-align, left, right),));
-        @include text-display-sm;
+        @include text-title-sm;
         margin-top: $spacing-2xl;
     }
 
@@ -285,7 +285,7 @@ main .mzp-l-content {
     }
 
     .mzp-c-card-feature-title {
-        @include text-display-lg;
+        @include text-title-lg;
         color: $color-ink-80;
     }
 
@@ -423,7 +423,7 @@ main .mzp-l-content {
     padding-right: 0;
 
     h3 {
-        @include text-display-md;
+        @include text-title-md;
         color: $color-ink-80;
         margin-bottom: 0;
 

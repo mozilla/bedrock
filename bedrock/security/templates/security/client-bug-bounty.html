@@ -16,53 +16,106 @@
 
   <h2 id="security-vulnerability-bounty">Security Vulnerability Bounty</h2>
 
-  <p>Mozilla will pay a bounty for client and security bugs as detailed below. All security bugs must follow the following general criteria to be eligible:</p>
+  <p>Mozilla will pay a bounty for client security bugs as detailed below. All security bugs must follow the following general criteria to be eligible:</p>
 
   <ul class="mzp-u-list-styled">
-    <li>Eligible security bugs may be present in any of the current main development or released versions of Firefox or Firefox for Android as released by Mozilla Corporation (e.g. Nightly mozilla-central or Beta test versions, as well as the final release product versions).</li>
-    <li>The security rating given by the Bounty Committee for a bug must be rated a "sec-critical" or a "sec-high" in order for it to be eligible for a bounty. Some "sec-moderate" bugs may be eligible for the bounty as well. (See <a href="https://wiki.mozilla.org/Security_Severity_Ratings">Security Ratings</a> for details of the rating qualifications.)</li>
-    <li>All bounties paid will be at the discretion of the Mozilla Bounty Committee. The committee will evaluate the severity of reported issues with the help of engineers who work on the affected code. Security researchers are invited to participate in the assignment of ratings, but final decisions on the rating are at the discretion of the Bounty Committee.</li>
+    <li>Eligible security bugs may be present in any of the current main development or released versions of Firefox, Firefox for Android, or Firefox for iOS as released by Mozilla Corporation (e.g. Nightly mozilla-central or Beta test versions, as well as the final release product versions).</li>
     <li>Submissions should be made following <a href="#claiming-a-bounty">our instructions below</a>.</li>
+    <li>We reserve the right not to pay bounties for security bugs in or caused by additional third party software (e.g. binary plugins, extensions) not bundled by Mozilla in a release.</li>
   </ul>
+
+  <p>All bounties paid will be at the discretion of the Mozilla Bounty Committee. The committee will evaluate the severity of reported issues with the help of engineers who work on the affected code. Security researchers are invited to participate in the assignment of ratings, but final decisions on the rating are at the discretion of the Bounty Committee.</p>
+
+  <p>Typically, the security rating given by the Bounty Committee for a bug must be rated a "sec-high" or "sec-critical" in order for it to be eligible for a bounty. In some circumstances, bounties may be paid for lower-rated bugs as well. (See <a href="https://wiki.mozilla.org/Security_Severity_Ratings/Client">Security Ratings</a> for details of the rating qualifications.) </li>
 
   <h4 id="security-vulnerability-amounts">Rewards Amount</h4>
 
-  <p>The bounty for valid potentially exploitable critical and high security rated client security vulnerabilities will be between $3000 and $7500 (USD) cash reward. The bounty program encourages the earliest possible reporting of these potentially exploitable bugs.  A bounty may be paid for some moderate rated client security bugs at the discretion of the Bug Bounty Committee. If a bounty is paid for a moderate rated security issue, the amount will be between $500 and $2000 (US), depending on the severity of impact for the issue as determined by Bug Bounty Committee.</p>
+  <p>The bounty for valid potentially exploitable critical and high security rated client security vulnerabilities will be between $10,000 and $3,000 (USD) cash reward, depending on the impact of the vulnerability and the quality of the report, as detailed below.</p>
 
-  <p>Here are some examples how to receive a higher reward</p>
+  <p>The bounty program encourages the <u>earliest possible reporting</u> of potentially exploitable bugs. A bounty <u>is not determined based on the <i>initial</i> submission</u>, but rather on the outcome of the discussion with developers. Improving test cases post-submission, figuring out if an engineer's speculation is founded or not, or other assistance that helps resolve the issue <i>will</i> increase your bounty payout.</p>
+
+  <p><b>Baseline Report</b></p>
   <ul class="mzp-u-list-styled">
-    <li>The researcher can demonstrate new classes of attacks, or techniques for bypassing security features </li>
-    <li>Or, if an existing vulnerability can be demonstrated to be exploitable though additional research by the reporter, additional compensation can be earned for the same bug. Research might also uncover extremely severe, complex, or interesting problem areas that were previously unreported or unknown issues. Examples of severe or complex bugs would be: Use After Free bugs that also allow for ASLR bypass; bypassing the Firefox security wrappers to allow content to manipulate browser components, or a vulnerability that allows you to break out of a sandboxed process.</li>
-    <li>You are responsible for any tax implications depending on your country of residency and citizenship. There may be additional restrictions on your ability to enter depending upon your local law.</li>
+    <li>Sufficient information to diagnose the vulnerability and produce a fix.  Examples:</li>
+    <ul class="mzp-u-list-styled">
+      <li>ASAN Stacktrace or Crash Dump (typically for Memory Trespassing/Corruption)</li>
+      <li>Trigger point (for UXSS)</li>
+      <li>ASAN Nightly bug reports</li>
+    </ul>
+    <li>Notes:</li>
+    <ul class="mzp-u-list-styled">
+      <li>Typically bounties are not paid for issues which cannot be identified/fixed from the report.</li>
+      <li>While we do adhere to a first reporter-rule (with a 72-hour collision window), exceptions are made for reports that are not actionable and require additional information provided by another party.</li>
+    </ul>
   </ul>
 
-  <p>We reserve the right not to pay bounties for security bugs in or caused by additional third party software (e.g. binary plugins, extensions) not bundled by Mozilla in a release.</p>
+  <p><b>High Quality Report</b></p>
+
+  <ul class="mzp-u-list-styled">
+    <li>Includes at least two of the following:</li>
+    <ul class="mzp-u-list-styled">
+      <li>(for memory corruption) demonstrated control over the PC or memory read/write location, with documentation for how it is achieved</li>
+      <li>a root cause analysis of where the bug is located</li>
+      <li>a proof of concept that reproduces the vulnerability, easily integrated into our test suite</li>
+    </ul>
+    <li>Submissions that include some aspects of a high quality report will qualify for a bounty between the minimum and maximum.</li>
+    <li>Notes:</li>
+    <ul class="mzp-u-list-styled">
+      <li>A bug that is limited in capability may meet all the criteria for a High Quality report, but will merit a lower payout because of its limited capability. An example would be a sandbox escape that does not allow arbitrary code execution, but does allow arbitrary files to be read from the filesystem.</li>
+      <li>Developing a full exploit is not required for a High Quality Report.</li>
+      <li>The intent of the proof of concept is to enable us to create a test that we can integrate into our test coverage.  We encourage you to submit the bug immediately, and if you wish to meet this criteria, ask what will qualify.  For assertion/crash-based tests it is usually sufficient to provide a minimal reproducing html or js file. For more complicated bugs, we would ask you to develop the POC into an actual test (e.g. gtest, xpcshell, mochitest) which we can provide some mentorship for.</li>
+    </ul>
+  </ul>
 
   <table class="mzp-u-data-table">
   <thead>
     <tr>
-      <th>Novel vulnerability and exploit, new form of exploitation or an exceptional vulnerability</th>
-      <th>High quality bug report with clearly exploitable critical vulnerability<sub>1</sub></th>
-      <th>High quality bug report of a critical or high vulnerability<sub>2</sub></th>
-      <th>Typical minimum for a high or critical vulnerability<sub>3</sub></th>
-      <th>Medium vulnerability</th>
+      <th></th>
+      <th>High Quality Report</th>
+      <th>Baseline</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>$10,000+</td>
-      <td>$7,500</td>
+      <td>Highest Impact
+        <ul class="mzp-u-list-styled">
+          <li>UXSS<sup>0</sup></li>
+          <li>Sandbox Escape<sup>1</sup></li>
+          <li>Bypassing WebExtension install prompts<sup>2</sup></li>
+        </ul>
+      </td>
+      <td>$10,000</td>
+      <td>$8,000</td>
+    </tr>
+    <tr>
+      <td>High Impact
+        <ul class="mzp-u-list-styled">
+          <li>Memory Corruption</li>
+          <li>Same Origin Bypass leaking high-impact user data</li>
+          <li>Obtaining the user’s IP address if a proxy is configured</li>
+          <li>Other vulnerabilities not fitting 'Highest Impact', but still receiving a <a href="https://wiki.mozilla.org/Security_Severity_Ratings">sec-high rating</a></li>
+        </ul>
+      </td>
       <td>$5,000</td>
       <td>$3,000</td>
-      <td>$500 - $2500</td>
+    </tr>
+    <tr>
+      <td>Lower Impact, at the discretion of the committee
+        <ul class="mzp-u-list-styled">
+          <li>Persistent-DOS of browser across restarts or a DOS requiring reboot of user’s computer</li>
+        </ul>
+      </td>
+      <td colspan="2" style="text-align:center">
+        <span style="white-space:nowrap">$2,500 - $500</span><br />
+        <span style="white-space:nowrap">Typically $1000</span></td>
     </tr>
   </tbody>
   </table>
-  <p><sup>1</sup>This is a report that includes details on exploitation of the vulnerability. A good example of this is a vulnerability that can gain remote code execution without the need of another vulnerability. </p>
+  <p><sup>0</sup>UXSS is defined as the ability to execute privileged JavaScript in a way that allows you access to data from arbitrary originsd or to affect Firefox preferences or settings.</p>
 
-  <p><sup>2</sup>This is a high quality report that includes minimized test cases and clear stack traces.</p>
+  <p><sup>1</sup>Sandbox escapes that assume arbitrary code execution in the content process - such as invoking an IPC method with attacker-controlled parameters - do qualify for Highest Impact.</p>
 
-  <p><sup>3</sup> This is a bug that includes a fuzzer report or a crash dump. </p>
+  <p><sup>2</sup> For Highest importance, bypassing WebExtension Install Prompts excludes local attacks.</p>
 
   <h2 id="static-analysis-bounty">Static Analysis Bounty</h2>
 

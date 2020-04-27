@@ -21,7 +21,7 @@ class Command(BaseCommand):
         repo = GitRepo(settings.RELEASE_NOTES_PATH, settings.RELEASE_NOTES_REPO,
                        branch_name=settings.RELEASE_NOTES_BRANCH, name='Release Notes')
         self.output('Updating git repo')
-        repo.update()
+        self.output(repo.update())
         if not (options['force'] or repo.has_changes()):
             self.output('No release note updates')
             return

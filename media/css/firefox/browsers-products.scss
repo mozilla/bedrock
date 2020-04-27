@@ -104,7 +104,7 @@ main .mzp-l-content {
     text-align: center;
 
     h1 {
-        @include text-display-xl;
+        @include text-title-xl;
     }
 
     p {
@@ -462,7 +462,7 @@ $url-download-link-hover: svg-url($download-link-hover);
 }
 
 .c-dev-title {
-    @include text-display-sm;
+    @include text-title-sm;
     @include font-firefox;
     font-weight: bold;
 }
@@ -505,9 +505,9 @@ $url-download-link-hover: svg-url($download-link-hover);
 // FxA account signup form
 
 // box around form
-.t-account {
+.mzp-c-emphasis-box.t-account {
     @include light-links;
-    background: linear-gradient($color-violet-50 -100%, $color-ink-80);
+    background: $color-ink-80 linear-gradient($color-violet-50 -100%, $color-ink-80);
     color: $color-white;
     margin: 0 auto $v-grid-xs auto;
     position: relative;
@@ -565,6 +565,7 @@ $url-download-link-hover: svg-url($download-link-hover);
     .field {
         label {
             @include text-body-sm;
+            color: $color-white;
         }
 
         input[type="email"] {

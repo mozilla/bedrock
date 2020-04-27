@@ -6,6 +6,7 @@ from fluent.migrate import REPLACE, COPY
 
 download_button = "firefox/includes/download-button.lang"
 download_button = "download_button.lang"
+main = "main.lang"
 
 def migrate(ctx):
     """Migrate bedrock/firefox/templates/firefox/includes/download-button.html, part {index}."""
@@ -241,3 +242,11 @@ download-button-recommended = {COPY(download_button, "Recommended",)}
             ),
         ]
     )
+
+    ctx.add_transforms(
+        "download_button.ftl",
+        "download_button.ftl",
+        transforms_from("""
+download-button-download = {COPY(main, "Download",)}
+""", main=main)
+        )

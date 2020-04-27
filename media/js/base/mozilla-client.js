@@ -114,7 +114,7 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     /**
-     * Detect whether the user's browser is Gecko-based. Used on the plugincheck page to support all Gecko browsers.
+     * Detect whether the user's browser is Gecko-based.
      *
      * @private
      * @param  {String} ua - browser's user agent string, navigator.userAgent is used if not specified

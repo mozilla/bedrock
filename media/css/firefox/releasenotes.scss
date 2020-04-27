@@ -2,14 +2,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@font-face {
-    font-family: 'Font Awesome';
-    src: url('/media/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
-         url('/media/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 @import '../../protocol/css/includes/lib';
@@ -17,6 +9,36 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/templates/main-with-sidebar';
 @import '../../protocol/css/components/article';
 @import '../../protocol/css/components/call-out';
+
+/* -------------------------------------------------------------------------- */
+// Social Proof Block
+
+#social-proof {
+    // Overwrite blockquote styles
+    blockquote {
+        border: none;
+        padding: 0;
+        max-width: 660px;
+        display: inline-block;
+
+        h3 {
+            @include text-title-xs;
+            margin-bottom: $spacing-sm;
+        }
+
+        cite {
+            @include text-body-md;
+        }
+    }
+
+    .download-button {
+        @media #{$mq-md} {
+            float: right;
+        }
+    }
+}
+
+
 
 
 /* -------------------------------------------------------------------------- */
@@ -173,7 +195,7 @@ $image-path: '/media/protocol/img';
 
 .c-release-version {
     @include font-base;
-    @include text-display-xl;
+    @include text-title-xl;
 }
 
 .c-release-first-text,
@@ -184,22 +206,22 @@ $image-path: '/media/protocol/img';
 .mzp-l-content {
     .c-release-product {
         @include font-base;
-        @include text-display-xxs;
+        @include text-title-xxs;
     }
      .c-release-date {
         @include font-base;
-        @include text-display-xxs;
+        @include text-title-xxs;
     }
 
     .c-release-first-title,
     .c-release-draft-title {
         @include font-base;
-        @include text-display-xxs;
+        @include text-title-xxs;
         font-weight: bold;
 
         // pushes the text down after the big release-version text
         &:before {
-            @include text-display-xl;
+            @include text-title-xl;
             content: '.';
             display: block;
             visibility: hidden;
@@ -208,7 +230,7 @@ $image-path: '/media/protocol/img';
 
     h3 {
         @include font-base;
-        @include text-display-xs;
+        @include text-title-xs;
         margin-bottom: $layout-sm;
     }
 }
@@ -307,46 +329,10 @@ $image-path: '/media/protocol/img';
 }
 
 /* icons */
-#new h3:before {
-    content: '\00A0\f005\00A0';
-    font-family: 'Font Awesome';
-    margin-right: .2em;
-}
-#fixed h3:before {
-    content: '\00A0\f00c\00A0';
-    font-family: 'Font Awesome';
-    margin-right: .2em;
 
-}
-#changed h3:before {
-    content: '\00A0\f021\00A0';
-    font-family: 'Font Awesome';
-    margin-right: .2em;
-}
-#developer h3:before {
-    content: '\00A0\f0ad\00A0';
-    font-family: 'Font Awesome';
-    margin-right: .2em;
-}
-#enterprise h3:before {
-    content: '\00A0\f1ad\00A0';
-    font-family: 'Font Awesome';
-    margin-right: .2em;
-}
-#web-platform h3:before {
-    content: '\00A0\f121\00A0';
-    font-family: 'Font Awesome';
-    margin-right: .2em;
-}
-#resolved h3:before {
-    content: '\00A0\f164\00A0';
-    font-family: 'Font Awesome';
-    margin-right: .2em;
-}
-#known h3:before {
-    content: '\00A0\f05e\00A0';
-    font-family: 'Font Awesome';
-    margin-right: .2em;
+.sidebar-icon {
+    float: left;
+    margin-right: $spacing-sm;
 }
 
 .bug-id {

@@ -64,7 +64,9 @@ def render(request, template, context=None, ftl_files=None, **kwargs):
         if isinstance(ftl_files, str):
             ftl_files = [ftl_files]
 
-        ftl_files.extend(settings.FLUENT_DEFAULT_FILES)
+        # do not use list.extend() or += here to avoid modifying
+        # the original list passed to the function
+        ftl_files = ftl_files + settings.FLUENT_DEFAULT_FILES
 
         context['fluent_l10n'] = l10n = fluent_l10n([locale, 'en'],
                                                     ftl_files)

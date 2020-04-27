@@ -43,7 +43,7 @@ $image-path: '/media/protocol/img';
     }
 
     .c-emphasis-box-title {
-        @include text-display-sm;
+        @include text-title-sm;
         text-align: center;
     }
 }

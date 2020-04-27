@@ -2,15 +2,7 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. #}
 
-{% set_lang_files "mozorg/newsletters" %}
-
 {% macro email_form_thankyou() %}
-  <h3>{{ _('Thanks!') }}</h3>
-  <p>
-  {% trans %}
-    If you haven’t previously confirmed a subscription to a Mozilla-related
-    newsletter you may have to do so. Please check your inbox or your spam filter
-    for an email from us.
-  {% endtrans %}
-  </p>
+  <h3>{{ ftl('newsletter-form-thanks') }}</h3>
+  <p>{{ ftl('newsletter-form-if-you-havent-previously') }}</p>
 {% endmacro %}

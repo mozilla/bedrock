@@ -44,10 +44,9 @@
     },
     {
       "files": [
-        "css/etc/firefox/retention/thank-you.scss",
-        "css/etc/firefox/retention/thank-you-a.scss"
+        "css/firefox/retention/thank-you.scss"
       ],
-      "name": "etc-firefox-retention-thank-you-a"
+      "name": "firefox-retention-thank-you"
     },
     {
       "files": [
@@ -63,9 +62,9 @@
     },
     {
       "files": [
-        "css/firefox/installer-help-b.scss"
+        "css/firefox/installer-help-redesign.scss"
       ],
-      "name": "installer_help_b"
+      "name": "installer_help_redesign"
     },
     {
       "files": [
@@ -130,9 +129,16 @@
     },
     {
       "files": [
-        "css/firefox/new/quantum/yandex-scene1.scss"
+        "css/firefox/new/trailhead/thanks.scss",
+        "css/firefox/new/trailhead/thanks-b.scss"
       ],
-      "name": "firefox_new_scene1_yandex"
+      "name": "firefox_new_thanks_b"
+    },
+    {
+      "files": [
+        "css/firefox/new/trailhead/download-yandex.scss"
+      ],
+      "name": "firefox_new_download_yandex"
     },
     {
       "files": [
@@ -175,13 +181,6 @@
         "css/security/hall-of-fame.scss"
       ],
       "name": "security-bug-bounty-hall-of-fame"
-    },
-    {
-      "files": [
-        "css/etc/firefox/retention/thank-you.scss",
-        "css/etc/firefox/retention/thank-you-b.scss"
-      ],
-      "name": "etc-firefox-retention-thank-you-b"
     },
     {
       "files": [
@@ -233,6 +232,12 @@
         "css/base/banners/fundraiser.scss"
       ],
       "name": "fundraising-banner"
+    },
+    {
+      "files": [
+        "css/base/banners/moss-covid.scss"
+      ],
+      "name": "moss-covid-banner"
     },
     {
       "files": [
@@ -293,13 +298,6 @@
         "css/protocol/basic-article.scss"
       ],
       "name": "basic-article"
-    },
-    {
-      "files": [
-        "css/etc/firefox/retention/thank-you.scss",
-        "css/etc/firefox/retention/thank-you-referral.scss"
-      ],
-      "name": "etc-firefox-retention-thank-you-referral"
     },
     {
       "files": [
@@ -390,12 +388,6 @@
     },
     {
       "files": [
-        "css/exp/firefox/lockwise.scss"
-      ],
-      "name": "exp-lockwise"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-70.scss"
       ],
       "name": "firefox_whatsnew_70"
@@ -405,12 +397,6 @@
         "css/firefox/whatsnew/whatsnew-71.scss"
       ],
       "name": "firefox_whatsnew_71"
-    },
-    {
-      "files": [
-        "css/exp/firefox/whatsnew/whatsnew-71.scss"
-      ],
-      "name": "exp_firefox_whatsnew_71"
     },
     {
       "files": [
@@ -430,6 +416,12 @@
         "css/firefox/whatsnew/whatsnew-75.scss"
       ],
       "name": "firefox_whatsnew_75"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-76.scss"
+      ],
+      "name": "firefox_whatsnew_76"
     },
     {
       "files": [
@@ -618,12 +610,6 @@
     },
     {
       "files": [
-        "css/plugincheck/plugincheck.scss"
-      ],
-      "name": "plugincheck"
-    },
-    {
-      "files": [
         "css/mozorg/leadership.scss"
       ],
       "name": "about-leadership"
@@ -655,14 +641,6 @@
         "css/firefox/accounts-2019.scss"
       ],
       "name": "firefox_accounts_2019"
-    },
-    {
-      "files": [
-        "css/base/mozilla-fxa-state.scss",
-        "css/base/mozilla-fxa-form.scss",
-        "css/exp/firefox/accounts-2019.scss"
-      ],
-      "name": "exp_firefox_accounts_2019"
     },
     {
       "files": [
@@ -761,12 +739,6 @@
         "css/firefox/welcome.scss"
       ],
       "name": "firefox_welcome"
-    },
-    {
-      "files": [
-        "css/exp/firefox/welcome.scss"
-      ],
-      "name": "exp_firefox_welcome"
     }
   ],
   "js": [
@@ -798,13 +770,6 @@
         "js/base/mozilla-fxa-product-button-init.js"
       ],
       "name": "firefox_welcome_page"
-    },
-    {
-      "files": [
-        "js/base/mozilla-fxa-product-button.js",
-        "js/base/mozilla-fxa-product-button-init.js"
-      ],
-      "name": "exp_firefox_welcome_page"
     },
     {
       "files": [
@@ -856,15 +821,6 @@
       "files": [
         "js/base/uitour-lib.js",
         "js/firefox/whatsnew/up-to-date.js",
-        "js/base/mozilla-fxa-product-button.js",
-        "js/base/mozilla-fxa-product-button-init.js"
-      ],
-      "name": "exp_firefox_whatsnew_71"
-    },
-    {
-      "files": [
-        "js/base/uitour-lib.js",
-        "js/firefox/whatsnew/up-to-date.js",
         "js/libs/spin.min.js",
         "protocol/js/protocol-modal.js",
         "js/base/send-to-device.js",
@@ -892,6 +848,14 @@
     },
     {
       "files": [
+        "js/base/uitour-lib.js",
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/firefox/whatsnew/whatsnew-76.js"
+      ],
+      "name": "firefox_whatsnew_76"
+    },
+    {
+      "files": [
         "protocol/js/protocol-newsletter.js"
       ],
       "name": "legal"
@@ -902,13 +866,6 @@
         "js/firefox/lockwise/lockwise.js"
       ],
       "name": "lockwise"
-    },
-    {
-      "files": [
-        "js/base/uitour-lib.js",
-        "js/exp/firefox/lockwise.js"
-      ],
-      "name": "exp-lockwise"
     },
     {
       "files": [
@@ -935,13 +892,15 @@
         "js/firefox/new/yandex/scene1.js",
         "js/firefox/new/yandex/scene1-init.js"
       ],
-      "name": "firefox_new_scene1_yandex"
+      "name": "firefox_new_download_yandex"
     },
     {
       "files": [
-        "js/etc/firefox/retention/confetti.js"
+        "protocol/js/protocol-newsletter.js",
+        "js/newsletter/form-protocol.js",
+        "js/firefox/retention/confetti.js"
       ],
-      "name": "etc-firefox-retention-thank-you"
+      "name": "firefox-retention-thank-you"
     },
     {
       "files": [
@@ -983,6 +942,13 @@
         "js/mozorg/home/banner-init.js"
       ],
       "name": "fundraising-banner"
+    },
+    {
+      "files": [
+        "js/base/mozilla-banner.js",
+        "js/mozorg/moss-covid-banner-init.js"
+      ],
+      "name": "moss-covid-banner"
     },
     {
       "files": [
@@ -1167,16 +1133,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "js/base/mozilla-fxa-form.js",
-        "js/base/mozilla-fxa-product-button.js",
-        "js/exp/firefox/accounts-2019.js"
-      ],
-      "name": "exp_firefox_accounts_2019"
-    },
-    {
-      "files": [
         "js/base/mozilla-fxa-form.js",
         "js/base/mozilla-fxa-form-init.js"
       ],
@@ -1198,12 +1154,6 @@
         "js/firefox/all/all-downloads-unified-init.js"
       ],
       "name": "firefox_all_unified"
-    },
-    {
-      "files": [
-        "js/plugincheck/plugincheck.js"
-      ],
-      "name": "plugincheck"
     },
     {
       "files": [
@@ -1430,9 +1380,9 @@
     {
       "files": [
         "js/libs/mozilla-traffic-cop.js",
-        "js/firefox/installer-help-experiment.js"
+        "js/firefox/social-proof-experiment.js"
       ],
-      "name": "installer_help_experiment"
+      "name": "social_proof_experiment"
     }
   ]
 }

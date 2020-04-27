@@ -15,6 +15,5 @@ fi
 
 ./bin/run-db-download.py --force
 ./manage.py migrate --noinput
-./bin/run-db-update.sh --all || true
 ./manage.py l10n_update
 ./manage.py update_sitemaps

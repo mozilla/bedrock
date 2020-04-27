@@ -37,7 +37,7 @@ header {
 
     @media #{$mq-md} {
         .tagline {
-            @include text-display-md;
+            @include text-title-md;
         }
     }
 }
@@ -77,7 +77,7 @@ form {
 
 aside {
     h2 {
-        @include text-display-sm;
+        @include text-title-sm;
         margin-bottom: 40px;
     }
 

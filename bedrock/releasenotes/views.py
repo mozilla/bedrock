@@ -26,6 +26,7 @@ SUPPORT_URLS = {
 def release_notes_template(channel, product, version=None):
     channel = channel or 'release'
     version = version or 0
+
     if product == 'Firefox' and channel == 'Aurora' and version >= 35:
         return 'firefox/releases/dev-browser-notes.html'
 
@@ -78,8 +79,14 @@ def check_url(product, version):
 
 
 def release_notes(request, version, product='Firefox'):
+    variant = request.GET.get('v', None)
+
     if not version:
         raise Http404
+
+    # ensure variant matches pre-defined value
+    if variant not in ['a', 'b']:  # place expected ?v= values in this list
+        variant = None
 
     # Show a "coming soon" page for any unpublished Firefox releases
     include_drafts = product in ['Firefox', 'Firefox for Android']
@@ -114,6 +121,7 @@ def release_notes(request, version, product='Firefox'):
             'release': release,
             'release_notes': release_notes,
             'equivalent_release_url': equivalent_release_url(release),
+            'variation': variant,
         })
 
 

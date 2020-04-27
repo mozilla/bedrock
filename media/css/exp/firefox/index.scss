@@ -41,7 +41,7 @@ $image-path: '/media/protocol/img';
         max-width: $content-sm;
 
         h4 {
-            @include text-display-sm;
+            @include text-title-sm;
             margin-bottom: $layout-sm;
         }
     }
@@ -171,7 +171,7 @@ $image-path: '/media/protocol/img';
 }
 
 .c-showcase-title {
-    @include text-display-sm;
+    @include text-title-sm;
     margin-bottom: $spacing-lg;
 }
 
@@ -308,7 +308,7 @@ $image-path: '/media/protocol/img';
 }
 
 .c-end-title {
-    @include text-display-md;
+    @include text-title-md;
     color: #fff;
     margin-bottom: $spacing-2xl;
     margin-top: $layout-md;

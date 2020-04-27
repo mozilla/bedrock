@@ -14,6 +14,7 @@ from django.utils.safestring import mark_safe
 
 from lib.l10n_utils.dotlang import _
 from lib.l10n_utils.dotlang import _lazy
+from lib.l10n_utils.fluent import ftl
 
 
 FORMATS = (('H', _lazy('HTML')), ('T', _lazy('Text')))
@@ -38,14 +39,14 @@ class PrivacyWidget(widgets.CheckboxInput):
         attrs['required'] = 'required'
         input_txt = super(PrivacyWidget, self).render(name, value, attrs)
 
-        policy_txt = _(u'I’m okay with Mozilla handling my info as explained '
-                       u'in <a href="%s">this Privacy Notice</a>')
+        policy_txt = ftl('newsletter-form-im-okay-with-mozilla',
+                         url=reverse('privacy.notices.websites'))
+
         return mark_safe(
             '<label for="%s" class="privacy-check-label">'
             '%s '
             '<span class="title">%s</span></label>'
-            % (attrs['id'], input_txt,
-               policy_txt % reverse('privacy.notices.websites'))
+            % (attrs['id'], input_txt, policy_txt)
         )
 
 

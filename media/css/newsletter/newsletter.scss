@@ -16,12 +16,12 @@ $image-path: '/media/protocol/img';
 // Global styles.
 
 h1 {
-    @include text-display-md;
+    @include text-title-md;
     margin-bottom: $layout-sm;
 }
 
 h2 {
-    @include text-display-xs;
+    @include text-title-xs;
 }
 
 main {
@@ -37,7 +37,7 @@ main {
 }
 
 .error-msg, .errorlist {
-    @include text-display-xxs;
+    @include text-title-xxs;
     color: $color-red-60;
     display: block;
     font-weight: bold;
@@ -82,7 +82,7 @@ main {
 
     form {
         h4 {
-            @include text-display-xxs;
+            @include text-title-xxs;
         }
 
         p {
@@ -165,12 +165,12 @@ main {
     }
 
     h3 {
-        @include text-display-md;
+        @include text-title-md;
         margin-bottom: $spacing-2xl;
     }
 
     h4 {
-        @include text-display-xs;
+        @include text-title-xs;
     }
 
     .c-updated-form {

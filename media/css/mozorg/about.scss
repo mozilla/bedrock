@@ -69,7 +69,7 @@ $image-path: '/media/protocol/img';
 // Page title
 
 .c-page-title {
-    @include text-display-sm;
+    @include text-title-sm;
     margin-top: $spacing-xs;
     margin-bottom: $spacing-md;
 

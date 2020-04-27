@@ -76,9 +76,6 @@ class FluentL10n(FluentLocalization):
 
     @cached_property
     def active_locales(self):
-        if settings.DEV:
-            return settings.DEV_LANGUAGES if settings.DEV else settings.PROD_LANGUAGES
-
         # first resource is the one to check for activation
         return get_active_locales(self.resource_ids[0])
 
@@ -159,7 +156,16 @@ def write_metadata(ftl_file, data):
 
 
 @memoize
-def get_active_locales(ftl_file):
+def get_active_locales(ftl_file, force=False):
+    """Return the list of active locales for a Fluent file.
+
+    If `settings.DEV` is `True` it will just return the full list of
+    available languages. You can pass `force=True` to override this
+    behavior.
+    """
+    if settings.DEV and not force:
+        return settings.DEV_LANGUAGES
+
     locales = {settings.LANGUAGE_CODE}
     metadata = get_metadata(ftl_file)
     if metadata and 'active_locales' in metadata:

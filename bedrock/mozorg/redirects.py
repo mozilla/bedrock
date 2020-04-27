@@ -222,8 +222,8 @@ redirectpatterns = (
     # bug 927442
     redirect(r'^(firefox/)?community/?', 'mozorg.contribute.index'),
 
-    # bug 925551
-    redirect(r'^plugincheck/more_info\.html$', 'mozorg.plugincheck'),
+    # bug 925551, issue 8374
+    redirect(r'^plugincheck/more_info\.html$', 'https://support.mozilla.org/kb/npapi-plugins/'),
 
     # issue 851727
     redirect(r'^projects/powered-by(\.html|/)?', 'mozorg.home'),
@@ -701,4 +701,10 @@ redirectpatterns = (
     redirect('technology/update-your-browser', 'firefox.browsers.update-browser'),
     redirect('technology/incognito-browser', 'firefox.browsers.incognito-browser'),
     redirect('technology/browser-history', 'firefox.browsers.browser-history'),
+
+    # Issue 8536
+    redirect(r'^etc/firefox/retention(/.*)?', 'firefox.retention.thank-you'),
+
+    # Issue 8374
+    redirect(r'^plugincheck/?$', 'https://support.mozilla.org/kb/npapi-plugins/'),
 )

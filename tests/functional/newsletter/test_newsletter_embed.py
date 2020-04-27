@@ -11,7 +11,6 @@ from pages.contribute.contribute import ContributePage
 from pages.mission import MissionPage
 from pages.firefox.features.landing import FeaturesLandingPage
 from pages.firefox.whatsnew.whatsnew_developer_70 import FirefoxWhatsNewDeveloper70Page
-from pages.plugincheck import PluginCheckPage
 from pages.newsletter.developer import DeveloperNewsletterPage
 from pages.newsletter.firefox import FirefoxNewsletterPage
 from pages.newsletter.mozilla import MozillaNewsletterPage
@@ -74,9 +73,7 @@ def test_newsletter_sign_up_fails_when_missing_required_fields(page_class, base_
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize(('page_class', 'url_kwargs'), [
-    (FeaturesLandingPage, None),
-    (PluginCheckPage, None)])
+@pytest.mark.parametrize(('page_class', 'url_kwargs'), [(FeaturesLandingPage, None)])
 def test_legacy_newsletter_default_values(page_class, url_kwargs, base_url, selenium):
     url_kwargs = url_kwargs or {}
     page = page_class(selenium, base_url, **url_kwargs).open()

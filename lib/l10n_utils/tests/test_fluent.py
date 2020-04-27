@@ -5,7 +5,9 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 from pathlib import Path
+from unittest.mock import patch
 
+from django.conf import settings
 from django.test import TestCase, override_settings
 
 from fluent.runtime import FluentResourceLoader
@@ -87,6 +89,18 @@ class TestFluentTranslationUtils(TestCase):
         l10n = get_l10n()
         assert fluent.ftl_has_messages(l10n, 'fluent-title', 'brand-new-string', require_all=False)
         assert not fluent.ftl_has_messages(l10n, 'brand-new-string', require_all=False)
+
+    @override_settings(DEV=True)
+    @patch.object(fluent, 'get_metadata')
+    def test_get_active_locales(self, meta_mock):
+        assert fluent.get_active_locales('the/dude') == settings.DEV_LANGUAGES
+        meta_mock.assert_not_called()
+
+        meta_mock.return_value = {
+            'active_locales': ['de', 'fr', 'it'],
+            'inactive_locales': ['it', 'sq'],
+        }
+        assert fluent.get_active_locales('the/dude', force=True) == ['de', 'en-US', 'fr']
 
 
 @override_settings(FLUENT_PATHS=[L10N_PATH])

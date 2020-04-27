@@ -31,7 +31,7 @@
     desc=_('Test about-to-be-released features in the most stable pre-release build.'),
     class='mzp-t-product-beta mzp-t-firefox') %}
 
-    {{ download_firefox('beta', platform='desktop', force_direct=True, alt_copy=_('Download'), dom_id="desktop-beta-download") }}
+    {{ download_firefox('beta', platform='desktop', force_direct=True, alt_copy=ftl('download-button-download'), dom_id="desktop-beta-download") }}
   {% endcall %}
 
   <div class="l-notes mzp-l-content">
@@ -55,7 +55,7 @@
         {% endtrans %}
       {% else %}
         {{_('Firefox Beta automatically sends feedback to Mozilla.')}}
-        <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{_('Learn more')}}</a>
+        <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{ ftl('ui-learn-more') }}</a>
       {% endif %}
     </p>
     <p>
@@ -72,14 +72,14 @@
     desc=_('Build, test, scale and more with the only browser built just for developers.'),
     class='mzp-t-product-developer mzp-t-firefox') %}
 
-    {{ download_firefox('alpha', platform='desktop', force_direct=True, alt_copy=_('Download'), dom_id="desktop-developer-download") }}
+    {{ download_firefox('alpha', platform='desktop', force_direct=True, alt_copy=ftl('download-button-download'), dom_id="desktop-developer-download") }}
   {% endcall %}
   </section>
 
   <div class="l-notes mzp-l-content">
     <ul>
       <li><a href="{{ firefox_url('desktop', 'notes', 'developer') }}">{{_('Release Notes')}}</a></li>
-      <li><a href="{{ url('firefox.developer.index') }}">{{_('Learn more')}}</a></li>
+      <li><a href="{{ url('firefox.developer.index') }}">{{ ftl('ui-learn-more') }}</a></li>
       <li>
         <a href="{{ firefox_url('desktop', 'all', 'developer') }}">
         {% if l10n_has_tag('firefox_channel_bug1387466') %}
@@ -98,7 +98,7 @@
       {%- endtrans -%}
     {% else %}
       {{_('Firefox Developer Edition automatically sends feedback to Mozilla.')}}
-      <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{_('Learn more')}}</a>
+      <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{ ftl('ui-learn-more') }}</a>
     {% endif %}
     </p>
   </div>
@@ -111,7 +111,7 @@
       desc=_('Get a sneak peek at our next generation web browser, and help us make it the best browser it can be: try Firefox Nightly.'),
       class='mzp-t-product-nightly mzp-t-firefox') %}
 
-      {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy=_('Download'), dom_id="desktop-nightly-download") }}
+      {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy=ftl('download-button-download'), dom_id="desktop-nightly-download") }}
     {% endcall %}
   {% else %}
     {% call call_out_compact(
@@ -119,7 +119,7 @@
       desc=_('Test brand new features daily (or… nightly). Enjoy at your own risk.'),
       class='mzp-t-product-nightly mzp-t-firefox') %}
 
-      {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy=_('Download'), dom_id="desktop-nightly-download") }}
+      {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy=ftl('download-button-download'), dom_id="desktop-nightly-download") }}
     {% endcall %}
   {% endif %}
 
@@ -145,7 +145,7 @@
         {% endtrans %}
       {% else %}
         {{_('Firefox Nightly automatically sends feedback to Mozilla.')}}
-        <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{_('Learn more')}}</a>
+        <a href="{{ url('privacy.notices.firefox') + '#pre-release' }}">{{ ftl('ui-learn-more') }}</a>
       {% endif %}
     </p>
   </div>

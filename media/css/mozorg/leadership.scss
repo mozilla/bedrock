@@ -37,7 +37,7 @@ $image-path: '/media/protocol/img';
 
 // Headings
 .section-title {
-    @include text-display-md;
+    @include text-title-md;
     margin: .5em 0;
 }
 
@@ -47,7 +47,7 @@ $image-path: '/media/protocol/img';
 }
 
 .group-title {
-    @include text-display-sm;
+    @include text-title-sm;
     margin: 1em 0;
     padding-top: .75em;
     border-top: 2px solid $color-marketing-gray-30;
@@ -107,7 +107,7 @@ $image-path: '/media/protocol/img';
     }
 
     .fn {
-        @include text-display-xxs;
+        @include text-title-xxs;
         font-weight: bold;
     }
 
@@ -298,12 +298,12 @@ $image-path: '/media/protocol/img';
     }
 
     .fn {
-        @include text-display-md;
+        @include text-title-md;
         text-align: left;
     }
 
     .title {
-        @include text-display-sm;
+        @include text-title-sm;
     }
 
     .person-bio {
@@ -396,7 +396,7 @@ $image-path: '/media/protocol/img';
 
         .fn {
             @include bidi(((text-align, left, right),));
-            @include text-display-md;
+            @include text-title-md;
             color: $color-black;
             text-decoration: none;
         }
@@ -407,7 +407,7 @@ $image-path: '/media/protocol/img';
     }
 
     .title {
-        @include text-display-xs;
+        @include text-title-xs;
         font-weight: bold;
     }
 

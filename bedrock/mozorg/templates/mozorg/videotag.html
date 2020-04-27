@@ -15,7 +15,7 @@
         <source src="{{ videos[ft] }}" type="{{ mime[ft] }}">
     {% endif %}
   {% endfor %}
-  <p>{{ _('Watch the video') }}</p>
+  <p>{{ ftl('ui-watch-the-video') }}</p>
   <ul>
     {% for ft in filetypes %}
       {% if ft in videos %}

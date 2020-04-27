@@ -132,7 +132,6 @@ urlpatterns = (
     page('firefox/browsers/compare/ie', 'firefox/compare/ie.html'),
     page('firefox/browsers/compare/opera', 'firefox/compare/opera.html'),
     page('firefox/browsers/compare/safari', 'firefox/compare/safari.html'),
-    page('firefox/browsers/compare/edge', 'firefox/compare/edge.html'),
 
     # Issue 8641
     page('firefox/browsers/best-browser', 'firefox/browsers/best-browser.html'),
@@ -152,5 +151,8 @@ urlpatterns = (
     # Issue 8432
     page('firefox/set-as-default/thanks', 'firefox/set-as-default/thanks.html'),
     # Default browser campaign
-    page('firefox/set-as-default', 'firefox/set-as-default/landing-page.html')
+    page('firefox/set-as-default', 'firefox/set-as-default/landing-page.html'),
+
+    # Issue 8536
+    page('firefox/retention/thank-you', 'firefox/retention/thank-you.html'),
 )

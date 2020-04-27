@@ -52,7 +52,7 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 }
 
 .mzp-c-hero-title {
-    @include text-display-lg;
+    @include text-title-lg;
 }
 
 .fxa-email-field {
@@ -61,7 +61,7 @@ section .mzp-l-content, div.mzp-c-hero-image, .browser-logo img {
 
 .fxa-email-form-intro, .fxa-email-form-intro strong {
     font-weight: bold;
-    @include text-display-xs;
+    @include text-title-xs;
     display: inline;
 }
 

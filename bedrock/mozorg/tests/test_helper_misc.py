@@ -16,6 +16,7 @@ from pyquery import PyQuery as pq
 from bedrock.base.templatetags.helpers import static
 from bedrock.mozorg.templatetags import misc
 from bedrock.mozorg.tests import TestCase
+from lib.l10n_utils.fluent import fluent_l10n
 
 
 TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -172,10 +173,13 @@ class TestVideoTag(TestCase):
     moz_video = 'http://videos.mozilla.org/serv/flux/example.%s'
     nomoz_video = 'http://example.org/example.%s'
 
+    def get_l10n(self, locale):
+        return fluent_l10n([locale, 'en'], settings.FLUENT_DEFAULT_FILES)
+
     def _render(self, template):
         req = self.rf.get('/')
         req.locale = 'en-US'
-        return render(template, {'request': req})
+        return render(template, {'request': req, 'fluent_l10n': self.get_l10n(req.locale)})
 
     def test_empty(self):
         # No video, no output.

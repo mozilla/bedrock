@@ -318,7 +318,8 @@ def video(ctx, *args, **kwargs):
         'h': 360,
         'autoplay': False,
         'preload': False,
-        'id': 'htmlPlayer'
+        'id': 'htmlPlayer',
+        'fluent_l10n': ctx['fluent_l10n'],
     }
 
     data.update(**kwargs)

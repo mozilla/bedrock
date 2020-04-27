@@ -51,6 +51,7 @@ $image-path: '/media/protocol/img';
     margin-bottom: $spacing-lg;
 
     label {
+        color: $color-white;
         display: inline-block;
 
         &:first-child {
