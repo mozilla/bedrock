@@ -209,6 +209,33 @@ from the browsersync service. We've not seen issues with this, but since it is m
 could conflict with something on the page itself. Please let us know if you suspect this is happening for you. This notification
 can be disabled in the browsersync options in the ``gulpfile.js`` by setting ``notify: false`` in the ``browser-sync`` task.
 
+Prod Mode
+---------
+
+There are certain things about the site that behave differently when running locally in dev mode using Django's development
+server than they do when running in the way it runs in production. Static assets that work fine locally can be a problem
+in production if referenced improperly, and the normal error pages won't work unless ``DEBUG==False`` and doing that will
+make the site throw errors since the Django server doesn't have access to all of the built static assets. So we have a couple
+of extra Docker commands (via make) that you can use to run the site locally in a more prod-like way.
+
+First you should ensure that your ``.env`` file is setup the way you need. This usually means adding ``DEBUG=False``
+and ``DEV=False``, though you may want ``DEV=True`` if you want the site to act more like www-dev.allizom.org in that all
+feature switches are ``On`` and all locales are active for every page. After that you can run the following:
+
+.. code-block:: bash
+
+    $ make run-prod
+
+This will run the latest bedrock image using your local bedrock files and templates, but not your local static assets. If you
+need an updated image just run ``make pull``.
+
+If you need to include the changes you've made to your local static files (images, css, js, etc.) then you have to build the
+image first:
+
+.. code-block:: bash
+
+    $ make build-prod run-prod
+
 Legal Docs
 ==========
 
