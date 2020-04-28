@@ -229,6 +229,12 @@
     },
     {
       "files": [
+        "css/exp/home/home-2018.scss"
+      ],
+      "name": "exp-home-2018"
+    },
+    {
+      "files": [
         "css/base/banners/fundraiser.scss"
       ],
       "name": "fundraising-banner"
@@ -630,6 +636,13 @@
     {
       "files": [
         "css/protocol/components/send-to-device.scss",
+        "css/exp/mobile.scss"
+      ],
+      "name": "exp-firefox-mobile"
+    },
+    {
+      "files": [
+        "css/protocol/components/send-to-device.scss",
         "css/firefox/mobile/get-app.scss"
       ],
       "name": "firefox-mobile-get-app"
@@ -931,6 +944,18 @@
     },
     {
       "files": [
+        "protocol/js/protocol-modal.js",
+        "protocol/js/protocol-newsletter.js",
+        "js/base/mozilla-lazy-load.js",
+        "js/libs/jquery.waypoints.min.js",
+        "js/newsletter/form-protocol.js",
+        "js/mozorg/home/youtube.js",
+        "js/exp/home.js"
+      ],
+      "name": "exp-home"
+    },
+    {
+      "files": [
         "js/base/mozilla-banner.js",
         "js/mozorg/home/banner-init.js"
       ],
@@ -980,6 +1005,18 @@
         "js/firefox/mobile/mobile.js"
       ],
       "name": "firefox-mobile"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-modal.js",
+        "js/libs/spin.min.js",
+        "js/base/send-to-device.js",
+        "js/libs/jquery.waypoints.min.js",
+        "js/libs/jquery.waypoints-sticky.min.js",
+        "js/hubs/sub-nav.js",
+        "js/exp/mobile.js"
+      ],
+      "name": "exp-firefox-mobile"
     },
     {
       "files": [

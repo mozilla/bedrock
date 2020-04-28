@@ -17,4 +17,6 @@ urlpatterns = (
     page('firefox', 'exp/firefox/index.html', active_locales=['en-US', 'en-GB', 'en-CA', 'de']),
     url(r'^firefox/new/$', views.new, name='exp.firefox.new'),
     page('firefox', 'exp/firefox/index.html', active_locales=['en-US', 'en-GB', 'en-CA', 'de']),
+    page('firefox/mobile', 'exp/firefox/mobile.html'),
+    url(r'^$', views.home_view, name='exp.mozorg.home'),
 )
