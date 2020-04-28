@@ -25,7 +25,7 @@
   
     <p class="primary-cta">
       <div>
-        <a class="mzp-c-button mzp-t-product js-open-about-protections" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-cta-text="Check Out Your Protections" data-cta-type="button">{{ _('Check Out Your Protections') }}</a>
+        <a href="{{ url('firefox.privacy.index') }}" class="mzp-c-button mzp-t-product" data-cta-text="Find More Privacy Tools" data-cta-type="button">{{ _('Find More Privacy Tools') }}</a>
       </div>
     </p>
     {% endcall %}
@@ -66,9 +66,5 @@
         </div>
       </div>
     </div>
-  {% endblock %}
-  
-  {% block js %}
-    {{ js_bundle('default_privacy_messaging') }}
   {% endblock %}
   
