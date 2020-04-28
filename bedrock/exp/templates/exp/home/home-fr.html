@@ -1,0 +1,130 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "exp/home/home-en.html" %}
+
+{% block canonical_urls %}
+  {# Experimental pages should set canonical to the original page URL. #}
+  <link rel="canonical" href="{{ settings.CANONICAL_URL }}/{{ LANG }}/">
+{% endblock %}
+
+{% block page_title %}Internet est un bien commun, nous le défendons.{% endblock %}
+
+{% block page_desc %}
+Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, une ressource publique mondiale, demeure ouverte et accessible à tous.
+{% endblock %}
+
+{% block main %}
+<main>
+  <header class="main-page-heading">
+    {# Main page h1 is hidden from view and exists mainly for SEO purposes #}
+    <h1>{{ self.page_title() }}</h1>
+  </header>
+
+  {% call download_banner(
+    title='Nous ne mettons pas le nez dans vos données.',
+    desc='Le respect de votre vie privée est notre priorité. Notre modèle financier ne dépendra jamais de la vente et de l’utilisation de vos données personnelles.',
+    ) %}
+    {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
+  {% endcall %}
+
+  {% call download_banner_sticky(
+    title='Votre vie privée ne regarde que vous.'
+    ) %}
+    {{ download_firefox(dom_id='download-sticky', download_location='sticky cta', button_color='mzp-t-small') }}
+  {% endcall %}
+
+  {{ fxa_banner(
+    title='Des technologies résolument à vos côtés.',
+    desc='Bien plus qu’un navigateur, Firefox c’est toute une gamme de produits qui respectent vraiment votre vie privée.',
+    link_cta='En savoir plus',
+  )}}
+
+  {{ fxa_banner_sticky(
+    title='Des technologies qui vous respectent.',
+    link_cta='Découvrir nos produits',
+  )}}
+
+  <div class="mozilla-content">
+    <div class="mzp-l-content mzp-t-mozilla">
+      <div class="mzp-l-card-hero">
+        {{ content_card('card_1') }}
+        {{ content_card('card_2') }}
+        {{ content_card('card_3') }}
+        {{ content_card('card_4') }}
+        {{ content_card('card_5') }}
+      </div>
+
+      {{ billboard(
+        title=_('Pour vous et pour Internet depuis 1998.'),
+        ga_title='Pour vous et pour Internet depuis 1998',
+        desc=_('Mozilla s’engage pour un Internet plus sain et plus accessible. Pour vous et pour demain.'),
+        link_cta=_('En savoir plus sur Mozilla'),
+        link_url=url('mozorg.about.manifesto'),
+        image_url='img/home/2018/billboard-more-power.png',
+        include_highres_image=True
+      )}}
+
+      <div class="mzp-l-card-half">
+        {{ content_card('card_6') }}
+        {{ content_card('card_7') }}
+      </div>
+
+      {{ billboard(
+        title=_('Technologies web open source :'),
+        ga_title='Technologies web open source',
+        desc=_('Réalité virtuelle, IoT et plus encore.'),
+        link_cta=_('Découvrez le web du futur'),
+        link_url='https://labs.mozilla.org/',
+        image_url='img/home/2018/billboard-open-minds.png',
+        include_highres_image=True,
+        reverse=True
+      )}}
+
+      <div class="mzp-l-card-half">
+        {{ content_card('card_8') }}
+        {{ content_card('card_9') }}
+      </div>
+      <div class="mzp-l-card-third">
+        {{ content_card('card_10') }}
+        {{ content_card('card_11') }}
+        {{ content_card('card_12') }}
+      </div>
+
+      <aside class="mzp-c-newsletter">
+        <div class="mzp-c-newsletter-image">
+          {{ high_res_img('img/home/2018/newsletter-graphic.png', {'alt': ''}) }}
+        </div>
+
+        <div class="newsletter-content">
+          {{ email_newsletter_form(
+            title=_('Vous adorez Internet ?'),
+            subtitle=_('Abonnez-vous à la newsletter Firefox et soutenez notre vision d’un Internet libre et sécurisé.'),
+            button_class='button-dark',
+            submit_text=_('S’abonner'),
+            protocol_component=True
+          )}}
+        </div>
+      </aside>
+    </div>
+  </div>{#-- /.mozilla-content --#}
+
+  {% call download_banner_secondary(
+    title='Retrouvez le respect que vous méritez.',
+    sub_title='Parcourir Internet avec Firefox, c’est adopter des technologies conçues pour protéger vos données personnelles.'
+  ) %}
+    {{ download_firefox(dom_id='download-secondary', download_location='secondary cta') }}
+  {% endcall %}
+
+  {% call call_out_compact(
+      title='Un compte qui vous protège sans profiter de vous.',
+      desc=None,
+      class='fxaccount-secondary-cta mzp-t-product-firefox mzp-t-firefox mzp-t-dark',
+      heading_level=2
+    ) %}
+    <a href="{{ url('firefox.accounts') }}" class="mzp-c-button mzp-t-product mzp-t-dark" id="fxa-learn-secondary">En savoir plus</a>
+  {% endcall %}
+
+</main>
+{% endblock %}
