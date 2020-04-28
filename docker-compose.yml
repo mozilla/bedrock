@@ -79,6 +79,9 @@ services:
         GIT_SHA: ${GIT_COMMIT:-latest}
         BRANCH_NAME: ${BRANCH_NAME:-latest}
     image: mozorg/bedrock:${BRANCH_AND_COMMIT:-latest}
+
+  release-local:
+    image: mozorg/bedrock:${BRANCH_AND_COMMIT:-latest}
     env_file: .env
     ports:
       - "8000:8000"

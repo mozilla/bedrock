@@ -53,7 +53,7 @@ run: .docker-build-pull
 	${DC} up assets app
 
 run-prod: .docker-build-pull
-	${DC} up release
+	${DC} up release-local
 
 stop:
 	${DC} stop
