@@ -1,0 +1,74 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+  
+  {% from "macros-protocol.html" import hero with context %}
+  
+  {% extends "firefox/messaging-experiment/base.html" %}
+  
+  {# L10n: HTML page title #}
+  {% block page_title %}{{ _('Firefox: Private By Default') }}{% endblock %}
+
+  {% set _entrypoint = 'mozilla.org-privacy-messaging-experiment' %}
+  {% set _utm_campaign = 'privacy-by-default' %}
+  
+  {% block body_class %}{{ super() }} privacy-default{% endblock %}
+  
+  {% block content_intro %}
+    {% call hero(
+      title=_('Firefox: Private By Default'),
+      desc=_("Firefox automatically protects your privacy without sacrificing performance. So go ahead and browse with confidence, knowing Firefox is protecting what you do online."),
+      class='mzp-t-firefox mzp-t-dark',
+      include_cta=True,
+      heading_level=1
+    ) %}
+  
+    <p class="primary-cta">
+      <div>
+        <a class="mzp-c-button mzp-t-product js-open-about-protections" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}" data-cta-text="Check Out Your Protections" data-cta-type="button">{{ _('Check Out Your Protections') }}</a>
+      </div>
+    </p>
+    {% endcall %}
+  {% endblock %}
+  
+
+  {% block content_primary %}
+    <div class="body-primary">
+      <div class="c-picto-block t-adjacent-image">
+        <div class="c-picto-block-image">
+          <img src="{{ static('img/icons/hide_password-orange.svg') }}" alt="">
+        </div>
+        <h3 class="c-picto-block-title">Your privacy is our first thought, not an afterthought</h3>
+        <div class="c-picto-block-body">
+          <p>{{ _('
+            Tracking has become an epidemic online: companies follow every move, click and purchase, collecting data to predict and influence what you’ll do next. That’s why Firefox mobile and desktop browsers have Enhanced Tracking Protection on by default.') }}</p>
+        </div>
+      </div>
+
+      <div class="c-picto-block t-adjacent-image">
+        <div class="c-picto-block-image">
+          <img src="{{ static('img/icons/laptop_warning-pink.svg') }}" alt="">
+        </div>
+        <h3 class="c-picto-block-title">You can worry less about malware</h3>
+        <div class="c-picto-block-body">
+          <p>{{ _('Firefox automatically stops malware, including some types that can use your system’s computing power, slowing your computer and even raising your energy bills.') }}</p>
+        </div>
+      </div>
+
+      <div class="c-picto-block t-adjacent-image">
+        <div class="c-picto-block-image">
+          <img src="{{ static('img/icons/cryptomining-purple.svg') }}" alt="">
+        </div>
+
+        <h3 class="c-picto-block-title">Cryptominers stopped in their tracks</h3>
+        <div class="c-picto-block-body">
+          <p>{{ _('Cryptominers are a type of malware that use your system’s computing power to mine digital money. Cryptominers are blocked by default with Firefox’s Standard settings.') }}</p>
+        </div>
+      </div>
+    </div>
+  {% endblock %}
+  
+  {% block js %}
+    {{ js_bundle('default_privacy_messaging') }}
+  {% endblock %}
+  

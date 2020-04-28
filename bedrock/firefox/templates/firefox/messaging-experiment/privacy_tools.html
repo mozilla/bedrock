@@ -1,0 +1,64 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+  
+  {% from "macros-protocol.html" import hero with context %}
+  
+  {% extends "firefox/messaging-experiment/base.html" %}
+  
+  {# L10n: HTML page title #}
+  {% block page_title %}{{ _('Firefox gives you the tools to stay protected on the web') }}{% endblock %}
+  
+  {% block body_class %}{{ super() }} privacy-default{% endblock %}
+
+  {% block content_intro %}
+    {% call hero(
+      title=_('Firefox gives you the tools to stay protected on the web'),
+      desc=_('Beyond privacy and security settings that block malware, stop trackers, and keep companies from following you around the web, Firefox offers a robust suite of tools and features to protect you online. '),
+      class='mzp-t-firefox mzp-t-dark',
+      include_cta=True,
+      heading_level=1
+    ) %}
+  
+    <p class="primary-cta">
+      <div>
+        <a href="{{ url('firefox.privacy.products') }}" class="mzp-c-button mzp-t-product" data-cta-text="Find More Privacy Tools" data-cta-type="button">{{ _('Find More Privacy Tools') }}</a>
+      </div>
+    </p>
+    {% endcall %}
+  {% endblock %}
+  
+
+  {% block content_primary %}
+    <div class="body-primary">
+      <div class="c-picto-block t-adjacent-image">
+        <div class="c-picto-block-image">
+          <img src="{{ static('img/icons/tracking_protection-purple.svg') }}" alt="">
+        </div>
+        <h3 class="c-picto-block-title">2000+ trackers blocked — automatically</h3>
+        <div class="c-picto-block-body">
+          <p>{{ _('Tracking has become an epidemic online: companies follow every move, click and purchase, collecting data to predict and influence what you’ll do next. That’s why Firefox mobile and desktop browsers have Enhanced Tracking Protection on by default.') }}</p>
+        </div>
+      </div>
+
+      <div class="c-picto-block t-adjacent-image">
+        <div class="c-picto-block-image">
+          <img src="{{ static('img/icons/private_browsing-pink.svg') }}" alt="">
+        </div>
+        <h3 class="c-picto-block-title">Your secrets are safer with Private Browsing</h3>
+        <div class="c-picto-block-body">
+          <p>{{ _('Select Private Browsing mode to automatically clear your history and cookies after your browsing session. While this doesn’t make you anonymous, it makes it easier to keep what you do online private.') }}</p>
+        </div>
+      </div>
+
+      <div class="c-picto-block t-adjacent-image">
+        <div class="c-picto-block-image">
+          <img src="{{ static('img/icons/report-orange.svg') }}" alt="">
+        </div>
+        <h3 class="c-picto-block-title">Protection at a glance</h3>
+        <div class="c-picto-block-body">
+          <p>{{ _('Firefox Privacy Protections dashboard gives you more insight into the types of trackers your browser has blocked on your behalf, and provides actionable suggestions for keeping your identity safe online.') }}</p>
+        </div>
+      </div>
+    </div>
+  {% endblock %}
