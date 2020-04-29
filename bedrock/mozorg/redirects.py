@@ -707,4 +707,7 @@ redirectpatterns = (
 
     # Issue 8374
     redirect(r'^plugincheck/?$', 'https://support.mozilla.org/kb/npapi-plugins/'),
+
+    # Vanity URL for EKR's blog
+    redirect(r'^ekr/?$', 'https://blog.mozilla.org/blog/author/ekrmozilla-com/'),
 )
