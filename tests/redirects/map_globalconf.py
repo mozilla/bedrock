@@ -1355,4 +1355,6 @@ URLS = flatten((
 
     # Issue 8374
     url_test('/plugincheck/', 'https://support.mozilla.org/kb/npapi-plugins/'),
+
+    url_test('/ekr/', 'https://blog.mozilla.org/blog/author/ekrmozilla-com/'),
 ))
