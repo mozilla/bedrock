@@ -86,8 +86,6 @@
       data-global-previous="{{ ftl('ui-previous') }}"
       {% block string_data %}{% endblock %}></div>
 
-    {% block page_banner %}{% endblock %}
-
     {% block site_header %}
       {% include 'includes/protocol/navigation/menu-mozilla/index.html' %}
     {% endblock %}
@@ -98,6 +96,9 @@
       {% block site_footer %}
         {% include 'includes/protocol/footer/mozilla.html' %}
       {% endblock %}
+
+      {# Banner is last in HTML as it's low priority for search engines and uses `data-nosnippet` (issue #8739) #}
+      {% block page_banner %}{% endblock %}
     </div>
 
     {% block site_js %}

@@ -129,6 +129,28 @@ class TestDownloadButtons(TestCase):
             link = pq(link)
             assert link.attr('data-download-location') is None
 
+    def test_download_nosnippet_attribute(self):
+        """
+        Unsupported messaging should be well formed <div>'s with data-nosnippet attribute (issue #8739).
+        """
+        rf = RequestFactory()
+        get_request = rf.get('/fake')
+        get_request.locale = 'fr'
+        doc = pq(render("{{ download_firefox() }}",
+                        {'request': get_request, 'fluent_l10n': self.get_l10n(get_request.locale)}))
+
+        unrecognised_message = doc('.unrecognized-download').empty().outerHtml()
+        assert unrecognised_message == '<div class="unrecognized-download" data-nosnippet="true"></div>'
+
+        unsupported_message = doc('.unsupported-download').empty().outerHtml()
+        assert unsupported_message == '<div class="unsupported-download" data-nosnippet="true"></div>'
+
+        unsupported_osx_message = doc('.unsupported-download-osx').empty().outerHtml()
+        assert unsupported_osx_message == '<div class="unsupported-download-osx" data-nosnippet="true"></div>'
+
+        linux_arm_message = doc('.linux-arm-download').empty().outerHtml()
+        assert linux_arm_message == '<div class="linux-arm-download" data-nosnippet="true"></div>'
+
     def test_button_has_data_attr_if_not_direct(self):
         """
         If the button points to the thank you page, it should have a
