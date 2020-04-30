@@ -124,6 +124,33 @@ Our convention for string ID creation is the following:
 5. The ID should be as descriptive as possible to make sense to the developer, but could be anything as long as it adheres
    to the rules above.
 
+Using brand names
+~~~~~~~~~~~~~~~~~
+
+Common brand names are stored in a global `brands.ftl`_ file, in the form of `terms`_. Terms are useful for
+keeping brand names separated from the rest of the translations, so that they can be managed in a consistent
+way across all translated files, and also updated easily in a global context. In general the brand names in
+this file remain in English and should not be translated, however locales still have the choice and control
+to make adjustments should it suit their particular language.
+
+.. code-block:: text
+
+    -brand-name = Firefox
+
+    about = About { -brand-name }.
+    update-successful = { -brand-name } has been updated.
+
+.. important::
+
+    When adding a new term to ``brands.ftl``, the new term should also be manually added to the
+    `mozilla-l10n/www-l10n`_ repo for *all locales*. The reason for this is that if a term does not exist
+    for a particular locale, then it does not fall back to English like a regular string does. Instead,
+    the term variable name is displayed on the page.
+
+.. _brands.ftl: https://github.com/mozilla/bedrock/blob/master/l10n/en/brands.ftl
+.. _terms: https://projectfluent.org/fluent/guide/terms.html
+.. _mozilla-l10n/www-l10n: https://github.com/mozilla-l10n/www-l10n
+
 The ``ftl`` helper function
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
