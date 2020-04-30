@@ -26,13 +26,16 @@ describe('mozilla-banner.js', function() {
         var bannerId = 'test-banner';
 
         beforeEach(function() {
-            var banner = '<aside id="page-banner"><button type="button" id="page-banner-close">Close</button></aside>';
-            document.body.insertAdjacentHTML('beforeend', banner);
+            var content = '<div id="outer-wrapper">' +
+                            '<h1>Some title</h1>' +
+                            '<aside id="page-banner"><button type="button" id="page-banner-close">Close</button></aside>' +
+                          '</div>';
+            document.body.insertAdjacentHTML('beforeend', content);
         });
 
         afterEach(function() {
-            var banner = document.getElementById('page-banner');
-            banner.parentNode.removeChild(banner);
+            var content = document.getElementById('outer-wrapper');
+            content.parentNode.removeChild(content);
 
             Mozilla.Banner.id = null;
         });
@@ -58,11 +61,17 @@ describe('mozilla-banner.js', function() {
         var bannerId = 'test-banner';
 
         beforeEach(function() {
-            var banner = '<aside id="page-banner"><button type="button" id="page-banner-close">Close</button></aside>';
-            document.body.insertAdjacentHTML('beforeend', banner);
+            var content = '<div id="outer-wrapper">' +
+                            '<h1>Some title</h1>' +
+                            '<aside id="page-banner"><button type="button" id="page-banner-close">Close</button></aside>' +
+                          '</div>';
+            document.body.insertAdjacentHTML('beforeend', content);
         });
 
         afterEach(function() {
+            var content = document.getElementById('outer-wrapper');
+            content.parentNode.removeChild(content);
+
             Mozilla.Banner.id = null;
         });
 

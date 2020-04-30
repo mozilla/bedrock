@@ -43,20 +43,20 @@
     {{ alt_buttons(builds) }}
   </div>
   {% if show_desktop %}
-    {# unrecognized/unsupported platform #}
-    <div class="unrecognized-download">
+    {# Unrecognized/unsupported messaging. Exclude from search result snippets using `data-nosnippet` (issue 8739) #}
+    <div class="unrecognized-download" data-nosnippet="true">
       <p>{{ ftl('download-button-your-system-may') }}</p>
       {{ alt_buttons(builds) }}
     </div>
-    <p class="unsupported-download">
-      {{ ftl('download-button-your-system-does-not', url=firefox_url('desktop', 'sysreq', channel)) }}
-    </p>
-    <p class="unsupported-download-osx">
-      {{ ftl('download-button-your-system-does-not', url='https://support.mozilla.org/kb/firefox-osx') }}
-    </p>
-    <p class="linux-arm-download">
-      {{ ftl('download-button-please-follow-these', url='https://support.mozilla.org/kb/install-firefox-linux') }}
-    </p>
+    <div class="unsupported-download" data-nosnippet="true">
+      <p>{{ ftl('download-button-your-system-does-not', url=firefox_url('desktop', 'sysreq', channel)) }}</p>
+    </div>
+    <div class="unsupported-download-osx" data-nosnippet="true">
+      <p>{{ ftl('download-button-your-system-does-not', url='https://support.mozilla.org/kb/firefox-osx') }}</p>
+    </div>
+    <div class="linux-arm-download" data-nosnippet="true">
+      <p>{{ ftl('download-button-please-follow-these', url='https://support.mozilla.org/kb/install-firefox-linux') }}</p>
+    </div>
   {% endif %}
   <ul class="download-list">
     {% for plat in builds %}

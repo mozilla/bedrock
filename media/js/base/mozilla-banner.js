@@ -10,7 +10,7 @@ if (typeof window.Mozilla === 'undefined') {
 (function() {
     'use strict';
 
-    var _fundraiser;
+    var _pageBanner;
 
     var Banner = {};
 
@@ -27,7 +27,7 @@ if (typeof window.Mozilla === 'undefined') {
 
     Banner.close = function() {
         // Remove the banner from the DOM.
-        _fundraiser.parentNode.removeChild(_fundraiser);
+        _pageBanner.parentNode.removeChild(_pageBanner);
 
         // Set a cookie to not display it again.
         Banner.setCookie(Banner.id);
@@ -42,8 +42,19 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     Banner.show = function() {
+        var outerWrapper = document.getElementById('outer-wrapper');
+
+        // if for some reason there's no outer-wrapper on the page, do nothing.
+        if (!outerWrapper) {
+            return;
+        }
+
+        // remove banner from bottom of page and reinsert at the top, after primary nav.
+        _pageBanner = _pageBanner.parentNode.removeChild(_pageBanner);
+        outerWrapper.insertBefore(_pageBanner, outerWrapper.firstChild);
+
         // display the banner
-        _fundraiser.classList.add('c-banner-is-visible');
+        _pageBanner.classList.add('c-banner-is-visible');
 
         // wire up close button
         document.getElementById('page-banner-close').addEventListener('click', Banner.close, false);
@@ -52,13 +63,13 @@ if (typeof window.Mozilla === 'undefined') {
     Banner.init = function(id) {
         var cookiesEnabled = typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled();
 
-        _fundraiser = document.getElementById('page-banner');
+        _pageBanner = document.getElementById('page-banner');
 
         /**
          * If the banner does not exist on a page,
          * or there's not a valid banner ID then do nothing.
          */
-        if (!_fundraiser || typeof id !== 'string') {
+        if (!_pageBanner || typeof id !== 'string') {
             return false;
         }
 
