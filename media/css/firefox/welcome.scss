@@ -87,7 +87,8 @@ $image-path: '/media/protocol/img';
     .welcome-page3 &,
     .welcome-page5 &,
     .welcome-page6 &,
-    .welcome-page7 & {
+    .welcome-page7 &,
+    .welcome-page8 & {
         @include text-title-md;
     }
 

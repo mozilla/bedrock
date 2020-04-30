@@ -1,0 +1,94 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import google_play_button, send_to_device with context %}
+{% from "macros-protocol.html" import hero with context %}
+
+{% add_lang_files "firefox/welcome/page8" %}
+
+{% extends "firefox/welcome/base.html" %}
+
+{# L10n: HTML page title #}
+{% block page_title %}{{ _('Make it harder for Facebook to track you') }}{% endblock %}
+
+{% block body_class %}{{ super() }} welcome-page8{% endblock %}
+
+{% set _entrypoint = 'mozilla.org-firefox-welcome-8' %}
+{% set _utm_campaign = 'welcome-8-protection' %}
+
+
+{% block content_intro %}
+{% call hero(
+    title=_('Lorem ipsum dolor sit.'),
+    desc=_('Ei sed malis doctus. Usu natum impetus id. Eam in luptatum singulis, an stet habeo qui. His prodesset reformidans ea, mucius torquatos cum ex, cu eligendi sensibus vis.'),
+    class='mzp-t-firefox mzp-t-dark',
+    include_cta=True,
+    heading_level=1
+  ) %}
+
+  <p class="primary-cta">
+    <a href="#" class="mzp-c-button mzp-t-product" id="button" rel="external">{{ _('Usu natum impetus id') }}</a>
+  </p>
+
+  {% endcall %}
+{% endblock %}
+
+{% block content_primary %}
+  <div class="body-primary">
+    <div class="c-picto-block t-adjacent-image">
+      <div class="c-picto-block-image">
+        <img class="c-emphasis-box-logo" src="{{ static('img/firefox/privacy/icon-privacy.svg') }}" alt="">
+      </div>
+
+      <h3 class="c-picto-block-title">{{ _('More time online. More protection.') }}</h3>
+      <div class="c-picto-block-body">
+        <p>{{ _('Now Firefox creates and stores strong passwords for more of your online accounts — and stops more trackers than ever before.') }}</p>
+        <a class="protection-report" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/{{ utm_params }}" data-cta-text="View your protection report" data-cta-type="button"><strong>{{ _('View your protection report') }}</strong></a>
+      </div>
+    </div>
+
+    <div class="c-picto-block t-adjacent-image">
+      <div class="c-picto-block-image">
+        <img src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" width="48px" alt="">
+      </div>
+      <h3 class="c-picto-block-title">{{ _('Firefox Monitor') }}</h3>
+      <div class="c-picto-block-body">
+        <p>{{ _('See if you’ve been involved in known online data breaches and take action to resolve them.') }}</p>
+        <a href="https://monitor.firefox.com/?{{ utm_params }}" ><strong>{{ _('Go to Monitor') }}</strong></a>
+      </div>
+    </div>
+
+    <div class="c-picto-block t-adjacent-image">
+      <div class="c-picto-block-image">
+        <img src="{{ static('protocol/img/logos/firefox/send/logo.svg') }}" width="48px" alt="">
+      </div>
+      <h3 class="c-picto-block-title">{{ _('Firefox Send') }}</h3>
+      <div class="c-picto-block-body">
+        <p>{{ _('Share large files with end-to-end encryption, using a link that expires automatically.') }}</p>
+        <a href="https://send.firefox.com/?{{ utm_params }}" ><strong>{{ _('Try Send') }}</strong></a>
+      </div>
+    </div>
+
+    <div class="c-picto-block t-adjacent-image">
+      <div class="c-picto-block-image">
+        <img src="{{ static('img/logos/fbcontainer/logo-fbcontainer.svg') }}" width="48px" alt="">
+      </div>
+      <h3 class="c-picto-block-title">{{ _('Facebook Container') }}</h3>
+      <div class="c-picto-block-body">
+        <p>{{ _('Stay connected to the people you can’t be with in real life, and stop Facebook from following you online.') }}</p>
+        <a href="https://addons.mozilla.org/firefox/addon/facebook-container/?{{ utm_params }}" ><strong>{{ _('Add Facebook Container') }}</strong></a>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}
+
+
+{% block content_utility %}
+<p>
+  <strong>
+    <a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">{{ _('Why am I seeing this?') }}</a>
+  </strong>
+</p>
+{% endblock %}
