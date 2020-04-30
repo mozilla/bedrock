@@ -16,7 +16,7 @@ def new(request):
         experience = None
 
     # ensure variant matches pre-defined value
-    if variant not in ['a', 'b', 'c']:  # place expected ?v= values in this list
+    if variant not in ['']:  # place expected ?v= values in this list
         variant = None
 
     # no harm done by passing 'v' to template, even when no experiment is running
