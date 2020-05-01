@@ -12,23 +12,6 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/newsletter-form';
 @import '../../../protocol/css/templates/card-layout';
 
-
-.mzp-c-navigation {
-    position: relative;
-    z-index: 4;
-}
-
-// Override global-nav z-index for sticky header CTA.
-.moz-global-nav {
-    z-index: 3;
-}
-
-// Override footer z-index to hide download sticky behind it.
-.mzp-c-footer {
-    position: relative;
-    z-index: 2;
-}
-
 .main-page-heading {
     @include visually-hidden;
 }
@@ -141,152 +124,11 @@ h4 {
     }
 }
 
-
-//* -------------------------------------------------------------------------- */
-// Sticky CTA
-
-.c-sticky-cta {
-    background-color: $color-ink-80;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
-    color: $color-white;
-    position: fixed;
-    text-align: center;
-    top: 0;
-    width: 100%;
-    z-index: 1;
-
-    .no-js & {
-        // no javascript, no sticky
-        display: none;
-    }
-
-    .mzp-l-content {
-        padding-bottom: $spacing-md;
-        padding-top: $spacing-md;
-    }
-}
-
-.c-sticky-cta-wrapper {
-    position: relative;
-
-    p {
-        margin-bottom: 0;
-    }
-}
-
-.c-sticky-cta-title {
-    @include text-body-md;
-    @include at2x('#{$image-path}/logos/firefox/logo-sm.png', 40px, 40px);
-    background-position: top center;
-    background-repeat: no-repeat;
-    height: 0;
-    left: -6px;
-    margin-bottom: 0;
-    overflow: hidden;
-    position: absolute;
-    top: -4px;
-
-    .download-firefox-sticky-cta & {
-        @include at2x('/media/protocol/img/logos/firefox/browser/logo-sm.png', 40px, 40px);
-    }
-}
-
-.sticky-dismiss {
-    background: transparent;
-    border: 0;
-    bottom: 0;
-    cursor: pointer;
-    overflow: hidden;
-    padding: 0 0 0 $spacing-2xl;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 0;
-    height: 40px;
-
-    &:after {
-        @include text-body-lg;
-        background: transparent url('#{$image-path}/icons/close-white.svg') center center no-repeat;
-        @include background-size(20px 20px);
-        content: '';
-        display: block;
-        height: 32px;
-        left: 0;
-        position: absolute;
-        right: 0;
-        top: $spacing-xs;
-        width: 32px;
-    }
-
-    &:hover:after,
-    &:focus:after {
-        @include transition(transform .1s ease-in-out);
-        @include transform(scale(1.1));
-    }
-
-    &:focus:after {
-        outline: 1px dotted $color-white;
-    }
-}
-
-@media #{$mq-md} {
-    .c-sticky-cta-title {
-        background-position: top left;
-        float: left;
-        height: 44px;
-        line-height: 44px;
-        padding-left: $layout-xl;
-        position: static;
-        text-align: left;
-    }
-
-    .c-sticky-cta-button {
-        margin-top: 0;
-        padding: 0 20px 0 40px;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-
-    .sticky-dismiss {
-        right: -60px;
-
-        &:after {
-            line-height: 44px;
-            text-align: center;
-        }
-    }
-}
-
-@media #{$mq-lg} {
-    .c-sticky-cta-desc-sub {
-        display: block;
-        float: left;
-        line-height: 40px;
-    }
-}
-
-// Sticky CTA - Download Firefox
-.download-firefox-sticky-cta {
-
-    .download-button,
-    .download-list {
-        margin-bottom: 0;
-    }
-
-    .fx-privacy-link {
-        display: none;
-    }
-}
-
-
-
 //* -------------------------------------------------------------------------- */
 // Conditional content
 
 // Hide Firefox Account CTAs by default; show download unless we know otherwise.
 .fxaccount-primary-cta,
-.fxaccount-sticky-cta,
 .fxaccount-secondary-cta {
     display: none;
 }
@@ -294,23 +136,13 @@ h4 {
 // Hide download CTAs for people already using Firefox; promote Firefox Accounts instead.
 .is-firefox {
     .download-firefox-primary-cta,
-    .download-firefox-sticky-cta,
     .download-firefox-secondary-cta {
         display: none;
     }
 
     .fxaccount-primary-cta,
-    .fxaccount-sticky-cta,
     .fxaccount-secondary-cta {
         display: block;
-    }
-
-    #fxaccount-sticky-cta {
-        display: none; // Never an FxA sticky on mobile
-
-        @media #{$mq-md} {
-            display: block;
-        }
     }
 }
 
