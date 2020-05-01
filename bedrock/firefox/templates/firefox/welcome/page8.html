@@ -10,7 +10,7 @@
 {% extends "firefox/welcome/base.html" %}
 
 {# L10n: HTML page title #}
-{% block page_title %}{{ _('Eam in luptatum singulis, an stet habeo qui') }}{% endblock %}
+{% block page_title %}{{ _('Firefox protects your privacy automatically') }}{% endblock %}
 
 {% block body_class %}{{ super() }} welcome-page8{% endblock %}
 
@@ -20,15 +20,15 @@
 
 {% block content_intro %}
 {% call hero(
-    title=_('Lorem ipsum dolor sit.'),
-    desc=_('Ei sed malis doctus. Usu natum impetus id. Eam in luptatum singulis, an stet habeo qui. His prodesset reformidans ea, mucius torquatos cum ex, cu eligendi sensibus vis.'),
+    title=_('Your privacy respected — automatically'),
+    desc=_('Firefox automatically protects your privacy, so you’re free to live your life every time you get online.'),
     class='mzp-t-firefox mzp-t-dark',
     include_cta=True,
     heading_level=1
   ) %}
 
   <p class="primary-cta">
-    <a href="#" class="mzp-c-button mzp-t-product" id="button" rel="external">{{ _('Usu natum impetus id') }}</a>
+    <a href="#" class="mzp-c-button mzp-t-product" id="button" rel="external">{{ _('View your protection report') }}</a>
   </p>
 
   {% endcall %}
@@ -41,10 +41,10 @@
         <img class="c-emphasis-box-logo" src="{{ static('img/icons/tracking-protection.svg') }}" alt="">
       </div>
 
-      <h3 class="c-picto-block-title">{{ _('More time online. More protection.') }}</h3>
+      <h3 class="c-picto-block-title">{{ _('Enhanced Tracking Protection') }}</h3>
       <div class="c-picto-block-body">
-        <p>{{ _('Now Firefox creates and stores strong passwords for more of your online accounts — and stops more trackers than ever before.') }}</p>
-        <a class="protection-report" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/{{ utm_params }}" data-cta-text="View your protection report" data-cta-type="button"><strong>{{ _('View your protection report') }}</strong></a>
+        <p>{{ _('Automatically block sites from following you around the internet.') }}</p>
+        <a class="protection-report" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/{{ utm_params }}" data-cta-text="See what’s blocked" data-cta-type="button"><strong>{{ _('See what’s blocked') }}</strong></a>
       </div>
     </div>
 
