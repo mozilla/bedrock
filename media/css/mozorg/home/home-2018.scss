@@ -85,10 +85,7 @@ h4 {
 @media #{$mq-lg} {
     .c-primary-cta {
         @include bidi(((text-align, left, right),));
-        border-top: 100px solid $color-white; // to hide sticky CTA
-        margin-bottom: -100px;
         position: relative;
-        top: -100px;
 
         .c-primary-cta-wrapper {
             @include border-box;
@@ -115,12 +112,6 @@ h4 {
         @include at2x('/media/img/home/2018/home.jpg', 815px, 362px);
         background-position: 50vw 0;
         background-repeat: no-repeat;
-    }
-
-    .mzp-c-navigation + #outer-wrapper .c-primary-cta {
-        border-top: 94px solid $color-white;
-        top: -94px;
-        margin-bottom: -94px;
     }
 }
 
