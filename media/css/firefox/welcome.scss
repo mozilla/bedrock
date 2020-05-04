@@ -97,6 +97,12 @@ $image-path: '/media/protocol/img';
             @include zap('/media/protocol/img/zaps/zap-16.svg');
         }
     }
+
+    .welcome-page8 & {
+        strong {
+            @include zap('/media/protocol/img/zaps/zap-10.svg');
+        }
+    }
 }
 
 .mzp-c-hero-desc {

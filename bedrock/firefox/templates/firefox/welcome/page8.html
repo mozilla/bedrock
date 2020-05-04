@@ -20,14 +20,14 @@
 
 {% block content_intro %}
 {% call hero(
-    title=_('Your privacy respected — automatically'),
+    title=_('Your privacy respected, <strong>automatically</strong>'),
     desc=_('Firefox automatically protects your privacy, so you’re free to live your life every time you get online.'),
-    class='mzp-t-firefox mzp-t-dark protection-report',
+    class='mzp-t-firefox mzp-t-dark',
     include_cta=True,
     heading_level=1
   ) %}
 
-  <p class="primary-cta">
+  <p class="primary-cta protection-report">
     <a href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" class="mzp-c-button mzp-t-product" id="button" rel="external">{{ _('View your protection report') }}</a>
   </p>
 
