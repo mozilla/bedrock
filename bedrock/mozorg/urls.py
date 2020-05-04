@@ -108,12 +108,7 @@ urlpatterns = (
     page('MPL/2.0/differences', 'mozorg/mpl/2.0/differences.html'),
     page('MPL/2.0/permissive-code-into-mpl', 'mozorg/mpl/2.0/permissive-code-into-mpl.html'),
 
-    page('contribute', 'mozorg/contribute/index.html'),
-    page('contribute/stories', 'mozorg/contribute/stories.html'),
-    page('contribute/stories/faye', 'mozorg/contribute/story-faye.html'),
-    page('contribute/stories/michael', 'mozorg/contribute/story-michael.html'),
-    page('contribute/stories/ruben', 'mozorg/contribute/story-ruben.html'),
-    page('contribute/stories/shreyas', 'mozorg/contribute/story-shreyas.html'),
+    url('^contribute/$', views.contribute, name='mozorg.contribute.index'),
     url('^internet-health/$', views.IHView.as_view(), name='mozorg.internet-health'),
     page('internet-health/privacy-security', 'mozorg/internet-health/privacy-security.html'),
     page('internet-health/digital-inclusion', 'mozorg/internet-health/digital-inclusion.html'),

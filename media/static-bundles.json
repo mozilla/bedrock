@@ -171,6 +171,12 @@
     },
     {
       "files": [
+        "css/mozorg/contribute/contribute-2020.scss"
+      ],
+      "name": "contribute-2020"
+    },
+    {
+      "files": [
         "css/security/hall-of-fame.scss"
       ],
       "name": "security-bug-bounty-hall-of-fame"
@@ -1000,6 +1006,13 @@
         "js/mozorg/contribute/contribute-landing.js"
       ],
       "name": "contribute-landing"
+    },
+    {
+      "files": [
+        "protocol/js/protocol-newsletter.js",
+        "js/newsletter/form-protocol.js"
+      ],
+      "name": "contribute-2020"
     },
     {
       "files": [

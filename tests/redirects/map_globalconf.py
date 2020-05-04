@@ -1357,4 +1357,11 @@ URLS = flatten((
     url_test('/plugincheck/', 'https://support.mozilla.org/kb/npapi-plugins/'),
 
     url_test('/ekr/', 'https://blog.mozilla.org/blog/author/ekrmozilla-com/'),
+
+    # Issue 6994
+    url_test('/contribute/stories/', '/contribute/'),
+    url_test('/contribute/stories/faye/', '/contribute/'),
+    url_test('/contribute/stories/michael/', '/contribute/'),
+    url_test('/contribute/stories/ruben/', '/contribute/'),
+    url_test('/contribute/stories/shreyas/', '/contribute/'),
 ))
