@@ -4,10 +4,10 @@
 
 from selenium.webdriver.common.by import By
 
-from pages.firefox.base import FirefoxBasePage
+from pages.base import BasePage
 
 
-class FirefoxWhatsNew60Page(FirefoxBasePage):
+class FirefoxWhatsNew60Page(BasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/60.0/whatsnew/all/{params}'
 

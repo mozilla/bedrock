@@ -26,21 +26,10 @@ Le saviez-vous ? Mozilla, le concepteur de Firefox, se bat pour qu’Internet, u
     {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
   {% endcall %}
 
-  {% call download_banner_sticky(
-    title='Votre vie privée ne regarde que vous.'
-    ) %}
-    {{ download_firefox(dom_id='download-sticky', download_location='sticky cta', button_color='mzp-t-small') }}
-  {% endcall %}
-
   {{ fxa_banner(
     title='Des technologies résolument à vos côtés.',
     desc='Bien plus qu’un navigateur, Firefox c’est toute une gamme de produits qui respectent vraiment votre vie privée.',
     link_cta='En savoir plus',
-  )}}
-
-  {{ fxa_banner_sticky(
-    title='Des technologies qui vous respectent.',
-    link_cta='Découvrir nos produits',
   )}}
 
   <div class="mozilla-content">

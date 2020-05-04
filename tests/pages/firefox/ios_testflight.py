@@ -5,10 +5,10 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as expected
 
-from pages.firefox.base import FirefoxBasePage
+from pages.base import BasePage
 
 
-class iOSTestFlightPage(FirefoxBasePage):
+class iOSTestFlightPage(BasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/ios/testflight/'
 

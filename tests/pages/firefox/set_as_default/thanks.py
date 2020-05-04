@@ -4,11 +4,11 @@
 
 from selenium.webdriver.common.by import By
 
-from pages.firefox.base import FirefoxBasePage
+from pages.base import BasePage
 from pages.regions.download_button import DownloadButton
 
 
-class DefaultThanksPage(FirefoxBasePage):
+class DefaultThanksPage(BasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/set-as-default/thanks/'
 

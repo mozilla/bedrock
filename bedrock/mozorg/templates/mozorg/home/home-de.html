@@ -26,20 +26,9 @@
     {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
   {% endcall %}
 
-  {% call download_banner_sticky(
-    title=_('Echte Privatsphäre statt<br> leerer Versprechen.')
-    ) %}
-    {{ download_firefox(dom_id='download-sticky', download_location='sticky cta', button_color='mzp-t-small') }}
-  {% endcall %}
-
   {{ fxa_banner(
     title=_('Tech mit R.E.S.P.E.K.T.'),
     desc=_('Firefox respektiert deine Privatsphäre mit jedem einzelnen Produkt.'),
-    link_cta=_('Weitere Infos'),
-  )}}
-
-  {{ fxa_banner_sticky(
-    title=_('Tech mit R.E.S.P.E.K.T.'),
     link_cta=_('Weitere Infos'),
   )}}
 

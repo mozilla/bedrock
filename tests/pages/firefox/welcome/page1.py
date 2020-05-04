@@ -4,10 +4,10 @@
 
 from selenium.webdriver.common.by import By
 
-from pages.firefox.base import FirefoxBasePage
+from pages.base import BasePage
 
 
-class FirefoxWelcomePage1(FirefoxBasePage):
+class FirefoxWelcomePage1(BasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/welcome/1/'
 

@@ -2,10 +2,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from pypom import Region
 from selenium.webdriver.common.by import By
 
-from pages.base import BasePage
+from pages.base import BasePage, BaseRegion
 
 
 class ContactPage(BasePage):
@@ -30,7 +29,7 @@ class ContactPage(BasePage):
     def is_mobile_menu_toggle_displayed(self):
         return self.is_element_displayed(*self._mobile_menu_toggle_locator)
 
-    class Tab(Region):
+    class Tab(BaseRegion):
 
         @property
         def is_selected(self):
@@ -56,7 +55,7 @@ class SpacesPage(ContactPage):
         self.find_element(*self._mobile_menu_toggle_locator).click()
         self.wait.until(lambda s: self.is_nav_displayed)
 
-    class Space(Region):
+    class Space(BaseRegion):
 
         @property
         def id(self):

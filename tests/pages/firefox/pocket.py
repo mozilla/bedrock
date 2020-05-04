@@ -4,10 +4,10 @@
 
 from selenium.webdriver.common.by import By
 
-from pages.firefox.base import FirefoxBasePage
+from pages.base import BasePage
 
 
-class FirefoxPocketPage(FirefoxBasePage):
+class FirefoxPocketPage(BasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/pocket/'
 

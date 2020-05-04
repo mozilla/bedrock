@@ -2,11 +2,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-from pypom import Region
 from selenium.webdriver.common.by import By
 
+from pages.base import BaseRegion
 
-class JoinFirefoxForm(Region):
+
+class JoinFirefoxForm(BaseRegion):
 
     _root_locator = (By.ID, 'fxa-email-form')
     _email_locator = (By.ID, 'fxa-email-field')

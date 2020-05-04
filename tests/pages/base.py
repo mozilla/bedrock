@@ -2,14 +2,27 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+from pypom import Page, Region
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
-from pypom import Page, Region
 from pages.regions.newsletter import NewsletterEmbedForm, LegacyNewsletterEmbedForm
 
 
-class BasePage(Page):
+class ScrollElementIntoView:
+
+    def scroll_element_into_view(self, strategy, locator):
+        # scroll elements so they are not beneath the navigation
+        offset = {'x': 0, 'y': -100}
+        return super(ScrollElementIntoView, self).scroll_element_into_view(
+            strategy, locator, **offset)
+
+
+class BaseRegion(ScrollElementIntoView, Region):
+    pass
+
+
+class BasePage(ScrollElementIntoView, Page):
 
     URL_TEMPLATE = '/{locale}/'
 
@@ -38,7 +51,7 @@ class BasePage(Page):
     def legacy_newsletter(self):
         return LegacyNewsletterEmbedForm(self)
 
-    class Navigation(Region):
+    class Navigation(BaseRegion):
 
         _root_locator = (By.CLASS_NAME, 'mzp-c-navigation')
         _toggle_locator = (By.CLASS_NAME, 'mzp-c-navigation-menu-button')
@@ -88,7 +101,7 @@ class BasePage(Page):
             from .about import AboutPage
             return AboutPage(self.selenium, self.page.base_url).wait_for_page_to_load()
 
-    class Footer(Region):
+    class Footer(BaseRegion):
 
         _root_locator = (By.ID, 'colophon')
         _language_locator = (By.ID, 'page-language-select')
