@@ -22,13 +22,13 @@
 {% call hero(
     title=_('Your privacy respected — automatically'),
     desc=_('Firefox automatically protects your privacy, so you’re free to live your life every time you get online.'),
-    class='mzp-t-firefox mzp-t-dark',
+    class='mzp-t-firefox mzp-t-dark protection-report',
     include_cta=True,
     heading_level=1
   ) %}
 
   <p class="primary-cta">
-    <a href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/{{ utm_params }}" class="mzp-c-button mzp-t-product" id="button" rel="external">{{ _('View your protection report') }}</a>
+    <a href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" class="mzp-c-button mzp-t-product" id="button" rel="external">{{ _('View your protection report') }}</a>
   </p>
 
   {% endcall %}
@@ -44,7 +44,7 @@
       <h3 class="c-picto-block-title">{{ _('Enhanced Tracking Protection') }}</h3>
       <div class="c-picto-block-body">
         <p>{{ _('Automatically block sites from following you around the internet.') }}</p>
-        <a class="protection-report" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/{{ utm_params }}" data-cta-text="See what’s blocked" data-cta-type="button"><strong>{{ _('See what’s blocked') }}</strong></a>
+        <a class="protection-report" href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" data-cta-text="See what’s blocked" data-cta-type="button"><strong>{{ _('See what’s blocked') }}</strong></a>
       </div>
     </div>
 
@@ -55,7 +55,7 @@
       <h3 class="c-picto-block-title">{{ _('Firefox Monitor') }}</h3>
       <div class="c-picto-block-body">
         <p>{{ _('See if you’ve been involved in known online data breaches and take action to resolve them.') }}</p>
-        <a href="https://monitor.firefox.com/?{{ utm_params }}" ><strong>{{ _('Go to Monitor') }}</strong></a>
+        <a href="https://monitor.firefox.com/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" ><strong>{{ _('Go to Monitor') }}</strong></a>
       </div>
     </div>
 
@@ -66,20 +66,22 @@
       <h3 class="c-picto-block-title">{{ _('Firefox Send') }}</h3>
       <div class="c-picto-block-body">
         <p>{{ _('Share large files with end-to-end encryption, using a link that expires automatically.') }}</p>
-        <a href="https://send.firefox.com/?{{ utm_params }}" ><strong>{{ _('Try Send') }}</strong></a>
+        <a href="https://send.firefox.com/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" ><strong>{{ _('Try Send') }}</strong></a>
       </div>
     </div>
 
-    <div class="c-picto-block t-adjacent-image">
-      <div class="c-picto-block-image">
-        <img src="{{ static('img/logos/fbcontainer/logo-fbcontainer.svg') }}" width="48px" alt="">
+    {% if LANG != 'zh-TW' %}
+      <div class="c-picto-block t-adjacent-image">
+        <div class="c-picto-block-image">
+          <img src="{{ static('img/logos/fbcontainer/logo-fbcontainer.svg') }}" width="48px" alt="">
+        </div>
+        <h3 class="c-picto-block-title">{{ _('Facebook Container') }}</h3>
+        <div class="c-picto-block-body">
+          <p>{{ _('Stay connected to the people you can’t be with in real life, and stop Facebook from following you online.') }}</p>
+          <a href="https://addons.mozilla.org/firefox/addon/facebook-container/?src=external-www.mozilla.org-welcom-7&utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}" ><strong>{{ _('Add Facebook Container') }}</strong></a>
+        </div>
       </div>
-      <h3 class="c-picto-block-title">{{ _('Facebook Container') }}</h3>
-      <div class="c-picto-block-body">
-        <p>{{ _('Stay connected to the people you can’t be with in real life, and stop Facebook from following you online.') }}</p>
-        <a href="https://addons.mozilla.org/firefox/addon/facebook-container/?{{ utm_params }}" ><strong>{{ _('Add Facebook Container') }}</strong></a>
-      </div>
-    </div>
+    {% endif %}
 
   </div>
 {% endblock %}
@@ -92,3 +94,8 @@
   </strong>
 </p>
 {% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_welcome_page8') }}
+{% endblock %}
+
