@@ -16,8 +16,7 @@ build:
   except:
     - triggers
   tags:
-    - mozmeao
-    - aws
+    - oregon-b-shell
   script:
     - make clean build-ci
     - FROM_DOCKER_REPOSITORY=mozorg/bedrock_test docker/bin/push2dockerhub.sh
@@ -32,8 +31,7 @@ build-test:
   only:
     - run-integration-tests
   tags:
-    - mozmeao
-    - aws
+    - oregon-b-shell
   script:
     - make clean build-ci
     - FROM_DOCKER_REPOSITORY=mozorg/bedrock_test docker/bin/push2dockerhub.sh
@@ -42,8 +40,7 @@ build-test:
 update-l10n:
   stage: update-config
   tags:
-    - mozmeao
-    - aws
+    - oregon-b-shell
   only:
     changes:
       - "l10n/**/*"
@@ -60,8 +57,7 @@ update-l10n:
 .update-config:
   stage: update-config
   tags:
-    - mozmeao
-    - aws
+    - oregon-b-shell
   except:
     - triggers
   script:
@@ -101,8 +97,7 @@ prod:
 fluent:
   stage: build
   tags:
-    - mozmeao
-    - aws
+    - oregon-b-shell
   only:
     - triggers
   script:
