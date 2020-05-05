@@ -44,14 +44,14 @@ def home_view(request):
         'active_locales': ['de', 'fr', 'en-US']
     }
 
-    if locale.startswith('en-'):
-        template_name = 'exp/home/home-en.html'
-        ctx['page_content_cards'] = get_page_content_cards('home-2019', 'en-US')
-    elif locale == 'de':
+    if locale == 'de':
         template_name = 'exp/home/home-de.html'
         ctx['page_content_cards'] = get_page_content_cards('home-de', 'de')
     elif locale == 'fr':
         template_name = 'exp/home/home-fr.html'
         ctx['page_content_cards'] = get_page_content_cards('home-fr', 'fr')
+    else:
+        template_name = 'exp/home/home-en.html'
+        ctx['page_content_cards'] = get_page_content_cards('home-2019', 'en-US')
 
     return l10n_utils.render(request, template_name, ctx)
