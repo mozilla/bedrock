@@ -13,7 +13,10 @@
     <header class="mzp-c-newsletter-header">
       <h3 class="mzp-c-newsletter-title">{{ title|d(ftl('newsletter-form-get-firefox-news'), true) }}</h3>
       {% if subtitle %}
-      <p class="mzp-c-newsletter-tagline">{{ subtitle }}</p>
+      <h4 class="mzp-c-newsletter-subtitle">{{ subtitle }}</h4>
+      {% endif %}
+      {% if desc %}
+      <p class="mzp-c-newsletter-desc">{{ desc }}</p>
       {% endif %}
     </header>
     {% endif %}
