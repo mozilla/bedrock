@@ -1380,13 +1380,6 @@
         "js/base/error-pages.js"
       ],
       "name": "page_not_found"
-    },
-    {
-      "files": [
-        "js/libs/mozilla-traffic-cop.js",
-        "js/firefox/social-proof-experiment.js"
-      ],
-      "name": "social_proof_experiment"
     }
   ]
 }
