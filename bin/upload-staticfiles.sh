@@ -35,7 +35,6 @@ for BUCKET in "${BUCKETS[@]}"; do
     aws s3 sync \
         --acl public-read \
         --cache-control "max-age=315360000, public, immutable" \
-        --profile bedrock-media \
         "./${TMP_DIR_HASHED}" "s3://bedrock-${BUCKET}-media/media/"
     # non-hashed filenames
     # may not need to include non-hashed files
@@ -43,7 +42,6 @@ for BUCKET in "${BUCKETS[@]}"; do
     aws s3 sync \
         --acl public-read \
         --cache-control "max-age=21600, public" \
-        --profile bedrock-media \
         "./${TMP_DIR}" "s3://bedrock-${BUCKET}-media/media/"
 done
 
