@@ -24,8 +24,12 @@
   {% set primary_heading = _('See what landed recently in <span>Firefox Nightly</span>!') %}
 {% endif %}
 
-{% set download_button %}
-  {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Nightly')) }}
+{% set download_button_primary %}
+  {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Nightly'), dom_id="download-nightly-primary") }}
+{% endset %}
+
+{% set download_button_secondary %}
+  {{ download_firefox('nightly', platform='desktop', force_direct=True, alt_copy=_('Download Firefox Nightly'), dom_id="download-nightly-secondary") }}
 {% endset %}
 
 {% set download_all_link = firefox_url('desktop', 'all', channel='nightly') %}
