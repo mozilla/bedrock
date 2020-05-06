@@ -80,10 +80,10 @@
             class='mzp-t-firefox ' + product_class,
             include_cta=True,
           ) %}
-            {% if download_button %}
+            {% if download_button_primary %}
               <div class="c-download-cta">
               {% block top_download_buttons %}
-                {{ download_button }}
+                {{ download_button_primary }}
               {% endblock %}
               </div>
             {% endif %}
@@ -343,7 +343,7 @@
       title=download_title,
       class='mzp-t-firefox ' + product_class
     ) %}
-      {{ download_button }}
+      {{ download_button_secondary }}
     {% endcall %}
 
     {% if download_all_link %}
