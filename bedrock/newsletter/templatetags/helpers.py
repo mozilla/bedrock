@@ -18,7 +18,7 @@ log = logging.getLogger(__name__)
 @library.global_function
 @jinja2.contextfunction
 def email_newsletter_form(ctx, newsletters='mozilla-and-you', title=None,
-                          subtitle=None, include_country=True,
+                          subtitle=None, desc=None, include_country=True,
                           include_language=True, details=None,
                           use_thankyou=True, thankyou_head=None,
                           thankyou_content=None, footer=True,
@@ -41,6 +41,7 @@ def email_newsletter_form(ctx, newsletters='mozilla-and-you', title=None,
         id=newsletters,
         title=title,
         subtitle=subtitle,  # nested in/depends on include_title
+        desc=desc,  # nested in/depends on include_title
         include_country=include_country,
         include_language=include_language,
         details=details,

@@ -21,3 +21,13 @@ $image-path: '/media/protocol/img';
         margin: $layout-xs auto 0;
     }
 }
+
+// Temporary styling until the newsletter component is updated in Protocol
+// https://github.com/mozilla/protocol/issues/578
+.mzp-c-newsletter-subtitle {
+    @include text-title-xs;
+}
+
+.mzp-c-newsletter-desc {
+    @include text-body-md;
+}
