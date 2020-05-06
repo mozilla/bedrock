@@ -757,7 +757,8 @@
   "js": [
     {
       "files": [
-        "protocol/js/protocol-newsletter.js"
+        "protocol/js/protocol-newsletter.js",
+        "js/newsletter/form-protocol.js"
       ],
       "name": "firefox_channel"
     },
