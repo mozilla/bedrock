@@ -902,7 +902,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-modal.js",
         "js/firefox/new/yandex/scene1.js",
         "js/firefox/new/yandex/scene1-init.js"
       ],

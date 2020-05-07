@@ -2,8 +2,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-// This relies on base/mozilla-modal.js, included in the firefox_new_scene1 bundle
-
 (function() {
     'use strict';
 
