@@ -17,7 +17,7 @@
     }
 
     Mozilla.UITour.ping(function() {
-        document.querySelector('.protection-report').addEventListener('click', handleOpenProtectionReport, false);
+        document.querySelectorAll('.protection-report').forEach(function(button) {button.addEventListener('click', handleOpenProtectionReport, false)})
     });
 
 })();
