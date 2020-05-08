@@ -17,12 +17,7 @@ build:
     - mozmeao
     - aws
   script:
-    - make clean build-ci
-    - FROM_DOCKER_REPOSITORY=mozmeao/bedrock_test docker/bin/push2dockerhub.sh
-    - FROM_DOCKER_REPOSITORY=mozmeao/bedrock_assets docker/bin/push2dockerhub.sh
-    - FROM_DOCKER_REPOSITORY=mozmeao/bedrock_code docker/bin/push2dockerhub.sh
-    - FROM_DOCKER_REPOSITORY=mozmeao/bedrock_build docker/bin/push2dockerhub.sh
-    - FROM_DOCKER_REPOSITORY=mozmeao/bedrock docker/bin/push2dockerhub.sh
+    - bin/build-release-image.sh --push
     - bin/upload-staticfiles.sh
   retry: 2
 
@@ -34,9 +29,7 @@ build-test:
     - mozmeao
     - aws
   script:
-    - make clean build-ci
-    - FROM_DOCKER_REPOSITORY=mozmeao/bedrock_test docker/bin/push2dockerhub.sh
-    - FROM_DOCKER_REPOSITORY=mozmeao/bedrock docker/bin/push2dockerhub.sh
+    - bin/build-release-image.sh --push
   retry: 2
 
 update-l10n:

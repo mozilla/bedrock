@@ -17,7 +17,7 @@ fi
 
 TMP_DIR="s3-static"
 TMP_DIR_HASHED="s3-static-hashed"
-CONTAINER_NAME="bedrock-${BRANCH_AND_COMMIT}"
+CONTAINER_NAME="bedrock-${GIT_COMMIT}"
 
 rm -rf "${TMP_DIR}"
 rm -rf "${TMP_DIR_HASHED}"

@@ -6,11 +6,5 @@ if [ ! -e ./manage.py ]; then
     cd $script_parent_dir
 fi
 
-case "$BRANCH_NAME" in
-    "stage") ENV_FILE=stage ;;
-    "prod") ENV_FILE=prod ;;
-    *) ENV_FILE=master ;;
-esac
-
 # use honcho to inject the proper env vars
-honcho run --env "docker/envfiles/${ENV_FILE}.env" ./bin/sync-all.sh
+honcho run --env docker/envfiles/prod.env ./bin/sync-all.sh
