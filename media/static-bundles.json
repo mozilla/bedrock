@@ -129,13 +129,6 @@
     },
     {
       "files": [
-        "css/firefox/new/trailhead/thanks.scss",
-        "css/firefox/new/trailhead/thanks-b.scss"
-      ],
-      "name": "firefox_new_thanks_b"
-    },
-    {
-      "files": [
         "css/firefox/new/trailhead/download-yandex.scss"
       ],
       "name": "firefox_new_download_yandex"
