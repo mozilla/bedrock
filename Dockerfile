@@ -96,17 +96,15 @@ RUN pip install --no-cache-dir -r requirements/docs.txt
 COPY ./setup.cfg ./
 COPY ./tests ./tests
 
-# build args
-ARG GIT_SHA=latest
-ARG BRANCH_NAME=master
-ENV GIT_SHA=${GIT_SHA}
-ENV BRANCH_NAME=${BRANCH_NAME}
-
 # rely on build args
 RUN bin/run-sync-all.sh
 
 RUN chown webdev.webdev -R .
 USER webdev
+
+# build args
+ARG GIT_SHA=latest
+ENV GIT_SHA=${GIT_SHA}
 
 
 ########
@@ -117,12 +115,6 @@ FROM app-base AS release
 COPY --from=assets /app/static_final /app/static_final
 RUN honcho run --env docker/envfiles/prod.env docker/bin/build_staticfiles.sh
 
-# build args
-ARG GIT_SHA=latest
-ARG BRANCH_NAME=master
-ENV GIT_SHA=${GIT_SHA}
-ENV BRANCH_NAME=${BRANCH_NAME}
-
 # rely on build args
 RUN bin/run-sync-all.sh
 
@@ -131,3 +123,7 @@ RUN echo "${GIT_SHA}" > ./root_files/revision.txt
 # Change User
 RUN chown webdev.webdev -R .
 USER webdev
+
+# build args
+ARG GIT_SHA=latest
+ENV GIT_SHA=${GIT_SHA}
