@@ -69,26 +69,9 @@ $image-path: '/media/protocol/img';
 }
 
 .contribute-card-container {
-    @media #{$mq-sm} {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .contribute-card {
-        display: flex;
-        flex: 1 0 45%;
-
-        @media #{$mq-md} {
-            flex: auto;
-        }
-    }
-
     .contribute-card-wrapper {
+        @include transition(transform 150ms ease-in-out);
         background: $color-white;
-        display: flex;
-        flex-direction: column;
-        transition: transform 150ms ease-in-out,
-            -webkit-transform 150ms ease-in-out;
 
         &:hover,
         &:focus {
@@ -98,7 +81,6 @@ $image-path: '/media/protocol/img';
     }
 
     .contribute-card-content {
-        flex: 1;
         padding: $spacing-md;
     }
 
@@ -109,6 +91,37 @@ $image-path: '/media/protocol/img';
 
     .contribute-card-tag-bold {
         font-weight: bold;
+    }
+
+    .mzp-c-card-media-wrapper {
+        background-color: $color-moz-neon-green;
+    }
+}
+
+@supports (display:flex) {
+    .contribute-card-container {
+        @media #{$mq-sm} {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .contribute-card {
+            display: flex;
+            flex: 1 0 45%;
+
+            @media #{$mq-md} {
+                flex: auto;
+            }
+        }
+
+        .contribute-card-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contribute-card-content {
+            flex: 1;
+        }
     }
 }
 
@@ -132,28 +145,33 @@ $image-path: '/media/protocol/img';
     padding: $layout-xl $layout-md $layout-md;
 
     @media #{$mq-lg} {
-        align-items: center;
-        display: flex;
-        justify-content: space-between;
-        min-height: 260px;
-        padding-bottom: 0;
-        padding-top: 0;
-        position: relative;
-    }
-
-    .contribute-banner-content {
-        @media #{$mq-lg} {
+        .contribute-banner-content {
             @include bidi(((margin-left, 200px, auto),(margin-right, auto, 200px),));
             width: 60%;
             max-width: 495px;
         }
+
+        .contribute-banner-cta {
+            @include bidi(((margin-left, 200px, auto),(margin-right, auto, 200px),));
+        }
     }
+}
 
-    .contribute-banner-cta {
-        flex: 1 0 auto;
+@supports (display:flex) {
+    @media #{$mq-lg} {
+        .contribute-banner {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            min-height: 260px;
+            padding-bottom: 0;
+            padding-top: 0;
+            position: relative;
+        }
 
-        @media #{$mq-lg} {
+        .contribute-banner-cta {
             @include bidi(((margin-left, $layout-xl, auto),(margin-right, auto, $layout-xl),));
+            flex: 1 0 auto;
         }
     }
 }
@@ -314,36 +332,29 @@ $image-path: '/media/protocol/img';
     }
 
     .contribute-mission-cards {
-        display: grid;
-        grid-row-gap: $spacing-xl;
         list-style: none;
-
-        @media #{$mq-md} {
-            grid-template-columns: 1fr 1fr;
-            grid-column-gap: $spacing-lg;
-        }
-
-        @media #{$mq-lg} {
-            padding-left: $layout-xl;
-            padding-right: $layout-xl;
-            grid-column-gap: $spacing-xl;
-        }
+        margin-bottom: $layout-xl;
     }
 
-    .contribute-mission-card a {
-        @include bidi(((padding, $spacing-md $spacing-md $spacing-md $spacing-2xl, $spacing-md $spacing-2xl $spacing-md $spacing-md),));
-        border: 4px solid transparent;
-        color: $color-black;
-        display: block;
-        text-decoration: none;
-        transition: border-color 100ms ease-in-out;
+    .contribute-mission-card {
+        @include bidi(((float, left, right),));
+        width: 50%;
 
-        &:hover,
-        &:focus {
-            border-color: $color-marketing-gray-20;
+        a {
+            @include bidi(((padding, $spacing-md $spacing-md $spacing-md $spacing-2xl, $spacing-md $spacing-2xl $spacing-md $spacing-md),));
+            border: 4px solid transparent;
+            color: $color-black;
+            display: block;
+            text-decoration: none;
+            transition: border-color 100ms ease-in-out;
 
-            & > h3 {
-                text-decoration: underline;
+            &:hover,
+            &:focus {
+                border-color: $color-marketing-gray-20;
+
+                & > h3 {
+                    text-decoration: underline;
+                }
             }
         }
 
@@ -382,6 +393,32 @@ $image-path: '/media/protocol/img';
 
         p {
             margin-bottom: 0;
+        }
+    }
+}
+
+@supports (display:grid) {
+    .contribute-mission {
+        .contribute-mission-cards {
+            display: grid;
+            grid-row-gap: $spacing-xl;
+            margin-bottom: 0;
+
+            @media #{$mq-md} {
+                grid-template-columns: 1fr 1fr;
+                grid-column-gap: $spacing-lg;
+            }
+
+            @media #{$mq-lg} {
+                padding-left: $layout-xl;
+                padding-right: $layout-xl;
+                grid-column-gap: $spacing-xl;
+            }
+        }
+
+        .contribute-mission-card {
+            float: none;
+            width: auto;
         }
     }
 }
