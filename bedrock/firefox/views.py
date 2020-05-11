@@ -664,9 +664,6 @@ def download_thanks(request):
     else:
         template = 'firefox/new/protocol/thanks.html'
 
-    if variant == 'b':
-        template = 'firefox/new/trailhead/thanks-b.html'
-
     return l10n_utils.render(request, template, {'show_newsletter': show_newsletter})
 
 
