@@ -87,13 +87,20 @@ $image-path: '/media/protocol/img';
     .welcome-page3 &,
     .welcome-page5 &,
     .welcome-page6 &,
-    .welcome-page7 & {
+    .welcome-page7 &,
+    .welcome-page8 & {
         @include text-title-md;
     }
 
     .welcome-page4 & {
         strong {
             @include zap('/media/protocol/img/zaps/zap-16.svg');
+        }
+    }
+
+    .welcome-page8 & {
+        strong {
+            @include zap('/media/protocol/img/zaps/zap-10.svg');
         }
     }
 }

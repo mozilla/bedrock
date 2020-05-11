@@ -806,6 +806,13 @@
     {
       "files": [
         "js/base/uitour-lib.js",
+        "js/firefox/welcome/welcome8.js"
+      ],
+      "name": "firefox_welcome_page8"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
         "js/firefox/privacy/messaging-experiment.js"
       ],
       "name": "default_privacy_messaging"
