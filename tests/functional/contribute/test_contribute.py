@@ -9,7 +9,7 @@ from pages.contribute.contribute import ContributePage
 
 @pytest.mark.nondestructive
 def test_play_video(base_url, selenium):
-    page = ContributePage(selenium, base_url).open()
+    page = ContributePage(selenium, base_url, locale='es-ES').open()
     video = page.play_video()
     assert video.is_displayed
     video.close()

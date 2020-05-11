@@ -663,6 +663,7 @@ redirectpatterns = (
     redirect(r'^contribute/signup/?$', 'https://activate.mozilla.community/'),
     redirect(r'^/contribute/task(/.*)?', 'https://activate.mozilla.community/'),
     redirect(r'^contribute/friends/?$', 'mozorg.contribute.index'),
+    redirect(r'^contribute/stories(/.*)?$', 'mozorg.contribute.index'),
 
     # Issue 6461
     redirect(r'^contribute/events/?$', 'https://community.mozilla.org/events/'),

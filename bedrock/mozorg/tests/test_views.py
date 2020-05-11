@@ -81,3 +81,23 @@ class TestHomePage(TestCase):
         req.locale = 'es'
         views.home_view(req)
         render_mock.assert_called_once_with(req, 'mozorg/home/home.html', ANY)
+
+
+@patch('bedrock.mozorg.views.l10n_utils.render')
+class TestContribute(TestCase):
+    def setUp(self):
+        self.rf = RequestFactory()
+
+    # Load the new page for English
+    def test_contribute_en_template(self, render_mock):
+        req = RequestFactory().get('/contribute/')
+        req.locale = 'en-US'
+        views.contribute(req)
+        render_mock.assert_called_once_with(req, 'mozorg/contribute/contribute-2020.html')
+
+    # Load the old page for other locales
+    def test_contribute_locale_template(self, render_mock):
+        req = RequestFactory().get('/contribute/')
+        req.locale = 'es-ES'
+        views.contribute(req)
+        render_mock.assert_called_once_with(req, 'mozorg/contribute/index.html')

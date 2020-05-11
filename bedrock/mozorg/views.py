@@ -141,3 +141,13 @@ def home_view(request):
         template_name = 'mozorg/home/home.html'
 
     return l10n_utils.render(request, template_name, ctx)
+
+
+def contribute(request):
+    locale = l10n_utils.get_locale(request)
+
+    if locale.startswith('en-'):
+        template = 'mozorg/contribute/contribute-2020.html'
+    else:
+        template = 'mozorg/contribute/index.html'
+    return l10n_utils.render(request, template)

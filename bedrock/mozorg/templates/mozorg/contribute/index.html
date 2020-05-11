@@ -53,45 +53,6 @@
             poster=static('img/mozorg/about/poster-i-am.jpg')) }}
       </div>
     {% endcall %}
-
-    <section>
-      <h2 class="contribute-section-heading">{{ _('How Mozillians help every day') }}</h2>
-
-      <ul class="contribute-mozillian-list">
-        <li class="contribute-mozillian-item">
-          <a href="{{ url('mozorg.contribute.story-ruben') }}" data-link-type="button" data-link-name="Read his story - Ruben">
-            <img class="contribute-photo" src="{{ static('img/contribute/person-ruben.jpg') }}" alt="">
-          </a>
-          <h3>Rubén</h3>
-          <p>{{ _('Spain &middot; Activism') }}</p>
-          <a href="{{ url('mozorg.contribute.story-ruben') }}" class="mzp-c-button mzp-t-secondary" data-link-type="button" data-link-name="Read his story - Ruben">
-            {{ _('Read his story') }}
-          </a>
-        </li>
-
-        <li class="contribute-mozillian-item">
-          <a href="{{ url('mozorg.contribute.story-faye') }}" data-link-type="button" data-link-name="Read her story - Faye">
-            <img class="contribute-photo" src="{{ static('img/contribute/person-faye.jpg') }}" alt="">
-          </a>
-          <h3>Faye</h3>
-          <p>{{ _('Philippines &middot; Activism') }}</p>
-          <a href="{{ url('mozorg.contribute.story-faye') }}" class="mzp-c-button mzp-t-secondary" data-link-type="button" data-link-name="Read her story - Faye">
-            {{ _('Read her story') }}
-          </a>
-        </li>
-
-        <li class="contribute-mozillian-item">
-          <a href="{{ url('mozorg.contribute.story-michael') }}" data-link-type="button" data-link-name="Read his story - Michael">
-            <img class="contribute-photo" src="{{ static('img/contribute/person-michael.jpg') }}" alt="">
-          </a>
-          <h3>Michael</h3>
-          <p>{{ _('Switzerland &middot; Coding') }}</p>
-          <a href="{{ url('mozorg.contribute.story-michael') }}" class="mzp-c-button mzp-t-secondary" data-link-type="button" data-link-name="Read his story - Michael">
-            {{ _('Read his story') }}
-          </a>
-        </li>
-      </ul>
-    </section>
   </div>
 
   {% call call_out(
