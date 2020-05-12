@@ -8,6 +8,7 @@ from selenium.common.exceptions import TimeoutException
 from pages.firefox.welcome.page4 import FirefoxWelcomePage4
 
 
+@pytest.mark.skip_if_not_firefox(reason='Welcome pages are shown to Firefox only.')
 @pytest.mark.nondestructive
 def test_modal_button_displayed(base_url, selenium):
     page = FirefoxWelcomePage4(selenium, base_url).open()
@@ -15,6 +16,7 @@ def test_modal_button_displayed(base_url, selenium):
     assert page.is_secondary_modal_button_displayed
 
 
+@pytest.mark.skip_if_not_firefox(reason='Welcome pages are shown to Firefox only.')
 @pytest.mark.nondestructive
 def test_get_firefox_qr_code(base_url, selenium):
     page = FirefoxWelcomePage4(selenium, base_url, locale='sv-SE').open()
@@ -25,6 +27,7 @@ def test_get_firefox_qr_code(base_url, selenium):
     modal.close()
 
 
+@pytest.mark.skip_if_not_firefox(reason='Welcome pages are shown to Firefox only.')
 @pytest.mark.nondestructive
 def test_primary_get_firefox_send_to_device_success(base_url, selenium):
     page = FirefoxWelcomePage4(selenium, base_url).open()
@@ -38,6 +41,7 @@ def test_primary_get_firefox_send_to_device_success(base_url, selenium):
     modal.close()
 
 
+@pytest.mark.skip_if_not_firefox(reason='Welcome pages are shown to Firefox only.')
 @pytest.mark.nondestructive
 def test_get_firefox_send_to_device_fails_when_missing_required_fields(base_url, selenium):
     page = FirefoxWelcomePage4(selenium, base_url).open()

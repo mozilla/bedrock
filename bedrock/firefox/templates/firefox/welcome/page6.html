@@ -30,14 +30,14 @@
     heading_level=1
   ) %}
 
-  <p class="primary-cta">
+  <div class="primary-cta">
     <div class="state-not-default">
       <a id="set-as-default-button" href="{{ url('firefox.set-as-default.thanks') }}" class="mzp-c-button mzp-t-product" data-cta-text="Make Firefox your default browser" data-cta-type="button">{{ _('Make Firefox your default browser') }}</a>
     </div>
     <div class="state-is-default">
-      <button class="mzp-c-button mzp-t-product js-modal-link">{{ _('Get the Firefox App') }}</button>
+      <button type="button" class="mzp-c-button mzp-t-product js-modal-link">{{ _('Get the Firefox App') }}</button>
     </div>
-  </p>
+  </div>
   {% endcall %}
 
   <aside id="modal" class="mzp-u-modal-content mzp-l-content">
@@ -113,5 +113,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox_whatsnew_73') }}
+  {{ js_bundle('firefox_welcome_page6') }}
 {% endblock %}
