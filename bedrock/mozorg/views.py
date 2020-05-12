@@ -13,7 +13,6 @@ from bedrock.contentcards.models import get_page_content_cards
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forums import ForumsFile
 from bedrock.pocketfeed.models import PocketArticle
-from bedrock.wordpress.views import BlogPostsView
 
 credits_file = CreditsFile('credits')
 forums_file = ForumsFile('forums')
@@ -106,13 +105,6 @@ def namespaces(request, namespace):
     context['slug'] = namespace
     template = 'mozorg/namespaces.html'
     return django_render(request, template, context)
-
-
-class IHView(BlogPostsView):
-    template_name = 'mozorg/internet-health/index.html'
-    blog_posts_limit = 3
-    blog_posts_template_variable = 'articles'
-    blog_slugs = 'internetcitizen'
 
 
 def home_view(request):

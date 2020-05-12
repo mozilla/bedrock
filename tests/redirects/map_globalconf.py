@@ -976,9 +976,9 @@ URLS = flatten((
     # bug 1237875
     url_test('/community/forums/', '/about/forums/'),
 
-    # bug 1238687, 1436740
-    url_test('/privacy/you/', '/internet-health/privacy-security/'),
-    url_test('/privacy/tips/', '/internet-health/privacy-security/'),
+    # bug 1238687, 1436740, issue 8375
+    url_test('/privacy/you/', 'https://foundation.mozilla.org/internet-health/'),
+    url_test('/privacy/tips/', 'https://foundation.mozilla.org/internet-health/'),
 
     # bug 1239960, 1329931
     url_test('/firefox/partners/', 'https://support.mozilla.org/products/firefox-os'),
@@ -1108,18 +1108,18 @@ URLS = flatten((
     # Bug 1332008
     url_test('{/en-US,}/protocol/', 'https://blog.mozilla.org/opendesign/'),
 
-    # Bug 1322959
-    url_test('/onlineprivacy', '/internet-health/privacy-security/'),
+    # Bug 1322959, issue 8375
+    url_test('/onlineprivacy', 'https://foundation.mozilla.org/internet-health/'),
 
-    # Bug 1335569
-    url_test('/digital-inclusion', '/internet-health/digital-inclusion/'),
+    # Bug 1335569, issue 8375
+    url_test('/digital-inclusion', 'https://foundation.mozilla.org/internet-health/'),
 
     # Bug 1333146
     url_test('/internet-health-report', 'https://internethealthreport.org/'),
     url_test('/internethealthreport/', 'https://internethealthreport.org/'),
 
-    # Bug 1335569
-    url_test('/open-innovation', '/internet-health/open-innovation/'),
+    # Bug 1335569, issue 8375
+    url_test('/open-innovation', 'https://foundation.mozilla.org/internet-health/'),
 
     # Bug 1335040
     url_test('/gigabit/{,apply/}', 'https://learning.mozilla.org/gigabit/'),
@@ -1137,8 +1137,8 @@ URLS = flatten((
         'utm_campaign': 'css-grid',
     }),
 
-    # Bug 1361194
-    url_test('/internethealth', '/internet-health/'),
+    # Bug 1361194, issue 8375
+    url_test('/internethealth', 'https://foundation.mozilla.org/internet-health/'),
 
     # Bug 1384370
     url_test('/developers', 'https://developer.mozilla.com/'),
@@ -1221,9 +1221,9 @@ URLS = flatten((
     url_test('/about/partnerships.html', '/contact/'),
     url_test('/about/partnerships/{,contentservices/}', '/contact/'),
 
-    # Bug 1436740
-    url_test('/teach/{,smarton/}', '/internet-health/'),
-    url_test('/teach/smarton/{tracking,security,surveillance}/', '/internet-health/privacy-security/'),
+    # Bug 1436740, issue 8375
+    url_test('/teach/{,smarton/}', 'https://foundation.mozilla.org/internet-health/'),
+    url_test('/teach/smarton/{tracking,security,surveillance}/', 'https://foundation.mozilla.org/internet-health/'),
 
     # Issue #5949
     url_test('/foundation/trademarks/', '/foundation/trademarks/policy/'),
@@ -1364,4 +1364,7 @@ URLS = flatten((
     url_test('/contribute/stories/michael/', '/contribute/'),
     url_test('/contribute/stories/ruben/', '/contribute/'),
     url_test('/contribute/stories/shreyas/', '/contribute/'),
+
+    # Issue 8375
+    url_test('/internet-health/{,privacy-security/}', 'https://foundation.mozilla.org/internet-health/'),
 ))
