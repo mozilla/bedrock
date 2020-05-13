@@ -137,10 +137,11 @@ redirectpatterns = (
     # Bug 1109318 /privacy/you -> privacy/tips/
     # Bug 1238687 /privacy/tips -> teach/smarton/
     # Bug 1436740 /privacy/tips -> internet-health/privacy-security/
+    # Issue 8375 /internet-health/ -> foundation.mozilla.org
     redirect(r'^privacy/you/?$',
-             'mozorg.internet-health.privacy-security'),
+             'https://foundation.mozilla.org/internet-health/'),
     redirect(r'^privacy/tips/?$',
-             'mozorg.internet-health.privacy-security'),
+             'https://foundation.mozilla.org/internet-health/'),
 
     # Bug 821047 /about/mission.html -> /mission/
     redirect(r'^about/mission\.html$', '/mission/'),
@@ -593,14 +594,14 @@ redirectpatterns = (
     # Bug 1332008
     redirect(r'^protocol/?$', 'https://blog.mozilla.org/opendesign/'),
 
-    # Bug 1322959 - vanity URL
-    redirect(r'^onlineprivacy/?$', 'mozorg.internet-health.privacy-security'),
+    # Bug 1322959 - vanity URL, Issue 8375
+    redirect(r'^onlineprivacy/?$', 'https://foundation.mozilla.org/internet-health/'),
 
-    # Bug 1335569 - vanity URL
-    redirect(r'^digital-inclusion/?$', 'mozorg.internet-health.digital-inclusion'),
+    # Bug 1335569 - vanity URL, Issue 8375
+    redirect(r'^digital-inclusion/?$', 'https://foundation.mozilla.org/internet-health/'),
 
-    # Bug 1344270 - vanity URL
-    redirect(r'^open-innovation/?$', 'mozorg.internet-health.open-innovation'),
+    # Bug 1344270 - vanity URL, Issue 8375
+    redirect(r'^open-innovation/?$', 'https://foundation.mozilla.org/internet-health/'),
 
     # Bug 1333146
     redirect(r'^internet-?health-?report/?$', 'https://internethealthreport.org/'),
@@ -618,8 +619,8 @@ redirectpatterns = (
         'utm_campaign': 'css-grid',
     }),
 
-    # Bug 1361194
-    redirect(r'^internethealth/?$', 'mozorg.internet-health'),
+    # Bug 1361194, Issue 8375
+    redirect(r'^internethealth/?$', 'https://foundation.mozilla.org/internet-health/'),
 
     # Bug 1384370, Issue 7840
     redirect(r'^developers/?$', 'https://developer.mozilla.com/'),
@@ -645,16 +646,16 @@ redirectpatterns = (
     redirect(r'^about/partnerships\.html', 'mozorg.contact.contact-landing'),
     redirect(r'^about/partnerships/distribution/?$', '/foundation/trademarks/distribution-policy/'),
 
-    # Bug 1436740
-    redirect(r'^teach/?$', 'mozorg.internet-health'),
-    redirect(r'^teach/smarton/?$', 'mozorg.internet-health'),
-    redirect(r'^teach/smarton/(?:tracking|security|surveillance)/?$', 'mozorg.internet-health.privacy-security'),
+    # Bug 1436740, Issue 8375
+    redirect(r'^teach/?$', 'https://foundation.mozilla.org/internet-health/'),
+    redirect(r'^teach/smarton/?$', 'https://foundation.mozilla.org/internet-health/'),
+    redirect(r'^teach/smarton/(?:tracking|security|surveillance)/?$', 'https://foundation.mozilla.org/internet-health/'),
 
     # issue 6266
     redirect(r'^about/policy/leandata/?$', 'mozorg.about.policy.lean-data.index'),
 
-    # issue 6756 - vanity URL
-    redirect(r'^decentralization/?$', 'mozorg.internet-health.decentralization'),
+    # Issue 6756 - vanity URL, Issue 8375
+    redirect(r'^decentralization/?$', 'https://foundation.mozilla.org/internet-health/'),
 
     # issue 6971
     redirect(r'^gear/?$', 'https://mozillagear.corpmerchandise.com/'),
@@ -711,4 +712,7 @@ redirectpatterns = (
 
     # Vanity URL for EKR's blog
     redirect(r'^ekr/?$', 'https://blog.mozilla.org/blog/author/ekrmozilla-com/'),
+
+    # Issue 8375
+    redirect(r'^internet-health(/.*)?', 'https://foundation.mozilla.org/internet-health/'),
 )

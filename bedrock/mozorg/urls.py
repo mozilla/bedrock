@@ -109,12 +109,6 @@ urlpatterns = (
     page('MPL/2.0/permissive-code-into-mpl', 'mozorg/mpl/2.0/permissive-code-into-mpl.html'),
 
     url('^contribute/$', views.contribute, name='mozorg.contribute.index'),
-    url('^internet-health/$', views.IHView.as_view(), name='mozorg.internet-health'),
-    page('internet-health/privacy-security', 'mozorg/internet-health/privacy-security.html'),
-    page('internet-health/digital-inclusion', 'mozorg/internet-health/digital-inclusion.html'),
-    page('internet-health/open-innovation', 'mozorg/internet-health/open-innovation.html'),
-    page('internet-health/web-literacy', 'mozorg/internet-health/web-literacy.html'),
-    page('internet-health/decentralization', 'mozorg/internet-health/decentralization.html'),
 
     page('moss', 'mozorg/moss/index.html'),
     page('moss/foundational-technology', 'mozorg/moss/foundational-technology.html'),

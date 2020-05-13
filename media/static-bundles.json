@@ -2,12 +2,6 @@
   "css": [
     {
       "files": [
-        "css/mozorg/internet-health/privacy-day-egg.scss"
-      ],
-      "name": "privacy-day-egg"
-    },
-    {
-      "files": [
         "css/firefox/whatsnew/whatsnew-nightly.scss"
       ],
       "name": "nightly_whatsnew"
@@ -344,12 +338,6 @@
     },
     {
       "files": [
-        "css/mozorg/internet-health/health-subpage.scss"
-      ],
-      "name": "health-subpage"
-    },
-    {
-      "files": [
         "css/newsletter/newsletter-mozilla.scss"
       ],
       "name": "newsletter-mozilla"
@@ -372,12 +360,6 @@
         "css/firefox/nightly-firstrun.scss"
       ],
       "name": "nightly_firstrun"
-    },
-    {
-      "files": [
-        "css/mozorg/internet-health/index.scss"
-      ],
-      "name": "internet-health-hub"
     },
     {
       "files": [
@@ -1105,13 +1087,6 @@
     },
     {
       "files": [
-        "js/libs/konami-code.js",
-        "js/mozorg/internet-health/privacy-day-egg.js"
-      ],
-      "name": "privacy-day-egg"
-    },
-    {
-      "files": [
         "js/base/mozilla-pixel.js",
         "js/base/mozilla-pixel-init.js"
       ],
@@ -1128,13 +1103,6 @@
         "protocol/js/protocol-sidemenu.js"
       ],
       "name": "contact-spaces"
-    },
-    {
-      "files": [
-        "js/base/mozilla-smoothscroll.js",
-        "js/mozorg/internet-health/health-subpage.js"
-      ],
-      "name": "internet-health-subpage"
     },
     {
       "files": [
