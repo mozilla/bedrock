@@ -10,7 +10,6 @@ from urllib.parse import unquote
 from warnings import warn
 
 from commonware.middleware import FrameOptionsHeader as OldFrameOptionsHeader
-from commonware.middleware import RobotsTagHeader as OldRobotsTagHeader
 from django.conf import settings
 from django.core.exceptions import MiddlewareNotUsed
 from django.http import HttpResponse, HttpResponsePermanentRedirect
@@ -103,10 +102,6 @@ class BasicAuthMiddleware:
             realm = settings.APP_NAME or 'bedrock-demo'
             response['WWW-Authenticate'] = 'Basic realm="{}"'.format(realm)
             return response
-
-
-class RobotsTagHeader(OldRobotsTagHeader, MiddlewareMixin):
-    pass
 
 
 class FrameOptionsHeader(OldFrameOptionsHeader, MiddlewareMixin):
