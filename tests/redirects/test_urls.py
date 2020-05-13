@@ -27,13 +27,6 @@ def test_404_url(base_url):
 @pytest.mark.headless
 @pytest.mark.nondestructive
 @pytest.mark.django_db
-def test_x_robots_tag(base_url):
-    assert_valid_url('/en-US/', status_code=200, resp_headers={'x-robots-tag': 'noodp'}, base_url=base_url)
-
-
-@pytest.mark.headless
-@pytest.mark.nondestructive
-@pytest.mark.django_db
 @pytest.mark.parametrize('url', [
     '/firefox/',
     '/firefox/all/',
