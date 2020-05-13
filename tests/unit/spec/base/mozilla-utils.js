@@ -47,36 +47,36 @@ describe('mozilla-utils.js', function() {
         });
     });
 
-    describe('maybeSwitchToDistDownloadLinks', function() {
+    describe('maybeSwitchToChinaRepackImages', function() {
 
-        var $link;
-        var defaultHref = 'https://test.example.com/?id=org.mozilla.firefox';
-        var partnerAHref = defaultHref.replace('org.mozilla.firefox', 'com.partnera.firefox');
+        var $img;
+        var defaultSrc = '/img/placeholder.png';
+        var partnerASrc = '/img/foo.png';
 
         beforeEach(function () {
-            $link = $([
-                '<a href="' + defaultHref +
-                '" data-partnera-link="' + partnerAHref +
+            $img = $([
+                '<img src="' + defaultSrc +
+                '" data-partnera-link="' + partnerASrc +
                 '">download</a>'
             ].join()).appendTo('body');
         });
 
         afterEach(function() {
-            $link.remove();
+            $img.remove();
         });
 
-        it('should use specified download link for certain distributions', function () {
-            Mozilla.Utils.maybeSwitchToDistDownloadLinks({
+        it('should use specified image for certain distributions', function () {
+            Mozilla.Utils.maybeSwitchToChinaRepackImages({
                 distribution: 'PartnerA'
             });
-            expect($link.attr('href')).toEqual(partnerAHref);
+            expect($img[0].src).toContain(partnerASrc);
         });
 
-        it('should use default download link for other distributions', function () {
-            Mozilla.Utils.maybeSwitchToDistDownloadLinks({
+        it('should use default image for other distributions', function () {
+            Mozilla.Utils.maybeSwitchToChinaRepackImages({
                 distribution: 'PartnerB'
             });
-            expect($link.attr('href')).toEqual(defaultHref);
+            expect($img[0].src).toContain(defaultSrc);
         });
 
     });

@@ -26,7 +26,7 @@
         /* Bug 1264843: In partner distribution of desktop Firefox, switch the
         downloads to corresponding partner build of Firefox for Android. */
         if (client.isFirefoxDesktop) {
-            client.getFirefoxDetails(utils.maybeSwitchToDistDownloadLinks);
+            client.getFirefoxDetails(utils.maybeSwitchToChinaRepackImages);
         }
 
         // if window.load happened already, fire onWindowLoad
