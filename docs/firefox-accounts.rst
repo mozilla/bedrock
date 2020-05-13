@@ -69,9 +69,9 @@ The template's respective JavaScript and CSS bundles should also include the fol
 
 **CSS:**
 
-.. code-block:: text
+.. code-block:: css
 
-    css/base/mozilla-fxa-form.scss
+    @import '../path/to/fxa-form';
 
 The JavaScript files will automatically handle things adding metrics parameters, as well as
 configuring Sync and distribution ID (e.g. the China re-pack) for Firefox browsers. The CSS

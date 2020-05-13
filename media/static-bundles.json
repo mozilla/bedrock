@@ -472,7 +472,6 @@
     },
     {
       "files": [
-        "css/base/mozilla-fxa-form.scss",
         "css/firefox/firstrun/firstrun.scss"
       ],
       "name": "firefox_firstrun_quantum"
@@ -649,7 +648,6 @@
     {
       "files": [
         "css/base/mozilla-fxa-state.scss",
-        "css/base/mozilla-fxa-form.scss",
         "css/firefox/accounts-2019.scss"
       ],
       "name": "firefox_accounts_2019"
