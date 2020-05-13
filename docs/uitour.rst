@@ -48,6 +48,13 @@ Note that ``browser.uitour.testingOrigins`` can be a comma separated list of dom
     must also exclude the domain protocol e.g. ``https://``. A browser restart is also required
     after adding an allowed domain.
 
+    If you are working on Firefox Accounts integration, you can use the ``identity.fxaccounts.autoconfig.uri``
+    config property to change the Accounts server. For example, to change it to stage environment use this value:
+    ``https://accounts.stage.mozaws.net/``. Restart the browser and make sure the configuration updated.
+    ``identity.fxaccounts.remote.root`` preference should now point to ``https://accounts.stage.mozaws.net``.
+    If it has not changed for some reason, update it manually.
+    Ref: https://mozilla-services.readthedocs.io/en/latest/howtos/run-fxa.html
+
 JavaScript API
 --------------
 

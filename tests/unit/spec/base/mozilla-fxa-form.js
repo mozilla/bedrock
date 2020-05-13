@@ -3,6 +3,8 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
+/* global sinon */
+
 describe('mozilla-fxa-form.js', function() {
     'use strict';
 
@@ -12,6 +14,8 @@ describe('mozilla-fxa-form.js', function() {
             var form = '<form action="https://accounts.firefox.com/" data-mozillaonline-action="https://accounts.firefox.com.cn/" id="fxa-email-form" class="fxa-email-form">' +
                        '<input type="hidden" name="action" value="email">' +
                        '<input type="hidden" name="entrypoint" value="mozilla.org-privacy-products" id="fxa-email-form-entrypoint">' +
+                       '<input type="hidden" name="entrypoint_experiment" value="exp" id="fxa-email-form-entrypoint-experiment">' +
+                       '<input type="hidden" name="entrypoint_variation" value="var" id="fxa-email-form-entrypoint-variation">' +
                        '<input type="hidden" name="form_type" value="email">' +
                        '<input type="hidden" name="utm_source" value="mozilla.org-privacy-products" id="fxa-email-form-utm-source">' +
                        '<input type="hidden" name="utm_campaign" value="fxa-embedded-form" id="fxa-email-form-utm-campaign">' +
@@ -125,13 +129,15 @@ describe('mozilla-fxa-form.js', function() {
 
         it('should pass through utm parameters from the URL to the form', function() {
             spyOn(window.Mozilla.Client, '_isFirefoxDesktop').and.returnValue(false);
-            spyOn(window._SearchParams.prototype, 'utmParams').and.returnValue(            {
+            /* eslint-disable camelcase */
+            spyOn(window.Mozilla.FxaForm, 'getUTMParams').and.returnValue({
                 'utm_source': 'desktop-snippet',
                 'utm_content': 'rel-esr',
                 'utm_medium': 'referral',
                 'utm_term': 4242,
                 'utm_campaign': 'F100_4242_otherstuff_in_here'
             });
+            /* eslint-enable camelcase */
 
             return Mozilla.FxaForm.init().then(function() {
                 var form = document.getElementById('fxa-email-form');
@@ -144,6 +150,59 @@ describe('mozilla-fxa-form.js', function() {
                 expect(form.querySelector('[name="utm_content"]').value).toEqual('rel-esr');
                 expect(form.querySelector('[name="utm_term"]').value).toEqual('4242');
                 expect(form.querySelector('[name="utm_medium"]').value).toEqual('referral');
+            });
+        });
+
+        it('should pass through utm parameters from the URL to the form into the UITour', function() {
+            spyOn(window.Mozilla.Client, '_isFirefoxDesktop').and.returnValue(true);
+            spyOn(window.Mozilla.Client, '_getFirefoxVersion').and.returnValue('80.0');
+            spyOn(Mozilla.Client, 'getFirefoxDetails').and.callFake(function(callback) {
+                callback({
+                    'accurate': true,
+                    'distribution': undefined,
+                });
+            });
+            window.Mozilla.UITour = sinon.stub();
+            window.Mozilla.UITour.showFirefoxAccounts = sinon.stub().returns(true);
+            window.Mozilla.UITour.ping = sinon.stub().callsArg(0);
+            spyOn(window.Mozilla.UITour, 'showFirefoxAccounts');
+            /* eslint-disable camelcase */
+            spyOn(window.Mozilla.FxaForm, 'getUTMParams').and.returnValue({
+                'utm_source': 'desktop-snippet',
+                'utm_content': 'rel-esr',
+                'utm_medium': 'referral',
+                'utm_term': 4242,
+                'utm_campaign': 'F100_4242_otherstuff_in_here'
+            });
+            /* eslint-enable camelcase */
+            return Mozilla.FxaForm.init().then(function() {
+                var form = document.getElementById('fxa-email-form');
+                form.querySelector('#fxa-email-field').value = 'a@a.com';
+                expect(form.getAttribute('action')).toEqual('https://accounts.firefox.com/');
+                expect(form.querySelector('[name="flow_id"]').value).toEqual('75f9a48a0f66c2f5919a0989605d5fa5dd04625ea5a2ee59b2d5d54637c566d1');
+                expect(form.querySelector('[name="flow_begin_time"]').value).toEqual('1573052386673');
+                expect(form.querySelector('[name="device_id"]').value).toEqual('848377ff6e3e4fc982307a316f4ca3d6');
+                expect(form.querySelector('[name="utm_source"]').value).toEqual('desktop-snippet');
+                expect(form.querySelector('[name="utm_campaign"]').value).toEqual('F100_4242_otherstuff_in_here');
+                expect(form.querySelector('[name="utm_content"]').value).toEqual('rel-esr');
+                expect(form.querySelector('[name="utm_term"]').value).toEqual('4242');
+                expect(form.querySelector('[name="utm_medium"]').value).toEqual('referral');
+
+                form.querySelector('#fxa-email-form-submit').click();
+                /* eslint-disable camelcase */
+                expect(window.Mozilla.UITour.showFirefoxAccounts).toHaveBeenCalledWith({
+                    utm_source: 'desktop-snippet',
+                    utm_content: 'rel-esr',
+                    utm_medium: 'referral',
+                    utm_term: 4242,
+                    utm_campaign: 'F100_4242_otherstuff_in_here',
+                    entrypoint_experiment: 'exp',
+                    entrypoint_variation: 'var',
+                    device_id: '848377ff6e3e4fc982307a316f4ca3d6',
+                    flow_id: '75f9a48a0f66c2f5919a0989605d5fa5dd04625ea5a2ee59b2d5d54637c566d1',
+                    flow_begin_time: 1573052386673,
+                }, 'mozilla.org-privacy-products', 'a@a.com');
+                /* eslint-enable camelcase */
             });
         });
     });

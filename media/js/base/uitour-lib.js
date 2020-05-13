@@ -197,17 +197,22 @@ if (typeof window.Mozilla === 'undefined') {
     /**
     * Request the browser open the Firefox Accounts page.
     *
-    * @param {Object} extraURLParams - An object containing additional
+    * @param {Object} [extraURLParams] - An optional object containing additional
     * parameters for the URL opened by the browser for reasons of promotional
     * campaign tracking. Each attribute of the object must have a name that
-    * is a string, is "flow_id", "flow_begin_time", "device_id" or begins
-    * with `utm_` and contains only only alphanumeric characters, dashes or
-    * underscores. The values may be any string and will automatically be encoded.
+    * is a string, is "flow_id", "flow_begin_time", "device_id", "entrypoint_experiment",
+    * "entrypoint_variation" or begins with `utm_` and contains only only alphanumeric
+    * characters, dashes or underscores. The values may be any string and will automatically be encoded.
     * For Flow metrics, see details at https://mozilla.github.io/ecosystem-platform/docs/fxa-engineering/fxa-metrics#content-server
-    * @since 79 renamed from `extraURLCampaignParams` to `extraURLParams
-   */
-    Mozilla.UITour.showFirefoxAccounts = function(extraURLParams) {
+    * @since 79 renamed from `extraURLCampaignParams` to `extraURLParams`
+    * @param {String} [email] - the optional FxA email value.
+    * @param {String} [entrypoint] - the optional FxA entrypoint value. If not set, the browser will report `uitour`.
+    * @since 80 added the "entrypoint" option.
+    */
+    Mozilla.UITour.showFirefoxAccounts = function(extraURLParams, entrypoint, email) {
         _sendEvent('showFirefoxAccounts', {
+            email: email,
+            entrypoint: entrypoint,
             extraURLParams: JSON.stringify(extraURLParams)
         });
     };

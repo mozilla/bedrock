@@ -77,9 +77,9 @@ if (typeof window.Mozilla === 'undefined') {
             return resp.json();
         }).then(function(r) {
             // add retrieved deviceID, flowBeginTime and flowId values to cta url
-            var flowParams = '&deviceId=' + r.deviceId;
-            flowParams += '&flowBeginTime=' + r.flowBeginTime;
-            flowParams += '&flowId=' + r.flowId;
+            var flowParams = '&device_id=' + r.deviceId;
+            flowParams += '&flow_begin_time=' + r.flowBeginTime;
+            flowParams += '&flow_id=' + r.flowId;
             return flowParams;
         }).catch(function() {
             // silently fail: deviceId, flowBeginTime, flowId are not added to url.

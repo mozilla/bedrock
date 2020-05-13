@@ -810,7 +810,6 @@
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
         "js/libs/spin.min.js",
         "protocol/js/protocol-modal.js",
         "js/base/send-to-device.js",
@@ -820,21 +819,18 @@
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
         "js/firefox/welcome/welcome8.js"
       ],
       "name": "firefox_welcome_page8"
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
         "js/firefox/privacy/messaging-experiment.js"
       ],
       "name": "default_privacy_messaging"
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-product-button.js",
@@ -846,7 +842,6 @@
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
         "js/firefox/whatsnew/up-to-date.js",
         "js/base/mozilla-fxa-product-button.js",
         "js/base/mozilla-fxa-product-button-init.js"
@@ -855,7 +850,6 @@
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
         "js/firefox/whatsnew/up-to-date.js",
         "js/libs/spin.min.js",
         "protocol/js/protocol-modal.js",
@@ -866,7 +860,6 @@
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
         "js/firefox/whatsnew/up-to-date.js",
         "js/firefox/whatsnew/whatsnew-74.js"
       ],
@@ -874,7 +867,6 @@
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
         "js/firefox/whatsnew/up-to-date.js",
         "js/base/mozilla-fxa-product-button.js",
         "js/base/mozilla-fxa-product-button-init.js",
@@ -884,7 +876,6 @@
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
         "js/firefox/whatsnew/up-to-date.js",
         "js/firefox/whatsnew/whatsnew-76.js"
       ],
@@ -892,7 +883,6 @@
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
         "js/firefox/whatsnew/up-to-date.js",
         "js/firefox/whatsnew/whatsnew-77.js"
       ],
@@ -900,7 +890,6 @@
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
         "js/firefox/whatsnew/up-to-date.js",
         "js/base/mozilla-video-poster.js",
         "js/firefox/whatsnew/whatsnew-77-zhCN.js"
@@ -915,7 +904,6 @@
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
         "js/firefox/lockwise/lockwise.js"
       ],
       "name": "lockwise"
@@ -935,7 +923,6 @@
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
         "js/firefox/new/desktop/download.js"
       ],
       "name": "firefox_desktop_download"
@@ -1089,7 +1076,6 @@
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
         "js/privacy/privacy-firefox.js"
       ],
       "name": "privacy_firefox"
@@ -1102,7 +1088,6 @@
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
         "js/firefox/set-as-default/thanks.js"
       ],
       "name": "firefox-default-thanks"
@@ -1130,7 +1115,6 @@
         "js/base/mozilla-fxa-init.js",
         "js/base/mozilla-fxa-form.js",
         "js/base/mozilla-fxa-form-init.js",
-        "js/base/uitour-lib.js",
         "js/firefox/browsers-products.js"
       ],
       "name": "firefox-browsers-products"
@@ -1225,7 +1209,6 @@
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
         "js/base/send-to-device.js",
         "js/libs/spin.min.js",
         "js/firefox/whatsnew/up-to-date.js",
@@ -1242,7 +1225,6 @@
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
         "js/firefox/whatsnew/up-to-date.js",
         "js/base/mozilla-fxa-product-button.js",
         "js/base/mozilla-fxa-product-button-init.js"
@@ -1253,14 +1235,12 @@
       "files": [
         "js/base/send-to-device.js",
         "js/libs/spin.min.js",
-        "js/base/uitour-lib.js",
         "js/firefox/whatsnew/whatsnew-id.js"
       ],
       "name": "whatsnew_lite"
     },
     {
       "files": [
-        "js/base/uitour-lib.js",
         "js/base/mozilla-fxa-form.js",
         "js/base/mozilla-fxa-form-init.js",
         "js/firefox/privacy/products.js"
@@ -1306,6 +1286,7 @@
         "js/base/core-datalayer.js",
         "js/base/core-datalayer-init.js",
         "js/base/search-params.js",
+        "js/base/uitour-lib.js",
         "js/base/mozilla-fxa-link.js",
         "js/base/mozilla-fxa-link-init.js",
         "js/base/fxa-utm-referral.js",
@@ -1333,6 +1314,7 @@
         "js/base/core-datalayer.js",
         "js/base/core-datalayer-init.js",
         "js/base/search-params.js",
+        "js/base/uitour-lib.js",
         "js/base/mozilla-fxa-link.js",
         "js/base/mozilla-fxa-link-init.js",
         "js/base/fxa-utm-referral.js",
@@ -1359,6 +1341,7 @@
         "js/base/core-datalayer.js",
         "js/base/core-datalayer-init.js",
         "js/base/search-params.js",
+        "js/base/uitour-lib.js",
         "js/base/mozilla-fxa-link.js",
         "js/base/mozilla-fxa-link-init.js",
         "js/base/fxa-utm-referral.js",
