@@ -30,26 +30,12 @@ if (typeof window.Mozilla === 'undefined') {
     /**
      * Pass through utm_params from URL if present,
      * to attribute external marketing campaigns.
+     *
+     * @returns {Object} of utm parameters
      */
     FxaForm.getUTMParams = function() {
         var urlParams = new window._SearchParams().utmParams();
-        var attributionData = Mozilla.UtmUrl.getAttributionData(urlParams);
-
-        if (attributionData) {
-            var utms = ['utm_source', 'utm_campaign', 'utm_content', 'utm_term', 'utm_medium'];
-            for (var i = 0; i < utms.length; i++) {
-                if (Object.prototype.hasOwnProperty.call(attributionData, utms[i])) {
-                    // check if input is available
-                    if (formElem.querySelector('[name="' + utms[i] + '"]')) {
-                        formElem.querySelector('[name="' + utms[i] + '"]').value = attributionData[utms[i]];
-                    } else {
-                        // create input if one is not present
-                        var input = FxaForm.createInput(utms[i], attributionData[utms[i]]);
-                        formElem.appendChild(input);
-                    }
-                }
-            }
-        }
+        return Mozilla.UtmUrl.getAttributionData(urlParams) || {};
     };
 
     /**
@@ -102,6 +88,55 @@ if (typeof window.Mozilla === 'undefined') {
         });
     };
 
+
+    /**
+     * Intercept event handler for FxA forms, lets the browser drive the FxA Flow using
+     * the `showFirefoxAccounts` UITour API. Attaches several UTM parameters from the current page
+     * that will be forwarded to the browser and later on to FxA services.
+     * @param event {Event}
+     * @private
+     */
+    FxaForm.interceptFxANavigation = function(event) {
+        event.preventDefault();
+        var extraURLParams = FxaForm.getUTMParams();
+
+        var entrypointInput = document.getElementById('fxa-email-form-entrypoint');
+        var entrypointExp = document.getElementById('fxa-email-form-entrypoint-experiment');
+        var entrypointVar = document.getElementById('fxa-email-form-entrypoint-variation');
+        var entrypoint = null;
+        if (entrypointInput && entrypointInput.value) {
+            entrypoint = entrypointInput.value;
+        }
+        if (entrypointExp && entrypointExp.value) {
+            extraURLParams['entrypoint_experiment'] = entrypointExp.value;
+        }
+        if (entrypointVar && entrypointVar.value) {
+            extraURLParams['entrypoint_variation'] = entrypointVar.value;
+        }
+
+        var email = document.getElementById('fxa-email-field');
+        if (email) {
+            email = email.value;
+        }
+
+        var formElem = document.getElementById('fxa-email-form');
+        if (formElem) {
+            var deviceId = formElem.querySelector('[name="device_id"]');
+            var flowId = formElem.querySelector('[name="flow_id"]');
+            var flowBeginTime = formElem.querySelector('[name="flow_begin_time"]');
+            if (deviceId && deviceId.value) {
+                extraURLParams['device_id'] = deviceId.value;
+            }
+            if (flowId && flowId.value) {
+                extraURLParams['flow_id'] = flowId.value;
+            }
+            if (flowBeginTime && flowBeginTime.value) {
+                extraURLParams['flow_begin_time'] = parseInt(flowBeginTime.value, 10);
+            }
+        }
+        return Mozilla.UITour.showFirefoxAccounts(extraURLParams, entrypoint, email);
+    };
+
     /**
      * Configures Sync for Firefox browsers.
      * Only Firefox < 71 requires `service=sync`.
@@ -110,7 +145,16 @@ if (typeof window.Mozilla === 'undefined') {
         var contextField = formElem.querySelector('[name="context"]');
         var serviceField = formElem.querySelector('[name="service"]');
         var userVer = parseFloat(Mozilla.Client._getFirefoxVersion());
+        var self = this;
+        var useUITourForFxA = userVer >= 80 && typeof Mozilla.UITour !== 'undefined';
 
+        if (useUITourForFxA) {
+            Mozilla.UITour.ping(function() {
+                // intercept the flow and submit the form using the UITour API instead.
+                // In the future we should fully migrate to this API for Firefox Desktop login.
+                formElem.addEventListener('submit', self.interceptFxANavigation);
+            });
+        }
         /**
          * Context is required for all Firefox desktop clients.
          */
@@ -180,7 +224,17 @@ if (typeof window.Mozilla === 'undefined') {
         return new window.Promise(function(resolve, reject) {
             if (formElem) {
                 // Pass through UTM params from the URL to the form.
-                FxaForm.getUTMParams();
+                var utms = FxaForm.getUTMParams();
+                Object.keys(utms).forEach(function (i) {
+                    // check if input is available
+                    if (formElem.querySelector('[name="' + i + '"]')) {
+                        formElem.querySelector('[name="' + i + '"]').value = utms[i];
+                    } else {
+                        // create input if one is not present
+                        var input = FxaForm.createInput(i, utms[i]);
+                        formElem.appendChild(input);
+                    }
+                });
 
                 // Configure Sync for Firefox desktop browsers.
                 if (Mozilla.Client._isFirefoxDesktop()) {

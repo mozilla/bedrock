@@ -3,6 +3,8 @@
  * Sinon docs: http://sinonjs.org/docs/
  */
 
+/* global sinon */
+
 describe('mozilla-fxa-link.js', function() {
     'use strict';
 
@@ -46,6 +48,73 @@ describe('mozilla-fxa-link.js', function() {
             var mozillaOnlineLink = link.getAttribute('data-mozillaonline-link');
             expect(link.href).toEqual('https://accounts.firefox.com/signin?form_type=button&entrypoint=mozilla.org-firefoxnav&utm_source=mozilla.org-firefoxnav&utm_medium=referral&utm_campaign=nav&utm_content=join-sign-in');
             expect(mozillaOnlineLink).toEqual('https://accounts.firefox.com.cn/signin?form_type=button&entrypoint=mozilla.org-firefoxnav&utm_source=mozilla.org-firefoxnav&utm_medium=referral&utm_campaign=nav&utm_content=join-sign-in');
+        });
+
+        it('should use the UITour for Firefox Desktop >= 80', function() {
+            spyOn(window.Mozilla.Client, '_isFirefoxDesktop').and.returnValue(true);
+            window.Mozilla.UITour = sinon.stub();
+            window.Mozilla.UITour.showFirefoxAccounts = sinon.stub().returns(true);
+            window.Mozilla.UITour.ping = sinon.stub().callsArg(0);
+            spyOn(window.Mozilla.UITour, 'showFirefoxAccounts');
+            spyOn(window.Mozilla.Client, '_getFirefoxVersion').and.returnValue('80.0');
+            return Mozilla.FxaLink.init(function() {
+                var link = document.querySelector('.js-fxa-cta-link');
+                expect(link.getAttribute('role')).toEqual('button');
+                link.click();
+                expect(window.Mozilla.UITour.showFirefoxAccounts).toHaveBeenCalledWith({
+                    /* eslint-disable camelcase */
+                    utm_source: 'mozilla.org-firefoxnav',
+                    utm_campaign: 'nav',
+                    utm_content: 'join-sign-in',
+                    utm_medium: 'referral'
+                    /* eslint-enable camelcase */
+                }, 'mozilla.org-firefoxnav');
+            });
+        });
+
+        it('does NOT use the UITour for non-FxA domains in Fx >= 80', function() {
+            var link = document.querySelectorAll('.js-fxa-cta-link')[0];
+            link.href = 'https://monitor.firefox.com';
+            spyOn(window.Mozilla.Client, '_isFirefoxDesktop').and.returnValue(true);
+            window.Mozilla.UITour = sinon.stub();
+            window.Mozilla.UITour.showFirefoxAccounts = sinon.stub().returns(true);
+            window.Mozilla.UITour.ping = sinon.stub().callsArg(0);
+            spyOn(window.Mozilla.UITour, 'showFirefoxAccounts');
+            spyOn(window.Mozilla.Client, '_getFirefoxVersion').and.returnValue('80.0');
+            return Mozilla.FxaLink.init(function() {
+                expect(link.getAttribute('role')).toEqual(null);
+            });
+        });
+
+        it('handles flow and entrypoint parameters on the link in Fx >= 80', function() {
+            var link = document.querySelectorAll('.js-fxa-cta-link')[0];
+            link.href = 'https://accounts.firefox.com/signin?form_type=button&entrypoint=mozilla.org-firefoxnav&' +
+                'utm_source=mozilla.org-firefoxnav&utm_medium=referral&utm_campaign=nav&utm_content=join-sign-in&' +
+                'flow_id=flow&flow_begin_time=100&device_id=dev&entrypoint_experiment=exp&entrypoint_variation=var';
+            spyOn(window.Mozilla.Client, '_isFirefoxDesktop').and.returnValue(true);
+            window.Mozilla.UITour = sinon.stub();
+            window.Mozilla.UITour.showFirefoxAccounts = sinon.stub().returns(true);
+            window.Mozilla.UITour.ping = sinon.stub().callsArg(0);
+            spyOn(window.Mozilla.UITour, 'showFirefoxAccounts');
+            spyOn(window.Mozilla.Client, '_getFirefoxVersion').and.returnValue('80.0');
+            return Mozilla.FxaLink.init(function() {
+                var link = document.querySelector('.js-fxa-cta-link');
+                expect(link.getAttribute('role')).toEqual('button');
+                link.click();
+                expect(window.Mozilla.UITour.showFirefoxAccounts).toHaveBeenCalledWith({
+                    /* eslint-disable camelcase */
+                    flow_id: 'flow',
+                    flow_begin_time: '100',
+                    device_id: 'dev',
+                    entrypoint_experiment: 'exp',
+                    entrypoint_variation: 'var',
+                    utm_source: 'mozilla.org-firefoxnav',
+                    utm_campaign: 'nav',
+                    utm_content: 'join-sign-in',
+                    utm_medium: 'referral'
+                    /* eslint-enable camelcase */
+                }, 'mozilla.org-firefoxnav');
+            });
         });
     });
 

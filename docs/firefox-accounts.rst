@@ -37,6 +37,20 @@ predictability in retroactive analysis.
     <https://mozilla.github.io/application-services/docs/accounts/metrics.html#descriptions-of-metrics-related-query-parameters>`_
     rules applied by the Firefox Accounts server.
 
+UITour Flow
+-----------
+
+Since Firefox 80 the FxA links and email forms use the UITour to show the Firefox Accounts page and log the browser
+into Sync or an Account. For non-Firefox browsers or if the UITour is not available the flow uses normal links that
+allow users to log into FxA as a website only without connecting the Firefox Desktop client.
+This UITour flow allows the Firefox browser to determine the correct FxA server and authentication flow.
+This transition was introduced to later migrate Firefox Desktop to an OAuth based client authentication flow.
+
+The current code automatically detects if you are in the supported browser for this flow and updates links and forms
+to drive them through the UITour API. The UITour ``showFirefoxAccounts`` action supports flow id parameters,
+UTM parameters and the email data field.
+
+We hope to remove the legacy non-UITour login logic after 1 or 2 ESRs.
 
 Signup Form
 -----------
