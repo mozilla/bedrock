@@ -579,6 +579,8 @@ class WhatsnewView(L10nTemplateView):
                 template = 'firefox/whatsnew/index.html'
         elif locale == 'id':
             template = 'firefox/whatsnew/index-lite.id.html'
+        elif version.startswith('77.') and lang_file_is_active('firefox/whatsnew_77', locale):
+            template = 'firefox/whatsnew/whatsnew-fx77.html'
         elif version.startswith('76.') and lang_file_is_active('firefox/whatsnew_76', locale):
             template = 'firefox/whatsnew/whatsnew-fx76.html'
         elif version.startswith('75.') and lang_file_is_active('firefox/whatsnew_75', locale):
