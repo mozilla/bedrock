@@ -108,9 +108,8 @@ if (typeof window.Mozilla === 'undefined') {
             if (this.href && this.href.indexOf('/firefox/download/thanks/') === -1) {
 
                 version = $(this).data('downloadVersion');
-                // Currently only Windows 32bit uses the stub installer, but this could
-                // easily change in the future so we're also adding params to 64 bit builds.
-                if (version && (version === 'win' || version === 'win64')) {
+                // Append attribution params to Windows 32bit, 64bit, and MSI installer links.
+                if (version && (/win/.test(version))) {
                     this.href = Mozilla.StubAttribution.appendToDownloadURL(this.href, data);
                 }
             }

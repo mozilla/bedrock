@@ -222,6 +222,35 @@
     };
 
     /**
+     * Append Firefox attribution params for windows downloads.
+     */
+    FirefoxDownloader.onDownloadButtonClick = function(e) {
+        e.preventDefault();
+        var el = e.target;
+        var url = e.target.href;
+        var version = el.getAttribute('data-download-version');
+
+        if (version && /win/.test(version)) {
+            url = FirefoxDownloader.setAttributionURL(e.target.href);
+        }
+
+        window.location.href = url;
+    };
+
+    /**
+     * Format download URL with attribution parameters,
+     */
+    FirefoxDownloader.setAttributionURL = function(url) {
+        // Get Firefox attribution data from cookie if it exists.
+        if (typeof Mozilla.StubAttribution !== 'undefined' && typeof Mozilla.Cookies !== 'undefined' && Mozilla.StubAttribution.hasCookie()) {
+            var data = Mozilla.StubAttribution.getCookie();
+            return url += (url.indexOf('?') > -1 ? '&' : '?') + 'attribution_code=' + data.attribution_code + '&attribution_sig=' + data.attribution_sig;
+        }
+
+        return url;
+    };
+
+    /**
      * Display form error message and show fallback locale list.
      * @param {Object} instance of `Error`.
      */
@@ -369,6 +398,9 @@
 
         // listen for hash changes to update the product dropdown.
         window.addEventListener('hashchange', FirefoxDownloader.onHashChange, false);
+
+        // capture click events on download button for attribution referrals
+        downloadInfoButton.addEventListener('click', FirefoxDownloader.onDownloadButtonClick, false);
     };
 
     /**

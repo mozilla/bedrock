@@ -83,11 +83,27 @@
 
           <div class="mzp-c-menu-list mzp-t-cta mzp-t-download" id="win64-download-list">
             <h4 class="mzp-c-menu-list-title">{{ _('Select your download') }}</h4>
-            <ul class="mzp-c-menu-list-list">
-              <li class="mzp-c-menu-list-item"><a href="https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang={{ LANG }}">{{ _('Firefox browser') }}</a></li>
-              <li class="mzp-c-menu-list-item"><a href="https://download.mozilla.org/?product=firefox-msi-latest-ssl&os=win64&lang={{ LANG }}">{{ _('Firefox browser - MSI installer') }}</a></l>
-              <li class="mzp-c-menu-list-item"><a href="https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=win64&lang={{ LANG }}">{{ _('Firefox Extended Support Release (ESR)') }}</a></li>
-              <li class="mzp-c-menu-list-item"><a href="https://download.mozilla.org/?product=firefox-esr-msi-latest-ssl&os=win64&lang={{ LANG }}">{{ _('Firefox Extended Support Release (ESR) - MSI installer') }}</a></l>
+            <ul class="mzp-c-menu-list-list download-platform-list">
+              <li class="mzp-c-menu-list-item">
+                <a class="download-link" href="https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win64" data-display-name="Firefox">
+                  {{ _('Firefox browser') }}
+                </a>
+              </li>
+              <li class="mzp-c-menu-list-item">
+                <a class="download-link" href="https://download.mozilla.org/?product=firefox-msi-latest-ssl&os=win64&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win64-msi" data-display-name="Firefox">
+                  {{ _('Firefox browser - MSI installer') }}
+                </a>
+              </li>
+              <li class="mzp-c-menu-list-item">
+                <a class="download-link" href="https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=win64&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win64" data-display-name="Firefox Extended Support Release">
+                  {{ _('Firefox Extended Support Release (ESR)') }}
+                </a>
+              </li>
+              <li class="mzp-c-menu-list-item">
+                <a class="download-link" href="https://download.mozilla.org/?product=firefox-esr-msi-latest-ssl&os=win64&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win64-msi" data-display-name="Firefox Extended Support Release">
+                  {{ _('Firefox Extended Support Release (ESR) - MSI installer') }}
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -110,9 +126,17 @@
 
           <div class="mzp-c-menu-list mzp-t-cta mzp-t-download" id="mac-download-list">
             <h4 class="mzp-c-menu-list-title">{{ _('Select your download') }}</h4>
-            <ul class="mzp-c-menu-list-list">
-              <li class="mzp-c-menu-list-item"><a href="https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang={{ LANG }}">{{ _('Firefox browser') }}</a></li>
-              <li class="mzp-c-menu-list-item"><a href="https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=osx&lang={{ LANG }}">{{ _('Firefox Extended Support Release (ESR)') }}</a></li>
+            <ul class="mzp-c-menu-list-list download-platform-list">
+              <li class="mzp-c-menu-list-item">
+                <a class="download-link" href="https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="osx" data-display-name="Firefox">
+                  {{ _('Firefox browser') }}
+                </a>
+              </li>
+              <li class="mzp-c-menu-list-item">
+                <a class="download-link" href="https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=osx&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="osx" data-display-name="Firefox Extended Support Release">
+                  {{ _('Firefox Extended Support Release (ESR)') }}
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -134,11 +158,27 @@
 
           <div class="mzp-c-menu-list mzp-t-cta mzp-t-download" id="win32-download-list">
             <h4 class="mzp-c-menu-list-title">{{ _('Select your download') }}</h4>
-            <ul class="mzp-c-menu-list-list">
-              <li class="mzp-c-menu-list-item"><a href="https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang={{ LANG }}">{{ _('Firefox browser') }}</a></li>
-              <li class="mzp-c-menu-list-item"><a href="https://download.mozilla.org/?product=firefox-msi-latest-ssl&os=win&lang={{ LANG }}">{{ _('Firefox browser - MSI installer') }}</a></l>
-              <li class="mzp-c-menu-list-item"><a href="https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=win&lang={{ LANG }}">{{ _('Firefox Extended Support Release (ESR)') }}</a></li>
-              <li class="mzp-c-menu-list-item"><a href="https://download.mozilla.org/?product=firefox-esr-msi-latest-ssl&os=win&lang={{ LANG }}">{{ _('Firefox Extended Support Release (ESR) - MSI installer') }}</a></l>
+            <ul class="mzp-c-menu-list-list download-platform-list">
+              <li class="mzp-c-menu-list-item">
+                <a class="download-link" href="https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win" data-display-name="Firefox">
+                  {{ _('Firefox browser') }}
+                </a>
+              </li>
+              <li class="mzp-c-menu-list-item">
+                <a class="download-link" href="https://download.mozilla.org/?product=firefox-msi-latest-ssl&os=win&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win-msi" data-display-name="Firefox">
+                  {{ _('Firefox browser - MSI installer') }}
+                </a>
+              </li>
+              <li class="mzp-c-menu-list-item">
+                <a class="download-link" href="https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=win&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win" data-display-name="Firefox Extended Support Release">
+                  {{ _('Firefox Extended Support Release (ESR)') }}
+                </a>
+              </li>
+              <li class="mzp-c-menu-list-item">
+                <a class="download-link" href="https://download.mozilla.org/?product=firefox-esr-msi-latest-ssl&os=win&lang={{ LANG }}" data-link-type="download" data-download-os="Desktop" data-download-version="win-msi" data-display-name="Firefox Extended Support Release">
+                  {{ _('Firefox Extended Support Release (ESR) - MSI installer') }}
+                </a>
+              </li>
             </ul>
           </div>
 

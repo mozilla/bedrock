@@ -5,6 +5,7 @@
 
 /* eslint camelcase: [2, {properties: "never"}] */
 /* eslint new-cap: [2, {"capIsNewExceptions": ["Deferred"]}] */
+/* global sinon */
 
 describe('all-downloads-unified.js', function() {
     'use strict';
@@ -185,6 +186,29 @@ describe('all-downloads-unified.js', function() {
             expect(el.getAttribute('data-download-version')).toEqual(platform.id);
             expect(el.getAttribute('data-download-language')).toEqual(language.id);
             expect(el.getAttribute('data-download-os')).toEqual('Android');
+        });
+    });
+
+    describe('setAttributionURL', function() {
+
+        beforeEach(function() {
+            window.Mozilla.Cookies = sinon.stub();
+            spyOn(Mozilla.StubAttribution, 'getCookie').and.returnValue({
+                attribution_code: 'some-attribution-code',
+                attribution_sig: 'some-attribution-signature'
+            });
+        });
+
+        it('should return a well formatted attribution link if data exists', function() {
+            var url = 'https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang=en-US';
+            spyOn(Mozilla.StubAttribution, 'hasCookie').and.returnValue(true);
+            expect(Mozilla.FirefoxDownloader.setAttributionURL(url)).toEqual('https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=some-attribution-code&attribution_sig=some-attribution-signature');
+        });
+
+        it('should return the original link if data does not exist', function() {
+            var url = 'https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang=en-US';
+            spyOn(Mozilla.StubAttribution, 'hasCookie').and.returnValue(false);
+            expect(Mozilla.FirefoxDownloader.setAttributionURL(url)).toEqual(url);
         });
     });
 
