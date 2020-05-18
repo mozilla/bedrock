@@ -18,7 +18,7 @@ module.exports = function(config) {
             'media/js/base/mozilla-client.js',
             'media/js/base/search-params.js',
             // end common dependencies.
-            'media/js/base/mozilla-banner.js',
+            'media/js/base/banners/mozilla-banner.js',
             'media/js/base/mozilla-run.js',
             'media/js/base/core-datalayer-page-id.js',
             'media/js/base/core-datalayer.js',

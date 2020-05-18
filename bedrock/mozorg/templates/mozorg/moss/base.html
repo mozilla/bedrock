@@ -18,8 +18,8 @@
   {{ css_bundle('moss') }}
 {% endblock %}
 
-{% block site_header %}
-  {% include 'includes/protocol/navigation/menu-mozilla/index.html' %}
+{% block content %}
+<main>
   <header class="moss-masthead">
     <div class="header-image">{% block header_image %}{% endblock %}</div>
 
@@ -27,10 +27,6 @@
       <h1 class="page-heading">{% block page_heading %}{% endblock %}</h1>
     </div>
   </header>
-{% endblock %}
-
-{% block content %}
-<main>
   {% block page_content %}{% endblock %}
 </main>
 <div class="mzp-l-content">

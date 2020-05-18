@@ -1,0 +1,15 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends 'includes/banners/base.html' %}
+
+{% block banner_id %}firefox-mobile-ios{% endblock %}
+
+{% block banner_title %}{{ ftl('banner-firefox-mobile-get-ios-title') }}{% endblock %}
+
+{% block banner_content %}
+  <a href="{{ firefox_adjust_url('ios', 'firefox-new-page') }}" data-link-type="download" data-download-os="iOS">
+    <img src="{{ l10n_img('firefox/ios/btn-app-store.svg') }}" alt="{{ ftl('download-button-download-app-store') }}" width="152" height="45">
+  </a>
+{% endblock %}

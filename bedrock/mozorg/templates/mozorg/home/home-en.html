@@ -47,7 +47,9 @@
 
 {% block page_banner %}
   {% if switch('fundraising-banner') %}
-    {% include 'includes/banners/fundraiser.html' %}
+    {% with class_name = 'mzp-t-mozilla' %}
+      {% include 'includes/banners/fundraiser.html' %}
+    {% endwith %}
   {% endif %}
 {% endblock %}
 
