@@ -689,8 +689,12 @@ redirectpatterns = (
     redirect(r'^styleguide/identity/mozilla(.+)', 'https://mozilla.design/mozilla/'),
     redirect(r'^styleguide(/.*)?', 'https://mozilla.design/'),
 
-    # Issue 8644
-    redirect(r'^builders/?$', 'https://builders.mozilla.community/'),
+    # Issue 8644, 8932
+    redirect(r'^builders/?$', 'https://builders.mozilla.community/', query={
+        'utm_source': 'www.mozilla.org',
+        'utm_medium': 'referral',
+        'utm_campaign': 'builders-redirect',
+    }),
 
     # Issue 6824
     redirect(r'^technology/?$', 'https://labs.mozilla.org/'),

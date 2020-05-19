@@ -1319,8 +1319,12 @@ URLS = flatten((
     # Issue 8418
     url_test('/styleguide/', 'https://mozilla.design/'),
 
-    # Issue 8644
-    url_test('/builders{,/}', 'https://builders.mozilla.community/'),
+    # Issue 8644, 8932
+    url_test('/builders{,/}', 'https://builders.mozilla.community/', query={
+        'utm_source': 'www.mozilla.org',
+        'utm_medium': 'referral',
+        'utm_campaign': 'builders-redirect',
+    }),
 
     # Issue 6824
     url_test('/technology/', 'https://labs.mozilla.org/'),
