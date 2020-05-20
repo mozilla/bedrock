@@ -9,7 +9,7 @@ services:
     build:
       context: .
       target: assets
-    image: mozorg/bedrock_assets:${GIT_COMMIT:-latest}
+    image: mozmeao/bedrock_assets:${GIT_COMMIT:-latest}
     command: gulp
     ports:
       - "8000-8010:8000-8010"
@@ -25,7 +25,7 @@ services:
     build:
       context: .
       target: devapp
-    image: mozorg/bedrock_test:${GIT_COMMIT:-latest}
+    image: mozmeao/bedrock_test:${GIT_COMMIT:-latest}
     command: python manage.py runserver 0.0.0.0:8080
     env_file: .env
     ports:
@@ -48,7 +48,7 @@ services:
 
   # run the tests against local changes
   test:
-    image: mozorg/bedrock_test:${GIT_COMMIT:-latest}
+    image: mozmeao/bedrock_test:${GIT_COMMIT:-latest}
     env_file: docker/envfiles/test.env
     volumes:
       - ./bedrock/:/app/bedrock:delegated
@@ -67,7 +67,7 @@ services:
 
   # run tests with no volumes
   test-image:
-    image: mozorg/bedrock_test:${GIT_COMMIT:-latest}
+    image: mozmeao/bedrock_test:${GIT_COMMIT:-latest}
     env_file: docker/envfiles/test.env
 
   # the django app
@@ -78,10 +78,10 @@ services:
       args:
         GIT_SHA: ${GIT_COMMIT:-latest}
         BRANCH_NAME: ${BRANCH_NAME:-latest}
-    image: mozorg/bedrock:${BRANCH_AND_COMMIT:-latest}
+    image: mozmeao/bedrock:${BRANCH_AND_COMMIT:-latest}
 
   release-local:
-    image: mozorg/bedrock:${BRANCH_AND_COMMIT:-latest}
+    image: mozmeao/bedrock:${BRANCH_AND_COMMIT:-latest}
     env_file: .env
     ports:
       - "8000:8000"
@@ -103,10 +103,10 @@ services:
     build:
       context: .
       target: python-builder
-    image: mozorg/bedrock_build:${GIT_COMMIT:-latest}
+    image: mozmeao/bedrock_build:${GIT_COMMIT:-latest}
 
   app-base:
     build:
       context: .
       target: app-base
-    image: mozorg/bedrock_code:${GIT_COMMIT:-latest}
+    image: mozmeao/bedrock_code:${GIT_COMMIT:-latest}

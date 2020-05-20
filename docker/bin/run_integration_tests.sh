@@ -82,4 +82,4 @@ docker run --rm -v "${RESULTS_DIR}:${DOCKER_RESULTS_DIR}" -u $(stat -c "%u:%g" "
   -e "RESULTS_PATH=${DOCKER_RESULTS_DIR}" \
   -e "PYTEST_PROCESSES=5" \
   -e "PRIVACY=public restricted" \
-  mozorg/bedrock_test:${GIT_COMMIT} bin/run-integration-tests.sh
+  mozmeao/bedrock_test:${GIT_COMMIT} bin/run-integration-tests.sh
