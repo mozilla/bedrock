@@ -1,7 +1,7 @@
 #!/bin/bash
 set -exo pipefail
 
-DOCKER_IMAGE=mozorg/bedrock:latest
+DOCKER_IMAGE=mozmeao/bedrock:latest
 
 docker pull "$DOCKER_IMAGE"
 docker run --rm \

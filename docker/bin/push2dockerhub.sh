@@ -10,7 +10,7 @@ set -exo pipefail
 BIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $BIN_DIR/set_git_env_vars.sh
 
-if [[ "$FROM_DOCKER_REPOSITORY" == "mozorg/bedrock" ]]; then
+if [[ "$FROM_DOCKER_REPOSITORY" == "mozmeao/bedrock" ]]; then
     DOCKER_TAG="${BRANCH_AND_COMMIT}"
 else
     DOCKER_TAG="${GIT_COMMIT}"

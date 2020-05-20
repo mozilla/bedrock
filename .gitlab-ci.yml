@@ -20,11 +20,11 @@ build:
     - aws
   script:
     - make clean build-ci
-    - FROM_DOCKER_REPOSITORY=mozorg/bedrock_test docker/bin/push2dockerhub.sh
-    - FROM_DOCKER_REPOSITORY=mozorg/bedrock_assets docker/bin/push2dockerhub.sh
-    - FROM_DOCKER_REPOSITORY=mozorg/bedrock_code docker/bin/push2dockerhub.sh
-    - FROM_DOCKER_REPOSITORY=mozorg/bedrock_build docker/bin/push2dockerhub.sh
-    - FROM_DOCKER_REPOSITORY=mozorg/bedrock docker/bin/push2dockerhub.sh
+    - FROM_DOCKER_REPOSITORY=mozmeao/bedrock_test docker/bin/push2dockerhub.sh
+    - FROM_DOCKER_REPOSITORY=mozmeao/bedrock_assets docker/bin/push2dockerhub.sh
+    - FROM_DOCKER_REPOSITORY=mozmeao/bedrock_code docker/bin/push2dockerhub.sh
+    - FROM_DOCKER_REPOSITORY=mozmeao/bedrock_build docker/bin/push2dockerhub.sh
+    - FROM_DOCKER_REPOSITORY=mozmeao/bedrock docker/bin/push2dockerhub.sh
     - bin/upload-staticfiles.sh
   retry: 2
 
@@ -37,8 +37,8 @@ build-test:
     - aws
   script:
     - make clean build-ci
-    - FROM_DOCKER_REPOSITORY=mozorg/bedrock_test docker/bin/push2dockerhub.sh
-    - FROM_DOCKER_REPOSITORY=mozorg/bedrock docker/bin/push2dockerhub.sh
+    - FROM_DOCKER_REPOSITORY=mozmeao/bedrock_test docker/bin/push2dockerhub.sh
+    - FROM_DOCKER_REPOSITORY=mozmeao/bedrock docker/bin/push2dockerhub.sh
   retry: 2
 
 update-l10n:

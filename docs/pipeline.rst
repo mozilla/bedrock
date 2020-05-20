@@ -159,5 +159,5 @@ that you'll be doing this so that we don't get conflicts.
 .. _enhancement request: https://issues.jenkins-ci.org/browse/JENKINS-26210
 .. _bug for the IRC plugin: https://issues.jenkins-ci.org/browse/JENKINS-28175
 .. _public staging environment: https://www.allizom.org
-.. _Docker Hub: https://hub.docker.com/r/mozorg/bedrock/tags
+.. _Docker Hub: https://hub.docker.com/r/mozmeao/bedrock/tags
 .. _production: https://www.mozilla.org
