@@ -648,12 +648,4 @@ redirectpatterns = (
     # issue 8641
     redirect(r'^/firefox/windows-64-bit/?$', 'firefox.browsers.windows-64-bit'),
     redirect(r'^/firefox/best-browser/?$', 'firefox.browsers.best-browser'),
-
-    # issue 8765 - temporarily disable browser comparison pages
-    redirect(r'^/firefox/browsers/compare/?$', 'firefox', permanent=False),
-    redirect(r'^/firefox/browsers/compare/chrome/?$', 'firefox', permanent=False),
-    redirect(r'^/firefox/browsers/compare/edge/?$', 'firefox', permanent=False),
-    redirect(r'^/firefox/browsers/compare/ie/?$', 'firefox', permanent=False),
-    redirect(r'^/firefox/browsers/compare/opera/?$', 'firefox', permanent=False),
-    redirect(r'^/firefox/browsers/compare/safari/?$', 'firefox', permanent=False),
 )

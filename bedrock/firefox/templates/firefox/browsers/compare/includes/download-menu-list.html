@@ -1,9 +1,8 @@
-{% set get_browser = _('Download Firefox Browser') %}
-{% set get_app = _('Download the app') %}
-{% set get_desktop = _('Desktop') %}
-{% set get_android = 'Android' %}
-{% set get_ios = 'iOS' %}
-{% set get_mac = 'Mac' %}
+{% set get_browser = ftl('compare-shared-download-firefox-browser', fallback='compare-shared-download-firefox') %}
+{% set get_app = ftl('compare-shared-download-the-app') %}
+{% set get_desktop = ftl('compare-shared-desktop') %}
+{% set get_android = ftl('compare-shared-brand-name-android') %}
+{% set get_ios = ftl('compare-shared-brand-name-ios') %}
 
 <div class="mzp-c-menu-list mzp-t-cta mzp-t-download">
   <h5 class="mzp-c-menu-list-title">{{ get_browser }}</h5>

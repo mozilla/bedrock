@@ -1,0 +1,259 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% block page_title %}{{ ftl('compare-opera-firefox-vs-opera-which-is') }}{% endblock %}
+
+{% block page_desc %}
+{{ ftl('compare-opera-compare-opera-to-the-firefox') }}
+{% endblock %}
+
+{% block page_css %}
+{{ css_bundle('compare-details') }}
+{% endblock %}
+
+{% block content %}
+{% include '/firefox/browsers/compare/includes/subnav.html' %}
+
+<section class="mzp-c-hero compare-details-hero compare-details-hero--opera">
+  <div class="mzp-l-content l-compare-details-content">
+    <div class="mzp-c-hero-body">
+      <div class="compare-details-hero-image">
+        <img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="">
+        <img src="{{ static('img/logos/opera/logo-opera.png') }}" height="36" width="36" alt="">
+      </div>
+      <h1 class="mzp-c-hero-title">{{ ftl('compare-opera-comparing-firefox-browser') }}</h1>
+    </div>
+  </div>
+</section>
+
+<div class="mzp-l-content l-compare-details-content">
+  <article class="mzp-c-article">
+    <section class="compare-details-section-summary">
+      <p class="compare-details-section-intro">{{ ftl('compare-opera-the-firefox-browser-and-opera') }}</p>
+
+      {{ high_res_img('img/firefox/compare/compare-browser-opera.png', {'alt': '', 'width': '543', 'height': '424', 'class': 'compare-details-image'}) }}
+    </section>
+
+    <section class="compare-section-privacy">
+      <header class="compare-section-header">
+        <h2>{{ ftl('compare-shared-security-and-privacy-strong') }}</h2>
+      </header>
+
+      <table class="mzp-u-data-table compare-table compare-table--details">
+          <thead>
+            <tr>
+              <th>{{ ftl('compare-shared-security-and-privacy') }}</th>
+              <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ ftl('compare-shared-brand-name-firefox') }}"></th>
+              <th scope="col"><img src="{{ static('img/logos/opera/logo-opera.png') }}" height="36" width="36" alt="{{ ftl('compare-shared-brand-name-opera') }}"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ ftl('compare-shared-private-browsing-mode') }}</th>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ ftl('compare-shared-blocks-third-party-tracking') }}</th>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ ftl('compare-shared-blocks-cryptomining-scripts') }}</th>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ ftl('compare-shared-blocks-social-trackers') }}</th>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+            </tr>
+          </tbody>
+        </table>
+
+      <p>{{ ftl('compare-opera-operas-privacy-policy-lacks') }}</p>
+
+      <p>{{ ftl('compare-opera-firefoxs-privacy-policy-is', attrs = 'href="%s" data-cta-type="link" data-cta-name="privacy policy"'|safe|format(url('privacy.notices.firefox'))) }}</p>
+
+      <p>{{ ftl('compare-opera-as-far-as-actual-privacy-protections') }}</p>
+
+      <img src="{{ static('img/firefox/compare/compare-privacy-eye.svg') }}" alt="" height="217" width="320" class="compare-details-image">
+
+      <p>{{ ftl('compare-opera-with-the-latest-version-of', attrs='href="https://blog.mozilla.org/blog/2019/09/03/todays-firefox-blocks-third-party-tracking-cookies-and-cryptomining-by-default/" rel="external noopener" data-cta-text="Enhanced Tracking Protection" data-cta-type="link"'|safe) }}</p>
+
+      <p>{{ ftl('compare-opera-we-make-firefox-for-people') }}</p>
+
+      {% include '/firefox/browsers/compare/includes/download-menu-list.html' %}
+
+    </section>
+
+    <section class="compare-section-utility">
+      <header class="compare-section-header">
+        <h2>{{ ftl('compare-shared-utility-strong') }}</h2>
+      </header>
+
+      <table class="mzp-u-data-table compare-table compare-table--details">
+          <thead>
+            <tr>
+              <th>{{ ftl('compare-shared-utility') }}</th>
+              <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ ftl('compare-shared-brand-name-firefox') }}"></th>
+              <th scope="col"><img src="{{ static('img/logos/opera/logo-opera.png') }}" height="36" width="36" alt="{{ ftl('compare-shared-brand-name-opera') }}"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ ftl('compare-shared-autoplay-blocking') }}</th>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ ftl('compare-shared-tab-browsing') }}</th>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ ftl('compare-shared-bookmark-manager') }}</th>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ ftl('compare-shared-automatically-fills-out-forms') }}</th>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ ftl('compare-shared-search-engine-options') }}</th>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ ftl('compare-shared-text-to-speech') }}</th>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ ftl('compare-shared-no') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ ftl('compare-shared-reader-mode') }}</th>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+                <th scope="row">{{ ftl('compare-shared-spell-checking') }}</th>
+                <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+                <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              </tr>
+              <tr>
+                <th scope="row">{{ ftl('compare-shared-web-extensionsadd-ons') }}</th>
+                <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+                <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              </tr>
+              <tr>
+                <th scope="row">{{ ftl('compare-shared-in-browser-screenshot-tool') }}</th>
+                <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+                <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              </tr>
+          </tbody>
+        </table>
+
+      <p>{{ ftl('compare-opera-theres-no-debate-that-opera', attrs='href="https://addons.mozilla.org" rel="external noopener" data-cta-text="extension library to browse" data-cta-type="link"'|safe) }}</p>
+
+      <p>{{ ftl('compare-opera-like-firefox-opera-delivers') }}</p>
+
+      <p>{{ ftl('compare-opera-opera-provides-a-lot-of-hidden', attrs='href="%s" rel="external noopener" data-cta-text="Pocket" data-cta-type="link"'|safe|format(url('firefox.pocket'))) }}</p>
+
+      <p>{{ ftl('compare-opera-in-terms-of-head-to-head-utility') }}</p>
+
+      {% include '/firefox/browsers/compare/includes/download-menu-list.html' %}
+
+    </section>
+
+    <section class="compare-section-portability">
+      <header class="compare-section-header">
+        <h2>{{ ftl('compare-shared-portability-strong') }}</h2>
+      </header>
+
+      <table class="mzp-u-data-table compare-table compare-table--details">
+          <thead>
+            <tr>
+              <th>{{ ftl('compare-shared-portability') }}</th>
+              <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ ftl('compare-shared-brand-name-firefox') }}"></th>
+              <th scope="col"><img src="{{ static('img/logos/opera/logo-opera.png') }}" height="36" width="36" alt="{{ ftl('compare-shared-brand-name-opera') }}"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ ftl('compare-shared-os-availability') }}</th>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ ftl('compare-shared-mobile-os-availability') }}</th>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ ftl('compare-shared-syncs-with-mobile') }}</th>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ ftl('compare-shared-password-management') }}</th>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ ftl('compare-shared-master-password') }}</th>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ ftl('compare-shared-yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+          </tbody>
+        </table>
+
+      <p>{{ ftl('compare-opera-both-firefox-and-opera-are') }}</p>
+
+      <p>
+        {{ ftl('compare-opera-in-addition-to-the-regular') }}
+
+        {# NOTE: This sentence will become out of date when Fenix graduates to the main release version. #}
+        {{ ftl('compare-opera-we-also-offer-an-additional', attrs='href="https://play.google.com/store/apps/details?id=org.mozilla.fenix" rel="external noopener" data-cta-text="Firefox Preview" data-cta-type="link"'|safe) }}
+      </p>
+
+      <p>{{ ftl('compare-opera-most-major-browsers-these') }}</p>
+
+      {% include '/firefox/browsers/compare/includes/download-menu-list.html' %}
+
+    </section>
+
+    <section class="compare-section-overall">
+      <header class="compare-section-header">
+        <h2>{{ ftl('compare-shared-overall-assessment') }}</h2>
+      </header>
+
+      <p>{{ ftl('compare-opera-overall-opera-is-a-solid-browser') }}</p>
+
+      <div class="compare-content compare-version-disclaimer">
+        <p>
+          {{ ftl('compare-shared-the-comparisons-made-here') }}
+          <br>
+          {{ ftl('compare-shared-brand-name-firefox') }} (76) |
+          {{ ftl('compare-shared-brand-name-opera') }} (67)
+          <br>
+          {{ ftl('compare-shared-this-page-updated-semi-quarterly') }}
+        </p>
+      </div>
+
+      <aside class="secondary-download-cta">
+        {{ download_firefox(dom_id='download-secondary', alt_copy=ftl('download-button-download-firefox'), download_location='secondary cta') }}
+      </aside>
+
+    </section>
+  </article>
+</div>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_compare_details') }}
+{% endblock %}
+
