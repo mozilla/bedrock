@@ -53,6 +53,8 @@ class TestInstallerHelp(TestCase):
                  force_full_installer=True, locale='fr'),
             call('alpha', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
                  force_full_installer=True, locale='fr', platform='desktop'),
+            call('nightly', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+                 force_full_installer=True, locale='fr', platform='desktop'),
         ])
 
     def test_buttons_ignore_non_lang(self):
@@ -69,6 +71,8 @@ class TestInstallerHelp(TestCase):
                  force_full_installer=True, locale=None),
             call('alpha', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
                  force_full_installer=True, locale=None, platform='desktop'),
+            call('nightly', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+                 force_full_installer=True, locale=None, platform='desktop'),
         ])
 
     def test_invalid_channel_specified(self):
@@ -84,6 +88,8 @@ class TestInstallerHelp(TestCase):
             call('beta', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
                  force_full_installer=True, locale=None),
             call('alpha', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
+                 force_full_installer=True, locale=None, platform='desktop'),
+            call('nightly', alt_copy=Markup('Download Now'), button_color='mzp-t-secondary mzp-t-small', force_direct=True,
                  force_full_installer=True, locale=None, platform='desktop'),
         ])
 

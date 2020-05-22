@@ -61,27 +61,36 @@ STUB_VALUE_NAMES = [
 STUB_VALUE_RE = re.compile(r'^[a-z0-9-.%():_]+$', flags=re.IGNORECASE)
 
 
-def installer_help(request):
-    locale = l10n_utils.get_locale(request)
-    installer_lang = request.GET.get('installer_lang', None)
-    installer_channel = request.GET.get('channel', None)
-    context = {'installer_lang': None, 'installer_channel': None}
+class InstallerHelpView(L10nTemplateView):
+    ftl_files_map = {
+        'firefox/installer-help-redesign.html': ['firefox/installer-help']
+    }
 
-    if installer_lang and installer_lang in firefox_desktop.languages:
-        context['installer_lang'] = installer_lang
+    def get_context_data(self, **kwargs):
+        ctx = super(InstallerHelpView, self).get_context_data(**kwargs)
+        installer_lang = self.request.GET.get('installer_lang', None)
+        installer_channel = self.request.GET.get('channel', None)
+        ctx['installer_lang'] = None
+        ctx['installer_channel'] = None
 
-    if installer_channel and installer_channel in INSTALLER_CHANNElS:
-        if installer_channel == 'aurora':
-            context['installer_channel'] = 'alpha'
+        if installer_lang and installer_lang in firefox_desktop.languages:
+            ctx['installer_lang'] = installer_lang
+
+        if installer_channel and installer_channel in INSTALLER_CHANNElS:
+            if installer_channel == 'aurora':
+                ctx['installer_channel'] = 'alpha'
+            else:
+                ctx['installer_channel'] = installer_channel
+
+        return ctx
+
+    def get_template_names(self):
+        if ftl_file_is_active('firefox/installer-help'):
+            template_name = 'firefox/installer-help-redesign.html'
         else:
-            context['installer_channel'] = installer_channel
+            template_name = 'firefox/installer-help.html'
 
-    if lang_file_is_active('firefox/installer-help-redesign', locale):
-        template = 'firefox/installer-help-redesign.html'
-    else:
-        template = 'firefox/installer-help.html'
-
-    return l10n_utils.render(request, template, context)
+        return [template_name]
 
 
 @require_GET
