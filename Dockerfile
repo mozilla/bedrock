@@ -1,7 +1,7 @@
 ########
 # assets builder and dev server
 #
-FROM node:8-slim AS assets
+FROM node:12-slim AS assets
 
 ENV PATH=/app/node_modules/.bin:$PATH
 WORKDIR /app
@@ -11,11 +11,12 @@ COPY package.json yarn.lock ./
 
 # install dependencies
 RUN yarn install --pure-lockfile
-RUN yarn global add gulp-cli@2.0.1
+RUN yarn global add gulp-cli@2.2.1
 
 # copy supporting files and media
-COPY .eslintrc.js .stylelintrc gulpfile.js ./
+COPY .eslintrc.js .eslintignore .stylelintrc .stylelintignore gulpfile.js ./
 COPY ./media ./media
+COPY ./tests/unit ./tests/unit
 
 RUN gulp build --production
 

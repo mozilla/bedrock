@@ -17,7 +17,7 @@ help:
 	@echo "  clean         - remove all build, test, coverage and Python artifacts"
 	@echo "  rebuild       - force a rebuild of all of the docker images"
 	@echo "  submodules    - resync and fetch the latest git submodules"
-	@echo "  lint          - check style with flake8, jshint, and stylelint"
+	@echo "  lint          - check style with flake8, eslint, and stylelint"
 	@echo "  test          - run tests against local files"
 	@echo "  test-image    - run tests against files in docker image"
 	@echo "  docs          - generate Sphinx HTML documentation"
@@ -95,7 +95,7 @@ clean:
 
 lint: .docker-build-pull
 	${DC} run test flake8
-	${DC} run assets gulp js:lint css:lint json:lint
+	${DC} run assets npm run lint
 
 test: .docker-build-pull
 	${DC} run test

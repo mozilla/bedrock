@@ -12,7 +12,7 @@ jobs:
 
   test_js:
     docker:
-      - image: "circleci/node:10.15.3-browsers"
+      - image: "circleci/node:12-browsers"
     steps:
       - checkout
       - restore_cache:
@@ -23,10 +23,7 @@ jobs:
           name: JS Tests
           command: |
             yarn install --pure-lockfile
-            node_modules/.bin/gulp css:lint
-            node_modules/.bin/gulp js:lint
-            node_modules/.bin/gulp js:test
-            node_modules/.bin/gulp json:lint
+            npm run test
       - save_cache:
           key: v1-node-{{ checksum "yarn.lock" }}
           paths:
