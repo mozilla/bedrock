@@ -108,9 +108,14 @@
     </thead>
     <tbody>
       <tr>
-        <td><a href="{{ l10n_repo.repo_url }}">L10n Files</a></td>
+        <td><a href="{{ l10n_repo.repo_url }}">L10n .lang Files</a></td>
         <td><a href="{{ l10n_repo.repo_url }}/commit/{{ l10n_repo.latest_ref }}">{{ l10n_repo.latest_ref[:10] }}</a></td>
         <td>{{ l10n_repo.last_updated }}</td>
+      </tr>
+      <tr>
+        <td><a href="{{ fluent_repo.repo_url }}">L10n Fluent Files</a></td>
+        <td><a href="{{ fluent_repo.repo_url }}/commit/{{ fluent_repo.latest_ref }}">{{ fluent_repo.latest_ref[:10] }}</a></td>
+        <td>{{ fluent_repo.last_updated }}</td>
       </tr>
       {% for repo in git_repos %}
       <tr>
