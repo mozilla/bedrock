@@ -9,18 +9,15 @@
     "ansi-colors": "4.1.1",
     "clean-css-cli": "4.3.0",
     "del": "5.1.0",
-    "eslint": "6.3.0",
+    "eslint": "^7.0.0",
     "gulp": "4.0.2",
     "gulp-cached": "^1.1.1",
     "gulp-clean-css": "4.2.0",
     "gulp-concat": "^2.6.1",
-    "gulp-eslint": "6.0.0",
     "gulp-filter": "6.0.0",
     "gulp-if": "3.0.0",
-    "gulp-jsonlint": "^1.3.1",
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.4",
-    "gulp-stylelint": "9.0.0",
     "gulp-uglify": "^3.0.0",
     "merge-stream": "2.0.0",
     "stylelint": "^10.1.0",
@@ -39,6 +36,7 @@
     "browser-sync": "2.26.7",
     "concurrently": "4.1.2",
     "eslint-plugin-no-jquery": "^2.5.0",
+    "eslint-plugin-json": "^2.1.1",
     "jasmine-core": "3.4.0",
     "karma": "4.3.0",
     "karma-chrome-launcher": "3.1.0",
@@ -49,6 +47,12 @@
     "tinypng-cli": "^0.0.7"
   },
   "scripts": {
-    "start": "concurrently --kill-others \"python manage.py runserver 0.0.0.0:8080\" \"gulp\""
+    "start": "concurrently --kill-others \"python manage.py runserver 0.0.0.0:8080\" \"gulp\"",
+    "lint-js": "./node_modules/.bin/eslint media/js/**/*.js tests/unit/spec/**/*.js gulpfile.js",
+    "lint-css": "./node_modules/.bin/stylelint \"media/css/**/*.{css,scss}\"",
+    "lint-json": "./node_modules/.bin/eslint bedrock/base/templates/includes/structured-data/**/*.json",
+    "lint": "npm run lint-js && npm run lint-css && npm run lint-json",
+    "pretest": "npm run lint",
+    "test": "./node_modules/.bin/karma start ./tests/unit/karma.conf.js"
   }
 }

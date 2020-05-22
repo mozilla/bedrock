@@ -16,10 +16,6 @@ const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
 const sourcemaps = require('gulp-sourcemaps');
 const del = require('del');
-const karma = require('karma');
-const eslint = require('gulp-eslint');
-const gulpStylelint = require('gulp-stylelint');
-const gulpJsonLint = require('gulp-jsonlint');
 const argv = require('yargs').argv;
 const browserSync = require('browser-sync').create();
 const merge = require('merge-stream');
@@ -30,23 +26,6 @@ const buildDir = 'static_build';
 
 // directory for the final assets ready for consumption
 const finalDir = 'static_final';
-
-const lintPathsJS = [
-    'media/js/**/*.js',
-    '!media/js/libs/*.js',
-    'tests/unit/spec/**/*.js',
-    'gulpfile.js'
-];
-
-const lintPathsCSS = [
-    'media/css/**/*.scss',
-    'media/css/**/*.css',
-    '!media/css/libs/*'
-];
-
-const lintPathsJSON = [
-    'bedrock/base/templates/includes/structured-data/**/*.json'
-];
 
 const cachedOpts = {
     optimizeMemory: true
@@ -282,54 +261,6 @@ function jsMinify() {
 }
 
 /**
- * Run the JS test suite.
- */
-function jsTest(cb) {
-    new karma.Server({
-        configFile: `${__dirname}/tests/unit/karma.conf.js`,
-        singleRun: true
-    }, cb).start();
-}
-gulp.task('js:test', jsTest);
-
-/**
- * Run eslint style check on all JS.
- */
-function jsLint() {
-    return gulp.src(lintPathsJS)
-        .pipe(eslint())
-        .pipe(eslint.format())
-        .pipe(eslint.failAfterError());
-}
-gulp.task('js:lint', jsLint);
-
-/**
- * Run CSS style check on all CSS.
- */
-function cssLint() {
-    return gulp.src(lintPathsCSS)
-        .pipe(gulpStylelint({
-            reporters: [{
-                formatter: 'string',
-                console: true
-            }],
-            debug: true
-        }));
-}
-gulp.task('css:lint', cssLint);
-
-/**
- * Run JSON lint on JSON files
- */
-
-function jsonLint() {
-    return gulp.src(lintPathsJSON)
-        .pipe(gulpJsonLint())
-        .pipe(gulpJsonLint.reporter());
-}
-gulp.task('json:lint', jsonLint);
-
-/**
  * Watch for changes in the `media` directory and copy changed files to
  * either `static_build` or `static_final` depending on the file type.
  */
@@ -400,11 +331,6 @@ function devWatch(cb) {
     // watch:sass library files
     // --------------------------
     gulp.watch(buildDir + '/css/**/_*.scss', reloadSass);
-
-    // --------------------------
-    // watch:js
-    // --------------------------
-    gulp.watch('media/js/**/*.js', jsLint);
 
     // --------------------------
     // watch:html

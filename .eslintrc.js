@@ -6,7 +6,8 @@ module.exports = {
     extends: [
         '@mozilla-protocol/eslint-config',
         'plugin:no-jquery/recommended',
-        'plugin:no-jquery/all'
+        'plugin:no-jquery/all',
+        'plugin:json/recommended'
     ],
     plugins: [
         'no-jquery'

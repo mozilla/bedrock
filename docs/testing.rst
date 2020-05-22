@@ -41,7 +41,7 @@ following command:
 
 .. code-block:: bash
 
-    $ gulp js:test
+    $ npm run test
 
 See the `Jasmine`_ documentation for tips on how to write JS behavioral or unit
 tests. We also use `Sinon`_ for creating test spies, stubs and mocks.
