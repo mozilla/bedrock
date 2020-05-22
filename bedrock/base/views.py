@@ -161,15 +161,21 @@ def cron_health_check(request):
 
         results.append((fname, max_time, time_since, task_pass))
 
-    git_repos = git.GitRepoState.objects.exclude(repo_name='').order_by('repo_name')
-    l10n_repos = get_l10n_repo_info()
+    git_repos = git.GitRepoState.objects.exclude(repo_name='').order_by('repo_name', '-latest_ref_timestamp')
+    unique_repos = {}
+    for repo in git_repos:
+        if repo.repo_name in unique_repos:
+            continue
+        unique_repos[repo.repo_name] = repo
+
+    l10n_repo, fluent_repo = get_l10n_repo_info()
     return render(request, 'cron-health-check.html', {
         'results': results,
         'server_info': get_extra_server_info(),
         'success': check_pass,
-        'git_repos': git_repos,
-        'l10n_repo': l10n_repos[0],
-        'fluent_repo': l10n_repos[1],
+        'git_repos': unique_repos.values(),
+        'l10n_repo': l10n_repo,
+        'fluent_repo': fluent_repo,
     }, status=200 if check_pass else 500)
 
 
