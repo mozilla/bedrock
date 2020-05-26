@@ -9,7 +9,7 @@
 
 {% add_lang_files "firefox/installer-help-redesign" %}
 
-{% block page_title %}{{ _('Your download was interrupted') }}{% endblock %}
+{% block page_title %}{{ ftl('installer-help-page-title') }}{% endblock %}
 {% block body_id %}installer-help{% endblock %}
 
 {% block page_css %}
@@ -36,14 +36,14 @@
 <main class="mzp-l-content">
   <section class="mzp-c-hero">
     <div class="mzp-c-hero-body">
-      <h1 class="mzp-c-hero-title">{{ _('Hmm… your download was interrupted') }}</h1>
+      <h1 class="mzp-c-hero-title">{{ ftl('installer-help-page-title') }}</h1>
       <div class="mzp-c-hero-desc">
         <p>
-          {{ _('That happens sometimes. Let’s try something different.') }}
+          {{ ftl('installer-help-main-tagline') }}
           {% if installer_channel %}
-            <span>{{ _('This download should work better for you.') }}</span>
+            <span>{{ ftl('installer-help-action-channel') }}</span>
           {% else %}
-            <span>{{ _('Choose a download below.') }}</span>
+            <span>{{ ftl('installer-help-action-choose') }}</span>
           {% endif %}
         </p>
       </div>
@@ -52,7 +52,7 @@
 
   {% if installer_channel %}
     <section class="installer-channel-card mzp-c-card mzp-c-card-extra-small">
-      {{ high_res_img(channel_logo, {'alt': 'Firefox Browser', 'width': '347', 'height': '64'}) }}
+      {{ high_res_img(channel_logo, {'alt': ftl('installer-help-firefox-release-title'), 'width': '347', 'height': '64'}) }}
       <div class="mzp-c-card-content">
         {{ download_firefox(installer_channel, force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-small', alt_copy=ftl('download-button-download-now')) }}
       </div>
@@ -60,40 +60,40 @@
   {% else %}
     <div class="mzp-l-card-quarter">
       <section class="mzp-c-card mzp-c-card-extra-small">
-        {{ high_res_img('protocol/img/logos/firefox/browser/logo-word-hor-sm.png', {'alt': 'Firefox Browser', 'width': '347', 'height': '64', 'class': 'mzp-c-card-image'}) }}
+        {{ high_res_img('protocol/img/logos/firefox/browser/logo-word-hor-sm.png', {'alt': ftl('installer-help-firefox-release-title'), 'width': '347', 'height': '64', 'class': 'mzp-c-card-image'}) }}
         <div class="mzp-c-card-content">
           <p class="mzp-c-card-desc">
-            {{ _('Get the latest. Automatic privacy is here. Download Firefox to block over 2000 trackers.') }}
+            {{ ftl('installer-help-firefox-release-desc', trackers=2000) }}
           </p>
           {{ download_firefox(force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-secondary mzp-t-small', alt_copy=ftl('download-button-download-now')) }}
         </div>
       </section>
 
       <section class="mzp-c-card mzp-c-card-extra-small">
-        {{ high_res_img('protocol/img/logos/firefox/browser/beta/logo-word-hor-sm.png', {'alt': 'Firefox Beta Browser', 'width': '347', 'height': '64', 'class': 'mzp-c-card-image'}) }}
+        {{ high_res_img('protocol/img/logos/firefox/browser/beta/logo-word-hor-sm.png', {'alt': ftl('installer-help-firefox-beta-title'), 'width': '347', 'height': '64', 'class': 'mzp-c-card-image'}) }}
         <div class="mzp-c-card-content">
           <p class="mzp-c-card-desc">
-            {{ _('Test about-to-be released features in the most stable pre-release build.') }}
+            {{ ftl('installer-help-firefox-beta-desc') }}
           </p>
           {{ download_firefox('beta', force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-secondary mzp-t-small', alt_copy=ftl('download-button-download-now')) }}
         </div>
       </section>
 
       <section class="mzp-c-card mzp-c-card-extra-small">
-        {{ high_res_img('protocol/img/logos/firefox/browser/developer/logo-word-hor-sm.png', {'alt': 'Firefox Developer Browser', 'class': 'mzp-c-card-image'}) }}
+        {{ high_res_img('protocol/img/logos/firefox/browser/developer/logo-word-hor-sm.png', {'alt': ftl('installer-help-firefox-developer-title'), 'class': 'mzp-c-card-image'}) }}
         <div class="mzp-c-card-content">
           <p class="mzp-c-card-desc">
-            {{ _('Build, test, scale and more with the only browser built just for developers.') }}
+            {{ ftl('installer-help-firefox-developer-desc') }}
           </p>
           {{ download_firefox('alpha', platform='desktop', force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-secondary mzp-t-small', alt_copy=ftl('download-button-download-now')) }}
         </div>
       </section>
 
       <section class="mzp-c-card mzp-c-card-extra-small">
-        {{ high_res_img('protocol/img/logos/firefox/browser/nightly/logo-word-hor-sm.png', {'alt': 'Firefox Nightly Browser', 'width': '347', 'height': '64', 'class': 'mzp-c-card-image'}) }}
+        {{ high_res_img('protocol/img/logos/firefox/browser/nightly/logo-word-hor-sm.png', {'alt': ftl('installer-help-firefox-nightly-title'), 'width': '347', 'height': '64', 'class': 'mzp-c-card-image'}) }}
         <div class="mzp-c-card-content">
           <p class="mzp-c-card-desc">
-            {{ _('Peek at our next generation web browser, and help us make it the best browser it can be.') }}
+            {{ ftl('installer-help-firefox-nightly-desc') }}
           </p>
           {{ download_firefox('nightly', platform='desktop', force_direct=True, force_full_installer=True, locale=installer_lang, button_color='mzp-t-secondary mzp-t-small', alt_copy=ftl('download-button-download-now')) }}
         </div>
@@ -103,11 +103,9 @@
 
   <section class="install-help">
     <div>
-      <h2>{{ _('Need help installing?') }}</h2>
+      <h2>{{ ftl('installer-help-need-help') }}</h2>
       <p>
-        {% trans sumoe='https://support.mozilla.org/kb/install-firefox-windows' %}
-          If you still need help installing, <a href="{{ sumo }}">read the tutorial in our Support section.</a>
-        {% endtrans %}
+        {{ ftl('installer-help-need-help-desc', url='https://support.mozilla.org/kb/install-firefox-windows') }}
       </p>
     </div>
   </section>
