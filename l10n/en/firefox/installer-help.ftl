@@ -6,7 +6,6 @@
 
 ## Required
 installer-help-page-title = Your download was interrupted
-installer-help-main-heading = Hmm… your download was interrupted
 installer-help-main-tagline = That happens sometimes. Let’s try something different.
 installer-help-action-channel = This download should work better for you.
 installer-help-action-choose = Choose a download below.
@@ -15,8 +14,8 @@ installer-help-action-choose = Choose a download below.
 installer-help-firefox-release-title = { -brand-name-firefox-browser }
 
 # Variables:
-#   $trackers (number) - number of trackers blocked by Firefox
-installer-help-firefox-release-desc = Get the latest. Automatic privacy is here. Download { -brand-name-firefox } to block over { $trackers } trackers.
+#   $trackers (number) - number of trackers blocked by Firefox (currently in the thousands)
+installer-help-firefox-release-desc = Get the latest. Automatic privacy is here. Download { -brand-name-firefox-browser } to block over { $trackers } trackers.
 
 installer-help-firefox-beta-title = { -brand-name-firefox-browser } { -brand-name-beta }
 installer-help-firefox-beta-desc = Test about-to-be released features in the most stable pre-release build.
