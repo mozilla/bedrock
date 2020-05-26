@@ -880,6 +880,15 @@
     },
     {
       "files": [
+        "js/base/uitour-lib.js",
+        "js/firefox/whatsnew/up-to-date.js",
+        "js/base/mozilla-video-poster.js",
+        "js/firefox/whatsnew/whatsnew-77-zhCN.js"
+      ],
+      "name": "firefox_whatsnew_77_zhCN"
+    },
+    {
+      "files": [
         "protocol/js/protocol-newsletter.js"
       ],
       "name": "legal"

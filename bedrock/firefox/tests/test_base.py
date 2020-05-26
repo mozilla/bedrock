@@ -495,6 +495,16 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ['firefox/whatsnew/whatsnew-fx77.html']
 
+    @patch.dict(os.environ, SWITCH_FIREFOX_WHATSNEW77_VIDEO_ZHCN='False')
+    @patch.object(fx_views, 'lang_file_is_active', lambda *x: True)
+    def test_fx_77_0_0_zhCN(self, render_mock):
+        """Should use whatsnew-fx76 template for zh-CN if video switch is OFF"""
+        req = self.rf.get('/firefox/whatsnew/')
+        req.locale = 'zh-CN'
+        self.view(req, version='77.0')
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/whatsnew/whatsnew-fx76.html']
+
     # end 77.0 whatsnew tests
 
 
