@@ -26,6 +26,7 @@ build:
     - FROM_DOCKER_REPOSITORY=mozorg/bedrock_build docker/bin/push2dockerhub.sh
     - FROM_DOCKER_REPOSITORY=mozorg/bedrock docker/bin/push2dockerhub.sh
     - bin/upload-staticfiles.sh
+  retry: 2
 
 build-test:
   stage: build
@@ -38,6 +39,7 @@ build-test:
     - make clean build-ci
     - FROM_DOCKER_REPOSITORY=mozorg/bedrock_test docker/bin/push2dockerhub.sh
     - FROM_DOCKER_REPOSITORY=mozorg/bedrock docker/bin/push2dockerhub.sh
+  retry: 2
 
 update-l10n:
   stage: update-config
@@ -56,6 +58,7 @@ update-l10n:
       - triggers
   script:
     - bin/open-ftl-pr.sh
+  retry: 2
 
 .update-config:
   stage: update-config
@@ -66,6 +69,7 @@ update-l10n:
     - triggers
   script:
     - bin/update_config.sh
+  retry: 2
 
 dev:
   extends: .update-config
@@ -107,3 +111,4 @@ fluent:
     - triggers
   script:
     - bin/process-ftl.sh
+  retry: 2
