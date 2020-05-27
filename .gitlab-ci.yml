@@ -13,8 +13,6 @@ build:
     - master
     - stage
     - prod
-  except:
-    - triggers
   tags:
     - mozmeao
     - aws
@@ -54,8 +52,6 @@ update-l10n:
   except:
     changes:
       - "lib/fluent_migrations/**/*"
-    refs:
-      - triggers
   script:
     - bin/open-ftl-pr.sh
   retry: 2
@@ -65,8 +61,6 @@ update-l10n:
   tags:
     - mozmeao
     - aws
-  except:
-    - triggers
   script:
     - bin/update_config.sh
   retry: 2
@@ -101,14 +95,3 @@ prod:
   variables:
     CLUSTERS: frankfurt iowa-a
     NAMESPACE: bedrock-prod
-
-fluent:
-  stage: build
-  tags:
-    - mozmeao
-    - aws
-  only:
-    - triggers
-  script:
-    - bin/process-ftl.sh
-  retry: 2
