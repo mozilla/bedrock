@@ -1,0 +1,343 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+  # License, v. 2.0. If a copy of the MPL was not distributed with this
+  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% add_lang_files "firefox/compare/brave" "firefox/compare/shared" %}
+
+{% block page_title %}{{ _('Firefox vs. Brave: Which is the better browser for you?') }}{% endblock %}
+
+{% block page_desc %}
+{{ _('Compare Brave to the Firefox Browser to find out which is the better browser for you in terms of privacy, utility and portability.') }}
+{% endblock %}
+
+{% block page_css %}
+{{ css_bundle('compare-details') }}
+{% endblock %}
+
+{% block content %}
+{% include '/firefox/compare/includes/subnav.html' %}
+
+<section class="mzp-c-hero compare-details-hero compare-details-hero--brave">
+  <div class="mzp-l-content l-compare-details-content">
+    <div class="mzp-c-hero-body">
+      <div class="compare-details-hero-image">
+          <img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox logo') }}">
+          <img src="{{ static('img/logos/brave/logo-brave.png') }}" height="36" width="36" alt="{{ _('Brave logo') }}">
+      </div>
+      <h1 class="mzp-c-hero-title">{{ _('Comparing Firefox Browser to Brave') }}</h1>
+    </div>
+  </div>
+</section>
+
+<div class="mzp-l-content l-compare-details-content">
+  <article class="mzp-c-article">
+    <section class="compare-details-section-summary">
+        <p class="compare-details-section-intro">
+          {% trans %}
+          Just like the Firefox browser, the Brave browser is free, open source and focused on protecting users’ privacy. Brave is a relative newcomer to the world of browsers: its maker, Brave Software, first debuted the browser in January 2016. In this article we’ll compare our Firefox browser with the Brave browser in three categories: privacy, utility and portability.
+          {% endtrans %}
+        </p>
+
+        {{ high_res_img('img/firefox/compare/compare-browser-brave.png', {'alt': '', 'width': '544', 'height': '424', 'class': 'compare-details-image'}) }}
+    </section>
+
+    <section class="compare-section-privacy">
+      <header class="compare-section-header">
+        <h2>
+          {# L10n: The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language #}
+          {{ _('Security and <strong>Privacy</strong>') }}
+        </h2>
+      </header>
+
+      <table class="mzp-u-data-table compare-table compare-table--details">
+        <thead>
+          <tr>
+            <th>{{ _('Privacy') }}</th>
+            <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
+            <th scope="col"><img src="{{ static('img/logos/brave/logo-brave.png') }}" height="36" width="36" alt="{{ _('Brave') }}"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">{{ _('Private Browsing mode') }}</th>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+          </tr>
+          <tr>
+            <th scope="row">{{ _('Blocks third-party tracking cookies') }}</th>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+          </tr>
+          <tr>
+            <th scope="row">{{ _('Blocks cryptomining scripts') }}</th>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+          </tr>
+          <tr>
+            <th scope="row">{{ _('Blocks social trackers') }}</th>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        {% trans opera='href="%s" data-cta-type="link" data-cta-name="Opera"'|safe|format(url('firefox.compare.opera')) %}
+        The Brave browser, like so many others, is built on Google’s open-source Chromium code. Open-source means anyone can use the source code and piggy-back on top of it to build whatever they want — like the <a {{ opera }}>Opera</a> and Edge browsers. But it doesn’t mean that all Chromium-based browsers are equal or are themselves open source.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans %}
+        Brave differentiates itself from the other Chromium browsers by focusing on user privacy — specifically by blocking trackers, scripts, and ads by default. So when you use the Brave browser, the areas of a website that would normally display ads appear as blank spaces. In some instances, pages don’t load properly, which will require you to either choose a different browser or flip the ‘Shields Up’ setting to ‘Shields Down’ which turns off the privacy and security protection.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans %}
+        The Internet as a whole is largely paid for by display advertisements, which keeps the actual content you want to view free. Brave has attempted to upend this model by encouraging its users to opt into Brave’s own reward system, which in reality, is its own ad platform. Once a user has opted-in, Brave will display what they call “privacy-respecting ads” for which you can view and earn what they call a Basic Attention Token a.k.a. a BAT. From this point Brave users can choose to spend their BATs on supporting the sites or individual contributors they love, who in turn can convert the BATs into actual currency.
+        {% endtrans %}
+      </p>
+
+      <img src="{{ static('img/firefox/compare/compare-privacy-shield.svg') }}" alt="" height="217" width="320" class="compare-details-image">
+
+      <p>
+        {% trans %}
+        Whether this sounds complicated or like a great idea, probably depends on your level of contempt for the display advertising on the Internet. Most Internet users understand that good content costs money, and are okay with the fact that the money comes from advertising.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans attrs='href="https://addons.mozilla.org/firefox/addon/adblock-plus/" rel="external noopener" data-cta-text="Adblock Plus" data-cta-type="link"'|safe %}
+        On the other side of the coin, with the Firefox browser, we prefer to keep things simple. Firefox blocks many third party trackers, cryptominers and fingerprinting trackers from following you by default. However, Firefox, outside of Private Browsing Mode, chooses not to block display ads from appearing. That is, unless you install <a {{attrs}}>one of the extensions specifically designed for that purpose</a>.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans
+          lockwise='href="%s" data-cta-type="link" data-cta-name="Lockwise"'|safe|format(url('firefox.lockwise.lockwise')),
+          extension='href="https://addons.mozilla.org/addon/https-everywhere/" rel="external noopener" data-cta-text="HTTPS Everywhere" data-cta-type="link"'|safe,
+          privacy='href="%s" data-cta-type="link" data-cta-name="Privacy Report"'|safe|format(url('firefox.privacy.products')) %}
+        There are a few of Brave’s security features worth highlighting, such as its automatic HTTPS connection upgrades (which Firefox also offers by <a {{extension}}>extension</a>). Brave and Firefox both offer users a native <a {{lockwise}}>password manager</a> and the ability to check their security statistics anytime. Brave displays stats like the number of trackers it has blocked whenever you open a new tab. Firefox displays similar information when you view <a {{privacy}}>your privacy report</a> which can be accessed anytime by clicking the shield in the address bar.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans %}
+        The bottom line is that even though Brave’s revenue model with the Brave Attention Tokens may be too complex for a lot of users, overall both Brave and Firefox browsers offer a variety of ways to enjoy a safe and private browsing experience.
+        {% endtrans %}
+      </p>
+
+      {% include '/firefox/compare/includes/download-menu-list.html' %}
+
+    </section>
+
+    <section class="compare-section-utility">
+      <header class="compare-section-header">
+        {# L10n: The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language #}
+        <h2>{{ _('<strong>Utility</strong>') }}</h2>
+      </header>
+
+      <table class="mzp-u-data-table compare-table compare-table--details">
+        <thead>
+          <tr>
+            <th>{{ _('Utility') }}</th>
+            <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
+            <th scope="col"><img src="{{ static('img/logos/brave/logo-brave.png') }}" height="36" width="36" alt="{{ _('Brave') }}"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+              <th scope="row">{{ _('Autoplay blocking') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+          <tr>
+            <th scope="row">{{ _('Tab browsing') }}</th>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+          </tr>
+          <tr>
+            <th scope="row">{{ _('Bookmark manager') }}</th>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+          </tr>
+          <tr>
+            <th scope="row">{{ _('Automatically fills out forms') }}</th>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+          </tr>
+          <tr>
+            <th scope="row">{{ _('Search engine options') }}</th>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+          </tr>
+          <tr>
+            <th scope="row">{{ _('Text to speech') }}</th>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+          </tr>
+          <tr>
+            <th scope="row">{{ _('Reader mode') }}</th>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+          </tr>
+          <tr>
+              <th scope="row">{{ _('Spell checking') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Web extensions/Add-ons') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('In-browser screenshot tool') }}</th>
+              <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+              <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+            </tr>
+        </tbody>
+      </table>
+
+      <p>
+        {% trans %}
+        What might surprise some new Brave users is just how fast pages tend to load in the browser.  The reason for these speedy load times is that pages load much quicker when you block all of the advertising on them. There’s simply less to load so it takes less time.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans %}
+        In terms of actual precious RAM usage, the Brave browser is much heavier than Firefox. Brave comes pre-loaded with various features and “add-ons” which can be attributed to its usage of more RAM. Firefox, on the other hand, lets you decide which add-ons and extensions you want to bolt on.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans addons='href="https://addons.mozilla.org/firefox/" rel="external noopener" data-cta-text="Add-ons for Firefox" data-cta-type="link"'|safe,
+          pocket='href="https://getpocket.com/" rel="external noopener" data-cta-text="Pocket" data-cta-type="link"'|safe,
+          screenshot='href="https://screenshots.firefox.com/" rel="external noopener" data-cta-text="Screenshots" data-cta-type="link"'|safe %}
+        Customization of UI elements and themes have been a favorite feature of Firefox users for years and our avid community of developers have created a <a {{addons}}>vast library</a> of open source add-ons and extensions allowing for even more personalization and functionality. Features that come with Firefox when you download include our powerful <a {{screenshot}}>screenshots tool</a>, accessibility features and integration with <a {{pocket}}>Pocket</a> — a resource that lets users quickly save an article for later reading on any device.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans %}
+        Brave also supports Google Chrome’s huge library of extensions available in the Chrome web store and offers a variety of in-browser features like the aforementioned Brave Rewards program, and support for downloading torrents in the browser.
+        {% endtrans %}
+      </p>
+
+      {% include '/firefox/compare/includes/download-menu-list.html' %}
+
+    </section>
+
+    <section class="compare-section-portability">
+      <header class="compare-section-header">
+        {# L10n: The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language #}
+        <h2>{{ _('<strong>Portability</strong>') }}</h2>
+      </header>
+
+      <table class="mzp-u-data-table compare-table compare-table--details">
+        <thead>
+          <tr>
+            <th>{{ _('Portability') }}</th>
+            <th scope="col"><img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" height="36" width="36" alt="{{ _('Firefox') }}"></th>
+            <th scope="col"><img src="{{ static('img/logos/brave/logo-brave.png') }}" height="36" width="36" alt="{{ _('Brave') }}"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">{{ _('OS availability') }}</th>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+          </tr>
+          <tr>
+            <th scope="row">{{ _('Mobile OS availability') }}</th>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+          </tr>
+          <tr>
+            <th scope="row">{{ _('Syncs with mobile') }}</th>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+          </tr>
+          <tr>
+            <th scope="row">{{ _('Password management') }}</th>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+          </tr>
+          <tr>
+            <th scope="row">{{ _('Master Password') }}</th>
+            <td><img alt="{{ _('Yes') }}" src="{{ static('img/firefox/compare/icon-check.svg') }}" height="24" width="24"></td>
+            <td><img alt="{{ _('No') }}" src="{{ static('img/firefox/compare/icon-dash.svg') }}" height="24" width="24"></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        {% trans %}
+        The ability to sync your passwords, extensions, form data, add-ons and other preferences across all your devices and operating systems is a feature that’s been available for years with Firefox. The synced data is also encrypted, which means no one can access it from the outside.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans accounts='href="%s" data-cta-type="link" data-cta-name="Firefox Account"'|safe|format(url('firefox.accounts')),
+          monitor='href="https://monitor.firefox.com/" rel="external noopener" data-cta-text="Monitor" data-cta-type="link"'|safe,
+          breaches='href="https://monitor.firefox.com/breaches" rel="external noopener" data-cta-text="Data breaches" data-cta-type="link"'|safe %}
+        The Firefox browser also gives users the ability to sign up for a free <a {{accounts}}>Firefox Account</a>. Having a Firefox account is the key to unlocking syncing across devices, plus you get the added benefit of products like <a {{monitor}}>Firefox Monitor</a> which monitors your email addresses and alerts you if any of your information has been involved in any known <a {{breaches}}>data breaches</a>.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans %}
+        Brave also recently gained the ability to sync data across most popular operating systems and devices as well with the added capability of syncing your Basic Attention Tokens.
+        {% endtrans %}
+      </p>
+
+      {% include '/firefox/compare/includes/download-menu-list.html' %}
+
+    </section>
+
+    <section class="compare-section-overall">
+      <header class="compare-section-header">
+        <h2>{{ _('Overall Assessment') }}</h2>
+      </header>
+
+      <p>
+        {% trans %}
+        When comparing the two browsers, both Firefox and Brave offer a sophisticated level of privacy and security by default, available automatically from the very first time you open them.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans %}
+        Brave’s advertising replacement idea is a twist on the current model of paid ad placement and paid search. But again, some busy Internet users will probably not want to get too involved with the management of micro payments to sites in exchange for their time and attention.
+        {% endtrans %}
+      </p>
+
+      <p>
+        {% trans %}
+        Overall, Brave is a fast, and secure browser, that will have particular appeal to cryptocurrency users but for the vast majority of internet citizens, Firefox remains a better and simpler solution.
+        {% endtrans %}
+      </p>
+
+      <p class="compare-version-disclaimer">
+        {% trans %}
+        The comparisons made here were done so across browser release versions as follows:<br> Firefox (76) | Brave (1.7.92)<br>
+        This page is updated semi-quarterly to reflect latest versioning and may not always reflect latest updates.
+        {% endtrans %}
+      </p>
+
+      <aside class="secondary-download-cta">
+        {{ download_firefox(dom_id='download-secondary', alt_copy=ftl('download-button-download-firefox'), download_location='secondary cta') }}
+      </aside>
+
+    </section>
+  </article>
+</div>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_compare_details') }}
+{% endblock %}
