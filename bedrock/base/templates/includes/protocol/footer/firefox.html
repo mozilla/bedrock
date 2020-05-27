@@ -11,6 +11,9 @@
             {{ ftl('footer-firefox') }}
           </h5>
           <ul class="mzp-c-footer-list">
+            {% if ftl_has_messages('footer-support') %}
+              <li><a href="https://support.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer&utm_content=support" data-link-type="footer" data-link-name="Support">{{ ftl('footer-support') }}</a></li>
+            {% endif %}
             <li><a href="{{ url('firefox.privacy.index') }}" data-link-type="footer" data-link-name="Privacy">{{ ftl('footer-privacy') }}</a></li>
             <li><a href="{{ press_blog_url() }}" data-link-type="footer" data-link-name="Press">{{ ftl('footer-press') }}</a>
             <li><a href="https://mozilla.design/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer&utm_content=design" data-link-type="footer" data-link-name="Brand Standards">{{ ftl('footer-brand-standards') }}</a>
