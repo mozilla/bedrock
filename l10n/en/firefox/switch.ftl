@@ -5,7 +5,9 @@
 ### URL: https://www-dev.allizom.org/firefox/switch/
 
 switch-switch-from-chrome = Switch from { -brand-name-chrome } to { -brand-name-firefox } in just a few minutes
+switch-switching-to-firefox-is-fast-updated = Switching to { -brand-name-firefox } is fast, easy and risk-free, because { -brand-name-firefox } imports your bookmarks, passwords and preferences from { -brand-name-chrome }.
 switch-switching-to-firefox-is-fast = Switching to { -brand-name-firefox } is fast, easy and risk-free, because { -brand-name-firefox } imports your bookmarks, autofills, passwords and preferences from { -brand-name-chrome }.
+switch-switching-to-firefox-page-description-updated = Switching to { -brand-name-firefox } is fast, easy and risk-free. { -brand-name-firefox } imports your bookmarks, passwords and preferences from { -brand-name-chrome }.
 switch-switching-to-firefox-page-description = Switching to { -brand-name-firefox } is fast, easy and risk-free. { -brand-name-firefox } imports your bookmarks, autofills, passwords and preferences from { -brand-name-chrome }.
 switch-select-what-to-take = Select what to take from { -brand-name-chrome }.
 switch-let-firefox-do-the-rest = Let { -brand-name-firefox } do the rest.
@@ -18,7 +20,7 @@ switch-firefox-makes-switching-fast-email = { -brand-name-firefox } makes switch
 switch-still-not-convinced = Still not convinced that switching to { -brand-name-firefox } is easy?
 switch-enjoy-the-web-faster = Enjoy the web faster, all set up for you.
 switch-download-and-switch = Download and switch
-switch-share-to-facebook = Share to Facebook
+switch-share-to-facebook = Share to { -brand-name-facebook }
 switch-send-a-tweet = Send a tweet
 switch-hey = Hey,
 switch-check-it-out = Check it out and let me know what you think:

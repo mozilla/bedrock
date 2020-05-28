@@ -7,7 +7,7 @@
 {% from "macros-protocol.html" import hero, picto_card with context %}
 
 {% block page_title %}{{ ftl('switch-switch-from-chrome') }}{% endblock %}
-{% block page_desc %}{{ ftl('switch-switching-to-firefox-is-fast') }}{% endblock %}
+{% block page_desc %}{{ ftl('switch-switching-to-firefox-is-fast-updated', fallback='switch-switching-to-firefox-is-fast') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('firefox-switch') }}
@@ -19,7 +19,7 @@
 <main>
   {% call hero(
     title=ftl('switch-switch-from-chrome'),
-    desc=ftl('switch-switching-to-firefox-page-description'),
+    desc=ftl('switch-switching-to-firefox-page-description-updated', 'switch-switching-to-firefox-page-description'),
     class='mzp-has-image mzp-t-product-firefox t-switch',
     include_cta=False,
     heading_level=1
