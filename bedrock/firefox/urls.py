@@ -9,6 +9,8 @@ from bedrock.releasenotes import version_re
 
 from bedrock.firefox import views
 
+from bedrock.utils.views import VariationTemplateView
+
 latest_re = r'^firefox(?:/(?P<version>%s))?/%s/$'
 firstrun_re = latest_re % (version_re, 'firstrun')
 whatsnew_re = latest_re % (version_re, 'whatsnew')
@@ -61,7 +63,11 @@ urlpatterns = (
         views.FeaturesPrivateBrowsingView.as_view(),
         name='firefox.features.private-browsing'),
     url(r'^firefox/ios/testflight/$', views.ios_testflight, name='firefox.ios.testflight'),
-    page('firefox/mobile', 'firefox/mobile/index.html'),
+
+    url('^firefox/mobile/$', VariationTemplateView.as_view(template_name='firefox/mobile/index.html',
+        template_context_variations=['a', 'b']),
+        name='firefox.mobile.index'),
+
     page('firefox/mobile/get-app', 'firefox/mobile/get-app.html'),
     url('^firefox/send-to-device-post/$', views.send_to_device_ajax,
         name='firefox.send-to-device-post'),
