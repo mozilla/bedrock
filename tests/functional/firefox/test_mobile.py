@@ -10,6 +10,7 @@ from pages.firefox.mobile import FirefoxMobilePage
 
 # mobile - send to device
 @pytest.mark.nondestructive
+@pytest.mark.skip(reason="temporary skip for A/B test")
 def test_get_firefox_send_to_device_success(base_url, selenium):
     page = FirefoxMobilePage(selenium, base_url).open()
     modal = page.click_get_firefox_button()
@@ -22,6 +23,7 @@ def test_get_firefox_send_to_device_success(base_url, selenium):
 
 
 @pytest.mark.nondestructive
+@pytest.mark.skip(reason="temporary skip for A/B test")
 def test_get_firefox_send_to_device_fails_when_missing_required_fields(base_url, selenium):
     page = FirefoxMobilePage(selenium, base_url).open()
     modal = page.click_get_firefox_button()
@@ -31,6 +33,7 @@ def test_get_firefox_send_to_device_fails_when_missing_required_fields(base_url,
 
 # mobile - qr code
 @pytest.mark.nondestructive
+@pytest.mark.skip(reason="temporary skip for A/B test")
 def test_get_firefox_qr_code(base_url, selenium):
     page = FirefoxMobilePage(selenium, base_url, locale='sv-SE').open()
     modal = page.click_get_firefox_button()

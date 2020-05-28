@@ -11,6 +11,44 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/call-out';
 @import '../../../protocol/css/components/modal';
 
+//* -------------------------------------------------------------------------- */
+//  Inline form variation
+
+.c-inline-form {
+    background: $color-white;
+    border-radius: $border-radius-md;
+    box-shadow: $box-shadow-md;
+    margin: 0 auto $spacing-xl;
+    max-width: 330px;
+    padding: $spacing-lg $spacing-2xl;
+    text-align: center;
+
+    .form-input-label {
+        text-align: left;
+    }
+
+    .legal {
+        @include text-body-xs;
+    }
+
+    h3 {
+        @include text-title-sm;
+        margin-bottom: $spacing-lg;
+    }
+
+    p {
+        @include text-body-lg;
+    }
+
+    @media #{$mq-lg} {
+        @include bidi(((float, right, left),));
+
+        @supports (display: grid) {
+            float: none;
+        }
+    }
+}
+
 
 //* -------------------------------------------------------------------------- */
 
@@ -147,6 +185,39 @@ main .mzp-l-content {
         &.mzp-t-firefox::after {
             display: none;
         }
+
+        &.v-b {
+            .mzp-c-hero-body {
+                margin: 0 auto $spacing-2xl;
+                width: 100%;
+
+                .mzp-c-hero-cta {
+                    float: none;
+                }
+            }
+
+            @media #{$mq-lg} {
+                .mzp-c-hero-body {
+                    @include grid-half;
+                    @include bidi(((float, left, right),));
+                    margin: unset;
+                }
+
+                @supports (display: grid) {
+                    & > .mzp-l-content {
+                        display: grid;
+                        grid-template-columns: repeat(2, 1fr);
+                        grid-column-gap: $spacing-2xl;
+                    }
+
+                    .mzp-c-hero-body {
+                        float: none;
+                        width: auto;
+                        margin-right: auto;
+                    }
+                }
+            }
+        }
     }
 
     .mzp-c-hero-desc {
@@ -174,6 +245,13 @@ main .mzp-l-content {
             html[dir="rtl"] &{
                 background-position: top right calc(50vw + #{$spacing-md}), top right calc(50vw + #{$spacing-md});
                 text-align: right;
+            }
+
+            &.v-b {
+                @include background-size(1200px 275px);
+                background-image: url('/media/img/firefox/mobile/img-mobile-noodles.svg');
+                background-position: top left calc(50vw + #{$spacing-md});
+                padding: 0;
             }
         }
 
@@ -481,7 +559,6 @@ main .mzp-l-content {
 
 #send-to-device {
     margin: 0 auto;
-    text-align: center;
 
     footer {
         display: none;

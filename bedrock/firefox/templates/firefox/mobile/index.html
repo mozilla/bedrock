@@ -22,6 +22,11 @@
 {% set android_url = firefox_adjust_url('android', 'mobile-page') %}
 {% set ios_url = firefox_adjust_url('ios', 'mobile-page') %}
 
+
+{% if variation == 'b' %}
+ {% set hero_class = 'v-b' %}
+{% endif %}
+
 {% block site_header %}
   {% with hide_nav_download_button=True %}
     {% include 'includes/protocol/navigation/menu-firefox/index.html' %}
@@ -30,7 +35,7 @@
 
 {% block content %}
   <main role="main">
-    <header class="mzp-c-hero mzp-t-firefox mzp-has-image t-hero-primary">
+    <header class="mzp-c-hero mzp-t-firefox mzp-has-image t-hero-primary {{ hero_class }}">
       <div class="mzp-l-content">
         <div class="mzp-c-hero-body">
           <h1 class="mzp-c-hero-title"><span class="c-wordmark t-firefox">Firefox Browser</span></h1>
@@ -41,11 +46,13 @@
           </div>
 
           <div class="mzp-c-hero-cta">
+          {% if variation != 'b' %}
             <div class="header-product-ctas hide-from-legacy-ie">
               <button type="button" class="mzp-c-button mzp-t-product js-mobile" id="get-firefox" data-cta-type="button" data-cta-text="Get Firefox Mobile" data-cta-position="primary">
                 {{ _('Get Firefox Mobile') }}
               </button>
             </div>
+            {% endif %}
             <div class="mobile-download-buttons-wrapper">
               <ul class="mobile-download-buttons firefox" id="mobile-download-buttons-firefox_1">
                 <li class="android">
@@ -60,6 +67,13 @@
             </div>
           </div>
         </div>
+        {% if variation == 'b' %}
+        <div class="c-inline-form">
+          <h3>{{ _('Get Firefox for mobile') }}</h3>
+          <p>{{ _('Send a download link to your phone. ') }}</p>
+          {{ send_to_device(include_title=False, message_set='fx-mobile-download-desktop', class='vertical') }}
+        </div>
+        {% endif %}
       </div>
     </header>
 
@@ -211,4 +225,10 @@
 
 {% block js %}
   {{ js_bundle('firefox-mobile') }}
+{% endblock %}
+
+{% block experiments %}
+  {% if switch('experiment-firefox-mobile', ['en-US']) %}
+    {{ js_bundle('firefox-mobile-s2d-experiment') }}
+  {% endif %}
 {% endblock %}
