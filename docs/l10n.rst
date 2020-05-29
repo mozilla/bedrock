@@ -20,7 +20,7 @@ If you don't already have a ``locale`` directory, this command will clone the
 git repo containing the .lang translation files (either the dev or prod files
 depending on your ``DEV`` setting). If the folder is already present, it will
 update the repository to the latest version. It do the same thing for the
-repository for the .ftl translation files in ``git-repos/www-l10n`` directory.
+repository for the .ftl translation files in ``data/www-l10n`` directory.
 
 Fluent
 ======

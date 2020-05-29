@@ -5,6 +5,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 import os
+from pathlib import Path
 
 from django.conf import settings
 from django.core.cache import caches
@@ -20,7 +21,9 @@ from lib.l10n_utils.gettext import (_append_to_lang_file, langfiles_for_path,
 from lib.l10n_utils.tests import TempFileMixin
 
 cache = caches['l10n']
-ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'test_files')
+ROOT_PATH = Path(__file__).with_name('test_files')
+LOCALES_PATH = ROOT_PATH / 'locale'
+ROOT = str(ROOT_PATH)
 TEMPLATE_DIRS = (os.path.join(ROOT, 'templates'))
 DOTLANG_FILES = ['dude', 'walter', 'donny']
 
@@ -83,7 +86,7 @@ class TestPOFiles(TestCase):
         [None, u'The Dude minds!'],
     ]
 
-    @override_settings(ROOT=ROOT)
+    @override_settings(ROOT=ROOT, LOCALES_PATH=LOCALES_PATH)
     def test_parse_po(self):
         """Should return correct messages"""
         msgs = po_msgs('messages')
@@ -100,7 +103,7 @@ class TestPOFiles(TestCase):
         }
         self.assertDictEqual(msgs, expected)
 
-    @override_settings(ROOT=ROOT)
+    @override_settings(ROOT=ROOT, LOCALES_PATH=LOCALES_PATH)
     @patch('lib.l10n_utils.gettext._append_to_lang_file')
     @patch('lib.l10n_utils.gettext.langfiles_for_path')
     def test_po_to_langfiles(self, langfiles_mock, append_mock):
@@ -154,7 +157,9 @@ class TestPOFiles(TestCase):
         _append_to_lang_file(path_new, {})
         assert md_mock.called
 
-    @override_settings(ROOT=ROOT, DOTLANG_FILES=DOTLANG_FILES)
+    @override_settings(ROOT=ROOT,
+                       LOCALES_PATH=LOCALES_PATH,
+                       DOTLANG_FILES=DOTLANG_FILES)
     @patch('lib.l10n_utils.gettext.parse_lang')
     @patch('lib.l10n_utils.gettext.codecs', MagicMock())
     def test_uses_default_lang_files(self, pl_mock):
