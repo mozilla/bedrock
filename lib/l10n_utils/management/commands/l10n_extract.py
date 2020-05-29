@@ -150,8 +150,7 @@ class Command(BaseCommand):
         filenames = options['filenames']
         if filenames:
             # mimics puente.management.commands.extract for a list of files
-            outputdir = os.path.join(settings.ROOT, 'locale', 'templates',
-                                     'LC_MESSAGES')
+            outputdir = str(settings.LOCALES_PATH / 'templates' / 'LC_MESSAGES')
             if not os.path.isdir(outputdir):
                 os.makedirs(outputdir)
 

@@ -12,6 +12,7 @@ from db_s3_utils import (
     set_db_data,
     JSON_DATA_FILE,
     DB_FILE,
+    DATA_PATH,
 )
 
 
@@ -29,7 +30,7 @@ def get_file_url(filename):
 
 def download_db_info():
     try:
-        resp = requests.get(get_file_url(JSON_DATA_FILE))
+        resp = requests.get(get_file_url(os.path.basename(JSON_DATA_FILE)))
         resp.raise_for_status()
     except requests.RequestException:
         return None
@@ -42,7 +43,7 @@ def download_db_info():
 
 
 def download_db_file(filename):
-    resp = requests.get(get_file_url(filename), stream=True)
+    resp = requests.get(get_file_url(os.path.basename(filename)), stream=True)
     with open(filename, 'wb') as fp:
         for chunk in resp.iter_content(chunk_size=128):
             fp.write(chunk)
@@ -76,6 +77,7 @@ def main(args):
                 return 0
 
     new_db_file = db_info['file_name']
+    new_db_file = f'{DATA_PATH}/{new_db_file}'
     download_db_file(new_db_file)
     checksum = get_db_checksum(new_db_file)
     if checksum == db_info['checksum']:

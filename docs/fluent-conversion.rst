@@ -163,7 +163,7 @@ recipe path.
 Before you run this, make sure to update the local clones of your l10n repositories.
 
 This command will use the Fluent file you edited as template, read the legacy translations
-from ``locale`` and write the generated Fluent files for each locale into the ``git-repos/www-l10n/`` directory.
+from ``locale`` and write the generated Fluent files for each locale into the ``data/www-l10n/`` directory.
 
 Append each locale you wish to convert in a space-separated list. You can find the full
 list of supported locales in the `Pontoon configuration file`_ and below in a space-separated

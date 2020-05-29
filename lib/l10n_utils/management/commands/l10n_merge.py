@@ -20,7 +20,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         langs = options['langs']
         if not langs:
-            langs = os.listdir(os.path.join(settings.ROOT, 'locale'))
+            langs = os.listdir(str(settings.LOCALES_PATH))
             langs = [x for x in langs if x != 'templates']
             langs = [x for x in langs if x[0] != '.']
 

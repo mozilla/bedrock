@@ -76,18 +76,18 @@ def parse_po(path):
 
 
 def po_msgs(domain):
-    return parse_po(join(settings.ROOT, 'locale', 'templates', 'LC_MESSAGES',
-                         '{}.pot'.format(domain)))
+    path = settings.LOCALES_PATH / 'templates' / 'LC_MESSAGES' / f'{domain}.pot'
+    return parse_po(str(path))
 
 
 def translated_strings(file_):
-    path = join(settings.ROOT, 'locale', 'templates', file_)
+    path = str(settings.LOCALES_PATH / 'templates', file_)
     trans = list(parse_lang(path, skip_untranslated=False).keys())
     return trans
 
 
 def lang_file(name, lang):
-    return join(settings.ROOT, 'locale', lang, name)
+    return str(settings.LOCALES_PATH / lang / name)
 
 
 def is_template(path):

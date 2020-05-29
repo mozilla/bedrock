@@ -20,7 +20,7 @@ from jinja2 import Environment
 
 
 def l10n_file(*args):
-    return path.join(settings.ROOT, 'locale', *args)
+    return str(settings.LOCALES_PATH.joinpath(*args))
 
 
 def list_templates():

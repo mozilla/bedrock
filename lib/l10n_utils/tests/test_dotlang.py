@@ -25,6 +25,7 @@ from lib.l10n_utils.extract import extract_python
 
 LANG_FILES = 'test_file'
 ROOT_PATH = Path(__file__).with_name('test_files')
+LOCALES_PATH = ROOT_PATH / 'locale'
 ROOT = str(ROOT_PATH)
 TEMPLATE_DIRS = [str(ROOT_PATH.joinpath('templates'))]
 jinja_env = Jinja2.get_default().env
@@ -34,6 +35,7 @@ jinja_env = Jinja2.get_default().env
     DEV=False,
     ROOT_URLCONF='lib.l10n_utils.tests.test_files.urls',
     ROOT=ROOT,
+    LOCALES_PATH=LOCALES_PATH,
     LANGUAGE_CODE='en-US',   # Triggers reset of Django's language cache
 )
 @patch.object(jinja_env.loader, 'searchpath', TEMPLATE_DIRS)
@@ -201,6 +203,7 @@ class TestDotlang(TestCase):
     @override_settings(
         DEV=False,
         ROOT=ROOT,
+        LOCALES_PATH=LOCALES_PATH,
         LANGUAGE_CODE='en-US',   # Triggers reset of Django's language cache
         EMAIL_SUBJECT_PREFIX='[bedrock] ',
         MANAGERS=('dude@example.com',),
@@ -212,12 +215,13 @@ class TestDotlang(TestCase):
             result = translate(expected, [path])
         assert expected == result
         assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == '[bedrock] locale/fr/%s.lang is corrupted' % path
+        assert mail.outbox[0].subject == f'[bedrock] {LOCALES_PATH}/fr/{path}.lang is corrupted'
         mail.outbox = []
 
     @override_settings(
         DEV=False,
         ROOT=ROOT,
+        LOCALES_PATH=LOCALES_PATH,
         LANGUAGE_CODE='en-US',   # Triggers reset of Django's language cache
     )
     def test_format_identifier_order(self):
@@ -236,6 +240,7 @@ class TestDotlang(TestCase):
     @override_settings(
         ROOT_URLCONF='lib.l10n_utils.tests.test_files.urls',
         ROOT=ROOT,
+        LOCALES_PATH=LOCALES_PATH,
         LANGUAGE_CODE='en-US',   # Triggers reset of Django's language cache
     )
     def test_lang_files_queried_in_order(self):
@@ -248,6 +253,7 @@ class TestDotlang(TestCase):
     @override_settings(
         DEV=False,
         ROOT=ROOT,
+        LOCALES_PATH=LOCALES_PATH,
         LANGUAGE_CODE='en-US',   # Triggers reset of Django's language cache
     )
     def test_extract_message_tweaks_do_not_break(self):
@@ -427,6 +433,7 @@ class TestDotlang(TestCase):
     DEV=False,
     ROOT_URLCONF='lib.l10n_utils.tests.test_files.urls',
     ROOT=ROOT,
+    LOCALES_PATH=LOCALES_PATH,
     LANGUAGE_CODE='en-US',   # Triggers reset of Django's language cache
 )
 class TestTranslationList(TestCase):

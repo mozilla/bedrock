@@ -4,7 +4,7 @@ import shutil
 from django.conf import settings
 from django.test import TestCase
 
-from bedrock.settings.base import get_dev_languages, path
+from bedrock.settings.base import get_dev_languages, data_path
 
 
 class AcceptedLocalesTest(TestCase):
@@ -15,8 +15,8 @@ class AcceptedLocalesTest(TestCase):
     DEV_LANGUAGES or PROD_LANGUAGES should be used.
 
     """
-    locale = path('locale')
-    locale_bkp = path('locale_bkp')
+    locale = data_path('locale')
+    locale_bkp = data_path('locale_bkp')
 
     @classmethod
     def setup_class(cls):

@@ -4,8 +4,9 @@ from os import getenv
 from subprocess import check_output, CalledProcessError
 
 
-JSON_DATA_FILE = getenv('AWS_DB_JSON_DATA_FILE', 'bedrock_db_info.json')
-DB_FILE = 'bedrock.db'
+DATA_PATH = getenv('DATA_PATH', 'data')
+JSON_DATA_FILE = getenv('AWS_DB_JSON_DATA_FILE', f'{DATA_PATH}/bedrock_db_info.json')
+DB_FILE = f'{DATA_PATH}/bedrock.db'
 CACHE = {}
 BLOCKSIZE = 65536
 

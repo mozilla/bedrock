@@ -6,6 +6,7 @@
 import codecs
 from os import path
 from io import StringIO, IOBase
+from pathlib import Path
 from textwrap import dedent
 
 from django.conf import settings
@@ -23,9 +24,10 @@ from lib.l10n_utils.management.commands.l10n_check import (
 from lib.l10n_utils.management.commands.l10n_extract import extract_from_files
 from lib.l10n_utils.tests import capture_stdio
 
-
-ROOT = path.join(path.dirname(path.abspath(__file__)), 'test_files')
-TEMPLATE_DIRS = (path.join(ROOT, 'templates'),)
+ROOT_PATH = Path(__file__).with_name('test_files')
+ROOT = str(ROOT_PATH)
+LOCALES_PATH = ROOT_PATH / 'locale'
+TEMPLATE_DIRS = (str(ROOT_PATH / 'templates'),)
 
 METHODS = [
     ('templates/**.html',
@@ -38,7 +40,7 @@ TRUE_MOCK = Mock()
 TRUE_MOCK.return_value = True
 
 
-@override_settings(ROOT=ROOT)
+@override_settings(ROOT=ROOT, LOCALES_PATH=LOCALES_PATH)
 class TestL10nExtract(TestCase):
     def test_extract_from_files(self):
         """
@@ -116,7 +118,7 @@ class TestL10nExtract(TestCase):
         callback.assert_called_once_with(testfile[0], METHODS[0][1], ANY)
 
 
-@override_settings(ROOT=ROOT)
+@override_settings(LOCALES_PATH=LOCALES_PATH)
 class TestL10nCheck(TestCase):
     def _get_block(self, blocks, name):
         """Out of all blocks, grab the one with the specified name."""
@@ -328,7 +330,7 @@ class TestL10nCheck(TestCase):
         self.assertEqual(open_buffer.getvalue(), good_value)
 
 
-@override_settings(ROOT=ROOT)
+@override_settings(LOCALES_PATH=LOCALES_PATH)
 class Testl10nMerge(TestCase):
     @patch('lib.l10n_utils.gettext.settings.ROOT', ROOT)
     @patch('lib.l10n_utils.gettext._append_to_lang_file')
@@ -338,7 +340,7 @@ class Testl10nMerge(TestCase):
         Bug 861168.
         """
         merge_lang_files(['de'])
-        dest_file = path.join(ROOT, 'locale', 'de', 'firefox', 'fx.lang')
+        dest_file = str(LOCALES_PATH / 'de' / 'firefox' / 'fx.lang')
         write_mock.assert_called_once_with(dest_file,
                                            [[None, u'Find out if your device is '
                                                    u'supported &nbsp;\xbb']])
