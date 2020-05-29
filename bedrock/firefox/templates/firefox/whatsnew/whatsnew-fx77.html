@@ -39,7 +39,7 @@
           <div class="video-content">
           {# YouTube is blocked in China so zh-CN gets an alternative, self-hosted video. If we run into bandwidth trouble we can turn the video off and zh-CN falls back to the 76 page. #}
           {% if switch('firefox-whatsnew77-video-zhCN', ['zh-CN']) %}
-            <video id="pip-video" preload="metadata" controls poster="{{ static('img/firefox/whatsnew/whatsnew77/video-poster.jpg') }}" data-ga-label="Red Panda Cubs - Firefox + Woodland Park Zoo">
+            <video id="pip-video" preload="metadata" controls poster="{{ static('img/firefox/whatsnew/whatsnew77/video-poster.jpg') }}" data-video-title="Red Panda Cubs - Firefox + Woodland Park Zoo">
               <source src="https://assets.mozilla.net/video/red-pandas.webm" type="video/webm">
             </video>
           {% else %}
