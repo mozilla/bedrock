@@ -11,6 +11,7 @@ from django.http import Http404
 from django.utils.dateparse import parse_datetime
 from django.utils.functional import cached_property
 
+import bleach
 import markdown
 from django_extensions.db.fields.json import JSONField
 from product_details.version_compare import Version
@@ -28,10 +29,27 @@ markdowner = markdown.Markdown(extensions=[
     'markdown.extensions.toc',
     'markdown.extensions.nl2br',
 ])
+# based on bleach.sanitizer.ALLOWED_TAGS
+ALLOWED_TAGS = [
+    'a',
+    'abbr',
+    'acronym',
+    'b',
+    'blockquote',
+    'code',
+    'em',
+    'i',
+    'li',
+    'ol',
+    'p',
+    'small',
+    'strong',
+    'ul',
+]
 
 
 def process_markdown(value):
-    return markdowner.reset().convert(value)
+    return markdowner.reset().convert(bleach.clean(value, tags=ALLOWED_TAGS))
 
 
 def process_notes(notes):
