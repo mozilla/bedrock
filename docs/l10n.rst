@@ -16,7 +16,7 @@ can be cloned and kept up-to-date using the ``l10n_update`` management command:
 
     $ ./manage.py l10n_update
 
-If you don't already have a ``locale`` directory, this command will clone the
+If you don't already have a ``data/locale`` directory, this command will clone the
 git repo containing the .lang translation files (either the dev or prod files
 depending on your ``DEV`` setting). If the folder is already present, it will
 update the repository to the latest version. It do the same thing for the
