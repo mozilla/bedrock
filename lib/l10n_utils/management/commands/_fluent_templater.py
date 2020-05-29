@@ -50,4 +50,4 @@ class Templater:
         args = ''
         if m['args']:
             args = ', ' + m['args']
-        return f"{{ ftl('{self.dependencies[lang_id]}'{args}) }}"
+        return f"{{{{ ftl('{self.dependencies[lang_id]}'{args}) }}}}"
