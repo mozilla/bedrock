@@ -4,17 +4,16 @@
 
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
-@import '../../../../protocol/css/includes/lib';
 
-@import '../../../../protocol/css/components/emphasis-box';
-@import '../../../../protocol/css/components/modal';
-@import '../../../../protocol/css/components/notification-bar';
-@import '../../../../protocol/css/components/section-heading';
-@import '../../../../protocol/css/components/zap';
-@import '../../../../protocol/css/templates/card-layout';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
+@import '~@mozilla-protocol/core/protocol/css/components/modal';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/components/section-heading';
+@import '~@mozilla-protocol/core/protocol/css/components/zap';
+@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 @import '../../../protocol/components/sub-navigation';
 @import '../../sticky-promo';
-
 
 // --------------------------------------------------------------------------
 // Protocol over-rides

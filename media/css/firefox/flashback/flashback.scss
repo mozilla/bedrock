@@ -5,7 +5,7 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import "../../../protocol/css/includes/lib";
+@import "~@mozilla-protocol/core/protocol/css/includes/lib";
 
 @mixin down-arrow($color) {
     $downarrow: '<?xml version="1.0" encoding="utf-8"?><svg viewBox="0 0 50 54" width="50px" height="54px" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com"><path style="stroke: #{$color}; fill: rgba(0,0,0,0); stroke-width: 9px; stroke-linejoin: round; stroke-linecap: round;" d="M 6.76 28.842 C 8.723 30.855 25.377 48.01 25.398 48.007 C 25.398 48.007 43.025 29.144 43.419 28.8"/><path style="stroke: #{$color}; fill: rgba(0,0,0,0); stroke-width: 9px; stroke-linejoin: round; stroke-linecap: round;" d="M 6.8 5.764 C 8.763 7.777 25.417 24.932 25.438 24.929 C 25.438 24.929 43.065 6.066 43.459 5.722" bx:origin="0.48441 0.5"/></svg>';

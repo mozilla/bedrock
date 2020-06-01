@@ -53,7 +53,6 @@ describe('mozilla-lazy-load.js', function() {
     describe('Mozilla.LazyLoad.registerObserver', function() {
 
         it('should register an IntersectionObserver correctly', function() {
-            spyOn(window, 'IntersectionObserver');
             var observer = Mozilla.LazyLoad.registerObserver();
             expect(observer instanceof window.IntersectionObserver).toBeTruthy();
         });

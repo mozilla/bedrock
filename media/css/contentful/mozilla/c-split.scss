@@ -7,7 +7,7 @@ $image-path: '/media/protocol/img';
 
 $brand-theme: 'mozilla';
 
-@import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
 
 @import '../patch';

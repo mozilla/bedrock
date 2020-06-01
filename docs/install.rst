@@ -111,10 +111,6 @@ The node dependencies for running the site can be installed with ``yarn``::
 
     $ yarn
 
-You'll also need to install the `Gulp <http://gulpjs.com/>`_ cli globally::
-
-    $ npm install -g gulp-cli
-
 .. note::
 
     Bedrock uses yarn to ensure that Node.js
@@ -204,8 +200,9 @@ refreshing of the page works by injecting a small JS snippet into the page that 
 and will refresh the page when it receives a signal. It also injects a script that shows a small notification in the
 top-right corner of the page to inform you that a refresh is happening and when the page connects to or is disconnected
 from the browsersync service. We've not seen issues with this, but since it is modifying the page it is possible that this
-could conflict with something on the page itself. Please let us know if you suspect this is happening for you. This notification
-can be disabled in the browsersync options in the ``gulpfile.js`` by setting ``notify: false`` in the ``browser-sync`` task.
+could conflict with something on the page itself. Please let us know if you suspect this is happening for you. This
+notification can be disabled in the browsersync options in ``webpack.config.js`` by setting ``notify: false`` in the
+``BrowserSyncPlugin`` config.
 
 Prod Mode
 ---------

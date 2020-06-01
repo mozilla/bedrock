@@ -5,11 +5,11 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/split';
-@import '../../../protocol/css/components/logos/wordmark';
-@import '../../../protocol/css/components/logos/wordmark-product-firefox';
-@import '../../../protocol/css/components/logos/wordmark-product-focus';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-focus';
 
 @media #{$mq-lg} {
     .c-page-header::before {

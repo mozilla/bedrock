@@ -5,9 +5,9 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../protocol/css/includes/lib';
-@import '../../protocol/css/components/sidebar-menu';
-@import '../../protocol/css/templates/main-with-sidebar';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/sidebar-menu';
+@import '~@mozilla-protocol/core/protocol/css/templates/main-with-sidebar';
 
 /* -------------------------------------------------------------------------- */
 // Common elements and variables

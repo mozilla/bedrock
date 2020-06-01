@@ -10,19 +10,19 @@
         document.querySelector('body').classList.add('is-firefox-default');
     }
 
-    Mozilla.UITour.getConfiguration('appinfo', function(details) {
+    Mozilla.UITour.getConfiguration('appinfo', (details) => {
         if (details.defaultBrowser) {
             document.querySelector('body').classList.add('is-firefox-default');
         }
     });
 
     // modal
-    var content = document.querySelector('.mzp-u-modal-content');
-    var trigger = document.querySelector('.js-modal-link');
+    const content = document.querySelector('.mzp-u-modal-content');
+    const trigger = document.querySelector('.js-modal-link');
 
-    trigger.addEventListener('click', function(e) {
+    trigger.addEventListener('click', (e) => {
         e.preventDefault();
-        Mzp.Modal.createModal(this, content, {
+        Mzp.Modal.createModal(e.target, content, {
             closeText: window.Mozilla.Utils.trans('global-close'),
         });
 
@@ -34,7 +34,7 @@
     }, false);
 
     // initialize send to device widget
-    var form = new Mozilla.SendToDevice();
+    const form = new Mozilla.SendToDevice();
     form.init();
 
 })(window.Mozilla);

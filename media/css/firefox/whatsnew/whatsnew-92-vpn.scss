@@ -8,13 +8,13 @@ $image-path: '/media/protocol/img';
 $color-vpn-brand-purple: #5340b4;
 $color-vpn-brand-violet: #6a57dc;
 
-@import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/notification-bar';
-@import '../../../protocol/css/components/picto';
-@import '../../../protocol/css/components/section-heading';
-@import '../../../protocol/css/components/logos/logo';
-@import '../../../protocol/css/components/logos/logo-product-vpn';
-@import '../../../protocol/css/templates/multi-column';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/components/picto';
+@import '~@mozilla-protocol/core/protocol/css/components/section-heading';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-vpn';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 @import 'includes/header';
 
 

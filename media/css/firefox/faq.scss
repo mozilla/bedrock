@@ -5,10 +5,10 @@
 $font-path: "/media/fonts";
 $image-path: "/media/protocol/img";
 
-@import "../../protocol/css/includes/lib";
-@import "../../protocol/css/components/split";
-@import "../../protocol/css/components/logos/logo";
-@import "../../protocol/css/components/logos/logo-product-firefox";
+@import "~@mozilla-protocol/core/protocol/css/includes/lib";
+@import "~@mozilla-protocol/core/protocol/css/components/split";
+@import "~@mozilla-protocol/core/protocol/css/components/logos/logo";
+@import "~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox";
 
 /*
 * Split
@@ -20,8 +20,9 @@ $image-path: "/media/protocol/img";
         margin-left: auto;
         margin-right: auto;
         margin-bottom: $spacing-md;
+
         @media #{$mq-lg} {
-             margin-left: inherit;
+            margin-left: inherit;
             margin-right: inherit;
             margin-bottom: $layout-md;
         }
