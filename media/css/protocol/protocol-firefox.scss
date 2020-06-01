@@ -8,28 +8,27 @@ $type-scale: 'standard';
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-
 // These are general styles for elements/components that occur on every page.
 // Individual pages may include additional component styles as needed.
 
 // Fonts
-@import '../../protocol/css/includes/fonts/inter';
-@import '../../protocol/css/includes/fonts/metropolis';
+@import '~@mozilla-protocol/core/protocol/css/includes/fonts/inter';
+@import '~@mozilla-protocol/core/protocol/css/includes/fonts/metropolis';
 
 // Base elements - general HTML elements
-@import '../../protocol/css/base/elements';
+@import '~@mozilla-protocol/core/protocol/css/base/elements';
 
 // Base includes - animations
-@import '../../protocol/css/base/includes';
+@import '~@mozilla-protocol/core/protocol/css/base/includes';
 
 // Utility includes
-@import '../../protocol/css/base/utilities/backgrounds';
-@import '../../protocol/css/base/utilities/titles';
+@import '~@mozilla-protocol/core/protocol/css/base/utilities/backgrounds';
+@import '~@mozilla-protocol/core/protocol/css/base/utilities/titles';
 
 // Global components
-@import '../../protocol/css/components/button';
-@import '../../protocol/css/components/card';
-@import '../../protocol/css/components/language-switcher';
+@import '~@mozilla-protocol/core/protocol/css/components/button';
+@import '~@mozilla-protocol/core/protocol/css/components/card';
+@import '~@mozilla-protocol/core/protocol/css/components/language-switcher';
 @import 'components/download-button';
 
 // Custom global components for nav and footer

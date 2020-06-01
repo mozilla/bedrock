@@ -6,12 +6,12 @@
 /* eslint no-unused-vars: [2, { "varsIgnorePattern": "onYouTubeIframeAPIReady" }] */
 
 // YouTube API hook has to be in global scope
-function onYouTubeIframeAPIReady() {
+window.onYouTubeIframeAPIReady = function() {
     'use strict';
 
     // Play the video only once the API is ready.
     Mozilla.pipVideoPlay();
-}
+};
 
 (function() {
     'use strict';

@@ -5,12 +5,12 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/feature-card';
-@import '../../../protocol/css/components/picto';
-@import '../../../protocol/css/components/section-heading';
-@import '../../../protocol/css/components/split';
-@import '../../../protocol/css/templates/multi-column';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/feature-card';
+@import '~@mozilla-protocol/core/protocol/css/components/picto';
+@import '~@mozilla-protocol/core/protocol/css/components/section-heading';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
 .c-hero {
     .c-hero-icon {

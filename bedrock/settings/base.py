@@ -403,7 +403,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
 )
 STATICFILES_DIRS = (
-    path('static_final'),
+    path('assets'),
 )
 if DEBUG:
     STATICFILES_DIRS += (path('media'),)

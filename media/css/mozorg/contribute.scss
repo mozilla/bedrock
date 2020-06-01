@@ -5,12 +5,12 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../protocol/css/includes/lib';
-@import '../../protocol/css/includes/fonts/metropolis';
-@import '../../protocol/css/components/newsletter-form';
-@import '../../protocol/css/components/split';
-@import '../../protocol/css/components/section-heading';
-@import '../../protocol/css/templates/card-layout';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/includes/fonts/metropolis';
+@import '~@mozilla-protocol/core/protocol/css/components/newsletter-form';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/components/section-heading';
+@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 
 .contribute-intro {
     overflow: hidden;

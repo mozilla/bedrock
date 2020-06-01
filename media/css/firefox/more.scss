@@ -4,12 +4,11 @@
 
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
-@import '../../protocol/css/includes/lib';
 
-@import '../../protocol/css/components/split';
-@import '../../protocol/css/components/card';
-@import '../../protocol/css/templates/card-layout';
-
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/components/card';
+@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 
 //* -------------------------------------------------------------------------- */
 // Primary CTA (page top)
