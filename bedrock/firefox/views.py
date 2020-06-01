@@ -591,7 +591,12 @@ class WhatsnewView(L10nTemplateView):
         elif locale == 'id':
             template = 'firefox/whatsnew/index-lite.id.html'
         elif version.startswith('77.') and lang_file_is_active('firefox/whatsnew_77', locale):
-            template = 'firefox/whatsnew/whatsnew-fx77.html'
+            # YouTube is blocked in China so zh-CN gets an alternative, self-hosted video.
+            # If we run into bandwidth trouble we can turn the video off and zh-CN falls back to the 76 page.
+            if locale == 'zh-CN' and not switch('firefox-whatsnew77-video-zhCN'):
+                template = 'firefox/whatsnew/whatsnew-fx76.html'
+            else:
+                template = 'firefox/whatsnew/whatsnew-fx77.html'
         elif version.startswith('76.') and lang_file_is_active('firefox/whatsnew_76', locale):
             template = 'firefox/whatsnew/whatsnew-fx76.html'
         elif version.startswith('75.') and lang_file_is_active('firefox/whatsnew_75', locale):
