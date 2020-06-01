@@ -5,13 +5,12 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/card';
-@import '../../../protocol/css/components/logos/logo-product-firefox';
-@import '../../../protocol/css/components/section-heading';
-@import '../../../protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/card';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
+@import '~@mozilla-protocol/core/protocol/css/components/section-heading';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
 @import '../../protocol/components/custom-menu-list';
-@import '../../../protocol/css/templates/card-layout';
 
 .mzp-c-split .mzp-c-logo {
     margin: -$spacing-lg 0 $spacing-xl;

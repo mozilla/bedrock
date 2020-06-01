@@ -900,7 +900,6 @@
       "files": [
         "protocol/js/protocol-modal.js",
         "js/base/send-to-device.js",
-        "js/libs/spin.min.js",
         "js/firefox/welcome/welcome4.js"
       ],
       "name": "firefox_welcome_page4"
@@ -909,14 +908,12 @@
       "files": [
         "protocol/js/protocol-modal.js",
         "js/base/send-to-device.js",
-        "js/libs/spin.min.js",
         "js/firefox/welcome/welcome5.js"
       ],
       "name": "firefox_welcome_page5"
     },
     {
       "files": [
-        "js/libs/spin.min.js",
         "protocol/js/protocol-modal.js",
         "js/base/send-to-device.js",
         "js/firefox/welcome/welcome6.js"
@@ -939,7 +936,6 @@
     {
       "files": [
         "js/firefox/whatsnew/up-to-date.js",
-        "js/libs/spin.min.js",
         "js/base/send-to-device.js",
         "js/firefox/whatsnew/whatsnew-86.js"
       ],
@@ -1164,7 +1160,6 @@
     },
     {
       "files": [
-        "js/libs/spin.min.js",
         "js/base/send-to-device.js",
         "js/firefox/mobile/mobile.js"
       ],
@@ -1179,7 +1174,6 @@
     },
     {
       "files": [
-        "js/libs/spin.min.js",
         "js/base/send-to-device.js",
         "js/firefox/mobile/get-app.js"
       ],
@@ -1288,7 +1282,6 @@
     {
       "files": [
         "js/base/send-to-device.js",
-        "js/libs/spin.min.js",
         "js/firefox/whatsnew/up-to-date.js",
         "js/firefox/whatsnew/whatsnew.js"
       ],
@@ -1314,7 +1307,6 @@
         "js/base/mozilla-fxa-product-button.js",
         "js/base/mozilla-fxa-product-button-init.js",
         "js/base/send-to-device.js",
-        "js/libs/spin.min.js",
         "js/firefox/whatsnew/whatsnew-account.js"
       ],
       "name": "firefox_whatsnew_account"
@@ -1352,6 +1344,7 @@
     },
     {
       "files": [
+        "js/base/globals.js",
         "js/libs/classlist.js",
         "js/base/search-params.js",
         "js/base/uitour-lib.js",

@@ -6,8 +6,8 @@ $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 $break-large: 1305px;
 
-@import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/emphasis-box';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/emphasis-box';
 @import '../../protocol/components/fxa-form';
 
 

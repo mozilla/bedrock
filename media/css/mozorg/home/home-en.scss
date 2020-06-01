@@ -5,18 +5,18 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/includes/fonts/metropolis';
-@import '../../../protocol/css/components/billboard';
-@import '../../../protocol/css/components/call-out';
-@import '../../../protocol/css/components/hero';
-@import '../../../protocol/css/components/modal';
-@import '../../../protocol/css/components/newsletter-form';
-@import '../../../protocol/css/components/split';
-@import '../../../protocol/css/components/logos/wordmark';
-@import '../../../protocol/css/components/logos/wordmark-product-vpn';
-@import '../../../protocol/css/components/logos/wordmark-product-pocket';
-@import '../../../protocol/css/templates/card-layout';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/includes/fonts/metropolis';
+@import '~@mozilla-protocol/core/protocol/css/components/billboard';
+@import '~@mozilla-protocol/core/protocol/css/components/call-out';
+@import '~@mozilla-protocol/core/protocol/css/components/hero';
+@import '~@mozilla-protocol/core/protocol/css/components/modal';
+@import '~@mozilla-protocol/core/protocol/css/components/newsletter-form';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-pocket';
+@import '~@mozilla-protocol/core/protocol/css/templates/card-layout';
 
 .main-page-heading {
     @include visually-hidden;

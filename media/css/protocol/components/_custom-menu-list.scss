@@ -5,8 +5,8 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/menu-list';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/menu-list';
 
 // This custom styling should be replaced when the component is redesigned upstream in Protocol
 .mzp-c-menu-list.is-details {

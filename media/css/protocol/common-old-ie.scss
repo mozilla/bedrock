@@ -8,10 +8,9 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../protocol/css/includes/lib';
-@import '../../protocol/css/base/elements';
-@import '../../protocol/css/components/button';
-
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/base/elements';
+@import '~@mozilla-protocol/core/protocol/css/components/button';
 @import 'components/navigation-ie';
 @import 'components/sub-navigation';
 @import 'components/download-button-ie';
