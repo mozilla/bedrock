@@ -807,14 +807,18 @@ class FeaturesPrivateBrowsingView(BlogPostsView):
     template_name = 'firefox/features/private-browsing.html'
 
 
-def firefox_home(request):
-    locale = l10n_utils.get_locale(request)
+class FirefoxHomeView(L10nTemplateView):
+    ftl_files_map = {
+        'firefox/home/index-master.html': ['firefox/home']
+    }
 
-    if lang_file_is_active('firefox/home-master', locale):
-        template_name = 'firefox/home/index-master.html'
-    else:
-        template_name = 'firefox/home/index-quantum.html'
-    return l10n_utils.render(request, template_name)
+    def get_template_names(self):
+        if ftl_file_is_active('firefox/home'):
+            template_name = 'firefox/home/index-master.html'
+        else:
+            template_name = 'firefox/home/index-quantum.html'
+
+        return [template_name]
 
 
 def firefox_accounts(request):
