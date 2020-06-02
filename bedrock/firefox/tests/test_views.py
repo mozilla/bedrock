@@ -730,16 +730,20 @@ class TestFirefoxHome(TestCase):
     def test_firefox_home(self, render_mock):
         req = RequestFactory().get('/firefox/')
         req.locale = 'en-US'
-        views.firefox_home(req)
-        render_mock.assert_called_once_with(req, 'firefox/home/index-master.html')
+        view = views.FirefoxHomeView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/home/index-master.html']
 
     @patch('bedrock.firefox.views.l10n_utils.render')
-    @patch.object(views, 'lang_file_is_active', lambda *x: False)
+    @patch.object(views, 'ftl_file_is_active', lambda *x: False)
     def test_firefox_home_legacy(self, render_mock):
         req = RequestFactory().get('/firefox/')
         req.locale = 'fr'
-        views.firefox_home(req)
-        render_mock.assert_called_once_with(req, 'firefox/home/index-quantum.html')
+        view = views.FirefoxHomeView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ['firefox/home/index-quantum.html']
 
 
 class TestFirefoxWelcomePage1(TestCase):

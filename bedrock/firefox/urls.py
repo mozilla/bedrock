@@ -27,7 +27,7 @@ ios_sysreq_re = sysreq_re.replace(r'firefox', 'firefox/ios')
 
 
 urlpatterns = (
-    url(r'^firefox/$', views.firefox_home, name='firefox'),
+    url(r'^firefox/$', views.FirefoxHomeView.as_view(), name='firefox'),
     url(r'^firefox/all/$', views.firefox_all, name='firefox.all'),
     page('firefox/accounts', 'firefox/accounts.html', ftl_files=['firefox/accounts']),
     page('firefox/browsers', 'firefox/browsers/index.html'),
