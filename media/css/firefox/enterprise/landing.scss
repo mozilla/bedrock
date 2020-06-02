@@ -9,9 +9,9 @@ $image-path: '/media/protocol/img';
 @import '../../../protocol/css/components/call-out';
 @import '../../../protocol/css/components/feature-card';
 @import '../../../protocol/css/components/hero';
-@import '../../../protocol/css/components/menu-list';
 @import '../../../protocol/css/components/picto-card';
 @import '../../../protocol/css/templates/card-layout';
+@import '../../protocol/components/custom-menu-list';
 @import '../../protocol/components/sub-navigation';
 
 
@@ -295,75 +295,6 @@ html {
 
 .enterprise-download-subtitle {
     @include text-title-xxs;
-}
-
-
-// This custom styling should be replaced when the component is redesigned upstream in Protocol
-.mzp-c-menu-list.is-details {
-    display: block;
-
-    .mzp-c-menu-list-title.is-summary {
-        margin: 0;
-
-        button {
-            padding: $spacing-sm;
-            @include bidi((
-                (padding-right, ($spacing-sm + 42px), $spacing-sm),
-                (padding-left, $spacing-sm, ($spacing-sm + 42px)),
-            ));
-            border-radius: $border-radius-md;
-            border: 2px solid $color-marketing-gray-30;
-            text-decoration: none;
-            transition: border-color 100ms ease, background-color 100ms ease;
-
-            &:hover {
-                background: $color-marketing-gray-20;
-                border-color: $color-marketing-gray-40;
-
-                &:before {
-                    border-color: $color-marketing-gray-40;
-                }
-            }
-
-            &:focus,
-            &[aria-expanded='true'] {
-                background-color: transparent;
-                border-color: $color-link;
-                box-shadow: 0 0 2px 0 $color-blue-20;
-
-                &:before {
-                    border-color: $color-link;
-                }
-            }
-
-            &:before {
-                @include bidi((
-                    (right, 42px, left, auto),
-                    (border-left-width, 2px, 0),
-                    (border-right-width, 0, 2px),
-                ));
-                border-left: solid $color-marketing-gray-30;
-                content: '';
-                display: block;
-                height: 100%;
-                position: absolute;
-                top: 0;
-                transition: border-color 100ms ease;
-                width: 0;
-            }
-
-            &:after {
-                @include bidi(((right, 0, left, auto),));
-                background-position: center center;
-                height: 100%;
-                width: 42px;
-            }
-        }
-    }
-
-    .mzp-c-menu-list-list {
-        margin-top: $spacing-sm;
-    }
 }
 
 

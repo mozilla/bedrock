@@ -8,8 +8,8 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/includes/lib';
 @import '../../protocol/css/components/emphasis-box';
 @import '../../protocol/css/components/feature-card';
-@import '../../protocol/css/components/menu-list';
 @import '../../protocol/css/components/zap';
+@import '../protocol/components/custom-menu-list';
 
 
 $send-svg: '<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(3.000000, 1.000000)" stroke="#{$color-link-hover}" stroke-width="2"><path d="M2,16 L2,20 C2,21.1045695 2.8954305,22 4,22 L14,22 C15.1045695,22 16,21.1045695 16,20 L16,2 C16,0.8954305 15.1045695,-2.02906125e-16 14,0 L4,0 C2.8954305,2.02906125e-16 2,0.8954305 2,2 L2,6" stroke-linecap="round"></path><path d="M2,4 L16,4"></path><path d="M2,18 L16,18"></path><path d="M3.55271368e-15,11 L10,11" stroke-linecap="round" stroke-linejoin="round"></path><polyline stroke-linecap="round" stroke-linejoin="round" points="6 7 10 11 6 15"></polyline></g></g></svg>';
@@ -369,19 +369,37 @@ $url-download-link: svg-url($download-link);
 $url-download-link-hover: svg-url($download-link-hover);
 
 .cta-download {
-    padding-right: 24px;
+    border-radius: $border-radius-md;
+    border: 2px solid $color-marketing-gray-30;
+    display: block;
+    padding: $spacing-sm;
+    @include bidi((
+        (padding-right, ($spacing-sm + 42px), $spacing-sm),
+        (padding-left, $spacing-sm, ($spacing-sm + 42px)),
+    ));
     position: relative;
+    text-decoration: none;
+    transition: border-color 100ms ease, background-color 100ms ease;
+
+    &:hover {
+        background: $color-marketing-gray-20;
+        border-color: $color-marketing-gray-40;
+
+        &:before {
+            border-color: $color-marketing-gray-40;
+        }
+    }
 
     &:after {
         @include background-size(23px);
-        @include bidi(((right, 0, left, auto),));
+        @include bidi(((right, $spacing-md, left, auto),));
         background-image: $url-download-link;
-        background-position: center bottom;
+        background-position: center center;
         background-repeat: no-repeat;
-        bottom: 0;
+        top: 0;
         content: '';
         display: inline-block;
-        height: 23px;
+        height: 100%;
         position: absolute;
         width: 16px;
     }
