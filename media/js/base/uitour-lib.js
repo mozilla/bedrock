@@ -197,17 +197,18 @@ if (typeof window.Mozilla === 'undefined') {
     /**
     * Request the browser open the Firefox Accounts page.
     *
-    * @param {Object} extraURLCampaignParams - An object containing additional
-    * paramaters for the URL opened by the browser for reasons of promotional
+    * @param {Object} extraURLParams - An object containing additional
+    * parameters for the URL opened by the browser for reasons of promotional
     * campaign tracking. Each attribute of the object must have a name that
-    * begins with "utm_" and a value that is a string. The name must contain
-    * only alphanumeric characters, dashes or underscores (meaning
-    * that you are limited to values that don't need encoding, as any such
-    * characters in the name will be rejected.)
+    * is a string, is "flow_id", "flow_begin_time", "device_id" or begins
+    * with `utm_` and contains only only alphanumeric characters, dashes or
+    * underscores. The values may be any string and will automatically be encoded.
+    * For Flow metrics, see details at https://mozilla.github.io/ecosystem-platform/docs/fxa-engineering/fxa-metrics#content-server
+    * @since 79 renamed from `extraURLCampaignParams` to `extraURLParams
    */
-    Mozilla.UITour.showFirefoxAccounts = function(extraURLCampaignParams) {
+    Mozilla.UITour.showFirefoxAccounts = function(extraURLParams) {
         _sendEvent('showFirefoxAccounts', {
-            extraURLCampaignParams: JSON.stringify(extraURLCampaignParams)
+            extraURLParams: JSON.stringify(extraURLParams)
         });
     };
 
