@@ -10,8 +10,6 @@ from django.conf import settings
 from django.core.exceptions import MiddlewareNotUsed
 from django.utils.cache import add_never_cache_headers
 
-from django_statsd.middleware import GraphiteRequestTimingMiddleware
-
 
 class CacheMiddleware:
 
@@ -23,9 +21,9 @@ class CacheMiddleware:
         return self.process_response(request, response)
 
     def process_response(self, request, response):
-        cache = (request.method != 'POST' and
-                 response.status_code != 404 and
-                 'Cache-Control' not in response)
+        cache = (request.method != 'POST'
+                 and response.status_code != 404
+                 and 'Cache-Control' not in response)
         if cache:
             d = datetime.datetime.now() + datetime.timedelta(minutes=10)
             stamp = time.mktime(d.timetuple())
@@ -34,18 +32,6 @@ class CacheMiddleware:
             response['Expires'] = formatdate(timeval=stamp, localtime=False,
                                              usegmt=True)
         return response
-
-
-class MozorgRequestTimingMiddleware(GraphiteRequestTimingMiddleware):
-
-    def process_view(self, request, view, view_args, view_kwargs):
-        if hasattr(view, 'page_name'):
-            request._view_module = 'page'
-            request._view_name = view.page_name.replace('/', '.')
-            request._start_time = time.time()
-        else:
-            f = super(MozorgRequestTimingMiddleware, self)
-            f.process_view(request, view, view_args, view_kwargs)
 
 
 class ClacksOverheadMiddleware:

@@ -12,7 +12,6 @@ from os.path import abspath
 
 from django.utils.functional import lazy
 
-import dj_database_url
 from everett.manager import ListOf
 from pathlib import Path
 
@@ -40,16 +39,23 @@ PROD = config('PROD', parser=bool, default='false')
 DEBUG = config('DEBUG', parser=bool, default='false')
 
 DATABASES = {
-    'default': dj_database_url.parse('sqlite:///bedrock.db'),
+    'default': {
+        'ENGINE': 'django_prometheus.db.backends.sqlite3',
+        'NAME': path('bedrock.db'),
+    },
 }
 
-CACHES = config(
-    'CACHES',
-    parser=json.loads,
-    default=json.dumps(
-        {'default': {
-            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-            'LOCATION': 'translations'}}))
+CACHES = {
+    'default': {
+        'BACKEND': 'bedrock.base.cache.SimpleDictCache',
+        'LOCATION': 'default',
+        'TIMEOUT': 600,
+        'OPTIONS': {
+            'MAX_ENTRIES': 5000,
+            'CULL_FREQUENCY': 4,  # 1/4 entries deleted if max reached
+        },
+    }
+}
 
 # in case django-pylibmc is in use
 PYLIBMC_MIN_COMPRESS_LEN = 150 * 1024
@@ -300,6 +306,7 @@ SUPPORTED_NONLOCALES = [
     'country-code.json',
     'revision.txt',
     'locales',
+    'prometheus',
 ]
 
 # Pages that we don't want to be indexed by search engines.
@@ -444,10 +451,9 @@ ENABLE_VARY_NOCACHE_MIDDLEWARE = config('ENABLE_VARY_NOCACHE_MIDDLEWARE',
 BASIC_AUTH_CREDS = config('BASIC_AUTH_CREDS', default='')
 
 MIDDLEWARE = [
+    'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'allow_cidr.middleware.AllowCIDRMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'bedrock.mozorg.middleware.MozorgRequestTimingMiddleware',
-    'django_statsd.middleware.GraphiteMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'bedrock.mozorg.middleware.VaryNoCacheMiddleware',
@@ -460,6 +466,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'bedrock.mozorg.middleware.CacheMiddleware',
+    'django_prometheus.middleware.PrometheusAfterMiddleware',
 ]
 
 ENABLE_CSP_MIDDLEWARE = config('ENABLE_CSP_MIDDLEWARE', default='true', parser=bool)
@@ -482,12 +489,12 @@ INSTALLED_APPS = (
 
     # third-party apps
     'django_jinja_markdown',
-    'django_statsd',
     'pagedown',
     'localflavor',
     'django_jinja',
     'raven.contrib.django.raven_compat',
     'watchman',
+    'django_prometheus',
 
     # Local apps
     'bedrock.base',
@@ -1401,11 +1408,6 @@ def get_default_gateway_linux():
     except IOError:
         return 'localhost'
 
-
-STATSD_CLIENT = config('STATSD_CLIENT', default='django_statsd.clients.null')
-STATSD_HOST = config('STATSD_HOST', default=get_default_gateway_linux())
-STATSD_PORT = config('STATSD_PORT', parser=int, default='8125')
-STATSD_PREFIX = config('STATSD_PREFIX', default=APP_NAME)
 
 FIREFOX_MOBILE_SYSREQ_URL = 'https://support.mozilla.org/kb/will-firefox-work-my-mobile-device'
 

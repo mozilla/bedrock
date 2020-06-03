@@ -70,12 +70,6 @@ Jinja2==2.11.1 \
     --hash=sha256:b0eaf100007721b5c16c1fc1eecb87409464edc10469ddc9a22a27a99123be49
 icalendar==3.8.3 \
     --hash=sha256:41949b09031611799136e019168b84eb5ed899c8e4e692117d2d38504659fd16
-django-statsd-mozilla==0.4.0 \
-    --hash=sha256:81084f3d426f5184f0a0f1dbfe035cc26b66f041d2184559d916a228d856f0d3 \
-    --hash=sha256:0d87cb63de8107279cbb748caad9aa74c6a44e7e96ccc5dbf07b89f77285a4b8
-statsd==3.1 \
-    --hash=sha256:788ffa29dfb754900e08b90881f7ea16c3c25ca2949548eea7b43d2ca739e33f \
-    --hash=sha256:fbae5feb33ae9394c275bc834ab94684b94de03acc8f36387bd0bf0c51ef28ee
 PyYAML==5.1 \
     --hash=sha256:460a5a4248763f6f37ea225d19d5c205677d8d525f6a83357ca622ed541830c2 \
     --hash=sha256:9372b04a02080752d9e6f990179a4ab840227c6e2ce15b95e1278456664cf2ba \
@@ -155,9 +149,6 @@ https://github.com/mozilla/commonware/archive/v0.5.0.tar.gz#egg=commonware \
     --hash=sha256:edefcb5081b702bccba7c279df259ef80ad1e8f9f889d99f3fe621fb05edf756
 https://github.com/mozilla/nuggets/archive/ce506882b6943ea45ea4f98290fc4ef23e09a083.tar.gz#egg=nuggets \
     --hash=sha256:79eabfcf8d793503c11778f9f5f9b2e891a3b67a43815431c30bc52b19c3431d
-dj-database-url==0.3.0 \
-    --hash=sha256:f2e273ed34acbb560962d5cf12917936d8df02297df09bd3089b8546d4584138 \
-    --hash=sha256:ca01768fdecde134301f3170743226f60edff5c3935f12437378ebd911506353
 basket-client==1.0.0 \
     --hash=sha256:f9f9ff4870cc1d171ff9f00a8d968336d0e74178f5ac1612bc85be39a3f0cc2c \
     --hash=sha256:fee512c8deabde53aa33b08fa34a992de3085e781be192c4120adb086d0d20c1
@@ -324,3 +315,9 @@ packaging==20.4 \
 pyparsing==2.4.7 \
     --hash=sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1 \
     --hash=sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b
+django-prometheus==2.0.0 \
+    --hash=sha256:4c30aa8eb944fcf3cf10e20dfabbbe11ad5a84fce62abb3658feffa4e2ac2b97 \
+    --hash=sha256:8f25e86a3c310f40cf32cfa1b56a2b6df9cb2521e4cb794844958697d98fb3d1
+prometheus-client==0.8.0 \
+    --hash=sha256:983c7ac4b47478720db338f1491ef67a100b474e3bc7dafcbaefb7d0b8f9b01c \
+    --hash=sha256:c6e6b706833a6bd1fd51711299edee907857be10ece535126a158f911ee80915
