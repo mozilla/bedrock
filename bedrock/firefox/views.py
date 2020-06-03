@@ -817,10 +817,6 @@ def firefox_home(request):
     return l10n_utils.render(request, template_name)
 
 
-def firefox_accounts(request):
-    return l10n_utils.render(request, 'firefox/accounts-2019.html')
-
-
 def election_with_cards(request):
     locale = l10n_utils.get_locale(request)
     ctx = {
