@@ -4,7 +4,7 @@
 
 {% add_lang_files "firefox/shared" %}
 
-{% extends "firefox/base/base-pebbles.html" %}
+{% extends "firefox/base/base-protocol.html" %}
 
 {% block page_css %}
   {{ css_bundle('firefox-features-hub-common') }}
@@ -14,17 +14,8 @@
   <main role="main">
 
   {% block features_header %}
-    <header class="main-header" data-scroll-tracking="Main Header">
-      <div class="content">
-        <div class="header-content">
-          {% block features_header_content %}{% endblock %}
-          <div class="header-download">
-          {% block features_header_download %}
-            {{ download_firefox(dom_id='features-header-download', download_location='primary cta') }}
-          {% endblock %}
-          </div>{#-- /.header-download --#}
-        </div>{#-- /.header-content --#}
-      </div>{#-- /.content --#}
+    <header class="main-hero" data-scroll-tracking="Main Hero">
+      {% block features_hero_content %}{% endblock %}
     </header>
   {% endblock %}
 

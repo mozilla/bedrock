@@ -2,111 +2,110 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-@import '../../pebbles/includes/lib';
-@import '../../hubs/mixins';
-@import '../../hubs/sections';
-@import '../../hubs/header';
-@import '../../hubs/sub-nav';
-@import '../../quantum/newsletter';
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import "../../../protocol/css/includes/lib";
 
 
-.main-header {
-    background: #0060df;
-    background: url('/media/img/firefox/quantum/fox-tail-header.png') center center no-repeat,
-                linear-gradient(to bottom, #0060df 7%, #0095ff 100%);
-    color: #fff;
-    padding: 30px 0;
-    position: relative;
-    text-align: center;
-    z-index: 1;
 
-    h1 {
-        @include font-size-level3;
-        background-position: top center;
-        background-repeat: no-repeat;
-        font-weight: bold;
-    }
+// .main-header {
+//     background: #0060df;
+//     background: url('/media/img/firefox/quantum/fox-tail-header.png') center center no-repeat,
+//                 linear-gradient(to bottom, #0060df 7%, #0095ff 100%);
+//     color: #fff;
+//     padding: 30px 0;
+//     position: relative;
+//     text-align: center;
+//     z-index: 1;
 
-    a:link,
-    a:visited {
-        color: #fff;
-        text-decoration: none;
-    }
+//     h1 {
+//         @include font-size-level3;
+//         background-position: top center;
+//         background-repeat: no-repeat;
+//         font-weight: bold;
+//     }
 
-    a:hover,
-    a:active,
-    a:focus {
-        color: #fff;
-        text-decoration: underline;
-    }
+//     a:link,
+//     a:visited {
+//         color: #fff;
+//         text-decoration: none;
+//     }
 
-    p {
-        margin: 40px auto;
-        max-width: 28em;
-    }
+//     a:hover,
+//     a:active,
+//     a:focus {
+//         color: #fff;
+//         text-decoration: underline;
+//     }
 
-    .header-download {
-        display: inline-block;
-        text-align: center;
+//     p {
+//         margin: 40px auto;
+//         max-width: 28em;
+//     }
 
-        p {
-            margin: 0 0 20px;
-        }
-    }
+//     .header-download {
+//         display: inline-block;
+//         text-align: center;
 
-    @media #{$mq-tablet} {
-        padding: 60px 0 30px;
-    }
+//         p {
+//             margin: 0 0 20px;
+//         }
+//     }
 
-    @media #{$mq-desktop} {
-        padding: 60px 0;
+//     @media #{$mq-tablet} {
+//         padding: 60px 0 30px;
+//     }
 
-        h1 {
-            background-position: top left;
-        }
+//     @media #{$mq-desktop} {
+//         padding: 60px 0;
 
-        .content {
-            z-index: 2;
-        }
-    }
+//         h1 {
+//             background-position: top left;
+//         }
 
-    @media #{$mq-desktop-wide} {
-        padding: 60px 0 30px;
-    }
-}
+//         .content {
+//             z-index: 2;
+//         }
+//     }
 
-html[dir="rtl"] .main-header {
+//     @media #{$mq-desktop-wide} {
+//         padding: 60px 0 30px;
+//     }
+// }
 
-    @media #{$mq-desktop} {
+// html[dir="rtl"] .main-header {
 
-        h1 {
-            background-position: top right;
-        }
-    }
-}
+//     @media #{$mq-desktop} {
 
-/* -------------------------------------------------------------------------- */
-// Newsletter customizations
+//         h1 {
+//             background-position: top right;
+//         }
+//     }
+// }
 
-.newsletter-container {
-    background: #0060df;
-    background: url('/media/img/firefox/quantum/fox-tail-newsletter.png') bottom -200px center no-repeat,
-                linear-gradient(148deg, #c7216a 7%, #fda41e 100%);
-    margin-top: 40px;
-}
+// /* -------------------------------------------------------------------------- */
+// // Newsletter customizations
 
-#newsletter-subscribe {
-    background: transparent;
-    border-top: 0;
-    color: #fff;
+// .newsletter-container {
+//     background: #0060df;
+//     background: url('/media/img/firefox/quantum/fox-tail-newsletter.png') bottom -200px center no-repeat,
+//                 linear-gradient(148deg, #c7216a 7%, #fda41e 100%);
+//     margin-top: 40px;
+// }
 
-    h3 {
-        background-clip: none;
-        color: #fff;
-        font-weight: bold;
-    }
+// #newsletter-subscribe {
+//     background: transparent;
+//     border-top: 0;
+//     color: #fff;
 
-    .newsletter-title {
-        background-image: url('/media/img/firefox/features/quantum/icons/newsletter-white.svg');
-    }
-}
+//     h3 {
+//         background-clip: none;
+//         color: #fff;
+//         font-weight: bold;
+//     }
+
+//     .newsletter-title {
+//         background-image: url('/media/img/firefox/features/quantum/icons/newsletter-white.svg');
+//     }
+// }
