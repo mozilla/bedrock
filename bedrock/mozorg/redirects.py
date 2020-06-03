@@ -703,10 +703,10 @@ redirectpatterns = (
     redirect(r'^contact/communities(/.*)?', 'https://community.mozilla.org/groups/'),
 
     # Issue 8641
-    redirect('technology/what-is-a-browser', 'firefox.browsers.what-is-a-browser'),
-    redirect('technology/update-your-browser', 'firefox.browsers.update-browser'),
-    redirect('technology/incognito-browser', 'firefox.browsers.incognito-browser'),
-    redirect('technology/browser-history', 'firefox.browsers.browser-history'),
+    redirect(r'^technology/what-is-a-browser/?$', 'firefox.browsers.what-is-a-browser'),
+    redirect(r'^technology/update-your-browser/?$', 'firefox.browsers.update-browser'),
+    redirect(r'^technology/incognito-browser/?$', 'firefox.browsers.incognito-browser'),
+    redirect(r'^technology/browser-history/?$', 'firefox.browsers.browser-history'),
 
     # Issue 8536
     redirect(r'^etc/firefox/retention(/.*)?', 'firefox.retention.thank-you'),
@@ -719,4 +719,10 @@ redirectpatterns = (
 
     # Issue 8375
     redirect(r'^internet-health(/.*)?', 'https://foundation.mozilla.org/internet-health/'),
+
+    # Issue 8949
+    redirect(r'^donate/?$', 'https://donate.mozilla.org/', query={
+        'utm_source': 'mozilla.org',
+        'utm_content': 'shortlink',
+    }),
 )
