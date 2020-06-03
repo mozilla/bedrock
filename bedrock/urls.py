@@ -28,6 +28,7 @@ urlpatterns = (
     url(r'', include('bedrock.mozorg.urls')),
     url(r'', include('bedrock.newsletter.urls')),
     url(r'^exp/', include('bedrock.exp.urls')),
+    url(r'^prometheus/', include('django_prometheus.urls')),
 
     url(r'^healthz/$', watchman_views.ping, name="watchman.ping"),
     url(r'^readiness/$', watchman_views.status, name="watchman.status"),
@@ -35,7 +36,7 @@ urlpatterns = (
     url(r'^csp-violation-capture$', base_views.csp_violation_capture,
         name='csp-violation-capture'),
     url(r'^country-code\.json$', base_views.geolocate,
-        name='geolocate')
+        name='geolocate'),
 )
 
 if settings.DEBUG:
