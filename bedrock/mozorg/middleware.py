@@ -30,7 +30,7 @@ class CacheMiddleware:
             d = datetime.datetime.now() + datetime.timedelta(minutes=10)
             stamp = time.mktime(d.timetuple())
 
-            response['Cache-Control'] = 'max-age=600'
+            response['Cache-Control'] = 'public, max-age=600'
             response['Expires'] = formatdate(timeval=stamp, localtime=False,
                                              usegmt=True)
         return response
