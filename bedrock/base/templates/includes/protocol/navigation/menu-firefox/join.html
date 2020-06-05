@@ -12,7 +12,7 @@
           <li>
             <section class="mzp-c-menu-item mzp-has-icon">
               <a class="mzp-c-menu-item-link" href="{{ url('firefox.accounts') }}" data-link-name="Join Firefox" data-link-type="nav" data-link-position="topnav" data-link-group="join">
-                <img class="mzp-c-menu-item-icon" src="{{ static('protocol/img/logos/firefox/logo.svg') }}" class="mzp-c-menu-item-icon" alt="" width="24" height="24">
+                <img class="mzp-c-menu-item-icon" src="{{ static('protocol/img/logos/firefox/logo-xs.png') }}" class="mzp-c-menu-item-icon" alt="" width="24" height="24" loading="lazy">
                 <h4 class="mzp-c-menu-item-title">{{ ftl('navigation-join-firefox') }}</h4>
                 <p class="mzp-c-menu-item-desc">{{ ftl('navigation-access-all-of-firefox') }}</p>
               </a>
@@ -44,10 +44,9 @@
           </li>
         </ul>
       </div>
-      <!-- waiting for product page to be ready
       <div class="mzp-c-menu-panel-card">
         <section class="mzp-c-card mzp-c-card-extra-small mzp-has-aspect-16-9">
-          <a class="mzp-c-card-block-link" href="#TKTK" data-link-name="Firefox Family" data-link-type="nav" data-link-position="card" data-link-group="join">
+          <a class="mzp-c-card-block-link" href="{{ url('firefox.products.index') }}" data-link-name="Firefox Family" data-link-type="nav" data-link-position="card" data-link-group="join">
             <div class="mzp-c-card-media-wrapper">
               <img class="mzp-c-card-image" src="{{ static('img/placeholder.png') }}" data-src="{{ static('img/nav/cards/master.jpg') }}" data-srcset="{{ static('img/nav/cards/master-high-res.jpg') }}" alt="">
               <noscript>
@@ -61,7 +60,6 @@
           </a>
         </section>
       </div>
-      -->
     </div><!-- close .mzp-c-menu-panel-container -->
   </div><!-- close .mzp-c-menu-panel -->
 </li><!-- close join -->
