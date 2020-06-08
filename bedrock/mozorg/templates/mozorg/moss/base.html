@@ -16,16 +16,6 @@
 
 {% block page_css %}
   {{ css_bundle('moss') }}
-
-{% if switch('moss-covid-banner', ['en-US', 'en-GB', 'en-CA']) %}
-  {{ css_bundle('moss-covid-banner') }}
-{% endif %}
-{% endblock %}
-
-{% block page_banner %}
-  {% if switch('moss-covid-banner', ['en-US', 'en-GB', 'en-CA']) %}
-    {% include 'includes/banners/moss-covid.html' %}
-  {% endif %}
 {% endblock %}
 
 {% block site_header %}
@@ -64,8 +54,4 @@
 
 {% block js %}
   {{ js_bundle('moss') }}
-
-{% if switch('moss-covid-banner', ['en-US', 'en-GB', 'en-CA']) %}
-  {{ js_bundle('moss-covid-banner') }}
-{% endif %}
 {% endblock %}
