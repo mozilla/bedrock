@@ -123,7 +123,7 @@ urlpatterns = (
     page('firefox/privacy-tools', 'firefox/messaging-experiment/privacy_tools.html'),
     page('firefox/mobile-promo', 'firefox/messaging-experiment/control.html'),
 
-    page('firefox/switch', 'firefox/switch.html', ftl_files=['firefox/switch', 'firefox/switch-en']),
+    page('firefox/switch', 'firefox/switch.html', ftl_files=['firefox/switch']),
     page('firefox/pocket', 'firefox/pocket.html'),
 
     # Issue 6604, SEO firefox/new pages
