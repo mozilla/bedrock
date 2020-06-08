@@ -80,3 +80,14 @@
 
 {% block body_id %}firefox-features{% endblock %}
 {% block body_class %}firefox-features{% endblock %}
+
+{% call hero(
+    title='Firefox features',
+    desc='Firefox is the fast, lightweight, privacy-focused browser that works across all your devices.',
+    class='mzp-has-image mzp-t-dark',
+    include_cta=True,
+    image_url='img/firefox/new/trailhead/browser-window.svg',
+    heading_level=1
+  ) %}
+    {{ download_firefox(alt_copy='Download the latest Firefox', download_location='primary cta') }}
+  {% endcall %}
