@@ -39,3 +39,5 @@ greenlet==0.4.15 \
     --hash=sha256:d97b0661e1aead761f0ded3b769044bb00ed5d33e1ec865e891a8b128bf7c656
 newrelic==4.4.1.104 \
     --hash=sha256:eb60752a2c2a9904ea1eaf6b25dfbe8181e02fca9c11f895c13469057971b343
+maxminddb==1.5.4 \
+    --hash=sha256:f4d28823d9ca23323d113dc7af8db2087aa4f657fafc64ff8f7a8afda871425b

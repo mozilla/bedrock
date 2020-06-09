@@ -278,6 +278,12 @@ FLUENT_PATHS = [
 FLUENT_MIGRATIONS = 'lib.fluent_migrations'
 FLUENT_MIGRATIONS_PATH = ROOT_PATH / 'lib' / 'fluent_migrations'
 
+# Maxmind Database
+# country code for /country-code.json to return in dev mode
+DEV_GEO_COUNTRY_CODE = config('DEV_GEO_COUNTRY_CODE', default='US')
+MAXMIND_DB_PATH = config('MAXMIND_DB_PATH', default=path('geoip', 'GeoIP2-Country.mmdb'))
+MAXMIND_DEFAULT_COUNTRY = config('MAXMIND_DEFAULT_COUNTRY', default=DEV_GEO_COUNTRY_CODE)
+
 # Paths that don't require a locale code in the URL.
 # matches the first url component (e.g. mozilla.org/gameon/)
 SUPPORTED_NONLOCALES = [
@@ -1257,8 +1263,6 @@ SEND_TO_DEVICE_LOCALES = ['de', 'en-GB', 'en-US',
                           'es-AR', 'es-CL', 'es-ES', 'es-MX',
                           'fr', 'id', 'pl', 'pt-BR', 'ru', 'zh-TW']
 
-# country code for /country-code.json to return in dev mode
-DEV_GEO_COUNTRY_CODE = config('DEV_GEO_COUNTRY_CODE', default='US')
 SEND_TO_DEVICE_MESSAGE_SETS = {
     'default': {
         'sms_countries': config('STD_SMS_COUNTRIES_DEFAULT', default='US', parser=ListOf(str)),

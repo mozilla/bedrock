@@ -33,7 +33,7 @@ ENV PYTHONUNBUFFERED=1
 ENV PATH="/venv/bin:$PATH"
 
 COPY docker/bin/apt-install /usr/local/bin/
-RUN apt-install gettext build-essential libxml2-dev libxslt1-dev libxslt1.1
+RUN apt-install gettext build-essential libxml2-dev libxslt1-dev libxslt1.1 libmaxminddb0 libmaxminddb-dev
 RUN python -m venv /venv
 
 COPY requirements/base.txt requirements/prod.txt ./requirements/
@@ -61,7 +61,7 @@ EXPOSE 8000
 CMD ["./bin/run.sh"]
 
 COPY docker/bin/apt-install /usr/local/bin/
-RUN apt-install gettext libxslt1.1 git
+RUN apt-install gettext libxslt1.1 git libmaxminddb0
 
 # copy in Python environment
 COPY --from=python-builder /venv /venv

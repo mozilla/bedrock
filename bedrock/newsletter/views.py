@@ -28,7 +28,7 @@ from bedrock.base import waffle
 from bedrock.base.urlresolvers import reverse
 # Cannot use short "from . import utils" because we need to mock
 # utils.get_newsletters in our tests
-from bedrock.base.views import get_geo_from_request
+from bedrock.base.geo import get_country_from_request
 from bedrock.newsletter import utils
 
 from .forms import (CountrySelectForm, EmailForm, ManageSubscriptionsForm,
@@ -209,7 +209,7 @@ UUID_REGEX = re.compile(r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a
 def set_country(request, token):
     """Allow a user to set their country"""
     initial = {}
-    countrycode = get_geo_from_request(request)
+    countrycode = get_country_from_request(request)
     if countrycode:
         initial['country'] = countrycode.lower()
 

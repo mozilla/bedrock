@@ -1,4 +1,5 @@
 import json
+from unittest.mock import patch
 
 from django.test import TestCase, RequestFactory
 from django.test import override_settings
@@ -8,16 +9,17 @@ from bedrock.base.views import geolocate, GeoRedirectView
 
 class TestGeolocate(TestCase):
     def get_country(self, country):
-        rf = RequestFactory()
-        req = rf.get('/', HTTP_CF_IPCOUNTRY=country)
-        resp = geolocate(req)
-        return json.loads(resp.content)
+        with patch('bedrock.base.views.get_country_from_request') as geo_mock:
+            geo_mock.return_value = country
+            rf = RequestFactory()
+            req = rf.get('/')
+            resp = geolocate(req)
+            return json.loads(resp.content)
 
-    @override_settings(DEV=False)
-    def test_cdn_header(self):
+    def test_geo_returns(self):
         self.assertDictEqual(self.get_country('US'), {'country_code': 'US'})
         self.assertDictEqual(self.get_country('FR'), {'country_code': 'FR'})
-        self.assertDictEqual(self.get_country('XX'), {
+        self.assertDictEqual(self.get_country(None), {
             "error": {
                 "errors": [{
                     "domain": "geolocation",
@@ -28,11 +30,6 @@ class TestGeolocate(TestCase):
                 "message": "Not found",
             }
         })
-
-    @override_settings(DEV=True, DEV_GEO_COUNTRY_CODE='DE')
-    def test_dev_mode(self):
-        # should match the setting in DEV mode
-        self.assertDictEqual(self.get_country('US'), {'country_code': 'DE'})
 
 
 geo_view = GeoRedirectView.as_view(
@@ -47,9 +44,11 @@ geo_view = GeoRedirectView.as_view(
 @override_settings(DEV=False)
 class TestGeoRedirectView(TestCase):
     def get_response(self, country):
-        rf = RequestFactory()
-        req = rf.get('/', HTTP_CF_IPCOUNTRY=country)
-        return geo_view(req)
+        with patch('bedrock.base.views.get_country_from_request') as geo_mock:
+            geo_mock.return_value = country
+            rf = RequestFactory()
+            req = rf.get('/')
+            return geo_view(req)
 
     def test_special_country(self):
         resp = self.get_response('CA')
