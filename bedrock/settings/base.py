@@ -449,7 +449,6 @@ MIDDLEWARE = [
     'bedrock.mozorg.middleware.MozorgRequestTimingMiddleware',
     'django_statsd.middleware.GraphiteMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
-    'compression_middleware.middleware.CompressionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'bedrock.mozorg.middleware.VaryNoCacheMiddleware',
     'bedrock.base.middleware.BasicAuthMiddleware',
