@@ -18,20 +18,8 @@ from django.views.decorators.http import require_POST, require_safe
 from lib import l10n_utils
 from raven.contrib.django.models import client
 
+from bedrock.base.geo import get_country_from_request
 from bedrock.utils import git
-
-
-def get_geo_from_request(request):
-    """Return an uppercase 2 letter country code retrieved from request headers."""
-    if settings.DEV:
-        country_code = settings.DEV_GEO_COUNTRY_CODE
-    else:
-        country_code = request.META.get('HTTP_CF_IPCOUNTRY', 'XX')
-
-    if country_code == 'XX' or len(country_code) != 2:
-        return None
-
-    return country_code.upper()
 
 
 @method_decorator(never_cache, name='dispatch')
@@ -44,7 +32,7 @@ class GeoRedirectView(RedirectView):
     query_string = True
 
     def get_redirect_url(self, *args, **kwargs):
-        country_code = get_geo_from_request(self.request)
+        country_code = get_country_from_request(self.request)
         url = self.geo_urls.get(country_code, self.default_url)
         if re.match(r'https?://', url, re.I):
             self.url = url
@@ -65,7 +53,7 @@ def geolocate(request):
 
     https://mozilla.github.io/ichnaea/api/region.html
     """
-    country_code = get_geo_from_request(request)
+    country_code = get_country_from_request(request)
     if country_code is None:
         return JsonResponse({
             "error": {
