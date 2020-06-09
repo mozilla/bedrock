@@ -12,20 +12,10 @@
 {% set _utm_campaign = 'trailhead' %}
 
 {%- block page_title -%}
-  {# L10n: HTML page title #}
-  {%- if l10n_has_tag('accounts-metadata-072019') -%}
-    {{ _('There is a way to protect your privacy. Join Firefox.') }}
-  {%- else -%}
-    {{ _('Get a Firefox Account – Keep your data private, safe and synced') }}
-  {%- endif -%}
+  {{ ftl('firefox-accounts-there-is-a-way-to', fallback='firefox-accounts-get-a-firefox-account') }}
 {%- endblock -%}
 {%- block page_desc -%}
-  {# L10n: HTML page description #}
-  {%- if l10n_has_tag('accounts-metadata-072019') -%}
-    {{ _('Take your stand against an industry that’s selling your data to third parties. Stay smart and safe online with technology that fights for you.') }}
-  {%- else -%}
-    {{ _('Securely sync your passwords, bookmarks and tabs across all your devices. Get a Firefox Account now – One login – Power and privacy everywhere.') }}
-  {%- endif -%}
+  {{ ftl('firefox-accounts-take-your-stand-stay-smart', fallback='firefox-accounts-securely-sync-your') }}
 {%- endblock -%}
 
 {% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
@@ -46,28 +36,27 @@
 {% endblock %}
 
 {% block content %}
-{% set has_signed_in_copy = l10n_has_tag('accounts-signed-in-06132019') %}
+{% set has_signed_in_copy = ftl_has_messages('firefox-accounts-youre-signed-in-to',
+                                             'firefox-accounts-see-if-youve-been',
+                                             'firefox-accounts-sign-in-to-monitor',
+                                             'firefox-accounts-get-it-all-on-every',
+                                             'firefox-accounts-firefox-is-technology') %}
 
 <section class="c-accounts-hero">
   <div class="mzp-l-content">
     <div class="c-accounts-hero-body {% if has_signed_in_copy %}c-accounts-hero-body-default{% endif %}">
-      {# L10n: the span here is for visual formatting to display the phrase "Join Firefox" in a different color. #}
-      <h1 class="c-accounts-hero-title">{{ _('There is a way to protect your privacy. <span>Join Firefox.</span>') }}</h1>
-
-      {# L10n: This refers to the way some tech companies treat personal information as a commodity, as if their users are the product they're selling to their advertisers. #}
-      <p class="c-accounts-hero-desc">{{ _('Take your stand against an industry that’s making you the product.') }}</p>
+      <h1 class="c-accounts-hero-title">{{ ftl('firefox-accounts-there-is-a-way-to-protect') }}</h1>
+      <p class="c-accounts-hero-desc">{{ ftl('firefox-accounts-take-your-stand-against') }}</p>
     </div>
 
     {% if has_signed_in_copy %}
     <div class="c-accounts-hero-body c-accounts-hero-body-signed-in hide-from-legacy-ie">
-      {# L10n: the span here is to display the phrase "Now try Firefox Monitor." in a different color. Line breaks are for visual formatting. #}
-      <h2 class="c-accounts-hero-title">{{ _('You’re signed <br>in to Firefox. <br><span>Now try Firefox Monitor.</span>') }}</h2>
-
-      <p class="c-accounts-hero-desc">{{ _('See if you’ve been involved in an online data breach.') }}</p>
+      <h2 class="c-accounts-hero-title">{{ ftl('firefox-accounts-youre-signed-in-to') }}</h2>
+      <p class="c-accounts-hero-desc">{{ ftl('firefox-accounts-see-if-youve-been') }}</p>
 
       {{ monitor_fxa_button(
         entrypoint=_entrypoint,
-        button_text=_('Sign In to Monitor'),
+        button_text=ftl('firefox-accounts-sign-in-to-monitor'),
         optional_parameters={'utm_campaign': _utm_campaign},
         optional_attributes={'data-cta-text': 'Sign In to Monitor', 'data-cta-type': 'fxa-monitor', 'data-cta-position': 'primary'})
       }}
@@ -77,19 +66,19 @@
     <div class="c-accounts-form">
       {{ fxa_email_form(
         entrypoint=_entrypoint,
-        form_title=_('Join Firefox'),
-        intro_text=_('Enter your email address to get started.'),
+        form_title=ftl('firefox-accounts-join-firefox'),
+        intro_text=ftl('firefox-accounts-enter-your-email-address'),
         button_class='mzp-c-button mzp-t-primary mzp-t-product',
         style='trailhead',
         utm_campaign=_utm_campaign)
       }}
 
       <p class="fxa-signin">
-        {{ _('Already have an account?') }}
+        {{ ftl('firefox-accounts-already-have-an-account') }}
 
         {{ fxa_button(
           entrypoint=_entrypoint,
-          button_text=_('Sign In'),
+          button_text=ftl('firefox-accounts-sign-in'),
           action='signin',
           is_button_class=False,
           optional_parameters={'utm_campaign': _utm_campaign, 'utm_content': 'form-upper'},
@@ -102,47 +91,47 @@
 <section class="c-accounts-products">
   <div class="mzp-l-content">
     <h2 class="c-section-title">
-      {% if l10n_has_tag('accounts-family-10092019') %}
-        {{ _('Meet our family of privacy-first products.') }}
+      {% if ftl_has_messages('firefox-accounts-meet-our-family-of') %}
+        {{ ftl('firefox-accounts-meet-our-family-of') }}
       {% elif has_signed_in_copy %}
-        {{ _('Firefox is technology that fights for you.') }}
+        {{ ftl('firefox-accounts-firefox-is-technology') }}
       {% else %}
-        {{ _('Get technology that fights for you.') }}
+        {{ ftl('firefox-accounts-get-technology-that') }}
       {% endif %}
     </h2>
 
     <ul class="c-product-list">
       <li class="c-product-list-item t-product-firefox">
         <a href="{{ url('firefox.new') }}">
-          <h3 class="c-product-list-title">Firefox Browser</h3>
-          <p class="c-product-list-desc">{{ _('Travel the internet with protection, on every device.') }}</p>
+          <h3 class="c-product-list-title">{{ ftl('firefox-accounts-firefox-browser') }}</h3>
+          <p class="c-product-list-desc">{{ ftl('firefox-accounts-travel-the-internet') }}</p>
         </a>
       </li>
       <li class="c-product-list-item t-product-lockwise">
         <a href="{{ url('firefox.lockwise.lockwise') }}" data-cta-text="Firefox Lockwise" data-cta-type="fxa-lockwise">
-          <h3 class="c-product-list-title">Firefox Lockwise</h3>
-          <p class="c-product-list-desc">{{ _('Keep your passwords protected and portable.') }}</p>
+          <h3 class="c-product-list-title">{{ ftl('firefox-accounts-firefox-lockwise') }}</h3>
+          <p class="c-product-list-desc">{{ ftl('firefox-accounts-keep-your-passwords') }}</p>
         </a>
       </li>
       <li class="c-product-list-item t-product-monitor">
         <a href="https://monitor.firefox.com?utm_source={{ _utm_source }}&amp;utm_medium=referral&amp;utm_campaign={{ _utm_campaign }}&amp;utm_content=product-list-item&amp;entrypoint={{ _entrypoint }}" data-cta-text="Firefox Monitor" data-cta-type="FxA-Monitor">
-          <h3 class="c-product-list-title">Firefox Monitor</h3>
-          <p class="c-product-list-desc">{{ _('Get a lookout for data breaches.') }}</p>
+          <h3 class="c-product-list-title">{{ ftl('firefox-accounts-firefox-monitor') }}</h3>
+          <p class="c-product-list-desc">{{ ftl('firefox-accounts-get-a-lookout-for') }}</p>
         </a>
       </li>
       <li class="c-product-list-item t-product-send">
         <a href="https://send.firefox.com?utm_source={{ _utm_source }}&amp;utm_medium=referral&amp;utm_campaign={{ _utm_campaign }}&amp;utm_content=product-list-item&amp;entrypoint={{ _entrypoint }}" data-cta-text="Firefox Send" data-cta-type="FxA-Sync">
-          <h3 class="c-product-list-title">Firefox Send</h3>
-          <p class="c-product-list-desc">{{ _('Share large files without prying eyes.') }}</p>
+          <h3 class="c-product-list-title">{{ ftl('firefox-accounts-firefox-send') }}</h3>
+          <p class="c-product-list-desc">{{ ftl('firefox-accounts-share-large-files') }}</p>
         </a>
       </li>
     </ul>
 
     <p class="c-accounts-products-tagline">
       {% if has_signed_in_copy %}
-        {{ _('Get it all on every device, without feeling trapped in a single operating system.') }}
+        {{ ftl('firefox-accounts-get-it-all-on-every') }}
       {% else %}
-        {{ _('And get it all on every device, without feeling trapped in a single operating system.') }}
+        {{ ftl('firefox-accounts-and-get-it-all-on') }}
       {% endif %}
     </p>
   </div>
@@ -156,16 +145,13 @@
     </div>
 
     <div class="c-accounts-value-content">
-      <h3 class="c-accounts-value-title">{{ _('Get the respect you deserve.') }}</h3>
+      <h3 class="c-accounts-value-title">{{ ftl('firefox-accounts-get-the-respect-you') }}</h3>
 
       <p>
-      {% trans promise=url('firefox.privacy.index') %}
-        You’ll always get the truth from us. Everything we make and do honors our <a href="{{ promise }}">Personal Data Promise</a>:
-      {% endtrans %}
+      {{ ftl('firefox-accounts-youll-always-get-the', promise=url('firefox.privacy.index')) }}
       </p>
 
-      {# L10n: Line breaks for formatting. #}
-      <p><strong>{{ _('Take less.<br> Keep it safe.<br> No secrets.') }}</strong></p>
+      <p><strong>{{ ftl('firefox-accounts-take-less-keep-it') }}</strong></p>
     </div>
   </div>
 </section>
@@ -177,26 +163,25 @@
     </div>
 
     <div class="c-accounts-value-content">
-      <h3 class="c-accounts-value-title">{{ _('Get the knowledge to keep you safe.') }}</h3>
-      <p class="c-accounts-value-desc">{{ _('Learn everything you need to know (but don’t yet) about staying smart and safe online, from some of the world’s foremost experts.') }}</p>
+      <h3 class="c-accounts-value-title">{{ ftl('firefox-accounts-get-the-knowledge') }}</h3>
+      <p class="c-accounts-value-desc">{{ ftl('firefox-accounts-learn-everything-you') }}</p>
     </div>
   </div>
 </section>
 
 <section class="c-accounts-movement">
   <div class="mzp-l-content">
-    <h2 class="c-section-title">{{ _('And be part of protecting the internet for future generations.') }}</h2>
+    <h2 class="c-section-title">{{ ftl('firefox-accounts-and-be-part-of-protecting') }}</h2>
 
     <div class="c-accounts-movement-container">
       <div class="c-accounts-movement-item t-movement-build">
-        <h3 class="c-accounts-movement-title">{{ _('Help us build a better Firefox for all.') }}</h3>
-        <p class="c-accounts-movement-desc">{{ _('Get into the open source spirit by test-driving upcoming products.') }}</p>
+        <h3 class="c-accounts-movement-title">{{ ftl('firefox-accounts-help-us-build-a-better') }}</h3>
+        <p class="c-accounts-movement-desc">{{ ftl('firefox-accounts-get-into-the-open') }}</p>
       </div>
 
       <div class="c-accounts-movement-item t-movement-bigtech">
-        {# L10n: "Big Tech" refers to large technology companies that dominate the web, such as Google and Facebook. Mozilla helps to keep these companies "in check" by challenging their dominance so they can't completely take over. #}
-        <h3 class="c-accounts-movement-title">{{ _('Help us keep Big Tech in check.') }}</h3>
-        <p class="c-accounts-movement-desc">{{ _('We support communities all over the world standing up for a healthier internet. Add your voice to the fight.') }}</p>
+        <h3 class="c-accounts-movement-title">{{ ftl('firefox-accounts-help-us-keep-big-tech') }}</h3>
+        <p class="c-accounts-movement-desc">{{ ftl('firefox-accounts-we-support-communities') }}</p>
       </div>
     </div>
   </div>
