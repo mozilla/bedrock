@@ -85,9 +85,9 @@
         // add active state to button
         for (var k = 0; k < buttons.length; ++k) {
             if(buttons[k].value === browser) {
-                buttons[k].classList.add('is-active');
+                buttons[k].setAttribute('aria-pressed', true);
             } else {
-                buttons[k].classList.remove('is-active');
+                buttons[k].setAttribute('aria-pressed', false);
             }
         }
     }

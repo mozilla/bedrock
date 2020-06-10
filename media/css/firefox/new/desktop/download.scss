@@ -249,6 +249,12 @@ button.mzp-c-cta-link {
     }
 }
 
+// --------------------------------------------------------------------------
+
+.u-visually-hidden {
+    @include visually-hidden();
+}
+
 
 // --------------------------------------------------------------------------
 // section titles
@@ -919,7 +925,12 @@ button.mzp-c-cta-link {
 }
 
 .c-compare-table {
-    margin-bottom: 0;
+    caption-side: bottom;
+    background: $color-white;
+    border-radius: $border-radius-md;
+    box-shadow: $box-shadow-sm;
+    border-collapse: separate;
+    border: $spacing-xl solid $color-white;
     margin-left: auto;
     margin-right: auto;
     max-width: $content-lg;
@@ -1013,7 +1024,7 @@ button.mzp-c-cta-link {
         outline: none;
     }
 
-    &.is-active {
+    &[aria-pressed=true] {
         border-bottom-color: $color-link;
         font-weight: bold;
     }
