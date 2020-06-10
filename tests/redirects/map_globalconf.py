@@ -1371,4 +1371,7 @@ URLS = flatten((
 
     # Issue 8375
     url_test('/internet-health/{,privacy-security/}', 'https://foundation.mozilla.org/internet-health/'),
+
+    # Issue 8949
+    url_test('/donate/', 'https://donate.mozilla.org/?utm_source=mozilla.org&utm_content=shortlink'),
 ))
