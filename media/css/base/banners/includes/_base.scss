@@ -37,8 +37,14 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.c-banner-main {
+    @media #{$mq-lg} {
+        display: table;
+        width: 100%;
+    }
+}
+
 .c-banner-title {
-    @include font-mozilla;
     @include text-title-lg;
 
     @media #{$mq-lg} {

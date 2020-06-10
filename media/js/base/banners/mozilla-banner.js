@@ -57,13 +57,13 @@ if (typeof window.Mozilla === 'undefined') {
         _pageBanner.classList.add('c-banner-is-visible');
 
         // wire up close button
-        document.getElementById('page-banner-close').addEventListener('click', Banner.close, false);
+        _pageBanner.querySelector('.c-banner-close').addEventListener('click', Banner.close, false);
     };
 
     Banner.init = function(id) {
         var cookiesEnabled = typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled();
 
-        _pageBanner = document.getElementById('page-banner');
+        _pageBanner = document.getElementById(id);
 
         /**
          * If the banner does not exist on a page,

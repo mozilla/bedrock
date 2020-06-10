@@ -28,7 +28,7 @@ describe('mozilla-banner.js', function() {
         beforeEach(function() {
             var content = '<div id="outer-wrapper">' +
                             '<h1>Some title</h1>' +
-                            '<aside id="page-banner"><button type="button" id="page-banner-close">Close</button></aside>' +
+                            '<aside id="' + bannerId + '"><button type="button" class="c-banner-close">Close</button></aside>' +
                           '</div>';
             document.body.insertAdjacentHTML('beforeend', content);
         });
@@ -63,7 +63,7 @@ describe('mozilla-banner.js', function() {
         beforeEach(function() {
             var content = '<div id="outer-wrapper">' +
                             '<h1>Some title</h1>' +
-                            '<aside id="page-banner"><button type="button" id="page-banner-close">Close</button></aside>' +
+                            '<aside id="' + bannerId + '"><button type="button" class="c-banner-close">Close</button></aside>' +
                           '</div>';
             document.body.insertAdjacentHTML('beforeend', content);
         });
@@ -80,13 +80,13 @@ describe('mozilla-banner.js', function() {
             spyOn(window.Mozilla.Banner, 'setCookie');
             spyOn(window.Mozilla.Banner, 'close').and.callThrough();
             Mozilla.Banner.init(bannerId);
-            var banner = document.getElementById('page-banner');
+            var banner = document.getElementById(bannerId);
             expect(banner.classList.contains('c-banner-is-visible')).toBeTruthy();
-            var close = document.getElementById('page-banner-close');
+            var close = document.querySelector('.c-banner-close');
             close.click();
             expect(Mozilla.Banner.close).toHaveBeenCalled();
             expect(Mozilla.Banner.setCookie).toHaveBeenCalledWith(bannerId);
-            expect(document.getElementById('page-banner')).toBeNull();
+            expect(document.getElementById(bannerId)).toBeNull();
         });
     });
 

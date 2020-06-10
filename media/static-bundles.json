@@ -234,6 +234,12 @@
     },
     {
       "files": [
+        "css/base/banners/firefox-mobile.scss"
+      ],
+      "name": "firefox-mobile-banner"
+    },
+    {
+      "files": [
         "css/pebbles/base/oldIE.scss"
       ],
       "name": "oldIE-pebbles"
@@ -976,10 +982,17 @@
     },
     {
       "files": [
-        "js/base/mozilla-banner.js",
+        "js/base/banners/mozilla-banner.js",
         "js/mozorg/home/banner-init.js"
       ],
       "name": "fundraising-banner"
+    },
+    {
+      "files": [
+        "js/base/banners/mozilla-banner.js",
+        "js/base/banners/firefox-mobile-banner-init.js"
+      ],
+      "name": "firefox-mobile-banner"
     },
     {
       "files": [

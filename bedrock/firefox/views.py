@@ -687,8 +687,8 @@ class DownloadThanksView(L10nTemplateView):
 
 class NewView(L10nTemplateView):
     ftl_files_map = {
-        'firefox/new/trailhead/download.html': ['firefox/new/download'],
-        'firefox/new/trailhead/download-yandex.html': ['firefox/new/download'],
+        'firefox/new/trailhead/download.html': ['firefox/new/download', 'banners/firefox-mobile'],
+        'firefox/new/trailhead/download-yandex.html': ['firefox/new/download', 'banners/firefox-mobile'],
     }
 
     # place expected ?v= values in this list

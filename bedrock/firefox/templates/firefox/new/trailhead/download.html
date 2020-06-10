@@ -7,15 +7,23 @@
 
 {% extends "firefox/new/trailhead/base.html" %}
 
-{% block extrahead %}
-  {{ super() }}
-  {{ css_bundle('firefox_new_download') }}
-{% endblock %}
-
 {% set show_firefox_join_modal = ftl_has_messages('firefox-new-youve-already-got-the-browser',
                                                   'firefox-new-watch-for-hackers-with',
                                                   'firefox-new-just-download-the-browser',
                                                   'firefox-new-get-more-from-firefox') %}
+
+{% set show_firefox_mobile_banner = switch('firefox-mobile-banner') and
+                                    ftl_has_messages('banner-firefox-mobile-get-android-title',
+                                                     'banner-firefox-mobile-get-ios-title') %}
+
+{% block extrahead %}
+  {{ super() }}
+  {{ css_bundle('firefox_new_download') }}
+
+  {% if show_firefox_mobile_banner %}
+    {{ css_bundle('firefox-mobile-banner') }}
+  {% endif %}
+{% endblock %}
 
 {% block content %}
 <main role="main" class="main-download" {% if v %}data-variant="{{ v }}"{% endif %}>
@@ -108,11 +116,22 @@
 {% endif %}
 {% endblock %}
 
+{% block page_banner %}
+  {% if show_firefox_mobile_banner %}
+    {% include 'includes/banners/mobile/firefox-android.html' %}
+    {% include 'includes/banners/mobile/firefox-ios.html' %}
+  {% endif %}
+{% endblock %}
+
 {% block js %}
   {{ js_bundle('firefox_new_download') }}
 
   {% if show_firefox_join_modal %}
     {{ js_bundle('firefox_new_download_join_modal') }}
+  {% endif %}
+
+  {% if show_firefox_mobile_banner %}
+    {{ js_bundle('firefox-mobile-banner') }}
   {% endif %}
 
   {% if switch('stub-attribution-macos') %}
