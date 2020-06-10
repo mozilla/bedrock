@@ -106,3 +106,21 @@ class BasicAuthMiddleware:
 
 class FrameOptionsHeader(OldFrameOptionsHeader, MiddlewareMixin):
     pass
+
+
+class WeakETagsMiddleware:
+    """Turn strong response ETags into weak. This allows the CDN to compress responses."""
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        response = self.get_response(request)
+        # borrowed from django.middleware.gzip
+        # If there is a strong ETag, make it weak to fulfill the requirements
+        # of RFC 7232 section-2.1 while also allowing conditional request
+        # matches on ETags.
+        etag = response.get('ETag')
+        if etag and etag.startswith('"'):
+            response['ETag'] = 'W/' + etag
+
+        return response
