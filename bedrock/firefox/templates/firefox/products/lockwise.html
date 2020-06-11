@@ -2,8 +2,6 @@
  # License, v. 2.0. If a copy of the MPL was not distributed with this
  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
-{% add_lang_files "firefox/products/lockwise" %}
-
 {% from "macros.html" import google_play_button with context %}
 {% from "macros-protocol.html" import hero, picto_card with context %}
 
@@ -14,9 +12,9 @@
 {% block page_favicon_large %}{{ static('img/favicons/firefox/lockwise/favicon-196x196.png') }}{% endblock %}
 {% block page_ios_icon %}{{ static('img/favicons/firefox/lockwise/apple-touch-icon.png') }}{% endblock %}
 
-{% block page_title %}{{_('Firefox Lockwise — password manager —  take your passwords everywhere')}}{% endblock %}
+{% block page_title %}{{ ftl('lockwise-firefox-lockwise-password') }}{% endblock %}
 
-{% block page_desc %}{{ _('Firefox Lockwise lets you securely access the passwords you’ve saved in Firefox from anywhere — even outside of the browser. Features 256-bit encryption and Face/Touch ID.') }}{% endblock %}
+{% block page_desc %}{{ ftl('lockwise-firefox-lockwise-lets-you') }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('lockwise') }}
@@ -41,9 +39,9 @@
       {% set _img = 'img/firefox/lockwise/en.png'%}
     {% endif %}
     {% call hero(
-      title='Firefox Lockwise',
-      subheading=_('Take your passwords everywhere'),
-      desc=_('Securely access the passwords you’ve saved in Firefox from anywhere — even outside of the browser.'),
+      title=ftl('lockwise-firefox-lockwise'),
+      subheading=ftl('lockwise-take-your-passwords-everywhere'),
+      desc=ftl('lockwise-securely-access-the-passwords'),
       class='mzp-c-hero mzp-has-image lockwise-hero',
       image_url= _img,
       include_cta=True,
@@ -59,19 +57,21 @@
       </div>
       <div class="mzp-c-hero-cta add-on-download for-firefox-69-and-below hidden" >
         <div class="mzp-c-button-download-container">
-          <p>{{ _('Try Lockwise now') }}</p>
-          <a href="https://github.com/mozilla-lockwise/lockwise-addon/releases/download/2.2.5-alpha/lockwise-signed.xpi" class="mzp-c-button mzp-t-product" data-cta-type="lockwise-install" data-cta-position="primary">{{ _('Install for Firefox') }}</a>
+          <p>{{ ftl('lockwise-try-lockwise-now') }}</p>
+          <a href="https://github.com/mozilla-lockwise/lockwise-addon/releases/download/2.2.5-alpha/lockwise-signed.xpi" class="mzp-c-button mzp-t-product" data-cta-type="lockwise-install" data-cta-position="primary">
+            {{ ftl('lockwise-install-for-firefox') }}
+          </a>
         </div>
       </div>
       <div class="mzp-c-hero-cta add-on-download for-firefox-70-and-above hidden" >
         <div class="mzp-c-button-download-container">
-          <p >{{ _('Try Lockwise now') }}</p>
-          <button class="mzp-c-button mzp-t-product" id="lockwise-button" data-cta-type="lockwise-open-in-fx" data-cta-position="primary">{{ _('Open in Firefox') }} </button>
+          <p>{{ ftl('lockwise-try-lockwise-now') }}</p>
+          <button class="mzp-c-button mzp-t-product" id="lockwise-button" data-cta-type="lockwise-open-in-fx" data-cta-position="primary">{{ ftl('lockwise-open-in-firefox') }} </button>
         </div>
       </div>
       <div class="mzp-c-hero-cta add-on-download for-non-firefox-users hidden" >
         <div class="mzp-c-button-download-container">
-          <p >{{ _('Only in the Firefox Browser') }}</p>
+          <p>{{ ftl('lockwise-only-in-the-firefox-browser') }}</p>
           {{ download_firefox(alt_copy=ftl('download-button-download-now'), download_location='primary cta') }}
         </div>
       </div>
@@ -80,15 +80,21 @@
 
     <div class="mzp-t-dark">
       <section class="mzp-l-card-third mzp-l-content">
-        {{ picto_card(title=_('256-bit encryption protects you while syncing'), class='encryption') }}
-        {{ picto_card(title=_('Get to your passwords securely with Face or Touch ID'), class='touch') }}
-        {{ picto_card(title=_('Your privacy comes first.') ~ ' ' ~ _('We keep your data safe, never sold.'), class='privacy') }}
+        {{ picto_card(title=ftl('lockwise-256-bit-encryption-protects'), class='encryption') }}
+        {{ picto_card(title=ftl('lockwise-get-to-your-passwords-securely'), class='touch') }}
+        {{ picto_card(title=ftl('lockwise-your-privacy-comes-first') ~ ' ' ~ ftl('lockwise-we-keep-your-data-safe'), class='privacy') }}
       </section>
       <section class="mzp-l-content">
         <section class="links">
-          <a href='https://support.mozilla.org/products/firefox-lockwise?utm_source=www.mozilla.org-lockwise&amp;utm_campaign=Lockwise&amp;utm_medium=referral' >{{ _('Support') }}</a>
-          <a href='https://support.mozilla.org/kb/firefox-lockwise-and-privacy'>{{ _('Your Privacy') }}</a>
-          <a href='https://github.com/mozilla-lockwise'>{{ _('GitHub') }}</a>
+          <a href="https://support.mozilla.org/products/firefox-lockwise?utm_source=www.mozilla.org-lockwise&amp;utm_campaign=Lockwise&amp;utm_medium=referral">
+            {{ ftl('lockwise-support') }}
+          </a>
+          <a href="https://support.mozilla.org/kb/firefox-lockwise-and-privacy">
+            {{ ftl('lockwise-your-privacy') }}
+          </a>
+          <a href="https://github.com/mozilla-lockwise">
+            {{ ftl('lockwise-github') }}
+          </a>
         </section>
       </section>
     </div>

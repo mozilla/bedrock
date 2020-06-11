@@ -327,7 +327,7 @@
   {
     "@type": "Product",
     "@id": "{{ structured_data_id('firefoxlockwise') }}",
-    "url": "{% filter absolute_url %}{{ url('firefox.lockwise.lockwise') }}{% endfilter %}",
+    "url": "{% filter absolute_url %}{{ url('firefox.products.lockwise') }}{% endfilter %}",
     "logo": "{% filter absolute_url %}{{ static('protocol/img/logos/firefox/lockwise/logo-lg-high-res.png') }}{% endfilter %}",
     "image": [
       "{% filter absolute_url %}{{ static('img/structured-data/lockwise.png') }}{% endfilter %}",
@@ -348,7 +348,7 @@
     "offers":
     {
       "@type": "Offer",
-      "url": "{% filter absolute_url %}{{ url('firefox.lockwise.lockwise') }}{% endfilter %}",
+      "url": "{% filter absolute_url %}{{ url('firefox.products.lockwise') }}{% endfilter %}",
       "priceCurrency": "USD",
       "price": "0",
       "availability": "https://schema.org/InStock"
