@@ -100,3 +100,11 @@
   {{ js_bundle('firefox_whatsnew_77') }}
 {% endif %}
 {% endblock %}
+
+{% block experiments %}
+  {% if switch('experiment-whatsnew-77', ['en-US']) %}
+    {{ js_bundle('firefox_whatsnew_77_experiment') }}
+  {% endif %}
+{% endblock %}
+
+

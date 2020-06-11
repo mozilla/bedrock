@@ -560,6 +560,7 @@ class WhatsnewView(L10nTemplateView):
 
     def get_template_names(self):
         locale = l10n_utils.get_locale(self.request)
+        variation = self.request.GET.get('v', None)
 
         version = self.kwargs.get('version') or ''
         oldversion = self.request.GET.get('oldversion', '')
@@ -595,6 +596,8 @@ class WhatsnewView(L10nTemplateView):
             # If we run into bandwidth trouble we can turn the video off and zh-CN falls back to the 76 page.
             if locale == 'zh-CN' and not switch('firefox-whatsnew77-video-zhCN'):
                 template = 'firefox/whatsnew/whatsnew-fx76.html'
+            elif variation == '2' and locale == 'en-US':
+                template = 'firefox/whatsnew/whatsnew-fx77-b.html'
             else:
                 template = 'firefox/whatsnew/whatsnew-fx77.html'
         elif version.startswith('76.') and lang_file_is_active('firefox/whatsnew_76', locale):
