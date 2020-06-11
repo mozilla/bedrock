@@ -153,7 +153,7 @@ urlpatterns = (
     page('firefox/browsers/windows-64-bit', 'firefox/browsers/windows-64-bit.html'),
 
     # Lockwise
-    page('firefox/lockwise', 'firefox/lockwise/lockwise.html'),
+    page('firefox/lockwise', 'firefox/products/lockwise.html', ftl_files=['firefox/products/lockwise']),
 
     # Issue 7765, 7709
     page('firefox/privacy', 'firefox/privacy/index.html', ftl_files=['firefox/privacy-hub']),
