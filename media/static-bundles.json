@@ -883,6 +883,13 @@
     },
     {
       "files": [
+        "js/libs/mozilla-traffic-cop.js",
+        "js/firefox/whatsnew/whatsnew-77-exp.js"
+      ],
+      "name": "firefox_whatsnew_77_experiment"
+    },
+    {
+      "files": [
         "protocol/js/protocol-newsletter.js"
       ],
       "name": "legal"
