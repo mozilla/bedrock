@@ -9,14 +9,13 @@ Description, good enough that reading the card 1 month from now, you still know 
 
 ---
 
-#### :yellow_heart: Success Criteria :yellow_heart:
-- [ ] This is an example of a success criteria. Use a checklist!
-- [ ] This is an example of a success criteria.
+#### Success Criteria
+- [ ] An element contributing to the definition of done for the card
+- [ ] Tasks should be represented here as something like "the new design is done and approved, live on the page"
 
-#### :heavy_exclamation_mark: Risks :heavy_exclamation_mark:
-- [ ] This is an example of a risk. Use a checklist!
-- [ ] This is an example of a risk.
-
-#### Tasks
-- [ ] This is an example of a task. Use a checklist!
-- [ ] This is an example of a task.
+#### Approvals
+- [ ] The Accountable
+- [ ] Brand - design?
+- [ ] Brand - copy?
+- [ ] Team Lead
+- [ ] Others?
