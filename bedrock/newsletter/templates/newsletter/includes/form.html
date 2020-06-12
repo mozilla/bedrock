@@ -91,7 +91,14 @@
         </p>
       {% else %}
         <p class="form-details">
-          <small>{{ ftl('newsletter-form-we-will-only-send') }}</small>
+          <small>
+            {# Issue 7460 `mozilla-and-you` is the ID for the Firefox newsletter, because history... #}
+            {% if id == 'mozilla-and-you' %}
+              {{ ftl('newsletter-form-we-will-only-send-firefox', fallback='newsletter-form-we-will-only-send') }}
+            {% else %}
+              {{ ftl('newsletter-form-we-will-only-send') }}
+            {% endif %}
+          </small>
         </p>
       {% endif %}
 
