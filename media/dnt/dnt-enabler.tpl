@@ -8,7 +8,7 @@ msFilterList
 # Check for updates every month (maximum value allowed by the spec).
 : Expires=30
 #
-# Whitelist hosting domain so when querying for updates, the request is not
+# Allowed list hosting domain so when querying for updates, the request is not
 # blocked.
 #
 +d dnt.mozilla.org

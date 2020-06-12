@@ -279,7 +279,7 @@ describe('fxa-utm-referral.js', function() {
             expect(expectedOnline).toEqual('https://accounts.firefox.com.cn/?service=sync&action=email&context=fx_desktop_v3&entrypoint=mozilla.org-accounts_page&utm_content=accounts-page-top-cta&utm_source=accounts-page&utm_medium=referral&utm_campaign=fxa-benefits-page');
         });
 
-        it('does not make changes if the link is not in the FxA referral whitelist', function () {
+        it('does not make changes if the link is not in the FxA referral allowedList', function () {
             var data = {
                 'utm_source': 'source-two',
                 'utm_content': 'content-two',

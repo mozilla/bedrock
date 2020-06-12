@@ -12,7 +12,7 @@ if (typeof window.Mozilla === 'undefined') {
 
     var UtmUrl = {};
 
-    var whitelist = [
+    var allowedList = [
         'https://accounts.firefox.com/',
         'https://monitor.firefox.com/',
         'https://getpocket.com/',
@@ -113,8 +113,8 @@ if (typeof window.Mozilla === 'undefined') {
 
             if (oldAccountsLink) {
                 var hostName = UtmUrl.getHostName(oldAccountsLink);
-                // check if link is in the FxA referral whitelist.
-                if (hostName && whitelist.indexOf(hostName) !== -1) {
+                // check if link is in the FxA referral allowedList list.
+                if (hostName && allowedList.indexOf(hostName) !== -1) {
                     // get the China repack link, so that can be updated too
                     var oldMozillaOnlineLink = ctaLinks[i].getAttribute('data-mozillaonline-link');
 

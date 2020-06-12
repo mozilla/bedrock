@@ -274,8 +274,8 @@ class TestStubAttributionCode(TestCase):
         """Should ignore non-ascii domain names.
 
         We were getting exceptions when the view was trying to base64 encode
-        non-ascii domain names in the referrer. The whitelist for bouncer doesn't
-        include any such domains anyway, so we should just ignore them.
+        non-ascii domain names in the referrer. The allowed list for bouncer
+        doesn't include any such domains anyway, so we should just ignore them.
         """
         params = {'referrer': 'http://youtubê.com/sorry/'}
         final_params = {

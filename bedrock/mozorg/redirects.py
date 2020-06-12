@@ -274,7 +274,7 @@ redirectpatterns = (
 
     # bug 818321
     redirect(r'^projects/security/tld-idn-policy-list\.html$',
-             '/about/governance/policies/security-group/tld-idn/'),
+             'https://wiki.mozilla.org/IDN_Display_Algorithm'),
     redirect(r'^projects/security/membership-policy\.html$',
              '/about/governance/policies/security-group/membership/'),
     redirect(r'^projects/security/secgrouplist\.html$',
@@ -725,4 +725,7 @@ redirectpatterns = (
         'utm_source': 'mozilla.org',
         'utm_content': 'shortlink',
     }),
+
+    redirect(r'^about/governance/policies/security/plugin-whitelist-policy/?$', 'https://wiki.mozilla.org/Plugins/Firefox_Whitelist'),
+    redirect(r'^about/governance/policies/security-group/tld-idn/?$', 'https://wiki.mozilla.org/IDN_Display_Algorithm'),
 )
