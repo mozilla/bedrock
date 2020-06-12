@@ -12,7 +12,7 @@ if (typeof window.Mozilla === 'undefined') {
 
     var FxaProductButton = {};
 
-    var whitelist = [
+    var allowedList = [
         'https://accounts.firefox.com/',
         'https://monitor.firefox.com/',
         'https://getpocket.com/',
@@ -100,8 +100,8 @@ if (typeof window.Mozilla === 'undefined') {
         // applies url to all buttons and adds cta position
         for (var i = 0; i < buttons.length; i++) {
             var hostName = FxaProductButton.getHostName(buttons[i].href);
-            // check if link is in the FxA referral whitelist.
-            if (hostName && whitelist.indexOf(hostName) !== -1) {
+            // check if link is in the FxA referral allowedListDomains.
+            if (hostName && allowedList.indexOf(hostName) !== -1) {
                 buttons[i].href += flowParams;
             }
         }

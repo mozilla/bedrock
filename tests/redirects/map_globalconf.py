@@ -594,7 +594,7 @@ URLS = flatten((
 
     # bug 818321
     url_test('/projects/security/tld-idn-policy-list.html',
-             '/about/governance/policies/security-group/tld-idn/'),
+             'https://wiki.mozilla.org/IDN_Display_Algorithm'),
     url_test('/projects/security/membership-policy.html',
              '/about/governance/policies/security-group/membership/'),
     url_test('/projects/security/secgrouplist.html',
@@ -1374,4 +1374,7 @@ URLS = flatten((
 
     # Issue 8949
     url_test('/donate/', 'https://donate.mozilla.org/?utm_source=mozilla.org&utm_content=shortlink'),
+
+    url_test('/about/governance/policies/security/plugin-whitelist-policy/', 'https://wiki.mozilla.org/Plugins/Firefox_Whitelist'),
+    url_test('/about/governance/policies/security-group/tld-idn/', 'https://wiki.mozilla.org/IDN_Display_Algorithm'),
 ))

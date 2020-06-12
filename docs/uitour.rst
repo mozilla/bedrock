@@ -46,7 +46,7 @@ Note that ``browser.uitour.testingOrigins`` can be a comma separated list of dom
     Prior to Firefox 36, the testing preference was called ``browser.uitour.whitelist.add.testing``
     (Bug 1081772). This old preference does not accept a comma separated list of domains, and you
     must also exclude the domain protocol e.g. ``https://``. A browser restart is also required
-    after adding a whitelisted domain.
+    after adding an allowed domain.
 
 JavaScript API
 --------------
