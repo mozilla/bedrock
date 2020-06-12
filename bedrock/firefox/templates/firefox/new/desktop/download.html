@@ -25,7 +25,13 @@
 
         <p>No shady privacy policies or back doors for advertisers. Just a lightning fast browser that doesn’t sell you out.</p>
 
-        {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
+        <div class="c-intro-download">
+          {{ download_firefox(dom_id='download-primary', download_location='primary cta') }}
+
+          <a class="c-intro-download-alt" href="{{ url('firefox.all') }}">Download options and other languages</a>
+
+          <a class="c-intro-download-alt" href="https://support.mozilla.org/en-US/products/firefox{{ referrals }}&utm_content=browser-support" rel="external noopener" data-cta-type="link" data-cta-text="Firefox browser support">Firefox browser support</a>
+        </div>
       </div>
       <div class="c-block-media l-v-center">
         <div class="c-block-img">
@@ -419,7 +425,7 @@
   </section>
 
   <section class="c-support">
-    Questions? <a href="https://support.mozilla.org/en-US/products/firefox{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Mozilla support">Mozilla support</a> has you covered.
+    Questions? <a href="https://support.mozilla.org/en-US/products/firefox{{ referrals }}&utm_content=mozilla-support" rel="external noopener" data-cta-type="link" data-cta-text="Mozilla support">Mozilla support</a> has you covered.
   </section>
 
   <aside id="mobile-banner" class="show-android show-ios" data-nosnippet>

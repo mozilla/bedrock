@@ -95,6 +95,10 @@ main {
         margin-bottom: 0;
     }
 
+    .t-intro & {
+        text-align: left;
+    }
+
     .t-features &,
     .t-discover & {
         display: block;
@@ -681,6 +685,27 @@ button.mzp-c-cta-link {
     }
 }
 
+.c-intro-download-alt {
+    & {
+        @include text-body-xs;
+        color: $color-dark-gray-30;
+        display: block;
+        margin-top: $spacing-md;
+    }
+
+    &:link,
+    &:visited {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+        text-decoration: underline;
+    }
+}
+
 // --------------------------------------
 // noodles
 
@@ -741,6 +766,10 @@ button.mzp-c-cta-link {
     background-color: #FF7139;
 }
 
+.t-outline-yellow {
+    border-color: #ff9640;
+}
+
 // position & animation
 
 .noodle-svg {
@@ -750,7 +779,7 @@ button.mzp-c-cta-link {
 }
 
 .noodle-circle {
-    animation: round 7s infinite linear;
+    animation: round 10s infinite linear;
     height: 20px;
     left: 296px;
     top: 40px;
