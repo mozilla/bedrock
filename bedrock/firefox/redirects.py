@@ -471,7 +471,6 @@ redirectpatterns = (
     redirect(r'^products/firefox/buttons\.html$', '/contribute/friends/'),
     redirect(r'^products/firefox/download', 'firefox.new'),
     redirect(r'^products/firefox/get$', 'firefox.new'),
-    redirect(r'^products/firefox/$', 'firefox'),
     redirect(r'^products/firefox/live-bookmarks', '/firefox/features/'),
     redirect(r'^products/firefox/mirrors\.html$', 'http://www-archive.mozilla.org/mirrors.html'),
     redirect(r'^products/firefox/releases/$', '/firefox/releases/'),
@@ -500,7 +499,9 @@ redirectpatterns = (
 
     # bug 857246 redirect /products/firefox/start/  to start.mozilla.org
     redirect(r'^products/firefox/start/?$', 'http://start.mozilla.org'),
-    redirect(r'^products/firefox', 'firefox'),
+
+    # issue 9008
+    redirect(r'^products/firefox(/.*)?$', 'firefox.products.index'),
 
     # bug 1260423
     redirect(r'^firefox/choose/?$', 'firefox.new'),

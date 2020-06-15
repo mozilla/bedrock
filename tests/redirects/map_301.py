@@ -1718,7 +1718,7 @@ URLS = flatten((
     url_test('/products/firefox/download', '/firefox/new/'),
     url_test('/products/firefox/download.html', '/firefox/new/'),
     url_test('/products/firefox/get', '/firefox/new/'),
-    url_test('/products/firefox/', '/firefox/'),
+    url_test('/products/firefox/', '/firefox/products/'),
     url_test('/products/firefox/live-bookmarks', '/firefox/features/'),
     url_test('/products/firefox/live-bookmarks.html', '/firefox/features/'),
     url_test('/products/firefox/mirrors.html', 'http://www-archive.mozilla.org/mirrors.html'),

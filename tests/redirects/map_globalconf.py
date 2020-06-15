@@ -1049,7 +1049,7 @@ URLS = flatten((
 
     # Bug 654614 /blocklist -> addons.m.o/blocked
     url_test('/blocklist/', 'https://addons.mozilla.org/blocked/'),
-    url_test('/products/firefox/{,stuff/}', '/firefox/'),
+    url_test('/products/firefox/{,stuff/}', '/firefox/products/'),
 
     # Bug 784411
     url_test('/about/mission/', '/mission/'),
