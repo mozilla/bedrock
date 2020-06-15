@@ -24,14 +24,14 @@ Contributing
 
 Patches are welcome! Feel free to fork and contribute to [this project][gh-bedrock] on
 GitHub. If you find a problem and wish to report it, please [file
-a bug][bugzilla].
+a bug][github-issue].
 
-Looking for a good first bug to work on? Take a look at the [wiki page][wiki] for a
-list of mentored bugs.
+Looking for a good first bug to work on? Take a look at our [contributing doc][contributing]
+to get started.
 
 [gh-bedrock]: https://github.com/mozilla/bedrock
-[bugzilla]: https://bugzilla.mozilla.org/enter_bug.cgi?product=www.mozilla.org&component=Bedrock
-[wiki]: https://wiki.mozilla.org/Webdev/GetInvolved/mozilla.org#Mentored_Bugs
+[github-issue]: https://github.com/mozilla/bedrock/issues/new?template=bug_report.md
+[contributing]: https://github.com/mozilla/bedrock/blob/master/.github/CONTRIBUTING.md
 
 Code of Conduct
 ---------------
