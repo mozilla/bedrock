@@ -11,6 +11,7 @@
 -brand-name-apple = Apple
 -brand-name-creative-commons = Creative Commons
 -brand-name-facebook = Facebook
+-brand-name-github = GitHub
 -brand-name-google = Google
 -brand-name-microsoft = Microsoft
 -brand-name-mozilla = Mozilla
@@ -124,5 +125,6 @@
 
 ## Google products
 
+-brand-name-chromium = Chromium
 -brand-name-google-play = Google Play
 -brand-name-youtube = YouTube
