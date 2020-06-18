@@ -41,8 +41,7 @@
   {% endcall %}
 
   <aside id="modal" class="mzp-u-modal-content mzp-l-content">
-    <h2 class="modal-logo">Firefox</h2>
-    <h3>{{ _('Get Firefox on your Phone') }}</h3>
+    <h3 class="modal-title">{{ _('Get Firefox on your Phone') }}</h3>
 
     {% if show_send_to_device %}
       {{ send_to_device(include_title=False, message_set='fx-whatsnew', class='vertical') }}
