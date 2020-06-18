@@ -418,6 +418,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-78.scss"
+      ],
+      "name": "firefox_whatsnew_78"
+    },
+    {
+      "files": [
         "css/firefox/privacy/common.scss"
       ],
       "name": "firefox-privacy-common"
