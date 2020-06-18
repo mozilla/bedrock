@@ -1,0 +1,66 @@
+{# This Source Code Form is subject to the terms of the Mozilla Public
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+
+{% from "macros.html" import send_to_device with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_title %}{{_('Download Firefox for Android and iOS')}}{% endblock %}
+
+{#- This will appear as <meta property="og:description"> which can be used for social share -#}
+{% block page_og_desc %}
+  {{_('Firefox is non-profit, non-corporate, non-compromised. Choosing Firefox isn’t just choosing a browser. It’s a vote for personal freedom.')}}
+{% endblock %}
+
+{% block body_id %}firefox-whatsnew{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew') }}
+{% endblock %}
+
+{% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
+
+{% set send_to_device_message_set = 'fx-whatsnew-78a' %}
+
+{% block content %}
+<header class="c-page-header">
+  <div class="mzp-l-content c-page-header-inner">
+    {{ high_res_img('protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', {'alt': 'Firefox', 'width': '216', 'height': '40', 'class': 'c-page-header-logo-fx'}) }}
+    <div class="mzp-c-notification-bar mzp-t-success up-to-date">
+      <p>{{ _('Congrats! You’re using the latest version of Firefox.') }}</p>
+    </div>
+  </div>
+</header>
+
+<main class="content-wrapper mzp-t-firefox">
+  <header class="c-page-header">
+    <div class="mzp-l-content c-page-header-inner">
+      {{ high_res_img('protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', {'alt': 'Firefox', 'width': '216', 'height': '40', 'class': 'c-page-header-logo-fx'}) }}
+      <div class="mzp-c-notification-bar mzp-t-success up-to-date">
+        <p>{{ _('Congrats! You’re using the latest version of Firefox.') }}</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="main-content show-send-to-device">
+    <div class="mzp-l-content t-content-lg">
+      <div>
+        <h1 class="main-title">{{ _('Want privacy on every device?') }}</h1>
+        <p class="main-tagline">{{ _('You got it. Get Firefox for mobile.') }}</p>
+      </div>
+      <div id="send-to-device-wrapper" class="primary-cta">
+        {{ send_to_device(include_title=False, message_set=send_to_device_message_set, spinner_color='#fff;') }}
+      </div>
+    </div>
+  </section>]
+
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew') }}
+{% endblock %}
