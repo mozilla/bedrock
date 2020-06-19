@@ -121,6 +121,9 @@ def migrate(ctx):
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                         "Lockwise": TERM_REFERENCE("brand-name-lockwise"),
                         "Microsoft": TERM_REFERENCE("brand-name-microsoft"),
+                        "Google": TERM_REFERENCE("brand-name-google"),
+                        "Chrome": TERM_REFERENCE("brand-name-chrome"),
+                        "Edge": TERM_REFERENCE("brand-name-edge"),
                     }
                 )
             ),
@@ -196,6 +199,7 @@ def migrate(ctx):
                     {
                         "Microsoft": TERM_REFERENCE("brand-name-microsoft"),
                         "Internet Explorer": TERM_REFERENCE("brand-name-ie"),
+                        "Chromium": TERM_REFERENCE("brand-name-chromium"),
                         "Edge": TERM_REFERENCE("brand-name-edge"),
                     }
                 )

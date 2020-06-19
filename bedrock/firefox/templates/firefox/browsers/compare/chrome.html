@@ -78,7 +78,7 @@
           </tbody>
         </table>
 
-      <p>{{ ftl('compare-chrome-at-firefox-we-have-a-huge', attrs='href="https://monitor.firefox.com?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=compare-chrome" rel="external noopener" data-cta-text="Firefox Monitor" data-cta-type="link"'|safe) }}</p>
+      <p>{{ ftl('compare-chrome-at-firefox-we-have-a-huge', fallback='compare-chrome-at-firefox-we-have-a-huge-fallback', attrs='href="https://monitor.firefox.com?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=compare-chrome" rel="external noopener" data-cta-text="Firefox Monitor" data-cta-type="link"'|safe) }}</p>
 
       <p>{{ ftl('compare-chrome-weve-also-recently-restated', attrs='href="%s" data-cta-type="link" data-cta-name="Privacy Notice"'|safe|format(url('privacy.notices.firefox'))) }}</p>
 

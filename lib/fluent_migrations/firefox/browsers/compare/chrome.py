@@ -42,7 +42,6 @@ compare-chrome-we-compare-mozilla-firefox = {COPY(chrome, "We compare Mozilla Fi
                 )
             ),
         ] + transforms_from("""
-compare-chrome-google-chrome-is-by-all-accounts = {COPY(chrome, "Google Chrome is by all accounts a secure browser, with features like Google Safe Browsing, which helps protect users by displaying an impossible-to-miss warning when they attempt to navigate to dangerous sites or download dangerous files.",)}
 compare-chrome-ultimately-its-up-to-you = {COPY(chrome, "Ultimately, it’s up to you to decide whether or not or where to draw the line with sharing things like your search history and shopping history. But if you’re anything like most people, you’ve probably searched for some things on the internet that you would rather keep private.",)}
 """, chrome=chrome)
         )
@@ -50,6 +49,17 @@ compare-chrome-ultimately-its-up-to-you = {COPY(chrome, "Ultimately, it’s up t
         "firefox/browsers/compare/chrome.ftl",
         "firefox/browsers/compare/chrome.ftl",
         [
+            FTL.Message(
+                id=FTL.Identifier("compare-chrome-google-chrome-is-by-all-accounts"),
+                value=REPLACE(
+                    "firefox/compare/chrome.lang",
+                    "Google Chrome is by all accounts a secure browser, with features like Google Safe Browsing, which helps protect users by displaying an impossible-to-miss warning when they attempt to navigate to dangerous sites or download dangerous files.",
+                    {
+                        "Google": TERM_REFERENCE("brand-name-google"),
+                        "Chrome": TERM_REFERENCE("brand-name-chrome"),
+                    }
+                )
+            ),
             FTL.Message(
                 id=FTL.Identifier("compare-chrome-firefox-vs-chrome-which-is"),
                 value=REPLACE(
@@ -164,6 +174,7 @@ compare-chrome-ultimately-its-up-to-you = {COPY(chrome, "Ultimately, it’s up t
                     "firefox/compare/chrome.lang",
                      "Although not as extensive as Chrome’s add-on library, Firefox, as open-source software with a huge number of active contributors, also features an incredible number of useful extensions.",
                     {
+                        "Chrome": TERM_REFERENCE("brand-name-chrome"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
                     }
                 )

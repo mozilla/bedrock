@@ -12,9 +12,7 @@ def migrate(ctx):
     ctx.add_transforms(
         "firefox/browsers/compare/opera.ftl",
         "firefox/browsers/compare/opera.ftl",
-        transforms_from("""
-compare-opera-operas-privacy-policy-lacks = {COPY(opera, "Opera’s privacy policy lacks some specificity in its explanation of which types of information it collects and how, in certain sections, it says they collect names of account holders, IP addresses and search terms. What seems confusing and troubling is the section about International data transfers; when, how often and why they need to transfer your data internationally is not explained.",)}
-""", opera=opera) + [
+        [
             FTL.Message(
                 id=FTL.Identifier("compare-opera-firefox-vs-opera-which-is"),
                 value=REPLACE(
@@ -63,6 +61,16 @@ compare-opera-operas-privacy-policy-lacks = {COPY(opera, "Opera’s privacy poli
                 )
             ),
             FTL.Message(
+                id=FTL.Identifier("compare-opera-operas-privacy-policy-lacks-fallback"),
+                value=REPLACE(
+                    opera,
+                    "Opera’s privacy policy lacks some specificity in its explanation of which types of information it collects and how, in certain sections, it says they collect names of account holders, IP addresses and search terms. What seems confusing and troubling is the section about International data transfers; when, how often and why they need to transfer your data internationally is not explained.",
+                    {
+                        "Opera": TERM_REFERENCE("brand-name-opera"),
+                    }
+                )
+            ),
+            FTL.Message(
                 id=FTL.Identifier("compare-opera-firefoxs-privacy-policy-is"),
                 value=REPLACE(
                     opera,
@@ -70,6 +78,7 @@ compare-opera-operas-privacy-policy-lacks = {COPY(opera, "Opera’s privacy poli
                     {
                         "%%": "%",
                         "%(attrs)s": VARIABLE_REFERENCE("attrs"),
+                        "Firefox": TERM_REFERENCE("brand-name-firefox"),
                     }
                 )
             ),
@@ -104,6 +113,7 @@ compare-opera-operas-privacy-policy-lacks = {COPY(opera, "Opera’s privacy poli
                         "%%": "%",
                         "%(attrs)s": VARIABLE_REFERENCE("attrs"),
                         "Firefox": TERM_REFERENCE("brand-name-firefox"),
+                        "Opera": TERM_REFERENCE("brand-name-opera"),
                     }
                 )
             ),

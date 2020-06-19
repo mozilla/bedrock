@@ -74,7 +74,7 @@
           </tbody>
         </table>
 
-      <p>{{ ftl('compare-opera-operas-privacy-policy-lacks') }}</p>
+      <p>{{ ftl('compare-opera-operas-privacy-policy-lacks', fallback='compare-opera-operas-privacy-policy-lacks-fallback') }}</p>
 
       <p>{{ ftl('compare-opera-firefoxs-privacy-policy-is', attrs = 'href="%s" data-cta-type="link" data-cta-name="privacy policy"'|safe|format(url('privacy.notices.firefox'))) }}</p>
 

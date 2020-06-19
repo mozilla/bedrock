@@ -135,7 +135,7 @@ def migrate(ctx):
                 )
             ),
             FTL.Message(
-                id=FTL.Identifier("compare-edge-firefox-is-a-fast-and-open"),
+                id=FTL.Identifier("compare-edge-firefox-is-a-fast-and-open-fallback"),
                 value=REPLACE(
                     edge,
                     "Firefox is a fast and open source browser, which means users can customize their browsing experience in every way possible. Firefox also allows the casual user several different ways to customize the UI with applying different themes and toolbar configurations. Since our browser has always been open source we have a large following of devoted developers who have created an extensive library of add-ons and browser extensions.",
@@ -179,7 +179,7 @@ def migrate(ctx):
                 )
             ),
             FTL.Message(
-                id=FTL.Identifier("compare-edge-firefox-and-edge-both-offer"),
+                id=FTL.Identifier("compare-edge-firefox-and-edge-both-offer-fallback"),
                 value=REPLACE(
                     edge,
                     "Firefox and Edge both offer excellent reading modes. With Firefox you just tap on the small icon in the search bar and the browser strips down all unnecessary elements and presents you a clean looking article. In Edge you just tap on the small book icon and browser to get a clean easy-to-read UI.",

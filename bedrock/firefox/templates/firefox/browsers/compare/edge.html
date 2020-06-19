@@ -157,7 +157,7 @@
           </tbody>
         </table>
 
-      <p>{{ ftl('compare-edge-firefox-is-a-fast-and-open') }}</p>
+      <p>{{ ftl('compare-edge-firefox-is-a-fast-and-open', fallback='compare-edge-firefox-is-a-fast-and-open-fallback') }}</p>
 
       <p>{{ ftl('compare-edge-since-edge-has-moved-to-the') }}</p>
 
@@ -165,7 +165,7 @@
 
       <p>{{ ftl('compare-edge-firefox-features-a-scrolling', attrs='href="%s" data-cta-type="link" data-cta-name="Pocket feature"'|safe|format(url('firefox.pocket'))) }}</p>
 
-      <p>{{ ftl('compare-edge-firefox-and-edge-both-offer') }}</p>
+      <p>{{ ftl('compare-edge-firefox-and-edge-both-offer', fallback='compare-edge-firefox-and-edge-both-offer-fallback') }}</p>
 
       <p>{{ ftl('compare-edge-firefox-also-includes-lots', attrs='href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop" rel="external noopener" data-cta-text="Enhanced Tracking Protection" data-cta-type="link"'|safe) }}</p>
 
