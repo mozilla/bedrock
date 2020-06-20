@@ -7,7 +7,7 @@ Welcome to Bedrock's documentation!
 =======================================
 
 **bedrock** is the project behind www.mozilla.org. It is as
-shiny, awesome, and open-sourcy as always. Perhaps even a little more.
+shiny, awesome, and open-source as always. Perhaps even a little more.
 
 bedrock is a web application based on `Django
 <http://www.djangoproject.com/>`_, a `Python <https://www.python.org>`_ web application framework.
