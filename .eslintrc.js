@@ -117,7 +117,7 @@ module.exports = {
         }
     ],
     globals: {
-        'Mozilla': true,
-        'site': true
+        'Mozilla': 'writable',
+        'site': 'writable'
     }
 };
