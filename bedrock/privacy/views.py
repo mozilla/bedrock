@@ -103,6 +103,10 @@ firefox_monitor_notices = PrivacyDocView.as_view(
     template_name='privacy/notices/firefox-monitor.html',
     legal_doc_name='firefox_monitor_terms_privacy')
 
+firefox_relay_notices = PrivacyDocView.as_view(
+    template_name='privacy/notices/firefox-relay.html',
+    legal_doc_name='firefox_relay_privacy_notice')
+
 
 @cache_page(60 * 60)  # cache for 1 hour
 def privacy(request):
