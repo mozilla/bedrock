@@ -1202,9 +1202,7 @@
         "js/base/send-to-device.js",
         "js/libs/spin.min.js",
         "js/firefox/whatsnew/up-to-date.js",
-        "js/firefox/whatsnew/whatsnew.js",
-        "js/libs/mozilla-traffic-cop.js",
-        "js/firefox/whatsnew/whatsnew-exp-78.js"
+        "js/firefox/whatsnew/whatsnew.js"
       ],
       "name": "firefox_whatsnew"
     },
