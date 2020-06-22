@@ -10,7 +10,7 @@ if (typeof window.Mozilla === 'undefined') {
 (function($, Mozilla) {
     'use strict';
 
-    var sendTo = document.getElementById('send-to-device');
+    var sendTo = document.getElementById('show-send-to-device');
 
     if (sendTo) {
         var form = new Mozilla.SendToDevice();

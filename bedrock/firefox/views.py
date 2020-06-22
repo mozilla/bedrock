@@ -591,12 +591,30 @@ class WhatsnewView(L10nTemplateView):
         elif locale == 'id':
             template = 'firefox/whatsnew/index-lite.id.html'
         elif version.startswith('78.'):
-            if locale in ['en-US', 'en-CA', 'en-GB']:
+            if variation == 2 and locale in ['en-US', 'en-CA', 'en-GB']:
                 template = 'firefox/whatsnew/whatsnew-fx78-a-en.html'
-            elif locale == 'de':
+            elif variation == 3 and locale in ['en-US', 'en-CA', 'en-GB']:
+                template = 'firefox/whatsnew/whatsnew-fx78-b-en.html'
+            elif variation == 4 and locale in ['en-US', 'en-CA', 'en-GB']:
+                template = 'firefox/whatsnew/whatsnew-fx78-c-en.html'
+            elif variation == 5 and locale in ['en-US', 'en-CA', 'en-GB']:
+                template = 'firefox/whatsnew/whatsnew-fx78-d-en.html'
+            elif variation == 2 and locale == 'de':
                 template = 'firefox/whatsnew/whatsnew-fx78-a-de.html'
-            elif locale == 'fr':
+            elif variation == 3 and locale == 'de':
+                template = 'firefox/whatsnew/whatsnew-fx78-b-de.html'
+            elif variation == 4 and locale == 'de':
+                template = 'firefox/whatsnew/whatsnew-fx78-c-de.html'
+            elif variation == 5 and locale == 'de':
+                template = 'firefox/whatsnew/whatsnew-fx78-d-de.html'
+            elif variation == 2 and locale == 'fr':
                 template = 'firefox/whatsnew/whatsnew-fx78-a-fr.html'
+            elif variation == 3 and locale == 'fr':
+                template = 'firefox/whatsnew/whatsnew-fx78-b-fr.html'
+            elif variation == 4 and locale == 'fr':
+                template = 'firefox/whatsnew/whatsnew-fx78-c-fr.html'
+            elif variation == 5 and locale == 'fr':
+                template = 'firefox/whatsnew/whatsnew-fx78-d-fr.html'
             else:
                 template = 'firefox/whatsnew/index.html'
         elif version.startswith('77.') and lang_file_is_active('firefox/whatsnew_77', locale):

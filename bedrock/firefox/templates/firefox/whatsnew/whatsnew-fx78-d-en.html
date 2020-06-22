@@ -6,7 +6,7 @@
 
 {% extends "firefox/whatsnew/base.html" %}
 
-{% block page_title %}{{_('Download Firefox for Android and iOS')}}{% endblock %}
+{% block page_title %}Download Firefox for Android and iOS{% endblock %}
 
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
 {% block page_og_desc %}
@@ -29,7 +29,7 @@
 {% block content %}
 
 <main class="content-wrapper mzp-t-firefox mzp-t-dark">
-  <header class="c-page-header">
+  <header class="c-page-header main-header">
     <div class="mzp-l-content c-page-header-inner">
       {{ high_res_img('protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', {'alt': 'Firefox', 'width': '216', 'height': '40', 'class': 'c-page-header-logo-fx'}) }}
       <div class="mzp-c-notification-bar mzp-t-success up-to-date">
@@ -45,7 +45,7 @@
         <h1 class="c-emphasis-box-title">Why wait? Get the super fast Firefox for mobile.</h1>
         <p class="main-tagline">Send a download link to your phone.</p>
       </div>
-      <div class="primary-cta">
+      <div id="send-to-device-wrapper" class="primary-cta">
         {% if show_send_to_device %}
           {{ send_to_device(include_title=False, message_set='fx-whatsnew', class='vertical') }}
         {% else %}

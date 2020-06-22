@@ -20,6 +20,7 @@ $image-path: '/media/protocol/img';
 
     .main-tagline {
         padding-top: $spacing-md;
+        padding-bottom: $spacing-lg;
 
     }
 
@@ -62,13 +63,11 @@ $image-path: '/media/protocol/img';
 }
 
 .send-to-device-form {
-    label {
-        color: $color-white;
-    }
 
     .inline-field {
         margin-bottom: $spacing-md;
     }
+
 }
 
 //* -------------------------------------------------------------------------- */
