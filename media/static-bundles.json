@@ -418,6 +418,7 @@
     },
     {
       "files": [
+        "css/protocol/components/send-to-device.scss",
         "css/firefox/whatsnew/whatsnew-78.scss"
       ],
       "name": "firefox_whatsnew_78"

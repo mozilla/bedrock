@@ -10,7 +10,7 @@
 
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
 {% block page_og_desc %}
-  What’s new with Firefox
+  Ce qui est nouveau chez Firefox
 {% endblock %}
 
 {% block body_id %}firefox-whatsnew{% endblock %}
@@ -33,7 +33,7 @@
     <div class="mzp-l-content c-page-header-inner">
       {{ high_res_img('protocol/img/logos/firefox/browser/logo-word-hor-white-sm.png', {'alt': 'Firefox', 'width': '216', 'height': '40', 'class': 'c-page-header-logo-fx'}) }}
       <div class="mzp-c-notification-bar mzp-t-success up-to-date">
-        <p>Congrats! You’re using the latest version of Firefox.</p>
+        <p>Félicitations ! Vous utilisez la version la plus récente de Firefox.</p>
       </div>
     </div>
   </header>
@@ -42,19 +42,19 @@
     <div class="mzp-l-content t-content-lg mzp-c-emphasis-box">
       <div>
         {{ high_res_img('protocol/img/logos/firefox/browser/logo-sm.png', {'alt': 'Firefox', 'width': '50', 'height': '50', 'class': 'c-emphasis-box-logo'}) }}
-        <h1 class="c-emphasis-box-title">Loving Firefox? Get it on your phone.</h1>
-        <p class="main-tagline">Send a download link to your phone.</p>
+        <h1 class="c-emphasis-box-title">Pourquoi attendre ? Incroyablement rapide, installez Firefox sur votre téléphone.</h1>
+        <p class="main-tagline">Envoyez un lien de téléchargement sur votre téléphone.</p>
       </div>
       <div class="primary-cta">
         {% if show_send_to_device %}
           {{ send_to_device(include_title=False, message_set='fx-whatsnew', class='vertical') }}
         {% else %}
-          <p>Scan the QR code to get started</p>
+          <p>Scanner le code QR pour commencer</p>
           <div class="qr-code-wrapper">
             <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
                 id="firefox-qr"
                 data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
-                alt="QR code to scan for Firefox">
+                alt="Code QR à scanner pour Firefox">
           </div>
         {% endif %}
       </div>
