@@ -1,15 +1,13 @@
 {# This Source Code Form is subject to the terms of the Mozilla Public
-  # License, v. 2.0. If a copy of the MPL was not distributed with this
-  # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
+ # License, v. 2.0. If a copy of the MPL was not distributed with this
+ # file, You can obtain one at http://mozilla.org/MPL/2.0/. -#}
 
 {% from "macros-protocol.html" import hero with context %}
 
-{% add_lang_files "firefox/welcome/page1" %}
-
 {% extends "firefox/welcome/base.html" %}
 
-{% block page_title %}{{ _('More than a browser - Firefox Monitor is your lookout for hackers') }}{% endblock %}
-{% block page_desc %}{{ _('Take the next step to protect your privacy online with the Firefox family of products.') }}{% endblock %}
+{% block page_title %}{{ ftl('welcome-page1-more-than-a-browser-firefox') }}{% endblock %}
+{% block page_desc %}{{ ftl('welcome-page1-take-the-next-step-to-protect') }}{% endblock %}
 
 {% block page_image %}{{ static('img/firefox/template/page-image-master.jpg') }}{% endblock %}
 
@@ -20,18 +18,17 @@
 {% set _cta_type = 'lifecycle-monitor' %}
 
 {% if l10n_has_tag('monitor_title_30102019') %}
-  {# L10n: "Firefox Monitor" is a product name and shouldn't be translated. #}
-  {% set hero_title = _('Stay ahead of hackers. Check for data breaches with Firefox Monitor.') %}
+  {% set hero_title = ftl('welcome-page1-stay-ahead-of-hackers-check') %}
   {% set _utm_content = 'stay-ahead-hackers' %}
 {% else %}
-  {% set hero_title = _('You’re on track to stay protected') %}
+  {% set hero_title = ftl('welcome-page1-youre-on-track-to-stay-protected') %}
   {% set _utm_content = 'on-track-protected' %}
 {% endif %}
 
 {% block content_intro %}
   {% call hero(
     title=hero_title,
-    desc=_('You’ve got the web browser that protects your privacy — now it’s time to get a lookout for hackers.'),
+    desc=ftl('welcome-page1-youve-got-the-web-browser'),
     class='mzp-t-firefox mzp-t-dark',
     include_cta=True,
     heading_level=1
@@ -40,7 +37,7 @@
   <p class="primary-cta">
     {{ monitor_fxa_button(
       entrypoint=_entrypoint,
-      button_text=_('Check Your Breach Report'),
+      button_text=ftl('welcome-page1-check-your-breach-report'),
       optional_parameters={'utm_campaign': _utm_campaign, 'utm_content': _utm_content},
       optional_attributes={'data-cta-text': 'Check Your Breach Report', 'data-cta-type': _cta_type, 'data-cta-position': 'primary'})
     }}
@@ -51,11 +48,10 @@
 
 {% block content_primary %}
 <div class="body-primary">
-  <h2 class="body-primary-title"><img src="{{ static('protocol/img/logos/firefox/monitor/logo-word-hor.svg') }}" width="256" height="" alt="Firefox Monitor"></h2>
+  <h2 class="body-primary-title"><img src="{{ static('protocol/img/logos/firefox/monitor/logo-word-hor.svg') }}" width="256" height="" alt="{{ ftl('welcome-page1-firefox-monitor') }}"></h2>
 
   <div class="body-primary-body">
-    {# L10n: "Firefox Monitor" is a product name and shouldn't be translated. #}
-    <p>{{ _('Firefox Monitor shows you if your information has been leaked in a known data breach, and alerts you in case it happens in the future.') }}</p>
+    <p>{{ ftl('welcome-page1-firefox-monitor-shows-you') }}</p>
   </div>
 </div>
 {% endblock %}
@@ -67,12 +63,10 @@
       <img src="{{ static('img/icons/private-browsing.svg') }}" alt="">
     </div>
 
-    <h3 class="c-picto-block-title">{{ _('Stay ahead of hackers') }}</h3>
+    <h3 class="c-picto-block-title">{{ ftl('welcome-page1-stay-ahead-of-hackers') }}</h3>
     <div class="c-picto-block-body">
       <p>
-      {% trans security_tips=breach_tips_url|safe %}
-        Find ways to protect your info with <a href="{{ security_tips }}">Monitor Security Tips</a>.
-      {% endtrans %}
+      {{ ftl('welcome-page1-find-ways-to-protect-your', security_tips=breach_tips_url|safe) }}
       </p>
     </div>
   </div>
@@ -83,13 +77,10 @@
       <img src="{{ static('img/icons/warning.svg') }}" alt="">
     </div>
 
-    <h3 class="c-picto-block-title">{{ _('Stay in the know') }}</h3>
+    <h3 class="c-picto-block-title">{{ ftl('welcome-page1-stay-in-the-know') }}</h3>
     <div class="c-picto-block-body">
       <p>
-      {# L10n: "Evite" is a proper name and shouldn't be translated. #}
-      {% trans evite_breach='https://blog.mozilla.org/firefox/evite-data-breach/?utm_source=mozilla.org-firefox-welcome-1&utm_medium=referral&utm_campaign=welcome-1-monitor&utm_content=stay-ahead-hackers&entrypoint=mozilla.org-firefox-welcome-1' %}
-        Were you one of 100,985,047 invited to the <a href="{{ evite_breach }}">Evite data breach “party”</a>?
-      {% endtrans %}
+      {{ ftl('welcome-page1-were-you-one-of-many', evite_breach='https://blog.mozilla.org/firefox/evite-data-breach/?utm_source=mozilla.org-firefox-welcome-1&utm_medium=referral&utm_campaign=welcome-1-monitor&utm_content=stay-ahead-hackers&entrypoint=mozilla.org-firefox-welcome-1') }}
       </p>
     </div>
   </div>
@@ -101,7 +92,7 @@
   <p class="secondary-cta">
     {{ monitor_fxa_button(
       entrypoint=_entrypoint,
-      button_text=_('Check Your Breach Report'),
+      button_text=ftl('welcome-page1-check-your-breach-report'),
       optional_parameters={'utm_campaign': _utm_campaign, 'utm_content': _utm_content},
       optional_attributes={'data-cta-text': 'Check Your Breach Report', 'data-cta-type': _cta_type, 'data-cta-position': 'secondary'})
     }}
@@ -109,7 +100,11 @@
 {% endblock %}
 
 {% block content_utility %}
-  <p><strong><a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source=mozilla.org-firefox-welcome-1&utm_medium=referral&utm_campaign=welcome-1-monitor&utm_content=stay-ahead-hackers&entrypoint=mozilla.org-firefox-welcome-1">{{ _('Why am I seeing this?') }}</a></strong></p>
+  <p>
+    <strong><a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source=mozilla.org-firefox-welcome-1&utm_medium=referral&utm_campaign=welcome-1-monitor&utm_content=stay-ahead-hackers&entrypoint=mozilla.org-firefox-welcome-1">
+      {{ ftl('welcome-page1-why-am-i-seeing-this') }}
+    </a></strong>
+  </p>
   {% if switch('lifecycle_page1_survey', ['en-US']) %}
   <p><a class="c-survey-link"href="https://qsurvey.mozilla.com/s3/Firefox-Page" rel="external noopener">Share feedback about this page</a></p>
   {% endif %}

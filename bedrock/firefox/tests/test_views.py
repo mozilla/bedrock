@@ -753,4 +753,5 @@ class TestFirefoxWelcomePage1(TestCase):
         req = RequestFactory().get('/firefox/welcome/1/')
         req.locale = 'en-US'
         views.firefox_welcome_page1(req)
-        render_mock.assert_called_once_with(req, 'firefox/welcome/page1.html', ANY)
+        render_mock.assert_called_once_with(req, 'firefox/welcome/page1.html', ANY,
+                                            ftl_files='firefox/welcome/page1')
