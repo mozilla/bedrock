@@ -9,92 +9,6 @@ $image-path: '/media/protocol/img';
 @import '../../protocol/css/components/modal';
 
 //* -------------------------------------------------------------------------- */
-// WNP77 Experiment
-@import '../../protocol/css/components/notification-bar';
-
-.wnp77 {
-    .mzp-c-hero {
-        position: relative;
-
-        .mzp-c-hero-body {
-            margin-top: $layout-sm;
-        }
-    }
-
-    .mzp-c-notification-bar {
-        left: 0;
-        margin-left: auto;
-        margin-right: auto;
-        position: absolute;
-        right: 0;
-        z-index: 2;
-    }
-
-    .body-secondary {
-        padding: $layout-sm 0;
-
-        h2 {
-            @include text-display-sm;
-            text-align: center;
-            margin-bottom: $layout-lg;
-        }
-
-        .c-picto-block {
-            overflow: auto;
-
-            .c-picto-block-image {
-                float: left;
-                margin-right: $layout-sm;
-            }
-        }
-    }
-
-    // Video
-    .video-container {
-        max-width: 500px;
-        margin: 0 auto $spacing-lg;
-    }
-
-    .video-content {
-        @include aspect-ratio(16, 9);
-
-        iframe {
-            height: 100%;
-            width: 100%;
-        }
-
-        .video-play {
-            display: block;
-
-            &:after {
-                background: url('/media/img/icons/video-play.svg') top left no-repeat;
-                content: '';
-                height: 100px;
-                left: 50%;
-                margin: -50px 0 0 -50px;
-                opacity: 0.7;
-                position: absolute;
-                top: 50%;
-                transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
-                width: 100px;
-                z-index: 2;
-            }
-
-            &:hover:after,
-            &:focus:after {
-                opacity: 1;
-                transform: scale(1.1);
-            }
-        }
-    }
-
-    .moz-video-button {
-        visibility: hidden;
-    }
-
-}
-
-//* -------------------------------------------------------------------------- */
 // Page header
 
 .c-page-header {
@@ -173,8 +87,7 @@ $image-path: '/media/protocol/img';
     .welcome-page5 &,
     .welcome-page6 &,
     .welcome-page7 &,
-    .welcome-page8 &,
-    .wnp77 & {
+    .welcome-page8 & {
         @include text-title-md;
     }
 
