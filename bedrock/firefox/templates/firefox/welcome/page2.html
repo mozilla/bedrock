@@ -4,12 +4,9 @@
 
 {% from "macros-protocol.html" import hero with context %}
 
-{% add_lang_files "firefox/welcome/page2" %}
-
 {% extends "firefox/welcome/base.html" %}
 
-{# L10n: "Pocket" is a product name and shouldn't be translated. #}
-{% block page_title %}{{ _('Pocket - Save news, videos, stories and more') }}{% endblock %}
+{% block page_title %}{{ ftl('welcome-page2-pocket-save-news-videos-stories') }}{% endblock %}
 
 {% block page_image %}{{ static('img/logos/pocket/og.png') }}{% endblock %}
 
@@ -21,25 +18,25 @@
 
 {% block content_intro %}
   {% call hero(
-    title=_('Your time online is worth protecting'),
-    desc=_('Discover and save stories in Pocket — and come back to them when you’re free.'),
+    title=ftl('welcome-page2-your-time-online-is-worth'),
+    desc=ftl('welcome-page2-discover-and-save-stories'),
     class='mzp-t-firefox mzp-t-dark',
     include_cta=True,
     heading_level=1
   ) %}
 
     <p class="primary-cta">
-      {{ pocket_fxa_button(entrypoint=_entrypoint, button_text=_('Activate Pocket'), optional_parameters={'s': _source, 'utm_campaign': _utm_campaign}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}
+      {{ pocket_fxa_button(entrypoint=_entrypoint, button_text=ftl('welcome-page2-activate-pocket'), optional_parameters={'s': _source, 'utm_campaign': _utm_campaign}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'primary'}) }}
     </p>
   {% endcall %}
 {% endblock %}
 
 {% block content_primary %}
 <div class="body-primary">
-  <h2 class="body-primary-title"><img src="{{ static('protocol/img/logos/pocket/logo-word-horz.svg') }}" width="186" height="" alt="Pocket"></h2>
+  <h2 class="body-primary-title"><img src="{{ static('protocol/img/logos/pocket/logo-word-horz.svg') }}" width="186" height="" alt="{{ ftl('welcome-page2-pocket') }}"></h2>
 
   <div class="body-primary-body">
-    <p>{{ _('Pocket is built right into Firefox, so you can easily save stories as you find them, then read them later on any device.') }}</p>
+    <p>{{ ftl('welcome-page2-pocket-is-built-right-into') }}</p>
 
     <img class="primary-image" src="{{ static('img/firefox/welcome/pocket-hero.svg') }}" width="700" height="" alt="">
   </div>
@@ -53,9 +50,9 @@
       <img src="{{ static('img/icons/pocket-outline-green.svg') }}" alt="">
     </div>
 
-    <h3 class="c-picto-block-title">{{ _('Save content from everywhere') }}</h3>
+    <h3 class="c-picto-block-title">{{ ftl('welcome-page2-save-content-from-everywhere') }}</h3>
     <div class="c-picto-block-body">
-      <p>{{ _('Grab articles, videos, and links from any website by clicking the Pocket icon in your browser toolbar.') }}</p>
+      <p>{{ ftl('welcome-page2-grab-articles-videos-and-links') }}</p>
     </div>
   </div>
 
@@ -64,9 +61,9 @@
       <img src="{{ static('img/icons/navigate-green.svg') }}" alt="">
     </div>
 
-    <h3 class="c-picto-block-title">{{ _('Discover new stories') }}</h3>
+    <h3 class="c-picto-block-title">{{ ftl('welcome-page2-discover-new-stories') }}</h3>
     <div class="c-picto-block-body">
-      <p>{{ _('Pocket shows recommended stories every time you open a new tab. Save the ones that interest you.') }}</p>
+      <p>{{ ftl('welcome-page2-pocket-shows-recommended-stories') }}</p>
     </div>
   </div>
 </div>
@@ -74,12 +71,16 @@
 
 {% block secondary_cta %}
   <p class="secondary-cta">
-    {{ pocket_fxa_button(entrypoint=_entrypoint, button_text=_('Activate Pocket'), optional_parameters={'s': _source, 'utm_campaign': _utm_campaign}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'secondary'}) }}
+    {{ pocket_fxa_button(entrypoint=_entrypoint, button_text=ftl('welcome-page2-activate-pocket'), optional_parameters={'s': _source, 'utm_campaign': _utm_campaign}, optional_attributes={'data-cta-text': 'Activate Pocket', 'data-cta-type': 'activate pocket', 'data-cta-position': 'secondary'}) }}
   </p>
 {% endblock %}
 
 {% block content_utility %}
-  <p><strong><a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">{{ _('Why am I seeing this?') }}</a></strong></p>
+  <p>
+    <strong><a href="https://support.mozilla.org/kb/firefox-browser-welcome-pages/?utm_source={{ _entrypoint }}&utm_medium=referral&utm_campaign={{ _utm_campaign }}&entrypoint={{ _entrypoint }}">
+      {{ ftl('welcome-page2-why-am-i-seeing-this') }}
+    </a></strong>
+  </p>
 {% endblock %}
 
 {% block js %}
