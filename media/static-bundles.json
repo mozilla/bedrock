@@ -1038,13 +1038,6 @@
     },
     {
       "files": [
-        "js/libs/mozilla-traffic-cop.js",
-        "js/firefox/mobile/experiment-mobile.js"
-      ],
-      "name": "firefox-mobile-s2d-experiment"
-    },
-    {
-      "files": [
         "protocol/js/protocol-modal.js",
         "js/libs/spin.min.js",
         "js/base/send-to-device.js",
