@@ -2016,10 +2016,10 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
-eslint-plugin-no-jquery@^2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-no-jquery/-/eslint-plugin-no-jquery-2.4.1.tgz#0c0df5e584ac826cddadbde3576918f850530393"
-  integrity sha512-pHyBFyDgUj/cQD1QNh9SiLaicFJyqeFGDEGRLUn3HezETvsCSi1oeRqjotkL6xAyvwyTiih5d3dhfon0DUvZJA==
+eslint-plugin-no-jquery@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-no-jquery/-/eslint-plugin-no-jquery-2.5.0.tgz#6c12e3aae172bfd3363b7ac8c3f3e944704867f4"
+  integrity sha512-RrQ380mUJJKdjgpQ/tZAJ3B3W1n3LbVmULooS2Pv5pUDcc5uVHVSJMTdUlsbvQyfo6hWP2LJ4FbOoDzENWcF7A==
 
 eslint-scope@^4.0.3:
   version "4.0.3"
