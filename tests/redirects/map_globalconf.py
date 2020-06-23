@@ -1349,14 +1349,6 @@ URLS = flatten((
     # Issue 8536
     url_test('/etc/firefox/retention/{thank-you-a/,thank-you-b/,thank-you-referral/}', '/firefox/retention/thank-you/'),
 
-    # Issue 8765
-    url_test('/firefox/browsers/compare/', '/firefox/', status_code=requests.codes.found),
-    url_test('/firefox/browsers/compare/chrome/', '/firefox/', status_code=requests.codes.found),
-    url_test('/firefox/browsers/compare/edge/', '/firefox/', status_code=requests.codes.found),
-    url_test('/firefox/browsers/compare/ie/', '/firefox/', status_code=requests.codes.found),
-    url_test('/firefox/browsers/compare/opera/', '/firefox/', status_code=requests.codes.found),
-    url_test('/firefox/browsers/compare/safari/', '/firefox/', status_code=requests.codes.found),
-
     # Issue 8374
     url_test('/plugincheck/', 'https://support.mozilla.org/kb/npapi-plugins/'),
 

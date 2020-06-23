@@ -342,7 +342,11 @@ $image-path: "/media/protocol/img";
     @include text-body-sm;
     border-top: 1px solid $color-marketing-gray-20;
     font-style: italic;
-    margin-bottom: $layout-2xl;
+    margin-bottom: $layout-xl;
     margin-top: $layout-lg;
     padding-top: $spacing-lg;
+
+    p, br {
+        margin-bottom: $spacing-sm;
+    }
 }
