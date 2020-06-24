@@ -61,6 +61,9 @@ $image-path: '/media/protocol/img';
 }
 
 .send-to-device-form {
+    .form-input-label {
+        color: $color-black;
+    }
 
     .inline-field {
         margin-bottom: $spacing-md;
