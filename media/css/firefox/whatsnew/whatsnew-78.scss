@@ -17,7 +17,7 @@ $image-path: '/media/protocol/img';
 .main-content {
     color: $color-white;
     text-align: center;
-
+    padding: 10vh 0;
     .main-tagline {
         padding-top: $spacing-md;
         padding-bottom: $spacing-lg;
@@ -39,8 +39,6 @@ $image-path: '/media/protocol/img';
     }
 
     @media #{$mq-md} {
-        padding: 10vh 0;
-
         header {
             background-size: 260px 48px;
             padding-top: $layout-lg;
