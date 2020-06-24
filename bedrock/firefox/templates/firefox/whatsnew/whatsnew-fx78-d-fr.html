@@ -46,17 +46,7 @@
         <p class="main-tagline">Envoyez un lien de téléchargement sur votre téléphone.</p>
       </div>
       <div id="send-to-device-wrapper" class="primary-cta">
-        {% if show_send_to_device %}
-          {{ send_to_device(include_title=False, message_set='fx-whatsnew', class='vertical') }}
-        {% else %}
-          <p>Scanner le code QR pour commencer</p>
-          <div class="qr-code-wrapper">
-            <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
-                id="firefox-qr"
-                data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
-                alt="Code QR à scanner pour Firefox">
-          </div>
-        {% endif %}
+        {{ send_to_device(include_title=False, message_set='fx-whatsnew', class='vertical') }}
       </div>
     </div>
   </section>

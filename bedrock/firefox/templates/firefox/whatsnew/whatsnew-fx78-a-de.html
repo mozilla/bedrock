@@ -23,6 +23,7 @@
 {% endblock %}
 
 {% set show_send_to_device = LANG in settings.SEND_TO_DEVICE_LOCALES %}
+{% set page_heading = page_heading|default('Firefox gefällt dir? Hol’s dir auf dein Smartphone.') -%}
 
 
 
@@ -42,21 +43,11 @@
     <div class="mzp-l-content t-content-lg mzp-c-emphasis-box">
       <div>
         {{ high_res_img('protocol/img/logos/firefox/browser/logo-sm.png', {'alt': 'Firefox', 'width': '50', 'height': '50', 'class': 'c-emphasis-box-logo'}) }}
-        <h1 class="c-emphasis-box-title">Firefox gefällt dir? Hol’s dir auf dein Smartphone.</h1>
+        <h1 class="c-emphasis-box-title">{{page_heading}}</h1>
         <p class="main-tagline">Sende einen Download-Link direkt an dein Smartphone</p>
       </div>
       <div id="send-to-device-wrapper" class="primary-cta">
-        {% if show_send_to_device %}
-          {{ send_to_device(include_title=False, message_set='fx-whatsnew', class='vertical') }}
-        {% else %}
-          <p>Scanne den QR-Code und leg los</p>
-          <div class="qr-code-wrapper">
-            <img src="{{ static('img/firefox/mobile/protocol/qr-firefox.png') }}"
-                id="firefox-qr"
-                data-mozillaonline-link="{{ static('img/firefox/mobile/protocol/qr-firefox-mozillaonline.png') }}"
-                alt="QR-Code zum Scannen für Firefox">
-          </div>
-        {% endif %}
+        {{ send_to_device(include_title=False, message_set='fx-whatsnew', class='vertical') }}
       </div>
     </div>
   </section>
